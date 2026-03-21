@@ -30,7 +30,9 @@ class SpeechService {
       },
       onSoundLevelChange: onSoundLevel,
       localeId: localeId,
-      partialResults: true,
+      listenOptions: SpeechListenOptions(
+        partialResults: true,
+      ),
       listenFor: const Duration(seconds: 5),
       pauseFor: const Duration(seconds: 3),
     );

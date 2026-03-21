@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to the "Hanzi Master" project will be documented in this file.
 
+### [2026-03-21] - 🌿 SYNC - Git Environment Implementation
+- **Standardization:** Initialized structured Git environment with project-specific `.gitignore`.
+- **Governance:** Added `docs/GIT_GUIDELINES.md` for multi-agent coordination and commit standards.
+- **Protocol:** Integrated Git sync rules into `docs/AI_PROTOCOL.md` (Baseline commits required at session end).
+- **Cleanup:** Removed 10+ legacy scratch and temporary files from the workspace.
+- **Cheatsheet:** Updated `docs/COMMANDS_CHEATSHEET.md` with version control maintenance commands.
+- **Baseline:** Performed first project-wide session baseline commit.
+
 ### [2026-03-15] - ✨ FEATURE - Tome Library & HSK 2.0 Support
 - **Tome Library:** Implemented a new "Tome Library" (Tome Manager) screen for modular content management.
 - **Zen & Ink:** The library features a Xuan Paper background, Ink colors, and premium transitions.

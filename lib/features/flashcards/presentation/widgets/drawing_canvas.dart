@@ -1,10 +1,8 @@
 import 'dart:math';
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:hanzi_master/core/character_loader.dart';
 import 'package:hanzi_master/core/stroke_matcher.dart';
-import 'package:path_drawing/path_drawing.dart';
 
 class DrawingCanvas extends StatefulWidget {
   final List<String> strokePaths;
@@ -314,18 +312,9 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
 
     final bool isDark = Theme.of(context).brightness == Brightness.dark;
     final strokeOffset = _getStrokeOffsetForCharacter(_activeCharIndex);
-    int? localLimit;
     if (widget.strokeLimit != null) {
-      final int charStrokes = _cachedCharGroups[_activeCharIndex].length;
-      if (widget.strokeLimit! <= strokeOffset) {
-        localLimit = 0;
-      } else if (widget.strokeLimit! >= strokeOffset + charStrokes) {
-        localLimit = charStrokes;
-      } else {
-        localLimit = widget.strokeLimit! - strokeOffset;
-      }
+      // final int charStrokes = _cachedCharGroups[_activeCharIndex].length;
     }
-    final displayStrokes = localLimit != null ? _cachedParsedPaths.take(localLimit).toList() : _cachedParsedPaths;
     final centeringShift = _getCenteringShift(_cachedParsedPaths);
     final localCurrentIndex = widget.currentStrokeIndex - strokeOffset;
 
@@ -650,61 +639,97 @@ class _SequentialPainter extends CustomPainter {
   final double progress;
   final Offset centeringShift;
   final bool isDark;
-  _SequentialPainter({required this.paths, this.medianPaths, required this.progress, required this.centeringShift, required this.isDark});
+
+  _SequentialPainter({
+    required this.paths,
+    this.medianPaths,
+    required this.progress,
+    required this.centeringShift,
+    required this.isDark,
+  });
+
   @override
   void paint(Canvas canvas, Size size) {
     if (paths.isEmpty || size.width == 0) return;
+
     canvas.save();
     canvas.scale(size.width / 1000.0, size.height / 1000.0);
     canvas.translate(centeringShift.dx, centeringShift.dy);
-    final total = paths.length;
-    final current = (progress * total).floor();
-    final stepProgress = (progress * total) - current;
+
+    final totalStrokes = paths.length;
+    final currentStrokeFloat = progress * totalStrokes;
+    final int completedCount = currentStrokeFloat.floor();
+    final double stepProgress = currentStrokeFloat - completedCount;
+
     final baseColor = isDark ? Colors.white : Colors.black87;
-    
-    // Draw completed strokes as filled
-    for (int i = 0; i < current && i < paths.length; i++) {
-      canvas.drawPath(paths[i], Paint()..color = baseColor..style = PaintingStyle.fill);
+    final inkPaint = Paint()
+      ..color = baseColor
+      ..style = PaintingStyle.fill
+      ..isAntiAlias = true;
+
+    // 1. Draw completed strokes
+    for (int i = 0; i < completedCount && i < paths.length; i++) {
+      canvas.drawPath(paths[i], inkPaint);
     }
-    
-    // Draw current stroke using median paths (skeleton) - this is the better animation!
-    if (current < paths.length) {
-      if (medianPaths != null && current < medianPaths!.length && medianPaths![current].isNotEmpty) {
-        final pts = medianPaths![current];
-        final paint = Paint()..color = isDark ? Colors.indigoAccent : Colors.indigo..strokeWidth = 65..strokeCap = StrokeCap.round..style = PaintingStyle.stroke;
-        final int visible = (stepProgress * pts.length).floor().clamp(2, pts.length);
-        final p = Path()..moveTo(pts[0].dx, pts[0].dy);
-        for (int i = 1; i < visible; i++) {
-          p.lineTo(pts[i].dx, pts[i].dy);
+
+    // 2. Draw current stroke with "Drawn" effect
+    if (completedCount < paths.length && stepProgress > 0) {
+      final currentBrushPath = paths[completedCount];
+
+      // CRITICAL: Optimization - use SaveLayer for masking
+      canvas.saveLayer(currentBrushPath.getBounds().inflate(10), Paint());
+
+      // Draw the full brush stroke first
+      canvas.drawPath(currentBrushPath, inkPaint);
+
+      // Now draw the "Mask" (The Brush) using BlendMode.dstIn
+      final maskPaint = Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 100.0 // Thick enough to cover any brush stroke width
+        ..strokeCap = StrokeCap.round
+        ..strokeJoin = StrokeJoin.round
+        ..blendMode = BlendMode.dstIn
+        ..isAntiAlias = true;
+
+      // Primary: Use Median Path (Skeleton)
+      if (medianPaths != null &&
+          completedCount < medianPaths!.length &&
+          medianPaths![completedCount].isNotEmpty) {
+        final pts = medianPaths![completedCount];
+        final int visibleCount = (stepProgress * pts.length).floor().clamp(2, pts.length);
+        final maskPath = Path()..moveTo(pts[0].dx, pts[0].dy);
+        for (int i = 1; i < visibleCount; i++) {
+          maskPath.lineTo(pts[i].dx, pts[i].dy);
         }
-        canvas.drawPath(p, paint);
-        // Brush tip indicator
-        canvas.drawCircle(Offset(pts[visible - 1].dx, pts[visible - 1].dy), 12, Paint()..color = Colors.white);
-      } else {
-        // Fallback: progressively draw the stroke outline using extractPath (NOT fading!)
-        final currentPath = paths[current];
-        final metrics = currentPath.computeMetrics().toList();
+        canvas.drawPath(maskPath, maskPaint);
+        
+        // Add a small "ink bloom" or "white tip" to show where the pen is
+        final tipPos = pts[visibleCount - 1];
+        canvas.drawCircle(tipPos, 12, Paint()..color = Colors.white.withValues(alpha: 0.8));
+      } 
+      // Fallback: Use the January Backup logic (extractPath on the outline)
+      else {
+        final metrics = currentBrushPath.computeMetrics().toList();
         if (metrics.isNotEmpty) {
-          final partialPath = Path();
+          final maskPath = Path();
           for (final metric in metrics) {
             final extracted = metric.extractPath(0, metric.length * stepProgress);
-            partialPath.addPath(extracted, Offset.zero);
+            maskPath.addPath(extracted, Offset.zero);
           }
-          final strokePaint = Paint()
-            ..style = PaintingStyle.stroke
-            ..strokeWidth = 40.0
-            ..color = baseColor
-            ..strokeCap = StrokeCap.round
-            ..strokeJoin = StrokeJoin.round
-            ..isAntiAlias = true;
-          canvas.drawPath(partialPath, strokePaint);
+          // For the fallback, we need an even thicker mask because outlines are wide
+          canvas.drawPath(maskPath, maskPaint..strokeWidth = 120.0);
         }
       }
+
+      canvas.restore(); // Restore SaveLayer
     }
-    canvas.restore();
+
+    canvas.restore(); // Restore global transform
   }
+
   @override
-  bool shouldRepaint(_SequentialPainter oldDelegate) => oldDelegate.progress != progress;
+  bool shouldRepaint(_SequentialPainter oldDelegate) =>
+      oldDelegate.progress != progress || oldDelegate.isDark != isDark;
 }
 
 class _RiceGridPainter extends CustomPainter {

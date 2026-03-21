@@ -1,3 +1,4 @@
+// ignore_for_file: avoid_print
 import 'dart:convert';
 import 'dart:io';
 
@@ -38,7 +39,7 @@ void main() async {
       }
 
       vocabularyList.add({
-        "uuid": "hsk\${level}_\${counter.toString().padLeft(4, '0')}",
+        "uuid": "hsk${level}_${counter.toString().padLeft(4, '0')}",
         "hanzi": hanzi,
         "pinyin": pinyin,
         "definition": definition,
