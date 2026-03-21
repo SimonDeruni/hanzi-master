@@ -713,81 +713,50 @@ class _ProStrokePainter extends CustomPainter {
 
       if (strokeProgress >= 1.0) {
         // Fully drawn stroke
-        canvas.drawPath(path, Paint()..color = inkColor..style = PaintingStyle.fill);
+        canvas.drawPath(path, Paint()
+          ..color = inkColor
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 35.0
+          ..strokeCap = StrokeCap.round
+          ..strokeJoin = StrokeJoin.round
+          ..isAntiAlias = true);
       } else {
-        // 1. PHANTOM STROKE (Subtle guide - minimized to not distract from inking)
-        canvas.drawPath(path, Paint()..color = inkColor.withAlpha(25)..style = PaintingStyle.fill);
+        // 1. PHANTOM STROKE
+        canvas.drawPath(path, Paint()
+          ..color = inkColor.withAlpha(25)
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 35.0
+          ..strokeCap = StrokeCap.round
+          ..strokeJoin = StrokeJoin.round
+          ..isAntiAlias = true);
 
         // 2. VIRTUAL BRUSH ANIMATION
         const prepThreshold = 0.2;
         final isPrepping = strokeProgress < prepThreshold;
-        
         final inkingProgress = isPrepping ? 0.0 : (strokeProgress - prepThreshold) / (1.0 - prepThreshold);
         final easedProgress = Curves.easeInOutQuart.transform(inkingProgress);
-        
-        final List<Offset> pts = (medianPaths != null && medianPaths!.length > i) ? medianPaths![i] : [];
-        
-        if (pts.isEmpty) {
-          _drawFallbackReveal(canvas, path, easedProgress, inkColor);
-        } else {
-          final skeleton = Path();
-          skeleton.moveTo(pts[0].dx, pts[0].dy);
-          for (int j = 1; j < pts.length; j++) {
-            skeleton.lineTo(pts[j].dx, pts[j].dy);
-          }
-          final metrics = skeleton.computeMetrics().toList();
-          if (metrics.isNotEmpty) {
-            // A. The Masked Stroke Layer (Multi-metric support)
-            canvas.saveLayer(path.getBounds().inflate(50), Paint());
-            canvas.drawPath(path, Paint()..color = inkColor..style = PaintingStyle.fill..isAntiAlias = true);
-            
-            final maskPaint = Paint()
-              ..style = PaintingStyle.stroke
-              ..strokeWidth = 100 
-              ..strokeCap = StrokeCap.round
-              ..strokeJoin = StrokeJoin.round
-              ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 12.0)
-              ..blendMode = BlendMode.dstIn;
-            
-            final totalLen = metrics.fold(0.0, (sum, m) => sum + m.length);
-            double currentLen = easedProgress * totalLen;
-            final maskPath = Path();
-            Offset lastTipPos = pts[0];
-            
-            for (final metric in metrics) {
-              if (currentLen <= 0) break;
-              final extractLen = currentLen.clamp(0.0, metric.length);
-              maskPath.addPath(metric.extractPath(0, extractLen), Offset.zero);
-              final tangent = metric.getTangentForOffset(extractLen);
-              if (tangent != null) lastTipPos = tangent.position;
-              currentLen -= metric.length;
-            }
-            final currentTipPos = lastTipPos;
 
-            canvas.drawPath(maskPath, maskPaint);
-            canvas.restore();
+        final metrics = path.computeMetrics().toList();
+        if (metrics.isEmpty) continue;
 
-            // B. Visual Cues (Start Hint & Brush Tip)
-            if (isPrepping) {
-              final pulse = (0.5 + 0.5 * sin(totalTime * 25)).clamp(0.0, 1.0);
-              // High contrast green
-              canvas.drawCircle(pts[0], 25 + pulse * 10, Paint()..color = Colors.green.withAlpha(120));
-              canvas.drawCircle(pts[0], 12, Paint()..color = Colors.green..style = PaintingStyle.fill);
-            } else {
-              // High-visibility Glowing Brush Tip (Amber Gold for maximal visibility on Xuan)
-              final pulse = (0.8 + 0.2 * sin(progress * 45)).clamp(0.0, 1.0);
-              const Color gold = Color(0xFFFFD700);
-              
-              final tipPaint = Paint()
-                ..color = gold.withValues(alpha: 0.9)
-                ..maskFilter = MaskFilter.blur(BlurStyle.normal, 20.0 * pulse);
-              
-              canvas.drawCircle(currentTipPos, 45 * pulse, tipPaint);
-              canvas.drawCircle(currentTipPos, 15, Paint()..color = Colors.white..style = PaintingStyle.fill);
-              canvas.drawCircle(currentTipPos, 18, Paint()..color = gold..style = PaintingStyle.stroke..strokeWidth = 3.0);
-            }
-          }
+        final totalLen = metrics.fold(0.0, (sum, m) => sum + m.length);
+        double currentLen = easedProgress * totalLen;
+        final partialPath = Path();
+
+        for (final metric in metrics) {
+          if (currentLen <= 0) break;
+          final extractLen = currentLen.clamp(0.0, metric.length);
+          partialPath.addPath(metric.extractPath(0, extractLen), Offset.zero);
+          currentLen -= metric.length;
         }
+
+        canvas.drawPath(partialPath, Paint()
+          ..color = inkColor
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 35.0
+          ..strokeCap = StrokeCap.round
+          ..strokeJoin = StrokeJoin.round
+          ..isAntiAlias = true);
       }
     }
 

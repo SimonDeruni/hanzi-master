@@ -19,6 +19,7 @@ class FlashcardRepositoryImpl implements FlashcardRepository {
   Map<String, dynamic>? _hsk1StrokesDb;
   Map<String, dynamic>? _hsk2BundleDb;
   Map<String, dynamic>? _animCjkDb;
+  Map<String, dynamic>? _hanziVgDb;
 
   FlashcardRepositoryImpl(this.flashcardBox);
 
@@ -52,10 +53,19 @@ class FlashcardRepositoryImpl implements FlashcardRepository {
           }
         } catch (e) { _animCjkDb = {}; }
       }
+      if (_hanziVgDb == null) {
+        try {
+          final hvgString = await rootBundle.loadString('assets/data/hsk1_hanzivg.json');
+          if (hvgString.isNotEmpty) {
+            _hanziVgDb = await compute(_parseJsonMap, hvgString);
+          }
+        } catch (e) { _hanziVgDb = {}; }
+      }
     } catch (e) {
       debugPrint("Warning: Database pre-warming skipped: $e");
       _hsk1StrokesDb ??= {};
       _animCjkDb ??= {};
+      _hanziVgDb ??= {};
     }
   }
 
@@ -329,43 +339,29 @@ class FlashcardRepositoryImpl implements FlashcardRepository {
     try {
       await preloadDatabases();
       
-      // Preferred Source: AnimCJK (High quality, no flip needed usually, but we check)
-      final acjkData = _animCjkDb?[char];
-        if (acjkData != null) {
-          debugPrint("HM: Loading $char from AnimCJK");
-          List<String> strokes = [];
-        List<List<Offset>> medians = [];
-        if (acjkData['outlines'] != null) strokes = (acjkData['outlines'] as List).cast<String>();
-        if (acjkData['skeletons'] != null) {
-          final List<String> skeletonStrings = (acjkData['skeletons'] as List).cast<String>();
-          medians = await CharacterLoader.parseAndSampleAsync(skeletonStrings, interval: 2.0);
+      List<String> strokes = [];
+      List<List<Offset>> medians = []; 
+      
+      // The True Original 'Gold' Aesthetics used skeleton paths rendering with PaintStyle.stroke.
+      if (_hanziVgDb != null && _hanziVgDb!.containsKey(char)) {
+        strokes = List<String>.from(_hanziVgDb![char]['paths'] ?? []);
+        medians = await CharacterLoader.parseAndSampleAsync(strokes, interval: 2.0);
+        return {'strokes': strokes, 'medians': medians, 'source': 'hanzivg'};
+      } 
+      // Fallback: Hanzi Writer
+      else if (_hsk1StrokesDb != null && _hsk1StrokesDb!.containsKey(char)) {
+        strokes = List<String>.from(_hsk1StrokesDb![char]['strokes'] ?? []);
+        if (_hsk1StrokesDb![char]['medians'] != null) {
+          medians = (_hsk1StrokesDb![char]['medians'] as List).map((m) {
+            final pts = (m as List).map((p) => Offset((p as List)[0].toDouble(), (p[1]).toDouble())).toList();
+            return CharacterLoader.flipPoints(pts).map(CharacterLoader.transformPoint).toList();
+          }).toList();
         }
-        return {'strokes': strokes, 'medians': medians, 'source': 'animcjk'};
-      }
-
-      // 2. Try HSK 2 Bundle (New format, bundled strokes)
-      final hsk2Data = _hsk2BundleDb?['strokes']?[char];
-      if (hsk2Data != null) {
-        final List<String> outlines = (hsk2Data['paths'] as List).cast<String>();
-        final List<String> skeletonStrings = (hsk2Data['skeletons'] as List).cast<String>();
-        
-        final List<List<Offset>> medians = await CharacterLoader.parseAndSampleAsync(skeletonStrings, interval: 2.0);
-        return {'strokes': outlines, 'medians': medians, 'source': 'animcjk'};
-      }
-
-      // 3. Fallback Source: Hanzi Writer (Legacy, Y-Up)
-      final charData = _hsk1StrokesDb?[char];
-      if (charData is Map) {
-        List<String> strokes = (charData['strokes'] as List).cast<String>();
-        List<List<Offset>> medians = (charData['medians'] as List).map((m) {
-          final pts = (m as List).map((p) => Offset((p as List)[0].toDouble(), (p[1]).toDouble())).toList();
-          // Flip AND Scale to 1000x1000 (Hanzi-Writer is 1024 Y-Up)
-          return CharacterLoader.flipPoints(pts).map(CharacterLoader.transformPoint).toList();
-        }).toList();
         return {'strokes': strokes, 'medians': medians, 'source': 'hanzi-writer'};
       }
+      
     } catch (e) {
-      // Character data missing or corrupted.
+      debugPrint("HM: Offline load failed for $char: $e");
     }
     return {};
   }
