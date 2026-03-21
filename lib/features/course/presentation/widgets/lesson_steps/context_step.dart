@@ -195,7 +195,7 @@ class _ContextStepState extends ConsumerState<ContextStep> {
                   strokePaths: widget.card.strokePaths,
                   medianPaths: widget.card.medianPaths,
                   isFlipped: widget.card.isFlipped,
-                  showAnimation: false,
+                  showAnimation: true, // ENABLED for visibility check
                   showReference: false, // NO ghost
                   showGuideLines: false, // NO start/end dots
                   strokeByStrokeMode: true, // MUST be true for manual indexing

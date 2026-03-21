@@ -15,7 +15,7 @@
 | 2026-03-15      | **Store Readiness (P0)**: Missing iOS permissions descriptions and encryption exemption in `Info.plist`. | ✅ FIXED |
 | 2026-03-15      | **Visual Fragmentation (P1)**: `NotoSansSC` font family referenced but not registered in `pubspec.yaml`. | ✅ FIXED |
 | 2026-03-15      | **Media Fidelity (P1)**: Reliance on TTS instead of native audio reduces premium feel compared to Pleco/Skritter. | ✅ FIXED (Hybrid Audio) |
-| 2026-03-15      | **AI Gap (P1)**: Missing 2026 standard AI roleplay and grammar correction interactivity. | ⏳ PENDING |
+| 2026-03-15      | **AI Gap (P1)**: Missing 2026 standard AI roleplay and grammar correction interactivity. | ✅ FIXED (Echo Hall Overhaul) |
 
 *(Older resolved issues moved to [RESOLVED_ISSUES_VOL_2.md](file:///c:/Users/simon/Documents/hanzi_master/docs/archive/RESOLVED_ISSUES_VOL_2.md))*
 | 2026-03-15      | **Stroke Order Animation Removed (P0)**: The sequential stroke order animation showing strokes drawn in correct order was removed during refactoring. Core learning visual is missing. | 🔴 CRITICAL - Animation still not working correctly after multiple attempts |

@@ -227,8 +227,16 @@ class FlashcardRepositoryImpl implements FlashcardRepository {
 
         if (strokes.isNotEmpty) {
           allStrokes.addAll(strokes);
-          // Normalize medians to 1000x1000 coordinate system
-          allMedians.addAll(medians.map((stroke) => stroke.map(CharacterLoader.transformPoint).toList()));
+          
+          // Ensure medians length parity with strokes count
+          final List<List<Offset>> normalizedMedians;
+          if (medians.length == strokes.length) {
+            normalizedMedians = medians;
+          } else {
+            // Provide empty skeletons if parity is broken to avoid desync
+            normalizedMedians = List.generate(strokes.length, (_) => <Offset>[]);
+          }
+          allMedians.addAll(normalizedMedians);
         }
       }
       final updatedCard = card.copyWith(strokePaths: allStrokes, medianPaths: allMedians, isFlipped: needsFlip);
@@ -323,8 +331,9 @@ class FlashcardRepositoryImpl implements FlashcardRepository {
       
       // Preferred Source: AnimCJK (High quality, no flip needed usually, but we check)
       final acjkData = _animCjkDb?[char];
-      if (acjkData != null) {
-        List<String> strokes = [];
+        if (acjkData != null) {
+          debugPrint("HM: Loading $char from AnimCJK");
+          List<String> strokes = [];
         List<List<Offset>> medians = [];
         if (acjkData['outlines'] != null) strokes = (acjkData['outlines'] as List).cast<String>();
         if (acjkData['skeletons'] != null) {
@@ -348,7 +357,11 @@ class FlashcardRepositoryImpl implements FlashcardRepository {
       final charData = _hsk1StrokesDb?[char];
       if (charData is Map) {
         List<String> strokes = (charData['strokes'] as List).cast<String>();
-        List<List<Offset>> medians = (charData['medians'] as List).map((m) => CharacterLoader.flipPoints((m as List).map((p) => Offset((p as List)[0].toDouble(), (p[1]).toDouble())).toList())).toList();
+        List<List<Offset>> medians = (charData['medians'] as List).map((m) {
+          final pts = (m as List).map((p) => Offset((p as List)[0].toDouble(), (p[1]).toDouble())).toList();
+          // Flip AND Scale to 1000x1000 (Hanzi-Writer is 1024 Y-Up)
+          return CharacterLoader.flipPoints(pts).map(CharacterLoader.transformPoint).toList();
+        }).toList();
         return {'strokes': strokes, 'medians': medians, 'source': 'hanzi-writer'};
       }
     } catch (e) {

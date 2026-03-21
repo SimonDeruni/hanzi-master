@@ -7,48 +7,65 @@ class AiHubScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    const Color xuanPaper = Color(0xFFFDFCF0);
+    const Color carbonInk = Color(0xFF1A1A1B);
+
     return Scaffold(
-      backgroundColor: const Color(0xFFFDFCF0), // Xuan Paper
+      backgroundColor: xuanPaper,
       appBar: AppBar(
         title: const Text(
-          "AI Hub",
+          "AI HUB",
           style: TextStyle(
-            color: Color(0xFF1A1A1B),
-            fontWeight: FontWeight.bold,
-            letterSpacing: 1.5,
+            color: carbonInk,
+            fontWeight: FontWeight.w900,
+            letterSpacing: 4.0,
+            fontSize: 20,
           ),
         ),
-        backgroundColor: const Color(0xFFFDFCF0),
+        backgroundColor: xuanPaper,
         elevation: 0,
         centerTitle: true,
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
+        padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              "Intelligence & Art",
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.w600,
-                color: Color(0xFF1A1A1B),
-              ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  "Art & Intellect",
+                  style: TextStyle(
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
+                    color: carbonInk,
+                    letterSpacing: -0.5,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Container(
+                  height: 3,
+                  width: 60,
+                  color: carbonInk,
+                ),
+              ],
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: 16),
             Text(
-              "Explore AI-powered tools designed to accompany your path to mastery.",
+              "Harness the power of the Digital Scholar to refine your brush and voice.",
               style: TextStyle(
-                fontSize: 14,
-                color: Colors.grey.shade700,
+                fontSize: 15,
+                color: carbonInk.withAlpha(160),
+                height: 1.5,
               ),
             ),
-            const SizedBox(height: 32),
+            const SizedBox(height: 48),
             _buildAiFeatureCard(
               context,
-              title: "AI Chatbot",
-              description: "Converse with distinct personas to practice conversational flow.",
-              icon: Icons.chat_bubble_outline,
+              title: "THE ECHO HALL",
+              description: "Conversational practice with distinct scholarly personas.",
+              icon: Icons.chat_bubble_outline_rounded,
               onTap: () {
                 Navigator.push(
                   context,
@@ -56,15 +73,15 @@ class AiHubScreen extends ConsumerWidget {
                 );
               },
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 20),
             _buildAiFeatureCard(
               context,
-              title: "AI Pronunciation",
-              description: "Coming soon: Grade your spoken tones automatically.",
-              icon: Icons.mic_none,
+              title: "PRONUNCIATION",
+              description: "Digital critique of your spoken tones and clarity.",
+              icon: Icons.mic_none_rounded,
               onTap: () {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text("Pronunciation analysis coming soon!")),
+                  const SnackBar(content: Text("The Scholar is still listening... coming soon!")),
                 );
               },
               isComingSoon: true,
@@ -83,73 +100,72 @@ class AiHubScreen extends ConsumerWidget {
     required VoidCallback onTap,
     bool isComingSoon = false,
   }) {
+    const Color carbonInk = Color(0xFF1A1A1B);
+    const Color xuanPaper = Color(0xFFFDFCF0);
+
     return InkWell(
       onTap: isComingSoon ? null : onTap,
-      borderRadius: BorderRadius.circular(16),
-      child: Container(
+      borderRadius: BorderRadius.circular(20),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 300),
         decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(16),
-          boxShadow: [
+          color: isComingSoon ? carbonInk.withAlpha(5) : xuanPaper,
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(
+            color: isComingSoon ? carbonInk.withAlpha(20) : carbonInk.withAlpha(40),
+            width: 1.5,
+          ),
+          boxShadow: isComingSoon ? null : [
             BoxShadow(
-              color: Colors.black.withAlpha(10),
-              blurRadius: 10,
-              offset: const Offset(0, 4),
+              color: carbonInk.withAlpha(20),
+              blurRadius: 15,
+              offset: const Offset(0, 8),
             )
           ],
         ),
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.all(24),
         child: Row(
           children: [
             Container(
-              padding: const EdgeInsets.all(12),
+              padding: const EdgeInsets.all(14),
               decoration: BoxDecoration(
-                color: const Color(0xFFFDFCF0),
-                borderRadius: BorderRadius.circular(12),
+                color: isComingSoon ? carbonInk.withAlpha(10) : carbonInk,
+                shape: BoxShape.circle,
               ),
-              child: Icon(icon, color: isComingSoon ? Colors.grey : const Color(0xFF1A1A1B), size: 28),
+              child: Icon(
+                icon, 
+                color: isComingSoon ? carbonInk.withAlpha(60) : xuanPaper, 
+                size: 24
+              ),
             ),
-            const SizedBox(width: 16),
+            const SizedBox(width: 20),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    children: [
-                      Text(
-                        title,
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: isComingSoon ? Colors.grey : const Color(0xFF1A1A1B),
-                        ),
-                      ),
-                      if (isComingSoon) ...[
-                        const SizedBox(width: 8),
-                        Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                          decoration: BoxDecoration(
-                            color: Colors.grey.shade200,
-                            borderRadius: BorderRadius.circular(4),
-                          ),
-                          child: const Text("Coming Soon", style: TextStyle(fontSize: 10, color: Colors.grey)),
-                        )
-                      ]
-                    ],
+                  Text(
+                    title,
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w900,
+                      color: isComingSoon ? carbonInk.withAlpha(100) : carbonInk,
+                      letterSpacing: 1.2,
+                    ),
                   ),
-                  const SizedBox(height: 4),
+                  const SizedBox(height: 6),
                   Text(
                     description,
                     style: TextStyle(
                       fontSize: 13,
-                      color: isComingSoon ? Colors.grey : Colors.grey.shade600,
+                      color: isComingSoon ? carbonInk.withAlpha(60) : carbonInk.withAlpha(160),
+                      height: 1.4,
                     ),
                   ),
                 ],
               ),
             ),
             if (!isComingSoon)
-              const Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey),
+              Icon(Icons.arrow_forward_ios_rounded, size: 16, color: carbonInk.withAlpha(100)),
           ],
         ),
       ),

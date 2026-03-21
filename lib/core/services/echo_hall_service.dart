@@ -22,7 +22,7 @@ class EchoHallService {
 
   Future<String> getResponse(List<ChatMessage> history, String personaInstructions) async {
     if (_apiKey.isEmpty || _apiKey == 'YOUR_API_KEY_HERE') {
-      return "The Scholar's voice is resting right now. Please check back later.";
+      return "The Scholar's voice is silent. The ink has not been prepared. (Missing API Key - See docs/AI_CHAT_SETUP.md)";
     }
 
     try {

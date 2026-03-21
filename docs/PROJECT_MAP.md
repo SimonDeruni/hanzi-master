@@ -21,6 +21,7 @@ Follows a **Feature-First Clean Architecture**.
 - **`ARCHITECTURAL_DECISIONS.md`**: Why we chose Riverpod, Hive, and Hausdorff.
 - **`FEATURE_MANIFEST.md`**: The pedagogical truth of implemented features.
 - **`ISSUES.md`**: Active bug and task tracker.
+- **`AI_CHAT_SETUP.md`**: Configuration guide for Gemini API and Echo Hall.
 
 ### 🕵️ `/audit` (Quality Assurance)
 - **`AUDIT_PLAN.md`**: The strategy for technical reviews.

@@ -1,5 +1,15 @@
-# Changelog
-All notable changes to the "Hanzi Master" project will be documented in this file.
+### [2026-03-21] - ✨ FEATURE - AI Chat Overhaul (Zen & Ink Edition)
+- **Aesthetic Hardening:** Migrated `EchoHallScreen` and `AiHubScreen` from generic dark/light themes to mandated "Zen & Ink" (Xuan Paper #FDFCF0 / Carbon Ink #1A1A1B).
+- **Premium UI:** Redesigned message bubbles to simulate ink-on-parchment and transformed the persona selector into a minimalist "scholar's rail."
+- **Infrastructure:** Created `docs/AI_CHAT_SETUP.md` with detailed Gemini API key configuration steps.
+- **Service Resilience:** Updated `EchoHallService` with helpful, scholarly error messages for missing API keys.
+- **Micro-Animations:** Refined typing indicators and send-button transitions for a smoother calligraphic feel.
+
+### [2026-03-21] - ✨ FEATURE - Zen & Ink Stroke Animations
+- **Aesthetics:** Enforced Xuan Paper (#FDFCF0) and Carbon Ink (#1A1A1B) globally for consistent visibility.
+- **Pro Logic:** Unified all stroke rendering into a high-performance `_ProStrokePainter` with brush-tip masking.
+- **Visibility:** Fixed "White-on-White" bug in Dark Mode and enabled animations in `ContextStep`.
+- **Hints:** Upgraded lightbulb hints to use premium Virtual Brush animation.
 
 ### [2026-03-21] - 🌿 SYNC - Git Environment Implementation
 - **Standardization:** Initialized structured Git environment with project-specific `.gitignore`.

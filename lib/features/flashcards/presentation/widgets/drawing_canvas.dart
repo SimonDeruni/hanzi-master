@@ -135,7 +135,8 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
   int _getStrokeOffsetForCharacter(int charIndex) {
     int offset = 0;
     for (int i = 0; i < charIndex; i++) {
-      offset += _cachedCharGroups[i].length;
+      // Each character group is followed by a separator in widget.medianPaths
+      offset += _cachedCharGroups[i].length + 1;
     }
     return offset;
   }
@@ -310,11 +311,13 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
       }
     }
 
+    // Zen & Ink Aesthetic Tokens
+    const Color xuanPaper = Color(0xFFFDFCF0);
+    const Color carbonInk = Color(0xFF1A1A1B);
+    
     final bool isDark = Theme.of(context).brightness == Brightness.dark;
     final strokeOffset = _getStrokeOffsetForCharacter(_activeCharIndex);
-    if (widget.strokeLimit != null) {
-      // final int charStrokes = _cachedCharGroups[_activeCharIndex].length;
-    }
+    
     final centeringShift = _getCenteringShift(_cachedParsedPaths);
     final localCurrentIndex = widget.currentStrokeIndex - strokeOffset;
 
@@ -339,28 +342,17 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
         aspectRatio: 1.0,
         child: Container(
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: xuanPaper, // Warm Xuan Paper mandate
             border: Border.all(
-              color: widget.strokeByStrokeMode ? Colors.blue.shade300 : Colors.grey.withValues(alpha: 0.3),
-              width: widget.strokeByStrokeMode ? 3.0 : 1.0,
+              color: widget.strokeByStrokeMode ? Colors.brown.shade200 : Colors.grey.withValues(alpha: 0.2),
+              width: widget.strokeByStrokeMode ? 2.0 : 1.0,
             ),
-            borderRadius: BorderRadius.circular(4),
+            borderRadius: BorderRadius.circular(8),
           ),
           child: Stack(
             children: [
               Positioned.fill(child: CustomPaint(painter: _RiceGridPainter(isDark: isDark))),
 
-              if (widget.showAnimation)
-                Positioned.fill(child: _DelayedAnimationWidget(
-                  key: ValueKey('anim_v7_${_activeCharIndex}_${widget.strokePaths.length}'),
-                  paths: _cachedParsedPaths,
-                  medianPaths: widget.medianPaths.isNotEmpty 
-                      ? widget.medianPaths.skip(strokeOffset).take(_cachedParsedPaths.length).toList() 
-                      : generatedMedianPaths,
-                  animationSpeed: widget.animationSpeed,
-                  centeringShift: centeringShift,
-                  isDark: isDark,
-                )),
 
               if (widget.strokeByStrokeMode && localCurrentIndex >= 0 && localCurrentIndex < _cachedParsedPaths.length)
                 Positioned.fill(
@@ -385,6 +377,7 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
                           animation: _hintController,
                           builder: (context, child) => CustomPaint(
                             painter: _HintStrokePainter(
+                              path: _cachedParsedPaths[localCurrentIndex.clamp(0, _cachedParsedPaths.length - 1)],
                               points: (widget.medianPaths.isNotEmpty && widget.currentStrokeIndex < widget.medianPaths.length) ? widget.medianPaths[widget.currentStrokeIndex] : null,
                               progress: _hintController.value,
                             ),
@@ -392,6 +385,26 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
                           ),
                         ),
                     ],
+                  ),
+                ),
+              
+              if (widget.showAnimation)
+                Positioned.fill(
+                  child: IgnorePointer(
+                    child: _DelayedAnimationWidget(
+                      key: ValueKey('anim_v10_${_activeCharIndex}_${widget.strokePaths.length}_${widget.medianPaths.length}'),
+                      paths: _cachedParsedPaths,
+                      medianPaths: (() {
+                        final hasReal = (widget.medianPaths.length >= strokeOffset + _cachedParsedPaths.length);
+                        debugPrint("HM: Char $_activeCharIndex. Using real medians: $hasReal. Total in list: ${widget.medianPaths.length}");
+                        return hasReal 
+                          ? widget.medianPaths.skip(strokeOffset).take(_cachedParsedPaths.length).toList() 
+                          : generatedMedianPaths;
+                      })(),
+                      animationSpeed: widget.animationSpeed,
+                      centeringShift: centeringShift,
+                      isDark: isDark,
+                    ),
                   ),
                 ),
 
@@ -442,7 +455,15 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
                           setState(() => _userPoints.add(null));
                           _gradeCurrentStroke();
                         },
-                        child: CustomPaint(painter: _UserDrawingPainter(activeCharacterUserPoints, _gradingResult, centeringShift: centeringShift, isDark: isDark), size: Size.infinite),
+                        child: CustomPaint(
+                          painter: _UserDrawingPainter(
+                            activeCharacterUserPoints, 
+                            _gradingResult, 
+                            centeringShift: centeringShift, 
+                            isDark: false, // Always Carbon Ink on Xuan
+                          ), 
+                          size: Size.infinite
+                        ),
                       );
                     },
                   ),
@@ -472,7 +493,7 @@ class _CompletedStrokesPainter extends CustomPainter {
     final double scaleY = size.height / 1000.0;
     canvas.save();
     canvas.scale(scaleX, scaleY);
-    final paint = Paint()..color = Colors.black87..style = PaintingStyle.fill..isAntiAlias = true;
+    final paint = Paint()..color = const Color(0xFF1A1A1B)..style = PaintingStyle.fill..isAntiAlias = true;
     for (final path in paths) {
       canvas.drawPath(path, paint);
     }
@@ -563,24 +584,22 @@ class _ReferenceStrokePainter extends CustomPainter {
 }
 
 class _HintStrokePainter extends CustomPainter {
+  final Path path;
   final List<Offset>? points;
   final double progress;
-  _HintStrokePainter({this.points, required this.progress});
+  _HintStrokePainter({required this.path, this.points, required this.progress});
   @override
   void paint(Canvas canvas, Size size) {
-    if (points == null || points!.isEmpty) return;
-    final double scale = size.width / 1000.0;
-    canvas.save();
-    canvas.scale(scale, scale);
-    final paint = Paint()..color = Colors.amber.shade700..strokeWidth = 80.0..style = PaintingStyle.stroke..strokeCap = StrokeCap.round;
-    final int visible = (progress * points!.length).floor().clamp(2, points!.length);
-    final hintPath = Path()..moveTo(points![0].dx, points![0].dy);
-    for (int i = 1; i < visible; i++) { hintPath.lineTo(points![i].dx, points![i].dy); }
-    canvas.drawPath(hintPath, paint);
-    final tip = Offset(points![visible - 1].dx, points![visible - 1].dy);
-    canvas.drawCircle(tip, 25, Paint()..color = Colors.amber.shade400.withValues(alpha: 0.5)..maskFilter = const MaskFilter.blur(BlurStyle.normal, 10));
-    canvas.drawCircle(tip, 12, Paint()..color = Colors.white);
-    canvas.restore();
+    // Standardize Hint to use Pro Logic
+    final painter = _ProStrokePainter(
+      paths: [path],
+      medianPaths: [points ?? []],
+      progress: progress,
+      centeringShift: Offset.zero,
+      isDark: false,
+      isHint: true,
+    );
+    painter.paint(canvas, size);
   }
   @override
   bool shouldRepaint(_HintStrokePainter oldDelegate) => true;
@@ -596,7 +615,8 @@ class _UserDrawingPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     if (size.width == 0) return;
     final scale = size.width / 1000.0;
-    final paint = Paint()..color = gradingResult == null ? (isDark ? Colors.white : Colors.black87) : (gradingResult! > 40 ? Colors.green : Colors.red)
+    const Color carbonInk = Color(0xFF1A1A1B);
+    final paint = Paint()..color = gradingResult == null ? carbonInk : (gradingResult! > 40 ? Colors.green : Colors.red)
       ..strokeWidth = scale * 32.0..strokeCap = StrokeCap.round..style = PaintingStyle.stroke;
     for (int i = 1; i < points.length; i++) {
       if (points[i] != null && points[i-1] != null) {
@@ -624,111 +644,187 @@ class _DelayedAnimationWidgetState extends State<_DelayedAnimationWidget> with S
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(vsync: this, duration: Duration(milliseconds: (300 + widget.paths.length * 400).toInt()))..forward();
-    _controller.addStatusListener((status) { if (status == AnimationStatus.completed) Future.delayed(const Duration(milliseconds: 1500), () { if (mounted) _controller.forward(from: 0); }); });
+    _controller = AnimationController(
+      vsync: this, 
+      duration: Duration(milliseconds: (500 + widget.paths.length * 700).toInt()),
+    )..forward();
+    _controller.addStatusListener((status) { 
+      if (status == AnimationStatus.completed) {
+        Future.delayed(const Duration(milliseconds: 2000), () { 
+          if (mounted) _controller.forward(from: 0); 
+        }); 
+      } 
+    });
   }
   @override
   void dispose() { _controller.dispose(); super.dispose(); }
   @override
-  Widget build(BuildContext context) => AnimatedBuilder(animation: _controller, builder: (context, child) => Opacity(opacity: 0.5, child: CustomPaint(painter: _SequentialPainter(paths: widget.paths, medianPaths: widget.medianPaths, progress: _controller.value, centeringShift: widget.centeringShift, isDark: widget.isDark), size: Size.infinite)));
+  Widget build(BuildContext context) => AnimatedBuilder(
+        animation: _controller,
+        builder: (context, child) => CustomPaint(
+          painter: _ProStrokePainter(
+            paths: widget.paths,
+            medianPaths: widget.medianPaths,
+            progress: _controller.value,
+            centeringShift: widget.centeringShift,
+            isDark: widget.isDark,
+          ),
+          size: Size.infinite,
+        ),
+      );
 }
 
-class _SequentialPainter extends CustomPainter {
+class _ProStrokePainter extends CustomPainter {
   final List<Path> paths;
   final List<List<Offset>>? medianPaths;
   final double progress;
   final Offset centeringShift;
   final bool isDark;
 
-  _SequentialPainter({
+  final bool isHint;
+
+  _ProStrokePainter({
     required this.paths,
     this.medianPaths,
     required this.progress,
     required this.centeringShift,
     required this.isDark,
+    this.isHint = false,
   });
 
   @override
   void paint(Canvas canvas, Size size) {
-    if (paths.isEmpty || size.width == 0) return;
+    if ((paths.isEmpty && !isHint) || size.width == 0) return;
 
     canvas.save();
     canvas.scale(size.width / 1000.0, size.height / 1000.0);
     canvas.translate(centeringShift.dx, centeringShift.dy);
 
     final totalStrokes = paths.length;
-    final currentStrokeFloat = progress * totalStrokes;
-    final int completedCount = currentStrokeFloat.floor();
-    final double stepProgress = currentStrokeFloat - completedCount;
+    final totalTime = progress * totalStrokes;
+    const Color carbonInk = Color(0xFF1A1A1B);
+    final inkColor = carbonInk;
 
-    final baseColor = isDark ? Colors.white : Colors.black87;
-    final inkPaint = Paint()
-      ..color = baseColor
-      ..style = PaintingStyle.fill
-      ..isAntiAlias = true;
+    for (int i = 0; i < totalStrokes; i++) {
+      final strokeProgress = (totalTime - i).clamp(0.0, 1.0);
+      if (strokeProgress <= 0) continue;
 
-    // 1. Draw completed strokes
-    for (int i = 0; i < completedCount && i < paths.length; i++) {
-      canvas.drawPath(paths[i], inkPaint);
-    }
+      final path = paths[i];
 
-    // 2. Draw current stroke with "Drawn" effect
-    if (completedCount < paths.length && stepProgress > 0) {
-      final currentBrushPath = paths[completedCount];
+      if (strokeProgress >= 1.0) {
+        // Fully drawn stroke
+        canvas.drawPath(path, Paint()..color = inkColor..style = PaintingStyle.fill);
+      } else {
+        // 1. PHANTOM STROKE (Subtle guide - minimized to not distract from inking)
+        canvas.drawPath(path, Paint()..color = inkColor.withAlpha(25)..style = PaintingStyle.fill);
 
-      // CRITICAL: Optimization - use SaveLayer for masking
-      canvas.saveLayer(currentBrushPath.getBounds().inflate(10), Paint());
-
-      // Draw the full brush stroke first
-      canvas.drawPath(currentBrushPath, inkPaint);
-
-      // Now draw the "Mask" (The Brush) using BlendMode.dstIn
-      final maskPaint = Paint()
-        ..style = PaintingStyle.stroke
-        ..strokeWidth = 100.0 // Thick enough to cover any brush stroke width
-        ..strokeCap = StrokeCap.round
-        ..strokeJoin = StrokeJoin.round
-        ..blendMode = BlendMode.dstIn
-        ..isAntiAlias = true;
-
-      // Primary: Use Median Path (Skeleton)
-      if (medianPaths != null &&
-          completedCount < medianPaths!.length &&
-          medianPaths![completedCount].isNotEmpty) {
-        final pts = medianPaths![completedCount];
-        final int visibleCount = (stepProgress * pts.length).floor().clamp(2, pts.length);
-        final maskPath = Path()..moveTo(pts[0].dx, pts[0].dy);
-        for (int i = 1; i < visibleCount; i++) {
-          maskPath.lineTo(pts[i].dx, pts[i].dy);
-        }
-        canvas.drawPath(maskPath, maskPaint);
+        // 2. VIRTUAL BRUSH ANIMATION
+        const prepThreshold = 0.2;
+        final isPrepping = strokeProgress < prepThreshold;
         
-        // Add a small "ink bloom" or "white tip" to show where the pen is
-        final tipPos = pts[visibleCount - 1];
-        canvas.drawCircle(tipPos, 12, Paint()..color = Colors.white.withValues(alpha: 0.8));
-      } 
-      // Fallback: Use the January Backup logic (extractPath on the outline)
-      else {
-        final metrics = currentBrushPath.computeMetrics().toList();
-        if (metrics.isNotEmpty) {
-          final maskPath = Path();
-          for (final metric in metrics) {
-            final extracted = metric.extractPath(0, metric.length * stepProgress);
-            maskPath.addPath(extracted, Offset.zero);
+        final inkingProgress = isPrepping ? 0.0 : (strokeProgress - prepThreshold) / (1.0 - prepThreshold);
+        final easedProgress = Curves.easeInOutQuart.transform(inkingProgress);
+        
+        final List<Offset> pts = (medianPaths != null && medianPaths!.length > i) ? medianPaths![i] : [];
+        
+        if (pts.isEmpty) {
+          _drawFallbackReveal(canvas, path, easedProgress, inkColor);
+        } else {
+          final skeleton = Path();
+          skeleton.moveTo(pts[0].dx, pts[0].dy);
+          for (int j = 1; j < pts.length; j++) {
+            skeleton.lineTo(pts[j].dx, pts[j].dy);
           }
-          // For the fallback, we need an even thicker mask because outlines are wide
-          canvas.drawPath(maskPath, maskPaint..strokeWidth = 120.0);
+          final metrics = skeleton.computeMetrics().toList();
+          if (metrics.isNotEmpty) {
+            // A. The Masked Stroke Layer (Multi-metric support)
+            canvas.saveLayer(path.getBounds().inflate(50), Paint());
+            canvas.drawPath(path, Paint()..color = inkColor..style = PaintingStyle.fill..isAntiAlias = true);
+            
+            final maskPaint = Paint()
+              ..style = PaintingStyle.stroke
+              ..strokeWidth = 100 
+              ..strokeCap = StrokeCap.round
+              ..strokeJoin = StrokeJoin.round
+              ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 12.0)
+              ..blendMode = BlendMode.dstIn;
+            
+            final totalLen = metrics.fold(0.0, (sum, m) => sum + m.length);
+            double currentLen = easedProgress * totalLen;
+            final maskPath = Path();
+            Offset lastTipPos = pts[0];
+            
+            for (final metric in metrics) {
+              if (currentLen <= 0) break;
+              final extractLen = currentLen.clamp(0.0, metric.length);
+              maskPath.addPath(metric.extractPath(0, extractLen), Offset.zero);
+              final tangent = metric.getTangentForOffset(extractLen);
+              if (tangent != null) lastTipPos = tangent.position;
+              currentLen -= metric.length;
+            }
+            final currentTipPos = lastTipPos;
+
+            canvas.drawPath(maskPath, maskPaint);
+            canvas.restore();
+
+            // B. Visual Cues (Start Hint & Brush Tip)
+            if (isPrepping) {
+              final pulse = (0.5 + 0.5 * sin(totalTime * 25)).clamp(0.0, 1.0);
+              // High contrast green
+              canvas.drawCircle(pts[0], 25 + pulse * 10, Paint()..color = Colors.green.withAlpha(120));
+              canvas.drawCircle(pts[0], 12, Paint()..color = Colors.green..style = PaintingStyle.fill);
+            } else {
+              // High-visibility Glowing Brush Tip (Amber Gold for maximal visibility on Xuan)
+              final pulse = (0.8 + 0.2 * sin(progress * 45)).clamp(0.0, 1.0);
+              const Color gold = Color(0xFFFFD700);
+              
+              final tipPaint = Paint()
+                ..color = gold.withValues(alpha: 0.9)
+                ..maskFilter = MaskFilter.blur(BlurStyle.normal, 20.0 * pulse);
+              
+              canvas.drawCircle(currentTipPos, 45 * pulse, tipPaint);
+              canvas.drawCircle(currentTipPos, 15, Paint()..color = Colors.white..style = PaintingStyle.fill);
+              canvas.drawCircle(currentTipPos, 18, Paint()..color = gold..style = PaintingStyle.stroke..strokeWidth = 3.0);
+            }
+          }
         }
       }
-
-      canvas.restore(); // Restore SaveLayer
     }
 
-    canvas.restore(); // Restore global transform
+    canvas.restore();
+  }
+
+  void _drawFallbackReveal(Canvas canvas, Path path, double progress, Color color) {
+    // Linear sweep is more reliable than perimeter sampling for closed loops
+    final bounds = path.getBounds();
+    final isVertical = bounds.height > bounds.width;
+    
+    canvas.saveLayer(bounds.inflate(10), Paint());
+    canvas.drawPath(path, Paint()..color = color..style = PaintingStyle.fill);
+    
+    final maskPaint = Paint()..blendMode = BlendMode.dstIn;
+    canvas.drawRect(
+      isVertical 
+        ? Rect.fromLTWH(bounds.left - 50, bounds.top, bounds.width + 100, bounds.height * progress)
+        : Rect.fromLTWH(bounds.left, bounds.top - 50, bounds.width * progress, bounds.height + 100),
+      maskPaint,
+    );
+    canvas.restore();
+
+    // Add Dot to Fallback
+    final tipPos = isVertical 
+      ? Offset(bounds.center.dx, bounds.top + bounds.height * progress)
+      : Offset(bounds.left + bounds.width * progress, bounds.center.dy);
+    
+    // Pulse faster in fallback to signal it's a guide
+    final pulse = (0.8 + 0.2 * sin(progress * 60)).clamp(0.0, 1.0);
+    const Color gold = Color(0xFFFFD700);
+    canvas.drawCircle(tipPos, 45 * pulse, Paint()..color = gold.withValues(alpha: 0.6)..maskFilter = const MaskFilter.blur(BlurStyle.normal, 15));
+    canvas.drawCircle(tipPos, 12, Paint()..color = Colors.white);
   }
 
   @override
-  bool shouldRepaint(_SequentialPainter oldDelegate) =>
+  bool shouldRepaint(_ProStrokePainter oldDelegate) =>
       oldDelegate.progress != progress || oldDelegate.isDark != isDark;
 }
 
