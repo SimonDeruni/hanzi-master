@@ -16,6 +16,11 @@ class HapticsManager {
     await HapticFeedback.heavyImpact();
   }
 
+  // Selection tick
+  static Future<void> selection() async {
+    await HapticFeedback.selectionClick();
+  }
+
   // Success vibration (double tick)
   static Future<void> success() async {
     // There isn't a direct "success" in standard Flutter, 
@@ -23,5 +28,14 @@ class HapticsManager {
     await HapticFeedback.lightImpact();
     await Future.delayed(const Duration(milliseconds: 100));
     await HapticFeedback.lightImpact();
+  }
+
+  // Error vibration (triple heavy tick)
+  static Future<void> error() async {
+    await HapticFeedback.heavyImpact();
+    await Future.delayed(const Duration(milliseconds: 100));
+    await HapticFeedback.heavyImpact();
+    await Future.delayed(const Duration(milliseconds: 100));
+    await HapticFeedback.heavyImpact();
   }
 }

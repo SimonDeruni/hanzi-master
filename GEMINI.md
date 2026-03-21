@@ -1,90 +1,60 @@
-# 🧠 GEMINI.md - Project Context & "Hanzi Master" Brain
+# 🧠 GEMINI.md - The Hanzi Master "Executive Briefing"
 
-> **SYSTEM INSTRUCTION:** ALWAYS read this file and `functionalities.md` at the start of a session. They contain the absolute truth of the project.
+> **🛸 AI QUICK-START (Mandatory):**
+> 1.  **Status:** Read `SESSION_STATE.md`. If you see **Stale Locks** (>2hrs old), you MUST run the `docs/ai_update_guidelines/RECOVERY_STANDARD.md` procedure before anything else.
+> 2.  **Context:** Skip reading `docs/PROJECT_MAP.md` if the codebase structure is already known from recent turns.
+> 3.  **Governance:** Only read `docs/AI_PROTOCOL.md` if you need to clarify sync rules.
+> 4.  **Verification:** Run `flutter analyze` at the end of your task or before `notify_user` to ensure **Total Hygiene State**.
 
-## 1. 🎯 Project Overview
-We are building a mobile application designed to teach users how to write Mandarin Chinese characters.
-* **Primary Goal:** Help users master the **stroke order** (brushing order) and structure of Chinese characters.
-* **Target Audience:** Beginners and professionals targeting **HSK 3.0 Level 1** standards.
-* **Unique Value Proposition:** Unlike standard flashcard apps, we focus heavily on the *kinesthetics* of writing—providing real-time feedback on stroke direction, order, and accuracy.
+---
 
-## 2. 🛡️ The "Solo Founder" Constraints (CRITICAL)
-* **The Developer:** I am a solo developer using AI to generate 90% of this codebase.
-* **Tech Stack:** **Flutter (Dart)**.
-    * *Warning:* Do not give me React Native or Web code.
-    * *Environment:* Development is primarily done using an **Android Simulator** (Pixel 7).
-* **Language Barrier:** I do not speak Chinese. **Do not hallucinate or invent Chinese data.**
-* **Data Source:** We use the **HK 150** character list (JSON/SVG) as the Single Source of Truth.
-* **Coding Barrier:** I am not fluent in Dart.
-    * **Requirement:** Explain *where* code goes (File/Line) and *why*.
-    * **Requirement:** Prefer simple, readable code over complex optimizations.
-    * **Requirement:** Always include comments explaining what a block of code does.
+## 🎨 1. The "Zen & Ink" Mandate (The Soul)
+Hanzi Master is NOT a "Material Design" app. It is a **Calligraphic Tool**.
+*   **Aesthetic:** Warm Xuan Paper (`#FDFCF0`), Deep Carbon Ink (`#1A1A1B`).
+*   **Motion:** Natural curves (`Curves.easeInOutQuart`), haptic micro-taps.
+*   **Tone:** Teachable, calm, and professional.
 
-## 3. 🚧 Core Features & Logic (Current Phase)
+---
 
-### A. The Drawing System
-* **Input:** Users draw on a canvas using touch input ($x,y$ coordinates).
-* **Visuals:** Render the "target" character (ghost image) and user strokes.
+## 🔄 2. The Lean Sync Rule (The Law)
+Task completion REQUIRES updating all **Mandatory** files. Batch these updates to the end of an **Objective** (user-defined goal) to save tokens.
 
-### B. The Logic Challenge: Stroke Detection (PRIORITY)
-**Goal:** Compare User Input ($x,y$ array) vs. Reference SVG Path.
-**Algorithm:** Use **Geometric Path Matching** (Frechet Distance or Simplified Hausdorff).
+### **Mandatory (3 Files - Every Turn):**
+- `CHANGELOG.md`, `ISSUES.md`, `SESSION_STATE.md`.
 
-**Logic Rules:**
-1.  **Coordinate Normalization:** Scale both inputs to a $0-1000$ space.
-2.  **Directionality Check:** Does the user's start point match the reference start point? (Distance $< Threshold$).
-3.  **Buffer Zone:** Are the intermediate points within a ~50px width of the reference line?
-4.  **One-Way Gate:** Stroke 1 must be correct before Stroke 2 unlocks.
+### **Triggered (8 Files - If scope/structure changed):**
+- `ROADMAP.MD`, `FEATURE_MANIFEST.md`, `AUDIT_PLAN.md`, `PROJECT_MAP.md`, `ARCHITECTURAL_DECISIONS.md`, `ANTI_PATTERNS.md`, `UI_UX_STANDARDS.md`, `COMMANDS_CHEATSHEET.md`.
 
-### C. The Feedback Loop
-* **Immediate Feedback:**
-    * *Wrong Direction/Order:* Trigger a "shake" animation.
-    * *Correct Stroke:* "Snap" user's messy line to the perfect vector line (auto-beautify) + Success Sound + Turn Green.
+---
 
-## 4. ⚖️ Feature Decision Matrix (Scope Control)
-> **INSTRUCTION:** If I ask for a feature, categorize it. If it is NOT "Must Have," warn me.
+## 🕵️ 3. The Active Remediation Loop (Auditing Protocol)
+Audits are NOT just for reporting. If you are asked to conduct an audit, you MUST follow this loop:
+1.  **Execute:** Run the audit steps.
+2.  **Fix:** Immediately attempt to fix any P0/P1 issues found.
+3.  **Re-Audit:** Verify your fix worked.
+4.  **Report:** The final audit report must reflect the *post-remediation* state. List what you fixed under "Corrective Actions." Only unfixable issues should be left as FAILED.
 
-* 🔴 **Must Have (MVP):** Stroke Direction Detection, HSK 1 Data, Offline support.
-* ⚪ **Won't Have (Distractions):** Chat, Leaderboards, Login Screens, Payment integration.
+---
 
-## 5. ⚡ Permission & Execution Protocol
-> **SYSTEM INSTRUCTION:** Do not ask "Should I write this?" or "Do you want the code?". **Just write it.**
+## 🤝 4. Multi-Agent Coordination (Parallel Work)
+There may be multiple AI agents working on this project simultaneously.
+1.  **Check Locks:** Read `SESSION_STATE.md` for `[🔒 LOCKED]` files before starting.
+2.  **Claim Your Work:** Immediately add a lock to the files/features you are touching.
+3.  **Sync often:** Re-read the Baton (`SESSION_STATE.md`) if your task takes many turns.
+*(See `docs/ai_update_guidelines/COORDINATION_STANDARD.md` for full rules).*
 
-1.  **Bias for Action:** When I ask for a fix or feature, analyze the problem and immediately provide the complete, working code block.
-2.  **Context is King:** You do not need permission to refactor existing code if it improves readability or fixes a bug. Just explain *why* you did it in the comments.
-3.  **Documentation is Mandatory:** You cannot output code for a feature without *also* providing the text to update the Changelog below.
+---
 
-## 6. 🔄 The "Auto-Sync" Documentation Protocol
-> **SYSTEM INSTRUCTION:** You are the Project Manager. Keep files in sync automatically.
+## 🎯 5. Current Strategic Focus (Phase 8: Integrity)
+*   **Active:** Hardening the architecture and governance (Governance PASSED).
+*   **Priority:** Encrypting Hive storage and finishing HSK 2.0 Tome support.
+*   **Mandate:** Do not touch `lib/core/stroke_matcher.dart` without an audit.
 
-1.  **The "Sync" Rule:** Every time we complete a task, you must provide updates for **FOUR** files immediately:
-    * `CODE`: The actual code changes.
-    * `CHANGELOG.md`: Record what changed (`[DATE] - [TYPE] - Desc`).
-    * `ROADMAP.md`: Mark completed tasks with `[x]`.
-    * `functionalities.md`: If a feature's behavior or "how it works" changes, update its description here.
+---
 
-2.  **Logic & Functionality:** Any change in the *behavior* or *logic* (fonctionnement) of a feature must be explicitly detailed in the `CHANGELOG.md` and kept up-to-date in `functionalities.md`.
-
-3.  **Roadmap Logic:**
-    * If a task in `CHANGELOG` matches a line in `ROADMAP`, change `[ ]` to `[x]` automatically.
-    * If we finish a "Phase," explicitly state: *"Phase X Complete. Moving to Phase Y."*
-
-4.  **Validation:** Before finishing a response, ask yourself: *"Did I update the Changelog, Roadmap, and Functionalities to reflect the work we just did?"*
-
-## 8. 🛡️ Absolute Security Mandates
-
-> **SYSTEM INSTRUCTION:** Security is not optional. Follow these rules in every code generation:
-
-
-
-1.  **Zero Secrets Policy:** NEVER hardcode API keys, tokens, or sensitive strings. Use environment variables or encrypted storage.
-
-2.  **Privacy First:** Favor local-only storage (Hive) over cloud solutions unless explicitly asked.
-
-3.  **Untrusted Input:** Treat all external data (JSON from CDNs, SVG paths, user-imported files) as **untrusted**. Always implement validation/try-catch blocks.
-
-4.  **Encryption by Default:** When adding new persistent data (e.g., user profiles), use Hive's encrypted boxes.
-
-5.  **Fail Safely:** If a data import or network fetch fails, the app must stay functional (graceful degradation).
-
-
+## 🧭 6. Navigation Hub
+- **Architecture:** `docs/PROJECT_MAP.md`
+- **Guidelines:** `docs/PROJECT_GUIDELINES.md`
+- **Audit Steps:** `audit/AUDIT_GUIDELINES.md`
+- **Decisions:** `docs/ARCHITECTURAL_DECISIONS.md`
+- **Standards:** `docs/UI_UX_STANDARDS.md`, `docs/ai_update_guidelines/COORDINATION_STANDARD.md`

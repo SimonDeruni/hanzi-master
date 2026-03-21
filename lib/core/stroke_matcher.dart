@@ -1,14 +1,14 @@
 import 'dart:ui';
-import 'dart:math';
-import '../core/geometry_utils.dart';
+import 'package:flutter/foundation.dart';
+import 'package:hanzi_master/core/geometry_utils.dart';
 
 /// Represents the result of a stroke matching operation.
 class StrokeMatchResult {
   final bool isMatch;
-  final double score; // A score indicating how good the match is (e.g., inverse of distance)
-  final String feedback; // e.g., "Correct stroke direction", "Path too far off"
-  final List<Offset> normalizedUserStroke; // The normalized user stroke for visualization
-  final List<Offset> normalizedReferenceStroke; // The normalized reference stroke for visualization
+  final double score; // 0.0 to 1.0
+  final String feedback;
+  final List<Offset> normalizedUserStroke;
+  final List<Offset> normalizedReferenceStroke;
 
   StrokeMatchResult({
     required this.isMatch,
@@ -19,105 +19,180 @@ class StrokeMatchResult {
   });
 }
 
-/// Provides functionality to match user-drawn strokes against reference strokes.
+/// Helper for passing multiple arguments to the background compute function.
+class _MatchStrokeParams {
+  final List<Offset> userStroke;
+  final List<Offset> referenceMedian;
+  final double masteryLevel;
+  final bool strictEndpoints;
+
+  _MatchStrokeParams({
+    required this.userStroke,
+    required this.referenceMedian,
+    required this.masteryLevel,
+    required this.strictEndpoints,
+  });
+}
+
+/// Top-level worker function for background stroke matching.
+StrokeMatchResult _matchStrokeWorker(_MatchStrokeParams params) {
+  return StrokeMatcher.matchStroke(
+    params.userStroke,
+    params.referenceMedian,
+    masteryLevel: params.masteryLevel,
+    strictEndpoints: params.strictEndpoints,
+  );
+}
+
+/// Provides functionality to match user-drawn strokes against reference strokes (Medians).
 class StrokeMatcher {
+  /// Compares a user-drawn stroke against a reference median stroke asynchronously in a background isolate.
+  static Future<StrokeMatchResult> matchStrokeAsync(
+    List<Offset> userStroke,
+    List<Offset> referenceMedian, {
+    double masteryLevel = 0.0,
+    bool strictEndpoints = true,
+  }) async {
+    return compute(
+      _matchStrokeWorker,
+      _MatchStrokeParams(
+        userStroke: userStroke,
+        referenceMedian: referenceMedian,
+        masteryLevel: masteryLevel,
+        strictEndpoints: strictEndpoints,
+      ),
+    );
+  }
 
-
-  /// Compares a user-drawn stroke against a reference stroke.
-  ///
-  /// [userStroke] is a list of Offset points representing the user's drawing.
-  /// [referenceStroke] is a list of Offset points representing the correct stroke.
-  /// [startPointThreshold] is the maximum distance allowed between start points
-  ///   for the directionality check.
-  /// [pathBufferZone] is the maximum allowed distance for intermediate points
-  ///   from the reference path for the path shape check.
+  /// Compares a user-drawn stroke against a reference median stroke.
   static StrokeMatchResult matchStroke(
     List<Offset> userStroke,
-    List<Offset> referenceStroke, {
-    double startPointThreshold = 50.0,
-    double pathBufferZone = 50.0,
+    List<Offset> referenceMedian, {
+    double masteryLevel = 0.0, // 0.0 to 1.0
+    bool strictEndpoints = true,
   }) {
-    if (userStroke.isEmpty || referenceStroke.isEmpty) {
+    if (userStroke.isEmpty || referenceMedian.isEmpty) {
+      return StrokeMatchResult(isMatch: false, feedback: 'Strokes cannot be empty.');
+    }
+
+    final double refLength = _calculatePathLength(referenceMedian);
+    // Relative scale for thresholds (shorter strokes require more precision)
+    // We cap it so it doesn't get ridiculously small or large.
+    final double lengthFactor = (refLength / 500.0).clamp(0.4, 1.2);
+
+    // --- 1. Directionality Check ---
+    final startDist = (userStroke.first - referenceMedian.first).distance;
+    final baseThreshold = (150.0 - (masteryLevel * 75.0)) * lengthFactor;
+    // Audit Logic: Ensure thresholds don't get impossibly small for tiny strokes
+    final minThreshold = 35.0 - (masteryLevel * 10.0);
+    final startThreshold = (strictEndpoints ? baseThreshold : baseThreshold * 2.0).clamp(minThreshold, 300.0);
+    
+    if (startDist > startThreshold) {
       return StrokeMatchResult(
         isMatch: false,
-        feedback: 'Strokes cannot be empty.',
+        score: 0.0,
+        feedback: 'Wrong start point.',
       );
     }
 
-    // 1. Directionality Check: Compare start points using original (un-normalized) coordinates
-    final startDistance = GeometryUtils.distance(
-      userStroke.first.dx,
-      userStroke.first.dy,
-      referenceStroke.first.dx,
-      referenceStroke.first.dy,
-    );
+    // --- 1.5. Centroid Check ---
+    final userCentroid = _calculateCentroid(userStroke);
+    final refCentroid = _calculateCentroid(referenceMedian);
+    final centroidDist = (userCentroid - refCentroid).distance;
+    final centroidThreshold = ((200.0 - (masteryLevel * 100.0)) * lengthFactor).clamp(minThreshold * 1.5, 400.0);
 
-    if (startDistance > startPointThreshold) {
+    if (centroidDist > centroidThreshold) {
       return StrokeMatchResult(
         isMatch: false,
-        feedback: 'Start point too far off from the expected stroke start.',
+        score: 0.0,
+        feedback: 'Right shape, but wrong place!',
       );
     }
 
-    // 2. Coordinate Normalization for path shape comparison
-    final normalizedUserStroke = GeometryUtils.normalizePoints(userStroke);
-    final normalizedReferenceStroke = GeometryUtils.normalizePoints(referenceStroke);
+    // --- 2. Path Matching (Raw coordinates, no normalization to prevent warping) ---
+    final normalizedUser = userStroke;
+    final normalizedRef = referenceMedian;
 
-    // 3. Path Shape Check (Simplified Hausdorff / Buffer Zone)
-    double maxDistanceToReference = 0.0;
-    for (final userPoint in normalizedUserStroke) {
-      double minDistanceToRefSegment = double.infinity;
-      // Iterate through segments of the normalizedReferenceStroke
-      for (int i = 0; i < normalizedReferenceStroke.length - 1; i++) {
-        final refSegmentStart = normalizedReferenceStroke[i];
-        final refSegmentEnd = normalizedReferenceStroke[i + 1];
-        final dist = GeometryUtils.distanceToLineSegment(
-          userPoint,
-          refSegmentStart,
-          refSegmentEnd,
-        );
-        if (dist < minDistanceToRefSegment) {
-          minDistanceToRefSegment = dist;
-        }
+    // --- 3. Path Shape Check ---
+    double totalDistance = 0.0;
+    for (final uPoint in normalizedUser) {
+      double minToRef = double.infinity;
+      for (int i = 0; i < normalizedRef.length - 1; i++) {
+        final dist = GeometryUtils.distanceToLineSegment(uPoint, normalizedRef[i], normalizedRef[i+1]);
+        if (dist < minToRef) minToRef = dist;
       }
-      // Handle the case of a single-point reference stroke or if only one point in reference stroke
-      if (normalizedReferenceStroke.length == 1) {
-        final dist = GeometryUtils.distance(
-          userPoint.dx, userPoint.dy,
-          normalizedReferenceStroke.first.dx, normalizedReferenceStroke.first.dy,
-        );
-         if (dist < minDistanceToRefSegment) {
-          minDistanceToRefSegment = dist;
-        }
-      }
+      totalDistance += minToRef;
+    }
+    final averageDistance = totalDistance / normalizedUser.length;
 
-      if (minDistanceToRefSegment > maxDistanceToReference) {
-        maxDistanceToReference = minDistanceToRefSegment;
+    // --- 4. Endpoint Accuracy ---
+    final endDist = (normalizedUser.last - normalizedRef.last).distance;
+    final endpointPenalty = (startDist + endDist) / 4.0;
+
+    // Total Error Score & Matching Logic
+    final shapeWeight = strictEndpoints ? 0.7 : 0.9;
+    final endWeight = strictEndpoints ? 0.3 : 0.1;
+    final combinedError = (averageDistance * shapeWeight) + (endpointPenalty * endWeight);
+
+    final baseBuffer = ((100.0 - (masteryLevel * 50.0)) * lengthFactor).clamp(minThreshold, 200.0);
+    final bufferZone = strictEndpoints ? baseBuffer : baseBuffer * 1.5;
+    
+    final bool isMatch = combinedError <= bufferZone;
+    final double score = (1.0 - (combinedError / (bufferZone * 2.0))).clamp(0.0, 1.0);
+
+    // --- 5. Qualitative Feedback (Linearity & Speed) ---
+    final double userPathLength = _calculatePathLength(normalizedUser);
+    final double refPathLength = _calculatePathLength(normalizedRef);
+    final double directDist = (normalizedUser.first - normalizedUser.last).distance;
+    
+    final double refDirectDist = (normalizedRef.first - normalizedRef.last).distance;
+    final bool isStraightRef = refPathLength < refDirectDist * 1.15;
+    final double linearityRatio = userPathLength / (directDist > 0 ? directDist : 1.0);
+    final double pointDensity = userStroke.length / (userPathLength > 0 ? userPathLength : 1.0);
+
+    String qualityFeedback = isMatch ? (score > 0.85 ? 'Fast & Clean!' : 'Good!') : 'Follow the flow.';
+    
+    if (isMatch) {
+      if (isStraightRef && linearityRatio > 1.25) {
+        qualityFeedback = 'A bit shaky!';
+      } else if (pointDensity > 0.5) {
+        qualityFeedback = 'A bit hesitant...';
+      } else if (score > 0.95) {
+        qualityFeedback = 'Masterful!';
+      }
+    } else {
+      if (averageDistance > bufferZone * 1.5) {
+        qualityFeedback = 'Shape is off.';
+      } else if (endDist > bufferZone) {
+        qualityFeedback = 'Missing the hook/end.';
       }
     }
-
-    if (maxDistanceToReference > pathBufferZone) {
-      return StrokeMatchResult(
-        isMatch: false,
-        feedback: 'Path went outside the allowed buffer zone.',
-        normalizedUserStroke: normalizedUserStroke,
-        normalizedReferenceStroke: normalizedReferenceStroke,
-      );
-    }
-
-    // Calculate a score based on maxDistanceToReference
-    // The maximum possible distance in a 1000x1000 square is sqrt(1000^2 + 1000^2) = 1000 * sqrt(2)
-    final double maxPossibleDistance = 1000 * sqrt(2);
-    // Ensure score is not negative if maxDistanceToReference somehow exceeds maxPossibleDistance
-    final double score = 1.0 - (maxDistanceToReference / maxPossibleDistance).clamp(0.0, 1.0);
-
 
     return StrokeMatchResult(
-      isMatch: true,
+      isMatch: isMatch,
       score: score,
-      feedback: 'Stroke matched successfully!',
-      normalizedUserStroke: normalizedUserStroke,
-      normalizedReferenceStroke: normalizedReferenceStroke,
+      feedback: qualityFeedback,
+      normalizedUserStroke: normalizedUser,
+      normalizedReferenceStroke: normalizedRef,
     );
+  }
+
+  static double _calculatePathLength(List<Offset> points) {
+    double length = 0;
+    for (int i = 0; i < points.length - 1; i++) {
+      length += (points[i+1] - points[i]).distance;
+    }
+    return length;
+  }
+
+  static Offset _calculateCentroid(List<Offset> points) {
+    if (points.isEmpty) return Offset.zero;
+    double sumX = 0;
+    double sumY = 0;
+    for (final p in points) {
+      sumX += p.dx;
+      sumY += p.dy;
+    }
+    return Offset(sumX / points.length, sumY / points.length);
   }
 }

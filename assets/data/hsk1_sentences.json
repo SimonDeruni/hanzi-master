@@ -1,0 +1,1388 @@
+[
+  {
+    "uuid": "hsk1_001",
+    "hanzi": "爱",
+    "pinyin": "ài",
+    "definition": "to love; affection",
+    "example_sentence": "我爱爸爸妈妈。",
+    "example_pinyin": "Wǒ ài bàba māma.",
+    "example_english": "I love mom and dad."
+  },
+  {
+    "uuid": "hsk1_002",
+    "hanzi": "八",
+    "pinyin": "bā",
+    "definition": "eight",
+    "example_sentence": "他有八个苹果。",
+    "example_pinyin": "Tā yǒu bā gè píngguǒ.",
+    "example_english": "He has eight apples."
+  },
+  {
+    "uuid": "hsk1_003",
+    "hanzi": "爸爸",
+    "pinyin": "bàba",
+    "definition": "dad; father",
+    "example_sentence": "我爸爸是医生。",
+    "example_pinyin": "Wǒ bàba shì yīshēng.",
+    "example_english": "My dad is a doctor."
+  },
+  {
+    "uuid": "hsk1_004",
+    "hanzi": "杯子",
+    "pinyin": "bēizi",
+    "definition": "cup; glass",
+    "example_sentence": "这个杯子是我的。",
+    "example_pinyin": "Zhège bēizi shì wǒ de.",
+    "example_english": "This cup is mine."
+  },
+  {
+    "uuid": "hsk1_005",
+    "hanzi": "北京",
+    "pinyin": "Běijīng",
+    "definition": "Beijing",
+    "example_sentence": "我们住在北京。",
+    "example_pinyin": "Wǒmen zhù zài Běijīng.",
+    "example_english": "We live in Beijing."
+  },
+  {
+    "uuid": "hsk1_006",
+    "hanzi": "本",
+    "pinyin": "běn",
+    "definition": "measure word for books",
+    "example_sentence": "我买了一本书。",
+    "example_pinyin": "Wǒ mǎi le yī běn shū.",
+    "example_english": "I bought a book."
+  },
+  {
+    "uuid": "hsk1_007",
+    "hanzi": "不客气",
+    "pinyin": "bú kèqi",
+    "definition": "you're welcome",
+    "example_sentence": "谢谢你！不客气。",
+    "example_pinyin": "Xièxie nǐ! Bú kèqi.",
+    "example_english": "Thank you! You're welcome."
+  },
+  {
+    "uuid": "hsk1_008",
+    "hanzi": "不",
+    "pinyin": "bù",
+    "definition": "no; not",
+    "example_sentence": "我不喜欢吃苹果。",
+    "example_pinyin": "Wǒ bù xǐhuan chī píngguǒ.",
+    "example_english": "I don't like eating apples."
+  },
+  {
+    "uuid": "hsk1_009",
+    "hanzi": "菜",
+    "pinyin": "cài",
+    "definition": "dish (type of food); vegetables",
+    "example_sentence": "我不喜欢吃这个菜。",
+    "example_pinyin": "Wǒ bù xǐhuan chī zhège cài.",
+    "example_english": "I don't like to eat this dish."
+  },
+  {
+    "uuid": "hsk1_010",
+    "hanzi": "茶",
+    "pinyin": "chá",
+    "definition": "tea",
+    "example_sentence": "请喝茶。",
+    "example_pinyin": "Qǐng hē chá.",
+    "example_english": "Please drink tea."
+  },
+  {
+    "uuid": "hsk1_011",
+    "hanzi": "吃",
+    "pinyin": "chī",
+    "definition": "to eat",
+    "example_sentence": "我们去吃饭吧。",
+    "example_pinyin": "Wǒmen qù chīfàn ba.",
+    "example_english": "Let's go eat."
+  },
+  {
+    "uuid": "hsk1_012",
+    "hanzi": "出租车",
+    "pinyin": "chūzūchē",
+    "definition": "taxi",
+    "example_sentence": "我们坐出租车去。",
+    "example_pinyin": "Wǒmen zuò chūzūchē qù.",
+    "example_english": "We take a taxi to go."
+  },
+  {
+    "uuid": "hsk1_013",
+    "hanzi": "打电话",
+    "pinyin": "dǎ diànhuà",
+    "definition": "to make a phone call",
+    "example_sentence": "他在打电话。",
+    "example_pinyin": "Tā zài dǎ diànhuà.",
+    "example_english": "He is making a phone call."
+  },
+  {
+    "uuid": "hsk1_014",
+    "hanzi": "大",
+    "pinyin": "dà",
+    "definition": "big; large",
+    "example_sentence": "这个苹果很大。",
+    "example_pinyin": "Zhège píngguǒ hěn dà.",
+    "example_english": "This apple is very big."
+  },
+  {
+    "uuid": "hsk1_015",
+    "hanzi": "的",
+    "pinyin": "de",
+    "definition": "'s (possessive particle)",
+    "example_sentence": "这是我的书。",
+    "example_pinyin": "Zhè shì wǒ de shū.",
+    "example_english": "This is my book."
+  },
+  {
+    "uuid": "hsk1_016",
+    "hanzi": "点",
+    "pinyin": "diǎn",
+    "definition": "o'clock; dot",
+    "example_sentence": "现在是三点。",
+    "example_pinyin": "Xiànzài shì sān diǎn.",
+    "example_english": "It is three o'clock now."
+  },
+  {
+    "uuid": "hsk1_017",
+    "hanzi": "电脑",
+    "pinyin": "diànnǎo",
+    "definition": "computer",
+    "example_sentence": "我的电脑在桌子上。",
+    "example_pinyin": "Wǒ de diànnǎo zài zhuōzi shàng.",
+    "example_english": "My computer is on the desk."
+  },
+  {
+    "uuid": "hsk1_018",
+    "hanzi": "电视",
+    "pinyin": "diànshì",
+    "definition": "television; TV",
+    "example_sentence": "妈妈在看电视。",
+    "example_pinyin": "Māma zài kàn diànshì.",
+    "example_english": "Mom is watching TV."
+  },
+  {
+    "uuid": "hsk1_019",
+    "hanzi": "电影",
+    "pinyin": "diànyǐng",
+    "definition": "movie; film",
+    "example_sentence": "我们去看电影。",
+    "example_pinyin": "Wǒmen qù kàn diànyǐng.",
+    "example_english": "We go to watch a movie."
+  },
+  {
+    "uuid": "hsk1_020",
+    "hanzi": "东西",
+    "pinyin": "dōngxi",
+    "definition": "thing; stuff",
+    "example_sentence": "我去商店买东西。",
+    "example_pinyin": "Wǒ qù shāngdiàn mǎi dōngxi.",
+    "example_english": "I go to the store to buy things."
+  },
+  {
+    "uuid": "hsk1_021",
+    "hanzi": "都",
+    "pinyin": "dōu",
+    "definition": "all; both",
+    "example_sentence": "我们都是学生。",
+    "example_pinyin": "Wǒmen dōu shì xuésheng.",
+    "example_english": "We are all students."
+  },
+  {
+    "uuid": "hsk1_022",
+    "hanzi": "读",
+    "pinyin": "dú",
+    "definition": "to read aloud",
+    "example_sentence": "你喜欢读书吗？",
+    "example_pinyin": "Nǐ xǐhuan dú shū ma?",
+    "example_english": "Do you like to read books?"
+  },
+  {
+    "uuid": "hsk1_023",
+    "hanzi": "对不起",
+    "pinyin": "duìbuqǐ",
+    "definition": "sorry",
+    "example_sentence": "对不起。没关系。",
+    "example_pinyin": "Duìbuqǐ. Méi guānxi.",
+    "example_english": "Sorry. It's okay."
+  },
+  {
+    "uuid": "hsk1_024",
+    "hanzi": "多",
+    "pinyin": "duō",
+    "definition": "many; much",
+    "example_sentence": "这里的人很多。",
+    "example_pinyin": "Zhèlǐ de rén hěn duō.",
+    "example_english": "There are many people here."
+  },
+  {
+    "uuid": "hsk1_025",
+    "hanzi": "多少",
+    "pinyin": "duōshao",
+    "definition": "how many; how much",
+    "example_sentence": "这个多少钱？",
+    "example_pinyin": "Zhège duōshao qián?",
+    "example_english": "How much is this?"
+  },
+  {
+    "uuid": "hsk1_026",
+    "hanzi": "儿子",
+    "pinyin": "érzi",
+    "definition": "son",
+    "example_sentence": "她儿子三岁了。",
+    "example_pinyin": "Tā érzi sān suì le.",
+    "example_english": "Her son is three years old."
+  },
+  {
+    "uuid": "hsk1_027",
+    "hanzi": "二",
+    "pinyin": "èr",
+    "definition": "two",
+    "example_sentence": "现在是两点二十分。",
+    "example_pinyin": "Xiànzài shì liǎng diǎn èr shí fēn.",
+    "example_english": "It's 2:20 now."
+  },
+  {
+    "uuid": "hsk1_028",
+    "hanzi": "饭馆",
+    "pinyin": "fànguǎn",
+    "definition": "restaurant",
+    "example_sentence": "我们去饭馆吃饭。",
+    "example_pinyin": "Wǒmen qù fànguǎn chī fàn.",
+    "example_english": "We go to the restaurant to eat."
+  },
+  {
+    "uuid": "hsk1_029",
+    "hanzi": "飞机",
+    "pinyin": "fēijī",
+    "definition": "airplane",
+    "example_sentence": "他坐飞机去北京。",
+    "example_pinyin": "Tā zuò fēijī qù Běijīng.",
+    "example_english": "He takes a plane to Beijing."
+  },
+  {
+    "uuid": "hsk1_030",
+    "hanzi": "分钟",
+    "pinyin": "fēnzhōng",
+    "definition": "minute",
+    "example_sentence": "我等了十分钟。",
+    "example_pinyin": "Wǒ děng le shí fēnzhōng.",
+    "example_english": "I waited for 10 minutes."
+  },
+  {
+    "uuid": "hsk1_031",
+    "hanzi": "高兴",
+    "pinyin": "gāoxìng",
+    "definition": "happy; glad",
+    "example_sentence": "认识你很高兴。",
+    "example_pinyin": "Rènshi nǐ hěn gāoxìng.",
+    "example_english": "Glad to meet you."
+  },
+  {
+    "uuid": "hsk1_032",
+    "hanzi": "个",
+    "pinyin": "gè",
+    "definition": "general measure word",
+    "example_sentence": "我有一个苹果。",
+    "example_pinyin": "Wǒ yǒu yí gè píngguǒ.",
+    "example_english": "I have an apple."
+  },
+  {
+    "uuid": "hsk1_033",
+    "hanzi": "工作",
+    "pinyin": "gōngzuò",
+    "definition": "job; to work",
+    "example_sentence": "他在医院工作。",
+    "example_pinyin": "Tā zài yīyuàn gōngzuò.",
+    "example_english": "He works at the hospital."
+  },
+  {
+    "uuid": "hsk1_034",
+    "hanzi": "狗",
+    "pinyin": "gǒu",
+    "definition": "dog",
+    "example_sentence": "我有一只小狗。",
+    "example_pinyin": "Wǒ yǒu yì zhī xiǎo gǒu.",
+    "example_english": "I have a small dog."
+  },
+  {
+    "uuid": "hsk1_035",
+    "hanzi": "汉语",
+    "pinyin": "Hànyǔ",
+    "definition": "Chinese language",
+    "example_sentence": "他在学习汉语。",
+    "example_pinyin": "Tā zài xuéxí Hànyǔ.",
+    "example_english": "He is learning Chinese."
+  },
+  {
+    "uuid": "hsk1_036",
+    "hanzi": "好",
+    "pinyin": "hǎo",
+    "definition": "good; well",
+    "example_sentence": "今天天气很好。",
+    "example_pinyin": "Jīntiān tiānqì hěn hǎo.",
+    "example_english": "The weather is very good today."
+  },
+  {
+    "uuid": "hsk1_037",
+    "hanzi": "号",
+    "pinyin": "hào",
+    "definition": "day of month; number",
+    "example_sentence": "今天是五月一号。",
+    "example_pinyin": "Jīntiān shì wǔ yuè yī hào.",
+    "example_english": "Today is May 1st."
+  },
+  {
+    "uuid": "hsk1_038",
+    "hanzi": "喝",
+    "pinyin": "hē",
+    "definition": "to drink",
+    "example_sentence": "你想喝水吗？",
+    "example_pinyin": "Nǐ xiǎng hē shuǐ ma?",
+    "example_english": "Do you want to drink water?"
+  },
+  {
+    "uuid": "hsk1_039",
+    "hanzi": "和",
+    "pinyin": "hé",
+    "definition": "and; with",
+    "example_sentence": "我和你一起去。",
+    "example_pinyin": "Wǒ hé nǐ yìqǐ qù.",
+    "example_english": "I will go with you."
+  },
+  {
+    "uuid": "hsk1_040",
+    "hanzi": "很",
+    "pinyin": "hěn",
+    "definition": "very",
+    "example_sentence": "我很喜欢中国。",
+    "example_pinyin": "Wǒ hěn xǐhuan Zhōngguó.",
+    "example_english": "I really like China."
+  },
+  {
+    "uuid": "hsk1_041",
+    "hanzi": "后面",
+    "pinyin": "hòumiàn",
+    "definition": "behind; back",
+    "example_sentence": "狗在房子后面。",
+    "example_pinyin": "Gǒu zài fángzi hòumiàn.",
+    "example_english": "The dog is behind the house."
+  },
+  {
+    "uuid": "hsk1_042",
+    "hanzi": "回",
+    "pinyin": "huí",
+    "definition": "to return",
+    "example_sentence": "他五点回家。",
+    "example_pinyin": "Tā wǔ diǎn huí jiā.",
+    "example_english": "He goes home at 5 o'clock."
+  },
+  {
+    "uuid": "hsk1_043",
+    "hanzi": "会",
+    "pinyin": "huì",
+    "definition": "can; know how to",
+    "example_sentence": "我会说汉语。",
+    "example_pinyin": "Wǒ huì shuō Hànyǔ.",
+    "example_english": "I can speak Chinese."
+  },
+  {
+    "uuid": "hsk1_044",
+    "hanzi": "几",
+    "pinyin": "jǐ",
+    "definition": "how many",
+    "example_sentence": "你有几个苹果？",
+    "example_pinyin": "Nǐ yǒu jǐ gè píngguǒ?",
+    "example_english": "How many apples do you have?"
+  },
+  {
+    "uuid": "hsk1_045",
+    "hanzi": "家",
+    "pinyin": "jiā",
+    "definition": "home; family",
+    "example_sentence": "我家在北京。",
+    "example_pinyin": "Wǒ jiā zài Běijīng.",
+    "example_english": "My home is in Beijing."
+  },
+  {
+    "uuid": "hsk1_046",
+    "hanzi": "叫",
+    "pinyin": "jiào",
+    "definition": "to be called",
+    "example_sentence": "你叫什么名字？",
+    "example_pinyin": "Nǐ jiào shénme míngzi?",
+    "example_english": "What is your name?"
+  },
+  {
+    "uuid": "hsk1_047",
+    "hanzi": "今天",
+    "pinyin": "jīntiān",
+    "definition": "today",
+    "example_sentence": "今天天气很好。",
+    "example_pinyin": "Jīntiān tiānqì hěn hǎo.",
+    "example_english": "The weather is very good today."
+  },
+  {
+    "uuid": "hsk1_048",
+    "hanzi": "九",
+    "pinyin": "jiǔ",
+    "definition": "nine",
+    "example_sentence": "现在是九点。",
+    "example_pinyin": "Xiànzài shì jiǔ diǎn.",
+    "example_english": "It's nine o'clock now."
+  },
+  {
+    "uuid": "hsk1_049",
+    "hanzi": "开",
+    "pinyin": "kāi",
+    "definition": "to open; to drive",
+    "example_sentence": "他会开汽车。",
+    "example_pinyin": "Tā huì kāi qìchē.",
+    "example_english": "He can drive a car."
+  },
+  {
+    "uuid": "hsk1_050",
+    "hanzi": "看",
+    "pinyin": "kàn",
+    "definition": "to look; to watch; to read",
+    "example_sentence": "他在看书。",
+    "example_pinyin": "Tā zài kàn shū.",
+    "example_english": "He is reading a book."
+  },
+  {
+    "uuid": "hsk1_051",
+    "hanzi": "看见",
+    "pinyin": "kànjiàn",
+    "definition": "to see",
+    "example_sentence": "我看见他了。",
+    "example_pinyin": "Wǒ kànjiàn tā le.",
+    "example_english": "I saw him."
+  },
+  {
+    "uuid": "hsk1_052",
+    "hanzi": "块",
+    "pinyin": "kuài",
+    "definition": "piece; yuan (money)",
+    "example_sentence": "这个十块钱。",
+    "example_pinyin": "Zhège shí kuài qián.",
+    "example_english": "This is 10 yuan."
+  },
+  {
+    "uuid": "hsk1_053",
+    "hanzi": "来",
+    "pinyin": "lái",
+    "definition": "to come",
+    "example_sentence": "他昨天来我家了。",
+    "example_pinyin": "Tā zuótiān lái wǒ jiā le.",
+    "example_english": "He came to my house yesterday."
+  },
+  {
+    "uuid": "hsk1_054",
+    "hanzi": "老师",
+    "pinyin": "lǎoshī",
+    "definition": "teacher",
+    "example_sentence": "王老师在学校。",
+    "example_pinyin": "Wáng lǎoshī zài xuéxiào.",
+    "example_english": "Teacher Wang is at school."
+  },
+  {
+    "uuid": "hsk1_055",
+    "hanzi": "了",
+    "pinyin": "le",
+    "definition": "completed action marker",
+    "example_sentence": "我吃饭了。",
+    "example_pinyin": "Wǒ chīfàn le.",
+    "example_english": "I have eaten."
+  },
+  {
+    "uuid": "hsk1_056",
+    "hanzi": "冷",
+    "pinyin": "lěng",
+    "definition": "cold",
+    "example_sentence": "今天很冷。",
+    "example_pinyin": "Jīntiān hěn lěng.",
+    "example_english": "It is very cold today."
+  },
+  {
+    "uuid": "hsk1_057",
+    "hanzi": "里",
+    "pinyin": "lǐ",
+    "definition": "inside",
+    "example_sentence": "猫在衣服里。",
+    "example_pinyin": "Māo zài yīfu lǐ.",
+    "example_english": "The cat is inside the clothes."
+  },
+  {
+    "uuid": "hsk1_058",
+    "hanzi": "零",
+    "pinyin": "líng",
+    "definition": "zero",
+    "example_sentence": "现在是两点零五分。",
+    "example_pinyin": "Xiànzài shì liǎng diǎn líng wǔ fēn.",
+    "example_english": "It is 2:05 now."
+  },
+  {
+    "uuid": "hsk1_059",
+    "hanzi": "六",
+    "pinyin": "liù",
+    "definition": "six",
+    "example_sentence": "我有六本书。",
+    "example_pinyin": "Wǒ yǒu liù běn shū.",
+    "example_english": "I have six books."
+  },
+  {
+    "uuid": "hsk1_060",
+    "hanzi": "妈妈",
+    "pinyin": "māma",
+    "definition": "mom; mother",
+    "example_sentence": "我妈妈是老师。",
+    "example_pinyin": "Wǒ māma shì lǎoshī.",
+    "example_english": "My mother is a teacher."
+  },
+  {
+    "uuid": "hsk1_061",
+    "hanzi": "吗",
+    "pinyin": "ma",
+    "definition": "question particle",
+    "example_sentence": "你是学生吗？",
+    "example_pinyin": "Nǐ shì xuésheng ma?",
+    "example_english": "Are you a student?"
+  },
+  {
+    "uuid": "hsk1_062",
+    "hanzi": "买",
+    "pinyin": "mǎi",
+    "definition": "to buy",
+    "example_sentence": "我想买杯子。",
+    "example_pinyin": "Wǒ xiǎng mǎi bēizi.",
+    "example_english": "I want to buy a cup."
+  },
+  {
+    "uuid": "hsk1_063",
+    "hanzi": "猫",
+    "pinyin": "māo",
+    "definition": "cat",
+    "example_sentence": "这只猫很漂亮。",
+    "example_pinyin": "Zhè zhī māo hěn piàoliang.",
+    "example_english": "This cat is very pretty."
+  },
+  {
+    "uuid": "hsk1_064",
+    "hanzi": "没",
+    "pinyin": "méi",
+    "definition": "not",
+    "example_sentence": "我没去北京。",
+    "example_pinyin": "Wǒ méi qù Běijīng.",
+    "example_english": "I didn't go to Beijing."
+  },
+  {
+    "uuid": "hsk1_065",
+    "hanzi": "没关系",
+    "pinyin": "méi guānxi",
+    "definition": "it doesn't matter",
+    "example_sentence": "这是没关系。",
+    "example_pinyin": "Zhè shì 没关系.",
+    "example_english": "This is 没关系."
+  },
+  {
+    "uuid": "hsk1_066",
+    "hanzi": "米饭",
+    "pinyin": "mǐfàn",
+    "definition": "cooked rice",
+    "example_sentence": "我不爱吃米饭。",
+    "example_pinyin": "Wǒ bú ài chī mǐfàn.",
+    "example_english": "I don't like to eat rice."
+  },
+  {
+    "uuid": "hsk1_067",
+    "hanzi": "明天",
+    "pinyin": "míngtiān",
+    "definition": "tomorrow",
+    "example_sentence": "我明天去学校。",
+    "example_pinyin": "Wǒ míngtiān qù xuéxiào.",
+    "example_english": "I'll go to school tomorrow."
+  },
+  {
+    "uuid": "hsk1_068",
+    "hanzi": "名字",
+    "pinyin": "míngzi",
+    "definition": "name",
+    "example_sentence": "你叫什么名字？",
+    "example_pinyin": "Nǐ jiào shénme míngzi?",
+    "example_english": "What is your name?"
+  },
+  {
+    "uuid": "hsk1_069",
+    "hanzi": "哪",
+    "pinyin": "nǎ",
+    "definition": "which",
+    "example_sentence": "你是哪国人？",
+    "example_pinyin": "Nǐ shì nǎ guó rén?",
+    "example_english": "Which country are you from?"
+  },
+  {
+    "uuid": "hsk1_070",
+    "hanzi": "哪儿",
+    "pinyin": "nǎr",
+    "definition": "where",
+    "example_sentence": "你在哪儿工作？",
+    "example_pinyin": "Nǐ zài nǎr gōngzuò?",
+    "example_english": "Where do you work?"
+  },
+  {
+    "uuid": "hsk1_071",
+    "hanzi": "那",
+    "pinyin": "nà",
+    "definition": "that",
+    "example_sentence": "那是一个苹果。",
+    "example_pinyin": "Nà shì yí gè píngguǒ.",
+    "example_english": "That is an apple."
+  },
+  {
+    "uuid": "hsk1_072",
+    "hanzi": "那儿",
+    "pinyin": "nàr",
+    "definition": "there",
+    "example_sentence": "我的书在那儿。",
+    "example_pinyin": "Wǒ de shū zài nàr.",
+    "example_english": "My book is over there."
+  },
+  {
+    "uuid": "hsk1_073",
+    "hanzi": "呢",
+    "pinyin": "ne",
+    "definition": "particle for 'what about?'",
+    "example_sentence": "我是学生，你呢？",
+    "example_pinyin": "Wǒ shì xuésheng, nǐ ne?",
+    "example_english": "I am a student, and you?"
+  },
+  {
+    "uuid": "hsk1_074",
+    "hanzi": "能",
+    "pinyin": "néng",
+    "definition": "can; be able to",
+    "example_sentence": "我能坐这儿吗？",
+    "example_pinyin": "Wǒ néng zuò zhèr ma?",
+    "example_english": "Can I sit here?"
+  },
+  {
+    "uuid": "hsk1_075",
+    "hanzi": "你",
+    "pinyin": "nǐ",
+    "definition": "you",
+    "example_sentence": "你好！",
+    "example_pinyin": "Nǐ hǎo!",
+    "example_english": "Hello!"
+  },
+  {
+    "uuid": "hsk1_076",
+    "hanzi": "年",
+    "pinyin": "nián",
+    "definition": "year",
+    "example_sentence": "我是去年去北京的。",
+    "example_pinyin": "Wǒ shì qùnián qù Běijīng de.",
+    "example_english": "I went to Beijing last year."
+  },
+  {
+    "uuid": "hsk1_077",
+    "hanzi": "女儿",
+    "pinyin": "nǚ'ér",
+    "definition": "daughter",
+    "example_sentence": "我有两个女儿。",
+    "example_pinyin": "Wǒ yǒu liǎng gè nǚ'ér.",
+    "example_english": "I have two daughters."
+  },
+  {
+    "uuid": "hsk1_078",
+    "hanzi": "朋友",
+    "pinyin": "péngyou",
+    "definition": "friend",
+    "example_sentence": "他是我的好朋友。",
+    "example_pinyin": "Tā shì wǒ de hǎo péngyou.",
+    "example_english": "He is my good friend."
+  },
+  {
+    "uuid": "hsk1_079",
+    "hanzi": "漂亮",
+    "pinyin": "piàoliang",
+    "definition": "pretty; beautiful",
+    "example_sentence": "你的衣服很漂亮。",
+    "example_pinyin": "Nǐ de yīfu hěn piàoliang.",
+    "example_english": "Your clothes are very pretty."
+  },
+  {
+    "uuid": "hsk1_080",
+    "hanzi": "苹果",
+    "pinyin": "píngguǒ",
+    "definition": "apple",
+    "example_sentence": "你想吃苹果吗？",
+    "example_pinyin": "Nǐ xiǎng chī píngguǒ ma?",
+    "example_english": "Do you want to eat an apple?"
+  },
+  {
+    "uuid": "hsk1_081",
+    "hanzi": "七",
+    "pinyin": "qī",
+    "definition": "seven",
+    "example_sentence": "他有七块钱。",
+    "example_pinyin": "Tā yǒu qī kuài qián.",
+    "example_english": "He has 7 yuan."
+  },
+  {
+    "uuid": "hsk1_082",
+    "hanzi": "钱",
+    "pinyin": "qián",
+    "definition": "money",
+    "example_sentence": "这个杯子多少钱？",
+    "example_pinyin": "Zhège bēizi duōshao qián?",
+    "example_english": "How much money is this cup?"
+  },
+  {
+    "uuid": "hsk1_083",
+    "hanzi": "前面",
+    "pinyin": "qiánmiàn",
+    "definition": "front",
+    "example_sentence": "猫在前面。",
+    "example_pinyin": "Māo zài qiánmiàn.",
+    "example_english": "The cat is in the front."
+  },
+  {
+    "uuid": "hsk1_084",
+    "hanzi": "请",
+    "pinyin": "qǐng",
+    "definition": "please",
+    "example_sentence": "请坐。",
+    "example_pinyin": "Qǐng zuò.",
+    "example_english": "Please sit."
+  },
+  {
+    "uuid": "hsk1_085",
+    "hanzi": "去",
+    "pinyin": "qù",
+    "definition": "to go",
+    "example_sentence": "我明天去北京。",
+    "example_pinyin": "Wǒ míngtiān qù Běijīng.",
+    "example_english": "I will go to Beijing tomorrow."
+  },
+  {
+    "uuid": "hsk1_086",
+    "hanzi": "热",
+    "pinyin": "rè",
+    "definition": "hot",
+    "example_sentence": "今天天气很热。",
+    "example_pinyin": "Jīntiān tiānqì hěn rè.",
+    "example_english": "The weather is very hot today."
+  },
+  {
+    "uuid": "hsk1_087",
+    "hanzi": "人",
+    "pinyin": "rén",
+    "definition": "person",
+    "example_sentence": "商店里有很多人。",
+    "example_pinyin": "Shāngdiàn lǐ yǒu hěn duō rén.",
+    "example_english": "There are many people in the store."
+  },
+  {
+    "uuid": "hsk1_088",
+    "hanzi": "认识",
+    "pinyin": "rènshi",
+    "definition": "to know (somebody)",
+    "example_sentence": "认识你很高兴。",
+    "example_pinyin": "Rènshi nǐ hěn gāoxìng.",
+    "example_english": "Glad to meet you."
+  },
+  {
+    "uuid": "hsk1_089",
+    "hanzi": "日",
+    "pinyin": "rì",
+    "definition": "day; sun",
+    "example_sentence": "今天是五月三日。",
+    "example_pinyin": "Jīntiān shì wǔ yuè sān rì.",
+    "example_english": "Today is May 3rd."
+  },
+  {
+    "uuid": "hsk1_090",
+    "hanzi": "三",
+    "pinyin": "sān",
+    "definition": "three",
+    "example_sentence": "我有三本书。",
+    "example_pinyin": "Wǒ yǒu sān běn shū.",
+    "example_english": "I have three books."
+  },
+  {
+    "uuid": "hsk1_091",
+    "hanzi": "商店",
+    "pinyin": "shāngdiàn",
+    "definition": "shop; store",
+    "example_sentence": "我去商店买东西。",
+    "example_pinyin": "Wǒ qù shāngdiàn mǎi dōngxi.",
+    "example_english": "I go to the store to buy things."
+  },
+  {
+    "uuid": "hsk1_092",
+    "hanzi": "上",
+    "pinyin": "shàng",
+    "definition": "up; above",
+    "example_sentence": "杯子在桌子上。",
+    "example_pinyin": "Bēizi zài zhuōzi shàng.",
+    "example_english": "The cup is on the table."
+  },
+  {
+    "uuid": "hsk1_093",
+    "hanzi": "上午",
+    "pinyin": "shàngwǔ",
+    "definition": "morning",
+    "example_sentence": "我上午在学校。",
+    "example_pinyin": "Wǒ shàngwǔ zài xuéxiào.",
+    "example_english": "I am at school in the morning."
+  },
+  {
+    "uuid": "hsk1_094",
+    "hanzi": "少",
+    "pinyin": "shǎo",
+    "definition": "few; little",
+    "example_sentence": "这里的人很少。",
+    "example_pinyin": "Zhèlǐ de rén hěn shǎo.",
+    "example_english": "There are few people here."
+  },
+  {
+    "uuid": "hsk1_095",
+    "hanzi": "谁",
+    "pinyin": "shéi",
+    "definition": "who",
+    "example_sentence": "那个人是谁？",
+    "example_pinyin": "Nà gè rén shì shéi?",
+    "example_english": "Who is that person?"
+  },
+  {
+    "uuid": "hsk1_096",
+    "hanzi": "什么",
+    "pinyin": "shénme",
+    "definition": "what",
+    "example_sentence": "你叫什么名字？",
+    "example_pinyin": "Nǐ jiào shénme míngzi?",
+    "example_english": "What is your name?"
+  },
+  {
+    "uuid": "hsk1_097",
+    "hanzi": "十",
+    "pinyin": "shí",
+    "definition": "ten",
+    "example_sentence": "现在是十点。",
+    "example_pinyin": "Xiànzài shì shí diǎn.",
+    "example_english": "It's ten o'clock now."
+  },
+  {
+    "uuid": "hsk1_098",
+    "hanzi": "时候",
+    "pinyin": "shíhou",
+    "definition": "time; moment",
+    "example_sentence": "你什么时候回家？",
+    "example_pinyin": "Nǐ shénme shíhou huí jiā?",
+    "example_english": "When will you go home?"
+  },
+  {
+    "uuid": "hsk1_099",
+    "hanzi": "是",
+    "pinyin": "shì",
+    "definition": "to be; yes",
+    "example_sentence": "我是学生。",
+    "example_pinyin": "Wǒ shì xuésheng.",
+    "example_english": "I am a student."
+  },
+  {
+    "uuid": "hsk1_100",
+    "hanzi": "书",
+    "pinyin": "shū",
+    "definition": "book",
+    "example_sentence": "我喜欢看书。",
+    "example_pinyin": "Wǒ xǐhuan kàn shū.",
+    "example_english": "I like reading books."
+  },
+  {
+    "uuid": "hsk1_101",
+    "hanzi": "水",
+    "pinyin": "shuǐ",
+    "definition": "water",
+    "example_sentence": "我想喝水。",
+    "example_pinyin": "Wǒ xiǎng hē shuǐ.",
+    "example_english": "I want to drink water."
+  },
+  {
+    "uuid": "hsk1_102",
+    "hanzi": "水果",
+    "pinyin": "shuǐguǒ",
+    "definition": "fruit",
+    "example_sentence": "我喜欢吃水果。",
+    "example_pinyin": "Wǒ xǐhuan chī shuǐguǒ.",
+    "example_english": "I like eating fruit."
+  },
+  {
+    "uuid": "hsk1_103",
+    "hanzi": "睡觉",
+    "pinyin": "shuìjiào",
+    "definition": "to sleep",
+    "example_sentence": "他去睡觉了。",
+    "example_pinyin": "Tā qù shuìjiào le.",
+    "example_english": "He went to sleep."
+  },
+  {
+    "uuid": "hsk1_104",
+    "hanzi": "说",
+    "pinyin": "shuō",
+    "definition": "to speak",
+    "example_sentence": "这是说。",
+    "example_pinyin": "Zhè shì 说.",
+    "example_english": "This is 说."
+  },
+  {
+    "uuid": "hsk1_105",
+    "hanzi": "四",
+    "pinyin": "sì",
+    "definition": "four",
+    "example_sentence": "我有四个苹果。",
+    "example_pinyin": "Wǒ yǒu sì gè píngguǒ.",
+    "example_english": "I have four apples."
+  },
+  {
+    "uuid": "hsk1_106",
+    "hanzi": "岁",
+    "pinyin": "suì",
+    "definition": "years old",
+    "example_sentence": "我儿子三岁了。",
+    "example_pinyin": "Wǒ érzi sān suì le.",
+    "example_english": "My son is 3 years old."
+  },
+  {
+    "uuid": "hsk1_107",
+    "hanzi": "他",
+    "pinyin": "tā",
+    "definition": "he; him",
+    "example_sentence": "他是我的老师。",
+    "example_pinyin": "Tā shì wǒ de lǎoshī.",
+    "example_english": "He is my teacher."
+  },
+  {
+    "uuid": "hsk1_108",
+    "hanzi": "她",
+    "pinyin": "tā",
+    "definition": "she; her",
+    "example_sentence": "她是我的朋友。",
+    "example_pinyin": "Tā shì wǒ de péngyou.",
+    "example_english": "She is my friend."
+  },
+  {
+    "uuid": "hsk1_109",
+    "hanzi": "太",
+    "pinyin": "tài",
+    "definition": "too; extremely",
+    "example_sentence": "这个苹果太大了。",
+    "example_pinyin": "Zhège píngguǒ tài dà le.",
+    "example_english": "This apple is too big."
+  },
+  {
+    "uuid": "hsk1_110",
+    "hanzi": "天气",
+    "pinyin": "tiānqì",
+    "definition": "weather",
+    "example_sentence": "今天天气很好。",
+    "example_pinyin": "Jīntiān tiānqì hěn hǎo.",
+    "example_english": "The weather is very good today."
+  },
+  {
+    "uuid": "hsk1_111",
+    "hanzi": "听",
+    "pinyin": "tīng",
+    "definition": "to listen",
+    "example_sentence": "你喜欢听什么？",
+    "example_pinyin": "Nǐ xǐhuan tīng shénme?",
+    "example_english": "What do you like to listen to?"
+  },
+  {
+    "uuid": "hsk1_112",
+    "hanzi": "同学",
+    "pinyin": "tóngxué",
+    "definition": "classmate",
+    "example_sentence": "他们是我的同学。",
+    "example_pinyin": "Tāmen shì wǒ de tóngxué.",
+    "example_english": "They are my classmates."
+  },
+  {
+    "uuid": "hsk1_113",
+    "hanzi": "喂",
+    "pinyin": "wèi",
+    "definition": "hello (on phone)",
+    "example_sentence": "喂，你在哪儿？",
+    "example_pinyin": "Wéi, nǐ zài nǎr?",
+    "example_english": "Hello (on phone), where are you?"
+  },
+  {
+    "uuid": "hsk1_114",
+    "hanzi": "我",
+    "pinyin": "wǒ",
+    "definition": "I; me",
+    "example_sentence": "我是一个学生。",
+    "example_pinyin": "Wǒ shì yí gè xuésheng.",
+    "example_english": "I am a student."
+  },
+  {
+    "uuid": "hsk1_115",
+    "hanzi": "我们",
+    "pinyin": "wǒmen",
+    "definition": "we; us",
+    "example_sentence": "我们是好朋友。",
+    "example_pinyin": "Wǒmen shì hǎo péngyou.",
+    "example_english": "We are good friends."
+  },
+  {
+    "uuid": "hsk1_116",
+    "hanzi": "五",
+    "pinyin": "wǔ",
+    "definition": "five",
+    "example_sentence": "现在是五点。",
+    "example_pinyin": "Xiànzài shì wǔ diǎn.",
+    "example_english": "It is five o'clock."
+  },
+  {
+    "uuid": "hsk1_117",
+    "hanzi": "喜欢",
+    "pinyin": "xǐhuan",
+    "definition": "to like",
+    "example_sentence": "我喜欢学汉语。",
+    "example_pinyin": "Wǒ xǐhuan xué Hànyǔ.",
+    "example_english": "I like learning Chinese."
+  },
+  {
+    "uuid": "hsk1_118",
+    "hanzi": "下",
+    "pinyin": "xià",
+    "definition": "down; below",
+    "example_sentence": "猫在桌子下。",
+    "example_pinyin": "Māo zài zhuōzi xià.",
+    "example_english": "The cat is under the table."
+  },
+  {
+    "uuid": "hsk1_119",
+    "hanzi": "下午",
+    "pinyin": "xiàwǔ",
+    "definition": "afternoon",
+    "example_sentence": "我下午去商店。",
+    "example_pinyin": "Wǒ xiàwǔ qù shāngdiàn.",
+    "example_english": "I go to the store in the afternoon."
+  },
+  {
+    "uuid": "hsk1_120",
+    "hanzi": "下雨",
+    "pinyin": "xiàyǔ",
+    "definition": "to rain",
+    "example_sentence": "今天下雨了。",
+    "example_pinyin": "Jīntiān xià yǔ le.",
+    "example_english": "It rained today."
+  },
+  {
+    "uuid": "hsk1_121",
+    "hanzi": "先生",
+    "pinyin": "xiānsheng",
+    "definition": "Mr.; husband",
+    "example_sentence": "王先生在打电话。",
+    "example_pinyin": "Wáng xiānsheng zài dǎ diànhuà.",
+    "example_english": "Mr. Wang is on the phone."
+  },
+  {
+    "uuid": "hsk1_122",
+    "hanzi": "现在",
+    "pinyin": "xiànzài",
+    "definition": "now",
+    "example_sentence": "现在几点？",
+    "example_pinyin": "Xiànzài jǐ diǎn?",
+    "example_english": "What time is it now?"
+  },
+  {
+    "uuid": "hsk1_123",
+    "hanzi": "想",
+    "pinyin": "xiǎng",
+    "definition": "to want; to think",
+    "example_sentence": "我想去北京。",
+    "example_pinyin": "Wǒ xiǎng qù Běijīng.",
+    "example_english": "I want to go to Beijing."
+  },
+  {
+    "uuid": "hsk1_124",
+    "hanzi": "小",
+    "pinyin": "xiǎo",
+    "definition": "small; little",
+    "example_sentence": "这只狗很小。",
+    "example_pinyin": "Zhè zhī gǒu hěn xiǎo.",
+    "example_english": "This dog is very small."
+  },
+  {
+    "uuid": "hsk1_125",
+    "hanzi": "小姐",
+    "pinyin": "xiǎojiě",
+    "definition": "Miss; young lady",
+    "example_sentence": "王小姐是老师。",
+    "example_pinyin": "Wáng xiǎojie shì lǎoshī.",
+    "example_english": "Miss Wang is a teacher."
+  },
+  {
+    "uuid": "hsk1_126",
+    "hanzi": "些",
+    "pinyin": "xiē",
+    "definition": "some; a few",
+    "example_sentence": "我买了些苹果。",
+    "example_pinyin": "Wǒ mǎi le xiē píngguǒ.",
+    "example_english": "I bought some apples."
+  },
+  {
+    "uuid": "hsk1_127",
+    "hanzi": "写",
+    "pinyin": "xiě",
+    "definition": "to write",
+    "example_sentence": "我会写汉字。",
+    "example_pinyin": "Wǒ huì xiě Hànzì.",
+    "example_english": "I can write Chinese characters."
+  },
+  {
+    "uuid": "hsk1_128",
+    "hanzi": "谢谢",
+    "pinyin": "xièxie",
+    "definition": "thank you",
+    "example_sentence": "谢谢你！",
+    "example_pinyin": "Xièxie nǐ!",
+    "example_english": "Thank you!"
+  },
+  {
+    "uuid": "hsk1_129",
+    "hanzi": "星期",
+    "pinyin": "xīngqī",
+    "definition": "week",
+    "example_sentence": "一个星期有七天。",
+    "example_pinyin": "Yí gè xīngqī yǒu qī tiān.",
+    "example_english": "A week has seven days."
+  },
+  {
+    "uuid": "hsk1_130",
+    "hanzi": "学生",
+    "pinyin": "xuésheng",
+    "definition": "student",
+    "example_sentence": "我们都是学生。",
+    "example_pinyin": "Wǒmen dōu shì xuésheng.",
+    "example_english": "We are all students."
+  },
+  {
+    "uuid": "hsk1_131",
+    "hanzi": "学习",
+    "pinyin": "xuéxí",
+    "definition": "to study",
+    "example_sentence": "他在学习汉语。",
+    "example_pinyin": "Tā zài xuéxí Hànyǔ.",
+    "example_english": "He is studying Chinese."
+  },
+  {
+    "uuid": "hsk1_132",
+    "hanzi": "学校",
+    "pinyin": "xuéxiào",
+    "definition": "school",
+    "example_sentence": "我们明天去学校。",
+    "example_pinyin": "Wǒmen míngtiān qù xuéxiào.",
+    "example_english": "We go to school tomorrow."
+  },
+  {
+    "uuid": "hsk1_133",
+    "hanzi": "一",
+    "pinyin": "yī",
+    "definition": "one",
+    "example_sentence": "这是一。",
+    "example_pinyin": "Zhè shì 一.",
+    "example_english": "This is 一."
+  },
+  {
+    "uuid": "hsk1_134",
+    "hanzi": "一点儿",
+    "pinyin": "yīdiǎnr",
+    "definition": "a little bit",
+    "example_sentence": "这是一点儿。",
+    "example_pinyin": "Zhè shì 一点儿.",
+    "example_english": "This is 一点儿."
+  },
+  {
+    "uuid": "hsk1_135",
+    "hanzi": "衣服",
+    "pinyin": "yīfu",
+    "definition": "clothes",
+    "example_sentence": "我在商店买衣服。",
+    "example_pinyin": "Wǒ zài shāngdiàn mǎi yīfu.",
+    "example_english": "I buy clothes in the store."
+  },
+  {
+    "uuid": "hsk1_136",
+    "hanzi": "医生",
+    "pinyin": "yīshēng",
+    "definition": "doctor",
+    "example_sentence": "他是一个医生。",
+    "example_pinyin": "Tā shì yí gè yīshēng.",
+    "example_english": "He is a doctor."
+  },
+  {
+    "uuid": "hsk1_137",
+    "hanzi": "医院",
+    "pinyin": "yīyuàn",
+    "definition": "hospital",
+    "example_sentence": "他在医院工作。",
+    "example_pinyin": "Tā zài yīyuàn gōngzuò.",
+    "example_english": "He works at a hospital."
+  },
+  {
+    "uuid": "hsk1_138",
+    "hanzi": "椅子",
+    "pinyin": "yǐzi",
+    "definition": "chair",
+    "example_sentence": "小狗在椅子下。",
+    "example_pinyin": "Xiǎo gǒu zài yǐzi xià.",
+    "example_english": "The little dog is under the chair."
+  },
+  {
+    "uuid": "hsk1_139",
+    "hanzi": "有",
+    "pinyin": "yǒu",
+    "definition": "to have",
+    "example_sentence": "这是有。",
+    "example_pinyin": "Zhè shì 有.",
+    "example_english": "This is 有."
+  },
+  {
+    "uuid": "hsk1_140",
+    "hanzi": "月",
+    "pinyin": "yuè",
+    "definition": "month; moon",
+    "example_sentence": "这是月。",
+    "example_pinyin": "Zhè shì 月.",
+    "example_english": "This is 月."
+  },
+  {
+    "uuid": "hsk1_141",
+    "hanzi": "再见",
+    "pinyin": "zàijiàn",
+    "definition": "goodbye",
+    "example_sentence": "再见，明天见。",
+    "example_pinyin": "Zàijiàn, míngtiān jiàn.",
+    "example_english": "Goodbye, see you tomorrow."
+  },
+  {
+    "uuid": "hsk1_142",
+    "hanzi": "在",
+    "pinyin": "zài",
+    "definition": "at; in; on",
+    "example_sentence": "这是在。",
+    "example_pinyin": "Zhè shì 在.",
+    "example_english": "This is 在."
+  },
+  {
+    "uuid": "hsk1_143",
+    "hanzi": "怎么",
+    "pinyin": "zěnme",
+    "definition": "how",
+    "example_sentence": "这个字怎么读？",
+    "example_pinyin": "Zhège zì zěnme dú?",
+    "example_english": "How do you read this character?"
+  },
+  {
+    "uuid": "hsk1_144",
+    "hanzi": "怎么样",
+    "pinyin": "zěnmeyàng",
+    "definition": "how about it?",
+    "example_sentence": "今天天气怎么样？",
+    "example_pinyin": "Jīntiān tiānqì zěnmeyàng?",
+    "example_english": "How is the weather today?"
+  },
+  {
+    "uuid": "hsk1_145",
+    "hanzi": "这",
+    "pinyin": "zhè",
+    "definition": "this",
+    "example_sentence": "这是一个杯子。",
+    "example_pinyin": "Zhè shì yí gè bēizi.",
+    "example_english": "This is a cup."
+  },
+  {
+    "uuid": "hsk1_146",
+    "hanzi": "这儿",
+    "pinyin": "zhèr",
+    "definition": "here",
+    "example_sentence": "你住在这儿吗？",
+    "example_pinyin": "Nǐ zhù zài zhèr ma?",
+    "example_english": "Do you live here?"
+  },
+  {
+    "uuid": "hsk1_147",
+    "hanzi": "中国",
+    "pinyin": "Zhōngguó",
+    "definition": "China",
+    "example_sentence": "他在中国工作。",
+    "example_pinyin": "Tā zài Zhōngguó gōngzuò.",
+    "example_english": "He works in China."
+  },
+  {
+    "uuid": "hsk1_148",
+    "hanzi": "中午",
+    "pinyin": "zhōngwǔ",
+    "definition": "noon",
+    "example_sentence": "我中午去吃饭。",
+    "example_pinyin": "Wǒ zhōngwǔ qù chī fàn.",
+    "example_english": "I will go eat at noon."
+  },
+  {
+    "uuid": "hsk1_149",
+    "hanzi": "住",
+    "pinyin": "zhù",
+    "definition": "to live (reside)",
+    "example_sentence": "我住在北京。",
+    "example_pinyin": "Wǒ zhù zài Běijīng.",
+    "example_english": "I live in Beijing."
+  },
+  {
+    "uuid": "hsk1_150",
+    "hanzi": "桌子",
+    "pinyin": "zhuōzi",
+    "definition": "table; desk",
+    "example_sentence": "书在桌子上。",
+    "example_pinyin": "Shū zài zhuōzi shàng.",
+    "example_english": "The book is on the table."
+  },
+  {
+    "uuid": "hsk1_151",
+    "hanzi": "字",
+    "pinyin": "zì",
+    "definition": "character; word",
+    "example_sentence": "这个字我不认识。",
+    "example_pinyin": "Zhège zì wǒ bú rènshi.",
+    "example_english": "I don't know this character."
+  },
+  {
+    "uuid": "hsk1_152",
+    "hanzi": "昨天",
+    "pinyin": "zuótiān",
+    "definition": "yesterday",
+    "example_sentence": "他昨天没去学校。",
+    "example_pinyin": "Tā zuótiān méi qù xuéxiào.",
+    "example_english": "He didn't go to school yesterday."
+  },
+  {
+    "uuid": "hsk1_153",
+    "hanzi": "坐",
+    "pinyin": "zuò",
+    "definition": "to sit",
+    "example_sentence": "请坐。",
+    "example_pinyin": "Qǐng zuò.",
+    "example_english": "Please sit."
+  },
+  {
+    "uuid": "hsk1_154",
+    "hanzi": "做",
+    "pinyin": "zuò",
+    "definition": "to do; to make",
+    "example_sentence": "你在做什么？",
+    "example_pinyin": "Nǐ zài zuò shénme?",
+    "example_english": "What are you doing?"
+  }
+]

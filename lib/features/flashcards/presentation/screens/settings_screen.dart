@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
+import '../../../course/presentation/screens/tome_manager_screen.dart' as hanzi_tome;
 import '../providers/settings_controller.dart';
-import '../utils/tts_manager.dart';
+import 'package:hanzi_master/core/services/audio_service.dart';
 
 class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
@@ -42,10 +43,35 @@ class SettingsScreen extends ConsumerWidget {
             label: settings.speechRate.toString(),
             onChanged: (val) {
               ref.read(settingsProvider.notifier).setSpeechRate(val);
-              // Update the actual TTS engine immediately
-              TtsManager().setRate(val);
+              // Update the actual TTS engine immediately via AudioService
+              ref.read(audioServiceProvider).setSpeechRate(val);
             },
           ),
+          const Divider(),
+
+          // 🛠️ FIX HINT SYSTEM BUTTON
+          ListTile(
+            leading: const Icon(Icons.build_circle_outlined, color: Colors.teal),
+            title: const Text("Fix Hint System"),
+            subtitle: const Text("Clears cache to enable single-line hints"),
+            onTap: () async {
+              showDialog(
+                context: context,
+                barrierDismissible: false,
+                builder: (_) => const Center(child: CircularProgressIndicator()),
+              );
+
+              await ref.read(flashcardControllerProvider.notifier).clearAllStrokes();
+
+              if (context.mounted) {
+                Navigator.pop(context);
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text("Cache cleared! Hints will now use single lines. 🖋️")),
+                );
+              }
+            },
+          ),
+
           const Divider(),
 
           // 🆕 IMPORT HSK 1 BUTTON
@@ -54,23 +80,57 @@ class SettingsScreen extends ConsumerWidget {
             title: const Text("Import HSK 1 Foundation"),
             subtitle: const Text("Load 150 standard words"),
             onTap: () async {
-              // 1. Show a loading indicator
               showDialog(
                 context: context,
                 barrierDismissible: false,
                 builder: (_) => const Center(child: CircularProgressIndicator()),
               );
-
-              // 2. Trigger the import via the Controller
               await ref.read(flashcardControllerProvider.notifier).importHsk1();
-
-              // 3. Close loading & Show Success
               if (context.mounted) {
-                Navigator.pop(context); // Close the spinner
+                Navigator.pop(context);
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(content: Text("HSK 1 Foundation Imported! 🇨🇳")),
                 );
               }
+            },
+          ),
+
+          const Divider(),
+
+          // 🆕 IMPORT HSK 2 BUTTON
+          ListTile(
+            leading: const Icon(Icons.download_for_offline_rounded, color: Colors.teal),
+            title: const Text("Import HSK 2 Expansion"),
+            subtitle: const Text("Load 150 advanced words"),
+            onTap: () async {
+              showDialog(
+                context: context,
+                barrierDismissible: false,
+                builder: (_) => const Center(child: CircularProgressIndicator()),
+              );
+              await ref.read(flashcardControllerProvider.notifier).importHsk2();
+              if (context.mounted) {
+                Navigator.pop(context);
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text("HSK 2 Expansion Imported! 🚀")),
+                );
+              }
+            },
+          ),
+
+          const Divider(),
+
+          // 📚 MANAGE TOMES (EXPANSIONS)
+          ListTile(
+            leading: const Icon(Icons.library_books, color: Colors.indigo),
+            title: const Text("Manage Tomes"),
+            subtitle: const Text("Download HSK 2 and expansions"),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () {
+              Navigator.push(
+                context, 
+                MaterialPageRoute(builder: (context) => const hanzi_tome.TomeManagerScreen())
+              );
             },
           ),
 

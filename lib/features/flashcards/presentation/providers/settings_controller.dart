@@ -7,12 +7,14 @@ class SettingsState {
   final double speechRate; // 0.0 to 1.0
   final double animationSpeed; // 0.5 to 2.0
   final bool hasCompletedOnboarding;
+  final bool isTutorialCompleted; // The Scroll of Origin
 
   SettingsState({
     this.isDarkMode = false, 
     this.speechRate = 0.5, 
     this.animationSpeed = 1.0,
     this.hasCompletedOnboarding = false,
+    this.isTutorialCompleted = false,
   });
 
   SettingsState copyWith({
@@ -20,12 +22,14 @@ class SettingsState {
     double? speechRate, 
     double? animationSpeed,
     bool? hasCompletedOnboarding,
+    bool? isTutorialCompleted,
   }) {
     return SettingsState(
       isDarkMode: isDarkMode ?? this.isDarkMode,
       speechRate: speechRate ?? this.speechRate,
       animationSpeed: animationSpeed ?? this.animationSpeed,
       hasCompletedOnboarding: hasCompletedOnboarding ?? this.hasCompletedOnboarding,
+      isTutorialCompleted: isTutorialCompleted ?? this.isTutorialCompleted,
     );
   }
 }
@@ -39,12 +43,19 @@ class SettingsController extends StateNotifier<SettingsState> {
     speechRate: prefs.getDouble(_keySpeed) ?? 0.5,
     animationSpeed: prefs.getDouble(_keyAnimationSpeed) ?? 1.0,
     hasCompletedOnboarding: prefs.getBool(_keyOnboarding) ?? false,
+    isTutorialCompleted: prefs.getBool(_keyTutorial) ?? false,
   ));
 
   static const _keyTheme = 'is_dark_mode';
   static const _keySpeed = 'speech_rate';
   static const _keyAnimationSpeed = 'animation_speed';
   static const _keyOnboarding = 'has_completed_onboarding';
+  static const _keyTutorial = 'tutorial_completed';
+
+  Future<void> completeTutorial() async {
+    await prefs.setBool(_keyTutorial, true);
+    state = state.copyWith(isTutorialCompleted: true);
+  }
 
   Future<void> completeOnboarding() async {
     await prefs.setBool(_keyOnboarding, true);

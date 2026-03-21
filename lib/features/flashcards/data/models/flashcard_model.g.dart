@@ -27,13 +27,20 @@ class FlashcardModelAdapter extends TypeAdapter<FlashcardModel> {
       interval: fields[6] as int,
       easeFactor: fields[7] as double,
       streak: fields[8] as int,
+      lastScore: fields[10] as double?,
+      attempts: fields[11] as int?,
+      lastAttemptDate: fields[12] as DateTime?,
+      successCount: fields[13] as int?,
+      medianPathsJson: fields[14] as String?,
+      isFlipped: fields[15] as bool?,
+      inkPoints: fields[16] as int?,
     );
   }
 
   @override
   void write(BinaryWriter writer, FlashcardModel obj) {
     writer
-      ..writeByte(10)
+      ..writeByte(17)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -53,7 +60,21 @@ class FlashcardModelAdapter extends TypeAdapter<FlashcardModel> {
       ..writeByte(8)
       ..write(obj.streak)
       ..writeByte(9)
-      ..write(obj.strokePaths);
+      ..write(obj.strokePaths)
+      ..writeByte(10)
+      ..write(obj.lastScore)
+      ..writeByte(11)
+      ..write(obj.attempts)
+      ..writeByte(12)
+      ..write(obj.lastAttemptDate)
+      ..writeByte(13)
+      ..write(obj.successCount)
+      ..writeByte(14)
+      ..write(obj.medianPathsJson)
+      ..writeByte(15)
+      ..write(obj.isFlipped)
+      ..writeByte(16)
+      ..write(obj.inkPoints);
   }
 
   @override

@@ -1,63 +1,153 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'features/flashcards/data/models/flashcard_model.dart';
-import 'features/flashcards/presentation/screens/flashcard_list_screen.dart';
-import 'features/flashcards/presentation/providers/settings_controller.dart';
-import 'features/onboarding/presentation/screens/onboarding_screen.dart';
+import 'package:hanzi_master/features/flashcards/data/models/flashcard_model.dart';
+import 'package:hanzi_master/features/flashcards/presentation/providers/settings_controller.dart';
+import 'package:hanzi_master/features/flashcards/presentation/screens/main_navigation_screen.dart';
+
+import 'package:hanzi_master/core/providers.dart';
+import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
+import 'package:hanzi_master/core/services/monetization_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // 0. Hardened Zen & Ink System UI
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    statusBarColor: Colors.transparent,
+    statusBarIconBrightness: Brightness.dark,
+    statusBarBrightness: Brightness.light,
+    systemNavigationBarColor: Color(0xFFFDFCF0),
+    systemNavigationBarIconBrightness: Brightness.dark,
+    systemNavigationBarDividerColor: Colors.transparent,
+  ));
   
-  // 1. Initialize Hive
+  // 1. Initialize SharedPreferences
+  final prefs = await SharedPreferences.getInstance();
+  
+  // 2. Initialize Hive & DB
   await Hive.initFlutter();
   Hive.registerAdapter(FlashcardModelAdapter());
-  await Hive.openBox<FlashcardModel>('flashcards');
 
-  // 2. Load Preferences Synchronously
-  final prefs = await SharedPreferences.getInstance();
+  // --- SECURITY: Hive Encryption ---
+  const secureStorage = FlutterSecureStorage();
+  final encryptionKeyString = await secureStorage.read(key: 'hive_encryption_key');
+  late List<int> encryptionKey;
+
+  if (encryptionKeyString == null) {
+    encryptionKey = Hive.generateSecureKey();
+    await secureStorage.write(
+      key: 'hive_encryption_key',
+      value: base64Url.encode(encryptionKey),
+    );
+  } else {
+    encryptionKey = base64Url.decode(encryptionKeyString);
+  }
+
+  // Open the box with encryption
+  // Note: If you have existing unencrypted data, you would need a migration step.
+  // For this audit fix, we are enforcing encryption from now on.
+  final box = await Hive.openBox<FlashcardModel>(
+    'flashcards',
+    encryptionCipher: HiveAesCipher(encryptionKey),
+  );
+
+  // Initialize RevenueCat
+  await MonetizationService.init();
+
+  // 3. Create Container for pre-warming providers
+  final container = ProviderContainer(
+    overrides: [
+      settingsProvider.overrideWith((ref) => SettingsController(prefs)),
+      hiveBoxProvider.overrideWithValue(box),
+    ],
+  );
+
+  // 4. Pre-warm Repository (Heavy JSON parsing)
+  await container.read(flashcardRepositoryProvider).init();
+  
+  // 5. Ensure Library is populated
+  await container.read(flashcardControllerProvider.notifier).init();
 
   runApp(
-    ProviderScope(
-      overrides: [
-        // Inject the pre-loaded preferences
-        settingsProvider.overrideWith((ref) => SettingsController(prefs)),
-      ],
-      child: const MyApp(),
+    UncontrolledProviderScope(
+      container: container,
+      child: const HanziMasterApp(),
     ),
   );
 }
 
-class MyApp extends ConsumerWidget {
-  const MyApp({super.key});
+class HanziMasterApp extends ConsumerWidget {
+  const HanziMasterApp({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // Watch the settings
+    // 4. Watch settings to apply theme mode dynamically
     final settings = ref.watch(settingsProvider);
-
+    
     return MaterialApp(
+      title: 'Hanzi Master',
       debugShowCheckedModeBanner: false,
-    title: 'Hanzi Master',
-      
-      // THEME LOGIC
       theme: ThemeData(
-        brightness: Brightness.light,
-        primarySwatch: Colors.indigo,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color(0xFF1A1A1B),
+          surface: const Color(0xFFFDFCF0),
+          brightness: Brightness.light,
+        ),
+        scaffoldBackgroundColor: const Color(0xFFFDFCF0),
         useMaterial3: true,
+        fontFamily: 'NotoSansSC',
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          centerTitle: true,
+          systemOverlayStyle: SystemUiOverlayStyle.dark,
+          titleTextStyle: TextStyle(
+            color: Color(0xFF1A1A1B),
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            letterSpacing: 2,
+          ),
+          iconTheme: IconThemeData(color: Color(0xFF1A1A1B)),
+        ),
+        navigationBarTheme: NavigationBarThemeData(
+          backgroundColor: const Color(0xFFFDFCF0),
+          indicatorColor: const Color(0xFF1A1A1B).withValues(alpha: 0.1),
+        ),
       ),
       darkTheme: ThemeData(
-        brightness: Brightness.dark,
-        primarySwatch: Colors.indigo,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color(0xFFFDFCF0),
+          surface: const Color(0xFF1A1A1B),
+          brightness: Brightness.dark,
+        ),
+        scaffoldBackgroundColor: const Color(0xFF1A1A1B),
         useMaterial3: true,
+        fontFamily: 'NotoSansSC',
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          centerTitle: true,
+          systemOverlayStyle: SystemUiOverlayStyle.light,
+          titleTextStyle: TextStyle(
+            color: Color(0xFFFDFCF0),
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            letterSpacing: 2,
+          ),
+          iconTheme: IconThemeData(color: Color(0xFFFDFCF0)),
+        ),
+        navigationBarTheme: NavigationBarThemeData(
+          backgroundColor: const Color(0xFF1A1A1B),
+          indicatorColor: const Color(0xFFFDFCF0).withValues(alpha: 0.1),
+        ),
       ),
       themeMode: settings.isDarkMode ? ThemeMode.dark : ThemeMode.light,
-      
-      // ROUTING LOGIC: Show Onboarding if not completed
-      home: settings.hasCompletedOnboarding 
-          ? const FlashcardListScreen() 
-          : const OnboardingScreen(),
+      home: const MainNavigationScreen(),
     );
   }
 }

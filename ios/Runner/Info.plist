@@ -47,5 +47,15 @@
 		<true/>
 		<key>UIStatusBarHidden</key>
 		<false/>
+		<key>NSCameraUsageDescription</key>
+		<string>Hanzi Master needs camera access to scan and recognize Chinese characters from books and signs.</string>
+		<key>NSPhotoLibraryUsageDescription</key>
+		<string>Hanzi Master needs access to your photo library to import images of Chinese text for recognition.</string>
+		<key>NSMicrophoneUsageDescription</key>
+		<string>Hanzi Master requires microphone access for pronunciation grading and oral practice.</string>
+		<key>NSSpeechRecognitionUsageDescription</key>
+		<string>Hanzi Master uses speech recognition to provide real-time feedback on your pronunciation.</string>
+		<key>ITSAppUsesNonExemptEncryption</key>
+		<false/>
 	</dict>
 </plist>

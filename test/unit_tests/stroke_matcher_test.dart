@@ -1,12 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hanzi_master/core/stroke_matcher.dart';
-// Import GeometryUtils
 
 void main() {
   group('StrokeMatcher', () {
-    // Tests for normalizePoints are now in geometry_utils_test.dart
-    // Removed the normalization tests from here.
-
     group('matchStroke', () {
       test('returns false for empty user stroke', () {
         final result = StrokeMatcher.matchStroke([], [const Offset(0, 0)]);
@@ -20,79 +16,77 @@ void main() {
         expect(result.feedback, 'Strokes cannot be empty.');
       });
 
-      test('returns false if start points are too far apart', () {
+      test('returns false if start points are too far apart (Wrong Start Point)', () {
+        // We use normalized coordinates (0-1000)
         final userStroke = [const Offset(0, 0), const Offset(100, 100)];
-        final refStroke = [const Offset(500, 500), const Offset(600, 600)]; // Far start point
+        final refStroke = [const Offset(500, 500), const Offset(600, 600)];
+        
         final result = StrokeMatcher.matchStroke(
           userStroke,
           refStroke,
-          startPointThreshold: 10, // Small threshold
+          masteryLevel: 1.0, 
         );
         expect(result.isMatch, isFalse);
-        expect(result.feedback, 'Start point too far off from the expected stroke start.');
+        expect(result.feedback, contains('Wrong start point.'));
       });
 
       test('returns false if path goes outside buffer zone', () {
-        final refStroke = [const Offset(0, 0), const Offset(100, 0)]; // Straight line
-        // User draws a line that deviates too much
+        final refStroke = [const Offset(0, 0), const Offset(1000, 0)];
         final userStroke = [
           const Offset(0, 0),
-          const Offset(50, 60), // Outside buffer
-          const Offset(100, 0),
+          const Offset(500, 600), // VERY far outside the buffer
+          const Offset(1000, 0),
         ];
+        // Buffer = 100 * 1.2 = 120.
+        // avgDist = 600/3 = 200.
+        // combinedError = 200 * 0.7 = 140. 140 > 120.
         final result = StrokeMatcher.matchStroke(
           userStroke,
           refStroke,
-          startPointThreshold: 100, // Allow start point
-          pathBufferZone: 50, // Small buffer
+          masteryLevel: 0.0, 
         );
         expect(result.isMatch, isFalse);
-        expect(result.feedback, 'Path went outside the allowed buffer zone.');
+        expect(result.feedback, contains('Shape is off.'));
       });
 
       test('returns true for a perfect match', () {
-        final stroke = [const Offset(0, 0), const Offset(100, 100)];
-        final result = StrokeMatcher.matchStroke(stroke, stroke,
-            startPointThreshold: 10, pathBufferZone: 10);
+        final stroke = [const Offset(0, 0), const Offset(500, 500), const Offset(1000, 1000)];
+        final result = StrokeMatcher.matchStroke(stroke, stroke);
         expect(result.isMatch, isTrue);
-        expect(result.feedback, 'Stroke matched successfully!');
+        expect(result.feedback, 'Masterful!');
         expect(result.score, closeTo(1.0, 0.001));
       });
 
       test('returns true for a near-perfect match within thresholds', () {
-        final refStroke = [const Offset(0, 0), const Offset(100, 100)];
+        final refStroke = [const Offset(0, 0), const Offset(1000, 1000)];
         final userStroke = [
-          const Offset(5, 5),
-          const Offset(95, 95)
-        ]; // Slightly off but within buffer
+          const Offset(10, 10), // Small start offset
+          const Offset(990, 990)
+        ];
         final result = StrokeMatcher.matchStroke(
           userStroke,
           refStroke,
-          startPointThreshold: 50,
-          pathBufferZone: 50,
+          masteryLevel: 0.0,
         );
         expect(result.isMatch, isTrue);
-        expect(result.feedback, 'Stroke matched successfully!');
-        expect(result.score, greaterThan(0.8)); // Should have a good score
+        expect(result.score, greaterThan(0.9));
       });
 
-      test('returns a lower score for less accurate but still valid strokes', () {
-        final refStroke = [const Offset(0, 0), const Offset(100, 0)];
+      test('dynamic difficulty: master level is stricter than easy level', () {
+        final refStroke = [const Offset(0, 0), const Offset(1000, 0)];
         final userStroke = [
           const Offset(0, 0),
-          const Offset(50, 20),
-          const Offset(100, 0)
-        ]; // Within buffer but not perfect
-        final result = StrokeMatcher.matchStroke(
-          userStroke,
-          refStroke,
-          startPointThreshold: 50,
-          pathBufferZone: 250, // Increased buffer zone to allow for normalized deviation
-        );
-        expect(result.isMatch, isTrue);
-        expect(result.feedback, 'Stroke matched successfully!');
-        expect(result.score, lessThan(1.0));
-        expect(result.score, greaterThan(0.0));
+          const Offset(500, 300), // Average distance is ~300/3 = 100. combinedError = 70.
+          const Offset(1000, 0)
+        ];
+
+        // Easy level (Buffer = 100 * lengthFactor(1.2) = 120). 70 < 120 -> Match.
+        final easyResult = StrokeMatcher.matchStroke(userStroke, refStroke, masteryLevel: 0.0);
+        expect(easyResult.isMatch, isTrue, reason: '70 < 120 (easy)');
+
+        // Master level (Buffer = 50 * lengthFactor(1.2) = 60). 70 > 60 -> No match.
+        final masterResult = StrokeMatcher.matchStroke(userStroke, refStroke, masteryLevel: 1.0);
+        expect(masterResult.isMatch, isFalse, reason: '70 > 60 (master)');
       });
     });
   });

@@ -1,102 +1,101 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../providers/stats_controller.dart';
+import '../providers/stats_state.dart';
 
 class StatsScreen extends ConsumerWidget {
   const StatsScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final asyncStats = ref.watch(statsProvider);
+    // Explicitly watch the generated provider
+    final StatsState stats = ref.watch(userStatsProvider);
 
     return Scaffold(
-      appBar: AppBar(title: const Text("My Progress")),
+      appBar: AppBar(
+        title: const Text("My Progress"),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
       backgroundColor: Colors.grey.shade100,
-      body: asyncStats.when(
-        data: (stats) => Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text("Overview", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-              const SizedBox(height: 16),
-              
-              // TOP ROW: Total & Due
-              Row(
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text("Overview", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+            const SizedBox(height: 16),
+            
+            Row(
+              children: [
+                _StatCard(
+                  title: "Total Words",
+                  value: "${stats.total}",
+                  color: Colors.blue,
+                  icon: Icons.style,
+                ),
+                const SizedBox(width: 16),
+                _StatCard(
+                  title: "New Ink",
+                  value: "${stats.newCards}",
+                  color: Colors.orange,
+                  icon: Icons.auto_awesome,
+                ),
+              ],
+            ),
+            const SizedBox(height: 16),
+
+            Row(
+              children: [
+                _StatCard(
+                  title: "Learning",
+                  value: "${stats.learning}",
+                  color: Colors.green,
+                  icon: Icons.brush,
+                ),
+                const SizedBox(width: 16),
+                _StatCard(
+                  title: "Mastered",
+                  value: "${stats.mastered}",
+                  color: Colors.purple,
+                  icon: Icons.emoji_events,
+                ),
+              ],
+            ),
+            const SizedBox(height: 24),
+
+            Container(
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(16),
+                boxShadow: const [BoxShadow(color: Colors.black12, blurRadius: 10)],
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _StatCard(
-                    title: "Total Cards",
-                    value: "${stats.totalCards}",
-                    color: Colors.blue,
-                    icon: Icons.style,
+                  const Text("Calligraphic Accuracy", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                  const SizedBox(height: 10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text("${stats.accuracy.toStringAsFixed(1)}%", style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Colors.indigo)),
+                      const Text("Target: 90%", style: TextStyle(color: Colors.grey)),
+                    ],
                   ),
-                  const SizedBox(width: 16),
-                  _StatCard(
-                    title: "Due Now",
-                    value: "${stats.dueToday}",
-                    color: Colors.orange,
-                    icon: Icons.notifications_active,
+                  const SizedBox(height: 10),
+                  LinearProgressIndicator(
+                    value: stats.accuracy / 100,
+                    backgroundColor: Colors.grey.shade200,
+                    color: stats.accuracy > 80 ? Colors.green : Colors.orange,
+                    minHeight: 10,
+                    borderRadius: BorderRadius.circular(5),
                   ),
                 ],
               ),
-              const SizedBox(height: 16),
-
-              // MIDDLE ROW: Mastery
-              Row(
-                children: [
-                  _StatCard(
-                    title: "Learned",
-                    value: "${stats.learnedCards}",
-                    color: Colors.green,
-                    icon: Icons.school,
-                  ),
-                  const SizedBox(width: 16),
-                  _StatCard(
-                    title: "Mastered",
-                    value: "${stats.masteredCards}",
-                    color: Colors.purple,
-                    icon: Icons.emoji_events,
-                  ),
-                ],
-              ),
-              const SizedBox(height: 24),
-
-              // BOTTOM: Retention Bar
-              Container(
-                padding: const EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(16),
-                  boxShadow: const [BoxShadow(color: Colors.black12, blurRadius: 10)],
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text("Retention Health", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                    const SizedBox(height: 10),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text("${stats.retentionRate.toStringAsFixed(1)}%", style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Colors.indigo)),
-                        const Text("Target: 90%", style: TextStyle(color: Colors.grey)),
-                      ],
-                    ),
-                    const SizedBox(height: 10),
-                    LinearProgressIndicator(
-                      value: stats.retentionRate / 100,
-                      backgroundColor: Colors.grey.shade200,
-                      color: stats.retentionRate > 80 ? Colors.green : Colors.orange,
-                      minHeight: 10,
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
-        loading: () => const Center(child: CircularProgressIndicator()),
-        error: (err, stack) => Center(child: Text("Error: $err")),
       ),
     );
   }

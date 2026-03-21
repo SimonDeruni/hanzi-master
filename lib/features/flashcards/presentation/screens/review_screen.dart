@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hanzi_master/shared/widgets/pinyin_text.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/streak_controller.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
-import 'package:hanzi_master/features/flashcards/domain/services/stroke_grader.dart';
-import '../../domain/entities/flashcard.dart';
-import '../widgets/drawing_canvas.dart';
-import '../utils/tts_manager.dart';
-import '../widgets/calligraphy_background.dart';
-import '../providers/settings_controller.dart';
+import 'package:hanzi_master/core/stroke_matcher.dart';
+import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
+import 'package:hanzi_master/features/flashcards/presentation/widgets/drawing_canvas.dart';
+import 'package:hanzi_master/core/services/audio_service.dart';
+import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
+import 'package:hanzi_master/features/flashcards/presentation/providers/settings_controller.dart';
 import 'dart:ui' as ui;
 import 'package:hanzi_master/core/character_loader.dart';
 
@@ -32,7 +33,6 @@ class ReviewScreen extends ConsumerStatefulWidget {
 }
 
 class _ReviewScreenState extends ConsumerState<ReviewScreen> {
-  final TtsManager _tts = TtsManager();
   late Flashcard _currentCard;
   final ValueNotifier<List<ui.Offset?>> _userPointsNotifier = ValueNotifier([]);
   
@@ -43,116 +43,158 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
   int _currentStrokeIndex = 0;
   final List<List<ui.Offset?>> _completedStrokes = []; 
   
-  int _solutionKey = 0;
   Size? _lastCanvasSize;
   
-  // SYNCED CYCLING
   int _currentCycleIndex = 0;
   Timer? _globalCycleTimer;
 
   @override
   void initState() {
     super.initState();
-    _tts.init();
     _currentCard = widget.card;
     
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       final updatedCard = await ref.read(flashcardControllerProvider.notifier).loadStrokesFor(widget.card);
       if (updatedCard != null) {
-        setState(() {
-          _currentCard = updatedCard;
-        });
+        if (mounted) {
+          setState(() => _currentCard = updatedCard);
+        }
       }
-      _tts.speak(_currentCard.hanzi);
+      ref.read(audioServiceProvider).playCharacter(_currentCard.hanzi);
     });
   }
 
   void _startGlobalCycle() {
     _globalCycleTimer?.cancel();
-    final charCount = _getCharCount();
-    if (charCount <= 1) return;
+    setState(() => _currentCycleIndex = 0);
+    _runGlobalCycleLoop();
+  }
 
-    _globalCycleTimer = Timer.periodic(const Duration(seconds: 4), (timer) {
-      if (!mounted) return;
-      setState(() {
-        _currentCycleIndex = (_currentCycleIndex + 1) % charCount;
-      });
+  Future<void> _runGlobalCycleLoop() async {
+    if (!mounted || _state != ReviewState.feedback) return;
+
+    // 1. Robust Grouping (Identical to DrawingCanvas)
+    final groups = <List<String>>[];
+    var currentGroup = <String>[];
+    for (final stroke in _currentCard.strokePaths) {
+      if (stroke == '__CHAR_SEPARATOR__') {
+        if (currentGroup.isNotEmpty) {
+          groups.add(currentGroup);
+          currentGroup = [];
+        }
+      } else {
+        currentGroup.add(stroke);
+      }
+    }
+    if (currentGroup.isNotEmpty) groups.add(currentGroup);
+    
+    // 2. Safety Checks
+    if (groups.length <= 1) return; // No cycling needed for single chars
+    if (_currentCycleIndex >= groups.length) _currentCycleIndex = 0;
+
+    // 3. Calculate Wait Time
+    final currentStrokes = groups[_currentCycleIndex].length;
+    // Time = (Animation Duration) + (Pause)
+    // Animation = 200ms base + 500ms per stroke (approx matching DrawingCanvas)
+    // We add extra buffer for the user to admire the result
+    final waitMs = (200 + currentStrokes * 500) + 1500;
+
+    // 4. Schedule Next Cycle
+    _globalCycleTimer = Timer(Duration(milliseconds: waitMs), () {
+      if (mounted && _state == ReviewState.feedback) {
+        setState(() => _currentCycleIndex = (_currentCycleIndex + 1) % groups.length);
+        _runGlobalCycleLoop();
+      }
     });
   }
 
-  int _getCharCount() {
-    int count = 1;
-    for (final s in _currentCard.strokePaths) {
-      if (s == '__CHAR_SEPARATOR__') count++;
-    }
-    return count;
-  }
+
 
   @override
   void dispose() {
-    _tts.stop();
     _globalCycleTimer?.cancel();
     super.dispose();
   }
 
-  void _submitDrawing(List<ui.Offset?> userPoints, {Size? canvasSize}) {
+  Future<void> _submitDrawing(List<ui.Offset?> userPoints, {Size? canvasSize}) async {
     if (userPoints.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please draw something first')),
-      );
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Please draw something first')));
       return;
     }
-    
-    final refPaths = CharacterLoader.parseStrokes(
-      _currentCard.strokePaths.where((s) => s != '__CHAR_SEPARATOR__').toList(),
-      normalize: true,
-    );
+    final userStrokes = _splitIntoStrokes(userPoints);
+    final medians = _currentCard.medianPaths;
+    if (userStrokes.isEmpty || medians.isEmpty) {
+      setState(() { _score = 0.0; _state = ReviewState.feedback; });
+      return;
+    }
 
-    final score = StrokeGrader.gradeStrokes(
-      referencePaths: refPaths,
-      userPoints: userPoints,
-      canvasSize: canvasSize ?? _lastCanvasSize,
-    );
-        
-    if (score >= 80) {
+    final double mastery = (_currentCard.streak / 5.0).clamp(0.0, 1.0);
+    final List<Future<StrokeMatchResult>> futures = [];
+    
+    for (int i = 0; i < medians.length; i++) {
+      if (i < userStrokes.length) {
+        final refMedian = medians[i].map((p) => CharacterLoader.transformPoint(p)).toList();
+        futures.add(StrokeMatcher.matchStrokeAsync(userStrokes[i], refMedian, masteryLevel: mastery));
+      }
+    }
+
+    final results = await Future.wait(futures);
+
+    double totalScore = 0.0;
+    int evaluated = 0;
+    for (final result in results) {
+      totalScore += result.score;
+      evaluated++;
+    }
+
+    final finalScore = (evaluated > 0 ? (totalScore / medians.length) : 0.0) * 100.0;
+    
+    if (!mounted) return;
+
+    if (finalScore >= 80) {
       HapticsManager.success();
     } else {
       HapticsManager.heavy();
     }
-    
-    setState(() {
-      _score = score;
-      _state = ReviewState.feedback;
-    });
+    setState(() { _score = finalScore; _state = ReviewState.feedback; });
+    _startGlobalCycle();
+  }
 
-    _startGlobalCycle(); // Start the synced cycle when entering feedback
+  List<List<ui.Offset>> _splitIntoStrokes(List<ui.Offset?> points) {
+    List<List<ui.Offset>> strokes = [];
+    List<ui.Offset> current = [];
+    for (final p in points) {
+      if (p == null) {
+        if (current.isNotEmpty) {
+          strokes.add(List.from(current));
+          current.clear();
+        }
+      } else {
+        current.add(p);
+      }
+    }
+    if (current.isNotEmpty) {
+      strokes.add(current);
+    }
+    return strokes;
   }
 
   void _onStrokeComplete(int strokeIndex, Size size) {
     _lastCanvasSize = size;
-    if (strokeIndex != _currentStrokeIndex) return;
-    
-    // Points are ALREADY normalized to 1000x1000 by DrawingCanvas
+    if (strokeIndex != _currentStrokeIndex) {
+      return;
+    }
     final normalizedPoints = List<ui.Offset?>.from(_userPointsNotifier.value);
-
-    setState(() {
-      _completedStrokes.add(normalizedPoints);
-    });
-
+    setState(() => _completedStrokes.add(normalizedPoints));
     HapticsManager.light();
-    
-    final totalValidStrokes = _currentCard.strokePaths
-        .where((s) => s != '__CHAR_SEPARATOR__')
-        .length;
-    
+    final totalValidStrokes = _currentCard.strokePaths.where((s) => s != '__CHAR_SEPARATOR__').length;
     if (_currentStrokeIndex + 1 < totalValidStrokes) {
       int validFound = 0;
       bool isEndOfChar = false;
       for (int i = 0; i < _currentCard.strokePaths.length; i++) {
         if (_currentCard.strokePaths[i] != '__CHAR_SEPARATOR__') {
           if (validFound == _currentStrokeIndex) {
-            if (i + 1 < _currentCard.strokePaths.length && 
-                _currentCard.strokePaths[i+1] == '__CHAR_SEPARATOR__') {
+            if (i + 1 < _currentCard.strokePaths.length && _currentCard.strokePaths[i+1] == '__CHAR_SEPARATOR__') {
               isEndOfChar = true;
             }
             break;
@@ -160,15 +202,9 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
           validFound++;
         }
       }
-
-      final delay = isEndOfChar ? 1200 : 100;
-
-      Future.delayed(Duration(milliseconds: delay), () {
+      Future.delayed(Duration(milliseconds: isEndOfChar ? 1200 : 100), () {
         if (mounted) {
-          setState(() {
-            _currentStrokeIndex++;
-            _userPointsNotifier.value = [];
-          });
+          setState(() { _currentStrokeIndex++; _userPointsNotifier.value = []; });
         }
       });
     } else {
@@ -177,9 +213,8 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
           List<ui.Offset?> allPoints = [];
           for (final stroke in _completedStrokes) {
             allPoints.addAll(stroke);
-            allPoints.add(null); 
+            allPoints.add(null);
           }
-          // Note: Since allPoints are already normalized, we pass a 1000x1000 size to the grader
           _submitDrawing(allPoints, canvasSize: const ui.Size(1000, 1000));
         }
       });
@@ -187,19 +222,17 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
   }
 
   void _continueToNext() {
-    int rating;
-    if (_score < 60) rating = 1;
-    else if (_score < 80) rating = 2;
-    else if (_score < 95) rating = 3;
-    else rating = 4;
-
-    final updatedCard = _currentCard.copyWith(
-      lastScore: _score,
-      attempts: _currentCard.attempts + 1,
-      lastAttemptDate: DateTime.now(),
-      successCount: _score >= 80 ? _currentCard.successCount + 1 : _currentCard.successCount,
-    );
+    int rating = _score < 60 ? 1 : (_score < 80 ? 2 : (_score < 95 ? 3 : 4));
     
+    // 🚀 FIX: Update performance tracking fields on the card entity
+    final updatedCard = _currentCard.copyWith(
+      attempts: _currentCard.attempts + 1,
+      successCount: _score >= 80 ? _currentCard.successCount + 1 : _currentCard.successCount,
+      lastScore: _score,
+      lastAttemptDate: DateTime.now(),
+    );
+
+    // Pass the already-updated card to the SRS logic
     ref.read(flashcardControllerProvider.notifier).reviewFlashcard(updatedCard, rating);
     ref.read(streakProvider.notifier).incrementStreak();
     Navigator.pop(context, _score);
@@ -210,9 +243,7 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
     final settings = ref.watch(settingsProvider);
     return Scaffold(
       appBar: AppBar(title: Text(_currentCard.hanzi)),
-      body: _state == ReviewState.practice
-          ? _buildPracticeScreen(settings)
-          : _buildFeedbackScreen(settings),
+      body: _state == ReviewState.practice ? _buildPracticeScreen(settings) : _buildFeedbackScreen(settings),
     );
   }
 
@@ -223,11 +254,7 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
         Container(
           padding: const EdgeInsets.all(20),
           decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [Colors.blue.shade600, Colors.blue.shade400],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
+            gradient: LinearGradient(colors: [Colors.blue.shade600, Colors.blue.shade400], begin: Alignment.topLeft, end: Alignment.bottomRight),
             boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.1), blurRadius: 8, offset: const Offset(0, 2))],
           ),
           child: Column(
@@ -243,41 +270,25 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
                         const SizedBox(height: 8),
                         Row(
                           children: [
-                            Text(_currentCard.hanzi, style: const TextStyle(fontSize: 48, fontWeight: FontWeight.bold, color: Colors.white, shadows: [Shadow(color: Colors.black26, blurRadius: 4, offset: Offset(0, 2))])),
-                            const SizedBox(width: 8),
-                            IconButton(icon: const Icon(Icons.volume_up, color: Colors.white70), onPressed: () => _tts.speak(_currentCard.hanzi), tooltip: 'Listen to pronunciation'),
+                            Text(_currentCard.hanzi, style: const TextStyle(fontSize: 48, fontWeight: FontWeight.bold, color: Colors.white)),
+                            IconButton(icon: const Icon(Icons.volume_up, color: Colors.white70), onPressed: () => ref.read(audioServiceProvider).playCharacter(_currentCard.hanzi)),
                           ],
                         ),
-                        const SizedBox(height: 8),
-                        Text(_currentCard.pinyin, style: const TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.w500)),
-                        const SizedBox(height: 4),
+                        PinyinText(text: _currentCard.pinyin, style: const TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.w500)),
                         Text(_currentCard.definition, style: const TextStyle(fontSize: 14, color: Colors.white)),
                       ],
                     ),
                   ),
-                  Column(
-                    children: [
-                      const Text('Learning Mode', style: TextStyle(fontSize: 12, color: Colors.white70, fontWeight: FontWeight.w500)),
-                      const SizedBox(height: 8),
-                      Container(
-                        decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(8), boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.2), blurRadius: 4, offset: const Offset(0, 2))]),
-                        child: SegmentedButton<bool>(
-                          segments: const [
-                            ButtonSegment(value: true, label: Text('Guided'), icon: Icon(Icons.school, size: 18)),
-                            ButtonSegment(value: false, label: Text('Free'), icon: Icon(Icons.draw, size: 18)),
-                          ],
-                          selected: {_strokeByStrokeMode},
-                          onSelectionChanged: (Set<bool> newSelection) {
-                            setState(() {
-                              _strokeByStrokeMode = newSelection.first;
-                              _currentStrokeIndex = 0;
-                              _completedStrokes.clear();
-                              _userPointsNotifier.value = [];
-                            });
-                          },
-                        ),
-                      ),
-                    ],
+                  Container(
+                    decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(8)),
+                    child: SegmentedButton<bool>(
+                      segments: const [
+                        ButtonSegment(value: true, label: Text('Guided'), icon: Icon(Icons.school, size: 18)),
+                        ButtonSegment(value: false, label: Text('Free'), icon: Icon(Icons.draw, size: 18)),
+                      ],
+                      selected: {_strokeByStrokeMode},
+                      onSelectionChanged: (Set<bool> s) => setState(() { _strokeByStrokeMode = s.first; _currentStrokeIndex = 0; _completedStrokes.clear(); _userPointsNotifier.value = []; }),
+                    ),
                   ),
                 ],
               ),
@@ -290,8 +301,8 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
                     children: [
                       const Icon(Icons.info_outline, color: Colors.white, size: 20),
                       const SizedBox(width: 8),
-                      Expanded(child: Text('Follow the blue guide to draw stroke ${_currentStrokeIndex + 1} of $totalStrokes', style: const TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w500))),
-                      Container(padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4), decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(12)), child: Text('${_currentStrokeIndex + 1}/$totalStrokes', style: TextStyle(color: Colors.blue.shade700, fontSize: 16, fontWeight: FontWeight.bold))),
+                      Expanded(child: Text('Follow the blue guide to draw stroke ${_currentStrokeIndex + 1} of $totalStrokes', style: const TextStyle(color: Colors.white, fontSize: 14))),
+                      Text('${_currentStrokeIndex + 1}/$totalStrokes', style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold)),
                     ],
                   ),
                 ),
@@ -306,16 +317,7 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
               child: AspectRatio(
                 aspectRatio: 1.0,
                 child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(16),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withValues(alpha: 0.15),
-                        blurRadius: 16,
-                        offset: const Offset(0, 4)
-                      )
-                    ]
-                  ),
+                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(16), boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.15), blurRadius: 16, offset: const Offset(0, 4))]),
                   clipBehavior: Clip.antiAlias,
                   child: CalligraphyBackground(
                     child: LayoutBuilder(
@@ -324,12 +326,15 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
                         return DrawingCanvas(
                           key: const ValueKey('practiceCanvas'),
                           strokePaths: _currentCard.strokePaths,
+                          medianPaths: _currentCard.medianPaths,
                           showAnimation: false,
                           animationSpeed: settings.animationSpeed,
                           userPointsNotifier: _userPointsNotifier,
                           strokeByStrokeMode: _strokeByStrokeMode,
                           currentStrokeIndex: _currentStrokeIndex,
                           onStrokeComplete: _onStrokeComplete,
+                          masteryLevel: (_currentCard.streak / 5.0).clamp(0.0, 1.0),
+                          isFlipped: _currentCard.isFlipped,
                         );
                       }
                     ),
@@ -342,19 +347,16 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
         Padding(
           padding: const EdgeInsets.all(20),
           child: SizedBox(
-            width: double.infinity,
-            height: 56,
+            width: double.infinity, height: 56,
             child: _strokeByStrokeMode 
               ? OutlinedButton.icon(
-                  icon: const Icon(Icons.skip_next),
-                  label: const Text('Skip Current Stroke'),
-                  style: OutlinedButton.styleFrom(foregroundColor: Colors.orange.shade700, side: BorderSide(color: Colors.orange.shade700), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
+                  icon: const Icon(Icons.skip_next), label: const Text('Skip Current Stroke'),
+                  style: OutlinedButton.styleFrom(foregroundColor: Colors.orange.shade700, side: BorderSide(color: Colors.orange.shade700)),
                   onPressed: () => _onStrokeComplete(_currentStrokeIndex, _lastCanvasSize ?? ui.Size.zero),
                 )
               : ElevatedButton.icon(
-                  icon: const Icon(Icons.check_circle, size: 24),
-                  label: const Text('Submit Drawing', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                  style: ElevatedButton.styleFrom(backgroundColor: Colors.green.shade600, foregroundColor: Colors.white, elevation: 4, shadowColor: Colors.green.withValues(alpha: 0.5), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
+                  icon: const Icon(Icons.check_circle, size: 24), label: const Text('Submit Drawing'),
+                  style: ElevatedButton.styleFrom(backgroundColor: Colors.green.shade600, foregroundColor: Colors.white),
                   onPressed: () => _submitDrawing(_userPointsNotifier.value),
                 ),
           ),
@@ -364,196 +366,73 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
   }
 
   Widget _buildFeedbackScreen(dynamic settings) {
-    final feedback = StrokeGrader.getFeedback(_score);
     final isSuccess = _score >= 80;
     final themeColor = isSuccess ? Colors.green : Colors.orange;
-    
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        return Container(
-          width: double.infinity,
-          height: constraints.maxHeight,
-          color: Colors.grey.shade50,
-          child: Column(
-            children: [
-              Container(
-                width: double.infinity,
-                padding: const EdgeInsets.fromLTRB(24, 20, 24, 24),
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(colors: [themeColor.shade400, themeColor.shade600], begin: Alignment.topLeft, end: Alignment.bottomRight),
-                  borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(40), bottomRight: Radius.circular(40)),
-                  boxShadow: [BoxShadow(color: themeColor.withValues(alpha: 0.3), blurRadius: 20, offset: const Offset(0, 10))],
-                ),
-                child: Column(
+    return Container(
+      color: Colors.grey.shade50,
+      child: Column(
+        children: [
+          Container(
+            width: double.infinity, padding: const EdgeInsets.fromLTRB(24, 20, 24, 24),
+            decoration: BoxDecoration(gradient: LinearGradient(colors: [themeColor.shade400, themeColor.shade600])),
+            child: Column(
+              children: [
+                Text(isSuccess ? '🎉 EXCELLENT!' : '💪 KEEP GOING!', style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w900, color: Colors.white)),
+                const SizedBox(height: 16),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(isSuccess ? '🎉 EXCELLENT!' : '💪 KEEP GOING!', style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w900, color: Colors.white, letterSpacing: 1.2)),
-                    const SizedBox(height: 16),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          width: 90, height: 90,
-                          decoration: const BoxDecoration(color: Colors.white, shape: BoxShape.circle),
-                          child: Center(child: Column(mainAxisSize: MainAxisSize.min, children: [
-                            Text(_score.toStringAsFixed(0), style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold, color: themeColor.shade700)),
-                            Text('pts', style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: themeColor.shade300)),
-                          ])),
-                        ),
-                        const SizedBox(width: 24),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            _buildStarRating(_score, size: 28, color: Colors.white),
-                            const SizedBox(height: 8),
-                            SizedBox(width: 150, child: Text(feedback, style: const TextStyle(fontSize: 14, color: Colors.white, fontWeight: FontWeight.w500))),
-                          ],
-                        ),
-                      ],
-                    ),
+                    Container(width: 90, height: 90, decoration: const BoxDecoration(color: Colors.white, shape: BoxShape.circle), child: Center(child: Text(_score.toStringAsFixed(0), style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold, color: themeColor.shade700)))),
+                    const SizedBox(width: 24),
+                    Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                      _buildStarRating(_score, size: 28, color: Colors.white),
+                      const SizedBox(height: 8),
+                      Text(_getFeedback(_score), style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w500)),
+                    ]),
                   ],
                 ),
-              ),
-
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(24),
-                  child: Column(
-                    children: [
-                      // WORD SUMMARY CARD
-                      Container(
-                        width: double.infinity,
-                        padding: const EdgeInsets.all(16),
-                        margin: const EdgeInsets.only(bottom: 24),
-                        decoration: BoxDecoration(color: Colors.indigo.shade50, borderRadius: BorderRadius.circular(20), border: Border.all(color: Colors.indigo.shade100)),
-                        child: Row(
-                          children: [
-                            Container(
-                              padding: const EdgeInsets.all(12),
-                              decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(12)),
-                              child: Text(_currentCard.hanzi, style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Colors.indigo)),
-                            ),
-                            const SizedBox(width: 16),
-                            Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                              Text(_currentCard.pinyin, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.indigo.shade900)),
-                              Text(_currentCard.definition, style: TextStyle(fontSize: 14, color: Colors.indigo.shade700)),
-                            ])),
-                            IconButton(icon: const Icon(Icons.volume_up, color: Colors.indigo), onPressed: () => _tts.speak(_currentCard.hanzi)),
-                          ],
-                        ),
-                      ),
-
-                      // COMPARISON ROW
-                      Expanded(
-                        child: Row(
-                          children: [
-                            // YOUR WORK (40% width)
-                            Expanded(
-                              flex: 2,
-                              child: Column(children: [
-                                const Text('YOUR WORK', style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold, color: Colors.grey, letterSpacing: 1.2)),
-                                const SizedBox(height: 8),
-                                                                Expanded(child: Container(
-                                                                  decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(20), boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.05), blurRadius: 10)]),
-                                                                  clipBehavior: Clip.antiAlias,
-                                                                  child: CalligraphyBackground(
-                                                                    child: DrawingCanvas(
-                                                                      key: ValueKey('preview_work_$_currentCycleIndex'),
-                                                                      strokePaths: _currentCard.strokePaths,
-                                                                      showAnimation: false, 
-                                                                      readOnly: true, showGrade: false,
-                                                                      autoCenter: true, 
-                                                                      initialUserStrokes: _completedStrokes,
-                                                                      forcedActiveCharIndex: _currentCycleIndex,
-                                                                    ),
-                                                                  ),
-                                                                )),
-                                                              ]),
-                                                            ),
-                                                            const SizedBox(width: 16),
-                                                            // IDEAL SOLUTION (60% width)
-                                                            Expanded(
-                                                              flex: 3,
-                                                              child: Column(children: [
-                                                                const Text('IDEAL SOLUTION', style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold, color: Colors.grey, letterSpacing: 1.2)),
-                                                                const SizedBox(height: 8),
-                                                                Expanded(child: Container(
-                                                                  decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(20), border: Border.all(color: Colors.indigo.shade100, width: 2), boxShadow: [BoxShadow(color: Colors.indigo.withValues(alpha: 0.1), blurRadius: 15)]),
-                                                                  clipBehavior: Clip.antiAlias,
-                                                                  child: CalligraphyBackground(
-                                                                    child: Stack(children: [
-                                                                      DrawingCanvas(
-                                                                        key: ValueKey('preview_sol_$_currentCycleIndex'),
-                                                                        strokePaths: _currentCard.strokePaths,
-                                                                        showAnimation: true, animationSpeed: settings.animationSpeed,
-                                                                        showControls: false, showGrade: false, readOnly: true,
-                                                                        autoCenter: true,
-                                                                        forcedActiveCharIndex: _currentCycleIndex,
-                                                                      ),
-                                                                      Positioned(top: 8, right: 8, child: IconButton(icon: const Icon(Icons.replay, size: 20, color: Colors.indigo), onPressed: () => setState(() => _currentCycleIndex = 0))),
-                                                                    ]),
-                                                                  ),
-                                                                )),
-                                                              ]),
-                                                            ),                          ],
-                        ),
-                      ),
-                      
-                      const SizedBox(height: 24),
-                      Row(children: [
-                        Expanded(child: _buildMiniStat('ATTEMPTS', '${_currentCard.attempts + 1}')),
-                        const SizedBox(width: 12),
-                        Expanded(child: _buildMiniStat('SUCCESS', '${((_currentCard.successCount / (_currentCard.attempts + 1)) * 100).toStringAsFixed(0)}%')),
-                        const SizedBox(width: 12),
-                        Expanded(child: _buildMiniStat('SCORE', '${_score.toStringAsFixed(0)}%')),
-                      ]),
-                    ],
-                  ),
-                ),
-              ),
-
-              Padding(
-                padding: const EdgeInsets.fromLTRB(24, 0, 24, 32),
-                child: SizedBox(
-                  width: double.infinity, height: 60,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(backgroundColor: Colors.indigo, foregroundColor: Colors.white, elevation: 8, shadowColor: Colors.indigo.withValues(alpha: 0.4), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
-                    onPressed: _continueToNext,
-                    child: const Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                      Text('CONTINUE', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w900, letterSpacing: 1.5)),
-                      SizedBox(width: 12), Icon(Icons.arrow_forward_ios, size: 18),
+              ],
+            ),
+          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(24),
+              child: Column(
+                children: [
+                  Container(
+                    width: double.infinity, padding: const EdgeInsets.all(16), margin: const EdgeInsets.only(bottom: 24),
+                    decoration: BoxDecoration(color: Colors.indigo.shade50, borderRadius: BorderRadius.circular(20)),
+                    child: Row(children: [
+                      Text(_currentCard.hanzi, style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Colors.indigo)),
+                      const SizedBox(width: 16),
+                      Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                        PinyinText(text: _currentCard.pinyin, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                        Text(_currentCard.definition),
+                      ])),
                     ]),
                   ),
-                ),
+                  Expanded(child: Row(children: [
+                    Expanded(flex: 2, child: Container(decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(20)), child: DrawingCanvas(strokePaths: _currentCard.strokePaths, medianPaths: _currentCard.medianPaths, showAnimation: false, readOnly: true, autoCenter: true, initialUserStrokes: _completedStrokes, forcedActiveCharIndex: _currentCycleIndex, isFlipped: _currentCard.isFlipped, showGrade: false, showReference: false))),
+                    const SizedBox(width: 16),
+                    Expanded(flex: 3, child: Container(decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(20)), child: DrawingCanvas(strokePaths: _currentCard.strokePaths, medianPaths: _currentCard.medianPaths, showAnimation: true, readOnly: true, autoCenter: true, forcedActiveCharIndex: _currentCycleIndex, isFlipped: _currentCard.isFlipped, showGrade: false))),
+                  ])),
+                ],
               ),
-            ],
+            ),
           ),
-        );
-      }
+          Padding(
+            padding: const EdgeInsets.fromLTRB(24, 0, 24, 32),
+            child: ElevatedButton(onPressed: _continueToNext, style: ElevatedButton.styleFrom(backgroundColor: Colors.indigo, foregroundColor: Colors.white, minimumSize: const Size(double.infinity, 60)), child: const Text('CONTINUE')),
+          ),
+        ],
+      ),
     );
   }
 
-  Widget _buildMiniStat(String label, String value) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-      decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(16), boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.03), blurRadius: 5)]),
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Text(label, style: const TextStyle(fontSize: 9, color: Colors.grey, fontWeight: FontWeight.bold, letterSpacing: 0.5)),
-        const SizedBox(height: 4),
-        Text(value, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.indigo)),
-      ]),
-    );
-  }
+  String _getFeedback(double s) => s >= 90 ? "Perfect!" : (s >= 70 ? "Great!" : (s >= 50 ? "Good attempt" : "Keep practicing"));
 
   Widget _buildStarRating(double score, {double size = 40, Color? color}) {
-    int stars = 0;
-    if (score >= 95) stars = 5;
-    else if (score >= 85) stars = 4;
-    else if (score >= 70) stars = 3;
-    else if (score >= 50) stars = 2;
-    else if (score >= 30) stars = 1;
-    final starColor = color ?? Colors.amber.shade600;
-    return Row(mainAxisAlignment: MainAxisAlignment.start, children: List.generate(5, (index) {
-      return Padding(padding: const EdgeInsets.symmetric(horizontal: 2), child: Icon(index < stars ? Icons.star : Icons.star_border, size: size, color: starColor, shadows: [Shadow(color: Colors.black.withValues(alpha: 0.1), blurRadius: 2, offset: const Offset(0, 1))]));
-    }));
+    int stars = score >= 95 ? 5 : (score >= 85 ? 4 : (score >= 70 ? 3 : (score >= 50 ? 2 : (score >= 30 ? 1 : 0))));
+    return Row(children: List.generate(5, (index) => Icon(index < stars ? Icons.star : Icons.star_border, size: size, color: color ?? Colors.amber)));
   }
 }

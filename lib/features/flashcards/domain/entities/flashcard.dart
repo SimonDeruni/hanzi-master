@@ -1,12 +1,15 @@
+import 'dart:ui';
 import 'package:equatable/equatable.dart';
 
 class Flashcard extends Equatable {
   final String id;
-  final String hanzi;       // The Character (e.g., "猫")
-  final String pinyin;      // The Pronunciation (e.g., "māo")
-  final String definition;  // The Meaning
-  final int hskLevel;       // Difficulty (1-6)
-  final List<String> strokePaths; // The vector data for writing
+  final String hanzi;
+  final String pinyin;
+  final String definition;
+  final int hskLevel;
+  final List<String> strokePaths;
+  final List<List<Offset>> medianPaths;
+  final bool isFlipped;
 
   // --- SRS Stats ---
   final DateTime nextReviewDate;
@@ -15,10 +18,11 @@ class Flashcard extends Equatable {
   final int streak;
   
   // --- Performance Tracking ---
-  final double lastScore;        // Last attempt score (0-100)
-  final int attempts;            // Total practice attempts
-  final DateTime? lastAttemptDate; // When user last tried this card
-  final int successCount;        // How many times scored > 80%
+  final double lastScore;
+  final int attempts;
+  final DateTime? lastAttemptDate;
+  final int successCount;
+  final int inkPoints; // 🖌️ XP System (Audit 5 consistency fix)
 
   const Flashcard({
     required this.id,
@@ -27,6 +31,8 @@ class Flashcard extends Equatable {
     required this.definition,
     required this.hskLevel,
     required this.strokePaths,
+    this.medianPaths = const [],
+    this.isFlipped = false,
     required this.nextReviewDate,
     required this.interval,
     required this.easeFactor,
@@ -35,17 +41,25 @@ class Flashcard extends Equatable {
     this.attempts = 0,
     this.lastAttemptDate,
     this.successCount = 0,
+    this.inkPoints = 0,
   });
 
   @override
-  List<Object?> get props => [id, hanzi, pinyin, nextReviewDate, streak, lastScore, attempts];
+  List<Object?> get props => [
+    id, hanzi, pinyin, definition, hskLevel, strokePaths, medianPaths, 
+    isFlipped, nextReviewDate, interval, easeFactor, streak, 
+    lastScore, attempts, lastAttemptDate, successCount, inkPoints
+  ];
 
   // --- Helpers for UI ---
   bool get isMastered => interval >= 14 || streak >= 5;
   bool get isNew => attempts == 0;
   bool get isLearning => attempts > 0 && !isMastered;
 
-  // 📋 ADD THIS METHOD
+  /// Returns a normalized mastery level from 0.0 to 1.0 based on the current streak.
+  /// A streak of 5 or more is considered 100% mastery for threshold purposes.
+  double get masteryLevel => (streak / 5.0).clamp(0.0, 1.0);
+
   Flashcard copyWith({
     String? id,
     String? hanzi,
@@ -53,6 +67,8 @@ class Flashcard extends Equatable {
     String? definition,
     int? hskLevel,
     List<String>? strokePaths,
+    List<List<Offset>>? medianPaths,
+    bool? isFlipped,
     DateTime? nextReviewDate,
     int? interval,
     double? easeFactor,
@@ -61,6 +77,7 @@ class Flashcard extends Equatable {
     int? attempts,
     DateTime? lastAttemptDate,
     int? successCount,
+    int? inkPoints,
   }) {
     return Flashcard(
       id: id ?? this.id,
@@ -69,6 +86,8 @@ class Flashcard extends Equatable {
       definition: definition ?? this.definition,
       hskLevel: hskLevel ?? this.hskLevel,
       strokePaths: strokePaths ?? this.strokePaths,
+      medianPaths: medianPaths ?? this.medianPaths,
+      isFlipped: isFlipped ?? this.isFlipped,
       nextReviewDate: nextReviewDate ?? this.nextReviewDate,
       interval: interval ?? this.interval,
       easeFactor: easeFactor ?? this.easeFactor,
@@ -77,6 +96,7 @@ class Flashcard extends Equatable {
       attempts: attempts ?? this.attempts,
       lastAttemptDate: lastAttemptDate ?? this.lastAttemptDate,
       successCount: successCount ?? this.successCount,
+      inkPoints: inkPoints ?? this.inkPoints,
     );
   }
 }

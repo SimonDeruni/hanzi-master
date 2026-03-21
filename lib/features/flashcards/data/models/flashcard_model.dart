@@ -1,3 +1,5 @@
+import 'dart:convert';
+import 'dart:ui';
 import 'package:hive/hive.dart';
 import '../../domain/entities/flashcard.dart';
 part 'flashcard_model.g.dart';
@@ -35,16 +37,25 @@ class FlashcardModel extends HiveObject {
   final List<String> strokePaths;
   
   @HiveField(10)
-  final double lastScore;
+  final double? lastScore;
   
   @HiveField(11)
-  final int attempts;
+  final int? attempts;
   
   @HiveField(12)
   final DateTime? lastAttemptDate;
   
   @HiveField(13)
-  final int successCount;
+  final int? successCount;
+
+  @HiveField(14)
+  final String? medianPathsJson;
+
+  @HiveField(15)
+  final bool? isFlipped;
+
+  @HiveField(16)
+  final int? inkPoints; // 🖌️ XP System (Audit 5 consistency fix)
 
   FlashcardModel({
     required this.id,
@@ -61,10 +72,32 @@ class FlashcardModel extends HiveObject {
     this.attempts = 0,
     this.lastAttemptDate,
     this.successCount = 0,
+    this.medianPathsJson,
+    this.isFlipped = false,
+    this.inkPoints = 0,
   });
 
-  // Convert DB Model -> Pure Entity
   Flashcard toEntity() {
+    List<List<Offset>> medians = [];
+    if (medianPathsJson != null && medianPathsJson!.isNotEmpty) {
+      try {
+        final List<dynamic> decoded = json.decode(medianPathsJson!);
+        medians = decoded.map((stroke) {
+          final List<dynamic> pointsList = stroke as List;
+          return pointsList.map((point) {
+            if (point is Map) {
+              final x = (point['x'] ?? 0).toDouble();
+              final y = (point['y'] ?? 0).toDouble();
+              return Offset(x, y);
+            }
+            return Offset.zero;
+          }).toList();
+        }).toList();
+      } catch (e) {
+        medians = [];
+      }
+    }
+
     return Flashcard(
       id: id,
       hanzi: hanzi,
@@ -72,19 +105,29 @@ class FlashcardModel extends HiveObject {
       definition: definition,
       hskLevel: hskLevel,
       strokePaths: strokePaths,
+      medianPaths: medians,
       nextReviewDate: nextReviewDate,
       interval: interval,
       easeFactor: easeFactor,
       streak: streak,
-      lastScore: lastScore,
-      attempts: attempts,
+      lastScore: lastScore ?? 0.0,
+      attempts: attempts ?? 0,
       lastAttemptDate: lastAttemptDate,
-      successCount: successCount,
+      successCount: successCount ?? 0,
+      isFlipped: isFlipped ?? false,
+      inkPoints: inkPoints ?? 0,
     );
   }
 
-  // Convert Pure Entity -> DB Model
   static FlashcardModel fromEntity(Flashcard card) {
+    String? jsonStr;
+    if (card.medianPaths.isNotEmpty) {
+      final encoded = card.medianPaths.map((stroke) {
+        return stroke.map((Offset p) => {'x': p.dx, 'y': p.dy}).toList();
+      }).toList();
+      jsonStr = json.encode(encoded);
+    }
+
     return FlashcardModel(
       id: card.id,
       hanzi: card.hanzi,
@@ -92,6 +135,7 @@ class FlashcardModel extends HiveObject {
       definition: card.definition,
       hskLevel: card.hskLevel,
       strokePaths: card.strokePaths,
+      medianPathsJson: jsonStr,
       nextReviewDate: card.nextReviewDate,
       interval: card.interval,
       easeFactor: card.easeFactor,
@@ -100,29 +144,24 @@ class FlashcardModel extends HiveObject {
       attempts: card.attempts,
       lastAttemptDate: card.lastAttemptDate,
       successCount: card.successCount,
+      isFlipped: card.isFlipped,
+      inkPoints: card.inkPoints,
     );
   }
-  // ---------------------------------------------------------
-  // ADD THIS SECTION: Create Model from JSON (Import Logic)
-  // ---------------------------------------------------------
+
   factory FlashcardModel.fromJson(Map<String, dynamic> json) {
     return FlashcardModel(
-      // We accept 'uuid' from the JSON, or 'id' as a backup
       id: json['uuid'] ?? json['id'] ?? '', 
       hanzi: json['hanzi'] ?? '',
       pinyin: json['pinyin'] ?? '',
       definition: json['definition'] ?? '',
-      
-      // DEFAULTS FOR NEW CARDS:
-      hskLevel: 1, // We are importing the HSK 1 list
-      strokePaths: [], // We will generate these later, start empty
-      
-      // SRS (Spaced Repetition) DEFAULTS:
-      // The card is new, so it is due for review immediately
+      hskLevel: 1,
+      strokePaths: [],
       nextReviewDate: DateTime.now(), 
       interval: 0,
-      easeFactor: 2.5, // Standard starting ease factor (Sm2 algorithm)
+      easeFactor: 2.5,
       streak: 0,
+      inkPoints: 0,
     );
   }
 }

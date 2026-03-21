@@ -1,0 +1,862 @@
+{
+  "一": {
+    "radical": "一",
+    "decomposition": "一",
+    "etymology": "ideographic"
+  },
+  "七": {
+    "radical": "一",
+    "decomposition": "⿻一乚",
+    "etymology": "ideograph"
+  },
+  "三": {
+    "radical": "一",
+    "decomposition": "⿱一二",
+    "etymology": "ideographic"
+  },
+  "上": {
+    "radical": "一",
+    "decomposition": "⿱⺊一",
+    "etymology": "ideographic"
+  },
+  "下": {
+    "radical": "一",
+    "decomposition": "⿱一卜",
+    "etymology": "ideographic"
+  },
+  "不": {
+    "radical": "一",
+    "decomposition": "⿱一𠀌",
+    "etymology": "ideographic"
+  },
+  "东": {
+    "radical": "一",
+    "decomposition": "⿻七小",
+    "etymology": "pictographic"
+  },
+  "个": {
+    "radical": "丨",
+    "decomposition": "⿱人丨",
+    "etymology": "ideographic"
+  },
+  "中": {
+    "radical": "丨",
+    "decomposition": "⿻口丨",
+    "etymology": "ideographic"
+  },
+  "么": {
+    "radical": "丿",
+    "decomposition": "⿱丿厶",
+    "etymology": "ideograph"
+  },
+  "九": {
+    "radical": "乙",
+    "decomposition": "⿻丿乙",
+    "etymology": "pictographic"
+  },
+  "习": {
+    "radical": "冫",
+    "decomposition": "⿹𠃌冫",
+    "etymology": "ideograph"
+  },
+  "书": {
+    "radical": "丨",
+    "decomposition": "⿻𠃍丨",
+    "etymology": "ideographic"
+  },
+  "买": {
+    "radical": "大",
+    "decomposition": "⿱乛头",
+    "etymology": "ideograph"
+  },
+  "了": {
+    "radical": "亅",
+    "decomposition": "⿱乛亅",
+    "etymology": "pictographic"
+  },
+  "二": {
+    "radical": "二",
+    "decomposition": "⿱一一",
+    "etymology": "ideographic"
+  },
+  "五": {
+    "radical": "二",
+    "decomposition": "⿴二丨",
+    "etymology": "ideographic"
+  },
+  "些": {
+    "radical": "二",
+    "decomposition": "⿱此二",
+    "etymology": "pictophonetic"
+  },
+  "京": {
+    "radical": "亠",
+    "decomposition": "⿳亠口小",
+    "etymology": "pictographic"
+  },
+  "亮": {
+    "radical": "亠",
+    "decomposition": "⿳亠口⿱冖几",
+    "etymology": "pictographic"
+  },
+  "人": {
+    "radical": "人",
+    "decomposition": "人",
+    "etymology": "pictographic"
+  },
+  "什": {
+    "radical": "亻",
+    "decomposition": "⿰亻十",
+    "etymology": "ideographic"
+  },
+  "今": {
+    "radical": "人",
+    "decomposition": "⿱人乛",
+    "etymology": "ideographic"
+  },
+  "他": {
+    "radical": "亻",
+    "decomposition": "⿰亻也",
+    "etymology": "ideographic"
+  },
+  "们": {
+    "radical": "亻",
+    "decomposition": "⿰亻门",
+    "etymology": "pictophonetic"
+  },
+  "会": {
+    "radical": "人",
+    "decomposition": "⿱人云",
+    "etymology": "ideographic"
+  },
+  "住": {
+    "radical": "亻",
+    "decomposition": "⿰亻主",
+    "etymology": "ideographic"
+  },
+  "作": {
+    "radical": "亻",
+    "decomposition": "⿰亻乍",
+    "etymology": "ideographic"
+  },
+  "你": {
+    "radical": "亻",
+    "decomposition": "⿰亻尔",
+    "etymology": "ideographic"
+  },
+  "候": {
+    "radical": "亻",
+    "decomposition": "⿰亻矦",
+    "etymology": "pictophonetic"
+  },
+  "做": {
+    "radical": "亻",
+    "decomposition": "⿰亻故",
+    "etymology": "ideographic"
+  },
+  "儿": {
+    "radical": "儿",
+    "decomposition": "⿰丿乚",
+    "etymology": "pictographic"
+  },
+  "先": {
+    "radical": "儿",
+    "decomposition": "⿱⿰丿土儿",
+    "etymology": "ideographic"
+  },
+  "八": {
+    "radical": "八",
+    "decomposition": "八",
+    "etymology": "ideographic"
+  },
+  "六": {
+    "radical": "八",
+    "decomposition": "⿱亠八",
+    "etymology": "ideograph"
+  },
+  "关": {
+    "radical": "丷",
+    "decomposition": "⿱丷天",
+    "etymology": "ideograph"
+  },
+  "兴": {
+    "radical": "八",
+    "decomposition": "⿳⺍一八",
+    "etymology": "ideograph"
+  },
+  "再": {
+    "radical": "冂",
+    "decomposition": "⿱一冉",
+    "etymology": "pictographic"
+  },
+  "写": {
+    "radical": "冖",
+    "decomposition": "⿱冖与",
+    "etymology": "ideograph"
+  },
+  "冷": {
+    "radical": "冫",
+    "decomposition": "⿰冫令",
+    "etymology": "pictophonetic"
+  },
+  "几": {
+    "radical": "几",
+    "decomposition": "⿰丿乙",
+    "etymology": "pictographic"
+  },
+  "出": {
+    "radical": "凵",
+    "decomposition": "⿱屮凵",
+    "etymology": "ideographic"
+  },
+  "分": {
+    "radical": "刀",
+    "decomposition": "⿱八刀",
+    "etymology": "ideographic"
+  },
+  "前": {
+    "radical": "刂",
+    "decomposition": "⿱⿱丷一刖",
+    "etymology": "ideograph"
+  },
+  "北": {
+    "radical": "匕",
+    "decomposition": "⿰丬匕",
+    "etymology": "pictographic"
+  },
+  "医": {
+    "radical": "匸",
+    "decomposition": "⿷匸矢",
+    "etymology": "pictophonetic"
+  },
+  "十": {
+    "radical": "十",
+    "decomposition": "⿻一丨",
+    "etymology": "ideograph"
+  },
+  "午": {
+    "radical": "十",
+    "decomposition": "⿻丿干",
+    "etymology": "ideograph"
+  },
+  "去": {
+    "radical": "厶",
+    "decomposition": "⿱土厶",
+    "etymology": "ideograph"
+  },
+  "友": {
+    "radical": "又",
+    "decomposition": "⿸𠂇又",
+    "etymology": "ideographic"
+  },
+  "叫": {
+    "radical": "口",
+    "decomposition": "⿰口丩",
+    "etymology": "pictophonetic"
+  },
+  "号": {
+    "radical": "口",
+    "decomposition": "⿱口丂",
+    "etymology": "pictophonetic"
+  },
+  "吃": {
+    "radical": "口",
+    "decomposition": "⿰口乞",
+    "etymology": "pictophonetic"
+  },
+  "同": {
+    "radical": "口",
+    "decomposition": "⿵凡口",
+    "etymology": "ideographic"
+  },
+  "名": {
+    "radical": "口",
+    "decomposition": "⿸夕口",
+    "etymology": "ideographic"
+  },
+  "后": {
+    "radical": "口",
+    "decomposition": "⿸𠂊口",
+    "etymology": "ideograph"
+  },
+  "吗": {
+    "radical": "口",
+    "decomposition": "⿰口马",
+    "etymology": "pictophonetic"
+  },
+  "听": {
+    "radical": "口",
+    "decomposition": "⿰口斤",
+    "etymology": "ideographic"
+  },
+  "呢": {
+    "radical": "口",
+    "decomposition": "⿰口尼",
+    "etymology": "pictophonetic"
+  },
+  "和": {
+    "radical": "口",
+    "decomposition": "⿰禾口",
+    "etymology": "pictophonetic"
+  },
+  "哪": {
+    "radical": "口",
+    "decomposition": "⿰口那",
+    "etymology": "pictophonetic"
+  },
+  "商": {
+    "radical": "口",
+    "decomposition": "⿱⿱亠丷冏",
+    "etymology": "pictophonetic"
+  },
+  "喂": {
+    "radical": "口",
+    "decomposition": "⿰口畏",
+    "etymology": "pictophonetic"
+  },
+  "喜": {
+    "radical": "口",
+    "decomposition": "⿱壴口",
+    "etymology": "ideographic"
+  },
+  "喝": {
+    "radical": "口",
+    "decomposition": "⿰口曷",
+    "etymology": "pictophonetic"
+  },
+  "四": {
+    "radical": "囗",
+    "decomposition": "⿴囗儿",
+    "etymology": "ideographic"
+  },
+  "回": {
+    "radical": "囗",
+    "decomposition": "⿴囗口",
+    "etymology": "ideographic"
+  },
+  "在": {
+    "radical": "土",
+    "decomposition": "⿸才土",
+    "etymology": "pictophonetic"
+  },
+  "坐": {
+    "radical": "土",
+    "decomposition": "⿻从土",
+    "etymology": "ideographic"
+  },
+  "块": {
+    "radical": "土",
+    "decomposition": "⿰土夬",
+    "etymology": "pictophonetic"
+  },
+  "多": {
+    "radical": "夕",
+    "decomposition": "⿱夕夕",
+    "etymology": "ideographic"
+  },
+  "大": {
+    "radical": "大",
+    "decomposition": "⿻一人",
+    "etymology": "ideographic"
+  },
+  "天": {
+    "radical": "大",
+    "decomposition": "⿱一大",
+    "etymology": "ideographic"
+  },
+  "太": {
+    "radical": "大",
+    "decomposition": "⿵大丶",
+    "etymology": "ideographic"
+  },
+  "女": {
+    "radical": "女",
+    "decomposition": "女",
+    "etymology": "pictographic"
+  },
+  "她": {
+    "radical": "女",
+    "decomposition": "⿰女也",
+    "etymology": "ideographic"
+  },
+  "好": {
+    "radical": "女",
+    "decomposition": "⿰女子",
+    "etymology": "ideographic"
+  },
+  "妈": {
+    "radical": "女",
+    "decomposition": "⿰女马",
+    "etymology": "pictophonetic"
+  },
+  "姐": {
+    "radical": "女",
+    "decomposition": "⿰女且",
+    "etymology": "pictophonetic"
+  },
+  "子": {
+    "radical": "子",
+    "decomposition": "⿻了一",
+    "etymology": "pictographic"
+  },
+  "字": {
+    "radical": "子",
+    "decomposition": "⿱宀子",
+    "etymology": "ideographic"
+  },
+  "学": {
+    "radical": "子",
+    "decomposition": "⿱⿱⺍冖子",
+    "etymology": "ideographic"
+  },
+  "客": {
+    "radical": "宀",
+    "decomposition": "⿱宀各",
+    "etymology": "ideographic"
+  },
+  "家": {
+    "radical": "宀",
+    "decomposition": "⿱宀豕",
+    "etymology": "pictophonetic"
+  },
+  "对": {
+    "radical": "寸",
+    "decomposition": "⿰又寸",
+    "etymology": "ideographic"
+  },
+  "小": {
+    "radical": "小",
+    "decomposition": "⿻亅八",
+    "etymology": "ideographic"
+  },
+  "少": {
+    "radical": "小",
+    "decomposition": "⿱小丿",
+    "etymology": "pictographic"
+  },
+  "岁": {
+    "radical": "山",
+    "decomposition": "⿱山夕",
+    "etymology": "ideograph"
+  },
+  "工": {
+    "radical": "工",
+    "decomposition": "⿱一丄",
+    "etymology": "pictographic"
+  },
+  "师": {
+    "radical": "巾",
+    "decomposition": "⿰刂帀",
+    "etymology": "ideographic"
+  },
+  "年": {
+    "radical": "干",
+    "decomposition": "⿻干𠂉",
+    "etymology": "ideographic"
+  },
+  "店": {
+    "radical": "广",
+    "decomposition": "⿸广占",
+    "etymology": "pictophonetic"
+  },
+  "开": {
+    "radical": "廾",
+    "decomposition": "⿱一廾",
+    "etymology": "ideographic"
+  },
+  "影": {
+    "radical": "彡",
+    "decomposition": "⿰景彡",
+    "etymology": "pictophonetic"
+  },
+  "很": {
+    "radical": "彳",
+    "decomposition": "⿰彳艮",
+    "etymology": "pictophonetic"
+  },
+  "怎": {
+    "radical": "心",
+    "decomposition": "⿱乍心",
+    "etymology": "pictophonetic"
+  },
+  "想": {
+    "radical": "心",
+    "decomposition": "⿱相心",
+    "etymology": "pictophonetic"
+  },
+  "我": {
+    "radical": "戈",
+    "decomposition": "⿰扌戈",
+    "etymology": "ideographic"
+  },
+  "打": {
+    "radical": "扌",
+    "decomposition": "⿰扌丁",
+    "etymology": "pictophonetic"
+  },
+  "日": {
+    "radical": "日",
+    "decomposition": "⿴口一",
+    "etymology": "pictographic"
+  },
+  "明": {
+    "radical": "日",
+    "decomposition": "⿰日月",
+    "etymology": "ideographic"
+  },
+  "星": {
+    "radical": "日",
+    "decomposition": "⿱日生",
+    "etymology": "pictophonetic"
+  },
+  "是": {
+    "radical": "日",
+    "decomposition": "⿱日疋",
+    "etymology": "ideographic"
+  },
+  "月": {
+    "radical": "月",
+    "decomposition": "⿵冂二",
+    "etymology": "pictographic"
+  },
+  "有": {
+    "radical": "月",
+    "decomposition": "⿸𠂇月",
+    "etymology": "pictophonetic"
+  },
+  "朋": {
+    "radical": "月",
+    "decomposition": "⿰月月",
+    "etymology": "ideographic"
+  },
+  "服": {
+    "radical": "月",
+    "decomposition": "⿰月⿸卩又",
+    "etymology": "ideographic"
+  },
+  "期": {
+    "radical": "月",
+    "decomposition": "⿰其月",
+    "etymology": "pictophonetic"
+  },
+  "本": {
+    "radical": "木",
+    "decomposition": "⿻木一",
+    "etymology": "ideographic"
+  },
+  "机": {
+    "radical": "木",
+    "decomposition": "⿰木几",
+    "etymology": "ideographic"
+  },
+  "来": {
+    "radical": "木",
+    "decomposition": "⿻未丷",
+    "etymology": "ideographic"
+  },
+  "杯": {
+    "radical": "木",
+    "decomposition": "⿰木不",
+    "etymology": "pictophonetic"
+  },
+  "果": {
+    "radical": "木",
+    "decomposition": "⿱田木",
+    "etymology": "ideographic"
+  },
+  "校": {
+    "radical": "木",
+    "decomposition": "⿰木交",
+    "etymology": "pictophonetic"
+  },
+  "样": {
+    "radical": "木",
+    "decomposition": "⿰木羊",
+    "etymology": "pictophonetic"
+  },
+  "桌": {
+    "radical": "木",
+    "decomposition": "⿱卓木",
+    "etymology": "ideograph"
+  },
+  "椅": {
+    "radical": "木",
+    "decomposition": "⿰木奇",
+    "etymology": "pictophonetic"
+  },
+  "欢": {
+    "radical": "欠",
+    "decomposition": "⿰又欠",
+    "etymology": "ideograph"
+  },
+  "气": {
+    "radical": "气",
+    "decomposition": "⿻𠂉乙",
+    "etymology": "ideographic"
+  },
+  "水": {
+    "radical": "水",
+    "decomposition": "⿻亅𠂉",
+    "etymology": "pictographic"
+  },
+  "汉": {
+    "radical": "氵",
+    "decomposition": "⿰氵又",
+    "etymology": "ideographic"
+  },
+  "没": {
+    "radical": "氵",
+    "decomposition": "⿰氵殳",
+    "etymology": "pictophonetic"
+  },
+  "点": {
+    "radical": "灬",
+    "decomposition": "⿱占灬",
+    "etymology": "pictophonetic"
+  },
+  "热": {
+    "radical": "灬",
+    "decomposition": "⿱执灬",
+    "etymology": "pictophonetic"
+  },
+  "爱": {
+    "radical": "爫",
+    "decomposition": "⿱⿱爫冖友",
+    "etymology": "ideographic"
+  },
+  "爸": {
+    "radical": "父",
+    "decomposition": "⿱父巴",
+    "etymology": "pictophonetic"
+  },
+  "狗": {
+    "radical": "犭",
+    "decomposition": "⿰犭句",
+    "etymology": "pictophonetic"
+  },
+  "猫": {
+    "radical": "犭",
+    "decomposition": "⿰犭苗",
+    "etymology": "pictophonetic"
+  },
+  "现": {
+    "radical": "王",
+    "decomposition": "⿰王见",
+    "etymology": "ideographic"
+  },
+  "生": {
+    "radical": "生",
+    "decomposition": "⿻一土",
+    "etymology": "ideographic"
+  },
+  "电": {
+    "radical": "曰",
+    "decomposition": "⿻曰乚",
+    "etymology": "ideographic"
+  },
+  "的": {
+    "radical": "白",
+    "decomposition": "⿰白勺",
+    "etymology": "ideograph"
+  },
+  "看": {
+    "radical": "目",
+    "decomposition": "⿱手目",
+    "etymology": "ideographic"
+  },
+  "睡": {
+    "radical": "目",
+    "decomposition": "⿰目垂",
+    "etymology": "pictophonetic"
+  },
+  "租": {
+    "radical": "禾",
+    "decomposition": "⿰禾且",
+    "etymology": "ideographic"
+  },
+  "米": {
+    "radical": "米",
+    "decomposition": "⿻丷木",
+    "etymology": "pictographic"
+  },
+  "系": {
+    "radical": "糸",
+    "decomposition": "⿱丿糸",
+    "etymology": "pictophonetic"
+  },
+  "老": {
+    "radical": "老",
+    "decomposition": "⿱耂匕",
+    "etymology": "pictographic"
+  },
+  "能": {
+    "radical": "⺼",
+    "decomposition": "⿰⿱厶⺼⿱匕匕",
+    "etymology": "pictographic"
+  },
+  "脑": {
+    "radical": "⺼",
+    "decomposition": "⿰⺼⿱亠凶",
+    "etymology": "pictophonetic"
+  },
+  "苹": {
+    "radical": "艹",
+    "decomposition": "⿱艹平",
+    "etymology": "pictophonetic"
+  },
+  "茶": {
+    "radical": "艹",
+    "decomposition": "⿱艹⿱人木",
+    "etymology": "pictophonetic"
+  },
+  "菜": {
+    "radical": "艹",
+    "decomposition": "⿱艹采",
+    "etymology": "pictophonetic"
+  },
+  "衣": {
+    "radical": "衣",
+    "decomposition": "⿱亠𧘇",
+    "etymology": "pictographic"
+  },
+  "西": {
+    "radical": "西",
+    "decomposition": "⿻兀囗",
+    "etymology": "pictographic"
+  },
+  "见": {
+    "radical": "见",
+    "decomposition": "⿵冂儿",
+    "etymology": "ideographic"
+  },
+  "视": {
+    "radical": "见",
+    "decomposition": "⿰礻见",
+    "etymology": "pictophonetic"
+  },
+  "觉": {
+    "radical": "见",
+    "decomposition": "⿳⺍冖见",
+    "etymology": "pictophonetic"
+  },
+  "认": {
+    "radical": "讠",
+    "decomposition": "⿰讠人",
+    "etymology": "pictophonetic"
+  },
+  "识": {
+    "radical": "讠",
+    "decomposition": "⿰讠只",
+    "etymology": "pictophonetic"
+  },
+  "话": {
+    "radical": "讠",
+    "decomposition": "⿰讠舌",
+    "etymology": "ideographic"
+  },
+  "语": {
+    "radical": "讠",
+    "decomposition": "⿰讠吾",
+    "etymology": "pictophonetic"
+  },
+  "说": {
+    "radical": "讠",
+    "decomposition": "⿰讠兑",
+    "etymology": "pictophonetic"
+  },
+  "请": {
+    "radical": "讠",
+    "decomposition": "⿰讠青",
+    "etymology": "pictophonetic"
+  },
+  "读": {
+    "radical": "讠",
+    "decomposition": "⿰讠卖",
+    "etymology": "ideographic"
+  },
+  "谁": {
+    "radical": "讠",
+    "decomposition": "⿰讠隹",
+    "etymology": "pictophonetic"
+  },
+  "谢": {
+    "radical": "讠",
+    "decomposition": "⿰讠射",
+    "etymology": "pictophonetic"
+  },
+  "车": {
+    "radical": "车",
+    "decomposition": "⿻七十",
+    "etymology": "pictographic"
+  },
+  "这": {
+    "radical": "辶",
+    "decomposition": "⿺辶文",
+    "etymology": "ideograph"
+  },
+  "那": {
+    "radical": "阝",
+    "decomposition": "⿰𠀌阝",
+    "etymology": "ideograph"
+  },
+  "都": {
+    "radical": "阝",
+    "decomposition": "⿰者阝",
+    "etymology": "pictophonetic"
+  },
+  "里": {
+    "radical": "里",
+    "decomposition": "⿱田土",
+    "etymology": "ideographic"
+  },
+  "钟": {
+    "radical": "钅",
+    "decomposition": "⿰钅中",
+    "etymology": "pictophonetic"
+  },
+  "钱": {
+    "radical": "钅",
+    "decomposition": "⿰钅戋",
+    "etymology": "pictophonetic"
+  },
+  "院": {
+    "radical": "阝",
+    "decomposition": "⿰阝完",
+    "etymology": "pictophonetic"
+  },
+  "雨": {
+    "radical": "雨",
+    "decomposition": "⿻帀𦉫",
+    "etymology": "pictographic"
+  },
+  "零": {
+    "radical": "雨",
+    "decomposition": "⿱雨令",
+    "etymology": "pictophonetic"
+  },
+  "面": {
+    "radical": "面",
+    "decomposition": "⿸丆𡈼",
+    "etymology": "pictographic"
+  },
+  "飞": {
+    "radical": "飞",
+    "decomposition": "⿻𠃑ノ",
+    "etymology": "pictographic"
+  },
+  "饭": {
+    "radical": "饣",
+    "decomposition": "⿰饣反",
+    "etymology": "pictophonetic"
+  },
+  "馆": {
+    "radical": "饣",
+    "decomposition": "⿰饣官",
+    "etymology": "ideographic"
+  },
+  "高": {
+    "radical": "高",
+    "decomposition": "⿳亠口冋",
+    "etymology": "pictographic"
+  }
+}

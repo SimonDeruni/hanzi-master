@@ -1,0 +1,171 @@
+{
+  "units": [
+    {
+      "id": "unit_1",
+      "title": "Foundations",
+      "description": "Numbers and basic sizes.",
+      "nodes": [
+        {"uuid": "hsk1_133", "hanzi": "一", "parent_uuid": null},
+        {"uuid": "hsk1_027", "hanzi": "二", "parent_uuid": "hsk1_133"},
+        {"uuid": "hsk1_090", "hanzi": "三", "parent_uuid": "hsk1_027"},
+        {"uuid": "hsk1_097", "hanzi": "十", "parent_uuid": "hsk1_133"},
+        {"uuid": "hsk1_081", "hanzi": "七", "parent_uuid": "hsk1_097"},
+        {"uuid": "hsk1_002", "hanzi": "八", "parent_uuid": null},
+        {"uuid": "hsk1_048", "hanzi": "九", "parent_uuid": null},
+        {"uuid": "hsk1_105", "hanzi": "四", "parent_uuid": null},
+        {"uuid": "hsk1_116", "hanzi": "五", "parent_uuid": null},
+        {"uuid": "hsk1_059", "hanzi": "六", "parent_uuid": null},
+        {"uuid": "hsk1_011", "hanzi": "百", "parent_uuid": "hsk1_133"},
+        {"uuid": "hsk1_014", "hanzi": "大", "parent_uuid": "hsk1_087"},
+        {"uuid": "hsk1_124", "hanzi": "小", "parent_uuid": null}
+      ]
+    },
+    {
+      "id": "unit_2",
+      "title": "The Human Spirit",
+      "description": "Pronouns and identity.",
+      "nodes": [
+        {"uuid": "hsk1_087", "hanzi": "人", "parent_uuid": null},
+        {"uuid": "hsk1_032", "hanzi": "个", "parent_uuid": "hsk1_087"},
+        {"uuid": "hsk1_107", "hanzi": "他", "parent_uuid": "hsk1_087"},
+        {"uuid": "hsk1_108", "hanzi": "她", "parent_uuid": "hsk1_087"},
+        {"uuid": "hsk1_115", "hanzi": "我们", "parent_uuid": "hsk1_087"},
+        {"uuid": "hsk1_075", "hanzi": "你", "parent_uuid": "hsk1_087"},
+        {"uuid": "hsk1_114", "hanzi": "我", "parent_uuid": null},
+        {"uuid": "hsk1_095", "hanzi": "谁", "parent_uuid": null},
+        {"uuid": "hsk1_096", "hanzi": "什么", "parent_uuid": null},
+        {"uuid": "hsk1_068", "hanzi": "名字", "parent_uuid": null}
+      ]
+    },
+    {
+      "id": "unit_3",
+      "title": "Communication",
+      "description": "Using your mouth to speak.",
+      "nodes": [
+        {"uuid": "hsk1_018", "hanzi": "口", "parent_uuid": null},
+        {"uuid": "hsk1_046", "hanzi": "叫", "parent_uuid": "hsk1_018"},
+        {"uuid": "hsk1_061", "hanzi": "吗", "parent_uuid": "hsk1_018"},
+        {"uuid": "hsk1_073", "hanzi": "呢", "parent_uuid": "hsk1_018"},
+        {"uuid": "hsk1_113", "hanzi": "喂", "parent_uuid": "hsk1_018"},
+        {"uuid": "hsk1_111", "hanzi": "听", "parent_uuid": "hsk1_018"},
+        {"uuid": "hsk1_104", "hanzi": "说", "parent_uuid": null},
+        {"uuid": "hsk1_022", "hanzi": "读", "parent_uuid": null},
+        {"uuid": "hsk1_088", "hanzi": "认识", "parent_uuid": "hsk1_087"}
+      ]
+    },
+    {
+      "id": "unit_4",
+      "title": "Family Bonds",
+      "description": "The people at home.",
+      "nodes": [
+        {"uuid": "hsk1_077", "hanzi": "女", "parent_uuid": null},
+        {"uuid": "hsk1_060", "hanzi": "妈妈", "parent_uuid": "hsk1_077"},
+        {"uuid": "hsk1_125", "hanzi": "小姐", "parent_uuid": "hsk1_077"},
+        {"uuid": "hsk1_036", "hanzi": "好", "parent_uuid": "hsk1_077"},
+        {"uuid": "hsk1_003", "hanzi": "爸爸", "parent_uuid": null},
+        {"uuid": "hsk1_026", "hanzi": "儿子", "parent_uuid": null},
+        {"uuid": "hsk1_077", "hanzi": "女儿", "parent_uuid": "hsk1_077"},
+        {"uuid": "hsk1_001", "hanzi": "爱", "parent_uuid": null},
+        {"uuid": "hsk1_079", "hanzi": "漂亮", "parent_uuid": "hsk1_077"}
+      ]
+    },
+    {
+      "id": "unit_5",
+      "title": "The Celestial Cycle",
+      "description": "Sun, Moon, and Time.",
+      "nodes": [
+        {"uuid": "hsk1_089", "hanzi": "日", "parent_uuid": null},
+        {"uuid": "hsk1_067", "hanzi": "明天", "parent_uuid": "hsk1_089"},
+        {"uuid": "hsk1_152", "hanzi": "昨天", "parent_uuid": "hsk1_089"},
+        {"uuid": "hsk1_129", "hanzi": "星期", "parent_uuid": "hsk1_089"},
+        {"uuid": "hsk1_128", "hanzi": "谢谢", "parent_uuid": null},
+        {"uuid": "hsk1_140", "hanzi": "月", "parent_uuid": null},
+        {"uuid": "hsk1_076", "hanzi": "年", "parent_uuid": null},
+        {"uuid": "hsk1_110", "hanzi": "天", "parent_uuid": null},
+        {"uuid": "hsk1_122", "hanzi": "现在", "parent_uuid": null},
+        {"uuid": "hsk1_016", "hanzi": "点", "parent_uuid": null},
+        {"uuid": "hsk1_030", "hanzi": "分钟", "parent_uuid": null}
+      ]
+    },
+    {
+      "id": "unit_6",
+      "title": "Heavens & Earth",
+      "description": "Nature and directions.",
+      "nodes": [
+        {"uuid": "hsk1_101", "hanzi": "水", "parent_uuid": null},
+        {"uuid": "hsk1_041", "hanzi": "气", "parent_uuid": null},
+        {"uuid": "hsk1_120", "hanzi": "下雨", "parent_uuid": "hsk1_101"},
+        {"uuid": "hsk1_043", "hanzi": "山", "parent_uuid": null},
+        {"uuid": "hsk1_092", "hanzi": "上", "parent_uuid": null},
+        {"uuid": "hsk1_118", "hanzi": "下", "parent_uuid": null},
+        {"uuid": "hsk1_083", "hanzi": "前面", "parent_uuid": null},
+        {"uuid": "hsk1_041", "hanzi": "后面", "parent_uuid": null},
+        {"uuid": "hsk1_057", "hanzi": "里", "parent_uuid": null},
+        {"uuid": "hsk1_070", "hanzi": "哪儿", "parent_uuid": null}
+      ]
+    },
+    {
+      "id": "unit_7",
+      "title": "Nature's Tools",
+      "description": "Wood and its creations.",
+      "nodes": [
+        {"uuid": "hsk1_038", "hanzi": "木", "parent_uuid": null},
+        {"uuid": "hsk1_006", "hanzi": "本", "parent_uuid": "hsk1_038"},
+        {"uuid": "hsk1_004", "hanzi": "杯子", "parent_uuid": "hsk1_038"},
+        {"uuid": "hsk1_138", "hanzi": "椅子", "parent_uuid": "hsk1_038"},
+        {"uuid": "hsk1_150", "hanzi": "桌子", "parent_uuid": "hsk1_038"},
+        {"uuid": "hsk1_020", "hanzi": "东西", "parent_uuid": null}
+      ]
+    },
+    {
+      "id": "unit_8",
+      "title": "Daily Actions",
+      "description": "Eating, sleeping, and working.",
+      "nodes": [
+        {"uuid": "hsk1_011", "hanzi": "吃", "parent_uuid": "hsk1_018"},
+        {"uuid": "hsk1_038", "hanzi": "喝", "parent_uuid": "hsk1_018"},
+        {"uuid": "hsk1_103", "hanzi": "睡觉", "parent_uuid": null},
+        {"uuid": "hsk1_033", "hanzi": "工作", "parent_uuid": "hsk1_087"},
+        {"uuid": "hsk1_127", "hanzi": "写", "parent_uuid": null},
+        {"uuid": "hsk1_131", "hanzi": "学习", "parent_uuid": "hsk1_026"},
+        {"uuid": "hsk1_062", "hanzi": "买", "parent_uuid": null},
+        {"uuid": "hsk1_049", "hanzi": "开", "parent_uuid": null},
+        {"uuid": "hsk1_153", "hanzi": "坐", "parent_uuid": "hsk1_087"},
+        {"uuid": "hsk1_154", "hanzi": "做", "parent_uuid": "hsk1_087"}
+      ]
+    },
+    {
+      "id": "unit_9",
+      "title": "Movement & Places",
+      "description": "Traveling through the world.",
+      "nodes": [
+        {"uuid": "hsk1_085", "hanzi": "去", "parent_uuid": null},
+        {"uuid": "hsk1_053", "hanzi": "来", "parent_uuid": null},
+        {"uuid": "hsk1_042", "hanzi": "回", "parent_uuid": "hsk1_018"},
+        {"uuid": "hsk1_149", "hanzi": "住", "parent_uuid": "hsk1_087"},
+        {"uuid": "hsk1_029", "hanzi": "飞机", "parent_uuid": null},
+        {"uuid": "hsk1_012", "hanzi": "出租车", "parent_uuid": null},
+        {"uuid": "hsk1_147", "hanzi": "中国", "parent_uuid": null},
+        {"uuid": "hsk1_005", "hanzi": "北京", "parent_uuid": null},
+        {"uuid": "hsk1_091", "hanzi": "商店", "parent_uuid": null},
+        {"uuid": "hsk1_132", "hanzi": "学校", "parent_uuid": null},
+        {"uuid": "hsk1_137", "hanzi": "医院", "parent_uuid": null}
+      ]
+    },
+    {
+      "id": "unit_10",
+      "title": "Social Bonds",
+      "description": "Greetings and respect.",
+      "nodes": [
+        {"uuid": "hsk1_128", "hanzi": "谢谢", "parent_uuid": null},
+        {"uuid": "hsk1_023", "hanzi": "对不起", "parent_uuid": null},
+        {"uuid": "hsk1_065", "hanzi": "没关系", "parent_uuid": "hsk1_101"},
+        {"uuid": "hsk1_141", "hanzi": "再见", "parent_uuid": null},
+        {"uuid": "hsk1_084", "hanzi": "请", "parent_uuid": null},
+        {"uuid": "hsk1_121", "hanzi": "先生", "parent_uuid": null},
+        {"uuid": "hsk1_112", "hanzi": "同学", "parent_uuid": null},
+        {"uuid": "hsk1_078", "hanzi": "朋友", "parent_uuid": null}
+      ]
+    }
+  ]
+}
