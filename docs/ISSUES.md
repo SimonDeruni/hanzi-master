@@ -18,5 +18,5 @@
 | 2026-03-15      | **AI Gap (P1)**: Missing 2026 standard AI roleplay and grammar correction interactivity. | ✅ FIXED (Echo Hall Overhaul) |
 
 *(Older resolved issues moved to [RESOLVED_ISSUES_VOL_2.md](file:///c:/Users/simon/Documents/hanzi_master/docs/archive/RESOLVED_ISSUES_VOL_2.md))*
-| 2026-03-15      | **Stroke Order Animation Removed (P0)**: The sequential stroke order animation showing strokes drawn in correct order was removed during refactoring. Core learning visual is missing. | 🔴 CRITICAL - Animation still not working correctly after multiple attempts |
-| 2026-03-15      | **Drawing Canvas Broken (P0)**: All drawing functionality is completely broken. Users cannot trace or practice writing. Core learning feature non-functional. | 🔄 PARTIALLY RESTORED - Animation restored but not to original quality |
+| 2026-03-15      | **Stroke Order Animation (P0)**: The sequential stroke order animation was permanently restored to the original `4e5d098` native stroke aesthetic. | ✅ FIXED (2026-03-21) |
+| 2026-03-15      | **Drawing Canvas (P0)**: Drawing functionality and animation quality have been unified under the simple Zen & Ink mandate without complex masks. | ✅ FIXED (2026-03-21) |
