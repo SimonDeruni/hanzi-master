@@ -338,9 +338,11 @@ class _DictionarySearchTab extends ConsumerWidget {
   Widget _buildZenEmptyState(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     
-    return SliverFillRemaining(
-      hasScrollBody: false,
-      child: Center(
+    return CustomScrollView(
+      slivers: [
+        SliverFillRemaining(
+          hasScrollBody: false,
+          child: Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 32),
           child: Column(
@@ -408,6 +410,8 @@ class _DictionarySearchTab extends ConsumerWidget {
           ),
         ),
       ),
+        ),
+      ],
     );
   }
 
