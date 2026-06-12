@@ -15,7 +15,7 @@ import 'package:hanzi_master/features/flashcards/presentation/widgets/cross_refe
 import 'package:hanzi_master/core/services/audio_service.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/character_detail_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:hanzi_master/features/flashcards/presentation/widgets/character_chat_drawer.dart';
+import 'package:hanzi_master/features/flashcards/presentation/widgets/character_chat_sheet.dart';
 import 'package:hanzi_master/shared/widgets/tappable_hanzi_text.dart';
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
 
@@ -221,15 +221,21 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
         elevation: 0,
         title: const Text("Character Reference"),
       ),
-      endDrawer: CharacterChatDrawer(
-        hanzi: widget.card.hanzi,
-        pinyin: widget.card.pinyin,
-        definition: widget.card.definition,
-      ),
       floatingActionButton: Builder(
         builder: (context) {
           return FloatingActionButton.extended(
-            onPressed: () => Scaffold.of(context).openEndDrawer(),
+            onPressed: () {
+              showModalBottomSheet(
+                context: context,
+                isScrollControlled: true,
+                backgroundColor: Colors.transparent,
+                builder: (context) => CharacterChatSheet(
+                  hanzi: widget.card.hanzi,
+                  pinyin: widget.card.pinyin,
+                  definition: widget.card.definition,
+                ),
+              );
+            },
             icon: const Icon(Icons.auto_awesome),
             label: const Text("Ask Tutor"),
             backgroundColor: Colors.indigo,

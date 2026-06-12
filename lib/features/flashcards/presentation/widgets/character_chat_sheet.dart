@@ -132,12 +132,12 @@ class _InkDotsState extends State<_InkDots> with TickerProviderStateMixin {
 // Main Drawer Widget
 // ---------------------------------------------------------------------------
 
-class CharacterChatDrawer extends ConsumerStatefulWidget {
+class CharacterChatSheet extends ConsumerStatefulWidget {
   final String hanzi;
   final String pinyin;
   final String definition;
 
-  const CharacterChatDrawer({
+  const CharacterChatSheet({
     super.key,
     required this.hanzi,
     required this.pinyin,
@@ -145,10 +145,10 @@ class CharacterChatDrawer extends ConsumerStatefulWidget {
   });
 
   @override
-  ConsumerState<CharacterChatDrawer> createState() => _CharacterChatDrawerState();
+  ConsumerState<CharacterChatSheet> createState() => _CharacterChatSheetState();
 }
 
-class _CharacterChatDrawerState extends ConsumerState<CharacterChatDrawer> {
+class _CharacterChatSheetState extends ConsumerState<CharacterChatSheet> {
   late final AiChatSession _chatSession;
   final List<ChatMessage> _messages = [];
   final TextEditingController _textController = TextEditingController();
@@ -233,12 +233,28 @@ class _CharacterChatDrawerState extends ConsumerState<CharacterChatDrawer> {
     final screenWidth = MediaQuery.of(context).size.width;
     final drawerWidth = screenWidth * 0.88;
 
-    return Drawer(
-      backgroundColor: bgColor,
-      width: drawerWidth,
+    return Container(
+      height: MediaQuery.of(context).size.height * 0.85,
+      decoration: BoxDecoration(
+        color: bgColor,
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+      ),
       child: SafeArea(
+        top: false,
         child: Column(
           children: [
+            // ── Header Handle ──────────────────────────────────────────────
+            const SizedBox(height: 12),
+            Container(
+              width: 40,
+              height: 4,
+              decoration: BoxDecoration(
+                color: textColor.withValues(alpha: 0.15),
+                borderRadius: BorderRadius.circular(2),
+              ),
+            ),
+            const SizedBox(height: 8),
+            
             // ── Header ────────────────────────────────────────────────────
             _buildHeader(isDark, textColor),
 

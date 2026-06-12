@@ -161,7 +161,7 @@ class _NotFoundBody extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          _CharacterHero(hanzi: hanzi, isDark: isDark, pinyin: '', hskLevel: 0),
+          _CharacterHero(hanzi: hanzi, isDark: isDark, pinyin: '', hskLevel: 0, definition: ''),
           const SizedBox(height: 16),
           Text(
             'Not found in dictionary',
@@ -211,19 +211,7 @@ class _FoundBody extends ConsumerWidget {
             isDark: isDark,
             pinyin: card.pinyin,
             hskLevel: card.hskLevel,
-          ),
-
-          const SizedBox(height: 16),
-
-          // ── Definition ───────────────────────────────────────────────
-          Text(
-            _cleanDefinition(card.definition),
-            style: TextStyle(
-              fontSize: 15,
-              color: textColor.withValues(alpha: 0.75),
-              height: 1.6,
-              fontStyle: FontStyle.italic,
-            ),
+            definition: card.definition,
           ),
 
           // ── Compound words ───────────────────────────────────────────
@@ -383,19 +371,20 @@ class _CharacterHero extends StatelessWidget {
   final String pinyin;
   final int hskLevel;
   final bool isDark;
+  final String definition;
 
   const _CharacterHero({
     required this.hanzi,
     required this.pinyin,
     required this.hskLevel,
     required this.isDark,
+    required this.definition,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         gradient: LinearGradient(
@@ -415,61 +404,109 @@ class _CharacterHero extends StatelessWidget {
           color: Colors.indigo.withValues(alpha: isDark ? 0.3 : 0.15),
         ),
       ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          // Large character
-          Text(
-            hanzi,
-            style: TextStyle(
-              fontSize: 72,
-              fontWeight: FontWeight.w100,
-              color: isDark ? Colors.white : Colors.indigo.shade800,
-              height: 1,
-              shadows: [
-                Shadow(
-                  color: Colors.indigo.withValues(alpha: isDark ? 0.4 : 0.15),
-                  blurRadius: 16,
-                  offset: const Offset(0, 4),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(width: 18),
-          // Pinyin + badges
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                if (pinyin.isNotEmpty)
-                  Text(
-                    _cleanPinyin(pinyin),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(20),
+        child: Stack(
+          children: [
+            // Faint Calligraphy Watermark on the far right
+            Positioned(
+              right: -30,
+              top: -20,
+              bottom: -20,
+              child: Opacity(
+                opacity: isDark ? 0.04 : 0.06,
+                child: Center(
+                  child: Text(
+                    hanzi,
                     style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w300,
-                      color: isDark
-                          ? Colors.white70
-                          : Colors.indigo.shade700,
-                      fontStyle: FontStyle.italic,
-                      letterSpacing: 0.5,
+                      fontSize: 140,
+                      fontWeight: FontWeight.bold,
+                      color: isDark ? Colors.white : Colors.indigo.shade900,
+                      height: 1,
                     ),
                   ),
-                const SizedBox(height: 8),
-                Row(
-                  children: [
-                    if (hskLevel > 0)
-                      _Badge(
-                        label: 'HSK $hskLevel',
-                        color: Colors.indigo,
-                        isDark: isDark,
-                      ),
-                  ],
                 ),
-              ],
+              ),
             ),
-          ),
-        ],
+            
+            // Foreground Content
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  // Large character
+                  Text(
+                    hanzi,
+                    style: TextStyle(
+                      fontSize: 72,
+                      fontWeight: FontWeight.w100,
+                      color: isDark ? Colors.white : Colors.indigo.shade800,
+                      height: 1,
+                      shadows: [
+                        Shadow(
+                          color: Colors.indigo.withValues(alpha: isDark ? 0.4 : 0.15),
+                          blurRadius: 16,
+                          offset: const Offset(0, 4),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(width: 18),
+                  
+                  // Pinyin + Definition + Badges
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        if (pinyin.isNotEmpty)
+                          Text(
+                            _cleanPinyin(pinyin),
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w300,
+                              color: isDark
+                                  ? Colors.white70
+                                  : Colors.indigo.shade700,
+                              fontStyle: FontStyle.italic,
+                              letterSpacing: 0.5,
+                            ),
+                          ),
+                        const SizedBox(height: 6),
+                        
+                        // English definition integrated into the card
+                        if (definition.isNotEmpty)
+                          Text(
+                            _cleanDefinition(definition),
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: isDark ? Colors.white.withValues(alpha: 0.75) : const Color(0xFF1A1A1B).withValues(alpha: 0.75),
+                              height: 1.3,
+                            ),
+                          ),
+                        const SizedBox(height: 10),
+                        
+                        Row(
+                          children: [
+                            if (hskLevel > 0)
+                              _Badge(
+                                label: 'HSK $hskLevel',
+                                color: Colors.indigo,
+                                isDark: isDark,
+                              ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

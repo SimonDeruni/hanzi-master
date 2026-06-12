@@ -4,16 +4,8 @@ final apiKeyPoolProvider = Provider<ApiKeyPool>((ref) => ApiKeyPool());
 
 class ApiKeyPool {
   final List<String> _keys = [
-    'AIzaSyBh8Sfhu8g9aENfmf4BkR2iSf_TVzrchs0', // Current Key
-    'AQ.Ab8RN6LzNyqWDJS5y-_o_j8pKA-1OkIm-ocfwWuiCQQIrSJCcQ',
-    'AQ.Ab8RN6Lm3QFPOyzg5FdgRJr8pPpsuFqSoXSkm0w8tZkxHIiIyQ',
-    'AQ.Ab8RN6Jw1wne4dkK1GceZmxu25nsh_a30BbXoWa6tDBo9Zt4Hw',
-    'AQ.Ab8RN6L2ZXH7V0Vy2Q0_4hLcXOLTXOgeKm_oZbzryB_tZbmRhA',
-    'AQ.Ab8RN6KAt6mePO-8RhE81flhvo_CZmtSz90c_vrF7XD2WmUASw',
-    'EMPTY_KEY_7',
-    'EMPTY_KEY_8',
-    'EMPTY_KEY_9',
-    'EMPTY_KEY_10',
+    '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', // Current Key
+
   ];
   
   int _currentIndex = 0;
