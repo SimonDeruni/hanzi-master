@@ -408,7 +408,9 @@ Respond ONLY in valid JSON format as a list of objects with this exact structure
     
     if (!forceRegenerate && box.containsKey(cacheKey)) {
       final json = jsonDecode(box.get(cacheKey)!);
-      return AiStory.fromJson(json);
+      if (json is Map<String, dynamic> && json.containsKey('sentences')) {
+        return AiStory.fromJson(json);
+      }
     }
 
     final wordsList = vocabulary.join(", ");
