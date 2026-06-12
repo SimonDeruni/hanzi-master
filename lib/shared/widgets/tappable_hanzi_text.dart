@@ -173,14 +173,12 @@ class _TappableMarkdownHanziTextState
   /// - Converts line-start `* ` or `- ` bullets to `• `
   /// - Strips orphan single asterisks left at end of words (e.g. 我们*)
   static String _preprocessText(String text) {
-    // Convert line-start bullet markers to Unicode bullet
-    String s = text.replaceAllMapped(
-      RegExp(r'(^|\n)[ \t]*[\*\-] ', multiLine: true),
-      (m) => '${m.group(1) ?? ''}• ',
+    // Convert line-start bullet markers to Unicode bullet.
+    // Matches ^ (start of line) optionally followed by spaces, then * or -, then a space.
+    return text.replaceAllMapped(
+      RegExp(r'^[ \t]*[\*\-]( |$)', multiLine: true),
+      (m) => '• ',
     );
-    // Strip trailing orphan asterisks attached to words (e.g. 我们* → 我们)
-    s = s.replaceAll(RegExp(r'(?<=\S)\*(?=[\s,;.。，；\)])'), '');
-    return s;
   }
 
   List<InlineSpan>? _spans;

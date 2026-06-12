@@ -198,8 +198,15 @@ class _CharacterChatDrawerState extends ConsumerState<CharacterChatDrawer> {
       });
       _scrollToBottom();
     } catch (e) {
+      final errorStr = e.toString();
+      String userMessage = 'Error reaching tutor: $errorStr';
+      
+      if (errorStr.contains('Quota exceeded') || errorStr.contains('429')) {
+        userMessage = '⏳ Whoa there! The AI tutor is taking a breather (Google API Free Tier limits). Please wait about 30 seconds before asking another question!';
+      }
+
       setState(() {
-        _messages.add(ChatMessage(text: 'Error reaching tutor. Try again.', isUser: false));
+        _messages.add(ChatMessage(text: userMessage, isUser: false));
         _isLoading = false;
       });
       _scrollToBottom();

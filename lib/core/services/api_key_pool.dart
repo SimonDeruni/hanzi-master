@@ -20,10 +20,15 @@ class ApiKeyPool {
 
   String get nextKey {
     final key = _keys[_currentIndex];
-    // Only rotate if the key is not empty/placeholder
-    if (key != 'EMPTY_KEY_${_currentIndex + 1}') {
-       _currentIndex = (_currentIndex + 1) % _keys.length;
+    
+    // Move to the next index for the NEXT call
+    _currentIndex = (_currentIndex + 1) % _keys.length;
+
+    // If the NEXT slot is empty, wrap back to the beginning immediately
+    if (_keys[_currentIndex].startsWith('EMPTY_KEY')) {
+      _currentIndex = 0;
     }
+
     return key;
   }
 }

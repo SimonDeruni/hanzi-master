@@ -1,3 +1,9 @@
+### [2026-06-12] - ✨ FEATURE - Scholar's Key Pool (Multi-Key Rotation)
+- **Quota Mitigation:** Implemented a centralized `ApiKeyPool` that manages 10 separate API keys.
+- **Round-Robin Rotation:** Services now cycle through the pool for every request, effectively increasing the aggregate free-tier quota by 10x.
+- **Dynamic Resilience:** Refactored `GeminiService` and `EchoHallService` to re-initialize models with fresh keys on-demand.
+- **Graceful Degradation:** Added checks for placeholder/empty keys to ensure the app provides clear instructions if the pool is not fully populated.
+
 ### [2026-06-12] - ✨ FEATURE - The Scholar's Eye (Hybrid Vision System)
 - **Hybrid Vision Engine:** Integrated `google_mlkit_object_detection` for 30fps local "Radar" detection and Gemini 2.5 Flash for high-fidelity "Deep Scans".
 - **Zen & Ink Vision UI:** Implemented `VisionScreen` with a subtle Xuan Paper texture overlay and interactive ink-on-parchment object labels.
