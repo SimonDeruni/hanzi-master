@@ -317,7 +317,7 @@ Difficulty Level: $difficulty
 Context/Tone: ${contextTone.isEmpty ? "Standard" : contextTone}
 
 Please provide exactly $count words or short phrases that fit this criteria.
-Ensure that the vocabulary is natural and useful.
+Ensure that the vocabulary is natural and useful. Keep the English definitions extremely brief (1-3 words max) to speed up generation time.
 
 Respond ONLY in valid JSON format as a list of objects with this exact structure:
 [
