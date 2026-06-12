@@ -124,47 +124,53 @@ class FlashcardRepositoryImpl implements FlashcardRepository {
       final List<Flashcard> results = [];
       final lowQuery = query.toLowerCase();
 
-      // 1. Search HSK 1
-      final hsk1String = await rootBundle.loadString('assets/data/hsk1.json');
-      if (hsk1String.isNotEmpty) {
-        final List<dynamic> hsk1List = json.decode(hsk1String);
-        for (var item in hsk1List) {
-          final hanzi = item['hanzi'] as String;
-          final pinyin = (item['pinyin'] as String).toLowerCase();
-          final def = (item['definition'] as String).toLowerCase();
-          
-          if (hanzi.contains(query) || pinyin.contains(lowQuery) || def.contains(lowQuery)) {
-            results.add(FlashcardModel.fromJson({ ...item, 'hskLevel': 1 }).toEntity());
-          }
-        }
-      }
-
-      // 2. Search HSK 2
-      final hsk2String = await rootBundle.loadString('assets/data/hsk2_bundle.json');
-      if (hsk2String.isNotEmpty) {
-        final Map<String, dynamic> hsk2Bundle = json.decode(hsk2String);
-        final List<dynamic> vocabulary = hsk2Bundle['vocabulary'] as List<dynamic>;
-        for (int i = 0; i < vocabulary.length; i++) {
-          final item = vocabulary[i] as Map<String, dynamic>;
-          final hanzi = item['hanzi'] as String;
-          final pinyin = (item['pinyin'] as String).toLowerCase();
-          final def = (item['definition'] as String).toLowerCase();
-
-          if (hanzi.contains(query) || pinyin.contains(lowQuery) || def.contains(lowQuery)) {
-            final String uuid = item['uuid'] ?? "hsk2_${(i + 1).toString().padLeft(3, '0')}";
-            results.add(FlashcardModel.fromJson({
-              ...item,
-              'uuid': uuid,
-              'hskLevel': 2,
-            }).toEntity());
-          }
-        }
+      for (int level = 1; level <= 6; level++) {
+        final levelResults = await _searchHskLevel(level, query, lowQuery);
+        results.addAll(levelResults);
       }
 
       return Right(results);
     } catch (e) {
       return Left("Search failed: $e");
     }
+  }
+
+  Future<List<Flashcard>> _searchHskLevel(int level, String query, String lowQuery) async {
+    final List<Flashcard> results = [];
+    final String fileName = level == 1 ? 'assets/data/hsk1.json' : 'assets/data/hsk${level}_bundle.json';
+    
+    try {
+      final jsonString = await rootBundle.loadString(fileName);
+      if (jsonString.isNotEmpty) {
+        final dynamic decoded = json.decode(jsonString);
+        final List<dynamic> vocabulary;
+        
+        if (level == 1) {
+          vocabulary = decoded as List<dynamic>;
+        } else {
+          vocabulary = (decoded as Map<String, dynamic>)['vocabulary'] as List<dynamic>;
+        }
+
+        for (int i = 0; i < vocabulary.length; i++) {
+          final item = vocabulary[i] as Map<String, dynamic>;
+          final hanzi = item['hanzi'] as String;
+          final pinyin = (item['pinyin'] as String).toLowerCase();
+          final def = (item['definition'] as String).toLowerCase();
+          
+          if (hanzi.contains(query) || pinyin.contains(lowQuery) || def.contains(lowQuery)) {
+            final String uuid = item['uuid'] ?? "hsk${level}_${(i + 1).toString().padLeft(3, '0')}";
+            results.add(FlashcardModel.fromJson({
+              ...item,
+              'uuid': uuid,
+              'hskLevel': level,
+            }).toEntity());
+          }
+        }
+      }
+    } catch (e) {
+      // Ignore if file doesn't exist or parsing fails
+    }
+    return results;
   }
 
   @override
@@ -318,16 +324,24 @@ class FlashcardRepositoryImpl implements FlashcardRepository {
 
   Future<Map<String, dynamic>> _fetchOnlineStrokes(String char) async {
     try {
-      final url = Uri.parse('https://cdn.jsdelivr.net/npm/animcjk-data/data/zh-Hans/$char.json');
+      final url = Uri.parse('https://cdn.jsdelivr.net/npm/hanzi-writer-data@2.0.1/$char.json');
       final response = await http.get(url);
       
       if (response.statusCode == 200) {
         final data = json.decode(response.body) as Map<String, dynamic>;
         
         List<String> strokes = (data['strokes'] as List).cast<String>();
-        List<List<Offset>> medians = await CharacterLoader.parseAndSampleAsync(strokes, interval: 2.0);
+        List<List<Offset>> medians = [];
+        if (data['medians'] != null) {
+          medians = (data['medians'] as List).map((m) {
+            final pts = (m as List).map((p) => Offset((p as List)[0].toDouble(), (p[1]).toDouble())).toList();
+            return CharacterLoader.flipPoints(pts).map(CharacterLoader.transformPoint).toList();
+          }).toList();
+        } else {
+          medians = await CharacterLoader.parseAndSampleAsync(strokes, interval: 2.0);
+        }
         
-        return {'strokes': strokes, 'medians': medians, 'source': 'animcjk'};
+        return {'strokes': strokes, 'medians': medians, 'source': 'hanzi-writer'};
       }
     } catch (e) {
       debugPrint("Network fetch failed for $char: $e");
@@ -344,12 +358,15 @@ class FlashcardRepositoryImpl implements FlashcardRepository {
       
       // The True Original 'Gold' Aesthetics used skeleton paths rendering with PaintStyle.stroke.
       if (_hanziVgDb != null && _hanziVgDb!.containsKey(char)) {
-        strokes = List<String>.from(_hanziVgDb![char]['paths'] ?? []);
-        medians = await CharacterLoader.parseAndSampleAsync(strokes, interval: 2.0);
-        return {'strokes': strokes, 'medians': medians, 'source': 'hanzivg'};
+        final rawStrokes = List<String>.from(_hanziVgDb![char]['paths'] ?? []);
+        if (rawStrokes.isNotEmpty && !rawStrokes.any((s) => s.startsWith('hvg:'))) {
+          strokes = rawStrokes;
+          medians = await CharacterLoader.parseAndSampleAsync(strokes, interval: 2.0);
+          return {'strokes': strokes, 'medians': medians, 'source': 'hanzivg'};
+        }
       } 
       // Fallback: Hanzi Writer
-      else if (_hsk1StrokesDb != null && _hsk1StrokesDb!.containsKey(char)) {
+      if (_hsk1StrokesDb != null && _hsk1StrokesDb!.containsKey(char)) {
         strokes = List<String>.from(_hsk1StrokesDb![char]['strokes'] ?? []);
         if (_hsk1StrokesDb![char]['medians'] != null) {
           medians = (_hsk1StrokesDb![char]['medians'] as List).map((m) {

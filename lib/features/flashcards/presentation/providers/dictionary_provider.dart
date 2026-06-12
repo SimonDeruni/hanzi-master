@@ -39,39 +39,31 @@ class MasterDictionary extends _$MasterDictionary {
 
   Future<void> _loadData() async {
     try {
-      // 1. Load HSK 1
-      final hsk1String = await rootBundle.loadString('assets/data/hsk1.json');
-      if (hsk1String.isNotEmpty) {
-        final List<dynamic> hsk1List = json.decode(hsk1String);
-        for (var item in hsk1List) {
-          final entry = DictionaryEntry(
-            hanzi: item['hanzi'],
-            pinyin: item['pinyin'],
-            definition: item['definition'],
-            hskLevel: 1,
-          );
-          _allEntries[entry.hanzi] = entry;
-          _vocabulary.add(entry.hanzi);
-        }
-      }
-
-      // 2. Load HSK 2
-      final hsk2String = await rootBundle.loadString('assets/data/hsk2_bundle.json');
-      if (hsk2String.isNotEmpty) {
-        final Map<String, dynamic> hsk2Bundle = json.decode(hsk2String);
-        final List<dynamic> vocabulary = hsk2Bundle['vocabulary'] as List<dynamic>;
-        for (var item in vocabulary) {
-          final entry = DictionaryEntry(
-            hanzi: item['hanzi'],
-            pinyin: item['pinyin'],
-            definition: item['definition'],
-            hskLevel: 2,
-          );
-          // Prefer HSK 1 if overlap? (Unlikely for HSK1/2 overlap in standard sets, but good to check)
-          if (!_allEntries.containsKey(entry.hanzi)) {
-            _allEntries[entry.hanzi] = entry;
+      for (int level = 1; level <= 6; level++) {
+        final String fileName = level == 1 ? 'assets/data/hsk1.json' : 'assets/data/hsk${level}_bundle.json';
+        final jsonString = await rootBundle.loadString(fileName);
+        if (jsonString.isNotEmpty) {
+          final dynamic decoded = json.decode(jsonString);
+          final List<dynamic> vocabulary;
+          
+          if (level == 1) {
+            vocabulary = decoded as List<dynamic>;
+          } else {
+            vocabulary = (decoded as Map<String, dynamic>)['vocabulary'] as List<dynamic>;
           }
-          _vocabulary.add(entry.hanzi);
+
+          for (var item in vocabulary) {
+            final entry = DictionaryEntry(
+              hanzi: item['hanzi'],
+              pinyin: item['pinyin'],
+              definition: item['definition'],
+              hskLevel: level,
+            );
+            if (!_allEntries.containsKey(entry.hanzi)) {
+              _allEntries[entry.hanzi] = entry;
+            }
+            _vocabulary.add(entry.hanzi);
+          }
         }
       }
     } catch (e) {

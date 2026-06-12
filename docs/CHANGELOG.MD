@@ -1,3 +1,19 @@
+### [2026-06-12] - 🐛 BUGFIX - Extended Characters & Colorimetry
+- **Dynamic Fetching Fallback:** Fixed animation placeholder bugs by changing the fallback CDN to `hanzi-writer-data` and properly parsing outline/median structs, allowing animations for any character outside the bundled data.
+- **Cross-Reference Colorimetry:** Resolved a bug in `CrossReferenceText` where text styles failed to merge with `DefaultTextStyle`, ensuring the Definition and Anatomy cards render properly on both dark and light modes.
+
+### [2026-06-12] - 🐛 BUGFIX - Character Scaling & Centering Realignment
+- **Dynamic ViewBox Detection:** Implemented automated coordinate space detection (109x109 vs 1024x1024) in `CharacterLoader` to dynamically normalize both HanziVG and AnimCJK paths.
+- **Centering Translation Propagation:** Passed and applied the `centeringShift` translation matrix across all CustomPainters (`_CompletedStrokesPainter`, `_ReferenceStrokePainter`, `_SnapStrokePainter`, `_HintStrokePainter`).
+- **Thick Ink Brush Restoration:** Changed completed, reference, and snap stroke styles to use `PaintingStyle.stroke` at a width of 35.0, restoring calligraphic consistency.
+- **Redundancy Cleanup:** Removed duplicate point scaling from the UI matching layers in `DrawingCanvas` and `ReviewScreen`.
+- **Placeholder Fallback Fix:** Resolved a repository bug where invalid `hvg:` placeholder coordinates in the offline database blocked fallback requests, restoring drawing animations for `爸爸` (Bàba) and 17 other common characters.
+
+### [2026-03-21] - ✨ FEATURE - Restored True HanziVG Stroke Animation
+- **Aesthetic Hardening:** Ripped out the incompatible skeleton-masking engine that caused glitched graphics when paired with AnimCJK.
+- **True Stroke Engine:** Restored the exact `PaintingStyle.stroke` at 35.0 radius logic from the `4e5d098` commit.
+- **Data Architecture:** Unified `FlashcardRepositoryImpl` to stream HanziVG skeleton paths directly into the strokes array to guarantee correct structural drawing.
+
 ### [2026-03-21] - ✨ FEATURE - AI Chat Overhaul (Zen & Ink Edition)
 - **Aesthetic Hardening:** Migrated `EchoHallScreen` and `AiHubScreen` from generic dark/light themes to mandated "Zen & Ink" (Xuan Paper #FDFCF0 / Carbon Ink #1A1A1B).
 - **Premium UI:** Redesigned message bubbles to simulate ink-on-parchment and transformed the persona selector into a minimalist "scholar's rail."

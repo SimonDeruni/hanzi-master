@@ -238,7 +238,7 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
     if (currentStroke.length < 2) return;
     List<Offset> referenceMedian = [];
     if (widget.medianPaths.isNotEmpty && widget.currentStrokeIndex < widget.medianPaths.length) {
-      referenceMedian = widget.medianPaths[widget.currentStrokeIndex].map((p) => CharacterLoader.transformPoint(p)).toList();
+      referenceMedian = widget.medianPaths[widget.currentStrokeIndex];
     }
     final result = StrokeMatcher.matchStroke(currentStroke, referenceMedian, masteryLevel: widget.masteryLevel, strictEndpoints: widget.strictGrading);
     
@@ -313,7 +313,6 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
 
     // Zen & Ink Aesthetic Tokens
     const Color xuanPaper = Color(0xFFFDFCF0);
-    const Color carbonInk = Color(0xFF1A1A1B);
     
     final bool isDark = Theme.of(context).brightness == Brightness.dark;
     final strokeOffset = _getStrokeOffsetForCharacter(_activeCharIndex);
@@ -361,6 +360,7 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
                       CustomPaint(
                         painter: _CompletedStrokesPainter(
                           paths: _cachedParsedPaths.sublist(0, (_currentStrokeComplete ? localCurrentIndex + 1 : localCurrentIndex).clamp(0, _cachedParsedPaths.length)),
+                          centeringShift: centeringShift,
                         ),
                         size: Size.infinite
                       ),
@@ -369,6 +369,7 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
                           painter: _ReferenceStrokePainter(
                             referencePath: _cachedParsedPaths[localCurrentIndex],
                             canvasSize: Size.infinite,
+                            centeringShift: centeringShift,
                           ),
                           size: Size.infinite,
                         ),
@@ -380,6 +381,7 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
                               path: _cachedParsedPaths[localCurrentIndex.clamp(0, _cachedParsedPaths.length - 1)],
                               points: (widget.medianPaths.isNotEmpty && widget.currentStrokeIndex < widget.medianPaths.length) ? widget.medianPaths[widget.currentStrokeIndex] : null,
                               progress: _hintController.value,
+                              centeringShift: centeringShift,
                             ),
                             size: Size.infinite,
                           ),
@@ -411,7 +413,10 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
               if (_showSnapStroke)
                 IgnorePointer(
                   child: CustomPaint(
-                    painter: _SnapStrokePainter(_cachedParsedPaths[localCurrentIndex.clamp(0, _cachedParsedPaths.length - 1)]),
+                    painter: _SnapStrokePainter(
+                      _cachedParsedPaths[localCurrentIndex.clamp(0, _cachedParsedPaths.length - 1)],
+                      centeringShift: centeringShift,
+                    ),
                     size: Size.infinite,
                   ),
                 ),
@@ -485,7 +490,8 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
 
 class _CompletedStrokesPainter extends CustomPainter {
   final List<Path> paths;
-  _CompletedStrokesPainter({required this.paths});
+  final Offset centeringShift;
+  _CompletedStrokesPainter({required this.paths, required this.centeringShift});
   @override
   void paint(Canvas canvas, Size size) {
     if (paths.isEmpty) return;
@@ -493,7 +499,14 @@ class _CompletedStrokesPainter extends CustomPainter {
     final double scaleY = size.height / 1000.0;
     canvas.save();
     canvas.scale(scaleX, scaleY);
-    final paint = Paint()..color = const Color(0xFF1A1A1B)..style = PaintingStyle.fill..isAntiAlias = true;
+    canvas.translate(centeringShift.dx, centeringShift.dy);
+    final paint = Paint()
+      ..color = const Color(0xFF1A1A1B)
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 35.0
+      ..strokeCap = StrokeCap.round
+      ..strokeJoin = StrokeJoin.round
+      ..isAntiAlias = true;
     for (final path in paths) {
       canvas.drawPath(path, paint);
     }
@@ -505,7 +518,8 @@ class _CompletedStrokesPainter extends CustomPainter {
 
 class _SnapStrokePainter extends CustomPainter {
   final Path strokePath;
-  _SnapStrokePainter(this.strokePath);
+  final Offset centeringShift;
+  _SnapStrokePainter(this.strokePath, {required this.centeringShift});
   @override
   void paint(Canvas canvas, Size size) {
     if (strokePath.getBounds().isEmpty) return;
@@ -513,7 +527,14 @@ class _SnapStrokePainter extends CustomPainter {
     final double scaleY = size.height / 1000.0;
     canvas.save();
     canvas.scale(scaleX, scaleY);
-    final paint = Paint()..color = Colors.green.withValues(alpha: 0.6)..style = PaintingStyle.fill..isAntiAlias = true;
+    canvas.translate(centeringShift.dx, centeringShift.dy);
+    final paint = Paint()
+      ..color = Colors.green.withValues(alpha: 0.6)
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 35.0
+      ..strokeCap = StrokeCap.round
+      ..strokeJoin = StrokeJoin.round
+      ..isAntiAlias = true;
     canvas.drawPath(strokePath, paint);
     canvas.restore();
   }
@@ -524,7 +545,8 @@ class _SnapStrokePainter extends CustomPainter {
 class _ReferenceStrokePainter extends CustomPainter {
   final Path referencePath;
   final Size canvasSize;
-  _ReferenceStrokePainter({required this.referencePath, required this.canvasSize});
+  final Offset centeringShift;
+  _ReferenceStrokePainter({required this.referencePath, required this.canvasSize, required this.centeringShift});
   @override
   void paint(Canvas canvas, Size size) {
     if (referencePath.getBounds().isEmpty) return;
@@ -532,8 +554,15 @@ class _ReferenceStrokePainter extends CustomPainter {
     final double scaleY = size.height / 1000.0;
     canvas.save();
     canvas.scale(scaleX, scaleY);
+    canvas.translate(centeringShift.dx, centeringShift.dy);
     
-    final strokePaint = Paint()..style = PaintingStyle.fill..color = Colors.blue.withValues(alpha: 0.3)..isAntiAlias = true;
+    final strokePaint = Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 35.0
+      ..color = Colors.blue.withValues(alpha: 0.3)
+      ..strokeCap = StrokeCap.round
+      ..strokeJoin = StrokeJoin.round
+      ..isAntiAlias = true;
     canvas.drawPath(referencePath, strokePaint);
     
     final highlightPaint = Paint()..style = PaintingStyle.stroke..strokeWidth = 2.0..color = Colors.lightBlue.withValues(alpha: 0.6)..strokeCap = StrokeCap.round..strokeJoin = StrokeJoin.round..isAntiAlias = true;
@@ -587,7 +616,8 @@ class _HintStrokePainter extends CustomPainter {
   final Path path;
   final List<Offset>? points;
   final double progress;
-  _HintStrokePainter({required this.path, this.points, required this.progress});
+  final Offset centeringShift;
+  _HintStrokePainter({required this.path, this.points, required this.progress, required this.centeringShift});
   @override
   void paint(Canvas canvas, Size size) {
     // Standardize Hint to use Pro Logic
@@ -595,7 +625,7 @@ class _HintStrokePainter extends CustomPainter {
       paths: [path],
       medianPaths: [points ?? []],
       progress: progress,
-      centeringShift: Offset.zero,
+      centeringShift: centeringShift,
       isDark: false,
       isHint: true,
     );
@@ -703,7 +733,7 @@ class _ProStrokePainter extends CustomPainter {
     final totalStrokes = paths.length;
     final totalTime = progress * totalStrokes;
     const Color carbonInk = Color(0xFF1A1A1B);
-    final inkColor = carbonInk;
+    const inkColor = carbonInk;
 
     for (int i = 0; i < totalStrokes; i++) {
       final strokeProgress = (totalTime - i).clamp(0.0, 1.0);
@@ -763,34 +793,7 @@ class _ProStrokePainter extends CustomPainter {
     canvas.restore();
   }
 
-  void _drawFallbackReveal(Canvas canvas, Path path, double progress, Color color) {
-    // Linear sweep is more reliable than perimeter sampling for closed loops
-    final bounds = path.getBounds();
-    final isVertical = bounds.height > bounds.width;
-    
-    canvas.saveLayer(bounds.inflate(10), Paint());
-    canvas.drawPath(path, Paint()..color = color..style = PaintingStyle.fill);
-    
-    final maskPaint = Paint()..blendMode = BlendMode.dstIn;
-    canvas.drawRect(
-      isVertical 
-        ? Rect.fromLTWH(bounds.left - 50, bounds.top, bounds.width + 100, bounds.height * progress)
-        : Rect.fromLTWH(bounds.left, bounds.top - 50, bounds.width * progress, bounds.height + 100),
-      maskPaint,
-    );
-    canvas.restore();
 
-    // Add Dot to Fallback
-    final tipPos = isVertical 
-      ? Offset(bounds.center.dx, bounds.top + bounds.height * progress)
-      : Offset(bounds.left + bounds.width * progress, bounds.center.dy);
-    
-    // Pulse faster in fallback to signal it's a guide
-    final pulse = (0.8 + 0.2 * sin(progress * 60)).clamp(0.0, 1.0);
-    const Color gold = Color(0xFFFFD700);
-    canvas.drawCircle(tipPos, 45 * pulse, Paint()..color = gold.withValues(alpha: 0.6)..maskFilter = const MaskFilter.blur(BlurStyle.normal, 15));
-    canvas.drawCircle(tipPos, 12, Paint()..color = Colors.white);
-  }
 
   @override
   bool shouldRepaint(_ProStrokePainter oldDelegate) =>

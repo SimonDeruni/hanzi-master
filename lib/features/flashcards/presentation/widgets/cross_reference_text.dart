@@ -103,7 +103,9 @@ class _CrossReferenceTextState extends ConsumerState<CrossReferenceText> {
     final dictionary = ref.read(masterDictionaryProvider.notifier);
     
     final DefaultTextStyle defaultTextStyle = DefaultTextStyle.of(context);
-    final TextStyle baseStyle = widget.style ?? defaultTextStyle.style;
+    final TextStyle baseStyle = widget.style == null 
+        ? defaultTextStyle.style 
+        : defaultTextStyle.style.merge(widget.style);
     
     final bool isDark = Theme.of(context).brightness == Brightness.dark;
     final TextStyle libraryLinkStyle = widget.linkStyle ?? baseStyle.copyWith(

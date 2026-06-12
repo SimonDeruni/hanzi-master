@@ -20,3 +20,6 @@
 *(Older resolved issues moved to [RESOLVED_ISSUES_VOL_2.md](file:///c:/Users/simon/Documents/hanzi_master/docs/archive/RESOLVED_ISSUES_VOL_2.md))*
 | 2026-03-15      | **Stroke Order Animation (P0)**: The sequential stroke order animation was permanently restored to the original `4e5d098` native stroke aesthetic. | ✅ FIXED (2026-03-21) |
 | 2026-03-15      | **Drawing Canvas (P0)**: Drawing functionality and animation quality have been unified under the simple Zen & Ink mandate without complex masks. | ✅ FIXED (2026-03-21) |
+| 2026-06-12      | **Drawing Scaling & Centering (P0)**: HanziVG characters rendering at 10% size and guides misaligning due to hardcoded 1024 viewBox assumptions. | ✅ FIXED (2026-06-12) |
+| 2026-06-12      | **Broken Animation Fallback (P1)**: The online character fallback tried to fetch from a non-existent `animcjk-data` NPM directory. | ✅ FIXED (2026-06-12) |
+| 2026-06-12      | **UI Colorimetry (P2)**: `CrossReferenceText` was forcing white text on light backgrounds due to failing to inherit `DefaultTextStyle`. | ✅ FIXED (2026-06-12) |

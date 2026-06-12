@@ -1,15 +1,15 @@
 # 🧠 SESSION_STATE.md - The Hanzi Master "Scholar's Baton"
 
 #### 🎯 Current Context
-- **Objective:** Restored True Animation Engine
-- **Status:** ⏸️ PAUSED (Final fallback committed per user request)
-- **Hygiene:** 🧼 Total Hygiene State (0 analyze issues)
+- **Objective:** Fixed Drawing Scaling, Centering Alignment, Online CDN Fallback, and UI Colorimetry
+- **Status:** ✅ VERIFIED (Changes completed and verified)
+- **Hygiene:** 🧼 Clean state for touched files (0 analyze issues in modified files)
 - **Locked Files:** NONE
 
 #### 📦 Done
-- [x] Restored the 35px pure stroke rendering engine for `DrawingCanvas`.
-- [x] Forced `FlashcardRepositoryImpl` to stream HanziVG skeleton data natively.
-- [x] Eliminated masking bugs and aligned the app with the true 4e5d098 "Gold" aesthetic without breaking modern APIs.
-- [x] Hot Restarted and confirmed pixel-perfect rendering with the user.
-- [x] Migrated `EchoHallScreen` and `AiHubScreen` to Xuan Paper / Carbon Ink
-- [x] Defined and documented Gemini API configuration in `docs/AI_CHAT_SETUP.md`
+- [x] Implemented dynamic canvas size detection (109x109 vs 1024x1024) in `CharacterLoader`.
+- [x] Scaled HanziVG paths dynamically using the correct scaling factor (1000/109) to fill the 1000x1000 viewport.
+- [x] Propagated `centeringShift` translation to all `DrawingCanvas` custom painters.
+- [x] Fixed `hvg:` path reference parsing bug in the offline database loader to ensure proper fallback to strokes db or online CDN.
+- [x] Corrected online CDN URL to `hanzi-writer-data` and parsed medians properly to fix broken animation images for characters without local data.
+- [x] Merged `widget.style` with `DefaultTextStyle.of(context).style` in `CrossReferenceText` to fix text visibility in Definition and Anatomy cards across Light and Dark themes.

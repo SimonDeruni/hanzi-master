@@ -12,7 +12,7 @@ import 'package:hanzi_master/core/services/audio_service.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/settings_controller.dart';
 import 'dart:ui' as ui;
-import 'package:hanzi_master/core/character_loader.dart';
+
 
 enum ReviewState { practice, feedback, complete }
 
@@ -133,7 +133,7 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
     
     for (int i = 0; i < medians.length; i++) {
       if (i < userStrokes.length) {
-        final refMedian = medians[i].map((p) => CharacterLoader.transformPoint(p)).toList();
+        final refMedian = medians[i];
         futures.add(StrokeMatcher.matchStrokeAsync(userStrokes[i], refMedian, masteryLevel: mastery));
       }
     }

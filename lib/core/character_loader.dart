@@ -71,30 +71,51 @@ class CharacterLoader {
   static List<Path> parseStrokes(List<String> svgPaths, {bool normalize = true, bool isFlipped = false}) {
     if (svgPaths.isEmpty) return [];
 
-    List<Path> paths = [];
+    // First, parse all paths and find the maximum coordinate to determine canvas size
+    List<Path> rawPaths = [];
+    double maxCoord = 0;
     for (final svg in svgPaths) {
+      if (svg == '__CHAR_SEPARATOR__') {
+        rawPaths.add(Path());
+        continue;
+      }
+      try {
+        Path path = parseSvgPathData(svg);
+        rawPaths.add(path);
+        final bounds = path.getBounds();
+        if (bounds.right > maxCoord) maxCoord = bounds.right;
+        if (bounds.bottom > maxCoord) maxCoord = bounds.bottom;
+      } catch (e) {
+        rawPaths.add(Path());
+      }
+    }
+
+    // Determine canvas size: HanziVG uses 109, AnimCJK/HanziWriter uses 1024.
+    final double canvasSize = (maxCoord > 0 && maxCoord <= 150.0) ? 109.0 : 1024.0;
+    
+    List<Path> paths = [];
+    for (int i = 0; i < rawPaths.length; i++) {
+      Path path = rawPaths[i];
+      final svg = svgPaths[i];
       if (svg == '__CHAR_SEPARATOR__') {
         paths.add(Path());
         continue;
       }
 
-      final cacheKey = '$svg|$normalize|$isFlipped';
+      final cacheKey = '$svg|$normalize|$isFlipped|$canvasSize';
       if (_pathCache.containsKey(cacheKey)) {
         paths.add(_pathCache[cacheKey]!);
         continue;
       }
       
       try {
-        Path path = parseSvgPathData(svg);
-        
-        // Handle Y-Up source flip
+        // Handle Y-Up source flip (using dynamic canvasSize)
         if (isFlipped) {
-          path = flipY(path);
+          path = flipPathY(path, canvasSize);
         }
 
         if (normalize) {
-          // Standard scale from 1024 to 1000. 
-          const double s = 1000.0 / 1024.0;
+          final double s = 1000.0 / canvasSize;
           final Matrix4 matrix = Matrix4.identity();
           matrix.setEntry(0, 0, s); // Scale X
           matrix.setEntry(1, 1, s); // Scale Y
@@ -181,6 +202,15 @@ class CharacterLoader {
     return path.transform(matrix.storage);
   }
 
+  /// Flips a path vertically using a dynamic canvas size.
+  static Path flipPathY(Path path, double canvasSize) {
+    final Matrix4 matrix = Matrix4.identity();
+    matrix.setEntry(1, 1, -1.0);   // Flip Y
+    matrix.setEntry(1, 3, canvasSize); // Translate Y down
+    
+    return path.transform(matrix.storage);
+  }
+
   /// Flips points vertically
   static List<Offset> flipPoints(List<Offset> points) {
     return points.map((p) => Offset(p.dx, 1024.0 - p.dy)).toList();
@@ -204,19 +234,45 @@ class _ParseAndSampleParams {
 
 /// Top-level worker function for parsing and sampling SVG paths.
 List<List<Offset>> _parseAndSampleWorker(_ParseAndSampleParams params) {
-  final List<List<Offset>> results = [];
+  // First, parse all paths to detect canvas size
+  double maxCoord = 0;
+  final List<Path> parsedPaths = [];
   for (final svg in params.svgPaths) {
+    if (svg == '__CHAR_SEPARATOR__') {
+      parsedPaths.add(Path());
+      continue;
+    }
+    try {
+      final path = parseSvgPathData(svg);
+      parsedPaths.add(path);
+      final bounds = path.getBounds();
+      if (bounds.right > maxCoord) maxCoord = bounds.right;
+      if (bounds.bottom > maxCoord) maxCoord = bounds.bottom;
+    } catch (e) {
+      parsedPaths.add(Path());
+    }
+  }
+
+  final double canvasSize = (maxCoord > 0 && maxCoord <= 150.0) ? 109.0 : 1024.0;
+  final List<List<Offset>> results = [];
+
+  for (int i = 0; i < parsedPaths.length; i++) {
+    final svg = params.svgPaths[i];
     if (svg == '__CHAR_SEPARATOR__') {
       results.add([]);
       continue;
     }
     try {
-      Path path = parseSvgPathData(svg);
+      Path path = parsedPaths[i];
       if (params.isFlipped) {
-        path = CharacterLoader.flipY(path);
+        path = CharacterLoader.flipPathY(path, canvasSize);
       }
       if (params.normalize) {
-        path = CharacterLoader.transformPath(path);
+        final double s = 1000.0 / canvasSize;
+        final Matrix4 matrix = Matrix4.identity();
+        matrix.setEntry(0, 0, s);
+        matrix.setEntry(1, 1, s);
+        path = path.transform(matrix.storage);
       }
       results.add(CharacterLoader.samplePoints(path, interval: params.interval));
     } catch (e) {

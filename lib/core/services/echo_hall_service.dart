@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 import '../../features/chat/domain/entities/chat_message.dart';
@@ -5,7 +6,7 @@ import '../../features/chat/domain/entities/chat_message.dart';
 final echoHallServiceProvider = Provider<EchoHallService>((ref) {
   // NOTE: For a real app, this key should be in a .env file or secure storage.
   // We use a placeholder here for the user to replace.
-  const apiKey = String.fromEnvironment('GEMINI_API_KEY', defaultValue: 'YOUR_API_KEY_HERE');
+  const apiKey = String.fromEnvironment('GEMINI_API_KEY', defaultValue: 'AIzaSyBh8Sfhu8g9aENfmf4BkR2iSf_TVzrchs0');
   return EchoHallService(apiKey);
 });
 
@@ -15,7 +16,7 @@ class EchoHallService {
 
   EchoHallService(this._apiKey) {
     _model = GenerativeModel(
-      model: 'gemini-1.5-flash',
+      model: 'gemini-2.5-flash',
       apiKey: _apiKey,
     );
   }
@@ -36,6 +37,7 @@ class EchoHallService {
     final response = await chat.sendMessage(Content.text(personaInstructions));
     return response.text ?? "The ink failed to flow. Please try again.";
   } catch (e) {
+      debugPrint('EchoHallService Error: $e');
       return "The Scholar is momentarily unavailable. Please try again in a moment.";
     }
   }
@@ -58,8 +60,13 @@ Provide a short, 1-2 sentence "Scholar's Critique" in English.
 Keep it scholarly, using terms like "ink," "stroke," or "breath."
 """;
 
+    try {
     final content = [Content.text(prompt)];
     final response = await _model.generateContent(content);
     return response.text ?? "The Echo Hall remains silent. Try your breath again.";
+    } catch (e) {
+      debugPrint('EchoHallService Pronunciation Error: $e');
+      return "The Echo Hall remains silent. Try your breath again.";
+    }
   }
 }
