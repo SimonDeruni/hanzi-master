@@ -75,19 +75,51 @@ class LookAlike {
   }
 }
 
-class AiStory {
-  final String chinese;
+class AiWord {
+  final String hanzi;
   final String pinyin;
-  final String english;
+  final String meaning;
+  
+  AiWord({required this.hanzi, required this.pinyin, required this.meaning});
+  
+  factory AiWord.fromJson(Map<String, dynamic> json) {
+    return AiWord(
+      hanzi: json['hanzi'] as String? ?? '',
+      pinyin: json['pinyin'] as String? ?? '',
+      meaning: json['meaning'] as String? ?? '',
+    );
+  }
+}
 
-  AiStory({required this.chinese, required this.pinyin, required this.english});
+class AiSentence {
+  final String chinese;
+  final String english;
+  final List<AiWord> words;
+
+  AiSentence({required this.chinese, required this.english, required this.words});
+
+  factory AiSentence.fromJson(Map<String, dynamic> json) {
+    var list = json['words'] as List? ?? [];
+    List<AiWord> wordsList = list.map((i) => AiWord.fromJson(i as Map<String, dynamic>)).toList();
+    
+    return AiSentence(
+      chinese: json['chinese'] as String? ?? '',
+      english: json['english'] as String? ?? '',
+      words: wordsList,
+    );
+  }
+}
+
+class AiStory {
+  final List<AiSentence> sentences;
+
+  AiStory({required this.sentences});
 
   factory AiStory.fromJson(Map<String, dynamic> json) {
-    return AiStory(
-      chinese: json['chinese'] as String? ?? '',
-      pinyin: json['pinyin'] as String? ?? '',
-      english: json['english'] as String? ?? '',
-    );
+    var list = json['sentences'] as List? ?? [];
+    List<AiSentence> sentencesList = list.map((i) => AiSentence.fromJson(i as Map<String, dynamic>)).toList();
+    
+    return AiStory(sentences: sentencesList);
   }
 }
 
@@ -390,10 +422,22 @@ Keep the grammar at a level appropriate for someone learning these words. You ma
 
 Respond ONLY in valid JSON format with this exact structure:
 {
-  "chinese": "The full story in Chinese characters...",
-  "pinyin": "The full story in pinyin...",
-  "english": "The full story translated to English..."
+  "sentences": [
+    {
+      "chinese": "The full sentence in Chinese...",
+      "english": "The English translation of the sentence...",
+      "words": [
+        {
+           "hanzi": "The word or character in Chinese",
+           "pinyin": "The pinyin for this specific word",
+           "meaning": "The contextual meaning of this word in this specific sentence"
+        }
+      ]
+    }
+  ]
 }
+
+Make sure every single character in the 'chinese' sentence is represented in the 'words' array in order! If a word is multiple characters, group them into one object.
 ''';
 
     try {

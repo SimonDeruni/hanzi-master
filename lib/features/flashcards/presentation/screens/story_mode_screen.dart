@@ -25,8 +25,10 @@ class StoryModeScreen extends ConsumerStatefulWidget {
 class _StoryModeScreenState extends ConsumerState<StoryModeScreen> {
   bool _forceRegenerate = false;
 
-  Future<void> _handleCharacterTap(BuildContext context, WidgetRef ref, String char) async {
-    // Show a loading indicator briefly or just fetch fast (SQLite is usually instant)
+  Future<void> _handleWordLongPress(BuildContext context, WidgetRef ref, String word) async {
+    if (word.isEmpty) return;
+    
+    final char = word.characters.first;
     final repo = ref.read(globalDictionaryRepositoryProvider);
     final flashcards = ref.read(flashcardControllerProvider).valueOrNull ?? [];
     final isInLibrary = flashcards.any((c) => c.hanzi == char);
@@ -54,6 +56,9 @@ class _StoryModeScreenState extends ConsumerState<StoryModeScreen> {
 
   void _showFullTranslation(BuildContext context, AiStory story) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    
+    final fullEnglish = story.sentences.map((s) => s.english).join('\n\n');
+    
     showModalBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,
@@ -101,7 +106,7 @@ class _StoryModeScreenState extends ConsumerState<StoryModeScreen> {
                 Flexible(
                   child: SingleChildScrollView(
                     child: Text(
-                      story.english,
+                      fullEnglish,
                       style: TextStyle(
                         fontSize: 16,
                         height: 1.6,
@@ -157,49 +162,87 @@ class _StoryModeScreenState extends ConsumerState<StoryModeScreen> {
             });
           }
 
-          // Parse Chinese text into individual tappable characters
-          final characters = story.chinese.characters.toList();
-
           return SingleChildScrollView(
             padding: const EdgeInsets.all(24.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                // Interactive Chinese Text
-                Wrap(
-                  spacing: 2.0,
-                  runSpacing: 8.0,
-                  children: characters.map((char) {
-                    final isPunctuation = RegExp(r'[^\w\s\u4e00-\u9fa5]', unicode: true).hasMatch(char) || char.trim().isEmpty;
-                    
-                    if (isPunctuation) {
-                      return Text(
-                        char,
-                        style: TextStyle(
-                          fontFamily: 'NotoSerifSC',
-                          fontSize: 26,
-                          color: isDark ? Colors.white70 : Colors.black87,
-                        ),
-                      );
-                    }
+                // Render Sentences
+                ...story.sentences.map((sentence) {
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 24.0),
+                    child: Wrap(
+                      spacing: 4.0,
+                      runSpacing: 12.0,
+                      children: sentence.words.map((word) {
+                        final isPunctuation = RegExp(r'[^\w\s\u4e00-\u9fa5]', unicode: true).hasMatch(word.hanzi) || word.hanzi.trim().isEmpty;
+                        
+                        if (isPunctuation) {
+                          return Text(
+                            word.hanzi,
+                            style: TextStyle(
+                              fontFamily: 'NotoSerifSC',
+                              fontSize: 26,
+                              color: isDark ? Colors.white70 : Colors.black87,
+                            ),
+                          );
+                        }
 
-                    return InkWell(
-                      onTap: () => _handleCharacterTap(context, ref, char),
-                      borderRadius: BorderRadius.circular(4),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 1.0),
-                        child: Text(
-                          char,
-                          style: TextStyle(
-                            fontFamily: 'NotoSerifSC',
-                            fontSize: 28,
-                            color: isDark ? Colors.white : Colors.black,
+                        return GestureDetector(
+                          onLongPress: () => _handleWordLongPress(context, ref, word.hanzi),
+                          child: Tooltip(
+                            triggerMode: TooltipTriggerMode.tap,
+                            showDuration: const Duration(seconds: 4),
+                            padding: const EdgeInsets.all(12),
+                            margin: const EdgeInsets.symmetric(horizontal: 24),
+                            decoration: BoxDecoration(
+                              color: isDark ? Colors.grey[800] : Colors.grey[100],
+                              borderRadius: BorderRadius.circular(12),
+                              border: Border.all(color: isDark ? Colors.white24 : Colors.black12),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withValues(alpha: 0.1),
+                                  blurRadius: 8,
+                                  offset: const Offset(0, 4),
+                                )
+                              ]
+                            ),
+                            richMessage: TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: '${word.pinyin}\n',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                    color: Colors.purple[400],
+                                  ),
+                                ),
+                                TextSpan(
+                                  text: word.meaning,
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    color: isDark ? Colors.white70 : Colors.black87,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 1.0),
+                              child: Text(
+                                word.hanzi,
+                                style: TextStyle(
+                                  fontFamily: 'NotoSerifSC',
+                                  fontSize: 28,
+                                  color: isDark ? Colors.white : Colors.black,
+                                ),
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                    );
-                  }).toList(),
-                ),
+                        );
+                      }).toList(),
+                    ),
+                  );
+                }),
                 
                 const SizedBox(height: 60),
                 
@@ -225,7 +268,7 @@ class _StoryModeScreenState extends ConsumerState<StoryModeScreen> {
               const CircularProgressIndicator(color: Colors.purple),
               const SizedBox(height: 24),
               Text(
-                "Gemini Flash is writing your story...",
+                "Gemini Flash is structuring your story...",
                 style: TextStyle(
                   fontFamily: 'NotoSerifSC',
                   fontSize: 18,
