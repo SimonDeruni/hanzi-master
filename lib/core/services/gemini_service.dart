@@ -304,6 +304,56 @@ Respond ONLY in valid JSON format with this exact structure:
     }
   }
 
+  Future<List<Map<String, String>>> generateDeckCards({
+    required String topic,
+    required String difficulty,
+    required String contextTone,
+    required int count,
+  }) async {
+    final prompt = '''
+You are an expert Chinese teacher. The student wants to generate a custom vocabulary deck of exactly $count Chinese words/phrases.
+Topic: "$topic"
+Difficulty Level: $difficulty
+Context/Tone: ${contextTone.isEmpty ? "Standard" : contextTone}
+
+Please provide exactly $count words or short phrases that fit this criteria.
+Ensure that the vocabulary is natural and useful.
+
+Respond ONLY in valid JSON format as a list of objects with this exact structure:
+[
+  {
+    "hanzi": "公司",
+    "pinyin": "gōng sī",
+    "english": "company"
+  }
+]
+''';
+
+    try {
+      final text = await _makeOpenRouterCall(
+        model: 'deepseek/deepseek-chat',
+        messages: [{'role': 'user', 'content': prompt}],
+        jsonMode: true,
+      );
+      
+      if (text.isNotEmpty) {
+        final cleanText = text.replaceAll(RegExp(r'^```json\n', multiLine: true), '')
+                              .replaceAll(RegExp(r'^```\n?', multiLine: true), '');
+        final json = jsonDecode(cleanText);
+        if (json is List) {
+          return json.map((item) => {
+            'hanzi': item['hanzi'].toString(),
+            'pinyin': item['pinyin'].toString(),
+            'english': item['english'].toString(),
+          }).toList();
+        }
+      }
+      throw Exception("Empty response from OpenRouter");
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   AiChatSession startCharacterChat(String hanzi) {
     final systemInstruction = 'You are a concise Chinese Calligraphy and Etymology tutor inside a mobile flashcard app. '
         'The student is studying the character "$hanzi". '

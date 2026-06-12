@@ -24,11 +24,17 @@ class DeckController extends StateNotifier<AsyncValue<List<Deck>>> {
     );
   }
 
-  Future<void> createDeck(String name, {String description = ''}) async {
+  Future<Deck?> createDeck(String name, {String description = ''}) async {
     final result = await _repository.createDeck(name, description: description);
-    result.fold(
-      (error) => state = AsyncValue.error(error, StackTrace.current),
-      (deck) => loadDecks(), // Reload to get updated list
+    return result.fold(
+      (error) {
+        state = AsyncValue.error(error, StackTrace.current);
+        return null;
+      },
+      (deck) {
+        loadDecks(); // Reload to get updated list
+        return deck;
+      },
     );
   }
 
