@@ -16,6 +16,8 @@ import 'package:hanzi_master/core/services/audio_service.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/character_detail_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/character_chat_drawer.dart';
+import 'package:hanzi_master/shared/widgets/tappable_hanzi_text.dart';
+import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
 
 class CharacterDetailScreen extends ConsumerStatefulWidget {
   final Flashcard card;
@@ -637,11 +639,14 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
             spacing: 8,
             runSpacing: 8,
             children: words.map((w) => ActionChip(
-              label: Text("${w.hanzi} (${w.pinyin})", style: const TextStyle(fontWeight: FontWeight.bold)),
+              label: TappableHanziText(
+                '${w.hanzi} (${w.pinyin})',
+                style: const TextStyle(fontWeight: FontWeight.bold),
+              ),
               backgroundColor: isDark ? Colors.indigo.shade900.withValues(alpha: 0.3) : Colors.indigo.shade50,
               side: BorderSide.none,
               onPressed: () {
-                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => CharacterDetailScreen(card: w)));
+                showQuickLook(context, w.hanzi);
               },
             )).toList(),
           ),
@@ -689,7 +694,12 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Expanded(child: Text(sentence.chinese, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold))),
+                            Expanded(
+                              child: TappableHanziText(
+                                sentence.chinese,
+                                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                              ),
+                            ),
                             IconButton(
                               icon: const Icon(Icons.volume_up, size: 20, color: Colors.indigo),
                               padding: EdgeInsets.zero,

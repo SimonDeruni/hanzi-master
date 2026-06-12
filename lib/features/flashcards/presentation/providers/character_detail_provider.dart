@@ -21,3 +21,10 @@ final characterContextProvider = FutureProvider.family<GeminiContext?, Flashcard
   final geminiService = ref.read(geminiServiceProvider);
   return await geminiService.generateContext(card.hanzi, card.hskLevel);
 });
+
+/// Fast single-character lookup for Quick Look sheets.
+final quickLookProvider = FutureProvider.family<Flashcard?, String>((ref, hanzi) async {
+  if (hanzi.trim().isEmpty) return null;
+  final dictionaryRepo = ref.read(globalDictionaryRepositoryProvider);
+  return dictionaryRepo.getExact(hanzi);
+});

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
+import 'package:hanzi_master/shared/widgets/tappable_hanzi_text.dart';
 
 // ---------------------------------------------------------------------------
 // Data models
@@ -71,52 +72,7 @@ class ChatMessage {
 }
 
 // ---------------------------------------------------------------------------
-// Markdown → TextSpan renderer  (handles **bold**, *italic*, `code`)
-// ---------------------------------------------------------------------------
-
-List<TextSpan> _parseMarkdown(String text, Color baseColor) {
-  final spans = <TextSpan>[];
-  // Strip lone ** or * that are not matched (common AI artifact)
-  // Pattern: bold (**...**), italic (*...*), code (`...`)
-  final pattern = RegExp(r'\*\*(.+?)\*\*|\*(.+?)\*|`(.+?)`');
-  int last = 0;
-  for (final match in pattern.allMatches(text)) {
-    if (match.start > last) {
-      spans.add(TextSpan(text: text.substring(last, match.start), style: TextStyle(color: baseColor)));
-    }
-    if (match.group(1) != null) {
-      // **bold**
-      spans.add(TextSpan(
-        text: match.group(1),
-        style: TextStyle(color: baseColor, fontWeight: FontWeight.bold),
-      ));
-    } else if (match.group(2) != null) {
-      // *italic*
-      spans.add(TextSpan(
-        text: match.group(2),
-        style: TextStyle(color: baseColor, fontStyle: FontStyle.italic),
-      ));
-    } else if (match.group(3) != null) {
-      // `code`
-      spans.add(TextSpan(
-        text: match.group(3),
-        style: const TextStyle(
-          color: Colors.indigo,
-          fontFamily: 'monospace',
-          fontWeight: FontWeight.w600,
-        ),
-      ));
-    }
-    last = match.end;
-  }
-  if (last < text.length) {
-    spans.add(TextSpan(text: text.substring(last), style: TextStyle(color: baseColor)));
-  }
-  return spans.isEmpty ? [TextSpan(text: text, style: TextStyle(color: baseColor))] : spans;
-}
-
-// ---------------------------------------------------------------------------
-// Ink-dot typing indicator
+// Markdown → TextSpan renderer now handled by TappableMarkdownHanziText.
 // ---------------------------------------------------------------------------
 
 class _InkDots extends StatefulWidget {
@@ -417,11 +373,9 @@ class _CharacterChatDrawerState extends ConsumerState<CharacterChatDrawer> {
               )
             ],
           ),
-          child: RichText(
-            text: TextSpan(
-              children: _parseMarkdown(msg.text, bubbleColor),
-              style: const TextStyle(fontSize: 14.5, height: 1.5),
-            ),
+          child: TappableMarkdownHanziText(
+            msg.text,
+            style: TextStyle(fontSize: 14.5, height: 1.5, color: bubbleColor),
           ),
         ),
         // Follow-up chips

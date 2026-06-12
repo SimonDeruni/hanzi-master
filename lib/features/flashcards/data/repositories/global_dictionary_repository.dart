@@ -141,7 +141,7 @@ class GlobalDictionaryRepository {
     if (_db == null) return const Left("Global Dictionary not initialized");
     if (character.trim().isEmpty) return const Right([]);
 
-    final sqlQuery = '''
+    const sqlQuery = '''
       SELECT *
       FROM words 
       WHERE (simplified LIKE ? OR traditional LIKE ?)
@@ -174,6 +174,33 @@ class GlobalDictionaryRepository {
       return Right(cards);
     } catch (e) {
       return Left("Failed to get common words: $e");
+    }
+  }
+
+  /// Looks up a single character/word exactly. Fast single-row query.
+  Future<Flashcard?> getExact(String hanzi) async {
+    if (_db == null || hanzi.trim().isEmpty) return null;
+    try {
+      final results = await _db!.rawQuery(
+        'SELECT * FROM words WHERE simplified = ? LIMIT 1',
+        [hanzi.trim()],
+      );
+      if (results.isEmpty) return null;
+      final row = results.first;
+      return Flashcard(
+        id: 'global_${row['id']}',
+        hanzi: row['simplified'] as String,
+        pinyin: row['pinyin'] as String,
+        definition: row['definition'] as String,
+        hskLevel: 0,
+        strokePaths: const [],
+        nextReviewDate: DateTime.now(),
+        interval: 0,
+        easeFactor: 2.5,
+        streak: 0,
+      );
+    } catch (e) {
+      return null;
     }
   }
 }
