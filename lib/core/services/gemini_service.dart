@@ -1,8 +1,7 @@
 import 'dart:convert';
-import 'dart:typed_data';
-import 'package:google_generative_ai/google_generative_ai.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:http/http.dart' as http;
 import '../../features/flashcards/domain/entities/flashcard.dart';
 import 'api_key_pool.dart';
 
@@ -12,7 +11,6 @@ final geminiServiceProvider = Provider<GeminiService>((ref) {
 });
 
 class GeminiContext {
-// ... existing GeminiContext, ExampleSentence, LookAlike classes ...
   final String mnemonic;
   final List<ExampleSentence> sentences;
   final List<LookAlike> lookAlikes;
@@ -77,32 +75,91 @@ class LookAlike {
   }
 }
 
+class AiChatSession {
+  final String apiKey;
+  final String systemInstruction;
+  final String model;
+  final List<Map<String, dynamic>> _history = [];
+
+  AiChatSession({
+    required this.apiKey,
+    required this.systemInstruction,
+    this.model = 'deepseek/deepseek-chat',
+  }) {
+    if (systemInstruction.isNotEmpty) {
+      _history.add({'role': 'system', 'content': systemInstruction});
+    }
+  }
+
+  Future<String> sendMessage(String text) async {
+    _history.add({'role': 'user', 'content': text});
+
+    final response = await http.post(
+      Uri.parse('https://openrouter.ai/api/v1/chat/completions'),
+      headers: {
+        'Authorization': 'Bearer $apiKey',
+        'Content-Type': 'application/json',
+      },
+      body: jsonEncode({
+        'model': model,
+        'messages': _history,
+        'max_tokens': 220,
+      }),
+    );
+
+    if (response.statusCode == 200) {
+      final json = jsonDecode(utf8.decode(response.bodyBytes));
+      final reply = json['choices']?[0]?['message']?['content'] ?? '';
+      _history.add({'role': 'assistant', 'content': reply});
+      return reply;
+    } else {
+      _history.removeLast(); // Rollback on failure
+      throw Exception('OpenRouter Error ${response.statusCode}: ${response.body}');
+    }
+  }
+}
+
 class GeminiService {
   final ApiKeyPool _pool;
 
   GeminiService({required ApiKeyPool pool}) : _pool = pool;
 
-  GenerativeModel _getModel({
-    String? mimeType = 'application/json',
-    Content? systemInstruction,
-    int? maxOutputTokens,
-  }) {
-    return GenerativeModel(
-      model: 'gemini-2.5-flash',
-      apiKey: _pool.nextKey,
-      generationConfig: GenerationConfig(
-        responseMimeType: mimeType,
-        maxOutputTokens: maxOutputTokens,
-      ),
-      systemInstruction: systemInstruction,
+  Future<String> _makeOpenRouterCall({
+    required String model,
+    required List<Map<String, dynamic>> messages,
+    bool jsonMode = false,
+  }) async {
+    final body = {
+      'model': model,
+      'messages': messages,
+    };
+    
+    // OpenRouter requires specific format for json object forcing if supported by the model
+    if (jsonMode) {
+      body['response_format'] = {'type': 'json_object'};
+    }
+
+    final response = await http.post(
+      Uri.parse('https://openrouter.ai/api/v1/chat/completions'),
+      headers: {
+        'Authorization': 'Bearer ${_pool.nextKey}',
+        'Content-Type': 'application/json',
+      },
+      body: jsonEncode(body),
     );
+
+    if (response.statusCode == 200) {
+      final json = jsonDecode(utf8.decode(response.bodyBytes));
+      return json['choices']?[0]?['message']?['content'] ?? '';
+    } else {
+      throw Exception('OpenRouter Error ${response.statusCode}: ${response.body}');
+    }
   }
 
   Future<GeminiContext> generateContext(String hanzi, int hskLevel) async {
     final cacheKey = '${hanzi}_$hskLevel';
     final box = Hive.box<String>('ai_cache');
     
-    // 1. Check Cache
     if (box.containsKey(cacheKey)) {
       final json = jsonDecode(box.get(cacheKey)!);
       return GeminiContext.fromJson(json);
@@ -144,48 +201,57 @@ Respond ONLY in valid JSON format with this exact structure:
 ''';
 
     try {
-      final response = await _getModel().generateContent([Content.text(prompt)]);
-      final text = response.text;
-      if (text != null && text.isNotEmpty) {
-        // Strip markdown code block if present
+      final text = await _makeOpenRouterCall(
+        model: 'deepseek/deepseek-chat',
+        messages: [{'role': 'user', 'content': prompt}],
+        jsonMode: true,
+      );
+      
+      if (text.isNotEmpty) {
         final cleanText = text.replaceAll(RegExp(r'^```json\n', multiLine: true), '')
                               .replaceAll(RegExp(r'^```\n?', multiLine: true), '');
         final json = jsonDecode(cleanText);
-        
-        // 2. Save to Cache
         box.put(cacheKey, cleanText);
-        
         return GeminiContext.fromJson(json);
       }
-      throw Exception("Empty response from Gemini");
+      throw Exception("Empty response from OpenRouter");
     } catch (e) {
-      // ignore
       rethrow;
     }
   }
 
   /// Deep Scan: Identifies the main objects in an image and provides metadata.
   Future<GeminiContext> analyzeImage(List<int> bytes) async {
-    const prompt = 'Identify the main objects in this image. For each, provide mnemonic, sentences, and lookalikes in the standard JSON format.';
-    final content = [
-      Content.multi([
-        TextPart(prompt),
-        DataPart('image/jpeg', Uint8List.fromList(bytes)),
-      ])
-    ];
-
+    const prompt = 'Identify the main objects in this image. For each, provide mnemonic, sentences, and lookalikes in the standard JSON format described previously.';
+    final base64Image = base64Encode(bytes);
+    
     try {
-      final response = await _getModel().generateContent(content);
-      final text = response.text;
-      if (text != null && text.isNotEmpty) {
-        final json = jsonDecode(text);
-        // Handle both single object and list of objects (taking the first)
+      final text = await _makeOpenRouterCall(
+        model: 'qwen/qwen-vl-plus:free',
+        messages: [
+          {
+            'role': 'user',
+            'content': [
+              {'type': 'text', 'text': prompt},
+              {
+                'type': 'image_url',
+                'image_url': {'url': 'data:image/jpeg;base64,$base64Image'}
+              }
+            ]
+          }
+        ],
+      );
+      
+      if (text.isNotEmpty) {
+        final cleanText = text.replaceAll(RegExp(r'^```json\n', multiLine: true), '')
+                              .replaceAll(RegExp(r'^```\n?', multiLine: true), '');
+        final json = jsonDecode(cleanText);
         if (json is List && json.isNotEmpty) {
           return GeminiContext.fromJson(json[0]);
         }
         return GeminiContext.fromJson(json);
       }
-      throw Exception("Empty response from Gemini Vision");
+      throw Exception("Empty response from Vision model");
     } catch (e) {
       rethrow;
     }
@@ -209,10 +275,16 @@ Respond ONLY in valid JSON format with this exact structure:
 ''';
 
     try {
-      final response = await _getModel().generateContent([Content.text(prompt)]);
-      final text = response.text;
-      if (text != null && text.isNotEmpty) {
-        final json = jsonDecode(text);
+      final text = await _makeOpenRouterCall(
+        model: 'deepseek/deepseek-chat',
+        messages: [{'role': 'user', 'content': prompt}],
+        jsonMode: true,
+      );
+      
+      if (text.isNotEmpty) {
+        final cleanText = text.replaceAll(RegExp(r'^```json\n', multiLine: true), '')
+                              .replaceAll(RegExp(r'^```\n?', multiLine: true), '');
+        final json = jsonDecode(cleanText);
         return Flashcard(
           id: 'gen_${DateTime.now().millisecondsSinceEpoch}',
           hanzi: json['hanzi'] ?? '',
@@ -232,19 +304,18 @@ Respond ONLY in valid JSON format with this exact structure:
     }
   }
 
-  ChatSession startCharacterChat(String hanzi) {
-    final chatModel = _getModel(
-      mimeType: null,
-      maxOutputTokens: 220,
-      systemInstruction: Content.system(
-        'You are a concise Chinese Calligraphy and Etymology tutor inside a mobile flashcard app. '
+  AiChatSession startCharacterChat(String hanzi) {
+    final systemInstruction = 'You are a concise Chinese Calligraphy and Etymology tutor inside a mobile flashcard app. '
         'The student is studying the character "$hanzi". '
         'RULES: Answer in 2–3 sentences max. Prefer bullet points for lists. '
         'Never write introductions, sign-offs, or filler phrases like "Great question!" or "Certainly!". '
         'Use **bold** for Chinese characters and key terms. '
-        'Be direct and informative.',
-      ),
+        'Be direct and informative.';
+        
+    return AiChatSession(
+      apiKey: _pool.nextKey,
+      systemInstruction: systemInstruction,
+      model: 'deepseek/deepseek-chat',
     );
-    return chatModel.startChat();
   }
 }

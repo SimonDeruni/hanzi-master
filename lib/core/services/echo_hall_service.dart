@@ -1,6 +1,7 @@
+import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_generative_ai/google_generative_ai.dart';
+import 'package:http/http.dart' as http;
 import '../../features/chat/domain/entities/chat_message.dart';
 import 'api_key_pool.dart';
 
@@ -14,13 +15,6 @@ class EchoHallService {
 
   EchoHallService(this._pool);
 
-  GenerativeModel _getModel(String apiKey) {
-    return GenerativeModel(
-      model: 'gemini-2.5-flash',
-      apiKey: apiKey,
-    );
-  }
-
   Future<String> getResponse(List<ChatMessage> history, String personaInstructions) async {
     final apiKey = _pool.nextKey;
 
@@ -29,16 +23,35 @@ class EchoHallService {
     }
 
     try {
-      final model = _getModel(apiKey);
-      final chat = model.startChat(
-        history: history.map((m) => Content(
-          m.role == ChatRole.user ? 'user' : 'model',
-          [TextPart(m.content)],
-        )).toList(),
+      final messages = history.map((m) {
+        return {
+          'role': m.role == ChatRole.user ? 'user' : 'assistant',
+          'content': m.content,
+        };
+      }).toList();
+      
+      // Inject persona instructions as system prompt
+      messages.insert(0, {'role': 'system', 'content': personaInstructions});
+
+      final response = await http.post(
+        Uri.parse('https://openrouter.ai/api/v1/chat/completions'),
+        headers: {
+          'Authorization': 'Bearer $apiKey',
+          'Content-Type': 'application/json',
+        },
+        body: jsonEncode({
+          'model': 'deepseek/deepseek-chat',
+          'messages': messages,
+          'max_tokens': 220,
+        }),
       );
 
-      final response = await chat.sendMessage(Content.text(personaInstructions));
-      return response.text ?? "The ink failed to flow. Please try again.";
+      if (response.statusCode == 200) {
+        final json = jsonDecode(utf8.decode(response.bodyBytes));
+        return json['choices']?[0]?['message']?['content'] ?? "The ink failed to flow. Please try again.";
+      } else {
+        throw Exception('OpenRouter Error ${response.statusCode}: ${response.body}');
+      }
     } catch (e) {
       debugPrint('EchoHallService Error: $e');
       return "The Scholar is momentarily unavailable. Please try again in a moment.";
@@ -66,10 +79,27 @@ Keep it scholarly, using terms like "ink," "stroke," or "breath."
 """;
 
     try {
-      final model = _getModel(apiKey);
-      final content = [Content.text(prompt)];
-      final response = await model.generateContent(content);
-      return response.text ?? "The Echo Hall remains silent. Try your breath again.";
+      final response = await http.post(
+        Uri.parse('https://openrouter.ai/api/v1/chat/completions'),
+        headers: {
+          'Authorization': 'Bearer $apiKey',
+          'Content-Type': 'application/json',
+        },
+        body: jsonEncode({
+          'model': 'deepseek/deepseek-chat',
+          'messages': [
+            {'role': 'user', 'content': prompt}
+          ],
+          'max_tokens': 150,
+        }),
+      );
+
+      if (response.statusCode == 200) {
+        final json = jsonDecode(utf8.decode(response.bodyBytes));
+        return json['choices']?[0]?['message']?['content'] ?? "The Echo Hall remains silent. Try your breath again.";
+      } else {
+        throw Exception('OpenRouter Error ${response.statusCode}: ${response.body}');
+      }
     } catch (e) {
       debugPrint('EchoHallService Pronunciation Error: $e');
       return "The Echo Hall remains silent. Try your breath again.";

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_generative_ai/google_generative_ai.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:hanzi_master/core/utils/pinyin_utils.dart';
 import 'package:hanzi_master/shared/widgets/tappable_hanzi_text.dart';
@@ -150,7 +149,7 @@ class CharacterChatDrawer extends ConsumerStatefulWidget {
 }
 
 class _CharacterChatDrawerState extends ConsumerState<CharacterChatDrawer> {
-  late final ChatSession _chatSession;
+  late final AiChatSession _chatSession;
   final List<ChatMessage> _messages = [];
   final TextEditingController _textController = TextEditingController();
   final ScrollController _scrollController = ScrollController();
@@ -185,8 +184,8 @@ class _CharacterChatDrawerState extends ConsumerState<CharacterChatDrawer> {
     _scrollToBottom();
 
     try {
-      final response = await _chatSession.sendMessage(Content.text(text));
-      final rawText = response.text ?? "I'm not sure — try rephrasing!";
+      final rawText = await _chatSession.sendMessage(text);
+      if (rawText.isEmpty) throw Exception('Empty response');
       _aiReplyCount++;
       setState(() {
         _messages.add(ChatMessage(
