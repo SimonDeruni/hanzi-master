@@ -286,7 +286,6 @@ class _EchoHallScreenState extends ConsumerState<EchoHallScreen> {
 
   Widget _buildTypingIndicator() {
     const Color carbonInk = Color(0xFF1A1A1B);
-    const Color xuanPaper = Color(0xFFFDFCF0);
 
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 4, 20, 12),
@@ -381,7 +380,7 @@ class _EchoHallScreenState extends ConsumerState<EchoHallScreen> {
                   )
                 ],
               ),
-              child: Icon(
+              child: const Icon(
                 Icons.send_rounded,
                 color: xuanPaper,
                 size: 20,
@@ -413,17 +412,6 @@ class _EchoHallScreenState extends ConsumerState<EchoHallScreen> {
       case ScholarPersona.gamer: return "Gamer";
       case ScholarPersona.shanghaiWoman: return "Trendy";
       case ScholarPersona.custom: return "Custom ✨";
-    }
-  }
-
-  String _getPersonaTagline(ScholarPersona persona) {
-    switch (persona) {
-      case ScholarPersona.masterLin: return "Traditional Calligrapher · Formal";
-      case ScholarPersona.xiaoMei: return "Teahouse Regular · Casual Chats";
-      case ScholarPersona.poet: return "Classical Scholar · Metaphorical";
-      case ScholarPersona.gamer: return "Gaming Enthusiast · Slang";
-      case ScholarPersona.shanghaiWoman: return "Shanghai Trendsetter · Modern";
-      case ScholarPersona.custom: return "Your custom partner";
     }
   }
 

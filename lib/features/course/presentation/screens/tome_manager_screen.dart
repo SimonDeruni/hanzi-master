@@ -88,9 +88,9 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
       HapticsManager.success();
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
+          const SnackBar(
             content: Text("Successfully installed \${tome['title']}"),
-            backgroundColor: const Color(0xFF1A1A1B),
+            backgroundColor: Color(0xFF1A1A1B),
           ),
         );
       }
@@ -109,7 +109,7 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
       context: context,
       builder: (context) => AlertDialog(
         backgroundColor: const Color(0xFFFDFCF0),
-        title: Text("Rescind \${tome['title']}?", style: const TextStyle(fontFamily: 'NotoSansSC', fontWeight: FontWeight.bold)),
+        title: const Text("Rescind \${tome['title']}?", style: TextStyle(fontFamily: 'NotoSansSC', fontWeight: FontWeight.bold)),
         content: const Text("This will remove these characters from your library and reset your mastery progress."),
         actions: [
           TextButton(onPressed: () => Navigator.pop(context, false), child: const Text("Cancel", style: TextStyle(color: Colors.grey))),
@@ -130,9 +130,9 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
 
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
+          const SnackBar(
             content: Text("Removed \${tome['title']} Library."),
-            backgroundColor: const Color(0xFF1A1A1B),
+            backgroundColor: Color(0xFF1A1A1B),
           ),
         );
       }

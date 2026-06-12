@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'package:hanzi_master/features/quiz/presentation/screens/quiz_screen.dart';
+import 'package:hanzi_master/features/vision/presentation/screens/vision_screen.dart';
 import '../providers/course_controller.dart';
 import '../../domain/entities/course_unit.dart';
 import '../../../progression/presentation/widgets/ink_stone_widget.dart';
@@ -23,6 +24,18 @@ class CourseScreen extends ConsumerWidget {
         centerTitle: true,
         backgroundColor: Colors.transparent,
         elevation: 0,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.visibility_outlined, color: Colors.brown),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const VisionScreen()),
+              );
+            },
+          ),
+          const SizedBox(width: 8),
+        ],
       ),
       extendBodyBehindAppBar: true,
       body: Stack(

@@ -1,6 +1,8 @@
 import 'dart:convert';
+import 'dart:typed_data';
 import 'package:google_generative_ai/google_generative_ai.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../features/flashcards/domain/entities/flashcard.dart';
 
 final geminiServiceProvider = Provider<GeminiService>((ref) {
   // In a real app, you would load this from an env file or secure storage.
@@ -131,6 +133,74 @@ Respond ONLY in valid JSON format with this exact structure:
       throw Exception("Empty response from Gemini");
     } catch (e) {
       // ignore
+      rethrow;
+    }
+  }
+
+  /// Deep Scan: Identifies the main objects in an image and provides metadata.
+  Future<GeminiContext> analyzeImage(List<int> bytes) async {
+    const prompt = 'Identify the main objects in this image. For each, provide mnemonic, sentences, and lookalikes in the standard JSON format.';
+    final content = [
+      Content.multi([
+        TextPart(prompt),
+        DataPart('image/jpeg', Uint8List.fromList(bytes)),
+      ])
+    ];
+
+    try {
+      final response = await _model.generateContent(content);
+      final text = response.text;
+      if (text != null && text.isNotEmpty) {
+        final json = jsonDecode(text);
+        // Handle both single object and list of objects (taking the first)
+        if (json is List && json.isNotEmpty) {
+          return GeminiContext.fromJson(json[0]);
+        }
+        return GeminiContext.fromJson(json);
+      }
+      throw Exception("Empty response from Gemini Vision");
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  /// Translation Fallback: Translates a local ML label into a full Flashcard entity.
+  Future<Flashcard> translateObject(String label) async {
+    final prompt = '''
+Translate the English object label "$label" into Chinese.
+Provide:
+1. The Chinese character(s) (Hanzi).
+2. The Pinyin with tone marks.
+3. A concise English definition.
+
+Respond ONLY in valid JSON format with this exact structure:
+{
+  "hanzi": "...",
+  "pinyin": "...",
+  "definition": "..."
+}
+''';
+
+    try {
+      final response = await _model.generateContent([Content.text(prompt)]);
+      final text = response.text;
+      if (text != null && text.isNotEmpty) {
+        final json = jsonDecode(text);
+        return Flashcard(
+          id: 'gen_${DateTime.now().millisecondsSinceEpoch}',
+          hanzi: json['hanzi'] ?? '',
+          pinyin: json['pinyin'] ?? '',
+          definition: json['definition'] ?? '',
+          hskLevel: 1,
+          strokePaths: const [],
+          nextReviewDate: DateTime.now(),
+          interval: 0,
+          easeFactor: 2.5,
+          streak: 0,
+        );
+      }
+      throw Exception("Failed to translate object: $label");
+    } catch (e) {
       rethrow;
     }
   }

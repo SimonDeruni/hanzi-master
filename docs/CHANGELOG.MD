@@ -1,3 +1,11 @@
+### [2026-06-12] - ✨ FEATURE - The Scholar's Eye (Hybrid Vision System)
+- **Hybrid Vision Engine:** Integrated `google_mlkit_object_detection` for 30fps local "Radar" detection and Gemini 2.5 Flash for high-fidelity "Deep Scans".
+- **Zen & Ink Vision UI:** Implemented `VisionScreen` with a subtle Xuan Paper texture overlay and interactive ink-on-parchment object labels.
+- **Deep Scan Brush:** Added a custom animated "Brush" FAB (`🖌️`) that captures and analyzes complex scenes using Gemini Pro Vision.
+- **Scholar's Collection:** Integrated object recognition with the progression system — capturing new real-world objects awards **+5 Ink Points**.
+- **Contextual Translation:** Gemini-powered fallback translates any recognized object (even those outside the HSK deck) into a temporary Scholar Card.
+- **Global Entry Point:** Added a "Scholar's Eye" visibility icon to the main Course Screen header.
+
 ### [2026-06-12] - ✨ FEATURE - Scholar's Desk AI Tutor & Smart Content Upgrade
 - **AI Tutor Sidebar:** Added `CharacterChatDrawer` — a full-screen slide-in chat panel powered by Gemini's stateful `ChatSession`. Opened via a "Ask Tutor" FAB on every Character Detail Card.
 - **Contextual AI System Prompt:** The chat session is silently initialized with the current character's context (etymology, history, usage) so the AI always gives relevant answers.
