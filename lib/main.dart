@@ -6,6 +6,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:hanzi_master/features/flashcards/data/models/flashcard_model.dart';
+import 'package:hanzi_master/features/flashcards/data/models/deck_model.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/settings_controller.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/main_navigation_screen.dart';
 
@@ -32,6 +33,7 @@ void main() async {
   // 2. Initialize Hive & DB
   await Hive.initFlutter();
   Hive.registerAdapter(FlashcardModelAdapter());
+  Hive.registerAdapter(DeckModelAdapter());
 
   // --- SECURITY: Hive Encryption ---
   const secureStorage = FlutterSecureStorage();
@@ -62,6 +64,12 @@ void main() async {
     encryptionCipher: HiveAesCipher(encryptionKey),
   );
 
+  // Open the decks box
+  final deckBox = await Hive.openBox<DeckModel>(
+    'decks',
+    encryptionCipher: HiveAesCipher(encryptionKey),
+  );
+
   // Initialize RevenueCat
   await MonetizationService.init();
 
@@ -70,6 +78,7 @@ void main() async {
     overrides: [
       settingsProvider.overrideWith((ref) => SettingsController(prefs)),
       hiveBoxProvider.overrideWithValue(box),
+      deckBoxProvider.overrideWithValue(deckBox),
     ],
   );
 

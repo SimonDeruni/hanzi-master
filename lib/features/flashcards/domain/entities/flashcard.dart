@@ -3,6 +3,7 @@ import 'package:equatable/equatable.dart';
 
 class Flashcard extends Equatable {
   final String id;
+  final String deckId;
   final String hanzi;
   final String pinyin;
   final String definition;
@@ -26,6 +27,7 @@ class Flashcard extends Equatable {
 
   const Flashcard({
     required this.id,
+    this.deckId = 'default',
     required this.hanzi,
     required this.pinyin,
     required this.definition,
@@ -46,7 +48,7 @@ class Flashcard extends Equatable {
 
   @override
   List<Object?> get props => [
-    id, hanzi, pinyin, definition, hskLevel, strokePaths, medianPaths, 
+    id, deckId, hanzi, pinyin, definition, hskLevel, strokePaths, medianPaths, 
     isFlipped, nextReviewDate, interval, easeFactor, streak, 
     lastScore, attempts, lastAttemptDate, successCount, inkPoints
   ];
@@ -62,6 +64,7 @@ class Flashcard extends Equatable {
 
   Flashcard copyWith({
     String? id,
+    String? deckId,
     String? hanzi,
     String? pinyin,
     String? definition,
@@ -81,6 +84,7 @@ class Flashcard extends Equatable {
   }) {
     return Flashcard(
       id: id ?? this.id,
+      deckId: deckId ?? this.deckId,
       hanzi: hanzi ?? this.hanzi,
       pinyin: pinyin ?? this.pinyin,
       definition: definition ?? this.definition,

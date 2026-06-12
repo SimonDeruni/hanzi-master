@@ -18,6 +18,7 @@ class FlashcardModelAdapter extends TypeAdapter<FlashcardModel> {
     };
     return FlashcardModel(
       id: fields[0] as String,
+      deckId: fields[17] as String?,
       hanzi: fields[1] as String,
       pinyin: fields[2] as String,
       definition: fields[3] as String,
@@ -40,7 +41,7 @@ class FlashcardModelAdapter extends TypeAdapter<FlashcardModel> {
   @override
   void write(BinaryWriter writer, FlashcardModel obj) {
     writer
-      ..writeByte(17)
+      ..writeByte(18)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -74,7 +75,9 @@ class FlashcardModelAdapter extends TypeAdapter<FlashcardModel> {
       ..writeByte(15)
       ..write(obj.isFlipped)
       ..writeByte(16)
-      ..write(obj.inkPoints);
+      ..write(obj.inkPoints)
+      ..writeByte(17)
+      ..write(obj.deckId);
   }
 
   @override

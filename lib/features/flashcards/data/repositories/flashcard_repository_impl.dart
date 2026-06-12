@@ -80,6 +80,19 @@ class FlashcardRepositoryImpl implements FlashcardRepository {
   }
 
   @override
+  Future<Either<String, List<Flashcard>>> getFlashcardsByDeck(String deckId) async {
+    try {
+      if (!flashcardBox.isOpen) return const Right([]);
+      return Right(flashcardBox.values
+          .where((m) => m.deckId == deckId || (deckId == 'default' && m.deckId == null))
+          .map((m) => m.toEntity())
+          .toList());
+    } catch (e) {
+      return Left("Failed to load cards for deck: $e");
+    }
+  }
+
+  @override
   Future<Either<String, void>> saveFlashcard(Flashcard card) async {
     try {
       if (!flashcardBox.isOpen) return const Left("Database box not open");

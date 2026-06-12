@@ -57,8 +57,12 @@ class FlashcardModel extends HiveObject {
   @HiveField(16)
   final int? inkPoints; // 🖌️ XP System (Audit 5 consistency fix)
 
+  @HiveField(17)
+  final String? deckId;
+
   FlashcardModel({
     required this.id,
+    this.deckId = 'default',
     required this.hanzi,
     required this.pinyin,
     required this.definition,
@@ -100,6 +104,7 @@ class FlashcardModel extends HiveObject {
 
     return Flashcard(
       id: id,
+      deckId: deckId ?? 'default',
       hanzi: hanzi,
       pinyin: pinyin,
       definition: definition,
@@ -130,6 +135,7 @@ class FlashcardModel extends HiveObject {
 
     return FlashcardModel(
       id: card.id,
+      deckId: card.deckId,
       hanzi: card.hanzi,
       pinyin: card.pinyin,
       definition: card.definition,

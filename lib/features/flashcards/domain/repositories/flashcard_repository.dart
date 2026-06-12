@@ -8,6 +8,7 @@ abstract class FlashcardRepository {
   
   // Get all flashcards from storage
   Future<Either<String, List<Flashcard>>> getFlashcards();
+  Future<Either<String, List<Flashcard>>> getFlashcardsByDeck(String deckId);
   Future<Either<String, List<Flashcard>>> searchAll(String query);
 
   // Save a single flashcard (or update it)
