@@ -106,11 +106,6 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
         child: NestedScrollView(
           headerSliverBuilder: (context, innerBoxIsScrolled) => [
             SliverAppBar(
-              title: const Text(
-                "Global Dictionary",
-                style: TextStyle(fontWeight: FontWeight.bold, letterSpacing: 1.2),
-              ),
-              centerTitle: true,
               backgroundColor: Colors.transparent,
               elevation: 0,
               pinned: true,
@@ -162,6 +157,20 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
                 ),
               ],
             ),
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(24, 8, 24, 16),
+                child: Text(
+                  "Dictionary",
+                  style: TextStyle(
+                    fontSize: 34,
+                    fontWeight: FontWeight.bold,
+                    color: isDark ? Colors.white : const Color(0xFF1A1A1B),
+                    letterSpacing: -0.5,
+                  ),
+                ),
+              ),
+            ),
             SliverPersistentHeader(
               pinned: true,
               delegate: _SearchBarDelegate(
@@ -172,7 +181,10 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
               ),
             ),
           ],
-          body: _DictionarySearchTab(searchQuery: _searchQuery),
+          body: _DictionarySearchTab(
+            searchQuery: _searchQuery,
+            onMagicLens: _runMagicLens,
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
@@ -255,7 +267,12 @@ class _SearchBarDelegate extends SliverPersistentHeaderDelegate {
 
 class _DictionarySearchTab extends ConsumerWidget {
   final String searchQuery;
-  const _DictionarySearchTab({required this.searchQuery});
+  final VoidCallback onMagicLens;
+  
+  const _DictionarySearchTab({
+    required this.searchQuery,
+    required this.onMagicLens,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -320,22 +337,128 @@ class _DictionarySearchTab extends ConsumerWidget {
 
   Widget _buildZenEmptyState(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(Icons.brush, size: 80, color: isDark ? Colors.white12 : Colors.black12),
-          const SizedBox(height: 24),
-          Text(
-            "Seek knowledge.",
-            style: TextStyle(
-              fontSize: 20, 
-              color: isDark ? Colors.white30 : Colors.black38,
-              letterSpacing: 2,
-              fontStyle: FontStyle.italic
-            )
+    
+    return SliverFillRemaining(
+      hasScrollBody: false,
+      child: Center(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 32),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Stack(
+                alignment: Alignment.center,
+                children: [
+                  Text(
+                    "字",
+                    style: TextStyle(
+                      fontSize: 180,
+                      fontWeight: FontWeight.bold,
+                      color: isDark ? Colors.white.withValues(alpha: 0.03) : Colors.indigo.withValues(alpha: 0.04),
+                      height: 1,
+                    ),
+                  ),
+                  Icon(Icons.menu_book_rounded, size: 48, color: isDark ? Colors.white24 : Colors.black26),
+                ],
+              ),
+              const SizedBox(height: 32),
+              Text(
+                "Your Library is waiting.",
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500,
+                  color: isDark ? Colors.white54 : Colors.black54,
+                ),
+              ),
+              const SizedBox(height: 40),
+              
+              // Functional Actions
+              Row(
+                children: [
+                  Expanded(
+                    child: _buildActionCard(
+                      context,
+                      icon: Icons.document_scanner,
+                      title: "Scan Text",
+                      subtitle: "Use camera",
+                      color: Colors.redAccent,
+                      onTap: onMagicLens,
+                      isDark: isDark,
+                    ),
+                  ),
+                  const SizedBox(width: 16),
+                  Expanded(
+                    child: _buildActionCard(
+                      context,
+                      icon: Icons.add,
+                      title: "Create Card",
+                      subtitle: "Manual entry",
+                      color: Colors.indigo,
+                      onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const FlashcardFormScreen()),
+                      ),
+                      isDark: isDark,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 80), // Padding for the FAB
+            ],
           ),
-        ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildActionCard(
+    BuildContext context, {
+    required IconData icon,
+    required String title,
+    required String subtitle,
+    required Color color,
+    required VoidCallback onTap,
+    required bool isDark,
+  }) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(16),
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
+        decoration: BoxDecoration(
+          color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.white.withValues(alpha: 0.7),
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(color: color.withValues(alpha: 0.3)),
+          boxShadow: [
+            BoxShadow(
+              color: color.withValues(alpha: 0.05),
+              blurRadius: 10,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
+        child: Column(
+          children: [
+            Icon(icon, color: color, size: 28),
+            const SizedBox(height: 12),
+            Text(
+              title,
+              style: TextStyle(
+                fontWeight: FontWeight.w600,
+                color: isDark ? Colors.white : const Color(0xFF1A1A1B),
+                fontSize: 15,
+              ),
+            ),
+            const SizedBox(height: 4),
+            Text(
+              subtitle,
+              style: TextStyle(
+                fontSize: 12,
+                color: isDark ? Colors.white54 : Colors.black54,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
