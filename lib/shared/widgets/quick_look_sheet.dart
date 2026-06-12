@@ -1,9 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hanzi_master/core/utils/pinyin_utils.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/character_detail_provider.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/character_detail_screen.dart';
+
+// ---------------------------------------------------------------------------
+// Helpers — clean raw CC-CEDICT strings before display
+// ---------------------------------------------------------------------------
+
+/// Converts numeric pinyin to proper tone marks: da4 → dà, jiao1 → jiāo
+String _cleanPinyin(String raw) => PinyinUtils.convertNumericToMarks(raw);
+
+/// Strips CC-CEDICT embedded annotations like 大姐[da4 jie3] → 大姐
+/// and trims the definition to the first 2 meaningful parts.
+String _cleanDefinition(String raw) {
+  // 1. Remove bracketed pinyin annotations: word[pin1 yin1]
+  String s = raw.replaceAll(RegExp(r'\[[a-zA-Z0-9\s:]+\]'), '');
+  // 2. Remove standalone numeric pinyin remnants
+  s = s.replaceAll(RegExp(r'\b[a-zA-Z]+[1-5]\b'), '');
+  // 3. Split on semicolons and take first 3 distinct parts
+  final parts = s
+      .split(';')
+      .map((p) => p.trim())
+      .where((p) => p.isNotEmpty && p.length > 1)
+      .toList();
+  if (parts.isEmpty) return s.trim();
+  // Cap at 3 to avoid walls of text
+  final shown = parts.take(3).join('; ');
+  final remainder = parts.length > 3 ? '…' : '';
+  return shown + remainder;
+}
 
 /// Shows a compact "Quick Look" bottom sheet for a single Chinese character.
 void showQuickLook(BuildContext context, String hanzi) {
@@ -189,14 +217,13 @@ class _FoundBody extends ConsumerWidget {
 
           // ── Definition ───────────────────────────────────────────────
           Text(
-            card.definition,
+            _cleanDefinition(card.definition),
             style: TextStyle(
-              fontSize: 15.5,
-              color: textColor.withValues(alpha: 0.88),
-              height: 1.55,
+              fontSize: 15,
+              color: textColor.withValues(alpha: 0.75),
+              height: 1.6,
+              fontStyle: FontStyle.italic,
             ),
-            maxLines: 3,
-            overflow: TextOverflow.ellipsis,
           ),
 
           // ── Compound words ───────────────────────────────────────────
@@ -268,12 +295,13 @@ class _FoundBody extends ConsumerWidget {
                                 ),
                                 const SizedBox(width: 5),
                                 Text(
-                                  w.pinyin,
+                                  _cleanPinyin(w.pinyin),
                                   style: TextStyle(
                                     fontSize: 11.5,
                                     color:
                                         Colors.indigo.withValues(alpha: 0.65),
                                     height: 1,
+                                    fontStyle: FontStyle.italic,
                                   ),
                                 ),
                               ],
@@ -416,7 +444,7 @@ class _CharacterHero extends StatelessWidget {
               children: [
                 if (pinyin.isNotEmpty)
                   Text(
-                    pinyin,
+                    _cleanPinyin(pinyin),
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w300,
