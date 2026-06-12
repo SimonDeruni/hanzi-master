@@ -1,3 +1,12 @@
+### [2026-06-12] - ✨ FEATURE - Scholar's Desk AI Tutor & Smart Content Upgrade
+- **AI Tutor Sidebar:** Added `CharacterChatDrawer` — a full-screen slide-in chat panel powered by Gemini's stateful `ChatSession`. Opened via a "Ask Tutor" FAB on every Character Detail Card.
+- **Contextual AI System Prompt:** The chat session is silently initialized with the current character's context (etymology, history, usage) so the AI always gives relevant answers.
+- **Quick Ask Chips:** Four one-tap prompt chips appear when the chat opens to lower the barrier to curiosity.
+- **Contextual Audio:** Tapping the audio icon on any AI example sentence reads it aloud via `AudioService`.
+- **Translation Blur Toggle:** English translations are hidden by default behind a frosted-glass blur. Tap to reveal — active reading by default.
+- **Ghost Characters (Look-alikes):** Gemini now identifies visually similar characters (e.g. 买 vs 卖) and surfaces a warning card with the visual difference explained.
+- **Personal Notes:** A `SharedPreferences`-backed text field on every card for user mnemonics and notes, auto-saved per character.
+
 ### [2026-06-12] - 🐛 BUGFIX - Global Dictionary Formatting & Edge Cases
 - **Master Dictionary Rendering:** Fixed an empty-state rendering bug in `DictionaryScreen` that locked users out of the master search UI when their study deck was cleared.
 - **Pinyin Standardization:** Implemented `convertNumericToMarks` in `PinyinUtils` to intercept and clean CC-CEDICT numeric pinyin data (e.g., `jian4` to `jiàn`), ensuring proper tone colorimetry on the Master Dictionary screen.

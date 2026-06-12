@@ -15,6 +15,7 @@ import 'package:hanzi_master/features/flashcards/presentation/widgets/cross_refe
 import 'package:hanzi_master/core/services/audio_service.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/character_detail_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:hanzi_master/features/flashcards/presentation/widgets/character_chat_drawer.dart';
 
 class CharacterDetailScreen extends ConsumerStatefulWidget {
   final Flashcard card;
@@ -217,6 +218,18 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: const Text("Character Reference"),
+      ),
+      endDrawer: CharacterChatDrawer(hanzi: widget.card.hanzi),
+      floatingActionButton: Builder(
+        builder: (context) {
+          return FloatingActionButton.extended(
+            onPressed: () => Scaffold.of(context).openEndDrawer(),
+            icon: const Icon(Icons.auto_awesome),
+            label: const Text("Ask Tutor"),
+            backgroundColor: Colors.indigo,
+            foregroundColor: Colors.white,
+          );
+        }
       ),
       extendBodyBehindAppBar: true,
       body: CalligraphyBackground(
