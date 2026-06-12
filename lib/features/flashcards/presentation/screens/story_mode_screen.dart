@@ -4,9 +4,9 @@ import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/deck.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 
-final storyProvider = FutureProvider.family<AiStory, ({String deckId, String deckName, List<String> vocab, bool force})>((ref, args) async {
+final storyProvider = FutureProvider.family<AiStory, ({String deckId, String deckName, String vocabString, bool force})>((ref, args) async {
   final gemini = ref.read(geminiServiceProvider);
-  return await gemini.generateStory(args.deckId, args.deckName, args.vocab, forceRegenerate: args.force);
+  return await gemini.generateStory(args.deckId, args.deckName, args.vocabString.split(','), forceRegenerate: args.force);
 });
 
 class StoryModeScreen extends ConsumerStatefulWidget {
@@ -26,13 +26,13 @@ class _StoryModeScreenState extends ConsumerState<StoryModeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final vocab = widget.cards.map((c) => c.hanzi).toList();
+    final vocabString = widget.cards.map((c) => c.hanzi).join(',');
     final isDark = Theme.of(context).brightness == Brightness.dark;
     
     final asyncStory = ref.watch(storyProvider((
       deckId: widget.deck.id, 
       deckName: widget.deck.name, 
-      vocab: vocab,
+      vocabString: vocabString,
       force: _forceRegenerate
     )));
 
