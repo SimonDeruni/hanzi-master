@@ -824,7 +824,30 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
           ),
         ),
       ),
-      error: (e, st) => const SizedBox.shrink(),
+      error: (e, st) => _buildInfoSection(
+        context,
+        title: "AI Smart Context Error",
+        icon: Icons.error_outline,
+        child: Padding(
+          padding: const EdgeInsets.only(top: 8.0),
+          child: Row(
+            children: [
+              Expanded(
+                child: Text(
+                  "Could not load AI context. (Rate limit or network error)\nTap the refresh button below to try again later.",
+                  style: TextStyle(color: isDark ? Colors.red[300] : Colors.red[700], fontSize: 13),
+                ),
+              ),
+              IconButton(
+                icon: const Icon(Icons.refresh),
+                onPressed: () {
+                  ref.invalidate(characterContextProvider(widget.card));
+                },
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 
