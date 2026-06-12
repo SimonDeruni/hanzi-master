@@ -18,6 +18,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/character_chat_sheet.dart';
 import 'package:hanzi_master/shared/widgets/tappable_hanzi_text.dart';
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
+import 'package:hanzi_master/core/utils/pinyin_utils.dart';
 
 class CharacterDetailScreen extends ConsumerStatefulWidget {
   final Flashcard card;
@@ -654,7 +655,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
                   border: Border.all(color: Colors.indigo.withValues(alpha: isDark ? 0.25 : 0.15)),
                 ),
                 child: Text(
-                  '${w.hanzi}  ${w.pinyin}',
+                  '${w.hanzi}  ${PinyinUtils.convertNumericToMarks(w.pinyin)}',
                   style: TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: 14,
