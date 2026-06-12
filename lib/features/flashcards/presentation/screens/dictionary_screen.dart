@@ -6,7 +6,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/stats_screen.dart';
 import 'package:hanzi_master/features/course/domain/entities/course_unit.dart';
 import 'package:hanzi_master/features/course/presentation/widgets/radical_detail_sheet.dart';
+import 'package:hanzi_master/features/flashcards/presentation/providers/dictionary_provider.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
+import 'package:hanzi_master/features/flashcards/presentation/providers/deck_controller.dart';
+import 'package:hanzi_master/features/flashcards/domain/entities/deck.dart';
+import 'package:hanzi_master/features/flashcards/presentation/screens/deck_detail_screen.dart';
+import 'package:hanzi_master/features/flashcards/presentation/widgets/ai_deck_generator_sheet.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/settings_screen.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/flashcard_form_screen.dart';
 import 'package:hanzi_master/shared/widgets/pinyin_text.dart';
@@ -187,15 +192,12 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: FloatingActionButton.extended(
         heroTag: 'dictionary_add_fab',
-        mini: true,
-        backgroundColor: const Color(0xFF1A1A1B),
-        child: const Icon(Icons.add, color: Color(0xFFFDFCF0)),
-        onPressed: () => Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => const FlashcardFormScreen()),
-        ),
+        backgroundColor: Colors.purple,
+        icon: const Icon(Icons.auto_awesome, color: Colors.white),
+        label: const Text("Generate", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+        onPressed: () => AiDeckGeneratorSheet.show(context),
       ),
     );
   }
@@ -277,6 +279,7 @@ class _DictionarySearchTab extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final asyncFlashcards = ref.watch(flashcardControllerProvider);
+    final asyncDecks = ref.watch(deckControllerProvider);
     final masterResults = ref.watch(masterSearchProvider(searchQuery)).valueOrNull ?? [];
 
     return asyncFlashcards.when(
@@ -301,7 +304,11 @@ class _DictionarySearchTab extends ConsumerWidget {
         unifiedResults.addAll(localOnlyMatches);
 
         if (searchQuery.isEmpty) {
-          return _buildZenEmptyState(context);
+          return asyncDecks.when(
+            data: (decks) => _buildDecksGrid(context, decks, flashcards),
+            loading: () => const SliverFillRemaining(child: Center(child: CircularProgressIndicator())),
+            error: (e, s) => SliverFillRemaining(child: Center(child: Text("Error loading decks: $e"))),
+          );
         }
 
         if (unifiedResults.isEmpty) {
@@ -332,6 +339,89 @@ class _DictionarySearchTab extends ConsumerWidget {
       },
       loading: () => const Center(child: CircularProgressIndicator()),
       error: (err, stack) => Center(child: Text("Error: $err")),
+    );
+  }
+
+  Widget _buildDecksGrid(BuildContext context, List<Deck> decks, List<Flashcard> allCards) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    
+    return SliverPadding(
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+      sliver: SliverGrid(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          crossAxisSpacing: 16,
+          mainAxisSpacing: 16,
+          childAspectRatio: 1.1,
+        ),
+        delegate: SliverChildBuilderDelegate(
+          (context, index) {
+            final deck = decks[index];
+            final deckCardsCount = allCards.where((c) => c.deckId == deck.id || (deck.id == 'default' && c.deckId == null)).length;
+            
+            return InkWell(
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => DeckDetailScreen(deck: deck)),
+              ),
+              borderRadius: BorderRadius.circular(20),
+              child: Container(
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: isDark ? const Color(0xFF2A2A2B) : Colors.white,
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withValues(alpha: isDark ? 0.2 : 0.05),
+                      blurRadius: 10,
+                      offset: const Offset(0, 4),
+                    ),
+                  ],
+                  border: Border.all(
+                    color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.black.withValues(alpha: 0.05),
+                  ),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                        color: (deck.id == 'default' ? Colors.indigo : Colors.orangeAccent).withValues(alpha: 0.1),
+                        shape: BoxShape.circle,
+                      ),
+                      child: Icon(
+                        deck.id == 'default' ? Icons.library_books : Icons.folder,
+                        color: deck.id == 'default' ? Colors.indigo : Colors.orangeAccent,
+                        size: 28,
+                      ),
+                    ),
+                    const Spacer(),
+                    Text(
+                      deck.name,
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      "$deckCardsCount cards",
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: isDark ? Colors.white54 : Colors.black54,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
+          childCount: decks.length,
+        ),
+      ),
     );
   }
 
