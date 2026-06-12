@@ -331,7 +331,7 @@ Respond ONLY in valid JSON format as a list of objects with this exact structure
 
     try {
       final text = await _makeOpenRouterCall(
-        model: 'google/gemini-2.5-flash',
+        model: 'deepseek/deepseek-chat',
         messages: [{'role': 'user', 'content': prompt}],
         jsonMode: true,
       );
