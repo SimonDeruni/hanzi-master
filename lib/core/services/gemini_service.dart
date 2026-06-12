@@ -3,14 +3,15 @@ import 'dart:typed_data';
 import 'package:google_generative_ai/google_generative_ai.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../features/flashcards/domain/entities/flashcard.dart';
+import 'api_key_pool.dart';
 
 final geminiServiceProvider = Provider<GeminiService>((ref) {
-  // In a real app, you would load this from an env file or secure storage.
-  // Using the test API key provided earlier.
-  return GeminiService(apiKey: 'AIzaSyBh8Sfhu8g9aENfmf4BkR2iSf_TVzrchs0');
+  final pool = ref.watch(apiKeyPoolProvider);
+  return GeminiService(pool: pool);
 });
 
 class GeminiContext {
+// ... existing GeminiContext, ExampleSentence, LookAlike classes ...
   final String mnemonic;
   final List<ExampleSentence> sentences;
   final List<LookAlike> lookAlikes;
@@ -76,16 +77,25 @@ class LookAlike {
 }
 
 class GeminiService {
-  final GenerativeModel _model;
+  final ApiKeyPool _pool;
 
-  GeminiService({required String apiKey})
-      : _model = GenerativeModel(
-          model: 'gemini-2.5-flash',
-          apiKey: apiKey,
-          generationConfig: GenerationConfig(
-            responseMimeType: 'application/json',
-          ),
-        );
+  GeminiService({required ApiKeyPool pool}) : _pool = pool;
+
+  GenerativeModel _getModel({
+    String? mimeType = 'application/json',
+    Content? systemInstruction,
+    int? maxOutputTokens,
+  }) {
+    return GenerativeModel(
+      model: 'gemini-2.5-flash',
+      apiKey: _pool.nextKey,
+      generationConfig: GenerationConfig(
+        responseMimeType: mimeType,
+        maxOutputTokens: maxOutputTokens,
+      ),
+      systemInstruction: systemInstruction,
+    );
+  }
 
   Future<GeminiContext> generateContext(String hanzi, int hskLevel) async {
     final prompt = '''
@@ -124,7 +134,7 @@ Respond ONLY in valid JSON format with this exact structure:
 ''';
 
     try {
-      final response = await _model.generateContent([Content.text(prompt)]);
+      final response = await _getModel().generateContent([Content.text(prompt)]);
       final text = response.text;
       if (text != null && text.isNotEmpty) {
         final json = jsonDecode(text);
@@ -148,7 +158,7 @@ Respond ONLY in valid JSON format with this exact structure:
     ];
 
     try {
-      final response = await _model.generateContent(content);
+      final response = await _getModel().generateContent(content);
       final text = response.text;
       if (text != null && text.isNotEmpty) {
         final json = jsonDecode(text);
@@ -182,7 +192,7 @@ Respond ONLY in valid JSON format with this exact structure:
 ''';
 
     try {
-      final response = await _model.generateContent([Content.text(prompt)]);
+      final response = await _getModel().generateContent([Content.text(prompt)]);
       final text = response.text;
       if (text != null && text.isNotEmpty) {
         final json = jsonDecode(text);
@@ -206,12 +216,9 @@ Respond ONLY in valid JSON format with this exact structure:
   }
 
   ChatSession startCharacterChat(String hanzi) {
-    final chatModel = GenerativeModel(
-      model: 'gemini-2.5-flash',
-      apiKey: 'AIzaSyBh8Sfhu8g9aENfmf4BkR2iSf_TVzrchs0',
-      generationConfig: GenerationConfig(
-        maxOutputTokens: 220,
-      ),
+    final chatModel = _getModel(
+      mimeType: null,
+      maxOutputTokens: 220,
       systemInstruction: Content.system(
         'You are a concise Chinese Calligraphy and Etymology tutor inside a mobile flashcard app. '
         'The student is studying the character "$hanzi". '
