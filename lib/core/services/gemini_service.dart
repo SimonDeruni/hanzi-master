@@ -170,9 +170,9 @@ You are an expert Chinese teacher. The student is viewing the Chinese character/
 They are roughly at HSK level $hskLevel (if 0, assume beginner/HSK 1).
 
 Please provide:
-1. A very short, highly memorable mnemonic or etymology story to help remember this character/word. (1-2 sentences).
-2. Two highly natural example sentences using "$hanzi". The vocabulary used in the sentences should match their HSK level (keep it simple for beginners).
-3. Identify 1 or 2 characters that look very visually similar to "$hanzi" (ghost characters) that students often confuse it with. Explain the visual difference briefly. If there are none, return an empty array.
+1. A very brief mnemonic story (max 1 sentence, under 15 words) to help remember this character.
+2. Two highly natural but VERY SHORT example sentences using "$hanzi" (keep under 8 words each).
+3. Identify 1 or 2 visually similar characters (ghost characters). Explain the difference in 5 words or less. If none, return empty array.
 
 Respond ONLY in valid JSON format with this exact structure:
 {
