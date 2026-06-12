@@ -19,12 +19,14 @@ class AiDeckGeneratorSheet extends ConsumerStatefulWidget {
 
 class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
   final _topicController = TextEditingController();
+  final _contextController = TextEditingController();
   int _difficultyIndex = 0; // 0 = Beginner, 1 = Intermediate, 2 = Advanced
+  String _focusArea = 'Mixed';
   double _cardCount = 10;
-
   @override
   void dispose() {
     _topicController.dispose();
+    _contextController.dispose();
     super.dispose();
   }
 
@@ -130,6 +132,44 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
             
             const SizedBox(height: 32),
             
+            // Focus Area
+            const Text(
+              "Focus Area",
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 12),
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: [
+                'Mixed', 'Nouns only', 'Verbs only', 'Idioms (Chengyu)', 'Full Sentences'
+              ].map((focus) => _buildFocusChip(focus, isDark)).toList(),
+            ),
+
+            const SizedBox(height: 32),
+
+            // Context / Tone
+            const Text(
+              "Specific Context or Tone (Optional)",
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 12),
+            TextField(
+              controller: _contextController,
+              decoration: InputDecoration(
+                hintText: "e.g., Formal business language, slang for texting...",
+                filled: true,
+                fillColor: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.black.withValues(alpha: 0.05),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(16),
+                  borderSide: BorderSide.none,
+                ),
+                prefixIcon: const Icon(Icons.psychology_alt),
+              ),
+            ),
+
+            const SizedBox(height: 32),
+            
             // Card Count
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -151,8 +191,8 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
             Slider(
               value: _cardCount,
               min: 5,
-              max: 20,
-              divisions: 3,
+              max: 50,
+              divisions: 9,
               activeColor: Colors.purple,
               onChanged: (val) {
                 setState(() => _cardCount = val);
@@ -202,20 +242,20 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     
     return Expanded(
-      child: InkWell(
+      child: GestureDetector(
         onTap: () => setState(() => _difficultyIndex = index),
-        borderRadius: BorderRadius.circular(16),
-        child: Container(
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 200),
           padding: const EdgeInsets.symmetric(vertical: 12),
           decoration: BoxDecoration(
             color: isSelected 
-                ? Colors.purple.withValues(alpha: 0.1) 
-                : (isDark ? Colors.white.withValues(alpha: 0.05) : Colors.black.withValues(alpha: 0.05)),
+              ? Colors.purple.withValues(alpha: 0.1) 
+              : (isDark ? Colors.white.withValues(alpha: 0.05) : Colors.black.withValues(alpha: 0.05)),
+            borderRadius: BorderRadius.circular(16),
             border: Border.all(
               color: isSelected ? Colors.purple : Colors.transparent,
               width: 2,
             ),
-            borderRadius: BorderRadius.circular(16),
           ),
           child: Column(
             children: [
@@ -223,7 +263,7 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
                 title,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  color: isSelected ? Colors.purple : (isDark ? Colors.white : Colors.black),
+                  color: isSelected ? Colors.purple : (isDark ? Colors.white70 : Colors.black87),
                 ),
               ),
               const SizedBox(height: 4),
@@ -231,13 +271,34 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
                 subtitle,
                 style: TextStyle(
                   fontSize: 12,
-                  color: isSelected ? Colors.purple.withValues(alpha: 0.7) : Colors.grey,
+                  color: isSelected ? Colors.purple.withValues(alpha: 0.8) : (isDark ? Colors.white54 : Colors.black54),
                 ),
               ),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildFocusChip(String label, bool isDark) {
+    final isSelected = _focusArea == label;
+    return ChoiceChip(
+      label: Text(label),
+      selected: isSelected,
+      onSelected: (selected) {
+        if (selected) setState(() => _focusArea = label);
+      },
+      selectedColor: Colors.purple.withValues(alpha: 0.2),
+      backgroundColor: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.black.withValues(alpha: 0.05),
+      labelStyle: TextStyle(
+        color: isSelected ? Colors.purple : (isDark ? Colors.white : Colors.black),
+        fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+      ),
+      side: BorderSide(
+        color: isSelected ? Colors.purple : Colors.transparent,
+      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
     );
   }
 }

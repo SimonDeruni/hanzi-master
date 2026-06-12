@@ -304,10 +304,14 @@ class _DictionarySearchTab extends ConsumerWidget {
         unifiedResults.addAll(localOnlyMatches);
 
         if (searchQuery.isEmpty) {
-          return asyncDecks.when(
-            data: (decks) => _buildDecksGrid(context, decks, flashcards),
-            loading: () => const SliverFillRemaining(child: Center(child: CircularProgressIndicator())),
-            error: (e, s) => SliverFillRemaining(child: Center(child: Text("Error loading decks: $e"))),
+          return CustomScrollView(
+            slivers: [
+              asyncDecks.when(
+                data: (decks) => _buildDecksGrid(context, decks, flashcards),
+                loading: () => const SliverFillRemaining(child: Center(child: CircularProgressIndicator())),
+                error: (e, s) => SliverFillRemaining(child: Center(child: Text("Error loading decks: $e"))),
+              )
+            ],
           );
         }
 
