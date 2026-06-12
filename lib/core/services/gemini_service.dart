@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:typed_data';
 import 'package:google_generative_ai/google_generative_ai.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import '../../features/flashcards/domain/entities/flashcard.dart';
 import 'api_key_pool.dart';
 
@@ -98,6 +99,15 @@ class GeminiService {
   }
 
   Future<GeminiContext> generateContext(String hanzi, int hskLevel) async {
+    final cacheKey = '${hanzi}_$hskLevel';
+    final box = Hive.box<String>('ai_cache');
+    
+    // 1. Check Cache
+    if (box.containsKey(cacheKey)) {
+      final json = jsonDecode(box.get(cacheKey)!);
+      return GeminiContext.fromJson(json);
+    }
+
     final prompt = '''
 You are an expert Chinese teacher. The student is viewing the Chinese character/word: "$hanzi".
 They are roughly at HSK level $hskLevel (if 0, assume beginner/HSK 1).
@@ -137,7 +147,14 @@ Respond ONLY in valid JSON format with this exact structure:
       final response = await _getModel().generateContent([Content.text(prompt)]);
       final text = response.text;
       if (text != null && text.isNotEmpty) {
-        final json = jsonDecode(text);
+        // Strip markdown code block if present
+        final cleanText = text.replaceAll(RegExp(r'^```json\n', multiLine: true), '')
+                              .replaceAll(RegExp(r'^```\n?', multiLine: true), '');
+        final json = jsonDecode(cleanText);
+        
+        // 2. Save to Cache
+        box.put(cacheKey, cleanText);
+        
         return GeminiContext.fromJson(json);
       }
       throw Exception("Empty response from Gemini");

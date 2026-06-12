@@ -56,6 +56,12 @@ void main() async {
     encryptionCipher: HiveAesCipher(encryptionKey),
   );
 
+  // Open the AI response cache
+  await Hive.openBox<String>(
+    'ai_cache',
+    encryptionCipher: HiveAesCipher(encryptionKey),
+  );
+
   // Initialize RevenueCat
   await MonetizationService.init();
 
