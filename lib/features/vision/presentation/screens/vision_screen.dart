@@ -108,7 +108,7 @@ class _VisionScreenState extends ConsumerState<VisionScreen> with SingleTickerPr
                     // 1. Capture and Award Points
                     final isNew = await ref.read(visionProvider.notifier).captureObject(label);
                     
-                    if (isNew && mounted) {
+                    if (isNew && context.mounted) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content: Text("Captured $label! +5 Ink Points"),
@@ -119,14 +119,14 @@ class _VisionScreenState extends ConsumerState<VisionScreen> with SingleTickerPr
                     }
 
                     // 2. Translate and Show Quick Look
-                    if (mounted) {
+                    if (context.mounted) {
                       try {
                         final flashcard = await ref.read(geminiServiceProvider).translateObject(label);
-                        if (mounted) {
+                        if (context.mounted) {
                           showQuickLook(context, flashcard.hanzi);
                         }
                       } catch (e) {
-                        if (mounted) {
+                        if (context.mounted) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(content: Text("Could not translate object.")),
                           );
