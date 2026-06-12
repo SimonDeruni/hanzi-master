@@ -33,6 +33,38 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
       'size': '78 KB',
       'level': 2,
       'isPremium': true,
+    },
+    {
+      'id': 'hsk3',
+      'title': 'HSK 3: The Intermediate',
+      'description': '300 new words to express deeper thoughts and hold engaging conversations.',
+      'size': '150 KB',
+      'level': 3,
+      'isPremium': true,
+    },
+    {
+      'id': 'hsk4',
+      'title': 'HSK 4: The Advanced',
+      'description': '600 new words to master advanced topics and read authentic materials.',
+      'size': '250 KB',
+      'level': 4,
+      'isPremium': true,
+    },
+    {
+      'id': 'hsk5',
+      'title': 'HSK 5: The Proficient',
+      'description': '1300 new words to achieve fluency and communicate naturally like a native.',
+      'size': '500 KB',
+      'level': 5,
+      'isPremium': true,
+    },
+    {
+      'id': 'hsk6',
+      'title': 'HSK 6: The Master',
+      'description': '2500 new words. True mastery of the language and culture.',
+      'size': '1 MB',
+      'level': 6,
+      'isPremium': true,
     }
   ];
 
@@ -51,22 +83,19 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
     try {
       HapticsManager.medium();
       
-      // We use the HSK 2 controller directly for logic consolidation
-      if (tome['level'] == 2) {
-        await ref.read(flashcardControllerProvider.notifier).importHsk2();
-      }
+      await ref.read(flashcardControllerProvider.notifier).importLevel(tome['level'] as int);
 
       HapticsManager.success();
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text("Successfully installed ${tome['title']}"),
+            content: Text("Successfully installed \${tome['title']}"),
             backgroundColor: const Color(0xFF1A1A1B),
           ),
         );
       }
     } catch (e) {
-      debugPrint("Installation Error: $e");
+      debugPrint("Installation Error: \$e");
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text("Failed to download module.")),
@@ -80,7 +109,7 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
       context: context,
       builder: (context) => AlertDialog(
         backgroundColor: const Color(0xFFFDFCF0),
-        title: Text("Rescind ${tome['title']}?", style: const TextStyle(fontFamily: 'NotoSansSC', fontWeight: FontWeight.bold)),
+        title: Text("Rescind \${tome['title']}?", style: const TextStyle(fontFamily: 'NotoSansSC', fontWeight: FontWeight.bold)),
         content: const Text("This will remove these characters from your library and reset your mastery progress."),
         actions: [
           TextButton(onPressed: () => Navigator.pop(context, false), child: const Text("Cancel", style: TextStyle(color: Colors.grey))),
@@ -97,20 +126,18 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
     try {
       HapticsManager.light();
       
-      if (tome['level'] == 2) {
-        await ref.read(flashcardControllerProvider.notifier).uninstallHsk2();
-      }
+      await ref.read(flashcardControllerProvider.notifier).uninstallLevel(tome['level'] as int);
 
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text("Removed ${tome['title']} Library."),
+            content: Text("Removed \${tome['title']} Library."),
             backgroundColor: const Color(0xFF1A1A1B),
           ),
         );
       }
     } catch (e) {
-      debugPrint("Uninstallation Error: $e");
+      debugPrint("Uninstallation Error: \$e");
     }
   }
 

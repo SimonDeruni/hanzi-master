@@ -69,6 +69,7 @@ void main() async {
 
   // 4. Pre-warm Repository (Heavy JSON parsing)
   await container.read(flashcardRepositoryProvider).init();
+  await container.read(globalDictionaryRepositoryProvider).init();
   
   // 5. Ensure Library is populated
   await container.read(flashcardControllerProvider.notifier).init();

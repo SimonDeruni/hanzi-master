@@ -108,7 +108,7 @@ class SettingsScreen extends ConsumerWidget {
                 barrierDismissible: false,
                 builder: (_) => const Center(child: CircularProgressIndicator()),
               );
-              await ref.read(flashcardControllerProvider.notifier).importHsk2();
+              await ref.read(flashcardControllerProvider.notifier).importLevel(2);
               if (context.mounted) {
                 Navigator.pop(context);
                 ScaffoldMessenger.of(context).showSnackBar(

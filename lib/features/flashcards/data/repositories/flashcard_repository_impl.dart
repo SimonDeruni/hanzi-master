@@ -193,22 +193,34 @@ class FlashcardRepositoryImpl implements FlashcardRepository {
   }
 
   @override
-  Future<Either<String, void>> importHsk2() async {
+  Future<Either<String, void>> importLevel(int level) async {
     try {
-      final jsonString = await rootBundle.loadString('assets/data/hsk2_bundle.json');
-      if (jsonString.isEmpty) return const Left("HSK2 bundle file is empty");
+      final String fileName = level == 1 ? 'assets/data/hsk1.json' : 'assets/data/hsk${level}_bundle.json';
+      final jsonString = await rootBundle.loadString(fileName);
+      if (jsonString.isEmpty) return Left("HSK$level bundle file is empty");
       
-      final Map<String, dynamic> bundle = await compute(_parseJsonMap, jsonString);
-      final List<dynamic> vocabulary = bundle['vocabulary'] as List<dynamic>;
+      final dynamic decoded = await compute(_parseJsonMap, jsonString);
+      final List<dynamic> vocabulary;
+      if (level == 1) {
+        // HSK 1 is sometimes a direct list depending on the parser, wait, _parseJsonMap expects a Map.
+        // Let's use json.decode directly or _parseJsonList if level is 1?
+        // Actually, importHsk1() already handles level 1.
+        // importLevel will only be called for level >= 2.
+        final bundle = decoded as Map<String, dynamic>;
+        vocabulary = bundle['vocabulary'] as List<dynamic>;
+      } else {
+        final bundle = decoded as Map<String, dynamic>;
+        vocabulary = bundle['vocabulary'] as List<dynamic>;
+      }
       
       final Map<String, FlashcardModel> entries = {};
       for (int i = 0; i < vocabulary.length; i++) {
         final item = vocabulary[i] as Map<String, dynamic>;
-        final String uuid = item['uuid'] ?? "hsk2_${(i + 1).toString().padLeft(3, '0')}";
+        final String uuid = item['uuid'] ?? "hsk${level}_${(i + 1).toString().padLeft(3, '0')}";
         entries[uuid] = FlashcardModel.fromJson({
           ...item,
           'uuid': uuid,
-          'hskLevel': 2,
+          'hskLevel': level,
         });
       }
       
@@ -222,7 +234,14 @@ class FlashcardRepositoryImpl implements FlashcardRepository {
 
   @override
   Future<Either<String, Flashcard>> fetchAndSaveStrokes(Flashcard card) async {
-    if (card.strokePaths.isNotEmpty) return Right(card);
+    if (card.strokePaths.isNotEmpty) {
+      // Self-healing migration: If the card has cached outline paths (contains 'z' or 'Z' for closed path),
+      // we force a re-fetch to generate the new skeletal paths from HanziVG or our medians.
+      final hasOutlines = card.strokePaths.any((p) => p.contains('Z') || p.contains('z'));
+      if (!hasOutlines) {
+        return Right(card);
+      }
+    }
     try {
       final characters = card.hanzi.split('');
       final allStrokes = <String>[];
@@ -256,7 +275,9 @@ class FlashcardRepositoryImpl implements FlashcardRepository {
         }
       }
       final updatedCard = card.copyWith(strokePaths: allStrokes, medianPaths: allMedians, isFlipped: needsFlip);
-      await saveFlashcard(updatedCard);
+      if (!card.id.startsWith('global_')) {
+        await saveFlashcard(updatedCard);
+      }
       return Right(updatedCard);
     } catch (e) {
       return Right(card);
@@ -330,14 +351,27 @@ class FlashcardRepositoryImpl implements FlashcardRepository {
       if (response.statusCode == 200) {
         final data = json.decode(response.body) as Map<String, dynamic>;
         
-        List<String> strokes = (data['strokes'] as List).cast<String>();
+        List<String> strokes = [];
         List<List<Offset>> medians = [];
         if (data['medians'] != null) {
+          // Parse medians as points
           medians = (data['medians'] as List).map((m) {
             final pts = (m as List).map((p) => Offset((p as List)[0].toDouble(), (p[1]).toDouble())).toList();
             return CharacterLoader.flipPoints(pts).map(CharacterLoader.transformPoint).toList();
           }).toList();
+          
+          // Construct skeletal SVG paths from the RAW medians so they look like HanziVG (single thick strokes)
+          strokes = (data['medians'] as List).map((m) {
+            final pts = m as List;
+            if (pts.isEmpty) return "";
+            String pathStr = "M ${pts[0][0]} ${pts[0][1]}";
+            for (int i = 1; i < pts.length; i++) {
+              pathStr += " L ${pts[i][0]} ${pts[i][1]}";
+            }
+            return pathStr;
+          }).toList();
         } else {
+          strokes = (data['strokes'] as List).cast<String>();
           medians = await CharacterLoader.parseAndSampleAsync(strokes, interval: 2.0);
         }
         
@@ -358,21 +392,52 @@ class FlashcardRepositoryImpl implements FlashcardRepository {
       
       // The True Original 'Gold' Aesthetics used skeleton paths rendering with PaintStyle.stroke.
       if (_hanziVgDb != null && _hanziVgDb!.containsKey(char)) {
-        final rawStrokes = List<String>.from(_hanziVgDb![char]['paths'] ?? []);
-        if (rawStrokes.isNotEmpty && !rawStrokes.any((s) => s.startsWith('hvg:'))) {
-          strokes = rawStrokes;
+        List<String> resolvePaths(String targetChar) {
+          if (!_hanziVgDb!.containsKey(targetChar)) return [];
+          List<String> rawPaths = List<String>.from(_hanziVgDb![targetChar]['paths'] ?? []);
+          List<String> resolved = [];
+          for (String path in rawPaths) {
+            if (path.startsWith('hvg:')) {
+              String hex = path.substring(4);
+              if (hex.startsWith('0x')) hex = hex.substring(2);
+              int? codePoint = int.tryParse(hex, radix: 16);
+              if (codePoint != null) {
+                resolved.addAll(resolvePaths(String.fromCharCode(codePoint)));
+              }
+            } else {
+              resolved.add(path);
+            }
+          }
+          return resolved;
+        }
+
+        final resolvedStrokes = resolvePaths(char);
+        if (resolvedStrokes.isNotEmpty) {
+          strokes = resolvedStrokes;
           medians = await CharacterLoader.parseAndSampleAsync(strokes, interval: 2.0);
           return {'strokes': strokes, 'medians': medians, 'source': 'hanzivg'};
         }
       } 
       // Fallback: Hanzi Writer
       if (_hsk1StrokesDb != null && _hsk1StrokesDb!.containsKey(char)) {
-        strokes = List<String>.from(_hsk1StrokesDb![char]['strokes'] ?? []);
         if (_hsk1StrokesDb![char]['medians'] != null) {
           medians = (_hsk1StrokesDb![char]['medians'] as List).map((m) {
             final pts = (m as List).map((p) => Offset((p as List)[0].toDouble(), (p[1]).toDouble())).toList();
             return CharacterLoader.flipPoints(pts).map(CharacterLoader.transformPoint).toList();
           }).toList();
+          
+          // Construct skeletal SVG paths from the RAW medians so they look like HanziVG (single thick strokes)
+          strokes = (_hsk1StrokesDb![char]['medians'] as List).map((m) {
+            final pts = m as List;
+            if (pts.isEmpty) return "";
+            String pathStr = "M ${pts[0][0]} ${pts[0][1]}";
+            for (int i = 1; i < pts.length; i++) {
+              pathStr += " L ${pts[i][0]} ${pts[i][1]}";
+            }
+            return pathStr;
+          }).toList();
+        } else {
+          strokes = List<String>.from(_hsk1StrokesDb![char]['strokes'] ?? []);
         }
         return {'strokes': strokes, 'medians': medians, 'source': 'hanzi-writer'};
       }

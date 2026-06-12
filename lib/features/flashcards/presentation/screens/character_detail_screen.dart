@@ -190,6 +190,8 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
     
     final double masteryProgress = (currentCard.streak / 5.0).clamp(0.0, 1.0);
 
+    final bool inLibrary = allCards.any((c) => c.hanzi == widget.card.hanzi);
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -268,7 +270,41 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
                   ],
                 ),
               ),
-              const SizedBox(height: 32),
+              const SizedBox(height: 24),
+              if (!inLibrary)
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton.icon(
+                    onPressed: () {
+                      final newCard = Flashcard(
+                        id: DateTime.now().millisecondsSinceEpoch.toString(),
+                        hanzi: currentCard.hanzi,
+                        pinyin: currentCard.pinyin,
+                        definition: currentCard.definition,
+                        hskLevel: currentCard.hskLevel,
+                        strokePaths: const [],
+                        nextReviewDate: DateTime.now(),
+                        interval: 0,
+                        easeFactor: 2.5,
+                        streak: 0,
+                      );
+                      ref.read(flashcardControllerProvider.notifier).addFlashcard(newCard);
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Added to Study Deck!'), backgroundColor: Colors.green),
+                      );
+                    },
+                    icon: const Icon(Icons.add_circle_outline),
+                    label: const Text("Add to Study Deck"),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.indigo,
+                      foregroundColor: Colors.white,
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                      elevation: 0,
+                    ),
+                  ),
+                ),
+              const SizedBox(height: 24),
               if (_anatomyComponents.isNotEmpty) _buildAnatomySection(context, isDark),
               const SizedBox(height: 16),
               _buildInfoSection(

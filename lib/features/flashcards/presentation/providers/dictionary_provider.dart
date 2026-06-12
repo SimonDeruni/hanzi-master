@@ -1,6 +1,6 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/core/providers.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
@@ -67,7 +67,7 @@ class MasterDictionary extends _$MasterDictionary {
         }
       }
     } catch (e) {
-      print("Dictionary load error: $e");
+      debugPrint("Dictionary load error: $e");
     }
   }
 
@@ -122,7 +122,7 @@ class MasterDictionary extends _$MasterDictionary {
 
 final masterSearchProvider = FutureProvider.family<List<Flashcard>, String>((ref, query) async {
   if (query.isEmpty) return [];
-  final repository = ref.read(flashcardRepositoryProvider);
-  final result = await repository.searchAll(query);
+  final repository = ref.read(globalDictionaryRepositoryProvider);
+  final result = await repository.search(query);
   return result.fold((l) => [], (r) => r);
 });

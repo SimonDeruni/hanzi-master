@@ -4,8 +4,6 @@ import 'package:hanzi_master/core/services/audio_service.dart';
 import 'package:hanzi_master/core/services/speech_service.dart';
 import 'package:hanzi_master/core/services/echo_hall_service.dart';
 import 'package:hanzi_master/shared/widgets/pinyin_text.dart';
-import 'package:hanzi_master/core/services/speech_service.dart';
-import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 
 class DiscoveryStep extends ConsumerStatefulWidget {

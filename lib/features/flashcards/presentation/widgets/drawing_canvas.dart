@@ -503,7 +503,7 @@ class _CompletedStrokesPainter extends CustomPainter {
     final paint = Paint()
       ..color = const Color(0xFF1A1A1B)
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 35.0
+      ..strokeWidth = 46.0
       ..strokeCap = StrokeCap.round
       ..strokeJoin = StrokeJoin.round
       ..isAntiAlias = true;
@@ -531,7 +531,7 @@ class _SnapStrokePainter extends CustomPainter {
     final paint = Paint()
       ..color = Colors.green.withValues(alpha: 0.6)
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 35.0
+      ..strokeWidth = 46.0
       ..strokeCap = StrokeCap.round
       ..strokeJoin = StrokeJoin.round
       ..isAntiAlias = true;
@@ -558,7 +558,7 @@ class _ReferenceStrokePainter extends CustomPainter {
     
     final strokePaint = Paint()
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 35.0
+      ..strokeWidth = 46.0
       ..color = Colors.blue.withValues(alpha: 0.3)
       ..strokeCap = StrokeCap.round
       ..strokeJoin = StrokeJoin.round
@@ -647,12 +647,27 @@ class _UserDrawingPainter extends CustomPainter {
     final scale = size.width / 1000.0;
     const Color carbonInk = Color(0xFF1A1A1B);
     final paint = Paint()..color = gradingResult == null ? carbonInk : (gradingResult! > 40 ? Colors.green : Colors.red)
-      ..strokeWidth = scale * 32.0..strokeCap = StrokeCap.round..style = PaintingStyle.stroke;
-    for (int i = 1; i < points.length; i++) {
-      if (points[i] != null && points[i-1] != null) {
-        canvas.drawLine(Offset((points[i-1]!.dx + centeringShift.dx) * scale, (points[i-1]!.dy + centeringShift.dy) * scale), Offset((points[i]!.dx + centeringShift.dx) * scale, (points[i]!.dy + centeringShift.dy) * scale), paint);
+      ..strokeWidth = scale * 44.0
+      ..strokeCap = StrokeCap.round
+      ..strokeJoin = StrokeJoin.round
+      ..style = PaintingStyle.stroke;
+      
+    final path = Path();
+    bool hasMoved = false;
+    for (int i = 0; i < points.length; i++) {
+      if (points[i] == null) {
+        hasMoved = false;
+        continue;
+      }
+      final pt = Offset((points[i]!.dx + centeringShift.dx) * scale, (points[i]!.dy + centeringShift.dy) * scale);
+      if (!hasMoved) {
+        path.moveTo(pt.dx, pt.dy);
+        hasMoved = true;
+      } else {
+        path.lineTo(pt.dx, pt.dy);
       }
     }
+    canvas.drawPath(path, paint);
   }
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) => true;
@@ -746,7 +761,7 @@ class _ProStrokePainter extends CustomPainter {
         canvas.drawPath(path, Paint()
           ..color = inkColor
           ..style = PaintingStyle.stroke
-          ..strokeWidth = 35.0
+          ..strokeWidth = 46.0
           ..strokeCap = StrokeCap.round
           ..strokeJoin = StrokeJoin.round
           ..isAntiAlias = true);
@@ -755,7 +770,7 @@ class _ProStrokePainter extends CustomPainter {
         canvas.drawPath(path, Paint()
           ..color = inkColor.withAlpha(25)
           ..style = PaintingStyle.stroke
-          ..strokeWidth = 35.0
+          ..strokeWidth = 46.0
           ..strokeCap = StrokeCap.round
           ..strokeJoin = StrokeJoin.round
           ..isAntiAlias = true);
@@ -783,7 +798,7 @@ class _ProStrokePainter extends CustomPainter {
         canvas.drawPath(partialPath, Paint()
           ..color = inkColor
           ..style = PaintingStyle.stroke
-          ..strokeWidth = 35.0
+          ..strokeWidth = 46.0
           ..strokeCap = StrokeCap.round
           ..strokeJoin = StrokeJoin.round
           ..isAntiAlias = true);

@@ -1,3 +1,8 @@
+### [2026-06-12] - 🐛 BUGFIX - Global Dictionary Formatting & Edge Cases
+- **Master Dictionary Rendering:** Fixed an empty-state rendering bug in `DictionaryScreen` that locked users out of the master search UI when their study deck was cleared.
+- **Pinyin Standardization:** Implemented `convertNumericToMarks` in `PinyinUtils` to intercept and clean CC-CEDICT numeric pinyin data (e.g., `jian4` to `jiàn`), ensuring proper tone colorimetry on the Master Dictionary screen.
+- **Stroke Aesthetic Smoothing:** Increased reference stroke width (from 35.0 to 46.0) and upgraded the user drawing renderer to use continuous `Path` objects with `StrokeJoin.round` for a more fluid, ink-like user experience.
+
 ### [2026-06-12] - 🐛 BUGFIX - Extended Characters & Colorimetry
 - **Dynamic Fetching Fallback:** Fixed animation placeholder bugs by changing the fallback CDN to `hanzi-writer-data` and properly parsing outline/median structs, allowing animations for any character outside the bundled data.
 - **Cross-Reference Colorimetry:** Resolved a bug in `CrossReferenceText` where text styles failed to merge with `DefaultTextStyle`, ensuring the Definition and Anatomy cards render properly on both dark and light modes.

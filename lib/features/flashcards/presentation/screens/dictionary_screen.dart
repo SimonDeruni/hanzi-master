@@ -332,13 +332,15 @@ class _CharacterLibraryTab extends ConsumerWidget {
                  card.definition.toLowerCase().contains(query);
         }).toList();
 
-        if (flashcards.isEmpty) {
-          return _buildEmptyState(ref);
-        }
-
-        // Filter out master results that are already in the library
         final libraryHanzi = filteredCards.map((c) => c.hanzi).toSet();
         final extraResults = masterResults.where((c) => !libraryHanzi.contains(c.hanzi)).toList();
+
+        if (flashcards.isEmpty && extraResults.isEmpty) {
+          if (searchQuery.isNotEmpty) {
+            return Center(child: Text("No results found for '$searchQuery'", style: const TextStyle(color: Colors.grey)));
+          }
+          return _buildEmptyState(ref);
+        }
 
         return CustomScrollView(
           slivers: [
@@ -419,7 +421,7 @@ class _CharacterLibraryTab extends ConsumerWidget {
           ),
           const SizedBox(height: 12),
           ElevatedButton.icon(
-            onPressed: () => ref.read(flashcardControllerProvider.notifier).importHsk2(),
+            onPressed: () => ref.read(flashcardControllerProvider.notifier).importLevel(2),
             icon: const Icon(Icons.download_for_offline),
             label: const Text("Import HSK 2"),
             style: ElevatedButton.styleFrom(
@@ -615,23 +617,35 @@ class _DictionaryItem extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  card.hanzi,
-                  style: TextStyle(
-                    fontSize: 56,
-                    fontWeight: FontWeight.bold,
-                    color: isDark ? Colors.white.withValues(alpha: 0.9) : const Color(0xFF2C2C2C), 
-                    height: 1.1,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Text(
+                      card.hanzi,
+                      style: TextStyle(
+                        fontSize: 56,
+                        fontWeight: FontWeight.bold,
+                        color: isDark ? Colors.white.withValues(alpha: 0.9) : const Color(0xFF2C2C2C), 
+                        height: 1.1,
+                      ),
+                    ),
                   ),
                 ),
                 const SizedBox(height: 4),
-                PinyinText(
-                  text: card.pinyin,
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: isDark ? Colors.indigo.shade200 : Colors.indigo.shade900.withValues(alpha: 0.7),
-                    fontWeight: FontWeight.w600,
-                    letterSpacing: 0.5,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: PinyinText(
+                      text: card.pinyin,
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: isDark ? Colors.indigo.shade200 : Colors.indigo.shade900.withValues(alpha: 0.7),
+                        fontWeight: FontWeight.w600,
+                        letterSpacing: 0.5,
+                      ),
+                    ),
                   ),
                 ),
                 CrossReferenceText(
@@ -646,25 +660,26 @@ class _DictionaryItem extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                 ),
                 const SizedBox(height: 8),
-                // QUICK PRACTICE BUTTON
-                SizedBox(
-                  height: 24,
-                  child: TextButton(
-                    onPressed: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => ReviewScreen(card: card)),
-                    ),
-                    style: TextButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(horizontal: 12),
-                      backgroundColor: Colors.indigo.withValues(alpha: 0.1),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                    ),
-                    child: const Text(
-                      "PRACTICE", 
-                      style: TextStyle(fontSize: 9, fontWeight: FontWeight.bold, letterSpacing: 0.5)
+                // QUICK PRACTICE BUTTON (Hidden for global cards)
+                if (!card.id.startsWith('global_'))
+                  SizedBox(
+                    height: 24,
+                    child: TextButton(
+                      onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => ReviewScreen(card: card)),
+                      ),
+                      style: TextButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(horizontal: 12),
+                        backgroundColor: Colors.indigo.withValues(alpha: 0.1),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                      ),
+                      child: const Text(
+                        "PRACTICE", 
+                        style: TextStyle(fontSize: 9, fontWeight: FontWeight.bold, letterSpacing: 0.5)
+                      ),
                     ),
                   ),
-                ),
               ],
             ),
           ),

@@ -44,7 +44,6 @@ class _EchoHallScreenState extends ConsumerState<EchoHallScreen> {
 
     // Zen & Ink Design Tokens
     const Color xuanPaper = Color(0xFFFDFCF0);
-    const Color carbonInk = Color(0xFF1A1A1B);
 
     ref.listen(chatControllerProvider, (previous, next) {
       if (next.messages.length != (previous?.messages.length ?? 0)) {
@@ -241,7 +240,7 @@ class _EchoHallScreenState extends ConsumerState<EchoHallScreen> {
                 setState(() => _showCustomPromptField = false);
               }
             },
-            icon: const Icon(Icons.check, size: 20),
+            icon: const Icon(Icons.send_rounded, color: Colors.white, size: 20),
             style: IconButton.styleFrom(
               backgroundColor: carbonInk,
               foregroundColor: xuanPaper,

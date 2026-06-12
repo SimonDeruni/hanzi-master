@@ -80,20 +80,20 @@ class FlashcardController extends _$FlashcardController {
     );
   }
 
-  Future<void> importHsk2() async {
+  Future<void> importLevel(int level) async {
     state = const AsyncValue.loading();
     final repository = ref.read(flashcardRepositoryProvider);
-    final result = await repository.importHsk2();
+    final result = await repository.importLevel(level);
     result.fold(
       (failure) => state = AsyncValue.error(failure, StackTrace.current),
       (_) => ref.invalidateSelf(),
     );
   }
 
-  Future<void> uninstallHsk2() async {
+  Future<void> uninstallLevel(int level) async {
     state = const AsyncValue.loading();
     final repository = ref.read(flashcardRepositoryProvider);
-    final result = await repository.deleteFlashcardsByLevel(2);
+    final result = await repository.deleteFlashcardsByLevel(level);
     result.fold(
       (failure) => state = AsyncValue.error(failure, StackTrace.current),
       (_) => ref.invalidateSelf(),

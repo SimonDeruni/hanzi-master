@@ -5,6 +5,7 @@ import 'package:hanzi_master/features/flashcards/data/repositories/flashcard_rep
 import 'package:hanzi_master/features/flashcards/domain/repositories/flashcard_repository.dart';
 import 'package:hanzi_master/features/course/data/repositories/course_repository_impl.dart';
 import 'package:hanzi_master/features/course/domain/repositories/course_repository.dart';
+import 'package:hanzi_master/features/flashcards/data/repositories/global_dictionary_repository.dart';
 
 // 1. Provider for the Hive Box (The physical database box)
 final hiveBoxProvider = Provider<Box<FlashcardModel>>((ref) {
@@ -19,4 +20,8 @@ final flashcardRepositoryProvider = Provider<FlashcardRepository>((ref) {
 
 final courseRepositoryProvider = Provider<CourseRepository>((ref) {
   return CourseRepositoryImpl();
+});
+
+final globalDictionaryRepositoryProvider = Provider<GlobalDictionaryRepository>((ref) {
+  return GlobalDictionaryRepository();
 });

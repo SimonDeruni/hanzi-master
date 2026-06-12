@@ -23,3 +23,5 @@
 | 2026-06-12      | **Drawing Scaling & Centering (P0)**: HanziVG characters rendering at 10% size and guides misaligning due to hardcoded 1024 viewBox assumptions. | ✅ FIXED (2026-06-12) |
 | 2026-06-12      | **Broken Animation Fallback (P1)**: The online character fallback tried to fetch from a non-existent `animcjk-data` NPM directory. | ✅ FIXED (2026-06-12) |
 | 2026-06-12      | **UI Colorimetry (P2)**: `CrossReferenceText` was forcing white text on light backgrounds due to failing to inherit `DefaultTextStyle`. | ✅ FIXED (2026-06-12) |
+| 2026-06-12      | **Master Dictionary Lockout (P0)**: Clearing the study deck triggered an empty-state screen that completely obscured Master Dictionary search results. | ✅ FIXED (2026-06-12) |
+| 2026-06-12      | **Numeric Pinyin Artifacts (P2)**: CC-CEDICT fallback data displayed uncolored numeric pinyin (e.g. jian4) instead of tone marks. | ✅ FIXED (2026-06-12) |

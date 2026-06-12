@@ -16,7 +16,7 @@ abstract class FlashcardRepository {
     Future<Either<String, void>> deleteFlashcard(String id);
     Future<Either<String, void>> deleteFlashcardsByLevel(int level);
     Future<Either<String, void>> importHsk1();
-    Future<Either<String, void>> importHsk2();
+    Future<Either<String, void>> importLevel(int level);
     
     // 🚀 PRE-WARMING
     Future<void> preloadDatabases();

@@ -31,9 +31,63 @@ class PinyinUtils {
     return 5; // Neutral tone
   }
 
+  static const Map<String, String> _vowelMap = {
+    'a1': 'ā', 'a2': 'á', 'a3': 'ǎ', 'a4': 'à',
+    'e1': 'ē', 'e2': 'é', 'e3': 'ě', 'e4': 'è',
+    'i1': 'ī', 'i2': 'í', 'i3': 'ǐ', 'i4': 'ì',
+    'o1': 'ō', 'o2': 'ó', 'o3': 'ǒ', 'o4': 'ò',
+    'u1': 'ū', 'u2': 'ú', 'u3': 'ǔ', 'u4': 'ù',
+    'ü1': 'ǖ', 'ü2': 'ǘ', 'ü3': 'ǚ', 'ü4': 'ǜ',
+  };
+
+  /// Converts numeric pinyin (e.g. "jian4", "lu:4") to tone marks (e.g. "jiàn", "lǜ")
+  static String convertNumericToMarks(String text) {
+    // CC-CEDICT uses u: for ü
+    String processed = text.replaceAll('u:', 'ü');
+    
+    return processed.replaceAllMapped(RegExp(r'([a-zA-ZüÜ]+)([1-5])'), (match) {
+      String word = match.group(1)!;
+      int tone = int.parse(match.group(2)!);
+      
+      if (tone == 5) return word; // Neutral tone has no mark
+      
+      String lowerWord = word.toLowerCase();
+      int targetIdx = -1;
+      
+      if (lowerWord.contains('a')) {
+        targetIdx = lowerWord.indexOf('a');
+      } else if (lowerWord.contains('e')) {
+        targetIdx = lowerWord.indexOf('e');
+      } else if (lowerWord.contains('ou')) {
+        targetIdx = lowerWord.indexOf('o');
+      } else {
+        // Find the last vowel
+        for (int i = lowerWord.length - 1; i >= 0; i--) {
+          if ('aeiouü'.contains(lowerWord[i])) {
+            targetIdx = i;
+            break;
+          }
+        }
+      }
+      
+      if (targetIdx != -1) {
+        String vowel = word[targetIdx];
+        bool isUpper = vowel == vowel.toUpperCase();
+        String vKey = "${vowel.toLowerCase()}$tone";
+        String markedVowel = _vowelMap[vKey] ?? vowel;
+        if (isUpper) markedVowel = markedVowel.toUpperCase();
+        
+        return word.substring(0, targetIdx) + markedVowel + word.substring(targetIdx + 1);
+      }
+      
+      return word;
+    });
+  }
+
   /// Tokenizes a string (which may contain multiple syllables, punctuation, and spaces)
   /// into a list of Map objects containing the text and its tone.
-  static List<Map<String, dynamic>> tokenize(String text) {
+  static List<Map<String, dynamic>> tokenize(String rawText) {
+    final String text = convertNumericToMarks(rawText);
     final List<Map<String, dynamic>> tokens = [];
     
     // Improved Regex to match individual pinyin syllables more accurately.
