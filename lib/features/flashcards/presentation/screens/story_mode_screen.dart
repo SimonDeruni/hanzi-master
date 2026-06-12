@@ -7,6 +7,8 @@ import 'package:hanzi_master/core/providers.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/dictionary_quick_box.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 
+import 'package:flutter_tts/flutter_tts.dart';
+
 final storyProvider = FutureProvider.family<AiStory, ({String deckId, String deckName, String vocabString, bool force})>((ref, args) async {
   final gemini = ref.read(geminiServiceProvider);
   return await gemini.generateStory(args.deckId, args.deckName, args.vocabString.split(','), forceRegenerate: args.force);
@@ -24,6 +26,41 @@ class StoryModeScreen extends ConsumerStatefulWidget {
 
 class _StoryModeScreenState extends ConsumerState<StoryModeScreen> {
   bool _forceRegenerate = false;
+  final FlutterTts _flutterTts = FlutterTts();
+  bool _isPlaying = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _initTts();
+  }
+
+  Future<void> _initTts() async {
+    await _flutterTts.setLanguage("zh-CN");
+    await _flutterTts.setSpeechRate(0.4);
+    await _flutterTts.setPitch(1.0);
+    
+    _flutterTts.setCompletionHandler(() {
+      if (mounted) setState(() => _isPlaying = false);
+    });
+  }
+
+  @override
+  void dispose() {
+    _flutterTts.stop();
+    super.dispose();
+  }
+
+  Future<void> _togglePlay(AiStory story) async {
+    if (_isPlaying) {
+      await _flutterTts.stop();
+      if (mounted) setState(() => _isPlaying = false);
+    } else {
+      if (mounted) setState(() => _isPlaying = true);
+      final text = story.sentences.map((s) => s.chinese).join(' ');
+      await _flutterTts.speak(text);
+    }
+  }
 
   Future<void> _handleWordLongPress(BuildContext context, WidgetRef ref, String word) async {
     if (word.isEmpty) return;
@@ -302,6 +339,11 @@ class _StoryModeScreenState extends ConsumerState<StoryModeScreen> {
           ),
         ),
       ),
+      floatingActionButton: asyncStory.hasValue && !asyncStory.hasError ? FloatingActionButton(
+        onPressed: () => _togglePlay(asyncStory.value!),
+        backgroundColor: _isPlaying ? Colors.red : Colors.purple,
+        child: Icon(_isPlaying ? Icons.stop : Icons.volume_up, color: Colors.white),
+      ) : null,
     );
   }
 }
