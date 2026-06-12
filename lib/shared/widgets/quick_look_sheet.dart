@@ -7,15 +7,19 @@ import 'package:hanzi_master/features/flashcards/presentation/screens/character_
 
 /// Shows a compact "Quick Look" bottom sheet for a single Chinese character.
 void showQuickLook(BuildContext context, String hanzi) {
-  // Only trigger for a single CJK character
   if (hanzi.isEmpty) return;
   showModalBottomSheet(
     context: context,
     backgroundColor: Colors.transparent,
     isScrollControlled: true,
+    useSafeArea: true,
     builder: (ctx) => _QuickLookSheet(hanzi: hanzi),
   );
 }
+
+// ---------------------------------------------------------------------------
+// Shell — handles loading / error / found states
+// ---------------------------------------------------------------------------
 
 class _QuickLookSheet extends ConsumerWidget {
   final String hanzi;
@@ -24,208 +28,260 @@ class _QuickLookSheet extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final bgColor = isDark ? const Color(0xFF1E1E1F) : const Color(0xFFFDFCF0);
-    final textColor = isDark ? Colors.white : const Color(0xFF1A1A1B);
-
     final asyncCard = ref.watch(quickLookProvider(hanzi));
     final asyncCommon = ref.watch(commonWordsProvider(hanzi));
     final allCards = ref.watch(flashcardControllerProvider).value ?? [];
     final inDeck = allCards.any((c) => c.hanzi == hanzi);
 
-    return Container(
-      constraints: BoxConstraints(
-        maxHeight: MediaQuery.of(context).size.height * 0.55,
+    return _SheetShell(
+      isDark: isDark,
+      child: asyncCard.when(
+        loading: () => _LoadingBody(isDark: isDark),
+        error: (_, __) => _NotFoundBody(hanzi: hanzi, isDark: isDark),
+        data: (card) => card == null
+            ? _NotFoundBody(hanzi: hanzi, isDark: isDark)
+            : _FoundBody(
+                card: card,
+                isDark: isDark,
+                inDeck: inDeck,
+                asyncCommon: asyncCommon,
+              ),
       ),
+    );
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Shared shell — rounded sheet with drag handle and gradient header zone
+// ---------------------------------------------------------------------------
+
+class _SheetShell extends StatelessWidget {
+  final bool isDark;
+  final Widget child;
+  const _SheetShell({required this.isDark, required this.child});
+
+  @override
+  Widget build(BuildContext context) {
+    final bg = isDark ? const Color(0xFF1C1C1E) : const Color(0xFFFDFCF0);
+    return Container(
       decoration: BoxDecoration(
-        color: bgColor,
-        borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+        color: bg,
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(28)),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.18),
-            blurRadius: 24,
-            offset: const Offset(0, -4),
+            color: Colors.black.withValues(alpha: 0.22),
+            blurRadius: 32,
+            offset: const Offset(0, -6),
           ),
         ],
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          // ── Drag handle ──────────────────────────────────────────────
+          // Drag handle
           Padding(
-            padding: const EdgeInsets.only(top: 10, bottom: 4),
+            padding: const EdgeInsets.only(top: 10, bottom: 6),
             child: Container(
-              width: 36,
+              width: 40,
               height: 4,
               decoration: BoxDecoration(
-                color: Colors.grey.withValues(alpha: 0.3),
+                color: Colors.grey.withValues(alpha: isDark ? 0.4 : 0.28),
                 borderRadius: BorderRadius.circular(2),
               ),
             ),
           ),
-
-          Flexible(
-            child: asyncCard.when(
-              loading: () => const Padding(
-                padding: EdgeInsets.all(48),
-                child: Center(child: CircularProgressIndicator(color: Colors.indigo)),
-              ),
-              error: (e, _) => Padding(
-                padding: const EdgeInsets.all(32),
-                child: Text('Not found in dictionary', style: TextStyle(color: textColor.withValues(alpha: 0.5))),
-              ),
-              data: (card) {
-                if (card == null) {
-                  return Padding(
-                    padding: const EdgeInsets.all(32),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(hanzi, style: const TextStyle(fontSize: 56, fontWeight: FontWeight.w200, color: Colors.indigo)),
-                        const SizedBox(height: 12),
-                        Text('Not found in dictionary', style: TextStyle(color: textColor.withValues(alpha: 0.5), fontSize: 14)),
-                      ],
-                    ),
-                  );
-                }
-                return _QuickLookContent(
-                  card: card,
-                  isDark: isDark,
-                  bgColor: bgColor,
-                  textColor: textColor,
-                  inDeck: inDeck,
-                  asyncCommon: asyncCommon,
-                );
-              },
-            ),
-          ),
+          child,
         ],
       ),
     );
   }
 }
 
-class _QuickLookContent extends ConsumerWidget {
+// ---------------------------------------------------------------------------
+// Loading state
+// ---------------------------------------------------------------------------
+
+class _LoadingBody extends StatelessWidget {
+  final bool isDark;
+  const _LoadingBody({required this.isDark});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Padding(
+      padding: EdgeInsets.symmetric(vertical: 56),
+      child: Center(
+        child: CircularProgressIndicator(color: Colors.indigo, strokeWidth: 2),
+      ),
+    );
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Not found state
+// ---------------------------------------------------------------------------
+
+class _NotFoundBody extends StatelessWidget {
+  final String hanzi;
+  final bool isDark;
+  const _NotFoundBody({required this.hanzi, required this.isDark});
+
+  @override
+  Widget build(BuildContext context) {
+    final textColor = isDark ? Colors.white : const Color(0xFF1A1A1B);
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(24, 16, 24, 40),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          _CharacterHero(hanzi: hanzi, isDark: isDark, pinyin: '', hskLevel: 0),
+          const SizedBox(height: 16),
+          Text(
+            'Not found in dictionary',
+            style: TextStyle(
+              color: textColor.withValues(alpha: 0.45),
+              fontSize: 14,
+              fontStyle: FontStyle.italic,
+            ),
+          ),
+          const SizedBox(height: 16),
+        ],
+      ),
+    );
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Main content when character is found
+// ---------------------------------------------------------------------------
+
+class _FoundBody extends ConsumerWidget {
   final Flashcard card;
   final bool isDark;
-  final Color bgColor;
-  final Color textColor;
   final bool inDeck;
   final AsyncValue<List<Flashcard>> asyncCommon;
 
-  const _QuickLookContent({
+  const _FoundBody({
     required this.card,
     required this.isDark,
-    required this.bgColor,
-    required this.textColor,
     required this.inDeck,
     required this.asyncCommon,
   });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return SingleChildScrollView(
-      padding: const EdgeInsets.fromLTRB(24, 8, 24, 24),
+    final textColor = isDark ? Colors.white : const Color(0xFF1A1A1B);
+
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(20, 8, 20, 28),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // ── Character + pinyin + definition ──────────────────────────
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              // Big character
-              Text(
-                card.hanzi,
-                style: const TextStyle(
-                  fontSize: 64,
-                  fontWeight: FontWeight.w200,
-                  color: Colors.indigo,
-                  height: 1,
-                ),
-              ),
-              const SizedBox(width: 16),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // Pinyin
-                    Text(
-                      card.pinyin,
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.indigo.withValues(alpha: 0.8),
-                        fontStyle: FontStyle.italic,
-                        letterSpacing: 0.3,
-                      ),
-                    ),
-                    const SizedBox(height: 4),
-                    // HSK badge
-                    if (card.hskLevel > 0)
-                      Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
-                        decoration: BoxDecoration(
-                          color: Colors.indigo.withValues(alpha: 0.12),
-                          borderRadius: BorderRadius.circular(6),
-                        ),
-                        child: Text(
-                          'HSK ${card.hskLevel}',
-                          style: const TextStyle(
-                            fontSize: 11,
-                            color: Colors.indigo,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ),
-                  ],
-                ),
-              ),
-            ],
+          // ── Character hero panel ─────────────────────────────────────
+          _CharacterHero(
+            hanzi: card.hanzi,
+            isDark: isDark,
+            pinyin: card.pinyin,
+            hskLevel: card.hskLevel,
           ),
 
-          const SizedBox(height: 10),
-          // ── Definition ────────────────────────────────────────────────
+          const SizedBox(height: 16),
+
+          // ── Definition ───────────────────────────────────────────────
           Text(
             card.definition,
             style: TextStyle(
-              fontSize: 15,
-              color: textColor.withValues(alpha: 0.85),
-              height: 1.5,
+              fontSize: 15.5,
+              color: textColor.withValues(alpha: 0.88),
+              height: 1.55,
             ),
             maxLines: 3,
             overflow: TextOverflow.ellipsis,
           ),
 
-          // ── Common compound words ─────────────────────────────────────
+          // ── Compound words ───────────────────────────────────────────
           asyncCommon.maybeWhen(
             data: (words) {
               if (words.isEmpty) return const SizedBox.shrink();
-              final shown = words.take(3).toList();
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 14),
-                  Divider(color: Colors.indigo.withValues(alpha: 0.1), height: 1),
-                  const SizedBox(height: 12),
-                  Wrap(
-                    spacing: 8,
-                    runSpacing: 6,
-                    children: shown.map((w) => GestureDetector(
-                      onTap: () {
-                        Navigator.pop(context);
-                        showQuickLook(context, w.hanzi);
-                      },
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                  Row(
+                    children: [
+                      Container(
+                        width: 3,
+                        height: 13,
                         decoration: BoxDecoration(
-                          color: Colors.indigo.withValues(alpha: isDark ? 0.15 : 0.07),
-                          borderRadius: BorderRadius.circular(20),
-                          border: Border.all(color: Colors.indigo.withValues(alpha: 0.18)),
-                        ),
-                        child: Text(
-                          '${w.hanzi}  ${w.pinyin}',
-                          style: const TextStyle(fontSize: 13, color: Colors.indigo, fontWeight: FontWeight.w500),
+                          color: Colors.indigo.withValues(alpha: 0.5),
+                          borderRadius: BorderRadius.circular(2),
                         ),
                       ),
-                    )).toList(),
+                      const SizedBox(width: 7),
+                      Text(
+                        'Also seen in',
+                        style: TextStyle(
+                          fontSize: 11.5,
+                          fontWeight: FontWeight.w600,
+                          letterSpacing: 0.6,
+                          color: textColor.withValues(alpha: 0.45),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 8),
+                  SizedBox(
+                    height: 36,
+                    child: ListView.separated(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: words.take(5).length,
+                      separatorBuilder: (_, __) => const SizedBox(width: 8),
+                      itemBuilder: (ctx, i) {
+                        final w = words.toList()[i];
+                        return GestureDetector(
+                          onTap: () {
+                            Navigator.pop(context);
+                            showQuickLook(context, w.hanzi);
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 12, vertical: 6),
+                            decoration: BoxDecoration(
+                              color: Colors.indigo
+                                  .withValues(alpha: isDark ? 0.18 : 0.08),
+                              borderRadius: BorderRadius.circular(20),
+                              border: Border.all(
+                                  color: Colors.indigo
+                                      .withValues(alpha: isDark ? 0.3 : 0.18)),
+                            ),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(
+                                  w.hanzi,
+                                  style: const TextStyle(
+                                    fontSize: 15,
+                                    color: Colors.indigo,
+                                    fontWeight: FontWeight.w600,
+                                    height: 1,
+                                  ),
+                                ),
+                                const SizedBox(width: 5),
+                                Text(
+                                  w.pinyin,
+                                  style: TextStyle(
+                                    fontSize: 11.5,
+                                    color:
+                                        Colors.indigo.withValues(alpha: 0.65),
+                                    height: 1,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    ),
                   ),
                 ],
               );
@@ -234,61 +290,258 @@ class _QuickLookContent extends ConsumerWidget {
           ),
 
           const SizedBox(height: 20),
+
           // ── Action buttons ────────────────────────────────────────────
           Row(
             children: [
-              // Add to deck
+              // Add / In Deck button
               Expanded(
-                child: OutlinedButton.icon(
-                  onPressed: inDeck ? null : () async {
-                    await ref.read(flashcardControllerProvider.notifier).addFlashcard(card);
-                    if (context.mounted) {
-                      Navigator.pop(context);
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text('${card.hanzi} added to your deck!'),
-                          backgroundColor: Colors.indigo,
-                          behavior: SnackBarBehavior.floating,
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                        ),
-                      );
-                    }
-                  },
-                  icon: Icon(inDeck ? Icons.check : Icons.bookmark_add_outlined, size: 18),
-                  label: Text(inDeck ? 'In Deck' : 'Add to Deck'),
-                  style: OutlinedButton.styleFrom(
-                    foregroundColor: inDeck ? Colors.grey : Colors.indigo,
-                    side: BorderSide(color: inDeck ? Colors.grey.withValues(alpha: 0.3) : Colors.indigo.withValues(alpha: 0.4)),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                    padding: const EdgeInsets.symmetric(vertical: 12),
-                  ),
+                child: _ActionButton(
+                  label: inDeck ? 'In Deck ✓' : '+ Add to Deck',
+                  isPrimary: false,
+                  isDisabled: inDeck,
+                  onTap: inDeck
+                      ? null
+                      : () async {
+                          await ref
+                              .read(flashcardControllerProvider.notifier)
+                              .addFlashcard(card);
+                          if (context.mounted) {
+                            Navigator.pop(context);
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text('${card.hanzi} added!'),
+                                backgroundColor: Colors.indigo,
+                                behavior: SnackBarBehavior.floating,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(12)),
+                              ),
+                            );
+                          }
+                        },
                 ),
               ),
               const SizedBox(width: 10),
-              // Full card
+              // Full card button
               Expanded(
-                child: ElevatedButton.icon(
-                  onPressed: () {
+                child: _ActionButton(
+                  label: 'Open Card →',
+                  isPrimary: true,
+                  isDisabled: false,
+                  onTap: () {
                     Navigator.pop(context);
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (_) => CharacterDetailScreen(card: card)),
+                      MaterialPageRoute(
+                          builder: (_) => CharacterDetailScreen(card: card)),
                     );
                   },
-                  icon: const Icon(Icons.open_in_new, size: 18),
-                  label: const Text('Full Card'),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.indigo,
-                    foregroundColor: Colors.white,
-                    elevation: 0,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                    padding: const EdgeInsets.symmetric(vertical: 12),
-                  ),
                 ),
               ),
             ],
           ),
         ],
+      ),
+    );
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Character Hero — the gradient spotlight panel
+// ---------------------------------------------------------------------------
+
+class _CharacterHero extends StatelessWidget {
+  final String hanzi;
+  final String pinyin;
+  final int hskLevel;
+  final bool isDark;
+
+  const _CharacterHero({
+    required this.hanzi,
+    required this.pinyin,
+    required this.hskLevel,
+    required this.isDark,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: isDark
+              ? [
+                  Colors.indigo.shade900.withValues(alpha: 0.6),
+                  Colors.indigo.shade800.withValues(alpha: 0.2),
+                ]
+              : [
+                  Colors.indigo.shade50,
+                  Colors.indigo.shade100.withValues(alpha: 0.3),
+                ],
+        ),
+        border: Border.all(
+          color: Colors.indigo.withValues(alpha: isDark ? 0.3 : 0.15),
+        ),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          // Large character
+          Text(
+            hanzi,
+            style: TextStyle(
+              fontSize: 72,
+              fontWeight: FontWeight.w100,
+              color: isDark ? Colors.white : Colors.indigo.shade800,
+              height: 1,
+              shadows: [
+                Shadow(
+                  color: Colors.indigo.withValues(alpha: isDark ? 0.4 : 0.15),
+                  blurRadius: 16,
+                  offset: const Offset(0, 4),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(width: 18),
+          // Pinyin + badges
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                if (pinyin.isNotEmpty)
+                  Text(
+                    pinyin,
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w300,
+                      color: isDark
+                          ? Colors.white70
+                          : Colors.indigo.shade700,
+                      fontStyle: FontStyle.italic,
+                      letterSpacing: 0.5,
+                    ),
+                  ),
+                const SizedBox(height: 8),
+                Row(
+                  children: [
+                    if (hskLevel > 0)
+                      _Badge(
+                        label: 'HSK $hskLevel',
+                        color: Colors.indigo,
+                        isDark: isDark,
+                      ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Small badge chip
+// ---------------------------------------------------------------------------
+
+class _Badge extends StatelessWidget {
+  final String label;
+  final Color color;
+  final bool isDark;
+  const _Badge({required this.label, required this.color, required this.isDark});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+      decoration: BoxDecoration(
+        color: color.withValues(alpha: isDark ? 0.25 : 0.12),
+        borderRadius: BorderRadius.circular(6),
+        border: Border.all(color: color.withValues(alpha: isDark ? 0.5 : 0.3)),
+      ),
+      child: Text(
+        label,
+        style: TextStyle(
+          fontSize: 11,
+          fontWeight: FontWeight.w700,
+          color: isDark ? Colors.white70 : color,
+          letterSpacing: 0.5,
+        ),
+      ),
+    );
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Action button — primary (indigo filled) or secondary (outlined)
+// ---------------------------------------------------------------------------
+
+class _ActionButton extends StatelessWidget {
+  final String label;
+  final bool isPrimary;
+  final bool isDisabled;
+  final VoidCallback? onTap;
+
+  const _ActionButton({
+    required this.label,
+    required this.isPrimary,
+    required this.isDisabled,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final effectiveColor = isDisabled ? Colors.grey : Colors.indigo;
+
+    return GestureDetector(
+      onTap: onTap,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 150),
+        height: 52,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          color: isPrimary
+              ? (isDisabled
+                  ? Colors.grey.shade300
+                  : Colors.indigo)
+              : Colors.transparent,
+          borderRadius: BorderRadius.circular(16),
+          border: isPrimary
+              ? null
+              : Border.all(
+                  color: effectiveColor.withValues(alpha: 0.4),
+                  width: 1.5,
+                ),
+          boxShadow: isPrimary && !isDisabled
+              ? [
+                  BoxShadow(
+                    color: Colors.indigo.withValues(alpha: 0.35),
+                    blurRadius: 12,
+                    offset: const Offset(0, 4),
+                  ),
+                ]
+              : null,
+        ),
+        child: Text(
+          label,
+          style: TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.w600,
+            color: isPrimary
+                ? Colors.white
+                : (isDisabled
+                    ? Colors.grey
+                    : Colors.indigo),
+            letterSpacing: 0.2,
+          ),
+        ),
       ),
     );
   }

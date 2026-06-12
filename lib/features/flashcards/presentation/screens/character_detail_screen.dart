@@ -638,16 +638,24 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
           child: Wrap(
             spacing: 8,
             runSpacing: 8,
-            children: words.map((w) => ActionChip(
-              label: TappableHanziText(
-                '${w.hanzi} (${w.pinyin})',
-                style: const TextStyle(fontWeight: FontWeight.bold),
+            children: words.map((w) => GestureDetector(
+              onTap: () => showQuickLook(context, w.hanzi),
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
+                decoration: BoxDecoration(
+                  color: isDark ? Colors.indigo.shade900.withValues(alpha: 0.3) : Colors.indigo.shade50,
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(color: Colors.indigo.withValues(alpha: isDark ? 0.25 : 0.15)),
+                ),
+                child: Text(
+                  '${w.hanzi}  ${w.pinyin}',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 14,
+                    color: isDark ? Colors.white : Colors.indigo.shade800,
+                  ),
+                ),
               ),
-              backgroundColor: isDark ? Colors.indigo.shade900.withValues(alpha: 0.3) : Colors.indigo.shade50,
-              side: BorderSide.none,
-              onPressed: () {
-                showQuickLook(context, w.hanzi);
-              },
             )).toList(),
           ),
         );

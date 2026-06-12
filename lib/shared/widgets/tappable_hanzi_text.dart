@@ -2,14 +2,56 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
 
-/// Regex matching a single CJK Unified Ideograph (basic + Extension A/B blocks).
-final _cjkPattern = RegExp(r'[\u4e00-\u9fff\u3400-\u4dbf\u{20000}-\u{2a6df}]', unicode: true);
+/// CJK Unified Ideographs: basic block + Ext-A + Compatibility Ideographs.
+/// Covers the vast majority of characters used in modern Chinese.
+final _cjkPattern = RegExp(
+  r'[\u4e00-\u9fff'    // CJK Unified Ideographs (basic — most common)
+  r'\u3400-\u4dbf'    // CJK Extension A
+  r'\uf900-\ufaff'    // CJK Compatibility Ideographs
+  r'\u3005'           // 々 (iteration mark)
+  r']',
+  unicode: true,
+);
 
-/// A text widget that makes every CJK character individually tappable.
-/// Tap any Chinese character to open the Quick Look sheet.
-///
-/// Drop-in replacement for [Text] / [RichText].
-class TappableHanziText extends StatelessWidget {
+// ---------------------------------------------------------------------------
+// StatefulWidget base — manages TapGestureRecognizer lifecycle correctly.
+// Creating recognizers in a StatelessWidget causes gesture arena corruption
+// because they are never disposed when the widget rebuilds.
+// ---------------------------------------------------------------------------
+
+abstract class _TappableBase extends StatefulWidget {
+  const _TappableBase({super.key});
+}
+
+abstract class _TappableBaseState<T extends _TappableBase> extends State<T> {
+  final List<TapGestureRecognizer> _recognizers = [];
+
+  void _disposeRecognizers() {
+    for (final r in _recognizers) {
+      r.dispose();
+    }
+    _recognizers.clear();
+  }
+
+  TapGestureRecognizer _makeRecognizer(String char) {
+    final r = TapGestureRecognizer()
+      ..onTap = () => showQuickLook(context, char);
+    _recognizers.add(r);
+    return r;
+  }
+
+  @override
+  void dispose() {
+    _disposeRecognizers();
+    super.dispose();
+  }
+}
+
+// ---------------------------------------------------------------------------
+// TappableHanziText — drop-in for plain Text widgets.
+// ---------------------------------------------------------------------------
+
+class TappableHanziText extends _TappableBase {
   final String text;
   final TextStyle? style;
   final TextAlign textAlign;
@@ -25,59 +67,81 @@ class TappableHanziText extends StatelessWidget {
     this.overflow,
   });
 
-  List<InlineSpan> _buildSpans(BuildContext context, TextStyle resolved) {
+  @override
+  State<TappableHanziText> createState() => _TappableHanziTextState();
+}
+
+class _TappableHanziTextState extends _TappableBaseState<TappableHanziText> {
+  List<InlineSpan>? _spans;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _rebuildSpans();
+  }
+
+  @override
+  void didUpdateWidget(TappableHanziText old) {
+    super.didUpdateWidget(old);
+    if (old.text != widget.text || old.style != widget.style) {
+      _rebuildSpans();
+    }
+  }
+
+  void _rebuildSpans() {
+    _disposeRecognizers();
+    final resolved = DefaultTextStyle.of(context).style.merge(widget.style);
+    _spans = _buildSpans(resolved);
+  }
+
+  List<InlineSpan> _buildSpans(TextStyle resolved) {
     final spans = <InlineSpan>[];
     int cursor = 0;
-
-    for (final match in _cjkPattern.allMatches(text)) {
-      // Plain text before this CJK character
+    for (final match in _cjkPattern.allMatches(widget.text)) {
       if (match.start > cursor) {
         spans.add(TextSpan(
-          text: text.substring(cursor, match.start),
+          text: widget.text.substring(cursor, match.start),
           style: resolved,
         ));
       }
-
       final char = match.group(0)!;
-
-      // Tappable CJK character
       spans.add(TextSpan(
         text: char,
         style: resolved.copyWith(
           decoration: TextDecoration.underline,
-          decorationColor: Colors.indigo.withValues(alpha: 0.4),
+          decorationColor: Colors.indigo.withValues(alpha: 0.35),
           decorationStyle: TextDecorationStyle.dotted,
         ),
-        recognizer: TapGestureRecognizer()
-          ..onTap = () => showQuickLook(context, char),
+        recognizer: _makeRecognizer(char),
       ));
-
       cursor = match.end;
     }
-
-    // Remaining plain text
-    if (cursor < text.length) {
-      spans.add(TextSpan(text: text.substring(cursor), style: resolved));
+    if (cursor < widget.text.length) {
+      spans.add(TextSpan(text: widget.text.substring(cursor), style: resolved));
     }
-
-    return spans.isEmpty ? [TextSpan(text: text, style: resolved)] : spans;
+    return spans.isEmpty
+        ? [TextSpan(text: widget.text, style: resolved)]
+        : spans;
   }
 
   @override
   Widget build(BuildContext context) {
-    final resolved = DefaultTextStyle.of(context).style.merge(style);
+    final spans = _spans ?? [];
     return RichText(
-      textAlign: textAlign,
-      maxLines: maxLines,
-      overflow: overflow ?? TextOverflow.clip,
-      text: TextSpan(children: _buildSpans(context, resolved)),
+      textAlign: widget.textAlign,
+      maxLines: widget.maxLines,
+      overflow: widget.overflow ?? TextOverflow.clip,
+      text: TextSpan(children: spans),
     );
   }
 }
 
-/// A variant that also parses **bold**, *italic* and `code` markdown,
-/// AND makes CJK characters tappable. Used in AI chat bubbles.
-class TappableMarkdownHanziText extends StatelessWidget {
+// ---------------------------------------------------------------------------
+// TappableMarkdownHanziText — parses **bold**, *italic*, `code` AND makes
+// every CJK character tappable. Used in AI chat bubbles.
+// ---------------------------------------------------------------------------
+
+class TappableMarkdownHanziText extends _TappableBase {
   final String text;
   final TextStyle? style;
   final TextAlign textAlign;
@@ -89,70 +153,105 @@ class TappableMarkdownHanziText extends StatelessWidget {
     this.textAlign = TextAlign.start,
   });
 
-  static final _mdPattern = RegExp(r'\*\*(.+?)\*\*|\*(.+?)\*|`(.+?)`');
+  @override
+  State<TappableMarkdownHanziText> createState() =>
+      _TappableMarkdownHanziTextState();
+}
 
-  List<InlineSpan> _buildSpans(BuildContext context, TextStyle base) {
-    final all = <InlineSpan>[];
+class _TappableMarkdownHanziTextState
+    extends _TappableBaseState<TappableMarkdownHanziText> {
+  static final _mdPattern =
+      RegExp(r'\*\*(.+?)\*\*|\*(.+?)\*|`(.+?)`', dotAll: false);
 
-    // First split on markdown tokens, then sub-split each segment on CJK
-    int last = 0;
-    void addCjkSpans(String segment, TextStyle segStyle) {
-      int c = 0;
-      for (final m in _cjkPattern.allMatches(segment)) {
-        if (m.start > c) {
-          all.add(TextSpan(text: segment.substring(c, m.start), style: segStyle));
-        }
-        final char = m.group(0)!;
-        all.add(TextSpan(
-          text: char,
-          style: segStyle.copyWith(
-            decoration: TextDecoration.underline,
-            decorationColor: Colors.indigo.withValues(alpha: 0.4),
-            decorationStyle: TextDecorationStyle.dotted,
-          ),
-          recognizer: TapGestureRecognizer()
-            ..onTap = () => showQuickLook(context, char),
-        ));
-        c = m.end;
-      }
-      if (c < segment.length) {
-        all.add(TextSpan(text: segment.substring(c), style: segStyle));
-      }
+  List<InlineSpan>? _spans;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _rebuildSpans();
+  }
+
+  @override
+  void didUpdateWidget(TappableMarkdownHanziText old) {
+    super.didUpdateWidget(old);
+    if (old.text != widget.text || old.style != widget.style) {
+      _rebuildSpans();
     }
+  }
 
-    for (final match in _mdPattern.allMatches(text)) {
+  void _rebuildSpans() {
+    _disposeRecognizers();
+    final resolved = DefaultTextStyle.of(context).style.merge(widget.style);
+    _spans = _buildSpans(resolved);
+  }
+
+  void _addCjkSpans(
+    List<InlineSpan> target,
+    String segment,
+    TextStyle segStyle,
+  ) {
+    int c = 0;
+    for (final m in _cjkPattern.allMatches(segment)) {
+      if (m.start > c) {
+        target.add(TextSpan(
+          text: segment.substring(c, m.start),
+          style: segStyle,
+        ));
+      }
+      final char = m.group(0)!;
+      target.add(TextSpan(
+        text: char,
+        style: segStyle.copyWith(
+          decoration: TextDecoration.underline,
+          decorationColor: Colors.indigo.withValues(alpha: 0.35),
+          decorationStyle: TextDecorationStyle.dotted,
+        ),
+        recognizer: _makeRecognizer(char),
+      ));
+      c = m.end;
+    }
+    if (c < segment.length) {
+      target.add(TextSpan(text: segment.substring(c), style: segStyle));
+    }
+  }
+
+  List<InlineSpan> _buildSpans(TextStyle base) {
+    final all = <InlineSpan>[];
+    int last = 0;
+
+    for (final match in _mdPattern.allMatches(widget.text)) {
       if (match.start > last) {
-        addCjkSpans(text.substring(last, match.start), base);
+        _addCjkSpans(all, widget.text.substring(last, match.start), base);
       }
       if (match.group(1) != null) {
-        addCjkSpans(match.group(1)!, base.copyWith(fontWeight: FontWeight.bold));
+        _addCjkSpans(
+            all, match.group(1)!, base.copyWith(fontWeight: FontWeight.bold));
       } else if (match.group(2) != null) {
-        addCjkSpans(match.group(2)!, base.copyWith(fontStyle: FontStyle.italic));
+        _addCjkSpans(
+            all, match.group(2)!, base.copyWith(fontStyle: FontStyle.italic));
       } else if (match.group(3) != null) {
         all.add(TextSpan(
           text: match.group(3),
           style: base.copyWith(
             color: Colors.indigo,
-            fontFamily: 'monospace',
             fontWeight: FontWeight.w600,
           ),
         ));
       }
       last = match.end;
     }
-    if (last < text.length) {
-      addCjkSpans(text.substring(last), base);
+    if (last < widget.text.length) {
+      _addCjkSpans(all, widget.text.substring(last), base);
     }
-
-    return all.isEmpty ? [TextSpan(text: text, style: base)] : all;
+    return all.isEmpty ? [TextSpan(text: widget.text, style: base)] : all;
   }
 
   @override
   Widget build(BuildContext context) {
-    final resolved = DefaultTextStyle.of(context).style.merge(style);
+    final spans = _spans ?? [];
     return RichText(
-      textAlign: textAlign,
-      text: TextSpan(children: _buildSpans(context, resolved)),
+      textAlign: widget.textAlign,
+      text: TextSpan(children: spans),
     );
   }
 }
