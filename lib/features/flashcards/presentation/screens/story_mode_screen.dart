@@ -3,6 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/deck.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
+import 'package:hanzi_master/core/providers.dart';
+import 'package:hanzi_master/features/flashcards/presentation/widgets/dictionary_quick_box.dart';
+import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 
 final storyProvider = FutureProvider.family<AiStory, ({String deckId, String deckName, String vocabString, bool force})>((ref, args) async {
   final gemini = ref.read(geminiServiceProvider);
@@ -20,9 +23,100 @@ class StoryModeScreen extends ConsumerStatefulWidget {
 }
 
 class _StoryModeScreenState extends ConsumerState<StoryModeScreen> {
-  bool _showPinyin = false;
-  bool _showEnglish = false;
   bool _forceRegenerate = false;
+
+  Future<void> _handleCharacterTap(BuildContext context, WidgetRef ref, String char) async {
+    // Show a loading indicator briefly or just fetch fast (SQLite is usually instant)
+    final repo = ref.read(globalDictionaryRepositoryProvider);
+    final flashcards = ref.read(flashcardControllerProvider).valueOrNull ?? [];
+    final isInLibrary = flashcards.any((c) => c.hanzi == char);
+    
+    Flashcard? card = await repo.getExact(char);
+    if (card == null) {
+      card = Flashcard(
+        id: 'dummy_$char',
+        hanzi: char,
+        pinyin: '?',
+        definition: 'Not found in offline dictionary.',
+        hskLevel: 0,
+        strokePaths: const [],
+        nextReviewDate: DateTime.now(),
+        interval: 0,
+        easeFactor: 2.5,
+        streak: 0,
+      );
+    }
+    
+    if (context.mounted) {
+      DictionaryQuickBox.show(context, card: card, isInLibrary: isInLibrary);
+    }
+  }
+
+  void _showFullTranslation(BuildContext context, AiStory story) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      isScrollControlled: true,
+      builder: (context) {
+        return Container(
+          margin: const EdgeInsets.all(16),
+          padding: const EdgeInsets.all(24),
+          decoration: BoxDecoration(
+            color: isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
+            borderRadius: BorderRadius.circular(24),
+            border: Border.all(color: isDark ? Colors.white12 : Colors.black12),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withValues(alpha: 0.2),
+                blurRadius: 20,
+                offset: const Offset(0, 10),
+              )
+            ],
+          ),
+          child: SafeArea(
+            top: false,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Full Translation",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: isDark ? Colors.white : Colors.black87,
+                      ),
+                    ),
+                    IconButton(
+                      icon: const Icon(Icons.close),
+                      onPressed: () => Navigator.pop(context),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 16),
+                Flexible(
+                  child: SingleChildScrollView(
+                    child: Text(
+                      story.english,
+                      style: TextStyle(
+                        fontSize: 16,
+                        height: 1.6,
+                        color: isDark ? Colors.white70 : Colors.black87,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,89 +151,69 @@ class _StoryModeScreenState extends ConsumerState<StoryModeScreen> {
       ),
       body: asyncStory.when(
         data: (story) {
-          // Once generated, reset the force flag so a normal rebuild won't hit the API unless requested
           if (_forceRegenerate) {
             WidgetsBinding.instance.addPostFrameCallback((_) {
               if (mounted) setState(() => _forceRegenerate = false);
             });
           }
 
+          // Parse Chinese text into individual tappable characters
+          final characters = story.chinese.characters.toList();
+
           return SingleChildScrollView(
             padding: const EdgeInsets.all(24.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                // Chinese Section
-                Container(
-                  padding: const EdgeInsets.all(24),
-                  decoration: BoxDecoration(
-                    color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.black.withValues(alpha: 0.02),
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  child: Text(
-                    story.chinese,
-                    style: TextStyle(
-                      fontFamily: 'NotoSerifSC',
-                      fontSize: 24,
-                      height: 2.0,
-                      color: isDark ? Colors.white : Colors.black87,
-                    ),
-                  ),
-                ),
-                
-                const SizedBox(height: 24),
-                
-                // Pinyin Toggle & Section
-                SwitchListTile(
-                  title: const Text("Show Pinyin", style: TextStyle(fontWeight: FontWeight.bold)),
-                  value: _showPinyin,
-                  activeColor: Colors.purple,
-                  onChanged: (val) => setState(() => _showPinyin = val),
-                  contentPadding: EdgeInsets.zero,
-                ),
-                if (_showPinyin)
-                  Container(
-                    margin: const EdgeInsets.only(bottom: 24),
-                    padding: const EdgeInsets.all(20),
-                    decoration: BoxDecoration(
-                      color: Colors.purple.withValues(alpha: 0.1),
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    child: Text(
-                      story.pinyin,
-                      style: TextStyle(
-                        fontSize: 18,
-                        height: 1.8,
-                        color: isDark ? Colors.purple[200] : Colors.purple[800],
+                // Interactive Chinese Text
+                Wrap(
+                  spacing: 2.0,
+                  runSpacing: 8.0,
+                  children: characters.map((char) {
+                    final isPunctuation = RegExp(r'[^\w\s\u4e00-\u9fa5]', unicode: true).hasMatch(char) || char.trim().isEmpty;
+                    
+                    if (isPunctuation) {
+                      return Text(
+                        char,
+                        style: TextStyle(
+                          fontFamily: 'NotoSerifSC',
+                          fontSize: 26,
+                          color: isDark ? Colors.white70 : Colors.black87,
+                        ),
+                      );
+                    }
+
+                    return InkWell(
+                      onTap: () => _handleCharacterTap(context, ref, char),
+                      borderRadius: BorderRadius.circular(4),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 1.0),
+                        child: Text(
+                          char,
+                          style: TextStyle(
+                            fontFamily: 'NotoSerifSC',
+                            fontSize: 28,
+                            color: isDark ? Colors.white : Colors.black,
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                
-                // English Toggle & Section
-                SwitchListTile(
-                  title: const Text("Show Translation", style: TextStyle(fontWeight: FontWeight.bold)),
-                  value: _showEnglish,
-                  activeColor: Colors.blue,
-                  onChanged: (val) => setState(() => _showEnglish = val),
-                  contentPadding: EdgeInsets.zero,
+                    );
+                  }).toList(),
                 ),
-                if (_showEnglish)
-                  Container(
-                    margin: const EdgeInsets.only(bottom: 40),
-                    padding: const EdgeInsets.all(20),
-                    decoration: BoxDecoration(
-                      color: Colors.blue.withValues(alpha: 0.1),
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    child: Text(
-                      story.english,
-                      style: TextStyle(
-                        fontSize: 16,
-                        height: 1.6,
-                        color: isDark ? Colors.blue[200] : Colors.blue[800],
-                      ),
+                
+                const SizedBox(height: 60),
+                
+                // Show Translation Button
+                Center(
+                  child: TextButton.icon(
+                    onPressed: () => _showFullTranslation(context, story),
+                    icon: const Icon(Icons.translate),
+                    label: const Text("Show English Translation"),
+                    style: TextButton.styleFrom(
+                      foregroundColor: isDark ? Colors.white54 : Colors.black54,
                     ),
                   ),
+                ),
               ],
             ),
           );
@@ -151,7 +225,7 @@ class _StoryModeScreenState extends ConsumerState<StoryModeScreen> {
               const CircularProgressIndicator(color: Colors.purple),
               const SizedBox(height: 24),
               Text(
-                "DeepSeek is writing your story...",
+                "Gemini Flash is writing your story...",
                 style: TextStyle(
                   fontFamily: 'NotoSerifSC',
                   fontSize: 18,
