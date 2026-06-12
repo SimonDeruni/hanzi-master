@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
+import 'package:hanzi_master/core/utils/pinyin_utils.dart';
 import 'package:hanzi_master/shared/widgets/tappable_hanzi_text.dart';
 
 // ---------------------------------------------------------------------------
@@ -322,7 +323,7 @@ class _CharacterChatDrawerState extends ConsumerState<CharacterChatDrawer> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  widget.pinyin,
+                  PinyinUtils.convertNumericToMarks(widget.pinyin),
                   style: TextStyle(
                     fontSize: 13,
                     color: Colors.indigo.withValues(alpha: 0.8),

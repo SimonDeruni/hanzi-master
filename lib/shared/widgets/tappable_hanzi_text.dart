@@ -160,8 +160,28 @@ class TappableMarkdownHanziText extends _TappableBase {
 
 class _TappableMarkdownHanziTextState
     extends _TappableBaseState<TappableMarkdownHanziText> {
-  static final _mdPattern =
-      RegExp(r'\*\*(.+?)\*\*|\*(.+?)\*|`(.+?)`', dotAll: false);
+  // Italic: single * NOT preceded or followed by another * (so **bold** is not confused)
+  // Bullet lines: handled in _preprocessText before regex runs
+  static final _mdPattern = RegExp(
+    r'\*\*(.+?)\*\*'             // **bold**
+    r'|(?<!\*)\*(?!\*)(.+?)(?<!\*)\*(?!\*)' // *italic* (not **)
+    r'|`(.+?)`',                  // `code`
+    dotAll: false,
+  );
+
+  /// Pre-processes raw AI text before markdown parsing:
+  /// - Converts line-start `* ` or `- ` bullets to `• `
+  /// - Strips orphan single asterisks left at end of words (e.g. 我们*)
+  static String _preprocessText(String text) {
+    // Convert line-start bullet markers to Unicode bullet
+    String s = text.replaceAllMapped(
+      RegExp(r'(^|\n)[ \t]*[\*\-] ', multiLine: true),
+      (m) => '${m.group(1) ?? ''}• ',
+    );
+    // Strip trailing orphan asterisks attached to words (e.g. 我们* → 我们)
+    s = s.replaceAll(RegExp(r'(?<=\S)\*(?=[\s,;.。，；\)])'), '');
+    return s;
+  }
 
   List<InlineSpan>? _spans;
 
@@ -217,11 +237,12 @@ class _TappableMarkdownHanziTextState
 
   List<InlineSpan> _buildSpans(TextStyle base) {
     final all = <InlineSpan>[];
+    final processedText = _preprocessText(widget.text);
     int last = 0;
 
-    for (final match in _mdPattern.allMatches(widget.text)) {
+    for (final match in _mdPattern.allMatches(processedText)) {
       if (match.start > last) {
-        _addCjkSpans(all, widget.text.substring(last, match.start), base);
+        _addCjkSpans(all, processedText.substring(last, match.start), base);
       }
       if (match.group(1) != null) {
         _addCjkSpans(
@@ -240,10 +261,10 @@ class _TappableMarkdownHanziTextState
       }
       last = match.end;
     }
-    if (last < widget.text.length) {
-      _addCjkSpans(all, widget.text.substring(last), base);
+    if (last < processedText.length) {
+      _addCjkSpans(all, processedText.substring(last), base);
     }
-    return all.isEmpty ? [TextSpan(text: widget.text, style: base)] : all;
+    return all.isEmpty ? [TextSpan(text: processedText, style: base)] : all;
   }
 
   @override
