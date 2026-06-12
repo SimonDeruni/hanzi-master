@@ -2,48 +2,53 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 import '../../features/chat/domain/entities/chat_message.dart';
+import 'api_key_pool.dart';
 
 final echoHallServiceProvider = Provider<EchoHallService>((ref) {
-  // NOTE: For a real app, this key should be in a .env file or secure storage.
-  // We use a placeholder here for the user to replace.
-  const apiKey = String.fromEnvironment('GEMINI_API_KEY', defaultValue: 'AIzaSyBh8Sfhu8g9aENfmf4BkR2iSf_TVzrchs0');
-  return EchoHallService(apiKey);
+  final pool = ref.watch(apiKeyPoolProvider);
+  return EchoHallService(pool);
 });
 
 class EchoHallService {
-  final String _apiKey;
-  late final GenerativeModel _model;
+  final ApiKeyPool _pool;
 
-  EchoHallService(this._apiKey) {
-    _model = GenerativeModel(
+  EchoHallService(this._pool);
+
+  GenerativeModel _getModel(String apiKey) {
+    return GenerativeModel(
       model: 'gemini-2.5-flash',
-      apiKey: _apiKey,
+      apiKey: apiKey,
     );
   }
 
   Future<String> getResponse(List<ChatMessage> history, String personaInstructions) async {
-    if (_apiKey.isEmpty || _apiKey == 'YOUR_API_KEY_HERE') {
+    final apiKey = _pool.nextKey;
+
+    if (apiKey.isEmpty || apiKey.startsWith('EMPTY_KEY_') || apiKey == 'YOUR_API_KEY_HERE') {
       return "The Scholar's voice is silent. The ink has not been prepared. (Missing API Key - See docs/AI_CHAT_SETUP.md)";
     }
 
     try {
-    final chat = _model.startChat(
-      history: history.map((m) => Content(
-        m.role == ChatRole.user ? 'user' : 'model',
-        [TextPart(m.content)],
-      )).toList(),
-    );
+      final model = _getModel(apiKey);
+      final chat = model.startChat(
+        history: history.map((m) => Content(
+          m.role == ChatRole.user ? 'user' : 'model',
+          [TextPart(m.content)],
+        )).toList(),
+      );
 
-    final response = await chat.sendMessage(Content.text(personaInstructions));
-    return response.text ?? "The ink failed to flow. Please try again.";
-  } catch (e) {
+      final response = await chat.sendMessage(Content.text(personaInstructions));
+      return response.text ?? "The ink failed to flow. Please try again.";
+    } catch (e) {
       debugPrint('EchoHallService Error: $e');
       return "The Scholar is momentarily unavailable. Please try again in a moment.";
     }
   }
 
   Future<String> getPronunciationFeedback(String character, String transcription, double confidence) async {
-    if (_apiKey.isEmpty || _apiKey == 'YOUR_API_KEY_HERE') {
+    final apiKey = _pool.nextKey;
+
+    if (apiKey.isEmpty || apiKey.startsWith('EMPTY_KEY_') || apiKey == 'YOUR_API_KEY_HERE') {
       return "AI feedback is currently unavailable. Please ensure the API key is set correctly.";
     }
 
@@ -61,9 +66,10 @@ Keep it scholarly, using terms like "ink," "stroke," or "breath."
 """;
 
     try {
-    final content = [Content.text(prompt)];
-    final response = await _model.generateContent(content);
-    return response.text ?? "The Echo Hall remains silent. Try your breath again.";
+      final model = _getModel(apiKey);
+      final content = [Content.text(prompt)];
+      final response = await model.generateContent(content);
+      return response.text ?? "The Echo Hall remains silent. Try your breath again.";
     } catch (e) {
       debugPrint('EchoHallService Pronunciation Error: $e');
       return "The Echo Hall remains silent. Try your breath again.";
