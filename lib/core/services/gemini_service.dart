@@ -139,13 +139,17 @@ Respond ONLY in valid JSON format with this exact structure:
     final chatModel = GenerativeModel(
       model: 'gemini-2.5-flash',
       apiKey: 'AIzaSyBh8Sfhu8g9aENfmf4BkR2iSf_TVzrchs0',
-      systemInstruction: Content.system('''
-You are a helpful, expert Chinese Calligraphy and Etymology tutor.
-The student is currently viewing the detail card for the Chinese character/word: "$hanzi".
-Keep your answers concise, friendly, and focused.
-If they ask about history, explain the oracle bone script origins or radicals.
-If they ask about grammar or usage, provide clear, simple examples with pinyin and English.
-'''),
+      generationConfig: GenerationConfig(
+        maxOutputTokens: 220,
+      ),
+      systemInstruction: Content.system(
+        'You are a concise Chinese Calligraphy and Etymology tutor inside a mobile flashcard app. '
+        'The student is studying the character "$hanzi". '
+        'RULES: Answer in 2–3 sentences max. Prefer bullet points for lists. '
+        'Never write introductions, sign-offs, or filler phrases like "Great question!" or "Certainly!". '
+        'Use **bold** for Chinese characters and key terms. '
+        'Be direct and informative.',
+      ),
     );
     return chatModel.startChat();
   }

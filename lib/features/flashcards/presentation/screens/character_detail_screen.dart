@@ -219,7 +219,11 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
         elevation: 0,
         title: const Text("Character Reference"),
       ),
-      endDrawer: CharacterChatDrawer(hanzi: widget.card.hanzi),
+      endDrawer: CharacterChatDrawer(
+        hanzi: widget.card.hanzi,
+        pinyin: widget.card.pinyin,
+        definition: widget.card.definition,
+      ),
       floatingActionButton: Builder(
         builder: (context) {
           return FloatingActionButton.extended(
