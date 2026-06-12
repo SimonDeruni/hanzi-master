@@ -10,8 +10,11 @@ import 'package:hanzi_master/features/flashcards/presentation/screens/review_scr
 import 'package:intl/intl.dart';
 import 'package:flutter/services.dart';
 import 'dart:convert';
+import 'dart:ui';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/cross_reference_text.dart';
 import 'package:hanzi_master/core/services/audio_service.dart';
+import 'package:hanzi_master/features/flashcards/presentation/providers/character_detail_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class CharacterDetailScreen extends ConsumerStatefulWidget {
   final Flashcard card;
@@ -35,16 +38,33 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
   Flashcard? _hydratedCard;
   bool _isLoadingStrokes = true;
 
+  // Personal Notes
+  final TextEditingController _notesController = TextEditingController();
+
   @override
   void initState() {
     super.initState();
     _pageController = PageController();
     _loadAnatomyData();
     _hydrateStrokes();
+    _loadNotes();
+  }
+
+  Future<void> _loadNotes() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _notesController.text = prefs.getString('notes_${widget.card.hanzi}') ?? '';
+    });
+  }
+
+  Future<void> _saveNotes(String value) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('notes_${widget.card.hanzi}', value);
   }
 
   @override
   void dispose() {
+    _notesController.dispose();
     _pageController.dispose();
     super.dispose();
   }
@@ -314,6 +334,12 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
                 icon: Icons.translate,
               ),
               const SizedBox(height: 16),
+              _buildPersonalNotesSection(context, isDark),
+              const SizedBox(height: 16),
+              _buildCommonWordsSection(context, isDark),
+              const SizedBox(height: 16),
+              _buildAiContextSection(context, isDark),
+              const SizedBox(height: 16),
               _buildInfoSection(
                 context,
                 title: "Scholarly Progress",
@@ -542,6 +568,221 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buildPersonalNotesSection(BuildContext context, bool isDark) {
+    return _buildInfoSection(
+      context,
+      title: "Personal Notes",
+      icon: Icons.edit_note,
+      child: TextField(
+        controller: _notesController,
+        onChanged: _saveNotes,
+        maxLines: null,
+        minLines: 3,
+        style: TextStyle(fontSize: 16, color: isDark ? Colors.white : Colors.black87),
+        decoration: InputDecoration(
+          hintText: "Add your own mnemonics or notes here...",
+          hintStyle: TextStyle(color: isDark ? Colors.white38 : Colors.black38),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: BorderSide(color: Colors.indigo.withValues(alpha: 0.2)),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: BorderSide(color: Colors.indigo.withValues(alpha: 0.1)),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: const BorderSide(color: Colors.indigo, width: 2),
+          ),
+          filled: true,
+          fillColor: isDark ? Colors.white.withValues(alpha: 0.02) : Colors.indigo.shade50.withValues(alpha: 0.3),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildCommonWordsSection(BuildContext context, bool isDark) {
+    if (widget.card.hanzi.length > 1) return const SizedBox.shrink(); 
+    
+    final commonWordsAsync = ref.watch(commonWordsProvider(widget.card.hanzi));
+    
+    return commonWordsAsync.when(
+      data: (words) {
+        if (words.isEmpty) return const SizedBox.shrink();
+        return _buildInfoSection(
+          context,
+          title: "Common Words",
+          icon: Icons.hub,
+          child: Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: words.map((w) => ActionChip(
+              label: Text("${w.hanzi} (${w.pinyin})", style: const TextStyle(fontWeight: FontWeight.bold)),
+              backgroundColor: isDark ? Colors.indigo.shade900.withValues(alpha: 0.3) : Colors.indigo.shade50,
+              side: BorderSide.none,
+              onPressed: () {
+                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => CharacterDetailScreen(card: w)));
+              },
+            )).toList(),
+          ),
+        );
+      },
+      loading: () => const Center(child: CircularProgressIndicator()),
+      error: (e, st) => Text("Error: $e"),
+    );
+  }
+
+  Widget _buildAiContextSection(BuildContext context, bool isDark) {
+    final aiContextAsync = ref.watch(characterContextProvider(widget.card));
+    
+    return aiContextAsync.when(
+      data: (contextData) {
+        if (contextData == null) return const SizedBox.shrink();
+        
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _buildInfoSection(
+              context,
+              title: "AI Memory Hook",
+              icon: Icons.lightbulb,
+              content: contextData.mnemonic,
+            ),
+            const SizedBox(height: 16),
+            _buildInfoSection(
+              context,
+              title: "Example Sentences",
+              icon: Icons.format_quote,
+              child: Column(
+                children: contextData.sentences.map((sentence) => Padding(
+                  padding: const EdgeInsets.only(bottom: 12.0),
+                  child: Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.all(12),
+                    decoration: BoxDecoration(
+                      color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.grey.shade100,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(child: Text(sentence.chinese, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold))),
+                            IconButton(
+                              icon: const Icon(Icons.volume_up, size: 20, color: Colors.indigo),
+                              padding: EdgeInsets.zero,
+                              constraints: const BoxConstraints(),
+                              onPressed: () => ref.read(audioServiceProvider).playCharacter(sentence.chinese),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 4),
+                        Text(sentence.pinyin, style: const TextStyle(fontSize: 14, color: Colors.indigo)),
+                        const SizedBox(height: 8),
+                        StatefulBuilder(
+                          builder: (context, setState) {
+                            bool isRevealed = false;
+                            return GestureDetector(
+                              onTap: () => setState(() => isRevealed = true),
+                              child: Stack(
+                                children: [
+                                  Text(
+                                    sentence.english, 
+                                    style: TextStyle(
+                                      fontSize: 14, 
+                                      color: isDark ? Colors.white70 : Colors.black87, 
+                                      fontStyle: FontStyle.italic
+                                    )
+                                  ),
+                                  if (!isRevealed)
+                                    Positioned.fill(
+                                      child: ClipRect(
+                                        child: BackdropFilter(
+                                          filter: ImageFilter.blur(sigmaX: 4.0, sigmaY: 4.0),
+                                          child: Container(
+                                            color: Colors.transparent,
+                                            alignment: Alignment.center,
+                                            child: Text(
+                                              "Tap to reveal",
+                                              style: TextStyle(
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.bold,
+                                                color: isDark ? Colors.white : Colors.black54,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                ],
+                              ),
+                            );
+                          }
+                        ),
+                      ],
+                    ),
+                  ),
+                )).toList(),
+              ),
+            ),
+            if (contextData.lookAlikes.isNotEmpty) ...[
+              const SizedBox(height: 16),
+              _buildInfoSection(
+                context,
+                title: "Ghost Characters",
+                icon: Icons.warning_amber_rounded,
+                child: Column(
+                  children: contextData.lookAlikes.map((lookAlike) => Padding(
+                    padding: const EdgeInsets.only(top: 12.0),
+                    child: Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                        color: Colors.orange.withValues(alpha: 0.1),
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(color: Colors.orange.withValues(alpha: 0.3)),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              Text(lookAlike.character, style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.deepOrange)),
+                              const SizedBox(width: 8),
+                              Text("(${lookAlike.pinyin})", style: const TextStyle(fontSize: 16, color: Colors.deepOrange)),
+                              const Spacer(),
+                              Text(lookAlike.english, style: const TextStyle(fontSize: 14, fontStyle: FontStyle.italic)),
+                            ],
+                          ),
+                          const SizedBox(height: 8),
+                          Text(lookAlike.difference, style: TextStyle(fontSize: 14, color: isDark ? Colors.white70 : Colors.black87)),
+                        ],
+                      ),
+                    ),
+                  )).toList(),
+                ),
+              ),
+            ],
+          ],
+        );
+      },
+      loading: () => _buildInfoSection(
+        context,
+        title: "AI Smart Context",
+        icon: Icons.auto_awesome,
+        child: const Center(
+          child: Padding(
+            padding: EdgeInsets.all(16.0),
+            child: CircularProgressIndicator(color: Colors.indigo),
+          ),
+        ),
+      ),
+      error: (e, st) => const SizedBox.shrink(),
     );
   }
 
