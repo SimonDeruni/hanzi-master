@@ -5,6 +5,7 @@ import 'package:hanzi_master/features/flashcards/presentation/providers/flashcar
 import 'package:hanzi_master/features/flashcards/presentation/screens/deck_review_session_screen.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/dictionary_quick_box.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
+import 'package:hanzi_master/features/flashcards/presentation/screens/story_mode_screen.dart';
 
 class DeckDetailScreen extends ConsumerWidget {
   final Deck deck;
@@ -83,7 +84,9 @@ class DeckDetailScreen extends ConsumerWidget {
                 SliverToBoxAdapter(
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 24.0),
-                    child: SizedBox(
+                    child: Column(
+                      children: [
+                        SizedBox(
                       width: double.infinity,
                       height: 56,
                       child: ElevatedButton(
@@ -128,8 +131,44 @@ class DeckDetailScreen extends ConsumerWidget {
                         ),
                       ),
                     ),
-                  ),
+                    const SizedBox(height: 12),
+                    SizedBox(
+                      width: double.infinity,
+                      height: 56,
+                      child: OutlinedButton(
+                        onPressed: () {
+                          if (deckCards.isEmpty) return;
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => StoryModeScreen(deck: deck, cards: deckCards),
+                            ),
+                          );
+                        },
+                        style: OutlinedButton.styleFrom(
+                          foregroundColor: isDark ? Colors.purple[300] : Colors.purple[700],
+                          side: BorderSide(color: isDark ? Colors.purple[300]! : Colors.purple[700]!, width: 2),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                        ),
+                        child: const Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.menu_book, size: 24),
+                            SizedBox(width: 8),
+                            Text(
+                              "Read Story (AI)",
+                              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
+              ),
+            ),
 
               // Empty State
               if (deckCards.isEmpty)

@@ -75,6 +75,22 @@ class LookAlike {
   }
 }
 
+class AiStory {
+  final String chinese;
+  final String pinyin;
+  final String english;
+
+  AiStory({required this.chinese, required this.pinyin, required this.english});
+
+  factory AiStory.fromJson(Map<String, dynamic> json) {
+    return AiStory(
+      chinese: json['chinese'] as String? ?? '',
+      pinyin: json['pinyin'] as String? ?? '',
+      english: json['english'] as String? ?? '',
+    );
+  }
+}
+
 class AiChatSession {
   final String apiKey;
   final String systemInstruction;
@@ -347,6 +363,52 @@ Respond ONLY in valid JSON format as a list of objects with this exact structure
             'english': item['english'].toString(),
           }).toList();
         }
+      }
+      throw Exception("Empty response from OpenRouter");
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<AiStory> generateStory(String deckId, String deckName, List<String> vocabulary, {bool forceRegenerate = false}) async {
+    final cacheKey = 'story_$deckId';
+    final box = Hive.box<String>('ai_cache');
+    
+    if (!forceRegenerate && box.containsKey(cacheKey)) {
+      final json = jsonDecode(box.get(cacheKey)!);
+      return AiStory.fromJson(json);
+    }
+
+    final wordsList = vocabulary.join(", ");
+    final prompt = '''
+You are an expert Chinese teacher. Please write a short, engaging story (about 2-3 paragraphs) that uses the following vocabulary words:
+$wordsList
+
+The theme or topic of the deck is: "$deckName"
+
+Keep the grammar at a level appropriate for someone learning these words. You may use basic connecting words, but try to use as many of the provided vocabulary words as possible.
+
+Respond ONLY in valid JSON format with this exact structure:
+{
+  "chinese": "The full story in Chinese characters...",
+  "pinyin": "The full story in pinyin...",
+  "english": "The full story translated to English..."
+}
+''';
+
+    try {
+      final text = await _makeOpenRouterCall(
+        model: 'deepseek/deepseek-chat',
+        messages: [{'role': 'user', 'content': prompt}],
+        jsonMode: true,
+      );
+      
+      if (text.isNotEmpty) {
+        final cleanText = text.replaceAll(RegExp(r'^```json\n', multiLine: true), '')
+                              .replaceAll(RegExp(r'^```\n?', multiLine: true), '');
+        final json = jsonDecode(cleanText);
+        box.put(cacheKey, cleanText);
+        return AiStory.fromJson(json);
       }
       throw Exception("Empty response from OpenRouter");
     } catch (e) {
