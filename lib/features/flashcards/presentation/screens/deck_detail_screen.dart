@@ -251,6 +251,31 @@ class DeckDetailScreen extends ConsumerWidget {
                                           ),
                                         ),
                                         const SizedBox(height: 4),
+                                        if (card.hskLevel == 0)
+                                          Container(
+                                            margin: const EdgeInsets.only(bottom: 6),
+                                            padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                                            decoration: BoxDecoration(
+                                              color: Colors.purple.withValues(alpha: 0.1),
+                                              borderRadius: BorderRadius.circular(4),
+                                              border: Border.all(color: Colors.purple.withValues(alpha: 0.3)),
+                                            ),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                Icon(Icons.auto_awesome, size: 10, color: Colors.purple.shade400),
+                                                const SizedBox(width: 4),
+                                                Text(
+                                                  "AI Generated",
+                                                  style: TextStyle(
+                                                    fontSize: 9,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Colors.purple.shade400,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
                                         Text(
                                           card.definition,
                                           style: TextStyle(
