@@ -5,8 +5,10 @@ import 'package:hanzi_master/shared/widgets/clickable_chinese_text.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/character_detail_screen.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/review_screen.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/mastery_seal.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hanzi_master/core/services/gemini_service.dart';
 
-class DictionaryQuickBox extends StatelessWidget {
+class DictionaryQuickBox extends ConsumerStatefulWidget {
   final Flashcard card;
   final bool isInLibrary;
 
@@ -26,9 +28,50 @@ class DictionaryQuickBox extends StatelessWidget {
   }
 
   @override
+  ConsumerState<DictionaryQuickBox> createState() => _DictionaryQuickBoxState();
+}
+
+class _DictionaryQuickBoxState extends ConsumerState<DictionaryQuickBox> {
+  late Flashcard _card;
+  bool _isLoadingAi = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _card = widget.card;
+    if (_card.id.startsWith('dummy_')) {
+      _fetchAiDefinition();
+    }
+  }
+
+  Future<void> _fetchAiDefinition() async {
+    setState(() => _isLoadingAi = true);
+    try {
+      final gemini = ref.read(geminiServiceProvider);
+      final aiDef = await gemini.defineWord(_card.hanzi);
+      if (mounted) {
+        setState(() {
+          _card = _card.copyWith(
+            pinyin: aiDef['pinyin'] ?? '?',
+            definition: aiDef['meaning'] ?? 'Not found',
+          );
+          _isLoadingAi = false;
+        });
+      }
+    } catch (e) {
+      if (mounted) {
+        setState(() {
+          _card = _card.copyWith(definition: 'Error loading from AI.');
+          _isLoadingAi = false;
+        });
+      }
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final double masteryProgress = isInLibrary ? (card.streak / 5.0).clamp(0.0, 1.0) : 0.0;
+    final double masteryProgress = widget.isInLibrary ? (_card.streak / 5.0).clamp(0.0, 1.0) : 0.0;
     
     return Container(
       margin: const EdgeInsets.all(16),
@@ -56,8 +99,8 @@ class DictionaryQuickBox extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  if (isInLibrary)
-                    MasterySeal(progress: masteryProgress, isMastered: card.isMastered, size: 40)
+                  if (widget.isInLibrary)
+                    MasterySeal(progress: masteryProgress, isMastered: _card.isMastered, size: 40)
                   else
                     const SizedBox(width: 40, height: 40), // Placeholder to balance
                     
@@ -70,7 +113,7 @@ class DictionaryQuickBox extends StatelessWidget {
               
               // Character
               Text(
-                card.hanzi,
+                _card.hanzi,
                 style: TextStyle(
                   fontSize: 80,
                   fontWeight: FontWeight.bold,
@@ -83,7 +126,7 @@ class DictionaryQuickBox extends StatelessWidget {
               
               // Pinyin
               PinyinText(
-                text: card.pinyin,
+                text: _card.pinyin,
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.w600,
@@ -94,16 +137,27 @@ class DictionaryQuickBox extends StatelessWidget {
               const SizedBox(height: 16),
               
               // Definition
-              ClickableChineseText(
-                card.definition,
-                style: TextStyle(
-                  fontSize: 16,
-                  color: isDark ? Colors.white70 : Colors.black87,
-                  fontStyle: FontStyle.italic,
-                  height: 1.4,
+              if (_isLoadingAi)
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 8.0),
+                  child: Center(
+                    child: SizedBox(
+                      width: 24, height: 24,
+                      child: CircularProgressIndicator(strokeWidth: 2),
+                    ),
+                  ),
+                )
+              else
+                ClickableChineseText(
+                  _card.definition,
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: isDark ? Colors.white70 : Colors.black87,
+                    fontStyle: FontStyle.italic,
+                    height: 1.4,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
-                textAlign: TextAlign.center,
-              ),
               
               const SizedBox(height: 32),
               
@@ -114,7 +168,7 @@ class DictionaryQuickBox extends StatelessWidget {
                     child: OutlinedButton.icon(
                       onPressed: () {
                         Navigator.pop(context); // Close the quick box
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => CharacterDetailScreen(card: card)));
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => CharacterDetailScreen(card: _card)));
                       },
                       icon: const Icon(Icons.explore),
                       label: const Text("Inspect"),
@@ -126,13 +180,13 @@ class DictionaryQuickBox extends StatelessWidget {
                       ),
                     ),
                   ),
-                  if (isInLibrary) ...[
+                  if (widget.isInLibrary) ...[
                     const SizedBox(width: 16),
                     Expanded(
                       child: ElevatedButton.icon(
                         onPressed: () {
                           Navigator.pop(context); // Close the quick box
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => ReviewScreen(card: card)));
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => ReviewScreen(card: _card)));
                         },
                         icon: const Icon(Icons.edit),
                         label: const Text("Practice"),
@@ -150,10 +204,8 @@ class DictionaryQuickBox extends StatelessWidget {
                     Expanded(
                       child: ElevatedButton.icon(
                         onPressed: () {
-                          // TODO: Future: Add to Library directly from here
-                          // For now, prompt them to inspect it, which has the "Add" button
-                          Navigator.pop(context); // Close the quick box
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => CharacterDetailScreen(card: card)));
+                          Navigator.pop(context); 
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => CharacterDetailScreen(card: _card)));
                         },
                         icon: const Icon(Icons.add),
                         label: const Text("Add to Library"),

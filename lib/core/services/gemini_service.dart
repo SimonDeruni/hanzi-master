@@ -204,6 +204,39 @@ class GeminiService {
     }
   }
 
+  Future<Map<String, String>> defineWord(String word) async {
+    final cacheKey = 'def_$word';
+    final box = Hive.box<String>('ai_cache');
+    
+    if (box.containsKey(cacheKey)) {
+      final json = jsonDecode(box.get(cacheKey)!);
+      return {'pinyin': json['pinyin'].toString(), 'meaning': json['meaning'].toString()};
+    }
+
+    final prompt = '''
+You are an expert Chinese dictionary. Define the following word/character: "$word".
+Return ONLY valid JSON with this exact structure:
+{
+  "pinyin": "...",
+  "meaning": "..."
+}
+''';
+
+    final response = await _makeOpenRouterCall(
+      model: 'deepseek/deepseek-chat',
+      messages: [{'role': 'user', 'content': prompt}],
+      jsonMode: true,
+    );
+
+    try {
+      final json = jsonDecode(response);
+      box.put(cacheKey, response);
+      return {'pinyin': json['pinyin'].toString(), 'meaning': json['meaning'].toString()};
+    } catch (e) {
+      return {'pinyin': '?', 'meaning': 'Failed to fetch definition.'};
+    }
+  }
+
   Future<GeminiContext> generateContext(String hanzi, int hskLevel) async {
     final cacheKey = '${hanzi}_$hskLevel';
     final box = Hive.box<String>('ai_cache');
