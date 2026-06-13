@@ -46,8 +46,22 @@ class FlashcardController extends _$FlashcardController {
   }
 
   Future<void> addFlashcard(Flashcard card) async {
+    final currentCards = state.valueOrNull ?? [];
+    final existingIndex = currentCards.indexWhere((c) => c.hanzi == card.hanzi);
+
     final repository = ref.read(flashcardRepositoryProvider);
-    await repository.saveFlashcard(card);
+    if (existingIndex != -1) {
+      final existing = currentCards[existingIndex];
+      // It exists. Update it with new fields but keep its ID and progress.
+      final updated = existing.copyWith(
+        pinyin: card.pinyin,
+        definition: card.definition,
+        deckId: card.deckId, // keep track of the new deck assignment
+      );
+      await repository.saveFlashcard(updated);
+    } else {
+      await repository.saveFlashcard(card);
+    }
     ref.invalidateSelf(); 
   }
 

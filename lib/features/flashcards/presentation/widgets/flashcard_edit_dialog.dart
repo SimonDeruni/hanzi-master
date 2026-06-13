@@ -39,6 +39,7 @@ class _FlashcardEditDialogState extends ConsumerState<FlashcardEditDialog> {
   late final TextEditingController _hanziController;
   late final TextEditingController _pinyinController;
   late final TextEditingController _definitionController;
+  bool _addToDeck = true;
 
   @override
   void initState() {
@@ -85,6 +86,7 @@ class _FlashcardEditDialogState extends ConsumerState<FlashcardEditDialog> {
       interval: 0,
       easeFactor: 2.5,
       streak: 0,
+      deckId: _addToDeck ? 'default' : 'none',
     );
 
     await ref.read(flashcardControllerProvider.notifier).addFlashcard(newCard);
@@ -166,7 +168,20 @@ class _FlashcardEditDialogState extends ConsumerState<FlashcardEditDialog> {
               maxLines: 3,
               style: TextStyle(color: textColor),
             ),
-            const SizedBox(height: 32),
+            const SizedBox(height: 16),
+            SwitchListTile(
+              title: const Text("Add to Default Study Deck"),
+              subtitle: const Text("If off, it's only saved to the global Dictionary", style: TextStyle(fontSize: 12)),
+              value: _addToDeck,
+              activeTrackColor: Colors.indigo.withValues(alpha: 0.5),
+              activeThumbColor: Colors.indigo,
+              onChanged: (val) {
+                setState(() {
+                  _addToDeck = val;
+                });
+              },
+            ),
+            const SizedBox(height: 16),
             ElevatedButton(
               onPressed: _save,
               style: ElevatedButton.styleFrom(
