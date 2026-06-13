@@ -269,17 +269,27 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
                           width: 180,
                           child: _isLoadingStrokes 
                             ? const Center(child: CircularProgressIndicator(color: Colors.indigo))
-                            : DrawingCanvas(
-                                strokePaths: currentCard.strokePaths,
-                                medianPaths: currentCard.medianPaths,
-                                showAnimation: _isPlaying,
-                                strokeLimit: _manualStrokeLimit,
-                                readOnly: true,
-                                showGrade: false,
-                                autoCenter: true,
-                                autoActiveChar: true,
-                                isFlipped: currentCard.isFlipped,
-                              ),
+                            : currentCard.strokePaths.isEmpty
+                                ? Center(
+                                    child: Text(
+                                      currentCard.hanzi,
+                                      style: TextStyle(
+                                        fontSize: 100,
+                                        color: isDark ? Colors.white24 : Colors.black12,
+                                      ),
+                                    ),
+                                  )
+                                : DrawingCanvas(
+                                    strokePaths: currentCard.strokePaths,
+                                    medianPaths: currentCard.medianPaths,
+                                    showAnimation: _isPlaying,
+                                    strokeLimit: _manualStrokeLimit,
+                                    readOnly: true,
+                                    showGrade: false,
+                                    autoCenter: true,
+                                    autoActiveChar: true,
+                                    isFlipped: currentCard.isFlipped,
+                                  ),
                         ),
                         MasterySeal(
                           progress: masteryProgress,
@@ -427,6 +437,8 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
   Widget _buildStrokeTimeline(bool isDark) {
     if (_isLoadingStrokes) return const SizedBox(height: 48);
     final currentCard = _hydratedCard ?? widget.card;
+    if (currentCard.strokePaths.isEmpty) return const SizedBox(height: 48);
+    
     final validStrokes = currentCard.strokePaths.where((s) => s != '__CHAR_SEPARATOR__').toList();
     
     return SingleChildScrollView(
