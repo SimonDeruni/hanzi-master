@@ -66,7 +66,7 @@ class StoryController extends StateNotifier<StoryState> {
   ];
 
   Future<void> loadOrGenerateStory(StoryBlueprint blueprint, int hskLevel) async {
-    state = state.copyWith(isLoading: true, error: null);
+    state = const StoryState(isLoading: true, error: null, currentStory: null);
     
     try {
       final storyId = '${blueprint.id}_hsk$hskLevel';

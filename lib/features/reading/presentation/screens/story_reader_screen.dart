@@ -23,15 +23,11 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(storyControllerProvider.notifier).loadOrGenerateStory(widget.blueprint, widget.hskLevel);
+    Future(() {
+      if (mounted) {
+        ref.read(storyControllerProvider.notifier).loadOrGenerateStory(widget.blueprint, widget.hskLevel);
+      }
     });
-  }
-
-  @override
-  void deactivate() {
-    ref.read(storyControllerProvider.notifier).clearCurrentStory();
-    super.deactivate();
   }
 
   @override
