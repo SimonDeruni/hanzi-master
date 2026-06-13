@@ -12,14 +12,30 @@ class ReadingRoomScreen extends ConsumerStatefulWidget {
 
 class _ReadingRoomScreenState extends ConsumerState<ReadingRoomScreen> {
   int _selectedHskLevel = 2; // Default HSK 2
+  String _searchQuery = "";
+  final TextEditingController _searchController = TextEditingController();
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final blueprints = StoryController.blueprints;
-    
+    // Filter blueprints based on search query
+    final filteredBlueprints = StoryController.blueprints.where((b) {
+      if (_searchQuery.isEmpty) return true;
+      final query = _searchQuery.toLowerCase();
+      if (b.title.toLowerCase().contains(query)) return true;
+      if (b.topic.toLowerCase().contains(query)) return true;
+      if (b.tags.any((tag) => tag.toLowerCase().contains(query))) return true;
+      return false;
+    }).toList();
+
     // Group by category
     final groupedBlueprints = <String, List<StoryBlueprint>>{};
-    for (var b in blueprints) {
+    for (var b in filteredBlueprints) {
       if (!groupedBlueprints.containsKey(b.category)) {
         groupedBlueprints[b.category] = [];
       }
@@ -37,17 +53,45 @@ class _ReadingRoomScreenState extends ConsumerState<ReadingRoomScreen> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          // Search Bar
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+            child: TextField(
+              controller: _searchController,
+              decoration: InputDecoration(
+                hintText: 'Search stories by title or tags (e.g. mythology, travel)',
+                prefixIcon: const Icon(Icons.search, color: Colors.indigo),
+                suffixIcon: _searchQuery.isNotEmpty
+                    ? IconButton(
+                        icon: const Icon(Icons.clear),
+                        onPressed: () {
+                          _searchController.clear();
+                          setState(() => _searchQuery = "");
+                        },
+                      )
+                    : null,
+                filled: true,
+                fillColor: Colors.white,
+                contentPadding: const EdgeInsets.symmetric(vertical: 0),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(30),
+                  borderSide: BorderSide.none,
+                ),
+              ),
+              onChanged: (value) {
+                setState(() {
+                  _searchQuery = value;
+                });
+              },
+            ),
+          ),
+
           // Level Selector
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-            decoration: BoxDecoration(
-              border: Border(bottom: BorderSide(color: Colors.black.withValues(alpha: 0.05))),
-            ),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text("Select Your Reading Level", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
-                const SizedBox(height: 12),
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
@@ -65,6 +109,7 @@ class _ReadingRoomScreenState extends ConsumerState<ReadingRoomScreen> {
                           selectedColor: Colors.indigo,
                           labelStyle: TextStyle(color: isSelected ? Colors.white : Colors.black87),
                           backgroundColor: Colors.white,
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
                         ),
                       );
                     }),
@@ -76,58 +121,160 @@ class _ReadingRoomScreenState extends ConsumerState<ReadingRoomScreen> {
           
           // Stories List
           Expanded(
-            child: ListView.builder(
-              padding: const EdgeInsets.all(16),
-              itemCount: groupedBlueprints.keys.length,
-              itemBuilder: (context, index) {
-                final category = groupedBlueprints.keys.elementAt(index);
-                final stories = groupedBlueprints[category]!;
-                
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 16, bottom: 8),
+            child: groupedBlueprints.isEmpty
+                ? const Center(
+                    child: Padding(
+                      padding: EdgeInsets.all(32.0),
                       child: Text(
-                        category,
-                        style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.indigo),
+                        "No stories found matching your search.",
+                        style: TextStyle(color: Colors.black54, fontSize: 16),
+                        textAlign: TextAlign.center,
                       ),
                     ),
-                    ...stories.map((blueprint) => Card(
-                      elevation: 0,
-                      color: Colors.white,
-                      shape: RoundedRectangleBorder(
-                        side: BorderSide(color: Colors.black.withValues(alpha: 0.05)),
-                        borderRadius: BorderRadius.circular(12)
-                      ),
-                      margin: const EdgeInsets.only(bottom: 12),
-                      child: ListTile(
-                        contentPadding: const EdgeInsets.all(16),
-                        title: Text(blueprint.title, style: const TextStyle(fontWeight: FontWeight.bold)),
-                        subtitle: Padding(
-                          padding: const EdgeInsets.only(top: 8.0),
-                          child: Text(blueprint.topic, style: TextStyle(color: Colors.black.withValues(alpha: 0.6))),
-                        ),
-                        trailing: const Icon(Icons.menu_book, color: Colors.indigo),
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => StoryReaderScreen(
-                                blueprint: blueprint,
-                                hskLevel: _selectedHskLevel,
-                              ),
+                  )
+                : ListView.builder(
+                    padding: const EdgeInsets.only(top: 8, bottom: 24),
+                    itemCount: groupedBlueprints.keys.length,
+                    itemBuilder: (context, index) {
+                      final category = groupedBlueprints.keys.elementAt(index);
+                      final stories = groupedBlueprints[category]!;
+                      
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+                            child: Text(
+                              category,
+                              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.indigo),
                             ),
-                          );
-                        },
-                      ),
-                    )),
-                  ],
-                );
-              },
-            ),
+                          ),
+                          SizedBox(
+                            height: 240,
+                            child: ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              padding: const EdgeInsets.symmetric(horizontal: 16),
+                              itemCount: stories.length,
+                              itemBuilder: (context, storyIndex) {
+                                final blueprint = stories[storyIndex];
+                                return _buildStoryCard(context, blueprint);
+                              },
+                            ),
+                          ),
+                        ],
+                      );
+                    },
+                  ),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildStoryCard(BuildContext context, StoryBlueprint blueprint) {
+    return Container(
+      width: 200,
+      margin: const EdgeInsets.only(right: 16, bottom: 8),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(16),
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.05),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          )
+        ]
+      ),
+      clipBehavior: Clip.antiAlias,
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => StoryReaderScreen(
+                  blueprint: blueprint,
+                  hskLevel: _selectedHskLevel,
+                ),
+              ),
+            );
+          },
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Image
+              SizedBox(
+                height: 110,
+                width: double.infinity,
+                child: Image.network(
+                  blueprint.imageUrl,
+                  fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) => Container(
+                    color: Colors.grey[200], 
+                    child: const Icon(Icons.image_not_supported, color: Colors.grey)
+                  ),
+                  loadingBuilder: (context, child, loadingProgress) {
+                    if (loadingProgress == null) return child;
+                    return Container(
+                      color: Colors.grey[100],
+                      child: Center(
+                        child: CircularProgressIndicator(
+                          color: Colors.indigo.withValues(alpha: 0.5),
+                          strokeWidth: 2,
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+              // Content
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(12),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        blueprint.title, 
+                        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15), 
+                        maxLines: 1, 
+                        overflow: TextOverflow.ellipsis
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        blueprint.topic, 
+                        style: TextStyle(color: Colors.black.withValues(alpha: 0.6), fontSize: 12), 
+                        maxLines: 2, 
+                        overflow: TextOverflow.ellipsis
+                      ),
+                      const Spacer(),
+                      // Tags
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: blueprint.tags.take(3).map((tag) => Container(
+                            margin: const EdgeInsets.only(right: 6),
+                            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                            decoration: BoxDecoration(
+                              color: Colors.indigo.withValues(alpha: 0.08), 
+                              borderRadius: BorderRadius.circular(6)
+                            ),
+                            child: Text(
+                              '#$tag', 
+                              style: const TextStyle(fontSize: 10, color: Colors.indigo, fontWeight: FontWeight.bold)
+                            ),
+                          )).toList(),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
