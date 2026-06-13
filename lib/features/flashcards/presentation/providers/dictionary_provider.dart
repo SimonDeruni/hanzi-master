@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:hanzi_master/core/providers.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
+import 'package:hanzi_master/core/utils/pinyin_utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'dictionary_provider.g.dart';
@@ -55,7 +56,7 @@ class MasterDictionary extends _$MasterDictionary {
           for (var item in vocabulary) {
             final entry = DictionaryEntry(
               hanzi: item['hanzi'],
-              pinyin: item['pinyin'],
+              pinyin: PinyinUtils.convertNumericToMarks(item['pinyin'] ?? ''),
               definition: item['definition'],
               hskLevel: level,
             );

@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:ui';
 import 'package:hive/hive.dart';
 import '../../domain/entities/flashcard.dart';
+import 'package:hanzi_master/core/utils/pinyin_utils.dart';
 part 'flashcard_model.g.dart';
 
 @HiveType(typeId: 0)
@@ -106,7 +107,7 @@ class FlashcardModel extends HiveObject {
       id: id,
       deckId: deckId ?? 'default',
       hanzi: hanzi,
-      pinyin: pinyin,
+      pinyin: PinyinUtils.convertNumericToMarks(pinyin),
       definition: definition,
       hskLevel: hskLevel,
       strokePaths: strokePaths,
@@ -159,7 +160,7 @@ class FlashcardModel extends HiveObject {
     return FlashcardModel(
       id: json['uuid'] ?? json['id'] ?? '', 
       hanzi: json['hanzi'] ?? '',
-      pinyin: json['pinyin'] ?? '',
+      pinyin: PinyinUtils.convertNumericToMarks(json['pinyin'] ?? ''),
       definition: json['definition'] ?? '',
       hskLevel: 1,
       strokePaths: [],
