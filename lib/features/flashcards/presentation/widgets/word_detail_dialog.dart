@@ -33,7 +33,7 @@ class WordDetailDialog extends ConsumerWidget {
 
     Flashcard? card = await repo.getExact(char);
     if (card != null) {
-      await ref.read(flashcardControllerProvider.notifier).addCard(card);
+      await ref.read(flashcardControllerProvider.notifier).addFlashcard(card);
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text("Added $char to Library")),

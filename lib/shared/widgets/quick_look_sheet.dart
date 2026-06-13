@@ -5,6 +5,7 @@ import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart'
 import 'package:hanzi_master/features/flashcards/presentation/providers/character_detail_provider.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/character_detail_screen.dart';
+import 'package:hanzi_master/core/services/gemini_service.dart';
 
 // ---------------------------------------------------------------------------
 // Helpers — clean raw CC-CEDICT strings before display
@@ -148,30 +149,63 @@ class _LoadingBody extends StatelessWidget {
 // Not found state
 // ---------------------------------------------------------------------------
 
-class _NotFoundBody extends StatelessWidget {
+class _NotFoundBody extends ConsumerStatefulWidget {
   final String hanzi;
   final bool isDark;
   const _NotFoundBody({required this.hanzi, required this.isDark});
 
   @override
+  ConsumerState<_NotFoundBody> createState() => _NotFoundBodyState();
+}
+
+class _NotFoundBodyState extends ConsumerState<_NotFoundBody> {
+  bool _isLoadingAi = true;
+  String _pinyin = '';
+  String _definition = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchAiDefinition();
+  }
+
+  Future<void> _fetchAiDefinition() async {
+    try {
+      final aiDef = await ref.read(geminiServiceProvider).defineWord(widget.hanzi);
+      if (mounted) {
+        setState(() {
+          _pinyin = aiDef['pinyin'] ?? '?';
+          _definition = aiDef['meaning'] ?? 'Not found';
+          _isLoadingAi = false;
+        });
+      }
+    } catch (e) {
+      if (mounted) {
+        setState(() {
+          _definition = 'Error loading from AI.';
+          _isLoadingAi = false;
+        });
+      }
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final textColor = isDark ? Colors.white : const Color(0xFF1A1A1B);
+    final textColor = widget.isDark ? Colors.white : const Color(0xFF1A1A1B);
     return Padding(
       padding: const EdgeInsets.fromLTRB(24, 16, 24, 40),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          _CharacterHero(hanzi: hanzi, isDark: isDark, pinyin: '', hskLevel: 0, definition: ''),
+          _CharacterHero(hanzi: widget.hanzi, isDark: widget.isDark, pinyin: _pinyin, hskLevel: 0, definition: _definition),
           const SizedBox(height: 16),
-          Text(
-            'Not found in dictionary',
-            style: TextStyle(
-              color: textColor.withValues(alpha: 0.45),
-              fontSize: 14,
-              fontStyle: FontStyle.italic,
-            ),
-          ),
-          const SizedBox(height: 16),
+          if (_isLoadingAi)
+            const SizedBox(
+              width: 24, height: 24,
+              child: CircularProgressIndicator(strokeWidth: 2),
+            )
+          else
+            const SizedBox(height: 16),
         ],
       ),
     );

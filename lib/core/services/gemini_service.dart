@@ -142,7 +142,7 @@ class AiChatSession {
   Future<String> sendMessage(String text) async {
     _history.add({'role': 'user', 'content': text});
 
-    final response = await _client.post(
+    final response = await http.post(
       Uri.parse('https://openrouter.ai/api/v1/chat/completions'),
       headers: {
         'Authorization': 'Bearer $apiKey',
@@ -234,6 +234,25 @@ Return ONLY valid JSON with this exact structure:
       return {'pinyin': json['pinyin'].toString(), 'meaning': json['meaning'].toString()};
     } catch (e) {
       return {'pinyin': '?', 'meaning': 'Failed to fetch definition.'};
+    }
+  }
+
+  Future<String> explainGrammar(String word, String sentence) async {
+    final prompt = '''
+Explain the grammatical role and usage of the word "$word" in the following sentence:
+"$sentence"
+
+Keep your explanation short, engaging, and easy to understand for a language learner. Max 3 sentences.
+''';
+
+    try {
+      final response = await _makeOpenRouterCall(
+        model: 'deepseek/deepseek-chat',
+        messages: [{'role': 'user', 'content': prompt}],
+      );
+      return response;
+    } catch (e) {
+      return "Failed to load explanation.";
     }
   }
 
