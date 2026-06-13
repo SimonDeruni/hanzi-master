@@ -14,6 +14,7 @@ import 'package:hanzi_master/features/flashcards/presentation/screens/deck_detai
 import 'package:hanzi_master/features/flashcards/presentation/widgets/ai_deck_generator_sheet.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/settings_screen.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/flashcard_form_screen.dart';
+import 'package:hanzi_master/core/utils/pinyin_utils.dart';
 import 'package:hanzi_master/shared/widgets/pinyin_text.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/streak_seal.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
@@ -297,7 +298,9 @@ class _DictionarySearchTab extends ConsumerWidget {
         final localOnlyMatches = flashcards.where((card) {
           if (unifiedHanziSet.contains(card.hanzi)) return false;
           final query = searchQuery.toLowerCase();
+          final cleanPinyin = PinyinUtils.removeToneMarks(card.pinyin).toLowerCase();
           return card.hanzi.contains(query) ||
+                 cleanPinyin.contains(query) ||
                  card.pinyin.toLowerCase().contains(query) ||
                  card.definition.toLowerCase().contains(query);
         }).toList();

@@ -84,6 +84,29 @@ class PinyinUtils {
     });
   }
 
+  /// Removes tone diacritics from pinyin (e.g., "hé lì" -> "he li").
+  static String removeToneMarks(String text) {
+    String stripped = text;
+    final Map<String, String> stripMap = {
+      'ā': 'a', 'á': 'a', 'ǎ': 'a', 'à': 'a',
+      'ē': 'e', 'é': 'e', 'ě': 'e', 'è': 'e',
+      'ī': 'i', 'í': 'i', 'ǐ': 'i', 'ì': 'i',
+      'ō': 'o', 'ó': 'o', 'ǒ': 'o', 'ò': 'o',
+      'ū': 'u', 'ú': 'u', 'ǔ': 'u', 'ù': 'u',
+      'ǖ': 'ü', 'ǘ': 'ü', 'ǚ': 'ü', 'ǜ': 'ü',
+      'Ā': 'A', 'Á': 'A', 'Ǎ': 'A', 'À': 'A',
+      'Ē': 'E', 'É': 'E', 'Ě': 'E', 'È': 'E',
+      'Ī': 'I', 'Í': 'I', 'Ǐ': 'I', 'Ì': 'I',
+      'Ō': 'O', 'Ó': 'O', 'Ǒ': 'O', 'Ò': 'O',
+      'Ū': 'U', 'Ú': 'U', 'Ǔ': 'U', 'Ù': 'U',
+      'Ǖ': 'Ü', 'Ǘ': 'Ü', 'Ǚ': 'Ü', 'Ǜ': 'Ü',
+    };
+    stripMap.forEach((key, value) {
+      stripped = stripped.replaceAll(key, value);
+    });
+    return stripped;
+  }
+
   /// Tokenizes a string (which may contain multiple syllables, punctuation, and spaces)
   /// into a list of Map objects containing the text and its tone.
   static List<Map<String, dynamic>> tokenize(String rawText) {

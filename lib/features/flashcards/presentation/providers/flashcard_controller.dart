@@ -23,7 +23,26 @@ class FlashcardController extends _$FlashcardController {
   Future<List<Flashcard>> _loadFlashcards() async {
     final repository = ref.read(flashcardRepositoryProvider);
     final result = await repository.getFlashcards();
-    return result.fold((error) => [], (cards) => cards);
+    return result.fold((error) => [], (cards) {
+      final validCards = <Flashcard>[];
+      final badCards = <Flashcard>[];
+      
+      final cjkRegex = RegExp(r'[\u4e00-\u9fff\u3400-\u4dbf]');
+      for (final c in cards) {
+        if (c.hanzi.trim().isEmpty || !cjkRegex.hasMatch(c.hanzi)) {
+          badCards.add(c);
+        } else {
+          validCards.add(c);
+        }
+      }
+
+      // Asynchronously clean up bad cards (like the stray '?')
+      for (final bad in badCards) {
+        repository.deleteFlashcard(bad.id);
+      }
+
+      return validCards;
+    });
   }
 
   Future<void> addFlashcard(Flashcard card) async {

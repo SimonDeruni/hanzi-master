@@ -247,7 +247,7 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
                             hanzi: cardMap['hanzi'] ?? '',
                             pinyin: cardMap['pinyin'] ?? '',
                             definition: cardMap['english'] ?? '',
-                            hskLevel: 1,
+                            hskLevel: 0,
                             strokePaths: const [],
                             nextReviewDate: DateTime.now(),
                             interval: 0,

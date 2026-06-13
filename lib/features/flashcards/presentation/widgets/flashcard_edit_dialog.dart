@@ -63,6 +63,17 @@ class _FlashcardEditDialogState extends ConsumerState<FlashcardEditDialog> {
 
     if (hanzi.isEmpty || def.isEmpty) return;
 
+    // Must contain at least one valid Chinese character
+    final hasChinese = RegExp(r'[\u4e00-\u9fff\u3400-\u4dbf]').hasMatch(hanzi);
+    if (!hasChinese) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("Please enter valid Chinese characters")),
+        );
+      }
+      return;
+    }
+
     final newCard = Flashcard(
       id: const Uuid().v4(),
       hanzi: hanzi,
