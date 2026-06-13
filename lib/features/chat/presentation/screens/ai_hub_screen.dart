@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/features/chat/presentation/screens/echo_hall_screen.dart'; // will rename later
+import 'package:hanzi_master/features/reading/presentation/screens/reading_room_screen.dart';
 
 class AiHubScreen extends ConsumerWidget {
   const AiHubScreen({super.key});
@@ -70,6 +71,19 @@ class AiHubScreen extends ConsumerWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const EchoHallScreen()),
+                );
+              },
+            ),
+            const SizedBox(height: 20),
+            _buildAiFeatureCard(
+              context,
+              title: "CULTURAL READING ROOM",
+              description: "Graded AI-generated stories on Chinese history and life.",
+              icon: Icons.menu_book,
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ReadingRoomScreen()),
                 );
               },
             ),

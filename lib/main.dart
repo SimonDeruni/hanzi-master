@@ -64,6 +64,12 @@ void main() async {
     encryptionCipher: HiveAesCipher(encryptionKey),
   );
 
+  // Open the graded stories box
+  await Hive.openBox<String>(
+    'graded_stories',
+    encryptionCipher: HiveAesCipher(encryptionKey),
+  );
+
   // Open the decks box
   final deckBox = await Hive.openBox<DeckModel>(
     'decks',

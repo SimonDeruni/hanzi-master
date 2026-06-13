@@ -511,6 +511,41 @@ Make sure every single character in the 'chinese' sentence is represented in the
     }
   }
 
+  Future<Map<String, dynamic>> generateGradedStory(String topic, String category, int hskLevel) async {
+    final prompt = '''
+You are a professional Chinese language professor creating Graded Readers.
+Write an engaging, culturally accurate story or article about "$topic" (Category: $category).
+CRITICAL: You MUST restrict your vocabulary entirely to the HSK $hskLevel word list. Keep it under 400 words.
+
+Respond ONLY in valid JSON format with this exact structure:
+{
+  "content": "The full Chinese text...",
+  "englishTranslation": "The English summary or full translation..."
+}
+''';
+
+    try {
+      final text = await _makeOpenRouterCall(
+        model: 'deepseek/deepseek-chat',
+        messages: [{'role': 'user', 'content': prompt}],
+        jsonMode: true,
+      );
+      
+      if (text.isNotEmpty) {
+        final cleanText = text.replaceAll(RegExp(r'^```json\n', multiLine: true), '')
+                              .replaceAll(RegExp(r'^```\n?', multiLine: true), '');
+        final json = jsonDecode(cleanText);
+        return {
+          'content': json['content']?.toString() ?? '',
+          'englishTranslation': json['englishTranslation']?.toString() ?? '',
+        };
+      }
+      throw Exception("Empty response from DeepSeek API");
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   AiChatSession startCharacterChat(String hanzi) {
     final systemInstruction = 'You are a concise Chinese Calligraphy and Etymology tutor inside a mobile flashcard app. '
         'The student is studying the character "$hanzi". '
