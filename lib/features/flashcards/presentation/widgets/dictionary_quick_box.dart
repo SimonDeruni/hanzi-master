@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:hanzi_master/shared/widgets/pinyin_text.dart';
-import 'package:hanzi_master/features/flashcards/presentation/widgets/cross_reference_text.dart';
+import 'package:hanzi_master/shared/widgets/clickable_chinese_text.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/character_detail_screen.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/review_screen.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/mastery_seal.dart';
@@ -94,7 +94,7 @@ class DictionaryQuickBox extends StatelessWidget {
               const SizedBox(height: 16),
               
               // Definition
-              CrossReferenceText(
+              ClickableChineseText(
                 card.definition,
                 style: TextStyle(
                   fontSize: 16,

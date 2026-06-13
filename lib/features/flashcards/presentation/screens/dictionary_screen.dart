@@ -23,7 +23,7 @@ import 'package:hanzi_master/features/premium/presentation/screens/ocr_scanner_s
 import 'package:hanzi_master/core/services/ocr_service.dart';
 import 'package:hanzi_master/core/providers/premium_controller.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
-import 'package:hanzi_master/features/flashcards/presentation/widgets/cross_reference_text.dart';
+import 'package:hanzi_master/shared/widgets/clickable_chinese_text.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/dictionary_provider.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/dictionary_quick_box.dart';
 
@@ -111,7 +111,8 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
         child: NestedScrollView(
           headerSliverBuilder: (context, innerBoxIsScrolled) => [
             SliverAppBar(
-              backgroundColor: Colors.transparent,
+              backgroundColor: isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
+              surfaceTintColor: Colors.transparent,
               elevation: 0,
               pinned: true,
               floating: true,
@@ -769,7 +770,7 @@ class _DictionaryItem extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 4),
-                  CrossReferenceText(
+                  ClickableChineseText(
                     card.definition,
                     style: TextStyle(
                       fontSize: 14,
