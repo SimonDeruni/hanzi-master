@@ -525,4 +525,19 @@ Make sure every single character in the 'chinese' sentence is represented in the
       model: 'deepseek/deepseek-chat',
     );
   }
+
+  AiChatSession startGrammarChat(String word, String sentence) {
+    final systemInstruction = 'You are a concise Chinese Grammar tutor inside a mobile app. '
+        'The student is confused about the word "$word" in the sentence: "$sentence". '
+        'RULES: Answer in 2–3 sentences max. '
+        'Never write introductions, sign-offs, or filler phrases. '
+        'Use **bold** for Chinese characters and key terms. '
+        'Be direct and informative.';
+        
+    return AiChatSession(
+      apiKey: _pool.nextKey,
+      systemInstruction: systemInstruction,
+      model: 'deepseek/deepseek-chat',
+    );
+  }
 }
