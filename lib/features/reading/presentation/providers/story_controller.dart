@@ -14,22 +14,26 @@ class StoryState {
   final bool isLoading;
   final String? error;
   final GradedStory? currentStory;
+  final List<StoryBlueprint> blueprints;
 
   const StoryState({
     this.isLoading = false,
     this.error,
     this.currentStory,
+    this.blueprints = const [],
   });
 
   StoryState copyWith({
     bool? isLoading,
     String? error,
     GradedStory? currentStory,
+    List<StoryBlueprint>? blueprints,
   }) {
     return StoryState(
       isLoading: isLoading ?? this.isLoading,
       error: error,
       currentStory: currentStory ?? this.currentStory,
+      blueprints: blueprints ?? this.blueprints,
     );
   }
 }
@@ -50,6 +54,28 @@ class StoryBlueprint {
     required this.imageUrl,
     required this.tags,
   });
+
+  factory StoryBlueprint.fromJson(Map<String, dynamic> json) {
+    return StoryBlueprint(
+      id: json['id'] as String,
+      title: json['title'] as String,
+      topic: json['topic'] as String,
+      category: json['category'] as String,
+      imageUrl: json['imageUrl'] as String? ?? '',
+      tags: (json['tags'] as List<dynamic>?)?.map((e) => e as String).toList() ?? [],
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'title': title,
+      'topic': topic,
+      'category': category,
+      'imageUrl': imageUrl,
+      'tags': tags,
+    };
+  }
 }
 
 class StoryController extends StateNotifier<StoryState> {
@@ -59,9 +85,16 @@ class StoryController extends StateNotifier<StoryState> {
   StoryController({
     required this.geminiService,
     required this.repository,
-  }) : super(const StoryState());
+  }) : super(const StoryState()) {
+    _init();
+  }
 
-  static const List<StoryBlueprint> blueprints = [
+  Future<void> _init() async {
+    final customBlueprints = await repository.getCustomBlueprints();
+    state = state.copyWith(blueprints: [...defaultBlueprints, ...customBlueprints]);
+  }
+
+  static const List<StoryBlueprint> defaultBlueprints = [
     // Myths & Legends
     StoryBlueprint(
       id: 'myth_monkey', 
@@ -222,15 +255,71 @@ class StoryController extends StateNotifier<StoryState> {
       // 3. Save to cache
       await repository.saveStory(newStory);
 
-      // 4. Update state
       state = state.copyWith(isLoading: false, currentStory: newStory);
-
     } catch (e) {
-      state = state.copyWith(isLoading: false, error: e.toString());
+      state = state.copyWith(isLoading: false, error: e.toString(), currentStory: null);
+    }
+  }
+
+  Future<void> generateCustomStoryByTopic(String topic, List<String> tags, int hskLevel) async {
+    final id = 'custom_${DateTime.now().millisecondsSinceEpoch}';
+    final blueprint = StoryBlueprint(
+      id: id,
+      title: topic,
+      topic: topic,
+      category: 'My Custom Stories',
+      imageUrl: '', // Blank implies placeholder in UI
+      tags: tags,
+    );
+
+    // Save blueprint
+    await repository.saveCustomBlueprint(blueprint);
+    state = state.copyWith(blueprints: [...state.blueprints, blueprint]);
+
+    // Now generate and load
+    await loadOrGenerateStory(blueprint, hskLevel);
+  }
+
+  Future<void> generateSimplifiedStory(String sourceText, int hskLevel) async {
+    state = const StoryState(isLoading: true, error: null, currentStory: null);
+    
+    try {
+      final id = 'custom_${DateTime.now().millisecondsSinceEpoch}';
+      final blueprint = StoryBlueprint(
+        id: id,
+        title: 'Simplified Text',
+        topic: 'User provided text',
+        category: 'My Custom Stories',
+        imageUrl: '',
+        tags: ['simplified', 'custom'],
+      );
+
+      // Save blueprint
+      await repository.saveCustomBlueprint(blueprint);
+      state = state.copyWith(blueprints: [...state.blueprints, blueprint]);
+
+      final storyId = '${blueprint.id}_hsk$hskLevel';
+      
+      final result = await geminiService.simplifyTextToHsk(sourceText, hskLevel);
+      
+      final newStory = GradedStory(
+        id: storyId,
+        title: blueprint.title,
+        category: blueprint.category,
+        hskLevel: hskLevel,
+        content: result['content'] ?? '',
+        englishTranslation: result['englishTranslation'] ?? '',
+        generatedAt: DateTime.now(),
+      );
+
+      await repository.saveStory(newStory);
+      state = state.copyWith(isLoading: false, currentStory: newStory);
+    } catch (e) {
+      state = state.copyWith(isLoading: false, error: e.toString(), currentStory: null);
     }
   }
 
   void clearCurrentStory() {
-    state = state.copyWith(currentStory: null);
+    state = const StoryState(isLoading: false, error: null, currentStory: null);
   }
 }

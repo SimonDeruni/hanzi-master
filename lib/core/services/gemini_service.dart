@@ -546,6 +546,46 @@ Respond ONLY in valid JSON format with this exact structure:
     }
   }
 
+  Future<Map<String, dynamic>> simplifyTextToHsk(String sourceText, int hskLevel) async {
+    final prompt = '''
+You are an expert Chinese teacher and translator.
+The user has provided a complex text. Rewrite and simplify the entire meaning of the text so that it strictly only uses HSK $hskLevel vocabulary. 
+Keep the core narrative and main ideas intact, but adjust the grammar and vocabulary to fit the target level.
+
+Source Text:
+"""
+$sourceText
+"""
+
+Respond ONLY in valid JSON format with this exact structure:
+{
+  "content": "The full simplified Chinese text...",
+  "englishTranslation": "The English translation of your simplified text..."
+}
+''';
+
+    try {
+      final text = await _makeOpenRouterCall(
+        model: 'deepseek/deepseek-chat',
+        messages: [{'role': 'user', 'content': prompt}],
+        jsonMode: true,
+      );
+      
+      if (text.isNotEmpty) {
+        final cleanText = text.replaceAll(RegExp(r'^```json\n', multiLine: true), '')
+                              .replaceAll(RegExp(r'^```\n?', multiLine: true), '');
+        final json = jsonDecode(cleanText);
+        return {
+          'content': json['content']?.toString() ?? '',
+          'englishTranslation': json['englishTranslation']?.toString() ?? '',
+        };
+      }
+      throw Exception("Empty response from DeepSeek API");
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   AiChatSession startCharacterChat(String hanzi) {
     final systemInstruction = 'You are a concise Chinese Calligraphy and Etymology tutor inside a mobile flashcard app. '
         'The student is studying the character "$hanzi". '

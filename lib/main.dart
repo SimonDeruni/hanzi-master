@@ -70,6 +70,12 @@ void main() async {
     encryptionCipher: HiveAesCipher(encryptionKey),
   );
 
+  // Open the custom blueprints box
+  await Hive.openBox<String>(
+    'custom_blueprints',
+    encryptionCipher: HiveAesCipher(encryptionKey),
+  );
+
   // Open the decks box
   final deckBox = await Hive.openBox<DeckModel>(
     'decks',

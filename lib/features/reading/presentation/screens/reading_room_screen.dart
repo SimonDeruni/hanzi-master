@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../providers/story_controller.dart';
 import 'story_reader_screen.dart';
+import '../widgets/custom_story_creator_sheet.dart';
 
 class ReadingRoomScreen extends ConsumerStatefulWidget {
   const ReadingRoomScreen({super.key});
@@ -21,10 +22,22 @@ class _ReadingRoomScreenState extends ConsumerState<ReadingRoomScreen> {
     super.dispose();
   }
 
+  void _showCreatorSheet(BuildContext context, WidgetRef ref) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) => const CustomStoryCreatorSheet(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    final storyState = ref.watch(storyControllerProvider);
+    final blueprints = storyState.blueprints;
+
     // Filter blueprints based on search query
-    final filteredBlueprints = StoryController.blueprints.where((b) {
+    final filteredBlueprints = blueprints.where((b) {
       if (_searchQuery.isEmpty) return true;
       final query = _searchQuery.toLowerCase();
       if (b.title.toLowerCase().contains(query)) return true;
@@ -49,6 +62,15 @@ class _ReadingRoomScreenState extends ConsumerState<ReadingRoomScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         centerTitle: true,
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          _showCreatorSheet(context, ref);
+        },
+        icon: const Icon(Icons.auto_awesome),
+        label: const Text("Creator Mode"),
+        backgroundColor: Colors.indigo,
+        foregroundColor: Colors.white,
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
