@@ -142,7 +142,7 @@ class AiChatSession {
   Future<String> sendMessage(String text) async {
     _history.add({'role': 'user', 'content': text});
 
-    final response = await http.post(
+    final response = await _client.post(
       Uri.parse('https://openrouter.ai/api/v1/chat/completions'),
       headers: {
         'Authorization': 'Bearer $apiKey',
@@ -415,12 +415,9 @@ Respond ONLY in valid JSON format as a list of objects with this exact structure
 
     final wordsList = vocabulary.join(", ");
     final prompt = '''
-You are an expert Chinese teacher. Please write a short, engaging story (about 2-3 paragraphs) that uses the following vocabulary words:
+You are a professional Chinese language teacher creating Graded Readers.
+Write a very short, engaging story (4-6 sentences) using primarily the following vocabulary words:
 $wordsList
-
-The theme or topic of the deck is: "$deckName"
-
-Keep the grammar at a level appropriate for someone learning these words. You may use basic connecting words, but try to use as many of the provided vocabulary words as possible.
 
 Respond ONLY in valid JSON format with this exact structure:
 {

@@ -6,8 +6,8 @@ import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart'
 import 'package:hanzi_master/core/providers.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/dictionary_quick_box.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
-
 import 'package:flutter_tts/flutter_tts.dart';
+import 'package:hanzi_master/features/flashcards/presentation/widgets/word_detail_dialog.dart';
 
 final storyProvider = FutureProvider.family<AiStory, ({String deckId, String deckName, String vocabString, bool force})>((ref, args) async {
   final gemini = ref.read(geminiServiceProvider);
@@ -26,6 +26,7 @@ class StoryModeScreen extends ConsumerStatefulWidget {
 
 class _StoryModeScreenState extends ConsumerState<StoryModeScreen> {
   bool _forceRegenerate = false;
+  bool _showPinyin = true;
   final FlutterTts _flutterTts = FlutterTts();
   bool _isPlaying = false;
 
@@ -59,35 +60,6 @@ class _StoryModeScreenState extends ConsumerState<StoryModeScreen> {
       if (mounted) setState(() => _isPlaying = true);
       final text = story.sentences.map((s) => s.chinese).join(' ');
       await _flutterTts.speak(text);
-    }
-  }
-
-  Future<void> _handleWordLongPress(BuildContext context, WidgetRef ref, String word) async {
-    if (word.isEmpty) return;
-    
-    final char = word.characters.first;
-    final repo = ref.read(globalDictionaryRepositoryProvider);
-    final flashcards = ref.read(flashcardControllerProvider).valueOrNull ?? [];
-    final isInLibrary = flashcards.any((c) => c.hanzi == char);
-    
-    Flashcard? card = await repo.getExact(char);
-    if (card == null) {
-      card = Flashcard(
-        id: 'dummy_$char',
-        hanzi: char,
-        pinyin: '?',
-        definition: 'Not found in offline dictionary.',
-        hskLevel: 0,
-        strokePaths: const [],
-        nextReviewDate: DateTime.now(),
-        interval: 0,
-        easeFactor: 2.5,
-        streak: 0,
-      );
-    }
-    
-    if (context.mounted) {
-      DictionaryQuickBox.show(context, card: card, isInLibrary: isInLibrary);
     }
   }
 
@@ -204,96 +176,61 @@ class _StoryModeScreenState extends ConsumerState<StoryModeScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
+                const SizedBox(height: 16),
                 // Render Sentences
                 ...story.sentences.map((sentence) {
                   return Padding(
                     padding: const EdgeInsets.only(bottom: 24.0),
                     child: Wrap(
-                      spacing: 4.0,
-                      runSpacing: 12.0,
+                      spacing: 8.0,
+                      runSpacing: 16.0,
                       children: sentence.words.map((word) {
                         final isPunctuation = RegExp(r'[^\w\s\u4e00-\u9fa5]', unicode: true).hasMatch(word.hanzi) || word.hanzi.trim().isEmpty;
                         
                         if (isPunctuation) {
-                          return Text(
-                            word.hanzi,
-                            style: TextStyle(
-                              fontFamily: 'NotoSerifSC',
-                              fontSize: 26,
-                              color: isDark ? Colors.white70 : Colors.black87,
+                          return Padding(
+                            padding: const EdgeInsets.only(top: 8.0),
+                            child: Text(
+                              word.hanzi,
+                              style: TextStyle(
+                                fontFamily: 'NotoSerifSC',
+                                fontSize: 26,
+                                color: isDark ? Colors.white70 : Colors.black87,
+                              ),
                             ),
                           );
                         }
 
                         return GestureDetector(
-                          onLongPress: () => _handleWordLongPress(context, ref, word.hanzi),
-                          child: Tooltip(
-                            triggerMode: TooltipTriggerMode.tap,
-                            showDuration: const Duration(seconds: 4),
-                            padding: const EdgeInsets.all(12),
-                            margin: const EdgeInsets.symmetric(horizontal: 24),
-                            decoration: BoxDecoration(
-                              color: isDark ? Colors.grey[800] : Colors.grey[100],
-                              borderRadius: BorderRadius.circular(12),
-                              border: Border.all(color: isDark ? Colors.white24 : Colors.black12),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black.withValues(alpha: 0.1),
-                                  blurRadius: 8,
-                                  offset: const Offset(0, 4),
-                                )
-                              ]
-                            ),
-                            richMessage: TextSpan(
-                              children: [
-                                TextSpan(
-                                  text: '${word.pinyin}\n',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 16,
-                                    color: Colors.purple[400],
-                                  ),
-                                ),
-                                TextSpan(
-                                  text: word.meaning,
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    color: isDark ? Colors.white70 : Colors.black87,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 1.0),
-                              child: Text(
+                          onTap: () => WordDetailDialog.show(context, word, sentence),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
                                 word.hanzi,
                                 style: TextStyle(
                                   fontFamily: 'NotoSerifSC',
                                   fontSize: 28,
-                                  color: isDark ? Colors.white : Colors.black,
+                                  fontWeight: FontWeight.w600,
+                                  color: isDark ? Colors.white : Colors.black87,
                                 ),
                               ),
-                            ),
+                              if (_showPinyin)
+                                Text(
+                                  word.pinyin,
+                                  style: const TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.blueAccent,
+                                  ),
+                                ),
+                            ],
                           ),
                         );
                       }).toList(),
                     ),
                   );
                 }),
-                
-                const SizedBox(height: 60),
-                
-                // Show Translation Button
-                Center(
-                  child: TextButton.icon(
-                    onPressed: () => _showFullTranslation(context, story),
-                    icon: const Icon(Icons.translate),
-                    label: const Text("Show English Translation"),
-                    style: TextButton.styleFrom(
-                      foregroundColor: isDark ? Colors.white54 : Colors.black54,
-                    ),
-                  ),
-                ),
+                const SizedBox(height: 80), // Padding for bottom bar
               ],
             ),
           );
@@ -339,10 +276,37 @@ class _StoryModeScreenState extends ConsumerState<StoryModeScreen> {
           ),
         ),
       ),
-      floatingActionButton: asyncStory.hasValue && !asyncStory.hasError ? FloatingActionButton(
-        onPressed: () => _togglePlay(asyncStory.value!),
-        backgroundColor: _isPlaying ? Colors.red : Colors.purple,
-        child: Icon(_isPlaying ? Icons.stop : Icons.volume_up, color: Colors.white),
+      bottomNavigationBar: asyncStory.hasValue && !asyncStory.hasError ? Container(
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+        decoration: BoxDecoration(
+          color: isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
+          border: Border(top: BorderSide(color: isDark ? Colors.white12 : Colors.black12)),
+        ),
+        child: SafeArea(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              TextButton.icon(
+                icon: const Icon(Icons.translate, size: 20),
+                label: const Text("Translate"),
+                style: TextButton.styleFrom(foregroundColor: isDark ? Colors.white70 : Colors.black87),
+                onPressed: () => _showFullTranslation(context, asyncStory.value!),
+              ),
+              TextButton.icon(
+                icon: Icon(_showPinyin ? Icons.visibility : Icons.visibility_off, size: 20),
+                label: const Text("Pinyin"),
+                style: TextButton.styleFrom(foregroundColor: _showPinyin ? Colors.blueAccent : (isDark ? Colors.white70 : Colors.black87)),
+                onPressed: () => setState(() => _showPinyin = !_showPinyin),
+              ),
+              TextButton.icon(
+                icon: Icon(_isPlaying ? Icons.stop : Icons.play_arrow, size: 20),
+                label: Text(_isPlaying ? "Stop" : "Play"),
+                style: TextButton.styleFrom(foregroundColor: _isPlaying ? Colors.red : Colors.purple),
+                onPressed: () => _togglePlay(asyncStory.value!),
+              ),
+            ],
+          ),
+        ),
       ) : null,
     );
   }
