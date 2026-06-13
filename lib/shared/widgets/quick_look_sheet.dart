@@ -5,6 +5,7 @@ import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart'
 import 'package:hanzi_master/features/flashcards/presentation/providers/character_detail_provider.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/character_detail_screen.dart';
+import 'package:hanzi_master/features/flashcards/presentation/widgets/flashcard_edit_dialog.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
 
 // ---------------------------------------------------------------------------
@@ -205,7 +206,28 @@ class _NotFoundBodyState extends ConsumerState<_NotFoundBody> {
               child: CircularProgressIndicator(strokeWidth: 2),
             )
           else
-            const SizedBox(height: 16),
+            Padding(
+              padding: const EdgeInsets.only(top: 16.0),
+              child: ElevatedButton.icon(
+                icon: const Icon(Icons.add_box),
+                label: const Text("Review & Add to Library"),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.indigo,
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                  elevation: 0,
+                ),
+                onPressed: () {
+                  FlashcardEditDialog.show(
+                    context,
+                    hanzi: widget.hanzi,
+                    pinyin: _pinyin,
+                    definition: _definition,
+                  );
+                },
+              ),
+            ),
         ],
       ),
     );
