@@ -21,7 +21,7 @@ class DeckDetailScreen extends ConsumerWidget {
       backgroundColor: isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
       body: asyncFlashcards.when(
         data: (allCards) {
-          final deckCards = allCards.where((c) => c.deckId == deck.id || (deck.id == 'default' && c.deckId == null)).toList();
+          final deckCards = allCards.where((c) => c.deckId == deck.id || (deck.id == 'default' && c.deckId == null)).toList().reversed.toList();
           
           return CustomScrollView(
             slivers: [
