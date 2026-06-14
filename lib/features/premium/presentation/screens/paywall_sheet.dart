@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:hanzi_master/core/services/monetization_service.dart';
 import 'package:hanzi_master/core/providers/premium_controller.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
@@ -23,7 +22,7 @@ class PaywallSheet extends ConsumerStatefulWidget {
 }
 
 class _PaywallSheetState extends ConsumerState<PaywallSheet> {
-  List<Package> _packages = [];
+  List<dynamic> _packages = [];
   bool _isLoading = true;
   bool _isPurchasing = false;
 
@@ -43,7 +42,7 @@ class _PaywallSheetState extends ConsumerState<PaywallSheet> {
     }
   }
 
-  Future<void> _handlePurchase(Package package) async {
+  Future<void> _handlePurchase(dynamic package) async {
     setState(() => _isPurchasing = true);
     HapticsManager.light();
     
@@ -165,7 +164,7 @@ class _PaywallSheetState extends ConsumerState<PaywallSheet> {
                       ),
                       child: _isPurchasing 
                           ? const CircularProgressIndicator(color: Colors.white)
-                          : Text("Unlock Forever - ${package.storeProduct.priceString}", 
+                          : Text("Unlock Forever - \$9.99", 
                               style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white)),
                     ),
                   )),
