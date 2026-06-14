@@ -6,6 +6,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:hanzi_master/features/flashcards/data/models/flashcard_model.dart';
+import 'package:hanzi_master/features/flashcards/data/models/review_stats_model.dart';
 import 'package:hanzi_master/features/flashcards/data/models/deck_model.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/settings_controller.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/main_navigation_screen.dart';
@@ -34,53 +35,52 @@ void main() async {
   // 2. Initialize Hive & DB
   await Hive.initFlutter();
   Hive.registerAdapter(FlashcardModelAdapter());
+  Hive.registerAdapter(ReviewStatsModelAdapter());
   Hive.registerAdapter(DeckModelAdapter());
 
   // --- SECURITY: Hive Encryption ---
-  const secureStorage = FlutterSecureStorage();
-  final encryptionKeyString = await secureStorage.read(key: 'hive_encryption_key');
-  late List<int> encryptionKey;
-
-  if (encryptionKeyString == null) {
-    encryptionKey = Hive.generateSecureKey();
-    await secureStorage.write(
-      key: 'hive_encryption_key',
-      value: base64Url.encode(encryptionKey),
-    );
-  } else {
-    encryptionKey = base64Url.decode(encryptionKeyString);
+  // Wrapped in try/catch: flutter_secure_storage can fail on sideloaded iOS
+  // apps without proper Keychain entitlements. Fall back to unencrypted Hive.
+  HiveAesCipher? cipher;
+  try {
+    const secureStorage = FlutterSecureStorage();
+    final encryptionKeyString = await secureStorage.read(key: 'hive_encryption_key');
+    late List<int> encryptionKey;
+    if (encryptionKeyString == null) {
+      encryptionKey = Hive.generateSecureKey();
+      await secureStorage.write(
+        key: 'hive_encryption_key',
+        value: base64Url.encode(encryptionKey),
+      );
+    } else {
+      encryptionKey = base64Url.decode(encryptionKeyString);
+    }
+    cipher = HiveAesCipher(encryptionKey);
+  } catch (e) {
+    // Keychain unavailable (e.g. sideloaded without entitlements) — run unencrypted
+    debugPrint('SecureStorage unavailable, running Hive unencrypted: $e');
+    cipher = null;
   }
 
-  // Open the box with encryption
-  // Note: If you have existing unencrypted data, you would need a migration step.
-  // For this audit fix, we are enforcing encryption from now on.
   final box = await Hive.openBox<FlashcardModel>(
     'flashcards',
-    encryptionCipher: HiveAesCipher(encryptionKey),
+    encryptionCipher: cipher,
   );
-
-  // Open the AI response cache
   await Hive.openBox<String>(
     'ai_cache',
-    encryptionCipher: HiveAesCipher(encryptionKey),
+    encryptionCipher: cipher,
   );
-
-  // Open the graded stories box
   await Hive.openBox<String>(
     'graded_stories_v2',
-    encryptionCipher: HiveAesCipher(encryptionKey),
+    encryptionCipher: cipher,
   );
-
-  // Open the custom blueprints box
   await Hive.openBox<String>(
     'custom_blueprints_v2',
-    encryptionCipher: HiveAesCipher(encryptionKey),
+    encryptionCipher: cipher,
   );
-
-  // Open the decks box
   final deckBox = await Hive.openBox<DeckModel>(
     'decks',
-    encryptionCipher: HiveAesCipher(encryptionKey),
+    encryptionCipher: cipher,
   );
 
   // Initialize RevenueCat
