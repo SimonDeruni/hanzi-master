@@ -9,8 +9,11 @@ import 'package:hanzi_master/core/stroke_matcher.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/drawing_canvas.dart';
 import 'package:hanzi_master/core/services/audio_service.dart';
+import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/settings_controller.dart';
+import 'package:hanzi_master/features/flashcards/domain/entities/study_mode.dart';
+import 'package:hanzi_master/features/flashcards/presentation/widgets/study_session_app_bar.dart';
 import 'dart:ui' as ui;
 
 
@@ -20,12 +23,18 @@ class ReviewScreen extends ConsumerStatefulWidget {
   final Flashcard card;
   final int reviewedCount;
   final int correctCount;
+  final int dueCount;
+  final int newCount;
+  final int learningCount;
 
   const ReviewScreen({
     super.key, 
     required this.card,
     this.reviewedCount = 0,
     this.correctCount = 0,
+    this.dueCount = 0,
+    this.newCount = 0,
+    this.learningCount = 0,
   });
 
   @override
@@ -48,6 +57,11 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
   int _currentCycleIndex = 0;
   Timer? _globalCycleTimer;
 
+  final List<double> _strokeScores = [];
+  String? _aiFeedback;
+  bool _isAiLoading = false;
+  bool _showHeatmap = true;
+
   @override
   void initState() {
     super.initState();
@@ -62,6 +76,35 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
       }
       ref.read(audioServiceProvider).playCharacter(_currentCard.hanzi);
     });
+    _startGlobalCycle();
+  }
+
+  void _generateAiFeedback(List<double> strokeScores, double totalScore) async {
+    setState(() { _isAiLoading = true; _aiFeedback = null; });
+    try {
+      final gemini = ref.read(geminiServiceProvider);
+      
+      List<int> poorStrokes = [];
+      for (int i = 0; i < strokeScores.length; i++) {
+        if (strokeScores[i] < 70) poorStrokes.add(i + 1);
+      }
+      
+      String prompt = 'The user drew the Chinese character ${_currentCard.hanzi} and scored ${totalScore.toStringAsFixed(0)}/100.';
+      if (poorStrokes.isNotEmpty) {
+        prompt += ' Their worst strokes were strokes: ${poorStrokes.join(", ")}.';
+      }
+      prompt += ' Give a single, short, practical tip on how to improve the shape, position, or length of the poorly drawn strokes. Be direct and helpful, do not be overly poetic or metaphorical. Do not use markdown.';
+      
+      final response = await gemini.generateText(prompt);
+      if (mounted) {
+        setState(() {
+          _aiFeedback = response;
+          _isAiLoading = false;
+        });
+      }
+    } catch (e) {
+      if (mounted) setState(() { _isAiLoading = false; });
+    }
   }
 
   void _startGlobalCycle() {
@@ -122,13 +165,15 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
       return;
     }
     final userStrokes = _splitIntoStrokes(userPoints);
+    _completedStrokes.clear();
+    _completedStrokes.addAll(userStrokes);
     final medians = _currentCard.medianPaths;
     if (userStrokes.isEmpty || medians.isEmpty) {
       setState(() { _score = 0.0; _state = ReviewState.feedback; });
       return;
     }
 
-    final double mastery = (_currentCard.streak / 5.0).clamp(0.0, 1.0);
+    final double mastery = _currentCard.masteryLevel(StudyMode.calligraphy);
     final List<Future<StrokeMatchResult>> futures = [];
     
     for (int i = 0; i < medians.length; i++) {
@@ -142,7 +187,10 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
 
     double totalScore = 0.0;
     int evaluated = 0;
+    final List<double> newStrokeScores = [];
+    
     for (final result in results) {
+      newStrokeScores.add(result.score * 100.0);
       totalScore += result.score;
       evaluated++;
     }
@@ -156,7 +204,17 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
     } else {
       HapticsManager.heavy();
     }
-    setState(() { _score = finalScore; _state = ReviewState.feedback; });
+    
+    setState(() {
+      _strokeScores.clear();
+      _strokeScores.addAll(newStrokeScores);
+      _score = finalScore;
+      _state = ReviewState.feedback;
+    });
+
+    if (_strokeByStrokeMode && finalScore < 95) {
+      _generateAiFeedback(newStrokeScores, finalScore);
+    }
     _startGlobalCycle();
   }
 
@@ -221,28 +279,17 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
     }
   }
 
-  void _continueToNext() {
-    int rating = _score < 60 ? 1 : (_score < 80 ? 2 : (_score < 95 ? 3 : 4));
-    
-    // 🚀 FIX: Update performance tracking fields on the card entity
-    final updatedCard = _currentCard.copyWith(
-      attempts: _currentCard.attempts + 1,
-      successCount: _score >= 80 ? _currentCard.successCount + 1 : _currentCard.successCount,
-      lastScore: _score,
-      lastAttemptDate: DateTime.now(),
-    );
-
-    // Pass the already-updated card to the SRS logic
-    ref.read(flashcardControllerProvider.notifier).reviewFlashcard(updatedCard, rating);
-    ref.read(streakProvider.notifier).incrementStreak();
-    Navigator.pop(context, _score);
-  }
 
   @override
   Widget build(BuildContext context) {
     final settings = ref.watch(settingsProvider);
     return Scaffold(
-      appBar: AppBar(title: Text(_currentCard.hanzi)),
+      appBar: StudySessionAppBar(
+        title: _currentCard.hanzi,
+        dueCount: widget.dueCount,
+        newCount: widget.newCount,
+        learningCount: widget.learningCount,
+      ),
       body: _state == ReviewState.practice ? _buildPracticeScreen(settings) : _buildFeedbackScreen(settings),
     );
   }
@@ -277,17 +324,6 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
                         PinyinText(text: _currentCard.pinyin, style: const TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.w500)),
                         Text(_currentCard.definition, style: const TextStyle(fontSize: 14, color: Colors.white)),
                       ],
-                    ),
-                  ),
-                  Container(
-                    decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(8)),
-                    child: SegmentedButton<bool>(
-                      segments: const [
-                        ButtonSegment(value: true, label: Text('Guided'), icon: Icon(Icons.school, size: 18)),
-                        ButtonSegment(value: false, label: Text('Free'), icon: Icon(Icons.draw, size: 18)),
-                      ],
-                      selected: {_strokeByStrokeMode},
-                      onSelectionChanged: (Set<bool> s) => setState(() { _strokeByStrokeMode = s.first; _currentStrokeIndex = 0; _completedStrokes.clear(); _userPointsNotifier.value = []; }),
                     ),
                   ),
                 ],
@@ -333,8 +369,9 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
                           strokeByStrokeMode: _strokeByStrokeMode,
                           currentStrokeIndex: _currentStrokeIndex,
                           onStrokeComplete: _onStrokeComplete,
-                          masteryLevel: (_currentCard.streak / 5.0).clamp(0.0, 1.0),
+                          masteryLevel: (_currentCard.masteryLevel(StudyMode.calligraphy)),
                           isFlipped: _currentCard.isFlipped,
+                          showReference: _currentCard.getStatsForMode(StudyMode.calligraphy).streak < settings.guideDisappearanceStreak, // Hide blue guide based on settings
                         );
                       }
                     ),
@@ -367,64 +404,276 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
 
   Widget _buildFeedbackScreen(dynamic settings) {
     final isSuccess = _score >= 80;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final bgColor = isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0);
+    final cardColor = isDark ? Colors.white.withValues(alpha: 0.05) : Colors.white;
     final themeColor = isSuccess ? Colors.green : Colors.orange;
+    
     return Container(
-      color: Colors.grey.shade50,
-      child: Column(
-        children: [
-          Container(
-            width: double.infinity, padding: const EdgeInsets.fromLTRB(24, 20, 24, 24),
-            decoration: BoxDecoration(gradient: LinearGradient(colors: [themeColor.shade400, themeColor.shade600])),
-            child: Column(
-              children: [
-                Text(isSuccess ? '🎉 EXCELLENT!' : '💪 KEEP GOING!', style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w900, color: Colors.white)),
-                const SizedBox(height: 16),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(width: 90, height: 90, decoration: const BoxDecoration(color: Colors.white, shape: BoxShape.circle), child: Center(child: Text(_score.toStringAsFixed(0), style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold, color: themeColor.shade700)))),
-                    const SizedBox(width: 24),
-                    Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                      _buildStarRating(_score, size: 28, color: Colors.white),
-                      const SizedBox(height: 8),
-                      Text(_getFeedback(_score), style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w500)),
-                    ]),
-                  ],
+      color: bgColor,
+      child: SafeArea(
+        child: Column(
+          children: [
+            // Header Section
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+              margin: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [themeColor.shade400, themeColor.shade600],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
                 ),
-              ],
-            ),
-          ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(24),
+                borderRadius: BorderRadius.circular(24),
+                boxShadow: [
+                  BoxShadow(color: themeColor.withValues(alpha: 0.3), blurRadius: 12, offset: const Offset(0, 4)),
+                ]
+              ),
               child: Column(
                 children: [
-                  Container(
-                    width: double.infinity, padding: const EdgeInsets.all(16), margin: const EdgeInsets.only(bottom: 24),
-                    decoration: BoxDecoration(color: Colors.indigo.shade50, borderRadius: BorderRadius.circular(20)),
-                    child: Row(children: [
-                      Text(_currentCard.hanzi, style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Colors.indigo)),
-                      const SizedBox(width: 16),
-                      Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                        PinyinText(text: _currentCard.pinyin, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                        Text(_currentCard.definition),
-                      ])),
-                    ]),
+                  Text(
+                    _strokeByStrokeMode ? (isSuccess ? 'Excellent work!' : 'Keep practicing!') : 'Drawing Submitted',
+                    style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white, letterSpacing: 0.5),
                   ),
-                  Expanded(child: Row(children: [
-                    Expanded(flex: 2, child: Container(decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(20)), child: DrawingCanvas(strokePaths: _currentCard.strokePaths, medianPaths: _currentCard.medianPaths, showAnimation: false, readOnly: true, autoCenter: true, initialUserStrokes: _completedStrokes, forcedActiveCharIndex: _currentCycleIndex, isFlipped: _currentCard.isFlipped, showGrade: false, showReference: false))),
-                    const SizedBox(width: 16),
-                    Expanded(flex: 3, child: Container(decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(20)), child: DrawingCanvas(strokePaths: _currentCard.strokePaths, medianPaths: _currentCard.medianPaths, showAnimation: true, readOnly: true, autoCenter: true, forcedActiveCharIndex: _currentCycleIndex, isFlipped: _currentCard.isFlipped, showGrade: false))),
-                  ])),
+                  if (_strokeByStrokeMode) ...[
+                    const SizedBox(height: 20),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          width: 80, height: 80,
+                          decoration: const BoxDecoration(color: Colors.white, shape: BoxShape.circle, boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 8)]),
+                          child: Center(
+                            child: Text(
+                              _score.toStringAsFixed(0),
+                              style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: themeColor.shade700),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 24),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            _buildStarRating(_score, size: 24, color: Colors.white),
+                            const SizedBox(height: 6),
+                            Text(_getFeedback(_score), style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w500, fontSize: 14)),
+                          ]
+                        ),
+                      ],
+                    )
+                  ],
                 ],
               ),
             ),
+            
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                child: Column(
+                  children: [
+                    // Character Info Card
+                    Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.all(16),
+                      margin: const EdgeInsets.only(bottom: 16),
+                      decoration: BoxDecoration(
+                        color: cardColor,
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(color: Colors.grey.withValues(alpha: 0.1)),
+                        boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.05), blurRadius: 10, offset: const Offset(0, 2))],
+                      ),
+                      child: Row(
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.all(12),
+                            decoration: BoxDecoration(color: themeColor.withValues(alpha: 0.1), borderRadius: BorderRadius.circular(12)),
+                            child: Text(_currentCard.hanzi, style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: themeColor.shade700)),
+                          ),
+                          const SizedBox(width: 16),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                PinyinText(text: _currentCard.pinyin, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: isDark ? Colors.white : Colors.black87)),
+                                const SizedBox(height: 4),
+                                Text(_currentCard.definition, style: TextStyle(color: isDark ? Colors.white70 : Colors.black54, fontSize: 14)),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    
+                    // AI Teacher Note
+                    if (_strokeByStrokeMode && (_isAiLoading || _aiFeedback != null))
+                      Container(
+                        width: double.infinity,
+                        padding: const EdgeInsets.all(16),
+                        margin: const EdgeInsets.only(bottom: 24),
+                        decoration: BoxDecoration(
+                          color: isDark ? Colors.indigo.withValues(alpha: 0.1) : Colors.indigo.shade50,
+                          borderRadius: BorderRadius.circular(16),
+                          border: Border.all(color: Colors.indigo.withValues(alpha: 0.1)),
+                        ),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Icon(Icons.auto_awesome, color: Colors.indigo, size: 20),
+                            const SizedBox(width: 12),
+                            Expanded(
+                              child: _isAiLoading 
+                                ? const Center(child: SizedBox(height: 20, width: 20, child: CircularProgressIndicator(strokeWidth: 2)))
+                                : Text(_aiFeedback ?? '', style: TextStyle(color: isDark ? Colors.white70 : Colors.indigo.shade900, fontSize: 14, height: 1.4)),
+                            ),
+                          ],
+                        ),
+                      )
+                    else 
+                      const SizedBox(height: 8),
+                    
+                    // Canvases
+                    Expanded(
+                      child: Row(
+                        children: [
+                          Expanded(
+                            flex: 1,
+                            child: Column(
+                              children: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text("Your Drawing", style: TextStyle(color: isDark ? Colors.white54 : Colors.black54, fontSize: 12, fontWeight: FontWeight.bold)),
+                                    const SizedBox(width: 8),
+                                    if (_strokeByStrokeMode)
+                                      GestureDetector(
+                                        onTap: () => setState(() => _showHeatmap = !_showHeatmap),
+                                        child: Icon(
+                                          _showHeatmap ? Icons.palette : Icons.format_color_text, 
+                                          size: 16, 
+                                          color: _showHeatmap ? themeColor : Colors.grey
+                                        ),
+                                      ),
+                                  ],
+                                ),
+                                const SizedBox(height: 8),
+                                Expanded(
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      color: cardColor,
+                                      borderRadius: BorderRadius.circular(16),
+                                      border: Border.all(color: Colors.grey.withValues(alpha: 0.1)),
+                                    ),
+                                    clipBehavior: Clip.antiAlias,
+                                    child: DrawingCanvas(
+                                      strokePaths: _currentCard.strokePaths,
+                                      medianPaths: _currentCard.medianPaths,
+                                      showAnimation: false,
+                                      readOnly: true,
+                                      autoCenter: true,
+                                      initialUserStrokes: _completedStrokes,
+                                      forcedActiveCharIndex: _currentCycleIndex,
+                                      isFlipped: _currentCard.isFlipped,
+                                      showGrade: false,
+                                      showReference: false,
+                                      strokeScores: _strokeScores,
+                                      showHeatmap: _showHeatmap,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(width: 16),
+                          Expanded(
+                            flex: 1,
+                            child: Column(
+                              children: [
+                                Text("Reference", style: TextStyle(color: isDark ? Colors.white54 : Colors.black54, fontSize: 12, fontWeight: FontWeight.bold)),
+                                const SizedBox(height: 8),
+                                Expanded(
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      color: cardColor,
+                                      borderRadius: BorderRadius.circular(16),
+                                      border: Border.all(color: Colors.grey.withValues(alpha: 0.1)),
+                                    ),
+                                    clipBehavior: Clip.antiAlias,
+                                    child: DrawingCanvas(
+                                      strokePaths: _currentCard.strokePaths,
+                                      medianPaths: _currentCard.medianPaths,
+                                      showAnimation: true,
+                                      readOnly: true,
+                                      autoCenter: true,
+                                      forcedActiveCharIndex: _currentCycleIndex,
+                                      isFlipped: _currentCard.isFlipped,
+                                      showGrade: false,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 24),
+                  ],
+                ),
+              ),
+            ),
+            
+            // Grading Buttons
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+              child: Column(
+                children: [
+                  Text("Rate your recall", style: TextStyle(color: isDark ? Colors.white54 : Colors.black54, fontSize: 13, fontWeight: FontWeight.bold)),
+                  const SizedBox(height: 12),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      _buildGradeButton('Again', 0, Colors.red, 'Failed to recall', isDark),
+                      _buildGradeButton('Hard', 2, Colors.orange, 'Recalled with effort', isDark),
+                      _buildGradeButton('Good', 4, Colors.green, 'Recalled well', isDark),
+                      _buildGradeButton('Easy', 5, Colors.blue, 'Perfect recall', isDark),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildGradeButton(String label, int grade, MaterialColor color, String tooltip, bool isDark) {
+    return Expanded(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 4.0),
+        child: Tooltip(
+          message: tooltip,
+          child: ElevatedButton(
+            onPressed: () {
+              Navigator.pop(context, grade);
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: isDark ? color.withValues(alpha: 0.15) : color.shade50,
+              foregroundColor: isDark ? color.shade300 : color.shade700,
+              padding: const EdgeInsets.symmetric(vertical: 16),
+              elevation: 0,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+                side: BorderSide(color: isDark ? color.withValues(alpha: 0.3) : color.shade200, width: 1),
+              ),
+            ),
+            child: Text(
+              label,
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
+            ),
           ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(24, 0, 24, 32),
-            child: ElevatedButton(onPressed: _continueToNext, style: ElevatedButton.styleFrom(backgroundColor: Colors.indigo, foregroundColor: Colors.white, minimumSize: const Size(double.infinity, 60)), child: const Text('CONTINUE')),
-          ),
-        ],
+        ),
       ),
     );
   }

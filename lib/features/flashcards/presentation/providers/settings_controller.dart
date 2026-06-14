@@ -8,6 +8,7 @@ class SettingsState {
   final double animationSpeed; // 0.5 to 2.0
   final bool hasCompletedOnboarding;
   final bool isTutorialCompleted; // The Scroll of Origin
+  final int guideDisappearanceStreak;
 
   SettingsState({
     this.isDarkMode = false, 
@@ -15,6 +16,7 @@ class SettingsState {
     this.animationSpeed = 1.0,
     this.hasCompletedOnboarding = false,
     this.isTutorialCompleted = false,
+    this.guideDisappearanceStreak = 2,
   });
 
   SettingsState copyWith({
@@ -23,6 +25,7 @@ class SettingsState {
     double? animationSpeed,
     bool? hasCompletedOnboarding,
     bool? isTutorialCompleted,
+    int? guideDisappearanceStreak,
   }) {
     return SettingsState(
       isDarkMode: isDarkMode ?? this.isDarkMode,
@@ -30,6 +33,7 @@ class SettingsState {
       animationSpeed: animationSpeed ?? this.animationSpeed,
       hasCompletedOnboarding: hasCompletedOnboarding ?? this.hasCompletedOnboarding,
       isTutorialCompleted: isTutorialCompleted ?? this.isTutorialCompleted,
+      guideDisappearanceStreak: guideDisappearanceStreak ?? this.guideDisappearanceStreak,
     );
   }
 }
@@ -44,6 +48,7 @@ class SettingsController extends StateNotifier<SettingsState> {
     animationSpeed: prefs.getDouble(_keyAnimationSpeed) ?? 1.0,
     hasCompletedOnboarding: prefs.getBool(_keyOnboarding) ?? false,
     isTutorialCompleted: prefs.getBool(_keyTutorial) ?? false,
+    guideDisappearanceStreak: prefs.getInt(_keyGuideStreak) ?? 2,
   ));
 
   static const _keyTheme = 'is_dark_mode';
@@ -51,6 +56,7 @@ class SettingsController extends StateNotifier<SettingsState> {
   static const _keyAnimationSpeed = 'animation_speed';
   static const _keyOnboarding = 'has_completed_onboarding';
   static const _keyTutorial = 'tutorial_completed';
+  static const _keyGuideStreak = 'guide_disappearance_streak';
 
   Future<void> completeTutorial() async {
     await prefs.setBool(_keyTutorial, true);
@@ -75,6 +81,11 @@ class SettingsController extends StateNotifier<SettingsState> {
   Future<void> setAnimationSpeed(double value) async {
     await prefs.setDouble(_keyAnimationSpeed, value);
     state = state.copyWith(animationSpeed: value);
+  }
+
+  Future<void> setGuideDisappearanceStreak(int value) async {
+    await prefs.setInt(_keyGuideStreak, value);
+    state = state.copyWith(guideDisappearanceStreak: value);
   }
 }
 

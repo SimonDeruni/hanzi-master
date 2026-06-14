@@ -49,10 +49,7 @@ class _FlashcardFormScreenState extends ConsumerState<FlashcardFormScreen> {
           definition: _defController.text,
           hskLevel: 1,
           strokePaths: const [],
-          nextReviewDate: DateTime.now(),
-          interval: 0,
-          easeFactor: 2.5,
-          streak: 0,
+          modeStats: const {},
         );
 
         // We use the controller to save (it handles the repository for us)

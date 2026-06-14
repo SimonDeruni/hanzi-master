@@ -1,12 +1,12 @@
 import 'package:equatable/equatable.dart';
+import '../../../../core/services/gemini_service.dart';
 
 class GradedStory extends Equatable {
   final String id;
   final String title;
   final String category; // e.g. "Mythology", "Daily Life"
   final int hskLevel;
-  final String content; // The Chinese text
-  final String englishTranslation; // Summary or full translation
+  final List<AiSentence> sentences;
   final DateTime generatedAt;
 
   const GradedStory({
@@ -14,8 +14,7 @@ class GradedStory extends Equatable {
     required this.title,
     required this.category,
     required this.hskLevel,
-    required this.content,
-    required this.englishTranslation,
+    required this.sentences,
     required this.generatedAt,
   });
 
@@ -25,8 +24,10 @@ class GradedStory extends Equatable {
       title: json['title'] as String? ?? '',
       category: json['category'] as String? ?? '',
       hskLevel: json['hskLevel'] as int? ?? 1,
-      content: json['content'] as String? ?? '',
-      englishTranslation: json['englishTranslation'] as String? ?? '',
+      sentences: (json['sentences'] as List<dynamic>?)
+              ?.map((e) => AiSentence.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
       generatedAt: json['generatedAt'] != null
           ? DateTime.parse(json['generatedAt'] as String)
           : DateTime.now(),
@@ -39,8 +40,7 @@ class GradedStory extends Equatable {
       'title': title,
       'category': category,
       'hskLevel': hskLevel,
-      'content': content,
-      'englishTranslation': englishTranslation,
+      'sentences': sentences.map((s) => s.toJson()).toList(),
       'generatedAt': generatedAt.toIso8601String(),
     };
   }
@@ -51,8 +51,7 @@ class GradedStory extends Equatable {
         title,
         category,
         hskLevel,
-        content,
-        englishTranslation,
+        sentences,
         generatedAt,
       ];
 }

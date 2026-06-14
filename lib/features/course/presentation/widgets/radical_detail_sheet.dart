@@ -236,7 +236,7 @@ class _GalaxyPreviewChip extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final asyncCards = ref.watch(flashcardControllerProvider);
-    final card = asyncCards.value?.firstWhere((c) => c.id == node.uuid, orElse: () => Flashcard(id: '', hanzi: node.hanzi, pinyin: '', definition: '', hskLevel: 1, strokePaths: const [], nextReviewDate: DateTime.now(), interval: 0, easeFactor: 0, streak: 0));
+    final card = asyncCards.value?.firstWhere((c) => c.id == node.uuid, orElse: () => Flashcard(id: '', hanzi: node.hanzi, pinyin: '', definition: '', hskLevel: 1, strokePaths: const [], modeStats: const {}));
 
     if (card == null) return const SizedBox();
 

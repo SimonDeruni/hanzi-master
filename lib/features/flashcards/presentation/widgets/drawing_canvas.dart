@@ -28,6 +28,8 @@ class DrawingCanvas extends StatefulWidget {
   final bool showGuideLines;
   final Color referenceColor;
   final bool strictGrading;
+  final List<double>? strokeScores;
+  final bool showHeatmap;
 
   const DrawingCanvas({
     super.key,
@@ -44,7 +46,7 @@ class DrawingCanvas extends StatefulWidget {
     this.initialUserPoints,
     this.initialUserStrokes,
     this.readOnly = false,
-    this.autoCenter = false,
+    this.autoCenter = true,
     this.forcedActiveCharIndex,
     this.masteryLevel = 0.0,
     this.strokeLimit,
@@ -54,6 +56,8 @@ class DrawingCanvas extends StatefulWidget {
     this.showGuideLines = true,
     this.referenceColor = Colors.blue,
     this.strictGrading = true,
+    this.strokeScores,
+    this.showHeatmap = false,
   });
 
   @override
@@ -135,8 +139,8 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
   int _getStrokeOffsetForCharacter(int charIndex) {
     int offset = 0;
     for (int i = 0; i < charIndex; i++) {
-      // Each character group is followed by a separator in widget.medianPaths
-      offset += _cachedCharGroups[i].length + 1;
+      // Separators are not stored in stroke arrays like _completedStrokes
+      offset += _cachedCharGroups[i].length;
     }
     return offset;
   }
@@ -246,11 +250,14 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
     
     setState(() => _gradingResult = result.score * 100.0);
     if (result.isMatch) {
+      final currentPoints = List<Offset?>.from(_userPoints);
       setState(() {
         _currentStrokeComplete = true;
         _showSnapStroke = true;
         _userPoints.clear();
-        _syncUserPointsWithNotifier();
+        if (widget.userPointsNotifier != null) {
+          widget.userPointsNotifier!.value = currentPoints;
+        }
       });
       Future.delayed(const Duration(milliseconds: 50), () {
         if (widget.onStrokeComplete != null && mounted) {
@@ -408,6 +415,19 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
                       isDark: isDark,
                     ),
                   ),
+                )
+              else if (widget.strokeLimit != null)
+                Positioned.fill(
+                  child: IgnorePointer(
+                    child: CustomPaint(
+                      painter: _StaticHighlightPainter(
+                        paths: _cachedParsedPaths,
+                        strokeLimit: widget.strokeLimit!,
+                        centeringShift: centeringShift,
+                      ),
+                      size: Size.infinite,
+                    ),
+                  ),
                 ),
 
               if (_showSnapStroke)
@@ -434,8 +454,8 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
                           if (widget.readOnly) return;
                           setState(() {
                             final normalizedPoint = Offset(
-                              details.localPosition.dx * scaleX,
-                              details.localPosition.dy * scaleY,
+                              details.localPosition.dx * scaleX - centeringShift.dx,
+                              details.localPosition.dy * scaleY - centeringShift.dy,
                             );
                             _userPoints.add(normalizedPoint);
                             _syncUserPointsWithNotifier();
@@ -448,8 +468,8 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
                           if (widget.readOnly) return;
                           setState(() {
                             final normalizedPoint = Offset(
-                              details.localPosition.dx * scaleX,
-                              details.localPosition.dy * scaleY,
+                              details.localPosition.dx * scaleX - centeringShift.dx,
+                              details.localPosition.dy * scaleY - centeringShift.dy,
                             );
                             _userPoints.add(normalizedPoint);
                             _syncUserPointsWithNotifier();
@@ -465,7 +485,9 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
                             activeCharacterUserPoints, 
                             _gradingResult, 
                             centeringShift: centeringShift, 
-                            isDark: false, // Always Carbon Ink on Xuan
+                            isDark: isDark,
+                            strokeScores: widget.strokeScores,
+                            showHeatmap: widget.showHeatmap,
                           ), 
                           size: Size.infinite
                         ),
@@ -609,7 +631,56 @@ class _ReferenceStrokePainter extends CustomPainter {
     canvas.restore();
   }
   @override
-  bool shouldRepaint(_ReferenceStrokePainter oldDelegate) => oldDelegate.referencePath != referencePath;
+  bool shouldRepaint(covariant _ReferenceStrokePainter oldDelegate) => oldDelegate.referencePath != referencePath;
+}
+
+class _StaticHighlightPainter extends CustomPainter {
+  final List<Path> paths;
+  final int strokeLimit;
+  final Offset centeringShift;
+
+  _StaticHighlightPainter({required this.paths, required this.strokeLimit, required this.centeringShift});
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    if (paths.isEmpty) return;
+    final double scaleX = size.width / 1000.0;
+    final double scaleY = size.height / 1000.0;
+    canvas.save();
+    canvas.scale(scaleX, scaleY);
+    canvas.translate(centeringShift.dx, centeringShift.dy);
+
+    final standardPaint = Paint()
+      ..color = const Color(0xFF1A1A1B)
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 46.0
+      ..strokeCap = StrokeCap.round
+      ..strokeJoin = StrokeJoin.round
+      ..isAntiAlias = true;
+
+    final highlightPaint = Paint()
+      ..color = Colors.red
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 46.0
+      ..strokeCap = StrokeCap.round
+      ..strokeJoin = StrokeJoin.round
+      ..isAntiAlias = true;
+
+    for (int i = 0; i < paths.length; i++) {
+      if (i < strokeLimit - 1) {
+        canvas.drawPath(paths[i], standardPaint);
+      } else if (i == strokeLimit - 1) {
+        canvas.drawPath(paths[i], highlightPaint);
+      }
+    }
+    
+    canvas.restore();
+  }
+
+  @override
+  bool shouldRepaint(covariant _StaticHighlightPainter oldDelegate) {
+    return oldDelegate.paths.length != paths.length || oldDelegate.strokeLimit != strokeLimit;
+  }
 }
 
 class _HintStrokePainter extends CustomPainter {
@@ -640,35 +711,79 @@ class _UserDrawingPainter extends CustomPainter {
   final double? gradingResult;
   final Offset centeringShift;
   final bool isDark;
-  _UserDrawingPainter(this.points, this.gradingResult, {required this.centeringShift, required this.isDark});
+  final List<double>? strokeScores;
+  final bool showHeatmap;
+  
+  _UserDrawingPainter(this.points, this.gradingResult, {
+    required this.centeringShift, 
+    required this.isDark,
+    this.strokeScores,
+    this.showHeatmap = false,
+  });
+  
   @override
   void paint(Canvas canvas, Size size) {
     if (size.width == 0) return;
     final scale = size.width / 1000.0;
     const Color carbonInk = Color(0xFF1A1A1B);
-    final paint = Paint()..color = gradingResult == null ? carbonInk : (gradingResult! > 40 ? Colors.green : Colors.red)
+    
+    // Default paint for the whole character
+    final defaultPaint = Paint()
+      ..color = gradingResult == null ? carbonInk : (gradingResult! > 40 ? Colors.green : Colors.red)
       ..strokeWidth = scale * 44.0
       ..strokeCap = StrokeCap.round
       ..strokeJoin = StrokeJoin.round
       ..style = PaintingStyle.stroke;
       
-    final path = Path();
+    int currentStrokeIndex = 0;
+    Path currentPath = Path();
     bool hasMoved = false;
+    
+    // Draw stroke by stroke so we can color them individually if heatmap is enabled
     for (int i = 0; i < points.length; i++) {
       if (points[i] == null) {
-        hasMoved = false;
+        if (hasMoved) {
+          _drawPath(canvas, currentPath, currentStrokeIndex, defaultPaint, carbonInk);
+          currentPath = Path();
+          hasMoved = false;
+          currentStrokeIndex++;
+        }
         continue;
       }
       final pt = Offset((points[i]!.dx + centeringShift.dx) * scale, (points[i]!.dy + centeringShift.dy) * scale);
       if (!hasMoved) {
-        path.moveTo(pt.dx, pt.dy);
+        currentPath.moveTo(pt.dx, pt.dy);
         hasMoved = true;
       } else {
-        path.lineTo(pt.dx, pt.dy);
+        currentPath.lineTo(pt.dx, pt.dy);
       }
     }
-    canvas.drawPath(path, paint);
+    // Draw the final stroke if the points list didn't end with a null
+    if (hasMoved) {
+       _drawPath(canvas, currentPath, currentStrokeIndex, defaultPaint, carbonInk);
+    }
   }
+
+  void _drawPath(Canvas canvas, Path path, int strokeIndex, Paint defaultPaint, Color carbonInk) {
+    if (showHeatmap && strokeScores != null && strokeIndex < strokeScores!.length) {
+      final score = strokeScores![strokeIndex];
+      Color strokeColor;
+      if (score >= 85) strokeColor = Colors.green;
+      else if (score >= 60) strokeColor = Colors.orange;
+      else strokeColor = Colors.red;
+      
+      final heatmapPaint = Paint()
+        ..color = strokeColor
+        ..strokeWidth = defaultPaint.strokeWidth
+        ..strokeCap = defaultPaint.strokeCap
+        ..strokeJoin = defaultPaint.strokeJoin
+        ..style = defaultPaint.style;
+      canvas.drawPath(path, heatmapPaint);
+    } else {
+      canvas.drawPath(path, defaultPaint);
+    }
+  }
+
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) => true;
 }

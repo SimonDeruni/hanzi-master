@@ -7,6 +7,8 @@ import 'package:hanzi_master/features/flashcards/presentation/screens/review_scr
 import 'package:hanzi_master/features/flashcards/presentation/widgets/mastery_seal.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
+import 'package:hanzi_master/features/flashcards/presentation/widgets/deck_selection_sheet.dart';
+import 'package:hanzi_master/features/flashcards/domain/entities/study_mode.dart';
 
 class DictionaryQuickBox extends ConsumerStatefulWidget {
   final Flashcard card;
@@ -71,7 +73,7 @@ class _DictionaryQuickBoxState extends ConsumerState<DictionaryQuickBox> {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final double masteryProgress = widget.isInLibrary ? (_card.streak / 5.0).clamp(0.0, 1.0) : 0.0;
+    final double masteryProgress = widget.isInLibrary ? _card.masteryLevel(StudyMode.reading) : 0.0;
     
     return Container(
       margin: const EdgeInsets.all(16),
@@ -100,7 +102,7 @@ class _DictionaryQuickBoxState extends ConsumerState<DictionaryQuickBox> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   if (widget.isInLibrary)
-                    MasterySeal(progress: masteryProgress, isMastered: _card.isMastered, size: 40)
+                    MasterySeal(progress: masteryProgress, isMastered: _card.isMastered(StudyMode.reading), size: 40)
                   else
                     const SizedBox(width: 40, height: 40), // Placeholder to balance
                     
@@ -205,7 +207,7 @@ class _DictionaryQuickBoxState extends ConsumerState<DictionaryQuickBox> {
                       child: ElevatedButton.icon(
                         onPressed: () {
                           Navigator.pop(context); 
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => CharacterDetailScreen(card: _card)));
+                          DeckSelectionSheet.show(context, card: _card);
                         },
                         icon: const Icon(Icons.add),
                         label: const Text("Add to Library"),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/shared/widgets/pinyin_text.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
+import 'package:hanzi_master/features/flashcards/domain/entities/study_mode.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/drawing_canvas.dart';
@@ -19,6 +20,8 @@ import 'package:hanzi_master/features/flashcards/presentation/widgets/character_
 import 'package:hanzi_master/shared/widgets/tappable_hanzi_text.dart';
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
 import 'package:hanzi_master/core/utils/pinyin_utils.dart';
+import 'package:hanzi_master/features/flashcards/presentation/widgets/dictionary_quick_box.dart';
+import 'package:hanzi_master/features/flashcards/presentation/widgets/deck_selection_sheet.dart';
 
 class CharacterDetailScreen extends ConsumerStatefulWidget {
   final Flashcard card;
@@ -36,6 +39,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
   
   // Scrubbing State
   int? _manualStrokeLimit;
+  int? _manualCharIndex;
   bool _isPlaying = true;
 
   // Lazy Load State
@@ -212,7 +216,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
         ? _hydratedCard!
         : (globalCard.strokePaths.isEmpty && _hydratedCard != null) ? _hydratedCard! : globalCard;
     
-    final double masteryProgress = (currentCard.streak / 5.0).clamp(0.0, 1.0);
+    final double masteryProgress = (currentCard.getStatsForMode(StudyMode.reading).streak / 5.0).clamp(0.0, 1.0);
 
     final bool inLibrary = allCards.any((c) => c.hanzi == widget.card.hanzi);
 
@@ -284,6 +288,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
                                     medianPaths: currentCard.medianPaths,
                                     showAnimation: _isPlaying,
                                     strokeLimit: _manualStrokeLimit,
+                                    forcedActiveCharIndex: _manualCharIndex,
                                     readOnly: true,
                                     showGrade: false,
                                     autoCenter: true,
@@ -293,7 +298,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
                         ),
                         MasterySeal(
                           progress: masteryProgress,
-                          isMastered: currentCard.isMastered,
+                          isMastered: currentCard.isMastered(StudyMode.reading),
                           size: 40,
                         ),
                       ],
@@ -332,22 +337,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
                   width: double.infinity,
                   child: ElevatedButton.icon(
                     onPressed: () {
-                      final newCard = Flashcard(
-                        id: DateTime.now().millisecondsSinceEpoch.toString(),
-                        hanzi: currentCard.hanzi,
-                        pinyin: currentCard.pinyin,
-                        definition: currentCard.definition,
-                        hskLevel: currentCard.hskLevel,
-                        strokePaths: const [],
-                        nextReviewDate: DateTime.now(),
-                        interval: 0,
-                        easeFactor: 2.5,
-                        streak: 0,
-                      );
-                      ref.read(flashcardControllerProvider.notifier).addFlashcard(newCard);
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Added to Study Deck!'), backgroundColor: Colors.green),
-                      );
+                      DeckSelectionSheet.show(context, card: currentCard);
                     },
                     icon: const Icon(Icons.add_circle_outline),
                     label: const Text("Add to Study Deck"),
@@ -383,10 +373,10 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
                 child: Column(
                   children: [
                     _buildStatRow("Mastery Level", "${(masteryProgress * 100).toInt()}%"),
-                    _buildStatRow("Practice Attempts", "${currentCard.attempts}"),
-                    _buildStatRow("Successful Writes", "${currentCard.successCount}"),
-                    if (currentCard.lastAttemptDate != null)
-                      _buildStatRow("Last Studied", DateFormat('MMM d, yyyy').format(currentCard.lastAttemptDate!)),
+                    _buildStatRow("Practice Attempts", "${currentCard.getStatsForMode(StudyMode.calligraphy).attempts}"),
+                    _buildStatRow("Successful Writes", "${currentCard.getStatsForMode(StudyMode.calligraphy).successCount}"),
+                    if (currentCard.getStatsForMode(StudyMode.calligraphy).lastAttemptDate != null)
+                      _buildStatRow("Last Studied", DateFormat('MMM d, yyyy').format(currentCard.getStatsForMode(StudyMode.calligraphy).lastAttemptDate!)),
                   ],
                 ),
               ),
@@ -434,6 +424,27 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
     );
   }
 
+  (int, int) _getCharAndLocalStroke(int globalStrokeIndex) {
+    int currentGlobal = 0;
+    int charIdx = 0;
+    int localIdx = 0;
+    
+    final currentCard = _hydratedCard ?? widget.card;
+    for (int i = 0; i < currentCard.strokePaths.length; i++) {
+      if (currentCard.strokePaths[i] == '__CHAR_SEPARATOR__') {
+        charIdx++;
+        localIdx = 0;
+        continue;
+      }
+      currentGlobal++;
+      localIdx++;
+      if (currentGlobal == globalStrokeIndex) {
+        return (charIdx, localIdx);
+      }
+    }
+    return (0, 0);
+  }
+
   Widget _buildStrokeTimeline(bool isDark) {
     if (_isLoadingStrokes) return const SizedBox(height: 48);
     final currentCard = _hydratedCard ?? widget.card;
@@ -449,17 +460,25 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
           IconButton(
             onPressed: () => setState(() {
               _isPlaying = !_isPlaying;
-              if (_isPlaying) _manualStrokeLimit = null;
+              if (_isPlaying) {
+                _manualStrokeLimit = null;
+                _manualCharIndex = null;
+              }
             }),
             icon: Icon(_isPlaying ? Icons.pause_circle : Icons.play_circle, color: Colors.indigo, size: 32),
           ),
           const SizedBox(width: 8),
           ...List.generate(validStrokes.length, (index) {
             final int strokeNum = index + 1;
-            final bool isSelected = _manualStrokeLimit == strokeNum;
+            final bool isSelected = !_isPlaying && 
+                                    _manualCharIndex != null && 
+                                    _manualStrokeLimit != null &&
+                                    _getCharAndLocalStroke(strokeNum) == (_manualCharIndex!, _manualStrokeLimit!);
             return GestureDetector(
               onTap: () => setState(() {
-                _manualStrokeLimit = strokeNum;
+                final loc = _getCharAndLocalStroke(strokeNum);
+                _manualCharIndex = loc.$1;
+                _manualStrokeLimit = loc.$2;
                 _isPlaying = false;
               }),
               child: Container(

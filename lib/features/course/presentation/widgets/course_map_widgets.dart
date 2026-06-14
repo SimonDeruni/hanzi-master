@@ -7,6 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/settings_controller.dart';
+import 'package:hanzi_master/features/flashcards/domain/entities/study_mode.dart';
 import '../screens/lesson_screen.dart';
 import '../providers/lesson_controller.dart';
 import '../../domain/entities/course_unit.dart';
@@ -328,9 +329,9 @@ class MapNode extends ConsumerWidget {
       isMastered = settings.isTutorialCompleted;
     } else if (isSun) {
       final allCards = ref.watch(flashcardControllerProvider).value ?? [];
-      isMastered = allCards.any((c) => c.hanzi == node.hanzi && c.streak >= 5);
+      isMastered = allCards.any((c) => c.hanzi == node.hanzi && c.isMastered(StudyMode.reading));
     } else {
-      isMastered = card.streak >= 5;
+      isMastered = card.isMastered(StudyMode.reading);
     }
 
     // GALAXY COMPLETION LOGIC
@@ -338,13 +339,13 @@ class MapNode extends ConsumerWidget {
     final bool isGalaxyCompleted = isSun && cluster != null && cluster!.isNotEmpty && cluster!.every((nodeInCluster) {
       final c = allCards.firstWhere((c) => c.id == nodeInCluster.uuid, orElse: () => _createPlaceholder(nodeInCluster));
       if (nodeInCluster.parentUuid == null) {
-        return allCards.any((ac) => ac.hanzi == nodeInCluster.hanzi && ac.streak >= 5);
+        return allCards.any((ac) => ac.hanzi == nodeInCluster.hanzi && ac.isMastered(StudyMode.reading));
       }
-      return c.streak >= 5;
+      return c.isMastered(StudyMode.reading);
     });
         
-    final bool isDue = !isTutorial && !card.isNew && card.nextReviewDate.isBefore(DateTime.now());
-    final bool isNew = !isTutorial && card.attempts == 0;
+    final bool isDue = !isTutorial && !card.isNew(StudyMode.reading) && card.isDue(StudyMode.reading);
+    final bool isNew = !isTutorial && card.isNew(StudyMode.reading);
 
     // Define onTap callback
     void onNodeTap() async {
@@ -466,7 +467,7 @@ class MapNode extends ConsumerWidget {
               hanzi: char,
               pinyin: info?['pinyin'] ?? essential?['pinyin'] ?? "",
               definition: info?['meaning'] ?? essential?['meaning'] ?? "Component",
-              hskLevel: 1, strokePaths: const [], nextReviewDate: DateTime.now(), interval: 0, easeFactor: 0, streak: 0
+              hskLevel: 1, strokePaths: const [], modeStats: const {}
             );
           });
           blueprintComponents.add(existing);
@@ -561,7 +562,7 @@ class MapNode extends ConsumerWidget {
     );
   }
 
-  Flashcard _createPlaceholder(CourseNode node) => Flashcard(id: node.uuid, hanzi: node.hanzi, pinyin: "", definition: "", hskLevel: 1, strokePaths: const [], nextReviewDate: DateTime.now(), interval: 0, easeFactor: 2.5, streak: 0);
+  Flashcard _createPlaceholder(CourseNode node) => Flashcard(id: node.uuid, hanzi: node.hanzi, pinyin: "", definition: "", hskLevel: 1, strokePaths: const [], modeStats: const {});
 }
 
 class _IconNode extends StatelessWidget {

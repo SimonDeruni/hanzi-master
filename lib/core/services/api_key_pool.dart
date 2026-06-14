@@ -8,6 +8,9 @@ class ApiKeyPool {
 
   ];
   
+  // Direct Google API Key for Audio processing (bypassing OpenRouter)
+  final String googleKey = 'AQ.Ab8RN6Jw1wne4dkK1GceZmxu25nsh_a30BbXoWa6tDBo9Zt4Hw';
+  
   int _currentIndex = 0;
 
   String get nextKey {

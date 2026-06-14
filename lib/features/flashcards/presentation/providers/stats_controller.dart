@@ -1,4 +1,5 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import '../../domain/entities/study_mode.dart';
 import 'flashcard_controller.dart';
 import 'stats_state.dart';
 
@@ -17,13 +18,17 @@ StatsState userStats(UserStatsRef ref) {
       int totalAttempts = 0;
 
       for (var card in cards) {
-        if (card.isMastered) {
+        if (card.isMastered(StudyMode.reading)) {
           mastered++;
-        } else if (card.isLearning) {
+        } else if (card.isLearning(StudyMode.reading)) {
           learned++;
         }
-        successCount += card.successCount;
-        totalAttempts += card.attempts;
+        
+        for (final mode in StudyMode.values) {
+          final s = card.getStatsForMode(mode);
+          successCount += s.successCount;
+          totalAttempts += s.attempts;
+        }
       }
 
       double overallAccuracy = totalAttempts > 0 

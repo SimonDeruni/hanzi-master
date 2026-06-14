@@ -50,10 +50,7 @@ class _CrossReferenceTextState extends ConsumerState<CrossReferenceText> {
         definition: entry.definition,
         hskLevel: entry.hskLevel,
         strokePaths: const [],
-        nextReviewDate: DateTime.now(),
-        interval: 0,
-        easeFactor: 0,
-        streak: 0,
+        modeStats: const {},
       );
       
       Navigator.push(
@@ -76,10 +73,7 @@ class _CrossReferenceTextState extends ConsumerState<CrossReferenceText> {
                 definition: entry.definition,
                 hskLevel: entry.hskLevel,
                 strokePaths: const [],
-                nextReviewDate: DateTime.now(),
-                interval: 0,
-                easeFactor: 0,
-                streak: 0,
+                modeStats: const {},
               );
               Navigator.push(
                 context,

@@ -1,7 +1,7 @@
 import 'package:hanzi_master/core/providers.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
-import 'package:hanzi_master/features/flashcards/domain/logic/srs_logic.dart';
+import 'package:hanzi_master/features/flashcards/domain/entities/study_mode.dart';
 
 part 'flashcard_controller.g.dart';
 
@@ -10,6 +10,11 @@ class FlashcardController extends _$FlashcardController {
   @override
   Future<List<Flashcard>> build() async {
     return _loadFlashcards();
+  }
+
+  Future<List<Flashcard>> getCardsForDeck(String deckId) async {
+    final allCards = state.valueOrNull ?? await _loadFlashcards();
+    return allCards.where((c) => c.deckId == deckId || (deckId == 'default' && c.deckId.isEmpty)).toList();
   }
 
   /// One-time initialization logic (Auto-import HSK1)
@@ -85,8 +90,8 @@ class FlashcardController extends _$FlashcardController {
     ref.invalidateSelf();
   }
 
-  Future<void> reviewFlashcard(Flashcard card, int rating) async {
-    final updatedCard = SrsLogic.reviewCard(card, rating);
+  Future<void> reviewFlashcard(Flashcard card, int rating, [StudyMode mode = StudyMode.reading]) async {
+    final updatedCard = card.processReview(rating, mode);
     final repository = ref.read(flashcardRepositoryProvider);
     await repository.saveFlashcard(updatedCard);
     ref.invalidateSelf();
@@ -180,6 +185,5 @@ class FlashcardController extends _$FlashcardController {
 
 final dueFlashcardsProvider = Provider<List<Flashcard>>((ref) {
   final allCards = ref.watch(flashcardControllerProvider).value ?? [];
-  final now = DateTime.now();
-  return allCards.where((card) => card.nextReviewDate.isBefore(now)).toList();
+  return allCards.where((card) => card.isDue(StudyMode.reading)).toList();
 });

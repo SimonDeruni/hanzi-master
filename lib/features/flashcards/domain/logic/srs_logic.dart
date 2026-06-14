@@ -1,19 +1,23 @@
-import '../entities/flashcard.dart';
+import '../entities/review_stats.dart';
 
 class SrsLogic {
-  /// Calculates the new SRS scheduling stats for a card.
+  /// Calculates the new SRS scheduling stats for a mode.
   /// Note: Attempts and Success counts are handled by the caller before passing here.
-  static Flashcard reviewCard(Flashcard card, int rating) {
-    int interval = card.interval;
-    double easeFactor = card.easeFactor;
-    int streak = card.streak;
+  static ReviewStats reviewCard(ReviewStats stats, int rating) {
+    int interval = stats.interval;
+    double easeFactor = stats.easeFactor;
+    int streak = stats.streak;
 
     // 1. Calculate Streak and Interval based on rating (SM-2 simplified)
     if (rating >= 3) {
       if (streak == 0) {
-        interval = 1;
+        // Step 1 of Learning: First success, must see again today (interval = 0)
+        interval = 0;
       } else if (streak == 1) {
-        interval = 6;
+        // Step 2 of Learning: Graduates to tomorrow (or 4 days if Easy)
+        interval = rating == 4 ? 4 : 1;
+      } else if (streak == 2) {
+        interval = rating == 4 ? 10 : 6;
       } else {
         interval = (interval * easeFactor).round();
       }
@@ -29,7 +33,7 @@ class SrsLogic {
       } else {
         // Hard Fail: Reset for new cards or already struggling cards
         streak = 0;
-        interval = 1;
+        interval = 0; // Force re-learning today!
       }
     }
 
@@ -40,7 +44,7 @@ class SrsLogic {
     // 3. Set next review date
     final nextReview = DateTime.now().add(Duration(days: interval));
 
-    return card.copyWith(
+    return stats.copyWith(
       nextReviewDate: nextReview,
       interval: interval,
       easeFactor: easeFactor,

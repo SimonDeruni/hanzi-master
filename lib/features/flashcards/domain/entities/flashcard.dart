@@ -1,5 +1,7 @@
 import 'dart:ui';
 import 'package:equatable/equatable.dart';
+import 'review_stats.dart';
+import 'study_mode.dart';
 
 class Flashcard extends Equatable {
   final String id;
@@ -12,18 +14,11 @@ class Flashcard extends Equatable {
   final List<List<Offset>> medianPaths;
   final bool isFlipped;
 
-  // --- SRS Stats ---
-  final DateTime nextReviewDate;
-  final int interval;
-  final double easeFactor;
-  final int streak;
-  
-  // --- Performance Tracking ---
-  final double lastScore;
-  final int attempts;
-  final DateTime? lastAttemptDate;
-  final int successCount;
-  final int inkPoints; // 🖌️ XP System (Audit 5 consistency fix)
+  // --- Mode Specific SRS Stats ---
+  final Map<StudyMode, ReviewStats> modeStats;
+
+  // --- Global Metadata ---
+  final int inkPoints; // 🖌️ XP System
 
   const Flashcard({
     required this.id,
@@ -35,32 +30,77 @@ class Flashcard extends Equatable {
     required this.strokePaths,
     this.medianPaths = const [],
     this.isFlipped = false,
-    required this.nextReviewDate,
-    required this.interval,
-    required this.easeFactor,
-    required this.streak,
-    this.lastScore = 0.0,
-    this.attempts = 0,
-    this.lastAttemptDate,
-    this.successCount = 0,
+    required this.modeStats,
     this.inkPoints = 0,
   });
 
   @override
   List<Object?> get props => [
     id, deckId, hanzi, pinyin, definition, hskLevel, strokePaths, medianPaths, 
-    isFlipped, nextReviewDate, interval, easeFactor, streak, 
-    lastScore, attempts, lastAttemptDate, successCount, inkPoints
+    isFlipped, modeStats, inkPoints
   ];
 
   // --- Helpers for UI ---
-  bool get isMastered => interval >= 14 || streak >= 5;
-  bool get isNew => attempts == 0;
-  bool get isLearning => attempts > 0 && !isMastered;
+  ReviewStats getStatsForMode(StudyMode mode) {
+    return modeStats[mode] ?? ReviewStats.initial();
+  }
 
-  /// Returns a normalized mastery level from 0.0 to 1.0 based on the current streak.
-  /// A streak of 5 or more is considered 100% mastery for threshold purposes.
-  double get masteryLevel => (streak / 5.0).clamp(0.0, 1.0);
+  bool isMastered(StudyMode mode) => getStatsForMode(mode).isMastered;
+  bool isNew(StudyMode mode) => getStatsForMode(mode).isNew;
+  bool isLearning(StudyMode mode) => getStatsForMode(mode).isLearning;
+  bool isDue(StudyMode mode) => getStatsForMode(mode).isDue;
+
+  /// Returns a normalized mastery level from 0.0 to 1.0 based on the current streak for a mode.
+  double masteryLevel(StudyMode mode) => getStatsForMode(mode).masteryLevel;
+
+  /// Applies the SuperMemo-2 (SM-2) algorithm.
+  /// Expected grades: 0 (Again), 2 (Hard), 4 (Good), 5 (Easy)
+  Flashcard processReview(int grade, StudyMode mode) {
+    final stats = getStatsForMode(mode);
+    
+    int newStreak;
+    int newInterval;
+    
+    // SM-2 formula for ease factor
+    double newEase = stats.easeFactor + (0.1 - (5 - grade) * (0.08 + (5 - grade) * 0.02));
+    if (newEase < 1.3) newEase = 1.3;
+
+    if (grade >= 3) {
+      newStreak = stats.streak + 1;
+      if (newStreak == 1) {
+        newInterval = 1;
+      } else if (newStreak == 2) {
+        newInterval = 6;
+      } else {
+        newInterval = (stats.interval * newEase).round();
+      }
+    } else {
+      newStreak = 0;
+      newInterval = 1;
+    }
+
+    // Set the new review date
+    final newNextReviewDate = DateTime.now().add(Duration(days: newInterval));
+
+    final updatedStats = stats.copyWith(
+      streak: newStreak,
+      interval: newInterval,
+      easeFactor: newEase,
+      nextReviewDate: newNextReviewDate,
+      attempts: stats.attempts + 1,
+      lastAttemptDate: DateTime.now(),
+      successCount: grade >= 3 ? stats.successCount + 1 : stats.successCount,
+      lastScore: grade.toDouble(),
+    );
+
+    final newModeStats = Map<StudyMode, ReviewStats>.from(modeStats);
+    newModeStats[mode] = updatedStats;
+
+    return copyWith(
+      modeStats: newModeStats,
+      inkPoints: grade >= 3 ? inkPoints + 1 : inkPoints,
+    );
+  }
 
   Flashcard copyWith({
     String? id,
@@ -72,14 +112,7 @@ class Flashcard extends Equatable {
     List<String>? strokePaths,
     List<List<Offset>>? medianPaths,
     bool? isFlipped,
-    DateTime? nextReviewDate,
-    int? interval,
-    double? easeFactor,
-    int? streak,
-    double? lastScore,
-    int? attempts,
-    DateTime? lastAttemptDate,
-    int? successCount,
+    Map<StudyMode, ReviewStats>? modeStats,
     int? inkPoints,
   }) {
     return Flashcard(
@@ -92,14 +125,7 @@ class Flashcard extends Equatable {
       strokePaths: strokePaths ?? this.strokePaths,
       medianPaths: medianPaths ?? this.medianPaths,
       isFlipped: isFlipped ?? this.isFlipped,
-      nextReviewDate: nextReviewDate ?? this.nextReviewDate,
-      interval: interval ?? this.interval,
-      easeFactor: easeFactor ?? this.easeFactor,
-      streak: streak ?? this.streak,
-      lastScore: lastScore ?? this.lastScore,
-      attempts: attempts ?? this.attempts,
-      lastAttemptDate: lastAttemptDate ?? this.lastAttemptDate,
-      successCount: successCount ?? this.successCount,
+      modeStats: modeStats ?? this.modeStats,
       inkPoints: inkPoints ?? this.inkPoints,
     );
   }

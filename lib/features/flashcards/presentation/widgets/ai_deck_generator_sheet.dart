@@ -249,10 +249,7 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
                             definition: cardMap['english'] ?? '',
                             hskLevel: 0,
                             strokePaths: const [],
-                            nextReviewDate: DateTime.now(),
-                            interval: 0,
-                            easeFactor: 2.5,
-                            streak: 0,
+                            modeStats: const {},
                           );
                           await flashcardController.addFlashcard(newCard);
                         }

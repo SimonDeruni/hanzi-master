@@ -119,10 +119,7 @@ class _OcrScannerScreenState extends ConsumerState<OcrScannerScreen> {
           definition: charData['definition'],
           hskLevel: 1,
           strokePaths: const [],
-          nextReviewDate: DateTime.now(),
-          interval: 0,
-          easeFactor: 2.5,
-          streak: 0,
+          modeStats: const {},
         );
         await controller.addFlashcard(newCard);
         addedCount++;
@@ -148,10 +145,7 @@ class _OcrScannerScreenState extends ConsumerState<OcrScannerScreen> {
       definition: charData['definition'],
       hskLevel: 1,
       strokePaths: const [],
-      nextReviewDate: DateTime.now(),
-      interval: 0,
-      easeFactor: 2.5,
-      streak: 0,
+      modeStats: const {},
     );
 
     // 2. Hydrate strokes

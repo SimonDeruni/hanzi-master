@@ -36,62 +36,42 @@ class _CustomStoryCreatorSheetState extends ConsumerState<CustomStoryCreatorShee
     final controller = ref.read(storyControllerProvider.notifier);
     
     if (_tabController.index == 0) {
-      // Generate by topic
+      // Generate Topic
       final topic = _topicController.text.trim();
       if (topic.isEmpty) return;
+      
       final tags = _tagsController.text.split(',').map((e) => e.trim()).where((e) => e.isNotEmpty).toList();
       
-      Navigator.pop(context);
-      _showLoadingDialog(context);
+      Navigator.pop(context); // Close sheet
       
-      await controller.generateCustomStoryByTopic(topic, tags, _selectedHskLevel);
+      final blueprint = await controller.generateCustomStoryByTopic(topic, tags, _selectedHskLevel);
       if (context.mounted) {
-        Navigator.pop(context); // Close loading dialog
-        _openStory(context);
+        _openStoryImmediate(context, blueprint);
       }
     } else {
       // Simplify text
       final text = _textToSimplifyController.text.trim();
       if (text.isEmpty) return;
       
-      Navigator.pop(context);
-      _showLoadingDialog(context);
+      Navigator.pop(context); // Close sheet
       
-      await controller.generateSimplifiedStory(text, _selectedHskLevel);
+      final blueprint = await controller.generateSimplifiedStory(text, _selectedHskLevel);
       if (context.mounted) {
-        Navigator.pop(context); // Close loading dialog
-        _openStory(context);
+        _openStoryImmediate(context, blueprint);
       }
     }
   }
 
-  void _showLoadingDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) => const Center(
-        child: CircularProgressIndicator(),
+  void _openStoryImmediate(BuildContext context, StoryBlueprint blueprint) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => StoryReaderScreen(blueprint: blueprint, hskLevel: _selectedHskLevel),
       ),
     );
   }
 
-  void _openStory(BuildContext context) {
-    final state = ref.read(storyControllerProvider);
-    if (state.error != null) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error: ${state.error}')));
-      return;
-    }
-    
-    if (state.blueprints.isNotEmpty && state.currentStory != null) {
-       final blueprint = state.blueprints.last;
-       Navigator.push(
-         context,
-         MaterialPageRoute(
-           builder: (_) => StoryReaderScreen(blueprint: blueprint, hskLevel: _selectedHskLevel),
-         ),
-       );
-    }
-  }
+
 
   @override
   Widget build(BuildContext context) {

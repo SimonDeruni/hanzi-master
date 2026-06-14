@@ -13,6 +13,7 @@ import 'package:hanzi_master/features/flashcards/presentation/screens/main_navig
 import 'package:hanzi_master/core/providers.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'package:hanzi_master/core/services/monetization_service.dart';
+import 'package:hanzi_master/features/reading/data/repositories/story_repository.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -66,13 +67,13 @@ void main() async {
 
   // Open the graded stories box
   await Hive.openBox<String>(
-    'graded_stories',
+    'graded_stories_v2',
     encryptionCipher: HiveAesCipher(encryptionKey),
   );
 
   // Open the custom blueprints box
   await Hive.openBox<String>(
-    'custom_blueprints',
+    'custom_blueprints_v2',
     encryptionCipher: HiveAesCipher(encryptionKey),
   );
 
@@ -97,6 +98,9 @@ void main() async {
   // 4. Pre-warm Repository (Heavy JSON parsing)
   await container.read(flashcardRepositoryProvider).init();
   await container.read(globalDictionaryRepositoryProvider).init();
+  
+  // Also initialize stories repository to populate defaults
+  await container.read(storyRepositoryProvider).init();
   
   // 5. Ensure Library is populated
   await container.read(flashcardControllerProvider.notifier).init();

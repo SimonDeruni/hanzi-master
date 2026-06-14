@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hive/hive.dart';
 import '../../domain/entities/graded_story.dart';
 import '../../../../core/services/gemini_service.dart';
 import '../../data/repositories/story_repository.dart';
@@ -227,7 +228,7 @@ class StoryController extends StateNotifier<StoryState> {
   ];
 
   Future<void> loadOrGenerateStory(StoryBlueprint blueprint, int hskLevel) async {
-    state = const StoryState(isLoading: true, error: null, currentStory: null);
+    state = state.copyWith(isLoading: true, error: null, currentStory: null);
     
     try {
       final storyId = '${blueprint.id}_hsk$hskLevel';
@@ -247,8 +248,7 @@ class StoryController extends StateNotifier<StoryState> {
         title: blueprint.title,
         category: blueprint.category,
         hskLevel: hskLevel,
-        content: result['content'] ?? '',
-        englishTranslation: result['englishTranslation'] ?? '',
+        sentences: result.sentences,
         generatedAt: DateTime.now(),
       );
 
@@ -261,7 +261,7 @@ class StoryController extends StateNotifier<StoryState> {
     }
   }
 
-  Future<void> generateCustomStoryByTopic(String topic, List<String> tags, int hskLevel) async {
+  Future<StoryBlueprint> generateCustomStoryByTopic(String topic, List<String> tags, int hskLevel) async {
     final id = 'custom_${DateTime.now().millisecondsSinceEpoch}';
     final blueprint = StoryBlueprint(
       id: id,
@@ -276,43 +276,72 @@ class StoryController extends StateNotifier<StoryState> {
     await repository.saveCustomBlueprint(blueprint);
     state = state.copyWith(blueprints: [...state.blueprints, blueprint]);
 
-    // Now generate and load
-    await loadOrGenerateStory(blueprint, hskLevel);
+    // Now generate and load (fire and forget)
+    loadOrGenerateStory(blueprint, hskLevel);
+    
+    return blueprint;
   }
 
-  Future<void> generateSimplifiedStory(String sourceText, int hskLevel) async {
-    state = const StoryState(isLoading: true, error: null, currentStory: null);
+  Future<StoryBlueprint> generateSimplifiedStory(String sourceText, int hskLevel) async {
+    final id = 'custom_${DateTime.now().millisecondsSinceEpoch}';
+    final blueprint = StoryBlueprint(
+      id: id,
+      title: 'Simplified Text',
+      topic: 'User provided text',
+      category: 'My Custom Stories',
+      imageUrl: '',
+      tags: ['simplified', 'custom'],
+    );
+
+    // Save blueprint
+    await repository.saveCustomBlueprint(blueprint);
+    state = state.copyWith(
+      blueprints: [...state.blueprints, blueprint],
+      isLoading: true,
+      error: null,
+      currentStory: null,
+    );
+
+    // Fire and forget the generation
+    _performSimplification(blueprint, sourceText, hskLevel);
     
+    return blueprint;
+  }
+
+  Future<void> deleteCustomStory(StoryBlueprint blueprint) async {
+    // 1. Remove from local state
+    final updatedBlueprints = state.blueprints.where((b) => b.id != blueprint.id).toList();
+    
+    // If current story is the deleted one, clear it
+    final isCurrent = state.currentStory?.id.startsWith(blueprint.id) ?? false;
+    
+    state = state.copyWith(
+      blueprints: updatedBlueprints,
+      currentStory: isCurrent ? null : state.currentStory,
+    );
+
+    // 2. Remove from repository
+    // We only remove the blueprint, since the actual story may or may not be generated.
+    // If you wanted to be thorough, you'd delete the story from the box as well.
+    final box = Hive.box<String>(StoryRepository.customBlueprintsBoxName);
+    await box.delete(blueprint.id);
+  }
+
+  Future<void> _performSimplification(StoryBlueprint blueprint, String sourceText, int hskLevel) async {
     try {
-      final id = 'custom_${DateTime.now().millisecondsSinceEpoch}';
-      final blueprint = StoryBlueprint(
-        id: id,
-        title: 'Simplified Text',
-        topic: 'User provided text',
-        category: 'My Custom Stories',
-        imageUrl: '',
-        tags: ['simplified', 'custom'],
-      );
-
-      // Save blueprint
-      await repository.saveCustomBlueprint(blueprint);
-      state = state.copyWith(blueprints: [...state.blueprints, blueprint]);
-
-      final storyId = '${blueprint.id}_hsk$hskLevel';
-      
       final result = await geminiService.simplifyTextToHsk(sourceText, hskLevel);
       
       final newStory = GradedStory(
-        id: storyId,
+        id: '${blueprint.id}_hsk$hskLevel',
         title: blueprint.title,
         category: blueprint.category,
         hskLevel: hskLevel,
-        content: result['content'] ?? '',
-        englishTranslation: result['englishTranslation'] ?? '',
+        sentences: result.sentences,
         generatedAt: DateTime.now(),
       );
 
       await repository.saveStory(newStory);
+
       state = state.copyWith(isLoading: false, currentStory: newStory);
     } catch (e) {
       state = state.copyWith(isLoading: false, error: e.toString(), currentStory: null);

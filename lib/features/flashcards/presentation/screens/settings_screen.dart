@@ -153,6 +153,24 @@ class SettingsScreen extends ConsumerWidget {
           ),
           const Divider(),
 
+          // 🧠 LEARNING SETTINGS
+          ListTile(
+            leading: const Icon(Icons.school, color: Colors.blue),
+            title: const Text("Adaptive Guidance"),
+            subtitle: Text("Hide blue stroke guide at Streak: ${settings.guideDisappearanceStreak}"),
+          ),
+          Slider(
+            value: settings.guideDisappearanceStreak.toDouble(),
+            min: 1.0,
+            max: 5.0,
+            divisions: 4,
+            label: settings.guideDisappearanceStreak.toString(),
+            onChanged: (val) {
+              ref.read(settingsProvider.notifier).setGuideDisappearanceStreak(val.toInt());
+            },
+          ),
+          const Divider(),
+
           // 3. DANGER ZONE ☢️
           ListTile(
             leading: const Icon(Icons.delete_forever, color: Colors.red),

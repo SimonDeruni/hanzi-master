@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hanzi_master/features/reading/domain/entities/graded_story.dart';
@@ -8,8 +9,8 @@ final storyRepositoryProvider = Provider<StoryRepository>((ref) {
 });
 
 class StoryRepository {
-  static const String boxName = 'graded_stories';
-  static const String customBlueprintsBoxName = 'custom_blueprints';
+  static const String boxName = 'graded_stories_v2';
+  static const String customBlueprintsBoxName = 'custom_blueprints_v2';
 
   Future<void> init() async {
     if (!Hive.isBoxOpen(boxName)) {
@@ -17,6 +18,17 @@ class StoryRepository {
     }
     if (!Hive.isBoxOpen(customBlueprintsBoxName)) {
       await Hive.openBox<String>(customBlueprintsBoxName);
+    }
+    
+    final box = Hive.box<String>(boxName);
+    if (box.isEmpty) {
+      try {
+        final jsonString = await rootBundle.loadString('assets/default_stories.json');
+        final Map<String, dynamic> defaultStories = jsonDecode(jsonString);
+        await box.putAll(defaultStories.cast<String, String>());
+      } catch (e) {
+        // assets/default_stories.json might not exist yet during testing
+      }
     }
   }
 

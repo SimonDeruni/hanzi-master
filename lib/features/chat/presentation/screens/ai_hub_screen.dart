@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:hanzi_master/features/chat/presentation/screens/echo_hall_screen.dart'; // will rename later
+import 'package:hanzi_master/features/chat/presentation/screens/echo_hall_screen.dart';
+import 'package:hanzi_master/features/echo_hall/presentation/screens/scenario_selection_screen.dart';
 import 'package:hanzi_master/features/reading/presentation/screens/reading_room_screen.dart';
 
 class AiHubScreen extends ConsumerWidget {
@@ -94,11 +95,12 @@ class AiHubScreen extends ConsumerWidget {
               description: "Digital critique of your spoken tones and clarity.",
               icon: Icons.mic_none_rounded,
               onTap: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text("The Scholar is still listening... coming soon!")),
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ScenarioSelectionScreen()),
                 );
               },
-              isComingSoon: true,
+              isComingSoon: false,
             ),
           ],
         ),

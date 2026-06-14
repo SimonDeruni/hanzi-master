@@ -58,10 +58,7 @@ class _ClickableChineseTextState extends ConsumerState<ClickableChineseText> {
         definition: 'Not found in offline dictionary.',
         hskLevel: 0,
         strokePaths: const [],
-        nextReviewDate: DateTime.now(),
-        interval: 0,
-        easeFactor: 2.5,
-        streak: 0,
+        modeStats: const {},
       );
     }
     

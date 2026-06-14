@@ -1,7 +1,9 @@
 import 'dart:convert';
+import 'dart:typed_data';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:http/http.dart' as http;
+import 'package:google_generative_ai/google_generative_ai.dart';
 import '../../features/flashcards/domain/entities/flashcard.dart';
 import 'api_key_pool.dart';
 
@@ -79,15 +81,26 @@ class AiWord {
   final String hanzi;
   final String pinyin;
   final String meaning;
+  final String english; // StoryModeScreen uses 'english' in some places
   
-  AiWord({required this.hanzi, required this.pinyin, required this.meaning});
+  AiWord({required this.hanzi, required this.pinyin, required this.meaning, this.english = ''});
   
   factory AiWord.fromJson(Map<String, dynamic> json) {
     return AiWord(
       hanzi: json['hanzi'] as String? ?? '',
       pinyin: json['pinyin'] as String? ?? '',
       meaning: json['meaning'] as String? ?? '',
+      english: json['english'] as String? ?? '',
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'hanzi': hanzi,
+      'pinyin': pinyin,
+      'meaning': meaning,
+      if (english.isNotEmpty) 'english': english,
+    };
   }
 }
 
@@ -108,6 +121,14 @@ class AiSentence {
       words: wordsList,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'chinese': chinese,
+      'english': english,
+      'words': words.map((w) => w.toJson()).toList(),
+    };
+  }
 }
 
 class AiStory {
@@ -120,6 +141,12 @@ class AiStory {
     List<AiSentence> sentencesList = list.map((i) => AiSentence.fromJson(i as Map<String, dynamic>)).toList();
     
     return AiStory(sentences: sentencesList);
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'sentences': sentences.map((s) => s.toJson()).toList(),
+    };
   }
 }
 
@@ -194,7 +221,7 @@ class GeminiService {
         'Content-Type': 'application/json',
       },
       body: jsonEncode(body),
-    );
+    ).timeout(const Duration(seconds: 40));
 
     if (response.statusCode == 200) {
       final json = jsonDecode(utf8.decode(response.bodyBytes));
@@ -202,6 +229,15 @@ class GeminiService {
     } else {
       throw Exception('OpenRouter Error ${response.statusCode}: ${response.body}');
     }
+  }
+
+  Future<String> generateText(String prompt) async {
+    return await _makeOpenRouterCall(
+      model: 'google/gemini-2.5-flash',
+      messages: [
+        {'role': 'user', 'content': prompt}
+      ],
+    );
   }
 
   Future<Map<String, String>> defineWord(String word) async {
@@ -392,10 +428,7 @@ Respond ONLY in valid JSON format with this exact structure:
           definition: json['definition'] ?? '',
           hskLevel: 1,
           strokePaths: const [],
-          nextReviewDate: DateTime.now(),
-          interval: 0,
-          easeFactor: 2.5,
-          streak: 0,
+          modeStats: const {},
         );
       }
       throw Exception("Failed to translate object: $label");
@@ -511,7 +544,7 @@ Make sure every single character in the 'chinese' sentence is represented in the
     }
   }
 
-  Future<Map<String, dynamic>> generateGradedStory(String topic, String category, int hskLevel) async {
+  Future<AiStory> generateGradedStory(String topic, String category, int hskLevel) async {
     final prompt = '''
 You are a professional Chinese language professor creating Graded Readers.
 Write an engaging, culturally accurate story or article about "$topic" (Category: $category).
@@ -519,9 +552,22 @@ CRITICAL: You MUST restrict your vocabulary entirely to the HSK $hskLevel word l
 
 Respond ONLY in valid JSON format with this exact structure:
 {
-  "content": "The full Chinese text...",
-  "englishTranslation": "The English summary or full translation..."
+  "sentences": [
+    {
+      "chinese": "The full sentence in Chinese...",
+      "english": "The English translation of the sentence...",
+      "words": [
+        {
+           "hanzi": "The word or character in Chinese",
+           "pinyin": "The pinyin for this specific word",
+           "meaning": "The contextual meaning of this word in this specific sentence"
+        }
+      ]
+    }
+  ]
 }
+
+Make sure every single character in the 'chinese' sentence is represented in the 'words' array in order! If a word is multiple characters, group them into one object.
 ''';
 
     try {
@@ -535,10 +581,7 @@ Respond ONLY in valid JSON format with this exact structure:
         final cleanText = text.replaceAll(RegExp(r'^```json\n', multiLine: true), '')
                               .replaceAll(RegExp(r'^```\n?', multiLine: true), '');
         final json = jsonDecode(cleanText);
-        return {
-          'content': json['content']?.toString() ?? '',
-          'englishTranslation': json['englishTranslation']?.toString() ?? '',
-        };
+        return AiStory.fromJson(json);
       }
       throw Exception("Empty response from DeepSeek API");
     } catch (e) {
@@ -546,7 +589,7 @@ Respond ONLY in valid JSON format with this exact structure:
     }
   }
 
-  Future<Map<String, dynamic>> simplifyTextToHsk(String sourceText, int hskLevel) async {
+  Future<AiStory> simplifyTextToHsk(String sourceText, int hskLevel) async {
     final prompt = '''
 You are an expert Chinese teacher and translator.
 The user has provided a complex text. Rewrite and simplify the entire meaning of the text so that it strictly only uses HSK $hskLevel vocabulary. 
@@ -559,9 +602,22 @@ $sourceText
 
 Respond ONLY in valid JSON format with this exact structure:
 {
-  "content": "The full simplified Chinese text...",
-  "englishTranslation": "The English translation of your simplified text..."
+  "sentences": [
+    {
+      "chinese": "The full simplified sentence in Chinese...",
+      "english": "The English translation of the sentence...",
+      "words": [
+        {
+           "hanzi": "The word or character in Chinese",
+           "pinyin": "The pinyin for this specific word",
+           "meaning": "The contextual meaning of this word in this specific sentence"
+        }
+      ]
+    }
+  ]
 }
+
+Make sure every single character in the 'chinese' sentence is represented in the 'words' array in order! If a word is multiple characters, group them into one object.
 ''';
 
     try {
@@ -575,10 +631,7 @@ Respond ONLY in valid JSON format with this exact structure:
         final cleanText = text.replaceAll(RegExp(r'^```json\n', multiLine: true), '')
                               .replaceAll(RegExp(r'^```\n?', multiLine: true), '');
         final json = jsonDecode(cleanText);
-        return {
-          'content': json['content']?.toString() ?? '',
-          'englishTranslation': json['englishTranslation']?.toString() ?? '',
-        };
+        return AiStory.fromJson(json);
       }
       throw Exception("Empty response from DeepSeek API");
     } catch (e) {
@@ -614,5 +667,66 @@ Respond ONLY in valid JSON format with this exact structure:
       systemInstruction: systemInstruction,
       model: 'deepseek/deepseek-chat',
     );
+  }
+
+  Future<Map<String, dynamic>> gradeAudio(List<int> audioBytes, String expectedChinese, String expectedPinyin) async {
+    final model = GenerativeModel(
+      model: 'gemini-2.0-flash',
+      apiKey: _pool.googleKey,
+    );
+
+    final String targetContext = expectedChinese.isNotEmpty 
+      ? 'Listen to the user trying to say the following phrase:\nHanzi: "$expectedChinese"\nPinyin: "$expectedPinyin"'
+      : 'Listen to the user speaking freely in Chinese. Transcribe exactly what they said.';
+
+    final prompt = '''
+You are an expert native Chinese teacher. $targetContext
+
+Evaluate their pronunciation with extreme strictness on tones.
+Return ONLY valid JSON with exactly this structure:
+{
+  "score": 85,
+  "accuracy": 82,
+  "completeness": 100,
+  "fluency": 75,
+  "overallFeedback": "Good overall, but watch your third tones.",
+  "words": [
+    {
+      "word": "苹",
+      "pinyin": "píng",
+      "expectedTone": 2,
+      "actualTone": 2,
+      "isCorrect": true,
+      "feedback": ""
+    },
+    {
+      "word": "果",
+      "pinyin": "guǒ",
+      "expectedTone": 3,
+      "actualTone": 4,
+      "isCorrect": false,
+      "feedback": "You pronounced it as a falling 4th tone."
+    }
+  ]
+}
+''';
+
+    try {
+      final content = [
+        Content.multi([
+          TextPart(prompt),
+          DataPart('audio/m4a', Uint8List.fromList(audioBytes)),
+        ])
+      ];
+      final response = await model.generateContent(content);
+      if (response.text != null && response.text!.isNotEmpty) {
+        final cleanText = response.text!.replaceAll(RegExp(r'^```json\n', multiLine: true), '')
+                                        .replaceAll(RegExp(r'^```\n?', multiLine: true), '');
+        return jsonDecode(cleanText);
+      }
+      throw Exception("Empty response from Gemini Audio");
+    } catch (e) {
+      rethrow;
+    }
   }
 }

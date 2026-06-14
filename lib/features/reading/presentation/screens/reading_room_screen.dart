@@ -232,10 +232,25 @@ class _ReadingRoomScreenState extends ConsumerState<ReadingRoomScreen> {
                 width: double.infinity,
                 child: Image.network(
                   blueprint.imageUrl,
+                  headers: const {"User-Agent": "HanziMaster/1.0"},
                   fit: BoxFit.cover,
                   errorBuilder: (context, error, stackTrace) => Container(
-                    color: Colors.grey[200], 
-                    child: const Icon(Icons.image_not_supported, color: Colors.grey)
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [Colors.indigo.shade300, Colors.deepPurple.shade400],
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                      ),
+                    ),
+                    child: Center(
+                      child: Icon(
+                        blueprint.category == 'Myths & Legends' ? Icons.auto_awesome :
+                        blueprint.category == 'History & Culture' ? Icons.account_balance :
+                        blueprint.category == 'Idioms (成语)' ? Icons.menu_book : Icons.landscape,
+                        color: Colors.white.withValues(alpha: 0.8),
+                        size: 40,
+                      ),
+                    ),
                   ),
                   loadingBuilder: (context, child, loadingProgress) {
                     if (loadingProgress == null) return child;

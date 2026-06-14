@@ -35,13 +35,18 @@ class FlashcardModelAdapter extends TypeAdapter<FlashcardModel> {
       medianPathsJson: fields[14] as String?,
       isFlipped: fields[15] as bool?,
       inkPoints: fields[16] as int?,
+      calligraphyStats: fields[18] as ReviewStatsModel?,
+      readingStats: fields[19] as ReviewStatsModel?,
+      recallStats: fields[20] as ReviewStatsModel?,
+      speakingStats: fields[21] as ReviewStatsModel?,
+      listeningStats: fields[22] as ReviewStatsModel?,
     );
   }
 
   @override
   void write(BinaryWriter writer, FlashcardModel obj) {
     writer
-      ..writeByte(18)
+      ..writeByte(23)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -77,7 +82,17 @@ class FlashcardModelAdapter extends TypeAdapter<FlashcardModel> {
       ..writeByte(16)
       ..write(obj.inkPoints)
       ..writeByte(17)
-      ..write(obj.deckId);
+      ..write(obj.deckId)
+      ..writeByte(18)
+      ..write(obj.calligraphyStats)
+      ..writeByte(19)
+      ..write(obj.readingStats)
+      ..writeByte(20)
+      ..write(obj.recallStats)
+      ..writeByte(21)
+      ..write(obj.speakingStats)
+      ..writeByte(22)
+      ..write(obj.listeningStats);
   }
 
   @override

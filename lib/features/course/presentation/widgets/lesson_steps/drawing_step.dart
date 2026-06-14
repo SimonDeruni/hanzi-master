@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/core/services/audio_service.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
+import 'package:hanzi_master/features/flashcards/domain/entities/study_mode.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/drawing_canvas.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 
@@ -109,7 +110,7 @@ class _DrawingStepState extends ConsumerState<DrawingStep> {
                       onStrokeComplete: _onStrokeComplete,
                       showGrade: true,
                       autoCenter: false, // Use original coordinates for perfect alignment
-                      masteryLevel: widget.card.masteryLevel,
+                      masteryLevel: widget.card.masteryLevel(StudyMode.calligraphy),
                     ),
                   ),
                 ),

@@ -1,18 +1,19 @@
 # 🧠 SESSION_STATE.md - The Hanzi Master "Scholar's Baton"
 
 #### 🎯 Current Context
-- **Objective:** Implement "Scholar's Key Pool" (Multi-Key Rotation)
-- **Status:** ✅ COMPLETE & PUSHED
+- **Objective:** Overhaul Cultural Reading Room
+- **Status:** ✅ COMPLETE
 - **Hygiene:** 🧼 Total Hygiene — 0 linter issues in `lib/`
 - **Locked Files:** NONE
 
 #### 📦 Done
-- [x] **Task 1: Key Pool Service**: Created `ApiKeyPool` with round-robin rotation for 10 keys.
-- [x] **Task 2: Gemini Refactor**: Refactored `GeminiService` to use dynamic keys for Context, Vision, and Chat.
-- [x] **Task 3: Echo Hall Refactor**: Refactored `EchoHallService` to use dynamic keys for Personas and Pronunciation.
-- [x] **Task 4: Total Hygiene**: Resolved `use_build_context_synchronously` and `const` errors across the project.
-- [x] **Git Sync**: Re-established baseline on GitLab after the "Scholar's Eye" restoration and Key Pool integration.
+- [x] **Task 1: Reading Room UI**: Rebuilt `StoryReaderScreen` to use word-by-word structural JSON UI instead of raw text.
+- [x] **Task 2: AI Prompt Update**: Updated Gemini prompts to enforce `AiSentence` array schema for custom stories.
+- [x] **Task 3: Default Stories**: Regenerated all 96 default HSK stories to use the new schema.
+- [x] **Task 4: Database Migration**: Migrated local Hive boxes to `graded_stories_v2` with encryption enforcement.
+- [x] **Task 5: Image Rendering**: Added missing User-Agent headers to allow Wikimedia Commons images to load.
 
 #### 🔜 Up Next (Possible)
 - [ ] **Phase 9: Sound FX**: Add subtle "paper scratching" audio during drawing.
 - [ ] **Phase 11: Speech Recognition**: Integrated AI grading for tones and pronunciation.
+- [ ] **Feedback**: Increase story length for generated stories (logged in `ISSUES.md`).

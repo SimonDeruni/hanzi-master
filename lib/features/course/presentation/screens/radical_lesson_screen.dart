@@ -63,7 +63,7 @@ class _RadicalLessonScreenState extends ConsumerState<RadicalLessonScreen> {
 
       // 1. Load Radical Card
       var rad = allCards.firstWhere((c) => c.id == widget.sunNode.uuid, 
-          orElse: () => Flashcard(id: widget.sunNode.uuid, hanzi: widget.sunNode.hanzi, pinyin: "", definition: "", hskLevel: 1, strokePaths: const [], nextReviewDate: DateTime.now(), interval: 0, easeFactor: 0, streak: 0));
+          orElse: () => Flashcard(id: widget.sunNode.uuid, hanzi: widget.sunNode.hanzi, pinyin: "", definition: "", hskLevel: 1, strokePaths: const [], modeStats: const {}));
       _radicalCard = await controller.loadStrokesFor(rad);
 
       // 2. Setup Forge (Find a child that is NOT the radical itself)

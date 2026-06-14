@@ -82,10 +82,7 @@ class _FlashcardEditDialogState extends ConsumerState<FlashcardEditDialog> {
       definition: def,
       hskLevel: 0, // AI generated or custom cards have level 0 by default
       strokePaths: const [], // Stroke data won't exist for these custom cards
-      nextReviewDate: DateTime.now(),
-      interval: 0,
-      easeFactor: 2.5,
-      streak: 0,
+      modeStats: const {},
       deckId: _addToDeck ? 'default' : 'none',
     );
 

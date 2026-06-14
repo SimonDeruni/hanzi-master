@@ -18,15 +18,10 @@ class CalligraphyBackground extends StatelessWidget {
       ),
       child: Stack(
         children: [
-          // 1. PAPER TEXTURE OVERLAY
+          // 1. PAPER TEXTURE OVERLAY (Removed broken asset)
           Positioned.fill(
-            child: Opacity(
-              opacity: isDark ? 0.05 : 0.03,
-              child: Image.asset(
-                'assets/icon/icon.png', 
-                repeat: ImageRepeat.repeat,
-                color: isDark ? Colors.white : Colors.brown,
-              ),
+            child: Container(
+              color: isDark ? Colors.white.withValues(alpha: 0.02) : Colors.brown.withValues(alpha: 0.02),
             ),
           ),
           
