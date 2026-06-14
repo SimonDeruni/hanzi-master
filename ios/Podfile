@@ -4,13 +4,7 @@ platform :ios, '15.5'
 # CocoaPods analytics sends network stats synchronously affecting flutter build latency.
 ENV['COCOAPODS_DISABLE_STATS'] = '1'
 
-project 'Runner', {
-  'Debug' => :debug,
-  'Release' => :release,
-  'Profile' => :profile,
-}
-
-def flutter_root
+def flutter_install_ios_engine_pigeon
   generated_xcode_build_settings_path = File.expand_path(File.join('..', 'Flutter', 'Generated.xcconfig'), __FILE__)
   unless File.exist?(generated_xcode_build_settings_path)
     raise "Generated.xcconfig must exist. If you're running pod install manually, make sure flutter pub get has been executed."
@@ -23,7 +17,7 @@ def flutter_root
   raise "FLUTTER_ROOT not found in Generated.xcconfig. Try deleting Generated.xcconfig and regenerate it by running flutter pub get."
 end
 
-require File.expand_path(File.join('..', 'Flutter', 'generated_tool_plugin_map.rb'), __FILE__)
+require File.expand_path(File.join('..', 'Flutter', 'generated_tool_plugin_map.rb'), __FILE__) rescue nil
 
 target 'Runner' do
   use_frameworks!
