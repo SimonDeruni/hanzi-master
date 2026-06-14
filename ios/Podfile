@@ -17,7 +17,8 @@ def flutter_install_ios_engine_pigeon
   raise "FLUTTER_ROOT not found in Generated.xcconfig. Try deleting Generated.xcconfig and regenerate it by running flutter pub get."
 end
 
-require File.expand_path(File.join('..', 'Flutter', 'generated_tool_plugin_map.rb'), __FILE__) rescue nil
+generated_tool_plugin_map_path = File.expand_path(File.join('..', 'Flutter', 'generated_tool_plugin_map.rb'), __FILE__)
+require generated_tool_plugin_map_path if File.exist?(generated_tool_plugin_map_path)
 
 target 'Runner' do
   use_frameworks!
