@@ -6,19 +6,28 @@ This document records the critical technical choices made for Hanzi Master to en
 
 ## 💎 1. State Management: Riverpod
 - **Decision:** Use Riverpod 2.0 with `@riverpod` annotations.
-- **Rationale:** Solo-founder friendly, compile-time safety, and handles the complex state of the "Living Scroll" map without global pollution.
-- **Rule:** Never use `StateProvider`. Prefer `AsyncNotifier` for character data.
+- **Rationale:** Handles complex galactic map state and async AI requests with compile-time safety.
+- **Rule:** Prefer `AsyncNotifier` for character data.
 
 ## 🧬 2. Stroke Validation: Simplified Hausdorff
-- **Decision:** Use a simplified version of the Hausdorff distance algorithm + Centroid Check.
-- **Rationale:** Frechet distance is too computationally expensive for real-time 120FPS drawing on mobile. Hausdorff provides the best "feel" for kinesthetic feedback while remaining performant.
-- **Rule:** Always normalize points to **1000x1000** before running the comparison.
+- **Decision:** Use Simplified Hausdorff distance + Centroid Check.
+- **Rationale:** Best "feel" for kinesthetic feedback without the performance cost of Frechet.
+- **Rule:** Normalize points to **1000x1000** before comparison.
 
-## 📦 3. Persistence: Hive
-- **Decision:** Local-only NoSQL (Hive).
-- **Rationale:** Instant read/write for the SM-2 SRS algorithm. No latency for dictionary searches.
-- **Rule:** All boxes MUST be encrypted with `HiveCipher` to protect the "Scholar's Edition" gate.
+## 🤖 3. AI Strategy: Hybrid Intelligence
+- **Decision:** Split intelligence between **Google ML Kit (Local)** and **Gemini 2.5 Flash (Cloud)**.
+- **Rationale:** Local ML provides 30fps latency for Radar and OCR. Gemini provides the "Scholarship" (Etymology, Chat, Deep Vision).
+- **Rule:** Use Local ML as the primary "Radar" and Gemini as the secondary "Deep Dive."
 
-## 🎨 4. Data Source: HanziVG & AnimCJK
-- **Decision:** Use HanziVG for skeletons and AnimCJK for fallback.
-- **Rationale:** Provides high-quality hand-drawn medians (centerlines) rather than robotic outlines. Essential for calligraphic feedback.
+## 🔑 4. Quota Management: Scholar's Key Pool
+- **Decision:** Multi-key round-robin rotation for Gemini API.
+- **Rationale:** Bypasses free-tier limits by distributing requests across a pool of up to 10 keys.
+- **Rule:** Implement rotation at the service layer; never hardcode a single key in high-volume services.
+
+## 📦 5. Persistence: Hive & SQLite
+- **Decision:** Hive for SRS/User state, SQLite for the 50k+ entry Master Dictionary.
+- **Rule:** All user-data Hive boxes MUST be encrypted with `HiveCipher`.
+
+## 🎨 6. UI Mandate: Zen & Ink (Xuan/Carbon)
+- **Decision:** Rigid adherence to Xuan Paper (`#FDFCF0`) and Carbon Ink (`#1A1A1B`).
+- **Rationale:** Differentiates the app as a "Calligraphic Tool" rather than a generic flashcard app.

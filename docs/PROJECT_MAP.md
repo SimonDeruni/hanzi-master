@@ -8,34 +8,46 @@ This document serves as the "Big Picture" guide to the Hanzi Master codebase.
 
 ### 🏗️ `/lib` (Core Application)
 Follows a **Feature-First Clean Architecture**.
-- **`/core`**: Universal logic. Stroke matching, SVG parsing, and global providers.
-- **`/features`**: Independent functional modules (Course, Flashcards, Premium, Quiz, Onboarding).
+
+#### 🧩 `/core` (Universal Logic)
+- **`/models`**: Shared data structures (e.g., `PronunciationGrade`).
+- **`/providers`**: Global state logic (e.g., `PremiumController`).
+- **`/services`**: Hardware & API integrations.
+    - `api_key_pool.dart`: Rotates 10 Gemini API keys to bypass quotas.
+    - `gemini_service.dart`: High-level AI (Context, Vision, Chat).
+    - `vision_service.dart`: Local ML Kit object detection.
+    - `audio_service.dart`: Multi-tier audio (Assets -> Cache -> Cloud -> Local).
+    - `speech_service.dart`: STT for pronunciation practice.
+- **`/utils`**: Heuristics (e.g., `PinyinUtils`, `GeometryUtils`).
+
+#### 🚀 `/features` (Modular Functionality)
+- **`vision/`**: "The Scholar's Eye" - Real-time AR object recognition.
+- **`reading/`**: "Cultural Reading Room" - Structural story reader and creator.
+- **`echo_hall/`**: "Echo Hall" - Persona-based roleplay and feedback.
+- **`chat/`**: Base infrastructure for AI-driven conversations.
+- **`flashcards/`**: Core SRS, Character Details, and "Ask Tutor" Sidebar.
+- **`course/`**: "The Living Scroll" - Galactic map and structured lessons.
+- **`progression/`**: Ink Points (XP) and Scholar Ranks.
+- **`premium/`**: OCR Scanner and RevenueCat monetization.
+- **`quiz/`**: Recognition grids and semantic forging.
+- **`onboarding/`**: Scroll of Origin and tutorials.
+
+#### 🎨 `/shared` (Common UI)
+- **`/widgets`**: Universal calligraphic components (e.g., `QuickLookSheet`, `TappableHanziText`).
 
 ### 📑 `/docs` (Governance & Management)
 - **`AI_PROTOCOL.md`**: The technical "Operations Manual."
 - **`PROJECT_GUIDELINES.md`**: Core mandates and project overview.
 - **`ai_update_guidelines/`**: Modular standards for every tracking file.
 - **`archive/`**: Deep storage for resolved issues and old changelogs.
-- **`ANTI_PATTERNS.md`**: Historical record of rejected approaches.
 - **`UI_UX_STANDARDS.md`**: The visual and haptic "Zen" guide.
-- **`ARCHITECTURAL_DECISIONS.md`**: Why we chose Riverpod, Hive, and Hausdorff.
+- **`ARCHITECTURAL_DECISIONS.md`**: Choices regarding ML, State, and Persistence.
 - **`FEATURE_MANIFEST.md`**: The pedagogical truth of implemented features.
 - **`ISSUES.md`**: Active bug and task tracker.
-- **`AI_CHAT_SETUP.md`**: Configuration guide for Gemini API and Echo Hall.
-
-### 🕵️ `/audit` (Quality Assurance)
-- **`AUDIT_PLAN.md`**: The strategy for technical reviews.
-- **`AUDIT_GUIDELINES.md`**: Step-by-step procedures for audits.
-- **`audit_results/`**: Historical records categorized by status.
-    - **`archive/`**: Superseded or legacy audit results.
-
-### 🛠️ `/tooling` (Maintenance & Data)
-Dart scripts for offline processing.
-- `fetch_hanzivg.dart`: Scrapes high-quality vector skeletons from source.
-- `build_dictionary.dart`: Processes raw SVG data into optimized app JSON.
-- `generate_sentences.dart`: Curates example sentences for Context steps.
 
 ---
 
 ## 🔄 2. Data Flow
-`Tooling (Scrape/Parse)` -> `Assets (JSON)` -> `Core (Loader)` -> `Features (UI/Match)`
+`ML Radar (Local)` + `Deep Scan (Gemini)` -> `Translation` -> `Scholar Card (Quick Look)`
+`Camera (Frame)` -> `OCR (ML Kit)` -> `Dictionary (SQLite)` -> `Display`
+`User Voice` -> `STT (Google)` -> `Critique (Gemini)` -> `Audio Feedback`
