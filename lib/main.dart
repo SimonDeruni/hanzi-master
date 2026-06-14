@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:hanzi_master/features/flashcards/data/models/flashcard_model.dart';
@@ -39,26 +38,24 @@ void main() async {
   Hive.registerAdapter(DeckModelAdapter());
 
   // --- SECURITY: Hive Encryption ---
-  // Wrapped in try/catch: flutter_secure_storage can fail on sideloaded iOS
-  // apps without proper Keychain entitlements. Fall back to unencrypted Hive.
+  // Key stored in SharedPreferences (NSUserDefaults on iOS) instead of Keychain.
+  // Keychain requires keychain-access-groups entitlement which is unavailable
+  // on sideloaded builds and causes a native SIGTRAP crash. NSUserDefaults
+  // requires no entitlements and works on all iOS builds.
   HiveAesCipher? cipher;
   try {
-    const secureStorage = FlutterSecureStorage();
-    final encryptionKeyString = await secureStorage.read(key: 'hive_encryption_key');
+    const String hiveKeyPref = 'hive_encryption_key';
+    final keyString = prefs.getString(hiveKeyPref);
     late List<int> encryptionKey;
-    if (encryptionKeyString == null) {
+    if (keyString == null) {
       encryptionKey = Hive.generateSecureKey();
-      await secureStorage.write(
-        key: 'hive_encryption_key',
-        value: base64Url.encode(encryptionKey),
-      );
+      await prefs.setString(hiveKeyPref, base64Url.encode(encryptionKey));
     } else {
-      encryptionKey = base64Url.decode(encryptionKeyString);
+      encryptionKey = base64Url.decode(keyString);
     }
     cipher = HiveAesCipher(encryptionKey);
   } catch (e) {
-    // Keychain unavailable (e.g. sideloaded without entitlements) — run unencrypted
-    debugPrint('SecureStorage unavailable, running Hive unencrypted: $e');
+    debugPrint('Hive key generation failed, running unencrypted: $e');
     cipher = null;
   }
 
