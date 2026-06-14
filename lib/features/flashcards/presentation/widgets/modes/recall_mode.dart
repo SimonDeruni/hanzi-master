@@ -322,7 +322,7 @@ class _RecallModeWidgetState extends ConsumerState<RecallModeWidget> {
       ),
       child: Column(
         children: [
-          // Reminder header
+          // Pinyin + definition reminder
           Padding(
             padding: const EdgeInsets.fromLTRB(24, 20, 24, 0),
             child: Column(
@@ -348,48 +348,54 @@ class _RecallModeWidgetState extends ConsumerState<RecallModeWidget> {
             ),
           ),
           Divider(
-            height: 24,
+            height: 20,
             color: isDark ? Colors.white12 : Colors.black12,
             indent: 24,
             endIndent: 24,
           ),
-          // The answer
-          Expanded(
-            child: _card.strokePaths.isEmpty
-                ? Center(
-                    child: Text(
-                      widget.card.hanzi,
-                      style: TextStyle(
-                        fontSize: 120,
-                        fontWeight: FontWeight.bold,
-                        color: isDark ? Colors.white : Colors.black87,
-                      ),
-                    ),
-                  )
-                : Padding(
-                    padding: const EdgeInsets.fromLTRB(24, 0, 24, 20),
-                    child: AspectRatio(
-                      aspectRatio: 1.0,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                        clipBehavior: Clip.antiAlias,
-                        child: CalligraphyBackground(
-                          child: DrawingCanvas(
-                            strokePaths: _card.strokePaths,
-                            medianPaths: _card.medianPaths,
-                            showAnimation: true,
-                            readOnly: true,
-                            isFlipped: _card.isFlipped,
-                            showGrade: false,
-                            showControls: false,
-                          ),
+
+          // ── Full word characters (always shown) ──
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Text(
+              widget.card.hanzi,
+              style: TextStyle(
+                fontSize: 72,
+                fontWeight: FontWeight.bold,
+                color: isDark ? Colors.white : const Color(0xFF1A1A1B),
+                height: 1.1,
+              ),
+            ),
+          ),
+
+          // ── Stroke animation (square, centred, not stretched) ──
+          if (_card.strokePaths.isNotEmpty)
+            Expanded(
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 8, 20, 16),
+                  child: AspectRatio(
+                    aspectRatio: 1.0,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(16),
+                      child: CalligraphyBackground(
+                        child: DrawingCanvas(
+                          strokePaths: _card.strokePaths,
+                          medianPaths: _card.medianPaths,
+                          showAnimation: true,
+                          readOnly: true,
+                          isFlipped: _card.isFlipped,
+                          showGrade: false,
+                          showControls: false,
                         ),
                       ),
                     ),
                   ),
-          ),
+                ),
+              ),
+            )
+          else
+            const SizedBox(height: 16),
         ],
       ),
     );
