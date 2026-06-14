@@ -304,9 +304,60 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
 
   @override
   Widget build(BuildContext context) {
-    if (_cachedParsedPaths.isEmpty) {
+    if (_cachedParsedPaths.isEmpty && widget.readOnly) {
       return const Center(child: Icon(Icons.broken_image, color: Colors.grey));
     }
+
+    // Scratchpad mode: no reference strokes, just a blank canvas for free drawing
+    if (_cachedParsedPaths.isEmpty && !widget.readOnly) {
+      final bool isDarkScratch = Theme.of(context).brightness == Brightness.dark;
+      return GestureDetector(
+        onPanStart: (details) {
+          setState(() => _userPoints.add(details.localPosition));
+          _syncUserPointsWithNotifier();
+        },
+        onPanUpdate: (details) {
+          setState(() => _userPoints.add(details.localPosition));
+          _syncUserPointsWithNotifier();
+        },
+        onPanEnd: (_) {
+          setState(() => _userPoints.add(null));
+          _syncUserPointsWithNotifier();
+        },
+        child: Stack(
+          children: [
+            Positioned.fill(child: CustomPaint(painter: _RiceGridPainter(isDark: isDarkScratch))),
+            Positioned.fill(
+              child: CustomPaint(
+                painter: _UserDrawingPainter(
+                  _userPoints,
+                  null,
+                  centeringShift: Offset.zero,
+                  isDark: isDarkScratch,
+                ),
+              ),
+            ),
+            if (widget.showControls && _userPoints.isNotEmpty)
+              Positioned(
+                top: 8, right: 8,
+                child: IconButton.filled(
+                  icon: const Icon(Icons.refresh, size: 20),
+                  style: IconButton.styleFrom(
+                    backgroundColor: Colors.black26,
+                    foregroundColor: Colors.white,
+                    minimumSize: const Size(36, 36),
+                  ),
+                  onPressed: () => setState(() {
+                    _userPoints.clear();
+                    _syncUserPointsWithNotifier();
+                  }),
+                ),
+              ),
+          ],
+        ),
+      );
+    }
+
 
     // Generate median paths from stroke paths if not provided
     final List<List<Offset>> generatedMedianPaths = [];
