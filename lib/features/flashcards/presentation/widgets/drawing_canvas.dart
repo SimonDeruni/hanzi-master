@@ -329,12 +329,7 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
             Positioned.fill(child: CustomPaint(painter: _RiceGridPainter(isDark: isDarkScratch))),
             Positioned.fill(
               child: CustomPaint(
-                painter: _UserDrawingPainter(
-                  _userPoints,
-                  null,
-                  centeringShift: Offset.zero,
-                  isDark: isDarkScratch,
-                ),
+                painter: _ScratchpadPainter(points: _userPoints, isDark: isDarkScratch),
               ),
             ),
             if (widget.showControls && _userPoints.isNotEmpty)
@@ -1009,4 +1004,41 @@ class _RiceGridPainter extends CustomPainter {
   }
   @override
   bool shouldRepaint(covariant _RiceGridPainter oldDelegate) => oldDelegate.isDark != isDark;
+}
+
+/// Simple painter for the free-draw scratchpad.
+/// Draws raw pixel-space points directly — no scaling, no centering.
+class _ScratchpadPainter extends CustomPainter {
+  final List<Offset?> points;
+  final bool isDark;
+  _ScratchpadPainter({required this.points, required this.isDark});
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()
+      ..color = isDark ? Colors.white : const Color(0xFF1A1A1B)
+      ..strokeWidth = 18.0
+      ..strokeCap = StrokeCap.round
+      ..strokeJoin = StrokeJoin.round
+      ..style = PaintingStyle.stroke;
+
+    final path = Path();
+    bool hasMoved = false;
+    for (final point in points) {
+      if (point == null) {
+        hasMoved = false;
+        continue;
+      }
+      if (!hasMoved) {
+        path.moveTo(point.dx, point.dy);
+        hasMoved = true;
+      } else {
+        path.lineTo(point.dx, point.dy);
+      }
+    }
+    canvas.drawPath(path, paint);
+  }
+
+  @override
+  bool shouldRepaint(_ScratchpadPainter old) => old.points != points;
 }
