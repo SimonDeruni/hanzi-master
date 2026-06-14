@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'dart:ui' as ui;
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
-import 'package:hanzi_master/features/flashcards/domain/entities/study_mode.dart';
 import 'package:hanzi_master/shared/widgets/pinyin_text.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/drawing_canvas.dart';
@@ -28,40 +28,32 @@ class RecallModeWidget extends ConsumerStatefulWidget {
   ConsumerState<RecallModeWidget> createState() => _RecallModeWidgetState();
 }
 
-class _RecallModeWidgetState extends ConsumerState<RecallModeWidget>
-    with SingleTickerProviderStateMixin {
+class _RecallModeWidgetState extends ConsumerState<RecallModeWidget> {
   bool _isRevealed = false;
   bool _showScratchpad = false;
   bool _isLoadingStrokes = false;
   late Flashcard _card;
 
-  late AnimationController _flipController;
-  late Animation<double> _flipAnimation;
+  // Required for DrawingCanvas to capture touch input
+  final ValueNotifier<List<ui.Offset?>> _scratchpadNotifier =
+      ValueNotifier([]);
 
   @override
   void initState() {
     super.initState();
     _card = widget.card;
-    _flipController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 400),
-    );
-    _flipAnimation = CurvedAnimation(
-      parent: _flipController,
-      curve: Curves.easeInOutQuart,
-    );
   }
 
   @override
   void dispose() {
-    _flipController.dispose();
+    _scratchpadNotifier.dispose();
     super.dispose();
   }
 
   Future<void> _reveal() async {
     if (_isRevealed) return;
 
-    // Load stroke data lazily on reveal if not already loaded
+    // Load stroke data lazily on reveal
     if (_card.strokePaths.isEmpty) {
       setState(() => _isLoadingStrokes = true);
       final updated = await ref
@@ -71,13 +63,15 @@ class _RecallModeWidgetState extends ConsumerState<RecallModeWidget>
         setState(() {
           if (updated != null) _card = updated;
           _isLoadingStrokes = false;
+          _isRevealed = true;
+          _showScratchpad = false; // hide scratchpad on reveal
         });
       }
-    }
-
-    if (mounted) {
-      setState(() => _isRevealed = true);
-      _flipController.forward();
+    } else {
+      setState(() {
+        _isRevealed = true;
+        _showScratchpad = false;
+      });
     }
   }
 
@@ -99,113 +93,74 @@ class _RecallModeWidgetState extends ConsumerState<RecallModeWidget>
       body: SafeArea(
         child: Column(
           children: [
-            // Main card — takes most of the space
+            // Main area — card OR scratchpad, fills available space
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(24, 16, 24, 8),
-                child: GestureDetector(
-                  onTap: !_isRevealed ? _reveal : null,
-                  child: Container(
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: cardColor,
-                      borderRadius: BorderRadius.circular(32),
-                      border: Border.all(color: borderColor),
-                      boxShadow: [
-                        if (!isDark)
-                          BoxShadow(
-                            color: Colors.black.withAlpha(12),
-                            blurRadius: 20,
-                            offset: const Offset(0, 10),
-                          ),
-                      ],
-                    ),
-                    child: _isLoadingStrokes
-                        ? const Center(child: CircularProgressIndicator())
-                        : _isRevealed
-                            ? _buildRevealedFace(isDark)
-                            : _buildHiddenFace(isDark),
-                  ),
-                ),
+                padding: const EdgeInsets.fromLTRB(24, 16, 24, 0),
+                child: _showScratchpad
+                    ? _buildScratchpad(isDark, borderColor)
+                    : _isRevealed
+                        ? _buildRevealedCard(isDark, cardColor, borderColor)
+                        : _buildHiddenCard(isDark, cardColor, borderColor),
               ),
             ),
 
-            // Scratchpad toggle (only before reveal)
-            if (!_isRevealed)
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 4),
-                child: TextButton.icon(
-                  onPressed: () =>
-                      setState(() => _showScratchpad = !_showScratchpad),
-                  icon: Icon(
-                    _showScratchpad ? Icons.close : Icons.draw_outlined,
-                    size: 18,
-                  ),
-                  label: Text(
-                    _showScratchpad ? 'Hide Scratchpad' : 'Practice Writing',
-                  ),
-                  style: TextButton.styleFrom(
-                    foregroundColor:
-                        isDark ? Colors.white54 : Colors.black54,
-                  ),
-                ),
-              ),
-
-            // Scratchpad canvas
-            if (_showScratchpad && !_isRevealed)
-              Padding(
-                padding: const EdgeInsets.fromLTRB(24, 0, 24, 8),
-                child: AspectRatio(
-                  aspectRatio: 3.0,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(16),
-                      border: Border.all(color: borderColor),
-                    ),
-                    clipBehavior: Clip.antiAlias,
-                    child: CalligraphyBackground(
-                      child: DrawingCanvas(
-                        strokePaths: const [],
-                        medianPaths: const [],
-                        showAnimation: false,
-                        readOnly: false,
-                        showControls: true,
-                        showGrade: false,
-                        showGuideLines: true,
+            // Controls row below the card
+            Padding(
+              padding: const EdgeInsets.fromLTRB(24, 8, 24, 8),
+              child: _isRevealed
+                  ? const SizedBox.shrink()
+                  : TextButton.icon(
+                      onPressed: () => setState(
+                          () => _showScratchpad = !_showScratchpad),
+                      icon: Icon(
+                        _showScratchpad
+                            ? Icons.close
+                            : Icons.draw_outlined,
+                        size: 18,
+                      ),
+                      label: Text(
+                        _showScratchpad
+                            ? 'Hide Scratchpad'
+                            : 'Practice Writing',
+                      ),
+                      style: TextButton.styleFrom(
+                        foregroundColor:
+                            isDark ? Colors.white54 : Colors.black45,
                       ),
                     ),
-                  ),
-                ),
-              ),
+            ),
 
-            // Reveal button (before reveal)
+            // Bottom button area
             if (!_isRevealed)
               Padding(
-                padding: const EdgeInsets.fromLTRB(24, 4, 24, 32),
+                padding: const EdgeInsets.fromLTRB(24, 0, 24, 32),
                 child: SizedBox(
                   width: double.infinity,
                   height: 56,
-                  child: ElevatedButton(
-                    onPressed: _reveal,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.indigo,
-                      foregroundColor: Colors.white,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16)),
-                      elevation: 0,
-                    ),
-                    child: const Text(
-                      'Reveal Answer',
-                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                    ),
-                  ),
+                  child: _isLoadingStrokes
+                      ? const Center(child: CircularProgressIndicator())
+                      : ElevatedButton(
+                          onPressed: _reveal,
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.indigo,
+                            foregroundColor: Colors.white,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(16)),
+                            elevation: 0,
+                          ),
+                          child: const Text(
+                            'Reveal Answer',
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.bold),
+                          ),
+                        ),
                 ),
               ),
 
-            // Grading buttons (after reveal)
             if (_isRevealed)
               Padding(
-                padding: const EdgeInsets.fromLTRB(16, 4, 16, 32),
+                padding: const EdgeInsets.fromLTRB(16, 0, 16, 32),
                 child: Column(
                   children: [
                     Text(
@@ -219,10 +174,14 @@ class _RecallModeWidgetState extends ConsumerState<RecallModeWidget>
                     const SizedBox(height: 12),
                     Row(
                       children: [
-                        _buildGradeButton('Again', 0, Colors.red, 'Completely forgot'),
-                        _buildGradeButton('Hard', 2, Colors.orange, 'Got it with difficulty'),
-                        _buildGradeButton('Good', 4, Colors.green, 'Recalled correctly'),
-                        _buildGradeButton('Easy', 5, Colors.blue, 'Perfect recall'),
+                        _buildGradeButton(
+                            'Again', 0, Colors.red, 'Completely forgot'),
+                        _buildGradeButton(
+                            'Hard', 2, Colors.orange, 'Got it with difficulty'),
+                        _buildGradeButton(
+                            'Good', 4, Colors.green, 'Recalled correctly'),
+                        _buildGradeButton(
+                            'Easy', 5, Colors.blue, 'Perfect recall'),
                       ],
                     ),
                   ],
@@ -234,131 +193,205 @@ class _RecallModeWidgetState extends ConsumerState<RecallModeWidget>
     );
   }
 
-  Widget _buildHiddenFace(bool isDark) {
+  /// Blank writable canvas — fills the same Expanded area as the card
+  Widget _buildScratchpad(bool isDark, Color borderColor) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(
-          'What character means:',
-          style: TextStyle(
-            fontSize: 15,
-            color: isDark ? Colors.white54 : Colors.black45,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-        const SizedBox(height: 24),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 32),
-          child: PinyinText(
-            text: widget.card.pinyin,
-            style: TextStyle(
-              fontSize: 36,
-              fontWeight: FontWeight.bold,
-              color: isDark ? Colors.white : Colors.black87,
+        Expanded(
+          child: Center(
+            child: AspectRatio(
+              aspectRatio: 1.0,
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(24),
+                  border: Border.all(color: borderColor, width: 1),
+                  boxShadow: [
+                    if (!isDark)
+                      BoxShadow(
+                        color: Colors.black.withAlpha(12),
+                        blurRadius: 20,
+                        offset: const Offset(0, 8),
+                      ),
+                  ],
+                ),
+                clipBehavior: Clip.antiAlias,
+                child: CalligraphyBackground(
+                  child: DrawingCanvas(
+                    strokePaths: const [],
+                    medianPaths: const [],
+                    showAnimation: false,
+                    readOnly: false,
+                    showControls: true,
+                    showGrade: false,
+                    showGuideLines: true,
+                    userPointsNotifier: _scratchpadNotifier,
+                  ),
+                ),
+              ),
             ),
-          ),
-        ),
-        const SizedBox(height: 16),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 32),
-          child: Text(
-            widget.card.definition,
-            style: TextStyle(
-              fontSize: 22,
-              color: isDark ? Colors.white70 : Colors.black54,
-            ),
-            textAlign: TextAlign.center,
-          ),
-        ),
-        const SizedBox(height: 40),
-        Text(
-          'Tap to Reveal',
-          style: TextStyle(
-            fontSize: 14,
-            color: isDark ? Colors.white30 : Colors.black26,
-            fontWeight: FontWeight.w600,
-            letterSpacing: 1.0,
           ),
         ),
       ],
     );
   }
 
-  Widget _buildRevealedFace(bool isDark) {
-    return Column(
-      children: [
-        // Top: pinyin & definition reminder
-        Padding(
-          padding: const EdgeInsets.fromLTRB(24, 24, 24, 0),
-          child: Column(
-            children: [
-              PinyinText(
+  Widget _buildHiddenCard(bool isDark, Color cardColor, Color borderColor) {
+    return GestureDetector(
+      onTap: _reveal,
+      child: Container(
+        width: double.infinity,
+        decoration: BoxDecoration(
+          color: cardColor,
+          borderRadius: BorderRadius.circular(32),
+          border: Border.all(color: borderColor),
+          boxShadow: [
+            if (!isDark)
+              BoxShadow(
+                color: Colors.black.withAlpha(12),
+                blurRadius: 20,
+                offset: const Offset(0, 10),
+              ),
+          ],
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'What character means:',
+              style: TextStyle(
+                fontSize: 15,
+                color: isDark ? Colors.white54 : Colors.black45,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            const SizedBox(height: 28),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 32),
+              child: PinyinText(
                 text: widget.card.pinyin,
                 style: TextStyle(
-                  fontSize: 20,
-                  color: isDark ? Colors.white54 : Colors.black45,
-                  fontWeight: FontWeight.w500,
+                  fontSize: 38,
+                  fontWeight: FontWeight.bold,
+                  color: isDark ? Colors.white : Colors.black87,
                 ),
               ),
-              const SizedBox(height: 4),
-              Text(
+            ),
+            const SizedBox(height: 16),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 32),
+              child: Text(
                 widget.card.definition,
                 style: TextStyle(
-                  fontSize: 16,
-                  color: isDark ? Colors.white38 : Colors.black38,
+                  fontSize: 22,
+                  color: isDark ? Colors.white70 : Colors.black54,
                 ),
                 textAlign: TextAlign.center,
               ),
-            ],
-          ),
+            ),
+            const SizedBox(height: 48),
+            Text(
+              'Tap to Reveal',
+              style: TextStyle(
+                fontSize: 13,
+                color: isDark ? Colors.white30 : Colors.black26,
+                fontWeight: FontWeight.w600,
+                letterSpacing: 1.0,
+              ),
+            ),
+          ],
         ),
+      ),
+    );
+  }
 
-        Divider(
-          height: 32,
-          color: isDark ? Colors.white12 : Colors.black12,
-          indent: 24,
-          endIndent: 24,
-        ),
-
-        // The answer: character + stroke animation
-        Expanded(
-          child: _card.strokePaths.isEmpty
-              ? Center(
-                  child: Text(
-                    widget.card.hanzi,
-                    style: TextStyle(
-                      fontSize: 120,
-                      fontWeight: FontWeight.bold,
-                      color: isDark ? Colors.white : Colors.black87,
-                    ),
+  Widget _buildRevealedCard(bool isDark, Color cardColor, Color borderColor) {
+    return Container(
+      width: double.infinity,
+      decoration: BoxDecoration(
+        color: cardColor,
+        borderRadius: BorderRadius.circular(32),
+        border: Border.all(color: borderColor),
+        boxShadow: [
+          if (!isDark)
+            BoxShadow(
+              color: Colors.black.withAlpha(12),
+              blurRadius: 20,
+              offset: const Offset(0, 10),
+            ),
+        ],
+      ),
+      child: Column(
+        children: [
+          // Reminder header
+          Padding(
+            padding: const EdgeInsets.fromLTRB(24, 20, 24, 0),
+            child: Column(
+              children: [
+                PinyinText(
+                  text: widget.card.pinyin,
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: isDark ? Colors.white54 : Colors.black45,
+                    fontWeight: FontWeight.w500,
                   ),
-                )
-              : Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 32),
-                  child: AspectRatio(
-                    aspectRatio: 1.0,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(16),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  widget.card.definition,
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: isDark ? Colors.white38 : Colors.black38,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            ),
+          ),
+          Divider(
+            height: 24,
+            color: isDark ? Colors.white12 : Colors.black12,
+            indent: 24,
+            endIndent: 24,
+          ),
+          // The answer
+          Expanded(
+            child: _card.strokePaths.isEmpty
+                ? Center(
+                    child: Text(
+                      widget.card.hanzi,
+                      style: TextStyle(
+                        fontSize: 120,
+                        fontWeight: FontWeight.bold,
+                        color: isDark ? Colors.white : Colors.black87,
                       ),
-                      clipBehavior: Clip.antiAlias,
-                      child: CalligraphyBackground(
-                        child: DrawingCanvas(
-                          strokePaths: _card.strokePaths,
-                          medianPaths: _card.medianPaths,
-                          showAnimation: true,
-                          readOnly: true,
-                          isFlipped: _card.isFlipped,
-                          showGrade: false,
-                          showControls: false,
+                    ),
+                  )
+                : Padding(
+                    padding: const EdgeInsets.fromLTRB(24, 0, 24, 20),
+                    child: AspectRatio(
+                      aspectRatio: 1.0,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        clipBehavior: Clip.antiAlias,
+                        child: CalligraphyBackground(
+                          child: DrawingCanvas(
+                            strokePaths: _card.strokePaths,
+                            medianPaths: _card.medianPaths,
+                            showAnimation: true,
+                            readOnly: true,
+                            isFlipped: _card.isFlipped,
+                            showGrade: false,
+                            showControls: false,
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-        ),
-        const SizedBox(height: 16),
-      ],
+          ),
+        ],
+      ),
     );
   }
 
