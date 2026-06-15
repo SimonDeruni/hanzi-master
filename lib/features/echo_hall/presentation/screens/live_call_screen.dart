@@ -1,8 +1,12 @@
 import 'dart:ui';
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:web_socket_channel/web_socket_channel.dart';
+import 'package:web_socket_channel/status.dart' as status;
 import '../../domain/entities/scenario.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
+import 'package:hanzi_master/core/services/api_key_pool.dart';
 
 class LiveCallScreen extends ConsumerStatefulWidget {
   final ConversationScenario scenario;
@@ -18,6 +22,9 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
   late Animation<double> _pulseAnimation;
   bool _isMuted = false;
   bool _isSpeaker = true;
+  
+  WebSocketChannel? _channel;
+  String _callStatus = "Initializing...";
 
   @override
   void initState() {
@@ -30,16 +37,80 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
     _pulseAnimation = Tween<double>(begin: 1.0, end: 1.2).animate(
       CurvedAnimation(parent: _pulseController, curve: Curves.easeInOut),
     );
+
+    // Connect to Gemini Live API
+    _connectToGemini();
+  }
+
+  Future<void> _connectToGemini() async {
+    setState(() => _callStatus = "Connecting via WebSocket...");
+    
+    // In a real production app, this key should be highly secured or managed via a proxy backend.
+    final apiKey = ref.read(apiKeyPoolProvider).googleKey;
+    if (apiKey.isEmpty) {
+      setState(() => _callStatus = "Error: Missing API Key");
+      return;
+    }
+
+    try {
+      final uri = Uri.parse(
+        'wss://generativelanguage.googleapis.com/ws/google.ai.generativelanguage.v1beta.GenerativeService.BidiGenerateContent?key=$apiKey'
+      );
+      
+      _channel = WebSocketChannel.connect(uri);
+
+      // 1. Initial Handshake / Setup
+      _channel!.sink.add(jsonEncode({
+        "setup": {
+          "model": "models/gemini-2.0-flash-exp",
+          "generation_config": {
+             "response_modalities": ["AUDIO"]
+          },
+          "system_instruction": {
+            "parts": [
+              {"text": "You are a spoken Mandarin tutor. Limit responses to 2 sentences. Your persona is: ${widget.scenario.description}"}
+            ]
+          }
+        }
+      }));
+
+      setState(() => _callStatus = "Connected! Awaiting Scholar...");
+
+      // 2. Listen to the stream
+      _channel!.stream.listen(
+        (message) {
+          if (message is String) {
+            final data = jsonDecode(message);
+            if (data.containsKey('serverContent')) {
+              setState(() => _callStatus = "Scholar is speaking...");
+              // Handle incoming base64 PCM audio data here
+              // e.g. decode data['serverContent']['modelTurn']['parts'][0]['inlineData']['data']
+            }
+          }
+        },
+        onDone: () {
+          setState(() => _callStatus = "Call ended by Scholar.");
+        },
+        onError: (error) {
+          setState(() => _callStatus = "Connection error: $error");
+        },
+      );
+
+    } catch (e) {
+      setState(() => _callStatus = "Failed to connect: $e");
+    }
   }
 
   @override
   void dispose() {
+    _channel?.sink.close(status.normalClosure);
     _pulseController.dispose();
     super.dispose();
   }
 
   void _endCall() {
     HapticsManager.heavy();
+    _channel?.sink.close(status.normalClosure);
     Navigator.pop(context);
   }
 
@@ -56,7 +127,6 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final isDark = theme.brightness == Brightness.dark;
 
     return Scaffold(
       backgroundColor: Colors.black, // Phone calls usually have a dark, immersive background
@@ -99,9 +169,9 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
                         style: theme.textTheme.headlineMedium?.copyWith(color: Colors.white, fontWeight: FontWeight.bold),
                       ),
                       const SizedBox(height: 8),
-                      const Text(
-                        "Connecting via WebSocket...",
-                        style: TextStyle(color: Colors.white70, fontSize: 16),
+                      Text(
+                        _callStatus,
+                        style: const TextStyle(color: Colors.white70, fontSize: 16),
                       ),
                     ],
                   ),
