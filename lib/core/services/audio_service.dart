@@ -16,6 +16,7 @@ final audioServiceProvider = Provider<AudioService>((ref) {
 });
 
 class AudioService {
+  final ApiKeyPool _pool;
   final AudioPlayer _audioPlayer = AudioPlayer();
   final FlutterTts _fallbackTts = FlutterTts();
   Map<String, String> _nativeManifest = {};
@@ -24,7 +25,7 @@ class AudioService {
   // Cache directory for downloaded TTS audio
   Directory? _cacheDir;
 
-  AudioService({required ApiKeyPool pool});
+  AudioService({required ApiKeyPool pool}) : _pool = pool;
 
   Future<void> init() async {
     if (_isInitialized) return;
@@ -33,7 +34,7 @@ class AudioService {
       final manifestString = await rootBundle.loadString('assets/data/audio_manifest.json');
       _nativeManifest = Map<String, String>.from(jsonDecode(manifestString));
     } catch (e) {
-      debugPrint("Audio init failed: $e"); // Changed from print
+      debugPrint("Audio init failed: $e");
     }
 
     _cacheDir = await getApplicationDocumentsDirectory();
@@ -73,9 +74,9 @@ class AudioService {
       }
     }
 
-    // Tier 3: Fast Cloud TTS (OpenAI tts-1 or mocked Azure)
+    // Tier 3: Fast Cloud TTS
     try {
-      final audioData = await _fetchStandardCloud(hanzi);
+      final audioData = await _fetchGeminiCloud(hanzi, isPremium: false);
       if (audioData != null) {
         await cacheFile.writeAsBytes(audioData);
         await _audioPlayer.play(DeviceFileSource(cacheFile.path));
@@ -100,9 +101,9 @@ class AudioService {
       return;
     }
 
-    // Tier 3: Premium Cloud TTS (OpenAI tts-1-hd or ElevenLabs for expressive speech)
+    // Tier 3: Premium Cloud TTS (Gemini Native Audio)
     try {
-      final audioData = await _fetchPremiumCloud(sentence);
+      final audioData = await _fetchGeminiCloud(sentence, isPremium: true);
       if (audioData != null) {
         await cacheFile.writeAsBytes(audioData);
         await _audioPlayer.play(DeviceFileSource(cacheFile.path));
@@ -115,45 +116,55 @@ class AudioService {
     await _fallbackTts.speak(sentence);
   }
 
-  Future<Uint8List?> _fetchStandardCloud(String text) async {
-    return _callOpenAiTts(text, model: 'tts-1', voice: 'alloy');
-  }
+  Future<Uint8List?> _fetchGeminiCloud(String text, {bool isPremium = false}) async {
+    // For single fast words, we just return null to use local TTS and save API costs.
+    if (!isPremium) return null;
 
-  Future<Uint8List?> _fetchPremiumCloud(String text) async {
-    // We use a different, more expressive voice (e.g., 'nova' or 'shimmer') and the HD model
-    // for stories and Master Lin's dialog to fix the "robotic" issue.
-    return _callOpenAiTts(text, model: 'tts-1-hd', voice: 'shimmer');
-  }
-
-  Future<Uint8List?> _callOpenAiTts(String text, {required String model, required String voice}) async {
-    // Real implementation connecting to OpenAI's TTS API.
-    // Ensure we have a valid key from the pool, even if it's the Google key (we use it as a proxy or assume the pool has an OpenAI key).
-    // For this example, we assume `_pool.googleKey` or similar might be configured to accept OpenAI, or we mock the exact REST call.
-    
-    // As we only have OpenRouter/Google keys explicitly named, we will attempt to use an OpenAI compatible endpoint if available,
-    // or return null to trigger fallback if no valid OpenAI key is present.
-    final apiKey = const String.fromEnvironment('OPENAI_API_KEY', defaultValue: '');
+    final apiKey = _pool.googleKey;
     if (apiKey.isEmpty) return null;
 
     try {
       final response = await http.post(
-        Uri.parse('https://api.openai.com/v1/audio/speech'),
+        Uri.parse('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=$apiKey'),
         headers: {
-          'Authorization': 'Bearer $apiKey',
           'Content-Type': 'application/json',
         },
         body: jsonEncode({
-          'model': model,
-          'input': text,
-          'voice': voice,
+          "contents": [{
+            "parts": [{"text": "Speak the following Chinese text clearly and with natural emotion, like a storyteller or native speaker. You MUST return ONLY audio: \"$text\""}]
+          }],
+          "generationConfig": {
+            "responseModalities": ["AUDIO"],
+            "speechConfig": {
+              "voiceConfig": {
+                "prebuiltVoiceConfig": {
+                  "voiceName": "Puck" // 'Puck' is a known supported preset voice
+                }
+              }
+            }
+          }
         }),
       );
 
       if (response.statusCode == 200) {
-        return response.bodyBytes;
+        final data = jsonDecode(response.body);
+        final candidates = data['candidates'] as List<dynamic>?;
+        if (candidates != null && candidates.isNotEmpty) {
+          final parts = candidates[0]['content']['parts'] as List<dynamic>?;
+          if (parts != null) {
+            for (var part in parts) {
+              if (part['inlineData'] != null) {
+                final base64String = part['inlineData']['data'] as String;
+                return base64Decode(base64String);
+              }
+            }
+          }
+        }
+      } else {
+        debugPrint('Gemini TTS HTTP Error: ${response.statusCode} - ${response.body}');
       }
     } catch (e) {
-      debugPrint('OpenAI TTS error: $e');
+      debugPrint('Gemini TTS error: $e');
     }
     return null;
   }
