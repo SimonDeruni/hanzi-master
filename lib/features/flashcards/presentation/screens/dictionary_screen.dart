@@ -166,10 +166,11 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          FloatingActionButton(
+          FloatingActionButton.extended(
             heroTag: 'dictionary_scan_fab',
             backgroundColor: theme.colorScheme.primary,
-            child: Icon(Icons.document_scanner, color: theme.colorScheme.onPrimary),
+            icon: Icon(Icons.camera_alt, color: theme.colorScheme.onPrimary),
+            label: Text("Scan Text", style: TextStyle(color: theme.colorScheme.onPrimary, fontWeight: FontWeight.bold)),
             onPressed: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) => const UniversalScannerScreen()));
             },
@@ -265,23 +266,31 @@ class _SearchBarDelegate extends SliverPersistentHeaderDelegate {
 
   @override
   Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+    final theme = Theme.of(context);
+    
     return ClipRect(
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
         child: Container(
-          color: (isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0)).withValues(alpha: 0.8),
+          color: theme.colorScheme.surface.withValues(alpha: 0.8),
           padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
           child: Container(
             decoration: BoxDecoration(
-              color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.white.withValues(alpha: 0.7),
-              borderRadius: BorderRadius.circular(16),
-              border: Border.all(color: isDark ? Colors.white12 : Colors.black12, width: 1),
+              color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.white.withValues(alpha: 0.9),
+              borderRadius: BorderRadius.circular(30),
+              boxShadow: [
+                BoxShadow(
+                  color: theme.colorScheme.onSurface.withValues(alpha: 0.05),
+                  blurRadius: 10,
+                  offset: const Offset(0, 4),
+                ),
+              ],
             ),
             child: TextField(
-              style: TextStyle(color: isDark ? Colors.white : Colors.black, fontSize: 18),
+              style: theme.textTheme.bodyLarge,
               decoration: InputDecoration(
                 hintText: "Search Pinyin, Hanzi, or English...",
-                hintStyle: TextStyle(color: isDark ? Colors.white30 : Colors.black38),
+                hintStyle: theme.textTheme.bodyMedium?.copyWith(color: theme.colorScheme.onSurface.withValues(alpha: 0.4)),
                 prefixIcon: const Icon(Icons.search, color: Colors.grey),
                 border: InputBorder.none,
                 contentPadding: const EdgeInsets.symmetric(vertical: 16),
@@ -347,10 +356,9 @@ class _DictionarySearchTab extends ConsumerWidget {
         if (searchQuery.isEmpty) {
           return CustomScrollView(
             slivers: [
-              asyncDecks.when(
-                data: (decks) => _buildDecksGrid(context, decks, flashcards),
-                loading: () => const SliverFillRemaining(child: Center(child: CircularProgressIndicator())),
-                error: (e, s) => SliverFillRemaining(child: Center(child: Text("Error loading decks: $e"))),
+              SliverFillRemaining(
+                hasScrollBody: false,
+                child: _buildZenEmptyState(context),
               )
             ],
           );
@@ -471,138 +479,45 @@ class _DictionarySearchTab extends ConsumerWidget {
   }
 
   Widget _buildZenEmptyState(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
     
-    return CustomScrollView(
-      slivers: [
-        SliverFillRemaining(
-          hasScrollBody: false,
-          child: Center(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 32),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Stack(
-                alignment: Alignment.center,
-                children: [
-                  Text(
-                    "字",
-                    style: TextStyle(
-                      fontSize: 180,
-                      fontWeight: FontWeight.bold,
-                      color: isDark ? Colors.white.withValues(alpha: 0.03) : Colors.indigo.withValues(alpha: 0.04),
-                      height: 1,
-                    ),
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 32),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Stack(
+              alignment: Alignment.center,
+              children: [
+                Text(
+                  "字",
+                  style: TextStyle(
+                    fontSize: 180,
+                    fontWeight: FontWeight.bold,
+                    color: isDark ? Colors.white.withValues(alpha: 0.03) : Colors.indigo.withValues(alpha: 0.04),
+                    height: 1,
                   ),
-                  Icon(Icons.menu_book_rounded, size: 48, color: isDark ? Colors.white24 : Colors.black26),
-                ],
-              ),
-              const SizedBox(height: 32),
-              Text(
-                "Your Library is waiting.",
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500,
-                  color: isDark ? Colors.white54 : Colors.black54,
                 ),
+                Icon(Icons.search_rounded, size: 48, color: isDark ? Colors.white24 : Colors.black26),
+              ],
+            ),
+            const SizedBox(height: 32),
+            Text(
+              "Search your dictionary...",
+              style: theme.textTheme.titleMedium?.copyWith(
+                color: theme.colorScheme.onSurface.withValues(alpha: 0.5),
               ),
-              const SizedBox(height: 40),
-              
-              // Functional Actions
-              Row(
-                children: [
-                  Expanded(
-                    child: _buildActionCard(
-                      context,
-                      icon: Icons.document_scanner,
-                      title: "Scan Text",
-                      subtitle: "Use camera",
-                      color: Colors.redAccent,
-                      onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => const UniversalScannerScreen()));
-                      },
-                      isDark: isDark,
-                    ),
-                  ),
-                  const SizedBox(width: 16),
-                  Expanded(
-                    child: _buildActionCard(
-                      context,
-                      icon: Icons.add,
-                      title: "Create Card",
-                      subtitle: "Manual entry",
-                      color: Colors.indigo,
-                      onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => const FlashcardFormScreen()),
-                      ),
-                      isDark: isDark,
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 80), // Padding for the FAB
-            ],
-          ),
+            ),
+            const SizedBox(height: 80), // Padding for the FABs
+          ],
         ),
       ),
-        ),
-      ],
     );
   }
 
-  Widget _buildActionCard(
-    BuildContext context, {
-    required IconData icon,
-    required String title,
-    required String subtitle,
-    required Color color,
-    required VoidCallback onTap,
-    required bool isDark,
-  }) {
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(16),
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
-        decoration: BoxDecoration(
-          color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.white.withValues(alpha: 0.7),
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: color.withValues(alpha: 0.3)),
-          boxShadow: [
-            BoxShadow(
-              color: color.withValues(alpha: 0.05),
-              blurRadius: 10,
-              offset: const Offset(0, 4),
-            ),
-          ],
-        ),
-        child: Column(
-          children: [
-            Icon(icon, color: color, size: 28),
-            const SizedBox(height: 12),
-            Text(
-              title,
-              style: TextStyle(
-                fontWeight: FontWeight.w600,
-                color: isDark ? Colors.white : const Color(0xFF1A1A1B),
-                fontSize: 15,
-              ),
-            ),
-            const SizedBox(height: 4),
-            Text(
-              subtitle,
-              style: TextStyle(
-                fontSize: 12,
-                color: isDark ? Colors.white54 : Colors.black54,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
+
 }
 
 class _RadicalLibraryTab extends ConsumerStatefulWidget {
