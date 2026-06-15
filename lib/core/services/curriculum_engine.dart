@@ -16,6 +16,24 @@ class CurriculumEngineService {
   
   CurriculumEngineService(this._geminiService);
 
+  bool hasCachedCurriculum(String deckId) {
+    final box = Hive.box<String>('curriculum_cache_box');
+    return box.containsKey(deckId);
+  }
+
+  Future<void> generateAndCacheCurriculum(String deckId, List<Flashcard> allCards) async {
+    // Filter cards for this deck
+    final deckCards = allCards.where((c) => c.deckId == deckId || (deckId == 'default' && c.deckId == null)).toList();
+    if (deckCards.isEmpty) return;
+
+    final box = Hive.box<String>('curriculum_cache_box');
+    final generatedUnits = await _generatePathFromAI(deckId, deckCards);
+    
+    // Cache the result
+    final jsonString = jsonEncode(generatedUnits.map((u) => u.toJson()).toList());
+    await box.put(deckId, jsonString);
+  }
+
   Future<List<CourseUnit>> getCurriculumForDeck(String deckId, List<Flashcard> allCards) async {
     final box = Hive.box<String>('curriculum_cache_box');
     final cachedJson = box.get(deckId);
