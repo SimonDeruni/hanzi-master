@@ -38,25 +38,25 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final bool isDark = Theme.of(context).brightness == Brightness.dark;
+    final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
 
     return Scaffold(
       body: CalligraphyBackground(
         child: NestedScrollView(
           headerSliverBuilder: (context, innerBoxIsScrolled) => [
             SliverAppBar(
-              backgroundColor: isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
+              backgroundColor: theme.colorScheme.surface,
               surfaceTintColor: Colors.transparent,
               elevation: 0,
               pinned: true,
               floating: true,
               forceElevated: innerBoxIsScrolled,
-              foregroundColor: isDark ? Colors.white70 : Colors.black87,
+              title: const Text("LIBRARY"),
               actions: [
                 Consumer(
                   builder: (context, ref, child) {
                     final isPremium = ref.watch(premiumControllerProvider).valueOrNull ?? false;
-                    
                     return Row(
                       children: [
                         if (isPremium)
@@ -89,10 +89,62 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
             ),
             SliverToBoxAdapter(
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(24, 8, 24, 16),
-                child: Text(
-                  "Dictionary",
-                  style: Theme.of(context).textTheme.headlineLarge,
+                padding: const EdgeInsets.only(top: 16, bottom: 8),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                      child: Text(
+                        "Your Bookshelf",
+                        style: theme.textTheme.headlineMedium,
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    SizedBox(
+                      height: 140,
+                      child: Consumer(
+                        builder: (context, ref, child) {
+                          final asyncDecks = ref.watch(deckControllerProvider);
+                          final allCards = ref.watch(flashcardControllerProvider).valueOrNull ?? [];
+                          
+                          return asyncDecks.when(
+                            data: (decks) {
+                              if (decks.isEmpty) {
+                                return const Center(child: Text("Your bookshelf is empty."));
+                              }
+                              return ListView.separated(
+                                padding: const EdgeInsets.symmetric(horizontal: 24),
+                                scrollDirection: Axis.horizontal,
+                                itemCount: decks.length,
+                                separatorBuilder: (context, index) => const SizedBox(width: 16),
+                                itemBuilder: (context, index) {
+                                  final deck = decks[index];
+                                  final deckCardsCount = allCards.where((c) => c.deckId == deck.id || (deck.id == 'default' && c.deckId == null)).length;
+                                  
+                                  return _BookshelfCard(
+                                    deck: deck,
+                                    cardCount: deckCardsCount,
+                                    theme: theme,
+                                  );
+                                },
+                              );
+                            },
+                            loading: () => const Center(child: CircularProgressIndicator()),
+                            error: (e, s) => Center(child: Text("Error: $e")),
+                          );
+                        },
+                      ),
+                    ),
+                    const SizedBox(height: 24),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                      child: Text(
+                        "Lexicon",
+                        style: theme.textTheme.headlineMedium,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -116,8 +168,8 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
         children: [
           FloatingActionButton(
             heroTag: 'dictionary_scan_fab',
-            backgroundColor: Theme.of(context).colorScheme.primary,
-            child: const Icon(Icons.document_scanner, color: Colors.white),
+            backgroundColor: theme.colorScheme.primary,
+            child: Icon(Icons.document_scanner, color: theme.colorScheme.onPrimary),
             onPressed: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) => const UniversalScannerScreen()));
             },
@@ -131,6 +183,70 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
             onPressed: () => AiDeckGeneratorSheet.show(context),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class _BookshelfCard extends StatelessWidget {
+  final Deck deck;
+  final int cardCount;
+  final ThemeData theme;
+
+  const _BookshelfCard({
+    required this.deck,
+    required this.cardCount,
+    required this.theme,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final bool isDefault = deck.id == 'default';
+    final Color deckColor = isDefault ? theme.colorScheme.primary : theme.colorScheme.secondary;
+    
+    return InkWell(
+      onTap: () => Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => DeckDetailScreen(deck: deck)),
+      ),
+      borderRadius: BorderRadius.circular(16),
+      child: Container(
+        width: 140,
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: theme.cardTheme.color,
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(color: theme.colorScheme.onSurface.withValues(alpha: 0.1)),
+          boxShadow: [
+            BoxShadow(
+              color: theme.colorScheme.onSurface.withValues(alpha: 0.05),
+              blurRadius: 10,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Icon(
+              isDefault ? Icons.library_books : Icons.folder,
+              color: deckColor,
+              size: 28,
+            ),
+            const Spacer(),
+            Text(
+              deck.name,
+              style: theme.textTheme.titleMedium,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ),
+            const SizedBox(height: 4),
+            Text(
+              "$cardCount cards",
+              style: theme.textTheme.bodySmall,
+            ),
+          ],
+        ),
       ),
     );
   }
