@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:hanzi_master/shared/widgets/pinyin_text.dart';
+import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 
 import '../../../../core/services/ocr_service.dart';
 import '../../../flashcards/domain/entities/flashcard.dart';
@@ -202,129 +203,175 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Universal Scanner"),
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
-      backgroundColor: const Color(0xFFFDF5E6),
-      body: Column(
-        children: [
-          const SizedBox(height: 20),
-          // Action Buttons
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              _buildScanButton(
-                icon: Icons.camera_alt,
-                label: "Take Photo",
-                onTap: () => _startScan(true),
-              ),
-              _buildScanButton(
-                icon: Icons.image,
-                label: "Gallery",
-                onTap: () => _startScan(false),
-              ),
-            ],
-          ),
-          
-          const SizedBox(height: 30),
+      body: CalligraphyBackground(
+        child: Column(
+          children: [
+            const SizedBox(height: 20),
+            // Action Buttons
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                _buildScanButton(
+                  icon: Icons.camera_alt,
+                  label: "Take Photo",
+                  onTap: () => _startScan(true),
+                  theme: theme,
+                ),
+                _buildScanButton(
+                  icon: Icons.image,
+                  label: "Gallery",
+                  onTap: () => _startScan(false),
+                  theme: theme,
+                ),
+              ],
+            ),
+            
+            const SizedBox(height: 30),
 
-          // Results Area
-          Expanded(
-            child: _isScanning
-                ? const Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        CircularProgressIndicator(color: Colors.indigo),
-                        SizedBox(height: 16),
-                        Text("Extracting text and objects...", style: TextStyle(color: Colors.indigo)),
-                      ],
-                    ),
-                  )
-                : _matchedCharacters.isEmpty
-                    ? Center(
-                        child: Text(
-                          _rawExtractedText.isEmpty
-                              ? "Scan a textbook, sign, or object to extract Chinese characters."
-                              : "No matching dictionary entries found.",
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(color: Colors.grey, fontSize: 16),
-                        ),
-                      )
-                    : _buildResultsList(),
-          ),
-        ],
+            // Results Area
+            Expanded(
+              child: _isScanning
+                  ? Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          CircularProgressIndicator(color: theme.colorScheme.primary),
+                          const SizedBox(height: 16),
+                          Text("Extracting text and objects...", style: theme.textTheme.bodyMedium?.copyWith(color: theme.colorScheme.primary)),
+                        ],
+                      ),
+                    )
+                  : _matchedCharacters.isEmpty && _rawExtractedText.isEmpty
+                      ? Center(
+                          child: Padding(
+                            padding: const EdgeInsets.all(32.0),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(Icons.document_scanner_outlined, size: 64, color: theme.colorScheme.onSurface.withValues(alpha: 0.2)),
+                                const SizedBox(height: 16),
+                                Text(
+                                  "Scan a textbook, sign, or object to extract Chinese characters.",
+                                  textAlign: TextAlign.center,
+                                  style: theme.textTheme.titleMedium?.copyWith(color: theme.colorScheme.onSurface.withValues(alpha: 0.5)),
+                                ),
+                              ],
+                            ),
+                          ),
+                        )
+                      : _buildResultsList(theme),
+            ),
+          ],
+        ),
       ),
     );
   }
 
-  Widget _buildScanButton({required IconData icon, required String label, required VoidCallback onTap}) {
+  Widget _buildScanButton({required IconData icon, required String label, required VoidCallback onTap, required ThemeData theme}) {
     return InkWell(
       onTap: _isScanning ? null : onTap,
       borderRadius: BorderRadius.circular(16),
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+        width: 140,
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: theme.cardTheme.color,
           borderRadius: BorderRadius.circular(16),
+          border: Border.all(color: theme.colorScheme.onSurface.withValues(alpha: 0.1)),
           boxShadow: [
-            BoxShadow(color: Colors.black.withValues(alpha: 0.05), blurRadius: 10, offset: const Offset(0, 4)),
+            BoxShadow(color: theme.colorScheme.onSurface.withValues(alpha: 0.05), blurRadius: 10, offset: const Offset(0, 4)),
           ],
         ),
         child: Column(
           children: [
-            Icon(icon, size: 32, color: Colors.indigo),
-            const SizedBox(height: 8),
-            Text(label, style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.indigo)),
+            Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: theme.colorScheme.primary.withValues(alpha: 0.1),
+                shape: BoxShape.circle,
+              ),
+              child: Icon(icon, size: 32, color: theme.colorScheme.primary),
+            ),
+            const SizedBox(height: 12),
+            Text(label, style: theme.textTheme.titleMedium?.copyWith(color: theme.colorScheme.primary)),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildResultsList() {
+  Widget _buildResultsList(ThemeData theme) {
     if (widget.returnTextMode) {
       return Padding(
         padding: const EdgeInsets.all(24.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const Text("Extracted Text", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            Text("Extracted Text", style: theme.textTheme.headlineMedium),
             const SizedBox(height: 16),
             Expanded(
               child: Container(
-                padding: const EdgeInsets.all(16),
+                padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(16),
-                  border: Border.all(color: Colors.indigo.withValues(alpha: 0.2)),
+                  color: theme.cardTheme.color,
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(color: theme.colorScheme.onSurface.withValues(alpha: 0.1)),
+                  boxShadow: [
+                    BoxShadow(color: theme.colorScheme.onSurface.withValues(alpha: 0.05), blurRadius: 10, offset: const Offset(0, 4)),
+                  ],
                 ),
                 child: SingleChildScrollView(
                   child: Text(
                     _rawExtractedText,
-                    style: const TextStyle(fontSize: 16, height: 1.5),
+                    style: theme.textTheme.bodyLarge?.copyWith(height: 1.6),
                   ),
                 ),
               ),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 24),
             ElevatedButton.icon(
               onPressed: () {
                 HapticsManager.success();
                 Navigator.pop(context, _rawExtractedText);
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.indigo,
+                backgroundColor: theme.colorScheme.primary,
                 padding: const EdgeInsets.symmetric(vertical: 16),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
               ),
-              icon: const Icon(Icons.check, color: Colors.white),
-              label: const Text("Use Text", style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold)),
+              icon: Icon(Icons.check_circle_outline, color: theme.colorScheme.onPrimary),
+              label: Text("Use Text", style: theme.textTheme.titleMedium?.copyWith(color: theme.colorScheme.onPrimary)),
             ),
             const SizedBox(height: 16),
           ],
+        ),
+      );
+    }
+
+    if (_matchedCharacters.isEmpty) {
+      return Center(
+        child: Padding(
+          padding: const EdgeInsets.all(32.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(Icons.search_off_rounded, size: 64, color: theme.colorScheme.onSurface.withValues(alpha: 0.2)),
+              const SizedBox(height: 16),
+              Text(
+                "No matching dictionary entries found.",
+                textAlign: TextAlign.center,
+                style: theme.textTheme.titleMedium?.copyWith(color: theme.colorScheme.onSurface.withValues(alpha: 0.5)),
+              ),
+            ],
+          ),
         ),
       );
     }
@@ -338,20 +385,24 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
             children: [
               Text(
                 "Found ${_matchedCharacters.length} Characters",
-                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                style: theme.textTheme.titleLarge,
               ),
-              ElevatedButton.icon(
-                onPressed: _createDeck,
-                style: ElevatedButton.styleFrom(backgroundColor: Colors.indigo),
-                icon: const Icon(Icons.add_task, color: Colors.white, size: 18),
-                label: const Text("Import All", style: TextStyle(color: Colors.white)),
-              ),
-              const SizedBox(width: 8),
-              ElevatedButton.icon(
-                onPressed: _practiceAll,
-                style: ElevatedButton.styleFrom(backgroundColor: Colors.amber.shade800),
-                icon: const Icon(Icons.auto_awesome, color: Colors.white, size: 18),
-                label: const Text("Ascend All", style: TextStyle(color: Colors.white)),
+              Row(
+                children: [
+                  IconButton(
+                    onPressed: _createDeck,
+                    style: IconButton.styleFrom(backgroundColor: theme.colorScheme.primary.withValues(alpha: 0.1)),
+                    icon: Icon(Icons.library_add, color: theme.colorScheme.primary),
+                    tooltip: "Import All",
+                  ),
+                  const SizedBox(width: 8),
+                  IconButton(
+                    onPressed: _practiceAll,
+                    style: IconButton.styleFrom(backgroundColor: theme.colorScheme.secondary.withValues(alpha: 0.1)),
+                    icon: Icon(Icons.auto_awesome, color: theme.colorScheme.secondary),
+                    tooltip: "Ascend All",
+                  ),
+                ],
               ),
             ],
           ),
@@ -364,31 +415,41 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
             itemBuilder: (context, index) {
               final char = _matchedCharacters[index];
               return Container(
-                margin: const EdgeInsets.only(bottom: 12),
-                padding: const EdgeInsets.all(16),
+                margin: const EdgeInsets.only(bottom: 16),
+                padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(12),
-                  border: Border.all(color: Colors.brown.shade100),
+                  color: theme.cardTheme.color,
+                  borderRadius: BorderRadius.circular(16),
+                  border: Border.all(color: theme.colorScheme.onSurface.withValues(alpha: 0.1)),
+                  boxShadow: [
+                    BoxShadow(color: theme.colorScheme.onSurface.withValues(alpha: 0.05), blurRadius: 10, offset: const Offset(0, 4)),
+                  ],
                 ),
                 child: Row(
                   children: [
-                    Text(char['hanzi'], style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold)),
-                    const SizedBox(width: 16),
+                    Text(char['hanzi'], style: theme.textTheme.displaySmall?.copyWith(fontSize: 40)),
+                    const SizedBox(width: 20),
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          PinyinText(text: char['pinyin'], style: const TextStyle(fontSize: 16)),
-                          Text(char['definition'], style: const TextStyle(color: Colors.black54), maxLines: 1, overflow: TextOverflow.ellipsis),
+                          PinyinText(text: char['pinyin'], style: theme.textTheme.titleMedium?.copyWith(color: theme.colorScheme.primary)),
+                          const SizedBox(height: 4),
+                          Text(char['definition'], style: theme.textTheme.bodyMedium, maxLines: 2, overflow: TextOverflow.ellipsis),
                         ],
                       ),
                     ),
-                    const SizedBox(width: 8),
-                    IconButton(
-                      icon: const Icon(Icons.auto_awesome, color: Colors.amber),
-                      onPressed: () => _startLesson(char),
-                      tooltip: "Start Ascension",
+                    const SizedBox(width: 12),
+                    Container(
+                      decoration: BoxDecoration(
+                        color: theme.colorScheme.secondary.withValues(alpha: 0.1),
+                        shape: BoxShape.circle,
+                      ),
+                      child: IconButton(
+                        icon: Icon(Icons.play_arrow_rounded, color: theme.colorScheme.secondary),
+                        onPressed: () => _startLesson(char),
+                        tooltip: "Start Ascension",
+                      ),
                     ),
                   ],
                 ),

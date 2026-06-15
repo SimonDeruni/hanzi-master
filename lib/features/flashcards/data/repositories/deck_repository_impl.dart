@@ -17,11 +17,37 @@ class DeckRepositoryImpl implements DeckRepository {
     if (!_deckBox.containsKey('default')) {
       final defaultDeck = DeckModel(
         id: 'default',
-        name: 'Default Deck',
-        description: 'Your main collection of cards.',
+        name: 'The Main Library',
+        description: 'Your primary collection of characters.',
         createdAt: DateTime.now(),
       );
       _deckBox.put('default', defaultDeck);
+    }
+    
+    // Seed HSK 1-3 Decks so the Bookshelf looks premium out of the box
+    if (!_deckBox.containsKey('hsk1')) {
+      _deckBox.put('hsk1', DeckModel(
+        id: 'hsk1',
+        name: 'HSK 1: Foundation',
+        description: 'The first 150 characters to start your journey.',
+        createdAt: DateTime.now().add(const Duration(seconds: 1)),
+      ));
+    }
+    if (!_deckBox.containsKey('hsk2')) {
+      _deckBox.put('hsk2', DeckModel(
+        id: 'hsk2',
+        name: 'HSK 2: Elementary',
+        description: 'Build your vocabulary to 300 essential words.',
+        createdAt: DateTime.now().add(const Duration(seconds: 2)),
+      ));
+    }
+    if (!_deckBox.containsKey('hsk3')) {
+      _deckBox.put('hsk3', DeckModel(
+        id: 'hsk3',
+        name: 'HSK 3: Intermediate',
+        description: 'Master conversational fluency with 600 words.',
+        createdAt: DateTime.now().add(const Duration(seconds: 3)),
+      ));
     }
   }
 
