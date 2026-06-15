@@ -93,7 +93,7 @@ class AppTheme {
         selectedLabelStyle: const TextStyle(fontFamily: _fontFamily, fontSize: 12, fontWeight: FontWeight.bold),
         unselectedLabelStyle: const TextStyle(fontFamily: _fontFamily, fontSize: 12, fontWeight: FontWeight.w500),
       ),
-      cardTheme: CardTheme(
+      cardTheme: CardThemeData(
         color: Colors.white.withValues(alpha: 0.8),
         elevation: 0,
         shape: RoundedRectangleBorder(
@@ -149,7 +149,7 @@ class AppTheme {
         selectedLabelStyle: const TextStyle(fontFamily: _fontFamily, fontSize: 12, fontWeight: FontWeight.bold),
         unselectedLabelStyle: const TextStyle(fontFamily: _fontFamily, fontSize: 12, fontWeight: FontWeight.w500),
       ),
-      cardTheme: CardTheme(
+      cardTheme: CardThemeData(
         color: const Color(0xFF2A2A2B),
         elevation: 0,
         shape: RoundedRectangleBorder(
