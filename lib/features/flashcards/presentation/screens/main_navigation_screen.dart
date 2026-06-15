@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dictionary_screen.dart';
 import 'package:hanzi_master/features/course/presentation/screens/course_selection_screen.dart';
 import 'package:hanzi_master/features/chat/presentation/screens/ai_hub_screen.dart';
+import 'package:hanzi_master/features/premium/presentation/screens/universal_scanner_screen.dart';
 
 class MainNavigationScreen extends StatefulWidget {
   const MainNavigationScreen({super.key});
@@ -26,6 +27,17 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
         index: _selectedIndex,
         children: _screens,
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) => const UniversalScannerScreen()));
+        },
+        backgroundColor: Colors.indigo,
+        foregroundColor: Colors.white,
+        elevation: 4,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+        child: const Icon(Icons.document_scanner),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.surface,
@@ -62,7 +74,8 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
           ],
         ),
       ),
-        );
-      }
-    }
+    );
+  }
+}
+
     

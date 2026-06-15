@@ -12,14 +12,14 @@ import '../../../course/presentation/screens/lesson_screen.dart';
 import '../../../course/presentation/providers/lesson_controller.dart';
 import '../../../course/presentation/widgets/mission_briefing_sheet.dart';
 
-class OcrScannerScreen extends ConsumerStatefulWidget {
-  const OcrScannerScreen({super.key});
+class UniversalScannerScreen extends ConsumerStatefulWidget {
+  const UniversalScannerScreen({super.key});
 
   @override
-  ConsumerState<OcrScannerScreen> createState() => _OcrScannerScreenState();
+  ConsumerState<UniversalScannerScreen> createState() => _UniversalScannerScreenState();
 }
 
-class _OcrScannerScreenState extends ConsumerState<OcrScannerScreen> {
+class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen> {
   final OcrService _ocrService = OcrService();
   bool _isScanning = false;
   String _rawExtractedText = "";
@@ -193,7 +193,7 @@ class _OcrScannerScreenState extends ConsumerState<OcrScannerScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Snapshot-to-Practice"),
+        title: const Text("Universal Scanner"),
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
@@ -229,7 +229,7 @@ class _OcrScannerScreenState extends ConsumerState<OcrScannerScreen> {
                       children: [
                         CircularProgressIndicator(color: Colors.indigo),
                         SizedBox(height: 16),
-                        Text("Extracting Chinese script...", style: TextStyle(color: Colors.indigo)),
+                        Text("Extracting text and objects...", style: TextStyle(color: Colors.indigo)),
                       ],
                     ),
                   )
@@ -237,8 +237,8 @@ class _OcrScannerScreenState extends ConsumerState<OcrScannerScreen> {
                     ? Center(
                         child: Text(
                           _rawExtractedText.isEmpty
-                              ? "Scan a textbook page or list to extract characters."
-                              : "Found characters, but none match your current dictionary level.",
+                              ? "Scan a textbook, sign, or object to extract Chinese characters."
+                              : "No matching dictionary entries found.",
                           textAlign: TextAlign.center,
                           style: const TextStyle(color: Colors.grey, fontSize: 16),
                         ),

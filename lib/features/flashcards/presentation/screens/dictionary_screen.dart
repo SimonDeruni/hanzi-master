@@ -20,12 +20,10 @@ import 'package:hanzi_master/features/flashcards/presentation/widgets/streak_sea
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/mastery_seal.dart';
 import 'package:hanzi_master/features/premium/presentation/screens/paywall_sheet.dart';
-import 'package:hanzi_master/features/premium/presentation/screens/ocr_scanner_screen.dart';
-import 'package:hanzi_master/core/services/ocr_service.dart';
+import 'package:hanzi_master/features/premium/presentation/screens/universal_scanner_screen.dart';
 import 'package:hanzi_master/core/providers/premium_controller.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:hanzi_master/shared/widgets/clickable_chinese_text.dart';
-import 'package:hanzi_master/features/flashcards/presentation/providers/dictionary_provider.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/dictionary_quick_box.dart';
 
 class DictionaryScreen extends ConsumerStatefulWidget {
@@ -37,71 +35,6 @@ class DictionaryScreen extends ConsumerStatefulWidget {
 
 class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
   String _searchQuery = "";
-
-  Future<void> _runMagicLens() async {
-    final isPremium = ref.read(premiumControllerProvider).valueOrNull ?? false;
-    if (!isPremium) {
-      PaywallSheet.show(context);
-      return;
-    }
-
-    final bool? fromCamera = await showModalBottomSheet<bool>(
-      context: context,
-      backgroundColor: Colors.transparent,
-      builder: (context) => Container(
-        padding: const EdgeInsets.all(24),
-        decoration: BoxDecoration(
-          color: Theme.of(context).brightness == Brightness.dark ? Colors.grey[900] : Colors.white,
-          borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const Text("Magic Lens", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-            const SizedBox(height: 16),
-            ListTile(
-              leading: const Icon(Icons.camera_alt, color: Colors.indigo),
-              title: const Text("Take Photo"),
-              onTap: () => Navigator.pop(context, true),
-            ),
-            ListTile(
-              leading: const Icon(Icons.image, color: Colors.indigo),
-              title: const Text("Choose from Gallery"),
-              onTap: () => Navigator.pop(context, false),
-            ),
-            const SizedBox(height: 16),
-          ],
-        ),
-      ),
-    );
-
-    if (!mounted) return;
-
-    if (fromCamera == null) return; // User canceled
-
-    final ocrService = OcrService();
-    if (mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Scanning image..."), duration: Duration(seconds: 1)),
-      );
-    }
-
-    final extractedText = await ocrService.scanImage(fromCamera: fromCamera);
-    
-    if (!mounted) return;
-
-    if (extractedText == null || extractedText.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("No Chinese characters recognized.")),
-      );
-      return;
-    }
-
-    // Set the extracted text as the search query to show results in the dictionary
-    setState(() {
-      _searchQuery = extractedText;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -126,16 +59,6 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
                     
                     return Row(
                       children: [
-                        IconButton(
-                          icon: const Icon(Icons.camera_alt),
-                          onPressed: () {
-                            if (isPremium) {
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => const OcrScannerScreen()));
-                            } else {
-                              PaywallSheet.show(context);
-                            }
-                          },
-                        ),
                         if (isPremium)
                           const Padding(
                             padding: EdgeInsets.only(right: 8.0),
@@ -184,13 +107,11 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
                 isDark: isDark,
                 searchQuery: _searchQuery,
                 onChanged: (value) => setState(() => _searchQuery = value),
-                onMagicLens: _runMagicLens,
               ),
             ),
           ],
           body: _DictionarySearchTab(
             searchQuery: _searchQuery,
-            onMagicLens: _runMagicLens,
           ),
         ),
       ),
@@ -209,13 +130,11 @@ class _SearchBarDelegate extends SliverPersistentHeaderDelegate {
   final bool isDark;
   final String searchQuery;
   final ValueChanged<String> onChanged;
-  final VoidCallback onMagicLens;
 
   _SearchBarDelegate({
     required this.isDark,
     required this.searchQuery,
     required this.onChanged,
-    required this.onMagicLens,
   });
 
   @override
@@ -238,11 +157,6 @@ class _SearchBarDelegate extends SliverPersistentHeaderDelegate {
                 hintText: "Search Pinyin, Hanzi, or English...",
                 hintStyle: TextStyle(color: isDark ? Colors.white30 : Colors.black38),
                 prefixIcon: const Icon(Icons.search, color: Colors.grey),
-                suffixIcon: IconButton(
-                  icon: const Icon(Icons.document_scanner, color: Colors.redAccent),
-                  tooltip: "Magic Lens",
-                  onPressed: onMagicLens,
-                ),
                 border: InputBorder.none,
                 contentPadding: const EdgeInsets.symmetric(vertical: 16),
               ),
@@ -264,18 +178,15 @@ class _SearchBarDelegate extends SliverPersistentHeaderDelegate {
   bool shouldRebuild(covariant _SearchBarDelegate oldDelegate) {
     return oldDelegate.isDark != isDark ||
            oldDelegate.searchQuery != searchQuery ||
-           oldDelegate.onChanged != onChanged ||
-           oldDelegate.onMagicLens != onMagicLens;
+           oldDelegate.onChanged != onChanged;
   }
 }
 
 class _DictionarySearchTab extends ConsumerWidget {
   final String searchQuery;
-  final VoidCallback onMagicLens;
   
   const _DictionarySearchTab({
     required this.searchQuery,
-    required this.onMagicLens,
   });
 
   @override
@@ -482,7 +393,9 @@ class _DictionarySearchTab extends ConsumerWidget {
                       title: "Scan Text",
                       subtitle: "Use camera",
                       color: Colors.redAccent,
-                      onTap: onMagicLens,
+                      onTap: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const UniversalScannerScreen()));
+                      },
                       isDark: isDark,
                     ),
                   ),
