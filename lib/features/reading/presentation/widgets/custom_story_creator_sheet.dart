@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../providers/story_controller.dart';
 import '../screens/story_reader_screen.dart';
+import 'package:hanzi_master/features/premium/presentation/screens/universal_scanner_screen.dart';
 
 class CustomStoryCreatorSheet extends ConsumerStatefulWidget {
   const CustomStoryCreatorSheet({super.key});
@@ -71,7 +72,18 @@ class _CustomStoryCreatorSheetState extends ConsumerState<CustomStoryCreatorShee
     );
   }
 
+  Future<void> _scanText() async {
+    final extractedText = await Navigator.push<String>(
+      context,
+      MaterialPageRoute(builder: (context) => const UniversalScannerScreen(returnTextMode: true)),
+    );
 
+    if (extractedText != null && extractedText.isNotEmpty && mounted) {
+      setState(() {
+        _textToSimplifyController.text = extractedText;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -117,7 +129,7 @@ class _CustomStoryCreatorSheetState extends ConsumerState<CustomStoryCreatorShee
                     onSelected: (selected) {
                       if (selected) setState(() => _selectedHskLevel = level);
                     },
-                    selectedColor: Colors.indigo.withOpacity(0.2),
+                    selectedColor: Colors.indigo.withValues(alpha: 0.2),
                     checkmarkColor: Colors.indigo,
                   ),
                 );
@@ -151,14 +163,30 @@ class _CustomStoryCreatorSheetState extends ConsumerState<CustomStoryCreatorShee
                   ],
                 ),
                 // Tab 2
-                TextField(
-                  controller: _textToSimplifyController,
-                  maxLines: 6,
-                  decoration: const InputDecoration(
-                    labelText: 'Paste Chinese or English text to simplify',
-                    border: OutlineInputBorder(),
-                    alignLabelWithHint: true,
-                  ),
+                Stack(
+                  children: [
+                    TextField(
+                      controller: _textToSimplifyController,
+                      maxLines: 6,
+                      decoration: const InputDecoration(
+                        labelText: 'Paste or scan Chinese text to simplify',
+                        border: OutlineInputBorder(),
+                        alignLabelWithHint: true,
+                      ),
+                    ),
+                    Positioned(
+                      right: 8,
+                      bottom: 8,
+                      child: IconButton(
+                        icon: const Icon(Icons.document_scanner, color: Colors.indigo),
+                        onPressed: _scanText,
+                        tooltip: 'Scan Text',
+                        style: IconButton.styleFrom(
+                          backgroundColor: Colors.indigo.withValues(alpha: 0.1),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),

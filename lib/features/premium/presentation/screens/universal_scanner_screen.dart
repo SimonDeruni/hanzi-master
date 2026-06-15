@@ -13,7 +13,9 @@ import '../../../course/presentation/providers/lesson_controller.dart';
 import '../../../course/presentation/widgets/mission_briefing_sheet.dart';
 
 class UniversalScannerScreen extends ConsumerStatefulWidget {
-  const UniversalScannerScreen({super.key});
+  final bool returnTextMode;
+  
+  const UniversalScannerScreen({super.key, this.returnTextMode = false});
 
   @override
   ConsumerState<UniversalScannerScreen> createState() => _UniversalScannerScreenState();
@@ -29,7 +31,9 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
   @override
   void initState() {
     super.initState();
-    _loadHskData();
+    if (!widget.returnTextMode) {
+      _loadHskData();
+    }
   }
 
   @override
@@ -64,7 +68,14 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
     final extractedText = await _ocrService.scanImage(fromCamera: fromCamera);
 
     if (extractedText != null && extractedText.isNotEmpty) {
-      _processExtractedText(extractedText);
+      if (widget.returnTextMode) {
+        if (mounted) {
+          HapticsManager.success();
+          Navigator.pop(context, extractedText);
+        }
+      } else {
+        _processExtractedText(extractedText);
+      }
     } else {
       setState(() {
         _isScanning = false;
@@ -275,6 +286,49 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
   }
 
   Widget _buildResultsList() {
+    if (widget.returnTextMode) {
+      return Padding(
+        padding: const EdgeInsets.all(24.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            const Text("Extracted Text", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            const SizedBox(height: 16),
+            Expanded(
+              child: Container(
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(16),
+                  border: Border.all(color: Colors.indigo.withValues(alpha: 0.2)),
+                ),
+                child: SingleChildScrollView(
+                  child: Text(
+                    _rawExtractedText,
+                    style: const TextStyle(fontSize: 16, height: 1.5),
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 16),
+            ElevatedButton.icon(
+              onPressed: () {
+                HapticsManager.success();
+                Navigator.pop(context, _rawExtractedText);
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.indigo,
+                padding: const EdgeInsets.symmetric(vertical: 16),
+              ),
+              icon: const Icon(Icons.check, color: Colors.white),
+              label: const Text("Use Text", style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold)),
+            ),
+            const SizedBox(height: 16),
+          ],
+        ),
+      );
+    }
+
     return Column(
       children: [
         Padding(
