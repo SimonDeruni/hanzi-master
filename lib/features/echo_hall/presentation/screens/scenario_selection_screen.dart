@@ -22,9 +22,9 @@ class ScenarioSelectionScreen extends ConsumerWidget {
               surfaceTintColor: Colors.transparent,
               elevation: 0,
               pinned: true,
-              expandedHeight: 140,
+              expandedHeight: 110,
               flexibleSpace: FlexibleSpaceBar(
-                titlePadding: const EdgeInsets.only(left: 24, bottom: 16),
+                titlePadding: const EdgeInsets.only(left: 56, bottom: 16),
                 title: Text(
                   "Pronunciation",
                   style: theme.textTheme.headlineSmall?.copyWith(
