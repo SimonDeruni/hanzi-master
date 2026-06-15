@@ -1,10 +1,15 @@
-import 'dart:ui';
+import 'dart:ui' as ui;
 import 'dart:convert';
+import 'dart:async';
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 import 'package:web_socket_channel/status.dart' as status;
+import 'package:record/record.dart';
+import 'package:flutter_sound/flutter_sound.dart' as fs;
 import '../../domain/entities/scenario.dart';
+import 'conversation_screen.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import 'package:hanzi_master/core/services/api_key_pool.dart';
 
@@ -26,6 +31,11 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
   WebSocketChannel? _channel;
   String _callStatus = "Initializing...";
 
+  final AudioRecorder _audioRecorder = AudioRecorder();
+  final fs.FlutterSoundPlayer _player = fs.FlutterSoundPlayer();
+  StreamSubscription<Uint8List>? _audioSubscription;
+  bool _isLive = false;
+
   @override
   void initState() {
     super.initState();
@@ -38,14 +48,17 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
       CurvedAnimation(parent: _pulseController, curve: Curves.easeInOut),
     );
 
-    // Connect to Gemini Live API
+    _initAudio();
     _connectToGemini();
+  }
+
+  Future<void> _initAudio() async {
+    await _player.openPlayer();
   }
 
   Future<void> _connectToGemini() async {
     setState(() => _callStatus = "Connecting via WebSocket...");
     
-    // In a real production app, this key should be highly secured or managed via a proxy backend.
     final apiKey = ref.read(apiKeyPoolProvider).googleKey;
     if (apiKey.isEmpty) {
       setState(() => _callStatus = "Error: Missing API Key");
@@ -59,41 +72,58 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
       
       _channel = WebSocketChannel.connect(uri);
 
-      // 1. Initial Handshake / Setup
+      // 1. Setup Phase
       _channel!.sink.add(jsonEncode({
         "setup": {
           "model": "models/gemini-2.0-flash-exp",
           "generation_config": {
-             "response_modalities": ["AUDIO"]
+             "response_modalities": ["AUDIO"],
+             "speech_config": {
+               "voice_config": { "prebuilt_voice_config": { "voice_name": "Puck" } }
+             }
           },
           "system_instruction": {
             "parts": [
-              {"text": "You are a spoken Mandarin tutor. Limit responses to 2 sentences. Your persona is: ${widget.scenario.description}"}
+              {"text": "You are a spoken Mandarin tutor. Limit responses to 2-3 sentences. Your persona is: ${widget.scenario.description}. Respond naturally in Mandarin Chinese."}
             ]
           }
         }
       }));
 
-      setState(() => _callStatus = "Connected! Awaiting Scholar...");
-
-      // 2. Listen to the stream
+      // 2. Listen to Gemini responses
       _channel!.stream.listen(
-        (message) {
+        (message) async {
           if (message is String) {
             final data = jsonDecode(message);
+            
+            if (data.containsKey('setupComplete')) {
+              setState(() => _callStatus = "Connected! Start speaking.");
+              _startAudioStreaming();
+            }
+
             if (data.containsKey('serverContent')) {
-              setState(() => _callStatus = "Scholar is speaking...");
-              // Handle incoming base64 PCM audio data here
-              // e.g. decode data['serverContent']['modelTurn']['parts'][0]['inlineData']['data']
+              final modelTurn = data['serverContent']['modelTurn'];
+              if (modelTurn != null && modelTurn['parts'] != null) {
+                for (var part in modelTurn['parts']) {
+                  if (part.containsKey('inlineData')) {
+                    final base64Audio = part['inlineData']['data'];
+                    final audioBytes = base64Decode(base64Audio);
+                    
+                    // Gemini returns 24kHz PCM
+                    await _player.startPlayer(
+                      fromDataBuffer: Uint8List.fromList(audioBytes),
+                      sampleRate: 24000,
+                      codec: fs.Codec.pcm16,
+                      numChannels: 1,
+                    );
+                  }
+                }
+              }
             }
           }
         },
-        onDone: () {
-          setState(() => _callStatus = "Call ended by Scholar.");
-        },
-        onError: (error) {
-          setState(() => _callStatus = "Connection error: $error");
-        },
+        onDone: () => setState(() => _callStatus = "Call ended."),
+        onError: (error) => setState(() => _callStatus = "Connection error: $error"),
       );
 
     } catch (e) {
@@ -101,8 +131,42 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
     }
   }
 
+  Future<void> _startAudioStreaming() async {
+    if (await _audioRecorder.hasPermission()) {
+      // Gemini Live expects 16kHz Mono 16-bit PCM
+      final stream = await _audioRecorder.startStream(
+        const RecordConfig(
+          encoder: AudioEncoder.pcm16bits,
+          sampleRate: 16000,
+          numChannels: 1,
+        ),
+      );
+
+      _audioSubscription = stream.listen((data) {
+        if (!_isMuted && _channel != null) {
+          // Send 16kHz PCM chunks to Gemini
+          _channel!.sink.add(jsonEncode({
+            "realtime_input": {
+              "media_chunks": [
+                {
+                  "mime_type": "audio/pcm",
+                  "data": base64Encode(data)
+                }
+              ]
+            }
+          }));
+        }
+      });
+      
+      setState(() => _isLive = true);
+    }
+  }
+
   @override
   void dispose() {
+    _audioSubscription?.cancel();
+    _audioRecorder.dispose();
+    _player.closePlayer();
     _channel?.sink.close(status.normalClosure);
     _pulseController.dispose();
     super.dispose();
@@ -119,20 +183,14 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
     setState(() => _isMuted = !_isMuted);
   }
 
-  void _toggleSpeaker() {
-    HapticsManager.light();
-    setState(() => _isSpeaker = !_isSpeaker);
-  }
-
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
     return Scaffold(
-      backgroundColor: Colors.black, // Phone calls usually have a dark, immersive background
+      backgroundColor: Colors.black,
       body: Stack(
         children: [
-          // Blurred background image
           Positioned.fill(
             child: Image.asset(
               widget.scenario.avatarAssetPath,
@@ -142,37 +200,24 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
           ),
           Positioned.fill(
             child: BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 30, sigmaY: 30),
-              child: Container(
-                color: Colors.black.withValues(alpha: 0.7), // Darken the blur
-              ),
+              filter: ui.ImageFilter.blur(sigmaX: 30, sigmaY: 30),
+              child: Container(color: Colors.black.withValues(alpha: 0.7)),
             ),
           ),
           
-          // Content
           SafeArea(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                // Top header
                 Padding(
                   padding: const EdgeInsets.only(top: 20.0),
                   child: Column(
                     children: [
-                      Text(
-                        "LIVE CALL",
-                        style: theme.textTheme.labelMedium?.copyWith(color: Colors.white54, letterSpacing: 2.0),
-                      ),
+                      Text("GEMINI LIVE CALL", style: theme.textTheme.labelMedium?.copyWith(color: Colors.white54, letterSpacing: 2.0)),
                       const SizedBox(height: 8),
-                      Text(
-                        widget.scenario.title,
-                        style: theme.textTheme.headlineMedium?.copyWith(color: Colors.white, fontWeight: FontWeight.bold),
-                      ),
+                      Text(widget.scenario.title, style: theme.textTheme.headlineMedium?.copyWith(color: Colors.white, fontWeight: FontWeight.bold)),
                       const SizedBox(height: 8),
-                      Text(
-                        _callStatus,
-                        style: const TextStyle(color: Colors.white70, fontSize: 16),
-                      ),
+                      Text(_callStatus, style: const TextStyle(color: Colors.white70, fontSize: 16)),
                     ],
                   ),
                 ),
@@ -181,26 +226,23 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
                 AnimatedBuilder(
                   animation: _pulseAnimation,
                   builder: (context, child) {
-                    return Container(
-                      width: 180,
-                      height: 180,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        boxShadow: [
-                          BoxShadow(
-                            color: theme.colorScheme.primary.withValues(alpha: 0.4),
-                            blurRadius: 50 * _pulseAnimation.value,
-                            spreadRadius: 10 * _pulseAnimation.value,
-                          ),
-                        ],
-                      ),
-                      child: ClipOval(
-                        child: Image.asset(
-                          widget.scenario.avatarAssetPath,
-                          fit: BoxFit.cover,
-                          errorBuilder: (context, error, stackTrace) => Container(
-                            color: theme.colorScheme.primary.withValues(alpha: 0.3),
-                            child: const Icon(Icons.person, size: 80, color: Colors.white),
+                    final scale = _isLive && !_isMuted ? _pulseAnimation.value : 1.0;
+                    return Transform.scale(
+                      scale: scale,
+                      child: Container(
+                        width: 180, height: 180,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          boxShadow: [
+                            if (_isLive && !_isMuted)
+                              BoxShadow(color: theme.colorScheme.primary.withValues(alpha: 0.4), blurRadius: 40, spreadRadius: 5),
+                          ],
+                        ),
+                        child: ClipOval(
+                          child: Image.asset(
+                            widget.scenario.avatarAssetPath,
+                            fit: BoxFit.cover,
+                            errorBuilder: (context, error, stackTrace) => Container(color: Colors.indigo.shade900),
                           ),
                         ),
                       ),
@@ -216,21 +258,18 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
                     children: [
                       _CallControlButton(
                         icon: _isMuted ? Icons.mic_off : Icons.mic,
-                        label: "Mute",
+                        label: _isMuted ? "Muted" : "Mute",
                         isActive: _isMuted,
                         onTap: _toggleMute,
                       ),
                       GestureDetector(
                         onTap: _endCall,
                         child: Container(
-                          width: 72,
-                          height: 72,
+                          width: 72, height: 72,
                           decoration: const BoxDecoration(
                             color: Colors.redAccent,
                             shape: BoxShape.circle,
-                            boxShadow: [
-                              BoxShadow(color: Colors.redAccent, blurRadius: 20, offset: Offset(0, 4)),
-                            ]
+                            boxShadow: [BoxShadow(color: Colors.redAccent, blurRadius: 20, offset: Offset(0, 4))]
                           ),
                           child: const Icon(Icons.call_end, color: Colors.white, size: 36),
                         ),
@@ -239,7 +278,10 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
                         icon: _isSpeaker ? Icons.volume_up : Icons.volume_down,
                         label: "Speaker",
                         isActive: _isSpeaker,
-                        onTap: _toggleSpeaker,
+                        onTap: () {
+                          HapticsManager.light();
+                          setState(() => _isSpeaker = !_isSpeaker);
+                        },
                       ),
                     ],
                   ),
@@ -259,12 +301,7 @@ class _CallControlButton extends StatelessWidget {
   final bool isActive;
   final VoidCallback onTap;
 
-  const _CallControlButton({
-    required this.icon,
-    required this.label,
-    required this.isActive,
-    required this.onTap,
-  });
+  const _CallControlButton({required this.icon, required this.label, required this.isActive, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -275,24 +312,16 @@ class _CallControlButton extends StatelessWidget {
           onTap: onTap,
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 200),
-            width: 60,
-            height: 60,
+            width: 60, height: 60,
             decoration: BoxDecoration(
               color: isActive ? Colors.white : Colors.white.withValues(alpha: 0.15),
               shape: BoxShape.circle,
             ),
-            child: Icon(
-              icon,
-              color: isActive ? Colors.black : Colors.white,
-              size: 28,
-            ),
+            child: Icon(icon, color: isActive ? Colors.black : Colors.white, size: 28),
           ),
         ),
         const SizedBox(height: 8),
-        Text(
-          label,
-          style: const TextStyle(color: Colors.white70, fontSize: 12),
-        ),
+        Text(label, style: const TextStyle(color: Colors.white70, fontSize: 12)),
       ],
     );
   }
