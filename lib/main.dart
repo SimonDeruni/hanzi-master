@@ -14,6 +14,7 @@ import 'package:hanzi_master/core/providers.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'package:hanzi_master/core/services/monetization_service.dart';
 import 'package:hanzi_master/features/reading/data/repositories/story_repository.dart';
+import 'package:hanzi_master/core/theme/app_theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -133,60 +134,8 @@ class HanziMasterApp extends ConsumerWidget {
       child: MaterialApp(
         title: 'Hanzi Master',
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(
-            seedColor: const Color(0xFF1A1A1B),
-            surface: const Color(0xFFFDFCF0),
-            brightness: Brightness.light,
-          ),
-          scaffoldBackgroundColor: const Color(0xFFFDFCF0),
-          useMaterial3: true,
-          fontFamily: 'NotoSansSC',
-          appBarTheme: const AppBarTheme(
-            backgroundColor: Colors.transparent,
-            elevation: 0,
-            centerTitle: true,
-            systemOverlayStyle: SystemUiOverlayStyle.dark,
-            titleTextStyle: TextStyle(
-              color: Color(0xFF1A1A1B),
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-              letterSpacing: 2,
-            ),
-            iconTheme: IconThemeData(color: Color(0xFF1A1A1B)),
-          ),
-          navigationBarTheme: NavigationBarThemeData(
-            backgroundColor: const Color(0xFFFDFCF0),
-            indicatorColor: const Color(0xFF1A1A1B).withValues(alpha: 0.1),
-          ),
-        ),
-        darkTheme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(
-            seedColor: const Color(0xFFFDFCF0),
-            surface: const Color(0xFF1A1A1B),
-            brightness: Brightness.dark,
-          ),
-          scaffoldBackgroundColor: const Color(0xFF1A1A1B),
-          useMaterial3: true,
-          fontFamily: 'NotoSansSC',
-          appBarTheme: const AppBarTheme(
-            backgroundColor: Colors.transparent,
-            elevation: 0,
-            centerTitle: true,
-            systemOverlayStyle: SystemUiOverlayStyle.light,
-            titleTextStyle: TextStyle(
-              color: Color(0xFFFDFCF0),
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-              letterSpacing: 2,
-            ),
-            iconTheme: IconThemeData(color: Color(0xFFFDFCF0)),
-          ),
-          navigationBarTheme: NavigationBarThemeData(
-            backgroundColor: const Color(0xFF1A1A1B),
-            indicatorColor: const Color(0xFFFDFCF0).withValues(alpha: 0.1),
-          ),
-        ),
+        theme: AppTheme.lightTheme,
+        darkTheme: AppTheme.darkTheme,
         themeMode: settings.isDarkMode ? ThemeMode.dark : ThemeMode.light,
         home: const MainNavigationScreen(),
       ),
