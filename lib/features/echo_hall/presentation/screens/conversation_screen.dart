@@ -5,6 +5,7 @@ import '../providers/conversation_controller.dart';
 import '../../../../core/models/pronunciation_grade.dart';
 import '../../../chat/domain/entities/chat_message.dart';
 import '../widgets/pronunciation_report_sheet.dart';
+import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 
 class ConversationScreen extends ConsumerStatefulWidget {
   final ConversationScenario scenario;
@@ -45,6 +46,7 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(conversationControllerProvider);
+    final theme = Theme.of(context);
 
     ref.listen(conversationControllerProvider.select((state) => state.messages.length), (previous, next) {
       if (previous != null && next > previous) {
@@ -53,7 +55,6 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
     });
 
     return Scaffold(
-      backgroundColor: const Color(0xFFF3F4F6), // Match image 2 background roughly
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         title: Text(widget.scenario.title, style: const TextStyle(color: Colors.transparent)),
@@ -61,105 +62,111 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
         elevation: 0,
         iconTheme: const IconThemeData(color: Colors.white),
       ),
-      body: Stack(
-        children: [
-          // 1. Avatar Image at Top (Cover)
-          Positioned(
-            top: 0,
-            left: 0,
-            right: 0,
-            height: MediaQuery.of(context).size.height * 0.45,
-            child: TweenAnimationBuilder<double>(
-              tween: Tween(begin: 1.0, end: 1.05),
-              duration: const Duration(seconds: 10),
-              builder: (context, scale, child) {
-                return Transform.scale(
-                  scale: scale,
-                  child: Image.asset(
-                    widget.scenario.avatarAssetPath,
-                    fit: BoxFit.cover,
-                    errorBuilder: (context, error, stackTrace) => Container(
-                       color: Colors.indigo.shade100,
-                       child: const Center(
-                         child: Icon(Icons.person, size: 100, color: Colors.indigo),
-                       ),
-                    ),
-                  ),
-                );
-              },
-            ),
-          ),
-
-          // 2. Chat Area
-          Positioned(
-            top: MediaQuery.of(context).size.height * 0.4,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            child: Container(
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.vertical(top: Radius.circular(32)),
-              ),
-              child: Column(
-                children: [
-                  Expanded(
-                    child: ListView.builder(
-                      controller: _scrollController,
-                      padding: const EdgeInsets.fromLTRB(16, 24, 16, 100),
-                      itemCount: state.messages.length,
-                      itemBuilder: (context, index) {
-                        final message = state.messages[index];
-                        return _buildMessage(message);
-                      },
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          
-          if (state.isProcessing)
-            const Center(
-              child: CircularProgressIndicator(),
-            ),
-
-          if (state.error != null)
+      body: CalligraphyBackground(
+        child: Stack(
+          children: [
+            // 1. Avatar Image at Top (Cover)
             Positioned(
-              bottom: 120,
-              left: 20,
-              right: 20,
+              top: 0,
+              left: 0,
+              right: 0,
+              height: MediaQuery.of(context).size.height * 0.45,
+              child: TweenAnimationBuilder<double>(
+                tween: Tween(begin: 1.0, end: 1.05),
+                duration: const Duration(seconds: 10),
+                builder: (context, scale, child) {
+                  return Transform.scale(
+                    scale: scale,
+                    child: Image.asset(
+                      widget.scenario.avatarAssetPath,
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) => Container(
+                         color: theme.colorScheme.primary.withValues(alpha: 0.1),
+                         child: Center(
+                           child: Icon(Icons.person, size: 100, color: theme.colorScheme.primary),
+                         ),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+
+            // 2. Chat Area
+            Positioned(
+              top: MediaQuery.of(context).size.height * 0.4,
+              left: 0,
+              right: 0,
+              bottom: 0,
               child: Container(
-                padding: const EdgeInsets.all(12),
-                color: Colors.red.withValues(alpha: 0.9),
-                child: Text(
-                  state.error!,
-                  style: const TextStyle(color: Colors.white),
+                decoration: BoxDecoration(
+                  color: theme.colorScheme.surface,
+                  borderRadius: const BorderRadius.vertical(top: Radius.circular(32)),
+                  boxShadow: [
+                    BoxShadow(color: theme.colorScheme.onSurface.withValues(alpha: 0.1), blurRadius: 20, offset: const Offset(0, -5))
+                  ],
+                ),
+                child: Column(
+                  children: [
+                    Expanded(
+                      child: ListView.builder(
+                        controller: _scrollController,
+                        padding: const EdgeInsets.fromLTRB(16, 24, 16, 100),
+                        itemCount: state.messages.length,
+                        itemBuilder: (context, index) {
+                          final message = state.messages[index];
+                          return _buildMessage(message, theme);
+                        },
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
+            
+            if (state.isProcessing)
+              Center(
+                child: CircularProgressIndicator(color: theme.colorScheme.primary),
+              ),
 
-          // 3. Floating Mic Pill
-          Positioned(
-            bottom: 30,
-            left: 20,
-            right: 20,
-            child: _buildFloatingMicPill(state),
-          ),
-        ],
+            if (state.error != null)
+              Positioned(
+                bottom: 120,
+                left: 20,
+                right: 20,
+                child: Container(
+                  padding: const EdgeInsets.all(12),
+                  color: theme.colorScheme.error.withValues(alpha: 0.9),
+                  child: Text(
+                    state.error!,
+                    style: TextStyle(color: theme.colorScheme.onError),
+                  ),
+                ),
+              ),
+
+            // 3. Floating Mic Pill
+            Positioned(
+              bottom: 30,
+              left: 20,
+              right: 20,
+              child: _buildFloatingMicPill(state, theme),
+            ),
+          ],
+        ),
       ),
     );
   }
 
-  Widget _buildFloatingMicPill(ConversationState state) {
+  Widget _buildFloatingMicPill(ConversationState state, ThemeData theme) {
     return Container(
       height: 60,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: theme.cardTheme.color,
         borderRadius: BorderRadius.circular(30),
+        border: Border.all(color: theme.colorScheme.onSurface.withValues(alpha: 0.1)),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.1),
+            color: theme.colorScheme.onSurface.withValues(alpha: 0.1),
             blurRadius: 20,
             offset: const Offset(0, 10),
           ),
@@ -170,8 +177,8 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
         children: [
           // Cancel Button
           IconButton(
-            icon: const Icon(Icons.close, color: Colors.grey),
-            onPressed: () {},
+            icon: Icon(Icons.close, color: theme.colorScheme.onSurface.withValues(alpha: 0.4)),
+            onPressed: () => Navigator.pop(context),
           ),
           
           // Center Mic / Waveform
@@ -187,13 +194,11 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
                 color: Colors.transparent, // expanded touch area
                 child: Center(
                   child: state.isRecording
-                      ? _buildSimulatedWaveform()
-                      : const Text(
+                      ? _buildSimulatedWaveform(theme)
+                      : Text(
                           "Hold to Talk",
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.grey,
+                          style: theme.textTheme.titleMedium?.copyWith(
+                            color: theme.colorScheme.onSurface.withValues(alpha: 0.5),
                           ),
                         ),
                 ),
@@ -201,17 +206,17 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
             ),
           ),
           
-          // Send Button
+          // Send Button Placeholder
           Container(
             margin: const EdgeInsets.all(8),
-            decoration: const BoxDecoration(
-              color: Colors.deepPurple,
+            decoration: BoxDecoration(
+              color: theme.colorScheme.primary,
               shape: BoxShape.circle,
             ),
             child: IconButton(
-              icon: const Icon(Icons.send, color: Colors.white, size: 20),
+              icon: Icon(Icons.mic, color: theme.colorScheme.onPrimary, size: 20),
               onPressed: () {
-                // Future feature: text input
+                // Future feature: tap to toggle recording
               },
             ),
           ),
@@ -220,7 +225,7 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
     );
   }
 
-  Widget _buildSimulatedWaveform() {
+  Widget _buildSimulatedWaveform(ThemeData theme) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: List.generate(
@@ -230,7 +235,7 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
           width: 4,
           height: 10 + (index % 4) * 5.0, // pseudo random height
           decoration: BoxDecoration(
-            color: Colors.deepPurple,
+            color: theme.colorScheme.primary,
             borderRadius: BorderRadius.circular(2),
           ),
         ),
@@ -238,7 +243,7 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
     );
   }
 
-  Widget _buildMessage(GradedChatMessage message) {
+  Widget _buildMessage(GradedChatMessage message, ThemeData theme) {
     final isUser = message.role == ChatRole.user;
 
     return GestureDetector(
@@ -259,9 +264,18 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
           padding: const EdgeInsets.all(16),
           constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width * 0.8),
           decoration: BoxDecoration(
-            color: isUser ? Colors.deepPurple.withValues(alpha: 0.1) : Colors.white,
-            borderRadius: BorderRadius.circular(20),
-            border: isUser ? null : Border.all(color: Colors.grey.shade200),
+            color: isUser ? theme.colorScheme.primary.withValues(alpha: 0.1) : theme.cardTheme.color,
+            borderRadius: BorderRadius.only(
+              topLeft: const Radius.circular(20),
+              topRight: const Radius.circular(20),
+              bottomLeft: Radius.circular(isUser ? 20 : 4),
+              bottomRight: Radius.circular(isUser ? 4 : 20),
+            ),
+            border: Border.all(color: theme.colorScheme.onSurface.withValues(alpha: 0.1)),
+            boxShadow: [
+              if (!isUser)
+                 BoxShadow(color: theme.colorScheme.onSurface.withValues(alpha: 0.05), blurRadius: 10, offset: const Offset(0, 4))
+            ],
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -273,33 +287,31 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
                   children: [
                     Text(
                       message.grade!.score.toString(),
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                        color: message.grade!.score >= 80 ? Colors.green : Colors.red,
+                      style: theme.textTheme.titleMedium?.copyWith(
+                        color: message.grade!.score >= 80 ? Colors.green.shade600 : Colors.red.shade600,
                       ),
                     ),
                     const SizedBox(width: 4),
-                    const Text('score', style: TextStyle(fontSize: 10, color: Colors.grey)),
+                    Text('score', style: theme.textTheme.labelSmall),
                   ],
                 ),
                 const SizedBox(height: 8),
                 Wrap(
                   spacing: 8,
                   runSpacing: 8,
-                  children: message.grade!.words.map((w) => _buildGradedWord(w)).toList(),
+                  children: message.grade!.words.map((w) => _buildGradedWord(w, theme)).toList(),
                 ),
               ] else ...[
                 // AI Message with Pinyin
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Icon(Icons.volume_up, color: Colors.grey, size: 20),
+                    Icon(Icons.volume_up, color: theme.colorScheme.onSurface.withValues(alpha: 0.4), size: 20),
                     const SizedBox(width: 8),
                     Expanded(
                       child: Text(
                         message.content,
-                        style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                        style: theme.textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold),
                       ),
                     ),
                   ],
@@ -312,21 +324,17 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
     );
   }
 
-  Widget _buildGradedWord(SyllableGrade word) {
-    final color = word.isCorrect ? Colors.green : Colors.red;
+  Widget _buildGradedWord(SyllableGrade word, ThemeData theme) {
+    final color = word.isCorrect ? Colors.green.shade600 : Colors.red.shade600;
     return Column(
       children: [
         Text(
           word.pinyin,
-          style: const TextStyle(fontSize: 12, color: Colors.grey),
+          style: theme.textTheme.labelMedium,
         ),
         Text(
           word.word,
-          style: TextStyle(
-            fontSize: 22,
-            fontWeight: FontWeight.bold,
-            color: color,
-          ),
+          style: theme.textTheme.titleLarge?.copyWith(color: color),
         ),
       ],
     );

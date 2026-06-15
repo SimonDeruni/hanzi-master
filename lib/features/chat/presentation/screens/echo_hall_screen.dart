@@ -4,6 +4,7 @@ import 'package:hanzi_master/features/chat/presentation/providers/chat_controlle
 import 'package:hanzi_master/features/chat/domain/entities/chat_message.dart';
 import 'package:hanzi_master/core/services/audio_service.dart';
 import 'package:intl/intl.dart';
+import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 
 class EchoHallScreen extends ConsumerStatefulWidget {
   const EchoHallScreen({super.key});
@@ -41,9 +42,7 @@ class _EchoHallScreenState extends ConsumerState<EchoHallScreen> {
   @override
   Widget build(BuildContext context) {
     final chatState = ref.watch(chatControllerProvider);
-
-    // Zen & Ink Design Tokens
-    const Color xuanPaper = Color(0xFFFDFCF0);
+    final theme = Theme.of(context);
 
     ref.listen(chatControllerProvider, (previous, next) {
       if (next.messages.length != (previous?.messages.length ?? 0)) {
@@ -56,46 +55,43 @@ class _EchoHallScreenState extends ConsumerState<EchoHallScreen> {
     });
 
     return Scaffold(
-      backgroundColor: xuanPaper,
-      appBar: _buildAppBar(chatState),
-      body: Column(
-        children: [
-          // Horizontal Persona Selector
-          _buildPersonaSelector(chatState),
-          if (_showCustomPromptField) _buildCustomPromptArea(),
-          // Chat Messages
-          Expanded(
-            child: chatState.messages.isEmpty
-                ? _buildEmptyState(chatState.activePersona)
-                : ListView.builder(
-                    controller: _scrollController,
-                    padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
-                    itemCount: chatState.messages.length,
-                    itemBuilder: (context, index) {
-                      final message = chatState.messages[index];
-                      return _ChatBubble(message: message);
-                    },
-                  ),
-          ),
-          // Typing indicator
-          if (chatState.isLoading) _buildTypingIndicator(),
-          // Input area
-          _buildInputArea(chatState),
-        ],
+      appBar: _buildAppBar(chatState, theme),
+      body: CalligraphyBackground(
+        child: Column(
+          children: [
+            // Horizontal Persona Selector
+            _buildPersonaSelector(chatState, theme),
+            if (_showCustomPromptField) _buildCustomPromptArea(theme),
+            // Chat Messages
+            Expanded(
+              child: chatState.messages.isEmpty
+                  ? _buildEmptyState(chatState.activePersona, theme)
+                  : ListView.builder(
+                      controller: _scrollController,
+                      padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
+                      itemCount: chatState.messages.length,
+                      itemBuilder: (context, index) {
+                        final message = chatState.messages[index];
+                        return _ChatBubble(message: message, theme: theme);
+                      },
+                    ),
+            ),
+            // Typing indicator
+            if (chatState.isLoading) _buildTypingIndicator(theme),
+            // Input area
+            _buildInputArea(chatState, theme),
+          ],
+        ),
       ),
     );
   }
 
-  PreferredSizeWidget _buildAppBar(ChatState chatState) {
-    const Color carbonInk = Color(0xFF1A1A1B);
-    const Color xuanPaper = Color(0xFFFDFCF0);
-
+  PreferredSizeWidget _buildAppBar(ChatState chatState, ThemeData theme) {
     return AppBar(
-      backgroundColor: xuanPaper,
       elevation: 0,
       centerTitle: true,
       leading: IconButton(
-        icon: const Icon(Icons.arrow_back_ios, color: carbonInk, size: 18),
+        icon: Icon(Icons.arrow_back_ios, color: theme.colorScheme.onSurface, size: 18),
         onPressed: () => Navigator.pop(context),
       ),
       title: Column(
@@ -103,10 +99,8 @@ class _EchoHallScreenState extends ConsumerState<EchoHallScreen> {
         children: [
           Text(
             _getPersonaName(chatState.activePersona),
-            style: const TextStyle(
-              color: carbonInk,
+            style: theme.textTheme.titleLarge?.copyWith(
               fontWeight: FontWeight.bold,
-              fontSize: 18,
               letterSpacing: 1.2,
             ),
           ),
@@ -116,7 +110,7 @@ class _EchoHallScreenState extends ConsumerState<EchoHallScreen> {
             margin: const EdgeInsets.only(top: 4),
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: [carbonInk.withAlpha(0), carbonInk.withAlpha(100), carbonInk.withAlpha(0)],
+                colors: [theme.colorScheme.onSurface.withValues(alpha: 0), theme.colorScheme.onSurface.withValues(alpha: 0.4), theme.colorScheme.onSurface.withValues(alpha: 0)],
               ),
             ),
           ),
@@ -124,7 +118,7 @@ class _EchoHallScreenState extends ConsumerState<EchoHallScreen> {
       ),
       actions: [
         IconButton(
-          icon: Icon(Icons.delete_outline, color: carbonInk.withAlpha(100), size: 22),
+          icon: Icon(Icons.delete_outline, color: theme.colorScheme.onSurface.withValues(alpha: 0.4), size: 22),
           onPressed: () {
             ref.read(chatControllerProvider.notifier).clearHistory();
           },
@@ -134,12 +128,9 @@ class _EchoHallScreenState extends ConsumerState<EchoHallScreen> {
     );
   }
 
-  Widget _buildPersonaSelector(ChatState chatState) {
-    const Color carbonInk = Color(0xFF1A1A1B);
-    const Color xuanPaper = Color(0xFFFDFCF0);
-
+  Widget _buildPersonaSelector(ChatState chatState, ThemeData theme) {
     return Container(
-      color: xuanPaper,
+      color: theme.colorScheme.surface.withValues(alpha: 0.8),
       padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
@@ -163,15 +154,15 @@ class _EchoHallScreenState extends ConsumerState<EchoHallScreen> {
                       duration: const Duration(milliseconds: 300),
                       padding: const EdgeInsets.all(12),
                       decoration: BoxDecoration(
-                        color: isSelected ? carbonInk : xuanPaper,
+                        color: isSelected ? theme.colorScheme.primary : theme.colorScheme.surface,
                         shape: BoxShape.circle,
                         border: Border.all(
-                          color: isSelected ? carbonInk : carbonInk.withAlpha(40),
+                          color: isSelected ? theme.colorScheme.primary : theme.colorScheme.onSurface.withValues(alpha: 0.15),
                           width: 1.5,
                         ),
                         boxShadow: isSelected ? [
                           BoxShadow(
-                            color: carbonInk.withAlpha(40),
+                            color: theme.colorScheme.primary.withValues(alpha: 0.3),
                             blurRadius: 8,
                             offset: const Offset(0, 4),
                           )
@@ -180,15 +171,14 @@ class _EchoHallScreenState extends ConsumerState<EchoHallScreen> {
                       child: Icon(
                         _getPersonaIcon(p), 
                         size: 20, 
-                        color: isSelected ? xuanPaper : carbonInk.withAlpha(140)
+                        color: isSelected ? theme.colorScheme.onPrimary : theme.colorScheme.onSurface.withValues(alpha: 0.5)
                       ),
                     ),
                     const SizedBox(height: 6),
                     Text(
                       _getPersonaShortName(p),
-                      style: TextStyle(
-                        color: isSelected ? carbonInk : carbonInk.withAlpha(100),
-                        fontSize: 11,
+                      style: theme.textTheme.labelMedium?.copyWith(
+                        color: isSelected ? theme.colorScheme.primary : theme.colorScheme.onSurface.withValues(alpha: 0.4),
                         fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
                       ),
                     ),
@@ -202,12 +192,9 @@ class _EchoHallScreenState extends ConsumerState<EchoHallScreen> {
     );
   }
 
-  Widget _buildCustomPromptArea() {
-    const Color carbonInk = Color(0xFF1A1A1B);
-    const Color xuanPaper = Color(0xFFFDFCF0);
-
+  Widget _buildCustomPromptArea(ThemeData theme) {
     return Container(
-      color: xuanPaper,
+      color: theme.colorScheme.surface.withValues(alpha: 0.8),
       padding: const EdgeInsets.fromLTRB(16, 0, 16, 12),
       child: Row(
         children: [
@@ -215,21 +202,21 @@ class _EchoHallScreenState extends ConsumerState<EchoHallScreen> {
             child: TextField(
               controller: _customPromptController,
               maxLines: 2,
-              style: const TextStyle(color: carbonInk, fontSize: 14),
+              style: theme.textTheme.bodyMedium,
               decoration: InputDecoration(
                 hintText: "Describe your persona... (e.g. a sarcastic Beijing taxi driver)",
-                hintStyle: TextStyle(color: carbonInk.withAlpha(80), fontSize: 13),
+                hintStyle: theme.textTheme.bodyMedium?.copyWith(color: theme.colorScheme.onSurface.withValues(alpha: 0.3)),
                 filled: true,
-                fillColor: carbonInk.withAlpha(10),
+                fillColor: theme.colorScheme.onSurface.withValues(alpha: 0.05),
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide(color: carbonInk.withAlpha(30)),
+                  borderRadius: BorderRadius.circular(16),
+                  borderSide: BorderSide(color: theme.colorScheme.onSurface.withValues(alpha: 0.1)),
                 ),
-                contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+                contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
               ),
             ),
           ),
-          const SizedBox(width: 8),
+          const SizedBox(width: 12),
           IconButton.filled(
             onPressed: () {
               if (_customPromptController.text.isNotEmpty) {
@@ -240,11 +227,11 @@ class _EchoHallScreenState extends ConsumerState<EchoHallScreen> {
                 setState(() => _showCustomPromptField = false);
               }
             },
-            icon: const Icon(Icons.send_rounded, color: Colors.white, size: 20),
+            icon: Icon(Icons.send_rounded, color: theme.colorScheme.onPrimary, size: 20),
             style: IconButton.styleFrom(
-              backgroundColor: carbonInk,
-              foregroundColor: xuanPaper,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+              backgroundColor: theme.colorScheme.primary,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+              padding: const EdgeInsets.all(16),
             ),
           ),
         ],
@@ -252,17 +239,16 @@ class _EchoHallScreenState extends ConsumerState<EchoHallScreen> {
     );
   }
 
-  Widget _buildEmptyState(ScholarPersona persona) {
-    const Color carbonInk = Color(0xFF1A1A1B);
+  Widget _buildEmptyState(ScholarPersona persona, ThemeData theme) {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(_getPersonaIcon(persona), size: 80, color: carbonInk.withAlpha(20)),
+          Icon(_getPersonaIcon(persona), size: 80, color: theme.colorScheme.onSurface.withValues(alpha: 0.1)),
           const SizedBox(height: 24),
           Text(
             _getPersonaName(persona),
-            style: const TextStyle(color: carbonInk, fontSize: 24, fontWeight: FontWeight.bold, letterSpacing: 1.5),
+            style: theme.textTheme.headlineMedium?.copyWith(letterSpacing: 1.5),
           ),
           const SizedBox(height: 12),
           Padding(
@@ -270,23 +256,25 @@ class _EchoHallScreenState extends ConsumerState<EchoHallScreen> {
             child: Text(
               _getPersonaGreeting(persona),
               textAlign: TextAlign.center,
-              style: TextStyle(color: carbonInk.withAlpha(120), fontSize: 16, height: 1.8, fontStyle: FontStyle.italic),
+              style: theme.textTheme.bodyLarge?.copyWith(
+                color: theme.colorScheme.onSurface.withValues(alpha: 0.5),
+                height: 1.8,
+                fontStyle: FontStyle.italic,
+              ),
             ),
           ),
           const SizedBox(height: 40),
           Container(
             height: 1,
             width: 100,
-            color: carbonInk.withAlpha(20),
+            color: theme.colorScheme.onSurface.withValues(alpha: 0.1),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildTypingIndicator() {
-    const Color carbonInk = Color(0xFF1A1A1B);
-
+  Widget _buildTypingIndicator(ThemeData theme) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 4, 20, 12),
       child: Align(
@@ -294,20 +282,20 @@ class _EchoHallScreenState extends ConsumerState<EchoHallScreen> {
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
           decoration: BoxDecoration(
-            color: carbonInk.withAlpha(10),
+            color: theme.cardTheme.color,
             borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(16),
               topRight: Radius.circular(16),
               bottomRight: Radius.circular(16),
               bottomLeft: Radius.circular(4),
             ),
-            border: Border.all(color: carbonInk.withAlpha(20)),
+            border: Border.all(color: theme.colorScheme.onSurface.withValues(alpha: 0.1)),
           ),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
               for (int i = 0; i < 3; i++)
-                _BouncingDot(delay: Duration(milliseconds: i * 150), color: carbonInk.withAlpha(150)),
+                _BouncingDot(delay: Duration(milliseconds: i * 150), color: theme.colorScheme.onSurface.withValues(alpha: 0.6)),
             ],
           ),
         ),
@@ -315,17 +303,14 @@ class _EchoHallScreenState extends ConsumerState<EchoHallScreen> {
     );
   }
 
-  Widget _buildInputArea(ChatState chatState) {
-    const Color carbonInk = Color(0xFF1A1A1B);
-    const Color xuanPaper = Color(0xFFFDFCF0);
-
+  Widget _buildInputArea(ChatState chatState, ThemeData theme) {
     return Container(
       padding: const EdgeInsets.fromLTRB(16, 12, 16, 32),
       decoration: BoxDecoration(
-        color: xuanPaper,
+        color: theme.colorScheme.surface.withValues(alpha: 0.9),
         boxShadow: [
           BoxShadow(
-            color: carbonInk.withAlpha(10),
+            color: theme.colorScheme.onSurface.withValues(alpha: 0.05),
             blurRadius: 20,
             offset: const Offset(0, -5),
           )
@@ -336,18 +321,21 @@ class _EchoHallScreenState extends ConsumerState<EchoHallScreen> {
           Expanded(
             child: Container(
               decoration: BoxDecoration(
-                color: carbonInk.withAlpha(10),
+                color: theme.colorScheme.onSurface.withValues(alpha: 0.05),
                 borderRadius: BorderRadius.circular(28),
-                border: Border.all(color: carbonInk.withAlpha(20)),
+                border: Border.all(color: theme.colorScheme.onSurface.withValues(alpha: 0.1)),
               ),
               child: TextField(
                 controller: _textController,
-                style: const TextStyle(color: carbonInk, fontSize: 16),
+                style: theme.textTheme.bodyLarge,
                 decoration: InputDecoration(
                   hintText: "Speak with the Scholar...",
-                  hintStyle: TextStyle(color: carbonInk.withAlpha(80), fontSize: 14, fontStyle: FontStyle.italic),
+                  hintStyle: theme.textTheme.bodyMedium?.copyWith(
+                    color: theme.colorScheme.onSurface.withValues(alpha: 0.4),
+                    fontStyle: FontStyle.italic,
+                  ),
                   border: InputBorder.none,
-                  contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
                 ),
                 onSubmitted: (val) {
                   if (val.trim().isNotEmpty) {
@@ -368,21 +356,21 @@ class _EchoHallScreenState extends ConsumerState<EchoHallScreen> {
             },
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 300),
-              padding: const EdgeInsets.all(14),
+              padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: chatState.isLoading ? carbonInk.withAlpha(40) : carbonInk,
+                color: chatState.isLoading ? theme.colorScheme.onSurface.withValues(alpha: 0.1) : theme.colorScheme.primary,
                 boxShadow: chatState.isLoading ? null : [
                   BoxShadow(
-                    color: carbonInk.withAlpha(60),
+                    color: theme.colorScheme.primary.withValues(alpha: 0.3),
                     blurRadius: 10,
                     offset: const Offset(0, 4),
                   )
                 ],
               ),
-              child: const Icon(
+              child: Icon(
                 Icons.send_rounded,
-                color: xuanPaper,
+                color: chatState.isLoading ? theme.colorScheme.onSurface.withValues(alpha: 0.4) : theme.colorScheme.onPrimary,
                 size: 20,
               ),
             ),
@@ -441,12 +429,11 @@ class _EchoHallScreenState extends ConsumerState<EchoHallScreen> {
 // --- Chat Bubble ---
 class _ChatBubble extends StatelessWidget {
   final ChatMessage message;
-  const _ChatBubble({required this.message});
+  final ThemeData theme;
+  const _ChatBubble({required this.message, required this.theme});
 
   @override
   Widget build(BuildContext context) {
-    const Color xuanPaper = Color(0xFFFDFCF0);
-    const Color carbonInk = Color(0xFF1A1A1B);
     final isUser = message.role == ChatRole.user;
 
     return Align(
@@ -463,29 +450,27 @@ class _ChatBubble extends StatelessWidget {
             ),
             padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 14),
             decoration: BoxDecoration(
-              color: isUser ? carbonInk : carbonInk.withAlpha(15),
+              color: isUser ? theme.colorScheme.primary : theme.cardTheme.color,
               borderRadius: BorderRadius.only(
                 topLeft: const Radius.circular(20),
                 topRight: const Radius.circular(20),
                 bottomLeft: Radius.circular(isUser ? 20 : 4),
                 bottomRight: Radius.circular(isUser ? 4 : 20),
               ),
-              border: isUser ? null : Border.all(color: carbonInk.withAlpha(25)),
+              border: isUser ? null : Border.all(color: theme.colorScheme.onSurface.withValues(alpha: 0.1)),
               boxShadow: [
                 BoxShadow(
-                  color: carbonInk.withAlpha(isUser ? 40 : 10),
-                  blurRadius: 12,
+                  color: isUser ? theme.colorScheme.primary.withValues(alpha: 0.2) : theme.colorScheme.onSurface.withValues(alpha: 0.05),
+                  blurRadius: 10,
                   offset: const Offset(0, 4),
                 ),
               ],
             ),
             child: Text(
               message.content,
-              style: TextStyle(
-                fontSize: 16,
-                color: isUser ? xuanPaper : carbonInk,
-                height: 1.6,
-                letterSpacing: 0.3,
+              style: theme.textTheme.bodyLarge?.copyWith(
+                color: isUser ? theme.colorScheme.onPrimary : theme.colorScheme.onSurface,
+                height: 1.5,
               ),
             ),
           ),
@@ -497,10 +482,8 @@ class _ChatBubble extends StatelessWidget {
             ),
             child: Text(
               DateFormat('HH:mm').format(message.timestamp),
-              style: TextStyle(
-                fontSize: 10,
-                color: carbonInk.withAlpha(80),
-                fontWeight: FontWeight.w300,
+              style: theme.textTheme.labelSmall?.copyWith(
+                color: theme.colorScheme.onSurface.withValues(alpha: 0.4),
               ),
             ),
           ),
@@ -552,7 +535,7 @@ class _BouncingDotState extends State<_BouncingDot> with SingleTickerProviderSta
           margin: const EdgeInsets.symmetric(horizontal: 3),
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: widget.color ?? const Color(0xFF1A1A1B).withAlpha(153),
+            color: widget.color,
           ),
         ),
       ),
