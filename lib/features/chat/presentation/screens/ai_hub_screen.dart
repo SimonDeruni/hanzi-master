@@ -3,106 +3,90 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/features/chat/presentation/screens/echo_hall_screen.dart';
 import 'package:hanzi_master/features/echo_hall/presentation/screens/scenario_selection_screen.dart';
 import 'package:hanzi_master/features/reading/presentation/screens/reading_room_screen.dart';
+import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 
 class AiHubScreen extends ConsumerWidget {
   const AiHubScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    const Color xuanPaper = Color(0xFFFDFCF0);
-    const Color carbonInk = Color(0xFF1A1A1B);
+    final theme = Theme.of(context);
 
     return Scaffold(
-      backgroundColor: xuanPaper,
       appBar: AppBar(
-        title: const Text(
-          "AI HUB",
-          style: TextStyle(
-            color: carbonInk,
-            fontWeight: FontWeight.w900,
-            letterSpacing: 4.0,
-            fontSize: 20,
-          ),
-        ),
-        backgroundColor: xuanPaper,
-        elevation: 0,
-        centerTitle: true,
+        title: const Text("AI HUB"),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 20.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  "Art & Intellect",
-                  style: TextStyle(
-                    fontSize: 28,
-                    fontWeight: FontWeight.bold,
-                    color: carbonInk,
-                    letterSpacing: -0.5,
+      body: CalligraphyBackground(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 20.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Art & Intellect",
+                    style: theme.textTheme.headlineLarge,
                   ),
-                ),
-                const SizedBox(height: 8),
-                Container(
-                  height: 3,
-                  width: 60,
-                  color: carbonInk,
-                ),
-              ],
-            ),
-            const SizedBox(height: 16),
-            Text(
-              "Harness the power of the Digital Scholar to refine your brush and voice.",
-              style: TextStyle(
-                fontSize: 15,
-                color: carbonInk.withAlpha(160),
-                height: 1.5,
+                  const SizedBox(height: 8),
+                  Container(
+                    height: 3,
+                    width: 60,
+                    color: theme.colorScheme.onSurface,
+                  ),
+                ],
               ),
-            ),
-            const SizedBox(height: 48),
-            _buildAiFeatureCard(
-              context,
-              title: "THE ECHO HALL",
-              description: "Conversational practice with distinct scholarly personas.",
-              icon: Icons.chat_bubble_outline_rounded,
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const EchoHallScreen()),
-                );
-              },
-            ),
-            const SizedBox(height: 20),
-            _buildAiFeatureCard(
-              context,
-              title: "CULTURAL READING ROOM",
-              description: "Graded AI-generated stories on Chinese history and life.",
-              icon: Icons.menu_book,
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const ReadingRoomScreen()),
-                );
-              },
-            ),
-            const SizedBox(height: 20),
-            _buildAiFeatureCard(
-              context,
-              title: "PRONUNCIATION",
-              description: "Digital critique of your spoken tones and clarity.",
-              icon: Icons.mic_none_rounded,
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const ScenarioSelectionScreen()),
-                );
-              },
-              isComingSoon: false,
-            ),
-          ],
+              const SizedBox(height: 16),
+              Text(
+                "Harness the power of the Digital Scholar to refine your brush and voice.",
+                style: theme.textTheme.bodyMedium?.copyWith(
+                  color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
+                  height: 1.5,
+                ),
+              ),
+              const SizedBox(height: 48),
+              _buildAiFeatureCard(
+                context,
+                title: "THE ECHO HALL",
+                description: "Conversational practice with distinct scholarly personas.",
+                icon: Icons.chat_bubble_outline_rounded,
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const EchoHallScreen()),
+                  );
+                },
+              ),
+              const SizedBox(height: 20),
+              _buildAiFeatureCard(
+                context,
+                title: "CULTURAL READING ROOM",
+                description: "Graded AI-generated stories on Chinese history and life.",
+                icon: Icons.menu_book,
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const ReadingRoomScreen()),
+                  );
+                },
+              ),
+              const SizedBox(height: 20),
+              _buildAiFeatureCard(
+                context,
+                title: "PRONUNCIATION",
+                description: "Digital critique of your spoken tones and clarity.",
+                icon: Icons.mic_none_rounded,
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const ScenarioSelectionScreen()),
+                  );
+                },
+                isComingSoon: false,
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -116,8 +100,8 @@ class AiHubScreen extends ConsumerWidget {
     required VoidCallback onTap,
     bool isComingSoon = false,
   }) {
-    const Color carbonInk = Color(0xFF1A1A1B);
-    const Color xuanPaper = Color(0xFFFDFCF0);
+    final theme = Theme.of(context);
+    final onSurface = theme.colorScheme.onSurface;
 
     return InkWell(
       onTap: isComingSoon ? null : onTap,
@@ -125,15 +109,15 @@ class AiHubScreen extends ConsumerWidget {
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 300),
         decoration: BoxDecoration(
-          color: isComingSoon ? carbonInk.withAlpha(5) : xuanPaper,
+          color: isComingSoon ? onSurface.withValues(alpha: 0.05) : theme.cardTheme.color,
           borderRadius: BorderRadius.circular(20),
           border: Border.all(
-            color: isComingSoon ? carbonInk.withAlpha(20) : carbonInk.withAlpha(40),
+            color: isComingSoon ? onSurface.withValues(alpha: 0.1) : onSurface.withValues(alpha: 0.2),
             width: 1.5,
           ),
           boxShadow: isComingSoon ? null : [
             BoxShadow(
-              color: carbonInk.withAlpha(20),
+              color: onSurface.withValues(alpha: 0.1),
               blurRadius: 15,
               offset: const Offset(0, 8),
             )
@@ -145,12 +129,12 @@ class AiHubScreen extends ConsumerWidget {
             Container(
               padding: const EdgeInsets.all(14),
               decoration: BoxDecoration(
-                color: isComingSoon ? carbonInk.withAlpha(10) : carbonInk,
+                color: isComingSoon ? onSurface.withValues(alpha: 0.1) : theme.colorScheme.primary,
                 shape: BoxShape.circle,
               ),
               child: Icon(
                 icon, 
-                color: isComingSoon ? carbonInk.withAlpha(60) : xuanPaper, 
+                color: isComingSoon ? onSurface.withValues(alpha: 0.4) : theme.colorScheme.onPrimary, 
                 size: 24
               ),
             ),
@@ -161,19 +145,17 @@ class AiHubScreen extends ConsumerWidget {
                 children: [
                   Text(
                     title,
-                    style: TextStyle(
-                      fontSize: 16,
+                    style: theme.textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.w900,
-                      color: isComingSoon ? carbonInk.withAlpha(100) : carbonInk,
+                      color: isComingSoon ? onSurface.withValues(alpha: 0.4) : onSurface,
                       letterSpacing: 1.2,
                     ),
                   ),
                   const SizedBox(height: 6),
                   Text(
                     description,
-                    style: TextStyle(
-                      fontSize: 13,
-                      color: isComingSoon ? carbonInk.withAlpha(60) : carbonInk.withAlpha(160),
+                    style: theme.textTheme.bodySmall?.copyWith(
+                      color: isComingSoon ? onSurface.withValues(alpha: 0.3) : onSurface.withValues(alpha: 0.7),
                       height: 1.4,
                     ),
                   ),
@@ -181,7 +163,7 @@ class AiHubScreen extends ConsumerWidget {
               ),
             ),
             if (!isComingSoon)
-              Icon(Icons.arrow_forward_ios_rounded, size: 16, color: carbonInk.withAlpha(100)),
+              Icon(Icons.arrow_forward_ios_rounded, size: 16, color: onSurface.withValues(alpha: 0.4)),
           ],
         ),
       ),

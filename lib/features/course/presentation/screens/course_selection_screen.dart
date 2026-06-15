@@ -21,8 +21,7 @@ class CourseSelectionScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("CURRICULUM PATHS", 
-          style: TextStyle(fontWeight: FontWeight.bold, letterSpacing: 4, fontSize: 12, color: Colors.brown)),
+        title: const Text("CURRICULUM PATHS"),
         centerTitle: true,
         backgroundColor: Colors.transparent,
         elevation: 0,

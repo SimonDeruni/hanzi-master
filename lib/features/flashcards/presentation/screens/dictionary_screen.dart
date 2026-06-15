@@ -92,12 +92,7 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
                 padding: const EdgeInsets.fromLTRB(24, 8, 24, 16),
                 child: Text(
                   "Dictionary",
-                  style: TextStyle(
-                    fontSize: 34,
-                    fontWeight: FontWeight.bold,
-                    color: isDark ? Colors.white : const Color(0xFF1A1A1B),
-                    letterSpacing: -0.5,
-                  ),
+                  style: Theme.of(context).textTheme.headlineLarge,
                 ),
               ),
             ),
