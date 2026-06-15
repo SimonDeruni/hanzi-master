@@ -115,12 +115,27 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        heroTag: 'dictionary_add_fab',
-        backgroundColor: Colors.purple,
-        icon: const Icon(Icons.auto_awesome, color: Colors.white),
-        label: const Text("Generate", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
-        onPressed: () => AiDeckGeneratorSheet.show(context),
+      floatingActionButton: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          FloatingActionButton(
+            heroTag: 'dictionary_scan_fab',
+            backgroundColor: Theme.of(context).colorScheme.primary,
+            child: const Icon(Icons.document_scanner, color: Colors.white),
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const UniversalScannerScreen()));
+            },
+          ),
+          const SizedBox(height: 16),
+          FloatingActionButton.extended(
+            heroTag: 'dictionary_add_fab',
+            backgroundColor: Colors.purple,
+            icon: const Icon(Icons.auto_awesome, color: Colors.white),
+            label: const Text("Generate", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+            onPressed: () => AiDeckGeneratorSheet.show(context),
+          ),
+        ],
       ),
     );
   }
