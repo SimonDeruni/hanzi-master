@@ -28,19 +28,14 @@ class OcrService {
     }
   }
 
-  /// Extracts unique Chinese characters from a block of text.
+  /// Extracts Chinese text, keeping sentence structure intact.
   String _extractChineseCharacters(String text) {
-    // Regex for basic Chinese character blocks
-    final RegExp chineseRegex = RegExp(r'[\u4E00-\u9FFF]');
+    // Regex for basic Chinese characters AND basic Chinese punctuation
+    final RegExp chineseRegex = RegExp(r'[\u4E00-\u9FFF\u3000-\u303F\uFF00-\uFFEF]+');
     final matches = chineseRegex.allMatches(text);
     
-    // We want unique characters, ordered by appearance
-    final Set<String> uniqueChars = {};
-    for (final match in matches) {
-      uniqueChars.add(match.group(0)!);
-    }
-    
-    return uniqueChars.join();
+    // Join the blocks of Chinese text, preserving words and sentences
+    return matches.map((m) => m.group(0)!).join(' ');
   }
 
   void dispose() {

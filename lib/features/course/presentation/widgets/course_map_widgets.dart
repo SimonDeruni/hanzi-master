@@ -627,7 +627,7 @@ class _IconNode extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double size = isSun ? 80 : 60;
+    final double size = isSun ? 80 : 64;
     final Color themeColor = _getThemeColor();
     
     Color colorA, colorB;
@@ -741,11 +741,12 @@ class _IconNode extends StatelessWidget {
                           ),
                         )
                       : Text(
-                          "${index + 1}",
+                          node.hanzi,
                           style: TextStyle(
-                            fontSize: 22,
+                            fontSize: 24,
                             fontWeight: FontWeight.w900,
                             color: textColor,
+                            fontFamily: 'NotoSerifSC',
                           ),
                         ),
                   ),

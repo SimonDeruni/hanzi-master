@@ -82,12 +82,21 @@ class StrokeMatcher {
 
     // --- 1. Directionality Check ---
     final startDist = (userStroke.first - referenceMedian.first).distance;
-    final baseThreshold = (150.0 - (masteryLevel * 75.0)) * lengthFactor;
+    final baseThreshold = (200.0 - (masteryLevel * 50.0)) * lengthFactor;
     // Audit Logic: Ensure thresholds don't get impossibly small for tiny strokes
-    final minThreshold = 35.0 - (masteryLevel * 10.0);
-    final startThreshold = (strictEndpoints ? baseThreshold : baseThreshold * 2.0).clamp(minThreshold, 300.0);
+    final minThreshold = 50.0 - (masteryLevel * 10.0);
+    final startThreshold = (strictEndpoints ? baseThreshold : baseThreshold * 2.5).clamp(minThreshold, 350.0);
     
     if (startDist > startThreshold) {
+      // Check if they drew it backwards
+      final endDist = (userStroke.first - referenceMedian.last).distance;
+      if (endDist < startThreshold) {
+        return StrokeMatchResult(
+          isMatch: false,
+          score: 0.0,
+          feedback: 'Draw in the other direction ➔',
+        );
+      }
       return StrokeMatchResult(
         isMatch: false,
         score: 0.0,
@@ -99,7 +108,7 @@ class StrokeMatcher {
     final userCentroid = _calculateCentroid(userStroke);
     final refCentroid = _calculateCentroid(referenceMedian);
     final centroidDist = (userCentroid - refCentroid).distance;
-    final centroidThreshold = ((200.0 - (masteryLevel * 100.0)) * lengthFactor).clamp(minThreshold * 1.5, 400.0);
+    final centroidThreshold = ((250.0 - (masteryLevel * 80.0)) * lengthFactor).clamp(minThreshold * 1.5, 500.0);
 
     if (centroidDist > centroidThreshold) {
       return StrokeMatchResult(
@@ -134,8 +143,8 @@ class StrokeMatcher {
     final endWeight = strictEndpoints ? 0.3 : 0.1;
     final combinedError = (averageDistance * shapeWeight) + (endpointPenalty * endWeight);
 
-    final baseBuffer = ((100.0 - (masteryLevel * 50.0)) * lengthFactor).clamp(minThreshold, 200.0);
-    final bufferZone = strictEndpoints ? baseBuffer : baseBuffer * 1.5;
+    final baseBuffer = ((150.0 - (masteryLevel * 50.0)) * lengthFactor).clamp(minThreshold, 250.0);
+    final bufferZone = strictEndpoints ? baseBuffer : baseBuffer * 2.0;
     
     final bool isMatch = combinedError <= bufferZone;
     final double score = (1.0 - (combinedError / (bufferZone * 2.0))).clamp(0.0, 1.0);

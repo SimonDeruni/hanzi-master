@@ -222,8 +222,8 @@ class _NotFoundBodyState extends ConsumerState<_NotFoundBody> {
                   FlashcardEditDialog.show(
                     context,
                     hanzi: widget.hanzi,
-                    pinyin: _pinyin,
-                    definition: _definition,
+                    pinyin: _cleanPinyin(_pinyin),
+                    definition: _cleanDefinition(_definition),
                   );
                 },
               ),

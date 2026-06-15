@@ -221,7 +221,7 @@ class GeminiService {
         'Content-Type': 'application/json',
       },
       body: jsonEncode(body),
-    ).timeout(const Duration(seconds: 40));
+    ).timeout(const Duration(seconds: 90));
 
     if (response.statusCode == 200) {
       final json = jsonDecode(utf8.decode(response.bodyBytes));
@@ -363,7 +363,7 @@ Respond ONLY in valid JSON format with this exact structure:
     
     try {
       final text = await _makeOpenRouterCall(
-        model: 'qwen/qwen-vl-plus:free',
+        model: 'google/gemini-2.5-flash',
         messages: [
           {
             'role': 'user',
@@ -550,7 +550,7 @@ You are a professional Chinese language professor creating Graded Readers.
 Write an engaging, culturally accurate story or article about "$topic" (Category: $category).
 CRITICAL: You MUST restrict your vocabulary entirely to the HSK $hskLevel word list. Keep it under 400 words.
 
-Respond ONLY in valid JSON format with this exact structure:
+Respond ONLY in valid JSON format with this exact structure. DO NOT CUT OFF mid-generation. Ensure the JSON is complete and valid:
 {
   "sentences": [
     {
@@ -572,7 +572,7 @@ Make sure every single character in the 'chinese' sentence is represented in the
 
     try {
       final text = await _makeOpenRouterCall(
-        model: 'deepseek/deepseek-chat',
+        model: 'google/gemini-2.5-flash',
         messages: [{'role': 'user', 'content': prompt}],
         jsonMode: true,
       );
@@ -671,7 +671,7 @@ Make sure every single character in the 'chinese' sentence is represented in the
 
   Future<Map<String, dynamic>> gradeAudio(List<int> audioBytes, String expectedChinese, String expectedPinyin) async {
     final model = GenerativeModel(
-      model: 'gemini-2.0-flash',
+      model: 'gemini-1.5-flash',
       apiKey: _pool.googleKey,
     );
 

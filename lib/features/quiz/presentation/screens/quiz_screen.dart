@@ -64,18 +64,17 @@ class _QuizScreenState extends State<QuizScreen> {
     });
 
     Future.delayed(const Duration(seconds: 1), () {
-      if (!mounted) {
-        return;
-      }
-      if (_currentIndex < _questions.length - 1) {
-        setState(() {
+      if (!mounted) return;
+      
+      setState(() {
+        _hasAnswered = false;
+        _selectedOptionId = null;
+        if (_currentIndex < _questions.length - 1) {
           _currentIndex++;
-          _hasAnswered = false;
-          _selectedOptionId = null;
-        });
-      } else {
-        setState(() => _isFinished = true);
-      }
+        } else {
+          _isFinished = true;
+        }
+      });
     });
   }
 

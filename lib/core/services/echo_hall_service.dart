@@ -40,7 +40,7 @@ class EchoHallService {
           'Content-Type': 'application/json',
         },
         body: jsonEncode({
-          'model': 'deepseek/deepseek-chat',
+          'model': 'google/gemini-2.5-flash',
           'messages': messages,
           'max_tokens': 220,
         }),
