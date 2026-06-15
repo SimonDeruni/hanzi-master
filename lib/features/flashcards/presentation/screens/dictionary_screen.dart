@@ -46,13 +46,21 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
         child: NestedScrollView(
           headerSliverBuilder: (context, innerBoxIsScrolled) => [
             SliverAppBar(
-              backgroundColor: theme.colorScheme.surface,
+              backgroundColor: theme.colorScheme.surface.withValues(alpha: 0.95),
               surfaceTintColor: Colors.transparent,
               elevation: 0,
               pinned: true,
-              floating: true,
-              forceElevated: innerBoxIsScrolled,
-              title: const Text("LIBRARY"),
+              expandedHeight: 120,
+              flexibleSpace: FlexibleSpaceBar(
+                titlePadding: const EdgeInsets.only(left: 24, bottom: 16),
+                title: Text(
+                  "The Scholar's Library",
+                  style: theme.textTheme.headlineSmall?.copyWith(
+                    fontWeight: FontWeight.w900,
+                    letterSpacing: 1.0,
+                  ),
+                ),
+              ),
               actions: [
                 Consumer(
                   builder: (context, ref, child) {
@@ -86,67 +94,6 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
                   onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const SettingsScreen())),
                 ),
               ],
-            ),
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.only(top: 16, bottom: 8),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                      child: Text(
-                        "Your Bookshelf",
-                        style: theme.textTheme.headlineMedium,
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                    SizedBox(
-                      height: 140,
-                      child: Consumer(
-                        builder: (context, ref, child) {
-                          final asyncDecks = ref.watch(deckControllerProvider);
-                          final allCards = ref.watch(flashcardControllerProvider).valueOrNull ?? [];
-                          
-                          return asyncDecks.when(
-                            data: (decks) {
-                              if (decks.isEmpty) {
-                                return const Center(child: Text("Your bookshelf is empty."));
-                              }
-                              return ListView.separated(
-                                padding: const EdgeInsets.symmetric(horizontal: 24),
-                                scrollDirection: Axis.horizontal,
-                                itemCount: decks.length,
-                                separatorBuilder: (context, index) => const SizedBox(width: 16),
-                                itemBuilder: (context, index) {
-                                  final deck = decks[index];
-                                  final deckCardsCount = allCards.where((c) => c.deckId == deck.id || (deck.id == 'default' && c.deckId == null)).length;
-                                  
-                                  return _BookshelfCard(
-                                    deck: deck,
-                                    cardCount: deckCardsCount,
-                                    theme: theme,
-                                  );
-                                },
-                              );
-                            },
-                            loading: () => const Center(child: CircularProgressIndicator()),
-                            error: (e, s) => Center(child: Text("Error: $e")),
-                          );
-                        },
-                      ),
-                    ),
-                    const SizedBox(height: 24),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                      child: Text(
-                        "Lexicon",
-                        style: theme.textTheme.headlineMedium,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
             ),
             SliverPersistentHeader(
               pinned: true,
@@ -189,30 +136,21 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
   }
 }
 
-class _BookshelfCard extends StatelessWidget {
-  final Deck deck;
-  final int cardCount;
-  final ThemeData theme;
+class _LexiconMiniCard extends StatelessWidget {
+  final Flashcard card;
 
-  const _BookshelfCard({
-    required this.deck,
-    required this.cardCount,
-    required this.theme,
-  });
+  const _LexiconMiniCard({required this.card});
 
   @override
   Widget build(BuildContext context) {
-    final bool isDefault = deck.id == 'default';
-    final Color deckColor = isDefault ? theme.colorScheme.primary : theme.colorScheme.secondary;
-    
+    final theme = Theme.of(context);
     return InkWell(
-      onTap: () => Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => DeckDetailScreen(deck: deck)),
-      ),
+      onTap: () {
+        DictionaryQuickBox.show(context, card: card, isInLibrary: true);
+      },
       borderRadius: BorderRadius.circular(16),
       child: Container(
-        width: 140,
+        width: 120,
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           color: theme.cardTheme.color,
@@ -227,25 +165,106 @@ class _BookshelfCard extends StatelessWidget {
           ],
         ),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
-              isDefault ? Icons.library_books : Icons.folder,
-              color: deckColor,
-              size: 28,
+            FittedBox(
+              fit: BoxFit.scaleDown,
+              child: Text(
+                card.hanzi,
+                style: theme.textTheme.displaySmall?.copyWith(height: 1.1),
+              ),
             ),
-            const Spacer(),
-            Text(
-              deck.name,
-              style: theme.textTheme.titleMedium,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
+            const SizedBox(height: 8),
+            PinyinText(
+              text: card.pinyin,
+              style: theme.textTheme.labelMedium?.copyWith(
+                color: theme.colorScheme.primary,
+              ),
             ),
             const SizedBox(height: 4),
             Text(
-              "$cardCount cards",
+              card.definition,
               style: theme.textTheme.bodySmall,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              textAlign: TextAlign.center,
             ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _BookshelfVerticalCard extends StatelessWidget {
+  final Deck deck;
+  final int cardCount;
+
+  const _BookshelfVerticalCard({
+    required this.deck,
+    required this.cardCount,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final bool isDefault = deck.id == 'default';
+    final Color deckColor = isDefault ? theme.colorScheme.primary : theme.colorScheme.secondary;
+    
+    return InkWell(
+      onTap: () => Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => DeckDetailScreen(deck: deck)),
+      ),
+      borderRadius: BorderRadius.circular(16),
+      child: Container(
+        padding: const EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          color: theme.cardTheme.color,
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(color: theme.colorScheme.onSurface.withValues(alpha: 0.1)),
+          boxShadow: [
+            BoxShadow(
+              color: theme.colorScheme.onSurface.withValues(alpha: 0.05),
+              blurRadius: 10,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
+        child: Row(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: deckColor.withValues(alpha: 0.1),
+                shape: BoxShape.circle,
+              ),
+              child: Icon(
+                isDefault ? Icons.library_books : Icons.folder,
+                color: deckColor,
+                size: 28,
+              ),
+            ),
+            const SizedBox(width: 20),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    deck.name,
+                    style: theme.textTheme.titleMedium,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    "$cardCount cards",
+                    style: theme.textTheme.bodySmall,
+                  ),
+                ],
+              ),
+            ),
+            Icon(Icons.arrow_forward_ios_rounded, size: 16, color: theme.colorScheme.onSurface.withValues(alpha: 0.4)),
           ],
         ),
       ),
@@ -268,36 +287,31 @@ class _SearchBarDelegate extends SliverPersistentHeaderDelegate {
   Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
     final theme = Theme.of(context);
     
-    return ClipRect(
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-        child: Container(
-          color: theme.colorScheme.surface.withValues(alpha: 0.8),
-          padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
-          child: Container(
-            decoration: BoxDecoration(
-              color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.white.withValues(alpha: 0.9),
-              borderRadius: BorderRadius.circular(30),
-              boxShadow: [
-                BoxShadow(
-                  color: theme.colorScheme.onSurface.withValues(alpha: 0.05),
-                  blurRadius: 10,
-                  offset: const Offset(0, 4),
-                ),
-              ],
+    return Container(
+      color: Colors.transparent,
+      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
+      child: Container(
+        decoration: BoxDecoration(
+          color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.white.withValues(alpha: 0.9),
+          borderRadius: BorderRadius.circular(30),
+          boxShadow: [
+            BoxShadow(
+              color: theme.colorScheme.onSurface.withValues(alpha: 0.05),
+              blurRadius: 10,
+              offset: const Offset(0, 4),
             ),
-            child: TextField(
-              style: theme.textTheme.bodyLarge,
-              decoration: InputDecoration(
-                hintText: "Search Pinyin, Hanzi, or English...",
-                hintStyle: theme.textTheme.bodyMedium?.copyWith(color: theme.colorScheme.onSurface.withValues(alpha: 0.4)),
-                prefixIcon: const Icon(Icons.search, color: Colors.grey),
-                border: InputBorder.none,
-                contentPadding: const EdgeInsets.symmetric(vertical: 16),
-              ),
-              onChanged: onChanged,
-            ),
+          ],
+        ),
+        child: TextField(
+          style: theme.textTheme.bodyLarge,
+          decoration: InputDecoration(
+            hintText: "Search Pinyin, Hanzi, or English...",
+            hintStyle: theme.textTheme.bodyMedium?.copyWith(color: theme.colorScheme.onSurface.withValues(alpha: 0.4)),
+            prefixIcon: const Icon(Icons.search, color: Colors.grey),
+            border: InputBorder.none,
+            contentPadding: const EdgeInsets.symmetric(vertical: 16),
           ),
+          onChanged: onChanged,
         ),
       ),
     );
@@ -356,10 +370,70 @@ class _DictionarySearchTab extends ConsumerWidget {
         if (searchQuery.isEmpty) {
           return CustomScrollView(
             slivers: [
-              SliverFillRemaining(
-                hasScrollBody: false,
-                child: _buildZenEmptyState(context),
-              )
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 16, bottom: 8),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                        child: Text(
+                          "Latest Discoveries",
+                          style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                      SizedBox(
+                        height: 140,
+                        child: flashcards.isEmpty 
+                          ? const Center(child: Text("No characters in lexicon yet."))
+                          : ListView.separated(
+                              padding: const EdgeInsets.symmetric(horizontal: 24),
+                              scrollDirection: Axis.horizontal,
+                              itemCount: flashcards.length > 10 ? 10 : flashcards.length,
+                              separatorBuilder: (context, index) => const SizedBox(width: 16),
+                              itemBuilder: (context, index) {
+                                // latest first -> flashcards are usually appended, so reversed
+                                final card = flashcards[flashcards.length - 1 - index];
+                                return _LexiconMiniCard(card: card);
+                              },
+                            ),
+                      ),
+                      const SizedBox(height: 32),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                        child: Text(
+                          "Your Bookshelf",
+                          style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                    ],
+                  ),
+                ),
+              ),
+              asyncDecks.when(
+                data: (decks) => SliverPadding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  sliver: SliverList(
+                    delegate: SliverChildBuilderDelegate(
+                      (context, index) {
+                        final deck = decks[index];
+                        final deckCardsCount = flashcards.where((c) => c.deckId == deck.id || (deck.id == 'default' && c.deckId == null)).length;
+                        return Padding(
+                          padding: const EdgeInsets.only(bottom: 16),
+                          child: _BookshelfVerticalCard(deck: deck, cardCount: deckCardsCount),
+                        );
+                      },
+                      childCount: decks.length,
+                    ),
+                  ),
+                ),
+                loading: () => const SliverFillRemaining(child: Center(child: CircularProgressIndicator())),
+                error: (e, s) => SliverFillRemaining(child: Center(child: Text("Error: $e"))),
+              ),
+              const SliverPadding(padding: EdgeInsets.only(bottom: 100)),
             ],
           );
         }
