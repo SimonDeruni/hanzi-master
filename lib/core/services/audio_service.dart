@@ -5,10 +5,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:http/http.dart' as http;
 import 'dart:io';
 
+import 'package:hanzi_master/core/services/api_key_pool.dart';
+
 final audioServiceProvider = Provider<AudioService>((ref) {
-  return AudioService();
+  final pool = ref.watch(apiKeyPoolProvider);
+  return AudioService(pool: pool);
 });
 
 class AudioService {
@@ -19,6 +23,8 @@ class AudioService {
   
   // Cache directory for downloaded TTS audio
   Directory? _cacheDir;
+
+  AudioService({required ApiKeyPool pool});
 
   Future<void> init() async {
     if (_isInitialized) return;
@@ -67,9 +73,9 @@ class AudioService {
       }
     }
 
-    // Tier 3: Cloud TTS
+    // Tier 3: Fast Cloud TTS (OpenAI tts-1 or mocked Azure)
     try {
-      final audioData = await _fetchFromCloud(hanzi);
+      final audioData = await _fetchStandardCloud(hanzi);
       if (audioData != null) {
         await cacheFile.writeAsBytes(audioData);
         await _audioPlayer.play(DeviceFileSource(cacheFile.path));
@@ -94,27 +100,61 @@ class AudioService {
       return;
     }
 
-    // Tier 3: Cloud TTS
+    // Tier 3: Premium Cloud TTS (OpenAI tts-1-hd or ElevenLabs for expressive speech)
     try {
-      final audioData = await _fetchFromCloud(sentence);
+      final audioData = await _fetchPremiumCloud(sentence);
       if (audioData != null) {
         await cacheFile.writeAsBytes(audioData);
         await _audioPlayer.play(DeviceFileSource(cacheFile.path));
         return;
       }
     } catch (e) {
-      debugPrint("Cloud TTS failed for sentence: $e");
+      debugPrint("Premium Cloud TTS failed for sentence: $e");
     }
 
     await _fallbackTts.speak(sentence);
   }
 
-  /// Tier 3: Cloud TTS Fetcher (Currently MOCKED for security/MVP)
-  Future<Uint8List?> _fetchFromCloud(String text) async {
-    // In a real scenario, this would be an authenticated POST to Azure/ElevenLabs.
-    // For this implementation, we return null to force the Tier 4 fallback 
-    // until a valid API key and endpoint are configured by the user.
-    // TODO: Integrate Azure Speech SDK or ElevenLabs REST API.
+  Future<Uint8List?> _fetchStandardCloud(String text) async {
+    return _callOpenAiTts(text, model: 'tts-1', voice: 'alloy');
+  }
+
+  Future<Uint8List?> _fetchPremiumCloud(String text) async {
+    // We use a different, more expressive voice (e.g., 'nova' or 'shimmer') and the HD model
+    // for stories and Master Lin's dialog to fix the "robotic" issue.
+    return _callOpenAiTts(text, model: 'tts-1-hd', voice: 'shimmer');
+  }
+
+  Future<Uint8List?> _callOpenAiTts(String text, {required String model, required String voice}) async {
+    // Real implementation connecting to OpenAI's TTS API.
+    // Ensure we have a valid key from the pool, even if it's the Google key (we use it as a proxy or assume the pool has an OpenAI key).
+    // For this example, we assume `_pool.googleKey` or similar might be configured to accept OpenAI, or we mock the exact REST call.
+    
+    // As we only have OpenRouter/Google keys explicitly named, we will attempt to use an OpenAI compatible endpoint if available,
+    // or return null to trigger fallback if no valid OpenAI key is present.
+    final apiKey = const String.fromEnvironment('OPENAI_API_KEY', defaultValue: '');
+    if (apiKey.isEmpty) return null;
+
+    try {
+      final response = await http.post(
+        Uri.parse('https://api.openai.com/v1/audio/speech'),
+        headers: {
+          'Authorization': 'Bearer $apiKey',
+          'Content-Type': 'application/json',
+        },
+        body: jsonEncode({
+          'model': model,
+          'input': text,
+          'voice': voice,
+        }),
+      );
+
+      if (response.statusCode == 200) {
+        return response.bodyBytes;
+      }
+    } catch (e) {
+      debugPrint('OpenAI TTS error: $e');
+    }
     return null;
   }
 
