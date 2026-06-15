@@ -26,6 +26,85 @@ class FlashcardRepositoryImpl implements FlashcardRepository {
   @override
   Future<void> init() async {
     await preloadDatabases();
+    await _seedDatabaseIfEmpty();
+  }
+
+  Future<void> _seedDatabaseIfEmpty() async {
+    if (flashcardBox.isNotEmpty) return;
+
+    try {
+      final List<FlashcardModel> toAdd = [];
+      final now = DateTime.now();
+      
+      // Seed HSK 1
+      final hsk1Str = await rootBundle.loadString('assets/data/hsk1.json');
+      final List<dynamic> hsk1List = json.decode(hsk1Str);
+      for (var item in hsk1List) {
+        toAdd.add(FlashcardModel(
+          id: item['uuid'] ?? 'hsk1_${item['hanzi']}',
+          deckId: 'hsk1',
+          hanzi: item['hanzi'],
+          pinyin: item['pinyin'],
+          definition: item['definition'],
+          hskLevel: 1,
+          strokePaths: const [],
+          nextReviewDate: now,
+          interval: 0,
+          easeFactor: 2.5,
+          streak: 0,
+        ));
+      }
+
+      // Seed HSK 2
+      final hsk2Str = await rootBundle.loadString('assets/data/hsk2_bundle.json');
+      final Map<String, dynamic> hsk2Map = json.decode(hsk2Str);
+      final List<dynamic> hsk2List = hsk2Map['vocabulary'] ?? [];
+      for (var item in hsk2List) {
+        toAdd.add(FlashcardModel(
+          id: item['uuid'] ?? 'hsk2_${item['hanzi']}',
+          deckId: 'hsk2',
+          hanzi: item['hanzi'],
+          pinyin: item['pinyin'],
+          definition: item['definition'],
+          hskLevel: 2,
+          strokePaths: const [],
+          nextReviewDate: now,
+          interval: 0,
+          easeFactor: 2.5,
+          streak: 0,
+        ));
+      }
+
+      // Seed HSK 3
+      final hsk3Str = await rootBundle.loadString('assets/data/hsk3_bundle.json');
+      final Map<String, dynamic> hsk3Map = json.decode(hsk3Str);
+      final List<dynamic> hsk3List = hsk3Map['vocabulary'] ?? [];
+      for (var item in hsk3List) {
+        toAdd.add(FlashcardModel(
+          id: item['uuid'] ?? 'hsk3_${item['hanzi']}',
+          deckId: 'hsk3',
+          hanzi: item['hanzi'],
+          pinyin: item['pinyin'],
+          definition: item['definition'],
+          hskLevel: 3,
+          strokePaths: const [],
+          nextReviewDate: now,
+          interval: 0,
+          easeFactor: 2.5,
+          streak: 0,
+        ));
+      }
+
+      // Add to Hive
+      final Map<String, FlashcardModel> mapToAdd = {};
+      for (var model in toAdd) {
+        mapToAdd[model.id] = model;
+      }
+      await flashcardBox.putAll(mapToAdd);
+      debugPrint("Successfully seeded ${toAdd.length} flashcards into HSK decks.");
+    } catch (e) {
+      debugPrint("Error seeding database: $e");
+    }
   }
 
   @override
