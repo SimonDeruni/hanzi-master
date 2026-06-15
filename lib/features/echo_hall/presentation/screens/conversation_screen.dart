@@ -206,7 +206,7 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
             ),
           ),
           
-          // Send Button Placeholder
+          // Send Button
           Container(
             margin: const EdgeInsets.all(8),
             decoration: BoxDecoration(
@@ -214,9 +214,11 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
               shape: BoxShape.circle,
             ),
             child: IconButton(
-              icon: Icon(Icons.mic, color: theme.colorScheme.onPrimary, size: 20),
-              onPressed: () {
-                // Future feature: tap to toggle recording
+              icon: Icon(Icons.send_rounded, color: theme.colorScheme.onPrimary, size: 20),
+              onPressed: state.isLoading || state.isProcessing ? null : () {
+                // If we had a text field, we'd send text. But this is the mic pill.
+                // We'll leave this as a visual placeholder for now, since holding the mic already sends.
+                // If you want tap-to-record, you'd toggle state here.
               },
             ),
           ),
