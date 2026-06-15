@@ -6,7 +6,7 @@ part of 'dictionary_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$masterDictionaryHash() => r'a804851bd4c7f4c5fd33170e13926cbd441f6901';
+String _$masterDictionaryHash() => r'b38e8265c7ea42b2ffd7138d079baacf1194dd92';
 
 /// See also [MasterDictionary].
 @ProviderFor(MasterDictionary)

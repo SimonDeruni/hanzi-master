@@ -69,6 +69,7 @@ flutter:
     - assets/audio/
     - assets/default_stories.json
     - assets/mascot/
+    - assets/mascot/data/
 
 #  fonts:
 #    - family: NotoSansSC

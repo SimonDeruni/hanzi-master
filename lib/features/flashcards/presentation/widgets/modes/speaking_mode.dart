@@ -147,7 +147,17 @@ class _SpeakingModeWidgetState extends ConsumerState<SpeakingModeWidget> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Expanded(
-                          flex: 3,
+                          flex: 2,
+                          child: Padding(
+                            padding: const EdgeInsets.only(bottom: 16.0),
+                            child: Image.asset(
+                              'assets/mascot/data/Action.png',
+                              fit: BoxFit.contain,
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          flex: 2,
                           child: Center(
                             child: FittedBox(
                               fit: BoxFit.scaleDown,

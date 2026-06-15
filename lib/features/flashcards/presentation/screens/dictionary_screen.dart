@@ -680,7 +680,7 @@ class _DictionaryItem extends StatelessWidget {
                     text: card.pinyin,
                     style: TextStyle(
                       fontSize: 16,
-                      color: isDark ? Colors.indigo.shade200 : Colors.indigo.shade900.withValues(alpha: 0.8),
+                      color: isDark ? Colors.indigo.shade300 : Colors.indigo.shade700,
                       fontWeight: FontWeight.w600,
                       letterSpacing: 0.5,
                     ),
@@ -715,7 +715,7 @@ class _DictionaryItem extends StatelessWidget {
                     card.definition,
                     style: TextStyle(
                       fontSize: 14,
-                      color: isDark ? Colors.white70 : Colors.black87,
+                      color: isDark ? Colors.white : Colors.black,
                       fontStyle: FontStyle.italic,
                       height: 1.3,
                     ),

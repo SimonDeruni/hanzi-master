@@ -51,6 +51,7 @@ class AudioService {
 
   Future<void> playCharacter(String hanzi) async {
     if (!_isInitialized) await init();
+    await stop();
 
     // tier 1: Native Asset
     final fileName = _nativeManifest[hanzi];
@@ -92,6 +93,7 @@ class AudioService {
 
   Future<void> playSentence(String sentence) async {
     if (!_isInitialized) await init();
+    await stop();
 
     final hash = sentence.hashCode.toString();
     final cacheFile = File('${_cacheDir!.path}/tts_cache/$hash.mp3');

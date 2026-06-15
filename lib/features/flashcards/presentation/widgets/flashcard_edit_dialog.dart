@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
@@ -23,10 +24,14 @@ class FlashcardEditDialog extends ConsumerStatefulWidget {
   }) {
     return showDialog(
       context: context,
-      builder: (context) => FlashcardEditDialog(
-        initialHanzi: hanzi,
-        initialPinyin: pinyin,
-        initialDefinition: definition,
+      barrierColor: Colors.black.withValues(alpha: 0.6),
+      builder: (context) => BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
+        child: FlashcardEditDialog(
+          initialHanzi: hanzi,
+          initialPinyin: pinyin,
+          initialDefinition: definition,
+        ),
       ),
     );
   }

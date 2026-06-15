@@ -215,7 +215,57 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
-                          const SizedBox(height: 16),
+                          // Thematic Cover Art
+                          Container(
+                            height: 200,
+                            margin: const EdgeInsets.only(bottom: 32),
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: [Colors.indigo.shade400, Colors.purple.shade400],
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                              ),
+                              borderRadius: BorderRadius.circular(24),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.indigo.withValues(alpha: 0.3),
+                                  blurRadius: 15,
+                                  offset: const Offset(0, 8),
+                                ),
+                              ],
+                            ),
+                            child: Stack(
+                              children: [
+                                Positioned(
+                                  right: -20,
+                                  bottom: -20,
+                                  child: Icon(
+                                    Icons.auto_stories,
+                                    size: 150,
+                                    color: Colors.white.withValues(alpha: 0.15),
+                                  ),
+                                ),
+                                Center(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      const Icon(Icons.auto_awesome, color: Colors.white, size: 48),
+                                      const SizedBox(height: 12),
+                                      Text(
+                                        "A Tale of HSK ${widget.hskLevel}",
+                                        style: const TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
+                                          letterSpacing: 2,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                           ...state.currentStory!.sentences.map((sentence) {
                             return Padding(
                               padding: const EdgeInsets.only(bottom: 24.0),

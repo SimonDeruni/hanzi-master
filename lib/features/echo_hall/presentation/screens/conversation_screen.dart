@@ -16,6 +16,8 @@ class ConversationScreen extends ConsumerStatefulWidget {
 }
 
 class _ConversationScreenState extends ConsumerState<ConversationScreen> {
+  final ScrollController _scrollController = ScrollController();
+
   @override
   void initState() {
     super.initState();
@@ -25,8 +27,30 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
   }
 
   @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  void _scrollToBottom() {
+    if (_scrollController.hasClients) {
+      _scrollController.animateTo(
+        _scrollController.position.maxScrollExtent + 200, // buffer for new message
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeOut,
+      );
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     final state = ref.watch(conversationControllerProvider);
+
+    ref.listen(conversationControllerProvider.select((state) => state.messages.length), (previous, next) {
+      if (previous != null && next > previous) {
+        Future.delayed(const Duration(milliseconds: 100), _scrollToBottom);
+      }
+    });
 
     return Scaffold(
       backgroundColor: const Color(0xFFF3F4F6), // Match image 2 background roughly
@@ -54,6 +78,12 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
                   child: Image.asset(
                     widget.scenario.avatarAssetPath,
                     fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) => Container(
+                       color: Colors.indigo.shade100,
+                       child: const Center(
+                         child: Icon(Icons.person, size: 100, color: Colors.indigo),
+                       ),
+                    ),
                   ),
                 );
               },
@@ -75,6 +105,7 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
                 children: [
                   Expanded(
                     child: ListView.builder(
+                      controller: _scrollController,
                       padding: const EdgeInsets.fromLTRB(16, 24, 16, 100),
                       itemCount: state.messages.length,
                       itemBuilder: (context, index) {

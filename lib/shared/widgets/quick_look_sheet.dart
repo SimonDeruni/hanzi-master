@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/core/utils/pinyin_utils.dart';
@@ -43,7 +44,11 @@ void showQuickLook(BuildContext context, String hanzi) {
     backgroundColor: Colors.transparent,
     isScrollControlled: true,
     useSafeArea: true,
-    builder: (ctx) => _QuickLookSheet(hanzi: hanzi),
+    barrierColor: Colors.black.withValues(alpha: 0.6),
+    builder: (ctx) => BackdropFilter(
+      filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
+      child: _QuickLookSheet(hanzi: hanzi),
+    ),
   );
 }
 

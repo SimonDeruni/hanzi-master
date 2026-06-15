@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:hanzi_master/core/character_loader.dart';
 import 'package:hanzi_master/core/stroke_matcher.dart';
+import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 
 class DrawingCanvas extends StatefulWidget {
   final List<String> strokePaths;
@@ -313,6 +314,7 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
       final bool isDarkScratch = Theme.of(context).brightness == Brightness.dark;
       return GestureDetector(
         onPanStart: (details) {
+          HapticsManager.light();
           setState(() => _userPoints.add(details.localPosition));
           _syncUserPointsWithNotifier();
         },
@@ -321,6 +323,7 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
           _syncUserPointsWithNotifier();
         },
         onPanEnd: (_) {
+          HapticsManager.light();
           setState(() => _userPoints.add(null));
           _syncUserPointsWithNotifier();
         },
@@ -498,6 +501,7 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
                       return GestureDetector(
                         onPanStart: (details) {
                           if (widget.readOnly) return;
+                          HapticsManager.light();
                           setState(() {
                             final normalizedPoint = Offset(
                               details.localPosition.dx * scaleX - centeringShift.dx,
@@ -523,6 +527,7 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
                         },
                         onPanEnd: (details) {
                           if (widget.readOnly) return;
+                          HapticsManager.light();
                           setState(() => _userPoints.add(null));
                           _gradeCurrentStroke();
                         },
@@ -796,15 +801,20 @@ class _UserDrawingPainter extends CustomPainter {
         }
         continue;
       }
+
       final pt = Offset((points[i]!.dx + centeringShift.dx) * scale, (points[i]!.dy + centeringShift.dy) * scale);
+      
       if (!hasMoved) {
         currentPath.moveTo(pt.dx, pt.dy);
         hasMoved = true;
       } else {
-        currentPath.lineTo(pt.dx, pt.dy);
+        // Smooth path using quadratic bezier
+        final prevPt = Offset((points[i-1]!.dx + centeringShift.dx) * scale, (points[i-1]!.dy + centeringShift.dy) * scale);
+        final midPt = Offset((prevPt.dx + pt.dx) / 2, (prevPt.dy + pt.dy) / 2);
+        currentPath.quadraticBezierTo(prevPt.dx, prevPt.dy, midPt.dx, midPt.dy);
       }
     }
-    // Draw the final stroke if the points list didn't end with a null
+    // Draw the final segment and current path
     if (hasMoved) {
        _drawPath(canvas, currentPath, currentStrokeIndex, defaultPaint, carbonInk);
     }
@@ -1024,7 +1034,8 @@ class _ScratchpadPainter extends CustomPainter {
 
     final path = Path();
     bool hasMoved = false;
-    for (final point in points) {
+    for (int i = 0; i < points.length; i++) {
+      final point = points[i];
       if (point == null) {
         hasMoved = false;
         continue;
@@ -1033,7 +1044,10 @@ class _ScratchpadPainter extends CustomPainter {
         path.moveTo(point.dx, point.dy);
         hasMoved = true;
       } else {
-        path.lineTo(point.dx, point.dy);
+        // Smooth path using quadratic bezier
+        final prevPt = points[i - 1]!;
+        final midPt = Offset((prevPt.dx + point.dx) / 2, (prevPt.dy + point.dy) / 2);
+        path.quadraticBezierTo(prevPt.dx, prevPt.dy, midPt.dx, midPt.dy);
       }
     }
     canvas.drawPath(path, paint);

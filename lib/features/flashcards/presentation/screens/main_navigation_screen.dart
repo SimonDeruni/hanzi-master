@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'dictionary_screen.dart';
 import 'package:hanzi_master/features/course/presentation/screens/course_selection_screen.dart';
 import 'package:hanzi_master/features/chat/presentation/screens/ai_hub_screen.dart';
 import 'package:hanzi_master/features/premium/presentation/screens/universal_scanner_screen.dart';
+import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
+import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
+import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 
-class MainNavigationScreen extends StatefulWidget {
+class MainNavigationScreen extends ConsumerStatefulWidget {
   const MainNavigationScreen({super.key});
 
   @override
-  State<MainNavigationScreen> createState() => _MainNavigationScreenState();
+  ConsumerState<MainNavigationScreen> createState() => _MainNavigationScreenState();
 }
 
-class _MainNavigationScreenState extends State<MainNavigationScreen> {
+class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
   int _selectedIndex = 0;
 
   final List<Widget> _screens = [
@@ -22,6 +26,18 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final flashcardsState = ref.watch(flashcardControllerProvider);
+
+    if (flashcardsState.isLoading && flashcardsState.valueOrNull == null) {
+      return const Scaffold(
+        body: CalligraphyBackground(
+          child: Center(
+            child: CircularProgressIndicator(color: Colors.brown),
+          ),
+        ),
+      );
+    }
+
     return Scaffold(
       body: IndexedStack(
         index: _selectedIndex,
@@ -51,7 +67,10 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
         ),
         child: BottomNavigationBar(
           currentIndex: _selectedIndex,
-          onTap: (index) => setState(() => _selectedIndex = index),
+          onTap: (index) {
+            HapticsManager.light();
+            setState(() => _selectedIndex = index);
+          },
           backgroundColor: const Color(0xFFFDFCF0),
           selectedItemColor: const Color(0xFF1A1A1B),
           unselectedItemColor: const Color(0xFF1A1A1B).withValues(alpha: 0.5),
