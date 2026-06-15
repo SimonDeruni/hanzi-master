@@ -26,6 +26,8 @@ import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart'
 import 'package:hanzi_master/shared/widgets/clickable_chinese_text.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/dictionary_quick_box.dart';
 
+import 'package:hanzi_master/features/flashcards/domain/entities/study_mode.dart';
+
 class DictionaryScreen extends ConsumerStatefulWidget {
   const DictionaryScreen({super.key});
 
@@ -746,8 +748,8 @@ class _DictionaryItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // If it's not in the library, it has no real mastery progress yet.
-    final double masteryProgress = isInLibrary ? (card.streak / 5.0).clamp(0.0, 1.0) : 0.0;
-    final bool isMastered = isInLibrary ? card.isMastered : false;
+    final double masteryProgress = isInLibrary ? (card.getStatsForMode(StudyMode.reading).streak / 5.0).clamp(0.0, 1.0) : 0.0;
+    final bool isMastered = isInLibrary ? card.isMastered(StudyMode.reading) : false;
     final bool isDark = Theme.of(context).brightness == Brightness.dark;
 
     return InkWell(
