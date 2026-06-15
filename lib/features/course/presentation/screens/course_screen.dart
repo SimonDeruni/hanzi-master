@@ -9,17 +9,24 @@ import '../widgets/course_map_widgets.dart';
 import '../widgets/course_painters.dart';
 
 class CourseScreen extends ConsumerWidget {
-  const CourseScreen({super.key});
+  final String deckId;
+  final String deckName;
+
+  const CourseScreen({
+    super.key,
+    required this.deckId,
+    required this.deckName,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final asyncUnits = ref.watch(courseControllerProvider);
+    final asyncUnits = ref.watch(courseControllerProvider(deckId));
     final isLibraryLoading = ref.watch(flashcardControllerProvider.select((s) => s.isLoading));
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("THE LIVING SCROLL", 
-          style: TextStyle(fontWeight: FontWeight.bold, letterSpacing: 6, fontSize: 10, color: Colors.brown)),
+        title: Text(deckName.toUpperCase(), 
+          style: const TextStyle(fontWeight: FontWeight.bold, letterSpacing: 6, fontSize: 10, color: Colors.brown)),
         centerTitle: true,
         backgroundColor: Colors.transparent,
         elevation: 0,

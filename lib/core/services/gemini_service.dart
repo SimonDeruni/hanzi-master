@@ -199,7 +199,7 @@ class GeminiService {
 
   GeminiService({required ApiKeyPool pool}) : _pool = pool;
 
-  Future<String> _makeOpenRouterCall({
+  Future<String> makeOpenRouterCall({
     required String model,
     required List<Map<String, dynamic>> messages,
     bool jsonMode = false,
@@ -232,7 +232,7 @@ class GeminiService {
   }
 
   Future<String> generateText(String prompt) async {
-    return await _makeOpenRouterCall(
+    return await makeOpenRouterCall(
       model: 'google/gemini-2.5-flash',
       messages: [
         {'role': 'user', 'content': prompt}
@@ -258,7 +258,7 @@ Return ONLY valid JSON with this exact structure:
 }
 ''';
 
-    final response = await _makeOpenRouterCall(
+    final response = await makeOpenRouterCall(
       model: 'deepseek/deepseek-chat',
       messages: [{'role': 'user', 'content': prompt}],
       jsonMode: true,
@@ -282,7 +282,7 @@ Keep your explanation short, engaging, and easy to understand for a language lea
 ''';
 
     try {
-      final response = await _makeOpenRouterCall(
+      final response = await makeOpenRouterCall(
         model: 'deepseek/deepseek-chat',
         messages: [{'role': 'user', 'content': prompt}],
       );
@@ -337,7 +337,7 @@ Respond ONLY in valid JSON format with this exact structure:
 ''';
 
     try {
-      final text = await _makeOpenRouterCall(
+      final text = await makeOpenRouterCall(
         model: 'deepseek/deepseek-chat',
         messages: [{'role': 'user', 'content': prompt}],
         jsonMode: true,
@@ -362,7 +362,7 @@ Respond ONLY in valid JSON format with this exact structure:
     final base64Image = base64Encode(bytes);
     
     try {
-      final text = await _makeOpenRouterCall(
+      final text = await makeOpenRouterCall(
         model: 'google/gemini-2.5-flash',
         messages: [
           {
@@ -411,7 +411,7 @@ Respond ONLY in valid JSON format with this exact structure:
 ''';
 
     try {
-      final text = await _makeOpenRouterCall(
+      final text = await makeOpenRouterCall(
         model: 'deepseek/deepseek-chat',
         messages: [{'role': 'user', 'content': prompt}],
         jsonMode: true,
@@ -463,7 +463,7 @@ Respond ONLY in valid JSON format as a list of objects with this exact structure
 ''';
 
     try {
-      final text = await _makeOpenRouterCall(
+      final text = await makeOpenRouterCall(
         model: 'google/gemini-2.5-flash',
         messages: [{'role': 'user', 'content': prompt}],
         jsonMode: true,
@@ -525,7 +525,7 @@ Make sure every single character in the 'chinese' sentence is represented in the
 ''';
 
     try {
-      final text = await _makeOpenRouterCall(
+      final text = await makeOpenRouterCall(
         model: 'google/gemini-2.5-flash',
         messages: [{'role': 'user', 'content': prompt}],
         jsonMode: true,
@@ -571,7 +571,7 @@ Make sure every single character in the 'chinese' sentence is represented in the
 ''';
 
     try {
-      final text = await _makeOpenRouterCall(
+      final text = await makeOpenRouterCall(
         model: 'google/gemini-2.5-flash',
         messages: [{'role': 'user', 'content': prompt}],
         jsonMode: true,
@@ -621,7 +621,7 @@ Make sure every single character in the 'chinese' sentence is represented in the
 ''';
 
     try {
-      final text = await _makeOpenRouterCall(
+      final text = await makeOpenRouterCall(
         model: 'deepseek/deepseek-chat',
         messages: [{'role': 'user', 'content': prompt}],
         jsonMode: true,

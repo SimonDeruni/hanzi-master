@@ -79,6 +79,10 @@ void main() async {
     'decks',
     encryptionCipher: cipher,
   );
+  await Hive.openBox<String>(
+    'curriculum_cache_box',
+    encryptionCipher: cipher,
+  );
 
   // Initialize RevenueCat
   await MonetizationService.init();

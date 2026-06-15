@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/features/course/presentation/screens/course_screen.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
+import 'package:hanzi_master/features/flashcards/presentation/providers/deck_controller.dart';
+import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 
-class CourseSelectionScreen extends StatelessWidget {
+class CourseSelectionScreen extends ConsumerWidget {
   const CourseSelectionScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final asyncDecks = ref.watch(deckControllerProvider);
+    final allCards = ref.watch(flashcardControllerProvider).valueOrNull ?? [];
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text("COURSE LIBRARY", 
+        title: const Text("CURRICULUM PATHS", 
           style: TextStyle(fontWeight: FontWeight.bold, letterSpacing: 4, fontSize: 12, color: Colors.brown)),
         centerTitle: true,
         backgroundColor: Colors.transparent,
@@ -17,39 +23,44 @@ class CourseSelectionScreen extends StatelessWidget {
       ),
       extendBodyBehindAppBar: true,
       body: CalligraphyBackground(
-        child: ListView(
-          padding: const EdgeInsets.fromLTRB(24, 120, 24, 40),
-          children: [
-            _CourseCard(
-              title: "HSK 1: The Apprentice",
-              subtitle: "Master the 150 Foundation Characters.",
-              level: "Beginner",
-              color: Colors.indigo,
-              isLocked: false,
-              onTap: () => Navigator.push(
-                context, 
-                MaterialPageRoute(builder: (context) => const CourseScreen()),
-              ),
-            ),
-            const SizedBox(height: 20),
-            _CourseCard(
-              title: "HSK 2: The Disciple",
-              subtitle: "Expand your vocabulary to 300 words.",
-              level: "Elementary",
-              color: Colors.teal,
-              isLocked: true,
-              onTap: () {},
-            ),
-            const SizedBox(height: 20),
-            _CourseCard(
-              title: "Chengyu Scrolls",
-              subtitle: "Ancient Idioms and their stories.",
-              level: "Advanced",
-              color: Colors.deepOrange,
-              isLocked: true,
-              onTap: () {},
-            ),
-          ],
+        child: asyncDecks.when(
+          data: (decks) {
+            if (decks.isEmpty) {
+              return const Center(child: Text("No decks found. Add some to your library!"));
+            }
+            
+            return ListView.separated(
+              padding: const EdgeInsets.fromLTRB(24, 120, 24, 40),
+              itemCount: decks.length,
+              separatorBuilder: (context, index) => const SizedBox(height: 20),
+              itemBuilder: (context, index) {
+                final deck = decks[index];
+                final cardCount = allCards.where((c) => c.deckId == deck.id || (deck.id == 'default' && c.deckId == null)).length;
+                
+                final isDark = Theme.of(context).brightness == Brightness.dark;
+                
+                return _CourseCard(
+                  title: deck.name,
+                  subtitle: deck.description.isNotEmpty ? deck.description : "A personalized path based on your deck.",
+                  level: "$cardCount CARDS",
+                  color: deck.id == 'default' ? Colors.indigo : Colors.teal,
+                  isLocked: false,
+                  onTap: () {
+                    if (cardCount == 0) {
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Add some cards to this deck first!")));
+                      return;
+                    }
+                    Navigator.push(
+                      context, 
+                      MaterialPageRoute(builder: (context) => CourseScreen(deckId: deck.id, deckName: deck.name)),
+                    );
+                  },
+                );
+              },
+            );
+          },
+          loading: () => const Center(child: CircularProgressIndicator()),
+          error: (err, stack) => Center(child: Text("Error loading decks: $err")),
         ),
       ),
     );
@@ -75,6 +86,8 @@ class _CourseCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    
     return Material(
       color: Colors.transparent,
       child: InkWell(
@@ -83,7 +96,9 @@ class _CourseCard extends StatelessWidget {
         child: Container(
           height: 160,
           decoration: BoxDecoration(
-            color: isLocked ? Colors.grey.withValues(alpha: 0.1) : Colors.white.withValues(alpha: 0.8),
+            color: isLocked 
+                ? Colors.grey.withValues(alpha: 0.1) 
+                : (isDark ? const Color(0xFF2A2A2B) : Colors.white.withValues(alpha: 0.8)),
             borderRadius: BorderRadius.circular(20),
             border: Border.all(
               color: isLocked ? Colors.grey.withValues(alpha: 0.3) : color.withValues(alpha: 0.3),
@@ -123,16 +138,20 @@ class _CourseCard extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
-                        color: isLocked ? Colors.grey : Colors.black87,
+                        color: isLocked ? Colors.grey : (isDark ? Colors.white : Colors.black87),
                       ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                     ),
                     const SizedBox(height: 4),
                     Text(
                       subtitle,
                       style: TextStyle(
                         fontSize: 12,
-                        color: isLocked ? Colors.grey : Colors.grey.shade700,
+                        color: isLocked ? Colors.grey : (isDark ? Colors.white70 : Colors.grey.shade700),
                       ),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ],
                 ),
