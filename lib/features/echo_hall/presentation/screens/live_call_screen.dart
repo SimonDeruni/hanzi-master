@@ -8,10 +8,36 @@ import 'package:web_socket_channel/web_socket_channel.dart';
 import 'package:web_socket_channel/status.dart' as status;
 import 'package:record/record.dart';
 import 'package:flutter_sound/flutter_sound.dart' as fs;
+import 'package:intl/intl.dart';
 import '../../domain/entities/scenario.dart';
-import 'conversation_screen.dart';
+import '../../../chat/domain/entities/chat_message.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import 'package:hanzi_master/core/services/api_key_pool.dart';
+import 'package:hanzi_master/core/services/gemini_service.dart';
+import '../widgets/live_call_summary_screen.dart';
+
+class LiveCallMessage {
+  final String text;
+  final ChatRole role;
+  final Map<String, dynamic>? grade; 
+  final DateTime timestamp;
+
+  LiveCallMessage({
+    required this.text,
+    required this.role,
+    this.grade,
+    DateTime? timestamp,
+  }) : timestamp = timestamp ?? DateTime.now();
+
+  LiveCallMessage copyWith({Map<String, dynamic>? grade, String? text}) {
+    return LiveCallMessage(
+      text: text ?? this.text,
+      role: role,
+      grade: grade ?? this.grade,
+      timestamp: timestamp,
+    );
+  }
+}
 
 class LiveCallScreen extends ConsumerStatefulWidget {
   final ConversationScenario scenario;
@@ -30,11 +56,17 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
   
   WebSocketChannel? _channel;
   String _callStatus = "Initializing...";
+  bool _hasError = false;
 
   final AudioRecorder _audioRecorder = AudioRecorder();
   final fs.FlutterSoundPlayer _player = fs.FlutterSoundPlayer();
   StreamSubscription<Uint8List>? _audioSubscription;
   bool _isLive = false;
+
+  // Transcript & Grading State
+  final List<LiveCallMessage> _transcript = [];
+  final BytesBuilder _userAudioBuffer = BytesBuilder();
+  final ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
@@ -48,20 +80,40 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
       CurvedAnimation(parent: _pulseController, curve: Curves.easeInOut),
     );
 
-    _initAudio();
-    _connectToGemini();
+    _initAudioAndConnect();
   }
 
-  Future<void> _initAudio() async {
-    await _player.openPlayer();
+  Future<void> _initAudioAndConnect() async {
+    try {
+      await _player.openPlayer();
+      // Required for stream playback:
+      await _player.startPlayerFromStream(
+        codec: fs.Codec.pcm16,
+        numChannels: 1,
+        sampleRate: 24000,
+      );
+      await _connectToGemini();
+    } catch (e) {
+      debugPrint("LiveCall: Init failed: $e");
+      if (mounted) {
+        setState(() {
+          _callStatus = "Initialization error. Check permissions.";
+          _hasError = true;
+        });
+      }
+    }
   }
 
   Future<void> _connectToGemini() async {
-    setState(() => _callStatus = "Connecting via WebSocket...");
+    if (!mounted) return;
+    setState(() => _callStatus = "Connecting...");
     
     final apiKey = ref.read(apiKeyPoolProvider).googleKey;
     if (apiKey.isEmpty) {
-      setState(() => _callStatus = "Error: Missing API Key");
+      setState(() {
+        _callStatus = "Error: Missing API Key";
+        _hasError = true;
+      });
       return;
     }
 
@@ -72,7 +124,7 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
       
       _channel = WebSocketChannel.connect(uri);
 
-      // 1. Setup Phase
+      // Setup Phase
       _channel!.sink.add(jsonEncode({
         "setup": {
           "model": "models/gemini-2.0-flash-exp",
@@ -82,6 +134,7 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
                "voice_config": { "prebuilt_voice_config": { "voice_name": "Puck" } }
              }
           },
+          "input_audio_transcription": {"enabled": true},
           "system_instruction": {
             "parts": [
               {"text": "You are a spoken Mandarin tutor. Limit responses to 2-3 sentences. Your persona is: ${widget.scenario.description}. Respond naturally in Mandarin Chinese."}
@@ -90,10 +143,12 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
         }
       }));
 
-      // 2. Listen to Gemini responses
       _channel!.stream.listen(
         (message) async {
-          if (message is String) {
+          debugPrint("GEMINI LIVE RAW: $message");
+          if (!mounted) return;
+          
+          try {
             final data = jsonDecode(message);
             
             if (data.containsKey('setupComplete')) {
@@ -102,38 +157,133 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
             }
 
             if (data.containsKey('serverContent')) {
-              final modelTurn = data['serverContent']['modelTurn'];
-              if (modelTurn != null && modelTurn['parts'] != null) {
-                for (var part in modelTurn['parts']) {
-                  if (part.containsKey('inlineData')) {
-                    final base64Audio = part['inlineData']['data'];
-                    final audioBytes = base64Decode(base64Audio);
-                    
-                    // Gemini returns 24kHz PCM
-                    await _player.startPlayer(
-                      fromDataBuffer: Uint8List.fromList(audioBytes),
-                      sampleRate: 24000,
-                      codec: fs.Codec.pcm16,
-                      numChannels: 1,
-                    );
+              final content = data['serverContent'];
+              
+              if (content.containsKey('modelTurn')) {
+                final modelTurn = content['modelTurn'];
+                if (modelTurn['parts'] != null) {
+                  for (var part in modelTurn['parts']) {
+                    if (part.containsKey('inlineData')) {
+                      final base64Audio = part['inlineData']['data'];
+                      final audioBytes = base64Decode(base64Audio);
+                      _player.feedFromStream(Uint8List.fromList(audioBytes));
+                    }
+                    if (part.containsKey('text')) {
+                      _handleAiTranscript(part['text']);
+                    }
                   }
                 }
               }
+
+              if (content.containsKey('inputTranscription')) {
+                final trans = content['inputTranscription'];
+                _handleUserInputTranscription(trans['text'] ?? "", trans['finished'] ?? false);
+              }
+
+              if (content['interrupted'] == true) {
+                 _player.stopPlayer();
+                 _userAudioBuffer.clear();
+              }
             }
+          } catch (e) {
+            debugPrint("LiveCall: Message parse error: $e");
           }
         },
-        onDone: () => setState(() => _callStatus = "Call ended."),
-        onError: (error) => setState(() => _callStatus = "Connection error: $error"),
+        onDone: () {
+          debugPrint("LiveCall: WebSocket closed naturally.");
+          if (mounted) {
+            setState(() {
+              _callStatus = "Connection closed by server.";
+              _hasError = true;
+            });
+          }
+        },
+        onError: (error) {
+          debugPrint("LiveCall: WebSocket error: $error");
+          if (mounted) {
+            setState(() {
+              _callStatus = "Connection error: $error";
+              _hasError = true;
+            });
+          }
+        },
       );
 
     } catch (e) {
-      setState(() => _callStatus = "Failed to connect: $e");
+      debugPrint("LiveCall: Connection failed: $e");
+      if (mounted) {
+        setState(() {
+          _callStatus = "Failed to connect: $e";
+          _hasError = true;
+        });
+      }
     }
+  }
+
+  void _handleAiTranscript(String text) {
+    if (text.trim().isEmpty) return;
+    setState(() {
+      if (_transcript.isNotEmpty && _transcript.last.role == ChatRole.scholar) {
+        final last = _transcript.removeLast();
+        _transcript.add(last.copyWith(text: last.text + text));
+      } else {
+        _transcript.add(LiveCallMessage(text: text, role: ChatRole.scholar));
+      }
+    });
+    _scrollToBottom();
+  }
+
+  void _handleUserInputTranscription(String text, bool finished) {
+    if (text.trim().isEmpty) return;
+    setState(() {
+      int lastUserIdx = _transcript.lastIndexWhere((m) => m.role == ChatRole.user);
+      if (lastUserIdx != -1 && _transcript[lastUserIdx].grade == null) {
+        _transcript[lastUserIdx] = _transcript[lastUserIdx].copyWith(text: text);
+      } else {
+        _transcript.add(LiveCallMessage(text: text, role: ChatRole.user));
+      }
+    });
+
+    if (finished) {
+      _triggerGradingForLastUserTurn();
+    }
+    _scrollToBottom();
+  }
+
+  Future<void> _triggerGradingForLastUserTurn() async {
+    final lastUserIdx = _transcript.lastIndexWhere((m) => m.role == ChatRole.user);
+    if (lastUserIdx == -1) return;
+    
+    final message = _transcript[lastUserIdx];
+    final audioData = _userAudioBuffer.takeBytes();
+    if (audioData.isEmpty) return;
+
+    try {
+      final result = await ref.read(geminiServiceProvider).gradeAudio(audioData, message.text, "");
+      if (mounted) {
+        setState(() {
+          _transcript[lastUserIdx] = message.copyWith(grade: result);
+        });
+      }
+    } catch (e) {
+      debugPrint("Live grading error: $e");
+    }
+  }
+
+  void _scrollToBottom() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (_scrollController.hasClients) {
+        _scrollController.animateTo(
+          _scrollController.position.maxScrollExtent,
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeOut,
+        );
+      }
+    });
   }
 
   Future<void> _startAudioStreaming() async {
     if (await _audioRecorder.hasPermission()) {
-      // Gemini Live expects 16kHz Mono 16-bit PCM
       final stream = await _audioRecorder.startStream(
         const RecordConfig(
           encoder: AudioEncoder.pcm16bits,
@@ -144,20 +294,14 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
 
       _audioSubscription = stream.listen((data) {
         if (!_isMuted && _channel != null) {
-          // Send 16kHz PCM chunks to Gemini
           _channel!.sink.add(jsonEncode({
             "realtime_input": {
-              "media_chunks": [
-                {
-                  "mime_type": "audio/pcm",
-                  "data": base64Encode(data)
-                }
-              ]
+              "media_chunks": [{ "mime_type": "audio/pcm", "data": base64Encode(data) }]
             }
           }));
+          _userAudioBuffer.add(data);
         }
       });
-      
       setState(() => _isLive = true);
     }
   }
@@ -169,18 +313,55 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
     _player.closePlayer();
     _channel?.sink.close(status.normalClosure);
     _pulseController.dispose();
+    _scrollController.dispose();
     super.dispose();
   }
 
-  void _endCall() {
+  Future<void> _endCall() async {
     HapticsManager.heavy();
     _channel?.sink.close(status.normalClosure);
-    Navigator.pop(context);
+
+    if (_transcript.isEmpty) {
+      Navigator.pop(context);
+      return;
+    }
+
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => const Center(child: CircularProgressIndicator(color: Colors.white)),
+    );
+
+    final verdict = await _generateFinalVerdict();
+    
+    if (mounted) {
+      Navigator.pop(context); // Close loading
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => LiveCallSummaryScreen(
+            transcript: _transcript,
+            scholarVerdict: verdict,
+          ),
+        ),
+      );
+    }
   }
 
-  void _toggleMute() {
-    HapticsManager.light();
-    setState(() => _isMuted = !_isMuted);
+  Future<String> _generateFinalVerdict() async {
+    try {
+      final gemini = ref.read(geminiServiceProvider);
+      final transcriptStr = _transcript.map((m) => "${m.role.name.toUpperCase()}: ${m.text}").join("\n");
+      
+      final prompt = 'Analyze this transcript and student\'s pronunciation patterns. Identify top 2 struggle areas. Encouraging, scholarly, <80 words.\n\n$transcriptStr';
+
+      return await gemini.makeOpenRouterCall(
+        model: 'google/gemini-2.5-flash',
+        messages: [{'role': 'user', 'content': prompt}],
+      );
+    } catch (e) {
+      return "Excellent effort. Continue daily practice to refine tones.";
+    }
   }
 
   @override
@@ -207,7 +388,6 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
           
           SafeArea(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Padding(
                   padding: const EdgeInsets.only(top: 20.0),
@@ -217,24 +397,58 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
                       const SizedBox(height: 8),
                       Text(widget.scenario.title, style: theme.textTheme.headlineMedium?.copyWith(color: Colors.white, fontWeight: FontWeight.bold)),
                       const SizedBox(height: 8),
-                      Text(_callStatus, style: const TextStyle(color: Colors.white70, fontSize: 16)),
+                      Text(_callStatus, style: TextStyle(color: _hasError ? Colors.redAccent : Colors.white70, fontSize: 16)),
+                      if (_hasError)
+                        TextButton(
+                          onPressed: () => Navigator.pop(context),
+                          child: const Text("Return to menu", style: TextStyle(color: Colors.white)),
+                        ),
                     ],
                   ),
                 ),
 
-                // Pulsating Avatar
+                const Spacer(),
+
+                // Transcript Overlay
+                Container(
+                  height: 300,
+                  margin: const EdgeInsets.symmetric(horizontal: 24),
+                  child: ShaderMask(
+                    shaderCallback: (rect) {
+                      return const LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [Colors.transparent, Colors.black, Colors.black, Colors.transparent],
+                        stops: [0.0, 0.1, 0.9, 1.0],
+                      ).createShader(rect);
+                    },
+                    blendMode: BlendMode.dstIn,
+                    child: ListView.builder(
+                      controller: _scrollController,
+                      padding: const EdgeInsets.symmetric(vertical: 20),
+                      itemCount: _transcript.length,
+                      itemBuilder: (context, index) {
+                        final msg = _transcript[index];
+                        return _LiveTranscriptBubble(message: msg, theme: theme);
+                      },
+                    ),
+                  ),
+                ),
+
+                const SizedBox(height: 24),
+
                 AnimatedBuilder(
                   animation: _pulseAnimation,
                   builder: (context, child) {
-                    final scale = _isLive && !_isMuted ? _pulseAnimation.value : 1.0;
+                    final scale = _isLive && !_isMuted && !_hasError ? _pulseAnimation.value : 1.0;
                     return Transform.scale(
                       scale: scale,
                       child: Container(
-                        width: 180, height: 180,
+                        width: 140, height: 140,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           boxShadow: [
-                            if (_isLive && !_isMuted)
+                            if (_isLive && !_isMuted && !_hasError)
                               BoxShadow(color: theme.colorScheme.primary.withValues(alpha: 0.4), blurRadius: 40, spreadRadius: 5),
                           ],
                         ),
@@ -250,9 +464,10 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
                   },
                 ),
 
-                // Call Controls
+                const SizedBox(height: 48),
+
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 50.0),
+                  padding: const EdgeInsets.only(bottom: 40.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -260,7 +475,7 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
                         icon: _isMuted ? Icons.mic_off : Icons.mic,
                         label: _isMuted ? "Muted" : "Mute",
                         isActive: _isMuted,
-                        onTap: _toggleMute,
+                        onTap: () => setState(() => _isMuted = !_isMuted),
                       ),
                       GestureDetector(
                         onTap: _endCall,
@@ -278,10 +493,7 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
                         icon: _isSpeaker ? Icons.volume_up : Icons.volume_down,
                         label: "Speaker",
                         isActive: _isSpeaker,
-                        onTap: () {
-                          HapticsManager.light();
-                          setState(() => _isSpeaker = !_isSpeaker);
-                        },
+                        onTap: () => setState(() => _isSpeaker = !_isSpeaker),
                       ),
                     ],
                   ),
@@ -291,6 +503,55 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
           ),
         ],
       ),
+    );
+  }
+}
+
+class _LiveTranscriptBubble extends StatelessWidget {
+  final LiveCallMessage message;
+  final ThemeData theme;
+  const _LiveTranscriptBubble({required this.message, required this.theme});
+
+  @override
+  Widget build(BuildContext context) {
+    final isUser = message.role == ChatRole.user;
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 6.0),
+      child: Column(
+        crossAxisAlignment: isUser ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+        children: [
+          if (isUser && message.grade != null)
+             _buildGradedText(message.grade!['words'] ?? [], theme)
+          else
+            Text(
+              message.text,
+              textAlign: isUser ? TextAlign.right : TextAlign.left,
+              style: theme.textTheme.bodyLarge?.copyWith(
+                color: isUser ? Colors.white70 : theme.colorScheme.primary.withValues(alpha: 0.9),
+                fontWeight: isUser ? FontWeight.normal : FontWeight.bold,
+                height: 1.4,
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildGradedText(List<dynamic> words, ThemeData theme) {
+    return Wrap(
+      alignment: WrapAlignment.end,
+      spacing: 4,
+      children: words.map((w) {
+        final bool correct = w['isCorrect'] ?? true;
+        return Text(
+          w['word'] ?? "",
+          style: theme.textTheme.bodyLarge?.copyWith(
+            color: correct ? Colors.greenAccent : Colors.redAccent,
+            fontWeight: FontWeight.bold,
+          ),
+        );
+      }).toList(),
     );
   }
 }
