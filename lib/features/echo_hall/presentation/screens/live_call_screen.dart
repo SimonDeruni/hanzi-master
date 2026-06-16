@@ -191,10 +191,12 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
           }
         },
         onDone: () {
-          debugPrint("LiveCall: WebSocket closed naturally.");
+          final closeCode = _channel?.closeCode;
+          final closeReason = _channel?.closeReason;
+          debugPrint("LiveCall: WebSocket closed. Code: $closeCode, Reason: $closeReason");
           if (mounted) {
             setState(() {
-              _callStatus = "Connection closed by server.";
+              _callStatus = "Server closed connection (Code: $closeCode). Check API key/region.";
               _hasError = true;
             });
           }
