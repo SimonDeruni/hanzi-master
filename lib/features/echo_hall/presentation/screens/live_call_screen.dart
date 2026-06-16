@@ -107,28 +107,32 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
 
   Future<void> _connectToGemini() async {
     if (!mounted) return;
-    setState(() => _callStatus = "Connecting...");
+    setState(() {
+      _callStatus = "Connecting to Scholar...";
+      _hasError = false;
+    });
     
     final apiKey = ref.read(apiKeyPoolProvider).googleKey;
     if (apiKey.isEmpty) {
       setState(() {
-        _callStatus = "Error: Missing API Key";
+        _callStatus = "Error: Missing Google API Key";
         _hasError = true;
       });
       return;
     }
 
     try {
+      // Endpoint for Gemini Multimodal Live API
       final uri = Uri.parse(
         'wss://generativelanguage.googleapis.com/ws/google.ai.generativelanguage.v1beta.GenerativeService.BidiGenerateContent?key=$apiKey'
       );
       
       _channel = WebSocketChannel.connect(uri);
 
-      // Setup Phase
-      _channel!.sink.add(jsonEncode({
+      // 1. Setup Phase - Updated for June 2026 stable models
+      final setupMessage = jsonEncode({
         "setup": {
-          "model": "models/gemini-2.0-flash-exp",
+          "model": "models/gemini-2.5-flash-live",
           "generation_config": {
              "response_modalities": ["AUDIO"],
              "speech_config": {
@@ -138,11 +142,13 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
           "input_audio_transcription": {"enabled": true},
           "system_instruction": {
             "parts": [
-              {"text": "You are a spoken Mandarin tutor. Limit responses to 2-3 sentences. Your persona is: ${widget.scenario.description}. Respond naturally in Mandarin Chinese."}
+              {"text": "You are a professional Mandarin tutor named Master Lin. You are patient, wise, and encouraging. Respond naturally in spoken Mandarin. Keep your responses short (under 3 sentences). Your current scenario: ${widget.scenario.description}"}
             ]
           }
         }
-      }));
+      });
+
+      _channel!.sink.add(setupMessage);
 
       _channel!.stream.listen(
         (message) async {
@@ -153,7 +159,7 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
             final data = jsonDecode(message);
             
             if (data.containsKey('setupComplete')) {
-              setState(() => _callStatus = "Connected! Start speaking.");
+              setState(() => _callStatus = "Connected! Speak now.");
               _startAudioStreaming();
             }
 
@@ -187,25 +193,29 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
               }
             }
           } catch (e) {
-            debugPrint("LiveCall: Message parse error: $e");
+            debugPrint("LiveCall: Parse error: $e");
           }
         },
         onDone: () {
           final closeCode = _channel?.closeCode;
           final closeReason = _channel?.closeReason;
-          debugPrint("LiveCall: WebSocket closed. Code: $closeCode, Reason: $closeReason");
+          debugPrint("LiveCall: Closed. Code: $closeCode, Reason: $closeReason");
           if (mounted) {
             setState(() {
-              _callStatus = "Server closed connection (Code: $closeCode). Check API key/region.";
+              if (closeCode == 4403 || closeCode == 403) {
+                _callStatus = "Access Denied (403). Your API Key lacks 'Live' permissions or region is unsupported.";
+              } else {
+                _callStatus = "Connection closed ($closeCode).";
+              }
               _hasError = true;
             });
           }
         },
         onError: (error) {
-          debugPrint("LiveCall: WebSocket error: $error");
+          debugPrint("LiveCall: Stream error: $error");
           if (mounted) {
             setState(() {
-              _callStatus = "Connection error: $error";
+              _callStatus = "Connection Error: $error";
               _hasError = true;
             });
           }
@@ -213,10 +223,10 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
       );
 
     } catch (e) {
-      debugPrint("LiveCall: Connection failed: $e");
+      debugPrint("LiveCall: Connection fail: $e");
       if (mounted) {
         setState(() {
-          _callStatus = "Failed to connect: $e";
+          _callStatus = "Failed to reach server: $e";
           _hasError = true;
         });
       }
