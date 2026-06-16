@@ -215,7 +215,7 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
             ),
             child: IconButton(
               icon: Icon(Icons.send_rounded, color: theme.colorScheme.onPrimary, size: 20),
-              onPressed: state.isLoading || state.isProcessing ? null : () {
+              onPressed: state.isProcessing ? null : () {
                 // If we had a text field, we'd send text. But this is the mic pill.
                 // We'll leave this as a visual placeholder for now, since holding the mic already sends.
                 // If you want tap-to-record, you'd toggle state here.

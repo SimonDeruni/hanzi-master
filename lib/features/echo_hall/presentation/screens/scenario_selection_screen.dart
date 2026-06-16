@@ -4,13 +4,21 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../domain/entities/scenario.dart';
 import 'conversation_screen.dart';
 import 'live_call_screen.dart';
+import '../widgets/custom_scenario_dialog.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 
-class ScenarioSelectionScreen extends ConsumerWidget {
+class ScenarioSelectionScreen extends StatefulWidget {
   const ScenarioSelectionScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  State<ScenarioSelectionScreen> createState() => _ScenarioSelectionScreenState();
+}
+
+class _ScenarioSelectionScreenState extends State<ScenarioSelectionScreen> {
+  final List<ConversationScenario> _allScenarios = [...defaultScenarios];
+
+  @override
+  Widget build(BuildContext context) {
     final theme = Theme.of(context);
     
     return Scaffold(
@@ -52,19 +60,33 @@ class ScenarioSelectionScreen extends ConsumerWidget {
               ),
             ),
             SliverPadding(
-              padding: const EdgeInsets.only(left: 24, right: 24, bottom: 40),
+              padding: const EdgeInsets.only(left: 24, right: 24, bottom: 100),
               sliver: SliverList(
                 delegate: SliverChildBuilderDelegate(
                   (context, index) {
-                    final scenario = defaultScenarios[index];
+                    final scenario = _allScenarios[index];
                     return _ScenarioCard(scenario: scenario);
                   },
-                  childCount: defaultScenarios.length,
+                  childCount: _allScenarios.length,
                 ),
               ),
             ),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () async {
+          final newScenario = await CustomScenarioDialog.show(context);
+          if (newScenario != null) {
+            setState(() {
+              _allScenarios.insert(0, newScenario);
+            });
+          }
+        },
+        backgroundColor: theme.colorScheme.primary,
+        foregroundColor: theme.colorScheme.onPrimary,
+        icon: const Icon(Icons.add),
+        label: const Text("Custom Scenario", style: TextStyle(fontWeight: FontWeight.bold)),
       ),
     );
   }
@@ -138,11 +160,6 @@ class _ScenarioCard extends StatelessWidget {
                         children: [
                           Row(
                             children: [
-                              Text(
-                                scenario.iconEmoji,
-                                style: const TextStyle(fontSize: 24),
-                              ),
-                              const SizedBox(width: 8),
                               Container(
                                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                                 decoration: BoxDecoration(
@@ -157,6 +174,11 @@ class _ScenarioCard extends StatelessWidget {
                                   ),
                                 ),
                               ),
+                              if (scenario.isCustom)
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 8.0),
+                                  child: Icon(Icons.auto_awesome, size: 16, color: theme.colorScheme.primary),
+                                ),
                             ],
                           ),
                           const SizedBox(height: 12),
@@ -249,3 +271,4 @@ class _ScenarioCard extends StatelessWidget {
     );
   }
 }
+

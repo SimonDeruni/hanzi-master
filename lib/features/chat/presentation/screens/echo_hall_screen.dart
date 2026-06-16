@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/features/chat/presentation/providers/chat_controller.dart';
@@ -16,7 +17,6 @@ class EchoHallScreen extends ConsumerStatefulWidget {
 class _EchoHallScreenState extends ConsumerState<EchoHallScreen> {
   final TextEditingController _textController = TextEditingController();
   final ScrollController _scrollController = ScrollController();
-  bool _showCustomPromptField = false;
   final TextEditingController _customPromptController = TextEditingController();
 
   @override
@@ -39,6 +39,159 @@ class _EchoHallScreenState extends ConsumerState<EchoHallScreen> {
     });
   }
 
+  void _showPersonaSelectorSheet(BuildContext context, ChatState chatState, ThemeData theme) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) {
+        return BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+          child: Container(
+            height: MediaQuery.of(context).size.height * 0.7,
+            decoration: BoxDecoration(
+              color: theme.colorScheme.surface.withValues(alpha: 0.95),
+              borderRadius: const BorderRadius.vertical(top: Radius.circular(32)),
+              border: Border(top: BorderSide(color: theme.colorScheme.onSurface.withValues(alpha: 0.1))),
+            ),
+            child: Column(
+              children: [
+                const SizedBox(height: 12),
+                Container(width: 40, height: 4, decoration: BoxDecoration(color: theme.colorScheme.onSurface.withValues(alpha: 0.2), borderRadius: BorderRadius.circular(2))),
+                const SizedBox(height: 24),
+                Text("Select Persona", style: theme.textTheme.headlineMedium),
+                const SizedBox(height: 16),
+                Expanded(
+                  child: ListView.builder(
+                    padding: const EdgeInsets.symmetric(horizontal: 24),
+                    itemCount: ScholarPersona.values.length,
+                    itemBuilder: (context, index) {
+                      final p = ScholarPersona.values[index];
+                      final isSelected = chatState.activePersona == p;
+                      
+                      if (p == ScholarPersona.custom) {
+                        return _buildCustomPersonaTile(p, isSelected, theme);
+                      }
+
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 12.0),
+                        child: InkWell(
+                          onTap: () {
+                            ref.read(chatControllerProvider.notifier).setPersona(p);
+                            Navigator.pop(context);
+                          },
+                          borderRadius: BorderRadius.circular(20),
+                          child: Container(
+                            padding: const EdgeInsets.all(16),
+                            decoration: BoxDecoration(
+                              color: isSelected ? theme.colorScheme.primary.withValues(alpha: 0.1) : Colors.transparent,
+                              borderRadius: BorderRadius.circular(20),
+                              border: Border.all(color: isSelected ? theme.colorScheme.primary : theme.colorScheme.onSurface.withValues(alpha: 0.1)),
+                            ),
+                            child: Row(
+                              children: [
+                                Container(
+                                  padding: const EdgeInsets.all(12),
+                                  decoration: BoxDecoration(
+                                    color: isSelected ? theme.colorScheme.primary : theme.colorScheme.onSurface.withValues(alpha: 0.05),
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: Icon(_getPersonaIcon(p), color: isSelected ? theme.colorScheme.onPrimary : theme.colorScheme.onSurface, size: 24),
+                                ),
+                                const SizedBox(width: 16),
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(_getPersonaName(p), style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold)),
+                                      const SizedBox(height: 4),
+                                      Text(_getPersonaShortName(p), style: theme.textTheme.bodySmall),
+                                    ],
+                                  ),
+                                ),
+                                if (isSelected)
+                                  Icon(Icons.check_circle, color: theme.colorScheme.primary),
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _buildCustomPersonaTile(ScholarPersona p, bool isSelected, ThemeData theme) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 24.0, top: 12),
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: isSelected ? theme.colorScheme.primary.withValues(alpha: 0.1) : theme.colorScheme.onSurface.withValues(alpha: 0.02),
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(color: isSelected ? theme.colorScheme.primary : theme.colorScheme.onSurface.withValues(alpha: 0.1), style: BorderStyle.solid),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    color: isSelected ? theme.colorScheme.primary : theme.colorScheme.onSurface.withValues(alpha: 0.05),
+                    shape: BoxShape.circle,
+                  ),
+                  child: Icon(_getPersonaIcon(p), color: isSelected ? theme.colorScheme.onPrimary : theme.colorScheme.onSurface, size: 24),
+                ),
+                const SizedBox(width: 16),
+                Expanded(
+                  child: Text("Custom Persona", style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold)),
+                ),
+              ],
+            ),
+            const SizedBox(height: 16),
+            Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    controller: _customPromptController,
+                    style: theme.textTheme.bodyMedium,
+                    decoration: InputDecoration(
+                      hintText: "e.g. A sarcastic Beijing taxi driver...",
+                      hintStyle: theme.textTheme.bodySmall,
+                      filled: true,
+                      fillColor: theme.colorScheme.surface,
+                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide.none),
+                      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 12),
+                IconButton.filled(
+                  onPressed: () {
+                    if (_customPromptController.text.isNotEmpty) {
+                      ref.read(chatControllerProvider.notifier).setPersona(p, customPrompt: _customPromptController.text);
+                      Navigator.pop(context);
+                    }
+                  },
+                  icon: const Icon(Icons.check),
+                  style: IconButton.styleFrom(backgroundColor: theme.colorScheme.primary, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
+                )
+              ],
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final chatState = ref.watch(chatControllerProvider);
@@ -55,20 +208,18 @@ class _EchoHallScreenState extends ConsumerState<EchoHallScreen> {
     });
 
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: _buildAppBar(chatState, theme),
       body: CalligraphyBackground(
-        child: Column(
+        child: Stack(
           children: [
-            // Horizontal Persona Selector
-            _buildPersonaSelector(chatState, theme),
-            if (_showCustomPromptField) _buildCustomPromptArea(theme),
             // Chat Messages
-            Expanded(
+            Positioned.fill(
               child: chatState.messages.isEmpty
                   ? _buildEmptyState(chatState.activePersona, theme)
                   : ListView.builder(
                       controller: _scrollController,
-                      padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
+                      padding: const EdgeInsets.fromLTRB(16, 120, 16, 120), // Padding for floating input and appbar
                       itemCount: chatState.messages.length,
                       itemBuilder: (context, index) {
                         final message = chatState.messages[index];
@@ -76,10 +227,23 @@ class _EchoHallScreenState extends ConsumerState<EchoHallScreen> {
                       },
                     ),
             ),
-            // Typing indicator
-            if (chatState.isLoading) _buildTypingIndicator(theme),
-            // Input area
-            _buildInputArea(chatState, theme),
+            
+            // Typing indicator floating at the bottom of the list
+            if (chatState.isLoading) 
+              Positioned(
+                bottom: 100,
+                left: 0,
+                right: 0,
+                child: _buildTypingIndicator(theme)
+              ),
+              
+            // Floating Input Area
+            Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: _buildInputArea(chatState, theme),
+            ),
           ],
         ),
       ),
@@ -89,36 +253,43 @@ class _EchoHallScreenState extends ConsumerState<EchoHallScreen> {
   PreferredSizeWidget _buildAppBar(ChatState chatState, ThemeData theme) {
     return AppBar(
       elevation: 0,
+      backgroundColor: theme.colorScheme.surface.withValues(alpha: 0.8),
+      flexibleSpace: ClipRect(
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+          child: Container(color: Colors.transparent),
+        ),
+      ),
       centerTitle: true,
       leading: IconButton(
         icon: Icon(Icons.arrow_back_ios, color: theme.colorScheme.onSurface, size: 18),
         onPressed: () => Navigator.pop(context),
       ),
-      title: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            _getPersonaName(chatState.activePersona),
-            style: theme.textTheme.titleLarge?.copyWith(
-              fontWeight: FontWeight.bold,
-              letterSpacing: 1.2,
-            ),
-          ),
-          Container(
-            height: 1.5,
-            width: 40,
-            margin: const EdgeInsets.only(top: 4),
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [theme.colorScheme.onSurface.withValues(alpha: 0), theme.colorScheme.onSurface.withValues(alpha: 0.4), theme.colorScheme.onSurface.withValues(alpha: 0)],
+      title: InkWell(
+        onTap: () => _showPersonaSelectorSheet(context, chatState, theme),
+        borderRadius: BorderRadius.circular(20),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(_getPersonaIcon(chatState.activePersona), size: 18, color: theme.colorScheme.primary),
+              const SizedBox(width: 8),
+              Text(
+                _getPersonaName(chatState.activePersona),
+                style: theme.textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            ),
+              const SizedBox(width: 4),
+              Icon(Icons.keyboard_arrow_down, size: 20, color: theme.colorScheme.onSurface.withValues(alpha: 0.5)),
+            ],
           ),
-        ],
+        ),
       ),
       actions: [
         IconButton(
-          icon: Icon(Icons.delete_outline, color: theme.colorScheme.onSurface.withValues(alpha: 0.4), size: 22),
+          icon: Icon(Icons.cleaning_services_rounded, color: theme.colorScheme.onSurface.withValues(alpha: 0.4), size: 22),
           onPressed: () {
             ref.read(chatControllerProvider.notifier).clearHistory();
           },
@@ -128,174 +299,64 @@ class _EchoHallScreenState extends ConsumerState<EchoHallScreen> {
     );
   }
 
-  Widget _buildPersonaSelector(ChatState chatState, ThemeData theme) {
-    return Container(
-      color: theme.colorScheme.surface.withValues(alpha: 0.8),
-      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Row(
-          children: ScholarPersona.values.map((p) {
-            final isSelected = chatState.activePersona == p;
-            return Padding(
-              padding: const EdgeInsets.only(right: 12.0),
-              child: GestureDetector(
-                onTap: () {
-                  if (p == ScholarPersona.custom) {
-                    setState(() => _showCustomPromptField = !_showCustomPromptField);
-                  } else {
-                    setState(() => _showCustomPromptField = false);
-                    ref.read(chatControllerProvider.notifier).setPersona(p);
-                  }
-                },
-                child: Column(
-                  children: [
-                    AnimatedContainer(
-                      duration: const Duration(milliseconds: 300),
-                      padding: const EdgeInsets.all(12),
-                      decoration: BoxDecoration(
-                        color: isSelected ? theme.colorScheme.primary : theme.colorScheme.surface,
-                        shape: BoxShape.circle,
-                        border: Border.all(
-                          color: isSelected ? theme.colorScheme.primary : theme.colorScheme.onSurface.withValues(alpha: 0.15),
-                          width: 1.5,
-                        ),
-                        boxShadow: isSelected ? [
-                          BoxShadow(
-                            color: theme.colorScheme.primary.withValues(alpha: 0.3),
-                            blurRadius: 8,
-                            offset: const Offset(0, 4),
-                          )
-                        ] : null,
-                      ),
-                      child: Icon(
-                        _getPersonaIcon(p), 
-                        size: 20, 
-                        color: isSelected ? theme.colorScheme.onPrimary : theme.colorScheme.onSurface.withValues(alpha: 0.5)
-                      ),
-                    ),
-                    const SizedBox(height: 6),
-                    Text(
-                      _getPersonaShortName(p),
-                      style: theme.textTheme.labelMedium?.copyWith(
-                        color: isSelected ? theme.colorScheme.primary : theme.colorScheme.onSurface.withValues(alpha: 0.4),
-                        fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            );
-          }).toList(),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildCustomPromptArea(ThemeData theme) {
-    return Container(
-      color: theme.colorScheme.surface.withValues(alpha: 0.8),
-      padding: const EdgeInsets.fromLTRB(16, 0, 16, 12),
-      child: Row(
-        children: [
-          Expanded(
-            child: TextField(
-              controller: _customPromptController,
-              maxLines: 2,
-              style: theme.textTheme.bodyMedium,
-              decoration: InputDecoration(
-                hintText: "Describe your persona... (e.g. a sarcastic Beijing taxi driver)",
-                hintStyle: theme.textTheme.bodyMedium?.copyWith(color: theme.colorScheme.onSurface.withValues(alpha: 0.3)),
-                filled: true,
-                fillColor: theme.colorScheme.onSurface.withValues(alpha: 0.05),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(16),
-                  borderSide: BorderSide(color: theme.colorScheme.onSurface.withValues(alpha: 0.1)),
-                ),
-                contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-              ),
-            ),
-          ),
-          const SizedBox(width: 12),
-          IconButton.filled(
-            onPressed: () {
-              if (_customPromptController.text.isNotEmpty) {
-                ref.read(chatControllerProvider.notifier).setPersona(
-                  ScholarPersona.custom,
-                  customPrompt: _customPromptController.text,
-                );
-                setState(() => _showCustomPromptField = false);
-              }
-            },
-            icon: Icon(Icons.send_rounded, color: theme.colorScheme.onPrimary, size: 20),
-            style: IconButton.styleFrom(
-              backgroundColor: theme.colorScheme.primary,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-              padding: const EdgeInsets.all(16),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
   Widget _buildEmptyState(ScholarPersona persona, ThemeData theme) {
     return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(_getPersonaIcon(persona), size: 80, color: theme.colorScheme.onSurface.withValues(alpha: 0.1)),
-          const SizedBox(height: 24),
-          Text(
-            _getPersonaName(persona),
-            style: theme.textTheme.headlineMedium?.copyWith(letterSpacing: 1.5),
-          ),
-          const SizedBox(height: 12),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 50),
-            child: Text(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 32.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              padding: const EdgeInsets.all(32),
+              decoration: BoxDecoration(
+                color: theme.colorScheme.onSurface.withValues(alpha: 0.03),
+                shape: BoxShape.circle,
+              ),
+              child: Icon(_getPersonaIcon(persona), size: 64, color: theme.colorScheme.onSurface.withValues(alpha: 0.2)),
+            ),
+            const SizedBox(height: 32),
+            Text(
+              "Speak with ${_getPersonaName(persona)}",
+              style: theme.textTheme.headlineMedium?.copyWith(letterSpacing: 1.0),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 16),
+            Text(
               _getPersonaGreeting(persona),
               textAlign: TextAlign.center,
               style: theme.textTheme.bodyLarge?.copyWith(
                 color: theme.colorScheme.onSurface.withValues(alpha: 0.5),
-                height: 1.8,
+                height: 1.6,
                 fontStyle: FontStyle.italic,
               ),
             ),
-          ),
-          const SizedBox(height: 40),
-          Container(
-            height: 1,
-            width: 100,
-            color: theme.colorScheme.onSurface.withValues(alpha: 0.1),
-          ),
-        ],
+            const SizedBox(height: 60), // Room for floating input
+          ],
+        ),
       ),
     );
   }
 
   Widget _buildTypingIndicator(ThemeData theme) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(20, 4, 20, 12),
+      padding: const EdgeInsets.fromLTRB(20, 0, 20, 12),
       child: Align(
         alignment: Alignment.centerLeft,
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
           decoration: BoxDecoration(
             color: theme.cardTheme.color,
-            borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(16),
-              topRight: Radius.circular(16),
-              bottomRight: Radius.circular(16),
-              bottomLeft: Radius.circular(4),
-            ),
+            borderRadius: BorderRadius.circular(20),
             border: Border.all(color: theme.colorScheme.onSurface.withValues(alpha: 0.1)),
+            boxShadow: [
+               BoxShadow(color: theme.colorScheme.onSurface.withValues(alpha: 0.05), blurRadius: 10, offset: const Offset(0, 4))
+            ],
           ),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
               for (int i = 0; i < 3; i++)
-                _BouncingDot(delay: Duration(milliseconds: i * 150), color: theme.colorScheme.onSurface.withValues(alpha: 0.6)),
+                _BouncingDot(delay: Duration(milliseconds: i * 150), color: theme.colorScheme.primary.withValues(alpha: 0.6)),
             ],
           ),
         ),
@@ -304,78 +365,82 @@ class _EchoHallScreenState extends ConsumerState<EchoHallScreen> {
   }
 
   Widget _buildInputArea(ChatState chatState, ThemeData theme) {
-    return Container(
-      padding: const EdgeInsets.fromLTRB(16, 12, 16, 32),
-      decoration: BoxDecoration(
-        color: theme.colorScheme.surface.withValues(alpha: 0.9),
-        boxShadow: [
-          BoxShadow(
-            color: theme.colorScheme.onSurface.withValues(alpha: 0.05),
-            blurRadius: 20,
-            offset: const Offset(0, -5),
-          )
-        ],
-      ),
-      child: Row(
-        children: [
-          Expanded(
-            child: Container(
-              decoration: BoxDecoration(
-                color: theme.colorScheme.onSurface.withValues(alpha: 0.05),
-                borderRadius: BorderRadius.circular(28),
-                border: Border.all(color: theme.colorScheme.onSurface.withValues(alpha: 0.1)),
-              ),
-              child: TextField(
-                controller: _textController,
-                style: theme.textTheme.bodyLarge,
-                decoration: InputDecoration(
-                  hintText: "Speak with the Scholar...",
-                  hintStyle: theme.textTheme.bodyMedium?.copyWith(
-                    color: theme.colorScheme.onSurface.withValues(alpha: 0.4),
-                    fontStyle: FontStyle.italic,
+    return ClipRect(
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
+        child: Container(
+          padding: EdgeInsets.fromLTRB(16, 16, 16, MediaQuery.of(context).viewInsets.bottom + 32),
+          decoration: BoxDecoration(
+            color: theme.colorScheme.surface.withValues(alpha: 0.6),
+            border: Border(top: BorderSide(color: theme.colorScheme.onSurface.withValues(alpha: 0.05))),
+          ),
+          child: SafeArea(
+            top: false,
+            child: Row(
+              children: [
+                Expanded(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: theme.cardTheme.color?.withValues(alpha: 0.8),
+                      borderRadius: BorderRadius.circular(30),
+                      border: Border.all(color: theme.colorScheme.onSurface.withValues(alpha: 0.1)),
+                      boxShadow: [
+                         BoxShadow(color: theme.colorScheme.onSurface.withValues(alpha: 0.05), blurRadius: 10, offset: const Offset(0, 4))
+                      ],
+                    ),
+                    child: TextField(
+                      controller: _textController,
+                      style: theme.textTheme.bodyLarge,
+                      decoration: InputDecoration(
+                        hintText: "Type your message...",
+                        hintStyle: theme.textTheme.bodyMedium?.copyWith(
+                          color: theme.colorScheme.onSurface.withValues(alpha: 0.4),
+                        ),
+                        border: InputBorder.none,
+                        contentPadding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                      ),
+                      onSubmitted: (val) {
+                        if (val.trim().isNotEmpty) {
+                          ref.read(chatControllerProvider.notifier).sendMessage(val);
+                          _textController.clear();
+                        }
+                      },
+                    ),
                   ),
-                  border: InputBorder.none,
-                  contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
                 ),
-                onSubmitted: (val) {
-                  if (val.trim().isNotEmpty) {
-                    ref.read(chatControllerProvider.notifier).sendMessage(val);
-                    _textController.clear();
-                  }
-                },
-              ),
+                const SizedBox(width: 12),
+                GestureDetector(
+                  onTap: chatState.isLoading ? null : () {
+                    if (_textController.text.trim().isNotEmpty) {
+                      ref.read(chatControllerProvider.notifier).sendMessage(_textController.text);
+                      _textController.clear();
+                    }
+                  },
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 300),
+                    padding: const EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: chatState.isLoading ? theme.colorScheme.onSurface.withValues(alpha: 0.1) : theme.colorScheme.primary,
+                      boxShadow: chatState.isLoading ? null : [
+                        BoxShadow(
+                          color: theme.colorScheme.primary.withValues(alpha: 0.3),
+                          blurRadius: 10,
+                          offset: const Offset(0, 4),
+                        )
+                      ],
+                    ),
+                    child: Icon(
+                      Icons.arrow_upward_rounded,
+                      color: chatState.isLoading ? theme.colorScheme.onSurface.withValues(alpha: 0.4) : theme.colorScheme.onPrimary,
+                      size: 24,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
-          const SizedBox(width: 12),
-          GestureDetector(
-            onTap: chatState.isLoading ? null : () {
-              if (_textController.text.trim().isNotEmpty) {
-                ref.read(chatControllerProvider.notifier).sendMessage(_textController.text);
-                _textController.clear();
-              }
-            },
-            child: AnimatedContainer(
-              duration: const Duration(milliseconds: 300),
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: chatState.isLoading ? theme.colorScheme.onSurface.withValues(alpha: 0.1) : theme.colorScheme.primary,
-                boxShadow: chatState.isLoading ? null : [
-                  BoxShadow(
-                    color: theme.colorScheme.primary.withValues(alpha: 0.3),
-                    blurRadius: 10,
-                    offset: const Offset(0, 4),
-                  )
-                ],
-              ),
-              child: Icon(
-                Icons.send_rounded,
-                color: chatState.isLoading ? theme.colorScheme.onSurface.withValues(alpha: 0.4) : theme.colorScheme.onPrimary,
-                size: 20,
-              ),
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }
@@ -388,18 +453,18 @@ class _EchoHallScreenState extends ConsumerState<EchoHallScreen> {
       case ScholarPersona.poet: return "The Poet";
       case ScholarPersona.gamer: return "A-Qiang";
       case ScholarPersona.shanghaiWoman: return "Vivian";
-      case ScholarPersona.custom: return "Custom";
+      case ScholarPersona.custom: return "Custom Persona";
     }
   }
 
   String _getPersonaShortName(ScholarPersona persona) {
     switch (persona) {
-      case ScholarPersona.masterLin: return "Formal";
-      case ScholarPersona.xiaoMei: return "Casual";
-      case ScholarPersona.poet: return "Poetic";
-      case ScholarPersona.gamer: return "Gamer";
-      case ScholarPersona.shanghaiWoman: return "Trendy";
-      case ScholarPersona.custom: return "Custom ✨";
+      case ScholarPersona.masterLin: return "Formal & wise";
+      case ScholarPersona.xiaoMei: return "Casual & friendly";
+      case ScholarPersona.poet: return "Poetic & ancient";
+      case ScholarPersona.gamer: return "Slang & internet";
+      case ScholarPersona.shanghaiWoman: return "Trendy & modern";
+      case ScholarPersona.custom: return "Design your own";
     }
   }
 
@@ -448,14 +513,14 @@ class _ChatBubble extends StatelessWidget {
               left: isUser ? 60 : 0,
               right: isUser ? 0 : 60,
             ),
-            padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 14),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
             decoration: BoxDecoration(
               color: isUser ? theme.colorScheme.primary : theme.cardTheme.color,
               borderRadius: BorderRadius.only(
-                topLeft: const Radius.circular(20),
-                topRight: const Radius.circular(20),
-                bottomLeft: Radius.circular(isUser ? 20 : 4),
-                bottomRight: Radius.circular(isUser ? 4 : 20),
+                topLeft: const Radius.circular(24),
+                topRight: const Radius.circular(24),
+                bottomLeft: Radius.circular(isUser ? 24 : 4),
+                bottomRight: Radius.circular(isUser ? 4 : 24),
               ),
               border: isUser ? null : Border.all(color: theme.colorScheme.onSurface.withValues(alpha: 0.1)),
               boxShadow: [
@@ -476,9 +541,9 @@ class _ChatBubble extends StatelessWidget {
           ),
           Padding(
             padding: EdgeInsets.only(
-              left: isUser ? 0 : 4,
-              right: isUser ? 4 : 0,
-              bottom: 6,
+              left: isUser ? 0 : 8,
+              right: isUser ? 8 : 0,
+              bottom: 12,
             ),
             child: Text(
               DateFormat('HH:mm').format(message.timestamp),
