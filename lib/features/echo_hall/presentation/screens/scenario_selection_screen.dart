@@ -174,7 +174,7 @@ class _ScenarioCard extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              if (scenario.isCustom)
+                              if (scenario.isCustom == true)
                                 Padding(
                                   padding: const EdgeInsets.only(left: 8.0),
                                   child: Icon(Icons.auto_awesome, size: 16, color: theme.colorScheme.primary),
