@@ -8,7 +8,6 @@ import 'package:web_socket_channel/web_socket_channel.dart';
 import 'package:web_socket_channel/status.dart' as status;
 import 'package:record/record.dart';
 import 'package:flutter_sound/flutter_sound.dart' as fs;
-import 'package:intl/intl.dart';
 import '../../domain/entities/scenario.dart';
 import '../../../chat/domain/entities/chat_message.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
@@ -91,6 +90,8 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
         codec: fs.Codec.pcm16,
         numChannels: 1,
         sampleRate: 24000,
+        bufferSize: 8192,
+        interleaved: true,
       );
       await _connectToGemini();
     } catch (e) {
@@ -166,7 +167,7 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
                     if (part.containsKey('inlineData')) {
                       final base64Audio = part['inlineData']['data'];
                       final audioBytes = base64Decode(base64Audio);
-                      _player.feedFromStream(Uint8List.fromList(audioBytes));
+                      _player.feedUint8FromStream(Uint8List.fromList(audioBytes));
                     }
                     if (part.containsKey('text')) {
                       _handleAiTranscript(part['text']);
