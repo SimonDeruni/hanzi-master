@@ -133,14 +133,14 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
       final setupMessage = jsonEncode({
         "setup": {
           "model": "models/gemini-2.5-flash-live",
-          "generation_config": {
-             "response_modalities": ["AUDIO"],
-             "speech_config": {
-               "voice_config": { "prebuilt_voice_config": { "voice_name": "Puck" } }
+          "generationConfig": {
+             "responseModalities": ["AUDIO"],
+             "speechConfig": {
+               "voiceConfig": { "prebuiltVoiceConfig": { "voiceName": "Puck" } }
              }
           },
-          "input_audio_transcription": {"enabled": true},
-          "system_instruction": {
+          "inputAudioTranscription": {"model": "models/gemini-2.5-flash-live"},
+          "systemInstruction": {
             "parts": [
               {"text": "You are a professional Mandarin tutor named Master Lin. You are patient, wise, and encouraging. Respond naturally in spoken Mandarin. Keep your responses short (under 3 sentences). Your current scenario: ${widget.scenario.description}"}
             ]
@@ -308,8 +308,8 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
       _audioSubscription = stream.listen((data) {
         if (!_isMuted && _channel != null) {
           _channel!.sink.add(jsonEncode({
-            "realtime_input": {
-              "media_chunks": [{ "mime_type": "audio/pcm", "data": base64Encode(data) }]
+            "realtimeInput": {
+              "mediaChunks": [{ "mimeType": "audio/pcm", "data": base64Encode(data) }]
             }
           }));
           _userAudioBuffer.add(data);
