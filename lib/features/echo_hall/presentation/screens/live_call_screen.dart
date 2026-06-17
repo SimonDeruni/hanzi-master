@@ -52,6 +52,7 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
   late Animation<double> _pulseAnimation;
   bool _isMuted = false;
   bool _isSpeaker = true;
+  bool _isEndingCall = false;
   
   WebSocketChannel? _channel;
   String _callStatus = "Initializing...";
@@ -207,6 +208,7 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
           }
         },
         onDone: () {
+          if (_isEndingCall) return;
           final closeCode = _channel?.closeCode;
           final closeReason = _channel?.closeReason;
           debugPrint("LiveCall: Closed. Code: $closeCode, Reason: $closeReason");
@@ -342,6 +344,7 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
   }
 
   Future<void> _endCall() async {
+    _isEndingCall = true;
     HapticsManager.heavy();
     _channel?.sink.close(status.normalClosure);
 
