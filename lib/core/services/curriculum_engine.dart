@@ -97,120 +97,117 @@ class CurriculumEngineService {
        return res.fold((l) => [], (r) => r);
     }
 
-    // Pass 1: Global Syllabus Strategy
-    // We send all Hanzi with their radical/component metadata for optimal clustering
-    final wordData = cards.map((c) {
-      final meta = _hanziMeta[c.hanzi] ?? {};
-      return {
-        'hanzi': c.hanzi,
-        'pinyin': c.pinyin,
-        'meaning': c.definition,
-        'radical': meta['radical'] ?? '',
-        'components': meta['decomposition'] ?? '',
-        'hsk': c.hskLevel,
-      };
-    }).toList();
+    final List<CourseUnit> finalUnits = [];
+    
+    // --- STEP 1: Map (Local Clustering) ---
+    // Group all cards by their primary radical to guarantee no card is omitted.
+    final Map<String, List<Flashcard>> radicalClusters = {};
+    final List<Flashcard> unmatchedCards = [];
 
-    final syllabusPrompt = '''
-You are a Master Chinese Curriculum Architect. I have a deck of ${cards.length} Chinese words.
-Your goal is to design a coherent learning path (Syllabus).
-
-RULES:
-1. Group words by SHARED RADICALS or COMPONENTS whenever possible (Pedagogical Clustering).
-2. If no radical link exists, group by semantic theme (e.g., "Dining", "Emotions").
-3. Each Unit should have 5-10 words.
-4. For each Unit, identify ONE "Anchor Word" (the Sun node). This should be the simplest or most conceptually central word that others orbit.
-5. Order the units so that simpler components are taught before complex characters that contain them (Prerequisite Mapping).
-
-Return ONLY valid JSON with this exact structure:
-{
-  "units": [
-    {
-      "title": "Unit Title (e.g. The Flow of Water)",
-      "description": "Brief pedagogical rationale",
-      "anchorHanzi": "The main character",
-      "orbitHanzi": ["other", "characters", "in", "this", "unit"]
+    for (var card in cards) {
+      final meta = _hanziMeta[card.hanzi];
+      if (meta != null && meta['radical'] != null && meta['radical'].toString().isNotEmpty) {
+        final radical = meta['radical'].toString();
+        radicalClusters.putIfAbsent(radical, () => []).add(card);
+      } else {
+        unmatchedCards.add(card);
+      }
     }
-  ]
-}
 
-Words to Process:
+    // Combine tiny clusters (e.g. radicals with only 1-2 words) into a 'mixed' pool to avoid sending 100 API calls
+    final List<List<Flashcard>> batches = [];
+    List<Flashcard> currentMixedBatch = [...unmatchedCards];
+
+    radicalClusters.forEach((radical, clusterCards) {
+      if (clusterCards.length >= 4) {
+        // Good sized cluster, keep it intact
+        batches.add(clusterCards);
+      } else {
+        currentMixedBatch.addAll(clusterCards);
+      }
+    });
+
+    // Chunk the mixed batch into groups of ~8-10
+    for (int i = 0; i < currentMixedBatch.length; i += 10) {
+      batches.add(currentMixedBatch.sublist(i, (i + 10 > currentMixedBatch.length) ? currentMixedBatch.length : i + 10));
+    }
+
+    // --- STEP 2: Reduce (AI Titling) ---
+    // We process the batches. To save API time, we could process them in parallel, 
+    // but for stability we'll process sequentially or in small parallel chunks.
+    
+    int unitIndex = 0;
+    for (var batch in batches) {
+      final wordData = batch.map((c) => "${c.hanzi} (${c.pinyin}): ${c.definition}").toList();
+      
+      final prompt = '''
+You are a Master Chinese Curriculum Architect.
+I have grouped a small batch of related Chinese vocabulary words.
+Your task is to give this specific lesson a poetic, thematic title and a brief 1-sentence description.
+Also, pick the simplest or most central character from the list to be the "Anchor Word".
+
+WORDS:
 ${jsonEncode(wordData)}
+
+Return ONLY valid JSON:
+{
+  "title": "Creative Thematic Title",
+  "description": "Brief pedagogical or semantic rationale",
+  "anchorHanzi": "The single most central character from the list"
+}
 ''';
 
-    try {
-      final syllabusText = await _geminiService.makeOpenRouterCall(
-         model: 'google/gemini-2.5-flash',
-         messages: [{'role': 'user', 'content': syllabusPrompt}],
-         jsonMode: true,
-      );
-      
-      final cleanSyllabus = syllabusText.replaceAll(RegExp(r'^```json\n?'), '')
-                                      .replaceAll(RegExp(r'^```\n?'), '')
-                                      .replaceAll(RegExp(r'```$'), '');
-                              
-      final Map<String, dynamic> syllabus = jsonDecode(cleanSyllabus);
-      final List<dynamic> jsonUnits = syllabus['units'] ?? [];
-      
-      final List<CourseUnit> finalUnits = [];
-      
-      for (var ju in jsonUnits) {
-        final String anchorH = ju['anchorHanzi'] ?? '';
-        final List<String> orbitH = List<String>.from(ju['orbitHanzi'] ?? []);
-        final List<CourseNode> nodes = [];
+      try {
+        final text = await _geminiService.makeOpenRouterCall(
+           model: 'google/gemini-2.5-flash',
+           messages: [{'role': 'user', 'content': prompt}],
+           jsonMode: true,
+        );
         
-        // 1. Process Anchor (Sun)
-        final anchorCard = cards.firstWhere((c) => c.hanzi == anchorH, orElse: () => cards.first);
+        final cleanJson = text.replaceAll(RegExp(r'^```json\n?'), '')
+                              .replaceAll(RegExp(r'^```\n?'), '')
+                              .replaceAll(RegExp(r'```$'), '');
+                              
+        final Map<String, dynamic> aiResponse = jsonDecode(cleanJson);
+        
+        final String anchorH = aiResponse['anchorHanzi'] ?? batch.first.hanzi;
+        
+        final List<CourseNode> nodes = [];
+        // Ensure anchor card exists in batch
+        final anchorCard = batch.firstWhere((c) => c.hanzi == anchorH, orElse: () => batch.first);
         nodes.add(CourseNode(uuid: anchorCard.id, hanzi: anchorCard.hanzi, parentUuid: null));
         
-        // 2. Process Orbits
-        for (var h in orbitH) {
-          if (h == anchorH) continue;
-          final match = cards.where((c) => c.hanzi == h);
-          if (match.isNotEmpty) {
-            final c = match.first;
-            nodes.add(CourseNode(uuid: c.id, hanzi: c.hanzi, parentUuid: anchorCard.id));
-          }
+        for (var c in batch) {
+          if (c.hanzi == anchorCard.hanzi) continue;
+          nodes.add(CourseNode(uuid: c.id, hanzi: c.hanzi, parentUuid: anchorCard.id));
         }
-        
-        if (nodes.isNotEmpty) {
-          finalUnits.add(CourseUnit(
-            id: "ai_unit_${deckId}_${finalUnits.length}_${ju['title']}",
-            title: ju['title'] ?? "Lesson",
-            description: ju['description'] ?? "",
-            nodes: nodes,
-          ));
-        }
-      }
-      
-      return finalUnits;
-    } catch (e) {
-      // Fallback: Smart Chunking if AI fails
-      final List<CourseUnit> fallbackUnits = [];
-      cards.sort((a, b) => a.hskLevel.compareTo(b.hskLevel));
-      
-      for (int i = 0; i < cards.length; i += 8) {
-        final chunk = cards.sublist(i, (i + 8 > cards.length) ? cards.length : i + 8);
+
+        finalUnits.add(CourseUnit(
+          id: "ai_unit_${deckId}_${unitIndex}",
+          title: aiResponse['title'] ?? "Lesson ${unitIndex + 1}",
+          description: aiResponse['description'] ?? "",
+          nodes: nodes,
+        ));
+      } catch (e) {
+        // Fallback for this specific chunk
         final List<CourseNode> nodes = [];
-        String? parentUuid;
-        
-        for (var c in chunk) {
-          if (nodes.isEmpty) {
-            parentUuid = c.id;
-            nodes.add(CourseNode(uuid: c.id, hanzi: c.hanzi, parentUuid: null));
-          } else {
-            nodes.add(CourseNode(uuid: c.id, hanzi: c.hanzi, parentUuid: parentUuid));
-          }
+        final anchorCard = batch.first;
+        nodes.add(CourseNode(uuid: anchorCard.id, hanzi: anchorCard.hanzi, parentUuid: null));
+        for (var c in batch) {
+          if (c.id == anchorCard.id) continue;
+          nodes.add(CourseNode(uuid: c.id, hanzi: c.hanzi, parentUuid: anchorCard.id));
         }
         
-        fallbackUnits.add(CourseUnit(
-           id: "fallback_${deckId}_$i",
-           title: "Vocabulary Batch ${i~/8 + 1}",
+        finalUnits.add(CourseUnit(
+           id: "fallback_${deckId}_$unitIndex",
+           title: "Vocabulary Batch ${unitIndex + 1}",
            description: "A balanced set of characters from your library.",
            nodes: nodes,
         ));
       }
-      return fallbackUnits;
+      unitIndex++;
     }
+    
+    return finalUnits;
   }
 }
