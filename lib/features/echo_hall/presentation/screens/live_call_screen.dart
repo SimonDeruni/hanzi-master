@@ -132,7 +132,7 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
       // 1. Setup Phase - Updated for June 2026 stable models
       final setupMessage = jsonEncode({
         "setup": {
-          "model": "models/gemini-2.5-flash",
+          "model": "models/gemini-3.1-flash-live-preview",
           "generationConfig": {
              "responseModalities": ["AUDIO"],
              "speechConfig": {
@@ -209,7 +209,7 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
               if (closeCode == 4403 || closeCode == 403) {
                 _callStatus = "Access Denied (403). Your API Key lacks 'Live' permissions or region is unsupported.";
               } else {
-                _callStatus = "Connection closed ($closeCode).";
+                _callStatus = "Connection closed ($closeCode): ${closeReason ?? 'Unknown reason'}";
               }
               _hasError = true;
             });
