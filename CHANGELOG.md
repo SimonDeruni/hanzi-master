@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.0] - 2026-06-17
+
+### Added
+- **Advanced AI Curriculum Engine**:
+    - Implemented a Two-Pass AI strategy for high-level syllabus planning and detailed unit execution.
+    - Added Component-Based Clustering using radical and decomposition metadata.
+    - Integrated "Anchor Word" (Sun node) selection to improve visual and conceptual hierarchy in the Path.
+    - Added Prerequisite Mapping to ensure simpler building blocks appear before complex characters.
+
 ## [1.1.0] - 2026-06-12
 
 ### Changed

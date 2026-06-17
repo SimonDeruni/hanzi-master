@@ -1,8 +1,10 @@
 import 'dart:ui' as ui;
-import 'dart:convert';
 import 'dart:async';
+import 'dart:convert';
+import 'dart:io';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 import 'package:web_socket_channel/status.dart' as status;
@@ -53,13 +55,14 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
   bool _isMuted = false;
   bool _isSpeaker = true;
   bool _isEndingCall = false;
-  
-  WebSocketChannel? _channel;
+
+  final fs.FlutterSoundPlayer _player = fs.FlutterSoundPlayer();
+  final AudioPlayer _bgPlayer = AudioPlayer();
   String _callStatus = "Initializing...";
   bool _hasError = false;
+  WebSocketChannel? _channel;
 
   final AudioRecorder _audioRecorder = AudioRecorder();
-  final fs.FlutterSoundPlayer _player = fs.FlutterSoundPlayer();
   StreamSubscription<Uint8List>? _audioSubscription;
   bool _isLive = false;
 
@@ -86,8 +89,17 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
   Future<void> _initAudioAndConnect() async {
     try {
       await _player.openPlayer();
-      // Required for stream playback:
-      await _player.startPlayerFromStream(
+
+    if (widget.scenario.backgroundAudioPath != null) {
+      if (widget.scenario.backgroundAudioPath!.startsWith('/') || widget.scenario.backgroundAudioPath!.contains(':\\')) {
+        await _bgPlayer.setReleaseMode(ReleaseMode.loop);
+        await _bgPlayer.setVolume(0.3); // Ambient volume
+        await _bgPlayer.play(DeviceFileSource(widget.scenario.backgroundAudioPath!));
+      }
+    }
+
+    // Required for stream playback:
+    await _player.startPlayerFromStream(
         codec: fs.Codec.pcm16,
         numChannels: 1,
         sampleRate: 24000,
@@ -137,7 +149,7 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
           "generationConfig": {
              "responseModalities": ["AUDIO"],
              "speechConfig": {
-               "voiceConfig": { "prebuiltVoiceConfig": { "voiceName": "Puck" } }
+               "voiceConfig": { "prebuiltVoiceConfig": { "voiceName": "\${widget.scenario.voiceName}" } }
              }
           },
           "systemInstruction": {
@@ -347,6 +359,8 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
     _isEndingCall = true;
     HapticsManager.heavy();
     _channel?.sink.close(status.normalClosure);
+    await _bgPlayer.stop();
+    await _bgPlayer.dispose();
 
     if (_transcript.isEmpty) {
       Navigator.pop(context);
@@ -400,11 +414,17 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
       body: Stack(
         children: [
           Positioned.fill(
-            child: Image.asset(
-              widget.scenario.avatarAssetPath,
-              fit: BoxFit.cover,
-              errorBuilder: (context, error, stackTrace) => Container(color: Colors.black87),
-            ),
+            child: widget.scenario.avatarAssetPath.startsWith('/') || widget.scenario.avatarAssetPath.contains(':\\')
+              ? Image.file(
+                  File(widget.scenario.avatarAssetPath),
+                  fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) => Container(color: Colors.black87),
+                )
+              : Image.asset(
+                  widget.scenario.avatarAssetPath,
+                  fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) => Container(color: Colors.black87),
+                ),
           ),
           Positioned.fill(
             child: BackdropFilter(

@@ -54,9 +54,7 @@ class CourseSelectionScreen extends ConsumerWidget {
               separatorBuilder: (context, index) => const SizedBox(height: 20),
               itemBuilder: (context, index) {
                 final deck = decks[index];
-                final cardCount = allCards.where((c) => c.deckId == deck.id || (deck.id == 'default' && c.deckId == null)).length;
-                
-                final isDark = Theme.of(context).brightness == Brightness.dark;
+                final cardCount = allCards.where((c) => c.deckId == deck.id).length;
                 
                 final String jobId = 'path_gen_${deck.id}';
                 final bool isGenerating = aiQueue.contains(jobId);

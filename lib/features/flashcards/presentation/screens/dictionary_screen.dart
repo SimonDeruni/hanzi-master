@@ -13,7 +13,6 @@ import 'package:hanzi_master/features/flashcards/domain/entities/deck.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/deck_detail_screen.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/ai_deck_generator_sheet.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/settings_screen.dart';
-import 'package:hanzi_master/features/flashcards/presentation/screens/flashcard_form_screen.dart';
 import 'package:hanzi_master/core/utils/pinyin_utils.dart';
 import 'package:hanzi_master/shared/widgets/pinyin_text.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/streak_seal.dart';
@@ -25,6 +24,7 @@ import 'package:hanzi_master/core/providers/premium_controller.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:hanzi_master/shared/widgets/clickable_chinese_text.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/dictionary_quick_box.dart';
+import 'package:hanzi_master/features/flashcards/presentation/screens/radical_library_screen.dart';
 
 import 'package:hanzi_master/features/flashcards/domain/entities/study_mode.dart';
 
@@ -405,6 +405,58 @@ class _DictionarySearchTab extends ConsumerWidget {
                       const SizedBox(height: 32),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => const RadicalLibraryScreen()));
+                          },
+                          child: Container(
+                            width: double.infinity,
+                            padding: const EdgeInsets.all(20),
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: [Colors.red.shade900, Colors.red.shade700],
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                              ),
+                              borderRadius: BorderRadius.circular(16),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.red.withValues(alpha: 0.3),
+                                  blurRadius: 12,
+                                  offset: const Offset(0, 4),
+                                ),
+                              ],
+                            ),
+                            child: Row(
+                              children: [
+                                Container(
+                                  padding: const EdgeInsets.all(12),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white.withValues(alpha: 0.2),
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                  child: const Text('氵', style: TextStyle(fontSize: 28, color: Colors.white, fontWeight: FontWeight.bold)),
+                                ),
+                                const SizedBox(width: 16),
+                                const Expanded(
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text('Radicals Index', style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold)),
+                                      SizedBox(height: 4),
+                                      Text('Master the building blocks of Hanzi', style: TextStyle(color: Colors.white70, fontSize: 13)),
+                                    ],
+                                  ),
+                                ),
+                                const Icon(Icons.arrow_forward_ios, color: Colors.white70, size: 16),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 32),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 24.0),
                         child: Text(
                           "Your Bookshelf",
                           style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
@@ -422,7 +474,7 @@ class _DictionarySearchTab extends ConsumerWidget {
                     delegate: SliverChildBuilderDelegate(
                       (context, index) {
                         final deck = decks[index];
-                        final deckCardsCount = flashcards.where((c) => c.deckId == deck.id || (deck.id == 'default' && c.deckId == null)).length;
+                        final deckCardsCount = flashcards.where((c) => c.deckId == deck.id).length;
                         return Padding(
                           padding: const EdgeInsets.only(bottom: 16),
                           child: _BookshelfVerticalCard(deck: deck, cardCount: deckCardsCount),
@@ -486,7 +538,7 @@ class _DictionarySearchTab extends ConsumerWidget {
         delegate: SliverChildBuilderDelegate(
           (context, index) {
             final deck = decks[index];
-            final deckCardsCount = allCards.where((c) => c.deckId == deck.id || (deck.id == 'default' && c.deckId == null)).length;
+            final deckCardsCount = allCards.where((c) => c.deckId == deck.id).length;
             
             return InkWell(
               onTap: () => Navigator.push(

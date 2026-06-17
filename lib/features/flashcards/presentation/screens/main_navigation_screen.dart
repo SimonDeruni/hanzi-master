@@ -6,6 +6,7 @@ import 'package:hanzi_master/features/chat/presentation/screens/ai_hub_screen.da
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
+import 'package:hanzi_master/features/live_translate/presentation/screens/translation_hub_screen.dart';
 
 class MainNavigationScreen extends ConsumerStatefulWidget {
   const MainNavigationScreen({super.key});
@@ -20,6 +21,7 @@ class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
   final List<Widget> _screens = [
     const CourseSelectionScreen(),
     const AiHubScreen(),
+    const TranslationHubScreen(),
     const DictionaryScreen(),
   ];
 
@@ -73,6 +75,10 @@ class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
             BottomNavigationBarItem(
               icon: Icon(Icons.auto_awesome),
               label: 'AI Hub',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.translate),
+              label: 'Translate',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.menu_book),

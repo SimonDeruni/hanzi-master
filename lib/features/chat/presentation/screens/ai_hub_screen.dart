@@ -4,6 +4,7 @@ import 'package:hanzi_master/features/chat/presentation/screens/echo_hall_screen
 import 'package:hanzi_master/features/echo_hall/presentation/screens/scenario_selection_screen.dart';
 import 'package:hanzi_master/features/reading/presentation/screens/reading_room_screen.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
+import 'package:hanzi_master/features/live_translate/presentation/screens/shadowing_studio_screen.dart';
 
 class AiHubScreen extends ConsumerWidget {
   const AiHubScreen({super.key});
@@ -84,6 +85,19 @@ class AiHubScreen extends ConsumerWidget {
                   );
                 },
                 isComingSoon: false,
+              ),
+              const SizedBox(height: 20),
+              _buildAiFeatureCard(
+                context,
+                title: "SHADOWING STUDIO",
+                description: "Translate your thoughts and shadow native pronunciation.",
+                icon: Icons.record_voice_over,
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const ShadowingStudioScreen()),
+                  );
+                },
               ),
             ],
           ),

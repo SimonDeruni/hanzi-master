@@ -20,6 +20,8 @@ class AudioRecordingService {
     return await _audioRecorder.hasPermission();
   }
 
+  Stream<Amplitude> get onAmplitudeChanged => _audioRecorder.onAmplitudeChanged(const Duration(milliseconds: 50));
+
   Future<void> startRecording(String fileName) async {
     if (await hasPermission()) {
       final dir = await getTemporaryDirectory();

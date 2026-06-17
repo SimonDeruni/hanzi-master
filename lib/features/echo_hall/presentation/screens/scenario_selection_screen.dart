@@ -1,6 +1,4 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../domain/entities/scenario.dart';
 import 'conversation_screen.dart';
 import 'live_call_screen.dart';
@@ -122,12 +120,19 @@ class _ScenarioCard extends StatelessWidget {
           children: [
             // Background Image
             Positioned.fill(
-              child: Image.asset(
-                scenario.avatarAssetPath,
-                fit: BoxFit.cover,
-                alignment: Alignment.topCenter,
-                errorBuilder: (context, error, stackTrace) => Container(color: theme.colorScheme.surface),
-              ),
+              child: scenario.avatarAssetPath.startsWith('/') || scenario.avatarAssetPath.contains(':\\')
+                ? Image.file(
+                    File(scenario.avatarAssetPath),
+                    fit: BoxFit.cover,
+                    alignment: Alignment.topCenter,
+                    errorBuilder: (context, error, stackTrace) => Container(color: theme.colorScheme.surface),
+                  )
+                : Image.asset(
+                    scenario.avatarAssetPath,
+                    fit: BoxFit.cover,
+                    alignment: Alignment.topCenter,
+                    errorBuilder: (context, error, stackTrace) => Container(color: theme.colorScheme.surface),
+                  ),
             ),
             // Gradient Overlay to ensure text readability
             Positioned.fill(

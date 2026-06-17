@@ -9,7 +9,6 @@ import 'package:hanzi_master/features/flashcards/presentation/widgets/modes/read
 import 'package:hanzi_master/features/flashcards/presentation/widgets/modes/recall_mode.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/modes/listening_mode.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/modes/speaking_mode.dart';
-import 'package:hanzi_master/features/flashcards/domain/logic/srs_logic.dart';
 
 class DeckReviewSessionScreen extends ConsumerStatefulWidget {
   final String deckId;
@@ -41,8 +40,6 @@ class _DeckReviewSessionScreenState extends ConsumerState<DeckReviewSessionScree
     final result = await ref.read(flashcardControllerProvider.notifier).getCardsForDeck(widget.deckId);
     
     if (mounted) {
-      final now = DateTime.now();
-      
       // Filter due cards and new cards
       final dueCards = result.where((c) => !c.isNew(widget.mode) && c.isDue(widget.mode)).toList();
       final newCards = result.where((c) => c.isNew(widget.mode)).toList();

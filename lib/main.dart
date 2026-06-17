@@ -9,6 +9,7 @@ import 'package:hanzi_master/features/flashcards/data/models/review_stats_model.
 import 'package:hanzi_master/features/flashcards/data/models/deck_model.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/settings_controller.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/main_navigation_screen.dart';
+import 'package:hanzi_master/features/live_translate/domain/entities/translation_session.dart';
 
 import 'package:hanzi_master/core/providers.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
@@ -37,6 +38,8 @@ void main() async {
   Hive.registerAdapter(FlashcardModelAdapter());
   Hive.registerAdapter(ReviewStatsModelAdapter());
   Hive.registerAdapter(DeckModelAdapter());
+  Hive.registerAdapter(TranslationMessageAdapter());
+  Hive.registerAdapter(TranslationSessionAdapter());
 
   // --- SECURITY: Hive Encryption ---
   // Key stored in SharedPreferences (NSUserDefaults on iOS) instead of Keychain.
@@ -82,6 +85,10 @@ void main() async {
   );
   await Hive.openBox<String>(
     'curriculum_cache_box',
+    encryptionCipher: cipher,
+  );
+  await Hive.openBox<TranslationSession>(
+    'translation_sessions',
     encryptionCipher: cipher,
   );
 

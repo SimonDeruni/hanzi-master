@@ -501,8 +501,11 @@ Respond ONLY in valid JSON format as a list of objects with this exact structure
     final wordsList = vocabulary.join(", ");
     final prompt = '''
 You are a professional Chinese language teacher creating Graded Readers.
-Write a very short, engaging story (4-6 sentences) using primarily the following vocabulary words:
+Write a substantial, engaging story (8-12 sentences) using primarily the following vocabulary words:
 $wordsList
+
+The story should feel like a complete narrative with a beginning, middle, and end. 
+Maintain a "Zen & Ink" tone: professional, calm, and culturally rich.
 
 Respond ONLY in valid JSON format with this exact structure:
 {

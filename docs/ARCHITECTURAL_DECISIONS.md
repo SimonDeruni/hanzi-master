@@ -31,3 +31,8 @@ This document records the critical technical choices made for Hanzi Master to en
 ## 🎨 6. UI Mandate: Zen & Ink (Xuan/Carbon)
 - **Decision:** Rigid adherence to Xuan Paper (`#FDFCF0`) and Carbon Ink (`#1A1A1B`).
 - **Rationale:** Differentiates the app as a "Calligraphic Tool" rather than a generic flashcard app.
+
+## 🗺️ 7. Curriculum Generation: Two-Pass Strategy
+- **Decision:** Use a two-pass AI approach for path generation (High-level Syllabus -> Detailed Unit Mapping).
+- **Rationale:** Ensures global coherence and component-based clustering (Radicals/Building Blocks) across large decks.
+- **Rule:** Mandate "Anchor Words" (Sun nodes) for thematic clusters.

@@ -1,5 +1,4 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:hanzi_master/core/providers.dart';
 import 'package:hanzi_master/core/services/curriculum_engine.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import '../../domain/entities/course_unit.dart';

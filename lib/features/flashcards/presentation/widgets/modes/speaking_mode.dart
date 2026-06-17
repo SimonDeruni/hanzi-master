@@ -1,11 +1,14 @@
 import 'dart:io';
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:record/record.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:hanzi_master/shared/widgets/pinyin_text.dart';
 import 'package:hanzi_master/core/services/audio_recording_service.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/study_session_app_bar.dart';
+import 'package:hanzi_master/shared/widgets/waveform_painter.dart';
 
 class SpeakingModeWidget extends ConsumerStatefulWidget {
   final Flashcard card;
@@ -34,6 +37,15 @@ class _SpeakingModeWidgetState extends ConsumerState<SpeakingModeWidget> {
   Map<String, dynamic>? _feedbackResult;
   String? _error;
 
+  StreamSubscription<Amplitude>? _amplitudeSubscription;
+  final List<double> _userAmplitudes = [];
+
+  @override
+  void dispose() {
+    _amplitudeSubscription?.cancel();
+    super.dispose();
+  }
+
   Future<void> _startRecording() async {
     final audioService = ref.read(audioRecordingServiceProvider);
     final hasPerm = await audioService.requestPermission();
@@ -46,10 +58,22 @@ class _SpeakingModeWidgetState extends ConsumerState<SpeakingModeWidget> {
       _isRecording = true;
       _error = null;
       _feedbackResult = null;
+      _userAmplitudes.clear();
     });
 
     try {
       await audioService.startRecording('flashcard_speech');
+      _amplitudeSubscription = audioService.onAmplitudeChanged.listen((amp) {
+        if (mounted && _isRecording) {
+          setState(() {
+            _userAmplitudes.add(amp.current);
+            // keep the last 50 samples to prevent massive lists
+            if (_userAmplitudes.length > 50) {
+              _userAmplitudes.removeAt(0);
+            }
+          });
+        }
+      });
     } catch (e) {
       setState(() {
         _isRecording = false;
@@ -61,6 +85,8 @@ class _SpeakingModeWidgetState extends ConsumerState<SpeakingModeWidget> {
   Future<void> _stopRecording() async {
     if (!_isRecording) return;
     
+    _amplitudeSubscription?.cancel();
+
     setState(() {
       _isRecording = false;
       _isProcessing = true;
@@ -109,6 +135,7 @@ class _SpeakingModeWidgetState extends ConsumerState<SpeakingModeWidget> {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final theme = Theme.of(context);
 
     return Scaffold(
       appBar: StudySessionAppBar(
@@ -249,9 +276,23 @@ class _SpeakingModeWidgetState extends ConsumerState<SpeakingModeWidget> {
                 ),
               )
             else if (_feedbackResult == null && !_isRevealed)
-              // Record Button
+              // Record Button and Waveform
               Column(
                 children: [
+                  if (_userAmplitudes.isNotEmpty)
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 24.0),
+                      child: SizedBox(
+                        height: 60,
+                        width: double.infinity,
+                        child: CustomPaint(
+                          painter: WaveformPainter(
+                            amplitudes: _userAmplitudes,
+                            color: theme.colorScheme.primary,
+                          ),
+                        ),
+                      ),
+                    ),
                   GestureDetector(
                     onTapDown: (_) => _startRecording(),
                     onTapUp: (_) => _stopRecording(),

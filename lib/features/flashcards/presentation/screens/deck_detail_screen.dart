@@ -36,13 +36,27 @@ class _SliverTabBarDelegate extends SliverPersistentHeaderDelegate {
   }
 }
 
-class DeckDetailScreen extends ConsumerWidget {
+class DeckDetailScreen extends ConsumerStatefulWidget {
   final Deck deck;
 
   const DeckDetailScreen({super.key, required this.deck});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<DeckDetailScreen> createState() => _DeckDetailScreenState();
+}
+
+class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
+  final TextEditingController _searchController = TextEditingController();
+  String _searchQuery = '';
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final asyncFlashcards = ref.watch(flashcardControllerProvider);
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
@@ -50,12 +64,12 @@ class DeckDetailScreen extends ConsumerWidget {
       length: 2,
       child: Scaffold(
         backgroundColor: isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
-        floatingActionButton: deck.id != 'default' ? FloatingActionButton.extended(
+        floatingActionButton: widget.deck.id != 'default' ? FloatingActionButton.extended(
           onPressed: () {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => DeckCardPickerScreen(deckId: deck.id, deckName: deck.name),
+                builder: (context) => DeckCardPickerScreen(deckId: widget.deck.id, deckName: widget.deck.name),
               ),
             );
           },
@@ -66,56 +80,71 @@ class DeckDetailScreen extends ConsumerWidget {
         ) : null,
         body: asyncFlashcards.when(
           data: (allCards) {
-            final deckCards = allCards.where((c) => c.deckId == deck.id || (deck.id == 'default' && c.deckId.isEmpty)).toList().reversed.toList();
+            final deckCards = allCards.where((c) => c.deckId == widget.deck.id || (widget.deck.id == 'default' && c.deckId.isEmpty)).toList().reversed.toList();
             
+            final filteredCards = deckCards.where((c) {
+              if (_searchQuery.isEmpty) return true;
+              return c.hanzi.contains(_searchQuery) || 
+                     c.pinyin.toLowerCase().contains(_searchQuery) || 
+                     c.definition.toLowerCase().contains(_searchQuery);
+            }).toList();
+
             return NestedScrollView(
               headerSliverBuilder: (context, innerBoxIsScrolled) {
                 return [
-                  // Hero Header
+                  // Premium Header
                   SliverAppBar(
-                    expandedHeight: 200.0,
+                    expandedHeight: 120.0,
                     floating: false,
                     pinned: true,
                     backgroundColor: isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
                     elevation: 0,
                     flexibleSpace: FlexibleSpaceBar(
                       centerTitle: true,
+                      titlePadding: const EdgeInsets.only(bottom: 12),
                       title: Text(
-                        deck.name,
+                        widget.deck.name,
                         style: TextStyle(
-                          color: isDark ? Colors.white : Colors.black,
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 1.2,
+                          color: isDark ? Colors.white : const Color(0xFF2C2C2C),
+                          fontWeight: FontWeight.w800,
+                          fontSize: 22,
+                          letterSpacing: 0.5,
                         ),
                       ),
                       background: Stack(
                         fit: StackFit.expand,
                         children: [
-                          const CalligraphyBackground(child: SizedBox.expand()),
-                          Container(
-                            color: (isDark ? Colors.black : Colors.white).withValues(alpha: 0.6),
+                          Opacity(
+                            opacity: isDark ? 0.3 : 0.1,
+                            child: const CalligraphyBackground(child: SizedBox.expand()),
                           ),
-                          Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                const SizedBox(height: 20),
-                                Text(
+                          Align(
+                            alignment: Alignment.bottomCenter,
+                            child: Padding(
+                              padding: const EdgeInsets.only(bottom: 56.0),
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                                decoration: BoxDecoration(
+                                  color: (isDark ? Colors.white : Colors.black).withValues(alpha: 0.05),
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                child: Text(
                                   "${deckCards.length} Cards",
                                   style: TextStyle(
-                                    fontSize: 16,
+                                    fontSize: 12,
                                     color: isDark ? Colors.white70 : Colors.black54,
-                                    letterSpacing: 2,
+                                    fontWeight: FontWeight.w600,
+                                    letterSpacing: 1.0,
                                   ),
                                 ),
-                              ],
+                              ),
                             ),
                           ),
                         ],
                       ),
                     ),
                     actions: [
-                      if (deck.id != 'default')
+                      if (widget.deck.id != 'default')
                         IconButton(
                           icon: const Icon(Icons.delete_outline, color: Colors.redAccent),
                           onPressed: () {
@@ -125,85 +154,85 @@ class DeckDetailScreen extends ConsumerWidget {
                     ],
                   ),
                   
-                  // Action Row
+                  // Action Row (Compact & Premium)
                   if (deckCards.isNotEmpty)
                     SliverToBoxAdapter(
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 24.0),
-                        child: Column(
+                        padding: const EdgeInsets.fromLTRB(20, 16, 20, 24),
+                        child: Row(
                           children: [
-                            SizedBox(
-                              width: double.infinity,
-                              height: 56,
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  StudyModeSelectionSheet.show(
-                                    context,
-                                    onModeSelected: (mode) {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) => DeckReviewSessionScreen(
-                                            deckId: deck.id,
-                                            mode: mode,
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                  );
-                                },
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.purple,
-                                  foregroundColor: Colors.white,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(16),
+                            Expanded(
+                              flex: 3,
+                              child: Container(
+                                height: 56,
+                                decoration: BoxDecoration(
+                                  gradient: const LinearGradient(
+                                    colors: [Color(0xFF8E2DE2), Color(0xFF4A00E0)],
+                                    begin: Alignment.topLeft,
+                                    end: Alignment.bottomRight,
                                   ),
-                                  elevation: 0,
-                                ),
-                                child: const Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Icon(Icons.play_arrow_rounded, size: 28),
-                                    SizedBox(width: 8),
-                                    Text(
-                                      "Start Review",
-                                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                                  borderRadius: BorderRadius.circular(16),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: const Color(0xFF4A00E0).withValues(alpha: 0.3),
+                                      blurRadius: 12,
+                                      offset: const Offset(0, 4),
                                     ),
                                   ],
+                                ),
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    StudyModeSelectionSheet.show(
+                                      context,
+                                      onModeSelected: (mode) {
+                                        Navigator.push(context, MaterialPageRoute(
+                                          builder: (context) => DeckReviewSessionScreen(deckId: widget.deck.id, mode: mode),
+                                        ));
+                                      },
+                                    );
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.transparent,
+                                    shadowColor: Colors.transparent,
+                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                                  ),
+                                  child: const Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(Icons.play_arrow_rounded, size: 24, color: Colors.white),
+                                      SizedBox(width: 8),
+                                      Text("Review", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white)),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
-                            const SizedBox(height: 12),
-                            SizedBox(
-                              width: double.infinity,
-                              height: 56,
-                              child: OutlinedButton(
-                                onPressed: () {
-                                  if (deckCards.isEmpty) return;
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => StoryModeScreen(deck: deck, cards: deckCards),
-                                    ),
-                                  );
-                                },
-                                style: OutlinedButton.styleFrom(
-                                  foregroundColor: isDark ? Colors.purple[300] : Colors.purple[700],
-                                  side: BorderSide(color: isDark ? Colors.purple[300]! : Colors.purple[700]!, width: 2),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(16),
+                            const SizedBox(width: 12),
+                            Expanded(
+                              flex: 2,
+                              child: SizedBox(
+                                height: 56,
+                                child: OutlinedButton(
+                                  onPressed: () {
+                                    if (deckCards.isEmpty) return;
+                                    Navigator.push(context, MaterialPageRoute(
+                                      builder: (context) => StoryModeScreen(deck: widget.deck, cards: deckCards),
+                                    ));
+                                  },
+                                  style: OutlinedButton.styleFrom(
+                                    foregroundColor: isDark ? Colors.purple[300] : Colors.purple[700],
+                                    backgroundColor: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.purple.withValues(alpha: 0.05),
+                                    side: BorderSide(color: isDark ? Colors.purple[300]!.withValues(alpha: 0.5) : Colors.purple[200]!, width: 1.5),
+                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                                   ),
-                                ),
-                                child: const Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Icon(Icons.menu_book, size: 24),
-                                    SizedBox(width: 8),
-                                    Text(
-                                      "Read Story (AI)",
-                                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                                    ),
-                                  ],
+                                  child: const Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(Icons.auto_awesome, size: 18),
+                                      SizedBox(width: 6),
+                                      Text("Story", style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
@@ -234,86 +263,124 @@ class DeckDetailScreen extends ConsumerWidget {
               body: TabBarView(
                 children: [
                   // Tab 1: Cards
-                  deckCards.isEmpty 
-                    ? Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(Icons.inbox_outlined, size: 80, color: Colors.grey.withValues(alpha: 0.3)),
-                            const SizedBox(height: 16),
-                            Text(
-                              "This deck is empty.",
-                              style: TextStyle(
-                                fontSize: 18,
-                                color: isDark ? Colors.white54 : Colors.black54,
-                              ),
-                            ),
-                            const SizedBox(height: 8),
-                            Text(
-                              "Tap the Add Cards button!",
-                              style: TextStyle(
-                                fontSize: 14,
-                                color: Colors.purple.withValues(alpha: 0.8),
-                              ),
-                            ),
-                          ],
-                        ),
-                      )
-                    : ListView.builder(
-                        padding: const EdgeInsets.only(top: 16, left: 16, right: 16, bottom: 80),
-                        itemCount: deckCards.length,
-                        itemBuilder: (context, index) {
-                          final card = deckCards[index];
-                          return Padding(
-                            padding: const EdgeInsets.only(bottom: 12.0),
-                            child: deck.id == 'default' ? _buildCardContent(context, card, isDark) : Dismissible(
-                              key: Key('dismiss_${card.id}'),
-                              direction: DismissDirection.endToStart,
-                              background: Container(
-                                alignment: Alignment.centerRight,
-                                padding: const EdgeInsets.symmetric(horizontal: 24),
-                                decoration: BoxDecoration(
-                                  color: Colors.redAccent,
-                                  borderRadius: BorderRadius.circular(16),
-                                ),
-                                child: const Icon(Icons.delete_sweep, color: Colors.white, size: 32),
-                              ),
-                              confirmDismiss: (direction) async {
-                                return await showDialog<bool>(
-                                  context: context,
-                                  builder: (context) => AlertDialog(
-                                    title: const Text("Remove Card"),
-                                    content: Text("Remove ${card.hanzi} from this deck?"),
-                                    actions: [
-                                      TextButton(onPressed: () => Navigator.pop(context, false), child: const Text("Cancel")),
-                                      TextButton(onPressed: () => Navigator.pop(context, true), child: const Text("Remove")),
-                                    ],
-                                  ),
-                                );
-                              },
-                              onDismissed: (direction) {
-                                final updatedCard = card.copyWith(deckId: 'default');
-                                ref.read(flashcardControllerProvider.notifier).updateFlashcard(updatedCard);
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: Text('Removed ${card.hanzi} from deck'),
-                                    backgroundColor: Colors.redAccent,
-                                    duration: const Duration(seconds: 2),
-                                    action: SnackBarAction(
-                                      label: 'UNDO',
-                                      textColor: Colors.white,
+                  Column(
+                    children: [
+                      if (deckCards.isNotEmpty)
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
+                          child: TextField(
+                            controller: _searchController,
+                            decoration: InputDecoration(
+                              hintText: "Search character, pinyin...",
+                              prefixIcon: const Icon(Icons.search),
+                              suffixIcon: _searchQuery.isNotEmpty 
+                                  ? IconButton(
+                                      icon: const Icon(Icons.clear), 
                                       onPressed: () {
-                                        ref.read(flashcardControllerProvider.notifier).updateFlashcard(card);
-                                      },
+                                        _searchController.clear();
+                                        setState(() => _searchQuery = '');
+                                      }
+                                    ) 
+                                  : null,
+                              filled: true,
+                              fillColor: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.black.withValues(alpha: 0.05),
+                              border: OutlineInputBorder(borderRadius: BorderRadius.circular(16), borderSide: BorderSide.none),
+                              contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                            ),
+                            onChanged: (val) => setState(() => _searchQuery = val.toLowerCase()),
+                          ),
+                        ),
+                      Expanded(
+                        child: deckCards.isEmpty 
+                          ? Center(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(Icons.inbox_outlined, size: 80, color: Colors.grey.withValues(alpha: 0.3)),
+                                  const SizedBox(height: 16),
+                                  Text(
+                                    "This deck is empty.",
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      color: isDark ? Colors.white54 : Colors.black54,
                                     ),
                                   ),
-                                );
-                              },
-                              child: _buildCardContent(context, card, isDark),
-                            ),
-                          );
-                        },
+                                  const SizedBox(height: 8),
+                                  Text(
+                                    "Tap the Add Cards button!",
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Colors.purple.withValues(alpha: 0.8),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            )
+                          : filteredCards.isEmpty
+                            ? Center(
+                                child: Text(
+                                  "No cards found.",
+                                  style: TextStyle(color: isDark ? Colors.white54 : Colors.black54),
+                                ),
+                              )
+                            : ListView.builder(
+                                padding: const EdgeInsets.only(top: 16, left: 16, right: 16, bottom: 80),
+                                itemCount: filteredCards.length,
+                                itemBuilder: (context, index) {
+                                  final card = filteredCards[index];
+                                  return Padding(
+                                    padding: const EdgeInsets.only(bottom: 12.0),
+                                    child: widget.deck.id == 'default' ? _buildCardContent(context, card, isDark) : Dismissible(
+                                      key: Key('dismiss_${card.id}'),
+                                      direction: DismissDirection.endToStart,
+                                      background: Container(
+                                        alignment: Alignment.centerRight,
+                                        padding: const EdgeInsets.symmetric(horizontal: 24),
+                                        decoration: BoxDecoration(
+                                          color: Colors.redAccent,
+                                          borderRadius: BorderRadius.circular(16),
+                                        ),
+                                        child: const Icon(Icons.delete_sweep, color: Colors.white, size: 32),
+                                      ),
+                                      confirmDismiss: (direction) async {
+                                        return await showDialog<bool>(
+                                          context: context,
+                                          builder: (context) => AlertDialog(
+                                            title: const Text("Remove Card"),
+                                            content: Text("Remove ${card.hanzi} from this deck?"),
+                                            actions: [
+                                              TextButton(onPressed: () => Navigator.pop(context, false), child: const Text("Cancel")),
+                                              TextButton(onPressed: () => Navigator.pop(context, true), child: const Text("Remove")),
+                                            ],
+                                          ),
+                                        );
+                                      },
+                                      onDismissed: (direction) {
+                                        final updatedCard = card.copyWith(deckId: 'default');
+                                        ref.read(flashcardControllerProvider.notifier).updateFlashcard(updatedCard);
+                                        ScaffoldMessenger.of(context).showSnackBar(
+                                          SnackBar(
+                                            content: Text('Removed ${card.hanzi} from deck'),
+                                            backgroundColor: Colors.redAccent,
+                                            duration: const Duration(seconds: 2),
+                                            action: SnackBarAction(
+                                              label: 'UNDO',
+                                              textColor: Colors.white,
+                                              onPressed: () {
+                                                ref.read(flashcardControllerProvider.notifier).updateFlashcard(card);
+                                              },
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                      child: _buildCardContent(context, card, isDark),
+                                    ),
+                                  );
+                                },
+                              ),
                       ),
+                    ],
+                  ),
                   
                   // Tab 2: Statistics
                   _buildStatisticsTab(context, deckCards),
@@ -446,34 +513,46 @@ class DeckDetailScreen extends ConsumerWidget {
   Widget _buildCardContent(BuildContext context, dynamic card, bool isDark) {
     return InkWell(
       onTap: () => DictionaryQuickBox.show(context, card: card, isInLibrary: true),
-      borderRadius: BorderRadius.circular(16),
+      borderRadius: BorderRadius.circular(20),
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: isDark ? Colors.white.withValues(alpha: 0.03) : Colors.white.withValues(alpha: 0.6),
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: isDark ? Colors.white12 : Colors.black12, width: 1),
+          color: isDark ? const Color(0xFF2A2A2C) : Colors.white,
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: isDark ? [] : [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.04),
+              blurRadius: 12,
+              offset: const Offset(0, 4),
+            ),
+          ],
+          border: Border.all(color: isDark ? Colors.white12 : Colors.transparent, width: 1),
         ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(
-              width: 80,
+            Container(
+              width: 72,
+              height: 72,
+              decoration: BoxDecoration(
+                color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.grey.shade50,
+                borderRadius: BorderRadius.circular(16),
+              ),
+              alignment: Alignment.center,
               child: FittedBox(
                 fit: BoxFit.scaleDown,
-                alignment: Alignment.centerLeft,
                 child: Text(
                   card.hanzi,
                   style: TextStyle(
-                    fontSize: 42,
-                    fontWeight: FontWeight.bold,
+                    fontSize: 36,
+                    fontWeight: FontWeight.w900,
                     color: isDark ? Colors.white.withValues(alpha: 0.9) : const Color(0xFF2C2C2C),
                     height: 1.1,
                   ),
                 ),
               ),
             ),
-            const SizedBox(width: 16),
+            const SizedBox(width: 20),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -481,20 +560,21 @@ class DeckDetailScreen extends ConsumerWidget {
                   Text(
                     card.pinyin,
                     style: TextStyle(
-                      fontSize: 16,
-                      color: isDark ? Colors.white70 : Colors.black54,
-                      letterSpacing: 1.2,
+                      fontSize: 15,
+                      color: isDark ? Colors.white60 : Colors.black54,
+                      fontWeight: FontWeight.w600,
+                      letterSpacing: 1.0,
                     ),
                   ),
-                  const SizedBox(height: 4),
-                  if (card.hskLevel == 0)
+                  const SizedBox(height: 6),
+                  if (card.hskLevel == 0 && widget.deck.id == 'default')
                     Container(
-                      margin: const EdgeInsets.only(bottom: 6),
-                      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                      margin: const EdgeInsets.only(bottom: 8),
+                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                       decoration: BoxDecoration(
                         color: Colors.purple.withValues(alpha: 0.1),
-                        borderRadius: BorderRadius.circular(4),
-                        border: Border.all(color: Colors.purple.withValues(alpha: 0.3)),
+                        borderRadius: BorderRadius.circular(6),
+                        border: Border.all(color: Colors.purple.withValues(alpha: 0.2)),
                       ),
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
@@ -504,7 +584,7 @@ class DeckDetailScreen extends ConsumerWidget {
                           Text(
                             "AI Generated",
                             style: TextStyle(
-                              fontSize: 9,
+                              fontSize: 10,
                               fontWeight: FontWeight.bold,
                               color: Colors.purple.shade400,
                             ),

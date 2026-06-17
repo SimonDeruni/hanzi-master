@@ -19,11 +19,12 @@
 ## 📚 Cultural Reading Room (NEW)
 - **Story Reader:** Word-by-word interactive structural JSON reader for graded stories.
 - **Contextual Inking:** Tapping any word in a story opens the **Quick Look** scholar card.
-- **Custom Creator:** AI-powered story generation aligned with the user's current HSK level.
+- **Custom Creator:** AI-powered story generation (8-12 sentences) aligned with the user's current HSK level.
 - **Media Integration:** Wikimedia-powered imagery with optimized header loading.
 
 ## 🗺️ Galactic Map & Progression (CORE)
 - **The Living Scroll (Constellation Map):** HSK 1-6 celestial journey through orbital radical units.
+    - **Advanced Path Gen:** Two-pass AI logic with radical clustering and Anchor Word hierarchy.
 - **Progression Engine:**
     - **Ink Points (XP):** Awarded for calligraphy accuracy and object captures.
     - **Scholar Ranks:** Novice -> Apprentice -> Artisan -> Master -> Grandmaster.

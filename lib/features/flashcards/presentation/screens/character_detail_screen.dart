@@ -8,7 +8,6 @@ import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraph
 import 'package:hanzi_master/features/flashcards/presentation/widgets/drawing_canvas.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/mastery_seal.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/review_screen.dart';
-import 'package:intl/intl.dart';
 import 'package:flutter/services.dart';
 import 'dart:convert';
 import 'dart:ui';
@@ -20,7 +19,6 @@ import 'package:hanzi_master/features/flashcards/presentation/widgets/character_
 import 'package:hanzi_master/shared/widgets/tappable_hanzi_text.dart';
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
 import 'package:hanzi_master/core/utils/pinyin_utils.dart';
-import 'package:hanzi_master/features/flashcards/presentation/widgets/dictionary_quick_box.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/deck_selection_sheet.dart';
 
 class CharacterDetailScreen extends ConsumerStatefulWidget {
@@ -106,27 +104,57 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
 
       final chars = widget.card.hanzi.split('');
       final List<Map<String, dynamic>> foundComponents = [];
+      final structuralChars = ['⿰', '⿱', '⿲', '⿳', '⿴', '⿵', '⿶', '⿷', '⿸', '⿹', '⿺', '⿻', '？'];
 
-      for (var char in chars) {
-        var meta = hanziMeta[char];
+      Set<String> findBaseRadicals(String char) {
+        Set<String> found = {};
         
-        // Fallback to HSK 2 Bundle if not in standard metadata
+        if (radicalData.containsKey(char)) {
+          found.add(char);
+          return found;
+        }
+        
+        var meta = hanziMeta[char];
         if (meta == null && hsk2Meta.containsKey(char)) {
           meta = hsk2Meta[char];
         }
 
         if (meta != null) {
-          final String radicalChar = meta['radical'];
-          if (radicalData.containsKey(radicalChar)) {
-            foundComponents.add({
-              'char': char,
-              'radical': radicalChar,
-              'info': radicalData[radicalChar],
-              'decomposition': meta['decomposition'],
-            });
+          final primaryRadical = meta['radical'];
+          if (primaryRadical != null && radicalData.containsKey(primaryRadical)) {
+            found.add(primaryRadical);
+          }
+          
+          final decomp = meta['decomposition'] as String?;
+          if (decomp != null && decomp != '?') {
+            for (var i = 0; i < decomp.length; i++) {
+              final c = decomp[i];
+              if (!structuralChars.contains(c) && c != char) {
+                found.addAll(findBaseRadicals(c));
+              }
+            }
+          }
+        }
+        return found;
+      }
+
+      for (var char in chars) {
+        final components = findBaseRadicals(char);
+        for (final comp in components) {
+          if (radicalData.containsKey(comp)) {
+            // Avoid adding duplicates of the same radical
+            if (!foundComponents.any((element) => element['radical'] == comp)) {
+              foundComponents.add({
+                'char': char,
+                'radical': comp,
+                'info': radicalData[comp],
+                'decomposition': hanziMeta[char]?['decomposition'] ?? '',
+              });
+            }
           }
         }
       }
+      
       if (mounted) {
         setState(() {
           _anatomyComponents.clear();
@@ -365,21 +393,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
               _buildCommonWordsSection(context, isDark),
               const SizedBox(height: 16),
               _buildAiContextSection(context, isDark),
-              const SizedBox(height: 16),
-              _buildInfoSection(
-                context,
-                title: "Scholarly Progress",
-                icon: Icons.auto_graph,
-                child: Column(
-                  children: [
-                    _buildStatRow("Mastery Level", "${(masteryProgress * 100).toInt()}%"),
-                    _buildStatRow("Practice Attempts", "${currentCard.getStatsForMode(StudyMode.calligraphy).attempts}"),
-                    _buildStatRow("Successful Writes", "${currentCard.getStatsForMode(StudyMode.calligraphy).successCount}"),
-                    if (currentCard.getStatsForMode(StudyMode.calligraphy).lastAttemptDate != null)
-                      _buildStatRow("Last Studied", DateFormat('MMM d, yyyy').format(currentCard.getStatsForMode(StudyMode.calligraphy).lastAttemptDate!)),
-                  ],
-                ),
-              ),
+
               const SizedBox(height: 40),
               Column(
                 children: [
@@ -904,19 +918,6 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
           const SizedBox(height: 12),
           if (content != null) CrossReferenceText(content, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500)),
           if (child != null) child,
-        ],
-      ),
-    );
-  }
-
-  Widget _buildStatRow(String label, String value) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(label, style: const TextStyle(color: Colors.grey)),
-          Text(value, style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.indigo)),
         ],
       ),
     );
