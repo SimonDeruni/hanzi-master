@@ -13,7 +13,7 @@ void main() async {
 
     final setupMessage = jsonEncode({
       "setup": {
-        "model": "models/gemini-2.5-flash-live",
+        "model": "models/gemini-3.1-flash-live-preview",
         "generationConfig": {
           "responseModalities": ["AUDIO"],
           "speechConfig": {

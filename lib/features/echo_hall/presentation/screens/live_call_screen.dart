@@ -155,7 +155,13 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
           if (!mounted) return;
           
           try {
-            final data = jsonDecode(message);
+            String textMessage;
+            if (message is List<int>) {
+              textMessage = utf8.decode(message);
+            } else {
+              textMessage = message.toString();
+            }
+            final data = jsonDecode(textMessage);
             
             if (data.containsKey('error')) {
               debugPrint("LiveCall: Server returned error: ${data['error']}");
