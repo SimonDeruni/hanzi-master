@@ -132,14 +132,14 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
       // 1. Setup Phase - Updated for June 2026 stable models
       final setupMessage = jsonEncode({
         "setup": {
-          "model": "models/gemini-2.5-flash-live",
+          "model": "models/gemini-2.0-flash-exp",
           "generationConfig": {
              "responseModalities": ["AUDIO"],
              "speechConfig": {
                "voiceConfig": { "prebuiltVoiceConfig": { "voiceName": "Puck" } }
              }
           },
-          "inputAudioTranscription": {"model": "models/gemini-2.5-flash-live"},
+          "inputAudioTranscription": {},
           "systemInstruction": {
             "parts": [
               {"text": "You are a professional Mandarin tutor named Master Lin. You are patient, wise, and encouraging. Respond naturally in spoken Mandarin. Keep your responses short (under 3 sentences). Your current scenario: ${widget.scenario.description}"}
