@@ -309,7 +309,7 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
         if (!_isMuted && _channel != null) {
           _channel!.sink.add(jsonEncode({
             "realtimeInput": {
-              "mediaChunks": [{ "mimeType": "audio/pcm", "data": base64Encode(data) }]
+              "mediaChunks": [{ "mimeType": "audio/pcm;rate=16000", "data": base64Encode(data) }]
             }
           }));
           _userAudioBuffer.add(data);
