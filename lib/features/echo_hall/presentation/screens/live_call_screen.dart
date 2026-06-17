@@ -132,7 +132,7 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
       // 1. Setup Phase - Updated for June 2026 stable models
       final setupMessage = jsonEncode({
         "setup": {
-          "model": "models/gemini-2.0-flash-exp",
+          "model": "models/gemini-2.5-flash",
           "generationConfig": {
              "responseModalities": ["AUDIO"],
              "speechConfig": {
@@ -156,6 +156,11 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
           
           try {
             final data = jsonDecode(message);
+            
+            if (data.containsKey('error')) {
+              debugPrint("LiveCall: Server returned error: ${data['error']}");
+              if (mounted) setState(() => _callStatus = "Server Error: ${data['error']['message']}");
+            }
             
             if (data.containsKey('setupComplete')) {
               setState(() => _callStatus = "Connected! Speak now.");
@@ -305,6 +310,7 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
       );
 
       _audioSubscription = stream.listen((data) {
+        if (data.isEmpty) return;
         if (!_isMuted && _channel != null) {
           _channel!.sink.add(jsonEncode({
             "realtimeInput": {
