@@ -84,6 +84,8 @@
 ## Phase 11: The Echo Hall (Oral & Intelligence) (🔥 PRIORITIZED)
 - [ ] **🗣️ Speech Recognition:** Integrated AI grading for tones and pronunciation.
 - [ ] **🤖 AI Scribe:** LLM-driven roleplay chat using current HSK vocabulary.
+    - [ ] *Custom Scenarios:* AI-generated background soundscapes based on user prompts.
+    - [ ] *Dynamic Avatars:* AI-generated 18+ persona images matching the app's established art style.
 - [ ] **🎥 Authentic Snippets:** High-fidelity native speaker video clips.
 - [ ] **👂 Audio-Only Quiz Mode:** Test recognition via sound while mobile.
 
