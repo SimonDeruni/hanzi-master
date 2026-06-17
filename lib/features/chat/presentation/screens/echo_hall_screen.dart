@@ -6,6 +6,7 @@ import 'package:hanzi_master/features/chat/domain/entities/chat_message.dart';
 import 'package:hanzi_master/core/services/audio_service.dart';
 import 'package:intl/intl.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
+import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
 
 class EchoHallScreen extends ConsumerStatefulWidget {
   const EchoHallScreen({super.key});
@@ -160,7 +161,7 @@ class _EchoHallScreenState extends ConsumerState<EchoHallScreen> {
             Row(
               children: [
                 Expanded(
-                  child: TextField(
+                  child: HanziTextField(
                     controller: _customPromptController,
                     style: theme.textTheme.bodyMedium,
                     decoration: InputDecoration(
@@ -388,7 +389,7 @@ class _EchoHallScreenState extends ConsumerState<EchoHallScreen> {
                          BoxShadow(color: theme.colorScheme.onSurface.withValues(alpha: 0.05), blurRadius: 10, offset: const Offset(0, 4))
                       ],
                     ),
-                    child: TextField(
+                    child: HanziTextField(
                       controller: _textController,
                       style: theme.textTheme.bodyLarge,
                       decoration: InputDecoration(

@@ -4,6 +4,8 @@ import 'package:uuid/uuid.dart';
 import '../../domain/entities/flashcard.dart';
 import '../providers/flashcard_controller.dart';
 import '../utils/haptics_manager.dart';
+import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
+
 class FlashcardFormScreen extends ConsumerStatefulWidget {
   final Flashcard? cardToEdit; // If this is null, we are creating a NEW card
 
@@ -86,8 +88,9 @@ class _FlashcardFormScreenState extends ConsumerState<FlashcardFormScreen> {
           child: ListView(
             children: [
               // HANZI
-              TextFormField(
+              HanziTextField(
                 controller: _hanziController,
+                hintText: '',
                 decoration: const InputDecoration(labelText: "Hanzi (Character)", border: OutlineInputBorder()),
                 style: const TextStyle(fontSize: 24),
                 validator: (v) => v!.isEmpty ? "Required" : null,

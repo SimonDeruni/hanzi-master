@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
 import 'package:hanzi_master/features/echo_hall/domain/entities/scenario.dart';
+import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
 
 class CustomScenarioDialog extends StatefulWidget {
   const CustomScenarioDialog({super.key});
@@ -44,21 +45,24 @@ class _CustomScenarioDialogState extends State<CustomScenarioDialog> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              TextFormField(
+              HanziTextField(
                 controller: _titleController,
+                hintText: '',
                 decoration: const InputDecoration(labelText: "Title (e.g. Wedding Reception)"),
                 validator: (v) => v == null || v.isEmpty ? "Required" : null,
               ),
               const SizedBox(height: 16),
-              TextFormField(
+              HanziTextField(
                 controller: _descController,
+                hintText: '',
                 decoration: const InputDecoration(labelText: "Description (Context)"),
                 maxLines: 2,
                 validator: (v) => v == null || v.isEmpty ? "Required" : null,
               ),
               const SizedBox(height: 16),
-              TextFormField(
+              HanziTextField(
                 controller: _promptController,
+                hintText: '',
                 decoration: const InputDecoration(labelText: "AI Persona (e.g. A curious relative)"),
                 maxLines: 2,
                 validator: (v) => v == null || v.isEmpty ? "Required" : null,
