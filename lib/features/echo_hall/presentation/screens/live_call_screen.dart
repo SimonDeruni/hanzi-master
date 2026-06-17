@@ -139,7 +139,6 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
                "voiceConfig": { "prebuiltVoiceConfig": { "voiceName": "Puck" } }
              }
           },
-          "inputAudioTranscription": {},
           "systemInstruction": {
             "parts": [
               {"text": "You are a professional Mandarin tutor named Master Lin. You are patient, wise, and encouraging. Respond naturally in spoken Mandarin. Keep your responses short (under 3 sentences). Your current scenario: ${widget.scenario.description}"}
