@@ -775,6 +775,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
                           builder: (context, setState) {
                             bool isRevealed = false;
                             return GestureDetector(
+                              behavior: HitTestBehavior.opaque,
                               onTap: () => setState(() => isRevealed = true),
                               child: Stack(
                                 children: [
