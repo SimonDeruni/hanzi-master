@@ -14,6 +14,7 @@ import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_mana
 
 import 'package:hanzi_master/core/providers.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
+import 'package:hanzi_master/features/onboarding/presentation/screens/onboarding_screen.dart';
 import 'package:hanzi_master/core/services/monetization_service.dart';
 import 'package:hanzi_master/features/reading/data/repositories/story_repository.dart';
 import 'package:hanzi_master/core/theme/app_theme.dart';
@@ -162,7 +163,17 @@ class HanziMasterApp extends ConsumerWidget {
           Locale('ar'), Locale('hi'), Locale('pt'), Locale('it'),
           Locale('tr'), Locale('vi'), Locale('id'),
         ],
-        home: const MainNavigationScreen(),
+        home: Consumer(
+          builder: (context, ref, child) {
+            final prefs = ref.watch(sharedPreferencesProvider);
+            final hasSeenOnboarding = prefs.getBool('has_seen_onboarding') ?? false;
+            
+            if (!hasSeenOnboarding) {
+              return const OnboardingScreen();
+            }
+            return const MainNavigationScreen();
+          },
+        ),
       ),
     );
   }
