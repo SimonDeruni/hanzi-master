@@ -440,4 +440,89 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get revealAnswer => 'Hiện đáp án';
+
+  @override
+  String get aiHubTitle => 'Trung tâm AI';
+
+  @override
+  String get textChat => 'Nhắn tin';
+
+  @override
+  String get scholarlyPersonas => 'Các nhân vật học giả';
+
+  @override
+  String get shadowing => 'Luyện giọng đuổi';
+
+  @override
+  String get liveTranslation => 'Dịch trực tiếp';
+
+  @override
+  String get scholarsLibrary => 'Thư viện học giả';
+
+  @override
+  String get generate => 'Tạo';
+
+  @override
+  String get searchPinyinHanziEnglish =>
+      'Tìm kiếm Pinyin, Hanzi, hoặc tiếng Anh...';
+
+  @override
+  String get liveTranslate => 'Dịch trực tiếp';
+
+  @override
+  String get travelInterpreter => 'Phiên dịch du lịch';
+
+  @override
+  String get realTimeSplitScreen =>
+      'Trò chuyện chia đôi màn hình theo thời gian thực với người bản xứ. Phá bỏ rào cản ngôn ngữ ngay lập tức.';
+
+  @override
+  String get whisperEarpiece => 'Tai nghe thì thầm';
+
+  @override
+  String get listenToChineseAudio =>
+      'Nghe âm thanh tiếng Trung và nhận phụ đề tiếng Anh theo thời gian thực trực tiếp trên màn hình của bạn.';
+
+  @override
+  String get dashboardTitle => 'Bảng điều khiển';
+
+  @override
+  String get yourMindIsClear => 'Tâm trí bạn minh mẫn.';
+
+  @override
+  String get noReviewsDueToday => 'Không có bài ôn tập nào đến hạn hôm nay.';
+
+  @override
+  String get done => 'Xong';
+
+  @override
+  String get hskLevel1 => 'HSK Cấp độ 1';
+
+  @override
+  String get hskLevel2 => 'HSK Cấp độ 2';
+
+  @override
+  String get hskLevel3 => 'HSK Cấp độ 3';
+
+  @override
+  String get hskLevel4 => 'HSK Cấp độ 4';
+
+  @override
+  String get hskLevel5 => 'HSK Cấp độ 5';
+
+  @override
+  String get hskLevel6 => 'HSK Cấp độ 6';
+
+  @override
+  String get generalVocabulary => 'Từ vựng tổng quát';
+
+  @override
+  String get cardsRequireAttention => 'thẻ cần xem lại.';
+
+  @override
+  String get begin => 'Bắt đầu';
+
+  @override
+  String get poweredByAi =>
+      'Được hỗ trợ bởi AI tiên tiến. Dịch thuật tức thời mượt mà cho mọi ngữ cảnh.';
 }

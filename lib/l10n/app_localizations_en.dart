@@ -443,4 +443,88 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get revealAnswer => 'Reveal Answer';
+
+  @override
+  String get aiHubTitle => 'AI Hub';
+
+  @override
+  String get textChat => 'Text Chat';
+
+  @override
+  String get scholarlyPersonas => 'Scholarly Personas';
+
+  @override
+  String get shadowing => 'Shadowing';
+
+  @override
+  String get liveTranslation => 'Live Translation';
+
+  @override
+  String get scholarsLibrary => 'The Scholar\'s Library';
+
+  @override
+  String get generate => 'Generate';
+
+  @override
+  String get searchPinyinHanziEnglish => 'Search Pinyin, Hanzi, or English...';
+
+  @override
+  String get liveTranslate => 'Live Translate';
+
+  @override
+  String get travelInterpreter => 'Travel Interpreter';
+
+  @override
+  String get realTimeSplitScreen =>
+      'Real-time split-screen conversation with a native speaker. Breaks down language barriers instantly.';
+
+  @override
+  String get whisperEarpiece => 'Whisper Earpiece';
+
+  @override
+  String get listenToChineseAudio =>
+      'Listen to Chinese audio and get real-time English subtitles directly on your screen.';
+
+  @override
+  String get dashboardTitle => 'Dashboard';
+
+  @override
+  String get yourMindIsClear => 'Your mind is clear.';
+
+  @override
+  String get noReviewsDueToday => 'No reviews due today.';
+
+  @override
+  String get done => 'Done';
+
+  @override
+  String get hskLevel1 => 'HSK Level 1';
+
+  @override
+  String get hskLevel2 => 'HSK Level 2';
+
+  @override
+  String get hskLevel3 => 'HSK Level 3';
+
+  @override
+  String get hskLevel4 => 'HSK Level 4';
+
+  @override
+  String get hskLevel5 => 'HSK Level 5';
+
+  @override
+  String get hskLevel6 => 'HSK Level 6';
+
+  @override
+  String get generalVocabulary => 'General Vocabulary';
+
+  @override
+  String get cardsRequireAttention => 'cards require attention.';
+
+  @override
+  String get begin => 'Begin';
+
+  @override
+  String get poweredByAi =>
+      'Powered by advanced AI. Seamless real-time translation for any scenario.';
 }

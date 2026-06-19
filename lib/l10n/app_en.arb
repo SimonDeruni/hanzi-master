@@ -156,7 +156,6 @@
   "generate": "Generate",
   "searchPinyinHanziEnglish": "Search Pinyin, Hanzi, or English...",
   "liveTranslate": "Live Translate",
-  "poweredByGemini": "Powered by Gemini 3.5. Seamless real-time translation for any scenario.",
   "travelInterpreter": "Travel Interpreter",
   "realTimeSplitScreen": "Real-time split-screen conversation with a native speaker. Breaks down language barriers instantly.",
   "whisperEarpiece": "Whisper Earpiece",
@@ -173,5 +172,6 @@
   "hskLevel6": "HSK Level 6",
   "generalVocabulary": "General Vocabulary",
   "cardsRequireAttention": "cards require attention.",
-  "begin": "Begin"
+  "begin": "Begin",
+  "poweredByAi": "Powered by advanced AI. Seamless real-time translation for any scenario."
 }

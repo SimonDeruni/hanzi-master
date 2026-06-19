@@ -439,4 +439,88 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get revealAnswer => 'Revelar Resposta';
+
+  @override
+  String get aiHubTitle => 'Hub de IA';
+
+  @override
+  String get textChat => 'Chat de Texto';
+
+  @override
+  String get scholarlyPersonas => 'Personas Acadêmicas';
+
+  @override
+  String get shadowing => 'Imitação';
+
+  @override
+  String get liveTranslation => 'Tradução ao Vivo';
+
+  @override
+  String get scholarsLibrary => 'A Biblioteca do Estudioso';
+
+  @override
+  String get generate => 'Gerar';
+
+  @override
+  String get searchPinyinHanziEnglish => 'Pesquisar Pinyin, Hanzi ou Inglês...';
+
+  @override
+  String get liveTranslate => 'Traduzir ao Vivo';
+
+  @override
+  String get travelInterpreter => 'Intérprete de Viagem';
+
+  @override
+  String get realTimeSplitScreen =>
+      'Conversa em tela dividida em tempo real com um falante nativo. Quebra barreiras linguísticas instantaneamente.';
+
+  @override
+  String get whisperEarpiece => 'Ponto Eletrônico';
+
+  @override
+  String get listenToChineseAudio =>
+      'Ouça áudio em chinês e obtenha legendas em inglês em tempo real diretamente na sua tela.';
+
+  @override
+  String get dashboardTitle => 'Painel';
+
+  @override
+  String get yourMindIsClear => 'Sua mente está clara.';
+
+  @override
+  String get noReviewsDueToday => 'Nenhuma revisão pendente hoje.';
+
+  @override
+  String get done => 'Concluído';
+
+  @override
+  String get hskLevel1 => 'Nível HSK 1';
+
+  @override
+  String get hskLevel2 => 'Nível HSK 2';
+
+  @override
+  String get hskLevel3 => 'Nível HSK 3';
+
+  @override
+  String get hskLevel4 => 'Nível HSK 4';
+
+  @override
+  String get hskLevel5 => 'Nível HSK 5';
+
+  @override
+  String get hskLevel6 => 'Nível HSK 6';
+
+  @override
+  String get generalVocabulary => 'Vocabulário Geral';
+
+  @override
+  String get cardsRequireAttention => 'cartões exigem atenção.';
+
+  @override
+  String get begin => 'Começar';
+
+  @override
+  String get poweredByAi =>
+      'Potencializado por IA avançada. Tradução em tempo real fluida para qualquer cenário.';
 }

@@ -158,7 +158,6 @@
   "generate": "Tạo",
   "searchPinyinHanziEnglish": "Tìm kiếm Pinyin, Hanzi, hoặc tiếng Anh...",
   "liveTranslate": "Dịch trực tiếp",
-  "poweredByGemini": "Được hỗ trợ bởi Gemini 3.5. Dịch thuật theo thời gian thực liền mạch cho mọi tình huống.",
   "travelInterpreter": "Phiên dịch du lịch",
   "realTimeSplitScreen": "Trò chuyện chia đôi màn hình theo thời gian thực với người bản xứ. Phá bỏ rào cản ngôn ngữ ngay lập tức.",
   "whisperEarpiece": "Tai nghe thì thầm",
@@ -175,5 +174,6 @@
   "hskLevel6": "HSK Cấp độ 6",
   "generalVocabulary": "Từ vựng tổng quát",
   "cardsRequireAttention": "thẻ cần xem lại.",
-  "begin": "Bắt đầu"
+  "begin": "Bắt đầu",
+  "poweredByAi": "Được hỗ trợ bởi AI tiên tiến. Dịch thuật tức thời mượt mà cho mọi ngữ cảnh."
 }

@@ -23,19 +23,9 @@ class AiHubScreen extends ConsumerWidget {
         child: CustomScrollView(
           physics: const BouncingScrollPhysics(),
           slivers: [
-            GlobalSliverAppBar(title: l10n?.aiHubTitle ?? "AI Hub"),
-            
-            // Subtitle
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 8.0),
-                child: Text(
-                  l10n?.refineBrushVoice ?? "Refine your brush and voice with advanced AI.",
-                  style: theme.textTheme.bodyLarge?.copyWith(
-                    color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
-                  ),
-                ),
-              ),
+            GlobalSliverAppBar(
+              title: l10n?.aiHubTitle ?? "AI Hub",
+              subtitle: l10n?.refineBrushVoice ?? "Refine your brush and voice with advanced AI.",
             ),
             
             const SliverToBoxAdapter(child: SizedBox(height: 24)),

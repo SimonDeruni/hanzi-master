@@ -440,4 +440,89 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get revealAnswer => 'Antwort aufdecken';
+
+  @override
+  String get aiHubTitle => 'KI-Hub';
+
+  @override
+  String get textChat => 'Text-Chat';
+
+  @override
+  String get scholarlyPersonas => 'Gelehrten-Personas';
+
+  @override
+  String get shadowing => 'Shadowing';
+
+  @override
+  String get liveTranslation => 'Live-Übersetzung';
+
+  @override
+  String get scholarsLibrary => 'Die Bibliothek des Gelehrten';
+
+  @override
+  String get generate => 'Generieren';
+
+  @override
+  String get searchPinyinHanziEnglish =>
+      'Suche nach Pinyin, Hanzi oder Englisch...';
+
+  @override
+  String get liveTranslate => 'Live übersetzen';
+
+  @override
+  String get travelInterpreter => 'Reise-Dolmetscher';
+
+  @override
+  String get realTimeSplitScreen =>
+      'Echtzeit-Splitscreen-Unterhaltung mit einem Muttersprachler. Beseitigt Sprachbarrieren sofort.';
+
+  @override
+  String get whisperEarpiece => 'Flüster-Ohrhörer';
+
+  @override
+  String get listenToChineseAudio =>
+      'Hören Sie chinesische Audioinhalte und erhalten Sie englische Echtzeit-Untertitel direkt auf Ihrem Bildschirm.';
+
+  @override
+  String get dashboardTitle => 'Dashboard';
+
+  @override
+  String get yourMindIsClear => 'Ihr Geist ist klar.';
+
+  @override
+  String get noReviewsDueToday => 'Heute keine Wiederholungen fällig.';
+
+  @override
+  String get done => 'Fertig';
+
+  @override
+  String get hskLevel1 => 'HSK Stufe 1';
+
+  @override
+  String get hskLevel2 => 'HSK Stufe 2';
+
+  @override
+  String get hskLevel3 => 'HSK Stufe 3';
+
+  @override
+  String get hskLevel4 => 'HSK Stufe 4';
+
+  @override
+  String get hskLevel5 => 'HSK Stufe 5';
+
+  @override
+  String get hskLevel6 => 'HSK Stufe 6';
+
+  @override
+  String get generalVocabulary => 'Allgemeiner Wortschatz';
+
+  @override
+  String get cardsRequireAttention => 'Karten benötigen Aufmerksamkeit.';
+
+  @override
+  String get begin => 'Starten';
+
+  @override
+  String get poweredByAi =>
+      'Angetrieben von fortschrittlicher KI. Nahtlose Echtzeitübersetzung für jedes Szenario.';
 }

@@ -983,6 +983,168 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Reveal Answer'**
   String get revealAnswer;
+
+  /// No description provided for @aiHubTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'AI Hub'**
+  String get aiHubTitle;
+
+  /// No description provided for @textChat.
+  ///
+  /// In en, this message translates to:
+  /// **'Text Chat'**
+  String get textChat;
+
+  /// No description provided for @scholarlyPersonas.
+  ///
+  /// In en, this message translates to:
+  /// **'Scholarly Personas'**
+  String get scholarlyPersonas;
+
+  /// No description provided for @shadowing.
+  ///
+  /// In en, this message translates to:
+  /// **'Shadowing'**
+  String get shadowing;
+
+  /// No description provided for @liveTranslation.
+  ///
+  /// In en, this message translates to:
+  /// **'Live Translation'**
+  String get liveTranslation;
+
+  /// No description provided for @scholarsLibrary.
+  ///
+  /// In en, this message translates to:
+  /// **'The Scholar\'s Library'**
+  String get scholarsLibrary;
+
+  /// No description provided for @generate.
+  ///
+  /// In en, this message translates to:
+  /// **'Generate'**
+  String get generate;
+
+  /// No description provided for @searchPinyinHanziEnglish.
+  ///
+  /// In en, this message translates to:
+  /// **'Search Pinyin, Hanzi, or English...'**
+  String get searchPinyinHanziEnglish;
+
+  /// No description provided for @liveTranslate.
+  ///
+  /// In en, this message translates to:
+  /// **'Live Translate'**
+  String get liveTranslate;
+
+  /// No description provided for @travelInterpreter.
+  ///
+  /// In en, this message translates to:
+  /// **'Travel Interpreter'**
+  String get travelInterpreter;
+
+  /// No description provided for @realTimeSplitScreen.
+  ///
+  /// In en, this message translates to:
+  /// **'Real-time split-screen conversation with a native speaker. Breaks down language barriers instantly.'**
+  String get realTimeSplitScreen;
+
+  /// No description provided for @whisperEarpiece.
+  ///
+  /// In en, this message translates to:
+  /// **'Whisper Earpiece'**
+  String get whisperEarpiece;
+
+  /// No description provided for @listenToChineseAudio.
+  ///
+  /// In en, this message translates to:
+  /// **'Listen to Chinese audio and get real-time English subtitles directly on your screen.'**
+  String get listenToChineseAudio;
+
+  /// No description provided for @dashboardTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Dashboard'**
+  String get dashboardTitle;
+
+  /// No description provided for @yourMindIsClear.
+  ///
+  /// In en, this message translates to:
+  /// **'Your mind is clear.'**
+  String get yourMindIsClear;
+
+  /// No description provided for @noReviewsDueToday.
+  ///
+  /// In en, this message translates to:
+  /// **'No reviews due today.'**
+  String get noReviewsDueToday;
+
+  /// No description provided for @done.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get done;
+
+  /// No description provided for @hskLevel1.
+  ///
+  /// In en, this message translates to:
+  /// **'HSK Level 1'**
+  String get hskLevel1;
+
+  /// No description provided for @hskLevel2.
+  ///
+  /// In en, this message translates to:
+  /// **'HSK Level 2'**
+  String get hskLevel2;
+
+  /// No description provided for @hskLevel3.
+  ///
+  /// In en, this message translates to:
+  /// **'HSK Level 3'**
+  String get hskLevel3;
+
+  /// No description provided for @hskLevel4.
+  ///
+  /// In en, this message translates to:
+  /// **'HSK Level 4'**
+  String get hskLevel4;
+
+  /// No description provided for @hskLevel5.
+  ///
+  /// In en, this message translates to:
+  /// **'HSK Level 5'**
+  String get hskLevel5;
+
+  /// No description provided for @hskLevel6.
+  ///
+  /// In en, this message translates to:
+  /// **'HSK Level 6'**
+  String get hskLevel6;
+
+  /// No description provided for @generalVocabulary.
+  ///
+  /// In en, this message translates to:
+  /// **'General Vocabulary'**
+  String get generalVocabulary;
+
+  /// No description provided for @cardsRequireAttention.
+  ///
+  /// In en, this message translates to:
+  /// **'cards require attention.'**
+  String get cardsRequireAttention;
+
+  /// No description provided for @begin.
+  ///
+  /// In en, this message translates to:
+  /// **'Begin'**
+  String get begin;
+
+  /// No description provided for @poweredByAi.
+  ///
+  /// In en, this message translates to:
+  /// **'Powered by advanced AI. Seamless real-time translation for any scenario.'**
+  String get poweredByAi;
 }
 
 class _AppLocalizationsDelegate

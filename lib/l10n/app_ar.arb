@@ -250,7 +250,6 @@
   "generate": "توليد",
   "searchPinyinHanziEnglish": "ابحث عن البينيين أو الهانزي أو الإنجليزية...",
   "liveTranslate": "ترجمة مباشرة",
-  "poweredByGemini": "مدعوم من Gemini 3.5. ترجمة سلسة في الوقت الفعلي لأي سيناريو.",
   "travelInterpreter": "مترجم السفر",
   "realTimeSplitScreen": "محادثة بشاشة مقسمة في الوقت الفعلي مع متحدث أصلي. يزيل حواجز اللغة فوراً.",
   "whisperEarpiece": "سماعة الأذن اللاسلكية",
@@ -267,5 +266,6 @@
   "hskLevel6": "مستوى HSK 6",
   "generalVocabulary": "مفردات عامة",
   "cardsRequireAttention": "بطاقات تتطلب اهتمامًا.",
-  "begin": "ابدأ"
+  "begin": "ابدأ",
+  "poweredByAi": "مدعوم بالذكاء الاصطناعي المتقدم. ترجمة سلسة وفورية لأي سيناريو."
 }

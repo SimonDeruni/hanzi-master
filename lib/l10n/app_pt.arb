@@ -188,7 +188,6 @@
   "generate": "Gerar",
   "searchPinyinHanziEnglish": "Pesquisar Pinyin, Hanzi ou Inglês...",
   "liveTranslate": "Traduzir ao Vivo",
-  "poweredByGemini": "Desenvolvido por Gemini 3.5. Tradução em tempo real perfeita para qualquer cenário.",
   "travelInterpreter": "Intérprete de Viagem",
   "realTimeSplitScreen": "Conversa em tela dividida em tempo real com um falante nativo. Quebra barreiras linguísticas instantaneamente.",
   "whisperEarpiece": "Ponto Eletrônico",
@@ -205,5 +204,6 @@
   "hskLevel6": "Nível HSK 6",
   "generalVocabulary": "Vocabulário Geral",
   "cardsRequireAttention": "cartões exigem atenção.",
-  "begin": "Começar"
+  "begin": "Começar",
+  "poweredByAi": "Potencializado por IA avançada. Tradução em tempo real fluida para qualquer cenário."
 }

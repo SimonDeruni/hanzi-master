@@ -171,7 +171,6 @@
   "generate": "Genera",
   "searchPinyinHanziEnglish": "Cerca Pinyin, Hanzi o Inglese...",
   "liveTranslate": "Traduci in tempo reale",
-  "poweredByGemini": "Con tecnologia Gemini 3.5. Traduzione fluida in tempo reale per qualsiasi scenario.",
   "travelInterpreter": "Interprete di viaggio",
   "realTimeSplitScreen": "Conversazione a schermo diviso in tempo reale con un madrelingua. Abbatti le barriere linguistiche all'istante.",
   "whisperEarpiece": "Auricolare Whisper",
@@ -188,5 +187,6 @@
   "hskLevel6": "Livello HSK 6",
   "generalVocabulary": "Vocabolario generale",
   "cardsRequireAttention": "schede richiedono attenzione.",
-  "begin": "Inizia"
+  "begin": "Inizia",
+  "poweredByAi": "Alimentato da IA avanzata. Traduzione fluida in tempo reale per qualsiasi scenario."
 }

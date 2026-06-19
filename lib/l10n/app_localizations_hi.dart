@@ -440,4 +440,89 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get revealAnswer => 'उत्तर दिखाएँ';
+
+  @override
+  String get aiHubTitle => 'एआई हब';
+
+  @override
+  String get textChat => 'टेक्स्ट चैट';
+
+  @override
+  String get scholarlyPersonas => 'विद्वत्तापूर्ण व्यक्तित्व';
+
+  @override
+  String get shadowing => 'शैडोइंग';
+
+  @override
+  String get liveTranslation => 'लाइव अनुवाद';
+
+  @override
+  String get scholarsLibrary => 'विद्वान की लाइब्रेरी';
+
+  @override
+  String get generate => 'जनरेट करें';
+
+  @override
+  String get searchPinyinHanziEnglish =>
+      'पिनयिन, हान्ज़ी या अंग्रेज़ी खोजें...';
+
+  @override
+  String get liveTranslate => 'लाइव अनुवाद करें';
+
+  @override
+  String get travelInterpreter => 'यात्रा दुभाषिया';
+
+  @override
+  String get realTimeSplitScreen =>
+      'एक देशी वक्ता के साथ वास्तविक समय में स्प्लिट-स्क्रीन बातचीत। भाषा बाधाओं को तुरंत तोड़ता है।';
+
+  @override
+  String get whisperEarpiece => 'फुसफुसाहट इयरपीस';
+
+  @override
+  String get listenToChineseAudio =>
+      'चीनी ऑडियो सुनें और अपनी स्क्रीन पर सीधे वास्तविक समय में अंग्रेजी उपशीर्षक प्राप्त करें।';
+
+  @override
+  String get dashboardTitle => 'डैशबोर्ड';
+
+  @override
+  String get yourMindIsClear => 'आपका मन स्पष्ट है।';
+
+  @override
+  String get noReviewsDueToday => 'आज कोई समीक्षा बाकी नहीं है।';
+
+  @override
+  String get done => 'हो गया';
+
+  @override
+  String get hskLevel1 => 'एचएसके स्तर 1';
+
+  @override
+  String get hskLevel2 => 'एचएसके स्तर 2';
+
+  @override
+  String get hskLevel3 => 'एचएसके स्तर 3';
+
+  @override
+  String get hskLevel4 => 'एचएसके स्तर 4';
+
+  @override
+  String get hskLevel5 => 'एचएसके स्तर 5';
+
+  @override
+  String get hskLevel6 => 'एचएसके स्तर 6';
+
+  @override
+  String get generalVocabulary => 'सामान्य शब्दावली';
+
+  @override
+  String get cardsRequireAttention => 'कार्ड्स पर ध्यान देने की आवश्यकता है।';
+
+  @override
+  String get begin => 'शुरू करें';
+
+  @override
+  String get poweredByAi =>
+      'उन्नत एआई द्वारा संचालित। किसी भी परिदृश्य के लिए सहज वास्तविक समय अनुवाद।';
 }

@@ -230,7 +230,6 @@
   "generate": "生成",
   "searchPinyinHanziEnglish": "ピンイン、漢字、英語で検索...",
   "liveTranslate": "ライブ翻訳",
-  "poweredByGemini": "Gemini 3.5を搭載。あらゆるシーンでシームレスなリアルタイム翻訳を提供します。",
   "travelInterpreter": "旅行通訳",
   "realTimeSplitScreen": "ネイティブスピーカーとのリアルタイム分割画面会話。瞬時に言葉の壁を打ち破ります。",
   "whisperEarpiece": "ウィスパーイヤホン",
@@ -247,5 +246,6 @@
   "hskLevel6": "HSK 6級",
   "generalVocabulary": "一般語彙",
   "cardsRequireAttention": "枚のカードに注意が必要です。",
-  "begin": "開始"
+  "begin": "開始",
+  "poweredByAi": "最先端AIを搭載。どんな場面でもシームレスなリアルタイム翻訳を。"
 }

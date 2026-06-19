@@ -22,6 +22,7 @@ class TranslationHubScreen extends StatelessWidget {
           slivers: [
             GlobalSliverAppBar(
               title: l10n?.liveTranslate ?? "Live Translate",
+              subtitle: l10n?.poweredByAi ?? "Powered by advanced AI. Seamless real-time translation for any scenario.",
               actions: [
                 IconButton(
                   icon: const Icon(Icons.history),
@@ -30,20 +31,6 @@ class TranslationHubScreen extends StatelessWidget {
                   },
                 )
               ],
-            ),
-            
-            // Subtitle
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 8.0),
-                child: Text(
-                  l10n?.poweredByGemini ?? "Powered by Gemini 3.5. Seamless real-time translation for any scenario.",
-                  style: theme.textTheme.titleMedium?.copyWith(
-                    color: isDark ? Colors.white70 : const Color(0xFF1A1A1B).withValues(alpha: 0.7),
-                    height: 1.4,
-                  ),
-                ),
-              ),
             ),
             
             const SliverToBoxAdapter(child: SizedBox(height: 32)),

@@ -181,7 +181,6 @@
   "generate": "Generieren",
   "searchPinyinHanziEnglish": "Suche nach Pinyin, Hanzi oder Englisch...",
   "liveTranslate": "Live übersetzen",
-  "poweredByGemini": "Angetrieben von Gemini 3.5. Nahtlose Echtzeit-Übersetzung für jedes Szenario.",
   "travelInterpreter": "Reise-Dolmetscher",
   "realTimeSplitScreen": "Echtzeit-Splitscreen-Unterhaltung mit einem Muttersprachler. Beseitigt Sprachbarrieren sofort.",
   "whisperEarpiece": "Flüster-Ohrhörer",
@@ -198,5 +197,6 @@
   "hskLevel6": "HSK Stufe 6",
   "generalVocabulary": "Allgemeiner Wortschatz",
   "cardsRequireAttention": "Karten benötigen Aufmerksamkeit.",
-  "begin": "Starten"
+  "begin": "Starten",
+  "poweredByAi": "Angetrieben von fortschrittlicher KI. Nahtlose Echtzeitübersetzung für jedes Szenario."
 }

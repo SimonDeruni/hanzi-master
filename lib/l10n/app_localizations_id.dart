@@ -440,4 +440,88 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get revealAnswer => 'Tampilkan Jawaban';
+
+  @override
+  String get aiHubTitle => 'Pusat AI';
+
+  @override
+  String get textChat => 'Obrolan Teks';
+
+  @override
+  String get scholarlyPersonas => 'Persona Akademis';
+
+  @override
+  String get shadowing => 'Shadowing';
+
+  @override
+  String get liveTranslation => 'Terjemahan Langsung';
+
+  @override
+  String get scholarsLibrary => 'Perpustakaan Cendekiawan';
+
+  @override
+  String get generate => 'Hasilkan';
+
+  @override
+  String get searchPinyinHanziEnglish => 'Cari Pinyin, Hanzi, atau Inggris...';
+
+  @override
+  String get liveTranslate => 'Terjemahkan Langsung';
+
+  @override
+  String get travelInterpreter => 'Penerjemah Perjalanan';
+
+  @override
+  String get realTimeSplitScreen =>
+      'Percakapan layar terpisah waktu nyata dengan penutur asli. Menghilangkan hambatan bahasa secara instan.';
+
+  @override
+  String get whisperEarpiece => 'Earpiece Bisik';
+
+  @override
+  String get listenToChineseAudio =>
+      'Dengarkan audio Mandarin dan dapatkan subtitle Inggris waktu nyata langsung di layar Anda.';
+
+  @override
+  String get dashboardTitle => 'Dasbor';
+
+  @override
+  String get yourMindIsClear => 'Pikiran Anda jernih.';
+
+  @override
+  String get noReviewsDueToday => 'Tidak ada ulasan hari ini.';
+
+  @override
+  String get done => 'Selesai';
+
+  @override
+  String get hskLevel1 => 'Tingkat HSK 1';
+
+  @override
+  String get hskLevel2 => 'Tingkat HSK 2';
+
+  @override
+  String get hskLevel3 => 'Tingkat HSK 3';
+
+  @override
+  String get hskLevel4 => 'Tingkat HSK 4';
+
+  @override
+  String get hskLevel5 => 'Tingkat HSK 5';
+
+  @override
+  String get hskLevel6 => 'Tingkat HSK 6';
+
+  @override
+  String get generalVocabulary => 'Kosakata Umum';
+
+  @override
+  String get cardsRequireAttention => 'kartu memerlukan perhatian.';
+
+  @override
+  String get begin => 'Mulai';
+
+  @override
+  String get poweredByAi =>
+      'Didukung oleh AI canggih. Terjemahan real-time tanpa hambatan untuk skenario apa pun.';
 }

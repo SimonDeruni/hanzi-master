@@ -439,4 +439,89 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get revealAnswer => 'كشف الإجابة';
+
+  @override
+  String get aiHubTitle => 'مركز الذكاء الاصطناعي';
+
+  @override
+  String get textChat => 'محادثة نصية';
+
+  @override
+  String get scholarlyPersonas => 'شخصيات علمية';
+
+  @override
+  String get shadowing => 'التظليل';
+
+  @override
+  String get liveTranslation => 'ترجمة فورية';
+
+  @override
+  String get scholarsLibrary => 'مكتبة الباحث';
+
+  @override
+  String get generate => 'توليد';
+
+  @override
+  String get searchPinyinHanziEnglish =>
+      'ابحث عن البينيين أو الهانزي أو الإنجليزية...';
+
+  @override
+  String get liveTranslate => 'ترجمة مباشرة';
+
+  @override
+  String get travelInterpreter => 'مترجم السفر';
+
+  @override
+  String get realTimeSplitScreen =>
+      'محادثة بشاشة مقسمة في الوقت الفعلي مع متحدث أصلي. يزيل حواجز اللغة فوراً.';
+
+  @override
+  String get whisperEarpiece => 'سماعة الأذن اللاسلكية';
+
+  @override
+  String get listenToChineseAudio =>
+      'استمع إلى الصوت الصيني واحصل على ترجمة فورية باللغة الإنجليزية مباشرة على شاشتك.';
+
+  @override
+  String get dashboardTitle => 'لوحة التحكم';
+
+  @override
+  String get yourMindIsClear => 'ذهنك صافٍ.';
+
+  @override
+  String get noReviewsDueToday => 'لا توجد مراجعات مستحقة اليوم.';
+
+  @override
+  String get done => 'تم';
+
+  @override
+  String get hskLevel1 => 'مستوى HSK 1';
+
+  @override
+  String get hskLevel2 => 'مستوى HSK 2';
+
+  @override
+  String get hskLevel3 => 'مستوى HSK 3';
+
+  @override
+  String get hskLevel4 => 'مستوى HSK 4';
+
+  @override
+  String get hskLevel5 => 'مستوى HSK 5';
+
+  @override
+  String get hskLevel6 => 'مستوى HSK 6';
+
+  @override
+  String get generalVocabulary => 'مفردات عامة';
+
+  @override
+  String get cardsRequireAttention => 'بطاقات تتطلب اهتمامًا.';
+
+  @override
+  String get begin => 'ابدأ';
+
+  @override
+  String get poweredByAi =>
+      'مدعوم بالذكاء الاصطناعي المتقدم. ترجمة سلسة وفورية لأي سيناريو.';
 }

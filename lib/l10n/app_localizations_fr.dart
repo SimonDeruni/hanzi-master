@@ -441,4 +441,89 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get revealAnswer => 'Révéler la réponse';
+
+  @override
+  String get aiHubTitle => 'Centre IA';
+
+  @override
+  String get textChat => 'Chat textuel';
+
+  @override
+  String get scholarlyPersonas => 'Personnages érudits';
+
+  @override
+  String get shadowing => 'Technique d\'imitation';
+
+  @override
+  String get liveTranslation => 'Traduction en direct';
+
+  @override
+  String get scholarsLibrary => 'La Bibliothèque du Savant';
+
+  @override
+  String get generate => 'Générer';
+
+  @override
+  String get searchPinyinHanziEnglish =>
+      'Rechercher Pinyin, Hanzi ou Anglais...';
+
+  @override
+  String get liveTranslate => 'Traduire en direct';
+
+  @override
+  String get travelInterpreter => 'Interprète de voyage';
+
+  @override
+  String get realTimeSplitScreen =>
+      'Conversation en temps réel en écran partagé avec un locuteur natif. Élimine instantanément les barrières linguistiques.';
+
+  @override
+  String get whisperEarpiece => 'Écouteur Traducteur';
+
+  @override
+  String get listenToChineseAudio =>
+      'Écoutez l\'audio chinois et obtenez des sous-titres anglais en temps réel directement sur votre écran.';
+
+  @override
+  String get dashboardTitle => 'Tableau de bord';
+
+  @override
+  String get yourMindIsClear => 'Votre esprit est serein.';
+
+  @override
+  String get noReviewsDueToday => 'Aucune révision prévue aujourd\'hui.';
+
+  @override
+  String get done => 'Terminé';
+
+  @override
+  String get hskLevel1 => 'Niveau HSK 1';
+
+  @override
+  String get hskLevel2 => 'Niveau HSK 2';
+
+  @override
+  String get hskLevel3 => 'Niveau HSK 3';
+
+  @override
+  String get hskLevel4 => 'Niveau HSK 4';
+
+  @override
+  String get hskLevel5 => 'Niveau HSK 5';
+
+  @override
+  String get hskLevel6 => 'Niveau HSK 6';
+
+  @override
+  String get generalVocabulary => 'Vocabulaire général';
+
+  @override
+  String get cardsRequireAttention => 'cartes nécessitent une attention.';
+
+  @override
+  String get begin => 'Commencer';
+
+  @override
+  String get poweredByAi =>
+      'Propulsé par une IA avancée. Traduction fluide en temps réel pour toutes les situations.';
 }

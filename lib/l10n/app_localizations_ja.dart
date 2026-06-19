@@ -439,4 +439,85 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get revealAnswer => '答えを表示';
+
+  @override
+  String get aiHubTitle => 'AIハブ';
+
+  @override
+  String get textChat => 'テキストチャット';
+
+  @override
+  String get scholarlyPersonas => '学者ペルソナ';
+
+  @override
+  String get shadowing => 'シャドーイング';
+
+  @override
+  String get liveTranslation => 'リアルタイム翻訳';
+
+  @override
+  String get scholarsLibrary => '学者の書庫';
+
+  @override
+  String get generate => '生成';
+
+  @override
+  String get searchPinyinHanziEnglish => 'ピンイン、漢字、英語で検索...';
+
+  @override
+  String get liveTranslate => 'ライブ翻訳';
+
+  @override
+  String get travelInterpreter => '旅行通訳';
+
+  @override
+  String get realTimeSplitScreen => 'ネイティブスピーカーとのリアルタイム分割画面会話。瞬時に言葉の壁を打ち破ります。';
+
+  @override
+  String get whisperEarpiece => 'ウィスパーイヤホン';
+
+  @override
+  String get listenToChineseAudio => '中国語の音声を聞き、画面上でリアルタイムの英語字幕を表示します。';
+
+  @override
+  String get dashboardTitle => 'ダッシュボード';
+
+  @override
+  String get yourMindIsClear => '頭はすっきりしています。';
+
+  @override
+  String get noReviewsDueToday => '今日の復習はありません。';
+
+  @override
+  String get done => '完了';
+
+  @override
+  String get hskLevel1 => 'HSK 1級';
+
+  @override
+  String get hskLevel2 => 'HSK 2級';
+
+  @override
+  String get hskLevel3 => 'HSK 3級';
+
+  @override
+  String get hskLevel4 => 'HSK 4級';
+
+  @override
+  String get hskLevel5 => 'HSK 5級';
+
+  @override
+  String get hskLevel6 => 'HSK 6級';
+
+  @override
+  String get generalVocabulary => '一般語彙';
+
+  @override
+  String get cardsRequireAttention => '枚のカードに注意が必要です。';
+
+  @override
+  String get begin => '開始';
+
+  @override
+  String get poweredByAi => '最先端AIを搭載。どんな場面でもシームレスなリアルタイム翻訳を。';
 }

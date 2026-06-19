@@ -441,4 +441,89 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get revealAnswer => 'Показать ответ';
+
+  @override
+  String get aiHubTitle => 'ИИ-Хаб';
+
+  @override
+  String get textChat => 'Текстовый чат';
+
+  @override
+  String get scholarlyPersonas => 'Учёные собеседники';
+
+  @override
+  String get shadowing => 'Метод повторения';
+
+  @override
+  String get liveTranslation => 'Перевод в реальном времени';
+
+  @override
+  String get scholarsLibrary => 'Библиотека учёного';
+
+  @override
+  String get generate => 'Сгенерировать';
+
+  @override
+  String get searchPinyinHanziEnglish =>
+      'Поиск по пиньиню, иероглифам или английскому...';
+
+  @override
+  String get liveTranslate => 'Перевести в реальном времени';
+
+  @override
+  String get travelInterpreter => 'Переводчик для путешествий';
+
+  @override
+  String get realTimeSplitScreen =>
+      'Разговор с носителем языка на разделенном экране в реальном времени. Мгновенно устраняет языковые барьеры.';
+
+  @override
+  String get whisperEarpiece => 'Наушник-переводчик';
+
+  @override
+  String get listenToChineseAudio =>
+      'Слушайте китайский аудиоматериал и получайте английские субтитры в реальном времени прямо на экране.';
+
+  @override
+  String get dashboardTitle => 'Панель управления';
+
+  @override
+  String get yourMindIsClear => 'Ваш разум чист.';
+
+  @override
+  String get noReviewsDueToday => 'На сегодня нет повторений.';
+
+  @override
+  String get done => 'Готово';
+
+  @override
+  String get hskLevel1 => 'HSK Уровень 1';
+
+  @override
+  String get hskLevel2 => 'HSK Уровень 2';
+
+  @override
+  String get hskLevel3 => 'HSK Уровень 3';
+
+  @override
+  String get hskLevel4 => 'HSK Уровень 4';
+
+  @override
+  String get hskLevel5 => 'HSK Уровень 5';
+
+  @override
+  String get hskLevel6 => 'HSK Уровень 6';
+
+  @override
+  String get generalVocabulary => 'Общая лексика';
+
+  @override
+  String get cardsRequireAttention => 'карточек требуют внимания.';
+
+  @override
+  String get begin => 'Начать';
+
+  @override
+  String get poweredByAi =>
+      'На основе передового ИИ. Бесшовный перевод в реальном времени для любого сценария.';
 }

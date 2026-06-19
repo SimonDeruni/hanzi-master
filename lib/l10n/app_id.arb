@@ -153,7 +153,6 @@
   "generate": "Hasilkan",
   "searchPinyinHanziEnglish": "Cari Pinyin, Hanzi, atau Inggris...",
   "liveTranslate": "Terjemahkan Langsung",
-  "poweredByGemini": "Didukung oleh Gemini 3.5. Terjemahan waktu nyata yang mulus untuk setiap skenario.",
   "travelInterpreter": "Penerjemah Perjalanan",
   "realTimeSplitScreen": "Percakapan layar terpisah waktu nyata dengan penutur asli. Menghilangkan hambatan bahasa secara instan.",
   "whisperEarpiece": "Earpiece Bisik",
@@ -170,5 +169,6 @@
   "hskLevel6": "Tingkat HSK 6",
   "generalVocabulary": "Kosakata Umum",
   "cardsRequireAttention": "kartu memerlukan perhatian.",
-  "begin": "Mulai"
+  "begin": "Mulai",
+  "poweredByAi": "Didukung oleh AI canggih. Terjemahan real-time tanpa hambatan untuk skenario apa pun."
 }

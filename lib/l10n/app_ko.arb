@@ -173,7 +173,6 @@
   "generate": "생성",
   "searchPinyinHanziEnglish": "병음, 한자 또는 영어 검색...",
   "liveTranslate": "실시간 번역",
-  "poweredByGemini": "Gemini 3.5 기반. 어떤 상황에서도 끊김 없는 실시간 번역.",
   "travelInterpreter": "여행 통역사",
   "realTimeSplitScreen": "원어민과의 실시간 분할 화면 대화. 즉시 언어 장벽을 허뭅니다.",
   "whisperEarpiece": "속삭임 이어피스",
@@ -190,5 +189,6 @@
   "hskLevel6": "HSK 6급",
   "generalVocabulary": "일반 어휘",
   "cardsRequireAttention": "개의 카드가 복습을 기다립니다.",
-  "begin": "시작"
+  "begin": "시작",
+  "poweredByAi": "최첨단 AI 기반. 어떤 상황에서도 끊김 없는 실시간 번역."
 }
