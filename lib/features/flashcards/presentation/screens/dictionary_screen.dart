@@ -37,9 +37,27 @@ class DictionaryScreen extends ConsumerStatefulWidget {
 
 class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
   String _searchQuery = "";
+  final FocusNode _searchFocusNode = FocusNode();
+
+  @override
+  void dispose() {
+    _searchFocusNode.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
+    ref.listen(searchFocusRequestProvider, (previous, next) {
+      if (next == true) {
+        Future.delayed(const Duration(milliseconds: 50), () {
+          if (mounted) {
+            _searchFocusNode.requestFocus();
+            ref.read(searchFocusRequestProvider.notifier).state = false;
+          }
+        });
+      }
+    });
+
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
 
@@ -102,6 +120,7 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
               delegate: _SearchBarDelegate(
                 isDark: isDark,
                 searchQuery: _searchQuery,
+                focusNode: _searchFocusNode,
                 onChanged: (value) => setState(() => _searchQuery = value),
               ),
             ),
@@ -111,28 +130,12 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
           ),
         ),
       ),
-      floatingActionButton: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          FloatingActionButton.extended(
-            heroTag: 'dictionary_scan_fab',
-            backgroundColor: theme.colorScheme.primary,
-            icon: Icon(Icons.camera_alt, color: theme.colorScheme.onPrimary),
-            label: Text("Scan Text", style: TextStyle(color: theme.colorScheme.onPrimary, fontWeight: FontWeight.bold)),
-            onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const UniversalScannerScreen()));
-            },
-          ),
-          const SizedBox(height: 16),
-          FloatingActionButton.extended(
-            heroTag: 'dictionary_add_fab',
-            backgroundColor: Colors.purple,
-            icon: const Icon(Icons.auto_awesome, color: Colors.white),
-            label: const Text("Generate", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
-            onPressed: () => AiDeckGeneratorSheet.show(context),
-          ),
-        ],
+      floatingActionButton: FloatingActionButton.extended(
+        heroTag: 'dictionary_add_fab',
+        backgroundColor: Colors.purple,
+        icon: const Icon(Icons.auto_awesome, color: Colors.white),
+        label: const Text("Generate", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+        onPressed: () => AiDeckGeneratorSheet.show(context),
       ),
     );
   }
@@ -278,11 +281,13 @@ class _SearchBarDelegate extends SliverPersistentHeaderDelegate {
   final bool isDark;
   final String searchQuery;
   final ValueChanged<String> onChanged;
+  final FocusNode focusNode;
 
   _SearchBarDelegate({
     required this.isDark,
     required this.searchQuery,
     required this.onChanged,
+    required this.focusNode,
   });
 
   @override
@@ -292,29 +297,57 @@ class _SearchBarDelegate extends SliverPersistentHeaderDelegate {
     return Container(
       color: Colors.transparent,
       padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
-      child: Container(
-        decoration: BoxDecoration(
-          color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.white.withValues(alpha: 0.9),
-          borderRadius: BorderRadius.circular(30),
-          boxShadow: [
-            BoxShadow(
-              color: theme.colorScheme.onSurface.withValues(alpha: 0.05),
-              blurRadius: 10,
-              offset: const Offset(0, 4),
+      child: Row(
+        children: [
+          Expanded(
+            child: Container(
+              decoration: BoxDecoration(
+                color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.white.withValues(alpha: 0.9),
+                borderRadius: BorderRadius.circular(30),
+                boxShadow: [
+                  BoxShadow(
+                    color: theme.colorScheme.onSurface.withValues(alpha: 0.05),
+                    blurRadius: 10,
+                    offset: const Offset(0, 4),
+                  ),
+                ],
+              ),
+              child: TextField(
+                focusNode: focusNode,
+                style: theme.textTheme.bodyLarge,
+                decoration: InputDecoration(
+                  hintText: "Search Pinyin, Hanzi, or English...",
+                  hintStyle: theme.textTheme.bodyMedium?.copyWith(color: theme.colorScheme.onSurface.withValues(alpha: 0.4)),
+                  prefixIcon: const Icon(Icons.search, color: Colors.grey),
+                  border: InputBorder.none,
+                  contentPadding: const EdgeInsets.symmetric(vertical: 16),
+                ),
+                onChanged: onChanged,
+              ),
             ),
-          ],
-        ),
-        child: TextField(
-          style: theme.textTheme.bodyLarge,
-          decoration: InputDecoration(
-            hintText: "Search Pinyin, Hanzi, or English...",
-            hintStyle: theme.textTheme.bodyMedium?.copyWith(color: theme.colorScheme.onSurface.withValues(alpha: 0.4)),
-            prefixIcon: const Icon(Icons.search, color: Colors.grey),
-            border: InputBorder.none,
-            contentPadding: const EdgeInsets.symmetric(vertical: 16),
           ),
-          onChanged: onChanged,
-        ),
+          const SizedBox(width: 12),
+          Container(
+            decoration: BoxDecoration(
+              color: theme.colorScheme.primary,
+              shape: BoxShape.circle,
+              boxShadow: [
+                BoxShadow(
+                  color: theme.colorScheme.primary.withValues(alpha: 0.3),
+                  blurRadius: 8,
+                  offset: const Offset(0, 4),
+                ),
+              ],
+            ),
+            child: IconButton(
+              icon: const Icon(Icons.camera_alt),
+              color: theme.colorScheme.onPrimary,
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const UniversalScannerScreen()));
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -413,15 +446,15 @@ class _DictionarySearchTab extends ConsumerWidget {
                             width: double.infinity,
                             padding: const EdgeInsets.all(20),
                             decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: [Colors.red.shade900, Colors.red.shade700],
+                              gradient: const LinearGradient(
+                                colors: [Color(0xFF1A1A1B), Color(0xFF3A3A3C)],
                                 begin: Alignment.topLeft,
                                 end: Alignment.bottomRight,
                               ),
                               borderRadius: BorderRadius.circular(16),
                               boxShadow: [
                                 BoxShadow(
-                                  color: Colors.red.withValues(alpha: 0.3),
+                                  color: const Color(0xFF1A1A1B).withValues(alpha: 0.2),
                                   blurRadius: 12,
                                   offset: const Offset(0, 4),
                                 ),

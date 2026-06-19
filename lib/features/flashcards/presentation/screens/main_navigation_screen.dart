@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'dictionary_screen.dart';
-import 'package:hanzi_master/features/course/presentation/screens/course_selection_screen.dart';
+import 'package:hanzi_master/features/progression/presentation/screens/dashboard_screen.dart';
 import 'package:hanzi_master/features/chat/presentation/screens/ai_hub_screen.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
@@ -18,8 +18,14 @@ class MainNavigationScreen extends ConsumerStatefulWidget {
 class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
   int _selectedIndex = 0;
 
-  final List<Widget> _screens = [
-    const CourseSelectionScreen(),
+  void _onNavigate(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  late final List<Widget> _screens = [
+    DashboardScreen(onNavigate: _onNavigate),
     const AiHubScreen(),
     const TranslationHubScreen(),
     const DictionaryScreen(),
@@ -69,8 +75,8 @@ class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
           type: BottomNavigationBarType.fixed,
           items: const [
             BottomNavigationBarItem(
-              icon: Icon(Icons.auto_awesome_motion),
-              label: 'The Path',
+              icon: Icon(Icons.dashboard),
+              label: 'Dashboard',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.auto_awesome),

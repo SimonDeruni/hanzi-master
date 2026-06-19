@@ -6,8 +6,11 @@ import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart'
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'package:hanzi_master/core/utils/pinyin_utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 part 'dictionary_provider.g.dart';
+
+final searchFocusRequestProvider = StateProvider<bool>((ref) => false);
 
 class DictionaryEntry {
   final String hanzi;

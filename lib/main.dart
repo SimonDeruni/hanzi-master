@@ -16,9 +16,11 @@ import 'package:hanzi_master/features/flashcards/presentation/providers/flashcar
 import 'package:hanzi_master/core/services/monetization_service.dart';
 import 'package:hanzi_master/features/reading/data/repositories/story_repository.dart';
 import 'package:hanzi_master/core/theme/app_theme.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load(fileName: ".env");
 
   // 0. Hardened Zen & Ink System UI
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(

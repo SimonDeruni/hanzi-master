@@ -12,172 +12,281 @@ class AiHubScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
 
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: const Text("AI HUB"),
+        title: const Text("ART & INTELLECT", style: TextStyle(letterSpacing: 2.0, fontSize: 14, fontWeight: FontWeight.bold)),
+        centerTitle: true,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        surfaceTintColor: Colors.transparent,
       ),
       body: CalligraphyBackground(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 20.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+        child: CustomScrollView(
+          physics: const BouncingScrollPhysics(),
+          slivers: [
+            const SliverToBoxAdapter(child: SizedBox(height: 110)),
+            
+            // Header
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "The Digital Scholar",
+                      style: theme.textTheme.headlineLarge?.copyWith(
+                        fontWeight: FontWeight.w900,
+                        letterSpacing: 0.5,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      "Refine your brush and voice with advanced AI.",
+                      style: theme.textTheme.bodyLarge?.copyWith(
+                        color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            
+            const SliverToBoxAdapter(child: SizedBox(height: 24)),
+
+            // Hero Card: The Echo Hall (Voice Scenarios)
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                child: _buildHeroCard(
+                  context: context,
+                  title: "Live Voice Call",
+                  subtitle: "Immersive roleplay with AI avatars",
+                  icon: Icons.record_voice_over,
+                  color: theme.colorScheme.primary,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const ScenarioSelectionScreen()),
+                    );
+                  },
+                ),
+              ),
+            ),
+
+            const SliverToBoxAdapter(child: SizedBox(height: 20)),
+
+            // Grid of other features
+            SliverPadding(
+              padding: const EdgeInsets.symmetric(horizontal: 24.0),
+              sliver: SliverGrid.count(
+                crossAxisCount: 2,
+                mainAxisSpacing: 16,
+                crossAxisSpacing: 16,
+                childAspectRatio: 1.05,
                 children: [
-                  Text(
-                    "Art & Intellect",
-                    style: theme.textTheme.headlineLarge,
+                  _buildGridCard(
+                    context: context,
+                    title: "Reading Room",
+                    subtitle: "Graded AI Stories",
+                    icon: Icons.auto_stories,
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) => const ReadingRoomScreen()),
+                      );
+                    },
                   ),
-                  const SizedBox(height: 8),
-                  Container(
-                    height: 3,
-                    width: 60,
-                    color: theme.colorScheme.onSurface,
+                  _buildGridCard(
+                    context: context,
+                    title: "Text Chat",
+                    subtitle: "Scholarly Personas",
+                    icon: Icons.chat_bubble_outline,
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) => const EchoHallScreen()),
+                      );
+                    },
+                  ),
+                  _buildGridCard(
+                    context: context,
+                    title: "Shadowing",
+                    subtitle: "Live Translation",
+                    icon: Icons.translate,
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) => const ShadowingStudioScreen()),
+                      );
+                    },
+                  ),
+                  _buildGridCard(
+                    context: context,
+                    title: "Calligraphy",
+                    subtitle: "Stroke Analysis",
+                    icon: Icons.brush,
+                    isComingSoon: true,
+                    onTap: () {},
                   ),
                 ],
               ),
-              const SizedBox(height: 16),
-              Text(
-                "Harness the power of the Digital Scholar to refine your brush and voice.",
-                style: theme.textTheme.bodyMedium?.copyWith(
-                  color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
-                  height: 1.5,
-                ),
-              ),
-              const SizedBox(height: 48),
-              _buildAiFeatureCard(
-                context,
-                title: "THE ECHO HALL",
-                description: "Conversational practice with distinct scholarly personas.",
-                icon: Icons.chat_bubble_outline_rounded,
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const EchoHallScreen()),
-                  );
-                },
-              ),
-              const SizedBox(height: 20),
-              _buildAiFeatureCard(
-                context,
-                title: "CULTURAL READING ROOM",
-                description: "Graded AI-generated stories on Chinese history and life.",
-                icon: Icons.menu_book,
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const ReadingRoomScreen()),
-                  );
-                },
-              ),
-              const SizedBox(height: 20),
-              _buildAiFeatureCard(
-                context,
-                title: "PRONUNCIATION",
-                description: "Digital critique of your spoken tones and clarity.",
-                icon: Icons.mic_none_rounded,
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const ScenarioSelectionScreen()),
-                  );
-                },
-                isComingSoon: false,
-              ),
-              const SizedBox(height: 20),
-              _buildAiFeatureCard(
-                context,
-                title: "SHADOWING STUDIO",
-                description: "Translate your thoughts and shadow native pronunciation.",
-                icon: Icons.record_voice_over,
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const ShadowingStudioScreen()),
-                  );
-                },
-              ),
-            ],
-          ),
+            ),
+            
+            const SliverToBoxAdapter(child: SizedBox(height: 40)),
+          ],
         ),
       ),
     );
   }
 
-  Widget _buildAiFeatureCard(
-    BuildContext context, {
+  Widget _buildHeroCard({
+    required BuildContext context,
     required String title,
-    required String description,
+    required String subtitle,
+    required IconData icon,
+    required Color color,
+    required VoidCallback onTap,
+  }) {
+    final theme = Theme.of(context);
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.all(24),
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(32),
+          boxShadow: [
+            BoxShadow(
+              color: color.withValues(alpha: 0.3),
+              blurRadius: 20,
+              offset: const Offset(0, 10),
+            ),
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: Colors.white.withValues(alpha: 0.2),
+                shape: BoxShape.circle,
+              ),
+              child: Icon(icon, color: Colors.white, size: 36),
+            ),
+            const SizedBox(height: 24),
+            Text(
+              title,
+              style: theme.textTheme.headlineMedium?.copyWith(
+                color: Colors.white,
+                fontWeight: FontWeight.w900,
+              ),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              subtitle,
+              style: theme.textTheme.titleMedium?.copyWith(
+                color: Colors.white.withValues(alpha: 0.8),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildGridCard({
+    required BuildContext context,
+    required String title,
+    required String subtitle,
     required IconData icon,
     required VoidCallback onTap,
     bool isComingSoon = false,
   }) {
     final theme = Theme.of(context);
-    final onSurface = theme.colorScheme.onSurface;
-
-    return InkWell(
+    final isDark = theme.brightness == Brightness.dark;
+    
+    return GestureDetector(
       onTap: isComingSoon ? null : onTap,
-      borderRadius: BorderRadius.circular(20),
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 300),
+      child: Container(
+        padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
-          color: isComingSoon ? onSurface.withValues(alpha: 0.05) : theme.cardTheme.color,
-          borderRadius: BorderRadius.circular(20),
-          border: Border.all(
-            color: isComingSoon ? onSurface.withValues(alpha: 0.1) : onSurface.withValues(alpha: 0.2),
-            width: 1.5,
-          ),
-          boxShadow: isComingSoon ? null : [
+          color: theme.colorScheme.surface,
+          borderRadius: BorderRadius.circular(24),
+          border: Border.all(color: isDark ? Colors.white12 : Colors.black.withValues(alpha: 0.05)),
+          boxShadow: [
             BoxShadow(
-              color: onSurface.withValues(alpha: 0.1),
+              color: Colors.black.withValues(alpha: 0.05),
               blurRadius: 15,
               offset: const Offset(0, 8),
-            )
+            ),
           ],
         ),
-        padding: const EdgeInsets.all(24),
-        child: Row(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              padding: const EdgeInsets.all(14),
-              decoration: BoxDecoration(
-                color: isComingSoon ? onSurface.withValues(alpha: 0.1) : theme.colorScheme.primary,
-                shape: BoxShape.circle,
-              ),
-              child: Icon(
-                icon, 
-                color: isComingSoon ? onSurface.withValues(alpha: 0.4) : theme.colorScheme.onPrimary, 
-                size: 24
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    color: isComingSoon 
+                        ? theme.colorScheme.onSurface.withValues(alpha: 0.05)
+                        : theme.colorScheme.primary.withValues(alpha: 0.1),
+                    shape: BoxShape.circle,
+                  ),
+                  child: Icon(
+                    icon, 
+                    color: isComingSoon 
+                        ? theme.colorScheme.onSurface.withValues(alpha: 0.3)
+                        : theme.colorScheme.primary,
+                  ),
+                ),
+                if (isComingSoon)
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                    decoration: BoxDecoration(
+                      color: theme.colorScheme.onSurface.withValues(alpha: 0.1),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Text(
+                      "SOON",
+                      style: TextStyle(
+                        fontSize: 10,
+                        fontWeight: FontWeight.bold,
+                        color: theme.colorScheme.onSurface.withValues(alpha: 0.5),
+                      ),
+                    ),
+                  )
+                else
+                  Icon(
+                    Icons.arrow_forward_ios, 
+                    size: 14, 
+                    color: theme.colorScheme.onSurface.withValues(alpha: 0.3),
+                  ),
+              ],
+            ),
+            const Spacer(),
+            Text(
+              title,
+              style: theme.textTheme.titleMedium?.copyWith(
+                fontWeight: FontWeight.w900,
+                color: isComingSoon ? theme.colorScheme.onSurface.withValues(alpha: 0.4) : null,
               ),
             ),
-            const SizedBox(width: 20),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    title,
-                    style: theme.textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.w900,
-                      color: isComingSoon ? onSurface.withValues(alpha: 0.4) : onSurface,
-                      letterSpacing: 1.2,
-                    ),
-                  ),
-                  const SizedBox(height: 6),
-                  Text(
-                    description,
-                    style: theme.textTheme.bodySmall?.copyWith(
-                      color: isComingSoon ? onSurface.withValues(alpha: 0.3) : onSurface.withValues(alpha: 0.7),
-                      height: 1.4,
-                    ),
-                  ),
-                ],
+            const SizedBox(height: 4),
+            Text(
+              subtitle,
+              style: theme.textTheme.bodySmall?.copyWith(
+                color: theme.colorScheme.onSurface.withValues(alpha: isComingSoon ? 0.3 : 0.6),
               ),
             ),
-            if (!isComingSoon)
-              Icon(Icons.arrow_forward_ios_rounded, size: 16, color: onSurface.withValues(alpha: 0.4)),
           ],
         ),
       ),

@@ -10,10 +10,15 @@ class TranslationHubScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
     
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: const Text("Translate"),
+        title: const Text("LIVE TRANSLATION", style: TextStyle(letterSpacing: 2.0, fontSize: 14, fontWeight: FontWeight.bold)),
+        centerTitle: true,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
         actions: [
           IconButton(
             icon: const Icon(Icons.history),
@@ -24,126 +29,140 @@ class TranslationHubScreen extends StatelessWidget {
         ],
       ),
       body: CalligraphyBackground(
-        child: SafeArea(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(24.0),
+        child: CustomScrollView(
+          physics: const BouncingScrollPhysics(),
+          slivers: [
+            const SliverToBoxAdapter(child: SizedBox(height: 100)),
+            
+            // Header
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Live Translation Hub",
-                      style: theme.textTheme.headlineMedium?.copyWith(
-                        fontWeight: FontWeight.bold,
-                        color: const Color(0xFF1A1A1B),
+                      "Live Translate",
+                      style: theme.textTheme.displaySmall?.copyWith(
+                        fontWeight: FontWeight.w900,
+                        color: isDark ? Colors.white : const Color(0xFF1A1A1B),
+                        height: 1.1,
                       ),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      "Powered by Gemini 3.5 Live Translate. Choose a mode to begin.",
-                      style: theme.textTheme.bodyLarge?.copyWith(
-                        color: const Color(0xFF1A1A1B).withValues(alpha: 0.7),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Expanded(
-                child: ListView(
-                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                  children: [
-                    _buildModeCard(
-                      context: context,
-                      title: "Travel Interpreter",
-                      description: "Real-time split-screen conversation with a native speaker.",
-                      icon: Icons.people_alt,
-                      color: Colors.blue.shade100,
-                      onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (_) => const TravelInterpreterScreen()));
-                      },
                     ),
                     const SizedBox(height: 16),
-                    _buildModeCard(
-                      context: context,
-                      title: "Whisper Earpiece",
-                      description: "Listen to Chinese audio and get real-time English subtitles.",
-                      icon: Icons.hearing,
-                      color: Colors.purple.shade100,
-                      onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (_) => const WhisperEarpieceScreen()));
-                      },
+                    Text(
+                      "Powered by Gemini 3.5. Seamless real-time translation for any scenario.",
+                      style: theme.textTheme.titleMedium?.copyWith(
+                        color: isDark ? Colors.white70 : const Color(0xFF1A1A1B).withValues(alpha: 0.7),
+                        height: 1.4,
+                      ),
                     ),
                   ],
                 ),
               ),
-            ],
-          ),
+            ),
+            
+            const SliverToBoxAdapter(child: SizedBox(height: 32)),
+
+            // Cards
+            SliverPadding(
+              padding: const EdgeInsets.symmetric(horizontal: 24.0),
+              sliver: SliverList(
+                delegate: SliverChildListDelegate([
+                  _buildPremiumCard(
+                    context: context,
+                    title: "Travel Interpreter",
+                    description: "Real-time split-screen conversation with a native speaker. Breaks down language barriers instantly.",
+                    icon: Icons.people_alt,
+                    gradient: const LinearGradient(
+                      colors: [Color(0xFF2B5876), Color(0xFF4E4376)],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (_) => const TravelInterpreterScreen()));
+                    },
+                  ),
+                  const SizedBox(height: 24),
+                  _buildPremiumCard(
+                    context: context,
+                    title: "Whisper Earpiece",
+                    description: "Listen to Chinese audio and get real-time English subtitles directly on your screen.",
+                    icon: Icons.hearing,
+                    gradient: const LinearGradient(
+                      colors: [Color(0xFF8E2DE2), Color(0xFF4A00E0)],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (_) => const WhisperEarpieceScreen()));
+                    },
+                  ),
+                  const SizedBox(height: 40),
+                ]),
+              ),
+            ),
+          ],
         ),
       ),
     );
   }
 
-  Widget _buildModeCard({
+  Widget _buildPremiumCard({
     required BuildContext context,
     required String title,
     required String description,
     required IconData icon,
-    required Color color,
+    required Gradient gradient,
     required VoidCallback onTap,
   }) {
     final theme = Theme.of(context);
     
     return InkWell(
       onTap: onTap,
-      borderRadius: BorderRadius.circular(24),
+      borderRadius: BorderRadius.circular(32),
       child: Container(
-        padding: const EdgeInsets.all(20),
+        width: double.infinity,
+        padding: const EdgeInsets.all(32),
         decoration: BoxDecoration(
-          color: Colors.white.withValues(alpha: 0.8),
-          borderRadius: BorderRadius.circular(24),
-          border: Border.all(color: color.withValues(alpha: 0.5), width: 2),
+          gradient: gradient,
+          borderRadius: BorderRadius.circular(32),
           boxShadow: [
             BoxShadow(
-              color: color.withValues(alpha: 0.2),
-              blurRadius: 10,
-              offset: const Offset(0, 4),
+              color: gradient.colors.last.withValues(alpha: 0.4),
+              blurRadius: 20,
+              offset: const Offset(0, 10),
             ),
           ],
         ),
-        child: Row(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: color,
+                color: Colors.white.withValues(alpha: 0.2),
                 shape: BoxShape.circle,
               ),
-              child: Icon(icon, size: 32, color: Colors.black87),
+              child: Icon(icon, color: Colors.white, size: 36),
             ),
-            const SizedBox(width: 16),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    title,
-                    style: theme.textTheme.titleLarge?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    description,
-                    style: theme.textTheme.bodyMedium?.copyWith(
-                      color: Colors.black54,
-                    ),
-                  ),
-                ],
+            const SizedBox(height: 32),
+            Text(
+              title,
+              style: theme.textTheme.headlineMedium?.copyWith(
+                fontWeight: FontWeight.w900,
+                color: Colors.white,
+                letterSpacing: -0.5,
               ),
             ),
-            const Icon(Icons.chevron_right, color: Colors.black26),
+            const SizedBox(height: 12),
+            Text(
+              description,
+              style: theme.textTheme.titleMedium?.copyWith(
+                color: Colors.white.withValues(alpha: 0.8),
+                height: 1.4,
+              ),
+            ),
           ],
         ),
       ),

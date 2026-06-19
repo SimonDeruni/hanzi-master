@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/radical_detail_screen.dart';
+import 'package:lpinyin/lpinyin.dart';
 
 class RadicalLibraryScreen extends StatefulWidget {
   const RadicalLibraryScreen({super.key});
@@ -189,7 +190,16 @@ class _RadicalLibraryScreenState extends State<RadicalLibraryScreen> {
                 color: Color(0xFFB22222), // Deep red color for radical
               ),
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: 4),
+            Text(
+              PinyinHelper.getPinyin(character, separator: ' ', format: PinyinFormat.WITH_TONE_MARK),
+              style: TextStyle(
+                fontSize: 14,
+                color: isDark ? Colors.white70 : Colors.black54,
+                fontStyle: FontStyle.italic,
+              ),
+            ),
+            const SizedBox(height: 4),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Text(

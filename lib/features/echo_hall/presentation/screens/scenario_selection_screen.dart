@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import '../../domain/entities/scenario.dart';
 import 'conversation_screen.dart';
@@ -98,17 +99,17 @@ class _ScenarioCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final bool isDark = theme.brightness == Brightness.dark;
 
     return Container(
-      height: 160,
       margin: const EdgeInsets.only(bottom: 24),
       decoration: BoxDecoration(
-        color: theme.cardTheme.color,
+        color: isDark ? const Color(0xFF2A2A2C) : Colors.white,
         borderRadius: BorderRadius.circular(24),
-        border: Border.all(color: theme.colorScheme.onSurface.withValues(alpha: 0.1)),
-        boxShadow: [
+        border: Border.all(color: isDark ? Colors.white12 : Colors.grey.withValues(alpha: 0.2), width: 1),
+        boxShadow: isDark ? [] : [
           BoxShadow(
-            color: theme.colorScheme.onSurface.withValues(alpha: 0.1),
+            color: Colors.black.withValues(alpha: 0.05),
             blurRadius: 20,
             offset: const Offset(0, 10),
           ),
@@ -118,156 +119,133 @@ class _ScenarioCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(24),
         child: Stack(
           children: [
-            // Background Image
-            Positioned.fill(
-              child: scenario.avatarAssetPath.startsWith('/') || scenario.avatarAssetPath.contains(':\\')
-                ? Image.file(
-                    File(scenario.avatarAssetPath),
-                    fit: BoxFit.cover,
-                    alignment: Alignment.topCenter,
-                    errorBuilder: (context, error, stackTrace) => Container(color: theme.colorScheme.surface),
-                  )
-                : Image.asset(
-                    scenario.avatarAssetPath,
-                    fit: BoxFit.cover,
-                    alignment: Alignment.topCenter,
-                    errorBuilder: (context, error, stackTrace) => Container(color: theme.colorScheme.surface),
-                  ),
-            ),
-            // Gradient Overlay to ensure text readability
-            Positioned.fill(
-              child: Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      theme.colorScheme.surface.withValues(alpha: 0.95),
-                      theme.colorScheme.surface.withValues(alpha: 0.7),
-                      theme.colorScheme.surface.withValues(alpha: 0.4),
-                    ],
-                    stops: const [0.0, 0.6, 1.0],
-                    begin: Alignment.centerLeft,
-                    end: Alignment.centerRight,
-                  ),
-                ),
+            // Avatar Image on the right with a fade mask
+            Positioned(
+              right: 0,
+              top: 0,
+              bottom: 0,
+              width: 180,
+              child: ShaderMask(
+                shaderCallback: (rect) {
+                  return const LinearGradient(
+                    begin: Alignment.centerRight,
+                    end: Alignment.centerLeft,
+                    colors: [Colors.black, Colors.transparent],
+                  ).createShader(rect);
+                },
+                blendMode: BlendMode.dstIn,
+                child: scenario.avatarAssetPath.startsWith('/') || scenario.avatarAssetPath.contains(':\\')
+                  ? Image.file(
+                      File(scenario.avatarAssetPath),
+                      fit: BoxFit.cover,
+                      alignment: Alignment.topCenter,
+                      errorBuilder: (context, error, stackTrace) => Container(color: theme.colorScheme.surface),
+                    )
+                  : Image.asset(
+                      scenario.avatarAssetPath,
+                      fit: BoxFit.cover,
+                      alignment: Alignment.topCenter,
+                      errorBuilder: (context, error, stackTrace) => Container(color: theme.colorScheme.surface),
+                    ),
               ),
             ),
             // Content
-            Positioned.fill(
-              child: Padding(
-                padding: const EdgeInsets.all(24.0),
-                child: Row(
-                  children: [
-                    Expanded(
-                      flex: 3,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Row(
-                            children: [
-                              Container(
-                                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                                decoration: BoxDecoration(
-                                  color: theme.colorScheme.secondary.withValues(alpha: 0.15),
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                child: Text(
-                                  'HSK ${scenario.targetHskLevel}',
-                                  style: theme.textTheme.labelSmall?.copyWith(
-                                    color: theme.colorScheme.secondary,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                              if (scenario.isCustom == true)
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 8.0),
-                                  child: Icon(Icons.auto_awesome, size: 16, color: theme.colorScheme.primary),
-                                ),
-                            ],
+            Padding(
+              padding: const EdgeInsets.all(24.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                        decoration: BoxDecoration(
+                          color: theme.colorScheme.primary.withValues(alpha: 0.1),
+                          borderRadius: BorderRadius.circular(8),
+                          border: Border.all(color: theme.colorScheme.primary.withValues(alpha: 0.2)),
+                        ),
+                        child: Text(
+                          'HSK ${scenario.targetHskLevel}',
+                          style: TextStyle(
+                            color: theme.colorScheme.primary,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w900,
+                            letterSpacing: 0.5,
                           ),
-                          const SizedBox(height: 12),
-                          Text(
-                            scenario.title,
-                            style: theme.textTheme.titleLarge?.copyWith(
-                              fontWeight: FontWeight.w900,
-                              letterSpacing: 0.5,
-                            ),
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                          const SizedBox(height: 6),
-                          Expanded(
-                            child: Text(
-                              scenario.description,
-                              style: theme.textTheme.bodyMedium?.copyWith(
-                                color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
-                              ),
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
-                        ],
+                        ),
+                      ),
+                      if (scenario.isCustom == true)
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8.0),
+                          child: Icon(Icons.auto_awesome, size: 16, color: theme.colorScheme.primary),
+                        ),
+                    ],
+                  ),
+                  const SizedBox(height: 16),
+                  Text(
+                    scenario.title,
+                    style: theme.textTheme.titleLarge?.copyWith(
+                      fontWeight: FontWeight.w900,
+                      color: isDark ? Colors.white : const Color(0xFF1A1A1A),
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.55, // Prevent text from overlapping the image too much
+                    child: Text(
+                      scenario.description,
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        color: isDark ? Colors.white70 : Colors.black54,
+                        height: 1.5,
                       ),
                     ),
-                    Expanded(
-                      flex: 1,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => LiveCallScreen(scenario: scenario),
-                                ),
-                              );
-                            },
-                            child: Container(
-                              padding: const EdgeInsets.all(12),
-                              decoration: BoxDecoration(
-                                color: theme.colorScheme.primary,
-                                shape: BoxShape.circle,
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: theme.colorScheme.primary.withValues(alpha: 0.3),
-                                    blurRadius: 10,
-                                    offset: const Offset(0, 4),
-                                  )
-                                ],
-                              ),
-                              child: Icon(
-                                Icons.phone_in_talk,
-                                color: theme.colorScheme.onPrimary,
-                                size: 24,
-                              ),
+                  ),
+                  const SizedBox(height: 24),
+                  Row(
+                    children: [
+                      // Voice Call Button
+                      ElevatedButton.icon(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => LiveCallScreen(scenario: scenario),
                             ),
-                          ),
-                          const SizedBox(height: 16),
-                          TextButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => ConversationScreen(scenario: scenario),
-                                ),
-                              );
-                            },
-                            style: TextButton.styleFrom(
-                              foregroundColor: theme.colorScheme.primary,
-                              backgroundColor: theme.colorScheme.surface.withValues(alpha: 0.8),
-                              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-                            ),
-                            child: const Text("Chat", style: TextStyle(fontWeight: FontWeight.bold)),
-                          ),
-                        ],
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: theme.colorScheme.primary,
+                          foregroundColor: Colors.white,
+                          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                          elevation: 0,
+                        ),
+                        icon: const Icon(Icons.phone_in_talk, size: 20),
+                        label: const Text("Voice Call", style: TextStyle(fontWeight: FontWeight.bold)),
                       ),
-                    ),
-                  ],
-                ),
+                      const SizedBox(width: 12),
+                      // Chat Button
+                      OutlinedButton.icon(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ConversationScreen(scenario: scenario),
+                            ),
+                          );
+                        },
+                        style: OutlinedButton.styleFrom(
+                          foregroundColor: theme.colorScheme.primary,
+                          side: BorderSide(color: theme.colorScheme.primary.withValues(alpha: 0.3), width: 1.5),
+                          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                        ),
+                        icon: const Icon(Icons.chat_bubble_outline, size: 20),
+                        label: const Text("Text Chat", style: TextStyle(fontWeight: FontWeight.bold)),
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
           ],

@@ -6,7 +6,7 @@
     <uses-feature android:name="android.hardware.camera" android:required="false" />
 
     <application
-        android:label="hanzi_master"
+        android:label="Hanzi Master"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         
