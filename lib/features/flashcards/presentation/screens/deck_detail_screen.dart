@@ -6,7 +6,6 @@ import 'package:hanzi_master/features/flashcards/domain/entities/study_mode.dart
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/deck_review_session_screen.dart';
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
-import 'package:hanzi_master/features/flashcards/presentation/widgets/dictionary_quick_box.dart';
 import 'package:hanzi_master/core/services/analytics_service.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/story_mode_screen.dart';

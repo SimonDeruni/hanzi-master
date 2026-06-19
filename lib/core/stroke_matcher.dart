@@ -83,8 +83,8 @@ class StrokeMatcher {
     // --- 1. Directionality Check ---
     final startDist = (userStroke.first - referenceMedian.first).distance;
     final baseThreshold = (200.0 - (masteryLevel * 50.0)) * lengthFactor;
-    // Audit Logic: Ensure thresholds don't get impossibly small for tiny strokes
-    final minThreshold = 50.0 - (masteryLevel * 10.0);
+    // Audit Logic: Ensure thresholds don't get impossibly small for tiny strokes (min 35 screen px -> ~150 logic px)
+    final minThreshold = 150.0 - (masteryLevel * 20.0);
     final startThreshold = (strictEndpoints ? baseThreshold : baseThreshold * 2.5).clamp(minThreshold, 350.0);
     
     if (startDist > startThreshold) {
@@ -143,7 +143,7 @@ class StrokeMatcher {
     final endWeight = strictEndpoints ? 0.3 : 0.1;
     final combinedError = (averageDistance * shapeWeight) + (endpointPenalty * endWeight);
 
-    final baseBuffer = ((150.0 - (masteryLevel * 50.0)) * lengthFactor).clamp(minThreshold, 250.0);
+    final baseBuffer = ((150.0 - (masteryLevel * 50.0)) * lengthFactor).clamp(minThreshold, 350.0);
     final bufferZone = strictEndpoints ? baseBuffer : baseBuffer * 2.0;
     
     final bool isMatch = combinedError <= bufferZone;

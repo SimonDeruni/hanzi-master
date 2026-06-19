@@ -29,9 +29,9 @@ class GlobalSliverAppBar extends ConsumerWidget {
       elevation: 0,
       pinned: false,
       floating: true,
-      expandedHeight: subtitle != null ? 160 : 120,
+      expandedHeight: subtitle != null ? 180 : 150,
       flexibleSpace: FlexibleSpaceBar(
-        titlePadding: EdgeInsets.only(left: 24, bottom: subtitle != null ? 48 : 16, right: 120),
+        titlePadding: EdgeInsets.only(left: 24, bottom: subtitle != null ? 48 : 16, right: 180),
         title: Text(
           title,
           style: theme.textTheme.headlineSmall?.copyWith(

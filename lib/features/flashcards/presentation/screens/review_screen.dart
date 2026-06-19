@@ -174,8 +174,15 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
     final userStrokes = _splitIntoStrokes(userPoints);
     _completedStrokes.clear();
     _completedStrokes.addAll(userStrokes);
-    final medians = _currentCard.medianPaths;
-    if (userStrokes.isEmpty || medians.isEmpty) {
+    final rawMedians = _currentCard.medianPaths;
+    final validMedians = <List<ui.Offset>>[];
+    for (int i = 0; i < _currentCard.strokePaths.length; i++) {
+      if (_currentCard.strokePaths[i] != '__CHAR_SEPARATOR__') {
+        if (i < rawMedians.length) validMedians.add(rawMedians[i]);
+      }
+    }
+
+    if (userStrokes.isEmpty || validMedians.isEmpty) {
       setState(() { _score = 0.0; _state = ReviewState.feedback; });
       return;
     }
@@ -183,9 +190,9 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
     final double mastery = _currentCard.masteryLevel(StudyMode.calligraphy);
     final List<Future<StrokeMatchResult>> futures = [];
     
-    for (int i = 0; i < medians.length; i++) {
+    for (int i = 0; i < validMedians.length; i++) {
       if (i < userStrokes.length) {
-        final refMedian = medians[i];
+        final refMedian = validMedians[i];
         futures.add(StrokeMatcher.matchStrokeAsync(userStrokes[i], refMedian, masteryLevel: mastery));
       }
     }
@@ -202,7 +209,7 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
       evaluated++;
     }
 
-    final finalScore = (evaluated > 0 ? (totalScore / medians.length) : 0.0) * 100.0;
+    final finalScore = (evaluated > 0 ? (totalScore / validMedians.length) : 0.0) * 100.0;
     
     if (!mounted) return;
 

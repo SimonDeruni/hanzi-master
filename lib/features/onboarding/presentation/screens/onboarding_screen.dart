@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:hanzi_master/core/providers.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/main_navigation_screen.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
-import 'package:hanzi_master/features/flashcards/presentation/widgets/bouncing_button.dart';
+import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
 
 class OnboardingScreen extends ConsumerStatefulWidget {
   const OnboardingScreen({super.key});
@@ -48,7 +48,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   }
 
   void _completeOnboarding() async {
-    final prefs = ref.read(sharedPreferencesProvider);
+    final prefs = await SharedPreferences.getInstance();
     await prefs.setBool('has_seen_onboarding', true);
     
     if (mounted) {
