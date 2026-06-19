@@ -145,12 +145,16 @@ class TappableMarkdownHanziText extends _TappableBase {
   final String text;
   final TextStyle? style;
   final TextAlign textAlign;
+  final int? maxLines;
+  final TextOverflow? overflow;
 
   const TappableMarkdownHanziText(
     this.text, {
     super.key,
     this.style,
     this.textAlign = TextAlign.start,
+    this.maxLines,
+    this.overflow,
   });
 
   @override
@@ -270,6 +274,8 @@ class _TappableMarkdownHanziTextState
     final spans = _spans ?? [];
     return RichText(
       textAlign: widget.textAlign,
+      maxLines: widget.maxLines,
+      overflow: widget.overflow ?? TextOverflow.clip,
       text: TextSpan(children: spans),
     );
   }

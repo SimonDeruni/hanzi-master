@@ -16,6 +16,7 @@ import 'package:hanzi_master/core/services/audio_service.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/character_detail_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/character_chat_sheet.dart';
+import 'package:hanzi_master/shared/widgets/global_blurred_bottom_sheet.dart';
 import 'package:hanzi_master/shared/widgets/tappable_hanzi_text.dart';
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
 import 'package:hanzi_master/core/utils/pinyin_utils.dart';
@@ -258,11 +259,9 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
         builder: (context) {
           return FloatingActionButton.extended(
             onPressed: () {
-              showModalBottomSheet(
-                context: context,
-                isScrollControlled: true,
-                backgroundColor: Colors.transparent,
-                builder: (context) => CharacterChatSheet(
+              GlobalBlurredBottomSheet.show(
+                context,
+                child: CharacterChatSheet(
                   hanzi: widget.card.hanzi,
                   pinyin: widget.card.pinyin,
                   definition: widget.card.definition,

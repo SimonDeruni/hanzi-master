@@ -8,6 +8,7 @@ import 'package:hanzi_master/features/flashcards/presentation/providers/flashcar
 import 'package:hanzi_master/features/flashcards/presentation/screens/character_detail_screen.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/flashcard_edit_dialog.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
+import 'package:hanzi_master/shared/widgets/global_blurred_bottom_sheet.dart';
 
 // ---------------------------------------------------------------------------
 // Helpers — clean raw CC-CEDICT strings before display
@@ -39,16 +40,9 @@ String _cleanDefinition(String raw) {
 /// Shows a compact "Quick Look" bottom sheet for a single Chinese character.
 void showQuickLook(BuildContext context, String hanzi) {
   if (hanzi.isEmpty) return;
-  showModalBottomSheet(
-    context: context,
-    backgroundColor: Colors.transparent,
-    isScrollControlled: true,
-    useSafeArea: true,
-    barrierColor: Colors.black.withValues(alpha: 0.6),
-    builder: (ctx) => BackdropFilter(
-      filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
-      child: _QuickLookSheet(hanzi: hanzi),
-    ),
+  GlobalBlurredBottomSheet.show(
+    context,
+    child: _QuickLookSheet(hanzi: hanzi),
   );
 }
 
@@ -68,69 +62,21 @@ class _QuickLookSheet extends ConsumerWidget {
     final allCards = ref.watch(flashcardControllerProvider).value ?? [];
     final inDeck = allCards.any((c) => c.hanzi == hanzi);
 
-    return _SheetShell(
-      isDark: isDark,
-      child: asyncCard.when(
-        loading: () => _LoadingBody(isDark: isDark),
-        error: (_, __) => _NotFoundBody(hanzi: hanzi, isDark: isDark),
-        data: (card) => card == null
-            ? _NotFoundBody(hanzi: hanzi, isDark: isDark)
-            : _FoundBody(
-                card: card,
-                isDark: isDark,
-                inDeck: inDeck,
-                asyncCommon: asyncCommon,
-              ),
-      ),
-    );
-  }
-}
-
-// ---------------------------------------------------------------------------
-// Shared shell — rounded sheet with drag handle and gradient header zone
-// ---------------------------------------------------------------------------
-
-class _SheetShell extends StatelessWidget {
-  final bool isDark;
-  final Widget child;
-  const _SheetShell({required this.isDark, required this.child});
-
-  @override
-  Widget build(BuildContext context) {
-    final bg = isDark ? const Color(0xFF1C1C1E) : const Color(0xFFFDFCF0);
-    return Container(
-      decoration: BoxDecoration(
-        color: bg,
-        borderRadius: const BorderRadius.vertical(top: Radius.circular(28)),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.22),
-            blurRadius: 32,
-            offset: const Offset(0, -6),
-          ),
-        ],
-      ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          // Drag handle
-          Padding(
-            padding: const EdgeInsets.only(top: 10, bottom: 6),
-            child: Container(
-              width: 40,
-              height: 4,
-              decoration: BoxDecoration(
-                color: Colors.grey.withValues(alpha: isDark ? 0.4 : 0.28),
-                borderRadius: BorderRadius.circular(2),
-              ),
+    return asyncCard.when(
+      loading: () => _LoadingBody(isDark: isDark),
+      error: (_, __) => _NotFoundBody(hanzi: hanzi, isDark: isDark),
+      data: (card) => card == null
+          ? _NotFoundBody(hanzi: hanzi, isDark: isDark)
+          : _FoundBody(
+              card: card,
+              isDark: isDark,
+              inDeck: inDeck,
+              asyncCommon: asyncCommon,
             ),
-          ),
-          child,
-        ],
-      ),
     );
   }
 }
+
 
 // ---------------------------------------------------------------------------
 // Loading state

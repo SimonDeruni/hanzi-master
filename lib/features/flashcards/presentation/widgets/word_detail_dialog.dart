@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
+import 'package:hanzi_master/features/flashcards/domain/entities/deck.dart';
+import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
 import 'package:hanzi_master/core/providers.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'ai_explainer_sheet.dart';
@@ -117,32 +119,36 @@ class WordDetailDialog extends ConsumerWidget {
             Row(
               children: [
                 Expanded(
-                  child: OutlinedButton.icon(
-                    icon: const Icon(Icons.auto_awesome),
-                    label: const FittedBox(fit: BoxFit.scaleDown, child: Text("Explain Grammar")),
-                    style: OutlinedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(vertical: 12),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                  child: BouncingButton(
+                    child: OutlinedButton.icon(
+                      icon: const Icon(Icons.auto_awesome),
+                      label: const FittedBox(fit: BoxFit.scaleDown, child: Text("Explain Grammar")),
+                      style: OutlinedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(vertical: 12),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                      ),
+                      onPressed: () {
+                        Navigator.pop(context);
+                        AiExplainerSheet.show(context, word, sentence);
+                      },
                     ),
-                    onPressed: () {
-                      Navigator.pop(context);
-                      AiExplainerSheet.show(context, word, sentence);
-                    },
                   ),
                 ),
                 const SizedBox(width: 12),
                 Expanded(
-                  child: ElevatedButton.icon(
-                    icon: const Icon(Icons.add_box),
-                    label: const FittedBox(fit: BoxFit.scaleDown, child: Text("Add to Library")),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blueAccent,
-                      foregroundColor: Colors.white,
-                      padding: const EdgeInsets.symmetric(vertical: 12),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                      elevation: 0,
+                  child: BouncingButton(
+                    child: ElevatedButton.icon(
+                      icon: const Icon(Icons.add_box),
+                      label: const FittedBox(fit: BoxFit.scaleDown, child: Text("Add to Library")),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.blueAccent,
+                        foregroundColor: Colors.white,
+                        padding: const EdgeInsets.symmetric(vertical: 12),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                        elevation: 0,
+                      ),
+                      onPressed: () => _addToDeck(context, ref),
                     ),
-                    onPressed: () => _addToDeck(context, ref),
                   ),
                 ),
               ],

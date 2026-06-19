@@ -5,7 +5,7 @@ import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart'
 import 'package:hanzi_master/features/flashcards/domain/entities/study_mode.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/deck_review_session_screen.dart';
-import 'package:hanzi_master/features/flashcards/presentation/widgets/dictionary_quick_box.dart';
+import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/story_mode_screen.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/study_mode_selection_sheet.dart';
@@ -512,7 +512,7 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
 
   Widget _buildCardContent(BuildContext context, dynamic card, bool isDark) {
     return InkWell(
-      onTap: () => DictionaryQuickBox.show(context, card: card, isInLibrary: true),
+      onTap: () => showQuickLook(context, card.hanzi),
       borderRadius: BorderRadius.circular(20),
       child: Container(
         padding: const EdgeInsets.all(16),

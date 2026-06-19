@@ -22,8 +22,8 @@ import 'package:hanzi_master/features/premium/presentation/screens/paywall_sheet
 import 'package:hanzi_master/features/premium/presentation/screens/universal_scanner_screen.dart';
 import 'package:hanzi_master/core/providers/premium_controller.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
-import 'package:hanzi_master/shared/widgets/clickable_chinese_text.dart';
-import 'package:hanzi_master/features/flashcards/presentation/widgets/dictionary_quick_box.dart';
+import 'package:hanzi_master/shared/widgets/tappable_hanzi_text.dart';
+import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/radical_library_screen.dart';
 import 'package:hanzi_master/shared/widgets/global_sliver_app_bar.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
@@ -105,7 +105,7 @@ class _LexiconMiniCard extends StatelessWidget {
     final theme = Theme.of(context);
     return InkWell(
       onTap: () {
-        DictionaryQuickBox.show(context, card: card, isInLibrary: true);
+        showQuickLook(context, card.hanzi);
       },
       borderRadius: BorderRadius.circular(16),
       child: Container(
@@ -794,7 +794,7 @@ class _DictionaryItem extends StatelessWidget {
 
     return InkWell(
       onTap: () {
-        DictionaryQuickBox.show(context, card: card, isInLibrary: isInLibrary);
+        showQuickLook(context, card.hanzi);
       },
       borderRadius: BorderRadius.circular(16),
       child: Container(
@@ -868,7 +868,7 @@ class _DictionaryItem extends StatelessWidget {
                         ],
                       ),
                     ),
-                  ClickableChineseText(
+                  TappableMarkdownHanziText(
                     card.definition,
                     style: TextStyle(
                       fontSize: 14,

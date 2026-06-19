@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
+
 import '../../domain/entities/study_mode.dart';
+import 'package:hanzi_master/shared/widgets/global_blurred_bottom_sheet.dart';
 
 class StudyModeSelectionSheet extends StatelessWidget {
   final Function(StudyMode) onModeSelected;
@@ -7,11 +8,9 @@ class StudyModeSelectionSheet extends StatelessWidget {
   const StudyModeSelectionSheet({super.key, required this.onModeSelected});
 
   static Future<void> show(BuildContext context, {required Function(StudyMode) onModeSelected}) {
-    return showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      backgroundColor: Colors.transparent,
-      builder: (context) => StudyModeSelectionSheet(onModeSelected: onModeSelected),
+    return GlobalBlurredBottomSheet.show(
+      context,
+      child: StudyModeSelectionSheet(onModeSelected: onModeSelected),
     );
   }
 
@@ -19,27 +18,12 @@ class StudyModeSelectionSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
-    return Container(
-      decoration: BoxDecoration(
-        color: Theme.of(context).scaffoldBackgroundColor,
-        borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
-      ),
-      padding: const EdgeInsets.all(24).copyWith(bottom: MediaQuery.of(context).padding.bottom + 24),
+    return Padding(
+      padding: const EdgeInsets.all(24),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Center(
-            child: Container(
-              width: 40,
-              height: 4,
-              decoration: BoxDecoration(
-                color: isDark ? Colors.white24 : Colors.black12,
-                borderRadius: BorderRadius.circular(2),
-              ),
-            ),
-          ),
-          const SizedBox(height: 24),
           Text(
             'How would you like to study?',
             style: TextStyle(

@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/features/live_translate/domain/entities/translation_session.dart';
-import 'package:hanzi_master/shared/widgets/clickable_chinese_text.dart';
+import 'package:hanzi_master/shared/widgets/tappable_hanzi_text.dart';
 
 class TranslationSessionDetailScreen extends ConsumerStatefulWidget {
   final TranslationSession session;
@@ -110,7 +110,7 @@ Sentence: "$sentence"
                     const SizedBox(height: 12),
                     
                     if (isMandarin)
-                      ClickableChineseText(
+                      TappableMarkdownHanziText(
                         msg.text,
                         style: const TextStyle(fontSize: 22, color: Colors.black87),
                       )

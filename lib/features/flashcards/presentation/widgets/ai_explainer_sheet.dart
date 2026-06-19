@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
-import 'package:hanzi_master/shared/widgets/tappable_hanzi_text.dart';
+
+import 'package:hanzi_master/shared/widgets/global_blurred_bottom_sheet.dart';
 
 class _FollowUpChip {
   final String label;
@@ -74,14 +75,9 @@ class AiExplainerSheet extends ConsumerStatefulWidget {
   const AiExplainerSheet({super.key, required this.word, required this.sentence});
 
   static void show(BuildContext context, AiWord word, AiSentence sentence) {
-    showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      backgroundColor: Colors.transparent,
-      builder: (context) => Padding(
-        padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-        child: AiExplainerSheet(word: word, sentence: sentence),
-      ),
+    GlobalBlurredBottomSheet.show(
+      context,
+      child: AiExplainerSheet(word: word, sentence: sentence),
     );
   }
 
@@ -189,25 +185,12 @@ class _AiExplainerSheetState extends ConsumerState<AiExplainerSheet> {
     final screenWidth = MediaQuery.of(context).size.width;
     final drawerWidth = screenWidth * 0.88;
 
-    return Container(
+    return SizedBox(
       height: MediaQuery.of(context).size.height * 0.85,
-      decoration: BoxDecoration(
-        color: bgColor,
-        borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
-      ),
       child: SafeArea(
         top: false,
         child: Column(
           children: [
-            const SizedBox(height: 12),
-            Container(
-              width: 40,
-              height: 4,
-              decoration: BoxDecoration(
-                color: textColor.withValues(alpha: 0.15),
-                borderRadius: BorderRadius.circular(2),
-              ),
-            ),
             const SizedBox(height: 8),
             _buildHeader(isDark, textColor),
             _buildContextBox(isDark, textColor),

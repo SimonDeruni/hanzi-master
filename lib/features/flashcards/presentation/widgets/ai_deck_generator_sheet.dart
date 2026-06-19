@@ -6,16 +6,15 @@ import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart'
 import 'package:hanzi_master/features/flashcards/presentation/providers/deck_controller.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'package:uuid/uuid.dart';
+import 'package:hanzi_master/shared/widgets/global_blurred_bottom_sheet.dart';
 
 class AiDeckGeneratorSheet extends ConsumerStatefulWidget {
   const AiDeckGeneratorSheet({super.key});
 
   static void show(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      backgroundColor: Colors.transparent,
-      builder: (context) => const AiDeckGeneratorSheet(),
+    GlobalBlurredBottomSheet.show(
+      context,
+      child: const AiDeckGeneratorSheet(),
     );
   }
 
@@ -42,41 +41,18 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final bottomPadding = MediaQuery.of(context).viewInsets.bottom;
 
-    return Container(
-      margin: const EdgeInsets.only(top: 64),
-      padding: EdgeInsets.only(
+    return Padding(
+      padding: const EdgeInsets.only(
         left: 24,
         right: 24,
         top: 24,
-        bottom: bottomPadding + 24,
-      ),
-      decoration: BoxDecoration(
-        color: isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
-        borderRadius: const BorderRadius.vertical(top: Radius.circular(32)),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.2),
-            blurRadius: 20,
-            offset: const Offset(0, -5),
-          ),
-        ],
+        bottom: 24,
       ),
       child: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Center(
-              child: Container(
-                width: 40,
-                height: 4,
-                decoration: BoxDecoration(
-                  color: isDark ? Colors.white24 : Colors.black26,
-                  borderRadius: BorderRadius.circular(2),
-                ),
-              ),
-            ),
-            const SizedBox(height: 24),
             Row(
               children: [
                 Container(

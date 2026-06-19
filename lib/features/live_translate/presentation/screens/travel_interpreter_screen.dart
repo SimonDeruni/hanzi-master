@@ -11,7 +11,7 @@ import 'package:flutter_sound/flutter_sound.dart' as fs;
 import 'package:hanzi_master/core/services/api_key_pool.dart';
 import 'package:hive/hive.dart';
 import 'package:uuid/uuid.dart';
-import 'package:hanzi_master/shared/widgets/clickable_chinese_text.dart';
+import 'package:hanzi_master/shared/widgets/tappable_hanzi_text.dart';
 import 'package:hanzi_master/features/live_translate/domain/entities/translation_session.dart';
 
 class InterpreterMessage {
@@ -486,7 +486,7 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                                   msg.text,
                                   style: const TextStyle(color: Colors.white, fontSize: 24),
                                 )
-                              : ClickableChineseText(
+                              : TappableMarkdownHanziText(
                                   msg.text,
                                   style: const TextStyle(color: Colors.blueAccent, fontSize: 24),
                                 ),

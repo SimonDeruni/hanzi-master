@@ -3,17 +3,16 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/core/services/monetization_service.dart';
 import 'package:hanzi_master/core/providers/premium_controller.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
+import 'package:hanzi_master/shared/widgets/global_blurred_bottom_sheet.dart';
 
 class PaywallSheet extends ConsumerStatefulWidget {
   const PaywallSheet({super.key});
 
   /// Helper to show the paywall easily from anywhere
   static void show(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      backgroundColor: Colors.transparent,
-      builder: (context) => const PaywallSheet(),
+    GlobalBlurredBottomSheet.show(
+      context,
+      child: const PaywallSheet(),
     );
   }
 
@@ -82,17 +81,11 @@ class _PaywallSheetState extends ConsumerState<PaywallSheet> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: MediaQuery.of(context).size.height * 0.85,
-      decoration: const BoxDecoration(
-        color: Color(0xFFFDF5E6), // Xuan paper color
-        borderRadius: BorderRadius.vertical(top: Radius.circular(32)),
-      ),
       child: Column(
         children: [
-          const SizedBox(height: 12),
-          Container(width: 40, height: 5, decoration: BoxDecoration(color: Colors.brown.shade300, borderRadius: BorderRadius.circular(10))),
-          const SizedBox(height: 32),
+          const SizedBox(height: 16),
           
           const Icon(Icons.menu_book_rounded, size: 64, color: Colors.indigo),
           const SizedBox(height: 16),
