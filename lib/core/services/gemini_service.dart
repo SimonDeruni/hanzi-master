@@ -6,10 +6,12 @@ import 'package:http/http.dart' as http;
 import 'package:google_generative_ai/google_generative_ai.dart';
 import '../../features/flashcards/domain/entities/flashcard.dart';
 import 'api_key_pool.dart';
+import 'analytics_service.dart';
 
 final geminiServiceProvider = Provider<GeminiService>((ref) {
   final pool = ref.watch(apiKeyPoolProvider);
-  return GeminiService(pool: pool);
+  final analytics = ref.watch(analyticsServiceProvider);
+  return GeminiService(pool: pool, analytics: analytics);
 });
 
 class GeminiContext {
@@ -189,15 +191,17 @@ class AiChatSession {
       return reply;
     } else {
       _history.removeLast(); // Rollback on failure
+      _history.removeLast();
       throw Exception('OpenRouter Error ${response.statusCode}: ${response.body}');
     }
   }
 }
 
 class GeminiService {
-  final ApiKeyPool _pool;
+  final ApiKeyPool pool;
+  final AnalyticsService analytics;
 
-  GeminiService({required ApiKeyPool pool}) : _pool = pool;
+  GeminiService({required this.pool, required this.analytics});
 
   Future<String> makeOpenRouterCall({
     required String model,
@@ -209,7 +213,6 @@ class GeminiService {
       'messages': messages,
     };
     
-    // OpenRouter requires specific format for json object forcing if supported by the model
     if (jsonMode) {
       body['response_format'] = {'type': 'json_object'};
     }
@@ -217,7 +220,7 @@ class GeminiService {
     final response = await http.post(
       Uri.parse('https://openrouter.ai/api/v1/chat/completions'),
       headers: {
-        'Authorization': 'Bearer ${_pool.nextKey}',
+        'Authorization': 'Bearer ${pool.nextKey}',
         'Content-Type': 'application/json',
       },
       body: jsonEncode(body),
@@ -267,8 +270,10 @@ Return ONLY valid JSON with this exact structure:
     try {
       final json = jsonDecode(response);
       box.put(cacheKey, response);
+      analytics.logApiUsage(apiName: 'openrouter', feature: 'define_word', success: true);
       return {'pinyin': json['pinyin'].toString(), 'meaning': json['meaning'].toString()};
     } catch (e) {
+      analytics.logApiUsage(apiName: 'openrouter', feature: 'define_word', success: false);
       return {'pinyin': '?', 'meaning': 'Failed to fetch definition.'};
     }
   }
@@ -286,8 +291,10 @@ Keep your explanation short, engaging, and easy to understand for a language lea
         model: 'deepseek/deepseek-chat',
         messages: [{'role': 'user', 'content': prompt}],
       );
+      analytics.logApiUsage(apiName: 'openrouter', feature: 'grammar_explainer', success: true);
       return response;
     } catch (e) {
+      analytics.logApiUsage(apiName: 'openrouter', feature: 'grammar_explainer', success: false);
       return "Failed to load explanation.";
     }
   }
@@ -348,15 +355,16 @@ Respond ONLY in valid JSON format with this exact structure:
                               .replaceAll(RegExp(r'^```\n?', multiLine: true), '');
         final json = jsonDecode(cleanText);
         box.put(cacheKey, cleanText);
+        analytics.logApiUsage(apiName: 'openrouter', feature: 'context_generation', success: true);
         return GeminiContext.fromJson(json);
       }
       throw Exception("Empty response from OpenRouter");
     } catch (e) {
+      analytics.logApiUsage(apiName: 'openrouter', feature: 'context_generation', success: false);
       rethrow;
     }
   }
 
-  /// Deep Scan: Identifies the main objects in an image and provides metadata.
   Future<GeminiContext> analyzeImage(List<int> bytes) async {
     const prompt = 'Identify the main objects in this image. For each, provide mnemonic, sentences, and lookalikes in the standard JSON format described previously.';
     final base64Image = base64Encode(bytes);
@@ -382,6 +390,7 @@ Respond ONLY in valid JSON format with this exact structure:
         final cleanText = text.replaceAll(RegExp(r'^```json\n', multiLine: true), '')
                               .replaceAll(RegExp(r'^```\n?', multiLine: true), '');
         final json = jsonDecode(cleanText);
+        analytics.logApiUsage(apiName: 'openrouter', feature: 'image_analysis', success: true);
         if (json is List && json.isNotEmpty) {
           return GeminiContext.fromJson(json[0]);
         }
@@ -389,11 +398,11 @@ Respond ONLY in valid JSON format with this exact structure:
       }
       throw Exception("Empty response from Vision model");
     } catch (e) {
+      analytics.logApiUsage(apiName: 'openrouter', feature: 'image_analysis', success: false);
       rethrow;
     }
   }
 
-  /// Translation Fallback: Translates a local ML label into a full Flashcard entity.
   Future<Flashcard> translateObject(String label) async {
     final prompt = '''
 Translate the English object label "$label" into Chinese.
@@ -421,6 +430,7 @@ Respond ONLY in valid JSON format with this exact structure:
         final cleanText = text.replaceAll(RegExp(r'^```json\n', multiLine: true), '')
                               .replaceAll(RegExp(r'^```\n?', multiLine: true), '');
         final json = jsonDecode(cleanText);
+        analytics.logApiUsage(apiName: 'openrouter', feature: 'translate_object', success: true);
         return Flashcard(
           id: 'gen_${DateTime.now().millisecondsSinceEpoch}',
           hanzi: json['hanzi'] ?? '',
@@ -433,6 +443,7 @@ Respond ONLY in valid JSON format with this exact structure:
       }
       throw Exception("Failed to translate object: $label");
     } catch (e) {
+      analytics.logApiUsage(apiName: 'openrouter', feature: 'translate_object', success: false);
       rethrow;
     }
   }
@@ -473,6 +484,7 @@ Respond ONLY in valid JSON format as a list of objects with this exact structure
         final cleanText = text.replaceAll(RegExp(r'^```json\n', multiLine: true), '')
                               .replaceAll(RegExp(r'^```\n?', multiLine: true), '');
         final json = jsonDecode(cleanText);
+        analytics.logApiUsage(apiName: 'openrouter', feature: 'generate_deck', success: true);
         if (json is List) {
           return json.map((item) => {
             'hanzi': item['hanzi'].toString(),
@@ -483,6 +495,7 @@ Respond ONLY in valid JSON format as a list of objects with this exact structure
       }
       throw Exception("Empty response from OpenRouter");
     } catch (e) {
+      analytics.logApiUsage(apiName: 'openrouter', feature: 'generate_deck', success: false);
       rethrow;
     }
   }
@@ -539,10 +552,12 @@ Make sure every single character in the 'chinese' sentence is represented in the
                               .replaceAll(RegExp(r'^```\n?', multiLine: true), '');
         final json = jsonDecode(cleanText);
         box.put(cacheKey, cleanText);
+        analytics.logApiUsage(apiName: 'openrouter', feature: 'generate_story', success: true);
         return AiStory.fromJson(json);
       }
       throw Exception("Empty response from OpenRouter");
     } catch (e) {
+      analytics.logApiUsage(apiName: 'openrouter', feature: 'generate_story', success: false);
       rethrow;
     }
   }
@@ -584,10 +599,12 @@ Make sure every single character in the 'chinese' sentence is represented in the
         final cleanText = text.replaceAll(RegExp(r'^```json\n', multiLine: true), '')
                               .replaceAll(RegExp(r'^```\n?', multiLine: true), '');
         final json = jsonDecode(cleanText);
+        analytics.logApiUsage(apiName: 'openrouter', feature: 'generate_graded_story', success: true);
         return AiStory.fromJson(json);
       }
       throw Exception("Empty response from DeepSeek API");
     } catch (e) {
+      analytics.logApiUsage(apiName: 'openrouter', feature: 'generate_graded_story', success: false);
       rethrow;
     }
   }
@@ -634,10 +651,12 @@ Make sure every single character in the 'chinese' sentence is represented in the
         final cleanText = text.replaceAll(RegExp(r'^```json\n', multiLine: true), '')
                               .replaceAll(RegExp(r'^```\n?', multiLine: true), '');
         final json = jsonDecode(cleanText);
+        analytics.logApiUsage(apiName: 'openrouter', feature: 'simplify_text', success: true);
         return AiStory.fromJson(json);
       }
       throw Exception("Empty response from DeepSeek API");
     } catch (e) {
+      analytics.logApiUsage(apiName: 'openrouter', feature: 'simplify_text', success: false);
       rethrow;
     }
   }
@@ -652,7 +671,7 @@ Make sure every single character in the 'chinese' sentence is represented in the
         'CRITICAL RULE: You must respond ENTIRELY in the language corresponding to ISO 639-1 code "$languageCode" (except for the Chinese terms).';
         
     return AiChatSession(
-      apiKey: _pool.nextKey,
+      apiKey: pool.nextKey,
       systemInstruction: systemInstruction,
       model: 'deepseek/deepseek-chat',
     );
@@ -668,7 +687,7 @@ Make sure every single character in the 'chinese' sentence is represented in the
         'CRITICAL RULE: You must respond ENTIRELY in the language corresponding to ISO 639-1 code "$languageCode" (except for the Chinese terms).';
         
     return AiChatSession(
-      apiKey: _pool.nextKey,
+      apiKey: pool.nextKey,
       systemInstruction: systemInstruction,
       model: 'deepseek/deepseek-chat',
     );
@@ -677,7 +696,7 @@ Make sure every single character in the 'chinese' sentence is represented in the
   Future<Map<String, dynamic>> gradeAudio(List<int> audioBytes, String expectedChinese, String expectedPinyin) async {
     final model = GenerativeModel(
       model: 'gemini-1.5-flash',
-      apiKey: _pool.googleKey,
+      apiKey: pool.googleKey,
     );
 
     final String targetContext = expectedChinese.isNotEmpty 
@@ -727,10 +746,12 @@ Return ONLY valid JSON with exactly this structure:
       if (response.text != null && response.text!.isNotEmpty) {
         final cleanText = response.text!.replaceAll(RegExp(r'^```json\n', multiLine: true), '')
                                         .replaceAll(RegExp(r'^```\n?', multiLine: true), '');
+        analytics.logApiUsage(apiName: 'gemini', feature: 'grade_audio', success: true);
         return jsonDecode(cleanText);
       }
       throw Exception("Empty response from Gemini Audio");
     } catch (e) {
+      analytics.logApiUsage(apiName: 'gemini', feature: 'grade_audio', success: false);
       rethrow;
     }
   }

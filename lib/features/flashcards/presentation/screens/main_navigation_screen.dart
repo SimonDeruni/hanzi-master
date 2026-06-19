@@ -8,6 +8,7 @@ import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraph
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import 'package:hanzi_master/features/live_translate/presentation/screens/translation_hub_screen.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/core/services/analytics_service.dart';
 
 class MainNavigationScreen extends ConsumerStatefulWidget {
   const MainNavigationScreen({super.key});
@@ -23,6 +24,9 @@ class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
     setState(() {
       _selectedIndex = index;
     });
+    
+    final screenNames = ['Dashboard', 'AI Hub', 'Translation', 'Library'];
+    ref.read(analyticsServiceProvider).logScreenView(screenNames[index]);
   }
 
   late final List<Widget> _screens = [
@@ -31,6 +35,15 @@ class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
     const TranslationHubScreen(),
     const DictionaryScreen(),
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    // Log the initial screen
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(analyticsServiceProvider).logScreenView('Dashboard');
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

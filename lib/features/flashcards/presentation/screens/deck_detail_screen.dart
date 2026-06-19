@@ -6,6 +6,8 @@ import 'package:hanzi_master/features/flashcards/domain/entities/study_mode.dart
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/deck_review_session_screen.dart';
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
+import 'package:hanzi_master/features/flashcards/presentation/widgets/dictionary_quick_box.dart';
+import 'package:hanzi_master/core/services/analytics_service.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/story_mode_screen.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/study_mode_selection_sheet.dart';
@@ -182,14 +184,20 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                                 ),
                                 child: ElevatedButton(
                                   onPressed: () {
-                                    StudyModeSelectionSheet.show(
-                                      context,
-                                      onModeSelected: (mode) {
-                                        Navigator.push(context, MaterialPageRoute(
-                                          builder: (context) => DeckReviewSessionScreen(deckId: widget.deck.id, mode: mode),
-                                        ));
-                                      },
-                                    );
+                                      StudyModeSelectionSheet.show(
+                                        context,
+                                        onModeSelected: (mode) {
+                                          ref.read(analyticsServiceProvider).logStudySession(
+                                            action: 'started',
+                                            mode: mode.name,
+                                            deckId: widget.deck.id,
+                                            cardCount: deckCards.length,
+                                          );
+                                          Navigator.push(context, MaterialPageRoute(
+                                            builder: (context) => DeckReviewSessionScreen(deckId: widget.deck.id, mode: mode),
+                                          ));
+                                        },
+                                      );
                                   },
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor: Colors.transparent,
@@ -215,6 +223,11 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                                 child: OutlinedButton(
                                   onPressed: () {
                                     if (deckCards.isEmpty) return;
+                                    ref.read(analyticsServiceProvider).logStoryAction(
+                                      action: 'started',
+                                      storyId: 'custom_deck_story',
+                                      storyLevel: widget.deck.id,
+                                    );
                                     Navigator.push(context, MaterialPageRoute(
                                       builder: (context) => StoryModeScreen(deck: widget.deck, cards: deckCards),
                                     ));
