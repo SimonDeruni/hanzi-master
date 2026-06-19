@@ -27,16 +27,19 @@ class GlobalSliverAppBar extends ConsumerWidget {
       backgroundColor: theme.colorScheme.surface.withValues(alpha: 0.95),
       surfaceTintColor: Colors.transparent,
       elevation: 0,
-      pinned: true,
+      pinned: false,
+      floating: true,
       expandedHeight: subtitle != null ? 160 : 120,
       flexibleSpace: FlexibleSpaceBar(
-        titlePadding: EdgeInsets.only(left: 24, bottom: subtitle != null ? 48 : 16),
+        titlePadding: EdgeInsets.only(left: 24, bottom: subtitle != null ? 48 : 16, right: 120),
         title: Text(
           title,
           style: theme.textTheme.headlineSmall?.copyWith(
             fontWeight: FontWeight.w900,
             letterSpacing: 1.0,
           ),
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
         ),
         background: subtitle != null 
             ? Container(
