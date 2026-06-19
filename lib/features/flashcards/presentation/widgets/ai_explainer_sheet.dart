@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
-import 'package:hanzi_master/shared/widgets/tappable_markdown_hanzi_text.dart';
+import 'package:hanzi_master/shared/widgets/tappable_hanzi_text.dart';
 import 'package:hanzi_master/shared/widgets/global_blurred_bottom_sheet.dart';
 
 class _FollowUpChip {

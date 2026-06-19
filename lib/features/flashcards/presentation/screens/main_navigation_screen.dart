@@ -85,11 +85,11 @@ class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
             ),
             BottomNavigationBarItem(
               icon: const Icon(Icons.translate),
-              label: AppLocalizations.of(context)!.translateTitle,
+              label: "Translate",
             ),
             BottomNavigationBarItem(
               icon: const Icon(Icons.menu_book),
-              label: AppLocalizations.of(context)!.libraryTitle,
+              label: "Library",
             ),
           ],
         ),

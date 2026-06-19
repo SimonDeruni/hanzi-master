@@ -120,6 +120,10 @@ class WordDetailDialog extends ConsumerWidget {
               children: [
                 Expanded(
                   child: BouncingButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                      AiExplainerSheet.show(context, word, sentence);
+                    },
                     child: OutlinedButton.icon(
                       icon: const Icon(Icons.auto_awesome),
                       label: const FittedBox(fit: BoxFit.scaleDown, child: Text("Explain Grammar")),
@@ -127,16 +131,14 @@ class WordDetailDialog extends ConsumerWidget {
                         padding: const EdgeInsets.symmetric(vertical: 12),
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                       ),
-                      onPressed: () {
-                        Navigator.pop(context);
-                        AiExplainerSheet.show(context, word, sentence);
-                      },
+                      onPressed: null,
                     ),
                   ),
                 ),
                 const SizedBox(width: 12),
                 Expanded(
                   child: BouncingButton(
+                    onPressed: () => _addToDeck(context, ref),
                     child: ElevatedButton.icon(
                       icon: const Icon(Icons.add_box),
                       label: const FittedBox(fit: BoxFit.scaleDown, child: Text("Add to Library")),
@@ -146,8 +148,10 @@ class WordDetailDialog extends ConsumerWidget {
                         padding: const EdgeInsets.symmetric(vertical: 12),
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                         elevation: 0,
+                        disabledBackgroundColor: Colors.blueAccent, // keep color when disabled by BouncingButton
+                        disabledForegroundColor: Colors.white,
                       ),
-                      onPressed: () => _addToDeck(context, ref),
+                      onPressed: null,
                     ),
                   ),
                 ),

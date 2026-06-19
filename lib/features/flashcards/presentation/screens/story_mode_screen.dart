@@ -4,7 +4,6 @@ import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/deck.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:hanzi_master/core/providers.dart';
-import 'package:hanzi_master/features/flashcards/presentation/widgets/dictionary_quick_box.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/word_detail_dialog.dart';
