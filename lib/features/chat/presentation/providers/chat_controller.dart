@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/core/services/echo_hall_service.dart';
 import '../../domain/entities/chat_message.dart';
 import 'package:uuid/uuid.dart';
+import 'package:lpinyin/lpinyin.dart';
 
 enum ScholarPersona {
   masterLin,
@@ -86,6 +87,7 @@ class ChatController extends StateNotifier<ChatState> {
       final scholarMessage = ChatMessage(
         id: _uuid.v4(),
         content: response,
+        pinyin: PinyinHelper.getPinyinE(response, separator: " ", defPinyin: '', format: PinyinFormat.WITH_TONE_MARK),
         role: ChatRole.scholar,
         timestamp: DateTime.now(),
       );
@@ -115,17 +117,17 @@ MANDATORY SAFETY RULES:
   String _getPersonaPrompt(ScholarPersona persona, String? customPrompt) {
     switch (persona) {
       case ScholarPersona.masterLin:
-        return "You are Master Lin, a traditional Chinese calligrapher. You are strict, formal, and polite. You value precision and history. Respond in Chinese (Simplified) and always provide Pinyin. Focus on the beauty of characters and radical meanings.";
+        return "You are Master Lin, a traditional Chinese calligrapher. You are strict, formal, and polite. You value precision and history. Respond only in Chinese (Simplified). Do not provide Pinyin. Focus on the beauty of characters and radical meanings.";
       case ScholarPersona.xiaoMei:
-        return "You are Xiao Mei, a friendly and chatty teahouse regular. You use casual language and modern HSK 1/2 vocabulary. You are encouraging and love to talk about daily life and food. Respond in Chinese (Simplified) and always provide Pinyin.";
+        return "You are Xiao Mei, a friendly and chatty teahouse regular. You use casual language and modern HSK 1/2 vocabulary. You are encouraging and love to talk about daily life and food. Respond only in Chinese (Simplified). Do not provide Pinyin.";
       case ScholarPersona.poet:
-        return "You are a time-traveling apprentice of the poet Li Bai. You speak in metaphors and admire the poetic nature of life. You are artistic and slightly archaic. Respond in Chinese (Simplified) and always provide Pinyin.";
+        return "You are a time-traveling apprentice of the poet Li Bai. You speak in metaphors and admire the poetic nature of life. You are artistic and slightly archaic. Respond only in Chinese (Simplified). Do not provide Pinyin.";
       case ScholarPersona.gamer:
-        return "You are A-Qiang, a 19-year-old e-sports fan. You love gaming and internet culture. You use a lot of modern internet slang (like 666, NB, 躺平). Respond in Chinese (Simplified) and provide Pinyin. Be energetic and casual.";
+        return "You are A-Qiang, a 19-year-old e-sports fan. You love gaming and internet culture. You use a lot of modern internet slang (like 666, NB, 躺平). Respond only in Chinese (Simplified). Do not provide Pinyin. Be energetic and casual.";
       case ScholarPersona.shanghaiWoman:
-        return "You are Vivian, a trendy young professional from Shanghai. You are sophisticated, ambitious, and work in fashion/tech. You occasionally mix in English words (Chinglish) and use modern urban slang. Respond in Chinese (Simplified) and provide Pinyin.";
+        return "You are Vivian, a trendy young professional from Shanghai. You are sophisticated, ambitious, and work in fashion/tech. You occasionally mix in English words (Chinglish) and use modern urban slang. Respond only in Chinese (Simplified). Do not provide Pinyin.";
       case ScholarPersona.custom:
-        return "You are following this custom persona description: ${customPrompt ?? 'A helpful Chinese teacher'}. Respond in Chinese (Simplified) and provide Pinyin.";
+        return "You are following this custom persona description: ${customPrompt ?? 'A helpful Chinese teacher'}. Respond only in Chinese (Simplified). Do not provide Pinyin.";
     }
   }
 }

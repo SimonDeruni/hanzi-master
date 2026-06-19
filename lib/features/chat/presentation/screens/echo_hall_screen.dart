@@ -8,6 +8,8 @@ import 'package:intl/intl.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/shared/widgets/tappable_hanzi_text.dart';
+import 'package:hanzi_master/shared/widgets/pinyin_text.dart';
 
 class EchoHallScreen extends ConsumerStatefulWidget {
   const EchoHallScreen({super.key});
@@ -537,12 +539,26 @@ class _ChatBubble extends StatelessWidget {
                 ),
               ],
             ),
-            child: Text(
-              message.content,
-              style: theme.textTheme.bodyLarge?.copyWith(
-                color: isUser ? theme.colorScheme.onPrimary : theme.colorScheme.onSurface,
-                height: 1.5,
-              ),
+            child: Column(
+              crossAxisAlignment: isUser ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+              children: [
+                TappableMarkdownHanziText(
+                  message.content,
+                  style: theme.textTheme.bodyLarge?.copyWith(
+                    color: isUser ? theme.colorScheme.onPrimary : theme.colorScheme.onSurface,
+                    height: 1.5,
+                  ),
+                ),
+                if (!isUser && message.pinyin != null && message.pinyin!.isNotEmpty) ...[
+                  const SizedBox(height: 4),
+                  PinyinText(
+                    text: message.pinyin!,
+                    style: theme.textTheme.bodyMedium?.copyWith(
+                      color: isUser ? theme.colorScheme.onPrimary.withValues(alpha: 0.8) : theme.colorScheme.onSurface.withValues(alpha: 0.6),
+                    ),
+                  ),
+                ],
+              ],
             ),
           ),
           Padding(
