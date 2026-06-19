@@ -119,7 +119,7 @@ class WordDetailDialog extends ConsumerWidget {
                 Expanded(
                   child: OutlinedButton.icon(
                     icon: const Icon(Icons.auto_awesome),
-                    label: const Text("Explain Grammar"),
+                    label: const FittedBox(fit: BoxFit.scaleDown, child: Text("Explain Grammar")),
                     style: OutlinedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(vertical: 12),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
@@ -134,7 +134,7 @@ class WordDetailDialog extends ConsumerWidget {
                 Expanded(
                   child: ElevatedButton.icon(
                     icon: const Icon(Icons.add_box),
-                    label: const Text("Add to Library"),
+                    label: const FittedBox(fit: BoxFit.scaleDown, child: Text("Add to Library")),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blueAccent,
                       foregroundColor: Colors.white,
