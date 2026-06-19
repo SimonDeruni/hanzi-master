@@ -5,14 +5,14 @@ import 'package:camera/camera.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_mlkit_object_detection/google_mlkit_object_detection.dart';
+
 import '../../../../core/services/vision_service.dart';
 import '../../../../core/services/gemini_service.dart';
 import '../../../../features/progression/providers/progression_service.dart';
 
 /// State for the Vision feature.
 class VisionState extends Equatable {
-  final List<DetectedObject> detectedObjects;
+  final List<String> detectedObjects;
   final Set<String> capturedLabels;
   final bool isDeepScanning;
   final CameraController? cameraController;
@@ -29,7 +29,7 @@ class VisionState extends Equatable {
   });
 
   VisionState copyWith({
-    List<DetectedObject>? detectedObjects,
+    List<String>? detectedObjects,
     Set<String>? capturedLabels,
     bool? isDeepScanning,
     CameraController? cameraController,

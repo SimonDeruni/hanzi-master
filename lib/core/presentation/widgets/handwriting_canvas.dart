@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:google_mlkit_digital_ink_recognition/google_mlkit_digital_ink_recognition.dart' as mlkit;
+import '../../services/digital_ink_service.dart';
 
 class HandwritingCanvas extends StatefulWidget {
-  final void Function(mlkit.Ink ink) onInkChanged;
+  final void Function(CustomInk ink) onInkChanged;
   final Color strokeColor;
   final double strokeWidth;
 
@@ -18,13 +18,13 @@ class HandwritingCanvas extends StatefulWidget {
 }
 
 class HandwritingCanvasState extends State<HandwritingCanvas> {
-  mlkit.Ink _ink = mlkit.Ink();
-  List<mlkit.Stroke> _strokes = [];
-  List<mlkit.StrokePoint> _points = [];
+  CustomInk _ink = CustomInk();
+  List<CustomStroke> _strokes = [];
+  List<CustomStrokePoint> _points = [];
 
   void clear() {
     setState(() {
-      _ink = mlkit.Ink();
+      _ink = CustomInk();
       _strokes = [];
       _points = [];
     });
@@ -35,7 +35,7 @@ class HandwritingCanvasState extends State<HandwritingCanvas> {
     if (_strokes.isNotEmpty) {
       setState(() {
         _strokes.removeLast();
-        _ink = mlkit.Ink()..strokes.addAll(_strokes);
+        _ink = CustomInk()..strokes.addAll(_strokes);
       });
       widget.onInkChanged(_ink);
     }
@@ -48,7 +48,7 @@ class HandwritingCanvasState extends State<HandwritingCanvas> {
         GestureDetector(
           onPanStart: (DragStartDetails details) {
             _points = [];
-            _points.add(mlkit.StrokePoint(
+            _points.add(CustomStrokePoint(
               x: details.localPosition.dx,
               y: details.localPosition.dy,
               t: DateTime.now().millisecondsSinceEpoch,
@@ -56,7 +56,7 @@ class HandwritingCanvasState extends State<HandwritingCanvas> {
           },
           onPanUpdate: (DragUpdateDetails details) {
             setState(() {
-              _points.add(mlkit.StrokePoint(
+              _points.add(CustomStrokePoint(
                 x: details.localPosition.dx,
                 y: details.localPosition.dy,
                 t: DateTime.now().millisecondsSinceEpoch,
@@ -64,9 +64,9 @@ class HandwritingCanvasState extends State<HandwritingCanvas> {
             });
           },
           onPanEnd: (DragEndDetails details) {
-            final stroke = mlkit.Stroke()..points = _points.toList();
+            final stroke = CustomStroke()..points.addAll(_points);
             _strokes.add(stroke);
-            _ink = mlkit.Ink()..strokes.addAll(_strokes);
+            _ink = CustomInk()..strokes.addAll(_strokes);
             widget.onInkChanged(_ink);
           },
           child: CustomPaint(
@@ -103,8 +103,8 @@ class HandwritingCanvasState extends State<HandwritingCanvas> {
 }
 
 class _DigitalInkPainter extends CustomPainter {
-  final List<mlkit.Stroke> strokes;
-  final List<mlkit.StrokePoint> currentPoints;
+  final List<CustomStroke> strokes;
+  final List<CustomStrokePoint> currentPoints;
   final Color strokeColor;
   final double strokeWidth;
 
