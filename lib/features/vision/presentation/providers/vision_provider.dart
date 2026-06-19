@@ -123,64 +123,10 @@ class VisionNotifier extends StateNotifier<VisionState> {
 
   /// Processes frames from the camera stream.
   Future<void> _processCameraImage(CameraImage image) async {
-    if (_isProcessing || state.isDeepScanning) return;
-    _isProcessing = true;
-
-    try {
-      final inputImage = _convertCameraImage(image);
-      if (inputImage == null) return;
-
-      final objects = await _visionService.processImage(inputImage);
-      state = state.copyWith(detectedObjects: objects);
-    } catch (e) {
-      debugPrint('Error processing camera image: $e');
-    } finally {
-      _isProcessing = false;
-    }
+    // Realtime object detection stream is disabled because ML Kit is removed.
+    // We only use Deep Scan (triggerDeepScan) with Gemini now.
   }
 
-  /// Converts CameraImage to InputImage for ML Kit.
-  InputImage? _convertCameraImage(CameraImage image) {
-    final camera = state.cameraController?.description;
-    if (camera == null) return null;
-
-    final sensorOrientation = camera.sensorOrientation;
-    InputImageRotation? rotation;
-    if (defaultTargetPlatform == TargetPlatform.android) {
-      rotation = InputImageRotationValue.fromRawValue(sensorOrientation);
-    } else if (defaultTargetPlatform == TargetPlatform.iOS) {
-      rotation = InputImageRotationValue.fromRawValue(sensorOrientation);
-    }
-
-    if (rotation == null) return null;
-
-    final format = InputImageFormatValue.fromRawValue(image.format.raw);
-    if (format == null ||
-        (defaultTargetPlatform == TargetPlatform.android &&
-            format != InputImageFormat.yuv420) ||
-        (defaultTargetPlatform == TargetPlatform.iOS &&
-            format != InputImageFormat.bgra8888)) {
-      return null;
-    }
-
-    if (image.planes.isEmpty) return null;
-
-    final BytesBuilder allBytes = BytesBuilder();
-    for (final Plane plane in image.planes) {
-      allBytes.add(plane.bytes);
-    }
-    final bytes = allBytes.takeBytes();
-
-    return InputImage.fromBytes(
-      bytes: bytes,
-      metadata: InputImageMetadata(
-        size: Size(image.width.toDouble(), image.height.toDouble()),
-        rotation: rotation,
-        format: format,
-        bytesPerRow: image.planes[0].bytesPerRow,
-      ),
-    );
-  }
 
   /// Triggers a Deep Scan using Gemini Pro Vision.
   Future<GeminiContext?> triggerDeepScan() async {
