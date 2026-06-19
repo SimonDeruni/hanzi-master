@@ -6,6 +6,9 @@ import 'package:hanzi_master/features/reading/presentation/screens/reading_room_
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/features/live_translate/presentation/screens/shadowing_studio_screen.dart';
 
+import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/shared/widgets/global_sliver_app_bar.dart';
+
 class AiHubScreen extends ConsumerWidget {
   const AiHubScreen({super.key});
 
@@ -13,44 +16,24 @@ class AiHubScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
+    final l10n = AppLocalizations.of(context);
 
     return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        title: const Text("ART & INTELLECT", style: TextStyle(letterSpacing: 2.0, fontSize: 14, fontWeight: FontWeight.bold)),
-        centerTitle: true,
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        surfaceTintColor: Colors.transparent,
-      ),
       body: CalligraphyBackground(
         child: CustomScrollView(
           physics: const BouncingScrollPhysics(),
           slivers: [
-            const SliverToBoxAdapter(child: SizedBox(height: 110)),
+            const GlobalSliverAppBar(title: "AI Hub"),
             
-            // Header
+            // Subtitle
             SliverToBoxAdapter(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "The Digital Scholar",
-                      style: theme.textTheme.headlineLarge?.copyWith(
-                        fontWeight: FontWeight.w900,
-                        letterSpacing: 0.5,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      "Refine your brush and voice with advanced AI.",
-                      style: theme.textTheme.bodyLarge?.copyWith(
-                        color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
-                      ),
-                    ),
-                  ],
+                padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 8.0),
+                child: Text(
+                  l10n?.refineBrushVoice ?? "Refine your brush and voice with advanced AI.",
+                  style: theme.textTheme.bodyLarge?.copyWith(
+                    color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
+                  ),
                 ),
               ),
             ),
@@ -63,8 +46,8 @@ class AiHubScreen extends ConsumerWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 24.0),
                 child: _buildHeroCard(
                   context: context,
-                  title: "Live Voice Call",
-                  subtitle: "Immersive roleplay with AI avatars",
+                  title: l10n?.liveVoiceCall ?? "Live Voice Call",
+                  subtitle: l10n?.immersiveRoleplay ?? "Immersive roleplay with AI avatars",
                   icon: Icons.record_voice_over,
                   color: theme.colorScheme.primary,
                   onTap: () {
@@ -90,8 +73,8 @@ class AiHubScreen extends ConsumerWidget {
                 children: [
                   _buildGridCard(
                     context: context,
-                    title: "Reading Room",
-                    subtitle: "Graded AI Stories",
+                    title: l10n?.readingRoom ?? "Reading Room",
+                    subtitle: l10n?.gradedAiStories ?? "Graded AI Stories",
                     icon: Icons.auto_stories,
                     onTap: () {
                       Navigator.push(
@@ -126,8 +109,8 @@ class AiHubScreen extends ConsumerWidget {
                   ),
                   _buildGridCard(
                     context: context,
-                    title: "Calligraphy",
-                    subtitle: "Stroke Analysis",
+                    title: l10n?.calligraphy ?? "Calligraphy",
+                    subtitle: l10n?.strokeAnalysis ?? "Stroke Analysis",
                     icon: Icons.brush,
                     isComingSoon: true,
                     onTap: () {},

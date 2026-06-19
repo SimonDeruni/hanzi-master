@@ -7,6 +7,9 @@ import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraph
 import 'package:hanzi_master/features/flashcards/presentation/widgets/drawing_canvas.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/study_session_app_bar.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
 
 class RecallModeWidget extends ConsumerStatefulWidget {
   final Flashcard card;
@@ -103,7 +106,9 @@ class _RecallModeWidgetState extends ConsumerState<RecallModeWidget> {
                         ? _buildRevealedCard(isDark, cardColor, borderColor)
                         : _buildHiddenCard(isDark, cardColor, borderColor),
               ),
-            ),
+            ).animate()
+             .fade(duration: 500.ms, curve: Curves.easeOutCubic)
+             .slideY(begin: 0.1, end: 0, duration: 500.ms, curve: Curves.easeOutCubic),
 
             // Controls row below the card
             Padding(
@@ -121,8 +126,8 @@ class _RecallModeWidgetState extends ConsumerState<RecallModeWidget> {
                       ),
                       label: Text(
                         _showScratchpad
-                            ? 'Hide Scratchpad'
-                            : 'Practice Writing',
+                            ? AppLocalizations.of(context)!.hideScratchpad
+                            : AppLocalizations.of(context)!.practiceWriting,
                       ),
                       style: TextButton.styleFrom(
                         foregroundColor:
@@ -140,19 +145,24 @@ class _RecallModeWidgetState extends ConsumerState<RecallModeWidget> {
                   height: 56,
                   child: _isLoadingStrokes
                       ? const Center(child: CircularProgressIndicator())
-                      : ElevatedButton(
+                      : BouncingButton(
                           onPressed: _reveal,
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.indigo,
-                            foregroundColor: Colors.white,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(16)),
-                            elevation: 0,
-                          ),
-                          child: const Text(
-                            'Reveal Answer',
-                            style: TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.bold),
+                          child: ElevatedButton(
+                            onPressed: null,
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.indigo,
+                              foregroundColor: Colors.white,
+                              disabledBackgroundColor: Colors.indigo,
+                              disabledForegroundColor: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(16)),
+                              elevation: 0,
+                            ),
+                            child: Text(
+                              AppLocalizations.of(context)!.revealAnswer,
+                              style: const TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.bold),
+                            ),
                           ),
                         ),
                 ),
@@ -164,7 +174,7 @@ class _RecallModeWidgetState extends ConsumerState<RecallModeWidget> {
                 child: Column(
                   children: [
                     Text(
-                      'How well did you remember?',
+                      AppLocalizations.of(context)!.howWellDidYouRemember,
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
@@ -175,13 +185,13 @@ class _RecallModeWidgetState extends ConsumerState<RecallModeWidget> {
                     Row(
                       children: [
                         _buildGradeButton(
-                            'Again', 0, Colors.red, 'Completely forgot'),
+                            AppLocalizations.of(context)!.again, 0, Colors.red, AppLocalizations.of(context)!.completelyForgot),
                         _buildGradeButton(
-                            'Hard', 2, Colors.orange, 'Got it with difficulty'),
+                            AppLocalizations.of(context)!.hard, 2, Colors.orange, AppLocalizations.of(context)!.gotItWithDifficulty),
                         _buildGradeButton(
-                            'Good', 4, Colors.green, 'Recalled correctly'),
+                            AppLocalizations.of(context)!.good, 4, Colors.green, AppLocalizations.of(context)!.recalledCorrectly),
                         _buildGradeButton(
-                            'Easy', 5, Colors.blue, 'Perfect recall'),
+                            AppLocalizations.of(context)!.easy, 5, Colors.blue, AppLocalizations.of(context)!.perfectRecall),
                       ],
                     ),
                   ],
@@ -257,13 +267,13 @@ class _RecallModeWidgetState extends ConsumerState<RecallModeWidget> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'What character means:',
-              style: TextStyle(
-                fontSize: 15,
-                color: isDark ? Colors.white54 : Colors.black45,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
+                      AppLocalizations.of(context)!.whatCharacterMeans,
+                      style: TextStyle(
+                        fontSize: 15,
+                        color: isDark ? Colors.white54 : Colors.black45,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
             const SizedBox(height: 28),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 32),
@@ -290,7 +300,7 @@ class _RecallModeWidgetState extends ConsumerState<RecallModeWidget> {
             ),
             const SizedBox(height: 48),
             Text(
-              'Tap to Reveal',
+              AppLocalizations.of(context)!.tapToReveal,
               style: TextStyle(
                 fontSize: 13,
                 color: isDark ? Colors.white30 : Colors.black26,
@@ -408,23 +418,28 @@ class _RecallModeWidgetState extends ConsumerState<RecallModeWidget> {
         padding: const EdgeInsets.symmetric(horizontal: 4.0),
         child: Tooltip(
           message: tooltip,
-          child: ElevatedButton(
+          child: BouncingButton(
             onPressed: () => Navigator.pop(context, grade),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: color.shade100,
-              foregroundColor: color.shade900,
-              padding: const EdgeInsets.symmetric(vertical: 16),
-              elevation: 0,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-                side: BorderSide(color: color.shade300, width: 1),
+            child: ElevatedButton(
+              onPressed: null,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: color.shade100,
+                foregroundColor: color.shade900,
+                disabledBackgroundColor: color.shade100,
+                disabledForegroundColor: color.shade900,
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                elevation: 0,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  side: BorderSide(color: color.shade300, width: 1),
+                ),
               ),
-            ),
-            child: FittedBox(
-              fit: BoxFit.scaleDown,
-              child: Text(
-                label,
-                style: const TextStyle(fontWeight: FontWeight.bold),
+              child: FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Text(
+                  label,
+                  style: const TextStyle(fontWeight: FontWeight.bold),
+                ),
               ),
             ),
           ),

@@ -25,6 +25,7 @@ import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart'
 import 'package:hanzi_master/shared/widgets/clickable_chinese_text.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/dictionary_quick_box.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/radical_library_screen.dart';
+import 'package:hanzi_master/shared/widgets/global_sliver_app_bar.dart';
 
 import 'package:hanzi_master/features/flashcards/domain/entities/study_mode.dart';
 
@@ -65,56 +66,7 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
       body: CalligraphyBackground(
         child: NestedScrollView(
           headerSliverBuilder: (context, innerBoxIsScrolled) => [
-            SliverAppBar(
-              backgroundColor: theme.colorScheme.surface.withValues(alpha: 0.95),
-              surfaceTintColor: Colors.transparent,
-              elevation: 0,
-              pinned: true,
-              expandedHeight: 120,
-              flexibleSpace: FlexibleSpaceBar(
-                titlePadding: const EdgeInsets.only(left: 24, bottom: 16),
-                title: Text(
-                  "The Scholar's Library",
-                  style: theme.textTheme.headlineSmall?.copyWith(
-                    fontWeight: FontWeight.w900,
-                    letterSpacing: 1.0,
-                  ),
-                ),
-              ),
-              actions: [
-                Consumer(
-                  builder: (context, ref, child) {
-                    final isPremium = ref.watch(premiumControllerProvider).valueOrNull ?? false;
-                    return Row(
-                      children: [
-                        if (isPremium)
-                          const Padding(
-                            padding: EdgeInsets.only(right: 8.0),
-                            child: Icon(Icons.workspace_premium, color: Colors.amber),
-                          )
-                        else
-                          IconButton(
-                            icon: const Icon(Icons.workspace_premium_outlined, color: Colors.indigo),
-                            onPressed: () => PaywallSheet.show(context),
-                          ),
-                      ],
-                    );
-                  },
-                ),
-                const Padding(
-                  padding: EdgeInsets.only(right: 8.0, top: 10, bottom: 10),
-                  child: StreakSeal(),
-                ),
-                IconButton(
-                  icon: const Icon(Icons.bar_chart),
-                  onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const StatsScreen())),
-                ),
-                IconButton(
-                  icon: const Icon(Icons.settings),
-                  onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const SettingsScreen())),
-                ),
-              ],
-            ),
+            const GlobalSliverAppBar(title: "The Scholar's Library"),
             SliverPersistentHeader(
               pinned: true,
               delegate: _SearchBarDelegate(

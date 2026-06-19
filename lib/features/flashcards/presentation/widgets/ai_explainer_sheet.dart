@@ -115,7 +115,8 @@ class _AiExplainerSheetState extends ConsumerState<AiExplainerSheet> {
   @override
   void initState() {
     super.initState();
-    _chatSession = ref.read(geminiServiceProvider).startGrammarChat(widget.word.hanzi, widget.sentence.chinese);
+    final langCode = Localizations.localeOf(context).languageCode;
+    _chatSession = ref.read(geminiServiceProvider).startGrammarChat(widget.word.hanzi, widget.sentence.chinese, langCode);
     _sendMessage("Explain the grammatical role and usage of the word \"${widget.word.hanzi}\" in the following sentence:\n\"${widget.sentence.chinese}\"", isInitial: true);
   }
 

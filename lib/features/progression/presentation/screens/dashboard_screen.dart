@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/study_mode.dart';
@@ -8,6 +9,9 @@ import 'package:hanzi_master/features/flashcards/domain/entities/deck.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/deck_detail_screen.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/dictionary_provider.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/shared/widgets/global_sliver_app_bar.dart';
+
 class DashboardScreen extends ConsumerWidget {
   final Function(int) onNavigate;
 
@@ -17,6 +21,7 @@ class DashboardScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
+    final l10n = AppLocalizations.of(context);
     
     // 1. Fetch Flashcard Data
     final allCards = ref.watch(flashcardControllerProvider).valueOrNull ?? [];
@@ -33,15 +38,15 @@ class DashboardScreen extends ConsumerWidget {
     }
     
     // 3. Determine Rank and Progress
-    String rank = "HSK 1 Candidate";
+    String rank = l10n?.hsk1Candidate ?? "HSK 1 Candidate";
     int nextMilestone = 150;
     
-    if (knownCards >= 5000) { rank = "HSK 6 Master"; nextMilestone = knownCards; }
-    else if (knownCards >= 2500) { rank = "HSK 6 Candidate"; nextMilestone = 5000; }
-    else if (knownCards >= 1200) { rank = "HSK 5 Candidate"; nextMilestone = 2500; }
-    else if (knownCards >= 600) { rank = "HSK 4 Candidate"; nextMilestone = 1200; }
-    else if (knownCards >= 300) { rank = "HSK 3 Candidate"; nextMilestone = 600; }
-    else if (knownCards >= 150) { rank = "HSK 2 Candidate"; nextMilestone = 300; }
+    if (knownCards >= 5000) { rank = l10n?.hsk6Master ?? "HSK 6 Master"; nextMilestone = knownCards; }
+    else if (knownCards >= 2500) { rank = l10n?.hsk6Candidate ?? "HSK 6 Candidate"; nextMilestone = 5000; }
+    else if (knownCards >= 1200) { rank = l10n?.hsk5Candidate ?? "HSK 5 Candidate"; nextMilestone = 2500; }
+    else if (knownCards >= 600) { rank = l10n?.hsk4Candidate ?? "HSK 4 Candidate"; nextMilestone = 1200; }
+    else if (knownCards >= 300) { rank = l10n?.hsk3Candidate ?? "HSK 3 Candidate"; nextMilestone = 600; }
+    else if (knownCards >= 150) { rank = l10n?.hsk2Candidate ?? "HSK 2 Candidate"; nextMilestone = 300; }
     
     double progress = nextMilestone == knownCards ? 1.0 : knownCards / nextMilestone;
 
@@ -73,15 +78,7 @@ class DashboardScreen extends ConsumerWidget {
       body: CalligraphyBackground(
         child: CustomScrollView(
           slivers: [
-            const SliverAppBar(
-              title: Text("GLOBAL MASTERY", style: TextStyle(letterSpacing: 2.0, fontSize: 14, fontWeight: FontWeight.bold)),
-              centerTitle: true,
-              backgroundColor: Colors.transparent,
-              elevation: 0,
-              surfaceTintColor: Colors.transparent,
-              pinned: false,
-              floating: false,
-            ),
+            GlobalSliverAppBar(title: "Dashboard"),
             const SliverToBoxAdapter(child: SizedBox(height: 16)),
             
             // --- TOP: SCHOLAR'S RANK ---
@@ -113,7 +110,7 @@ class DashboardScreen extends ConsumerWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "CURRENT RANK",
+                                l10n?.currentRank ?? "CURRENT RANK",
                                 style: theme.textTheme.labelMedium?.copyWith(
                                   color: theme.colorScheme.onSurface.withValues(alpha: 0.5),
                                   letterSpacing: 2.0,
@@ -131,17 +128,24 @@ class DashboardScreen extends ConsumerWidget {
                             ],
                           ),
                           Container(
-                            padding: const EdgeInsets.all(12),
+                            width: 64,
+                            height: 64,
                             decoration: BoxDecoration(
-                              color: theme.colorScheme.primary.withValues(alpha: 0.1),
                               shape: BoxShape.circle,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: theme.colorScheme.primary.withValues(alpha: 0.2),
+                                  blurRadius: 15,
+                                  offset: const Offset(0, 5),
+                                ),
+                              ],
                             ),
-                            child: Icon(
-                              Icons.military_tech,
-                              color: theme.colorScheme.primary,
-                              size: 32,
+                            child: ClipOval(
+                              child: Image.asset('assets/mascot/guide_avatar.png', fit: BoxFit.cover),
                             ),
-                          ),
+                          ).animate(onPlay: (controller) => controller.repeat(reverse: true))
+                           .scaleXY(begin: 1.0, end: 1.05, duration: 2.seconds, curve: Curves.easeInOutSine)
+                           .moveY(begin: 0, end: -4, duration: 2.seconds, curve: Curves.easeInOutSine),
                         ],
                       ),
                       const SizedBox(height: 24),
@@ -159,13 +163,13 @@ class DashboardScreen extends ConsumerWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "$knownCards Mastered",
+                            "$knownCards ${l10n?.masteredCards ?? 'Mastered'}",
                             style: theme.textTheme.bodyMedium?.copyWith(
                               fontWeight: FontWeight.bold,
                             ),
                           ),
                           Text(
-                            "Next: $nextMilestone",
+                            "${l10n?.next ?? 'Next'}: $nextMilestone",
                             style: theme.textTheme.bodyMedium?.copyWith(
                               color: theme.colorScheme.onSurface.withValues(alpha: 0.5),
                             ),
@@ -174,7 +178,9 @@ class DashboardScreen extends ConsumerWidget {
                       ),
                     ],
                   ),
-                ),
+                ).animate()
+                 .fade(duration: 600.ms, curve: Curves.easeOutCubic)
+                 .slideY(begin: 0.1, end: 0, duration: 600.ms, curve: Curves.easeOutCubic),
               ),
             ),
             
@@ -208,7 +214,7 @@ class DashboardScreen extends ConsumerWidget {
                         Icon(Icons.search, color: theme.colorScheme.onSurface.withValues(alpha: 0.5)),
                         const SizedBox(width: 12),
                         Text(
-                          "Search Hanzi or Pinyin...",
+                          l10n?.searchHanziOrPinyin ?? "Search Hanzi or Pinyin...",
                           style: theme.textTheme.bodyLarge?.copyWith(
                             color: theme.colorScheme.onSurface.withValues(alpha: 0.5),
                           ),
@@ -218,7 +224,9 @@ class DashboardScreen extends ConsumerWidget {
                       ],
                     ),
                   ),
-                ),
+                ).animate(delay: 150.ms)
+                 .fade(duration: 600.ms, curve: Curves.easeOutCubic)
+                 .slideY(begin: 0.1, end: 0, duration: 600.ms, curve: Curves.easeOutCubic),
               ),
             ),
 
@@ -232,7 +240,7 @@ class DashboardScreen extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Upcoming Forecast",
+                      l10n?.upcomingForecast ?? "Upcoming Forecast",
                       style: theme.textTheme.titleLarge?.copyWith(
                         fontWeight: FontWeight.w900,
                         letterSpacing: 0.5,
@@ -256,17 +264,19 @@ class DashboardScreen extends ConsumerWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          _ForecastItem(title: "Later Today", count: dueLaterToday, theme: theme),
+                          _ForecastItem(title: l10n?.laterToday ?? "Later Today", count: dueLaterToday, theme: theme),
                           Container(width: 1, height: 40, color: theme.colorScheme.onSurface.withValues(alpha: 0.1)),
-                          _ForecastItem(title: "Tomorrow", count: dueTomorrow, theme: theme),
+                          _ForecastItem(title: l10n?.tomorrow ?? "Tomorrow", count: dueTomorrow, theme: theme),
                           Container(width: 1, height: 40, color: theme.colorScheme.onSurface.withValues(alpha: 0.1)),
-                          _ForecastItem(title: "Next 7 Days", count: dueNext7Days, theme: theme),
+                          _ForecastItem(title: l10n?.next7Days ?? "Next 7 Days", count: dueNext7Days, theme: theme),
                         ],
                       ),
                     ),
                   ],
                 ),
-              ),
+              ).animate(delay: 300.ms)
+               .fade(duration: 600.ms, curve: Curves.easeOutCubic)
+               .slideY(begin: 0.1, end: 0, duration: 600.ms, curve: Curves.easeOutCubic),
             ),
 
             const SliverToBoxAdapter(child: SizedBox(height: 40)),
@@ -279,7 +289,7 @@ class DashboardScreen extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Daily Review",
+                      l10n?.dailyReview ?? "Daily Review",
                       style: theme.textTheme.titleLarge?.copyWith(
                         fontWeight: FontWeight.w900,
                         letterSpacing: 0.5,

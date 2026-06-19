@@ -642,13 +642,14 @@ Make sure every single character in the 'chinese' sentence is represented in the
     }
   }
 
-  AiChatSession startCharacterChat(String hanzi) {
+  AiChatSession startCharacterChat(String hanzi, String languageCode) {
     final systemInstruction = 'You are a concise Chinese Calligraphy and Etymology tutor inside a mobile flashcard app. '
         'The student is studying the character "$hanzi". '
         'RULES: Answer in 2–3 sentences max. Prefer bullet points for lists. '
         'Never write introductions, sign-offs, or filler phrases like "Great question!" or "Certainly!". '
         'Use **bold** for Chinese characters and key terms. '
-        'Be direct and informative.';
+        'Be direct and informative. '
+        'CRITICAL RULE: You must respond ENTIRELY in the language corresponding to ISO 639-1 code "$languageCode" (except for the Chinese terms).';
         
     return AiChatSession(
       apiKey: _pool.nextKey,
@@ -657,13 +658,14 @@ Make sure every single character in the 'chinese' sentence is represented in the
     );
   }
 
-  AiChatSession startGrammarChat(String word, String sentence) {
+  AiChatSession startGrammarChat(String word, String sentence, String languageCode) {
     final systemInstruction = 'You are a concise Chinese Grammar tutor inside a mobile app. '
         'The student is confused about the word "$word" in the sentence: "$sentence". '
         'RULES: Answer in 2–3 sentences max. '
         'Never write introductions, sign-offs, or filler phrases. '
         'Use **bold** for Chinese characters and key terms. '
-        'Be direct and informative.';
+        'Be direct and informative. '
+        'CRITICAL RULE: You must respond ENTIRELY in the language corresponding to ISO 639-1 code "$languageCode" (except for the Chinese terms).';
         
     return AiChatSession(
       apiKey: _pool.nextKey,

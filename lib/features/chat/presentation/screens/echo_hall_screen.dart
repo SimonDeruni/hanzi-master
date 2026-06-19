@@ -7,6 +7,7 @@ import 'package:hanzi_master/core/services/audio_service.dart';
 import 'package:intl/intl.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
 
 class EchoHallScreen extends ConsumerStatefulWidget {
   const EchoHallScreen({super.key});
@@ -41,6 +42,7 @@ class _EchoHallScreenState extends ConsumerState<EchoHallScreen> {
   }
 
   void _showPersonaSelectorSheet(BuildContext context, ChatState chatState, ThemeData theme) {
+    final l10n = AppLocalizations.of(context)!;
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
@@ -60,7 +62,7 @@ class _EchoHallScreenState extends ConsumerState<EchoHallScreen> {
                 const SizedBox(height: 12),
                 Container(width: 40, height: 4, decoration: BoxDecoration(color: theme.colorScheme.onSurface.withValues(alpha: 0.2), borderRadius: BorderRadius.circular(2))),
                 const SizedBox(height: 24),
-                Text("Select Persona", style: theme.textTheme.headlineMedium),
+                Text(l10n.selectPersona, style: theme.textTheme.headlineMedium),
                 const SizedBox(height: 16),
                 Expanded(
                   child: ListView.builder(
@@ -104,7 +106,7 @@ class _EchoHallScreenState extends ConsumerState<EchoHallScreen> {
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      Text(_getPersonaName(p), style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold)),
+                                      Text(_getPersonaName(p, l10n), style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold)),
                                       const SizedBox(height: 4),
                                       Text(_getPersonaShortName(p), style: theme.textTheme.bodySmall),
                                     ],
@@ -129,6 +131,7 @@ class _EchoHallScreenState extends ConsumerState<EchoHallScreen> {
   }
 
   Widget _buildCustomPersonaTile(ScholarPersona p, bool isSelected, ThemeData theme) {
+    final l10n = AppLocalizations.of(context)!;
     return Padding(
       padding: const EdgeInsets.only(bottom: 24.0, top: 12),
       child: Container(
@@ -153,7 +156,7 @@ class _EchoHallScreenState extends ConsumerState<EchoHallScreen> {
                 ),
                 const SizedBox(width: 16),
                 Expanded(
-                  child: Text("Custom Persona", style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold)),
+                  child: Text(l10n.customPersona, style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold)),
                 ),
               ],
             ),
@@ -165,7 +168,7 @@ class _EchoHallScreenState extends ConsumerState<EchoHallScreen> {
                     controller: _customPromptController,
                     style: theme.textTheme.bodyMedium,
                     decoration: InputDecoration(
-                      hintText: "e.g. A sarcastic Beijing taxi driver...",
+                      hintText: l10n.customPersonaHint,
                       hintStyle: theme.textTheme.bodySmall,
                       filled: true,
                       fillColor: theme.colorScheme.surface,
@@ -195,6 +198,7 @@ class _EchoHallScreenState extends ConsumerState<EchoHallScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final chatState = ref.watch(chatControllerProvider);
     final theme = Theme.of(context);
 
@@ -210,14 +214,14 @@ class _EchoHallScreenState extends ConsumerState<EchoHallScreen> {
 
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: _buildAppBar(chatState, theme),
+      appBar: _buildAppBar(chatState, theme, l10n),
       body: CalligraphyBackground(
         child: Stack(
           children: [
             // Chat Messages
             Positioned.fill(
               child: chatState.messages.isEmpty
-                  ? _buildEmptyState(chatState.activePersona, theme)
+                  ? _buildEmptyState(chatState.activePersona, theme, l10n)
                   : ListView.builder(
                       controller: _scrollController,
                       padding: const EdgeInsets.fromLTRB(16, 120, 16, 120), // Padding for floating input and appbar
@@ -243,7 +247,7 @@ class _EchoHallScreenState extends ConsumerState<EchoHallScreen> {
               bottom: 0,
               left: 0,
               right: 0,
-              child: _buildInputArea(chatState, theme),
+              child: _buildInputArea(chatState, theme, l10n),
             ),
           ],
         ),
@@ -251,7 +255,7 @@ class _EchoHallScreenState extends ConsumerState<EchoHallScreen> {
     );
   }
 
-  PreferredSizeWidget _buildAppBar(ChatState chatState, ThemeData theme) {
+  PreferredSizeWidget _buildAppBar(ChatState chatState, ThemeData theme, AppLocalizations l10n) {
     return AppBar(
       elevation: 0,
       backgroundColor: theme.colorScheme.surface.withValues(alpha: 0.8),
@@ -277,7 +281,7 @@ class _EchoHallScreenState extends ConsumerState<EchoHallScreen> {
               Icon(_getPersonaIcon(chatState.activePersona), size: 18, color: theme.colorScheme.primary),
               const SizedBox(width: 8),
               Text(
-                _getPersonaName(chatState.activePersona),
+                _getPersonaName(chatState.activePersona, l10n),
                 style: theme.textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
@@ -300,7 +304,7 @@ class _EchoHallScreenState extends ConsumerState<EchoHallScreen> {
     );
   }
 
-  Widget _buildEmptyState(ScholarPersona persona, ThemeData theme) {
+  Widget _buildEmptyState(ScholarPersona persona, ThemeData theme, AppLocalizations l10n) {
     return Center(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 32.0),
@@ -317,7 +321,7 @@ class _EchoHallScreenState extends ConsumerState<EchoHallScreen> {
             ),
             const SizedBox(height: 32),
             Text(
-              "Speak with ${_getPersonaName(persona)}",
+              "Speak with ${_getPersonaName(persona, l10n)}",
               style: theme.textTheme.headlineMedium?.copyWith(letterSpacing: 1.0),
               textAlign: TextAlign.center,
             ),
@@ -365,7 +369,7 @@ class _EchoHallScreenState extends ConsumerState<EchoHallScreen> {
     );
   }
 
-  Widget _buildInputArea(ChatState chatState, ThemeData theme) {
+  Widget _buildInputArea(ChatState chatState, ThemeData theme, AppLocalizations l10n) {
     return ClipRect(
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
@@ -447,7 +451,8 @@ class _EchoHallScreenState extends ConsumerState<EchoHallScreen> {
   }
 
   // --- Helpers ---
-  String _getPersonaName(ScholarPersona persona) {
+  String _getPersonaName(ScholarPersona persona, AppLocalizations l10n) {
+    if (persona == ScholarPersona.custom) return _customPromptController.text.isNotEmpty ? "Custom" : "Custom Persona";
     switch (persona) {
       case ScholarPersona.masterLin: return "Master Lin";
       case ScholarPersona.xiaoMei: return "Xiao Mei";

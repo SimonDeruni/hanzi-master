@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
 
 class SessionSummaryScreen extends StatelessWidget {
   final int totalReviewed;
@@ -42,7 +45,7 @@ class SessionSummaryScreen extends StatelessWidget {
                   padding: const EdgeInsets.all(32.0),
                   child: Column(
                     children: [
-                      const Text("Accuracy", style: TextStyle(fontSize: 16, color: Colors.grey)),
+                      Text(AppLocalizations.of(context)!.accuracy, style: const TextStyle(fontSize: 16, color: Colors.grey)),
                       Text(
                         "$percentageInt%",
                         style: TextStyle(
@@ -55,14 +58,16 @@ class SessionSummaryScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          _buildStatItem("Reviewed", "$totalReviewed", Colors.blue),
-                          _buildStatItem("Correct", "$correctCount", Colors.green),
+                          _buildStatItem(AppLocalizations.of(context)!.reviewed, "$totalReviewed", Colors.blue),
+                          _buildStatItem(AppLocalizations.of(context)!.correct, "$correctCount", Colors.green),
                         ],
                       )
                     ],
                   ),
                 ),
-              ),
+              ).animate(delay: 200.ms)
+               .fade(duration: 500.ms, curve: Curves.easeOutCubic)
+               .slideY(begin: 0.1, end: 0, duration: 500.ms, curve: Curves.easeOutCubic),
               
               const SizedBox(height: 40),
 
@@ -70,18 +75,21 @@ class SessionSummaryScreen extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 height: 55,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.indigo,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-                  ),
+                child: BouncingButton(
                   onPressed: () {
                     // Go back to the very first screen (The Library)
                     Navigator.of(context).popUntil((route) => route.isFirst);
                   },
-                  child: const Text(
-                    "Back to Library",
-                    style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.indigo,
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                    ),
+                    onPressed: null,
+                    child: const Text(
+                      "Back to Library",
+                      style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
                   ),
                 ),
               ),

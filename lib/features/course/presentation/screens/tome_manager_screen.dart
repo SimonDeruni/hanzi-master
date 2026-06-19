@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
 
 import '../../../flashcards/domain/entities/flashcard.dart';
 import '../../../flashcards/presentation/providers/flashcard_controller.dart';
@@ -8,169 +9,166 @@ import '../../../flashcards/presentation/widgets/calligraphy_background.dart';
 import '../../../premium/presentation/screens/paywall_sheet.dart';
 import '../../../../core/providers/premium_controller.dart';
 
-class TomeManagerScreen extends ConsumerStatefulWidget {
+class TomeManagerScreen extends ConsumerWidget {
   const TomeManagerScreen({super.key});
 
   @override
-  ConsumerState<TomeManagerScreen> createState() => _TomeManagerScreenState();
-}
-
-class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
-  // Mock catalog for the UI - In a real app, this would come from a remote config or API
-  final List<Map<String, dynamic>> _catalog = [
-    {
-      'id': 'hsk1',
-      'title': 'HSK 1: The Foundation',
-      'description': '150 core characters to begin your journey. Essential concepts of water, fire, and sky.',
-      'size': 'Built-in',
-      'level': 1,
-      'isPremium': false,
-    },
-    {
-      'id': 'hsk2',
-      'title': 'HSK 2: The Expansion',
-      'description': '162 new words to unlock the next level of fluency in modern communication.',
-      'size': '78 KB',
-      'level': 2,
-      'isPremium': true,
-    },
-    {
-      'id': 'hsk3',
-      'title': 'HSK 3: The Intermediate',
-      'description': '300 new words to express deeper thoughts and hold engaging conversations.',
-      'size': '150 KB',
-      'level': 3,
-      'isPremium': true,
-    },
-    {
-      'id': 'hsk4',
-      'title': 'HSK 4: The Advanced',
-      'description': '600 new words to master advanced topics and read authentic materials.',
-      'size': '250 KB',
-      'level': 4,
-      'isPremium': true,
-    },
-    {
-      'id': 'hsk5',
-      'title': 'HSK 5: The Proficient',
-      'description': '1300 new words to achieve fluency and communicate naturally like a native.',
-      'size': '500 KB',
-      'level': 5,
-      'isPremium': true,
-    },
-    {
-      'id': 'hsk6',
-      'title': 'HSK 6: The Master',
-      'description': '2500 new words. True mastery of the language and culture.',
-      'size': '1 MB',
-      'level': 6,
-      'isPremium': true,
-    }
-  ];
-
-  bool _isLevelInstalled(int level, List<Flashcard> cards) {
-    return cards.any((c) => c.hskLevel == level);
-  }
-
-  Future<void> _installTome(Map<String, dynamic> tome) async {
-    final isPremium = ref.read(premiumControllerProvider).valueOrNull ?? false;
-    
-    if (tome['isPremium'] && !isPremium) {
-      PaywallSheet.show(context);
-      return;
-    }
-
-    try {
-      HapticsManager.medium();
-      
-      await ref.read(flashcardControllerProvider.notifier).importLevel(tome['level'] as int);
-
-      HapticsManager.success();
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text("Successfully installed \${tome['title']}"),
-            backgroundColor: Color(0xFF1A1A1B),
-          ),
-        );
-      }
-    } catch (e) {
-      debugPrint("Installation Error: \$e");
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("Failed to download module.")),
-        );
-      }
-    }
-  }
-
-  Future<void> _uninstallTome(Map<String, dynamic> tome) async {
-    final bool? confirm = await showDialog<bool>(
-      context: context,
-      builder: (context) => AlertDialog(
-        backgroundColor: const Color(0xFFFDFCF0),
-        title: const Text("Rescind \${tome['title']}?", style: TextStyle(fontFamily: 'NotoSansSC', fontWeight: FontWeight.bold)),
-        content: const Text("This will remove these characters from your library and reset your mastery progress."),
-        actions: [
-          TextButton(onPressed: () => Navigator.pop(context, false), child: const Text("Cancel", style: TextStyle(color: Colors.grey))),
-          TextButton(
-            onPressed: () => Navigator.pop(context, true), 
-            child: const Text("Uninstall", style: TextStyle(color: Color(0xFFE53935), fontWeight: FontWeight.bold)),
-          ),
-        ],
-      ),
-    );
-
-    if (confirm != true) return;
-
-    try {
-      HapticsManager.light();
-      
-      await ref.read(flashcardControllerProvider.notifier).uninstallLevel(tome['level'] as int);
-
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text("Removed \${tome['title']} Library."),
-            backgroundColor: Color(0xFF1A1A1B),
-          ),
-        );
-      }
-    } catch (e) {
-      debugPrint("Uninstallation Error: \$e");
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
     final asyncCards = ref.watch(flashcardControllerProvider);
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final inkColor = isDark ? const Color(0xFFFDFCF0) : const Color(0xFF1A1A1B);
 
+    final List<Map<String, dynamic>> catalog = [
+      {
+        'id': 'hsk1',
+        'title': 'HSK 1: The Foundation',
+        'description': '150 core characters to begin your journey. Essential concepts of water, fire, and sky.',
+        'size': 'Built-in',
+        'level': 1,
+        'isPremium': false,
+      },
+      {
+        'id': 'hsk2',
+        'title': 'HSK 2: The Expansion',
+        'description': '162 new words to unlock the next level of fluency in modern communication.',
+        'size': '78 KB',
+        'level': 2,
+        'isPremium': true,
+      },
+      {
+        'id': 'hsk3',
+        'title': 'HSK 3: The Intermediate',
+        'description': '300 new words to express deeper thoughts and hold engaging conversations.',
+        'size': '150 KB',
+        'level': 3,
+        'isPremium': true,
+      },
+      {
+        'id': 'hsk4',
+        'title': 'HSK 4: The Advanced',
+        'description': '600 new words to master advanced topics and read authentic materials.',
+        'size': '250 KB',
+        'level': 4,
+        'isPremium': true,
+      },
+      {
+        'id': 'hsk5',
+        'title': 'HSK 5: The Proficient',
+        'description': '1300 new words to achieve fluency and communicate naturally like a native.',
+        'size': '500 KB',
+        'level': 5,
+        'isPremium': true,
+      },
+      {
+        'id': 'hsk6',
+        'title': 'HSK 6: The Master',
+        'description': '2500 new words. True mastery of the language and culture.',
+        'size': '1 MB',
+        'level': 6,
+        'isPremium': true,
+      }
+    ];
+
+    bool isLevelInstalled(int level, List<Flashcard> cards) {
+      return cards.any((c) => c.hskLevel == level);
+    }
+
+    Future<void> installTome(Map<String, dynamic> tome) async {
+      final isPremium = ref.read(premiumControllerProvider).valueOrNull ?? false;
+      
+      if (tome['isPremium'] && !isPremium) {
+        PaywallSheet.show(context);
+        return;
+      }
+
+      try {
+        HapticsManager.medium();
+        
+        await ref.read(flashcardControllerProvider.notifier).importLevel(tome['level'] as int);
+
+        HapticsManager.success();
+        if (context.mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text("${l10n?.successfullyInstalled ?? 'Successfully installed'} ${tome['title']}"),
+              backgroundColor: const Color(0xFF1A1A1B),
+            ),
+          );
+        }
+      } catch (e) {
+        debugPrint("Installation Error: $e");
+        if (context.mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(l10n?.failedToDownload ?? "Failed to download module.")),
+          );
+        }
+      }
+    }
+
+    Future<void> uninstallTome(Map<String, dynamic> tome) async {
+      final bool? confirm = await showDialog<bool>(
+        context: context,
+        builder: (context) => AlertDialog(
+          backgroundColor: const Color(0xFFFDFCF0),
+          title: Text("${l10n?.rescindTitle ?? 'Rescind'} ${tome['title']}?", style: const TextStyle(fontFamily: 'NotoSansSC', fontWeight: FontWeight.bold)),
+          content: Text(l10n?.removeCharactersWarning ?? "This will remove these characters from your library and reset your mastery progress."),
+          actions: [
+            TextButton(onPressed: () => Navigator.pop(context, false), child: Text(l10n?.cancel ?? "Cancel", style: const TextStyle(color: Colors.grey))),
+            TextButton(
+              onPressed: () => Navigator.pop(context, true), 
+              child: Text(l10n?.uninstall ?? "Uninstall", style: const TextStyle(color: Color(0xFFE53935), fontWeight: FontWeight.bold)),
+            ),
+          ],
+        ),
+      );
+
+      if (confirm != true) return;
+
+      try {
+        HapticsManager.light();
+        
+        await ref.read(flashcardControllerProvider.notifier).uninstallLevel(tome['level'] as int);
+
+        if (context.mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text("${l10n?.removedLibrary ?? 'Removed Library'} ${tome['title']}."),
+              backgroundColor: const Color(0xFF1A1A1B),
+            ),
+          );
+        }
+      } catch (e) {
+        debugPrint("Uninstallation Error: $e");
+      }
+    }
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Tome Library"),
+        title: Text(l10n?.tomeLibrary ?? "Tome Library"),
       ),
       body: CalligraphyBackground(
         child: asyncCards.when(
-          data: (allCards) => ListView.builder(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
-            itemCount: _catalog.length,
-            itemBuilder: (context, index) {
-              final tome = _catalog[index];
-              final isInstalled = _isLevelInstalled(tome['level'], allCards);
-              
-              return _TomeCard(
-                tome: tome,
-                isInstalled: isInstalled,
-                onInstall: () => _installTome(tome),
-                onUninstall: () => _uninstallTome(tome),
-                inkColor: inkColor,
-              );
-            },
-          ),
+          data: (allCards) {
+            return ListView.builder(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+              itemCount: catalog.length,
+              itemBuilder: (context, index) {
+                final tome = catalog[index];
+                final isInstalled = isLevelInstalled(tome['level'], allCards);
+
+                return _TomeCard(
+                  tome: tome,
+                  isInstalled: isInstalled,
+                  onInstall: () => installTome(tome),
+                  onUninstall: () => uninstallTome(tome),
+                  inkColor: inkColor,
+                );
+              },
+            );
+          },
           loading: () => const Center(child: CircularProgressIndicator(color: Color(0xFF1A1A1B))),
-          error: (err, _) => Center(child: Text("Library Error: $err")),
+          error: (err, _) => Center(child: Text("${l10n?.libraryError ?? 'Library Error'}: $err")),
         ),
       ),
     );
@@ -194,6 +192,7 @@ class _TomeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final bool isDark = Theme.of(context).brightness == Brightness.dark;
     
     return Container(
@@ -295,7 +294,7 @@ class _TomeCard extends StatelessWidget {
                         TextButton.icon(
                           onPressed: onUninstall,
                           icon: const Icon(Icons.delete_outline, size: 16),
-                          label: const Text("UNINSTALL"),
+                          label: Text(l10n?.uninstallButton ?? "UNINSTALL"),
                           style: TextButton.styleFrom(
                             foregroundColor: const Color(0xFFE53935),
                             textStyle: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
@@ -305,7 +304,7 @@ class _TomeCard extends StatelessWidget {
                         ElevatedButton.icon(
                           onPressed: onInstall,
                           icon: const Icon(Icons.file_download_outlined, size: 18),
-                          label: const Text("INSTALL TOME"),
+                          label: Text(l10n?.installTome ?? "INSTALL TOME"),
                           style: ElevatedButton.styleFrom(
                             backgroundColor: inkColor,
                             foregroundColor: isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),

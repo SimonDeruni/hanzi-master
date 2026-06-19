@@ -180,7 +180,25 @@ class AudioService {
     await _fallbackTts.setSpeechRate(rate);
   }
 
+  // SFX Methods
+  Future<void> playCorrectSfx() async {
+    await _audioPlayer.play(AssetSource('audio/sfx_correct.wav'));
+  }
+
+  Future<void> playWrongSfx() async {
+    await _audioPlayer.play(AssetSource('audio/sfx_wrong.wav'));
+  }
+
+  Future<void> playCompleteSfx() async {
+    await _audioPlayer.play(AssetSource('audio/sfx_complete.wav'));
+  }
+
+  Future<void> playStreakSfx() async {
+    await _audioPlayer.play(AssetSource('audio/sfx_streak.wav'));
+  }
+
   void dispose() {
     _audioPlayer.dispose();
   }
 }
+

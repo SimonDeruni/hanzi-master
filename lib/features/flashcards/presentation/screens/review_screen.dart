@@ -14,6 +14,9 @@ import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraph
 import 'package:hanzi_master/features/flashcards/presentation/providers/settings_controller.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/study_mode.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/study_session_app_bar.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
 import 'dart:ui' as ui;
 
 
@@ -61,6 +64,7 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
   String? _aiFeedback;
   bool _isAiLoading = false;
   bool _showHeatmap = true;
+  bool _pinyinRevealed = false;
 
   @override
   void initState() {
@@ -74,7 +78,10 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
           setState(() => _currentCard = updatedCard);
         }
       }
-      ref.read(audioServiceProvider).playCharacter(_currentCard.hanzi);
+      final settings = ref.read(settingsProvider);
+      if (settings.autoPlayAudio) {
+        ref.read(audioServiceProvider).playCharacter(_currentCard.hanzi);
+      }
     });
     _startGlobalCycle();
   }
@@ -321,7 +328,16 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
                             IconButton(icon: const Icon(Icons.volume_up, color: Colors.white70), onPressed: () => ref.read(audioServiceProvider).playCharacter(_currentCard.hanzi)),
                           ],
                         ),
-                        PinyinText(text: _currentCard.pinyin, style: const TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.w500)),
+                        if (settings.isHardMode && !_pinyinRevealed)
+                          GestureDetector(
+                            onTap: () => setState(() => _pinyinRevealed = true),
+                            child: ImageFiltered(
+                              imageFilter: ui.ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+                              child: PinyinText(text: _currentCard.pinyin, style: const TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.w500)),
+                            ),
+                          )
+                        else
+                          PinyinText(text: _currentCard.pinyin, style: const TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.w500)),
                         Text(_currentCard.definition, style: const TextStyle(fontSize: 14, color: Colors.white)),
                       ],
                     ),
@@ -403,6 +419,7 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
   }
 
   Widget _buildFeedbackScreen(dynamic settings) {
+    final l10n = AppLocalizations.of(context);
     final isSuccess = _score >= 80;
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final bgColor = isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0);
@@ -433,7 +450,7 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
               child: Column(
                 children: [
                   Text(
-                    _strokeByStrokeMode ? (isSuccess ? 'Excellent work!' : 'Keep practicing!') : 'Drawing Submitted',
+                    _strokeByStrokeMode ? (isSuccess ? (l10n?.excellentWork ?? 'Excellent work!') : (l10n?.keepPracticing ?? 'Keep practicing!')) : (l10n?.drawingSubmitted ?? 'Drawing Submitted'),
                     style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white, letterSpacing: 0.5),
                   ),
                   if (_strokeByStrokeMode) ...[
@@ -495,7 +512,16 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                PinyinText(text: _currentCard.pinyin, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: isDark ? Colors.white : Colors.black87)),
+                                if (settings.isHardMode && !_pinyinRevealed)
+                                  GestureDetector(
+                                    onTap: () => setState(() => _pinyinRevealed = true),
+                                    child: ImageFiltered(
+                                      imageFilter: ui.ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+                                      child: PinyinText(text: _currentCard.pinyin, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: isDark ? Colors.white : Colors.black87)),
+                                    ),
+                                  )
+                                else
+                                  PinyinText(text: _currentCard.pinyin, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: isDark ? Colors.white : Colors.black87)),
                                 const SizedBox(height: 4),
                                 Text(_currentCard.definition, style: TextStyle(color: isDark ? Colors.white70 : Colors.black54, fontSize: 14)),
                               ],
@@ -620,7 +646,9 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
                     const SizedBox(height: 24),
                   ],
                 ),
-              ),
+              ).animate()
+               .fade(duration: 500.ms, curve: Curves.easeOutCubic)
+               .slideY(begin: 0.1, end: 0, duration: 500.ms, curve: Curves.easeOutCubic),
             ),
             
             // Grading Buttons
@@ -654,23 +682,28 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
         padding: const EdgeInsets.symmetric(horizontal: 4.0),
         child: Tooltip(
           message: tooltip,
-          child: ElevatedButton(
+          child: BouncingButton(
             onPressed: () {
               Navigator.pop(context, grade);
             },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: isDark ? color.withValues(alpha: 0.15) : color.shade50,
-              foregroundColor: isDark ? color.shade300 : color.shade700,
-              padding: const EdgeInsets.symmetric(vertical: 16),
-              elevation: 0,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16),
-                side: BorderSide(color: isDark ? color.withValues(alpha: 0.3) : color.shade200, width: 1),
+            child: ElevatedButton(
+              onPressed: null, // Let BouncingButton handle the tap
+              style: ElevatedButton.styleFrom(
+                backgroundColor: isDark ? color.withValues(alpha: 0.15) : color.shade50,
+                foregroundColor: isDark ? color.shade300 : color.shade700,
+                disabledBackgroundColor: isDark ? color.withValues(alpha: 0.15) : color.shade50,
+                disabledForegroundColor: isDark ? color.shade300 : color.shade700,
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                elevation: 0,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16),
+                  side: BorderSide(color: isDark ? color.withValues(alpha: 0.3) : color.shade200, width: 1),
+                ),
               ),
-            ),
-            child: Text(
-              label,
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
+              child: Text(
+                label,
+                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
+              ),
             ),
           ),
         ),

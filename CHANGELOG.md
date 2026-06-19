@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 ## [1.2.0] - 2026-06-17
 
 ### Added
+- **UI Animations**:
+    - Added `flutter_animate` package for declarative, chained animations.
+    - Implemented global `FadeUpwardsPageTransitionsBuilder` and `CupertinoPageTransitionsBuilder` for premium navigation.
+    - Added staggered entry animations for Dashboard elements and subtle breathing animation for the mascot.
+    - Introduced a reusable `BouncingButton` widget to add micro-interactions to flashcard grading buttons.
 - **Advanced AI Curriculum Engine**:
     - Implemented a Two-Pass AI strategy for high-level syllabus planning and detailed unit execution.
     - Added Component-Based Clustering using radical and decomposition metadata.

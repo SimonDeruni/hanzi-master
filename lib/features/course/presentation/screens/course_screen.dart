@@ -7,6 +7,8 @@ import '../../domain/entities/course_unit.dart';
 import '../../../progression/presentation/widgets/ink_stone_widget.dart';
 import '../widgets/course_map_widgets.dart';
 import '../widgets/course_painters.dart';
+import 'package:hanzi_master/shared/widgets/loading_indicator.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
 
 class CourseScreen extends ConsumerWidget {
   final String deckId;
@@ -20,6 +22,7 @@ class CourseScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
     final asyncUnits = ref.watch(courseControllerProvider(deckId));
     final isLibraryLoading = ref.watch(flashcardControllerProvider.select((s) => s.isLoading));
 
@@ -119,7 +122,7 @@ class CourseScreen extends ConsumerWidget {
                 );
               },
               loading: () => const Center(child: CircularProgressIndicator(color: Colors.brown)),
-              error: (err, stack) => Center(child: Text("Error: $err", style: const TextStyle(color: Colors.red))),
+              error: (err, stack) => Center(child: Text("${l10n?.errorPrefix}$err", style: const TextStyle(color: Colors.red))),
             ),
           ),
 
@@ -135,7 +138,7 @@ class CourseScreen extends ConsumerWidget {
                       children: [
                         CircularProgressIndicator(color: Colors.white),
                         SizedBox(height: 16),
-                        Text("Initializing Library...", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+                        Text(l10n?.initializingLibrary ?? "Initializing Library...", style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
                       ],
                     ),
                   ),
@@ -149,12 +152,12 @@ class CourseScreen extends ConsumerWidget {
         onPressed: () {
           final cards = ref.read(flashcardControllerProvider).value ?? [];
           if (cards.length < 4) {
-            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Unlock at least 4 characters to start a quiz!")));
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n?.unlockCharactersToQuiz ?? "Unlock at least 4 characters to start a quiz!")));
             return;
           }
           Navigator.push(context, MaterialPageRoute(builder: (context) => QuizScreen(availableCards: cards)));
         },
-        label: const Text("PRACTICE QUIZ"),
+        label: Text(l10n?.practiceQuiz ?? "PRACTICE QUIZ"),
         icon: const Icon(Icons.quiz),
         backgroundColor: Colors.indigo,
       ),

@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/settings_controller.dart';
@@ -23,6 +24,7 @@ class UnitHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bool isDark = Theme.of(context).brightness == Brightness.dark;
+    final l10n = AppLocalizations.of(context);
     return Padding(
       padding: const EdgeInsets.only(top: 60, bottom: 20),
       child: Column(
@@ -50,7 +52,7 @@ class UnitHeader extends StatelessWidget {
               builder: (context) => UnitIntroSheet(unit: unit),
             ),
             icon: const Icon(Icons.menu_book, size: 16),
-            label: const Text("UNIT INTRO", style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, letterSpacing: 1)),
+            label: Text(l10n?.unitIntro?.toUpperCase() ?? "UNIT INTRO", style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, letterSpacing: 1)),
             style: OutlinedButton.styleFrom(
               foregroundColor: Colors.brown,
               side: const BorderSide(color: Colors.brown, width: 1),
@@ -160,6 +162,7 @@ class _GalaxyRegionState extends State<GalaxyRegion> {
   @override
   Widget build(BuildContext context) {
     final bool isDark = Theme.of(context).brightness == Brightness.dark;
+    final l10n = AppLocalizations.of(context);
     const double height = 450.0;
 
     return LayoutBuilder(
@@ -171,8 +174,8 @@ class _GalaxyRegionState extends State<GalaxyRegion> {
         final themeColor = _getThemeColor(sunNode.hanzi);
         
         final String labelText = sunNode.uuid == 'tutorial_intro' 
-            ? "THE SCROLL OF ORIGIN" 
-            : "GALAXY OF ${sunNode.hanzi}${widget.labelSuffix}";
+            ? (l10n?.theScrollOfOrigin ?? "THE SCROLL OF ORIGIN") 
+            : "${l10n?.galaxyOf ?? "GALAXY OF"} ${sunNode.hanzi}${widget.labelSuffix}";
 
         return SizedBox(
           width: double.infinity,
@@ -310,6 +313,7 @@ class MapNode extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
     final cardAsync = ref.watch(flashcardControllerProvider.select(
       (value) => value.whenData((cards) => cards.firstWhere(
         (c) => c.id == node.uuid,
@@ -364,12 +368,12 @@ class MapNode extends ConsumerWidget {
           context: context,
           builder: (context) => AlertDialog(
             icon: const Icon(Icons.auto_awesome, size: 48, color: Colors.amber),
-            title: const Text("Constellation Cluster"),
-            content: const Text(
-              "These characters are Independent Stars.\nThey do not belong to a specific Radical family.",
+            title: Text(l10n?.constellationCluster ?? "Constellation Cluster"),
+            content: Text(
+              l10n?.constellationDescription ?? "These characters are Independent Stars.\nThey do not belong to a specific Radical family.",
               textAlign: TextAlign.center,
             ),
-            actions: [TextButton(onPressed: () => Navigator.pop(context), child: const Text("OK"))],
+            actions: [TextButton(onPressed: () => Navigator.pop(context), child: Text(l10n?.ok ?? "OK"))],
           ),
         );
         return;
@@ -524,7 +528,7 @@ class MapNode extends ConsumerWidget {
         // We'll call onNodeTap but specifically for this card
         // For simplicity in this scope, we show a preview
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text("Diving into ${comp.hanzi}..."), duration: const Duration(milliseconds: 500))
+          SnackBar(content: Text("${l10n?.divingInto ?? "Diving into"} ${comp.hanzi}..."), duration: const Duration(milliseconds: 500))
         );
       }
 
@@ -844,6 +848,7 @@ class _UnitIntroSheetState extends State<UnitIntroSheet> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Container(
       height: MediaQuery.of(context).size.height * 0.7,
       decoration: BoxDecoration(
@@ -856,17 +861,17 @@ class _UnitIntroSheetState extends State<UnitIntroSheet> {
         children: [
           Center(child: SizedBox(width: 40, height: 4, child: DecoratedBox(decoration: BoxDecoration(color: Colors.grey.withValues(alpha: 0.3), borderRadius: BorderRadius.circular(2))))),
           const SizedBox(height: 24),
-          Text("Unit Intro: ${widget.unit.title}", style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.indigo)),
+          Text("${l10n?.unitIntro ?? "Unit Intro"}: ${widget.unit.title}", style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.indigo)),
           const SizedBox(height: 8),
           Text(widget.unit.description, style: const TextStyle(fontSize: 16, color: Colors.grey)),
           const SizedBox(height: 24),
-          const Text("KEY RADICALS", style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, letterSpacing: 1.5, color: Colors.brown)),
+          Text(l10n?.keyRadicals ?? "KEY RADICALS", style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, letterSpacing: 1.5, color: Colors.brown)),
           const SizedBox(height: 16),
           Expanded(
             child: _isLoading 
               ? const Center(child: CircularProgressIndicator()) 
               : (_radicals.isEmpty 
-                  ? const Center(child: Text("No radical data available.")) 
+                  ? Center(child: Text(l10n?.noRadicalDataAvailable ?? "No radical data available.")) 
                   : ListView.separated(
                       itemCount: _radicals.length,
                       separatorBuilder: (_, __) => const SizedBox(height: 12),

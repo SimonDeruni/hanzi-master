@@ -159,7 +159,8 @@ class _CharacterChatSheetState extends ConsumerState<CharacterChatSheet> {
   @override
   void initState() {
     super.initState();
-    _chatSession = ref.read(geminiServiceProvider).startCharacterChat(widget.hanzi);
+    final langCode = Localizations.localeOf(context).languageCode;
+    _chatSession = ref.read(geminiServiceProvider).startCharacterChat(widget.hanzi, langCode);
     _messages.add(ChatMessage(
       text: 'Ask me anything about **${widget.hanzi}** — history, usage, culture, or grammar.',
       isUser: false,

@@ -3,6 +3,7 @@ import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraph
 import 'package:hanzi_master/features/live_translate/presentation/screens/travel_interpreter_screen.dart';
 import 'package:hanzi_master/features/live_translate/presentation/screens/whisper_earpiece_screen.dart';
 import 'package:hanzi_master/features/live_translate/presentation/screens/translation_history_screen.dart';
+import 'package:hanzi_master/shared/widgets/global_sliver_app_bar.dart';
 
 class TranslationHubScreen extends StatelessWidget {
   const TranslationHubScreen({super.key});
@@ -13,51 +14,32 @@ class TranslationHubScreen extends StatelessWidget {
     final isDark = theme.brightness == Brightness.dark;
     
     return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        title: const Text("LIVE TRANSLATION", style: TextStyle(letterSpacing: 2.0, fontSize: 14, fontWeight: FontWeight.bold)),
-        centerTitle: true,
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.history),
-            onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (_) => const TranslationHistoryScreen()));
-            },
-          )
-        ],
-      ),
       body: CalligraphyBackground(
         child: CustomScrollView(
           physics: const BouncingScrollPhysics(),
           slivers: [
-            const SliverToBoxAdapter(child: SizedBox(height: 100)),
+            GlobalSliverAppBar(
+              title: "Live Translate",
+              actions: [
+                IconButton(
+                  icon: const Icon(Icons.history),
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (_) => const TranslationHistoryScreen()));
+                  },
+                )
+              ],
+            ),
             
-            // Header
+            // Subtitle
             SliverToBoxAdapter(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Live Translate",
-                      style: theme.textTheme.displaySmall?.copyWith(
-                        fontWeight: FontWeight.w900,
-                        color: isDark ? Colors.white : const Color(0xFF1A1A1B),
-                        height: 1.1,
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                    Text(
-                      "Powered by Gemini 3.5. Seamless real-time translation for any scenario.",
-                      style: theme.textTheme.titleMedium?.copyWith(
-                        color: isDark ? Colors.white70 : const Color(0xFF1A1A1B).withValues(alpha: 0.7),
-                        height: 1.4,
-                      ),
-                    ),
-                  ],
+                padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 8.0),
+                child: Text(
+                  "Powered by Gemini 3.5. Seamless real-time translation for any scenario.",
+                  style: theme.textTheme.titleMedium?.copyWith(
+                    color: isDark ? Colors.white70 : const Color(0xFF1A1A1B).withValues(alpha: 0.7),
+                    height: 1.4,
+                  ),
                 ),
               ),
             ),

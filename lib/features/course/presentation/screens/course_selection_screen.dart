@@ -7,21 +7,30 @@ import 'package:hanzi_master/features/flashcards/presentation/providers/flashcar
 import 'package:hanzi_master/core/providers/ai_job_queue_provider.dart';
 import 'package:hanzi_master/core/services/curriculum_engine.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/review_screen.dart';
+import 'package:hanzi_master/features/flashcards/presentation/providers/settings_controller.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/study_mode.dart';
 
-class CourseSelectionScreen extends ConsumerWidget {
+class CourseSelectionScreen extends ConsumerStatefulWidget {
   const CourseSelectionScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<CourseSelectionScreen> createState() => _CourseSelectionScreenState();
+}
+
+class _CourseSelectionScreenState extends ConsumerState<CourseSelectionScreen> {
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final asyncDecks = ref.watch(deckControllerProvider);
     final allCards = ref.watch(flashcardControllerProvider).valueOrNull ?? [];
     final aiQueue = ref.watch(aiJobQueueProvider);
     final engine = ref.read(curriculumEngineProvider);
+    final isDarkMode = ref.watch(settingsControllerProvider).isDarkMode;
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("CURRICULUM PATHS"),
+        title: Text(l10n?.curriculumPaths ?? "CURRICULUM PATHS"),
         centerTitle: true,
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -45,7 +54,7 @@ class CourseSelectionScreen extends ConsumerWidget {
         child: asyncDecks.when(
           data: (decks) {
             if (decks.isEmpty) {
-              return const Center(child: Text("No decks found. Add some to your library!"));
+              return Center(child: Text(l10n?.noDecksFound ?? "No decks found. Add some to your library!"));
             }
             
             return ListView.separated(
@@ -68,7 +77,7 @@ class CourseSelectionScreen extends ConsumerWidget {
                   isGenerating: isGenerating,
                   onTap: () async {
                     if (cardCount == 0) {
-                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Add some cards to this deck first!")));
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n?.addCardsFirst ?? "Add some cards to this deck first!")));
                       return;
                     }
 
@@ -84,20 +93,17 @@ class CourseSelectionScreen extends ConsumerWidget {
                       ref.read(aiJobQueueProvider.notifier).addJob(jobId);
                       
                       // Notify User
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: const Text("The AI Scholar is drafting your path..."),
-                          duration: const Duration(seconds: 4),
-                          action: SnackBarAction(
-                            label: 'PRACTICE',
-                            onPressed: () {
-                              final cardsToReview = allCards.where((c) => c.isDue(StudyMode.reading)).toList();
-                              if (cardsToReview.isNotEmpty) {
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => ReviewScreen(card: cardsToReview.first)));
-                              } else if (allCards.isNotEmpty) {
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => ReviewScreen(card: allCards.first)));
-                              }
-                            },
+                      showDialog(
+                        context: context,
+                        barrierDismissible: false,
+                        builder: (_) => AlertDialog(
+                          content: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              const CircularProgressIndicator(),
+                              const SizedBox(height: 16),
+                              Text(l10n?.aiDraftingPath ?? "The AI Scholar is drafting your path..."),
+                            ],
                           ),
                         ),
                       );
@@ -110,17 +116,19 @@ class CourseSelectionScreen extends ConsumerWidget {
                         await Future.delayed(Duration.zero);
                         ref.read(aiJobQueueProvider.notifier).removeJob(jobId);
                         
-                        if (context.mounted) {
+                        if (mounted) {
+                           Navigator.pop(context); // Close dialog
                            ScaffoldMessenger.of(context).showSnackBar(
-                             SnackBar(content: Text("Your path for '${deck.name}' is ready!"), backgroundColor: Colors.green.shade700),
+                             SnackBar(content: Text(l10n?.pathReady(deck.name) ?? "Your path for '${deck.name}' is ready!"), backgroundColor: Colors.green.shade700),
                            );
                         }
                       } catch (e) {
                          await Future.delayed(Duration.zero);
                          ref.read(aiJobQueueProvider.notifier).removeJob(jobId);
-                         if (context.mounted) {
+                         if (mounted) {
+                           Navigator.pop(context);
                            ScaffoldMessenger.of(context).showSnackBar(
-                             SnackBar(content: Text("Error generating path: $e"), backgroundColor: Colors.red),
+                             SnackBar(content: Text("${l10n?.errorGeneratingPath ?? 'Error generating path'}: $e"), backgroundColor: Colors.red),
                            );
                          }
                       }
@@ -131,7 +139,7 @@ class CourseSelectionScreen extends ConsumerWidget {
             );
           },
           loading: () => const Center(child: CircularProgressIndicator()),
-          error: (err, stack) => Center(child: Text("Error loading decks: $err")),
+          error: (err, stack) => Center(child: Text("${l10n?.errorPrefix ?? 'Error: '}$err")),
         ),
       ),
     );
@@ -246,7 +254,7 @@ class _CourseCard extends StatelessWidget {
                       children: [
                         CircularProgressIndicator(color: Colors.brown, strokeWidth: 3),
                         SizedBox(height: 8),
-                        Text("Brushing Curriculum...", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.brown)),
+                        Text(AppLocalizations.of(context)?.brushingCurriculum ?? "Brushing Curriculum...", style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.brown)),
                       ],
                     ),
                   ),

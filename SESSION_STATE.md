@@ -16,6 +16,7 @@
 - [x] **Task 5: Image Rendering**: Added missing User-Agent headers to allow Wikimedia Commons images to load.
 
 - [x] **Task 6: Advanced Path Gen**: Upgraded AI Curriculum Engine with Two-Pass Strategy, Radical-Based Clustering, and Anchor Word selection.
+- [x] **Task 7: UI Animations**: Added `flutter_animate` dependency, global page transitions, staggered entrance on Dashboard, Mascot subtle breathing, and `BouncingButton` on review screens.
 
 #### 🔜 Up Next (Possible)
 - [ ] **Phase 9: Sound FX**: Add subtle "paper scratching" audio during drawing.

@@ -9,6 +9,9 @@ import '../widgets/lesson_steps/quiz_step.dart';
 import '../widgets/lesson_steps/drawing_step.dart';
 import '../widgets/lesson_steps/context_step.dart';
 
+import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/core/services/audio_service.dart';
+
 class LessonScreen extends ConsumerWidget {
   final Flashcard card;
 
@@ -16,6 +19,7 @@ class LessonScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
     // The warmups are now handled internally by the controller reading the side-channel provider
     final lessonState = ref.watch(lessonControllerProvider(card));
     final controller = ref.read(lessonControllerProvider(card).notifier);
@@ -50,7 +54,7 @@ class LessonScreen extends ConsumerWidget {
           onPressed: () => Navigator.pop(context),
         ),
         title: lessonState.inWarmupPhase 
-          ? const Text("WARM UP", style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, letterSpacing: 2, color: Colors.indigo))
+          ? Text(l10n?.warmUp ?? "WARM UP", style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, letterSpacing: 2, color: Colors.indigo))
           : null,
         centerTitle: true,
       ),
@@ -98,6 +102,7 @@ class LessonScreen extends ConsumerWidget {
   }
 
   Widget _buildStepContent(LessonStepType step, LessonState state, LessonController controller, BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
     switch (step) {
       case LessonStepType.discovery:
         return DiscoveryStep(card: card, onComplete: controller.advanceStep);
@@ -162,10 +167,11 @@ class LessonScreen extends ConsumerWidget {
           key: const ValueKey("context"),
           card: card,
           onComplete: () {
+            ref.read(audioServiceProvider).playCompleteSfx();
             ref.read(progressionProvider.notifier).addInkPoints(10);
             Navigator.pop(context);
             ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text("Lesson Complete! +10 Ink Points 💧")),
+              SnackBar(content: Text(l10n?.lessonComplete ?? "Lesson Complete! +10 Ink Points")),
             );
           },
         );

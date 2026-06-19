@@ -49,10 +49,14 @@ class _QuizStepState extends ConsumerState<QuizStep> {
 
     if (_isCorrect) {
       HapticsManager.success();
-      ref.read(audioServiceProvider).playCharacter(widget.targetCard.hanzi);
+      ref.read(audioServiceProvider).playCorrectSfx();
+      Future.delayed(const Duration(milliseconds: 300), () {
+          if (mounted) ref.read(audioServiceProvider).playCharacter(widget.targetCard.hanzi);
+      });
       Future.delayed(const Duration(seconds: 1), widget.onComplete);
     } else {
       HapticsManager.error();
+      ref.read(audioServiceProvider).playWrongSfx();
       // In a real app, we might force them to try again or penalize score
       Future.delayed(const Duration(milliseconds: 800), () {
         if (mounted) {

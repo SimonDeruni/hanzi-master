@@ -10,6 +10,7 @@ import 'package:hanzi_master/features/flashcards/data/models/deck_model.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/settings_controller.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/main_navigation_screen.dart';
 import 'package:hanzi_master/features/live_translate/domain/entities/translation_session.dart';
+import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 
 import 'package:hanzi_master/core/providers.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
@@ -17,6 +18,8 @@ import 'package:hanzi_master/core/services/monetization_service.dart';
 import 'package:hanzi_master/features/reading/data/repositories/story_repository.dart';
 import 'package:hanzi_master/core/theme/app_theme.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -100,7 +103,7 @@ void main() async {
   // 3. Create Container for pre-warming providers
   final container = ProviderContainer(
     overrides: [
-      settingsProvider.overrideWith((ref) => SettingsController(prefs)),
+      sharedPreferencesProvider.overrideWithValue(prefs),
       hiveBoxProvider.overrideWithValue(box),
       deckBoxProvider.overrideWithValue(deckBox),
     ],
@@ -146,6 +149,19 @@ class HanziMasterApp extends ConsumerWidget {
         theme: AppTheme.lightTheme,
         darkTheme: AppTheme.darkTheme,
         themeMode: settings.isDarkMode ? ThemeMode.dark : ThemeMode.light,
+        locale: Locale(settings.locale),
+        localizationsDelegates: const [
+          AppLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: const [
+          Locale('en'), Locale('zh'), Locale('es'), Locale('fr'),
+          Locale('de'), Locale('ja'), Locale('ko'), Locale('ru'),
+          Locale('ar'), Locale('hi'), Locale('pt'), Locale('it'),
+          Locale('tr'), Locale('vi'), Locale('id'),
+        ],
         home: const MainNavigationScreen(),
       ),
     );

@@ -9,6 +9,7 @@ import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraph
 import 'package:hanzi_master/features/flashcards/presentation/widgets/drawing_canvas.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import 'package:hanzi_master/features/course/domain/entities/course_unit.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
 
 class RadicalLessonScreen extends ConsumerStatefulWidget {
   final CourseNode sunNode;
@@ -115,6 +116,7 @@ class _RadicalLessonScreenState extends ConsumerState<RadicalLessonScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     if (_isLoading) return const Scaffold(body: Center(child: CircularProgressIndicator()));
 
     return Scaffold(
@@ -129,9 +131,9 @@ class _RadicalLessonScreenState extends ConsumerState<RadicalLessonScreen> {
           controller: _pageController,
           physics: const NeverScrollableScrollPhysics(),
           children: [
-            _buildTraceStep(),
-            if (_forgeTarget != null) _buildForgeStep(),
-            _buildHuntStep(),
+            _buildTraceStep(l10n),
+            if (_forgeTarget != null) _buildForgeStep(l10n),
+            _buildHuntStep(l10n),
           ],
         ),
       ),
@@ -139,13 +141,13 @@ class _RadicalLessonScreenState extends ConsumerState<RadicalLessonScreen> {
   }
 
   // --- STEP 1: TRACE ---
-  Widget _buildTraceStep() {
+  Widget _buildTraceStep(AppLocalizations? l10n) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Text("STEP 1: THE ORIGIN", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, letterSpacing: 2, color: Colors.grey)),
+        Text(l10n?.stepOneOrigin ?? "STEP 1: THE ORIGIN", style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, letterSpacing: 2, color: Colors.grey)),
         const SizedBox(height: 24),
-        Text("Trace the Radical: ${widget.sunNode.hanzi}", style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+        Text("${l10n?.traceRadical ?? 'Trace the Radical'}: ${widget.sunNode.hanzi}", style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
         const SizedBox(height: 48),
         SizedBox(
           width: 300, height: 300,
@@ -159,18 +161,18 @@ class _RadicalLessonScreenState extends ConsumerState<RadicalLessonScreen> {
   }
 
   // --- STEP 2: THE FORGE ---
-  Widget _buildForgeStep() {
+  Widget _buildForgeStep(AppLocalizations? l10n) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Text("STEP 2: THE FORGE", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, letterSpacing: 2, color: Colors.grey)),
+        Text(l10n?.stepTwoForge ?? "STEP 2: THE FORGE", style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, letterSpacing: 2, color: Colors.grey)),
         const SizedBox(height: 24),
-        const Text("Choose the Essence", style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold)),
+        Text(l10n?.chooseEssence ?? "Choose the Essence", style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold)),
         const SizedBox(height: 12),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 32),
           child: Text(
-            "To forge \"${_forgeTarget?.definition.split(';').first.toUpperCase() ?? 'WORD'}\", what essence does $_forgeBase need?", 
+            "${l10n?.toForge ?? 'To forge'} \"${_forgeTarget?.definition.split(';').first.toUpperCase() ?? 'WORD'}\", ${l10n?.whatEssenceDoesNeed ?? 'what essence does'} $_forgeBase ${l10n?.need ?? 'need'}?", 
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 18, color: Colors.indigo.shade800, height: 1.4)
           ),
@@ -186,7 +188,7 @@ class _RadicalLessonScreenState extends ConsumerState<RadicalLessonScreen> {
               Future.delayed(const Duration(seconds: 2), _nextPage);
             } else {
               HapticsManager.heavy();
-              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Wrong essence! Try again."), duration: Duration(milliseconds: 1000)));
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n?.wrongEssence ?? "Wrong essence! Try again."), duration: const Duration(milliseconds: 1000)));
             }
           },
           builder: (context, candidates, rejects) {
@@ -247,7 +249,7 @@ class _RadicalLessonScreenState extends ConsumerState<RadicalLessonScreen> {
               child: Transform.translate(
                 offset: Offset(0, 20 * (1 - val)),
                 child: Text(
-                  "FORGED: ${widget.sunNode.hanzi} + $_forgeBase = ${_forgeTarget!.hanzi}", 
+                  "${l10n?.forged ?? 'FORGED'}: ${widget.sunNode.hanzi} + $_forgeBase = ${_forgeTarget!.hanzi}", 
                   style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.green)
                 ),
               ),
@@ -280,15 +282,15 @@ class _RadicalLessonScreenState extends ConsumerState<RadicalLessonScreen> {
   }
 
   // --- STEP 3: THE HUNT ---
-  Widget _buildHuntStep() {
+  Widget _buildHuntStep(AppLocalizations? l10n) {
     final int targetCount = _huntOptions.where((c) => widget.clusterNodes.any((n) => n.uuid == c.id)).length;
     
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Text("STEP 3: THE HUNT", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, letterSpacing: 2, color: Colors.grey)),
+        Text(l10n?.stepThreeHunt ?? "STEP 3: THE HUNT", style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, letterSpacing: 2, color: Colors.grey)),
         const SizedBox(height: 24),
-        Text("Find characters with ${widget.sunNode.hanzi}", style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+        Text("${l10n?.findCharactersWith ?? 'Find characters with'} ${widget.sunNode.hanzi}", style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
         const SizedBox(height: 48),
         
         Wrap(
@@ -309,7 +311,7 @@ class _RadicalLessonScreenState extends ConsumerState<RadicalLessonScreen> {
                   }
                 } else if (!isTarget) {
                   HapticsManager.heavy();
-                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Not that one! Look closer."), duration: Duration(milliseconds: 500)));
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n?.notThatOne ?? "Not that one! Look closer."), duration: const Duration(milliseconds: 500)));
                 }
               },
               child: AnimatedContainer(

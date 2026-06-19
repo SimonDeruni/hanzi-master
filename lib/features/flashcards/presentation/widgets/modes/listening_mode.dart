@@ -4,6 +4,10 @@ import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart'
 import 'package:hanzi_master/shared/widgets/pinyin_text.dart';
 import 'package:hanzi_master/core/services/audio_service.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/study_session_app_bar.dart';
+import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
 
 class ListeningModeWidget extends ConsumerStatefulWidget {
   final Flashcard card;
@@ -178,7 +182,9 @@ class _ListeningModeWidgetState extends ConsumerState<ListeningModeWidget> {
                     ),
                   ),
                 ),
-              ),
+              ).animate()
+               .fade(duration: 500.ms, curve: Curves.easeOutCubic)
+               .slideY(begin: 0.1, end: 0, duration: 500.ms, curve: Curves.easeOutCubic),
             ),
 
             // Anki Grading Buttons
@@ -187,17 +193,22 @@ class _ListeningModeWidgetState extends ConsumerState<ListeningModeWidget> {
                 padding: const EdgeInsets.fromLTRB(16, 0, 16, 32),
                 child: Column(
                   children: [
-                    const Text(
-                      'How did you do?',
-                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    Text(
+                      AppLocalizations.of(context)!.howDidYouDo,
+                      style: const TextStyle(
+                          fontSize: 16, fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(height: 16),
                     Row(
                       children: [
-                        _buildGradeButton('Again', 0, Colors.red, 'Missed it entirely'),
-                        _buildGradeButton('Hard', 2, Colors.orange, 'Got it, but struggled'),
-                        _buildGradeButton('Good', 4, Colors.green, 'Got it clearly'),
-                        _buildGradeButton('Easy', 5, Colors.blue, 'Perfect & immediate'),
+                        _buildGradeButton(
+                            AppLocalizations.of(context)!.again, 0, Colors.red, AppLocalizations.of(context)!.missedItEntirely),
+                        _buildGradeButton(
+                            AppLocalizations.of(context)!.hard, 2, Colors.orange, AppLocalizations.of(context)!.gotItButStruggled),
+                        _buildGradeButton(
+                            AppLocalizations.of(context)!.good, 4, Colors.green, AppLocalizations.of(context)!.gotItClearly),
+                        _buildGradeButton(
+                            AppLocalizations.of(context)!.easy, 5, Colors.blue, AppLocalizations.of(context)!.perfectAndImmediate),
                       ],
                     ),
                   ],
@@ -215,25 +226,30 @@ class _ListeningModeWidgetState extends ConsumerState<ListeningModeWidget> {
         padding: const EdgeInsets.symmetric(horizontal: 4.0),
         child: Tooltip(
           message: tooltip,
-          child: ElevatedButton(
+          child: BouncingButton(
             onPressed: () {
               Navigator.pop(context, grade);
             },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: color.shade100,
-              foregroundColor: color.shade900,
-              padding: const EdgeInsets.symmetric(vertical: 16),
-              elevation: 0,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-                side: BorderSide(color: color.shade300, width: 1),
+            child: ElevatedButton(
+              onPressed: null,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: color.shade100,
+                foregroundColor: color.shade900,
+                disabledBackgroundColor: color.shade100,
+                disabledForegroundColor: color.shade900,
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                elevation: 0,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  side: BorderSide(color: color.shade300, width: 1),
+                ),
               ),
-            ),
-            child: FittedBox(
-              fit: BoxFit.scaleDown,
-              child: Text(
-                label,
-                style: const TextStyle(fontWeight: FontWeight.bold),
+              child: FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Text(
+                  label,
+                  style: const TextStyle(fontWeight: FontWeight.bold),
+                ),
               ),
             ),
           ),
