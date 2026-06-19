@@ -121,8 +121,9 @@ class WordDetailDialog extends ConsumerWidget {
                 Expanded(
                   child: BouncingButton(
                     onPressed: () {
+                      final navContext = Navigator.of(context).context;
                       Navigator.pop(context);
-                      AiExplainerSheet.show(context, word, sentence);
+                      AiExplainerSheet.show(navContext, word, sentence);
                     },
                     child: OutlinedButton.icon(
                       icon: const Icon(Icons.auto_awesome),

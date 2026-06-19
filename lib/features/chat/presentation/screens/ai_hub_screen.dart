@@ -25,7 +25,6 @@ class AiHubScreen extends ConsumerWidget {
           slivers: [
             GlobalSliverAppBar(
               title: l10n?.aiHubTitle ?? "AI Hub",
-              subtitle: l10n?.refineBrushVoice ?? "Refine your brush and voice with advanced AI.",
             ),
             
             const SliverToBoxAdapter(child: SizedBox(height: 24)),
