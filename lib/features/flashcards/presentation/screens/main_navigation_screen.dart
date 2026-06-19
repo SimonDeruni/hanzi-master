@@ -7,6 +7,7 @@ import 'package:hanzi_master/features/flashcards/presentation/providers/flashcar
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import 'package:hanzi_master/features/live_translate/presentation/screens/translation_hub_screen.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
 
 class MainNavigationScreen extends ConsumerStatefulWidget {
   const MainNavigationScreen({super.key});
@@ -73,22 +74,22 @@ class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
           showUnselectedLabels: true,
           elevation: 0,
           type: BottomNavigationBarType.fixed,
-          items: const [
+          items: [
             BottomNavigationBarItem(
-              icon: Icon(Icons.dashboard),
-              label: 'Dashboard',
+              icon: const Icon(Icons.dashboard),
+              label: AppLocalizations.of(context)!.dashboardTitle,
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.auto_awesome),
-              label: 'AI Hub',
+              icon: const Icon(Icons.auto_awesome),
+              label: AppLocalizations.of(context)!.aiHubTitle,
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.translate),
-              label: 'Translate',
+              icon: const Icon(Icons.translate),
+              label: AppLocalizations.of(context)!.translateTitle,
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.menu_book),
-              label: 'Library',
+              icon: const Icon(Icons.menu_book),
+              label: AppLocalizations.of(context)!.libraryTitle,
             ),
           ],
         ),

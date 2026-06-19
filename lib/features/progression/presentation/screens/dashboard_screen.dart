@@ -78,7 +78,7 @@ class DashboardScreen extends ConsumerWidget {
       body: CalligraphyBackground(
         child: CustomScrollView(
           slivers: [
-            GlobalSliverAppBar(title: "Dashboard"),
+            GlobalSliverAppBar(title: l10n?.dashboardTitle ?? "Dashboard"),
             const SliverToBoxAdapter(child: SizedBox(height: 16)),
             
             // --- TOP: SCHOLAR'S RANK ---
@@ -318,7 +318,7 @@ class DashboardScreen extends ConsumerWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    "Your mind is clear.",
+                                    l10n?.yourMindIsClear ?? "Your mind is clear.",
                                     style: theme.textTheme.titleMedium?.copyWith(
                                       color: theme.colorScheme.onSurface,
                                       fontWeight: FontWeight.bold,
@@ -326,7 +326,7 @@ class DashboardScreen extends ConsumerWidget {
                                   ),
                                   const SizedBox(height: 4),
                                   Text(
-                                    "No reviews due today.",
+                                    l10n?.noReviewsDueToday ?? "No reviews due today.",
                                     style: theme.textTheme.bodyMedium?.copyWith(
                                       color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
                                     ),
@@ -343,7 +343,7 @@ class DashboardScreen extends ConsumerWidget {
                                 padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                               ),
-                              child: const Text("Done", style: TextStyle(fontWeight: FontWeight.bold)),
+                              child: Text(l10n?.done ?? "Done", style: const TextStyle(fontWeight: FontWeight.bold)),
                             ),
                           ],
                         ),
@@ -353,13 +353,13 @@ class DashboardScreen extends ConsumerWidget {
                         final deckId = entry.key;
                         final cards = entry.value;
                         String displayDeckName = deckId;
-                        if (deckId.toLowerCase() == 'hsk1') displayDeckName = "HSK Level 1";
-                        if (deckId.toLowerCase() == 'hsk2') displayDeckName = "HSK Level 2";
-                        if (deckId.toLowerCase() == 'hsk3') displayDeckName = "HSK Level 3";
-                        if (deckId.toLowerCase() == 'hsk4') displayDeckName = "HSK Level 4";
-                        if (deckId.toLowerCase() == 'hsk5') displayDeckName = "HSK Level 5";
-                        if (deckId.toLowerCase() == 'hsk6') displayDeckName = "HSK Level 6";
-                        if (deckId.toLowerCase() == 'default') displayDeckName = "General Vocabulary";
+                        if (deckId.toLowerCase() == 'hsk1') displayDeckName = l10n?.hskLevel1 ?? "HSK Level 1";
+                        if (deckId.toLowerCase() == 'hsk2') displayDeckName = l10n?.hskLevel2 ?? "HSK Level 2";
+                        if (deckId.toLowerCase() == 'hsk3') displayDeckName = l10n?.hskLevel3 ?? "HSK Level 3";
+                        if (deckId.toLowerCase() == 'hsk4') displayDeckName = l10n?.hskLevel4 ?? "HSK Level 4";
+                        if (deckId.toLowerCase() == 'hsk5') displayDeckName = l10n?.hskLevel5 ?? "HSK Level 5";
+                        if (deckId.toLowerCase() == 'hsk6') displayDeckName = l10n?.hskLevel6 ?? "HSK Level 6";
+                        if (deckId.toLowerCase() == 'default') displayDeckName = l10n?.generalVocabulary ?? "General Vocabulary";
                         
                         int readingDue = cards.where((c) => c.isDue(StudyMode.reading)).length;
                         int listeningDue = cards.where((c) => c.isDue(StudyMode.listening)).length;
@@ -408,7 +408,7 @@ class DashboardScreen extends ConsumerWidget {
                                           if (speakingDue > 0) _buildMiniStat(Icons.mic, speakingDue, theme),
                                           if (readingDue == 0 && listeningDue == 0 && recallDue == 0 && speakingDue == 0 && calligraphyDue == 0)
                                             Text(
-                                              "$totalDue cards require attention.",
+                                              "$totalDue ${l10n?.cardsRequireAttention ?? 'cards require attention.'}",
                                               style: theme.textTheme.bodyMedium?.copyWith(
                                                 color: theme.colorScheme.onPrimary.withValues(alpha: 0.8),
                                               ),
@@ -436,7 +436,7 @@ class DashboardScreen extends ConsumerWidget {
                                     padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                                   ),
-                                  child: const Text("Begin", style: TextStyle(fontWeight: FontWeight.bold)),
+                                  child: Text(l10n?.begin ?? "Begin", style: const TextStyle(fontWeight: FontWeight.bold)),
                                 ),
                               ],
                             ),

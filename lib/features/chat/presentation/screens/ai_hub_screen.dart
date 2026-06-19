@@ -23,7 +23,7 @@ class AiHubScreen extends ConsumerWidget {
         child: CustomScrollView(
           physics: const BouncingScrollPhysics(),
           slivers: [
-            const GlobalSliverAppBar(title: "AI Hub"),
+            GlobalSliverAppBar(title: l10n?.aiHubTitle ?? "AI Hub"),
             
             // Subtitle
             SliverToBoxAdapter(
@@ -85,8 +85,8 @@ class AiHubScreen extends ConsumerWidget {
                   ),
                   _buildGridCard(
                     context: context,
-                    title: "Text Chat",
-                    subtitle: "Scholarly Personas",
+                    title: l10n?.textChat ?? "Text Chat",
+                    subtitle: l10n?.scholarlyPersonas ?? "Scholarly Personas",
                     icon: Icons.chat_bubble_outline,
                     onTap: () {
                       Navigator.push(
@@ -97,8 +97,8 @@ class AiHubScreen extends ConsumerWidget {
                   ),
                   _buildGridCard(
                     context: context,
-                    title: "Shadowing",
-                    subtitle: "Live Translation",
+                    title: l10n?.shadowing ?? "Shadowing",
+                    subtitle: l10n?.liveTranslation ?? "Live Translation",
                     icon: Icons.translate,
                     onTap: () {
                       Navigator.push(

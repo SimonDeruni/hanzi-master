@@ -26,6 +26,7 @@ import 'package:hanzi_master/shared/widgets/clickable_chinese_text.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/dictionary_quick_box.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/radical_library_screen.dart';
 import 'package:hanzi_master/shared/widgets/global_sliver_app_bar.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
 
 import 'package:hanzi_master/features/flashcards/domain/entities/study_mode.dart';
 
@@ -61,12 +62,13 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
 
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
+    final l10n = AppLocalizations.of(context);
 
     return Scaffold(
       body: CalligraphyBackground(
         child: NestedScrollView(
           headerSliverBuilder: (context, innerBoxIsScrolled) => [
-            const GlobalSliverAppBar(title: "The Scholar's Library"),
+            GlobalSliverAppBar(title: l10n?.scholarsLibrary ?? "The Scholar's Library"),
             SliverPersistentHeader(
               pinned: true,
               delegate: _SearchBarDelegate(
@@ -86,7 +88,7 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
         heroTag: 'dictionary_add_fab',
         backgroundColor: Colors.purple,
         icon: const Icon(Icons.auto_awesome, color: Colors.white),
-        label: const Text("Generate", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+        label: Text(l10n?.generate ?? "Generate", style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
         onPressed: () => AiDeckGeneratorSheet.show(context),
       ),
     );
@@ -245,6 +247,7 @@ class _SearchBarDelegate extends SliverPersistentHeaderDelegate {
   @override
   Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
     final theme = Theme.of(context);
+    final l10n = AppLocalizations.of(context);
     
     return Container(
       color: Colors.transparent,
@@ -268,7 +271,7 @@ class _SearchBarDelegate extends SliverPersistentHeaderDelegate {
                 focusNode: focusNode,
                 style: theme.textTheme.bodyLarge,
                 decoration: InputDecoration(
-                  hintText: "Search Pinyin, Hanzi, or English...",
+                  hintText: l10n?.searchPinyinHanziEnglish ?? "Search Pinyin, Hanzi, or English...",
                   hintStyle: theme.textTheme.bodyMedium?.copyWith(color: theme.colorScheme.onSurface.withValues(alpha: 0.4)),
                   prefixIcon: const Icon(Icons.search, color: Colors.grey),
                   border: InputBorder.none,

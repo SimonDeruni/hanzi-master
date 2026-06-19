@@ -4,6 +4,7 @@ import 'package:hanzi_master/features/live_translate/presentation/screens/travel
 import 'package:hanzi_master/features/live_translate/presentation/screens/whisper_earpiece_screen.dart';
 import 'package:hanzi_master/features/live_translate/presentation/screens/translation_history_screen.dart';
 import 'package:hanzi_master/shared/widgets/global_sliver_app_bar.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
 
 class TranslationHubScreen extends StatelessWidget {
   const TranslationHubScreen({super.key});
@@ -12,6 +13,7 @@ class TranslationHubScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
+    final l10n = AppLocalizations.of(context);
     
     return Scaffold(
       body: CalligraphyBackground(
@@ -19,7 +21,7 @@ class TranslationHubScreen extends StatelessWidget {
           physics: const BouncingScrollPhysics(),
           slivers: [
             GlobalSliverAppBar(
-              title: "Live Translate",
+              title: l10n?.liveTranslate ?? "Live Translate",
               actions: [
                 IconButton(
                   icon: const Icon(Icons.history),
@@ -35,7 +37,7 @@ class TranslationHubScreen extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 8.0),
                 child: Text(
-                  "Powered by Gemini 3.5. Seamless real-time translation for any scenario.",
+                  l10n?.poweredByGemini ?? "Powered by Gemini 3.5. Seamless real-time translation for any scenario.",
                   style: theme.textTheme.titleMedium?.copyWith(
                     color: isDark ? Colors.white70 : const Color(0xFF1A1A1B).withValues(alpha: 0.7),
                     height: 1.4,
@@ -53,8 +55,8 @@ class TranslationHubScreen extends StatelessWidget {
                 delegate: SliverChildListDelegate([
                   _buildPremiumCard(
                     context: context,
-                    title: "Travel Interpreter",
-                    description: "Real-time split-screen conversation with a native speaker. Breaks down language barriers instantly.",
+                    title: l10n?.travelInterpreter ?? "Travel Interpreter",
+                    description: l10n?.realTimeSplitScreen ?? "Real-time split-screen conversation with a native speaker. Breaks down language barriers instantly.",
                     icon: Icons.people_alt,
                     gradient: const LinearGradient(
                       colors: [Color(0xFF2B5876), Color(0xFF4E4376)],
@@ -68,8 +70,8 @@ class TranslationHubScreen extends StatelessWidget {
                   const SizedBox(height: 24),
                   _buildPremiumCard(
                     context: context,
-                    title: "Whisper Earpiece",
-                    description: "Listen to Chinese audio and get real-time English subtitles directly on your screen.",
+                    title: l10n?.whisperEarpiece ?? "Whisper Earpiece",
+                    description: l10n?.listenToChineseAudio ?? "Listen to Chinese audio and get real-time English subtitles directly on your screen.",
                     icon: Icons.hearing,
                     gradient: const LinearGradient(
                       colors: [Color(0xFF8E2DE2), Color(0xFF4A00E0)],
