@@ -7,6 +7,7 @@ import 'package:hanzi_master/core/providers.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/word_detail_dialog.dart';
+import 'package:hanzi_master/core/services/review_service.dart';
 
 final storyProvider = FutureProvider.family<AiStory, ({String deckId, String deckName, String vocabString, bool force})>((ref, args) async {
   final gemini = ref.read(geminiServiceProvider);
@@ -48,6 +49,8 @@ class _StoryModeScreenState extends ConsumerState<StoryModeScreen> {
   @override
   void dispose() {
     _flutterTts.stop();
+    // Reaching or leaving the story screen counts as a successful story session
+    ref.read(reviewServiceProvider).registerSuccessfulSession();
     super.dispose();
   }
 

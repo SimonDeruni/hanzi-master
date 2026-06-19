@@ -9,6 +9,7 @@ import 'package:hanzi_master/features/flashcards/presentation/widgets/modes/read
 import 'package:hanzi_master/features/flashcards/presentation/widgets/modes/recall_mode.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/modes/listening_mode.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/modes/speaking_mode.dart';
+import 'package:hanzi_master/core/services/review_service.dart';
 
 class DeckReviewSessionScreen extends ConsumerStatefulWidget {
   final String deckId;
@@ -34,6 +35,14 @@ class _DeckReviewSessionScreenState extends ConsumerState<DeckReviewSessionScree
   void initState() {
     super.initState();
     _loadCards();
+  }
+
+  @override
+  void dispose() {
+    if (_currentIndex >= 15 || (_cardsToReview.isNotEmpty && _currentIndex >= _cardsToReview.length)) {
+      ref.read(reviewServiceProvider).registerSuccessfulSession();
+    }
+    super.dispose();
   }
 
   Future<void> _loadCards() async {

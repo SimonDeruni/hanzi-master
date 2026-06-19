@@ -5,6 +5,7 @@ import '../../../course/presentation/screens/tome_manager_screen.dart' as hanzi_
 import '../providers/settings_controller.dart';
 import 'package:hanzi_master/core/services/audio_service.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/features/settings/presentation/screens/contact_screen.dart';
 
 class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
@@ -174,6 +175,26 @@ class SettingsScreen extends ConsumerWidget {
                 trailing: const Icon(Icons.chevron_right, color: Colors.grey),
                 onTap: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => const hanzi_tome.TomeManagerScreen()));
+                },
+              ),
+            ],
+          ),
+          const SizedBox(height: 24),
+
+          _buildSectionHeader("Support & Feedback", theme),
+          _buildSettingsCard(
+            context: context,
+            children: [
+              ListTile(
+                leading: const CircleAvatar(
+                  backgroundColor: Color(0xFFE3F2FD),
+                  child: Icon(Icons.help_outline, color: Colors.blue),
+                ),
+                title: const Text("Contact Us", style: TextStyle(fontWeight: FontWeight.w600)),
+                subtitle: const Text("Report bugs or request features"),
+                trailing: const Icon(Icons.chevron_right, color: Colors.grey),
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const ContactScreen()));
                 },
               ),
             ],
