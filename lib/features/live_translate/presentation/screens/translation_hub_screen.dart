@@ -22,7 +22,6 @@ class TranslationHubScreen extends StatelessWidget {
           slivers: [
             GlobalSliverAppBar(
               title: l10n?.liveTranslate ?? "Live Translate",
-              subtitle: l10n?.poweredByAi ?? "Powered by advanced AI. Seamless real-time translation for any scenario.",
               actions: [
                 IconButton(
                   icon: const Icon(Icons.history),
