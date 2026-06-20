@@ -3,7 +3,7 @@ workflows:
     name: Build iOS (Unsigned App for Sideloadly)
     environment:
       flutter: stable
-      xcode: latest
+      xcode: 14.3.1
       cocoapods: default
     scripts:
       - name: Get Flutter packages
@@ -13,6 +13,11 @@ workflows:
         script: |
           echo "GEMINI_API_KEY=${GEMINI_API_KEY}" > .env
           echo "OPENROUTER_API_KEY=${OPENROUTER_API_KEY}" >> .env
+      - name: Disable all Xcode code signing
+        script: |
+          sed -i '' 's/DEVELOPMENT_TEAM = [A-Z0-9]*;/DEVELOPMENT_TEAM = "";/g' ios/Runner.xcodeproj/project.pbxproj
+          sed -i '' 's/ProvisioningStyle = Automatic;/ProvisioningStyle = Manual;/g' ios/Runner.xcodeproj/project.pbxproj
+          echo "DEVELOPMENT_TEAM cleared from project.pbxproj"
       - name: Install Pods
         script: |
           find . -name "Podfile" -execdir pod install \;
