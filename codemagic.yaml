@@ -1,0 +1,23 @@
+workflows:
+  ios-unsigned-build:
+    name: Build iOS (Unsigned App for Sideloadly)
+    environment:
+      flutter: stable
+      xcode: latest
+      cocoapods: default
+    scripts:
+      - name: Get Flutter packages
+        script: |
+          flutter pub get
+      - name: Install Pods
+        script: |
+          find . -name "Podfile" -execdir pod install \;
+      - name: Build unsigned iOS app
+        script: |
+          flutter build ios --release --no-codesign
+      - name: Package App for Download
+        script: |
+          cd build/ios/iphoneos
+          zip -r ../../../HanziMaster-Unsigned.zip Runner.app
+    artifacts:
+      - HanziMaster-Unsigned.zip
