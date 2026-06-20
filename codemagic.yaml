@@ -3,7 +3,7 @@ workflows:
     name: Build iOS (Unsigned App for Sideloadly)
     environment:
       flutter: stable
-      xcode: latest
+      xcode: 14.3.1
       cocoapods: default
     scripts:
       - name: Get Flutter packages
