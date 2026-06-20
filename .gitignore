@@ -37,8 +37,7 @@ Case_Study_*
 extract_pdf.py
 analysis_*.txt
 analyze_*.txt
-*.png
-*.jpg
+
 *.xlsx
 /image issues/
 /website/
