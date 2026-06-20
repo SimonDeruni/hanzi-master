@@ -33,27 +33,27 @@ jobs:
           cd ios
           pod install
           
-      - name: Build Unsigned App (Direct Xcodebuild)
+      - name: Build Unsigned Archive
         run: |
-          # We must use xcodebuild directly to force it to ignore all signing
-          xcodebuild build \
+          # Use "archive" instead of "build" to force Xcode 15 to ignore signing
+          xcodebuild clean archive \
             -workspace ios/Runner.xcworkspace \
             -scheme Runner \
             -configuration Release \
             -sdk iphoneos \
-            -derivedDataPath build/ios_build \
+            -archivePath build/unsigned.xcarchive \
             CODE_SIGNING_REQUIRED=NO \
             CODE_SIGNING_ALLOWED=NO \
             CODE_SIGN_ENTITLEMENTS="" \
             CODE_SIGN_IDENTITY="" \
-            DEVELOPMENT_TEAM="" || echo "xcodebuild finished (ignoring exit code)"
+            DEVELOPMENT_TEAM="" | tee xcodebuild.log || (echo "--- XCODEBUILD FAILED ---" && tail -n 150 xcodebuild.log && exit 1)
             
       - name: Package IPA for Sideloadly
         run: |
-          # Find the compiled app
-          APP_PATH=$(find build/ios_build -name "Runner.app" -type d | grep "Release-iphoneos" | head -n 1)
+          # Find the compiled app inside the archive
+          APP_PATH=$(find build/unsigned.xcarchive/Products/Applications -name "Runner.app" -type d | head -n 1)
           if [ -z "$APP_PATH" ]; then
-            echo "Runner.app not found! The compilation failed."
+            echo "Runner.app not found in archive! The compilation failed."
             exit 1
           fi
           
