@@ -241,9 +241,22 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
       currentStroke.insert(0, _userPoints[i]!);
     }
     if (currentStroke.length < 2) return;
+    
+    int realMedianIndex = widget.currentStrokeIndex;
+    int validCount = 0;
+    for (int i = 0; i < widget.strokePaths.length; i++) {
+      if (widget.strokePaths[i] != '__CHAR_SEPARATOR__') {
+        if (validCount == widget.currentStrokeIndex) {
+          realMedianIndex = i;
+          break;
+        }
+        validCount++;
+      }
+    }
+
     List<Offset> referenceMedian = [];
-    if (widget.medianPaths.isNotEmpty && widget.currentStrokeIndex < widget.medianPaths.length) {
-      referenceMedian = widget.medianPaths[widget.currentStrokeIndex];
+    if (widget.medianPaths.isNotEmpty && realMedianIndex < widget.medianPaths.length) {
+      referenceMedian = widget.medianPaths[realMedianIndex];
     }
     final result = StrokeMatcher.matchStroke(currentStroke, referenceMedian, masteryLevel: widget.masteryLevel, strictEndpoints: widget.strictGrading);
     
@@ -251,6 +264,7 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
     
     setState(() => _gradingResult = result.score * 100.0);
     if (result.isMatch) {
+      HapticsManager.success();
       final currentPoints = List<Offset?>.from(_userPoints);
       setState(() {
         _currentStrokeComplete = true;
@@ -266,6 +280,7 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
         }
       });
     } else {
+      HapticsManager.heavy();
       _shakeController.forward(from: 0);
       Future.delayed(const Duration(milliseconds: 300), () {
         if (mounted && !_currentStrokeComplete) {
@@ -373,6 +388,18 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
     final bool isDark = Theme.of(context).brightness == Brightness.dark;
     final strokeOffset = _getStrokeOffsetForCharacter(_activeCharIndex);
     
+    int realMedianIndex = widget.currentStrokeIndex;
+    int validCount = 0;
+    for (int i = 0; i < widget.strokePaths.length; i++) {
+      if (widget.strokePaths[i] != '__CHAR_SEPARATOR__') {
+        if (validCount == widget.currentStrokeIndex) {
+          realMedianIndex = i;
+          break;
+        }
+        validCount++;
+      }
+    }
+
     final centeringShift = _getCenteringShift(_cachedParsedPaths);
     final localCurrentIndex = widget.currentStrokeIndex - strokeOffset;
 
@@ -435,7 +462,7 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
                           builder: (context, child) => CustomPaint(
                             painter: _HintStrokePainter(
                               path: _cachedParsedPaths[localCurrentIndex.clamp(0, _cachedParsedPaths.length - 1)],
-                              points: (widget.medianPaths.isNotEmpty && widget.currentStrokeIndex < widget.medianPaths.length) ? widget.medianPaths[widget.currentStrokeIndex] : null,
+                              points: (widget.medianPaths.isNotEmpty && realMedianIndex < widget.medianPaths.length) ? widget.medianPaths[realMedianIndex] : null,
                               progress: _hintController.value,
                               centeringShift: centeringShift,
                             ),
