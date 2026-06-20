@@ -1,0 +1,15 @@
+{
+  "project": "hanzi_master",
+  "platform": "ios",
+  "github": {
+    "owner": "SimonDeruni",
+    "repo": "hanzi-ios"
+  },
+  "ios": {},
+  "flutter": {
+    "version": "3.38.7",
+    "watch": {}
+  },
+  "reactNative": {},
+  "mobai": {}
+}
