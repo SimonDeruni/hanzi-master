@@ -226,7 +226,7 @@ Make sure every single character in the 'chinese' sentence is represented in the
 
 void main() async {
   // Try to find the API key from environment or local .env
-  final apiKey = Platform.environment['OPENROUTER_API_KEY'] ?? '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';
+  final apiKey = Platform.environment['OPENROUTER_API_KEY'] ?? 'YOUR_OPENROUTER_KEY';
   if (apiKey.isEmpty) {
     print('Please provide an OPENROUTER_API_KEY environment variable.');
     exit(1);
