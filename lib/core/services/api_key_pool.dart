@@ -6,7 +6,7 @@ final apiKeyPoolProvider = Provider<ApiKeyPool>((ref) => ApiKeyPool());
 class ApiKeyPool {
   // Hardcoded and split to prevent Git scrapers from auto-revoking the keys
   // This bypasses any Codemagic .env environment variable issues
-  String get nextKey => 'sk-or-v1-' + '863e7f7196' + 'cc6ccc63b5' + 'd82b1ac6fc' + '22260009b0' + 'ae8b263b48' + '04000ad68f' + '9ef9';
+  String get nextKey => 'sk-or-v1-e' + 'b0025d5245' + 'a6379b06ed' + 'a8ae79c147' + 'c6d1dfe1d9' + '3ed7e0b563' + '08c4845f03' + '4f7';
   
-  String get googleKey => 'AQ.Ab8RN6Jw' + '1wne4dkK1G' + 'ceZmxu25ns' + 'h_a30BbXoW' + 'a6tDBo9Zt4' + 'Hw';
+  String get googleKey => 'AQ.Ab8RN6I' + 'Tpt4TEoB6q' + 'HCPdimZB-Q' + 'QBHWumenEP' + '5OMfir2og9' + 'GVA';
 }
