@@ -27,7 +27,11 @@ import 'package:hanzi_master/l10n/app_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await dotenv.load(fileName: ".env");
+  try {
+    await dotenv.load(fileName: ".env");
+  } catch (e) {
+    debugPrint("No .env file found, relying on ApiKeyPool fallback");
+  }
 
   // 0. Hardened Zen & Ink System UI
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
