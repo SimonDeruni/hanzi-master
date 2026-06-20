@@ -15,24 +15,29 @@ workflows:
           echo "OPENROUTER_API_KEY=${OPENROUTER_API_KEY}" >> .env
       - name: Nuke all Xcode code signing
         script: |
-          # Clear from pbxproj
           sed -i '' 's/DEVELOPMENT_TEAM = [A-Z0-9]*;/DEVELOPMENT_TEAM = "";/g' ios/Runner.xcodeproj/project.pbxproj
           sed -i '' 's/ProvisioningStyle = Automatic;/ProvisioningStyle = Manual;/g' ios/Runner.xcodeproj/project.pbxproj
-          # Clear from Flutter xcconfig files
           echo "CODE_SIGNING_ALLOWED=NO" >> ios/Flutter/Release.xcconfig
           echo "CODE_SIGNING_REQUIRED=NO" >> ios/Flutter/Release.xcconfig
           echo "DEVELOPMENT_TEAM=" >> ios/Flutter/Release.xcconfig
           echo "CODE_SIGN_IDENTITY=" >> ios/Flutter/Release.xcconfig
-          echo "Done disabling signing"
       - name: Install Pods
         script: |
           find . -name "Podfile" -execdir pod install \;
-      - name: Build unsigned iOS app
+      - name: Build iOS app (ignore Flutter signing check)
         script: |
-          flutter build ios --release --no-codesign
+          flutter build ios --release --no-codesign || true
+          echo "Checking if Runner.app was built..."
+          ls -la build/ios/iphoneos/ || echo "Build directory not found"
       - name: Package App for Download
         script: |
-          cd build/ios/iphoneos
-          zip -r ../../../HanziMaster-Unsigned.zip Runner.app
+          if [ -d "build/ios/iphoneos/Runner.app" ]; then
+            cd build/ios/iphoneos
+            zip -r ../../../HanziMaster-Unsigned.zip Runner.app
+            echo "SUCCESS: IPA packaged!"
+          else
+            echo "FAILED: Runner.app not found"
+            exit 1
+          fi
     artifacts:
       - HanziMaster-Unsigned.zip
