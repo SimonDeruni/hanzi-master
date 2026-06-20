@@ -24,19 +24,23 @@ workflows:
       - name: Install Pods
         script: |
           find . -name "Podfile" -execdir pod install \;
-      - name: Build iOS app (ignore Flutter signing check)
+      - name: Build iOS app
         script: |
+          export FLUTTER_DISABLE_SWIFT_PACKAGE_MANAGER=true
           flutter build ios --release --no-codesign || true
-          echo "Checking if Runner.app was built..."
-          ls -la build/ios/iphoneos/ || echo "Build directory not found"
+          echo "=== Searching for Runner.app ==="
+          find . -name "Runner.app" -type d 2>/dev/null || echo "Not found anywhere"
+          echo "=== Build directory ==="
+          ls -la build/ios/ 2>/dev/null || echo "No build/ios directory"
       - name: Package App for Download
         script: |
-          if [ -d "build/ios/iphoneos/Runner.app" ]; then
-            cd build/ios/iphoneos
-            zip -r ../../../HanziMaster-Unsigned.zip Runner.app
+          APP_PATH=$(find . -name "Runner.app" -type d 2>/dev/null | head -1)
+          if [ -n "$APP_PATH" ]; then
+            echo "Found Runner.app at: $APP_PATH"
+            zip -r HanziMaster-Unsigned.zip "$APP_PATH"
             echo "SUCCESS: IPA packaged!"
           else
-            echo "FAILED: Runner.app not found"
+            echo "FAILED: Runner.app not found anywhere"
             exit 1
           fi
     artifacts:
