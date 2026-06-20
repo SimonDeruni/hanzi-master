@@ -51,11 +51,11 @@ workflows:
           if [ -n "$APP_PATH" ]; then
             mkdir -p Payload
             cp -r "$APP_PATH" Payload/Runner.app
-            zip -r HanziMaster-Unsigned.zip Payload
+            zip -r HanziMaster-Unsigned.ipa Payload
             echo "SUCCESS: Packaged!"
           else
             echo "FAILED: Runner.app not found"
             exit 1
           fi
     artifacts:
-      - HanziMaster-Unsigned.zip
+      - HanziMaster-Unsigned.ipa
