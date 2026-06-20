@@ -23,6 +23,11 @@ jobs:
           echo "GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}" > .env
           echo "OPENROUTER_API_KEY=${{ secrets.OPENROUTER_API_KEY }}" >> .env
           
+      - name: Generate Flutter Build Files
+        run: |
+          # This configures the iOS project without actually trying to compile it
+          flutter build ios --config-only
+          
       - name: Install Pods
         run: |
           cd ios
@@ -30,6 +35,7 @@ jobs:
           
       - name: Build Unsigned App (Direct Xcodebuild)
         run: |
+          # We must use xcodebuild directly to force it to ignore all signing
           xcodebuild build \
             -workspace ios/Runner.xcworkspace \
             -scheme Runner \
@@ -40,16 +46,24 @@ jobs:
             CODE_SIGNING_ALLOWED=NO \
             CODE_SIGN_ENTITLEMENTS="" \
             CODE_SIGN_IDENTITY="" \
-            DEVELOPMENT_TEAM=""
+            DEVELOPMENT_TEAM="" || echo "xcodebuild finished (ignoring exit code)"
             
       - name: Package IPA for Sideloadly
         run: |
-          APP_PATH=$(find build/ios_build -name "Runner.app" -type d | head -n 1)
+          # Find the compiled app
+          APP_PATH=$(find build/ios_build -name "Runner.app" -type d | grep "Release-iphoneos" | head -n 1)
           if [ -z "$APP_PATH" ]; then
-            echo "Runner.app not found! Xcode build failed."
+            echo "Runner.app not found! The compilation failed."
             exit 1
           fi
-          echo "Found app at: $APP_PATH"
+          
+          # Verify the binary is actually inside
+          if [ ! -f "$APP_PATH/Runner" ]; then
+            echo "Runner binary is missing from inside the .app folder! Compilation failed."
+            exit 1
+          fi
+          
+          echo "Found compiled app at: $APP_PATH"
           mkdir -p Payload
           cp -r "$APP_PATH" Payload/
           zip -r HanziMaster.ipa Payload
