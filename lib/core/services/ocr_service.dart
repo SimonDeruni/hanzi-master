@@ -1,29 +1,45 @@
+import 'dart:io';
 import 'package:flutter/foundation.dart';
-import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:google_generative_ai/google_generative_ai.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class OcrService {
-  final TextRecognizer _textRecognizer = TextRecognizer(script: TextRecognitionScript.chinese);
   final ImagePicker _picker = ImagePicker();
 
-  /// Prompts the user to pick an image or take a photo, then extracts Chinese text.
+  /// Prompts the user to pick an image or take a photo, then extracts Chinese text using Gemini.
   Future<String?> scanImage({bool fromCamera = false}) async {
     try {
       final XFile? image = await _picker.pickImage(
         source: fromCamera ? ImageSource.camera : ImageSource.gallery,
-        maxWidth: 2000, // Optimize for performance while keeping detail
+        maxWidth: 2000, 
         maxHeight: 2000,
       );
 
       if (image == null) return null; // User canceled
 
-      final inputImage = InputImage.fromFilePath(image.path);
-      final RecognizedText recognizedText = await _textRecognizer.processImage(inputImage);
-      
-      // Filter the recognized text to only keep Chinese characters
-      return _extractChineseCharacters(recognizedText.text);
+      final apiKey = dotenv.env['GEMINI_API_KEY'];
+      if (apiKey == null || apiKey.isEmpty) {
+        debugPrint("OCR Error: Gemini API key is missing.");
+        return null;
+      }
+
+      final model = GenerativeModel(
+        model: 'gemini-1.5-flash',
+        apiKey: apiKey,
+      );
+
+      final imageBytes = await File(image.path).readAsBytes();
+      final prompt = TextPart('Extract all Chinese characters from this image. Preserve sentences. Ignore non-Chinese text. Output ONLY the extracted Chinese text without any conversational formatting.');
+      final imagePart = DataPart('image/jpeg', imageBytes);
+
+      final response = await model.generateContent([
+        Content.multi([prompt, imagePart])
+      ]);
+
+      return _extractChineseCharacters(response.text ?? "");
     } catch (e) {
-      debugPrint("OCR Error: $e");
+      debugPrint("OCR Error (Gemini): $e");
       return null;
     }
   }
@@ -39,6 +55,6 @@ class OcrService {
   }
 
   void dispose() {
-    _textRecognizer.close();
+    // No-op for Gemini
   }
 }
