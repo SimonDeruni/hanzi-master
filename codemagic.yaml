@@ -9,6 +9,10 @@ workflows:
       - name: Get Flutter packages
         script: |
           flutter pub get
+      - name: Create .env file
+        script: |
+          echo "GEMINI_API_KEY=${GEMINI_API_KEY}" > .env
+          echo "OPENROUTER_API_KEY=${OPENROUTER_API_KEY}" >> .env
       - name: Install Pods
         script: |
           find . -name "Podfile" -execdir pod install \;
