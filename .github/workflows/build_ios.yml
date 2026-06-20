@@ -26,7 +26,7 @@ jobs:
           cache: true
 
       - name: Create .env file
-        run: echo "GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}" > .env
+        run: |`n          echo "GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}" > .env`n          echo "OPENROUTER_API_KEY=${{ secrets.OPENROUTER_API_KEY }}" >> .env
 
       - name: Install Flutter dependencies
         run: flutter pub get
