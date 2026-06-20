@@ -145,7 +145,7 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
       // 1. Setup Phase - Updated for June 2026 stable models
       final setupMessage = jsonEncode({
         "setup": {
-          "model": "models/gemini-3.1-flash-live-preview",
+          "model": "models/gemini-2.0-flash-exp",
           "generationConfig": {
              "responseModalities": ["AUDIO"],
              "speechConfig": {
