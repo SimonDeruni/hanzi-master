@@ -301,6 +301,47 @@ class _RecallModeWidgetState extends ConsumerState<RecallModeWidget> {
                 textAlign: TextAlign.center,
               ),
             ),
+            if (widget.card.sourceSentence != null && widget.card.sourceSentence!.isNotEmpty) ...[
+              const SizedBox(height: 24),
+              Container(
+                margin: const EdgeInsets.symmetric(horizontal: 24),
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: isDark ? Colors.blueAccent.withValues(alpha: 0.1) : Colors.blue.shade50,
+                  borderRadius: BorderRadius.circular(16),
+                  border: Border.all(color: isDark ? Colors.blueAccent.withValues(alpha: 0.2) : Colors.blue.shade100),
+                ),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.menu_book, size: 14, color: isDark ? Colors.blueAccent.shade100 : Colors.blue.shade700),
+                        const SizedBox(width: 8),
+                        Text(
+                          "Context Clue",
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                            color: isDark ? Colors.blueAccent.shade100 : Colors.blue.shade700,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      widget.card.sourceSentence!.replaceAll(widget.card.hanzi, '___'),
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontStyle: FontStyle.italic,
+                        color: isDark ? Colors.white70 : Colors.black87,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
+              ),
+            ],
             const SizedBox(height: 48),
             Text(
               AppLocalizations.of(context)!.tapToReveal,

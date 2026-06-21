@@ -24,6 +24,7 @@
 - [x] **Task 12: Reading Room Modalities**: Added anchored Audio Player, inline translation, and 3-mode Pinyin (All/Ghost/None).
 - [x] **Task 13: Flashcard Swipe & Haptics**: Added Tinder-style swipe gestures and haptic feedback.
 - [x] **Task 14: Latency Caching**: Implemented Hive caching for AI Etymology queries.
+- [x] **Task 15: Unified Graph Architecture (Phase 1)**: Integrated micro-nodes by adding context clues (`sourceSentence`) to `Flashcard` schema, adding a Micro-Calligraphy Canvas directly into `WordDetailDialog`, and passing context into Recall Mode to eliminate content silos.
 
 #### 🔜 Up Next (Possible)
 - [ ] **Phase 9: Sound FX**: Add subtle "paper scratching" audio during drawing.

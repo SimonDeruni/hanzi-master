@@ -40,13 +40,15 @@ class FlashcardModelAdapter extends TypeAdapter<FlashcardModel> {
       recallStats: fields[20] as ReviewStatsModel?,
       speakingStats: fields[21] as ReviewStatsModel?,
       listeningStats: fields[22] as ReviewStatsModel?,
+      sourceSentence: fields[23] as String?,
+      sourceContext: fields[24] as String?,
     );
   }
 
   @override
   void write(BinaryWriter writer, FlashcardModel obj) {
     writer
-      ..writeByte(23)
+      ..writeByte(25)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -92,7 +94,11 @@ class FlashcardModelAdapter extends TypeAdapter<FlashcardModel> {
       ..writeByte(21)
       ..write(obj.speakingStats)
       ..writeByte(22)
-      ..write(obj.listeningStats);
+      ..write(obj.listeningStats)
+      ..writeByte(23)
+      ..write(obj.sourceSentence)
+      ..writeByte(24)
+      ..write(obj.sourceContext);
   }
 
   @override

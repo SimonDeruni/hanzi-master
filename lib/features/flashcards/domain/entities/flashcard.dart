@@ -20,6 +20,10 @@ class Flashcard extends Equatable {
   // --- Global Metadata ---
   final int inkPoints; // 🖌️ XP System
 
+  // --- Context Nodes ---
+  final String? sourceSentence;
+  final String? sourceContext;
+
   const Flashcard({
     required this.id,
     this.deckId = 'default',
@@ -32,12 +36,14 @@ class Flashcard extends Equatable {
     this.isFlipped = false,
     required this.modeStats,
     this.inkPoints = 0,
+    this.sourceSentence,
+    this.sourceContext,
   });
 
   @override
   List<Object?> get props => [
     id, deckId, hanzi, pinyin, definition, hskLevel, strokePaths, medianPaths, 
-    isFlipped, modeStats, inkPoints
+    isFlipped, modeStats, inkPoints, sourceSentence, sourceContext
   ];
 
   // --- Helpers for UI ---
@@ -114,6 +120,8 @@ class Flashcard extends Equatable {
     bool? isFlipped,
     Map<StudyMode, ReviewStats>? modeStats,
     int? inkPoints,
+    String? sourceSentence,
+    String? sourceContext,
   }) {
     return Flashcard(
       id: id ?? this.id,
@@ -127,6 +135,8 @@ class Flashcard extends Equatable {
       isFlipped: isFlipped ?? this.isFlipped,
       modeStats: modeStats ?? this.modeStats,
       inkPoints: inkPoints ?? this.inkPoints,
+      sourceSentence: sourceSentence ?? this.sourceSentence,
+      sourceContext: sourceContext ?? this.sourceContext,
     );
   }
 }

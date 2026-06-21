@@ -3,13 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
-import 'package:hanzi_master/features/flashcards/domain/entities/deck.dart';
 import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
 import 'package:hanzi_master/core/providers.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
+import 'package:hanzi_master/features/flashcards/presentation/widgets/drawing_canvas.dart';
+import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
+import 'dart:ui' as ui;
 import 'ai_explainer_sheet.dart';
 
-class WordDetailDialog extends ConsumerWidget {
+class WordDetailDialog extends ConsumerStatefulWidget {
   final AiWord word;
   final AiSentence sentence;
 
@@ -22,31 +24,68 @@ class WordDetailDialog extends ConsumerWidget {
     );
   }
 
-  void _addToDeck(BuildContext context, WidgetRef ref) async {
-    final char = word.hanzi.characters.first;
-    final repo = ref.read(globalDictionaryRepositoryProvider);
-    final flashcards = ref.read(flashcardControllerProvider).valueOrNull ?? [];
-    
-    if (flashcards.any((c) => c.hanzi == char)) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(AppLocalizations.of(context)!.alreadyInYourLibrary)),
-      );
-      return;
-    }
+  @override
+  ConsumerState<WordDetailDialog> createState() => _WordDetailDialogState();
+}
 
-    Flashcard? card = await repo.getExact(char);
-    if (card != null) {
-      await ref.read(flashcardControllerProvider.notifier).addFlashcard(card);
-      if (context.mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text("Added $char to Library")),
-        );
-      }
+class _WordDetailDialogState extends ConsumerState<WordDetailDialog> {
+  final ValueNotifier<List<ui.Offset?>> _scratchpadNotifier = ValueNotifier([]);
+  Flashcard? _flashcard;
+  bool _isLoadingCard = true;
+  bool _isSaved = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadFlashcard();
+  }
+
+  @override
+  void dispose() {
+    _scratchpadNotifier.dispose();
+    super.dispose();
+  }
+
+  Future<void> _loadFlashcard() async {
+    final char = widget.word.hanzi.characters.first;
+    final repo = ref.read(globalDictionaryRepositoryProvider);
+    final card = await repo.getExact(char);
+    
+    final flashcards = ref.read(flashcardControllerProvider).valueOrNull ?? [];
+    final saved = flashcards.any((c) => c.hanzi == char);
+
+    if (mounted) {
+      setState(() {
+        _flashcard = card;
+        _isLoadingCard = false;
+        _isSaved = saved;
+      });
+    }
+  }
+
+  void _addToDeck() async {
+    if (_isSaved || _flashcard == null) return;
+
+    final char = widget.word.hanzi.characters.first;
+    
+    // Inject contextual node data
+    final cardWithContext = _flashcard!.copyWith(
+      sourceSentence: widget.sentence.chinese,
+      sourceContext: "Reading Room",
+    );
+    
+    await ref.read(flashcardControllerProvider.notifier).addFlashcard(cardWithContext);
+    
+    if (mounted) {
+      setState(() => _isSaved = true);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Added $char to Review Queue")),
+      );
     }
   }
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Dialog(
@@ -59,107 +98,148 @@ class WordDetailDialog extends ConsumerWidget {
           borderRadius: BorderRadius.circular(24),
           border: Border.all(color: isDark ? Colors.white12 : Colors.black12),
         ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        word.hanzi,
-                        style: TextStyle(
-                          fontFamily: 'NotoSerifSC',
-                          fontSize: 48,
-                          fontWeight: FontWeight.bold,
-                          color: isDark ? Colors.white : Colors.black87,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          widget.word.hanzi,
+                          style: TextStyle(
+                            fontFamily: 'NotoSerifSC',
+                            fontSize: 48,
+                            fontWeight: FontWeight.bold,
+                            color: isDark ? Colors.white : Colors.black87,
+                          ),
                         ),
-                      ),
-                      Text(
-                        word.pinyin,
-                        style: const TextStyle(
-                          fontSize: 20,
-                          color: Colors.blueAccent,
-                          fontWeight: FontWeight.w500,
+                        Text(
+                          widget.word.pinyin,
+                          style: const TextStyle(
+                            fontSize: 20,
+                            color: Colors.blueAccent,
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-                IconButton(
-                  icon: const Icon(Icons.close),
-                  onPressed: () => Navigator.pop(context),
-                ),
-              ],
-            ),
-            const SizedBox(height: 24),
-            Text(
-              AppLocalizations.of(context)!.meaningInContext,
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-                color: isDark ? Colors.white54 : Colors.black54,
+                  IconButton(
+                    icon: const Icon(Icons.close),
+                    onPressed: () => Navigator.pop(context),
+                  ),
+                ],
               ),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              word.meaning,
-              style: TextStyle(
-                fontSize: 18,
-                color: isDark ? Colors.white : Colors.black87,
-              ),
-            ),
-            const SizedBox(height: 24),
-            const Divider(),
-            const SizedBox(height: 8),
-            Row(
-              children: [
-                Expanded(
-                  child: BouncingButton(
-                    onPressed: () {
-                      final navContext = Navigator.of(context).context;
-                      Navigator.pop(context);
-                      AiExplainerSheet.show(navContext, word, sentence);
-                    },
-                    child: OutlinedButton.icon(
-                      icon: const Icon(Icons.auto_awesome),
-                      label: FittedBox(fit: BoxFit.scaleDown, child: Text(AppLocalizations.of(context)!.explainGrammar)),
-                      style: OutlinedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(vertical: 12),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+              const SizedBox(height: 16),
+              
+              // Unified Graph Node: Micro Calligraphy Canvas
+              if (_isLoadingCard)
+                const SizedBox(
+                  height: 180,
+                  child: Center(child: CircularProgressIndicator()),
+                )
+              else if (_flashcard != null && _flashcard!.strokePaths.isNotEmpty)
+                Center(
+                  child: SizedBox(
+                    height: 180,
+                    width: 180,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(16),
+                        border: Border.all(color: isDark ? Colors.white12 : Colors.black12, width: 1),
+                        boxShadow: [
+                          if (!isDark)
+                            BoxShadow(color: Colors.black.withAlpha(12), blurRadius: 10, offset: const Offset(0, 4)),
+                        ],
                       ),
-                      onPressed: null,
+                      clipBehavior: Clip.antiAlias,
+                      child: CalligraphyBackground(
+                        child: DrawingCanvas(
+                          strokePaths: _flashcard!.strokePaths,
+                          medianPaths: _flashcard!.medianPaths,
+                          showAnimation: false,
+                          readOnly: false,
+                          showControls: true,
+                          showGrade: false,
+                          showGuideLines: true,
+                          userPointsNotifier: _scratchpadNotifier,
+                        ),
+                      ),
                     ),
                   ),
                 ),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: BouncingButton(
-                    onPressed: () => _addToDeck(context, ref),
-                    child: ElevatedButton.icon(
-                      icon: const Icon(Icons.add_box),
-                      label: FittedBox(fit: BoxFit.scaleDown, child: Text(AppLocalizations.of(context)!.addToLibrary)),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blueAccent,
-                        foregroundColor: Colors.white,
-                        padding: const EdgeInsets.symmetric(vertical: 12),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                        elevation: 0,
-                        disabledBackgroundColor: Colors.blueAccent, // keep color when disabled by BouncingButton
-                        disabledForegroundColor: Colors.white,
+                
+              const SizedBox(height: 24),
+              Text(
+                AppLocalizations.of(context)!.meaningInContext,
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                  color: isDark ? Colors.white54 : Colors.black54,
+                ),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                widget.word.meaning,
+                style: TextStyle(
+                  fontSize: 18,
+                  color: isDark ? Colors.white : Colors.black87,
+                ),
+              ),
+              const SizedBox(height: 24),
+              const Divider(),
+              const SizedBox(height: 8),
+              Row(
+                children: [
+                  Expanded(
+                    child: BouncingButton(
+                      onPressed: () {
+                        final navContext = Navigator.of(context).context;
+                        Navigator.pop(context);
+                        AiExplainerSheet.show(navContext, widget.word, widget.sentence);
+                      },
+                      child: OutlinedButton.icon(
+                        icon: const Icon(Icons.auto_awesome),
+                        label: FittedBox(fit: BoxFit.scaleDown, child: Text(AppLocalizations.of(context)!.explainGrammar)),
+                        style: OutlinedButton.styleFrom(
+                          padding: const EdgeInsets.symmetric(vertical: 12),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                        ),
+                        onPressed: null,
                       ),
-                      onPressed: null,
                     ),
                   ),
-                ),
-              ],
-            ),
-          ],
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: BouncingButton(
+                      onPressed: (_isSaved || _flashcard == null) ? null : _addToDeck,
+                      child: ElevatedButton.icon(
+                        icon: Icon(_isSaved ? Icons.check_circle : Icons.add_box),
+                        label: FittedBox(fit: BoxFit.scaleDown, child: Text(_isSaved ? "In Queue" : AppLocalizations.of(context)!.addToLibrary)),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: _isSaved ? Colors.green : Colors.blueAccent,
+                          foregroundColor: Colors.white,
+                          padding: const EdgeInsets.symmetric(vertical: 12),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                          elevation: 0,
+                          disabledBackgroundColor: _isSaved ? Colors.green : Colors.grey.shade400,
+                          disabledForegroundColor: Colors.white,
+                        ),
+                        onPressed: null,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -219,6 +219,8 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> {
       });
       setState(() => _isLive = true);
     }
+  }
+
   Future<void> _stopAudioStreaming() async {
     await _audioSubscription?.cancel();
     await _audioRecorder.stop();

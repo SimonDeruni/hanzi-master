@@ -80,6 +80,12 @@ class FlashcardModel extends HiveObject {
   @HiveField(22)
   final ReviewStatsModel? listeningStats;
 
+  @HiveField(23)
+  final String? sourceSentence;
+
+  @HiveField(24)
+  final String? sourceContext;
+
   FlashcardModel({
     required this.id,
     this.deckId = 'default',
@@ -104,6 +110,8 @@ class FlashcardModel extends HiveObject {
     this.recallStats,
     this.speakingStats,
     this.listeningStats,
+    this.sourceSentence,
+    this.sourceContext,
   });
 
   Flashcard toEntity() {
@@ -139,6 +147,8 @@ class FlashcardModel extends HiveObject {
       isFlipped: isFlipped ?? false,
       modeStats: _buildModeStats(),
       inkPoints: inkPoints ?? 0,
+      sourceSentence: sourceSentence,
+      sourceContext: sourceContext,
     );
   }
 
@@ -210,6 +220,8 @@ class FlashcardModel extends HiveObject {
           ? ReviewStatsModel.fromEntity(flashcard.modeStats[StudyMode.speaking]!) : null,
       listeningStats: flashcard.modeStats.containsKey(StudyMode.listening) 
           ? ReviewStatsModel.fromEntity(flashcard.modeStats[StudyMode.listening]!) : null,
+      sourceSentence: flashcard.sourceSentence,
+      sourceContext: flashcard.sourceContext,
     );
   }
 

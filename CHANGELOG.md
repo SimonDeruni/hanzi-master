@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 ### Added
+- **Unified Graph Architecture (Phase 1)**:
+    - Added `sourceSentence` and `sourceContext` to Flashcard entities to maintain origin context from Reading/Story modes.
+    - Upgraded `WordDetailDialog` to include an interactive Micro-Calligraphy scratchpad, eliminating the need to navigate away to practice.
+    - Updated `RecallModeWidget` to display the origin sentence as a context clue with the target character blanked out.
 - **UI/UX Polish**:
     - Redesigned `TravelInterpreterScreen` layout for improved 180-degree split-screen visibility and dynamic state backgrounds.
     - Revamped `ShadowingStudioScreen` with an audio-first, mimicry-focused interface via `PageView`.
