@@ -365,7 +365,7 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                 quarterTurns: 2,
                 child: AnimatedContainer(
                   duration: const Duration(milliseconds: 300),
-                  color: _isRecording ? Colors.red.withValues(alpha: 0.1) : Colors.grey.shade900,
+                  color: _isRecording ? const Color(0xFF2A1515) : const Color(0xFF1A1A1A),
                   width: double.infinity,
                   padding: const EdgeInsets.all(24),
                   child: Column(
@@ -394,11 +394,19 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                             final msg = _transcript[_transcript.length - 1 - index];
                             return Padding(
                               padding: const EdgeInsets.symmetric(vertical: 8.0),
-                              child: Text(
-                                msg.text,
-                                style: TextStyle(
-                                  color: msg.isUser ? Colors.blueAccent : Colors.white,
-                                  fontSize: 24,
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                                decoration: BoxDecoration(
+                                  color: msg.isUser ? Colors.blue.withValues(alpha: 0.1) : Colors.grey.withValues(alpha: 0.1),
+                                  borderRadius: BorderRadius.circular(16),
+                                  border: Border.all(color: msg.isUser ? Colors.blue.withValues(alpha: 0.3) : Colors.grey.withValues(alpha: 0.2)),
+                                ),
+                                child: Text(
+                                  msg.text,
+                                  style: TextStyle(
+                                    color: msg.isUser ? Colors.blue.shade200 : Colors.white,
+                                    fontSize: 24,
+                                  ),
                                 ),
                               ),
                             );
@@ -425,7 +433,7 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                       Text(
                         _isRecording ? "REC" : "Incognito",
                         style: TextStyle(
-                          color: _isRecording ? Colors.redAccent : Colors.grey,
+                          color: _isRecording ? Colors.redAccent : Colors.white54,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -444,7 +452,7 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
             Expanded(
               child: AnimatedContainer(
                 duration: const Duration(milliseconds: 300),
-                color: _isRecording ? Colors.red.withValues(alpha: 0.1) : Colors.black,
+                color: _isRecording ? const Color(0xFF2A1515) : const Color(0xFF121212),
                 width: double.infinity,
                 padding: const EdgeInsets.all(24),
                 child: Column(
@@ -492,15 +500,23 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                           final msg = _transcript[_transcript.length - 1 - index];
                           return Padding(
                             padding: const EdgeInsets.symmetric(vertical: 8.0),
-                            child: msg.isUser 
-                              ? Text(
-                                  msg.text,
-                                  style: const TextStyle(color: Colors.white, fontSize: 24),
-                                )
-                              : TappableMarkdownHanziText(
-                                  msg.text,
-                                  style: const TextStyle(color: Colors.blueAccent, fontSize: 24),
-                                ),
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                              decoration: BoxDecoration(
+                                color: msg.isUser ? Colors.grey.withValues(alpha: 0.1) : Colors.blue.withValues(alpha: 0.1),
+                                borderRadius: BorderRadius.circular(16),
+                                border: Border.all(color: msg.isUser ? Colors.grey.withValues(alpha: 0.2) : Colors.blue.withValues(alpha: 0.3)),
+                              ),
+                              child: msg.isUser 
+                                ? Text(
+                                    msg.text,
+                                    style: const TextStyle(color: Colors.white, fontSize: 24),
+                                  )
+                                : TappableMarkdownHanziText(
+                                    msg.text,
+                                    style: TextStyle(color: Colors.blue.shade200, fontSize: 24),
+                                  ),
+                            ),
                           );
                         },
                       ),

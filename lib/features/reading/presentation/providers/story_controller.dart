@@ -276,10 +276,33 @@ class StoryController extends StateNotifier<StoryState> {
     await repository.saveCustomBlueprint(blueprint);
     state = state.copyWith(blueprints: [...state.blueprints, blueprint]);
 
-    // Now generate and load (fire and forget)
-    loadOrGenerateStory(blueprint, hskLevel);
+    // We no longer automatically call loadOrGenerateStory.
+    // StoryReaderScreen will handle streaming and parsing for custom blueprints.
     
     return blueprint;
+  }
+
+  Future<void> parseAndSaveCustomStory(StoryBlueprint blueprint, String rawChineseText, int hskLevel) async {
+    try {
+      state = state.copyWith(isLoading: true, error: null);
+      
+      final aiStory = await geminiService.parseRawStoryToAiStory(rawChineseText, hskLevel);
+      
+      final newStory = GradedStory(
+        id: '${blueprint.id}_hsk$hskLevel',
+        title: blueprint.title,
+        category: blueprint.category,
+        hskLevel: hskLevel,
+        sentences: aiStory.sentences,
+        generatedAt: DateTime.now(),
+      );
+
+      await repository.saveStory(newStory);
+
+      state = state.copyWith(isLoading: false, currentStory: newStory);
+    } catch (e) {
+      state = state.copyWith(isLoading: false, error: e.toString());
+    }
   }
 
   Future<StoryBlueprint> generateSimplifiedStory(String sourceText, int hskLevel) async {

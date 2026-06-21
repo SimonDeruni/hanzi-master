@@ -66,6 +66,10 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
   bool _showHeatmap = true;
   bool _pinyinRevealed = false;
 
+  double _swipeDx = 0.0;
+  double _swipeDy = 0.0;
+  bool _isSwiping = false;
+
   @override
   void initState() {
     super.initState();
@@ -436,8 +440,99 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
     return Container(
       color: bgColor,
       child: SafeArea(
-        child: Column(
-          children: [
+        child: GestureDetector(
+          onPanStart: (details) {
+            setState(() {
+              _isSwiping = true;
+            });
+          },
+          onPanUpdate: (details) {
+            setState(() {
+              _swipeDx += details.delta.dx;
+              _swipeDy += details.delta.dy;
+            });
+          },
+          onPanEnd: (details) {
+            setState(() {
+              _isSwiping = false;
+            });
+            final screenWidth = MediaQuery.of(context).size.width;
+            final screenHeight = MediaQuery.of(context).size.height;
+            
+            bool swipedRight = _swipeDx > screenWidth * 0.3 && _swipeDx.abs() > _swipeDy.abs();
+            bool swipedLeft = _swipeDx < -screenWidth * 0.3 && _swipeDx.abs() > _swipeDy.abs();
+            bool swipedUp = _swipeDy < -screenHeight * 0.15 && _swipeDy.abs() > _swipeDx.abs();
+
+            if (swipedRight) {
+              HapticsManager.success();
+              Navigator.pop(context, 4); // Good
+            } else if (swipedLeft) {
+              HapticsManager.heavy();
+              Navigator.pop(context, 0); // Again
+            } else if (swipedUp) {
+              HapticsManager.success();
+              Navigator.pop(context, 5); // Easy
+            } else {
+              setState(() {
+                _swipeDx = 0;
+                _swipeDy = 0;
+              });
+            }
+          },
+          child: Stack(
+            children: [
+              // Background indicators
+              if (_isSwiping) ...[
+                if (_swipeDx > 50)
+                  Container(
+                    color: Colors.green.withValues(alpha: (_swipeDx / 200).clamp(0.0, 0.5)),
+                    alignment: Alignment.centerLeft,
+                    padding: const EdgeInsets.only(left: 32),
+                    child: const Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.check, color: Colors.green, size: 64),
+                        SizedBox(height: 8),
+                        Text('Good', style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold, fontSize: 24)),
+                      ],
+                    ),
+                  ),
+                if (_swipeDx < -50)
+                  Container(
+                    color: Colors.red.withValues(alpha: (-_swipeDx / 200).clamp(0.0, 0.5)),
+                    alignment: Alignment.centerRight,
+                    padding: const EdgeInsets.only(right: 32),
+                    child: const Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.close, color: Colors.red, size: 64),
+                        SizedBox(height: 8),
+                        Text('Again', style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold, fontSize: 24)),
+                      ],
+                    ),
+                  ),
+                if (_swipeDy < -50 && _swipeDx.abs() < 50)
+                  Container(
+                    color: Colors.amber.withValues(alpha: (-_swipeDy / 200).clamp(0.0, 0.5)),
+                    alignment: Alignment.topCenter,
+                    padding: const EdgeInsets.only(top: 64),
+                    child: const Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Icon(Icons.keyboard_double_arrow_up, color: Colors.amber, size: 64),
+                        SizedBox(height: 8),
+                        Text('Easy', style: TextStyle(color: Colors.amber, fontWeight: FontWeight.bold, fontSize: 24)),
+                      ],
+                    ),
+                  ),
+              ],
+              AnimatedContainer(
+                duration: _isSwiping ? Duration.zero : const Duration(milliseconds: 300),
+                curve: Curves.easeOutBack,
+                transform: Matrix4.translationValues(_swipeDx, _swipeDy, 0)
+                  ..rotateZ(_swipeDx * 0.001),
+                child: Column(
+                  children: [
             // Header Section
             Container(
               width: double.infinity,
@@ -657,66 +752,12 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
                .fade(duration: 500.ms, curve: Curves.easeOutCubic)
                .slideY(begin: 0.1, end: 0, duration: 500.ms, curve: Curves.easeOutCubic),
             ),
-            
-            // Grading Buttons
-            Padding(
-              padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
-              child: Column(
-                children: [
-                  Text(AppLocalizations.of(context)!.rateYourRecall, style: TextStyle(color: isDark ? Colors.white54 : Colors.black54, fontSize: 13, fontWeight: FontWeight.bold)),
-                  const SizedBox(height: 12),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      _buildGradeButton('Again', 0, Colors.red, 'Failed to recall', isDark),
-                      _buildGradeButton('Hard', 2, Colors.orange, 'Recalled with effort', isDark),
-                      _buildGradeButton('Good', 4, Colors.green, 'Recalled well', isDark),
-                      _buildGradeButton('Easy', 5, Colors.blue, 'Perfect recall', isDark),
-                    ],
-                  ),
-                ],
-              ),
-            ),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildGradeButton(String label, int grade, MaterialColor color, String tooltip, bool isDark) {
-    return Expanded(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 4.0),
-        child: Tooltip(
-          message: tooltip,
-          child: BouncingButton(
-            onPressed: () {
-              Navigator.pop(context, grade);
-            },
-            child: ElevatedButton(
-              onPressed: null, // Let BouncingButton handle the tap
-              style: ElevatedButton.styleFrom(
-                backgroundColor: isDark ? color.withValues(alpha: 0.15) : color.shade50,
-                foregroundColor: isDark ? color.shade300 : color.shade700,
-                disabledBackgroundColor: isDark ? color.withValues(alpha: 0.15) : color.shade50,
-                disabledForegroundColor: isDark ? color.shade300 : color.shade700,
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                elevation: 0,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
-                  side: BorderSide(color: isDark ? color.withValues(alpha: 0.3) : color.shade200, width: 1),
-                ),
-              ),
-              child: Text(
-                label,
-                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
 
   String _getFeedback(double s) => s >= 90 ? "Perfect!" : (s >= 70 ? "Great!" : (s >= 50 ? "Good attempt" : "Keep practicing"));
 

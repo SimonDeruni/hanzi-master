@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:hanzi_master/core/utils/pinyin_utils.dart';
 import 'package:hanzi_master/shared/widgets/tappable_hanzi_text.dart';
+import 'package:hive/hive.dart';
 
 // ---------------------------------------------------------------------------
 // Data models
@@ -195,8 +196,18 @@ class _CharacterChatSheetState extends ConsumerState<CharacterChatSheet> {
     _scrollToBottom();
 
     try {
-      final rawText = await _chatSession.sendMessage(text);
-      if (rawText.isEmpty) throw Exception('Empty response');
+      final cacheKey = '${widget.hanzi}_${text.hashCode}';
+      final box = await Hive.openBox<String>('character_chat_cache');
+      
+      String rawText = '';
+      if (box.containsKey(cacheKey)) {
+        rawText = box.get(cacheKey)!;
+      } else {
+        rawText = await _chatSession.sendMessage(text);
+        if (rawText.isEmpty) throw Exception('Empty response');
+        await box.put(cacheKey, rawText);
+      }
+
       _aiReplyCount++;
       setState(() {
         _messages.add(ChatMessage(

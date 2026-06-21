@@ -10,6 +10,7 @@ import 'package:hanzi_master/features/flashcards/presentation/providers/flashcar
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 
 class RecallModeWidget extends ConsumerStatefulWidget {
   final Flashcard card;
@@ -55,6 +56,8 @@ class _RecallModeWidgetState extends ConsumerState<RecallModeWidget> {
 
   Future<void> _reveal() async {
     if (_isRevealed) return;
+    
+    HapticsManager.light();
 
     // Load stroke data lazily on reveal
     if (_card.strokePaths.isEmpty) {

@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Added
+- **UI/UX Polish**:
+    - Redesigned `TravelInterpreterScreen` layout for improved 180-degree split-screen visibility and dynamic state backgrounds.
+    - Revamped `ShadowingStudioScreen` with an audio-first, mimicry-focused interface via `PageView`.
+    - Added Tinder-style swipe gestures with corresponding haptic feedback and scale animations to `ReviewScreen` flashcard grading.
+    - Expanded Reading Room features with an anchored audio player, inline sentence translation toggle, and 3-mode Pinyin display (All, Ghost, None).
+- **Performance**:
+    - Implemented a persistent `Hive` cache for Gemini character origin queries to eliminate duplicate AI latency.
+
 ### Fixed
 - **Localization**:
     - Extracted hardcoded UI strings into `AppLocalizations` for Echo Hall Scenarios, Master Lin greeting, Reading Room titles/descriptions, and Custom Story Creator Dialog.

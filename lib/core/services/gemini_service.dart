@@ -246,6 +246,41 @@ class GeminiService {
     );
   }
 
+  Stream<String> streamOpenRouterText(String prompt) async* {
+    final request = http.Request(
+      'POST',
+      Uri.parse('https://openrouter.ai/api/v1/chat/completions'),
+    );
+    request.headers.addAll({
+      'Authorization': 'Bearer ${pool.nextKey}',
+      'Content-Type': 'application/json',
+    });
+    request.body = jsonEncode({
+      'model': 'google/gemini-2.5-flash',
+      'messages': [{'role': 'user', 'content': prompt}],
+      'stream': true,
+    });
+
+    final response = await http.Client().send(request);
+    if (response.statusCode != 200) {
+      final body = await response.stream.bytesToString();
+      throw Exception('OpenRouter Error ${response.statusCode}: $body');
+    }
+
+    await for (final chunk in response.stream.transform(utf8.decoder).transform(const LineSplitter())) {
+      if (chunk.startsWith('data: ') && !chunk.startsWith('data: [DONE]')) {
+        final data = chunk.substring(6);
+        try {
+          final json = jsonDecode(data);
+          final delta = json['choices']?[0]?['delta']?['content'];
+          if (delta != null && delta is String) {
+            yield delta;
+          }
+        } catch (_) {}
+      }
+    }
+  }
+
   Future<Map<String, String>> defineWord(String word) async {
     final cacheKey = 'def_$word';
     final box = Hive.box<String>('ai_cache');
@@ -616,6 +651,60 @@ Make sure every single character in the 'chinese' sentence is represented in the
       analytics.logApiUsage(apiName: 'openrouter', feature: 'generate_graded_story', success: false);
       rethrow;
     }
+  }
+
+  Future<AiStory> parseRawStoryToAiStory(String rawChineseText, int hskLevel) async {
+    final prompt = '''
+I have the following Chinese story. Parse it into an array of sentences, each broken down into words, with pinyin and English definitions.
+Ensure that the vocabulary targets HSK level $hskLevel as a guideline for meanings.
+CRITICAL: Put the English translation in the "english" JSON key!
+
+Story:
+$rawChineseText
+
+Respond ONLY with a valid JSON document matching this exact structure:
+{
+  "sentences": [
+    {
+      "english": "English translation of the entire sentence",
+      "words": [
+        {
+          "hanzi": "Hanzi word",
+          "pinyin": "pinyin with tone marks",
+          "english": "definition in English",
+          "hskLevel": 1
+        }
+      ]
+    }
+  ]
+}
+''';
+
+    try {
+      final text = await makeOpenRouterCall(
+        model: 'google/gemini-2.5-flash',
+        messages: [{'role': 'user', 'content': prompt}],
+        jsonMode: true,
+      );
+      
+      final cleanText = text.replaceAll(RegExp(r'^```json\n', multiLine: true), '')
+                            .replaceAll(RegExp(r'^```\n?', multiLine: true), '');
+      final json = jsonDecode(cleanText);
+      return AiStory.fromJson(json);
+    } catch (e) {
+      analytics.logApiUsage(apiName: 'openrouter', feature: 'parse_raw_story', success: false);
+      rethrow;
+    }
+  }
+
+  Stream<String> streamGradedStoryRawText(String topic, String category, int hskLevel) async* {
+    final prompt = '''
+You are a professional Chinese language professor creating Graded Readers.
+Write an engaging, culturally accurate story or article about "$topic" (Category: $category).
+CRITICAL: You MUST restrict your vocabulary entirely to the HSK $hskLevel word list. Keep it under 200 words.
+Respond ONLY with the Chinese text. Do not include pinyin or translations. Do not include any formatting or introductions. Just the raw Chinese characters.
+''';
+    yield* streamOpenRouterText(prompt);
   }
 
   Future<AiStory> simplifyTextToHsk(String sourceText, int hskLevel) async {

@@ -6,6 +6,7 @@ import 'package:hanzi_master/features/flashcards/presentation/widgets/study_sess
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 
 class ReadingModeWidget extends ConsumerStatefulWidget {
   final Flashcard card;
@@ -34,6 +35,7 @@ class _ReadingModeWidgetState extends ConsumerState<ReadingModeWidget> {
     setState(() {
       _isRevealed = true;
     });
+    HapticsManager.light();
   }
 
   @override

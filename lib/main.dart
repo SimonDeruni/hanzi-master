@@ -10,14 +10,12 @@ import 'package:hanzi_master/features/flashcards/data/models/deck_model.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/settings_controller.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/main_navigation_screen.dart';
 import 'package:hanzi_master/features/live_translate/domain/entities/translation_session.dart';
-import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 
 import 'package:hanzi_master/core/providers.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'package:hanzi_master/features/onboarding/presentation/screens/onboarding_screen.dart';
 import 'package:hanzi_master/core/services/analytics_service.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:hanzi_master/features/onboarding/presentation/screens/onboarding_screen.dart';
 import 'package:hanzi_master/core/services/monetization_service.dart';
 import 'package:hanzi_master/features/reading/data/repositories/story_repository.dart';
 import 'package:hanzi_master/core/theme/app_theme.dart';

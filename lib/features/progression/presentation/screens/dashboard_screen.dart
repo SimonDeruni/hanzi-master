@@ -4,7 +4,6 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/study_mode.dart';
-import 'package:hanzi_master/features/flashcards/presentation/screens/review_screen.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/deck.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/deck_detail_screen.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';

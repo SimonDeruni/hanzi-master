@@ -12,6 +12,7 @@ import 'package:hanzi_master/features/flashcards/presentation/providers/flashcar
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import 'package:hanzi_master/shared/widgets/waveform_painter.dart';
 
 class SpeakingModeWidget extends ConsumerStatefulWidget {
@@ -134,6 +135,7 @@ class _SpeakingModeWidgetState extends ConsumerState<SpeakingModeWidget> {
     setState(() {
       _isRevealed = true;
     });
+    HapticsManager.light();
   }
 
   @override

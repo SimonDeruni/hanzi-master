@@ -219,6 +219,13 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> {
       });
       setState(() => _isLive = true);
     }
+  Future<void> _stopAudioStreaming() async {
+    await _audioSubscription?.cancel();
+    await _audioRecorder.stop();
+    setState(() {
+      _isLive = false;
+      _status = "Waiting...";
+    });
   }
 
   @override
@@ -494,60 +501,100 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> {
               ),
               const SizedBox(height: 24),
               Expanded(
-                child: ListView.builder(
-                  padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
-                  itemCount: _transcript.length,
-                  itemBuilder: (context, index) {
-                    final msg = _transcript[index];
-                    return Container(
-                      margin: const EdgeInsets.only(bottom: 24),
-                      padding: const EdgeInsets.all(16),
-                      decoration: BoxDecoration(
-                        color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.white.withValues(alpha: 0.8),
-                        borderRadius: BorderRadius.circular(16),
-                        border: Border.all(color: Colors.orange.shade200),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              Icon(Icons.person, size: 16, color: isDark ? Colors.white54 : Colors.black54),
-                              const SizedBox(width: 8),
-                              Expanded(
-                                child: Text(
+                child: _transcript.isEmpty
+                    ? Center(
+                        child: Text(
+                          "Speak English to translate and shadow...",
+                          style: TextStyle(color: isDark ? Colors.white54 : Colors.black54, fontSize: 18),
+                        ),
+                      )
+                    : PageView.builder(
+                        itemCount: _transcript.length,
+                        controller: PageController(initialPage: _transcript.length - 1),
+                        onPageChanged: (idx) {
+                          // Allow swiping through previous phrases
+                        },
+                        itemBuilder: (context, index) {
+                          final msg = _transcript[index];
+                          return Padding(
+                            padding: const EdgeInsets.all(24.0),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
                                   msg.englishText,
                                   style: TextStyle(
-                                    fontSize: 16,
+                                    fontSize: 20,
                                     color: isDark ? Colors.white54 : Colors.black54,
                                     fontStyle: FontStyle.italic,
                                   ),
+                                  textAlign: TextAlign.center,
                                 ),
-                              ),
-                            ],
-                          ),
-                          const Divider(height: 24),
-                          Row(
-                            children: [
-                              const Icon(Icons.record_voice_over, size: 16, color: Colors.orange),
-                              const SizedBox(width: 8),
-                              Expanded(
-                                child: Text(
-                                  msg.mandarinTranslation,
-                                  style: TextStyle(
-                                    fontSize: 22,
-                                    color: isDark ? Colors.white : Colors.black87,
-                                    fontWeight: FontWeight.w600,
+                                const SizedBox(height: 32),
+                                if (msg.mandarinTranslation.isNotEmpty) ...[
+                                  Text(
+                                    msg.mandarinTranslation,
+                                    style: TextStyle(
+                                      fontSize: 48,
+                                      color: isDark ? Colors.white : Colors.black87,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                    textAlign: TextAlign.center,
                                   ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
+                                  const SizedBox(height: 48),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      FloatingActionButton.large(
+                                        heroTag: "listen_$index",
+                                        onPressed: () {
+                                          // Typically we would replay the audio here if we saved the buffer
+                                          // For now, it plays automatically on receive
+                                        },
+                                        backgroundColor: Colors.orange.shade100,
+                                        child: const Icon(Icons.volume_up, size: 36, color: Colors.orange),
+                                      ),
+                                      const SizedBox(width: 32),
+                                      GestureDetector(
+                                        onTapDown: (_) => _startAudioStreaming(),
+                                        onTapUp: (_) => _stopAudioStreaming(),
+                                        onTapCancel: () => _stopAudioStreaming(),
+                                        child: Container(
+                                          width: 96,
+                                          height: 96,
+                                          decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            color: _isLive ? Colors.red : Colors.orange,
+                                            boxShadow: [
+                                              BoxShadow(
+                                                color: (_isLive ? Colors.red : Colors.orange).withValues(alpha: 0.4),
+                                                blurRadius: 16,
+                                                spreadRadius: _isLive ? 8 : 2,
+                                              )
+                                            ],
+                                          ),
+                                          child: Icon(
+                                            Icons.mic,
+                                            size: 48,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 16),
+                                  Text("Hold to Shadow", style: TextStyle(color: isDark ? Colors.white54 : Colors.black54)),
+                                ] else ...[
+                                  const CircularProgressIndicator(color: Colors.orange),
+                                  const SizedBox(height: 16),
+                                  const Text("Translating...", style: TextStyle(color: Colors.orange)),
+                                ]
+                              ],
+                            ),
+                          );
+                        },
                       ),
-                    );
-                  },
-                ),
               ),
             ],
           ),

@@ -8,6 +8,7 @@ import 'package:hanzi_master/features/flashcards/presentation/providers/flashcar
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 
 class ListeningModeWidget extends ConsumerStatefulWidget {
   final Flashcard card;
@@ -48,6 +49,7 @@ class _ListeningModeWidgetState extends ConsumerState<ListeningModeWidget> {
     setState(() {
       _isRevealed = true;
     });
+    HapticsManager.light();
   }
 
   @override
