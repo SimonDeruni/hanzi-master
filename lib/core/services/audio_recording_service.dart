@@ -25,6 +25,9 @@ class AudioRecordingService {
   Future<void> startRecording(String fileName) async {
     if (await hasPermission()) {
       final dir = await getTemporaryDirectory();
+      if (!await dir.exists()) {
+        await dir.create(recursive: true);
+      }
       final path = '${dir.path}/$fileName.m4a';
       await _audioRecorder.start(
         const RecordConfig(

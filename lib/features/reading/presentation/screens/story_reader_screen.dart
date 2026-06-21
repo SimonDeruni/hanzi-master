@@ -25,6 +25,16 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
   final FlutterTts _flutterTts = FlutterTts();
   bool _isPlaying = false;
   bool _isSaved = true; // By default assume saved unless it's a new custom
+  
+  Timer? _loadingTimer;
+  int _loadingStep = 0;
+  final List<String> _loadingMessages = [
+    "Drafting story outline...",
+    "Selecting HSK vocabulary...",
+    "Refining grammar...",
+    "Translating and adding Pinyin...",
+    "Finalizing story details..."
+  ];
 
   @override
   void initState() {
@@ -43,6 +53,18 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
         ref.read(storyControllerProvider.notifier).loadOrGenerateStory(widget.blueprint, widget.hskLevel);
       }
     });
+
+    _startLoadingTimer();
+  }
+
+  void _startLoadingTimer() {
+    _loadingTimer = Timer.periodic(const Duration(seconds: 4), (timer) {
+      if (mounted) {
+        setState(() {
+          _loadingStep = (_loadingStep + 1) % _loadingMessages.length;
+        });
+      }
+    });
   }
 
   Future<void> _initTts() async {
@@ -57,6 +79,7 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
 
   @override
   void dispose() {
+    _loadingTimer?.cancel();
     _flutterTts.stop();
     super.dispose();
   }
@@ -182,7 +205,15 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
                 children: [
                   const CircularProgressIndicator(color: Colors.indigo),
                   const SizedBox(height: 24),
-                  Text(AppLocalizations.of(context)!.generatingStoryViaDeepseek, style: TextStyle(color: Colors.grey)),
+                  AnimatedSwitcher(
+                    duration: const Duration(milliseconds: 500),
+                    child: Text(
+                      _loadingMessages[_loadingStep],
+                      key: ValueKey<int>(_loadingStep),
+                      style: const TextStyle(color: Colors.grey, fontSize: 16),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
                   const SizedBox(height: 8),
                   Text("HSK ${widget.hskLevel} vocabulary", style: const TextStyle(fontWeight: FontWeight.bold)),
                 ],
