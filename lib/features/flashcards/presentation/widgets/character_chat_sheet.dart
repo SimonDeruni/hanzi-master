@@ -149,7 +149,8 @@ class CharacterChatSheet extends ConsumerStatefulWidget {
 }
 
 class _CharacterChatSheetState extends ConsumerState<CharacterChatSheet> {
-  late final AiChatSession _chatSession;
+  late AiChatSession _chatSession;
+  bool _isSessionInitialized = false;
   final List<ChatMessage> _messages = [];
   final TextEditingController _textController = TextEditingController();
   final ScrollController _scrollController = ScrollController();
@@ -159,14 +160,23 @@ class _CharacterChatSheetState extends ConsumerState<CharacterChatSheet> {
   @override
   void initState() {
     super.initState();
-    final langCode = Localizations.localeOf(context).languageCode;
-    _chatSession = ref.read(geminiServiceProvider).startCharacterChat(widget.hanzi, langCode);
     _messages.add(ChatMessage(
       text: 'Ask me anything about **${widget.hanzi}** — history, usage, culture, or grammar.',
       isUser: false,
       chips: _chipsForIndex(0),
     ));
   }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (!_isSessionInitialized) {
+      final langCode = Localizations.localeOf(context).languageCode;
+      _chatSession = ref.read(geminiServiceProvider).startCharacterChat(widget.hanzi, langCode);
+      _isSessionInitialized = true;
+    }
+  }
+
 
   @override
   void dispose() {

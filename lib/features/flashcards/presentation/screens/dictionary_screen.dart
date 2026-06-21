@@ -87,7 +87,7 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
       floatingActionButton: FloatingActionButton.extended(
         heroTag: 'dictionary_add_fab',
         backgroundColor: Colors.purple,
-        icon: const Icon(Icons.auto_awesome, color: Colors.white),
+        icon: Icon(Icons.auto_awesome, color: Colors.white),
         label: Text(l10n?.generate ?? "Generate", style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
         onPressed: () => AiDeckGeneratorSheet.show(context),
       ),
@@ -133,14 +133,14 @@ class _LexiconMiniCard extends StatelessWidget {
                 style: theme.textTheme.displaySmall?.copyWith(height: 1.1),
               ),
             ),
-            const SizedBox(height: 8),
+            SizedBox(height: 8),
             PinyinText(
               text: card.pinyin,
               style: theme.textTheme.labelMedium?.copyWith(
                 color: theme.colorScheme.primary,
               ),
             ),
-            const SizedBox(height: 4),
+            SizedBox(height: 4),
             Text(
               card.definition,
               style: theme.textTheme.bodySmall,
@@ -204,18 +204,18 @@ class _BookshelfVerticalCard extends StatelessWidget {
                 size: 28,
               ),
             ),
-            const SizedBox(width: 20),
+            SizedBox(width: 20),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    deck.name,
+                    deck.localizedName(context),
                     style: theme.textTheme.titleMedium,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  const SizedBox(height: 4),
+                  SizedBox(height: 4),
                   Text(
                     "$cardCount cards",
                     style: theme.textTheme.bodySmall,
@@ -273,7 +273,7 @@ class _SearchBarDelegate extends SliverPersistentHeaderDelegate {
                 decoration: InputDecoration(
                   hintText: l10n?.searchPinyinHanziEnglish ?? "Search Pinyin, Hanzi, or English...",
                   hintStyle: theme.textTheme.bodyMedium?.copyWith(color: theme.colorScheme.onSurface.withValues(alpha: 0.4)),
-                  prefixIcon: const Icon(Icons.search, color: Colors.grey),
+                  prefixIcon: Icon(Icons.search, color: Colors.grey),
                   border: InputBorder.none,
                   contentPadding: const EdgeInsets.symmetric(vertical: 16),
                 ),
@@ -281,7 +281,7 @@ class _SearchBarDelegate extends SliverPersistentHeaderDelegate {
               ),
             ),
           ),
-          const SizedBox(width: 12),
+          SizedBox(width: 12),
           Container(
             decoration: BoxDecoration(
               color: theme.colorScheme.primary,
@@ -295,7 +295,7 @@ class _SearchBarDelegate extends SliverPersistentHeaderDelegate {
               ],
             ),
             child: IconButton(
-              icon: const Icon(Icons.camera_alt),
+              icon: Icon(Icons.camera_alt),
               color: theme.colorScheme.onPrimary,
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => const UniversalScannerScreen()));
@@ -369,20 +369,20 @@ class _DictionarySearchTab extends ConsumerWidget {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 24.0),
                         child: Text(
-                          "Latest Discoveries",
+                          AppLocalizations.of(context)!.latestDiscoveries,
                           style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
                         ),
                       ),
-                      const SizedBox(height: 16),
+                      SizedBox(height: 16),
                       SizedBox(
                         height: 140,
                         child: flashcards.isEmpty 
-                          ? const Center(child: Text("No characters in lexicon yet."))
+                          ? Center(child: Text(AppLocalizations.of(context)!.noCharactersInLexicon))
                           : ListView.separated(
                               padding: const EdgeInsets.symmetric(horizontal: 24),
                               scrollDirection: Axis.horizontal,
                               itemCount: flashcards.length > 10 ? 10 : flashcards.length,
-                              separatorBuilder: (context, index) => const SizedBox(width: 16),
+                              separatorBuilder: (context, index) => SizedBox(width: 16),
                               itemBuilder: (context, index) {
                                 // latest first -> flashcards are usually appended, so reversed
                                 final card = flashcards[flashcards.length - 1 - index];
@@ -390,7 +390,7 @@ class _DictionarySearchTab extends ConsumerWidget {
                               },
                             ),
                       ),
-                      const SizedBox(height: 32),
+                      SizedBox(height: 32),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 24.0),
                         child: GestureDetector(
@@ -423,34 +423,34 @@ class _DictionarySearchTab extends ConsumerWidget {
                                     color: Colors.white.withValues(alpha: 0.2),
                                     borderRadius: BorderRadius.circular(12),
                                   ),
-                                  child: const Text('氵', style: TextStyle(fontSize: 28, color: Colors.white, fontWeight: FontWeight.bold)),
+                                  child: Text('氵', style: TextStyle(fontSize: 28, color: Colors.white, fontWeight: FontWeight.bold)),
                                 ),
-                                const SizedBox(width: 16),
-                                const Expanded(
+                                SizedBox(width: 16),
+                                Expanded(
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      Text('Radicals Index', style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold)),
+                                      Text(AppLocalizations.of(context)!.radicalsIndex, style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold)),
                                       SizedBox(height: 4),
-                                      Text('Master the building blocks of Hanzi', style: TextStyle(color: Colors.white70, fontSize: 13)),
+                                      Text(AppLocalizations.of(context)!.masterBuildingBlocks, style: TextStyle(color: Colors.white70, fontSize: 13)),
                                     ],
                                   ),
                                 ),
-                                const Icon(Icons.arrow_forward_ios, color: Colors.white70, size: 16),
+                                Icon(Icons.arrow_forward_ios, color: Colors.white70, size: 16),
                               ],
                             ),
                           ),
                         ),
                       ),
-                      const SizedBox(height: 32),
+                      SizedBox(height: 32),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 24.0),
                         child: Text(
-                          "Your Bookshelf",
+                          AppLocalizations.of(context)!.yourBookshelf,
                           style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
                         ),
                       ),
-                      const SizedBox(height: 16),
+                      SizedBox(height: 16),
                     ],
                   ),
                 ),
@@ -506,7 +506,7 @@ class _DictionarySearchTab extends ConsumerWidget {
           ],
         );
       },
-      loading: () => const Center(child: CircularProgressIndicator()),
+      loading: () => Center(child: CircularProgressIndicator()),
       error: (err, stack) => Center(child: Text("Error: $err")),
     );
   }
@@ -567,7 +567,7 @@ class _DictionarySearchTab extends ConsumerWidget {
                     ),
                     const Spacer(),
                     Text(
-                      deck.name,
+                      deck.localizedName(context),
                       style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -575,7 +575,7 @@ class _DictionarySearchTab extends ConsumerWidget {
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
-                    const SizedBox(height: 4),
+                    SizedBox(height: 4),
                     Text(
                       "$deckCardsCount cards",
                       style: TextStyle(
@@ -608,7 +608,7 @@ class _DictionarySearchTab extends ConsumerWidget {
               alignment: Alignment.center,
               children: [
                 Text(
-                  "字",
+                  AppLocalizations.of(context)!.text_1782026184579,
                   style: TextStyle(
                     fontSize: 180,
                     fontWeight: FontWeight.bold,
@@ -619,14 +619,14 @@ class _DictionarySearchTab extends ConsumerWidget {
                 Icon(Icons.search_rounded, size: 48, color: isDark ? Colors.white24 : Colors.black26),
               ],
             ),
-            const SizedBox(height: 32),
+            SizedBox(height: 32),
             Text(
-              "Search your dictionary...",
+              AppLocalizations.of(context)!.searchYourDictionary,
               style: theme.textTheme.titleMedium?.copyWith(
                 color: theme.colorScheme.onSurface.withValues(alpha: 0.5),
               ),
             ),
-            const SizedBox(height: 80), // Padding for the FABs
+            SizedBox(height: 80), // Padding for the FABs
           ],
         ),
       ),
@@ -674,7 +674,7 @@ class _RadicalLibraryTabState extends ConsumerState<_RadicalLibraryTab> {
 
   @override
   Widget build(BuildContext context) {
-    if (_isLoading) return const Center(child: CircularProgressIndicator());
+    if (_isLoading) return Center(child: CircularProgressIndicator());
 
     final filteredRadicals = _radicals.entries.where((entry) {
       final query = widget.searchQuery.toLowerCase();
@@ -758,7 +758,7 @@ class _RadicalCard extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(radical, style: const TextStyle(fontSize: 48, fontWeight: FontWeight.bold, color: Colors.redAccent)),
-            const SizedBox(height: 8),
+            SizedBox(height: 8),
             Text(
               info['name'],
               textAlign: TextAlign.center,
@@ -825,7 +825,7 @@ class _DictionaryItem extends StatelessWidget {
               ),
             ),
             
-            const SizedBox(width: 16),
+            SizedBox(width: 16),
             
             // Middle: Pinyin & Definition
             Expanded(
@@ -842,7 +842,7 @@ class _DictionaryItem extends StatelessWidget {
                       letterSpacing: 0.5,
                     ),
                   ),
-                  const SizedBox(height: 4),
+                  SizedBox(height: 4),
                   if (card.hskLevel == 0)
                     Container(
                       margin: const EdgeInsets.only(bottom: 6),
@@ -856,9 +856,9 @@ class _DictionaryItem extends StatelessWidget {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Icon(Icons.auto_awesome, size: 10, color: Colors.purple.shade400),
-                          const SizedBox(width: 4),
+                          SizedBox(width: 4),
                           Text(
-                            "AI Generated",
+                            AppLocalizations.of(context)!.aiGenerated,
                             style: TextStyle(
                               fontSize: 9,
                               fontWeight: FontWeight.bold,
@@ -886,7 +886,7 @@ class _DictionaryItem extends StatelessWidget {
             
             // Right: Mastery Seal
             if (isInLibrary) ...[
-              const SizedBox(width: 12),
+              SizedBox(width: 12),
               MasterySeal(
                 progress: masteryProgress,
                 isMastered: isMastered,
@@ -894,7 +894,7 @@ class _DictionaryItem extends StatelessWidget {
               ),
             ] else ...[
               // Placeholder for alignment if needed, or just blank
-              const SizedBox(width: 48), 
+              SizedBox(width: 48), 
             ],
           ],
         ),

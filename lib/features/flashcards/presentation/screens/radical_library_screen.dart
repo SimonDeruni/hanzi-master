@@ -1,3 +1,4 @@
+import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -81,7 +82,7 @@ class _RadicalLibraryScreenState extends State<RadicalLibraryScreen> {
                     ),
                     const SizedBox(width: 8),
                     Text(
-                      "Radicals Index",
+                      AppLocalizations.of(context)!.radicalsIndex,
                       style: theme.textTheme.headlineSmall?.copyWith(
                         fontWeight: FontWeight.w900,
                         color: isDark ? Colors.white : const Color(0xFF1A1A1B),
@@ -93,7 +94,7 @@ class _RadicalLibraryScreenState extends State<RadicalLibraryScreen> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 8.0),
                 child: Text(
-                  "Mastering radicals is the key to unlocking thousands of Hanzi. Select a radical to see all characters that use it.",
+                  AppLocalizations.of(context)!.masteringRadicalsIsThe,
                   style: TextStyle(fontSize: 16, color: isDark ? Colors.white70 : Colors.black54, height: 1.5),
                 ),
               ),
@@ -128,7 +129,7 @@ class _RadicalLibraryScreenState extends State<RadicalLibraryScreen> {
                 child: _isLoading 
                   ? const Center(child: CircularProgressIndicator(color: Colors.indigo))
                   : _filteredKeys.isEmpty
-                      ? const Center(child: Text("No radicals found."))
+                      ? Center(child: Text(AppLocalizations.of(context)!.noRadicalsFound))
                       : GridView.builder(
                           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
                           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

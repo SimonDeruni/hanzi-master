@@ -1,3 +1,4 @@
+import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
@@ -156,7 +157,7 @@ class _CustomScenarioDialogState extends ConsumerState<CustomScenarioDialog> {
 
     return AlertDialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
-      title: Text("Create Your Scenario", style: theme.textTheme.headlineSmall),
+      title: Text(AppLocalizations.of(context)!.createYourScenario, style: theme.textTheme.headlineSmall),
       content: _isLoading 
         ? Padding(
             padding: const EdgeInsets.all(24.0),
@@ -178,14 +179,14 @@ class _CustomScenarioDialogState extends ConsumerState<CustomScenarioDialog> {
               HanziTextField(
                 controller: _titleController,
                 hintText: '',
-                decoration: const InputDecoration(labelText: "Title (e.g. Wedding Reception)"),
+                decoration: InputDecoration(labelText: AppLocalizations.of(context)!.customScenarioTitleHint),
                 validator: (v) => v == null || v.isEmpty ? "Required" : null,
               ),
               const SizedBox(height: 16),
               HanziTextField(
                 controller: _descController,
                 hintText: '',
-                decoration: const InputDecoration(labelText: "Description (Context)"),
+                decoration: InputDecoration(labelText: AppLocalizations.of(context)!.customScenarioDescHint),
                 maxLines: 2,
                 validator: (v) => v == null || v.isEmpty ? "Required" : null,
               ),
@@ -193,7 +194,7 @@ class _CustomScenarioDialogState extends ConsumerState<CustomScenarioDialog> {
               HanziTextField(
                 controller: _promptController,
                 hintText: '',
-                decoration: const InputDecoration(labelText: "AI Persona (e.g. A curious relative)"),
+                decoration: InputDecoration(labelText: AppLocalizations.of(context)!.customScenarioPersonaHint),
                 maxLines: 2,
                 validator: (v) => v == null || v.isEmpty ? "Required" : null,
               ),
@@ -201,7 +202,7 @@ class _CustomScenarioDialogState extends ConsumerState<CustomScenarioDialog> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Difficulty", style: theme.textTheme.titleSmall),
+                  Text(AppLocalizations.of(context)!.difficulty, style: theme.textTheme.titleSmall),
                   DropdownButton<int>(
                     value: _hskLevel,
                     items: List.generate(6, (i) => i + 1).map((i) => DropdownMenuItem(value: i, child: Text("HSK $i"))).toList(),
@@ -214,7 +215,7 @@ class _CustomScenarioDialogState extends ConsumerState<CustomScenarioDialog> {
         ),
       ),
       actions: _isLoading ? [] : [
-        TextButton(onPressed: () => Navigator.pop(context), child: const Text("Cancel")),
+        TextButton(onPressed: () => Navigator.pop(context), child: Text(AppLocalizations.of(context)!.cancel)),
         ElevatedButton(
           onPressed: _generateAndReturn,
           style: ElevatedButton.styleFrom(
@@ -222,7 +223,7 @@ class _CustomScenarioDialogState extends ConsumerState<CustomScenarioDialog> {
             foregroundColor: theme.colorScheme.onPrimary,
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
           ),
-          child: const Text("Create"),
+          child: Text(AppLocalizations.of(context)!.create),
         ),
       ],
     );

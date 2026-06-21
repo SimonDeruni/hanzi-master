@@ -1,3 +1,4 @@
+import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
@@ -83,7 +84,7 @@ class _QuizScreenState extends State<QuizScreen> {
     if (_questions.isEmpty) {
       return Scaffold(
         appBar: AppBar(), 
-        body: const Center(child: Text("Not enough cards for a quiz! Need at least 4.")),
+        body: Center(child: Text(AppLocalizations.of(context)!.notEnoughCardsFor)),
       );
     }
 
@@ -193,7 +194,7 @@ class _QuizScreenState extends State<QuizScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text("Quiz Complete!", style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold)),
+              Text(AppLocalizations.of(context)!.quizComplete, style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold)),
               const SizedBox(height: 16),
               Text("Score: $_score / ${_questions.length}", style: const TextStyle(fontSize: 24, color: Colors.indigo)),
               const SizedBox(height: 32),
@@ -203,7 +204,7 @@ class _QuizScreenState extends State<QuizScreen> {
                   backgroundColor: Colors.indigo,
                   padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
                 ),
-                child: const Text("Return to Course", style: TextStyle(color: Colors.white)),
+                child: Text(AppLocalizations.of(context)!.returnToCourse, style: TextStyle(color: Colors.white)),
               )
             ],
           ),

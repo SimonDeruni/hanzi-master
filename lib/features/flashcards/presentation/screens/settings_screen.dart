@@ -45,7 +45,7 @@ class SettingsScreen extends ConsumerWidget {
                 icon: Icons.school,
                 iconColor: Colors.blue,
                 title: l10n?.adaptiveGuidance ?? "Adaptive Guidance",
-                subtitle: "Hide stroke guide at streak: ${settings.guideDisappearanceStreak}",
+                subtitle: l10n?.hideStrokeGuideStreak(settings.guideDisappearanceStreak) ?? "Hide stroke guide at streak: ${settings.guideDisappearanceStreak}",
                 value: settings.guideDisappearanceStreak.toDouble(),
                 min: 1.0,
                 max: 5.0,
@@ -57,7 +57,7 @@ class SettingsScreen extends ConsumerWidget {
                 icon: Icons.flag,
                 iconColor: Colors.green,
                 title: l10n?.dailyGoal ?? "Daily Ink Goal",
-                subtitle: "${settings.dailyGoal} Ink Points",
+                subtitle: l10n?.inkPoints(settings.dailyGoal) ?? "${settings.dailyGoal} Ink Points",
                 value: settings.dailyGoal.toDouble(),
                 min: 10.0,
                 max: 200.0,
@@ -94,7 +94,7 @@ class SettingsScreen extends ConsumerWidget {
                 icon: Icons.speed,
                 iconColor: Colors.lightBlue,
                 title: l10n?.voiceSpeed ?? "Voice Speed",
-                subtitle: "${settings.speechRate.toStringAsFixed(1)}x",
+                subtitle: l10n?.speechRateMultiplier(settings.speechRate.toStringAsFixed(1)) ?? "${settings.speechRate.toStringAsFixed(1)}x",
                 value: settings.speechRate,
                 min: 0.1,
                 max: 1.0,
@@ -157,7 +157,7 @@ class SettingsScreen extends ConsumerWidget {
                 icon: Icons.animation,
                 iconColor: Colors.pink,
                 title: l10n?.animationSpeed ?? "Stroke Animation Speed",
-                subtitle: "${settings.animationSpeed.toStringAsFixed(1)}x",
+                subtitle: l10n?.animationSpeedMultiplier(settings.animationSpeed.toStringAsFixed(1)) ?? "${settings.animationSpeed.toStringAsFixed(1)}x",
                 value: settings.animationSpeed,
                 min: 0.5,
                 max: 2.0,
@@ -181,7 +181,7 @@ class SettingsScreen extends ConsumerWidget {
           ),
           const SizedBox(height: 24),
 
-          _buildSectionHeader("Support & Feedback", theme),
+          _buildSectionHeader(l10n?.supportAndFeedback ?? "Support & Feedback", theme),
           _buildSettingsCard(
             context: context,
             children: [
@@ -190,8 +190,8 @@ class SettingsScreen extends ConsumerWidget {
                   backgroundColor: Color(0xFFE3F2FD),
                   child: Icon(Icons.help_outline, color: Colors.blue),
                 ),
-                title: const Text("Contact Us", style: TextStyle(fontWeight: FontWeight.w600)),
-                subtitle: const Text("Report bugs or request features"),
+                title: Text(AppLocalizations.of(context)!.contactUs, style: TextStyle(fontWeight: FontWeight.w600)),
+                subtitle: Text(AppLocalizations.of(context)!.reportBugsOrRequest),
                 trailing: const Icon(Icons.chevron_right, color: Colors.grey),
                 onTap: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => const ContactScreen()));
@@ -231,7 +231,7 @@ class SettingsScreen extends ConsumerWidget {
                             if (context.mounted) {
                               Navigator.pop(context);
                               ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(content: Text("All data has been wiped."))
+                                SnackBar(content: Text(AppLocalizations.of(context)!.allDataHasBeen))
                               );
                             }
                           },
@@ -247,7 +247,7 @@ class SettingsScreen extends ConsumerWidget {
           const SizedBox(height: 48),
           Center(
             child: Text(
-              "Hanzi Master v1.0.0",
+              AppLocalizations.of(context)!.hanziMasterV100,
               style: TextStyle(color: Colors.grey.shade500, fontWeight: FontWeight.bold, letterSpacing: 1.2),
             ),
           ),

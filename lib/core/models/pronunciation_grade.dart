@@ -46,6 +46,7 @@ class SyllableGrade {
   final int expectedTone; // 1-5
   final int actualTone; // 1-5
   final bool isCorrect;
+  final bool isPartial; // Tone wrong but base syllable understood
   final String feedback;
 
   SyllableGrade({
@@ -54,8 +55,16 @@ class SyllableGrade {
     required this.expectedTone,
     required this.actualTone,
     required this.isCorrect,
+    this.isPartial = false,
     required this.feedback,
   });
+
+  /// Color logic: green = correct, yellow = partial, red = wrong
+  WordGradeLevel get gradeLevel {
+    if (isCorrect) return WordGradeLevel.correct;
+    if (isPartial) return WordGradeLevel.partial;
+    return WordGradeLevel.wrong;
+  }
 
   factory SyllableGrade.fromJson(Map<String, dynamic> json) {
     return SyllableGrade(
@@ -64,6 +73,7 @@ class SyllableGrade {
       expectedTone: json['expectedTone'] ?? 0,
       actualTone: json['actualTone'] ?? 0,
       isCorrect: json['isCorrect'] ?? false,
+      isPartial: json['isPartial'] ?? false,
       feedback: json['feedback'] ?? '',
     );
   }
@@ -75,7 +85,10 @@ class SyllableGrade {
       'expectedTone': expectedTone,
       'actualTone': actualTone,
       'isCorrect': isCorrect,
+      'isPartial': isPartial,
       'feedback': feedback,
     };
   }
 }
+
+enum WordGradeLevel { correct, partial, wrong }

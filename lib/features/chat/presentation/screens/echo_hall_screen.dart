@@ -323,13 +323,13 @@ class _EchoHallScreenState extends ConsumerState<EchoHallScreen> {
             ),
             const SizedBox(height: 32),
             Text(
-              "Speak with ${_getPersonaName(persona, l10n)}",
+              persona == ScholarPersona.masterLin ? l10n.speakWithMasterLin : "Speak with ${_getPersonaName(persona, l10n)}",
               style: theme.textTheme.headlineMedium?.copyWith(letterSpacing: 1.0),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 16),
             Text(
-              _getPersonaGreeting(persona),
+              _getPersonaGreeting(persona, l10n),
               textAlign: TextAlign.center,
               style: theme.textTheme.bodyLarge?.copyWith(
                 color: theme.colorScheme.onSurface.withValues(alpha: 0.5),
@@ -399,7 +399,7 @@ class _EchoHallScreenState extends ConsumerState<EchoHallScreen> {
                       controller: _textController,
                       style: theme.textTheme.bodyLarge,
                       decoration: InputDecoration(
-                        hintText: "Type your message...",
+                        hintText: l10n.typeYourMessage,
                         hintStyle: theme.textTheme.bodyMedium?.copyWith(
                           color: theme.colorScheme.onSurface.withValues(alpha: 0.4),
                         ),
@@ -476,9 +476,9 @@ class _EchoHallScreenState extends ConsumerState<EchoHallScreen> {
     }
   }
 
-  String _getPersonaGreeting(ScholarPersona persona) {
+  String _getPersonaGreeting(ScholarPersona persona, AppLocalizations l10n) {
     switch (persona) {
-      case ScholarPersona.masterLin: return "Greetings, student. The ink is ready. What character or phrase shall we examine today?";
+      case ScholarPersona.masterLin: return l10n.masterLinGreeting;
       case ScholarPersona.xiaoMei: return "嘿！来啦？我刚点了杯茶，咱们聊点啥？";
       case ScholarPersona.poet: return "The bamboo sways, and the scholar awaits your words like morning rain...";
       case ScholarPersona.gamer: return "哟！上线了啊兄弟？今天学啥？冲！";

@@ -219,8 +219,8 @@ class _TomeCard extends StatelessWidget {
                 width: double.infinity,
                 padding: const EdgeInsets.symmetric(vertical: 4),
                 color: const Color(0xFF43A047),
-                child: const Text(
-                  "INSTALLED",
+                child: Text(
+                  AppLocalizations.of(context)!.installed,
                   textAlign: TextAlign.center,
                   style: TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.bold, letterSpacing: 1.5),
                 ),
@@ -251,8 +251,8 @@ class _TomeCard extends StatelessWidget {
                             color: Colors.amber.shade700,
                             borderRadius: BorderRadius.circular(4),
                           ),
-                          child: const Text(
-                            "PREMIUM",
+                          child: Text(
+                            AppLocalizations.of(context)!.premium,
                             style: TextStyle(color: Colors.white, fontSize: 9, fontWeight: FontWeight.bold),
                           ),
                         ),
@@ -283,7 +283,7 @@ class _TomeCard extends StatelessWidget {
                       
                       if (tome['level'] == 1)
                         Text(
-                          "CORE MODULE",
+                          AppLocalizations.of(context)!.coreModule,
                           style: TextStyle(
                             fontSize: 11,
                             fontWeight: FontWeight.bold,

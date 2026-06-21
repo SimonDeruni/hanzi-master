@@ -1,3 +1,4 @@
+import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:uuid/uuid.dart';
@@ -121,7 +122,7 @@ class _FlashcardFormScreenState extends ConsumerState<FlashcardFormScreen> {
                   backgroundColor: Colors.indigo,
                 ),
                 onPressed: _save,
-                child: const Text("Save Card", style: TextStyle(color: Colors.white, fontSize: 18)),
+                child: Text(AppLocalizations.of(context)!.saveCard, style: TextStyle(color: Colors.white, fontSize: 18)),
               ),
             ],
           ),

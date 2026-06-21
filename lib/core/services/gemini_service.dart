@@ -7,11 +7,13 @@ import 'package:google_generative_ai/google_generative_ai.dart';
 import '../../features/flashcards/domain/entities/flashcard.dart';
 import 'api_key_pool.dart';
 import 'analytics_service.dart';
+import '../providers/translation_language_provider.dart';
 
 final geminiServiceProvider = Provider<GeminiService>((ref) {
   final pool = ref.watch(apiKeyPoolProvider);
   final analytics = ref.watch(analyticsServiceProvider);
-  return GeminiService(pool: pool, analytics: analytics);
+  final targetLanguage = ref.watch(translationLanguageProvider);
+  return GeminiService(pool: pool, analytics: analytics, targetLanguage: targetLanguage);
 });
 
 class GeminiContext {
@@ -200,8 +202,9 @@ class AiChatSession {
 class GeminiService {
   final ApiKeyPool pool;
   final AnalyticsService analytics;
+  final String targetLanguage;
 
-  GeminiService({required this.pool, required this.analytics});
+  GeminiService({required this.pool, required this.analytics, this.targetLanguage = 'English'});
 
   Future<String> makeOpenRouterCall({
     required String model,
@@ -254,10 +257,11 @@ class GeminiService {
 
     final prompt = '''
 You are an expert Chinese dictionary. Define the following word/character: "$word".
+Provide the meaning in $targetLanguage.
 Return ONLY valid JSON with this exact structure:
 {
   "pinyin": "...",
-  "meaning": "..."
+  "meaning": "The $targetLanguage meaning here..."
 }
 ''';
 
@@ -284,6 +288,7 @@ Explain the grammatical role and usage of the word "$word" in the following sent
 "$sentence"
 
 Keep your explanation short, engaging, and easy to understand for a language learner. Max 3 sentences.
+CRITICAL: You MUST write your entire explanation in $targetLanguage.
 ''';
 
     try {
@@ -317,27 +322,28 @@ Please provide:
 2. Two highly natural but VERY SHORT example sentences using "$hanzi" (keep under 8 words each).
 3. Identify 1 or 2 visually similar characters (ghost characters). Explain the difference in 5 words or less. If none, return empty array.
 
-Respond ONLY in valid JSON format with this exact structure:
+Respond ONLY in valid JSON format with this exact structure.
+CRITICAL: Place the $targetLanguage translation in the "english" JSON keys!
 {
-  "mnemonic": "The story goes here...",
+  "mnemonic": "The story goes here in $targetLanguage...",
   "sentences": [
     {
       "chinese": "...",
       "pinyin": "...",
-      "english": "..."
+      "english": "The $targetLanguage translation..."
     },
     {
       "chinese": "...",
       "pinyin": "...",
-      "english": "..."
+      "english": "The $targetLanguage translation..."
     }
   ],
   "lookAlikes": [
     {
       "character": "...",
       "pinyin": "...",
-      "english": "...",
-      "difference": "..."
+      "english": "The $targetLanguage meaning...",
+      "difference": "Difference explained in $targetLanguage..."
     }
   ]
 }
@@ -409,7 +415,7 @@ Translate the English object label "$label" into Chinese.
 Provide:
 1. The Chinese character(s) (Hanzi).
 2. The Pinyin with tone marks.
-3. A concise English definition.
+3. A concise $targetLanguage definition.
 
 Respond ONLY in valid JSON format with this exact structure:
 {
@@ -463,12 +469,13 @@ Context/Tone: ${contextTone.isEmpty ? "Standard" : contextTone}
 Please provide exactly $count words or short phrases that fit this criteria.
 Ensure that the vocabulary is natural and useful.
 
-Respond ONLY in valid JSON format as a list of objects with this exact structure:
+Respond ONLY in valid JSON format as a list of objects with this exact structure.
+CRITICAL: Put the $targetLanguage translation in the "english" JSON key!
 [
   {
     "hanzi": "公司",
     "pinyin": "gōng sī",
-    "english": "company"
+    "english": "$targetLanguage translation (e.g., company)"
   }
 ]
 ''';
@@ -521,16 +528,17 @@ The story should feel like a complete narrative with a beginning, middle, and en
 Maintain a "Zen & Ink" tone: professional, calm, and culturally rich.
 
 Respond ONLY in valid JSON format with this exact structure:
+CRITICAL: Put the $targetLanguage translation in the "english" JSON key!
 {
   "sentences": [
     {
       "chinese": "The full sentence in Chinese...",
-      "english": "The English translation of the sentence...",
+      "english": "The $targetLanguage translation of the sentence...",
       "words": [
         {
            "hanzi": "The word or character in Chinese",
            "pinyin": "The pinyin for this specific word",
-           "meaning": "The contextual meaning of this word in this specific sentence"
+           "meaning": "The contextual $targetLanguage meaning of this word"
         }
       ]
     }
@@ -569,16 +577,17 @@ Write an engaging, culturally accurate story or article about "$topic" (Category
 CRITICAL: You MUST restrict your vocabulary entirely to the HSK $hskLevel word list. Keep it under 400 words.
 
 Respond ONLY in valid JSON format with this exact structure. DO NOT CUT OFF mid-generation. Ensure the JSON is complete and valid:
+CRITICAL: Put the $targetLanguage translation in the "english" JSON key!
 {
   "sentences": [
     {
       "chinese": "The full sentence in Chinese...",
-      "english": "The English translation of the sentence...",
+      "english": "The $targetLanguage translation of the sentence...",
       "words": [
         {
            "hanzi": "The word or character in Chinese",
            "pinyin": "The pinyin for this specific word",
-           "meaning": "The contextual meaning of this word in this specific sentence"
+           "meaning": "The contextual $targetLanguage meaning of this word"
         }
       ]
     }
@@ -621,16 +630,17 @@ $sourceText
 """
 
 Respond ONLY in valid JSON format with this exact structure:
+CRITICAL: Put the $targetLanguage translation in the "english" JSON key!
 {
   "sentences": [
     {
       "chinese": "The full simplified sentence in Chinese...",
-      "english": "The English translation of the sentence...",
+      "english": "The $targetLanguage translation of the sentence...",
       "words": [
         {
            "hanzi": "The word or character in Chinese",
            "pinyin": "The pinyin for this specific word",
-           "meaning": "The contextual meaning of this word in this specific sentence"
+           "meaning": "The contextual $targetLanguage meaning of this word"
         }
       ]
     }
@@ -706,7 +716,16 @@ Make sure every single character in the 'chinese' sentence is represented in the
     final prompt = '''
 You are an expert native Chinese teacher. $targetContext
 
-Evaluate their pronunciation with extreme strictness on tones.
+Evaluate their pronunciation using THREE tiers for each character/word:
+- isCorrect: true  → Pronunciation and tone are both correct. (GREEN)
+- isCorrect: false, isPartial: true  → The base syllable is understandable but the TONE is imprecise or slightly off. (YELLOW)
+- isCorrect: false, isPartial: false → The pronunciation or tone is clearly wrong. (RED)
+
+For every word, provide a specific "feedback" string explaining:
+- What tone they produced vs what was expected (e.g. "You said 4th tone mào but it should be 4th tone — actually correct!")
+- If isCorrect is true, feedback can be empty string "".
+- If isPartial or wrong, feedback MUST be specific (e.g. "You said 1st tone māo but it should be 2nd tone máo. Try going up like a question.")
+
 Return ONLY valid JSON with exactly this structure:
 {
   "score": 85,
@@ -721,15 +740,26 @@ Return ONLY valid JSON with exactly this structure:
       "expectedTone": 2,
       "actualTone": 2,
       "isCorrect": true,
+      "isPartial": false,
       "feedback": ""
     },
     {
       "word": "果",
       "pinyin": "guǒ",
       "expectedTone": 3,
+      "actualTone": 2,
+      "isCorrect": false,
+      "isPartial": true,
+      "feedback": "Your tone dipped slightly but didn't fully fall-rise. Try exaggerating the dip more for a clear 3rd tone."
+    },
+    {
+      "word": "汁",
+      "pinyin": "zhī",
+      "expectedTone": 1,
       "actualTone": 4,
       "isCorrect": false,
-      "feedback": "You pronounced it as a falling 4th tone."
+      "isPartial": false,
+      "feedback": "You said a sharp falling 4th tone. This should be a flat high 1st tone — hold it steady and high."
     }
   ]
 }

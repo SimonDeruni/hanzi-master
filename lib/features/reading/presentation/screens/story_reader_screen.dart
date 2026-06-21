@@ -1,3 +1,4 @@
+import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_tts/flutter_tts.dart';
@@ -105,7 +106,7 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "Full Translation",
+                      AppLocalizations.of(context)!.fullTranslation,
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
@@ -147,14 +148,14 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
     return Scaffold(
       backgroundColor: isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
       appBar: AppBar(
-        title: Text('${widget.blueprint.title} (HSK ${widget.hskLevel})', style: const TextStyle(fontFamily: 'NotoSerifSC')),
+        title: Text(AppLocalizations.of(context)!.storyTitleHsk(widget.blueprint.title, widget.hskLevel), style: TextStyle(fontFamily: 'NotoSerifSC')),
         backgroundColor: Colors.transparent,
         elevation: 0,
         actions: [
           if (!_isSaved && state.currentStory != null) ...[
              TextButton.icon(
                 icon: const Icon(Icons.delete_outline, color: Colors.redAccent),
-                label: const Text("Discard", style: TextStyle(color: Colors.redAccent)),
+                label: Text(AppLocalizations.of(context)!.discard, style: TextStyle(color: Colors.redAccent)),
                 onPressed: () async {
                    final controller = ref.read(storyControllerProvider.notifier);
                    await controller.deleteCustomStory(widget.blueprint);
@@ -165,10 +166,10 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
              ),
              TextButton.icon(
                 icon: const Icon(Icons.save),
-                label: const Text("Save"),
+                label: Text(AppLocalizations.of(context)!.save),
                 onPressed: () {
                    setState(() { _isSaved = true; });
-                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Story saved to Library!")));
+                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(AppLocalizations.of(context)!.storySavedToLibrary)));
                 },
              ),
           ]
@@ -181,7 +182,7 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
                 children: [
                   const CircularProgressIndicator(color: Colors.indigo),
                   const SizedBox(height: 24),
-                  const Text("Generating story via DeepSeek...", style: TextStyle(color: Colors.grey)),
+                  Text(AppLocalizations.of(context)!.generatingStoryViaDeepseek, style: TextStyle(color: Colors.grey)),
                   const SizedBox(height: 8),
                   Text("HSK ${widget.hskLevel} vocabulary", style: const TextStyle(fontWeight: FontWeight.bold)),
                 ],
@@ -202,14 +203,14 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
                           onPressed: () {
                             ref.read(storyControllerProvider.notifier).loadOrGenerateStory(widget.blueprint, widget.hskLevel);
                           },
-                          child: const Text("Try Again"),
+                          child: Text(AppLocalizations.of(context)!.tryAgain),
                         ),
                       ],
                     ),
                   ),
                 )
               : state.currentStory == null
-                  ? const Center(child: Text("Story not found."))
+                  ? Center(child: Text(AppLocalizations.of(context)!.storyNotFound))
                   : SingleChildScrollView(
                       padding: const EdgeInsets.all(24.0),
                       child: Column(
@@ -335,13 +336,13 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
                   children: [
                     TextButton.icon(
                       icon: const Icon(Icons.translate, size: 20),
-                      label: const Text("Translate"),
+                      label: Text(AppLocalizations.of(context)!.translate),
                       style: TextButton.styleFrom(foregroundColor: isDark ? Colors.white70 : Colors.black87),
                       onPressed: () => _showFullTranslation(context, AiStory(sentences: state.currentStory!.sentences)),
                     ),
                     TextButton.icon(
                       icon: Icon(_showPinyin ? Icons.visibility : Icons.visibility_off, size: 20),
-                      label: const Text("Pinyin"),
+                      label: Text(AppLocalizations.of(context)!.pinyin),
                       style: TextButton.styleFrom(foregroundColor: _showPinyin ? Colors.blueAccent : (isDark ? Colors.white70 : Colors.black87)),
                       onPressed: () => setState(() => _showPinyin = !_showPinyin),
                     ),

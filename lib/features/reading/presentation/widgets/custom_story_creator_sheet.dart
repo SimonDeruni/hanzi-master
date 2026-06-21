@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
 import '../providers/story_controller.dart';
 import '../screens/story_reader_screen.dart';
 import 'package:hanzi_master/features/premium/presentation/screens/universal_scanner_screen.dart';
@@ -106,14 +107,14 @@ class _CustomStoryCreatorSheetState extends ConsumerState<CustomStoryCreatorShee
             controller: _tabController,
             labelColor: Colors.indigo,
             unselectedLabelColor: Colors.grey,
-            tabs: const [
-              Tab(text: "Generate Topic"),
-              Tab(text: "Simplify Text"),
+            tabs: [
+              Tab(text: AppLocalizations.of(context)!.generateTopic),
+              Tab(text: AppLocalizations.of(context)!.simplifyText),
             ],
           ),
           const SizedBox(height: 16),
           // HSK Level Selector
-          Text("Target HSK Level", style: Theme.of(context).textTheme.titleSmall),
+          Text(AppLocalizations.of(context)!.targetHskLevel, style: Theme.of(context).textTheme.titleSmall),
           const SizedBox(height: 8),
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
@@ -147,17 +148,17 @@ class _CustomStoryCreatorSheetState extends ConsumerState<CustomStoryCreatorShee
                   children: [
                     TextField(
                       controller: _topicController,
-                      decoration: const InputDecoration(
-                        labelText: 'Topic (e.g. Aliens in Beijing)',
-                        border: OutlineInputBorder(),
+                      decoration: InputDecoration(
+                        labelText: AppLocalizations.of(context)!.topicHint,
+                        border: const OutlineInputBorder(),
                       ),
                     ),
                     const SizedBox(height: 12),
                     TextField(
                       controller: _tagsController,
-                      decoration: const InputDecoration(
-                        labelText: 'Tags (comma separated, optional)',
-                        border: OutlineInputBorder(),
+                      decoration: InputDecoration(
+                        labelText: AppLocalizations.of(context)!.tagsHint,
+                        border: const OutlineInputBorder(),
                       ),
                     ),
                   ],
@@ -168,9 +169,9 @@ class _CustomStoryCreatorSheetState extends ConsumerState<CustomStoryCreatorShee
                     TextField(
                       controller: _textToSimplifyController,
                       maxLines: 6,
-                      decoration: const InputDecoration(
-                        labelText: 'Paste or scan Chinese text to simplify',
-                        border: OutlineInputBorder(),
+                      decoration: InputDecoration(
+                        labelText: AppLocalizations.of(context)!.pasteScanToSimplify,
+                        border: const OutlineInputBorder(),
                         alignLabelWithHint: true,
                       ),
                     ),
@@ -199,7 +200,7 @@ class _CustomStoryCreatorSheetState extends ConsumerState<CustomStoryCreatorShee
               foregroundColor: Colors.white,
               padding: const EdgeInsets.symmetric(vertical: 16),
             ),
-            child: const Text('Create Magic', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+            child: Text(AppLocalizations.of(context)!.createMagic, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
           ),
           const SizedBox(height: 16),
         ],

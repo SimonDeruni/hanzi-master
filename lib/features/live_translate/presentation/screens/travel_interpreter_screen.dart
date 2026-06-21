@@ -13,6 +13,7 @@ import 'package:hive/hive.dart';
 import 'package:uuid/uuid.dart';
 import 'package:hanzi_master/shared/widgets/tappable_hanzi_text.dart';
 import 'package:hanzi_master/features/live_translate/domain/entities/translation_session.dart';
+import 'package:hanzi_master/core/providers/translation_language_provider.dart';
 
 class InterpreterMessage {
   final String text;
@@ -107,7 +108,7 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
           },
           "systemInstruction": {
             "parts": [
-              {"text": "You are a Real-time Travel Interpreter. Your job is to translate spoken English to Mandarin Chinese AND spoken Mandarin Chinese to English seamlessly. If the user speaks English, output Mandarin. If they speak Mandarin, output English. Be conversational and helpful."}
+              {"text": "You are a Real-time Travel Interpreter. Your job is to translate spoken ${ref.read(translationLanguageProvider)} to Mandarin Chinese AND spoken Mandarin Chinese to ${ref.read(translationLanguageProvider)} seamlessly. If the user speaks ${ref.read(translationLanguageProvider)}, output Mandarin. If they speak Mandarin, output ${ref.read(translationLanguageProvider)}. Be conversational and helpful."}
             ]
           }
         }
@@ -454,8 +455,18 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                       children: [
                         Row(
                           children: [
-                            const Text("You (English)", style: TextStyle(color: Colors.white54, fontSize: 18, fontWeight: FontWeight.bold)),
-                            const SizedBox(width: 16),
+                            DropdownButtonHideUnderline(
+                              child: DropdownButton<String>(
+                                value: ref.watch(translationLanguageProvider),
+                                icon: const Icon(Icons.language, color: Colors.white70),
+                                dropdownColor: Colors.grey[900],
+                                style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+                                items: supportedTranslationLanguages.map((lang) => DropdownMenuItem(value: lang, child: Text("You ($lang)"))).toList(),
+                                onChanged: (val) {
+                                  if (val != null) ref.read(translationLanguageProvider.notifier).setLanguage(val);
+                                },
+                              ),
+                            ),
                             if (_isRecording)
                               const Row(
                                 children: [

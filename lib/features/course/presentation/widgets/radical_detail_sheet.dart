@@ -1,3 +1,4 @@
+import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'dart:convert';
@@ -204,7 +205,7 @@ class _RadicalDetailSheetState extends ConsumerState<RadicalDetailSheet> {
                         elevation: 4,
                       ),
                       icon: const Icon(Icons.auto_awesome),
-                      label: const Text("INITIATE RADICAL SEQUENCE", style: TextStyle(fontWeight: FontWeight.bold, letterSpacing: 1.2)),
+                      label: Text(AppLocalizations.of(context)!.initiateRadicalSequence, style: TextStyle(fontWeight: FontWeight.bold, letterSpacing: 1.2)),
                     ),
                   ),
                 ),

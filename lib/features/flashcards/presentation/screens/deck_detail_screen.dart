@@ -1,3 +1,4 @@
+import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/deck.dart';
@@ -70,12 +71,12 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => DeckCardPickerScreen(deckId: widget.deck.id, deckName: widget.deck.name),
+                builder: (context) => DeckCardPickerScreen(deckId: widget.deck.id, deckName: widget.deck.localizedName(context)),
               ),
             );
           },
-          icon: const Icon(Icons.add),
-          label: const Text("Add Cards"),
+          icon: Icon(Icons.add),
+          label: Text(AppLocalizations.of(context)!.addCards),
           backgroundColor: Colors.indigo,
           foregroundColor: Colors.white,
         ) : null,
@@ -104,7 +105,7 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                       centerTitle: true,
                       titlePadding: const EdgeInsets.only(bottom: 12),
                       title: Text(
-                        widget.deck.name,
+                        widget.deck.localizedName(context),
                         style: TextStyle(
                           color: isDark ? Colors.white : const Color(0xFF2C2C2C),
                           fontWeight: FontWeight.w800,
@@ -147,7 +148,7 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                     actions: [
                       if (widget.deck.id != 'default')
                         IconButton(
-                          icon: const Icon(Icons.delete_outline, color: Colors.redAccent),
+                          icon: Icon(Icons.delete_outline, color: Colors.redAccent),
                           onPressed: () {
                             // Delete deck
                           },
@@ -203,18 +204,18 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                                     shadowColor: Colors.transparent,
                                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                                   ),
-                                  child: const Row(
+                                  child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Icon(Icons.play_arrow_rounded, size: 24, color: Colors.white),
                                       SizedBox(width: 8),
-                                      Text("Review", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white)),
+                                      Text(AppLocalizations.of(context)!.review, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white)),
                                     ],
                                   ),
                                 ),
                               ),
                             ),
-                            const SizedBox(width: 12),
+                            SizedBox(width: 12),
                             Expanded(
                               flex: 2,
                               child: SizedBox(
@@ -237,12 +238,12 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                                     side: BorderSide(color: isDark ? Colors.purple[300]!.withValues(alpha: 0.5) : Colors.purple[200]!, width: 1.5),
                                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                                   ),
-                                  child: const Row(
+                                  child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Icon(Icons.auto_awesome, size: 18),
                                       SizedBox(width: 6),
-                                      Text("Story", style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+                                      Text(AppLocalizations.of(context)!.story, style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
                                     ],
                                   ),
                                 ),
@@ -284,10 +285,10 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                             controller: _searchController,
                             decoration: InputDecoration(
                               hintText: "Search character, pinyin...",
-                              prefixIcon: const Icon(Icons.search),
+                              prefixIcon: Icon(Icons.search),
                               suffixIcon: _searchQuery.isNotEmpty 
                                   ? IconButton(
-                                      icon: const Icon(Icons.clear), 
+                                      icon: Icon(Icons.clear), 
                                       onPressed: () {
                                         _searchController.clear();
                                         setState(() => _searchQuery = '');
@@ -309,17 +310,17 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Icon(Icons.inbox_outlined, size: 80, color: Colors.grey.withValues(alpha: 0.3)),
-                                  const SizedBox(height: 16),
+                                  SizedBox(height: 16),
                                   Text(
-                                    "This deck is empty.",
+                                    AppLocalizations.of(context)!.thisDeckIsEmpty,
                                     style: TextStyle(
                                       fontSize: 18,
                                       color: isDark ? Colors.white54 : Colors.black54,
                                     ),
                                   ),
-                                  const SizedBox(height: 8),
+                                  SizedBox(height: 8),
                                   Text(
-                                    "Tap the Add Cards button!",
+                                    AppLocalizations.of(context)!.tapTheAddCards,
                                     style: TextStyle(
                                       fontSize: 14,
                                       color: Colors.purple.withValues(alpha: 0.8),
@@ -331,7 +332,7 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                           : filteredCards.isEmpty
                             ? Center(
                                 child: Text(
-                                  "No cards found.",
+                                  AppLocalizations.of(context)!.noCardsFound,
                                   style: TextStyle(color: isDark ? Colors.white54 : Colors.black54),
                                 ),
                               )
@@ -352,17 +353,17 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                                           color: Colors.redAccent,
                                           borderRadius: BorderRadius.circular(16),
                                         ),
-                                        child: const Icon(Icons.delete_sweep, color: Colors.white, size: 32),
+                                        child: Icon(Icons.delete_sweep, color: Colors.white, size: 32),
                                       ),
                                       confirmDismiss: (direction) async {
                                         return await showDialog<bool>(
                                           context: context,
                                           builder: (context) => AlertDialog(
-                                            title: const Text("Remove Card"),
+                                            title: Text(AppLocalizations.of(context)!.removeCard),
                                             content: Text("Remove ${card.hanzi} from this deck?"),
                                             actions: [
-                                              TextButton(onPressed: () => Navigator.pop(context, false), child: const Text("Cancel")),
-                                              TextButton(onPressed: () => Navigator.pop(context, true), child: const Text("Remove")),
+                                              TextButton(onPressed: () => Navigator.pop(context, false), child: Text(AppLocalizations.of(context)!.cancel)),
+                                              TextButton(onPressed: () => Navigator.pop(context, true), child: Text(AppLocalizations.of(context)!.remove)),
                                             ],
                                           ),
                                         );
@@ -372,7 +373,7 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                                         ref.read(flashcardControllerProvider.notifier).updateFlashcard(updatedCard);
                                         ScaffoldMessenger.of(context).showSnackBar(
                                           SnackBar(
-                                            content: Text('Removed ${card.hanzi} from deck'),
+                                            content: Text(AppLocalizations.of(context)!.removedFromDeck(card.hanzi)),
                                             backgroundColor: Colors.redAccent,
                                             duration: const Duration(seconds: 2),
                                             action: SnackBarAction(
@@ -400,7 +401,7 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
               ),
             );
           },
-          loading: () => const Center(child: CircularProgressIndicator()),
+          loading: () => Center(child: CircularProgressIndicator()),
           error: (err, stack) => Center(child: Text('Error: $err')),
         ),
       ),
@@ -411,7 +412,7 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
     if (cards.isEmpty) {
       return Center(
         child: Text(
-          "Add cards to see statistics.",
+          AppLocalizations.of(context)!.addCardsToSee,
           style: TextStyle(color: Theme.of(context).brightness == Brightness.dark ? Colors.white54 : Colors.black54),
         ),
       );
@@ -457,7 +458,7 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                       color: isDark ? Colors.purple[300] : Colors.purple[700],
                       size: 20,
                     ),
-                    const SizedBox(width: 8),
+                    SizedBox(width: 8),
                     Text(
                       modeName,
                       style: TextStyle(
@@ -469,14 +470,14 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                     ),
                   ],
                 ),
-                const SizedBox(height: 16),
+                SizedBox(height: 16),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     _buildStatItem(context, "New", newCount.toString(), Colors.blue),
                     _buildStatItem(context, "Due", due.toString(), Colors.orange),
-                    _buildStatItem(context, "Learning", learning.toString(), Colors.indigo),
-                    _buildStatItem(context, "Mastered", mastered.toString(), Colors.green),
+                    _buildStatItem(context, AppLocalizations.of(context)!.learning, learning.toString(), Colors.indigo),
+                    _buildStatItem(context, AppLocalizations.of(context)!.masteredStatus, mastered.toString(), Colors.green),
                   ],
                 ),
               ],
@@ -509,7 +510,7 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
             color: isDark ? color.shade300 : color.shade700,
           ),
         ),
-        const SizedBox(height: 4),
+        SizedBox(height: 4),
         Text(
           label,
           style: TextStyle(
@@ -564,7 +565,7 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                 ),
               ),
             ),
-            const SizedBox(width: 20),
+            SizedBox(width: 20),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -578,7 +579,7 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                       letterSpacing: 1.0,
                     ),
                   ),
-                  const SizedBox(height: 6),
+                  SizedBox(height: 6),
                   if (card.hskLevel == 0 && widget.deck.id == 'default')
                     Container(
                       margin: const EdgeInsets.only(bottom: 8),
@@ -592,9 +593,9 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Icon(Icons.auto_awesome, size: 10, color: Colors.purple.shade400),
-                          const SizedBox(width: 4),
+                          SizedBox(width: 4),
                           Text(
-                            "AI Generated",
+                            AppLocalizations.of(context)!.aiGenerated,
                             style: TextStyle(
                               fontSize: 10,
                               fontWeight: FontWeight.bold,

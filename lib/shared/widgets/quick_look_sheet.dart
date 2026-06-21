@@ -1,3 +1,4 @@
+import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -161,7 +162,7 @@ class _NotFoundBodyState extends ConsumerState<_NotFoundBody> {
               padding: const EdgeInsets.only(top: 16.0),
               child: ElevatedButton.icon(
                 icon: const Icon(Icons.add_box),
-                label: const Text("Review & Add to Library"),
+                label: Text(AppLocalizations.of(context)!.reviewAddToLibrary),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.indigo,
                   foregroundColor: Colors.white,
@@ -320,7 +321,7 @@ class _FoundBody extends ConsumerWidget {
               // Add / In Deck button
               Expanded(
                 child: _ActionButton(
-                  label: inDeck ? 'In Deck ✓' : '+ Add to Deck',
+                  label: inDeck ? AppLocalizations.of(context)!.inDeckCheck : AppLocalizations.of(context)!.addToDeckPlus,
                   isPrimary: false,
                   isDisabled: inDeck,
                   onTap: inDeck
@@ -348,7 +349,7 @@ class _FoundBody extends ConsumerWidget {
               // Full card button
               Expanded(
                 child: _ActionButton(
-                  label: 'Open Card →',
+                  label: AppLocalizations.of(context)!.openCardArrow,
                   isPrimary: true,
                   isDisabled: false,
                   onTap: () {

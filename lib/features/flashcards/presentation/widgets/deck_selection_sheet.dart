@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/deck_controller.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
@@ -49,7 +50,7 @@ class DeckSelectionSheet extends ConsumerWidget {
                     final deck = decks[index];
                     return ListTile(
                       leading: Icon(deck.id == 'default' ? Icons.library_books : Icons.book, color: Colors.indigo),
-                      title: Text(deck.name, style: const TextStyle(fontWeight: FontWeight.bold)),
+                      title: Text(deck.localizedName(context), style: const TextStyle(fontWeight: FontWeight.bold)),
                       onTap: () {
                         final newCard = Flashcard(
                           id: DateTime.now().millisecondsSinceEpoch.toString(),
@@ -64,7 +65,7 @@ class DeckSelectionSheet extends ConsumerWidget {
                         ref.read(flashcardControllerProvider.notifier).addFlashcard(newCard);
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
-                            content: Text('Added to ${deck.name}!'),
+                            content: Text(AppLocalizations.of(context)!.addedToDeck(card.hanzi, deck.localizedName(context))),
                             backgroundColor: Colors.green,
                           ),
                         );

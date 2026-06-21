@@ -31,12 +31,12 @@ class _TranslationSessionDetailScreenState extends ConsumerState<TranslationSess
 Analyze this Mandarin sentence grammatically and return a JSON array where each element is an object with:
 - "word": the Chinese word
 - "pinyin": the pinyin
-- "english": the English meaning
-- "grammar_role": its grammatical role in the sentence
+- "english": the translation in \${gemini.targetLanguage}
+- "grammar_role": its grammatical role in the sentence (explain in \${gemini.targetLanguage})
 
 Return strictly ONLY valid JSON, no markdown formatting.
 
-Sentence: "$sentence"
+Sentence: "\$sentence"
 ''';
 
       final response = await gemini.makeOpenRouterCall(

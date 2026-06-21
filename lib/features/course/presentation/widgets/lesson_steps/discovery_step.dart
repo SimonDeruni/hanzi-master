@@ -1,3 +1,4 @@
+import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/core/services/audio_service.dart';
@@ -91,7 +92,7 @@ class _DiscoveryStepState extends ConsumerState<DiscoveryStep> with SingleTicker
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Text("DISCOVERY", style: TextStyle(fontSize: 14, letterSpacing: 2, color: Colors.grey, fontWeight: FontWeight.bold)),
+        Text(AppLocalizations.of(context)!.discovery, style: TextStyle(fontSize: 14, letterSpacing: 2, color: Colors.grey, fontWeight: FontWeight.bold)),
         const SizedBox(height: 40),
         
         // Large Hanzi
@@ -186,7 +187,7 @@ class _DiscoveryStepState extends ConsumerState<DiscoveryStep> with SingleTicker
                 backgroundColor: const Color(0xFF1A1A1B),
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
               ),
-              child: const Text("START LEARNING", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color(0xFFFDFCF0), letterSpacing: 1.2)),
+              child: Text(AppLocalizations.of(context)!.startLearning, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color(0xFFFDFCF0), letterSpacing: 1.2)),
             ),
           ),
         ),

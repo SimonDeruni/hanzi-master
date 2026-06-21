@@ -1,3 +1,4 @@
+import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/core/services/digital_ink_service.dart';
@@ -119,7 +120,7 @@ class _HandwritingKeyboardState extends ConsumerState<HandwritingKeyboard> {
                 if (!isDownloaded)
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: Text("Downloading model...", style: theme.textTheme.bodySmall?.copyWith(color: theme.colorScheme.primary)),
+                    child: Text(AppLocalizations.of(context)!.downloadingModel, style: theme.textTheme.bodySmall?.copyWith(color: theme.colorScheme.primary)),
                   ),
               ],
             ),

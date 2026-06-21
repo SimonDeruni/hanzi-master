@@ -1,3 +1,4 @@
+import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
@@ -62,7 +63,7 @@ class _DeckReviewSessionScreenState extends ConsumerState<DeckReviewSessionScree
         });
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("All cards caught up! Great job.")),
+          SnackBar(content: Text(AppLocalizations.of(context)!.allCardsCaughtUp)),
         );
         Navigator.pop(context);
       }
@@ -102,7 +103,7 @@ class _DeckReviewSessionScreenState extends ConsumerState<DeckReviewSessionScree
       if (card.strokePaths.isEmpty) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Skipped "${card.hanzi}" - No stroke data available for this AI character.'),
+            content: Text(AppLocalizations.of(context)!.skippedNoStrokeData(card.hanzi)),
             duration: const Duration(seconds: 2),
             behavior: SnackBarBehavior.floating,
           ),
@@ -232,7 +233,7 @@ class _DeckReviewSessionScreenState extends ConsumerState<DeckReviewSessionScree
       body: Center(
         child: _isLoading 
             ? const CircularProgressIndicator()
-            : const Text('Starting session...'),
+            : Text(AppLocalizations.of(context)!.startingSession),
       ),
     );
   }

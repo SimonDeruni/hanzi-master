@@ -1,3 +1,4 @@
+import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../providers/story_controller.dart';
@@ -20,6 +21,38 @@ class _ReadingRoomScreenState extends ConsumerState<ReadingRoomScreen> {
   void dispose() {
     _searchController.dispose();
     super.dispose();
+  }
+
+  String _localizeCategory(BuildContext context, String category) {
+    final l10n = AppLocalizations.of(context)!;
+    switch (category) {
+      case 'Myths & Legends': return l10n.mythsAndLegends;
+      case 'History & Culture': return l10n.historyAndCulture;
+      case 'Idioms (成语)': return l10n.idiomsTitle;
+      default: return category;
+    }
+  }
+
+  String _localizeTitle(BuildContext context, String title) {
+    final l10n = AppLocalizations.of(context)!;
+    switch (title) {
+      case 'The Monkey King': return l10n.theMonkeyKing;
+      case 'Hua Mulan': return l10n.huaMulan;
+      case 'Confucius': return l10n.confuciusTitle;
+      case 'The Great Wall': return l10n.theGreatWall;
+      default: return title;
+    }
+  }
+
+  String _localizeTopic(BuildContext context, String topic) {
+    final l10n = AppLocalizations.of(context)!;
+    switch (topic) {
+      case 'Sun Wukong (Journey to the West)': return l10n.theMonkeyKingDesc;
+      case 'Hua Mulan joining the army instead of her father': return l10n.huaMulanDesc;
+      case 'The life and teachings of Confucius': return l10n.confuciusDesc;
+      case 'Building the Great Wall of China': return l10n.theGreatWallDesc;
+      default: return topic;
+    }
   }
 
   void _showCreatorSheet(BuildContext context, WidgetRef ref) {
@@ -58,7 +91,7 @@ class _ReadingRoomScreenState extends ConsumerState<ReadingRoomScreen> {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: AppBar(
-        title: const Text('文化书房 (Cultural Reading Room)', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+        title: Text(AppLocalizations.of(context)!.culturalReadingRoom, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
         backgroundColor: Colors.transparent,
         elevation: 0,
         centerTitle: true,
@@ -67,8 +100,8 @@ class _ReadingRoomScreenState extends ConsumerState<ReadingRoomScreen> {
         onPressed: () {
           _showCreatorSheet(context, ref);
         },
-        icon: const Icon(Icons.auto_awesome),
-        label: const Text("Creator Mode"),
+        icon: Icon(Icons.auto_awesome),
+        label: Text(AppLocalizations.of(context)!.creatorMode),
         backgroundColor: Colors.indigo,
         foregroundColor: Colors.white,
       ),
@@ -81,11 +114,11 @@ class _ReadingRoomScreenState extends ConsumerState<ReadingRoomScreen> {
             child: TextField(
               controller: _searchController,
               decoration: InputDecoration(
-                hintText: 'Search stories by title or tags (e.g. mythology, travel)',
-                prefixIcon: const Icon(Icons.search, color: Colors.indigo),
+                hintText: AppLocalizations.of(context)!.searchStoriesHint,
+                prefixIcon: Icon(Icons.search, color: Colors.indigo),
                 suffixIcon: _searchQuery.isNotEmpty
                     ? IconButton(
-                        icon: const Icon(Icons.clear),
+                        icon: Icon(Icons.clear),
                         onPressed: () {
                           _searchController.clear();
                           setState(() => _searchQuery = "");
@@ -144,11 +177,11 @@ class _ReadingRoomScreenState extends ConsumerState<ReadingRoomScreen> {
           // Stories List
           Expanded(
             child: groupedBlueprints.isEmpty
-                ? const Center(
+                ? Center(
                     child: Padding(
                       padding: EdgeInsets.all(32.0),
                       child: Text(
-                        "No stories found matching your search.",
+                        AppLocalizations.of(context)!.noStoriesFoundMatching,
                         style: TextStyle(color: Colors.black54, fontSize: 16),
                         textAlign: TextAlign.center,
                       ),
@@ -167,7 +200,7 @@ class _ReadingRoomScreenState extends ConsumerState<ReadingRoomScreen> {
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
                             child: Text(
-                              category,
+                              _localizeCategory(context, category),
                               style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.indigo),
                             ),
                           ),
@@ -274,14 +307,14 @@ class _ReadingRoomScreenState extends ConsumerState<ReadingRoomScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        blueprint.title, 
+                        _localizeTitle(context, blueprint.title), 
                         style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15), 
                         maxLines: 1, 
                         overflow: TextOverflow.ellipsis
                       ),
-                      const SizedBox(height: 4),
+                      SizedBox(height: 4),
                       Text(
-                        blueprint.topic, 
+                        _localizeTopic(context, blueprint.topic), 
                         style: TextStyle(color: Colors.black.withValues(alpha: 0.6), fontSize: 12), 
                         maxLines: 2, 
                         overflow: TextOverflow.ellipsis

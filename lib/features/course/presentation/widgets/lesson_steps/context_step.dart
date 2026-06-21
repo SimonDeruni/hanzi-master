@@ -1,3 +1,4 @@
+import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -113,8 +114,8 @@ class _ContextStepState extends ConsumerState<ContextStep> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Text(
-          "STEP 6: CONTEXT",
+        Text(
+          AppLocalizations.of(context)!.step6Context,
           style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,

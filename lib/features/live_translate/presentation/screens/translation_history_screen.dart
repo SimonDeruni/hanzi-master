@@ -1,3 +1,4 @@
+import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -15,7 +16,7 @@ class TranslationHistoryScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Session History"),
+        title: Text(AppLocalizations.of(context)!.sessionHistory),
         actions: [
           IconButton(
             icon: const Icon(Icons.delete_sweep),
@@ -30,7 +31,7 @@ class TranslationHistoryScreen extends ConsumerWidget {
           valueListenable: box.listenable(),
           builder: (context, Box<TranslationSession> box, _) {
             if (box.isEmpty) {
-              return const Center(child: Text("No saved sessions."));
+              return Center(child: Text(AppLocalizations.of(context)!.noSavedSessions));
             }
 
             final sessions = box.values.toList()..sort((a, b) => b.date.compareTo(a.date));

@@ -1,3 +1,4 @@
+import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
@@ -228,7 +229,7 @@ class _AiExplainerSheetState extends ConsumerState<AiExplainerSheet> {
           const Icon(Icons.auto_awesome, color: Colors.blueAccent, size: 18),
           const SizedBox(width: 8),
           Text(
-            "AI Grammar Explanation",
+            AppLocalizations.of(context)!.aiGrammarExplanation,
             style: TextStyle(
               fontSize: 15,
               fontWeight: FontWeight.w700,

@@ -1,3 +1,4 @@
+import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -84,7 +85,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                       TextButton(
                         onPressed: _completeOnboarding,
                         child: Text(
-                          "Skip",
+                          AppLocalizations.of(context)!.skip,
                           style: TextStyle(
                             color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
                             fontWeight: FontWeight.w600,

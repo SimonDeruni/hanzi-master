@@ -195,12 +195,12 @@ class _SpeakingModeWidgetState extends ConsumerState<SpeakingModeWidget> {
                           ),
                         ),
                         if (!_isRevealed)
-                          const Expanded(
+                          Expanded(
                             flex: 1,
                             child: Align(
                               alignment: Alignment.bottomCenter,
                               child: Text(
-                                "Tap card to Reveal",
+                                AppLocalizations.of(context)!.tapCardToReveal,
                                 style: TextStyle(
                                   fontSize: 16,
                                   color: Colors.grey,
@@ -220,7 +220,7 @@ class _SpeakingModeWidgetState extends ConsumerState<SpeakingModeWidget> {
                                   text: widget.card.pinyin,
                                   style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
                                 ),
-                                const SizedBox(height: 16),
+                                SizedBox(height: 16),
                                 Expanded(
                                   child: SingleChildScrollView(
                                     child: Text(
@@ -262,7 +262,7 @@ class _SpeakingModeWidgetState extends ConsumerState<SpeakingModeWidget> {
               ),
 
             if (_isProcessing)
-              const Padding(
+              Padding(
                 padding: EdgeInsets.all(32.0),
                 child: Column(
                   children: [
@@ -317,7 +317,7 @@ class _SpeakingModeWidgetState extends ConsumerState<SpeakingModeWidget> {
                       ),
                     ),
                   ),
-                  const Padding(
+                  Padding(
                     padding: EdgeInsets.only(top: 8, bottom: 24),
                     child: Text(
                       'Hold to speak (Optional)',
@@ -349,7 +349,7 @@ class _SpeakingModeWidgetState extends ConsumerState<SpeakingModeWidget> {
                           color: Colors.green,
                         ),
                       ),
-                      const SizedBox(height: 8),
+                      SizedBox(height: 8),
                       Text(
                         _feedbackResult!['overallFeedback'] ?? '',
                         style: const TextStyle(fontSize: 14),
@@ -371,7 +371,7 @@ class _SpeakingModeWidgetState extends ConsumerState<SpeakingModeWidget> {
                       style: const TextStyle(
                           fontSize: 16, fontWeight: FontWeight.bold),
                     ),
-                    const SizedBox(height: 16),
+                    SizedBox(height: 16),
                     Row(
                       children: [
                         _buildGradeButton(

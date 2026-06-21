@@ -1,3 +1,4 @@
+import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
@@ -66,7 +67,7 @@ class _DeckCardPickerScreenState extends ConsumerState<DeckCardPickerScreen> {
                 child: filteredCards.isEmpty
                     ? Center(
                         child: Text(
-                          "No available cards found.",
+                          AppLocalizations.of(context)!.noAvailableCardsFound,
                           style: TextStyle(color: isDark ? Colors.white54 : Colors.black54),
                         ),
                       )
@@ -104,7 +105,7 @@ class _DeckCardPickerScreenState extends ConsumerState<DeckCardPickerScreen> {
                                   ref.read(flashcardControllerProvider.notifier).updateFlashcard(updatedCard);
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
-                                      content: Text('Added ${card.hanzi} to ${widget.deckName}'),
+                                      content: Text(AppLocalizations.of(context)!.addedToDeck(card.hanzi, widget.deckName)),
                                       duration: const Duration(seconds: 1),
                                       backgroundColor: Colors.green,
                                     ),

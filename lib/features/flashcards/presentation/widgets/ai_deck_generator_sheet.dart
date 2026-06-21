@@ -1,3 +1,4 @@
+import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/core/providers.dart';
@@ -61,11 +62,11 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
                     color: Colors.purple.withValues(alpha: 0.1),
                     shape: BoxShape.circle,
                   ),
-                  child: const Icon(Icons.auto_awesome, color: Colors.purple),
+                  child: Icon(Icons.auto_awesome, color: Colors.purple),
                 ),
-                const SizedBox(width: 16),
-                const Text(
-                  "AI Deck Generator",
+                SizedBox(width: 16),
+                Text(
+                  AppLocalizations.of(context)!.aiDeckGenerator,
                   style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
@@ -73,14 +74,14 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
                 ),
               ],
             ),
-            const SizedBox(height: 32),
+            SizedBox(height: 32),
             
             // Topic Field
-            const Text(
-              "What do you want to learn?",
+            Text(
+              AppLocalizations.of(context)!.whatDoYouWant,
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
-            const SizedBox(height: 12),
+            SizedBox(height: 12),
             TextField(
               controller: _topicController,
               decoration: InputDecoration(
@@ -91,36 +92,36 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
                   borderRadius: BorderRadius.circular(16),
                   borderSide: BorderSide.none,
                 ),
-                prefixIcon: const Icon(Icons.lightbulb_outline),
+                prefixIcon: Icon(Icons.lightbulb_outline),
               ),
             ),
             
-            const SizedBox(height: 32),
+            SizedBox(height: 32),
             
             // Difficulty
-            const Text(
-              "Target Difficulty",
+            Text(
+              AppLocalizations.of(context)!.targetDifficulty,
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
-            const SizedBox(height: 12),
+            SizedBox(height: 12),
             Row(
               children: [
                 _buildDifficultySegment(0, "Beginner", "HSK 1-2"),
-                const SizedBox(width: 8),
+                SizedBox(width: 8),
                 _buildDifficultySegment(1, "Intermediate", "HSK 3-4"),
-                const SizedBox(width: 8),
+                SizedBox(width: 8),
                 _buildDifficultySegment(2, "Advanced", "HSK 5-6"),
               ],
             ),
             
-            const SizedBox(height: 32),
+            SizedBox(height: 32),
             
             // Focus Area
-            const Text(
-              "Focus Area",
+            Text(
+              AppLocalizations.of(context)!.focusArea,
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
-            const SizedBox(height: 12),
+            SizedBox(height: 12),
             Wrap(
               spacing: 8,
               runSpacing: 8,
@@ -129,14 +130,14 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
               ].map((focus) => _buildFocusChip(focus, isDark)).toList(),
             ),
 
-            const SizedBox(height: 32),
+            SizedBox(height: 32),
 
             // Context / Tone
-            const Text(
-              "Specific Context or Tone (Optional)",
+            Text(
+              AppLocalizations.of(context)!.specificContextOrTone,
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
-            const SizedBox(height: 12),
+            SizedBox(height: 12),
             TextField(
               controller: _contextController,
               decoration: InputDecoration(
@@ -147,18 +148,18 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
                   borderRadius: BorderRadius.circular(16),
                   borderSide: BorderSide.none,
                 ),
-                prefixIcon: const Icon(Icons.psychology_alt),
+                prefixIcon: Icon(Icons.psychology_alt),
               ),
             ),
 
-            const SizedBox(height: 32),
+            SizedBox(height: 32),
             
             // Card Count
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(
-                  "Number of Cards",
+                Text(
+                  AppLocalizations.of(context)!.numberOfCards,
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
                 Text(
@@ -182,7 +183,7 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
               },
             ),
             
-            const SizedBox(height: 40),
+            SizedBox(height: 40),
             
             // Generate Button
             SizedBox(
@@ -192,7 +193,7 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
                 onPressed: _isGenerating ? null : () async {
                   final topic = _topicController.text.trim();
                   if (topic.isEmpty) {
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Please enter a topic')));
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(AppLocalizations.of(context)!.pleaseEnterTopic)));
                     return;
                   }
 
@@ -232,7 +233,7 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
                         
                         if (mounted) {
                           Navigator.pop(context);
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Created ${newDeck.name} with ${cards.length} cards!')));
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(AppLocalizations.of(context)!.createdDeckCards(newDeck.name, cards.length))));
                         }
                       }
                     }
@@ -255,17 +256,17 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
                   elevation: 0,
                 ),
                 child: _isGenerating
-                  ? const SizedBox(
+                  ? SizedBox(
                       width: 24, height: 24,
                       child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2),
                     )
-                  : const Row(
+                  : Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Icon(Icons.auto_awesome),
                         SizedBox(width: 8),
                         Text(
-                          "Generate Deck",
+                          AppLocalizations.of(context)!.generateDeck,
                           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                         ),
                       ],
@@ -307,7 +308,7 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
                   color: isSelected ? Colors.purple : (isDark ? Colors.white70 : Colors.black87),
                 ),
               ),
-              const SizedBox(height: 4),
+              SizedBox(height: 4),
               Text(
                 subtitle,
                 style: TextStyle(

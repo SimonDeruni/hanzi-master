@@ -10,6 +10,8 @@ import 'package:flutter_sound/flutter_sound.dart' as fs;
 import 'package:hanzi_master/core/services/api_key_pool.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
+import 'package:hanzi_master/core/providers/translation_language_provider.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
 
 class ShadowingMessage {
   final String englishText;
@@ -130,7 +132,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> {
             }
             
             if (data.containsKey('setupComplete')) {
-              setState(() => _status = "Speak English to get started...");
+              setState(() => _status = "Speak ${ref.read(translationLanguageProvider)} to get started...");
               _startAudioStreaming();
             }
 
@@ -240,10 +242,23 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> {
               Padding(
                 padding: const EdgeInsets.all(24.0),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     IconButton(
                       icon: Icon(Icons.arrow_back, color: isDark ? Colors.white : const Color(0xFF1A1A1B)),
                       onPressed: () => Navigator.pop(context),
+                    ),
+                    DropdownButtonHideUnderline(
+                      child: DropdownButton<String>(
+                        value: ref.watch(translationLanguageProvider),
+                        icon: Icon(Icons.language, color: isDark ? Colors.white70 : Colors.black54),
+                        dropdownColor: isDark ? Colors.grey[900] : Colors.white,
+                        style: TextStyle(color: isDark ? Colors.white : Colors.black, fontWeight: FontWeight.bold),
+                        items: supportedTranslationLanguages.map((lang) => DropdownMenuItem(value: lang, child: Text(lang))).toList(),
+                        onChanged: (val) {
+                          if (val != null) ref.read(translationLanguageProvider.notifier).setLanguage(val);
+                        },
+                      ),
                     ),
                   ],
                 ),
@@ -295,7 +310,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> {
                       // Instructions
                       _buildInstructionRow(
                         Icons.mic_none,
-                        "Speak in English",
+                        "Speak in ${ref.watch(translationLanguageProvider)}",
                         "Say any phrase you want to learn.",
                         isDark,
                       ),

@@ -1,3 +1,4 @@
+import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mlkit_digital_ink_recognition/google_mlkit_digital_ink_recognition.dart' as mlkit;
 
@@ -87,12 +88,12 @@ class HandwritingCanvasState extends State<HandwritingCanvas> {
               IconButton(
                 icon: const Icon(Icons.undo),
                 onPressed: _strokes.isEmpty ? null : _undo,
-                tooltip: "Undo",
+                tooltip: AppLocalizations.of(context)!.undo,
               ),
               IconButton(
                 icon: const Icon(Icons.clear),
                 onPressed: _strokes.isEmpty ? null : clear,
-                tooltip: "Clear",
+                tooltip: AppLocalizations.of(context)!.clear,
               ),
             ],
           ),

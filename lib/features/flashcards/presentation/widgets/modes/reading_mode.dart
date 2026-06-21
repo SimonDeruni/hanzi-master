@@ -93,12 +93,12 @@ class _ReadingModeWidgetState extends ConsumerState<ReadingModeWidget> {
                           ),
                         ),
                         if (!_isRevealed)
-                          const Expanded(
+                          Expanded(
                             flex: 1,
                             child: Align(
                               alignment: Alignment.bottomCenter,
                               child: Text(
-                                "Tap to Reveal",
+                                AppLocalizations.of(context)!.tapToReveal,
                                 style: TextStyle(
                                   fontSize: 16,
                                   color: Colors.grey,
@@ -118,7 +118,7 @@ class _ReadingModeWidgetState extends ConsumerState<ReadingModeWidget> {
                                   text: widget.card.pinyin,
                                   style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
                                 ),
-                                const SizedBox(height: 16),
+                                SizedBox(height: 16),
                                 Text(
                                   widget.card.definition,
                                   style: const TextStyle(fontSize: 20),
@@ -147,7 +147,7 @@ class _ReadingModeWidgetState extends ConsumerState<ReadingModeWidget> {
                       AppLocalizations.of(context)!.howDidYouDo,
                       style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                     ),
-                    const SizedBox(height: 16),
+                    SizedBox(height: 16),
                     Row(
                       children: [
                         _buildGradeButton(AppLocalizations.of(context)!.again, 0, Colors.red, AppLocalizations.of(context)!.missedItEntirely),

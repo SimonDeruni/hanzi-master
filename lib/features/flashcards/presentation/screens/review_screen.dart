@@ -168,7 +168,7 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
 
   Future<void> _submitDrawing(List<ui.Offset?> userPoints, {Size? canvasSize}) async {
     if (userPoints.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Please draw something first')));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(AppLocalizations.of(context)!.pleaseDrawSomethingFirst)));
       return;
     }
     final userStrokes = _splitIntoStrokes(userPoints);
@@ -327,7 +327,7 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text('Draw this character:', style: TextStyle(fontSize: 16, color: Colors.white70, fontWeight: FontWeight.w500)),
+                        Text(AppLocalizations.of(context)!.drawThisCharacter, style: TextStyle(fontSize: 16, color: Colors.white70, fontWeight: FontWeight.w500)),
                         const SizedBox(height: 8),
                         Row(
                           children: [
@@ -360,7 +360,7 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
                     children: [
                       const Icon(Icons.info_outline, color: Colors.white, size: 20),
                       const SizedBox(width: 8),
-                      Expanded(child: Text('Follow the blue guide to draw stroke ${_currentStrokeIndex + 1} of $totalStrokes', style: const TextStyle(color: Colors.white, fontSize: 14))),
+                      Expanded(child: Text(AppLocalizations.of(context)!.followGuideStroke(_currentStrokeIndex + 1, totalStrokes), style: TextStyle(color: Colors.white, fontSize: 14))),
                       Text('${_currentStrokeIndex + 1}/$totalStrokes', style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold)),
                     ],
                   ),
@@ -410,12 +410,12 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
             width: double.infinity, height: 56,
             child: _strokeByStrokeMode 
               ? OutlinedButton.icon(
-                  icon: const Icon(Icons.skip_next), label: const Text('Skip Current Stroke'),
+                  icon: Icon(Icons.skip_next), label: Text(AppLocalizations.of(context)!.skipCurrentStroke),
                   style: OutlinedButton.styleFrom(foregroundColor: Colors.orange.shade700, side: BorderSide(color: Colors.orange.shade700)),
                   onPressed: () => _onStrokeComplete(_currentStrokeIndex, _lastCanvasSize ?? ui.Size.zero),
                 )
               : ElevatedButton.icon(
-                  icon: const Icon(Icons.check_circle, size: 24), label: const Text('Submit Drawing'),
+                  icon: Icon(Icons.check_circle, size: 24), label: Text(AppLocalizations.of(context)!.submitDrawing),
                   style: ElevatedButton.styleFrom(backgroundColor: Colors.green.shade600, foregroundColor: Colors.white),
                   onPressed: () => _submitDrawing(_userPointsNotifier.value),
                 ),
@@ -576,7 +576,7 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Text("Your Drawing", style: TextStyle(color: isDark ? Colors.white54 : Colors.black54, fontSize: 12, fontWeight: FontWeight.bold)),
+                                    Text(AppLocalizations.of(context)!.yourDrawing, style: TextStyle(color: isDark ? Colors.white54 : Colors.black54, fontSize: 12, fontWeight: FontWeight.bold)),
                                     const SizedBox(width: 8),
                                     if (_strokeByStrokeMode)
                                       GestureDetector(
@@ -622,7 +622,7 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
                             flex: 1,
                             child: Column(
                               children: [
-                                Text("Reference", style: TextStyle(color: isDark ? Colors.white54 : Colors.black54, fontSize: 12, fontWeight: FontWeight.bold)),
+                                Text(AppLocalizations.of(context)!.reference, style: TextStyle(color: isDark ? Colors.white54 : Colors.black54, fontSize: 12, fontWeight: FontWeight.bold)),
                                 const SizedBox(height: 8),
                                 Expanded(
                                   child: Container(
@@ -663,7 +663,7 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
               padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
               child: Column(
                 children: [
-                  Text("Rate your recall", style: TextStyle(color: isDark ? Colors.white54 : Colors.black54, fontSize: 13, fontWeight: FontWeight.bold)),
+                  Text(AppLocalizations.of(context)!.rateYourRecall, style: TextStyle(color: isDark ? Colors.white54 : Colors.black54, fontSize: 13, fontWeight: FontWeight.bold)),
                   const SizedBox(height: 12),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,

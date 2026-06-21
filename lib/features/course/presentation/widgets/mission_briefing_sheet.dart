@@ -1,3 +1,4 @@
+import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
@@ -127,7 +128,7 @@ class MissionBriefingSheet extends StatelessWidget {
                           ),
                           const SizedBox(height: 16),
                           Text(
-                            "Tap building blocks to explore their origin.",
+                            AppLocalizations.of(context)!.tapBuildingBlocksTo,
                             style: TextStyle(fontSize: 14, color: isDark ? Colors.white54 : Colors.grey.shade600, fontStyle: FontStyle.italic),
                           ),
                         ],
@@ -151,7 +152,7 @@ class MissionBriefingSheet extends StatelessWidget {
                         elevation: 4,
                       ),
                       icon: const Icon(Icons.auto_awesome),
-                      label: const Text("BEGIN JOURNEY", style: TextStyle(fontWeight: FontWeight.bold, letterSpacing: 1.2)),
+                      label: Text(AppLocalizations.of(context)!.beginJourney, style: TextStyle(fontWeight: FontWeight.bold, letterSpacing: 1.2)),
                     ),
                   ),
                 ),

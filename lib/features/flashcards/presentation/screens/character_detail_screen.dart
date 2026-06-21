@@ -1,3 +1,4 @@
+import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/shared/widgets/pinyin_text.dart';
@@ -191,11 +192,11 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Center(child: Container(width: 40, height: 4, decoration: BoxDecoration(color: Colors.grey.withValues(alpha: 0.3), borderRadius: BorderRadius.circular(2)))),
-            const SizedBox(height: 24),
+            SizedBox(height: 24),
             Row(
               children: [
                 Text(radicalChar, style: const TextStyle(fontSize: 48, fontWeight: FontWeight.bold, color: Colors.red)),
-                const SizedBox(width: 16),
+                SizedBox(width: 16),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -207,9 +208,9 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
                 ),
               ],
             ),
-            const SizedBox(height: 24),
-            const Text("EXAMPLES IN HSK 1", style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, letterSpacing: 1.5, color: Colors.indigo)),
-            const SizedBox(height: 12),
+            SizedBox(height: 24),
+            Text(AppLocalizations.of(context)!.examplesInHsk1, style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, letterSpacing: 1.5, color: Colors.indigo)),
+            SizedBox(height: 12),
             Wrap(
               spacing: 12,
               runSpacing: 12,
@@ -218,11 +219,11 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
                 backgroundColor: Colors.indigo.withValues(alpha: 0.1),
               )).toList(),
             ),
-            if (examples.isEmpty) const Padding(
+            if (examples.isEmpty) Padding(
               padding: EdgeInsets.only(top: 8.0),
-              child: Text("No other HSK 1 characters use this radical.", style: TextStyle(fontStyle: FontStyle.italic, color: Colors.grey)),
+              child: Text(AppLocalizations.of(context)!.noOtherHsk1, style: TextStyle(fontStyle: FontStyle.italic, color: Colors.grey)),
             ),
-            const SizedBox(height: 40),
+            SizedBox(height: 40),
           ],
         ),
       ),
@@ -253,7 +254,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: const Text("Character Reference"),
+        title: Text(AppLocalizations.of(context)!.characterReference),
       ),
       floatingActionButton: Builder(
         builder: (context) {
@@ -268,8 +269,8 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
                 ),
               );
             },
-            icon: const Icon(Icons.auto_awesome),
-            label: const Text("Ask Tutor"),
+            icon: Icon(Icons.auto_awesome),
+            label: Text(AppLocalizations.of(context)!.askTutor),
             backgroundColor: Colors.indigo,
             foregroundColor: Colors.white,
           );
@@ -299,7 +300,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
                           height: 180,
                           width: 180,
                           child: _isLoadingStrokes 
-                            ? const Center(child: CircularProgressIndicator(color: Colors.indigo))
+                            ? Center(child: CircularProgressIndicator(color: Colors.indigo))
                             : currentCard.strokePaths.isEmpty
                                 ? Center(
                                     child: Text(
@@ -330,9 +331,9 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 16),
+                    SizedBox(height: 16),
                     _buildStrokeTimeline(isDark),
-                    const SizedBox(height: 24),
+                    SizedBox(height: 24),
                     Text(
                       currentCard.hanzi,
                       style: TextStyle(
@@ -348,9 +349,9 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
                           text: currentCard.pinyin,
                           style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w500, color: Colors.grey),
                         ),
-                        const SizedBox(width: 8),
+                        SizedBox(width: 8),
                         IconButton(
-                          icon: const Icon(Icons.volume_up, color: Colors.indigo, size: 24),
+                          icon: Icon(Icons.volume_up, color: Colors.indigo, size: 24),
                           onPressed: () => ref.read(audioServiceProvider).playCharacter(currentCard.hanzi),
                         ),
                       ],
@@ -358,7 +359,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
                   ],
                 ),
               ),
-              const SizedBox(height: 24),
+              SizedBox(height: 24),
               if (!inLibrary)
                 SizedBox(
                   width: double.infinity,
@@ -366,8 +367,8 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
                     onPressed: () {
                       DeckSelectionSheet.show(context, card: currentCard);
                     },
-                    icon: const Icon(Icons.add_circle_outline),
-                    label: const Text("Add to Study Deck"),
+                    icon: Icon(Icons.add_circle_outline),
+                    label: Text(AppLocalizations.of(context)!.addToStudyDeck),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.indigo,
                       foregroundColor: Colors.white,
@@ -377,23 +378,23 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
                     ),
                   ),
                 ),
-              const SizedBox(height: 24),
+              SizedBox(height: 24),
               if (_anatomyComponents.isNotEmpty) _buildAnatomySection(context, isDark),
-              const SizedBox(height: 16),
+              SizedBox(height: 16),
               _buildInfoSection(
                 context,
                 title: "Definition",
                 content: currentCard.definition,
                 icon: Icons.translate,
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: 16),
               _buildPersonalNotesSection(context, isDark),
-              const SizedBox(height: 16),
+              SizedBox(height: 16),
               _buildCommonWordsSection(context, isDark),
-              const SizedBox(height: 16),
+              SizedBox(height: 16),
               _buildAiContextSection(context, isDark),
 
-              const SizedBox(height: 40),
+              SizedBox(height: 40),
               Column(
                 children: [
                   SizedBox(
@@ -404,8 +405,8 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
                         context,
                         MaterialPageRoute(builder: (context) => ReviewScreen(card: currentCard)),
                       ),
-                      icon: const Icon(Icons.brush, color: Colors.white),
-                      label: const Text("START PRACTICE", style: TextStyle(fontWeight: FontWeight.bold, letterSpacing: 1.2, color: Colors.white)),
+                      icon: Icon(Icons.brush, color: Colors.white),
+                      label: Text(AppLocalizations.of(context)!.startPractice, style: TextStyle(fontWeight: FontWeight.bold, letterSpacing: 1.2, color: Colors.white)),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.indigo,
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
@@ -413,14 +414,14 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 12),
+                  SizedBox(height: 12),
                   SizedBox(
                     width: double.infinity,
                     height: 50,
                     child: OutlinedButton.icon(
                       onPressed: () => Navigator.pop(context),
-                      icon: const Icon(Icons.auto_awesome_motion),
-                      label: const Text("BACK TO LIBRARY", style: TextStyle(fontWeight: FontWeight.bold, letterSpacing: 1.2)),
+                      icon: Icon(Icons.auto_awesome_motion),
+                      label: Text(AppLocalizations.of(context)!.backToLibrary, style: TextStyle(fontWeight: FontWeight.bold, letterSpacing: 1.2)),
                       style: OutlinedButton.styleFrom(
                         foregroundColor: Colors.indigo,
                         side: const BorderSide(color: Colors.indigo, width: 2),
@@ -459,9 +460,9 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
   }
 
   Widget _buildStrokeTimeline(bool isDark) {
-    if (_isLoadingStrokes) return const SizedBox(height: 48);
+    if (_isLoadingStrokes) return SizedBox(height: 48);
     final currentCard = _hydratedCard ?? widget.card;
-    if (currentCard.strokePaths.isEmpty) return const SizedBox(height: 48);
+    if (currentCard.strokePaths.isEmpty) return SizedBox(height: 48);
     
     final validStrokes = currentCard.strokePaths.where((s) => s != '__CHAR_SEPARATOR__').toList();
     
@@ -480,7 +481,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
             }),
             icon: Icon(_isPlaying ? Icons.pause_circle : Icons.play_circle, color: Colors.indigo, size: 32),
           ),
-          const SizedBox(width: 8),
+          SizedBox(width: 8),
           ...List.generate(validStrokes.length, (index) {
             final int strokeNum = index + 1;
             final bool isSelected = !_isPlaying && 
@@ -548,7 +549,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
             );
           }).toList(),
         ),
-        const SizedBox(height: 16),
+        SizedBox(height: 16),
         SizedBox(
           height: 220,
           child: PageView.builder(
@@ -584,15 +585,15 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
               children: [
                 Row(
                   children: [
-                    const Icon(Icons.architecture, size: 18, color: Colors.indigo),
-                    const SizedBox(width: 8),
+                    Icon(Icons.architecture, size: 18, color: Colors.indigo),
+                    SizedBox(width: 8),
                     Text("${comp['char']} ANATOMY", style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.indigo, letterSpacing: 1.0)),
                   ],
                 ),
-                const Icon(Icons.info_outline, size: 16, color: Colors.indigo),
+                Icon(Icons.info_outline, size: 16, color: Colors.indigo),
               ],
             ),
-            const SizedBox(height: 20),
+            SizedBox(height: 20),
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -605,13 +606,13 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
                   ),
                   child: Center(child: Text(comp['radical'], style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Color(0xFFB22222)))),
                 ),
-                const SizedBox(width: 16),
+                SizedBox(width: 16),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text("Radical: ${comp['info']['name']}", style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-                      const SizedBox(height: 4),
+                      SizedBox(height: 4),
                       CrossReferenceText(
                         comp['info']['meaning'],
                         style: TextStyle(fontSize: 13, color: isDark ? Colors.white70 : Colors.black87),
@@ -622,14 +623,14 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
               ],
             ),
             if (comp['info']['mnemonic'] != null) ...[
-              const SizedBox(height: 16),
+              SizedBox(height: 16),
               Container(
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(color: Colors.white.withValues(alpha: 0.3), borderRadius: BorderRadius.circular(12)),
                 child: Row(
                   children: [
-                    const Icon(Icons.lightbulb_outline, size: 16, color: Colors.amber),
-                    const SizedBox(width: 8),
+                    Icon(Icons.lightbulb_outline, size: 16, color: Colors.amber),
+                    SizedBox(width: 8),
                     Expanded(child: CrossReferenceText(comp['info']['mnemonic'], style: const TextStyle(fontSize: 12, fontStyle: FontStyle.italic))),
                   ],
                 ),
@@ -644,7 +645,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
   Widget _buildPersonalNotesSection(BuildContext context, bool isDark) {
     return _buildInfoSection(
       context,
-      title: "Personal Notes",
+      title: AppLocalizations.of(context)!.personalNotes,
       icon: Icons.edit_note,
       child: TextField(
         controller: _notesController,
@@ -684,7 +685,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
         if (words.isEmpty) return const SizedBox.shrink();
         return _buildInfoSection(
           context,
-          title: "Common Words",
+          title: AppLocalizations.of(context)!.commonWords,
           icon: Icons.hub,
           child: Wrap(
             spacing: 8,
@@ -711,7 +712,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
           ),
         );
       },
-      loading: () => const Center(child: CircularProgressIndicator()),
+      loading: () => Center(child: CircularProgressIndicator()),
       error: (e, st) => Text("Error: $e"),
     );
   }
@@ -728,14 +729,14 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
           children: [
             _buildInfoSection(
               context,
-              title: "AI Memory Hook",
+              title: AppLocalizations.of(context)!.aiMemoryHook,
               icon: Icons.lightbulb,
               content: contextData.mnemonic,
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: 16),
             _buildInfoSection(
               context,
-              title: "Example Sentences",
+              title: AppLocalizations.of(context)!.exampleSentences,
               icon: Icons.format_quote,
               child: Column(
                 children: contextData.sentences.map((sentence) => Padding(
@@ -760,16 +761,16 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
                               ),
                             ),
                             IconButton(
-                              icon: const Icon(Icons.volume_up, size: 20, color: Colors.indigo),
+                              icon: Icon(Icons.volume_up, size: 20, color: Colors.indigo),
                               padding: EdgeInsets.zero,
                               constraints: const BoxConstraints(),
                               onPressed: () => ref.read(audioServiceProvider).playCharacter(sentence.chinese),
                             ),
                           ],
                         ),
-                        const SizedBox(height: 4),
+                        SizedBox(height: 4),
                         Text(sentence.pinyin, style: const TextStyle(fontSize: 14, color: Colors.indigo)),
-                        const SizedBox(height: 8),
+                        SizedBox(height: 8),
                         StatefulBuilder(
                           builder: (context, setState) {
                             bool isRevealed = false;
@@ -795,7 +796,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
                                             color: Colors.transparent,
                                             alignment: Alignment.center,
                                             child: Text(
-                                              "Tap to reveal",
+                                              AppLocalizations.of(context)!.tapToReveal,
                                               style: TextStyle(
                                                 fontSize: 12,
                                                 fontWeight: FontWeight.bold,
@@ -818,10 +819,10 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
               ),
             ),
             if (contextData.lookAlikes.isNotEmpty) ...[
-              const SizedBox(height: 16),
+              SizedBox(height: 16),
               _buildInfoSection(
                 context,
-                title: "Ghost Characters",
+                title: AppLocalizations.of(context)!.ghostCharacters,
                 icon: Icons.warning_amber_rounded,
                 child: Column(
                   children: contextData.lookAlikes.map((lookAlike) => Padding(
@@ -840,13 +841,13 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
                           Row(
                             children: [
                               Text(lookAlike.character, style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.deepOrange)),
-                              const SizedBox(width: 8),
+                              SizedBox(width: 8),
                               Text("(${lookAlike.pinyin})", style: const TextStyle(fontSize: 16, color: Colors.deepOrange)),
                               const Spacer(),
                               Text(lookAlike.english, style: const TextStyle(fontSize: 14, fontStyle: FontStyle.italic)),
                             ],
                           ),
-                          const SizedBox(height: 8),
+                          SizedBox(height: 8),
                           Text(lookAlike.difference, style: TextStyle(fontSize: 14, color: isDark ? Colors.white70 : Colors.black87)),
                         ],
                       ),
@@ -862,7 +863,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
         context,
         title: "AI Smart Context",
         icon: Icons.auto_awesome,
-        child: const Center(
+        child: Center(
           child: Padding(
             padding: EdgeInsets.all(16.0),
             child: CircularProgressIndicator(color: Colors.indigo),
@@ -879,12 +880,12 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
             children: [
               Expanded(
                 child: Text(
-                  "Could not load AI context. (Rate limit or network error)\nTap the refresh button below to try again later.",
+                  AppLocalizations.of(context)!.couldNotLoadAi,
                   style: TextStyle(color: isDark ? Colors.red[300] : Colors.red[700], fontSize: 13),
                 ),
               ),
               IconButton(
-                icon: const Icon(Icons.refresh),
+                icon: Icon(Icons.refresh),
                 onPressed: () {
                   ref.invalidate(characterContextProvider(widget.card));
                 },
@@ -911,11 +912,11 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
           Row(
             children: [
               Icon(icon, size: 18, color: Colors.indigo),
-              const SizedBox(width: 8),
+              SizedBox(width: 8),
               Text(title.toUpperCase(), style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.grey, letterSpacing: 1.0)),
             ],
           ),
-          const SizedBox(height: 12),
+          SizedBox(height: 12),
           if (content != null) CrossReferenceText(content, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500)),
           if (child != null) child,
         ],

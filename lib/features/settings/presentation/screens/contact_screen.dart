@@ -1,3 +1,4 @@
+import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -25,7 +26,7 @@ class ContactScreen extends StatelessWidget {
     
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Contact Us'),
+        title: Text(AppLocalizations.of(context)!.contactUs),
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
@@ -35,8 +36,8 @@ class ContactScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              "We'd love to hear from you!",
+            Text(
+              AppLocalizations.of(context)!.wedLoveToHear,
               style: TextStyle(
                 fontSize: 28,
                 fontWeight: FontWeight.bold,
@@ -44,7 +45,7 @@ class ContactScreen extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             Text(
-              "Whether you've found a bug, have a feature request, or just want to say hi, your feedback helps us improve Hanzi Master.",
+              AppLocalizations.of(context)!.whetherYouveFoundA,
               style: TextStyle(
                 fontSize: 16,
                 color: isDark ? Colors.grey.shade400 : Colors.grey.shade700,
@@ -54,7 +55,7 @@ class ContactScreen extends StatelessWidget {
             const SizedBox(height: 40),
             
             _ContactCard(
-              title: "Report a Bug",
+              title: AppLocalizations.of(context)!.reportBug,
               description: "Found something broken? Let us know so we can fix it.",
               icon: Icons.bug_report_rounded,
               color: Colors.redAccent,
@@ -63,7 +64,7 @@ class ContactScreen extends StatelessWidget {
             const SizedBox(height: 16),
             
             _ContactCard(
-              title: "Suggest a Feature",
+              title: AppLocalizations.of(context)!.suggestFeature,
               description: "Have an idea to make Hanzi Master better? We're all ears.",
               icon: Icons.lightbulb_rounded,
               color: Colors.amber.shade600,
@@ -72,7 +73,7 @@ class ContactScreen extends StatelessWidget {
             const SizedBox(height: 16),
             
             _ContactCard(
-              title: "General Feedback",
+              title: AppLocalizations.of(context)!.generalFeedback,
               description: "Share your thoughts or just say hello!",
               icon: Icons.chat_bubble_rounded,
               color: Colors.blueAccent,

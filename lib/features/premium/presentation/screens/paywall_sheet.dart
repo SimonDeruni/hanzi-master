@@ -1,3 +1,4 @@
+import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/core/services/monetization_service.dart';
@@ -54,7 +55,7 @@ class _PaywallSheetState extends ConsumerState<PaywallSheet> {
         ref.read(premiumControllerProvider.notifier).refreshStatus();
         Navigator.pop(context);
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("Welcome, Scholar. The scroll is fully open to you.")),
+          SnackBar(content: Text(AppLocalizations.of(context)!.welcomeScholarTheScroll)),
         );
       }
     }
@@ -69,11 +70,11 @@ class _PaywallSheetState extends ConsumerState<PaywallSheet> {
         ref.read(premiumControllerProvider.notifier).refreshStatus();
         Navigator.pop(context);
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("Purchases restored successfully.")),
+          SnackBar(content: Text(AppLocalizations.of(context)!.purchasesRestoredSuccessfully)),
         );
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("No previous purchases found on this account.")),
+          SnackBar(content: Text(AppLocalizations.of(context)!.noPreviousPurchasesFound)),
         );
       }
     }
@@ -85,25 +86,25 @@ class _PaywallSheetState extends ConsumerState<PaywallSheet> {
       height: MediaQuery.of(context).size.height * 0.85,
       child: Column(
         children: [
-          const SizedBox(height: 16),
+          SizedBox(height: 16),
           
-          const Icon(Icons.menu_book_rounded, size: 64, color: Colors.indigo),
-          const SizedBox(height: 16),
-          const Text(
-            "The Scholar's Edition",
+          Icon(Icons.menu_book_rounded, size: 64, color: Colors.indigo),
+          SizedBox(height: 16),
+          Text(
+            AppLocalizations.of(context)!.theScholarsEdition,
             style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.black87),
           ),
-          const SizedBox(height: 8),
-          const Padding(
+          SizedBox(height: 8),
+          Padding(
             padding: EdgeInsets.symmetric(horizontal: 32),
             child: Text(
-              "Unlock the full potential of your journey. One time purchase, yours forever.",
+              AppLocalizations.of(context)!.unlockTheFullPotential,
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 16, color: Colors.black54),
             ),
           ),
           
-          const SizedBox(height: 32),
+          SizedBox(height: 32),
           
           // Future Features List (Placeholders for now)
           Expanded(
@@ -132,8 +133,8 @@ class _PaywallSheetState extends ConsumerState<PaywallSheet> {
                 else if (_packages.isEmpty)
                   Column(
                     children: [
-                      const Text("We are preparing the Scholar's Edition for launch.", style: TextStyle(color: Colors.grey)),
-                      const SizedBox(height: 16),
+                      Text(AppLocalizations.of(context)!.weArePreparingThe, style: TextStyle(color: Colors.grey)),
+                      SizedBox(height: 16),
                       // Temporary Dev bypass button
                       ElevatedButton(
                         onPressed: () {
@@ -141,7 +142,7 @@ class _PaywallSheetState extends ConsumerState<PaywallSheet> {
                           Navigator.pop(context);
                         },
                         style: ElevatedButton.styleFrom(backgroundColor: Colors.indigo, minimumSize: const Size(double.infinity, 56)),
-                        child: const Text("DEV BYPASS: UNLOCK NOW", style: TextStyle(color: Colors.white)),
+                        child: Text(AppLocalizations.of(context)!.devBypassUnlockNow, style: TextStyle(color: Colors.white)),
                       ),
                     ],
                   )
@@ -164,7 +165,7 @@ class _PaywallSheetState extends ConsumerState<PaywallSheet> {
                 
                 TextButton(
                   onPressed: _isPurchasing ? null : _handleRestore,
-                  child: const Text("Restore Purchases", style: TextStyle(color: Colors.indigo)),
+                  child: Text(AppLocalizations.of(context)!.restorePurchases, style: TextStyle(color: Colors.indigo)),
                 ),
               ],
             ),
@@ -185,13 +186,13 @@ class _PaywallSheetState extends ConsumerState<PaywallSheet> {
             decoration: BoxDecoration(color: Colors.indigo.withValues(alpha: 0.1), shape: BoxShape.circle),
             child: Icon(icon, color: Colors.indigo, size: 24),
           ),
-          const SizedBox(width: 16),
+          SizedBox(width: 16),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(title, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black87)),
-                const SizedBox(height: 4),
+                SizedBox(height: 4),
                 Text(subtitle, style: const TextStyle(fontSize: 14, color: Colors.black54)),
               ],
             ),

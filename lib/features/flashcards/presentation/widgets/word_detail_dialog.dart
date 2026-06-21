@@ -1,3 +1,4 @@
+import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
@@ -28,7 +29,7 @@ class WordDetailDialog extends ConsumerWidget {
     
     if (flashcards.any((c) => c.hanzi == char)) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Already in your Library!")),
+        SnackBar(content: Text(AppLocalizations.of(context)!.alreadyInYourLibrary)),
       );
       return;
     }
@@ -98,7 +99,7 @@ class WordDetailDialog extends ConsumerWidget {
             ),
             const SizedBox(height: 24),
             Text(
-              "Meaning in Context",
+              AppLocalizations.of(context)!.meaningInContext,
               style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.bold,
@@ -127,7 +128,7 @@ class WordDetailDialog extends ConsumerWidget {
                     },
                     child: OutlinedButton.icon(
                       icon: const Icon(Icons.auto_awesome),
-                      label: const FittedBox(fit: BoxFit.scaleDown, child: Text("Explain Grammar")),
+                      label: FittedBox(fit: BoxFit.scaleDown, child: Text(AppLocalizations.of(context)!.explainGrammar)),
                       style: OutlinedButton.styleFrom(
                         padding: const EdgeInsets.symmetric(vertical: 12),
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
@@ -142,7 +143,7 @@ class WordDetailDialog extends ConsumerWidget {
                     onPressed: () => _addToDeck(context, ref),
                     child: ElevatedButton.icon(
                       icon: const Icon(Icons.add_box),
-                      label: const FittedBox(fit: BoxFit.scaleDown, child: Text("Add to Library")),
+                      label: FittedBox(fit: BoxFit.scaleDown, child: Text(AppLocalizations.of(context)!.addToLibrary)),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.blueAccent,
                         foregroundColor: Colors.white,

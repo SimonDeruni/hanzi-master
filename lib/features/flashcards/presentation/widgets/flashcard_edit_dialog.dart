@@ -1,3 +1,4 @@
+import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -74,7 +75,7 @@ class _FlashcardEditDialogState extends ConsumerState<FlashcardEditDialog> {
     if (!hasChinese) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("Please enter valid Chinese characters")),
+          SnackBar(content: Text(AppLocalizations.of(context)!.pleaseEnterValidChinese)),
         );
       }
       return;
@@ -121,7 +122,7 @@ class _FlashcardEditDialogState extends ConsumerState<FlashcardEditDialog> {
                 const Icon(Icons.edit_note, color: Colors.indigo),
                 const SizedBox(width: 8),
                 Text(
-                  "Review AI Card",
+                  AppLocalizations.of(context)!.reviewAiCard,
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -139,7 +140,7 @@ class _FlashcardEditDialogState extends ConsumerState<FlashcardEditDialog> {
             ),
             const SizedBox(height: 16),
             Text(
-              "Please double-check the AI's output below. Feel free to tweak the pinyin or definition before saving it to your permanent library.",
+              AppLocalizations.of(context)!.pleaseDoublecheckTheAis,
               style: TextStyle(fontSize: 13, color: textColor.withValues(alpha: 0.6)),
             ),
             const SizedBox(height: 24),
@@ -172,8 +173,8 @@ class _FlashcardEditDialogState extends ConsumerState<FlashcardEditDialog> {
             ),
             const SizedBox(height: 16),
             SwitchListTile(
-              title: const Text("Add to Default Study Deck"),
-              subtitle: const Text("If off, it's only saved to the global Dictionary", style: TextStyle(fontSize: 12)),
+              title: Text(AppLocalizations.of(context)!.addToDefaultStudy),
+              subtitle: Text(AppLocalizations.of(context)!.ifOffItsOnly, style: TextStyle(fontSize: 12)),
               value: _addToDeck,
               activeTrackColor: Colors.indigo.withValues(alpha: 0.5),
               activeThumbColor: Colors.indigo,
@@ -192,7 +193,7 @@ class _FlashcardEditDialogState extends ConsumerState<FlashcardEditDialog> {
                 padding: const EdgeInsets.symmetric(vertical: 14),
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
               ),
-              child: const Text("Save to Library", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
+              child: Text(AppLocalizations.of(context)!.saveToLibrary, style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
             ),
           ],
         ),

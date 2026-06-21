@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 
 // 1. THE STATE CLASS (What we remember)
 class SettingsState {
@@ -65,18 +66,20 @@ class SettingsController extends StateNotifier<SettingsState> {
   final SharedPreferences prefs;
 
   SettingsController(this.prefs) : super(SettingsState(
-    isDarkMode: prefs.getBool(_keyTheme) ?? false,
-    speechRate: prefs.getDouble(_keySpeed) ?? 0.5,
-    animationSpeed: prefs.getDouble(_keyAnimationSpeed) ?? 1.0,
-    hasCompletedOnboarding: prefs.getBool(_keyOnboarding) ?? false,
-    isTutorialCompleted: prefs.getBool(_keyTutorial) ?? false,
-    guideDisappearanceStreak: prefs.getInt(_keyGuideStreak) ?? 2,
-    isHardMode: prefs.getBool(_keyHardMode) ?? false,
-    autoPlayAudio: prefs.getBool(_keyAutoPlay) ?? false,
-    hapticsEnabled: prefs.getBool(_keyHaptics) ?? true,
-    dailyGoal: prefs.getInt(_keyDailyGoal) ?? 50,
-    locale: prefs.getString(_keyLocale) ?? 'en',
-  ));
+      isDarkMode: prefs.getBool(_keyTheme) ?? false,
+      speechRate: prefs.getDouble(_keySpeed) ?? 0.5,
+      animationSpeed: prefs.getDouble(_keyAnimationSpeed) ?? 1.0,
+      hasCompletedOnboarding: prefs.getBool(_keyOnboarding) ?? false,
+      isTutorialCompleted: prefs.getBool(_keyTutorial) ?? false,
+      guideDisappearanceStreak: prefs.getInt(_keyGuideStreak) ?? 2,
+      isHardMode: prefs.getBool(_keyHardMode) ?? false,
+      autoPlayAudio: prefs.getBool(_keyAutoPlay) ?? false,
+      hapticsEnabled: prefs.getBool(_keyHaptics) ?? true,
+      dailyGoal: prefs.getInt(_keyDailyGoal) ?? 50,
+      locale: prefs.getString(_keyLocale) ?? 'en',
+    )) {
+      HapticsManager.setEnabled(state.hapticsEnabled);
+    }
 
   static const _keyTheme = 'is_dark_mode';
   static const _keySpeed = 'speech_rate';
@@ -132,6 +135,7 @@ class SettingsController extends StateNotifier<SettingsState> {
 
   Future<void> toggleHaptics(bool value) async {
     await prefs.setBool(_keyHaptics, value);
+    HapticsManager.setEnabled(value);
     state = state.copyWith(hapticsEnabled: value);
   }
 

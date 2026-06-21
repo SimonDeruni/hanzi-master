@@ -1,21 +1,22 @@
+import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'dart:convert';
-import 'package:flutter/services.dart';
 import 'package:hanzi_master/shared/widgets/pinyin_text.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
-
+import '../../../../features/vision/presentation/screens/ar_lens_screen.dart';
 import '../../../../core/services/ocr_service.dart';
+import '../../../../core/services/character_lookup_service.dart';
 import '../../../flashcards/domain/entities/flashcard.dart';
 import '../../../flashcards/presentation/providers/flashcard_controller.dart';
 import '../../../flashcards/presentation/utils/haptics_manager.dart';
 import '../../../course/presentation/screens/lesson_screen.dart';
 import '../../../course/presentation/providers/lesson_controller.dart';
 import '../../../course/presentation/widgets/mission_briefing_sheet.dart';
+import '../../../../core/providers/translation_language_provider.dart';
 
 class UniversalScannerScreen extends ConsumerStatefulWidget {
   final bool returnTextMode;
-  
+
   const UniversalScannerScreen({super.key, this.returnTextMode = false});
 
   @override
@@ -25,38 +26,14 @@ class UniversalScannerScreen extends ConsumerStatefulWidget {
 class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen> {
   final OcrService _ocrService = OcrService();
   bool _isScanning = false;
+  bool _isLookingUp = false;
   String _rawExtractedText = "";
-  List<Map<String, dynamic>> _matchedCharacters = [];
-  Map<String, dynamic> _hskData = {};
-
-  @override
-  void initState() {
-    super.initState();
-    if (!widget.returnTextMode) {
-      _loadHskData();
-    }
-  }
+  List<CharacterInfo> _matchedCharacters = [];
 
   @override
   void dispose() {
     _ocrService.dispose();
     super.dispose();
-  }
-
-  Future<void> _loadHskData() async {
-    try {
-      final jsonString = await rootBundle.loadString('assets/data/hsk1.json');
-      final List<dynamic> data = json.decode(jsonString);
-      final Map<String, dynamic> map = {};
-      for (var item in data) {
-        map[item['hanzi']] = item;
-      }
-      setState(() {
-        _hskData = map;
-      });
-    } catch (e) {
-      debugPrint("Error loading HSK data for OCR: $e");
-    }
   }
 
   Future<void> _startScan(bool fromCamera) async {
@@ -75,61 +52,77 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
           Navigator.pop(context, extractedText);
         }
       } else {
-        _processExtractedText(extractedText);
+        await _processExtractedText(extractedText);
       }
     } else {
-      setState(() {
-        _isScanning = false;
-      });
+      setState(() => _isScanning = false);
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("No Chinese characters found in the image.")),
+          SnackBar(content: Text(AppLocalizations.of(context)!.noChineseCharactersFound)),
         );
       }
     }
   }
 
-  void _processExtractedText(String text) {
+  Future<void> _processExtractedText(String text) async {
     HapticsManager.success();
-    List<Map<String, dynamic>> matched = [];
+    setState(() {
+      _isScanning = false;
+      _rawExtractedText = text;
+      _isLookingUp = true;
+    });
 
-    // Right now, we only cross-reference with our HSK1 DB to build a known deck.
-    // In the future (Phase 9), we can use hanzi_metadata to generate completely new cards.
+    // Extract every individual Chinese character from the scanned text.
+    // We also try multi-character words (2-char) for richer matches.
+    final lookupService = ref.read(characterLookupServiceProvider);
+    await lookupService.init();
+
+    final Set<String> candidates = {};
     for (int i = 0; i < text.length; i++) {
       final char = text[i];
-      if (_hskData.containsKey(char)) {
-        matched.add(_hskData[char]);
+      if (RegExp(r'[\u4E00-\u9FFF]').hasMatch(char)) {
+        candidates.add(char);
+        // Also try the 2-char word starting here
+        if (i + 1 < text.length) {
+          candidates.add(text.substring(i, i + 2));
+        }
       }
     }
 
-    setState(() {
-      _rawExtractedText = text;
-      _matchedCharacters = matched;
-      _isScanning = false;
+    final results = await lookupService.lookupAll(candidates);
+
+    // Sort: HSK-tagged first (by level), then untagged (level 0) at end
+    results.sort((a, b) {
+      if (a.hskLevel == 0 && b.hskLevel != 0) return 1;
+      if (b.hskLevel == 0 && a.hskLevel != 0) return -1;
+      return a.hskLevel.compareTo(b.hskLevel);
     });
+
+    if (mounted) {
+      setState(() {
+        _matchedCharacters = results;
+        _isLookingUp = false;
+      });
+    }
   }
 
   Future<void> _createDeck() async {
     if (_matchedCharacters.isEmpty) return;
-
     HapticsManager.light();
-    
-    // Simulate creating a custom deck. For now, it just adds them if they don't exist.
-    // Real implementation would group them into a "Deck" entity.
+
     final controller = ref.read(flashcardControllerProvider.notifier);
-    
     int addedCount = 0;
     final currentCards = ref.read(flashcardControllerProvider).valueOrNull ?? [];
-    
-    for (var charData in _matchedCharacters) {
-      final exists = currentCards.any((c) => c.hanzi == charData['hanzi']);
+
+    for (final info in _matchedCharacters) {
+      final exists = currentCards.any((c) => c.hanzi == info.hanzi);
       if (!exists) {
         final newCard = Flashcard(
           id: DateTime.now().millisecondsSinceEpoch.toString() + addedCount.toString(),
-          hanzi: charData['hanzi'],
-          pinyin: charData['pinyin'],
-          definition: charData['definition'],
-          hskLevel: 1,
+          hanzi: info.hanzi,
+          pinyin: info.pinyin,
+          definition: info.definition,
+          hskLevel: info.hskLevel,
           strokePaths: const [],
           modeStats: const {},
         );
@@ -140,37 +133,32 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
 
     if (mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Added new characters to your library!")),
+        SnackBar(content: Text(AppLocalizations.of(context)!.addedNewCharactersTo)),
       );
       Navigator.pop(context);
     }
   }
 
-  Future<void> _startLesson(Map<String, dynamic> charData) async {
+  Future<void> _startLesson(CharacterInfo info) async {
     HapticsManager.light();
-    
-    // 1. Create temporary flashcard
     final card = Flashcard(
-      id: 'ocr_${charData['hanzi']}',
-      hanzi: charData['hanzi'],
-      pinyin: charData['pinyin'],
-      definition: charData['definition'],
-      hskLevel: 1,
+      id: 'ocr_${info.hanzi}',
+      hanzi: info.hanzi,
+      pinyin: info.pinyin,
+      definition: info.definition,
+      hskLevel: info.hskLevel,
       strokePaths: const [],
       modeStats: const {},
     );
 
-    // 2. Hydrate strokes
     final controller = ref.read(flashcardControllerProvider.notifier);
     final hydratedCard = await controller.loadStrokesFor(card);
 
     if (mounted) {
-      // 3. Populate session providers for the lesson controller
       final allCards = ref.read(flashcardControllerProvider).valueOrNull ?? [];
       ref.read(allCardsProvider.notifier).state = allCards;
       ref.read(activeWarmupCardsProvider.notifier).state = [hydratedCard ?? card];
 
-      // 4. Launch Briefing (Pedagogical "Zen" approach)
       await showModalBottomSheet(
         context: context,
         isScrollControlled: true,
@@ -178,7 +166,7 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
         builder: (context) => MissionBriefingSheet(
           targetCard: hydratedCard ?? card,
           warmupCards: [hydratedCard ?? card],
-          radicalHanzi: "", // We don't have the radical context here easily
+          radicalHanzi: "",
           onStart: () async {
             Navigator.pop(context);
             await Navigator.push(
@@ -191,61 +179,98 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
     }
   }
 
-  Future<void> _practiceAll() async {
-    if (_matchedCharacters.isEmpty) return;
-    HapticsManager.selection();
-    
-    // For now, let's just start a sequence for the first character
-    // A robust "Practice All" would need a session manager.
-    // We start with the first one as a MVP of the "Flow".
-    _startLesson(_matchedCharacters.first);
-  }
-
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Universal Scanner"),
+        title: Text(l10n.universalScanner),
         backgroundColor: Colors.transparent,
         elevation: 0,
+        actions: [
+          DropdownButton<String>(
+            value: ref.watch(translationLanguageProvider),
+            dropdownColor: theme.colorScheme.surface,
+            icon: const Icon(Icons.language, color: Colors.indigo),
+            underline: const SizedBox(),
+            items: supportedTranslationLanguages.map((String lang) {
+              return DropdownMenuItem<String>(
+                value: lang,
+                child: Text(lang, style: const TextStyle(fontSize: 14)),
+              );
+            }).toList(),
+            onChanged: (String? newValue) {
+              if (newValue != null) {
+                ref.read(translationLanguageProvider.notifier).setLanguage(newValue);
+              }
+            },
+          ),
+          const SizedBox(width: 16),
+        ],
       ),
       body: CalligraphyBackground(
         child: Column(
           children: [
             const SizedBox(height: 20),
             // Action Buttons
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                _buildScanButton(
-                  icon: Icons.camera_alt,
-                  label: "Take Photo",
-                  onTap: () => _startScan(true),
-                  theme: theme,
-                ),
-                _buildScanButton(
-                  icon: Icons.image,
-                  label: "Gallery",
-                  onTap: () => _startScan(false),
-                  theme: theme,
-                ),
-              ],
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: _buildScanButton(
+                      icon: Icons.camera_alt,
+                      label: l10n.takePhoto,
+                      onTap: () => _startScan(true),
+                      theme: theme,
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: _buildScanButton(
+                      icon: Icons.image,
+                      label: l10n.gallery,
+                      onTap: () => _startScan(false),
+                      theme: theme,
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: _buildScanButton(
+                      icon: Icons.view_in_ar,
+                      label: l10n.arLens,
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (_) => const ARLensScreen()),
+                        );
+                      },
+                      theme: theme,
+                    ),
+                  ),
+                ],
+              ),
             ),
-            
+
             const SizedBox(height: 30),
 
             // Results Area
             Expanded(
-              child: _isScanning
+              child: _isScanning || _isLookingUp
                   ? Center(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           CircularProgressIndicator(color: theme.colorScheme.primary),
                           const SizedBox(height: 16),
-                          Text("Extracting text and objects...", style: theme.textTheme.bodyMedium?.copyWith(color: theme.colorScheme.primary)),
+                          Text(
+                            _isScanning
+                                ? l10n.extractingTextAndObjects
+                                : l10n.lookingUpCharacters,
+                            style: theme.textTheme.bodyMedium?.copyWith(color: theme.colorScheme.primary),
+                          ),
                         ],
                       ),
                     )
@@ -259,7 +284,7 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                                 Icon(Icons.document_scanner_outlined, size: 64, color: theme.colorScheme.onSurface.withValues(alpha: 0.2)),
                                 const SizedBox(height: 16),
                                 Text(
-                                  "Scan a textbook, sign, or object to extract Chinese characters.",
+                                  l10n.scanATextbookSign,
                                   textAlign: TextAlign.center,
                                   style: theme.textTheme.titleMedium?.copyWith(color: theme.colorScheme.onSurface.withValues(alpha: 0.5)),
                                 ),
@@ -267,7 +292,7 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                             ),
                           ),
                         )
-                      : _buildResultsList(theme),
+                      : _buildResultsList(theme, l10n),
             ),
           ],
         ),
@@ -280,8 +305,7 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
       onTap: _isScanning ? null : onTap,
       borderRadius: BorderRadius.circular(16),
       child: Container(
-        width: 140,
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 20),
         decoration: BoxDecoration(
           color: theme.cardTheme.color,
           borderRadius: BorderRadius.circular(16),
@@ -298,24 +322,31 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                 color: theme.colorScheme.primary.withValues(alpha: 0.1),
                 shape: BoxShape.circle,
               ),
-              child: Icon(icon, size: 32, color: theme.colorScheme.primary),
+              child: Icon(icon, size: 28, color: theme.colorScheme.primary),
             ),
             const SizedBox(height: 12),
-            Text(label, style: theme.textTheme.titleMedium?.copyWith(color: theme.colorScheme.primary)),
+            Text(
+              label,
+              textAlign: TextAlign.center,
+              style: theme.textTheme.titleSmall?.copyWith(
+                color: theme.colorScheme.primary,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildResultsList(ThemeData theme) {
+  Widget _buildResultsList(ThemeData theme, AppLocalizations l10n) {
     if (widget.returnTextMode) {
       return Padding(
         padding: const EdgeInsets.all(24.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text("Extracted Text", style: theme.textTheme.headlineMedium),
+            Text(l10n.extractedText, style: theme.textTheme.headlineMedium),
             const SizedBox(height: 16),
             Expanded(
               child: Container(
@@ -329,10 +360,7 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                   ],
                 ),
                 child: SingleChildScrollView(
-                  child: Text(
-                    _rawExtractedText,
-                    style: theme.textTheme.bodyLarge?.copyWith(height: 1.6),
-                  ),
+                  child: Text(_rawExtractedText, style: theme.textTheme.bodyLarge?.copyWith(height: 1.6)),
                 ),
               ),
             ),
@@ -348,7 +376,7 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
               ),
               icon: Icon(Icons.check_circle_outline, color: theme.colorScheme.onPrimary),
-              label: Text("Use Text", style: theme.textTheme.titleMedium?.copyWith(color: theme.colorScheme.onPrimary)),
+              label: Text(l10n.useText, style: theme.textTheme.titleMedium?.copyWith(color: theme.colorScheme.onPrimary)),
             ),
             const SizedBox(height: 16),
           ],
@@ -366,7 +394,7 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
               Icon(Icons.search_off_rounded, size: 64, color: theme.colorScheme.onSurface.withValues(alpha: 0.2)),
               const SizedBox(height: 16),
               Text(
-                "No matching dictionary entries found.",
+                l10n.noMatchingDictionaryEntries,
                 textAlign: TextAlign.center,
                 style: theme.textTheme.titleMedium?.copyWith(color: theme.colorScheme.onSurface.withValues(alpha: 0.5)),
               ),
@@ -384,7 +412,7 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "Found ${_matchedCharacters.length} Characters",
+                l10n.foundNCharacters(_matchedCharacters.length),
                 style: theme.textTheme.titleLarge,
               ),
               Row(
@@ -393,14 +421,14 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                     onPressed: _createDeck,
                     style: IconButton.styleFrom(backgroundColor: theme.colorScheme.primary.withValues(alpha: 0.1)),
                     icon: Icon(Icons.library_add, color: theme.colorScheme.primary),
-                    tooltip: "Import All",
+                    tooltip: l10n.importAll,
                   ),
                   const SizedBox(width: 8),
                   IconButton(
-                    onPressed: _practiceAll,
+                    onPressed: _matchedCharacters.isNotEmpty ? () => _startLesson(_matchedCharacters.first) : null,
                     style: IconButton.styleFrom(backgroundColor: theme.colorScheme.secondary.withValues(alpha: 0.1)),
                     icon: Icon(Icons.auto_awesome, color: theme.colorScheme.secondary),
-                    tooltip: "Ascend All",
+                    tooltip: l10n.practiceAll,
                   ),
                 ],
               ),
@@ -413,7 +441,7 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
             padding: const EdgeInsets.symmetric(horizontal: 24),
             itemCount: _matchedCharacters.length,
             itemBuilder: (context, index) {
-              final char = _matchedCharacters[index];
+              final info = _matchedCharacters[index];
               return Container(
                 margin: const EdgeInsets.only(bottom: 16),
                 padding: const EdgeInsets.all(20),
@@ -427,19 +455,39 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                 ),
                 child: Row(
                   children: [
-                    Text(char['hanzi'], style: theme.textTheme.displaySmall?.copyWith(fontSize: 40)),
+                    Text(info.hanzi, style: theme.textTheme.displaySmall?.copyWith(fontSize: 40)),
                     const SizedBox(width: 20),
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          PinyinText(text: char['pinyin'], style: theme.textTheme.titleMedium?.copyWith(color: theme.colorScheme.primary)),
+                          PinyinText(
+                            text: info.pinyin,
+                            style: theme.textTheme.titleMedium?.copyWith(color: theme.colorScheme.primary),
+                          ),
                           const SizedBox(height: 4),
-                          Text(char['definition'], style: theme.textTheme.bodyMedium, maxLines: 2, overflow: TextOverflow.ellipsis),
+                          Text(info.definition, style: theme.textTheme.bodyMedium, maxLines: 2, overflow: TextOverflow.ellipsis),
                         ],
                       ),
                     ),
                     const SizedBox(width: 12),
+                    // HSK badge
+                    if (info.hskLevel > 0)
+                      Container(
+                        margin: const EdgeInsets.only(right: 8),
+                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                        decoration: BoxDecoration(
+                          color: theme.colorScheme.primary.withValues(alpha: 0.1),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Text(
+                          'HSK${info.hskLevel}',
+                          style: theme.textTheme.labelSmall?.copyWith(
+                            color: theme.colorScheme.primary,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
                     Container(
                       decoration: BoxDecoration(
                         color: theme.colorScheme.secondary.withValues(alpha: 0.1),
@@ -447,8 +495,8 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                       ),
                       child: IconButton(
                         icon: Icon(Icons.play_arrow_rounded, color: theme.colorScheme.secondary),
-                        onPressed: () => _startLesson(char),
-                        tooltip: "Start Ascension",
+                        onPressed: () => _startLesson(info),
+                        tooltip: l10n.startAscension,
                       ),
                     ),
                   ],

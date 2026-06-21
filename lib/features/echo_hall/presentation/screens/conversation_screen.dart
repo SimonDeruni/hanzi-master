@@ -6,6 +6,7 @@ import '../../../../core/models/pronunciation_grade.dart';
 import '../../../chat/domain/entities/chat_message.dart';
 import '../widgets/pronunciation_report_sheet.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
 
 class ConversationScreen extends ConsumerStatefulWidget {
   final ConversationScenario scenario;
@@ -327,16 +328,105 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
   }
 
   Widget _buildGradedWord(SyllableGrade word, ThemeData theme) {
-    final color = word.isCorrect ? Colors.green.shade600 : Colors.red.shade600;
+    final color = switch (word.gradeLevel) {
+      WordGradeLevel.correct => Colors.green.shade600,
+      WordGradeLevel.partial => const Color(0xFFF59E0B),
+      WordGradeLevel.wrong   => Colors.red.shade600,
+    };
+    final isClickable = word.gradeLevel != WordGradeLevel.correct && word.feedback.isNotEmpty;
+
+    return GestureDetector(
+      onTap: isClickable ? () => _showWordFeedbackDialog(word, color, theme) : null,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(word.pinyin, style: theme.textTheme.labelSmall?.copyWith(color: theme.colorScheme.onSurface.withValues(alpha: 0.6))),
+          const SizedBox(height: 2),
+          Stack(
+            alignment: Alignment.topRight,
+            children: [
+              Text(word.word, style: theme.textTheme.titleLarge?.copyWith(color: color, fontWeight: FontWeight.bold)),
+              if (isClickable)
+                Positioned(
+                  top: 0, right: -2,
+                  child: Container(width: 6, height: 6, decoration: BoxDecoration(color: color, shape: BoxShape.circle)),
+                ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _showWordFeedbackDialog(SyllableGrade word, Color color, ThemeData theme) {
+    final l10n = AppLocalizations.of(context)!;
+    showDialog(
+      context: context,
+      builder: (ctx) => Dialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        child: Padding(
+          padding: const EdgeInsets.all(24),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                width: 72, height: 72,
+                decoration: BoxDecoration(color: color.withValues(alpha: 0.12), shape: BoxShape.circle),
+                child: Center(child: Text(word.word, style: theme.textTheme.displaySmall?.copyWith(color: color, fontWeight: FontWeight.bold))),
+              ),
+              const SizedBox(height: 8),
+              Text(word.pinyin, style: theme.textTheme.titleMedium?.copyWith(color: theme.colorScheme.onSurface.withValues(alpha: 0.6))),
+              const SizedBox(height: 12),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                decoration: BoxDecoration(color: color.withValues(alpha: 0.15), borderRadius: BorderRadius.circular(20)),
+                child: Text(
+                  word.gradeLevel == WordGradeLevel.partial ? l10n.pronunciationPartial : l10n.pronunciationWrong,
+                  style: theme.textTheme.labelMedium?.copyWith(color: color, fontWeight: FontWeight.bold),
+                ),
+              ),
+              if (word.expectedTone > 0) ...[
+                const SizedBox(height: 16),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _ToneChip(label: l10n.toneExpected, tone: word.expectedTone, color: Colors.green.shade600),
+                    const SizedBox(width: 12),
+                    _ToneChip(label: l10n.toneYouSaid, tone: word.actualTone, color: color),
+                  ],
+                ),
+              ],
+              const SizedBox(height: 16),
+              Text(word.feedback, textAlign: TextAlign.center, style: theme.textTheme.bodyMedium?.copyWith(height: 1.5)),
+              const SizedBox(height: 20),
+              TextButton(onPressed: () => Navigator.pop(ctx), child: Text(l10n.gotIt)),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _ToneChip extends StatelessWidget {
+  final String label;
+  final int tone;
+  final Color color;
+  const _ToneChip({required this.label, required this.tone, required this.color});
+
+  static const _names = ['', '1st ˉ', '2nd ˊ', '3rd ˇ', '4th ˋ', 'neutral'];
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Column(
       children: [
-        Text(
-          word.pinyin,
-          style: theme.textTheme.labelMedium,
-        ),
-        Text(
-          word.word,
-          style: theme.textTheme.titleLarge?.copyWith(color: color),
+        Text(label, style: theme.textTheme.labelSmall?.copyWith(color: theme.colorScheme.onSurface.withValues(alpha: 0.5))),
+        const SizedBox(height: 4),
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+          decoration: BoxDecoration(color: color.withValues(alpha: 0.15), borderRadius: BorderRadius.circular(8)),
+          child: Text(tone > 0 && tone < _names.length ? _names[tone] : '?', style: theme.textTheme.labelLarge?.copyWith(color: color, fontWeight: FontWeight.bold)),
         ),
       ],
     );

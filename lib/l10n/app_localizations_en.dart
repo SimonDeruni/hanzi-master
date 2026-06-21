@@ -527,4 +527,900 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get poweredByAi =>
       'Powered by advanced AI. Seamless real-time translation for any scenario.';
+
+  @override
+  String get downloadingModel => 'Downloading model...';
+
+  @override
+  String get soon => 'SOON';
+
+  @override
+  String get installed => 'INSTALLED';
+
+  @override
+  String get premium => 'PREMIUM';
+
+  @override
+  String get coreModule => 'CORE MODULE';
+
+  @override
+  String get step6Context => 'STEP 6: CONTEXT';
+
+  @override
+  String get tapBuildingBlocksTo =>
+      'Tap building blocks to explore their origin.';
+
+  @override
+  String get initiateRadicalSequence => 'INITIATE RADICAL SEQUENCE';
+
+  @override
+  String get holdToTalk => 'Hold to Talk';
+
+  @override
+  String get customScenario => 'Custom Scenario';
+
+  @override
+  String get voiceCall => 'Voice Call';
+
+  @override
+  String get pronunciation => 'Pronunciation';
+
+  @override
+  String get selectAScenarioTo =>
+      'Select a scenario to practice your spoken Mandarin. The Scholar will grade your tones and clarity.';
+
+  @override
+  String get create => 'Create';
+
+  @override
+  String get createYourScenario => 'Create Your Scenario';
+
+  @override
+  String get difficulty => 'Difficulty';
+
+  @override
+  String get scholarsVerdict => 'SCHOLAR\'S VERDICT';
+
+  @override
+  String get completeReview => 'Complete Review';
+
+  @override
+  String get conversationReview => 'CONVERSATION REVIEW';
+
+  @override
+  String get linguisticAnalysis => 'Linguistic Analysis';
+
+  @override
+  String get examplesInHsk1 => 'EXAMPLES IN HSK 1';
+
+  @override
+  String get characterReference => 'Character Reference';
+
+  @override
+  String get askTutor => 'Ask Tutor';
+
+  @override
+  String get addToStudyDeck => 'Add to Study Deck';
+
+  @override
+  String get startPractice => 'START PRACTICE';
+
+  @override
+  String get noOtherHsk1 => 'No other HSK 1 characters use this radical.';
+
+  @override
+  String get couldNotLoadAi =>
+      'Could not load AI context. (Rate limit or network error)\\nTap the refresh button below to try again later.';
+
+  @override
+  String get noAvailableCardsFound => 'No available cards found.';
+
+  @override
+  String get addCards => 'Add Cards';
+
+  @override
+  String get removeCard => 'Remove Card';
+
+  @override
+  String get remove => 'Remove';
+
+  @override
+  String get review => 'Review';
+
+  @override
+  String get story => 'Story';
+
+  @override
+  String get thisDeckIsEmpty => 'This deck is empty.';
+
+  @override
+  String get tapTheAddCards => 'Tap the Add Cards button!';
+
+  @override
+  String get noCardsFound => 'No cards found.';
+
+  @override
+  String get addCardsToSee => 'Add cards to see statistics.';
+
+  @override
+  String get aiGenerated => 'AI Generated';
+
+  @override
+  String get allCardsCaughtUp => 'All cards caught up! Great job.';
+
+  @override
+  String get latestDiscoveries => 'Latest Discoveries';
+
+  @override
+  String get noCharactersInLexicon => 'No characters in lexicon yet.';
+
+  @override
+  String get yourBookshelf => 'Your Bookshelf';
+
+  @override
+  String get text_1782026184579 => '字';
+
+  @override
+  String get searchYourDictionary => 'Search your dictionary...';
+
+  @override
+  String get saveCard => 'Save Card';
+
+  @override
+  String get noCharactersFound => 'No characters found.';
+
+  @override
+  String get radicalsIndex => 'Radicals Index';
+
+  @override
+  String get masteringRadicalsIsThe =>
+      'Mastering radicals is the key to unlocking thousands of Hanzi. Select a radical to see all characters that use it.';
+
+  @override
+  String get noRadicalsFound => 'No radicals found.';
+
+  @override
+  String get yourDrawing => 'Your Drawing';
+
+  @override
+  String get reference => 'Reference';
+
+  @override
+  String get rateYourRecall => 'Rate your recall';
+
+  @override
+  String get contactUs => 'Contact Us';
+
+  @override
+  String get reportBugsOrRequest => 'Report bugs or request features';
+
+  @override
+  String get allDataHasBeen => 'All data has been wiped.';
+
+  @override
+  String get hanziMasterV100 => 'Hanzi Master v1.0.0';
+
+  @override
+  String get myProgress => 'My Progress';
+
+  @override
+  String get overview => 'Overview';
+
+  @override
+  String get aiStory => 'AI Story';
+
+  @override
+  String get usingYourDecksVocabulary => 'Using your deck\'s vocabulary';
+
+  @override
+  String get tryAgain => 'Try Again';
+
+  @override
+  String get translate => 'Translate';
+
+  @override
+  String get pinyin => 'Pinyin';
+
+  @override
+  String get fullTranslation => 'Full Translation';
+
+  @override
+  String get geminiFlashIsStructuring =>
+      'Gemini Flash is structuring your story...';
+
+  @override
+  String get aiDeckGenerator => 'AI Deck Generator';
+
+  @override
+  String get whatDoYouWant => 'What do you want to learn?';
+
+  @override
+  String get targetDifficulty => 'Target Difficulty';
+
+  @override
+  String get focusArea => 'Focus Area';
+
+  @override
+  String get specificContextOrTone => 'Specific Context or Tone (Optional)';
+
+  @override
+  String get numberOfCards => 'Number of Cards';
+
+  @override
+  String get generateDeck => 'Generate Deck';
+
+  @override
+  String get aiGrammarExplanation => 'AI Grammar Explanation';
+
+  @override
+  String get scholarsDesk => 'Scholar\'s Desk';
+
+  @override
+  String get chooseADeck => 'Choose a Deck';
+
+  @override
+  String get whereWouldYouLike =>
+      'Where would you like to save this character?';
+
+  @override
+  String get addToDefaultStudy => 'Add to Default Study Deck';
+
+  @override
+  String get ifOffItsOnly =>
+      'If off, it\'s only saved to the global Dictionary';
+
+  @override
+  String get saveToLibrary => 'Save to Library';
+
+  @override
+  String get pleaseEnterValidChinese => 'Please enter valid Chinese characters';
+
+  @override
+  String get reviewAiCard => 'Review AI Card';
+
+  @override
+  String get pleaseDoublecheckTheAis =>
+      'Please double-check the AI\'s output below. Feel free to tweak the pinyin or definition before saving it to your permanent library.';
+
+  @override
+  String get alreadyInYourLibrary => 'Already in your Library!';
+
+  @override
+  String get meaningInContext => 'Meaning in Context';
+
+  @override
+  String get explainGrammar => 'Explain Grammar';
+
+  @override
+  String get addToLibrary => 'Add to Library';
+
+  @override
+  String get masterYourMandarinPronunciation =>
+      'Master your Mandarin pronunciation by mimicking native speech in real-time.';
+
+  @override
+  String get startSession => 'START SESSION';
+
+  @override
+  String get sessionHistory => 'Session History';
+
+  @override
+  String get noSavedSessions => 'No saved sessions.';
+
+  @override
+  String get aiBreakdown => 'AI Breakdown';
+
+  @override
+  String get sessionDetails => 'Session Details';
+
+  @override
+  String get partner => 'Partner (中文)';
+
+  @override
+  String get youEnglish => 'You (English)';
+
+  @override
+  String get noTranscriptToSave => 'No transcript to save!';
+
+  @override
+  String get sessionSaved => 'Session saved!';
+
+  @override
+  String get realtimeBidirectionalTranslationSpeak =>
+      'Real-time bidirectional translation. Speak English or Mandarin, and it will instantly translate for you and your partner.';
+
+  @override
+  String get text_1782026184665 => '录音中';
+
+  @override
+  String get recording => 'Recording';
+
+  @override
+  String get yourSilentCompanionListen =>
+      'Your silent companion. Listen to Mandarin, and hear the English translation instantly.';
+
+  @override
+  String get startListening => 'START LISTENING';
+
+  @override
+  String get skip => 'Skip';
+
+  @override
+  String get independentStars => 'INDEPENDENT STARS';
+
+  @override
+  String get notEveryCharacterHas =>
+      'Not every character has a parent Radical. Some are unique pictographs or stand alone.';
+
+  @override
+  String get onTheMapWe =>
+      'On the map, we group these independent characters into CONSTELLATIONS (✨).';
+
+  @override
+  String get iUnderstand => 'I UNDERSTAND';
+
+  @override
+  String get whatAreRadicals => 'WHAT ARE RADICALS?';
+
+  @override
+  String get hanziAreBuiltFrom =>
+      'Hanzi are built from building blocks called RADICALS.\\n\\nThey give the character its core meaning or theme.';
+
+  @override
+  String get continueText => 'CONTINUE';
+
+  @override
+  String get hanziAreNotJust =>
+      'Hanzi are not just letters. They are pictures frozen in time.\\n\\nTo master them, you must learn to trace their flow.';
+
+  @override
+  String get iAmReady => 'I AM READY';
+
+  @override
+  String get youAreAScholar => 'YOU ARE A SCHOLAR';
+
+  @override
+  String get theGalaxyMapAwaitsnmaster =>
+      'The Galaxy Map awaits.\\nMaster the Suns (Radicals) to unlock the Planets (Characters).';
+
+  @override
+  String get enterTheScroll => 'ENTER THE SCROLL';
+
+  @override
+  String get openingTheOriginScroll => 'Opening the Origin Scroll...';
+
+  @override
+  String get text_1782026184670 => '+';
+
+  @override
+  String get theScholarsEdition => 'The Scholar\'s Edition';
+
+  @override
+  String get weArePreparingThe =>
+      'We are preparing the Scholar\'s Edition for launch.';
+
+  @override
+  String get devBypassUnlockNow => 'DEV BYPASS: UNLOCK NOW';
+
+  @override
+  String get restorePurchases => 'Restore Purchases';
+
+  @override
+  String get welcomeScholarTheScroll =>
+      'Welcome, Scholar. The scroll is fully open to you.';
+
+  @override
+  String get purchasesRestoredSuccessfully =>
+      'Purchases restored successfully.';
+
+  @override
+  String get noPreviousPurchasesFound =>
+      'No previous purchases found on this account.';
+
+  @override
+  String get unlockTheFullPotential =>
+      'Unlock the full potential of your journey. One time purchase, yours forever.';
+
+  @override
+  String get universalScanner => 'Universal Scanner';
+
+  @override
+  String get noChineseCharactersFound =>
+      'No Chinese characters found in the image.';
+
+  @override
+  String get addedNewCharactersTo => 'Added new characters to your library!';
+
+  @override
+  String get extractingTextAndObjects => 'Extracting text and objects...';
+
+  @override
+  String get scanATextbookSign =>
+      'Scan a textbook, sign, or object to extract Chinese characters.';
+
+  @override
+  String get extractedText => 'Extracted Text';
+
+  @override
+  String get useText => 'Use Text';
+
+  @override
+  String get noMatchingDictionaryEntries =>
+      'No matching dictionary entries found.';
+
+  @override
+  String get quizComplete => 'Quiz Complete!';
+
+  @override
+  String get returnToCourse => 'Return to Course';
+
+  @override
+  String get notEnoughCardsFor =>
+      'Not enough cards for a quiz! Need at least 4.';
+
+  @override
+  String get creatorMode => 'Creator Mode';
+
+  @override
+  String get noStoriesFoundMatching => 'No stories found matching your search.';
+
+  @override
+  String get discard => 'Discard';
+
+  @override
+  String get save => 'Save';
+
+  @override
+  String get generatingStoryViaDeepseek => 'Generating story via DeepSeek...';
+
+  @override
+  String get storySavedToLibrary => 'Story saved to Library!';
+
+  @override
+  String get storyNotFound => 'Story not found.';
+
+  @override
+  String get targetHskLevel => 'Target HSK Level';
+
+  @override
+  String get wedLoveToHear => 'We\'d love to hear from you!';
+
+  @override
+  String get whetherYouveFoundA =>
+      'Whether you\'ve found a bug, have a feature request, or just want to say hi, your feedback helps us improve Hanzi Master.';
+
+  @override
+  String get pointYourCameraAt => 'Point your camera at objects';
+
+  @override
+  String get reviewAddToLibrary => 'Review & Add to Library';
+
+  @override
+  String hideStrokeGuideStreak(Object streak) {
+    return 'Hide stroke guide at streak: $streak';
+  }
+
+  @override
+  String inkPoints(Object points) {
+    return '$points Ink Points';
+  }
+
+  @override
+  String speechRateMultiplier(Object rate) {
+    return '${rate}x';
+  }
+
+  @override
+  String animationSpeedMultiplier(Object rate) {
+    return '${rate}x';
+  }
+
+  @override
+  String get supportAndFeedback => 'Support & Feedback';
+
+  @override
+  String get reportBug => 'Report a Bug';
+
+  @override
+  String get suggestFeature => 'Suggest a Feature';
+
+  @override
+  String get generalFeedback => 'General Feedback';
+
+  @override
+  String get pleaseDrawSomethingFirst => 'Please draw something first';
+
+  @override
+  String get drawThisCharacter => 'Draw this character:';
+
+  @override
+  String followGuideStroke(Object current, Object total) {
+    return 'Follow the blue guide to draw stroke $current of $total';
+  }
+
+  @override
+  String get skipCurrentStroke => 'Skip Current Stroke';
+
+  @override
+  String get submitDrawing => 'Submit Drawing';
+
+  @override
+  String addedToDeck(Object deckName, Object hanzi) {
+    return 'Added $hanzi to $deckName';
+  }
+
+  @override
+  String removedFromDeck(Object hanzi) {
+    return 'Removed $hanzi from deck';
+  }
+
+  @override
+  String skippedNoStrokeData(Object hanzi) {
+    return 'Skipped \"$hanzi\" - No stroke data available for this AI character.';
+  }
+
+  @override
+  String get startingSession => 'Starting session...';
+
+  @override
+  String get masterBuildingBlocks => 'Master the building blocks of Hanzi';
+
+  @override
+  String get totalWords => 'Total Words';
+
+  @override
+  String get newInk => 'New Ink';
+
+  @override
+  String get learningStatus => 'Learning';
+
+  @override
+  String get masteredStatus => 'Mastered';
+
+  @override
+  String get libraryMastery => 'Library Mastery';
+
+  @override
+  String get accuracyByMode => 'Accuracy by Mode';
+
+  @override
+  String get upcomingReviews => 'Upcoming Reviews (Next 7 Days)';
+
+  @override
+  String get culturalReadingRoom => '文化书房 (Cultural Reading Room)';
+
+  @override
+  String storyTitleHsk(Object level, Object title) {
+    return '$title (HSK $level)';
+  }
+
+  @override
+  String get pleaseEnterTopic => 'Please enter a topic';
+
+  @override
+  String createdDeckCards(Object count, Object name) {
+    return 'Created $name with $count cards!';
+  }
+
+  @override
+  String gradeResult(Object grade) {
+    return 'Grade: $grade';
+  }
+
+  @override
+  String get listeningMode => 'Listening Mode';
+
+  @override
+  String get readingMode => 'Reading Mode';
+
+  @override
+  String get recallMode => 'Recall Mode';
+
+  @override
+  String get speakingMode => 'Speaking Mode';
+
+  @override
+  String get aiMemoryHook => 'AI Memory Hook';
+
+  @override
+  String get exampleSentences => 'Example Sentences';
+
+  @override
+  String get ghostCharacters => 'Ghost Characters';
+
+  @override
+  String get commonWords => 'Common Words';
+
+  @override
+  String get personalNotes => 'Personal Notes';
+
+  @override
+  String get addPersonalNotes => 'Add your own mnemonics or notes here...';
+
+  @override
+  String get takePhoto => 'Take Photo';
+
+  @override
+  String get gallery => 'Gallery';
+
+  @override
+  String get arLens => 'AR Lens';
+
+  @override
+  String addedCharToLibrary(Object char) {
+    return 'Added $char to Library';
+  }
+
+  @override
+  String get scoreText => 'score';
+
+  @override
+  String get searchDictionaryHint => 'Search character, pinyin, or meaning...';
+
+  @override
+  String get searchDeckHint => 'Search character, pinyin...';
+
+  @override
+  String get localRestaurant => 'Local Restaurant';
+
+  @override
+  String get taxiToAirport => 'Taxi to Airport';
+
+  @override
+  String get silkMarketHaggling => 'Silk Market Haggling';
+
+  @override
+  String get medicalClinic => 'Medical Clinic';
+
+  @override
+  String get meetingAFriend => 'Meeting a Friend';
+
+  @override
+  String get jobInterview => 'Job Interview';
+
+  @override
+  String get searchRadicalsHint => 'Search radicals (e.g. Water, 氵)';
+
+  @override
+  String get definition => 'Definition';
+
+  @override
+  String get undo => 'UNDO';
+
+  @override
+  String get hanziMaster => 'Hanzi Master';
+
+  @override
+  String get unlockForever => 'Unlock Forever - \$9.99';
+
+  @override
+  String get clear => 'Clear';
+
+  @override
+  String get clearChat => 'Clear chat';
+
+  @override
+  String get typeMessage => 'Type your message...';
+
+  @override
+  String addedToLibrary(Object hanzi) {
+    return 'Added \'$hanzi\' to your Library';
+  }
+
+  @override
+  String get generateNewStory => 'Generate New Story';
+
+  @override
+  String failedToGenerateStory(Object error) {
+    return 'Failed to generate story:\\n$error';
+  }
+
+  @override
+  String get detail => 'Detail';
+
+  @override
+  String get scanText => 'Scan Text';
+
+  @override
+  String get createMagic => 'Create Magic';
+
+  @override
+  String get learning => 'Learning';
+
+  @override
+  String get upcomingReviews7Days => 'Upcoming Reviews (Next 7 Days)';
+
+  @override
+  String get askFollowUpQuestion => 'Ask a follow-up question...';
+
+  @override
+  String get pasteScanToSimplify => 'Paste or scan Chinese text to simplify';
+
+  @override
+  String get searchStoriesHint =>
+      'Search stories by title or tags (e.g. mythology, travel)';
+
+  @override
+  String get importAll => 'Import All';
+
+  @override
+  String get ascendAll => 'Ascend All';
+
+  @override
+  String get startAscension => 'Start Ascension';
+
+  @override
+  String get scenarioLocalRestaurant => 'Local Restaurant';
+
+  @override
+  String get scenarioLocalRestaurantDesc =>
+      'Practice ordering dishes and asking for recommendations.';
+
+  @override
+  String get scenarioTaxiAirport => 'Taxi to Airport';
+
+  @override
+  String get scenarioTaxiAirportDesc =>
+      'Tell the driver your destination and discuss the traffic.';
+
+  @override
+  String get scenarioSilkMarket => 'Silk Market Haggling';
+
+  @override
+  String get scenarioSilkMarketDesc =>
+      'Try to get a better price for a souvenir.';
+
+  @override
+  String get scenarioMedicalClinic => 'Medical Clinic';
+
+  @override
+  String get scenarioMedicalClinicDesc =>
+      'Explain your symptoms to a traditional doctor.';
+
+  @override
+  String get scenarioMeetingFriend => 'Meeting a Friend';
+
+  @override
+  String get scenarioMeetingFriendDesc =>
+      'Introduce yourself and make small talk.';
+
+  @override
+  String get scenarioJobInterview => 'Job Interview';
+
+  @override
+  String get scenarioJobInterviewDesc =>
+      'Apply for a role at a tech company in Shanghai.';
+
+  @override
+  String get createCustomScenario => 'Create Custom Scenario';
+
+  @override
+  String get customScenarioTitleHint => 'Title (e.g. Wedding Reception)';
+
+  @override
+  String get customScenarioDescHint => 'Description (Context)';
+
+  @override
+  String get customScenarioPersonaHint =>
+      'AI Persona (e.g. A curious coworker)';
+
+  @override
+  String get customScenarioDifficulty => 'Difficulty';
+
+  @override
+  String get createAction => 'Create';
+
+  @override
+  String get cancelAction => 'Cancel';
+
+  @override
+  String get mythsAndLegends => 'Myths & Legends';
+
+  @override
+  String get historyAndCulture => 'History & Culture';
+
+  @override
+  String get idiomsTitle => 'Idioms (成语)';
+
+  @override
+  String get theMonkeyKing => 'The Monkey King';
+
+  @override
+  String get theMonkeyKingDesc => 'Sun Wukong (Journey to the West)';
+
+  @override
+  String get huaMulan => 'Hua Mulan';
+
+  @override
+  String get huaMulanDesc => 'Hua Mulan joining the army instead of her father';
+
+  @override
+  String get confuciusTitle => 'Confucius';
+
+  @override
+  String get confuciusDesc => 'The life and teachings of Confucius';
+
+  @override
+  String get theGreatWall => 'The Great Wall';
+
+  @override
+  String get theGreatWallDesc => 'Building the Great Wall of China';
+
+  @override
+  String get generateTopic => 'Generate Topic';
+
+  @override
+  String get simplifyText => 'Simplify Text';
+
+  @override
+  String get topicHint => 'Topic (e.g. Aliens in Beijing)';
+
+  @override
+  String get tagsHint => 'Tags (comma separated, optional)';
+
+  @override
+  String get speakWithMasterLin => 'Speak with Master Lin';
+
+  @override
+  String get masterLinGreeting =>
+      'Greetings, student. The ink is ready. What character or phrase shall we examine today?';
+
+  @override
+  String get typeYourMessage => 'Type your message...';
+
+  @override
+  String get theMainLibrary => 'The Main Library';
+
+  @override
+  String get hsk1Foundation => 'HSK 1: Foundation';
+
+  @override
+  String get hsk2Elementary => 'HSK 2: Elementary';
+
+  @override
+  String get hsk3Intermediate => 'HSK 3: Intermediate';
+
+  @override
+  String get inDeckCheck => 'In Deck ✓';
+
+  @override
+  String get addToDeckPlus => '+ Add to Deck';
+
+  @override
+  String get openCardArrow => 'Open Card →';
+
+  @override
+  String get pronunciationPartial => 'Tone Imprecise';
+
+  @override
+  String get pronunciationWrong => 'Incorrect';
+
+  @override
+  String get toneExpected => 'Expected';
+
+  @override
+  String get toneYouSaid => 'You Said';
+
+  @override
+  String get gotIt => 'Got it!';
+
+  @override
+  String foundNCharacters(int count) {
+    return '$count Characters Found';
+  }
+
+  @override
+  String get lookingUpCharacters => 'Looking up characters…';
+
+  @override
+  String get practiceAll => 'Practice All';
+
+  @override
+  String get arLensObjects => 'Objects';
+
+  @override
+  String get arLensText => 'Text';
+
+  @override
+  String get arLensDetectedText => 'Detected Text';
 }

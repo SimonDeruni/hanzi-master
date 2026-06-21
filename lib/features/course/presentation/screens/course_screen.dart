@@ -7,7 +7,6 @@ import '../../domain/entities/course_unit.dart';
 import '../../../progression/presentation/widgets/ink_stone_widget.dart';
 import '../widgets/course_map_widgets.dart';
 import '../widgets/course_painters.dart';
-import 'package:hanzi_master/shared/widgets/loading_indicator.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 
 class CourseScreen extends ConsumerWidget {
@@ -56,9 +55,9 @@ class CourseScreen extends ConsumerWidget {
             child: asyncUnits.when(
               data: (units) {
                 final List<dynamic> viewItems = [];
-                viewItems.add(const SizedBox(height: 120)); 
+                viewItems.add(SizedBox(height: 120)); 
                 viewItems.add(const InkStoneWidget());
-                viewItems.add(const SizedBox(height: 40));
+                viewItems.add(SizedBox(height: 40));
 
                 for (int i = 0; i < units.length; i++) {
                   final unit = units[i];
@@ -89,10 +88,10 @@ class CourseScreen extends ConsumerWidget {
                       labelSuffix: suffix,
                     ));
                   }
-                  viewItems.add(const SizedBox(height: 100));
+                  viewItems.add(SizedBox(height: 100));
                 }
 
-                viewItems.add(const SizedBox(height: 200));
+                viewItems.add(SizedBox(height: 200));
 
                 return CustomScrollView(
                   cacheExtent: 500,
@@ -121,7 +120,7 @@ class CourseScreen extends ConsumerWidget {
                   ],
                 );
               },
-              loading: () => const Center(child: CircularProgressIndicator(color: Colors.brown)),
+              loading: () => Center(child: CircularProgressIndicator(color: Colors.brown)),
               error: (err, stack) => Center(child: Text("${l10n?.errorPrefix}$err", style: const TextStyle(color: Colors.red))),
             ),
           ),
@@ -132,7 +131,7 @@ class CourseScreen extends ConsumerWidget {
               child: AbsorbPointer(
                 child: Container(
                   color: Colors.black54,
-                  child: const Center(
+                  child: Center(
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
@@ -158,7 +157,7 @@ class CourseScreen extends ConsumerWidget {
           Navigator.push(context, MaterialPageRoute(builder: (context) => QuizScreen(availableCards: cards)));
         },
         label: Text(l10n?.practiceQuiz ?? "PRACTICE QUIZ"),
-        icon: const Icon(Icons.quiz),
+        icon: Icon(Icons.quiz),
         backgroundColor: Colors.indigo,
       ),
     );

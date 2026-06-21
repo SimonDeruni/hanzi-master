@@ -1,3 +1,4 @@
+import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -235,7 +236,7 @@ class _RadicalDetailScreenState extends ConsumerState<RadicalDetailScreen> {
                 child: _isLoading
                   ? const Center(child: CircularProgressIndicator(color: Colors.indigo))
                   : _filteredCharacters.isEmpty
-                      ? const Center(child: Text("No characters found."))
+                      ? Center(child: Text(AppLocalizations.of(context)!.noCharactersFound))
                       : GridView.builder(
                           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
                           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

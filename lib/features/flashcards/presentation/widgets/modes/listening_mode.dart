@@ -114,7 +114,7 @@ class _ListeningModeWidgetState extends ConsumerState<ListeningModeWidget> {
                                     onPressed: _playAudio,
                                   ),
                                 ),
-                                const SizedBox(height: 16),
+                                SizedBox(height: 16),
                                 Text(
                                   'Tap icon to listen again',
                                   style: TextStyle(
@@ -127,12 +127,12 @@ class _ListeningModeWidgetState extends ConsumerState<ListeningModeWidget> {
                           ),
                         ),
                         if (!_isRevealed)
-                          const Expanded(
+                          Expanded(
                             flex: 1,
                             child: Align(
                               alignment: Alignment.bottomCenter,
                               child: Text(
-                                "Tap card to Reveal",
+                                AppLocalizations.of(context)!.tapCardToReveal,
                                 style: TextStyle(
                                   fontSize: 16,
                                   color: Colors.grey,
@@ -159,12 +159,12 @@ class _ListeningModeWidgetState extends ConsumerState<ListeningModeWidget> {
                                     ),
                                   ),
                                 ),
-                                const SizedBox(height: 8),
+                                SizedBox(height: 8),
                                 PinyinText(
                                   text: widget.card.pinyin,
                                   style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
                                 ),
-                                const SizedBox(height: 16),
+                                SizedBox(height: 16),
                                 Expanded(
                                   child: SingleChildScrollView(
                                     child: Text(
@@ -198,7 +198,7 @@ class _ListeningModeWidgetState extends ConsumerState<ListeningModeWidget> {
                       style: const TextStyle(
                           fontSize: 16, fontWeight: FontWeight.bold),
                     ),
-                    const SizedBox(height: 16),
+                    SizedBox(height: 16),
                     Row(
                       children: [
                         _buildGradeButton(

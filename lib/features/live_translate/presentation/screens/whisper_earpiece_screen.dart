@@ -9,6 +9,7 @@ import 'package:record/record.dart';
 import 'package:flutter_sound/flutter_sound.dart' as fs;
 import 'package:hanzi_master/core/services/api_key_pool.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
+import 'package:hanzi_master/core/providers/translation_language_provider.dart';
 
 class WhisperMessage {
   final String originalText;
@@ -102,7 +103,7 @@ class _WhisperEarpieceScreenState extends ConsumerState<WhisperEarpieceScreen> {
           },
           "systemInstruction": {
             "parts": [
-              {"text": "You are a real-time translator earpiece. The user will be listening to Mandarin Chinese audio. You must translate everything you hear into English and speak the English translation back. Do not reply or converse, ONLY translate."}
+              {"text": "You are a real-time translator earpiece. The user will be listening to Mandarin Chinese audio. You must translate everything you hear into ${ref.read(translationLanguageProvider)} and speak the translation back. Do not reply or converse, ONLY translate."}
             ]
           }
         }
@@ -237,10 +238,23 @@ class _WhisperEarpieceScreenState extends ConsumerState<WhisperEarpieceScreen> {
               Padding(
                 padding: const EdgeInsets.all(24.0),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     IconButton(
                       icon: Icon(Icons.arrow_back, color: isDark ? Colors.white : const Color(0xFF1A1A1B)),
                       onPressed: () => Navigator.pop(context),
+                    ),
+                    DropdownButtonHideUnderline(
+                      child: DropdownButton<String>(
+                        value: ref.watch(translationLanguageProvider),
+                        icon: Icon(Icons.language, color: isDark ? Colors.white70 : Colors.black54),
+                        dropdownColor: isDark ? Colors.grey[900] : Colors.white,
+                        style: TextStyle(color: isDark ? Colors.white : Colors.black, fontWeight: FontWeight.bold),
+                        items: supportedTranslationLanguages.map((lang) => DropdownMenuItem(value: lang, child: Text(lang))).toList(),
+                        onChanged: (val) {
+                          if (val != null) ref.read(translationLanguageProvider.notifier).setLanguage(val);
+                        },
+                      ),
                     ),
                   ],
                 ),
@@ -306,7 +320,7 @@ class _WhisperEarpieceScreenState extends ConsumerState<WhisperEarpieceScreen> {
                       const SizedBox(height: 24),
                       _buildInstructionRow(
                         Icons.translate,
-                        "Hear in English",
+                        "Hear in ${ref.watch(translationLanguageProvider)}",
                         "AI will whisper the translation directly into your ear.",
                         isDark,
                       ),

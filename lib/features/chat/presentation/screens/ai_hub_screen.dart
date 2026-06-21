@@ -228,7 +228,7 @@ class AiHubScreen extends ConsumerWidget {
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Text(
-                      "SOON",
+                      AppLocalizations.of(context)!.soon,
                       style: TextStyle(
                         fontSize: 10,
                         fontWeight: FontWeight.bold,

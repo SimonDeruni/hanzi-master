@@ -1,3 +1,4 @@
+import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'dart:ui' as ui;
 import 'dart:async';
 import 'dart:convert';
@@ -145,7 +146,7 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
       // 1. Setup Phase - Updated for June 2026 stable models
       final setupMessage = jsonEncode({
         "setup": {
-          "model": "models/gemini-3.5-live-translate-preview",
+          "model": "models/gemini-3.1-flash-live-preview",
           "generationConfig": {
              "responseModalities": ["AUDIO"],
              "speechConfig": {
@@ -440,7 +441,7 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
                   padding: const EdgeInsets.only(top: 20.0),
                   child: Column(
                     children: [
-                      Text("GEMINI LIVE CALL", style: theme.textTheme.labelMedium?.copyWith(color: Colors.white54, letterSpacing: 2.0)),
+                      Text(AppLocalizations.of(context)!.geminiLiveCall, style: theme.textTheme.labelMedium?.copyWith(color: Colors.white54, letterSpacing: 2.0)),
                       const SizedBox(height: 8),
                       Text(widget.scenario.title, style: theme.textTheme.headlineMedium?.copyWith(color: Colors.white, fontWeight: FontWeight.bold)),
                       const SizedBox(height: 8),
@@ -448,7 +449,7 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
                       if (_hasError)
                         TextButton(
                           onPressed: () => Navigator.pop(context),
-                          child: const Text("Return to menu", style: TextStyle(color: Colors.white)),
+                          child: Text(AppLocalizations.of(context)!.returnToMenu, style: TextStyle(color: Colors.white)),
                         ),
                     ],
                   ),
@@ -569,7 +570,7 @@ class _LiveTranscriptBubble extends StatelessWidget {
         crossAxisAlignment: isUser ? CrossAxisAlignment.end : CrossAxisAlignment.start,
         children: [
           if (isUser && message.grade != null)
-             _buildGradedText(message.grade!['words'] ?? [], theme)
+             _buildGradedText(message.grade!['words'] ?? [], theme, context)
           else
             Text(
               message.text,
@@ -585,20 +586,142 @@ class _LiveTranscriptBubble extends StatelessWidget {
     );
   }
 
-  Widget _buildGradedText(List<dynamic> words, ThemeData theme) {
+  Widget _buildGradedText(List<dynamic> words, ThemeData theme, BuildContext context) {
     return Wrap(
       alignment: WrapAlignment.end,
-      spacing: 4,
+      spacing: 6,
+      runSpacing: 4,
       children: words.map((w) {
         final bool correct = w['isCorrect'] ?? true;
-        return Text(
-          w['word'] ?? "",
-          style: theme.textTheme.bodyLarge?.copyWith(
-            color: correct ? Colors.greenAccent : Colors.redAccent,
-            fontWeight: FontWeight.bold,
+        final bool partial = w['isPartial'] ?? false;
+        final String feedback = w['feedback'] ?? '';
+        final String word = w['word'] ?? '';
+        final String pinyin = w['pinyin'] ?? '';
+        final int expectedTone = w['expectedTone'] ?? 0;
+        final int actualTone = w['actualTone'] ?? 0;
+
+        final Color color = correct
+            ? Colors.greenAccent
+            : partial
+                ? const Color(0xFFF59E0B)
+                : Colors.redAccent;
+
+        final bool isClickable = !correct && feedback.isNotEmpty;
+
+        return GestureDetector(
+          onTap: isClickable
+              ? () => _showWordFeedback(context, word, pinyin, expectedTone, actualTone, feedback, partial, color, theme)
+              : null,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                pinyin,
+                style: theme.textTheme.labelSmall?.copyWith(color: Colors.white54),
+              ),
+              Stack(
+                alignment: Alignment.topRight,
+                children: [
+                  Text(
+                    word,
+                    style: theme.textTheme.bodyLarge?.copyWith(
+                      color: color,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  if (isClickable)
+                    Positioned(
+                      top: 0,
+                      right: -2,
+                      child: Container(
+                        width: 5,
+                        height: 5,
+                        decoration: BoxDecoration(color: color, shape: BoxShape.circle),
+                      ),
+                    ),
+                ],
+              ),
+            ],
           ),
         );
       }).toList(),
+    );
+  }
+
+  void _showWordFeedback(
+    BuildContext context,
+    String word, String pinyin,
+    int expectedTone, int actualTone,
+    String feedback, bool isPartial,
+    Color color, ThemeData theme,
+  ) {
+    const toneNames = ['', '1st ˉ', '2nd ˊ', '3rd ˇ', '4th ˋ', 'neutral'];
+    showDialog(
+      context: context,
+      builder: (context) => Dialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        child: Padding(
+          padding: const EdgeInsets.all(24),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                width: 72, height: 72,
+                decoration: BoxDecoration(color: color.withValues(alpha: 0.15), shape: BoxShape.circle),
+                child: Center(
+                  child: Text(word, style: theme.textTheme.displaySmall?.copyWith(color: color, fontWeight: FontWeight.bold)),
+                ),
+              ),
+              const SizedBox(height: 8),
+              Text(pinyin, style: theme.textTheme.titleMedium?.copyWith(color: theme.colorScheme.onSurface.withValues(alpha: 0.6))),
+              const SizedBox(height: 12),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                decoration: BoxDecoration(color: color.withValues(alpha: 0.15), borderRadius: BorderRadius.circular(20)),
+                child: Text(
+                  isPartial ? AppLocalizations.of(context)!.pronunciationPartial : AppLocalizations.of(context)!.pronunciationWrong,
+                  style: theme.textTheme.labelMedium?.copyWith(color: color, fontWeight: FontWeight.bold),
+                ),
+              ),
+              if (expectedTone > 0) ...[
+                const SizedBox(height: 16),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _toneChip(context, AppLocalizations.of(context)!.toneExpected, expectedTone, Colors.green.shade600, theme, toneNames),
+                    const SizedBox(width: 12),
+                    _toneChip(context, AppLocalizations.of(context)!.toneYouSaid, actualTone, color, theme, toneNames),
+                  ],
+                ),
+              ],
+              const SizedBox(height: 16),
+              Text(feedback, textAlign: TextAlign.center, style: theme.textTheme.bodyMedium?.copyWith(height: 1.5)),
+              const SizedBox(height: 20),
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: Text(AppLocalizations.of(context)!.gotIt),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _toneChip(BuildContext context, String label, int tone, Color color, ThemeData theme, List<String> names) {
+    return Column(
+      children: [
+        Text(label, style: theme.textTheme.labelSmall?.copyWith(color: theme.colorScheme.onSurface.withValues(alpha: 0.5))),
+        const SizedBox(height: 4),
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+          decoration: BoxDecoration(color: color.withValues(alpha: 0.15), borderRadius: BorderRadius.circular(8)),
+          child: Text(
+            tone > 0 && tone < names.length ? names[tone] : '?',
+            style: theme.textTheme.labelLarge?.copyWith(color: color, fontWeight: FontWeight.bold),
+          ),
+        ),
+      ],
     );
   }
 }

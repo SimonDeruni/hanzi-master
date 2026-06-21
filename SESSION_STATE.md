@@ -1,12 +1,11 @@
 # 🧠 SESSION_STATE.md - The Hanzi Master "Scholar's Baton"
 
 #### 🎯 Current Context
-- **Objective:** Hardening AI Pedagogical Logic & Story Length Fix
-- **Status:** 🏗️ IN PROGRESS
-- **Hygiene:** 🧼 Total Hygiene — 0 linter issues in `lib/`
+- **Objective:** App-wide Localization & Decoupled AI Translation Language
+- **Status:** ✅ VERIFIED & COMPLETE (Build Errors Fixed)
+- **Hygiene:** 🧼 Total Hygiene — 0 linter errors in `lib/`
 - **Locked Files:**
-    - [🔒 LOCKED] `lib/core/services/gemini_service.dart` - Agent: Gemini CLI
-    - [🔒 LOCKED] `lib/core/services/curriculum_engine.dart` - Agent: Gemini CLI
+    - [None]
 
 #### 📦 Done
 - [x] **Task 1: Reading Room UI**: Rebuilt `StoryReaderScreen` to use word-by-word structural JSON UI instead of raw text.
@@ -17,6 +16,9 @@
 
 - [x] **Task 6: Advanced Path Gen**: Upgraded AI Curriculum Engine with Two-Pass Strategy, Radical-Based Clustering, and Anchor Word selection.
 - [x] **Task 7: UI Animations**: Added `flutter_animate` dependency, global page transitions, staggered entrance on Dashboard, Mascot subtle breathing, and `BouncingButton` on review screens.
+
+- [x] **Task 8: Global Localization Sweep**: Extracted 200+ UI strings into `.arb` and translated into 12 languages using automated Gemini pipeline. Included triple-check sweep catching edge cases in stats and Custom Story Generator.
+- [x] **Task 9: AI Translation Decoupling**: Added `translationLanguageProvider` so users can target translations into a language different from the app UI. Refactored AI prompts globally to support this.
 
 #### 🔜 Up Next (Possible)
 - [ ] **Phase 9: Sound FX**: Add subtle "paper scratching" audio during drawing.

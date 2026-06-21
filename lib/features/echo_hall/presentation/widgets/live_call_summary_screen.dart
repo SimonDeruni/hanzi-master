@@ -1,3 +1,4 @@
+import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import '../screens/live_call_screen.dart';
@@ -19,7 +20,7 @@ class LiveCallSummaryScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("SCHOLAR'S VERDICT"),
+        title: Text(AppLocalizations.of(context)!.scholarsVerdict),
         leading: IconButton(
           icon: const Icon(Icons.close),
           onPressed: () => Navigator.pop(context),
@@ -32,7 +33,7 @@ class LiveCallSummaryScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // 1. AI Pattern Analysis Card
-              _buildVerdictCard(theme),
+              _buildVerdictCard(context, theme),
               
               const SizedBox(height: 32),
               
@@ -66,7 +67,7 @@ class LiveCallSummaryScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildVerdictCard(ThemeData theme) {
+  Widget _buildVerdictCard(BuildContext context, ThemeData theme) {
     return Container(
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(

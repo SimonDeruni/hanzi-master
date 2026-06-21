@@ -14,7 +14,13 @@ class ScenarioSelectionScreen extends StatefulWidget {
 }
 
 class _ScenarioSelectionScreenState extends State<ScenarioSelectionScreen> {
-  final List<ConversationScenario> _allScenarios = [...defaultScenarios];
+  late List<ConversationScenario> _allScenarios;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _allScenarios = [...getDefaultScenarios(context)];
+  }
 
   @override
   Widget build(BuildContext context) {

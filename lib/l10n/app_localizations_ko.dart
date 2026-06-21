@@ -520,4 +520,876 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get poweredByAi => '최첨단 AI 기반. 어떤 상황에서도 끊김 없는 실시간 번역.';
+
+  @override
+  String get downloadingModel => '모델 다운로드 중...';
+
+  @override
+  String get soon => '출시 예정';
+
+  @override
+  String get installed => '설치됨';
+
+  @override
+  String get premium => '프리미엄';
+
+  @override
+  String get coreModule => '코어 모듈';
+
+  @override
+  String get step6Context => '6단계: 문맥 파악';
+
+  @override
+  String get tapBuildingBlocksTo => '구성 요소를 탭하여 그 유래를 알아보세요.';
+
+  @override
+  String get initiateRadicalSequence => '부수 시퀀스 시작';
+
+  @override
+  String get holdToTalk => '말하려면 길게 누르세요';
+
+  @override
+  String get customScenario => '맞춤 시나리오';
+
+  @override
+  String get voiceCall => '음성 통화';
+
+  @override
+  String get pronunciation => '발음';
+
+  @override
+  String get selectAScenarioTo => '대본을 선택하여 중국어 회화를 연습하세요. 학자가 음조와 명확도를 평가합니다.';
+
+  @override
+  String get create => '생성';
+
+  @override
+  String get createYourScenario => '시나리오 만들기';
+
+  @override
+  String get difficulty => '난이도';
+
+  @override
+  String get scholarsVerdict => '학자의 평결';
+
+  @override
+  String get completeReview => '완료 검토';
+
+  @override
+  String get conversationReview => '대화 검토';
+
+  @override
+  String get linguisticAnalysis => '언어 분석';
+
+  @override
+  String get examplesInHsk1 => 'HSK 1 예시';
+
+  @override
+  String get characterReference => '문자 참조';
+
+  @override
+  String get askTutor => '튜터에게 질문하기';
+
+  @override
+  String get addToStudyDeck => '학습 덱에 추가';
+
+  @override
+  String get startPractice => '연습 시작';
+
+  @override
+  String get noOtherHsk1 => '이 부수를 사용하는 다른 HSK 1 문자는 없습니다.';
+
+  @override
+  String get couldNotLoadAi =>
+      'AI 문맥을 로드할 수 없습니다. (속도 제한 또는 네트워크 오류)\\n나중에 다시 시도하려면 아래 새로고침 버튼을 탭하세요.';
+
+  @override
+  String get noAvailableCardsFound => '사용 가능한 카드를 찾을 수 없습니다.';
+
+  @override
+  String get addCards => '카드 추가';
+
+  @override
+  String get removeCard => '카드 제거';
+
+  @override
+  String get remove => '제거';
+
+  @override
+  String get review => '복습';
+
+  @override
+  String get story => '이야기';
+
+  @override
+  String get thisDeckIsEmpty => '이 덱은 비어 있습니다.';
+
+  @override
+  String get tapTheAddCards => '카드 추가 버튼을 탭하세요!';
+
+  @override
+  String get noCardsFound => '카드를 찾을 수 없습니다.';
+
+  @override
+  String get addCardsToSee => '통계를 보려면 카드를 추가하세요.';
+
+  @override
+  String get aiGenerated => 'AI 생성됨';
+
+  @override
+  String get allCardsCaughtUp => '모든 카드 학습 완료! 잘하셨습니다.';
+
+  @override
+  String get latestDiscoveries => '최신 발견';
+
+  @override
+  String get noCharactersInLexicon => '아직 어휘집에 문자가 없습니다.';
+
+  @override
+  String get yourBookshelf => '내 책장';
+
+  @override
+  String get text_1782026184579 => '자';
+
+  @override
+  String get searchYourDictionary => '사전 검색...';
+
+  @override
+  String get saveCard => '카드 저장';
+
+  @override
+  String get noCharactersFound => '문자를 찾을 수 없습니다.';
+
+  @override
+  String get radicalsIndex => '부수 색인';
+
+  @override
+  String get masteringRadicalsIsThe =>
+      '부수 숙달은 수천 개의 한자를 해독하는 열쇠입니다. 부수를 선택하여 해당 부수를 사용하는 모든 한자를 확인하세요.';
+
+  @override
+  String get noRadicalsFound => '부수를 찾을 수 없습니다.';
+
+  @override
+  String get yourDrawing => '내 그림';
+
+  @override
+  String get reference => '참고';
+
+  @override
+  String get rateYourRecall => '기억력 평가';
+
+  @override
+  String get contactUs => 'Contáctanos';
+
+  @override
+  String get reportBugsOrRequest => '버그 보고 또는 기능 요청';
+
+  @override
+  String get allDataHasBeen => '모든 데이터가 초기화되었습니다.';
+
+  @override
+  String get hanziMasterV100 => '한자 마스터 v1.0.0';
+
+  @override
+  String get myProgress => 'Mi progreso';
+
+  @override
+  String get overview => '개요';
+
+  @override
+  String get aiStory => 'AI 스토리';
+
+  @override
+  String get usingYourDecksVocabulary => '덱의 어휘 사용 중';
+
+  @override
+  String get tryAgain => '다시 시도';
+
+  @override
+  String get translate => '번역';
+
+  @override
+  String get pinyin => '병음';
+
+  @override
+  String get fullTranslation => '전체 번역';
+
+  @override
+  String get geminiFlashIsStructuring => '제미니 플래시가 스토리를 구성 중입니다...';
+
+  @override
+  String get aiDeckGenerator => 'AI 덱 생성기';
+
+  @override
+  String get whatDoYouWant => '무엇을 배우고 싶으신가요?';
+
+  @override
+  String get targetDifficulty => '목표 난이도';
+
+  @override
+  String get focusArea => '집중 영역';
+
+  @override
+  String get specificContextOrTone => '특정 문맥 또는 어조 (선택 사항)';
+
+  @override
+  String get numberOfCards => '카드 수';
+
+  @override
+  String get generateDeck => '덱 생성';
+
+  @override
+  String get aiGrammarExplanation => 'AI 문법 설명';
+
+  @override
+  String get scholarsDesk => '학자의 책상';
+
+  @override
+  String get chooseADeck => '덱 선택';
+
+  @override
+  String get whereWouldYouLike => '이 한자를 어디에 저장하시겠습니까?';
+
+  @override
+  String get addToDefaultStudy => '기본 학습 덱에 추가';
+
+  @override
+  String get ifOffItsOnly => '비활성화하면 글로벌 사전 에만 저장됩니다';
+
+  @override
+  String get saveToLibrary => '라이브러리에 저장';
+
+  @override
+  String get pleaseEnterValidChinese => '유효한 중국어 한자를 입력하세요.';
+
+  @override
+  String get reviewAiCard => 'AI 카드 검토';
+
+  @override
+  String get pleaseDoublecheckTheAis =>
+      '아래 AI의 출력을 다시 확인하세요. 영구 라이브러리에 저장하기 전에 병음이나 정의를 자유롭게 수정하세요.';
+
+  @override
+  String get alreadyInYourLibrary => '이미 라이브러리에 있습니다!';
+
+  @override
+  String get meaningInContext => '문맥 속 의미';
+
+  @override
+  String get explainGrammar => '문법 설명';
+
+  @override
+  String get addToLibrary => '라이브러리에 추가';
+
+  @override
+  String get masterYourMandarinPronunciation =>
+      '실시간으로 원어민의 발음을 모방하여 중국어 발음을 완벽하게 마스터하세요.';
+
+  @override
+  String get startSession => '세션 시작';
+
+  @override
+  String get sessionHistory => '세션 기록';
+
+  @override
+  String get noSavedSessions => '저장된 세션이 없습니다.';
+
+  @override
+  String get aiBreakdown => 'AI 분석';
+
+  @override
+  String get sessionDetails => '세션 상세';
+
+  @override
+  String get partner => '파트너 (中文)';
+
+  @override
+  String get youEnglish => '나 (영어)';
+
+  @override
+  String get noTranscriptToSave => '저장할 기록이 없습니다!';
+
+  @override
+  String get sessionSaved => '세션 저장됨!';
+
+  @override
+  String get realtimeBidirectionalTranslationSpeak =>
+      '실시간 양방향 번역. 영어 또는 중국어를 말하면 즉시 당신과 파트너에게 번역됩니다.';
+
+  @override
+  String get text_1782026184665 => '녹음 중';
+
+  @override
+  String get recording => '녹음 중';
+
+  @override
+  String get yourSilentCompanionListen =>
+      '당신의 조용한 동반자. 중국어를 들으면 즉시 영어 번역을 들을 수 있습니다.';
+
+  @override
+  String get startListening => '듣기 시작';
+
+  @override
+  String get skip => '건너뛰기';
+
+  @override
+  String get independentStars => '독립 별';
+
+  @override
+  String get notEveryCharacterHas =>
+      '모든 한자가 부수를 가지고 있는 것은 아닙니다. 일부는 독립적인 상형 문자이거나 단독으로 사용됩니다.';
+
+  @override
+  String get onTheMapWe => '지도에서 이러한 독립적인 한자들을 별자리(✨)로 묶었습니다.';
+
+  @override
+  String get iUnderstand => '알겠습니다';
+
+  @override
+  String get whatAreRadicals => '부수란 무엇인가요?';
+
+  @override
+  String get hanziAreBuiltFrom =>
+      '한자는 부수라고 불리는 구성 요소로 만들어집니다.\\n\\n이들은 한자에게 핵심 의미나 주제를 부여합니다.';
+
+  @override
+  String get continueText => '계속';
+
+  @override
+  String get hanziAreNotJust =>
+      '한자는 단순한 글자가 아닙니다. 시간에 갇힌 그림입니다.\\n\\n마스터하려면 그 흐름을 따라가는 법을 배워야 합니다.';
+
+  @override
+  String get iAmReady => '준비되었습니다';
+
+  @override
+  String get youAreAScholar => '당신은 학자입니다';
+
+  @override
+  String get theGalaxyMapAwaitsnmaster =>
+      '갤럭시 맵이 기다립니다.\\n태양(부수)을 마스터하여 행성(한자)을 해제하세요.';
+
+  @override
+  String get enterTheScroll => '두루마리 들어가기';
+
+  @override
+  String get openingTheOriginScroll => '원천의 두루마리 열기...';
+
+  @override
+  String get text_1782026184670 => '+';
+
+  @override
+  String get theScholarsEdition => '학자 에디션';
+
+  @override
+  String get weArePreparingThe => '학자 에디션 출시를 준비 중입니다.';
+
+  @override
+  String get devBypassUnlockNow => '개발자 우회: 지금 해제';
+
+  @override
+  String get restorePurchases => '구매 복원';
+
+  @override
+  String get welcomeScholarTheScroll => '환영합니다, 학자님. 두루마리가 완전히 열렸습니다.';
+
+  @override
+  String get purchasesRestoredSuccessfully => '구매가 성공적으로 복원되었습니다.';
+
+  @override
+  String get noPreviousPurchasesFound => '이 계정에서 이전 구매를 찾을 수 없습니다.';
+
+  @override
+  String get unlockTheFullPotential => '여정의 잠재력을 최대한 발휘하세요. 한 번 구매로 영원히 소유하세요.';
+
+  @override
+  String get universalScanner => '범용 스캐너';
+
+  @override
+  String get noChineseCharactersFound => '이미지에서 중국어 한자를 찾을 수 없습니다.';
+
+  @override
+  String get addedNewCharactersTo => '새로운 한자를 라이브러리에 추가했습니다!';
+
+  @override
+  String get extractingTextAndObjects => '텍스트 및 객체 추출 중...';
+
+  @override
+  String get scanATextbookSign => '교과서, 표지판 또는 물체를 스캔하여 중국어 한자를 추출하세요.';
+
+  @override
+  String get extractedText => '추출된 텍스트';
+
+  @override
+  String get useText => '텍스트 사용';
+
+  @override
+  String get noMatchingDictionaryEntries => '일치하는 사전 항목을 찾을 수 없습니다.';
+
+  @override
+  String get quizComplete => '퀴즈 완료!';
+
+  @override
+  String get returnToCourse => '코스로 돌아가기';
+
+  @override
+  String get notEnoughCardsFor => '퀴즈를 풀기에 카드가 충분하지 않습니다! 최소 4장이 필요합니다.';
+
+  @override
+  String get creatorMode => '크리에이터 모드';
+
+  @override
+  String get noStoriesFoundMatching => '검색 조건에 맞는 스토리를 찾을 수 없습니다.';
+
+  @override
+  String get discard => '버리기';
+
+  @override
+  String get save => '저장';
+
+  @override
+  String get generatingStoryViaDeepseek => 'DeepSeek를 통해 스토리 생성 중...';
+
+  @override
+  String get storySavedToLibrary => '스토리가 라이브러리에 저장되었습니다!';
+
+  @override
+  String get storyNotFound => '스토리를 찾을 수 없습니다.';
+
+  @override
+  String get targetHskLevel => '목표 HSK 레벨';
+
+  @override
+  String get wedLoveToHear => '당신의 의견을 듣고 싶습니다!';
+
+  @override
+  String get whetherYouveFoundA =>
+      '버그를 발견했거나, 기능 요청이 있거나, 단순히 인사하고 싶어도, 당신의 피드백은 Hanzi Master 개선에 도움이 됩니다.';
+
+  @override
+  String get pointYourCameraAt => '카메라를 사물에 대세요';
+
+  @override
+  String get reviewAddToLibrary => '검토 및 라이브러리에 추가';
+
+  @override
+  String hideStrokeGuideStreak(Object streak) {
+    return '획 가이드 숨기기: $streak 스트릭';
+  }
+
+  @override
+  String inkPoints(Object points) {
+    return '잉크 포인트 $points점';
+  }
+
+  @override
+  String speechRateMultiplier(Object rate) {
+    return '$rate배';
+  }
+
+  @override
+  String animationSpeedMultiplier(Object rate) {
+    return '$rate배';
+  }
+
+  @override
+  String get supportAndFeedback => '지원 및 피드백';
+
+  @override
+  String get reportBug => '버그 신고';
+
+  @override
+  String get suggestFeature => '기능 제안';
+
+  @override
+  String get generalFeedback => '일반 피드백';
+
+  @override
+  String get pleaseDrawSomethingFirst => '먼저 그림을 그려주세요';
+
+  @override
+  String get drawThisCharacter => '이 한자를 작성하세요:';
+
+  @override
+  String followGuideStroke(Object current, Object total) {
+    return '파란색 가이드에 따라 $total개의 획 중 $current번째 획을 그립니다';
+  }
+
+  @override
+  String get skipCurrentStroke => '현재 획 건너뛰기';
+
+  @override
+  String get submitDrawing => '그림 제출';
+
+  @override
+  String addedToDeck(Object deckName, Object hanzi) {
+    return '$deckName에 $hanzi 추가됨';
+  }
+
+  @override
+  String removedFromDeck(Object hanzi) {
+    return '덱에서 $hanzi 제거됨';
+  }
+
+  @override
+  String skippedNoStrokeData(Object hanzi) {
+    return '$hanzi 건너뜀 - 이 AI 한자에 대한 획 데이터 없음.';
+  }
+
+  @override
+  String get startingSession => '세션 시작 중...';
+
+  @override
+  String get masterBuildingBlocks => '한자의 기본 구성 요소를 마스터하세요';
+
+  @override
+  String get totalWords => '총 단어';
+
+  @override
+  String get newInk => '새 잉크';
+
+  @override
+  String get learningStatus => '학습 중';
+
+  @override
+  String get masteredStatus => '마스터함';
+
+  @override
+  String get libraryMastery => '라이브러리 숙련도';
+
+  @override
+  String get accuracyByMode => '모드별 정확도';
+
+  @override
+  String get upcomingReviews => '예정된 복습 (향후 7일)';
+
+  @override
+  String get culturalReadingRoom => '문화 서재 (Cultural Reading Room)';
+
+  @override
+  String storyTitleHsk(Object level, Object title) {
+    return '$title (HSK $level)';
+  }
+
+  @override
+  String get pleaseEnterTopic => '주제를 입력해주세요';
+
+  @override
+  String createdDeckCards(Object count, Object name) {
+    return '$count장의 카드로 $name 생성 완료!';
+  }
+
+  @override
+  String gradeResult(Object grade) {
+    return '등급: $grade';
+  }
+
+  @override
+  String get listeningMode => '듣기 모드';
+
+  @override
+  String get readingMode => '읽기 모드';
+
+  @override
+  String get recallMode => '회상 모드';
+
+  @override
+  String get speakingMode => '말하기 모드';
+
+  @override
+  String get aiMemoryHook => 'AI 기억 후크';
+
+  @override
+  String get exampleSentences => '예시 문장';
+
+  @override
+  String get ghostCharacters => '유령 문자';
+
+  @override
+  String get commonWords => '자주 쓰는 단어';
+
+  @override
+  String get personalNotes => '개인 노트';
+
+  @override
+  String get addPersonalNotes => '여기에 자신만의 기억술이나 노트를 추가하세요...';
+
+  @override
+  String get takePhoto => '사진 찍기';
+
+  @override
+  String get gallery => '갤러리';
+
+  @override
+  String get arLens => 'AR 렌즈';
+
+  @override
+  String addedCharToLibrary(Object char) {
+    return '라이브러리에 $char 추가됨';
+  }
+
+  @override
+  String get scoreText => '점수';
+
+  @override
+  String get searchDictionaryHint => '한자, 병음 또는 뜻으로 검색...';
+
+  @override
+  String get searchDeckHint => '한자, 병음으로 검색...';
+
+  @override
+  String get localRestaurant => '현지 식당';
+
+  @override
+  String get taxiToAirport => '공항 택시';
+
+  @override
+  String get silkMarketHaggling => '비단 시장 흥정';
+
+  @override
+  String get medicalClinic => '의료 클리닉';
+
+  @override
+  String get meetingAFriend => '친구 만나기';
+
+  @override
+  String get jobInterview => '취업 면접';
+
+  @override
+  String get searchRadicalsHint => '부수 검색 (예: Water, 氵)';
+
+  @override
+  String get definition => '정의';
+
+  @override
+  String get undo => '실행 취소';
+
+  @override
+  String get hanziMaster => '한자 마스터';
+
+  @override
+  String get unlockForever => '영구 잠금 해제 - \$9.99';
+
+  @override
+  String get clear => '지우기';
+
+  @override
+  String get clearChat => '채팅 지우기';
+
+  @override
+  String get typeMessage => '메시지를 입력하세요...';
+
+  @override
+  String addedToLibrary(Object hanzi) {
+    return '보관함에 \'$hanzi\' 추가됨';
+  }
+
+  @override
+  String get generateNewStory => '새 이야기 생성';
+
+  @override
+  String failedToGenerateStory(Object error) {
+    return '이야기 생성 실패:\\n$error';
+  }
+
+  @override
+  String get detail => '세부 정보';
+
+  @override
+  String get scanText => '텍스트 스캔';
+
+  @override
+  String get createMagic => '마법 만들기';
+
+  @override
+  String get learning => '학습 중';
+
+  @override
+  String get upcomingReviews7Days => '예정된 복습 (다음 7일)';
+
+  @override
+  String get askFollowUpQuestion => '추가 질문하기...';
+
+  @override
+  String get pasteScanToSimplify => '중국어 텍스트를 붙여넣거나 스캔하여 간체화';
+
+  @override
+  String get searchStoriesHint => '제목 또는 태그로 스토리 검색 (예: 신화, 여행)';
+
+  @override
+  String get importAll => '모두 가져오기';
+
+  @override
+  String get ascendAll => '모두 승격';
+
+  @override
+  String get startAscension => '수련 시작';
+
+  @override
+  String get scenarioLocalRestaurant => '현지 식당';
+
+  @override
+  String get scenarioLocalRestaurantDesc => '음식을 주문하고 추천을 요청하는 연습을 해보세요.';
+
+  @override
+  String get scenarioTaxiAirport => '공항 택시';
+
+  @override
+  String get scenarioTaxiAirportDesc => '운전기사에게 목적지를 말하고 교통 상황에 대해 이야기하세요.';
+
+  @override
+  String get scenarioSilkMarket => '비단 시장 흥정';
+
+  @override
+  String get scenarioSilkMarketDesc => '기념품을 더 좋은 가격에 사기 위해 흥정해 보세요.';
+
+  @override
+  String get scenarioMedicalClinic => '의료 클리닉';
+
+  @override
+  String get scenarioMedicalClinicDesc => '전통 의사에게 증상을 설명하세요.';
+
+  @override
+  String get scenarioMeetingFriend => '친구 만나기';
+
+  @override
+  String get scenarioMeetingFriendDesc => '자신을 소개하고 스몰톡을 나누세요.';
+
+  @override
+  String get scenarioJobInterview => '취업 면접';
+
+  @override
+  String get scenarioJobInterviewDesc => '상하이의 기술 회사에서 역할에 지원하세요.';
+
+  @override
+  String get createCustomScenario => '사용자 지정 시나리오 만들기';
+
+  @override
+  String get customScenarioTitleHint => '제목 (예: 결혼 피로연)';
+
+  @override
+  String get customScenarioDescHint => '설명 (컨텍스트)';
+
+  @override
+  String get customScenarioPersonaHint => 'AI 페르소나 (예: 호기심 많은 동료)';
+
+  @override
+  String get customScenarioDifficulty => '난이도';
+
+  @override
+  String get createAction => '만들기';
+
+  @override
+  String get cancelAction => '취소';
+
+  @override
+  String get mythsAndLegends => '신화와 전설';
+
+  @override
+  String get historyAndCulture => '역사와 문화';
+
+  @override
+  String get idiomsTitle => '관용구 (성어)';
+
+  @override
+  String get theMonkeyKing => '손오공';
+
+  @override
+  String get theMonkeyKingDesc => '손오공 (서유기)';
+
+  @override
+  String get huaMulan => '화목란';
+
+  @override
+  String get huaMulanDesc => '아버지를 대신하여 군대에 입대한 화목란';
+
+  @override
+  String get confuciusTitle => '공자';
+
+  @override
+  String get confuciusDesc => '공자의 삶과 가르침';
+
+  @override
+  String get theGreatWall => '만리장성';
+
+  @override
+  String get theGreatWallDesc => '중국의 만리장성 건설';
+
+  @override
+  String get generateTopic => '주제 생성';
+
+  @override
+  String get simplifyText => '텍스트 간소화';
+
+  @override
+  String get topicHint => '주제 (예: 베이징의 외계인)';
+
+  @override
+  String get tagsHint => '태그 (쉼표로 구분, 선택 사항)';
+
+  @override
+  String get speakWithMasterLin => '린 사부와 대화하기';
+
+  @override
+  String get masterLinGreeting => '잘 왔다, 학생. 먹물이 준비되었다. 오늘은 어떤 글자나 구절을 살펴볼까?';
+
+  @override
+  String get typeYourMessage => '메시지를 입력하세요...';
+
+  @override
+  String get theMainLibrary => '메인 라이브러리';
+
+  @override
+  String get hsk1Foundation => 'HSK 1: 기초';
+
+  @override
+  String get hsk2Elementary => 'HSK 2: 초급';
+
+  @override
+  String get hsk3Intermediate => 'HSK 3: 중급';
+
+  @override
+  String get inDeckCheck => '덱에 있음 ✓';
+
+  @override
+  String get addToDeckPlus => '+ 덱에 추가';
+
+  @override
+  String get openCardArrow => '카드 열기 →';
+
+  @override
+  String get pronunciationPartial => '발음 부정확';
+
+  @override
+  String get pronunciationWrong => '정확하지 않음';
+
+  @override
+  String get toneExpected => '예상';
+
+  @override
+  String get toneYouSaid => '말한 내용';
+
+  @override
+  String get gotIt => '알겠습니다!';
+
+  @override
+  String foundNCharacters(int count) {
+    return '$count자 찾음';
+  }
+
+  @override
+  String get lookingUpCharacters => '문자 검색 중…';
+
+  @override
+  String get practiceAll => '모두 연습';
+
+  @override
+  String get arLensObjects => '객체';
+
+  @override
+  String get arLensText => '텍스트';
+
+  @override
+  String get arLensDetectedText => '감지된 텍스트';
 }

@@ -1,3 +1,4 @@
+import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fl_chart/fl_chart.dart';
@@ -18,7 +19,7 @@ class StatsScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("My Progress"),
+        title: Text(AppLocalizations.of(context)!.myProgress),
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
@@ -28,22 +29,22 @@ class StatsScreen extends ConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text("Overview", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+            Text(AppLocalizations.of(context)!.overview, style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
             const SizedBox(height: 16),
             
             Row(
               children: [
-                _StatCard(title: "Total Words", value: "${stats.total}", color: Colors.blue, icon: Icons.style, cardColor: cardColor),
+                _StatCard(title: AppLocalizations.of(context)!.totalWords, value: "${stats.total}", color: Colors.blue, icon: Icons.style, cardColor: cardColor),
                 const SizedBox(width: 16),
-                _StatCard(title: "New Ink", value: "${stats.newCards}", color: Colors.orange, icon: Icons.auto_awesome, cardColor: cardColor),
+                _StatCard(title: AppLocalizations.of(context)!.newInk, value: "${stats.newCards}", color: Colors.orange, icon: Icons.auto_awesome, cardColor: cardColor),
               ],
             ),
             const SizedBox(height: 16),
             Row(
               children: [
-                _StatCard(title: "Learning", value: "${stats.learning}", color: Colors.green, icon: Icons.brush, cardColor: cardColor),
+                _StatCard(title: AppLocalizations.of(context)!.learning, value: "${stats.learning}", color: Colors.green, icon: Icons.brush, cardColor: cardColor),
                 const SizedBox(width: 16),
-                _StatCard(title: "Mastered", value: "${stats.mastered}", color: Colors.purple, icon: Icons.emoji_events, cardColor: cardColor),
+                _StatCard(title: AppLocalizations.of(context)!.masteredStatus, value: "${stats.mastered}", color: Colors.purple, icon: Icons.emoji_events, cardColor: cardColor),
               ],
             ),
             const SizedBox(height: 24),

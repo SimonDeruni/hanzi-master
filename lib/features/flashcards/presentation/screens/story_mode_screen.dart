@@ -1,3 +1,4 @@
+import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
@@ -100,7 +101,7 @@ class _StoryModeScreenState extends ConsumerState<StoryModeScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "Full Translation",
+                      AppLocalizations.of(context)!.fullTranslation,
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
@@ -141,7 +142,7 @@ class _StoryModeScreenState extends ConsumerState<StoryModeScreen> {
     
     final asyncStory = ref.watch(storyProvider((
       deckId: widget.deck.id, 
-      deckName: widget.deck.name, 
+      deckName: widget.deck.localizedName(context),
       vocabString: vocabString,
       force: _forceRegenerate
     )));
@@ -149,7 +150,7 @@ class _StoryModeScreenState extends ConsumerState<StoryModeScreen> {
     return Scaffold(
       backgroundColor: isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
       appBar: AppBar(
-        title: const Text("AI Story", style: TextStyle(fontFamily: 'NotoSerifSC')),
+        title: Text(AppLocalizations.of(context)!.aiStory, style: TextStyle(fontFamily: 'NotoSerifSC')),
         backgroundColor: Colors.transparent,
         elevation: 0,
         actions: [
@@ -244,7 +245,7 @@ class _StoryModeScreenState extends ConsumerState<StoryModeScreen> {
               const CircularProgressIndicator(color: Colors.purple),
               const SizedBox(height: 24),
               Text(
-                "Gemini Flash is structuring your story...",
+                AppLocalizations.of(context)!.geminiFlashIsStructuring,
                 style: TextStyle(
                   fontFamily: 'NotoSerifSC',
                   fontSize: 18,
@@ -252,7 +253,7 @@ class _StoryModeScreenState extends ConsumerState<StoryModeScreen> {
                 ),
               ),
               const SizedBox(height: 8),
-              const Text("Using your deck's vocabulary", style: TextStyle(color: Colors.grey)),
+              Text(AppLocalizations.of(context)!.usingYourDecksVocabulary, style: TextStyle(color: Colors.grey)),
             ],
           ),
         ),
@@ -271,7 +272,7 @@ class _StoryModeScreenState extends ConsumerState<StoryModeScreen> {
                     setState(() => _forceRegenerate = true);
                     ref.invalidate(storyProvider);
                   },
-                  child: const Text("Try Again"),
+                  child: Text(AppLocalizations.of(context)!.tryAgain),
                 ),
               ],
             ),
@@ -290,13 +291,13 @@ class _StoryModeScreenState extends ConsumerState<StoryModeScreen> {
             children: [
               TextButton.icon(
                 icon: const Icon(Icons.translate, size: 20),
-                label: const Text("Translate"),
+                label: Text(AppLocalizations.of(context)!.translate),
                 style: TextButton.styleFrom(foregroundColor: isDark ? Colors.white70 : Colors.black87),
                 onPressed: () => _showFullTranslation(context, asyncStory.value!),
               ),
               TextButton.icon(
                 icon: Icon(_showPinyin ? Icons.visibility : Icons.visibility_off, size: 20),
-                label: const Text("Pinyin"),
+                label: Text(AppLocalizations.of(context)!.pinyin),
                 style: TextButton.styleFrom(foregroundColor: _showPinyin ? Colors.blueAccent : (isDark ? Colors.white70 : Colors.black87)),
                 onPressed: () => setState(() => _showPinyin = !_showPinyin),
               ),
