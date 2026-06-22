@@ -10,6 +10,7 @@ import 'package:hanzi_master/features/flashcards/data/models/deck_model.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/settings_controller.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/main_navigation_screen.dart';
 import 'package:hanzi_master/features/live_translate/domain/entities/translation_session.dart';
+import 'package:hanzi_master/features/media/domain/models/saved_article.dart';
 
 import 'package:hanzi_master/core/providers.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
@@ -51,6 +52,7 @@ void main() async {
   Hive.registerAdapter(DeckModelAdapter());
   Hive.registerAdapter(TranslationMessageAdapter());
   Hive.registerAdapter(TranslationSessionAdapter());
+  Hive.registerAdapter(SavedArticleAdapter());
 
   // --- SECURITY: Hive Encryption ---
   // Key stored in SharedPreferences (NSUserDefaults on iOS) instead of Keychain.
@@ -100,6 +102,10 @@ void main() async {
   );
   await Hive.openBox<TranslationSession>(
     'translation_sessions',
+    encryptionCipher: cipher,
+  );
+  final savedArticlesBox = await Hive.openBox<SavedArticle>(
+    'saved_articles',
     encryptionCipher: cipher,
   );
 

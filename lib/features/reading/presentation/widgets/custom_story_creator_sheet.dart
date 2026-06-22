@@ -17,7 +17,7 @@ class _CustomStoryCreatorSheetState extends ConsumerState<CustomStoryCreatorShee
   final TextEditingController _topicController = TextEditingController();
   final TextEditingController _tagsController = TextEditingController();
   final TextEditingController _textToSimplifyController = TextEditingController();
-  int _selectedHskLevel = 2;
+  int _selectedHskLevel = 0; // Default to Adaptive (Flow State)
 
   @override
   void initState() {
@@ -119,22 +119,39 @@ class _CustomStoryCreatorSheetState extends ConsumerState<CustomStoryCreatorShee
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
-              children: List.generate(6, (index) {
-                final level = index + 1;
-                final isSelected = _selectedHskLevel == level;
-                return Padding(
+              children: [
+                // Adaptive Option
+                Padding(
                   padding: const EdgeInsets.only(right: 8.0),
                   child: FilterChip(
-                    label: Text('HSK $level'),
-                    selected: isSelected,
+                    label: const Text('Dynamic (Flow State)', style: TextStyle(fontWeight: FontWeight.bold)),
+                    selected: _selectedHskLevel == 0,
                     onSelected: (selected) {
-                      if (selected) setState(() => _selectedHskLevel = level);
+                      if (selected) setState(() => _selectedHskLevel = 0);
                     },
-                    selectedColor: Colors.indigo.withValues(alpha: 0.2),
-                    checkmarkColor: Colors.indigo,
+                    selectedColor: Colors.amber.withValues(alpha: 0.3),
+                    checkmarkColor: Colors.amber[800],
+                    avatar: Icon(Icons.psychology, size: 18, color: _selectedHskLevel == 0 ? Colors.amber[800] : Colors.grey),
                   ),
-                );
-              }),
+                ),
+                // HSK 1-6
+                ...List.generate(6, (index) {
+                  final level = index + 1;
+                  final isSelected = _selectedHskLevel == level;
+                  return Padding(
+                    padding: const EdgeInsets.only(right: 8.0),
+                    child: FilterChip(
+                      label: Text('HSK $level'),
+                      selected: isSelected,
+                      onSelected: (selected) {
+                        if (selected) setState(() => _selectedHskLevel = level);
+                      },
+                      selectedColor: Colors.indigo.withValues(alpha: 0.2),
+                      checkmarkColor: Colors.indigo,
+                    ),
+                  );
+                }),
+              ],
             ),
           ),
           const SizedBox(height: 16),

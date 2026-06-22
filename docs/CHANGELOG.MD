@@ -1,3 +1,15 @@
+### [2026-06-21] - ✨ FEATURE - Phase 6 & 7 (Smart Media Desk & Web Explorer)
+- **Web-Browser Overlay (The LingQ Method):** Added a new "Web Explorer" tab via `webview_flutter`. It silently injects a JavaScript payload into any loaded website (e.g., BBC News) that traverses the DOM and wraps all Chinese characters in interactive spans.
+- **Instant Dictionary Overlay:** Created a `JavaScriptChannel` bridge so that tapping any Chinese text on a live website instantly pauses the browser and triggers the Hanzi Master dictionary dialog.
+- **Smart Media Desk (YouTube Integration):** Added a new native YouTube player directly into the app using the official `youtube_player_iframe` to comply with terms of service.
+- **Native Video Search:** Integrated `youtube_explode_dart` to allow users to search for YouTube videos directly within the app without requiring an API key or Google login.
+- **Subtitle Harvester & AI Briefing:** The app now silently scrapes the closed captions (CC) of a selected video. Before playback, Gemini analyzes the transcript to provide an English summary and a list of 5 difficult vocabulary words.
+- **Interactive Transcripts:** As the video plays, the transcript auto-scrolls and highlights the current sentence. Tapping any Chinese character automatically pauses the video and opens the Hanzi Master dictionary for a deep dive.
+- **Flow State Engine (Adaptive IRT Model):** Replaced manual HSK level guessing in the AI Studio with a new "Dynamic" setting. The backend now calculates global mastery to categorize Mastered (>=80%) and Struggling (<50%) words, injecting subsets of these into the LLM prompt to dynamically enforce a psychological flow state (85% known, 10% learning, 5% new) for all generated content.
+- **Global Character Mastery:** Added `globalMasteryLevel` to `Flashcard` entities, providing a holistic 0.0 to 1.0 mastery score averaged across Reading, Writing, and Listening stats.
+- **Dynamic Highlighting:** In the Reading Room, any words currently marked as 'Due' in the active flashcard deck are automatically highlighted in a striking Gold color to draw attention during "Stealth Reviews".
+- **Etymology Chips:** Updated `WordDetailDialog` to dynamically parse multi-character words and display interactive "Etymology" ActionChips for each character. Tapping these opens the Scholar's Desk AI tutor tailored specifically for radical decomposition and character history.
+
 ### [2026-06-12] - ✨ FEATURE - Scholar's Key Pool (Multi-Key Rotation)
 - **Quota Mitigation:** Implemented a centralized `ApiKeyPool` that manages 10 separate API keys.
 - **Round-Robin Rotation:** Services now cycle through the pool for every request, effectively increasing the aggregate free-tier quota by 10x.

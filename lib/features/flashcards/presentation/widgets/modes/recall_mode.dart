@@ -450,6 +450,28 @@ class _RecallModeWidgetState extends ConsumerState<RecallModeWidget> {
             )
           else
             const SizedBox(height: 16),
+            
+          if (widget.card.sourceSentence != null && widget.card.sourceSentence!.isNotEmpty)
+            Padding(
+              padding: const EdgeInsets.fromLTRB(24, 0, 24, 16),
+              child: Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  color: isDark ? Colors.blueAccent.withValues(alpha: 0.1) : Colors.blue.shade50,
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(color: isDark ? Colors.blueAccent.withValues(alpha: 0.2) : Colors.blue.shade100),
+                ),
+                child: Text(
+                  widget.card.sourceSentence!,
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: isDark ? Colors.white70 : Colors.black87,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ),
         ],
       ),
     );

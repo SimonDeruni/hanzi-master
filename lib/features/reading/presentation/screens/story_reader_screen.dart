@@ -8,6 +8,8 @@ import '../providers/story_controller.dart';
 import '../../../../core/services/gemini_service.dart';
 import '../../../flashcards/presentation/widgets/word_detail_dialog.dart';
 import '../../../flashcards/presentation/utils/haptics_manager.dart';
+import '../../../flashcards/presentation/providers/flashcard_controller.dart';
+import '../../../flashcards/domain/entities/study_mode.dart';
 
 class StoryReaderScreen extends ConsumerStatefulWidget {
   final StoryBlueprint blueprint;
@@ -80,10 +82,40 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
 
     try {
       final geminiService = ref.read(geminiServiceProvider);
+      
+      // Fetch due flashcards for stealth reviews
+      final flashcards = ref.read(flashcardControllerProvider).valueOrNull ?? [];
+      final dueWords = flashcards
+          .where((c) => c.isDue(StudyMode.reading))
+          .map((c) => c.hanzi)
+          .toList();
+      
+      // Shuffle to get a random subset so we don't always use the same 10 if there are many due
+      dueWords.shuffle();
+      final stealthVocab = dueWords.take(10).toList();
+
+      List<String> masteredWords = [];
+      List<String> strugglingWords = [];
+      
+      if (widget.hskLevel == 0) {
+        // Flow State Engine: Collect subsets
+        final mastered = flashcards.where((c) => c.globalMasteryLevel >= 0.8).map((c) => c.hanzi).toList();
+        final struggling = flashcards.where((c) => c.globalMasteryLevel < 0.5).map((c) => c.hanzi).toList();
+        
+        mastered.shuffle();
+        struggling.shuffle();
+        
+        masteredWords = mastered.take(50).toList();
+        strugglingWords = struggling.take(20).toList();
+      }
+
       final stream = geminiService.streamGradedStoryRawText(
         widget.blueprint.topic, 
         widget.blueprint.category, 
-        widget.hskLevel
+        widget.hskLevel,
+        dueWords: stealthVocab,
+        masteredWords: masteredWords,
+        strugglingWords: strugglingWords,
       );
 
       await for (final chunk in stream) {
@@ -231,6 +263,12 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
   Widget build(BuildContext context) {
     final state = ref.watch(storyControllerProvider);
     final isDark = Theme.of(context).brightness == Brightness.dark;
+
+    final flashcards = ref.watch(flashcardControllerProvider).valueOrNull ?? [];
+    final dueWords = flashcards
+        .where((c) => c.isDue(StudyMode.reading))
+        .map((c) => c.hanzi)
+        .toSet();
 
     return Scaffold(
       backgroundColor: isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
@@ -492,8 +530,10 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
                                                           style: TextStyle(
                                                             fontFamily: 'NotoSerifSC',
                                                             fontSize: 28,
-                                                            fontWeight: FontWeight.w600,
-                                                            color: isDark ? Colors.white : Colors.black87,
+                                                            fontWeight: dueWords.contains(word.hanzi) ? FontWeight.bold : FontWeight.w600,
+                                                            color: dueWords.contains(word.hanzi) 
+                                                                ? const Color(0xFFD4AF37) // Gold accent
+                                                                : (isDark ? Colors.white : Colors.black87),
                                                           ),
                                                         ),
                                                         if (shouldShowPinyin)

@@ -10,6 +10,8 @@ import 'package:hanzi_master/features/flashcards/presentation/screens/character_
 import 'package:hanzi_master/features/flashcards/presentation/widgets/flashcard_edit_dialog.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:hanzi_master/shared/widgets/global_blurred_bottom_sheet.dart';
+import 'package:hanzi_master/features/live_translate/presentation/screens/shadowing_studio_screen.dart' as hanzi_shadowing;
+import 'package:hanzi_master/shared/widgets/calligraphy_canvas_sheet.dart';
 
 // ---------------------------------------------------------------------------
 // Helpers — clean raw CC-CEDICT strings before display
@@ -39,11 +41,11 @@ String _cleanDefinition(String raw) {
 }
 
 /// Shows a compact "Quick Look" bottom sheet for a single Chinese character.
-void showQuickLook(BuildContext context, String hanzi) {
+void showQuickLook(BuildContext context, String hanzi, {String? contextText}) {
   if (hanzi.isEmpty) return;
   GlobalBlurredBottomSheet.show(
     context,
-    child: _QuickLookSheet(hanzi: hanzi),
+    child: _QuickLookSheet(hanzi: hanzi, contextText: contextText),
   );
 }
 
@@ -53,7 +55,8 @@ void showQuickLook(BuildContext context, String hanzi) {
 
 class _QuickLookSheet extends ConsumerWidget {
   final String hanzi;
-  const _QuickLookSheet({required this.hanzi});
+  final String? contextText;
+  const _QuickLookSheet({required this.hanzi, this.contextText});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -73,6 +76,7 @@ class _QuickLookSheet extends ConsumerWidget {
               isDark: isDark,
               inDeck: inDeck,
               asyncCommon: asyncCommon,
+              contextText: contextText,
             ),
     );
   }
@@ -195,12 +199,14 @@ class _FoundBody extends ConsumerWidget {
   final bool isDark;
   final bool inDeck;
   final AsyncValue<List<Flashcard>> asyncCommon;
+  final String? contextText;
 
   const _FoundBody({
     required this.card,
     required this.isDark,
     required this.inDeck,
     required this.asyncCommon,
+    this.contextText,
   });
 
   @override
@@ -329,7 +335,7 @@ class _FoundBody extends ConsumerWidget {
                       : () async {
                           await ref
                               .read(flashcardControllerProvider.notifier)
-                              .addFlashcard(card);
+                              .addFlashcard(card.copyWith(sourceSentence: contextText));
                           if (context.mounted) {
                             Navigator.pop(context);
                             ScaffoldMessenger.of(context).showSnackBar(
@@ -345,7 +351,47 @@ class _FoundBody extends ConsumerWidget {
                         },
                 ),
               ),
-              const SizedBox(width: 10),
+              const SizedBox(width: 8),
+              const SizedBox(width: 8),
+              // Shadowing button
+              Expanded(
+                child: _ActionButton(
+                  label: 'Shadowing',
+                  isPrimary: false,
+                  isDisabled: false,
+                  onTap: () {
+                    Navigator.pop(context);
+                    showModalBottomSheet(
+                      context: context,
+                      isScrollControlled: true,
+                      useSafeArea: true,
+                      backgroundColor: Colors.transparent,
+                      builder: (_) => ClipRRect(
+                        borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+                        child: hanzi_shadowing.ShadowingStudioScreen(
+                          initialHanzi: card.hanzi,
+                          initialPinyin: card.pinyin,
+                          initialTranslation: card.definition,
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+              const SizedBox(width: 8),
+              // Trace button
+              Expanded(
+                child: _ActionButton(
+                  label: 'Trace',
+                  isPrimary: false,
+                  isDisabled: false,
+                  onTap: () {
+                    Navigator.pop(context);
+                    showCalligraphyCanvas(context, card.hanzi);
+                  },
+                ),
+              ),
+              const SizedBox(width: 8),
               // Full card button
               Expanded(
                 child: _ActionButton(

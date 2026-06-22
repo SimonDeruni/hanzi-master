@@ -59,6 +59,16 @@ class Flashcard extends Equatable {
   /// Returns a normalized mastery level from 0.0 to 1.0 based on the current streak for a mode.
   double masteryLevel(StudyMode mode) => getStatsForMode(mode).masteryLevel;
 
+  /// Returns the global mastery level across all available study modes (Reading, Writing, etc.)
+  double get globalMasteryLevel {
+    if (modeStats.isEmpty) return 0.0;
+    double sum = 0;
+    for (final stats in modeStats.values) {
+      sum += stats.masteryLevel;
+    }
+    return sum / modeStats.length;
+  }
+
   /// Applies the SuperMemo-2 (SM-2) algorithm.
   /// Expected grades: 0 (Again), 2 (Hard), 4 (Good), 5 (Easy)
   Flashcard processReview(int grade, StudyMode mode) {

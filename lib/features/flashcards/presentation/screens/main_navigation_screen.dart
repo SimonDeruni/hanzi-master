@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hanzi_master/features/media/presentation/screens/media_hub_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'dictionary_screen.dart';
 import 'package:hanzi_master/features/progression/presentation/screens/dashboard_screen.dart';
@@ -9,6 +10,7 @@ import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_mana
 import 'package:hanzi_master/features/live_translate/presentation/screens/translation_hub_screen.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/core/services/analytics_service.dart';
+import 'package:hanzi_master/features/media/presentation/screens/web_browser_screen.dart';
 
 class MainNavigationScreen extends ConsumerStatefulWidget {
   const MainNavigationScreen({super.key});
@@ -25,7 +27,7 @@ class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
       _selectedIndex = index;
     });
     
-    final screenNames = ['Dashboard', 'AI Hub', 'Translation', 'Library'];
+    final screenNames = ['Dashboard', 'AI Hub', 'Translation', 'Media Hub', 'Library'];
     ref.read(analyticsServiceProvider).logScreenView(screenNames[index]);
   }
 
@@ -33,6 +35,7 @@ class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
     DashboardScreen(onNavigate: _onNavigate),
     const AiHubScreen(),
     const TranslationHubScreen(),
+    const MediaHubScreen(),
     const DictionaryScreen(),
   ];
 
@@ -99,6 +102,10 @@ class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
             BottomNavigationBarItem(
               icon: const Icon(Icons.translate),
               label: "Translate",
+            ),
+            BottomNavigationBarItem(
+              icon: const Icon(Icons.language),
+              label: "Web Explorer",
             ),
             BottomNavigationBarItem(
               icon: const Icon(Icons.menu_book),

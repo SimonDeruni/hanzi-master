@@ -52,7 +52,19 @@
 - [x] **📸 The "Magic Lens" Scanner:** OCR-based character extraction from camera/gallery.
 - [x] **🏆 The "Snapshot-to-Practice":** Auto-generate custom decks from textbook photos.
 - [x] **📚 The "Tome Library" (Modular Expansion):** Downloadable HSK 2+ modules.
-- [ ] **🍿 The "Subtitle Harvester":** Screenshot-to-Practice for video subtitles.
+- [x] **🍿 The "Smart Media Desk" (YouTube Video Route):**
+    - [x] Embed YouTube iFrame Player legally.
+    - [x] Fetch CC transcripts and sync with video timestamps.
+    - [x] "AI Prep Room" with summary and hard vocab preview.
+    - [x] Tap-to-translate synchronized subtitles that auto-pause the video.
+- [x] **🌐 The "Web-Browser Overlay" (LingQ Method):**
+    - [x] Built-in web browser to load real live news sites (BBC, Baidu).
+    - [x] Javascript overlay to inject clickable text nodes.
+    - [x] Dictionary pop-up overlay on live webpages.
+- [ ] **📰 Agentic AI News Generator (Cloud-Synced):**
+    - [ ] Daily cloud function to scrape Creative Commons/Public Domain news (Wikinews, Global Voices).
+    - [ ] Transformative Fair Use rewrite into HSK variants (3, 4, 5, 6) using Gemini.
+    - [ ] Zero-latency daily delivery of fresh reading material to the app.
 - [ ] **🖨️ The "Cheat Sheet" Generator:** Export practice grids to printable PDFs.
 
 ## Phase 7: Business & Monetization (✅ COMPLETE)
@@ -81,11 +93,11 @@
 - [ ] **🖋️ The Poetry League:** Weekly challenges for "Artisanship Points".
 - [ ] **🤝 Collaborative Constellations:** Crowdsourced mnemonics for rare characters.
 
-## Phase 11: The Echo Hall (Oral & Intelligence) (🔥 PRIORITIZED)
-- [ ] **🗣️ Speech Recognition:** Integrated AI grading for tones and pronunciation.
-- [ ] **🤖 AI Scribe:** LLM-driven roleplay chat using current HSK vocabulary.
-    - [ ] *Custom Scenarios:* AI-generated background soundscapes based on user prompts.
-    - [ ] *Dynamic Avatars:* AI-generated 18+ persona images matching the app's established art style.
+## Phase 11: The Echo Hall (Oral & Intelligence) (✅ COMPLETE)
+- [x] **🗣️ Speech Recognition:** Integrated AI grading for tones and pronunciation.
+- [x] **🤖 AI Scribe:** LLM-driven roleplay chat using current HSK vocabulary.
+    - [x] *Custom Scenarios:* AI-generated background soundscapes based on user prompts.
+    - [x] *Dynamic Avatars:* AI-generated 18+ persona images matching the app's established art style.
 - [ ] **🎥 Authentic Snippets:** High-fidelity native speaker video clips.
 - [ ] **👂 Audio-Only Quiz Mode:** Test recognition via sound while mobile.
 

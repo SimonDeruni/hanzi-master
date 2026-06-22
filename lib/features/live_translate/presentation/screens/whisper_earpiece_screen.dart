@@ -94,7 +94,7 @@ class _WhisperEarpieceScreenState extends ConsumerState<WhisperEarpieceScreen> {
 
       final setupMessage = jsonEncode({
         "setup": {
-          "model": "models/gemini-3.5-live-translate-preview",
+          "model": "models/gemini-2.0-flash-exp",
           "generationConfig": {
              "responseModalities": ["AUDIO"],
              "speechConfig": {

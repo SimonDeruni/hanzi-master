@@ -4,12 +4,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
-import 'package:hanzi_master/core/providers.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/drawing_canvas.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'dart:ui' as ui;
 import 'ai_explainer_sheet.dart';
+import 'package:hanzi_master/shared/widgets/global_blurred_bottom_sheet.dart';
+import 'character_chat_sheet.dart';
+import 'package:hanzi_master/core/services/character_lookup_service.dart';
 
 class WordDetailDialog extends ConsumerStatefulWidget {
   final AiWord word;
@@ -193,6 +195,39 @@ class _WordDetailDialogState extends ConsumerState<WordDetailDialog> {
                   color: isDark ? Colors.white : Colors.black87,
                 ),
               ),
+              const SizedBox(height: 16),
+              if (widget.word.hanzi.isNotEmpty)
+                Wrap(
+                  spacing: 8.0,
+                  runSpacing: 8.0,
+                  children: widget.word.hanzi.characters.map((char) {
+                    return ActionChip(
+                      avatar: const Icon(Icons.explore, size: 16, color: Colors.indigo),
+                      label: Text("Etymology: $char", style: const TextStyle(fontWeight: FontWeight.w600)),
+                      backgroundColor: Colors.indigo.withValues(alpha: 0.1),
+                      side: BorderSide.none,
+                      onPressed: () async {
+                        final navContext = Navigator.of(context).context;
+                        Navigator.pop(context);
+                        
+                        // We use the character lookup service to get pinyin/definition for the chat sheet header.
+                        final lookup = ref.read(characterLookupServiceProvider);
+                        final info = await lookup.lookup(char);
+                        
+                        if (navContext.mounted) {
+                          GlobalBlurredBottomSheet.show(
+                            navContext,
+                            child: CharacterChatSheet(
+                              hanzi: char,
+                              pinyin: info?.pinyin ?? "",
+                              definition: info?.definition ?? "Component of ${widget.word.hanzi}",
+                            ),
+                          );
+                        }
+                      },
+                    );
+                  }).toList(),
+                ),
               const SizedBox(height: 24),
               const Divider(),
               const SizedBox(height: 8),

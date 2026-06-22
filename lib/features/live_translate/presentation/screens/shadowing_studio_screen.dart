@@ -16,21 +16,26 @@ import 'package:hanzi_master/l10n/app_localizations.dart';
 class ShadowingMessage {
   final String englishText;
   final String mandarinTranslation;
+  final String? pinyin;
   final Map<String, dynamic>? pronunciationGrade;
 
-  ShadowingMessage({required this.englishText, required this.mandarinTranslation, this.pronunciationGrade});
+  ShadowingMessage({required this.englishText, required this.mandarinTranslation, this.pinyin, this.pronunciationGrade});
 
-  ShadowingMessage copyWith({String? englishText, String? mandarinTranslation, Map<String, dynamic>? pronunciationGrade}) {
+  ShadowingMessage copyWith({String? englishText, String? mandarinTranslation, String? pinyin, Map<String, dynamic>? pronunciationGrade}) {
     return ShadowingMessage(
       englishText: englishText ?? this.englishText,
       mandarinTranslation: mandarinTranslation ?? this.mandarinTranslation,
+      pinyin: pinyin ?? this.pinyin,
       pronunciationGrade: pronunciationGrade ?? this.pronunciationGrade,
     );
   }
 }
 
 class ShadowingStudioScreen extends ConsumerStatefulWidget {
-  const ShadowingStudioScreen({super.key});
+  final String? initialHanzi;
+  final String? initialPinyin;
+  final String? initialTranslation;
+  const ShadowingStudioScreen({super.key, this.initialHanzi, this.initialPinyin, this.initialTranslation});
 
   @override
   ConsumerState<ShadowingStudioScreen> createState() => _ShadowingStudioScreenState();
@@ -54,7 +59,15 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> {
   @override
   void initState() {
     super.initState();
-    // Do NOT connect automatically
+    if (widget.initialHanzi != null) {
+      _transcript.add(ShadowingMessage(
+        englishText: widget.initialTranslation != null && widget.initialTranslation!.isNotEmpty 
+            ? "Practice: ${widget.initialTranslation}" 
+            : "Practice: ${widget.initialHanzi}",
+        mandarinTranslation: widget.initialHanzi!,
+        pinyin: widget.initialPinyin,
+      ));
+    }
   }
 
   Future<void> _startSession() async {
@@ -98,7 +111,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> {
 
       final setupMessage = jsonEncode({
         "setup": {
-          "model": "models/gemini-3.5-live-translate-preview",
+          "model": "models/gemini-2.0-flash-exp",
           "generationConfig": {
              "responseModalities": ["AUDIO"],
              "speechConfig": {
@@ -464,7 +477,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> {
                 child: Row(
                   children: [
                     IconButton(
-                      icon: Icon(Icons.arrow_back, color: isDark ? Colors.white : const Color(0xFF1A1A1B)),
+                      icon: Icon(Icons.keyboard_arrow_down, size: 32, color: isDark ? Colors.white : const Color(0xFF1A1A1B)),
                       onPressed: () => Navigator.pop(context),
                     ),
                     const SizedBox(width: 8),
@@ -535,6 +548,18 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> {
                                 ),
                                 const SizedBox(height: 32),
                                 if (msg.mandarinTranslation.isNotEmpty) ...[
+                                  if (msg.pinyin != null && msg.pinyin!.isNotEmpty) ...[
+                                    Text(
+                                      msg.pinyin!,
+                                      style: TextStyle(
+                                        fontSize: 24,
+                                        color: isDark ? Colors.white70 : Colors.black87,
+                                        fontStyle: FontStyle.italic,
+                                      ),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                    const SizedBox(height: 12),
+                                  ],
                                   Text(
                                     msg.mandarinTranslation,
                                     style: TextStyle(
