@@ -184,11 +184,14 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
           
           // Center Mic / Waveform
           Expanded(
-            child: GestureDetector(
-              onLongPressStart: (_) {
+            child: Listener(
+              onPointerDown: (_) {
                 ref.read(conversationControllerProvider.notifier).startRecording();
               },
-              onLongPressEnd: (_) {
+              onPointerUp: (_) {
+                ref.read(conversationControllerProvider.notifier).stopRecordingAndProcess();
+              },
+              onPointerCancel: (_) {
                 ref.read(conversationControllerProvider.notifier).stopRecordingAndProcess();
               },
               child: Container(
@@ -312,9 +315,71 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
                     Icon(Icons.volume_up, color: theme.colorScheme.onSurface.withValues(alpha: 0.4), size: 20),
                     const SizedBox(width: 8),
                     Expanded(
-                      child: Text(
-                        message.content,
-                        style: theme.textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            message.content,
+                            style: theme.textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold),
+                          ),
+                          if (message.pinyin != null && message.pinyin!.isNotEmpty) ...[
+                            const SizedBox(height: 4),
+                            Text(
+                              message.pinyin!,
+                              style: theme.textTheme.bodyMedium?.copyWith(
+                                color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
+                              ),
+                            ),
+                          ],
+                          if (message.english != null && message.english!.isNotEmpty) ...[
+                            const SizedBox(height: 4),
+                            Text(
+                              message.english!,
+                              style: theme.textTheme.bodyMedium?.copyWith(
+                                color: theme.colorScheme.onSurface.withValues(alpha: 0.8),
+                                fontStyle: FontStyle.italic,
+                              ),
+                            ),
+                          ],
+                          if (message.suggestion != null) ...[
+                            const SizedBox(height: 16),
+                            Container(
+                              padding: const EdgeInsets.all(12),
+                              decoration: BoxDecoration(
+                                color: theme.colorScheme.primary.withValues(alpha: 0.05),
+                                borderRadius: BorderRadius.circular(12),
+                                border: Border.all(color: theme.colorScheme.primary.withValues(alpha: 0.2)),
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Icon(Icons.lightbulb_outline, size: 16, color: theme.colorScheme.primary),
+                                      const SizedBox(width: 4),
+                                      Text("Suggestion", style: theme.textTheme.labelSmall?.copyWith(color: theme.colorScheme.primary, fontWeight: FontWeight.bold)),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 8),
+                                  Text(
+                                    message.suggestion!['chinese'] ?? '',
+                                    style: theme.textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold),
+                                  ),
+                                  const SizedBox(height: 4),
+                                  Text(
+                                    message.suggestion!['pinyin'] ?? '',
+                                    style: theme.textTheme.bodySmall?.copyWith(color: theme.colorScheme.onSurface.withValues(alpha: 0.6)),
+                                  ),
+                                  const SizedBox(height: 4),
+                                  Text(
+                                    message.suggestion!['english'] ?? '',
+                                    style: theme.textTheme.bodySmall?.copyWith(color: theme.colorScheme.onSurface.withValues(alpha: 0.8), fontStyle: FontStyle.italic),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ],
                       ),
                     ),
                   ],

@@ -247,7 +247,7 @@ class _ScenarioCard extends StatelessWidget {
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                         ),
                         icon: const Icon(Icons.chat_bubble_outline, size: 20),
-                        label: const Text("Text Chat", style: TextStyle(fontWeight: FontWeight.bold)),
+                        label: const Text("Pronunciation Chat", style: TextStyle(fontWeight: FontWeight.bold)),
                       ),
                     ],
                   ),

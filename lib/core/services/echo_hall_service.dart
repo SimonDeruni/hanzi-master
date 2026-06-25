@@ -15,6 +15,80 @@ class EchoHallService {
 
   EchoHallService(this._pool);
 
+  Future<Map<String, dynamic>> getConversationResponse(List<ChatMessage> history, String personaInstructions) async {
+    final apiKey = _pool.nextKey;
+
+    if (apiKey.isEmpty || apiKey.startsWith('EMPTY_KEY_') || apiKey == 'YOUR_API_KEY_HERE') {
+      return {
+        "chinese": "The Scholar's voice is silent.",
+        "english": "The Scholar's voice is silent.",
+        "pinyin": "The Scholar's voice is silent.",
+        "suggestion": {
+          "chinese": "你好",
+          "pinyin": "nǐ hǎo",
+          "english": "Hello"
+        }
+      };
+    }
+
+    try {
+      final messages = history.map((m) {
+        return {
+          'role': m.role == ChatRole.user ? 'user' : 'assistant',
+          'content': m.content,
+        };
+      }).toList();
+      
+      final systemPrompt = """
+$personaInstructions
+
+You MUST respond ONLY in valid JSON format with this exact structure:
+{
+  "chinese": "Your natural conversational reply in Chinese characters.",
+  "english": "The English translation of your reply.",
+  "pinyin": "The Pinyin with tone marks for your reply.",
+  "suggestion": {
+    "chinese": "A suggested response the user could say back to you.",
+    "pinyin": "Pinyin for the suggestion.",
+    "english": "English translation for the suggestion."
+  }
+}
+""";
+      messages.insert(0, {'role': 'system', 'content': systemPrompt});
+
+      final response = await http.post(
+        Uri.parse('https://openrouter.ai/api/v1/chat/completions'),
+        headers: {
+          'Authorization': 'Bearer $apiKey',
+          'Content-Type': 'application/json',
+        },
+        body: jsonEncode({
+          'model': 'google/gemini-2.5-flash',
+          'messages': messages,
+          'max_tokens': 500,
+          'response_format': {'type': 'json_object'},
+        }),
+      );
+
+      if (response.statusCode == 200) {
+        final json = jsonDecode(utf8.decode(response.bodyBytes));
+        final content = json['choices']?[0]?['message']?['content'] ?? "{}";
+        final cleanText = content.replaceAll(RegExp(r'^```json\n', multiLine: true), '').replaceAll(RegExp(r'^```\n?', multiLine: true), '');
+        return jsonDecode(cleanText);
+      } else {
+        throw Exception('OpenRouter Error ${response.statusCode}: ${response.body}');
+      }
+    } catch (e) {
+      debugPrint('EchoHallService Error: $e');
+      return {
+        "chinese": "The Scholar is momentarily unavailable.",
+        "english": "The Scholar is momentarily unavailable.",
+        "pinyin": "",
+        "suggestion": null
+      };
+    }
+  }
+
   Future<String> getResponse(List<ChatMessage> history, String personaInstructions) async {
     final apiKey = _pool.nextKey;
 

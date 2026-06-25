@@ -1,5 +1,9 @@
+import 'dart:io';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/core/services/echo_hall_service.dart';
+import 'package:hanzi_master/core/services/audio_recording_service.dart';
+import 'package:hanzi_master/core/services/gemini_service.dart';
+import 'package:hanzi_master/core/models/pronunciation_grade.dart';
 import '../../domain/entities/chat_message.dart';
 import 'package:uuid/uuid.dart';
 import 'package:lpinyin/lpinyin.dart';
@@ -14,27 +18,31 @@ enum ScholarPersona {
 }
 
 class ChatState {
-  final List<ChatMessage> messages;
+  final List<GradedChatMessage> messages;
   final bool isLoading;
+  final bool isRecording;
   final ScholarPersona activePersona;
   final String? customPrompt;
 
   ChatState({
     required this.messages,
     required this.isLoading,
+    this.isRecording = false,
     required this.activePersona,
     this.customPrompt,
   });
 
   ChatState copyWith({
-    List<ChatMessage>? messages,
+    List<GradedChatMessage>? messages,
     bool? isLoading,
+    bool? isRecording,
     ScholarPersona? activePersona,
     String? customPrompt,
   }) {
     return ChatState(
       messages: messages ?? this.messages,
       isLoading: isLoading ?? this.isLoading,
+      isRecording: isRecording ?? this.isRecording,
       activePersona: activePersona ?? this.activePersona,
       customPrompt: customPrompt ?? this.customPrompt,
     );
@@ -43,13 +51,22 @@ class ChatState {
 
 class ChatController extends StateNotifier<ChatState> {
   final EchoHallService _echoHallService;
+  final AudioRecordingService _audioService;
+  final GeminiService _geminiService;
   final _uuid = const Uuid();
 
-  ChatController(this._echoHallService) : super(ChatState(
-    messages: [],
-    isLoading: false,
-    activePersona: ScholarPersona.masterLin,
-  ));
+  ChatController({
+    required EchoHallService echoHallService,
+    required AudioRecordingService audioService,
+    required GeminiService geminiService,
+  }) : _echoHallService = echoHallService,
+       _audioService = audioService,
+       _geminiService = geminiService,
+       super(ChatState(
+          messages: [],
+          isLoading: false,
+          activePersona: ScholarPersona.masterLin,
+        ));
 
   void setPersona(ScholarPersona persona, {String? customPrompt}) {
     state = state.copyWith(
@@ -57,16 +74,41 @@ class ChatController extends StateNotifier<ChatState> {
       messages: [], 
       customPrompt: customPrompt
     );
+    _initiateConversation(persona, customPrompt);
   }
 
   void clearHistory() {
     state = state.copyWith(messages: []);
+    _initiateConversation(state.activePersona, state.customPrompt);
+  }
+
+  Future<void> _initiateConversation(ScholarPersona persona, String? customPrompt) async {
+    state = state.copyWith(isLoading: true);
+    try {
+      final replyJson = await _echoHallService.getConversationResponse(
+        [],
+        "\${_getUnifiedPrompt(persona, customPrompt)}\n\nUSER: Start the conversation naturally."
+      );
+      
+      final aiMsg = GradedChatMessage(
+        id: _uuid.v4(),
+        content: replyJson['chinese'] ?? '你好！',
+        pinyin: replyJson['pinyin'],
+        english: replyJson['english'],
+        suggestion: replyJson['suggestion'],
+        role: ChatRole.scholar,
+        timestamp: DateTime.now(),
+      );
+      state = state.copyWith(messages: [aiMsg], isLoading: false);
+    } catch (e) {
+      state = state.copyWith(isLoading: false);
+    }
   }
 
   Future<void> sendMessage(String content) async {
     if (content.trim().isEmpty) return;
 
-    final userMessage = ChatMessage(
+    final userMessage = GradedChatMessage(
       id: _uuid.v4(),
       content: content,
       role: ChatRole.user,
@@ -78,16 +120,65 @@ class ChatController extends StateNotifier<ChatState> {
       isLoading: true,
     );
 
+    await _fetchAiResponse();
+  }
+
+  Future<void> startRecording() async {
     try {
-      final response = await _echoHallService.getResponse(
+      await _audioService.startRecording('chat_user_reply');
+      state = state.copyWith(isRecording: true);
+    } catch (e) {
+      // Handle error
+    }
+  }
+
+  Future<void> stopRecordingAndProcess() async {
+    if (!state.isRecording) return;
+    
+    try {
+      final path = await _audioService.stopRecording();
+      state = state.copyWith(isRecording: false, isLoading: true);
+
+      if (path != null) {
+        final file = File(path);
+        final bytes = await file.readAsBytes();
+        
+        final gradeMap = await _geminiService.gradeAudio(bytes, "", "");
+        final grade = PronunciationGrade.fromJson(gradeMap);
+        
+        final transcribedText = grade.words.map((w) => w.word).join();
+        
+        final userMsg = GradedChatMessage(
+          id: _uuid.v4(),
+          content: transcribedText.isEmpty ? "(inaudible)" : transcribedText,
+          role: ChatRole.user,
+          timestamp: DateTime.now(),
+          grade: grade,
+        );
+        
+        state = state.copyWith(messages: [...state.messages, userMsg]);
+        await _fetchAiResponse();
+      } else {
+        state = state.copyWith(isLoading: false);
+      }
+    } catch (e) {
+      state = state.copyWith(isLoading: false);
+    }
+  }
+
+  Future<void> _fetchAiResponse() async {
+    try {
+      final replyJson = await _echoHallService.getConversationResponse(
         state.messages,
         _getUnifiedPrompt(state.activePersona, state.customPrompt),
       );
 
-      final scholarMessage = ChatMessage(
+      final scholarMessage = GradedChatMessage(
         id: _uuid.v4(),
-        content: response,
-        pinyin: PinyinHelper.getPinyinE(response, separator: " ", defPinyin: '', format: PinyinFormat.WITH_TONE_MARK),
+        content: replyJson['chinese'] ?? '',
+        pinyin: replyJson['pinyin'],
+        english: replyJson['english'],
+        suggestion: replyJson['suggestion'],
         role: ChatRole.scholar,
         timestamp: DateTime.now(),
       );
@@ -133,6 +224,9 @@ MANDATORY SAFETY RULES:
 }
 
 final chatControllerProvider = StateNotifierProvider<ChatController, ChatState>((ref) {
-  final service = ref.read(echoHallServiceProvider);
-  return ChatController(service);
+  return ChatController(
+    echoHallService: ref.watch(echoHallServiceProvider),
+    audioService: ref.watch(audioRecordingServiceProvider),
+    geminiService: ref.watch(geminiServiceProvider),
+  );
 });

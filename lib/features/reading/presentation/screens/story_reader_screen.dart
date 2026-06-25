@@ -191,9 +191,8 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
     }
   }
 
-  void _showFullTranslation(BuildContext context, AiStory story) {
+  void _showSummary(BuildContext context, AiStory story) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final fullEnglish = story.sentences.map((s) => s.english).join('\n\n');
     
     showModalBottomSheet(
       context: context,
@@ -225,7 +224,7 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      AppLocalizations.of(context)!.fullTranslation,
+                      "Summary",
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
@@ -240,15 +239,48 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
                 ),
                 const SizedBox(height: 16),
                 Flexible(
-                  child: SingleChildScrollView(
-                    child: Text(
-                      fullEnglish,
-                      style: TextStyle(
-                        fontSize: 16,
-                        height: 1.6,
-                        color: isDark ? Colors.white70 : Colors.black87,
-                      ),
-                    ),
+                  child: ListView.separated(
+                    shrinkWrap: true,
+                    itemCount: story.sentences.length,
+                    separatorBuilder: (_, __) => const Divider(),
+                    itemBuilder: (context, index) {
+                      final s = story.sentences[index];
+                      // Combine word pinyin to get sentence pinyin
+                      final sentencePinyin = s.words.map((w) => w.pinyin).join(' ');
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              s.chinese,
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: isDark ? Colors.white : Colors.black87,
+                              ),
+                            ),
+                            const SizedBox(height: 4),
+                            Text(
+                              sentencePinyin,
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: isDark ? Colors.white54 : Colors.black54,
+                              ),
+                            ),
+                            const SizedBox(height: 4),
+                            Text(
+                              s.english,
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontStyle: FontStyle.italic,
+                                color: isDark ? Colors.white70 : Colors.black87,
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
                   ),
                 ),
               ],
@@ -604,10 +636,10 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     TextButton.icon(
-                      icon: const Icon(Icons.translate, size: 20),
-                      label: Text(AppLocalizations.of(context)!.translate),
+                      icon: const Icon(Icons.article, size: 20),
+                      label: const Text("Summary"),
                       style: TextButton.styleFrom(foregroundColor: isDark ? Colors.white70 : Colors.black87),
-                      onPressed: () => _showFullTranslation(context, AiStory(sentences: state.currentStory!.sentences)),
+                      onPressed: () => _showSummary(context, AiStory(sentences: state.currentStory!.sentences)),
                     ),
                     TextButton.icon(
                       icon: Icon(

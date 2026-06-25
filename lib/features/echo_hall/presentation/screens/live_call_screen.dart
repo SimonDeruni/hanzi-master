@@ -150,7 +150,7 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
           "generationConfig": {
              "responseModalities": ["AUDIO"],
              "speechConfig": {
-               "voiceConfig": { "prebuiltVoiceConfig": { "voiceName": "\${widget.scenario.voiceName}" } }
+               "voiceConfig": { "prebuiltVoiceConfig": { "voiceName": "${widget.scenario.voiceName}" } }
              }
           },
           "systemInstruction": {

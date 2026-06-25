@@ -12,6 +12,7 @@ import 'ai_explainer_sheet.dart';
 import 'package:hanzi_master/shared/widgets/global_blurred_bottom_sheet.dart';
 import 'character_chat_sheet.dart';
 import 'package:hanzi_master/core/services/character_lookup_service.dart';
+import 'package:hanzi_master/features/flashcards/presentation/providers/deck_controller.dart';
 
 class WordDetailDialog extends ConsumerStatefulWidget {
   final AiWord word;
@@ -70,10 +71,54 @@ class _WordDetailDialogState extends ConsumerState<WordDetailDialog> {
 
     final char = widget.word.hanzi.characters.first;
     
+    // Show Deck Selector
+    final navContext = Navigator.of(context).context;
+    final isDark = Theme.of(navContext).brightness == Brightness.dark;
+    
+    // We get decks from deckControllerProvider, but it's not imported. We can import it.
+    final decks = ref.read(deckControllerProvider).valueOrNull ?? [];
+    
+    final selectedDeckId = await showModalBottomSheet<String>(
+      context: navContext,
+      backgroundColor: Colors.transparent,
+      builder: (ctx) => Container(
+        margin: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(24),
+        decoration: BoxDecoration(
+          color: isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
+          borderRadius: BorderRadius.circular(24),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text(
+              "Select Deck",
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: isDark ? Colors.white : Colors.black87),
+            ),
+            const SizedBox(height: 16),
+            ListTile(
+              leading: const Icon(Icons.layers),
+              title: const Text("Default Deck"),
+              onTap: () => Navigator.pop(ctx, 'default'),
+            ),
+            ...decks.map((deck) => ListTile(
+              leading: const Icon(Icons.folder),
+              title: Text(deck.name),
+              onTap: () => Navigator.pop(ctx, deck.id),
+            )),
+          ],
+        ),
+      ),
+    );
+
+    if (selectedDeckId == null) return; // User cancelled
+
     // Inject contextual node data
     final cardWithContext = _flashcard!.copyWith(
       sourceSentence: widget.sentence.chinese,
       sourceContext: "Reading Room",
+      deckId: selectedDeckId == 'default' ? '' : selectedDeckId,
     );
     
     await ref.read(flashcardControllerProvider.notifier).addFlashcard(cardWithContext);
@@ -240,14 +285,27 @@ class _WordDetailDialogState extends ConsumerState<WordDetailDialog> {
                         Navigator.pop(context);
                         AiExplainerSheet.show(navContext, widget.word, widget.sentence);
                       },
-                      child: OutlinedButton.icon(
-                        icon: const Icon(Icons.auto_awesome),
-                        label: FittedBox(fit: BoxFit.scaleDown, child: Text(AppLocalizations.of(context)!.explainGrammar)),
+                      child: OutlinedButton(
                         style: OutlinedButton.styleFrom(
-                          padding: const EdgeInsets.symmetric(vertical: 12),
+                          padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                         ),
                         onPressed: null,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Icon(Icons.auto_awesome, size: 18),
+                            const SizedBox(width: 4),
+                            Flexible(
+                              child: Text(
+                                AppLocalizations.of(context)!.explainGrammar,
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 1,
+                                style: const TextStyle(fontSize: 13),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -255,19 +313,32 @@ class _WordDetailDialogState extends ConsumerState<WordDetailDialog> {
                   Expanded(
                     child: BouncingButton(
                       onPressed: (_isSaved || _flashcard == null) ? null : _addToDeck,
-                      child: ElevatedButton.icon(
-                        icon: Icon(_isSaved ? Icons.check_circle : Icons.add_box),
-                        label: FittedBox(fit: BoxFit.scaleDown, child: Text(_isSaved ? "In Queue" : AppLocalizations.of(context)!.addToLibrary)),
+                      child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           backgroundColor: _isSaved ? Colors.green : Colors.blueAccent,
                           foregroundColor: Colors.white,
-                          padding: const EdgeInsets.symmetric(vertical: 12),
+                          padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                           elevation: 0,
                           disabledBackgroundColor: _isSaved ? Colors.green : Colors.grey.shade400,
                           disabledForegroundColor: Colors.white,
                         ),
                         onPressed: null,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(_isSaved ? Icons.check_circle : Icons.add_box, size: 18),
+                            const SizedBox(width: 4),
+                            Flexible(
+                              child: Text(
+                                _isSaved ? "In Queue" : AppLocalizations.of(context)!.addToLibrary,
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 1,
+                                style: const TextStyle(fontSize: 13),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),

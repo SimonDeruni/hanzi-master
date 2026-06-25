@@ -47,18 +47,6 @@ class ConversationState {
   }
 }
 
-class GradedChatMessage extends ChatMessage {
-  final PronunciationGrade? grade;
-
-  GradedChatMessage({
-    required super.id,
-    required super.content,
-    required super.role,
-    required super.timestamp,
-    this.grade,
-  });
-}
-
 class ConversationController extends StateNotifier<ConversationState> {
   final EchoHallService _echoHallService;
   final AudioRecordingService _audioService;
@@ -73,18 +61,45 @@ class ConversationController extends StateNotifier<ConversationState> {
         _geminiService = geminiService,
         super(ConversationState());
 
-  void startScenario(ConversationScenario scenario) {
+  Future<void> startScenario(ConversationScenario scenario) async {
     state = ConversationState(
       currentScenario: scenario,
-      messages: [
-        GradedChatMessage(
-          id: DateTime.now().millisecondsSinceEpoch.toString(),
-          content: scenario.initialAiMessage,
-          role: ChatRole.scholar,
-          timestamp: DateTime.now(),
-        )
-      ],
+      messages: [],
+      isProcessing: true,
     );
+
+    try {
+      // Call AI to generate the first message including translations and suggestions
+      final replyJson = await _echoHallService.getConversationResponse(
+        [], // empty history
+        "\${scenario.systemPrompt}\n\nUSER: Please start the conversation according to the scenario. Your first message should be similar to: '\${scenario.initialAiMessage}'"
+      );
+
+      final aiMsg = GradedChatMessage(
+        id: DateTime.now().millisecondsSinceEpoch.toString(),
+        content: replyJson['chinese'] ?? scenario.initialAiMessage,
+        pinyin: replyJson['pinyin'],
+        english: replyJson['english'],
+        suggestion: replyJson['suggestion'],
+        role: ChatRole.scholar,
+        timestamp: DateTime.now(),
+      );
+
+      state = state.copyWith(messages: [aiMsg], isProcessing: false);
+    } catch (e) {
+      // Fallback
+      state = state.copyWith(
+        messages: [
+          GradedChatMessage(
+            id: DateTime.now().millisecondsSinceEpoch.toString(),
+            content: scenario.initialAiMessage,
+            role: ChatRole.scholar,
+            timestamp: DateTime.now(),
+          )
+        ],
+        isProcessing: false,
+      );
+    }
   }
 
   Future<void> startRecording() async {
@@ -131,12 +146,15 @@ class ConversationController extends StateNotifier<ConversationState> {
         
         state = state.copyWith(messages: [...state.messages, userMsg]);
 
-        // 2. Send to DeepSeek
-        final reply = await _echoHallService.getResponse(state.messages, state.currentScenario!.systemPrompt);
+        // 2. Send to AI
+        final replyJson = await _echoHallService.getConversationResponse(state.messages, state.currentScenario!.systemPrompt);
         
         final aiMsg = GradedChatMessage(
           id: DateTime.now().millisecondsSinceEpoch.toString(),
-          content: reply,
+          content: replyJson['chinese'] ?? '',
+          pinyin: replyJson['pinyin'],
+          english: replyJson['english'],
+          suggestion: replyJson['suggestion'],
           role: ChatRole.scholar,
           timestamp: DateTime.now(),
         );
