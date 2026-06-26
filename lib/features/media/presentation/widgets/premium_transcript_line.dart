@@ -7,6 +7,7 @@ class PremiumTranscriptLine extends StatelessWidget {
   final bool isCurrent;
   final int highlightedCount;
   final VoidCallback onReplay;
+  final VoidCallback? onLineTapped;
   final VoidCallback onAiExplain;
   final Function(String) onWordTapped;
   final bool showPinyin;
@@ -18,6 +19,7 @@ class PremiumTranscriptLine extends StatelessWidget {
     required this.isCurrent,
     required this.highlightedCount,
     required this.onReplay,
+    this.onLineTapped,
     required this.onAiExplain,
     required this.onWordTapped,
     this.showPinyin = true,
@@ -77,81 +79,108 @@ class PremiumTranscriptLine extends StatelessWidget {
           
           // Subtitle Content Block
           Expanded(
-            child: Container(
-              margin: const EdgeInsets.symmetric(vertical: 6),
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: isCurrent ? const Color(0xFFE8F0FE) : Colors.transparent,
-                borderRadius: BorderRadius.circular(16),
-                border: isCurrent 
-                    ? Border.all(color: Colors.blueAccent.withValues(alpha: 0.3))
-                    : Border.all(color: Colors.transparent),
-                boxShadow: isCurrent 
-                    ? [
-                        BoxShadow(
-                          color: Colors.blueAccent.withValues(alpha: 0.1),
-                          blurRadius: 10,
-                          offset: const Offset(0, 0),
-                        )
-                      ]
-                    : null,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // 1. Hanzi Line
-                  RichText(
-                    text: TextSpan(
-                      children: line.text.split('').asMap().entries.map((entry) {
-                        final charIndex = entry.key;
-                        final char = entry.value;
-                        final isHighlighted = isCurrent && charIndex <= highlightedCount;
-                        final isChinese = RegExp(r'[\u4e00-\u9fff]').hasMatch(char);
+            child: GestureDetector(
+              onTap: onLineTapped,
+              behavior: HitTestBehavior.opaque,
+              child: Container(
+                margin: const EdgeInsets.symmetric(vertical: 6),
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: isCurrent ? const Color(0xFFE8F0FE) : Colors.transparent,
+                  borderRadius: BorderRadius.circular(16),
+                  border: isCurrent 
+                      ? Border.all(color: Colors.blueAccent.withValues(alpha: 0.3))
+                      : Border.all(color: Colors.transparent),
+                  boxShadow: isCurrent 
+                      ? [
+                          BoxShadow(
+                            color: Colors.blueAccent.withValues(alpha: 0.1),
+                            blurRadius: 10,
+                            offset: const Offset(0, 0),
+                          )
+                        ]
+                      : null,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // 1. Hanzi Line
+                    RichText(
+                      text: TextSpan(
+                        children: line.text.split('').asMap().entries.map((entry) {
+                          final charIndex = entry.key;
+                          final char = entry.value;
+                          final isHighlighted = isCurrent && charIndex <= highlightedCount;
+                          final isChinese = RegExp(r'[\u4e00-\u9fff]').hasMatch(char);
 
-                        return TextSpan(
-                          text: char,
-                          style: TextStyle(
-                            fontSize: 22,
-                            color: isHighlighted ? const Color(0xFF1C2541) : const Color(0xFF2C2C2C),
-                            fontWeight: isHighlighted ? FontWeight.bold : FontWeight.w500,
-                            height: 1.5,
-                            fontFamily: 'NotoSerifSC', // fallback if needed
-                          ),
-                          recognizer: isChinese 
-                              ? (TapGestureRecognizer()..onTap = () => onWordTapped(char))
-                              : null,
-                        );
-                      }).toList(),
-                    ),
-                  ),
-                  
-                  // 2. Pinyin Line
-                  if (showPinyin && line.pinyin != null)
-                    Padding(
-                      padding: const EdgeInsets.only(top: 4),
-                      child: Text(
-                        line.pinyin!,
-                        style: const TextStyle(
-                          fontSize: 14, 
-                          color: Color(0xFF757575),
-                        ),
+                          return TextSpan(
+                            text: char,
+                            style: TextStyle(
+                              fontSize: 22,
+                              color: isHighlighted ? const Color(0xFF1976D2) : const Color(0xFF2C2C2C),
+                              fontWeight: isHighlighted ? FontWeight.bold : FontWeight.w500,
+                              height: 1.5,
+                              fontFamily: 'NotoSerifSC', // fallback if needed
+                            ),
+                            recognizer: isChinese 
+                                ? (TapGestureRecognizer()..onTap = () => onWordTapped(char))
+                                : null,
+                          );
+                        }).toList(),
                       ),
                     ),
                     
-                  // 3. English Line
-                  if (showEnglish)
-                    Padding(
-                      padding: const EdgeInsets.only(top: 4),
-                      child: Text(
-                        "[ English translation... ]", // Placeholder as TranscriptLine might not have it yet
-                        style: const TextStyle(
-                          fontSize: 14, 
-                          fontStyle: FontStyle.italic,
-                          color: Color(0xFF9E9E9E),
+                    // 2. Pinyin Line
+                    if (showPinyin && line.pinyin != null)
+                      Padding(
+                        padding: const EdgeInsets.only(top: 4),
+                        child: Text(
+                          line.pinyin!,
+                          style: const TextStyle(
+                            fontSize: 14, 
+                            color: Color(0xFF757575),
+                          ),
                         ),
                       ),
-                    ),
-                ],
+                      
+                    // 3. English/Local Translation Line + AI Button Row
+                    if (showEnglish)
+                      Padding(
+                        padding: const EdgeInsets.only(top: 6),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              child: Text(
+                                line.translation ?? "[ Translating... ]",
+                                style: const TextStyle(
+                                  fontSize: 14, 
+                                  fontStyle: FontStyle.italic,
+                                  color: Color(0xFF9E9E9E),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: 8),
+                            GestureDetector(
+                              onTap: onAiExplain,
+                              child: Container(
+                                padding: const EdgeInsets.all(4),
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Colors.amber.withValues(alpha: 0.1),
+                                ),
+                                child: const Icon(
+                                  Icons.auto_awesome,
+                                  color: Colors.amber,
+                                  size: 18,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                  ],
+                ),
               ),
             ),
           ),

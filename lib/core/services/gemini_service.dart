@@ -955,27 +955,70 @@ Return ONLY a valid JSON object matching this structure:
     };
   }
 
-  Future<List<TranscriptLine>> translateTranscriptToHanzi(List<TranscriptLine> lines) async {
+  Future<List<TranscriptLine>> translateTranscriptLines(List<TranscriptLine> lines) async {
+    if (lines.isEmpty) return lines;
+    
     final text = lines.map((l) => l.text).join('\n');
     final prompt = '''
-You are a Chinese learning assistant. Translate the following video transcript lines into Chinese Hanzi characters. Maintain the exact same number of lines.
-Transcript:
+You are a Chinese learning assistant.
+I will give you a list of video transcript lines.
+If these lines are written in Pinyin (Latin alphabet with tone marks), you MUST convert them to standard Chinese Hanzi characters first for the "hanzi" field. If they are already in Hanzi, keep them in Hanzi.
+You also MUST translate each line into the student's target language: "$targetLanguage".
+
+CRITICAL:
+1. You must return EXACTLY the same number of lines as the input (${lines.length} lines).
+2. Do not skip, combine, or omit any lines.
+3. Keep the translation natural and contextual.
+
+Input lines:
 $text
-    ''';
-    final response = await makeOpenRouterCall(
-      model: 'google/gemini-2.5-flash',
-      messages: [{'role': 'user', 'content': prompt}],
-    );
-    final translatedText = response.split('\n');
-    final result = <TranscriptLine>[];
-    for (int i = 0; i < lines.length; i++) {
-      result.add(TranscriptLine(
-        text: i < translatedText.length ? translatedText[i] : lines[i].text,
-        start: lines[i].start,
-        duration: lines[i].duration,
-      ));
+
+Return ONLY a valid JSON array matching this exact format:
+[
+  { "hanzi": "Chinese Hanzi characters", "translation": "Translation in $targetLanguage" }
+]
+''';
+
+    try {
+      final response = await makeOpenRouterCall(
+        model: 'google/gemini-2.5-flash',
+        messages: [{'role': 'user', 'content': prompt}],
+        jsonMode: true,
+      );
+      
+      final cleanText = response
+          .replaceAll(RegExp(r'^```json\n', multiLine: true), '')
+          .replaceAll(RegExp(r'^```\n?', multiLine: true), '')
+          .trim();
+          
+      final List<dynamic> jsonArr = jsonDecode(cleanText);
+      final result = <TranscriptLine>[];
+      
+      for (int i = 0; i < lines.length; i++) {
+        String hanzi = lines[i].text;
+        String? translation;
+        
+        if (i < jsonArr.length) {
+          final item = jsonArr[i];
+          if (item is Map) {
+            hanzi = item['hanzi']?.toString() ?? lines[i].text;
+            translation = item['translation']?.toString();
+          }
+        }
+        
+        result.add(TranscriptLine(
+          text: hanzi,
+          pinyin: lines[i].pinyin,
+          start: lines[i].start,
+          duration: lines[i].duration,
+          translation: translation,
+        ));
+      }
+      return result;
+    } catch (e) {
+      debugPrint('Error translating transcript: $e');
+      return lines;
     }
-    return result;
   }
 
   Future<MediaBriefing> generateVideoBriefing(String title, List<TranscriptLine> lines) async {

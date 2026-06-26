@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 ### Added
+- **Smart Media Desk Enhancements**:
+    - Reconstructed Chinese Hanzi characters from Pinyin-only subtitle tracks using background Gemini processing.
+    - Integrated background translation of transcripts into the user's selected `targetLanguage` (aligned with device language).
+    - Enabled seeking the video timeline by tapping anywhere on a transcript line card.
+    - Highlighted active spoken characters in premium blue (`#1976D2`).
+    - Reintroduced the yellow AI micro-lesson button (`Icons.auto_awesome`) on the bottom-right of each transcript card.
 - **Unified Graph Architecture (Phase 2 - Stealth Reviews)**:
     - Updated custom AI Story Generation to dynamically fetch due flashcards and weave them into the narrative alongside new vocabulary, reinforcing spaced repetition naturally.
 - **Unified Graph Architecture (Phase 1)**:

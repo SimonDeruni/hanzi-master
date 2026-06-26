@@ -13,12 +13,14 @@ class TranscriptLine {
   final String? pinyin;
   final Duration start;
   final Duration duration;
+  final String? translation;
 
   TranscriptLine({
     required this.text,
     this.pinyin,
     required this.start,
     required this.duration,
+    this.translation,
   });
 
   Duration get end => start + duration;

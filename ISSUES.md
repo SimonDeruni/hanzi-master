@@ -6,6 +6,10 @@
 - [x] Fixed "No stories found" bug when navigating back to the Reading Room.
 - [x] Fixed broken Wikipedia image links by adding User-Agent headers.
 - [x] **Bug**: Fixed `FormatException: Invalid radix-10 number` crash on Media Search queries due to `youtube_explode_dart` parsing failures on live streams. Gracefully skip problematic videos while showing valid results.
+- [x] Fixed Pinyin-only subtitle rendering on videos lacking a Chinese Hanzi track.
+- [x] Added localized translation languages to replace subtitle placeholders.
+- [x] Implemented seek-on-tap gesture on subtitle blocks.
+- [x] Added AI explanation button for specific sentences.
 
 ## Open Issues
 

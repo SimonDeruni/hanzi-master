@@ -71,8 +71,22 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
           _startSyncEngine();
         }
 
-        // Generate AI Briefing in background
+        // Translate the transcript in the background using Gemini (recovering Hanzi if Pinyin)
         final gemini = ref.read(geminiServiceProvider);
+        gemini.translateTranscriptLines(transcript.lines).then((translatedLines) {
+          if (mounted) {
+            setState(() {
+              _transcript = VideoTranscript(
+                videoId: transcript.videoId,
+                lines: translatedLines,
+              );
+            });
+          }
+        }).catchError((e) {
+          debugPrint("Translation error: $e");
+        });
+
+        // Generate AI Briefing in background
         gemini.generateVideoBriefing(widget.video.title, transcript.lines).then((briefing) {
           if (mounted) {
             setState(() {
@@ -344,6 +358,7 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
                       showPinyin: _showPinyin,
                       showEnglish: _showEnglish,
                       onReplay: () => _replayLine(line.start),
+                      onLineTapped: () => _replayLine(line.start),
                       onAiExplain: () => _showSentenceLesson(line.text),
                       onWordTapped: _onWordTapped,
                     ),
