@@ -309,25 +309,19 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
                 itemCount: _transcript!.lines.length + 1,
                 itemBuilder: (context, index) {
                   if (index == 0) {
-                    final briefingToShow = _briefing ?? 
-                      (widget.video.aiBriefing != null 
-                        ? MediaBriefing(
-                            summary: widget.video.aiBriefing!, 
-                            hardWords: widget.video.targetVocabulary ?? [],
-                          ) 
-                        : null);
-                        
-                    if (briefingToShow == null) {
+                    if (_briefing == null) {
                       return const Padding(
                         padding: EdgeInsets.all(24.0),
-                        child: Center(child: CircularProgressIndicator()),
+                        child: Center(
+                          child: CircularProgressIndicator(color: Colors.indigo),
+                        ),
                       );
                     }
 
                     return Padding(
                       padding: const EdgeInsets.only(bottom: 24.0),
                       child: PremiumAiPrepCard(
-                        briefing: briefingToShow,
+                        briefing: _briefing!,
                         onWordTapped: _onWordTapped,
                       ),
                     );
