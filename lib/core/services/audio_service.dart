@@ -140,7 +140,7 @@ class AudioService {
             "speechConfig": {
               "voiceConfig": {
                 "prebuiltVoiceConfig": {
-                  "voiceName": "Puck" // 'Puck' is a known supported preset voice
+                  "voiceName": "Aoede" // Fixed to Aoede to prevent 403/invalid voice errors
                 }
               }
             }

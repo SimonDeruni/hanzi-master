@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../domain/models/media_briefing.dart';
 
-class PremiumAiPrepCard extends StatelessWidget {
+class PremiumAiPrepCard extends StatefulWidget {
   final MediaBriefing briefing;
   final Function(String) onWordTapped;
 
@@ -12,86 +12,87 @@ class PremiumAiPrepCard extends StatelessWidget {
   });
 
   @override
+  State<PremiumAiPrepCard> createState() => _PremiumAiPrepCardState();
+}
+
+class _PremiumAiPrepCardState extends State<PremiumAiPrepCard> {
+  bool _expanded = false;
+
+  @override
   Widget build(BuildContext context) {
     return Card(
-      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-      elevation: 4,
-      shadowColor: Colors.black.withValues(alpha: 0.1),
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      elevation: 3,
+      shadowColor: Colors.black.withValues(alpha: 0.08),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       color: Colors.white,
       child: Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text(
-                  'AI Prep Room',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFF1C2541),
+            // ── Header row — always visible ────────────────────────────
+            GestureDetector(
+              onTap: () => setState(() => _expanded = !_expanded),
+              behavior: HitTestBehavior.opaque,
+              child: Row(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(6),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFEBF3F9),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: const Icon(
+                      Icons.auto_awesome,
+                      size: 16,
+                      color: Color(0xFF1C2541),
+                    ),
                   ),
-                ),
-                Text(
-                  'Overview',
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.grey[600],
+                  const SizedBox(width: 10),
+                  const Text(
+                    'AI Prep Room',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFF1C2541),
+                    ),
                   ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 16),
-            const Text(
-              'LESSON SUMMARY',
-              style: TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.bold,
-                color: Color(0xFF9E9E9E),
-                letterSpacing: 1.2,
+                  const Spacer(),
+                  // Expand/collapse chevron
+                  AnimatedRotation(
+                    turns: _expanded ? 0.5 : 0,
+                    duration: const Duration(milliseconds: 250),
+                    curve: Curves.easeInOutQuart,
+                    child: Icon(
+                      Icons.keyboard_arrow_down_rounded,
+                      color: Colors.grey[500],
+                      size: 22,
+                    ),
+                  ),
+                ],
               ),
             ),
-            const SizedBox(height: 8),
-            Text(
-              briefing.summary,
-              style: const TextStyle(
-                fontSize: 14,
-                height: 1.4,
-                color: Color(0xFF2C2C2C),
-              ),
-            ),
-            if (briefing.hardWords.isNotEmpty) ...[
-              const SizedBox(height: 24),
-              const Text(
-                'KEY VOCABULARY',
-                style: TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF9E9E9E),
-                  letterSpacing: 1.2,
-                ),
-              ),
-              const SizedBox(height: 12),
+
+            // ── Key vocab chips — always visible ──────────────────────
+            if (widget.briefing.hardWords.isNotEmpty) ...[
+              const SizedBox(height: 10),
               Wrap(
-                spacing: 8,
-                runSpacing: 8,
-                children: briefing.hardWords.map((w) {
+                spacing: 6,
+                runSpacing: 6,
+                children: widget.briefing.hardWords.take(6).map((w) {
                   return GestureDetector(
-                    onTap: () => onWordTapped(w),
+                    onTap: () => widget.onWordTapped(w),
                     child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                       decoration: BoxDecoration(
                         color: const Color(0xFFEBF3F9),
-                        borderRadius: BorderRadius.circular(16),
+                        borderRadius: BorderRadius.circular(14),
                       ),
                       child: Text(
                         w,
                         style: const TextStyle(
-                          fontSize: 14,
+                          fontSize: 13,
                           fontWeight: FontWeight.bold,
                           color: Color(0xFF1C2541),
                         ),
@@ -101,6 +102,44 @@ class PremiumAiPrepCard extends StatelessWidget {
                 }).toList(),
               ),
             ],
+
+            // ── Expandable summary body ────────────────────────────────
+            AnimatedCrossFade(
+              firstChild: const SizedBox(width: double.infinity, height: 0),
+              secondChild: Padding(
+                padding: const EdgeInsets.only(top: 14),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Divider(height: 1, color: Color(0xFFE8E8E8)),
+                    const SizedBox(height: 12),
+                    const Text(
+                      'LESSON SUMMARY',
+                      style: TextStyle(
+                        fontSize: 11,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF9E9E9E),
+                        letterSpacing: 1.2,
+                      ),
+                    ),
+                    const SizedBox(height: 6),
+                    Text(
+                      widget.briefing.summary,
+                      style: const TextStyle(
+                        fontSize: 13.5,
+                        height: 1.5,
+                        color: Color(0xFF2C2C2C),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              crossFadeState: _expanded
+                  ? CrossFadeState.showSecond
+                  : CrossFadeState.showFirst,
+              duration: const Duration(milliseconds: 280),
+              sizeCurve: Curves.easeInOutQuart,
+            ),
           ],
         ),
       ),

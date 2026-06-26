@@ -36,7 +36,7 @@ class TravelInterpreterScreen extends ConsumerStatefulWidget {
   ConsumerState<TravelInterpreterScreen> createState() => _TravelInterpreterScreenState();
 }
 
-class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScreen> {
+class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScreen> with SingleTickerProviderStateMixin {
   final AudioRecorder _audioRecorder = AudioRecorder();
   
   WebSocketChannel? _channel;
@@ -50,14 +50,38 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
   final List<InterpreterMessage> _transcript = [];
 
   bool _isSessionStarted = false;
+  late AnimationController _pulseController;
 
   @override
   void initState() {
     super.initState();
-    // Do NOT connect automatically
+    _pulseController = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 1),
+    )..repeat(reverse: true);
+    _checkIntroStatus();
+  }
+
+  Future<void> _checkIntroStatus() async {
+    try {
+      final box = await Hive.openBox('app_settings');
+      final hasSeenIntro = box.get('has_seen_interpreter_intro', defaultValue: false);
+      if (hasSeenIntro) {
+        _startSession();
+      }
+    } catch (e) {
+      debugPrint("Error checking intro status: $e");
+    }
   }
 
   Future<void> _startSession() async {
+    try {
+      final box = await Hive.openBox('app_settings');
+      await box.put('has_seen_interpreter_intro', true);
+    } catch (e) {
+      debugPrint("Error saving intro status: $e");
+    }
+    
     setState(() {
       _isSessionStarted = true;
     });
@@ -84,13 +108,13 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
 
     try {
       final uri = Uri.parse(
-        'wss://generativelanguage.googleapis.com/ws/google.ai.generativelanguage.v1beta.GenerativeService.BidiGenerateContent?key=$apiKey'
+        'wss://generativelanguage.googleapis.com/ws/google.ai.generativelanguage.v1alpha.GenerativeService.BidiGenerateContent?key=$apiKey'
       );
       _channel = WebSocketChannel.connect(uri);
 
       final setupMessage = jsonEncode({
         "setup": {
-          "model": "models/gemini-2.0-flash-exp",
+          "model": "models/gemini-3.5-live-translate-preview",
           "generationConfig": {
              "responseModalities": ["TEXT"]
           },
@@ -200,7 +224,12 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
           try {
             _channel!.sink.add(jsonEncode({
               "realtimeInput": {
-                "audio": { "mimeType": "audio/pcm;rate=16000", "data": base64Encode(data) }
+                "mediaChunks": [
+                  {
+                    "mimeType": "audio/pcm;rate=16000",
+                    "data": base64Encode(data)
+                  }
+                ]
               }
             }));
           } catch (e) {
@@ -246,6 +275,7 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
 
   @override
   void dispose() {
+    _pulseController.dispose();
     _audioSubscription?.cancel();
     _audioRecorder.dispose();
     _channel?.sink.close(status.normalClosure);
@@ -341,36 +371,38 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
 
     return Scaffold(
       backgroundColor: Colors.black,
-      body: SafeArea(
-        child: Column(
-          children: [
-            // Top Half (Partner - Rotated 180 degrees)
+      body: Stack(
+        alignment: Alignment.center,
+        children: [
+          Column(
+            children: [
+              // Top Half (Partner - Rotated 180 degrees)
             Expanded(
               child: RotatedBox(
                 quarterTurns: 2,
                 child: AnimatedContainer(
-                  duration: const Duration(milliseconds: 300),
-                  color: _isRecording ? const Color(0xFF2A1515) : const Color(0xFF1A1A1A),
+                  duration: const Duration(milliseconds: 500),
+                  color: _isRecording ? const Color(0xFF3E1F1F) : const Color(0xFF1E1313),
                   width: double.infinity,
-                  padding: const EdgeInsets.all(24),
+                  padding: const EdgeInsets.only(left: 24, right: 24, bottom: 24, top: 64),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Text("Partner (中文)", style: TextStyle(color: Colors.white54, fontSize: 18, fontWeight: FontWeight.bold)),
+                          const Text("Partner (中文)", style: TextStyle(color: Colors.white54, fontSize: 18, fontWeight: FontWeight.w600, letterSpacing: 1.2)),
                           if (_isRecording)
                             const Row(
                               children: [
-                                Icon(Icons.circle, color: Colors.redAccent, size: 12),
+                                Icon(Icons.mic, color: Colors.redAccent, size: 16),
                                 SizedBox(width: 8),
                                 Text("录音中", style: TextStyle(color: Colors.redAccent, fontWeight: FontWeight.bold)),
                               ],
                             ),
                         ],
                       ),
-                      const SizedBox(height: 16),
+                      const SizedBox(height: 24),
                       Expanded(
                         child: ListView.builder(
                           reverse: true,
@@ -380,10 +412,15 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                             return Padding(
                               padding: const EdgeInsets.symmetric(vertical: 8.0),
                               child: Container(
-                                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
                                 decoration: BoxDecoration(
                                   color: msg.isUser ? Colors.blue.withValues(alpha: 0.1) : Colors.grey.withValues(alpha: 0.1),
-                                  borderRadius: BorderRadius.circular(16),
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: const Radius.circular(24),
+                                    topRight: const Radius.circular(24),
+                                    bottomLeft: Radius.circular(msg.isUser ? 24 : 4),
+                                    bottomRight: Radius.circular(msg.isUser ? 4 : 24),
+                                  ),
                                   border: Border.all(color: msg.isUser ? Colors.blue.withValues(alpha: 0.3) : Colors.grey.withValues(alpha: 0.2)),
                                 ),
                                 child: Text(
@@ -391,6 +428,7 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                                   style: TextStyle(
                                     color: msg.isUser ? Colors.blue.shade200 : Colors.white,
                                     fontSize: 24,
+                                    fontWeight: FontWeight.w500,
                                   ),
                                 ),
                               ),
@@ -403,43 +441,15 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                 ),
               ),
             ),
-            
-            // Divider / Status with Toggle
-            Container(
-              height: 48,
-              color: Colors.blueAccent.withValues(alpha: 0.2),
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(_status, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
-                  Row(
-                    children: [
-                      Text(
-                        _isRecording ? "REC" : "Incognito",
-                        style: TextStyle(
-                          color: _isRecording ? Colors.redAccent : Colors.white54,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Switch(
-                        value: _isRecording,
-                        activeColor: Colors.redAccent,
-                        onChanged: (val) => setState(() => _isRecording = val),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
+            // Removed old middle container
 
             // Bottom Half (User)
             Expanded(
               child: AnimatedContainer(
-                duration: const Duration(milliseconds: 300),
-                color: _isRecording ? const Color(0xFF2A1515) : const Color(0xFF121212),
+                duration: const Duration(milliseconds: 500),
+                color: _isRecording ? const Color(0xFF152A3B) : const Color(0xFF121A20),
                 width: double.infinity,
-                padding: const EdgeInsets.all(24),
+                padding: const EdgeInsets.only(left: 24, right: 24, bottom: 24, top: 64),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -486,20 +496,25 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                           return Padding(
                             padding: const EdgeInsets.symmetric(vertical: 8.0),
                             child: Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
                               decoration: BoxDecoration(
-                                color: msg.isUser ? Colors.grey.withValues(alpha: 0.1) : Colors.blue.withValues(alpha: 0.1),
-                                borderRadius: BorderRadius.circular(16),
-                                border: Border.all(color: msg.isUser ? Colors.grey.withValues(alpha: 0.2) : Colors.blue.withValues(alpha: 0.3)),
+                                color: msg.isUser ? Colors.blue.withValues(alpha: 0.1) : Colors.grey.withValues(alpha: 0.1),
+                                borderRadius: BorderRadius.only(
+                                  topLeft: const Radius.circular(24),
+                                  topRight: const Radius.circular(24),
+                                  bottomLeft: Radius.circular(msg.isUser ? 24 : 4),
+                                  bottomRight: Radius.circular(msg.isUser ? 4 : 24),
+                                ),
+                                border: Border.all(color: msg.isUser ? Colors.blue.withValues(alpha: 0.3) : Colors.grey.withValues(alpha: 0.2)),
                               ),
                               child: msg.isUser 
                                 ? Text(
                                     msg.text,
-                                    style: const TextStyle(color: Colors.white, fontSize: 24),
+                                    style: const TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.w500),
                                   )
                                 : TappableMarkdownHanziText(
                                     msg.text,
-                                    style: TextStyle(color: Colors.blue.shade200, fontSize: 24),
+                                    style: TextStyle(color: Colors.blue.shade200, fontSize: 24, fontWeight: FontWeight.w500),
                                   ),
                             ),
                           );
@@ -512,7 +527,100 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
             ),
           ],
         ),
-      ),
+        
+        // The Floating Center Control Bar
+        _buildCenterControlBar(),
+      ]),
+    );
+  }
+
+  Widget _buildCenterControlBar() {
+    return AnimatedBuilder(
+      animation: _pulseController,
+      builder: (context, child) {
+        final blur = _isRecording ? (_pulseController.value * 20.0 + 10.0) : 0.0;
+        final spread = _isRecording ? (_pulseController.value * 5.0) : 0.0;
+        return Positioned(
+          child: Container(
+            margin: const EdgeInsets.symmetric(horizontal: 32),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(32),
+              boxShadow: [
+                if (_isRecording)
+                  BoxShadow(
+                    color: Colors.blueAccent.withValues(alpha: 0.3),
+                    blurRadius: blur,
+                    spreadRadius: spread,
+                  )
+              ],
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(32),
+              child: BackdropFilter(
+                filter: ui.ImageFilter.blur(sigmaX: 15, sigmaY: 15),
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                  decoration: BoxDecoration(
+                    color: Colors.black.withValues(alpha: 0.4),
+                    borderRadius: BorderRadius.circular(32),
+                    border: Border.all(color: Colors.white.withValues(alpha: 0.15), width: 1.5),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      // Language Icon
+                      const Icon(Icons.translate, color: Colors.white70, size: 24),
+                      const SizedBox(width: 16),
+                      // Mic Button
+                      GestureDetector(
+                        onTap: () {
+                          if (_isRecording) {
+                            _stopAudioStreaming();
+                          } else {
+                            _startAudioStreaming();
+                          }
+                        },
+                        child: AnimatedContainer(
+                          duration: const Duration(milliseconds: 300),
+                          padding: const EdgeInsets.all(12),
+                          decoration: BoxDecoration(
+                            color: _isRecording ? Colors.redAccent.withValues(alpha: 0.2) : Colors.white.withValues(alpha: 0.1),
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                              color: _isRecording ? Colors.redAccent : Colors.white24,
+                              width: 2,
+                            ),
+                          ),
+                          child: Icon(
+                            _isRecording ? Icons.mic : Icons.mic_none,
+                            color: _isRecording ? Colors.redAccent : Colors.white,
+                            size: 28,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 16),
+                      // Status Text
+                      Expanded(
+                        child: Text(
+                          _status,
+                          style: TextStyle(
+                            color: _hasError ? Colors.redAccent : Colors.white,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                          ),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        );
+      }
     );
   }
 }

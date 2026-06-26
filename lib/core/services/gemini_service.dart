@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math' as math;
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -88,8 +89,9 @@ class AiWord {
   final String pinyin;
   final String meaning;
   final String english; // StoryModeScreen uses 'english' in some places
+  final int hskLevel;
   
-  AiWord({required this.hanzi, required this.pinyin, required this.meaning, this.english = ''});
+  AiWord({required this.hanzi, required this.pinyin, required this.meaning, this.english = '', this.hskLevel = 0});
   
   factory AiWord.fromJson(Map<String, dynamic> json) {
     return AiWord(
@@ -97,6 +99,7 @@ class AiWord {
       pinyin: json['pinyin'] as String? ?? '',
       meaning: json['meaning'] as String? ?? '',
       english: json['english'] as String? ?? '',
+      hskLevel: (json['hskLevel'] as num?)?.toInt() ?? 0,
     );
   }
 
@@ -106,6 +109,7 @@ class AiWord {
       'pinyin': pinyin,
       'meaning': meaning,
       if (english.isNotEmpty) 'english': english,
+      'hskLevel': hskLevel,
     };
   }
 }
@@ -957,71 +961,158 @@ Return ONLY a valid JSON object matching this structure:
 
   Future<List<TranscriptLine>> translateTranscriptLines(List<TranscriptLine> lines) async {
     if (lines.isEmpty) return lines;
-    
-    final text = lines.map((l) => l.text).join('\n');
-    final prompt = '''
+
+    // Detect if the text is Pinyin-based (Latin chars with diacritics) so we can store it.
+    final isPinyinBased = !lines.any((l) => RegExp(r'[\u4e00-\u9fff]').hasMatch(l.text));
+
+    // Process in chunks of 20 to avoid LLM token limits and parse failures.
+    const chunkSize = 20;
+    final result = <TranscriptLine>[];
+
+    for (int start = 0; start < lines.length; start += chunkSize) {
+      final end = (start + chunkSize).clamp(0, lines.length);
+      final chunk = lines.sublist(start, end);
+
+      try {
+        final chunkText = chunk.asMap().entries.map((e) => '${e.key + 1}. ${e.value.text}').join('\n');
+        final prompt = '''
 You are a Chinese learning assistant.
-I will give you a list of video transcript lines.
-If these lines are written in Pinyin (Latin alphabet with tone marks), you MUST convert them to standard Chinese Hanzi characters first for the "hanzi" field. If they are already in Hanzi, keep them in Hanzi.
-You also MUST translate each line into the student's target language: "$targetLanguage".
+I will give you ${chunk.length} video transcript lines.
+If these lines are in Pinyin (Latin alphabet), convert them to standard Chinese Hanzi characters for the "hanzi" field.
+If they are already in Hanzi, keep them as-is.
+Translate each line to "$targetLanguage" for the "translation" field.
 
-CRITICAL:
-1. You must return EXACTLY the same number of lines as the input (${lines.length} lines).
-2. Do not skip, combine, or omit any lines.
-3. Keep the translation natural and contextual.
+CRITICAL: Return EXACTLY ${chunk.length} objects in the array — one per input line. No skipping.
 
-Input lines:
-$text
+Input:
+$chunkText
 
-Return ONLY a valid JSON array matching this exact format:
+Return ONLY a valid JSON array:
 [
-  { "hanzi": "Chinese Hanzi characters", "translation": "Translation in $targetLanguage" }
-]
-''';
+  { "hanzi": "Chinese Hanzi here", "translation": "Translation in $targetLanguage" }
+]''';
 
-    try {
-      final response = await makeOpenRouterCall(
-        model: 'google/gemini-2.5-flash',
-        messages: [{'role': 'user', 'content': prompt}],
-        jsonMode: true,
-      );
-      
-      final cleanText = response
-          .replaceAll(RegExp(r'^```json\n', multiLine: true), '')
-          .replaceAll(RegExp(r'^```\n?', multiLine: true), '')
-          .trim();
-          
-      final List<dynamic> jsonArr = jsonDecode(cleanText);
-      final result = <TranscriptLine>[];
-      
-      for (int i = 0; i < lines.length; i++) {
-        String hanzi = lines[i].text;
-        String? translation;
-        
-        if (i < jsonArr.length) {
-          final item = jsonArr[i];
-          if (item is Map) {
-            hanzi = item['hanzi']?.toString() ?? lines[i].text;
-            translation = item['translation']?.toString();
+        final response = await makeOpenRouterCall(
+          model: 'google/gemini-2.5-flash',
+          messages: [{'role': 'user', 'content': prompt}],
+          jsonMode: true,
+        );
+
+        final cleanText = response
+            .replaceAll(RegExp(r'^```json\n', multiLine: true), '')
+            .replaceAll(RegExp(r'^```\n?', multiLine: true), '')
+            .trim();
+
+        final List<dynamic> jsonArr = jsonDecode(cleanText);
+
+        for (int i = 0; i < chunk.length; i++) {
+          String hanzi = chunk[i].text;
+          String? translation;
+
+          if (i < jsonArr.length) {
+            final item = jsonArr[i];
+            if (item is Map) {
+              hanzi = item['hanzi']?.toString() ?? chunk[i].text;
+              translation = item['translation']?.toString();
+            }
           }
+
+          // Store original Pinyin in the pinyin field if we detected pinyin-based input
+          final pinyinValue = isPinyinBased ? chunk[i].text : chunk[i].pinyin;
+
+          result.add(TranscriptLine(
+            text: hanzi,
+            pinyin: pinyinValue,
+            start: chunk[i].start,
+            duration: chunk[i].duration,
+            translation: translation,
+          ));
         }
-        
-        result.add(TranscriptLine(
-          text: hanzi,
-          pinyin: lines[i].pinyin,
-          start: lines[i].start,
-          duration: lines[i].duration,
-          translation: translation,
-        ));
+      } catch (e) {
+        debugPrint('Error translating chunk $start-${start + chunkSize}: $e');
+        // Fallback: keep originals for this chunk
+        for (final line in chunk) {
+          result.add(TranscriptLine(
+            text: line.text,
+            pinyin: isPinyinBased ? line.text : line.pinyin,
+            start: line.start,
+            duration: line.duration,
+            translation: null,
+          ));
+        }
       }
-      return result;
-    } catch (e) {
-      debugPrint('Error translating transcript: $e');
-      return lines;
     }
+
+    return result;
   }
 
-  Future<MediaBriefing> generateVideoBriefing(String title, List<TranscriptLine> lines) async {
+  /// Translates a single chunk of transcript lines (Pinyin → Hanzi + localized translation).
+  /// Called incrementally by the screen to progressively update the UI.
+  Future<List<TranscriptLine>> translateChunk(List<TranscriptLine> chunk) async {
+    if (chunk.isEmpty) return chunk;
+
+    final isPinyinBased = !chunk.any((l) => RegExp(r'[\u4e00-\u9fff]').hasMatch(l.text));
+
+    final chunkText = chunk.asMap().entries
+        .map((e) => '${e.key + 1}. ${e.value.text}')
+        .join('\n');
+
+    final prompt = '''
+You are a Chinese learning assistant.
+I will give you ${chunk.length} video transcript lines.
+If these lines are in Pinyin (Latin alphabet with tone marks), convert them to standard Chinese Hanzi characters for the "hanzi" field.
+If they are already in Hanzi, keep them as-is.
+Translate each line to "$targetLanguage" for the "translation" field.
+
+CRITICAL: Return EXACTLY ${chunk.length} objects in the array — one per input line. No skipping.
+
+Input:
+$chunkText
+
+Return ONLY a valid JSON array:
+[
+  { "hanzi": "Chinese Hanzi here", "translation": "Translation in $targetLanguage" }
+]''';
+
+    final response = await makeOpenRouterCall(
+      model: 'google/gemini-2.5-flash',
+      messages: [{'role': 'user', 'content': prompt}],
+      jsonMode: true,
+    );
+
+    final cleanText = response
+        .replaceAll(RegExp(r'^```json\n', multiLine: true), '')
+        .replaceAll(RegExp(r'^```\n?', multiLine: true), '')
+        .trim();
+
+    final List<dynamic> jsonArr = jsonDecode(cleanText);
+    final result = <TranscriptLine>[];
+
+    for (int i = 0; i < chunk.length; i++) {
+      String hanzi = chunk[i].text;
+      String? translation;
+
+      if (i < jsonArr.length) {
+        final item = jsonArr[i];
+        if (item is Map) {
+          hanzi = item['hanzi']?.toString() ?? chunk[i].text;
+          translation = item['translation']?.toString();
+        }
+      }
+
+      result.add(TranscriptLine(
+        text: hanzi,
+        pinyin: isPinyinBased ? chunk[i].text : chunk[i].pinyin,
+        start: chunk[i].start,
+        duration: chunk[i].duration,
+        translation: translation,
+      ));
+    }
+
+    return result;
+  }
+
+ Future<MediaBriefing> generateVideoBriefing(String title, List<TranscriptLine> lines) async {
     final text = lines.map((l) => l.text).join('\n');
     final prompt = '''
 You are a Chinese learning assistant. Create a briefing for a video titled "$title".
@@ -1079,5 +1170,108 @@ Explain the meaning of "$hanzi" specifically in this context. Keep the explanati
     );
 
     return text.trim();
+  }
+
+  Future<ArticleInsight> generateArticleInsight(String text, List<String> knownWords) async {
+    final prompt = '''
+You are a Chinese learning assistant. Analyze the following Chinese article for a language learner.
+The learner knows these words (or a subset of them): ${knownWords.take(500).join(", ")}.
+
+Provide an insight containing:
+1. "summary": A quick 2-3 sentence summary of the article in English.
+2. "score": A rating out of 100 on how readable this is for the learner based on their known words. (0 = impossible, 100 = they know every word).
+3. "hskLevel": The estimated HSK level (1-9) required to comfortably read this text.
+
+Article text:
+"""
+${text.substring(0, math.min(text.length, 3000))}
+"""
+
+Output JSON matching this exact structure:
+{
+  "summary": "English summary...",
+  "score": 85,
+  "hskLevel": 4
+}
+''';
+
+    final response = await makeOpenRouterCall(
+      model: 'google/gemini-2.5-flash',
+      messages: [{'role': 'user', 'content': prompt}],
+      jsonMode: true,
+    );
+
+    final cleanText = response.replaceAll(RegExp(r'^```json\n', multiLine: true), '').replaceAll(RegExp(r'^```\n?', multiLine: true), '');
+    return ArticleInsight.fromJson(jsonDecode(cleanText));
+  }
+
+  Future<Map<String, dynamic>> extractVocabularyFromScan(String text) async {
+    final prompt = '''
+You are a Chinese learning assistant. A user has scanned some text from the real world (like a menu, a sign, or a book page) using OCR.
+
+Extracted OCR Text:
+"""
+${text.substring(0, math.min(text.length, 3000))}
+"""
+
+Your task is to:
+1. Provide a smooth, full English translation of the entire scanned text so the user understands the full context.
+2. Extract the most important Chinese vocabulary (words, phrases, idioms) from the text. 
+   - Group them into logical words (e.g. don't split idioms into 4 separate characters).
+   - Provide the pinyin, english definition, and estimated HSK level (1-9).
+   - Only include up to 20 of the most relevant/useful words.
+
+Output JSON matching this exact structure:
+{
+  "fullTranslation": "The full English translation of the scanned text...",
+  "deckName": "A short 2-4 word title for this scan (e.g. 'Restaurant Menu', 'Street Sign')",
+  "words": [
+    {
+      "hanzi": "中国",
+      "pinyin": "Zhōngguó",
+      "meaning": "China",
+      "hskLevel": 1,
+      "partOfSpeech": "noun"
+    }
+  ]
+}
+''';
+
+    final response = await makeOpenRouterCall(
+      model: 'google/gemini-2.5-flash',
+      messages: [{'role': 'user', 'content': prompt}],
+      jsonMode: true,
+    );
+
+    final cleanText = response.replaceAll(RegExp(r'^```json\n', multiLine: true), '').replaceAll(RegExp(r'^```\n?', multiLine: true), '');
+    final json = jsonDecode(cleanText);
+    
+    final words = (json['words'] as List<dynamic>).map((w) => AiWord.fromJson(w as Map<String, dynamic>)).toList();
+    
+    return {
+      'fullTranslation': json['fullTranslation'] as String? ?? 'No translation available.',
+      'deckName': json['deckName'] as String? ?? 'Scan Results',
+      'words': words,
+    };
+  }
+}
+
+class ArticleInsight {
+  final String summary;
+  final int score;
+  final int hskLevel;
+
+  ArticleInsight({
+    required this.summary,
+    required this.score,
+    required this.hskLevel,
+  });
+
+  factory ArticleInsight.fromJson(Map<String, dynamic> json) {
+    return ArticleInsight(
+      summary: json['summary'] as String? ?? 'No summary available.',
+      score: (json['score'] as num?)?.toInt() ?? 0,
+      hskLevel: (json['hskLevel'] as num?)?.toInt() ?? 1,
+    );
   }
 }

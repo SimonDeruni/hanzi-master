@@ -82,7 +82,7 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
         ) : null,
         body: asyncFlashcards.when(
           data: (allCards) {
-            final deckCards = allCards.where((c) => c.deckId == widget.deck.id || (widget.deck.id == 'default' && c.deckId.isEmpty)).toList().reversed.toList();
+            final deckCards = allCards.where((c) => c.deckId == widget.deck.id || (widget.deck.id == 'default' && c.deckId.isEmpty)).toList();
             
             final filteredCards = deckCards.where((c) {
               if (_searchQuery.isEmpty) return true;

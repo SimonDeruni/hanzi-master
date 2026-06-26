@@ -85,7 +85,7 @@ class PremiumVideoTopBar extends StatelessWidget {
                         return SwitchListTile(
                           title: const Text('Show Hanzi', style: TextStyle(color: Colors.white)),
                           value: showHanzi,
-                          activeColor: Colors.white,
+                          activeThumbColor: Colors.white,
                           onChanged: (v) {
                             setState(() {});
                             onToggleHanzi(v);
@@ -100,7 +100,7 @@ class PremiumVideoTopBar extends StatelessWidget {
                         return SwitchListTile(
                           title: const Text('Show Pinyin', style: TextStyle(color: Colors.white)),
                           value: showPinyin,
-                          activeColor: Colors.white,
+                          activeThumbColor: Colors.white,
                           onChanged: (v) {
                             setState(() {});
                             onTogglePinyin(v);
@@ -115,7 +115,7 @@ class PremiumVideoTopBar extends StatelessWidget {
                         return SwitchListTile(
                           title: const Text('Show English', style: TextStyle(color: Colors.white)),
                           value: showEnglish,
-                          activeColor: Colors.white,
+                          activeThumbColor: Colors.white,
                           onChanged: (v) {
                             setState(() {});
                             onToggleEnglish(v);

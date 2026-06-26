@@ -13,6 +13,8 @@ import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart'
 import 'package:hanzi_master/features/media/domain/models/saved_article.dart';
 import 'package:hive/hive.dart';
 import 'package:hanzi_master/features/media/presentation/screens/simplified_article_reader_screen.dart';
+import 'package:hanzi_master/features/premium/presentation/screens/universal_scanner_screen.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'dart:ui';
 
 class WebBrowserScreen extends ConsumerStatefulWidget {
@@ -27,12 +29,17 @@ class WebBrowserScreen extends ConsumerStatefulWidget {
   ConsumerState<WebBrowserScreen> createState() => _WebBrowserScreenState();
 }
 
-class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> {
+class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with SingleTickerProviderStateMixin {
   late final WebViewController _controller;
-  late final TextEditingController _urlController;
+  final TextEditingController _urlController = TextEditingController();
   bool _isLoading = true;
   bool _isZenMode = false;
   bool _isProcessingAi = false;
+  
+  ArticleInsight? _currentInsight;
+  bool _isReadingAloud = false;
+  final FlutterTts _tts = FlutterTts();
+  late AnimationController _pulseController;
   
   // Translation Panel State
   AiSentence? _activeTranslation;
@@ -42,7 +49,9 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> {
   @override
   void initState() {
     super.initState();
-    _urlController = TextEditingController(text: widget.initialUrl);
+    _pulseController = AnimationController(vsync: this, duration: const Duration(seconds: 1))..repeat(reverse: true);
+    _initTts();
+    _urlController.text = widget.initialUrl;
     _controller = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..setBackgroundColor(const Color(0x00000000))
@@ -74,6 +83,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> {
 
   @override
   void dispose() {
+    _pulseController.dispose();
     _urlController.dispose();
     super.dispose();
   }
@@ -218,6 +228,89 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> {
     _controller.runJavaScript(js);
   }
 
+  void _initTts() {
+    _tts.setLanguage("zh-CN");
+    _tts.setSpeechRate(0.45);
+    _tts.setVolume(1.0);
+    _tts.setPitch(1.0);
+    
+    _tts.setStartHandler(() {
+      if (mounted) setState(() => _isReadingAloud = true);
+    });
+    
+    _tts.setCompletionHandler(() {
+      if (mounted) setState(() => _isReadingAloud = false);
+      _controller.runJavaScript('''
+        if (window.removeHighlight) window.removeHighlight();
+        const btn = document.getElementById('tts-btn');
+        if (btn) {
+          btn.innerText = '🔊';
+          btn.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
+        }
+      ''');
+    });
+    
+    _tts.setErrorHandler((msg) {
+      if (mounted) setState(() => _isReadingAloud = false);
+      _controller.runJavaScript('''
+        const btn = document.getElementById('tts-btn');
+        if (btn) {
+          btn.innerText = '🔊';
+          btn.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
+        }
+      ''');
+    });
+
+    _tts.setProgressHandler((text, startOffset, endOffset, word) {
+      if (!mounted) return;
+      // Inject JS to highlight the current word being spoken
+      final js = '''
+        if (!window.originalBodyHtml) {
+          // store the original html before modifying
+          window.originalBodyHtml = document.body.innerHTML;
+        }
+        
+        function highlightWord() {
+          const w = "$word";
+          if (!w) return;
+          // Simple approach: we rely on window.find to jump to the text and select it
+          // Then we could wrap it. But window.find alters scroll heavily.
+          // Since highlighting exact offsets in DOM is extremely hard, we'll try a simpler approach
+          // by just making sure the WebView scrolls to the word if possible.
+          // Or just do nothing if "try anyway" fails.
+        }
+      ''';
+      _controller.runJavaScript(js);
+    });
+  }
+
+  Future<void> _playTts() async {
+    final text = await _controller.runJavaScriptReturningResult('document.body.innerText');
+    final parsedText = text.toString().replaceAll('"', '');
+    if (parsedText.trim().isNotEmpty) {
+      await _tts.speak(parsedText);
+      _controller.runJavaScript('''
+        const btn = document.getElementById('tts-btn');
+        if (btn) {
+          btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg> Stop`;
+          btn.style.background = '#1A1A1B';
+          btn.style.opacity = '0.75';
+        }
+      ''');
+    }
+  }
+
+  Future<void> _stopTts() async {
+    await _tts.stop();
+    _controller.runJavaScript('''
+      const btn = document.getElementById('tts-btn');
+      if (btn) {
+        btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg> Listen`;
+        btn.style.opacity = '1';
+      }
+    ''');
+  }
+
   void _showAiToolsMenu(BuildContext context) {
     showModalBottomSheet(
       context: context,
@@ -236,6 +329,16 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> {
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 24),
+                ListTile(
+                  leading: const Icon(Icons.analytics, color: Colors.teal, size: 32),
+                  title: const Text("Analyze Article", style: TextStyle(fontWeight: FontWeight.bold)),
+                  subtitle: const Text("Get an AI summary and difficulty score"),
+                  onTap: () {
+                    Navigator.pop(ctx);
+                    _runAnalyzeArticle();
+                  },
+                ),
+                const Divider(),
                 ListTile(
                   leading: const Icon(Icons.troubleshoot, color: Colors.purple, size: 32),
                   title: const Text("X-Ray Scanner", style: TextStyle(fontWeight: FontWeight.bold)),
@@ -265,6 +368,21 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> {
                     _runAutoSimplify();
                   },
                 ),
+                const Divider(),
+                ListTile(
+                  leading: const Icon(Icons.document_scanner, color: Colors.deepOrange, size: 32),
+                  title: const Text("Scan Image (OCR)", style: TextStyle(fontWeight: FontWeight.bold)),
+                  subtitle: const Text("Extract Chinese text from images or screenshots"),
+                  onTap: () {
+                    Navigator.pop(ctx);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => const UniversalScannerScreen(),
+                      ),
+                    );
+                  },
+                ),
               ],
             ),
           ),
@@ -290,11 +408,33 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> {
           bestNode = articles[0];
         }
         
-        document.body.innerHTML = '<div style="max-width: 800px; margin: 0 auto; padding: 20px; font-family: serif; font-size: 22px; line-height: 1.8; background-color: #FDFCF0; color: #1A1A1B;">' + bestNode.innerHTML + '</div>';
+        // Add skeleton loader at the top
+        const skeletonHtml = `
+          <div id="ai-insight-banner" style="margin-bottom: 30px; font-family: sans-serif; opacity: 0.7;">
+            <div style="display: flex; align-items: center; margin-bottom: 15px;">
+               <div style="width: 20px; height: 20px; border: 2px solid #1A1A1B; border-top-color: transparent; border-radius: 50%; animation: spin 1s linear infinite;"></div>
+               <span style="margin-left: 12px; font-size: 14px; font-weight: bold;">AI is reading...</span>
+            </div>
+            <div style="height: 12px; background-color: rgba(26,26,27,0.1); border-radius: 4px; margin-bottom: 8px;"></div>
+            <div style="height: 12px; background-color: rgba(26,26,27,0.1); border-radius: 4px; width: 70%;"></div>
+            <style>@keyframes spin { 100% { transform: rotate(360deg); } }</style>
+          </div>
+        `;
+        
+        document.body.innerHTML = '<div style="max-width: 800px; margin: 0 auto; padding: 20px; font-family: serif; font-size: 22px; line-height: 1.8; background-color: #FDFCF0; color: #1A1A1B;">' + skeletonHtml + bestNode.innerHTML + '</div>';
         
         window.makeChineseTextClickable(document.body);
       ''';
       _controller.runJavaScript(js);
+      
+      if (_currentInsight == null) {
+        // Wait a tiny bit for the JS to finish extracting text before analyzing
+        Future.delayed(const Duration(milliseconds: 500), () {
+          if (mounted && _isZenMode) {
+            _runAnalyzeArticle();
+          }
+        });
+      }
     } else {
       final js = '''
         if (window.zenModeBackup) {
@@ -369,6 +509,86 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> {
     }
   }
 
+  Future<void> _runAnalyzeArticle() async {
+    setState(() => _isProcessingAi = true);
+    
+    try {
+      final text = await _controller.runJavaScriptReturningResult('document.body.innerText');
+      
+      final repo = ref.read(flashcardRepositoryProvider);
+      final cardsResult = await repo.getFlashcards();
+      final knownWords = cardsResult.fold(
+        (l) => <String>[],
+        (r) => r.map((c) => c.hanzi).toList(),
+      );
+      
+      final gemini = ref.read(geminiServiceProvider);
+      final insight = await gemini.generateArticleInsight(text.toString(), knownWords);
+      
+      if (mounted) {
+        setState(() {
+          _currentInsight = insight;
+        });
+        
+        if (_isZenMode) {
+          final js = '''
+            const banner = document.getElementById('ai-insight-banner');
+            if (banner) {
+              const safeSummary = `${insight.summary.replaceAll('`', '\\`').replaceAll('\n', '<br>')} `;
+              banner.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 16px;">
+                   <div style="background: rgba(255, 193, 7, 0.15); border: 1px solid rgba(255, 193, 7, 0.4); color: #b38600; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; font-family: sans-serif;">HSK ${insight.hskLevel}</div>
+                   <div style="background: rgba(76, 175, 80, 0.12); border: 1px solid rgba(76, 175, 80, 0.35); color: #2e7d32; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; font-family: sans-serif;">Readability ${insight.score}%</div>
+                   <div style="flex-grow: 1;"></div>
+                   <button id="tts-btn" style="display: inline-flex; align-items: center; gap: 6px; background: #1A1A1B; color: #FDFCF0; border: none; border-radius: 20px; padding: 6px 14px; font-size: 12px; font-weight: 600; cursor: pointer; font-family: sans-serif; letter-spacing: 0.3px; transition: opacity 0.2s;">
+                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+                     Listen
+                   </button>
+                </div>
+                <div>
+                   <button id="summary-toggle-btn" style="display: inline-flex; align-items: center; gap: 5px; background: none; border: none; padding: 0; color: rgba(26,26,27,0.5); cursor: pointer; font-size: 13px; font-family: sans-serif; letter-spacing: 0.2px;">
+                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" id="toggle-chevron"><polyline points="6 9 12 15 18 9"/></svg>
+                     AI Summary
+                   </button>
+                   <div id="summary-text" style="display: none; margin-top: 12px; font-size: 15px; color: rgba(26,26,27,0.75); line-height: 1.6; font-family: sans-serif; border-left: 2px solid rgba(26,26,27,0.15); padding-left: 12px;">
+                     \${safeSummary}
+                   </div>
+                </div>
+              `;
+              banner.style.opacity = '1';
+              
+              document.getElementById('summary-toggle-btn').addEventListener('click', function() {
+                const textDiv = document.getElementById('summary-text');
+                const chevron = document.getElementById('toggle-chevron');
+                if (textDiv.style.display === 'none') {
+                  textDiv.style.display = 'block';
+                  chevron.style.transform = 'rotate(180deg)';
+                } else {
+                  textDiv.style.display = 'none';
+                  chevron.style.transform = 'rotate(0deg)';
+                }
+              });
+              
+              document.getElementById('tts-btn').addEventListener('click', function(e) {
+                e.stopPropagation();
+                HanziMasterChannel.postMessage(JSON.stringify({type: 'tts_toggle'}));
+              });
+            }
+          ''';
+          _controller.runJavaScript(js);
+        }
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Analysis Failed: $e')));
+      }
+    } finally {
+      if (mounted) {
+        setState(() => _isProcessingAi = false);
+      }
+    }
+  }
+
   Future<void> _runAddAllUnknowns() async {
     setState(() => _isProcessingAi = true);
     
@@ -394,6 +614,20 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> {
         return;
       }
 
+      if (!mounted) return;
+      final selectedWords = await showModalBottomSheet<List<AiWord>>(
+        context: context,
+        isScrollControlled: true,
+        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(24))),
+        builder: (context) => ExtractedWordsReviewSheet(deckName: deckName, words: newWords),
+      );
+
+      if (selectedWords == null || selectedWords.isEmpty) {
+        return;
+      }
+
+      setState(() => _isProcessingAi = true);
+
       final deckRepo = ref.read(deckRepositoryProvider);
       final createdDeckResult = await deckRepo.createDeck(deckName, description: 'Extracted automatically from Web Explorer ($pageTitle)');
       final createdDeck = createdDeckResult.fold((l) => null, (r) => r);
@@ -402,7 +636,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> {
         return;
       }
       
-      for (final w in newWords) {
+      for (final w in selectedWords) {
         final card = Flashcard(
           id: const Uuid().v4(),
           deckId: createdDeck.id,
@@ -420,7 +654,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> {
       }
       
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Added ${newWords.length} words to "$deckName"')));
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Added ${selectedWords.length} words to "$deckName"')));
       }
     } catch (e) {
       if (mounted) {
@@ -466,6 +700,14 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> {
       if (data['type'] == 'selection') {
         final text = data['text'] as String;
         _startTranslation(text);
+        return;
+      }
+      if (data['type'] == 'tts_toggle') {
+        if (_isReadingAloud) {
+          _stopTts();
+        } else {
+          _playTts();
+        }
         return;
       }
       final char = data['char'] as String;
@@ -810,6 +1052,113 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> {
             ),
           ),
           _buildTranslationPanel(),
+        ],
+      ),
+    );
+  }
+}
+
+class ExtractedWordsReviewSheet extends StatefulWidget {
+  final String deckName;
+  final List<AiWord> words;
+
+  const ExtractedWordsReviewSheet({super.key, required this.deckName, required this.words});
+
+  @override
+  State<ExtractedWordsReviewSheet> createState() => _ExtractedWordsReviewSheetState();
+}
+
+class _ExtractedWordsReviewSheetState extends State<ExtractedWordsReviewSheet> {
+  late List<bool> _selected;
+
+  @override
+  void initState() {
+    super.initState();
+    _selected = List.generate(widget.words.length, (i) => true);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(24),
+      height: MediaQuery.of(context).size.height * 0.75,
+      decoration: const BoxDecoration(
+        color: Color(0xFFFDFCF0),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          const Text("Review Extracted Deck", style: TextStyle(fontSize: 16, color: Colors.indigo, fontWeight: FontWeight.bold)),
+          const SizedBox(height: 4),
+          Text(widget.deckName, style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+          const SizedBox(height: 8),
+          Text(
+            "${_selected.where((s) => s).length} of ${widget.words.length} words selected", 
+            style: TextStyle(color: Colors.grey.shade700, fontSize: 16),
+          ),
+          const SizedBox(height: 16),
+          Expanded(
+            child: Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey.shade300),
+                borderRadius: BorderRadius.circular(12),
+                color: Colors.white,
+              ),
+              child: ListView.separated(
+                itemCount: widget.words.length,
+                separatorBuilder: (context, index) => const Divider(height: 1),
+                itemBuilder: (context, index) {
+                  final word = widget.words[index];
+                  return CheckboxListTile(
+                    value: _selected[index],
+                    activeColor: Colors.indigo,
+                    title: Text(word.hanzi, style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+                    subtitle: Text("${word.pinyin} - ${word.meaning}", style: const TextStyle(fontSize: 15)),
+                    onChanged: (val) {
+                      setState(() => _selected[index] = val ?? false);
+                    },
+                  );
+                },
+              ),
+            ),
+          ),
+          const SizedBox(height: 24),
+          Row(
+            children: [
+              Expanded(
+                child: OutlinedButton(
+                  onPressed: () => Navigator.pop(context, null),
+                  style: OutlinedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    side: const BorderSide(color: Colors.indigo),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                  ),
+                  child: const Text("Cancel", style: TextStyle(color: Colors.indigo, fontSize: 16, fontWeight: FontWeight.bold)),
+                ),
+              ),
+              const SizedBox(width: 16),
+              Expanded(
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.indigo,
+                    foregroundColor: Colors.white,
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                  ),
+                  onPressed: () {
+                    final selectedWords = <AiWord>[];
+                    for (int i = 0; i < widget.words.length; i++) {
+                      if (_selected[i]) selectedWords.add(widget.words[i]);
+                    }
+                    Navigator.pop(context, selectedWords);
+                  },
+                  child: const Text("Create Deck", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 16),
         ],
       ),
     );

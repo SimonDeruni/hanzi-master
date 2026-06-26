@@ -133,7 +133,9 @@ class VisionNotifier extends StateNotifier<VisionState> {
         camera,
         ResolutionPreset.medium,
         enableAudio: false,
-        imageFormatGroup: ImageFormatGroup.yuv420,
+        imageFormatGroup: defaultTargetPlatform == TargetPlatform.android 
+            ? ImageFormatGroup.yuv420 
+            : ImageFormatGroup.bgra8888,
       );
 
       await controller.initialize();
@@ -263,7 +265,9 @@ class VisionNotifier extends StateNotifier<VisionState> {
     final format = InputImageFormatValue.fromRawValue(image.format.raw);
     if (format == null ||
         (defaultTargetPlatform == TargetPlatform.android &&
-            format != InputImageFormat.yuv420) ||
+            format != InputImageFormat.nv21 &&
+            format != InputImageFormat.yuv420 &&
+            format.name != 'yuv_420_888') ||
         (defaultTargetPlatform == TargetPlatform.iOS &&
             format != InputImageFormat.bgra8888)) {
       return null;
@@ -329,7 +333,7 @@ class VisionNotifier extends StateNotifier<VisionState> {
 }
 
 /// Provider for VisionState.
-final visionProvider = StateNotifierProvider<VisionNotifier, VisionState>((ref) {
+final visionProvider = StateNotifierProvider.autoDispose<VisionNotifier, VisionState>((ref) {
   final visionService = ref.watch(visionServiceProvider);
   final geminiService = ref.watch(geminiServiceProvider);
   final lookupService = ref.watch(characterLookupServiceProvider);

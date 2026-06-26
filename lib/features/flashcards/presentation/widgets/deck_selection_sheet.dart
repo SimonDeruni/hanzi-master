@@ -7,15 +7,17 @@ import 'package:hanzi_master/features/flashcards/presentation/providers/flashcar
 import 'package:hanzi_master/shared/widgets/global_blurred_bottom_sheet.dart';
 
 class DeckSelectionSheet extends ConsumerWidget {
-  final Flashcard card;
+  final Flashcard? card;
+  final List<Flashcard>? cards;
   final VoidCallback? onAdded;
 
-  const DeckSelectionSheet({super.key, required this.card, this.onAdded});
+  const DeckSelectionSheet({super.key, this.card, this.cards, this.onAdded})
+      : assert(card != null || cards != null, 'Must provide either card or cards');
 
-  static Future<void> show(BuildContext context, {required Flashcard card, VoidCallback? onAdded}) {
+  static Future<void> show(BuildContext context, {Flashcard? card, List<Flashcard>? cards, VoidCallback? onAdded}) {
     return GlobalBlurredBottomSheet.show(
       context,
-      child: DeckSelectionSheet(card: card, onAdded: onAdded),
+      child: DeckSelectionSheet(card: card, cards: cards, onAdded: onAdded),
     );
   }
 
@@ -23,6 +25,7 @@ class DeckSelectionSheet extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final asyncDecks = ref.watch(deckControllerProvider);
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final isBatch = cards != null && cards!.isNotEmpty;
 
     return Padding(
       padding: const EdgeInsets.all(24),
@@ -35,9 +38,9 @@ class DeckSelectionSheet extends ConsumerWidget {
             style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 8),
-          const Text(
-            "Where would you like to save this character?",
-            style: TextStyle(fontSize: 16, color: Colors.grey),
+          Text(
+            isBatch ? "Where would you like to save these ${cards!.length} words?" : "Where would you like to save this character?",
+            style: const TextStyle(fontSize: 16, color: Colors.grey),
           ),
           const SizedBox(height: 24),
           asyncDecks.when(
@@ -52,23 +55,51 @@ class DeckSelectionSheet extends ConsumerWidget {
                       leading: Icon(deck.id == 'default' ? Icons.library_books : Icons.book, color: Colors.indigo),
                       title: Text(deck.localizedName(context), style: const TextStyle(fontWeight: FontWeight.bold)),
                       onTap: () {
-                        final newCard = Flashcard(
-                          id: DateTime.now().millisecondsSinceEpoch.toString(),
-                          hanzi: card.hanzi,
-                          pinyin: card.pinyin,
-                          definition: card.definition,
-                          hskLevel: card.hskLevel,
-                          strokePaths: const [],
-                          modeStats: const {},
-                          deckId: deck.id,
-                        );
-                        ref.read(flashcardControllerProvider.notifier).addFlashcard(newCard);
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(AppLocalizations.of(context)!.addedToDeck(card.hanzi, deck.localizedName(context))),
-                            backgroundColor: Colors.green,
-                          ),
-                        );
+                        final controller = ref.read(flashcardControllerProvider.notifier);
+                        final l10n = AppLocalizations.of(context)!;
+                        
+                        if (isBatch) {
+                           int addedCount = 0;
+                           for (final c in cards!) {
+                             final newCard = Flashcard(
+                               id: DateTime.now().millisecondsSinceEpoch.toString() + addedCount.toString(),
+                               hanzi: c.hanzi,
+                               pinyin: c.pinyin,
+                               definition: c.definition,
+                               hskLevel: c.hskLevel,
+                               strokePaths: const [],
+                               modeStats: const {},
+                               deckId: deck.id,
+                             );
+                             controller.addFlashcard(newCard);
+                             addedCount++;
+                           }
+                           ScaffoldMessenger.of(context).showSnackBar(
+                             SnackBar(
+                               content: Text('Added $addedCount words to ${deck.localizedName(context)}'),
+                               backgroundColor: Colors.green,
+                             ),
+                           );
+                        } else if (card != null) {
+                           final newCard = Flashcard(
+                             id: DateTime.now().millisecondsSinceEpoch.toString(),
+                             hanzi: card!.hanzi,
+                             pinyin: card!.pinyin,
+                             definition: card!.definition,
+                             hskLevel: card!.hskLevel,
+                             strokePaths: const [],
+                             modeStats: const {},
+                             deckId: deck.id,
+                           );
+                           controller.addFlashcard(newCard);
+                           ScaffoldMessenger.of(context).showSnackBar(
+                             SnackBar(
+                               content: Text(l10n.addedToDeck(card!.hanzi, deck.localizedName(context))),
+                               backgroundColor: Colors.green,
+                             ),
+                           );
+                        }
+                        
                         Navigator.pop(context);
                         if (onAdded != null) onAdded!();
                       },

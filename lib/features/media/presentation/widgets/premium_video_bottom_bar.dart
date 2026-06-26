@@ -9,6 +9,7 @@ class PremiumVideoBottomBar extends StatefulWidget {
   final int currentIndex;
   final Duration currentPosition;
   final Function(String) onWordTapped;
+  final VoidCallback? onInteraction;
 
   const PremiumVideoBottomBar({
     super.key,
@@ -17,6 +18,7 @@ class PremiumVideoBottomBar extends StatefulWidget {
     required this.currentIndex,
     required this.currentPosition,
     required this.onWordTapped,
+    this.onInteraction,
   });
 
   @override
@@ -95,12 +97,14 @@ class _PremiumVideoBottomBarState extends State<PremiumVideoBottomBar> {
                         min: 0.0,
                         max: _duration > 0 ? _duration : 1.0,
                         onChanged: (val) {
+                          widget.onInteraction?.call();
                           setState(() {
                             _isDragging = true;
                             _dragValue = val;
                           });
                         },
                         onChangeEnd: (val) {
+                          widget.onInteraction?.call();
                           widget.controller.seekTo(seconds: val, allowSeekAhead: true);
                           setState(() {
                             _isDragging = false;

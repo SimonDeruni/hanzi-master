@@ -52,15 +52,24 @@ class _ARLensScreenState extends ConsumerState<ARLensScreen> with TickerProvider
         children: [
           // ── Camera Preview ──────────────────────────────────────────
           if (visionState.isCameraInitialized && visionState.cameraController != null)
-            SizedBox.expand(
-              child: FittedBox(
-                fit: BoxFit.cover,
-                child: SizedBox(
-                  width: 1000,
-                  height: 1000 / visionState.cameraController!.value.aspectRatio,
-                  child: CameraPreview(visionState.cameraController!),
-                ),
-              ),
+            Builder(
+              builder: (context) {
+                final size = MediaQuery.of(context).size;
+                final controller = visionState.cameraController!;
+                final previewWidth = controller.value.previewSize?.width ?? 1.0;
+                final previewHeight = controller.value.previewSize?.height ?? 1.0;
+                final cameraAspectRatio = previewWidth > 0 && previewHeight > 0 ? previewHeight / previewWidth : 1.0;
+                
+                var scale = size.aspectRatio * cameraAspectRatio;
+                if (scale < 1) scale = 1 / scale;
+
+                return Transform.scale(
+                  scale: scale,
+                  child: Center(
+                    child: CameraPreview(controller),
+                  ),
+                );
+              },
             ),
 
           // ── Object Bounding Box Overlay ──────────────────────────────

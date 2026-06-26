@@ -5,6 +5,8 @@ import 'package:hanzi_master/features/live_translate/presentation/screens/transl
 import 'package:hanzi_master/shared/widgets/global_sliver_app_bar.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 
+import 'package:hanzi_master/features/premium/presentation/screens/universal_scanner_screen.dart';
+
 class TranslationHubScreen extends StatelessWidget {
   const TranslationHubScreen({super.key});
 
@@ -52,7 +54,22 @@ class TranslationHubScreen extends StatelessWidget {
                       Navigator.push(context, MaterialPageRoute(builder: (_) => const TravelInterpreterScreen()));
                     },
                   ),
+
                   const SizedBox(height: 24),
+                  _buildPremiumCard(
+                    context: context,
+                    title: "Universal Scanner",
+                    description: "Point your camera at real-world objects or text to instantly extract and translate Chinese characters.",
+                    icon: Icons.document_scanner,
+                    gradient: const LinearGradient(
+                      colors: [Color(0xFF11998E), Color(0xFF38EF7D)],
+                      begin: Alignment.topRight,
+                      end: Alignment.bottomLeft,
+                    ),
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (_) => const UniversalScannerScreen()));
+                    },
+                  ),
                   const SizedBox(height: 40),
                 ]),
               ),

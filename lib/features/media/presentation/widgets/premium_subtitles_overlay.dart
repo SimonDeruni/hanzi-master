@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import '../../domain/models/video_transcript.dart';
 
@@ -40,11 +39,17 @@ class PremiumSubtitlesOverlay extends StatelessWidget {
     final line = transcript.lines[currentIndex];
     final highlightedCount = _getHighlightedCharCount(line, currentPosition);
 
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        if (showHanzi)
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+      decoration: BoxDecoration(
+        color: Colors.black.withValues(alpha: 0.4),
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          if (showHanzi)
           Wrap(
             alignment: WrapAlignment.center,
             children: line.text.split('').asMap().entries.map((entry) {
@@ -59,7 +64,10 @@ class PremiumSubtitlesOverlay extends StatelessWidget {
                   fontSize: 36,
                   color: isHighlighted ? Colors.white : Colors.white60,
                   fontWeight: isHighlighted ? FontWeight.bold : FontWeight.w500,
-                  shadows: const [
+                  shadows: isHighlighted ? const [
+                    Shadow(color: Colors.blueAccent, blurRadius: 8, offset: Offset(0, 0)),
+                    Shadow(color: Colors.black87, blurRadius: 4, offset: Offset(1, 1)),
+                  ] : const [
                     Shadow(color: Colors.black87, blurRadius: 4, offset: Offset(1, 1))
                   ],
                 ),
@@ -89,24 +97,23 @@ class PremiumSubtitlesOverlay extends StatelessWidget {
           ),
         ],
 
-        if (showEnglish) ...[
+        if (showEnglish && line.translation != null) ...[
           const SizedBox(height: 8),
           Text(
-            "- translated text placeholder -", // Wait, VideoTranscript doesn't have English translation out of the box in lines? 
-            // We'll leave this or put a placeholder since Youtube exploded captions are usually single language.
-            // If English is available, it would be added to the model. Let's just mock it or omit it for now if null.
+            line.translation!,
             style: const TextStyle(
-              fontSize: 18, 
-              color: Colors.white54,
+              fontSize: 16,
+              color: Colors.white70,
               fontStyle: FontStyle.italic,
               shadows: [
                 Shadow(color: Colors.black87, blurRadius: 4, offset: Offset(1, 1))
               ],
             ),
-            textAlign: TextAlign.center,
-          ),
+              textAlign: TextAlign.center,
+            ),
+          ],
         ],
-      ],
+      ),
     );
   }
 }

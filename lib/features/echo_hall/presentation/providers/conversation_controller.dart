@@ -7,7 +7,7 @@ import '../../../../core/services/gemini_service.dart';
 import '../../../../core/models/pronunciation_grade.dart';
 import '../../../chat/domain/entities/chat_message.dart';
 
-final conversationControllerProvider = StateNotifierProvider<ConversationController, ConversationState>((ref) {
+final conversationControllerProvider = StateNotifierProvider.autoDispose<ConversationController, ConversationState>((ref) {
   return ConversationController(
     echoHallService: ref.watch(echoHallServiceProvider),
     audioService: ref.watch(audioRecordingServiceProvider),

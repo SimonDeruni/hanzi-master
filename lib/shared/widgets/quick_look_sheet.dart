@@ -328,6 +328,7 @@ class _FoundBody extends ConsumerWidget {
               Expanded(
                 child: _ActionButton(
                   label: inDeck ? AppLocalizations.of(context)!.inDeckCheck : AppLocalizations.of(context)!.addToDeckPlus,
+                  icon: inDeck ? Icons.check : Icons.add,
                   isPrimary: false,
                   isDisabled: inDeck,
                   onTap: inDeck
@@ -351,12 +352,12 @@ class _FoundBody extends ConsumerWidget {
                         },
                 ),
               ),
-              const SizedBox(width: 8),
-              const SizedBox(width: 8),
+              const SizedBox(width: 6),
               // Shadowing button
               Expanded(
                 child: _ActionButton(
-                  label: 'Shadowing',
+                  label: 'Shadow',
+                  icon: Icons.mic_outlined,
                   isPrimary: false,
                   isDisabled: false,
                   onTap: () {
@@ -378,11 +379,12 @@ class _FoundBody extends ConsumerWidget {
                   },
                 ),
               ),
-              const SizedBox(width: 8),
+              const SizedBox(width: 6),
               // Trace button
               Expanded(
                 child: _ActionButton(
                   label: 'Trace',
+                  icon: Icons.draw_outlined,
                   isPrimary: false,
                   isDisabled: false,
                   onTap: () {
@@ -391,11 +393,12 @@ class _FoundBody extends ConsumerWidget {
                   },
                 ),
               ),
-              const SizedBox(width: 8),
+              const SizedBox(width: 6),
               // Full card button
               Expanded(
                 child: _ActionButton(
                   label: AppLocalizations.of(context)!.openCardArrow,
+                  icon: Icons.open_in_new_rounded,
                   isPrimary: true,
                   isDisabled: false,
                   onTap: () {
@@ -604,12 +607,14 @@ class _Badge extends StatelessWidget {
 
 class _ActionButton extends StatelessWidget {
   final String label;
+  final IconData? icon;
   final bool isPrimary;
   final bool isDisabled;
   final VoidCallback? onTap;
 
   const _ActionButton({
     required this.label,
+    this.icon,
     required this.isPrimary,
     required this.isDisabled,
     required this.onTap,
@@ -623,7 +628,7 @@ class _ActionButton extends StatelessWidget {
       onTap: onTap,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 150),
-        height: 52,
+        height: 46,
         alignment: Alignment.center,
         decoration: BoxDecoration(
           color: isPrimary
@@ -631,35 +636,51 @@ class _ActionButton extends StatelessWidget {
                   ? Colors.grey.shade300
                   : Colors.indigo)
               : Colors.transparent,
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(14),
           border: isPrimary
               ? null
               : Border.all(
-                  color: effectiveColor.withValues(alpha: 0.4),
+                  color: effectiveColor.withValues(alpha: 0.35),
                   width: 1.5,
                 ),
           boxShadow: isPrimary && !isDisabled
               ? [
                   BoxShadow(
-                    color: Colors.indigo.withValues(alpha: 0.35),
-                    blurRadius: 12,
-                    offset: const Offset(0, 4),
+                    color: Colors.indigo.withValues(alpha: 0.3),
+                    blurRadius: 10,
+                    offset: const Offset(0, 3),
                   ),
                 ]
               : null,
         ),
-        child: Text(
-          label,
-          style: TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.w600,
-            color: isPrimary
-                ? Colors.white
-                : (isDisabled
-                    ? Colors.grey
-                    : Colors.indigo),
-            letterSpacing: 0.2,
-          ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (icon != null)
+              Icon(
+                icon,
+                size: 16,
+                color: isPrimary
+                    ? Colors.white
+                    : (isDisabled ? Colors.grey : Colors.indigo),
+              ),
+            if (icon != null) const SizedBox(height: 2),
+            Text(
+              label,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 11,
+                fontWeight: FontWeight.w600,
+                color: isPrimary
+                    ? Colors.white
+                    : (isDisabled
+                        ? Colors.grey
+                        : Colors.indigo),
+                letterSpacing: 0.1,
+              ),
+            ),
+          ],
         ),
       ),
     );
