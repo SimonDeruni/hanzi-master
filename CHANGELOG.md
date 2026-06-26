@@ -22,6 +22,8 @@ All notable changes to this project will be documented in this file.
     - Implemented a persistent `Hive` cache for Gemini character origin queries to eliminate duplicate AI latency.
 
 ### Fixed
+- **Media Desk Search Crash**:
+    - Fixed a `FormatException: Invalid radix-10 number` issue when youtube_explode_dart parses video search metadata on streams (e.g. viewCount/duration). Implemented manual iteration in `YoutubeRepository.searchVideos` to skip corrupt items instead of failing the entire query.
 - **Localization**:
     - Extracted hardcoded UI strings into `AppLocalizations` for Echo Hall Scenarios, Master Lin greeting, Reading Room titles/descriptions, and Custom Story Creator Dialog.
     - Generated translations for all new strings across the 12 supported languages.
