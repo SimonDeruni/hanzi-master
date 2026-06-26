@@ -11,6 +11,8 @@ import '../../../../core/services/gemini_service.dart';
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
 
 import 'package:hanzi_master/features/media/presentation/widgets/fullscreen_media_overlay.dart';
+import 'package:hanzi_master/features/media/presentation/widgets/premium_ai_prep_card.dart';
+import 'package:hanzi_master/features/media/presentation/widgets/premium_transcript_line.dart';
 
 class SmartMediaDeskScreen extends ConsumerStatefulWidget {
   final yt.Video video;
@@ -247,7 +249,6 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
               );
             },
           ),
-
           // Middle AI Briefing
           if (_isLoading)
             const Padding(
@@ -261,30 +262,9 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
             )
           else ...[
             if (_briefing != null)
-              ExpansionTile(
-                title: const Text('AI Prep Room', style: TextStyle(fontWeight: FontWeight.bold)),
-                leading: const Icon(Icons.psychology, color: Colors.indigo),
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(_briefing!.summary),
-                        const SizedBox(height: 12),
-                        const Text('Target Vocabulary:', style: TextStyle(fontWeight: FontWeight.bold)),
-                        const SizedBox(height: 8),
-                        Wrap(
-                          spacing: 8,
-                          children: _briefing!.hardWords.map((w) => ActionChip(
-                            label: Text(w),
-                            onPressed: () => _onWordTapped(w),
-                          )).toList(),
-                        )
-                      ],
-                    ),
-                  ),
-                ],
+              PremiumAiPrepCard(
+                briefing: _briefing!,
+                onWordTapped: _onWordTapped,
               ),
             
             // Bottom Transcript List
@@ -297,65 +277,13 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
                   final isCurrent = index == _currentIndex;
                   final highlightedCount = _getHighlightedCharCount(line, _currentPosition);
 
-                  return Container(
-                    color: isCurrent ? Colors.indigo.withValues(alpha: 0.1) : Colors.transparent,
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        IconButton(
-                          icon: Icon(Icons.loop, size: 20, color: isCurrent ? Colors.indigo : Colors.grey),
-                          onPressed: () => _replayLine(line.start),
-                          tooltip: 'Shadow (Replay Sentence)',
-                        ),
-                        IconButton(
-                          icon: const Text('✨', style: TextStyle(fontSize: 16)),
-                          onPressed: () => _showSentenceLesson(line.text),
-                          tooltip: 'AI Sentence Explainer',
-                        ),
-                        const SizedBox(width: 8),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              if (line.pinyin != null)
-                                Padding(
-                                  padding: const EdgeInsets.only(bottom: 4),
-                                  child: Text(
-                                    line.pinyin!,
-                                    style: TextStyle(fontSize: 14, color: Colors.grey[600]),
-                                  ),
-                                ),
-                              Wrap(
-                                children: line.text.split('').asMap().entries.map((entry) {
-                                  final charIndex = entry.key;
-                                  final char = entry.value;
-                                  final isHighlighted = isCurrent && charIndex <= highlightedCount;
-                                  final isChinese = RegExp(r'[\u4e00-\u9fff]').hasMatch(char);
-
-                                  final textWidget = Text(
-                                    char,
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      color: isHighlighted ? Colors.indigo[900] : Colors.black87,
-                                      fontWeight: isHighlighted ? FontWeight.bold : FontWeight.normal,
-                                      height: 1.5,
-                                    ),
-                                  );
-
-                                  return isChinese
-                                    ? GestureDetector(
-                                        onTap: () => _onWordTapped(char),
-                                        child: textWidget,
-                                      )
-                                    : textWidget;
-                                }).toList(),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
+                  return PremiumTranscriptLine(
+                    line: line,
+                    isCurrent: isCurrent,
+                    highlightedCount: highlightedCount,
+                    onReplay: () => _replayLine(line.start),
+                    onAiExplain: () => _showSentenceLesson(line.text),
+                    onWordTapped: _onWordTapped,
                   );
                 },
               ),
