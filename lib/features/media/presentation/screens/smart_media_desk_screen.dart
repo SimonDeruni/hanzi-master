@@ -309,11 +309,12 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
                 itemCount: _transcript!.lines.length + 1,
                 itemBuilder: (context, index) {
                   if (index == 0) {
+                    if (_briefing == null) return const SizedBox.shrink();
                     return Padding(
                       padding: const EdgeInsets.only(bottom: 24.0),
                       child: PremiumAiPrepCard(
-                        summary: widget.video.aiBriefing ?? "No briefing available.",
-                        targetVocab: widget.video.targetVocabulary ?? [],
+                        briefing: _briefing!,
+                        onWordTapped: _onWordTapped,
                       ),
                     );
                   }

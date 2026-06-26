@@ -62,43 +62,45 @@ class PremiumAiPrepCard extends StatelessWidget {
                 color: isDark ? Colors.grey[300] : Colors.black87,
               ),
             ),
-            const SizedBox(height: 20),
-            const Text(
-              'Target Vocabulary',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 14,
-                color: Colors.grey,
+            if (briefing.hardWords.isNotEmpty) ...[
+              const SizedBox(height: 20),
+              const Text(
+                'Target Vocabulary',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 14,
+                  color: Colors.grey,
+                ),
               ),
-            ),
-            const SizedBox(height: 12),
-            Wrap(
-              spacing: 8,
-              runSpacing: 8,
-              children: briefing.hardWords.map((w) {
-                return GestureDetector(
-                  onTap: () => onWordTapped(w),
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                    decoration: BoxDecoration(
-                      color: isDark ? Colors.grey[800] : const Color(0xFFF0F2F5),
-                      borderRadius: BorderRadius.circular(20),
-                      border: Border.all(
-                        color: isDark ? Colors.grey[700]! : Colors.grey[300]!,
+              const SizedBox(height: 12),
+              Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                children: briefing.hardWords.map((w) {
+                  return GestureDetector(
+                    onTap: () => onWordTapped(w),
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                      decoration: BoxDecoration(
+                        color: isDark ? Colors.grey[800] : const Color(0xFFF0F2F5),
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(
+                          color: isDark ? Colors.grey[700]! : Colors.grey[300]!,
+                        ),
+                      ),
+                      child: Text(
+                        w,
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          color: isDark ? Colors.white : Colors.black87,
+                        ),
                       ),
                     ),
-                    child: Text(
-                      w,
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: isDark ? Colors.white : Colors.black87,
-                      ),
-                    ),
-                  ),
-                );
-              }).toList(),
-            ),
+                  );
+                }).toList(),
+              ),
+            ],
           ],
         ),
       ),
