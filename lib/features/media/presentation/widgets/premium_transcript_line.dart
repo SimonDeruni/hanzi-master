@@ -8,6 +8,8 @@ class PremiumTranscriptLine extends StatelessWidget {
   final VoidCallback onReplay;
   final VoidCallback onAiExplain;
   final Function(String) onWordTapped;
+  final bool showPinyin;
+  final bool showEnglish;
 
   const PremiumTranscriptLine({
     super.key,
@@ -17,6 +19,8 @@ class PremiumTranscriptLine extends StatelessWidget {
     required this.onReplay,
     required this.onAiExplain,
     required this.onWordTapped,
+    this.showPinyin = true,
+    this.showEnglish = true,
   });
 
   @override
@@ -81,7 +85,7 @@ class PremiumTranscriptLine extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                if (line.pinyin != null)
+                if (showPinyin && line.pinyin != null)
                   Padding(
                     padding: const EdgeInsets.only(bottom: 6),
                     child: Text(
@@ -120,6 +124,18 @@ class PremiumTranscriptLine extends StatelessWidget {
                       : textWidget;
                   }).toList(),
                 ),
+                if (showEnglish)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8),
+                    child: Text(
+                      "- translated text placeholder -",
+                      style: TextStyle(
+                        fontSize: 14, 
+                        fontStyle: FontStyle.italic,
+                        color: isDark ? Colors.grey[500] : Colors.grey[500],
+                      ),
+                    ),
+                  ),
               ],
             ),
           ),

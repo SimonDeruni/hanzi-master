@@ -35,6 +35,8 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
   Duration _currentPosition = Duration.zero;
   final ScrollController _scrollController = ScrollController();
   StreamSubscription? _positionSubscription;
+  bool _showPinyin = true;
+  bool _showEnglish = false;
 
   @override
   void initState() {
@@ -224,6 +226,44 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         iconTheme: const IconThemeData(color: Colors.black87),
+        actions: [
+          PopupMenuButton<String>(
+            icon: const Icon(Icons.closed_caption, color: Colors.indigo),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+            itemBuilder: (context) => [
+              PopupMenuItem(
+                child: StatefulBuilder(
+                  builder: (context, setPopupState) {
+                    return SwitchListTile(
+                      title: const Text('Show Pinyin'),
+                      value: _showPinyin,
+                      activeColor: Colors.indigo,
+                      onChanged: (v) {
+                        setPopupState(() {});
+                        setState(() => _showPinyin = v);
+                      },
+                    );
+                  }
+                ),
+              ),
+              PopupMenuItem(
+                child: StatefulBuilder(
+                  builder: (context, setPopupState) {
+                    return SwitchListTile(
+                      title: const Text('Show English'),
+                      value: _showEnglish,
+                      activeColor: Colors.indigo,
+                      onChanged: (v) {
+                        setPopupState(() {});
+                        setState(() => _showEnglish = v);
+                      },
+                    );
+                  }
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
       body: Column(
         children: [
@@ -281,6 +321,8 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
                     line: line,
                     isCurrent: isCurrent,
                     highlightedCount: highlightedCount,
+                    showPinyin: _showPinyin,
+                    showEnglish: _showEnglish,
                     onReplay: () => _replayLine(line.start),
                     onAiExplain: () => _showSentenceLesson(line.text),
                     onWordTapped: _onWordTapped,
