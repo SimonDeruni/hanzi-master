@@ -28,6 +28,8 @@ class _CalligraphyCanvasDialogState extends ConsumerState<CalligraphyCanvasDialo
   final ValueNotifier<List<ui.Offset?>> _scratchpadNotifier = ValueNotifier([]);
   Flashcard? _hydratedCard;
   bool _isLoading = false;
+  int _currentStrokeIndex = 0;
+  bool _isComplete = false;
 
   @override
   void initState() {
@@ -52,6 +54,25 @@ class _CalligraphyCanvasDialogState extends ConsumerState<CalligraphyCanvasDialo
 
   void _clear() {
     _scratchpadNotifier.value = [];
+    setState(() {
+      _currentStrokeIndex = 0;
+      _isComplete = false;
+    });
+  }
+
+  void _onStrokeComplete(int index, ui.Size canvasSize) {
+    if (!mounted || _hydratedCard == null) return;
+    final totalStrokes = _hydratedCard!.strokePaths.where((s) => s != '__CHAR_SEPARATOR__').length;
+    
+    if (index < totalStrokes - 1) {
+      setState(() {
+        _currentStrokeIndex = index + 1;
+      });
+    } else {
+      setState(() {
+        _isComplete = true;
+      });
+    }
   }
 
   @override
@@ -123,11 +144,15 @@ class _CalligraphyCanvasDialogState extends ConsumerState<CalligraphyCanvasDialo
                           : DrawingCanvas(
                               strokePaths: _hydratedCard?.strokePaths ?? [],
                               medianPaths: _hydratedCard?.medianPaths ?? [],
-                              showAnimation: true,
-                              readOnly: false,
+                              showAnimation: false,
+                              strokeByStrokeMode: true,
+                              currentStrokeIndex: _currentStrokeIndex,
+                              onStrokeComplete: _onStrokeComplete,
+                              readOnly: _isComplete,
                               showControls: true,
                               showGrade: false,
                               showGuideLines: true,
+                              showReference: true,
                               userPointsNotifier: _scratchpadNotifier,
                             ),
                     ),
