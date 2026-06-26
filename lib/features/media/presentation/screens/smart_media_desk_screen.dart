@@ -301,31 +301,42 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
               child: Text(_error!, style: const TextStyle(color: Colors.red)),
             )
           else ...[
-            if (_briefing != null)
-              PremiumAiPrepCard(
-                briefing: _briefing!,
-                onWordTapped: _onWordTapped,
-              ),
-            
-            // Bottom Transcript List
+            // Transcript & AI Briefing
             Expanded(
               child: ListView.builder(
                 controller: _scrollController,
-                itemCount: _transcript!.lines.length,
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+                itemCount: _transcript!.lines.length + 1,
                 itemBuilder: (context, index) {
-                  final line = _transcript!.lines[index];
-                  final isCurrent = index == _currentIndex;
-                  final highlightedCount = _getHighlightedCharCount(line, _currentPosition);
+                  if (index == 0) {
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom: 24.0),
+                      child: PremiumAiPrepCard(
+                        summary: widget.video.aiBriefing ?? "No briefing available.",
+                        targetVocab: widget.video.targetVocabulary ?? [],
+                      ),
+                    );
+                  }
+                  
+                  final lineIndex = index - 1;
+                  final line = _transcript!.lines[lineIndex];
+                  final isCurrent = _currentIndex == lineIndex;
+                  final highlightedCount = isCurrent 
+                      ? _getHighlightedCharCount(line, _currentPosition)
+                      : 0;
 
-                  return PremiumTranscriptLine(
-                    line: line,
-                    isCurrent: isCurrent,
-                    highlightedCount: highlightedCount,
-                    showPinyin: _showPinyin,
-                    showEnglish: _showEnglish,
-                    onReplay: () => _replayLine(line.start),
-                    onAiExplain: () => _showSentenceLesson(line.text),
-                    onWordTapped: _onWordTapped,
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 16.0),
+                    child: PremiumTranscriptLine(
+                      line: line,
+                      isCurrent: isCurrent,
+                      highlightedCount: highlightedCount,
+                      showPinyin: _showPinyin,
+                      showEnglish: _showEnglish,
+                      onReplay: () => _replayLine(line.start),
+                      onAiExplain: () => _showSentenceLesson(line.text),
+                      onWordTapped: _onWordTapped,
+                    ),
                   );
                 },
               ),

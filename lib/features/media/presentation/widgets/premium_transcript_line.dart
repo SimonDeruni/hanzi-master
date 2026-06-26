@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/gestures.dart';
 import '../../domain/models/video_transcript.dart';
 
 class PremiumTranscriptLine extends StatelessWidget {
@@ -97,32 +98,31 @@ class PremiumTranscriptLine extends StatelessWidget {
                       ),
                     ),
                   ),
-                Wrap(
-                  children: line.text.split('').asMap().entries.map((entry) {
-                    final charIndex = entry.key;
-                    final char = entry.value;
-                    final isHighlighted = isCurrent && charIndex <= highlightedCount;
-                    final isChinese = RegExp(r'[\u4e00-\u9fff]').hasMatch(char);
+                RichText(
+                  text: TextSpan(
+                    children: line.text.split('').asMap().entries.map((entry) {
+                      final charIndex = entry.key;
+                      final char = entry.value;
+                      final isHighlighted = isCurrent && charIndex <= highlightedCount;
+                      final isChinese = RegExp(r'[\u4e00-\u9fff]').hasMatch(char);
 
-                    final textWidget = Text(
-                      char,
-                      style: TextStyle(
-                        fontSize: 22,
-                        color: isHighlighted 
-                            ? (isDark ? Colors.indigo.shade300 : Colors.indigo.shade900)
-                            : (isDark ? Colors.white : Colors.black87),
-                        fontWeight: isHighlighted ? FontWeight.bold : FontWeight.w500,
-                        height: 1.5,
-                      ),
-                    );
-
-                    return isChinese
-                      ? GestureDetector(
-                          onTap: () => onWordTapped(char),
-                          child: textWidget,
-                        )
-                      : textWidget;
-                  }).toList(),
+                      return TextSpan(
+                        text: char,
+                        style: TextStyle(
+                          fontSize: 22,
+                          color: isHighlighted 
+                              ? (isDark ? Colors.indigo.shade300 : Colors.indigo.shade900)
+                              : (isDark ? Colors.white : Colors.black87),
+                          fontWeight: isHighlighted ? FontWeight.bold : FontWeight.w500,
+                          height: 1.5,
+                          fontFamily: 'sans-serif',
+                        ),
+                        recognizer: isChinese 
+                            ? (TapGestureRecognizer()..onTap = () => onWordTapped(char))
+                            : null,
+                      );
+                    }).toList(),
+                  ),
                 ),
                 if (showEnglish)
                   Padding(
