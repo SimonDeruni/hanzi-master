@@ -40,7 +40,7 @@ class _ScenarioSelectionScreenState extends State<ScenarioSelectionScreen> {
               flexibleSpace: FlexibleSpaceBar(
                 titlePadding: const EdgeInsets.only(left: 56, bottom: 16),
                 title: Text(
-                  "Pronunciation",
+                  "Roleplay Scenarios",
                   style: theme.textTheme.headlineSmall?.copyWith(
                     fontWeight: FontWeight.w900,
                     letterSpacing: 1.0,
@@ -247,7 +247,7 @@ class _ScenarioCard extends StatelessWidget {
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                         ),
                         icon: const Icon(Icons.chat_bubble_outline, size: 20),
-                        label: const Text("Pronunciation Chat", style: TextStyle(fontWeight: FontWeight.bold)),
+                        label: const Text("Chat Practice", style: TextStyle(fontWeight: FontWeight.bold)),
                       ),
                     ],
                   ),

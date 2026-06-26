@@ -7,6 +7,7 @@ import '../../../chat/domain/entities/chat_message.dart';
 import '../widgets/pronunciation_report_sheet.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/shared/widgets/tappable_hanzi_text.dart';
 
 class ConversationScreen extends ConsumerStatefulWidget {
   final ConversationScenario scenario;
@@ -145,12 +146,12 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
                 ),
               ),
 
-            // 3. Floating Mic Pill
+            // 3. Input Area
             Positioned(
-              bottom: 30,
-              left: 20,
-              right: 20,
-              child: _buildFloatingMicPill(state, theme),
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: _buildInputArea(state, theme),
             ),
           ],
         ),
@@ -158,75 +159,106 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
     );
   }
 
-  Widget _buildFloatingMicPill(ConversationState state, ThemeData theme) {
+  final TextEditingController _textController = TextEditingController();
+
+  Widget _buildInputArea(ConversationState state, ThemeData theme) {
     return Container(
-      height: 60,
-      decoration: BoxDecoration(
-        color: theme.cardTheme.color,
-        borderRadius: BorderRadius.circular(30),
-        border: Border.all(color: theme.colorScheme.onSurface.withValues(alpha: 0.1)),
-        boxShadow: [
-          BoxShadow(
-            color: theme.colorScheme.onSurface.withValues(alpha: 0.1),
-            blurRadius: 20,
-            offset: const Offset(0, 10),
-          ),
-        ],
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          // Cancel Button
-          IconButton(
-            icon: Icon(Icons.close, color: theme.colorScheme.onSurface.withValues(alpha: 0.4)),
-            onPressed: () => Navigator.pop(context),
-          ),
-          
-          // Center Mic / Waveform
-          Expanded(
-            child: Listener(
-              onPointerDown: (_) {
-                ref.read(conversationControllerProvider.notifier).startRecording();
-              },
-              onPointerUp: (_) {
-                ref.read(conversationControllerProvider.notifier).stopRecordingAndProcess();
-              },
-              onPointerCancel: (_) {
-                ref.read(conversationControllerProvider.notifier).stopRecordingAndProcess();
-              },
-              child: Container(
-                color: Colors.transparent, // expanded touch area
-                child: Center(
-                  child: state.isRecording
-                      ? _buildSimulatedWaveform(theme)
-                      : Text(
-                          "Hold to Talk",
-                          style: theme.textTheme.titleMedium?.copyWith(
-                            color: theme.colorScheme.onSurface.withValues(alpha: 0.5),
+      color: theme.colorScheme.surface,
+      child: SafeArea(
+        top: false,
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Expanded(
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: theme.cardTheme.color,
+                    borderRadius: BorderRadius.circular(24),
+                    border: Border.all(color: theme.colorScheme.onSurface.withValues(alpha: 0.1)),
+                  ),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          controller: _textController,
+                          style: theme.textTheme.bodyLarge,
+                          maxLines: 4,
+                          minLines: 1,
+                          decoration: InputDecoration(
+                            hintText: state.isRecording ? "Listening..." : "Type your message...",
+                            hintStyle: theme.textTheme.bodyMedium?.copyWith(
+                              color: theme.colorScheme.onSurface.withValues(alpha: 0.4),
+                            ),
+                            border: InputBorder.none,
+                            contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                           ),
+                          onSubmitted: (val) {
+                            if (val.trim().isNotEmpty) {
+                              // We need a sendMessage method in ConversationController
+                              ref.read(conversationControllerProvider.notifier).sendMessage(val);
+                              _textController.clear();
+                            }
+                          },
                         ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
+              const SizedBox(width: 8),
+              
+              ValueListenableBuilder<TextEditingValue>(
+                valueListenable: _textController,
+                builder: (context, value, child) {
+                  final isTextMode = value.text.trim().isNotEmpty;
+                  
+                  if (isTextMode) {
+                    return GestureDetector(
+                      onTap: state.isProcessing ? null : () {
+                        ref.read(conversationControllerProvider.notifier).sendMessage(_textController.text);
+                        _textController.clear();
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.all(12),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: theme.colorScheme.primary,
+                        ),
+                        child: Icon(Icons.send_rounded, color: theme.colorScheme.onPrimary, size: 24),
+                      ),
+                    );
+                  } else {
+                    return Listener(
+                      onPointerDown: (_) {
+                        if (!state.isProcessing) ref.read(conversationControllerProvider.notifier).startRecording();
+                      },
+                      onPointerUp: (_) {
+                        if (!state.isProcessing) ref.read(conversationControllerProvider.notifier).stopRecordingAndProcess();
+                      },
+                      onPointerCancel: (_) {
+                        if (!state.isProcessing) ref.read(conversationControllerProvider.notifier).stopRecordingAndProcess();
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.all(12),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: state.isRecording ? Colors.redAccent : theme.colorScheme.primary.withValues(alpha: 0.1),
+                        ),
+                        child: Icon(
+                          state.isRecording ? Icons.mic : Icons.mic_none,
+                          color: state.isRecording ? Colors.white : theme.colorScheme.primary,
+                          size: 24,
+                        ),
+                      ),
+                    );
+                  }
+                },
+              ),
+            ],
           ),
-          
-          // Send Button
-          Container(
-            margin: const EdgeInsets.all(8),
-            decoration: BoxDecoration(
-              color: theme.colorScheme.primary,
-              shape: BoxShape.circle,
-            ),
-            child: IconButton(
-              icon: Icon(Icons.send_rounded, color: theme.colorScheme.onPrimary, size: 20),
-              onPressed: state.isProcessing ? null : () {
-                // If we had a text field, we'd send text. But this is the mic pill.
-                // We'll leave this as a visual placeholder for now, since holding the mic already sends.
-                // If you want tap-to-record, you'd toggle state here.
-              },
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }
@@ -318,7 +350,7 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          TappableMarkdownHanziText(
                             message.content,
                             style: theme.textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold),
                           ),
@@ -361,9 +393,9 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
                                     ],
                                   ),
                                   const SizedBox(height: 8),
-                                  Text(
+                                  TappableHanziText(
                                     message.suggestion!['chinese'] ?? '',
-                                    style: theme.textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold),
+                                    style: theme.textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold, color: theme.colorScheme.primary),
                                   ),
                                   const SizedBox(height: 4),
                                   Text(

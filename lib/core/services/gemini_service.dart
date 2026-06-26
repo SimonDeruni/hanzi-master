@@ -890,18 +890,18 @@ Return ONLY valid JSON with exactly this structure:
   }
 
   Future<List<AiWord>> generatePreFlightVocab(String articleText, List<String> knownWords) async {
-    final textContent = articleText.length > 3000 ? articleText.substring(0, 3000) : articleText;
+    final textContent = articleText.length > 4000 ? articleText.substring(0, 4000) : articleText;
     final knownWordsList = knownWords.join(', ');
 
     final prompt = '''
 You are a Chinese learning assistant helping a student prepare to read an article.
-Analyze the following article text and identify the 5 most important, high-frequency Chinese words that the student NEEDS to know to understand the article.
+Analyze the following article text and identify 15 to 20 important, thematic Chinese words that the student NEEDS to know to fully understand the subject of this article.
 CRITICAL: Do NOT include any of these words, as the student already knows them: [$knownWordsList]
 
 Article Text:
 "$textContent"
 
-Return ONLY a valid JSON array of 5 word objects:
+Return ONLY a valid JSON array of word objects:
 [
   {"hanzi": "word", "pinyin": "pinyin", "meaning": "English meaning in context of the article"}
 ]
@@ -918,22 +918,25 @@ Return ONLY a valid JSON array of 5 word objects:
     return jsonArr.map((i) => AiWord.fromJson(i as Map<String, dynamic>)).toList();
   }
 
-  Future<List<AiWord>> extractAllUnknownWords(String articleText, List<String> knownWords) async {
-    final textContent = articleText.length > 3000 ? articleText.substring(0, 3000) : articleText;
+  Future<Map<String, dynamic>> extractAllUnknownWords(String articleText, List<String> knownWords) async {
+    final textContent = articleText.length > 4000 ? articleText.substring(0, 4000) : articleText;
     final knownWordsList = knownWords.join(', ');
 
     final prompt = '''
 You are a Chinese learning assistant.
-Analyze the following article text and extract ALL the important Chinese words (up to 20 words) that are NOT in the student's known words list.
+Analyze the following article text. Create a short, descriptive "deckName" based on the subject of the article. Then, extract ALL the important Chinese words (up to 25 words) that are NOT in the student's known words list.
 CRITICAL: Do NOT include any of these words: [$knownWordsList]
 
 Article Text:
 "$textContent"
 
-Return ONLY a valid JSON array of word objects:
-[
-  {"hanzi": "word", "pinyin": "pinyin", "meaning": "English meaning in context"}
-]
+Return ONLY a valid JSON object matching this structure:
+{
+  "deckName": "e.g., Chinese Cooking Basics",
+  "words": [
+    {"hanzi": "word", "pinyin": "pinyin", "meaning": "English meaning in context"}
+  ]
+}
 ''';
 
     final text = await makeOpenRouterCall(
@@ -943,8 +946,13 @@ Return ONLY a valid JSON array of word objects:
     );
 
     final cleanText = text.replaceAll(RegExp(r'^```json\n', multiLine: true), '').replaceAll(RegExp(r'^```\n?', multiLine: true), '');
-    final List<dynamic> jsonArr = jsonDecode(cleanText);
-    return jsonArr.map((i) => AiWord.fromJson(i as Map<String, dynamic>)).toList();
+    final Map<String, dynamic> jsonObj = jsonDecode(cleanText);
+    final List<dynamic> wordsArr = jsonObj['words'] ?? [];
+    
+    return {
+      "deckName": jsonObj['deckName'] ?? "Extracted Vocabulary",
+      "words": wordsArr.map((i) => AiWord.fromJson(i as Map<String, dynamic>)).toList()
+    };
   }
 
   Future<List<TranscriptLine>> translateTranscriptToHanzi(List<TranscriptLine> lines) async {

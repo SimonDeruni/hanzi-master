@@ -615,11 +615,63 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
+                  SizedBox(height: 8),
+                  _buildStatusBadge(context, card, isDark),
                 ],
               ),
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildStatusBadge(BuildContext context, Flashcard card, bool isDark) {
+    final stats = card.getStatsForMode(StudyMode.reading);
+    String statusText;
+    Color color;
+    IconData icon;
+
+    if (stats.isNew) {
+      statusText = "New Card";
+      color = Colors.blue;
+      icon = Icons.fiber_new;
+    } else if (card.isDue(StudyMode.reading)) {
+      statusText = "To Be Reviewed";
+      color = Colors.orange;
+      icon = Icons.access_time;
+    } else if (stats.isMastered) {
+      statusText = "Mastered";
+      color = Colors.green;
+      icon = Icons.workspace_premium;
+    } else {
+      final days = stats.nextReviewDate.difference(DateTime.now()).inDays;
+      statusText = days <= 1 ? "Review Tomorrow" : "Review in $days days";
+      color = Colors.indigo;
+      icon = Icons.calendar_today;
+    }
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      decoration: BoxDecoration(
+        color: color.withValues(alpha: 0.1),
+        borderRadius: BorderRadius.circular(6),
+        border: Border.all(color: color.withValues(alpha: 0.2)),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(icon, size: 12, color: color),
+          const SizedBox(width: 4),
+          Text(
+            statusText,
+            style: TextStyle(
+              fontSize: 11,
+              fontWeight: FontWeight.bold,
+              color: color,
+            ),
+          ),
+        ],
       ),
     );
   }

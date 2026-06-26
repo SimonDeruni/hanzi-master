@@ -21,7 +21,11 @@ class OcrService {
       final RecognizedText recognizedText = await _textRecognizer.processImage(inputImage);
       
       // Filter the recognized text to only keep Chinese characters
-      return _extractChineseCharacters(recognizedText.text);
+      final extracted = _extractChineseCharacters(recognizedText.text);
+      if (extracted.isEmpty && recognizedText.text.isNotEmpty) {
+        return recognizedText.text; // Fallback to raw text if regex filters everything out
+      }
+      return extracted;
     } catch (e) {
       debugPrint("OCR Error: $e");
       return null;
@@ -31,11 +35,11 @@ class OcrService {
   /// Extracts Chinese text, keeping sentence structure intact.
   String _extractChineseCharacters(String text) {
     // Regex for basic Chinese characters AND basic Chinese punctuation
-    final RegExp chineseRegex = RegExp(r'[\u4E00-\u9FFF\u3000-\u303F\uFF00-\uFFEF]+');
+    final RegExp chineseRegex = RegExp(r'[\u4E00-\u9FFF]+');
     final matches = chineseRegex.allMatches(text);
     
     // Join the blocks of Chinese text, preserving words and sentences
-    return matches.map((m) => m.group(0)!).join(' ');
+    return matches.map((m) => m.group(0)!).join('');
   }
 
   void dispose() {

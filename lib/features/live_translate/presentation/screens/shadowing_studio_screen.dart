@@ -12,6 +12,8 @@ import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/core/providers/translation_language_provider.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/shared/widgets/pinyin_text.dart';
+import 'package:lpinyin/lpinyin.dart';
 
 class ShadowingMessage {
   final String englishText;
@@ -115,7 +117,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> {
           "generationConfig": {
              "responseModalities": ["AUDIO"],
              "speechConfig": {
-               "voiceConfig": { "prebuiltVoiceConfig": { "voiceName": "Puck" } }
+               "voiceConfig": { "prebuiltVoiceConfig": { "voiceName": "Aoede" } }
              }
           },
           "systemInstruction": {
@@ -176,7 +178,10 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> {
           } catch (e) {}
         },
         onDone: () {
-          if (mounted) setState(() { _status = "Connection closed."; _hasError = true; });
+          final code = _channel?.closeCode;
+          final reason = _channel?.closeReason;
+          debugPrint("ShadowingStudio: Connection closed. Code: $code, Reason: $reason");
+          if (mounted) setState(() { _status = "Connection closed ($code): ${reason ?? 'unknown'}"; _hasError = true; });
         },
         onError: (e) {
           if (mounted) setState(() { _status = "Connection Error: $e"; _hasError = true; });
@@ -192,9 +197,29 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> {
     setState(() {
       if (_transcript.isNotEmpty) {
         final last = _transcript.last;
-        _transcript[_transcript.length - 1] = last.copyWith(mandarinTranslation: last.mandarinTranslation + text);
+        final newMandarin = last.mandarinTranslation + text;
+        final newPinyin = PinyinHelper.getPinyinE(
+          newMandarin,
+          separator: " ",
+          defPinyin: '',
+          format: PinyinFormat.WITH_TONE_MARK,
+        );
+        _transcript[_transcript.length - 1] = last.copyWith(
+          mandarinTranslation: newMandarin,
+          pinyin: newPinyin,
+        );
       } else {
-        _transcript.add(ShadowingMessage(englishText: "...", mandarinTranslation: text));
+        final newPinyin = PinyinHelper.getPinyinE(
+          text,
+          separator: " ",
+          defPinyin: '',
+          format: PinyinFormat.WITH_TONE_MARK,
+        );
+        _transcript.add(ShadowingMessage(
+          englishText: "...",
+          mandarinTranslation: text,
+          pinyin: newPinyin,
+        ));
       }
     });
   }
@@ -549,8 +574,8 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> {
                                 const SizedBox(height: 32),
                                 if (msg.mandarinTranslation.isNotEmpty) ...[
                                   if (msg.pinyin != null && msg.pinyin!.isNotEmpty) ...[
-                                    Text(
-                                      msg.pinyin!,
+                                    PinyinText(
+                                      text: msg.pinyin!,
                                       style: TextStyle(
                                         fontSize: 24,
                                         color: isDark ? Colors.white70 : Colors.black87,

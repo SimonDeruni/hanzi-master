@@ -206,6 +206,16 @@ class _RecallModeWidgetState extends ConsumerState<RecallModeWidget> {
     );
   }
 
+  List<List<Offset>> _lines = [];
+  List<Offset> _currentLine = [];
+
+  void _clearScratchpad() {
+    setState(() {
+      _lines = [];
+      _currentLine = [];
+    });
+  }
+
   /// Blank writable canvas — fills the same Expanded area as the card
   Widget _buildScratchpad(bool isDark, Color borderColor) {
     return Column(
@@ -226,19 +236,42 @@ class _RecallModeWidgetState extends ConsumerState<RecallModeWidget> {
                         offset: const Offset(0, 8),
                       ),
                   ],
+                  color: isDark ? Colors.black26 : Colors.white,
                 ),
                 clipBehavior: Clip.antiAlias,
-                child: CalligraphyBackground(
-                  child: DrawingCanvas(
-                    strokePaths: const [],
-                    medianPaths: const [],
-                    showAnimation: false,
-                    readOnly: false,
-                    showControls: true,
-                    showGrade: false,
-                    showGuideLines: true,
-                    userPointsNotifier: _scratchpadNotifier,
-                  ),
+                child: Stack(
+                  children: [
+                    CalligraphyBackground(child: const SizedBox.expand()),
+                    GestureDetector(
+                      onPanStart: (details) {
+                        setState(() {
+                          _currentLine = [details.localPosition];
+                          _lines.add(_currentLine);
+                        });
+                      },
+                      onPanUpdate: (details) {
+                        setState(() {
+                          _currentLine.add(details.localPosition);
+                        });
+                      },
+                      child: CustomPaint(
+                        size: Size.infinite,
+                        painter: _SimpleStrokePainter(
+                          lines: _lines,
+                          strokeColor: isDark ? Colors.white : Colors.black87,
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      top: 8,
+                      right: 8,
+                      child: IconButton(
+                        icon: const Icon(Icons.refresh),
+                        color: isDark ? Colors.white54 : Colors.black54,
+                        onPressed: _clearScratchpad,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -512,5 +545,40 @@ class _RecallModeWidgetState extends ConsumerState<RecallModeWidget> {
         ),
       ),
     );
+  }
+}
+
+class _SimpleStrokePainter extends CustomPainter {
+  final List<List<Offset>> lines;
+  final Color strokeColor;
+
+  _SimpleStrokePainter({required this.lines, required this.strokeColor});
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()
+      ..color = strokeColor
+      ..strokeWidth = 12.0
+      ..strokeCap = StrokeCap.round
+      ..strokeJoin = StrokeJoin.round
+      ..style = PaintingStyle.stroke;
+
+    for (final line in lines) {
+      if (line.isEmpty) continue;
+      
+      final path = Path();
+      path.moveTo(line.first.dx, line.first.dy);
+      
+      for (int i = 1; i < line.length; i++) {
+        path.lineTo(line[i].dx, line[i].dy);
+      }
+      
+      canvas.drawPath(path, paint);
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant _SimpleStrokePainter oldDelegate) {
+    return true; 
   }
 }

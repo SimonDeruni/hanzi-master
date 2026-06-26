@@ -10,6 +10,8 @@ import '../../domain/models/media_briefing.dart';
 import '../../../../core/services/gemini_service.dart';
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
 
+import 'package:hanzi_master/features/media/presentation/widgets/fullscreen_media_overlay.dart';
+
 class SmartMediaDeskScreen extends ConsumerStatefulWidget {
   final yt.Video video;
 
@@ -39,9 +41,9 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
       videoId: widget.video.id.value,
       autoPlay: false,
       params: const YoutubePlayerParams(
-        showControls: true,
+        showControls: false,
         mute: false,
-        showFullscreenButton: true,
+        showFullscreenButton: false,
         loop: false,
         color: 'white',
         // Disable YouTube's native closed captions
@@ -58,22 +60,26 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
       final transcript = await repository.getTranscript(widget.video.id.value);
 
       if (transcript != null) {
-        // Translate Pinyin to Hanzi if needed
-        final gemini = ref.read(geminiServiceProvider);
-        final translatedLines = await gemini.translateTranscriptToHanzi(transcript.lines);
-        final finalTranscript = VideoTranscript(videoId: transcript.videoId, lines: translatedLines);
-
-        // Generate AI Briefing
-        final briefing = await gemini.generateVideoBriefing(widget.video.title, finalTranscript.lines);
-
         if (mounted) {
           setState(() {
-            _transcript = finalTranscript;
-            _briefing = briefing;
+            _transcript = transcript;
             _isLoading = false;
           });
           _startSyncEngine();
         }
+
+        // Generate AI Briefing in background
+        final gemini = ref.read(geminiServiceProvider);
+        gemini.generateVideoBriefing(widget.video.title, transcript.lines).then((briefing) {
+          if (mounted) {
+            setState(() {
+              _briefing = briefing;
+            });
+          }
+        }).catchError((e) {
+          debugPrint("Briefing error: $e");
+        });
+
       } else {
         if (mounted) {
           setState(() {
@@ -228,56 +234,16 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
                 return const SizedBox.shrink();
               }
 
-              final line = _transcript!.lines[_currentIndex];
-              final highlightedCount = _getHighlightedCharCount(line, _currentPosition);
-
-              return Positioned(
-                bottom: 40,
-                left: 20,
-                right: 20,
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-                  decoration: BoxDecoration(
-                    color: Colors.black87,
-                    borderRadius: BorderRadius.circular(16),
-                    boxShadow: const [BoxShadow(color: Colors.black54, blurRadius: 10)],
-                  ),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      if (line.pinyin != null)
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 8),
-                          child: Text(
-                            line.pinyin!,
-                            style: const TextStyle(fontSize: 18, color: Colors.white70),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      Wrap(
-                        alignment: WrapAlignment.center,
-                        children: line.text.split('').asMap().entries.map((entry) {
-                          final charIndex = entry.key;
-                          final char = entry.value;
-                          final isHighlighted = charIndex <= highlightedCount;
-
-                          return GestureDetector(
-                            onTap: () => _onWordTapped(char),
-                            child: Text(
-                              char,
-                              style: TextStyle(
-                                fontSize: 32, // Much larger for full screen
-                                color: isHighlighted ? Colors.yellowAccent : Colors.white,
-                                fontWeight: isHighlighted ? FontWeight.bold : FontWeight.normal,
-                                height: 1.5,
-                              ),
-                            ),
-                          );
-                        }).toList(),
-                      ),
-                    ],
-                  ),
-                ),
+              return FullscreenMediaOverlay(
+                controller: _playerController,
+                transcript: _transcript!,
+                currentIndex: _currentIndex,
+                currentPosition: _currentPosition,
+                onWordTapped: _onWordTapped,
+                videoTitle: widget.video.title,
+                onExitFullscreen: () {
+                  _playerController.exitFullScreen();
+                },
               );
             },
           ),
@@ -365,19 +331,24 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
                                   final charIndex = entry.key;
                                   final char = entry.value;
                                   final isHighlighted = isCurrent && charIndex <= highlightedCount;
+                                  final isChinese = RegExp(r'[\u4e00-\u9fff]').hasMatch(char);
 
-                                  return GestureDetector(
-                                    onTap: () => _onWordTapped(char),
-                                    child: Text(
-                                      char,
-                                      style: TextStyle(
-                                        fontSize: 20,
-                                        color: isHighlighted ? Colors.indigo[900] : Colors.black87,
-                                        fontWeight: isHighlighted ? FontWeight.bold : FontWeight.normal,
-                                        height: 1.5,
-                                      ),
+                                  final textWidget = Text(
+                                    char,
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      color: isHighlighted ? Colors.indigo[900] : Colors.black87,
+                                      fontWeight: isHighlighted ? FontWeight.bold : FontWeight.normal,
+                                      height: 1.5,
                                     ),
                                   );
+
+                                  return isChinese
+                                    ? GestureDetector(
+                                        onTap: () => _onWordTapped(char),
+                                        child: textWidget,
+                                      )
+                                    : textWidget;
                                 }).toList(),
                               ),
                             ],

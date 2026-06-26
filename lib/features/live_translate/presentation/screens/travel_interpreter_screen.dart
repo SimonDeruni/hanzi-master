@@ -37,7 +37,6 @@ class TravelInterpreterScreen extends ConsumerStatefulWidget {
 }
 
 class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScreen> {
-  final fs.FlutterSoundPlayer _player = fs.FlutterSoundPlayer();
   final AudioRecorder _audioRecorder = AudioRecorder();
   
   WebSocketChannel? _channel;
@@ -67,14 +66,6 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
 
   Future<void> _initAudioAndConnect() async {
     try {
-      await _player.openPlayer();
-      await _player.startPlayerFromStream(
-        codec: fs.Codec.pcm16,
-        numChannels: 1,
-        sampleRate: 24000,
-        bufferSize: 8192,
-        interleaved: true,
-      );
       await _connectToGemini();
     } catch (e) {
       if (mounted) setState(() { _status = "Init error: $e"; _hasError = true; });
@@ -101,14 +92,11 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
         "setup": {
           "model": "models/gemini-2.0-flash-exp",
           "generationConfig": {
-             "responseModalities": ["AUDIO"],
-             "speechConfig": {
-               "voiceConfig": { "prebuiltVoiceConfig": { "voiceName": "Puck" } }
-             }
+             "responseModalities": ["TEXT"]
           },
           "systemInstruction": {
             "parts": [
-              {"text": "You are a Real-time Travel Interpreter. Your job is to translate spoken ${ref.read(translationLanguageProvider)} to Mandarin Chinese AND spoken Mandarin Chinese to ${ref.read(translationLanguageProvider)} seamlessly. If the user speaks ${ref.read(translationLanguageProvider)}, output Mandarin. If they speak Mandarin, output ${ref.read(translationLanguageProvider)}. Be conversational and helpful."}
+              {"text": "You are a Real-time Travel Interpreter. Your job is to translate spoken ${ref.read(translationLanguageProvider)} to Mandarin Chinese AND spoken Mandarin Chinese to ${ref.read(translationLanguageProvider)} seamlessly. If the user speaks ${ref.read(translationLanguageProvider)}, output Mandarin. If they speak Mandarin, output ${ref.read(translationLanguageProvider)}. Be conversational and helpful. Output text ONLY."}
             ]
           }
         }
@@ -143,11 +131,6 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                 final modelTurn = content['modelTurn'];
                 if (modelTurn['parts'] != null) {
                   for (var part in modelTurn['parts']) {
-                    if (part.containsKey('inlineData')) {
-                      final base64Audio = part['inlineData']['data'];
-                      final audioBytes = base64Decode(base64Audio);
-                      _player.feedUint8FromStream(Uint8List.fromList(audioBytes));
-                    }
                     if (part.containsKey('text')) {
                       _handleAiTranscript(part['text']);
                     }
@@ -163,7 +146,10 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
           } catch (e) {}
         },
         onDone: () {
-          if (mounted) setState(() { _status = "Connection closed."; _hasError = true; });
+          final code = _channel?.closeCode;
+          final reason = _channel?.closeReason;
+          debugPrint("TravelInterpreter: Connection closed. Code: $code, Reason: $reason");
+          if (mounted) setState(() { _status = "Connection closed ($code): ${reason ?? 'unknown'}"; _hasError = true; });
         },
         onError: (e) {
           if (mounted) setState(() { _status = "Connection Error: $e"; _hasError = true; });
@@ -262,7 +248,6 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
   void dispose() {
     _audioSubscription?.cancel();
     _audioRecorder.dispose();
-    _player.closePlayer();
     _channel?.sink.close(status.normalClosure);
     super.dispose();
   }

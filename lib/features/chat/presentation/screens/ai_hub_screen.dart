@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:hanzi_master/features/chat/presentation/screens/echo_hall_screen.dart';
 import 'package:hanzi_master/features/echo_hall/presentation/screens/scenario_selection_screen.dart';
 import 'package:hanzi_master/features/reading/presentation/screens/reading_room_screen.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
@@ -35,7 +34,7 @@ class AiHubScreen extends ConsumerWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 24.0),
                 child: _buildHeroCard(
                   context: context,
-                  title: l10n?.liveVoiceCall ?? "Live Voice Call",
+                  title: "Roleplay Scenarios",
                   subtitle: l10n?.immersiveRoleplay ?? "Immersive roleplay with AI avatars",
                   icon: Icons.record_voice_over,
                   color: theme.colorScheme.primary,
@@ -69,18 +68,6 @@ class AiHubScreen extends ConsumerWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (_) => const ReadingRoomScreen()),
-                      );
-                    },
-                  ),
-                  _buildGridCard(
-                    context: context,
-                    title: l10n?.textChat ?? "Text Chat",
-                    subtitle: l10n?.scholarlyPersonas ?? "Scholarly Personas",
-                    icon: Icons.chat_bubble_outline,
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (_) => const EchoHallScreen()),
                       );
                     },
                   ),

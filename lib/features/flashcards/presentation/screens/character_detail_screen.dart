@@ -22,6 +22,8 @@ import 'package:hanzi_master/shared/widgets/tappable_hanzi_text.dart';
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
 import 'package:hanzi_master/core/utils/pinyin_utils.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/deck_selection_sheet.dart';
+import 'package:hanzi_master/features/live_translate/presentation/screens/shadowing_studio_screen.dart';
+import 'package:hanzi_master/shared/widgets/calligraphy_canvas_sheet.dart';
 
 class CharacterDetailScreen extends ConsumerStatefulWidget {
   final Flashcard card;
@@ -356,37 +358,38 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
                         ),
                       ],
                     ),
+                    SizedBox(height: 12),
+                    Text(
+                      currentCard.definition,
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: isDark ? Colors.white70 : Colors.black87,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
                   ],
                 ),
               ),
               SizedBox(height: 24),
-              if (!inLibrary)
-                SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton.icon(
-                    onPressed: () {
-                      DeckSelectionSheet.show(context, card: currentCard);
-                    },
-                    icon: Icon(Icons.add_circle_outline),
-                    label: Text(AppLocalizations.of(context)!.addToStudyDeck),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.indigo,
-                      foregroundColor: Colors.white,
-                      padding: const EdgeInsets.symmetric(vertical: 16),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-                      elevation: 0,
-                    ),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton.icon(
+                  onPressed: () {
+                    DeckSelectionSheet.show(context, card: currentCard);
+                  },
+                  icon: Icon(inLibrary ? Icons.library_add_check : Icons.add_circle_outline),
+                  label: Text(inLibrary ? "Manage Decks" : AppLocalizations.of(context)!.addToStudyDeck),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.indigo,
+                    foregroundColor: Colors.white,
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                    elevation: 0,
                   ),
                 ),
+              ),
               SizedBox(height: 24),
               if (_anatomyComponents.isNotEmpty) _buildAnatomySection(context, isDark),
-              SizedBox(height: 16),
-              _buildInfoSection(
-                context,
-                title: "Definition",
-                content: currentCard.definition,
-                icon: Icons.translate,
-              ),
               SizedBox(height: 16),
               _buildPersonalNotesSection(context, isDark),
               SizedBox(height: 16),
@@ -401,12 +404,65 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
                     width: double.infinity,
                     height: 60,
                     child: ElevatedButton.icon(
-                      onPressed: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => ReviewScreen(card: currentCard)),
-                      ),
-                      icon: Icon(Icons.brush, color: Colors.white),
-                      label: Text(AppLocalizations.of(context)!.startPractice, style: TextStyle(fontWeight: FontWeight.bold, letterSpacing: 1.2, color: Colors.white)),
+                      onPressed: () {
+                        showModalBottomSheet(
+                          context: context,
+                          shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(24))),
+                          builder: (ctx) => SafeArea(
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                children: [
+                                  const Text("Practice Modes", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold), textAlign: TextAlign.center),
+                                  const SizedBox(height: 24),
+                                  ListTile(
+                                    leading: const Icon(Icons.style, color: Colors.indigo, size: 32),
+                                    title: const Text("SRS Flashcard Review", style: TextStyle(fontWeight: FontWeight.bold)),
+                                    subtitle: const Text("Review this card and update its mastery stats"),
+                                    onTap: () {
+                                      Navigator.pop(ctx);
+                                      Navigator.push(context, MaterialPageRoute(builder: (context) => ReviewScreen(card: currentCard)));
+                                    },
+                                  ),
+                                  const Divider(),
+                                  ListTile(
+                                    leading: const Icon(Icons.record_voice_over, color: Colors.orange, size: 32),
+                                    title: const Text("Shadowing Studio", style: TextStyle(fontWeight: FontWeight.bold)),
+                                    subtitle: const Text("Practice pronouncing this word with AI grading"),
+                                    onTap: () {
+                                      Navigator.pop(ctx);
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (_) => ShadowingStudioScreen(
+                                            initialHanzi: currentCard.hanzi,
+                                            initialPinyin: currentCard.pinyin,
+                                            initialTranslation: currentCard.definition,
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                  const Divider(),
+                                  ListTile(
+                                    leading: const Icon(Icons.brush, color: Colors.teal, size: 32),
+                                    title: const Text("Calligraphy Trace", style: TextStyle(fontWeight: FontWeight.bold)),
+                                    subtitle: const Text("Practice writing the strokes by hand"),
+                                    onTap: () {
+                                      Navigator.pop(ctx);
+                                      showCalligraphyCanvas(context, currentCard);
+                                    },
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                      icon: Icon(Icons.fitness_center, color: Colors.white),
+                      label: Text("Select Practice Mode", style: TextStyle(fontWeight: FontWeight.bold, letterSpacing: 1.2, color: Colors.white)),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.indigo,
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
@@ -529,7 +585,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: _anatomyComponents.asMap().entries.map((entry) {
             final int idx = entry.key;
-            final String char = entry.value['char'];
+            final String radical = entry.value['radical'];
             final bool isActive = _activeAnatomyIndex == idx;
             return GestureDetector(
               onTap: () {
@@ -544,7 +600,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
                   borderRadius: BorderRadius.circular(20),
                   border: Border.all(color: Colors.indigo.withValues(alpha: 0.2)),
                 ),
-                child: Text(char, style: TextStyle(color: isActive ? Colors.white : Colors.indigo, fontWeight: FontWeight.bold)),
+                child: Text(radical, style: TextStyle(fontSize: 18, color: isActive ? Colors.white : Colors.indigo, fontWeight: FontWeight.bold)),
               ),
             );
           }).toList(),
@@ -771,46 +827,10 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
                         SizedBox(height: 4),
                         Text(sentence.pinyin, style: const TextStyle(fontSize: 14, color: Colors.indigo)),
                         SizedBox(height: 8),
-                        StatefulBuilder(
-                          builder: (context, setState) {
-                            bool isRevealed = false;
-                            return GestureDetector(
-                              behavior: HitTestBehavior.opaque,
-                              onTap: () => setState(() => isRevealed = true),
-                              child: Stack(
-                                children: [
-                                  Text(
-                                    sentence.english, 
-                                    style: TextStyle(
-                                      fontSize: 14, 
-                                      color: isDark ? Colors.white70 : Colors.black87, 
-                                      fontStyle: FontStyle.italic
-                                    )
-                                  ),
-                                  if (!isRevealed)
-                                    Positioned.fill(
-                                      child: ClipRect(
-                                        child: BackdropFilter(
-                                          filter: ImageFilter.blur(sigmaX: 4.0, sigmaY: 4.0),
-                                          child: Container(
-                                            color: Colors.transparent,
-                                            alignment: Alignment.center,
-                                            child: Text(
-                                              AppLocalizations.of(context)!.tapToReveal,
-                                              style: TextStyle(
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.bold,
-                                                color: isDark ? Colors.white : Colors.black54,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                ],
-                              ),
-                            );
-                          }
+                        _TapToRevealText(
+                          text: sentence.english,
+                          isDark: isDark,
+                          hintText: AppLocalizations.of(context)!.tapToReveal,
                         ),
                       ],
                     ),
@@ -919,6 +939,65 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
           SizedBox(height: 12),
           if (content != null) CrossReferenceText(content, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500)),
           if (child != null) child,
+        ],
+      ),
+    );
+  }
+}
+
+class _TapToRevealText extends StatefulWidget {
+  final String text;
+  final bool isDark;
+  final String hintText;
+
+  const _TapToRevealText({
+    required this.text,
+    required this.isDark,
+    required this.hintText,
+  });
+
+  @override
+  State<_TapToRevealText> createState() => _TapToRevealTextState();
+}
+
+class _TapToRevealTextState extends State<_TapToRevealText> {
+  bool _isRevealed = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: () => setState(() => _isRevealed = true),
+      child: Stack(
+        children: [
+          Text(
+            widget.text, 
+            style: TextStyle(
+              fontSize: 14, 
+              color: widget.isDark ? Colors.white70 : Colors.black87, 
+              fontStyle: FontStyle.italic
+            )
+          ),
+          if (!_isRevealed)
+            Positioned.fill(
+              child: ClipRect(
+                child: BackdropFilter(
+                  filter: ImageFilter.blur(sigmaX: 4.0, sigmaY: 4.0),
+                  child: Container(
+                    color: Colors.transparent,
+                    alignment: Alignment.center,
+                    child: Text(
+                      widget.hintText,
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                        color: widget.isDark ? Colors.white : Colors.black54,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
         ],
       ),
     );

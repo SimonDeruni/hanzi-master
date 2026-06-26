@@ -167,21 +167,25 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> {
         translateBtn = document.createElement('button');
         translateBtn.id = 'hanzi-translate-btn';
         translateBtn.innerText = '文 A';
-        translateBtn.style.position = 'absolute';
+        translateBtn.style.position = 'fixed';
         translateBtn.style.display = 'none';
-        translateBtn.style.zIndex = 10000;
-        translateBtn.style.padding = '8px 12px';
+        translateBtn.style.zIndex = '2147483647'; // Max z-index to be on top of everything
+        translateBtn.style.padding = '10px 16px';
         translateBtn.style.background = '#673AB7';
         translateBtn.style.color = '#fff';
         translateBtn.style.border = 'none';
-        translateBtn.style.borderRadius = '8px';
+        translateBtn.style.borderRadius = '12px';
         translateBtn.style.cursor = 'pointer';
-        translateBtn.style.fontSize = '14px';
+        translateBtn.style.fontSize = '16px';
         translateBtn.style.fontWeight = 'bold';
-        translateBtn.style.boxShadow = '0 4px 6px rgba(0,0,0,0.3)';
+        translateBtn.style.boxShadow = '0 8px 16px rgba(0,0,0,0.3)';
         document.body.appendChild(translateBtn);
         
+        translateBtn.addEventListener('touchstart', function(e) { e.stopPropagation(); }, {passive: false});
+        translateBtn.addEventListener('mousedown', function(e) { e.stopPropagation(); });
+        
         translateBtn.addEventListener('click', function(e) {
+          e.preventDefault();
           e.stopPropagation();
           const text = window.getSelection().toString().trim();
           if (text.length > 0) {
@@ -201,8 +205,8 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> {
         if (text.length > 0 && text.length <= 150) { // Limit length to avoid massive payloads
           const range = selection.getRangeAt(0);
           const rect = range.getBoundingClientRect();
-          translateBtn.style.left = (rect.left + window.scrollX) + 'px';
-          translateBtn.style.top = (rect.bottom + window.scrollY + 10) + 'px';
+          translateBtn.style.left = Math.max(10, rect.left) + 'px';
+          translateBtn.style.top = Math.max(10, rect.bottom + 10) + 'px';
           translateBtn.style.display = 'block';
         } else {
           translateBtn.style.display = 'none';
@@ -212,6 +216,61 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> {
     ''';
     
     _controller.runJavaScript(js);
+  }
+
+  void _showAiToolsMenu(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(24))),
+      builder: (ctx) {
+        return SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                const Text(
+                  "AI Reading Tools",
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 24),
+                ListTile(
+                  leading: const Icon(Icons.troubleshoot, color: Colors.purple, size: 32),
+                  title: const Text("X-Ray Scanner", style: TextStyle(fontWeight: FontWeight.bold)),
+                  subtitle: const Text("Generate pre-flight vocabulary list from this article"),
+                  onTap: () {
+                    Navigator.pop(ctx);
+                    _runXRayScanner();
+                  },
+                ),
+                const Divider(),
+                ListTile(
+                  leading: const Icon(Icons.playlist_add, color: Colors.blue, size: 32),
+                  title: const Text("Extract to Deck", style: TextStyle(fontWeight: FontWeight.bold)),
+                  subtitle: const Text("Extract all unknown words to a new named Deck"),
+                  onTap: () {
+                    Navigator.pop(ctx);
+                    _runAddAllUnknowns();
+                  },
+                ),
+                const Divider(),
+                ListTile(
+                  leading: const Icon(Icons.auto_fix_high, color: Colors.amber, size: 32),
+                  title: const Text("Auto-Simplify", style: TextStyle(fontWeight: FontWeight.bold)),
+                  subtitle: const Text("Rewrite this article to HSK 3 level"),
+                  onTap: () {
+                    Navigator.pop(ctx);
+                    _runAutoSimplify();
+                  },
+                ),
+              ],
+            ),
+          ),
+        );
+      }
+    );
   }
 
   void _toggleZenMode() {
@@ -326,7 +385,9 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> {
       );
       
       final gemini = ref.read(geminiServiceProvider);
-      final newWords = await gemini.extractAllUnknownWords(text.toString(), knownWords);
+      final extractedData = await gemini.extractAllUnknownWords(text.toString(), knownWords);
+      final newWords = extractedData['words'] as List<AiWord>;
+      final deckName = extractedData['deckName'] as String;
       
       if (newWords.isEmpty) {
         if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('No new words found!')));
@@ -334,18 +395,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> {
       }
 
       final deckRepo = ref.read(deckRepositoryProvider);
-      final deckId = const Uuid().v4();
-      final newDeck = Deck(
-        id: deckId,
-        name: 'Article: \$pageTitle',
-        description: 'Extracted automatically from Web Explorer',
-        createdAt: DateTime.now(),
-      );
-      
-      await deckRepo.createDeck(newDeck.name, description: newDeck.description);
-      // Wait, createDeck generates an ID! Let's get the created deck instead.
-      // Actually, createDeck(name, description) returns Either<String, Deck>.
-      final createdDeckResult = await deckRepo.createDeck(newDeck.name, description: newDeck.description);
+      final createdDeckResult = await deckRepo.createDeck(deckName, description: 'Extracted automatically from Web Explorer ($pageTitle)');
       final createdDeck = createdDeckResult.fold((l) => null, (r) => r);
       if (createdDeck == null) {
         if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Failed to create deck')));
@@ -370,7 +420,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> {
       }
       
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Added \${newWords.length} words to "\${createdDeck.name}"')));
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Added ${newWords.length} words to "$deckName"')));
       }
     } catch (e) {
       if (mounted) {
@@ -725,23 +775,23 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> {
                 }
               },
             ),
-            // X-Ray Button
-            IconButton(
-              icon: const Icon(Icons.troubleshoot, color: Colors.purple),
-              tooltip: 'X-Ray Scanner',
-              onPressed: _isProcessingAi ? null : _runXRayScanner,
-            ),
-            // Add All Unknowns Button
-            IconButton(
-              icon: const Icon(Icons.playlist_add, color: Colors.blue),
-              tooltip: 'Add All Unknowns',
-              onPressed: _isProcessingAi ? null : _runAddAllUnknowns,
-            ),
-            // Auto-Simplify Button
-            IconButton(
-              icon: const Icon(Icons.auto_fix_high, color: Colors.amber),
-              tooltip: 'Auto-Simplify',
-              onPressed: _isProcessingAi ? null : _runAutoSimplify,
+            // AI Reading Tools Button
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: ElevatedButton.icon(
+                  icon: _isProcessingAi 
+                      ? const SizedBox(width: 16, height: 16, child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2))
+                      : const Icon(Icons.auto_awesome),
+                  label: const Text("AI Reading Tools", style: TextStyle(fontWeight: FontWeight.bold)),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.indigo,
+                    foregroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                  ),
+                  onPressed: _isProcessingAi ? null : () => _showAiToolsMenu(context),
+                ),
+              ),
             ),
           ],
         ),

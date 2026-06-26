@@ -189,26 +189,6 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
         title: Text(l10n.universalScanner),
         backgroundColor: Colors.transparent,
         elevation: 0,
-        actions: [
-          DropdownButton<String>(
-            value: ref.watch(translationLanguageProvider),
-            dropdownColor: theme.colorScheme.surface,
-            icon: const Icon(Icons.language, color: Colors.indigo),
-            underline: const SizedBox(),
-            items: supportedTranslationLanguages.map((String lang) {
-              return DropdownMenuItem<String>(
-                value: lang,
-                child: Text(lang, style: const TextStyle(fontSize: 14)),
-              );
-            }).toList(),
-            onChanged: (String? newValue) {
-              if (newValue != null) {
-                ref.read(translationLanguageProvider.notifier).setLanguage(newValue);
-              }
-            },
-          ),
-          const SizedBox(width: 16),
-        ],
       ),
       body: CalligraphyBackground(
         child: Column(

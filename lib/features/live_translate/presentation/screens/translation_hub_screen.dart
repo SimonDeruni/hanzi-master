@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/features/live_translate/presentation/screens/travel_interpreter_screen.dart';
-import 'package:hanzi_master/features/live_translate/presentation/screens/whisper_earpiece_screen.dart';
 import 'package:hanzi_master/features/live_translate/presentation/screens/translation_history_screen.dart';
 import 'package:hanzi_master/shared/widgets/global_sliver_app_bar.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
@@ -54,20 +53,6 @@ class TranslationHubScreen extends StatelessWidget {
                     },
                   ),
                   const SizedBox(height: 24),
-                  _buildPremiumCard(
-                    context: context,
-                    title: l10n?.whisperEarpiece ?? "Whisper Earpiece",
-                    description: l10n?.listenToChineseAudio ?? "Listen to Chinese audio and get real-time English subtitles directly on your screen.",
-                    icon: Icons.hearing,
-                    gradient: const LinearGradient(
-                      colors: [Color(0xFF8E2DE2), Color(0xFF4A00E0)],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    ),
-                    onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (_) => const WhisperEarpieceScreen()));
-                    },
-                  ),
                   const SizedBox(height: 40),
                 ]),
               ),

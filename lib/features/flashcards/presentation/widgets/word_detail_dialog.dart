@@ -158,21 +158,29 @@ class _WordDetailDialogState extends ConsumerState<WordDetailDialog> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          widget.word.hanzi,
-                          style: TextStyle(
-                            fontFamily: 'NotoSerifSC',
-                            fontSize: 48,
-                            fontWeight: FontWeight.bold,
-                            color: isDark ? Colors.white : Colors.black87,
+                        FittedBox(
+                          fit: BoxFit.scaleDown,
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            widget.word.hanzi,
+                            style: TextStyle(
+                              fontFamily: 'NotoSerifSC',
+                              fontSize: 48,
+                              fontWeight: FontWeight.bold,
+                              color: isDark ? Colors.white : Colors.black87,
+                            ),
                           ),
                         ),
-                        Text(
-                          widget.word.pinyin,
-                          style: const TextStyle(
-                            fontSize: 20,
-                            color: Colors.blueAccent,
-                            fontWeight: FontWeight.w500,
+                        FittedBox(
+                          fit: BoxFit.scaleDown,
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            widget.word.pinyin,
+                            style: const TextStyle(
+                              fontSize: 20,
+                              color: Colors.blueAccent,
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
                         ),
                       ],

@@ -9,6 +9,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
+import 'package:hanzi_master/core/utils/pinyin_utils.dart';
 
 class ListeningModeWidget extends ConsumerStatefulWidget {
   final Flashcard card;
@@ -50,6 +51,41 @@ class _ListeningModeWidgetState extends ConsumerState<ListeningModeWidget> {
       _isRevealed = true;
     });
     HapticsManager.light();
+  }
+
+  Widget _buildColoredHanzi(String hanzi, String pinyin, bool isDark) {
+    final tokens = PinyinUtils.tokenize(pinyin);
+    final syllableTokens = tokens.where((t) => RegExp(r'[a-zA-ZüÜāēīōūǖáéíóúǘǎěǐǒǔǚàèìòùǜ]').hasMatch(t['text'])).toList();
+    
+    final hanziChars = hanzi.characters.toList();
+    
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: List.generate(hanziChars.length, (index) {
+        final char = hanziChars[index];
+        Color color = isDark ? Colors.white : Colors.black87;
+        if (index < syllableTokens.length) {
+          final tone = syllableTokens[index]['tone'] as int;
+          color = PinyinUtils.toneColors[tone] ?? color;
+        }
+        
+        return Text(
+          char,
+          style: TextStyle(
+            fontSize: 64,
+            fontWeight: FontWeight.bold,
+            color: color,
+            shadows: [
+              Shadow(
+                color: color.withOpacity(0.3),
+                blurRadius: 10,
+                offset: const Offset(0, 4),
+              ),
+            ],
+          ),
+        );
+      }),
+    );
   }
 
   @override
@@ -150,17 +186,10 @@ class _ListeningModeWidgetState extends ConsumerState<ListeningModeWidget> {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                FittedBox(
-                                  fit: BoxFit.scaleDown,
-                                  child: Text(
-                                    widget.card.hanzi,
-                                    style: TextStyle(
-                                      fontSize: 64,
-                                      fontWeight: FontWeight.bold,
-                                      color: isDark ? Colors.white : Colors.black87,
-                                    ),
+                                  FittedBox(
+                                    fit: BoxFit.scaleDown,
+                                    child: _buildColoredHanzi(widget.card.hanzi, widget.card.pinyin, isDark),
                                   ),
-                                ),
                                 SizedBox(height: 8),
                                 PinyinText(
                                   text: widget.card.pinyin,

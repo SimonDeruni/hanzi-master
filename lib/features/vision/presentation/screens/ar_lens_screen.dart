@@ -56,8 +56,8 @@ class _ARLensScreenState extends ConsumerState<ARLensScreen> with TickerProvider
               child: FittedBox(
                 fit: BoxFit.cover,
                 child: SizedBox(
-                  width: visionState.cameraController!.value.previewSize?.height ?? 1,
-                  height: visionState.cameraController!.value.previewSize?.width ?? 1,
+                  width: 1000,
+                  height: 1000 / visionState.cameraController!.value.aspectRatio,
                   child: CameraPreview(visionState.cameraController!),
                 ),
               ),

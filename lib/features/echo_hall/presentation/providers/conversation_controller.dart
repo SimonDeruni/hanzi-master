@@ -102,6 +102,25 @@ class ConversationController extends StateNotifier<ConversationState> {
     }
   }
 
+  Future<void> sendMessage(String content) async {
+    if (content.trim().isEmpty) return;
+
+    final userMsg = GradedChatMessage(
+      id: DateTime.now().millisecondsSinceEpoch.toString(),
+      content: content,
+      role: ChatRole.user,
+      timestamp: DateTime.now(),
+    );
+
+    state = state.copyWith(
+      messages: [...state.messages, userMsg],
+      isProcessing: true,
+      error: null,
+    );
+
+    await _fetchAiResponse();
+  }
+
   Future<void> startRecording() async {
     try {
       state = state.copyWith(error: null);
@@ -145,24 +164,30 @@ class ConversationController extends StateNotifier<ConversationState> {
         );
         
         state = state.copyWith(messages: [...state.messages, userMsg]);
-
-        // 2. Send to AI
-        final replyJson = await _echoHallService.getConversationResponse(state.messages, state.currentScenario!.systemPrompt);
-        
-        final aiMsg = GradedChatMessage(
-          id: DateTime.now().millisecondsSinceEpoch.toString(),
-          content: replyJson['chinese'] ?? '',
-          pinyin: replyJson['pinyin'],
-          english: replyJson['english'],
-          suggestion: replyJson['suggestion'],
-          role: ChatRole.scholar,
-          timestamp: DateTime.now(),
-        );
-        
-        state = state.copyWith(messages: [...state.messages, aiMsg], isProcessing: false);
+        await _fetchAiResponse();
       }
     } catch (e) {
       state = state.copyWith(isProcessing: false, error: "Processing failed: $e");
+    }
+  }
+
+  Future<void> _fetchAiResponse() async {
+    try {
+      final replyJson = await _echoHallService.getConversationResponse(state.messages, state.currentScenario!.systemPrompt);
+      
+      final aiMsg = GradedChatMessage(
+        id: DateTime.now().millisecondsSinceEpoch.toString(),
+        content: replyJson['chinese'] ?? '',
+        pinyin: replyJson['pinyin'],
+        english: replyJson['english'],
+        suggestion: replyJson['suggestion'],
+        role: ChatRole.scholar,
+        timestamp: DateTime.now(),
+      );
+      
+      state = state.copyWith(messages: [...state.messages, aiMsg], isProcessing: false);
+    } catch (e) {
+      state = state.copyWith(isProcessing: false, error: "AI Response failed: $e");
     }
   }
 }

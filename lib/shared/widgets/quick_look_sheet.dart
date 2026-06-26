@@ -387,7 +387,7 @@ class _FoundBody extends ConsumerWidget {
                   isDisabled: false,
                   onTap: () {
                     Navigator.pop(context);
-                    showCalligraphyCanvas(context, card.hanzi);
+                    showCalligraphyCanvas(context, card);
                   },
                 ),
               ),
