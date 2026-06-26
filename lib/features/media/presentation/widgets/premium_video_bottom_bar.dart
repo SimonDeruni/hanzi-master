@@ -33,10 +33,10 @@ class _PremiumVideoBottomBarState extends State<PremiumVideoBottomBar> {
   void initState() {
     super.initState();
     _fetchDuration();
-    widget.controller.videoStateStream.listen((state) {
+    widget.controller.listen((value) {
       if (mounted) {
         setState(() {
-          _isPlaying = state.playerState == PlayerState.playing;
+          _isPlaying = value.playerState == PlayerState.playing;
         });
       }
     });
