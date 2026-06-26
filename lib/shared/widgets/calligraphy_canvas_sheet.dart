@@ -1,32 +1,63 @@
-import 'dart:ui';
+import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/shared/widgets/global_blurred_bottom_sheet.dart';
+import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
+import 'package:hanzi_master/features/flashcards/presentation/widgets/drawing_canvas.dart';
+import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 
-void showCalligraphyCanvas(BuildContext context, String hanzi) {
-  GlobalBlurredBottomSheet.show(
-    context,
-    child: CalligraphyCanvasSheet(hanzi: hanzi),
+import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
+
+void showCalligraphyCanvas(BuildContext context, Flashcard card) {
+  showDialog(
+    context: context,
+    builder: (context) => CalligraphyCanvasDialog(card: card),
   );
 }
 
-class CalligraphyCanvasSheet extends StatefulWidget {
-  final String hanzi;
+class CalligraphyCanvasDialog extends ConsumerStatefulWidget {
+  final Flashcard card;
 
-  const CalligraphyCanvasSheet({super.key, required this.hanzi});
+  const CalligraphyCanvasDialog({super.key, required this.card});
 
   @override
-  State<CalligraphyCanvasSheet> createState() => _CalligraphyCanvasSheetState();
+  ConsumerState<CalligraphyCanvasDialog> createState() => _CalligraphyCanvasDialogState();
 }
 
-class _CalligraphyCanvasSheetState extends State<CalligraphyCanvasSheet> {
-  List<List<Offset>> _lines = [];
-  List<Offset> _currentLine = [];
+class _CalligraphyCanvasDialogState extends ConsumerState<CalligraphyCanvasDialog> {
+  final ValueNotifier<List<ui.Offset?>> _scratchpadNotifier = ValueNotifier([]);
+  Flashcard? _hydratedCard;
+  bool _isLoading = false;
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.card.strokePaths.isEmpty) {
+      _isLoading = true;
+      _hydrateStrokes();
+    } else {
+      _hydratedCard = widget.card;
+    }
+  }
+
+  Future<void> _hydrateStrokes() async {
+    final updatedCard = await ref.read(flashcardControllerProvider.notifier).loadStrokesFor(widget.card);
+    if (mounted) {
+      setState(() {
+        _hydratedCard = updatedCard;
+        _isLoading = false;
+      });
+    }
+  }
 
   void _clear() {
-    setState(() {
-      _lines = [];
-      _currentLine = [];
-    });
+    _scratchpadNotifier.value = [];
+  }
+
+  @override
+  void dispose() {
+    _scratchpadNotifier.dispose();
+    super.dispose();
   }
 
   @override
@@ -36,100 +67,76 @@ class _CalligraphyCanvasSheetState extends State<CalligraphyCanvasSheet> {
     final textColor = isDark ? Colors.white : Colors.black87;
     final gridColor = isDark ? Colors.white12 : Colors.black12;
 
-    return Container(
-      height: MediaQuery.of(context).size.height * 0.7,
-      decoration: BoxDecoration(
-        color: bgColor,
-        borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
-      ),
-      child: Column(
-        children: [
-          // Header
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                IconButton(
-                  icon: Icon(Icons.close, color: textColor),
-                  onPressed: () => Navigator.pop(context),
-                ),
-                Text(
-                  'Trace Character',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: textColor,
+    return Dialog(
+      backgroundColor: Colors.transparent,
+      insetPadding: const EdgeInsets.all(16),
+      child: Container(
+        height: MediaQuery.of(context).size.height * 0.7,
+        decoration: BoxDecoration(
+          color: bgColor,
+          borderRadius: BorderRadius.circular(24),
+          border: Border.all(color: isDark ? Colors.white12 : Colors.black12),
+        ),
+        child: Column(
+          children: [
+            // Header
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  IconButton(
+                    icon: Icon(Icons.close, color: textColor),
+                    onPressed: () => Navigator.pop(context),
                   ),
-                ),
-                IconButton(
-                  icon: Icon(Icons.refresh, color: textColor),
-                  onPressed: _clear,
-                ),
-              ],
+                  Text(
+                    'Trace Character',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: textColor,
+                    ),
+                  ),
+                  IconButton(
+                    icon: Icon(Icons.refresh, color: textColor),
+                    onPressed: _clear,
+                  ),
+                ],
+              ),
             ),
-          ),
-          
-          Expanded(
-            child: Center(
-              child: AspectRatio(
-                aspectRatio: 1.0,
-                child: Container(
-                  margin: const EdgeInsets.all(24),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(16),
-                    border: Border.all(color: gridColor, width: 2),
-                    color: isDark ? Colors.black26 : Colors.white,
-                  ),
-                  child: Stack(
-                    children: [
-                      // Grid Background
-                      CustomPaint(
-                        size: Size.infinite,
-                        painter: _GridPainter(gridColor),
-                      ),
-                      
-                      // Faint Character
-                      Center(
-                        child: Text(
-                          widget.hanzi,
-                          style: TextStyle(
-                            fontSize: 200,
-                            height: 1.1,
-                            color: isDark ? Colors.white12 : Colors.black12,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                      ),
-                      
-                      // Drawing Layer
-                      GestureDetector(
-                        onPanStart: (details) {
-                          setState(() {
-                            _currentLine = [details.localPosition];
-                            _lines.add(_currentLine);
-                          });
-                        },
-                        onPanUpdate: (details) {
-                          setState(() {
-                            _currentLine.add(details.localPosition);
-                          });
-                        },
-                        child: CustomPaint(
-                          size: Size.infinite,
-                          painter: _StrokePainter(
-                            lines: _lines,
-                            strokeColor: isDark ? Colors.white : Colors.black87,
-                          ),
-                        ),
-                      ),
-                    ],
+            
+            Expanded(
+              child: Center(
+                child: AspectRatio(
+                  aspectRatio: 1.0,
+                  child: Container(
+                    margin: const EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(color: gridColor, width: 2),
+                      color: isDark ? Colors.black26 : Colors.white,
+                    ),
+                    clipBehavior: Clip.antiAlias,
+                    child: CalligraphyBackground(
+                      child: _isLoading
+                          ? const Center(child: CircularProgressIndicator())
+                          : DrawingCanvas(
+                              strokePaths: _hydratedCard?.strokePaths ?? [],
+                              medianPaths: _hydratedCard?.medianPaths ?? [],
+                              showAnimation: true,
+                              readOnly: false,
+                              showControls: true,
+                              showGrade: false,
+                              showGuideLines: true,
+                              userPointsNotifier: _scratchpadNotifier,
+                            ),
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
