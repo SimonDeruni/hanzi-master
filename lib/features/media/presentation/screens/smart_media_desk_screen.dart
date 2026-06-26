@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:youtube_explode_dart/youtube_explode_dart.dart' hide Video;
 import 'package:youtube_explode_dart/youtube_explode_dart.dart' as yt show Video;
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 import '../../data/youtube_repository.dart';
@@ -118,7 +117,8 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
           
           // Auto scroll to current index
           if (_scrollController.hasClients) {
-            final targetOffset = newIndex * 60.0; // Approximation of item height
+            // Rough approximation: Prep card is ~250px, each line is ~130px
+            final targetOffset = 250.0 + (newIndex * 130.0); 
             _scrollController.animateTo(
               targetOffset.clamp(0.0, _scrollController.position.maxScrollExtent),
               duration: const Duration(milliseconds: 300),
@@ -222,10 +222,11 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
     return Scaffold(
       backgroundColor: const Color(0xFFFDFCF0),
       appBar: AppBar(
-        title: Text(widget.video.title, style: const TextStyle(color: Colors.black87, fontSize: 16)),
+        title: const Text("Learn Chinese", style: TextStyle(color: Color(0xFF1C2541), fontSize: 18, fontWeight: FontWeight.bold)),
+        centerTitle: true,
         backgroundColor: Colors.transparent,
         elevation: 0,
-        iconTheme: const IconThemeData(color: Colors.black87),
+        iconTheme: const IconThemeData(color: Color(0xFF1C2541)),
         actions: [
           PopupMenuButton<String>(
             icon: const Icon(Icons.closed_caption, color: Colors.indigo),

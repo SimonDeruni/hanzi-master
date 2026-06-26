@@ -13,63 +13,66 @@ class PremiumAiPrepCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-    
-    return Container(
+    return Card(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-      decoration: BoxDecoration(
-        color: isDark ? const Color(0xFF242526) : Colors.white,
-        borderRadius: BorderRadius.circular(20),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.05),
-            blurRadius: 15,
-            offset: const Offset(0, 5),
-          )
-        ],
-      ),
+      elevation: 4,
+      shadowColor: Colors.black.withValues(alpha: 0.1),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      color: Colors.white,
       child: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Container(
-                  padding: const EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    color: Colors.indigo.withValues(alpha: 0.1),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: const Icon(Icons.psychology, color: Colors.indigo, size: 24),
-                ),
-                const SizedBox(width: 12),
                 const Text(
                   'AI Prep Room',
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
+                    color: Color(0xFF1C2541),
+                  ),
+                ),
+                Text(
+                  'Overview',
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.grey[600],
                   ),
                 ),
               ],
             ),
             const SizedBox(height: 16),
+            const Text(
+              'LESSON SUMMARY',
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF9E9E9E),
+                letterSpacing: 1.2,
+              ),
+            ),
+            const SizedBox(height: 8),
             Text(
               briefing.summary,
-              style: TextStyle(
-                fontSize: 15,
-                height: 1.5,
-                color: isDark ? Colors.grey[300] : Colors.black87,
+              style: const TextStyle(
+                fontSize: 14,
+                height: 1.4,
+                color: Color(0xFF2C2C2C),
               ),
             ),
             if (briefing.hardWords.isNotEmpty) ...[
-              const SizedBox(height: 20),
+              const SizedBox(height: 24),
               const Text(
-                'Target Vocabulary',
+                'KEY VOCABULARY',
                 style: TextStyle(
+                  fontSize: 12,
                   fontWeight: FontWeight.bold,
-                  fontSize: 14,
-                  color: Colors.grey,
+                  color: Color(0xFF9E9E9E),
+                  letterSpacing: 1.2,
                 ),
               ),
               const SizedBox(height: 12),
@@ -80,20 +83,17 @@ class PremiumAiPrepCard extends StatelessWidget {
                   return GestureDetector(
                     onTap: () => onWordTapped(w),
                     child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                       decoration: BoxDecoration(
-                        color: isDark ? Colors.grey[800] : const Color(0xFFF0F2F5),
-                        borderRadius: BorderRadius.circular(20),
-                        border: Border.all(
-                          color: isDark ? Colors.grey[700]! : Colors.grey[300]!,
-                        ),
+                        color: const Color(0xFFEBF3F9),
+                        borderRadius: BorderRadius.circular(16),
                       ),
                       child: Text(
                         w,
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                          color: isDark ? Colors.white : Colors.black87,
+                        style: const TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFF1C2541),
                         ),
                       ),
                     ),
