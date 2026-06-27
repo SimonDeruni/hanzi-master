@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:hanzi_master/features/flashcards/presentation/screens/stats_screen.dart';
-import 'package:hanzi_master/features/flashcards/presentation/screens/settings_screen.dart';
+import 'package:hanzi_master/features/flashcards/presentation/screens/profile_screen.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/streak_seal.dart';
-import 'package:hanzi_master/features/premium/presentation/screens/paywall_sheet.dart';
-import 'package:hanzi_master/core/providers/premium_controller.dart';
-
 class GlobalSliverAppBar extends ConsumerWidget {
   final String title;
   final String? subtitle;
@@ -24,71 +20,63 @@ class GlobalSliverAppBar extends ConsumerWidget {
     final isDark = theme.brightness == Brightness.dark;
     
     return SliverAppBar(
-      backgroundColor: theme.colorScheme.surface.withValues(alpha: 0.95),
+      backgroundColor: Colors.transparent,
       surfaceTintColor: Colors.transparent,
       elevation: 0,
-      pinned: false,
-      floating: true,
-      expandedHeight: subtitle != null ? 180 : 150,
-      flexibleSpace: FlexibleSpaceBar(
-        titlePadding: EdgeInsets.only(left: 24, bottom: subtitle != null ? 48 : 16, right: 180),
-        title: Text(
-          title,
-          style: theme.textTheme.headlineSmall?.copyWith(
-            fontWeight: FontWeight.w900,
-            letterSpacing: 1.0,
+      pinned: true,
+      centerTitle: false,
+      toolbarHeight: 72,
+      title: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            alignment: Alignment.centerLeft,
+            child: Text(
+              title,
+              style: theme.textTheme.headlineMedium?.copyWith(
+                fontWeight: FontWeight.w900,
+                fontFamily: 'Serif',
+                color: isDark ? Colors.white : Colors.black87,
+                letterSpacing: 0.5,
+                fontSize: 28,
+              ),
+            ),
           ),
-          maxLines: 2,
-          overflow: TextOverflow.ellipsis,
-        ),
-        background: subtitle != null 
-            ? Container(
-                alignment: Alignment.bottomLeft,
-                padding: const EdgeInsets.only(left: 24, bottom: 16, right: 80), // right padding to avoid actions overlap if needed, though they fade
-                child: Text(
-                  subtitle!,
-                  style: theme.textTheme.bodyLarge?.copyWith(
-                    color: isDark ? Colors.white70 : theme.colorScheme.onSurface.withValues(alpha: 0.6),
-                    height: 1.4,
-                  ),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
+          if (subtitle != null)
+            FittedBox(
+              fit: BoxFit.scaleDown,
+              alignment: Alignment.centerLeft,
+              child: Text(
+                subtitle!,
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: isDark ? Colors.white70 : Colors.black54,
                 ),
-              )
-            : null,
+              ),
+            ),
+        ],
       ),
       actions: [
         if (actions != null) ...actions!,
-        Consumer(
-          builder: (context, ref, child) {
-            final isPremium = ref.watch(premiumControllerProvider).valueOrNull ?? false;
-            return Row(
-              children: [
-                if (isPremium)
-                  const Padding(
-                    padding: EdgeInsets.only(right: 8.0),
-                    child: Icon(Icons.workspace_premium, color: Colors.amber),
-                  )
-                else
-                  IconButton(
-                    icon: const Icon(Icons.workspace_premium_outlined, color: Colors.indigo),
-                    onPressed: () => PaywallSheet.show(context),
-                  ),
-              ],
-            );
-          },
-        ),
         const Padding(
-          padding: EdgeInsets.only(right: 8.0, top: 10, bottom: 10),
+          padding: EdgeInsets.only(right: 8.0, top: 12, bottom: 12),
           child: StreakSeal(),
         ),
-        IconButton(
-          icon: const Icon(Icons.bar_chart),
-          onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const StatsScreen())),
-        ),
-        IconButton(
-          icon: const Icon(Icons.settings),
-          onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const SettingsScreen())),
+        Padding(
+          padding: const EdgeInsets.only(right: 16.0),
+          child: GestureDetector(
+            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfileScreen())),
+            child: CircleAvatar(
+              radius: 18,
+              backgroundColor: isDark ? Colors.grey.shade800 : Colors.grey.shade200,
+              child: Icon(
+                Icons.person_outline,
+                size: 20,
+                color: isDark ? Colors.white : Colors.black87,
+              ),
+            ),
+          ),
         ),
       ],
     );

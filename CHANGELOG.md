@@ -20,6 +20,7 @@ All notable changes to this project will be documented in this file.
     - Integrated `CalligraphyCanvasSheet` into `QuickLookSheet` via a new "Trace" button for immediate character practice.
     - Added "Extract & Simplify" button to `WebBrowserScreen` to instantly convert complex web Chinese into HSK-leveled stories using Gemini.
 - **UI/UX Polish**:
+    - **Premium AI Hub UI**: Completely redesigned the AI Hub layout into a strict, single-page, flexible dashboard (no scrolling) with deep ink aesthetics (`#131A29`) and textured Zen & Ink backgrounds for all action cards. Replaced the "Calligraphy" card with a focused "TODAY'S WORD" hero card, wired directly to `CharacterDetailScreen`.
     - Redesigned `TravelInterpreterScreen` layout for improved 180-degree split-screen visibility and dynamic state backgrounds.
     - Revamped `ShadowingStudioScreen` with an audio-first, mimicry-focused interface via `PageView`.
     - Added Tinder-style swipe gestures with corresponding haptic feedback and scale animations to `ReviewScreen` flashcard grading.

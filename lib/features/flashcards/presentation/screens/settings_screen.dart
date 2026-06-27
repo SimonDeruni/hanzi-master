@@ -5,7 +5,6 @@ import '../../../course/presentation/screens/tome_manager_screen.dart' as hanzi_
 import '../providers/settings_controller.dart';
 import 'package:hanzi_master/core/services/audio_service.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
-import 'package:hanzi_master/features/settings/presentation/screens/contact_screen.dart';
 
 class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
@@ -16,18 +15,20 @@ class SettingsScreen extends ConsumerWidget {
     final l10n = AppLocalizations.of(context);
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
-
     return Scaffold(
-      backgroundColor: isDark ? const Color(0xFF121212) : const Color(0xFFF8F9FA),
+      backgroundColor: isDark ? const Color(0xFF121212) : const Color(0xFFFDFCF0),
       appBar: AppBar(
         title: Text(l10n?.settingsTitle ?? "Settings", style: const TextStyle(fontWeight: FontWeight.bold)),
         centerTitle: true,
         elevation: 0,
         backgroundColor: Colors.transparent,
+        iconTheme: IconThemeData(color: isDark ? Colors.white : Colors.black87),
       ),
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
         children: [
+
+
           _buildSectionHeader(l10n?.learningPreferences ?? "Learning Preferences", theme),
           _buildSettingsCard(
             context: context,
@@ -181,25 +182,7 @@ class SettingsScreen extends ConsumerWidget {
           ),
           const SizedBox(height: 24),
 
-          _buildSectionHeader(l10n?.supportAndFeedback ?? "Support & Feedback", theme),
-          _buildSettingsCard(
-            context: context,
-            children: [
-              ListTile(
-                leading: const CircleAvatar(
-                  backgroundColor: Color(0xFFE3F2FD),
-                  child: Icon(Icons.help_outline, color: Colors.blue),
-                ),
-                title: Text(AppLocalizations.of(context)!.contactUs, style: TextStyle(fontWeight: FontWeight.w600)),
-                subtitle: Text(AppLocalizations.of(context)!.reportBugsOrRequest),
-                trailing: const Icon(Icons.chevron_right, color: Colors.grey),
-                onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const ContactScreen()));
-                },
-              ),
-            ],
-          ),
-          const SizedBox(height: 32),
+
 
           // Danger Zone
           _buildSectionHeader(l10n?.dangerZone ?? "Danger Zone", theme, color: Colors.redAccent),
@@ -258,15 +241,16 @@ class SettingsScreen extends ConsumerWidget {
   }
 
   Widget _buildSectionHeader(String title, ThemeData theme, {Color? color}) {
+    final isDark = theme.brightness == Brightness.dark;
     return Padding(
-      padding: const EdgeInsets.only(left: 8.0, bottom: 8.0),
+      padding: const EdgeInsets.only(left: 16.0, bottom: 12.0),
       child: Text(
-        title.toUpperCase(),
-        style: TextStyle(
-          fontSize: 13,
-          fontWeight: FontWeight.bold,
-          letterSpacing: 1.5,
-          color: color ?? theme.colorScheme.primary,
+        title,
+        style: theme.textTheme.titleMedium?.copyWith(
+          fontFamily: 'Serif',
+          fontWeight: FontWeight.w800,
+          color: color ?? (isDark ? Colors.white70 : Colors.black87),
+          letterSpacing: 0.5,
         ),
       ),
     );
@@ -378,4 +362,5 @@ class SettingsScreen extends ConsumerWidget {
       default: return 'English';
     }
   }
+
 }

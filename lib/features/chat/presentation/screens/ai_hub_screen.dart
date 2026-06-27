@@ -1,11 +1,18 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/features/echo_hall/presentation/screens/scenario_selection_screen.dart';
 import 'package:hanzi_master/features/reading/presentation/screens/reading_room_screen.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/features/live_translate/presentation/screens/shadowing_studio_screen.dart';
+import 'package:hanzi_master/features/media/presentation/screens/web_browser_screen.dart';
+import 'package:hanzi_master/features/media/presentation/screens/media_hub_screen.dart';
+import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
+import 'package:hanzi_master/features/flashcards/presentation/screens/character_detail_screen.dart';
 
 import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/features/flashcards/presentation/widgets/streak_seal.dart';
+import 'package:hanzi_master/features/flashcards/presentation/screens/profile_screen.dart';
 import 'package:hanzi_master/shared/widgets/global_sliver_app_bar.dart';
 
 class AiHubScreen extends ConsumerWidget {
@@ -19,51 +26,86 @@ class AiHubScreen extends ConsumerWidget {
 
     return Scaffold(
       body: CalligraphyBackground(
-        child: CustomScrollView(
-          physics: const BouncingScrollPhysics(),
-          slivers: [
-            GlobalSliverAppBar(
-              title: l10n?.aiHubTitle ?? "AI Hub",
-            ),
-            
-            const SliverToBoxAdapter(child: SizedBox(height: 24)),
-
-            // Hero Card: The Echo Hall (Voice Scenarios)
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                child: _buildHeroCard(
-                  context: context,
-                  title: "Roleplay Scenarios",
-                  subtitle: l10n?.immersiveRoleplay ?? "Immersive roleplay with AI avatars",
-                  icon: Icons.record_voice_over,
-                  color: theme.colorScheme.primary,
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (_) => const ScenarioSelectionScreen()),
-                    );
-                  },
+        child: SafeArea(
+          bottom: false,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                // Custom Header replacing GlobalSliverAppBar
+                Padding(
+                  padding: const EdgeInsets.only(top: 16.0, bottom: 20.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        l10n?.aiHubTitle ?? "AI Hub",
+                        style: theme.textTheme.headlineMedium?.copyWith(
+                          fontWeight: FontWeight.w900,
+                          fontFamily: 'Serif',
+                          color: isDark ? Colors.white : Colors.black87,
+                          letterSpacing: 0.5,
+                          fontSize: 28,
+                        ),
+                      ),
+                      Row(
+                        children: [
+                          const StreakSeal(),
+                          const SizedBox(width: 12),
+                          GestureDetector(
+                            onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => const ProfileScreen(),
+                              ),
+                            ),
+                            child: Container(
+                              padding: const EdgeInsets.all(8),
+                              decoration: BoxDecoration(
+                                color: isDark
+                                    ? Colors.white.withValues(alpha: 0.1)
+                                    : Colors.black.withValues(alpha: 0.05),
+                                shape: BoxShape.circle,
+                              ),
+                              child: Icon(
+                                Icons.person_outline,
+                                color: isDark ? Colors.white : Colors.black87,
+                                size: 20,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ),
 
-            const SliverToBoxAdapter(child: SizedBox(height: 20)),
+                // Hero Carousel: Featured AI Tools
+                Expanded(
+                  flex: 12,
+                  child: const _FeaturedCarousel(),
+                ),
 
-            // Grid of other features
-            SliverPadding(
-              padding: const EdgeInsets.symmetric(horizontal: 24.0),
-              sliver: SliverGrid.count(
-                crossAxisCount: 2,
-                mainAxisSpacing: 16,
-                crossAxisSpacing: 16,
-                childAspectRatio: 1.05,
-                children: [
-                  _buildGridCard(
+                const SizedBox(height: 16),
+
+                // Today's Insight Card
+                Expanded(
+                  flex: 11,
+                  child: _buildTodayInsightCard(context: context),
+                ),
+                
+                const SizedBox(height: 16),
+
+                // Horizontal List of Features
+                Expanded(
+                  flex: 6,
+                  child: _buildHorizontalActionCard(
                     context: context,
-                    title: l10n?.readingRoom ?? "Reading Room",
-                    subtitle: l10n?.gradedAiStories ?? "Graded AI Stories",
+                    title: "READING ROOM",
+                    subtitle: "Enhance comprehension with classic literature.",
                     icon: Icons.auto_stories,
+                    imageAsset: 'assets/images/ai_hub_abstract_ink.png',
                     onTap: () {
                       Navigator.push(
                         context,
@@ -71,11 +113,18 @@ class AiHubScreen extends ConsumerWidget {
                       );
                     },
                   ),
-                  _buildGridCard(
+                ),
+                
+                const SizedBox(height: 12),
+                
+                Expanded(
+                  flex: 6,
+                  child: _buildHorizontalActionCard(
                     context: context,
-                    title: l10n?.shadowing ?? "Shadowing",
-                    subtitle: l10n?.liveTranslation ?? "Live Translation",
-                    icon: Icons.translate,
+                    title: "SHADOWING",
+                    subtitle: "Perfect pronunciation by mimicking native speakers.",
+                    icon: Icons.mic,
+                    imageAsset: 'assets/images/ai_hub_ink_mountains.png',
                     onTap: () {
                       Navigator.push(
                         context,
@@ -83,170 +132,466 @@ class AiHubScreen extends ConsumerWidget {
                       );
                     },
                   ),
-                  _buildGridCard(
-                    context: context,
-                    title: l10n?.calligraphy ?? "Calligraphy",
-                    subtitle: l10n?.strokeAnalysis ?? "Stroke Analysis",
-                    icon: Icons.brush,
-                    isComingSoon: true,
-                    onTap: () {},
-                  ),
-                ],
-              ),
+                ),
+
+                const SizedBox(height: 24),
+              ],
             ),
-            
-            const SliverToBoxAdapter(child: SizedBox(height: 40)),
-          ],
+          ),
         ),
       ),
     );
   }
 
-  Widget _buildHeroCard({
-    required BuildContext context,
-    required String title,
-    required String subtitle,
-    required IconData icon,
-    required Color color,
-    required VoidCallback onTap,
-  }) {
+  Widget _buildTodayInsightCard({required BuildContext context}) {
     final theme = Theme.of(context);
     return GestureDetector(
-      onTap: onTap,
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => const CharacterDetailScreen(
+              card: Flashcard(
+                id: 'mock_cheng',
+                hanzi: '诚',
+                pinyin: 'chéng',
+                definition: 'sincere; honest',
+                hskLevel: 4,
+                strokePaths: [],
+                modeStats: {},
+              ),
+            ),
+          ),
+        );
+      },
       child: Container(
-        width: double.infinity,
-        padding: const EdgeInsets.all(24),
+                width: double.infinity,
         decoration: BoxDecoration(
-          color: color,
-          borderRadius: BorderRadius.circular(32),
+          color: const Color(0xFF161616),
+          borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(
-              color: color.withValues(alpha: 0.3),
-              blurRadius: 20,
-              offset: const Offset(0, 10),
-            ),
-          ],
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: Colors.white.withValues(alpha: 0.2),
-                shape: BoxShape.circle,
-              ),
-              child: Icon(icon, color: Colors.white, size: 36),
-            ),
-            const SizedBox(height: 24),
-            Text(
-              title,
-              style: theme.textTheme.headlineMedium?.copyWith(
-                color: Colors.white,
-                fontWeight: FontWeight.w900,
-              ),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              subtitle,
-              style: theme.textTheme.titleMedium?.copyWith(
-                color: Colors.white.withValues(alpha: 0.8),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildGridCard({
-    required BuildContext context,
-    required String title,
-    required String subtitle,
-    required IconData icon,
-    required VoidCallback onTap,
-    bool isComingSoon = false,
-  }) {
-    final theme = Theme.of(context);
-    final isDark = theme.brightness == Brightness.dark;
-    
-    return GestureDetector(
-      onTap: isComingSoon ? null : onTap,
-      child: Container(
-        padding: const EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          color: theme.colorScheme.surface,
-          borderRadius: BorderRadius.circular(24),
-          border: Border.all(color: isDark ? Colors.white12 : Colors.black.withValues(alpha: 0.05)),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withValues(alpha: 0.05),
+              color: Colors.black.withValues(alpha: 0.1),
               blurRadius: 15,
               offset: const Offset(0, 8),
             ),
           ],
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: Stack(
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  padding: const EdgeInsets.all(12),
-                  decoration: BoxDecoration(
-                    color: isComingSoon 
-                        ? theme.colorScheme.onSurface.withValues(alpha: 0.05)
-                        : theme.colorScheme.primary.withValues(alpha: 0.1),
-                    shape: BoxShape.circle,
-                  ),
-                  child: Icon(
-                    icon, 
-                    color: isComingSoon 
-                        ? theme.colorScheme.onSurface.withValues(alpha: 0.3)
-                        : theme.colorScheme.primary,
+            // Background calligraphy
+            Positioned(
+              right: -30,
+              top: -10,
+              child: Opacity(
+                opacity: 0.1,
+                child: const Text(
+                  "诚",
+                  style: TextStyle(
+                    fontSize: 200,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                    height: 1,
                   ),
                 ),
-                if (isComingSoon)
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                    decoration: BoxDecoration(
-                      color: theme.colorScheme.onSurface.withValues(alpha: 0.1),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Text(
-                      AppLocalizations.of(context)!.soon,
-                      style: TextStyle(
-                        fontSize: 10,
-                        fontWeight: FontWeight.bold,
-                        color: theme.colorScheme.onSurface.withValues(alpha: 0.5),
-                      ),
-                    ),
-                  )
-                else
-                  Icon(
-                    Icons.arrow_forward_ios, 
-                    size: 14, 
-                    color: theme.colorScheme.onSurface.withValues(alpha: 0.3),
-                  ),
-              ],
-            ),
-            const Spacer(),
-            Text(
-              title,
-              style: theme.textTheme.titleMedium?.copyWith(
-                fontWeight: FontWeight.w900,
-                color: isComingSoon ? theme.colorScheme.onSurface.withValues(alpha: 0.4) : null,
               ),
             ),
-            const SizedBox(height: 4),
-            Text(
-              subtitle,
-              style: theme.textTheme.bodySmall?.copyWith(
-                color: theme.colorScheme.onSurface.withValues(alpha: isComingSoon ? 0.3 : 0.6),
+            // Second character removed for cleaner background
+            
+            // Content
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "TODAY'S WORD",
+                    style: theme.textTheme.labelSmall?.copyWith(
+                      color: const Color(0xFFD4C4A8),
+                      fontWeight: FontWeight.w600,
+                      letterSpacing: 1.5,
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  Text(
+                    "HANZI: 诚 (Chéng)",
+                    style: theme.textTheme.titleLarge?.copyWith(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 0.5,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    "诚实 - Sincerity / Honest",
+                    style: theme.textTheme.titleMedium?.copyWith(
+                      color: const Color(0xFFD4C4A8),
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  const Spacer(),
+                  Row(
+                    children: [
+                      Text(
+                        "AI Breakdown | 2 mins",
+                        style: theme.textTheme.bodySmall?.copyWith(
+                          color: Colors.white70,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 12),
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                    decoration: BoxDecoration(
+                      color: Colors.transparent,
+                      borderRadius: BorderRadius.circular(30),
+                      border: Border.all(
+                        color: const Color(0xFFD4C4A8).withValues(alpha: 0.5),
+                        width: 1,
+                      ),
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          "EXPLORE WORD",
+                          style: theme.textTheme.labelMedium?.copyWith(
+                            color: const Color(0xFFD4C4A8),
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 1.2,
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        const Icon(
+                          Icons.arrow_forward_ios,
+                          size: 12,
+                          color: Color(0xFFD4C4A8),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildHorizontalActionCard({
+    required BuildContext context,
+    required String title,
+    required String subtitle,
+    required IconData icon,
+    String? imageAsset,
+    required VoidCallback onTap,
+  }) {
+    final theme = Theme.of(context);
+    
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+                decoration: BoxDecoration(
+          color: const Color(0xFF131A29),
+          borderRadius: BorderRadius.circular(20),
+          image: imageAsset != null
+              ? DecorationImage(
+                  image: AssetImage(imageAsset),
+                  fit: BoxFit.cover,
+                  colorFilter: const ColorFilter.mode(Colors.black54, BlendMode.darken),
+                )
+              : null,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.15),
+              blurRadius: 15,
+              offset: const Offset(0, 8),
+            ),
+          ],
+        ),
+        child: Row(
+          children: [
+            const SizedBox(width: 20),
+            // Glassmorphism Icon container
+            Container(
+              width: 56,
+              height: 56,
+              decoration: BoxDecoration(
+                color: Colors.white.withValues(alpha: 0.1),
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(
+                  color: Colors.white.withValues(alpha: 0.2),
+                  width: 1,
+                ),
+              ),
+              child: Icon(
+                icon,
+                size: 28,
+                color: const Color(0xFFD4C4A8),
+              ),
+            ),
+            const SizedBox(width: 20),
+            // Text Content
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: theme.textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.w900,
+                      color: Colors.white,
+                      letterSpacing: 0.5,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    subtitle,
+                    style: theme.textTheme.bodySmall?.copyWith(
+                      color: Colors.white70,
+                      height: 1.3,
+                    ),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(width: 16),
+            // Subtle action arrow
+            Icon(
+              Icons.chevron_right,
+              color: Colors.white.withValues(alpha: 0.3),
+              size: 24,
+            ),
+            const SizedBox(width: 16),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _FeaturedCarousel extends StatefulWidget {
+  const _FeaturedCarousel();
+
+  @override
+  State<_FeaturedCarousel> createState() => _FeaturedCarouselState();
+}
+
+class _FeaturedCarouselState extends State<_FeaturedCarousel> {
+  final PageController _pageController = PageController();
+  Timer? _timer;
+  int _currentPage = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _startAutoScroll();
+  }
+
+  void _startAutoScroll() {
+    _timer?.cancel();
+    _timer = Timer.periodic(const Duration(seconds: 5), (Timer timer) {
+      if (_pageController.hasClients) {
+        int nextPage = _currentPage + 1;
+        if (nextPage > 1) {
+          nextPage = 0;
+        }
+        _pageController.animateToPage(
+          nextPage,
+          duration: const Duration(milliseconds: 800),
+          curve: Curves.easeInOutQuart,
+        );
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    _pageController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Expanded(
+          child: PageView(
+            controller: _pageController,
+            onPageChanged: (int page) {
+              setState(() {
+                _currentPage = page;
+              });
+              // Reset timer when user manually swipes
+              _startAutoScroll();
+            },
+            physics: const BouncingScrollPhysics(),
+            children: [
+              // Card 1: Roleplay Scenarios
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                child: _CarouselCard(
+                  title: "Roleplay Scenarios",
+                  subtitle: "Immersive roleplay with AI avatars",
+                  category: "AI-Powered Conversations",
+                  imageAsset: 'assets/images/ai_hub_ink_mountains.png',
+                  icon: Icons.auto_awesome,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (_) => const ScenarioSelectionScreen()),
+                    );
+                  },
+                ),
+              ),
+              // Card 2: Web Explorer
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                child: _CarouselCard(
+                  title: "Read The Web",
+                  subtitle: "Turn any webpage into a learning experience",
+                  category: "Web Explorer",
+                  imageAsset: 'assets/images/ai_hub_compass_map.png',
+                  icon: Icons.language,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const MediaHubScreen()),
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 16),
+        // Indicators
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: List.generate(2, (index) {
+            return AnimatedContainer(
+              duration: const Duration(milliseconds: 300),
+              margin: const EdgeInsets.symmetric(horizontal: 4.0),
+              height: 6.0,
+              width: _currentPage == index ? 24.0 : 6.0,
+              decoration: BoxDecoration(
+                color: _currentPage == index
+                    ? (Theme.of(context).brightness == Brightness.dark
+                        ? Colors.white
+                        : Colors.black87)
+                    : (Theme.of(context).brightness == Brightness.dark
+                        ? Colors.white24
+                        : Colors.black26),
+                borderRadius: BorderRadius.circular(3.0),
+              ),
+            );
+          }),
+        ),
+      ],
+    );
+  }
+}
+
+class _CarouselCard extends StatelessWidget {
+  final String title;
+  final String subtitle;
+  final String category;
+  final String imageAsset;
+  final IconData icon;
+  final VoidCallback onTap;
+
+  const _CarouselCard({
+    required this.title,
+    required this.subtitle,
+    required this.category,
+    required this.imageAsset,
+    required this.icon,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        width: double.infinity,
+        decoration: BoxDecoration(
+          color: const Color(0xFF131A29),
+          image: DecorationImage(
+            image: AssetImage(imageAsset),
+            fit: BoxFit.cover,
+            colorFilter:
+                const ColorFilter.mode(Colors.black38, BlendMode.darken),
+          ),
+          borderRadius: BorderRadius.circular(24),
+          boxShadow: [
+            BoxShadow(
+              color: const Color(0xFF131A29).withOpacity(0.5),
+              blurRadius: 20,
+              offset: const Offset(0, 10),
+            ),
+          ],
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(28.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title.toUpperCase(),
+                    style: theme.textTheme.labelMedium?.copyWith(
+                      color: Colors.white.withOpacity(0.6),
+                      fontWeight: FontWeight.w600,
+                      letterSpacing: 1.5,
+                    ),
+                  ),
+                  Container(
+                    padding: const EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.1),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Icon(
+                      icon,
+                      color: Colors.white,
+                      size: 20,
+                    ),
+                  ),
+                ],
+              ),
+              const Spacer(),
+              Text(
+                category,
+                style: theme.textTheme.headlineMedium?.copyWith(
+                  fontFamily: 'Serif',
+                  fontWeight: FontWeight.w900,
+                  color: Colors.white,
+                  letterSpacing: -0.5,
+                  height: 1.1,
+                ),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                subtitle,
+                style: theme.textTheme.bodyMedium?.copyWith(
+                  color: Colors.white.withOpacity(0.8),
+                  height: 1.4,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

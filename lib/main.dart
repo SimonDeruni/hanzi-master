@@ -17,6 +17,7 @@ import 'package:hanzi_master/features/flashcards/presentation/providers/flashcar
 import 'package:hanzi_master/features/onboarding/presentation/screens/onboarding_screen.dart';
 import 'package:hanzi_master/core/services/analytics_service.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:hanzi_master/firebase_options.dart';
 import 'package:hanzi_master/core/services/monetization_service.dart';
 import 'package:hanzi_master/features/reading/data/repositories/story_repository.dart';
 import 'package:hanzi_master/core/theme/app_theme.dart';
@@ -131,11 +132,13 @@ void main() async {
   // 5. Ensure Library is populated
   await container.read(flashcardControllerProvider.notifier).init();
   
-  // 6. Initialize Analytics
+  // 6. Initialize Analytics & Auth
   try {
-    await Firebase.initializeApp();
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
   } catch (e) {
-    debugPrint('Firebase not configured yet: $e');
+    debugPrint('Firebase initialization failed: $e');
   }
   await container.read(analyticsServiceProvider).init();
 

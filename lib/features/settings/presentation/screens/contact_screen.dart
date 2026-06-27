@@ -2,167 +2,210 @@ import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class ContactScreen extends StatelessWidget {
+class ContactScreen extends StatefulWidget {
   const ContactScreen({super.key});
 
-  Future<void> _sendEmail(String type) async {
-    final String subject = Uri.encodeComponent("Hanzi Master: $type");
+  @override
+  State<ContactScreen> createState() => _ContactScreenState();
+}
+
+class _ContactScreenState extends State<ContactScreen> {
+  String _selectedCategoryKey = 'Bug Report';
+  final TextEditingController _messageController = TextEditingController();
+  final FocusNode _focusNode = FocusNode();
+
+  Future<void> _sendFeedback() async {
+    final message = _messageController.text.trim();
+    if (message.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Please enter a message before sending.')),
+      );
+      return;
+    }
+
+    final String subject = Uri.encodeComponent("Hanzi Master: $_selectedCategoryKey");
+    final String body = Uri.encodeComponent(message);
+    
     final Uri emailLaunchUri = Uri(
       scheme: 'mailto',
       path: 'support@hanzimaster.com',
-      query: 'subject=$subject',
+      query: 'subject=$subject&body=$body',
     );
 
     if (await canLaunchUrl(emailLaunchUri)) {
       await launchUrl(emailLaunchUri);
+      if (mounted) {
+        _messageController.clear();
+        Navigator.pop(context);
+      }
     } else {
       debugPrint("Could not launch $emailLaunchUri");
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Could not open email app.')),
+        );
+      }
     }
   }
 
   @override
-  Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-    
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(AppLocalizations.of(context)!.contactUs),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
-      backgroundColor: isDark ? Colors.grey[900] : Colors.grey.shade50,
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(24.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              AppLocalizations.of(context)!.wedLoveToHear,
-              style: TextStyle(
-                fontSize: 28,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 16),
-            Text(
-              AppLocalizations.of(context)!.whetherYouveFoundA,
-              style: TextStyle(
-                fontSize: 16,
-                color: isDark ? Colors.grey.shade400 : Colors.grey.shade700,
-                height: 1.5,
-              ),
-            ),
-            const SizedBox(height: 40),
-            
-            _ContactCard(
-              title: AppLocalizations.of(context)!.reportBug,
-              description: "Found something broken? Let us know so we can fix it.",
-              icon: Icons.bug_report_rounded,
-              color: Colors.redAccent,
-              onTap: () => _sendEmail("Bug Report"),
-            ),
-            const SizedBox(height: 16),
-            
-            _ContactCard(
-              title: AppLocalizations.of(context)!.suggestFeature,
-              description: "Have an idea to make Hanzi Master better? We're all ears.",
-              icon: Icons.lightbulb_rounded,
-              color: Colors.amber.shade600,
-              onTap: () => _sendEmail("Feature Request"),
-            ),
-            const SizedBox(height: 16),
-            
-            _ContactCard(
-              title: AppLocalizations.of(context)!.generalFeedback,
-              description: "Share your thoughts or just say hello!",
-              icon: Icons.chat_bubble_rounded,
-              color: Colors.blueAccent,
-              onTap: () => _sendEmail("General Feedback"),
-            ),
-          ],
-        ),
-      ),
-    );
+  void dispose() {
+    _messageController.dispose();
+    _focusNode.dispose();
+    super.dispose();
   }
-}
-
-class _ContactCard extends StatelessWidget {
-  final String title;
-  final String description;
-  final IconData icon;
-  final Color color;
-  final VoidCallback onTap;
-
-  const _ContactCard({
-    required this.title,
-    required this.description,
-    required this.icon,
-    required this.color,
-    required this.onTap,
-  });
 
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final localizations = AppLocalizations.of(context)!;
     
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(16),
-      child: Container(
-        padding: const EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          color: isDark ? Colors.grey[850] : Colors.white,
-          borderRadius: BorderRadius.circular(16),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withValues(alpha: 0.05),
-              blurRadius: 10,
-              offset: const Offset(0, 4),
+    final Map<String, String> categoryMap = {
+      'Bug Report': localizations.reportBug,
+      'Feature Request': localizations.suggestFeature,
+      'General Feedback': localizations.generalFeedback,
+    };
+    
+    return Scaffold(
+      backgroundColor: isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        iconTheme: IconThemeData(color: isDark ? Colors.white : const Color(0xFF1A1A1B)),
+      ),
+      body: GestureDetector(
+        onTap: () => FocusScope.of(context).unfocus(),
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 10),
+                Text(
+                  "We'd love to\nhear from you.",
+                  style: TextStyle(
+                    fontSize: 38,
+                    fontFamily: 'Serif',
+                    fontWeight: FontWeight.w900,
+                    color: isDark ? Colors.white : const Color(0xFF1A1A1B),
+                    height: 1.1,
+                    letterSpacing: -1.0,
+                  ),
+                ),
+                const SizedBox(height: 40),
+                
+                // Category Selector
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
+                  decoration: BoxDecoration(
+                    color: isDark ? const Color(0xFF252526) : Colors.white,
+                    borderRadius: BorderRadius.circular(16),
+                    boxShadow: [
+                      BoxShadow(
+                        color: isDark ? Colors.black.withOpacity(0.2) : Colors.black.withOpacity(0.04),
+                        blurRadius: 16,
+                        offset: const Offset(0, 8),
+                      ),
+                    ],
+                  ),
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton<String>(
+                      value: _selectedCategoryKey,
+                      isExpanded: true,
+                      icon: Icon(Icons.keyboard_arrow_down_rounded, color: isDark ? Colors.white54 : Colors.black54),
+                      dropdownColor: isDark ? const Color(0xFF2A2A2B) : Colors.white,
+                      borderRadius: BorderRadius.circular(16),
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        color: isDark ? Colors.white : const Color(0xFF1A1A1B),
+                      ),
+                      onChanged: (String? newValue) {
+                        if (newValue != null) {
+                          setState(() {
+                            _selectedCategoryKey = newValue;
+                          });
+                        }
+                      },
+                      items: categoryMap.keys.map<DropdownMenuItem<String>>((String key) {
+                        return DropdownMenuItem<String>(
+                          value: key,
+                          child: Text(categoryMap[key]!),
+                        );
+                      }).toList(),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 24),
+                
+                // Message Area
+                Expanded(
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                    decoration: BoxDecoration(
+                      color: isDark ? const Color(0xFF252526) : Colors.white,
+                      borderRadius: BorderRadius.circular(24),
+                      boxShadow: [
+                        BoxShadow(
+                          color: isDark ? Colors.black.withOpacity(0.2) : Colors.black.withOpacity(0.04),
+                          blurRadius: 24,
+                          offset: const Offset(0, 12),
+                        ),
+                      ],
+                    ),
+                    child: TextField(
+                      controller: _messageController,
+                      focusNode: _focusNode,
+                      maxLines: null,
+                      expands: true,
+                      textAlignVertical: TextAlignVertical.top,
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: isDark ? Colors.white : const Color(0xFF1A1A1B),
+                        height: 1.5,
+                      ),
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        hintText: 'Write your message here...',
+                        hintStyle: TextStyle(
+                          color: isDark ? Colors.white30 : Colors.black38,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 24),
+                
+                // Send Button
+                SizedBox(
+                  width: double.infinity,
+                  height: 60,
+                  child: ElevatedButton(
+                    onPressed: _sendFeedback,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: isDark ? Colors.white : const Color(0xFF1A1A1B),
+                      foregroundColor: isDark ? const Color(0xFF1A1A1B) : Colors.white,
+                      elevation: 0,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                    child: const Text(
+                      'Send Message',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w700,
+                        letterSpacing: -0.2,
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 32),
+              ],
             ),
-          ],
-          border: Border.all(
-            color: isDark ? Colors.grey.shade800 : Colors.grey.shade200,
-            width: 1,
           ),
-        ),
-        child: Row(
-          children: [
-            Container(
-              padding: const EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                color: color.withValues(alpha: 0.1),
-                shape: BoxShape.circle,
-              ),
-              child: Icon(icon, color: color, size: 28),
-            ),
-            const SizedBox(width: 16),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    title,
-                    style: const TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    description,
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: isDark ? Colors.grey.shade400 : Colors.grey.shade600,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Icon(
-              Icons.chevron_right,
-              color: isDark ? Colors.grey.shade600 : Colors.grey.shade400,
-            ),
-          ],
         ),
       ),
     );

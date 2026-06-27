@@ -27,7 +27,7 @@ class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
       _selectedIndex = index;
     });
     
-    final screenNames = ['Dashboard', 'AI Hub', 'Translation', 'Media Hub', 'Library'];
+    final screenNames = ['Dashboard', 'AI Hub', 'Translation', 'Library'];
     ref.read(analyticsServiceProvider).logScreenView(screenNames[index]);
   }
 
@@ -35,7 +35,6 @@ class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
     DashboardScreen(onNavigate: _onNavigate),
     const AiHubScreen(),
     const TranslationHubScreen(),
-    const MediaHubScreen(),
     const DictionaryScreen(),
   ];
 
@@ -102,10 +101,6 @@ class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
             BottomNavigationBarItem(
               icon: const Icon(Icons.translate),
               label: "Translate",
-            ),
-            BottomNavigationBarItem(
-              icon: const Icon(Icons.language),
-              label: "Web Explorer",
             ),
             BottomNavigationBarItem(
               icon: const Icon(Icons.menu_book),
