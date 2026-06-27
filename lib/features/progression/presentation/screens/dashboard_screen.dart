@@ -9,7 +9,7 @@ import 'package:hanzi_master/features/flashcards/presentation/screens/deck_detai
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/dictionary_provider.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
-import 'package:hanzi_master/shared/widgets/global_sliver_app_bar.dart';
+
 import 'package:hanzi_master/features/progression/presentation/widgets/today_insight_card.dart';
 
 class DashboardScreen extends ConsumerWidget {
@@ -77,8 +77,59 @@ class DashboardScreen extends ConsumerWidget {
       body: CalligraphyBackground(
         child: CustomScrollView(
           slivers: [
-            GlobalSliverAppBar(title: l10n?.dashboardTitle ?? "Dashboard"),
-            const SliverToBoxAdapter(child: SizedBox(height: 16)),
+            // --- CUSTOM HEADER ---
+            SliverToBoxAdapter(
+              child: SafeArea(
+                bottom: false,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(24, 24, 24, 16),
+                  child: Row(
+                    children: [
+                      Text(
+                        l10n?.dashboardTitle ?? "Dashboard",
+                        style: theme.textTheme.headlineLarge?.copyWith(
+                          fontWeight: FontWeight.w900,
+                          fontFamily: 'NotoSerifSC',
+                          color: theme.colorScheme.onSurface,
+                        ),
+                      ),
+                      const Spacer(),
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                        decoration: BoxDecoration(
+                          color: theme.colorScheme.primary.withValues(alpha: 0.1),
+                          borderRadius: BorderRadius.circular(30),
+                          border: Border.all(color: theme.colorScheme.primary.withValues(alpha: 0.3)),
+                        ),
+                        child: Row(
+                          children: [
+                            Icon(Icons.local_fire_department, size: 16, color: theme.colorScheme.primary),
+                            const SizedBox(width: 6),
+                            Text(
+                              "START YOUR STREAK",
+                              style: theme.textTheme.labelSmall?.copyWith(
+                                fontWeight: FontWeight.bold,
+                                color: theme.colorScheme.primary,
+                                letterSpacing: 0.5,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(width: 12),
+                      Container(
+                        padding: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          color: theme.colorScheme.onSurface.withValues(alpha: 0.05),
+                          shape: BoxShape.circle,
+                        ),
+                        child: Icon(Icons.person_outline, size: 20, color: theme.colorScheme.onSurface),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
             
             // --- TOP: SCHOLAR'S RANK ---
             SliverToBoxAdapter(
@@ -127,20 +178,25 @@ class DashboardScreen extends ConsumerWidget {
                             ],
                           ),
                           Container(
-                            width: 64,
-                            height: 64,
-                            decoration: BoxDecoration(
+                            width: 72,
+                            height: 72,
+                            padding: const EdgeInsets.all(4),
+                            decoration: const BoxDecoration(
                               shape: BoxShape.circle,
-                              boxShadow: [
-                                BoxShadow(
-                                  color: theme.colorScheme.primary.withValues(alpha: 0.2),
-                                  blurRadius: 15,
-                                  offset: const Offset(0, 5),
-                                ),
-                              ],
+                              gradient: LinearGradient(
+                                colors: [Color(0xFFFFA07A), Color(0xFF87CEFA), Color(0xFF98FB98)],
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                              ),
                             ),
-                            child: ClipOval(
-                              child: Image.asset('assets/mascot/guide_avatar.png', fit: BoxFit.cover),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border: Border.all(color: theme.colorScheme.surface, width: 2),
+                              ),
+                              child: ClipOval(
+                                child: Image.asset('assets/mascot/guide_avatar.png', fit: BoxFit.cover),
+                              ),
                             ),
                           ).animate(onPlay: (controller) => controller.repeat(reverse: true))
                            .scaleXY(begin: 1.0, end: 1.05, duration: 2.seconds, curve: Curves.easeInOutSine)
@@ -222,16 +278,16 @@ class DashboardScreen extends ConsumerWidget {
                     ),
                     child: Row(
                       children: [
-                        Icon(Icons.search, color: theme.colorScheme.onSurface.withValues(alpha: 0.5)),
-                        const SizedBox(width: 12),
+                        Icon(Icons.search, color: theme.colorScheme.onSurface.withValues(alpha: 0.4)),
+                        const SizedBox(width: 16),
                         Text(
                           l10n?.searchHanziOrPinyin ?? "Search Hanzi or Pinyin...",
-                          style: theme.textTheme.bodyLarge?.copyWith(
-                            color: theme.colorScheme.onSurface.withValues(alpha: 0.5),
+                          style: theme.textTheme.titleMedium?.copyWith(
+                            color: theme.colorScheme.onSurface.withValues(alpha: 0.4),
                           ),
                         ),
                         const Spacer(),
-                        Icon(Icons.arrow_forward_ios, size: 14, color: theme.colorScheme.onSurface.withValues(alpha: 0.3)),
+                        Icon(Icons.arrow_forward_ios, size: 16, color: theme.colorScheme.onSurface.withValues(alpha: 0.2)),
                       ],
                     ),
                   ),
