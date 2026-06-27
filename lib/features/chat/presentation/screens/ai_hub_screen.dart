@@ -92,41 +92,44 @@ class AiHubScreen extends ConsumerWidget {
                 // Removed Today's Insight Card (moved to Dashboard)
 
 
-                // Horizontal List of Features
+                // Square Tiles List of Features
                 Expanded(
-                  flex: 6,
-                  child: _buildHorizontalActionCard(
-                    context: context,
-                    title: "READING ROOM",
-                    subtitle: "Enhance comprehension with classic literature.",
-                    icon: Icons.auto_stories,
-                    imageAsset: 'assets/images/ai_hub_abstract_ink.png',
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (_) => const ReadingRoomScreen()),
-                      );
-                    },
-                  ),
-                ),
-                
-                const SizedBox(height: 12),
-                
-                Expanded(
-                  flex: 6,
-                  child: _buildHorizontalActionCard(
-                    context: context,
-                    title: "SHADOWING",
-                    subtitle: "Perfect pronunciation by mimicking native speakers.",
-                    icon: Icons.mic,
-                    imageAsset: 'assets/images/ai_hub_ink_mountains.png',
-                    isNew: true,
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (_) => const ShadowingStudioScreen()),
-                      );
-                    },
+                  flex: 12,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: _buildSquareActionCard(
+                          context: context,
+                          title: "READING ROOM",
+                          subtitle: "Classic literature texts",
+                          icon: Icons.auto_stories,
+                          imageAsset: 'assets/images/ai_hub_abstract_ink.png',
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (_) => const ReadingRoomScreen()),
+                            );
+                          },
+                        ),
+                      ),
+                      const SizedBox(width: 16),
+                      Expanded(
+                        child: _buildSquareActionCard(
+                          context: context,
+                          title: "SHADOWING",
+                          subtitle: "Perfect your pronunciation",
+                          icon: Icons.mic,
+                          imageAsset: 'assets/images/ai_hub_ink_mountains.png',
+                          isNew: true,
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (_) => const ShadowingStudioScreen()),
+                            );
+                          },
+                        ),
+                      ),
+                    ],
                   ),
                 ),
 
@@ -139,7 +142,7 @@ class AiHubScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildHorizontalActionCard({
+  Widget _buildSquareActionCard({
     required BuildContext context,
     required String title,
     required String subtitle,
@@ -172,87 +175,74 @@ class AiHubScreen extends ConsumerWidget {
             ),
           ],
         ),
-        child: Row(
-          children: [
-            const SizedBox(width: 20),
-            // Glassmorphism Icon container
-            Container(
-              width: 56,
-              height: 56,
-              decoration: BoxDecoration(
-                color: Colors.white.withValues(alpha: 0.1),
-                borderRadius: BorderRadius.circular(16),
-                border: Border.all(
-                  color: Colors.white.withValues(alpha: 0.2),
-                  width: 1,
-                ),
-              ),
-              child: Icon(
-                icon,
-                size: 28,
-                color: const Color(0xFFD4C4A8),
-              ),
-            ),
-            const SizedBox(width: 20),
-            // Text Content
-            Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    children: [
-                      Text(
-                        title,
-                        style: theme.textTheme.titleMedium?.copyWith(
-                          fontWeight: FontWeight.w900,
+                  // Glassmorphism Icon container
+                  Container(
+                    width: 52,
+                    height: 52,
+                    decoration: BoxDecoration(
+                      color: Colors.white.withValues(alpha: 0.1),
+                      borderRadius: BorderRadius.circular(14),
+                      border: Border.all(
+                        color: Colors.white.withValues(alpha: 0.2),
+                        width: 1,
+                      ),
+                    ),
+                    child: Icon(
+                      icon,
+                      size: 26,
+                      color: const Color(0xFFD4C4A8),
+                    ),
+                  ),
+                  if (isNew)
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFE27C5A),
+                        borderRadius: BorderRadius.circular(4),
+                      ),
+                      child: const Text(
+                        "NEW",
+                        style: TextStyle(
                           color: Colors.white,
-                          letterSpacing: 0.5,
+                          fontSize: 9,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 1,
                         ),
                       ),
-                      if (isNew) ...[
-                        const SizedBox(width: 8),
-                        Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                          decoration: BoxDecoration(
-                            color: const Color(0xFFE27C5A),
-                            borderRadius: BorderRadius.circular(4),
-                          ),
-                          child: const Text(
-                            "NEW",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 9,
-                              fontWeight: FontWeight.bold,
-                              letterSpacing: 1,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ],
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    subtitle,
-                    style: theme.textTheme.bodySmall?.copyWith(
-                      color: Colors.white70,
-                      height: 1.3,
                     ),
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  ),
                 ],
               ),
-            ),
-            const SizedBox(width: 16),
-            // Subtle action arrow
-            Icon(
-              Icons.chevron_right,
-              color: Colors.white.withValues(alpha: 0.3),
-              size: 24,
-            ),
-            const SizedBox(width: 16),
-          ],
+              const Spacer(),
+              Text(
+                title,
+                style: theme.textTheme.titleSmall?.copyWith(
+                  fontWeight: FontWeight.w900,
+                  color: Colors.white,
+                  letterSpacing: 0.5,
+                ),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                subtitle,
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: Colors.white70,
+                  height: 1.2,
+                  fontSize: 11,
+                ),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ],
+          ),
         ),
       ),
     );
