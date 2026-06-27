@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import '../providers/streak_controller.dart';
 
 class StreakSeal extends ConsumerWidget {
@@ -22,17 +23,25 @@ class StreakSeal extends ConsumerWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Container(
-            padding: const EdgeInsets.all(4),
-            decoration: const BoxDecoration(
-              color: Color(0xFFE27C5A),
-              shape: BoxShape.circle,
-            ),
-            child: const Icon(Icons.local_fire_department, color: Colors.white, size: 12),
+          Builder(
+            builder: (context) {
+              final flame = Container(
+                padding: const EdgeInsets.all(4),
+                decoration: const BoxDecoration(
+                  color: Color(0xFFE27C5A),
+                  shape: BoxShape.circle,
+                ),
+                child: const Icon(Icons.local_fire_department, color: Colors.white, size: 12),
+              );
+              
+              return streak > 0 
+                  ? flame.animate(onPlay: (controller) => controller.repeat(reverse: true)).scaleXY(end: 1.1, duration: 1.seconds)
+                  : flame;
+            }
           ),
           const SizedBox(width: 6),
           Text(
-            "$streak DAYS STREAK",
+            streak > 0 ? "$streak DAYS STREAK" : "START YOUR STREAK",
             style: theme.textTheme.labelSmall?.copyWith(
               fontWeight: FontWeight.w900,
               color: const Color(0xFF90432E),

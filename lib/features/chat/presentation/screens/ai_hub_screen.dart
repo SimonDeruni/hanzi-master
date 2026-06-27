@@ -5,15 +5,17 @@ import 'package:hanzi_master/features/echo_hall/presentation/screens/scenario_se
 import 'package:hanzi_master/features/reading/presentation/screens/reading_room_screen.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/features/live_translate/presentation/screens/shadowing_studio_screen.dart';
-import 'package:hanzi_master/features/media/presentation/screens/web_browser_screen.dart';
+
 import 'package:hanzi_master/features/media/presentation/screens/media_hub_screen.dart';
-import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
-import 'package:hanzi_master/features/flashcards/presentation/screens/character_detail_screen.dart';
+
+
 
 import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
+
 import 'package:hanzi_master/features/flashcards/presentation/widgets/streak_seal.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/profile_screen.dart';
-import 'package:hanzi_master/shared/widgets/global_sliver_app_bar.dart';
+
 
 class AiHubScreen extends ConsumerWidget {
   const AiHubScreen({super.key});
@@ -87,15 +89,8 @@ class AiHubScreen extends ConsumerWidget {
                   child: const _FeaturedCarousel(),
                 ),
 
-                const SizedBox(height: 16),
+                // Removed Today's Insight Card (moved to Dashboard)
 
-                // Today's Insight Card
-                Expanded(
-                  flex: 11,
-                  child: _buildTodayInsightCard(context: context),
-                ),
-                
-                const SizedBox(height: 16),
 
                 // Horizontal List of Features
                 Expanded(
@@ -125,6 +120,7 @@ class AiHubScreen extends ConsumerWidget {
                     subtitle: "Perfect pronunciation by mimicking native speakers.",
                     icon: Icons.mic,
                     imageAsset: 'assets/images/ai_hub_ink_mountains.png',
+                    isNew: true,
                     onTap: () {
                       Navigator.push(
                         context,
@@ -143,155 +139,20 @@ class AiHubScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildTodayInsightCard({required BuildContext context}) {
-    final theme = Theme.of(context);
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (_) => const CharacterDetailScreen(
-              card: Flashcard(
-                id: 'mock_cheng',
-                hanzi: '诚',
-                pinyin: 'chéng',
-                definition: 'sincere; honest',
-                hskLevel: 4,
-                strokePaths: [],
-                modeStats: {},
-              ),
-            ),
-          ),
-        );
-      },
-      child: Container(
-                width: double.infinity,
-        decoration: BoxDecoration(
-          color: const Color(0xFF161616),
-          borderRadius: BorderRadius.circular(20),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withValues(alpha: 0.1),
-              blurRadius: 15,
-              offset: const Offset(0, 8),
-            ),
-          ],
-        ),
-        child: Stack(
-          children: [
-            // Background calligraphy
-            Positioned(
-              right: -30,
-              top: -10,
-              child: Opacity(
-                opacity: 0.1,
-                child: const Text(
-                  "诚",
-                  style: TextStyle(
-                    fontSize: 200,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                    height: 1,
-                  ),
-                ),
-              ),
-            ),
-            // Second character removed for cleaner background
-            
-            // Content
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "TODAY'S WORD",
-                    style: theme.textTheme.labelSmall?.copyWith(
-                      color: const Color(0xFFD4C4A8),
-                      fontWeight: FontWeight.w600,
-                      letterSpacing: 1.5,
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  Text(
-                    "HANZI: 诚 (Chéng)",
-                    style: theme.textTheme.titleLarge?.copyWith(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 0.5,
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    "诚实 - Sincerity / Honest",
-                    style: theme.textTheme.titleMedium?.copyWith(
-                      color: const Color(0xFFD4C4A8),
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  const Spacer(),
-                  Row(
-                    children: [
-                      Text(
-                        "AI Breakdown | 2 mins",
-                        style: theme.textTheme.bodySmall?.copyWith(
-                          color: Colors.white70,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 12),
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                    decoration: BoxDecoration(
-                      color: Colors.transparent,
-                      borderRadius: BorderRadius.circular(30),
-                      border: Border.all(
-                        color: const Color(0xFFD4C4A8).withValues(alpha: 0.5),
-                        width: 1,
-                      ),
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          "EXPLORE WORD",
-                          style: theme.textTheme.labelMedium?.copyWith(
-                            color: const Color(0xFFD4C4A8),
-                            fontWeight: FontWeight.bold,
-                            letterSpacing: 1.2,
-                          ),
-                        ),
-                        const SizedBox(width: 8),
-                        const Icon(
-                          Icons.arrow_forward_ios,
-                          size: 12,
-                          color: Color(0xFFD4C4A8),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
   Widget _buildHorizontalActionCard({
     required BuildContext context,
     required String title,
     required String subtitle,
     required IconData icon,
     String? imageAsset,
+    bool isNew = false,
     required VoidCallback onTap,
   }) {
     final theme = Theme.of(context);
     
-    return GestureDetector(
-      onTap: onTap,
+    return BouncingButton(
+      scaleFactor: 0.97,
+      onPressed: onTap,
       child: Container(
                 decoration: BoxDecoration(
           color: const Color(0xFF131A29),
@@ -339,13 +200,36 @@ class AiHubScreen extends ConsumerWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    title,
-                    style: theme.textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.w900,
-                      color: Colors.white,
-                      letterSpacing: 0.5,
-                    ),
+                  Row(
+                    children: [
+                      Text(
+                        title,
+                        style: theme.textTheme.titleMedium?.copyWith(
+                          fontWeight: FontWeight.w900,
+                          color: Colors.white,
+                          letterSpacing: 0.5,
+                        ),
+                      ),
+                      if (isNew) ...[
+                        const SizedBox(width: 8),
+                        Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFE27C5A),
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                          child: const Text(
+                            "NEW",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 9,
+                              fontWeight: FontWeight.bold,
+                              letterSpacing: 1,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ],
                   ),
                   const SizedBox(height: 4),
                   Text(

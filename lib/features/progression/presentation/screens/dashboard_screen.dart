@@ -10,6 +10,7 @@ import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart'
 import 'package:hanzi_master/features/flashcards/presentation/providers/dictionary_provider.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/shared/widgets/global_sliver_app_bar.dart';
+import 'package:hanzi_master/features/progression/presentation/widgets/today_insight_card.dart';
 
 class DashboardScreen extends ConsumerWidget {
   final Function(int) onNavigate;
@@ -183,7 +184,20 @@ class DashboardScreen extends ConsumerWidget {
               ),
             ),
             
-            const SliverToBoxAdapter(child: SizedBox(height: 40)),
+            const SliverToBoxAdapter(child: SizedBox(height: 24)),
+            
+            // --- NEW: TODAY'S WORD ---
+            const SliverToBoxAdapter(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 24.0),
+                child: SizedBox(
+                  height: 220,
+                  child: TodayInsightCard(),
+                ),
+              ),
+            ),
+            
+            const SliverToBoxAdapter(child: SizedBox(height: 32)),
             
             // --- MIDDLE: QUICK SEARCH ---
             SliverToBoxAdapter(
