@@ -20,7 +20,6 @@ class DashboardScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
-    final isDark = theme.brightness == Brightness.dark;
     final l10n = AppLocalizations.of(context);
     
     // 1. Fetch Flashcard Data
@@ -91,11 +90,10 @@ class DashboardScreen extends ConsumerWidget {
                   decoration: BoxDecoration(
                     color: theme.colorScheme.surface,
                     borderRadius: BorderRadius.circular(24),
-                    border: Border.all(color: isDark ? Colors.white12 : Colors.black.withValues(alpha: 0.05)),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withValues(alpha: 0.05),
-                        blurRadius: 20,
+                        color: Colors.black.withValues(alpha: 0.03),
+                        blurRadius: 30,
                         offset: const Offset(0, 10),
                       ),
                     ],
@@ -118,13 +116,14 @@ class DashboardScreen extends ConsumerWidget {
                                 ),
                               ),
                               const SizedBox(height: 8),
-                              Text(
-                                rank,
-                                style: theme.textTheme.headlineMedium?.copyWith(
-                                  fontWeight: FontWeight.w900,
-                                  letterSpacing: -0.5,
+                                Text(
+                                  rank,
+                                  style: theme.textTheme.headlineMedium?.copyWith(
+                                    fontWeight: FontWeight.w900,
+                                    fontFamily: 'NotoSerifSC',
+                                    letterSpacing: -0.5,
+                                  ),
                                 ),
-                              ),
                             ],
                           ),
                           Container(
@@ -150,10 +149,10 @@ class DashboardScreen extends ConsumerWidget {
                       ),
                       const SizedBox(height: 24),
                       ClipRRect(
-                        borderRadius: BorderRadius.circular(8),
+                        borderRadius: BorderRadius.circular(30),
                         child: LinearProgressIndicator(
                           value: progress,
-                          minHeight: 8,
+                          minHeight: 10,
                           backgroundColor: theme.colorScheme.primary.withValues(alpha: 0.1),
                           valueColor: AlwaysStoppedAnimation<Color>(theme.colorScheme.primary),
                         ),
@@ -212,12 +211,11 @@ class DashboardScreen extends ConsumerWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
                     decoration: BoxDecoration(
                       color: theme.colorScheme.surface,
-                      borderRadius: BorderRadius.circular(16),
-                      border: Border.all(color: isDark ? Colors.white12 : Colors.grey.withValues(alpha: 0.2)),
+                      borderRadius: BorderRadius.circular(30),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withValues(alpha: 0.05),
-                          blurRadius: 15,
+                          color: Colors.black.withValues(alpha: 0.03),
+                          blurRadius: 30,
                           offset: const Offset(0, 8),
                         ),
                       ],
@@ -256,6 +254,7 @@ class DashboardScreen extends ConsumerWidget {
                       l10n?.upcomingForecast ?? "Upcoming Forecast",
                       style: theme.textTheme.titleLarge?.copyWith(
                         fontWeight: FontWeight.w900,
+                        fontFamily: 'NotoSerifSC',
                         letterSpacing: 0.5,
                       ),
                     ),
@@ -264,13 +263,12 @@ class DashboardScreen extends ConsumerWidget {
                       padding: const EdgeInsets.all(20),
                       decoration: BoxDecoration(
                         color: theme.colorScheme.surface,
-                        borderRadius: BorderRadius.circular(20),
-                        border: Border.all(color: isDark ? Colors.white12 : Colors.grey.withValues(alpha: 0.2)),
+                        borderRadius: BorderRadius.circular(24),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black.withValues(alpha: 0.05),
-                            blurRadius: 15,
-                            offset: const Offset(0, 8),
+                            color: Colors.black.withValues(alpha: 0.03),
+                            blurRadius: 30,
+                            offset: const Offset(0, 10),
                           ),
                         ],
                       ),
@@ -305,6 +303,7 @@ class DashboardScreen extends ConsumerWidget {
                       l10n?.dailyReview ?? "Daily Review",
                       style: theme.textTheme.titleLarge?.copyWith(
                         fontWeight: FontWeight.w900,
+                        fontFamily: 'NotoSerifSC',
                         letterSpacing: 0.5,
                       ),
                     ),
@@ -315,11 +314,10 @@ class DashboardScreen extends ConsumerWidget {
                         decoration: BoxDecoration(
                           color: theme.colorScheme.surface,
                           borderRadius: BorderRadius.circular(24),
-                          border: Border.all(color: isDark ? Colors.white12 : Colors.grey.withValues(alpha: 0.2)),
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.black.withValues(alpha: 0.05),
-                              blurRadius: 15,
+                              color: Colors.black.withValues(alpha: 0.03),
+                              blurRadius: 30,
                               offset: const Offset(0, 8),
                             ),
                           ],
@@ -497,13 +495,13 @@ class _ForecastItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(
-          count.toString(),
-          style: theme.textTheme.headlineMedium?.copyWith(
-            fontWeight: FontWeight.w900,
-            color: count > 0 ? theme.colorScheme.primary : theme.colorScheme.onSurface.withValues(alpha: 0.5),
+          Text(
+            count.toString(),
+            style: theme.textTheme.headlineLarge?.copyWith(
+              fontWeight: FontWeight.bold,
+              color: theme.colorScheme.primary,
+            ),
           ),
-        ),
         const SizedBox(height: 4),
         Text(
           title,
