@@ -103,7 +103,7 @@ class AiHubScreen extends ConsumerWidget {
                           title: "READING ROOM",
                           subtitle: "Classic literature texts",
                           icon: Icons.auto_stories,
-                          imageAsset: 'assets/images/ai_hub_abstract_ink.png',
+                          imageAsset: 'assets/images/reading_room_bg.png',
                           onTap: () {
                             Navigator.push(
                               context,
@@ -119,7 +119,7 @@ class AiHubScreen extends ConsumerWidget {
                           title: "SHADOWING",
                           subtitle: "Perfect your pronunciation",
                           icon: Icons.mic,
-                          imageAsset: 'assets/images/ai_hub_ink_mountains.png',
+                          imageAsset: 'assets/images/shadowing_bg.png',
                           isNew: true,
                           onTap: () {
                             Navigator.push(
