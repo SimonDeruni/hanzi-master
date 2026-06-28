@@ -13,12 +13,12 @@ class DailyDiscovery extends _$DailyDiscovery {
     // Fetch both simultaneously with a 5-second timeout to prevent hanging
     final results = await Future.wait([
       repo.getDailyVideo().timeout(
-        const Duration(seconds: 5),
+        const Duration(seconds: 8),
         onTimeout: () => DailyMediaItem(
-          title: "CCTV-4 Live News",
-          subtitle: "Chinese National Television",
-          url: "https://www.youtube.com/watch?v=kYc5F3D172M",
-          imageUrl: "https://img.youtube.com/vi/kYc5F3D172M/maxresdefault.jpg",
+          title: "李子柒 Liziqi: 大蒜的一生",
+          subtitle: "The Life of Garlic - Traditional Chinese Life",
+          url: "https://www.youtube.com/watch?v=1d_K6O9cQ8s",
+          imageUrl: "https://img.youtube.com/vi/1d_K6O9cQ8s/maxresdefault.jpg",
           tag: "VIDEO OF THE DAY",
         ),
       ),

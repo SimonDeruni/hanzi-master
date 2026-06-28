@@ -4,9 +4,8 @@ import 'package:youtube_explode_dart/youtube_explode_dart.dart';
 import 'package:hanzi_master/features/media/domain/models/daily_media_item.dart';
 
 class DailyDiscoveryRepository {
-  // A curated list of high-quality Chinese YouTube channels
+  // A curated list of high-quality Chinese YouTube channels (True YouTube videos)
   final List<String> _channelIds = [
-    'UCc1ZqeKSsyC0A-XQ9o2F0gw', // CCTV-4
     'UC-O_hESCCmHj8qY6p-D-B6g', // Mandarin Corner
     'UCoC47do520osFaCG1YacMEA', // Li Ziqi
     'UCwYk4uL-I5dD9aY_L2E4Oyg', // Grace Mandarin Chinese
@@ -34,12 +33,12 @@ class DailyDiscoveryRepository {
         tag: "VIDEO OF THE DAY",
       );
     } catch (e) {
-      // Fallback if API fails
+      // Fallback if API fails (Use a true YouTube video)
       return DailyMediaItem(
-        title: "CCTV-4 Live News",
-        subtitle: "Chinese National Television",
-        url: "https://www.youtube.com/watch?v=kYc5F3D172M",
-        imageUrl: "https://img.youtube.com/vi/kYc5F3D172M/maxresdefault.jpg",
+        title: "李子柒 Liziqi: 大蒜的一生",
+        subtitle: "The Life of Garlic - Traditional Chinese Life",
+        url: "https://www.youtube.com/watch?v=1d_K6O9cQ8s",
+        imageUrl: "https://img.youtube.com/vi/1d_K6O9cQ8s/maxresdefault.jpg",
         tag: "VIDEO OF THE DAY",
       );
     } finally {
