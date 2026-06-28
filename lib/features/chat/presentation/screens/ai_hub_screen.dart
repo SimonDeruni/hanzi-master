@@ -103,7 +103,6 @@ class AiHubScreen extends ConsumerWidget {
                           title: "READING ROOM",
                           subtitle: "Classic literature texts",
                           icon: Icons.auto_stories,
-                          imageAsset: 'assets/images/reading_room_bg.png',
                           onTap: () {
                             Navigator.push(
                               context,
@@ -119,7 +118,6 @@ class AiHubScreen extends ConsumerWidget {
                           title: "SHADOWING",
                           subtitle: "Perfect your pronunciation",
                           icon: Icons.mic,
-                          imageAsset: 'assets/images/shadowing_bg.png',
                           isNew: true,
                           onTap: () {
                             Navigator.push(
@@ -156,25 +154,18 @@ class AiHubScreen extends ConsumerWidget {
     return BouncingButton(
       scaleFactor: 0.97,
       onPressed: onTap,
-      child: Container(
-                decoration: BoxDecoration(
-          color: const Color(0xFF131A29),
-          borderRadius: BorderRadius.circular(20),
-          image: imageAsset != null
-              ? DecorationImage(
-                  image: AssetImage(imageAsset),
-                  fit: BoxFit.cover,
-                  colorFilter: const ColorFilter.mode(Colors.black54, BlendMode.darken),
-                )
-              : null,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withValues(alpha: 0.15),
-              blurRadius: 15,
-              offset: const Offset(0, 8),
-            ),
-          ],
-        ),
+        child: Container(
+          decoration: BoxDecoration(
+            color: theme.colorScheme.surface,
+            borderRadius: BorderRadius.circular(24),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withValues(alpha: 0.03),
+                blurRadius: 30,
+                offset: const Offset(0, 10),
+              ),
+            ],
+          ),
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Column(
@@ -184,22 +175,22 @@ class AiHubScreen extends ConsumerWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Glassmorphism Icon container
+                  // Icon container
                   Container(
                     width: 52,
                     height: 52,
                     decoration: BoxDecoration(
-                      color: Colors.white.withValues(alpha: 0.1),
-                      borderRadius: BorderRadius.circular(14),
+                      color: theme.colorScheme.primary.withValues(alpha: 0.1),
+                      borderRadius: BorderRadius.circular(16),
                       border: Border.all(
-                        color: Colors.white.withValues(alpha: 0.2),
+                        color: theme.colorScheme.primary.withValues(alpha: 0.2),
                         width: 1,
                       ),
                     ),
                     child: Icon(
                       icon,
-                      size: 26,
-                      color: const Color(0xFFD4C4A8),
+                      size: 24,
+                      color: theme.colorScheme.primary,
                     ),
                   ),
                   if (isNew)
@@ -226,7 +217,8 @@ class AiHubScreen extends ConsumerWidget {
                 title,
                 style: theme.textTheme.titleSmall?.copyWith(
                   fontWeight: FontWeight.w900,
-                  color: Colors.white,
+                  fontFamily: 'NotoSerifSC',
+                  color: theme.colorScheme.onSurface,
                   letterSpacing: 0.5,
                 ),
               ),
@@ -234,7 +226,7 @@ class AiHubScreen extends ConsumerWidget {
               Text(
                 subtitle,
                 style: theme.textTheme.bodySmall?.copyWith(
-                  color: Colors.white70,
+                  color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
                   height: 1.2,
                   fontSize: 11,
                 ),
