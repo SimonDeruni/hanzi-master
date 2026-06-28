@@ -6,6 +6,7 @@ import 'package:hanzi_master/features/media/presentation/screens/media_search_sc
 import 'package:hanzi_master/features/media/presentation/screens/web_browser_screen.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hanzi_master/features/media/domain/models/saved_article.dart';
+import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
 
 class MediaHubScreen extends ConsumerWidget {
   const MediaHubScreen({super.key});
@@ -23,46 +24,51 @@ class MediaHubScreen extends ConsumerWidget {
               title: "Media Hub",
             ),
             
-            const SliverToBoxAdapter(child: SizedBox(height: 24)),
+            const SliverToBoxAdapter(child: SizedBox(height: 16)),
 
-            // Hero Card: Smart Media Desk (YouTube)
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                child: _buildHeroCard(
-                  context: context,
-                  title: "Smart Media Desk",
-                  subtitle: "Interactive YouTube Transcripts",
-                  icon: Icons.smart_display,
-                  color: Colors.redAccent.shade700,
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (_) => const MediaSearchScreen()),
-                    );
-                  },
-                ),
-              ),
+            // Carousel: Video & News of the day
+            const SliverToBoxAdapter(
+              child: _DailyDiscoveryCarousel(),
             ),
 
-            const SliverToBoxAdapter(child: SizedBox(height: 20)),
+            const SliverToBoxAdapter(child: SizedBox(height: 24)),
 
-            // Hero Card: Web Explorer (LingQ Method)
+            // Core Tools Side-by-Side
             SliverToBoxAdapter(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                child: _buildHeroCard(
-                  context: context,
-                  title: "Web Explorer",
-                  subtitle: "Live Dictionary Overlay",
-                  icon: Icons.language,
-                  color: theme.colorScheme.primary,
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (_) => const WebBrowserScreen()),
-                    );
-                  },
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: _buildSquareActionCard(
+                        context: context,
+                        title: "YOUTUBE DESK",
+                        subtitle: "Interactive transcripts",
+                        icon: Icons.smart_display,
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (_) => const MediaSearchScreen()),
+                          );
+                        },
+                      ),
+                    ),
+                    const SizedBox(width: 16),
+                    Expanded(
+                      child: _buildSquareActionCard(
+                        context: context,
+                        title: "WEB EXPLORER",
+                        subtitle: "Live dictionary overlay",
+                        icon: Icons.language,
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (_) => const WebBrowserScreen()),
+                          );
+                        },
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -233,58 +239,76 @@ class MediaHubScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildHeroCard({
+  Widget _buildSquareActionCard({
     required BuildContext context,
     required String title,
     required String subtitle,
     required IconData icon,
-    required Color color,
     required VoidCallback onTap,
   }) {
     final theme = Theme.of(context);
-    return GestureDetector(
-      onTap: onTap,
+    
+    return BouncingButton(
+      scaleFactor: 0.97,
+      onPressed: onTap,
       child: Container(
-        width: double.infinity,
-        padding: const EdgeInsets.all(24),
         decoration: BoxDecoration(
-          color: color,
-          borderRadius: BorderRadius.circular(32),
+          color: theme.colorScheme.surface,
+          borderRadius: BorderRadius.circular(24),
           boxShadow: [
             BoxShadow(
-              color: color.withValues(alpha: 0.3),
-              blurRadius: 20,
+              color: Colors.black.withValues(alpha: 0.03),
+              blurRadius: 30,
               offset: const Offset(0, 10),
             ),
           ],
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: Colors.white.withValues(alpha: 0.2),
-                shape: BoxShape.circle,
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Icon container
+              Container(
+                width: 52,
+                height: 52,
+                decoration: BoxDecoration(
+                  color: theme.colorScheme.primary.withValues(alpha: 0.1),
+                  borderRadius: BorderRadius.circular(16),
+                  border: Border.all(
+                    color: theme.colorScheme.primary.withValues(alpha: 0.2),
+                    width: 1,
+                  ),
+                ),
+                child: Icon(
+                  icon,
+                  size: 24,
+                  color: theme.colorScheme.primary,
+                ),
               ),
-              child: Icon(icon, color: Colors.white, size: 36),
-            ),
-            const SizedBox(height: 24),
-            Text(
-              title,
-              style: theme.textTheme.headlineMedium?.copyWith(
-                color: Colors.white,
-                fontWeight: FontWeight.w900,
+              const SizedBox(height: 32),
+              Text(
+                title,
+                style: theme.textTheme.titleSmall?.copyWith(
+                  fontWeight: FontWeight.w900,
+                  fontFamily: 'NotoSerifSC',
+                  color: theme.colorScheme.onSurface,
+                  letterSpacing: 0.5,
+                ),
               ),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              subtitle,
-              style: theme.textTheme.titleMedium?.copyWith(
-                color: Colors.white.withValues(alpha: 0.8),
+              const SizedBox(height: 4),
+              Text(
+                subtitle,
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
+                  height: 1.2,
+                  fontSize: 11,
+                ),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -307,12 +331,12 @@ class MediaHubScreen extends ConsumerWidget {
         decoration: BoxDecoration(
           color: theme.colorScheme.surface,
           borderRadius: BorderRadius.circular(24),
-          border: Border.all(color: isDark ? Colors.white12 : Colors.black.withValues(alpha: 0.05)),
+          border: Border.all(color: isDark ? Colors.white12 : Colors.black.withValues(alpha: 0.02)),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withValues(alpha: 0.05),
-              blurRadius: 15,
-              offset: const Offset(0, 8),
+              color: Colors.black.withValues(alpha: 0.03),
+              blurRadius: 30,
+              offset: const Offset(0, 10),
             ),
           ],
         ),
@@ -359,6 +383,148 @@ class MediaHubScreen extends ConsumerWidget {
               overflow: TextOverflow.ellipsis,
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class _DailyDiscoveryCarousel extends StatefulWidget {
+  const _DailyDiscoveryCarousel();
+
+  @override
+  State<_DailyDiscoveryCarousel> createState() => _DailyDiscoveryCarouselState();
+}
+
+class _DailyDiscoveryCarouselState extends State<_DailyDiscoveryCarousel> {
+  final PageController _pageController = PageController(viewportFraction: 0.85);
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 240,
+      child: PageView(
+        controller: _pageController,
+        physics: const BouncingScrollPhysics(),
+        children: [
+          _buildDiscoveryCard(
+            context,
+            tag: "VIDEO OF THE DAY",
+            title: "Everyday Chinese Conversations",
+            subtitle: "Mandarin Corner",
+            imageAsset: 'assets/images/reading_room_bg.png',
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => const WebBrowserScreen(initialUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'),
+                ),
+              );
+            },
+          ),
+          _buildDiscoveryCard(
+            context,
+            tag: "ARTICLE OF THE DAY",
+            title: "Tech Giants in Shenzhen",
+            subtitle: "The Chairman's Bao (HSK 4)",
+            imageAsset: 'assets/images/shadowing_bg.png',
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => const WebBrowserScreen(initialUrl: 'https://www.thechairmansbao.com/'),
+                ),
+              );
+            },
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildDiscoveryCard(
+    BuildContext context, {
+    required String tag,
+    required String title,
+    required String subtitle,
+    required String imageAsset,
+    required VoidCallback onTap,
+  }) {
+    final theme = Theme.of(context);
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 8.0),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(28),
+          image: DecorationImage(
+            image: AssetImage(imageAsset),
+            fit: BoxFit.cover,
+            colorFilter: const ColorFilter.mode(Colors.black45, BlendMode.darken),
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.2),
+              blurRadius: 20,
+              offset: const Offset(0, 10),
+            ),
+          ],
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(24.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                decoration: BoxDecoration(
+                  color: theme.colorScheme.primary,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Text(
+                  tag,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 10,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 1.2,
+                  ),
+                ),
+              ),
+              const Spacer(),
+              Text(
+                title,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                  height: 1.2,
+                ),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
+              const SizedBox(height: 8),
+              Row(
+                children: [
+                  Icon(Icons.play_circle_fill, color: Colors.white.withValues(alpha: 0.8), size: 16),
+                  const SizedBox(width: 6),
+                  Text(
+                    subtitle,
+                    style: TextStyle(
+                      color: Colors.white.withValues(alpha: 0.8),
+                      fontSize: 13,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
