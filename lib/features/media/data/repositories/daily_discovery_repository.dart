@@ -49,7 +49,8 @@ class DailyDiscoveryRepository {
 
   Future<DailyMediaItem> getDailyArticle() async {
     try {
-      final response = await http.get(Uri.parse('https://feeds.bbci.co.uk/zhongwen/simp/rss.xml'));
+      final response = await http.get(Uri.parse('https://feeds.bbci.co.uk/zhongwen/simp/rss.xml'))
+          .timeout(const Duration(seconds: 4));
       if (response.statusCode == 200) {
         final document = XmlDocument.parse(response.body);
         final items = document.findAllElements('item');
