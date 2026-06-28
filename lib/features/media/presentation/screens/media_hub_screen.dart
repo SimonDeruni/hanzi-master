@@ -416,14 +416,14 @@ class _DailyDiscoveryCarouselState extends State<_DailyDiscoveryCarousel> {
           _buildDiscoveryCard(
             context,
             tag: "VIDEO OF THE DAY",
-            title: "Everyday Chinese Conversations",
-            subtitle: "Mandarin Corner",
+            title: "CCTV-4 International Live",
+            subtitle: "Chinese National Television",
             imageAsset: 'assets/images/reading_room_bg.png',
             onTap: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (_) => const WebBrowserScreen(initialUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'),
+                  builder: (_) => const WebBrowserScreen(initialUrl: 'https://www.youtube.com/watch?v=kYc5F3D172M'),
                 ),
               );
             },
@@ -431,14 +431,14 @@ class _DailyDiscoveryCarouselState extends State<_DailyDiscoveryCarousel> {
           _buildDiscoveryCard(
             context,
             tag: "ARTICLE OF THE DAY",
-            title: "Tech Giants in Shenzhen",
-            subtitle: "The Chairman's Bao (HSK 4)",
+            title: "BBC 中文网 (World News)",
+            subtitle: "Current Events in Simplified Chinese",
             imageAsset: 'assets/images/shadowing_bg.png',
             onTap: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (_) => const WebBrowserScreen(initialUrl: 'https://www.thechairmansbao.com/'),
+                  builder: (_) => const WebBrowserScreen(initialUrl: 'https://www.bbc.com/zhongwen/simp'),
                 ),
               );
             },
