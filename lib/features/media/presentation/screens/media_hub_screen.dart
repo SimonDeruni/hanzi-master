@@ -416,14 +416,14 @@ class _DailyDiscoveryCarouselState extends State<_DailyDiscoveryCarousel> {
           _buildDiscoveryCard(
             context,
             tag: "VIDEO OF THE DAY",
-            title: "CCTV-4 International Live",
-            subtitle: "Chinese National Television",
+            title: "李子柒 Liziqi: 大蒜的一生",
+            subtitle: "The Life of Garlic - Traditional Chinese Life",
             imageAsset: 'assets/images/reading_room_bg.png',
             onTap: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (_) => const WebBrowserScreen(initialUrl: 'https://www.youtube.com/watch?v=kYc5F3D172M'),
+                  builder: (_) => const WebBrowserScreen(initialUrl: 'https://www.youtube.com/watch?v=mEydwGz_Pwc'),
                 ),
               );
             },
@@ -431,14 +431,14 @@ class _DailyDiscoveryCarouselState extends State<_DailyDiscoveryCarousel> {
           _buildDiscoveryCard(
             context,
             tag: "ARTICLE OF THE DAY",
-            title: "BBC 中文网 (World News)",
-            subtitle: "Current Events in Simplified Chinese",
+            title: "人工智能如何改变中国科技创新",
+            subtitle: "BBC 中文 (In-depth Analysis)",
             imageAsset: 'assets/images/shadowing_bg.png',
             onTap: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (_) => const WebBrowserScreen(initialUrl: 'https://www.bbc.com/zhongwen/simp'),
+                  builder: (_) => const WebBrowserScreen(initialUrl: 'https://www.bbc.com/zhongwen/simp/science-61234567'),
                 ),
               );
             },
