@@ -1,3 +1,6 @@
+import 'package:hanzi_master/features/media/domain/models/daily_media_item.dart';
+import 'package:hanzi_master/features/media/presentation/providers/daily_discovery_provider.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
@@ -27,46 +30,47 @@ class MediaHubScreen extends ConsumerWidget {
             const SliverToBoxAdapter(child: SizedBox(height: 16)),
 
             // Carousel: Video & News of the day
-            const SliverToBoxAdapter(
-              child: _DailyDiscoveryCarousel(),
+            const SliverSafeArea(
+              bottom: false,
+              sliver: SliverToBoxAdapter(
+                child: _DailyDiscoveryCarousel(),
+              ),
             ),
 
             const SliverToBoxAdapter(child: SizedBox(height: 24)),
 
-            // Core Tools Side-by-Side
+            // Core Tools Layout
             SliverToBoxAdapter(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                child: Row(
+                child: Column(
                   children: [
-                    Expanded(
-                      child: _buildSquareActionCard(
-                        context: context,
-                        title: "YOUTUBE DESK",
-                        subtitle: "Interactive transcripts",
-                        icon: Icons.smart_display,
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (_) => const MediaSearchScreen()),
-                          );
-                        },
-                      ),
+                    _buildThematicCard(
+                      context: context,
+                      title: "YOUTUBE DESK",
+                      subtitle: "Interactive transcripts & shadowing",
+                      icon: Icons.smart_display,
+                      brandColor: const Color(0xFFFF0000), // YouTube Red
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (_) => const MediaSearchScreen()),
+                        );
+                      },
                     ),
-                    const SizedBox(width: 16),
-                    Expanded(
-                      child: _buildSquareActionCard(
-                        context: context,
-                        title: "WEB EXPLORER",
-                        subtitle: "Live dictionary overlay",
-                        icon: Icons.language,
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (_) => const WebBrowserScreen()),
-                          );
-                        },
-                      ),
+                    const SizedBox(height: 16),
+                    _buildThematicCard(
+                      context: context,
+                      title: "WEB EXPLORER",
+                      subtitle: "Live dictionary translation overlay",
+                      icon: Icons.language,
+                      brandColor: const Color(0xFF1E88E5), // Web Blue
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (_) => const WebBrowserScreen()),
+                        );
+                      },
                     ),
                   ],
                 ),
@@ -88,72 +92,45 @@ class MediaHubScreen extends ConsumerWidget {
               ),
             ),
 
-            // Grid of Bookmarks
-            SliverPadding(
-              padding: const EdgeInsets.symmetric(horizontal: 24.0),
-              sliver: SliverGrid.count(
-                crossAxisCount: 2,
-                mainAxisSpacing: 16,
-                crossAxisSpacing: 16,
-                childAspectRatio: 1.05,
-                children: [
-                  _buildGridCard(
-                    context: context,
-                    title: "BBC Zhongwen",
-                    subtitle: "World News",
-                    icon: Icons.article,
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) => const WebBrowserScreen(initialUrl: 'https://www.bbc.com/zhongwen/simp'),
-                        ),
-                      );
-                    },
-                  ),
-                  _buildGridCard(
-                    context: context,
-                    title: "Wikipedia",
-                    subtitle: "Current Events",
-                    icon: Icons.travel_explore,
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) => const WebBrowserScreen(initialUrl: 'https://zh.wikipedia.org/wiki/Portal:%E6%96%B0%E9%97%BB%E5%8A%A8%E6%80%81'),
-                        ),
-                      );
-                    },
-                  ),
-                  _buildGridCard(
-                    context: context,
-                    title: "Global Voices",
-                    subtitle: "Independent Media",
-                    icon: Icons.public,
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) => const WebBrowserScreen(initialUrl: 'https://zh.globalvoices.org/'),
-                        ),
-                      );
-                    },
-                  ),
-                  _buildGridCard(
-                    context: context,
-                    title: "Baidu",
-                    subtitle: "Search Engine",
-                    icon: Icons.search,
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) => const WebBrowserScreen(initialUrl: 'https://www.baidu.com'),
-                        ),
-                      );
-                    },
-                  ),
-                ],
+            // Horizontal List of Bookmarks
+            SliverToBoxAdapter(
+              child: SizedBox(
+                height: 70,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  physics: const BouncingScrollPhysics(),
+                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                  children: [
+                    _buildBookmarkChip(
+                      context: context,
+                      title: "BBC 中文",
+                      icon: Icons.article,
+                      brandColor: const Color(0xFFBB1919),
+                      url: 'https://www.bbc.com/zhongwen/simp',
+                    ),
+                    _buildBookmarkChip(
+                      context: context,
+                      title: "Wikipedia",
+                      icon: Icons.travel_explore,
+                      brandColor: const Color(0xFF555555),
+                      url: 'https://zh.wikipedia.org/wiki/Portal:%E6%96%B0%E9%97%BB%E5%8A%A8%E6%80%81',
+                    ),
+                    _buildBookmarkChip(
+                      context: context,
+                      title: "Global Voices",
+                      icon: Icons.public,
+                      brandColor: const Color(0xFFE65100),
+                      url: 'https://zh.globalvoices.org/',
+                    ),
+                    _buildBookmarkChip(
+                      context: context,
+                      title: "Baidu",
+                      icon: Icons.search,
+                      brandColor: const Color(0xFF2932E1),
+                      url: 'https://www.baidu.com',
+                    ),
+                  ],
+                ),
               ),
             ),
             
@@ -239,73 +216,139 @@ class MediaHubScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildSquareActionCard({
+  Widget _buildThematicCard({
     required BuildContext context,
     required String title,
     required String subtitle,
     required IconData icon,
+    required Color brandColor,
     required VoidCallback onTap,
   }) {
     final theme = Theme.of(context);
     
     return BouncingButton(
-      scaleFactor: 0.97,
+      scaleFactor: 0.98,
       onPressed: onTap,
       child: Container(
+        width: double.infinity,
         decoration: BoxDecoration(
           color: theme.colorScheme.surface,
-          borderRadius: BorderRadius.circular(24),
+          borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withValues(alpha: 0.03),
-              blurRadius: 30,
-              offset: const Offset(0, 10),
+              color: brandColor.withValues(alpha: 0.08),
+              blurRadius: 20,
+              offset: const Offset(0, 8),
             ),
           ],
         ),
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Icon container
-              Container(
-                width: 52,
-                height: 52,
-                decoration: BoxDecoration(
-                  color: theme.colorScheme.primary.withValues(alpha: 0.1),
-                  borderRadius: BorderRadius.circular(16),
-                  border: Border.all(
-                    color: theme.colorScheme.primary.withValues(alpha: 0.2),
-                    width: 1,
-                  ),
-                ),
-                child: Icon(
-                  icon,
-                  size: 24,
-                  color: theme.colorScheme.primary,
+        child: Row(
+          children: [
+            // Colored accent bar on the left
+            Container(
+              width: 6,
+              height: 100,
+              decoration: BoxDecoration(
+                color: brandColor,
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(20),
+                  bottomLeft: Radius.circular(20),
                 ),
               ),
-              const SizedBox(height: 32),
+            ),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Row(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        color: brandColor.withValues(alpha: 0.1),
+                        shape: BoxShape.circle,
+                      ),
+                      child: Icon(icon, color: brandColor, size: 28),
+                    ),
+                    const SizedBox(width: 20),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            title,
+                            style: theme.textTheme.titleMedium?.copyWith(
+                              fontWeight: FontWeight.w900,
+                              fontFamily: 'NotoSerifSC',
+                              letterSpacing: 0.5,
+                            ),
+                          ),
+                          const SizedBox(height: 4),
+                          Text(
+                            subtitle,
+                            style: theme.textTheme.bodyMedium?.copyWith(
+                              color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Icon(Icons.arrow_forward_ios, size: 16, color: theme.colorScheme.onSurface.withValues(alpha: 0.2)),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildBookmarkChip({
+    required BuildContext context,
+    required String title,
+    required IconData icon,
+    required Color brandColor,
+    required String url,
+  }) {
+    final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
+    
+    return Padding(
+      padding: const EdgeInsets.only(right: 12.0),
+      child: BouncingButton(
+        scaleFactor: 0.95,
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (_) => WebBrowserScreen(initialUrl: url),
+            ),
+          );
+        },
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+          decoration: BoxDecoration(
+            color: theme.colorScheme.surface,
+            borderRadius: BorderRadius.circular(100),
+            border: Border.all(color: isDark ? Colors.white12 : Colors.black.withValues(alpha: 0.05)),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withValues(alpha: 0.02),
+                blurRadius: 10,
+                offset: const Offset(0, 4),
+              ),
+            ],
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(icon, color: brandColor, size: 20),
+              const SizedBox(width: 12),
               Text(
                 title,
                 style: theme.textTheme.titleSmall?.copyWith(
-                  fontWeight: FontWeight.w900,
-                  fontFamily: 'NotoSerifSC',
-                  color: theme.colorScheme.onSurface,
-                  letterSpacing: 0.5,
+                  fontWeight: FontWeight.bold,
                 ),
-              ),
-              const SizedBox(height: 4),
-              Text(
-                subtitle,
-                style: theme.textTheme.bodySmall?.copyWith(
-                  color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
-                  height: 1.2,
-                  fontSize: 11,
-                ),
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
               ),
             ],
           ),
@@ -313,90 +356,16 @@ class MediaHubScreen extends ConsumerWidget {
       ),
     );
   }
-
-  Widget _buildGridCard({
-    required BuildContext context,
-    required String title,
-    required String subtitle,
-    required IconData icon,
-    required VoidCallback onTap,
-  }) {
-    final theme = Theme.of(context);
-    final isDark = theme.brightness == Brightness.dark;
-    
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          color: theme.colorScheme.surface,
-          borderRadius: BorderRadius.circular(24),
-          border: Border.all(color: isDark ? Colors.white12 : Colors.black.withValues(alpha: 0.02)),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withValues(alpha: 0.03),
-              blurRadius: 30,
-              offset: const Offset(0, 10),
-            ),
-          ],
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  padding: const EdgeInsets.all(12),
-                  decoration: BoxDecoration(
-                    color: theme.colorScheme.primary.withValues(alpha: 0.1),
-                    shape: BoxShape.circle,
-                  ),
-                  child: Icon(
-                    icon, 
-                    color: theme.colorScheme.primary,
-                  ),
-                ),
-                Icon(
-                  Icons.arrow_forward_ios, 
-                  size: 14, 
-                  color: theme.colorScheme.onSurface.withValues(alpha: 0.3),
-                ),
-              ],
-            ),
-            const Spacer(),
-            Text(
-              title,
-              style: theme.textTheme.titleMedium?.copyWith(
-                fontWeight: FontWeight.bold,
-              ),
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-            ),
-            const SizedBox(height: 4),
-            Text(
-              subtitle,
-              style: theme.textTheme.bodySmall?.copyWith(
-                color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
-              ),
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-            ),
-          ],
-        ),
-      ),
-    );
-  }
 }
 
-class _DailyDiscoveryCarousel extends StatefulWidget {
+class _DailyDiscoveryCarousel extends ConsumerStatefulWidget {
   const _DailyDiscoveryCarousel();
 
   @override
-  State<_DailyDiscoveryCarousel> createState() => _DailyDiscoveryCarouselState();
+  ConsumerState<_DailyDiscoveryCarousel> createState() => _DailyDiscoveryCarouselState();
 }
 
-class _DailyDiscoveryCarouselState extends State<_DailyDiscoveryCarousel> {
+class _DailyDiscoveryCarouselState extends ConsumerState<_DailyDiscoveryCarousel> {
   final PageController _pageController = PageController(viewportFraction: 0.85);
 
   @override
@@ -407,53 +376,42 @@ class _DailyDiscoveryCarouselState extends State<_DailyDiscoveryCarousel> {
 
   @override
   Widget build(BuildContext context) {
+    final dailyState = ref.watch(dailyDiscoveryProvider);
+
     return SizedBox(
       height: 240,
-      child: PageView(
-        controller: _pageController,
-        physics: const BouncingScrollPhysics(),
-        children: [
-          _buildDiscoveryCard(
-            context,
-            tag: "VIDEO OF THE DAY",
-            title: "李子柒 Liziqi: 大蒜的一生",
-            subtitle: "The Life of Garlic - Traditional Chinese Life",
-            imageAsset: 'assets/images/reading_room_bg.png',
-            onTap: () {
-              Navigator.push(
+      child: dailyState.when(
+        data: (items) {
+          return PageView.builder(
+            controller: _pageController,
+            physics: const BouncingScrollPhysics(),
+            itemCount: items.length,
+            itemBuilder: (context, index) {
+              final item = items[index];
+              return _buildDiscoveryCard(
                 context,
-                MaterialPageRoute(
-                  builder: (_) => const WebBrowserScreen(initialUrl: 'https://www.youtube.com/watch?v=mEydwGz_Pwc'),
-                ),
+                item: item,
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => WebBrowserScreen(initialUrl: item.url),
+                    ),
+                  );
+                },
               );
             },
-          ),
-          _buildDiscoveryCard(
-            context,
-            tag: "ARTICLE OF THE DAY",
-            title: "人工智能如何改变中国科技创新",
-            subtitle: "BBC 中文 (In-depth Analysis)",
-            imageAsset: 'assets/images/shadowing_bg.png',
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => const WebBrowserScreen(initialUrl: 'https://www.bbc.com/zhongwen/simp/science-61234567'),
-                ),
-              );
-            },
-          ),
-        ],
+          );
+        },
+        loading: () => const Center(child: CircularProgressIndicator()),
+        error: (err, stack) => Center(child: Text('Failed to load daily content')),
       ),
     );
   }
 
   Widget _buildDiscoveryCard(
     BuildContext context, {
-    required String tag,
-    required String title,
-    required String subtitle,
-    required String imageAsset,
+    required DailyMediaItem item,
     required VoidCallback onTap,
   }) {
     final theme = Theme.of(context);
@@ -463,11 +421,7 @@ class _DailyDiscoveryCarouselState extends State<_DailyDiscoveryCarousel> {
         margin: const EdgeInsets.symmetric(horizontal: 8.0),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(28),
-          image: DecorationImage(
-            image: AssetImage(imageAsset),
-            fit: BoxFit.cover,
-            colorFilter: const ColorFilter.mode(Colors.black45, BlendMode.darken),
-          ),
+          color: Colors.black87,
           boxShadow: [
             BoxShadow(
               color: Colors.black.withValues(alpha: 0.2),
@@ -476,52 +430,76 @@ class _DailyDiscoveryCarouselState extends State<_DailyDiscoveryCarousel> {
             ),
           ],
         ),
-        child: Padding(
-          padding: const EdgeInsets.all(24.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(28),
+          child: Stack(
+            fit: StackFit.expand,
             children: [
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-                decoration: BoxDecoration(
-                  color: theme.colorScheme.primary,
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Text(
-                  tag,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 10,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 1.2,
-                  ),
-                ),
+              CachedNetworkImage(
+                imageUrl: item.imageUrl,
+                fit: BoxFit.cover,
+                placeholder: (context, url) => Container(color: Colors.black12),
+                errorWidget: (context, url, error) => Container(color: Colors.black12),
+                color: Colors.black45,
+                colorBlendMode: BlendMode.darken,
               ),
-              const Spacer(),
-              Text(
-                title,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                  height: 1.2,
-                ),
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-              ),
-              const SizedBox(height: 8),
-              Row(
-                children: [
-                  Icon(Icons.play_circle_fill, color: Colors.white.withValues(alpha: 0.8), size: 16),
-                  const SizedBox(width: 6),
-                  Text(
-                    subtitle,
-                    style: TextStyle(
-                      color: Colors.white.withValues(alpha: 0.8),
-                      fontSize: 13,
+              Padding(
+                padding: const EdgeInsets.all(24.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                      decoration: BoxDecoration(
+                        color: theme.colorScheme.primary,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Text(
+                        item.tag,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 10,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 1.2,
+                        ),
+                      ),
                     ),
-                  ),
-                ],
+                    const Spacer(),
+                    Text(
+                      item.title,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        height: 1.2,
+                      ),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    const SizedBox(height: 8),
+                    Row(
+                      children: [
+                        Icon(
+                          item.tag == "VIDEO OF THE DAY" ? Icons.play_circle_fill : Icons.article, 
+                          color: Colors.white.withValues(alpha: 0.8), 
+                          size: 16
+                        ),
+                        const SizedBox(width: 6),
+                        Expanded(
+                          child: Text(
+                            item.subtitle,
+                            style: TextStyle(
+                              color: Colors.white.withValues(alpha: 0.8),
+                              fontSize: 13,
+                            ),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
