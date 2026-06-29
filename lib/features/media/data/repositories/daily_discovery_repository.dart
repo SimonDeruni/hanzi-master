@@ -29,7 +29,7 @@ class DailyDiscoveryRepository {
         title: latestVideo.title,
         subtitle: channel.title,
         url: latestVideo.url,
-        imageUrl: latestVideo.thumbnails.highResUrl,
+        imageUrl: "https://img.youtube.com/vi/${latestVideo.id.value}/hqdefault.jpg",
         tag: "VIDEO OF THE DAY",
       );
     } catch (e) {
