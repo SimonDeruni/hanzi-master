@@ -537,7 +537,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
               banner.innerHTML = `
                 <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 16px;">
                    <div style="background: rgba(255, 193, 7, 0.15); border: 1px solid rgba(255, 193, 7, 0.4); color: #b38600; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; font-family: sans-serif;">HSK ${insight.hskLevel}</div>
-                   <div style="background: rgba(33, 150, 243, 0.15); border: 1px solid rgba(33, 150, 243, 0.4); color: #0d47a1; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; font-family: sans-serif;">${insight.category}</div>
+                   <div style="background: rgba(33, 150, 243, 0.15); border: 1px solid rgba(33, 150, 243, 0.4); color: #0d47a1; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; font-family: sans-serif;">Score: ${insight.score}</div>
                 </div>
                 <p style="font-size: 16px; margin: 0; color: #555;">\${safeSummary}</p>
                 <div style="height: 1px; background: rgba(0,0,0,0.1); margin: 24px 0 16px 0;"></div>
