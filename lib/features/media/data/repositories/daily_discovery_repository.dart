@@ -39,7 +39,7 @@ class DailyDiscoveryRepository {
         subtitle: "The Life of Garlic - Traditional Chinese Life",
         url: "https://www.youtube.com/watch?v=1d_K6O9cQ8s",
         imageUrl: "https://img.youtube.com/vi/1d_K6O9cQ8s/hqdefault.jpg",
-        tag: "VIDEO OF THE DAY",
+        tag: "2 MIN CULTURAL CONTEXT",
       );
     } finally {
       yt.close();
@@ -81,8 +81,8 @@ class DailyDiscoveryRepository {
         title: "BBC 中文网",
         subtitle: "Current Events in Simplified Chinese",
         url: "https://www.bbc.com/zhongwen/simp",
-        imageUrl: "https://www.bbc.co.uk/news/special/2015/newsspec_10857/bbc_news_logo.png",
-        tag: "ARTICLE OF THE DAY",
+        imageUrl: "https://ichef.bbci.co.uk/news/1024/branded_zhongwen/154F3/production/_115651738_1.jpg",
+        tag: "2 MIN CULTURAL CONTEXT",
       );
     }
   }

@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:hanzi_master/features/media/domain/models/daily_media_item.dart';
 import 'package:hanzi_master/features/media/presentation/providers/cultural_context_provider.dart';
 import 'package:hanzi_master/features/media/presentation/screens/web_browser_screen.dart';
 import 'package:hanzi_master/features/media/presentation/screens/media_search_screen.dart';
+import 'package:flutter/gestures.dart';
 import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
+import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
 
 class CulturalContextScreen extends ConsumerWidget {
   final DailyMediaItem mediaItem;
@@ -122,15 +123,7 @@ class CulturalContextScreen extends ConsumerWidget {
                       ),
                     ),
                     child: culturalContextAsync.when(
-                      data: (text) => MarkdownBody(
-                        data: text,
-                        styleSheet: MarkdownStyleSheet(
-                          p: theme.textTheme.bodyLarge?.copyWith(height: 1.6),
-                          h2: theme.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
-                          h3: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
-                          listBullet: theme.textTheme.bodyLarge,
-                        ),
-                      ),
+                      data: (text) => _buildClickableContext(context, text, theme),
                       loading: () => Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
@@ -209,4 +202,48 @@ class CulturalContextScreen extends ConsumerWidget {
       ),
     );
   }
+
+  Widget _buildClickableContext(BuildContext context, String text, ThemeData theme) {
+    final paragraphs = text.split('\n\n');
+    final RegExp chineseRegex = RegExp(r'[\u4e00-\u9fa5]');
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: paragraphs.map((p) {
+        // Strip markdown hashes if present
+        var content = p.replaceAll(RegExp(r'^#+\s+'), '');
+        // Strip bold asterisks
+        content = content.replaceAll('**', '');
+
+        final List<TextSpan> spans = [];
+        final baseStyle = theme.textTheme.bodyLarge?.copyWith(height: 1.6);
+        final hanziStyle = baseStyle?.copyWith(
+          color: theme.colorScheme.primary,
+          fontWeight: FontWeight.w600,
+        );
+
+        for (int i = 0; i < content.length; i++) {
+          final char = content[i];
+          if (chineseRegex.hasMatch(char)) {
+            spans.add(TextSpan(
+              text: char,
+              style: hanziStyle,
+              recognizer: TapGestureRecognizer()
+                ..onTap = () {
+                  showQuickLook(context, char);
+                },
+            ));
+          } else {
+            spans.add(TextSpan(text: char, style: baseStyle));
+          }
+        }
+
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 16.0),
+          child: RichText(text: TextSpan(children: spans)),
+        );
+      }).toList(),
+    );
+  }
 }
+

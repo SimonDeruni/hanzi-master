@@ -19,7 +19,7 @@ class DailyDiscovery extends _$DailyDiscovery {
           subtitle: "The Life of Garlic - Traditional Chinese Life",
           url: "https://www.youtube.com/watch?v=1d_K6O9cQ8s",
           imageUrl: "https://img.youtube.com/vi/1d_K6O9cQ8s/hqdefault.jpg",
-          tag: "VIDEO OF THE DAY",
+          tag: "2 MIN CULTURAL CONTEXT",
         ),
       ),
       repo.getDailyArticle().timeout(
@@ -29,7 +29,7 @@ class DailyDiscovery extends _$DailyDiscovery {
           subtitle: "Current Events in Simplified Chinese",
           url: "https://www.bbc.com/zhongwen/simp",
           imageUrl: "https://www.bbc.co.uk/news/special/2015/newsspec_10857/bbc_news_logo.png",
-          tag: "ARTICLE OF THE DAY",
+          tag: "2 MIN CULTURAL CONTEXT",
         ),
       ),
     ]);
