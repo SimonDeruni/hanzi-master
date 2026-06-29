@@ -152,7 +152,7 @@ class AiHubScreen extends ConsumerWidget {
       scaleFactor: 0.98,
       onPressed: onTap,
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
+        padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 28.0),
         decoration: BoxDecoration(
           color: theme.colorScheme.surface,
           borderRadius: BorderRadius.circular(24),
@@ -426,7 +426,7 @@ class _FeaturedCarouselState extends State<_FeaturedCarousel> {
                   title: "Read The Web",
                   subtitle: "Turn any webpage into a learning experience",
                   category: "Web Explorer",
-                  imageAsset: 'assets/images/ai_hub_web_explorer.png',
+                  imageAsset: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop',
                   icon: Icons.language,
                   onTap: () {
                     Navigator.push(
@@ -494,7 +494,9 @@ class _CarouselCard extends StatelessWidget {
         decoration: BoxDecoration(
           color: const Color(0xFF131A29),
           image: DecorationImage(
-            image: AssetImage(imageAsset),
+            image: imageAsset.startsWith('http') 
+                ? NetworkImage(imageAsset) as ImageProvider
+                : AssetImage(imageAsset),
             fit: BoxFit.cover,
             colorFilter:
                 const ColorFilter.mode(Colors.black45, BlendMode.srcOver),
