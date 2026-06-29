@@ -95,10 +95,10 @@ class AiHubScreen extends ConsumerWidget {
                 // Square Tiles List of Features
                 Expanded(
                   flex: 12,
-                  child: Row(
+                  child: Column(
                     children: [
                       Expanded(
-                        child: _buildSquareActionCard(
+                        child: _buildListActionCard(
                           context: context,
                           title: "READING ROOM",
                           subtitle: "Classic literature texts",
@@ -111,9 +111,9 @@ class AiHubScreen extends ConsumerWidget {
                           },
                         ),
                       ),
-                      const SizedBox(width: 16),
+                      const SizedBox(height: 16),
                       Expanded(
-                        child: _buildSquareActionCard(
+                        child: _buildListActionCard(
                           context: context,
                           title: "SHADOWING",
                           subtitle: "Perfect your pronunciation",
@@ -135,6 +135,110 @@ class AiHubScreen extends ConsumerWidget {
               ],
             ),
           ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildListActionCard({
+    required BuildContext context,
+    required String title,
+    required String subtitle,
+    required IconData icon,
+    bool isNew = false,
+    required VoidCallback onTap,
+  }) {
+    final theme = Theme.of(context);
+    
+    return BouncingButton(
+      scaleFactor: 0.98,
+      onPressed: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 0.0),
+        decoration: BoxDecoration(
+          color: theme.colorScheme.surface,
+          borderRadius: BorderRadius.circular(24),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.03),
+              blurRadius: 30,
+              offset: const Offset(0, 10),
+            ),
+          ],
+        ),
+        child: Row(
+          children: [
+            Container(
+              width: 52,
+              height: 52,
+              decoration: BoxDecoration(
+                color: theme.colorScheme.primary.withValues(alpha: 0.1),
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(
+                  color: theme.colorScheme.primary.withValues(alpha: 0.2),
+                  width: 1,
+                ),
+              ),
+              child: Icon(
+                icon,
+                size: 24,
+                color: theme.colorScheme.primary,
+              ),
+            ),
+            const SizedBox(width: 20),
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Text(
+                        title,
+                        style: theme.textTheme.titleSmall?.copyWith(
+                          fontWeight: FontWeight.w900,
+                          fontFamily: 'NotoSerifSC',
+                          color: theme.colorScheme.onSurface,
+                          letterSpacing: 0.5,
+                        ),
+                      ),
+                      if (isNew) ...[
+                        const SizedBox(width: 8),
+                        Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFE27C5A),
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                          child: const Text(
+                            "NEW",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 9,
+                              fontWeight: FontWeight.bold,
+                              letterSpacing: 1,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ],
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    subtitle,
+                    style: theme.textTheme.bodySmall?.copyWith(
+                      color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
+                      height: 1.2,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Icon(
+              Icons.chevron_right,
+              color: theme.colorScheme.onSurface.withValues(alpha: 0.2),
+            ),
+          ],
         ),
       ),
     );
