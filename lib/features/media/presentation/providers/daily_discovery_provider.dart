@@ -18,7 +18,7 @@ class DailyDiscovery extends _$DailyDiscovery {
           title: "李子柒 Liziqi: 大蒜的一生",
           subtitle: "The Life of Garlic - Traditional Chinese Life",
           url: "https://www.youtube.com/watch?v=1d_K6O9cQ8s",
-          imageUrl: "https://img.youtube.com/vi/1d_K6O9cQ8s/maxresdefault.jpg",
+          imageUrl: "https://img.youtube.com/vi/1d_K6O9cQ8s/hqdefault.jpg",
           tag: "VIDEO OF THE DAY",
         ),
       ),
