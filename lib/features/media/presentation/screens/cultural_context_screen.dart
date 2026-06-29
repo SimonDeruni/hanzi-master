@@ -132,6 +132,7 @@ class CulturalContextScreen extends ConsumerWidget {
                         ),
                       ),
                       loading: () => Column(
+                        mainAxisSize: MainAxisSize.min,
                         children: [
                           const SizedBox(height: 20),
                           const Center(child: CircularProgressIndicator()),
