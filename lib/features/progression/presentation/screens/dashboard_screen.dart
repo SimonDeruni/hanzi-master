@@ -85,15 +85,18 @@ class DashboardScreen extends ConsumerWidget {
                   padding: const EdgeInsets.fromLTRB(24, 24, 24, 16),
                   child: Row(
                     children: [
-                      Text(
-                        l10n?.dashboardTitle ?? "Dashboard",
-                        style: theme.textTheme.headlineLarge?.copyWith(
-                          fontWeight: FontWeight.w900,
-                          fontFamily: 'NotoSerifSC',
-                          color: theme.colorScheme.onSurface,
+                      Expanded(
+                        child: Text(
+                          l10n?.dashboardTitle ?? "Dashboard",
+                          style: theme.textTheme.headlineLarge?.copyWith(
+                            fontWeight: FontWeight.w900,
+                            fontFamily: 'NotoSerifSC',
+                            color: theme.colorScheme.onSurface,
+                          ),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
                         ),
                       ),
-                      const Spacer(),
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                         decoration: BoxDecoration(
