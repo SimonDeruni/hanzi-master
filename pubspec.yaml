@@ -90,6 +90,7 @@ flutter:
     - assets/data/dictionary.db
     - assets/data/
     - assets/images/
+    - assets/images/web_explorer_hero.png
     - assets/audio/
     - assets/default_stories.json
     - assets/mascot/
