@@ -426,7 +426,7 @@ class _FeaturedCarouselState extends State<_FeaturedCarousel> {
                   title: "Read The Web",
                   subtitle: "Turn any webpage into a learning experience",
                   category: "Web Explorer",
-                  imageAsset: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop',
+                  imageAsset: 'assets/images/ai_hub_web_explorer.png',
                   icon: Icons.language,
                   onTap: () {
                     Navigator.push(
