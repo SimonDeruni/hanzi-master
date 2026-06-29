@@ -10,6 +10,8 @@ import 'package:uuid/uuid.dart';
 import 'package:hanzi_master/core/providers.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/deck.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
+import 'package:hanzi_master/features/media/presentation/providers/daily_discovery_provider.dart';
+import 'package:hanzi_master/features/media/presentation/providers/article_insight_cache_provider.dart';
 import 'package:hanzi_master/features/media/domain/models/saved_article.dart';
 import 'package:hive/hive.dart';
 import 'package:hanzi_master/features/media/presentation/screens/simplified_article_reader_screen.dart';
@@ -520,6 +522,34 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
   }
 
   Future<void> _runAnalyzeArticle() async {
+    final cache = ref.read(articleInsightCacheProvider);
+    if (cache.containsKey(widget.initialUrl)) {
+      if (mounted) {
+        setState(() {
+          _currentInsight = cache[widget.initialUrl];
+        });
+        if (_isZenMode) {
+          final insight = _currentInsight!;
+          final js = '''
+            const banner = document.getElementById('ai-insight-banner');
+            if (banner) {
+              const safeSummary = `${insight.summary.replaceAll('`', '\\`').replaceAll('\n', '<br>')} `;
+              banner.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 16px;">
+                   <div style="background: rgba(255, 193, 7, 0.15); border: 1px solid rgba(255, 193, 7, 0.4); color: #b38600; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; font-family: sans-serif;">HSK ${insight.hskLevel}</div>
+                   <div style="background: rgba(33, 150, 243, 0.15); border: 1px solid rgba(33, 150, 243, 0.4); color: #0d47a1; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; font-family: sans-serif;">${insight.category}</div>
+                </div>
+                <p style="font-size: 16px; margin: 0; color: #555;">\${safeSummary}</p>
+                <div style="height: 1px; background: rgba(0,0,0,0.1); margin: 24px 0 16px 0;"></div>
+              `;
+            }
+          ''';
+          _controller.runJavaScript(js);
+        }
+      }
+      return;
+    }
+
     setState(() => _isProcessingAi = true);
     
     try {
@@ -534,6 +564,12 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
       
       final gemini = ref.read(geminiServiceProvider);
       final insight = await gemini.generateArticleInsight(text.toString(), knownWords);
+      
+      // Update cache
+      ref.read(articleInsightCacheProvider.notifier).state = {
+        ...ref.read(articleInsightCacheProvider),
+        widget.initialUrl: insight,
+      };
       
       if (mounted) {
         setState(() {

@@ -6,7 +6,7 @@ part of 'cultural_context_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$culturalContextHash() => r'541187a6ff1428b6bdf2c3d893be9cb27c0bea8b';
+String _$culturalContextHash() => r'0f7fad087858f101cda2afb0d02c371a2b4bf2fe';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -29,8 +29,7 @@ class _SystemHash {
   }
 }
 
-abstract class _$CulturalContext
-    extends BuildlessAutoDisposeAsyncNotifier<String> {
+abstract class _$CulturalContext extends BuildlessAsyncNotifier<String> {
   late final String mediaTitle;
 
   FutureOr<String> build(
@@ -82,7 +81,7 @@ class CulturalContextFamily extends Family<AsyncValue<String>> {
 
 /// See also [CulturalContext].
 class CulturalContextProvider
-    extends AutoDisposeAsyncNotifierProviderImpl<CulturalContext, String> {
+    extends AsyncNotifierProviderImpl<CulturalContext, String> {
   /// See also [CulturalContext].
   CulturalContextProvider(
     String mediaTitle,
@@ -138,8 +137,7 @@ class CulturalContextProvider
   }
 
   @override
-  AutoDisposeAsyncNotifierProviderElement<CulturalContext, String>
-      createElement() {
+  AsyncNotifierProviderElement<CulturalContext, String> createElement() {
     return _CulturalContextProviderElement(this);
   }
 
@@ -157,13 +155,13 @@ class CulturalContextProvider
   }
 }
 
-mixin CulturalContextRef on AutoDisposeAsyncNotifierProviderRef<String> {
+mixin CulturalContextRef on AsyncNotifierProviderRef<String> {
   /// The parameter `mediaTitle` of this provider.
   String get mediaTitle;
 }
 
 class _CulturalContextProviderElement
-    extends AutoDisposeAsyncNotifierProviderElement<CulturalContext, String>
+    extends AsyncNotifierProviderElement<CulturalContext, String>
     with CulturalContextRef {
   _CulturalContextProviderElement(super.provider);
 

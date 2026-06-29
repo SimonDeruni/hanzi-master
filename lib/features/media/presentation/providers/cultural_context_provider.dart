@@ -3,7 +3,7 @@ import 'package:hanzi_master/core/services/gemini_service.dart';
 
 part 'cultural_context_provider.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 class CulturalContext extends _$CulturalContext {
   @override
   Future<String> build(String mediaTitle) async {
