@@ -92,6 +92,8 @@ class AiHubScreen extends ConsumerWidget {
                 // Removed Today's Insight Card (moved to Dashboard)
 
 
+                const SizedBox(height: 24),
+
                 // Square Tiles List of Features
                 Expanded(
                   flex: 12,
@@ -150,7 +152,7 @@ class AiHubScreen extends ConsumerWidget {
       scaleFactor: 0.98,
       onPressed: onTap,
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 0.0),
+        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
         decoration: BoxDecoration(
           color: theme.colorScheme.surface,
           borderRadius: BorderRadius.circular(24),
@@ -495,7 +497,7 @@ class _CarouselCard extends StatelessWidget {
             image: AssetImage(imageAsset),
             fit: BoxFit.cover,
             colorFilter:
-                const ColorFilter.mode(Colors.black38, BlendMode.darken),
+                const ColorFilter.mode(Colors.black45, BlendMode.srcOver),
           ),
           borderRadius: BorderRadius.circular(24),
           boxShadow: [
