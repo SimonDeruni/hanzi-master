@@ -152,7 +152,7 @@ class AiHubScreen extends ConsumerWidget {
       scaleFactor: 0.98,
       onPressed: onTap,
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 28.0),
+        padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 36.0),
         decoration: BoxDecoration(
           color: theme.colorScheme.surface,
           borderRadius: BorderRadius.circular(24),
@@ -167,11 +167,11 @@ class AiHubScreen extends ConsumerWidget {
         child: Row(
           children: [
             Container(
-              width: 52,
-              height: 52,
+              width: 64,
+              height: 64,
               decoration: BoxDecoration(
                 color: theme.colorScheme.primary.withValues(alpha: 0.1),
-                borderRadius: BorderRadius.circular(16),
+                borderRadius: BorderRadius.circular(20),
                 border: Border.all(
                   color: theme.colorScheme.primary.withValues(alpha: 0.2),
                   width: 1,
@@ -179,7 +179,7 @@ class AiHubScreen extends ConsumerWidget {
               ),
               child: Icon(
                 icon,
-                size: 24,
+                size: 32,
                 color: theme.colorScheme.primary,
               ),
             ),
