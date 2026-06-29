@@ -126,8 +126,8 @@ class CulturalContextScreen extends ConsumerWidget {
                         data: text,
                         styleSheet: MarkdownStyleSheet(
                           p: theme.textTheme.bodyLarge?.copyWith(height: 1.6),
-                          h2: theme.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold, marginTop: 16, marginBottom: 8),
-                          h3: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold, marginTop: 16, marginBottom: 8),
+                          h2: theme.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
+                          h3: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
                           listBullet: theme.textTheme.bodyLarge,
                         ),
                       ),
