@@ -97,35 +97,31 @@ class AiHubScreen extends ConsumerWidget {
                   flex: 12,
                   child: Column(
                     children: [
-                      Expanded(
-                        child: _buildListActionCard(
-                          context: context,
-                          title: "READING ROOM",
-                          subtitle: "Classic literature texts",
-                          icon: Icons.auto_stories,
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (_) => const ReadingRoomScreen()),
-                            );
-                          },
-                        ),
+                      _buildListActionCard(
+                        context: context,
+                        title: "READING ROOM",
+                        subtitle: "Classic literature texts",
+                        icon: Icons.auto_stories,
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (_) => const ReadingRoomScreen()),
+                          );
+                        },
                       ),
                       const SizedBox(height: 16),
-                      Expanded(
-                        child: _buildListActionCard(
-                          context: context,
-                          title: "SHADOWING",
-                          subtitle: "Perfect your pronunciation",
-                          icon: Icons.mic,
-                          isNew: true,
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (_) => const ShadowingStudioScreen()),
-                            );
-                          },
-                        ),
+                      _buildListActionCard(
+                        context: context,
+                        title: "SHADOWING",
+                        subtitle: "Perfect your pronunciation",
+                        icon: Icons.mic,
+                        isNew: true,
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (_) => const ShadowingStudioScreen()),
+                          );
+                        },
                       ),
                     ],
                   ),
