@@ -11,13 +11,15 @@ class CulturalContext extends _$CulturalContext {
     
     final prompt = '''
 You are a Chinese cultural expert and language educator. 
-The user is about to watch a video or read an article titled: '\$mediaTitle'.
+The user is about to watch a video or read an article with the following title and summary:
+Title: "$mediaTitle"
 
-Provide a fascinating cultural explanation that takes about 2 minutes to read (around 250-400 words).
-CRITICAL RULE: The explanation MUST focus deeply on Chinese culture, history, linguistic quirks, or societal context. 
-If the topic is international (like US politics or European sports), explain how Chinese media covers it, or the interesting history of the Chinese vocabulary used to describe it.
+Your task is to provide a fascinating cultural explanation that relates DIRECTLY to the specific topic of this article/video. It should take about 2 minutes to read (around 250-400 words).
 
-Format your response in Markdown, using nice headers and bullet points where appropriate. Include Pinyin for any Chinese words you use. Make it highly engaging and educational.
+CRITICAL RULES: 
+1. Do not give a generic explanation. You MUST connect the specific subject matter of "$mediaTitle" to Chinese culture, history, linguistic quirks, or societal context.
+2. If the topic is an international event (like US politics or European sports), focus on the Chinese perspective of THAT EXACT event (e.g., the specific Chinese vocabulary used for it, or historical Chinese parallels).
+3. Format your response in Markdown, using nice headers and bullet points where appropriate. Include Pinyin for any Chinese words you use. Make it highly engaging and educational.
 ''';
 
     return await geminiService.generateText(prompt);
