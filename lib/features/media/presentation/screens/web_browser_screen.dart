@@ -33,7 +33,8 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
   late final WebViewController _controller;
   final TextEditingController _urlController = TextEditingController();
   bool _isLoading = true;
-  bool _isZenMode = false;
+  bool _isZenMode = true;
+  bool _initialZenLoaded = false;
   bool _isProcessingAi = false;
   
   ArticleInsight? _currentInsight;
@@ -68,7 +69,12 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
               _isLoading = false;
               _urlController.text = url;
             });
-            _injectHanziInterceptor();
+            _injectHanziInterceptor().then((_) {
+              if (_isZenMode && !_initialZenLoaded) {
+                _initialZenLoaded = true;
+                _applyZenModeJs();
+              }
+            });
           },
         ),
       )
@@ -391,50 +397,54 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
     );
   }
 
+  void _applyZenModeJs() {
+    final js = '''
+      if (!window.zenModeBackup) {
+        window.zenModeBackup = document.body.innerHTML;
+      }
+      
+      let bestNode = document.body;
+      const articles = document.querySelectorAll('article, .article, .post, .content, main');
+      if (articles.length > 0) {
+        bestNode = articles[0];
+      }
+      
+      // Add skeleton loader at the top
+      const skeletonHtml = `
+        <div id="ai-insight-banner" style="margin-bottom: 30px; font-family: sans-serif; opacity: 0.7;">
+          <div style="display: flex; align-items: center; margin-bottom: 15px;">
+             <div style="width: 20px; height: 20px; border: 2px solid #1A1A1B; border-top-color: transparent; border-radius: 50%; animation: spin 1s linear infinite;"></div>
+             <span style="margin-left: 12px; font-size: 14px; font-weight: bold;">AI is reading...</span>
+          </div>
+          <div style="height: 12px; background-color: rgba(26,26,27,0.1); border-radius: 4px; margin-bottom: 8px;"></div>
+          <div style="height: 12px; background-color: rgba(26,26,27,0.1); border-radius: 4px; width: 70%;"></div>
+          <style>@keyframes spin { 100% { transform: rotate(360deg); } }</style>
+        </div>
+      `;
+      
+      document.body.innerHTML = '<div style="max-width: 800px; margin: 0 auto; padding: 20px; font-family: serif; font-size: 22px; line-height: 1.8; background-color: #FDFCF0; color: #1A1A1B;">' + skeletonHtml + bestNode.innerHTML + '</div>';
+      
+      window.makeChineseTextClickable(document.body);
+    ''';
+    _controller.runJavaScript(js);
+    
+    if (_currentInsight == null) {
+      // Wait a tiny bit for the JS to finish extracting text before analyzing
+      Future.delayed(const Duration(milliseconds: 500), () {
+        if (mounted && _isZenMode) {
+          _runAnalyzeArticle();
+        }
+      });
+    }
+  }
+
   void _toggleZenMode() {
     setState(() {
       _isZenMode = !_isZenMode;
     });
     
     if (_isZenMode) {
-      final js = '''
-        if (!window.zenModeBackup) {
-          window.zenModeBackup = document.body.innerHTML;
-        }
-        
-        let bestNode = document.body;
-        const articles = document.querySelectorAll('article, .article, .post, .content, main');
-        if (articles.length > 0) {
-          bestNode = articles[0];
-        }
-        
-        // Add skeleton loader at the top
-        const skeletonHtml = `
-          <div id="ai-insight-banner" style="margin-bottom: 30px; font-family: sans-serif; opacity: 0.7;">
-            <div style="display: flex; align-items: center; margin-bottom: 15px;">
-               <div style="width: 20px; height: 20px; border: 2px solid #1A1A1B; border-top-color: transparent; border-radius: 50%; animation: spin 1s linear infinite;"></div>
-               <span style="margin-left: 12px; font-size: 14px; font-weight: bold;">AI is reading...</span>
-            </div>
-            <div style="height: 12px; background-color: rgba(26,26,27,0.1); border-radius: 4px; margin-bottom: 8px;"></div>
-            <div style="height: 12px; background-color: rgba(26,26,27,0.1); border-radius: 4px; width: 70%;"></div>
-            <style>@keyframes spin { 100% { transform: rotate(360deg); } }</style>
-          </div>
-        `;
-        
-        document.body.innerHTML = '<div style="max-width: 800px; margin: 0 auto; padding: 20px; font-family: serif; font-size: 22px; line-height: 1.8; background-color: #FDFCF0; color: #1A1A1B;">' + skeletonHtml + bestNode.innerHTML + '</div>';
-        
-        window.makeChineseTextClickable(document.body);
-      ''';
-      _controller.runJavaScript(js);
-      
-      if (_currentInsight == null) {
-        // Wait a tiny bit for the JS to finish extracting text before analyzing
-        Future.delayed(const Duration(milliseconds: 500), () {
-          if (mounted && _isZenMode) {
-            _runAnalyzeArticle();
-          }
-        });
-      }
+      _applyZenModeJs();
     } else {
       final js = '''
         if (window.zenModeBackup) {
@@ -983,12 +993,12 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
             },
           ),
           IconButton(
-            icon: Icon(
-              Icons.menu_book,
-              color: _isZenMode ? Colors.indigo : Colors.black87,
+            icon: const Icon(
+              Icons.more_vert,
+              color: Colors.black87,
             ),
-            onPressed: _toggleZenMode,
-            tooltip: 'Zen Mode',
+            onPressed: () => _showAiToolsMenu(context),
+            tooltip: 'More Tools',
           ),
           IconButton(
             icon: const Icon(Icons.refresh),
@@ -1025,13 +1035,13 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
                   icon: _isProcessingAi 
                       ? const SizedBox(width: 16, height: 16, child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2))
                       : const Icon(Icons.auto_awesome),
-                  label: const Text("AI Reading Tools", style: TextStyle(fontWeight: FontWeight.bold)),
+                  label: Text(_isZenMode ? "AI Reading Tools Active" : "Enable AI Tools", style: const TextStyle(fontWeight: FontWeight.bold)),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.indigo,
-                    foregroundColor: Colors.white,
+                    backgroundColor: _isZenMode ? Colors.indigo : Colors.grey.shade300,
+                    foregroundColor: _isZenMode ? Colors.white : Colors.black87,
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                   ),
-                  onPressed: _isProcessingAi ? null : () => _showAiToolsMenu(context),
+                  onPressed: _isProcessingAi ? null : _toggleZenMode,
                 ),
               ),
             ),
