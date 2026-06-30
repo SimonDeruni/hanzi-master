@@ -17,9 +17,11 @@ Title: "$mediaTitle"
 Your task is to provide a fascinating cultural explanation that relates DIRECTLY to the specific topic of this article/video. It should take about 1 minute to read (around 100-150 words).
 
 CRITICAL RULES: 
-1. Do not give a generic explanation. You MUST connect the specific subject matter of "$mediaTitle" to Chinese culture, history, linguistic quirks, or societal context.
-2. If the topic is an international event (like US politics or European sports), focus on the Chinese perspective of THAT EXACT event (e.g., the specific Chinese vocabulary used for it, or historical Chinese parallels).
-3. Format your response in Markdown, using nice headers and bullet points where appropriate. Include Pinyin for any Chinese words you use. Make it highly engaging and educational.
+1. DO NOT include any introductory conversational filler like "Here is a fascinating cultural explanation". Start immediately with the content.
+2. DO NOT use markdown asterisks (* or **) or horizontal rules (---). Use plain text and simple newlines for paragraphs. If you need a list, use a standard bullet symbol (•).
+3. DO NOT include any Pinyin at all. Provide only English and Chinese characters.
+4. Do not give a generic explanation. You MUST connect the specific subject matter of "$mediaTitle" to Chinese culture, history, linguistic quirks, or societal context.
+5. If the topic is an international event, focus on the Chinese perspective of THAT EXACT event (e.g., the specific Chinese vocabulary used for it, or historical Chinese parallels).
 ''';
 
     return await geminiService.generateText(prompt);

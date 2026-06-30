@@ -92,9 +92,15 @@ class CulturalContextScreen extends ConsumerWidget {
                     ),
                   ),
                   const SizedBox(height: 16),
-                  Text(
-                    mediaItem.title,
-                    style: theme.textTheme.headlineSmall?.copyWith(
+                  _buildClickableContext(
+                    context, 
+                    mediaItem.title, 
+                    theme,
+                    customBaseStyle: theme.textTheme.headlineSmall?.copyWith(
+                      fontWeight: FontWeight.w900,
+                      fontFamily: 'NotoSerifSC',
+                    ),
+                    customHanziStyle: theme.textTheme.headlineSmall?.copyWith(
                       fontWeight: FontWeight.w900,
                       fontFamily: 'NotoSerifSC',
                     ),
@@ -203,7 +209,7 @@ class CulturalContextScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildClickableContext(BuildContext context, String text, ThemeData theme) {
+  Widget _buildClickableContext(BuildContext context, String text, ThemeData theme, {TextStyle? customBaseStyle, TextStyle? customHanziStyle}) {
     final paragraphs = text.split('\n\n');
     final RegExp chineseRegex = RegExp(r'[\u4e00-\u9fa5]');
 
@@ -216,8 +222,8 @@ class CulturalContextScreen extends ConsumerWidget {
         content = content.replaceAll('**', '');
 
         final List<TextSpan> spans = [];
-        final baseStyle = theme.textTheme.bodyLarge?.copyWith(height: 1.6);
-        final hanziStyle = baseStyle?.copyWith(
+        final baseStyle = customBaseStyle ?? theme.textTheme.bodyLarge?.copyWith(height: 1.6);
+        final hanziStyle = customHanziStyle ?? baseStyle?.copyWith(
           color: theme.colorScheme.primary,
           fontWeight: FontWeight.w600,
         );
