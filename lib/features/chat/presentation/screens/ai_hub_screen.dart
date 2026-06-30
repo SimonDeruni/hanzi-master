@@ -428,6 +428,7 @@ class _FeaturedCarouselState extends State<_FeaturedCarousel> {
                   category: "Web Explorer",
                   imageAsset: 'assets/images/user_web_explorer.png',
                   icon: Icons.language,
+                  overlayColor: const Color(0xB3000000),
                   onTap: () {
                     Navigator.push(
                       context,
@@ -474,6 +475,7 @@ class _CarouselCard extends StatelessWidget {
   final String imageAsset;
   final IconData icon;
   final VoidCallback onTap;
+  final Color overlayColor;
 
   const _CarouselCard({
     required this.title,
@@ -482,6 +484,7 @@ class _CarouselCard extends StatelessWidget {
     required this.imageAsset,
     required this.icon,
     required this.onTap,
+    this.overlayColor = Colors.black45,
   });
 
   @override
@@ -499,7 +502,7 @@ class _CarouselCard extends StatelessWidget {
                 : AssetImage(imageAsset),
             fit: BoxFit.cover,
             colorFilter:
-                const ColorFilter.mode(Color(0xB3000000), BlendMode.srcOver),
+                ColorFilter.mode(overlayColor, BlendMode.srcOver),
           ),
           borderRadius: BorderRadius.circular(24),
           boxShadow: [
