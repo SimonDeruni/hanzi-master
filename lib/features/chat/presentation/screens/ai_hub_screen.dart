@@ -499,7 +499,7 @@ class _CarouselCard extends StatelessWidget {
                 : AssetImage(imageAsset),
             fit: BoxFit.cover,
             colorFilter:
-                const ColorFilter.mode(Colors.black45, BlendMode.srcOver),
+                const ColorFilter.mode(Color(0xB3000000), BlendMode.srcOver),
           ),
           borderRadius: BorderRadius.circular(24),
           boxShadow: [
