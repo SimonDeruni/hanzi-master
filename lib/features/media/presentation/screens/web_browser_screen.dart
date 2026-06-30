@@ -64,6 +64,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
             setState(() {
               _isLoading = true;
               _urlController.text = url;
+              _initialZenLoaded = false;
             });
           },
           onPageFinished: (String url) {
