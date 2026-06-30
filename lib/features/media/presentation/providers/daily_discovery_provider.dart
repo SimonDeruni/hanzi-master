@@ -1,4 +1,6 @@
+import 'dart:convert';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:hanzi_master/features/media/domain/models/daily_media_item.dart';
 import 'package:hanzi_master/features/media/data/repositories/daily_discovery_repository.dart';
 
@@ -8,6 +10,22 @@ part 'daily_discovery_provider.g.dart';
 class DailyDiscovery extends _$DailyDiscovery {
   @override
   Future<List<DailyMediaItem>> build() async {
+    final prefs = await SharedPreferences.getInstance();
+    final now = DateTime.now();
+    final todayString = "${now.year}-${now.month}-${now.day}";
+    
+    final cacheDate = prefs.getString('daily_discovery_cache_date');
+    final cacheData = prefs.getString('daily_discovery_cache_data');
+
+    if (cacheDate == todayString && cacheData != null) {
+      try {
+        final List<dynamic> decoded = jsonDecode(cacheData);
+        return decoded.map((e) => DailyMediaItem.fromJson(e as Map<String, dynamic>)).toList();
+      } catch (e) {
+        // Fallback to fetch if decode fails
+      }
+    }
+
     final repo = DailyDiscoveryRepository();
     
     // Fetch both simultaneously with a 5-second timeout to prevent hanging
@@ -34,6 +52,10 @@ class DailyDiscovery extends _$DailyDiscovery {
       ),
     ]);
     
+    // Save to cache
+    await prefs.setString('daily_discovery_cache_date', todayString);
+    await prefs.setString('daily_discovery_cache_data', jsonEncode(results.map((e) => e.toJson()).toList()));
+
     return results;
   }
 }
