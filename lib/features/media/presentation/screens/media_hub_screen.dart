@@ -378,6 +378,7 @@ class _DailyDiscoveryCarouselState extends ConsumerState<_DailyDiscoveryCarousel
   @override
   Widget build(BuildContext context) {
     final dailyState = ref.watch(dailyDiscoveryProvider);
+    final completedItems = ref.watch(completedDailyMediaProvider);
 
     return SizedBox(
       height: 240,
@@ -389,10 +390,13 @@ class _DailyDiscoveryCarouselState extends ConsumerState<_DailyDiscoveryCarousel
             itemCount: items.length,
             itemBuilder: (context, index) {
               final item = items[index];
+              final isCompleted = completedItems.contains(item.url);
               return _buildDiscoveryCard(
                 context,
                 item: item,
+                isCompleted: isCompleted,
                 onTap: () {
+                  ref.read(completedDailyMediaProvider.notifier).markCompleted(item.url);
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -413,6 +417,7 @@ class _DailyDiscoveryCarouselState extends ConsumerState<_DailyDiscoveryCarousel
   Widget _buildDiscoveryCard(
     BuildContext context, {
     required DailyMediaItem item,
+    required bool isCompleted,
     required VoidCallback onTap,
   }) {
     final theme = Theme.of(context);
@@ -456,12 +461,12 @@ class _DailyDiscoveryCarouselState extends ConsumerState<_DailyDiscoveryCarousel
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Text(
-                        item.tag,
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 10,
+                        isCompleted ? "✓ COMPLETED" : item.tag,
+                        style: TextStyle(
+                          color: isCompleted ? Colors.greenAccent : Colors.white,
                           fontWeight: FontWeight.bold,
-                          letterSpacing: 1.2,
+                          fontSize: 10,
+                          letterSpacing: 1.0,
                         ),
                       ),
                     ),

@@ -59,3 +59,37 @@ class DailyDiscovery extends _$DailyDiscovery {
     return results;
   }
 }
+
+final completedDailyMediaProvider = StateNotifierProvider<CompletedDailyMediaNotifier, List<String>>((ref) {
+  return CompletedDailyMediaNotifier();
+});
+
+class CompletedDailyMediaNotifier extends StateNotifier<List<String>> {
+  CompletedDailyMediaNotifier() : super([]) {
+    _load();
+  }
+
+  Future<void> _load() async {
+    final prefs = await SharedPreferences.getInstance();
+    final now = DateTime.now();
+    final todayString = "\${now.year}-\${now.month}-\${now.day}";
+    final cacheDate = prefs.getString('completed_daily_media_date');
+    if (cacheDate == todayString) {
+      final list = prefs.getStringList('completed_daily_media_list');
+      if (list != null) {
+        state = list;
+      }
+    } else {
+      await prefs.setString('completed_daily_media_date', todayString);
+      await prefs.setStringList('completed_daily_media_list', []);
+    }
+  }
+
+  Future<void> markCompleted(String url) async {
+    if (!state.contains(url)) {
+      state = [...state, url];
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setStringList('completed_daily_media_list', state);
+    }
+  }
+}

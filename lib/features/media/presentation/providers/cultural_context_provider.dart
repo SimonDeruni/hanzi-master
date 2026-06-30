@@ -1,4 +1,5 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
 
 part 'cultural_context_provider.g.dart';
@@ -24,6 +25,21 @@ CRITICAL RULES:
 5. If the topic is an international event, focus on the Chinese perspective of THAT EXACT event (e.g., the specific Chinese vocabulary used for it, or historical Chinese parallels).
 ''';
 
-    return await geminiService.generateText(prompt);
+    final prefs = await SharedPreferences.getInstance();
+    final now = DateTime.now();
+    final todayString = "\${now.year}-\${now.month}-\${now.day}";
+    final cacheKeyDate = 'insight_date_\$mediaTitle';
+    final cacheKeyData = 'insight_data_\$mediaTitle';
+
+    if (prefs.getString(cacheKeyDate) == todayString) {
+      final cached = prefs.getString(cacheKeyData);
+      if (cached != null) return cached;
+    }
+
+    final result = await geminiService.generateText(prompt);
+    await prefs.setString(cacheKeyDate, todayString);
+    await prefs.setString(cacheKeyData, result);
+    
+    return result;
   }
 }
