@@ -447,6 +447,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
     
     if (_isZenMode) {
       _applyZenModeJs();
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Reading Mode Enabled'), duration: Duration(seconds: 1)));
     } else {
       final js = '''
         if (window.zenModeBackup) {
@@ -455,6 +456,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
         }
       ''';
       _controller.runJavaScript(js);
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Reading Mode Disabled'), duration: Duration(seconds: 1)));
     }
   }
 
@@ -1029,12 +1031,12 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
             },
           ),
           IconButton(
-            icon: const Icon(
-              Icons.more_vert,
-              color: Colors.black87,
+            icon: Icon(
+              Icons.menu_book,
+              color: _isZenMode ? Colors.indigo : Colors.black87,
             ),
-            onPressed: () => _showAiToolsMenu(context),
-            tooltip: 'More Tools',
+            onPressed: _toggleZenMode,
+            tooltip: 'Reading Mode',
           ),
           IconButton(
             icon: const Icon(Icons.refresh),
@@ -1071,13 +1073,13 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
                   icon: _isProcessingAi 
                       ? const SizedBox(width: 16, height: 16, child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2))
                       : const Icon(Icons.auto_awesome),
-                  label: Text(_isZenMode ? "AI Reading Tools Active" : "Enable AI Tools", style: const TextStyle(fontWeight: FontWeight.bold)),
+                  label: const Text("AI Reading Tools", style: TextStyle(fontWeight: FontWeight.bold)),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: _isZenMode ? Colors.indigo : Colors.grey.shade300,
-                    foregroundColor: _isZenMode ? Colors.white : Colors.black87,
+                    backgroundColor: Colors.indigo,
+                    foregroundColor: Colors.white,
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                   ),
-                  onPressed: _isProcessingAi ? null : _toggleZenMode,
+                  onPressed: _isProcessingAi ? null : () => _showAiToolsMenu(context),
                 ),
               ),
             ),
