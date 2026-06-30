@@ -91,6 +91,8 @@ flutter:
     - assets/data/
     - assets/images/
     - assets/images/web_explorer_hero.png
+    - assets/images/web_explorer_hero.avif
+    - assets/images/ai_hub_web_explorer_v3.png
     - assets/audio/
     - assets/default_stories.json
     - assets/mascot/
