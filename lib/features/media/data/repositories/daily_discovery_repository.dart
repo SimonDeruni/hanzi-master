@@ -4,36 +4,42 @@ import 'package:youtube_explode_dart/youtube_explode_dart.dart';
 import 'package:hanzi_master/features/media/domain/models/daily_media_item.dart';
 
 class DailyDiscoveryRepository {
-  // A curated list of high-quality Chinese YouTube channels (True YouTube videos)
-  final List<String> _channelIds = [
-    'UC-O_hESCCmHj8qY6p-D-B6g', // Mandarin Corner
-    'UCoC47do520osFaCG1YacMEA', // Li Ziqi
-    'UCwYk4uL-I5dD9aY_L2E4Oyg', // Grace Mandarin Chinese
-  ];
+  // A curated list of high-quality Chinese YouTube channels with their titles
+  final Map<String, String> _channels = {
+    'UC-O_hESCCmHj8qY6p-D-B6g': 'Mandarin Corner',
+    'UCoC47do520osFaCG1YacMEA': '李子柒 Liziqi',
+    'UCwYk4uL-I5dD9aY_L2E4Oyg': 'Grace Mandarin Chinese',
+    'UC3y4-3hWqDXYk9h-T174gNA': 'ShuoshuoChinese',
+    'UCPd3vXGz_6k2O-aN-TjA0jA': 'Peppa Pig Chinese',
+  };
 
   Future<DailyMediaItem> getDailyVideo() async {
-    // Select channel based on date so it changes every day
     final daysSinceEpoch = DateTime.now().difference(DateTime(2020)).inDays;
-    final channelId = _channelIds[daysSinceEpoch % _channelIds.length];
+    final channelIds = _channels.keys.toList();
+    final channelId = channelIds[daysSinceEpoch % channelIds.length];
+    final channelTitle = _channels[channelId]!;
 
     final yt = YoutubeExplode();
     try {
-      final channel = await yt.channels.get(channelId);
-      final uploads = await yt.channels.getUploads(channelId).take(1).toList();
+      // getUploads fetches a batch of videos in one network request.
+      final uploads = await yt.channels.getUploads(channelId).take(30).toList();
       
       if (uploads.isEmpty) throw Exception("No uploads found for channel.");
       
-      final latestVideo = uploads.first;
+      // Cycle through the most recent 30 uploads so the video is always fresh
+      // even if the channel hasn't uploaded recently.
+      final videoIndex = (daysSinceEpoch ~/ channelIds.length) % uploads.length;
+      final selectedVideo = uploads[videoIndex];
       
       return DailyMediaItem(
-        title: latestVideo.title,
-        subtitle: channel.title,
-        url: latestVideo.url,
-        imageUrl: "https://img.youtube.com/vi/${latestVideo.id.value}/hqdefault.jpg",
+        title: selectedVideo.title,
+        subtitle: channelTitle,
+        url: selectedVideo.url,
+        imageUrl: "https://img.youtube.com/vi/\${selectedVideo.id.value}/hqdefault.jpg",
         tag: "VIDEO OF THE DAY",
       );
     } catch (e) {
-      // Fallback if API fails (Use a true YouTube video)
+      // Fallback if API fails
       return DailyMediaItem(
         title: "李子柒 Liziqi: 大蒜的一生",
         subtitle: "The Life of Garlic - Traditional Chinese Life",
