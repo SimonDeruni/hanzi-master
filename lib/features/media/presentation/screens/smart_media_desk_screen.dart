@@ -482,7 +482,7 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
                             physics: const BouncingScrollPhysics(),
                             children: [
                               if (_briefing != null) ...[
-                                PremiumAiPrepCard(briefing: _briefing!),
+                                PremiumAiPrepCard(briefing: _briefing!, onWordTapped: _onWordTapped),
                                 const SizedBox(height: 32),
                               ],
                               if (_transcript != null)

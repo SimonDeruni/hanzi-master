@@ -94,6 +94,15 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
               ),
             ),
 
+            // Quests Overlay
+            if (widget.scenario.quests.isNotEmpty)
+              Positioned(
+                top: 100,
+                left: 16,
+                right: 16,
+                child: _QuestsOverlay(quests: widget.scenario.quests),
+              ),
+
             // 2. Chat Area
             Positioned(
               top: MediaQuery.of(context).size.height * 0.4,
@@ -526,6 +535,88 @@ class _ToneChip extends StatelessWidget {
           child: Text(tone > 0 && tone < _names.length ? _names[tone] : '?', style: theme.textTheme.labelLarge?.copyWith(color: color, fontWeight: FontWeight.bold)),
         ),
       ],
+    );
+  }
+}
+
+class _QuestsOverlay extends StatefulWidget {
+  final List<String> quests;
+  const _QuestsOverlay({required this.quests});
+
+  @override
+  State<_QuestsOverlay> createState() => _QuestsOverlayState();
+}
+
+class _QuestsOverlayState extends State<_QuestsOverlay> {
+  bool _expanded = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () => setState(() => _expanded = !_expanded),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 300),
+        padding: const EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          color: Colors.black.withValues(alpha: 0.6),
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(color: Colors.white.withValues(alpha: 0.2)),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                const Icon(Icons.flag, color: Colors.amber, size: 20),
+                const SizedBox(width: 8),
+                const Text(
+                  "ACTIVE QUESTS",
+                  style: TextStyle(
+                    color: Colors.amber,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 12,
+                    letterSpacing: 1.2,
+                  ),
+                ),
+                const Spacer(),
+                Icon(
+                  _expanded ? Icons.keyboard_arrow_up : Icons.keyboard_arrow_down,
+                  color: Colors.white70,
+                ),
+              ],
+            ),
+            if (_expanded) ...[
+              const SizedBox(height: 12),
+              ...widget.quests.map((q) => Padding(
+                padding: const EdgeInsets.only(bottom: 8.0),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.only(top: 6, right: 8),
+                      width: 6,
+                      height: 6,
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                        shape: BoxShape.circle,
+                      ),
+                    ),
+                    Expanded(
+                      child: Text(
+                        q,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 14,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              )),
+            ]
+          ],
+        ),
+      ),
     );
   }
 }

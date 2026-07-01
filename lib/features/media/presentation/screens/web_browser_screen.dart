@@ -16,6 +16,7 @@ import 'package:hanzi_master/features/media/domain/models/saved_article.dart';
 import 'package:hive/hive.dart';
 import 'package:hanzi_master/features/media/presentation/screens/simplified_article_reader_screen.dart';
 import 'package:hanzi_master/features/premium/presentation/screens/universal_scanner_screen.dart';
+import 'package:hanzi_master/features/flashcards/presentation/widgets/deck_selection_sheet.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'dart:ui';
 
@@ -60,6 +61,13 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
       ..setBackgroundColor(const Color(0x00000000))
       ..setNavigationDelegate(
         NavigationDelegate(
+          onProgress: (int progress) {
+            // Apply Zen Mode sooner (e.g. at 50% loaded) to prevent slow UI
+            if (progress >= 50 && _isZenMode && !_initialZenLoaded) {
+              _initialZenLoaded = true;
+              _applyZenModeJs();
+            }
+          },
           onPageStarted: (String url) {
             setState(() {
               _isLoading = true;
@@ -396,9 +404,9 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
               ],
             ),
           ),
-        );
-      }
-    );
+        ),
+      );
+    });
   }
 
   void _applyZenModeJs() {
@@ -408,7 +416,31 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
       }
       
       let bestNode = document.body;
-      const articles = document.querySelectorAll('article, .article, .post, .content, main');
+      
+      // Inject CSS to forcefully hide GDPR/Cookie Consent popups
+      const style = document.createElement('style');
+      style.innerHTML = '.fc-consent-root, #qc-cmp2-ui, .cc-window, .cookie-notice, #sp-message-container, .cmpbox, .cookie-banner { display: none !important; opacity: 0 !important; pointer-events: none !important; z-index: -9999 !important; } body { overflow: auto !important; }';
+      document.head.appendChild(style);
+      
+      // Aggressive Domain-Specific Cleanup for Mandarin Bean & Chinese Reading Practice
+      const host = window.location.hostname;
+      if (host.includes('mandarinbean.com') || host.includes('chinesereadingpractice.com')) {
+         const junkSelectors = [
+           'header', 'footer', 'nav', 'aside', '.sidebar', '#sidebar', 
+           '.widget-area', '.comments-area', '#comments', '.related-posts', 
+           '.entry-meta', '.entry-footer', '.addtoany_share_save_container', 
+           'audio', '.mejs-container', // Remove audio players
+           '.su-accordion', '.su-spoiler', // Remove hidden English translations
+           'table', '.vocab-list', '.vocabulary', // Remove vocab lists
+           '.nav-links', '.post-navigation', '.share-buttons',
+           '.author-box', '.subscribe-box'
+         ];
+         junkSelectors.forEach(selector => {
+            document.querySelectorAll(selector).forEach(el => el.remove());
+         });
+      }
+
+      const articles = document.querySelectorAll('article, .entry-content, .post-content, .article, .post, .content, main');
       if (articles.length > 0) {
         bestNode = articles[0];
       }
@@ -427,6 +459,13 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
       `;
       
       document.body.innerHTML = '<div style="max-width: 800px; margin: 0 auto; padding: 20px; font-family: serif; font-size: 22px; line-height: 1.8; background-color: #FDFCF0; color: #1A1A1B;">' + skeletonHtml + bestNode.innerHTML + '</div>';
+      
+      // Force reset CSS to ensure scrolling works
+      document.documentElement.style.overflow = 'auto';
+      document.documentElement.style.height = 'auto';
+      document.body.style.overflow = 'auto';
+      document.body.style.height = 'auto';
+      document.body.style.position = 'static';
       
       window.makeChineseTextClickable(document.body);
     ''';
@@ -512,7 +551,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
               ],
             ),
           );
-        }
+        },
       );
     } catch (e) {
       if (mounted) {
@@ -742,7 +781,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
       }
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Extraction Failed: \$e')));
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Extraction Failed: $e')));
       }
     } finally {
       if (mounted) {
@@ -782,13 +821,10 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
       if (!mounted) return;
       
       // Build HTML from the AI Story
-      String html = '<div style="margin-bottom: 24px;">'
-          '<h1 style="text-align:center; font-size: 28px; font-weight: bold; margin-bottom: 8px;">\${simplifiedStory.title}</h1>'
-          '<h3 style="text-align:center; font-size: 16px; color: #666; margin-top: 0;">\${simplifiedStory.englishTitle}</h3>'
-          '</div>';
+      String html = '<div style="margin-bottom: 24px;"></div>';
           
-      for (var paragraph in simplifiedStory.paragraphs) {
-        html += '<p style="margin-bottom: 16px;">\${paragraph.hanzi}</p>';
+      for (var sentence in simplifiedStory.sentences) {
+        html += '<p style="margin-bottom: 16px;">${sentence.chinese}</p>';
       }
 
       final js = '''

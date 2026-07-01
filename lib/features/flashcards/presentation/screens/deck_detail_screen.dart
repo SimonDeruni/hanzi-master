@@ -5,6 +5,7 @@ import 'package:hanzi_master/features/flashcards/domain/entities/deck.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/study_mode.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
+import 'package:hanzi_master/features/echo_hall/presentation/screens/scenario_selection_screen.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/deck_review_session_screen.dart';
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
 import 'package:hanzi_master/core/services/analytics_service.dart';
@@ -161,91 +162,121 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                     SliverToBoxAdapter(
                       child: Padding(
                         padding: const EdgeInsets.fromLTRB(20, 16, 20, 24),
-                        child: Row(
+                        child: Column(
                           children: [
-                            Expanded(
-                              flex: 3,
-                              child: Container(
-                                height: 56,
-                                decoration: BoxDecoration(
-                                  gradient: const LinearGradient(
-                                    colors: [Color(0xFF8E2DE2), Color(0xFF4A00E0)],
-                                    begin: Alignment.topLeft,
-                                    end: Alignment.bottomRight,
-                                  ),
-                                  borderRadius: BorderRadius.circular(16),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: const Color(0xFF4A00E0).withValues(alpha: 0.3),
-                                      blurRadius: 12,
-                                      offset: const Offset(0, 4),
+                            Row(
+                              children: [
+                                Expanded(
+                                  flex: 3,
+                                  child: Container(
+                                    height: 56,
+                                    decoration: BoxDecoration(
+                                      gradient: const LinearGradient(
+                                        colors: [Color(0xFF8E2DE2), Color(0xFF4A00E0)],
+                                        begin: Alignment.topLeft,
+                                        end: Alignment.bottomRight,
+                                      ),
+                                      borderRadius: BorderRadius.circular(16),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: const Color(0xFF4A00E0).withValues(alpha: 0.3),
+                                          blurRadius: 12,
+                                          offset: const Offset(0, 4),
+                                        ),
+                                      ],
                                     ),
-                                  ],
-                                ),
-                                child: ElevatedButton(
-                                  onPressed: () {
-                                      StudyModeSelectionSheet.show(
-                                        context,
-                                        onModeSelected: (mode) {
-                                          ref.read(analyticsServiceProvider).logStudySession(
-                                            action: 'started',
-                                            mode: mode.name,
-                                            deckId: widget.deck.id,
-                                            cardCount: deckCards.length,
+                                    child: ElevatedButton(
+                                      onPressed: () {
+                                          StudyModeSelectionSheet.show(
+                                            context,
+                                            onModeSelected: (mode) {
+                                              ref.read(analyticsServiceProvider).logStudySession(
+                                                action: 'started',
+                                                mode: mode.name,
+                                                deckId: widget.deck.id,
+                                                cardCount: deckCards.length,
+                                              );
+                                              Navigator.push(context, MaterialPageRoute(
+                                                builder: (context) => DeckReviewSessionScreen(deckId: widget.deck.id, mode: mode),
+                                              ));
+                                            },
                                           );
-                                          Navigator.push(context, MaterialPageRoute(
-                                            builder: (context) => DeckReviewSessionScreen(deckId: widget.deck.id, mode: mode),
-                                          ));
-                                        },
-                                      );
-                                  },
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: Colors.transparent,
-                                    shadowColor: Colors.transparent,
-                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Icon(Icons.play_arrow_rounded, size: 24, color: Colors.white),
-                                      SizedBox(width: 8),
-                                      Text(AppLocalizations.of(context)!.review, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white)),
-                                    ],
+                                      },
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.transparent,
+                                        shadowColor: Colors.transparent,
+                                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                                      ),
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          Icon(Icons.play_arrow_rounded, size: 24, color: Colors.white),
+                                          SizedBox(width: 8),
+                                          Text(AppLocalizations.of(context)!.review, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white)),
+                                        ],
+                                      ),
+                                    ),
                                   ),
                                 ),
-                              ),
+                                SizedBox(width: 12),
+                                Expanded(
+                                  flex: 2,
+                                  child: SizedBox(
+                                    height: 56,
+                                    child: OutlinedButton(
+                                      onPressed: () {
+                                        if (deckCards.isEmpty) return;
+                                        ref.read(analyticsServiceProvider).logStoryAction(
+                                          action: 'started',
+                                          storyId: 'custom_deck_story',
+                                          storyLevel: widget.deck.id,
+                                        );
+                                        Navigator.push(context, MaterialPageRoute(
+                                          builder: (context) => StoryModeScreen(deck: widget.deck, cards: deckCards),
+                                        ));
+                                      },
+                                      style: OutlinedButton.styleFrom(
+                                        foregroundColor: isDark ? Colors.purple[300] : Colors.purple[700],
+                                        backgroundColor: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.purple.withValues(alpha: 0.05),
+                                        side: BorderSide(color: isDark ? Colors.purple[300]!.withValues(alpha: 0.5) : Colors.purple[200]!, width: 1.5),
+                                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                                      ),
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          Icon(Icons.auto_awesome, size: 18),
+                                          SizedBox(width: 6),
+                                          Text(AppLocalizations.of(context)!.story, style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
-                            SizedBox(width: 12),
-                            Expanded(
-                              flex: 2,
-                              child: SizedBox(
-                                height: 56,
-                                child: OutlinedButton(
-                                  onPressed: () {
-                                    if (deckCards.isEmpty) return;
-                                    ref.read(analyticsServiceProvider).logStoryAction(
-                                      action: 'started',
-                                      storyId: 'custom_deck_story',
-                                      storyLevel: widget.deck.id,
-                                    );
-                                    Navigator.push(context, MaterialPageRoute(
-                                      builder: (context) => StoryModeScreen(deck: widget.deck, cards: deckCards),
-                                    ));
-                                  },
-                                  style: OutlinedButton.styleFrom(
-                                    foregroundColor: isDark ? Colors.purple[300] : Colors.purple[700],
-                                    backgroundColor: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.purple.withValues(alpha: 0.05),
-                                    side: BorderSide(color: isDark ? Colors.purple[300]!.withValues(alpha: 0.5) : Colors.purple[200]!, width: 1.5),
-                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Icon(Icons.auto_awesome, size: 18),
-                                      SizedBox(width: 6),
-                                      Text(AppLocalizations.of(context)!.story, style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
-                                    ],
-                                  ),
+                            const SizedBox(height: 12),
+                            SizedBox(
+                              height: 56,
+                              width: double.infinity,
+                              child: OutlinedButton(
+                                onPressed: () {
+                                  Navigator.push(context, MaterialPageRoute(
+                                    builder: (context) => const ScenarioSelectionScreen(),
+                                  ));
+                                },
+                                style: OutlinedButton.styleFrom(
+                                  foregroundColor: isDark ? Colors.tealAccent[400] : Colors.teal[700],
+                                  backgroundColor: isDark ? Colors.tealAccent[400]!.withValues(alpha: 0.05) : Colors.teal[700]!.withValues(alpha: 0.05),
+                                  side: BorderSide(color: isDark ? Colors.tealAccent[400]!.withValues(alpha: 0.5) : Colors.teal[700]!.withValues(alpha: 0.5), width: 1.5),
+                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                                ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(Icons.record_voice_over, size: 18),
+                                    SizedBox(width: 6),
+                                    Text("Practice in Roleplay", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                                  ],
                                 ),
                               ),
                             ),

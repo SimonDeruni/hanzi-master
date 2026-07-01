@@ -626,7 +626,7 @@ Respond ONLY with the translated text. Do not add any conversational filler, mar
 ''';
 
     try {
-      final text = await _generate(prompt);
+      final text = await generateText(prompt);
       analytics.logApiUsage(apiName: 'openrouter', feature: 'translate_article', success: true);
       return text;
     } catch (e) {
@@ -799,6 +799,7 @@ Make sure every single character in the 'chinese' sentence is represented in the
     } catch (e) {
       analytics.logApiUsage(apiName: 'openrouter', feature: 'simplify_text', success: false);
       rethrow;
+    }
   }
 
   Future<List<Map<String, dynamic>>> generateCulturalMemes(List<String> transcriptLines) async {

@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/features/echo_hall/presentation/screens/scenario_selection_screen.dart';
-import 'package:hanzi_master/features/reading/presentation/screens/reading_room_screen.dart';
+import 'package:hanzi_master/features/media/presentation/screens/story_library_screen.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/features/live_translate/presentation/screens/shadowing_studio_screen.dart';
 
@@ -107,7 +107,7 @@ class AiHubScreen extends ConsumerWidget {
                         onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (_) => const ReadingRoomScreen()),
+                            MaterialPageRoute(builder: (_) => const StoryLibraryScreen()),
                           );
                         },
                       ),

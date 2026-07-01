@@ -10,6 +10,9 @@ class ConversationScenario {
   final int targetHskLevel;
   final String avatarAssetPath;
   final String? backgroundAudioPath;
+  final String? backgroundAssetPath;
+  final List<String> quests;
+  final String personaName;
   final bool isCustom;
   final String voiceName;
 
@@ -22,6 +25,9 @@ class ConversationScenario {
     required this.targetHskLevel,
     required this.avatarAssetPath,
     this.backgroundAudioPath,
+    this.backgroundAssetPath,
+    this.quests = const [],
+    this.personaName = 'Assistant',
     this.isCustom = false,
     this.voiceName = 'Puck',
   });
@@ -36,6 +42,9 @@ class ConversationScenario {
       'targetHskLevel': targetHskLevel,
       'avatarAssetPath': avatarAssetPath,
       'backgroundAudioPath': backgroundAudioPath,
+      'backgroundAssetPath': backgroundAssetPath,
+      'quests': quests,
+      'personaName': personaName,
       'isCustom': isCustom,
       'voiceName': voiceName,
     };
@@ -51,6 +60,9 @@ class ConversationScenario {
       targetHskLevel: json['targetHskLevel'],
       avatarAssetPath: json['avatarAssetPath'],
       backgroundAudioPath: json['backgroundAudioPath'],
+      backgroundAssetPath: json['backgroundAssetPath'],
+      quests: List<String>.from(json['quests'] ?? []),
+      personaName: json['personaName'] ?? 'Assistant',
       isCustom: json['isCustom'] ?? false,
       voiceName: json['voiceName'] ?? 'Puck',
     );
@@ -69,6 +81,13 @@ List<ConversationScenario> getDefaultScenarios(BuildContext context) {
       systemPrompt: 'Friendly but busy waiter at a Chinese restaurant. Respond naturally.',
       targetHskLevel: 2,
       avatarAssetPath: 'assets/mascot/waiter_avatar.png',
+      backgroundAssetPath: 'assets/environments/restaurant.jpg',
+      personaName: 'Waiter Li',
+      quests: [
+        'Ask for the menu',
+        'Order one dish and one drink',
+        'Ask for the bill'
+      ],
       voiceName: 'Fenrir',
     ),
     ConversationScenario(
@@ -79,6 +98,13 @@ List<ConversationScenario> getDefaultScenarios(BuildContext context) {
       systemPrompt: 'Talkative Beijing taxi driver. Use casual Mandarin.',
       targetHskLevel: 3,
       avatarAssetPath: 'assets/mascot/taxi_driver_avatar.png',
+      backgroundAssetPath: 'assets/environments/taxi.jpg',
+      personaName: 'Driver Wang',
+      quests: [
+        'Tell the driver you are going to the airport',
+        'Ask how long the trip will take',
+        'Complain about the traffic'
+      ],
       voiceName: 'Charon',
     ),
     ConversationScenario(
@@ -89,6 +115,13 @@ List<ConversationScenario> getDefaultScenarios(BuildContext context) {
       systemPrompt: 'Shrewd market vendor. Negotiate prices firmly but fairly.',
       targetHskLevel: 4,
       avatarAssetPath: 'assets/mascot/market_vendor_avatar.png',
+      backgroundAssetPath: 'assets/environments/market.jpg',
+      personaName: 'Auntie Chen',
+      quests: [
+        'Ask how much the silk shirt costs',
+        'Say it is too expensive',
+        'Bargain the price down to 100 RMB'
+      ],
       voiceName: 'Kore',
     ),
     ConversationScenario(
@@ -99,7 +132,14 @@ List<ConversationScenario> getDefaultScenarios(BuildContext context) {
       systemPrompt: 'Calm and professional doctor. Ask about health symptoms.',
       targetHskLevel: 4,
       avatarAssetPath: 'assets/mascot/doctor_avatar.png',
-      voiceName: 'Fenrir',
+      backgroundAssetPath: 'assets/environments/clinic.jpg',
+      personaName: 'Dr. Zhang',
+      quests: [
+        'Explain you have had a headache for two days',
+        'Say you have a slight fever',
+        'Ask if you need to take medicine'
+      ],
+      voiceName: 'Aoede',
     ),
     ConversationScenario(
       id: 'intro_1',
@@ -118,8 +158,15 @@ List<ConversationScenario> getDefaultScenarios(BuildContext context) {
       initialAiMessage: '请先自我介绍一下。你为什么想来我们公司工作？',
       systemPrompt: 'Strict HR manager. Ask professional questions about experience.',
       targetHskLevel: 5,
-      avatarAssetPath: 'assets/mascot/hr_manager_avatar.png',
-      voiceName: 'Kore',
+      avatarAssetPath: 'assets/mascot/interviewer_avatar.png',
+      backgroundAssetPath: 'assets/environments/office.jpg',
+      personaName: 'Manager Liu',
+      quests: [
+        'Introduce your professional background briefly',
+        'Explain why you want to work at this company',
+        'Ask a polite question about the company culture'
+      ],
+      voiceName: 'Puck',
     ),
   ];
 }
