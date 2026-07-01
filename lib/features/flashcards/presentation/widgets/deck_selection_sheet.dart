@@ -48,60 +48,31 @@ class DeckSelectionSheet extends ConsumerWidget {
               return Expanded(
                 child: ListView.builder(
                   shrinkWrap: true,
-                  itemCount: decks.length,
+                  itemCount: decks.length + 1,
                   itemBuilder: (context, index) {
-                    final deck = decks[index];
+                    if (index == 0) {
+                      return ListTile(
+                        leading: const Icon(Icons.add_circle_outline, color: Colors.green),
+                        title: const Text("Create New Deck", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.green)),
+                        onTap: () async {
+                          final newDeckName = await _showCreateDeckDialog(context);
+                          if (newDeckName != null && newDeckName.trim().isNotEmpty) {
+                            final deckCtrl = ref.read(deckControllerProvider.notifier);
+                            final newDeck = await deckCtrl.createDeck(newDeckName.trim());
+                            if (newDeck != null) {
+                              _addCardsToDeck(context, ref, newDeck.id, newDeck.localizedName(context));
+                            }
+                          }
+                        },
+                      );
+                    }
+                    
+                    final deck = decks[index - 1];
                     return ListTile(
                       leading: Icon(deck.id == 'default' ? Icons.library_books : Icons.book, color: Colors.indigo),
                       title: Text(deck.localizedName(context), style: const TextStyle(fontWeight: FontWeight.bold)),
                       onTap: () {
-                        final controller = ref.read(flashcardControllerProvider.notifier);
-                        final l10n = AppLocalizations.of(context)!;
-                        
-                        if (isBatch) {
-                           int addedCount = 0;
-                           for (final c in cards!) {
-                             final newCard = Flashcard(
-                               id: DateTime.now().millisecondsSinceEpoch.toString() + addedCount.toString(),
-                               hanzi: c.hanzi,
-                               pinyin: c.pinyin,
-                               definition: c.definition,
-                               hskLevel: c.hskLevel,
-                               strokePaths: const [],
-                               modeStats: const {},
-                               deckId: deck.id,
-                             );
-                             controller.addFlashcard(newCard);
-                             addedCount++;
-                           }
-                           ScaffoldMessenger.of(context).showSnackBar(
-                             SnackBar(
-                               content: Text('Added $addedCount words to ${deck.localizedName(context)}'),
-                               backgroundColor: Colors.green,
-                             ),
-                           );
-                        } else if (card != null) {
-                           final newCard = Flashcard(
-                             id: DateTime.now().millisecondsSinceEpoch.toString(),
-                             hanzi: card!.hanzi,
-                             pinyin: card!.pinyin,
-                             definition: card!.definition,
-                             hskLevel: card!.hskLevel,
-                             strokePaths: const [],
-                             modeStats: const {},
-                             deckId: deck.id,
-                           );
-                           controller.addFlashcard(newCard);
-                           ScaffoldMessenger.of(context).showSnackBar(
-                             SnackBar(
-                               content: Text(l10n.addedToDeck(card!.hanzi, deck.localizedName(context))),
-                               backgroundColor: Colors.green,
-                             ),
-                           );
-                        }
-                        
-                        Navigator.pop(context);
-                        if (onAdded != null) onAdded!();
+                        _addCardsToDeck(context, ref, deck.id, deck.localizedName(context));
                       },
                     );
                   },
@@ -114,5 +85,74 @@ class DeckSelectionSheet extends ConsumerWidget {
         ],
       ),
     );
+  }
+
+  Future<String?> _showCreateDeckDialog(BuildContext context) {
+    final controller = TextEditingController();
+    return showDialog<String>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text("New Deck"),
+        content: TextField(
+          controller: controller,
+          decoration: const InputDecoration(hintText: "Deck Name"),
+          autofocus: true,
+        ),
+        actions: [
+          TextButton(onPressed: () => Navigator.pop(ctx), child: const Text("Cancel")),
+          ElevatedButton(onPressed: () => Navigator.pop(ctx, controller.text), child: const Text("Create")),
+        ],
+      ),
+    );
+  }
+
+  void _addCardsToDeck(BuildContext context, WidgetRef ref, String deckId, String deckName) {
+    final controller = ref.read(flashcardControllerProvider.notifier);
+    final l10n = AppLocalizations.of(context)!;
+    
+    if (cards != null && cards!.isNotEmpty) {
+       int addedCount = 0;
+       for (final c in cards!) {
+         final newCard = Flashcard(
+           id: DateTime.now().millisecondsSinceEpoch.toString() + addedCount.toString(),
+           hanzi: c.hanzi,
+           pinyin: c.pinyin,
+           definition: c.definition,
+           hskLevel: c.hskLevel,
+           strokePaths: const [],
+           modeStats: const {},
+           deckId: deckId,
+         );
+         controller.addFlashcard(newCard);
+         addedCount++;
+       }
+       ScaffoldMessenger.of(context).showSnackBar(
+         SnackBar(
+           content: Text('Added $addedCount words to $deckName'),
+           backgroundColor: Colors.green,
+         ),
+       );
+    } else if (card != null) {
+       final newCard = Flashcard(
+         id: DateTime.now().millisecondsSinceEpoch.toString(),
+         hanzi: card!.hanzi,
+         pinyin: card!.pinyin,
+         definition: card!.definition,
+         hskLevel: card!.hskLevel,
+         strokePaths: const [],
+         modeStats: const {},
+         deckId: deckId,
+       );
+       controller.addFlashcard(newCard);
+       ScaffoldMessenger.of(context).showSnackBar(
+         SnackBar(
+           content: Text(l10n.addedToDeck(card!.hanzi, deckName)),
+           backgroundColor: Colors.green,
+         ),
+       );
+    }
+    
+    Navigator.pop(context);
+    if (onAdded != null) onAdded!();
   }
 }

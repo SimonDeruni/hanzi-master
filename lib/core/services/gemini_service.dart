@@ -611,6 +611,30 @@ Make sure every single character in the 'chinese' sentence is represented in the
     }
   }
 
+  Future<String> translateTextToEnglish(String sourceText) async {
+    final prompt = '''
+You are a professional translator.
+Translate the following Chinese text into a natural, accurate $targetLanguage translation.
+Keep the original paragraph structure and tone intact.
+
+Source Text:
+"""
+$sourceText
+"""
+
+Respond ONLY with the translated text. Do not add any conversational filler, markdown formatting blocks, or explanations.
+''';
+
+    try {
+      final text = await _generate(prompt);
+      analytics.logApiUsage(apiName: 'openrouter', feature: 'translate_article', success: true);
+      return text;
+    } catch (e) {
+      analytics.logApiUsage(apiName: 'openrouter', feature: 'translate_article', success: false);
+      rethrow;
+    }
+  }
+
   Future<AiStory> generateGradedStory(String topic, String category, int hskLevel) async {
     final prompt = '''
 You are a professional Chinese language professor creating Graded Readers.

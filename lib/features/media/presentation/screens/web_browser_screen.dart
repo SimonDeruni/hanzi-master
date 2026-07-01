@@ -326,12 +326,13 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
       shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(24))),
       builder: (ctx) {
         return SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
                 const Text(
                   "AI Reading Tools",
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -339,12 +340,12 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
                 ),
                 const SizedBox(height: 24),
                 ListTile(
-                  leading: const Icon(Icons.g_translate, color: Colors.blueAccent, size: 32),
-                  title: const Text("Translate Selected Text", style: TextStyle(fontWeight: FontWeight.bold)),
-                  subtitle: const Text("Use AI to translate highlighted text"),
+                  leading: const Icon(Icons.g_translate, color: Colors.blue, size: 32),
+                  title: const Text("Translate Entire Article", style: TextStyle(fontWeight: FontWeight.bold)),
+                  subtitle: const Text("Use AI to translate this whole page into English"),
                   onTap: () {
                     Navigator.pop(ctx);
-                    _translateSelectedText();
+                    _translateEntireArticle();
                   },
                 ),
                 const Divider(),
@@ -355,16 +356,6 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
                   onTap: () {
                     Navigator.pop(ctx);
                     _runAnalyzeArticle();
-                  },
-                ),
-                const Divider(),
-                ListTile(
-                  leading: const Icon(Icons.troubleshoot, color: Colors.purple, size: 32),
-                  title: const Text("X-Ray Scanner", style: TextStyle(fontWeight: FontWeight.bold)),
-                  subtitle: const Text("Generate pre-flight vocabulary list from this article"),
-                  onTap: () {
-                    Navigator.pop(ctx);
-                    _runXRayScanner();
                   },
                 ),
                 const Divider(),
@@ -381,7 +372,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
                 ListTile(
                   leading: const Icon(Icons.auto_fix_high, color: Colors.amber, size: 32),
                   title: const Text("Auto-Simplify", style: TextStyle(fontWeight: FontWeight.bold)),
-                  subtitle: const Text("Rewrite this article to HSK 3 level"),
+                  subtitle: const Text("Rewrite this article to your HSK level"),
                   onTap: () {
                     Navigator.pop(ctx);
                     _runAutoSimplify();
@@ -548,6 +539,42 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
     }
   }
 
+  Future<void> _translateEntireArticle() async {
+    setState(() => _isProcessingAi = true);
+    
+    try {
+      final text = await _controller.runJavaScriptReturningResult('document.body.innerText');
+      final gemini = ref.read(geminiServiceProvider);
+      final englishText = await gemini.translateTextToEnglish(text.toString());
+      
+      if (!mounted) return;
+      
+      final js = '''
+        const safeHtml = `${englishText.replaceAll('`', '\\`').replaceAll('\n', '<br><br>')}`;
+        
+        const wrapperHtml = `<div style="max-width: 800px; margin: 0 auto; padding: 20px; font-family: serif; font-size: 22px; line-height: 1.8; background-color: #FDFCF0; color: #1A1A1B;">
+           <div style="background: rgba(33, 150, 243, 0.15); border: 1px solid rgba(33, 150, 243, 0.4); color: #0d47a1; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; display: inline-block; margin-bottom: 16px;">
+             ENGLISH TRANSLATION
+           </div>
+           <div>\${safeHtml}</div>
+        </div>`;
+        
+        document.body.innerHTML = wrapperHtml;
+      ''';
+      
+      await _controller.runJavaScript(js);
+      
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Translation Failed: $e')));
+      }
+    } finally {
+      if (mounted) {
+        setState(() => _isProcessingAi = false);
+      }
+    }
+  }
+
   void _runAnalyzeArticle() async {
     final cache = ref.read(articleInsightCacheProvider);
     if (cache.containsKey(widget.initialUrl)) {
@@ -699,35 +726,19 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
         return;
       }
 
-      setState(() => _isProcessingAi = true);
-
-      final deckRepo = ref.read(deckRepositoryProvider);
-      final createdDeckResult = await deckRepo.createDeck(deckName, description: 'Extracted automatically from Web Explorer ($pageTitle)');
-      final createdDeck = createdDeckResult.fold((l) => null, (r) => r);
-      if (createdDeck == null) {
-        if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Failed to create deck')));
-        return;
-      }
-      
-      for (final w in selectedWords) {
-        final card = Flashcard(
-          id: const Uuid().v4(),
-          deckId: createdDeck.id,
-          hanzi: w.hanzi,
-          pinyin: w.pinyin,
-          definition: w.meaning,
-          hskLevel: 0,
-          strokePaths: const [],
-          medianPaths: const [],
-          isFlipped: false,
-          modeStats: const {},
-          inkPoints: 0,
-        );
-        await repo.saveFlashcard(card);
-      }
+      final cardsToSave = selectedWords.map((w) => Flashcard(
+        id: const Uuid().v4(),
+        deckId: '',
+        hanzi: w.hanzi,
+        pinyin: w.pinyin,
+        definition: w.meaning,
+        hskLevel: 0,
+        strokePaths: const [],
+        modeStats: const {},
+      )).toList();
       
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Added ${selectedWords.length} words to "$deckName"')));
+        DeckSelectionSheet.show(context, cards: cardsToSave);
       }
     } catch (e) {
       if (mounted) {
@@ -741,21 +752,66 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
   }
 
   Future<void> _runAutoSimplify() async {
+    final selectedLevel = await showDialog<int>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text("Select HSK Level"),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: List.generate(6, (index) {
+            final level = index + 1;
+            return ListTile(
+              title: Text("HSK $level"),
+              onTap: () => Navigator.pop(ctx, level),
+            );
+          }),
+        ),
+      ),
+    );
+
+    if (selectedLevel == null) return;
+    if (!mounted) return;
+
     setState(() => _isProcessingAi = true);
     
     try {
       final text = await _controller.runJavaScriptReturningResult('document.body.innerText');
       final gemini = ref.read(geminiServiceProvider);
-      final simplifiedStory = await gemini.simplifyTextToHsk(text.toString(), 3);
+      final simplifiedStory = await gemini.simplifyTextToHsk(text.toString(), selectedLevel);
       
       if (!mounted) return;
       
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (_) => SimplifiedArticleReaderScreen(story: simplifiedStory),
-        ),
-      );
+      // Build HTML from the AI Story
+      String html = '<div style="margin-bottom: 24px;">'
+          '<h1 style="text-align:center; font-size: 28px; font-weight: bold; margin-bottom: 8px;">\${simplifiedStory.title}</h1>'
+          '<h3 style="text-align:center; font-size: 16px; color: #666; margin-top: 0;">\${simplifiedStory.englishTitle}</h3>'
+          '</div>';
+          
+      for (var paragraph in simplifiedStory.paragraphs) {
+        html += '<p style="margin-bottom: 16px;">\${paragraph.hanzi}</p>';
+      }
+
+      final js = '''
+        const safeHtml = `${html.replaceAll('`', '\\`').replaceAll('\n', '')}`;
+        let bestNode = document.body;
+        const articles = document.querySelectorAll('article, .article, .post, .content, main');
+        if (articles.length > 0) {
+          bestNode = articles[0];
+        }
+        
+        const wrapperHtml = `<div style="max-width: 800px; margin: 0 auto; padding: 20px; font-family: serif; font-size: 22px; line-height: 1.8; background-color: #FDFCF0; color: #1A1A1B;">
+           <div style="background: rgba(255, 193, 7, 0.15); border: 1px solid rgba(255, 193, 7, 0.4); color: #b38600; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; display: inline-block; margin-bottom: 16px;">
+             SIMPLIFIED to HSK \${$selectedLevel}
+           </div>
+           \${safeHtml}
+        </div>`;
+        
+        document.body.innerHTML = wrapperHtml;
+        window.makeChineseTextClickable(document.body);
+      ''';
+      
+      await _controller.runJavaScript(js);
+      
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Simplify Failed: $e')));
