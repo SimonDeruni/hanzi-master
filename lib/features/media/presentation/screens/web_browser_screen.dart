@@ -339,6 +339,16 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
                 ),
                 const SizedBox(height: 24),
                 ListTile(
+                  leading: const Icon(Icons.g_translate, color: Colors.blueAccent, size: 32),
+                  title: const Text("Translate Selected Text", style: TextStyle(fontWeight: FontWeight.bold)),
+                  subtitle: const Text("Use AI to translate highlighted text"),
+                  onTap: () {
+                    Navigator.pop(ctx);
+                    _translateSelectedText();
+                  },
+                ),
+                const Divider(),
+                ListTile(
                   leading: const Icon(Icons.analytics, color: Colors.teal, size: 32),
                   title: const Text("Analyze Article", style: TextStyle(fontWeight: FontWeight.bold)),
                   subtitle: const Text("Get an AI summary and difficulty score"),
@@ -524,7 +534,21 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
     }
   }
 
-  Future<void> _runAnalyzeArticle() async {
+  Future<void> _translateSelectedText() async {
+    final textObj = await _controller.runJavaScriptReturningResult('window.getSelection().toString()');
+    final text = textObj.toString().replaceAll('"', '').trim();
+    if (text.isNotEmpty) {
+      _startTranslation(text);
+    } else {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Please select some text first!')),
+        );
+      }
+    }
+  }
+
+  void _runAnalyzeArticle() async {
     final cache = ref.read(articleInsightCacheProvider);
     if (cache.containsKey(widget.initialUrl)) {
       if (mounted) {
