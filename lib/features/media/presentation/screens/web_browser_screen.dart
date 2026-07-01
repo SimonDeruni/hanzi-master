@@ -10,13 +10,10 @@ import 'package:uuid/uuid.dart';
 import 'package:hanzi_master/core/providers.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/deck.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
-import 'package:hanzi_master/features/media/presentation/providers/daily_discovery_provider.dart';
-import 'package:hanzi_master/features/media/presentation/providers/article_insight_cache_provider.dart';
 import 'package:hanzi_master/features/media/domain/models/saved_article.dart';
 import 'package:hive/hive.dart';
 import 'package:hanzi_master/features/media/presentation/screens/simplified_article_reader_screen.dart';
 import 'package:hanzi_master/features/premium/presentation/screens/universal_scanner_screen.dart';
-import 'package:hanzi_master/features/flashcards/presentation/widgets/deck_selection_sheet.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'dart:ui';
 
@@ -36,8 +33,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
   late final WebViewController _controller;
   final TextEditingController _urlController = TextEditingController();
   bool _isLoading = true;
-  bool _isZenMode = true;
-  bool _initialZenLoaded = false;
+  bool _isZenMode = false;
   bool _isProcessingAi = false;
   
   ArticleInsight? _currentInsight;
@@ -61,18 +57,10 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
       ..setBackgroundColor(const Color(0x00000000))
       ..setNavigationDelegate(
         NavigationDelegate(
-          onProgress: (int progress) {
-            // Apply Zen Mode sooner (e.g. at 50% loaded) to prevent slow UI
-            if (progress >= 50 && _isZenMode && !_initialZenLoaded) {
-              _initialZenLoaded = true;
-              _applyZenModeJs();
-            }
-          },
           onPageStarted: (String url) {
             setState(() {
               _isLoading = true;
               _urlController.text = url;
-              _initialZenLoaded = false;
             });
           },
           onPageFinished: (String url) {
@@ -80,12 +68,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
               _isLoading = false;
               _urlController.text = url;
             });
-            _injectHanziInterceptor().then((_) {
-              if (_isZenMode && !_initialZenLoaded) {
-                _initialZenLoaded = true;
-                _applyZenModeJs();
-              }
-            });
+            _injectHanziInterceptor();
           },
         ),
       )
@@ -334,13 +317,12 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
       shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(24))),
       builder: (ctx) {
         return SafeArea(
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
                 const Text(
                   "AI Reading Tools",
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -348,22 +330,22 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
                 ),
                 const SizedBox(height: 24),
                 ListTile(
-                  leading: const Icon(Icons.g_translate, color: Colors.blue, size: 32),
-                  title: const Text("Translate Entire Article", style: TextStyle(fontWeight: FontWeight.bold)),
-                  subtitle: const Text("Use AI to translate this whole page into English"),
-                  onTap: () {
-                    Navigator.pop(ctx);
-                    _translateEntireArticle();
-                  },
-                ),
-                const Divider(),
-                ListTile(
                   leading: const Icon(Icons.analytics, color: Colors.teal, size: 32),
                   title: const Text("Analyze Article", style: TextStyle(fontWeight: FontWeight.bold)),
                   subtitle: const Text("Get an AI summary and difficulty score"),
                   onTap: () {
                     Navigator.pop(ctx);
                     _runAnalyzeArticle();
+                  },
+                ),
+                const Divider(),
+                ListTile(
+                  leading: const Icon(Icons.troubleshoot, color: Colors.purple, size: 32),
+                  title: const Text("X-Ray Scanner", style: TextStyle(fontWeight: FontWeight.bold)),
+                  subtitle: const Text("Generate pre-flight vocabulary list from this article"),
+                  onTap: () {
+                    Navigator.pop(ctx);
+                    _runXRayScanner();
                   },
                 ),
                 const Divider(),
@@ -380,7 +362,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
                 ListTile(
                   leading: const Icon(Icons.auto_fix_high, color: Colors.amber, size: 32),
                   title: const Text("Auto-Simplify", style: TextStyle(fontWeight: FontWeight.bold)),
-                  subtitle: const Text("Rewrite this article to your HSK level"),
+                  subtitle: const Text("Rewrite this article to HSK 3 level"),
                   onTap: () {
                     Navigator.pop(ctx);
                     _runAutoSimplify();
@@ -404,81 +386,9 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
               ],
             ),
           ),
-        ),
-      );
-    });
-  }
-
-  void _applyZenModeJs() {
-    final js = '''
-      if (!window.zenModeBackup) {
-        window.zenModeBackup = document.body.innerHTML;
+        );
       }
-      
-      let bestNode = document.body;
-      
-      // Inject CSS to forcefully hide GDPR/Cookie Consent popups
-      const style = document.createElement('style');
-      style.innerHTML = '.fc-consent-root, #qc-cmp2-ui, .cc-window, .cookie-notice, #sp-message-container, .cmpbox, .cookie-banner { display: none !important; opacity: 0 !important; pointer-events: none !important; z-index: -9999 !important; } body { overflow: auto !important; }';
-      document.head.appendChild(style);
-      
-      // Aggressive Domain-Specific Cleanup for Mandarin Bean & Chinese Reading Practice
-      const host = window.location.hostname;
-      if (host.includes('mandarinbean.com') || host.includes('chinesereadingpractice.com')) {
-         const junkSelectors = [
-           'header', 'footer', 'nav', 'aside', '.sidebar', '#sidebar', 
-           '.widget-area', '.comments-area', '#comments', '.related-posts', 
-           '.entry-meta', '.entry-footer', '.addtoany_share_save_container', 
-           'audio', '.mejs-container', // Remove audio players
-           '.su-accordion', '.su-spoiler', // Remove hidden English translations
-           'table', '.vocab-list', '.vocabulary', // Remove vocab lists
-           '.nav-links', '.post-navigation', '.share-buttons',
-           '.author-box', '.subscribe-box'
-         ];
-         junkSelectors.forEach(selector => {
-            document.querySelectorAll(selector).forEach(el => el.remove());
-         });
-      }
-
-      const articles = document.querySelectorAll('article, .entry-content, .post-content, .article, .post, .content, main');
-      if (articles.length > 0) {
-        bestNode = articles[0];
-      }
-      
-      // Add skeleton loader at the top
-      const skeletonHtml = `
-        <div id="ai-insight-banner" style="margin-bottom: 30px; font-family: sans-serif; opacity: 0.7;">
-          <div style="display: flex; align-items: center; margin-bottom: 15px;">
-             <div style="width: 20px; height: 20px; border: 2px solid #1A1A1B; border-top-color: transparent; border-radius: 50%; animation: spin 1s linear infinite;"></div>
-             <span style="margin-left: 12px; font-size: 14px; font-weight: bold;">AI is reading...</span>
-          </div>
-          <div style="height: 12px; background-color: rgba(26,26,27,0.1); border-radius: 4px; margin-bottom: 8px;"></div>
-          <div style="height: 12px; background-color: rgba(26,26,27,0.1); border-radius: 4px; width: 70%;"></div>
-          <style>@keyframes spin { 100% { transform: rotate(360deg); } }</style>
-        </div>
-      `;
-      
-      document.body.innerHTML = '<div style="max-width: 800px; margin: 0 auto; padding: 20px; font-family: serif; font-size: 22px; line-height: 1.8; background-color: #FDFCF0; color: #1A1A1B;">' + skeletonHtml + bestNode.innerHTML + '</div>';
-      
-      // Force reset CSS to ensure scrolling works
-      document.documentElement.style.overflow = 'auto';
-      document.documentElement.style.height = 'auto';
-      document.body.style.overflow = 'auto';
-      document.body.style.height = 'auto';
-      document.body.style.position = 'static';
-      
-      window.makeChineseTextClickable(document.body);
-    ''';
-    _controller.runJavaScript(js);
-    
-    if (_currentInsight == null) {
-      // Wait a tiny bit for the JS to finish extracting text before analyzing
-      Future.delayed(const Duration(milliseconds: 500), () {
-        if (mounted && _isZenMode) {
-          _runAnalyzeArticle();
-        }
-      });
-    }
+    );
   }
 
   void _toggleZenMode() {
@@ -487,8 +397,44 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
     });
     
     if (_isZenMode) {
-      _applyZenModeJs();
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Reading Mode Enabled'), duration: Duration(seconds: 1)));
+      final js = '''
+        if (!window.zenModeBackup) {
+          window.zenModeBackup = document.body.innerHTML;
+        }
+        
+        let bestNode = document.body;
+        const articles = document.querySelectorAll('article, .article, .post, .content, main');
+        if (articles.length > 0) {
+          bestNode = articles[0];
+        }
+        
+        // Add skeleton loader at the top
+        const skeletonHtml = `
+          <div id="ai-insight-banner" style="margin-bottom: 30px; font-family: sans-serif; opacity: 0.7;">
+            <div style="display: flex; align-items: center; margin-bottom: 15px;">
+               <div style="width: 20px; height: 20px; border: 2px solid #1A1A1B; border-top-color: transparent; border-radius: 50%; animation: spin 1s linear infinite;"></div>
+               <span style="margin-left: 12px; font-size: 14px; font-weight: bold;">AI is reading...</span>
+            </div>
+            <div style="height: 12px; background-color: rgba(26,26,27,0.1); border-radius: 4px; margin-bottom: 8px;"></div>
+            <div style="height: 12px; background-color: rgba(26,26,27,0.1); border-radius: 4px; width: 70%;"></div>
+            <style>@keyframes spin { 100% { transform: rotate(360deg); } }</style>
+          </div>
+        `;
+        
+        document.body.innerHTML = '<div style="max-width: 800px; margin: 0 auto; padding: 20px; font-family: serif; font-size: 22px; line-height: 1.8; background-color: #FDFCF0; color: #1A1A1B;">' + skeletonHtml + bestNode.innerHTML + '</div>';
+        
+        window.makeChineseTextClickable(document.body);
+      ''';
+      _controller.runJavaScript(js);
+      
+      if (_currentInsight == null) {
+        // Wait a tiny bit for the JS to finish extracting text before analyzing
+        Future.delayed(const Duration(milliseconds: 500), () {
+          if (mounted && _isZenMode) {
+            _runAnalyzeArticle();
+          }
+        });
+      }
     } else {
       final js = '''
         if (window.zenModeBackup) {
@@ -497,7 +443,6 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
         }
       ''';
       _controller.runJavaScript(js);
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Reading Mode Disabled'), duration: Duration(seconds: 1)));
     }
   }
 
@@ -551,7 +496,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
               ],
             ),
           );
-        },
+        }
       );
     } catch (e) {
       if (mounted) {
@@ -564,85 +509,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
     }
   }
 
-  Future<void> _translateSelectedText() async {
-    final textObj = await _controller.runJavaScriptReturningResult('window.getSelection().toString()');
-    final text = textObj.toString().replaceAll('"', '').trim();
-    if (text.isNotEmpty) {
-      _startTranslation(text);
-    } else {
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Please select some text first!')),
-        );
-      }
-    }
-  }
-
-  Future<void> _translateEntireArticle() async {
-    setState(() => _isProcessingAi = true);
-    
-    try {
-      final text = await _controller.runJavaScriptReturningResult('document.body.innerText');
-      final gemini = ref.read(geminiServiceProvider);
-      final englishText = await gemini.translateTextToEnglish(text.toString());
-      
-      if (!mounted) return;
-      
-      final js = '''
-        const safeHtml = `${englishText.replaceAll('`', '\\`').replaceAll('\n', '<br><br>')}`;
-        
-        const wrapperHtml = `<div style="max-width: 800px; margin: 0 auto; padding: 20px; font-family: serif; font-size: 22px; line-height: 1.8; background-color: #FDFCF0; color: #1A1A1B;">
-           <div style="background: rgba(33, 150, 243, 0.15); border: 1px solid rgba(33, 150, 243, 0.4); color: #0d47a1; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; display: inline-block; margin-bottom: 16px;">
-             ENGLISH TRANSLATION
-           </div>
-           <div>\${safeHtml}</div>
-        </div>`;
-        
-        document.body.innerHTML = wrapperHtml;
-      ''';
-      
-      await _controller.runJavaScript(js);
-      
-    } catch (e) {
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Translation Failed: $e')));
-      }
-    } finally {
-      if (mounted) {
-        setState(() => _isProcessingAi = false);
-      }
-    }
-  }
-
-  void _runAnalyzeArticle() async {
-    final cache = ref.read(articleInsightCacheProvider);
-    if (cache.containsKey(widget.initialUrl)) {
-      if (mounted) {
-        setState(() {
-          _currentInsight = cache[widget.initialUrl];
-        });
-        if (_isZenMode) {
-          final insight = _currentInsight!;
-          final js = '''
-            const banner = document.getElementById('ai-insight-banner');
-            if (banner) {
-              const safeSummary = `${insight.summary.replaceAll('`', '\\`').replaceAll('\n', '<br>')} `;
-              banner.innerHTML = `
-                <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 16px;">
-                   <div style="background: rgba(255, 193, 7, 0.15); border: 1px solid rgba(255, 193, 7, 0.4); color: #b38600; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; font-family: sans-serif;">HSK ${insight.hskLevel}</div>
-                   <div style="background: rgba(33, 150, 243, 0.15); border: 1px solid rgba(33, 150, 243, 0.4); color: #0d47a1; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; font-family: sans-serif;">Score: ${insight.score}</div>
-                </div>
-                <p style="font-size: 16px; margin: 0; color: #555;">\${safeSummary}</p>
-                <div style="height: 1px; background: rgba(0,0,0,0.1); margin: 24px 0 16px 0;"></div>
-              `;
-            }
-          ''';
-          _controller.runJavaScript(js);
-        }
-      }
-      return;
-    }
-
+  Future<void> _runAnalyzeArticle() async {
     setState(() => _isProcessingAi = true);
     
     try {
@@ -657,12 +524,6 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
       
       final gemini = ref.read(geminiServiceProvider);
       final insight = await gemini.generateArticleInsight(text.toString(), knownWords);
-      
-      // Update cache
-      ref.read(articleInsightCacheProvider.notifier).state = {
-        ...ref.read(articleInsightCacheProvider),
-        widget.initialUrl: insight,
-      };
       
       if (mounted) {
         setState(() {
@@ -765,23 +626,39 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
         return;
       }
 
-      final cardsToSave = selectedWords.map((w) => Flashcard(
-        id: const Uuid().v4(),
-        deckId: '',
-        hanzi: w.hanzi,
-        pinyin: w.pinyin,
-        definition: w.meaning,
-        hskLevel: 0,
-        strokePaths: const [],
-        modeStats: const {},
-      )).toList();
+      setState(() => _isProcessingAi = true);
+
+      final deckRepo = ref.read(deckRepositoryProvider);
+      final createdDeckResult = await deckRepo.createDeck(deckName, description: 'Extracted automatically from Web Explorer ($pageTitle)');
+      final createdDeck = createdDeckResult.fold((l) => null, (r) => r);
+      if (createdDeck == null) {
+        if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Failed to create deck')));
+        return;
+      }
+      
+      for (final w in selectedWords) {
+        final card = Flashcard(
+          id: const Uuid().v4(),
+          deckId: createdDeck.id,
+          hanzi: w.hanzi,
+          pinyin: w.pinyin,
+          definition: w.meaning,
+          hskLevel: 0,
+          strokePaths: const [],
+          medianPaths: const [],
+          isFlipped: false,
+          modeStats: const {},
+          inkPoints: 0,
+        );
+        await repo.saveFlashcard(card);
+      }
       
       if (mounted) {
-        DeckSelectionSheet.show(context, cards: cardsToSave);
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Added ${selectedWords.length} words to "$deckName"')));
       }
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Extraction Failed: $e')));
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Extraction Failed: \$e')));
       }
     } finally {
       if (mounted) {
@@ -791,63 +668,21 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
   }
 
   Future<void> _runAutoSimplify() async {
-    final selectedLevel = await showDialog<int>(
-      context: context,
-      builder: (ctx) => AlertDialog(
-        title: const Text("Select HSK Level"),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: List.generate(6, (index) {
-            final level = index + 1;
-            return ListTile(
-              title: Text("HSK $level"),
-              onTap: () => Navigator.pop(ctx, level),
-            );
-          }),
-        ),
-      ),
-    );
-
-    if (selectedLevel == null) return;
-    if (!mounted) return;
-
     setState(() => _isProcessingAi = true);
     
     try {
       final text = await _controller.runJavaScriptReturningResult('document.body.innerText');
       final gemini = ref.read(geminiServiceProvider);
-      final simplifiedStory = await gemini.simplifyTextToHsk(text.toString(), selectedLevel);
+      final simplifiedStory = await gemini.simplifyTextToHsk(text.toString(), 3);
       
       if (!mounted) return;
       
-      // Build HTML from the AI Story
-      String html = '<div style="margin-bottom: 24px;"></div>';
-          
-      for (var sentence in simplifiedStory.sentences) {
-        html += '<p style="margin-bottom: 16px;">${sentence.chinese}</p>';
-      }
-
-      final js = '''
-        const safeHtml = `${html.replaceAll('`', '\\`').replaceAll('\n', '')}`;
-        let bestNode = document.body;
-        const articles = document.querySelectorAll('article, .article, .post, .content, main');
-        if (articles.length > 0) {
-          bestNode = articles[0];
-        }
-        
-        const wrapperHtml = `<div style="max-width: 800px; margin: 0 auto; padding: 20px; font-family: serif; font-size: 22px; line-height: 1.8; background-color: #FDFCF0; color: #1A1A1B;">
-           <div style="background: rgba(255, 193, 7, 0.15); border: 1px solid rgba(255, 193, 7, 0.4); color: #b38600; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; display: inline-block; margin-bottom: 16px;">
-             SIMPLIFIED to HSK \${$selectedLevel}
-           </div>
-           \${safeHtml}
-        </div>`;
-        
-        document.body.innerHTML = wrapperHtml;
-        window.makeChineseTextClickable(document.body);
-      ''';
-      
-      await _controller.runJavaScript(js);
-      
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (_) => SimplifiedArticleReaderScreen(story: simplifiedStory),
+        ),
+      );
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Simplify Failed: $e')));
@@ -1153,7 +988,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
               color: _isZenMode ? Colors.indigo : Colors.black87,
             ),
             onPressed: _toggleZenMode,
-            tooltip: 'Reading Mode',
+            tooltip: 'Zen Mode',
           ),
           IconButton(
             icon: const Icon(Icons.refresh),
