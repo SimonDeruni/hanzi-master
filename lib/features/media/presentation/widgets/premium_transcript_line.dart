@@ -12,6 +12,7 @@ class PremiumTranscriptLine extends StatelessWidget {
   final Function(String) onWordTapped;
   final bool showPinyin;
   final bool showEnglish;
+  final String? simplifiedText;
 
   const PremiumTranscriptLine({
     super.key,
@@ -24,6 +25,7 @@ class PremiumTranscriptLine extends StatelessWidget {
     required this.onWordTapped,
     this.showPinyin = true,
     this.showEnglish = true,
+    this.simplifiedText,
   });
 
   @override

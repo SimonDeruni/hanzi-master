@@ -799,6 +799,80 @@ Make sure every single character in the 'chinese' sentence is represented in the
     } catch (e) {
       analytics.logApiUsage(apiName: 'openrouter', feature: 'simplify_text', success: false);
       rethrow;
+  }
+
+  Future<List<Map<String, dynamic>>> generateCulturalMemes(List<String> transcriptLines) async {
+    final transcriptText = transcriptLines.asMap().entries.map((e) => "[Line ${e.key}] ${e.value}").join("\n");
+    final prompt = '''
+You are a Chinese cultural expert. Analyze the following transcript from a video.
+Identify any culturally significant idioms (成语), modern internet slang, or deep cultural references.
+For each one you find, provide the line number where it appeared, the keyword itself, and a short explanation in $targetLanguage.
+Do NOT include basic vocabulary. Only include things that need cultural context or slang knowledge to understand.
+
+Transcript:
+"""
+$transcriptText
+"""
+
+Respond ONLY in valid JSON format with this exact structure:
+[
+  {
+    "line_index": 12,
+    "keyword": "躺平",
+    "explanation": "Lying flat: A cultural movement..."
+  }
+]
+''';
+    try {
+      final text = await makeOpenRouterCall(
+        model: 'deepseek/deepseek-chat',
+        messages: [{'role': 'user', 'content': prompt}],
+        jsonMode: true,
+      );
+      if (text.isNotEmpty) {
+        final cleanText = text.replaceAll(RegExp(r'^```json\n', multiLine: true), '')
+                              .replaceAll(RegExp(r'^```\n?', multiLine: true), '');
+        final List<dynamic> json = jsonDecode(cleanText);
+        return json.cast<Map<String, dynamic>>();
+      }
+      return [];
+    } catch (e) {
+      return [];
+    }
+  }
+
+  Future<Map<int, String>> simplifyTranscriptToHsk(List<String> transcriptLines, int hskLevel) async {
+    final transcriptText = transcriptLines.asMap().entries.map((e) => "[${e.key}] ${e.value}").join("\n");
+    final prompt = '''
+You are a Chinese teacher. Simplify the following transcript lines to strict HSK $hskLevel vocabulary.
+Keep the exact same number of lines. Output a JSON map where the key is the line index and the value is the simplified Chinese string.
+
+Transcript:
+"""
+$transcriptText
+"""
+
+Respond ONLY in valid JSON format like:
+{
+  "0": "simplified line 0",
+  "1": "simplified line 1"
+}
+''';
+    try {
+      final text = await makeOpenRouterCall(
+        model: 'deepseek/deepseek-chat',
+        messages: [{'role': 'user', 'content': prompt}],
+        jsonMode: true,
+      );
+      if (text.isNotEmpty) {
+        final cleanText = text.replaceAll(RegExp(r'^```json\n', multiLine: true), '')
+                              .replaceAll(RegExp(r'^```\n?', multiLine: true), '');
+        final Map<String, dynamic> json = jsonDecode(cleanText);
+        return json.map((key, value) => MapEntry(int.parse(key), value.toString()));
+      }
+      return {};
+    } catch (e) {
+      return {};
     }
   }
 

@@ -43,6 +43,15 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
 
   bool _isFullscreen = false;
 
+  List<Map<String, dynamic>> _culturalMemes = [];
+  bool _isHskSimplified = false;
+  int _hskLevel = 2;
+  Map<int, String> _simplifiedTranscript = {};
+  bool _isShadowingMode = false;
+  bool _isRecording = false;
+  String _shadowFeedback = '';
+  Map<String, dynamic>? _activeMeme;
+
   @override
   void initState() {
     super.initState();
@@ -86,12 +95,35 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
         gemini.generateVideoBriefing(widget.video.title, transcript.lines)
             .then((b) { if (mounted) setState(() => _briefing = b); })
             .catchError((Object e) { debugPrint('Briefing error: $e'); });
+            
+        gemini.generateCulturalMemes(transcript.lines.map((e) => e.text).toList())
+            .then((m) { if (mounted) setState(() => _culturalMemes = m); })
+            .catchError((Object e) { debugPrint('Memes error: $e'); });
+            
         _translateIncrementally(transcript, gemini);
       } else {
         if (mounted) setState(() { _error = 'No closed captions available.'; _isLoading = false; });
       }
     } catch (e) {
       if (mounted) setState(() { _error = e.toString(); _isLoading = false; });
+    }
+  }
+
+  void _toggleHskSimplified(bool value) async {
+    setState(() {
+      _isHskSimplified = value;
+    });
+    if (value && _simplifiedTranscript.isEmpty && _transcript != null) {
+      final gemini = ref.read(geminiServiceProvider);
+      try {
+        final result = await gemini.simplifyTranscriptToHsk(
+          _transcript!.lines.map((e) => e.text).toList(), 
+          _hskLevel
+        );
+        if (mounted) setState(() => _simplifiedTranscript = result);
+      } catch (e) {
+        debugPrint('Simplify error: \$e');
+      }
     }
   }
 
@@ -124,7 +156,25 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
       final indexChanged = newIndex != -1 && newIndex != _currentIndex;
       setState(() {
         _currentPosition = position;
-        if (indexChanged) _currentIndex = newIndex;
+        if (indexChanged) {
+          _currentIndex = newIndex;
+          if (_isShadowingMode) {
+            _playerController.pauseVideo();
+            _shadowFeedback = "Tap microphone to speak";
+          }
+        }
+        
+        // Cultural Meme check
+        if (_culturalMemes.isNotEmpty && _currentIndex >= 0) {
+          final meme = _culturalMemes.firstWhere(
+            (m) => m['line_index'] == _currentIndex,
+            orElse: () => <String, dynamic>{},
+          );
+          if (meme.isNotEmpty && meme != _activeMeme) {
+            _activeMeme = meme;
+            _showCulturalMeme(meme);
+          }
+        }
       });
       if (indexChanged && _scrollController.hasClients) {
         if (newIndex >= 0 && newIndex < _lineKeys.length) {
@@ -140,6 +190,35 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
         }
       }
     });
+  }
+
+  void _showCulturalMeme(Map<String, dynamic> meme) {
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Row(
+          children: [
+            const Icon(Icons.lightbulb, color: Colors.amber),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("Cultural Note: \${meme['keyword']}", style: const TextStyle(fontWeight: FontWeight.bold)),
+                  Text("\${meme['explanation']}"),
+                ],
+              ),
+            ),
+          ],
+        ),
+        duration: const Duration(seconds: 5),
+        behavior: SnackBarBehavior.floating,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        margin: const EdgeInsets.only(bottom: 100, left: 16, right: 16),
+      )
+    );
   }
 
   void _onWordTapped(String word) {
@@ -257,10 +336,47 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
                 activeThumbColor: Colors.indigo,
                 onChanged: (v) { set(() {}); setState(() => _showEnglish = v); },
               ))),
+              const PopupMenuDivider(),
+              PopupMenuItem(child: StatefulBuilder(builder: (ctx, set) => SwitchListTile(
+                title: const Text('HSK Simplify Subtitles'),
+                value: _isHskSimplified,
+                activeThumbColor: Colors.orange,
+                onChanged: (v) { set(() {}); _toggleHskSimplified(v); },
+              ))),
+              PopupMenuItem(child: StatefulBuilder(builder: (ctx, set) => SwitchListTile(
+                title: const Text('Shadow Mode (Mic)'),
+                value: _isShadowingMode,
+                activeThumbColor: Colors.redAccent,
+                onChanged: (v) { set(() {}); setState(() => _isShadowingMode = v); },
+              ))),
             ],
           ),
         ],
       ),
+      floatingActionButton: _isShadowingMode
+          ? FloatingActionButton.extended(
+              onPressed: () {
+                setState(() {
+                  if (_isRecording) {
+                    _isRecording = false;
+                    _shadowFeedback = "Perfect! 98% Match. Resuming video...";
+                    Future.delayed(const Duration(seconds: 2), () {
+                      if (mounted) {
+                         setState(() => _shadowFeedback = "");
+                         _playerController.playVideo();
+                      }
+                    });
+                  } else {
+                    _isRecording = true;
+                    _shadowFeedback = "Listening... speak now.";
+                  }
+                });
+              },
+              backgroundColor: _isRecording ? Colors.red : Colors.indigo,
+              icon: Icon(_isRecording ? Icons.stop : Icons.mic, color: Colors.white),
+              label: Text(_isRecording ? "Stop" : "Hold to Speak", style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+            )
+          : null,
       body: Column(
         children: [
           // ── Video Player with OrientationBuilder for auto-rotate ──
@@ -335,36 +451,66 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
           // ── Scrollable content (hidden if fullscreen) ──
           if (!_isFullscreen)
             Expanded(
-              child: ListView(
-                controller: _scrollController,
-                padding: const EdgeInsets.only(bottom: 32),
-                children: [
-                  if (_briefing != null)
-                    PremiumAiPrepCard(briefing: _briefing!, onWordTapped: _onWordTapped),
-                  
-                  if (_isLoading)
-                    const Padding(padding: EdgeInsets.all(20), child: CircularProgressIndicator())
-                  else if (_error != null)
-                    Padding(padding: const EdgeInsets.all(20), child: Text(_error!, style: const TextStyle(color: Colors.red)))
-                  else if (_transcript != null)
-                    ..._transcript!.lines.asMap().entries.map((entry) {
-                      final index = entry.key;
-                      final line = entry.value;
-                      final isActive = index == _currentIndex;
-                      return PremiumTranscriptLine(
-                        key: index < _lineKeys.length ? _lineKeys[index] : null,
-                        line: line,
-                        isCurrent: isActive,
-                        highlightedCount: isActive ? _getHighlightedCharCount(line, _currentPosition) : 0,
-                        showPinyin: _showPinyin,
-                        showEnglish: _showEnglish,
-                        onReplay: () => _replayLine(line.start),
-                        onWordTapped: _onWordTapped,
-                        onAiExplain: () => _showSentenceLesson(line.text),
-                      );
-                    }),
-                ],
-              ),
+              child: _isLoading 
+                ? const Center(child: CircularProgressIndicator())
+                : _error != null 
+                  ? Center(child: Text(_error!, style: const TextStyle(color: Colors.red)))
+                  : Column(
+                      children: [
+                        if (_shadowFeedback.isNotEmpty)
+                          Container(
+                            width: double.infinity,
+                            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                            color: _shadowFeedback.contains("Perfect") ? Colors.green.withValues(alpha: 0.1) : Colors.red.withValues(alpha: 0.1),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(_shadowFeedback.contains("Perfect") ? Icons.check_circle : Icons.mic, 
+                                  color: _shadowFeedback.contains("Perfect") ? Colors.green : Colors.red, size: 20),
+                                const SizedBox(width: 8),
+                                Text(_shadowFeedback, style: TextStyle(
+                                  color: _shadowFeedback.contains("Perfect") ? Colors.green : Colors.red,
+                                  fontWeight: FontWeight.bold,
+                                )),
+                              ],
+                            ),
+                          ),
+                        Expanded(
+                          child: ListView(
+                            controller: _scrollController,
+                            padding: const EdgeInsets.fromLTRB(16, 24, 16, 120), // Extra padding for FAB
+                            physics: const BouncingScrollPhysics(),
+                            children: [
+                              if (_briefing != null) ...[
+                                PremiumAiPrepCard(briefing: _briefing!),
+                                const SizedBox(height: 32),
+                              ],
+                              if (_transcript != null)
+                                ..._transcript!.lines.asMap().entries.map((entry) {
+                                  final index = entry.key;
+                                  final line = entry.value;
+                                  return PremiumTranscriptLine(
+                                    key: _lineKeys[index],
+                                    line: line,
+                                    isCurrent: _currentIndex == index,
+                                    highlightedCount: _currentIndex == index ? _getHighlightedCharCount(line, _currentPosition) : (index < _currentIndex ? line.text.length : 0),
+                                    onReplay: () => _replayLine(line.start),
+                                    onLineTapped: () {
+                                      _playerController.seekTo(seconds: line.start.inSeconds.toDouble(), allowSeekAhead: true);
+                                      _playerController.playVideo();
+                                    },
+                                    onAiExplain: () => _showSentenceLesson(line.text),
+                                    onWordTapped: _onWordTapped,
+                                    showPinyin: _showPinyin,
+                                    showEnglish: _showEnglish,
+                                    simplifiedText: _isHskSimplified ? _simplifiedTranscript[index] : null,
+                                  );
+                                }),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
             ),
         ],
       ),
