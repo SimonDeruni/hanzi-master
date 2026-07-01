@@ -1,6 +1,8 @@
+import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:xml/xml.dart';
 import 'package:hanzi_master/features/media/domain/models/library_story.dart';
+import 'dart:convert';
 import 'package:html/parser.dart' show parse;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -16,9 +18,16 @@ class StoryFetcherService {
         final document = XmlDocument.parse(response.body);
         final items = document.findAllElements('item');
         
-        return items.map((node) {
+        final rawStories = items.map((node) {
           final title = node.findElements('title').firstOrNull?.innerText ?? 'Untitled';
           final link = node.findElements('link').firstOrNull?.innerText ?? '';
+          
+          final categories = node.findElements('category').map((e) => e.innerText.toLowerCase()).toList();
+          final titleLower = title.toLowerCase();
+          
+          if (categories.contains('news') || titleLower.startsWith('news:')) return null;
+          if (categories.contains('jokes') || titleLower.startsWith('joke:') || titleLower.startsWith('jokes:')) return null;
+          if (categories.contains('academic / science') || categories.contains('politics & communism')) return null;
           
           // Parse description, strip HTML tags for summary
           String summary = '';
@@ -69,7 +78,33 @@ class StoryFetcherService {
             summary: summary,
             sourceType: StorySourceType.rss,
           );
-        }).toList();
+        }).whereType<LibraryStory>().toList();
+
+        // If imageUrl is still null, fetch the actual page and look for og:image
+        final futures = rawStories.map((story) async {
+          if (story.imageUrl == null && story.link.isNotEmpty) {
+            try {
+              final pageResp = await http.get(Uri.parse(story.link));
+              if (pageResp.statusCode == 200) {
+                final doc = parse(pageResp.body);
+                // Try OpenGraph image
+                String? img = doc.querySelector('meta[property="og:image"]')?.attributes['content'];
+                // Try twitter:image
+                img ??= doc.querySelector('meta[name="twitter:image"]')?.attributes['content'];
+                // Try first image in content
+                img ??= doc.querySelector('article img')?.attributes['src'];
+                img ??= doc.querySelector('.entry-content img')?.attributes['src'];
+                
+                if (img != null && img.isNotEmpty) {
+                  return story.copyWith(imageUrl: img);
+                }
+              }
+            } catch (_) {}
+          }
+          return story;
+        });
+        
+        return Future.wait(futures);
       }
     } catch (e) {
       print('Error fetching RSS from $url: $e');
@@ -88,22 +123,22 @@ class StoryFetcherService {
   // Option B: Public Domain JSON
   // We'll mock this for now to show the hybrid capability, but it could fetch from GitHub
   Future<List<LibraryStory>> fetchPublicDomainClassics() async {
-    await Future.delayed(const Duration(milliseconds: 500));
-    return [
-      LibraryStory(
-        title: "西游记 (Journey to the West - Excerpt)",
-        sourceName: "Classical Texts",
-        link: "json://journey_to_the_west",
-        summary: "The legendary mythological tale of Sun Wukong, the Monkey King.",
-        sourceType: StorySourceType.json,
-      ),
-      LibraryStory(
-        title: "木兰辞 (The Ballad of Mulan)",
-        sourceName: "Classical Texts",
-        link: "json://ballad_of_mulan",
-        summary: "The famous Northern Dynasties folk song about a girl who takes her father's place in the army.",
-        sourceType: StorySourceType.json,
-      ),
-    ];
+    try {
+      final String response = await rootBundle.loadString('assets/data/stories/index.json');
+      final List<dynamic> data = jsonDecode(response);
+      return data.map((json) {
+        return LibraryStory(
+          title: json['title'] ?? 'Untitled',
+          sourceName: json['sourceName'] ?? 'Unknown',
+          link: json['link'] ?? '',
+          imageUrl: json['imageUrl'],
+          summary: json['summary'] ?? '',
+          sourceType: StorySourceType.json,
+        );
+      }).toList();
+    } catch (e) {
+      print('Error fetching public domain classics: $e');
+      return [];
+    }
   }
 }

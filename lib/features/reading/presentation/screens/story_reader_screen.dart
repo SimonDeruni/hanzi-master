@@ -62,6 +62,8 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
       if (mounted) {
         if (widget.blueprint.id.startsWith('custom_') && ref.read(storyControllerProvider).currentStory == null) {
           _startStreamingStory();
+        } else if (widget.blueprint.id.startsWith('assets/')) {
+          ref.read(storyControllerProvider.notifier).fetchAndParseAssetStory(widget.blueprint, widget.hskLevel);
         } else {
           ref.read(storyControllerProvider.notifier).loadOrGenerateStory(widget.blueprint, widget.hskLevel);
         }
@@ -305,7 +307,10 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
     return Scaffold(
       backgroundColor: isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
       appBar: AppBar(
-        title: Text(AppLocalizations.of(context)!.storyTitleHsk(widget.blueprint.title, widget.hskLevel), style: TextStyle(fontFamily: 'NotoSerifSC')),
+        title: Text(
+          widget.hskLevel == 0 ? widget.blueprint.title : 'HSK ${widget.hskLevel}: ${widget.blueprint.title}',
+          style: TextStyle(fontFamily: 'NotoSerifSC', color: isDark ? Colors.white : Colors.black87),
+        ),
         backgroundColor: Colors.transparent,
         elevation: 0,
         actions: [
@@ -426,6 +431,8 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
                               onPressed: () {
                                 if (widget.blueprint.id.startsWith('custom_')) {
                                   _startStreamingStory();
+                                } else if (widget.blueprint.id.startsWith('assets/')) {
+                                  ref.read(storyControllerProvider.notifier).fetchAndParseAssetStory(widget.blueprint, widget.hskLevel);
                                 } else {
                                   ref.read(storyControllerProvider.notifier).loadOrGenerateStory(widget.blueprint, widget.hskLevel);
                                 }

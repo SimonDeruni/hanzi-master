@@ -2,6 +2,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive/hive.dart';
 import '../../domain/entities/graded_story.dart';
 import '../../../../core/services/gemini_service.dart';
+import 'package:http/http.dart' as http;
+import 'package:flutter/services.dart';
 import '../../data/repositories/story_repository.dart';
 
 final storyControllerProvider = StateNotifierProvider<StoryController, StoryState>((ref) {
@@ -253,6 +255,43 @@ class StoryController extends StateNotifier<StoryState> {
       );
 
       // 3. Save to cache
+      await repository.saveStory(newStory);
+
+      state = state.copyWith(isLoading: false, currentStory: newStory);
+    } catch (e) {
+      state = state.copyWith(isLoading: false, error: e.toString(), currentStory: null);
+    }
+  }
+
+  Future<void> fetchAndParseAssetStory(StoryBlueprint blueprint, int hskLevel) async {
+    state = state.copyWith(isLoading: true, error: null, currentStory: null);
+    
+    try {
+      final storyId = '${blueprint.id}_hsk$hskLevel';
+      
+      // 1. Check Cache
+      final cachedStory = await repository.getStory(storyId);
+      if (cachedStory != null) {
+        state = state.copyWith(isLoading: false, currentStory: cachedStory);
+        return;
+      }
+
+      // 2. Fetch raw text from local asset bundle
+      final rawText = await rootBundle.loadString(blueprint.id);
+
+      // 3. Parse with Gemini
+      final aiStory = await geminiService.parseRawStoryToAiStory(rawText, hskLevel);
+      
+      final newStory = GradedStory(
+        id: storyId,
+        title: blueprint.title,
+        category: blueprint.category,
+        hskLevel: hskLevel,
+        sentences: aiStory.sentences,
+        generatedAt: DateTime.now(),
+      );
+
+      // 4. Save to cache
       await repository.saveStory(newStory);
 
       state = state.copyWith(isLoading: false, currentStory: newStory);

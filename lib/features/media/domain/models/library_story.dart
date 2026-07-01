@@ -21,4 +21,24 @@ class LibraryStory {
     this.pubDate,
     required this.sourceType,
   });
+
+  LibraryStory copyWith({
+    String? title,
+    String? sourceName,
+    String? link,
+    String? imageUrl,
+    String? summary,
+    DateTime? pubDate,
+    StorySourceType? sourceType,
+  }) {
+    return LibraryStory(
+      title: title ?? this.title,
+      sourceName: sourceName ?? this.sourceName,
+      link: link ?? this.link,
+      imageUrl: imageUrl ?? this.imageUrl,
+      summary: summary ?? this.summary,
+      pubDate: pubDate ?? this.pubDate,
+      sourceType: sourceType ?? this.sourceType,
+    );
+  }
 }

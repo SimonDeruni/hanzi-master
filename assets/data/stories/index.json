@@ -2,8 +2,22 @@
   {
     "title": "西游记 (Journey to the West - Excerpt)",
     "sourceName": "Public Domain Classic",
-    "link": "https://raw.githubusercontent.com/SimonDeruni/hanzi-ios/master/assets/data/stories/journey_to_the_west.txt",
+    "link": "assets/data/stories/journey_to_the_west.txt",
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Sun_Wukong_and_Jade_Emperor.jpg/800px-Sun_Wukong_and_Jade_Emperor.jpg",
     "summary": "The Monkey King wreaks havoc in Heaven..."
+  },
+  {
+    "title": "三国演义 (Romance of the Three Kingdoms)",
+    "sourceName": "Public Domain Classic",
+    "link": "assets/data/stories/romance_of_three_kingdoms.txt",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Guan_Yu_portrait_in_the_Palace_Museum.jpg/800px-Guan_Yu_portrait_in_the_Palace_Museum.jpg",
+    "summary": "The story of Guan Yu and the oath of the peach garden."
+  },
+  {
+    "title": "红楼梦 (Dream of the Red Chamber)",
+    "sourceName": "Public Domain Classic",
+    "link": "assets/data/stories/dream_of_red_chamber.txt",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Sun_Wen_-_Dream_of_the_Red_Chamber.jpg/800px-Sun_Wen_-_Dream_of_the_Red_Chamber.jpg",
+    "summary": "The tragic love story of Jia Baoyu and Lin Daiyu."
   }
 ]

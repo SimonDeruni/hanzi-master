@@ -66,7 +66,7 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
         MaterialPageRoute(
           builder: (context) => StoryReaderScreen(
             blueprint: dummyBlueprint,
-            hskLevel: 3, // Default HSK level
+            hskLevel: 0, // 0 means native/classic text
           ),
         ),
       );
