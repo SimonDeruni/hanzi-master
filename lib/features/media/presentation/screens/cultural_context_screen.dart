@@ -5,6 +5,8 @@ import 'package:hanzi_master/features/media/domain/models/daily_media_item.dart'
 import 'package:hanzi_master/features/media/presentation/providers/cultural_context_provider.dart';
 import 'package:hanzi_master/features/media/presentation/screens/web_browser_screen.dart';
 import 'package:hanzi_master/features/media/presentation/screens/media_search_screen.dart';
+import 'package:hanzi_master/features/media/presentation/screens/smart_media_desk_screen.dart';
+import 'package:youtube_explode_dart/youtube_explode_dart.dart';
 import 'package:flutter/gestures.dart';
 import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
@@ -158,14 +160,31 @@ class CulturalContextScreen extends ConsumerWidget {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: BouncingButton(
-        onPressed: () {
-          if (mediaItem.tag.contains("VIDEO")) {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (_) => const MediaSearchScreen(),
-              ),
+        onPressed: () async {
+          if (mediaItem.url.contains("youtube.com") || mediaItem.url.contains("youtu.be")) {
+            showDialog(
+              context: context,
+              barrierDismissible: false,
+              builder: (ctx) => const Center(child: CircularProgressIndicator()),
             );
+            try {
+              final yt = YoutubeExplode();
+              final video = await yt.videos.get(mediaItem.url);
+              yt.close();
+              if (!context.mounted) return;
+              Navigator.pop(context); // hide loading
+              
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => SmartMediaDeskScreen(video: video),
+                ),
+              );
+            } catch (e) {
+              if (!context.mounted) return;
+              Navigator.pop(context);
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Failed to load video: $e')));
+            }
           } else {
             Navigator.pushReplacement(
               context,
