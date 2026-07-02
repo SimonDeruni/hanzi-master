@@ -15,6 +15,8 @@ class FullscreenMediaOverlay extends StatefulWidget {
   final Function(String) onWordTapped;
   final String videoTitle;
   final VoidCallback onExitFullscreen;
+  final double playbackRate;
+  final ValueChanged<double> onSpeedChanged;
 
   const FullscreenMediaOverlay({
     super.key,
@@ -25,6 +27,8 @@ class FullscreenMediaOverlay extends StatefulWidget {
     required this.onWordTapped,
     required this.videoTitle,
     required this.onExitFullscreen,
+    required this.playbackRate,
+    required this.onSpeedChanged,
   });
 
   @override
@@ -161,6 +165,8 @@ class _FullscreenMediaOverlayState extends State<FullscreenMediaOverlay> {
                   onToggleHanzi: (v) { _onUserInteraction(); setState(() => _showHanzi = v); },
                   onTogglePinyin: (v) { _onUserInteraction(); setState(() => _showPinyin = v); },
                   onToggleEnglish: (v) { _onUserInteraction(); setState(() => _showEnglish = v); },
+                  playbackRate: widget.playbackRate,
+                  onSpeedChanged: widget.onSpeedChanged,
                 ),
               ),
             ),

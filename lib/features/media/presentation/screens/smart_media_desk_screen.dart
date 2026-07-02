@@ -43,6 +43,7 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
 
   bool _isFullscreen = false;
   bool _wasMutedForAutoplay = true;
+  double _playbackRate = 1.0;
 
   List<Map<String, dynamic>> _culturalMemes = [];
   bool _isHskSimplified = false;
@@ -310,6 +311,13 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
     setState(() => _isFullscreen = false);
   }
 
+  void _changeSpeed(double speed) {
+    setState(() {
+      _playbackRate = speed;
+      _playerController.setPlaybackRate(speed);
+    });
+  }
+
   @override
   void dispose() {
     _positionSubscription?.cancel();
@@ -477,6 +485,8 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
                     onWordTapped: _onWordTapped,
                     videoTitle: widget.video.title,
                     onExitFullscreen: _exitFullscreen,
+                    playbackRate: _playbackRate,
+                    onSpeedChanged: _changeSpeed,
                   );
                           },
                         ),

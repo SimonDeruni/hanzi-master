@@ -10,6 +10,8 @@ class PremiumVideoTopBar extends StatelessWidget {
   final ValueChanged<bool> onToggleHanzi;
   final ValueChanged<bool> onTogglePinyin;
   final ValueChanged<bool> onToggleEnglish;
+  final double playbackRate;
+  final ValueChanged<double> onSpeedChanged;
 
   const PremiumVideoTopBar({
     super.key,
@@ -21,6 +23,8 @@ class PremiumVideoTopBar extends StatelessWidget {
     required this.onToggleHanzi,
     required this.onTogglePinyin,
     required this.onToggleEnglish,
+    required this.playbackRate,
+    required this.onSpeedChanged,
   });
 
   @override
@@ -124,6 +128,43 @@ class PremiumVideoTopBar extends StatelessWidget {
                       }
                     ),
                   ),
+                ],
+              ),
+              const SizedBox(width: 8),
+              // Speed Menu Button
+              PopupMenuButton<double>(
+                icon: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  decoration: BoxDecoration(
+                    color: Colors.white.withValues(alpha: 0.2),
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(color: Colors.white30),
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text('${playbackRate}x', style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 12)),
+                      const SizedBox(width: 4),
+                      const Icon(Icons.speed, color: Colors.white, size: 20),
+                    ],
+                  ),
+                ),
+                color: Colors.black87,
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                onSelected: onSpeedChanged,
+                itemBuilder: (context) => [
+                  for (final speed in [0.5, 0.75, 1.0, 1.25, 1.5, 2.0])
+                    PopupMenuItem(
+                      value: speed,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('${speed}x', style: const TextStyle(color: Colors.white)),
+                          if (playbackRate == speed)
+                            const Icon(Icons.check, color: Colors.white, size: 16),
+                        ],
+                      ),
+                    ),
                 ],
               ),
             ],
