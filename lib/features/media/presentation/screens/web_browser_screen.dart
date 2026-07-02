@@ -37,6 +37,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
   bool _isLoading = true;
   bool _isZenMode = false;
   bool _isProcessingAi = false;
+  String _selectedText = '';
   
   ArticleInsight? _currentInsight;
   bool _isReadingAloud = false;
@@ -71,10 +72,15 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
               _urlController.text = url;
             });
             _injectHanziInterceptor();
-            // Auto-trigger reading mode if requested
+            // Auto-trigger Reading (Zen) Mode by default
+            Future.delayed(const Duration(milliseconds: 800), () {
+              if (mounted && !_isZenMode) {
+                _toggleZenMode();
+              }
+            });
+            // Auto-trigger simplify if requested
             if (widget.autoReadingMode) {
-              // Small delay to let JS settle
-              Future.delayed(const Duration(milliseconds: 800), () {
+              Future.delayed(const Duration(milliseconds: 1500), () {
                 if (mounted) _runAutoSimplify();
               });
             }
@@ -221,15 +227,10 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
       document.addEventListener('selectionchange', function() {
         const selection = window.getSelection();
         const text = selection.toString().trim();
-        if (text.length > 0 && text.length <= 150) { // Limit length to avoid massive payloads
-          const range = selection.getRangeAt(0);
-          const rect = range.getBoundingClientRect();
-          translateBtn.style.left = Math.max(10, rect.left) + 'px';
-          translateBtn.style.top = Math.max(10, rect.bottom + 10) + 'px';
-          translateBtn.style.display = 'block';
-        } else {
-          translateBtn.style.display = 'none';
-        }
+        HanziMasterChannel.postMessage(JSON.stringify({
+          type: 'selection_changed',
+          text: text.substring(0, 300)
+        }));
       });
       // -----------------------------------
     ''';
@@ -711,6 +712,13 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
         _startTranslation(text);
         return;
       }
+      if (data['type'] == 'selection_changed') {
+        final text = data['text'] as String;
+        if (_selectedText != text && mounted) {
+           setState(() => _selectedText = text);
+        }
+        return;
+      }
       if (data['type'] == 'tts_toggle') {
         if (_isReadingAloud) {
           _stopTts();
@@ -1026,22 +1034,37 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
                 }
               },
             ),
-            // AI Reading Tools Button
+            // AI Reading Tools Button OR Translate Selection Button
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: ElevatedButton.icon(
-                  icon: _isProcessingAi 
-                      ? const SizedBox(width: 16, height: 16, child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2))
-                      : const Icon(Icons.auto_awesome),
-                  label: const Text("AI Reading Tools", style: TextStyle(fontWeight: FontWeight.bold)),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.indigo,
-                    foregroundColor: Colors.white,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-                  ),
-                  onPressed: _isProcessingAi ? null : () => _showAiToolsMenu(context),
-                ),
+                child: _selectedText.isNotEmpty
+                  ? ElevatedButton.icon(
+                      icon: const Icon(Icons.translate),
+                      label: const Text("Translate Selection", style: TextStyle(fontWeight: FontWeight.bold)),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.deepPurple,
+                        foregroundColor: Colors.white,
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                      ),
+                      onPressed: () {
+                         _startTranslation(_selectedText);
+                         _controller.runJavaScript('window.getSelection().removeAllRanges();');
+                         setState(() => _selectedText = '');
+                      },
+                    )
+                  : ElevatedButton.icon(
+                      icon: _isProcessingAi 
+                          ? const SizedBox(width: 16, height: 16, child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2))
+                          : const Icon(Icons.auto_awesome),
+                      label: const Text("AI Reading Tools", style: TextStyle(fontWeight: FontWeight.bold)),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.indigo,
+                        foregroundColor: Colors.white,
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                      ),
+                      onPressed: _isProcessingAi ? null : () => _showAiToolsMenu(context),
+                    ),
               ),
             ),
           ],
