@@ -1151,7 +1151,7 @@ Return ONLY a valid JSON array:
 
   /// Translates a single chunk of transcript lines (Pinyin → Hanzi + localized translation).
   /// Called incrementally by the screen to progressively update the UI.
-  Future<List<TranscriptLine>> translateChunk(List<TranscriptLine> chunk) async {
+  Future<List<TranscriptLine>> translateChunk(List<TranscriptLine> chunk, {String? language}) async {
     if (chunk.isEmpty) return chunk;
 
     final isPinyinBased = !chunk.any((l) => RegExp(r'[\u4e00-\u9fff]').hasMatch(l.text));
@@ -1165,7 +1165,7 @@ You are a Chinese learning assistant.
 I will give you ${chunk.length} video transcript lines.
 If these lines are in Pinyin (Latin alphabet with tone marks), convert them to standard Chinese Hanzi characters for the "hanzi" field.
 If they are already in Hanzi, keep them as-is.
-Translate each line to "$targetLanguage" for the "translation" field.
+Translate each line to "${language ?? targetLanguage}" for the "translation" field.
 
 CRITICAL: Return EXACTLY ${chunk.length} objects in the array — one per input line. No skipping.
 
@@ -1174,7 +1174,7 @@ $chunkText
 
 Return ONLY a valid JSON array:
 [
-  { "hanzi": "Chinese Hanzi here", "translation": "Translation in $targetLanguage" }
+  { "hanzi": "Chinese Hanzi here", "translation": "Translation in ${language ?? targetLanguage}" }
 ]''';
 
     final response = await makeOpenRouterCall(

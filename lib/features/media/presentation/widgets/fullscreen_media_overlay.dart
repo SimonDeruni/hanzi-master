@@ -75,8 +75,14 @@ class _FullscreenMediaOverlayState extends State<FullscreenMediaOverlay> {
     // It must NOT use Positioned.fill with an opaque container — that would block the video.
     // Only the controls/subtitles themselves should be visible; video shows through underneath.
     return GestureDetector(
-      behavior: HitTestBehavior.translucent,
-      onTap: _onUserInteraction,
+      behavior: HitTestBehavior.opaque,
+      onTap: () {
+        if (_controlsVisible) {
+          setState(() => _controlsVisible = false);
+        } else {
+          _onUserInteraction();
+        }
+      },
       onVerticalDragUpdate: (details) {
         _onUserInteraction();
         final screenWidth = MediaQuery.of(context).size.width;

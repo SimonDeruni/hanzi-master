@@ -134,7 +134,7 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
       if (!mounted) return;
       final end = (start + chunkSize).clamp(0, workingLines.length);
       try {
-        final translated = await gemini.translateChunk(workingLines.sublist(start, end));
+        final translated = await gemini.translateChunk(workingLines.sublist(start, end), language: 'English');
         for (int i = 0; i < translated.length; i++) {
           workingLines[start + i] = translated[i];
         }
@@ -402,6 +402,20 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
                   if (!isFullscreenState) {
                     return Stack(
                       children: [
+                        // BLOCK TOUCHES TO YOUTUBE NATIVE CONTROLS
+                        Positioned.fill(
+                          child: GestureDetector(
+                            behavior: HitTestBehavior.opaque,
+                            onTap: () {
+                              if (_playerController.value.playerState == PlayerState.playing) {
+                                _playerController.pauseVideo();
+                              } else {
+                                _playerController.playVideo();
+                              }
+                            },
+                            child: const SizedBox.expand(),
+                          ),
+                        ),
                         // The Fullscreen Button
                         Positioned(
                           bottom: 8,
