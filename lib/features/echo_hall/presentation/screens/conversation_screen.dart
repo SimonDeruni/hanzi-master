@@ -205,6 +205,7 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
                           ),
                           onSubmitted: (val) {
                             if (val.trim().isNotEmpty) {
+                              FocusScope.of(context).unfocus();
                               // We need a sendMessage method in ConversationController
                               ref.read(conversationControllerProvider.notifier).sendMessage(val);
                               _textController.clear();
@@ -226,6 +227,7 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
                   if (isTextMode) {
                     return GestureDetector(
                       onTap: state.isProcessing ? null : () {
+                        FocusScope.of(context).unfocus();
                         ref.read(conversationControllerProvider.notifier).sendMessage(_textController.text);
                         _textController.clear();
                       },

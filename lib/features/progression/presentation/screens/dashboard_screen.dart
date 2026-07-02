@@ -8,6 +8,7 @@ import 'package:hanzi_master/features/flashcards/domain/entities/deck.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/deck_detail_screen.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/dictionary_provider.dart';
+import 'package:hanzi_master/features/flashcards/presentation/providers/deck_controller.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 
 import 'package:hanzi_master/features/progression/presentation/widgets/today_insight_card.dart';
@@ -24,6 +25,7 @@ class DashboardScreen extends ConsumerWidget {
     
     // 1. Fetch Flashcard Data
     final allCards = ref.watch(flashcardControllerProvider).valueOrNull ?? [];
+    final allDecks = ref.watch(deckControllerProvider).valueOrNull ?? [];
     
     // 2. Calculate Stats
     final knownCards = allCards.where((c) => c.getStatsForMode(StudyMode.reading).streak > 0).length;
@@ -423,6 +425,12 @@ class DashboardScreen extends ConsumerWidget {
                         final deckId = entry.key;
                         final cards = entry.value;
                         String displayDeckName = deckId;
+                        
+                        final foundDeck = allDecks.where((d) => d.id == deckId).firstOrNull;
+                        if (foundDeck != null) {
+                          displayDeckName = foundDeck.name;
+                        }
+
                         if (deckId.toLowerCase() == 'hsk1') displayDeckName = l10n?.hskLevel1 ?? "HSK Level 1";
                         if (deckId.toLowerCase() == 'hsk2') displayDeckName = l10n?.hskLevel2 ?? "HSK Level 2";
                         if (deckId.toLowerCase() == 'hsk3') displayDeckName = l10n?.hskLevel3 ?? "HSK Level 3";
