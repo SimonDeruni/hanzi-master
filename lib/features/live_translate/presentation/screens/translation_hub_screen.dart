@@ -63,18 +63,6 @@ class TranslationHubScreen extends StatelessWidget {
                     },
                   ),
                   const SizedBox(height: 48),
-                  
-                  // Footer
-                  Center(
-                    child: Text(
-                      "More translation tools coming soon",
-                      style: theme.textTheme.labelLarge?.copyWith(
-                        color: isDark ? Colors.white30 : Colors.black26,
-                        letterSpacing: 0.5,
-                        fontStyle: FontStyle.italic,
-                      ),
-                    ),
-                  ),
                   const SizedBox(height: 40),
                 ]),
               ),

@@ -12,7 +12,7 @@ import 'package:hanzi_master/features/flashcards/presentation/providers/deck_con
 import 'package:hanzi_master/l10n/app_localizations.dart';
 
 import 'package:hanzi_master/features/progression/presentation/widgets/today_insight_card.dart';
-
+import 'package:hanzi_master/shared/widgets/global_sliver_app_bar.dart';
 class DashboardScreen extends ConsumerWidget {
   final Function(int) onNavigate;
 
@@ -79,172 +79,11 @@ class DashboardScreen extends ConsumerWidget {
       body: CalligraphyBackground(
         child: CustomScrollView(
           slivers: [
-            // --- CUSTOM HEADER ---
-            SliverToBoxAdapter(
-              child: SafeArea(
-                bottom: false,
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(24, 24, 24, 16),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Text(
-                          l10n?.dashboardTitle ?? "Dashboard",
-                          style: theme.textTheme.headlineLarge?.copyWith(
-                            fontWeight: FontWeight.w900,
-                            fontFamily: 'NotoSerifSC',
-                            color: theme.colorScheme.onSurface,
-                          ),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                        decoration: BoxDecoration(
-                          color: theme.colorScheme.primary.withValues(alpha: 0.1),
-                          borderRadius: BorderRadius.circular(30),
-                          border: Border.all(color: theme.colorScheme.primary.withValues(alpha: 0.3)),
-                        ),
-                        child: Row(
-                          children: [
-                            Icon(Icons.local_fire_department, size: 16, color: theme.colorScheme.primary),
-                            const SizedBox(width: 6),
-                            Text(
-                              "START YOUR STREAK",
-                              style: theme.textTheme.labelSmall?.copyWith(
-                                fontWeight: FontWeight.bold,
-                                color: theme.colorScheme.primary,
-                                letterSpacing: 0.5,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(width: 12),
-                      Container(
-                        padding: const EdgeInsets.all(8),
-                        decoration: BoxDecoration(
-                          color: theme.colorScheme.onSurface.withValues(alpha: 0.05),
-                          shape: BoxShape.circle,
-                        ),
-                        child: Icon(Icons.person_outline, size: 20, color: theme.colorScheme.onSurface),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+            // --- STANDARD HEADER ---
+            GlobalSliverAppBar(
+              title: l10n?.dashboardTitle ?? "Dashboard",
             ),
-            
-            // --- TOP: SCHOLAR'S RANK ---
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                child: Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.all(24),
-                  decoration: BoxDecoration(
-                    color: theme.colorScheme.surface,
-                    borderRadius: BorderRadius.circular(24),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withValues(alpha: 0.03),
-                        blurRadius: 30,
-                        offset: const Offset(0, 10),
-                      ),
-                    ],
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                l10n?.currentRank ?? "CURRENT RANK",
-                                style: theme.textTheme.labelMedium?.copyWith(
-                                  color: theme.colorScheme.onSurface.withValues(alpha: 0.5),
-                                  letterSpacing: 2.0,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              const SizedBox(height: 8),
-                                Text(
-                                  rank,
-                                  style: theme.textTheme.headlineMedium?.copyWith(
-                                    fontWeight: FontWeight.w900,
-                                    fontFamily: 'NotoSerifSC',
-                                    letterSpacing: -0.5,
-                                  ),
-                                ),
-                            ],
-                          ),
-                          Container(
-                            width: 72,
-                            height: 72,
-                            padding: const EdgeInsets.all(4),
-                            decoration: const BoxDecoration(
-                              shape: BoxShape.circle,
-                              gradient: LinearGradient(
-                                colors: [Color(0xFFFFA07A), Color(0xFF87CEFA), Color(0xFF98FB98)],
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight,
-                              ),
-                            ),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                border: Border.all(color: theme.colorScheme.surface, width: 2),
-                              ),
-                              child: ClipOval(
-                                child: Image.asset('assets/mascot/guide_avatar.png', fit: BoxFit.cover),
-                              ),
-                            ),
-                          ).animate(onPlay: (controller) => controller.repeat(reverse: true))
-                           .scaleXY(begin: 1.0, end: 1.05, duration: 2.seconds, curve: Curves.easeInOutSine)
-                           .moveY(begin: 0, end: -4, duration: 2.seconds, curve: Curves.easeInOutSine),
-                        ],
-                      ),
-                      const SizedBox(height: 24),
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(30),
-                        child: LinearProgressIndicator(
-                          value: progress,
-                          minHeight: 10,
-                          backgroundColor: theme.colorScheme.primary.withValues(alpha: 0.1),
-                          valueColor: AlwaysStoppedAnimation<Color>(theme.colorScheme.primary),
-                        ),
-                      ),
-                      const SizedBox(height: 12),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "$knownCards ${l10n?.masteredCards ?? 'Mastered'}",
-                            style: theme.textTheme.bodyMedium?.copyWith(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Text(
-                            "${l10n?.next ?? 'Next'}: $nextMilestone",
-                            style: theme.textTheme.bodyMedium?.copyWith(
-                              color: theme.colorScheme.onSurface.withValues(alpha: 0.5),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ).animate()
-                 .fade(duration: 600.ms, curve: Curves.easeOutCubic)
-                 .slideY(begin: 0.1, end: 0, duration: 600.ms, curve: Curves.easeOutCubic),
-              ),
-            ),
-            
-            const SliverToBoxAdapter(child: SizedBox(height: 24)),
+
             
             // --- NEW: TODAY'S WORD ---
             const SliverToBoxAdapter(
