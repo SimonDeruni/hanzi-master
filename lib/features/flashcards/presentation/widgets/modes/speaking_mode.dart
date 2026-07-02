@@ -366,7 +366,6 @@ class _SpeakingModeWidgetState extends ConsumerState<SpeakingModeWidget> {
                   ),
                 ),
               ),
-            ),
 
             // Swipe Hint
             if (_isRevealed || _feedbackResult != null)
