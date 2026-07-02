@@ -19,10 +19,12 @@ import 'dart:ui';
 
 class WebBrowserScreen extends ConsumerStatefulWidget {
   final String initialUrl;
+  final bool autoReadingMode;
 
   const WebBrowserScreen({
     super.key,
     this.initialUrl = 'https://www.bbc.com/zhongwen/simp',
+    this.autoReadingMode = false,
   });
 
   @override
@@ -69,6 +71,13 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
               _urlController.text = url;
             });
             _injectHanziInterceptor();
+            // Auto-trigger reading mode if requested
+            if (widget.autoReadingMode) {
+              // Small delay to let JS settle
+              Future.delayed(const Duration(milliseconds: 800), () {
+                if (mounted) _runAutoSimplify();
+              });
+            }
           },
         ),
       )

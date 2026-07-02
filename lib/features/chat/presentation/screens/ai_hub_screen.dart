@@ -99,31 +99,41 @@ class AiHubScreen extends ConsumerWidget {
                   flex: 12,
                   child: Column(
                     children: [
-                      _buildListActionCard(
-                        context: context,
-                        title: "READING ROOM",
-                        subtitle: "Classic literature texts",
-                        icon: Icons.auto_stories,
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (_) => const StoryLibraryScreen()),
-                          );
-                        },
-                      ),
-                      const SizedBox(height: 16),
-                      _buildListActionCard(
-                        context: context,
-                        title: "SHADOWING",
-                        subtitle: "Perfect your pronunciation",
-                        icon: Icons.mic,
-                        isNew: true,
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (_) => const ShadowingStudioScreen()),
-                          );
-                        },
+                      Row(
+                        children: [
+                          Expanded(
+                            child: _buildListActionCard(
+                              context: context,
+                              title: "Reading Room",
+                              subtitle: "Classic literature",
+                              icon: Icons.auto_stories,
+                              gradientColors: const [Color(0xFF8B5E3C), Color(0xFFC4863A)],
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (_) => const StoryLibraryScreen()),
+                                );
+                              },
+                            ),
+                          ),
+                          const SizedBox(width: 16),
+                          Expanded(
+                            child: _buildListActionCard(
+                              context: context,
+                              title: "Shadowing",
+                              subtitle: "Perfect pronunciation",
+                              icon: Icons.mic,
+                              isNew: true,
+                              gradientColors: const [Color(0xFF1A4A4A), Color(0xFF2A7070)],
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (_) => const ShadowingStudioScreen()),
+                                );
+                              },
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
@@ -144,97 +154,81 @@ class AiHubScreen extends ConsumerWidget {
     required String subtitle,
     required IconData icon,
     bool isNew = false,
+    required List<Color> gradientColors,
     required VoidCallback onTap,
   }) {
-    final theme = Theme.of(context);
-    
     return BouncingButton(
-      scaleFactor: 0.98,
+      scaleFactor: 0.96,
       onPressed: onTap,
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 36.0),
+        height: 160,
         decoration: BoxDecoration(
-          color: theme.colorScheme.surface,
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: gradientColors,
+          ),
           borderRadius: BorderRadius.circular(24),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withValues(alpha: 0.03),
-              blurRadius: 30,
-              offset: const Offset(0, 10),
+              color: gradientColors.last.withValues(alpha: 0.4),
+              blurRadius: 20,
+              offset: const Offset(0, 8),
             ),
           ],
         ),
-        child: Row(
+        child: Stack(
           children: [
-            Container(
-              width: 64,
-              height: 64,
-              decoration: BoxDecoration(
-                color: theme.colorScheme.primary.withValues(alpha: 0.1),
-                borderRadius: BorderRadius.circular(20),
-                border: Border.all(
-                  color: theme.colorScheme.primary.withValues(alpha: 0.2),
-                  width: 1,
+            // NEW badge
+            if (isNew)
+              Positioned(
+                top: 12,
+                right: 12,
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFE27C5A),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: const Text(
+                    'NEW',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 10,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 1,
+                    ),
+                  ),
                 ),
               ),
-              child: Icon(
-                icon,
-                size: 32,
-                color: theme.colorScheme.primary,
-              ),
-            ),
-            const SizedBox(width: 20),
-            Expanded(
+            // Content
+            Padding(
+              padding: const EdgeInsets.all(20),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Row(
-                    children: [
-                      Text(
-                        title,
-                        style: theme.textTheme.titleSmall?.copyWith(
-                          fontWeight: FontWeight.w900,
-                          fontFamily: 'NotoSerifSC',
-                          color: theme.colorScheme.onSurface,
-                          letterSpacing: 0.5,
-                        ),
-                      ),
-                      if (isNew) ...[
-                        const SizedBox(width: 8),
-                        Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
-                          decoration: BoxDecoration(
-                            color: const Color(0xFFE27C5A),
-                            borderRadius: BorderRadius.circular(4),
-                          ),
-                          child: const Text(
-                            "NEW",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 9,
-                              fontWeight: FontWeight.bold,
-                              letterSpacing: 1,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ],
+                  Icon(icon, size: 36, color: Colors.white.withValues(alpha: 0.9)),
+                  const SizedBox(height: 12),
+                  Text(
+                    title,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      height: 1.1,
+                    ),
                   ),
                   const SizedBox(height: 4),
                   Text(
                     subtitle,
-                    style: theme.textTheme.bodySmall?.copyWith(
-                      color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
-                      height: 1.2,
+                    style: TextStyle(
+                      color: Colors.white.withValues(alpha: 0.75),
+                      fontSize: 12,
                     ),
                   ),
                 ],
               ),
-            ),
-            Icon(
-              Icons.chevron_right,
-              color: theme.colorScheme.onSurface.withValues(alpha: 0.2),
             ),
           ],
         ),

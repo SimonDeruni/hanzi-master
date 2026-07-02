@@ -11,6 +11,7 @@ import 'package:hanzi_master/features/flashcards/presentation/providers/settings
 import 'package:hanzi_master/features/flashcards/presentation/screens/main_navigation_screen.dart';
 import 'package:hanzi_master/features/live_translate/domain/entities/translation_session.dart';
 import 'package:hanzi_master/features/media/domain/models/saved_article.dart';
+import 'package:hanzi_master/core/services/local_translation_service.dart';
 
 import 'package:hanzi_master/core/providers.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
@@ -54,6 +55,8 @@ void main() async {
   Hive.registerAdapter(TranslationMessageAdapter());
   Hive.registerAdapter(TranslationSessionAdapter());
   Hive.registerAdapter(SavedArticleAdapter());
+  
+  await LocalTranslationService.init();
 
   // --- SECURITY: Hive Encryption ---
   // Key stored in SharedPreferences (NSUserDefaults on iOS) instead of Keychain.

@@ -39,13 +39,26 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
 
   Timer? _loadingTimer;
   int _loadingStep = 0;
-  final List<String> _loadingMessages = [
-    "Drafting story outline...",
-    "Selecting HSK vocabulary...",
-    "Refining grammar...",
-    "Translating and adding Pinyin...",
-    "Finalizing story details..."
-  ];
+  List<String> get _loadingMessages {
+    if (widget.blueprint.id.startsWith('local_') || 
+        widget.blueprint.id.startsWith('tang_poetry_') || 
+        widget.blueprint.id.startsWith('mandarin_bean_')) {
+      return [
+        "Unrolling the scroll...",
+        "Analyzing classical characters...",
+        "Loading translations...",
+        "Preparing reading interface...",
+        "Finalizing details..."
+      ];
+    }
+    return [
+      "Drafting story outline...",
+      "Selecting HSK vocabulary...",
+      "Refining grammar...",
+      "Translating and adding Pinyin...",
+      "Finalizing story details..."
+    ];
+  }
 
   @override
   void initState() {
@@ -62,10 +75,12 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
       if (mounted) {
         if (widget.blueprint.id.startsWith('custom_') && ref.read(storyControllerProvider).currentStory == null) {
           _startStreamingStory();
-        } else if (widget.blueprint.id.startsWith('assets/')) {
-          ref.read(storyControllerProvider.notifier).fetchAndParseAssetStory(widget.blueprint, widget.hskLevel);
-        } else {
+        } else if (widget.blueprint.id.startsWith('custom_')) {
           ref.read(storyControllerProvider.notifier).loadOrGenerateStory(widget.blueprint, widget.hskLevel);
+        } else if (widget.blueprint.id.startsWith('local_') || widget.blueprint.id.startsWith('tang_poetry_') || widget.blueprint.id.startsWith('http')) {
+          ref.read(storyControllerProvider.notifier).fetchAndParseLocalStory(widget.blueprint, widget.hskLevel);
+        } else {
+          ref.read(storyControllerProvider.notifier).fetchAndParseFirebaseStory(widget.blueprint, widget.hskLevel);
         }
       }
     });
@@ -347,7 +362,7 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "Paragraph ${_currentPage + 1} of ${state.currentStory!.sentences.length}",
+                            "Paragraph ${_currentPage + 1} of ${((state.currentStory!.sentences.length - 1) ~/ 3) + 1}",
                             style: TextStyle(
                               fontSize: 12,
                               fontWeight: FontWeight.bold,
@@ -355,7 +370,7 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
                             ),
                           ),
                           Text(
-                            "${((_currentPage + 1) / state.currentStory!.sentences.length * 100).toInt()}%",
+                            "${((_currentPage + 1) / (((state.currentStory!.sentences.length - 1) ~/ 3) + 1) * 100).toInt()}%",
                             style: TextStyle(
                               fontSize: 12,
                               fontWeight: FontWeight.bold,
@@ -368,7 +383,7 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
                       ClipRRect(
                         borderRadius: BorderRadius.circular(4),
                         child: LinearProgressIndicator(
-                          value: state.currentStory!.sentences.isEmpty ? 0 : (_currentPage + 1) / state.currentStory!.sentences.length,
+                          value: state.currentStory!.sentences.isEmpty ? 0 : (_currentPage + 1) / (((state.currentStory!.sentences.length - 1) ~/ 3) + 1),
                           backgroundColor: isDark ? Colors.white12 : Colors.black12,
                           color: Colors.indigo,
                           minHeight: 6,
@@ -412,7 +427,10 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
                         ),
                       ),
                       const SizedBox(height: 8),
-                      Text("HSK ${widget.hskLevel} vocabulary", style: const TextStyle(fontWeight: FontWeight.bold)),
+                      if (!widget.blueprint.id.startsWith('local_') && 
+                          !widget.blueprint.id.startsWith('tang_poetry_') && 
+                          !widget.blueprint.id.startsWith('mandarin_bean_'))
+                        Text("HSK ${widget.hskLevel} vocabulary", style: const TextStyle(fontWeight: FontWeight.bold)),
                     ],
                   ),
                 )
@@ -429,12 +447,14 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
                             const SizedBox(height: 24),
                             ElevatedButton(
                               onPressed: () {
-                                if (widget.blueprint.id.startsWith('custom_')) {
+                                if (widget.blueprint.id.startsWith('custom_') && ref.read(storyControllerProvider).currentStory == null) {
                                   _startStreamingStory();
-                                } else if (widget.blueprint.id.startsWith('assets/')) {
-                                  ref.read(storyControllerProvider.notifier).fetchAndParseAssetStory(widget.blueprint, widget.hskLevel);
-                                } else {
+                                } else if (widget.blueprint.id.startsWith('custom_')) {
                                   ref.read(storyControllerProvider.notifier).loadOrGenerateStory(widget.blueprint, widget.hskLevel);
+                                } else if (widget.blueprint.id.startsWith('local_') || widget.blueprint.id.startsWith('tang_poetry_') || widget.blueprint.id.startsWith('http')) {
+                                  ref.read(storyControllerProvider.notifier).fetchAndParseLocalStory(widget.blueprint, widget.hskLevel);
+                                } else {
+                                  ref.read(storyControllerProvider.notifier).fetchAndParseFirebaseStory(widget.blueprint, widget.hskLevel);
                                 }
                               },
                               child: Text(AppLocalizations.of(context)!.tryAgain),
@@ -453,15 +473,19 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
                             });
                             HapticsManager.light();
                           },
-                          itemCount: state.currentStory!.sentences.length,
-                          itemBuilder: (context, index) {
-                            var sentence = state.currentStory!.sentences[index];
+                          itemCount: ((state.currentStory!.sentences.length - 1) ~/ 3) + 1,
+                          itemBuilder: (context, pageIndex) {
+                            const sentencesPerPage = 3;
+                            final startIdx = pageIndex * sentencesPerPage;
+                            final endIdx = (startIdx + sentencesPerPage).clamp(0, state.currentStory!.sentences.length);
+                            final pageSentences = state.currentStory!.sentences.sublist(startIdx, endIdx);
+
                             return SingleChildScrollView(
                               padding: const EdgeInsets.all(24.0),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
                                 children: [
-                                  if (index == 0) ...[
+                                  if (pageIndex == 0) ...[
                                     // Thematic Cover Art on the first page
                                     Container(
                                       height: 200,
@@ -514,8 +538,8 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
                                       ),
                                     ),
                                   ],
-                                  
-                                  // Paragraph Card
+
+                                  // Card containing all sentences for this page
                                   Container(
                                     padding: const EdgeInsets.all(24.0),
                                     decoration: BoxDecoration(
@@ -533,95 +557,107 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
                                     child: Column(
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
-                                        Row(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            Expanded(
-                                              child: Wrap(
-                                                spacing: 8.0,
-                                                runSpacing: 16.0,
-                                                children: sentence.words.map((word) {
-                                                  final isPunctuation = RegExp(r'[^\w\s\u4e00-\u9fa5]', unicode: true).hasMatch(word.hanzi) || word.hanzi.trim().isEmpty;
-                                                  
-                                                  if (isPunctuation) {
-                                                    return Padding(
-                                                      padding: const EdgeInsets.only(top: 8.0),
+                                        for (int si = 0; si < pageSentences.length; si++) ...[
+                                          if (si > 0) const Divider(height: 32),
+                                          Builder(builder: (context) {
+                                            final sentence = pageSentences[si];
+                                            final globalIndex = startIdx + si;
+                                            return Column(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Row(
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                  children: [
+                                                    Expanded(
+                                                      child: Wrap(
+                                                        spacing: 8.0,
+                                                        runSpacing: 16.0,
+                                                        children: sentence.words.map((word) {
+                                                          final isPunctuation = RegExp(r'[^\w\s\u4e00-\u9fa5]', unicode: true).hasMatch(word.hanzi) || word.hanzi.trim().isEmpty;
+
+                                                          if (isPunctuation) {
+                                                            return Padding(
+                                                              padding: const EdgeInsets.only(top: 8.0),
+                                                              child: Text(
+                                                                word.hanzi,
+                                                                style: TextStyle(
+                                                                  fontFamily: 'NotoSerifSC',
+                                                                  fontSize: 26,
+                                                                  color: isDark ? Colors.white70 : Colors.black87,
+                                                                ),
+                                                              ),
+                                                            );
+                                                          }
+
+                                                          bool shouldShowPinyin = (_pinyinMode == PinyinMode.all);
+
+                                                          return GestureDetector(
+                                                            onTap: () => WordDetailDialog.show(context, word, sentence),
+                                                            child: Column(
+                                                              mainAxisSize: MainAxisSize.min,
+                                                              children: [
+                                                                Text(
+                                                                  word.hanzi,
+                                                                  style: TextStyle(
+                                                                    fontFamily: 'NotoSerifSC',
+                                                                    fontSize: 28,
+                                                                    fontWeight: dueWords.contains(word.hanzi) ? FontWeight.bold : FontWeight.w600,
+                                                                    color: dueWords.contains(word.hanzi)
+                                                                        ? const Color(0xFFD4AF37)
+                                                                        : (isDark ? Colors.white : Colors.black87),
+                                                                  ),
+                                                                ),
+                                                                if (shouldShowPinyin)
+                                                                  Text(
+                                                                    word.pinyin,
+                                                                    style: const TextStyle(
+                                                                      fontSize: 12,
+                                                                      color: Colors.blueAccent,
+                                                                    ),
+                                                                  ),
+                                                              ],
+                                                            ),
+                                                          );
+                                                        }).toList(),
+                                                      ),
+                                                    ),
+                                                    IconButton(
+                                                      icon: const Icon(Icons.language, color: Colors.grey),
+                                                      onPressed: () {
+                                                        setState(() {
+                                                          if (_translatedSentences.contains(globalIndex)) {
+                                                            _translatedSentences.remove(globalIndex);
+                                                          } else {
+                                                            _translatedSentences.add(globalIndex);
+                                                          }
+                                                        });
+                                                      },
+                                                    ),
+                                                  ],
+                                                ),
+                                                if (_translatedSentences.contains(globalIndex))
+                                                  Padding(
+                                                    padding: const EdgeInsets.only(top: 12.0),
+                                                    child: Container(
+                                                      padding: const EdgeInsets.all(12),
+                                                      decoration: BoxDecoration(
+                                                        color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.black.withValues(alpha: 0.02),
+                                                        borderRadius: BorderRadius.circular(12),
+                                                      ),
                                                       child: Text(
-                                                        word.hanzi,
+                                                        sentence.english,
                                                         style: TextStyle(
-                                                          fontFamily: 'NotoSerifSC',
-                                                          fontSize: 26,
+                                                          fontSize: 15,
                                                           color: isDark ? Colors.white70 : Colors.black87,
+                                                          fontStyle: FontStyle.italic,
                                                         ),
                                                       ),
-                                                    );
-                                                  }
-
-                                                  bool shouldShowPinyin = (_pinyinMode == PinyinMode.all);
-
-                                                  return GestureDetector(
-                                                    onTap: () => WordDetailDialog.show(context, word, sentence),
-                                                    child: Column(
-                                                      mainAxisSize: MainAxisSize.min,
-                                                      children: [
-                                                        Text(
-                                                          word.hanzi,
-                                                          style: TextStyle(
-                                                            fontFamily: 'NotoSerifSC',
-                                                            fontSize: 28,
-                                                            fontWeight: dueWords.contains(word.hanzi) ? FontWeight.bold : FontWeight.w600,
-                                                            color: dueWords.contains(word.hanzi) 
-                                                                ? const Color(0xFFD4AF37) // Gold accent
-                                                                : (isDark ? Colors.white : Colors.black87),
-                                                          ),
-                                                        ),
-                                                        if (shouldShowPinyin)
-                                                          Text(
-                                                            word.pinyin,
-                                                            style: const TextStyle(
-                                                              fontSize: 12,
-                                                              color: Colors.blueAccent,
-                                                            ),
-                                                          ),
-                                                      ],
                                                     ),
-                                                  );
-                                                }).toList(),
-                                              ),
-                                            ),
-                                            IconButton(
-                                              icon: const Icon(Icons.language, color: Colors.grey),
-                                              onPressed: () {
-                                                setState(() {
-                                                  if (_translatedSentences.contains(index)) {
-                                                    _translatedSentences.remove(index);
-                                                  } else {
-                                                    _translatedSentences.add(index);
-                                                  }
-                                                });
-                                              },
-                                            ),
-                                          ],
-                                        ),
-                                        if (_translatedSentences.contains(index))
-                                          Padding(
-                                            padding: const EdgeInsets.only(top: 16.0),
-                                            child: Container(
-                                              padding: const EdgeInsets.all(16),
-                                              decoration: BoxDecoration(
-                                                color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.black.withValues(alpha: 0.02),
-                                                borderRadius: BorderRadius.circular(12),
-                                              ),
-                                              child: Text(
-                                                sentence.english,
-                                                style: TextStyle(
-                                                  fontSize: 16,
-                                                  color: isDark ? Colors.white70 : Colors.black87,
-                                                  fontStyle: FontStyle.italic,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
+                                                  ),
+                                              ],
+                                            );
+                                          }),
+                                        ],
                                       ],
                                     ),
                                   ),

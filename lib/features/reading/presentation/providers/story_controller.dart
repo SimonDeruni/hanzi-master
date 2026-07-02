@@ -1,4 +1,6 @@
+import 'dart:convert';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:hive/hive.dart';
 import '../../domain/entities/graded_story.dart';
 import '../../../../core/services/gemini_service.dart';
@@ -29,13 +31,15 @@ class StoryState {
   StoryState copyWith({
     bool? isLoading,
     String? error,
+    bool clearError = false,
     GradedStory? currentStory,
+    bool clearCurrentStory = false,
     List<StoryBlueprint>? blueprints,
   }) {
     return StoryState(
       isLoading: isLoading ?? this.isLoading,
-      error: error,
-      currentStory: currentStory ?? this.currentStory,
+      error: clearError ? null : (error ?? this.error),
+      currentStory: clearCurrentStory ? null : (currentStory ?? this.currentStory),
       blueprints: blueprints ?? this.blueprints,
     );
   }
@@ -230,7 +234,7 @@ class StoryController extends StateNotifier<StoryState> {
   ];
 
   Future<void> loadOrGenerateStory(StoryBlueprint blueprint, int hskLevel) async {
-    state = state.copyWith(isLoading: true, error: null, currentStory: null);
+    state = state.copyWith(isLoading: true, clearError: true, clearCurrentStory: true);
     
     try {
       final storyId = '${blueprint.id}_hsk$hskLevel';
@@ -259,12 +263,12 @@ class StoryController extends StateNotifier<StoryState> {
 
       state = state.copyWith(isLoading: false, currentStory: newStory);
     } catch (e) {
-      state = state.copyWith(isLoading: false, error: e.toString(), currentStory: null);
+      state = state.copyWith(isLoading: false, error: e.toString(), clearCurrentStory: true);
     }
   }
 
-  Future<void> fetchAndParseAssetStory(StoryBlueprint blueprint, int hskLevel) async {
-    state = state.copyWith(isLoading: true, error: null, currentStory: null);
+  Future<void> fetchAndParseFirebaseStory(StoryBlueprint blueprint, int hskLevel) async {
+    state = state.copyWith(isLoading: true, clearError: true, clearCurrentStory: true);
     
     try {
       final storyId = '${blueprint.id}_hsk$hskLevel';
@@ -276,8 +280,15 @@ class StoryController extends StateNotifier<StoryState> {
         return;
       }
 
-      // 2. Fetch raw text from local asset bundle
-      final rawText = await rootBundle.loadString(blueprint.id);
+      // 2. Fetch raw text from Firestore
+      final doc = await FirebaseFirestore.instance.collection('stories').doc(blueprint.id).get();
+      if (!doc.exists) {
+        throw Exception("Story not found in database");
+      }
+      final rawText = doc.data()?['rawText'] as String? ?? '';
+      if (rawText.isEmpty) {
+        throw Exception("Story text is empty");
+      }
 
       // 3. Parse with Gemini
       final aiStory = await geminiService.parseRawStoryToAiStory(rawText, hskLevel);
@@ -296,7 +307,79 @@ class StoryController extends StateNotifier<StoryState> {
 
       state = state.copyWith(isLoading: false, currentStory: newStory);
     } catch (e) {
-      state = state.copyWith(isLoading: false, error: e.toString(), currentStory: null);
+      state = state.copyWith(isLoading: false, error: e.toString(), clearCurrentStory: true);
+    }
+  }
+
+  Future<void> fetchAndParseLocalStory(StoryBlueprint blueprint, int hskLevel) async {
+    state = state.copyWith(isLoading: true, clearError: true, clearCurrentStory: true);
+    
+    try {
+      final storyId = '${blueprint.id}_hsk$hskLevel';
+      
+      // 1. Check Cache
+      final cachedStory = await repository.getStory(storyId);
+      if (cachedStory != null) {
+        state = state.copyWith(isLoading: false, currentStory: cachedStory);
+        return;
+      }
+
+      // 2. Fetch raw text from local JSON
+      String rawText = '';
+      String rawTextEn = '';
+      if (blueprint.id.startsWith('tang_poetry_')) {
+        try {
+          final jsonString = await rootBundle.loadString('assets/data/tang_poetry_en.json');
+          final List<dynamic> data = json.decode(jsonString);
+          final match = data.firstWhere((d) => (d['link'] ?? 'tang_poetry_${d['title']}') == blueprint.id, orElse: () => null);
+          if (match != null) {
+            rawText = match['rawText'] ?? '';
+            rawTextEn = match['rawText_en'] ?? '';
+          }
+        } catch (_) {}
+      } else {
+        // First try the translated file
+        final String prefix = (blueprint.id.startsWith('mandarin_bean_') || blueprint.id.contains('mandarinbean.com')) ? 'mandarin_bean_stories' : '1000_stories';
+        try {
+          final jsonString = await rootBundle.loadString('assets/data/${prefix}_en.json');
+          final List<dynamic> data = json.decode(jsonString);
+          final match = data.firstWhere((d) => (d['link'] ?? 'local_story_${d['title']}') == blueprint.id, orElse: () => null);
+          if (match != null) {
+            rawText = match['rawText'] ?? '';
+            rawTextEn = match['rawText_en'] ?? '';
+          }
+        } catch (_) {}
+        // Fallback to original if not found
+        if (rawText.isEmpty) {
+          final jsonString = await rootBundle.loadString('assets/data/$prefix.json');
+          final List<dynamic> data = json.decode(jsonString);
+          final match = data.firstWhere((d) => (d['link'] ?? 'local_story_${d['title']}') == blueprint.id, orElse: () => null);
+          if (match != null) {
+            rawText = match['rawText'] ?? '';
+          }
+        }
+      }
+
+      if (rawText.isEmpty) throw Exception("Story text is empty");
+
+      // 3. Parse with Gemini
+      final aiStory = await geminiService.parseRawStoryToAiStory(rawText, hskLevel, englishTranslation: rawTextEn);
+      
+      final newStory = GradedStory(
+        id: storyId,
+        title: blueprint.title,
+        category: blueprint.category,
+        hskLevel: hskLevel,
+        sentences: aiStory.sentences,
+        generatedAt: DateTime.now(),
+      );
+
+      // 4. Save to cache
+      await repository.saveStory(newStory);
+
+      state = state.copyWith(isLoading: false, currentStory: newStory);
+    } catch (e) {
+      state = state.copyWith(isLoading: false, error: e.toString(), clearCurrentStory: true);
     }
   }
 
@@ -323,7 +406,7 @@ class StoryController extends StateNotifier<StoryState> {
 
   Future<void> parseAndSaveCustomStory(StoryBlueprint blueprint, String rawChineseText, int hskLevel) async {
     try {
-      state = state.copyWith(isLoading: true, error: null);
+      state = state.copyWith(isLoading: true, clearError: true);
       
       final aiStory = await geminiService.parseRawStoryToAiStory(rawChineseText, hskLevel);
       
@@ -360,8 +443,8 @@ class StoryController extends StateNotifier<StoryState> {
     state = state.copyWith(
       blueprints: [...state.blueprints, blueprint],
       isLoading: true,
-      error: null,
-      currentStory: null,
+      clearError: true,
+      clearCurrentStory: true,
     );
 
     // Fire and forget the generation
@@ -379,7 +462,7 @@ class StoryController extends StateNotifier<StoryState> {
     
     state = state.copyWith(
       blueprints: updatedBlueprints,
-      currentStory: isCurrent ? null : state.currentStory,
+      clearCurrentStory: isCurrent,
     );
 
     // 2. Remove from repository
@@ -406,7 +489,7 @@ class StoryController extends StateNotifier<StoryState> {
 
       state = state.copyWith(isLoading: false, currentStory: newStory);
     } catch (e) {
-      state = state.copyWith(isLoading: false, error: e.toString(), currentStory: null);
+      state = state.copyWith(isLoading: false, error: e.toString(), clearCurrentStory: true);
     }
   }
 

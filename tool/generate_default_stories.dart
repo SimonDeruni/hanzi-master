@@ -170,9 +170,81 @@ const List<StoryBlueprint> defaultBlueprints = [
     imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Grosser_Panda.JPG/800px-Grosser_Panda.JPG',
     tags: ['animals', 'nature', 'culture', 'cute'],
   ),
+  StoryBlueprint(
+    id: 'tech_hsr', 
+    title: 'High-Speed Rail', 
+    topic: 'The incredible network of high-speed trains in China', 
+    category: 'Tech & Science',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/CR400AF-A-2042_%40_BJN_%2820180721151610%29.jpg/800px-CR400AF-A-2042_%40_BJN_%2820180721151610%29.jpg',
+    tags: ['transportation', 'tech', 'travel', 'modern'],
+  ),
+  StoryBlueprint(
+    id: 'biz_ecommerce', 
+    title: 'E-Commerce Boom', 
+    topic: 'Online shopping, Taobao, and the delivery network', 
+    category: 'Business & Economy',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Alibaba_Group_logo.svg/800px-Alibaba_Group_logo.svg.png',
+    tags: ['business', 'shopping', 'internet', 'economy'],
+  ),
+  StoryBlueprint(
+    id: 'culture_cny', 
+    title: 'Chinese New Year', 
+    topic: 'Traditions, red envelopes, and family reunions during the Spring Festival', 
+    category: 'Culture & Traditions',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Chinese_New_Year_decorations_in_Hong_Kong.jpg/800px-Chinese_New_Year_decorations_in_Hong_Kong.jpg',
+    tags: ['festival', 'family', 'tradition', 'holiday'],
+  ),
+  StoryBlueprint(
+    id: 'culture_kungfu', 
+    title: 'Martial Arts', 
+    topic: 'The philosophy and practice of Chinese Kung Fu and Tai Chi', 
+    category: 'Culture & Traditions',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Taijiquan_in_the_park.jpg/800px-Taijiquan_in_the_park.jpg',
+    tags: ['sports', 'health', 'culture', 'martial arts'],
+  ),
+  StoryBlueprint(
+    id: 'hist_silkroad', 
+    title: 'The Silk Road', 
+    topic: 'The ancient trade routes that connected China with the West', 
+    category: 'History',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Silk_route.jpg/800px-Silk_route.jpg',
+    tags: ['history', 'trade', 'geography', 'ancient'],
+  ),
+  StoryBlueprint(
+    id: 'contemp_smartphone', 
+    title: 'Smartphone Life', 
+    topic: 'How smartphones have changed daily life in modern cities', 
+    category: 'Contemporary Stories',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/People_using_smartphones_in_subway.jpg/800px-People_using_smartphones_in_subway.jpg',
+    tags: ['technology', 'modern', 'society', 'internet'],
+  ),
+  StoryBlueprint(
+    id: 'tech_mobilepay', 
+    title: 'Mobile Payments', 
+    topic: 'The rise of WeChat Pay and Alipay creating a cashless society', 
+    category: 'Tech & Science',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/WeChat_Pay_and_Alipay.jpg/800px-WeChat_Pay_and_Alipay.jpg',
+    tags: ['money', 'tech', 'convenience', 'business'],
+  ),
+  StoryBlueprint(
+    id: 'contemp_gaokao', 
+    title: 'The Gaokao Exam', 
+    topic: 'The pressure and preparation for China\'s national college entrance exam', 
+    category: 'Contemporary Stories',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Gaokao_candidates_in_China.jpg/800px-Gaokao_candidates_in_China.jpg',
+    tags: ['education', 'school', 'youth', 'society'],
+  ),
+  StoryBlueprint(
+    id: 'art_cinema', 
+    title: 'Modern Cinema', 
+    topic: 'The evolution of the Chinese film industry and going to the movies', 
+    category: 'Arts & Traditions',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Cinema_seating.jpg/800px-Cinema_seating.jpg',
+    tags: ['movies', 'entertainment', 'art', 'culture'],
+  ),
 ];
 
-Future<Map<String, dynamic>> _callDeepSeek(String topic, String category, int hskLevel, String apiKey) async {
+Future<Map<String, dynamic>> _callGemini(String topic, String category, int hskLevel, String apiKey) async {
   final prompt = '''
 You are a professional Chinese language professor creating Graded Readers.
 Write an engaging, culturally accurate story or article about "$topic" (Category: $category).
@@ -198,96 +270,93 @@ Respond ONLY in valid JSON format with this exact structure:
 Make sure every single character in the 'chinese' sentence is represented in the 'words' array in order! If a word is multiple characters, group them into one object.
 ''';
 
-  final response = await http.post(
-    Uri.parse('https://openrouter.ai/api/v1/chat/completions'),
-    headers: {
-      'Authorization': 'Bearer $apiKey',
-      'Content-Type': 'application/json',
-    },
-    body: jsonEncode({
-      'model': 'deepseek/deepseek-chat',
-      'messages': [
-        {'role': 'user', 'content': prompt}
-      ],
-      'response_format': {'type': 'json_object'}
-    }),
-  );
+  final url = Uri.parse('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=$apiKey');
+  
+  for (int attempt = 1; attempt <= 3; attempt++) {
+    try {
+      final response = await http.post(
+        url,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: jsonEncode({
+          'contents': [
+            {
+              'parts': [
+                {'text': prompt}
+              ]
+            }
+          ],
+          'generationConfig': {
+             'responseMimeType': 'application/json',
+          }
+        }),
+      ).timeout(const Duration(seconds: 120));
 
-  if (response.statusCode == 200) {
-    final data = jsonDecode(response.body);
-    final text = data['choices'][0]['message']['content'] as String;
-    final cleanText = text.replaceAll(RegExp(r'^```json\n', multiLine: true), '')
-                          .replaceAll(RegExp(r'^```\n?', multiLine: true), '');
-    return jsonDecode(cleanText);
-  } else {
-    throw Exception("Failed to call API: ${response.body}");
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        final contentStr = data['candidates'][0]['content']['parts'][0]['text'] as String;
+        String rawJson = contentStr.trim();
+        if (rawJson.startsWith('```json')) {
+          rawJson = rawJson.substring(7);
+        }
+        if (rawJson.startsWith('```')) {
+          rawJson = rawJson.substring(3);
+        }
+        if (rawJson.endsWith('```')) {
+          rawJson = rawJson.substring(0, rawJson.length - 3);
+        }
+        return jsonDecode(rawJson) as Map<String, dynamic>;
+      } else {
+        throw Exception('Failed to call API: ${response.body}');
+      }
+    } catch (e) {
+      if (attempt == 3) rethrow;
+      print('Retrying after error: $e');
+      await Future.delayed(Duration(seconds: 5 * attempt));
+    }
   }
+  throw Exception('Max retries reached');
 }
 
 void main() async {
-  // Try to find the API key from environment or local .env
-  final apiKey = Platform.environment['OPENROUTER_API_KEY'] ?? 'YOUR_OPENROUTER_KEY';
-  if (apiKey.isEmpty) {
-    print('Please provide an OPENROUTER_API_KEY environment variable.');
+  final apiKey = Platform.environment['GEMINI_API_KEY'] ?? 'YOUR_GEMINI_KEY';
+  if (apiKey.isEmpty || apiKey == 'YOUR_GEMINI_KEY') {
+    print('Please provide a GEMINI_API_KEY environment variable.');
     exit(1);
   }
 
   final Map<String, dynamic> db = {};
 
-  int count = 0;
-  final total = defaultBlueprints.length * 6;
-
   for (final blueprint in defaultBlueprints) {
     for (int hskLevel = 1; hskLevel <= 6; hskLevel++) {
       final storyId = '${blueprint.id}_hsk$hskLevel';
-      count++;
-      print('Generating $storyId ($count/$total)...');
+      print('Generating $storyId...');
+      
       try {
-        final result = await _callDeepSeek(blueprint.topic, blueprint.category, hskLevel, apiKey);
+        final result = await _callGemini(blueprint.topic, blueprint.category, hskLevel, apiKey);
         
         final newStoryJson = {
           'id': storyId,
           'title': blueprint.title,
           'category': blueprint.category,
           'hskLevel': hskLevel,
-          'sentences': result['sentences'] ?? [],
+          'imageUrl': blueprint.imageUrl,
+          'sentences': result['sentences'],
           'generatedAt': DateTime.now().toIso8601String(),
         };
-
-        db[storyId] = jsonEncode(newStoryJson);
         
-        // Small delay to prevent rate limits
-        await Future.delayed(const Duration(milliseconds: 500));
+        db[storyId] = newStoryJson;
+        print('Successfully generated $storyId');
+        await Future.delayed(const Duration(seconds: 1));
       } catch (e) {
         print('Error generating $storyId: $e');
-        // Wait and retry once
-        await Future.delayed(const Duration(seconds: 2));
-        try {
-           final result = await _callDeepSeek(blueprint.topic, blueprint.category, hskLevel, apiKey);
-           final newStoryJson = {
-              'id': storyId,
-              'title': blueprint.title,
-              'category': blueprint.category,
-              'hskLevel': hskLevel,
-              'content': result['content'] ?? '',
-              'englishTranslation': result['englishTranslation'] ?? '',
-              'generatedAt': DateTime.now().toIso8601String(),
-            };
-            db[storyId] = jsonEncode(newStoryJson);
-        } catch (e2) {
-            print('Failed again on $storyId');
-        }
       }
     }
   }
 
-  // Ensure assets dir exists
-  final dir = Directory('assets');
-  if (!await dir.exists()) {
-    await dir.create();
-  }
-
-  final file = File('assets/default_stories.json');
-  await file.writeAsString(jsonEncode(db));
-  print('Successfully saved $count stories to assets/default_stories.json');
+  final outFile = File('assets/data/150_graded_readers.json');
+  final encoder = JsonEncoder.withIndent('  ');
+  outFile.writeAsStringSync(encoder.convert(db));
+  print('Saved ${db.length} stories to assets/data/150_graded_readers.json');
 }

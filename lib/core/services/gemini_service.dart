@@ -683,11 +683,15 @@ Make sure every single character in the 'chinese' sentence is represented in the
     }
   }
 
-  Future<AiStory> parseRawStoryToAiStory(String rawChineseText, int hskLevel) async {
+  Future<AiStory> parseRawStoryToAiStory(String rawChineseText, int hskLevel, {String? englishTranslation}) async {
+    String englishInstruction = englishTranslation != null && englishTranslation.isNotEmpty
+        ? 'Here is the English translation for the story:\n"$englishTranslation"\n\nCRITICAL: You MUST use this provided translation to guide your sentence-by-sentence translation. Match your sentence translations to this provided meaning.'
+        : 'CRITICAL: Put the English translation in the "english" JSON key!';
+
     final prompt = '''
 I have the following Chinese story. Parse it into an array of sentences, each broken down into words, with pinyin and English definitions.
 Ensure that the vocabulary targets HSK level $hskLevel as a guideline for meanings.
-CRITICAL: Put the English translation in the "english" JSON key!
+$englishInstruction
 
 Story:
 $rawChineseText
