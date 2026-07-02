@@ -42,6 +42,7 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
   static const _syncInterval = Duration(milliseconds: 250);
 
   bool _isFullscreen = false;
+  bool _wasMutedForAutoplay = true;
 
   List<Map<String, dynamic>> _culturalMemes = [];
   bool _isHskSimplified = false;
@@ -60,7 +61,7 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
       autoPlay: true, // Try to autoplay to bypass the initial white play button
       params: const YoutubePlayerParams(
         showControls: false, // Disables native YouTube HTML controls
-        mute: false,
+        mute: true, // Required to bypass mobile autoplay blockers
         showFullscreenButton: false,
         loop: false,
         color: 'white',
@@ -147,6 +148,11 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
 
   void _startSyncEngine() {
     _positionSubscription = _playerController.videoStateStream.listen((state) {
+      if (_playerController.value.playerState == PlayerState.playing && _wasMutedForAutoplay) {
+        _playerController.unMute();
+        _wasMutedForAutoplay = false;
+      }
+      
       if (_transcript == null) return;
       final now = DateTime.now();
       if (now.difference(_lastSyncUpdate) < _syncInterval) return;
@@ -392,14 +398,22 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
                 }
               });
 
-              return YoutubePlayer(
-                controller: _playerController,
-                aspectRatio: 16 / 9,
-                // CRITICAL: We MUST use controlsBuilder to render UI on top of the iframe.
-                // Sibling Positioned widgets get swallowed by the Android WebView Z-index.
-                controlsBuilder: (context, isFullscreenState) {
-                  // If not fullscreen, just show the transparent Play/Pause layer + Fullscreen button
-                  if (!isFullscreenState) {
+              return ClipRect(
+                child: Transform.scale(
+                  scale: 1.05,
+                  child: YoutubePlayer(
+                    controller: _playerController,
+                    aspectRatio: 16 / 9,
+                    // CRITICAL: We MUST use controlsBuilder to render UI on top of the iframe.
+                    // Sibling Positioned widgets get swallowed by the Android WebView Z-index.
+                    controlsBuilder: (context, isFullscreenState) {
+                      // Apply counter-scale so our controls don't get stretched/clipped
+                      return Transform.scale(
+                        scale: 1 / 1.05,
+                        child: Builder(
+                          builder: (context) {
+                            // If not fullscreen, just show the transparent Play/Pause layer + Fullscreen button
+                            if (!isFullscreenState) {
                     return Stack(
                       children: [
                         // BLOCK TOUCHES TO YOUTUBE NATIVE CONTROLS
@@ -457,7 +471,12 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
                     videoTitle: widget.video.title,
                     onExitFullscreen: _exitFullscreen,
                   );
-                },
+                          },
+                        ),
+                      );
+                    },
+                  ),
+                ),
               );
             },
           ),
