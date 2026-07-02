@@ -79,16 +79,26 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
                 builder: (context, scale, child) {
                   return Transform.scale(
                     scale: scale,
-                    child: Image.asset(
-                      widget.scenario.avatarAssetPath,
-                      fit: BoxFit.cover,
-                      errorBuilder: (context, error, stackTrace) => Container(
-                         color: theme.colorScheme.primary.withValues(alpha: 0.1),
-                         child: Center(
-                           child: Icon(Icons.person, size: 100, color: theme.colorScheme.primary),
-                         ),
-                      ),
-                    ),
+                    child: (widget.scenario.avatarAssetPath == 'none' || widget.scenario.avatarAssetPath.isEmpty)
+                      ? Container(
+                          color: theme.colorScheme.primary,
+                          child: Center(
+                            child: Text(
+                              widget.scenario.personaName.isNotEmpty ? widget.scenario.personaName[0].toUpperCase() : '?',
+                              style: const TextStyle(color: Colors.white, fontSize: 100, fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        )
+                      : Image.asset(
+                          widget.scenario.avatarAssetPath,
+                          fit: BoxFit.cover,
+                          errorBuilder: (context, error, stackTrace) => Container(
+                            color: theme.colorScheme.primary.withValues(alpha: 0.1),
+                            child: Center(
+                              child: Icon(Icons.person, size: 100, color: theme.colorScheme.primary),
+                            ),
+                          ),
+                        ),
                   );
                 },
               ),

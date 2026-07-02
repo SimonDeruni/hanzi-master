@@ -300,7 +300,7 @@ class _ScenarioSelectionScreenState extends ConsumerState<ScenarioSelectionScree
       final prompt = '''
 Create a Chinese roleplay scenario for a user practicing these words: $words.
 IMPORTANT: The title, description, personaName, and quests MUST be written in English. The initialAiMessage MUST be written in Chinese.
-You must also pick the MOST SUITABLE avatar for this persona from this exact list: $avatarsList.
+You must also pick the MOST SUITABLE avatar for this persona from this exact list: $avatarsList. If NONE of them make sense for the persona (e.g. it's an alien or a pirate), you MUST return the exact string "none" for avatarAssetPath.
 
 Respond ONLY with a JSON object containing:
 {
@@ -309,18 +309,17 @@ Respond ONLY with a JSON object containing:
   "systemPrompt": "System prompt for the AI persona. They should organically steer the conversation so the user can use the vocabulary.",
   "initialAiMessage": "The first message the AI says (in Chinese)",
   "personaName": "Name of the persona (in English or Pinyin)",
-  "avatarAssetPath": "The exact path of the most suitable avatar from the list provided",
+  "avatarAssetPath": "The exact path of the most suitable avatar from the list provided, or 'none'",
   "quests": ["Quest 1 (in English)", "Quest 2 (in English)", "Quest 3 (in English)"]
 }
 ''';
       final response = await ref.read(geminiServiceProvider).generateText(prompt);
       final Map<String, dynamic> data = _parseJsonOrFallback(response);
       
-      final selectedAvatar = data['avatarAssetPath'] as String? ?? (avatars..shuffle()).first;
-      if (!avatars.contains(selectedAvatar)) {
-        avatars.shuffle();
-      }
-      final validAvatar = avatars.contains(selectedAvatar) ? selectedAvatar : avatars.first;
+      final selectedAvatar = data['avatarAssetPath'] as String? ?? 'none';
+      final validAvatar = (selectedAvatar == 'none' || avatars.contains(selectedAvatar)) 
+          ? selectedAvatar 
+          : 'none';
       
       if (!mounted) return;
       Navigator.pop(context); // Close loading
@@ -496,11 +495,21 @@ class _ScenarioGlassCard extends StatelessWidget {
                     // Avatar Badge
                     Column(
                       children: [
-                        CircleAvatar(
-                          radius: 36,
-                          backgroundColor: Colors.white.withValues(alpha: 0.1),
-                          backgroundImage: _getAvatarImage(scenario.avatarAssetPath),
-                        ),
+                        if (scenario.avatarAssetPath == 'none' || scenario.avatarAssetPath.isEmpty)
+                          CircleAvatar(
+                            radius: 36,
+                            backgroundColor: theme.colorScheme.primary,
+                            child: Text(
+                              scenario.personaName.isNotEmpty ? scenario.personaName[0].toUpperCase() : '?',
+                              style: const TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
+                            ),
+                          )
+                        else
+                          CircleAvatar(
+                            radius: 36,
+                            backgroundColor: Colors.white.withValues(alpha: 0.1),
+                            backgroundImage: _getAvatarImage(scenario.avatarAssetPath),
+                          ),
                         const SizedBox(height: 8),
                         Text(
                           scenario.personaName,

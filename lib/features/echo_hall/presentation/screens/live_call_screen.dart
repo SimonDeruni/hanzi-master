@@ -415,17 +415,19 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
       body: Stack(
         children: [
           Positioned.fill(
-            child: widget.scenario.avatarAssetPath.startsWith('/') || widget.scenario.avatarAssetPath.contains(':\\')
-              ? Image.file(
-                  File(widget.scenario.avatarAssetPath),
-                  fit: BoxFit.cover,
-                  errorBuilder: (context, error, stackTrace) => Container(color: Colors.black87),
-                )
-              : Image.asset(
-                  widget.scenario.avatarAssetPath,
-                  fit: BoxFit.cover,
-                  errorBuilder: (context, error, stackTrace) => Container(color: Colors.black87),
-                ),
+            child: (widget.scenario.avatarAssetPath == 'none' || widget.scenario.avatarAssetPath.isEmpty)
+              ? Container(color: Colors.black87)
+              : widget.scenario.avatarAssetPath.startsWith('/') || widget.scenario.avatarAssetPath.contains(':\\')
+                ? Image.file(
+                    File(widget.scenario.avatarAssetPath),
+                    fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) => Container(color: Colors.black87),
+                  )
+                : Image.asset(
+                    widget.scenario.avatarAssetPath,
+                    fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) => Container(color: Colors.black87),
+                  ),
           ),
           Positioned.fill(
             child: BackdropFilter(
@@ -501,11 +503,21 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
                           ],
                         ),
                         child: ClipOval(
-                          child: Image.asset(
-                            widget.scenario.avatarAssetPath,
-                            fit: BoxFit.cover,
-                            errorBuilder: (context, error, stackTrace) => Container(color: Colors.indigo.shade900),
-                          ),
+                          child: (widget.scenario.avatarAssetPath == 'none' || widget.scenario.avatarAssetPath.isEmpty)
+                            ? Container(
+                                color: theme.colorScheme.primary,
+                                child: Center(
+                                  child: Text(
+                                    widget.scenario.personaName.isNotEmpty ? widget.scenario.personaName[0].toUpperCase() : '?',
+                                    style: const TextStyle(color: Colors.white, fontSize: 60, fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                              )
+                            : Image.asset(
+                                widget.scenario.avatarAssetPath,
+                                fit: BoxFit.cover,
+                                errorBuilder: (context, error, stackTrace) => Container(color: Colors.indigo.shade900),
+                              ),
                         ),
                       ),
                     );
