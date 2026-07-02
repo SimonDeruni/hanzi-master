@@ -184,6 +184,63 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
         }
       };
 
+      window.wrapSentences = function(node) {
+        if (node.nodeType === 3) {
+          const text = node.nodeValue;
+          if (!/[\\u4e00-\\u9fff]/.test(text)) return;
+          
+          if (node.parentNode && node.parentNode.className === 'sentence-text') return;
+
+          const parts = text.split(/([。！？.!?]+)/);
+          if (parts.length <= 1) return;
+
+          const frag = document.createDocumentFragment();
+          for (let i = 0; i < parts.length; i+=2) {
+             const sentence = parts[i];
+             const punc = parts[i+1] || '';
+             const fullSentence = sentence + punc;
+             
+             if (fullSentence.trim().length > 0) {
+                const wrapper = document.createElement('span');
+                wrapper.className = 'sentence-wrapper';
+                
+                const textSpan = document.createElement('span');
+                textSpan.className = 'sentence-text';
+                textSpan.innerText = fullSentence;
+                
+                const playBtn = document.createElement('span');
+                playBtn.innerText = ' 🔊';
+                playBtn.style.cursor = 'pointer';
+                playBtn.style.fontSize = '14px';
+                playBtn.style.opacity = '0.4';
+                playBtn.style.marginLeft = '4px';
+                playBtn.style.marginRight = '8px';
+                playBtn.addEventListener('click', function(e) {
+                   e.stopPropagation();
+                   document.querySelectorAll('.sentence-text').forEach(el => el.style.backgroundColor = 'transparent');
+                   textSpan.style.backgroundColor = 'rgba(212, 175, 55, 0.3)'; // Gold highlight
+                   
+                   HanziMasterChannel.postMessage(JSON.stringify({
+                      type: 'play_sentence',
+                      text: fullSentence.trim()
+                   }));
+                });
+                
+                wrapper.appendChild(textSpan);
+                wrapper.appendChild(playBtn);
+                frag.appendChild(wrapper);
+             }
+          }
+          node.parentNode.replaceChild(frag, node);
+        } else if (node.nodeType === 1 && node.nodeName !== 'SCRIPT' && node.nodeName !== 'STYLE' && node.className !== 'sentence-wrapper' && node.id !== 'tts-btn') {
+          const children = Array.from(node.childNodes);
+          for (let child of children) {
+            window.wrapSentences(child);
+          }
+        }
+      };
+
+      window.wrapSentences(document.body);
       window.makeChineseTextClickable(document.body);
 
       // --- Selection Translation Logic ---
@@ -273,30 +330,26 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
 
     _tts.setProgressHandler((text, startOffset, endOffset, word) {
       if (!mounted) return;
-      // Inject JS to highlight the current word being spoken
+      // Inject JS to highlight the current word being spoken within the sentence
       final js = '''
-        if (!window.originalBodyHtml) {
-          // store the original html before modifying
-          window.originalBodyHtml = document.body.innerHTML;
-        }
-        
-        function highlightWord() {
+        (function() {
           const w = "$word";
           if (!w) return;
-          // Simple approach: we rely on window.find to jump to the text and select it
-          // Then we could wrap it. But window.find alters scroll heavily.
-          // Since highlighting exact offsets in DOM is extremely hard, we'll try a simpler approach
-          // by just making sure the WebView scrolls to the word if possible.
-          // Or just do nothing if "try anyway" fails.
-        }
+          // Because highlighting a word dynamically while maintaining the hanzi wrappers is hard,
+          // we'll rely on the gold sentence background already applied in JS on click.
+          // Optional: we could scroll to the sentence if it's out of view
+        })();
       ''';
       _controller.runJavaScript(js);
     });
   }
 
-  Future<void> _playTts() async {
-    final text = await _controller.runJavaScriptReturningResult('document.body.innerText');
-    final parsedText = text.toString().replaceAll('"', '');
+  Future<void> _playTts({String? text}) async {
+    String parsedText = text ?? "";
+    if (parsedText.isEmpty) {
+      final jsResult = await _controller.runJavaScriptReturningResult('document.body.innerText');
+      parsedText = jsResult.toString().replaceAll('"', '');
+    }
     if (parsedText.trim().isNotEmpty) {
       await _tts.speak(parsedText);
       _controller.runJavaScript('''
@@ -626,6 +679,11 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
         } else {
           _playTts();
         }
+        return;
+      }
+      if (data['type'] == 'play_sentence') {
+        final text = data['text'] as String;
+        _playTts(text: text);
         return;
       }
       final char = data['char'] as String;
