@@ -288,18 +288,30 @@ class _ScenarioSelectionScreenState extends ConsumerState<ScenarioSelectionScree
       final words = deckCards.map((c) => c.hanzi).take(10).join(', '); // limit to 10
       final prompt = '''
 Create a Chinese roleplay scenario for a user practicing these words: $words.
+IMPORTANT: The title, description, personaName, and quests MUST be written in English. The initialAiMessage MUST be written in Chinese.
 Respond ONLY with a JSON object containing:
 {
-  "title": "Short title of the scenario",
-  "description": "Short description",
+  "title": "Short title of the scenario (in English)",
+  "description": "Short description (in English)",
   "systemPrompt": "System prompt for the AI persona. They should organically steer the conversation so the user can use the vocabulary.",
-  "initialAiMessage": "The first message the AI says",
-  "personaName": "Name of the persona",
-  "quests": ["Quest 1", "Quest 2", "Quest 3"]
+  "initialAiMessage": "The first message the AI says (in Chinese)",
+  "personaName": "Name of the persona (in English or Pinyin)",
+  "quests": ["Quest 1 (in English)", "Quest 2 (in English)", "Quest 3 (in English)"]
 }
 ''';
       final response = await ref.read(geminiServiceProvider).generateText(prompt);
       final Map<String, dynamic> data = _parseJsonOrFallback(response);
+      
+      final avatars = [
+        'assets/mascot/guide_avatar.png',
+        'assets/mascot/friend_avatar.png',
+        'assets/mascot/doctor_avatar.png',
+        'assets/mascot/waiter_avatar.png',
+        'assets/mascot/market_vendor_avatar.png',
+        'assets/mascot/taxi_driver_avatar.png',
+        'assets/mascot/hr_manager_avatar.png',
+      ];
+      final randomAvatar = (avatars..shuffle()).first;
       
       if (!mounted) return;
       Navigator.pop(context); // Close loading
@@ -311,7 +323,7 @@ Respond ONLY with a JSON object containing:
         initialAiMessage: data['initialAiMessage'] ?? '你好！',
         systemPrompt: data['systemPrompt'] ?? 'Help the user practice their vocabulary.',
         targetHskLevel: 3,
-        avatarAssetPath: 'assets/mascot/teacher_avatar.png',
+        avatarAssetPath: randomAvatar,
         backgroundAssetPath: 'assets/environments/office.jpg',
         personaName: data['personaName'] ?? 'Teacher',
         quests: List<String>.from(data['quests'] ?? []),

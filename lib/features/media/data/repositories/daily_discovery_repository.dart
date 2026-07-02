@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:http/http.dart' as http;
 import 'package:xml/xml.dart';
 import 'package:youtube_explode_dart/youtube_explode_dart.dart';
@@ -14,9 +15,12 @@ class DailyDiscoveryRepository {
   };
 
   Future<DailyMediaItem> getDailyVideo() async {
-    final daysSinceEpoch = DateTime.now().difference(DateTime(2020)).inDays;
+    final now = DateTime.now();
+    final seed = now.year * 10000 + now.month * 100 + now.day;
+    final random = Random(seed);
+    
     final channelIds = _channels.keys.toList();
-    final channelId = channelIds[daysSinceEpoch % channelIds.length];
+    final channelId = channelIds[random.nextInt(channelIds.length)];
     final channelTitle = _channels[channelId]!;
 
     final yt = YoutubeExplode();
@@ -26,10 +30,7 @@ class DailyDiscoveryRepository {
       
       if (uploads.isEmpty) throw Exception("No uploads found for channel.");
       
-      // Cycle through the most recent 30 uploads so the video is always fresh
-      // even if the channel hasn't uploaded recently.
-      final videoIndex = (daysSinceEpoch ~/ channelIds.length) % uploads.length;
-      final selectedVideo = uploads[videoIndex];
+      final selectedVideo = uploads[random.nextInt(uploads.length)];
       
       return DailyMediaItem(
         title: selectedVideo.title,
