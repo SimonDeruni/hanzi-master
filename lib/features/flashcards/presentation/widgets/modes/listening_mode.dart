@@ -10,6 +10,7 @@ import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import 'package:hanzi_master/core/utils/pinyin_utils.dart';
+import 'package:hanzi_master/shared/widgets/swipeable_flashcard.dart';
 
 class ListeningModeWidget extends ConsumerStatefulWidget {
   final Flashcard card;
@@ -105,9 +106,12 @@ class _ListeningModeWidgetState extends ConsumerState<ListeningModeWidget> {
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.all(24),
-                child: GestureDetector(
-                  onTap: !_isRevealed ? _revealAnswer : null,
-                  child: Container(
+                child: SwipeableFlashcard(
+                  isSwipeEnabled: _isRevealed,
+                  onSwiped: (grade) => Navigator.pop(context, grade),
+                  child: GestureDetector(
+                    onTap: !_isRevealed ? _revealAnswer : null,
+                    child: Container(
                     width: double.infinity,
                     padding: const EdgeInsets.all(32),
                     decoration: BoxDecoration(
@@ -216,31 +220,32 @@ class _ListeningModeWidgetState extends ConsumerState<ListeningModeWidget> {
               ).animate()
                .fade(duration: 500.ms, curve: Curves.easeOutCubic)
                .slideY(begin: 0.1, end: 0, duration: 500.ms, curve: Curves.easeOutCubic),
+                ),
+              ),
             ),
 
-            // Anki Grading Buttons
+            // Swipe Hint
             if (_isRevealed)
               Padding(
                 padding: const EdgeInsets.fromLTRB(16, 0, 16, 32),
                 child: Column(
                   children: [
                     Text(
-                      AppLocalizations.of(context)!.howDidYouDo,
-                      style: const TextStyle(
-                          fontSize: 16, fontWeight: FontWeight.bold),
+                      "Swipe to Grade:",
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        color: isDark ? Colors.white54 : Colors.black45,
+                      ),
                     ),
-                    SizedBox(height: 16),
-                    Row(
-                      children: [
-                        _buildGradeButton(
-                            AppLocalizations.of(context)!.again, 0, Colors.red, AppLocalizations.of(context)!.missedItEntirely),
-                        _buildGradeButton(
-                            AppLocalizations.of(context)!.hard, 2, Colors.orange, AppLocalizations.of(context)!.gotItButStruggled),
-                        _buildGradeButton(
-                            AppLocalizations.of(context)!.good, 4, Colors.green, AppLocalizations.of(context)!.gotItClearly),
-                        _buildGradeButton(
-                            AppLocalizations.of(context)!.easy, 5, Colors.blue, AppLocalizations.of(context)!.perfectAndImmediate),
-                      ],
+                    SizedBox(height: 8),
+                    Text(
+                      "⬅️ Again    ➡️ Good    ⬆️ Easy    ⬇️ Hard",
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        color: isDark ? Colors.white70 : Colors.black54,
+                      ),
                     ),
                   ],
                 ),

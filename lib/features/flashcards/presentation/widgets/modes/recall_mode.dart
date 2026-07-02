@@ -11,6 +11,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
+import 'package:hanzi_master/shared/widgets/swipeable_flashcard.dart';
 
 class RecallModeWidget extends ConsumerStatefulWidget {
   final Flashcard card;
@@ -41,39 +42,6 @@ class _RecallModeWidgetState extends ConsumerState<RecallModeWidget> {
   // Required for DrawingCanvas to capture touch input
   final ValueNotifier<List<ui.Offset?>> _scratchpadNotifier =
       ValueNotifier([]);
-      
-  Offset _panOffset = Offset.zero;
-  bool _isSwiping = false;
-
-  void _onPanStart(DragStartDetails details) {
-    if (!_isRevealed) return;
-    setState(() => _isSwiping = true);
-  }
-
-  void _onPanUpdate(DragUpdateDetails details) {
-    if (!_isRevealed || _showScratchpad) return;
-    setState(() => _panOffset += details.delta);
-  }
-
-  void _onPanEnd(DragEndDetails details) {
-    if (!_isRevealed || _showScratchpad) return;
-    
-    setState(() => _isSwiping = false);
-    
-    // Thresholds
-    if (_panOffset.dx < -120) {
-      Navigator.pop(context, 0); // Again
-    } else if (_panOffset.dx > 120) {
-      Navigator.pop(context, 4); // Good
-    } else if (_panOffset.dy < -120) {
-      Navigator.pop(context, 5); // Easy
-    } else if (_panOffset.dy > 120) {
-      Navigator.pop(context, 2); // Hard
-    } else {
-      // Spring back
-      setState(() => _panOffset = Offset.zero);
-    }
-  }
 
   @override
   void initState() {
@@ -139,7 +107,11 @@ class _RecallModeWidgetState extends ConsumerState<RecallModeWidget> {
                 child: _showScratchpad
                     ? _buildScratchpad(isDark, borderColor)
                     : _isRevealed
-                        ? _buildSwipableCard(isDark, cardColor, borderColor)
+                        ? SwipeableFlashcard(
+                            isSwipeEnabled: !_showScratchpad,
+                            onSwiped: (grade) => Navigator.pop(context, grade),
+                            child: _buildRevealedCard(isDark, cardColor, borderColor),
+                          )
                         : _buildHiddenCard(isDark, cardColor, borderColor),
               ),
             ).animate()
@@ -433,66 +405,7 @@ class _RecallModeWidgetState extends ConsumerState<RecallModeWidget> {
     );
   }
 
-  Widget _buildSwipableCard(bool isDark, Color cardColor, Color borderColor) {
-    final double rotateAngle = _panOffset.dx * 0.002;
-    
-    // Add overlays based on pan offset
-    String overlayText = "";
-    Color overlayColor = Colors.transparent;
-    
-    if (_panOffset.dx < -50) { overlayText = "AGAIN"; overlayColor = Colors.red; }
-    else if (_panOffset.dx > 50) { overlayText = "GOOD"; overlayColor = Colors.green; }
-    else if (_panOffset.dy < -50) { overlayText = "EASY"; overlayColor = Colors.blue; }
-    else if (_panOffset.dy > 50) { overlayText = "HARD"; overlayColor = Colors.orange; }
 
-    return GestureDetector(
-      onPanStart: _onPanStart,
-      onPanUpdate: _onPanUpdate,
-      onPanEnd: _onPanEnd,
-      child: AnimatedContainer(
-        duration: _isSwiping ? Duration.zero : 300.ms,
-        curve: Curves.easeOutBack,
-        transform: Matrix4.translationValues(_panOffset.dx, _panOffset.dy, 0)
-          ..rotateZ(rotateAngle),
-        child: Stack(
-          children: [
-            _buildRevealedCard(isDark, cardColor, borderColor),
-            if (overlayText.isNotEmpty)
-              Positioned.fill(
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: overlayColor.withValues(alpha: 0.15),
-                    borderRadius: BorderRadius.circular(32),
-                  ),
-                  child: Center(
-                    child: Transform.rotate(
-                      angle: -0.2,
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-                        decoration: BoxDecoration(
-                          border: Border.all(color: overlayColor, width: 4),
-                          borderRadius: BorderRadius.circular(12),
-                          color: isDark ? Colors.black87 : Colors.white.withValues(alpha: 0.9),
-                        ),
-                        child: Text(
-                          overlayText,
-                          style: TextStyle(
-                            fontSize: 48,
-                            fontWeight: FontWeight.w900,
-                            color: overlayColor,
-                            letterSpacing: 4,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-          ],
-        ),
-      ),
-    );
-  }
 
   Widget _buildRevealedCard(bool isDark, Color cardColor, Color borderColor) {
     return Container(
