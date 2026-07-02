@@ -61,7 +61,12 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
     } catch (e) {
       if (mounted) {
         setState(() {
-          _errorMessage = e.toString().replaceAll(RegExp(r'\[.*?\]'), '').trim();
+          final errStr = e.toString();
+          if (errStr.contains('CONFIGURATION_NOT_FOUND') || errStr.contains('FIRAuthErrorDomain')) {
+            _errorMessage = "Firebase Auth not enabled. Please enable the required Sign-In method in your Firebase Console.";
+          } else {
+            _errorMessage = errStr.replaceAll(RegExp(r'\[.*?\]'), '').trim();
+          }
         });
       }
     } finally {

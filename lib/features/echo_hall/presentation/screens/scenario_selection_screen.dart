@@ -23,6 +23,17 @@ class _ScenarioSelectionScreenState extends ConsumerState<ScenarioSelectionScree
   late PageController _pageController;
   int _currentIndex = 0;
   bool _isSurvivalMode = false;
+  String _selectedCategory = 'All';
+
+  List<ConversationScenario> get _filteredScenarios {
+    if (_selectedCategory == 'All') return _allScenarios;
+    if (_selectedCategory == 'HSK 1') return _allScenarios.where((s) => s.targetHskLevel == 1).toList();
+    if (_selectedCategory == 'HSK 2') return _allScenarios.where((s) => s.targetHskLevel == 2).toList();
+    if (_selectedCategory == 'HSK 3') return _allScenarios.where((s) => s.targetHskLevel == 3).toList();
+    if (_selectedCategory == 'Travel') return _allScenarios.where((s) => s.id.contains('hotel') || s.id.contains('taxi') || s.id.contains('airport') || s.id.contains('station') || s.title.toLowerCase().contains('travel')).toList();
+    if (_selectedCategory == 'Daily') return _allScenarios.where((s) => s.id.contains('coffee') || s.id.contains('restaurant') || s.id.contains('market') || s.id.contains('friend') || s.title.toLowerCase().contains('daily')).toList();
+    return _allScenarios;
+  }
 
   @override
   void initState() {
@@ -46,7 +57,7 @@ class _ScenarioSelectionScreenState extends ConsumerState<ScenarioSelectionScree
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
-    final currentScenario = _allScenarios[_currentIndex];
+    final currentScenario = _filteredScenarios.isNotEmpty ? _filteredScenarios[_currentIndex] : null;
 
     return Scaffold(
       backgroundColor: isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
@@ -56,7 +67,7 @@ class _ScenarioSelectionScreenState extends ConsumerState<ScenarioSelectionScree
           Positioned.fill(
             child: AnimatedSwitcher(
               duration: const Duration(milliseconds: 500),
-              child: _buildBackgroundImage(currentScenario.backgroundAssetPath),
+              child: _buildBackgroundImage(currentScenario?.backgroundAssetPath, isDark),
             ),
           ),
           
@@ -67,11 +78,17 @@ class _ScenarioSelectionScreenState extends ConsumerState<ScenarioSelectionScree
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
-                  colors: [
-                    Colors.black.withValues(alpha: 0.7),
-                    Colors.black.withValues(alpha: 0.2),
-                    Colors.black.withValues(alpha: 0.8),
-                  ],
+                  colors: isDark
+                      ? [
+                          const Color(0xFF1A1A1B).withValues(alpha: 0.9),
+                          const Color(0xFF1A1A1B).withValues(alpha: 0.6),
+                          const Color(0xFF1A1A1B),
+                        ]
+                      : [
+                          const Color(0xFFFDFCF0).withValues(alpha: 0.95),
+                          const Color(0xFFFDFCF0).withValues(alpha: 0.7),
+                          const Color(0xFFFDFCF0),
+                        ],
                 ),
               ),
             ),
@@ -82,59 +99,69 @@ class _ScenarioSelectionScreenState extends ConsumerState<ScenarioSelectionScree
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                _buildHeader(context),
+                _buildHeader(context, isDark),
                 const SizedBox(height: 16),
                 _buildModeSelectionToggle(theme),
-                const SizedBox(height: 32),
+                const SizedBox(height: 16),
+                _buildCategoryFilter(isDark),
+                const SizedBox(height: 16),
                 
                 // PageView for Scenarios
                 Expanded(
-                  child: PageView.builder(
-                    controller: _pageController,
-                    onPageChanged: (index) {
-                      setState(() {
-                        _currentIndex = index;
-                      });
-                    },
-                    itemCount: _allScenarios.length,
-                    itemBuilder: (context, index) {
-                      final scenario = _allScenarios[index];
-                      // Scale and opacity animation based on scroll
-                      return AnimatedBuilder(
-                        animation: _pageController,
-                        builder: (context, child) {
-                          double value = 1.0;
-                          if (_pageController.position.haveDimensions) {
-                            value = _pageController.page! - index;
-                            value = (1 - (value.abs() * 0.2)).clamp(0.8, 1.0);
-                          }
-                          return Center(
-                            child: SizedBox(
-                              height: Curves.easeOut.transform(value) * MediaQuery.of(context).size.height * 0.6,
-                              width: Curves.easeOut.transform(value) * MediaQuery.of(context).size.width,
-                              child: child,
+                  child: _filteredScenarios.isEmpty 
+                    ? Center(
+                        child: Text(
+                          "No scenarios found for this category.",
+                          style: TextStyle(color: isDark ? Colors.white54 : Colors.black54, fontSize: 16),
+                        ),
+                      )
+                    : PageView.builder(
+                        controller: _pageController,
+                        onPageChanged: (index) {
+                          setState(() {
+                            _currentIndex = index;
+                          });
+                        },
+                        itemCount: _filteredScenarios.length,
+                        itemBuilder: (context, index) {
+                          final scenario = _filteredScenarios[index];
+                          // Scale and opacity animation based on scroll
+                          return AnimatedBuilder(
+                            animation: _pageController,
+                            builder: (context, child) {
+                              double value = 1.0;
+                              if (_pageController.position.haveDimensions) {
+                                value = _pageController.page! - index;
+                                value = (1 - (value.abs() * 0.2)).clamp(0.8, 1.0);
+                              }
+                              return Center(
+                                child: SizedBox(
+                                  height: Curves.easeOut.transform(value) * MediaQuery.of(context).size.height * 0.6,
+                                  width: Curves.easeOut.transform(value) * MediaQuery.of(context).size.width,
+                                  child: child,
+                                ),
+                              );
+                            },
+                            child: _ScenarioGlassCard(
+                              scenario: scenario, 
+                              isSurvivalMode: _isSurvivalMode,
+                              isActive: index == _currentIndex,
                             ),
                           );
                         },
-                        child: _ScenarioGlassCard(
-                          scenario: scenario, 
-                          isSurvivalMode: _isSurvivalMode,
-                          isActive: index == _currentIndex,
-                        ),
-                      );
-                    },
-                  ),
+                      ),
                 ),
                 
                 const SizedBox(height: 24),
                 
                 // Action Buttons at bottom
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0),
-                  child: Column(
+                if (_filteredScenarios.isNotEmpty)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0),
+                    child: Column(
                     children: [
                       ElevatedButton.icon(
-                        onPressed: () => _startScenario(context, currentScenario, true),
+                        onPressed: () => _startScenario(context, _filteredScenarios[_currentIndex], true),
                         style: ElevatedButton.styleFrom(
                           backgroundColor: theme.colorScheme.primary,
                           foregroundColor: theme.colorScheme.onPrimary,
@@ -147,10 +174,10 @@ class _ScenarioSelectionScreenState extends ConsumerState<ScenarioSelectionScree
                       ),
                       const SizedBox(height: 12),
                       OutlinedButton.icon(
-                        onPressed: () => _startScenario(context, currentScenario, false),
+                        onPressed: () => _startScenario(context, _filteredScenarios[_currentIndex], false),
                         style: OutlinedButton.styleFrom(
-                          foregroundColor: Colors.white,
-                          side: BorderSide(color: Colors.white.withValues(alpha: 0.3), width: 1.5),
+                          foregroundColor: isDark ? Colors.white : Colors.black87,
+                          side: BorderSide(color: isDark ? Colors.white.withValues(alpha: 0.3) : Colors.black.withValues(alpha: 0.2), width: 1.5),
                           minimumSize: const Size(double.infinity, 56),
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                         ),
@@ -168,9 +195,9 @@ class _ScenarioSelectionScreenState extends ConsumerState<ScenarioSelectionScree
     );
   }
 
-  Widget _buildBackgroundImage(String? imagePath) {
+  Widget _buildBackgroundImage(String? imagePath, bool isDark) {
     if (imagePath == null || imagePath.isEmpty) {
-      return Container(key: const ValueKey('empty_bg'), color: const Color(0xFF1A1A1B));
+      return Container(key: const ValueKey('empty_bg'), color: isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0));
     }
     
     return Image.asset(
@@ -179,31 +206,63 @@ class _ScenarioSelectionScreenState extends ConsumerState<ScenarioSelectionScree
       fit: BoxFit.cover,
       width: double.infinity,
       height: double.infinity,
-      errorBuilder: (context, error, stackTrace) => Container(color: const Color(0xFF1A1A1B)),
+      errorBuilder: (context, error, stackTrace) => Container(color: isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0)),
     );
   }
 
-  Widget _buildHeader(BuildContext context) {
+  Widget _buildCategoryFilter(bool isDark) {
+    final categories = ['All', 'HSK 1', 'HSK 2', 'HSK 3', 'Travel', 'Daily'];
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Row(
+        children: categories.map((cat) {
+          final isSelected = _selectedCategory == cat;
+          return Padding(
+            padding: const EdgeInsets.only(right: 8.0),
+            child: ChoiceChip(
+              label: Text(cat, style: TextStyle(color: isSelected ? Colors.orange.shade900 : (isDark ? Colors.white70 : Colors.black87))),
+              selected: isSelected,
+              onSelected: (val) {
+                if (val) {
+                  setState(() {
+                    _selectedCategory = cat;
+                    _currentIndex = 0;
+                    if (_pageController.hasClients) _pageController.jumpToPage(0);
+                  });
+                }
+              },
+              selectedColor: Colors.orange.shade200,
+              backgroundColor: isDark ? Colors.grey.shade900 : Colors.grey.shade200,
+              showCheckmark: false,
+            ),
+          );
+        }).toList(),
+      ),
+    );
+  }
+
+  Widget _buildHeader(BuildContext context, bool isDark) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           IconButton(
-            icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
+            icon: Icon(Icons.arrow_back_ios, color: isDark ? Colors.white : Colors.black87),
             onPressed: () => Navigator.pop(context),
           ),
-          const Text(
+          Text(
             "Scenario Hub",
             style: TextStyle(
               fontSize: 22,
               fontWeight: FontWeight.w900,
-              color: Colors.white,
+              color: isDark ? Colors.white : Colors.black87,
               letterSpacing: 1.2,
             ),
           ),
           PopupMenuButton<String>(
-            icon: const Icon(Icons.add_circle_outline, color: Colors.white),
+            icon: Icon(Icons.add_circle_outline, color: isDark ? Colors.white : Colors.black87),
             onSelected: (value) async {
               if (value == 'custom') {
                 final newScenario = await CustomScenarioDialog.show(context);

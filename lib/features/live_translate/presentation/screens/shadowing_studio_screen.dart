@@ -13,7 +13,10 @@ import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraph
 import 'package:hanzi_master/core/providers/translation_language_provider.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/shared/widgets/pinyin_text.dart';
+import 'package:hanzi_master/features/flashcards/presentation/providers/deck_controller.dart';
 import 'package:lpinyin/lpinyin.dart';
+
+enum ShadowingMode { freeFlow, theme, deck }
 
 class ShadowingMessage {
   final String englishText;
@@ -43,7 +46,7 @@ class ShadowingStudioScreen extends ConsumerStatefulWidget {
   ConsumerState<ShadowingStudioScreen> createState() => _ShadowingStudioScreenState();
 }
 
-class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> {
+class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> with SingleTickerProviderStateMixin {
   final fs.FlutterSoundPlayer _player = fs.FlutterSoundPlayer();
   final AudioRecorder _audioRecorder = AudioRecorder();
   
@@ -57,6 +60,12 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> {
   final List<ShadowingMessage> _transcript = [];
 
   bool _isSessionStarted = false;
+  AnimationController? _pulseController;
+  Animation<double>? _pulseAnimation;
+
+  ShadowingMode _selectedMode = ShadowingMode.freeFlow;
+  String _selectedTheme = "HSK 1";
+  String? _selectedDeckId;
 
   @override
   void initState() {
@@ -70,13 +79,20 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> {
         pinyin: widget.initialPinyin,
       ));
     }
+    _pulseController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1500),
+    );
+    _pulseAnimation = Tween<double>(begin: 1.0, end: 1.2).animate(
+      CurvedAnimation(parent: _pulseController!, curve: Curves.easeInOut),
+    );
   }
 
   Future<void> _startSession() async {
     setState(() {
       _isSessionStarted = true;
+      _status = "Tap microphone to connect and practice...";
     });
-    await _initAudioAndConnect();
   }
 
   Future<void> _initAudioAndConnect() async {
@@ -107,13 +123,21 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> {
 
     try {
       final uri = Uri.parse(
-        'wss://generativelanguage.googleapis.com/ws/google.ai.generativelanguage.v1beta.GenerativeService.BidiGenerateContent?key=$apiKey'
+        'wss://generativelanguage.googleapis.com/ws/google.ai.generativelanguage.v1alpha.GenerativeService.BidiGenerateContent?key=$apiKey'
       );
       _channel = WebSocketChannel.connect(uri);
 
+      String systemInstructionText = "You are a Shadowing Practice Studio. The user will speak English. You must instantly translate the English phrase into Mandarin Chinese and speak the Mandarin Chinese back to them so they can shadow your pronunciation. When the user shadows your phrase, ALWAYS use the 'report_pronunciation_grade' tool to evaluate their accuracy.";
+      
+      if (_selectedMode == ShadowingMode.theme) {
+        systemInstructionText = "You are a Mandarin pronunciation coach. The user wants to practice the topic: $_selectedTheme. Generate a short, simple Mandarin sentence related to this topic, speak it out loud for them to shadow, and wait for them to repeat it. If they repeat it well, give them a new sentence. ALWAYS use the 'report_pronunciation_grade' tool to evaluate their pronunciation when they speak.";
+      } else if (_selectedMode == ShadowingMode.deck) {
+        systemInstructionText = "You are a Mandarin pronunciation coach. The user is practicing their custom flashcard deck. Generate a Mandarin sentence using common vocabulary, speak it out loud for them to shadow, and wait for them to repeat it. ALWAYS use the 'report_pronunciation_grade' tool to evaluate their pronunciation when they speak.";
+      }
+
       final setupMessage = jsonEncode({
         "setup": {
-          "model": "models/gemini-2.0-flash-exp",
+          "model": "models/gemini-3.1-flash-live-preview",
           "generationConfig": {
              "responseModalities": ["AUDIO"],
              "speechConfig": {
@@ -122,9 +146,37 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> {
           },
           "systemInstruction": {
             "parts": [
-              {"text": "You are a Shadowing Practice Studio. The user will speak English. You must instantly translate the English phrase into Mandarin Chinese and speak the Mandarin Chinese back to them so they can shadow your pronunciation."}
+              {"text": systemInstructionText}
             ]
-          }
+          },
+          "tools": [
+            {
+              "functionDeclarations": [
+                {
+                  "name": "report_pronunciation_grade",
+                  "description": "Report the user's pronunciation accuracy for the phrase they just shadowed.",
+                  "parameters": {
+                    "type": "OBJECT",
+                    "properties": {
+                      "overallScore": { "type": "INTEGER" },
+                      "feedback": { "type": "STRING" },
+                      "breakdown": {
+                        "type": "ARRAY",
+                        "items": {
+                          "type": "OBJECT",
+                          "properties": {
+                            "hanzi": { "type": "STRING" },
+                            "pinyin": { "type": "STRING" },
+                            "isToneCorrect": { "type": "BOOLEAN" }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          ]
         }
       });
 
@@ -170,6 +222,37 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> {
                 }
               }
 
+              if (content.containsKey('toolCall')) {
+                final toolCall = content['toolCall'];
+                final functionCalls = toolCall['functionCalls'];
+                if (functionCalls != null && functionCalls.isNotEmpty) {
+                  for (var call in functionCalls) {
+                    if (call['name'] == 'report_pronunciation_grade') {
+                      final args = call['args'];
+                      setState(() {
+                        if (_transcript.isNotEmpty) {
+                          final last = _transcript.last;
+                          _transcript[_transcript.length - 1] = last.copyWith(pronunciationGrade: args);
+                        }
+                      });
+                      
+                      final responseMessage = jsonEncode({
+                        "toolResponse": {
+                          "functionResponses": [
+                            {
+                              "id": call['id'],
+                              "name": call['name'],
+                              "response": { "result": "acknowledged" }
+                            }
+                          ]
+                        }
+                      });
+                      _channel!.sink.add(responseMessage);
+                    }
+                  }
+                }
+              }
+
               if (content.containsKey('inputTranscription')) {
                 final trans = content['inputTranscription'];
                 _handleOriginalAudioText(trans['text'] ?? "", trans['finished'] ?? false);
@@ -195,7 +278,19 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> {
   void _handleTranslatedText(String text) {
     if (text.trim().isEmpty) return;
     setState(() {
-      if (_transcript.isNotEmpty) {
+      if (_transcript.isEmpty || _transcript.last.pronunciationGrade != null) {
+        final newPinyin = PinyinHelper.getPinyinE(
+          text,
+          separator: " ",
+          defPinyin: '',
+          format: PinyinFormat.WITH_TONE_MARK,
+        );
+        _transcript.add(ShadowingMessage(
+          englishText: _selectedMode == ShadowingMode.freeFlow ? "..." : "Shadow this:",
+          mandarinTranslation: text,
+          pinyin: newPinyin,
+        ));
+      } else {
         final last = _transcript.last;
         final newMandarin = last.mandarinTranslation + text;
         final newPinyin = PinyinHelper.getPinyinE(
@@ -208,18 +303,6 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> {
           mandarinTranslation: newMandarin,
           pinyin: newPinyin,
         );
-      } else {
-        final newPinyin = PinyinHelper.getPinyinE(
-          text,
-          separator: " ",
-          defPinyin: '',
-          format: PinyinFormat.WITH_TONE_MARK,
-        );
-        _transcript.add(ShadowingMessage(
-          englishText: "...",
-          mandarinTranslation: text,
-          pinyin: newPinyin,
-        ));
       }
     });
   }
@@ -255,7 +338,10 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> {
           }
         }
       });
-      setState(() => _isLive = true);
+      setState(() {
+        _isLive = true;
+        _pulseController?.repeat(reverse: true);
+      });
     }
   }
 
@@ -264,8 +350,22 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> {
     await _audioRecorder.stop();
     setState(() {
       _isLive = false;
-      _status = "Waiting...";
+      _status = "Paused...";
+      _pulseController?.stop();
+      _pulseController?.reset();
     });
+  }
+
+  void _toggleMic() {
+    if (_isLive) {
+      _stopAudioStreaming();
+    } else {
+      if (_channel == null || _channel?.closeCode != null) {
+        _initAudioAndConnect();
+      } else {
+        _startAudioStreaming();
+      }
+    }
   }
 
   @override
@@ -274,6 +374,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> {
     _audioRecorder.dispose();
     _player.closePlayer();
     _channel?.sink.close(status.normalClosure);
+    _pulseController?.dispose();
     super.dispose();
   }
 
@@ -352,29 +453,79 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> {
                         textAlign: TextAlign.center,
                       ),
                       
-                      const SizedBox(height: 48),
-                      
-                      // Instructions
-                      _buildInstructionRow(
-                        Icons.mic_none,
-                        "Speak in ${ref.watch(translationLanguageProvider)}",
-                        "Say any phrase you want to learn.",
-                        isDark,
-                      ),
+                      // Mode Selection
                       const SizedBox(height: 24),
-                      _buildInstructionRow(
-                        Icons.translate,
-                        "Instant Translation",
-                        "AI instantly translates it to Mandarin.",
-                        isDark,
+                      Text(
+                        "PRACTICE MODE",
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 2,
+                          color: isDark ? Colors.white54 : Colors.black54,
+                        ),
                       ),
-                      const SizedBox(height: 24),
-                      _buildInstructionRow(
-                        Icons.hearing,
-                        "Listen & Shadow",
-                        "Listen to the native voice and repeat after it.",
-                        isDark,
+                      const SizedBox(height: 16),
+                      Wrap(
+                        spacing: 12,
+                        runSpacing: 12,
+                        alignment: WrapAlignment.center,
+                        children: [
+                          ChoiceChip(
+                            label: const Text("Free Flow"),
+                            selected: _selectedMode == ShadowingMode.freeFlow,
+                            onSelected: (val) => setState(() => _selectedMode = ShadowingMode.freeFlow),
+                            selectedColor: Colors.orange.shade200,
+                            backgroundColor: isDark ? Colors.grey.shade900 : Colors.grey.shade200,
+                          ),
+                          ChoiceChip(
+                            label: const Text("Thematic"),
+                            selected: _selectedMode == ShadowingMode.theme,
+                            onSelected: (val) => setState(() => _selectedMode = ShadowingMode.theme),
+                            selectedColor: Colors.orange.shade200,
+                            backgroundColor: isDark ? Colors.grey.shade900 : Colors.grey.shade200,
+                          ),
+                          ChoiceChip(
+                            label: const Text("Deck (Flashcards)"),
+                            selected: _selectedMode == ShadowingMode.deck,
+                            onSelected: (val) => setState(() => _selectedMode = ShadowingMode.deck),
+                            selectedColor: Colors.orange.shade200,
+                            backgroundColor: isDark ? Colors.grey.shade900 : Colors.grey.shade200,
+                          ),
+                        ],
                       ),
+                      if (_selectedMode == ShadowingMode.theme) ...[
+                        const SizedBox(height: 16),
+                        DropdownButtonHideUnderline(
+                          child: DropdownButton<String>(
+                            value: _selectedTheme,
+                            dropdownColor: isDark ? Colors.grey[900] : Colors.white,
+                            items: ["HSK 1", "HSK 2", "HSK 3", "Travel", "Business", "Food"].map((theme) => DropdownMenuItem(value: theme, child: Text(theme))).toList(),
+                            onChanged: (val) {
+                              if (val != null) setState(() => _selectedTheme = val);
+                            },
+                          ),
+                        ),
+                      ],
+                      if (_selectedMode == ShadowingMode.deck) ...[
+                        const SizedBox(height: 16),
+                        ref.watch(deckControllerProvider).when(
+                          data: (decks) {
+                            if (decks.isEmpty) return const Text("No decks found.");
+                            return DropdownButtonHideUnderline(
+                              child: DropdownButton<String>(
+                                value: _selectedDeckId ?? decks.first.id,
+                                dropdownColor: isDark ? Colors.grey[900] : Colors.white,
+                                items: decks.map((d) => DropdownMenuItem(value: d.id, child: Text(d.name))).toList(),
+                                onChanged: (val) {
+                                  if (val != null) setState(() => _selectedDeckId = val);
+                                },
+                              ),
+                            );
+                          },
+                          loading: () => const CircularProgressIndicator(strokeWidth: 2),
+                          error: (e, st) => const Text("Error loading decks"),
+                        ),
+                      ],
                     ],
                   ),
                 ),
@@ -493,163 +644,212 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> {
     }
 
     return Scaffold(
-      body: CalligraphyBackground(
-        child: SafeArea(
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(24.0),
-                child: Row(
-                  children: [
-                    IconButton(
-                      icon: Icon(Icons.keyboard_arrow_down, size: 32, color: isDark ? Colors.white : const Color(0xFF1A1A1B)),
-                      onPressed: () => Navigator.pop(context),
-                    ),
-                    const SizedBox(width: 8),
-                    Text(
-                      "Shadowing Studio",
-                      style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: isDark ? Colors.white : const Color(0xFF1A1A1B)),
-                    ),
-                  ],
-                ),
+      backgroundColor: isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
+      body: SafeArea(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(24.0),
+              child: Row(
+                children: [
+                  IconButton(
+                    icon: Icon(Icons.keyboard_arrow_down, size: 32, color: isDark ? Colors.white : const Color(0xFF1A1A1B)),
+                    onPressed: () => Navigator.pop(context),
+                  ),
+                  const SizedBox(width: 8),
+                  Text(
+                    "Shadowing Studio",
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: isDark ? Colors.white : const Color(0xFF1A1A1B)),
+                  ),
+                ],
               ),
-              Container(
-                margin: const EdgeInsets.symmetric(horizontal: 24),
-                padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
-                decoration: BoxDecoration(
-                  color: _isLive ? Colors.orange.withValues(alpha: 0.1) : Colors.grey.withValues(alpha: 0.1),
-                  borderRadius: BorderRadius.circular(24),
-                  border: Border.all(color: _isLive ? Colors.orange.shade200 : Colors.grey.shade400),
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(
-                      _isLive ? Icons.mic : Icons.mic_off,
-                      color: _isLive ? Colors.orange.shade700 : Colors.grey,
-                    ),
-                    const SizedBox(width: 8),
-                    Text(
+            ),
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 24),
+              padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+              decoration: BoxDecoration(
+                color: _isLive 
+                    ? Colors.orange.withValues(alpha: 0.1) 
+                    : (isDark ? Colors.white.withValues(alpha: 0.05) : Colors.black.withValues(alpha: 0.05)),
+                borderRadius: BorderRadius.circular(32),
+                border: Border.all(color: _isLive ? Colors.orange.shade200 : Colors.transparent),
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(
+                    _isLive ? Icons.mic : Icons.mic_off,
+                    color: _isLive ? Colors.orange.shade700 : (isDark ? Colors.white54 : Colors.black54),
+                  ),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Text(
                       _status,
                       style: TextStyle(
-                        color: _isLive ? Colors.orange.shade900 : Colors.grey.shade600,
-                        fontWeight: FontWeight.bold,
+                        color: _isLive ? Colors.orange.shade900 : (isDark ? Colors.white70 : Colors.black87),
+                        fontWeight: FontWeight.w600,
                       ),
+                      overflow: TextOverflow.ellipsis,
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-              const SizedBox(height: 24),
-              Expanded(
-                child: _transcript.isEmpty
-                    ? Center(
-                        child: Text(
-                          "Speak English to translate and shadow...",
-                          style: TextStyle(color: isDark ? Colors.white54 : Colors.black54, fontSize: 18),
-                        ),
-                      )
-                    : PageView.builder(
-                        itemCount: _transcript.length,
-                        controller: PageController(initialPage: _transcript.length - 1),
-                        onPageChanged: (idx) {
-                          // Allow swiping through previous phrases
-                        },
-                        itemBuilder: (context, index) {
-                          final msg = _transcript[index];
-                          return Padding(
-                            padding: const EdgeInsets.all(24.0),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Text(
-                                  msg.englishText,
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    color: isDark ? Colors.white54 : Colors.black54,
-                                    fontStyle: FontStyle.italic,
-                                  ),
-                                  textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 24),
+            Expanded(
+              child: _transcript.isEmpty
+                  ? Center(
+                      child: Text(
+                        "Speak English to translate and shadow...",
+                        style: TextStyle(color: isDark ? Colors.white54 : Colors.black54, fontSize: 18),
+                      ),
+                    )
+                  : PageView.builder(
+                      itemCount: _transcript.length,
+                      controller: PageController(initialPage: _transcript.length - 1),
+                      itemBuilder: (context, index) {
+                        final msg = _transcript[index];
+                        return Padding(
+                          padding: const EdgeInsets.all(32.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(
+                                msg.englishText,
+                                style: TextStyle(
+                                  fontSize: 22,
+                                  color: isDark ? Colors.white54 : Colors.black54,
+                                  fontStyle: FontStyle.italic,
+                                  fontFamily: 'serif',
                                 ),
-                                const SizedBox(height: 32),
-                                if (msg.mandarinTranslation.isNotEmpty) ...[
-                                  if (msg.pinyin != null && msg.pinyin!.isNotEmpty) ...[
-                                    PinyinText(
-                                      text: msg.pinyin!,
-                                      style: TextStyle(
-                                        fontSize: 24,
-                                        color: isDark ? Colors.white70 : Colors.black87,
-                                        fontStyle: FontStyle.italic,
-                                      ),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                    const SizedBox(height: 12),
-                                  ],
+                                textAlign: TextAlign.center,
+                              ),
+                              const SizedBox(height: 48),
+                              if (msg.mandarinTranslation.isNotEmpty) ...[
+                                if (msg.pinyin != null && msg.pinyin!.isNotEmpty) ...[
                                   Text(
-                                    msg.mandarinTranslation,
+                                    msg.pinyin!,
                                     style: TextStyle(
-                                      fontSize: 48,
-                                      color: isDark ? Colors.white : Colors.black87,
-                                      fontWeight: FontWeight.bold,
+                                      fontSize: 28,
+                                      color: isDark ? Colors.white70 : Colors.black87,
+                                      fontStyle: FontStyle.italic,
+                                      letterSpacing: 1.2,
                                     ),
                                     textAlign: TextAlign.center,
                                   ),
-                                  const SizedBox(height: 48),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      FloatingActionButton.large(
-                                        heroTag: "listen_$index",
-                                        onPressed: () {
-                                          // Typically we would replay the audio here if we saved the buffer
-                                          // For now, it plays automatically on receive
-                                        },
-                                        backgroundColor: Colors.orange.shade100,
-                                        child: const Icon(Icons.volume_up, size: 36, color: Colors.orange),
-                                      ),
-                                      const SizedBox(width: 32),
-                                      GestureDetector(
-                                        onTapDown: (_) => _startAudioStreaming(),
-                                        onTapUp: (_) => _stopAudioStreaming(),
-                                        onTapCancel: () => _stopAudioStreaming(),
-                                        child: Container(
-                                          width: 96,
-                                          height: 96,
-                                          decoration: BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            color: _isLive ? Colors.red : Colors.orange,
-                                            boxShadow: [
-                                              BoxShadow(
-                                                color: (_isLive ? Colors.red : Colors.orange).withValues(alpha: 0.4),
-                                                blurRadius: 16,
-                                                spreadRadius: _isLive ? 8 : 2,
-                                              )
-                                            ],
+                                  const SizedBox(height: 16),
+                                ],
+                                if (msg.pronunciationGrade != null && msg.pronunciationGrade!['breakdown'] != null) ...[
+                                  Wrap(
+                                    alignment: WrapAlignment.center,
+                                    spacing: 4,
+                                    children: (msg.pronunciationGrade!['breakdown'] as List).map<Widget>((item) {
+                                      final isCorrect = item['isToneCorrect'] ?? true;
+                                      return Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Text(
+                                            item['pinyin'] ?? "",
+                                            style: TextStyle(
+                                              fontSize: 16,
+                                              color: isCorrect ? (isDark ? Colors.white54 : Colors.black54) : Colors.red,
+                                              fontStyle: FontStyle.italic,
+                                            ),
                                           ),
-                                          child: Icon(
-                                            Icons.mic,
-                                            size: 48,
-                                            color: Colors.white,
+                                          Text(
+                                            item['hanzi'] ?? "",
+                                            style: TextStyle(
+                                              fontSize: 64,
+                                              color: isCorrect ? (isDark ? Colors.white : const Color(0xFF1A1A1B)) : Colors.red,
+                                              fontWeight: FontWeight.w500,
+                                              fontFamily: 'NotoSerifSC',
+                                            ),
                                           ),
-                                        ),
-                                      ),
-                                    ],
+                                        ],
+                                      );
+                                    }).toList(),
                                   ),
                                   const SizedBox(height: 16),
-                                  Text("Hold to Shadow", style: TextStyle(color: isDark ? Colors.white54 : Colors.black54)),
+                                  if (msg.pronunciationGrade!['overallScore'] != null)
+                                    Text(
+                                      "Score: ${msg.pronunciationGrade!['overallScore']}/100",
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                        color: msg.pronunciationGrade!['overallScore'] >= 80 ? Colors.green : Colors.orange,
+                                      ),
+                                    ),
+                                  if (msg.pronunciationGrade!['feedback'] != null) ...[
+                                    const SizedBox(height: 8),
+                                    Text(
+                                      msg.pronunciationGrade!['feedback'],
+                                      style: TextStyle(fontSize: 16, color: isDark ? Colors.white70 : Colors.black87),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ],
                                 ] else ...[
-                                  const CircularProgressIndicator(color: Colors.orange),
-                                  const SizedBox(height: 16),
-                                  const Text("Translating...", style: TextStyle(color: Colors.orange)),
-                                ]
-                              ],
+                                  Text(
+                                    msg.mandarinTranslation,
+                                    style: TextStyle(
+                                      fontSize: 64,
+                                      color: isDark ? Colors.white : const Color(0xFF1A1A1B),
+                                      fontWeight: FontWeight.w500,
+                                      fontFamily: 'NotoSerifSC',
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ],
+                              ] else ...[
+                                const CircularProgressIndicator(color: Colors.orange),
+                                const SizedBox(height: 16),
+                                const Text("Translating...", style: TextStyle(color: Colors.orange)),
+                              ]
+                            ],
+                          ),
+                        );
+                      },
+                    ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 48.0, top: 24.0),
+              child: GestureDetector(
+                onTap: _toggleMic,
+                child: AnimatedBuilder(
+                  animation: _pulseAnimation ?? const AlwaysStoppedAnimation(1.0),
+                  builder: (context, child) {
+                    return Transform.scale(
+                      scale: _pulseAnimation?.value ?? 1.0,
+                      child: Container(
+                        width: 80,
+                        height: 80,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
+                          boxShadow: [
+                            BoxShadow(
+                              color: _isLive 
+                                  ? Colors.orange.withValues(alpha: 0.6) 
+                                  : (isDark ? Colors.white.withValues(alpha: 0.1) : Colors.black.withValues(alpha: 0.1)),
+                              blurRadius: _isLive ? 32 : 16,
+                              spreadRadius: _isLive ? 8 : 2,
                             ),
-                          );
-                        },
+                          ],
+                        ),
+                        child: Icon(
+                          Icons.mic,
+                          size: 36,
+                          color: _isLive 
+                              ? Colors.orange 
+                              : (isDark ? Colors.white : const Color(0xFF1A1A1B)),
+                        ),
                       ),
+                    );
+                  },
+                ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

@@ -84,59 +84,48 @@ class AiHubScreen extends ConsumerWidget {
                 ),
 
                 // Hero Carousel: Featured AI Tools
-                Expanded(
-                  flex: 12,
-                  child: const _FeaturedCarousel(),
+                const Expanded(
+                  child: _FeaturedCarousel(),
                 ),
 
-                // Removed Today's Insight Card (moved to Dashboard)
-
-
-                const SizedBox(height: 24),
+                const SizedBox(height: 32),
 
                 // Square Tiles List of Features
-                Expanded(
-                  flex: 12,
-                  child: Column(
-                    children: [
-                      Row(
-                        children: [
-                          Expanded(
-                            child: _buildListActionCard(
-                              context: context,
-                              title: "Reading Room",
-                              subtitle: "Classic literature",
-                              icon: Icons.auto_stories,
-                              gradientColors: const [Color(0xFF8B5E3C), Color(0xFFC4863A)],
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(builder: (_) => const StoryLibraryScreen()),
-                                );
-                              },
-                            ),
-                          ),
-                          const SizedBox(width: 16),
-                          Expanded(
-                            child: _buildListActionCard(
-                              context: context,
-                              title: "Shadowing",
-                              subtitle: "Perfect pronunciation",
-                              icon: Icons.mic,
-                              isNew: true,
-                              gradientColors: const [Color(0xFF1A4A4A), Color(0xFF2A7070)],
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(builder: (_) => const ShadowingStudioScreen()),
-                                );
-                              },
-                            ),
-                          ),
-                        ],
+                Row(
+                  children: [
+                    Expanded(
+                      child: _buildListActionCard(
+                        context: context,
+                        title: "Reading Room",
+                        subtitle: "Classic literature",
+                        icon: Icons.auto_stories,
+                        gradientColors: const [Color(0xFF8B5E3C), Color(0xFFC4863A)],
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (_) => const StoryLibraryScreen()),
+                          );
+                        },
                       ),
-                    ],
-                  ),
+                    ),
+                    const SizedBox(width: 16),
+                    Expanded(
+                      child: _buildListActionCard(
+                        context: context,
+                        title: "Shadowing",
+                        subtitle: "Perfect pronunciation",
+                        icon: Icons.mic,
+                        isNew: true,
+                        gradientColors: const [Color(0xFF1A4A4A), Color(0xFF2A7070)],
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (_) => const ShadowingStudioScreen()),
+                          );
+                        },
+                      ),
+                    ),
+                  ],
                 ),
 
                 const SizedBox(height: 24),

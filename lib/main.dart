@@ -80,38 +80,24 @@ void main() async {
     cipher = null;
   }
 
-  final box = await Hive.openBox<FlashcardModel>(
-    'flashcards',
-    encryptionCipher: cipher,
-  );
-  await Hive.openBox<String>(
-    'ai_cache',
-    encryptionCipher: cipher,
-  );
-  await Hive.openBox<String>(
-    'graded_stories_v2',
-    encryptionCipher: cipher,
-  );
-  await Hive.openBox<String>(
-    'custom_blueprints_v2',
-    encryptionCipher: cipher,
-  );
-  final deckBox = await Hive.openBox<DeckModel>(
-    'decks',
-    encryptionCipher: cipher,
-  );
-  await Hive.openBox<String>(
-    'curriculum_cache_box',
-    encryptionCipher: cipher,
-  );
-  await Hive.openBox<TranslationSession>(
-    'translation_sessions',
-    encryptionCipher: cipher,
-  );
-  final savedArticlesBox = await Hive.openBox<SavedArticle>(
-    'saved_articles',
-    encryptionCipher: cipher,
-  );
+  Future<Box<T>> safeOpenBox<T>(String name, {HiveAesCipher? cipher}) async {
+    try {
+      return await Hive.openBox<T>(name, encryptionCipher: cipher);
+    } catch (e) {
+      debugPrint('Error opening Hive box \$name: \$e. Deleting and retrying.');
+      await Hive.deleteBoxFromDisk(name);
+      return await Hive.openBox<T>(name, encryptionCipher: cipher);
+    }
+  }
+
+  final box = await safeOpenBox<FlashcardModel>('flashcards', cipher: cipher);
+  await safeOpenBox<String>('ai_cache', cipher: cipher);
+  await safeOpenBox<String>('graded_stories_v2', cipher: cipher);
+  await safeOpenBox<String>('custom_blueprints_v2', cipher: cipher);
+  final deckBox = await safeOpenBox<DeckModel>('decks', cipher: cipher);
+  await safeOpenBox<String>('curriculum_cache_box', cipher: cipher);
+  await safeOpenBox<TranslationSession>('translation_sessions', cipher: cipher);
+  final savedArticlesBox = await safeOpenBox<SavedArticle>('saved_articles', cipher: cipher);
 
   // Initialize RevenueCat
   await MonetizationService.init();

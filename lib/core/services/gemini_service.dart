@@ -84,6 +84,26 @@ class LookAlike {
   }
 }
 
+class CulturalInsight {
+  final String historicalContext;
+  final String culturalSignificance;
+  final String authorBackground;
+  
+  CulturalInsight({
+    required this.historicalContext,
+    required this.culturalSignificance,
+    required this.authorBackground,
+  });
+
+  factory CulturalInsight.fromJson(Map<String, dynamic> json) {
+    return CulturalInsight(
+      historicalContext: json['historicalContext'] as String? ?? '',
+      culturalSignificance: json['culturalSignificance'] as String? ?? '',
+      authorBackground: json['authorBackground'] as String? ?? '',
+    );
+  }
+}
+
 class AiWord {
   final String hanzi;
   final String pinyin;
@@ -446,6 +466,54 @@ CRITICAL: Place the $targetLanguage translation in the "english" JSON keys!
       throw Exception("Empty response from Vision model");
     } catch (e) {
       analytics.logApiUsage(apiName: 'openrouter', feature: 'image_analysis', success: false);
+      rethrow;
+    }
+  }
+
+  Future<AiWord> identifySpecificObject(List<int> bytes, String genericLabel, String languageCode) async {
+    final prompt = '''
+The user has pointed their camera at an object. An on-device model generally categorized it as "$genericLabel".
+Look at the center of the image. Identify exactly what specific object the user is looking at. Be as precise as possible (e.g., if it's a mug, say "mug" not "household object").
+Return the exact Chinese vocabulary word for this specific object.
+
+Output JSON matching this exact structure:
+{
+  "hanzi": "杯子",
+  "pinyin": "bēizi",
+  "meaning": "Meaning in the language corresponding to ISO 639-1 code $languageCode",
+  "hskLevel": 1
+}
+''';
+    final base64Image = base64Encode(bytes);
+    
+    try {
+      final text = await makeOpenRouterCall(
+        model: 'google/gemini-2.5-flash',
+        messages: [
+          {
+            'role': 'user',
+            'content': [
+              {'type': 'text', 'text': prompt},
+              {
+                'type': 'image_url',
+                'image_url': {'url': 'data:image/jpeg;base64,$base64Image'}
+              }
+            ]
+          }
+        ],
+        jsonMode: true,
+      );
+      
+      if (text.isNotEmpty) {
+        final cleanText = text.replaceAll(RegExp(r'^```json\n', multiLine: true), '')
+                              .replaceAll(RegExp(r'^```\n?', multiLine: true), '');
+        final json = jsonDecode(cleanText);
+        analytics.logApiUsage(apiName: 'openrouter', feature: 'ar_snap', success: true);
+        return AiWord.fromJson(json);
+      }
+      throw Exception("Empty response from Vision model");
+    } catch (e) {
+      analytics.logApiUsage(apiName: 'openrouter', feature: 'ar_snap', success: false);
       rethrow;
     }
   }
@@ -915,7 +983,7 @@ Respond ONLY in valid JSON format like:
 
   Future<Map<String, dynamic>> gradeAudio(List<int> audioBytes, String expectedChinese, String expectedPinyin) async {
     final model = GenerativeModel(
-      model: 'gemini-1.5-flash',
+      model: 'gemini-2.5-flash',
       apiKey: pool.googleKey,
     );
 
@@ -996,7 +1064,7 @@ Return ONLY valid JSON with exactly this structure:
     }
   }
 
-  Future<List<AiWord>> generatePreFlightVocab(String articleText, List<String> knownWords) async {
+  Future<List<AiWord>> generatePreFlightVocab(String articleText, List<String> knownWords, String languageCode) async {
     final textContent = articleText.length > 4000 ? articleText.substring(0, 4000) : articleText;
     final knownWordsList = knownWords.join(', ');
 
@@ -1010,7 +1078,7 @@ Article Text:
 
 Return ONLY a valid JSON array of word objects:
 [
-  {"hanzi": "word", "pinyin": "pinyin", "meaning": "English meaning in context of the article"}
+  {"hanzi": "word", "pinyin": "pinyin", "meaning": "Meaning in the language corresponding to ISO 639-1 code $languageCode"}
 ]
 ''';
 
@@ -1025,13 +1093,13 @@ Return ONLY a valid JSON array of word objects:
     return jsonArr.map((i) => AiWord.fromJson(i as Map<String, dynamic>)).toList();
   }
 
-  Future<Map<String, dynamic>> extractAllUnknownWords(String articleText, List<String> knownWords) async {
+  Future<List<AiWord>> extractAllUnknownWords(String articleText, List<String> knownWords, String languageCode) async {
     final textContent = articleText.length > 4000 ? articleText.substring(0, 4000) : articleText;
     final knownWordsList = knownWords.join(', ');
 
     final prompt = '''
 You are a Chinese learning assistant.
-Analyze the following article text. Create a short, descriptive "deckName" based on the subject of the article. Then, extract ALL the important Chinese words (up to 25 words) that are NOT in the student's known words list.
+Analyze the following article text. Extract ALL the important Chinese words (up to 25 words) that are NOT in the student's known words list.
 CRITICAL: Do NOT include any of these words: [$knownWordsList]
 
 Article Text:
@@ -1039,9 +1107,8 @@ Article Text:
 
 Return ONLY a valid JSON object matching this structure:
 {
-  "deckName": "e.g., Chinese Cooking Basics",
   "words": [
-    {"hanzi": "word", "pinyin": "pinyin", "meaning": "English meaning in context"}
+    {"hanzi": "word", "pinyin": "pinyin", "meaning": "Meaning in the language corresponding to ISO 639-1 code $languageCode"}
   ]
 }
 ''';
@@ -1056,10 +1123,7 @@ Return ONLY a valid JSON object matching this structure:
     final Map<String, dynamic> jsonObj = jsonDecode(cleanText);
     final List<dynamic> wordsArr = jsonObj['words'] ?? [];
     
-    return {
-      "deckName": jsonObj['deckName'] ?? "Extracted Vocabulary",
-      "words": wordsArr.map((i) => AiWord.fromJson(i as Map<String, dynamic>)).toList()
-    };
+    return wordsArr.map((i) => AiWord.fromJson(i as Map<String, dynamic>)).toList();
   }
 
   Future<List<TranscriptLine>> translateTranscriptLines(List<TranscriptLine> lines) async {
@@ -1275,13 +1339,13 @@ Explain the meaning of "$hanzi" specifically in this context. Keep the explanati
     return text.trim();
   }
 
-  Future<ArticleInsight> generateArticleInsight(String text, List<String> knownWords) async {
+  Future<ArticleInsight> generateArticleInsight(String text, List<String> knownWords, String languageCode) async {
     final prompt = '''
 You are a Chinese learning assistant. Analyze the following Chinese article for a language learner.
 The learner knows these words (or a subset of them): ${knownWords.take(500).join(", ")}.
 
 Provide an insight containing:
-1. "summary": A quick 2-3 sentence summary of the article in English.
+1. "summary": A quick 2-3 sentence summary of the article in the language corresponding to ISO 639-1 code $languageCode.
 2. "score": A rating out of 100 on how readable this is for the learner based on their known words. (0 = impossible, 100 = they know every word).
 3. "hskLevel": The estimated HSK level (1-9) required to comfortably read this text.
 
@@ -1292,7 +1356,7 @@ ${text.substring(0, math.min(text.length, 3000))}
 
 Output JSON matching this exact structure:
 {
-  "summary": "English summary...",
+  "summary": "Summary in language $languageCode...",
   "score": 85,
   "hskLevel": 4
 }
@@ -1318,23 +1382,23 @@ ${text.substring(0, math.min(text.length, 3000))}
 """
 
 Your task is to:
-1. Provide a smooth, full English translation of the entire scanned text so the user understands the full context.
-2. Extract the most important Chinese vocabulary (words, phrases, idioms) from the text. 
+1. Check if the text is complete garbage (e.g. random English letters, OCR errors, no coherent Chinese meaning). If it is garbage, output "No coherent Chinese text found in the scan." as the fullTranslation and leave the words array empty.
+2. If it is valid Chinese, provide a smooth, full English translation of the entire scanned text so the user understands the full context.
+3. Extract the most important Chinese vocabulary (words, phrases, idioms) from the text. 
    - Group them into logical words (e.g. don't split idioms into 4 separate characters).
    - Provide the pinyin, english definition, and estimated HSK level (1-9).
    - Only include up to 20 of the most relevant/useful words.
 
 Output JSON matching this exact structure:
 {
-  "fullTranslation": "The full English translation of the scanned text...",
+  "fullTranslation": "The full English translation of the scanned text... OR 'No coherent Chinese text found.'",
   "deckName": "A short 2-4 word title for this scan (e.g. 'Restaurant Menu', 'Street Sign')",
   "words": [
     {
       "hanzi": "中国",
       "pinyin": "Zhōngguó",
       "meaning": "China",
-      "hskLevel": 1,
-      "partOfSpeech": "noun"
+      "hskLevel": 1
     }
   ]
 }
@@ -1356,6 +1420,67 @@ Output JSON matching this exact structure:
       'deckName': json['deckName'] as String? ?? 'Scan Results',
       'words': words,
     };
+  }
+
+  Future<CulturalInsight> generateCulturalInsight(String storyTitle, String storyContent) async {
+    final cacheKey = 'cultural_insight_$storyTitle';
+    final box = Hive.box<String>('ai_cache');
+    if (box.containsKey(cacheKey)) {
+      try {
+        final cachedData = jsonDecode(box.get(cacheKey)!);
+        return CulturalInsight.fromJson(cachedData);
+      } catch (e) {
+        debugPrint('Cache decode error: $e');
+      }
+    }
+
+    final prompt = '''
+You are a Chinese culture and literature expert. 
+The user is about to read the following text/poem: "$storyTitle"
+Here is the text content:
+$storyContent
+
+Please provide a highly engaging, beautifully written cultural insight. 
+Target Language: $targetLanguage
+
+Return ONLY a valid JSON object with EXACTLY these keys:
+{
+  "historicalContext": "When was it written and what was happening in China at the time?",
+  "culturalSignificance": "Why is this piece famous? What philosophical or cultural themes does it explore?",
+  "authorBackground": "A brief bio of the author."
+}
+No markdown formatting, no backticks, just raw JSON.
+''';
+
+    try {
+      final apiKey = pool.googleKey;
+      if (apiKey.isEmpty) throw Exception("No API key");
+      final model = GenerativeModel(
+        model: 'gemini-2.5-flash',
+        apiKey: apiKey,
+        generationConfig: GenerationConfig(
+          responseMimeType: 'application/json',
+          temperature: 0.7,
+        ),
+      );
+
+      final content = [Content.text(prompt)];
+      final response = await model.generateContent(content);
+      var text = response.text ?? '{}';
+
+      text = text.replaceAll('```json', '').replaceAll('```', '').trim();
+      final decoded = jsonDecode(text);
+      box.put(cacheKey, jsonEncode(decoded));
+      
+      return CulturalInsight.fromJson(decoded);
+    } catch (e, st) {
+      debugPrint('Error generating cultural insight: $e\\n$st');
+      return CulturalInsight(
+        historicalContext: "Information unavailable.",
+        culturalSignificance: "Information unavailable.",
+        authorBackground: "Information unavailable.",
+      );
+    }
   }
 }
 

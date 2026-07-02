@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/features/media/data/story_fetcher_service.dart';
 import 'package:hanzi_master/features/media/domain/models/library_story.dart';
+import 'package:hanzi_master/features/media/presentation/screens/story_cultural_insight_screen.dart';
 import 'package:hanzi_master/features/media/presentation/screens/story_summary_screen.dart';
 
 class CategoryStyle {
@@ -285,7 +286,17 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
     final isNetworkImage = displayImageUrl.startsWith('http');
     
     return GestureDetector(
-      onTap: () => _openStory(dailyStory!),
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => StoryCulturalInsightScreen(
+              story: dailyStory!,
+              heroTag: 'daily_story_${dailyStory.hashCode}',
+            ),
+          ),
+        );
+      },
       child: Container(
         height: 280, // Taller widget
         width: double.infinity,
@@ -304,22 +315,24 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
         child: Stack(
           fit: StackFit.expand,
           children: [
-            if (isNetworkImage)
-              Image.network(
-                displayImageUrl,
-                fit: BoxFit.cover,
-                color: Colors.black.withValues(alpha: 0.6), // Dark overlay
-                colorBlendMode: BlendMode.darken,
-                errorBuilder: (_, __, ___) => _buildFallbackGradient(),
-              )
-            else
-              Image.asset(
-                displayImageUrl,
-                fit: BoxFit.cover,
-                color: Colors.black.withValues(alpha: 0.6), // Dark overlay
-                colorBlendMode: BlendMode.darken,
-                errorBuilder: (_, __, ___) => _buildFallbackGradient(),
-              ),
+            Hero(
+              tag: 'daily_story_${dailyStory.hashCode}',
+              child: isNetworkImage
+                  ? Image.network(
+                      displayImageUrl,
+                      fit: BoxFit.cover,
+                      color: Colors.black.withValues(alpha: 0.6), // Dark overlay
+                      colorBlendMode: BlendMode.darken,
+                      errorBuilder: (_, __, ___) => _buildFallbackGradient(),
+                    )
+                  : Image.asset(
+                      displayImageUrl,
+                      fit: BoxFit.cover,
+                      color: Colors.black.withValues(alpha: 0.6), // Dark overlay
+                      colorBlendMode: BlendMode.darken,
+                      errorBuilder: (_, __, ___) => _buildFallbackGradient(),
+                    ),
+            ),
               
             Padding(
               padding: const EdgeInsets.all(24.0),

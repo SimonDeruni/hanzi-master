@@ -40,32 +40,24 @@ class TranslationHubScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 24.0),
               sliver: SliverList(
                 delegate: SliverChildListDelegate([
-                  _buildPremiumCard(
+                  _buildMinimalCard(
                     context: context,
+                    isDark: isDark,
                     title: l10n?.travelInterpreter ?? "Travel Interpreter",
                     description: l10n?.realTimeSplitScreen ?? "Real-time split-screen conversation with a native speaker. Breaks down language barriers instantly.",
-                    icon: Icons.people_alt,
-                    gradient: const LinearGradient(
-                      colors: [Color(0xFF2B5876), Color(0xFF4E4376)],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    ),
+                    icon: Icons.people_outline,
                     onTap: () {
                       Navigator.push(context, MaterialPageRoute(builder: (_) => const TravelInterpreterScreen()));
                     },
                   ),
 
-                  const SizedBox(height: 24),
-                  _buildPremiumCard(
+                  const SizedBox(height: 20),
+                  _buildMinimalCard(
                     context: context,
+                    isDark: isDark,
                     title: "Universal Scanner",
                     description: "Point your camera at real-world objects or text to instantly extract and translate Chinese characters.",
-                    icon: Icons.document_scanner,
-                    gradient: const LinearGradient(
-                      colors: [Color(0xFF11998E), Color(0xFF38EF7D)],
-                      begin: Alignment.topRight,
-                      end: Alignment.bottomLeft,
-                    ),
+                    icon: Icons.document_scanner_outlined,
                     onTap: () {
                       Navigator.push(context, MaterialPageRoute(builder: (_) => const UniversalScannerScreen()));
                     },
@@ -80,30 +72,34 @@ class TranslationHubScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildPremiumCard({
+  Widget _buildMinimalCard({
     required BuildContext context,
+    required bool isDark,
     required String title,
     required String description,
     required IconData icon,
-    required Gradient gradient,
     required VoidCallback onTap,
   }) {
     final theme = Theme.of(context);
     
     return InkWell(
       onTap: onTap,
-      borderRadius: BorderRadius.circular(32),
+      borderRadius: BorderRadius.circular(24),
       child: Container(
         width: double.infinity,
-        padding: const EdgeInsets.all(32),
+        padding: const EdgeInsets.all(28),
         decoration: BoxDecoration(
-          gradient: gradient,
-          borderRadius: BorderRadius.circular(32),
+          color: isDark ? Colors.grey.shade900 : Colors.white,
+          borderRadius: BorderRadius.circular(24),
+          border: Border.all(
+            color: isDark ? Colors.white10 : Colors.black.withValues(alpha: 0.05),
+            width: 1,
+          ),
           boxShadow: [
             BoxShadow(
-              color: gradient.colors.last.withValues(alpha: 0.4),
-              blurRadius: 20,
-              offset: const Offset(0, 10),
+              color: isDark ? Colors.black26 : Colors.black.withValues(alpha: 0.03),
+              blurRadius: 24,
+              offset: const Offset(0, 8),
             ),
           ],
         ),
@@ -111,28 +107,28 @@ class TranslationHubScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              padding: const EdgeInsets.all(16),
+              padding: const EdgeInsets.all(14),
               decoration: BoxDecoration(
-                color: Colors.white.withValues(alpha: 0.2),
+                color: isDark ? Colors.white12 : Colors.black.withValues(alpha: 0.03),
                 shape: BoxShape.circle,
               ),
-              child: Icon(icon, color: Colors.white, size: 36),
+              child: Icon(icon, color: isDark ? Colors.white : Colors.black87, size: 28),
             ),
-            const SizedBox(height: 32),
+            const SizedBox(height: 24),
             Text(
               title,
-              style: theme.textTheme.headlineMedium?.copyWith(
-                fontWeight: FontWeight.w900,
-                color: Colors.white,
+              style: theme.textTheme.headlineSmall?.copyWith(
+                fontWeight: FontWeight.w800,
+                color: isDark ? Colors.white : const Color(0xFF1A1A1B),
                 letterSpacing: -0.5,
               ),
             ),
             const SizedBox(height: 12),
             Text(
               description,
-              style: theme.textTheme.titleMedium?.copyWith(
-                color: Colors.white.withValues(alpha: 0.8),
-                height: 1.4,
+              style: theme.textTheme.bodyLarge?.copyWith(
+                color: isDark ? Colors.white60 : Colors.black54,
+                height: 1.5,
               ),
             ),
           ],

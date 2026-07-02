@@ -43,12 +43,13 @@ class ARBoundingBoxPainter extends CustomPainter {
       if (object.labels.isEmpty) continue;
 
       // Extract bounding box
-      final rect = _scaleRect(
+      final rect = scaleRect(
         rect: object.boundingBox,
         imageSize: absoluteImageSize,
         widgetSize: size,
         scaleX: scaleX,
         scaleY: scaleY,
+        rotation: rotation,
       );
 
       // Draw the box
@@ -79,12 +80,13 @@ class ARBoundingBoxPainter extends CustomPainter {
     }
   }
 
-  Rect _scaleRect({
+  static Rect scaleRect({
     required Rect rect,
     required Size imageSize,
     required Size widgetSize,
     required double scaleX,
     required double scaleY,
+    required InputImageRotation rotation,
   }) {
     // When using CameraPlugin, the raw image might be landscape but the preview is portrait.
     // The InputImage converts it based on orientation, but the bounding box is relative to the *unrotated* image.

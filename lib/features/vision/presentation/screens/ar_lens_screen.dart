@@ -7,6 +7,9 @@ import 'package:google_mlkit_object_detection/google_mlkit_object_detection.dart
 import '../providers/vision_provider.dart';
 import '../widgets/ar_bounding_box_painter.dart';
 import '../../../../core/services/character_lookup_service.dart';
+import '../../../../core/services/gemini_service.dart';
+import '../../../../features/flashcards/domain/entities/flashcard.dart';
+import '../../../../features/flashcards/presentation/widgets/deck_selection_sheet.dart';
 
 class ARLensScreen extends ConsumerStatefulWidget {
   const ARLensScreen({super.key});
@@ -18,6 +21,40 @@ class ARLensScreen extends ConsumerStatefulWidget {
 class _ARLensScreenState extends ConsumerState<ARLensScreen> with TickerProviderStateMixin {
   late final AnimationController _pulseController;
   late final Animation<double> _pulseAnimation;
+  bool _isSnapping = false;
+
+  Future<void> _handleSnapInAR(String genericLabel, CameraController controller) async {
+    setState(() => _isSnapping = true);
+    try {
+      final image = await controller.takePicture();
+      final bytes = await image.readAsBytes();
+      
+      final gemini = ref.read(geminiServiceProvider);
+      final langCode = Localizations.localeOf(context).languageCode;
+      final word = await gemini.identifySpecificObject(bytes, genericLabel, langCode);
+      
+      if (mounted) {
+        setState(() => _isSnapping = false);
+        final card = Flashcard(
+          id: '',
+          hanzi: word.hanzi,
+          pinyin: word.pinyin,
+          definition: word.meaning,
+          hskLevel: word.hskLevel,
+          strokePaths: const [],
+          modeStats: const {},
+        );
+        DeckSelectionSheet.show(context, card: card);
+      }
+    } catch (e) {
+      if (mounted) {
+        setState(() => _isSnapping = false);
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Could not identify specific object.')),
+        );
+      }
+    }
+  }
 
   @override
   void initState() {
@@ -86,15 +123,66 @@ class _ARLensScreenState extends ConsumerState<ARLensScreen> with TickerProvider
                 final rawRotation = InputImageRotationValue.fromRawValue(sensorOrientation);
                 if (rawRotation != null) rotation = rawRotation;
 
-                return CustomPaint(
-                  painter: ARBoundingBoxPainter(
-                    visionState.detectedObjects,
-                    visionState.translationCache,
-                    imageSize,
-                    rotation,
+                return GestureDetector(
+                  onTapUp: (details) {
+                    if (_isSnapping) return;
+                    
+                    final tapPos = details.localPosition;
+                    final size = MediaQuery.of(context).size;
+                    
+                    final bool isPortrait = rotation == InputImageRotation.rotation90deg || rotation == InputImageRotation.rotation270deg;
+                    final double imgW = isPortrait ? imageSize.height : imageSize.width;
+                    final double imgH = isPortrait ? imageSize.width : imageSize.height;
+                    
+                    final double scaleX = size.width / imgW;
+                    final double scaleY = size.height / imgH;
+
+                    for (final object in visionState.detectedObjects) {
+                      if (object.labels.isEmpty) continue;
+                      final rect = ARBoundingBoxPainter.scaleRect(
+                        rect: object.boundingBox,
+                        imageSize: imageSize,
+                        widgetSize: size,
+                        scaleX: scaleX,
+                        scaleY: scaleY,
+                        rotation: rotation,
+                      );
+                      // Expand hit area slightly
+                      if (rect.inflate(20).contains(tapPos)) {
+                        _handleSnapInAR(object.labels.first.text, controller);
+                        break;
+                      }
+                    }
+                  },
+                  child: CustomPaint(
+                    size: Size.infinite,
+                    painter: ARBoundingBoxPainter(
+                      visionState.detectedObjects,
+                      visionState.translationCache,
+                      imageSize,
+                      rotation,
+                    ),
                   ),
                 );
               },
+            ),
+
+          // ── Snapping overlay ──────────────────────────────────────────
+          if (_isSnapping)
+            Positioned.fill(
+              child: Container(
+                color: Colors.black54,
+                child: const Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CircularProgressIndicator(color: Colors.white),
+                      SizedBox(height: 16),
+                      Text("Analyzing precise object...", style: TextStyle(color: Colors.white)),
+                    ],
+                  ),
+                ),
+              ),
             ),
 
           // ── Loading / Error states ───────────────────────────────────

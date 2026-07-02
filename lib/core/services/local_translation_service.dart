@@ -23,7 +23,13 @@ class LocalTranslationService {
   LocalTranslationService({required this.targetLanguage});
 
   static Future<void> init() async {
-    await Hive.openBox<String>(_boxName);
+    try {
+      await Hive.openBox<String>(_boxName);
+    } catch (e) {
+      print('Error opening $_boxName: $e. Deleting and retrying.');
+      await Hive.deleteBoxFromDisk(_boxName);
+      await Hive.openBox<String>(_boxName);
+    }
     await _seedEnglishCache();
   }
 

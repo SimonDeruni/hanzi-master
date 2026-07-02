@@ -351,12 +351,9 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                     final previewHeight = _cameraController!.value.previewSize?.height ?? 1.0;
                     final cameraAspectRatio = previewWidth > 0 && previewHeight > 0 ? previewHeight / previewWidth : 1.0;
                     
-                    var scale = size.aspectRatio * cameraAspectRatio;
-                    if (scale < 1) scale = 1 / scale;
-
-                    return Transform.scale(
-                      scale: scale,
-                      child: Center(
+                    return Center(
+                      child: AspectRatio(
+                        aspectRatio: 1 / cameraAspectRatio,
                         child: CameraPreview(_cameraController!),
                       ),
                     );
@@ -389,6 +386,10 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                   child: _buildMainContent(theme, l10n),
                 ),
                 
+                // Zoom Slider
+                if (!_showingResults && !_showingInteractiveImage && _isCameraInitialized)
+                  _buildZoomSlider(),
+                  
                 // Bottom Control Panel
                 if (!_showingResults)
                   _buildBottomControls(theme, l10n),
@@ -491,6 +492,33 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
     );
   }
   
+  Widget _buildZoomSlider() {
+    if (_minZoomLevel >= _maxZoomLevel) return const SizedBox.shrink();
+    
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 48.0, vertical: 8.0),
+      child: Row(
+        children: [
+          const Icon(Icons.zoom_out, color: Colors.white70, size: 20),
+          Expanded(
+            child: Slider(
+              value: _currentZoomLevel,
+              min: _minZoomLevel,
+              max: _maxZoomLevel,
+              activeColor: Colors.white,
+              inactiveColor: Colors.white30,
+              onChanged: (value) async {
+                setState(() => _currentZoomLevel = value);
+                await _cameraController?.setZoomLevel(value);
+              },
+            ),
+          ),
+          const Icon(Icons.zoom_in, color: Colors.white70, size: 20),
+        ],
+      ),
+    );
+  }
+
   Widget _buildBottomControls(ThemeData theme, AppLocalizations l10n) {
      return Padding(
        padding: const EdgeInsets.only(bottom: 32.0, left: 32.0, right: 32.0),

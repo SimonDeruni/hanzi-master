@@ -487,7 +487,8 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
       );
       
       final gemini = ref.read(geminiServiceProvider);
-      final insight = await gemini.generateArticleInsight(text.toString(), knownWords);
+      final langCode = Localizations.localeOf(context).languageCode;
+      final insight = await gemini.generateArticleInsight(text.toString(), knownWords, langCode);
       
       if (mounted) {
         setState(() {
@@ -569,9 +570,9 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
       );
       
       final gemini = ref.read(geminiServiceProvider);
-      final extractedData = await gemini.extractAllUnknownWords(text.toString(), knownWords);
-      final newWords = extractedData['words'] as List<AiWord>;
-      final deckName = extractedData['deckName'] as String;
+      final langCode = Localizations.localeOf(context).languageCode;
+      final newWords = await gemini.extractAllUnknownWords(text.toString(), knownWords, langCode);
+      final deckName = pageTitle.isNotEmpty ? 'Article: $pageTitle' : 'Web Extraction';
       
       if (newWords.isEmpty) {
         if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('No new words found!')));

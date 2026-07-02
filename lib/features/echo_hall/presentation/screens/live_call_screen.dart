@@ -138,7 +138,7 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
     try {
       // Endpoint for Gemini Multimodal Live API
       final uri = Uri.parse(
-        'wss://generativelanguage.googleapis.com/ws/google.ai.generativelanguage.v1beta.GenerativeService.BidiGenerateContent?key=$apiKey'
+        'wss://generativelanguage.googleapis.com/ws/google.ai.generativelanguage.v1alpha.GenerativeService.BidiGenerateContent?key=$apiKey'
       );
       
       _channel = WebSocketChannel.connect(uri);
@@ -146,7 +146,7 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
       // 1. Setup Phase - Updated for June 2026 stable models
       final setupMessage = jsonEncode({
         "setup": {
-          "model": "models/gemini-2.0-flash-exp",
+          "model": "models/gemini-3.1-flash-live-preview",
           "generationConfig": {
              "responseModalities": ["AUDIO"],
              "speechConfig": {
@@ -318,6 +318,23 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
         );
       }
     });
+  }
+
+  Future<void> _togglePause() async {
+    setState(() {
+      _isMuted = !_isMuted;
+      if (_isLive) {
+        _callStatus = _isMuted ? "Paused - Take a break" : "Connected! Speak now.";
+      }
+    });
+    
+    if (_isMuted) {
+      try { await _player.pausePlayer(); } catch (e) {}
+      try { await _bgPlayer.pause(); } catch (e) {}
+    } else {
+      try { await _player.resumePlayer(); } catch (e) {}
+      try { await _bgPlayer.resume(); } catch (e) {}
+    }
   }
 
   Future<void> _startAudioStreaming() async {
@@ -532,10 +549,10 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       _CallControlButton(
-                        icon: _isMuted ? Icons.mic_off : Icons.mic,
-                        label: _isMuted ? "Muted" : "Mute",
+                        icon: _isMuted ? Icons.play_arrow : Icons.pause,
+                        label: _isMuted ? "Resume" : "Pause",
                         isActive: _isMuted,
-                        onTap: () => setState(() => _isMuted = !_isMuted),
+                        onTap: _togglePause,
                       ),
                       GestureDetector(
                         onTap: _endCall,

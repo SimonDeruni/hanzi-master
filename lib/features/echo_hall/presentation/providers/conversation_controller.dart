@@ -167,7 +167,9 @@ class ConversationController extends StateNotifier<ConversationState> {
         await _fetchAiResponse();
       }
     } catch (e) {
-      state = state.copyWith(isProcessing: false, error: "Processing failed: $e");
+      final isApiError = e.toString().contains('Exception:') || e.toString().contains('SocketException');
+      final errorMsg = isApiError ? "Our AI tutors are currently offline, please try again later." : "Processing failed: $e";
+      state = state.copyWith(isProcessing: false, error: errorMsg);
     }
   }
 
@@ -187,7 +189,9 @@ class ConversationController extends StateNotifier<ConversationState> {
       
       state = state.copyWith(messages: [...state.messages, aiMsg], isProcessing: false);
     } catch (e) {
-      state = state.copyWith(isProcessing: false, error: "AI Response failed: $e");
+      final isApiError = e.toString().contains('Exception:') || e.toString().contains('SocketException');
+      final errorMsg = isApiError ? "Our AI tutors are currently offline, please try again later." : "AI Response failed: $e";
+      state = state.copyWith(isProcessing: false, error: errorMsg);
     }
   }
 }
