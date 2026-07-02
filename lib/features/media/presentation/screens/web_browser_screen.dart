@@ -340,26 +340,6 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
                 ),
                 const SizedBox(height: 24),
                 ListTile(
-                  leading: const Icon(Icons.analytics, color: Colors.teal, size: 32),
-                  title: const Text("Analyze Article", style: TextStyle(fontWeight: FontWeight.bold)),
-                  subtitle: const Text("Get an AI summary and difficulty score"),
-                  onTap: () {
-                    Navigator.pop(ctx);
-                    _runAnalyzeArticle();
-                  },
-                ),
-                const Divider(),
-                ListTile(
-                  leading: const Icon(Icons.troubleshoot, color: Colors.purple, size: 32),
-                  title: const Text("X-Ray Scanner", style: TextStyle(fontWeight: FontWeight.bold)),
-                  subtitle: const Text("Generate pre-flight vocabulary list from this article"),
-                  onTap: () {
-                    Navigator.pop(ctx);
-                    _runXRayScanner();
-                  },
-                ),
-                const Divider(),
-                ListTile(
                   leading: const Icon(Icons.playlist_add, color: Colors.blue, size: 32),
                   title: const Text("Extract to Deck", style: TextStyle(fontWeight: FontWeight.bold)),
                   subtitle: const Text("Extract all unknown words to a new named Deck"),
@@ -376,21 +356,6 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
                   onTap: () {
                     Navigator.pop(ctx);
                     _runAutoSimplify();
-                  },
-                ),
-                const Divider(),
-                ListTile(
-                  leading: const Icon(Icons.document_scanner, color: Colors.deepOrange, size: 32),
-                  title: const Text("Scan Image (OCR)", style: TextStyle(fontWeight: FontWeight.bold)),
-                  subtitle: const Text("Extract Chinese text from images or screenshots"),
-                  onTap: () {
-                    Navigator.pop(ctx);
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => const UniversalScannerScreen(),
-                      ),
-                    );
                   },
                 ),
               ],
@@ -455,70 +420,6 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
       _controller.runJavaScript(js);
     }
   }
-
-  Future<void> _runXRayScanner() async {
-    setState(() => _isProcessingAi = true);
-    
-    try {
-      final text = await _controller.runJavaScriptReturningResult('document.body.innerText');
-      final repo = ref.read(flashcardRepositoryProvider);
-      final cardsResult = await repo.getFlashcards();
-      final masteredWords = cardsResult.fold(
-        (l) => <String>[],
-        (r) => r.where((c) => c.globalMasteryLevel >= 0.8).map((c) => c.hanzi).toList(),
-      );
-      
-      final gemini = ref.read(geminiServiceProvider);
-      final preFlightVocab = await gemini.generatePreFlightVocab(text.toString(), masteredWords);
-      
-      if (!mounted) return;
-      
-      showModalBottomSheet(
-        context: context,
-        backgroundColor: const Color(0xFFFDFCF0),
-        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(24))),
-        builder: (context) {
-          return Padding(
-            padding: const EdgeInsets.all(24.0),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Row(
-                  children: [
-                    Icon(Icons.troubleshoot, color: Colors.purple),
-                    SizedBox(width: 8),
-                    Text("Pre-Flight Vocabulary", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                  ],
-                ),
-                const SizedBox(height: 16),
-                ...preFlightVocab.map((w) => ListTile(
-                  title: Text("${w.hanzi} (${w.pinyin})", style: const TextStyle(fontWeight: FontWeight.bold)),
-                  subtitle: Text(w.meaning),
-                  trailing: IconButton(
-                    icon: const Icon(Icons.add_circle_outline),
-                    onPressed: () {
-                      Navigator.pop(context);
-                      showQuickLook(context, w.hanzi);
-                    },
-                  ),
-                )).toList(),
-              ],
-            ),
-          );
-        }
-      );
-    } catch (e) {
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('X-Ray Failed: $e')));
-      }
-    } finally {
-      if (mounted) {
-        setState(() => _isProcessingAi = false);
-      }
-    }
-  }
-
   Future<void> _runAnalyzeArticle() async {
     setState(() => _isProcessingAi = true);
     
