@@ -51,7 +51,7 @@ class TranslationHubScreen extends StatelessWidget {
                     },
                   ),
 
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 32),
                   _buildMinimalCard(
                     context: context,
                     isDark: isDark,
@@ -61,6 +61,19 @@ class TranslationHubScreen extends StatelessWidget {
                     onTap: () {
                       Navigator.push(context, MaterialPageRoute(builder: (_) => const UniversalScannerScreen()));
                     },
+                  ),
+                  const SizedBox(height: 48),
+                  
+                  // Footer
+                  Center(
+                    child: Text(
+                      "More translation tools coming soon",
+                      style: theme.textTheme.labelLarge?.copyWith(
+                        color: isDark ? Colors.white30 : Colors.black26,
+                        letterSpacing: 0.5,
+                        fontStyle: FontStyle.italic,
+                      ),
+                    ),
                   ),
                   const SizedBox(height: 40),
                 ]),
@@ -87,7 +100,7 @@ class TranslationHubScreen extends StatelessWidget {
       borderRadius: BorderRadius.circular(24),
       child: Container(
         width: double.infinity,
-        padding: const EdgeInsets.all(28),
+        padding: const EdgeInsets.all(36),
         decoration: BoxDecoration(
           color: isDark ? Colors.grey.shade900 : Colors.white,
           borderRadius: BorderRadius.circular(24),
