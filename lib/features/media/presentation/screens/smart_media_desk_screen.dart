@@ -296,10 +296,17 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
   }
 
   void _enterFullscreen() {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeRight,
+      DeviceOrientation.landscapeLeft,
+    ]);
     setState(() => _isFullscreen = true);
   }
 
   void _exitFullscreen() {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+    ]);
     setState(() => _isFullscreen = false);
   }
 

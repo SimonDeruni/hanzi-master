@@ -126,19 +126,6 @@ class PremiumVideoTopBar extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(width: 12),
-              // Study Tools Button
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                decoration: BoxDecoration(
-                  color: Colors.white.withValues(alpha: 0.2),
-                  borderRadius: BorderRadius.circular(16),
-                  border: Border.all(color: Colors.white30),
-                ),
-                child: const Text('Study Tools', style: TextStyle(color: Colors.white)),
-              ),
-              const SizedBox(width: 12),
-              const Icon(Icons.more_horiz, color: Colors.white),
             ],
           ),
         ),
