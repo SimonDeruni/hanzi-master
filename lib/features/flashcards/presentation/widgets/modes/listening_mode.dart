@@ -216,11 +216,9 @@ class _ListeningModeWidgetState extends ConsumerState<ListeningModeWidget> {
                       ],
                     ),
                   ),
-                ),
-              ).animate()
-               .fade(duration: 500.ms, curve: Curves.easeOutCubic)
-               .slideY(begin: 0.1, end: 0, duration: 500.ms, curve: Curves.easeOutCubic),
-                ),
+                ).animate()
+                 .fade(duration: 500.ms, curve: Curves.easeOutCubic)
+                 .slideY(begin: 0.1, end: 0, duration: 500.ms, curve: Curves.easeOutCubic),
               ),
             ),
 
