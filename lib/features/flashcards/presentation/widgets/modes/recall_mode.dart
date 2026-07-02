@@ -117,7 +117,19 @@ class _RecallModeWidgetState extends ConsumerState<RecallModeWidget> {
             Padding(
               padding: const EdgeInsets.fromLTRB(24, 8, 24, 8),
               child: _isRevealed
-                  ? const SizedBox.shrink()
+                  ? (_lines.isNotEmpty 
+                      ? TextButton.icon(
+                          onPressed: () => setState(() => _showScratchpad = !_showScratchpad),
+                          icon: Icon(
+                            _showScratchpad ? Icons.check_circle_outline : Icons.brush,
+                            size: 18,
+                          ),
+                          label: Text(_showScratchpad ? "View Answer" : "View My Drawing"),
+                          style: TextButton.styleFrom(
+                            foregroundColor: isDark ? Colors.white54 : Colors.black45,
+                          ),
+                        )
+                      : const SizedBox.shrink())
                   : TextButton.icon(
                       onPressed: () => setState(
                           () => _showScratchpad = !_showScratchpad),
@@ -243,13 +255,13 @@ class _RecallModeWidgetState extends ConsumerState<RecallModeWidget> {
                   children: [
                     CalligraphyBackground(child: const SizedBox.expand()),
                     GestureDetector(
-                      onPanStart: (details) {
+                      onPanStart: _isRevealed ? null : (details) {
                         setState(() {
                           _currentLine = [details.localPosition];
                           _lines.add(_currentLine);
                         });
                       },
-                      onPanUpdate: (details) {
+                      onPanUpdate: _isRevealed ? null : (details) {
                         setState(() {
                           _currentLine.add(details.localPosition);
                         });
@@ -262,15 +274,16 @@ class _RecallModeWidgetState extends ConsumerState<RecallModeWidget> {
                         ),
                       ),
                     ),
-                    Positioned(
-                      top: 8,
-                      right: 8,
-                      child: IconButton(
-                        icon: const Icon(Icons.refresh),
-                        color: isDark ? Colors.white54 : Colors.black54,
-                        onPressed: _clearScratchpad,
+                    if (!_isRevealed)
+                      Positioned(
+                        top: 8,
+                        right: 8,
+                        child: IconButton(
+                          icon: const Icon(Icons.refresh),
+                          color: isDark ? Colors.white54 : Colors.black54,
+                          onPressed: _clearScratchpad,
+                        ),
                       ),
-                    ),
                   ],
                 ),
               ),
