@@ -224,6 +224,7 @@ class _WordDetailDialogState extends ConsumerState<WordDetailDialog> {
                           showControls: true,
                           showGrade: false,
                           showGuideLines: true,
+                          isFlipped: _flashcard!.isFlipped,
                           userPointsNotifier: _scratchpadNotifier,
                         ),
                       ),

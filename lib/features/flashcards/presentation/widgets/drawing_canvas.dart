@@ -460,6 +460,7 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
                         CustomPaint(
                           painter: _ReferenceStrokePainter(
                             referencePath: _cachedParsedPaths[localCurrentIndex],
+                            medianPoints: (widget.medianPaths.isNotEmpty && realMedianIndex < widget.medianPaths.length) ? widget.medianPaths[realMedianIndex] : null,
                             canvasSize: Size.infinite,
                             centeringShift: centeringShift,
                           ),
@@ -655,9 +656,10 @@ class _SnapStrokePainter extends CustomPainter {
 
 class _ReferenceStrokePainter extends CustomPainter {
   final Path referencePath;
+  final List<Offset>? medianPoints;
   final Size canvasSize;
   final Offset centeringShift;
-  _ReferenceStrokePainter({required this.referencePath, required this.canvasSize, required this.centeringShift});
+  _ReferenceStrokePainter({required this.referencePath, this.medianPoints, required this.canvasSize, required this.centeringShift});
   @override
   void paint(Canvas canvas, Size size) {
     if (referencePath.getBounds().isEmpty) return;
@@ -686,31 +688,36 @@ class _ReferenceStrokePainter extends CustomPainter {
       for (double i = 0; i <= 1.0; i += 0.01) {
         samples.add(metric.getTangentForOffset(metric.length * i)!.position);
       }
-      
-      double maxDistSq = -1;
-      Offset tipA = samples.first;
-      Offset tipB = samples.last;
-      for (int i = 0; i < samples.length; i++) {
-        for (int j = i + 1; j < samples.length; j++) {
-          double d = (samples[i] - samples[j]).distanceSquared;
-          if (d > maxDistSq) { maxDistSq = d; tipA = samples[i]; tipB = samples[j]; }
-        }
-      }
-      
-      Offset startTip, endTip;
-      double scoreA = (tipA.dy * 1.5) + tipA.dx;
-      double scoreB = (tipB.dy * 1.5) + tipB.dx;
-      if (scoreA < scoreB) { startTip = tipA; endTip = tipB; } 
-      else { startTip = tipB; endTip = tipA; }
-      
       Offset startPos = Offset.zero, endPos = Offset.zero;
-      int sCount = 0, eCount = 0;
-      for (final p in samples) {
-        if ((p - startTip).distance < 50.0) { startPos += p; sCount++; }
-        if ((p - endTip).distance < 50.0) { endPos += p; eCount++; }
+      
+      if (medianPoints != null && medianPoints!.length >= 2) {
+        startPos = medianPoints!.first;
+        endPos = medianPoints!.last;
+      } else {
+        double maxDistSq = -1;
+        Offset tipA = samples.first;
+        Offset tipB = samples.last;
+        for (int i = 0; i < samples.length; i++) {
+          for (int j = i + 1; j < samples.length; j++) {
+            double d = (samples[i] - samples[j]).distanceSquared;
+            if (d > maxDistSq) { maxDistSq = d; tipA = samples[i]; tipB = samples[j]; }
+          }
+        }
+        
+        Offset startTip, endTip;
+        double scoreA = (tipA.dy * 1.5) + tipA.dx;
+        double scoreB = (tipB.dy * 1.5) + tipB.dx;
+        if (scoreA < scoreB) { startTip = tipA; endTip = tipB; } 
+        else { startTip = tipB; endTip = tipA; }
+        
+        int sCount = 0, eCount = 0;
+        for (final p in samples) {
+          if ((p - startTip).distance < 50.0) { startPos += p; sCount++; }
+          if ((p - endTip).distance < 50.0) { endPos += p; eCount++; }
+        }
+        startPos = sCount > 0 ? startPos / sCount.toDouble() : startTip;
+        endPos = eCount > 0 ? endPos / eCount.toDouble() : endTip;
       }
-      startPos = sCount > 0 ? startPos / sCount.toDouble() : startTip;
-      endPos = eCount > 0 ? endPos / eCount.toDouble() : endTip;
       
       canvas.drawCircle(startPos, 22.0, Paint()..color = Colors.green.withValues(alpha: 0.4)..style = PaintingStyle.fill);
       canvas.drawCircle(startPos, 8.0, Paint()..color = Colors.green..style = PaintingStyle.fill);
