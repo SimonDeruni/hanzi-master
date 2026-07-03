@@ -4,7 +4,6 @@ import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart'
 import 'package:hanzi_master/shared/widgets/pinyin_text.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/study_session_app_bar.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import 'package:hanzi_master/shared/widgets/swipeable_flashcard.dart';
@@ -175,42 +174,5 @@ class _ReadingModeWidgetState extends ConsumerState<ReadingModeWidget> {
       ),
     );
   }
-
-  Widget _buildGradeButton(String label, int grade, MaterialColor color, String tooltip) {
-    return Expanded(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 4.0),
-        child: Tooltip(
-          message: tooltip,
-          child: BouncingButton(
-            onPressed: () {
-              Navigator.pop(context, grade);
-            },
-            child: ElevatedButton(
-              onPressed: null,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: color.shade100,
-                foregroundColor: color.shade900,
-                disabledBackgroundColor: color.shade100,
-                disabledForegroundColor: color.shade900,
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                elevation: 0,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  side: BorderSide(color: color.shade300, width: 1),
-                ),
-              ),
-              child: FittedBox(
-                fit: BoxFit.scaleDown,
-                child: Text(
-                  label,
-                  style: const TextStyle(fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
 }
+
