@@ -14,6 +14,7 @@ import 'package:hanzi_master/core/providers/translation_language_provider.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/shared/widgets/pinyin_text.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/deck_controller.dart';
+import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'package:lpinyin/lpinyin.dart';
 
 enum ShadowingMode { freeFlow, theme, deck, customWord }
@@ -514,15 +515,76 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
                       ),
                       if (_selectedMode == ShadowingMode.customWord) ...[
                         const SizedBox(height: 16),
-                        TextField(
-                          decoration: InputDecoration(
-                            hintText: "Enter characters (e.g. 欢迎)",
-                            filled: true,
-                            fillColor: isDark ? Colors.grey[900] : Colors.white,
-                            border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide.none),
-                          ),
-                          style: TextStyle(color: isDark ? Colors.white : Colors.black),
-                          onChanged: (val) => setState(() => _customWordInput = val),
+                        Builder(
+                          builder: (context) {
+                            final asyncCards = ref.watch(flashcardControllerProvider);
+                            final allCards = asyncCards.valueOrNull ?? [];
+                            final options = allCards.map((c) => c.hanzi).toSet().toList();
+
+                            return Autocomplete<String>(
+                              optionsBuilder: (TextEditingValue textEditingValue) {
+                                if (textEditingValue.text.isEmpty) {
+                                  return options.take(10); // Show some defaults if empty
+                                }
+                                return options.where((String option) {
+                                  return option.contains(textEditingValue.text);
+                                });
+                              },
+                              onSelected: (String selection) {
+                                setState(() {
+                                  _customWordInput = selection;
+                                });
+                              },
+                              fieldViewBuilder: (context, textEditingController, focusNode, onFieldSubmitted) {
+                                return TextField(
+                                  controller: textEditingController,
+                                  focusNode: focusNode,
+                                  decoration: InputDecoration(
+                                    hintText: "Search library or type custom (e.g. 欢迎)",
+                                    filled: true,
+                                    fillColor: isDark ? Colors.grey[900] : Colors.white,
+                                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide.none),
+                                  ),
+                                  style: TextStyle(color: isDark ? Colors.white : Colors.black),
+                                  onChanged: (val) => setState(() => _customWordInput = val),
+                                );
+                              },
+                              optionsViewBuilder: (context, onSelected, optionsView) {
+                                return Align(
+                                  alignment: Alignment.topLeft,
+                                  child: Material(
+                                    elevation: 4,
+                                    borderRadius: BorderRadius.circular(12),
+                                    color: Colors.transparent,
+                                    child: Container(
+                                      width: MediaQuery.of(context).size.width - 64, // approximate width
+                                      constraints: const BoxConstraints(maxHeight: 250),
+                                      decoration: BoxDecoration(
+                                        color: isDark ? Colors.grey[850] : Colors.white,
+                                        borderRadius: BorderRadius.circular(12),
+                                        border: Border.all(color: isDark ? Colors.white12 : Colors.black12),
+                                      ),
+                                      child: ListView.builder(
+                                        padding: EdgeInsets.zero,
+                                        shrinkWrap: true,
+                                        itemCount: optionsView.length,
+                                        itemBuilder: (context, index) {
+                                          final option = optionsView.elementAt(index);
+                                          final cardList = allCards.where((c) => c.hanzi == option);
+                                          final card = cardList.isNotEmpty ? cardList.first : null;
+                                          return ListTile(
+                                            title: Text(option, style: TextStyle(color: isDark ? Colors.white : Colors.black, fontSize: 18, fontWeight: FontWeight.bold)),
+                                            subtitle: card != null ? Text("${card.pinyin} - ${card.meaning}", style: TextStyle(color: isDark ? Colors.white70 : Colors.black54), maxLines: 1, overflow: TextOverflow.ellipsis) : null,
+                                            onTap: () => onSelected(option),
+                                          );
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              },
+                            );
+                          }
                         ),
                       ],
                       if (_selectedMode == ShadowingMode.theme) ...[
