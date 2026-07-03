@@ -64,6 +64,8 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
   Animation<double>? _pulseAnimation;
 
   ShadowingMode _selectedMode = ShadowingMode.freeFlow;
+  bool _isAiSpeaking = false;
+  Timer? _aiSpeechTimer;
   String _selectedTheme = "HSK 1";
   String? _selectedDeckId;
 
@@ -129,7 +131,9 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
 
       String systemInstructionText = "You are a Shadowing Practice Studio. The user will speak English. You must instantly translate the English phrase into Mandarin Chinese and speak the Mandarin Chinese back to them so they can shadow your pronunciation. When the user shadows your phrase, ALWAYS use the 'report_pronunciation_grade' tool to evaluate their accuracy.";
       
-      if (_selectedMode == ShadowingMode.theme) {
+      if (widget.initialHanzi != null) {
+        systemInstructionText = "You are a Mandarin pronunciation coach. The user is practicing the word '${widget.initialHanzi}' (Pinyin: ${widget.initialPinyin ?? ''}, Meaning: ${widget.initialTranslation ?? ''}). Speak the word out loud so they can shadow it, and wait for them to repeat it. If they struggle, break it down. ALWAYS use the 'report_pronunciation_grade' tool to evaluate their pronunciation when they speak.";
+      } else if (_selectedMode == ShadowingMode.theme) {
         systemInstructionText = "You are a Mandarin pronunciation coach. The user wants to practice the topic: $_selectedTheme. Generate a short, simple Mandarin sentence related to this topic, speak it out loud for them to shadow, and wait for them to repeat it. If they repeat it well, give them a new sentence. ALWAYS use the 'report_pronunciation_grade' tool to evaluate their pronunciation when they speak.";
       } else if (_selectedMode == ShadowingMode.deck) {
         systemInstructionText = "You are a Mandarin pronunciation coach. The user is practicing their custom flashcard deck. Generate a Mandarin sentence using common vocabulary, speak it out loud for them to shadow, and wait for them to repeat it. ALWAYS use the 'report_pronunciation_grade' tool to evaluate their pronunciation when they speak.";
@@ -214,6 +218,12 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
                       final base64Audio = part['inlineData']['data'];
                       final audioBytes = base64Decode(base64Audio);
                       _player.feedUint8FromStream(Uint8List.fromList(audioBytes));
+                      
+                      _isAiSpeaking = true;
+                      _aiSpeechTimer?.cancel();
+                      _aiSpeechTimer = Timer(const Duration(milliseconds: 1500), () {
+                        if (mounted) _isAiSpeaking = false;
+                      });
                     }
                     if (part.containsKey('text')) {
                       _handleTranslatedText(part['text']);
@@ -325,7 +335,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
         const RecordConfig(encoder: AudioEncoder.pcm16bits, sampleRate: 16000, numChannels: 1),
       );
       _audioSubscription = stream.listen((data) {
-        if (data.isEmpty) return;
+        if (data.isEmpty || _isAiSpeaking) return;
         if (_channel != null && _channel?.closeCode == null) {
           try {
             _channel!.sink.add(jsonEncode({
