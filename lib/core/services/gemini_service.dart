@@ -318,11 +318,11 @@ class GeminiService {
 
     final prompt = '''
 You are an expert Chinese dictionary. Define the following word/character: "$word".
-Provide the meaning in $targetLanguage.
+Provide the meaning in English.
 Return ONLY valid JSON with this exact structure:
 {
   "pinyin": "...",
-  "meaning": "The $targetLanguage meaning here..."
+  "meaning": "The English meaning here..."
 }
 ''';
 
@@ -524,7 +524,7 @@ Translate the English object label "$label" into Chinese.
 Provide:
 1. The Chinese character(s) (Hanzi).
 2. The Pinyin with tone marks.
-3. A concise $targetLanguage definition.
+3. A concise English definition.
 
 Respond ONLY in valid JSON format with this exact structure:
 {

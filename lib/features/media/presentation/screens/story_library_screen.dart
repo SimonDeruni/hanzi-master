@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:hanzi_master/features/media/data/story_fetcher_service.dart';
 import 'package:hanzi_master/features/media/domain/models/library_story.dart';
 import 'package:hanzi_master/features/media/presentation/screens/story_cultural_insight_screen.dart';
@@ -21,12 +22,13 @@ class StoryLibraryScreen extends ConsumerStatefulWidget {
 class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
   List<LibraryStory> _allStories = [];
   bool _isLoading = true;
+  List<String> _bookmarkedUrls = [];
   final TextEditingController _searchController = TextEditingController();
   
   String _selectedCategory = 'All';
   int _selectedHskLevel = -1; // -1 = All
 
-  List<String> get _categories => ['All', 'Tang Poetry', 'Contemporary', 'AI Stories'];
+  List<String> get _categories => ['All', 'Tang Poetry', 'Contemporary', 'AI Stories', 'Bookmarks'];
   List<int> get _hskLevels => [-1, 0, 1, 2, 3, 4, 5, 6];
 
   @override
@@ -51,10 +53,13 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
     Future.wait([
       fetcher.fetchLocalStories(),
       fetcher.fetchFirebaseStories(),
-    ]).then((results) {
+    ]).then((results) async {
+      final prefs = await SharedPreferences.getInstance();
+      final bookmarks = prefs.getStringList('bookmarked_story_urls') ?? [];
       if (mounted) {
         setState(() {
           _allStories = [...results[0], ...results[1]];
+          _bookmarkedUrls = bookmarks;
           _isLoading = false;
         });
       }
@@ -83,7 +88,8 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
       final matchesCategory = _selectedCategory == 'All' || 
           (_selectedCategory == 'Tang Poetry' && story.category.contains('Classic')) ||
           (_selectedCategory == 'Contemporary' && story.category.contains('Contemporary')) ||
-          (_selectedCategory == 'AI Stories' && story.sourceName == 'Local DB');
+          (_selectedCategory == 'AI Stories' && story.sourceName == 'Local DB') ||
+          (_selectedCategory == 'Bookmarks' && _bookmarkedUrls.contains(story.link));
           
       final matchesHsk = _selectedHskLevel == -1 || story.hskLevel == _selectedHskLevel;
       

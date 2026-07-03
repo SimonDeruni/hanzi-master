@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
+import 'package:hanzi_master/features/flashcards/presentation/widgets/word_detail_dialog.dart';
 
 class SimplifiedArticleReaderScreen extends StatefulWidget {
   final AiStory story;
@@ -67,7 +68,7 @@ class _SimplifiedArticleReaderScreenState extends State<SimplifiedArticleReaderS
                       runSpacing: 12.0,
                       children: sentence.words.map((word) {
                         return GestureDetector(
-                          onTap: () => showQuickLook(context, word.hanzi),
+                          onTap: () => WordDetailDialog.show(context, word, sentence),
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [

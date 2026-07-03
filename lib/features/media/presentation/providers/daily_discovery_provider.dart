@@ -32,7 +32,7 @@ class DailyDiscovery extends _$DailyDiscovery {
     // Fetch both simultaneously with a faster timeout to prevent UI hanging
     final results = await Future.wait([
       repo.getDailyVideo().timeout(
-        const Duration(seconds: 4),
+        const Duration(seconds: 15),
         onTimeout: () => DailyMediaItem(
           title: "李子柒 Liziqi: 大蒜的一生",
           subtitle: "The Life of Garlic - Traditional Chinese Life",

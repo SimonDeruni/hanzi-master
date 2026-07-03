@@ -10,6 +10,7 @@ import '../../../../core/services/character_lookup_service.dart';
 import '../../../../core/services/gemini_service.dart';
 import '../../../../features/flashcards/domain/entities/flashcard.dart';
 import '../../../../features/flashcards/presentation/widgets/deck_selection_sheet.dart';
+import 'ar_result_screen.dart';
 
 class ARLensScreen extends ConsumerStatefulWidget {
   const ARLensScreen({super.key});
@@ -35,16 +36,18 @@ class _ARLensScreenState extends ConsumerState<ARLensScreen> with TickerProvider
       
       if (mounted) {
         setState(() => _isSnapping = false);
-        final card = Flashcard(
-          id: '',
-          hanzi: word.hanzi,
-          pinyin: word.pinyin,
-          definition: word.meaning,
-          hskLevel: word.hskLevel,
-          strokePaths: const [],
-          modeStats: const {},
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ARResultScreen(
+              imageBytes: bytes,
+              hanzi: word.hanzi,
+              pinyin: word.pinyin,
+              meaning: word.meaning,
+              hskLevel: word.hskLevel,
+            ),
+          ),
         );
-        DeckSelectionSheet.show(context, card: card);
       }
     } catch (e) {
       if (mounted) {

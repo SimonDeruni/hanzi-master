@@ -257,6 +257,7 @@ class _StorySummaryScreenState extends ConsumerState<StorySummaryScreen> {
                           builder: (_) => WebBrowserScreen(
                             initialUrl: widget.story.link,
                             autoReadingMode: true,
+                            isStoryMode: true,
                           ),
                         ),
                       );

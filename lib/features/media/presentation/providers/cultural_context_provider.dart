@@ -27,9 +27,9 @@ CRITICAL RULES:
 
     final prefs = await SharedPreferences.getInstance();
     final now = DateTime.now();
-    final todayString = "\${now.year}-\${now.month}-\${now.day}";
-    final cacheKeyDate = 'insight_date_\$mediaTitle';
-    final cacheKeyData = 'insight_data_\$mediaTitle';
+    final todayString = "${now.year}-${now.month}-${now.day}";
+    final cacheKeyDate = 'insight_date_$mediaTitle';
+    final cacheKeyData = 'insight_data_$mediaTitle';
 
     if (prefs.getString(cacheKeyDate) == todayString) {
       final cached = prefs.getString(cacheKeyData);

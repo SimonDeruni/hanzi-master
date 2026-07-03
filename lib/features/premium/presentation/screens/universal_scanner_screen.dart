@@ -666,13 +666,13 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
             child: Container(
-              padding: const EdgeInsets.all(16),
+              padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
-                color: const Color(0xFFFDFCF0),
-                borderRadius: BorderRadius.circular(16),
-                border: Border(left: BorderSide(color: theme.colorScheme.primary, width: 4)),
-                boxShadow: const [
-                  BoxShadow(color: Colors.black12, blurRadius: 4, offset: Offset(0, 2)),
+                color: const Color(0xFF1A1A1B).withValues(alpha: 0.8),
+                borderRadius: BorderRadius.circular(24),
+                border: Border.all(color: Colors.white.withValues(alpha: 0.1)),
+                boxShadow: [
+                  BoxShadow(color: Colors.black.withValues(alpha: 0.2), blurRadius: 10, offset: const Offset(0, 5)),
                 ],
               ),
               child: Column(
@@ -680,18 +680,18 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                 children: [
                   Row(
                     children: [
-                      Icon(Icons.translate, size: 16, color: theme.colorScheme.primary),
-                      const SizedBox(width: 8),
-                      Text("Full Translation", style: theme.textTheme.labelMedium?.copyWith(color: theme.colorScheme.primary, fontWeight: FontWeight.bold)),
+                      Icon(Icons.translate, size: 20, color: theme.colorScheme.primary),
+                      const SizedBox(width: 12),
+                      Text("Full Translation", style: theme.textTheme.titleMedium?.copyWith(color: Colors.white, fontWeight: FontWeight.bold)),
                     ],
                   ),
-                  const SizedBox(height: 8),
-                  Text(_fullTranslation, style: theme.textTheme.bodyMedium?.copyWith(height: 1.5, color: const Color(0xFF1A1A1B), fontStyle: FontStyle.italic)),
+                  const SizedBox(height: 12),
+                  Text(_fullTranslation, style: theme.textTheme.bodyLarge?.copyWith(height: 1.5, color: Colors.white.withOpacity(0.9), fontStyle: FontStyle.italic)),
                 ],
               ),
             ),
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 12),
         ],
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -700,14 +700,19 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
             children: [
               Text(
                 l10n.foundNCharacters(_matchedCharacters.length),
-                style: theme.textTheme.titleLarge?.copyWith(color: Colors.white),
+                style: theme.textTheme.headlineSmall?.copyWith(color: Colors.white, fontWeight: FontWeight.bold),
               ),
-                  IconButton(
-                    onPressed: _createDeck,
-                    style: IconButton.styleFrom(backgroundColor: Colors.white24),
-                    icon: const Icon(Icons.library_add, color: Colors.white),
-                    tooltip: l10n.importAll,
-                  ),
+              ElevatedButton.icon(
+                onPressed: _createDeck,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: theme.colorScheme.primary,
+                  foregroundColor: theme.colorScheme.onPrimary,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                ),
+                icon: const Icon(Icons.bookmark_add, size: 20),
+                label: const Text("Save All", style: TextStyle(fontWeight: FontWeight.bold)),
+              ),
             ],
           ),
         ),
@@ -724,63 +729,74 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                   onTap: () {
                     showQuickLook(context, info.hanzi);
                   },
-                  borderRadius: BorderRadius.circular(16),
+                  borderRadius: BorderRadius.circular(24),
                   child: Container(
                     padding: const EdgeInsets.all(20),
                     decoration: BoxDecoration(
                       color: const Color(0xFFFDFCF0),
-                      borderRadius: BorderRadius.circular(16),
-                      border: Border.all(color: Colors.black12),
+                      borderRadius: BorderRadius.circular(24),
+                      boxShadow: [
+                        BoxShadow(color: Colors.black.withValues(alpha: 0.1), blurRadius: 8, offset: const Offset(0, 4)),
+                      ],
                     ),
                     child: Row(
                       children: [
-                        Text(info.hanzi, style: theme.textTheme.displaySmall?.copyWith(fontSize: 40, color: const Color(0xFF1A1A1B))),
-                        const SizedBox(width: 20),
+                        Container(
+                          width: 64,
+                          height: 64,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            color: theme.colorScheme.primary.withOpacity(0.1),
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          child: Text(info.hanzi, style: const TextStyle(fontSize: 40, fontWeight: FontWeight.w900, color: Color(0xFF1A1A1B), height: 1.0)),
+                        ),
+                        const SizedBox(width: 16),
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              FittedBox(
-                                fit: BoxFit.scaleDown,
-                                alignment: Alignment.centerLeft,
-                                child: PinyinText(
-                                  text: info.pinyin,
-                                  style: theme.textTheme.titleMedium?.copyWith(color: theme.colorScheme.primary),
-                                ),
+                              PinyinText(
+                                text: info.pinyin,
+                                style: theme.textTheme.titleMedium?.copyWith(color: theme.colorScheme.primary, fontWeight: FontWeight.bold),
                               ),
-                              const SizedBox(height: 4),
-                              Text(info.meaning, style: theme.textTheme.bodyMedium?.copyWith(color: const Color(0xFF1A1A1B)), maxLines: 2, overflow: TextOverflow.ellipsis),
+                              const SizedBox(height: 6),
+                              Text(info.meaning, style: theme.textTheme.bodyMedium?.copyWith(color: Colors.black87), maxLines: 2, overflow: TextOverflow.ellipsis),
                             ],
                           ),
                         ),
                         const SizedBox(width: 12),
-                        // HSK badge
-                        if (info.hskLevel > 0)
-                          Container(
-                            margin: const EdgeInsets.only(right: 8),
-                            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                            decoration: BoxDecoration(
-                              color: theme.colorScheme.primary.withValues(alpha: 0.1),
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: Text(
-                              'HSK${info.hskLevel}',
-                              style: theme.textTheme.labelSmall?.copyWith(
-                                color: theme.colorScheme.primary,
-                                fontWeight: FontWeight.bold,
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            if (info.hskLevel > 0)
+                              Container(
+                                margin: const EdgeInsets.only(bottom: 8),
+                                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                                decoration: BoxDecoration(
+                                  color: theme.colorScheme.primary.withValues(alpha: 0.1),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                child: Text(
+                                  'HSK \${info.hskLevel}',
+                                  style: theme.textTheme.labelSmall?.copyWith(
+                                    color: theme.colorScheme.primary,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            Container(
+                              decoration: BoxDecoration(
+                                color: const Color(0xFF1A1A1B).withOpacity(0.05),
+                                shape: BoxShape.circle,
+                              ),
+                              child: IconButton(
+                                icon: const Icon(Icons.add, color: Color(0xFF1A1A1B)),
+                                onPressed: () => _addSingleCard(info),
+                                tooltip: l10n.addToStudyDeck,
                               ),
                             ),
-                          ),
-                        Container(
-                          decoration: BoxDecoration(
-                            color: theme.colorScheme.primary.withValues(alpha: 0.1),
-                            shape: BoxShape.circle,
-                          ),
-                          child: IconButton(
-                            icon: Icon(Icons.bookmark_add, color: theme.colorScheme.primary),
-                            onPressed: () => _addSingleCard(info),
-                            tooltip: l10n.addToStudyDeck,
-                          ),
+                          ],
                         ),
                       ],
                     ),

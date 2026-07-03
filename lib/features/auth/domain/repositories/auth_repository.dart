@@ -48,7 +48,7 @@ class AuthRepository {
       );
       return await _auth.signInWithCredential(credential);
     } catch (e) {
-      return null;
+      throw e;
     }
   }
 

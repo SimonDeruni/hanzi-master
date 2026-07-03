@@ -151,6 +151,7 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
     _positionSubscription = _playerController.videoStateStream.listen((state) {
       if (_playerController.value.playerState == PlayerState.playing && _wasMutedForAutoplay) {
         _playerController.unMute();
+        _playerController.setPlaybackRate(_playbackRate);
         _wasMutedForAutoplay = false;
       }
       

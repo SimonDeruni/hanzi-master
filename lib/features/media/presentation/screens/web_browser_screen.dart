@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
 import 'package:hanzi_master/features/media/presentation/screens/media_search_screen.dart';
@@ -10,21 +11,25 @@ import 'package:uuid/uuid.dart';
 import 'package:hanzi_master/core/providers.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/deck.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
+import 'package:hanzi_master/features/flashcards/presentation/widgets/deck_selection_sheet.dart';
 import 'package:hanzi_master/features/media/domain/models/saved_article.dart';
 import 'package:hive/hive.dart';
 import 'package:hanzi_master/features/media/presentation/screens/simplified_article_reader_screen.dart';
 import 'package:hanzi_master/features/premium/presentation/screens/universal_scanner_screen.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'dart:ui';
+import 'package:hanzi_master/features/flashcards/presentation/widgets/word_detail_dialog.dart';
 
 class WebBrowserScreen extends ConsumerStatefulWidget {
   final String initialUrl;
   final bool autoReadingMode;
+  final bool isStoryMode;
 
   const WebBrowserScreen({
     super.key,
     this.initialUrl = 'https://www.bbc.com/zhongwen/simp',
     this.autoReadingMode = false,
+    this.isStoryMode = false,
   });
 
   @override
@@ -308,7 +313,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
     _tts.setCompletionHandler(() {
       if (mounted) setState(() => _isReadingAloud = false);
       _controller.runJavaScript('''
-        if (window.removeHighlight) window.removeHighlight();
+        if (window.removeTtsHighlight) window.removeTtsHighlight();
         const btn = document.getElementById('tts-btn');
         if (btn) {
           btn.innerText = '🔊';
@@ -332,13 +337,9 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
       if (!mounted) return;
       // Inject JS to highlight the current word being spoken within the sentence
       final js = '''
-        (function() {
-          const w = "$word";
-          if (!w) return;
-          // Because highlighting a word dynamically while maintaining the hanzi wrappers is hard,
-          // we'll rely on the gold sentence background already applied in JS on click.
-          // Optional: we could scroll to the sentence if it's out of view
-        })();
+        if (window.highlightTtsOffset) {
+          window.highlightTtsOffset($startOffset, $endOffset);
+        }
       ''';
       _controller.runJavaScript(js);
     });
@@ -347,9 +348,97 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
   Future<void> _playTts({String? text}) async {
     String parsedText = text ?? "";
     if (parsedText.isEmpty) {
-      final jsResult = await _controller.runJavaScriptReturningResult('document.body.innerText');
-      parsedText = jsResult.toString().replaceAll('"', '');
+      final jsResult = await _controller.runJavaScriptReturningResult('''
+        (function() {
+          let bestNode = document.body;
+          const articles = document.querySelectorAll('article, .article, .post, .content, main');
+          if (articles.length > 0) {
+            bestNode = articles[0];
+          }
+          window.ttsRootNode = bestNode;
+          
+          // Inject TreeWalker highlighter
+          if (!window.highlightTtsOffset) {
+            window.removeTtsHighlight = function() {
+              const prev = document.querySelectorAll('.tts-active-word');
+              prev.forEach(el => {
+                const parent = el.parentNode;
+                parent.replaceChild(document.createTextNode(el.textContent), el);
+                parent.normalize();
+              });
+            };
+            
+            window.highlightTtsOffset = function(startOffset, endOffset) {
+              window.removeTtsHighlight();
+              if (!window.ttsRootNode) return;
+              
+              const walker = document.createTreeWalker(window.ttsRootNode, NodeFilter.SHOW_TEXT, null, false);
+              let currentOffset = 0;
+              let startNode = null, startNodeOffset = 0;
+              let endNode = null, endNodeOffset = 0;
+              
+              while (walker.nextNode()) {
+                const node = walker.currentNode;
+                // Ignore script and style elements
+                if (node.parentNode && (node.parentNode.nodeName === 'SCRIPT' || node.parentNode.nodeName === 'STYLE')) {
+                  continue;
+                }
+                const len = node.textContent.length;
+                if (!startNode && currentOffset + len > startOffset) {
+                  startNode = node;
+                  startNodeOffset = startOffset - currentOffset;
+                }
+                if (startNode && currentOffset + len >= endOffset) {
+                  endNode = node;
+                  endNodeOffset = endOffset - currentOffset;
+                  break;
+                }
+                currentOffset += len;
+              }
+              
+              if (startNode && endNode) {
+                try {
+                  const range = document.createRange();
+                  range.setStart(startNode, startNodeOffset);
+                  range.setEnd(endNode, endNodeOffset);
+                  const span = document.createElement('span');
+                  span.className = 'tts-active-word';
+                  span.style.backgroundColor = '#FFEB3B';
+                  span.style.color = '#000';
+                  span.style.borderRadius = '2px';
+                  range.surroundContents(span);
+                  span.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                } catch(e) {}
+              }
+            };
+          }
+          
+          // Extract text cleanly by skipping script/style text
+          const walker = document.createTreeWalker(bestNode, NodeFilter.SHOW_TEXT, null, false);
+          let text = '';
+          while (walker.nextNode()) {
+            const node = walker.currentNode;
+            if (node.parentNode && (node.parentNode.nodeName === 'SCRIPT' || node.parentNode.nodeName === 'STYLE')) {
+              continue;
+            }
+            text += node.textContent;
+          }
+          return text;
+        })();
+      ''');
+      parsedText = jsResult.toString();
+      
+      // JSON decode if it's wrapped in quotes by JS bridge
+      try {
+        if (parsedText.startsWith('"') && parsedText.endsWith('"')) {
+          parsedText = jsonDecode(parsedText);
+        }
+      } catch(_) {}
     }
+    
+    // Remove emojis
+    parsedText = parsedText.replaceAll(RegExp(r'[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{1F600}-\u{1F64F}\u{1F680}-\u{1F6FF}\u{1F1E6}-\u{1F1FF}]', unicode: true), '');
+    
     if (parsedText.trim().isNotEmpty) {
       await _tts.speak(parsedText);
       _controller.runJavaScript('''
@@ -591,35 +680,26 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
         return;
       }
 
-      setState(() => _isProcessingAi = true);
+      final List<Flashcard> flashcards = selectedWords.map((w) => Flashcard(
+        id: const Uuid().v4(),
+        deckId: '', // Will be assigned by DeckSelectionSheet
+        hanzi: w.hanzi,
+        pinyin: w.pinyin,
+        definition: w.meaning,
+        hskLevel: 0,
+        strokePaths: const [],
+        medianPaths: const [],
+        isFlipped: false,
+        modeStats: const {},
+        inkPoints: 0,
+      )).toList();
 
-      final deckRepo = ref.read(deckRepositoryProvider);
-      final createdDeckResult = await deckRepo.createDeck(deckName, description: 'Extracted automatically from Web Explorer ($pageTitle)');
-      final createdDeck = createdDeckResult.fold((l) => null, (r) => r);
-      if (createdDeck == null) {
-        if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Failed to create deck')));
-        return;
-      }
-      
-      for (final w in selectedWords) {
-        final card = Flashcard(
-          id: const Uuid().v4(),
-          deckId: createdDeck.id,
-          hanzi: w.hanzi,
-          pinyin: w.pinyin,
-          definition: w.meaning,
-          hskLevel: 0,
-          strokePaths: const [],
-          medianPaths: const [],
-          isFlipped: false,
-          modeStats: const {},
-          inkPoints: 0,
-        );
-        await repo.saveFlashcard(card);
-      }
-      
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Added ${selectedWords.length} words to "$deckName"')));
+        setState(() => _isProcessingAi = false);
+        DeckSelectionSheet.show(
+          context,
+          cards: flashcards,
+        );
       }
     } catch (e) {
       if (mounted) {
@@ -689,7 +769,10 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
       }
       final char = data['char'] as String;
       final contextText = data['context'] as String;
-      showQuickLook(context, char, contextText: contextText);
+      
+      final dummyWord = AiWord(hanzi: char, pinyin: '', meaning: '');
+      final dummySentence = AiSentence(chinese: contextText, pinyin: '', english: '', words: []);
+      WordDetailDialog.show(context, dummyWord, dummySentence);
     } catch (_) {
       // Fallback if not JSON
       showQuickLook(context, message);
@@ -820,14 +903,17 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     Expanded(
-                                      child: Text(
-                                        w.hanzi,
-                                        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                                        overflow: TextOverflow.ellipsis,
+                                      child: GestureDetector(
+                                        onTap: () => WordDetailDialog.show(context, w, _activeTranslation!),
+                                        child: Text(
+                                          w.hanzi,
+                                          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
                                       ),
                                     ),
                                     GestureDetector(
-                                      onTap: () => showQuickLook(context, w.hanzi),
+                                      onTap: () => WordDetailDialog.show(context, w, _activeTranslation!),
                                       child: const Icon(Icons.add_circle_outline, size: 20, color: Colors.blue),
                                     ),
                                   ],
@@ -865,6 +951,42 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
                         ),
                         onPressed: () async {
                           final text = _activeTranslation!.chinese;
+                          
+                          // Show HSK level picker
+                          final selectedLevel = await showModalBottomSheet<int>(
+                            context: context,
+                            shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
+                            builder: (context) {
+                              return SafeArea(
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    const Padding(
+                                      padding: EdgeInsets.all(16.0),
+                                      child: Text(
+                                        'Select Target HSK Level',
+                                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                    ...List.generate(6, (index) {
+                                      final level = index + 1;
+                                      return ListTile(
+                                        leading: CircleAvatar(
+                                          backgroundColor: Colors.blueAccent.withOpacity(0.1),
+                                          child: Text('$level', style: const TextStyle(color: Colors.blueAccent)),
+                                        ),
+                                        title: Text('HSK $level'),
+                                        onTap: () => Navigator.pop(context, level),
+                                      );
+                                    }),
+                                  ],
+                                ),
+                              );
+                            },
+                          );
+
+                          if (selectedLevel == null) return; // User cancelled
+
                           setState(() {
                             _activeTranslation = null;
                             _isTranslating = false;
@@ -872,7 +994,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
                           });
                           try {
                             final gemini = ref.read(geminiServiceProvider);
-                            final simplifiedStory = await gemini.simplifyTextToHsk(text, 3);
+                            final simplifiedStory = await gemini.simplifyTextToHsk(text, selectedLevel);
                             if (!mounted) return;
                             Navigator.push(
                               context,
@@ -935,27 +1057,43 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
             icon: const Icon(Icons.bookmark_border),
             tooltip: 'Save Article',
             onPressed: () async {
-              final titleRaw = await _controller.runJavaScriptReturningResult('document.title');
-              final title = titleRaw.toString().replaceAll('"', '');
-              
               final urlRaw = await _controller.runJavaScriptReturningResult('window.location.href');
               final url = urlRaw.toString().replaceAll('"', '');
-              
-              final textRaw = await _controller.runJavaScriptReturningResult('document.body.innerText');
-              final text = textRaw.toString().replaceAll('"', '');
-              
-              final article = SavedArticle(
-                title: title,
-                url: url,
-                extractedText: text,
-                timestamp: DateTime.now(),
-              );
-              
-              final box = Hive.box<SavedArticle>('saved_articles');
-              await box.add(article);
-              
-              if (mounted) {
-                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Article saved!')));
+
+              if (widget.isStoryMode) {
+                final prefs = await SharedPreferences.getInstance();
+                final savedUrls = prefs.getStringList('bookmarked_story_urls') ?? [];
+                if (!savedUrls.contains(url)) {
+                  savedUrls.add(url);
+                  await prefs.setStringList('bookmarked_story_urls', savedUrls);
+                  if (mounted) {
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Story bookmarked in Library!')));
+                  }
+                } else {
+                  if (mounted) {
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Story already bookmarked!')));
+                  }
+                }
+              } else {
+                final titleRaw = await _controller.runJavaScriptReturningResult('document.title');
+                final title = titleRaw.toString().replaceAll('"', '');
+                
+                final textRaw = await _controller.runJavaScriptReturningResult('document.body.innerText');
+                final text = textRaw.toString().replaceAll('"', '');
+                
+                final article = SavedArticle(
+                  title: title,
+                  url: url,
+                  extractedText: text,
+                  timestamp: DateTime.now(),
+                );
+                
+                final box = Hive.box<SavedArticle>('saved_articles');
+                await box.add(article);
+                
+                if (mounted) {
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Article saved to Media Hub!')));
+                }
               }
             },
           ),
@@ -972,6 +1110,12 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
             onPressed: () => _controller.reload(),
           ),
         ],
+        bottom: _isProcessingAi
+            ? const PreferredSize(
+                preferredSize: Size.fromHeight(4.0),
+                child: LinearProgressIndicator(color: Colors.blueAccent),
+              )
+            : null,
       ),
       bottomNavigationBar: BottomAppBar(
         color: const Color(0xFFFDFCF0),

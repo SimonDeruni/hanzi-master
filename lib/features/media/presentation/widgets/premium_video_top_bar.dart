@@ -82,53 +82,58 @@ class PremiumVideoTopBar extends StatelessWidget {
                 ),
                 color: Colors.black87,
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-                itemBuilder: (context) => [
-                  PopupMenuItem(
-                    child: StatefulBuilder(
-                      builder: (context, setState) {
-                        return SwitchListTile(
-                          title: const Text('Show Hanzi', style: TextStyle(color: Colors.white)),
-                          value: showHanzi,
-                          activeThumbColor: Colors.white,
-                          onChanged: (v) {
-                            setState(() {});
-                            onToggleHanzi(v);
-                          },
-                        );
-                      }
+                itemBuilder: (context) {
+                  bool localHanzi = showHanzi;
+                  bool localPinyin = showPinyin;
+                  bool localEnglish = showEnglish;
+                  return [
+                    PopupMenuItem(
+                      child: StatefulBuilder(
+                        builder: (context, setState) {
+                          return SwitchListTile(
+                            title: const Text('Show Hanzi', style: TextStyle(color: Colors.white)),
+                            value: localHanzi,
+                            activeThumbColor: Colors.white,
+                            onChanged: (v) {
+                              setState(() => localHanzi = v);
+                              onToggleHanzi(v);
+                            },
+                          );
+                        }
+                      ),
                     ),
-                  ),
-                  PopupMenuItem(
-                    child: StatefulBuilder(
-                      builder: (context, setState) {
-                        return SwitchListTile(
-                          title: const Text('Show Pinyin', style: TextStyle(color: Colors.white)),
-                          value: showPinyin,
-                          activeThumbColor: Colors.white,
-                          onChanged: (v) {
-                            setState(() {});
-                            onTogglePinyin(v);
-                          },
-                        );
-                      }
+                    PopupMenuItem(
+                      child: StatefulBuilder(
+                        builder: (context, setState) {
+                          return SwitchListTile(
+                            title: const Text('Show Pinyin', style: TextStyle(color: Colors.white)),
+                            value: localPinyin,
+                            activeThumbColor: Colors.white,
+                            onChanged: (v) {
+                              setState(() => localPinyin = v);
+                              onTogglePinyin(v);
+                            },
+                          );
+                        }
+                      ),
                     ),
-                  ),
-                  PopupMenuItem(
-                    child: StatefulBuilder(
-                      builder: (context, setState) {
-                        return SwitchListTile(
-                          title: const Text('Show English', style: TextStyle(color: Colors.white)),
-                          value: showEnglish,
-                          activeThumbColor: Colors.white,
-                          onChanged: (v) {
-                            setState(() {});
-                            onToggleEnglish(v);
-                          },
-                        );
-                      }
+                    PopupMenuItem(
+                      child: StatefulBuilder(
+                        builder: (context, setState) {
+                          return SwitchListTile(
+                            title: const Text('Show English', style: TextStyle(color: Colors.white)),
+                            value: localEnglish,
+                            activeThumbColor: Colors.white,
+                            onChanged: (v) {
+                              setState(() => localEnglish = v);
+                              onToggleEnglish(v);
+                            },
+                          );
+                        }
+                      ),
                     ),
-                  ),
-                ],
+                  ];
+                },
               ),
               const SizedBox(width: 8),
               // Speed Menu Button

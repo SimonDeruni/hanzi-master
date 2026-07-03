@@ -583,81 +583,92 @@ class _ScenarioGlassCard extends StatelessWidget {
                   ],
                 ),
                 
-                const Spacer(),
-                
-                // Title and Description
-                Text(
-                  scenario.title,
-                  style: const TextStyle(
-                    fontSize: 28,
-                    fontWeight: FontWeight.w900,
-                    color: Colors.white,
-                    letterSpacing: 0.5,
-                  ),
-                ),
-                const SizedBox(height: 12),
-                Text(
-                  scenario.description,
-                  style: TextStyle(
-                    fontSize: 15,
-                    color: Colors.white.withValues(alpha: 0.8),
-                    height: 1.4,
-                  ),
-                  maxLines: 3,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                
-                const SizedBox(height: 24),
-                const Divider(color: Colors.white24),
-                const SizedBox(height: 16),
-                
-                // Quests Section
-                const Row(
-                  children: [
-                    Icon(Icons.flag, color: Colors.amber, size: 20),
-                    SizedBox(width: 8),
-                    Text(
-                      "OBJECTIVES",
-                      style: TextStyle(
-                        color: Colors.amber,
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 1.5,
-                        fontSize: 12,
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 12),
-                if (scenario.quests.isEmpty)
-                  Text("Just survive the conversation.", style: TextStyle(color: Colors.white.withValues(alpha: 0.7), fontStyle: FontStyle.italic))
-                else
-                  ...scenario.quests.map((q) => Padding(
-                    padding: const EdgeInsets.only(bottom: 8.0),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          margin: const EdgeInsets.only(top: 6, right: 12),
-                          width: 6,
-                          height: 6,
-                          decoration: const BoxDecoration(
-                            color: Colors.white,
-                            shape: BoxShape.circle,
-                          ),
-                        ),
-                        Expanded(
-                          child: Text(
-                            q,
+                Expanded(
+                  child: Align(
+                    alignment: Alignment.bottomLeft,
+                    child: SingleChildScrollView(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          // Title and Description
+                          Text(
+                            scenario.title,
                             style: const TextStyle(
+                              fontSize: 28,
+                              fontWeight: FontWeight.w900,
                               color: Colors.white,
-                              fontSize: 14,
-                              height: 1.4,
+                              letterSpacing: 0.5,
                             ),
                           ),
-                        ),
-                      ],
+                          const SizedBox(height: 12),
+                          Text(
+                            scenario.description,
+                            style: TextStyle(
+                              fontSize: 15,
+                              color: Colors.white.withOpacity(0.8),
+                              height: 1.4,
+                            ),
+                            maxLines: 3,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          
+                          const SizedBox(height: 24),
+                          const Divider(color: Colors.white24),
+                          const SizedBox(height: 16),
+                          
+                          // Quests Section
+                          const Row(
+                            children: [
+                              Icon(Icons.flag, color: Colors.amber, size: 20),
+                              SizedBox(width: 8),
+                              Text(
+                                "OBJECTIVES",
+                                style: TextStyle(
+                                  color: Colors.amber,
+                                  fontWeight: FontWeight.bold,
+                                  letterSpacing: 1.5,
+                                  fontSize: 12,
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 12),
+                          if (scenario.quests.isEmpty)
+                            Text("Just survive the conversation.", style: TextStyle(color: Colors.white.withOpacity(0.7), fontStyle: FontStyle.italic))
+                          else
+                            ...scenario.quests.map((q) => Padding(
+                              padding: const EdgeInsets.only(bottom: 8.0),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    margin: const EdgeInsets.only(top: 6, right: 12),
+                                    width: 6,
+                                    height: 6,
+                                    decoration: const BoxDecoration(
+                                      color: Colors.white,
+                                      shape: BoxShape.circle,
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Text(
+                                      q,
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 14,
+                                        height: 1.4,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            )),
+                        ],
+                      ),
                     ),
-                  )),
+                  ),
+                ),
               ],
             ),
           ),
