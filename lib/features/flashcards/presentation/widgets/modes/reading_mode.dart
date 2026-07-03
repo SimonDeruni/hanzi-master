@@ -62,85 +62,85 @@ class _ReadingModeWidgetState extends ConsumerState<ReadingModeWidget> {
                   child: GestureDetector(
                     onTap: !_isRevealed ? _revealAnswer : null,
                     child: Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.all(32),
-                    decoration: BoxDecoration(
-                      color: isDark ? Colors.white.withAlpha(12) : Colors.white,
-                      borderRadius: BorderRadius.circular(32),
-                      border: Border.all(
-                        color: isDark ? Colors.white12 : Colors.black12,
-                      ),
-                      boxShadow: [
-                        if (!isDark)
-                          BoxShadow(
-                            color: Colors.black.withAlpha(12),
-                            blurRadius: 20,
-                            offset: const Offset(0, 10),
-                          ),
-                      ],
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Expanded(
-                          flex: 3,
-                          child: Center(
-                            child: FittedBox(
-                              fit: BoxFit.scaleDown,
-                              child: Text(
-                                widget.card.hanzi,
-                                style: TextStyle(
-                                  fontSize: 120,
-                                  fontWeight: FontWeight.bold,
-                                  color: isDark ? Colors.white : Colors.black87,
-                                ),
-                              ),
-                            ),
-                          ),
+                      width: double.infinity,
+                      padding: const EdgeInsets.all(32),
+                      decoration: BoxDecoration(
+                        color: isDark ? Colors.white.withAlpha(12) : Colors.white,
+                        borderRadius: BorderRadius.circular(32),
+                        border: Border.all(
+                          color: isDark ? Colors.white12 : Colors.black12,
                         ),
-                        if (!_isRevealed)
+                        boxShadow: [
+                          if (!isDark)
+                            BoxShadow(
+                              color: Colors.black.withAlpha(12),
+                              blurRadius: 20,
+                              offset: const Offset(0, 10),
+                            ),
+                        ],
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
                           Expanded(
-                            flex: 1,
-                            child: Align(
-                              alignment: Alignment.bottomCenter,
-                              child: Text(
-                                AppLocalizations.of(context)!.tapToReveal,
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.grey,
-                                  fontWeight: FontWeight.bold,
+                            flex: 3,
+                            child: Center(
+                              child: FittedBox(
+                                fit: BoxFit.scaleDown,
+                                child: Text(
+                                  widget.card.hanzi,
+                                  style: TextStyle(
+                                    fontSize: 120,
+                                    fontWeight: FontWeight.bold,
+                                    color: isDark ? Colors.white : Colors.black87,
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                        if (_isRevealed) ...[
-                          const Divider(height: 48),
-                          Expanded(
-                            flex: 2,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                PinyinText(
-                                  text: widget.card.pinyin,
-                                  style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+                          if (!_isRevealed)
+                            Expanded(
+                              flex: 1,
+                              child: Align(
+                                alignment: Alignment.bottomCenter,
+                                child: Text(
+                                  AppLocalizations.of(context)!.tapToReveal,
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    color: Colors.grey,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
-                                SizedBox(height: 16),
-                                Text(
-                                  widget.card.definition,
-                                  style: const TextStyle(fontSize: 20),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ],
+                              ),
                             ),
-                          ),
+                          if (_isRevealed) ...[
+                            const Divider(height: 48),
+                            Expanded(
+                              flex: 2,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  PinyinText(
+                                    text: widget.card.pinyin,
+                                    style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+                                  ),
+                                  SizedBox(height: 16),
+                                  Text(
+                                    widget.card.definition,
+                                    style: const TextStyle(fontSize: 20),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
                         ],
-                      ],
-                    ),
+                      ),
+                    ).animate()
+                     .fade(duration: 500.ms, curve: Curves.easeOutCubic)
+                     .slideY(begin: 0.1, end: 0, duration: 500.ms, curve: Curves.easeOutCubic),
                   ),
                 ),
-              ).animate()
-               .fade(duration: 500.ms, curve: Curves.easeOutCubic)
-               .slideY(begin: 0.1, end: 0, duration: 500.ms, curve: Curves.easeOutCubic),
               ),
             ),
 

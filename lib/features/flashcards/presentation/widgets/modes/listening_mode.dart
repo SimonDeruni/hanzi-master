@@ -112,114 +112,114 @@ class _ListeningModeWidgetState extends ConsumerState<ListeningModeWidget> {
                   child: GestureDetector(
                     onTap: !_isRevealed ? _revealAnswer : null,
                     child: Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.all(32),
-                    decoration: BoxDecoration(
-                      color: isDark ? Colors.white.withAlpha(12) : Colors.white,
-                      borderRadius: BorderRadius.circular(32),
-                      border: Border.all(
-                        color: isDark ? Colors.white12 : Colors.black12,
-                      ),
-                      boxShadow: [
-                        if (!isDark)
-                          BoxShadow(
-                            color: Colors.black.withAlpha(12),
-                            blurRadius: 20,
-                            offset: const Offset(0, 10),
-                          ),
-                      ],
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Expanded(
-                          flex: 3,
-                          child: Center(
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Container(
-                                  padding: const EdgeInsets.all(32),
-                                  decoration: BoxDecoration(
-                                    color: isDark ? Colors.purple.withAlpha(25) : Colors.purple.shade50,
-                                    shape: BoxShape.circle,
-                                    border: Border.all(
-                                      color: isDark ? Colors.purple.withAlpha(50) : Colors.purple.shade200,
-                                    ),
-                                  ),
-                                  child: IconButton(
-                                    iconSize: 80,
-                                    icon: Icon(
-                                      Icons.volume_up,
-                                      color: isDark ? Colors.purple.shade200 : Colors.purple.shade700,
-                                    ),
-                                    onPressed: _playAudio,
-                                  ),
-                                ),
-                                SizedBox(height: 16),
-                                Text(
-                                  'Tap icon to listen again',
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    color: isDark ? Colors.white54 : Colors.black54,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
+                      width: double.infinity,
+                      padding: const EdgeInsets.all(32),
+                      decoration: BoxDecoration(
+                        color: isDark ? Colors.white.withAlpha(12) : Colors.white,
+                        borderRadius: BorderRadius.circular(32),
+                        border: Border.all(
+                          color: isDark ? Colors.white12 : Colors.black12,
                         ),
-                        if (!_isRevealed)
+                        boxShadow: [
+                          if (!isDark)
+                            BoxShadow(
+                              color: Colors.black.withAlpha(12),
+                              blurRadius: 20,
+                              offset: const Offset(0, 10),
+                            ),
+                        ],
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
                           Expanded(
-                            flex: 1,
-                            child: Align(
-                              alignment: Alignment.bottomCenter,
-                              child: Text(
-                                AppLocalizations.of(context)!.tapCardToReveal,
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.grey,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                            flex: 3,
+                            child: Center(
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Container(
+                                    padding: const EdgeInsets.all(32),
+                                    decoration: BoxDecoration(
+                                      color: isDark ? Colors.purple.withAlpha(25) : Colors.purple.shade50,
+                                      shape: BoxShape.circle,
+                                      border: Border.all(
+                                        color: isDark ? Colors.purple.withAlpha(50) : Colors.purple.shade200,
+                                      ),
+                                    ),
+                                    child: IconButton(
+                                      iconSize: 80,
+                                      icon: Icon(
+                                        Icons.volume_up,
+                                        color: isDark ? Colors.purple.shade200 : Colors.purple.shade700,
+                                      ),
+                                      onPressed: _playAudio,
+                                    ),
+                                  ),
+                                  SizedBox(height: 16),
+                                  Text(
+                                    'Tap icon to listen again',
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: isDark ? Colors.white54 : Colors.black54,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                           ),
-                        if (_isRevealed) ...[
-                          const Divider(height: 48),
-                          Expanded(
-                            flex: 3,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
+                          if (!_isRevealed)
+                            Expanded(
+                              flex: 1,
+                              child: Align(
+                                alignment: Alignment.bottomCenter,
+                                child: Text(
+                                  AppLocalizations.of(context)!.tapCardToReveal,
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    color: Colors.grey,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          if (_isRevealed) ...[
+                            const Divider(height: 48),
+                            Expanded(
+                              flex: 3,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
                                   FittedBox(
                                     fit: BoxFit.scaleDown,
                                     child: _buildColoredHanzi(widget.card.hanzi, widget.card.pinyin, isDark),
                                   ),
-                                SizedBox(height: 8),
-                                PinyinText(
-                                  text: widget.card.pinyin,
-                                  style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
-                                ),
-                                SizedBox(height: 16),
-                                Expanded(
-                                  child: SingleChildScrollView(
-                                    child: Text(
-                                      widget.card.definition,
-                                      style: const TextStyle(fontSize: 18),
-                                      textAlign: TextAlign.center,
+                                  SizedBox(height: 8),
+                                  PinyinText(
+                                    text: widget.card.pinyin,
+                                    style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+                                  ),
+                                  SizedBox(height: 16),
+                                  Expanded(
+                                    child: SingleChildScrollView(
+                                      child: Text(
+                                        widget.card.definition,
+                                        style: const TextStyle(fontSize: 18),
+                                        textAlign: TextAlign.center,
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
-                          ),
+                          ],
                         ],
-                      ],
-                    ),
+                      ),
+                    ).animate()
+                     .fade(duration: 500.ms, curve: Curves.easeOutCubic)
+                     .slideY(begin: 0.1, end: 0, duration: 500.ms, curve: Curves.easeOutCubic),
                   ),
                 ),
-              ).animate()
-               .fade(duration: 500.ms, curve: Curves.easeOutCubic)
-               .slideY(begin: 0.1, end: 0, duration: 500.ms, curve: Curves.easeOutCubic),
               ),
             ),
 
