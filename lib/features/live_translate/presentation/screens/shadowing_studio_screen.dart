@@ -16,7 +16,7 @@ import 'package:hanzi_master/shared/widgets/pinyin_text.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/deck_controller.dart';
 import 'package:lpinyin/lpinyin.dart';
 
-enum ShadowingMode { freeFlow, theme, deck }
+enum ShadowingMode { freeFlow, theme, deck, customWord }
 
 class ShadowingMessage {
   final String englishText;
@@ -68,6 +68,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
   Timer? _aiSpeechTimer;
   String _selectedTheme = "HSK 1";
   String? _selectedDeckId;
+  String _customWordInput = "";
 
   @override
   void initState() {
@@ -131,8 +132,9 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
 
       String systemInstructionText = "You are a Shadowing Practice Studio. The user will speak English. You must instantly translate the English phrase into Mandarin Chinese and speak the Mandarin Chinese back to them so they can shadow your pronunciation. When the user shadows your phrase, ALWAYS use the 'report_pronunciation_grade' tool to evaluate their accuracy.";
       
-      if (widget.initialHanzi != null) {
-        systemInstructionText = "You are a Mandarin pronunciation coach. The user is practicing the word '${widget.initialHanzi}' (Pinyin: ${widget.initialPinyin ?? ''}, Meaning: ${widget.initialTranslation ?? ''}). Speak the word out loud so they can shadow it, and wait for them to repeat it. If they struggle, break it down. ALWAYS use the 'report_pronunciation_grade' tool to evaluate their pronunciation when they speak.";
+      if (_selectedMode == ShadowingMode.customWord || widget.initialHanzi != null) {
+        final practiceWord = widget.initialHanzi ?? _customWordInput;
+        systemInstructionText = "You are a Mandarin pronunciation coach. The user is practicing the word/phrase '$practiceWord' (Pinyin: ${widget.initialPinyin ?? ''}, Meaning: ${widget.initialTranslation ?? ''}). Speak the word out loud so they can shadow it, and wait for them to repeat it. If they struggle, break it down. ALWAYS use the 'report_pronunciation_grade' tool to evaluate their pronunciation when they speak.";
       } else if (_selectedMode == ShadowingMode.theme) {
         systemInstructionText = "You are a Mandarin pronunciation coach. The user wants to practice the topic: $_selectedTheme. Generate a short, simple Mandarin sentence related to this topic, speak it out loud for them to shadow, and wait for them to repeat it. If they repeat it well, give them a new sentence. ALWAYS use the 'report_pronunciation_grade' tool to evaluate their pronunciation when they speak.";
       } else if (_selectedMode == ShadowingMode.deck) {
@@ -501,8 +503,28 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
                             selectedColor: Colors.orange.shade200,
                             backgroundColor: isDark ? Colors.grey.shade900 : Colors.grey.shade200,
                           ),
+                          ChoiceChip(
+                            label: const Text("Custom Word"),
+                            selected: _selectedMode == ShadowingMode.customWord,
+                            onSelected: (val) => setState(() => _selectedMode = ShadowingMode.customWord),
+                            selectedColor: Colors.orange.shade200,
+                            backgroundColor: isDark ? Colors.grey.shade900 : Colors.grey.shade200,
+                          ),
                         ],
                       ),
+                      if (_selectedMode == ShadowingMode.customWord) ...[
+                        const SizedBox(height: 16),
+                        TextField(
+                          decoration: InputDecoration(
+                            hintText: "Enter characters (e.g. 欢迎)",
+                            filled: true,
+                            fillColor: isDark ? Colors.grey[900] : Colors.white,
+                            border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide.none),
+                          ),
+                          style: TextStyle(color: isDark ? Colors.white : Colors.black),
+                          onChanged: (val) => setState(() => _customWordInput = val),
+                        ),
+                      ],
                       if (_selectedMode == ShadowingMode.theme) ...[
                         const SizedBox(height: 16),
                         DropdownButtonHideUnderline(
@@ -549,8 +571,8 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                     colors: [
-                      (isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0)).withValues(alpha: 0.0),
-                      isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
+                      (isDark ? const Color(0xFF1A1A1A) : const Color(0xFFFDF5E6)).withValues(alpha: 0.0),
+                      isDark ? const Color(0xFF1A1A1A) : const Color(0xFFFDF5E6),
                     ],
                   ),
                 ),
