@@ -772,7 +772,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
       final contextText = data['context'] as String;
       
       final dummyWord = AiWord(hanzi: char, pinyin: '', meaning: '');
-      final dummySentence = AiSentence(chinese: contextText, pinyin: '', english: '', words: []);
+      final dummySentence = AiSentence(chinese: contextText, english: '', words: []);
       WordDetailDialog.show(context, dummyWord, dummySentence);
     } catch (_) {
       // Fallback if not JSON

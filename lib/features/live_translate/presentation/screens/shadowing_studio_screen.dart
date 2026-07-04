@@ -574,7 +574,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
                                           final card = cardList.isNotEmpty ? cardList.first : null;
                                           return ListTile(
                                             title: Text(option, style: TextStyle(color: isDark ? Colors.white : Colors.black, fontSize: 18, fontWeight: FontWeight.bold)),
-                                            subtitle: card != null ? Text("${card.pinyin} - ${card.meaning}", style: TextStyle(color: isDark ? Colors.white70 : Colors.black54), maxLines: 1, overflow: TextOverflow.ellipsis) : null,
+                                            subtitle: card != null ? Text("${card.pinyin} - ${card.definition}", style: TextStyle(color: isDark ? Colors.white70 : Colors.black54), maxLines: 1, overflow: TextOverflow.ellipsis) : null,
                                             onTap: () => onSelected(option),
                                           );
                                         },
