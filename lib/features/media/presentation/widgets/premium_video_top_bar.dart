@@ -12,6 +12,8 @@ class PremiumVideoTopBar extends StatelessWidget {
   final ValueChanged<bool> onToggleEnglish;
   final double playbackRate;
   final ValueChanged<double> onSpeedChanged;
+  final double subtitleBgOpacity;
+  final ValueChanged<double> onOpacityChanged;
 
   const PremiumVideoTopBar({
     super.key,
@@ -25,6 +27,8 @@ class PremiumVideoTopBar extends StatelessWidget {
     required this.onToggleEnglish,
     required this.playbackRate,
     required this.onSpeedChanged,
+    required this.subtitleBgOpacity,
+    required this.onOpacityChanged,
   });
 
   @override
@@ -86,6 +90,7 @@ class PremiumVideoTopBar extends StatelessWidget {
                   bool localHanzi = showHanzi;
                   bool localPinyin = showPinyin;
                   bool localEnglish = showEnglish;
+                  double localOpacity = subtitleBgOpacity;
                   return [
                     PopupMenuItem(
                       child: StatefulBuilder(
@@ -129,7 +134,35 @@ class PremiumVideoTopBar extends StatelessWidget {
                               onToggleEnglish(v);
                             },
                           );
-                        }
+                        },
+                      ),
+                    ),
+                    const PopupMenuDivider(),
+                    PopupMenuItem(
+                      enabled: false,
+                      child: StatefulBuilder(
+                        builder: (context, setState) {
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 16),
+                                child: Text('Subtitle Opacity', style: TextStyle(color: Colors.white70, fontSize: 12)),
+                              ),
+                              Slider(
+                                value: localOpacity,
+                                min: 0.0,
+                                max: 1.0,
+                                activeColor: Colors.white,
+                                inactiveColor: Colors.white24,
+                                onChanged: (v) {
+                                  setState(() => localOpacity = v);
+                                  onOpacityChanged(v);
+                                },
+                              ),
+                            ],
+                          );
+                        },
                       ),
                     ),
                   ];

@@ -19,6 +19,7 @@ import 'package:hanzi_master/features/premium/presentation/screens/universal_sca
 import 'package:flutter_tts/flutter_tts.dart';
 import 'dart:ui';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/word_detail_dialog.dart';
+import 'package:hanzi_master/core/presentation/widgets/ai_progress_bar.dart';
 
 class WebBrowserScreen extends ConsumerStatefulWidget {
   final String initialUrl;
@@ -826,7 +827,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
           child: _isTranslating
               ? const SizedBox(
                   height: 150,
-                  child: Center(child: CircularProgressIndicator()),
+                  child: Center(child: AiProgressBar(label: 'Translating text...')),
                 )
               : Column(
                   mainAxisSize: MainAxisSize.min,
@@ -1183,6 +1184,13 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
                 if (_isLoading)
                   const Center(
                     child: CircularProgressIndicator(),
+                  ),
+                if (_isProcessingAi)
+                  Container(
+                    color: Colors.white.withOpacity(0.9),
+                    child: const Center(
+                      child: AiProgressBar(label: 'AI is thinking...'),
+                    ),
                   ),
               ],
             ),

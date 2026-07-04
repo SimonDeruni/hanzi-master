@@ -9,6 +9,7 @@ class PremiumSubtitlesOverlay extends StatelessWidget {
   final bool showHanzi;
   final bool showPinyin;
   final bool showEnglish;
+  final double bgOpacity;
 
   const PremiumSubtitlesOverlay({
     super.key,
@@ -19,6 +20,7 @@ class PremiumSubtitlesOverlay extends StatelessWidget {
     required this.showHanzi,
     required this.showPinyin,
     required this.showEnglish,
+    this.bgOpacity = 0.4,
   });
 
   int _getHighlightedCharCount(TranscriptLine line, Duration position) {
@@ -42,7 +44,7 @@ class PremiumSubtitlesOverlay extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
       decoration: BoxDecoration(
-        color: Colors.black.withValues(alpha: 0.4),
+        color: Colors.black.withOpacity(bgOpacity),
         borderRadius: BorderRadius.circular(16),
       ),
       child: Column(

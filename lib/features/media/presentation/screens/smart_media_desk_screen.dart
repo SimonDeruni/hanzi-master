@@ -13,6 +13,7 @@ import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
 import 'package:hanzi_master/features/media/presentation/widgets/fullscreen_media_overlay.dart';
 import 'package:hanzi_master/features/media/presentation/widgets/premium_ai_prep_card.dart';
 import 'package:hanzi_master/features/media/presentation/widgets/premium_transcript_line.dart';
+import 'package:hanzi_master/core/presentation/widgets/ai_progress_bar.dart';
 
 class SmartMediaDeskScreen extends ConsumerStatefulWidget {
   final yt.Video video;
@@ -53,6 +54,7 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
   bool _isRecording = false;
   String _shadowFeedback = '';
   Map<String, dynamic>? _activeMeme;
+  bool _isSimplifyingAi = false;
 
   @override
   void initState() {
@@ -112,20 +114,72 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
   }
 
   void _toggleHskSimplified(bool value) async {
-    setState(() {
-      _isHskSimplified = value;
-    });
-    if (value && _simplifiedTranscript.isEmpty && _transcript != null) {
-      final gemini = ref.read(geminiServiceProvider);
-      try {
-        final result = await gemini.simplifyTranscriptToHsk(
-          _transcript!.lines.map((e) => e.text).toList(), 
-          _hskLevel
+    if (!value) {
+      setState(() => _isHskSimplified = false);
+      return;
+    }
+
+    if (_simplifiedTranscript.isNotEmpty) {
+       setState(() => _isHskSimplified = true);
+       return;
+    }
+
+    if (_transcript == null) return;
+
+    // Prompt for HSK level
+    final selectedLevel = await showModalBottomSheet<int>(
+      context: context,
+      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
+      builder: (context) {
+        return SafeArea(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Padding(
+                padding: EdgeInsets.all(16.0),
+                child: Text('Select Target HSK Level', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              ),
+              ...List.generate(6, (index) {
+                final level = index + 1;
+                return ListTile(
+                  leading: CircleAvatar(
+                    backgroundColor: Colors.orange.withOpacity(0.1),
+                    child: Text('$level', style: const TextStyle(color: Colors.orange)),
+                  ),
+                  title: Text('HSK $level'),
+                  onTap: () => Navigator.pop(context, level),
+                );
+              }),
+            ],
+          ),
         );
-        if (mounted) setState(() => _simplifiedTranscript = result);
-      } catch (e) {
-        debugPrint('Simplify error: \$e');
-      }
+      },
+    );
+
+    if (selectedLevel == null) {
+      // Revert toggle visually if they cancel
+      setState(() => _isHskSimplified = false);
+      return;
+    }
+
+    setState(() {
+      _hskLevel = selectedLevel;
+      _isSimplifyingAi = true;
+      _isHskSimplified = true;
+    });
+
+    final gemini = ref.read(geminiServiceProvider);
+    try {
+      final result = await gemini.simplifyTranscriptToHsk(
+        _transcript!.lines.map((e) => e.text).toList(), 
+        _hskLevel
+      );
+      if (mounted) setState(() => _simplifiedTranscript = result);
+    } catch (e) {
+      debugPrint('Simplify error: $e');
+      if (mounted) setState(() => _isHskSimplified = false);
+    } finally {
+      if (mounted) setState(() => _isSimplifyingAi = false);
     }
   }
 
@@ -525,6 +579,11 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
                                 )),
                               ],
                             ),
+                          ),
+                        if (_isSimplifyingAi)
+                          const Padding(
+                            padding: EdgeInsets.all(16.0),
+                            child: AiProgressBar(label: 'Simplifying subtitles...'),
                           ),
                         Expanded(
                           child: ListView(

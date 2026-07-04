@@ -44,6 +44,7 @@ class _FullscreenMediaOverlayState extends State<FullscreenMediaOverlay> {
   Timer? _hudTimer;
   double _brightnessOverlayOpacity = 0.0;
   bool _showBrightnessHud = false;
+  double _subtitleBgOpacity = 0.4;
 
   @override
   void initState() {
@@ -167,6 +168,11 @@ class _FullscreenMediaOverlayState extends State<FullscreenMediaOverlay> {
                   onToggleEnglish: (v) { _onUserInteraction(); setState(() => _showEnglish = v); },
                   playbackRate: widget.playbackRate,
                   onSpeedChanged: widget.onSpeedChanged,
+                  subtitleBgOpacity: _subtitleBgOpacity,
+                  onOpacityChanged: (v) {
+                    _onUserInteraction();
+                    setState(() => _subtitleBgOpacity = v);
+                  },
                 ),
               ),
             ),
@@ -184,6 +190,7 @@ class _FullscreenMediaOverlayState extends State<FullscreenMediaOverlay> {
               showHanzi: _showHanzi,
               showPinyin: _showPinyin,
               showEnglish: _showEnglish,
+              bgOpacity: _subtitleBgOpacity,
             ),
           ),
 
