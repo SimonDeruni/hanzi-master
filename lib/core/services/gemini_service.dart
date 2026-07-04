@@ -11,7 +11,7 @@ import '../../features/flashcards/domain/entities/flashcard.dart';
 import 'api_key_pool.dart';
 import 'analytics_service.dart';
 import '../providers/translation_language_provider.dart';
-
+import 'gemini_proxy_client.dart';
 final geminiServiceProvider = Provider<GeminiService>((ref) {
   final pool = ref.watch(apiKeyPoolProvider);
   final analytics = ref.watch(analyticsServiceProvider);
@@ -200,7 +200,7 @@ class AiChatSession {
     _history.add({'role': 'user', 'content': text});
 
     final response = await http.post(
-      Uri.parse('https://openrouter.ai/api/v1/chat/completions'),
+      Uri.parse('https://us-central1-hanzi-master-bcef9.cloudfunctions.net/openRouterProxy'),
       headers: {
         'Authorization': 'Bearer $apiKey',
         'Content-Type': 'application/json',
@@ -247,7 +247,7 @@ class GeminiService {
     }
 
     final response = await http.post(
-      Uri.parse('https://openrouter.ai/api/v1/chat/completions'),
+      Uri.parse('https://us-central1-hanzi-master-bcef9.cloudfunctions.net/openRouterProxy'),
       headers: {
         'Authorization': 'Bearer ${pool.nextKey}',
         'Content-Type': 'application/json',
@@ -275,7 +275,7 @@ class GeminiService {
   Stream<String> streamOpenRouterText(String prompt) async* {
     final request = http.Request(
       'POST',
-      Uri.parse('https://openrouter.ai/api/v1/chat/completions'),
+      Uri.parse('https://us-central1-hanzi-master-bcef9.cloudfunctions.net/openRouterProxy'),
     );
     request.headers.addAll({
       'Authorization': 'Bearer ${pool.nextKey}',
@@ -984,7 +984,8 @@ Respond ONLY in valid JSON format like:
   Future<Map<String, dynamic>> gradeAudio(List<int> audioBytes, String expectedChinese, String expectedPinyin) async {
     final model = GenerativeModel(
       model: 'gemini-2.5-flash',
-      apiKey: pool.googleKey,
+      apiKey: pool.googleKey, // Key will be ignored by proxy, but SDK requires it not to be empty
+      httpClient: GeminiProxyClient(proxyUrl: 'https://us-central1-hanzi-master-bcef9.cloudfunctions.net/generateContentProxy'),
     );
 
     final String targetContext = expectedChinese.isNotEmpty 
@@ -1457,7 +1458,8 @@ No markdown formatting, no backticks, just raw JSON.
       if (apiKey.isEmpty) throw Exception("No API key");
       final model = GenerativeModel(
         model: 'gemini-2.5-flash',
-        apiKey: apiKey,
+        apiKey: apiKey, // Key will be ignored by proxy, but SDK requires it not to be empty
+        httpClient: GeminiProxyClient(proxyUrl: 'https://us-central1-hanzi-master-bcef9.cloudfunctions.net/generateContentProxy'),
         generationConfig: GenerationConfig(
           responseMimeType: 'application/json',
           temperature: 0.7,
