@@ -210,21 +210,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
                 ),
               ],
             ),
-            SizedBox(height: 24),
-            Text(AppLocalizations.of(context)!.examplesInHsk1, style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, letterSpacing: 1.5, color: Colors.indigo)),
-            SizedBox(height: 12),
-            Wrap(
-              spacing: 12,
-              runSpacing: 12,
-              children: examples.map((char) => Chip(
-                label: Text(char, style: const TextStyle(fontSize: 18)),
-                backgroundColor: Colors.indigo.withValues(alpha: 0.1),
-              )).toList(),
-            ),
-            if (examples.isEmpty) Padding(
-              padding: EdgeInsets.only(top: 8.0),
-              child: Text(AppLocalizations.of(context)!.noOtherHsk1, style: TextStyle(fontStyle: FontStyle.italic, color: Colors.grey)),
-            ),
+
             SizedBox(height: 40),
           ],
         ),
