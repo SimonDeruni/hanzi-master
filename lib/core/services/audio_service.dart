@@ -25,6 +25,8 @@ class AudioService {
   // Cache directory for downloaded TTS audio
   Directory? _cacheDir;
 
+  Stream<void> get onPlayerComplete => _audioPlayer.onPlayerComplete;
+
   AudioService({required ApiKeyPool pool}) : _pool = pool;
 
   Future<void> init() async {

@@ -213,15 +213,9 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
                 const textSpan = document.createElement('span');
                 textSpan.className = 'sentence-text';
                 textSpan.innerText = fullSentence;
+                textSpan.style.cursor = 'pointer';
                 
-                const playBtn = document.createElement('span');
-                playBtn.innerText = ' 🔊';
-                playBtn.style.cursor = 'pointer';
-                playBtn.style.fontSize = '14px';
-                playBtn.style.opacity = '0.4';
-                playBtn.style.marginLeft = '4px';
-                playBtn.style.marginRight = '8px';
-                playBtn.addEventListener('click', function(e) {
+                textSpan.addEventListener('click', function(e) {
                    e.stopPropagation();
                    document.querySelectorAll('.sentence-text').forEach(el => el.style.backgroundColor = 'transparent');
                    textSpan.style.backgroundColor = 'rgba(212, 175, 55, 0.3)'; // Gold highlight
@@ -233,7 +227,6 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
                 });
                 
                 wrapper.appendChild(textSpan);
-                wrapper.appendChild(playBtn);
                 frag.appendChild(wrapper);
              }
           }
@@ -414,16 +407,13 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
             };
           }
           
-          // Extract text cleanly by skipping script/style text
-          const walker = document.createTreeWalker(bestNode, NodeFilter.SHOW_TEXT, null, false);
+          // Extract text cleanly by ONLY taking the Chinese sentences we wrapped earlier
+          const sentenceNodes = bestNode.querySelectorAll('.sentence-text');
           let text = '';
-          while (walker.nextNode()) {
-            const node = walker.currentNode;
-            if (node.parentNode && (node.parentNode.nodeName === 'SCRIPT' || node.parentNode.nodeName === 'STYLE')) {
-              continue;
-            }
-            text += node.textContent;
-          }
+          sentenceNodes.forEach(node => {
+             text += node.innerText + ' ';
+          });
+          
           return text;
         })();
       ''');

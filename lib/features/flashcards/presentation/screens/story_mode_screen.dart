@@ -28,7 +28,6 @@ class StoryModeScreen extends ConsumerStatefulWidget {
 class _StoryModeScreenState extends ConsumerState<StoryModeScreen> {
   bool _forceRegenerate = false;
   bool _showPinyin = true;
-  final FlutterTts _flutterTts = FlutterTts();
   bool _isPlaying = false;
 
   @override
@@ -38,31 +37,28 @@ class _StoryModeScreenState extends ConsumerState<StoryModeScreen> {
   }
 
   Future<void> _initTts() async {
-    await _flutterTts.setLanguage("zh-CN");
-    await _flutterTts.setSpeechRate(0.4);
-    await _flutterTts.setPitch(1.0);
-    
-    _flutterTts.setCompletionHandler(() {
+    ref.read(audioServiceProvider).onPlayerComplete.listen((_) {
       if (mounted) setState(() => _isPlaying = false);
     });
   }
 
   @override
   void dispose() {
-    _flutterTts.stop();
+    ref.read(audioServiceProvider).stop();
     // Reaching or leaving the story screen counts as a successful story session
     
     super.dispose();
   }
 
   Future<void> _togglePlay(AiStory story) async {
+    final audioService = ref.read(audioServiceProvider);
     if (_isPlaying) {
-      await _flutterTts.stop();
+      await audioService.stop();
       if (mounted) setState(() => _isPlaying = false);
     } else {
       if (mounted) setState(() => _isPlaying = true);
       final text = story.sentences.map((s) => s.chinese).join(' ');
-      await _flutterTts.speak(text);
+      await audioService.playSentence(text);
     }
   }
 
