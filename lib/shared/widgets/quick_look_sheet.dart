@@ -12,6 +12,8 @@ import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:hanzi_master/shared/widgets/global_blurred_bottom_sheet.dart';
 import 'package:hanzi_master/features/live_translate/presentation/screens/shadowing_studio_screen.dart' as hanzi_shadowing;
 import 'package:hanzi_master/shared/widgets/calligraphy_canvas_sheet.dart';
+import 'package:hanzi_master/features/flashcards/presentation/widgets/ai_explainer_sheet.dart';
+import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/deck_selection_sheet.dart';
 
 // ---------------------------------------------------------------------------
@@ -405,6 +407,23 @@ class _FoundBody extends ConsumerWidget {
                   },
                 ),
               ),
+              if (contextText != null && contextText!.isNotEmpty) ...[
+                const SizedBox(width: 6),
+                Expanded(
+                  child: _ActionButton(
+                    label: 'Grammar',
+                    icon: Icons.auto_awesome,
+                    isPrimary: false,
+                    isDisabled: false,
+                    onTap: () {
+                      Navigator.pop(context);
+                      final aiWord = AiWord(hanzi: card.hanzi, pinyin: card.pinyin, meaning: card.definition);
+                      final aiSentence = AiSentence(chinese: contextText!, english: '', words: []);
+                      AiExplainerSheet.show(context, aiWord, aiSentence);
+                    },
+                  ),
+                ),
+              ],
               const SizedBox(width: 6),
               // Full card button
               Expanded(
