@@ -541,6 +541,13 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
         
         document.body.innerHTML = '<div style="max-width: 800px; margin: 0 auto; padding: 20px; font-family: serif; font-size: 22px; line-height: 1.8; background-color: #FDFCF0; color: #1A1A1B;">' + skeletonHtml + bestNode.innerHTML + '</div>';
         
+        document.body.style.overflow = 'auto';
+        document.documentElement.style.overflow = 'auto';
+        document.body.style.position = 'static';
+        document.documentElement.style.position = 'static';
+        document.body.style.height = 'auto';
+        document.documentElement.style.height = 'auto';
+        
         window.makeChineseTextClickable(document.body);
       ''';
       _controller.runJavaScript(js);

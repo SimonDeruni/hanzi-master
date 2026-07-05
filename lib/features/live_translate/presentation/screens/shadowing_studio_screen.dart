@@ -204,12 +204,11 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
         });
         PaywallSheet.show(context);
       }
-    } catch (e) {
       debugPrint("Grading error: $e");
       if (mounted) {
         setState(() {
           _isGrading = false;
-          _errorMessage = "Error analyzing audio. Please try again.";
+          _errorMessage = "Error analyzing audio: $e";
         });
       }
     }
