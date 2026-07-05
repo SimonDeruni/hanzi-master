@@ -91,59 +91,60 @@ class TodayInsightCard extends ConsumerWidget {
                     ),
                     const SizedBox(height: 16),
                     Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        RichText(
-                          text: TextSpan(
+                        Text(
+                          todayWord['hanzi']!,
+                          style: theme.textTheme.displayMedium?.copyWith(
+                            color: Colors.white,
+                            fontFamily: 'NotoSerifSC',
+                            fontWeight: FontWeight.w500,
+                            height: 1.1,
+                          ),
+                        ),
+                        const SizedBox(width: 20),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              TextSpan(
-                                text: "HANZI: ",
-                                style: theme.textTheme.titleLarge?.copyWith(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  letterSpacing: 0.5,
-                                ),
+                              Row(
+                                children: [
+                                  Text(
+                                    todayWord['pinyin']!,
+                                    style: theme.textTheme.titleMedium?.copyWith(
+                                      color: const Color(0xFFD4C4A8),
+                                      fontWeight: FontWeight.w500,
+                                      letterSpacing: 1.0,
+                                    ),
+                                  ),
+                                  const SizedBox(width: 8),
+                                  GestureDetector(
+                                    onTap: () => ref.read(audioServiceProvider).playCharacter(todayWord['hanzi']!),
+                                    child: Container(
+                                      padding: const EdgeInsets.all(6),
+                                      decoration: BoxDecoration(
+                                        color: Colors.white.withValues(alpha: 0.1),
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: const Icon(Icons.volume_up, size: 16, color: Color(0xFFD4C4A8)),
+                                    ),
+                                  ),
+                                ],
                               ),
-                              TextSpan(
-                                text: "${todayWord['hanzi']} ",
-                                style: theme.textTheme.titleLarge?.copyWith(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontFamily: 'NotoSerifSC',
-                                  fontSize: 28,
+                              const SizedBox(height: 4),
+                              Text(
+                                todayWord['meaning']!,
+                                style: theme.textTheme.bodyLarge?.copyWith(
+                                  color: Colors.white.withValues(alpha: 0.7),
+                                  height: 1.3,
                                 ),
-                              ),
-                              TextSpan(
-                                text: "(${todayWord['pinyin']})",
-                                style: theme.textTheme.titleLarge?.copyWith(
-                                  color: const Color(0xFFD4C4A8),
-                                  fontWeight: FontWeight.bold,
-                                  letterSpacing: 0.5,
-                                ),
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
                               ),
                             ],
                           ),
                         ),
-                        const SizedBox(width: 8),
-                        GestureDetector(
-                          onTap: () => ref.read(audioServiceProvider).playCharacter(todayWord['hanzi']!),
-                          child: Container(
-                            padding: const EdgeInsets.all(4),
-                            decoration: BoxDecoration(
-                              color: Colors.white.withOpacity(0.1),
-                              shape: BoxShape.circle,
-                            ),
-                            child: const Icon(Icons.volume_up, size: 16, color: Color(0xFFD4C4A8)),
-                          ),
-                        ),
                       ],
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      todayWord['meaning']!,
-                      style: theme.textTheme.titleMedium?.copyWith(
-                        color: const Color(0xFFD4C4A8),
-                        fontWeight: FontWeight.w600,
-                      ),
                     ),
                   ],
                 ),
