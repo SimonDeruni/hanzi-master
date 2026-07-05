@@ -632,7 +632,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
                           child: DropdownButton<String>(
                             value: _selectedTheme,
                             dropdownColor: isDark ? Colors.grey[900] : Colors.white,
-                            items: ["HSK 1", "HSK 2", "HSK 3", "Travel", "Business", "Food"].map((theme) => DropdownMenuItem(value: theme, child: Text(theme))).toList(),
+                            items: ["HSK 1", "HSK 2", "HSK 3", "HSK 4", "HSK 5", "HSK 6", "Native"].map((theme) => DropdownMenuItem(value: theme, child: Text(theme))).toList(),
                             onChanged: (val) {
                               if (val != null) setState(() => _selectedTheme = val);
                             },
