@@ -7,6 +7,9 @@ import 'package:flutter_tts/flutter_tts.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:http/http.dart' as http;
 import 'dart:io';
+import 'dart:async';
+import 'package:uuid/uuid.dart';
+import 'package:web_socket_channel/io.dart';
 
 import 'package:hanzi_master/core/services/api_key_pool.dart';
 
@@ -25,7 +28,12 @@ class AudioService {
   // Cache directory for downloaded TTS audio
   Directory? _cacheDir;
 
+  final StreamController<Map<String, dynamic>> _wordBoundaryController = StreamController.broadcast();
+  Stream<Map<String, dynamic>> get onWordBoundary => _wordBoundaryController.stream;
   Stream<void> get onPlayerComplete => _audioPlayer.onPlayerComplete;
+
+  List<Map<String, dynamic>> _currentBoundaries = [];
+  int _currentBoundaryIndex = 0;
 
   AudioService({required ApiKeyPool pool}) : _pool = pool;
 
@@ -44,6 +52,23 @@ class AudioService {
     if (!await audioDir.exists()) {
       await audioDir.create(recursive: true);
     }
+
+    _audioPlayer.onPositionChanged.listen((position) {
+      if (_currentBoundaries.isEmpty || _currentBoundaryIndex >= _currentBoundaries.length) return;
+      
+      final currentMs = position.inMilliseconds;
+      // Azure offset is in 100-ns ticks. 1 ms = 10000 ticks.
+      final nextBoundary = _currentBoundaries[_currentBoundaryIndex];
+      final offsetTicks = nextBoundary['Offset'];
+      if (offsetTicks == null) return;
+      
+      final boundaryMs = (offsetTicks is int ? offsetTicks : int.tryParse(offsetTicks.toString()) ?? 0) / 10000;
+      
+      if (currentMs >= boundaryMs) {
+        _wordBoundaryController.add(nextBoundary);
+        _currentBoundaryIndex++;
+      }
+    });
 
     await _fallbackTts.setLanguage("zh-CN");
     await _fallbackTts.setSpeechRate(0.5);
@@ -79,9 +104,11 @@ class AudioService {
 
     // Tier 3: Fast Cloud TTS
     try {
-      final audioData = await _fetchCloudTTS(hanzi, isPremium: false);
-      if (audioData != null) {
-        await cacheFile.writeAsBytes(audioData);
+      final result = await _fetchCloudTTS(hanzi, isPremium: false);
+      if (result != null && result.audio.isNotEmpty) {
+        await cacheFile.writeAsBytes(result.audio);
+        _currentBoundaries = result.boundaries;
+        _currentBoundaryIndex = 0;
         await _audioPlayer.play(DeviceFileSource(cacheFile.path));
         return;
       }
@@ -99,17 +126,30 @@ class AudioService {
 
     final hash = sentence.hashCode.toString();
     final cacheFile = File('${_cacheDir!.path}/tts_cache/$hash.mp3');
+    final boundaryFile = File('${_cacheDir!.path}/tts_cache/$hash.json');
     
     if (await cacheFile.exists()) {
+      _currentBoundaries = [];
+      _currentBoundaryIndex = 0;
+      if (await boundaryFile.exists()) {
+         try {
+           final jsonStr = await boundaryFile.readAsString();
+           final list = jsonDecode(jsonStr) as List<dynamic>;
+           _currentBoundaries = list.cast<Map<String, dynamic>>();
+         } catch(e) {}
+      }
       await _audioPlayer.play(DeviceFileSource(cacheFile.path));
       return;
     }
 
     // Tier 3: Premium Cloud TTS (Azure Neural Audio)
     try {
-      final audioData = await _fetchCloudTTS(sentence, isPremium: true);
-      if (audioData != null) {
-        await cacheFile.writeAsBytes(audioData);
+      final result = await _fetchCloudTTS(sentence, isPremium: true);
+      if (result != null && result.audio.isNotEmpty) {
+        await cacheFile.writeAsBytes(result.audio);
+        await boundaryFile.writeAsString(jsonEncode(result.boundaries));
+        _currentBoundaries = result.boundaries;
+        _currentBoundaryIndex = 0;
         await _audioPlayer.play(DeviceFileSource(cacheFile.path));
         return;
       }
@@ -120,40 +160,112 @@ class AudioService {
     await _fallbackTts.speak(sentence);
   }
 
-  Future<Uint8List?> _fetchCloudTTS(String text, {bool isPremium = true}) async {
+  Future<CloudTtsResult?> _fetchCloudTTS(String text, {bool isPremium = true}) async {
     final apiKey = _pool.azureSpeechKey;
     final region = _pool.azureSpeechRegion;
     if (apiKey.isEmpty || region.isEmpty || apiKey == 'MISSING_KEY') return null;
 
-    // Escape basic XML chars just in case
     final safeText = text.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
+    final uri = Uri.parse('wss://$region.tts.speech.microsoft.com/cognitiveservices/websocket/v1');
+    final uuid = const Uuid().v4().replaceAll('-', '');
 
+    IOWebSocketChannel? channel;
     try {
-      final response = await http.post(
-        Uri.parse('https://$region.tts.speech.microsoft.com/cognitiveservices/v1'),
+      channel = IOWebSocketChannel.connect(
+        uri,
         headers: {
           'Ocp-Apim-Subscription-Key': apiKey,
-          'Content-Type': 'application/ssml+xml',
-          'X-Microsoft-OutputFormat': 'audio-16khz-128kbitrate-mono-mp3',
+          'X-ConnectionId': uuid,
         },
-        body: '''
-<speak version='1.0' xml:lang='zh-CN'>
-  <voice xml:lang='zh-CN' xml:gender='Female' name='zh-CN-XiaoxiaoNeural'>
-    $safeText
-  </voice>
-</speak>
-''',
       );
-
-      if (response.statusCode == 200) {
-        return response.bodyBytes;
-      } else {
-        debugPrint('Azure TTS HTTP Error: ${response.statusCode} - ${response.body}');
-      }
-    } catch (e) {
-      debugPrint('Azure TTS error: $e');
+    } catch(e) {
+      debugPrint("WebSocket connect failed: $e");
+      return null;
     }
-    return null;
+
+    final audioBuffer = <int>[];
+    final boundaries = <Map<String, dynamic>>[];
+    final completer = Completer<CloudTtsResult?>();
+
+    channel.stream.listen((message) {
+      if (message is String) {
+        if (message.contains('Path: turn.end')) {
+          if (!completer.isCompleted) {
+            completer.complete(CloudTtsResult(
+              audio: Uint8List.fromList(audioBuffer),
+              boundaries: boundaries,
+            ));
+          }
+        } else if (message.contains('Path: audio.metadata')) {
+          try {
+            final parts = message.split('\r\n\r\n');
+            if (parts.length > 1) {
+              final data = jsonDecode(parts[1]);
+              if (data['Metadata'] != null) {
+                for (var meta in data['Metadata']) {
+                  if (meta['Type'] == 'WordBoundary') {
+                    boundaries.add(meta['Data']);
+                  }
+                }
+              }
+            }
+          } catch(e) {
+            debugPrint('Failed to parse metadata: $e');
+          }
+        }
+      } else if (message is List<int>) {
+        int offset = -1;
+        for (int i = 0; i < message.length - 3; i++) {
+          if (message[i] == 13 && message[i+1] == 10 && message[i+2] == 13 && message[i+3] == 10) {
+            offset = i + 4;
+            break;
+          }
+        }
+        if (offset != -1 && offset < message.length) {
+          audioBuffer.addAll(message.sublist(offset));
+        }
+      }
+    }, onError: (e) {
+      debugPrint('Azure TTS WS error: $e');
+      if (!completer.isCompleted) completer.complete(null);
+    }, onDone: () {
+      if (!completer.isCompleted) {
+        if (audioBuffer.isNotEmpty) {
+          completer.complete(CloudTtsResult(
+            audio: Uint8List.fromList(audioBuffer),
+            boundaries: boundaries,
+          ));
+        } else {
+          completer.complete(null);
+        }
+      }
+    });
+
+    final requestId = const Uuid().v4().replaceAll('-', '');
+    final timestamp = DateTime.now().toUtc().toIso8601String();
+
+    channel.sink.add(
+      'Path: speech.config\r\n'
+      'Content-Type: application/json; charset=utf-8\r\n'
+      '\r\n'
+      '{"context":{"system":{"name":"SpeechSDK"}}}'
+    );
+
+    final ssml = '''<speak version='1.0' xml:lang='zh-CN'><voice name='zh-CN-XiaoxiaoNeural'>$safeText</voice></speak>''';
+
+    channel.sink.add(
+      'Path: ssml\r\n'
+      'X-RequestId: $requestId\r\n'
+      'X-Timestamp: $timestamp\r\n'
+      'Content-Type: application/ssml+xml\r\n'
+      '\r\n'
+      '$ssml'
+    );
+
+    return completer.future.timeout(const Duration(seconds: 15), onTimeout: () {
+      channel?.sink.close();
+      return null;
+    }).whenComplete(() => channel?.sink.close());
   }
 
   Future<void> stop() async {
@@ -184,6 +296,17 @@ class AudioService {
 
   void dispose() {
     _audioPlayer.dispose();
+    _fallbackTts.stop();
+    _wordBoundaryController.close();
   }
 }
 
+class CloudTtsResult {
+  final Uint8List audio;
+  final List<Map<String, dynamic>> boundaries;
+
+  CloudTtsResult({
+    required this.audio,
+    required this.boundaries,
+  });
+}

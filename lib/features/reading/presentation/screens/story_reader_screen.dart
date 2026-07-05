@@ -30,12 +30,12 @@ enum PinyinMode { all, ghost, none }
 class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
   PinyinMode _pinyinMode = PinyinMode.all;
   final Set<int> _translatedSentences = {};
-  final FlutterTts _flutterTts = FlutterTts();
   bool _isPlaying = false;
   bool _isPaused = false;
   int? _playingSentenceIndex;
   int _playingStartOffset = -1;
   int _playingEndOffset = -1;
+  StreamSubscription? _boundarySub;
   bool _isSaved = true; // By default assume saved unless it's a new custom
   
   late PageController _pageController;
@@ -193,10 +193,9 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
   }
 
   Future<void> _initTts() async {
-    await _flutterTts.setLanguage("zh-CN");
-    _flutterTts.setSpeechRate(0.45);
-    _flutterTts.setPitch(1.0);
-    _flutterTts.setCompletionHandler(() {
+    final audioService = ref.read(audioServiceProvider);
+    
+    audioService.onPlayerComplete.listen((_) {
       if (mounted) {
         setState(() {
           _isPlaying = false;
@@ -207,11 +206,44 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
         });
       }
     });
-    _flutterTts.setProgressHandler((text, start, end, word) {
+
+    _boundarySub = audioService.onWordBoundary.listen((boundary) {
       if (mounted) {
         setState(() {
-          _playingStartOffset = start;
-          _playingEndOffset = end;
+          // Azure WordBoundary usually contains TextOffset and WordLength
+          // If TextOffset is missing, we try to extract it from 'text' object
+          int start = -1;
+          int length = 0;
+          
+          if (boundary.containsKey('TextOffset')) {
+            start = boundary['TextOffset'];
+            length = boundary['WordLength'] ?? 1;
+          } else if (boundary['text'] != null) {
+            final textObj = boundary['text'];
+            // Sometimes it's nested
+            start = textObj['TextOffset'] ?? -1;
+            length = textObj['Length'] ?? 1;
+          }
+          
+          if (start >= 0) {
+            _playingStartOffset = start;
+            _playingEndOffset = start + length;
+          } else if (boundary['text'] != null && boundary['text']['Text'] != null) {
+            // Fallback: search for the word in the current sentence
+            final word = boundary['text']['Text'] as String;
+            if (_playingSentenceIndex != null) {
+              final story = ref.read(storyControllerProvider).currentStory;
+              if (story != null && _playingSentenceIndex! < story.sentences.length) {
+                final sentence = story.sentences[_playingSentenceIndex!].chinese;
+                final searchStart = _playingEndOffset >= 0 ? _playingEndOffset : 0;
+                final idx = sentence.indexOf(word, searchStart);
+                if (idx != -1) {
+                  _playingStartOffset = idx;
+                  _playingEndOffset = idx + word.length;
+                }
+              }
+            }
+          }
         });
       }
     });
@@ -221,12 +253,15 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
   void dispose() {
     _loadingTimer?.cancel();
     _pageController.dispose();
+    _boundarySub?.cancel();
+    ref.read(audioServiceProvider).stop();
     super.dispose();
   }
 
   void _togglePlay(AiStory story, {bool stop = false}) async {
+    final audioService = ref.read(audioServiceProvider);
     if (stop) {
-      await _flutterTts.stop();
+      await audioService.stop();
       if (mounted) {
         setState(() {
           _isPlaying = false;
@@ -240,7 +275,7 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
     }
 
     if (_isPlaying) {
-      await _flutterTts.pause();
+      await audioService.stop();
       if (mounted) {
         setState(() {
           _isPlaying = false;
@@ -260,21 +295,19 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
           });
         }
         final text = story.sentences[_currentPage].chinese;
-        await _flutterTts.speak(text);
+        await audioService.playSentence(text);
       } else {
-        // Resume from pause (some platforms don't support true resume, this is best effort)
-        // Note: For Android, flutter_tts doesn't perfectly resume after pause, 
-        // it acts like stop. But we'll use speak for iOS compatibility if it doesn't auto-resume.
-        // Actually flutter_tts pause/resume works automatically if speak() is not called again,
-        // we just call speak() if it's not paused. But if it IS paused, we should call speak()? No, we call speak() with the same text to resume, or some platforms don't need it.
-        // Let's just try to speak the text again if pause fails, but standard flutter_tts just resumes if we don't call anything and just change state? No, flutter_tts has no resume().
-        // So we just call speak again from the paused offset.
+        // Resume from pause
         final text = story.sentences[_currentPage].chinese;
-        if (_playingStartOffset >= 0 && _playingStartOffset < text.length) {
-           await _flutterTts.speak(text.substring(_playingStartOffset));
-        } else {
-           await _flutterTts.speak(text);
+        // Since Azure TTS streams the full file, "resuming" mid-sentence is complex.
+        // We will just replay the whole sentence for now for the premium experience.
+        if (mounted) {
+          setState(() {
+            _playingStartOffset = -1;
+            _playingEndOffset = -1;
+          });
         }
+        await audioService.playSentence(text);
       }
       if (mounted) setState(() => _isPaused = false);
     }

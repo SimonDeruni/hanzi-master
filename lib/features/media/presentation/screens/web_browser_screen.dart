@@ -47,13 +47,14 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
   
   ArticleInsight? _currentInsight;
   bool _isReadingAloud = false;
-  final FlutterTts _tts = FlutterTts();
   late AnimationController _pulseController;
   
   // Translation Panel State
   AiSentence? _activeTranslation;
   bool _isTranslationBlurred = true;
   bool _isTranslating = false;
+
+  StreamSubscription? _boundarySub;
 
   @override
   void initState() {
@@ -106,6 +107,8 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
   void dispose() {
     _pulseController.dispose();
     _urlController.dispose();
+    _boundarySub?.cancel();
+    ref.read(audioServiceProvider).stop();
     super.dispose();
   }
 
@@ -295,47 +298,41 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
   }
 
   void _initTts() {
-    _tts.setLanguage("zh-CN");
-    _tts.setSpeechRate(0.45);
-    _tts.setVolume(1.0);
-    _tts.setPitch(1.0);
+    final audioService = ref.read(audioServiceProvider);
     
-    _tts.setStartHandler(() {
-      if (mounted) setState(() => _isReadingAloud = true);
-    });
-    
-    _tts.setCompletionHandler(() {
+    audioService.onPlayerComplete.listen((_) {
       if (mounted) setState(() => _isReadingAloud = false);
       _controller.runJavaScript('''
         if (window.removeTtsHighlight) window.removeTtsHighlight();
         const btn = document.getElementById('tts-btn');
         if (btn) {
-          btn.innerText = '🔊';
-          btn.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
-        }
-      ''');
-    });
-    
-    _tts.setErrorHandler((msg) {
-      if (mounted) setState(() => _isReadingAloud = false);
-      _controller.runJavaScript('''
-        const btn = document.getElementById('tts-btn');
-        if (btn) {
-          btn.innerText = '🔊';
-          btn.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
+          btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg> Listen`;
+          btn.style.background = '#1A1A1B';
+          btn.style.opacity = '1';
         }
       ''');
     });
 
-    _tts.setProgressHandler((text, startOffset, endOffset, word) {
+    _boundarySub = audioService.onWordBoundary.listen((boundary) {
       if (!mounted) return;
-      // Inject JS to highlight the current word being spoken within the sentence
-      final js = '''
-        if (window.highlightTtsOffset) {
-          window.highlightTtsOffset($startOffset, $endOffset);
-        }
-      ''';
-      _controller.runJavaScript(js);
+      int startOffset = -1;
+      int endOffset = -1;
+      if (boundary.containsKey('TextOffset')) {
+        startOffset = boundary['TextOffset'];
+        endOffset = startOffset + (boundary['WordLength'] as int? ?? 1);
+      } else if (boundary['text'] != null) {
+        startOffset = boundary['text']['TextOffset'] ?? -1;
+        endOffset = startOffset + (boundary['text']['Length'] as int? ?? 1);
+      }
+      
+      if (startOffset != -1) {
+        final js = '''
+          if (window.highlightTtsOffset) {
+            window.highlightTtsOffset($startOffset, $endOffset);
+          }
+        ''';
+        _controller.runJavaScript(js);
+      }
     });
   }
 
@@ -431,7 +428,8 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
     parsedText = parsedText.replaceAll(RegExp(r'[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{1F600}-\u{1F64F}\u{1F680}-\u{1F6FF}\u{1F1E6}-\u{1F1FF}]', unicode: true), '');
     
     if (parsedText.trim().isNotEmpty) {
-      await _tts.speak(parsedText);
+      if (mounted) setState(() => _isReadingAloud = true);
+      await ref.read(audioServiceProvider).playSentence(parsedText);
       _controller.runJavaScript('''
         const btn = document.getElementById('tts-btn');
         if (btn) {
