@@ -28,12 +28,18 @@ class MonetizationService {
 
   static Future<void> _initRevenueCat() async {
     await Purchases.setLogLevel(LogLevel.debug);
-    PurchasesConfiguration configuration;
-    if (Platform.isAndroid) {
-      configuration = PurchasesConfiguration("test_hKUgycpfNjUxrrXUseinoYNCPRs"); 
-    } else {
-      configuration = PurchasesConfiguration("test_hKUgycpfNjUxrrXUseinoYNCPRs"); 
+    String apiKey = "test_hKUgycpfNjUxrrXUseinoYNCPRs";
+    
+    // RevenueCat actively shuts down release builds that use `test_` keys.
+    // If we're in release mode and don't have a production key yet, we bypass
+    // RevenueCat entirely so the app doesn't crash during TestFlight/AdHoc testing.
+    if (kReleaseMode && apiKey.startsWith('test_')) {
+      debugPrint('MonetizationService: Bypassing RevenueCat init in Release mode with test key');
+      _activeProvider = PaymentProvider.none;
+      return;
     }
+
+    PurchasesConfiguration configuration = PurchasesConfiguration(apiKey);
     await Purchases.configure(configuration);
     debugPrint('MonetizationService: RevenueCat initialized');
   }
@@ -43,6 +49,11 @@ class MonetizationService {
   }
 
   static Future<bool> checkPremiumStatus() async {
+    // Auto-unlock premium for release testing if RevenueCat was bypassed due to a test key.
+    if (kReleaseMode && _activeProvider == PaymentProvider.none) {
+      return true;
+    }
+    
     try {
       if (_activeProvider == PaymentProvider.revenueCat) {
         final customerInfo = await Purchases.getCustomerInfo();
