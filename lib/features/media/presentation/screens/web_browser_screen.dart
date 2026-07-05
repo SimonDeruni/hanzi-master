@@ -1,4 +1,6 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:hanzi_master/core/services/audio_service.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -442,7 +444,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
   }
 
   Future<void> _stopTts() async {
-    await _tts.stop();
+    await ref.read(audioServiceProvider).stop();
     _controller.runJavaScript('''
       const btn = document.getElementById('tts-btn');
       if (btn) {

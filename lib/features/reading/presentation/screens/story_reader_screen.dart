@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:audioplayers/audioplayers.dart';
+import 'package:hanzi_master/core/services/audio_service.dart';
 import '../providers/story_controller.dart';
 import '../../../../core/services/gemini_service.dart';
 import '../../../flashcards/presentation/widgets/word_detail_dialog.dart';
