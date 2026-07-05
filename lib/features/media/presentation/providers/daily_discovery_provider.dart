@@ -44,13 +44,7 @@ class DailyDiscovery extends _$DailyDiscovery {
               imageUrl: "https://img.youtube.com/vi/gcShBujgsIQ/0.jpg",
               tag: "CULTURAL CONTEXT",
             ),
-            DailyMediaItem(
-              title: "ShuoshuoChinese: At the Restaurant",
-              subtitle: "Real Chinese Conversations",
-              url: "https://www.youtube.com/watch?v=wJl1ycJD0YA",
-              imageUrl: "https://img.youtube.com/vi/wJl1ycJD0YA/hqdefault.jpg",
-              tag: "REAL WORLD CHINESE",
-            ),
+
             DailyMediaItem(
               title: "Mandarin Corner: Supermarket",
               subtitle: "Learn Chinese in the Supermarket",
