@@ -51,7 +51,7 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
   bool _isRecording = false;
 
   bool _isKeyboardMode = false;
-  bool _isTypingMandarin = false;
+  final TextEditingController _topTextController = TextEditingController();
   final TextEditingController _bottomTextController = TextEditingController();
   bool _isTranslatingText = false;
 
@@ -493,7 +493,34 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                         ),
                       ),
                       if (_isKeyboardMode)
-                        const SizedBox.shrink(),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 8.0),
+                          child: TextField(
+                            controller: _topTextController,
+                            style: const TextStyle(color: Colors.white, fontSize: 18),
+                            decoration: InputDecoration(
+                              hintText: "Type in Mandarin...",
+                              hintStyle: const TextStyle(color: Colors.white38),
+                              filled: true,
+                              fillColor: Colors.white.withValues(alpha: 0.1),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(16),
+                                borderSide: BorderSide.none,
+                              ),
+                              suffixIcon: IconButton(
+                                icon: const Icon(Icons.send, color: Colors.blueAccent),
+                                onPressed: _isTranslatingText ? null : () {
+                                  _sendTextTranslation(_topTextController.text, false);
+                                  _topTextController.clear();
+                                },
+                              ),
+                            ),
+                            onSubmitted: _isTranslatingText ? null : (val) {
+                              _sendTextTranslation(val, false);
+                              _topTextController.clear();
+                            },
+                          ),
+                        ),
                     ],
                   ),
                 ),
@@ -599,7 +626,7 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                           controller: _bottomTextController,
                           style: const TextStyle(color: Colors.white, fontSize: 18),
                           decoration: InputDecoration(
-                            hintText: _isTypingMandarin ? "Type in Mandarin..." : "Type in ${ref.read(translationLanguageProvider)}...",
+                            hintText: "Type in ${ref.read(translationLanguageProvider)}...",
                             hintStyle: const TextStyle(color: Colors.white38),
                             filled: true,
                             fillColor: Colors.white.withValues(alpha: 0.1),
@@ -607,25 +634,16 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                               borderRadius: BorderRadius.circular(16),
                               borderSide: BorderSide.none,
                             ),
-                            prefixIcon: IconButton(
-                              icon: Icon(Icons.swap_horiz, color: _isTypingMandarin ? Colors.orangeAccent : Colors.blueAccent),
-                              tooltip: "Toggle typing language",
-                              onPressed: () {
-                                setState(() {
-                                  _isTypingMandarin = !_isTypingMandarin;
-                                });
-                              },
-                            ),
                             suffixIcon: IconButton(
                               icon: const Icon(Icons.send, color: Colors.blueAccent),
                               onPressed: _isTranslatingText ? null : () {
-                                _sendTextTranslation(_bottomTextController.text, !_isTypingMandarin);
+                                _sendTextTranslation(_bottomTextController.text, true);
                                 _bottomTextController.clear();
                               },
                             ),
                           ),
                           onSubmitted: _isTranslatingText ? null : (val) {
-                            _sendTextTranslation(val, !_isTypingMandarin);
+                            _sendTextTranslation(val, true);
                             _bottomTextController.clear();
                           },
                         ),
