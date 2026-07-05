@@ -415,7 +415,18 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
     HapticsManager.success();
     
     if (widget.intent == CameraIntent.textExtraction) {
-      Navigator.pop(context, text);
+      // Filter out ML Kit OCR hallucinations (Latin noise when scanning with Chinese script model)
+      final chineseRegex = RegExp(r'[\u4e00-\u9fa5]');
+      final cleanedLines = text.split('\n').where((line) {
+        if (line.trim().isEmpty) return false;
+        if (chineseRegex.hasMatch(line)) return true;
+        // Drop lines that contain Latin letters but no Chinese characters (likely noise)
+        if (RegExp(r'[a-zA-ZÀ-ÿ]').hasMatch(line)) return false;
+        return true;
+      }).toList();
+      
+      final finalText = cleanedLines.join('\n').trim();
+      Navigator.pop(context, finalText.isNotEmpty ? finalText : text);
       return;
     }
 
