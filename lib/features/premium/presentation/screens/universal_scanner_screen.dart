@@ -756,9 +756,47 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
       final rawRotation = InputImageRotationValue.fromRawValue(sensorOrientation);
       if (rawRotation != null) rotation = rawRotation;
 
-      return Stack(
-        fit: StackFit.expand,
-        children: [
+      return GestureDetector(
+        onTapUp: (details) {
+          if (_detectedObjects.isEmpty) return;
+          
+          final size = MediaQuery.of(context).size;
+          final imageSize = Size(
+            _cameraController!.value.previewSize!.width,
+            _cameraController!.value.previewSize!.height,
+          );
+          
+          final bool isPortrait = rotation == InputImageRotation.rotation90deg || rotation == InputImageRotation.rotation270deg;
+          final double imageWidth = isPortrait ? imageSize.height : imageSize.width;
+          final double imageHeight = isPortrait ? imageSize.width : imageSize.height;
+          
+          final double scaleX = size.width / imageWidth;
+          final double scaleY = size.height / imageHeight;
+
+          for (final obj in _detectedObjects) {
+            if (obj.labels.isEmpty) continue;
+            
+            final rect = ARBoundingBoxPainter.scaleRect(
+              rect: obj.boundingBox,
+              imageSize: imageSize,
+              widgetSize: size,
+              scaleX: scaleX,
+              scaleY: scaleY,
+              rotation: rotation,
+            );
+            
+            // Inflate rect slightly to make tapping easier
+            if (rect.inflate(10.0).contains(details.localPosition)) {
+              final label = obj.labels.first.text;
+              final translated = _translationCache[label]?.hanzi ?? label;
+              _lookupSingleWord(translated);
+              return;
+            }
+          }
+        },
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
           CustomPaint(
             painter: TranslationOverlayPainter(
               blocks: _translatedBlocks,
@@ -795,8 +833,9 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                 ),
               ),
             ),
-          )
+          ),
         ],
+      ),
       );
     }
     
