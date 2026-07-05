@@ -780,7 +780,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
       
       final dummyWord = AiWord(hanzi: char, pinyin: '', meaning: '');
       final dummySentence = AiSentence(chinese: contextText, english: '', words: []);
-      WordDetailDialog.show(context, dummyWord, dummySentence);
+      showQuickLook(context, dummyWord.hanzi, contextText: dummySentence.chinese);
     } catch (_) {
       // Fallback if not JSON
       showQuickLook(context, message);
@@ -912,7 +912,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
                                   children: [
                                     Expanded(
                                       child: GestureDetector(
-                                        onTap: () => WordDetailDialog.show(context, w, _activeTranslation!),
+                                        onTap: () => showQuickLook(context, w.hanzi, contextText: _activeTranslation!),
                                         child: Text(
                                           w.hanzi,
                                           style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
@@ -921,7 +921,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
                                       ),
                                     ),
                                     GestureDetector(
-                                      onTap: () => WordDetailDialog.show(context, w, _activeTranslation!),
+                                      onTap: () => showQuickLook(context, w.hanzi, contextText: _activeTranslation!),
                                       child: const Icon(Icons.add_circle_outline, size: 20, color: Colors.blue),
                                     ),
                                   ],

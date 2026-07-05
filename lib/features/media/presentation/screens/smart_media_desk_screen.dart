@@ -71,6 +71,7 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
         loop: false,
         color: 'white',
         enableCaption: false,
+        pointerEvents: PointerEvents.none,
       ),
     );
     _loadData();

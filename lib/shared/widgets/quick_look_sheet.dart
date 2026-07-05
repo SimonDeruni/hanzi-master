@@ -348,20 +348,42 @@ class _FoundBody extends ConsumerWidget {
                   isDisabled: false,
                   onTap: () {
                     Navigator.pop(context);
-                    showModalBottomSheet(
-                      context: context,
-                      isScrollControlled: true,
-                      useSafeArea: true,
-                      backgroundColor: Colors.transparent,
-                      builder: (_) => ClipRRect(
-                        borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
-                        child: hanzi_shadowing.ShadowingStudioScreen(
-                          initialHanzi: card.hanzi,
-                          initialPinyin: card.pinyin,
-                          initialTranslation: card.definition,
+                    final isLandscape = MediaQuery.of(context).orientation == Orientation.landscape;
+                    if (isLandscape) {
+                      showDialog(
+                        context: context,
+                        builder: (_) => Dialog(
+                          backgroundColor: Colors.transparent,
+                          insetPadding: const EdgeInsets.all(24),
+                          child: ConstrainedBox(
+                            constraints: const BoxConstraints(maxWidth: 400, maxHeight: 500),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(24),
+                              child: hanzi_shadowing.ShadowingStudioScreen(
+                                initialHanzi: card.hanzi,
+                                initialPinyin: card.pinyin,
+                                initialTranslation: card.definition,
+                              ),
+                            ),
+                          ),
                         ),
-                      ),
-                    );
+                      );
+                    } else {
+                      showModalBottomSheet(
+                        context: context,
+                        isScrollControlled: true,
+                        useSafeArea: true,
+                        backgroundColor: Colors.transparent,
+                        builder: (_) => ClipRRect(
+                          borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+                          child: hanzi_shadowing.ShadowingStudioScreen(
+                            initialHanzi: card.hanzi,
+                            initialPinyin: card.pinyin,
+                            initialTranslation: card.definition,
+                          ),
+                        ),
+                      );
+                    }
                   },
                 ),
               ),
