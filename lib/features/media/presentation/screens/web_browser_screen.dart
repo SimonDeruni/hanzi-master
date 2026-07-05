@@ -912,7 +912,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
                                   children: [
                                     Expanded(
                                       child: GestureDetector(
-                                        onTap: () => showQuickLook(context, w.hanzi, contextText: _activeTranslation!),
+                                        onTap: () => showQuickLook(context, w.hanzi, contextText: _activeTranslation!.chinese),
                                         child: Text(
                                           w.hanzi,
                                           style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
@@ -921,7 +921,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
                                       ),
                                     ),
                                     GestureDetector(
-                                      onTap: () => showQuickLook(context, w.hanzi, contextText: _activeTranslation!),
+                                      onTap: () => showQuickLook(context, w.hanzi, contextText: _activeTranslation!.chinese),
                                       child: const Icon(Icons.add_circle_outline, size: 20, color: Colors.blue),
                                     ),
                                   ],
