@@ -77,7 +77,7 @@ class AudioService {
 
     // Tier 3: Fast Cloud TTS
     try {
-      final audioData = await _fetchGeminiCloud(hanzi, isPremium: false);
+      final audioData = await _fetchCloudTTS(hanzi, isPremium: false);
       if (audioData != null) {
         await cacheFile.writeAsBytes(audioData);
         await _audioPlayer.play(DeviceFileSource(cacheFile.path));
@@ -103,9 +103,9 @@ class AudioService {
       return;
     }
 
-    // Tier 3: Premium Cloud TTS (Gemini Native Audio)
+    // Tier 3: Premium Cloud TTS (Azure Neural Audio)
     try {
-      final audioData = await _fetchGeminiCloud(sentence, isPremium: true);
+      final audioData = await _fetchCloudTTS(sentence, isPremium: true);
       if (audioData != null) {
         await cacheFile.writeAsBytes(audioData);
         await _audioPlayer.play(DeviceFileSource(cacheFile.path));
@@ -118,54 +118,38 @@ class AudioService {
     await _fallbackTts.speak(sentence);
   }
 
-  Future<Uint8List?> _fetchGeminiCloud(String text, {bool isPremium = true}) async {
-    // Cloud TTS is now available for all API requests as app is paywalled.
+  Future<Uint8List?> _fetchCloudTTS(String text, {bool isPremium = true}) async {
+    final apiKey = _pool.azureSpeechKey;
+    final region = _pool.azureSpeechRegion;
+    if (apiKey.isEmpty || region.isEmpty || apiKey == 'MISSING_KEY') return null;
 
-    final apiKey = _pool.googleKey;
-    if (apiKey.isEmpty) return null;
+    // Escape basic XML chars just in case
+    final safeText = text.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
 
     try {
       final response = await http.post(
-        Uri.parse('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=$apiKey'),
+        Uri.parse('https://$region.tts.speech.microsoft.com/cognitiveservices/v1'),
         headers: {
-          'Content-Type': 'application/json',
+          'Ocp-Apim-Subscription-Key': apiKey,
+          'Content-Type': 'application/ssml+xml',
+          'X-Microsoft-OutputFormat': 'audio-16khz-128kbitrate-mono-mp3',
         },
-        body: jsonEncode({
-          "contents": [{
-            "parts": [{"text": "Speak the following Chinese text clearly and with natural emotion, like a storyteller or native speaker. You MUST return ONLY audio: \"$text\""}]
-          }],
-          "generationConfig": {
-            "responseModalities": ["AUDIO"],
-            "speechConfig": {
-              "voiceConfig": {
-                "prebuiltVoiceConfig": {
-                  "voiceName": "Aoede" // Fixed to Aoede to prevent 403/invalid voice errors
-                }
-              }
-            }
-          }
-        }),
+        body: '''
+<speak version='1.0' xml:lang='zh-CN'>
+  <voice xml:lang='zh-CN' xml:gender='Female' name='zh-CN-XiaoxiaoNeural'>
+    $safeText
+  </voice>
+</speak>
+''',
       );
 
       if (response.statusCode == 200) {
-        final data = jsonDecode(response.body);
-        final candidates = data['candidates'] as List<dynamic>?;
-        if (candidates != null && candidates.isNotEmpty) {
-          final parts = candidates[0]['content']['parts'] as List<dynamic>?;
-          if (parts != null) {
-            for (var part in parts) {
-              if (part['inlineData'] != null) {
-                final base64String = part['inlineData']['data'] as String;
-                return base64Decode(base64String);
-              }
-            }
-          }
-        }
+        return response.bodyBytes;
       } else {
-        debugPrint('Gemini TTS HTTP Error: ${response.statusCode} - ${response.body}');
+        debugPrint('Azure TTS HTTP Error: ${response.statusCode} - ${response.body}');
       }
     } catch (e) {
-      debugPrint('Gemini TTS error: $e');
+      debugPrint('Azure TTS error: $e');
     }
     return null;
   }
