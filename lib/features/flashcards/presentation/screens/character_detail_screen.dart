@@ -65,6 +65,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
   List<GlobalKey> get _sectionKeys => [_strokesKey, _anatomyKey, _notesKey, _wordsKey, _contextKey];
 
   void _onScroll() {
+    if (!mounted) return;
     int newActive = 0;
     for (int i = 0; i < _sectionKeys.length; i++) {
       final ctx = _sectionKeys[i].currentContext;
@@ -72,7 +73,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
       final box = ctx.findRenderObject() as RenderBox?;
       if (box == null) continue;
       final pos = box.localToGlobal(Offset.zero);
-      if (pos.dy < MediaQuery.of(context).size.height * 0.55) {
+      if (pos.dy < 300) {
         newActive = i;
       }
     }
