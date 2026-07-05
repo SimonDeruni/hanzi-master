@@ -96,15 +96,6 @@ class _ReadingRoomScreenState extends ConsumerState<ReadingRoomScreen> {
         elevation: 0,
         centerTitle: true,
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          _showCreatorSheet(context, ref);
-        },
-        icon: Icon(Icons.auto_awesome),
-        label: Text(AppLocalizations.of(context)!.creatorMode),
-        backgroundColor: Colors.indigo,
-        foregroundColor: Colors.white,
-      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -189,9 +180,73 @@ class _ReadingRoomScreenState extends ConsumerState<ReadingRoomScreen> {
                   )
                 : ListView.builder(
                     padding: const EdgeInsets.only(top: 8, bottom: 24),
-                    itemCount: groupedBlueprints.keys.length,
+                    itemCount: groupedBlueprints.keys.length + 1,
                     itemBuilder: (context, index) {
-                      final category = groupedBlueprints.keys.elementAt(index);
+                      if (index == 0) {
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                          child: InkWell(
+                            onTap: () => _showCreatorSheet(context, ref),
+                            borderRadius: BorderRadius.circular(16),
+                            child: Container(
+                              padding: const EdgeInsets.all(20),
+                              decoration: BoxDecoration(
+                                gradient: const LinearGradient(
+                                  colors: [Color(0xFF3F51B5), Color(0xFF5C6BC0)],
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
+                                ),
+                                borderRadius: BorderRadius.circular(16),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.indigo.withOpacity(0.3),
+                                    blurRadius: 10,
+                                    offset: const Offset(0, 4),
+                                  )
+                                ],
+                              ),
+                              child: Row(
+                                children: [
+                                  Container(
+                                    padding: const EdgeInsets.all(12),
+                                    decoration: BoxDecoration(
+                                      color: Colors.white.withOpacity(0.2),
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child: const Icon(Icons.auto_awesome, color: Colors.white, size: 28),
+                                  ),
+                                  const SizedBox(width: 16),
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          AppLocalizations.of(context)!.creatorMode,
+                                          style: const TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        const SizedBox(height: 4),
+                                        const Text(
+                                          "Generate a custom AI story based on your interests",
+                                          style: TextStyle(
+                                            color: Colors.white70,
+                                            fontSize: 14,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        );
+                      }
+                      
+                      final category = groupedBlueprints.keys.elementAt(index - 1);
                       final stories = groupedBlueprints[category]!;
                       
                       return Column(

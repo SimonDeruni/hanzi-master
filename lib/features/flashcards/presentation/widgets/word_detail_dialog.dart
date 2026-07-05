@@ -13,6 +13,7 @@ import 'package:hanzi_master/shared/widgets/global_blurred_bottom_sheet.dart';
 import 'character_chat_sheet.dart';
 import 'package:hanzi_master/core/services/character_lookup_service.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/deck_controller.dart';
+import 'package:hanzi_master/core/services/audio_service.dart';
 
 class WordDetailDialog extends ConsumerStatefulWidget {
   final AiWord word;
@@ -161,14 +162,26 @@ class _WordDetailDialogState extends ConsumerState<WordDetailDialog> {
                         FittedBox(
                           fit: BoxFit.scaleDown,
                           alignment: Alignment.centerLeft,
-                          child: Text(
-                            widget.word.hanzi,
-                            style: TextStyle(
-                              fontFamily: 'NotoSerifSC',
-                              fontSize: 48,
-                              fontWeight: FontWeight.bold,
-                              color: isDark ? Colors.white : Colors.black87,
-                            ),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(
+                                widget.word.hanzi,
+                                style: TextStyle(
+                                  fontFamily: 'NotoSerifSC',
+                                  fontSize: 48,
+                                  fontWeight: FontWeight.bold,
+                                  color: isDark ? Colors.white : Colors.black87,
+                                ),
+                              ),
+                              const SizedBox(width: 8),
+                              IconButton(
+                                icon: const Icon(Icons.volume_up, color: Colors.blueAccent, size: 28),
+                                onPressed: () {
+                                  ref.read(audioServiceProvider).playCharacter(widget.word.hanzi);
+                                },
+                              ),
+                            ],
                           ),
                         ),
                         FittedBox(
@@ -261,23 +274,22 @@ class _WordDetailDialogState extends ConsumerState<WordDetailDialog> {
                       backgroundColor: Colors.indigo.withValues(alpha: 0.1),
                       side: BorderSide.none,
                       onPressed: () async {
-                        final navContext = Navigator.of(context).context;
-                        Navigator.pop(context);
-                        
-                        // We use the character lookup service to get pinyin/definition for the chat sheet header.
+                        // Get data BEFORE popping the dialog to avoid unmounted context errors
                         final lookup = ref.read(characterLookupServiceProvider);
                         final info = await lookup.lookup(char);
                         
-                        if (navContext.mounted) {
-                          GlobalBlurredBottomSheet.show(
-                            navContext,
-                            child: CharacterChatSheet(
-                              hanzi: char,
-                              pinyin: info?.pinyin ?? "",
-                              definition: info?.definition ?? "Component of ${widget.word.hanzi}",
-                            ),
-                          );
-                        }
+                        if (!context.mounted) return;
+                        final navContext = Navigator.of(context).context;
+                        Navigator.pop(context);
+                        
+                        GlobalBlurredBottomSheet.show(
+                          navContext,
+                          child: CharacterChatSheet(
+                            hanzi: char,
+                            pinyin: info?.pinyin ?? "",
+                            definition: info?.definition ?? "Component of ${widget.word.hanzi}",
+                          ),
+                        );
                       },
                     );
                   }).toList(),
@@ -288,66 +300,60 @@ class _WordDetailDialogState extends ConsumerState<WordDetailDialog> {
               Row(
                 children: [
                   Expanded(
-                    child: BouncingButton(
+                    child: OutlinedButton(
+                      style: OutlinedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                      ),
                       onPressed: () {
                         final navContext = Navigator.of(context).context;
                         Navigator.pop(context);
                         AiExplainerSheet.show(navContext, widget.word, widget.sentence);
                       },
-                      child: OutlinedButton(
-                        style: OutlinedButton.styleFrom(
-                          padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                        ),
-                        onPressed: null,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Icon(Icons.auto_awesome, size: 18),
-                            const SizedBox(width: 4),
-                            Flexible(
-                              child: Text(
-                                AppLocalizations.of(context)!.explainGrammar,
-                                overflow: TextOverflow.ellipsis,
-                                maxLines: 1,
-                                style: const TextStyle(fontSize: 13),
-                              ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Icon(Icons.auto_awesome, size: 18),
+                          const SizedBox(width: 4),
+                          Flexible(
+                            child: Text(
+                              AppLocalizations.of(context)!.explainGrammar,
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
+                              style: const TextStyle(fontSize: 13),
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
                   const SizedBox(width: 12),
                   Expanded(
-                    child: BouncingButton(
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: _isSaved ? Colors.green : Colors.blueAccent,
+                        foregroundColor: Colors.white,
+                        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                        elevation: 0,
+                        disabledBackgroundColor: _isSaved ? Colors.green : Colors.grey.shade400,
+                        disabledForegroundColor: Colors.white,
+                      ),
                       onPressed: (_isSaved || _flashcard == null) ? null : _addToDeck,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: _isSaved ? Colors.green : Colors.blueAccent,
-                          foregroundColor: Colors.white,
-                          padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                          elevation: 0,
-                          disabledBackgroundColor: _isSaved ? Colors.green : Colors.grey.shade400,
-                          disabledForegroundColor: Colors.white,
-                        ),
-                        onPressed: null,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(_isSaved ? Icons.check_circle : Icons.add_box, size: 18),
-                            const SizedBox(width: 4),
-                            Flexible(
-                              child: Text(
-                                _isSaved ? "In Queue" : AppLocalizations.of(context)!.addToLibrary,
-                                overflow: TextOverflow.ellipsis,
-                                maxLines: 1,
-                                style: const TextStyle(fontSize: 13),
-                              ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(_isSaved ? Icons.check_circle : Icons.add_box, size: 18),
+                          const SizedBox(width: 4),
+                          Flexible(
+                            child: Text(
+                              _isSaved ? "In Queue" : AppLocalizations.of(context)!.addToLibrary,
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
+                              style: const TextStyle(fontSize: 13),
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
                   ),

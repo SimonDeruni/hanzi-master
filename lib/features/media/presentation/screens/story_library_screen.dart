@@ -3,8 +3,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:hanzi_master/features/media/data/story_fetcher_service.dart';
 import 'package:hanzi_master/features/media/domain/models/library_story.dart';
+import 'package:hanzi_master/features/reading/data/repositories/story_repository.dart';
 import 'package:hanzi_master/features/media/presentation/screens/story_cultural_insight_screen.dart';
 import 'package:hanzi_master/features/media/presentation/screens/story_summary_screen.dart';
+import 'package:hanzi_master/features/reading/presentation/widgets/custom_story_creator_sheet.dart';
 
 class CategoryStyle {
   final List<Color> gradient;
@@ -49,16 +51,45 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
   Future<void> _loadStories() async {
     setState(() => _isLoading = true);
     final fetcher = ref.read(storyFetcherServiceProvider);
+    final storyRepo = ref.read(storyRepositoryProvider);
 
     Future.wait([
       fetcher.fetchLocalStories(),
       fetcher.fetchFirebaseStories(),
+      storyRepo.getAllStories(),
     ]).then((results) async {
       final prefs = await SharedPreferences.getInstance();
       final bookmarks = prefs.getStringList('bookmarked_story_urls') ?? [];
+      
+      final localStories = results[0] as List<LibraryStory>;
+      final firebaseStories = results[1] as List<LibraryStory>;
+      final customStories = results[2] as List;
+
+      // Convert custom GradedStory objects into LibraryStory objects for the UI
+      final customLibraryStories = customStories.map((story) {
+        final summaryText = story.sentences.isNotEmpty 
+            ? story.sentences.first.chinese 
+            : 'Custom AI generated story.';
+            
+        return LibraryStory(
+          title: story.title,
+          sourceName: 'AI Generated',
+          link: story.id,
+          imageUrl: null,
+          summary: summaryText,
+          category: story.category,
+          sourceType: StorySourceType.json,
+          hskLevel: story.hskLevel,
+        );
+      }).toList();
+
       if (mounted) {
         setState(() {
-          _allStories = [...results[0], ...results[1]];
+          _allStories = [...localStories, ...firebaseStories, ...customLibraryStories];
+          // Filter out duplicates based on title just in case
+          final uniqueTitles = <String>{};
+          _allStories.retainWhere((s) => uniqueTitles.add(s.title));
+          
           _bookmarkedUrls = bookmarks;
           _isLoading = false;
         });
@@ -88,7 +119,7 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
       final matchesCategory = _selectedCategory == 'All' || 
           (_selectedCategory == 'Tang Poetry' && story.category.contains('Classic')) ||
           (_selectedCategory == 'Contemporary' && story.category.contains('Contemporary')) ||
-          (_selectedCategory == 'AI Stories' && story.sourceName == 'Local DB') ||
+          (_selectedCategory == 'AI Stories' && story.sourceName == 'AI Generated') ||
           (_selectedCategory == 'Bookmarks' && _bookmarkedUrls.contains(story.link));
           
       final matchesHsk = _selectedHskLevel == -1 || story.hskLevel == _selectedHskLevel;
@@ -120,6 +151,19 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
                 ),
           ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          showModalBottomSheet(
+            context: context,
+            isScrollControlled: true,
+            backgroundColor: Colors.transparent,
+            builder: (context) => const CustomStoryCreatorSheet(),
+          );
+        },
+        backgroundColor: const Color(0xFF8B0000), // Crimson/Deep Red
+        icon: const Icon(Icons.auto_awesome, color: Colors.white),
+        label: const Text('Create Story', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
       ),
     );
   }

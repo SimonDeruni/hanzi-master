@@ -49,6 +49,30 @@ class DeckRepositoryImpl implements DeckRepository {
         createdAt: DateTime.now().add(const Duration(seconds: 3)),
       ));
     }
+    if (!_deckBox.containsKey('hsk4')) {
+      _deckBox.put('hsk4', DeckModel(
+        id: 'hsk4',
+        name: 'HSK 4: Upper Intermediate',
+        description: 'Read texts and converse fluently with 1200 words.',
+        createdAt: DateTime.now().add(const Duration(seconds: 4)),
+      ));
+    }
+    if (!_deckBox.containsKey('hsk5')) {
+      _deckBox.put('hsk5', DeckModel(
+        id: 'hsk5',
+        name: 'HSK 5: Advanced',
+        description: 'Read newspapers and watch movies with 2500 words.',
+        createdAt: DateTime.now().add(const Duration(seconds: 5)),
+      ));
+    }
+    if (!_deckBox.containsKey('hsk6')) {
+      _deckBox.put('hsk6', DeckModel(
+        id: 'hsk6',
+        name: 'HSK 6: Mastery',
+        description: 'Express yourself fully with 5000+ words.',
+        createdAt: DateTime.now().add(const Duration(seconds: 6)),
+      ));
+    }
   }
 
   @override

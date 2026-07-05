@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -8,6 +9,7 @@ import '../../data/youtube_repository.dart';
 import '../../domain/models/video_transcript.dart';
 import '../../domain/models/media_briefing.dart';
 import '../../../../core/services/gemini_service.dart';
+import '../../../../core/services/audio_recording_service.dart';
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
 
 import 'package:hanzi_master/features/media/presentation/widgets/fullscreen_media_overlay.dart';
@@ -351,6 +353,53 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
     return (progress * line.text.length).floor();
   }
 
+  Future<void> _toggleShadowRecording() async {
+    final audioService = ref.read(audioRecordingServiceProvider);
+    
+    if (_isRecording) {
+      setState(() {
+        _isRecording = false;
+        _shadowFeedback = "Processing your pronunciation...";
+      });
+      
+      final path = await audioService.stopRecording();
+      if (path != null) {
+        try {
+          final file = File(path);
+          final byteData = await file.readAsBytes();
+          
+          final gemini = ref.read(geminiServiceProvider);
+          final result = await gemini.gradeAudioUnscripted(byteData);
+          final score = result['score'] ?? 0;
+          
+          setState(() {
+            _shadowFeedback = "Score: $score/100. Resuming video...";
+          });
+          
+          Future.delayed(const Duration(seconds: 2), () {
+            if (mounted) {
+               setState(() => _shadowFeedback = "");
+               _playerController.playVideo();
+            }
+          });
+        } catch (e) {
+          setState(() {
+            _shadowFeedback = "Error: $e";
+          });
+        }
+      }
+    } else {
+      final hasPerm = await audioService.requestPermission();
+      if (!hasPerm) return;
+      
+      setState(() {
+        _isRecording = true;
+        _shadowFeedback = "Listening... speak now.";
+      });
+      await audioService.startRecording('youtube_shadowing');
+    }
+  }
+
   void _enterFullscreen() {
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.landscapeRight,
@@ -431,23 +480,7 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
       ),
       floatingActionButton: _isShadowingMode
           ? FloatingActionButton.extended(
-              onPressed: () {
-                setState(() {
-                  if (_isRecording) {
-                    _isRecording = false;
-                    _shadowFeedback = "Perfect! 98% Match. Resuming video...";
-                    Future.delayed(const Duration(seconds: 2), () {
-                      if (mounted) {
-                         setState(() => _shadowFeedback = "");
-                         _playerController.playVideo();
-                      }
-                    });
-                  } else {
-                    _isRecording = true;
-                    _shadowFeedback = "Listening... speak now.";
-                  }
-                });
-              },
+              onPressed: _toggleShadowRecording,
               backgroundColor: _isRecording ? Colors.red : Colors.indigo,
               icon: Icon(_isRecording ? Icons.stop : Icons.mic, color: Colors.white),
               label: Text(_isRecording ? "Stop" : "Hold to Speak", style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
@@ -542,6 +575,10 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
                     onExitFullscreen: _exitFullscreen,
                     playbackRate: _playbackRate,
                     onSpeedChanged: _changeSpeed,
+                    isShadowingMode: _isShadowingMode,
+                    isRecording: _isRecording,
+                    shadowFeedback: _shadowFeedback,
+                    onToggleRecord: _toggleShadowRecording,
                   );
                           },
                         ),

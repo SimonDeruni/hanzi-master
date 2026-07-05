@@ -12,6 +12,7 @@ import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:hanzi_master/shared/widgets/global_blurred_bottom_sheet.dart';
 import 'package:hanzi_master/features/live_translate/presentation/screens/shadowing_studio_screen.dart' as hanzi_shadowing;
 import 'package:hanzi_master/shared/widgets/calligraphy_canvas_sheet.dart';
+import 'package:hanzi_master/features/flashcards/presentation/widgets/deck_selection_sheet.dart';
 
 // ---------------------------------------------------------------------------
 // Helpers — clean raw CC-CEDICT strings before display
@@ -327,29 +328,14 @@ class _FoundBody extends ConsumerWidget {
               // Add / In Deck button
               Expanded(
                 child: _ActionButton(
-                  label: inDeck ? AppLocalizations.of(context)!.inDeckCheck : AppLocalizations.of(context)!.addToDeckPlus,
+                  label: inDeck ? AppLocalizations.of(context)!.inDeckCheck : 'Add to Deck',
                   icon: inDeck ? Icons.check : Icons.add,
                   isPrimary: false,
-                  isDisabled: inDeck,
-                  onTap: inDeck
-                      ? null
-                      : () async {
-                          await ref
-                              .read(flashcardControllerProvider.notifier)
-                              .addFlashcard(card.copyWith(sourceSentence: contextText));
-                          if (context.mounted) {
-                            Navigator.pop(context);
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text('${card.hanzi} added!'),
-                                backgroundColor: Colors.indigo,
-                                behavior: SnackBarBehavior.floating,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(12)),
-                              ),
-                            );
-                          }
-                        },
+                  isDisabled: false, // Make it always clickable
+                  onTap: () async {
+                    Navigator.pop(context);
+                    await DeckSelectionSheet.show(context, card: card.copyWith(sourceSentence: contextText));
+                  },
                 ),
               ),
               const SizedBox(width: 6),

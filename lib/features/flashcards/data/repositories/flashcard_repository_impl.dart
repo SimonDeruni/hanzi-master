@@ -30,69 +30,139 @@ class FlashcardRepositoryImpl implements FlashcardRepository {
   }
 
   Future<void> _seedDatabaseIfEmpty() async {
-    if (flashcardBox.isNotEmpty) return;
-
     try {
       final List<FlashcardModel> toAdd = [];
       final now = DateTime.now();
       
       // Seed HSK 1
-      final hsk1Str = await rootBundle.loadString('assets/data/hsk1.json');
-      final List<dynamic> hsk1List = json.decode(hsk1Str);
-      for (var item in hsk1List) {
-        toAdd.add(FlashcardModel(
-          id: item['uuid'] ?? 'hsk1_${item['hanzi']}',
-          deckId: 'hsk1',
-          hanzi: item['hanzi'],
-          pinyin: item['pinyin'],
-          definition: item['definition'],
-          hskLevel: 1,
-          strokePaths: const [],
-          nextReviewDate: now,
-          interval: 0,
-          easeFactor: 2.5,
-          streak: 0,
-        ));
+      if (!flashcardBox.values.any((c) => c.deckId == 'hsk1')) {
+        final hsk1Str = await rootBundle.loadString('assets/data/hsk1.json');
+        final List<dynamic> hsk1List = json.decode(hsk1Str);
+        for (var item in hsk1List) {
+          toAdd.add(FlashcardModel(
+            id: item['uuid'] ?? 'hsk1_${item['hanzi']}',
+            deckId: 'hsk1',
+            hanzi: item['hanzi'],
+            pinyin: item['pinyin'],
+            definition: item['definition'],
+            hskLevel: 1,
+            strokePaths: const [],
+            nextReviewDate: now,
+            interval: 0,
+            easeFactor: 2.5,
+            streak: 0,
+          ));
+        }
       }
 
       // Seed HSK 2
-      final hsk2Str = await rootBundle.loadString('assets/data/hsk2_bundle.json');
-      final Map<String, dynamic> hsk2Map = json.decode(hsk2Str);
-      final List<dynamic> hsk2List = hsk2Map['vocabulary'] ?? [];
-      for (var item in hsk2List) {
-        toAdd.add(FlashcardModel(
-          id: item['uuid'] ?? 'hsk2_${item['hanzi']}',
-          deckId: 'hsk2',
-          hanzi: item['hanzi'],
-          pinyin: item['pinyin'],
-          definition: item['definition'],
-          hskLevel: 2,
-          strokePaths: const [],
-          nextReviewDate: now,
-          interval: 0,
-          easeFactor: 2.5,
-          streak: 0,
-        ));
+      if (!flashcardBox.values.any((c) => c.deckId == 'hsk2')) {
+        final hsk2Str = await rootBundle.loadString('assets/data/hsk2_bundle.json');
+        final Map<String, dynamic> hsk2Map = json.decode(hsk2Str);
+        final List<dynamic> hsk2List = hsk2Map['vocabulary'] ?? [];
+        for (var item in hsk2List) {
+          toAdd.add(FlashcardModel(
+            id: item['uuid'] ?? 'hsk2_${item['hanzi']}',
+            deckId: 'hsk2',
+            hanzi: item['hanzi'],
+            pinyin: item['pinyin'],
+            definition: item['definition'],
+            hskLevel: 2,
+            strokePaths: const [],
+            nextReviewDate: now,
+            interval: 0,
+            easeFactor: 2.5,
+            streak: 0,
+          ));
+        }
       }
 
       // Seed HSK 3
-      final hsk3Str = await rootBundle.loadString('assets/data/hsk3_bundle.json');
-      final Map<String, dynamic> hsk3Map = json.decode(hsk3Str);
-      final List<dynamic> hsk3List = hsk3Map['vocabulary'] ?? [];
-      for (var item in hsk3List) {
-        toAdd.add(FlashcardModel(
-          id: item['uuid'] ?? 'hsk3_${item['hanzi']}',
-          deckId: 'hsk3',
-          hanzi: item['hanzi'],
-          pinyin: item['pinyin'],
-          definition: item['definition'],
-          hskLevel: 3,
-          strokePaths: const [],
-          nextReviewDate: now,
-          interval: 0,
-          easeFactor: 2.5,
-          streak: 0,
-        ));
+      if (!flashcardBox.values.any((c) => c.deckId == 'hsk3')) {
+        final hsk3Str = await rootBundle.loadString('assets/data/hsk3_bundle.json');
+        final Map<String, dynamic> hsk3Map = json.decode(hsk3Str);
+        final List<dynamic> hsk3List = hsk3Map['vocabulary'] ?? [];
+        for (var item in hsk3List) {
+          toAdd.add(FlashcardModel(
+            id: item['uuid'] ?? 'hsk3_${item['hanzi']}',
+            deckId: 'hsk3',
+            hanzi: item['hanzi'],
+            pinyin: item['pinyin'],
+            definition: item['definition'],
+            hskLevel: 3,
+            strokePaths: const [],
+            nextReviewDate: now,
+            interval: 0,
+            easeFactor: 2.5,
+            streak: 0,
+          ));
+        }
+      }
+
+      // Seed HSK 4
+      if (!flashcardBox.values.any((c) => c.deckId == 'hsk4')) {
+        final hsk4Str = await rootBundle.loadString('assets/data/hsk4_bundle.json');
+        final Map<String, dynamic> hsk4Map = json.decode(hsk4Str);
+        final List<dynamic> hsk4List = hsk4Map['vocabulary'] ?? [];
+        for (var item in hsk4List) {
+          toAdd.add(FlashcardModel(
+            id: item['uuid'] ?? 'hsk4_${item['hanzi']}',
+            deckId: 'hsk4',
+            hanzi: item['hanzi'],
+            pinyin: item['pinyin'],
+            definition: item['definition'],
+            hskLevel: 4,
+            strokePaths: const [],
+            nextReviewDate: now,
+            interval: 0,
+            easeFactor: 2.5,
+            streak: 0,
+          ));
+        }
+      }
+
+      // Seed HSK 5
+      if (!flashcardBox.values.any((c) => c.deckId == 'hsk5')) {
+        final hsk5Str = await rootBundle.loadString('assets/data/hsk5_bundle.json');
+        final Map<String, dynamic> hsk5Map = json.decode(hsk5Str);
+        final List<dynamic> hsk5List = hsk5Map['vocabulary'] ?? [];
+        for (var item in hsk5List) {
+          toAdd.add(FlashcardModel(
+            id: item['uuid'] ?? 'hsk5_${item['hanzi']}',
+            deckId: 'hsk5',
+            hanzi: item['hanzi'],
+            pinyin: item['pinyin'],
+            definition: item['definition'],
+            hskLevel: 5,
+            strokePaths: const [],
+            nextReviewDate: now,
+            interval: 0,
+            easeFactor: 2.5,
+            streak: 0,
+          ));
+        }
+      }
+
+      // Seed HSK 6
+      if (!flashcardBox.values.any((c) => c.deckId == 'hsk6')) {
+        final hsk6Str = await rootBundle.loadString('assets/data/hsk6_bundle.json');
+        final Map<String, dynamic> hsk6Map = json.decode(hsk6Str);
+        final List<dynamic> hsk6List = hsk6Map['vocabulary'] ?? [];
+        for (var item in hsk6List) {
+          toAdd.add(FlashcardModel(
+            id: item['uuid'] ?? 'hsk6_${item['hanzi']}',
+            deckId: 'hsk6',
+            hanzi: item['hanzi'],
+            pinyin: item['pinyin'],
+            definition: item['definition'],
+            hskLevel: 6,
+            strokePaths: const [],
+            nextReviewDate: now,
+            interval: 0,
+            easeFactor: 2.5,
+            streak: 0,
+          ));
+        }
       }
 
       // Add to Hive
@@ -152,6 +222,23 @@ class FlashcardRepositoryImpl implements FlashcardRepository {
   Future<Either<String, List<Flashcard>>> getFlashcards() async {
     try {
       if (!flashcardBox.isOpen) return const Right([]);
+      
+      // Auto-migrate legacy cards that have incorrect deckId
+      bool migrated = false;
+      final updates = <String, FlashcardModel>{};
+      for (var m in flashcardBox.values) {
+        if (m.hskLevel > 0 && (m.deckId == 'default' || m.deckId == null || m.deckId!.isEmpty)) {
+          final entity = m.toEntity();
+          final updatedEntity = entity.copyWith(deckId: 'hsk${m.hskLevel}');
+          updates[m.id] = FlashcardModel.fromEntity(updatedEntity);
+          migrated = true;
+        }
+      }
+      
+      if (migrated) {
+        await flashcardBox.putAll(updates);
+      }
+
       return Right(flashcardBox.values.map((m) => m.toEntity()).toList());
     } catch (e) {
       return Left("Failed to load cards: $e");
@@ -273,7 +360,12 @@ class FlashcardRepositoryImpl implements FlashcardRepository {
       
       final List<dynamic> jsonList = await compute(_parseJsonList, jsonString);
       final Map<String, FlashcardModel> entries = {
-        for (var item in jsonList) item['uuid']: FlashcardModel.fromJson(item)
+        for (var item in jsonList) 
+          item['uuid']: FlashcardModel.fromJson({
+            ...item,
+            'hskLevel': 1,
+            'deckId': 'hsk1',
+          })
       };
       
       if (!flashcardBox.isOpen) return const Left("Database box not open");
@@ -313,6 +405,7 @@ class FlashcardRepositoryImpl implements FlashcardRepository {
           ...item,
           'uuid': uuid,
           'hskLevel': level,
+          'deckId': 'hsk$level',
         });
       }
       

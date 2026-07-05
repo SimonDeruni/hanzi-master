@@ -15,7 +15,7 @@ class SettingsState {
   final bool isHardMode;
   final bool autoPlayAudio;
   final bool hapticsEnabled;
-  final int dailyGoal;
+  final bool strictGrading;
   final String locale;
 
   SettingsState({
@@ -28,7 +28,7 @@ class SettingsState {
     this.isHardMode = false,
     this.autoPlayAudio = false,
     this.hapticsEnabled = true,
-    this.dailyGoal = 50,
+    this.strictGrading = false,
     this.locale = 'en',
   });
 
@@ -42,7 +42,7 @@ class SettingsState {
     bool? isHardMode,
     bool? autoPlayAudio,
     bool? hapticsEnabled,
-    int? dailyGoal,
+    bool? strictGrading,
     String? locale,
   }) {
     return SettingsState(
@@ -55,7 +55,7 @@ class SettingsState {
       isHardMode: isHardMode ?? this.isHardMode,
       autoPlayAudio: autoPlayAudio ?? this.autoPlayAudio,
       hapticsEnabled: hapticsEnabled ?? this.hapticsEnabled,
-      dailyGoal: dailyGoal ?? this.dailyGoal,
+      strictGrading: strictGrading ?? this.strictGrading,
       locale: locale ?? this.locale,
     );
   }
@@ -75,7 +75,7 @@ class SettingsController extends StateNotifier<SettingsState> {
       isHardMode: prefs.getBool(_keyHardMode) ?? false,
       autoPlayAudio: prefs.getBool(_keyAutoPlay) ?? false,
       hapticsEnabled: prefs.getBool(_keyHaptics) ?? true,
-      dailyGoal: prefs.getInt(_keyDailyGoal) ?? 50,
+      strictGrading: prefs.getBool(_keyStrictGrading) ?? false,
       locale: prefs.getString(_keyLocale) ?? 'en',
     )) {
       HapticsManager.setEnabled(state.hapticsEnabled);
@@ -90,7 +90,7 @@ class SettingsController extends StateNotifier<SettingsState> {
   static const _keyHardMode = 'hard_mode_enabled';
   static const _keyAutoPlay = 'auto_play_audio';
   static const _keyHaptics = 'haptics_enabled';
-  static const _keyDailyGoal = 'daily_goal';
+  static const _keyStrictGrading = 'strict_grading';
   static const _keyLocale = 'app_locale';
 
   Future<void> completeTutorial() async {
@@ -139,9 +139,9 @@ class SettingsController extends StateNotifier<SettingsState> {
     state = state.copyWith(hapticsEnabled: value);
   }
 
-  Future<void> setDailyGoal(int value) async {
-    await prefs.setInt(_keyDailyGoal, value);
-    state = state.copyWith(dailyGoal: value);
+  Future<void> toggleStrictGrading(bool value) async {
+    await prefs.setBool(_keyStrictGrading, value);
+    state = state.copyWith(strictGrading: value);
   }
 
   Future<void> setLocale(String value) async {

@@ -694,7 +694,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get allDataHasBeen => 'تم مسح جميع البيانات.';
 
   @override
-  String get hanziMasterV100 => 'Hanzi Master v1.0.0';
+  String get hanziMasterV100 => 'SinoSpark v1.0.0';
 
   @override
   String get myProgress => 'تقدمي';
@@ -979,7 +979,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get whetherYouveFoundA =>
-      'سواء وجدت خطأً، أو لديك طلب ميزة، أو أردت فقط أن تقول مرحبًا، فإن ملاحظاتك تساعدنا على تحسين Hanzi Master.';
+      'سواء وجدت خطأً، أو لديك طلب ميزة، أو أردت فقط أن تقول مرحبًا، فإن ملاحظاتك تساعدنا على تحسين SinoSpark.';
 
   @override
   String get pointYourCameraAt => 'وجه الكاميرا نحو الأشياء';

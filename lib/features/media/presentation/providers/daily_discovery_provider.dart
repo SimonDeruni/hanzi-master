@@ -14,11 +14,13 @@ class DailyDiscovery extends _$DailyDiscovery {
     final prefs = await SharedPreferences.getInstance();
     final now = DateTime.now();
     final todayString = "${now.year}-${now.month}-${now.day}";
+    const cacheVersion = "v2"; // Bump this to bust the cache
     
     final cacheDate = prefs.getString('daily_discovery_cache_date');
     final cacheData = prefs.getString('daily_discovery_cache_data');
+    final savedVersion = prefs.getString('daily_discovery_cache_version');
 
-    if (cacheDate == todayString && cacheData != null) {
+    if (cacheDate == todayString && cacheData != null && savedVersion == cacheVersion) {
       try {
         final List<dynamic> decoded = jsonDecode(cacheData);
         return decoded.map((e) => DailyMediaItem.fromJson(e as Map<String, dynamic>)).toList();
@@ -33,13 +35,47 @@ class DailyDiscovery extends _$DailyDiscovery {
     final results = await Future.wait([
       repo.getDailyVideo().timeout(
         const Duration(seconds: 15),
-        onTimeout: () => DailyMediaItem(
-          title: "李子柒 Liziqi: 大蒜的一生",
-          subtitle: "The Life of Garlic - Traditional Chinese Life",
-          url: "https://www.youtube.com/watch?v=gcShBujgsIQ",
-          imageUrl: "https://img.youtube.com/vi/gcShBujgsIQ/hqdefault.jpg",
-          tag: "2 MIN CULTURAL CONTEXT",
-        ),
+        onTimeout: () {
+          final fallbacks = [
+            DailyMediaItem(
+              title: "李子柒 Liziqi: 大蒜的一生",
+              subtitle: "The Life of Garlic - Traditional Chinese Life",
+              url: "https://www.youtube.com/watch?v=gcShBujgsIQ",
+              imageUrl: "https://img.youtube.com/vi/gcShBujgsIQ/0.jpg",
+              tag: "CULTURAL CONTEXT",
+            ),
+            DailyMediaItem(
+              title: "ShuoshuoChinese: At the Restaurant",
+              subtitle: "Real Chinese Conversations",
+              url: "https://www.youtube.com/watch?v=wJl1ycJD0YA",
+              imageUrl: "https://img.youtube.com/vi/wJl1ycJD0YA/hqdefault.jpg",
+              tag: "REAL WORLD CHINESE",
+            ),
+            DailyMediaItem(
+              title: "Mandarin Corner: Supermarket",
+              subtitle: "Learn Chinese in the Supermarket",
+              url: "https://www.youtube.com/watch?v=rY0_A32XnSg",
+              imageUrl: "https://img.youtube.com/vi/rY0_A32XnSg/0.jpg",
+              tag: "VOCABULARY",
+            ),
+            DailyMediaItem(
+              title: "Grace Mandarin: How to Say 'NO'",
+              subtitle: "Polite ways to decline in Chinese",
+              url: "https://www.youtube.com/watch?v=gP2Wz-iK5j4",
+              imageUrl: "https://img.youtube.com/vi/gP2Wz-iK5j4/hqdefault.jpg",
+              tag: "SOCIAL SKILLS",
+            ),
+            DailyMediaItem(
+              title: "Peppa Pig Chinese: 泥坑",
+              subtitle: "Muddy Puddles - Beginner Friendly",
+              url: "https://www.youtube.com/watch?v=LqAObK1tE9w",
+              imageUrl: "https://img.youtube.com/vi/LqAObK1tE9w/hqdefault.jpg",
+              tag: "LISTENING PRACTICE",
+            ),
+          ];
+          fallbacks.shuffle();
+          return fallbacks.first;
+        },
       ),
       repo.getDailyArticle().timeout(
         const Duration(seconds: 3),
@@ -56,6 +92,7 @@ class DailyDiscovery extends _$DailyDiscovery {
     // Save to cache
     await prefs.setString('daily_discovery_cache_date', todayString);
     await prefs.setString('daily_discovery_cache_data', jsonEncode(results.map((e) => e.toJson()).toList()));
+    await prefs.setString('daily_discovery_cache_version', cacheVersion);
 
     return results;
   }

@@ -696,7 +696,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get allDataHasBeen => 'Tất cả dữ liệu đã bị xóa sạch.';
 
   @override
-  String get hanziMasterV100 => 'Hanzi Master v1.0.0';
+  String get hanziMasterV100 => 'SinoSpark v1.0.0';
 
   @override
   String get myProgress => 'Tiến độ của tôi';
@@ -988,7 +988,7 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get whetherYouveFoundA =>
-      'Cho dù bạn đã tìm thấy lỗi, có yêu cầu tính năng hay chỉ muốn chào, phản hồi của bạn giúp chúng tôi cải thiện Hanzi Master.';
+      'Cho dù bạn đã tìm thấy lỗi, có yêu cầu tính năng hay chỉ muốn chào, phản hồi của bạn giúp chúng tôi cải thiện SinoSpark.';
 
   @override
   String get pointYourCameraAt => 'Hướng máy ảnh vào các vật thể';
@@ -1190,7 +1190,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get undo => 'HOÀN TÁC';
 
   @override
-  String get hanziMaster => 'Hanzi Master';
+  String get hanziMaster => 'SinoSpark';
 
   @override
   String get unlockForever => 'Mở khóa vĩnh viễn - \$9.99';

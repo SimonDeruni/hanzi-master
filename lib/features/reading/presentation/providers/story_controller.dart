@@ -396,7 +396,10 @@ class StoryController extends StateNotifier<StoryState> {
 
     // Save blueprint
     await repository.saveCustomBlueprint(blueprint);
-    state = state.copyWith(blueprints: [...state.blueprints, blueprint]);
+    state = state.copyWith(
+      blueprints: [...state.blueprints, blueprint],
+      clearCurrentStory: true,
+    );
 
     // We no longer automatically call loadOrGenerateStory.
     // StoryReaderScreen will handle streaming and parsing for custom blueprints.
@@ -428,7 +431,7 @@ class StoryController extends StateNotifier<StoryState> {
   }
 
   Future<StoryBlueprint> generateSimplifiedStory(String sourceText, int hskLevel) async {
-    final id = 'custom_${DateTime.now().millisecondsSinceEpoch}';
+    final id = 'simplified_${DateTime.now().millisecondsSinceEpoch}';
     final blueprint = StoryBlueprint(
       id: id,
       title: 'Simplified Text',

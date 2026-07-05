@@ -15,7 +15,6 @@ import 'package:hanzi_master/features/flashcards/presentation/widgets/ai_deck_ge
 import 'package:hanzi_master/features/flashcards/presentation/screens/settings_screen.dart';
 import 'package:hanzi_master/core/utils/pinyin_utils.dart';
 import 'package:hanzi_master/shared/widgets/pinyin_text.dart';
-import 'package:hanzi_master/features/flashcards/presentation/widgets/streak_seal.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/mastery_seal.dart';
 import 'package:hanzi_master/features/premium/presentation/screens/paywall_sheet.dart';
@@ -27,6 +26,7 @@ import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/radical_library_screen.dart';
 import 'package:hanzi_master/shared/widgets/global_sliver_app_bar.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/core/utils/definition_formatter.dart';
 
 import 'package:hanzi_master/features/flashcards/domain/entities/study_mode.dart';
 
@@ -95,13 +95,13 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
   }
 }
 
-class _LexiconMiniCard extends StatelessWidget {
+class _LexiconMiniCard extends ConsumerWidget {
   final Flashcard card;
 
   const _LexiconMiniCard({required this.card});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
     return InkWell(
       onTap: () {
@@ -142,7 +142,7 @@ class _LexiconMiniCard extends StatelessWidget {
             ),
             SizedBox(height: 4),
             Text(
-              card.definition,
+              DefinitionFormatter.cleanRaw(card.definition, ref),
               style: theme.textTheme.bodySmall,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
@@ -298,7 +298,7 @@ class _SearchBarDelegate extends SliverPersistentHeaderDelegate {
               icon: Icon(Icons.camera_alt),
               color: theme.colorScheme.onPrimary,
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const UniversalScannerScreen()));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const UniversalScannerScreen(intent: CameraIntent.dictionary)));
               },
             ),
           ),
@@ -780,13 +780,13 @@ class _RadicalCard extends ConsumerWidget {
   }
 }
 
-class _DictionaryItem extends StatelessWidget {
+class _DictionaryItem extends ConsumerWidget {
   final dynamic card;
   final bool isInLibrary;
   const _DictionaryItem({required this.card, this.isInLibrary = false});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     // If it's not in the library, it has no real mastery progress yet.
     final double masteryProgress = isInLibrary ? (card.getStatsForMode(StudyMode.reading).streak / 5.0).clamp(0.0, 1.0) : 0.0;
     final bool isMastered = isInLibrary ? card.isMastered(StudyMode.reading) : false;
@@ -868,8 +868,8 @@ class _DictionaryItem extends StatelessWidget {
                         ],
                       ),
                     ),
-                  TappableMarkdownHanziText(
-                    card.definition,
+                  Text(
+                    DefinitionFormatter.cleanRaw(card.definition, ref),
                     style: TextStyle(
                       fontSize: 14,
                       color: isDark ? Colors.white : Colors.black,

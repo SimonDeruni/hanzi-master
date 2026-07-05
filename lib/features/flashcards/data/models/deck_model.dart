@@ -17,11 +17,19 @@ class DeckModel extends HiveObject {
   @HiveField(3)
   final DateTime createdAt;
 
+  @HiveField(4, defaultValue: 20)
+  final int dailyNewCardsLimit;
+
+  @HiveField(5, defaultValue: 100)
+  final int dailyReviewLimit;
+
   DeckModel({
     required this.id,
     required this.name,
     this.description = '',
     required this.createdAt,
+    this.dailyNewCardsLimit = 20,
+    this.dailyReviewLimit = 100,
   });
 
   factory DeckModel.fromDomain(Deck deck) {
@@ -30,6 +38,8 @@ class DeckModel extends HiveObject {
       name: deck.name,
       description: deck.description,
       createdAt: deck.createdAt,
+      dailyNewCardsLimit: deck.dailyNewCardsLimit,
+      dailyReviewLimit: deck.dailyReviewLimit,
     );
   }
 
@@ -39,6 +49,8 @@ class DeckModel extends HiveObject {
       name: name,
       description: description,
       createdAt: createdAt,
+      dailyNewCardsLimit: dailyNewCardsLimit,
+      dailyReviewLimit: dailyReviewLimit,
     );
   }
 }

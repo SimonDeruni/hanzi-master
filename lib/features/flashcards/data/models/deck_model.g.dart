@@ -21,13 +21,15 @@ class DeckModelAdapter extends TypeAdapter<DeckModel> {
       name: fields[1] as String,
       description: fields[2] as String,
       createdAt: fields[3] as DateTime,
+      dailyNewCardsLimit: fields[4] == null ? 20 : fields[4] as int,
+      dailyReviewLimit: fields[5] == null ? 100 : fields[5] as int,
     );
   }
 
   @override
   void write(BinaryWriter writer, DeckModel obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(6)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -35,7 +37,11 @@ class DeckModelAdapter extends TypeAdapter<DeckModel> {
       ..writeByte(2)
       ..write(obj.description)
       ..writeByte(3)
-      ..write(obj.createdAt);
+      ..write(obj.createdAt)
+      ..writeByte(4)
+      ..write(obj.dailyNewCardsLimit)
+      ..writeByte(5)
+      ..write(obj.dailyReviewLimit);
   }
 
   @override

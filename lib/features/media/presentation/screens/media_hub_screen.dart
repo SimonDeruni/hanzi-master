@@ -441,13 +441,24 @@ class _DailyDiscoveryCarouselState extends ConsumerState<_DailyDiscoveryCarousel
           child: Stack(
             fit: StackFit.expand,
             children: [
-              CachedNetworkImage(
-                imageUrl: item.imageUrl,
+              Image.network(
+                item.imageUrl,
                 fit: BoxFit.cover,
-                placeholder: (context, url) => Container(color: Colors.black12),
-                errorWidget: (context, url, error) => Container(color: Colors.black12),
-                color: Colors.black45,
-                colorBlendMode: BlendMode.darken,
+                loadingBuilder: (context, child, loadingProgress) {
+                  if (loadingProgress == null) return child;
+                  return Container(color: theme.colorScheme.surfaceContainerHighest);
+                },
+                errorBuilder: (context, error, stackTrace) {
+                  return Container(
+                    color: theme.colorScheme.surfaceContainerHighest,
+                    child: Center(
+                      child: Icon(Icons.broken_image, color: theme.colorScheme.onSurfaceVariant.withOpacity(0.5), size: 40),
+                    ),
+                  );
+                },
+              ),
+              Positioned.fill(
+                child: Container(color: Colors.black.withOpacity(0.5)),
               ),
               Padding(
                 padding: const EdgeInsets.all(24.0),

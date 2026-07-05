@@ -44,6 +44,12 @@ void main() async {
     systemNavigationBarDividerColor: Colors.transparent,
   ));
   
+  // Force Portrait Mode globally
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+  
   // 1. Initialize SharedPreferences
   final prefs = await SharedPreferences.getInstance();
   
@@ -156,7 +162,7 @@ class HanziMasterApp extends ConsumerWidget {
         }
       },
       child: MaterialApp(
-        title: 'Hanzi Master',
+        title: 'SinoSpark',
         debugShowCheckedModeBanner: false,
         theme: AppTheme.lightTheme,
         darkTheme: AppTheme.darkTheme,
@@ -189,3 +195,4 @@ class HanziMasterApp extends ConsumerWidget {
     );
   }
 }
+

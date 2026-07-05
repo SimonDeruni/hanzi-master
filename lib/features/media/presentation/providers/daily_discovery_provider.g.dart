@@ -6,7 +6,7 @@ part of 'daily_discovery_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$dailyDiscoveryHash() => r'4812caf9ba5cc30bdcff3bb2e60c5f1fb205435a';
+String _$dailyDiscoveryHash() => r'5ad5cd8da63d1e609491b27b433e19113af84c53';
 
 /// See also [DailyDiscovery].
 @ProviderFor(DailyDiscovery)

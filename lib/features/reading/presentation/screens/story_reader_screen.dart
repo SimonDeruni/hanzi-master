@@ -32,6 +32,10 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
   final Set<int> _translatedSentences = {};
   final FlutterTts _flutterTts = FlutterTts();
   bool _isPlaying = false;
+  bool _isPaused = false;
+  int? _playingSentenceIndex;
+  int _playingStartOffset = -1;
+  int _playingEndOffset = -1;
   bool _isSaved = true; // By default assume saved unless it's a new custom
   
   late PageController _pageController;
@@ -77,6 +81,9 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
           _startStreamingStory();
         } else if (widget.blueprint.id.startsWith('custom_')) {
           ref.read(storyControllerProvider.notifier).loadOrGenerateStory(widget.blueprint, widget.hskLevel);
+        } else if (widget.blueprint.id.startsWith('simplified_')) {
+          // The simplification is already running in the background via story_controller.
+          // We just wait for state.currentStory to be populated.
         } else if (widget.blueprint.id.startsWith('local_') || widget.blueprint.id.startsWith('tang_poetry_') || widget.blueprint.id.startsWith('http')) {
           ref.read(storyControllerProvider.notifier).fetchAndParseLocalStory(widget.blueprint, widget.hskLevel);
         } else {
@@ -90,11 +97,15 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
 
   String _streamingText = "";
   bool _isStreaming = false;
+  bool _streamFailed = false;
+  String? _streamError;
 
   Future<void> _startStreamingStory() async {
     setState(() {
       _isStreaming = true;
       _streamingText = "";
+      _streamFailed = false;
+      _streamError = null;
     });
 
     try {
@@ -151,6 +162,10 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
       }
 
       if (mounted) {
+        setState(() {
+          _isStreaming = false;
+        });
+        
         await ref.read(storyControllerProvider.notifier).parseAndSaveCustomStory(
           widget.blueprint,
           _streamingText,
@@ -159,12 +174,9 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
       }
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Error generating story: $e")));
-      }
-    } finally {
-      if (mounted) {
         setState(() {
-          _isStreaming = false;
+          _streamFailed = true;
+          _streamError = e.toString();
         });
       }
     }
@@ -181,11 +193,27 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
   }
 
   Future<void> _initTts() async {
-    await    _flutterTts.setLanguage("zh-CN");
+    await _flutterTts.setLanguage("zh-CN");
     _flutterTts.setSpeechRate(0.45);
     _flutterTts.setPitch(1.0);
     _flutterTts.setCompletionHandler(() {
-      if (mounted) setState(() => _isPlaying = false);
+      if (mounted) {
+        setState(() {
+          _isPlaying = false;
+          _isPaused = false;
+          _playingSentenceIndex = null;
+          _playingStartOffset = -1;
+          _playingEndOffset = -1;
+        });
+      }
+    });
+    _flutterTts.setProgressHandler((text, start, end, word) {
+      if (mounted) {
+        setState(() {
+          _playingStartOffset = start;
+          _playingEndOffset = end;
+        });
+      }
     });
   }
 
@@ -196,15 +224,59 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
     super.dispose();
   }
 
-  void _togglePlay(AiStory story) async {
-    if (_isPlaying) {
+  void _togglePlay(AiStory story, {bool stop = false}) async {
+    if (stop) {
       await _flutterTts.stop();
-      if (mounted) setState(() => _isPlaying = false);
+      if (mounted) {
+        setState(() {
+          _isPlaying = false;
+          _isPaused = false;
+          _playingSentenceIndex = null;
+          _playingStartOffset = -1;
+          _playingEndOffset = -1;
+        });
+      }
+      return;
+    }
+
+    if (_isPlaying) {
+      await _flutterTts.pause();
+      if (mounted) {
+        setState(() {
+          _isPlaying = false;
+          _isPaused = true;
+        });
+      }
     } else {
       if (mounted) setState(() => _isPlaying = true);
-      // Play only the current page's sentence instead of the whole story
-      final text = story.sentences[_currentPage].chinese;
-      await _flutterTts.speak(text);
+      
+      if (!_isPaused || _playingSentenceIndex == null) {
+        // Start from beginning of the page
+        if (mounted) {
+          setState(() {
+            _playingSentenceIndex = _currentPage;
+            _playingStartOffset = -1;
+            _playingEndOffset = -1;
+          });
+        }
+        final text = story.sentences[_currentPage].chinese;
+        await _flutterTts.speak(text);
+      } else {
+        // Resume from pause (some platforms don't support true resume, this is best effort)
+        // Note: For Android, flutter_tts doesn't perfectly resume after pause, 
+        // it acts like stop. But we'll use speak for iOS compatibility if it doesn't auto-resume.
+        // Actually flutter_tts pause/resume works automatically if speak() is not called again,
+        // we just call speak() if it's not paused. But if it IS paused, we should call speak()? No, we call speak() with the same text to resume, or some platforms don't need it.
+        // Let's just try to speak the text again if pause fails, but standard flutter_tts just resumes if we don't call anything and just change state? No, flutter_tts has no resume().
+        // So we just call speak again from the paused offset.
+        final text = story.sentences[_currentPage].chinese;
+        if (_playingStartOffset >= 0 && _playingStartOffset < text.length) {
+           await _flutterTts.speak(text.substring(_playingStartOffset));
+        } else {
+           await _flutterTts.speak(text);
+        }
+      }
+      if (mounted) setState(() => _isPaused = false);
     }
   }
 
@@ -395,7 +467,7 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
               : const SizedBox.shrink(),
         ),
       ),
-      body: _isStreaming || (state.isLoading && widget.blueprint.id.startsWith('custom_'))
+      body: _isStreaming
           ? Center(
               child: SingleChildScrollView(
                 padding: const EdgeInsets.all(24.0),
@@ -429,12 +501,13 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
                       const SizedBox(height: 8),
                       if (!widget.blueprint.id.startsWith('local_') && 
                           !widget.blueprint.id.startsWith('tang_poetry_') && 
+                          !widget.blueprint.id.startsWith('simplified_') && 
                           !widget.blueprint.id.startsWith('mandarin_bean_'))
                         Text("HSK ${widget.hskLevel} vocabulary", style: const TextStyle(fontWeight: FontWeight.bold)),
                     ],
                   ),
                 )
-              : state.error != null
+              : (_streamFailed && _streamError != null) || state.error != null
                   ? Center(
                       child: Padding(
                         padding: const EdgeInsets.all(24.0),
@@ -443,10 +516,16 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
                           children: [
                             const Icon(Icons.error_outline, size: 64, color: Colors.red),
                             const SizedBox(height: 16),
-                            Text("Failed to generate story:\n${state.error}", textAlign: TextAlign.center),
+                            Text("Failed to generate story:\n${_streamError ?? state.error}", textAlign: TextAlign.center),
                             const SizedBox(height: 24),
                             ElevatedButton(
                               onPressed: () {
+                                if (_streamFailed) {
+                                  setState(() {
+                                    _streamFailed = false;
+                                    _streamError = null;
+                                  });
+                                }
                                 if (widget.blueprint.id.startsWith('custom_') && ref.read(storyControllerProvider).currentStory == null) {
                                   _startStreamingStory();
                                 } else if (widget.blueprint.id.startsWith('custom_')) {
@@ -457,7 +536,8 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
                                   ref.read(storyControllerProvider.notifier).fetchAndParseFirebaseStory(widget.blueprint, widget.hskLevel);
                                 }
                               },
-                              child: Text(AppLocalizations.of(context)!.tryAgain),
+                              style: ElevatedButton.styleFrom(backgroundColor: Colors.indigo),
+                              child: Text(AppLocalizations.of(context)!.tryAgain, style: const TextStyle(color: Colors.white)),
                             ),
                           ],
                         ),
@@ -562,6 +642,7 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
                                           Builder(builder: (context) {
                                             final sentence = pageSentences[si];
                                             final globalIndex = startIdx + si;
+                                            int currentStringOffset = 0;
                                             return Column(
                                               crossAxisAlignment: CrossAxisAlignment.start,
                                               children: [
@@ -573,7 +654,18 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
                                                         spacing: 8.0,
                                                         runSpacing: 16.0,
                                                         children: sentence.words.map((word) {
+                                                          final int wordStart = currentStringOffset;
+                                                          final int wordEnd = currentStringOffset + word.hanzi.length;
+                                                          currentStringOffset = wordEnd;
+
                                                           final isPunctuation = RegExp(r'[^\w\s\u4e00-\u9fa5]', unicode: true).hasMatch(word.hanzi) || word.hanzi.trim().isEmpty;
+                                                          
+                                                          final isSpeakingThisSentence = _playingSentenceIndex == globalIndex;
+                                                          final isWordActive = isSpeakingThisSentence && _playingStartOffset >= 0 && wordStart <= _playingStartOffset && wordEnd > _playingStartOffset;
+
+                                                          final textColor = isWordActive 
+                                                              ? Colors.orange 
+                                                              : (isDark ? Colors.white : Colors.black87);
 
                                                           if (isPunctuation) {
                                                             return Padding(
@@ -583,7 +675,7 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
                                                                 style: TextStyle(
                                                                   fontFamily: 'NotoSerifSC',
                                                                   fontSize: 26,
-                                                                  color: isDark ? Colors.white70 : Colors.black87,
+                                                                  color: textColor,
                                                                 ),
                                                               ),
                                                             );
@@ -602,9 +694,7 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
                                                                     fontFamily: 'NotoSerifSC',
                                                                     fontSize: 28,
                                                                     fontWeight: dueWords.contains(word.hanzi) ? FontWeight.bold : FontWeight.w600,
-                                                                    color: dueWords.contains(word.hanzi)
-                                                                        ? const Color(0xFFD4AF37)
-                                                                        : (isDark ? Colors.white : Colors.black87),
+                                                                    color: isWordActive ? Colors.orange : (dueWords.contains(word.hanzi) ? const Color(0xFFD4AF37) : textColor),
                                                                   ),
                                                                 ),
                                                                 if (shouldShowPinyin)

@@ -205,7 +205,10 @@ class _CustomScenarioDialogState extends ConsumerState<CustomScenarioDialog> {
                   Text(AppLocalizations.of(context)!.difficulty, style: theme.textTheme.titleSmall),
                   DropdownButton<int>(
                     value: _hskLevel,
-                    items: List.generate(6, (i) => i + 1).map((i) => DropdownMenuItem(value: i, child: Text("HSK $i"))).toList(),
+                    items: [
+                      ...List.generate(6, (i) => i + 1).map((i) => DropdownMenuItem(value: i, child: Text("HSK $i"))),
+                      const DropdownMenuItem(value: 7, child: Text("Native")),
+                    ],
                     onChanged: (v) => setState(() => _hskLevel = v ?? 3),
                   ),
                 ],

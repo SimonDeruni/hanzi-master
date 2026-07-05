@@ -22,7 +22,6 @@ class _ScenarioSelectionScreenState extends ConsumerState<ScenarioSelectionScree
   late List<ConversationScenario> _allScenarios;
   late PageController _pageController;
   int _currentIndex = 0;
-  bool _isSurvivalMode = false;
   String _selectedCategory = 'All';
 
   List<ConversationScenario> get _filteredScenarios {
@@ -30,8 +29,11 @@ class _ScenarioSelectionScreenState extends ConsumerState<ScenarioSelectionScree
     if (_selectedCategory == 'HSK 1') return _allScenarios.where((s) => s.targetHskLevel == 1).toList();
     if (_selectedCategory == 'HSK 2') return _allScenarios.where((s) => s.targetHskLevel == 2).toList();
     if (_selectedCategory == 'HSK 3') return _allScenarios.where((s) => s.targetHskLevel == 3).toList();
-    if (_selectedCategory == 'Travel') return _allScenarios.where((s) => s.id.contains('hotel') || s.id.contains('taxi') || s.id.contains('airport') || s.id.contains('station') || s.title.toLowerCase().contains('travel')).toList();
-    if (_selectedCategory == 'Daily') return _allScenarios.where((s) => s.id.contains('coffee') || s.id.contains('restaurant') || s.id.contains('market') || s.id.contains('friend') || s.title.toLowerCase().contains('daily')).toList();
+    if (_selectedCategory == 'HSK 4') return _allScenarios.where((s) => s.targetHskLevel == 4).toList();
+    if (_selectedCategory == 'HSK 5') return _allScenarios.where((s) => s.targetHskLevel == 5).toList();
+    if (_selectedCategory == 'HSK 6') return _allScenarios.where((s) => s.targetHskLevel == 6).toList();
+    if (_selectedCategory == 'Native') return _allScenarios.where((s) => s.targetHskLevel == 0 && !s.isCustom).toList();
+    if (_selectedCategory == 'Custom') return _allScenarios.where((s) => s.isCustom).toList();
     return _allScenarios;
   }
 
@@ -101,8 +103,6 @@ class _ScenarioSelectionScreenState extends ConsumerState<ScenarioSelectionScree
               children: [
                 _buildHeader(context, isDark),
                 const SizedBox(height: 16),
-                _buildModeSelectionToggle(theme),
-                const SizedBox(height: 16),
                 _buildCategoryFilter(isDark),
                 const SizedBox(height: 16),
                 
@@ -144,7 +144,6 @@ class _ScenarioSelectionScreenState extends ConsumerState<ScenarioSelectionScree
                             },
                             child: _ScenarioGlassCard(
                               scenario: scenario, 
-                              isSurvivalMode: _isSurvivalMode,
                               isActive: index == _currentIndex,
                             ),
                           );
@@ -211,7 +210,7 @@ class _ScenarioSelectionScreenState extends ConsumerState<ScenarioSelectionScree
   }
 
   Widget _buildCategoryFilter(bool isDark) {
-    final categories = ['All', 'HSK 1', 'HSK 2', 'HSK 3', 'Travel', 'Daily'];
+    final categories = ['All', 'HSK 1', 'HSK 2', 'HSK 3', 'HSK 4', 'HSK 5', 'HSK 6', 'Native', 'Custom'];
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -419,71 +418,7 @@ Respond ONLY with a JSON object containing:
     }
   }
 
-  Widget _buildModeSelectionToggle(ThemeData theme) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 48.0),
-      child: Container(
-        height: 48,
-        decoration: BoxDecoration(
-          color: Colors.black.withValues(alpha: 0.3),
-          borderRadius: BorderRadius.circular(24),
-          border: Border.all(color: Colors.white.withValues(alpha: 0.2)),
-        ),
-        child: Row(
-          children: [
-            Expanded(
-              child: GestureDetector(
-                onTap: () => setState(() => _isSurvivalMode = false),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: !_isSurvivalMode ? theme.colorScheme.primary : Colors.transparent,
-                    borderRadius: BorderRadius.circular(24),
-                  ),
-                  alignment: Alignment.center,
-                  child: Text(
-                    "Practice",
-                    style: TextStyle(
-                      color: !_isSurvivalMode ? Colors.white : Colors.white70,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            Expanded(
-              child: GestureDetector(
-                onTap: () => setState(() => _isSurvivalMode = true),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: _isSurvivalMode ? Colors.redAccent : Colors.transparent,
-                    borderRadius: BorderRadius.circular(24),
-                  ),
-                  alignment: Alignment.center,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(Icons.local_fire_department, size: 16, color: _isSurvivalMode ? Colors.white : Colors.white70),
-                      const SizedBox(width: 4),
-                      Text(
-                        "Survival",
-                        style: TextStyle(
-                          color: _isSurvivalMode ? Colors.white : Colors.white70,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
   void _startScenario(BuildContext context, ConversationScenario scenario, bool isVoice) {
-    // We would pass isSurvivalMode to the next screen here
     if (isVoice) {
       Navigator.push(context, MaterialPageRoute(builder: (context) => LiveCallScreen(scenario: scenario)));
     } else {
@@ -494,12 +429,10 @@ Respond ONLY with a JSON object containing:
 
 class _ScenarioGlassCard extends StatelessWidget {
   final ConversationScenario scenario;
-  final bool isSurvivalMode;
   final bool isActive;
 
   const _ScenarioGlassCard({
     required this.scenario,
-    required this.isSurvivalMode,
     required this.isActive,
   });
 

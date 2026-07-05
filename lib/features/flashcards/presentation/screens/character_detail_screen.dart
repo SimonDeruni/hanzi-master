@@ -22,6 +22,7 @@ import 'package:hanzi_master/shared/widgets/tappable_hanzi_text.dart';
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
 import 'package:hanzi_master/core/utils/pinyin_utils.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/deck_selection_sheet.dart';
+import 'package:hanzi_master/core/utils/definition_formatter.dart';
 import 'package:hanzi_master/features/live_translate/presentation/screens/shadowing_studio_screen.dart';
 import 'package:hanzi_master/shared/widgets/calligraphy_canvas_sheet.dart';
 
@@ -38,7 +39,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
   Map<String, dynamic>? _fullHanziMeta;
   late PageController _pageController;
   int _activeAnatomyIndex = 0;
-  
+
   // Scrubbing State
   int? _manualStrokeLimit;
   int? _manualCharIndex;
@@ -51,10 +52,53 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
   // Personal Notes
   final TextEditingController _notesController = TextEditingController();
 
+  // --- Pill Tab Navigation ---
+  final ScrollController _scrollController = ScrollController();
+  int _activeTabIndex = 0;
+  final List<String> _tabLabels = ['Strokes', 'Anatomy', 'Notes', 'Words', 'Context'];
+  final GlobalKey _strokesKey = GlobalKey();
+  final GlobalKey _anatomyKey = GlobalKey();
+  final GlobalKey _notesKey = GlobalKey();
+  final GlobalKey _wordsKey = GlobalKey();
+  final GlobalKey _contextKey = GlobalKey();
+
+  List<GlobalKey> get _sectionKeys => [_strokesKey, _anatomyKey, _notesKey, _wordsKey, _contextKey];
+
+  void _onScroll() {
+    int newActive = 0;
+    for (int i = 0; i < _sectionKeys.length; i++) {
+      final ctx = _sectionKeys[i].currentContext;
+      if (ctx == null) continue;
+      final box = ctx.findRenderObject() as RenderBox?;
+      if (box == null) continue;
+      final pos = box.localToGlobal(Offset.zero);
+      if (pos.dy < MediaQuery.of(context).size.height * 0.55) {
+        newActive = i;
+      }
+    }
+    if (newActive != _activeTabIndex) {
+      setState(() => _activeTabIndex = newActive);
+    }
+  }
+
+  void _scrollToSection(int index) {
+    final ctx = _sectionKeys[index].currentContext;
+    if (ctx == null) return;
+    Scrollable.ensureVisible(
+      ctx,
+      duration: const Duration(milliseconds: 400),
+      curve: Curves.easeInOutQuart,
+      alignment: 0.05,
+    );
+    setState(() => _activeTabIndex = index);
+  }
+  // ---------------------------
+
   @override
   void initState() {
     super.initState();
     _pageController = PageController();
+    _scrollController.addListener(_onScroll);
     _loadAnatomyData();
     _hydrateStrokes();
     _loadNotes();
@@ -76,6 +120,8 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
   void dispose() {
     _notesController.dispose();
     _pageController.dispose();
+    _scrollController.removeListener(_onScroll);
+    _scrollController.dispose();
     super.dispose();
   }
 
@@ -266,9 +312,12 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
       ),
       extendBodyBehindAppBar: true,
       body: CalligraphyBackground(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.fromLTRB(24, 100, 24, 24),
-          child: Column(
+        child: Stack(
+          children: [
+            SingleChildScrollView(
+              controller: _scrollController,
+              padding: const EdgeInsets.fromLTRB(24, 100, 24, 24),
+              child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
@@ -345,8 +394,8 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
                       ],
                     ),
                     SizedBox(height: 12),
-                    Text(
-                      currentCard.definition,
+                    DefinitionFormatter(
+                      rawDefinition: currentCard.definition,
                       style: TextStyle(
                         fontSize: 18,
                         color: isDark ? Colors.white70 : Colors.black87,
@@ -375,13 +424,20 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
                 ),
               ),
               SizedBox(height: 24),
-              if (_anatomyComponents.isNotEmpty) _buildAnatomySection(context, isDark),
+              // Spacer so pill bar doesn't overlap first section
+              SizedBox(height: 8),
+              KeyedSubtree(key: _strokesKey, child: const SizedBox.shrink()),
+              if (_anatomyComponents.isNotEmpty) ...[  
+                KeyedSubtree(key: _anatomyKey, child: _buildAnatomySection(context, isDark)),
+              ] else ...[  
+                KeyedSubtree(key: _anatomyKey, child: const SizedBox.shrink()),
+              ],
               SizedBox(height: 16),
-              _buildPersonalNotesSection(context, isDark),
+              KeyedSubtree(key: _notesKey, child: _buildPersonalNotesSection(context, isDark)),
               SizedBox(height: 16),
-              _buildCommonWordsSection(context, isDark),
+              KeyedSubtree(key: _wordsKey, child: _buildCommonWordsSection(context, isDark)),
               SizedBox(height: 16),
-              _buildAiContextSection(context, isDark),
+              KeyedSubtree(key: _contextKey, child: _buildAiContextSection(context, isDark)),
 
               SizedBox(height: 40),
               Column(
@@ -403,16 +459,6 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
                                 children: [
                                   const Text("Practice Modes", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold), textAlign: TextAlign.center),
                                   const SizedBox(height: 24),
-                                  ListTile(
-                                    leading: const Icon(Icons.style, color: Colors.indigo, size: 32),
-                                    title: const Text("SRS Flashcard Review", style: TextStyle(fontWeight: FontWeight.bold)),
-                                    subtitle: const Text("Review this card and update its mastery stats"),
-                                    onTap: () {
-                                      Navigator.pop(ctx);
-                                      Navigator.push(context, MaterialPageRoute(builder: (context) => ReviewScreen(card: currentCard)));
-                                    },
-                                  ),
-                                  const Divider(),
                                   ListTile(
                                     leading: const Icon(Icons.record_voice_over, color: Colors.orange, size: 32),
                                     title: const Text("Shadowing Studio", style: TextStyle(fontWeight: FontWeight.bold)),
@@ -475,6 +521,75 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
               ),
             ],
           ),
+        ),
+            // Sticky pill tab bar
+            Positioned(
+              top: 90,
+              left: 0,
+              right: 0,
+              child: _buildPillTabBar(isDark),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildPillTabBar(bool isDark) {
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            (isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0)).withValues(alpha: 0.95),
+            (isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0)).withValues(alpha: 0.0),
+          ],
+        ),
+      ),
+      padding: const EdgeInsets.only(top: 6, bottom: 16),
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Row(
+          children: List.generate(_tabLabels.length, (i) {
+            final isActive = _activeTabIndex == i;
+            return GestureDetector(
+              onTap: () => _scrollToSection(i),
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 250),
+                curve: Curves.easeInOutQuart,
+                margin: const EdgeInsets.only(right: 8),
+                padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 9),
+                decoration: BoxDecoration(
+                  color: isActive
+                      ? Colors.indigo
+                      : (isDark ? Colors.white.withValues(alpha: 0.08) : Colors.white.withValues(alpha: 0.7)),
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(
+                    color: isActive
+                        ? Colors.indigo
+                        : (isDark ? Colors.white24 : Colors.black12),
+                    width: 1.5,
+                  ),
+                  boxShadow: isActive
+                      ? [BoxShadow(color: Colors.indigo.withValues(alpha: 0.3), blurRadius: 8, offset: const Offset(0, 2))]
+                      : [],
+                ),
+                child: Text(
+                  _tabLabels[i],
+                  style: TextStyle(
+                    fontSize: 13,
+                    fontWeight: isActive ? FontWeight.bold : FontWeight.w500,
+                    color: isActive
+                        ? Colors.white
+                        : (isDark ? Colors.white60 : Colors.black54),
+                    letterSpacing: 0.3,
+                  ),
+                ),
+              ),
+            );
+          }),
         ),
       ),
     );

@@ -23,12 +23,12 @@ class _ContactScreenState extends State<ContactScreen> {
       return;
     }
 
-    final String subject = Uri.encodeComponent("Hanzi Master: $_selectedCategoryKey");
+    final String subject = Uri.encodeComponent("SinoSpark: $_selectedCategoryKey");
     final String body = Uri.encodeComponent(message);
     
     final Uri emailLaunchUri = Uri(
       scheme: 'mailto',
-      path: 'support@hanzimaster.com',
+      path: 'contact@sinospark.com',
       query: 'subject=$subject&body=$body',
     );
 
@@ -211,3 +211,4 @@ class _ContactScreenState extends State<ContactScreen> {
     );
   }
 }
+

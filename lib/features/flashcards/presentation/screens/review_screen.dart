@@ -8,6 +8,8 @@ import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_mana
 import 'package:hanzi_master/core/stroke_matcher.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/drawing_canvas.dart';
+import 'package:hanzi_master/shared/widgets/pinyin_text.dart';
+import 'package:hanzi_master/shared/widgets/swipeable_flashcard.dart';
 import 'package:hanzi_master/core/services/audio_service.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
@@ -440,99 +442,24 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
     return Container(
       color: bgColor,
       child: SafeArea(
-        child: GestureDetector(
-          onPanStart: (details) {
-            setState(() {
-              _isSwiping = true;
-            });
-          },
-          onPanUpdate: (details) {
-            setState(() {
-              _swipeDx += details.delta.dx;
-              _swipeDy += details.delta.dy;
-            });
-          },
-          onPanEnd: (details) {
-            setState(() {
-              _isSwiping = false;
-            });
-            final screenWidth = MediaQuery.of(context).size.width;
-            final screenHeight = MediaQuery.of(context).size.height;
-            
-            bool swipedRight = _swipeDx > screenWidth * 0.3 && _swipeDx.abs() > _swipeDy.abs();
-            bool swipedLeft = _swipeDx < -screenWidth * 0.3 && _swipeDx.abs() > _swipeDy.abs();
-            bool swipedUp = _swipeDy < -screenHeight * 0.15 && _swipeDy.abs() > _swipeDx.abs();
-
-            if (swipedRight) {
-              HapticsManager.success();
-              Navigator.pop(context, 4); // Good
-            } else if (swipedLeft) {
-              HapticsManager.heavy();
-              Navigator.pop(context, 0); // Again
-            } else if (swipedUp) {
-              HapticsManager.success();
-              Navigator.pop(context, 5); // Easy
-            } else {
-              setState(() {
-                _swipeDx = 0;
-                _swipeDy = 0;
-              });
-            }
-          },
-          child: Stack(
-            children: [
-              // Background indicators
-              if (_isSwiping) ...[
-                if (_swipeDx > 50)
-                  Container(
-                    color: Colors.green.withValues(alpha: (_swipeDx / 200).clamp(0.0, 0.5)),
-                    alignment: Alignment.centerLeft,
-                    padding: const EdgeInsets.only(left: 32),
-                    child: const Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(Icons.check, color: Colors.green, size: 64),
-                        SizedBox(height: 8),
-                        Text('Good', style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold, fontSize: 24)),
-                      ],
+        child: Column(
+          children: [
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: SwipeableFlashcard(
+                  isSwipeEnabled: true,
+                  onSwiped: (grade) {
+                    Navigator.pop(context, grade);
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: bgColor,
+                      borderRadius: BorderRadius.circular(32),
+                      border: Border.all(color: isDark ? Colors.white12 : Colors.black12),
                     ),
-                  ),
-                if (_swipeDx < -50)
-                  Container(
-                    color: Colors.red.withValues(alpha: (-_swipeDx / 200).clamp(0.0, 0.5)),
-                    alignment: Alignment.centerRight,
-                    padding: const EdgeInsets.only(right: 32),
-                    child: const Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                    child: Column(
                       children: [
-                        Icon(Icons.close, color: Colors.red, size: 64),
-                        SizedBox(height: 8),
-                        Text('Again', style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold, fontSize: 24)),
-                      ],
-                    ),
-                  ),
-                if (_swipeDy < -50 && _swipeDx.abs() < 50)
-                  Container(
-                    color: Colors.amber.withValues(alpha: (-_swipeDy / 200).clamp(0.0, 0.5)),
-                    alignment: Alignment.topCenter,
-                    padding: const EdgeInsets.only(top: 64),
-                    child: const Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Icon(Icons.keyboard_double_arrow_up, color: Colors.amber, size: 64),
-                        SizedBox(height: 8),
-                        Text('Easy', style: TextStyle(color: Colors.amber, fontWeight: FontWeight.bold, fontSize: 24)),
-                      ],
-                    ),
-                  ),
-              ],
-              AnimatedContainer(
-                duration: _isSwiping ? Duration.zero : const Duration(milliseconds: 300),
-                curve: Curves.easeOutBack,
-                transform: Matrix4.translationValues(_swipeDx, _swipeDy, 0)
-                  ..rotateZ(_swipeDx * 0.001),
-                child: Column(
-                  children: [
             // Header Section
             Container(
               width: double.infinity,
@@ -686,26 +613,31 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
                                 ),
                                 const SizedBox(height: 8),
                                 Expanded(
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      color: cardColor,
-                                      borderRadius: BorderRadius.circular(16),
-                                      border: Border.all(color: Colors.grey.withValues(alpha: 0.1)),
-                                    ),
-                                    clipBehavior: Clip.antiAlias,
-                                    child: DrawingCanvas(
-                                      strokePaths: _currentCard.strokePaths,
-                                      medianPaths: _currentCard.medianPaths,
-                                      showAnimation: false,
-                                      readOnly: true,
-                                      autoCenter: true,
-                                      initialUserStrokes: _completedStrokes,
-                                      forcedActiveCharIndex: _currentCycleIndex,
-                                      isFlipped: _currentCard.isFlipped,
-                                      showGrade: false,
-                                      showReference: false,
-                                      strokeScores: _strokeScores,
-                                      showHeatmap: _showHeatmap,
+                                  child: Center(
+                                    child: AspectRatio(
+                                      aspectRatio: 1.0,
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          color: cardColor,
+                                          borderRadius: BorderRadius.circular(16),
+                                          border: Border.all(color: Colors.grey.withValues(alpha: 0.1)),
+                                        ),
+                                        clipBehavior: Clip.antiAlias,
+                                        child: DrawingCanvas(
+                                          strokePaths: _currentCard.strokePaths,
+                                          medianPaths: _currentCard.medianPaths,
+                                          showAnimation: false,
+                                          readOnly: true,
+                                          autoCenter: true,
+                                          initialUserStrokes: _completedStrokes,
+                                          forcedActiveCharIndex: _currentCycleIndex,
+                                          isFlipped: _currentCard.isFlipped,
+                                          showGrade: false,
+                                          showReference: false,
+                                          strokeScores: _strokeScores,
+                                          showHeatmap: _showHeatmap,
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -720,22 +652,27 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
                                 Text(AppLocalizations.of(context)!.reference, style: TextStyle(color: isDark ? Colors.white54 : Colors.black54, fontSize: 12, fontWeight: FontWeight.bold)),
                                 const SizedBox(height: 8),
                                 Expanded(
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      color: cardColor,
-                                      borderRadius: BorderRadius.circular(16),
-                                      border: Border.all(color: Colors.grey.withValues(alpha: 0.1)),
-                                    ),
-                                    clipBehavior: Clip.antiAlias,
-                                    child: DrawingCanvas(
-                                      strokePaths: _currentCard.strokePaths,
-                                      medianPaths: _currentCard.medianPaths,
-                                      showAnimation: true,
-                                      readOnly: true,
-                                      autoCenter: true,
-                                      forcedActiveCharIndex: _currentCycleIndex,
-                                      isFlipped: _currentCard.isFlipped,
-                                      showGrade: false,
+                                  child: Center(
+                                    child: AspectRatio(
+                                      aspectRatio: 1.0,
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          color: cardColor,
+                                          borderRadius: BorderRadius.circular(16),
+                                          border: Border.all(color: Colors.grey.withValues(alpha: 0.1)),
+                                        ),
+                                        clipBehavior: Clip.antiAlias,
+                                        child: DrawingCanvas(
+                                          strokePaths: _currentCard.strokePaths,
+                                          medianPaths: _currentCard.medianPaths,
+                                          showAnimation: true,
+                                          readOnly: true,
+                                          autoCenter: true,
+                                          forcedActiveCharIndex: _currentCycleIndex,
+                                          isFlipped: _currentCard.isFlipped,
+                                          showGrade: false,
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -746,17 +683,45 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
                       ),
                     ),
                     const SizedBox(height: 24),
-                  ],
-                ),
-              ).animate()
-               .fade(duration: 500.ms, curve: Curves.easeOutCubic)
-               .slideY(begin: 0.1, end: 0, duration: 500.ms, curve: Curves.easeOutCubic),
+                    ], // closes children of Column 519
+                  ), // closes Column 519
+                ), // closes Padding 517
+              ), // closes Expanded 516
+            ], // closes children of Column 461
+          ), // closes Column 461
+        ), // closes Container 455
+      ).animate() // closes SwipeableFlashcard 450
+       .fade(duration: 500.ms, curve: Curves.easeOutCubic)
+       .slideY(begin: 0.1, end: 0, duration: 500.ms, curve: Curves.easeOutCubic),
+    ), // closes Padding 448
+  ), // closes Expanded 447
+      
+      // Swipe Hint
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+              child: Column(
+                children: [
+                  Text(
+                    "Swipe to Grade:",
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                      color: isDark ? Colors.white54 : Colors.black45,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    "⬅️ Again    ➡️ Good    ⬆️ Easy    ⬇️ Hard",
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                      color: isDark ? Colors.white70 : Colors.black54,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ],
-        ),
-      ),
-            ],
-          ),
         ),
       ),
     );

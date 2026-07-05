@@ -7,15 +7,15 @@ import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraph
 import 'package:hanzi_master/features/live_translate/presentation/screens/shadowing_studio_screen.dart';
 
 import 'package:hanzi_master/features/media/presentation/screens/media_hub_screen.dart';
+import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
 
 
 
 import 'package:hanzi_master/l10n/app_localizations.dart';
-import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
-
-import 'package:hanzi_master/features/flashcards/presentation/widgets/streak_seal.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/profile_screen.dart';
 
+import 'package:hanzi_master/core/services/monetization_service.dart';
+import 'package:hanzi_master/features/premium/presentation/screens/paywall_sheet.dart';
 
 class AiHubScreen extends ConsumerWidget {
   const AiHubScreen({super.key});
@@ -30,107 +30,104 @@ class AiHubScreen extends ConsumerWidget {
       body: CalligraphyBackground(
         child: SafeArea(
           bottom: false,
-          child: Padding(
+          child: ListView(
             padding: const EdgeInsets.symmetric(horizontal: 24.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                // Custom Header replacing GlobalSliverAppBar
-                Padding(
-                  padding: const EdgeInsets.only(top: 16.0, bottom: 20.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        l10n?.aiHubTitle ?? "AI Hub",
-                        style: theme.textTheme.headlineMedium?.copyWith(
-                          fontWeight: FontWeight.w900,
-                          fontFamily: 'Serif',
-                          color: isDark ? Colors.white : Colors.black87,
-                          letterSpacing: 0.5,
-                          fontSize: 28,
-                        ),
+            children: [
+              // Custom Header replacing GlobalSliverAppBar
+              Padding(
+                padding: const EdgeInsets.only(top: 16.0, bottom: 20.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      l10n?.aiHubTitle ?? "AI Hub",
+                      style: theme.textTheme.headlineMedium?.copyWith(
+                        fontWeight: FontWeight.w900,
+                        fontFamily: 'Serif',
+                        color: isDark ? Colors.white : Colors.black87,
+                        letterSpacing: 0.5,
+                        fontSize: 28,
                       ),
-                      Row(
-                        children: [
-                          const StreakSeal(),
-                          const SizedBox(width: 12),
-                          GestureDetector(
-                            onTap: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (_) => const ProfileScreen(),
-                              ),
-                            ),
-                            child: Container(
-                              padding: const EdgeInsets.all(8),
-                              decoration: BoxDecoration(
-                                color: isDark
-                                    ? Colors.white.withValues(alpha: 0.1)
-                                    : Colors.black.withValues(alpha: 0.05),
-                                shape: BoxShape.circle,
-                              ),
-                              child: Icon(
-                                Icons.person_outline,
-                                color: isDark ? Colors.white : Colors.black87,
-                                size: 20,
-                              ),
+                    ),
+                    Row(
+                      children: [
+                        GestureDetector(
+                          onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => const ProfileScreen(),
                             ),
                           ),
-                        ],
-                      ),
-                    ],
-                  ),
+                          child: Container(
+                            padding: const EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              color: isDark
+                                  ? Colors.white.withValues(alpha: 0.1)
+                                  : Colors.black.withValues(alpha: 0.05),
+                              shape: BoxShape.circle,
+                            ),
+                            child: Icon(
+                              Icons.person_outline,
+                              color: isDark ? Colors.white : Colors.black87,
+                              size: 20,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
+              ),
 
-                // Hero Carousel: Featured AI Tools
-                const Expanded(
-                  child: _FeaturedCarousel(),
-                ),
+              // Hero Carousel: Featured AI Tools
+              const SizedBox(
+                height: 380,
+                child: _FeaturedCarousel(),
+              ),
 
-                const SizedBox(height: 32),
+              const SizedBox(height: 32),
 
-                // Square Tiles List of Features
-                Row(
-                  children: [
-                    Expanded(
-                      child: _buildListActionCard(
-                        context: context,
-                        title: "Reading Room",
-                        subtitle: "Classic literature",
-                        icon: Icons.auto_stories,
-                        gradientColors: const [Color(0xFF8B5E3C), Color(0xFFC4863A)],
-                        onTap: () {
+              // Square Tiles List of Features
+              Row(
+                children: [
+                  Expanded(
+                    child: _buildListActionCard(
+                      context: context,
+                      title: "Reading Room",
+                      subtitle: "Classic literature",
+                      icon: Icons.auto_stories,
+                      gradientColors: const [Color(0xFF8B5E3C), Color(0xFFC4863A)],
+                      onTap: () {
+                        if (context.mounted) {
                           Navigator.push(
                             context,
                             MaterialPageRoute(builder: (_) => const StoryLibraryScreen()),
                           );
-                        },
-                      ),
+                        }
+                      },
                     ),
-                    const SizedBox(width: 16),
-                    Expanded(
-                      child: _buildListActionCard(
-                        context: context,
-                        title: "Shadowing",
-                        subtitle: "Perfect pronunciation",
-                        icon: Icons.mic,
-                        isNew: true,
-                        gradientColors: const [Color(0xFF1A4A4A), Color(0xFF2A7070)],
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (_) => const ShadowingStudioScreen()),
-                          );
-                        },
-                      ),
+                  ),
+                  const SizedBox(width: 16),
+                  Expanded(
+                    child: _buildListActionCard(
+                      context: context,
+                      title: "Shadowing",
+                      subtitle: "Perfect pronunciation",
+                      icon: Icons.mic,
+                      gradientColors: const [Color(0xFF1A4A4A), Color(0xFF2A7070)],
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (_) => const ShadowingStudioScreen()),
+                        );
+                      },
                     ),
-                  ],
-                ),
-
-                const SizedBox(height: 24),
-              ],
-            ),
+                  ),
+                ],
+              ),
+              
+              const SizedBox(height: 24),
+            ],
           ),
         ),
       ),
@@ -394,11 +391,13 @@ class _FeaturedCarouselState extends State<_FeaturedCarousel> {
                   imageAsset: 'assets/images/ai_hub_ink_mountains.png',
                   icon: Icons.auto_awesome,
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (_) => const ScenarioSelectionScreen()),
-                    );
+                    if (context.mounted) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (_) => const ScenarioSelectionScreen()),
+                      );
+                    }
                   },
                 ),
               ),
@@ -411,12 +410,14 @@ class _FeaturedCarouselState extends State<_FeaturedCarousel> {
                   category: "Web Explorer",
                   imageAsset: 'assets/images/user_web_explorer.png',
                   icon: Icons.language,
-                  overlayColor: const Color(0xB3000000),
+                  overlayColor: Colors.black38,
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (_) => const MediaHubScreen()),
-                    );
+                    if (context.mounted) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) => const MediaHubScreen()),
+                      );
+                    }
                   },
                 ),
               ),
@@ -467,7 +468,7 @@ class _CarouselCard extends StatelessWidget {
     required this.imageAsset,
     required this.icon,
     required this.onTap,
-    this.overlayColor = Colors.black45,
+    this.overlayColor = Colors.black26,
   });
 
   @override

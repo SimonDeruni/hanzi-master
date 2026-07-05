@@ -118,9 +118,8 @@ class AudioService {
     await _fallbackTts.speak(sentence);
   }
 
-  Future<Uint8List?> _fetchGeminiCloud(String text, {bool isPremium = false}) async {
-    // For single fast words, we just return null to use local TTS and save API costs.
-    if (!isPremium) return null;
+  Future<Uint8List?> _fetchGeminiCloud(String text, {bool isPremium = true}) async {
+    // Cloud TTS is now available for all API requests as app is paywalled.
 
     final apiKey = _pool.googleKey;
     if (apiKey.isEmpty) return null;

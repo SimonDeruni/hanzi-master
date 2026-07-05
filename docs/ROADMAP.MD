@@ -88,6 +88,12 @@
 - [ ] **Sound FX:** Subtle "paper scratching" audio during drawing.
 - [ ] **Haptic Immersion:** Refined vibrations for brush-on-paper feel.
 
+## Phase 9.5: System Integrations (🚧 PLANNED)
+- [ ] **Smart Notifications:** Local daily reminders for Spaced Repetition (SRS) reviews with custom AI-generated encouragement.
+- [ ] **Home Screen Widgets (iOS/Android):**
+    - [ ] "Character of the Day" Widget with animated ink drawing.
+    - [ ] "Daily Study Streak" & progress rings Widget.
+
 ## Phase 10: The Ink Guild (Social & Community) (🚧 PLANNED)
 - [ ] **📜 Scroll Publishing:** Share custom decks and calligraphy results.
 - [ ] **🖋️ The Poetry League:** Weekly challenges for "Artisanship Points".

@@ -423,6 +423,12 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
           .toList();
     }
 
+    // Pass raw 900-unit median points — the painters handle the 900→1000 scaling and y-flip.
+    List<Offset>? currentMedianPoints;
+    if (widget.medianPaths.isNotEmpty && realMedianIndex < widget.medianPaths.length) {
+      currentMedianPoints = widget.medianPaths[realMedianIndex];
+    }
+
     return AnimatedBuilder(
       animation: _shakeController,
       builder: (context, child) => Transform.translate(
@@ -460,7 +466,7 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
                         CustomPaint(
                           painter: _ReferenceStrokePainter(
                             referencePath: _cachedParsedPaths[localCurrentIndex],
-                            medianPoints: (widget.medianPaths.isNotEmpty && realMedianIndex < widget.medianPaths.length) ? widget.medianPaths[realMedianIndex] : null,
+                            medianPoints: currentMedianPoints,
                             canvasSize: Size.infinite,
                             centeringShift: centeringShift,
                           ),
@@ -472,7 +478,7 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
                           builder: (context, child) => CustomPaint(
                             painter: _HintStrokePainter(
                               path: _cachedParsedPaths[localCurrentIndex.clamp(0, _cachedParsedPaths.length - 1)],
-                              points: (widget.medianPaths.isNotEmpty && realMedianIndex < widget.medianPaths.length) ? widget.medianPaths[realMedianIndex] : null,
+                              points: currentMedianPoints,
                               progress: _hintController.value,
                               centeringShift: centeringShift,
                             ),
@@ -492,9 +498,14 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
                       medianPaths: (() {
                         final hasReal = (widget.medianPaths.length >= strokeOffset + _cachedParsedPaths.length);
                         debugPrint("HM: Char $_activeCharIndex. Using real medians: $hasReal. Total in list: ${widget.medianPaths.length}");
-                        return hasReal 
-                          ? widget.medianPaths.skip(strokeOffset).take(_cachedParsedPaths.length).toList() 
-                          : generatedMedianPaths;
+                        if (hasReal) {
+                          final paths = widget.medianPaths.skip(strokeOffset).take(_cachedParsedPaths.length).toList();
+                          if (widget.isFlipped) {
+                            return paths.map((path) => path.map((p) => Offset(p.dx, 900.0 - p.dy)).toList()).toList();
+                          }
+                          return paths;
+                        }
+                        return generatedMedianPaths;
                       })(),
                       animationSpeed: widget.animationSpeed,
                       centeringShift: centeringShift,
@@ -660,6 +671,7 @@ class _ReferenceStrokePainter extends CustomPainter {
   final Size canvasSize;
   final Offset centeringShift;
   _ReferenceStrokePainter({required this.referencePath, this.medianPoints, required this.canvasSize, required this.centeringShift});
+
   @override
   void paint(Canvas canvas, Size size) {
     if (referencePath.getBounds().isEmpty) return;
@@ -683,46 +695,45 @@ class _ReferenceStrokePainter extends CustomPainter {
     
     final metrics = referencePath.computeMetrics().toList();
     if (metrics.isNotEmpty) {
-      final metric = metrics.first;
-      List<Offset> samples = [];
-      for (double i = 0; i <= 1.0; i += 0.01) {
-        samples.add(metric.getTangentForOffset(metric.length * i)!.position);
-      }
-      Offset startPos = Offset.zero, endPos = Offset.zero;
+      Offset startPos, endPos;
       
       if (medianPoints != null && medianPoints!.length >= 2) {
         startPos = medianPoints!.first;
-        endPos = medianPoints!.last;
+        endPos   = medianPoints!.last;
       } else {
+        // Fallback: sample the SVG path itself (already in 1000-unit screen space)
+        final metric = metrics.first;
+        List<Offset> samples = [];
+        for (double i = 0; i <= 1.0; i += 0.01) {
+          samples.add(metric.getTangentForOffset(metric.length * i)!.position);
+        }
         double maxDistSq = -1;
-        Offset tipA = samples.first;
-        Offset tipB = samples.last;
+        Offset tipA = samples.first, tipB = samples.last;
         for (int i = 0; i < samples.length; i++) {
           for (int j = i + 1; j < samples.length; j++) {
             double d = (samples[i] - samples[j]).distanceSquared;
             if (d > maxDistSq) { maxDistSq = d; tipA = samples[i]; tipB = samples[j]; }
           }
         }
-        
-        Offset startTip, endTip;
         double scoreA = (tipA.dy * 1.5) + tipA.dx;
         double scoreB = (tipB.dy * 1.5) + tipB.dx;
-        if (scoreA < scoreB) { startTip = tipA; endTip = tipB; } 
+        Offset startTip, endTip;
+        if (scoreA < scoreB) { startTip = tipA; endTip = tipB; }
         else { startTip = tipB; endTip = tipA; }
-        
+        Offset sAcc = Offset.zero, eAcc = Offset.zero;
         int sCount = 0, eCount = 0;
         for (final p in samples) {
-          if ((p - startTip).distance < 50.0) { startPos += p; sCount++; }
-          if ((p - endTip).distance < 50.0) { endPos += p; eCount++; }
+          if ((p - startTip).distance < 50.0) { sAcc += p; sCount++; }
+          if ((p - endTip).distance < 50.0)   { eAcc += p; eCount++; }
         }
-        startPos = sCount > 0 ? startPos / sCount.toDouble() : startTip;
-        endPos = eCount > 0 ? endPos / eCount.toDouble() : endTip;
+        startPos = sCount > 0 ? sAcc / sCount.toDouble() : startTip;
+        endPos   = eCount > 0 ? eAcc / eCount.toDouble() : endTip;
       }
       
       canvas.drawCircle(startPos, 22.0, Paint()..color = Colors.green.withValues(alpha: 0.4)..style = PaintingStyle.fill);
-      canvas.drawCircle(startPos, 8.0, Paint()..color = Colors.green..style = PaintingStyle.fill);
-      canvas.drawCircle(endPos, 22.0, Paint()..color = Colors.red.withValues(alpha: 0.2)..style = PaintingStyle.fill);
-      canvas.drawCircle(endPos, 8.0, Paint()..color = Colors.red..style = PaintingStyle.fill);
+      canvas.drawCircle(startPos, 8.0,  Paint()..color = Colors.green..style = PaintingStyle.fill);
+      canvas.drawCircle(endPos,   22.0, Paint()..color = Colors.red.withValues(alpha: 0.2)..style = PaintingStyle.fill);
+      canvas.drawCircle(endPos,   8.0,  Paint()..color = Colors.red..style = PaintingStyle.fill);
     }
     canvas.restore();
   }

@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:google_generative_ai/google_generative_ai.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:hanzi_master/features/media/domain/models/media_briefing.dart';
 import 'package:hanzi_master/features/media/domain/models/video_transcript.dart';
 import '../../features/flashcards/domain/entities/flashcard.dart';
@@ -12,11 +13,20 @@ import 'api_key_pool.dart';
 import 'analytics_service.dart';
 import '../providers/translation_language_provider.dart';
 import 'gemini_proxy_client.dart';
+import 'revenuecat_service.dart';
+
+class PremiumRequiredException implements Exception {
+  final String message;
+  PremiumRequiredException(this.message);
+  @override
+  String toString() => message;
+}
+
 final geminiServiceProvider = Provider<GeminiService>((ref) {
   final pool = ref.watch(apiKeyPoolProvider);
   final analytics = ref.watch(analyticsServiceProvider);
   final targetLanguage = ref.watch(translationLanguageProvider);
-  return GeminiService(pool: pool, analytics: analytics, targetLanguage: targetLanguage);
+  return GeminiService(pool: pool, analytics: analytics, targetLanguage: targetLanguage, ref: ref);
 });
 
 class GeminiContext {
@@ -229,14 +239,23 @@ class GeminiService {
   final ApiKeyPool pool;
   final AnalyticsService analytics;
   final String targetLanguage;
+  final Ref ref;
 
-  GeminiService({required this.pool, required this.analytics, this.targetLanguage = 'English'});
+  static const int _freeTierDailyLimit = 5; // Reduced based on user request
+
+  GeminiService({required this.pool, required this.analytics, this.targetLanguage = 'English', required this.ref});
+
+  Future<void> _checkUsageLimit() async {
+    // Limits removed because the app is now completely hard-paywalled.
+    return;
+  }
 
   Future<String> makeOpenRouterCall({
     required String model,
     required List<Map<String, dynamic>> messages,
     bool jsonMode = false,
   }) async {
+    await _checkUsageLimit();
     final body = {
       'model': model,
       'messages': messages,
@@ -273,6 +292,7 @@ class GeminiService {
   }
 
   Stream<String> streamOpenRouterText(String prompt) async* {
+    await _checkUsageLimit();
     final request = http.Request(
       'POST',
       Uri.parse('https://us-central1-hanzi-master-bcef9.cloudfunctions.net/openRouterProxy'),
@@ -304,6 +324,41 @@ class GeminiService {
           }
         } catch (_) {}
       }
+    }
+  }
+
+  Future<Map<String, String>> generateShadowingPhrase(String mode, String contextInput) async {
+    final prompt = '''
+You are an expert native Chinese pronunciation coach. 
+The user is practicing their pronunciation. Generate ONE natural, conversational Chinese sentence for them to practice.
+Context:
+Mode: $mode
+Topic/Content: $contextInput
+
+Rules:
+- Keep the sentence between 4 and 10 words.
+- Use highly natural, colloquial phrasing.
+
+Return ONLY a valid JSON object with EXACTLY this structure:
+{
+  "hanzi": "我喜欢喝苹果汁。",
+  "pinyin": "Wǒ xǐhuān hē píngguǒzhī.",
+  "english": "I like drinking apple juice."
+}
+''';
+
+    final response = await generateText(prompt);
+    final cleanText = response.replaceAll(RegExp(r'^```json\n', multiLine: true), '')
+                            .replaceAll(RegExp(r'^```\n?', multiLine: true), '');
+    try {
+      final json = jsonDecode(cleanText) as Map<String, dynamic>;
+      return {
+        "hanzi": json["hanzi"].toString(),
+        "pinyin": json["pinyin"].toString(),
+        "english": json["english"].toString(),
+      };
+    } catch (e) {
+      throw Exception("Failed to parse phrase JSON: $e");
     }
   }
 
@@ -982,85 +1037,200 @@ Respond ONLY in valid JSON format like:
   }
 
   Future<Map<String, dynamic>> gradeAudio(List<int> audioBytes, String expectedChinese, String expectedPinyin) async {
-    final model = GenerativeModel(
-      model: 'gemini-2.5-flash',
-      apiKey: pool.googleKey, // Key will be ignored by proxy, but SDK requires it not to be empty
-      httpClient: GeminiProxyClient(proxyUrl: 'https://us-central1-hanzi-master-bcef9.cloudfunctions.net/generateContentProxy'),
-    );
+    final key = pool.azureSpeechKey;
+    final region = pool.azureSpeechRegion;
 
-    final String targetContext = expectedChinese.isNotEmpty 
-      ? 'Listen to the user trying to say the following phrase:\nHanzi: "$expectedChinese"\nPinyin: "$expectedPinyin"'
-      : 'Listen to the user speaking freely in Chinese. Transcribe exactly what they said.';
-
-    final prompt = '''
-You are an expert native Chinese teacher. $targetContext
-
-Evaluate their pronunciation using THREE tiers for each character/word:
-- isCorrect: true  → Pronunciation and tone are both correct. (GREEN)
-- isCorrect: false, isPartial: true  → The base syllable is understandable but the TONE is imprecise or slightly off. (YELLOW)
-- isCorrect: false, isPartial: false → The pronunciation or tone is clearly wrong. (RED)
-
-For every word, provide a specific "feedback" string explaining:
-- What tone they produced vs what was expected (e.g. "You said 4th tone mào but it should be 4th tone — actually correct!")
-- If isCorrect is true, feedback can be empty string "".
-- If isPartial or wrong, feedback MUST be specific (e.g. "You said 1st tone māo but it should be 2nd tone máo. Try going up like a question.")
-
-Return ONLY valid JSON with exactly this structure:
-{
-  "score": 85,
-  "accuracy": 82,
-  "completeness": 100,
-  "fluency": 75,
-  "overallFeedback": "Good overall, but watch your third tones.",
-  "words": [
-    {
-      "word": "苹",
-      "pinyin": "píng",
-      "expectedTone": 2,
-      "actualTone": 2,
-      "isCorrect": true,
-      "isPartial": false,
-      "feedback": ""
-    },
-    {
-      "word": "果",
-      "pinyin": "guǒ",
-      "expectedTone": 3,
-      "actualTone": 2,
-      "isCorrect": false,
-      "isPartial": true,
-      "feedback": "Your tone dipped slightly but didn't fully fall-rise. Try exaggerating the dip more for a clear 3rd tone."
-    },
-    {
-      "word": "汁",
-      "pinyin": "zhī",
-      "expectedTone": 1,
-      "actualTone": 4,
-      "isCorrect": false,
-      "isPartial": false,
-      "feedback": "You said a sharp falling 4th tone. This should be a flat high 1st tone — hold it steady and high."
+    if (key == 'MISSING_KEY' || region == 'MISSING_REGION') {
+      throw Exception("Azure Speech API keys are missing.");
     }
-  ]
-}
-''';
+
+    // Azure Pronunciation Assessment parameters
+    final Map<String, dynamic> params = {
+      "ReferenceText": expectedChinese,
+      "GradingSystem": "HundredMark",
+      "Granularity": "Phoneme",
+      "Dimension": "Comprehensive"
+    };
+
+    final String jsonParams = jsonEncode(params);
+    final String base64Params = base64Encode(utf8.encode(jsonParams));
+
+    final String endpoint = 'https://$region.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?language=zh-CN';
+
+    final request = http.Request('POST', Uri.parse(endpoint));
+    request.headers.addAll({
+      'Ocp-Apim-Subscription-Key': key,
+      'Content-Type': 'audio/wav; codecs=audio/pcm; samplerate=16000',
+      'Accept': 'application/json',
+      'Pronunciation-Assessment': base64Params,
+    });
+    
+    request.bodyBytes = audioBytes;
 
     try {
-      final content = [
-        Content.multi([
-          TextPart(prompt),
-          DataPart('audio/m4a', Uint8List.fromList(audioBytes)),
-        ])
-      ];
-      final response = await model.generateContent(content);
-      if (response.text != null && response.text!.isNotEmpty) {
-        final cleanText = response.text!.replaceAll(RegExp(r'^```json\n', multiLine: true), '')
-                                        .replaceAll(RegExp(r'^```\n?', multiLine: true), '');
-        analytics.logApiUsage(apiName: 'gemini', feature: 'grade_audio', success: true);
-        return jsonDecode(cleanText);
+      final response = await http.Client().send(request);
+      final responseBody = await response.stream.bytesToString();
+
+      if (response.statusCode == 200) {
+        final data = jsonDecode(responseBody);
+
+        // Map Azure response to our UI's expected format
+        if (data['NBest'] == null || data['NBest'].isEmpty) {
+          throw Exception("No NBest result found.");
+        }
+        
+        final bestResult = data['NBest'][0];
+        final pronScore = bestResult['PronunciationScore'] ?? 0;
+        final accuracyScore = bestResult['AccuracyScore'] ?? 0;
+        final completenessScore = bestResult['CompletenessScore'] ?? 0;
+        final fluencyScore = bestResult['FluencyScore'] ?? 0;
+
+        List<Map<String, dynamic>> mappedWords = [];
+
+        if (bestResult['Words'] != null) {
+          for (var w in bestResult['Words']) {
+            final wordText = w['Word'];
+            final wAccuracy = w['PronunciationAssessment']?['AccuracyScore'] ?? 0;
+            final wErrorType = w['PronunciationAssessment']?['ErrorType'] ?? 'None';
+            
+            bool isCorrect = wAccuracy >= 80 && wErrorType == 'None';
+            bool isPartial = wAccuracy >= 60 && wAccuracy < 80;
+            if (wErrorType != 'None') {
+                isCorrect = false;
+                isPartial = false;
+            }
+
+            String feedback = "";
+            if (wErrorType == 'Omission') feedback = "You missed this word.";
+            else if (wErrorType == 'Insertion') feedback = "Extra word added here.";
+            else if (wErrorType == 'Mispronunciation') feedback = "Pronunciation was inaccurate. Score: ${wAccuracy.toStringAsFixed(0)}";
+
+            mappedWords.add({
+              "word": wordText,
+              "pinyin": "", // UI gracefully handles empty pinyin
+              "isCorrect": isCorrect,
+              "isPartial": isPartial,
+              "feedback": feedback
+            });
+          }
+        }
+
+        String overallFeedback = "Good effort! Keep practicing.";
+        if (pronScore >= 90) overallFeedback = "Perfect pronunciation! Sounds like a native speaker.";
+        else if (pronScore >= 80) overallFeedback = "Great job! A few minor tone inaccuracies.";
+        else if (pronScore >= 60) overallFeedback = "Not bad, but your tones need some work.";
+        else overallFeedback = "Keep practicing! Listen to the native audio and try again.";
+
+        analytics.logApiUsage(apiName: 'azure_speech', feature: 'grade_audio', success: true);
+        return {
+          "score": pronScore,
+          "accuracy": accuracyScore,
+          "completeness": completenessScore,
+          "fluency": fluencyScore,
+          "overallFeedback": overallFeedback,
+          "words": mappedWords
+        };
+      } else {
+        throw Exception("Azure Error ${response.statusCode}: $responseBody");
       }
-      throw Exception("Empty response from Gemini Audio");
     } catch (e) {
-      analytics.logApiUsage(apiName: 'gemini', feature: 'grade_audio', success: false);
+      throw Exception("Grading failed: $e");
+    }
+  }
+
+  Future<Map<String, dynamic>> gradeAudioUnscripted(List<int> audioBytes) async {
+    final key = pool.azureSpeechKey;
+    final region = pool.azureSpeechRegion;
+
+    if (key == 'MISSING_KEY' || region == 'MISSING_REGION') {
+      throw Exception("Azure Speech API keys are missing.");
+    }
+
+    // Azure Pronunciation Assessment parameters for UNSCRIPTED
+    final Map<String, dynamic> params = {
+      "ReferenceText": "", // Empty reference text triggers unscripted assessment
+      "GradingSystem": "HundredMark",
+      "Granularity": "Phoneme",
+      "Dimension": "Comprehensive"
+    };
+
+    final String jsonParams = jsonEncode(params);
+    final String base64Params = base64Encode(utf8.encode(jsonParams));
+
+    final String endpoint = 'https://$region.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?language=zh-CN';
+
+    final request = http.Request('POST', Uri.parse(endpoint));
+    request.headers.addAll({
+      'Ocp-Apim-Subscription-Key': key,
+      'Content-Type': 'audio/wav; codecs=audio/pcm; samplerate=16000',
+      'Accept': 'application/json',
+      'Pronunciation-Assessment': base64Params,
+    });
+    
+    request.bodyBytes = audioBytes;
+
+    try {
+      final response = await http.Client().send(request);
+      final responseBody = await response.stream.bytesToString();
+
+      if (response.statusCode == 200) {
+        final data = jsonDecode(responseBody);
+
+        if (data['NBest'] == null || data['NBest'].isEmpty) {
+          throw Exception("No NBest result found.");
+        }
+        
+        final bestResult = data['NBest'][0];
+        final transcribedText = bestResult['Lexical'] ?? '';
+        final pronScore = bestResult['PronunciationScore'] ?? 0;
+        final accuracyScore = bestResult['AccuracyScore'] ?? 0;
+        final completenessScore = bestResult['CompletenessScore'] ?? 0;
+        final fluencyScore = bestResult['FluencyScore'] ?? 0;
+
+        List<Map<String, dynamic>> mappedWords = [];
+
+        if (bestResult['Words'] != null) {
+          for (var w in bestResult['Words']) {
+            final wordText = w['Word'];
+            final wAccuracy = w['PronunciationAssessment']?['AccuracyScore'] ?? 0;
+            final wErrorType = w['PronunciationAssessment']?['ErrorType'] ?? 'None';
+            
+            bool isCorrect = wAccuracy >= 80 && wErrorType == 'None';
+            bool isPartial = wAccuracy >= 60 && wAccuracy < 80;
+            if (wErrorType != 'None') {
+                isCorrect = false;
+                isPartial = false;
+            }
+
+            String feedback = "";
+            if (wErrorType == 'Omission') feedback = "You missed this word.";
+            else if (wErrorType == 'Insertion') feedback = "Extra word added here.";
+            else if (wErrorType == 'Mispronunciation') feedback = "Pronunciation was inaccurate. Score: ${wAccuracy.toStringAsFixed(0)}";
+
+            mappedWords.add({
+              "word": wordText,
+              "pinyin": "", 
+              "isCorrect": isCorrect,
+              "isPartial": isPartial,
+              "feedback": feedback
+            });
+          }
+        }
+
+        analytics.logApiUsage(apiName: 'azure_speech', feature: 'grade_audio_unscripted', success: true);
+        return {
+          "text": transcribedText,
+          "score": pronScore,
+          "accuracy": accuracyScore,
+          "completeness": completenessScore,
+          "fluency": fluencyScore,
+          "words": mappedWords
+        };
+      } else {
+        throw Exception("Azure Error ${response.statusCode}: $responseBody");
+      }
+    } catch (e) {
+      analytics.logApiUsage(apiName: 'azure_speech', feature: 'grade_audio_unscripted', success: false);
       rethrow;
     }
   }
@@ -1429,7 +1599,9 @@ Output JSON matching this exact structure:
     if (box.containsKey(cacheKey)) {
       try {
         final cachedData = jsonDecode(box.get(cacheKey)!);
-        return CulturalInsight.fromJson(cachedData);
+        if (cachedData is Map<String, dynamic> && cachedData.containsKey('historicalContext')) {
+          return CulturalInsight.fromJson(cachedData);
+        }
       } catch (e) {
         debugPrint('Cache decode error: $e');
       }
@@ -1454,23 +1626,16 @@ No markdown formatting, no backticks, just raw JSON.
 ''';
 
     try {
-      final apiKey = pool.googleKey;
-      if (apiKey.isEmpty) throw Exception("No API key");
-      final model = GenerativeModel(
-        model: 'gemini-2.5-flash',
-        apiKey: apiKey, // Key will be ignored by proxy, but SDK requires it not to be empty
-        httpClient: GeminiProxyClient(proxyUrl: 'https://us-central1-hanzi-master-bcef9.cloudfunctions.net/generateContentProxy'),
-        generationConfig: GenerationConfig(
-          responseMimeType: 'application/json',
-          temperature: 0.7,
-        ),
+      final responseText = await makeOpenRouterCall(
+        model: 'google/gemini-2.5-flash',
+        messages: [
+          {'role': 'system', 'content': 'You are a Chinese culture and literature expert. Provide highly engaging, beautifully written cultural insights.'},
+          {'role': 'user', 'content': prompt}
+        ],
+        jsonMode: true,
       );
 
-      final content = [Content.text(prompt)];
-      final response = await model.generateContent(content);
-      var text = response.text ?? '{}';
-
-      text = text.replaceAll('```json', '').replaceAll('```', '').trim();
+      var text = responseText.replaceAll('```json', '').replaceAll('```', '').trim();
       final decoded = jsonDecode(text);
       box.put(cacheKey, jsonEncode(decoded));
       

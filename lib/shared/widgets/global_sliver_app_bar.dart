@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/profile_screen.dart';
-import 'package:hanzi_master/features/flashcards/presentation/widgets/streak_seal.dart';
+
 class GlobalSliverAppBar extends ConsumerWidget {
   final String title;
   final String? subtitle;
@@ -59,10 +59,6 @@ class GlobalSliverAppBar extends ConsumerWidget {
       ),
       actions: [
         if (actions != null) ...actions!,
-        const Padding(
-          padding: EdgeInsets.only(right: 8.0, top: 12, bottom: 12),
-          child: StreakSeal(),
-        ),
         Padding(
           padding: const EdgeInsets.only(right: 16.0),
           child: GestureDetector(

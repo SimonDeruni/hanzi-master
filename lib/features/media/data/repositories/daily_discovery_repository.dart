@@ -40,14 +40,46 @@ class DailyDiscoveryRepository {
         tag: "VIDEO OF THE DAY",
       );
     } catch (e) {
-      // Fallback if API fails
-      return DailyMediaItem(
-        title: "李子柒 Liziqi: 大蒜的一生",
-        subtitle: "The Life of Garlic - Traditional Chinese Life",
-        url: "https://www.youtube.com/watch?v=gcShBujgsIQ",
-        imageUrl: "https://img.youtube.com/vi/gcShBujgsIQ/hqdefault.jpg",
-        tag: "2 MIN CULTURAL CONTEXT",
-      );
+      // Fallback if API fails: cycle through a curated list
+      final fallbackVideos = [
+        DailyMediaItem(
+          title: "李子柒 Liziqi: 大蒜的一生",
+          subtitle: "The Life of Garlic - Traditional Chinese Life",
+          url: "https://www.youtube.com/watch?v=gcShBujgsIQ",
+          imageUrl: "https://img.youtube.com/vi/gcShBujgsIQ/0.jpg",
+          tag: "2 MIN CULTURAL CONTEXT",
+        ),
+        DailyMediaItem(
+          title: "ShuoshuoChinese: At the Restaurant",
+          subtitle: "Real Chinese Conversations",
+          url: "https://www.youtube.com/watch?v=wJl1ycJD0YA",
+          imageUrl: "https://img.youtube.com/vi/wJl1ycJD0YA/hqdefault.jpg",
+          tag: "REAL WORLD CHINESE",
+        ),
+        DailyMediaItem(
+          title: "Mandarin Corner: Supermarket",
+          subtitle: "Learn Chinese in the Supermarket",
+          url: "https://www.youtube.com/watch?v=rY0_A32XnSg",
+          imageUrl: "https://img.youtube.com/vi/rY0_A32XnSg/0.jpg",
+          tag: "VOCABULARY",
+        ),
+        DailyMediaItem(
+          title: "Grace Mandarin: 50 Phrases",
+          subtitle: "Essential Chinese Phrases for Beginners",
+          url: "https://www.youtube.com/watch?v=vV0222xP9uM",
+          imageUrl: "https://img.youtube.com/vi/vV0222xP9uM/hqdefault.jpg",
+          tag: "ESSENTIALS",
+        ),
+        DailyMediaItem(
+          title: "李子柒 Liziqi: 竹子家具",
+          subtitle: "Making Bamboo Furniture",
+          url: "https://www.youtube.com/watch?v=Yf0vP1tN8-w",
+          imageUrl: "https://img.youtube.com/vi/Yf0vP1tN8-w/hqdefault.jpg",
+          tag: "2 MIN CULTURAL CONTEXT",
+        ),
+      ];
+      
+      return fallbackVideos[random.nextInt(fallbackVideos.length)];
     } finally {
       yt.close();
     }

@@ -57,8 +57,16 @@ exports.openRouterProxy = functions.https.onRequest((req, res) => {
         body: JSON.stringify(req.body),
       });
 
-      const data = await response.json();
-      return res.status(response.status).json(data);
+      if (req.body.stream) {
+        res.setHeader("Content-Type", "text/event-stream");
+        res.setHeader("Cache-Control", "no-cache");
+        res.setHeader("Connection", "keep-alive");
+        res.status(response.status);
+        response.body.pipe(res);
+      } else {
+        const data = await response.json();
+        return res.status(response.status).json(data);
+      }
     } catch (error) {
       console.error("Proxy error:", error);
       return res.status(500).json({ error: "Internal Server Error" });

@@ -148,6 +148,7 @@ class _CalligraphyCanvasDialogState extends ConsumerState<CalligraphyCanvasDialo
                               strokeByStrokeMode: true,
                               currentStrokeIndex: _currentStrokeIndex,
                               onStrokeComplete: _onStrokeComplete,
+                              isFlipped: _hydratedCard?.isFlipped ?? false,
                               readOnly: _isComplete,
                               showControls: true,
                               showGrade: false,

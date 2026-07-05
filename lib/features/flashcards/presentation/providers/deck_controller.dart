@@ -38,6 +38,20 @@ class DeckController extends StateNotifier<AsyncValue<List<Deck>>> {
     );
   }
 
+  Future<Deck?> updateDeck(Deck deck) async {
+    final result = await _repository.updateDeck(deck);
+    return result.fold(
+      (error) {
+        state = AsyncValue.error(error, StackTrace.current);
+        return null;
+      },
+      (updatedDeck) {
+        loadDecks();
+        return updatedDeck;
+      },
+    );
+  }
+
   Future<void> deleteDeck(String id) async {
     final result = await _repository.deleteDeck(id);
     result.fold(

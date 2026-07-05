@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-/// Centralized Design System for Hanzi Master
+/// Centralized Design System for SinoSpark
 /// Implements the "Zen & Ink" Aesthetic
 class AppTheme {
   // --- Core Colors ---
@@ -176,3 +176,4 @@ class AppTheme {
     );
   }
 }
+

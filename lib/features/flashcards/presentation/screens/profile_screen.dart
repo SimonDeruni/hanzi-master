@@ -53,17 +53,13 @@ class ProfileScreen extends ConsumerWidget {
                   decoration: BoxDecoration(color: Colors.amber.withValues(alpha: 0.1), shape: BoxShape.circle),
                   child: const Icon(Icons.workspace_premium, color: Colors.amber),
                 ),
-                title: const Text("Hanzi Master Premium", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16)),
-                subtitle: Text(
-                  isPremium ? "You are a Premium member" : "Unlock all features",
-                  style: TextStyle(fontSize: 12, color: isPremium ? Colors.amber.shade700 : Colors.grey),
+                title: const Text("SinoSpark Premium", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16)),
+                subtitle: const Text(
+                  "You are a Premium member",
+                  style: TextStyle(fontSize: 12, color: Colors.grey),
                 ),
-                trailing: isPremium
-                    ? const Icon(Icons.check_circle, color: Colors.amber)
-                    : const Icon(Icons.chevron_right, color: Colors.grey),
-                onTap: () {
-                  if (!isPremium) PaywallSheet.show(context);
-                },
+                trailing: const Icon(Icons.check_circle, color: Colors.amber),
+                onTap: () {},
               ),
               _buildDivider(),
               ListTile(
@@ -260,3 +256,4 @@ class ProfileScreen extends ConsumerWidget {
     );
   }
 }
+

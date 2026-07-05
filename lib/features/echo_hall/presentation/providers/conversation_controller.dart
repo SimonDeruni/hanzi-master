@@ -142,18 +142,11 @@ class ConversationController extends StateNotifier<ConversationState> {
         final file = File(path);
         final bytes = await file.readAsBytes();
         
-        // 1. Send Audio to Gemini for grading
-        // Wait, what is the expected text? For a conversational reply, the user can say ANYTHING!
-        // But our Gemini prompt says: "Listen to the user trying to say expectedChinese".
-        // Ah! If it's a conversation, we don't know what they will say.
-        // We need Gemini to TRANSCRIBE and GRADE.
-        // Let's modify GeminiService to transcribe if expected is empty!
-        
-        final gradeMap = await _geminiService.gradeAudio(bytes, "", "");
+        // 1. Send Audio to Azure for Unscripted Pronunciation Assessment
+        final gradeMap = await _geminiService.gradeAudioUnscripted(bytes);
         final grade = PronunciationGrade.fromJson(gradeMap);
         
-        // The transcribed text is essentially the concatenation of words
-        final transcribedText = grade.words.map((w) => w.word).join();
+        final transcribedText = gradeMap['text'] ?? '';
         
         final userMsg = GradedChatMessage(
           id: DateTime.now().millisecondsSinceEpoch.toString(),

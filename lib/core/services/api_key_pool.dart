@@ -8,4 +8,12 @@ class ApiKeyPool {
   String get nextKey => dotenv.env['OPENROUTER_API_KEY'] ?? 'MISSING_KEY';
   
   String get googleKey => dotenv.env['GEMINI_API_KEY'] ?? 'MISSING_KEY';
+
+  String get revenueCatAppleKey => dotenv.env['REVENUECAT_APPLE_API_KEY'] ?? 'appl_YOUR_APPLE_KEY_HERE';
+  
+  String get revenueCatAndroidKey => dotenv.env['REVENUECAT_GOOGLE_API_KEY'] ?? 'goog_YOUR_GOOGLE_KEY_HERE';
+
+  String get azureSpeechKey => dotenv.env['AZURE_SPEECH_KEY'] ?? 'MISSING_KEY';
+  
+  String get azureSpeechRegion => dotenv.env['AZURE_SPEECH_REGION'] ?? 'MISSING_REGION';
 }

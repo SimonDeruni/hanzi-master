@@ -62,15 +62,19 @@ class DashboardScreen extends ConsumerWidget {
     final endOfNext7Days = endOfToday.add(const Duration(days: 7));
 
     for (var card in allCards) {
-      final stats = card.getStatsForMode(StudyMode.reading);
-      final reviewDate = stats.nextReviewDate;
-      
-      if (reviewDate.isAfter(now) && reviewDate.isBefore(endOfNext7Days)) {
-        dueNext7Days++;
-        if (reviewDate.isBefore(endOfToday)) {
-          dueLaterToday++;
-        } else if (reviewDate.isBefore(endOfTomorrow)) {
-          dueTomorrow++;
+      for (var mode in StudyMode.values) {
+        final stats = card.getStatsForMode(mode);
+        final reviewDate = stats.nextReviewDate;
+        
+        // Only count cards that have been studied (interval > 0 or not at epoch)
+        // and are scheduled in the future.
+        if (stats.interval > 0 && reviewDate.isAfter(now) && reviewDate.isBefore(endOfNext7Days)) {
+          dueNext7Days++;
+          if (reviewDate.isBefore(endOfToday)) {
+            dueLaterToday++;
+          } else if (reviewDate.isBefore(endOfTomorrow)) {
+            dueTomorrow++;
+          }
         }
       }
     }

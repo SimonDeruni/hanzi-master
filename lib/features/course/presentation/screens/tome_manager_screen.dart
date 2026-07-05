@@ -75,13 +75,6 @@ class TomeManagerScreen extends ConsumerWidget {
     }
 
     Future<void> installTome(Map<String, dynamic> tome) async {
-      final isPremium = ref.read(premiumControllerProvider).valueOrNull ?? false;
-      
-      if (tome['isPremium'] && !isPremium) {
-        PaywallSheet.show(context);
-        return;
-      }
-
       try {
         HapticsManager.medium();
         
@@ -244,18 +237,6 @@ class _TomeCard extends StatelessWidget {
                           ),
                         ),
                       ),
-                      if (tome['isPremium'])
-                        Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                          decoration: BoxDecoration(
-                            color: Colors.amber.shade700,
-                            borderRadius: BorderRadius.circular(4),
-                          ),
-                          child: Text(
-                            AppLocalizations.of(context)!.premium,
-                            style: TextStyle(color: Colors.white, fontSize: 9, fontWeight: FontWeight.bold),
-                          ),
-                        ),
                     ],
                   ),
                   const SizedBox(height: 12),

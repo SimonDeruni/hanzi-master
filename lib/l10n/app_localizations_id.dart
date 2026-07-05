@@ -696,7 +696,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get allDataHasBeen => 'Semua data telah dihapus.';
 
   @override
-  String get hanziMasterV100 => 'Hanzi Master v1.0.0';
+  String get hanziMasterV100 => 'SinoSpark v1.0.0';
 
   @override
   String get myProgress => 'Kemajuan Saya';
@@ -986,7 +986,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get whetherYouveFoundA =>
-      'Baik Anda menemukan bug, memiliki permintaan fitur, atau hanya ingin menyapa, umpan balik Anda membantu kami meningkatkan Hanzi Master.';
+      'Baik Anda menemukan bug, memiliki permintaan fitur, atau hanya ingin menyapa, umpan balik Anda membantu kami meningkatkan SinoSpark.';
 
   @override
   String get pointYourCameraAt => 'Arahkan kamera Anda ke objek';

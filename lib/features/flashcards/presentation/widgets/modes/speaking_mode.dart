@@ -137,6 +137,50 @@ class _SpeakingModeWidgetState extends ConsumerState<SpeakingModeWidget> {
     HapticsManager.light();
   }
 
+  Widget _buildColoredHanzi(bool isDark) {
+    if (_feedbackResult == null || _feedbackResult!['words'] == null) {
+      return Text(
+        widget.card.hanzi,
+        style: TextStyle(
+          fontSize: 120,
+          fontWeight: FontWeight.bold,
+          color: isDark ? Colors.white : Colors.black87,
+        ),
+      );
+    }
+
+    final words = _feedbackResult!['words'] as List<dynamic>;
+    List<TextSpan> spans = [];
+    String remainingHanzi = widget.card.hanzi;
+
+    for (var w in words) {
+      String wordText = w['word'];
+      bool isCorrect = w['isCorrect'] == true;
+      bool isPartial = w['isPartial'] == true;
+      Color color = isCorrect ? Colors.green : (isPartial ? Colors.orange : Colors.red);
+      
+      if (remainingHanzi.startsWith(wordText)) {
+         spans.add(TextSpan(text: wordText, style: TextStyle(color: color)));
+         remainingHanzi = remainingHanzi.substring(wordText.length);
+      }
+    }
+    
+    if (remainingHanzi.isNotEmpty) {
+       spans.add(TextSpan(text: remainingHanzi, style: TextStyle(color: isDark ? Colors.white : Colors.black87)));
+    }
+
+    return RichText(
+      text: TextSpan(
+        style: const TextStyle(
+          fontSize: 120,
+          fontWeight: FontWeight.bold,
+          fontFamily: 'NotoSerifSC',
+        ),
+        children: spans,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
@@ -187,14 +231,7 @@ class _SpeakingModeWidgetState extends ConsumerState<SpeakingModeWidget> {
                             child: Center(
                               child: FittedBox(
                                 fit: BoxFit.scaleDown,
-                                child: Text(
-                                  widget.card.hanzi,
-                                  style: TextStyle(
-                                    fontSize: 120,
-                                    fontWeight: FontWeight.bold,
-                                    color: isDark ? Colors.white : Colors.black87,
-                                  ),
-                                ),
+                                child: _buildColoredHanzi(isDark),
                               ),
                             ),
                           ),
@@ -299,36 +336,55 @@ class _SpeakingModeWidgetState extends ConsumerState<SpeakingModeWidget> {
                     onTapDown: (_) => _startRecording(),
                     onTapUp: (_) => _stopRecording(),
                     onTapCancel: () => _stopRecording(),
-                    child: Container(
-                      padding: const EdgeInsets.all(24),
-                      decoration: BoxDecoration(
-                        color: _isRecording
-                            ? Colors.red.withAlpha(50)
-                            : (isDark ? Colors.blue.withAlpha(25) : Colors.blue.shade50),
-                        shape: BoxShape.circle,
-                        border: Border.all(
-                          color: _isRecording
-                              ? Colors.red
-                              : (isDark ? Colors.blue.withAlpha(50) : Colors.blue.shade200),
-                          width: _isRecording ? 3 : 1,
+                    child: AnimatedScale(
+                      scale: _isRecording ? 0.95 : 1.0,
+                      duration: const Duration(milliseconds: 150),
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 20),
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: _isRecording
+                                ? [Colors.red.shade400, Colors.red.shade700]
+                                : (isDark
+                                    ? [Colors.blue.shade700, Colors.blue.shade900]
+                                    : [Colors.blue.shade300, Colors.blue.shade600]),
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                          ),
+                          borderRadius: BorderRadius.circular(40),
+                          boxShadow: [
+                            BoxShadow(
+                              color: (_isRecording ? Colors.red : Colors.blue).withAlpha(isDark ? 80 : 120),
+                              blurRadius: _isRecording ? 24 : 16,
+                              spreadRadius: _isRecording ? 4 : 0,
+                              offset: const Offset(0, 8),
+                            ),
+                          ],
+                        ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(
+                              _isRecording ? Icons.mic : Icons.mic_none_rounded, 
+                              color: Colors.white, 
+                              size: 32
+                            ),
+                            const SizedBox(width: 16),
+                            Text(
+                              _isRecording ? 'Listening...' : 'Hold to speak (Optional)',
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w600,
+                                letterSpacing: 0.5,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                      child: Icon(
-                        Icons.mic,
-                        size: 64,
-                        color: _isRecording
-                            ? Colors.red
-                            : (isDark ? Colors.blue.shade200 : Colors.blue.shade700),
-                      ),
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 8, bottom: 24),
-                    child: Text(
-                      'Hold to speak (Optional)',
-                      style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey),
-                    ),
-                  ),
+                  const SizedBox(height: 24),
                 ],
               ),
 

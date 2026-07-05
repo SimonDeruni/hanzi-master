@@ -17,6 +17,10 @@ class FullscreenMediaOverlay extends StatefulWidget {
   final VoidCallback onExitFullscreen;
   final double playbackRate;
   final ValueChanged<double> onSpeedChanged;
+  final bool isShadowingMode;
+  final bool isRecording;
+  final String shadowFeedback;
+  final VoidCallback onToggleRecord;
 
   const FullscreenMediaOverlay({
     super.key,
@@ -29,6 +33,10 @@ class FullscreenMediaOverlay extends StatefulWidget {
     required this.onExitFullscreen,
     required this.playbackRate,
     required this.onSpeedChanged,
+    this.isShadowingMode = false,
+    this.isRecording = false,
+    this.shadowFeedback = '',
+    required this.onToggleRecord,
   });
 
   @override
@@ -208,6 +216,44 @@ class _FullscreenMediaOverlayState extends State<FullscreenMediaOverlay> {
                   currentPosition: widget.currentPosition,
                   onWordTapped: widget.onWordTapped,
                   onInteraction: _onUserInteraction,
+                ),
+              ),
+            ),
+
+          // Shadowing Mode Button (Right aligned)
+          if (widget.isShadowingMode)
+            Positioned(
+              right: 24,
+              top: MediaQuery.of(context).size.height / 2 - 28,
+              child: FloatingActionButton.extended(
+                onPressed: () {
+                  _onUserInteraction();
+                  widget.onToggleRecord();
+                },
+                backgroundColor: widget.isRecording ? Colors.red : Colors.indigo,
+                icon: Icon(widget.isRecording ? Icons.stop : Icons.mic, color: Colors.white),
+                label: Text(widget.isRecording ? "Stop" : "Hold to Speak", style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+              ),
+            ),
+            
+          // Shadow Feedback Banner
+          if (widget.isShadowingMode && widget.shadowFeedback.isNotEmpty)
+            Positioned(
+              top: 100,
+              left: 0,
+              right: 0,
+              child: Center(
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                  decoration: BoxDecoration(
+                    color: Colors.black.withValues(alpha: 0.8),
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(color: widget.isRecording ? Colors.red : Colors.green),
+                  ),
+                  child: Text(
+                    widget.shadowFeedback,
+                    style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+                  ),
                 ),
               ),
             ),

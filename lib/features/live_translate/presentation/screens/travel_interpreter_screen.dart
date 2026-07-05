@@ -11,9 +11,12 @@ import 'package:flutter_sound/flutter_sound.dart' as fs;
 import 'package:hanzi_master/core/services/api_key_pool.dart';
 import 'package:hive/hive.dart';
 import 'package:uuid/uuid.dart';
-import 'package:hanzi_master/shared/widgets/tappable_hanzi_text.dart';
 import 'package:hanzi_master/features/live_translate/domain/entities/translation_session.dart';
+import 'package:hanzi_master/features/premium/presentation/screens/universal_scanner_screen.dart';
 import 'package:hanzi_master/core/providers/translation_language_provider.dart';
+import 'package:hanzi_master/shared/widgets/tappable_hanzi_text.dart';
+import 'package:hanzi_master/core/services/gemini_service.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class InterpreterMessage {
   final String text;
@@ -47,6 +50,11 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
   bool _hasError = false;
   bool _isRecording = false;
 
+  bool _isKeyboardMode = false;
+  final TextEditingController _topTextController = TextEditingController();
+  final TextEditingController _bottomTextController = TextEditingController();
+  bool _isTranslatingText = false;
+
   final List<InterpreterMessage> _transcript = [];
 
   bool _isSessionStarted = false;
@@ -59,33 +67,28 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
       vsync: this,
       duration: const Duration(seconds: 1),
     )..repeat(reverse: true);
-    _checkIntroStatus();
-  }
-
-  Future<void> _checkIntroStatus() async {
-    try {
-      final box = await Hive.openBox('app_settings');
-      final hasSeenIntro = box.get('has_seen_interpreter_intro', defaultValue: false);
-      if (hasSeenIntro) {
-        _startSession();
-      }
-    } catch (e) {
-      debugPrint("Error checking intro status: $e");
-    }
-  }
-
-  Future<void> _startSession() async {
-    try {
-      final box = await Hive.openBox('app_settings');
-      await box.put('has_seen_interpreter_intro', true);
-    } catch (e) {
-      debugPrint("Error saving intro status: $e");
-    }
     
-    setState(() {
-      _isSessionStarted = true;
-    });
-    await _initAudioAndConnect();
+    _checkFirstTime();
+  }
+
+  Future<void> _checkFirstTime() async {
+    final prefs = await SharedPreferences.getInstance();
+    final hasSeenHub = prefs.getBool('has_seen_travel_hub') ?? false;
+    if (hasSeenHub) {
+      if (mounted) {
+        setState(() => _isSessionStarted = true);
+        _initAudioAndConnect();
+      }
+    }
+  }
+
+  void _startSession() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('has_seen_travel_hub', true);
+    
+    if (!mounted) return;
+    setState(() => _isSessionStarted = true);
+    _initAudioAndConnect();
   }
 
   Future<void> _initAudioAndConnect() async {
@@ -248,6 +251,50 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
       _isLive = false;
       _status = "Paused";
     });
+  }
+
+  Future<void> _sendTextTranslation(String text, bool isUser) async {
+    if (text.trim().isEmpty) return;
+    
+    // Add user's text immediately
+    setState(() {
+      _transcript.add(InterpreterMessage(text: text, isUser: isUser));
+      _isTranslatingText = true;
+      _status = "Translating...";
+    });
+
+    try {
+      final geminiService = ref.read(geminiServiceProvider);
+      final language = ref.read(translationLanguageProvider);
+      final response = await geminiService.makeOpenRouterCall(
+        model: 'google/gemini-2.5-flash',
+        messages: [
+          {
+            "role": "system", 
+            "content": "You are a Real-time Travel Interpreter. Your job is to translate spoken or typed $language to Mandarin Chinese AND Mandarin Chinese to $language seamlessly. If the input is $language, output Mandarin. If it is Mandarin, output $language. Be conversational and helpful. Output text ONLY. Do not include pinyin in the main response."
+          },
+          {
+            "role": "user",
+            "content": text
+          }
+        ]
+      );
+      
+      if (mounted) {
+        setState(() {
+          _transcript.add(InterpreterMessage(text: response, isUser: !isUser));
+          _isTranslatingText = false;
+          _status = _isRecording ? "Listening..." : "Paused";
+        });
+      }
+    } catch (e) {
+      if (mounted) {
+        setState(() {
+          _isTranslatingText = false;
+          _status = "Translation failed";
+        });
+      }
+    }
   }
 
   Future<void> _saveSession() async {
@@ -436,6 +483,35 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                           },
                         ),
                       ),
+                      if (_isKeyboardMode)
+                        Padding(
+                          padding: const EdgeInsets.only(top: 8.0),
+                          child: TextField(
+                            controller: _topTextController,
+                            style: const TextStyle(color: Colors.white, fontSize: 18),
+                            decoration: InputDecoration(
+                              hintText: "Type in Mandarin...",
+                              hintStyle: const TextStyle(color: Colors.white38),
+                              filled: true,
+                              fillColor: Colors.white.withValues(alpha: 0.1),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(16),
+                                borderSide: BorderSide.none,
+                              ),
+                              suffixIcon: IconButton(
+                                icon: const Icon(Icons.send, color: Colors.blueAccent),
+                                onPressed: _isTranslatingText ? null : () {
+                                  _sendTextTranslation(_topTextController.text, false);
+                                  _topTextController.clear();
+                                },
+                              ),
+                            ),
+                            onSubmitted: _isTranslatingText ? null : (val) {
+                              _sendTextTranslation(val, false);
+                              _topTextController.clear();
+                            },
+                          ),
+                        ),
                     ],
                   ),
                 ),
@@ -480,9 +556,22 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                               ),
                           ],
                         ),
-                        IconButton(
-                          icon: const Icon(Icons.close, color: Colors.white),
-                          onPressed: () => Navigator.pop(context),
+                        Row(
+                          children: [
+                            IconButton(
+                              icon: const Icon(Icons.camera_alt, color: Colors.white),
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (_) => const UniversalScannerScreen(intent: CameraIntent.travelAR)),
+                                );
+                              },
+                            ),
+                            IconButton(
+                              icon: const Icon(Icons.close, color: Colors.white),
+                              onPressed: () => Navigator.pop(context),
+                            ),
+                          ],
                         )
                       ],
                     ),
@@ -521,6 +610,35 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                         },
                       ),
                     ),
+                    if (_isKeyboardMode)
+                      Padding(
+                        padding: const EdgeInsets.only(top: 8.0),
+                        child: TextField(
+                          controller: _bottomTextController,
+                          style: const TextStyle(color: Colors.white, fontSize: 18),
+                          decoration: InputDecoration(
+                            hintText: "Type in ${ref.read(translationLanguageProvider)}...",
+                            hintStyle: const TextStyle(color: Colors.white38),
+                            filled: true,
+                            fillColor: Colors.white.withValues(alpha: 0.1),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(16),
+                              borderSide: BorderSide.none,
+                            ),
+                            suffixIcon: IconButton(
+                              icon: const Icon(Icons.send, color: Colors.blueAccent),
+                              onPressed: _isTranslatingText ? null : () {
+                                _sendTextTranslation(_bottomTextController.text, true);
+                                _bottomTextController.clear();
+                              },
+                            ),
+                          ),
+                          onSubmitted: _isTranslatingText ? null : (val) {
+                            _sendTextTranslation(val, true);
+                            _bottomTextController.clear();
+                          },
+                        ),
+                      ),
                   ],
                 ),
               ),
@@ -571,7 +689,32 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                     children: [
                       // Language Icon
                       const Icon(Icons.translate, color: Colors.white70, size: 24),
-                      const SizedBox(width: 16),
+                      // Keyboard Toggle Button
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            _isKeyboardMode = !_isKeyboardMode;
+                            // Pause audio if switching to keyboard mode
+                            if (_isKeyboardMode && _isRecording) {
+                              _stopAudioStreaming();
+                            }
+                          });
+                        },
+                        child: AnimatedContainer(
+                          duration: const Duration(milliseconds: 300),
+                          padding: const EdgeInsets.all(12),
+                          decoration: BoxDecoration(
+                            color: _isKeyboardMode ? Colors.blueAccent.withValues(alpha: 0.2) : Colors.transparent,
+                            shape: BoxShape.circle,
+                          ),
+                          child: Icon(
+                            Icons.keyboard,
+                            color: _isKeyboardMode ? Colors.blueAccent : Colors.white70,
+                            size: 24,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 8),
                       // Mic Button
                       GestureDetector(
                         onTap: () {

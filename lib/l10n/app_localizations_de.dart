@@ -700,7 +700,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get allDataHasBeen => 'Alle Daten wurden gelöscht.';
 
   @override
-  String get hanziMasterV100 => 'Hanzi Master v1.0.0';
+  String get hanziMasterV100 => 'SinoSpark v1.0.0';
 
   @override
   String get myProgress => 'Mein Fortschritt';
@@ -994,7 +994,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get whetherYouveFoundA =>
-      'Egal, ob Sie einen Fehler gefunden, eine Funktionsanfrage haben oder einfach nur Hallo sagen möchten, Ihr Feedback hilft uns, Hanzi Master zu verbessern.';
+      'Egal, ob Sie einen Fehler gefunden, eine Funktionsanfrage haben oder einfach nur Hallo sagen möchten, Ihr Feedback hilft uns, SinoSpark zu verbessern.';
 
   @override
   String get pointYourCameraAt => 'Richten Sie Ihre Kamera auf Objekte';
@@ -1196,7 +1196,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get undo => 'Rückgängig';
 
   @override
-  String get hanziMaster => 'Hanzi Master';
+  String get hanziMaster => 'SinoSpark';
 
   @override
   String get unlockForever => 'Für immer freischalten – 9,99 \$';

@@ -1163,7 +1163,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get undo => 'UNDO';
 
   @override
-  String get hanziMaster => 'Hanzi Master';
+  String get hanziMaster => 'SinoSpark';
 
   @override
   String get unlockForever => 'Unlock Forever - \$9.99';

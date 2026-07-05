@@ -5,10 +5,13 @@ import 'package:hanzi_master/features/flashcards/domain/entities/deck.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/study_mode.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
+import 'package:hanzi_master/features/flashcards/presentation/providers/deck_controller.dart';
 import 'package:hanzi_master/features/echo_hall/presentation/screens/scenario_selection_screen.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/deck_review_session_screen.dart';
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
 import 'package:hanzi_master/core/services/analytics_service.dart';
+
+import 'package:hanzi_master/features/flashcards/presentation/widgets/deck_settings_sheet.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/story_mode_screen.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/study_mode_selection_sheet.dart';
@@ -104,13 +107,16 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                     elevation: 0,
                     flexibleSpace: FlexibleSpaceBar(
                       centerTitle: true,
-                      titlePadding: const EdgeInsets.only(bottom: 12),
+                      titlePadding: const EdgeInsets.only(bottom: 16, left: 60, right: 60),
                       title: Text(
                         widget.deck.localizedName(context),
+                        textAlign: TextAlign.center,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           color: isDark ? Colors.white : const Color(0xFF2C2C2C),
                           fontWeight: FontWeight.w800,
-                          fontSize: 22,
+                          fontSize: 16,
                           letterSpacing: 0.5,
                         ),
                       ),
@@ -147,11 +153,46 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                       ),
                     ),
                     actions: [
+                      IconButton(
+                        icon: Icon(Icons.settings_outlined, color: isDark ? Colors.white70 : Colors.black87),
+                        onPressed: () {
+                          showModalBottomSheet(
+                            context: context,
+                            isScrollControlled: true,
+                            backgroundColor: Colors.transparent,
+                            builder: (ctx) => DeckSettingsSheet(deck: widget.deck),
+                          );
+                        },
+                      ),
                       if (widget.deck.id != 'default')
                         IconButton(
                           icon: Icon(Icons.delete_outline, color: Colors.redAccent),
-                          onPressed: () {
-                            // Delete deck
+                          onPressed: () async {
+                            final bool? confirm = await showDialog<bool>(
+                              context: context,
+                              builder: (ctx) => AlertDialog(
+                                backgroundColor: const Color(0xFFFDFCF0),
+                                title: Text('Erase Deck?', style: const TextStyle(fontWeight: FontWeight.bold)),
+                                content: Text('Are you sure you want to permanently erase "${widget.deck.name}"? This action cannot be undone and will delete all cards inside it.'),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () => Navigator.pop(ctx, false),
+                                    child: const Text('Cancel', style: TextStyle(color: Colors.grey)),
+                                  ),
+                                  TextButton(
+                                    onPressed: () => Navigator.pop(ctx, true),
+                                    child: const Text('Erase', style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold)),
+                                  ),
+                                ],
+                              ),
+                            );
+
+                            if (confirm == true) {
+                              await ref.read(deckControllerProvider.notifier).deleteDeck(widget.deck.id);
+                              if (context.mounted) {
+                                Navigator.pop(context);
+                              }
+                            }
                           },
                         ),
                     ],

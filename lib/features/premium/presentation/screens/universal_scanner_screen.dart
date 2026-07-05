@@ -5,24 +5,41 @@ import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/shared/widgets/pinyin_text.dart';
-import '../../../../features/vision/presentation/screens/ar_lens_screen.dart';
+import 'package:google_mlkit_translation/google_mlkit_translation.dart';
+import 'package:hanzi_master/core/providers/translation_language_provider.dart';
+import 'dart:io';
+import 'dart:math' as math;
 import '../../../../core/services/ocr_service.dart';
 import '../../../flashcards/domain/entities/flashcard.dart';
 import '../../../flashcards/presentation/providers/flashcard_controller.dart';
+import '../../../flashcards/presentation/providers/deck_controller.dart';
 import '../../../flashcards/presentation/utils/haptics_manager.dart';
 import '../../../course/presentation/screens/lesson_screen.dart';
 import '../../../course/presentation/widgets/mission_briefing_sheet.dart';
 import '../../../course/presentation/providers/lesson_controller.dart';
 import '../../../../core/services/gemini_service.dart';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
+import 'package:google_mlkit_object_detection/google_mlkit_object_detection.dart';
 import '../../../flashcards/presentation/widgets/deck_selection_sheet.dart';
 import '../../../../shared/widgets/quick_look_sheet.dart';
+import 'package:hanzi_master/core/services/vision_service.dart';
+import '../widgets/ar_bounding_box_painter.dart';
 import '../widgets/interactive_image_overlay.dart';
 
-class UniversalScannerScreen extends ConsumerStatefulWidget {
-  final bool returnTextMode;
+enum CameraIntent {
+  dictionary,
+  translationHub,
+  travelAR,
+  textExtraction
+}
 
-  const UniversalScannerScreen({super.key, this.returnTextMode = false});
+class UniversalScannerScreen extends ConsumerStatefulWidget {
+  final CameraIntent intent;
+
+  const UniversalScannerScreen({
+    super.key, 
+    this.intent = CameraIntent.translationHub,
+  });
 
   @override
   ConsumerState<UniversalScannerScreen> createState() => _UniversalScannerScreenState();
@@ -39,7 +56,23 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
   bool _showingResults = false;
   String _rawExtractedText = "";
   String _fullTranslation = "";
+  String _smartDeckName = "";
   List<AiWord> _matchedCharacters = [];
+  Set<int> _selectedWordIndices = {};
+  bool _isCreatingSmartDeck = false;
+
+  late bool _isArLensMode;
+  
+  // AR Lens specific
+  final TextRecognizer _textRecognizer = TextRecognizer(script: TextRecognitionScript.chinese);
+  OnDeviceTranslator? _translator;
+  bool _isProcessingAr = false;
+  List<TranslatedTextBlock> _translatedBlocks = [];
+  
+  late final VisionService _visionService = ref.read(visionServiceProvider);
+  late final GeminiService _geminiService = ref.read(geminiServiceProvider);
+  List<DetectedObject> _detectedObjects = [];
+  Map<String, Flashcard> _translationCache = {};
 
   bool _showingInteractiveImage = false;
   XFile? _capturedImage;
@@ -55,8 +88,38 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
   @override
   void initState() {
     super.initState();
+    _isArLensMode = widget.intent == CameraIntent.travelAR;
     WidgetsBinding.instance.addObserver(this);
     _initializeCamera();
+    _initializeTranslator();
+  }
+
+  Future<void> _initializeTranslator() async {
+    final language = ref.read(translationLanguageProvider);
+    final targetLanguage = _getTranslateLanguage(language);
+    
+    final modelManager = OnDeviceTranslatorModelManager();
+    final bool isChineseDownloaded = await modelManager.isModelDownloaded(TranslateLanguage.chinese.bcpCode);
+    final bool isTargetDownloaded = await modelManager.isModelDownloaded(targetLanguage.bcpCode);
+
+    if (!isChineseDownloaded) await modelManager.downloadModel(TranslateLanguage.chinese.bcpCode);
+    if (!isTargetDownloaded) await modelManager.downloadModel(targetLanguage.bcpCode);
+
+    _translator = OnDeviceTranslator(
+      sourceLanguage: TranslateLanguage.chinese,
+      targetLanguage: targetLanguage,
+    );
+  }
+
+  TranslateLanguage _getTranslateLanguage(String languageName) {
+    switch (languageName.toLowerCase()) {
+      case 'french': return TranslateLanguage.french;
+      case 'spanish': return TranslateLanguage.spanish;
+      case 'german': return TranslateLanguage.german;
+      case 'english':
+      default:
+        return TranslateLanguage.english;
+    }
   }
 
   Future<void> _initializeCamera() async {
@@ -68,6 +131,7 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
           _cameras.first,
           ResolutionPreset.high,
           enableAudio: false,
+          imageFormatGroup: Platform.isAndroid ? ImageFormatGroup.nv21 : ImageFormatGroup.bgra8888,
         );
 
         try {
@@ -78,6 +142,9 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
             setState(() {
               _isCameraInitialized = true;
             });
+            if (_isArLensMode) {
+              _cameraController!.startImageStream(_processCameraImage);
+            }
           }
         } catch (e) {
           debugPrint("Camera Error: $e");
@@ -95,8 +162,11 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
+    _cameraController?.stopImageStream();
     _cameraController?.dispose();
     _ocrService.dispose();
+    _textRecognizer.close();
+    _translator?.close();
     super.dispose();
   }
 
@@ -148,6 +218,133 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
     }
   }
 
+  void _setMode(bool isAr) async {
+    if (_isArLensMode == isAr) return;
+    setState(() => _isArLensMode = isAr);
+    
+    if (isAr) {
+      if (_cameraController?.value.isStreamingImages == false) {
+        await _cameraController?.startImageStream(_processCameraImage);
+      }
+    } else {
+      if (_cameraController?.value.isStreamingImages == true) {
+        await _cameraController?.stopImageStream();
+      }
+    }
+  }
+
+  Future<void> _fetchTranslation(String label) async {
+    try {
+      final flashcard = await _geminiService.translateObject(label);
+      final newCache = Map<String, Flashcard>.from(_translationCache);
+      newCache[label] = flashcard;
+      if (mounted) setState(() => _translationCache = newCache);
+    } catch (e) {
+      debugPrint('Error fetching translation for $label: $e');
+      final newCache = Map<String, Flashcard>.from(_translationCache);
+      newCache.remove(label);
+      if (mounted) setState(() => _translationCache = newCache);
+    }
+  }
+
+  Future<void> _processCameraImage(CameraImage image) async {
+    if (_isProcessingAr || _translator == null || !_isArLensMode) return;
+    _isProcessingAr = true;
+
+    try {
+      final inputImage = _inputImageFromCameraImage(image);
+      if (inputImage == null) {
+        _isProcessingAr = false;
+        return;
+      }
+
+      final recognizedTextFuture = _textRecognizer.processImage(inputImage);
+      final detectedObjectsFuture = _visionService.processImage(inputImage);
+
+      final results = await Future.wait([recognizedTextFuture, detectedObjectsFuture]);
+      final recognizedText = results[0] as RecognizedText;
+      final objects = results[1] as List<DetectedObject>;
+      
+      List<TranslatedTextBlock> newBlocks = [];
+      for (TextBlock block in recognizedText.blocks) {
+        if (block.text.trim().length > 1) {
+          try {
+            final translated = await _translator!.translateText(block.text);
+            newBlocks.add(TranslatedTextBlock(
+              boundingBox: block.boundingBox,
+              originalText: block.text,
+              translatedText: translated,
+            ));
+          } catch (e) {
+            // Ignore block translation error
+          }
+        }
+      }
+
+      final currentCache = Map<String, Flashcard>.from(_translationCache);
+      bool cacheUpdated = false;
+
+      for (final obj in objects) {
+        for (final label in obj.labels) {
+          final text = label.text;
+          if (!currentCache.containsKey(text)) {
+            currentCache[text] = Flashcard(hanzi: '...', pinyin: '...', definition: 'Loading...', id: 'temp_$text', hskLevel: 0, strokePaths: const [], modeStats: const {});
+            cacheUpdated = true;
+            _fetchTranslation(text);
+          }
+        }
+      }
+
+      if (mounted && _isArLensMode) {
+        setState(() {
+          _translatedBlocks = newBlocks;
+          _detectedObjects = objects;
+          if (cacheUpdated) _translationCache = currentCache;
+        });
+      }
+    } catch (e) {
+      debugPrint("Error processing image: $e");
+    } finally {
+      _isProcessingAr = false;
+    }
+  }
+
+  InputImage? _inputImageFromCameraImage(CameraImage image) {
+    if (_cameraController == null) return null;
+    final camera = _cameraController!.description;
+    final sensorOrientation = camera.sensorOrientation;
+    
+    InputImageRotation? rotation;
+    if (Platform.isIOS) {
+      rotation = InputImageRotationValue.fromRawValue(sensorOrientation);
+    } else if (Platform.isAndroid) {
+      var rotationCompensation = _cameraController!.value.deviceOrientation.index;
+      if (camera.lensDirection == CameraLensDirection.front) {
+        rotationCompensation = (sensorOrientation + rotationCompensation) % 360;
+      } else {
+        rotationCompensation = (sensorOrientation - rotationCompensation + 360) % 360;
+      }
+      rotation = InputImageRotationValue.fromRawValue(rotationCompensation);
+    }
+    
+    if (rotation == null) return null;
+
+    final format = InputImageFormatValue.fromRawValue(image.format.raw);
+    if (format == null) return null;
+
+    if (image.planes.isEmpty) return null;
+
+    return InputImage.fromBytes(
+      bytes: Platform.isAndroid ? image.planes[0].bytes : image.planes.first.bytes,
+      metadata: InputImageMetadata(
+        size: Size(image.width.toDouble(), image.height.toDouble()),
+        rotation: rotation,
+        format: format,
+        bytesPerRow: image.planes[0].bytesPerRow,
+      ),
+    );
+  }
+
   Future<void> _pickFromGallery() async {
     if (_isScanning || _isLookingUp) return;
     
@@ -178,6 +375,25 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
       // Get image dimensions for rendering bounding boxes correctly
       final decodedImage = await decodeImageFromList(await image.readAsBytes());
       
+      if ((widget.intent == CameraIntent.translationHub || widget.intent == CameraIntent.travelAR) && _translator != null) {
+        List<TranslatedTextBlock> newBlocks = [];
+        for (TextBlock block in recognizedText.blocks) {
+          if (block.text.trim().length > 1) {
+            try {
+              final translated = await _translator!.translateText(block.text);
+              newBlocks.add(TranslatedTextBlock(
+                boundingBox: block.boundingBox,
+                originalText: block.text,
+                translatedText: translated,
+              ));
+            } catch (e) {
+              // Ignore block translation error
+            }
+          }
+        }
+        _translatedBlocks = newBlocks;
+      }
+      
       setState(() {
         _isScanning = false;
         _capturedImage = image;
@@ -197,6 +413,12 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
 
   Future<void> _processExtractedText(String text) async {
     HapticsManager.success();
+    
+    if (widget.intent == CameraIntent.textExtraction) {
+      Navigator.pop(context, text);
+      return;
+    }
+
     setState(() {
       _isScanning = false;
       _rawExtractedText = text;
@@ -211,7 +433,9 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
       if (mounted) {
         setState(() {
           _fullTranslation = extraction['fullTranslation'] as String;
+          _smartDeckName = extraction['deckName'] as String? ?? 'Scan Results';
           _matchedCharacters = extraction['words'] as List<AiWord>;
+          _selectedWordIndices.clear();
           _isLookingUp = false;
           _showingResults = true;
         });
@@ -328,16 +552,59 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
         children: [
           // Camera Preview Background or Interactive Image
           if (_showingInteractiveImage && _capturedImage != null && _recognizedText != null)
-            Positioned.fill(
-              child: InteractiveImageOverlay(
-                image: _capturedImage!,
-                recognizedText: _recognizedText!,
-                imageSize: _imageSize ?? const Size(1000, 1000),
-                onWordTapped: (word) {
-                  _lookupSingleWord(word);
-                },
-              ),
-            )
+            if (widget.intent == CameraIntent.translationHub || widget.intent == CameraIntent.travelAR)
+              Positioned.fill(
+                child: Stack(
+                  fit: StackFit.expand,
+                  children: [
+                    Image.file(
+                      File(_capturedImage!.path),
+                      fit: BoxFit.contain,
+                    ),
+                    CustomPaint(
+                      painter: TranslationOverlayPainter(
+                        blocks: _translatedBlocks,
+                        imageSize: _imageSize ?? const Size(1000, 1000),
+                        screenSize: MediaQuery.of(context).size,
+                      ),
+                    ),
+                    Positioned(
+                      bottom: 40,
+                      left: 32,
+                      right: 32,
+                      child: ElevatedButton.icon(
+                        onPressed: () {
+                          if (_recognizedText != null) {
+                            _processExtractedText(_recognizedText!.text);
+                          }
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Theme.of(context).colorScheme.primary,
+                          padding: const EdgeInsets.symmetric(vertical: 16),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                          elevation: 8,
+                        ),
+                        icon: const Icon(Icons.analytics, color: Colors.white),
+                        label: const Text(
+                          "Detailed Results",
+                          style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            else
+              Positioned.fill(
+                child: InteractiveImageOverlay(
+                  image: _capturedImage!,
+                  recognizedText: _recognizedText!,
+                  imageSize: _imageSize ?? const Size(1000, 1000),
+                  onWordTapped: (word) {
+                    _lookupSingleWord(word);
+                  },
+                ),
+              )
           else if (_isCameraInitialized && _cameraController != null)
             Positioned.fill(
               child: GestureDetector(
@@ -345,16 +612,14 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                 onScaleUpdate: _handleScaleUpdate,
                 child: Builder(
                   builder: (context) {
-                    final size = MediaQuery.of(context).size;
-                    // Handle potential zero or null values safely
-                    final previewWidth = _cameraController!.value.previewSize?.width ?? 1.0;
-                    final previewHeight = _cameraController!.value.previewSize?.height ?? 1.0;
-                    final cameraAspectRatio = previewWidth > 0 && previewHeight > 0 ? previewHeight / previewWidth : 1.0;
-                    
-                    return Center(
-                      child: AspectRatio(
-                        aspectRatio: 1 / cameraAspectRatio,
-                        child: CameraPreview(_cameraController!),
+                    return SizedBox.expand(
+                      child: FittedBox(
+                        fit: BoxFit.cover,
+                        child: SizedBox(
+                          width: 1000,
+                          height: 1000 * _cameraController!.value.aspectRatio,
+                          child: CameraPreview(_cameraController!),
+                        ),
                       ),
                     );
                   },
@@ -485,7 +750,57 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
        );
     }
     
-    // Default state: Custom Premium Viewfinder
+    if (_isArLensMode) {
+      InputImageRotation rotation = InputImageRotation.rotation0deg;
+      final sensorOrientation = _cameraController!.description.sensorOrientation;
+      final rawRotation = InputImageRotationValue.fromRawValue(sensorOrientation);
+      if (rawRotation != null) rotation = rawRotation;
+
+      return Stack(
+        fit: StackFit.expand,
+        children: [
+          CustomPaint(
+            painter: TranslationOverlayPainter(
+              blocks: _translatedBlocks,
+              imageSize: Size(
+                _cameraController!.value.previewSize!.height,
+                _cameraController!.value.previewSize!.width,
+              ),
+              screenSize: MediaQuery.of(context).size,
+            ),
+          ),
+          CustomPaint(
+            painter: ARBoundingBoxPainter(
+              _detectedObjects,
+              _translationCache,
+              Size(
+                _cameraController!.value.previewSize!.width,
+                _cameraController!.value.previewSize!.height,
+              ),
+              rotation,
+            ),
+          ),
+          const Positioned(
+            top: 20,
+            left: 0,
+            right: 0,
+            child: Center(
+              child: Text(
+                "Point at Chinese text to translate",
+                style: TextStyle(
+                  color: Colors.white,
+                  backgroundColor: Colors.black54,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          )
+        ],
+      );
+    }
+    
+    // Default state: Custom Premium Viewfinder for Scanner
     return CustomPaint(
       painter: ScannerOverlayPainter(),
       child: const SizedBox.expand(),
@@ -534,49 +849,63 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                borderRadius: BorderRadius.circular(40),
              ),
              child: Row(
-               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-               children: [
-                 // Gallery Button
-                 _buildSideButton(
-                   icon: Icons.photo_library_outlined,
-                   onTap: _pickFromGallery,
-                 ),
-                 
-                 // Premium Shutter Button
-                 GestureDetector(
-                   onTap: _takePhoto,
-                   child: Container(
-                     width: 76,
-                     height: 76,
-                     decoration: BoxDecoration(
-                       shape: BoxShape.circle,
-                       border: Border.all(color: Colors.white.withValues(alpha: 0.8), width: 3),
-                       color: Colors.transparent,
-                     ),
-                     child: Center(
-                       child: Container(
-                         width: 62,
-                         height: 62,
-                         decoration: const BoxDecoration(
-                           shape: BoxShape.circle,
-                           color: Colors.white,
-                         ),
-                       ),
-                     ),
-                   ),
-                 ),
-                 
-                 // AR Lens Button
-                 _buildSideButton(
-                   icon: Icons.view_in_ar,
-                   onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (_) => const ARLensScreen()),
-                      );
-                   },
-                 ),
-               ],
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  // Left Side: Gallery Button or spacing
+                  if (!_isArLensMode && widget.intent != CameraIntent.textExtraction)
+                    _buildSideButton(
+                      icon: Icons.photo_library_outlined,
+                      onTap: _pickFromGallery,
+                    )
+                  else if (widget.intent != CameraIntent.textExtraction)
+                    const SizedBox(width: 60), // Maintain layout balance
+                  
+                  // Center: Premium Shutter Button or Scanner mode return
+                  if (!_isArLensMode || widget.intent == CameraIntent.travelAR)
+                    GestureDetector(
+                      onTap: () {
+                         if (widget.intent == CameraIntent.textExtraction) {
+                            // Raw capture is handled inside `_takePhoto` and `_processExtractedText`
+                            _takePhoto();
+                         } else {
+                            _takePhoto();
+                         }
+                      },
+                      child: Container(
+                        width: 76,
+                        height: 76,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(color: Colors.white.withValues(alpha: 0.8), width: 3),
+                          color: Colors.transparent,
+                        ),
+                        child: Center(
+                          child: Container(
+                            width: 62,
+                            height: 62,
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
+                    )
+                  else if (widget.intent != CameraIntent.textExtraction)
+                    _buildSideButton(
+                      icon: Icons.document_scanner,
+                      isActive: false,
+                      onTap: () => _setMode(false),
+                    ),
+                  
+                  // Right Side: AR Lens Button
+                  if (widget.intent != CameraIntent.textExtraction)
+                    _buildSideButton(
+                      icon: Icons.view_in_ar,
+                      isActive: _isArLensMode,
+                      onTap: () => _setMode(!_isArLensMode),
+                    ),
+                ],
              ),
            ),
          ),
@@ -584,23 +913,24 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
      );
   }
   
-  Widget _buildSideButton({required IconData icon, required VoidCallback onTap}) {
+  Widget _buildSideButton({required IconData icon, required VoidCallback onTap, bool isActive = false}) {
      return InkWell(
        onTap: onTap,
        borderRadius: BorderRadius.circular(30),
-       child: Container(
+       child: AnimatedContainer(
+         duration: const Duration(milliseconds: 200),
          padding: const EdgeInsets.all(16),
          decoration: BoxDecoration(
-           color: Colors.white.withValues(alpha: 0.15),
+           color: isActive ? Colors.white : Colors.white.withValues(alpha: 0.15),
            shape: BoxShape.circle,
          ),
-         child: Icon(icon, color: Colors.white, size: 28),
+         child: Icon(icon, color: isActive ? Colors.black : Colors.white, size: 28),
        ),
      );
   }
 
   Widget _buildResultsList(ThemeData theme, AppLocalizations l10n) {
-    if (widget.returnTextMode) {
+    if (widget.intent == CameraIntent.textExtraction) {
       return Padding(
         padding: const EdgeInsets.all(24.0),
         child: Column(
@@ -638,6 +968,10 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
           ],
         ),
       );
+    }
+    
+    if (widget.intent == CameraIntent.dictionary) {
+      return _buildDictionaryResultsList(theme, l10n);
     }
 
     if (_matchedCharacters.isEmpty) {
@@ -809,6 +1143,284 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
       ],
     );
   }
+
+  Widget _buildDictionaryResultsList(ThemeData theme, AppLocalizations l10n) {
+    if (_matchedCharacters.isEmpty) {
+      return Center(
+        child: Padding(
+          padding: const EdgeInsets.all(32.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Icon(Icons.search_off_rounded, size: 64, color: Colors.white54),
+              const SizedBox(height: 16),
+              Text(
+                l10n.noMatchingDictionaryEntries,
+                textAlign: TextAlign.center,
+                style: theme.textTheme.titleMedium?.copyWith(color: Colors.white70),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
+    final existingCards = ref.watch(flashcardControllerProvider).valueOrNull ?? [];
+
+    return Stack(
+      children: [
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Scan Results",
+                    style: theme.textTheme.headlineSmall?.copyWith(color: Colors.white, fontWeight: FontWeight.bold),
+                  ),
+                  Row(
+                    children: [
+                      TextButton.icon(
+                        onPressed: () {
+                          setState(() {
+                            if (_selectedWordIndices.length == _matchedCharacters.length) {
+                              _selectedWordIndices.clear();
+                            } else {
+                              _selectedWordIndices = Set.from(List.generate(_matchedCharacters.length, (i) => i));
+                            }
+                          });
+                          HapticsManager.light();
+                        },
+                        icon: Icon(
+                          _selectedWordIndices.length == _matchedCharacters.length ? Icons.deselect : Icons.select_all, 
+                          color: Colors.white70,
+                          size: 20
+                        ),
+                        label: Text(
+                          _selectedWordIndices.length == _matchedCharacters.length ? "Deselect All" : "Select All", 
+                          style: const TextStyle(color: Colors.white70)
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      ElevatedButton.icon(
+                        onPressed: _isCreatingSmartDeck ? null : _createSmartDeck,
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.amber.shade700,
+                          foregroundColor: Colors.black,
+                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                        ),
+                        icon: _isCreatingSmartDeck 
+                            ? const SizedBox(width: 20, height: 20, child: CircularProgressIndicator(color: Colors.black, strokeWidth: 2))
+                            : const Icon(Icons.auto_awesome, size: 20),
+                        label: const Text("Smart Deck", style: TextStyle(fontWeight: FontWeight.bold)),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 16),
+            Expanded(
+              child: ListView.builder(
+                padding: EdgeInsets.only(left: 24, right: 24, bottom: _selectedWordIndices.isNotEmpty ? 100 : 24),
+                itemCount: _matchedCharacters.length,
+                itemBuilder: (context, index) {
+                  final info = _matchedCharacters[index];
+                  final isSelected = _selectedWordIndices.contains(index);
+                  final isInLibrary = existingCards.any((c) => c.hanzi == info.hanzi);
+                  
+                  return Container(
+                    margin: const EdgeInsets.only(bottom: 12),
+                    child: Material(
+                      color: Colors.transparent,
+                      child: InkWell(
+                        onTap: () {
+                          setState(() {
+                            if (isSelected) {
+                              _selectedWordIndices.remove(index);
+                            } else {
+                              _selectedWordIndices.add(index);
+                            }
+                          });
+                          HapticsManager.light();
+                        },
+                        borderRadius: BorderRadius.circular(20),
+                        child: AnimatedContainer(
+                          duration: const Duration(milliseconds: 200),
+                          padding: const EdgeInsets.all(16),
+                          decoration: BoxDecoration(
+                            color: isSelected ? theme.colorScheme.primary.withValues(alpha: 0.15) : const Color(0xFF1A1A1B).withValues(alpha: 0.8),
+                            borderRadius: BorderRadius.circular(20),
+                            border: Border.all(
+                              color: isSelected ? theme.colorScheme.primary : Colors.white.withValues(alpha: 0.1),
+                              width: isSelected ? 2 : 1,
+                            ),
+                          ),
+                          child: Row(
+                            children: [
+                              Container(
+                                width: 28,
+                                height: 28,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  border: Border.all(
+                                    color: isSelected ? theme.colorScheme.primary : Colors.white54,
+                                    width: 2,
+                                  ),
+                                  color: isSelected ? theme.colorScheme.primary : Colors.transparent,
+                                ),
+                                child: isSelected ? const Icon(Icons.check, color: Colors.white, size: 18) : null,
+                              ),
+                              const SizedBox(width: 16),
+                              Container(
+                                width: 56,
+                                height: 56,
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                  color: theme.colorScheme.primary.withOpacity(0.1),
+                                  borderRadius: BorderRadius.circular(14),
+                                ),
+                                child: Text(info.hanzi, style: const TextStyle(fontSize: 32, fontWeight: FontWeight.w900, color: Colors.white, height: 1.0)),
+                              ),
+                              const SizedBox(width: 16),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    PinyinText(
+                                      text: info.pinyin,
+                                      style: theme.textTheme.titleMedium?.copyWith(color: theme.colorScheme.primary, fontWeight: FontWeight.bold),
+                                    ),
+                                    const SizedBox(height: 4),
+                                    Text(info.meaning.isNotEmpty ? info.meaning : info.english, style: theme.textTheme.bodyMedium?.copyWith(color: Colors.white70), maxLines: 1, overflow: TextOverflow.ellipsis),
+                                  ],
+                                ),
+                              ),
+                              const SizedBox(width: 12),
+                              Container(
+                                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                                decoration: BoxDecoration(
+                                  color: isInLibrary ? Colors.green.withOpacity(0.2) : theme.colorScheme.primary.withOpacity(0.2),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                child: Text(
+                                  isInLibrary ? "In Library" : "New",
+                                  style: theme.textTheme.labelSmall?.copyWith(
+                                    color: isInLibrary ? Colors.green.shade300 : theme.colorScheme.primary,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+        
+        if (_selectedWordIndices.isNotEmpty)
+          Positioned(
+            bottom: 32,
+            left: 24,
+            right: 24,
+            child: TweenAnimationBuilder<double>(
+              tween: Tween(begin: 0.0, end: 1.0),
+              duration: const Duration(milliseconds: 300),
+              curve: Curves.easeOutBack,
+              builder: (context, value, child) {
+                return Transform.scale(
+                  scale: value,
+                  child: FloatingActionButton.extended(
+                    onPressed: () {
+                      final selectedWords = _selectedWordIndices.map((i) => _matchedCharacters[i]).toList();
+                      final flashcards = selectedWords.map<Flashcard>((w) => Flashcard(
+                        id: '',
+                        hanzi: w.hanzi,
+                        pinyin: w.pinyin,
+                        definition: w.meaning.isNotEmpty ? w.meaning : w.english,
+                        hskLevel: w.hskLevel,
+                        strokePaths: const [],
+                        modeStats: const {},
+                      )).toList();
+                      
+                      DeckSelectionSheet.show(context, cards: flashcards);
+                    },
+                    backgroundColor: theme.colorScheme.primary,
+                    icon: const Icon(Icons.bookmark_add, color: Colors.white),
+                    label: Text("Add to Deck (${_selectedWordIndices.length})", style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16)),
+                  ),
+                );
+              },
+            ),
+          ),
+      ],
+    );
+  }
+
+  Future<void> _createSmartDeck() async {
+    if (_matchedCharacters.isEmpty) return;
+    
+    setState(() {
+      _isCreatingSmartDeck = true;
+    });
+    
+    try {
+      final deckCtrl = ref.read(deckControllerProvider.notifier);
+      final newDeck = await deckCtrl.createDeck(_smartDeckName);
+      
+      if (newDeck != null) {
+        final flashcardCtrl = ref.read(flashcardControllerProvider.notifier);
+        
+        for (int i = 0; i < _matchedCharacters.length; i++) {
+          final w = _matchedCharacters[i];
+          final newCard = Flashcard(
+            id: DateTime.now().millisecondsSinceEpoch.toString() + i.toString(),
+            hanzi: w.hanzi,
+            pinyin: w.pinyin,
+            definition: w.meaning.isNotEmpty ? w.meaning : w.english,
+            hskLevel: w.hskLevel,
+            deckId: newDeck.id,
+            strokePaths: const [],
+            modeStats: const {},
+          );
+          await flashcardCtrl.addFlashcard(newCard);
+        }
+        
+        if (mounted) {
+          HapticsManager.success();
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Row(
+                children: [
+                  const Icon(Icons.auto_awesome, color: Colors.white),
+                  const SizedBox(width: 12),
+                  Text('Created smart deck: "$_smartDeckName" with ${_matchedCharacters.length} words!'),
+                ],
+              ),
+              backgroundColor: Colors.green,
+              behavior: SnackBarBehavior.floating,
+            ),
+          );
+          Navigator.pop(context); // Close the scanner and return
+        }
+      }
+    } finally {
+      if (mounted) {
+        setState(() {
+          _isCreatingSmartDeck = false;
+        });
+      }
+    }
+  }
 }
 
 class ScannerOverlayPainter extends CustomPainter {
@@ -825,14 +1437,7 @@ class ScannerOverlayPainter extends CustomPainter {
     
     final radius = 24.0;
 
-    // Dimmed background outside the rect
-    final backgroundPath = Path()
-      ..addRect(Rect.fromLTWH(0, 0, size.width, size.height))
-      ..addRRect(RRect.fromRectAndRadius(rect, Radius.circular(radius)))
-      ..fillType = PathFillType.evenOdd;
-      
-    canvas.drawPath(backgroundPath, Paint()..color = Colors.black.withValues(alpha: 0.7));
-    
+    // Removed dimmed background outside the rect
     // Sleek Curved Brackets
     final bracketPaint = Paint()
       ..color = Colors.white.withValues(alpha: 0.9)
@@ -895,3 +1500,76 @@ class ScannerOverlayPainter extends CustomPainter {
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }
+
+class TranslatedTextBlock {
+  final Rect boundingBox;
+  final String originalText;
+  final String translatedText;
+
+  TranslatedTextBlock({
+    required this.boundingBox,
+    required this.originalText,
+    required this.translatedText,
+  });
+}
+
+class TranslationOverlayPainter extends CustomPainter {
+  final List<TranslatedTextBlock> blocks;
+  final Size imageSize;
+  final Size screenSize;
+
+  TranslationOverlayPainter({
+    required this.blocks,
+    required this.imageSize,
+    required this.screenSize,
+  });
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final double scale = math.max(screenSize.width / imageSize.width, screenSize.height / imageSize.height);
+    final double offsetX = (screenSize.width - imageSize.width * scale) / 2;
+    final double offsetY = (screenSize.height - imageSize.height * scale) / 2;
+
+    final Paint bgPaint = Paint()
+      ..color = Colors.black.withValues(alpha: 0.8)
+      ..style = PaintingStyle.fill;
+
+    for (final block in blocks) {
+      final rect = Rect.fromLTRB(
+        block.boundingBox.left * scale + offsetX,
+        block.boundingBox.top * scale + offsetY,
+        block.boundingBox.right * scale + offsetX,
+        block.boundingBox.bottom * scale + offsetY,
+      );
+
+      canvas.drawRRect(RRect.fromRectAndRadius(rect, const Radius.circular(4)), bgPaint);
+
+      final textSpan = TextSpan(
+        text: block.translatedText,
+        style: const TextStyle(
+          color: Colors.white,
+          fontSize: 14,
+          fontWeight: FontWeight.bold,
+        ),
+      );
+
+      final textPainter = TextPainter(
+        text: textSpan,
+        textDirection: TextDirection.ltr,
+        maxLines: 3,
+        ellipsis: '...',
+      );
+
+      textPainter.layout(maxWidth: rect.width);
+      
+      final textY = rect.top + (rect.height - textPainter.height) / 2;
+      textPainter.paint(canvas, Offset(rect.left + 2, textY));
+    }
+  }
+
+  @override
+  bool shouldRepaint(TranslationOverlayPainter oldDelegate) {
+    return oldDelegate.blocks != blocks;
+  }
+}
+

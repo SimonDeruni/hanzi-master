@@ -965,7 +965,7 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get whetherYouveFoundA =>
-      '버그를 발견했거나, 기능 요청이 있거나, 단순히 인사하고 싶어도, 당신의 피드백은 Hanzi Master 개선에 도움이 됩니다.';
+      '버그를 발견했거나, 기능 요청이 있거나, 단순히 인사하고 싶어도, 당신의 피드백은 SinoSpark 개선에 도움이 됩니다.';
 
   @override
   String get pointYourCameraAt => '카메라를 사물에 대세요';

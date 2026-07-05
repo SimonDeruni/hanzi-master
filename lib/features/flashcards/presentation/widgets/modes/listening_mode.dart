@@ -136,30 +136,43 @@ class _ListeningModeWidgetState extends ConsumerState<ListeningModeWidget> {
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  Container(
-                                    padding: const EdgeInsets.all(32),
-                                    decoration: BoxDecoration(
-                                      color: isDark ? Colors.purple.withAlpha(25) : Colors.purple.shade50,
-                                      shape: BoxShape.circle,
-                                      border: Border.all(
-                                        color: isDark ? Colors.purple.withAlpha(50) : Colors.purple.shade200,
+                                  GestureDetector(
+                                    onTap: _playAudio,
+                                    child: Container(
+                                      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                                      decoration: BoxDecoration(
+                                        gradient: LinearGradient(
+                                          colors: isDark 
+                                            ? [Colors.purple.shade700, Colors.deepPurple.shade900]
+                                            : [Colors.purple.shade300, Colors.purple.shade600],
+                                          begin: Alignment.topLeft,
+                                          end: Alignment.bottomRight,
+                                        ),
+                                        borderRadius: BorderRadius.circular(32),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.purple.withAlpha(isDark ? 80 : 120),
+                                            blurRadius: 16,
+                                            offset: const Offset(0, 8),
+                                          ),
+                                        ],
                                       ),
-                                    ),
-                                    child: IconButton(
-                                      iconSize: 80,
-                                      icon: Icon(
-                                        Icons.volume_up,
-                                        color: isDark ? Colors.purple.shade200 : Colors.purple.shade700,
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          const Icon(Icons.volume_up_rounded, color: Colors.white, size: 28),
+                                          const SizedBox(width: 12),
+                                          const Text(
+                                            'Tap to listen again',
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w600,
+                                              letterSpacing: 0.5,
+                                            ),
+                                          ),
+                                        ],
                                       ),
-                                      onPressed: _playAudio,
-                                    ),
-                                  ),
-                                  SizedBox(height: 16),
-                                  Text(
-                                    'Tap icon to listen again',
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      color: isDark ? Colors.white54 : Colors.black54,
                                     ),
                                   ),
                                 ],

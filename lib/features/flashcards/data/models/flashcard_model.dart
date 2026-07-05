@@ -228,10 +228,11 @@ class FlashcardModel extends HiveObject {
   factory FlashcardModel.fromJson(Map<String, dynamic> json) {
     return FlashcardModel(
       id: json['uuid'] ?? json['id'] ?? '', 
+      deckId: json['deckId'] ?? 'default',
       hanzi: json['hanzi'] ?? '',
       pinyin: PinyinUtils.convertNumericToMarks(json['pinyin'] ?? ''),
       definition: json['definition'] ?? '',
-      hskLevel: 1,
+      hskLevel: json['hskLevel'] ?? 1,
       strokePaths: [],
       nextReviewDate: DateTime.now(), 
       interval: 0,

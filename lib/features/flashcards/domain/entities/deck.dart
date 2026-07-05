@@ -6,12 +6,16 @@ class Deck extends Equatable {
   final String name;
   final String description;
   final DateTime createdAt;
+  final int dailyNewCardsLimit;
+  final int dailyReviewLimit;
 
   const Deck({
     required this.id,
     required this.name,
     this.description = '',
     required this.createdAt,
+    this.dailyNewCardsLimit = 20,
+    this.dailyReviewLimit = 100,
   });
 
   String localizedName(BuildContext context) {
@@ -27,15 +31,19 @@ class Deck extends Equatable {
     String? name,
     String? description,
     DateTime? createdAt,
+    int? dailyNewCardsLimit,
+    int? dailyReviewLimit,
   }) {
     return Deck(
       id: id ?? this.id,
       name: name ?? this.name,
       description: description ?? this.description,
       createdAt: createdAt ?? this.createdAt,
+      dailyNewCardsLimit: dailyNewCardsLimit ?? this.dailyNewCardsLimit,
+      dailyReviewLimit: dailyReviewLimit ?? this.dailyReviewLimit,
     );
   }
 
   @override
-  List<Object?> get props => [id, name, description, createdAt];
+  List<Object?> get props => [id, name, description, createdAt, dailyNewCardsLimit, dailyReviewLimit];
 }

@@ -690,7 +690,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get allDataHasBeen => 'すべてのデータが消去されました。';
 
   @override
-  String get hanziMasterV100 => 'Hanzi Master v1.0.0';
+  String get hanziMasterV100 => 'SinoSpark v1.0.0';
 
   @override
   String get myProgress => '私の進捗';
@@ -965,7 +965,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get whetherYouveFoundA =>
-      'バグを見つけた場合でも、機能のリクエストがある場合でも、単に挨拶したい場合でも、皆様のフィードバックがHanzi Masterの改善に役立ちます。';
+      'バグを見つけた場合でも、機能のリクエストがある場合でも、単に挨拶したい場合でも、皆様のフィードバックがSinoSparkの改善に役立ちます。';
 
   @override
   String get pointYourCameraAt => 'カメラをオブジェクトに向けてください';

@@ -8,6 +8,7 @@ import '../widgets/pronunciation_report_sheet.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/shared/widgets/tappable_hanzi_text.dart';
+import 'package:hanzi_master/core/services/audio_service.dart';
 
 class ConversationScreen extends ConsumerStatefulWidget {
   final ConversationScenario scenario;
@@ -365,7 +366,14 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Icon(Icons.volume_up, color: theme.colorScheme.onSurface.withValues(alpha: 0.4), size: 20),
+                    IconButton(
+                      icon: Icon(Icons.volume_up, color: theme.colorScheme.onSurface.withValues(alpha: 0.4), size: 20),
+                      onPressed: () {
+                        ref.read(audioServiceProvider).playSentence(message.content);
+                      },
+                      padding: EdgeInsets.zero,
+                      constraints: const BoxConstraints(),
+                    ),
                     const SizedBox(width: 8),
                     Expanded(
                       child: Column(

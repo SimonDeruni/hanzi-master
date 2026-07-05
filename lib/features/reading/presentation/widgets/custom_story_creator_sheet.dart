@@ -76,7 +76,7 @@ class _CustomStoryCreatorSheetState extends ConsumerState<CustomStoryCreatorShee
   Future<void> _scanText() async {
     final extractedText = await Navigator.push<String>(
       context,
-      MaterialPageRoute(builder: (context) => const UniversalScannerScreen(returnTextMode: true)),
+      MaterialPageRoute(builder: (context) => const UniversalScannerScreen(intent: CameraIntent.textExtraction)),
     );
 
     if (extractedText != null && extractedText.isNotEmpty && mounted) {
@@ -114,7 +114,42 @@ class _CustomStoryCreatorSheetState extends ConsumerState<CustomStoryCreatorShee
           ),
           const SizedBox(height: 16),
           // HSK Level Selector
-          Text(AppLocalizations.of(context)!.targetHskLevel, style: Theme.of(context).textTheme.titleSmall),
+          Row(
+            children: [
+              Text(AppLocalizations.of(context)!.targetHskLevel, style: Theme.of(context).textTheme.titleSmall),
+              const SizedBox(width: 8),
+              GestureDetector(
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                      title: Row(
+                        children: [
+                          Icon(Icons.psychology, color: Colors.amber[800]),
+                          const SizedBox(width: 8),
+                          const Text('Dynamic Flow State'),
+                        ],
+                      ),
+                      content: const Text(
+                        'Instead of a fixed HSK level, the Flow State Engine analyzes your Flashcard Library.\n\n'
+                        'It builds the story primarily using words you have already mastered (to enable rapid, effortless reading) '
+                        'while strategically embedding words you are currently struggling with so you can learn them in context.',
+                        style: TextStyle(height: 1.5),
+                      ),
+                      actions: [
+                        TextButton(
+                          onPressed: () => Navigator.pop(context),
+                          child: const Text('Got it'),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+                child: Icon(Icons.info_outline, size: 18, color: Colors.grey[600]),
+              ),
+            ],
+          ),
           const SizedBox(height: 8),
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,

@@ -1479,7 +1479,7 @@ abstract class AppLocalizations {
   /// No description provided for @hanziMasterV100.
   ///
   /// In en, this message translates to:
-  /// **'Hanzi Master v1.0.0'**
+  /// **'SinoSpark v1.0.0'**
   String get hanziMasterV100;
 
   /// No description provided for @myProgress.
@@ -2013,7 +2013,7 @@ abstract class AppLocalizations {
   /// No description provided for @whetherYouveFoundA.
   ///
   /// In en, this message translates to:
-  /// **'Whether you\'ve found a bug, have a feature request, or just want to say hi, your feedback helps us improve Hanzi Master.'**
+  /// **'Whether you\'ve found a bug, have a feature request, or just want to say hi, your feedback helps us improve SinoSpark.'**
   String get whetherYouveFoundA;
 
   /// No description provided for @pointYourCameraAt.
@@ -2367,7 +2367,7 @@ abstract class AppLocalizations {
   /// No description provided for @hanziMaster.
   ///
   /// In en, this message translates to:
-  /// **'Hanzi Master'**
+  /// **'SinoSpark'**
   String get hanziMaster;
 
   /// No description provided for @unlockForever.

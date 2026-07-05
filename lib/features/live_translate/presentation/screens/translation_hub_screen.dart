@@ -59,7 +59,7 @@ class TranslationHubScreen extends StatelessWidget {
                     description: "Point your camera at real-world objects or text to instantly extract and translate Chinese characters.",
                     icon: Icons.document_scanner_outlined,
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (_) => const UniversalScannerScreen()));
+                      Navigator.push(context, MaterialPageRoute(builder: (_) => const UniversalScannerScreen(intent: CameraIntent.translationHub)));
                     },
                   ),
                   const SizedBox(height: 48),

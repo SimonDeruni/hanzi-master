@@ -53,18 +53,6 @@ class SettingsScreen extends ConsumerWidget {
                 divisions: 4,
                 onChanged: (val) => ref.read(settingsProvider.notifier).setGuideDisappearanceStreak(val.toInt()),
               ),
-              _buildDivider(),
-              _buildSliderTile(
-                icon: Icons.flag,
-                iconColor: Colors.green,
-                title: l10n?.dailyGoal ?? "Daily Ink Goal",
-                subtitle: l10n?.inkPoints(settings.dailyGoal) ?? "${settings.dailyGoal} Ink Points",
-                value: settings.dailyGoal.toDouble(),
-                min: 10.0,
-                max: 200.0,
-                divisions: 19,
-                onChanged: (val) => ref.read(settingsProvider.notifier).setDailyGoal(val.toInt()),
-              ),
             ],
           ),
           const SizedBox(height: 24),
@@ -181,10 +169,25 @@ class SettingsScreen extends ConsumerWidget {
             ],
           ),
           const SizedBox(height: 24),
-
-
-
-          // Danger Zone
+          _buildSectionHeader("Notifications", theme, color: Colors.amber.shade700),
+          _buildSettingsCard(
+            context: context,
+            children: [
+              ListTile(
+                leading: CircleAvatar(
+                  backgroundColor: Colors.amber.withOpacity(0.1),
+                  child: const Icon(Icons.notifications_active, color: Colors.amber),
+                ),
+                title: const Text("Notification Settings", style: TextStyle(fontWeight: FontWeight.w600)),
+                subtitle: const Text("Manage Daily Drops and Review Reminders"),
+                trailing: const Icon(Icons.chevron_right, color: Colors.grey),
+                onTap: () {
+                  // TODO: Navigate to Notification Settings Screen
+                },
+              ),
+            ],
+          ),
+          const SizedBox(height: 24),          // Danger Zone
           _buildSectionHeader(l10n?.dangerZone ?? "Danger Zone", theme, color: Colors.redAccent),
           _buildSettingsCard(
             context: context,
