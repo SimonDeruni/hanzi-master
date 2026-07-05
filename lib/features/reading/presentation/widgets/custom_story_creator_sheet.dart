@@ -83,6 +83,7 @@ class _CustomStoryCreatorSheetState extends ConsumerState<CustomStoryCreatorShee
       setState(() {
         _textToSimplifyController.text = extractedText;
       });
+      _handleGenerate(context);
     }
   }
 
