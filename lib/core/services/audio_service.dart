@@ -248,7 +248,7 @@ class AudioService {
       'Path: speech.config\r\n'
       'Content-Type: application/json; charset=utf-8\r\n'
       '\r\n'
-      '{"context":{"system":{"name":"SpeechSDK"}}}'
+      '{"context":{"synthesis":{"audio":{"metadataOptions":{"wordBoundaryEnabled":true,"sentenceBoundaryEnabled":true},"outputFormat":"audio-24khz-48kbitrate-mono-mp3"}}}}'
     );
 
     final ssml = '''<speak version='1.0' xml:lang='zh-CN'><voice name='zh-CN-XiaoxiaoNeural'>$safeText</voice></speak>''';
