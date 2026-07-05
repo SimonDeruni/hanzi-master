@@ -359,10 +359,14 @@ class _FoundBody extends ConsumerWidget {
                             constraints: const BoxConstraints(maxWidth: 400, maxHeight: 500),
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(24),
-                              child: hanzi_shadowing.ShadowingStudioScreen(
-                                initialHanzi: card.hanzi,
-                                initialPinyin: card.pinyin,
-                                initialTranslation: card.definition,
+                              child: Container(
+                                color: Theme.of(context).brightness == Brightness.dark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
+                                child: hanzi_shadowing.ShadowingStudioScreen(
+                                  initialHanzi: card.hanzi,
+                                  initialPinyin: card.pinyin,
+                                  initialTranslation: card.definition,
+                                  isCompact: true,
+                                ),
                               ),
                             ),
                           ),

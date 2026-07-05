@@ -18,7 +18,8 @@ class ShadowingStudioScreen extends ConsumerStatefulWidget {
   final String? initialHanzi;
   final String? initialPinyin;
   final String? initialTranslation;
-  const ShadowingStudioScreen({super.key, this.initialHanzi, this.initialPinyin, this.initialTranslation});
+  final bool isCompact;
+  const ShadowingStudioScreen({super.key, this.initialHanzi, this.initialPinyin, this.initialTranslation, this.isCompact = false});
 
   @override
   ConsumerState<ShadowingStudioScreen> createState() => _ShadowingStudioScreenState();
@@ -734,7 +735,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
         _showSessionSummaryDialog(context, isDark);
       },
       child: Scaffold(
-        backgroundColor: isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
+        backgroundColor: widget.isCompact ? Colors.transparent : (isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0)),
         body: SafeArea(
           child: LayoutBuilder(
             builder: (context, constraints) {
@@ -745,22 +746,23 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
                     child: Column(
                       children: [
             // Top Bar
-            Padding(
-              padding: const EdgeInsets.all(24.0),
-              child: Row(
-                children: [
-                  IconButton(
-                    icon: Icon(Icons.keyboard_arrow_down, size: 32, color: isDark ? Colors.white : const Color(0xFF1A1A1B)),
-                    onPressed: () => _showSessionSummaryDialog(context, isDark),
-                  ),
-                  const SizedBox(width: 8),
-                  Text(
-                    "Shadowing Studio",
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: isDark ? Colors.white : const Color(0xFF1A1A1B)),
-                  ),
-                ],
+            if (!widget.isCompact)
+              Padding(
+                padding: const EdgeInsets.all(24.0),
+                child: Row(
+                  children: [
+                    IconButton(
+                      icon: Icon(Icons.keyboard_arrow_down, size: 32, color: isDark ? Colors.white : const Color(0xFF1A1A1B)),
+                      onPressed: () => _showSessionSummaryDialog(context, isDark),
+                    ),
+                    const SizedBox(width: 8),
+                    Text(
+                      "Shadowing Studio",
+                      style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: isDark ? Colors.white : const Color(0xFF1A1A1B)),
+                    ),
+                  ],
+                ),
               ),
-            ),
             
             if (_errorMessage != null)
               Padding(
@@ -802,7 +804,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
                       children: [
                         // Play Button
                         IconButton(
-                          iconSize: 48,
+                          iconSize: widget.isCompact ? 36 : 48,
                           color: isDark ? Colors.white70 : Colors.black54,
                           icon: const Icon(Icons.play_circle_fill),
                           onPressed: _playNativeAudio,
@@ -818,8 +820,8 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
                               return Transform.scale(
                                 scale: _pulseAnimation.value,
                                 child: Container(
-                                  width: 80,
-                                  height: 80,
+                                  width: widget.isCompact ? 64 : 80,
+                                  height: widget.isCompact ? 64 : 80,
                                   decoration: BoxDecoration(
                                     shape: BoxShape.circle,
                                     color: _isRecording ? Colors.red : (isDark ? Colors.orange.shade800 : Colors.orange),
@@ -830,7 +832,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
                                         BoxShadow(color: Colors.orange.withOpacity(0.3), blurRadius: 10, spreadRadius: 2),
                                     ],
                                   ),
-                                  child: const Icon(Icons.mic, size: 36, color: Colors.white),
+                                  child: Icon(Icons.mic, size: widget.isCompact ? 28 : 36, color: Colors.white),
                                 ),
                               );
                             },
@@ -838,18 +840,19 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
                         ),
 
                         // Next Button
-                        IconButton(
-                          iconSize: 48,
-                          color: isDark ? Colors.white70 : Colors.black54,
-                          icon: const Icon(Icons.skip_next),
-                          onPressed: _fetchNextPhrase,
-                        ),
+                        if (!widget.isCompact)
+                          IconButton(
+                            iconSize: 48,
+                            color: isDark ? Colors.white70 : Colors.black54,
+                            icon: const Icon(Icons.skip_next),
+                            onPressed: _fetchNextPhrase,
+                          ),
                       ],
                     ),
-                    const SizedBox(height: 16),
+                    SizedBox(height: widget.isCompact ? 8 : 16),
                     Text(
                       "Hold mic to record. Release to grade.",
-                      style: TextStyle(color: isDark ? Colors.white54 : Colors.black54, fontSize: 14),
+                      style: TextStyle(color: isDark ? Colors.white54 : Colors.black54, fontSize: widget.isCompact ? 12 : 14),
                     ),
                   ],
                 ),
@@ -910,7 +913,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
             Text(
               _currentPhrase!['pinyin']!,
               style: TextStyle(
-                fontSize: 28,
+                fontSize: widget.isCompact ? 20 : 28,
                 color: isDark ? Colors.white70 : Colors.black87,
                 fontStyle: FontStyle.italic,
                 letterSpacing: 1.2,
@@ -921,7 +924,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
             Text(
               _currentPhrase!['hanzi']!,
               style: TextStyle(
-                fontSize: 56,
+                fontSize: widget.isCompact ? 40 : 56,
                 color: isDark ? Colors.white : const Color(0xFF1A1A1B),
                 fontWeight: FontWeight.w500,
                 fontFamily: 'NotoSerifSC',
@@ -950,7 +953,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
                     Text(
                       item['word'] ?? "",
                       style: TextStyle(
-                        fontSize: 56,
+                        fontSize: widget.isCompact ? 40 : 56,
                         color: color,
                         fontWeight: FontWeight.w500,
                         fontFamily: 'NotoSerifSC',
@@ -966,7 +969,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
           Text(
             _currentPhrase!['english']!,
             style: TextStyle(
-              fontSize: 20,
+              fontSize: widget.isCompact ? 16 : 20,
               color: isDark ? Colors.white54 : Colors.black54,
               fontStyle: FontStyle.italic,
               fontFamily: 'serif',
