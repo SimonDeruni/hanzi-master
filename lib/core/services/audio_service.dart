@@ -166,8 +166,8 @@ class AudioService {
     if (apiKey.isEmpty || region.isEmpty || apiKey == 'MISSING_KEY') return null;
 
     final safeText = text.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
-    final uri = Uri.parse('wss://$region.tts.speech.microsoft.com/cognitiveservices/websocket/v1');
     final uuid = const Uuid().v4().replaceAll('-', '');
+    final uri = Uri.parse('wss://$region.tts.speech.microsoft.com/cognitiveservices/websocket/v1?X-ConnectionId=$uuid');
 
     IOWebSocketChannel? channel;
     try {
@@ -175,7 +175,6 @@ class AudioService {
         uri,
         headers: {
           'Ocp-Apim-Subscription-Key': apiKey,
-          'X-ConnectionId': uuid,
         },
       );
     } catch(e) {
