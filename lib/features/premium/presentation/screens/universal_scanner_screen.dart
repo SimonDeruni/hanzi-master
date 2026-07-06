@@ -266,8 +266,9 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
       final objects = results[1] as List<DetectedObject>;
       
       List<TranslatedTextBlock> newBlocks = [];
+      final chineseRegex = RegExp(r'[\u4e00-\u9fa5]');
       for (TextBlock block in recognizedText.blocks) {
-        if (block.text.trim().length > 1) {
+        if (block.text.trim().length > 1 && chineseRegex.hasMatch(block.text)) {
           try {
             final translated = await _translator!.translateText(block.text);
             newBlocks.add(TranslatedTextBlock(
@@ -377,8 +378,9 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
       
       if ((widget.intent == CameraIntent.translationHub || widget.intent == CameraIntent.travelAR) && _translator != null) {
         List<TranslatedTextBlock> newBlocks = [];
+        final chineseRegex = RegExp(r'[\u4e00-\u9fa5]');
         for (TextBlock block in recognizedText.blocks) {
-          if (block.text.trim().length > 1) {
+          if (block.text.trim().length > 1 && chineseRegex.hasMatch(block.text)) {
             try {
               final translated = await _translator!.translateText(block.text);
               newBlocks.add(TranslatedTextBlock(
