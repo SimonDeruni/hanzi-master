@@ -43,26 +43,68 @@ class FullscreenMediaOverlay extends StatefulWidget {
   State<FullscreenMediaOverlay> createState() => _FullscreenMediaOverlayState();
 }
 
-class _FullscreenMediaOverlayState extends State<FullscreenMediaOverlay> {
+class _FullscreenMediaOverlayState extends State<FullscreenMediaOverlay>
+    with TickerProviderStateMixin {
   bool _showHanzi = true;
   bool _showPinyin = true;
   bool _showEnglish = true;
   bool _controlsVisible = true;
   Timer? _hideTimer;
-  Timer? _hudTimer;
-  double _brightnessOverlayOpacity = 0.0;
-  bool _showBrightnessHud = false;
   double _subtitleBgOpacity = 0.4;
+
+  // Sparkline feedback animation
+  late AnimationController _feedbackAnimCtrl;
+  late Animation<Offset> _feedbackSlide;
+  String _lastFeedback = '';
+  Timer? _feedbackDismissTimer;
 
   @override
   void initState() {
     super.initState();
     _startHideTimer();
+
+    _feedbackAnimCtrl = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 350),
+    );
+    _feedbackSlide = Tween<Offset>(
+      begin: const Offset(0, -1.5),
+      end: Offset.zero,
+    ).animate(CurvedAnimation(
+      parent: _feedbackAnimCtrl,
+      curve: Curves.easeOutQuart,
+    ));
+  }
+
+  @override
+  void didUpdateWidget(FullscreenMediaOverlay oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    // Trigger sparkline when feedback text arrives/changes
+    if (widget.shadowFeedback != oldWidget.shadowFeedback &&
+        widget.shadowFeedback.isNotEmpty) {
+      _lastFeedback = widget.shadowFeedback;
+      _feedbackAnimCtrl.forward(from: 0);
+      _feedbackDismissTimer?.cancel();
+      _feedbackDismissTimer = Timer(const Duration(seconds: 4), () {
+        if (mounted) _feedbackAnimCtrl.reverse();
+      });
+    }
+    if (widget.shadowFeedback.isEmpty && oldWidget.shadowFeedback.isNotEmpty) {
+      _feedbackAnimCtrl.reverse();
+    }
+  }
+
+  @override
+  void dispose() {
+    _hideTimer?.cancel();
+    _feedbackDismissTimer?.cancel();
+    _feedbackAnimCtrl.dispose();
+    super.dispose();
   }
 
   void _startHideTimer() {
     _hideTimer?.cancel();
-    _hideTimer = Timer(const Duration(seconds: 4), () {
+    _hideTimer = Timer(const Duration(seconds: 3), () {
       if (mounted && _controlsVisible) {
         setState(() => _controlsVisible = false);
       }
@@ -70,23 +112,24 @@ class _FullscreenMediaOverlayState extends State<FullscreenMediaOverlay> {
   }
 
   void _onUserInteraction() {
-    if (!_controlsVisible) {
-      setState(() => _controlsVisible = true);
-    }
+    if (!_controlsVisible) setState(() => _controlsVisible = true);
     _startHideTimer();
   }
 
-  @override
-  void dispose() {
-    _hideTimer?.cancel();
-    super.dispose();
+  bool _isGoodScore(String feedback) {
+    // Look for score ≥ 70 in "Score: XX/100"
+    final match = RegExp(r'Score:\s*(\d+)').firstMatch(feedback);
+    if (match != null) {
+      final score = int.tryParse(match.group(1) ?? '0') ?? 0;
+      return score >= 70;
+    }
+    return feedback.toLowerCase().contains('perfect') ||
+        feedback.toLowerCase().contains('great');
   }
 
   @override
   Widget build(BuildContext context) {
-    // CRITICAL: This widget is rendered inside youtube_player_iframe's controlsBuilder.
-    // It must NOT use Positioned.fill with an opaque container — that would block the video.
-    // Only the controls/subtitles themselves should be visible; video shows through underneath.
+    // CRITICAL: rendered inside controlsBuilder — must not block the video iframe.
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: () {
@@ -96,74 +139,60 @@ class _FullscreenMediaOverlayState extends State<FullscreenMediaOverlay> {
           _onUserInteraction();
         }
       },
-      onVerticalDragUpdate: (details) {
-        _onUserInteraction();
-        final screenWidth = MediaQuery.of(context).size.width;
-        if (details.globalPosition.dx < screenWidth / 2) {
-          // Left side: Simulate brightness using a black overlay
-          setState(() {
-            _brightnessOverlayOpacity = (_brightnessOverlayOpacity + (details.delta.dy * 0.005)).clamp(0.0, 0.85);
-            _showBrightnessHud = true;
-          });
-          
-          _hudTimer?.cancel();
-          _hudTimer = Timer(const Duration(milliseconds: 1500), () {
-            if (mounted) setState(() => _showBrightnessHud = false);
-          });
-        } else {
-          // Right side: Volume
-          // youtube_player_iframe doesn't have a simple synchronous getVolume.
-          // But we could keep track of it if we wanted to.
-        }
-      },
       child: Stack(
         children: [
-          // Simulated Brightness Overlay
-          if (_brightnessOverlayOpacity > 0)
-            Positioned.fill(
-              child: IgnorePointer(
-                child: Container(
-                  color: Colors.black.withValues(alpha: _brightnessOverlayOpacity),
-                ),
-              ),
-            ),
-
-          // Brightness HUD
-          if (_showBrightnessHud)
-            Center(
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-                decoration: BoxDecoration(
-                  color: Colors.black.withValues(alpha: 0.6),
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Icon(Icons.brightness_6, color: Colors.white, size: 28),
-                    const SizedBox(width: 16),
-                    SizedBox(
-                      width: 100,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(8),
-                        child: LinearProgressIndicator(
-                          value: 1.0 - (_brightnessOverlayOpacity / 0.85),
-                          backgroundColor: Colors.white24,
-                          valueColor: const AlwaysStoppedAnimation<Color>(Colors.white),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-
-          // Top Bar (blur glass pill)
+          // ── Top gradient scrim ─────────────────────────────────────────
           if (_controlsVisible)
             Positioned(
-              top: 16,
-              left: 16,
-              right: 16,
+              top: 0,
+              left: 0,
+              right: 0,
+              height: 100,
+              child: IgnorePointer(
+                child: Container(
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        Colors.black.withValues(alpha: 0.65),
+                        Colors.transparent,
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+
+          // ── Bottom gradient scrim ──────────────────────────────────────
+          if (_controlsVisible)
+            Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              height: 130,
+              child: IgnorePointer(
+                child: Container(
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.bottomCenter,
+                      end: Alignment.topCenter,
+                      colors: [
+                        Colors.black.withValues(alpha: 0.75),
+                        Colors.transparent,
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+
+          // ── Top bar ───────────────────────────────────────────────────
+          if (_controlsVisible)
+            Positioned(
+              top: 0,
+              left: 0,
+              right: 0,
               child: SafeArea(
                 child: PremiumVideoTopBar(
                   title: widget.videoTitle,
@@ -171,9 +200,18 @@ class _FullscreenMediaOverlayState extends State<FullscreenMediaOverlay> {
                   showHanzi: _showHanzi,
                   showPinyin: _showPinyin,
                   showEnglish: _showEnglish,
-                  onToggleHanzi: (v) { _onUserInteraction(); setState(() => _showHanzi = v); },
-                  onTogglePinyin: (v) { _onUserInteraction(); setState(() => _showPinyin = v); },
-                  onToggleEnglish: (v) { _onUserInteraction(); setState(() => _showEnglish = v); },
+                  onToggleHanzi: (v) {
+                    _onUserInteraction();
+                    setState(() => _showHanzi = v);
+                  },
+                  onTogglePinyin: (v) {
+                    _onUserInteraction();
+                    setState(() => _showPinyin = v);
+                  },
+                  onToggleEnglish: (v) {
+                    _onUserInteraction();
+                    setState(() => _showEnglish = v);
+                  },
                   playbackRate: widget.playbackRate,
                   onSpeedChanged: widget.onSpeedChanged,
                   subtitleBgOpacity: _subtitleBgOpacity,
@@ -185,16 +223,29 @@ class _FullscreenMediaOverlayState extends State<FullscreenMediaOverlay> {
               ),
             ),
 
-          // Subtitles — floated above bottom bar
+          // ── Center play/pause tap zone (when controls hidden) ─────────
+          // This handles tapping the center to toggle play/pause visually
+          if (!_controlsVisible)
+            Positioned.fill(
+              child: GestureDetector(
+                behavior: HitTestBehavior.translucent,
+                onTap: _onUserInteraction,
+              ),
+            ),
+
+          // ── Subtitles — sit just above the bottom bar ─────────────────
           Positioned(
-            left: 40,
-            right: 40,
-            bottom: _controlsVisible ? 130 : 24,
+            left: 48,
+            right: widget.isShadowingMode ? 80 : 48,
+            bottom: _controlsVisible ? 100 : 20,
             child: PremiumSubtitlesOverlay(
               transcript: widget.transcript,
               currentIndex: widget.currentIndex,
               currentPosition: widget.currentPosition,
-              onWordTapped: widget.onWordTapped,
+              onWordTapped: (word) {
+                _onUserInteraction();
+                widget.onWordTapped(word);
+              },
               showHanzi: _showHanzi,
               showPinyin: _showPinyin,
               showEnglish: _showEnglish,
@@ -202,12 +253,12 @@ class _FullscreenMediaOverlayState extends State<FullscreenMediaOverlay> {
             ),
           ),
 
-          // Bottom Bar
+          // ── Bottom bar (YouTube-style controls) ───────────────────────
           if (_controlsVisible)
             Positioned(
-              bottom: 16,
-              left: 16,
-              right: 16,
+              bottom: 0,
+              left: 0,
+              right: 0,
               child: SafeArea(
                 child: PremiumVideoBottomBar(
                   controller: widget.controller,
@@ -220,45 +271,182 @@ class _FullscreenMediaOverlayState extends State<FullscreenMediaOverlay> {
               ),
             ),
 
-          // Shadowing Mode Button (Right aligned)
+          // ── Shadow mic pill (small, bottom-right corner) ──────────────
           if (widget.isShadowingMode)
             Positioned(
-              right: 24,
-              top: MediaQuery.of(context).size.height / 2 - 28,
-              child: FloatingActionButton.extended(
-                onPressed: () {
+              bottom: _controlsVisible ? 90 : 20,
+              right: 20,
+              child: GestureDetector(
+                onTap: () {
                   _onUserInteraction();
                   widget.onToggleRecord();
                 },
-                backgroundColor: widget.isRecording ? Colors.red : Colors.indigo,
-                icon: Icon(widget.isRecording ? Icons.stop : Icons.mic, color: Colors.white),
-                label: Text(widget.isRecording ? "Stop" : "Hold to Speak", style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+                child: AnimatedContainer(
+                  duration: const Duration(milliseconds: 200),
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 14, vertical: 10),
+                  decoration: BoxDecoration(
+                    color: widget.isRecording
+                        ? Colors.red
+                        : Colors.black.withValues(alpha: 0.7),
+                    borderRadius: BorderRadius.circular(50),
+                    border: Border.all(
+                      color: widget.isRecording
+                          ? Colors.redAccent
+                          : Colors.white38,
+                      width: 1.5,
+                    ),
+                    boxShadow: [
+                      if (widget.isRecording)
+                        BoxShadow(
+                          color: Colors.red.withValues(alpha: 0.4),
+                          blurRadius: 12,
+                          spreadRadius: 2,
+                        ),
+                    ],
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(
+                        widget.isRecording ? Icons.stop_rounded : Icons.mic,
+                        color: Colors.white,
+                        size: 18,
+                      ),
+                      if (widget.isRecording) ...[
+                        const SizedBox(width: 6),
+                        const Text(
+                          'Stop',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 13,
+                              fontWeight: FontWeight.w600),
+                        ),
+                      ],
+                    ],
+                  ),
+                ),
               ),
             ),
-            
-          // Shadow Feedback Banner
-          if (widget.isShadowingMode && widget.shadowFeedback.isNotEmpty)
+
+          // ── Sparkline feedback pill (slides in from top) ───────────────
+          if (_lastFeedback.isNotEmpty)
             Positioned(
-              top: 100,
+              top: 70,
               left: 0,
               right: 0,
-              child: Center(
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-                  decoration: BoxDecoration(
-                    color: Colors.black.withValues(alpha: 0.8),
-                    borderRadius: BorderRadius.circular(20),
-                    border: Border.all(color: widget.isRecording ? Colors.red : Colors.green),
-                  ),
-                  child: Text(
-                    widget.shadowFeedback,
-                    style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+              child: SlideTransition(
+                position: _feedbackSlide,
+                child: Center(
+                  child: _SparklinePill(
+                    feedback: _lastFeedback,
+                    isGood: _isGoodScore(_lastFeedback),
                   ),
                 ),
               ),
             ),
         ],
       ),
+    );
+  }
+}
+
+/// A compact pill that shows score + a tiny sparkline bar graph.
+class _SparklinePill extends StatelessWidget {
+  final String feedback;
+  final bool isGood;
+
+  const _SparklinePill({required this.feedback, required this.isGood});
+
+  @override
+  Widget build(BuildContext context) {
+    final color = isGood ? const Color(0xFF4CAF50) : const Color(0xFFFF5252);
+    // Extract numeric score if present e.g. "Score: 82/100"
+    final match = RegExp(r'(\d+)/100').firstMatch(feedback);
+    final score = match != null ? int.tryParse(match.group(1)!) ?? 0 : null;
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
+      decoration: BoxDecoration(
+        color: Colors.black.withValues(alpha: 0.82),
+        borderRadius: BorderRadius.circular(40),
+        border: Border.all(color: color.withValues(alpha: 0.7), width: 1.5),
+        boxShadow: [
+          BoxShadow(
+            color: color.withValues(alpha: 0.25),
+            blurRadius: 16,
+            spreadRadius: 1,
+          ),
+        ],
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(
+            isGood ? Icons.check_circle_outline : Icons.mic_none,
+            color: color,
+            size: 18,
+          ),
+          const SizedBox(width: 8),
+          if (score != null) ...[
+            // Mini sparkline bar
+            _MiniScoreBar(score: score, color: color),
+            const SizedBox(width: 10),
+            Text(
+              '$score/100',
+              style: TextStyle(
+                  color: color,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w700,
+                  letterSpacing: 0.5),
+            ),
+            const SizedBox(width: 8),
+          ],
+          Flexible(
+            child: Text(
+              score != null
+                  ? (isGood ? '好！Keep it up' : 'Keep practicing')
+                  : feedback,
+              style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 13,
+                  fontWeight: FontWeight.w500),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _MiniScoreBar extends StatelessWidget {
+  final int score;
+  final Color color;
+
+  const _MiniScoreBar({required this.score, required this.color});
+
+  @override
+  Widget build(BuildContext context) {
+    // 5-segment sparkline
+    const segments = 5;
+    final filled = ((score / 100) * segments).round();
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: List.generate(segments, (i) {
+        return Container(
+          width: 6,
+          height: i < segments - 1 ? 10 + (i * 3).toDouble() : 22,
+          margin: const EdgeInsets.symmetric(horizontal: 1.5),
+          decoration: BoxDecoration(
+            color: i < filled
+                ? color
+                : Colors.white.withValues(alpha: 0.2),
+            borderRadius: BorderRadius.circular(2),
+          ),
+        );
+      }),
     );
   }
 }
