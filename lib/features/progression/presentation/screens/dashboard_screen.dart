@@ -112,36 +112,37 @@ class DashboardScreen extends ConsumerWidget {
                     onNavigate(3);
                   },
                   child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+                    padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 18),
                     decoration: BoxDecoration(
-                      color: theme.colorScheme.surface,
+                      color: Colors.white.withOpacity(0.6),
                       borderRadius: BorderRadius.circular(30),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withValues(alpha: 0.03),
-                          blurRadius: 30,
+                          color: Colors.black.withOpacity(0.04),
+                          blurRadius: 20,
                           offset: const Offset(0, 8),
                         ),
                       ],
                     ),
                     child: Row(
                       children: [
-                        Icon(Icons.search, color: theme.colorScheme.onSurface.withValues(alpha: 0.4)),
+                        Icon(Icons.search, color: theme.colorScheme.onSurface.withOpacity(0.4), size: 24),
                         const SizedBox(width: 16),
                         Text(
                           l10n?.searchHanziOrPinyin ?? "Search Hanzi or Pinyin...",
                           style: theme.textTheme.titleMedium?.copyWith(
-                            color: theme.colorScheme.onSurface.withValues(alpha: 0.4),
+                            color: theme.colorScheme.onSurface.withOpacity(0.5),
+                            fontWeight: FontWeight.w500,
                           ),
                         ),
                         const Spacer(),
-                        Icon(Icons.arrow_forward_ios, size: 16, color: theme.colorScheme.onSurface.withValues(alpha: 0.2)),
+                        Icon(Icons.arrow_forward_ios, size: 16, color: theme.colorScheme.onSurface.withOpacity(0.3)),
                       ],
                     ),
                   ),
                 ).animate(delay: 150.ms)
                  .fade(duration: 600.ms, curve: Curves.easeOutCubic)
-                 .slideY(begin: 0.1, end: 0, duration: 600.ms, curve: Curves.easeOutCubic),
+                 .slideY(begin: 0.05, end: 0, duration: 600.ms, curve: Curves.easeOutCubic),
               ),
             ),
 
@@ -163,35 +164,21 @@ class DashboardScreen extends ConsumerWidget {
                       ),
                     ),
                     const SizedBox(height: 16),
-                    Container(
-                      padding: const EdgeInsets.all(20),
-                      decoration: BoxDecoration(
-                        color: theme.colorScheme.surface,
-                        borderRadius: BorderRadius.circular(24),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withValues(alpha: 0.03),
-                            blurRadius: 30,
-                            offset: const Offset(0, 10),
-                          ),
-                        ],
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          _ForecastItem(title: l10n?.laterToday ?? "Later Today", count: dueLaterToday, theme: theme),
-                          Container(width: 1, height: 40, color: theme.colorScheme.onSurface.withValues(alpha: 0.1)),
-                          _ForecastItem(title: l10n?.tomorrow ?? "Tomorrow", count: dueTomorrow, theme: theme),
-                          Container(width: 1, height: 40, color: theme.colorScheme.onSurface.withValues(alpha: 0.1)),
-                          _ForecastItem(title: l10n?.next7Days ?? "Next 7 Days", count: dueNext7Days, theme: theme),
-                        ],
-                      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(child: _ForecastItem(title: l10n?.laterToday ?? "Later Today", count: dueLaterToday, theme: theme)),
+                        const SizedBox(width: 12),
+                        Expanded(child: _ForecastItem(title: l10n?.tomorrow ?? "Tomorrow", count: dueTomorrow, theme: theme)),
+                        const SizedBox(width: 12),
+                        Expanded(child: _ForecastItem(title: l10n?.next7Days ?? "Next 7 Days", count: dueNext7Days, theme: theme)),
+                      ],
                     ),
                   ],
                 ),
               ).animate(delay: 300.ms)
                .fade(duration: 600.ms, curve: Curves.easeOutCubic)
-               .slideY(begin: 0.1, end: 0, duration: 600.ms, curve: Curves.easeOutCubic),
+               .slideY(begin: 0.05, end: 0, duration: 600.ms, curve: Curves.easeOutCubic),
             ),
 
             const SliverToBoxAdapter(child: SizedBox(height: 40)),
@@ -292,15 +279,19 @@ class DashboardScreen extends ConsumerWidget {
                         return Padding(
                           padding: const EdgeInsets.only(bottom: 12.0),
                           child: Container(
-                            padding: const EdgeInsets.all(20),
+                            padding: const EdgeInsets.all(24),
                             decoration: BoxDecoration(
-                              color: theme.colorScheme.primary,
-                              borderRadius: BorderRadius.circular(20),
+                              gradient: const LinearGradient(
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                                colors: [Color(0xFF3F51B5), Color(0xFF1A237E)], // Indigo gradient
+                              ),
+                              borderRadius: BorderRadius.circular(24),
                               boxShadow: [
                                 BoxShadow(
-                                  color: theme.colorScheme.primary.withValues(alpha: 0.3),
-                                  blurRadius: 10,
-                                  offset: const Offset(0, 4),
+                                  color: const Color(0xFF1A237E).withOpacity(0.4),
+                                  blurRadius: 20,
+                                  offset: const Offset(0, 8),
                                 ),
                               ],
                             ),
@@ -354,10 +345,12 @@ class DashboardScreen extends ConsumerWidget {
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor: theme.colorScheme.onPrimary,
                                     foregroundColor: theme.colorScheme.primary,
-                                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                                    padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
                                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                                    elevation: 4,
+                                    shadowColor: Colors.black.withOpacity(0.3),
                                   ),
-                                  child: Text(l10n?.begin ?? "Begin", style: const TextStyle(fontWeight: FontWeight.bold)),
+                                  child: Text(l10n?.begin ?? "Begin", style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 16)),
                                 ),
                               ],
                             ),
@@ -403,24 +396,40 @@ class _ForecastItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 12),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.04),
+            blurRadius: 16,
+            offset: const Offset(0, 6),
+          ),
+        ],
+      ),
+      child: Column(
+        children: [
           Text(
             count.toString(),
             style: theme.textTheme.headlineLarge?.copyWith(
-              fontWeight: FontWeight.bold,
-              color: theme.colorScheme.primary,
+              fontWeight: FontWeight.w900,
+              color: const Color(0xFF2A2D34),
             ),
           ),
-        const SizedBox(height: 4),
-        Text(
-          title,
-          style: theme.textTheme.bodySmall?.copyWith(
-            color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
-            fontWeight: FontWeight.bold,
+          const SizedBox(height: 8),
+          Text(
+            title,
+            style: theme.textTheme.bodySmall?.copyWith(
+              color: const Color(0xFF2A2D34).withOpacity(0.6),
+              fontWeight: FontWeight.w600,
+              letterSpacing: 0.2,
+            ),
+            textAlign: TextAlign.center,
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

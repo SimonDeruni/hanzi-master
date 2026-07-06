@@ -24,6 +24,7 @@ import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart'
 import 'package:hanzi_master/shared/widgets/tappable_hanzi_text.dart';
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/radical_library_screen.dart';
+import 'package:hanzi_master/features/course/presentation/screens/tome_manager_screen.dart' as hanzi_tome;
 import 'package:hanzi_master/shared/widgets/global_sliver_app_bar.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/core/utils/definition_formatter.dart';
@@ -437,6 +438,42 @@ class _DictionarySearchTab extends ConsumerWidget {
                                   ),
                                 ),
                                 Icon(Icons.arrow_forward_ios, color: Colors.white70, size: 16),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 24),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => const hanzi_tome.TomeManagerScreen()));
+                          },
+                          borderRadius: BorderRadius.circular(16),
+                          child: Container(
+                            width: double.infinity,
+                            padding: const EdgeInsets.all(20),
+                            decoration: BoxDecoration(
+                              color: Theme.of(context).colorScheme.primary.withOpacity(0.1),
+                              borderRadius: BorderRadius.circular(16),
+                              border: Border.all(color: Theme.of(context).colorScheme.primary.withOpacity(0.2)),
+                            ),
+                            child: Row(
+                              children: [
+                                Icon(Icons.download_for_offline_outlined, color: Theme.of(context).colorScheme.primary, size: 28),
+                                SizedBox(width: 16),
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text("HSK Collections", style: TextStyle(color: Theme.of(context).colorScheme.primary, fontSize: 18, fontWeight: FontWeight.bold)),
+                                      SizedBox(height: 4),
+                                      Text("Download official HSK collections", style: TextStyle(color: Theme.of(context).colorScheme.primary.withOpacity(0.8), fontSize: 13)),
+                                    ],
+                                  ),
+                                ),
+                                Icon(Icons.arrow_forward_ios, color: Theme.of(context).colorScheme.primary, size: 16),
                               ],
                             ),
                           ),

@@ -573,6 +573,88 @@ Output JSON matching this exact structure:
     }
   }
 
+  Future<Map<String, dynamic>> analyzeSceneObjects(List<int> bytes, List<String> currentLabels, String languageCode) async {
+    final labelsStr = currentLabels.map((l) => '"$l"').join(', ');
+    final prompt = '''
+The user has pointed their camera at a scene. An on-device object detection model found these generic labels: [$labelsStr].
+Look at the image carefully and identify exactly what specific objects correspond to those generic labels in this scene. 
+Additionally, list any other prominent objects you see in the scene.
+Return the exact Chinese vocabulary word for all these specific objects.
+
+Output JSON matching this exact structure:
+{
+  "updatedLabels": {
+    "generic label from the list": {
+      "hanzi": "汉字",
+      "pinyin": "pinyin",
+      "meaning": "Meaning in ISO 639-1 code $languageCode",
+      "hskLevel": 1
+    }
+  },
+  "allObjects": [
+    {
+      "hanzi": "汉字",
+      "pinyin": "pinyin",
+      "meaning": "Meaning in ISO 639-1 code $languageCode",
+      "hskLevel": 1
+    }
+  ]
+}
+
+Make sure "updatedLabels" maps the exact string from the provided generic labels to the specific object you found in the scene. If a generic label is completely wrong or not in the scene, you can omit it.
+''';
+    final base64Image = base64Encode(bytes);
+    
+    try {
+      final text = await makeOpenRouterCall(
+        model: 'google/gemini-2.5-flash',
+        messages: [
+          {
+            'role': 'user',
+            'content': [
+              {'type': 'text', 'text': prompt},
+              {
+                'type': 'image_url',
+                'image_url': {'url': 'data:image/jpeg;base64,$base64Image'}
+              }
+            ]
+          }
+        ],
+        jsonMode: true,
+      );
+      
+      if (text.isNotEmpty) {
+        final cleanText = text.replaceAll(RegExp(r'^```json\n', multiLine: true), '')
+                              .replaceAll(RegExp(r'^```\n?', multiLine: true), '');
+        final json = jsonDecode(cleanText);
+        
+        final Map<String, AiWord> updatedLabels = {};
+        if (json['updatedLabels'] != null) {
+          (json['updatedLabels'] as Map<String, dynamic>).forEach((key, value) {
+            updatedLabels[key] = AiWord.fromJson(value);
+          });
+        }
+        
+        final List<AiWord> allObjects = [];
+        if (json['allObjects'] != null) {
+          for (var item in json['allObjects']) {
+            allObjects.add(AiWord.fromJson(item));
+          }
+        }
+        
+        analytics.logApiUsage(apiName: 'openrouter', feature: 'ar_scene_analyze', success: true);
+        return {
+          'updatedLabels': updatedLabels,
+          'allObjects': allObjects,
+        };
+      }
+      throw Exception("Empty response from Vision model");
+    } catch (e) {
+      analytics.logApiUsage(apiName: 'openrouter', feature: 'ar_scene_analyze', success: false);
+      rethrow;
+    }
+  }
+
   Future<Flashcard> translateObject(String label) async {
     final prompt = '''
 Translate the English object label "$label" into Chinese.

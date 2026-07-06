@@ -22,51 +22,39 @@ class TomeManagerScreen extends ConsumerWidget {
     final List<Map<String, dynamic>> catalog = [
       {
         'id': 'hsk1',
-        'title': 'HSK 1: The Foundation',
-        'description': '150 core characters to begin your journey. Essential concepts of water, fire, and sky.',
-        'size': 'Built-in',
+        'title': 'HSK 1: Foundation',
+        'cards': '154 cards',
         'level': 1,
-        'isPremium': false,
       },
       {
         'id': 'hsk2',
-        'title': 'HSK 2: The Expansion',
-        'description': '162 new words to unlock the next level of fluency in modern communication.',
-        'size': '78 KB',
+        'title': 'HSK 2: Elementary',
+        'cards': '162 cards',
         'level': 2,
-        'isPremium': true,
       },
       {
         'id': 'hsk3',
-        'title': 'HSK 3: The Intermediate',
-        'description': '300 new words to express deeper thoughts and hold engaging conversations.',
-        'size': '150 KB',
+        'title': 'HSK 3: Intermediate',
+        'cards': '299 cards',
         'level': 3,
-        'isPremium': true,
       },
       {
         'id': 'hsk4',
-        'title': 'HSK 4: The Advanced',
-        'description': '600 new words to master advanced topics and read authentic materials.',
-        'size': '250 KB',
+        'title': 'HSK 4: Upper Intermediate',
+        'cards': '602 cards',
         'level': 4,
-        'isPremium': true,
       },
       {
         'id': 'hsk5',
-        'title': 'HSK 5: The Proficient',
-        'description': '1300 new words to achieve fluency and communicate naturally like a native.',
-        'size': '500 KB',
+        'title': 'HSK 5: Advanced',
+        'cards': '1300 cards',
         'level': 5,
-        'isPremium': true,
       },
       {
         'id': 'hsk6',
-        'title': 'HSK 6: The Master',
-        'description': '2500 new words. True mastery of the language and culture.',
-        'size': '1 MB',
+        'title': 'HSK 6: Mastery',
+        'cards': '2500 cards',
         'level': 6,
-        'isPremium': true,
       }
     ];
 
@@ -138,7 +126,11 @@ class TomeManagerScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(l10n?.tomeLibrary ?? "Tome Library"),
+        title: const Text("HSK Collections", style: TextStyle(fontWeight: FontWeight.bold)),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        iconTheme: IconThemeData(color: inkColor),
+        titleTextStyle: TextStyle(color: inkColor, fontSize: 20, fontWeight: FontWeight.bold),
       ),
       body: CalligraphyBackground(
         child: asyncCards.when(
@@ -185,121 +177,72 @@ class _TomeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
-    final bool isDark = Theme.of(context).brightness == Brightness.dark;
+    final theme = Theme.of(context);
+    final bool isDark = theme.brightness == Brightness.dark;
     
     return Container(
-      margin: const EdgeInsets.only(bottom: 24),
+      margin: const EdgeInsets.only(bottom: 16),
       decoration: BoxDecoration(
-        color: isDark ? const Color(0xFF252526) : Colors.white.withValues(alpha: 0.8),
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: inkColor.withValues(alpha: 0.1)),
+        color: isDark ? const Color(0xFF252526) : const Color(0xFFF9F9F9),
+        borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: inkColor.withValues(alpha: 0.05),
-            blurRadius: 15,
-            offset: const Offset(0, 8),
+            color: Colors.black.withOpacity(0.04),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
           )
         ],
       ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(12),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            if (isInstalled)
-              Container(
-                width: double.infinity,
-                padding: const EdgeInsets.symmetric(vertical: 4),
-                color: const Color(0xFF43A047),
-                child: Text(
-                  AppLocalizations.of(context)!.installed,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.bold, letterSpacing: 1.5),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          borderRadius: BorderRadius.circular(16),
+          onTap: isInstalled ? onUninstall : onInstall,
+          child: Padding(
+            padding: const EdgeInsets.all(20),
+            child: Row(
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFE0F2F1), // Soft teal
+                    shape: BoxShape.circle,
+                  ),
+                  child: const Icon(
+                    Icons.folder,
+                    color: Color(0xFF00897B), // Darker teal
+                    size: 28,
+                  ),
                 ),
-              ),
-            Padding(
-              padding: const EdgeInsets.all(20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        child: Text(
-                          tome['title'].toUpperCase(),
-                          style: TextStyle(
-                            fontSize: 18, 
-                            fontWeight: FontWeight.w900, 
-                            letterSpacing: 0.5,
-                            color: inkColor
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 12),
-                  Text(
-                    tome['description'],
-                    style: TextStyle(
-                      color: inkColor.withValues(alpha: 0.6),
-                      fontSize: 14,
-                      height: 1.5,
-                      fontStyle: FontStyle.italic
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                const SizedBox(width: 20),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "SIZE: ${tome['size']}",
-                        style: TextStyle(
-                          fontSize: 11, 
-                          fontWeight: FontWeight.bold, 
-                          color: inkColor.withValues(alpha: 0.4)
+                        tome['title'],
+                        style: theme.textTheme.titleMedium?.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: isDark ? Colors.white : Colors.black87,
                         ),
                       ),
-                      
-                      if (tome['level'] == 1)
-                        Text(
-                          AppLocalizations.of(context)!.coreModule,
-                          style: TextStyle(
-                            fontSize: 11,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.blueGrey.shade400
-                          ),
-                        )
-                      else if (isInstalled)
-                        TextButton.icon(
-                          onPressed: onUninstall,
-                          icon: const Icon(Icons.delete_outline, size: 16),
-                          label: Text(l10n?.uninstallButton ?? "UNINSTALL"),
-                          style: TextButton.styleFrom(
-                            foregroundColor: const Color(0xFFE53935),
-                            textStyle: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-                          ),
-                        )
-                      else
-                        ElevatedButton.icon(
-                          onPressed: onInstall,
-                          icon: const Icon(Icons.file_download_outlined, size: 18),
-                          label: Text(l10n?.installTome ?? "INSTALL TOME"),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: inkColor,
-                            foregroundColor: isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
-                            elevation: 0,
-                            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-                          ),
+                      const SizedBox(height: 4),
+                      Text(
+                        tome['cards'],
+                        style: theme.textTheme.bodySmall?.copyWith(
+                          color: isDark ? Colors.white54 : Colors.black54,
                         ),
+                      ),
                     ],
-                  )
-                ],
-              ),
+                  ),
+                ),
+                if (isInstalled)
+                  const Icon(Icons.check_circle, color: Color(0xFF43A047), size: 24)
+                else
+                  Icon(Icons.arrow_forward_ios_rounded, size: 16, color: isDark ? Colors.white38 : Colors.black26),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );

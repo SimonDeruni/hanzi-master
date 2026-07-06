@@ -668,6 +668,18 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                 if (!_showingResults && !_showingInteractiveImage && _isCameraInitialized)
                   _buildZoomSlider(),
                   
+                if (_isArLensMode && !_showingResults && !_showingInteractiveImage && _isCameraInitialized)
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 16.0),
+                    child: FloatingActionButton.extended(
+                      onPressed: _deepAnalyzeScene,
+                      icon: const Icon(Icons.auto_awesome),
+                      label: const Text('Deep Analysis'),
+                      backgroundColor: theme.colorScheme.primaryContainer,
+                      foregroundColor: theme.colorScheme.onPrimaryContainer,
+                    ),
+                  ),
+
                 // Bottom Control Panel
                 if (!_showingResults)
                   _buildBottomControls(theme, l10n),
@@ -677,6 +689,73 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
         ],
       ),
     );
+  }
+
+  Future<void> _deepAnalyzeScene() async {
+    if (_cameraController == null || !_cameraController!.value.isInitialized || _isScanning || _isLookingUp) return;
+    
+    HapticsManager.light();
+    setState(() {
+      _isLookingUp = true;
+    });
+
+    try {
+      if (_cameraController!.value.isStreamingImages) {
+        await _cameraController!.stopImageStream();
+      }
+      
+      final image = await _cameraController!.takePicture();
+      final bytes = await image.readAsBytes();
+      
+      final langCode = ref.read(translationLanguageProvider);
+      
+      final Set<String> currentLabels = {};
+      for (final obj in _detectedObjects) {
+        if (obj.labels.isNotEmpty) {
+          currentLabels.add(obj.labels.first.text);
+        }
+      }
+      
+      final result = await _geminiService.analyzeSceneObjects(bytes, currentLabels.toList(), langCode);
+      
+      final updatedLabels = result['updatedLabels'] as Map<String, AiWord>;
+      final allObjects = result['allObjects'] as List<AiWord>;
+      
+      if (mounted) {
+        setState(() {
+          _isLookingUp = false;
+          _showingResults = true;
+          _matchedCharacters = allObjects;
+          
+          final newCache = Map<String, Flashcard>.from(_translationCache);
+          updatedLabels.forEach((label, aiWord) {
+            newCache[label] = Flashcard(
+              id: '',
+              hanzi: aiWord.hanzi,
+              pinyin: aiWord.pinyin,
+              definition: aiWord.meaning,
+              hskLevel: aiWord.hskLevel,
+              strokePaths: const [],
+              modeStats: const {},
+            );
+          });
+          _translationCache = newCache;
+        });
+        
+        if (_isArLensMode) {
+          _cameraController!.startImageStream(_processCameraImage);
+        }
+      }
+    } catch (e) {
+      debugPrint("Deep Analyze Error: $e");
+      if (mounted) {
+        setState(() => _isLookingUp = false);
+        if (_isArLensMode) {
+          _cameraController!.startImageStream(_processCameraImage);
+        }
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('AI Scene Analysis Failed')));
+      }
+    }
   }
   
   Widget _buildMainContent(ThemeData theme, AppLocalizations l10n) {
@@ -706,13 +785,15 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                children: [
                   IconButton(
                     icon: const Icon(Icons.close, color: Colors.white),
-                    onPressed: () {
-                      setState(() {
-                        _showingResults = false;
-                        _showingInteractiveImage = true; // Go back to interactive image
-                      });
-                    }
-                  ),
+                      onPressed: () {
+                        setState(() {
+                          _showingResults = false;
+                          if (_capturedImage != null && !_isArLensMode) {
+                            _showingInteractiveImage = true; // Go back to interactive image
+                          }
+                        });
+                      }
+                    ),
                   Text("Results", style: theme.textTheme.titleMedium?.copyWith(color: Colors.white)),
                   const SizedBox(width: 48), // balance
                ]

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
-import '../../../course/presentation/screens/tome_manager_screen.dart' as hanzi_tome;
+
 import '../providers/settings_controller.dart';
 import 'package:hanzi_master/core/services/audio_service.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
@@ -29,47 +29,12 @@ class SettingsScreen extends ConsumerWidget {
         children: [
 
 
-          _buildSectionHeader(l10n?.learningPreferences ?? "Learning Preferences", theme),
-          _buildSettingsCard(
-            context: context,
-            children: [
-              _buildSwitchTile(
-                icon: Icons.visibility_off,
-                iconColor: Colors.deepPurple,
-                title: l10n?.hardMode ?? "Hard Mode (Hide Pinyin)",
-                subtitle: l10n?.hardModeDesc ?? "Blur Pinyin for a tougher challenge",
-                value: settings.isHardMode,
-                onChanged: (val) => ref.read(settingsProvider.notifier).toggleHardMode(val),
-              ),
-              _buildDivider(),
-              _buildSliderTile(
-                icon: Icons.school,
-                iconColor: Colors.blue,
-                title: l10n?.adaptiveGuidance ?? "Adaptive Guidance",
-                subtitle: l10n?.hideStrokeGuideStreak(settings.guideDisappearanceStreak) ?? "Hide stroke guide at streak: ${settings.guideDisappearanceStreak}",
-                value: settings.guideDisappearanceStreak.toDouble(),
-                min: 1.0,
-                max: 5.0,
-                divisions: 4,
-                onChanged: (val) => ref.read(settingsProvider.notifier).setGuideDisappearanceStreak(val.toInt()),
-              ),
-            ],
-          ),
-          const SizedBox(height: 24),
           
           _buildSectionHeader(l10n?.audioAndHaptics ?? "Audio & Haptics", theme),
           _buildSettingsCard(
             context: context,
             children: [
-              _buildSwitchTile(
-                icon: Icons.volume_up,
-                iconColor: Colors.teal,
-                title: l10n?.autoPlayAudio ?? "Auto-Play Pronunciation",
-                subtitle: l10n?.autoPlayDesc ?? "Hear audio when revealing cards",
-                value: settings.autoPlayAudio,
-                onChanged: (val) => ref.read(settingsProvider.notifier).toggleAutoPlayAudio(val),
-              ),
-              _buildDivider(),
+
               _buildSwitchTile(
                 icon: Icons.vibration,
                 iconColor: Colors.orange,
@@ -101,38 +66,7 @@ class SettingsScreen extends ConsumerWidget {
           _buildSettingsCard(
             context: context,
             children: [
-              ListTile(
-                leading: const Icon(Icons.language, color: Colors.blueAccent),
-                title: Text(l10n?.appLanguage ?? "App Language"),
-                subtitle: Text(_getLanguageName(settings.locale)),
-                trailing: DropdownButton<String>(
-                  value: settings.locale,
-                  underline: const SizedBox(),
-                  items: const [
-                    DropdownMenuItem(value: 'en', child: Text('English')),
-                    DropdownMenuItem(value: 'zh', child: Text('中文')),
-                    DropdownMenuItem(value: 'es', child: Text('Español')),
-                    DropdownMenuItem(value: 'fr', child: Text('Français')),
-                    DropdownMenuItem(value: 'de', child: Text('Deutsch')),
-                    DropdownMenuItem(value: 'ja', child: Text('日本語')),
-                    DropdownMenuItem(value: 'ko', child: Text('한국어')),
-                    DropdownMenuItem(value: 'ru', child: Text('Русский')),
-                    DropdownMenuItem(value: 'ar', child: Text('العربية')),
-                    DropdownMenuItem(value: 'hi', child: Text('हिन्दी')),
-                    DropdownMenuItem(value: 'pt', child: Text('Português')),
-                    DropdownMenuItem(value: 'it', child: Text('Italiano')),
-                    DropdownMenuItem(value: 'tr', child: Text('Türkçe')),
-                    DropdownMenuItem(value: 'vi', child: Text('Tiếng Việt')),
-                    DropdownMenuItem(value: 'id', child: Text('Bahasa Indonesia')),
-                  ],
-                  onChanged: (String? newLocale) {
-                    if (newLocale != null) {
-                      ref.read(settingsProvider.notifier).setLocale(newLocale);
-                    }
-                  },
-                ),
-              ),
-              _buildDivider(),
+
               _buildSwitchTile(
                 icon: Icons.dark_mode,
                 iconColor: Colors.indigo,
@@ -153,19 +87,7 @@ class SettingsScreen extends ConsumerWidget {
                 divisions: 15,
                 onChanged: (val) => ref.read(settingsProvider.notifier).setAnimationSpeed(val),
               ),
-              _buildDivider(),
-              ListTile(
-                leading: const CircleAvatar(
-                  backgroundColor: Color(0xFFE8EAF6),
-                  child: Icon(Icons.library_books, color: Colors.indigo),
-                ),
-                title: Text(l10n?.manageTomes ?? "Manage Tomes", style: const TextStyle(fontWeight: FontWeight.w600)),
-                subtitle: Text(l10n?.manageTomesDesc ?? "Download HSK expansions"),
-                trailing: const Icon(Icons.chevron_right, color: Colors.grey),
-                onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const hanzi_tome.TomeManagerScreen()));
-                },
-              ),
+
             ],
           ),
           const SizedBox(height: 24),

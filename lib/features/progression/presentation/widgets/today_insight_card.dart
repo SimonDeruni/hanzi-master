@@ -40,14 +40,18 @@ class TodayInsightCard extends ConsumerWidget {
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
-          color: const Color(0xFF1E1E1E),
+          gradient: const LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [Color(0xFF2A2D34), Color(0xFF121212)],
+          ),
           borderRadius: BorderRadius.circular(24),
-          border: Border.all(color: Colors.white.withOpacity(0.05)),
+          border: Border.all(color: Colors.white.withOpacity(0.08), width: 1.5),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.2),
-              blurRadius: 20,
-              offset: const Offset(0, 10),
+              color: Colors.black.withOpacity(0.3),
+              blurRadius: 24,
+              offset: const Offset(0, 12),
             )
           ],
         ),
@@ -57,19 +61,19 @@ class TodayInsightCard extends ConsumerWidget {
             children: [
               // Subtle animated background or texture
               Positioned(
-                right: -40,
-                bottom: -40,
+                right: -30,
+                bottom: -50,
                 child: Opacity(
-                  opacity: 0.05,
+                  opacity: 0.04,
                   child: Text(
                     todayWord['hanzi']!,
                     style: const TextStyle(
-                      fontSize: 200,
+                      fontSize: 220,
                       fontWeight: FontWeight.bold,
                       fontFamily: 'NotoSerifSC',
-                      color: Colors.white24,
+                      color: Colors.white,
                       height: 1,
-                      shadows: [Shadow(color: Colors.white30, blurRadius: 20)],
+                      shadows: [Shadow(color: Colors.white24, blurRadius: 30)],
                     ),
                   ),
                 ),
@@ -77,7 +81,7 @@ class TodayInsightCard extends ConsumerWidget {
               
               // Content
               Padding(
-                padding: const EdgeInsets.all(20.0),
+                padding: const EdgeInsets.all(24.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -85,11 +89,11 @@ class TodayInsightCard extends ConsumerWidget {
                       "TODAY'S WORD",
                       style: theme.textTheme.labelSmall?.copyWith(
                         color: const Color(0xFFD4C4A8),
-                        fontWeight: FontWeight.w600,
-                        letterSpacing: 2.5,
+                        fontWeight: FontWeight.w700,
+                        letterSpacing: 3.0,
                       ),
                     ),
-                    const SizedBox(height: 16),
+                    const SizedBox(height: 20),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
@@ -98,11 +102,14 @@ class TodayInsightCard extends ConsumerWidget {
                           style: theme.textTheme.displayMedium?.copyWith(
                             color: Colors.white,
                             fontFamily: 'NotoSerifSC',
-                            fontWeight: FontWeight.w500,
-                            height: 1.1,
+                            fontWeight: FontWeight.w900,
+                            height: 1.0,
+                            shadows: [
+                              Shadow(color: Colors.black.withOpacity(0.5), blurRadius: 10, offset: const Offset(0, 4)),
+                            ],
                           ),
                         ),
-                        const SizedBox(width: 20),
+                        const SizedBox(width: 24),
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -111,35 +118,38 @@ class TodayInsightCard extends ConsumerWidget {
                                 children: [
                                   Text(
                                     todayWord['pinyin']!,
-                                    style: theme.textTheme.titleMedium?.copyWith(
+                                    style: theme.textTheme.titleLarge?.copyWith(
                                       color: const Color(0xFFD4C4A8),
-                                      fontWeight: FontWeight.w500,
-                                      letterSpacing: 1.0,
+                                      fontWeight: FontWeight.w600,
+                                      letterSpacing: 0.5,
                                     ),
                                   ),
-                                  const SizedBox(width: 8),
+                                  const SizedBox(width: 12),
                                   GestureDetector(
                                     onTap: () => ref.read(audioServiceProvider).playCharacter(todayWord['hanzi']!),
                                     child: Container(
-                                      padding: const EdgeInsets.all(6),
+                                      padding: const EdgeInsets.all(8),
                                       decoration: BoxDecoration(
-                                        color: Colors.white.withValues(alpha: 0.1),
+                                        color: Colors.white.withOpacity(0.1),
                                         shape: BoxShape.circle,
                                       ),
-                                      child: const Icon(Icons.volume_up, size: 16, color: Color(0xFFD4C4A8)),
+                                      child: Icon(
+                                        Icons.volume_up_rounded,
+                                        size: 18,
+                                        color: Colors.white.withOpacity(0.9),
+                                      ),
                                     ),
                                   ),
                                 ],
                               ),
-                              const SizedBox(height: 4),
+                              const SizedBox(height: 8),
                               Text(
                                 todayWord['meaning']!,
                                 style: theme.textTheme.bodyLarge?.copyWith(
-                                  color: Colors.white.withValues(alpha: 0.7),
+                                  color: Colors.white.withOpacity(0.7),
+                                  fontWeight: FontWeight.w400,
                                   height: 1.3,
                                 ),
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
                               ),
                             ],
                           ),

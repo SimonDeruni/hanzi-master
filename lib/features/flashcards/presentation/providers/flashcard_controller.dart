@@ -17,12 +17,10 @@ class FlashcardController extends _$FlashcardController {
     return allCards.where((c) => c.deckId == deckId || (deckId == 'default' && c.deckId.isEmpty)).toList();
   }
 
-  /// One-time initialization logic (Auto-import HSK1)
+  /// One-time initialization logic
   Future<void> init() async {
-    final cards = await _loadFlashcards();
-    if (cards.isEmpty) {
-      await importHsk1();
-    }
+    // No longer auto-importing HSK 1. Decks must be downloaded manually.
+    await _loadFlashcards();
   }
 
   Future<List<Flashcard>> _loadFlashcards() async {
