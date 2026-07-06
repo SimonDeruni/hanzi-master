@@ -90,12 +90,17 @@ class NotificationPermissionScreen extends ConsumerWidget {
                 // Action Buttons
                 BouncingButton(
                   onPressed: () async {
-                    final service = ref.read(notificationServiceProvider);
-                    await service.init();
-                    await service.requestPermissions();
-                    // Schedule default daily drop at 9am
-                    await service.scheduleDailyDrop(9, 0);
-                    onComplete();
+                    try {
+                      final service = ref.read(notificationServiceProvider);
+                      await service.init();
+                      await service.requestPermissions();
+                      // Schedule default daily drop at 9am
+                      await service.scheduleDailyDrop(9, 0);
+                    } catch (e) {
+                      debugPrint('Error enabling notifications: $e');
+                    } finally {
+                      onComplete();
+                    }
                   },
                   child: Container(
                     padding: const EdgeInsets.symmetric(vertical: 18),
