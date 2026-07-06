@@ -1,11 +1,19 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:record/record.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:hanzi_master/core/services/audio_service.dart';
-import 'package:hanzi_master/core/services/gemini_service.dart';
+
+import '../../../core/services/audio_service.dart';
+import '../../../core/services/gemini_service.dart';
+import '../../../core/services/pitch_detector_service.dart';
+import '../../../core/utils/dtw_aligner.dart';
+import '../../../premium/presentation/screens/paywall_sheet.dart';
+import '../../../premium/domain/exceptions/premium_exceptions.dart';
+import 'package:hanzi_master/features/live_translate/presentation/widgets/tone_graph_painter.dart';
+import 'package:hanzi_master/features/live_translate/presentation/widgets/interactive_grading_text.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/core/providers/translation_language_provider.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/deck_controller.dart';
@@ -13,7 +21,7 @@ import 'package:hanzi_master/features/flashcards/presentation/providers/flashcar
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/study_mode.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/deck.dart';
-import 'package:hanzi_master/features/premium/presentation/screens/paywall_sheet.dart';
+
 enum ShadowingMode { freeFlow, theme, deck, customWord }
 
 class ShadowingStudioScreen extends ConsumerStatefulWidget {
@@ -42,6 +50,13 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
   bool _isRecording = false;
   bool _isGrading = false;
   Map<String, dynamic>? _lastGrade;
+  
+  // Tone Graph State
+  List<double?> _userPitch = [];
+  List<double?> _idealPitch = [];
+  double? _highlightStart;
+  double? _highlightEnd;
+  final _pitchService = PitchDetectorService();
   final List<Map<String, dynamic>> _weakCharacters = [];
   String? _errorMessage;
   String? _recordingPath;
@@ -93,6 +108,8 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
     setState(() {
       _isLoadingNextPhrase = true;
       _lastGrade = null;
+      _userPitch = [];
+      _idealPitch = [];
       _errorMessage = null;
       _sentenceCount++;
     });
@@ -176,6 +193,9 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
         final file = File(path);
         final bytes = await file.readAsBytes();
         
+        // Extract pitch for graph
+        final pitchArray = await _pitchService.extractPitchContour(bytes);
+        
         final geminiService = ref.read(geminiServiceProvider);
         final grade = await geminiService.gradeAudio(
           bytes,
@@ -186,6 +206,9 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
         if (mounted) {
           setState(() {
             _lastGrade = grade;
+            _userPitch = pitchArray;
+            // Mock ideal pitch for now until Azure TTS cache is read
+            _idealPitch = List.generate(pitchArray.length, (i) => pitchArray[i] != null ? pitchArray[i]! + 20 : null);
             _isGrading = false;
             
             // Track weak characters
@@ -1052,6 +1075,36 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
                   ],
                 );
               }).toList(),
+            ),
+          ],
+          
+          if (_lastGrade != null && _userPitch.isNotEmpty) ...[
+            const SizedBox(height: 24),
+            Container(
+              height: 120,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: isDark ? Colors.black26 : Colors.black.withOpacity(0.05),
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Stack(
+                children: [
+                  CustomPaint(
+                    size: const Size(double.infinity, 120),
+                    painter: ToneGraphPainter(
+                      idealPitch: _idealPitch,
+                      userPitch: _userPitch,
+                      isLive: false,
+                      highlightStart: _highlightStart,
+                      highlightEnd: _highlightEnd,
+                    ),
+                  ),
+                  const Positioned(
+                    top: 8, left: 16,
+                    child: Text("Tone Graph", style: TextStyle(fontSize: 12, color: Colors.grey)),
+                  )
+                ],
+              ),
             ),
           ],
           
