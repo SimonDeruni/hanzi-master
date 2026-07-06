@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -79,8 +80,8 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
         PageRouteBuilder(
           pageBuilder: (context, animation, secondaryAnimation) => NotificationPermissionScreen(
             onComplete: () async {
-              final success = await PaywallSheet.show(context, isHardPaywall: true);
-              if (mounted && success) {
+              final success = await PaywallSheet.show(context, isHardPaywall: !kDebugMode);
+              if (mounted && (success || kDebugMode)) {
                 Navigator.pushReplacement(
                   context,
                   PageRouteBuilder(
