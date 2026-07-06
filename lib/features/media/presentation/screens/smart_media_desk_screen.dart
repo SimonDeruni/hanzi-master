@@ -355,57 +355,71 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
   Future<void> _toggleShadowRecording([int? index]) async {
     final audioService = ref.read(audioRecordingServiceProvider);
     
-    // If we're already recording something...
     if (_isRecording) {
-      // If we clicked a different line's mic while recording, stop the old one first
       if (index != null && _recordingLineIndex != null && index != _recordingLineIndex) {
         await audioService.stopRecording();
-        // Fall through to start the new recording below
       } else {
-        // We clicked the same button (or the fullscreen FAB) to stop recording
         setState(() {
           _isRecording = false;
-          _recordingLineIndex = null;
           _shadowFeedback = "Processing your pronunciation...";
         });
         
         final path = await audioService.stopRecording();
-        if (path != null) {
+        if (path != null && _transcript != null) {
           try {
             final file = File(path);
             final byteData = await file.readAsBytes();
             
-            final gemini = ref.read(geminiServiceProvider);
-            final result = await gemini.gradeAudioUnscripted(byteData);
-            final score = result['score'] ?? 0;
-            
-            setState(() {
-              _shadowFeedback = "Score: $score/100. Resuming video...";
-            });
-            
-            Future.delayed(const Duration(seconds: 2), () {
-              if (mounted) {
-                 setState(() => _shadowFeedback = "");
-                 _playerController.playVideo();
-              }
-            });
+            // Determine the line we were shadowing
+            final targetIndex = _recordingLineIndex ?? _currentIndex;
+            if (targetIndex >= 0 && targetIndex < _transcript!.lines.length) {
+              final line = _transcript!.lines[targetIndex];
+              
+              final gemini = ref.read(geminiServiceProvider);
+              final result = await gemini.gradeAudio(byteData, line.text, line.pinyin ?? "");
+              final score = result['score'] ?? 0;
+              
+              setState(() {
+                _shadowFeedback = "Score: $score/100. Resuming video...";
+                _recordingLineIndex = null;
+              });
+              
+              Future.delayed(const Duration(seconds: 3), () {
+                if (mounted) {
+                   setState(() => _shadowFeedback = "");
+                   _playerController.playVideo();
+                }
+              });
+            } else {
+              setState(() {
+                _shadowFeedback = "Couldn't identify line.";
+                _recordingLineIndex = null;
+              });
+              _playerController.playVideo();
+            }
           } catch (e) {
             setState(() {
               _shadowFeedback = "Error: $e";
+              _recordingLineIndex = null;
             });
+            _playerController.playVideo();
           }
+        } else {
+           _playerController.playVideo();
         }
-        return; // We stopped the current recording, so exit.
+        return; 
       }
     } 
 
-    // Start a new recording
     final hasPerm = await audioService.requestPermission();
     if (!hasPerm) return;
     
+    // Pause video while recording!
+    _playerController.pauseVideo();
+    
     setState(() {
       _isRecording = true;
-      _recordingLineIndex = index; // Store which line we are recording
+      _recordingLineIndex = index;
       _shadowFeedback = "Listening... speak now.";
     });
     await audioService.startRecording('youtube_shadowing');

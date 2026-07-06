@@ -57,6 +57,18 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
 
   final List<InterpreterMessage> _transcript = [];
 
+  bool _isChinese(String text) {
+    return RegExp(r'[\u4e00-\u9fa5]').hasMatch(text);
+  }
+
+  List<InterpreterMessage> get _partnerMessages {
+    return _transcript.where((msg) => _isChinese(msg.text)).toList();
+  }
+
+  List<InterpreterMessage> get _userMessages {
+    return _transcript.where((msg) => !_isChinese(msg.text)).toList();
+  }
+
   bool _isSessionStarted = false;
   late AnimationController _pulseController;
 
@@ -462,9 +474,9 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                       Expanded(
                         child: ListView.builder(
                           reverse: true,
-                          itemCount: _transcript.length,
+                          itemCount: _partnerMessages.length,
                           itemBuilder: (context, index) {
-                            final msg = _transcript[_transcript.length - 1 - index];
+                            final msg = _partnerMessages[_partnerMessages.length - 1 - index];
                             return Padding(
                               padding: const EdgeInsets.symmetric(vertical: 8.0),
                               child: Container(
@@ -561,9 +573,9 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                     Expanded(
                       child: ListView.builder(
                         reverse: true,
-                        itemCount: _transcript.length,
+                        itemCount: _userMessages.length,
                         itemBuilder: (context, index) {
-                          final msg = _transcript[_transcript.length - 1 - index];
+                          final msg = _userMessages[_userMessages.length - 1 - index];
                           return Padding(
                             padding: const EdgeInsets.symmetric(vertical: 8.0),
                             child: Container(
