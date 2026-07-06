@@ -11,6 +11,7 @@ import 'package:hanzi_master/features/flashcards/presentation/providers/deck_con
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/study_mode.dart';
+import 'package:hanzi_master/features/flashcards/domain/entities/deck.dart';
 import 'package:hanzi_master/features/premium/presentation/screens/paywall_sheet.dart';
 enum ShadowingMode { freeFlow, theme, deck, customWord }
 
@@ -218,8 +219,12 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
 
   void _showSessionSummaryDialog(BuildContext context, bool isDark) {
     if (_weakCharacters.isEmpty) {
-      // Perfect session, just go back
-      Navigator.pop(context);
+      // Perfect session or just aborting, go back to Hub UI
+      setState(() {
+        _isSessionStarted = false;
+        _currentPhrase = null;
+        _weakCharacters.clear();
+      });
       return;
     }
 
@@ -301,7 +306,11 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
                         child: TextButton(
                           onPressed: () {
                             Navigator.pop(context); // close sheet
-                            Navigator.pop(context); // close session
+                            setState(() {
+                              _isSessionStarted = false;
+                              _currentPhrase = null;
+                              _weakCharacters.clear();
+                            });
                           },
                           child: const Text("Skip", style: TextStyle(color: Colors.grey, fontSize: 16)),
                         ),
@@ -373,8 +382,11 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
                       trailing: const Icon(Icons.add_circle_outline, color: Colors.orange),
                       onTap: () async {
                         Navigator.pop(context); // Close deck selector
-                        // We pop the main session view before starting the long process, so user sees hub immediately
-                        Navigator.pop(context); 
+                        setState(() {
+                          _isSessionStarted = false;
+                          _currentPhrase = null;
+                          _weakCharacters.clear();
+                        });
                         
                         await _saveWordsToDeck(context, deck, applySrs, wordsToAdd);
                       },
@@ -434,7 +446,11 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
                 if (context.mounted && newDeck != null) {
                   Navigator.pop(context); // close create dialog
                   Navigator.pop(context); // close select deck bottom sheet
-                  Navigator.pop(context); // close main session view
+                  setState(() {
+                    _isSessionStarted = false;
+                    _currentPhrase = null;
+                    _weakCharacters.clear();
+                  });
                   
                   await _saveWordsToDeck(context, newDeck, applySrs, wordsToAdd);
                 }
