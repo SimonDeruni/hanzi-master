@@ -79,8 +79,8 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
         PageRouteBuilder(
           pageBuilder: (context, animation, secondaryAnimation) => NotificationPermissionScreen(
             onComplete: () async {
-              final success = await PaywallSheet.show(context, isHardPaywall: false); // DEV MODE BYPASS
-              if (mounted) { // Temporarily bypassing 'success' check so you can enter the app
+              final success = await PaywallSheet.show(context, isHardPaywall: true);
+              if (mounted && success) {
                 Navigator.pushReplacement(
                   context,
                   PageRouteBuilder(
@@ -598,10 +598,10 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   }
 
   Widget _buildCalibrationPage() {
-    String masteryText = "Beginner Path";
-    if (_selectedMastery == 1) masteryText = "Elementary Path";
-    if (_selectedMastery == 2) masteryText = "Intermediate Path";
-    if (_selectedMastery == 3) masteryText = "Advanced Path";
+    String masteryText = "Beginner";
+    if (_selectedMastery == 1) masteryText = "Elementary";
+    if (_selectedMastery == 2) masteryText = "Intermediate";
+    if (_selectedMastery == 3) masteryText = "Advanced";
 
     String driveText = "Business Focus";
     if (_selectedDrive == 1) driveText = "Travel Focus";
@@ -618,10 +618,10 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const Text(
-            "Your Personalized Path",
+          Text(
+            _calibrationComplete ? "Curriculum Forged" : "Forging Your Path",
             textAlign: TextAlign.center,
-            style: TextStyle(
+            style: const TextStyle(
               color: Color(0xFF1A1A1B),
               fontSize: 32,
               fontFamily: 'Serif',
@@ -631,9 +631,9 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
           
           const SizedBox(height: 8),
           
-          const Text(
-            "CALIBRATING YOUR JOURNEY...",
-            style: TextStyle(
+          Text(
+            _calibrationComplete ? "YOUR JOURNEY AWAITS" : "CALIBRATING AI MASTERS...",
+            style: const TextStyle(
               color: Colors.black54, 
               fontSize: 12,
               letterSpacing: 1.5,
@@ -643,71 +643,98 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
           
           const Spacer(),
           
-          Image.asset(
-            'assets/icon/icon.png',
-            height: 140,
-          ).animate(onPlay: (controller) => controller.repeat(reverse: true))
-           .moveY(begin: -5, end: 5, duration: 2.seconds, curve: Curves.easeInOut),
+          if (!_calibrationComplete)
+            Image.asset(
+              'assets/icon/icon.png',
+              height: 140,
+            ).animate(onPlay: (controller) => controller.repeat(reverse: true))
+             .moveY(begin: -5, end: 5, duration: 2.seconds, curve: Curves.easeInOut),
+             
+          if (_calibrationComplete)
+            Container(
+              padding: const EdgeInsets.all(24),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(color: Colors.black.withOpacity(0.05)),
+                boxShadow: [
+                  BoxShadow(color: Colors.black.withOpacity(0.02), blurRadius: 10, offset: const Offset(0, 4))
+                ],
+              ),
+              child: Column(
+                children: [
+                  Icon(Icons.auto_awesome, color: Colors.red[700], size: 32),
+                  const SizedBox(height: 16),
+                  Text(
+                    "With $ritualText a day starting from a $masteryText level, building a strong foundation for $driveText will take patience and consistency. Our AI will guide you every step of the way.",
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      color: Colors.black87,
+                      fontSize: 16,
+                      height: 1.5,
+                      fontStyle: FontStyle.italic,
+                    ),
+                  ),
+                ],
+              ),
+            ).animate().fadeIn(duration: 600.ms).slideY(),
           
           const Spacer(),
           
-          _buildSummaryRow("Current Level", masteryText).animate().fadeIn(delay: 400.ms),
-          const Divider(color: Colors.black12, height: 32),
-          _buildSummaryRow("Primary Goal", driveText).animate().fadeIn(delay: 600.ms),
-          const Divider(color: Colors.black12, height: 32),
-          _buildSummaryRow("Daily Ritual", ritualText).animate().fadeIn(delay: 800.ms),
-          const Divider(color: Colors.black12, height: 32),
-          
-          const SizedBox(height: 48),
-          
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    "ALIGNING AI MASTERS",
-                    style: TextStyle(color: Colors.black38, fontSize: 10, fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    _calibrationComplete ? "100%" : "0%",
-                    style: const TextStyle(color: Colors.black38, fontSize: 10, fontWeight: FontWeight.bold),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 8),
-              Stack(
-                children: [
-                  Container(
-                    height: 4,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: Colors.black12,
-                      borderRadius: BorderRadius.circular(2),
+          if (!_calibrationComplete) ...[
+            _buildSummaryRow("Current Level", masteryText).animate().fadeIn(delay: 400.ms),
+            const Divider(color: Colors.black12, height: 32),
+            _buildSummaryRow("Primary Goal", driveText).animate().fadeIn(delay: 600.ms),
+            const Divider(color: Colors.black12, height: 32),
+            _buildSummaryRow("Daily Ritual", ritualText).animate().fadeIn(delay: 800.ms),
+            const Divider(color: Colors.black12, height: 32),
+            
+            const SizedBox(height: 48),
+            
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      "ALIGNING CURRICULUM",
+                      style: TextStyle(color: Colors.black38, fontSize: 10, fontWeight: FontWeight.bold),
                     ),
-                  ),
-                  AnimatedContainer(
-                    duration: const Duration(seconds: 3),
-                    curve: Curves.easeOutQuart,
-                    height: 4,
-                    width: _calibrationComplete ? MediaQuery.of(context).size.width - 64 : 0,
-                    decoration: BoxDecoration(
-                      color: Colors.red[700],
-                      borderRadius: BorderRadius.circular(2),
+                    Text(
+                      _calibrationComplete ? "100%" : "0%",
+                      style: const TextStyle(color: Colors.black38, fontSize: 10, fontWeight: FontWeight.bold),
                     ),
-                  ),
-                ],
-              ),
-            ],
-          ).animate().fadeIn(delay: 1000.ms),
+                  ],
+                ),
+                const SizedBox(height: 8),
+                Stack(
+                  children: [
+                    Container(
+                      height: 4,
+                      width: double.infinity,
+                      decoration: BoxDecoration(color: Colors.black12, borderRadius: BorderRadius.circular(2)),
+                    ),
+                    AnimatedContainer(
+                      duration: const Duration(seconds: 3),
+                      curve: Curves.easeOutQuart,
+                      height: 4,
+                      width: _calibrationComplete ? MediaQuery.of(context).size.width - 64 : 0,
+                      decoration: BoxDecoration(color: Colors.red[700], borderRadius: BorderRadius.circular(2)),
+                    ),
+                  ],
+                ),
+              ],
+            ).animate().fadeIn(delay: 1000.ms),
+          ],
           
           const SizedBox(height: 32),
           
-          _buildPrimaryButton(
-            "Enter Dojo",
-            _calibrationComplete ? _nextPage : null,
-          ).animate(target: _calibrationComplete ? 1 : 0).fadeIn(duration: 500.ms),
+          if (_calibrationComplete)
+            _buildPrimaryButton(
+              "Start 7-Day Free Trial",
+              _nextPage,
+            ).animate().fadeIn(duration: 500.ms).slideY(),
         ],
       ),
     );
