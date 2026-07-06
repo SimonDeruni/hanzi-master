@@ -224,10 +224,7 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
         _currentPosition = position;
         if (indexChanged) {
           _currentIndex = newIndex;
-          if (_isShadowingMode) {
-            _playerController.pauseVideo();
-            _shadowFeedback = "Tap microphone to speak";
-          }
+          // Removed auto-pause for shadowing mode based on user feedback
         }
         
         // Cultural Meme check
