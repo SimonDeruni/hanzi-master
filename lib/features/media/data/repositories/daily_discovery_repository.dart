@@ -16,7 +16,7 @@ class DailyDiscoveryRepository {
 
   Future<DailyMediaItem> getDailyVideo() async {
     final now = DateTime.now();
-    final seed = now.year * 10000 + now.month * 100 + now.day;
+    final seed = "\${now.year}-\${now.month}-\${now.day}".hashCode;
     final random = Random(seed);
     
     final channelIds = _channels.keys.toList();
@@ -41,43 +41,84 @@ class DailyDiscoveryRepository {
       );
     } catch (e) {
       // Fallback if API fails: cycle through a curated list
-      final fallbackVideos = [
-        DailyMediaItem(
-          title: "李子柒 Liziqi: 大蒜的一生",
-          subtitle: "The Life of Garlic - Traditional Chinese Life",
-          url: "https://www.youtube.com/watch?v=gcShBujgsIQ",
-          imageUrl: "https://img.youtube.com/vi/gcShBujgsIQ/0.jpg",
-          tag: "2 MIN CULTURAL CONTEXT",
-        ),
-
-        DailyMediaItem(
-          title: "Mandarin Corner: Supermarket",
-          subtitle: "Learn Chinese in the Supermarket",
-          url: "https://www.youtube.com/watch?v=rY0_A32XnSg",
-          imageUrl: "https://img.youtube.com/vi/rY0_A32XnSg/0.jpg",
-          tag: "VOCABULARY",
-        ),
-        DailyMediaItem(
-          title: "Grace Mandarin: 50 Phrases",
-          subtitle: "Essential Chinese Phrases for Beginners",
-          url: "https://www.youtube.com/watch?v=vV0222xP9uM",
-          imageUrl: "https://img.youtube.com/vi/vV0222xP9uM/hqdefault.jpg",
-          tag: "ESSENTIALS",
-        ),
-        DailyMediaItem(
-          title: "李子柒 Liziqi: 竹子家具",
-          subtitle: "Making Bamboo Furniture",
-          url: "https://www.youtube.com/watch?v=Yf0vP1tN8-w",
-          imageUrl: "https://img.youtube.com/vi/Yf0vP1tN8-w/hqdefault.jpg",
-          tag: "2 MIN CULTURAL CONTEXT",
-        ),
-      ];
-      
       return fallbackVideos[random.nextInt(fallbackVideos.length)];
     } finally {
       yt.close();
     }
   }
+
+  static final List<DailyMediaItem> fallbackVideos = [
+    DailyMediaItem(
+      title: "李子柒 Liziqi: 大蒜的一生",
+      subtitle: "The Life of Garlic - Traditional Chinese Life",
+      url: "https://www.youtube.com/watch?v=gcShBujgsIQ",
+      imageUrl: "https://img.youtube.com/vi/gcShBujgsIQ/0.jpg",
+      tag: "2 MIN CULTURAL CONTEXT",
+    ),
+    DailyMediaItem(
+      title: "Mandarin Corner: Supermarket",
+      subtitle: "Learn Chinese in the Supermarket",
+      url: "https://www.youtube.com/watch?v=rY0_A32XnSg",
+      imageUrl: "https://img.youtube.com/vi/rY0_A32XnSg/0.jpg",
+      tag: "VOCABULARY",
+    ),
+    DailyMediaItem(
+      title: "Grace Mandarin: 50 Phrases",
+      subtitle: "Essential Chinese Phrases for Beginners",
+      url: "https://www.youtube.com/watch?v=vV0222xP9uM",
+      imageUrl: "https://img.youtube.com/vi/vV0222xP9uM/hqdefault.jpg",
+      tag: "ESSENTIALS",
+    ),
+    DailyMediaItem(
+      title: "李子柒 Liziqi: 竹子家具",
+      subtitle: "Making Bamboo Furniture",
+      url: "https://www.youtube.com/watch?v=Yf0vP1tN8-w",
+      imageUrl: "https://img.youtube.com/vi/Yf0vP1tN8-w/hqdefault.jpg",
+      tag: "2 MIN CULTURAL CONTEXT",
+    ),
+    DailyMediaItem(
+      title: "Peppa Pig Chinese: 泥坑",
+      subtitle: "Muddy Puddles - Beginner Friendly",
+      url: "https://www.youtube.com/watch?v=LqAObK1tE9w",
+      imageUrl: "https://img.youtube.com/vi/LqAObK1tE9w/hqdefault.jpg",
+      tag: "LISTENING PRACTICE",
+    ),
+    DailyMediaItem(
+      title: "ShuoshuoChinese: Real Chinese Speaking",
+      subtitle: "Street Interviews in China",
+      url: "https://www.youtube.com/watch?v=mF_u4s98vT8",
+      imageUrl: "https://img.youtube.com/vi/mF_u4s98vT8/hqdefault.jpg",
+      tag: "REAL LIFE",
+    ),
+    DailyMediaItem(
+      title: "Mandarin Corner: 300 Verbs",
+      subtitle: "Most Common Chinese Verbs",
+      url: "https://www.youtube.com/watch?v=_p-h-VdM-s0",
+      imageUrl: "https://img.youtube.com/vi/_p-h-VdM-s0/hqdefault.jpg",
+      tag: "VOCABULARY",
+    ),
+    DailyMediaItem(
+      title: "Grace Mandarin: Order Food",
+      subtitle: "How to order food in a Chinese restaurant",
+      url: "https://www.youtube.com/watch?v=b4O0Z4qD-x8",
+      imageUrl: "https://img.youtube.com/vi/b4O0Z4qD-x8/hqdefault.jpg",
+      tag: "SOCIAL SKILLS",
+    ),
+    DailyMediaItem(
+      title: "李子柒 Liziqi: 绢花",
+      subtitle: "Silk Flowers - Traditional Craft",
+      url: "https://www.youtube.com/watch?v=pY-5X9Z5O3E",
+      imageUrl: "https://img.youtube.com/vi/pY-5X9Z5O3E/0.jpg",
+      tag: "CULTURAL CONTEXT",
+    ),
+    DailyMediaItem(
+      title: "Peppa Pig Chinese: 躲猫猫",
+      subtitle: "Hide and Seek - Beginner Friendly",
+      url: "https://www.youtube.com/watch?v=hB9K3G0mR3g",
+      imageUrl: "https://img.youtube.com/vi/hB9K3G0mR3g/hqdefault.jpg",
+      tag: "LISTENING PRACTICE",
+    ),
+  ];
 
   Future<DailyMediaItem> getDailyArticle() async {
     try {

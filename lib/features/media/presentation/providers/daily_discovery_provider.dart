@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -36,38 +37,8 @@ class DailyDiscovery extends _$DailyDiscovery {
       repo.getDailyVideo().timeout(
         const Duration(seconds: 15),
         onTimeout: () {
-          final fallbacks = [
-            DailyMediaItem(
-              title: "李子柒 Liziqi: 大蒜的一生",
-              subtitle: "The Life of Garlic - Traditional Chinese Life",
-              url: "https://www.youtube.com/watch?v=gcShBujgsIQ",
-              imageUrl: "https://img.youtube.com/vi/gcShBujgsIQ/0.jpg",
-              tag: "CULTURAL CONTEXT",
-            ),
-
-            DailyMediaItem(
-              title: "Mandarin Corner: Supermarket",
-              subtitle: "Learn Chinese in the Supermarket",
-              url: "https://www.youtube.com/watch?v=rY0_A32XnSg",
-              imageUrl: "https://img.youtube.com/vi/rY0_A32XnSg/0.jpg",
-              tag: "VOCABULARY",
-            ),
-            DailyMediaItem(
-              title: "Grace Mandarin: How to Say 'NO'",
-              subtitle: "Polite ways to decline in Chinese",
-              url: "https://www.youtube.com/watch?v=gP2Wz-iK5j4",
-              imageUrl: "https://img.youtube.com/vi/gP2Wz-iK5j4/hqdefault.jpg",
-              tag: "SOCIAL SKILLS",
-            ),
-            DailyMediaItem(
-              title: "Peppa Pig Chinese: 泥坑",
-              subtitle: "Muddy Puddles - Beginner Friendly",
-              url: "https://www.youtube.com/watch?v=LqAObK1tE9w",
-              imageUrl: "https://img.youtube.com/vi/LqAObK1tE9w/hqdefault.jpg",
-              tag: "LISTENING PRACTICE",
-            ),
-          ];
-          fallbacks.shuffle();
+          final fallbacks = List<DailyMediaItem>.from(DailyDiscoveryRepository.fallbackVideos);
+          fallbacks.shuffle(Random("\${now.year}-\${now.month}-\${now.day}".hashCode));
           return fallbacks.first;
         },
       ),
