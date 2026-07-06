@@ -56,6 +56,7 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
   bool _isTranslatingText = false;
 
   final List<InterpreterMessage> _transcript = [];
+  List<int> _audioBuffer = [];
 
   bool _isChinese(String text) {
     return RegExp(r'[\u4e00-\u9fa5]').hasMatch(text);
@@ -244,20 +245,26 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
       );
       _audioSubscription = stream.listen((data) {
         if (data.isEmpty) return;
-        if (_channel != null && _channel?.closeCode == null) {
-          try {
-            _channel!.sink.add(jsonEncode({
-              "realtimeInput": {
-                "mediaChunks": [
-                  {
-                    "mimeType": "audio/pcm;rate=16000",
-                    "data": base64Encode(data)
-                  }
-                ]
-              }
-            }));
-          } catch (e) {
-            debugPrint("Sink add error: $e");
+        _audioBuffer.addAll(data);
+
+        // Buffer ~0.5 seconds of audio before sending to prevent websocket congestion
+        if (_audioBuffer.length >= 16000) {
+          if (_channel != null && _channel?.closeCode == null) {
+            try {
+              _channel!.sink.add(jsonEncode({
+                "realtimeInput": {
+                  "mediaChunks": [
+                    {
+                      "mimeType": "audio/pcm;rate=16000",
+                      "data": base64Encode(_audioBuffer)
+                    }
+                  ]
+                }
+              }));
+              _audioBuffer.clear();
+            } catch (e) {
+              debugPrint("Sink add error: $e");
+            }
           }
         }
       });
@@ -267,6 +274,35 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
   Future<void> _stopAudioStreaming() async {
     await _audioSubscription?.cancel();
     await _audioRecorder.stop();
+
+    // Flush any remaining audio
+    if (_audioBuffer.isNotEmpty && _channel != null && _channel?.closeCode == null) {
+      try {
+        _channel!.sink.add(jsonEncode({
+          "realtimeInput": {
+            "mediaChunks": [
+              {
+                "mimeType": "audio/pcm;rate=16000",
+                "data": base64Encode(_audioBuffer)
+              }
+            ]
+          }
+        }));
+      } catch (_) {}
+      _audioBuffer.clear();
+    }
+
+    // Force Gemini to stop waiting for VAD and process the turn immediately
+    if (_channel != null && _channel?.closeCode == null) {
+      try {
+        _channel!.sink.add(jsonEncode({
+          "clientContent": {
+            "turnComplete": true
+          }
+        }));
+      } catch (_) {}
+    }
+
     setState(() {
       _isRecording = false;
       _isLive = false;
