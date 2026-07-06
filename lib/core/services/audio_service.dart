@@ -252,7 +252,7 @@ class AudioService {
       '{"context":{"synthesis":{"audio":{"metadataOptions":{"wordBoundaryEnabled":true,"sentenceBoundaryEnabled":true},"outputFormat":"audio-24khz-48kbitrate-mono-mp3"}}}}'
     );
 
-    final ssml = '''<speak version='1.0' xml:lang='zh-CN'><voice name='zh-CN-XiaoxiaoNeural'>$safeText</voice></speak>''';
+    final ssml = '''<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xml:lang='zh-CN'><voice name='zh-CN-XiaoxiaoNeural'>$safeText</voice></speak>''';
 
     channel.sink.add(
       'Path: ssml\r\n'
