@@ -1578,7 +1578,8 @@ class TranslationOverlayPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final double scale = math.max(screenSize.width / imageSize.width, screenSize.height / imageSize.height);
+    // We must use math.min to match BoxFit.contain
+    final double scale = math.min(screenSize.width / imageSize.width, screenSize.height / imageSize.height);
     final double offsetX = (screenSize.width - imageSize.width * scale) / 2;
     final double offsetY = (screenSize.height - imageSize.height * scale) / 2;
 
