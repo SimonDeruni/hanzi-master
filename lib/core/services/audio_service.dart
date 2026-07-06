@@ -245,6 +245,8 @@ class AudioService {
 
     channel.sink.add(
       'Path: speech.config\r\n'
+      'X-RequestId: $requestId\r\n'
+      'X-Timestamp: $timestamp\r\n'
       'Content-Type: application/json; charset=utf-8\r\n'
       '\r\n'
       '{"context":{"synthesis":{"audio":{"metadataOptions":{"wordBoundaryEnabled":true,"sentenceBoundaryEnabled":true},"outputFormat":"audio-24khz-48kbitrate-mono-mp3"}}}}'
