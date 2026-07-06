@@ -19,6 +19,12 @@ class NotificationService {
     if (_isInitialized) return;
 
     tz.initializeTimeZones();
+    try {
+      // Set a default fallback location so tz.local doesn't throw an exception
+      tz.setLocalLocation(tz.getLocation('UTC'));
+    } catch (e) {
+      debugPrint('Could not set local timezone: $e');
+    }
 
     const AndroidInitializationSettings initializationSettingsAndroid = AndroidInitializationSettings('launcher_icon');
     
