@@ -143,7 +143,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
         _recordingPath = '${tempDir.path}/shadow_recording_${DateTime.now().millisecondsSinceEpoch}.wav';
         
         await _audioRecorder.start(
-          const RecordConfig(encoder: AudioEncoder.wav, sampleRate: 16000, numChannels: 1),
+          const RecordConfig(encoder: AudioEncoder.pcm16bits, sampleRate: 16000, numChannels: 1),
           path: _recordingPath!,
         );
         setState(() {
