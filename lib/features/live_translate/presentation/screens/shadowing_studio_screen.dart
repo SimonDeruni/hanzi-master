@@ -11,7 +11,7 @@ import '../../../../core/services/gemini_service.dart';
 import '../../../../core/services/pitch_detector_service.dart';
 import '../../../../core/utils/dtw_aligner.dart';
 import '../../../premium/presentation/screens/paywall_sheet.dart';
-import '../../../premium/domain/exceptions/premium_exceptions.dart';
+
 import 'package:hanzi_master/features/live_translate/presentation/widgets/tone_graph_painter.dart';
 import 'package:hanzi_master/features/live_translate/presentation/widgets/interactive_grading_text.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
