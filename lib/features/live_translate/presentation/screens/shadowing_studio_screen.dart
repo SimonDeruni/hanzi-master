@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:record/record.dart';
 import 'package:path_provider/path_provider.dart';
@@ -132,6 +133,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
 
   Future<void> _playNativeAudio() async {
     if (_currentPhrase == null) return;
+    HapticFeedback.lightImpact();
     final audioService = ref.read(audioServiceProvider);
     await audioService.playSentence(_currentPhrase!['hanzi']!);
   }
@@ -139,6 +141,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
   Future<void> _startRecording() async {
     try {
       if (await _audioRecorder.hasPermission()) {
+        HapticFeedback.heavyImpact();
         final tempDir = await getTemporaryDirectory();
         _recordingPath = '${tempDir.path}/shadow_recording_${DateTime.now().millisecondsSinceEpoch}.wav';
         
@@ -158,6 +161,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
 
   Future<void> _stopRecordingAndGrade() async {
     try {
+      HapticFeedback.lightImpact();
       final path = await _audioRecorder.stop();
       setState(() {
         _isRecording = false;
