@@ -6,10 +6,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:record/record.dart';
 import 'package:path_provider/path_provider.dart';
 
-import '../../../core/services/audio_service.dart';
-import '../../../core/services/gemini_service.dart';
-import '../../../core/services/pitch_detector_service.dart';
-import '../../../core/utils/dtw_aligner.dart';
+import '../../../../core/services/audio_service.dart';
+import '../../../../core/services/gemini_service.dart';
+import '../../../../core/services/pitch_detector_service.dart';
+import '../../../../core/utils/dtw_aligner.dart';
 import '../../../premium/presentation/screens/paywall_sheet.dart';
 import '../../../premium/domain/exceptions/premium_exceptions.dart';
 import 'package:hanzi_master/features/live_translate/presentation/widgets/tone_graph_painter.dart';
