@@ -80,8 +80,8 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
         PageRouteBuilder(
           pageBuilder: (context, animation, secondaryAnimation) => NotificationPermissionScreen(
             onComplete: () async {
-              final success = await PaywallSheet.show(context, isHardPaywall: !kDebugMode);
-              if (mounted && (success || kDebugMode)) {
+              final success = await PaywallSheet.show(context, isHardPaywall: false);
+              if (mounted) {
                 Navigator.pushReplacement(
                   context,
                   PageRouteBuilder(
