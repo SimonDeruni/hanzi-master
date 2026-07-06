@@ -54,6 +54,7 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
   Map<int, String> _simplifiedTranscript = {};
   bool _isShadowingMode = false;
   bool _isRecording = false;
+  int? _recordingLineIndex;
   String _shadowFeedback = '';
   Map<String, dynamic>? _activeMeme;
   bool _isSimplifyingAi = false;
@@ -354,51 +355,63 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
     return (progress * line.text.length).floor();
   }
 
-  Future<void> _toggleShadowRecording() async {
+  Future<void> _toggleShadowRecording([int? index]) async {
     final audioService = ref.read(audioRecordingServiceProvider);
     
+    // If we're already recording something...
     if (_isRecording) {
-      setState(() {
-        _isRecording = false;
-        _shadowFeedback = "Processing your pronunciation...";
-      });
-      
-      final path = await audioService.stopRecording();
-      if (path != null) {
-        try {
-          final file = File(path);
-          final byteData = await file.readAsBytes();
-          
-          final gemini = ref.read(geminiServiceProvider);
-          final result = await gemini.gradeAudioUnscripted(byteData);
-          final score = result['score'] ?? 0;
-          
-          setState(() {
-            _shadowFeedback = "Score: $score/100. Resuming video...";
-          });
-          
-          Future.delayed(const Duration(seconds: 2), () {
-            if (mounted) {
-               setState(() => _shadowFeedback = "");
-               _playerController.playVideo();
-            }
-          });
-        } catch (e) {
-          setState(() {
-            _shadowFeedback = "Error: $e";
-          });
+      // If we clicked a different line's mic while recording, stop the old one first
+      if (index != null && _recordingLineIndex != null && index != _recordingLineIndex) {
+        await audioService.stopRecording();
+        // Fall through to start the new recording below
+      } else {
+        // We clicked the same button (or the fullscreen FAB) to stop recording
+        setState(() {
+          _isRecording = false;
+          _recordingLineIndex = null;
+          _shadowFeedback = "Processing your pronunciation...";
+        });
+        
+        final path = await audioService.stopRecording();
+        if (path != null) {
+          try {
+            final file = File(path);
+            final byteData = await file.readAsBytes();
+            
+            final gemini = ref.read(geminiServiceProvider);
+            final result = await gemini.gradeAudioUnscripted(byteData);
+            final score = result['score'] ?? 0;
+            
+            setState(() {
+              _shadowFeedback = "Score: $score/100. Resuming video...";
+            });
+            
+            Future.delayed(const Duration(seconds: 2), () {
+              if (mounted) {
+                 setState(() => _shadowFeedback = "");
+                 _playerController.playVideo();
+              }
+            });
+          } catch (e) {
+            setState(() {
+              _shadowFeedback = "Error: $e";
+            });
+          }
         }
+        return; // We stopped the current recording, so exit.
       }
-    } else {
-      final hasPerm = await audioService.requestPermission();
-      if (!hasPerm) return;
-      
-      setState(() {
-        _isRecording = true;
-        _shadowFeedback = "Listening... speak now.";
-      });
-      await audioService.startRecording('youtube_shadowing');
-    }
+    } 
+
+    // Start a new recording
+    final hasPerm = await audioService.requestPermission();
+    if (!hasPerm) return;
+    
+    setState(() {
+      _isRecording = true;
+      _recordingLineIndex = index; // Store which line we are recording
+      _shadowFeedback = "Listening... speak now.";
+    });
+    await audioService.startRecording('youtube_shadowing');
   }
 
   void _enterFullscreen() {
@@ -479,9 +492,10 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
           ),
         ],
       ),
-      floatingActionButton: _isShadowingMode
+      // Only show FAB when in fullscreen (otherwise handled by inline mics)
+      floatingActionButton: _isShadowingMode && _isFullscreen
           ? FloatingActionButton.extended(
-              onPressed: _toggleShadowRecording,
+              onPressed: () => _toggleShadowRecording(null),
               backgroundColor: _isRecording ? Colors.red : Colors.indigo,
               icon: Icon(_isRecording ? Icons.stop : Icons.mic, color: Colors.white),
               label: Text(_isRecording ? "Stop" : "Hold to Speak", style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
@@ -579,7 +593,7 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
                     isShadowingMode: _isShadowingMode,
                     isRecording: _isRecording,
                     shadowFeedback: _shadowFeedback,
-                    onToggleRecord: _toggleShadowRecording,
+                    onToggleRecord: () => _toggleShadowRecording(null),
                   );
                           },
                         ),
@@ -611,10 +625,12 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
                                 Icon(_shadowFeedback.contains("Perfect") ? Icons.check_circle : Icons.mic, 
                                   color: _shadowFeedback.contains("Perfect") ? Colors.green : Colors.red, size: 20),
                                 const SizedBox(width: 8),
-                                Text(_shadowFeedback, style: TextStyle(
-                                  color: _shadowFeedback.contains("Perfect") ? Colors.green : Colors.red,
-                                  fontWeight: FontWeight.bold,
-                                )),
+                                Expanded(
+                                  child: Text(_shadowFeedback, style: TextStyle(
+                                    color: _shadowFeedback.contains("Perfect") ? Colors.green : Colors.red,
+                                    fontWeight: FontWeight.bold,
+                                  )),
+                                ),
                               ],
                             ),
                           ),
@@ -626,7 +642,7 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
                         Expanded(
                           child: ListView(
                             controller: _scrollController,
-                            padding: const EdgeInsets.fromLTRB(16, 24, 16, 120), // Extra padding for FAB
+                            padding: const EdgeInsets.fromLTRB(16, 24, 16, 120), // Extra padding for scrolling
                             physics: const BouncingScrollPhysics(),
                             children: [
                               if (_briefing != null) ...[
@@ -652,6 +668,9 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
                                     showPinyin: _showPinyin,
                                     showEnglish: _showEnglish,
                                     simplifiedText: _isHskSimplified ? _simplifiedTranscript[index] : null,
+                                    isShadowingMode: _isShadowingMode,
+                                    isRecordingThisLine: _isRecording && _recordingLineIndex == index,
+                                    onShadowTapped: () => _toggleShadowRecording(index),
                                   );
                                 }),
                             ],

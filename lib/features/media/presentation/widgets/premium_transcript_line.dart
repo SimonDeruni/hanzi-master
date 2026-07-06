@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import '../../domain/models/video_transcript.dart';
 
-class PremiumTranscriptLine extends StatelessWidget {
+class PremiumTranscriptLine extends StatefulWidget {
   final TranscriptLine line;
   final bool isCurrent;
   final int highlightedCount;
@@ -13,6 +13,9 @@ class PremiumTranscriptLine extends StatelessWidget {
   final bool showPinyin;
   final bool showEnglish;
   final String? simplifiedText;
+  final bool isShadowingMode;
+  final bool isRecordingThisLine;
+  final VoidCallback? onShadowTapped;
 
   const PremiumTranscriptLine({
     super.key,
@@ -26,7 +29,52 @@ class PremiumTranscriptLine extends StatelessWidget {
     this.showPinyin = true,
     this.showEnglish = true,
     this.simplifiedText,
+    this.isShadowingMode = false,
+    this.isRecordingThisLine = false,
+    this.onShadowTapped,
   });
+
+  @override
+  State<PremiumTranscriptLine> createState() => _PremiumTranscriptLineState();
+}
+
+class _PremiumTranscriptLineState extends State<PremiumTranscriptLine> with SingleTickerProviderStateMixin {
+  late AnimationController _pulseController;
+  late Animation<double> _pulseAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    _pulseController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1000),
+    );
+    _pulseAnimation = Tween<double>(begin: 1.0, end: 1.2).animate(
+      CurvedAnimation(parent: _pulseController, curve: Curves.easeInOut),
+    );
+    if (widget.isRecordingThisLine) {
+      _pulseController.repeat(reverse: true);
+    }
+  }
+
+  @override
+  void didUpdateWidget(PremiumTranscriptLine oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.isRecordingThisLine != oldWidget.isRecordingThisLine) {
+      if (widget.isRecordingThisLine) {
+        _pulseController.repeat(reverse: true);
+      } else {
+        _pulseController.stop();
+        _pulseController.value = 0.0;
+      }
+    }
+  }
+
+  @override
+  void dispose() {
+    _pulseController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,9 +97,9 @@ class PremiumTranscriptLine extends StatelessWidget {
                 // Play Icon (Active) or Bullet (Inactive)
                 Positioned(
                   top: 12,
-                  child: isCurrent
+                  child: widget.isCurrent
                       ? GestureDetector(
-                          onTap: onReplay,
+                          onTap: widget.onReplay,
                           child: Container(
                             decoration: const BoxDecoration(
                               shape: BoxShape.circle,
@@ -82,18 +130,18 @@ class PremiumTranscriptLine extends StatelessWidget {
           // Subtitle Content Block
           Expanded(
             child: GestureDetector(
-              onTap: onLineTapped,
+              onTap: widget.onLineTapped,
               behavior: HitTestBehavior.opaque,
               child: Container(
                 margin: const EdgeInsets.symmetric(vertical: 6),
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: isCurrent ? const Color(0xFFE8F0FE) : Colors.transparent,
+                  color: widget.isCurrent ? const Color(0xFFE8F0FE) : Colors.transparent,
                   borderRadius: BorderRadius.circular(16),
-                  border: isCurrent 
+                  border: widget.isCurrent 
                       ? Border.all(color: Colors.blueAccent.withValues(alpha: 0.3))
                       : Border.all(color: Colors.transparent),
-                  boxShadow: isCurrent 
+                  boxShadow: widget.isCurrent 
                       ? [
                           BoxShadow(
                             color: Colors.blueAccent.withValues(alpha: 0.1),
@@ -109,10 +157,10 @@ class PremiumTranscriptLine extends StatelessWidget {
                     // 1. Hanzi Line
                     RichText(
                       text: TextSpan(
-                        children: line.text.split('').asMap().entries.map((entry) {
+                        children: widget.line.text.split('').asMap().entries.map((entry) {
                           final charIndex = entry.key;
                           final char = entry.value;
-                          final isHighlighted = isCurrent && charIndex <= highlightedCount;
+                          final isHighlighted = widget.isCurrent && charIndex <= widget.highlightedCount;
                           final isChinese = RegExp(r'[\u4e00-\u9fff]').hasMatch(char);
 
                           return TextSpan(
@@ -125,7 +173,7 @@ class PremiumTranscriptLine extends StatelessWidget {
                               fontFamily: 'NotoSerifSC', // fallback if needed
                             ),
                             recognizer: isChinese 
-                                ? (TapGestureRecognizer()..onTap = () => onWordTapped(char))
+                                ? (TapGestureRecognizer()..onTap = () => widget.onWordTapped(char))
                                 : null,
                           );
                         }).toList(),
@@ -133,11 +181,11 @@ class PremiumTranscriptLine extends StatelessWidget {
                     ),
                     
                     // 2. Pinyin Line
-                    if (showPinyin && line.pinyin != null)
+                    if (widget.showPinyin && widget.line.pinyin != null)
                       Padding(
                         padding: const EdgeInsets.only(top: 4),
                         child: Text(
-                          line.pinyin!,
+                          widget.line.pinyin!,
                           style: const TextStyle(
                             fontSize: 14, 
                             color: Color(0xFF757575),
@@ -145,28 +193,67 @@ class PremiumTranscriptLine extends StatelessWidget {
                         ),
                       ),
                       
-                    // 3. English/Local Translation Line + AI Button Row
-                    if (showEnglish)
+                    // 3. English/Local Translation Line + AI/Shadow Row
+                    if (widget.showEnglish || widget.isShadowingMode)
                       Padding(
                         padding: const EdgeInsets.only(top: 6),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Expanded(
-                              child: Text(
-                                line.translation ?? "[ Translating... ]",
-                                style: const TextStyle(
-                                  fontSize: 14, 
-                                  fontStyle: FontStyle.italic,
-                                  color: Color(0xFF9E9E9E),
+                            if (widget.showEnglish)
+                              Expanded(
+                                child: Text(
+                                  widget.line.translation ?? "[ Translating... ]",
+                                  style: const TextStyle(
+                                    fontSize: 14, 
+                                    fontStyle: FontStyle.italic,
+                                    color: Color(0xFF9E9E9E),
+                                  ),
+                                ),
+                              )
+                            else
+                              const Spacer(),
+                            const SizedBox(width: 8),
+                            
+                            // Inline Microphone Button (Shadowing Mode)
+                            if (widget.isShadowingMode)
+                              GestureDetector(
+                                onTap: widget.onShadowTapped,
+                                child: AnimatedBuilder(
+                                  animation: _pulseAnimation,
+                                  builder: (context, child) {
+                                    return Transform.scale(
+                                      scale: widget.isRecordingThisLine ? _pulseAnimation.value : 1.0,
+                                      child: Container(
+                                        padding: const EdgeInsets.all(6),
+                                        decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: widget.isRecordingThisLine 
+                                              ? Colors.red.withValues(alpha: 0.2) 
+                                              : Colors.indigo.withValues(alpha: 0.1),
+                                          boxShadow: widget.isRecordingThisLine ? [
+                                            BoxShadow(color: Colors.red.withValues(alpha: 0.4), blurRadius: 8, spreadRadius: 2)
+                                          ] : null,
+                                        ),
+                                        child: Icon(
+                                          widget.isRecordingThisLine ? Icons.stop : Icons.mic,
+                                          color: widget.isRecordingThisLine ? Colors.red : Colors.indigo,
+                                          size: 20,
+                                        ),
+                                      ),
+                                    );
+                                  }
                                 ),
                               ),
-                            ),
-                            const SizedBox(width: 8),
+                            
+                            if (widget.isShadowingMode)
+                              const SizedBox(width: 8),
+                              
+                            // AI Explain Button
                             GestureDetector(
-                              onTap: onAiExplain,
+                              onTap: widget.onAiExplain,
                               child: Container(
-                                padding: const EdgeInsets.all(4),
+                                padding: const EdgeInsets.all(6),
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   color: Colors.amber.withValues(alpha: 0.1),
@@ -174,7 +261,7 @@ class PremiumTranscriptLine extends StatelessWidget {
                                 child: const Icon(
                                   Icons.auto_awesome,
                                   color: Colors.amber,
-                                  size: 18,
+                                  size: 20,
                                 ),
                               ),
                             ),
