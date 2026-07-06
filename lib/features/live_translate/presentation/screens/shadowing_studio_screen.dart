@@ -373,62 +373,21 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
                       trailing: const Icon(Icons.add_circle_outline, color: Colors.orange),
                       onTap: () async {
                         Navigator.pop(context); // Close deck selector
-                        
-                        // Process the injection
-                        final flashcardController = ref.read(flashcardControllerProvider.notifier);
                         // We pop the main session view before starting the long process, so user sees hub immediately
                         Navigator.pop(context); 
-
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Saving ${wordsToAdd.length} words to ${deck.name}...")));
                         
-                        for (String hanzi in wordsToAdd) {
-                          // Check if word exists in deck
-                          final existing = ref.read(flashcardControllerProvider).valueOrNull?.where((c) => c.hanzi == hanzi && c.deckId == deck.id).toList();
-                          
-                          Flashcard card;
-                          if (existing != null && existing.isNotEmpty) {
-                            card = existing.first;
-                          } else {
-                            // Find the weakCharacter data for this word to get some context
-                            final wData = _weakCharacters.firstWhere((w) => w['word'] == hanzi, orElse: () => {});
-                            card = Flashcard(
-                              id: DateTime.now().millisecondsSinceEpoch.toString() + hanzi.hashCode.toString(),
-                              deckId: deck.id,
-                              hanzi: hanzi,
-                              pinyin: wData['pinyin'] ?? "",
-                              definition: "", // Requires dictionary lookup ideally, but empty for now
-                              hskLevel: 0,
-                              strokePaths: const [],
-                              modeStats: const {},
-                            );
-                            await flashcardController.addFlashcard(card);
-                          }
-
-                          // Apply SRS Logic
-                          if (applySrs) {
-                            // Map Azure grade. The score isn't stored directly in `_weakCharacters` except implicitly via isPartial
-                            // We can estimate based on isPartial/isCorrect
-                            final wData = _weakCharacters.firstWhere((w) => w['word'] == hanzi, orElse: () => {});
-                            final isPartial = wData['isPartial'] ?? false;
-                            
-                            int sm2Grade = 0; // Again
-                            if (isPartial) {
-                              sm2Grade = 2; // Hard
-                            }
-                            
-                            // If they selected a correct word (by modifying UI or future features), we'd grade it 4 or 5.
-                            // But _weakCharacters only contains failed words (grade 0 or 2).
-                            
-                            final updatedCard = card.processReview(sm2Grade, StudyMode.speaking);
-                            await flashcardController.updateFlashcard(updatedCard);
-                          }
-                        }
-
-                        if (mounted) {
-                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Words saved and SRS scheduled!")));
-                        }
+                        await _saveWordsToDeck(context, deck, applySrs, wordsToAdd);
                       },
                     )),
+                  const Divider(),
+                  ListTile(
+                    title: Text("Create New Deck", style: TextStyle(color: Colors.orange, fontWeight: FontWeight.bold)),
+                    subtitle: Text("Make a custom collection", style: TextStyle(color: isDark ? Colors.white54 : Colors.black54)),
+                    trailing: const Icon(Icons.add_circle, color: Colors.orange),
+                    onTap: () {
+                      _showCreateDeckDialog(context, isDark, wordsToAdd, applySrs);
+                    },
+                  ),
                   const SizedBox(height: 32),
                 ],
               ),
@@ -437,6 +396,102 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
         );
       }
     );
+  }
+
+  void _showCreateDeckDialog(BuildContext context, bool isDark, List<String> wordsToAdd, bool applySrs) {
+    final TextEditingController controller = TextEditingController();
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          backgroundColor: isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
+          title: Text("New Deck Name", style: TextStyle(color: isDark ? Colors.white : Colors.black)),
+          content: TextField(
+            controller: controller,
+            style: TextStyle(color: isDark ? Colors.white : Colors.black),
+            decoration: InputDecoration(
+              hintText: "E.g. Anime Vocab",
+              hintStyle: TextStyle(color: isDark ? Colors.white54 : Colors.black54),
+              enabledBorder: const UnderlineInputBorder(borderSide: BorderSide(color: Colors.orange)),
+              focusedBorder: const UnderlineInputBorder(borderSide: BorderSide(color: Colors.orange)),
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text("Cancel", style: TextStyle(color: Colors.grey)),
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.orange),
+              onPressed: () async {
+                if (controller.text.trim().isEmpty) return;
+                
+                final deckName = controller.text.trim();
+                final deckController = ref.read(deckControllerProvider.notifier);
+                
+                final newDeck = await deckController.createDeck(deckName);
+                
+                if (context.mounted && newDeck != null) {
+                  Navigator.pop(context); // close create dialog
+                  Navigator.pop(context); // close select deck bottom sheet
+                  Navigator.pop(context); // close main session view
+                  
+                  await _saveWordsToDeck(context, newDeck, applySrs, wordsToAdd);
+                }
+              },
+              child: const Text("Create", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<void> _saveWordsToDeck(BuildContext context, Deck deck, bool applySrs, List<String> wordsToAdd) async {
+    final flashcardController = ref.read(flashcardControllerProvider.notifier);
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Saving ${wordsToAdd.length} words to ${deck.name}...")));
+    
+    for (String hanzi in wordsToAdd) {
+      // Check if word exists in deck
+      final existing = ref.read(flashcardControllerProvider).valueOrNull?.where((c) => c.hanzi == hanzi && c.deckId == deck.id).toList();
+      
+      Flashcard card;
+      if (existing != null && existing.isNotEmpty) {
+        card = existing.first;
+      } else {
+        // Find the weakCharacter data for this word to get some context
+        final wData = _weakCharacters.firstWhere((w) => w['word'] == hanzi, orElse: () => {});
+        card = Flashcard(
+          id: DateTime.now().millisecondsSinceEpoch.toString() + hanzi.hashCode.toString(),
+          deckId: deck.id,
+          hanzi: hanzi,
+          pinyin: wData['pinyin'] ?? "",
+          definition: "", // Requires dictionary lookup ideally, but empty for now
+          hskLevel: 0,
+          strokePaths: const [],
+          modeStats: const {},
+        );
+        await flashcardController.addFlashcard(card);
+      }
+
+      // Apply SRS Logic
+      if (applySrs) {
+        final wData = _weakCharacters.firstWhere((w) => w['word'] == hanzi, orElse: () => {});
+        final isPartial = wData['isPartial'] ?? false;
+        
+        int sm2Grade = 0; // Again
+        if (isPartial) {
+          sm2Grade = 2; // Hard
+        }
+        
+        final updatedCard = card.processReview(sm2Grade, StudyMode.speaking);
+        await flashcardController.updateFlashcard(updatedCard);
+      }
+    }
+
+    if (mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Words saved and SRS scheduled!")));
+    }
   }
 
   Widget _buildHubUI(BuildContext context, bool isDark) {
