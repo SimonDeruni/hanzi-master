@@ -37,6 +37,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
   String _customWordInput = "";
 
   bool _isLoadingNextPhrase = false;
+  int _sentenceCount = 0;
   Map<String, String>? _currentPhrase;
   bool _isRecording = false;
   bool _isGrading = false;
@@ -93,6 +94,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
       _isLoadingNextPhrase = true;
       _lastGrade = null;
       _errorMessage = null;
+      _sentenceCount++;
     });
 
     try {
@@ -228,6 +230,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
         _isSessionStarted = false;
         _currentPhrase = null;
         _weakCharacters.clear();
+        _sentenceCount = 0;
       });
       return;
     }
@@ -314,6 +317,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
                               _isSessionStarted = false;
                               _currentPhrase = null;
                               _weakCharacters.clear();
+                              _sentenceCount = 0;
                             });
                           },
                           child: const Text("Skip", style: TextStyle(color: Colors.grey, fontSize: 16)),
@@ -390,6 +394,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
                           _isSessionStarted = false;
                           _currentPhrase = null;
                           _weakCharacters.clear();
+                          _sentenceCount = 0;
                         });
                         
                         await _saveWordsToDeck(context, deck, applySrs, wordsToAdd);
@@ -832,9 +837,18 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
                       onPressed: () => _showSessionSummaryDialog(context, isDark),
                     ),
                     const SizedBox(width: 8),
-                    Text(
-                      "Shadowing Studio",
-                      style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: isDark ? Colors.white : const Color(0xFF1A1A1B)),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Shadowing Studio",
+                          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: isDark ? Colors.white : const Color(0xFF1A1A1B)),
+                        ),
+                        Text(
+                          "Endless AI Stream • Sentence $_sentenceCount",
+                          style: TextStyle(fontSize: 14, color: Colors.orange, fontWeight: FontWeight.w600),
+                        ),
+                      ],
                     ),
                   ],
                 ),
