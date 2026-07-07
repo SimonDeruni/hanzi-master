@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -26,7 +27,7 @@ class LocalTranslationService {
     try {
       await Hive.openBox<String>(_boxName);
     } catch (e) {
-      print('Error opening $_boxName: $e. Deleting and retrying.');
+      debugPrint('Error opening $_boxName: $e. Deleting and retrying.');
       await Hive.deleteBoxFromDisk(_boxName);
       await Hive.openBox<String>(_boxName);
     }

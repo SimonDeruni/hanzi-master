@@ -811,7 +811,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
         color: const Color(0xFFFDFCF0),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.1),
+            color: Colors.black.withValues(alpha: 0.1),
             blurRadius: 10,
             offset: const Offset(0, -2),
           ),
@@ -942,7 +942,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
                         icon: const Icon(Icons.auto_awesome),
                         label: const Text('Extract & Simplify'),
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.blueAccent.withOpacity(0.1),
+                          backgroundColor: Colors.blueAccent.withValues(alpha: 0.1),
                           foregroundColor: Colors.blueAccent,
                           elevation: 0,
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
@@ -970,7 +970,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
                                       final level = index + 1;
                                       return ListTile(
                                         leading: CircleAvatar(
-                                          backgroundColor: Colors.blueAccent.withOpacity(0.1),
+                                          backgroundColor: Colors.blueAccent.withValues(alpha: 0.1),
                                           child: Text('$level', style: const TextStyle(color: Colors.blueAccent)),
                                         ),
                                         title: Text('HSK $level'),
@@ -1026,7 +1026,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
         title: Container(
           height: 40,
           decoration: BoxDecoration(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha: 0.05),
             borderRadius: BorderRadius.circular(20),
           ),
           padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -1184,7 +1184,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
                   ),
                 if (_isProcessingAi)
                   Container(
-                    color: Colors.white.withOpacity(0.9),
+                    color: Colors.white.withValues(alpha: 0.9),
                     child: const Center(
                       child: AiProgressBar(label: 'AI is thinking...'),
                     ),

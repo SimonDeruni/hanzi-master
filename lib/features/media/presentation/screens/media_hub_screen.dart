@@ -452,13 +452,13 @@ class _DailyDiscoveryCarouselState extends ConsumerState<_DailyDiscoveryCarousel
                   return Container(
                     color: theme.colorScheme.surfaceContainerHighest,
                     child: Center(
-                      child: Icon(Icons.broken_image, color: theme.colorScheme.onSurfaceVariant.withOpacity(0.5), size: 40),
+                      child: Icon(Icons.broken_image, color: theme.colorScheme.onSurfaceVariant.withValues(alpha: 0.5), size: 40),
                     ),
                   );
                 },
               ),
               Positioned.fill(
-                child: Container(color: Colors.black.withOpacity(0.5)),
+                child: Container(color: Colors.black.withValues(alpha: 0.5)),
               ),
               Padding(
                 padding: const EdgeInsets.all(24.0),

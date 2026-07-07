@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_mlkit_digital_ink_recognition/google_mlkit_digital_ink_recognition.dart';
 
@@ -40,7 +41,7 @@ class DigitalInkService {
       final List<RecognitionCandidate> candidates = await _recognizer!.recognize(ink);
       return candidates.map((c) => c.text).toList();
     } catch (e) {
-      print("Digital Ink Recognition Error: $e");
+      debugPrint("Digital Ink Recognition Error: $e");
       return [];
     }
   }

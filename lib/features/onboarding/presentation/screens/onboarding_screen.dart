@@ -340,7 +340,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16),
               gradient: LinearGradient(
-                colors: [Colors.black.withOpacity(0.05), Colors.black.withOpacity(0.02)],
+                colors: [Colors.black.withValues(alpha: 0.05), Colors.black.withValues(alpha: 0.02)],
               ),
             ),
             child: const Center(
@@ -657,9 +657,9 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(16),
-                border: Border.all(color: Colors.black.withOpacity(0.05)),
+                border: Border.all(color: Colors.black.withValues(alpha: 0.05)),
                 boxShadow: [
-                  BoxShadow(color: Colors.black.withOpacity(0.02), blurRadius: 10, offset: const Offset(0, 4))
+                  BoxShadow(color: Colors.black.withValues(alpha: 0.02), blurRadius: 10, offset: const Offset(0, 4))
                 ],
               ),
               child: Column(
@@ -772,13 +772,13 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
           color: isSelected ? const Color(0xFF1A1A1B) : Colors.white,
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
-            color: isSelected ? const Color(0xFF1A1A1B) : Colors.black.withOpacity(0.05),
+            color: isSelected ? const Color(0xFF1A1A1B) : Colors.black.withValues(alpha: 0.05),
             width: 1.5,
           ),
           boxShadow: [
             if (!isSelected)
               BoxShadow(
-                color: Colors.black.withOpacity(0.02),
+                color: Colors.black.withValues(alpha: 0.02),
                 blurRadius: 10,
                 offset: const Offset(0, 4),
               )
@@ -819,10 +819,10 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: Colors.black.withOpacity(0.05)),
+        border: Border.all(color: Colors.black.withValues(alpha: 0.05)),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.02),
+            color: Colors.black.withValues(alpha: 0.02),
             blurRadius: 10,
             offset: const Offset(0, 4),
           )
@@ -869,13 +869,13 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
           color: Colors.white,
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
-            color: isSelected ? Colors.red[700]! : Colors.black.withOpacity(0.05),
+            color: isSelected ? Colors.red[700]! : Colors.black.withValues(alpha: 0.05),
             width: 1.5,
           ),
           boxShadow: [
             if (!isSelected)
               BoxShadow(
-                color: Colors.black.withOpacity(0.02),
+                color: Colors.black.withValues(alpha: 0.02),
                 blurRadius: 10,
                 offset: const Offset(0, 4),
               )
@@ -932,13 +932,13 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
           color: Colors.white,
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
-            color: isSelected ? Colors.red[700]! : Colors.black.withOpacity(0.05),
+            color: isSelected ? Colors.red[700]! : Colors.black.withValues(alpha: 0.05),
             width: 1.5,
           ),
           boxShadow: [
             if (!isSelected)
               BoxShadow(
-                color: Colors.black.withOpacity(0.02),
+                color: Colors.black.withValues(alpha: 0.02),
                 blurRadius: 10,
                 offset: const Offset(0, 4),
               )
@@ -979,8 +979,8 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
           style: ElevatedButton.styleFrom(
             backgroundColor: const Color(0xFF1A1A1B),
             foregroundColor: const Color(0xFFFDFCF0),
-            disabledBackgroundColor: const Color(0xFF1A1A1B).withOpacity(0.3),
-            disabledForegroundColor: const Color(0xFFFDFCF0).withOpacity(0.5),
+            disabledBackgroundColor: const Color(0xFF1A1A1B).withValues(alpha: 0.3),
+            disabledForegroundColor: const Color(0xFFFDFCF0).withValues(alpha: 0.5),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16),
             ),

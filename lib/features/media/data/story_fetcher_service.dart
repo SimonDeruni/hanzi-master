@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:http/http.dart' as http;
@@ -216,7 +217,7 @@ class StoryFetcherService {
         return rawStories;
       }
     } catch (e) {
-      print('Error fetching RSS from $url: $e');
+      debugPrint('Error fetching RSS from $url: $e');
     }
     return [];
   }
@@ -341,7 +342,7 @@ class StoryFetcherService {
         ));
       }
     } catch (e) {
-      print("Error loading local stories: $e");
+      debugPrint("Error loading local stories: $e");
     }
 
     try {
@@ -370,7 +371,7 @@ class StoryFetcherService {
         );
       }));
     } catch (e) {
-      print('Error loading local bundled stories: $e');
+      debugPrint('Error loading local bundled stories: $e');
     }
     return localStories;
   }
@@ -397,7 +398,7 @@ class StoryFetcherService {
         );
       }));
     } catch (e) {
-      print("Error loading default_stories: $e");
+      debugPrint("Error loading default_stories: $e");
     }
 
     try {
@@ -424,7 +425,7 @@ class StoryFetcherService {
         );
       }));
     } catch (e) {
-      print("Error loading mandarin_bean_stories: $e");
+      debugPrint("Error loading mandarin_bean_stories: $e");
     }
 
     return localStories;

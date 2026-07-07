@@ -539,7 +539,7 @@ class _ScenarioGlassCard extends StatelessWidget {
                             scenario.description,
                             style: TextStyle(
                               fontSize: 15,
-                              color: Colors.white.withOpacity(0.8),
+                              color: Colors.white.withValues(alpha: 0.8),
                               height: 1.4,
                             ),
                             maxLines: 3,
@@ -568,7 +568,7 @@ class _ScenarioGlassCard extends StatelessWidget {
                           ),
                           const SizedBox(height: 12),
                           if (scenario.quests.isEmpty)
-                            Text("Just survive the conversation.", style: TextStyle(color: Colors.white.withOpacity(0.7), fontStyle: FontStyle.italic))
+                            Text("Just survive the conversation.", style: TextStyle(color: Colors.white.withValues(alpha: 0.7), fontStyle: FontStyle.italic))
                           else
                             ...scenario.quests.map((q) => Padding(
                               padding: const EdgeInsets.only(bottom: 8.0),

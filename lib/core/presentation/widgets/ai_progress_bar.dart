@@ -47,10 +47,10 @@ class _AiProgressBarState extends State<AiProgressBar>
                 borderRadius: BorderRadius.circular(3),
                 gradient: LinearGradient(
                   colors: [
-                    Colors.indigo.withOpacity(0.3),
-                    Colors.purpleAccent.withOpacity(0.8),
-                    Colors.blueAccent.withOpacity(0.8),
-                    Colors.indigo.withOpacity(0.3),
+                    Colors.indigo.withValues(alpha: 0.3),
+                    Colors.purpleAccent.withValues(alpha: 0.8),
+                    Colors.blueAccent.withValues(alpha: 0.8),
+                    Colors.indigo.withValues(alpha: 0.3),
                   ],
                   stops: [
                     0.0,

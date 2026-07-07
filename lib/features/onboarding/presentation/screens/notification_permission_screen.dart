@@ -32,7 +32,7 @@ class NotificationPermissionScreen extends ConsumerWidget {
                   child: Container(
                     padding: const EdgeInsets.all(24),
                     decoration: BoxDecoration(
-                      color: isDark ? Colors.white.withOpacity(0.05) : Colors.black.withOpacity(0.03),
+                      color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.black.withValues(alpha: 0.03),
                       shape: BoxShape.circle,
                     ),
                     child: const Icon(
@@ -109,7 +109,7 @@ class NotificationPermissionScreen extends ConsumerWidget {
                       borderRadius: BorderRadius.circular(16),
                       boxShadow: [
                         BoxShadow(
-                          color: const Color(0xFF1A1A1B).withOpacity(0.3),
+                          color: const Color(0xFF1A1A1B).withValues(alpha: 0.3),
                           blurRadius: 12,
                           offset: const Offset(0, 4),
                         )
@@ -157,7 +157,7 @@ class NotificationPermissionScreen extends ConsumerWidget {
         Container(
           padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
-            color: const Color(0xFFD4C4A8).withOpacity(0.15),
+            color: const Color(0xFFD4C4A8).withValues(alpha: 0.15),
             borderRadius: BorderRadius.circular(12),
           ),
           child: Icon(icon, color: const Color(0xFFD4C4A8), size: 24),

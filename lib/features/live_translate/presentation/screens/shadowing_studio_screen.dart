@@ -652,7 +652,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
                       Container(
                         padding: const EdgeInsets.all(24),
                         decoration: BoxDecoration(
-                          color: isDark ? Colors.orange.withOpacity(0.1) : Colors.orange.withOpacity(0.05),
+                          color: isDark ? Colors.orange.withValues(alpha: 0.1) : Colors.orange.withValues(alpha: 0.05),
                           shape: BoxShape.circle,
                         ),
                         child: Icon(
@@ -842,7 +842,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                     colors: [
-                      (isDark ? const Color(0xFF1A1A1A) : const Color(0xFFFDF5E6)).withOpacity(0.0),
+                      (isDark ? const Color(0xFF1A1A1A) : const Color(0xFFFDF5E6)).withValues(alpha: 0.0),
                       isDark ? const Color(0xFF1A1A1A) : const Color(0xFFFDF5E6),
                     ],
                   ),
@@ -858,7 +858,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
                     borderRadius: BorderRadius.circular(32),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.orange.withOpacity(0.4),
+                        color: Colors.orange.withValues(alpha: 0.4),
                         blurRadius: 16,
                         offset: const Offset(0, 8),
                       ),
@@ -1006,9 +1006,9 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
                                     color: _isRecording ? Colors.red : (isDark ? Colors.orange.shade800 : Colors.orange),
                                     boxShadow: [
                                       if (_isRecording)
-                                        BoxShadow(color: Colors.red.withOpacity(0.5), blurRadius: 20, spreadRadius: 5)
+                                        BoxShadow(color: Colors.red.withValues(alpha: 0.5), blurRadius: 20, spreadRadius: 5)
                                       else
-                                        BoxShadow(color: Colors.orange.withOpacity(0.3), blurRadius: 10, spreadRadius: 2),
+                                        BoxShadow(color: Colors.orange.withValues(alpha: 0.3), blurRadius: 10, spreadRadius: 2),
                                     ],
                                   ),
                                   child: Icon(Icons.mic, size: widget.isCompact ? 28 : 36, color: Colors.white),
@@ -1150,7 +1150,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
               height: 120,
               width: double.infinity,
               decoration: BoxDecoration(
-                color: isDark ? Colors.black26 : Colors.black.withOpacity(0.05),
+                color: isDark ? Colors.black26 : Colors.black.withValues(alpha: 0.05),
                 borderRadius: BorderRadius.circular(16),
               ),
               child: Stack(

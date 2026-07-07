@@ -97,7 +97,7 @@ class SettingsScreen extends ConsumerWidget {
             children: [
               ListTile(
                 leading: CircleAvatar(
-                  backgroundColor: Colors.amber.withOpacity(0.1),
+                  backgroundColor: Colors.amber.withValues(alpha: 0.1),
                   child: const Icon(Icons.notifications_active, color: Colors.amber),
                 ),
                 title: const Text("Notification Settings", style: TextStyle(fontWeight: FontWeight.w600)),
@@ -116,7 +116,7 @@ class SettingsScreen extends ConsumerWidget {
             children: [
               ListTile(
                 leading: CircleAvatar(
-                  backgroundColor: Colors.red.withOpacity(0.1),
+                  backgroundColor: Colors.red.withValues(alpha: 0.1),
                   child: const Icon(Icons.delete_forever, color: Colors.red),
                 ),
                 title: Text(l10n?.resetAllData ?? "Reset All Data", style: const TextStyle(color: Colors.red, fontWeight: FontWeight.bold)),
@@ -189,7 +189,7 @@ class SettingsScreen extends ConsumerWidget {
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(isDark ? 0.2 : 0.04),
+            color: Colors.black.withValues(alpha: isDark ? 0.2 : 0.04),
             blurRadius: 10,
             offset: const Offset(0, 4),
           ),
@@ -216,7 +216,7 @@ class SettingsScreen extends ConsumerWidget {
       title: Text(title, style: const TextStyle(fontWeight: FontWeight.w600)),
       subtitle: Text(subtitle),
       secondary: CircleAvatar(
-        backgroundColor: iconColor.withOpacity(0.1),
+        backgroundColor: iconColor.withValues(alpha: 0.1),
         child: Icon(icon, color: iconColor),
       ),
       activeColor: iconColor,
@@ -241,7 +241,7 @@ class SettingsScreen extends ConsumerWidget {
         children: [
           ListTile(
             leading: CircleAvatar(
-              backgroundColor: iconColor.withOpacity(0.1),
+              backgroundColor: iconColor.withValues(alpha: 0.1),
               child: Icon(icon, color: iconColor),
             ),
             title: Text(title, style: const TextStyle(fontWeight: FontWeight.w600)),

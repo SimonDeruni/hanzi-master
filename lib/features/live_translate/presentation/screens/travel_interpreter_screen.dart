@@ -50,9 +50,11 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
   bool _hasError = false;
   bool _isRecording = false;
 
-  bool _isKeyboardMode = false;
+  bool _isUserKeyboardMode = false;
+  bool _isPartnerKeyboardMode = false;
   bool _isTypingMandarin = false;
   final TextEditingController _bottomTextController = TextEditingController();
+  final TextEditingController _partnerTextController = TextEditingController();
   bool _isTranslatingText = false;
 
   final List<InterpreterMessage> _transcript = [];
@@ -495,7 +497,27 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Text("Partner (中文)", style: TextStyle(color: Colors.white54, fontSize: 18, fontWeight: FontWeight.w600, letterSpacing: 1.2)),
+                          Row(
+                            children: [
+                              const Text("Partner (中文)", style: TextStyle(color: Colors.white54, fontSize: 18, fontWeight: FontWeight.w600, letterSpacing: 1.2)),
+                              const SizedBox(width: 8),
+                              IconButton(
+                                icon: Icon(
+                                  Icons.keyboard,
+                                  color: _isPartnerKeyboardMode ? Colors.blueAccent : Colors.white54,
+                                  size: 20,
+                                ),
+                                onPressed: () {
+                                  setState(() {
+                                    _isPartnerKeyboardMode = !_isPartnerKeyboardMode;
+                                    if (_isPartnerKeyboardMode && _isRecording) {
+                                      _stopAudioStreaming();
+                                    }
+                                  });
+                                },
+                              ),
+                            ],
+                          ),
                           if (_isRecording)
                             const Row(
                               children: [
@@ -540,8 +562,35 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                           },
                         ),
                       ),
-                      if (_isKeyboardMode)
-                        const SizedBox.shrink(),
+                      if (_isPartnerKeyboardMode)
+                        Padding(
+                          padding: const EdgeInsets.only(top: 8.0),
+                          child: TextField(
+                            controller: _partnerTextController,
+                            style: const TextStyle(color: Colors.white, fontSize: 18),
+                            decoration: InputDecoration(
+                              hintText: "Type in Mandarin...",
+                              hintStyle: const TextStyle(color: Colors.white38),
+                              filled: true,
+                              fillColor: Colors.white.withValues(alpha: 0.1),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(16),
+                                borderSide: BorderSide.none,
+                              ),
+                              suffixIcon: IconButton(
+                                icon: const Icon(Icons.send, color: Colors.blueAccent),
+                                onPressed: _isTranslatingText ? null : () {
+                                  _sendTextTranslation(_partnerTextController.text, false);
+                                  _partnerTextController.clear();
+                                },
+                              ),
+                            ),
+                            onSubmitted: _isTranslatingText ? null : (val) {
+                              _sendTextTranslation(val, false);
+                              _partnerTextController.clear();
+                            },
+                          ),
+                        ),
                     ],
                   ),
                 ),
@@ -640,7 +689,7 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                         },
                       ),
                     ),
-                    if (_isKeyboardMode)
+                    if (_isUserKeyboardMode)
                       Padding(
                         padding: const EdgeInsets.only(top: 8.0),
                         child: TextField(
@@ -728,31 +777,6 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                     children: [
                       // Language Icon
                       const Icon(Icons.translate, color: Colors.white70, size: 24),
-                      // Keyboard Toggle Button
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            _isKeyboardMode = !_isKeyboardMode;
-                            // Pause audio if switching to keyboard mode
-                            if (_isKeyboardMode && _isRecording) {
-                              _stopAudioStreaming();
-                            }
-                          });
-                        },
-                        child: AnimatedContainer(
-                          duration: const Duration(milliseconds: 300),
-                          padding: const EdgeInsets.all(12),
-                          decoration: BoxDecoration(
-                            color: _isKeyboardMode ? Colors.blueAccent.withValues(alpha: 0.2) : Colors.transparent,
-                            shape: BoxShape.circle,
-                          ),
-                          child: Icon(
-                            Icons.keyboard,
-                            color: _isKeyboardMode ? Colors.blueAccent : Colors.white70,
-                            size: 24,
-                          ),
-                        ),
-                      ),
                       const SizedBox(width: 8),
                       // Mic Button
                       GestureDetector(

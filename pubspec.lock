@@ -369,14 +369,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.2"
-  cupertino_icons:
-    dependency: "direct main"
-    description:
-      name: cupertino_icons
-      sha256: ba631d1c7f7bef6b729a622b7b752645a2d076dba9976925b8f25725a30e1ee6
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.8"
   custom_lint_core:
     dependency: transitive
     description:
@@ -643,14 +635,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_markdown:
-    dependency: "direct main"
-    description:
-      name: flutter_markdown
-      sha256: "08fb8315236099ff8e90cb87bb2b935e0a724a3af1623000a9cec930468e0f27"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.7.7+1"
   flutter_native_splash:
     dependency: "direct dev"
     description:
@@ -1093,14 +1077,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.3"
-  markdown:
-    dependency: transitive
-    description:
-      name: markdown
-      sha256: ee85086ad7698b42522c6ad42fe195f1b9898e4d974a1af4576c1a3a176cada9
-      url: "https://pub.dev"
-    source: hosted
-    version: "7.3.1"
   matcher:
     dependency: transitive
     description:
@@ -1549,30 +1525,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.1"
-  sign_in_with_apple:
-    dependency: "direct main"
-    description:
-      name: sign_in_with_apple
-      sha256: "8bd875c8e8748272749eb6d25b896f768e7e9d60988446d543fe85a37a2392b8"
-      url: "https://pub.dev"
-    source: hosted
-    version: "7.0.1"
-  sign_in_with_apple_platform_interface:
-    dependency: transitive
-    description:
-      name: sign_in_with_apple_platform_interface
-      sha256: "981bca52cf3bb9c3ad7ef44aace2d543e5c468bb713fd8dda4275ff76dfa6659"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.0"
-  sign_in_with_apple_web:
-    dependency: transitive
-    description:
-      name: sign_in_with_apple_web
-      sha256: f316400827f52cafcf50d00e1a2e8a0abc534ca1264e856a81c5f06bd5b10fed
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.0.0"
   simple_sparse_list:
     dependency: transitive
     description:
@@ -1635,7 +1587,7 @@ packages:
     source: hosted
     version: "1.0.0+beta.8"
   sqflite:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: sqflite
       sha256: "564cfed0746fe53140c23b70b308e045c3b31f17778f2f326ccb7d804ea0250a"

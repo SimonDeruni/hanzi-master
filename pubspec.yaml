@@ -31,7 +31,6 @@ dependencies:
   equatable: ^2.0.5
   intl: ^0.20.2
   uuid: ^4.5.2
-  cupertino_icons: ^1.0.6
   shared_preferences: ^2.5.4
   vector_math: ^2.1.4
   path_provider: ^2.1.2
@@ -41,7 +40,6 @@ dependencies:
   google_mlkit_commons: ^0.11.1
   google_mlkit_digital_ink_recognition: ^0.14.2
   image_picker: ^1.2.1
-  sqflite: ^2.4.2+1
   path: ^1.9.1
   sqflite_common_ffi: ^2.4.0+3
   record: ^6.2.1
@@ -62,10 +60,8 @@ dependencies:
   webview_flutter: ^4.14.0
   firebase_auth: ^6.5.4
   google_sign_in: ^7.2.0
-  sign_in_with_apple: ^7.0.1
   xml: ^6.6.1
   cached_network_image: ^3.4.1
-  flutter_markdown: ^0.7.7+1
   html: ^0.15.4
   cloud_firestore: ^6.6.0
   google_mlkit_translation: ^0.13.1

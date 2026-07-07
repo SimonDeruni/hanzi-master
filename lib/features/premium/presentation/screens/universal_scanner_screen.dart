@@ -206,7 +206,24 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
         return;
       }
 
-      final objects = await _visionService.processImage(inputImage);
+      final textFuture = _textRecognizer.processImage(inputImage);
+      final objectsFuture = _visionService.processImage(inputImage);
+
+      final results = await Future.wait([textFuture, objectsFuture]);
+      final recognizedText = results[0] as RecognizedText;
+      final objects = results[1] as List<DetectedObject>;
+
+      final chineseRegex = RegExp(r'[\u4e00-\u9fa5]');
+      final List<TranslatedTextBlock> newBlocks = [];
+      for (final block in recognizedText.blocks) {
+        if (block.text.trim().length > 1 && chineseRegex.hasMatch(block.text)) {
+          newBlocks.add(TranslatedTextBlock(
+            boundingBox: block.boundingBox,
+            originalText: block.text,
+            translatedText: '',
+          ));
+        }
+      }
 
       final currentCache = Map<String, Flashcard>.from(_translationCache);
       bool cacheUpdated = false;
@@ -225,6 +242,7 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
       if (mounted && _isArLensMode) {
         setState(() {
           _detectedObjects = objects;
+          _translatedBlocks = newBlocks;
           if (cacheUpdated) _translationCache = currentCache;
         });
       }
@@ -325,19 +343,36 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
   }
 
   Future<void> _processImageDetailed(XFile image, {String? preRecognized, List<AiTextBlock>? preBlocks}) async {
-    final result = preRecognized != null
-        ? (text: preRecognized, blocks: preBlocks ?? <AiTextBlock>[])
-        : await _ocrService.processImageFileDetailed(image);
+    ({String text, List<AiTextBlock> blocks})? result;
+    if (preRecognized != null) {
+      result = (text: preRecognized, blocks: preBlocks ?? <AiTextBlock>[]);
+    } else {
+      result = await _ocrService.processImageFileDetailed(image);
+      // Offline fallback: if AI OCR fails, use ML Kit TextRecognizer
+      if (result == null || result.text.isEmpty) {
+        try {
+          final inputImage = InputImage.fromFilePath(image.path);
+          final recognizedText = await _textRecognizer.processImage(inputImage);
+          final text = recognizedText.text.trim();
+          if (text.isNotEmpty) {
+            result = (text: text, blocks: <AiTextBlock>[]);
+          }
+        } catch (e) {
+          debugPrint("ML Kit fallback error: $e");
+        }
+      }
+    }
 
-    if (result != null && result.text.isNotEmpty) {
+    final processed = result;
+    if (processed != null && processed.text.isNotEmpty) {
       final decodedImage = await decodeImageFromList(await image.readAsBytes());
 
       setState(() {
         _isScanning = false;
         _scanPhase = 2;
         _capturedImage = image;
-        _recognizedText = result.text;
-        _aiTextBlocks = result.blocks;
+        _recognizedText = processed.text;
+        _aiTextBlocks = processed.blocks;
         _imageSize = Size(decodedImage.width.toDouble(), decodedImage.height.toDouble());
         _showingInteractiveImage = true;
       });
@@ -713,7 +748,22 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                       }
                     ),
                   Text("Results", style: theme.textTheme.titleMedium?.copyWith(color: Colors.white)),
-                  const SizedBox(width: 48),
+                  IconButton(
+                    icon: const Icon(Icons.camera_alt_outlined, color: Colors.white),
+                    tooltip: 'Scan Another',
+                    onPressed: () {
+                      setState(() {
+                        _showingResults = false;
+                        _capturedImage = null;
+                        _recognizedText = null;
+                        _aiTextBlocks = [];
+                        _matchedCharacters = [];
+                        _selectedWordIndices.clear();
+                        _rawExtractedText = "";
+                        _fullTranslation = "";
+                      });
+                    },
+                  ),
                ]
             ),
           ),
@@ -820,6 +870,16 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
         child: Stack(
           fit: StackFit.expand,
           children: [
+          CustomPaint(
+            painter: TranslationOverlayPainter(
+              blocks: _translatedBlocks,
+              imageSize: Size(
+                _cameraController!.value.previewSize!.height,
+                _cameraController!.value.previewSize!.width,
+              ),
+              screenSize: MediaQuery.of(context).size,
+            ),
+          ),
           CustomPaint(
             painter: ARBoundingBoxPainter(
               _detectedObjects,
@@ -1071,7 +1131,7 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                     ],
                   ),
                   const SizedBox(height: 12),
-                  Text(_fullTranslation, style: theme.textTheme.bodyLarge?.copyWith(height: 1.5, color: Colors.white.withOpacity(0.9), fontStyle: FontStyle.italic)),
+                  Text(_fullTranslation, style: theme.textTheme.bodyLarge?.copyWith(height: 1.5, color: Colors.white.withValues(alpha: 0.9), fontStyle: FontStyle.italic)),
                 ],
               ),
             ),
@@ -1131,7 +1191,7 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                           height: 64,
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
-                            color: theme.colorScheme.primary.withOpacity(0.1),
+                            color: theme.colorScheme.primary.withValues(alpha: 0.1),
                             borderRadius: BorderRadius.circular(16),
                           ),
                           child: Text(info.hanzi, style: const TextStyle(fontSize: 40, fontWeight: FontWeight.w900, color: Color(0xFF1A1A1B), height: 1.0)),
@@ -1163,7 +1223,7 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 child: Text(
-                                  'HSK \${info.hskLevel}',
+                                  'HSK ${info.hskLevel}',
                                   style: theme.textTheme.labelSmall?.copyWith(
                                     color: theme.colorScheme.primary,
                                     fontWeight: FontWeight.bold,
@@ -1172,7 +1232,7 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                               ),
                             Container(
                               decoration: BoxDecoration(
-                                color: const Color(0xFF1A1A1B).withOpacity(0.05),
+                                color: const Color(0xFF1A1A1B).withValues(alpha: 0.05),
                                 shape: BoxShape.circle,
                               ),
                               child: IconButton(
@@ -1332,7 +1392,7 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                                 height: 56,
                                 alignment: Alignment.center,
                                 decoration: BoxDecoration(
-                                  color: theme.colorScheme.primary.withOpacity(0.1),
+                                  color: theme.colorScheme.primary.withValues(alpha: 0.1),
                                   borderRadius: BorderRadius.circular(14),
                                 ),
                                 child: Text(info.hanzi, style: const TextStyle(fontSize: 32, fontWeight: FontWeight.w900, color: Colors.white, height: 1.0)),
@@ -1355,7 +1415,7 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                               Container(
                                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                                 decoration: BoxDecoration(
-                                  color: isInLibrary ? Colors.green.withOpacity(0.2) : theme.colorScheme.primary.withOpacity(0.2),
+                                  color: isInLibrary ? Colors.green.withValues(alpha: 0.2) : theme.colorScheme.primary.withValues(alpha: 0.2),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 child: Text(

@@ -462,9 +462,9 @@ class _DictionarySearchTab extends ConsumerWidget {
                             width: double.infinity,
                             padding: const EdgeInsets.all(20),
                             decoration: BoxDecoration(
-                              color: Theme.of(context).colorScheme.primary.withOpacity(0.1),
+                              color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.1),
                               borderRadius: BorderRadius.circular(16),
-                              border: Border.all(color: Theme.of(context).colorScheme.primary.withOpacity(0.2)),
+                              border: Border.all(color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.2)),
                             ),
                             child: Row(
                               children: [
@@ -476,7 +476,7 @@ class _DictionarySearchTab extends ConsumerWidget {
                                     children: [
                                       Text("HSK Collections", style: TextStyle(color: Theme.of(context).colorScheme.primary, fontSize: 18, fontWeight: FontWeight.bold)),
                                       SizedBox(height: 4),
-                                      Text("Download official HSK collections", style: TextStyle(color: Theme.of(context).colorScheme.primary.withOpacity(0.8), fontSize: 13)),
+                                      Text("Download official HSK collections", style: TextStyle(color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.8), fontSize: 13)),
                                     ],
                                   ),
                                 ),

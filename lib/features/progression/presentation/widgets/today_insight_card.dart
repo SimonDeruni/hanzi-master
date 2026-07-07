@@ -46,10 +46,10 @@ class TodayInsightCard extends ConsumerWidget {
             colors: [Color(0xFF2A2D34), Color(0xFF121212)],
           ),
           borderRadius: BorderRadius.circular(24),
-          border: Border.all(color: Colors.white.withOpacity(0.08), width: 1.5),
+          border: Border.all(color: Colors.white.withValues(alpha: 0.08), width: 1.5),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.3),
+              color: Colors.black.withValues(alpha: 0.3),
               blurRadius: 24,
               offset: const Offset(0, 12),
             )
@@ -105,7 +105,7 @@ class TodayInsightCard extends ConsumerWidget {
                             fontWeight: FontWeight.w900,
                             height: 1.0,
                             shadows: [
-                              Shadow(color: Colors.black.withOpacity(0.5), blurRadius: 10, offset: const Offset(0, 4)),
+                              Shadow(color: Colors.black.withValues(alpha: 0.5), blurRadius: 10, offset: const Offset(0, 4)),
                             ],
                           ),
                         ),
@@ -130,13 +130,13 @@ class TodayInsightCard extends ConsumerWidget {
                                     child: Container(
                                       padding: const EdgeInsets.all(8),
                                       decoration: BoxDecoration(
-                                        color: Colors.white.withOpacity(0.1),
+                                        color: Colors.white.withValues(alpha: 0.1),
                                         shape: BoxShape.circle,
                                       ),
                                       child: Icon(
                                         Icons.volume_up_rounded,
                                         size: 18,
-                                        color: Colors.white.withOpacity(0.9),
+                                        color: Colors.white.withValues(alpha: 0.9),
                                       ),
                                     ),
                                   ),
@@ -146,7 +146,7 @@ class TodayInsightCard extends ConsumerWidget {
                               Text(
                                 todayWord['meaning']!,
                                 style: theme.textTheme.bodyLarge?.copyWith(
-                                  color: Colors.white.withOpacity(0.7),
+                                  color: Colors.white.withValues(alpha: 0.7),
                                   fontWeight: FontWeight.w400,
                                   height: 1.3,
                                 ),

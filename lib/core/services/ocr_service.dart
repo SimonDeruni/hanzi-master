@@ -48,6 +48,10 @@ class OcrService {
   final GeminiService geminiService;
   final ImagePicker _picker = ImagePicker();
 
+  // In-memory dedup cache: image bytes hashCode -> OCR result
+  static const int _maxCacheEntries = 20;
+  final Map<int, ({String text, List<AiTextBlock> blocks})> _ocrCache = {};
+
   OcrService({required this.geminiService});
 
   /// Prompts the user to pick an image or take a photo, then extracts Chinese text via AI vision.
@@ -96,9 +100,19 @@ class OcrService {
   Future<({String text, List<AiTextBlock> blocks})?> processImageFileDetailed(XFile file) async {
     try {
       final bytes = await file.readAsBytes();
-      final decodedImage = await decodeImageFromList(bytes);
-      final imageWidth = decodedImage.width.toDouble();
-      final imageHeight = decodedImage.height.toDouble();
+      final hash = Object.hashAll(bytes);
+
+      // Check cache
+      final cached = _ocrCache[hash];
+      if (cached != null) {
+        debugPrint("OCR cache hit for hash $hash");
+        return cached;
+      }
+
+      final codec = await instantiateImageCodec(bytes);
+      final frame = await codec.getNextFrame();
+      final imageWidth = frame.image.width.toDouble();
+      final imageHeight = frame.image.height.toDouble();
 
       final result = await geminiService.extractTextFromImageDetailed(bytes);
 
@@ -107,7 +121,15 @@ class OcrService {
           .where((b) => b.isValid)
           .toList();
 
-      return (text: result.fullText, blocks: blocks);
+      final entry = (text: result.fullText, blocks: blocks);
+
+      // Store in cache, evict oldest if full
+      if (_ocrCache.length >= _maxCacheEntries) {
+        _ocrCache.remove(_ocrCache.keys.first);
+      }
+      _ocrCache[hash] = entry;
+
+      return entry;
     } catch (e) {
       debugPrint("OCR Error processing file detailed: $e");
       return null;

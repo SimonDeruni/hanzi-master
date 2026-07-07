@@ -491,7 +491,7 @@ class _CarouselCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(24),
           boxShadow: [
             BoxShadow(
-              color: const Color(0xFF131A29).withOpacity(0.5),
+              color: const Color(0xFF131A29).withValues(alpha: 0.5),
               blurRadius: 20,
               offset: const Offset(0, 10),
             ),
@@ -509,7 +509,7 @@ class _CarouselCard extends StatelessWidget {
                   Text(
                     title.toUpperCase(),
                     style: theme.textTheme.labelMedium?.copyWith(
-                      color: Colors.white.withOpacity(0.6),
+                      color: Colors.white.withValues(alpha: 0.6),
                       fontWeight: FontWeight.w600,
                       letterSpacing: 1.5,
                     ),
@@ -517,7 +517,7 @@ class _CarouselCard extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.1),
+                      color: Colors.white.withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Icon(
@@ -543,7 +543,7 @@ class _CarouselCard extends StatelessWidget {
               Text(
                 subtitle,
                 style: theme.textTheme.bodyMedium?.copyWith(
-                  color: Colors.white.withOpacity(0.8),
+                  color: Colors.white.withValues(alpha: 0.8),
                   height: 1.4,
                 ),
               ),

@@ -147,7 +147,7 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
                 final level = index + 1;
                 return ListTile(
                   leading: CircleAvatar(
-                    backgroundColor: Colors.orange.withOpacity(0.1),
+                    backgroundColor: Colors.orange.withValues(alpha: 0.1),
                     child: Text('$level', style: const TextStyle(color: Colors.orange)),
                   ),
                   title: Text('HSK $level'),

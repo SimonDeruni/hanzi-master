@@ -221,16 +221,15 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
     }
   }
 
-  void _playHint() {
+  Future<void> _playHint() async {
     if (_isHintAnimating || !widget.strokeByStrokeMode) {
       return;
     }
     setState(() => _isHintAnimating = true);
-    _hintController.forward(from: 0).then((_) {
-      if (mounted) {
-        setState(() => _isHintAnimating = false);
-      }
-    });
+    await _hintController.forward(from: 0);
+    if (mounted) {
+      setState(() => _isHintAnimating = false);
+    }
   }
 
   void _gradeCurrentStroke() {

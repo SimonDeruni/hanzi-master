@@ -114,11 +114,11 @@ class DashboardScreen extends ConsumerWidget {
                   child: Container(
                     padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 18),
                     decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.6),
+                      color: Colors.white.withValues(alpha: 0.6),
                       borderRadius: BorderRadius.circular(30),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withOpacity(0.04),
+                          color: Colors.black.withValues(alpha: 0.04),
                           blurRadius: 20,
                           offset: const Offset(0, 8),
                         ),
@@ -126,17 +126,17 @@ class DashboardScreen extends ConsumerWidget {
                     ),
                     child: Row(
                       children: [
-                        Icon(Icons.search, color: theme.colorScheme.onSurface.withOpacity(0.4), size: 24),
+                        Icon(Icons.search, color: theme.colorScheme.onSurface.withValues(alpha: 0.4), size: 24),
                         const SizedBox(width: 16),
                         Text(
                           l10n?.searchHanziOrPinyin ?? "Search Hanzi or Pinyin...",
                           style: theme.textTheme.titleMedium?.copyWith(
-                            color: theme.colorScheme.onSurface.withOpacity(0.5),
+                            color: theme.colorScheme.onSurface.withValues(alpha: 0.5),
                             fontWeight: FontWeight.w500,
                           ),
                         ),
                         const Spacer(),
-                        Icon(Icons.arrow_forward_ios, size: 16, color: theme.colorScheme.onSurface.withOpacity(0.3)),
+                        Icon(Icons.arrow_forward_ios, size: 16, color: theme.colorScheme.onSurface.withValues(alpha: 0.3)),
                       ],
                     ),
                   ),
@@ -289,7 +289,7 @@ class DashboardScreen extends ConsumerWidget {
                               borderRadius: BorderRadius.circular(24),
                               boxShadow: [
                                 BoxShadow(
-                                  color: const Color(0xFF1A237E).withOpacity(0.4),
+                                  color: const Color(0xFF1A237E).withValues(alpha: 0.4),
                                   blurRadius: 20,
                                   offset: const Offset(0, 8),
                                 ),
@@ -348,7 +348,7 @@ class DashboardScreen extends ConsumerWidget {
                                     padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
                                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                                     elevation: 4,
-                                    shadowColor: Colors.black.withOpacity(0.3),
+                                    shadowColor: Colors.black.withValues(alpha: 0.3),
                                   ),
                                   child: Text(l10n?.begin ?? "Begin", style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 16)),
                                 ),
@@ -403,7 +403,7 @@ class _ForecastItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.04),
+            color: Colors.black.withValues(alpha: 0.04),
             blurRadius: 16,
             offset: const Offset(0, 6),
           ),
@@ -422,7 +422,7 @@ class _ForecastItem extends StatelessWidget {
           Text(
             title,
             style: theme.textTheme.bodySmall?.copyWith(
-              color: const Color(0xFF2A2D34).withOpacity(0.6),
+              color: const Color(0xFF2A2D34).withValues(alpha: 0.6),
               fontWeight: FontWeight.w600,
               letterSpacing: 0.2,
             ),

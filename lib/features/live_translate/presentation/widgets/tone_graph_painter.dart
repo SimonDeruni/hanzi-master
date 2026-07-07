@@ -24,7 +24,7 @@ class ToneGraphPainter extends CustomPainter {
 
     // Draw Highlight Background if active
     if (highlightStart != null && highlightEnd != null) {
-      final paint = Paint()..color = Colors.amber.withOpacity(0.15)..style = PaintingStyle.fill;
+      final paint = Paint()..color = Colors.amber.withValues(alpha: 0.15)..style = PaintingStyle.fill;
       canvas.drawRect(
         Rect.fromLTRB(highlightStart! * size.width, 0, highlightEnd! * size.width, size.height),
         paint,
@@ -67,7 +67,7 @@ class ToneGraphPainter extends CustomPainter {
 
       if (isDashed) {
         // Draw dashed path (simplified, just draw normal for now or implement dash path)
-        canvas.drawPath(path, paint..color = color.withOpacity(0.4));
+        canvas.drawPath(path, paint..color = color.withValues(alpha: 0.4));
       } else {
         canvas.drawPath(path, paint);
       }

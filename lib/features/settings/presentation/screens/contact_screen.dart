@@ -103,7 +103,7 @@ class _ContactScreenState extends State<ContactScreen> {
                     borderRadius: BorderRadius.circular(16),
                     boxShadow: [
                       BoxShadow(
-                        color: isDark ? Colors.black.withOpacity(0.2) : Colors.black.withOpacity(0.04),
+                        color: isDark ? Colors.black.withValues(alpha: 0.2) : Colors.black.withValues(alpha: 0.04),
                         blurRadius: 16,
                         offset: const Offset(0, 8),
                       ),
@@ -148,7 +148,7 @@ class _ContactScreenState extends State<ContactScreen> {
                       borderRadius: BorderRadius.circular(24),
                       boxShadow: [
                         BoxShadow(
-                          color: isDark ? Colors.black.withOpacity(0.2) : Colors.black.withOpacity(0.04),
+                          color: isDark ? Colors.black.withValues(alpha: 0.2) : Colors.black.withValues(alpha: 0.04),
                           blurRadius: 24,
                           offset: const Offset(0, 12),
                         ),

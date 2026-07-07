@@ -54,48 +54,45 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
     final fetcher = ref.read(storyFetcherServiceProvider);
     final storyRepo = ref.read(storyRepositoryProvider);
 
-    Future.wait([
+    final results = await Future.wait([
       fetcher.fetchLocalStories(),
       fetcher.fetchFirebaseStories(),
       storyRepo.getAllStories(),
-    ]).then((results) async {
-      final prefs = await SharedPreferences.getInstance();
-      final bookmarks = prefs.getStringList('bookmarked_story_urls') ?? [];
-      
-      final localStories = results[0] as List<LibraryStory>;
-      final firebaseStories = results[1] as List<LibraryStory>;
-      final customStories = results[2] as List;
+    ]);
+    final prefs = await SharedPreferences.getInstance();
+    final bookmarks = prefs.getStringList('bookmarked_story_urls') ?? [];
 
-      // Convert custom GradedStory objects into LibraryStory objects for the UI
-      final customLibraryStories = customStories.map((story) {
-        final summaryText = story.sentences.isNotEmpty 
-            ? story.sentences.first.chinese 
-            : 'Custom AI generated story.';
-            
-        return LibraryStory(
-          title: story.title,
-          sourceName: 'AI Generated',
-          link: story.id,
-          imageUrl: null,
-          summary: summaryText,
-          category: story.category,
-          sourceType: StorySourceType.json,
-          hskLevel: story.hskLevel,
-        );
-      }).toList();
+    final localStories = results[0] as List<LibraryStory>;
+    final firebaseStories = results[1] as List<LibraryStory>;
+    final customStories = results[2] as List;
 
-      if (mounted) {
-        setState(() {
-          _allStories = [...localStories, ...firebaseStories, ...customLibraryStories];
-          // Filter out duplicates based on title just in case
-          final uniqueTitles = <String>{};
-          _allStories.retainWhere((s) => uniqueTitles.add(s.title));
-          
-          _bookmarkedUrls = bookmarks;
-          _isLoading = false;
-        });
-      }
-    });
+    final customLibraryStories = customStories.map((story) {
+      final summaryText = story.sentences.isNotEmpty
+          ? story.sentences.first.chinese
+          : 'Custom AI generated story.';
+
+      return LibraryStory(
+        title: story.title,
+        sourceName: 'AI Generated',
+        link: story.id,
+        imageUrl: null,
+        summary: summaryText,
+        category: story.category,
+        sourceType: StorySourceType.json,
+        hskLevel: story.hskLevel,
+      );
+    }).toList();
+
+    if (mounted) {
+      setState(() {
+        _allStories = [...localStories, ...firebaseStories, ...customLibraryStories];
+        final uniqueTitles = <String>{};
+        _allStories.retainWhere((s) => uniqueTitles.add(s.title));
+
+        _bookmarkedUrls = bookmarks;
+        _isLoading = false;
+      });
+    }
   }
 
   void _openStory(LibraryStory story) {

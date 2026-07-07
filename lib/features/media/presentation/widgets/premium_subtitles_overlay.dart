@@ -44,7 +44,7 @@ class PremiumSubtitlesOverlay extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
       decoration: BoxDecoration(
-        color: Colors.black.withOpacity(bgOpacity),
+        color: Colors.black.withValues(alpha: bgOpacity),
         borderRadius: BorderRadius.circular(16),
       ),
       child: Column(
