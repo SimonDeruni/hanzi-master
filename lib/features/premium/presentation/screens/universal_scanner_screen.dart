@@ -1,19 +1,26 @@
 import 'dart:ui';
+import 'dart:math' as math;
 import 'package:camera/camera.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/shared/widgets/pinyin_text.dart';
+import 'package:google_mlkit_object_detection/google_mlkit_object_detection.dart';
+import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
+import 'package:hanzi_master/core/providers/translation_language_provider.dart';
 import 'dart:io';
 import '../../../../core/services/ocr_service.dart';
 import '../../../../core/services/gemini_service.dart';
+import '../../../../core/services/vision_service.dart';
 import '../../../flashcards/domain/entities/flashcard.dart';
 import '../../../flashcards/presentation/providers/flashcard_controller.dart';
 import '../../../flashcards/presentation/providers/deck_controller.dart';
 import '../../../flashcards/presentation/utils/haptics_manager.dart';
 import '../../../flashcards/presentation/widgets/deck_selection_sheet.dart';
 import '../../../../shared/widgets/quick_look_sheet.dart';
+import '../widgets/ar_bounding_box_painter.dart';
+import '../widgets/interactive_image_overlay.dart';
 
 enum CameraIntent {
   dictionary,
@@ -44,6 +51,7 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
   bool _isScanning = false;
   bool _isLookingUp = false;
   bool _showingResults = false;
+  int _scanPhase = 0; // 0=idle, 1=analyzing, 2=extracting, 3=looking up
   String _rawExtractedText = "";
   String _fullTranslation = "";
   String _smartDeckName = "";
@@ -58,11 +66,27 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
   double _currentZoomLevel = 1.0;
   double _baseZoomLevel = 1.0;
 
+  bool _isArLensMode = false;
+  bool _isProcessingAr = false;
+  late final VisionService _visionService;
+  List<DetectedObject> _detectedObjects = [];
+  Map<String, Flashcard> _translationCache = {};
+
+  bool _showingInteractiveImage = false;
+  XFile? _capturedImage;
+  String? _recognizedText;
+  Size? _imageSize;
+  List<AiTextBlock> _aiTextBlocks = [];
+  final TextRecognizer _textRecognizer = TextRecognizer(script: TextRecognitionScript.chinese);
+  List<TranslatedTextBlock> _translatedBlocks = [];
+
   @override
   void initState() {
     super.initState();
+    _isArLensMode = widget.intent == CameraIntent.travelAR;
     WidgetsBinding.instance.addObserver(this);
     _geminiService = ref.read(geminiServiceProvider);
+    _visionService = ref.read(visionServiceProvider);
     _ocrService = OcrService(geminiService: _geminiService);
     _initializeCamera();
   }
@@ -87,6 +111,9 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
             setState(() {
               _isCameraInitialized = true;
             });
+            if (_isArLensMode) {
+              _cameraController!.startImageStream(_processCameraImage);
+            }
           }
         } catch (e) {
           debugPrint("Camera Error: $e");
@@ -104,7 +131,9 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
+    _cameraController?.stopImageStream();
     _cameraController?.dispose();
+    _textRecognizer.close();
     super.dispose();
   }
 
@@ -137,13 +166,120 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
     }
   }
 
+  void _setMode(bool isAr) async {
+    if (_isArLensMode == isAr) return;
+    setState(() => _isArLensMode = isAr);
+
+    if (isAr) {
+      if (_cameraController?.value.isStreamingImages == false) {
+        await _cameraController?.startImageStream(_processCameraImage);
+      }
+    } else {
+      if (_cameraController?.value.isStreamingImages == true) {
+        await _cameraController?.stopImageStream();
+      }
+    }
+  }
+
+  Future<void> _fetchTranslation(String label) async {
+    try {
+      final flashcard = await _geminiService.translateObject(label);
+      final newCache = Map<String, Flashcard>.from(_translationCache);
+      newCache[label] = flashcard;
+      if (mounted) setState(() => _translationCache = newCache);
+    } catch (e) {
+      debugPrint('Error fetching translation for $label: $e');
+      final newCache = Map<String, Flashcard>.from(_translationCache);
+      newCache.remove(label);
+      if (mounted) setState(() => _translationCache = newCache);
+    }
+  }
+
+  Future<void> _processCameraImage(CameraImage image) async {
+    if (_isProcessingAr || !_isArLensMode) return;
+    _isProcessingAr = true;
+
+    try {
+      final inputImage = _inputImageFromCameraImage(image);
+      if (inputImage == null) {
+        _isProcessingAr = false;
+        return;
+      }
+
+      final objects = await _visionService.processImage(inputImage);
+
+      final currentCache = Map<String, Flashcard>.from(_translationCache);
+      bool cacheUpdated = false;
+
+      for (final obj in objects) {
+        for (final label in obj.labels) {
+          final text = label.text;
+          if (!currentCache.containsKey(text)) {
+            currentCache[text] = Flashcard(hanzi: '...', pinyin: '...', definition: 'Loading...', id: 'temp_$text', hskLevel: 0, strokePaths: const [], modeStats: const {});
+            cacheUpdated = true;
+            _fetchTranslation(text);
+          }
+        }
+      }
+
+      if (mounted && _isArLensMode) {
+        setState(() {
+          _detectedObjects = objects;
+          if (cacheUpdated) _translationCache = currentCache;
+        });
+      }
+    } catch (e) {
+      debugPrint("Error processing image: $e");
+    } finally {
+      _isProcessingAr = false;
+    }
+  }
+
+  InputImage? _inputImageFromCameraImage(CameraImage image) {
+    if (_cameraController == null) return null;
+    final camera = _cameraController!.description;
+    final sensorOrientation = camera.sensorOrientation;
+
+    InputImageRotation? rotation;
+    if (Platform.isIOS) {
+      rotation = InputImageRotationValue.fromRawValue(sensorOrientation);
+    } else if (Platform.isAndroid) {
+      var rotationCompensation = _cameraController!.value.deviceOrientation.index;
+      if (camera.lensDirection == CameraLensDirection.front) {
+        rotationCompensation = (sensorOrientation + rotationCompensation) % 360;
+      } else {
+        rotationCompensation = (sensorOrientation - rotationCompensation + 360) % 360;
+      }
+      rotation = InputImageRotationValue.fromRawValue(rotationCompensation);
+    }
+
+    if (rotation == null) return null;
+
+    final format = InputImageFormatValue.fromRawValue(image.format.raw);
+    if (format == null) return null;
+
+    if (image.planes.isEmpty) return null;
+
+    return InputImage.fromBytes(
+      bytes: Platform.isAndroid ? image.planes[0].bytes : image.planes.first.bytes,
+      metadata: InputImageMetadata(
+        size: Size(image.width.toDouble(), image.height.toDouble()),
+        rotation: rotation,
+        format: format,
+        bytesPerRow: image.planes[0].bytesPerRow,
+      ),
+    );
+  }
+
   Future<void> _takePhoto() async {
     if (_cameraController == null || !_cameraController!.value.isInitialized || _isScanning || _isLookingUp) return;
     
     HapticsManager.light();
     setState(() {
       _isScanning = true;
+      _scanPhase = 1;
       _showingResults = false;
+      _showingInteractiveImage = false;
     });
 
     try {
@@ -151,7 +287,10 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
       await _processImageDetailed(image);
     } catch (e) {
       debugPrint("Take Photo Error: $e");
-      setState(() => _isScanning = false);
+      setState(() {
+        _isScanning = false;
+        _scanPhase = 0;
+      });
     }
   }
 
@@ -161,29 +300,52 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
     HapticsManager.light();
     setState(() {
       _isScanning = true;
+      _scanPhase = 1;
       _showingResults = false;
+      _showingInteractiveImage = false;
     });
 
     try {
       final result = await _ocrService.scanImageDetailed(fromCamera: false);
       if (result != null) {
-        await _processImageDetailed(result.image, preRecognized: result.text);
+        await _processImageDetailed(result.image, preRecognized: result.text, preBlocks: result.blocks);
       } else {
-        setState(() => _isScanning = false);
+        setState(() {
+          _isScanning = false;
+          _scanPhase = 0;
+        });
       }
     } catch (e) {
       debugPrint("Pick Gallery Error: $e");
-      setState(() => _isScanning = false);
+      setState(() {
+        _isScanning = false;
+        _scanPhase = 0;
+      });
     }
   }
 
-  Future<void> _processImageDetailed(XFile image, {String? preRecognized}) async {
-    final text = preRecognized ?? await _ocrService.processImageFileDetailed(image);
-    
-    if (text != null && text.isNotEmpty) {
-      await _processExtractedText(text);
+  Future<void> _processImageDetailed(XFile image, {String? preRecognized, List<AiTextBlock>? preBlocks}) async {
+    final result = preRecognized != null
+        ? (text: preRecognized, blocks: preBlocks ?? <AiTextBlock>[])
+        : await _ocrService.processImageFileDetailed(image);
+
+    if (result != null && result.text.isNotEmpty) {
+      final decodedImage = await decodeImageFromList(await image.readAsBytes());
+
+      setState(() {
+        _isScanning = false;
+        _scanPhase = 2;
+        _capturedImage = image;
+        _recognizedText = result.text;
+        _aiTextBlocks = result.blocks;
+        _imageSize = Size(decodedImage.width.toDouble(), decodedImage.height.toDouble());
+        _showingInteractiveImage = true;
+      });
     } else {
-      setState(() => _isScanning = false);
+      setState(() {
+        _isScanning = false;
+        _scanPhase = 0;
+      });
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text(AppLocalizations.of(context)!.noChineseCharactersFound)),
@@ -204,6 +366,8 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
       _isScanning = false;
       _rawExtractedText = text;
       _isLookingUp = true;
+      _scanPhase = 3;
+      _showingInteractiveImage = false;
     });
 
     final gemini = ref.read(geminiServiceProvider);
@@ -212,6 +376,7 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
       final extraction = await gemini.extractVocabularyFromScan(text);
       if (mounted) {
         setState(() {
+          _scanPhase = 0;
           _fullTranslation = extraction['fullTranslation'] as String;
           _smartDeckName = extraction['deckName'] as String? ?? 'Scan Results';
           _matchedCharacters = extraction['words'] as List<AiWord>;
@@ -224,6 +389,7 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
       debugPrint("Gemini Error: $e");
       if (mounted) {
         setState(() {
+          _scanPhase = 0;
           _isLookingUp = false;
         });
         ScaffoldMessenger.of(context).showSnackBar(
@@ -297,7 +463,7 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
         elevation: 0,
         iconTheme: const IconThemeData(color: Colors.white),
         actions: [
-          if (_isCameraInitialized && !_showingResults)
+          if (_isCameraInitialized && !_showingInteractiveImage && !_showingResults)
             IconButton(
               icon: Icon(
                 _flashMode == FlashMode.always ? Icons.flash_on :
@@ -330,8 +496,19 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
       ),
       body: Stack(
         children: [
-          // Camera Preview
-          if (_isCameraInitialized && _cameraController != null)
+          // Camera Preview or Interactive Image
+          if (_showingInteractiveImage && _capturedImage != null)
+            Positioned.fill(
+              child: InteractiveImageOverlay(
+                image: _capturedImage!,
+                blocks: _aiTextBlocks,
+                imageSize: _imageSize ?? const Size(1000, 1000),
+                onWordTapped: (word) {
+                  _lookupSingleWord(word);
+                },
+              ),
+            )
+          else if (_isCameraInitialized && _cameraController != null)
             Positioned.fill(
               child: GestureDetector(
                 onScaleStart: _handleScaleStart,
@@ -378,8 +555,21 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                 ),
                 
                 // Zoom Slider
-                if (!_showingResults && _isCameraInitialized)
+                if (!_showingResults && !_showingInteractiveImage && _isCameraInitialized)
                   _buildZoomSlider(),
+
+                // Deep Analysis button for AR mode
+                if (_isArLensMode && !_showingResults && !_showingInteractiveImage && _isCameraInitialized)
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 16.0),
+                    child: FloatingActionButton.extended(
+                      onPressed: _deepAnalyzeScene,
+                      icon: const Icon(Icons.auto_awesome),
+                      label: const Text('Deep Analysis'),
+                      backgroundColor: theme.colorScheme.primaryContainer,
+                      foregroundColor: theme.colorScheme.onPrimaryContainer,
+                    ),
+                  ),
 
                 // Bottom Control Panel
                 if (!_showingResults)
@@ -392,18 +582,112 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
     );
   }
   
+  Future<void> _deepAnalyzeScene() async {
+    if (_cameraController == null || !_cameraController!.value.isInitialized || _isScanning || _isLookingUp) return;
+
+    HapticsManager.light();
+    setState(() {
+      _isLookingUp = true;
+    });
+
+    try {
+      if (_cameraController!.value.isStreamingImages) {
+        await _cameraController!.stopImageStream();
+      }
+
+      final image = await _cameraController!.takePicture();
+      final bytes = await image.readAsBytes();
+
+      final langCode = ref.read(translationLanguageProvider);
+
+      final Set<String> currentLabels = {};
+      for (final obj in _detectedObjects) {
+        if (obj.labels.isNotEmpty) {
+          currentLabels.add(obj.labels.first.text);
+        }
+      }
+
+      final result = await _geminiService.analyzeSceneObjects(bytes, currentLabels.toList(), langCode);
+
+      final updatedLabels = result['updatedLabels'] as Map<String, AiWord>;
+      final allObjects = result['allObjects'] as List<AiWord>;
+
+      if (mounted) {
+        setState(() {
+          _isLookingUp = false;
+          _showingResults = true;
+          _matchedCharacters = allObjects;
+
+          final newCache = Map<String, Flashcard>.from(_translationCache);
+          updatedLabels.forEach((label, aiWord) {
+            newCache[label] = Flashcard(
+              id: '',
+              hanzi: aiWord.hanzi,
+              pinyin: aiWord.pinyin,
+              definition: aiWord.meaning,
+              hskLevel: aiWord.hskLevel,
+              strokePaths: const [],
+              modeStats: const {},
+            );
+          });
+          _translationCache = newCache;
+        });
+
+        if (_isArLensMode) {
+          _cameraController!.startImageStream(_processCameraImage);
+        }
+      }
+    } catch (e) {
+      debugPrint("Deep Analyze Error: $e");
+      if (mounted) {
+        setState(() => _isLookingUp = false);
+        if (_isArLensMode) {
+          _cameraController!.startImageStream(_processCameraImage);
+        }
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('AI Scene Analysis Failed')));
+      }
+    }
+  }
+
   Widget _buildMainContent(ThemeData theme, AppLocalizations l10n) {
     if (_isScanning || _isLookingUp) {
+      final phase = _isScanning ? _scanPhase : 3;
+      final steps = ['Analyzing image…', 'Extracting Chinese text…', 'Looking up vocabulary…'];
+      final currentStep = phase.clamp(1, 3) - 1;
       return Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const CircularProgressIndicator(color: Colors.white),
-            const SizedBox(height: 16),
-            Text(
-              _isScanning ? l10n.extractingTextAndObjects : l10n.lookingUpCharacters,
-              style: theme.textTheme.bodyMedium?.copyWith(color: Colors.white),
+            const SizedBox(
+              width: 48, height: 48,
+              child: CircularProgressIndicator(color: Colors.white, strokeWidth: 3),
             ),
+            const SizedBox(height: 24),
+            ...List.generate(steps.length, (i) {
+              final isActive = i == currentStep;
+              final isDone = i < currentStep;
+              return Padding(
+                padding: const EdgeInsets.symmetric(vertical: 4),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(
+                      isDone ? Icons.check_circle : (isActive ? Icons.circle : Icons.radio_button_unchecked),
+                      color: isDone ? Colors.green : (isActive ? Colors.white : Colors.white38),
+                      size: 18,
+                    ),
+                    const SizedBox(width: 10),
+                    Text(
+                      steps[i],
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        color: isDone ? Colors.green : (isActive ? Colors.white : Colors.white38),
+                        fontWeight: isActive ? FontWeight.bold : FontWeight.normal,
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            }),
           ],
         ),
       );
@@ -422,6 +706,9 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                       onPressed: () {
                         setState(() {
                           _showingResults = false;
+                          if (_capturedImage != null && !_isArLensMode) {
+                            _showingInteractiveImage = true;
+                          }
                         });
                       }
                     ),
@@ -434,7 +721,137 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
         ],
       );
     }
-    
+
+    if (_showingInteractiveImage) {
+       return Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+             Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+              child: Row(
+                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                 children: [
+                    IconButton(
+                      icon: const Icon(Icons.close, color: Colors.white),
+                      onPressed: () {
+                        setState(() {
+                          _showingInteractiveImage = false;
+                          _capturedImage = null;
+                        });
+                      }
+                    ),
+                    const SizedBox(width: 48),
+                 ]
+              ),
+            ),
+            Expanded(
+              child: _capturedImage != null
+                  ? InteractiveImageOverlay(
+                      image: _capturedImage!,
+                      blocks: _aiTextBlocks,
+                      imageSize: _imageSize ?? const Size(1000, 1000),
+                      onWordTapped: (word) {
+                        _lookupSingleWord(word);
+                      },
+                    )
+                  : const SizedBox.shrink(),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 24.0),
+              child: FloatingActionButton.extended(
+                onPressed: () {
+                  if (_recognizedText != null) {
+                    _processExtractedText(_recognizedText!);
+                  }
+                },
+                icon: const Icon(Icons.list),
+                label: const Text('View as List'),
+                backgroundColor: theme.colorScheme.primaryContainer,
+                foregroundColor: theme.colorScheme.onPrimaryContainer,
+              ),
+            ),
+          ],
+       );
+    }
+
+    if (_isArLensMode) {
+      InputImageRotation rotation = InputImageRotation.rotation0deg;
+      final sensorOrientation = _cameraController!.description.sensorOrientation;
+      final rawRotation = InputImageRotationValue.fromRawValue(sensorOrientation);
+      if (rawRotation != null) rotation = rawRotation;
+
+      return GestureDetector(
+        onTapUp: (details) {
+          if (_detectedObjects.isEmpty) return;
+
+          final size = MediaQuery.of(context).size;
+          final imageSize = Size(
+            _cameraController!.value.previewSize!.width,
+            _cameraController!.value.previewSize!.height,
+          );
+
+          final bool isPortrait = rotation == InputImageRotation.rotation90deg || rotation == InputImageRotation.rotation270deg;
+          final double imageWidth = isPortrait ? imageSize.height : imageSize.width;
+          final double imageHeight = isPortrait ? imageSize.width : imageSize.height;
+
+          final double scaleX = size.width / imageWidth;
+          final double scaleY = size.height / imageHeight;
+
+          for (final obj in _detectedObjects) {
+            if (obj.labels.isEmpty) continue;
+
+            final rect = ARBoundingBoxPainter.scaleRect(
+              rect: obj.boundingBox,
+              imageSize: imageSize,
+              widgetSize: size,
+              scaleX: scaleX,
+              scaleY: scaleY,
+              rotation: rotation,
+            );
+
+            if (rect.inflate(10.0).contains(details.localPosition)) {
+              final label = obj.labels.first.text;
+              final translated = _translationCache[label]?.hanzi ?? label;
+              _lookupSingleWord(translated);
+              return;
+            }
+          }
+        },
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+          CustomPaint(
+            painter: ARBoundingBoxPainter(
+              _detectedObjects,
+              _translationCache,
+              Size(
+                _cameraController!.value.previewSize!.width,
+                _cameraController!.value.previewSize!.height,
+              ),
+              rotation,
+            ),
+          ),
+          const Positioned(
+            top: 20,
+            left: 0,
+            right: 0,
+            child: Center(
+              child: Text(
+                "Point at Chinese text to translate",
+                style: TextStyle(
+                  color: Colors.white,
+                  backgroundColor: Colors.black54,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+      );
+    }
+
     return CustomPaint(
       painter: ScannerOverlayPainter(),
       child: const SizedBox.expand(),

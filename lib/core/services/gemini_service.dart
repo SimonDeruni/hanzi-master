@@ -552,6 +552,68 @@ CRITICAL: Place the $targetLanguage translation in the "english" JSON keys!
     }
   }
 
+  Future<({String fullText, List<Map<String, dynamic>> blocks})> extractTextFromImageDetailed(List<int> imageBytes) async {
+    final prompt = '''
+Extract all Chinese characters from this image. The image is a photograph taken with a camera.
+
+Return a JSON object with the full text and the pixel position of each distinct text region.
+
+First, determine the image dimensions. Then for each text region, measure the exact pixel coordinates.
+
+Output JSON matching this exact structure:
+{
+  "fullText": "全部提取的文字",
+  "blocks": [
+    {"text": "文字块1", "x": 100, "y": 200, "width": 80, "height": 30},
+    {"text": "文字块2", "x": 300, "y": 200, "width": 120, "height": 30}
+  ]
+}
+
+Rules:
+- "fullText" is the complete extracted text preserving line breaks.
+- "blocks" is a list of text regions found in the image, one per visual text cluster.
+- For each block, "x" and "y" are the top-left corner coordinates in pixels, "width" and "height" are the dimensions.
+- Coordinates must be absolute pixel values relative to the original image (0,0 = top-left corner).
+- Each block's width/height must match the actual visual extent of the text. Do not return zero-width or zero-height blocks.
+- If there are no Chinese characters, return an empty string for "fullText" and an empty array for "blocks".
+- Return ONLY valid JSON, no commentary.
+''';
+    final base64Image = base64Encode(imageBytes);
+    try {
+      final text = await makeOpenRouterCall(
+        model: 'google/gemini-2.5-flash',
+        messages: [
+          {
+            'role': 'user',
+            'content': [
+              {'type': 'text', 'text': prompt},
+              {
+                'type': 'image_url',
+                'image_url': {'url': 'data:image/jpeg;base64,$base64Image'}
+              }
+            ]
+          }
+        ],
+        jsonMode: true,
+      );
+      if (text.isNotEmpty) {
+        final cleanText = text.replaceAll(RegExp(r'^```json\n', multiLine: true), '')
+                              .replaceAll(RegExp(r'^```\n?', multiLine: true), '');
+        final json = jsonDecode(cleanText);
+        final blocks = ((json['blocks'] as List<dynamic>?) ?? <dynamic>[])
+            .map<Map<String, dynamic>>((b) => b as Map<String, dynamic>)
+            .toList();
+        analytics.logApiUsage(apiName: 'openrouter', feature: 'text_extraction_detailed', success: true);
+        return (fullText: (json['fullText'] as String? ?? '').trim(), blocks: blocks);
+      }
+      return (fullText: '', blocks: <Map<String, dynamic>>[]);
+    } catch (e) {
+      analytics.logApiUsage(apiName: 'openrouter', feature: 'text_extraction_detailed', success: false);
+      debugPrint("extractTextFromImageDetailed error: $e");
+      return (fullText: '', blocks: <Map<String, dynamic>>[]);
+    }
+  }
+
   Future<AiWord> identifySpecificObject(List<int> bytes, String genericLabel, String languageCode) async {
     final prompt = '''
 The user has pointed their camera at an object. An on-device model generally categorized it as "$genericLabel".

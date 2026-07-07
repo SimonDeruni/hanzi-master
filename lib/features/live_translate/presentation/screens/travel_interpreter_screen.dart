@@ -124,13 +124,13 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
 
     try {
       final uri = Uri.parse(
-        'wss://generativelanguage.googleapis.com/ws/google.ai.generativelanguage.v1alpha.GenerativeService.BidiGenerateContent?key=$apiKey'
+        'wss://generativelanguage.googleapis.com/ws/google.ai.generativelanguage.v1beta.GenerativeService.BidiGenerateContent?key=$apiKey'
       );
       _channel = WebSocketChannel.connect(uri);
 
       final setupMessage = jsonEncode({
         "setup": {
-          "model": "models/gemini-3.5-live-translate-preview",
+          "model": "models/gemini-2.0-flash-exp",
           "generationConfig": {
              "responseModalities": ["TEXT"]
           },
