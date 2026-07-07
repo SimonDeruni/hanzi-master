@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../providers/story_controller.dart';
 import 'story_reader_screen.dart';
 import '../widgets/custom_story_creator_sheet.dart';
+import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
 
 class ReadingRoomScreen extends ConsumerStatefulWidget {
   const ReadingRoomScreen({super.key});
@@ -102,20 +103,11 @@ class _ReadingRoomScreenState extends ConsumerState<ReadingRoomScreen> {
           // Search Bar
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-            child: TextField(
+            child: HanziTextField(
               controller: _searchController,
+              hintText: AppLocalizations.of(context)!.searchStoriesHint,
               decoration: InputDecoration(
-                hintText: AppLocalizations.of(context)!.searchStoriesHint,
                 prefixIcon: Icon(Icons.search, color: Colors.indigo),
-                suffixIcon: _searchQuery.isNotEmpty
-                    ? IconButton(
-                        icon: Icon(Icons.clear),
-                        onPressed: () {
-                          _searchController.clear();
-                          setState(() => _searchQuery = "");
-                        },
-                      )
-                    : null,
                 filled: true,
                 fillColor: Colors.white,
                 contentPadding: const EdgeInsets.symmetric(vertical: 0),
@@ -124,6 +116,15 @@ class _ReadingRoomScreenState extends ConsumerState<ReadingRoomScreen> {
                   borderSide: BorderSide.none,
                 ),
               ),
+              suffixIcon: _searchQuery.isNotEmpty
+                  ? IconButton(
+                      icon: Icon(Icons.clear),
+                      onPressed: () {
+                        _searchController.clear();
+                        setState(() => _searchQuery = "");
+                      },
+                    )
+                  : null,
               onChanged: (value) {
                 setState(() {
                   _searchQuery = value;

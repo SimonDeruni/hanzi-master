@@ -16,4 +16,7 @@ abstract class DeckRepository {
   
   /// Delete a deck
   Future<Either<String, void>> deleteDeck(String id);
+
+  /// Ensure an HSK deck (hsk1–hsk6) with fixed ID exists. Creates it if missing.
+  Future<Either<String, Deck>> ensureHSKDeckExists(int level);
 }

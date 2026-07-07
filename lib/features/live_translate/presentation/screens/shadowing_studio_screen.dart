@@ -60,6 +60,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
   final List<Map<String, dynamic>> _weakCharacters = [];
   String? _errorMessage;
   String? _recordingPath;
+  DateTime? _recordingStartTime;
 
   late AnimationController _pulseController;
   late Animation<double> _pulseAnimation;
@@ -163,7 +164,8 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
         HapticFeedback.heavyImpact();
         final tempDir = await getTemporaryDirectory();
         _recordingPath = '${tempDir.path}/shadow_recording_${DateTime.now().millisecondsSinceEpoch}.wav';
-        
+        _recordingStartTime = DateTime.now();
+
         await _audioRecorder.start(
           const RecordConfig(encoder: AudioEncoder.pcm16bits, sampleRate: 16000, numChannels: 1),
           path: _recordingPath!,
@@ -172,6 +174,12 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
           _isRecording = true;
           _pulseController.repeat(reverse: true);
         });
+      } else {
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text("Microphone permission denied. Enable it in Settings to use Shadowing Studio.")),
+          );
+        }
       }
     } catch (e) {
       debugPrint("Recording error: $e");
@@ -179,54 +187,101 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
   }
 
   Future<void> _stopRecordingAndGrade() async {
+    // 1. Stop recorder (may throw if buffer is empty/null)
+    String? path;
+    HapticFeedback.lightImpact();
     try {
-      HapticFeedback.lightImpact();
-      final path = await _audioRecorder.stop();
-      setState(() {
-        _isRecording = false;
-        _isGrading = true;
-        _pulseController.stop();
-        _pulseController.reset();
-      });
+      path = await _audioRecorder.stop();
+    } catch (e) {
+      debugPrint("Recorder stop error: $e");
+      if (mounted) {
+        setState(() {
+          _isRecording = false;
+          _isGrading = false;
+          _pulseController.stop();
+          _pulseController.reset();
+          _errorMessage = "Recording was too short. Hold the mic button for at least half a second.";
+        });
+      }
+      return;
+    }
 
-      if (path != null && _currentPhrase != null) {
-        final file = File(path);
-        final bytes = await file.readAsBytes();
-        
-        // Extract pitch for graph
-        final pitchArray = await _pitchService.extractPitchContour(bytes);
-        
-        final geminiService = ref.read(geminiServiceProvider);
-        final grade = await geminiService.gradeAudio(
-          bytes,
-          _currentPhrase!['hanzi']!,
-          _currentPhrase!['pinyin']!,
-        );
+    setState(() {
+      _isRecording = false;
+      _isGrading = true;
+      _pulseController.stop();
+      _pulseController.reset();
+    });
 
+    if (path == null || _currentPhrase == null) {
+      if (mounted) {
+        setState(() {
+          _isGrading = false;
+          _errorMessage = "No recording captured. Please try again.";
+        });
+      }
+      return;
+    }
+
+    // 2. Validate minimum recording duration
+    if (_recordingStartTime != null) {
+      final elapsed = DateTime.now().difference(_recordingStartTime!);
+      if (elapsed.inMilliseconds < 300) {
         if (mounted) {
           setState(() {
-            _lastGrade = grade;
-            _userPitch = pitchArray;
-            // Mock ideal pitch for now until Azure TTS cache is read
-            _idealPitch = List.generate(pitchArray.length, (i) => pitchArray[i] != null ? pitchArray[i]! + 20 : null);
             _isGrading = false;
-            
-            // Track weak characters
-            if (grade['words'] != null) {
-              for (var word in grade['words']) {
-                if (word['isCorrect'] == false) {
-                  // Only add if not already in the list or update it
-                  final existingIndex = _weakCharacters.indexWhere((w) => w['word'] == word['word']);
-                  if (existingIndex >= 0) {
-                    _weakCharacters[existingIndex] = word;
-                  } else {
-                    _weakCharacters.add(word);
-                  }
+            _errorMessage = "Recording was too short (${elapsed.inMilliseconds}ms). Hold the mic button longer.";
+          });
+        }
+        return;
+      }
+    }
+
+    // 3. Validate audio file
+    final file = File(path);
+    if (!file.existsSync() || file.lengthSync() < 1000) {
+      if (mounted) {
+        setState(() {
+          _isGrading = false;
+          _errorMessage = "Recorded audio is empty. Please try again and speak clearly.";
+        });
+      }
+      return;
+    }
+
+    // 4. Grade
+    try {
+      final bytes = await file.readAsBytes();
+
+      final pitchArray = await _pitchService.extractPitchContour(bytes);
+
+      final geminiService = ref.read(geminiServiceProvider);
+      final grade = await geminiService.gradeAudio(
+        bytes,
+        _currentPhrase!['hanzi']!,
+        _currentPhrase!['pinyin']!,
+      );
+
+      if (mounted) {
+        setState(() {
+          _lastGrade = grade;
+          _userPitch = pitchArray;
+          _idealPitch = List.generate(pitchArray.length, (i) => pitchArray[i] != null ? pitchArray[i]! + 20 : null);
+          _isGrading = false;
+
+          if (grade['words'] != null) {
+            for (var word in grade['words']) {
+              if (word['isCorrect'] == false) {
+                final existingIndex = _weakCharacters.indexWhere((w) => w['word'] == word['word']);
+                if (existingIndex >= 0) {
+                  _weakCharacters[existingIndex] = word;
+                } else {
+                  _weakCharacters.add(word);
                 }
               }
             }
-          });
-        }
+          }
+        });
       }
     } on PremiumRequiredException {
       if (mounted) {
@@ -235,12 +290,23 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
         });
         PaywallSheet.show(context);
       }
-    } catch (e) {
-      debugPrint("Grading error: $e");
+    } on Exception catch (e) {
+      final msg = e.toString();
+      debugPrint("Grading error: $msg");
       if (mounted) {
         setState(() {
           _isGrading = false;
-          _errorMessage = "Error analyzing audio: $e";
+          if (msg.contains("Azure Speech API keys are missing")) {
+            _errorMessage = "Azure Speech keys not configured. Add AZURE_SPEECH_KEY and AZURE_SPEECH_REGION to .env";
+          } else if (msg.contains("Azure Error 401")) {
+            _errorMessage = "Azure authentication failed. Check your Speech API key and region in .env";
+          } else if (msg.contains("Azure Error 429")) {
+            _errorMessage = "Azure quota exceeded. Try again later.";
+          } else if (msg.contains("TimeoutException") || msg.contains("timed out")) {
+            _errorMessage = "Azure grading timed out. Check your internet connection.";
+          } else {
+            _errorMessage = "Error analyzing audio: $e";
+          }
         });
       }
     }

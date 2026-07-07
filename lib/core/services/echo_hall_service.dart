@@ -19,6 +19,11 @@ class EchoHallService {
     final apiKey = _pool.nextKey;
 
     if (apiKey.isEmpty || apiKey.startsWith('EMPTY_KEY_') || apiKey == 'YOUR_API_KEY_HERE') {
+      try {
+        return await _getNativeConversationResponse(history, personaInstructions);
+      } catch (e) {
+        debugPrint('EchoHallService Native Fallback Error: $e');
+      }
       return {
         "chinese": "The Scholar's voice is silent.",
         "english": "The Scholar's voice is silent.",
@@ -76,10 +81,15 @@ You MUST respond ONLY in valid JSON format with this exact structure:
         final cleanText = content.replaceAll(RegExp(r'^```json\n', multiLine: true), '').replaceAll(RegExp(r'^```\n?', multiLine: true), '');
         return jsonDecode(cleanText);
       } else {
-        throw Exception('OpenRouter Error ${response.statusCode}: ${response.body}');
+        return await _getNativeConversationResponse(history, personaInstructions);
       }
     } catch (e) {
       debugPrint('EchoHallService Error: $e');
+      try {
+        return await _getNativeConversationResponse(history, personaInstructions);
+      } catch (fallbackError) {
+        debugPrint('EchoHallService Native Fallback Error: $fallbackError');
+      }
       return {
         "chinese": "The Scholar is momentarily unavailable.",
         "english": "The Scholar is momentarily unavailable.",
@@ -93,6 +103,11 @@ You MUST respond ONLY in valid JSON format with this exact structure:
     final apiKey = _pool.nextKey;
 
     if (apiKey.isEmpty || apiKey.startsWith('EMPTY_KEY_') || apiKey == 'YOUR_API_KEY_HERE') {
+      try {
+        return await _getNativeResponse(history, personaInstructions);
+      } catch (e) {
+        debugPrint('EchoHallService Native Fallback Error: $e');
+      }
       return "The Scholar's voice is silent. The ink has not been prepared. (Missing API Key - See docs/AI_CHAT_SETUP.md)";
     }
 
@@ -124,11 +139,108 @@ You MUST respond ONLY in valid JSON format with this exact structure:
         final json = jsonDecode(utf8.decode(response.bodyBytes));
         return json['choices']?[0]?['message']?['content'] ?? "The ink failed to flow. Please try again.";
       } else {
-        throw Exception('OpenRouter Error ${response.statusCode}: ${response.body}');
+        return await _getNativeResponse(history, personaInstructions);
       }
     } catch (e) {
       debugPrint('EchoHallService Error: $e');
+      try {
+        return await _getNativeResponse(history, personaInstructions);
+      } catch (fallbackError) {
+        debugPrint('EchoHallService Native Fallback Error: $fallbackError');
+      }
       return "The Scholar is momentarily unavailable. Please try again in a moment.";
+    }
+  }
+
+  Future<Map<String, dynamic>> _getNativeConversationResponse(List<ChatMessage> history, String personaInstructions) async {
+    final apiKey = _pool.googleKey;
+    if (apiKey.isEmpty || apiKey == 'MISSING_KEY') {
+      throw Exception('Missing Gemini API Key');
+    }
+
+    final systemPrompt = """
+$personaInstructions
+
+You MUST respond ONLY in valid JSON format with this exact structure:
+{
+  "chinese": "Your natural conversational reply in Chinese characters.",
+  "english": "The English translation of your reply.",
+  "pinyin": "The Pinyin with tone marks for your reply.",
+  "suggestion": {
+    "chinese": "A suggested response the user could say back to you.",
+    "pinyin": "Pinyin for the suggestion.",
+    "english": "English translation for the suggestion."
+  }
+}
+""";
+
+    final messages = history.map((m) {
+      return {
+        'role': m.role == ChatRole.user ? 'user' : 'model',
+        'parts': [{'text': m.content}],
+      };
+    }).toList();
+
+    final response = await http.post(
+      Uri.parse('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=$apiKey'),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: jsonEncode({
+        "contents": messages,
+        "systemInstruction": {
+          "parts": [{"text": systemPrompt}]
+        },
+        "generationConfig": {
+          "responseMimeType": "application/json"
+        }
+      }),
+    );
+
+    if (response.statusCode == 200) {
+      final json = jsonDecode(utf8.decode(response.bodyBytes));
+      final content = json['candidates']?[0]?['content']?['parts']?[0]?['text'] ?? "{}";
+      final cleanText = content.replaceAll(RegExp(r'^```json\n', multiLine: true), '').replaceAll(RegExp(r'^```\n?', multiLine: true), '');
+      return jsonDecode(cleanText);
+    } else {
+      throw Exception('Gemini Error ${response.statusCode}: ${response.body}');
+    }
+  }
+
+  Future<String> _getNativeResponse(List<ChatMessage> history, String personaInstructions) async {
+    final apiKey = _pool.googleKey;
+    if (apiKey.isEmpty || apiKey == 'MISSING_KEY') {
+      throw Exception('Missing Gemini API Key');
+    }
+
+    final messages = history.map((m) {
+      return {
+        'role': m.role == ChatRole.user ? 'user' : 'model',
+        'parts': [{'text': m.content}],
+      };
+    }).toList();
+
+    final response = await http.post(
+      Uri.parse('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=$apiKey'),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: jsonEncode({
+        "contents": messages,
+        "systemInstruction": {
+          "parts": [{"text": personaInstructions}]
+        },
+        "generationConfig": {
+          "maxOutputTokens": 220
+        }
+      }),
+    );
+
+    if (response.statusCode == 200) {
+      final json = jsonDecode(utf8.decode(response.bodyBytes));
+      return json['candidates']?[0]?['content']?['parts']?[0]?['text'] ?? "The ink failed to flow. Please try again.";
+    } else {
+      throw Exception('Gemini Error ${response.statusCode}: ${response.body}');
     }
   }
 

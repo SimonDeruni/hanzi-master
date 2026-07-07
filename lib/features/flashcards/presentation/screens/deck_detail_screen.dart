@@ -16,6 +16,7 @@ import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraph
 import 'package:hanzi_master/features/flashcards/presentation/screens/story_mode_screen.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/study_mode_selection_sheet.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/deck_card_picker_screen.dart';
+import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
 
 class _SliverTabBarDelegate extends SliverPersistentHeaderDelegate {
   final TabBar tabBar;
@@ -353,25 +354,25 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                       if (deckCards.isNotEmpty)
                         Padding(
                           padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
-                          child: TextField(
+                          child: HanziTextField(
                             controller: _searchController,
+                            hintText: "Search character, pinyin...",
                             decoration: InputDecoration(
-                              hintText: "Search character, pinyin...",
                               prefixIcon: Icon(Icons.search),
-                              suffixIcon: _searchQuery.isNotEmpty 
-                                  ? IconButton(
-                                      icon: Icon(Icons.clear), 
-                                      onPressed: () {
-                                        _searchController.clear();
-                                        setState(() => _searchQuery = '');
-                                      }
-                                    ) 
-                                  : null,
                               filled: true,
                               fillColor: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.black.withValues(alpha: 0.05),
                               border: OutlineInputBorder(borderRadius: BorderRadius.circular(16), borderSide: BorderSide.none),
                               contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                             ),
+                            suffixIcon: _searchQuery.isNotEmpty 
+                                ? IconButton(
+                                    icon: Icon(Icons.clear), 
+                                    onPressed: () {
+                                      _searchController.clear();
+                                      setState(() => _searchQuery = '');
+                                    }
+                                  ) 
+                                : null,
                             onChanged: (val) => setState(() => _searchQuery = val.toLowerCase()),
                           ),
                         ),

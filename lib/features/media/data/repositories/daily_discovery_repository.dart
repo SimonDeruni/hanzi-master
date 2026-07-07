@@ -1,49 +1,96 @@
 import 'dart:math';
 import 'package:http/http.dart' as http;
 import 'package:xml/xml.dart';
-import 'package:youtube_explode_dart/youtube_explode_dart.dart';
 import 'package:hanzi_master/features/media/domain/models/daily_media_item.dart';
 
 class DailyDiscoveryRepository {
-  // A curated list of high-quality Chinese YouTube channels with their titles
-  final Map<String, String> _channels = {
-    'UC-O_hESCCmHj8qY6p-D-B6g': 'Mandarin Corner',
+  static const int _channelsToFetch = 5;
+  static const int _maxVideosPerChannel = 3;
+
+  static const Map<String, String> _channelPool = {
     'UCoC47do520osFaCG1YacMEA': '李子柒 Liziqi',
-    'UCwYk4uL-I5dD9aY_L2E4Oyg': 'Grace Mandarin Chinese',
-    'UC3y4-3hWqDXYk9h-T174gNA': 'ShuoshuoChinese',
-    'UCPd3vXGz_6k2O-aN-TjA0jA': 'Peppa Pig Chinese',
+    'UC4R1p5m2sLhD5IysM9F5vzg': '美食作家王刚',
+    'UCQ_RJN2yW42jqXIGK2VKIPw': '小高姐的魔法料理',
+    'UCJA2N5BTeiEepZxQZJ6KLYw': '日食记',
+    'UC5HcJx5GvGmQH7hMB6yJv4g': '绵羊料理',
+    'UCfXmR5lU1Rz7GEdwFv4Yj3g': '影视飓风',
+    'UCt5Oy7RQlS1FK2a0a1f7Ywg': '毕导',
+    'UCj7wKsP6Y_G2F0U3h0V6mBg': '小Lin说',
+    'UCB1AtKqZqVb1oZwVZsQmzYg': '老师好我叫何同学',
+    'UCnS9mPbLZOuGjSoV90S8PVA': '你好竹子',
+    'UC1SnPt6sSHbaqCztp8f3MpQ': '小鹿Lawrence',
+    'UCt4t3iY8hL5sF5pV6qW2xRg': '手工耿',
+    'UCp8q9rL2jG5hV7xW3mR5bNQ': '星球研究所',
+    'UCvZ9W7u3T6a5YJS0VT-28oA': '滇西小哥',
+    'UCjqGZKJ5gY5X7hq8m9L2eZQ': '厨师长农国栋',
+    'UCp5Q1s2m8GmG3t5Qc4vL2iA': '大象放映室',
+    'UCm7yM8rL5jG5pV6qW3xR2bQ': '戴建业',
   };
 
-  Future<DailyMediaItem> getDailyVideo() async {
+  Future<({DailyMediaItem item, String videoId})> getDailyVideo({
+    required List<String> shownVideoIds,
+  }) async {
     final now = DateTime.now();
-    final seed = "\${now.year}-\${now.month}-\${now.day}".hashCode;
+    final seed = '${now.year}-${now.month}-${now.day}'.hashCode;
     final random = Random(seed);
-    
-    final channelIds = _channels.keys.toList();
-    final channelId = channelIds[random.nextInt(channelIds.length)];
-    final channelTitle = _channels[channelId]!;
 
-    final yt = YoutubeExplode();
+    final channelEntries = _channelPool.entries.toList();
+    final selected = [...channelEntries]..shuffle(random);
+    final batch = selected.take(_channelsToFetch);
+
+    final feeds = await Future.wait(
+      batch.map((entry) => _fetchChannelVideos(entry.key, entry.value)),
+    );
+
+    final candidates = <_VideoCandidate>[];
+    for (final feed in feeds) {
+      candidates.addAll(feed);
+    }
+    candidates.shuffle(random);
+
+    final unseen = candidates.where((c) => !shownVideoIds.contains(c.videoId)).toList();
+    final pool = unseen.isNotEmpty ? unseen : candidates;
+
+    for (final candidate in pool) {
+      final thumbUri = Uri.parse('https://img.youtube.com/vi/${candidate.videoId}/hqdefault.jpg');
+      try {
+        final head = await http.head(thumbUri).timeout(const Duration(seconds: 3));
+        if (head.statusCode == 200) {
+          return (
+            item: DailyMediaItem(
+              title: candidate.title,
+              subtitle: candidate.channelName,
+              url: 'https://www.youtube.com/watch?v=${candidate.videoId}',
+              imageUrl: thumbUri.toString(),
+              tag: 'VIDEO OF THE DAY',
+            ),
+            videoId: candidate.videoId,
+          );
+        }
+      } catch (_) {
+        continue;
+      }
+    }
+
+    throw Exception('No valid video found.');
+  }
+
+  Future<List<_VideoCandidate>> _fetchChannelVideos(String channelId, String channelName) async {
     try {
-      // getUploads fetches a batch of videos in one network request.
-      final uploads = await yt.channels.getUploads(channelId).take(30).toList();
-      
-      if (uploads.isEmpty) throw Exception("No uploads found for channel.");
-      
-      final selectedVideo = uploads[random.nextInt(uploads.length)];
-      
-      return DailyMediaItem(
-        title: selectedVideo.title,
-        subtitle: channelTitle,
-        url: selectedVideo.url,
-        imageUrl: "https://img.youtube.com/vi/\${selectedVideo.id.value}/hqdefault.jpg",
-        tag: "VIDEO OF THE DAY",
-      );
-    } catch (e) {
-      // Fallback if API fails: cycle through a curated list
-      return fallbackVideos[random.nextInt(fallbackVideos.length)];
-    } finally {
-      yt.close();
+      final response = await http
+          .get(Uri.parse('https://www.youtube.com/feeds/videos.xml?channel_id=$channelId'))
+          .timeout(const Duration(seconds: 6));
+      if (response.statusCode != 200) return [];
+
+      final doc = XmlDocument.parse(response.body);
+      final entries = doc.findAllElements('entry').take(_maxVideosPerChannel);
+      return entries.map((e) {
+        final videoId = e.findElements('yt:videoId').first.innerText;
+        final title = e.findElements('title').first.innerText;
+        return _VideoCandidate(videoId: videoId, title: title, channelName: channelName);
+      }).toList();
+    } catch (_) {
+      return [];
     }
   }
 
@@ -131,8 +178,7 @@ class DailyDiscoveryRepository {
           final firstItem = items.first;
           final title = firstItem.findElements('title').first.innerText;
           final link = firstItem.findElements('link').first.innerText;
-          
-          // Try to extract thumbnail from media:thumbnail
+
           String imageUrl = "https://www.bbc.co.uk/news/special/2015/newsspec_10857/bbc_news_logo.png";
           final mediaThumbnails = firstItem.findElements('media:thumbnail');
           if (mediaThumbnails.isNotEmpty) {
@@ -150,7 +196,6 @@ class DailyDiscoveryRepository {
       }
       throw Exception("Failed to load or parse RSS feed.");
     } catch (e) {
-      // Fallback
       return DailyMediaItem(
         title: "BBC 中文网",
         subtitle: "Current Events in Simplified Chinese",
@@ -160,4 +205,11 @@ class DailyDiscoveryRepository {
       );
     }
   }
+}
+
+class _VideoCandidate {
+  final String videoId;
+  final String title;
+  final String channelName;
+  _VideoCandidate({required this.videoId, required this.title, required this.channelName});
 }

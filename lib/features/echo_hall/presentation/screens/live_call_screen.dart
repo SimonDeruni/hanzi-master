@@ -70,6 +70,7 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
   // Transcript & Grading State
   final List<LiveCallMessage> _transcript = [];
   final BytesBuilder _userAudioBuffer = BytesBuilder();
+  final List<int> _audioBuffer = [];
   final ScrollController _scrollController = ScrollController();
 
   @override
@@ -350,12 +351,24 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
       _audioSubscription = stream.listen((data) {
         if (data.isEmpty) return;
         if (!_isMuted && _channel != null) {
-          _channel!.sink.add(jsonEncode({
-            "realtimeInput": {
-              "audio": { "mimeType": "audio/pcm;rate=16000", "data": base64Encode(data) }
-            }
-          }));
+          _audioBuffer.addAll(data);
           _userAudioBuffer.add(data);
+          
+          // Buffer ~0.5 seconds of audio (16000 bytes/samples at 16kHz 16-bit mono)
+          // to prevent websocket congestion and make the connection stable
+          if (_audioBuffer.length >= 16000) {
+            _channel!.sink.add(jsonEncode({
+              "realtimeInput": {
+                "mediaChunks": [
+                  {
+                    "mimeType": "audio/pcm;rate=16000",
+                    "data": base64Encode(_audioBuffer)
+                  }
+                ]
+              }
+            }));
+            _audioBuffer.clear();
+          }
         }
       });
       setState(() => _isLive = true);

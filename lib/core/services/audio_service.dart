@@ -188,14 +188,14 @@ class AudioService {
 
     channel.stream.listen((message) {
       if (message is String) {
-        if (message.contains('Path: turn.end')) {
+        if (message.contains('Path:turn.end') || message.contains('Path: turn.end')) {
           if (!completer.isCompleted) {
             completer.complete(CloudTtsResult(
               audio: Uint8List.fromList(audioBuffer),
               boundaries: boundaries,
             ));
           }
-        } else if (message.contains('Path: audio.metadata')) {
+        } else if (message.contains('Path:audio.metadata') || message.contains('Path: audio.metadata')) {
           try {
             final parts = message.split('\r\n\r\n');
             if (parts.length > 1) {
@@ -213,15 +213,21 @@ class AudioService {
           }
         }
       } else if (message is List<int>) {
-        int offset = -1;
-        for (int i = 0; i < message.length - 3; i++) {
-          if (message[i] == 13 && message[i+1] == 10 && message[i+2] == 13 && message[i+3] == 10) {
-            offset = i + 4;
-            break;
+        if (message.length > 2) {
+          final headerLength = (message[0] << 8) | message[1];
+          final offset = 2 + headerLength;
+          if (offset < message.length) {
+            // Retrieve header to confirm it is indeed audio payload and not something else
+            try {
+              final headerText = ascii.decode(message.sublist(2, offset), allowInvalid: true);
+              if (headerText.contains('Path:audio')) {
+                audioBuffer.addAll(message.sublist(offset));
+              }
+            } catch(e) {
+              // Fallback to appending directly if header decoding fails for some reason
+              audioBuffer.addAll(message.sublist(offset));
+            }
           }
-        }
-        if (offset != -1 && offset < message.length) {
-          audioBuffer.addAll(message.sublist(offset));
         }
       }
     }, onError: (e) {

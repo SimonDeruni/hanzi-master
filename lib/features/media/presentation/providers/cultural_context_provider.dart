@@ -20,7 +20,7 @@ Your task is to provide a fascinating cultural explanation that relates DIRECTLY
 CRITICAL RULES: 
 1. DO NOT include any introductory conversational filler like "Here is a fascinating cultural explanation". Start immediately with the content.
 2. DO NOT use markdown asterisks (* or **) or horizontal rules (---). Use plain text and simple newlines for paragraphs. If you need a list, use a standard bullet symbol (•).
-3. DO NOT include any Pinyin at all. Provide only English and Chinese characters.
+3. Write primarily in English. You may include individual Chinese words or short phrases (汉字) only where directly relevant — e.g., key vocabulary, names, or cultural terms. Do not write full sentences or paragraphs in Chinese. Do not include any Pinyin at all.
 4. Do not give a generic explanation. You MUST connect the specific subject matter of "$mediaTitle" to Chinese culture, history, linguistic quirks, or societal context.
 5. If the topic is an international event, focus on the Chinese perspective of THAT EXACT event (e.g., the specific Chinese vocabulary used for it, or historical Chinese parallels).
 ''';

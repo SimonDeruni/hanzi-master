@@ -525,6 +525,33 @@ CRITICAL: Place the $targetLanguage translation in the "english" JSON keys!
     }
   }
 
+  Future<String> extractTextFromImage(List<int> imageBytes) async {
+    const prompt = 'Extract all Chinese characters from this image. Return ONLY the extracted text — no commentary, no formatting, no translations. Preserve line breaks. If there are no Chinese characters, return an empty string.';
+    final base64Image = base64Encode(imageBytes);
+    try {
+      final text = await makeOpenRouterCall(
+        model: 'google/gemini-2.5-flash',
+        messages: [
+          {
+            'role': 'user',
+            'content': [
+              {'type': 'text', 'text': prompt},
+              {
+                'type': 'image_url',
+                'image_url': {'url': 'data:image/jpeg;base64,$base64Image'}
+              }
+            ]
+          }
+        ],
+      );
+      return text.trim();
+    } catch (e) {
+      analytics.logApiUsage(apiName: 'openrouter', feature: 'text_extraction', success: false);
+      debugPrint("extractTextFromImage error: $e");
+      return '';
+    }
+  }
+
   Future<AiWord> identifySpecificObject(List<int> bytes, String genericLabel, String languageCode) async {
     final prompt = '''
 The user has pointed their camera at an object. An on-device model generally categorized it as "$genericLabel".
@@ -1170,7 +1197,7 @@ Respond ONLY in valid JSON format like:
     request.bodyBytes = finalAudioBytes;
 
     try {
-      final response = await http.Client().send(request);
+      final response = await http.Client().send(request).timeout(const Duration(seconds: 10));
       final responseBody = await response.stream.bytesToString();
 
       if (response.statusCode == 200) {

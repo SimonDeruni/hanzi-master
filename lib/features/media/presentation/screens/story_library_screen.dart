@@ -7,6 +7,7 @@ import 'package:hanzi_master/features/reading/data/repositories/story_repository
 import 'package:hanzi_master/features/media/presentation/screens/story_cultural_insight_screen.dart';
 import 'package:hanzi_master/features/media/presentation/screens/story_summary_screen.dart';
 import 'package:hanzi_master/features/reading/presentation/widgets/custom_story_creator_sheet.dart';
+import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
 
 class CategoryStyle {
   final List<Color> gradient;
@@ -183,23 +184,23 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
             )
           ],
         ),
-        child: TextField(
+        child: HanziTextField(
           controller: _searchController,
+          hintText: 'Search stories, idioms, news...',
           decoration: InputDecoration(
-            hintText: 'Search stories, idioms, news...',
             prefixIcon: const Icon(Icons.search, color: Colors.grey),
-            suffixIcon: _searchController.text.isNotEmpty 
-              ? IconButton(
-                  icon: const Icon(Icons.clear, color: Colors.grey),
-                  onPressed: () {
-                    _searchController.clear();
-                    FocusScope.of(context).unfocus();
-                  },
-                )
-              : null,
             border: InputBorder.none,
             contentPadding: const EdgeInsets.symmetric(vertical: 16),
           ),
+          suffixIcon: _searchController.text.isNotEmpty 
+            ? IconButton(
+                icon: const Icon(Icons.clear, color: Colors.grey),
+                onPressed: () {
+                  _searchController.clear();
+                  FocusScope.of(context).unfocus();
+                },
+              )
+            : null,
         ),
       ),
     );

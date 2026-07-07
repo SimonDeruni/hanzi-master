@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'package:hanzi_master/shared/widgets/pinyin_text.dart';
+import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
 
 class DeckCardPickerScreen extends ConsumerStatefulWidget {
   final String deckId;
@@ -20,6 +21,13 @@ class DeckCardPickerScreen extends ConsumerStatefulWidget {
 
 class _DeckCardPickerScreenState extends ConsumerState<DeckCardPickerScreen> {
   String _searchQuery = '';
+  final TextEditingController _searchController = TextEditingController();
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,9 +57,10 @@ class _DeckCardPickerScreenState extends ConsumerState<DeckCardPickerScreen> {
             children: [
               Padding(
                 padding: const EdgeInsets.all(16.0),
-                child: TextField(
+                child: HanziTextField(
+                  controller: _searchController,
+                  hintText: "Search character, pinyin, or meaning...",
                   decoration: InputDecoration(
-                    hintText: "Search character, pinyin, or meaning...",
                     prefixIcon: const Icon(Icons.search),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(16),

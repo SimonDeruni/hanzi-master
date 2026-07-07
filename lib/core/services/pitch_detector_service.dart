@@ -10,13 +10,20 @@ class PitchDetectorService {
 
   /// Converts 16-bit PCM bytes to List<double> in range [-1.0, 1.0]
   List<double> _bytesToFloat(Uint8List bytes) {
+    if (bytes.lengthInBytes < 2) return [];
     final intData = bytes.buffer.asInt16List(bytes.offsetInBytes, bytes.lengthInBytes ~/ 2);
     return intData.map((e) => e / 32768.0).toList();
   }
 
   /// Processes an entire audio file (PCM 16-bit without header, or skip header) 
   /// and returns a list of pitch values over time.
-  Future<List<double?>> extractPitchContour(Uint8List bytes, {int chunkSize = 1024, int skipHeader = 44}) async {
+  Future<List<double?>> extractPitchContour(Uint8List bytes, {int chunkSize = 1024}) async {
+    // Detect if the file starts with a WAV header ("RIFF")
+    // If yes, skip the standard 44-byte header; otherwise read raw PCM
+    final hasWavHeader = bytes.length >= 4 && bytes[0] == 82 && bytes[1] == 73 && bytes[2] == 70 && bytes[3] == 70;
+    final skipHeader = hasWavHeader ? 44 : 0;
+
+    if (bytes.lengthInBytes <= skipHeader) return [];
     final contour = <double?>[];
     final floats = _bytesToFloat(Uint8List.sublistView(bytes, skipHeader));
     

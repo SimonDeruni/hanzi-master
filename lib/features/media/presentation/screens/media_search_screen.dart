@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:youtube_explode_dart/youtube_explode_dart.dart';
 import '../../data/youtube_repository.dart';
 import 'smart_media_desk_screen.dart';
+import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
 
 class MediaSearchScreen extends ConsumerStatefulWidget {
   const MediaSearchScreen({super.key});
@@ -114,10 +115,10 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
         children: [
           Padding(
             padding: const EdgeInsets.all(16.0),
-            child: TextField(
+            child: HanziTextField(
               controller: _searchController,
+              hintText: 'Search topics (e.g., Cooking, History)',
               decoration: InputDecoration(
-                hintText: 'Search topics (e.g., Cooking, History)',
                 prefixIcon: const Icon(Icons.search),
                 filled: true,
                 fillColor: Colors.white,
@@ -129,10 +130,10 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
                   borderRadius: BorderRadius.circular(16),
                   borderSide: BorderSide(color: Colors.grey.shade200),
                 ),
-                suffixIcon: IconButton(
-                  icon: const Icon(Icons.send, color: Colors.indigo),
-                  onPressed: () => _performSearch(_searchController.text),
-                ),
+              ),
+              suffixIcon: IconButton(
+                icon: const Icon(Icons.send, color: Colors.indigo),
+                onPressed: () => _performSearch(_searchController.text),
               ),
               onSubmitted: _performSearch,
             ),

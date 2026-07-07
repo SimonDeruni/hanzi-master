@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/radical_detail_screen.dart';
 import 'package:lpinyin/lpinyin.dart';
+import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
 
 class RadicalLibraryScreen extends StatefulWidget {
   const RadicalLibraryScreen({super.key});
@@ -19,11 +20,18 @@ class _RadicalLibraryScreenState extends State<RadicalLibraryScreen> {
   List<String> _filteredKeys = [];
   bool _isLoading = true;
   String _searchQuery = "";
+  final TextEditingController _searchController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
     _loadRadicals();
+  }
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
   }
 
   Future<void> _loadRadicals() async {
@@ -100,11 +108,11 @@ class _RadicalLibraryScreenState extends State<RadicalLibraryScreen> {
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(32, 16, 32, 8),
-                child: TextField(
-                  onChanged: _filterRadicals,
+                child: HanziTextField(
+                  controller: _searchController,
+                  hintText: "Search radicals (e.g. Water, 氵)",
                   style: TextStyle(color: isDark ? Colors.white : Colors.black87),
                   decoration: InputDecoration(
-                    hintText: "Search radicals (e.g. Water, 氵)",
                     hintStyle: TextStyle(color: isDark ? Colors.white54 : Colors.black54),
                     prefixIcon: const Icon(Icons.search, color: Colors.indigo),
                     filled: true,
@@ -122,6 +130,7 @@ class _RadicalLibraryScreenState extends State<RadicalLibraryScreen> {
                       borderSide: const BorderSide(color: Colors.indigo, width: 2),
                     ),
                   ),
+                  onChanged: _filterRadicals,
                 ),
               ),
               const SizedBox(height: 8),

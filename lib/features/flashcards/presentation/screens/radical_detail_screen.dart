@@ -7,6 +7,7 @@ import 'package:hanzi_master/features/flashcards/presentation/screens/character_
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
+import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
 
 class RadicalDetailScreen extends ConsumerStatefulWidget {
   final String radicalChar;
@@ -27,11 +28,18 @@ class _RadicalDetailScreenState extends ConsumerState<RadicalDetailScreen> {
   List<Map<String, dynamic>> _filteredCharacters = [];
   bool _isLoading = true;
   String _searchQuery = "";
+  final TextEditingController _searchController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
     _loadMatchingCharacters();
+  }
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
   }
 
   Future<void> _loadMatchingCharacters() async {
@@ -205,11 +213,11 @@ class _RadicalDetailScreenState extends ConsumerState<RadicalDetailScreen> {
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(32, 16, 32, 8),
-                child: TextField(
-                  onChanged: _filterCharacters,
+                child: HanziTextField(
+                  controller: _searchController,
+                  hintText: "Search by pinyin or meaning...",
                   style: TextStyle(color: isDark ? Colors.white : Colors.black87),
                   decoration: InputDecoration(
-                    hintText: "Search by pinyin or meaning...",
                     hintStyle: TextStyle(color: isDark ? Colors.white54 : Colors.black54),
                     prefixIcon: const Icon(Icons.search, color: Colors.indigo),
                     filled: true,
@@ -228,6 +236,7 @@ class _RadicalDetailScreenState extends ConsumerState<RadicalDetailScreen> {
                       borderSide: const BorderSide(color: Colors.indigo, width: 2),
                     ),
                   ),
+                  onChanged: _filterCharacters,
                 ),
               ),
               const SizedBox(height: 8),

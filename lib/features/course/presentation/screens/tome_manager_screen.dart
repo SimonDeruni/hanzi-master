@@ -4,9 +4,11 @@ import 'package:hanzi_master/l10n/app_localizations.dart';
 
 import '../../../flashcards/domain/entities/flashcard.dart';
 import '../../../flashcards/presentation/providers/flashcard_controller.dart';
+import '../../../flashcards/presentation/providers/deck_controller.dart';
 import '../../../flashcards/presentation/utils/haptics_manager.dart';
 import '../../../flashcards/presentation/widgets/calligraphy_background.dart';
 import '../../../premium/presentation/screens/paywall_sheet.dart';
+import '../../../../core/providers.dart';
 import '../../../../core/providers/premium_controller.dart';
 
 class TomeManagerScreen extends ConsumerWidget {
@@ -67,6 +69,8 @@ class TomeManagerScreen extends ConsumerWidget {
         HapticsManager.medium();
         
         await ref.read(flashcardControllerProvider.notifier).importLevel(tome['level'] as int);
+        await ref.read(deckRepositoryProvider).ensureHSKDeckExists(tome['level'] as int);
+        ref.invalidate(deckControllerProvider);
 
         HapticsManager.success();
         if (context.mounted) {
@@ -110,6 +114,8 @@ class TomeManagerScreen extends ConsumerWidget {
         HapticsManager.light();
         
         await ref.read(flashcardControllerProvider.notifier).uninstallLevel(tome['level'] as int);
+        await ref.read(deckRepositoryProvider).deleteDeck('hsk${tome['level']}');
+        ref.invalidate(deckControllerProvider);
 
         if (context.mounted) {
           ScaffoldMessenger.of(context).showSnackBar(

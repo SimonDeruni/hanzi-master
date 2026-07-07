@@ -28,6 +28,7 @@ import 'package:hanzi_master/features/course/presentation/screens/tome_manager_s
 import 'package:hanzi_master/shared/widgets/global_sliver_app_bar.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/core/utils/definition_formatter.dart';
+import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
 
 import 'package:hanzi_master/features/flashcards/domain/entities/study_mode.dart';
 
@@ -40,10 +41,12 @@ class DictionaryScreen extends ConsumerStatefulWidget {
 
 class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
   String _searchQuery = "";
+  final TextEditingController _searchController = TextEditingController();
   final FocusNode _searchFocusNode = FocusNode();
 
   @override
   void dispose() {
+    _searchController.dispose();
     _searchFocusNode.dispose();
     super.dispose();
   }
@@ -75,6 +78,7 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
               delegate: _SearchBarDelegate(
                 isDark: isDark,
                 searchQuery: _searchQuery,
+                controller: _searchController,
                 focusNode: _searchFocusNode,
                 onChanged: (value) => setState(() => _searchQuery = value),
               ),
@@ -235,12 +239,14 @@ class _BookshelfVerticalCard extends StatelessWidget {
 class _SearchBarDelegate extends SliverPersistentHeaderDelegate {
   final bool isDark;
   final String searchQuery;
+  final TextEditingController controller;
   final ValueChanged<String> onChanged;
   final FocusNode focusNode;
 
   _SearchBarDelegate({
     required this.isDark,
     required this.searchQuery,
+    required this.controller,
     required this.onChanged,
     required this.focusNode,
   });
@@ -268,11 +274,12 @@ class _SearchBarDelegate extends SliverPersistentHeaderDelegate {
                   ),
                 ],
               ),
-              child: TextField(
+              child: HanziTextField(
+                controller: controller,
                 focusNode: focusNode,
                 style: theme.textTheme.bodyLarge,
+                hintText: l10n?.searchPinyinHanziEnglish ?? "Search Pinyin, Hanzi, or English...",
                 decoration: InputDecoration(
-                  hintText: l10n?.searchPinyinHanziEnglish ?? "Search Pinyin, Hanzi, or English...",
                   hintStyle: theme.textTheme.bodyMedium?.copyWith(color: theme.colorScheme.onSurface.withValues(alpha: 0.4)),
                   prefixIcon: Icon(Icons.search, color: Colors.grey),
                   border: InputBorder.none,

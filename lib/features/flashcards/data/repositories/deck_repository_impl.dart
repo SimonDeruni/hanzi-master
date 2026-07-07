@@ -23,56 +23,6 @@ class DeckRepositoryImpl implements DeckRepository {
       );
       _deckBox.put('default', defaultDeck);
     }
-    
-    // Seed HSK 1-3 Decks so the Bookshelf looks premium out of the box
-    if (!_deckBox.containsKey('hsk1')) {
-      _deckBox.put('hsk1', DeckModel(
-        id: 'hsk1',
-        name: 'HSK 1: Foundation',
-        description: 'The first 150 characters to start your journey.',
-        createdAt: DateTime.now().add(const Duration(seconds: 1)),
-      ));
-    }
-    if (!_deckBox.containsKey('hsk2')) {
-      _deckBox.put('hsk2', DeckModel(
-        id: 'hsk2',
-        name: 'HSK 2: Elementary',
-        description: 'Build your vocabulary to 300 essential words.',
-        createdAt: DateTime.now().add(const Duration(seconds: 2)),
-      ));
-    }
-    if (!_deckBox.containsKey('hsk3')) {
-      _deckBox.put('hsk3', DeckModel(
-        id: 'hsk3',
-        name: 'HSK 3: Intermediate',
-        description: 'Master conversational fluency with 600 words.',
-        createdAt: DateTime.now().add(const Duration(seconds: 3)),
-      ));
-    }
-    if (!_deckBox.containsKey('hsk4')) {
-      _deckBox.put('hsk4', DeckModel(
-        id: 'hsk4',
-        name: 'HSK 4: Upper Intermediate',
-        description: 'Read texts and converse fluently with 1200 words.',
-        createdAt: DateTime.now().add(const Duration(seconds: 4)),
-      ));
-    }
-    if (!_deckBox.containsKey('hsk5')) {
-      _deckBox.put('hsk5', DeckModel(
-        id: 'hsk5',
-        name: 'HSK 5: Advanced',
-        description: 'Read newspapers and watch movies with 2500 words.',
-        createdAt: DateTime.now().add(const Duration(seconds: 5)),
-      ));
-    }
-    if (!_deckBox.containsKey('hsk6')) {
-      _deckBox.put('hsk6', DeckModel(
-        id: 'hsk6',
-        name: 'HSK 6: Mastery',
-        description: 'Express yourself fully with 5000+ words.',
-        createdAt: DateTime.now().add(const Duration(seconds: 6)),
-      ));
-    }
   }
 
   @override
@@ -146,5 +96,41 @@ class DeckRepositoryImpl implements DeckRepository {
     } catch (e) {
       return Left('Failed to delete deck: $e');
     }
+  }
+
+  @override
+  Future<Either<String, Deck>> ensureHSKDeckExists(int level) async {
+    if (level < 1 || level > 6) {
+      return Left('Invalid HSK level: $level');
+    }
+    final id = 'hsk$level';
+    final existing = _deckBox.get(id);
+    if (existing != null) {
+      return Right(existing.toDomain());
+    }
+    const names = [
+      'HSK 1: Foundation',
+      'HSK 2: Elementary',
+      'HSK 3: Intermediate',
+      'HSK 4: Upper Intermediate',
+      'HSK 5: Advanced',
+      'HSK 6: Mastery',
+    ];
+    const descs = [
+      'The first 150 characters to start your journey.',
+      'Build your vocabulary to 300 essential words.',
+      'Master conversational fluency with 600 words.',
+      'Read texts and converse fluently with 1200 words.',
+      'Read newspapers and watch movies with 2500 words.',
+      'Express yourself fully with 5000+ words.',
+    ];
+    final deck = DeckModel(
+      id: id,
+      name: names[level - 1],
+      description: descs[level - 1],
+      createdAt: DateTime.now(),
+    );
+    await _deckBox.put(id, deck);
+    return Right(deck.toDomain());
   }
 }

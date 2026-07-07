@@ -7,9 +7,12 @@ class HanziTextField extends StatefulWidget {
   final TextStyle? style;
   final InputDecoration? decoration;
   final Function(String)? onSubmitted;
+  final Function(String)? onChanged;
   final String? Function(String?)? validator;
   final FocusNode? focusNode;
   final int? maxLines;
+  final TextInputAction? textInputAction;
+  final Widget? suffixIcon;
 
   const HanziTextField({
     super.key,
@@ -18,9 +21,12 @@ class HanziTextField extends StatefulWidget {
     this.style,
     this.decoration,
     this.onSubmitted,
+    this.onChanged,
     this.validator,
     this.focusNode,
     this.maxLines = 1,
+    this.textInputAction,
+    this.suffixIcon,
   });
 
   @override
@@ -87,8 +93,35 @@ class _HanziTextFieldState extends State<HanziTextField> {
     Overlay.of(context).insert(_overlayEntry!);
   }
 
+  Widget _buildHandwritingButton() {
+    return IconButton(
+      icon: const Icon(Icons.draw),
+      onPressed: () {
+        if (_overlayEntry != null) {
+          _removeOverlay();
+          _focusNode.requestFocus();
+        } else {
+          _showHandwritingOverlay();
+        }
+      },
+    );
+  }
+
+  Widget? _buildSuffix() {
+    final handwritingBtn = _buildHandwritingButton();
+    if (widget.suffixIcon != null) {
+      return Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [widget.suffixIcon!, handwritingBtn],
+      );
+    }
+    return handwritingBtn;
+  }
+
   @override
   Widget build(BuildContext context) {
+    final suffix = _buildSuffix();
+
     final defaultDeco = InputDecoration(
       hintText: widget.hintText,
       border: OutlineInputBorder(
@@ -97,33 +130,10 @@ class _HanziTextFieldState extends State<HanziTextField> {
       ),
       filled: true,
       contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      suffixIcon: suffix,
     );
 
-    final finalDeco = widget.decoration?.copyWith(
-      suffixIcon: IconButton(
-        icon: const Icon(Icons.draw),
-        onPressed: () {
-          if (_overlayEntry != null) {
-            _removeOverlay();
-            _focusNode.requestFocus();
-          } else {
-            _showHandwritingOverlay();
-          }
-        },
-      ),
-    ) ?? defaultDeco.copyWith(
-      suffixIcon: IconButton(
-        icon: const Icon(Icons.draw),
-        onPressed: () {
-          if (_overlayEntry != null) {
-            _removeOverlay();
-            _focusNode.requestFocus();
-          } else {
-            _showHandwritingOverlay();
-          }
-        },
-      ),
-    );
+    final finalDeco = widget.decoration?.copyWith(suffixIcon: suffix) ?? defaultDeco;
 
     return TextFormField(
       controller: widget.controller,
@@ -131,8 +141,10 @@ class _HanziTextFieldState extends State<HanziTextField> {
       style: widget.style,
       decoration: finalDeco,
       onFieldSubmitted: widget.onSubmitted,
+      onChanged: widget.onChanged,
       validator: widget.validator,
       maxLines: widget.maxLines,
+      textInputAction: widget.textInputAction,
     );
   }
 }
