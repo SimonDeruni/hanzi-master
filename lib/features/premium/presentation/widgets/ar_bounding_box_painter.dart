@@ -161,7 +161,7 @@ class ARBoundingBoxPainter extends CustomPainter {
     
     final double badgeHeight = textPainterTitle.height + (subtitle.isNotEmpty ? textPainterSubtitle.height + 4.0 : 0) + 16.0;
 
-    final canvasBounds = canvas.getClipBounds();
+    final canvasBounds = canvas.getLocalClipBounds();
     final double preferredTop = box.top - badgeHeight - 8.0;
     final double badgeTop = preferredTop < canvasBounds.top
         ? box.bottom + 8.0

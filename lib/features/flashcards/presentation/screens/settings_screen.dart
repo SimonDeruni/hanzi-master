@@ -343,7 +343,7 @@ void _showNotificationSettings(BuildContext context, WidgetRef ref) {
 
                 // Daily Drops toggle
                 _buildNotifToggle(
-                  isDark: isDark,
+                  context: context, isDark: isDark,
                   icon: Icons.wb_sunny_outlined,
                   title: "Daily Drops",
                   subtitle: "Word of the Day & news",
@@ -371,7 +371,7 @@ void _showNotificationSettings(BuildContext context, WidgetRef ref) {
 
                 // Review Reminders toggle
                 _buildNotifToggle(
-                  isDark: isDark,
+                  context: context, isDark: isDark,
                   icon: Icons.menu_book_outlined,
                   title: "Review Reminders",
                   subtitle: "Flashcards due for review",
@@ -427,6 +427,7 @@ void _showNotificationSettings(BuildContext context, WidgetRef ref) {
 
 Widget _buildNotifToggle({
   required bool isDark,
+  required BuildContext context,
   required IconData icon,
   required String title,
   required String subtitle,

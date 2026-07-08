@@ -11,7 +11,7 @@ class InfoBulb extends StatefulWidget {
 
   const InfoBulb({
     super.key,
-    required this.id,
+    this.id = "",
     required this.title,
     required this.message,
     this.icon = Icons.info_outline,
