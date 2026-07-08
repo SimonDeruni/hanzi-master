@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -30,6 +31,7 @@ class _CalligraphyCanvasDialogState extends ConsumerState<CalligraphyCanvasDialo
   bool _isLoading = false;
   int _currentStrokeIndex = 0;
   bool _isComplete = false;
+  Timer? _dismissTimer;
 
   @override
   void initState() {
@@ -53,6 +55,7 @@ class _CalligraphyCanvasDialogState extends ConsumerState<CalligraphyCanvasDialo
   }
 
   void _clear() {
+    _dismissTimer?.cancel();
     _scratchpadNotifier.value = [];
     setState(() {
       _currentStrokeIndex = 0;
@@ -72,11 +75,33 @@ class _CalligraphyCanvasDialogState extends ConsumerState<CalligraphyCanvasDialo
       setState(() {
         _isComplete = true;
       });
+      _dismissTimer = Timer(const Duration(milliseconds: 1500), () {
+        if (mounted) Navigator.pop(context);
+      });
     }
+  }
+
+  Widget _buildSuccessState(Color textColor) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Icon(Icons.check_circle, size: 64, color: Colors.green.shade400),
+        const SizedBox(height: 16),
+        Text(
+          'Trace Complete!',
+          style: TextStyle(
+            fontSize: 22,
+            fontWeight: FontWeight.bold,
+            color: textColor,
+          ),
+        ),
+      ],
+    );
   }
 
   @override
   void dispose() {
+    _dismissTimer?.cancel();
     _scratchpadNotifier.dispose();
     super.dispose();
   }
@@ -128,37 +153,39 @@ class _CalligraphyCanvasDialogState extends ConsumerState<CalligraphyCanvasDialo
             
             Expanded(
               child: Center(
-                child: AspectRatio(
-                  aspectRatio: 1.0,
-                  child: Container(
-                    margin: const EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(16),
-                      border: Border.all(color: gridColor, width: 2),
-                      color: isDark ? Colors.black26 : Colors.white,
-                    ),
-                    clipBehavior: Clip.antiAlias,
-                    child: CalligraphyBackground(
-                      child: _isLoading
-                          ? const Center(child: CircularProgressIndicator())
-                          : DrawingCanvas(
-                              strokePaths: _hydratedCard?.strokePaths ?? [],
-                              medianPaths: _hydratedCard?.medianPaths ?? [],
-                              showAnimation: false,
-                              strokeByStrokeMode: true,
-                              currentStrokeIndex: _currentStrokeIndex,
-                              onStrokeComplete: _onStrokeComplete,
-                              isFlipped: _hydratedCard?.isFlipped ?? false,
-                              readOnly: _isComplete,
-                              showControls: true,
-                              showGrade: false,
-                              showGuideLines: true,
-                              showReference: true,
-                              userPointsNotifier: _scratchpadNotifier,
-                            ),
-                    ),
-                  ),
-                ),
+                child: _isComplete
+                    ? _buildSuccessState(textColor)
+                    : AspectRatio(
+                        aspectRatio: 1.0,
+                        child: Container(
+                          margin: const EdgeInsets.all(16),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(16),
+                            border: Border.all(color: gridColor, width: 2),
+                            color: isDark ? Colors.black26 : Colors.white,
+                          ),
+                          clipBehavior: Clip.antiAlias,
+                          child: CalligraphyBackground(
+                            child: _isLoading
+                                ? const Center(child: CircularProgressIndicator())
+                                : DrawingCanvas(
+                                    strokePaths: _hydratedCard?.strokePaths ?? [],
+                                    medianPaths: _hydratedCard?.medianPaths ?? [],
+                                    showAnimation: false,
+                                    strokeByStrokeMode: true,
+                                    currentStrokeIndex: _currentStrokeIndex,
+                                    onStrokeComplete: _onStrokeComplete,
+                                    isFlipped: _hydratedCard?.isFlipped ?? false,
+                                    readOnly: _isComplete,
+                                    showControls: true,
+                                    showGrade: false,
+                                    showGuideLines: true,
+                                    showReference: true,
+                                    userPointsNotifier: _scratchpadNotifier,
+                                  ),
+                          ),
+                        ),
+                      ),
               ),
             ),
           ],

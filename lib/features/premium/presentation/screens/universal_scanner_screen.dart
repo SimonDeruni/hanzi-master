@@ -385,6 +385,7 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
         _imageSize = Size(decodedImage.width.toDouble(), decodedImage.height.toDouble());
         _showingInteractiveImage = true;
       });
+      _cameraController?.stopImageStream();
     } else {
       setState(() {
         _isScanning = false;
@@ -540,19 +541,8 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
       ),
       body: Stack(
         children: [
-          // Camera Preview or Interactive Image
-          if (_showingInteractiveImage && _capturedImage != null)
-            Positioned.fill(
-              child: InteractiveImageOverlay(
-                image: _capturedImage!,
-                blocks: _aiTextBlocks,
-                imageSize: _imageSize ?? const Size(1000, 1000),
-                onWordTapped: (word) {
-                  _lookupSingleWord(word);
-                },
-              ),
-            )
-          else if (_isCameraInitialized && _cameraController != null)
+          // Camera Preview (hidden when gallery image is shown)
+          if (_isCameraInitialized && _cameraController != null && !_showingInteractiveImage)
             Positioned.fill(
               child: GestureDetector(
                 onScaleStart: _handleScaleStart,
@@ -797,6 +787,7 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                           _showingInteractiveImage = false;
                           _capturedImage = null;
                         });
+                        _cameraController?.startImageStream(_processCameraImage);
                       }
                     ),
                     const SizedBox(width: 48),
@@ -972,7 +963,7 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   // Left Side: Gallery Button or spacing
-                  if (!_isArLensMode && widget.intent != CameraIntent.textExtraction)
+                  if (!_isArLensMode)
                     _buildSideButton(
                       icon: Icons.photo_library_outlined,
                       onTap: _pickFromGallery,

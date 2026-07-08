@@ -15,7 +15,6 @@ import '../../../premium/presentation/screens/paywall_sheet.dart';
 import 'package:hanzi_master/features/live_translate/presentation/widgets/tone_graph_painter.dart';
 import 'package:hanzi_master/features/live_translate/presentation/widgets/interactive_grading_text.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
-import 'package:hanzi_master/core/providers/translation_language_provider.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/deck_controller.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
@@ -620,23 +619,11 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
               Padding(
                 padding: const EdgeInsets.all(24.0),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     IconButton(
                       icon: Icon(Icons.arrow_back, color: isDark ? Colors.white : const Color(0xFF1A1A1B)),
                       onPressed: () => Navigator.pop(context),
-                    ),
-                    DropdownButtonHideUnderline(
-                      child: DropdownButton<String>(
-                        value: ref.watch(translationLanguageProvider),
-                        icon: Icon(Icons.language, color: isDark ? Colors.white70 : Colors.black54),
-                        dropdownColor: isDark ? Colors.grey[900] : Colors.white,
-                        style: TextStyle(color: isDark ? Colors.white : Colors.black, fontWeight: FontWeight.bold),
-                        items: supportedTranslationLanguages.map((lang) => DropdownMenuItem(value: lang, child: Text(lang))).toList(),
-                        onChanged: (val) {
-                          if (val != null) ref.read(translationLanguageProvider.notifier).setLanguage(val);
-                        },
-                      ),
                     ),
                   ],
                 ),

@@ -1,6 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter/services.dart';
 import '../../domain/models/library_story.dart';
+import '../../../../core/services/gemini_service.dart';
 import '../../../reading/presentation/providers/story_controller.dart';
 import '../../../reading/presentation/screens/story_reader_screen.dart';
 import 'web_browser_screen.dart';
@@ -17,6 +21,18 @@ class StorySummaryScreen extends ConsumerStatefulWidget {
 
 class _StorySummaryScreenState extends ConsumerState<StorySummaryScreen> {
   late StoryBlueprint _blueprint;
+  String? _enrichedSummary;
+  bool _isEnriching = false;
+
+  static final List<String> _placeholders = [
+    'A classic Tang Dynasty poem',
+    'A classic Tang Dynasty poem by',
+    '经典唐诗',
+  ];
+
+  bool _isPlaceholder(String text) {
+    return _placeholders.any((p) => text.startsWith(p)) || text.length < 60;
+  }
 
   @override
   void initState() {
@@ -40,6 +56,43 @@ class _StorySummaryScreenState extends ConsumerState<StorySummaryScreen> {
         ref.read(storyControllerProvider.notifier).fetchAndParseFirebaseStory(_blueprint, widget.story.hskLevel);
       }
     });
+
+    // Enrich placeholder summaries with AI-generated content
+    final summaryText = widget.story.summaryEn ?? widget.story.summary;
+    if (_isPlaceholder(summaryText) && widget.story.link.startsWith('tang_poetry_')) {
+      _enrichSummary();
+    }
+  }
+
+  Future<void> _enrichSummary() async {
+    setState(() => _isEnriching = true);
+    try {
+      // Load the Tang poetry JSON to get the full poem text
+      final jsonString = await rootBundle.loadString('assets/data/tang_poetry_en.json');
+      final data = json.decode(jsonString) as List<dynamic>;
+      final entry = data.firstWhere(
+        (d) => (d['link'] ?? 'tang_poetry_${d['title']}') == widget.story.link,
+        orElse: () => null,
+      );
+      if (entry == null) return;
+
+      final rawText = entry['rawText'] as String? ?? '';
+      if (rawText.isEmpty) return;
+
+      final gemini = ref.read(geminiServiceProvider);
+      final result = await gemini.generateDetailedSummary(
+        widget.story.titleEn ?? widget.story.title,
+        rawText,
+        gemini.targetLanguage,
+      );
+      if (result.isNotEmpty && mounted) {
+        setState(() => _enrichedSummary = result);
+      }
+    } catch (e) {
+      debugPrint('Error enriching summary: $e');
+    } finally {
+      if (mounted) setState(() => _isEnriching = false);
+    }
   }
 
   void _startReading() {
@@ -189,18 +242,33 @@ class _StorySummaryScreenState extends ConsumerState<StorySummaryScreen> {
                       const SizedBox(height: 32),
                       
                       // Summary
-                      const Text(
-                        'Summary',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'NotoSerifSC',
-                          color: Color(0xFF1A1A1B),
-                        ),
+                      Row(
+                        children: [
+                          const Text(
+                            'Summary',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'NotoSerifSC',
+                              color: Color(0xFF1A1A1B),
+                            ),
+                          ),
+                          if (_isEnriching) ...[
+                            const SizedBox(width: 12),
+                            SizedBox(
+                              width: 16,
+                              height: 16,
+                              child: CircularProgressIndicator(
+                                strokeWidth: 2,
+                                color: const Color(0xFF1A1A1B).withValues(alpha: 0.4),
+                              ),
+                            ),
+                          ],
+                        ],
                       ),
                       const SizedBox(height: 12),
                       TappableHanziText(
-                        widget.story.summaryEn ?? widget.story.summary,
+                        _enrichedSummary ?? widget.story.summaryEn ?? widget.story.summary,
                         style: TextStyle(
                           fontSize: 16,
                           height: 1.6,

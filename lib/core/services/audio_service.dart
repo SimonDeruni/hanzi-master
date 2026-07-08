@@ -35,6 +35,8 @@ class AudioService {
   List<Map<String, dynamic>> _currentBoundaries = [];
   int _currentBoundaryIndex = 0;
 
+  double _speechRate = 0.5;
+
   AudioPlayer get _player {
     _audioPlayer ??= AudioPlayer();
     return _audioPlayer!;
@@ -85,7 +87,6 @@ class AudioService {
     });
 
     await _tts.setLanguage("zh-CN");
-    await _tts.setSpeechRate(0.5);
     
     _isInitialized = true;
   }
@@ -131,6 +132,7 @@ class AudioService {
     }
 
     // Tier 4: Local TTS Fallback
+    await _tts.setSpeechRate(_speechRate);
     final ttsResult = await _tts.speak(hanzi);
     return ttsResult != null && ttsResult == 1;
   }
@@ -172,6 +174,7 @@ class AudioService {
       debugPrint("Premium Cloud TTS failed for sentence: $e");
     }
 
+    await _tts.setSpeechRate(_speechRate);
     final ttsResult = await _tts.speak(sentence);
     return ttsResult != null && ttsResult == 1;
   }
@@ -274,7 +277,8 @@ class AudioService {
       '{"context":{"synthesis":{"audio":{"metadataOptions":{"wordBoundaryEnabled":true,"sentenceBoundaryEnabled":true},"outputFormat":"audio-24khz-48kbitrate-mono-mp3"}}}}'
     );
 
-    final ssml = '''<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xml:lang='zh-CN'><voice name='zh-CN-XiaoxiaoNeural'>$safeText</voice></speak>''';
+    final ratePercent = ((_speechRate - 0.5) * 200).round();
+    final ssml = '''<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xml:lang='zh-CN'><voice name='zh-CN-XiaoxiaoNeural'><prosody rate='${ratePercent}%'>$safeText</prosody></voice></speak>''';
 
     channel.sink.add(
       'Path: ssml\r\n'
@@ -297,6 +301,7 @@ class AudioService {
   }
 
   Future<void> setSpeechRate(double rate) async {
+    _speechRate = rate;
     await _tts.setSpeechRate(rate);
   }
 

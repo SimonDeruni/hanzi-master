@@ -23,6 +23,7 @@ class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
   int _selectedIndex = 0;
 
   void _onNavigate(int index) {
+    FocusScope.of(context).unfocus();
     setState(() {
       _selectedIndex = index;
     });

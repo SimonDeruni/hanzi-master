@@ -1807,6 +1807,52 @@ Output JSON matching this exact structure:
     };
   }
 
+  Future<String> generateDetailedSummary(String title, String fullText, String targetLanguage) async {
+    final cacheKey = 'detailed_summary_$title';
+    final box = Hive.box<String>('ai_cache');
+    if (box.containsKey(cacheKey)) {
+      try {
+        final cached = box.get(cacheKey)!;
+        if (cached.length > 100) return cached;
+      } catch (_) {}
+    }
+
+    final prompt = '''
+You are a Chinese classical literature expert. The user is about to read this classical Chinese poem:
+
+Title: "$title"
+
+Full text:
+$fullText
+
+Write a detailed, engaging 3-4 paragraph summary in $targetLanguage about this poem. Cover:
+- Historical context: when and why it was written
+- Literary analysis: themes, imagery, and artistic techniques
+- Cultural significance: why this poem matters in Chinese literary tradition
+- Key references or allusions in the text explained briefly
+
+Make it informative yet accessible to a Chinese language learner.
+Return ONLY the summary text, no markdown formatting, no JSON, no backticks.
+''';
+
+    try {
+      final responseText = await makeOpenRouterCall(
+        model: 'google/gemini-2.5-flash',
+        messages: [
+          {'role': 'system', 'content': 'You are a Chinese classical literature expert providing detailed accessible summaries of classical Chinese poetry.'},
+          {'role': 'user', 'content': prompt}
+        ],
+      );
+      if (responseText.length > 100) {
+        box.put(cacheKey, responseText);
+      }
+      return responseText;
+    } catch (e, st) {
+      debugPrint('Error generating detailed summary: $e\n$st');
+      return '';
+    }
+  }
+
   Future<CulturalInsight> generateCulturalInsight(String storyTitle, String storyContent) async {
     final cacheKey = 'cultural_insight_$storyTitle';
     final box = Hive.box<String>('ai_cache');

@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter/services.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:hanzi_master/features/media/domain/models/library_story.dart';
 import 'package:hanzi_master/features/media/presentation/screens/story_summary_screen.dart';
@@ -25,17 +28,37 @@ class _StoryCulturalInsightScreenState extends ConsumerState<StoryCulturalInsigh
   @override
   void initState() {
     super.initState();
-    _fetchInsight();
+    _insightFuture = _fetchInsight();
   }
 
-  void _fetchInsight() {
-    final geminiService = ref.read(geminiServiceProvider);
-    setState(() {
-      _insightFuture = geminiService.generateCulturalInsight(
-        widget.story.titleEn ?? widget.story.title,
-        widget.story.summary,
+  Future<String> _loadPoemFullText() async {
+    try {
+      final jsonString = await rootBundle.loadString('assets/data/tang_poetry_en.json');
+      final data = json.decode(jsonString) as List<dynamic>;
+      final entry = data.firstWhere(
+        (d) => (d['link'] ?? 'tang_poetry_${d['title']}') == widget.story.link,
+        orElse: () => null,
       );
-    });
+      return (entry?['rawText'] as String?) ?? '';
+    } catch (_) {
+      return '';
+    }
+  }
+
+  Future<CulturalInsight> _fetchInsight() async {
+    final geminiService = ref.read(geminiServiceProvider);
+    String content = widget.story.summary;
+    // Load the full poem text for classical literature
+    if (widget.story.link.startsWith('tang_poetry_')) {
+      final fullText = await _loadPoemFullText();
+      if (fullText.isNotEmpty) {
+        content = '$fullText\n\nSummary: ${widget.story.summary}';
+      }
+    }
+    return geminiService.generateCulturalInsight(
+      widget.story.titleEn ?? widget.story.title,
+      content,
+    );
   }
 
   @override

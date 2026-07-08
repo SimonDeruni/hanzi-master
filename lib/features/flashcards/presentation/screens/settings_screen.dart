@@ -5,6 +5,7 @@ import 'package:hanzi_master/features/flashcards/presentation/providers/flashcar
 import '../providers/settings_controller.dart';
 import 'package:hanzi_master/core/services/audio_service.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/core/services/notification_service.dart';
 
 class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
@@ -103,9 +104,7 @@ class SettingsScreen extends ConsumerWidget {
                 title: const Text("Notification Settings", style: TextStyle(fontWeight: FontWeight.w600)),
                 subtitle: const Text("Manage Daily Drops and Review Reminders"),
                 trailing: const Icon(Icons.chevron_right, color: Colors.grey),
-                onTap: () {
-                  // TODO: Navigate to Notification Settings Screen
-                },
+                onTap: () => _showNotificationSettings(context, ref),
               ),
             ],
           ),
@@ -287,5 +286,199 @@ class SettingsScreen extends ConsumerWidget {
       default: return 'English';
     }
   }
+}
 
+void _showNotificationSettings(BuildContext context, WidgetRef ref) {
+  final isDark = Theme.of(context).brightness == Brightness.dark;
+  final notificationService = ref.read(notificationServiceProvider);
+  bool dailyDropsEnabled = false;
+  bool reviewRemindersEnabled = false;
+  TimeOfDay dailyDropTime = const TimeOfDay(hour: 8, minute: 0);
+  TimeOfDay reviewTime = const TimeOfDay(hour: 18, minute: 0);
+
+  showModalBottomSheet(
+    context: context,
+    backgroundColor: Colors.transparent,
+    isScrollControlled: true,
+    builder: (ctx) {
+      return StatefulBuilder(
+        builder: (context, setSheetState) {
+          return Container(
+            padding: const EdgeInsets.all(24),
+            decoration: BoxDecoration(
+              color: isDark ? const Color(0xFF1C1C1E) : const Color(0xFFFDFCF0),
+              borderRadius: const BorderRadius.vertical(top: Radius.circular(28)),
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                // Drag handle
+                Center(
+                  child: Container(
+                    width: 40, height: 4,
+                    decoration: BoxDecoration(
+                      color: Colors.grey.withValues(alpha: 0.4),
+                      borderRadius: BorderRadius.circular(2),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 20),
+                Text(
+                  "Notification Settings",
+                  style: TextStyle(
+                    fontSize: 20, fontWeight: FontWeight.bold,
+                    color: isDark ? Colors.white : Colors.black87,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  "Manage Daily Drops and Review Reminders",
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: isDark ? Colors.white54 : Colors.black54,
+                  ),
+                ),
+                const SizedBox(height: 24),
+
+                // Daily Drops toggle
+                _buildNotifToggle(
+                  isDark: isDark,
+                  icon: Icons.wb_sunny_outlined,
+                  title: "Daily Drops",
+                  subtitle: "Word of the Day & news",
+                  value: dailyDropsEnabled,
+                  time: dailyDropTime,
+                  onChanged: (val) {
+                    setSheetState(() => dailyDropsEnabled = val);
+                    if (val) {
+                      notificationService.scheduleDailyDrop(dailyDropTime.hour, dailyDropTime.minute);
+                    } else {
+                      notificationService.cancel(1);
+                      if (reviewRemindersEnabled) {
+                        notificationService.scheduleSpacedRepetition(reviewTime.hour, reviewTime.minute, 5);
+                      }
+                    }
+                  },
+                  onTimePicked: (time) {
+                    setSheetState(() => dailyDropTime = time);
+                    if (dailyDropsEnabled) {
+                      notificationService.scheduleDailyDrop(time.hour, time.minute);
+                    }
+                  },
+                ),
+                const Divider(height: 32),
+
+                // Review Reminders toggle
+                _buildNotifToggle(
+                  isDark: isDark,
+                  icon: Icons.menu_book_outlined,
+                  title: "Review Reminders",
+                  subtitle: "Flashcards due for review",
+                  value: reviewRemindersEnabled,
+                  time: reviewTime,
+                  onChanged: (val) {
+                    setSheetState(() => reviewRemindersEnabled = val);
+                    if (val) {
+                      notificationService.scheduleSpacedRepetition(reviewTime.hour, reviewTime.minute, 5);
+                    } else {
+                      notificationService.cancel(2);
+                      if (dailyDropsEnabled) {
+                        notificationService.scheduleDailyDrop(dailyDropTime.hour, dailyDropTime.minute);
+                      }
+                    }
+                  },
+                  onTimePicked: (time) {
+                    setSheetState(() => reviewTime = time);
+                    if (reviewRemindersEnabled) {
+                      notificationService.scheduleSpacedRepetition(time.hour, time.minute, 5);
+                    }
+                  },
+                ),
+                const SizedBox(height: 24),
+
+                OutlinedButton.icon(
+                  onPressed: () => notificationService.requestPermissions(),
+                  icon: const Icon(Icons.notifications_active, size: 18),
+                  label: const Text("Request Permissions"),
+                  style: OutlinedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(vertical: 14),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+                  ),
+                ),
+                const SizedBox(height: 12),
+                ElevatedButton(
+                  onPressed: () => Navigator.pop(context),
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(vertical: 14),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+                  ),
+                  child: const Text("Done"),
+                ),
+                const SizedBox(height: 8),
+              ],
+            ),
+          );
+        },
+      );
+    },
+  );
+}
+
+Widget _buildNotifToggle({
+  required bool isDark,
+  required IconData icon,
+  required String title,
+  required String subtitle,
+  required bool value,
+  required TimeOfDay time,
+  required Function(bool) onChanged,
+  required Function(TimeOfDay) onTimePicked,
+}) {
+  return Row(
+    children: [
+      CircleAvatar(
+        backgroundColor: Colors.amber.withValues(alpha: 0.1),
+        child: Icon(icon, color: Colors.amber, size: 20),
+      ),
+      const SizedBox(width: 14),
+      Expanded(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(title, style: TextStyle(
+              fontWeight: FontWeight.w600,
+              color: isDark ? Colors.white : Colors.black87,
+            )),
+            const SizedBox(height: 2),
+            Text(subtitle, style: TextStyle(
+              fontSize: 12,
+              color: isDark ? Colors.white54 : Colors.black54,
+            )),
+          ],
+        ),
+      ),
+      TextButton(
+        onPressed: () async {
+          final picked = await showTimePicker(
+            context: context,
+            initialTime: time,
+          );
+          if (picked != null) onTimePicked(picked);
+        },
+        child: Text(
+          time.format(context),
+          style: TextStyle(
+            fontWeight: FontWeight.w600,
+            color: Colors.amber.shade700,
+          ),
+        ),
+      ),
+      Switch(
+        value: value,
+        onChanged: onChanged,
+        activeColor: Colors.amber,
+      ),
+    ],
+  );
 }
