@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'dart:io' show Platform;
 import 'package:hanzi_master/core/services/amap_service.dart';
 import 'package:hanzi_master/features/explore/presentation/widgets/ai_cultural_box_sheet.dart';
 
-/// Full-screen location deep-dive with AMap coordinates + AI cultural sheet.
+/// Full-screen location map with info card + AI cultural exploration.
+/// Uses OpenStreetMap tiles in-app; "Open in Maps" launches native maps app.
 class ExploreMapScreen extends StatefulWidget {
   final PlaceMatch match;
 
@@ -14,7 +18,7 @@ class ExploreMapScreen extends StatefulWidget {
 }
 
 class _ExploreMapScreenState extends State<ExploreMapScreen> {
-  LatLng? _gcjCenter;
+  LatLng? _displayCenter;
   bool _loadingCoords = true;
 
   @override
@@ -30,19 +34,28 @@ class _ExploreMapScreenState extends State<ExploreMapScreen> {
 
     if (result != null && mounted) {
       setState(() {
-        _gcjCenter = LatLng(result['lat']!, result['lng']!);
+        _displayCenter = LatLng(result['lat']!, result['lng']!);
         _loadingCoords = false;
       });
     } else if (widget.match.lat != null && widget.match.lng != null && mounted) {
-      final gcj = AmapService.wgs84ToGcj02(
-          widget.match.lat!, widget.match.lng!);
       setState(() {
-        _gcjCenter = LatLng(gcj[0], gcj[1]);
+        _displayCenter = LatLng(widget.match.lat!, widget.match.lng!);
         _loadingCoords = false;
       });
     } else if (mounted) {
       setState(() => _loadingCoords = false);
     }
+  }
+
+  void _openInMaps() {
+    if (_displayCenter == null) return;
+    final lat = _displayCenter!.latitude;
+    final lng = _displayCenter!.longitude;
+    final name = Uri.encodeComponent(widget.match.name);
+    final url = Platform.isIOS
+        ? 'https://maps.apple.com/?q=$name&ll=$lat,$lng'
+        : 'https://www.google.com/maps/search/?api=1&query=$lat,$lng';
+    launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
   }
 
   @override
@@ -52,14 +65,68 @@ class _ExploreMapScreenState extends State<ExploreMapScreen> {
         title: Text(widget.match.name),
         backgroundColor: const Color(0xFF1A1A2E),
         foregroundColor: Colors.white,
+        actions: [
+          if (_displayCenter != null)
+            IconButton(
+              icon: const Icon(Icons.open_in_new),
+              tooltip: 'Open in Maps',
+              onPressed: _openInMaps,
+            ),
+        ],
       ),
       body: _loadingCoords
           ? const Center(child: CircularProgressIndicator())
-          : _gcjCenter == null
+          : _displayCenter == null
               ? _LocationInfoCard(match: widget.match, fullScreen: true)
               : Stack(
                   children: [
-                    _buildMapPlaceholder(),
+                    FlutterMap(
+                      options: MapOptions(
+                        initialCenter: _displayCenter!,
+                        initialZoom: 13.0,
+                      ),
+                      children: [
+                        TileLayer(
+                          urlTemplate:
+                              'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                          userAgentPackageName: 'com.hanzimaster.app',
+                        ),
+                        MarkerLayer(markers: [
+                          Marker(
+                            point: _displayCenter!,
+                            width: 200,
+                            height: 80,
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                const Icon(Icons.location_on,
+                                    color: Colors.red, size: 36),
+                                Container(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 8, vertical: 4),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(8),
+                                    boxShadow: const [
+                                      BoxShadow(
+                                          color: Colors.black26,
+                                          blurRadius: 4,
+                                          offset: Offset(0, 2)),
+                                    ],
+                                  ),
+                                  child: Text(
+                                    widget.match.name,
+                                    style: const TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ]),
+                      ],
+                    ),
                     Positioned(
                       bottom: 0,
                       left: 0,
@@ -68,48 +135,6 @@ class _ExploreMapScreenState extends State<ExploreMapScreen> {
                     ),
                   ],
                 ),
-    );
-  }
-
-  Widget _buildMapPlaceholder() {
-    return Container(
-      color: const Color(0xFFE8E8E8),
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(Icons.map, size: 64, color: Colors.grey.shade400),
-            const SizedBox(height: 16),
-            Text(widget.match.name,
-                style: const TextStyle(
-                    fontSize: 28,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFF333333))),
-            if (_gcjCenter != null) ...[
-              const SizedBox(height: 8),
-              Text(
-                '${_gcjCenter!.latitude.toStringAsFixed(4)}, ${_gcjCenter!.longitude.toStringAsFixed(4)}',
-                style:
-                    TextStyle(fontSize: 13, color: Colors.grey.shade600),
-              ),
-            ],
-            const SizedBox(height: 16),
-            Container(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              decoration: BoxDecoration(
-                color: Colors.orange.shade50,
-                borderRadius: BorderRadius.circular(8),
-                border: Border.all(color: Colors.orange.shade200),
-              ),
-              child: const Text(
-                'AMap SDK — configure API key in .env',
-                style: TextStyle(fontSize: 12, color: Colors.orange),
-              ),
-            ),
-          ],
-        ),
-      ),
     );
   }
 }
