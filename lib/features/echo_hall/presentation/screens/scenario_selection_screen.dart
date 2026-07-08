@@ -13,6 +13,8 @@ import 'package:hanzi_master/features/flashcards/domain/entities/deck.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/deck_controller.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
+import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
+import 'package:hanzi_master/shared/widgets/info_bulb.dart';
 
 class ScenarioSelectionScreen extends ConsumerStatefulWidget {
   final Deck? deck;
@@ -214,7 +216,10 @@ class _ScenarioSelectionScreenState extends ConsumerState<ScenarioSelectionScree
                     child: Column(
                     children: [
                       ElevatedButton.icon(
-                        onPressed: () => _startScenario(context, _filteredScenarios[_currentIndex], true),
+                        onPressed: () {
+                          HapticsManager.medium();
+                          _startScenario(context, _filteredScenarios[_currentIndex], true);
+                        },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: theme.colorScheme.primary,
                           foregroundColor: theme.colorScheme.onPrimary,
@@ -227,7 +232,10 @@ class _ScenarioSelectionScreenState extends ConsumerState<ScenarioSelectionScree
                       ),
                       const SizedBox(height: 12),
                       OutlinedButton.icon(
-                        onPressed: () => _startScenario(context, _filteredScenarios[_currentIndex], false),
+                        onPressed: () {
+                          HapticsManager.light();
+                          _startScenario(context, _filteredScenarios[_currentIndex], false);
+                        },
                         style: OutlinedButton.styleFrom(
                           foregroundColor: isDark ? Colors.white : Colors.black87,
                           side: BorderSide(color: isDark ? Colors.white.withValues(alpha: 0.3) : Colors.black.withValues(alpha: 0.2), width: 1.5),
@@ -304,6 +312,11 @@ class _ScenarioSelectionScreenState extends ConsumerState<ScenarioSelectionScree
           IconButton(
             icon: Icon(Icons.arrow_back_ios, color: isDark ? Colors.white : Colors.black87),
             onPressed: () => Navigator.pop(context),
+          ),
+          InfoBulb(
+            id: 'scenario_hub',
+            title: "Scenario Hub",
+            message: "Practice Chinese in realistic roleplay scenarios. Choose a scenario and enter a voice call or text chat. The AI will adapt to your level and help you improve your conversational skills.",
           ),
           Text(
             "Scenario Hub",

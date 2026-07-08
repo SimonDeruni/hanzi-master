@@ -9,6 +9,7 @@ import '../widgets/course_map_widgets.dart';
 import '../widgets/course_painters.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
+import 'package:hanzi_master/shared/widgets/info_bulb.dart';
 
 class CourseScreen extends ConsumerWidget {
   final String deckId;
@@ -28,11 +29,12 @@ class CourseScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(deckName.toUpperCase(), 
+        title: Text(deckName.toUpperCase(),
           style: const TextStyle(fontWeight: FontWeight.bold, letterSpacing: 6, fontSize: 10, color: Colors.brown)),
         centerTitle: true,
         backgroundColor: Colors.transparent,
         elevation: 0,
+        actions: const [InfoBulb()],
       ),
       extendBodyBehindAppBar: true,
       body: Stack(

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/shared/widgets/global_sliver_app_bar.dart';
+import 'package:hanzi_master/shared/widgets/info_bulb.dart';
 import 'package:hanzi_master/features/media/presentation/screens/media_search_screen.dart';
 import 'package:hanzi_master/features/media/presentation/screens/cultural_context_screen.dart';
 import 'package:hanzi_master/features/media/presentation/screens/web_browser_screen.dart';
@@ -26,6 +27,7 @@ class MediaHubScreen extends ConsumerWidget {
           slivers: [
             const GlobalSliverAppBar(
               title: "Media Hub",
+              actions: [InfoBulb()],
             ),
             
             const SliverToBoxAdapter(child: SizedBox(height: 16)),

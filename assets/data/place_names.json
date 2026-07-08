@@ -1,0 +1,3050 @@
+[
+  {
+    "name": "798艺术区",
+    "type": "landmark",
+    "province": "北京",
+    "city": "北京",
+    "dialect": null,
+    "lat": 39.9842,
+    "lng": 116.4951,
+    "english": []
+  },
+  {
+    "name": "三亚",
+    "type": "city",
+    "province": "海南",
+    "city": "三亚",
+    "dialect": "hainanese",
+    "lat": 18.2528,
+    "lng": 109.512,
+    "english": [
+      "Sanya"
+    ]
+  },
+  {
+    "name": "三亚市",
+    "type": "city",
+    "province": "海南",
+    "city": "海南",
+    "dialect": null,
+    "lat": 18.2528,
+    "lng": 109.512,
+    "english": []
+  },
+  {
+    "name": "三峡",
+    "type": "landmark",
+    "province": "湖北",
+    "city": "湖北",
+    "dialect": null,
+    "lat": 30.8257,
+    "lng": 111.0072,
+    "english": []
+  },
+  {
+    "name": "三里屯",
+    "type": "landmark",
+    "province": "北京",
+    "city": "北京",
+    "dialect": null,
+    "lat": 39.9335,
+    "lng": 116.4551,
+    "english": []
+  },
+  {
+    "name": "上下九",
+    "type": "landmark",
+    "province": "广东",
+    "city": "广州",
+    "dialect": null,
+    "lat": 23.1185,
+    "lng": 113.2435,
+    "english": []
+  },
+  {
+    "name": "上海",
+    "type": "city",
+    "province": "上海",
+    "city": "上海",
+    "dialect": "shanghainese",
+    "lat": 31.2304,
+    "lng": 121.4737,
+    "english": [
+      "Shanghai"
+    ]
+  },
+  {
+    "name": "世界之窗",
+    "type": "landmark",
+    "province": "广东",
+    "city": "深圳",
+    "dialect": null,
+    "lat": 22.537,
+    "lng": 113.9735,
+    "english": []
+  },
+  {
+    "name": "东城区",
+    "type": "district",
+    "province": "北京",
+    "city": "北京",
+    "dialect": null,
+    "lat": 39.9286,
+    "lng": 116.4164,
+    "english": []
+  },
+  {
+    "name": "东方明珠",
+    "type": "landmark",
+    "province": "上海",
+    "city": "上海",
+    "dialect": "shanghainese",
+    "lat": 31.2397,
+    "lng": 121.4997,
+    "english": [
+      "Oriental Pearl Tower"
+    ]
+  },
+  {
+    "name": "东莞市",
+    "type": "city",
+    "province": "广东",
+    "city": "广东",
+    "dialect": null,
+    "lat": 23.0208,
+    "lng": 113.7518,
+    "english": []
+  },
+  {
+    "name": "丝绸之路",
+    "type": "landmark",
+    "province": "陕西",
+    "city": "西安",
+    "dialect": "mandarin",
+    "lat": 34.3416,
+    "lng": 108.9398,
+    "english": [
+      "Silk Road"
+    ]
+  },
+  {
+    "name": "丽江",
+    "type": "city",
+    "province": "云南",
+    "city": "丽江",
+    "dialect": "naxi",
+    "lat": 26.8721,
+    "lng": 100.2299,
+    "english": [
+      "Lijiang"
+    ]
+  },
+  {
+    "name": "丽江古城",
+    "type": "landmark",
+    "province": "云南",
+    "city": "丽江",
+    "dialect": null,
+    "lat": 26.8721,
+    "lng": 100.2299,
+    "english": []
+  },
+  {
+    "name": "中山路",
+    "type": "landmark",
+    "province": "福建",
+    "city": "厦门",
+    "dialect": null,
+    "lat": 24.4545,
+    "lng": 118.0844,
+    "english": []
+  },
+  {
+    "name": "中山陵",
+    "type": "landmark",
+    "province": "江苏",
+    "city": "南京",
+    "dialect": "mandarin",
+    "lat": 32.0573,
+    "lng": 118.8489,
+    "english": [
+      "Sun Yat-sen Mausoleum"
+    ]
+  },
+  {
+    "name": "乌镇",
+    "type": "landmark",
+    "province": "浙江",
+    "city": "桐乡",
+    "dialect": "wu",
+    "lat": 30.745,
+    "lng": 120.4854,
+    "english": [
+      "Wuzhen Water Town"
+    ]
+  },
+  {
+    "name": "乌鲁木齐",
+    "type": "city",
+    "province": "新疆",
+    "city": "乌鲁木齐",
+    "dialect": "uyghur",
+    "lat": 43.8256,
+    "lng": 87.6168,
+    "english": [
+      "Urumqi"
+    ]
+  },
+  {
+    "name": "乌鲁木齐市",
+    "type": "city",
+    "province": "新疆",
+    "city": "新疆",
+    "dialect": null,
+    "lat": 43.8256,
+    "lng": 87.6168,
+    "english": []
+  },
+  {
+    "name": "乐山大佛",
+    "type": "landmark",
+    "province": "四川",
+    "city": "乐山",
+    "dialect": null,
+    "lat": 29.547,
+    "lng": 103.7693,
+    "english": []
+  },
+  {
+    "name": "九寨沟",
+    "type": "landmark",
+    "province": "四川",
+    "city": null,
+    "dialect": "tibetan",
+    "lat": 33.2632,
+    "lng": 103.9175,
+    "english": [
+      "Jiuzhaigou"
+    ]
+  },
+  {
+    "name": "云冈石窟",
+    "type": "landmark",
+    "province": "山西",
+    "city": "大同",
+    "dialect": null,
+    "lat": 40.1111,
+    "lng": 113.1326,
+    "english": []
+  },
+  {
+    "name": "云南",
+    "type": "province",
+    "province": "云南",
+    "city": null,
+    "dialect": "mandarin",
+    "lat": 25.0453,
+    "lng": 102.7097,
+    "english": [
+      "Yunnan"
+    ]
+  },
+  {
+    "name": "五道口",
+    "type": "landmark",
+    "province": "北京",
+    "city": "北京",
+    "dialect": null,
+    "lat": 39.9924,
+    "lng": 116.3385,
+    "english": []
+  },
+  {
+    "name": "井冈山",
+    "type": "landmark",
+    "province": "江西",
+    "city": "江西",
+    "dialect": null,
+    "lat": 26.5655,
+    "lng": 114.1746,
+    "english": []
+  },
+  {
+    "name": "人民公园",
+    "type": "landmark",
+    "province": "四川",
+    "city": "成都",
+    "dialect": "sichuanese",
+    "lat": 30.6598,
+    "lng": 104.0556,
+    "english": [
+      "People's Park"
+    ]
+  },
+  {
+    "name": "什刹海",
+    "type": "landmark",
+    "province": "北京",
+    "city": "北京",
+    "dialect": null,
+    "lat": 39.938,
+    "lng": 116.3856,
+    "english": []
+  },
+  {
+    "name": "佛山市",
+    "type": "city",
+    "province": "广东",
+    "city": "广东",
+    "dialect": null,
+    "lat": 23.0218,
+    "lng": 113.1219,
+    "english": []
+  },
+  {
+    "name": "兰州",
+    "type": "city",
+    "province": "甘肃",
+    "city": "兰州",
+    "dialect": "mandarin",
+    "lat": 36.0611,
+    "lng": 103.8343,
+    "english": [
+      "Lanzhou"
+    ]
+  },
+  {
+    "name": "兰州市",
+    "type": "city",
+    "province": "甘肃",
+    "city": "甘肃",
+    "dialect": null,
+    "lat": 36.0611,
+    "lng": 103.8343,
+    "english": []
+  },
+  {
+    "name": "兵马俑",
+    "type": "landmark",
+    "province": "陕西",
+    "city": "西安",
+    "dialect": "mandarin",
+    "lat": 34.3849,
+    "lng": 109.2731,
+    "english": [
+      "Terracotta Army"
+    ]
+  },
+  {
+    "name": "内蒙古",
+    "type": "province",
+    "province": "内蒙古",
+    "city": null,
+    "dialect": "mongolian",
+    "lat": 44.0178,
+    "lng": 116.812,
+    "english": [
+      "Inner Mongolia"
+    ]
+  },
+  {
+    "name": "凤凰古城",
+    "type": "landmark",
+    "province": "湖南",
+    "city": "凤凰",
+    "dialect": "miao",
+    "lat": 27.9481,
+    "lng": 109.5989,
+    "english": [
+      "Fenghuang Ancient Town"
+    ]
+  },
+  {
+    "name": "包头市",
+    "type": "city",
+    "province": "内蒙古",
+    "city": "内蒙古",
+    "dialect": null,
+    "lat": 40.6581,
+    "lng": 109.8403,
+    "english": []
+  },
+  {
+    "name": "北京",
+    "type": "city",
+    "province": "北京",
+    "city": "北京",
+    "dialect": "mandarin",
+    "lat": 39.9042,
+    "lng": 116.4074,
+    "english": [
+      "Beijing",
+      "Peking"
+    ]
+  },
+  {
+    "name": "北戴河",
+    "type": "landmark",
+    "province": "河北",
+    "city": "秦皇岛",
+    "dialect": null,
+    "lat": 39.8258,
+    "lng": 119.4793,
+    "english": []
+  },
+  {
+    "name": "千岛湖",
+    "type": "landmark",
+    "province": "浙江",
+    "city": "杭州",
+    "dialect": null,
+    "lat": 29.608,
+    "lng": 118.9958,
+    "english": []
+  },
+  {
+    "name": "华山",
+    "type": "landmark",
+    "province": "陕西",
+    "city": "陕西",
+    "dialect": null,
+    "lat": 34.4739,
+    "lng": 110.0839,
+    "english": []
+  },
+  {
+    "name": "华强北",
+    "type": "landmark",
+    "province": "广东",
+    "city": "深圳",
+    "dialect": null,
+    "lat": 22.5451,
+    "lng": 114.0865,
+    "english": []
+  },
+  {
+    "name": "南京",
+    "type": "city",
+    "province": "江苏",
+    "city": "南京",
+    "dialect": "mandarin",
+    "lat": 32.0603,
+    "lng": 118.7969,
+    "english": [
+      "Nanjing"
+    ]
+  },
+  {
+    "name": "南京市",
+    "type": "city",
+    "province": "江苏",
+    "city": "江苏",
+    "dialect": "江淮官话",
+    "lat": 32.0603,
+    "lng": 118.7969,
+    "english": []
+  },
+  {
+    "name": "南京路",
+    "type": "landmark",
+    "province": "上海",
+    "city": "上海",
+    "dialect": "shanghainese",
+    "lat": 31.2358,
+    "lng": 121.4753,
+    "english": [
+      "Nanjing Road"
+    ]
+  },
+  {
+    "name": "南宁",
+    "type": "city",
+    "province": "广西",
+    "city": "南宁",
+    "dialect": "cantonese",
+    "lat": 22.817,
+    "lng": 108.3665,
+    "english": [
+      "Nanning"
+    ]
+  },
+  {
+    "name": "南宁市",
+    "type": "city",
+    "province": "广西",
+    "city": "广西",
+    "dialect": null,
+    "lat": 22.817,
+    "lng": 108.3665,
+    "english": []
+  },
+  {
+    "name": "南山区",
+    "type": "district",
+    "province": "广东",
+    "city": "深圳",
+    "dialect": null,
+    "lat": 22.5332,
+    "lng": 113.9306,
+    "english": []
+  },
+  {
+    "name": "南昌市",
+    "type": "city",
+    "province": "江西",
+    "city": "江西",
+    "dialect": "赣语",
+    "lat": 28.682,
+    "lng": 115.8582,
+    "english": []
+  },
+  {
+    "name": "南普陀寺",
+    "type": "landmark",
+    "province": "福建",
+    "city": "厦门",
+    "dialect": null,
+    "lat": 24.4433,
+    "lng": 118.0926,
+    "english": []
+  },
+  {
+    "name": "南通市",
+    "type": "city",
+    "province": "江苏",
+    "city": "江苏",
+    "dialect": null,
+    "lat": 32.0158,
+    "lng": 120.8561,
+    "english": []
+  },
+  {
+    "name": "南锣鼓巷",
+    "type": "landmark",
+    "province": "北京",
+    "city": "北京",
+    "dialect": null,
+    "lat": 39.9378,
+    "lng": 116.4034,
+    "english": []
+  },
+  {
+    "name": "厦门",
+    "type": "city",
+    "province": "福建",
+    "city": "厦门",
+    "dialect": "minnan",
+    "lat": 24.4798,
+    "lng": 118.0894,
+    "english": [
+      "Xiamen",
+      "Amoy"
+    ]
+  },
+  {
+    "name": "厦门市",
+    "type": "city",
+    "province": "福建",
+    "city": "福建",
+    "dialect": "闽南语",
+    "lat": 24.4798,
+    "lng": 118.0894,
+    "english": []
+  },
+  {
+    "name": "台北",
+    "type": "city",
+    "province": "台湾",
+    "city": "台北",
+    "dialect": "minnan",
+    "lat": 25.033,
+    "lng": 121.5654,
+    "english": [
+      "Taipei"
+    ]
+  },
+  {
+    "name": "台北市",
+    "type": "city",
+    "province": "台湾",
+    "city": "台湾",
+    "dialect": null,
+    "lat": 25.033,
+    "lng": 121.5654,
+    "english": []
+  },
+  {
+    "name": "台湾",
+    "type": "province",
+    "province": "台湾",
+    "city": null,
+    "dialect": "minnan",
+    "lat": 23.6978,
+    "lng": 120.9605,
+    "english": [
+      "Taiwan"
+    ]
+  },
+  {
+    "name": "合肥",
+    "type": "city",
+    "province": "安徽",
+    "city": "合肥",
+    "dialect": "mandarin",
+    "lat": 31.8206,
+    "lng": 117.2272,
+    "english": [
+      "Hefei"
+    ]
+  },
+  {
+    "name": "合肥市",
+    "type": "city",
+    "province": "安徽",
+    "city": "安徽",
+    "dialect": null,
+    "lat": 31.8206,
+    "lng": 117.2272,
+    "english": []
+  },
+  {
+    "name": "吉林",
+    "type": "province",
+    "province": "吉林",
+    "city": null,
+    "dialect": "mandarin",
+    "lat": 43.7,
+    "lng": 126.5,
+    "english": [
+      "Jilin"
+    ]
+  },
+  {
+    "name": "后海",
+    "type": "landmark",
+    "province": "北京",
+    "city": "北京",
+    "dialect": null,
+    "lat": 39.9398,
+    "lng": 116.387,
+    "english": []
+  },
+  {
+    "name": "周庄",
+    "type": "landmark",
+    "province": "江苏",
+    "city": "苏州",
+    "dialect": "wu",
+    "lat": 31.1288,
+    "lng": 120.8466,
+    "english": [
+      "Zhouzhuang Water Town"
+    ]
+  },
+  {
+    "name": "呼和浩特",
+    "type": "city",
+    "province": "内蒙古",
+    "city": "呼和浩特",
+    "dialect": "mongolian",
+    "lat": 40.8424,
+    "lng": 111.749,
+    "english": [
+      "Hohhot"
+    ]
+  },
+  {
+    "name": "呼和浩特市",
+    "type": "city",
+    "province": "内蒙古",
+    "city": "内蒙古",
+    "dialect": null,
+    "lat": 40.8424,
+    "lng": 111.749,
+    "english": []
+  },
+  {
+    "name": "和平区",
+    "type": "district",
+    "province": "天津",
+    "city": "天津",
+    "dialect": null,
+    "lat": 39.1176,
+    "lng": 117.1959,
+    "english": []
+  },
+  {
+    "name": "哈尔滨",
+    "type": "city",
+    "province": "黑龙江",
+    "city": "哈尔滨",
+    "dialect": "mandarin",
+    "lat": 45.8038,
+    "lng": 126.535,
+    "english": [
+      "Harbin"
+    ]
+  },
+  {
+    "name": "哈尔滨市",
+    "type": "city",
+    "province": "黑龙江",
+    "city": "黑龙江",
+    "dialect": null,
+    "lat": 45.8038,
+    "lng": 126.535,
+    "english": []
+  },
+  {
+    "name": "唐山市",
+    "type": "city",
+    "province": "河北",
+    "city": "河北",
+    "dialect": null,
+    "lat": 39.6305,
+    "lng": 118.1802,
+    "english": []
+  },
+  {
+    "name": "喀纳斯湖",
+    "type": "landmark",
+    "province": "新疆",
+    "city": "新疆",
+    "dialect": null,
+    "lat": 48.8207,
+    "lng": 87.0401,
+    "english": []
+  },
+  {
+    "name": "四川",
+    "type": "province",
+    "province": "四川",
+    "city": null,
+    "dialect": "sichuanese",
+    "lat": 30.6516,
+    "lng": 104.0757,
+    "english": [
+      "Sichuan"
+    ]
+  },
+  {
+    "name": "回民街",
+    "type": "landmark",
+    "province": "陕西",
+    "city": "西安",
+    "dialect": "mandarin",
+    "lat": 34.2649,
+    "lng": 108.9465,
+    "english": [
+      "Muslim Street"
+    ]
+  },
+  {
+    "name": "塔尔寺",
+    "type": "landmark",
+    "province": "青海",
+    "city": "西宁",
+    "dialect": null,
+    "lat": 36.4833,
+    "lng": 101.5787,
+    "english": []
+  },
+  {
+    "name": "壶口瀑布",
+    "type": "landmark",
+    "province": "陕西",
+    "city": "陕西",
+    "dialect": null,
+    "lat": 36.1462,
+    "lng": 110.4435,
+    "english": []
+  },
+  {
+    "name": "外滩",
+    "type": "landmark",
+    "province": "上海",
+    "city": "上海",
+    "dialect": "shanghainese",
+    "lat": 31.24,
+    "lng": 121.4905,
+    "english": [
+      "The Bund",
+      "Waitan"
+    ]
+  },
+  {
+    "name": "大三巴",
+    "type": "landmark",
+    "province": "澳门",
+    "city": "澳门",
+    "dialect": null,
+    "lat": 22.1979,
+    "lng": 113.5418,
+    "english": []
+  },
+  {
+    "name": "大兴安岭",
+    "type": "landmark",
+    "province": "黑龙江",
+    "city": null,
+    "dialect": "mandarin",
+    "lat": 50.6,
+    "lng": 123,
+    "english": [
+      "Greater Khingan Mountains"
+    ]
+  },
+  {
+    "name": "大同市",
+    "type": "city",
+    "province": "山西",
+    "city": "山西",
+    "dialect": null,
+    "lat": 40.0768,
+    "lng": 113.3001,
+    "english": []
+  },
+  {
+    "name": "大栅栏",
+    "type": "landmark",
+    "province": "北京",
+    "city": "北京",
+    "dialect": null,
+    "lat": 39.8954,
+    "lng": 116.3954,
+    "english": []
+  },
+  {
+    "name": "大理",
+    "type": "city",
+    "province": "云南",
+    "city": "大理",
+    "dialect": "bai",
+    "lat": 25.6065,
+    "lng": 100.2676,
+    "english": [
+      "Dali"
+    ]
+  },
+  {
+    "name": "大理古城",
+    "type": "landmark",
+    "province": "云南",
+    "city": "大理",
+    "dialect": null,
+    "lat": 25.6872,
+    "lng": 100.1636,
+    "english": []
+  },
+  {
+    "name": "大连",
+    "type": "city",
+    "province": "辽宁",
+    "city": "大连",
+    "dialect": "mandarin",
+    "lat": 38.914,
+    "lng": 121.6147,
+    "english": [
+      "Dalian"
+    ]
+  },
+  {
+    "name": "大连市",
+    "type": "city",
+    "province": "辽宁",
+    "city": "辽宁",
+    "dialect": "胶辽官话",
+    "lat": 38.9136,
+    "lng": 121.6147,
+    "english": []
+  },
+  {
+    "name": "大雁塔",
+    "type": "landmark",
+    "province": "陕西",
+    "city": "西安",
+    "dialect": "mandarin",
+    "lat": 34.2196,
+    "lng": 108.9593,
+    "english": [
+      "Big Wild Goose Pagoda"
+    ]
+  },
+  {
+    "name": "天坛",
+    "type": "landmark",
+    "province": "北京",
+    "city": "北京",
+    "dialect": "mandarin",
+    "lat": 39.8822,
+    "lng": 116.4066,
+    "english": [
+      "Temple of Heaven"
+    ]
+  },
+  {
+    "name": "天安门",
+    "type": "landmark",
+    "province": "北京",
+    "city": "北京",
+    "dialect": "mandarin",
+    "lat": 39.9087,
+    "lng": 116.3975,
+    "english": [
+      "Tiananmen"
+    ]
+  },
+  {
+    "name": "天安门广场",
+    "type": "landmark",
+    "province": "北京",
+    "city": "北京",
+    "dialect": "mandarin",
+    "lat": 39.9054,
+    "lng": 116.3976,
+    "english": [
+      "Tiananmen Square"
+    ]
+  },
+  {
+    "name": "天山",
+    "type": "landmark",
+    "province": "新疆",
+    "city": null,
+    "dialect": "uyghur",
+    "lat": 43.8,
+    "lng": 87.6,
+    "english": [
+      "Tianshan",
+      "Tian Shan"
+    ]
+  },
+  {
+    "name": "天山天池",
+    "type": "landmark",
+    "province": "新疆",
+    "city": "新疆",
+    "dialect": null,
+    "lat": 43.8864,
+    "lng": 88.132,
+    "english": []
+  },
+  {
+    "name": "天河区",
+    "type": "district",
+    "province": "广东",
+    "city": "广州",
+    "dialect": null,
+    "lat": 23.1249,
+    "lng": 113.3612,
+    "english": []
+  },
+  {
+    "name": "天津",
+    "type": "city",
+    "province": "天津",
+    "city": "天津",
+    "dialect": "mandarin",
+    "lat": 39.3434,
+    "lng": 117.3616,
+    "english": [
+      "Tianjin"
+    ]
+  },
+  {
+    "name": "太原",
+    "type": "city",
+    "province": "山西",
+    "city": "太原",
+    "dialect": "mandarin",
+    "lat": 37.8706,
+    "lng": 112.5489,
+    "english": [
+      "Taiyuan"
+    ]
+  },
+  {
+    "name": "太原市",
+    "type": "city",
+    "province": "山西",
+    "city": "山西",
+    "dialect": "晋语",
+    "lat": 37.8706,
+    "lng": 112.5489,
+    "english": []
+  },
+  {
+    "name": "太古里",
+    "type": "landmark",
+    "province": "四川",
+    "city": "成都",
+    "dialect": null,
+    "lat": 30.6533,
+    "lng": 104.083,
+    "english": []
+  },
+  {
+    "name": "夫子庙",
+    "type": "landmark",
+    "province": "江苏",
+    "city": "南京",
+    "dialect": "mandarin",
+    "lat": 32.0202,
+    "lng": 118.7928,
+    "english": [
+      "Confucius Temple",
+      "Fuzimiao"
+    ]
+  },
+  {
+    "name": "宁夏",
+    "type": "province",
+    "province": "宁夏",
+    "city": null,
+    "dialect": "mandarin",
+    "lat": 37.3,
+    "lng": 106,
+    "english": [
+      "Ningxia"
+    ]
+  },
+  {
+    "name": "宁波市",
+    "type": "city",
+    "province": "浙江",
+    "city": "浙江",
+    "dialect": null,
+    "lat": 29.8683,
+    "lng": 121.544,
+    "english": []
+  },
+  {
+    "name": "安徽",
+    "type": "province",
+    "province": "安徽",
+    "city": null,
+    "dialect": "mandarin",
+    "lat": 31.8,
+    "lng": 117.3,
+    "english": [
+      "Anhui"
+    ]
+  },
+  {
+    "name": "宏村",
+    "type": "landmark",
+    "province": "安徽",
+    "city": "安徽",
+    "dialect": null,
+    "lat": 30.0037,
+    "lng": 117.9889,
+    "english": []
+  },
+  {
+    "name": "宽窄巷子",
+    "type": "landmark",
+    "province": "四川",
+    "city": "成都",
+    "dialect": "sichuanese",
+    "lat": 30.6689,
+    "lng": 104.0533,
+    "english": [
+      "Kuanzhai Alley"
+    ]
+  },
+  {
+    "name": "寒山寺",
+    "type": "landmark",
+    "province": "江苏",
+    "city": "苏州",
+    "dialect": null,
+    "lat": 31.3127,
+    "lng": 120.5684,
+    "english": []
+  },
+  {
+    "name": "少林寺",
+    "type": "landmark",
+    "province": "河南",
+    "city": "郑州",
+    "dialect": null,
+    "lat": 34.5076,
+    "lng": 112.9369,
+    "english": []
+  },
+  {
+    "name": "山东",
+    "type": "province",
+    "province": "山东",
+    "city": null,
+    "dialect": "mandarin",
+    "lat": 36.3416,
+    "lng": 118.15,
+    "english": [
+      "Shandong"
+    ]
+  },
+  {
+    "name": "山西",
+    "type": "province",
+    "province": "山西",
+    "city": null,
+    "dialect": "mandarin",
+    "lat": 37.57,
+    "lng": 112.33,
+    "english": [
+      "Shanxi"
+    ]
+  },
+  {
+    "name": "岳麓书院",
+    "type": "landmark",
+    "province": "湖南",
+    "city": "长沙",
+    "dialect": "xiang",
+    "lat": 28.1844,
+    "lng": 112.9369,
+    "english": [
+      "Yuelu Academy"
+    ]
+  },
+  {
+    "name": "岳麓山",
+    "type": "landmark",
+    "province": "湖南",
+    "city": "长沙",
+    "dialect": null,
+    "lat": 28.1872,
+    "lng": 112.9378,
+    "english": []
+  },
+  {
+    "name": "峨眉山",
+    "type": "landmark",
+    "province": "四川",
+    "city": "峨眉山",
+    "dialect": "sichuanese",
+    "lat": 29.6015,
+    "lng": 103.4856,
+    "english": [
+      "Mount Emei"
+    ]
+  },
+  {
+    "name": "崂山",
+    "type": "landmark",
+    "province": "山东",
+    "city": "青岛",
+    "dialect": null,
+    "lat": 36.1349,
+    "lng": 120.6316,
+    "english": []
+  },
+  {
+    "name": "布达拉宫",
+    "type": "landmark",
+    "province": "西藏",
+    "city": "拉萨",
+    "dialect": "tibetan",
+    "lat": 29.6576,
+    "lng": 91.1169,
+    "english": [
+      "Potala Palace"
+    ]
+  },
+  {
+    "name": "常州市",
+    "type": "city",
+    "province": "江苏",
+    "city": "江苏",
+    "dialect": null,
+    "lat": 31.8101,
+    "lng": 119.9741,
+    "english": []
+  },
+  {
+    "name": "平江路",
+    "type": "landmark",
+    "province": "江苏",
+    "city": "苏州",
+    "dialect": null,
+    "lat": 31.3113,
+    "lng": 120.636,
+    "english": []
+  },
+  {
+    "name": "平遥古城",
+    "type": "landmark",
+    "province": "山西",
+    "city": "平遥",
+    "dialect": "mandarin",
+    "lat": 37.1864,
+    "lng": 112.18,
+    "english": [
+      "Pingyao Ancient City"
+    ]
+  },
+  {
+    "name": "广东",
+    "type": "province",
+    "province": "广东",
+    "city": null,
+    "dialect": "cantonese",
+    "lat": 23.1317,
+    "lng": 113.2663,
+    "english": [
+      "Guangdong"
+    ]
+  },
+  {
+    "name": "广州",
+    "type": "city",
+    "province": "广东",
+    "city": "广州",
+    "dialect": "cantonese",
+    "lat": 23.1291,
+    "lng": 113.2644,
+    "english": [
+      "Guangzhou",
+      "Canton"
+    ]
+  },
+  {
+    "name": "广州塔",
+    "type": "landmark",
+    "province": "广东",
+    "city": "广州",
+    "dialect": null,
+    "lat": 23.1093,
+    "lng": 113.3191,
+    "english": []
+  },
+  {
+    "name": "广州市",
+    "type": "city",
+    "province": "广东",
+    "city": "广东",
+    "dialect": "粤语",
+    "lat": 23.1292,
+    "lng": 113.2644,
+    "english": []
+  },
+  {
+    "name": "广西",
+    "type": "province",
+    "province": "广西",
+    "city": null,
+    "dialect": "cantonese",
+    "lat": 24,
+    "lng": 109,
+    "english": [
+      "Guangxi"
+    ]
+  },
+  {
+    "name": "庐山",
+    "type": "landmark",
+    "province": "江西",
+    "city": "江西",
+    "dialect": null,
+    "lat": 29.5675,
+    "lng": 115.9807,
+    "english": []
+  },
+  {
+    "name": "开封市",
+    "type": "city",
+    "province": "河南",
+    "city": "河南",
+    "dialect": null,
+    "lat": 34.7975,
+    "lng": 114.3076,
+    "english": []
+  },
+  {
+    "name": "张家界",
+    "type": "landmark",
+    "province": "湖南",
+    "city": "张家界",
+    "dialect": "mandarin",
+    "lat": 29.117,
+    "lng": 110.4789,
+    "english": [
+      "Zhangjiajie"
+    ]
+  },
+  {
+    "name": "徐州市",
+    "type": "city",
+    "province": "江苏",
+    "city": "江苏",
+    "dialect": "中原官话",
+    "lat": 34.2048,
+    "lng": 117.2841,
+    "english": []
+  },
+  {
+    "name": "徐汇区",
+    "type": "district",
+    "province": "上海",
+    "city": "上海",
+    "dialect": null,
+    "lat": 31.1885,
+    "lng": 121.4365,
+    "english": []
+  },
+  {
+    "name": "思明区",
+    "type": "district",
+    "province": "福建",
+    "city": "厦门",
+    "dialect": null,
+    "lat": 24.4611,
+    "lng": 118.0827,
+    "english": []
+  },
+  {
+    "name": "成都",
+    "type": "city",
+    "province": "四川",
+    "city": "成都",
+    "dialect": "sichuanese",
+    "lat": 30.5728,
+    "lng": 104.0668,
+    "english": [
+      "Chengdu"
+    ]
+  },
+  {
+    "name": "户部巷",
+    "type": "landmark",
+    "province": "湖北",
+    "city": "武汉",
+    "dialect": null,
+    "lat": 30.5495,
+    "lng": 114.2986,
+    "english": []
+  },
+  {
+    "name": "扬州市",
+    "type": "city",
+    "province": "江苏",
+    "city": "江苏",
+    "dialect": null,
+    "lat": 32.3936,
+    "lng": 119.421,
+    "english": []
+  },
+  {
+    "name": "拉萨",
+    "type": "city",
+    "province": "西藏",
+    "city": "拉萨",
+    "dialect": "tibetan",
+    "lat": 29.65,
+    "lng": 91.1,
+    "english": [
+      "Lhasa"
+    ]
+  },
+  {
+    "name": "拉萨市",
+    "type": "city",
+    "province": "西藏",
+    "city": "西藏",
+    "dialect": "藏语",
+    "lat": 29.65,
+    "lng": 91.1,
+    "english": []
+  },
+  {
+    "name": "拙政园",
+    "type": "landmark",
+    "province": "江苏",
+    "city": "苏州",
+    "dialect": "wu",
+    "lat": 31.326,
+    "lng": 120.6248,
+    "english": [
+      "Humble Administrator's Garden"
+    ]
+  },
+  {
+    "name": "故宫",
+    "type": "landmark",
+    "province": "北京",
+    "city": "北京",
+    "dialect": "mandarin",
+    "lat": 39.9163,
+    "lng": 116.3972,
+    "english": [
+      "Forbidden City"
+    ]
+  },
+  {
+    "name": "敦煌",
+    "type": "city",
+    "province": "甘肃",
+    "city": "敦煌",
+    "dialect": "mandarin",
+    "lat": 40.141,
+    "lng": 94.6619,
+    "english": [
+      "Dunhuang"
+    ]
+  },
+  {
+    "name": "新天地",
+    "type": "landmark",
+    "province": "上海",
+    "city": "上海",
+    "dialect": null,
+    "lat": 31.2193,
+    "lng": 121.4737,
+    "english": []
+  },
+  {
+    "name": "新疆",
+    "type": "province",
+    "province": "新疆",
+    "city": null,
+    "dialect": "uyghur",
+    "lat": 41.1129,
+    "lng": 85.2401,
+    "english": [
+      "Xinjiang"
+    ]
+  },
+  {
+    "name": "无锡市",
+    "type": "city",
+    "province": "江苏",
+    "city": "江苏",
+    "dialect": null,
+    "lat": 31.4912,
+    "lng": 120.3119,
+    "english": []
+  },
+  {
+    "name": "日月潭",
+    "type": "landmark",
+    "province": "台湾",
+    "city": "台湾",
+    "dialect": null,
+    "lat": 23.8569,
+    "lng": 120.919,
+    "english": []
+  },
+  {
+    "name": "昆明",
+    "type": "city",
+    "province": "云南",
+    "city": "昆明",
+    "dialect": "mandarin",
+    "lat": 25.0389,
+    "lng": 102.7183,
+    "english": [
+      "Kunming"
+    ]
+  },
+  {
+    "name": "昆明市",
+    "type": "city",
+    "province": "云南",
+    "city": "云南",
+    "dialect": null,
+    "lat": 25.0389,
+    "lng": 102.7183,
+    "english": []
+  },
+  {
+    "name": "春熙路",
+    "type": "landmark",
+    "province": "四川",
+    "city": "成都",
+    "dialect": "sichuanese",
+    "lat": 30.656,
+    "lng": 104.0808,
+    "english": [
+      "Chunxi Road"
+    ]
+  },
+  {
+    "name": "曾厝垵",
+    "type": "landmark",
+    "province": "福建",
+    "city": "厦门",
+    "dialect": null,
+    "lat": 24.4332,
+    "lng": 118.11,
+    "english": []
+  },
+  {
+    "name": "月牙泉",
+    "type": "landmark",
+    "province": "甘肃",
+    "city": "敦煌",
+    "dialect": null,
+    "lat": 40.0864,
+    "lng": 94.6692,
+    "english": []
+  },
+  {
+    "name": "朝阳区",
+    "type": "district",
+    "province": "北京",
+    "city": "北京",
+    "dialect": null,
+    "lat": 39.9215,
+    "lng": 116.4435,
+    "english": []
+  },
+  {
+    "name": "杜甫草堂",
+    "type": "landmark",
+    "province": "四川",
+    "city": "成都",
+    "dialect": "sichuanese",
+    "lat": 30.6632,
+    "lng": 104.0283,
+    "english": [
+      "Du Fu Thatched Cottage"
+    ]
+  },
+  {
+    "name": "杭州",
+    "type": "city",
+    "province": "浙江",
+    "city": "杭州",
+    "dialect": "wu",
+    "lat": 30.2741,
+    "lng": 120.1551,
+    "english": [
+      "Hangzhou"
+    ]
+  },
+  {
+    "name": "杭州市",
+    "type": "city",
+    "province": "浙江",
+    "city": "浙江",
+    "dialect": "吴语",
+    "lat": 30.2741,
+    "lng": 120.1551,
+    "english": []
+  },
+  {
+    "name": "桂林",
+    "type": "city",
+    "province": "广西",
+    "city": "桂林",
+    "dialect": "mandarin",
+    "lat": 25.2736,
+    "lng": 110.29,
+    "english": [
+      "Guilin"
+    ]
+  },
+  {
+    "name": "桂林市",
+    "type": "city",
+    "province": "广西",
+    "city": "广西",
+    "dialect": null,
+    "lat": 25.2736,
+    "lng": 110.29,
+    "english": []
+  },
+  {
+    "name": "橘子洲",
+    "type": "landmark",
+    "province": "湖南",
+    "city": "长沙",
+    "dialect": "xiang",
+    "lat": 28.1899,
+    "lng": 112.9569,
+    "english": [
+      "Orange Island",
+      "Juzizhou"
+    ]
+  },
+  {
+    "name": "武侯区",
+    "type": "district",
+    "province": "四川",
+    "city": "成都",
+    "dialect": null,
+    "lat": 30.6417,
+    "lng": 104.0431,
+    "english": []
+  },
+  {
+    "name": "武侯祠",
+    "type": "landmark",
+    "province": "四川",
+    "city": "成都",
+    "dialect": "sichuanese",
+    "lat": 30.6462,
+    "lng": 104.0488,
+    "english": [
+      "Wuhou Shrine"
+    ]
+  },
+  {
+    "name": "武夷山",
+    "type": "landmark",
+    "province": "福建",
+    "city": "福建",
+    "dialect": null,
+    "lat": 27.7185,
+    "lng": 117.9952,
+    "english": []
+  },
+  {
+    "name": "武当山",
+    "type": "landmark",
+    "province": "湖北",
+    "city": "湖北",
+    "dialect": null,
+    "lat": 32.399,
+    "lng": 111.0047,
+    "english": []
+  },
+  {
+    "name": "武昌区",
+    "type": "district",
+    "province": "湖北",
+    "city": "武汉",
+    "dialect": null,
+    "lat": 30.5465,
+    "lng": 114.3162,
+    "english": []
+  },
+  {
+    "name": "武汉",
+    "type": "city",
+    "province": "湖北",
+    "city": "武汉",
+    "dialect": "mandarin",
+    "lat": 30.5928,
+    "lng": 114.3055,
+    "english": [
+      "Wuhan"
+    ]
+  },
+  {
+    "name": "武汉市",
+    "type": "city",
+    "province": "湖北",
+    "city": "湖北",
+    "dialect": null,
+    "lat": 30.5928,
+    "lng": 114.3055,
+    "english": []
+  },
+  {
+    "name": "水立方",
+    "type": "landmark",
+    "province": "北京",
+    "city": "北京",
+    "dialect": null,
+    "lat": 39.9916,
+    "lng": 116.384,
+    "english": []
+  },
+  {
+    "name": "汕头市",
+    "type": "city",
+    "province": "广东",
+    "city": "广东",
+    "dialect": "潮汕话",
+    "lat": 23.3541,
+    "lng": 116.682,
+    "english": []
+  },
+  {
+    "name": "江苏",
+    "type": "province",
+    "province": "江苏",
+    "city": null,
+    "dialect": "wu",
+    "lat": 33,
+    "lng": 120,
+    "english": [
+      "Jiangsu"
+    ]
+  },
+  {
+    "name": "江西",
+    "type": "province",
+    "province": "江西",
+    "city": null,
+    "dialect": "gan",
+    "lat": 27.3,
+    "lng": 116,
+    "english": [
+      "Jiangxi"
+    ]
+  },
+  {
+    "name": "沈河区",
+    "type": "district",
+    "province": "辽宁",
+    "city": "沈阳",
+    "dialect": null,
+    "lat": 41.7962,
+    "lng": 123.4587,
+    "english": []
+  },
+  {
+    "name": "沈阳",
+    "type": "city",
+    "province": "辽宁",
+    "city": "沈阳",
+    "dialect": "mandarin",
+    "lat": 41.8057,
+    "lng": 123.4315,
+    "english": [
+      "Shenyang"
+    ]
+  },
+  {
+    "name": "沈阳市",
+    "type": "city",
+    "province": "辽宁",
+    "city": "辽宁",
+    "dialect": null,
+    "lat": 41.8057,
+    "lng": 123.4315,
+    "english": []
+  },
+  {
+    "name": "河北",
+    "type": "province",
+    "province": "河北",
+    "city": null,
+    "dialect": "mandarin",
+    "lat": 39,
+    "lng": 116,
+    "english": [
+      "Hebei"
+    ]
+  },
+  {
+    "name": "河南",
+    "type": "province",
+    "province": "河南",
+    "city": null,
+    "dialect": "mandarin",
+    "lat": 33.88,
+    "lng": 113.5,
+    "english": [
+      "Henan"
+    ]
+  },
+  {
+    "name": "泉州市",
+    "type": "city",
+    "province": "福建",
+    "city": "福建",
+    "dialect": null,
+    "lat": 24.8741,
+    "lng": 118.6759,
+    "english": []
+  },
+  {
+    "name": "泰山",
+    "type": "landmark",
+    "province": "山东",
+    "city": "泰安",
+    "dialect": "mandarin",
+    "lat": 36.255,
+    "lng": 117.1036,
+    "english": [
+      "Mount Tai",
+      "Taishan"
+    ]
+  },
+  {
+    "name": "洛阳",
+    "type": "city",
+    "province": "河南",
+    "city": "洛阳",
+    "dialect": "mandarin",
+    "lat": 34.6197,
+    "lng": 112.4539,
+    "english": [
+      "Luoyang"
+    ]
+  },
+  {
+    "name": "洛阳市",
+    "type": "city",
+    "province": "河南",
+    "city": "河南",
+    "dialect": null,
+    "lat": 34.6181,
+    "lng": 112.4536,
+    "english": []
+  },
+  {
+    "name": "洪崖洞",
+    "type": "landmark",
+    "province": "重庆",
+    "city": "重庆",
+    "dialect": "sichuanese",
+    "lat": 29.565,
+    "lng": 106.5827,
+    "english": [
+      "Hongya Cave"
+    ]
+  },
+  {
+    "name": "洱海",
+    "type": "landmark",
+    "province": "云南",
+    "city": "大理",
+    "dialect": null,
+    "lat": 25.7584,
+    "lng": 100.1965,
+    "english": []
+  },
+  {
+    "name": "济南",
+    "type": "city",
+    "province": "山东",
+    "city": "济南",
+    "dialect": "mandarin",
+    "lat": 36.6512,
+    "lng": 117.1201,
+    "english": [
+      "Jinan"
+    ]
+  },
+  {
+    "name": "济南市",
+    "type": "city",
+    "province": "山东",
+    "city": "山东",
+    "dialect": null,
+    "lat": 36.6512,
+    "lng": 116.9974,
+    "english": []
+  },
+  {
+    "name": "浙江",
+    "type": "province",
+    "province": "浙江",
+    "city": null,
+    "dialect": "wu",
+    "lat": 30.2686,
+    "lng": 120.1521,
+    "english": [
+      "Zhejiang"
+    ]
+  },
+  {
+    "name": "浦东新区",
+    "type": "district",
+    "province": "上海",
+    "city": "上海",
+    "dialect": null,
+    "lat": 31.2215,
+    "lng": 121.5449,
+    "english": []
+  },
+  {
+    "name": "海南",
+    "type": "province",
+    "province": "海南",
+    "city": null,
+    "dialect": "hainanese",
+    "lat": 19.2,
+    "lng": 109.75,
+    "english": [
+      "Hainan"
+    ]
+  },
+  {
+    "name": "海口",
+    "type": "city",
+    "province": "海南",
+    "city": "海口",
+    "dialect": "hainanese",
+    "lat": 20.044,
+    "lng": 110.35,
+    "english": [
+      "Haikou"
+    ]
+  },
+  {
+    "name": "海口市",
+    "type": "city",
+    "province": "海南",
+    "city": "海南",
+    "dialect": "海南话",
+    "lat": 20.0174,
+    "lng": 110.3492,
+    "english": []
+  },
+  {
+    "name": "海淀区",
+    "type": "district",
+    "province": "北京",
+    "city": "北京",
+    "dialect": null,
+    "lat": 39.9598,
+    "lng": 116.2983,
+    "english": []
+  },
+  {
+    "name": "深圳",
+    "type": "city",
+    "province": "广东",
+    "city": "深圳",
+    "dialect": "cantonese",
+    "lat": 22.5431,
+    "lng": 114.0579,
+    "english": [
+      "Shenzhen"
+    ]
+  },
+  {
+    "name": "深圳市",
+    "type": "city",
+    "province": "广东",
+    "city": "广东",
+    "dialect": null,
+    "lat": 22.5431,
+    "lng": 114.0579,
+    "english": []
+  },
+  {
+    "name": "渝中区",
+    "type": "district",
+    "province": "重庆",
+    "city": "重庆",
+    "dialect": null,
+    "lat": 29.5531,
+    "lng": 106.5687,
+    "english": []
+  },
+  {
+    "name": "温州市",
+    "type": "city",
+    "province": "浙江",
+    "city": "浙江",
+    "dialect": null,
+    "lat": 28.0016,
+    "lng": 120.6994,
+    "english": []
+  },
+  {
+    "name": "湖北",
+    "type": "province",
+    "province": "湖北",
+    "city": null,
+    "dialect": "mandarin",
+    "lat": 30.97,
+    "lng": 112.26,
+    "english": [
+      "Hubei"
+    ]
+  },
+  {
+    "name": "湖南",
+    "type": "province",
+    "province": "湖南",
+    "city": null,
+    "dialect": "xiang",
+    "lat": 27.38,
+    "lng": 111.78,
+    "english": [
+      "Hunan"
+    ]
+  },
+  {
+    "name": "湖滨路",
+    "type": "landmark",
+    "province": "浙江",
+    "city": "杭州",
+    "dialect": null,
+    "lat": 30.2516,
+    "lng": 120.1656,
+    "english": []
+  },
+  {
+    "name": "滇池",
+    "type": "landmark",
+    "province": "云南",
+    "city": "昆明",
+    "dialect": "mandarin",
+    "lat": 24.96,
+    "lng": 102.6767,
+    "english": [
+      "Dian Lake",
+      "Dianchi"
+    ]
+  },
+  {
+    "name": "漓江",
+    "type": "landmark",
+    "province": "广西",
+    "city": "桂林",
+    "dialect": "mandarin",
+    "lat": 25.0914,
+    "lng": 110.3975,
+    "english": [
+      "Li River"
+    ]
+  },
+  {
+    "name": "澳门",
+    "type": "city",
+    "province": "澳门",
+    "city": "澳门",
+    "dialect": "cantonese",
+    "lat": 22.1987,
+    "lng": 113.5439,
+    "english": [
+      "Macau",
+      "Macao"
+    ]
+  },
+  {
+    "name": "灵隐寺",
+    "type": "landmark",
+    "province": "浙江",
+    "city": "杭州",
+    "dialect": "wu",
+    "lat": 30.2423,
+    "lng": 120.1006,
+    "english": [
+      "Lingyin Temple"
+    ]
+  },
+  {
+    "name": "玉龙雪山",
+    "type": "landmark",
+    "province": "云南",
+    "city": "丽江",
+    "dialect": null,
+    "lat": 27.1287,
+    "lng": 100.1745,
+    "english": []
+  },
+  {
+    "name": "王府井",
+    "type": "landmark",
+    "province": "北京",
+    "city": "北京",
+    "dialect": null,
+    "lat": 39.9139,
+    "lng": 116.4106,
+    "english": []
+  },
+  {
+    "name": "珠江",
+    "type": "landmark",
+    "province": "广东",
+    "city": "广州",
+    "dialect": "cantonese",
+    "lat": 23.1065,
+    "lng": 113.2565,
+    "english": [
+      "Pearl River",
+      "Zhujiang"
+    ]
+  },
+  {
+    "name": "珠海市",
+    "type": "city",
+    "province": "广东",
+    "city": "广东",
+    "dialect": null,
+    "lat": 22.2707,
+    "lng": 113.5767,
+    "english": []
+  },
+  {
+    "name": "甘肃",
+    "type": "province",
+    "province": "甘肃",
+    "city": null,
+    "dialect": "mandarin",
+    "lat": 36,
+    "lng": 104,
+    "english": [
+      "Gansu"
+    ]
+  },
+  {
+    "name": "田子坊",
+    "type": "landmark",
+    "province": "上海",
+    "city": "上海",
+    "dialect": null,
+    "lat": 31.2101,
+    "lng": 121.4693,
+    "english": []
+  },
+  {
+    "name": "瘦西湖",
+    "type": "landmark",
+    "province": "江苏",
+    "city": "扬州",
+    "dialect": null,
+    "lat": 32.4023,
+    "lng": 119.4219,
+    "english": []
+  },
+  {
+    "name": "白云山",
+    "type": "landmark",
+    "province": "广东",
+    "city": "广州",
+    "dialect": null,
+    "lat": 23.1816,
+    "lng": 113.2957,
+    "english": []
+  },
+  {
+    "name": "石家庄",
+    "type": "city",
+    "province": "河北",
+    "city": "石家庄",
+    "dialect": "mandarin",
+    "lat": 38.0428,
+    "lng": 114.5149,
+    "english": [
+      "Shijiazhuang"
+    ]
+  },
+  {
+    "name": "石家庄市",
+    "type": "city",
+    "province": "河北",
+    "city": "河北",
+    "dialect": "冀鲁官话",
+    "lat": 38.0428,
+    "lng": 114.5149,
+    "english": []
+  },
+  {
+    "name": "碑林区",
+    "type": "district",
+    "province": "陕西",
+    "city": "西安",
+    "dialect": null,
+    "lat": 34.2305,
+    "lng": 108.9343,
+    "english": []
+  },
+  {
+    "name": "磁器口",
+    "type": "landmark",
+    "province": "重庆",
+    "city": "重庆",
+    "dialect": "sichuanese",
+    "lat": 29.5799,
+    "lng": 106.4486,
+    "english": [
+      "Ciqikou Ancient Town"
+    ]
+  },
+  {
+    "name": "福州",
+    "type": "city",
+    "province": "福建",
+    "city": "福州",
+    "dialect": "mindong",
+    "lat": 26.0745,
+    "lng": 119.2965,
+    "english": [
+      "Fuzhou"
+    ]
+  },
+  {
+    "name": "福州市",
+    "type": "city",
+    "province": "福建",
+    "city": "福建",
+    "dialect": "闽东语",
+    "lat": 26.0745,
+    "lng": 119.2965,
+    "english": []
+  },
+  {
+    "name": "福建",
+    "type": "province",
+    "province": "福建",
+    "city": null,
+    "dialect": "minnan",
+    "lat": 25.99,
+    "lng": 118,
+    "english": [
+      "Fujian"
+    ]
+  },
+  {
+    "name": "福田区",
+    "type": "district",
+    "province": "广东",
+    "city": "深圳",
+    "dialect": null,
+    "lat": 22.5228,
+    "lng": 114.055,
+    "english": []
+  },
+  {
+    "name": "秦淮河",
+    "type": "landmark",
+    "province": "江苏",
+    "city": "南京",
+    "dialect": null,
+    "lat": 32.0168,
+    "lng": 118.793,
+    "english": []
+  },
+  {
+    "name": "秦皇岛市",
+    "type": "city",
+    "province": "河北",
+    "city": "河北",
+    "dialect": null,
+    "lat": 39.9354,
+    "lng": 119.6005,
+    "english": []
+  },
+  {
+    "name": "稻城亚丁",
+    "type": "landmark",
+    "province": "四川",
+    "city": "四川",
+    "dialect": null,
+    "lat": 28.439,
+    "lng": 100.3517,
+    "english": []
+  },
+  {
+    "name": "簋街",
+    "type": "landmark",
+    "province": "北京",
+    "city": "北京",
+    "dialect": null,
+    "lat": 39.9346,
+    "lng": 116.4297,
+    "english": []
+  },
+  {
+    "name": "维多利亚港",
+    "type": "landmark",
+    "province": "香港",
+    "city": "香港",
+    "dialect": null,
+    "lat": 22.2864,
+    "lng": 114.1704,
+    "english": []
+  },
+  {
+    "name": "芜湖市",
+    "type": "city",
+    "province": "安徽",
+    "city": "安徽",
+    "dialect": null,
+    "lat": 31.3527,
+    "lng": 118.4331,
+    "english": []
+  },
+  {
+    "name": "苏州",
+    "type": "city",
+    "province": "江苏",
+    "city": "苏州",
+    "dialect": "wu",
+    "lat": 31.299,
+    "lng": 120.5853,
+    "english": [
+      "Suzhou"
+    ]
+  },
+  {
+    "name": "苏州市",
+    "type": "city",
+    "province": "江苏",
+    "city": "江苏",
+    "dialect": "吴语",
+    "lat": 31.299,
+    "lng": 120.5853,
+    "english": []
+  },
+  {
+    "name": "莫高窟",
+    "type": "landmark",
+    "province": "甘肃",
+    "city": "敦煌",
+    "dialect": "mandarin",
+    "lat": 40.0415,
+    "lng": 94.8094,
+    "english": [
+      "Mogao Caves"
+    ]
+  },
+  {
+    "name": "虎丘",
+    "type": "landmark",
+    "province": "江苏",
+    "city": "苏州",
+    "dialect": "wu",
+    "lat": 31.3386,
+    "lng": 120.5807,
+    "english": [
+      "Tiger Hill"
+    ]
+  },
+  {
+    "name": "衡山",
+    "type": "landmark",
+    "province": "湖南",
+    "city": "湖南",
+    "dialect": null,
+    "lat": 27.2534,
+    "lng": 112.7093,
+    "english": []
+  },
+  {
+    "name": "西双版纳",
+    "type": "landmark",
+    "province": "云南",
+    "city": "云南",
+    "dialect": null,
+    "lat": 21.9905,
+    "lng": 100.791,
+    "english": []
+  },
+  {
+    "name": "西城区",
+    "type": "district",
+    "province": "北京",
+    "city": "北京",
+    "dialect": null,
+    "lat": 39.9122,
+    "lng": 116.3661,
+    "english": []
+  },
+  {
+    "name": "西宁",
+    "type": "city",
+    "province": "青海",
+    "city": "西宁",
+    "dialect": "mandarin",
+    "lat": 36.6171,
+    "lng": 101.7785,
+    "english": [
+      "Xining"
+    ]
+  },
+  {
+    "name": "西宁市",
+    "type": "city",
+    "province": "青海",
+    "city": "青海",
+    "dialect": null,
+    "lat": 36.6171,
+    "lng": 101.7782,
+    "english": []
+  },
+  {
+    "name": "西安",
+    "type": "city",
+    "province": "陕西",
+    "city": "西安",
+    "dialect": "mandarin",
+    "lat": 34.3416,
+    "lng": 108.9398,
+    "english": [
+      "Xi'an",
+      "Xian"
+    ]
+  },
+  {
+    "name": "西安市",
+    "type": "city",
+    "province": "陕西",
+    "city": "陕西",
+    "dialect": null,
+    "lat": 34.3416,
+    "lng": 108.9398,
+    "english": []
+  },
+  {
+    "name": "西湖",
+    "type": "landmark",
+    "province": "浙江",
+    "city": "杭州",
+    "dialect": "wu",
+    "lat": 30.2417,
+    "lng": 120.1464,
+    "english": [
+      "West Lake",
+      "Xi Hu"
+    ]
+  },
+  {
+    "name": "西湖区",
+    "type": "district",
+    "province": "浙江",
+    "city": "杭州",
+    "dialect": null,
+    "lat": 30.2597,
+    "lng": 120.1302,
+    "english": []
+  },
+  {
+    "name": "西藏",
+    "type": "province",
+    "province": "西藏",
+    "city": null,
+    "dialect": "tibetan",
+    "lat": 31.6927,
+    "lng": 88.1,
+    "english": [
+      "Tibet",
+      "Xizang"
+    ]
+  },
+  {
+    "name": "观前街",
+    "type": "landmark",
+    "province": "江苏",
+    "city": "苏州",
+    "dialect": null,
+    "lat": 31.3106,
+    "lng": 120.6284,
+    "english": []
+  },
+  {
+    "name": "解放碑",
+    "type": "landmark",
+    "province": "重庆",
+    "city": "重庆",
+    "dialect": "sichuanese",
+    "lat": 29.5606,
+    "lng": 106.5747,
+    "english": [
+      "Jiefangbei"
+    ]
+  },
+  {
+    "name": "象鼻山",
+    "type": "landmark",
+    "province": "广西",
+    "city": "桂林",
+    "dialect": null,
+    "lat": 25.2727,
+    "lng": 110.2961,
+    "english": []
+  },
+  {
+    "name": "豫园",
+    "type": "landmark",
+    "province": "上海",
+    "city": "上海",
+    "dialect": "shanghainese",
+    "lat": 31.2272,
+    "lng": 121.4924,
+    "english": [
+      "Yu Garden"
+    ]
+  },
+  {
+    "name": "贵州",
+    "type": "province",
+    "province": "贵州",
+    "city": null,
+    "dialect": "mandarin",
+    "lat": 26.8,
+    "lng": 106.8,
+    "english": [
+      "Guizhou"
+    ]
+  },
+  {
+    "name": "贵阳",
+    "type": "city",
+    "province": "贵州",
+    "city": "贵阳",
+    "dialect": "mandarin",
+    "lat": 26.647,
+    "lng": 106.6302,
+    "english": [
+      "Guiyang"
+    ]
+  },
+  {
+    "name": "贵阳市",
+    "type": "city",
+    "province": "贵州",
+    "city": "贵州",
+    "dialect": null,
+    "lat": 26.647,
+    "lng": 106.6302,
+    "english": []
+  },
+  {
+    "name": "越秀区",
+    "type": "district",
+    "province": "广东",
+    "city": "广州",
+    "dialect": null,
+    "lat": 23.129,
+    "lng": 113.2668,
+    "english": []
+  },
+  {
+    "name": "辽宁",
+    "type": "province",
+    "province": "辽宁",
+    "city": null,
+    "dialect": "mandarin",
+    "lat": 41.29,
+    "lng": 122.6,
+    "english": [
+      "Liaoning"
+    ]
+  },
+  {
+    "name": "邯郸市",
+    "type": "city",
+    "province": "河北",
+    "city": "河北",
+    "dialect": null,
+    "lat": 36.6256,
+    "lng": 114.539,
+    "english": []
+  },
+  {
+    "name": "郑州",
+    "type": "city",
+    "province": "河南",
+    "city": "郑州",
+    "dialect": "mandarin",
+    "lat": 34.7466,
+    "lng": 113.6254,
+    "english": [
+      "Zhengzhou"
+    ]
+  },
+  {
+    "name": "郑州市",
+    "type": "city",
+    "province": "河南",
+    "city": "河南",
+    "dialect": null,
+    "lat": 34.7466,
+    "lng": 113.6254,
+    "english": []
+  },
+  {
+    "name": "都江堰",
+    "type": "landmark",
+    "province": "四川",
+    "city": "成都",
+    "dialect": null,
+    "lat": 30.9948,
+    "lng": 103.6197,
+    "english": []
+  },
+  {
+    "name": "重庆",
+    "type": "city",
+    "province": "重庆",
+    "city": "重庆",
+    "dialect": "sichuanese",
+    "lat": 29.4316,
+    "lng": 106.9123,
+    "english": [
+      "Chongqing"
+    ]
+  },
+  {
+    "name": "钟楼",
+    "type": "landmark",
+    "province": "陕西",
+    "city": "西安",
+    "dialect": "mandarin",
+    "lat": 34.261,
+    "lng": 108.9424,
+    "english": [
+      "Bell Tower",
+      "Zhonglou"
+    ]
+  },
+  {
+    "name": "银川",
+    "type": "city",
+    "province": "宁夏",
+    "city": "银川",
+    "dialect": "mandarin",
+    "lat": 38.4872,
+    "lng": 106.2309,
+    "english": [
+      "Yinchuan"
+    ]
+  },
+  {
+    "name": "银川市",
+    "type": "city",
+    "province": "宁夏",
+    "city": "宁夏",
+    "dialect": null,
+    "lat": 38.4872,
+    "lng": 106.2309,
+    "english": []
+  },
+  {
+    "name": "锦江区",
+    "type": "district",
+    "province": "四川",
+    "city": "成都",
+    "dialect": null,
+    "lat": 30.6577,
+    "lng": 104.0833,
+    "english": []
+  },
+  {
+    "name": "锦里",
+    "type": "landmark",
+    "province": "四川",
+    "city": "成都",
+    "dialect": "sichuanese",
+    "lat": 30.6484,
+    "lng": 104.0497,
+    "english": [
+      "Jinli Ancient Street"
+    ]
+  },
+  {
+    "name": "长城",
+    "type": "landmark",
+    "province": "北京",
+    "city": "北京",
+    "dialect": "mandarin",
+    "lat": 40.4319,
+    "lng": 116.5704,
+    "english": [
+      "Great Wall"
+    ]
+  },
+  {
+    "name": "长安街",
+    "type": "landmark",
+    "province": "北京",
+    "city": "北京",
+    "dialect": null,
+    "lat": 39.905,
+    "lng": 116.397,
+    "english": []
+  },
+  {
+    "name": "长春",
+    "type": "city",
+    "province": "吉林",
+    "city": "长春",
+    "dialect": "mandarin",
+    "lat": 43.8171,
+    "lng": 125.3235,
+    "english": [
+      "Changchun"
+    ]
+  },
+  {
+    "name": "长春市",
+    "type": "city",
+    "province": "吉林",
+    "city": "吉林",
+    "dialect": null,
+    "lat": 43.8171,
+    "lng": 125.3235,
+    "english": []
+  },
+  {
+    "name": "长江",
+    "type": "landmark",
+    "province": null,
+    "city": null,
+    "dialect": "mandarin",
+    "lat": 31.77,
+    "lng": 121,
+    "english": [
+      "Yangtze River",
+      "Changjiang"
+    ]
+  },
+  {
+    "name": "长沙",
+    "type": "city",
+    "province": "湖南",
+    "city": "长沙",
+    "dialect": "xiang",
+    "lat": 28.2282,
+    "lng": 112.9388,
+    "english": [
+      "Changsha"
+    ]
+  },
+  {
+    "name": "长沙市",
+    "type": "city",
+    "province": "湖南",
+    "city": "湖南",
+    "dialect": "湘语",
+    "lat": 28.2282,
+    "lng": 112.9388,
+    "english": []
+  },
+  {
+    "name": "长白山",
+    "type": "landmark",
+    "province": "吉林",
+    "city": "吉林",
+    "dialect": null,
+    "lat": 41.9999,
+    "lng": 128.0631,
+    "english": []
+  },
+  {
+    "name": "阳朔",
+    "type": "landmark",
+    "province": "广西",
+    "city": "桂林",
+    "dialect": null,
+    "lat": 24.7788,
+    "lng": 110.4963,
+    "english": []
+  },
+  {
+    "name": "阿里山",
+    "type": "landmark",
+    "province": "台湾",
+    "city": "台湾",
+    "dialect": null,
+    "lat": 23.5115,
+    "lng": 120.8116,
+    "english": []
+  },
+  {
+    "name": "陕西",
+    "type": "province",
+    "province": "陕西",
+    "city": null,
+    "dialect": "mandarin",
+    "lat": 35.6,
+    "lng": 109,
+    "english": [
+      "Shaanxi"
+    ]
+  },
+  {
+    "name": "雁塔区",
+    "type": "district",
+    "province": "陕西",
+    "city": "西安",
+    "dialect": null,
+    "lat": 34.2144,
+    "lng": 108.9488,
+    "english": []
+  },
+  {
+    "name": "雍和宫",
+    "type": "landmark",
+    "province": "北京",
+    "city": "北京",
+    "dialect": null,
+    "lat": 39.9472,
+    "lng": 116.4173,
+    "english": []
+  },
+  {
+    "name": "雷峰塔",
+    "type": "landmark",
+    "province": "浙江",
+    "city": "杭州",
+    "dialect": null,
+    "lat": 30.2326,
+    "lng": 120.1477,
+    "english": []
+  },
+  {
+    "name": "青城山",
+    "type": "landmark",
+    "province": "四川",
+    "city": "成都",
+    "dialect": null,
+    "lat": 30.9001,
+    "lng": 103.5681,
+    "english": []
+  },
+  {
+    "name": "青岛",
+    "type": "city",
+    "province": "山东",
+    "city": "青岛",
+    "dialect": "mandarin",
+    "lat": 36.0671,
+    "lng": 120.3826,
+    "english": [
+      "Qingdao"
+    ]
+  },
+  {
+    "name": "青岛市",
+    "type": "city",
+    "province": "山东",
+    "city": "山东",
+    "dialect": "胶辽官话",
+    "lat": 36.0671,
+    "lng": 120.3826,
+    "english": []
+  },
+  {
+    "name": "青海",
+    "type": "province",
+    "province": "青海",
+    "city": null,
+    "dialect": "tibetan",
+    "lat": 35,
+    "lng": 96,
+    "english": [
+      "Qinghai"
+    ]
+  },
+  {
+    "name": "青海湖",
+    "type": "landmark",
+    "province": "青海",
+    "city": null,
+    "dialect": "tibetan",
+    "lat": 36.895,
+    "lng": 100.1867,
+    "english": [
+      "Qinghai Lake",
+      "Kokonor"
+    ]
+  },
+  {
+    "name": "青羊区",
+    "type": "district",
+    "province": "四川",
+    "city": "成都",
+    "dialect": null,
+    "lat": 30.6744,
+    "lng": 104.0614,
+    "english": []
+  },
+  {
+    "name": "静安区",
+    "type": "district",
+    "province": "上海",
+    "city": "上海",
+    "dialect": null,
+    "lat": 31.2272,
+    "lng": 121.4481,
+    "english": []
+  },
+  {
+    "name": "静安寺",
+    "type": "landmark",
+    "province": "上海",
+    "city": "上海",
+    "dialect": null,
+    "lat": 31.2248,
+    "lng": 121.4449,
+    "english": []
+  },
+  {
+    "name": "颐和园",
+    "type": "landmark",
+    "province": "北京",
+    "city": "北京",
+    "dialect": "mandarin",
+    "lat": 39.9999,
+    "lng": 116.2755,
+    "english": [
+      "Summer Palace"
+    ]
+  },
+  {
+    "name": "香格里拉",
+    "type": "landmark",
+    "province": "云南",
+    "city": "香格里拉",
+    "dialect": "tibetan",
+    "lat": 27.8256,
+    "lng": 99.7025,
+    "english": [
+      "Shangri-La"
+    ]
+  },
+  {
+    "name": "香港",
+    "type": "city",
+    "province": "香港",
+    "city": "香港",
+    "dialect": "cantonese",
+    "lat": 22.3193,
+    "lng": 114.1694,
+    "english": [
+      "Hong Kong"
+    ]
+  },
+  {
+    "name": "鸟巢",
+    "type": "landmark",
+    "province": "北京",
+    "city": "北京",
+    "dialect": null,
+    "lat": 39.9918,
+    "lng": 116.3905,
+    "english": []
+  },
+  {
+    "name": "鸣沙山",
+    "type": "landmark",
+    "province": "甘肃",
+    "city": "敦煌",
+    "dialect": null,
+    "lat": 40.0866,
+    "lng": 94.6681,
+    "english": []
+  },
+  {
+    "name": "黄山",
+    "type": "landmark",
+    "province": "安徽",
+    "city": "黄山",
+    "dialect": "mandarin",
+    "lat": 30.1343,
+    "lng": 118.1677,
+    "english": [
+      "Yellow Mountain",
+      "Mount Huang"
+    ]
+  },
+  {
+    "name": "黄果树瀑布",
+    "type": "landmark",
+    "province": "贵州",
+    "city": "安顺",
+    "dialect": "mandarin",
+    "lat": 25.9926,
+    "lng": 105.6667,
+    "english": [
+      "Huangguoshu Waterfall"
+    ]
+  },
+  {
+    "name": "黄河",
+    "type": "landmark",
+    "province": null,
+    "city": null,
+    "dialect": "mandarin",
+    "lat": 34.9058,
+    "lng": 110,
+    "english": [
+      "Yellow River",
+      "Huang He"
+    ]
+  },
+  {
+    "name": "黄浦区",
+    "type": "district",
+    "province": "上海",
+    "city": "上海",
+    "dialect": null,
+    "lat": 31.2314,
+    "lng": 121.4846,
+    "english": []
+  },
+  {
+    "name": "黄鹤楼",
+    "type": "landmark",
+    "province": "湖北",
+    "city": "武汉",
+    "dialect": "mandarin",
+    "lat": 30.547,
+    "lng": 114.3036,
+    "english": [
+      "Yellow Crane Tower"
+    ]
+  },
+  {
+    "name": "黄龙",
+    "type": "landmark",
+    "province": "四川",
+    "city": "四川",
+    "dialect": null,
+    "lat": 32.742,
+    "lng": 103.8268,
+    "english": []
+  },
+  {
+    "name": "黑龙江",
+    "type": "province",
+    "province": "黑龙江",
+    "city": null,
+    "dialect": "mandarin",
+    "lat": 48,
+    "lng": 128,
+    "english": [
+      "Heilongjiang"
+    ]
+  },
+  {
+    "name": "鼓楼",
+    "type": "landmark",
+    "province": "北京",
+    "city": "北京",
+    "dialect": "mandarin",
+    "lat": 39.9408,
+    "lng": 116.3934,
+    "english": [
+      "Drum Tower",
+      "Gulou"
+    ]
+  },
+  {
+    "name": "鼓楼区",
+    "type": "district",
+    "province": "江苏",
+    "city": "南京",
+    "dialect": null,
+    "lat": 32.0661,
+    "lng": 118.7703,
+    "english": []
+  },
+  {
+    "name": "鼓浪屿",
+    "type": "landmark",
+    "province": "福建",
+    "city": "厦门",
+    "dialect": "minnan",
+    "lat": 24.4444,
+    "lng": 118.0677,
+    "english": [
+      "Gulangyu Island"
+    ]
+  },
+  {
+    "name": "龙门石窟",
+    "type": "landmark",
+    "province": "河南",
+    "city": "洛阳",
+    "dialect": "mandarin",
+    "lat": 34.56,
+    "lng": 112.4691,
+    "english": [
+      "Longmen Grottoes"
+    ]
+  }
+]

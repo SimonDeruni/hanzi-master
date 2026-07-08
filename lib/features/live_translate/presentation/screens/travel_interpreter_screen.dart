@@ -13,6 +13,7 @@ import 'package:hive/hive.dart';
 import 'package:uuid/uuid.dart';
 import 'package:hanzi_master/features/live_translate/domain/entities/translation_session.dart';
 import 'package:hanzi_master/features/premium/presentation/screens/universal_scanner_screen.dart';
+import 'package:hanzi_master/shared/widgets/info_bulb.dart';
 import 'package:hanzi_master/core/providers/translation_language_provider.dart';
 import 'package:hanzi_master/shared/widgets/tappable_hanzi_text.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
@@ -399,6 +400,8 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                     icon: Icon(Icons.arrow_back, color: isDark ? Colors.white : Colors.black),
                     onPressed: () => Navigator.pop(context),
                   ),
+                  const Spacer(),
+                  const InfoBulb(),
                 ],
               ),
             ),

@@ -11,6 +11,8 @@ import '../../domain/models/media_briefing.dart';
 import '../../../../core/services/gemini_service.dart';
 import '../../../../core/services/audio_recording_service.dart';
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
+import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
+import 'package:hanzi_master/shared/widgets/info_bulb.dart';
 
 import 'package:hanzi_master/features/media/presentation/widgets/fullscreen_media_overlay.dart';
 import 'package:hanzi_master/features/media/presentation/widgets/premium_ai_prep_card.dart';
@@ -471,8 +473,18 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
       backgroundColor: const Color(0xFFFDFCF0),
       // Hide AppBar when in fullscreen
       appBar: _isFullscreen ? null : AppBar(
-        title: const Text("Learn Chinese",
-            style: TextStyle(color: Color(0xFF1C2541), fontSize: 18, fontWeight: FontWeight.bold)),
+        title: const Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            InfoBulb(
+              id: 'learn_chinese_video',
+              title: "Learn Chinese",
+              message: "Watch Chinese videos with interactive subtitles. Tap any word to see its definition, or tap a subtitle line to practice shadowing and improve your pronunciation.",
+            ),
+            Text("Learn Chinese",
+                style: TextStyle(color: Color(0xFF1C2541), fontSize: 18, fontWeight: FontWeight.bold)),
+          ],
+        ),
         centerTitle: true,
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -572,7 +584,10 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
                           bottom: 8,
                           right: 8,
                           child: GestureDetector(
-                            onTap: _enterFullscreen,
+                            onTap: () {
+                              HapticsManager.light();
+                              _enterFullscreen();
+                            },
                             child: Container(
                               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                               decoration: BoxDecoration(

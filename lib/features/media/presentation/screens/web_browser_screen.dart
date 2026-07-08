@@ -22,6 +22,8 @@ import 'package:flutter_tts/flutter_tts.dart';
 import 'dart:ui';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/word_detail_dialog.dart';
 import 'package:hanzi_master/core/presentation/widgets/ai_progress_bar.dart';
+import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
+import 'package:hanzi_master/shared/widgets/info_bulb.dart';
 
 class WebBrowserScreen extends ConsumerStatefulWidget {
   final String initialUrl;
@@ -1158,10 +1160,12 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
         elevation: 1,
         iconTheme: const IconThemeData(color: Colors.black87),
         actions: [
+          const InfoBulb(),
           IconButton(
             icon: const Icon(Icons.bookmark_border),
             tooltip: 'Save Article',
             onPressed: () async {
+              HapticsManager.light();
               final urlRaw = await _controller.runJavaScriptReturningResult('window.location.href');
               final url = urlRaw.toString().replaceAll('"', '');
 
@@ -1207,12 +1211,18 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
               Icons.menu_book,
               color: _isZenMode ? Colors.indigo : Colors.black87,
             ),
-            onPressed: _toggleZenMode,
+            onPressed: () {
+              HapticsManager.light();
+              _toggleZenMode();
+            },
             tooltip: 'Zen Mode',
           ),
           IconButton(
             icon: const Icon(Icons.refresh),
-            onPressed: () => _controller.reload(),
+            onPressed: () {
+              HapticsManager.light();
+              _controller.reload();
+            },
           ),
         ],
         bottom: _isProcessingAi
@@ -1230,6 +1240,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
             IconButton(
               icon: const Icon(Icons.arrow_back_ios),
               onPressed: () async {
+                HapticsManager.light();
                 if (await _controller.canGoBack()) {
                   _controller.goBack();
                 }
@@ -1238,6 +1249,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
             IconButton(
               icon: const Icon(Icons.arrow_forward_ios),
               onPressed: () async {
+                HapticsManager.light();
                 if (await _controller.canGoForward()) {
                   _controller.goForward();
                 }
@@ -1257,6 +1269,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                       ),
                       onPressed: () {
+                         HapticsManager.light();
                          _startTranslation(_selectedText);
                          _controller.runJavaScript('window.getSelection().removeAllRanges();');
                          setState(() => _selectedText = '');
@@ -1272,7 +1285,10 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
                         foregroundColor: Colors.white,
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                       ),
-                      onPressed: _isProcessingAi ? null : () => _showAiToolsMenu(context),
+                      onPressed: _isProcessingAi ? null : () {
+                        HapticsManager.light();
+                        _showAiToolsMenu(context);
+                      },
                     ),
               ),
             ),

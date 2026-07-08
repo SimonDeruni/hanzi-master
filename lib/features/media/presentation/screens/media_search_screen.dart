@@ -4,6 +4,8 @@ import 'package:youtube_explode_dart/youtube_explode_dart.dart';
 import '../../data/youtube_repository.dart';
 import 'smart_media_desk_screen.dart';
 import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
+import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
+import 'package:hanzi_master/shared/widgets/info_bulb.dart';
 
 class MediaSearchScreen extends ConsumerStatefulWidget {
   const MediaSearchScreen({super.key});
@@ -105,7 +107,17 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
     return Scaffold(
       backgroundColor: const Color(0xFFFDFCF0), // Xuan paper
       appBar: AppBar(
-        title: const Text('Smart Media Desk', style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold)),
+        title: const Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            InfoBulb(
+              id: 'smart_media_desk',
+              title: "Smart Media Desk",
+              message: "Discover Chinese content from YouTube. Browse curated categories or search for topics you're interested in. Each video comes with interactive subtitles to help you learn while watching.",
+            ),
+            Text('Smart Media Desk', style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold)),
+          ],
+        ),
         backgroundColor: Colors.transparent,
         elevation: 0,
         iconTheme: const IconThemeData(color: Colors.black87),
@@ -212,6 +224,7 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
     
     return GestureDetector(
       onTap: () {
+        HapticsManager.medium();
         Navigator.push(
           context,
           MaterialPageRoute(

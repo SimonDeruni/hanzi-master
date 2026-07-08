@@ -24,12 +24,15 @@ import 'package:hanzi_master/core/providers/premium_controller.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:hanzi_master/shared/widgets/tappable_hanzi_text.dart';
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
+import 'package:hanzi_master/shared/widgets/nuance_compare_sheet.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/radical_library_screen.dart';
 import 'package:hanzi_master/features/course/presentation/screens/tome_manager_screen.dart' as hanzi_tome;
 import 'package:hanzi_master/shared/widgets/global_sliver_app_bar.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/core/utils/definition_formatter.dart';
 import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
+import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
+import 'package:hanzi_master/shared/widgets/info_bulb.dart';
 
 import 'package:hanzi_master/features/flashcards/domain/entities/study_mode.dart';
 
@@ -73,7 +76,16 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
       body: CalligraphyBackground(
         child: NestedScrollView(
           headerSliverBuilder: (context, innerBoxIsScrolled) => [
-            GlobalSliverAppBar(title: l10n?.scholarsLibrary ?? "The Scholar's Library"),
+            GlobalSliverAppBar(
+              title: l10n?.scholarsLibrary ?? "The Scholar's Library",
+              actions: [
+                InfoBulb(
+                  id: 'dictionary',
+                  title: "Scholar's Library",
+                  message: "Search for any Chinese character to see its meaning, stroke order, and add it to your decks. Tap a character to see full details.",
+                ),
+              ],
+            ),
             SliverPersistentHeader(
               pinned: true,
               delegate: _SearchBarDelegate(
@@ -111,6 +123,7 @@ class _LexiconMiniCard extends ConsumerWidget {
     final theme = Theme.of(context);
     return InkWell(
       onTap: () {
+        HapticsManager.light();
         showQuickLook(context, card.hanzi);
       },
       borderRadius: BorderRadius.circular(16),
@@ -177,10 +190,13 @@ class _BookshelfVerticalCard extends StatelessWidget {
     final Color deckColor = isDefault ? theme.colorScheme.primary : theme.colorScheme.secondary;
     
     return InkWell(
-      onTap: () => Navigator.push(
-        context,
-        SwipeBackPageRoute(builder: (context) => DeckDetailScreen(deck: deck)),
-      ),
+      onTap: () {
+        HapticsManager.light();
+        Navigator.push(
+          context,
+          SwipeBackPageRoute(builder: (context) => DeckDetailScreen(deck: deck)),
+        );
+      },
       borderRadius: BorderRadius.circular(16),
       child: Container(
         padding: const EdgeInsets.all(20),
@@ -529,21 +545,83 @@ class _DictionarySearchTab extends ConsumerWidget {
           return Center(child: Text("No results found for '$searchQuery'", style: const TextStyle(color: Colors.grey)));
         }
 
+        // Group results by their primary definition (first English word/phrase)
+        final grouped = <String, List<dynamic>>{};
+        for (final card in unifiedResults) {
+          final def = DefinitionFormatter.cleanRaw(card.definition, ref);
+          final key = _extractDefinitionGroupKey(def);
+          grouped.putIfAbsent(key, () => []).add(card);
+        }
+
+        // Build grouped items
+        final items = <Widget>[];
+        for (final entry in grouped.entries) {
+          final cards = entry.value;
+          final groupLabel = entry.key;
+
+          if (cards.length >= 2) {
+            // Group header with "Compare" button
+            items.add(
+              Padding(
+                padding: const EdgeInsets.fromLTRB(16, 12, 16, 4),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        groupLabel,
+                        style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                          fontWeight: FontWeight.w600,
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                      ),
+                    ),
+                    TextButton.icon(
+                      onPressed: () {
+                        HapticsManager.light();
+                        final words = cards.map<Map<String, String>>((c) => {
+                          'hanzi': c.hanzi as String,
+                          'pinyin': c.pinyin as String,
+                          'definition': DefinitionFormatter.cleanRaw(c.definition, ref),
+                        }).toList();
+                        NuanceCompareSheet.show(
+                          context,
+                          words: words,
+                          groupLabel: groupLabel,
+                        );
+                      },
+                      icon: const Icon(Icons.compare_arrows, size: 16),
+                      label: const Text('Compare'),
+                      style: TextButton.styleFrom(
+                        visualDensity: VisualDensity.compact,
+                        padding: const EdgeInsets.symmetric(horizontal: 8),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          }
+
+          // Card items
+          for (final card in cards) {
+            final isInLibrary = libraryMap.containsKey(card.hanzi);
+            items.add(
+              Padding(
+                padding: const EdgeInsets.fromLTRB(16, 4, 16, 8),
+                child: _DictionaryItem(card: card, isInLibrary: isInLibrary),
+              ),
+            );
+          }
+        }
+
         return CustomScrollView(
           slivers: [
             SliverPadding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              padding: const EdgeInsets.symmetric(vertical: 8),
               sliver: SliverList(
                 delegate: SliverChildBuilderDelegate(
-                  (context, index) {
-                    final card = unifiedResults[index];
-                    final isInLibrary = libraryMap.containsKey(card.hanzi);
-                    return Padding(
-                      padding: const EdgeInsets.only(bottom: 12.0),
-                      child: _DictionaryItem(card: card, isInLibrary: isInLibrary),
-                    );
-                  },
-                  childCount: unifiedResults.length,
+                  (context, index) => items[index],
+                  childCount: items.length,
                 ),
               ),
             ),
@@ -764,6 +842,7 @@ class _RadicalCard extends ConsumerWidget {
 
     return InkWell(
       onTap: () {
+        HapticsManager.light();
         // 1. Create Sun Node
         final sunNode = CourseNode(uuid: 'rad_$radical', hanzi: radical);
         
@@ -825,6 +904,28 @@ class _RadicalCard extends ConsumerWidget {
   }
 }
 
+/// Extracts a grouping key from a definition string.
+/// Takes the first meaningful word/phrase (up to the first comma, semicolon, or slash)
+/// and normalizes it for grouping similar definitions together.
+String _extractDefinitionGroupKey(String definition) {
+  if (definition.isEmpty) return 'Other';
+
+  // Split on common definition separators
+  final firstPart = definition
+      .split(RegExp(r'[,;/]'))
+      .first
+      .trim()
+      .toLowerCase();
+
+  // Remove parenthetical notes like "(verb)" or "(adj)"
+  final cleaned = firstPart.replaceAll(RegExp(r'\([^)]*\)'), '').trim();
+
+  if (cleaned.isEmpty) return 'Other';
+
+  // Capitalize first letter for display
+  return cleaned[0].toUpperCase() + cleaned.substring(1);
+}
+
 class _DictionaryItem extends ConsumerWidget {
   final dynamic card;
   final bool isInLibrary;
@@ -839,6 +940,7 @@ class _DictionaryItem extends ConsumerWidget {
 
     return InkWell(
       onTap: () {
+        HapticsManager.light();
         showQuickLook(context, card.hanzi);
       },
       borderRadius: BorderRadius.circular(16),

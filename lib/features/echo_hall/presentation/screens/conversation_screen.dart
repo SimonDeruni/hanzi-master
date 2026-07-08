@@ -9,6 +9,7 @@ import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraph
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/shared/widgets/tappable_hanzi_text.dart';
 import 'package:hanzi_master/core/services/audio_service.dart';
+import 'package:hanzi_master/shared/widgets/info_bulb.dart';
 
 class ConversationScreen extends ConsumerStatefulWidget {
   final ConversationScenario scenario;
@@ -64,6 +65,7 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         iconTheme: const IconThemeData(color: Colors.white),
+        actions: const [InfoBulb()],
       ),
       body: CalligraphyBackground(
         child: Stack(

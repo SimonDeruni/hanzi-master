@@ -8,6 +8,8 @@ import 'package:hanzi_master/features/live_translate/presentation/screens/shadow
 
 import 'package:hanzi_master/features/media/presentation/screens/media_hub_screen.dart';
 import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
+import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
+import 'package:hanzi_master/shared/widgets/info_bulb.dart';
 
 
 
@@ -39,6 +41,11 @@ class AiHubScreen extends ConsumerWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
+                    InfoBulb(
+                      id: 'ai_hub',
+                      title: "AI Hub",
+                      message: "Your central hub for AI-powered Chinese learning tools. Explore reading, speaking, listening, and writing features — all enhanced with AI to help you master Chinese.",
+                    ),
                     Text(
                       l10n?.aiHubTitle ?? "AI Hub",
                       style: theme.textTheme.headlineMedium?.copyWith(
@@ -98,6 +105,7 @@ class AiHubScreen extends ConsumerWidget {
                       icon: Icons.auto_stories,
                       gradientColors: const [Color(0xFF8B5E3C), Color(0xFFC4863A)],
                       onTap: () {
+                        HapticsManager.medium();
                         if (context.mounted) {
                           Navigator.push(
                             context,
@@ -116,6 +124,7 @@ class AiHubScreen extends ConsumerWidget {
                       icon: Icons.mic,
                       gradientColors: const [Color(0xFF1A4A4A), Color(0xFF2A7070)],
                       onTap: () {
+                        HapticsManager.medium();
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (_) => const ShadowingStudioScreen()),
@@ -391,6 +400,7 @@ class _FeaturedCarouselState extends State<_FeaturedCarousel> {
                   imageAsset: 'assets/images/ai_hub_ink_mountains.png',
                   icon: Icons.auto_awesome,
                   onTap: () {
+                    HapticsManager.medium();
                     if (context.mounted) {
                       Navigator.push(
                         context,
@@ -412,6 +422,7 @@ class _FeaturedCarouselState extends State<_FeaturedCarousel> {
                   icon: Icons.language,
                   overlayColor: Colors.black38,
                   onTap: () {
+                    HapticsManager.medium();
                     if (context.mounted) {
                       Navigator.push(
                         context,

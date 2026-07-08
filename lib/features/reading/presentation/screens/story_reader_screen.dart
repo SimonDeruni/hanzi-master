@@ -8,8 +8,11 @@ import '../providers/story_controller.dart';
 import '../../../../core/services/gemini_service.dart';
 import '../../../flashcards/presentation/utils/haptics_manager.dart';
 import '../../../../shared/widgets/quick_look_sheet.dart';
+import '../../../../shared/widgets/info_bulb.dart';
 import '../../../flashcards/presentation/providers/flashcard_controller.dart';
 import '../../../flashcards/domain/entities/study_mode.dart';
+import '../../../../shared/widgets/location_aware_text.dart';
+import 'package:hanzi_master/features/explore/presentation/screens/explore_map_screen.dart';
 
 class StoryReaderScreen extends ConsumerStatefulWidget {
   final StoryBlueprint blueprint;
@@ -391,13 +394,18 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
+                            LocationAwareText(
                               s.chinese,
                               style: TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
                                 color: isDark ? Colors.white : Colors.black87,
                               ),
+                              onLocationTap: (match) {
+                                Navigator.push(context, MaterialPageRoute(
+                                  builder: (_) => ExploreMapScreen(match: match),
+                                ));
+                              },
                             ),
                             const SizedBox(height: 4),
                             Text(
@@ -462,6 +470,7 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         actions: [
+          const InfoBulb(),
           if (!_isSaved && state.currentStory != null) ...[
              TextButton.icon(
                 icon: const Icon(Icons.delete_outline, color: Colors.redAccent),

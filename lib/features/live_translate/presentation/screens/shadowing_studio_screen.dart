@@ -13,6 +13,7 @@ import '../../../../core/utils/dtw_aligner.dart';
 import '../../../premium/presentation/screens/paywall_sheet.dart';
 
 import 'package:hanzi_master/features/live_translate/presentation/widgets/tone_graph_painter.dart';
+import 'package:hanzi_master/shared/widgets/info_bulb.dart';
 import 'package:hanzi_master/features/live_translate/presentation/widgets/interactive_grading_text.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/deck_controller.dart';
@@ -913,19 +914,22 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
                       onPressed: () => _showSessionSummaryDialog(context, isDark),
                     ),
                     const SizedBox(width: 8),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Shadowing Studio",
-                          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: isDark ? Colors.white : const Color(0xFF1A1A1B)),
-                        ),
-                        Text(
-                          "Endless AI Stream • Sentence $_sentenceCount",
-                          style: TextStyle(fontSize: 14, color: Colors.orange, fontWeight: FontWeight.w600),
-                        ),
-                      ],
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Shadowing Studio",
+                            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: isDark ? Colors.white : const Color(0xFF1A1A1B)),
+                          ),
+                          Text(
+                            "Endless AI Stream • Sentence $_sentenceCount",
+                            style: TextStyle(fontSize: 14, color: Colors.orange, fontWeight: FontWeight.w600),
+                          ),
+                        ],
+                      ),
                     ),
+                    const InfoBulb(),
                   ],
                 ),
               ),

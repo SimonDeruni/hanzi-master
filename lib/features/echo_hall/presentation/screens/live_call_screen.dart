@@ -17,6 +17,7 @@ import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_mana
 import 'package:hanzi_master/core/services/api_key_pool.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
 import '../widgets/live_call_summary_screen.dart';
+import 'package:hanzi_master/shared/widgets/info_bulb.dart';
 
 class LiveCallMessage {
   final String text;
@@ -465,9 +466,11 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
           ),
           
           SafeArea(
-            child: Column(
+            child: Stack(
               children: [
-                Padding(
+                Column(
+                  children: [
+                    Padding(
                   padding: const EdgeInsets.only(top: 20.0),
                   child: Column(
                     children: [
@@ -513,9 +516,9 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
                   ),
                 ),
 
-                const SizedBox(height: 24),
+                    const SizedBox(height: 24),
 
-                AnimatedBuilder(
+                    AnimatedBuilder(
                   animation: _pulseAnimation,
                   builder: (context, child) {
                     final scale = _isLive && !_isMuted && !_hasError ? _pulseAnimation.value : 1.0;
@@ -554,37 +557,44 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
 
                 const SizedBox(height: 48),
 
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 40.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      _CallControlButton(
-                        icon: _isMuted ? Icons.play_arrow : Icons.pause,
-                        label: _isMuted ? "Resume" : "Pause",
-                        isActive: _isMuted,
-                        onTap: _togglePause,
-                      ),
-                      GestureDetector(
-                        onTap: _endCall,
-                        child: Container(
-                          width: 72, height: 72,
-                          decoration: const BoxDecoration(
-                            color: Colors.redAccent,
-                            shape: BoxShape.circle,
-                            boxShadow: [BoxShadow(color: Colors.redAccent, blurRadius: 20, offset: Offset(0, 4))]
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 40.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          _CallControlButton(
+                            icon: _isMuted ? Icons.play_arrow : Icons.pause,
+                            label: _isMuted ? "Resume" : "Pause",
+                            isActive: _isMuted,
+                            onTap: _togglePause,
                           ),
-                          child: const Icon(Icons.call_end, color: Colors.white, size: 36),
-                        ),
+                          GestureDetector(
+                            onTap: _endCall,
+                            child: Container(
+                              width: 72, height: 72,
+                              decoration: const BoxDecoration(
+                                color: Colors.redAccent,
+                                shape: BoxShape.circle,
+                                boxShadow: [BoxShadow(color: Colors.redAccent, blurRadius: 20, offset: Offset(0, 4))]
+                              ),
+                              child: const Icon(Icons.call_end, color: Colors.white, size: 36),
+                            ),
+                          ),
+                          _CallControlButton(
+                            icon: _isSpeaker ? Icons.volume_up : Icons.volume_down,
+                            label: "Speaker",
+                            isActive: _isSpeaker,
+                            onTap: () => setState(() => _isSpeaker = !_isSpeaker),
+                          ),
+                        ],
                       ),
-                      _CallControlButton(
-                        icon: _isSpeaker ? Icons.volume_up : Icons.volume_down,
-                        label: "Speaker",
-                        isActive: _isSpeaker,
-                        onTap: () => setState(() => _isSpeaker = !_isSpeaker),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
+                ),
+                const Positioned(
+                  top: 0,
+                  right: 8,
+                  child: InfoBulb(),
                 ),
               ],
             ),

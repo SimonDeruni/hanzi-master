@@ -422,6 +422,35 @@ CRITICAL: You MUST write your entire explanation in $targetLanguage.
     }
   }
 
+  Future<String> compareNuances(List<Map<String, String>> words) async {
+    final wordList = words.map((w) => '${w['hanzi']} (${w['pinyin']}): ${w['definition']}').join('\n');
+    final prompt = '''
+You are a Chinese language tutor. A student is looking at these Chinese words that share similar meanings:
+
+$wordList
+
+Explain the nuanced differences between these words. Cover:
+1. When to use each one (context, formality, register)
+2. Key differences in meaning or usage
+3. Common collocations or fixed expressions
+
+Keep your explanation clear and practical for a language learner. Use examples where helpful.
+CRITICAL: You MUST write your entire explanation in $targetLanguage.
+''';
+
+    try {
+      final response = await makeOpenRouterCall(
+        model: 'deepseek/deepseek-chat',
+        messages: [{'role': 'user', 'content': prompt}],
+      );
+      analytics.logApiUsage(apiName: 'openrouter', feature: 'compare_nuances', success: true);
+      return response;
+    } catch (e) {
+      analytics.logApiUsage(apiName: 'openrouter', feature: 'compare_nuances', success: false);
+      return "Failed to load comparison.";
+    }
+  }
+
   Future<GeminiContext> generateContext(String hanzi, int hskLevel) async {
     final cacheKey = '${hanzi}_$hskLevel';
     final box = Hive.box<String>('ai_cache');

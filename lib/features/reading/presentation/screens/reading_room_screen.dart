@@ -5,6 +5,7 @@ import '../providers/story_controller.dart';
 import 'story_reader_screen.dart';
 import '../widgets/custom_story_creator_sheet.dart';
 import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
+import '../../../../shared/widgets/info_bulb.dart';
 
 class ReadingRoomScreen extends ConsumerStatefulWidget {
   const ReadingRoomScreen({super.key});
@@ -96,6 +97,7 @@ class _ReadingRoomScreenState extends ConsumerState<ReadingRoomScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         centerTitle: true,
+        actions: const [InfoBulb()],
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

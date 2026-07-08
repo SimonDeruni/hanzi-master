@@ -13,6 +13,7 @@ import 'package:hanzi_master/l10n/app_localizations.dart';
 
 import 'package:hanzi_master/features/progression/presentation/widgets/today_insight_card.dart';
 import 'package:hanzi_master/shared/widgets/global_sliver_app_bar.dart';
+import 'package:hanzi_master/shared/widgets/info_bulb.dart';
 class DashboardScreen extends ConsumerWidget {
   final Function(int) onNavigate;
 
@@ -86,6 +87,14 @@ class DashboardScreen extends ConsumerWidget {
             // --- STANDARD HEADER ---
             GlobalSliverAppBar(
               title: l10n?.dashboardTitle ?? "Dashboard",
+              actions: [
+                InfoBulb(
+                  id: 'dashboard',
+                  title: 'Your Dashboard',
+                  message: 'Track your learning progress here. See your known characters, upcoming reviews, and daily insights to stay on top of your Chinese studies.',
+                  icon: Icons.dashboard_outlined,
+                ),
+              ],
             ),
 
             
