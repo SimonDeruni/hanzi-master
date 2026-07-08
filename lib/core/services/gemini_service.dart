@@ -812,9 +812,15 @@ CRITICAL: Put the $targetLanguage translation in the "english" JSON key!
   {
     "hanzi": "公司",
     "pinyin": "gōng sī",
-    "english": "$targetLanguage translation (e.g., company)"
+    "english": "$targetLanguage translation (e.g., company)",
+    "hskLevel": 3,
+    "partOfSpeech": "noun"
   }
 ]
+
+IMPORTANT RULES for hskLevel and partOfSpeech:
+- hskLevel: Estimate the HSK level (1-6) based on the word's complexity. Use 1 for very basic words, 3-4 for intermediate, 5-6 for advanced. If unsure, use 3.
+- partOfSpeech: Use one of: "noun", "verb", "adjective", "adverb", "pronoun", "preposition", "conjunction", "particle", "measure word", "idiom", "phrase". For multi-word phrases use "phrase". For chengyu (idioms) use "idiom".
 ''';
 
     try {
@@ -834,12 +840,85 @@ CRITICAL: Put the $targetLanguage translation in the "english" JSON key!
             'hanzi': item['hanzi'].toString(),
             'pinyin': item['pinyin'].toString(),
             'english': item['english'].toString(),
+            'hskLevel': (item['hskLevel'] as num?)?.toInt().toString() ?? '3',
+            'partOfSpeech': item['partOfSpeech']?.toString() ?? '',
           }).toList();
         }
       }
       throw Exception("Empty response from OpenRouter");
     } catch (e) {
       analytics.logApiUsage(apiName: 'openrouter', feature: 'generate_deck', success: false);
+      rethrow;
+    }
+  }
+
+  Future<List<Map<String, String>>> generateContextualCards({
+    required String deckTopic,
+    required String contextTone,
+    required int count,
+    required List<String> existingHanzi,
+    required List<String> existingPinyin,
+  }) async {
+    final existingPairs = List.generate(existingHanzi.length, (i) {
+      final pinyin = i < existingPinyin.length ? existingPinyin[i] : '';
+      return '${existingHanzi[i]} ($pinyin)';
+    }).join(', ');
+
+    final prompt = '''
+You are an expert Chinese teacher. The student wants to add NEW vocabulary to their existing flashcard deck.
+
+EXISTING DECK TOPIC: "$deckTopic"
+CONTEXT/TONE: ${contextTone.isEmpty ? "Standard" : contextTone}
+EXISTING WORDS (${existingHanzi.length} total): [$existingPairs]
+
+The student already has the above words. Please generate exactly $count NEW Chinese words or short phrases that:
+1. Are RELATED to the same theme or context as the existing deck
+2. Are at a SIMILAR difficulty level as the existing words
+3. Do NOT overlap with or duplicate any of the existing words
+4. Are natural, useful, and commonly used
+
+Respond ONLY in valid JSON format as a list of objects with this exact structure.
+CRITICAL: Put the $targetLanguage translation in the "english" JSON key!
+[
+  {
+    "hanzi": "公司",
+    "pinyin": "gōng sī",
+    "english": "$targetLanguage translation (e.g., company)",
+    "hskLevel": 3,
+    "partOfSpeech": "noun"
+  }
+]
+
+IMPORTANT RULES for hskLevel and partOfSpeech:
+- hskLevel: Estimate the HSK level (1-6) based on the word's complexity. Use 1 for very basic words, 3-4 for intermediate, 5-6 for advanced. If unsure, use 3.
+- partOfSpeech: Use one of: "noun", "verb", "adjective", "adverb", "pronoun", "preposition", "conjunction", "particle", "measure word", "idiom", "phrase". For multi-word phrases use "phrase". For chengyu (idioms) use "idiom".
+''';
+
+    try {
+      final text = await makeOpenRouterCall(
+        model: 'google/gemini-2.5-flash',
+        messages: [{'role': 'user', 'content': prompt}],
+        jsonMode: true,
+      );
+
+      if (text.isNotEmpty) {
+        final cleanText = text.replaceAll(RegExp(r'^```json\n', multiLine: true), '')
+                              .replaceAll(RegExp(r'^```\n?', multiLine: true), '');
+        final json = jsonDecode(cleanText);
+        analytics.logApiUsage(apiName: 'openrouter', feature: 'add_to_deck', success: true);
+        if (json is List) {
+          return json.map((item) => {
+            'hanzi': item['hanzi'].toString(),
+            'pinyin': item['pinyin'].toString(),
+            'english': item['english'].toString(),
+            'hskLevel': (item['hskLevel'] as num?)?.toInt().toString() ?? '3',
+            'partOfSpeech': item['partOfSpeech']?.toString() ?? '',
+          }).toList();
+        }
+      }
+      throw Exception("Empty response from OpenRouter");
+    } catch (e) {
+      analytics.logApiUsage(apiName: 'openrouter', feature: 'add_to_deck', success: false);
       rethrow;
     }
   }

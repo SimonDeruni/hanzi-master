@@ -265,24 +265,322 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
     );
   }
 
+  // ---------------------------------------------------------------------------
+  // Extracted building blocks (shared by portrait and landscape layouts)
+  // ---------------------------------------------------------------------------
+
+  Flashcard _getCurrentCard() {
+    final allCards = ref.watch(flashcardControllerProvider).value ?? [];
+    final globalCard = allCards.firstWhere(
+      (c) => c.id == widget.card.id,
+      orElse: () => widget.card,
+    );
+    return (globalCard.strokePaths.isEmpty && _hydratedCard != null && _hydratedCard!.strokePaths.isNotEmpty)
+        ? _hydratedCard!
+        : (globalCard.strokePaths.isEmpty && _hydratedCard != null) ? _hydratedCard! : globalCard;
+  }
+
+  Widget _buildCharacterCard(Flashcard currentCard, double masteryProgress, bool isDark, {bool isLandscape = false}) {
+    final double canvasSize = isLandscape ? 220 : 180;
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(32),
+      decoration: BoxDecoration(
+        color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.white.withValues(alpha: 0.5),
+        borderRadius: BorderRadius.circular(24),
+        border: Border.all(color: Colors.indigo.withValues(alpha: 0.1)),
+      ),
+      child: Column(
+        children: [
+          Stack(
+            alignment: Alignment.topRight,
+            children: [
+              SizedBox(
+                height: canvasSize,
+                width: canvasSize,
+                child: _isLoadingStrokes
+                    ? Center(child: CircularProgressIndicator(color: Colors.indigo))
+                    : currentCard.strokePaths.isEmpty
+                        ? Center(
+                            child: Text(
+                              currentCard.hanzi,
+                              style: TextStyle(
+                                fontSize: 100,
+                                color: isDark ? Colors.white24 : Colors.black12,
+                              ),
+                            ),
+                          )
+                        : DrawingCanvas(
+                            strokePaths: currentCard.strokePaths,
+                            medianPaths: currentCard.medianPaths,
+                            showAnimation: _isPlaying,
+                            strokeLimit: _manualStrokeLimit,
+                            forcedActiveCharIndex: _manualCharIndex,
+                            readOnly: true,
+                            showGrade: false,
+                            autoCenter: true,
+                            autoActiveChar: true,
+                            isFlipped: currentCard.isFlipped,
+                          ),
+              ),
+              MasterySeal(
+                progress: masteryProgress,
+                isMastered: currentCard.isMastered(StudyMode.reading),
+                size: 40,
+              ),
+            ],
+          ),
+          const SizedBox(height: 16),
+          _buildStrokeTimeline(isDark),
+          const SizedBox(height: 24),
+          Builder(builder: (context) {
+            final chars = currentCard.hanzi.characters.toList();
+            final int activeIdx = _manualCharIndex ?? -1;
+            return RichText(
+              text: TextSpan(
+                children: List.generate(chars.length, (i) {
+                  final isActive = i == activeIdx;
+                  return TextSpan(
+                    text: chars[i],
+                    style: TextStyle(
+                      fontSize: 64,
+                      fontWeight: FontWeight.bold,
+                      color: isActive
+                          ? Colors.indigo
+                          : (isDark ? Colors.white : const Color(0xFF2C2C2C)),
+                      decoration: isActive ? TextDecoration.underline : null,
+                      decorationColor: Colors.indigo,
+                      decorationThickness: 3,
+                    ),
+                  );
+                }),
+              ),
+            );
+          }),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              PinyinText(
+                text: currentCard.pinyin,
+                style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w500, color: Colors.grey),
+              ),
+              const SizedBox(width: 8),
+              IconButton(
+                icon: Icon(Icons.volume_up, color: Colors.indigo, size: 24),
+                onPressed: () => ref.read(audioServiceProvider).playCharacter(currentCard.hanzi),
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+          DefinitionFormatter(
+            rawDefinition: currentCard.definition,
+            style: TextStyle(
+              fontSize: 18,
+              color: isDark ? Colors.white70 : Colors.black87,
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildDeckButton(Flashcard currentCard, bool inLibrary) {
+    return SizedBox(
+      width: double.infinity,
+      child: ElevatedButton.icon(
+        onPressed: () {
+          DeckSelectionSheet.show(context, card: currentCard);
+        },
+        icon: Icon(inLibrary ? Icons.library_add_check : Icons.add_circle_outline),
+        label: Text(inLibrary ? "Manage Decks" : AppLocalizations.of(context)!.addToStudyDeck),
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.indigo,
+          foregroundColor: Colors.white,
+          padding: const EdgeInsets.symmetric(vertical: 16),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          elevation: 0,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildDetailSections(BuildContext context, bool isDark) {
+    return Column(
+      children: [
+        KeyedSubtree(key: _strokesKey, child: const SizedBox.shrink()),
+        if (_anatomyComponents.isNotEmpty) ...[
+          KeyedSubtree(key: _anatomyKey, child: _buildAnatomySection(context, isDark)),
+        ] else ...[
+          KeyedSubtree(key: _anatomyKey, child: const SizedBox.shrink()),
+        ],
+        const SizedBox(height: 16),
+        KeyedSubtree(key: _notesKey, child: _buildPersonalNotesSection(context, isDark)),
+        const SizedBox(height: 16),
+        KeyedSubtree(key: _wordsKey, child: _buildCommonWordsSection(context, isDark)),
+        const SizedBox(height: 16),
+        KeyedSubtree(key: _contextKey, child: _buildAiContextSection(context, isDark)),
+      ],
+    );
+  }
+
+  Widget _buildBottomActions(Flashcard currentCard) {
+    return Column(
+      children: [
+        SizedBox(
+          width: double.infinity,
+          height: 60,
+          child: ElevatedButton.icon(
+            onPressed: () {
+              showModalBottomSheet(
+                context: context,
+                shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(24))),
+                builder: (ctx) => SafeArea(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        const Text("Practice Modes", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold), textAlign: TextAlign.center),
+                        const SizedBox(height: 24),
+                        ListTile(
+                          leading: const Icon(Icons.record_voice_over, color: Colors.orange, size: 32),
+                          title: const Text("Shadowing Studio", style: TextStyle(fontWeight: FontWeight.bold)),
+                          subtitle: const Text("Practice pronouncing this word with AI grading"),
+                          onTap: () {
+                            Navigator.pop(ctx);
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => ShadowingStudioScreen(
+                                  initialHanzi: currentCard.hanzi,
+                                  initialPinyin: currentCard.pinyin,
+                                  initialTranslation: currentCard.definition,
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                        const Divider(),
+                        ListTile(
+                          leading: const Icon(Icons.brush, color: Colors.teal, size: 32),
+                          title: const Text("Calligraphy Trace", style: TextStyle(fontWeight: FontWeight.bold)),
+                          subtitle: const Text("Practice writing the strokes by hand"),
+                          onTap: () {
+                            Navigator.pop(ctx);
+                            showCalligraphyCanvas(context, currentCard);
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            },
+            icon: const Icon(Icons.fitness_center, color: Colors.white),
+            label: const Text("Select Practice Mode", style: TextStyle(fontWeight: FontWeight.bold, letterSpacing: 1.2, color: Colors.white)),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.indigo,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+              elevation: 4,
+            ),
+          ),
+        ),
+        const SizedBox(height: 12),
+        SizedBox(
+          width: double.infinity,
+          height: 50,
+          child: OutlinedButton.icon(
+            onPressed: () => Navigator.pop(context),
+            icon: const Icon(Icons.auto_awesome_motion),
+            label: Text(AppLocalizations.of(context)!.backToLibrary, style: const TextStyle(fontWeight: FontWeight.bold, letterSpacing: 1.2)),
+            style: OutlinedButton.styleFrom(
+              foregroundColor: Colors.indigo,
+              side: const BorderSide(color: Colors.indigo, width: 2),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  // ---------------------------------------------------------------------------
+  // Portrait layout
+  // ---------------------------------------------------------------------------
+
+  Widget _buildPortraitLayout(Flashcard currentCard, double masteryProgress, bool inLibrary, bool isDark) {
+    return SingleChildScrollView(
+      controller: _scrollController,
+      padding: const EdgeInsets.fromLTRB(24, 100, 24, 24),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          _buildCharacterCard(currentCard, masteryProgress, isDark),
+          const SizedBox(height: 24),
+          _buildDeckButton(currentCard, inLibrary),
+          const SizedBox(height: 24),
+          const SizedBox(height: 8),
+          _buildDetailSections(context, isDark),
+          const SizedBox(height: 40),
+          _buildBottomActions(currentCard),
+        ],
+      ),
+    );
+  }
+
+  // ---------------------------------------------------------------------------
+  // Landscape layout — character card on the left, details on the right
+  // ---------------------------------------------------------------------------
+
+  Widget _buildLandscapeLayout(Flashcard currentCard, double masteryProgress, bool inLibrary, bool isDark) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Expanded(
+          flex: 2,
+          child: Center(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.fromLTRB(16, 100, 8, 24),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  _buildCharacterCard(currentCard, masteryProgress, isDark, isLandscape: true),
+                  const SizedBox(height: 16),
+                  _buildDeckButton(currentCard, inLibrary),
+                ],
+              ),
+            ),
+          ),
+        ),
+        Expanded(
+          flex: 3,
+          child: SingleChildScrollView(
+            controller: _scrollController,
+            padding: const EdgeInsets.fromLTRB(8, 100, 16, 24),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _buildPillTabBar(isDark, floating: false),
+                const SizedBox(height: 16),
+                _buildDetailSections(context, isDark),
+                const SizedBox(height: 40),
+                _buildBottomActions(currentCard),
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final bool isDark = Theme.of(context).brightness == Brightness.dark;
-    
-    // 🚀 LIVE SYNC: Watch the controller state to get the LATEST stats from DB
-    final allCards = ref.watch(flashcardControllerProvider).value ?? [];
-    final globalCard = allCards.firstWhere(
-      (c) => c.id == widget.card.id, 
-      orElse: () => widget.card
-    );
-    
-    // Fix: Prioritize the version that has stroke data.
-    final Flashcard currentCard = (globalCard.strokePaths.isEmpty && _hydratedCard != null && _hydratedCard!.strokePaths.isNotEmpty)
-        ? _hydratedCard!
-        : (globalCard.strokePaths.isEmpty && _hydratedCard != null) ? _hydratedCard! : globalCard;
-    
+    final Flashcard currentCard = _getCurrentCard();
     final double masteryProgress = (currentCard.getStatsForMode(StudyMode.reading).streak / 5.0).clamp(0.0, 1.0);
-
+    final allCards = ref.watch(flashcardControllerProvider).value ?? [];
     final bool inLibrary = allCards.any((c) => c.hanzi == widget.card.hanzi);
 
     return Scaffold(
@@ -304,7 +602,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
                 ),
               );
             },
-            icon: Icon(Icons.auto_awesome),
+            icon: const Icon(Icons.auto_awesome),
             label: Text(AppLocalizations.of(context)!.askTutor),
             backgroundColor: Colors.indigo,
             foregroundColor: Colors.white,
@@ -313,230 +611,76 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
       ),
       extendBodyBehindAppBar: true,
       body: CalligraphyBackground(
-        child: Stack(
-          children: [
-            SingleChildScrollView(
-              controller: _scrollController,
-              padding: const EdgeInsets.fromLTRB(24, 100, 24, 24),
-              child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                width: double.infinity,
-                padding: const EdgeInsets.all(32),
-                decoration: BoxDecoration(
-                  color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.white.withValues(alpha: 0.5),
-                  borderRadius: BorderRadius.circular(24),
-                  border: Border.all(color: Colors.indigo.withValues(alpha: 0.1)),
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            if (constraints.maxWidth > 600) {
+              return _buildLandscapeLayout(currentCard, masteryProgress, inLibrary, isDark);
+            }
+            return Stack(
+              children: [
+                _buildPortraitLayout(currentCard, masteryProgress, inLibrary, isDark),
+                Positioned(
+                  top: 90,
+                  left: 0,
+                  right: 0,
+                  child: _buildPillTabBar(isDark, floating: true),
                 ),
-                child: Column(
-                  children: [
-                    Stack(
-                      alignment: Alignment.topRight,
-                      children: [
-                        SizedBox(
-                          height: 180,
-                          width: 180,
-                          child: _isLoadingStrokes 
-                            ? Center(child: CircularProgressIndicator(color: Colors.indigo))
-                            : currentCard.strokePaths.isEmpty
-                                ? Center(
-                                    child: Text(
-                                      currentCard.hanzi,
-                                      style: TextStyle(
-                                        fontSize: 100,
-                                        color: isDark ? Colors.white24 : Colors.black12,
-                                      ),
-                                    ),
-                                  )
-                                : DrawingCanvas(
-                                    strokePaths: currentCard.strokePaths,
-                                    medianPaths: currentCard.medianPaths,
-                                    showAnimation: _isPlaying,
-                                    strokeLimit: _manualStrokeLimit,
-                                    forcedActiveCharIndex: _manualCharIndex,
-                                    readOnly: true,
-                                    showGrade: false,
-                                    autoCenter: true,
-                                    autoActiveChar: true,
-                                    isFlipped: currentCard.isFlipped,
-                                  ),
-                        ),
-                        MasterySeal(
-                          progress: masteryProgress,
-                          isMastered: currentCard.isMastered(StudyMode.reading),
-                          size: 40,
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 16),
-                    _buildStrokeTimeline(isDark),
-                    SizedBox(height: 24),
-                    Text(
-                      currentCard.hanzi,
-                      style: TextStyle(
-                        fontSize: 64,
-                        fontWeight: FontWeight.bold,
-                        color: isDark ? Colors.white : const Color(0xFF2C2C2C),
-                      ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        PinyinText(
-                          text: currentCard.pinyin,
-                          style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w500, color: Colors.grey),
-                        ),
-                        SizedBox(width: 8),
-                        IconButton(
-                          icon: Icon(Icons.volume_up, color: Colors.indigo, size: 24),
-                          onPressed: () => ref.read(audioServiceProvider).playCharacter(currentCard.hanzi),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 12),
-                    DefinitionFormatter(
-                      rawDefinition: currentCard.definition,
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: isDark ? Colors.white70 : Colors.black87,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(height: 24),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton.icon(
-                  onPressed: () {
-                    DeckSelectionSheet.show(context, card: currentCard);
-                  },
-                  icon: Icon(inLibrary ? Icons.library_add_check : Icons.add_circle_outline),
-                  label: Text(inLibrary ? "Manage Decks" : AppLocalizations.of(context)!.addToStudyDeck),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.indigo,
-                    foregroundColor: Colors.white,
-                    padding: const EdgeInsets.symmetric(vertical: 16),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-                    elevation: 0,
-                  ),
-                ),
-              ),
-              SizedBox(height: 24),
-              // Spacer so pill bar doesn't overlap first section
-              SizedBox(height: 8),
-              KeyedSubtree(key: _strokesKey, child: const SizedBox.shrink()),
-              if (_anatomyComponents.isNotEmpty) ...[  
-                KeyedSubtree(key: _anatomyKey, child: _buildAnatomySection(context, isDark)),
-              ] else ...[  
-                KeyedSubtree(key: _anatomyKey, child: const SizedBox.shrink()),
               ],
-              SizedBox(height: 16),
-              KeyedSubtree(key: _notesKey, child: _buildPersonalNotesSection(context, isDark)),
-              SizedBox(height: 16),
-              KeyedSubtree(key: _wordsKey, child: _buildCommonWordsSection(context, isDark)),
-              SizedBox(height: 16),
-              KeyedSubtree(key: _contextKey, child: _buildAiContextSection(context, isDark)),
-
-              SizedBox(height: 40),
-              Column(
-                children: [
-                  SizedBox(
-                    width: double.infinity,
-                    height: 60,
-                    child: ElevatedButton.icon(
-                      onPressed: () {
-                        showModalBottomSheet(
-                          context: context,
-                          shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(24))),
-                          builder: (ctx) => SafeArea(
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                crossAxisAlignment: CrossAxisAlignment.stretch,
-                                children: [
-                                  const Text("Practice Modes", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold), textAlign: TextAlign.center),
-                                  const SizedBox(height: 24),
-                                  ListTile(
-                                    leading: const Icon(Icons.record_voice_over, color: Colors.orange, size: 32),
-                                    title: const Text("Shadowing Studio", style: TextStyle(fontWeight: FontWeight.bold)),
-                                    subtitle: const Text("Practice pronouncing this word with AI grading"),
-                                    onTap: () {
-                                      Navigator.pop(ctx);
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (_) => ShadowingStudioScreen(
-                                            initialHanzi: currentCard.hanzi,
-                                            initialPinyin: currentCard.pinyin,
-                                            initialTranslation: currentCard.definition,
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                  const Divider(),
-                                  ListTile(
-                                    leading: const Icon(Icons.brush, color: Colors.teal, size: 32),
-                                    title: const Text("Calligraphy Trace", style: TextStyle(fontWeight: FontWeight.bold)),
-                                    subtitle: const Text("Practice writing the strokes by hand"),
-                                    onTap: () {
-                                      Navigator.pop(ctx);
-                                      showCalligraphyCanvas(context, currentCard);
-                                    },
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        );
-                      },
-                      icon: Icon(Icons.fitness_center, color: Colors.white),
-                      label: Text("Select Practice Mode", style: TextStyle(fontWeight: FontWeight.bold, letterSpacing: 1.2, color: Colors.white)),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.indigo,
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-                        elevation: 4,
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 12),
-                  SizedBox(
-                    width: double.infinity,
-                    height: 50,
-                    child: OutlinedButton.icon(
-                      onPressed: () => Navigator.pop(context),
-                      icon: Icon(Icons.auto_awesome_motion),
-                      label: Text(AppLocalizations.of(context)!.backToLibrary, style: TextStyle(fontWeight: FontWeight.bold, letterSpacing: 1.2)),
-                      style: OutlinedButton.styleFrom(
-                        foregroundColor: Colors.indigo,
-                        side: const BorderSide(color: Colors.indigo, width: 2),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-            // Sticky pill tab bar
-            Positioned(
-              top: 90,
-              left: 0,
-              right: 0,
-              child: _buildPillTabBar(isDark),
-            ),
-          ],
+            );
+          },
         ),
       ),
     );
   }
 
-  Widget _buildPillTabBar(bool isDark) {
+  Widget _buildPillTabBar(bool isDark, {bool floating = true}) {
+    final pills = SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Row(
+        children: List.generate(_tabLabels.length, (i) {
+          final isActive = _activeTabIndex == i;
+          return GestureDetector(
+            onTap: () => _scrollToSection(i),
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 250),
+              curve: Curves.easeInOutQuart,
+              margin: const EdgeInsets.only(right: 8),
+              padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 9),
+              decoration: BoxDecoration(
+                color: isActive
+                    ? Colors.indigo
+                    : (isDark ? Colors.white.withValues(alpha: 0.08) : Colors.white.withValues(alpha: 0.7)),
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(
+                  color: isActive
+                      ? Colors.indigo
+                      : (isDark ? Colors.white24 : Colors.black12),
+                  width: 1.5,
+                ),
+                boxShadow: isActive
+                    ? [BoxShadow(color: Colors.indigo.withValues(alpha: 0.3), blurRadius: 8, offset: const Offset(0, 2))]
+                    : [],
+              ),
+              child: Text(
+                _tabLabels[i],
+                style: TextStyle(
+                  fontSize: 13,
+                  fontWeight: isActive ? FontWeight.bold : FontWeight.w500,
+                  color: isActive
+                      ? Colors.white
+                      : (isDark ? Colors.white60 : Colors.black54),
+                  letterSpacing: 0.3,
+                ),
+              ),
+            ),
+          );
+        }),
+      ),
+    );
+
+    if (!floating) return pills;
+
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -549,50 +693,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
         ),
       ),
       padding: const EdgeInsets.only(top: 6, bottom: 16),
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Row(
-          children: List.generate(_tabLabels.length, (i) {
-            final isActive = _activeTabIndex == i;
-            return GestureDetector(
-              onTap: () => _scrollToSection(i),
-              child: AnimatedContainer(
-                duration: const Duration(milliseconds: 250),
-                curve: Curves.easeInOutQuart,
-                margin: const EdgeInsets.only(right: 8),
-                padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 9),
-                decoration: BoxDecoration(
-                  color: isActive
-                      ? Colors.indigo
-                      : (isDark ? Colors.white.withValues(alpha: 0.08) : Colors.white.withValues(alpha: 0.7)),
-                  borderRadius: BorderRadius.circular(20),
-                  border: Border.all(
-                    color: isActive
-                        ? Colors.indigo
-                        : (isDark ? Colors.white24 : Colors.black12),
-                    width: 1.5,
-                  ),
-                  boxShadow: isActive
-                      ? [BoxShadow(color: Colors.indigo.withValues(alpha: 0.3), blurRadius: 8, offset: const Offset(0, 2))]
-                      : [],
-                ),
-                child: Text(
-                  _tabLabels[i],
-                  style: TextStyle(
-                    fontSize: 13,
-                    fontWeight: isActive ? FontWeight.bold : FontWeight.w500,
-                    color: isActive
-                        ? Colors.white
-                        : (isDark ? Colors.white60 : Colors.black54),
-                    letterSpacing: 0.3,
-                  ),
-                ),
-              ),
-            );
-          }),
-        ),
-      ),
+      child: pills,
     );
   }
 
@@ -622,58 +723,143 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
     final currentCard = _hydratedCard ?? widget.card;
     if (currentCard.strokePaths.isEmpty) return SizedBox(height: 48);
     
-    final validStrokes = currentCard.strokePaths.where((s) => s != '__CHAR_SEPARATOR__').toList();
+    // Parse character groups from strokePaths using __CHAR_SEPARATOR__
+    final chars = currentCard.hanzi.characters.toList();
+    final charGroups = <List<String>>[];
+    var currentGroup = <String>[];
+    for (final s in currentCard.strokePaths) {
+      if (s == '__CHAR_SEPARATOR__') {
+        if (currentGroup.isNotEmpty) {
+          charGroups.add(currentGroup);
+          currentGroup = [];
+        }
+      } else {
+        currentGroup.add(s);
+      }
+    }
+    if (currentGroup.isNotEmpty) charGroups.add(currentGroup);
+    if (charGroups.isEmpty) charGroups.add(currentCard.strokePaths.where((s) => s != '__CHAR_SEPARATOR__').toList());
+    
+    // Determine active character index (only when manually scrubbing)
+    int activeCharIdx = 0;
+    if (_manualCharIndex != null) {
+      activeCharIdx = _manualCharIndex!;
+    }
+    final bool hasActiveChar = _manualCharIndex != null;
+    
+    // Build global stroke counter
+    int globalStroke = 0;
     
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
         children: [
-          IconButton(
-            onPressed: () => setState(() {
-              _isPlaying = !_isPlaying;
-              if (_isPlaying) {
-                _manualStrokeLimit = null;
-                _manualCharIndex = null;
-              }
-            }),
-            icon: Icon(_isPlaying ? Icons.pause_circle : Icons.play_circle, color: Colors.indigo, size: 32),
-          ),
-          SizedBox(width: 8),
-          ...List.generate(validStrokes.length, (index) {
-            final int strokeNum = index + 1;
-            final bool isSelected = !_isPlaying && 
-                                    _manualCharIndex != null && 
-                                    _manualStrokeLimit != null &&
-                                    _getCharAndLocalStroke(strokeNum) == (_manualCharIndex!, _manualStrokeLimit!);
-            return GestureDetector(
-              onTap: () => setState(() {
-                final loc = _getCharAndLocalStroke(strokeNum);
-                _manualCharIndex = loc.$1;
-                _manualStrokeLimit = loc.$2;
-                _isPlaying = false;
-              }),
-              child: Container(
-                margin: const EdgeInsets.symmetric(horizontal: 4),
-                width: 28, height: 28,
-                decoration: BoxDecoration(
-                  color: isSelected ? Colors.indigo : Colors.transparent,
-                  shape: BoxShape.circle,
-                  border: Border.all(color: Colors.indigo.withValues(alpha: 0.3)),
-                ),
-                child: Center(
-                  child: Text(
-                    "$strokeNum",
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold,
-                      color: isSelected ? Colors.white : Colors.indigo,
-                    ),
-                  ),
+          // Dynamic sub-label showing which character is being drawn
+          if (hasActiveChar && charGroups.length > 1 && activeCharIdx < chars.length)
+            Padding(
+              padding: const EdgeInsets.only(bottom: 6, left: 4),
+              child: Text(
+                'Drawing: ${chars[activeCharIdx]}',
+                style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.indigo,
                 ),
               ),
-            );
-          }),
+            ),
+          // Play/Pause + character-grouped stroke rows
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              IconButton(
+                onPressed: () => setState(() {
+                  _isPlaying = !_isPlaying;
+                  if (_isPlaying) {
+                    _manualStrokeLimit = null;
+                    _manualCharIndex = null;
+                  }
+                }),
+                icon: Icon(_isPlaying ? Icons.pause_circle : Icons.play_circle, color: Colors.indigo, size: 32),
+              ),
+              const SizedBox(width: 4),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: List.generate(charGroups.length, (charIdx) {
+                  final group = charGroups[charIdx];
+                  final isActiveChar = hasActiveChar && charIdx == activeCharIdx;
+                  final charLabel = charIdx < chars.length ? chars[charIdx] : '?';
+                  
+                  final row = Padding(
+                    padding: const EdgeInsets.only(bottom: 4),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        // Character label pill
+                        Container(
+                          margin: const EdgeInsets.only(right: 6),
+                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                          decoration: BoxDecoration(
+                            color: isActiveChar ? Colors.indigo : Colors.grey.shade200,
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Text(
+                            charLabel,
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: isActiveChar ? Colors.white : Colors.grey.shade700,
+                            ),
+                          ),
+                        ),
+                        // Stroke pills for this character
+                        ...List.generate(group.length, (localIdx) {
+                          final strokeNum = globalStroke + localIdx + 1;
+                          final bool isSelected = !_isPlaying && 
+                                                  _manualCharIndex != null && 
+                                                  _manualStrokeLimit != null &&
+                                                  _getCharAndLocalStroke(strokeNum) == (_manualCharIndex!, _manualStrokeLimit!);
+                          return GestureDetector(
+                            onTap: () => setState(() {
+                              final loc = _getCharAndLocalStroke(strokeNum);
+                              _manualCharIndex = loc.$1;
+                              _manualStrokeLimit = loc.$2;
+                              _isPlaying = false;
+                            }),
+                            child: Container(
+                              margin: const EdgeInsets.symmetric(horizontal: 3),
+                              width: 26, height: 26,
+                              decoration: BoxDecoration(
+                                color: isSelected ? Colors.indigo : (isActiveChar ? Colors.indigo.withValues(alpha: 0.08) : Colors.transparent),
+                                shape: BoxShape.circle,
+                                border: Border.all(
+                                  color: isActiveChar ? Colors.indigo.withValues(alpha: 0.5) : Colors.indigo.withValues(alpha: 0.2),
+                                ),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  "$strokeNum",
+                                  style: TextStyle(
+                                    fontSize: 11,
+                                    fontWeight: FontWeight.bold,
+                                    color: isSelected ? Colors.white : (isActiveChar ? Colors.indigo : Colors.indigo.withValues(alpha: 0.5)),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          );
+                        }),
+                      ],
+                    ),
+                  );
+                  globalStroke += group.length;
+                  return row;
+                }),
+              ),
+            ],
+          ),
         ],
       ),
     );

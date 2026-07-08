@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/core/utils/pinyin_utils.dart';
 import 'package:hanzi_master/core/providers/hanzi_metadata_provider.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/dictionary_provider.dart';
+import 'package:hanzi_master/features/flashcards/presentation/widgets/cross_reference_text.dart';
 
 class DefinitionFormatter extends ConsumerWidget {
   final String rawDefinition;
@@ -25,7 +26,7 @@ class DefinitionFormatter extends ConsumerWidget {
     final definitions = _parse(rawDefinition, ref);
 
     if (definitions.length == 1) {
-      return Text(
+      return CrossReferenceText(
         definitions.first,
         style: style,
         textAlign: textAlign,
@@ -41,7 +42,7 @@ class DefinitionFormatter extends ConsumerWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text('• ', style: style),
-              Expanded(child: Text(def, style: style)),
+              Expanded(child: CrossReferenceText(def, style: style)),
             ],
           ),
         );

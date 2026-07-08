@@ -74,6 +74,10 @@ class NotificationService {
     return granted ?? false;
   }
 
+  Future<void> cancel(int id) async {
+    await _flutterLocalNotificationsPlugin.cancel(id: id);
+  }
+
   Future<void> scheduleDailyDrop(int hour, int minute) async {
     await _flutterLocalNotificationsPlugin.cancel(id: 1); // ID 1 = Daily Drop
     

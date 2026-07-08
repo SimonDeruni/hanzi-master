@@ -6,6 +6,7 @@ import 'package:hanzi_master/shared/widgets/global_sliver_app_bar.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 
 import 'package:hanzi_master/features/premium/presentation/screens/universal_scanner_screen.dart';
+import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 
 class TranslationHubScreen extends StatelessWidget {
   const TranslationHubScreen({super.key});
@@ -27,7 +28,7 @@ class TranslationHubScreen extends StatelessWidget {
                 IconButton(
                   icon: const Icon(Icons.history),
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (_) => const TranslationHistoryScreen()));
+                    Navigator.push(context, SwipeBackPageRoute(builder: (_) => const TranslationHistoryScreen()));
                   },
                 )
               ],
@@ -47,7 +48,7 @@ class TranslationHubScreen extends StatelessWidget {
                     description: l10n?.realTimeSplitScreen ?? "Real-time split-screen conversation with a native speaker. Breaks down language barriers instantly.",
                     icon: Icons.people_outline,
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (_) => const TravelInterpreterScreen()));
+                      Navigator.push(context, SwipeBackPageRoute(builder: (_) => const TravelInterpreterScreen()));
                     },
                   ),
 
@@ -59,7 +60,7 @@ class TranslationHubScreen extends StatelessWidget {
                     description: "Point your camera at real-world objects or text to instantly extract and translate Chinese characters.",
                     icon: Icons.document_scanner_outlined,
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (_) => const UniversalScannerScreen(intent: CameraIntent.translationHub)));
+                      Navigator.push(context, SwipeBackPageRoute(builder: (_) => const UniversalScannerScreen(intent: CameraIntent.translationHub)));
                     },
                   ),
                   const SizedBox(height: 48),

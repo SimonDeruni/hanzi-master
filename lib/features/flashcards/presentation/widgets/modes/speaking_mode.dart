@@ -8,6 +8,7 @@ import 'package:hanzi_master/shared/widgets/pinyin_text.dart';
 import 'package:hanzi_master/core/services/audio_recording_service.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/study_session_app_bar.dart';
+import 'package:hanzi_master/features/flashcards/presentation/providers/settings_controller.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
@@ -186,12 +187,23 @@ class _SpeakingModeWidgetState extends ConsumerState<SpeakingModeWidget> {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final theme = Theme.of(context);
 
+    final showPinyin = ref.watch(settingsProvider).showPinyinInSpeaking;
+
     return Scaffold(
       appBar: StudySessionAppBar(
         title: 'Speaking Mode',
         dueCount: widget.dueCount,
         newCount: widget.newCount,
         learningCount: widget.learningCount,
+        extraActions: [
+          IconButton(
+            icon: Icon(showPinyin ? Icons.visibility : Icons.visibility_off),
+            onPressed: () {
+              ref.read(settingsProvider.notifier).togglePinyinSpeaking(!showPinyin);
+            },
+            tooltip: showPinyin ? 'Hide Pinyin' : 'Show Pinyin',
+          ),
+        ],
       ),
       body: SafeArea(
         child: Column(
@@ -235,6 +247,16 @@ class _SpeakingModeWidgetState extends ConsumerState<SpeakingModeWidget> {
                               ),
                             ),
                           ),
+                          if (!_isRevealed && showPinyin)
+                            Expanded(
+                              flex: 1,
+                              child: Center(
+                                child: PinyinText(
+                                  text: widget.card.pinyin,
+                                  style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            ),
                           if (!_isRevealed)
                             Expanded(
                               flex: 1,

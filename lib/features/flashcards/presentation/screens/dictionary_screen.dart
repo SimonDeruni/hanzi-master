@@ -9,6 +9,7 @@ import 'package:hanzi_master/features/course/presentation/widgets/radical_detail
 import 'package:hanzi_master/features/flashcards/presentation/providers/dictionary_provider.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/deck_controller.dart';
+import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/deck.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/deck_detail_screen.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/ai_deck_generator_sheet.dart';
@@ -178,7 +179,7 @@ class _BookshelfVerticalCard extends StatelessWidget {
     return InkWell(
       onTap: () => Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => DeckDetailScreen(deck: deck)),
+        SwipeBackPageRoute(builder: (context) => DeckDetailScreen(deck: deck)),
       ),
       borderRadius: BorderRadius.circular(16),
       child: Container(
@@ -306,7 +307,7 @@ class _SearchBarDelegate extends SliverPersistentHeaderDelegate {
               icon: Icon(Icons.camera_alt),
               color: theme.colorScheme.onPrimary,
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const UniversalScannerScreen(intent: CameraIntent.dictionary)));
+                Navigator.push(context, SwipeBackPageRoute(builder: (context) => const UniversalScannerScreen(intent: CameraIntent.dictionary)));
               },
             ),
           ),
@@ -403,7 +404,7 @@ class _DictionarySearchTab extends ConsumerWidget {
                         padding: const EdgeInsets.symmetric(horizontal: 24.0),
                         child: GestureDetector(
                           onTap: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => const RadicalLibraryScreen()));
+                            Navigator.push(context, SwipeBackPageRoute(builder: (context) => const RadicalLibraryScreen()));
                           },
                           child: Container(
                             width: double.infinity,
@@ -455,7 +456,7 @@ class _DictionarySearchTab extends ConsumerWidget {
                         padding: const EdgeInsets.symmetric(horizontal: 24.0),
                         child: InkWell(
                           onTap: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => const hanzi_tome.TomeManagerScreen()));
+                            Navigator.push(context, SwipeBackPageRoute(builder: (context) => const hanzi_tome.TomeManagerScreen()));
                           },
                           borderRadius: BorderRadius.circular(16),
                           child: Container(
@@ -575,7 +576,7 @@ class _DictionarySearchTab extends ConsumerWidget {
             return InkWell(
               onTap: () => Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => DeckDetailScreen(deck: deck)),
+                SwipeBackPageRoute(builder: (context) => DeckDetailScreen(deck: deck)),
               ),
               borderRadius: BorderRadius.circular(20),
               child: Container(

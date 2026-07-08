@@ -15,6 +15,7 @@ class ConversationScenario {
   final String personaName;
   final bool isCustom;
   final String voiceName;
+  final String? deckId;
 
   ConversationScenario({
     required this.id,
@@ -30,6 +31,7 @@ class ConversationScenario {
     this.personaName = 'Assistant',
     this.isCustom = false,
     this.voiceName = 'Puck',
+    this.deckId,
   });
 
   Map<String, dynamic> toJson() {
@@ -47,6 +49,7 @@ class ConversationScenario {
       'personaName': personaName,
       'isCustom': isCustom,
       'voiceName': voiceName,
+      'deckId': deckId,
     };
   }
 
@@ -65,6 +68,7 @@ class ConversationScenario {
       personaName: json['personaName'] ?? 'Assistant',
       isCustom: json['isCustom'] ?? false,
       voiceName: json['voiceName'] ?? 'Puck',
+      deckId: json['deckId'],
     );
   }
 }

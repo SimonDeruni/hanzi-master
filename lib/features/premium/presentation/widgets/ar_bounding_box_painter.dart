@@ -124,7 +124,7 @@ class ARBoundingBoxPainter extends CustomPainter {
       top * scaleY,
       right * scaleX,
       bottom * scaleY,
-    );
+    ).intersect(Rect.fromLTWH(0, 0, widgetSize.width, widgetSize.height));
   }
 
   void _drawTextBadge(Canvas canvas, Rect box, {required String title, required String subtitle}) {
@@ -161,9 +161,14 @@ class ARBoundingBoxPainter extends CustomPainter {
     
     final double badgeHeight = textPainterTitle.height + (subtitle.isNotEmpty ? textPainterSubtitle.height + 4.0 : 0) + 16.0;
 
+    final canvasBounds = canvas.getClipBounds();
+    final double preferredTop = box.top - badgeHeight - 8.0;
+    final double badgeTop = preferredTop < canvasBounds.top
+        ? box.bottom + 8.0
+        : preferredTop;
     final Rect badgeRect = Rect.fromLTWH(
-      box.left,
-      box.top - badgeHeight - 8.0,
+      box.left.clamp(canvasBounds.left, canvasBounds.width - badgeWidth),
+      badgeTop.clamp(canvasBounds.top, canvasBounds.height - badgeHeight),
       badgeWidth,
       badgeHeight,
     );

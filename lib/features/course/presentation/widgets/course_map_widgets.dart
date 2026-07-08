@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
+import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/settings_controller.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/study_mode.dart';
@@ -356,7 +357,7 @@ class MapNode extends ConsumerWidget {
       if (isTutorial) {
         await Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const TutorialLessonScreen()),
+          SwipeBackPageRoute(builder: (context) => const TutorialLessonScreen()),
         );
         ref.invalidate(settingsProvider);
         return;
@@ -544,7 +545,7 @@ class MapNode extends ConsumerWidget {
             onComponentTap: handleComponentTap, // PASS THE HANDLER
             onStart: () async {
               Navigator.pop(context);
-              await Navigator.push(context, MaterialPageRoute(builder: (context) => LessonScreen(card: updatedCard ?? card)));
+              await Navigator.push(context, SwipeBackPageRoute(builder: (context) => LessonScreen(card: updatedCard ?? card)));
             },
           ),
         );

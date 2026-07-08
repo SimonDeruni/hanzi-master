@@ -527,7 +527,7 @@ class _CharacterHero extends StatelessWidget {
                   Text(
                     hanzi,
                     style: TextStyle(
-                      fontSize: 72,
+                      fontSize: (72.0 - (hanzi.length - 1) * 12).clamp(36.0, 72.0),
                       fontWeight: FontWeight.w100,
                       color: isDark ? Colors.white : Colors.indigo.shade800,
                       height: 1,

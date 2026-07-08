@@ -7,6 +7,7 @@ import 'package:hanzi_master/features/flashcards/domain/entities/study_mode.dart
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/deck_controller.dart';
 import 'package:hanzi_master/features/echo_hall/presentation/screens/scenario_selection_screen.dart';
+import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/deck_review_session_screen.dart';
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
 import 'package:hanzi_master/core/services/analytics_service.dart';
@@ -75,7 +76,7 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(
+              SwipeBackPageRoute(
                 builder: (context) => DeckCardPickerScreen(deckId: widget.deck.id, deckName: widget.deck.localizedName(context)),
               ),
             );
@@ -238,7 +239,7 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                                                 deckId: widget.deck.id,
                                                 cardCount: deckCards.length,
                                               );
-                                              Navigator.push(context, MaterialPageRoute(
+                                              Navigator.push(context, SwipeBackPageRoute(
                                                 builder: (context) => DeckReviewSessionScreen(deckId: widget.deck.id, mode: mode),
                                               ));
                                             },
@@ -273,7 +274,7 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                                           storyId: 'custom_deck_story',
                                           storyLevel: widget.deck.id,
                                         );
-                                        Navigator.push(context, MaterialPageRoute(
+                                        Navigator.push(context, SwipeBackPageRoute(
                                           builder: (context) => StoryModeScreen(deck: widget.deck, cards: deckCards),
                                         ));
                                       },
@@ -302,8 +303,8 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                               width: double.infinity,
                               child: OutlinedButton(
                                 onPressed: () {
-                                  Navigator.push(context, MaterialPageRoute(
-                                    builder: (context) => const ScenarioSelectionScreen(),
+                                  Navigator.push(context, SwipeBackPageRoute(
+                                    builder: (context) => ScenarioSelectionScreen(deck: widget.deck),
                                   ));
                                 },
                                 style: OutlinedButton.styleFrom(

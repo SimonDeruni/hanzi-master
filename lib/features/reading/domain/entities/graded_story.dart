@@ -8,6 +8,8 @@ class GradedStory extends Equatable {
   final int hskLevel;
   final List<AiSentence> sentences;
   final DateTime generatedAt;
+  final String? sourceDeckId;
+  final String? sourceDeckName;
 
   const GradedStory({
     required this.id,
@@ -16,6 +18,8 @@ class GradedStory extends Equatable {
     required this.hskLevel,
     required this.sentences,
     required this.generatedAt,
+    this.sourceDeckId,
+    this.sourceDeckName,
   });
 
   factory GradedStory.fromJson(Map<String, dynamic> json) {
@@ -31,6 +35,8 @@ class GradedStory extends Equatable {
       generatedAt: json['generatedAt'] != null
           ? DateTime.parse(json['generatedAt'] as String)
           : DateTime.now(),
+      sourceDeckId: json['sourceDeckId'] as String?,
+      sourceDeckName: json['sourceDeckName'] as String?,
     );
   }
 
@@ -42,6 +48,8 @@ class GradedStory extends Equatable {
       'hskLevel': hskLevel,
       'sentences': sentences.map((s) => s.toJson()).toList(),
       'generatedAt': generatedAt.toIso8601String(),
+      if (sourceDeckId != null) 'sourceDeckId': sourceDeckId,
+      if (sourceDeckName != null) 'sourceDeckName': sourceDeckName,
     };
   }
 
@@ -53,5 +61,7 @@ class GradedStory extends Equatable {
         hskLevel,
         sentences,
         generatedAt,
+        sourceDeckId,
+        sourceDeckName,
       ];
 }

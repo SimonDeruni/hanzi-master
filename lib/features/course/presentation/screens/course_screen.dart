@@ -8,6 +8,7 @@ import '../../../progression/presentation/widgets/ink_stone_widget.dart';
 import '../widgets/course_map_widgets.dart';
 import '../widgets/course_painters.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 
 class CourseScreen extends ConsumerWidget {
   final String deckId;
@@ -154,7 +155,7 @@ class CourseScreen extends ConsumerWidget {
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n?.unlockCharactersToQuiz ?? "Unlock at least 4 characters to start a quiz!")));
             return;
           }
-          Navigator.push(context, MaterialPageRoute(builder: (context) => QuizScreen(availableCards: cards)));
+          Navigator.push(context, SwipeBackPageRoute(builder: (context) => QuizScreen(availableCards: cards)));
         },
         label: Text(l10n?.practiceQuiz ?? "PRACTICE QUIZ"),
         icon: Icon(Icons.quiz),

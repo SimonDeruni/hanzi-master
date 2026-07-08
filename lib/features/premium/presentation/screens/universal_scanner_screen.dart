@@ -547,14 +547,14 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
               child: GestureDetector(
                 onScaleStart: _handleScaleStart,
                 onScaleUpdate: _handleScaleUpdate,
-                child: Builder(
-                  builder: (context) {
-                    return SizedBox.expand(
+                child: LayoutBuilder(
+                  builder: (context, constraints) {
+                    return ClipRect(
                       child: FittedBox(
                         fit: BoxFit.cover,
                         child: SizedBox(
-                          width: 1000,
-                          height: 1000 * _cameraController!.value.aspectRatio,
+                          width: constraints.maxWidth,
+                          height: constraints.maxWidth / _cameraController!.value.aspectRatio,
                           child: CameraPreview(_cameraController!),
                         ),
                       ),
@@ -1194,7 +1194,13 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                             color: theme.colorScheme.primary.withValues(alpha: 0.1),
                             borderRadius: BorderRadius.circular(16),
                           ),
-                          child: Text(info.hanzi, style: const TextStyle(fontSize: 40, fontWeight: FontWeight.w900, color: Color(0xFF1A1A1B), height: 1.0)),
+                          child: FittedBox(
+                            fit: BoxFit.scaleDown,
+                            child: Padding(
+                              padding: const EdgeInsets.all(4),
+                              child: Text(info.hanzi, style: const TextStyle(fontSize: 40, fontWeight: FontWeight.w900, color: Color(0xFF1A1A1B), height: 1.0)),
+                            ),
+                          ),
                         ),
                         const SizedBox(width: 16),
                         Expanded(
@@ -1395,7 +1401,13 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                                   color: theme.colorScheme.primary.withValues(alpha: 0.1),
                                   borderRadius: BorderRadius.circular(14),
                                 ),
-                                child: Text(info.hanzi, style: const TextStyle(fontSize: 32, fontWeight: FontWeight.w900, color: Colors.white, height: 1.0)),
+                                child: FittedBox(
+                                  fit: BoxFit.scaleDown,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(4),
+                                    child: Text(info.hanzi, style: const TextStyle(fontSize: 32, fontWeight: FontWeight.w900, color: Colors.white, height: 1.0)),
+                                  ),
+                                ),
                               ),
                               const SizedBox(width: 16),
                               Expanded(

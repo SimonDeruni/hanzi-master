@@ -45,7 +45,6 @@ class _FlashcardEditDialogState extends ConsumerState<FlashcardEditDialog> {
   late final TextEditingController _hanziController;
   late final TextEditingController _pinyinController;
   late final TextEditingController _definitionController;
-  bool _addToDeck = true;
 
   @override
   void initState() {
@@ -89,7 +88,7 @@ class _FlashcardEditDialogState extends ConsumerState<FlashcardEditDialog> {
       hskLevel: 0, // AI generated or custom cards have level 0 by default
       strokePaths: const [], // Stroke data won't exist for these custom cards
       modeStats: const {},
-      deckId: _addToDeck ? 'default' : 'none',
+      deckId: 'default',
     );
 
     await ref.read(flashcardControllerProvider.notifier).addFlashcard(newCard);
@@ -170,19 +169,6 @@ class _FlashcardEditDialogState extends ConsumerState<FlashcardEditDialog> {
               ),
               maxLines: 3,
               style: TextStyle(color: textColor),
-            ),
-            const SizedBox(height: 16),
-            SwitchListTile(
-              title: Text(AppLocalizations.of(context)!.addToDefaultStudy),
-              subtitle: Text(AppLocalizations.of(context)!.ifOffItsOnly, style: TextStyle(fontSize: 12)),
-              value: _addToDeck,
-              activeTrackColor: Colors.indigo.withValues(alpha: 0.5),
-              activeThumbColor: Colors.indigo,
-              onChanged: (val) {
-                setState(() {
-                  _addToDeck = val;
-                });
-              },
             ),
             const SizedBox(height: 16),
             ElevatedButton(

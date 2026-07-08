@@ -36,6 +36,7 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
   int _playingStartOffset = -1;
   int _playingEndOffset = -1;
   StreamSubscription? _boundarySub;
+  StreamSubscription<void>? _completionSub;
   bool _isSaved = true; // By default assume saved unless it's a new custom
   
   late PageController _pageController;
@@ -195,7 +196,7 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
   Future<void> _initTts() async {
     final audioService = ref.read(audioServiceProvider);
     
-    audioService.onPlayerComplete.listen((_) {
+    _completionSub = audioService.onPlayerComplete.listen((_) {
       if (mounted) {
         setState(() {
           _isPlaying = false;
@@ -254,7 +255,8 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
     _loadingTimer?.cancel();
     _pageController.dispose();
     _boundarySub?.cancel();
-    ref.read(audioServiceProvider).stop();
+    _completionSub?.cancel();
+    unawaited(ref.read(audioServiceProvider).stop());
     super.dispose();
   }
 
@@ -439,9 +441,20 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
         .map((c) => c.hanzi)
         .toSet();
 
-    return Scaffold(
-      backgroundColor: isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
-      appBar: AppBar(
+    return PopScope(
+      canPop: !_isPlaying,
+      onPopInvokedWithResult: (didPop, result) async {
+        if (!didPop) {
+          await ref.read(audioServiceProvider).stop();
+          if (mounted) {
+            setState(() { _isPlaying = false; _isPaused = false; });
+            Navigator.pop(context);
+          }
+        }
+      },
+      child: Scaffold(
+        backgroundColor: isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
+        appBar: AppBar(
         title: Text(
           widget.hskLevel == 0 ? widget.blueprint.title : 'HSK ${widget.hskLevel}: ${widget.blueprint.title}',
           style: TextStyle(fontFamily: 'NotoSerifSC', color: isDark ? Colors.white : Colors.black87),
@@ -858,6 +871,7 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
               ),
             )
           : null,
+      ),
     );
   }
 }

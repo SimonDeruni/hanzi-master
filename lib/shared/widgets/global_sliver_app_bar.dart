@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/profile_screen.dart';
+import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 
 class GlobalSliverAppBar extends ConsumerWidget {
   final String title;
@@ -62,7 +63,7 @@ class GlobalSliverAppBar extends ConsumerWidget {
         Padding(
           padding: const EdgeInsets.only(right: 16.0),
           child: GestureDetector(
-            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfileScreen())),
+            onTap: () => Navigator.push(context, SwipeBackPageRoute(builder: (context) => const ProfileScreen())),
             child: CircleAvatar(
               radius: 18,
               backgroundColor: isDark ? Colors.grey.shade800 : Colors.grey.shade200,

@@ -17,6 +17,7 @@ class SettingsState {
   final bool hapticsEnabled;
   final bool strictGrading;
   final String locale;
+  final bool showPinyinInSpeaking;
 
   SettingsState({
     this.isDarkMode = false, 
@@ -30,6 +31,7 @@ class SettingsState {
     this.hapticsEnabled = true,
     this.strictGrading = false,
     this.locale = 'en',
+    this.showPinyinInSpeaking = true,
   });
 
   SettingsState copyWith({
@@ -44,6 +46,7 @@ class SettingsState {
     bool? hapticsEnabled,
     bool? strictGrading,
     String? locale,
+    bool? showPinyinInSpeaking,
   }) {
     return SettingsState(
       isDarkMode: isDarkMode ?? this.isDarkMode,
@@ -57,6 +60,7 @@ class SettingsState {
       hapticsEnabled: hapticsEnabled ?? this.hapticsEnabled,
       strictGrading: strictGrading ?? this.strictGrading,
       locale: locale ?? this.locale,
+      showPinyinInSpeaking: showPinyinInSpeaking ?? this.showPinyinInSpeaking,
     );
   }
 }
@@ -77,6 +81,7 @@ class SettingsController extends StateNotifier<SettingsState> {
       hapticsEnabled: prefs.getBool(_keyHaptics) ?? true,
       strictGrading: prefs.getBool(_keyStrictGrading) ?? false,
       locale: prefs.getString(_keyLocale) ?? 'en',
+      showPinyinInSpeaking: prefs.getBool(_keyPinyinSpeaking) ?? true,
     )) {
       HapticsManager.setEnabled(state.hapticsEnabled);
     }
@@ -92,6 +97,7 @@ class SettingsController extends StateNotifier<SettingsState> {
   static const _keyHaptics = 'haptics_enabled';
   static const _keyStrictGrading = 'strict_grading';
   static const _keyLocale = 'app_locale';
+  static const _keyPinyinSpeaking = 'pinyin_speaking';
 
   Future<void> completeTutorial() async {
     await prefs.setBool(_keyTutorial, true);
@@ -147,6 +153,11 @@ class SettingsController extends StateNotifier<SettingsState> {
   Future<void> setLocale(String value) async {
     await prefs.setString(_keyLocale, value);
     state = state.copyWith(locale: value);
+  }
+
+  Future<void> togglePinyinSpeaking(bool value) async {
+    await prefs.setBool(_keyPinyinSpeaking, value);
+    state = state.copyWith(showPinyinInSpeaking: value);
   }
 }
 

@@ -7,6 +7,7 @@ import 'package:hanzi_master/features/settings/presentation/screens/contact_scre
 import 'package:hanzi_master/features/flashcards/presentation/screens/settings_screen.dart';
 import 'package:hanzi_master/features/auth/presentation/providers/auth_controller.dart';
 import 'package:hanzi_master/features/auth/presentation/screens/auth_screen.dart';
+import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 
 class ProfileScreen extends ConsumerWidget {
   const ProfileScreen({super.key});
@@ -43,7 +44,7 @@ class ProfileScreen extends ConsumerWidget {
                 title: const Text("Learning Stats", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16)),
                 subtitle: const Text("View your learning history and streaks", style: TextStyle(fontSize: 12, color: Colors.grey)),
                 trailing: const Icon(Icons.chevron_right, color: Colors.grey),
-                onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const StatsScreen())),
+                onTap: () => Navigator.push(context, SwipeBackPageRoute(builder: (context) => const StatsScreen())),
               ),
               _buildDivider(),
               ListTile(
@@ -72,7 +73,7 @@ class ProfileScreen extends ConsumerWidget {
                 title: const Text("Settings", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16)),
                 subtitle: const Text("Preferences, Audio, and Display", style: TextStyle(fontSize: 12, color: Colors.grey)),
                 trailing: const Icon(Icons.chevron_right, color: Colors.grey),
-                onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const SettingsScreen())),
+                onTap: () => Navigator.push(context, SwipeBackPageRoute(builder: (context) => const SettingsScreen())),
               ),
               _buildDivider(),
               ListTile(
@@ -85,7 +86,7 @@ class ProfileScreen extends ConsumerWidget {
                 title: const Text("Help & Support", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16)),
                 subtitle: const Text("Contact us and report issues", style: TextStyle(fontSize: 12, color: Colors.grey)),
                 trailing: const Icon(Icons.chevron_right, color: Colors.grey),
-                onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const ContactScreen())),
+                onTap: () => Navigator.push(context, SwipeBackPageRoute(builder: (context) => const ContactScreen())),
               ),
             ],
           ),

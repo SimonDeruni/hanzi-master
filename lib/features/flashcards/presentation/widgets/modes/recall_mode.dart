@@ -254,7 +254,7 @@ class _RecallModeWidgetState extends ConsumerState<RecallModeWidget> {
                 clipBehavior: Clip.antiAlias,
                 child: Stack(
                   children: [
-                    CalligraphyBackground(child: const SizedBox.expand()),
+                    Container(color: const Color(0xFFFDFCF0)),
                     GestureDetector(
                       onPanStart: _isRevealed ? null : (details) {
                         setState(() {

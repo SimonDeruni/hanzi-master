@@ -9,6 +9,7 @@ import 'dart:io';
 
 import 'dart:async';
 import 'package:uuid/uuid.dart';
+import 'dart:math' as math;
 import 'package:web_socket_channel/io.dart';
 
 import 'package:hanzi_master/core/services/api_key_pool.dart';
@@ -119,7 +120,7 @@ class AudioService {
 
     // Tier 3: Fast Cloud TTS
     try {
-      final result = await _fetchCloudTTS(hanzi, isPremium: false);
+      final result = await _fetchCloudTTS(hanzi);
       if (result != null && result.audio.isNotEmpty) {
         await cacheFile.writeAsBytes(result.audio);
         _currentBoundaries = result.boundaries;
@@ -137,11 +138,21 @@ class AudioService {
     return ttsResult != null && ttsResult == 1;
   }
 
+  /// Stable hash for caching TTS audio files (avoids hashCode changes across runs).
+  String _hashText(String text) {
+    var hash = 0;
+    for (var i = 0; i < text.length; i++) {
+      hash = 0x1fffffff & (hash * 31) + text.codeUnitAt(i);
+      hash ^= (hash >> 16) & 0xffff;
+    }
+    return hash.toRadixString(36);
+  }
+
   Future<bool> playSentence(String sentence) async {
     if (!_isInitialized) await init();
     await stop();
 
-    final hash = sentence.hashCode.toString();
+    final hash = _hashText(sentence);
     final cacheFile = File('${_cacheDir!.path}/tts_cache/$hash.mp3');
     final boundaryFile = File('${_cacheDir!.path}/tts_cache/$hash.json');
     
@@ -155,31 +166,28 @@ class AudioService {
            _currentBoundaries = list.cast<Map<String, dynamic>>();
          } catch(e) {}
       }
+      await _player.setPlaybackRate(1.0);
       await _player.play(DeviceFileSource(cacheFile.path));
       return true;
     }
 
-    // Premium Cloud TTS (Azure Neural Audio)
+    // Premium Cloud TTS with streaming (Azure Neural Audio)
     try {
-      final result = await _fetchCloudTTS(sentence, isPremium: true);
-      if (result != null && result.audio.isNotEmpty) {
-        await cacheFile.writeAsBytes(result.audio);
-        await boundaryFile.writeAsString(jsonEncode(result.boundaries));
-        _currentBoundaries = result.boundaries;
-        _currentBoundaryIndex = 0;
-        await _player.play(DeviceFileSource(cacheFile.path));
+      final result = await _fetchCloudTTS(sentence, cacheFile: cacheFile, boundaryFile: boundaryFile);
+      if (result != null && result.success) {
         return true;
       }
     } catch (e) {
-      debugPrint("Premium Cloud TTS failed for sentence: $e");
+      debugPrint("Cloud TTS streaming failed for sentence: $e");
     }
 
-    await _tts.setSpeechRate(_speechRate);
+    // Fallback: local TTS with corrected rate (0.5 = normal speed)
+    await _tts.setSpeechRate(0.5);
     final ttsResult = await _tts.speak(sentence);
     return ttsResult != null && ttsResult == 1;
   }
 
-  Future<CloudTtsResult?> _fetchCloudTTS(String text, {bool isPremium = true}) async {
+  Future<CloudTtsResult?> _fetchCloudTTS(String text, {File? cacheFile, File? boundaryFile}) async {
     final apiKey = _pool.azureSpeechKey;
     final region = _pool.azureSpeechRegion;
     if (apiKey.isEmpty || region.isEmpty || apiKey == 'MISSING_KEY') return null;
@@ -203,16 +211,34 @@ class AudioService {
 
     final audioBuffer = <int>[];
     final boundaries = <Map<String, dynamic>>[];
+    bool playbackStarted = false;
+    const int kStreamPlaybackThreshold = 50000;
     final completer = Completer<CloudTtsResult?>();
+
+    final tmpFile = cacheFile ?? File('${_cacheDir!.path}/tts_cache/tmp_${DateTime.now().millisecondsSinceEpoch}.mp3');
+    final sink = tmpFile.openWrite(mode: FileMode.write);
 
     channel.stream.listen((message) {
       if (message is String) {
         if (message.contains('Path:turn.end') || message.contains('Path: turn.end')) {
           if (!completer.isCompleted) {
-            completer.complete(CloudTtsResult(
-              audio: Uint8List.fromList(audioBuffer),
-              boundaries: boundaries,
-            ));
+            sink.flush().then((_) async {
+              await sink.close();
+              if (boundaryFile != null) {
+                try { await boundaryFile.writeAsString(jsonEncode(boundaries)); } catch(_) {}
+              }
+              if (!playbackStarted) {
+                _currentBoundaries = boundaries;
+                _currentBoundaryIndex = 0;
+                await _player.setPlaybackRate(1.0);
+                await _player.play(DeviceFileSource(tmpFile.path));
+              }
+              completer.complete(CloudTtsResult(
+                audio: Uint8List(0),
+                boundaries: boundaries,
+                success: true,
+              ));
+            });
           }
         } else if (message.contains('Path:audio.metadata') || message.contains('Path: audio.metadata')) {
           try {
@@ -241,28 +267,59 @@ class AudioService {
               final headerText = ascii.decode(message.sublist(2, offset), allowInvalid: true);
               if (headerText.contains('Path:audio')) {
                 audioBuffer.addAll(message.sublist(offset));
+                if (!playbackStarted && audioBuffer.length >= kStreamPlaybackThreshold) {
+                  playbackStarted = true;
+                  sink.flush().then((_) {
+                    _currentBoundaries = boundaries;
+                    _currentBoundaryIndex = 0;
+                    _player.setPlaybackRate(1.0);
+                    _player.play(DeviceFileSource(tmpFile.path));
+                  });
+                }
               }
             } catch(e) {
               // Fallback to appending directly if header decoding fails for some reason
               audioBuffer.addAll(message.sublist(offset));
+              if (!playbackStarted && audioBuffer.length >= kStreamPlaybackThreshold) {
+                playbackStarted = true;
+                sink.flush().then((_) {
+                  _currentBoundaries = boundaries;
+                  _currentBoundaryIndex = 0;
+                  _player.setPlaybackRate(1.0);
+                  _player.play(DeviceFileSource(tmpFile.path));
+                });
+              }
             }
           }
         }
       }
     }, onError: (e) {
       debugPrint('Azure TTS WS error: $e');
-      if (!completer.isCompleted) completer.complete(null);
+      if (!completer.isCompleted) { sink.close(); completer.complete(null); }
     }, onDone: () {
-      if (!completer.isCompleted) {
+      sink.flush().then((_) async {
+        await sink.close();
+        if (boundaryFile != null) {
+          try { await boundaryFile.writeAsString(jsonEncode(boundaries)); } catch(_) {}
+        }
+        if (!completer.isCompleted) {
         if (audioBuffer.isNotEmpty) {
+          if (!playbackStarted) {
+            _currentBoundaries = boundaries;
+            _currentBoundaryIndex = 0;
+            await _player.setPlaybackRate(1.0);
+            await _player.play(DeviceFileSource(tmpFile.path));
+          }
           completer.complete(CloudTtsResult(
             audio: Uint8List.fromList(audioBuffer),
             boundaries: boundaries,
+            success: true,
           ));
         } else {
           completer.complete(null);
         }
       }
+      });
     });
 
     final requestId = const Uuid().v4().replaceAll('-', '');
@@ -274,11 +331,11 @@ class AudioService {
       'X-Timestamp: $timestamp\r\n'
       'Content-Type: application/json; charset=utf-8\r\n'
       '\r\n'
-      '{"context":{"synthesis":{"audio":{"metadataOptions":{"wordBoundaryEnabled":true,"sentenceBoundaryEnabled":true},"outputFormat":"audio-24khz-48kbitrate-mono-mp3"}}}}'
+      '{"context":{"synthesis":{"audio":{"metadataOptions":{"wordBoundaryEnabled":true,"sentenceBoundaryEnabled":true},"outputFormat":"audio-16khz-32kbitrate-mono-mp3"}}}}'
     );
 
-    final ratePercent = ((_speechRate - 0.5) * 200).round();
-    final ssml = '''<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xml:lang='zh-CN'><voice name='zh-CN-XiaoxiaoNeural'><prosody rate='${ratePercent}%'>$safeText</prosody></voice></speak>''';
+    final ratePercent = math.max(-50, math.min(200, ((_speechRate - 0.5) * 200).round()));
+    final ssml = '''<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xml:lang='zh-CN'><voice name='zh-CN-XiaoxiaoNeural'><prosody rate='$ratePercent%'>$safeText</prosody></voice></speak>''';
 
     channel.sink.add(
       'Path: ssml\r\n'
@@ -291,6 +348,7 @@ class AudioService {
 
     return completer.future.timeout(const Duration(seconds: 15), onTimeout: () {
       channel?.sink.close();
+      sink.close();
       return null;
     }).whenComplete(() => channel?.sink.close());
   }
@@ -332,9 +390,11 @@ class AudioService {
 class CloudTtsResult {
   final Uint8List audio;
   final List<Map<String, dynamic>> boundaries;
+  final bool success;
 
   CloudTtsResult({
     required this.audio,
     required this.boundaries,
+    this.success = true,
   });
 }

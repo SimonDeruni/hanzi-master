@@ -6,6 +6,7 @@ class StudySessionAppBar extends StatelessWidget implements PreferredSizeWidget 
   final int newCount;
   final int learningCount;
   final VoidCallback? onBack;
+  final List<Widget>? extraActions;
 
   const StudySessionAppBar({
     super.key,
@@ -14,6 +15,7 @@ class StudySessionAppBar extends StatelessWidget implements PreferredSizeWidget 
     required this.newCount,
     this.learningCount = 0,
     this.onBack,
+    this.extraActions,
   });
 
   @override
@@ -27,6 +29,7 @@ class StudySessionAppBar extends StatelessWidget implements PreferredSizeWidget 
         onPressed: onBack ?? () => Navigator.pop(context),
       ),
       actions: [
+        if (extraActions != null) ...extraActions!,
         Padding(
           padding: const EdgeInsets.only(right: 16.0),
           child: Row(

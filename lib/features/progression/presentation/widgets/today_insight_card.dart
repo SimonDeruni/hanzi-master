@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/core/services/audio_service.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/character_detail_screen.dart';
+import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
+import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
 
 class TodayInsightCard extends ConsumerWidget {
@@ -11,31 +13,16 @@ class TodayInsightCard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
-    final todayWord = {
-      'hanzi': '诚',
-      'pinyin': 'chéng',
-      'meaning': 'sincere; honest',
-    };
+    final cards = ref.watch(flashcardControllerProvider).valueOrNull ?? [];
+    final todayWord = _pickDailyWord(cards);
+    final card = todayWord['_card'] as Flashcard?;
     
     return BouncingButton(
       scaleFactor: 0.97,
       onPressed: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (_) => const CharacterDetailScreen(
-              card: Flashcard(
-                id: 'mock_cheng',
-                hanzi: '诚',
-                pinyin: 'chéng',
-                definition: 'sincere; honest',
-                hskLevel: 4,
-                strokePaths: [],
-                modeStats: {},
-              ),
-            ),
-          ),
-        );
+        if (card != null) {
+          Navigator.push(context, SwipeBackPageRoute(builder: (_) => CharacterDetailScreen(card: card)));
+        }
       },
       child: Container(
         width: double.infinity,
@@ -165,4 +152,22 @@ class TodayInsightCard extends ConsumerWidget {
       ),
     );
   }
+}
+
+Map<String, dynamic> _pickDailyWord(List<Flashcard> cards) {
+  if (cards.isEmpty) {
+    return const {
+      'hanzi': '诚',
+      'pinyin': 'chéng',
+      'meaning': 'sincere; honest',
+    };
+  }
+  final daySeed = DateTime.now().millisecondsSinceEpoch ~/ 86400000;
+  final card = cards[daySeed % cards.length];
+  return {
+    'hanzi': card.hanzi,
+    'pinyin': card.pinyin,
+    'meaning': card.definition,
+    '_card': card,
+  };
 }

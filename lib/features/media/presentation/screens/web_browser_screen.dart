@@ -132,6 +132,12 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
       window.learningWords = ${jsonEncode(learningWords)};
 
       window.handleHanziClick = function(event, element, char) {
+        // If inside anchor, let the link navigate normally
+        let p = element.parentNode;
+        while (p) {
+          if (p.nodeName === 'A') return;
+          p = p.parentNode;
+        }
         event.preventDefault();
         event.stopPropagation();
         
@@ -154,6 +160,20 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
           context: contextText
         };
         HanziMasterChannel.postMessage(JSON.stringify(payload));
+      };
+
+      window.handleHanziLongPress = function(event, element, char) {
+        event.preventDefault();
+        let contextText = '';
+        let p = element.parentNode;
+        while (p) {
+          if (p.nodeName === 'P' || p.nodeName === 'DIV') {
+            contextText = p.innerText || '';
+            break;
+          }
+          p = p.parentNode;
+        }
+        HanziMasterChannel.postMessage(JSON.stringify({char: char, context: contextText}));
       };
 
       window.isWordInList = function(word, list) {
@@ -183,7 +203,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
                   borderStyle = '';
                 }
 
-                newHtml += "<span class='hanzi-clickable' style='cursor: pointer; " + colorStyle + borderStyle + "' onclick='handleHanziClick(event, this, \\"" + char + "\\")'>" + char + "</span>";
+                newHtml += "<span class='hanzi-clickable' style='cursor: pointer; " + colorStyle + borderStyle + "' onclick='handleHanziClick(event, this, \\"" + char + "\\")' oncontextmenu='handleHanziLongPress(event, this, \\"" + char + "\\")'>" + char + "</span>";
               } else {
                 newHtml += char;
               }
@@ -192,7 +212,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
             span.innerHTML = newHtml;
             node.parentNode.replaceChild(span, node);
           }
-        } else if (node.nodeType === 1 && node.nodeName !== 'SCRIPT' && node.nodeName !== 'STYLE') {
+        } else if (node.nodeType === 1 && node.nodeName !== 'SCRIPT' && node.nodeName !== 'STYLE' && node.nodeName !== 'A') {
           const children = Array.from(node.childNodes);
           for (let child of children) {
             window.makeChineseTextClickable(child);
@@ -506,6 +526,17 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
       _playNextSentence();
       return;
     }
+
+    // Pre-fetch the next sentence to warm the cache while current plays
+    final nextIdx = _currentSentenceIndex + 1;
+    if (nextIdx < _ttsSentences.length) {
+      final nextSentence = _ttsSentences[nextIdx].trim();
+      if (nextSentence.isNotEmpty) {
+        // Fire-and-forget: start downloading the next sentence in the background
+        ref.read(audioServiceProvider).playSentence(nextSentence).catchError((_) => false);
+      }
+    }
+
     await ref.read(audioServiceProvider).playSentence(sentence);
   }
 

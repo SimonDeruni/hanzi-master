@@ -37,12 +37,34 @@ class YoutubeRepository {
         try {
           final manifest = await _yt.videos.closedCaptions.getManifest(video.id);
           final hasChinese = manifest.tracks.any((t) => t.language.code.startsWith('zh'));
-          if (hasChinese) {
-            validVideos.add(video);
-          }
+          if (!hasChinese) continue;
         } catch (_) {
           // No closed captions or error fetching them, skip this video
+          continue;
         }
+        
+        // Verify the video actually has Chinese audio (not just CC)
+        try {
+          final streamManifest = await _yt.videos.streams.getManifest(video.id);
+          final hasChineseAudio = streamManifest.audioOnly.any((s) {
+            final track = s.audioTrack;
+            if (track == null) return false;
+            final name = track.displayName.toLowerCase();
+            return name.contains('中文') ||
+                name.contains('chinese') ||
+                name.contains('mandarin') ||
+                name.contains('cantonese') ||
+                name.contains('国语') ||
+                name.contains('普通话') ||
+                name.contains('粤语') ||
+                track.id.toLowerCase().startsWith('zh');
+          });
+          if (!hasChineseAudio) continue;
+        } catch (_) {
+          // If we can't check audio tracks, still include the video (CC was confirmed)
+        }
+        
+        validVideos.add(video);
         
         // Stop early if we have enough results to show a good initial list
         if (validVideos.length >= 6) break;

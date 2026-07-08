@@ -3,16 +3,20 @@ import 'dart:ui';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../domain/entities/scenario.dart';
 import 'conversation_screen.dart';
 import 'live_call_screen.dart';
+import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import '../widgets/custom_scenario_dialog.dart';
+import 'package:hanzi_master/features/flashcards/domain/entities/deck.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/deck_controller.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
 
 class ScenarioSelectionScreen extends ConsumerStatefulWidget {
-  const ScenarioSelectionScreen({super.key});
+  final Deck? deck;
+  const ScenarioSelectionScreen({super.key, this.deck});
 
   @override
   ConsumerState<ScenarioSelectionScreen> createState() => _ScenarioSelectionScreenState();
@@ -23,6 +27,7 @@ class _ScenarioSelectionScreenState extends ConsumerState<ScenarioSelectionScree
   late PageController _pageController;
   int _currentIndex = 0;
   String _selectedCategory = 'All';
+  bool _autoLaunchHandled = false;
 
   List<ConversationScenario> get _filteredScenarios {
     if (_selectedCategory == 'All') return _allScenarios;
@@ -47,12 +52,61 @@ class _ScenarioSelectionScreenState extends ConsumerState<ScenarioSelectionScree
   void didChangeDependencies() {
     super.didChangeDependencies();
     _allScenarios = [...getDefaultScenarios(context)];
+    if (widget.deck != null && !_autoLaunchHandled) {
+      _autoLaunchHandled = true;
+      _loadAndHandleDeckScenario();
+    }
   }
 
   @override
   void dispose() {
     _pageController.dispose();
     super.dispose();
+  }
+
+  Future<void> _loadAndHandleDeckScenario() async {
+    await _loadPersistedDeckScenarios();
+
+    final existing = _allScenarios.cast<ConversationScenario?>().firstWhere(
+      (s) => s!.deckId == widget.deck!.id,
+      orElse: () => null,
+    );
+
+    if (!mounted) return;
+
+    if (existing != null) {
+      _startScenario(context, existing, false);
+      return;
+    }
+
+    await _generateFromDeck(preselectedDeck: widget.deck);
+  }
+
+  Future<void> _loadPersistedDeckScenarios() async {
+    final prefs = await SharedPreferences.getInstance();
+    final stored = prefs.getString('deck_scenarios');
+    if (stored == null) return;
+    try {
+      final map = jsonDecode(stored) as Map<String, dynamic>;
+      for (final entry in map.entries) {
+        final scenario = ConversationScenario.fromJson(entry.value as Map<String, dynamic>);
+        final exists = _allScenarios.any((s) => s.id == scenario.id);
+        if (!exists) {
+          _allScenarios.add(scenario);
+        }
+      }
+    } catch (_) {}
+  }
+
+  Future<void> _saveDeckScenario(ConversationScenario scenario) async {
+    if (scenario.deckId == null) return;
+    final prefs = await SharedPreferences.getInstance();
+    final stored = prefs.getString('deck_scenarios');
+    final map = stored != null
+        ? jsonDecode(stored) as Map<String, dynamic>
+        : <String, dynamic>{};
+    map[scenario.deckId!] = scenario.toJson();
+    await prefs.setString('deck_scenarios', jsonEncode(map));
   }
 
   @override
@@ -303,30 +357,39 @@ class _ScenarioSelectionScreenState extends ConsumerState<ScenarioSelectionScree
     );
   }
 
-  Future<void> _generateFromDeck() async {
-    final asyncDecks = ref.read(deckControllerProvider);
-    if (asyncDecks.value == null || asyncDecks.value!.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('No decks available.')));
-      return;
-    }
-    
-    final selectedDeck = await showModalBottomSheet<String>(
-      context: context,
-      builder: (ctx) {
-        return ListView(
-          shrinkWrap: true,
-          children: asyncDecks.value!.map((d) => ListTile(
-            title: Text(d.localizedName(context)),
-            onTap: () => Navigator.pop(ctx, d.id),
-          )).toList(),
-        );
-      }
-    );
+  Future<void> _generateFromDeck({Deck? preselectedDeck}) async {
+    Deck deckInfo;
+    List<dynamic> deckCards;
 
-    if (selectedDeck == null) return;
-    final deckInfo = asyncDecks.value!.firstWhere((d) => d.id == selectedDeck);
-    final allCards = ref.read(flashcardControllerProvider).value ?? [];
-    final deckCards = allCards.where((c) => c.deckId == selectedDeck).toList();
+    if (preselectedDeck != null) {
+      deckInfo = preselectedDeck;
+      final allCards = ref.read(flashcardControllerProvider).value ?? [];
+      deckCards = allCards.where((c) => c.deckId == preselectedDeck.id).toList();
+    } else {
+      final asyncDecks = ref.read(deckControllerProvider);
+      if (asyncDecks.value == null || asyncDecks.value!.isEmpty) {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('No decks available.')));
+        return;
+      }
+
+      final selectedDeck = await showModalBottomSheet<String>(
+        context: context,
+        builder: (ctx) {
+          return ListView(
+            shrinkWrap: true,
+            children: asyncDecks.value!.map((d) => ListTile(
+              title: Text(d.localizedName(context)),
+              onTap: () => Navigator.pop(ctx, d.id),
+            )).toList(),
+          );
+        }
+      );
+
+      if (selectedDeck == null) return;
+      deckInfo = asyncDecks.value!.firstWhere((d) => d.id == selectedDeck);
+      final allCards = ref.read(flashcardControllerProvider).value ?? [];
+      deckCards = allCards.where((c) => c.deckId == selectedDeck).toList();
+    }
 
     if (deckCards.isEmpty) {
       if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Deck is empty.')));
@@ -384,6 +447,7 @@ Respond ONLY with a JSON object containing:
       
       final newScenario = ConversationScenario(
         id: 'deck_${DateTime.now().millisecondsSinceEpoch}',
+        deckId: deckInfo.id,
         title: data['title'] ?? 'Deck Practice',
         description: data['description'] ?? 'Practice vocabulary.',
         initialAiMessage: data['initialAiMessage'] ?? '你好！',
@@ -396,11 +460,17 @@ Respond ONLY with a JSON object containing:
         isCustom: true,
         voiceName: 'Puck',
       );
+
+      await _saveDeckScenario(newScenario);
       
       setState(() {
         _allScenarios.insert(0, newScenario);
         _pageController.jumpToPage(0);
       });
+
+      if (preselectedDeck != null && mounted) {
+        _startScenario(context, newScenario, false);
+      }
     } catch (e) {
       if (!mounted) return;
       Navigator.pop(context); // Close loading
@@ -420,9 +490,9 @@ Respond ONLY with a JSON object containing:
 
   void _startScenario(BuildContext context, ConversationScenario scenario, bool isVoice) {
     if (isVoice) {
-      Navigator.push(context, MaterialPageRoute(builder: (context) => LiveCallScreen(scenario: scenario)));
+      Navigator.push(context, SwipeBackPageRoute(builder: (context) => LiveCallScreen(scenario: scenario)));
     } else {
-      Navigator.push(context, MaterialPageRoute(builder: (context) => ConversationScreen(scenario: scenario)));
+      Navigator.push(context, SwipeBackPageRoute(builder: (context) => ConversationScreen(scenario: scenario)));
     }
   }
 }
