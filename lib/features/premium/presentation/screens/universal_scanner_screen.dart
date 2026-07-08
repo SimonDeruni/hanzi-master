@@ -206,22 +206,31 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
         return;
       }
 
-      final textFuture = _textRecognizer.processImage(inputImage);
-      final objectsFuture = _visionService.processImage(inputImage);
-
-      final results = await Future.wait([textFuture, objectsFuture]);
-      final recognizedText = results[0] as RecognizedText;
-      final objects = results[1] as List<DetectedObject>;
+      // Run detectors independently so one failure doesn't kill the other
+      RecognizedText? recognizedText;
+      List<DetectedObject> objects = [];
+      try {
+        recognizedText = await _textRecognizer.processImage(inputImage);
+      } catch (e) {
+        debugPrint("Text recognition error: $e");
+      }
+      try {
+        objects = await _visionService.processImage(inputImage);
+      } catch (e) {
+        debugPrint("Object detection error: $e");
+      }
 
       final chineseRegex = RegExp(r'[\u4e00-\u9fa5]');
       final List<TranslatedTextBlock> newBlocks = [];
-      for (final block in recognizedText.blocks) {
-        if (block.text.trim().length > 1 && chineseRegex.hasMatch(block.text)) {
-          newBlocks.add(TranslatedTextBlock(
-            boundingBox: block.boundingBox,
-            originalText: block.text,
-            translatedText: '',
-          ));
+      if (recognizedText != null) {
+        for (final block in recognizedText.blocks) {
+          if (block.text.trim().length > 1 && chineseRegex.hasMatch(block.text)) {
+            newBlocks.add(TranslatedTextBlock(
+              boundingBox: block.boundingBox,
+              originalText: block.text,
+              translatedText: block.text,
+            ));
+          }
         }
       }
 
@@ -1646,6 +1655,11 @@ class TranslationOverlayPainter extends CustomPainter {
       ..color = Colors.black.withValues(alpha: 0.8)
       ..style = PaintingStyle.fill;
 
+    final Paint borderPaint = Paint()
+      ..color = const Color(0xFFFDFCF0).withValues(alpha: 0.9)
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 2;
+
     for (final block in blocks) {
       final rect = Rect.fromLTRB(
         block.boundingBox.left * scale + offsetX,
@@ -1654,7 +1668,9 @@ class TranslationOverlayPainter extends CustomPainter {
         block.boundingBox.bottom * scale + offsetY,
       );
 
-      canvas.drawRRect(RRect.fromRectAndRadius(rect, const Radius.circular(4)), bgPaint);
+      final rrect = RRect.fromRectAndRadius(rect, const Radius.circular(4));
+      canvas.drawRRect(rrect, bgPaint);
+      canvas.drawRRect(rrect, borderPaint);
 
       final textSpan = TextSpan(
         text: block.translatedText,

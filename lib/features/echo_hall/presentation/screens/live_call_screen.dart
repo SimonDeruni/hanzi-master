@@ -359,12 +359,10 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
           if (_audioBuffer.length >= 16000) {
             _channel!.sink.add(jsonEncode({
               "realtimeInput": {
-                "mediaChunks": [
-                  {
-                    "mimeType": "audio/pcm;rate=16000",
-                    "data": base64Encode(_audioBuffer)
-                  }
-                ]
+                "audio": {
+                  "mimeType": "audio/pcm;rate=16000",
+                  "data": base64Encode(_audioBuffer)
+                }
               }
             }));
             _audioBuffer.clear();

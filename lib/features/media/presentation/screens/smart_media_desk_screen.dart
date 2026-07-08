@@ -53,6 +53,7 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
   int _hskLevel = 2;
   Map<int, String> _simplifiedTranscript = {};
   bool _isShadowingMode = false;
+  bool _captionsDisabled = false;
   bool _isRecording = false;
   int? _recordingLineIndex;
   String _shadowFeedback = '';
@@ -211,6 +212,13 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
         _playerController.unMute();
         _playerController.setPlaybackRate(_playbackRate);
         _wasMutedForAutoplay = false;
+      }
+
+      if (!_captionsDisabled) {
+        _captionsDisabled = true;
+        _playerController.webViewController.runJavaScript(
+          'player.setOption("captions", "track", {});',
+        );
       }
       
       if (_transcript == null) return;

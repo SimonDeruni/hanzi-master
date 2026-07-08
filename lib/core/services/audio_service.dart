@@ -20,8 +20,8 @@ final audioServiceProvider = Provider<AudioService>((ref) {
 
 class AudioService {
   final ApiKeyPool _pool;
-  final AudioPlayer _audioPlayer = AudioPlayer();
-  final FlutterTts _fallbackTts = FlutterTts();
+  AudioPlayer? _audioPlayer;
+  FlutterTts? _fallbackTts;
   Map<String, String> _nativeManifest = {};
   bool _isInitialized = false;
   
@@ -30,10 +30,20 @@ class AudioService {
 
   final StreamController<Map<String, dynamic>> _wordBoundaryController = StreamController.broadcast();
   Stream<Map<String, dynamic>> get onWordBoundary => _wordBoundaryController.stream;
-  Stream<void> get onPlayerComplete => _audioPlayer.onPlayerComplete;
+  Stream<void> get onPlayerComplete => _player.onPlayerComplete;
 
   List<Map<String, dynamic>> _currentBoundaries = [];
   int _currentBoundaryIndex = 0;
+
+  AudioPlayer get _player {
+    _audioPlayer ??= AudioPlayer();
+    return _audioPlayer!;
+  }
+
+  FlutterTts get _tts {
+    _fallbackTts ??= FlutterTts();
+    return _fallbackTts!;
+  }
 
   AudioService({required ApiKeyPool pool}) : _pool = pool;
 
@@ -47,13 +57,17 @@ class AudioService {
       debugPrint("Audio init failed: $e");
     }
 
-    _cacheDir = await getApplicationDocumentsDirectory();
+    try {
+      _cacheDir = await getApplicationDocumentsDirectory();
+    } catch (e) {
+      _cacheDir = Directory.systemTemp;
+    }
     final audioDir = Directory('${_cacheDir!.path}/tts_cache');
     if (!await audioDir.exists()) {
       await audioDir.create(recursive: true);
     }
 
-    _audioPlayer.onPositionChanged.listen((position) {
+    _player.onPositionChanged.listen((position) {
       if (_currentBoundaries.isEmpty || _currentBoundaryIndex >= _currentBoundaries.length) return;
       
       final currentMs = position.inMilliseconds;
@@ -70,13 +84,13 @@ class AudioService {
       }
     });
 
-    await _fallbackTts.setLanguage("zh-CN");
-    await _fallbackTts.setSpeechRate(0.5);
+    await _tts.setLanguage("zh-CN");
+    await _tts.setSpeechRate(0.5);
     
     _isInitialized = true;
   }
 
-  Future<void> playCharacter(String hanzi) async {
+  Future<bool> playCharacter(String hanzi) async {
     if (!_isInitialized) await init();
     await stop();
 
@@ -84,8 +98,8 @@ class AudioService {
     final fileName = _nativeManifest[hanzi];
     if (fileName != null) {
       try {
-        await _audioPlayer.play(AssetSource('audio/$fileName'));
-        return;
+        await _player.play(AssetSource('audio/$fileName'));
+        return true;
       } catch (e) {
         debugPrint("Failed to play native audio for $hanzi: $e");
       }
@@ -95,8 +109,8 @@ class AudioService {
     final cacheFile = File('${_cacheDir!.path}/tts_cache/$hanzi.mp3');
     if (await cacheFile.exists()) {
       try {
-        await _audioPlayer.play(DeviceFileSource(cacheFile.path));
-        return;
+        await _player.play(DeviceFileSource(cacheFile.path));
+        return true;
       } catch (e) {
         debugPrint("Failed to play cached audio for $hanzi: $e");
       }
@@ -109,18 +123,19 @@ class AudioService {
         await cacheFile.writeAsBytes(result.audio);
         _currentBoundaries = result.boundaries;
         _currentBoundaryIndex = 0;
-        await _audioPlayer.play(DeviceFileSource(cacheFile.path));
-        return;
+        await _player.play(DeviceFileSource(cacheFile.path));
+        return true;
       }
     } catch (e) {
       debugPrint("Cloud TTS failed for $hanzi: $e");
     }
 
     // Tier 4: Local TTS Fallback
-    await _fallbackTts.speak(hanzi);
+    final ttsResult = await _tts.speak(hanzi);
+    return ttsResult != null && ttsResult == 1;
   }
 
-  Future<void> playSentence(String sentence) async {
+  Future<bool> playSentence(String sentence) async {
     if (!_isInitialized) await init();
     await stop();
 
@@ -138,11 +153,11 @@ class AudioService {
            _currentBoundaries = list.cast<Map<String, dynamic>>();
          } catch(e) {}
       }
-      await _audioPlayer.play(DeviceFileSource(cacheFile.path));
-      return;
+      await _player.play(DeviceFileSource(cacheFile.path));
+      return true;
     }
 
-    // Tier 3: Premium Cloud TTS (Azure Neural Audio)
+    // Premium Cloud TTS (Azure Neural Audio)
     try {
       final result = await _fetchCloudTTS(sentence, isPremium: true);
       if (result != null && result.audio.isNotEmpty) {
@@ -150,14 +165,15 @@ class AudioService {
         await boundaryFile.writeAsString(jsonEncode(result.boundaries));
         _currentBoundaries = result.boundaries;
         _currentBoundaryIndex = 0;
-        await _audioPlayer.play(DeviceFileSource(cacheFile.path));
-        return;
+        await _player.play(DeviceFileSource(cacheFile.path));
+        return true;
       }
     } catch (e) {
       debugPrint("Premium Cloud TTS failed for sentence: $e");
     }
 
-    await _fallbackTts.speak(sentence);
+    final ttsResult = await _tts.speak(sentence);
+    return ttsResult != null && ttsResult == 1;
   }
 
   Future<CloudTtsResult?> _fetchCloudTTS(String text, {bool isPremium = true}) async {
@@ -276,34 +292,34 @@ class AudioService {
   }
 
   Future<void> stop() async {
-    await _audioPlayer.stop();
-    await _fallbackTts.stop();
+    await _player.stop();
+    await _tts.stop();
   }
 
   Future<void> setSpeechRate(double rate) async {
-    await _fallbackTts.setSpeechRate(rate);
+    await _tts.setSpeechRate(rate);
   }
 
   // SFX Methods
   Future<void> playCorrectSfx() async {
-    await _audioPlayer.play(AssetSource('audio/sfx_correct.wav'));
+    await _player.play(AssetSource('audio/sfx_correct.wav'));
   }
 
   Future<void> playWrongSfx() async {
-    await _audioPlayer.play(AssetSource('audio/sfx_wrong.wav'));
+    await _player.play(AssetSource('audio/sfx_wrong.wav'));
   }
 
   Future<void> playCompleteSfx() async {
-    await _audioPlayer.play(AssetSource('audio/sfx_complete.wav'));
+    await _player.play(AssetSource('audio/sfx_complete.wav'));
   }
 
   Future<void> playStreakSfx() async {
-    await _audioPlayer.play(AssetSource('audio/sfx_streak.wav'));
+    await _player.play(AssetSource('audio/sfx_streak.wav'));
   }
 
   void dispose() {
-    _audioPlayer.dispose();
-    _fallbackTts.stop();
+    _player.dispose();
+    _tts.stop();
     _wordBoundaryController.close();
   }
 }

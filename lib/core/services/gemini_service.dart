@@ -259,6 +259,7 @@ class GeminiService {
     final body = {
       'model': model,
       'messages': messages,
+      'max_tokens': 2048,
     };
     
     if (jsonMode) {
@@ -304,6 +305,7 @@ class GeminiService {
     request.body = jsonEncode({
       'model': 'google/gemini-2.5-flash',
       'messages': [{'role': 'user', 'content': prompt}],
+      'max_tokens': 2048,
       'stream': true,
     });
 
@@ -933,7 +935,7 @@ Respond ONLY with the translated text. Do not add any conversational filler, mar
     final prompt = '''
 You are a professional Chinese language professor creating Graded Readers.
 Write an engaging, culturally accurate story or article about "$topic" (Category: $category).
-CRITICAL: You MUST restrict your vocabulary entirely to the HSK $hskLevel word list. Keep it under 400 words.
+CRITICAL: You MUST restrict your vocabulary entirely to the HSK $hskLevel word list. Keep it under 1000 words.
 
 Respond ONLY in valid JSON format with this exact structure. DO NOT CUT OFF mid-generation. Ensure the JSON is complete and valid:
 CRITICAL: Put the $targetLanguage translation in the "english" JSON key!
@@ -1038,10 +1040,10 @@ Respond ONLY with a valid JSON document matching this exact structure:
     }
 
     final prompt = '''
-You are a Chinese learning assistant. Write a short Chinese story (around 3-5 paragraphs) about "$topic" in the "$category" category.
+You are a Chinese learning assistant. Write a Chinese story (5-8 paragraphs) about "$topic" in the "$category" category.
 CRITICAL INSTRUCTION: The story MUST be written strictly using HSK level $hskLevel vocabulary and grammar. Do not use advanced vocabulary.
 $focusInstructions
-Keep it under 200 words.
+Keep it under 800 words.
 Respond ONLY with the Chinese text. Do not include pinyin or translations. Do not include any formatting or introductions. Just the raw Chinese characters.
 ''';
     yield* streamOpenRouterText(prompt);
@@ -1358,7 +1360,28 @@ Respond ONLY in valid JSON format like:
       'Pronunciation-Assessment': base64Params,
     });
     
-    request.bodyBytes = audioBytes;
+    List<int> finalBytes = audioBytes;
+    if (audioBytes.length > 4 && !(audioBytes[0] == 82 && audioBytes[1] == 73 && audioBytes[2] == 70 && audioBytes[3] == 70)) {
+      final byteCount = audioBytes.length;
+      final wavHeader = <int>[
+        82, 73, 70, 70,
+        (36 + byteCount) & 0xff, ((36 + byteCount) >> 8) & 0xff, ((36 + byteCount) >> 16) & 0xff, ((36 + byteCount) >> 24) & 0xff,
+        87, 65, 86, 69,
+        102, 109, 116, 32,
+        16, 0, 0, 0,
+        1, 0,
+        1, 0,
+        128, 62, 0, 0,
+        0, 125, 0, 0,
+        2, 0,
+        16, 0,
+        100, 97, 116, 97,
+        byteCount & 0xff, (byteCount >> 8) & 0xff, (byteCount >> 16) & 0xff, (byteCount >> 24) & 0xff,
+      ];
+      finalBytes = List<int>.from(wavHeader)..addAll(audioBytes);
+    }
+    
+    request.bodyBytes = finalBytes;
 
     try {
       final response = await http.Client().send(request);

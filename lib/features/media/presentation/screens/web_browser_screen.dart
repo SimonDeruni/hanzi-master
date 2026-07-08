@@ -57,6 +57,10 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
   bool _isTranslating = false;
 
   StreamSubscription? _boundarySub;
+  StreamSubscription? _ttsCompleteSub;
+  List<String> _ttsSentences = [];
+  List<int> _ttsSentenceOffsets = [];
+  int _currentSentenceIndex = 0;
 
   @override
   void initState() {
@@ -110,6 +114,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
     _pulseController.dispose();
     _urlController.dispose();
     _boundarySub?.cancel();
+    _ttsCompleteSub?.cancel();
     ref.read(audioServiceProvider).stop();
     super.dispose();
   }
@@ -302,17 +307,8 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
   void _initTts() {
     final audioService = ref.read(audioServiceProvider);
     
-    audioService.onPlayerComplete.listen((_) {
-      if (mounted) setState(() => _isReadingAloud = false);
-      _controller.runJavaScript('''
-        if (window.removeTtsHighlight) window.removeTtsHighlight();
-        const btn = document.getElementById('tts-btn');
-        if (btn) {
-          btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg> Listen`;
-          btn.style.background = '#1A1A1B';
-          btn.style.opacity = '1';
-        }
-      ''');
+    _ttsCompleteSub = audioService.onPlayerComplete.listen((_) {
+      _playNextSentence();
     });
 
     _boundarySub = audioService.onWordBoundary.listen((boundary) {
@@ -328,9 +324,10 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
       }
       
       if (startOffset != -1) {
+        final offset = _ttsSentenceOffsets.isNotEmpty ? _ttsSentenceOffsets[_currentSentenceIndex] : 0;
         final js = '''
           if (window.highlightTtsOffset) {
-            window.highlightTtsOffset($startOffset, $endOffset);
+            window.highlightTtsOffset(${startOffset + offset}, ${endOffset + offset});
           }
         ''';
         _controller.runJavaScript(js);
@@ -338,100 +335,151 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
     });
   }
 
-  Future<void> _playTts({String? text}) async {
-    String parsedText = text ?? "";
-    if (parsedText.isEmpty) {
-      final jsResult = await _controller.runJavaScriptReturningResult('''
-        (function() {
-          let bestNode = document.body;
-          const articles = document.querySelectorAll('article, .article, .post, .content, main');
-          if (articles.length > 0) {
-            bestNode = articles[0];
+  void _playNextSentence() {
+    if (_ttsSentences.isEmpty) return;
+    _currentSentenceIndex++;
+    if (_currentSentenceIndex < _ttsSentences.length) {
+      _playCurrentSentence();
+    } else {
+      _ttsSentences = [];
+      _currentSentenceIndex = 0;
+      _ttsSentenceOffsets = [];
+      if (mounted) {
+        setState(() => _isReadingAloud = false);
+        _controller.runJavaScript('''
+          if (window.removeTtsHighlight) window.removeTtsHighlight();
+          const btn = document.getElementById('tts-btn');
+          if (btn) {
+            btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg> Listen`;
+            btn.style.opacity = '1';
           }
-          window.ttsRootNode = bestNode;
-          
-          // Inject TreeWalker highlighter
-          if (!window.highlightTtsOffset) {
-            window.removeTtsHighlight = function() {
-              const prev = document.querySelectorAll('.tts-active-word');
-              prev.forEach(el => {
-                const parent = el.parentNode;
-                parent.replaceChild(document.createTextNode(el.textContent), el);
-                parent.normalize();
-              });
-            };
-            
-            window.highlightTtsOffset = function(startOffset, endOffset) {
-              window.removeTtsHighlight();
-              if (!window.ttsRootNode) return;
-              
-              const walker = document.createTreeWalker(window.ttsRootNode, NodeFilter.SHOW_TEXT, null, false);
-              let currentOffset = 0;
-              let startNode = null, startNodeOffset = 0;
-              let endNode = null, endNodeOffset = 0;
-              
-              while (walker.nextNode()) {
-                const node = walker.currentNode;
-                // Ignore script and style elements
-                if (node.parentNode && (node.parentNode.nodeName === 'SCRIPT' || node.parentNode.nodeName === 'STYLE')) {
-                  continue;
-                }
-                const len = node.textContent.length;
-                if (!startNode && currentOffset + len > startOffset) {
-                  startNode = node;
-                  startNodeOffset = startOffset - currentOffset;
-                }
-                if (startNode && currentOffset + len >= endOffset) {
-                  endNode = node;
-                  endNodeOffset = endOffset - currentOffset;
-                  break;
-                }
-                currentOffset += len;
-              }
-              
-              if (startNode && endNode) {
-                try {
-                  const range = document.createRange();
-                  range.setStart(startNode, startNodeOffset);
-                  range.setEnd(endNode, endNodeOffset);
-                  const span = document.createElement('span');
-                  span.className = 'tts-active-word';
-                  span.style.backgroundColor = '#FFEB3B';
-                  span.style.color = '#000';
-                  span.style.borderRadius = '2px';
-                  range.surroundContents(span);
-                  span.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                } catch(e) {}
-              }
-            };
-          }
-          
-          // Extract text cleanly by ONLY taking the Chinese sentences we wrapped earlier
-          const sentenceNodes = bestNode.querySelectorAll('.sentence-text');
-          let text = '';
-          sentenceNodes.forEach(node => {
-             text += node.innerText + ' ';
-          });
-          
-          return text;
-        })();
-      ''');
-      parsedText = jsResult.toString();
-      
-      // JSON decode if it's wrapped in quotes by JS bridge
-      try {
-        if (parsedText.startsWith('"') && parsedText.endsWith('"')) {
-          parsedText = jsonDecode(parsedText);
-        }
-      } catch(_) {}
+        ''');
+      }
     }
-    
-    // Remove emojis
-    parsedText = parsedText.replaceAll(RegExp(r'[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{1F600}-\u{1F64F}\u{1F680}-\u{1F6FF}\u{1F1E6}-\u{1F1FF}]', unicode: true), '');
-    
-    if (parsedText.trim().isNotEmpty) {
-      if (mounted) setState(() => _isReadingAloud = true);
-      await ref.read(audioServiceProvider).playSentence(parsedText);
+  }
+
+  Future<void> _playTts({String? text}) async {
+    if (text != null && text.isNotEmpty) {
+      _ttsSentences = [text];
+      _ttsSentenceOffsets = [0];
+      _currentSentenceIndex = 0;
+      if (mounted) {
+        setState(() => _isReadingAloud = true);
+        _updateTtsButton(true);
+      }
+      await ref.read(audioServiceProvider).playSentence(text);
+      return;
+    }
+
+    final jsResult = await _controller.runJavaScriptReturningResult('''
+      (function() {
+        let bestNode = document.body;
+        const articles = document.querySelectorAll('article, .article, .post, .content, main');
+        if (articles.length > 0) {
+          bestNode = articles[0];
+        }
+        window.ttsRootNode = bestNode;
+
+        if (!window.highlightTtsOffset) {
+          window.removeTtsHighlight = function() {
+            const prev = document.querySelectorAll('.tts-active-word');
+            prev.forEach(el => {
+              const parent = el.parentNode;
+              parent.replaceChild(document.createTextNode(el.textContent), el);
+              parent.normalize();
+            });
+          };
+
+          window.highlightTtsOffset = function(startOffset, endOffset) {
+            window.removeTtsHighlight();
+            if (!window.ttsRootNode) return;
+
+            const walker = document.createTreeWalker(window.ttsRootNode, NodeFilter.SHOW_TEXT, null, false);
+            let currentOffset = 0;
+            let startNode = null, startNodeOffset = 0;
+            let endNode = null, endNodeOffset = 0;
+
+            while (walker.nextNode()) {
+              const node = walker.currentNode;
+              if (node.parentNode && (node.parentNode.nodeName === 'SCRIPT' || node.parentNode.nodeName === 'STYLE')) {
+                continue;
+              }
+              const len = node.textContent.length;
+              if (!startNode && currentOffset + len > startOffset) {
+                startNode = node;
+                startNodeOffset = startOffset - currentOffset;
+              }
+              if (startNode && currentOffset + len >= endOffset) {
+                endNode = node;
+                endNodeOffset = endOffset - currentOffset;
+                break;
+              }
+              currentOffset += len;
+            }
+
+            if (startNode && endNode) {
+              try {
+                const range = document.createRange();
+                range.setStart(startNode, startNodeOffset);
+                range.setEnd(endNode, endNodeOffset);
+                const span = document.createElement('span');
+                span.className = 'tts-active-word';
+                span.style.backgroundColor = '#FFEB3B';
+                span.style.color = '#000';
+                span.style.borderRadius = '2px';
+                range.surroundContents(span);
+                span.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              } catch(e) {}
+            }
+          };
+        }
+
+        const sentenceNodes = bestNode.querySelectorAll('.sentence-text');
+        const result = [];
+        sentenceNodes.forEach(node => {
+          result.push(node.innerText.trim());
+        });
+        return JSON.stringify(result);
+      })();
+    ''');
+
+    String raw = jsResult.toString();
+    try {
+      if (raw.startsWith('"') && raw.endsWith('"')) {
+        raw = jsonDecode(raw);
+      }
+    } catch (_) {}
+
+    List<String> sentences = [];
+    try {
+      sentences = (jsonDecode(raw) as List).cast<String>();
+    } catch (_) {
+      return;
+    }
+
+    final emojiRegex = RegExp(r'[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{1F600}-\u{1F64F}\u{1F680}-\u{1F6FF}\u{1F1E6}-\u{1F1FF}]', unicode: true);
+    sentences = sentences.map((s) => s.replaceAll(emojiRegex, '').trim()).where((s) => s.isNotEmpty).toList();
+
+    if (sentences.isEmpty) return;
+
+    _ttsSentences = sentences;
+    _ttsSentenceOffsets = [];
+    int offset = 0;
+    for (final s in sentences) {
+      _ttsSentenceOffsets.add(offset);
+      offset += s.length + 1;
+    }
+    _currentSentenceIndex = 0;
+
+    if (mounted) {
+      setState(() => _isReadingAloud = true);
+      _updateTtsButton(true);
+    }
+    await ref.read(audioServiceProvider).playSentence(sentences[0]);
+  }
+
+  void _updateTtsButton(bool isPlaying) {
+    if (isPlaying) {
       _controller.runJavaScript('''
         const btn = document.getElementById('tts-btn');
         if (btn) {
@@ -440,10 +488,31 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
           btn.style.opacity = '0.75';
         }
       ''');
+    } else {
+      _controller.runJavaScript('''
+        const btn = document.getElementById('tts-btn');
+        if (btn) {
+          btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg> Listen`;
+          btn.style.opacity = '1';
+        }
+      ''');
     }
   }
 
+  Future<void> _playCurrentSentence() async {
+    if (!mounted || _currentSentenceIndex >= _ttsSentences.length) return;
+    final sentence = _ttsSentences[_currentSentenceIndex].trim();
+    if (sentence.isEmpty) {
+      _playNextSentence();
+      return;
+    }
+    await ref.read(audioServiceProvider).playSentence(sentence);
+  }
+
   Future<void> _stopTts() async {
+    _ttsSentences = [];
+    _currentSentenceIndex = 0;
+    _ttsSentenceOffsets = [];
     await ref.read(audioServiceProvider).stop();
     _controller.runJavaScript('''
       const btn = document.getElementById('tts-btn');
@@ -826,193 +895,200 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
                   height: 150,
                   child: Center(child: AiProgressBar(label: 'Translating text...')),
                 )
-              : Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              : ConstrainedBox(
+                  constraints: BoxConstraints(
+                    maxHeight: MediaQuery.of(context).size.height * 0.45,
+                  ),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Expanded(
-                          child: Text(
-                            _activeTranslation!.chinese,
-                            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, height: 1.5),
-                          ),
-                        ),
                         Row(
-                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            IconButton(
-                              icon: Icon(_isTranslationBlurred ? Icons.visibility_off : Icons.visibility),
-                              color: Colors.grey[700],
-                              onPressed: () {
-                                setState(() {
-                                  _isTranslationBlurred = !_isTranslationBlurred;
-                                });
-                              },
+                            Expanded(
+                              child: Text(
+                                _activeTranslation!.chinese,
+                                style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, height: 1.5),
+                              ),
                             ),
-                            IconButton(
-                              icon: const Icon(Icons.close),
-                              color: Colors.grey[700],
-                              onPressed: () {
-                                setState(() {
-                                  _activeTranslation = null;
-                                  _isTranslating = false;
-                                });
-                              },
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 12),
-                    ImageFiltered(
-                      imageFilter: ImageFilter.blur(
-                        sigmaX: _isTranslationBlurred ? 5.0 : 0.0,
-                        sigmaY: _isTranslationBlurred ? 5.0 : 0.0,
-                      ),
-                      child: Text(
-                        _activeTranslation!.english,
-                        style: const TextStyle(fontSize: 16, color: Colors.black87),
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                    SizedBox(
-                      height: 80,
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: _activeTranslation!.words.length,
-                        itemBuilder: (context, index) {
-                          final w = _activeTranslation!.words[index];
-                          return Container(
-                            width: 140,
-                            margin: const EdgeInsets.only(right: 12),
-                            padding: const EdgeInsets.all(8),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(12),
-                              border: Border.all(color: Colors.black12),
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                            Row(
+                              mainAxisSize: MainAxisSize.min,
                               children: [
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Expanded(
-                                      child: GestureDetector(
-                                        onTap: () => showQuickLook(context, w.hanzi, contextText: _activeTranslation!.chinese),
-                                        child: Text(
-                                          w.hanzi,
-                                          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                      ),
-                                    ),
-                                    GestureDetector(
-                                      onTap: () => showQuickLook(context, w.hanzi, contextText: _activeTranslation!.chinese),
-                                      child: const Icon(Icons.add_circle_outline, size: 20, color: Colors.blue),
-                                    ),
-                                  ],
+                                IconButton(
+                                  icon: Icon(_isTranslationBlurred ? Icons.visibility_off : Icons.visibility),
+                                  color: Colors.grey[700],
+                                  onPressed: () {
+                                    setState(() {
+                                      _isTranslationBlurred = !_isTranslationBlurred;
+                                    });
+                                  },
                                 ),
-                                ImageFiltered(
-                                  imageFilter: ImageFilter.blur(
-                                    sigmaX: _isTranslationBlurred ? 4.0 : 0.0,
-                                    sigmaY: _isTranslationBlurred ? 4.0 : 0.0,
-                                  ),
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text(w.pinyin, style: const TextStyle(fontSize: 12, color: Colors.grey), overflow: TextOverflow.ellipsis),
-                                      Text(w.meaning, style: const TextStyle(fontSize: 12), overflow: TextOverflow.ellipsis, maxLines: 1),
-                                    ],
-                                  ),
+                                IconButton(
+                                  icon: const Icon(Icons.close),
+                                  color: Colors.grey[700],
+                                  onPressed: () {
+                                    setState(() {
+                                      _activeTranslation = null;
+                                      _isTranslating = false;
+                                    });
+                                  },
                                 ),
                               ],
                             ),
-                          );
-                        },
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                    SizedBox(
-                      width: double.infinity,
-                      child: ElevatedButton.icon(
-                        icon: const Icon(Icons.auto_awesome),
-                        label: const Text('Extract & Simplify'),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.blueAccent.withValues(alpha: 0.1),
-                          foregroundColor: Colors.blueAccent,
-                          elevation: 0,
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                          ],
                         ),
-                        onPressed: () async {
-                          final text = _activeTranslation!.chinese;
-                          
-                          // Show HSK level picker
-                          final selectedLevel = await showModalBottomSheet<int>(
-                            context: context,
-                            shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
-                            builder: (context) {
-                              return SafeArea(
+                        const SizedBox(height: 12),
+                        ImageFiltered(
+                          imageFilter: ImageFilter.blur(
+                            sigmaX: _isTranslationBlurred ? 5.0 : 0.0,
+                            sigmaY: _isTranslationBlurred ? 5.0 : 0.0,
+                          ),
+                          child: Text(
+                            _activeTranslation!.english,
+                            style: const TextStyle(fontSize: 16, color: Colors.black87),
+                          ),
+                        ),
+                        const SizedBox(height: 16),
+                        SizedBox(
+                          height: 80,
+                          child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: _activeTranslation!.words.length,
+                            itemBuilder: (context, index) {
+                              final w = _activeTranslation!.words[index];
+                              return Container(
+                                width: 140,
+                                margin: const EdgeInsets.only(right: 12),
+                                padding: const EdgeInsets.all(8),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(12),
+                                  border: Border.all(color: Colors.black12),
+                                ),
                                 child: Column(
-                                  mainAxisSize: MainAxisSize.min,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    const Padding(
-                                      padding: EdgeInsets.all(16.0),
-                                      child: Text(
-                                        'Select Target HSK Level',
-                                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Expanded(
+                                          child: GestureDetector(
+                                            onTap: () => showQuickLook(context, w.hanzi, contextText: _activeTranslation!.chinese),
+                                            child: Text(
+                                              w.hanzi,
+                                              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                          ),
+                                        ),
+                                        GestureDetector(
+                                          onTap: () => showQuickLook(context, w.hanzi, contextText: _activeTranslation!.chinese),
+                                          child: const Icon(Icons.add_circle_outline, size: 20, color: Colors.blue),
+                                        ),
+                                      ],
+                                    ),
+                                    ImageFiltered(
+                                      imageFilter: ImageFilter.blur(
+                                        sigmaX: _isTranslationBlurred ? 4.0 : 0.0,
+                                        sigmaY: _isTranslationBlurred ? 4.0 : 0.0,
+                                      ),
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Text(w.pinyin, style: const TextStyle(fontSize: 12, color: Colors.grey), overflow: TextOverflow.ellipsis),
+                                          Text(w.meaning, style: const TextStyle(fontSize: 12), overflow: TextOverflow.ellipsis, maxLines: 1),
+                                        ],
                                       ),
                                     ),
-                                    ...List.generate(6, (index) {
-                                      final level = index + 1;
-                                      return ListTile(
-                                        leading: CircleAvatar(
-                                          backgroundColor: Colors.blueAccent.withValues(alpha: 0.1),
-                                          child: Text('$level', style: const TextStyle(color: Colors.blueAccent)),
-                                        ),
-                                        title: Text('HSK $level'),
-                                        onTap: () => Navigator.pop(context, level),
-                                      );
-                                    }),
                                   ],
                                 ),
                               );
                             },
-                          );
+                          ),
+                        ),
+                        const SizedBox(height: 16),
+                        SizedBox(
+                          width: double.infinity,
+                          child: ElevatedButton.icon(
+                            icon: const Icon(Icons.auto_awesome),
+                            label: const Text('Extract & Simplify'),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.blueAccent.withValues(alpha: 0.1),
+                              foregroundColor: Colors.blueAccent,
+                              elevation: 0,
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                            ),
+                            onPressed: () async {
+                              final text = _activeTranslation!.chinese;
+                              
+                              // Show HSK level picker
+                              final selectedLevel = await showModalBottomSheet<int>(
+                                context: context,
+                                shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
+                                builder: (context) {
+                                  return SafeArea(
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        const Padding(
+                                          padding: EdgeInsets.all(16.0),
+                                          child: Text(
+                                            'Select Target HSK Level',
+                                            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                                          ),
+                                        ),
+                                        ...List.generate(6, (index) {
+                                          final level = index + 1;
+                                          return ListTile(
+                                            leading: CircleAvatar(
+                                              backgroundColor: Colors.blueAccent.withValues(alpha: 0.1),
+                                              child: Text('$level', style: const TextStyle(color: Colors.blueAccent)),
+                                            ),
+                                            title: Text('HSK $level'),
+                                            onTap: () => Navigator.pop(context, level),
+                                          );
+                                        }),
+                                      ],
+                                    ),
+                                  );
+                                },
+                              );
 
-                          if (selectedLevel == null) return; // User cancelled
+                              if (selectedLevel == null) return; // User cancelled
 
-                          setState(() {
-                            _activeTranslation = null;
-                            _isTranslating = false;
-                            _isProcessingAi = true;
-                          });
-                          try {
-                            final gemini = ref.read(geminiServiceProvider);
-                            final simplifiedStory = await gemini.simplifyTextToHsk(text, selectedLevel);
-                            if (!mounted) return;
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (_) => SimplifiedArticleReaderScreen(story: simplifiedStory),
-                              ),
-                            );
-                          } catch (e) {
-                            if (mounted) {
-                              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Simplify Failed: $e')));
-                            }
-                          } finally {
-                            if (mounted) {
-                              setState(() => _isProcessingAi = false);
-                            }
-                          }
-                        },
-                      ),
+                              setState(() {
+                                _activeTranslation = null;
+                                _isTranslating = false;
+                                _isProcessingAi = true;
+                              });
+                              try {
+                                final gemini = ref.read(geminiServiceProvider);
+                                final simplifiedStory = await gemini.simplifyTextToHsk(text, selectedLevel);
+                                if (!mounted) return;
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) => SimplifiedArticleReaderScreen(story: simplifiedStory),
+                                  ),
+                                );
+                              } catch (e) {
+                                if (mounted) {
+                                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Simplify Failed: $e')));
+                                }
+                              } finally {
+                                if (mounted) {
+                                  setState(() => _isProcessingAi = false);
+                                }
+                              }
+                            },
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
         ),
       ),

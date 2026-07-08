@@ -27,12 +27,12 @@ class AudioRecordingService {
       if (!await dir.exists()) {
         await dir.create(recursive: true);
       }
-      final path = '${dir.path}/$fileName.m4a';
+      final path = '${dir.path}/$fileName.wav';
       await _audioRecorder.start(
         const RecordConfig(
-          encoder: AudioEncoder.aacLc, // m4a standard
-          bitRate: 128000,
-          sampleRate: 44100,
+          encoder: AudioEncoder.pcm16bits,
+          sampleRate: 16000,
+          numChannels: 1,
         ),
         path: path,
       );

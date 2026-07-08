@@ -255,12 +255,10 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
             try {
               _channel!.sink.add(jsonEncode({
                 "realtimeInput": {
-                  "mediaChunks": [
-                    {
-                      "mimeType": "audio/pcm;rate=16000",
-                      "data": base64Encode(_audioBuffer)
-                    }
-                  ]
+                  "audio": {
+                    "mimeType": "audio/pcm;rate=16000",
+                    "data": base64Encode(_audioBuffer)
+                  }
                 }
               }));
               _audioBuffer.clear();
@@ -282,12 +280,10 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
       try {
         _channel!.sink.add(jsonEncode({
           "realtimeInput": {
-            "mediaChunks": [
-              {
-                "mimeType": "audio/pcm;rate=16000",
-                "data": base64Encode(_audioBuffer)
-              }
-            ]
+            "audio": {
+              "mimeType": "audio/pcm;rate=16000",
+              "data": base64Encode(_audioBuffer)
+            }
           }
         }));
       } catch (_) {}
@@ -624,6 +620,21 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                                   if (val != null) ref.read(translationLanguageProvider.notifier).setLanguage(val);
                                 },
                               ),
+                            ),
+                            IconButton(
+                              icon: Icon(
+                                Icons.keyboard,
+                                color: _isUserKeyboardMode ? Colors.blueAccent : Colors.white54,
+                                size: 20,
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  _isUserKeyboardMode = !_isUserKeyboardMode;
+                                  if (_isUserKeyboardMode && _isRecording) {
+                                    _stopAudioStreaming();
+                                  }
+                                });
+                              },
                             ),
                             if (_isRecording)
                               const Row(

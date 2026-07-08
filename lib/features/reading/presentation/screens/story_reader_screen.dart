@@ -2,13 +2,12 @@ import 'dart:async';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_tts/flutter_tts.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:hanzi_master/core/services/audio_service.dart';
 import '../providers/story_controller.dart';
 import '../../../../core/services/gemini_service.dart';
-import '../../../flashcards/presentation/widgets/word_detail_dialog.dart';
 import '../../../flashcards/presentation/utils/haptics_manager.dart';
+import '../../../../shared/widgets/quick_look_sheet.dart';
 import '../../../flashcards/presentation/providers/flashcard_controller.dart';
 import '../../../flashcards/domain/entities/study_mode.dart';
 
@@ -284,8 +283,6 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
         });
       }
     } else {
-      if (mounted) setState(() => _isPlaying = true);
-      
       if (!_isPaused || _playingSentenceIndex == null) {
         // Start from beginning of the page
         if (mounted) {
@@ -296,7 +293,16 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
           });
         }
         final text = story.sentences[_currentPage].chinese;
-        await audioService.playSentence(text);
+        final success = await audioService.playSentence(text);
+        if (mounted) {
+          setState(() {
+            _isPlaying = success;
+            _isPaused = !success;
+            if (!success) {
+              _playingSentenceIndex = null;
+            }
+          });
+        }
       } else {
         // Resume from pause
         final text = story.sentences[_currentPage].chinese;
@@ -308,9 +314,17 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
             _playingEndOffset = -1;
           });
         }
-        await audioService.playSentence(text);
+        final success = await audioService.playSentence(text);
+        if (mounted) {
+          setState(() {
+            _isPlaying = success;
+            _isPaused = !success;
+            if (!success) {
+              _playingSentenceIndex = null;
+            }
+          });
+        }
       }
-      if (mounted) setState(() => _isPaused = false);
     }
   }
 
@@ -718,7 +732,7 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
                                                           bool shouldShowPinyin = (_pinyinMode == PinyinMode.all);
 
                                                           return GestureDetector(
-                                                            onTap: () => WordDetailDialog.show(context, word, sentence),
+                                                            onTap: () => showQuickLook(context, word.hanzi, contextText: sentence.chinese),
                                                             child: Column(
                                                               mainAxisSize: MainAxisSize.min,
                                                               children: [
