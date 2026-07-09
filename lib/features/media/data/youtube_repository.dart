@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:youtube_explode_dart/youtube_explode_dart.dart';
@@ -10,16 +11,28 @@ final youtubeRepositoryProvider = Provider<YoutubeRepository>((ref) {
 class YoutubeRepository {
   final YoutubeExplode _yt = YoutubeExplode();
 
+  // In-memory cache: query → results with timestamp
+  static final Map<String, _CachedResult> _cache = {};
+  static const _cacheTtl = Duration(minutes: 5);
+  static const _ccManifestTimeout = Duration(seconds: 4);
+
   Future<List<Video>> searchVideos(String query) async {
+    // Check cache first
+    final cached = _cache[query];
+    if (cached != null && DateTime.now().difference(cached.timestamp) < _cacheTtl) {
+      debugPrint('[YT Cache] Hit for "$query" → ${cached.videos.length} videos');
+      return cached.videos;
+    }
+
     final validVideos = <Video>[];
     try {
       final searchQuery = '$query 中文, cc';
       final results = await _yt.search.search(searchQuery);
-      
+
       final iterator = results.iterator;
       int processedCount = 0;
-      
-      while (processedCount < 15) {
+
+      while (processedCount < 20) {
         Video video;
         try {
           if (!iterator.moveNext()) {
@@ -27,52 +40,41 @@ class YoutubeRepository {
           }
           video = iterator.current;
         } catch (e) {
-          // If a specific video has parsing errors (e.g. viewCount/duration parsing issues on streams), skip it
           debugPrint('Error parsing search result item: $e');
           continue;
         }
-        
+
         processedCount++;
-        
+
+        // Only gate: must have Chinese closed captions (with timeout)
         try {
-          final manifest = await _yt.videos.closedCaptions.getManifest(video.id);
-          final hasChinese = manifest.tracks.any((t) => t.language.code.startsWith('zh'));
+          final manifest = await _yt.videos.closedCaptions
+              .getManifest(video.id)
+              .timeout(_ccManifestTimeout);
+          final hasChinese =
+              manifest.tracks.any((t) => t.language.code.startsWith('zh'));
           if (!hasChinese) continue;
         } catch (_) {
-          // No closed captions or error fetching them, skip this video
+          // No closed captions, timeout, or error — skip this video
           continue;
         }
-        
-        // Verify the video actually has Chinese audio (not just CC)
-        try {
-          final streamManifest = await _yt.videos.streams.getManifest(video.id);
-          final hasChineseAudio = streamManifest.audioOnly.any((s) {
-            final track = s.audioTrack;
-            if (track == null) return false;
-            final name = track.displayName.toLowerCase();
-            return name.contains('中文') ||
-                name.contains('chinese') ||
-                name.contains('mandarin') ||
-                name.contains('cantonese') ||
-                name.contains('国语') ||
-                name.contains('普通话') ||
-                name.contains('粤语') ||
-                track.id.toLowerCase().startsWith('zh');
-          });
-          if (!hasChineseAudio) continue;
-        } catch (_) {
-          // If we can't check audio tracks, still include the video (CC was confirmed)
-        }
-        
+
         validVideos.add(video);
-        
-        // Stop early if we have enough results to show a good initial list
-        if (validVideos.length >= 6) break;
+
+        // Stop early if we have enough results
+        if (validVideos.length >= 10) break;
       }
     } catch (e) {
       debugPrint('Error searching videos for query $query: $e');
     }
-    
+
+    // Cache the result
+    _cache[query] = _CachedResult(
+      videos: validVideos,
+      timestamp: DateTime.now(),
+    );
+    debugPrint('[YT Cache] Stored "${query}" → ${validVideos.length} videos');
+
     return validVideos;
   }
 
@@ -133,4 +135,10 @@ class YoutubeRepository {
   void dispose() {
     _yt.close();
   }
+}
+
+class _CachedResult {
+  final List<Video> videos;
+  final DateTime timestamp;
+  _CachedResult({required this.videos, required this.timestamp});
 }

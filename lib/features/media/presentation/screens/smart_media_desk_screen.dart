@@ -34,6 +34,14 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
   String? _error;
   MediaBriefing? _briefing;
 
+  // Loading step tracking for dynamic status text
+  String _loadingStep = 'Fetching subtitles...';
+  bool _briefingReady = false;
+  bool _memesReady = false;
+  bool _translationStarted = false;
+  int _translatedChunks = 0;
+  int _totalChunks = 0;
+
   int _currentIndex = -1;
   Duration _currentPosition = Duration.zero;
   final ScrollController _scrollController = ScrollController();
@@ -91,32 +99,73 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
   Future<void> _loadData() async {
     try {
       final repository = ref.read(youtubeRepositoryProvider);
+      if (mounted) setState(() => _loadingStep = 'Fetching subtitles...');
       final transcript = await repository.getTranscript(widget.video.id.value);
       if (transcript != null) {
         if (mounted) {
-          setState(() { 
-            _transcript = transcript; 
+          setState(() {
+            _transcript = transcript;
             _lineKeys.clear();
             _lineKeys.addAll(List.generate(transcript.lines.length, (_) => GlobalKey()));
-            _isLoading = false; 
+            _isLoading = false;
+            _loadingStep = 'Generating AI briefing...';
           });
         }
         _startSyncEngine();
         final gemini = ref.read(geminiServiceProvider);
+
+        // Track briefing
         gemini.generateVideoBriefing(widget.video.title, transcript.lines)
-            .then((b) { if (mounted) setState(() => _briefing = b); })
-            .catchError((Object e) { debugPrint('Briefing error: $e'); });
-            
+            .then((b) {
+              if (mounted) {
+                setState(() {
+                  _briefing = b;
+                  _briefingReady = true;
+                  _updateLoadingStep();
+                });
+              }
+            })
+            .catchError((Object e) {
+              debugPrint('Briefing error: $e');
+              if (mounted) {
+                _briefingReady = true;
+                _updateLoadingStep();
+              }
+            });
+
+        // Track memes
         gemini.generateCulturalMemes(transcript.lines.map((e) => e.text).toList())
-            .then((m) { if (mounted) setState(() => _culturalMemes = m); })
-            .catchError((Object e) { debugPrint('Memes error: $e'); });
-            
+            .then((m) {
+              if (mounted) {
+                setState(() {
+                  _culturalMemes = m;
+                  _memesReady = true;
+                  _updateLoadingStep();
+                });
+              }
+            })
+            .catchError((Object e) {
+              debugPrint('Memes error: $e');
+              if (mounted) {
+                _memesReady = true;
+                _updateLoadingStep();
+              }
+            });
+
         _translateIncrementally(transcript, gemini);
       } else {
         if (mounted) setState(() { _error = 'No closed captions available.'; _isLoading = false; });
       }
     } catch (e) {
       if (mounted) setState(() { _error = e.toString(); _isLoading = false; });
+    }
+  }
+
+  void _updateLoadingStep() {
+    if (_briefingReady && _memesReady) {
+      _loadingStep = 'Translating subtitles...';
+    } else if (_briefingReady || _memesReady) {
+      _loadingStep = 'Generating AI briefing...';
     }
   }
 
@@ -457,6 +506,58 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
     });
   }
 
+  /// Skeleton transcript list + step indicator shown while data loads.
+  /// The video player is already visible above — we don't block it.
+  Widget _buildLoadingState() {
+    return Column(
+      children: [
+        // Step indicator with dynamic text
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+          child: Row(
+            children: [
+              const SizedBox(
+                width: 16,
+                height: 16,
+                child: CircularProgressIndicator(
+                  strokeWidth: 2,
+                  color: Colors.indigo,
+                ),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Text(
+                  _loadingStep,
+                  style: const TextStyle(
+                    color: Colors.black54,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 14,
+                  ),
+                ),
+              ),
+              // Show AI task progress
+              if (_transcript != null) ...[
+                _AiTaskDot(label: 'Briefing', done: _briefingReady),
+                const SizedBox(width: 8),
+                _AiTaskDot(label: 'Memes', done: _memesReady),
+              ],
+            ],
+          ),
+        ),
+        // Skeleton transcript lines
+        Expanded(
+          child: ListView.builder(
+            padding: const EdgeInsets.fromLTRB(16, 8, 16, 120),
+            itemCount: 12,
+            itemBuilder: (context, index) {
+              return _SkeletonTranscriptLine(index: index);
+            },
+          ),
+        ),
+      ],
+    );
+  }
+
   @override
   void dispose() {
     _positionSubscription?.cancel();
@@ -643,7 +744,7 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
           if (!_isFullscreen)
             Expanded(
               child: _isLoading 
-                ? const Center(child: CircularProgressIndicator())
+                ? _buildLoadingState()
                 : _error != null 
                   ? Center(child: Text(_error!, style: const TextStyle(color: Colors.red)))
                   : Column(
