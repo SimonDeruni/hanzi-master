@@ -43,8 +43,6 @@ class _NuanceCompareSheetState extends ConsumerState<NuanceCompareSheet> {
   StreamSubscription<String>? _streamSubscription;
   Timer? _statusTimer;
   Timer? _timeoutTimer;
-  bool _timedOut = false;
-
   // Rotating status messages to show progress while streaming
   static const _statusMessages = [
     'Analyzing word relationships...',
@@ -94,7 +92,6 @@ class _NuanceCompareSheetState extends ConsumerState<NuanceCompareSheet> {
     _timeoutTimer = Timer(const Duration(seconds: 30), () {
       if (mounted && _streamedText.isEmpty) {
         setState(() {
-          _timedOut = true;
           _isLoading = false;
           _error = 'Generation is taking longer than expected. The AI may be overloaded.';
         });
@@ -160,7 +157,6 @@ class _NuanceCompareSheetState extends ConsumerState<NuanceCompareSheet> {
       _streamedText = '';
       _error = null;
       _statusText = 'Analyzing word relationships...';
-      _timedOut = false;
     });
     _loadExplanationStreaming();
   }
@@ -668,7 +664,7 @@ class _ShimmerLineState extends State<_ShimmerLine>
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedBuilder(
+    return const AnimatedBuilder(
       animation: _animation,
       builder: (context, child) {
         final shimmer = Color.lerp(
