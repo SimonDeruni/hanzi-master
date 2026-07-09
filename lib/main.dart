@@ -21,7 +21,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:hanzi_master/firebase_options.dart';
 import 'package:hanzi_master/core/services/monetization_service.dart';
 import 'package:hanzi_master/features/reading/data/repositories/story_repository.dart';
-import 'package:hanzi_master/core/services/amap_service.dart';
 import 'package:hanzi_master/core/theme/app_theme.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
