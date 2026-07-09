@@ -528,7 +528,7 @@ class _SkeletonCardState extends State<_SkeletonCard>
       builder: (context, child) {
         final shimmer = Color.lerp(
           Colors.grey.shade200,
-          Colors.grey.shade350,
+          Colors.grey.shade400,
           _animation.value,
         )!;
         return Container(

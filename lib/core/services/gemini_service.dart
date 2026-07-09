@@ -422,7 +422,42 @@ CRITICAL: You MUST write your entire explanation in $targetLanguage.
     }
   }
 
+  /// Returns a cache key for nuance comparisons, deterministic based on sorted words.
+  String _nuanceCacheKey(List<Map<String, String>> words) {
+    final sorted = words.map((w) => w['hanzi'] ?? '').toList()..sort();
+    return 'nuance_${sorted.join('_')}';
+  }
+
+  /// Streaming version of compareNuances — yields tokens as they arrive.
+  Stream<String> streamCompareNuances(List<Map<String, String>> words) async* {
+    final wordList = words.map((w) => '${w['hanzi']} (${w['pinyin']}): ${w['definition']}').join('\n');
+    final prompt = '''
+You are a Chinese language tutor. A student is looking at these Chinese words that share similar meanings:
+
+$wordList
+
+Explain the nuanced differences between these words. Cover:
+1. When to use each one (context, formality, register)
+2. Key differences in meaning or usage
+3. Common collocations or fixed expressions
+
+Keep your explanation clear and practical for a language learner. Use examples where helpful.
+CRITICAL: You MUST write your entire explanation in $targetLanguage.
+''';
+
+    yield* streamOpenRouterText(prompt);
+  }
+
   Future<String> compareNuances(List<Map<String, String>> words) async {
+    final cacheKey = _nuanceCacheKey(words);
+    final box = Hive.box<String>('ai_cache');
+
+    // Return cached result instantly if available
+    if (box.containsKey(cacheKey)) {
+      analytics.logApiUsage(apiName: 'openrouter', feature: 'compare_nuances', success: true);
+      return box.get(cacheKey)!;
+    }
+
     final wordList = words.map((w) => '${w['hanzi']} (${w['pinyin']}): ${w['definition']}').join('\n');
     final prompt = '''
 You are a Chinese language tutor. A student is looking at these Chinese words that share similar meanings:
@@ -443,6 +478,7 @@ CRITICAL: You MUST write your entire explanation in $targetLanguage.
         model: 'deepseek/deepseek-chat',
         messages: [{'role': 'user', 'content': prompt}],
       );
+      box.put(cacheKey, response);
       analytics.logApiUsage(apiName: 'openrouter', feature: 'compare_nuances', success: true);
       return response;
     } catch (e) {

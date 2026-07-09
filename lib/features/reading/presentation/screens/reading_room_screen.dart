@@ -97,7 +97,7 @@ class _ReadingRoomScreenState extends ConsumerState<ReadingRoomScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         centerTitle: true,
-        actions: const [InfoBulb()],
+        actions: const [InfoBulb(id: "reading_room", title: "Reading Room", message: "Explore culturally rich Chinese stories graded by HSK level. Each story helps you learn vocabulary in context.")],
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

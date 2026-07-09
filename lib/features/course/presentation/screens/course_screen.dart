@@ -34,7 +34,7 @@ class CourseScreen extends ConsumerWidget {
         centerTitle: true,
         backgroundColor: Colors.transparent,
         elevation: 0,
-        actions: const [InfoBulb()],
+        actions: const [InfoBulb(id: "course", title: "Course Deck", message: "Swipe through flashcards to learn characters. Tap to flip and see the English meaning. Master 5 cards to complete this session.")],
       ),
       extendBodyBehindAppBar: true,
       body: Stack(

@@ -589,7 +589,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: Text(AppLocalizations.of(context)!.characterReference),
-        actions: const [InfoBulb()],
+        actions: const [InfoBulb(id: "character_detail", title: "Character Reference", message: "Explore stroke order, radical breakdown, example words, and pronunciation for each Chinese character.")],
       ),
       floatingActionButton: Builder(
         builder: (context) {

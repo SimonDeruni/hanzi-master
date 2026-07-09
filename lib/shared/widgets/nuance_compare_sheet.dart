@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
@@ -30,39 +31,138 @@ class NuanceCompareSheet extends ConsumerStatefulWidget {
 
 class _NuanceCompareSheetState extends ConsumerState<NuanceCompareSheet> {
   bool _isLoading = true;
-  String? _explanation;
+  String _streamedText = '';
   String? _error;
+  String _statusText = 'Analyzing word relationships...';
   bool _isChatMode = false;
   late final AiChatSession _chatSession;
   final List<_ChatMessage> _chatMessages = [];
   final TextEditingController _chatController = TextEditingController();
   final ScrollController _scrollController = ScrollController();
   bool _isChatLoading = false;
+  StreamSubscription<String>? _streamSubscription;
+  Timer? _statusTimer;
+  Timer? _timeoutTimer;
+  bool _timedOut = false;
+
+  // Rotating status messages to show progress while streaming
+  static const _statusMessages = [
+    'Analyzing word relationships...',
+    'Identifying usage contexts...',
+    'Comparing formality levels...',
+    'Finding common collocations...',
+    'Generating comparison...',
+  ];
 
   @override
   void initState() {
     super.initState();
-    _loadExplanation();
+    _loadExplanationStreaming();
   }
 
-  Future<void> _loadExplanation() async {
+  @override
+  void dispose() {
+    _streamSubscription?.cancel();
+    _statusTimer?.cancel();
+    _timeoutTimer?.cancel();
+    _chatController.dispose();
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  void _startStatusRotation() {
+    int index = 0;
+    _statusTimer = Timer.periodic(const Duration(seconds: 2), (timer) {
+      if (!mounted) {
+        timer.cancel();
+        return;
+      }
+      index = (index + 1) % _statusMessages.length;
+      setState(() {
+        _statusText = _statusMessages[index];
+      });
+    });
+  }
+
+  Future<void> _loadExplanationStreaming() async {
     final gemini = ref.read(geminiServiceProvider);
+
+    // Start rotating status messages
+    _startStatusRotation();
+
+    // 30-second timeout — if no first token arrives by then, show timeout UI
+    _timeoutTimer = Timer(const Duration(seconds: 30), () {
+      if (mounted && _streamedText.isEmpty) {
+        setState(() {
+          _timedOut = true;
+          _isLoading = false;
+          _error = 'Generation is taking longer than expected. The AI may be overloaded.';
+        });
+        _statusTimer?.cancel();
+        _streamSubscription?.cancel();
+      }
+    });
+
     try {
-      final result = await gemini.compareNuances(widget.words);
-      if (mounted) {
-        setState(() {
-          _explanation = result;
-          _isLoading = false;
-        });
-      }
+      _streamSubscription = gemini.streamCompareNuances(widget.words).listen(
+        (token) {
+          if (!mounted) return;
+          _timeoutTimer?.cancel(); // Got data, cancel timeout
+          setState(() {
+            _streamedText += token;
+            // Once we have content, switch status to indicate streaming
+            if (_streamedText.length > 50 && _isLoading) {
+              _statusText = 'Generating comparison...';
+            }
+          });
+        },
+        onDone: () {
+          if (!mounted) return;
+          _statusTimer?.cancel();
+          _timeoutTimer?.cancel();
+          setState(() {
+            _isLoading = false;
+            _statusText = '';
+          });
+        },
+        onError: (e) {
+          if (!mounted) return;
+          _statusTimer?.cancel();
+          _timeoutTimer?.cancel();
+          setState(() {
+            // If we got partial text, show it with an error banner
+            if (_streamedText.isNotEmpty) {
+              _error = 'Generation interrupted. Showing partial result.';
+            } else {
+              _error = e.toString();
+            }
+            _isLoading = false;
+            _statusText = '';
+          });
+        },
+        cancelOnError: true,
+      );
     } catch (e) {
-      if (mounted) {
-        setState(() {
-          _error = e.toString();
-          _isLoading = false;
-        });
-      }
+      if (!mounted) return;
+      _statusTimer?.cancel();
+      _timeoutTimer?.cancel();
+      setState(() {
+        _error = e.toString();
+        _isLoading = false;
+        _statusText = '';
+      });
     }
+  }
+
+  void _retry() {
+    setState(() {
+      _isLoading = true;
+      _streamedText = '';
+      _error = null;
+      _statusText = 'Analyzing word relationships...';
+      _timedOut = false;
+    });
+    _loadExplanationStreaming();
   }
 
   void _enterChatMode() {
@@ -111,13 +211,6 @@ class _NuanceCompareSheetState extends ConsumerState<NuanceCompareSheet> {
         );
       }
     });
-  }
-
-  @override
-  void dispose() {
-    _chatController.dispose();
-    _scrollController.dispose();
-    super.dispose();
   }
 
   @override
@@ -186,33 +279,10 @@ class _NuanceCompareSheetState extends ConsumerState<NuanceCompareSheet> {
           ),
           // Content
           Flexible(
-            child: _isLoading
-                ? const Center(
-                    child: Padding(
-                      padding: EdgeInsets.all(32),
-                      child: CircularProgressIndicator(),
-                    ),
-                  )
-                : _error != null
-                    ? Padding(
-                        padding: const EdgeInsets.all(20),
-                        child: Text(
-                          _error!,
-                          style: TextStyle(color: theme.colorScheme.error),
-                        ),
-                      )
-                    : SingleChildScrollView(
-                        padding: const EdgeInsets.fromLTRB(20, 8, 20, 16),
-                        child: Text(
-                          _explanation ?? '',
-                          style: theme.textTheme.bodyMedium?.copyWith(
-                            height: 1.6,
-                          ),
-                        ),
-                      ),
+            child: _buildContent(theme, isDark),
           ),
           // Bottom bar
-          if (!_isLoading && _error == null)
+          if (!_isLoading && _error == null && _streamedText.isNotEmpty)
             SafeArea(
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(20, 8, 20, 12),
@@ -231,6 +301,173 @@ class _NuanceCompareSheetState extends ConsumerState<NuanceCompareSheet> {
             ),
         ],
       ),
+    );
+  }
+
+  Widget _buildContent(ThemeData theme, bool isDark) {
+    // Error state with retry
+    if (_error != null) {
+      return Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            // Show partial text if we have it
+            if (_streamedText.isNotEmpty) ...[
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Error banner
+                      Container(
+                        width: double.infinity,
+                        padding: const EdgeInsets.all(12),
+                        decoration: BoxDecoration(
+                          color: Colors.orange.shade50,
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(color: Colors.orange.shade200),
+                        ),
+                        child: Row(
+                          children: [
+                            Icon(Icons.warning_amber_rounded,
+                                color: Colors.orange.shade700, size: 20),
+                            const SizedBox(width: 8),
+                            Expanded(
+                              child: Text(
+                                _error!,
+                                style: TextStyle(
+                                  color: Colors.orange.shade800,
+                                  fontSize: 13,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                      Text(
+                        _streamedText,
+                        style: theme.textTheme.bodyMedium?.copyWith(
+                          height: 1.6,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ] else ...[
+              // No partial text — full error
+              Icon(Icons.cloud_off, size: 48, color: Colors.grey.shade400),
+              const SizedBox(height: 16),
+              Text(
+                _error!,
+                textAlign: TextAlign.center,
+                style: TextStyle(color: theme.colorScheme.error),
+              ),
+            ],
+            const SizedBox(height: 16),
+            OutlinedButton.icon(
+              onPressed: _retry,
+              icon: const Icon(Icons.refresh, size: 18),
+              label: const Text('Retry'),
+            ),
+          ],
+        ),
+      );
+    }
+
+    // Loading / streaming state
+    if (_isLoading) {
+      return Column(
+        children: [
+          // Dynamic status text with spinner
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+            child: Row(
+              children: [
+                const SizedBox(
+                  width: 16,
+                  height: 16,
+                  child: CircularProgressIndicator(
+                    strokeWidth: 2,
+                    color: Colors.indigo,
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Text(
+                    _statusText,
+                    style: const TextStyle(
+                      color: Colors.black54,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 14,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          // Streaming text display (shows tokens as they arrive)
+          if (_streamedText.isNotEmpty)
+            Expanded(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.fromLTRB(20, 4, 20, 16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      _streamedText,
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        height: 1.6,
+                      ),
+                    ),
+                    // Blinking cursor to indicate still generating
+                    const SizedBox(height: 4),
+                    _PulsingCursor(),
+                  ],
+                ),
+              ),
+            )
+          else
+            // Skeleton placeholder while waiting for first token
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: _buildSkeletonLines(isDark),
+              ),
+            ),
+        ],
+      );
+    }
+
+    // Completed — show full text
+    return SingleChildScrollView(
+      padding: const EdgeInsets.fromLTRB(20, 8, 20, 16),
+      child: Text(
+        _streamedText,
+        style: theme.textTheme.bodyMedium?.copyWith(
+          height: 1.6,
+        ),
+      ),
+    );
+  }
+
+  /// Shimmer skeleton lines shown while waiting for the first streaming token.
+  Widget _buildSkeletonLines(bool isDark) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: List.generate(8, (index) {
+        final widths = [0.9, 0.75, 0.85, 0.6, 0.95, 0.7, 0.8, 0.5];
+        final width = widths[index % widths.length];
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 12),
+          child: _ShimmerLine(
+            widthFactor: width,
+            isDark: isDark,
+          ),
+        );
+      }),
     );
   }
 
@@ -352,6 +589,109 @@ class _NuanceCompareSheetState extends ConsumerState<NuanceCompareSheet> {
     );
   }
 }
+
+// ─── Pulsing cursor shown at end of streaming text ───────────────────────────
+
+class _PulsingCursor extends StatefulWidget {
+  @override
+  State<_PulsingCursor> createState() => _PulsingCursorState();
+}
+
+class _PulsingCursorState extends State<_PulsingCursor>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 800),
+    )..repeat(reverse: true);
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return FadeTransition(
+      opacity: _controller,
+      child: Container(
+        width: 2,
+        height: 18,
+        decoration: BoxDecoration(
+          color: Colors.indigo.shade400,
+          borderRadius: BorderRadius.circular(1),
+        ),
+      ),
+    );
+  }
+}
+
+// ─── Shimmer skeleton line ───────────────────────────────────────────────────
+
+class _ShimmerLine extends StatefulWidget {
+  final double widthFactor;
+  final bool isDark;
+  const _ShimmerLine({required this.widthFactor, required this.isDark});
+
+  @override
+  State<_ShimmerLine> createState() => _ShimmerLineState();
+}
+
+class _ShimmerLineState extends State<_ShimmerLine>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _animation;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1200),
+    )..repeat(reverse: true);
+    _animation = Tween<double>(begin: 0.3, end: 0.7).animate(
+      CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      animation: _animation,
+      builder: (context, child) {
+        final shimmer = Color.lerp(
+          widget.isDark ? Colors.grey.shade800 : Colors.grey.shade200,
+          widget.isDark ? Colors.grey.shade600 : Colors.grey.shade400,
+          _animation.value,
+        )!;
+        return FractionallySizedBox(
+          widthFactor: widget.widthFactor,
+          child: Container(
+            height: 14,
+            decoration: BoxDecoration(
+              color: shimmer,
+              borderRadius: BorderRadius.circular(4),
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
+
+// ─── Chat message model ──────────────────────────────────────────────────────
 
 class _ChatMessage {
   final bool isUser;

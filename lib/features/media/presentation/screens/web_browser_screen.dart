@@ -1160,7 +1160,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
         elevation: 1,
         iconTheme: const IconThemeData(color: Colors.black87),
         actions: [
-          const InfoBulb(),
+          const InfoBulb(id: "web_browser", title: "Web Reader", message: "Read Chinese articles and websites. Tap any character to see its definition and add it to your study list."),
           IconButton(
             icon: const Icon(Icons.bookmark_border),
             tooltip: 'Save Article',

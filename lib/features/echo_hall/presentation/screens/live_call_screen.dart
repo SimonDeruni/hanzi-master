@@ -594,7 +594,7 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
                 const Positioned(
                   top: 0,
                   right: 8,
-                  child: InfoBulb(),
+                  child: InfoBulb(id: "live_call", title: "Live Call", message: "Have a real-time voice conversation in Chinese. Speak naturally and the AI will respond. Use this to build speaking confidence."),
                 ),
               ],
             ),

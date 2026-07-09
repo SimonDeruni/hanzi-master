@@ -48,6 +48,8 @@ class _InfoBulbState extends State<InfoBulb> {
   }
 
   void _showDialog() {
+    if (widget.title.isEmpty && widget.message.isEmpty) return;
+
     HapticsManager.light();
     showDialog(
       context: context,

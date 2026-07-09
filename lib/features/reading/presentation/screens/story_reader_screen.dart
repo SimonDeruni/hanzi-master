@@ -463,7 +463,7 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         actions: [
-          const InfoBulb(),
+          const InfoBulb(id: "story_reader", title: "Story Reader", message: "Read along with the story. Tap words for instant translations and listen to native audio. Save vocabulary to your flashcards."),
           if (!_isSaved && state.currentStory != null) ...[
              TextButton.icon(
                 icon: const Icon(Icons.delete_outline, color: Colors.redAccent),

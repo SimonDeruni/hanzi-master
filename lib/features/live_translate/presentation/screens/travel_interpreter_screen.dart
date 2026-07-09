@@ -401,7 +401,7 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                     onPressed: () => Navigator.pop(context),
                   ),
                   const Spacer(),
-                  const InfoBulb(),
+                  const InfoBulb(id: "travel_interpreter", title: "Travel Interpreter", message: "Translate speech in real time. Speak in English and hear the Chinese translation instantly, or vice versa."),
                 ],
               ),
             ),

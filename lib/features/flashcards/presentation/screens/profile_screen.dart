@@ -25,7 +25,7 @@ class ProfileScreen extends ConsumerWidget {
         elevation: 0,
         backgroundColor: Colors.transparent,
         iconTheme: IconThemeData(color: isDark ? Colors.white : Colors.black87),
-        actions: const [InfoBulb()],
+        actions: const [InfoBulb(id: "profile", title: "Your Profile", message: "Track your learning progress, view saved characters, and customize your study settings here.")],
       ),
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),

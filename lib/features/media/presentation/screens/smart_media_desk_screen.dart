@@ -27,6 +27,136 @@ class SmartMediaDeskScreen extends ConsumerStatefulWidget {
   ConsumerState<SmartMediaDeskScreen> createState() => _SmartMediaDeskScreenState();
 }
 
+// ─── AI Task Progress Dot ─────────────────────────────────────────────────────
+
+class _AiTaskDot extends StatelessWidget {
+  final String label;
+  final bool done;
+  const _AiTaskDot({required this.label, required this.done});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      decoration: BoxDecoration(
+        color: done ? Colors.green.shade50 : Colors.grey.shade100,
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(
+          color: done ? Colors.green.shade300 : Colors.grey.shade300,
+        ),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(
+            done ? Icons.check_circle : Icons.hourglass_empty,
+            size: 14,
+            color: done ? Colors.green : Colors.grey,
+          ),
+          const SizedBox(width: 4),
+          Text(
+            label,
+            style: TextStyle(
+              fontSize: 11,
+              fontWeight: FontWeight.w600,
+              color: done ? Colors.green.shade700 : Colors.grey.shade600,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+// ─── Skeleton Transcript Line ─────────────────────────────────────────────────
+
+class _SkeletonTranscriptLine extends StatefulWidget {
+  final int index;
+  const _SkeletonTranscriptLine({required this.index});
+
+  @override
+  State<_SkeletonTranscriptLine> createState() => _SkeletonTranscriptLineState();
+}
+
+class _SkeletonTranscriptLineState extends State<_SkeletonTranscriptLine>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _animation;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1200),
+    )..repeat(reverse: true);
+    _animation = Tween<double>(begin: 0.3, end: 0.7).animate(
+      CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      animation: _animation,
+      builder: (context, child) {
+        final shimmer = Color.lerp(
+          Colors.grey.shade200,
+          Colors.grey.shade400,
+          _animation.value,
+        )!;
+        // Vary the width to simulate real text
+        final widths = [0.7, 0.9, 0.5, 0.8, 0.6, 0.95, 0.55, 0.75, 0.85, 0.4, 0.9, 0.65];
+        final w = widths[widget.index % widths.length];
+
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Timestamp placeholder
+              Container(
+                height: 10,
+                width: 36,
+                decoration: BoxDecoration(
+                  color: shimmer,
+                  borderRadius: BorderRadius.circular(3),
+                ),
+              ),
+              const SizedBox(height: 6),
+              // Chinese text placeholder
+              Container(
+                height: 16,
+                width: MediaQuery.of(context).size.width * w,
+                decoration: BoxDecoration(
+                  color: shimmer,
+                  borderRadius: BorderRadius.circular(4),
+                ),
+              ),
+              const SizedBox(height: 4),
+              // Pinyin/English placeholder
+              Container(
+                height: 12,
+                width: MediaQuery.of(context).size.width * (w * 0.8),
+                decoration: BoxDecoration(
+                  color: shimmer,
+                  borderRadius: BorderRadius.circular(3),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+}
+
 class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
   late YoutubePlayerController _playerController;
   VideoTranscript? _transcript;

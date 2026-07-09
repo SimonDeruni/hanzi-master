@@ -65,7 +65,7 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         iconTheme: const IconThemeData(color: Colors.white),
-        actions: const [InfoBulb()],
+        actions: const [InfoBulb(id: "conversation", title: "AI Conversation", message: "Practice natural Chinese conversations with AI. Respond in Chinese to improve your speaking skills. Do not worry about mistakes!")],
       ),
       body: CalligraphyBackground(
         child: Stack(

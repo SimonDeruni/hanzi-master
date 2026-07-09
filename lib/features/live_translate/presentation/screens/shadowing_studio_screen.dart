@@ -929,7 +929,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
                         ],
                       ),
                     ),
-                    const InfoBulb(),
+                    const InfoBulb(id: "shadowing", title: "Shadowing Studio", message: "Listen to native pronunciation and repeat aloud. The app analyzes your pitch and gives instant feedback on your tones."),
                   ],
                 ),
               ),

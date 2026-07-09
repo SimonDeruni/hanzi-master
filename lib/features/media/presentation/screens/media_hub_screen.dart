@@ -27,7 +27,7 @@ class MediaHubScreen extends ConsumerWidget {
           slivers: [
             const GlobalSliverAppBar(
               title: "Media Hub",
-              actions: [InfoBulb()],
+              actions: [InfoBulb(id: "media_hub", title: "Media Hub", message: "Browse Chinese YouTube channels, music, and videos. Use media to immerse yourself in the language naturally.")],
             ),
             
             const SliverToBoxAdapter(child: SizedBox(height: 16)),
