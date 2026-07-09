@@ -464,6 +464,32 @@ Widget _buildNotifToggle({
           final picked = await showTimePicker(
             context: context,
             initialTime: time,
+            builder: (context, child) {
+              return Theme(
+                data: Theme.of(context).copyWith(
+                  timePickerTheme: TimePickerThemeData(
+                    hourMinuteTextStyle: const TextStyle(
+                      fontSize: 48,
+                      fontWeight: FontWeight.w300,
+                    ),
+                    hourMinuteShape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    hourMinuteColor: WidgetStateColor.resolveWith((states) {
+                      if (states.contains(WidgetState.selected)) {
+                        return Colors.amber.withValues(alpha: 0.2);
+                      }
+                      return Colors.transparent;
+                    }),
+                    dayPeriodTextStyle: const TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+                child: child!,
+              );
+            },
           );
           if (picked != null) onTimePicked(picked);
         },

@@ -10,6 +10,7 @@ import 'package:hanzi_master/features/media/presentation/screens/media_hub_scree
 import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import 'package:hanzi_master/shared/widgets/info_bulb.dart';
+import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 
 
 
@@ -61,7 +62,7 @@ class AiHubScreen extends ConsumerWidget {
                         GestureDetector(
                           onTap: () => Navigator.push(
                             context,
-                            MaterialPageRoute(
+                            SwipeBackPageRoute(
                               builder: (_) => const ProfileScreen(),
                             ),
                           ),
@@ -109,7 +110,7 @@ class AiHubScreen extends ConsumerWidget {
                         if (context.mounted) {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (_) => const StoryLibraryScreen()),
+                            SwipeBackPageRoute(builder: (_) => const StoryLibraryScreen()),
                           );
                         }
                       },

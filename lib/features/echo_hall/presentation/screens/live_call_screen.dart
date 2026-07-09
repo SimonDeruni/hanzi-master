@@ -19,6 +19,15 @@ import 'package:hanzi_master/core/services/gemini_service.dart';
 import '../widgets/live_call_summary_screen.dart';
 import 'package:hanzi_master/shared/widgets/info_bulb.dart';
 
+enum LiveCallState {
+  connecting,
+  idle,
+  listening,
+  thinking,
+  speaking,
+  error,
+}
+
 class LiveCallMessage {
   final String text;
   final ChatRole role;
@@ -60,6 +69,7 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
 
   final fs.FlutterSoundPlayer _player = fs.FlutterSoundPlayer();
   final AudioPlayer _bgPlayer = AudioPlayer();
+  LiveCallState _callState = LiveCallState.connecting;
   String _callStatus = "Initializing...";
   bool _hasError = false;
   WebSocketChannel? _channel;
@@ -73,6 +83,18 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
   final BytesBuilder _userAudioBuffer = BytesBuilder();
   final List<int> _audioBuffer = [];
   final ScrollController _scrollController = ScrollController();
+
+  // VAD / Silence Detection
+  Timer? _silenceTimer;
+  static const Duration _silenceThreshold = Duration(milliseconds: 1500);
+  DateTime _lastAudioReceived = DateTime.now();
+
+  // Timeout for AI thinking
+  Timer? _thinkingTimeout;
+  static const Duration _thinkingTimeoutDuration = Duration(seconds: 10);
+
+  // Audio level for visual feedback
+  double _audioLevel = 0.0;
 
   @override
   void initState() {
@@ -121,12 +143,83 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
     }
   }
 
-  Future<void> _connectToGemini() async {
+  void _setCallState(LiveCallState newState, String statusText) {
     if (!mounted) return;
     setState(() {
-      _callStatus = "Connecting to Scholar...";
-      _hasError = false;
+      _callState = newState;
+      _callStatus = statusText;
+      _hasError = newState == LiveCallState.error;
     });
+  }
+
+  void _resetSilenceTimer() {
+    _silenceTimer?.cancel();
+    _lastAudioReceived = DateTime.now();
+    _silenceTimer = Timer(_silenceThreshold, _onSilenceDetected);
+  }
+
+  void _onSilenceDetected() {
+    if (_callState != LiveCallState.listening) return;
+    debugPrint("LiveCall: Silence detected, completing turn...");
+    _setCallState(LiveCallState.thinking, "Thinking...");
+    _flushAndCompleteTurn();
+  }
+
+  void _flushAndCompleteTurn() {
+    // Flush remaining audio buffer
+    if (_audioBuffer.isNotEmpty && _channel != null && _channel?.closeCode == null) {
+      try {
+        _channel!.sink.add(jsonEncode({
+          "realtimeInput": {
+            "audio": {
+              "mimeType": "audio/pcm;rate=16000",
+              "data": base64Encode(_audioBuffer)
+            }
+          }
+        }));
+      } catch (_) {}
+      _audioBuffer.clear();
+    }
+
+    // Send turnComplete to signal end of user speech
+    if (_channel != null && _channel?.closeCode == null) {
+      try {
+        _channel!.sink.add(jsonEncode({
+          "clientContent": {
+            "turnComplete": true
+          }
+        }));
+      } catch (_) {}
+    }
+
+    // Start thinking timeout
+    _thinkingTimeout?.cancel();
+    _thinkingTimeout = Timer(_thinkingTimeoutDuration, _onThinkingTimeout);
+  }
+
+  void _onThinkingTimeout() {
+    if (_callState != LiveCallState.thinking) return;
+    debugPrint("LiveCall: Thinking timeout — triggering fallback...");
+    _setCallState(LiveCallState.error, "Connection unstable. Tap to retry.");
+    _hasError = true;
+  }
+
+  double _computeAudioLevel(List<int> samples) {
+    if (samples.isEmpty) return 0.0;
+    // PCM 16-bit mono: each sample is 2 bytes
+    double sum = 0;
+    for (int i = 0; i < samples.length - 1; i += 2) {
+      final sample = (samples[i + 1] << 8) | samples[i];
+      sum += (sample * sample).toDouble();
+    }
+    final rms = (samples.length ~/ 2) > 0 ? (sum / (samples.length ~/ 2)) : 0.0;
+    // Normalize to 0.0–1.0 (typical speech RMS is well below max int16)
+    return (rms / 100000000.0).clamp(0.0, 1.0);
+  }
+
+  Future<void> _connectToGemini() async {
+    if (!mounted) return;
+    _setCallState(LiveCallState.connecting, "Connecting to Scholar...");
     
     final apiKey = ref.read(apiKeyPoolProvider).googleKey;
     if (apiKey.isEmpty) {
@@ -185,7 +278,7 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
             }
             
             if (data.containsKey('setupComplete')) {
-              setState(() => _callStatus = "Connected! Speak now.");
+              _setCallState(LiveCallState.idle, "Connected! Speak now.");
               _startAudioStreaming();
             }
 
@@ -193,6 +286,11 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
               final content = data['serverContent'];
               
               if (content.containsKey('modelTurn')) {
+                // AI is speaking — cancel thinking timeout
+                _thinkingTimeout?.cancel();
+                if (_callState != LiveCallState.speaking) {
+                  _setCallState(LiveCallState.speaking, "Speaking...");
+                }
                 final modelTurn = content['modelTurn'];
                 if (modelTurn['parts'] != null) {
                   for (var part in modelTurn['parts']) {
@@ -211,6 +309,11 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
               if (content.containsKey('inputTranscription')) {
                 final trans = content['inputTranscription'];
                 _handleUserInputTranscription(trans['text'] ?? "", trans['finished'] ?? false);
+              }
+
+              // When AI finishes its turn, go back to idle
+              if (content['turnComplete'] == true) {
+                _setCallState(LiveCallState.idle, "Connected! Speak now.");
               }
 
               if (content['interrupted'] == true) {
@@ -325,8 +428,12 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
   Future<void> _togglePause() async {
     setState(() {
       _isMuted = !_isMuted;
-      if (_isLive) {
-        _callStatus = _isMuted ? "Paused - Take a break" : "Connected! Speak now.";
+      _silenceTimer?.cancel();
+      _thinkingTimeout?.cancel();
+      if (_isMuted) {
+        _setCallState(LiveCallState.idle, "Paused - Take a break");
+      } else {
+        _setCallState(LiveCallState.idle, "Connected! Speak now.");
       }
     });
     
@@ -354,6 +461,17 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
         if (!_isMuted && _channel != null) {
           _audioBuffer.addAll(data);
           _userAudioBuffer.add(data);
+
+          // Compute audio level for visual feedback
+          _audioLevel = _computeAudioLevel(data);
+
+          // Transition to listening state on first audio
+          if (_callState == LiveCallState.idle) {
+            _setCallState(LiveCallState.listening, "Listening...");
+          }
+
+          // Reset silence timer on every audio chunk
+          _resetSilenceTimer();
           
           // Buffer ~0.5 seconds of audio (16000 bytes/samples at 16kHz 16-bit mono)
           // to prevent websocket congestion and make the connection stable
@@ -376,6 +494,8 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
 
   @override
   void dispose() {
+    _silenceTimer?.cancel();
+    _thinkingTimeout?.cancel();
     _audioSubscription?.cancel();
     _audioRecorder.dispose();
     _player.closePlayer();
@@ -478,7 +598,21 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
                       const SizedBox(height: 8),
                       Text(widget.scenario.title, style: theme.textTheme.headlineMedium?.copyWith(color: Colors.white, fontWeight: FontWeight.bold)),
                       const SizedBox(height: 8),
-                      Text(_callStatus, style: TextStyle(color: _hasError ? Colors.redAccent : Colors.white70, fontSize: 16)),
+                      Text(
+                        _callStatus,
+                        style: TextStyle(
+                          color: _callState == LiveCallState.error
+                              ? Colors.redAccent
+                              : _callState == LiveCallState.listening
+                                  ? Colors.cyanAccent
+                                  : _callState == LiveCallState.thinking
+                                      ? Colors.amber
+                                      : _callState == LiveCallState.speaking
+                                          ? theme.colorScheme.primary
+                                          : Colors.white70,
+                          fontSize: 16,
+                        ),
+                      ),
                       if (_hasError)
                         TextButton(
                           onPressed: () => Navigator.pop(context),
@@ -521,7 +655,16 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
                     AnimatedBuilder(
                   animation: _pulseAnimation,
                   builder: (context, child) {
-                    final scale = _isLive && !_isMuted && !_hasError ? _pulseAnimation.value : 1.0;
+                    final bool isActive = _callState == LiveCallState.listening || _callState == LiveCallState.speaking;
+                    final double baseScale = 1.0 + (_audioLevel * 0.15);
+                    final double scale = isActive ? baseScale * _pulseAnimation.value : 1.0;
+                    final Color glowColor = _callState == LiveCallState.listening
+                        ? Colors.cyanAccent
+                        : _callState == LiveCallState.speaking
+                            ? theme.colorScheme.primary
+                            : _callState == LiveCallState.thinking
+                                ? Colors.amber
+                                : Colors.white24;
                     return Transform.scale(
                       scale: scale,
                       child: Container(
@@ -529,8 +672,8 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           boxShadow: [
-                            if (_isLive && !_isMuted && !_hasError)
-                              BoxShadow(color: theme.colorScheme.primary.withValues(alpha: 0.4), blurRadius: 40, spreadRadius: 5),
+                            if (isActive || _callState == LiveCallState.thinking)
+                              BoxShadow(color: glowColor.withValues(alpha: 0.5), blurRadius: 40 + (_audioLevel * 20), spreadRadius: 5),
                           ],
                         ),
                         child: ClipOval(

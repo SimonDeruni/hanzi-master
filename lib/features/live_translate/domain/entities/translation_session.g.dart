@@ -20,19 +20,25 @@ class TranslationMessageAdapter extends TypeAdapter<TranslationMessage> {
       text: fields[0] as String,
       isUser: fields[1] as bool,
       timestamp: fields[2] as DateTime?,
+      sideId: fields[3] as String? ?? 'a',
+      language: fields[4] as String? ?? 'English',
     );
   }
 
   @override
   void write(BinaryWriter writer, TranslationMessage obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(5)
       ..writeByte(0)
       ..write(obj.text)
       ..writeByte(1)
       ..write(obj.isUser)
       ..writeByte(2)
-      ..write(obj.timestamp);
+      ..write(obj.timestamp)
+      ..writeByte(3)
+      ..write(obj.sideId)
+      ..writeByte(4)
+      ..write(obj.language);
   }
 
   @override
@@ -61,13 +67,15 @@ class TranslationSessionAdapter extends TypeAdapter<TranslationSession> {
       modeName: fields[1] as String,
       date: fields[2] as DateTime,
       messages: (fields[3] as List).cast<TranslationMessage>(),
+      sideALanguage: fields[4] as String? ?? 'English',
+      sideBLanguage: fields[5] as String? ?? 'Mandarin',
     );
   }
 
   @override
   void write(BinaryWriter writer, TranslationSession obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(6)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -75,7 +83,11 @@ class TranslationSessionAdapter extends TypeAdapter<TranslationSession> {
       ..writeByte(2)
       ..write(obj.date)
       ..writeByte(3)
-      ..write(obj.messages);
+      ..write(obj.messages)
+      ..writeByte(4)
+      ..write(obj.sideALanguage)
+      ..writeByte(5)
+      ..write(obj.sideBLanguage);
   }
 
   @override

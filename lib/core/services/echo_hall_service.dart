@@ -1,52 +1,20 @@
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:http/http.dart' as http;
 import '../../features/chat/domain/entities/chat_message.dart';
-import 'api_key_pool.dart';
+import 'gemini_service.dart';
 
 final echoHallServiceProvider = Provider<EchoHallService>((ref) {
-  final pool = ref.watch(apiKeyPoolProvider);
-  return EchoHallService(pool);
+  final geminiService = ref.watch(geminiServiceProvider);
+  return EchoHallService(geminiService);
 });
 
 class EchoHallService {
-  final ApiKeyPool _pool;
+  final GeminiService _geminiService;
 
-  EchoHallService(this._pool);
+  EchoHallService(this._geminiService);
 
-  Future<Map<String, dynamic>> getConversationResponse(List<ChatMessage> history, String personaInstructions) async {
-    final apiKey = _pool.nextKey;
-
-    if (apiKey.isEmpty || apiKey.startsWith('EMPTY_KEY_') || apiKey == 'YOUR_API_KEY_HERE') {
-      try {
-        return await _getNativeConversationResponse(history, personaInstructions);
-      } catch (e) {
-        debugPrint('EchoHallService Native Fallback Error: $e');
-      }
-      return {
-        "chinese": "The Scholar's voice is silent.",
-        "english": "The Scholar's voice is silent.",
-        "pinyin": "The Scholar's voice is silent.",
-        "suggestion": {
-          "chinese": "你好",
-          "pinyin": "nǐ hǎo",
-          "english": "Hello"
-        }
-      };
-    }
-
-    try {
-      final messages = history.map((m) {
-        return {
-          'role': m.role == ChatRole.user ? 'user' : 'assistant',
-          'content': m.content,
-        };
-      }).toList();
-      
-      final systemPrompt = """
-$personaInstructions
-
+  static const _jsonStructureHint = '''
 You MUST respond ONLY in valid JSON format with this exact structure:
 {
   "chinese": "Your natural conversational reply in Chinese characters.",
@@ -57,201 +25,61 @@ You MUST respond ONLY in valid JSON format with this exact structure:
     "pinyin": "Pinyin for the suggestion.",
     "english": "English translation for the suggestion."
   }
-}
-""";
-      messages.insert(0, {'role': 'system', 'content': systemPrompt});
+}''';
 
-      final response = await http.post(
-        Uri.parse('https://openrouter.ai/api/v1/chat/completions'),
-        headers: {
-          'Authorization': 'Bearer $apiKey',
-          'Content-Type': 'application/json',
-        },
-        body: jsonEncode({
-          'model': 'google/gemini-2.5-flash',
-          'messages': messages,
-          'max_tokens': 500,
-          'response_format': {'type': 'json_object'},
-        }),
+  Future<Map<String, dynamic>> getConversationResponse(List<ChatMessage> history, String personaInstructions) async {
+    try {
+      final systemPrompt = '$personaInstructions\n\n$_jsonStructureHint';
+
+      final messages = <Map<String, dynamic>>[
+        {'role': 'system', 'content': systemPrompt},
+      ];
+      messages.addAll(history.map((m) => {
+        'role': m.role == ChatRole.user ? 'user' : 'assistant',
+        'content': m.content,
+      }));
+
+      final responseText = await _geminiService.makeOpenRouterCall(
+        model: 'google/gemini-2.5-flash',
+        messages: messages,
+        jsonMode: true,
       );
 
-      if (response.statusCode == 200) {
-        final json = jsonDecode(utf8.decode(response.bodyBytes));
-        final content = json['choices']?[0]?['message']?['content'] ?? "{}";
-        final cleanText = content.replaceAll(RegExp(r'^```json\n', multiLine: true), '').replaceAll(RegExp(r'^```\n?', multiLine: true), '');
-        return jsonDecode(cleanText);
-      } else {
-        return await _getNativeConversationResponse(history, personaInstructions);
-      }
+      final cleanText = responseText
+          .replaceAll(RegExp(r'^```json\n', multiLine: true), '')
+          .replaceAll(RegExp(r'^```\n?', multiLine: true), '')
+          .trim();
+
+      return jsonDecode(cleanText);
     } catch (e) {
       debugPrint('EchoHallService Error: $e');
-      try {
-        return await _getNativeConversationResponse(history, personaInstructions);
-      } catch (fallbackError) {
-        debugPrint('EchoHallService Native Fallback Error: $fallbackError');
-      }
-      return {
-        "chinese": "The Scholar is momentarily unavailable.",
-        "english": "The Scholar is momentarily unavailable.",
-        "pinyin": "",
-        "suggestion": null
-      };
+      throw Exception('EchoHallService failed: $e');
     }
   }
 
   Future<String> getResponse(List<ChatMessage> history, String personaInstructions) async {
-    final apiKey = _pool.nextKey;
-
-    if (apiKey.isEmpty || apiKey.startsWith('EMPTY_KEY_') || apiKey == 'YOUR_API_KEY_HERE') {
-      try {
-        return await _getNativeResponse(history, personaInstructions);
-      } catch (e) {
-        debugPrint('EchoHallService Native Fallback Error: $e');
-      }
-      return "The Scholar's voice is silent. The ink has not been prepared. (Missing API Key - See docs/AI_CHAT_SETUP.md)";
-    }
-
     try {
-      final messages = history.map((m) {
-        return {
-          'role': m.role == ChatRole.user ? 'user' : 'assistant',
-          'content': m.content,
-        };
-      }).toList();
-      
-      // Inject persona instructions as system prompt
-      messages.insert(0, {'role': 'system', 'content': personaInstructions});
+      final messages = <Map<String, dynamic>>[
+        {'role': 'system', 'content': personaInstructions},
+      ];
+      messages.addAll(history.map((m) => {
+        'role': m.role == ChatRole.user ? 'user' : 'assistant',
+        'content': m.content,
+      }));
 
-      final response = await http.post(
-        Uri.parse('https://openrouter.ai/api/v1/chat/completions'),
-        headers: {
-          'Authorization': 'Bearer $apiKey',
-          'Content-Type': 'application/json',
-        },
-        body: jsonEncode({
-          'model': 'google/gemini-2.5-flash',
-          'messages': messages,
-          'max_tokens': 220,
-        }),
+      return await _geminiService.makeOpenRouterCall(
+        model: 'google/gemini-2.5-flash',
+        messages: messages,
+        jsonMode: false,
       );
-
-      if (response.statusCode == 200) {
-        final json = jsonDecode(utf8.decode(response.bodyBytes));
-        return json['choices']?[0]?['message']?['content'] ?? "The ink failed to flow. Please try again.";
-      } else {
-        return await _getNativeResponse(history, personaInstructions);
-      }
     } catch (e) {
       debugPrint('EchoHallService Error: $e');
-      try {
-        return await _getNativeResponse(history, personaInstructions);
-      } catch (fallbackError) {
-        debugPrint('EchoHallService Native Fallback Error: $fallbackError');
-      }
-      return "The Scholar is momentarily unavailable. Please try again in a moment.";
-    }
-  }
-
-  Future<Map<String, dynamic>> _getNativeConversationResponse(List<ChatMessage> history, String personaInstructions) async {
-    final apiKey = _pool.googleKey;
-    if (apiKey.isEmpty || apiKey == 'MISSING_KEY') {
-      throw Exception('Missing Gemini API Key');
-    }
-
-    final systemPrompt = """
-$personaInstructions
-
-You MUST respond ONLY in valid JSON format with this exact structure:
-{
-  "chinese": "Your natural conversational reply in Chinese characters.",
-  "english": "The English translation of your reply.",
-  "pinyin": "The Pinyin with tone marks for your reply.",
-  "suggestion": {
-    "chinese": "A suggested response the user could say back to you.",
-    "pinyin": "Pinyin for the suggestion.",
-    "english": "English translation for the suggestion."
-  }
-}
-""";
-
-    final messages = history.map((m) {
-      return {
-        'role': m.role == ChatRole.user ? 'user' : 'model',
-        'parts': [{'text': m.content}],
-      };
-    }).toList();
-
-    final response = await http.post(
-      Uri.parse('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=$apiKey'),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: jsonEncode({
-        "contents": messages,
-        "systemInstruction": {
-          "parts": [{"text": systemPrompt}]
-        },
-        "generationConfig": {
-          "responseMimeType": "application/json"
-        }
-      }),
-    );
-
-    if (response.statusCode == 200) {
-      final json = jsonDecode(utf8.decode(response.bodyBytes));
-      final content = json['candidates']?[0]?['content']?['parts']?[0]?['text'] ?? "{}";
-      final cleanText = content.replaceAll(RegExp(r'^```json\n', multiLine: true), '').replaceAll(RegExp(r'^```\n?', multiLine: true), '');
-      return jsonDecode(cleanText);
-    } else {
-      throw Exception('Gemini Error ${response.statusCode}: ${response.body}');
-    }
-  }
-
-  Future<String> _getNativeResponse(List<ChatMessage> history, String personaInstructions) async {
-    final apiKey = _pool.googleKey;
-    if (apiKey.isEmpty || apiKey == 'MISSING_KEY') {
-      throw Exception('Missing Gemini API Key');
-    }
-
-    final messages = history.map((m) {
-      return {
-        'role': m.role == ChatRole.user ? 'user' : 'model',
-        'parts': [{'text': m.content}],
-      };
-    }).toList();
-
-    final response = await http.post(
-      Uri.parse('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=$apiKey'),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: jsonEncode({
-        "contents": messages,
-        "systemInstruction": {
-          "parts": [{"text": personaInstructions}]
-        },
-        "generationConfig": {
-          "maxOutputTokens": 220
-        }
-      }),
-    );
-
-    if (response.statusCode == 200) {
-      final json = jsonDecode(utf8.decode(response.bodyBytes));
-      return json['candidates']?[0]?['content']?['parts']?[0]?['text'] ?? "The ink failed to flow. Please try again.";
-    } else {
-      throw Exception('Gemini Error ${response.statusCode}: ${response.body}');
+      throw Exception('EchoHallService failed: $e');
     }
   }
 
   Future<String> getPronunciationFeedback(String character, String transcription, double confidence) async {
-    final apiKey = _pool.nextKey;
-
-    if (apiKey.isEmpty || apiKey.startsWith('EMPTY_KEY_') || apiKey == 'YOUR_API_KEY_HERE') {
-      return "AI feedback is currently unavailable. Please ensure the API key is set correctly.";
-    }
-
-    final prompt = """
+    final prompt = '''
 Act as a supportive but pedantic Chinese Calligraphy & Language Master.
 The user is practicing the character: "$character".
 The STT system recognized it as: "$transcription" (Confidence: ${(confidence * 100).toStringAsFixed(0)}%).
@@ -262,30 +90,14 @@ Provide a short, 1-2 sentence "Scholar's Critique" in English.
 - If the match is low (<50%), encourage them and mention a common mistake for this specific character's pronunciation.
 
 Keep it scholarly, using terms like "ink," "stroke," or "breath."
-""";
+''';
 
     try {
-      final response = await http.post(
-        Uri.parse('https://openrouter.ai/api/v1/chat/completions'),
-        headers: {
-          'Authorization': 'Bearer $apiKey',
-          'Content-Type': 'application/json',
-        },
-        body: jsonEncode({
-          'model': 'deepseek/deepseek-chat',
-          'messages': [
-            {'role': 'user', 'content': prompt}
-          ],
-          'max_tokens': 150,
-        }),
+      return await _geminiService.makeOpenRouterCall(
+        model: 'deepseek/deepseek-chat',
+        messages: [{'role': 'user', 'content': prompt}],
+        jsonMode: false,
       );
-
-      if (response.statusCode == 200) {
-        final json = jsonDecode(utf8.decode(response.bodyBytes));
-        return json['choices']?[0]?['message']?['content'] ?? "The Echo Hall remains silent. Try your breath again.";
-      } else {
-        throw Exception('OpenRouter Error ${response.statusCode}: ${response.body}');
-      }
     } catch (e) {
       debugPrint('EchoHallService Pronunciation Error: $e');
       return "The Echo Hall remains silent. Try your breath again.";

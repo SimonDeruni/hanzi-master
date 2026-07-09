@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:http/http.dart' as http;
 import 'package:xml/xml.dart';
+import 'package:youtube_explode_dart/youtube_explode_dart.dart';
 import 'package:hanzi_master/features/media/domain/models/daily_media_item.dart';
 
 class DailyDiscoveryRepository {
@@ -55,7 +56,12 @@ class DailyDiscoveryRepository {
       final thumbUri = Uri.parse('https://img.youtube.com/vi/${candidate.videoId}/hqdefault.jpg');
       try {
         final head = await http.head(thumbUri).timeout(const Duration(seconds: 3));
-        if (head.statusCode == 200) {
+        if (head.statusCode != 200) continue;
+
+        // Verify the video is actually playable (not private, region-blocked, etc.)
+        final yt = YoutubeExplode();
+        try {
+          await yt.videos.get(candidate.videoId).timeout(const Duration(seconds: 5));
           return (
             item: DailyMediaItem(
               title: candidate.title,
@@ -66,6 +72,11 @@ class DailyDiscoveryRepository {
             ),
             videoId: candidate.videoId,
           );
+        } catch (_) {
+          // Video is not playable — skip to next candidate
+          continue;
+        } finally {
+          yt.close();
         }
       } catch (_) {
         continue;

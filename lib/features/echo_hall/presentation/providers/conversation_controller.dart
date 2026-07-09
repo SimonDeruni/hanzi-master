@@ -87,7 +87,7 @@ class ConversationController extends StateNotifier<ConversationState> {
 
       state = state.copyWith(messages: [aiMsg], isProcessing: false);
     } catch (e) {
-      // Fallback
+      // Fallback with error so user can retry
       state = state.copyWith(
         messages: [
           GradedChatMessage(
@@ -98,6 +98,7 @@ class ConversationController extends StateNotifier<ConversationState> {
           )
         ],
         isProcessing: false,
+        error: "The Scholar needs a moment. Tap Retry to try again.",
       );
     }
   }
@@ -126,8 +127,17 @@ class ConversationController extends StateNotifier<ConversationState> {
       state = state.copyWith(error: null);
       await _audioService.startRecording('user_reply');
       state = state.copyWith(isRecording: true);
-    } catch (e) {
-      state = state.copyWith(error: "Could not start mic: $e");
+    } on Exception catch (e) {
+      final msg = e.toString().toLowerCase();
+      if (msg.contains('permission')) {
+        state = state.copyWith(
+          error: "Microphone access is required. Please enable it in your device Settings.",
+        );
+      } else {
+        state = state.copyWith(
+          error: "Could not start microphone. Please check your audio settings and try again.",
+        );
+      }
     }
   }
 
@@ -138,11 +148,49 @@ class ConversationController extends StateNotifier<ConversationState> {
       final path = await _audioService.stopRecording();
       state = state.copyWith(isRecording: false, isProcessing: true);
 
-      if (path != null) {
-        final file = File(path);
-        final bytes = await file.readAsBytes();
-        
-        // 1. Send Audio to Azure for Unscripted Pronunciation Assessment
+      if (path == null) {
+        state = state.copyWith(
+          isProcessing: false,
+          error: "We didn't quite catch that. Please hold the mic and try again!",
+        );
+        return;
+      }
+
+      final file = File(path);
+      final length = await file.length();
+
+      // Minimum recording: ~0.25s of 16kHz mono 16-bit PCM = 8000 bytes
+      // WAV header adds ~44 bytes. Reject anything shorter.
+      if (length < 2000) {
+        state = state.copyWith(
+          isProcessing: false,
+          error: "Recording was too short. Hold the mic and speak clearly.",
+        );
+        return;
+      }
+
+      final bytes = await file.readAsBytes();
+      if (bytes.length < 2000) {
+        state = state.copyWith(
+          isProcessing: false,
+          error: "Audio buffer was empty. Please check your microphone and try again.",
+        );
+        return;
+      }
+
+      // Validate that we have actual audio data, not just WAV header
+      final nonHeaderBytes = bytes.length > 44 ? bytes.sublist(44) : bytes;
+      final hasAudioData = nonHeaderBytes.any((b) => b != 0);
+      if (!hasAudioData) {
+        state = state.copyWith(
+          isProcessing: false,
+          error: "Audio file is silent. Please speak into the microphone.",
+        );
+        return;
+      }
+      
+      // 1. Send Audio to Azure for Unscripted Pronunciation Assessment
+      try {
         final gradeMap = await _geminiService.gradeAudioUnscripted(bytes);
         final grade = PronunciationGrade.fromJson(gradeMap);
         
@@ -158,11 +206,45 @@ class ConversationController extends StateNotifier<ConversationState> {
         
         state = state.copyWith(messages: [...state.messages, userMsg]);
         await _fetchAiResponse();
+      } on Exception catch (e) {
+        final msg = e.toString().toLowerCase();
+        if (msg.contains('nomatch') || msg.contains('no nbest') || msg.contains('inaudible')) {
+          state = state.copyWith(
+            isProcessing: false,
+            error: "We couldn't understand your pronunciation. Please speak clearly and try again.",
+          );
+        } else if (msg.contains('timeout') || msg.contains('timed out')) {
+          state = state.copyWith(
+            isProcessing: false,
+            error: "The server is taking too long to respond. Please try again.",
+          );
+        } else if (msg.contains('socket') || msg.contains('network') || msg.contains('connection')) {
+          state = state.copyWith(
+            isProcessing: false,
+            error: "No internet connection. Please check your network and try again.",
+          );
+        } else {
+          state = state.copyWith(
+            isProcessing: false,
+            error: "Audio processing failed. Please try again.",
+          );
+        }
       }
-    } catch (e) {
-      final isApiError = e.toString().contains('Exception:') || e.toString().contains('SocketException');
-      final errorMsg = isApiError ? "Our AI tutors are currently offline, please try again later." : "Processing failed: $e";
-      state = state.copyWith(isProcessing: false, error: errorMsg);
+    } on Exception catch (e) {
+      final msg = e.toString();
+      if (msg.contains('Permission') || msg.contains('permission')) {
+        state = state.copyWith(
+          isRecording: false,
+          isProcessing: false,
+          error: "Microphone access is required. Please enable it in your device Settings.",
+        );
+      } else {
+        state = state.copyWith(
+          isRecording: false,
+          isProcessing: false,
+          error: "Could not process your recording. Please try again.",
+        );
+      }
     }
   }
 
@@ -181,10 +263,29 @@ class ConversationController extends StateNotifier<ConversationState> {
       );
       
       state = state.copyWith(messages: [...state.messages, aiMsg], isProcessing: false);
-    } catch (e) {
-      final isApiError = e.toString().contains('Exception:') || e.toString().contains('SocketException');
-      final errorMsg = isApiError ? "Our AI tutors are currently offline, please try again later." : "AI Response failed: $e";
-      state = state.copyWith(isProcessing: false, error: errorMsg);
+    } on Exception catch (e) {
+      final msg = e.toString().toLowerCase();
+      if (msg.contains('timeout') || msg.contains('timed out')) {
+        state = state.copyWith(
+          isProcessing: false,
+          error: "The server is taking too long to respond. Please try again.",
+        );
+      } else if (msg.contains('socket') || msg.contains('network') || msg.contains('connection')) {
+        state = state.copyWith(
+          isProcessing: false,
+          error: "No internet connection. Please check your network and try again.",
+        );
+      } else {
+        state = state.copyWith(
+          isProcessing: false,
+          error: "Our AI tutors are currently offline, please try again later.",
+        );
+      }
     }
+  }
+
+  Future<void> retry() async {
+    state = state.copyWith(error: null, isProcessing: true);
+    await _fetchAiResponse();
   }
 }

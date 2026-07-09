@@ -1,6 +1,7 @@
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
+import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
 import '../screens/live_call_screen.dart';
 import '../../../chat/domain/entities/chat_message.dart';
 
@@ -41,7 +42,7 @@ class LiveCallSummaryScreen extends StatelessWidget {
               const SizedBox(height: 16),
               
               // 2. Graded Transcript List
-              ...transcript.map((msg) => _buildSummaryBubble(msg, theme)),
+              ...transcript.map((msg) => _buildSummaryBubble(context, msg, theme)),
               
               const SizedBox(height: 40),
               
@@ -98,9 +99,9 @@ class LiveCallSummaryScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildSummaryBubble(LiveCallMessage msg, ThemeData theme) {
+  Widget _buildSummaryBubble(BuildContext context, LiveCallMessage msg, ThemeData theme) {
     final isUser = msg.role == ChatRole.user;
-    return Container(
+    final bubble = Container(
       margin: const EdgeInsets.only(bottom: 20),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -110,37 +111,68 @@ class LiveCallSummaryScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            isUser ? "YOU" : "SCHOLAR",
-            style: theme.textTheme.labelSmall?.copyWith(color: theme.colorScheme.onSurface.withValues(alpha: 0.4)),
+          Row(
+            children: [
+              Text(
+                isUser ? "YOU" : "SCHOLAR",
+                style: theme.textTheme.labelSmall?.copyWith(color: theme.colorScheme.onSurface.withValues(alpha: 0.4)),
+              ),
+              if (isUser) ...[
+                const Spacer(),
+                Icon(
+                  Icons.touch_app_outlined,
+                  size: 14,
+                  color: theme.colorScheme.primary.withValues(alpha: 0.5),
+                ),
+                const SizedBox(width: 4),
+                Text(
+                  "Tap to review",
+                  style: theme.textTheme.labelSmall?.copyWith(
+                    color: theme.colorScheme.primary.withValues(alpha: 0.5),
+                    fontSize: 10,
+                  ),
+                ),
+              ],
+            ],
           ),
           const SizedBox(height: 8),
           if (isUser && msg.grade != null)
-            _buildGradedRow(msg.grade!['words'] ?? [], theme)
+            _buildGradedRow(context, msg, msg.grade!['words'] ?? [], theme)
           else
             Text(msg.text, style: theme.textTheme.bodyLarge?.copyWith(fontWeight: !isUser ? FontWeight.bold : FontWeight.normal)),
         ],
       ),
     );
+
+    if (!isUser) return bubble;
+
+    return GestureDetector(
+      onTap: () => showQuickLook(context, msg.text),
+      child: bubble,
+    );
   }
 
-  Widget _buildGradedRow(List<dynamic> words, ThemeData theme) {
+  Widget _buildGradedRow(BuildContext context, LiveCallMessage msg, List<dynamic> words, ThemeData theme) {
     return Wrap(
       spacing: 4,
       runSpacing: 4,
       children: words.map((w) {
         final bool correct = w['isCorrect'] ?? true;
-        return Column(
-          children: [
-            Text(w['pinyin'] ?? "", style: theme.textTheme.labelSmall?.copyWith(fontSize: 10)),
-            Text(
-              w['word'] ?? "",
-              style: theme.textTheme.titleLarge?.copyWith(
-                color: correct ? Colors.green.shade700 : Colors.red.shade700,
-                fontWeight: FontWeight.bold,
+        final word = w['word'] ?? "";
+        return GestureDetector(
+          onTap: () => showQuickLook(context, word, contextText: msg.text),
+          child: Column(
+            children: [
+              Text(w['pinyin'] ?? "", style: theme.textTheme.labelSmall?.copyWith(fontSize: 10)),
+              Text(
+                word,
+                style: theme.textTheme.titleLarge?.copyWith(
+                  color: correct ? Colors.green.shade700 : Colors.red.shade700,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         );
       }).toList(),
     );

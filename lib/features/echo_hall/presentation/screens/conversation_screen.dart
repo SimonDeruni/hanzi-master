@@ -10,6 +10,7 @@ import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/shared/widgets/tappable_hanzi_text.dart';
 import 'package:hanzi_master/core/services/audio_service.dart';
 import 'package:hanzi_master/shared/widgets/info_bulb.dart';
+import 'package:hanzi_master/core/services/saved_scenarios_service.dart';
 
 class ConversationScreen extends ConsumerStatefulWidget {
   final ConversationScenario scenario;
@@ -47,6 +48,29 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
     }
   }
 
+  Widget _buildBookmarkButton(ThemeData theme) {
+    final savedScenarios = ref.watch(savedScenariosProvider);
+    final isSaved = savedScenarios.any((s) => s.id == widget.scenario.id);
+
+    return IconButton(
+      icon: Icon(
+        isSaved ? Icons.bookmark : Icons.bookmark_border,
+        color: isSaved ? Colors.amber : Colors.white,
+      ),
+      tooltip: isSaved ? 'Remove from saved scenarios' : 'Save this scenario',
+      onPressed: () {
+        ref.read(savedScenariosProvider.notifier).toggle(widget.scenario);
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(isSaved ? 'Scenario removed' : 'Scenario saved! Find it in the Custom tab.'),
+            duration: const Duration(seconds: 2),
+            behavior: SnackBarBehavior.floating,
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(conversationControllerProvider);
@@ -65,7 +89,10 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         iconTheme: const IconThemeData(color: Colors.white),
-        actions: const [InfoBulb(id: "conversation", title: "AI Conversation", message: "Practice natural Chinese conversations with AI. Respond in Chinese to improve your speaking skills. Do not worry about mistakes!")],
+        actions: [
+          _buildBookmarkButton(theme),
+          const InfoBulb(id: "conversation", title: "AI Conversation", message: "Practice natural Chinese conversations with AI. Respond in Chinese to improve your speaking skills. Do not worry about mistakes!"),
+        ],
       ),
       body: CalligraphyBackground(
         child: Stack(
@@ -159,11 +186,30 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
                 left: 20,
                 right: 20,
                 child: Container(
-                  padding: const EdgeInsets.all(12),
-                  color: theme.colorScheme.error.withValues(alpha: 0.9),
-                  child: Text(
-                    state.error!,
-                    style: TextStyle(color: theme.colorScheme.onError),
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  decoration: BoxDecoration(
+                    color: theme.colorScheme.error.withValues(alpha: 0.9),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          state.error!,
+                          style: TextStyle(color: theme.colorScheme.onError, fontSize: 13),
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      TextButton(
+                        onPressed: () => ref.read(conversationControllerProvider.notifier).retry(),
+                        style: TextButton.styleFrom(
+                          foregroundColor: theme.colorScheme.onError,
+                          backgroundColor: theme.colorScheme.onError.withValues(alpha: 0.2),
+                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                        ),
+                        child: const Text('Retry', style: TextStyle(fontWeight: FontWeight.bold)),
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -205,11 +251,12 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
                       Expanded(
                         child: TextField(
                           controller: _textController,
+                          enabled: state.error == null,
                           style: theme.textTheme.bodyLarge,
                           maxLines: 4,
                           minLines: 1,
                           decoration: InputDecoration(
-                            hintText: state.isRecording ? "Listening..." : "Type your message...",
+                            hintText: state.error != null ? "Disconnected" : (state.isRecording ? "Listening..." : "Type your message..."),
                             hintStyle: theme.textTheme.bodyMedium?.copyWith(
                               color: theme.colorScheme.onSurface.withValues(alpha: 0.4),
                             ),
@@ -255,13 +302,13 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
                     );
                   } else {
                     return Listener(
-                      onPointerDown: (_) {
+                      onPointerDown: state.error != null ? null : (_) {
                         if (!state.isProcessing) ref.read(conversationControllerProvider.notifier).startRecording();
                       },
-                      onPointerUp: (_) {
+                      onPointerUp: state.error != null ? null : (_) {
                         if (!state.isProcessing) ref.read(conversationControllerProvider.notifier).stopRecordingAndProcess();
                       },
-                      onPointerCancel: (_) {
+                      onPointerCancel: state.error != null ? null : (_) {
                         if (!state.isProcessing) ref.read(conversationControllerProvider.notifier).stopRecordingAndProcess();
                       },
                       child: Container(

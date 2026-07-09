@@ -10,6 +10,7 @@ class _SwipeBackDetector extends StatefulWidget {
 
 class _SwipeBackDetectorState extends State<_SwipeBackDetector> {
   double? _dragStartX;
+  double _dragDistance = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -17,13 +18,24 @@ class _SwipeBackDetectorState extends State<_SwipeBackDetector> {
       behavior: HitTestBehavior.translucent,
       onHorizontalDragStart: (details) {
         _dragStartX = details.globalPosition.dx;
+        _dragDistance = 0;
+      },
+      onHorizontalDragUpdate: (details) {
+        if (_dragStartX != null && _dragStartX! < 40) {
+          _dragDistance += details.primaryDelta ?? 0;
+        }
       },
       onHorizontalDragEnd: (details) {
         final startX = _dragStartX;
+        final distance = _dragDistance;
         _dragStartX = null;
-        if (startX != null && startX < 40 && details.primaryVelocity != null && details.primaryVelocity! > 500) {
-          final navigator = Navigator.of(context);
-          if (navigator.canPop()) navigator.pop();
+        _dragDistance = 0;
+        if (startX != null && startX < 40) {
+          final velocity = details.primaryVelocity ?? 0;
+          if (distance > 80 || velocity > 500) {
+            final navigator = Navigator.of(context);
+            if (navigator.canPop()) navigator.pop();
+          }
         }
       },
       child: widget.child,

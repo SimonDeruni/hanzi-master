@@ -664,7 +664,7 @@ class _ShimmerLineState extends State<_ShimmerLine>
 
   @override
   Widget build(BuildContext context) {
-    return const AnimatedBuilder(
+    return AnimatedBuilder(
       animation: _animation,
       builder: (context, child) {
         final shimmer = Color.lerp(

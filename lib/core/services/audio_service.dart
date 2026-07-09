@@ -234,7 +234,7 @@ class AudioService {
                 await _player.play(DeviceFileSource(tmpFile.path));
               }
               completer.complete(CloudTtsResult(
-                audio: Uint8List(0),
+                audio: Uint8List.fromList(audioBuffer),
                 boundaries: boundaries,
                 success: true,
               ));

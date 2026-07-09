@@ -104,56 +104,51 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                 return [
                   // Premium Header
                   SliverAppBar(
-                    expandedHeight: 120.0,
+                    expandedHeight: 140.0,
                     floating: false,
                     pinned: true,
                     backgroundColor: isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
                     elevation: 0,
                     flexibleSpace: FlexibleSpaceBar(
                       centerTitle: true,
-                      titlePadding: const EdgeInsets.only(bottom: 16, left: 60, right: 60),
-                      title: Text(
-                        widget.deck.localizedName(context),
-                        textAlign: TextAlign.center,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                          color: isDark ? Colors.white : const Color(0xFF2C2C2C),
-                          fontWeight: FontWeight.w800,
-                          fontSize: 16,
-                          letterSpacing: 0.5,
-                        ),
-                      ),
-                      background: Stack(
-                        fit: StackFit.expand,
+                      titlePadding: const EdgeInsets.only(bottom: 8, left: 60, right: 60),
+                      title: Column(
+                        mainAxisSize: MainAxisSize.min,
                         children: [
-                          Opacity(
-                            opacity: isDark ? 0.3 : 0.1,
-                            child: const CalligraphyBackground(child: SizedBox.expand()),
+                          Text(
+                            widget.deck.localizedName(context),
+                            textAlign: TextAlign.center,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              color: isDark ? Colors.white : const Color(0xFF2C2C2C),
+                              fontWeight: FontWeight.w800,
+                              fontSize: 16,
+                              letterSpacing: 0.5,
+                            ),
                           ),
-                          Align(
-                            alignment: Alignment.bottomCenter,
-                            child: Padding(
-                              padding: const EdgeInsets.only(bottom: 56.0),
-                              child: Container(
-                                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                                decoration: BoxDecoration(
-                                  color: (isDark ? Colors.white : Colors.black).withValues(alpha: 0.05),
-                                  borderRadius: BorderRadius.circular(12),
-                                ),
-                                child: Text(
-                                  "${deckCards.length} Cards",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    color: isDark ? Colors.white70 : Colors.black54,
-                                    fontWeight: FontWeight.w600,
-                                    letterSpacing: 1.0,
-                                  ),
-                                ),
+                          const SizedBox(height: 4),
+                          Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                            decoration: BoxDecoration(
+                              color: (isDark ? Colors.white : Colors.black).withValues(alpha: 0.05),
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Text(
+                              "${deckCards.length} Cards",
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: isDark ? Colors.white70 : Colors.black54,
+                                fontWeight: FontWeight.w600,
+                                letterSpacing: 1.0,
                               ),
                             ),
                           ),
                         ],
+                      ),
+                      background: Opacity(
+                        opacity: isDark ? 0.3 : 0.1,
+                        child: const CalligraphyBackground(child: SizedBox.expand()),
                       ),
                     ),
                     actions: [

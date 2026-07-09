@@ -399,66 +399,6 @@ class DashboardScreen extends ConsumerWidget {
       ],
     );
   }
-
-  String _deckDisplayName(String deckId, List<Deck> allDecks, AppLocalizations? l10n) {
-    if (deckId.toLowerCase() == 'hsk1') return l10n?.hskLevel1 ?? 'HSK Level 1';
-    if (deckId.toLowerCase() == 'hsk2') return l10n?.hskLevel2 ?? 'HSK Level 2';
-    if (deckId.toLowerCase() == 'hsk3') return l10n?.hskLevel3 ?? 'HSK Level 3';
-    if (deckId.toLowerCase() == 'hsk4') return l10n?.hskLevel4 ?? 'HSK Level 4';
-    if (deckId.toLowerCase() == 'hsk5') return l10n?.hskLevel5 ?? 'HSK Level 5';
-    if (deckId.toLowerCase() == 'hsk6') return l10n?.hskLevel6 ?? 'HSK Level 6';
-    if (deckId.toLowerCase() == 'default') return l10n?.generalVocabulary ?? 'General Vocabulary';
-    final foundDeck = allDecks.where((d) => d.id == deckId).firstOrNull;
-    return foundDeck?.name ?? deckId;
-  }
-  void _showForecastDetail(BuildContext context, String title, Map<String, int> deckCounts, List<Deck> allDecks, AppLocalizations? l10n, ThemeData theme) {
-    if (deckCounts.isEmpty) return;
-    final sorted = deckCounts.entries.toList()..sort((a, b) => b.value.compareTo(a.value));
-    showModalBottomSheet(
-      context: context,
-      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(24))),
-      builder: (ctx) {
-        return Padding(
-          padding: const EdgeInsets.all(24),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(title, style: theme.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w900, fontFamily: 'NotoSerifSC')),
-              const SizedBox(height: 4),
-              Text('${sorted.fold<int>(0, (sum, e) => sum + e.value)} cards total',
-                style: theme.textTheme.bodyMedium?.copyWith(color: theme.colorScheme.onSurface.withValues(alpha: 0.6))),
-              const SizedBox(height: 20),
-              ...sorted.map((entry) {
-                final deckId = allDecks.where((d) => _deckDisplayName(d.id, allDecks, l10n) == entry.key).firstOrNull?.id ?? entry.key;
-                return Padding(
-                  padding: const EdgeInsets.only(bottom: 10),
-                  child: InkWell(
-                    borderRadius: BorderRadius.circular(16),
-                    onTap: () { Navigator.pop(ctx); Navigator.push(context, MaterialPageRoute(builder: (_) => DeckDetailScreen(deck: Deck(id: deckId, name: entry.key, createdAt: DateTime.now())))); },
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-                      decoration: BoxDecoration(color: theme.colorScheme.primary.withValues(alpha: 0.06), borderRadius: BorderRadius.circular(16)),
-                      child: Row(children: [
-                        Expanded(child: Text(entry.key, style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600))),
-                        Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                          decoration: BoxDecoration(color: theme.colorScheme.primary.withValues(alpha: 0.12), borderRadius: BorderRadius.circular(12)),
-                          child: Text('${entry.value} cards', style: TextStyle(color: theme.colorScheme.primary, fontWeight: FontWeight.bold, fontSize: 13)),
-                        ),
-                      ]),
-                    ),
-                  ),
-                );
-              }),
-              const SizedBox(height: 8),
-              SizedBox(width: double.infinity, child: TextButton(onPressed: () => Navigator.pop(ctx), style: TextButton.styleFrom(foregroundColor: theme.colorScheme.onSurface.withValues(alpha: 0.5)), child: const Text('Done', style: TextStyle(fontWeight: FontWeight.bold)))),
-            ],
-          ),
-        );
-      },
-    );
-  }
 }
 
 class _ForecastItem extends StatelessWidget {

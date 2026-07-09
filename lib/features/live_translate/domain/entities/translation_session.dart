@@ -13,10 +13,18 @@ class TranslationMessage extends HiveObject {
   @HiveField(2)
   final DateTime timestamp;
 
+  @HiveField(3)
+  final String sideId;
+
+  @HiveField(4)
+  final String language;
+
   TranslationMessage({
     required this.text,
     required this.isUser,
     DateTime? timestamp,
+    this.sideId = 'a',
+    this.language = 'English',
   }) : timestamp = timestamp ?? DateTime.now();
 
   TranslationMessage copyWith({String? text}) {
@@ -24,6 +32,8 @@ class TranslationMessage extends HiveObject {
       text: text ?? this.text,
       isUser: isUser,
       timestamp: timestamp,
+      sideId: sideId,
+      language: language,
     );
   }
 }
@@ -42,10 +52,18 @@ class TranslationSession extends HiveObject {
   @HiveField(3)
   final List<TranslationMessage> messages;
 
+  @HiveField(4)
+  final String sideALanguage;
+
+  @HiveField(5)
+  final String sideBLanguage;
+
   TranslationSession({
     required this.id,
     required this.modeName,
     required this.date,
     required this.messages,
+    this.sideALanguage = 'English',
+    this.sideBLanguage = 'Mandarin',
   });
 }

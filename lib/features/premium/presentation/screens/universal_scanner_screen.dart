@@ -370,6 +370,30 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
           debugPrint("ML Kit fallback error: $e");
         }
       }
+
+      // Always run ML Kit to get pixel-accurate bounding boxes,
+      // replacing Gemini-hallucinated coordinates with real measurements.
+      try {
+        final inputImage = InputImage.fromFilePath(image.path);
+        final recognizedText = await _textRecognizer.processImage(inputImage);
+        if (recognizedText.blocks.isNotEmpty && result != null) {
+          final mlBlocks = recognizedText.blocks
+              .where((b) => b.text.trim().isNotEmpty && b.boundingBox.width > 0 && b.boundingBox.height > 0)
+              .map((b) => AiTextBlock(
+                    text: b.text.trim(),
+                    x: b.boundingBox.left,
+                    y: b.boundingBox.top,
+                    width: b.boundingBox.width,
+                    height: b.boundingBox.height,
+                  ))
+              .toList();
+          if (mlBlocks.isNotEmpty) {
+            result = (text: result.text, blocks: mlBlocks);
+          }
+        }
+      } catch (e) {
+        debugPrint("ML Kit bounding box extraction error: $e");
+      }
     }
 
     final processed = result;
@@ -547,14 +571,20 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
               child: GestureDetector(
                 onScaleStart: _handleScaleStart,
                 onScaleUpdate: _handleScaleUpdate,
-                child: LayoutBuilder(
-                  builder: (context, constraints) {
+                child: Builder(
+                  builder: (context) {
+                    final orientation = MediaQuery.of(context).orientation;
+                    final previewSize = _cameraController!.value.previewSize!;
+                    // Camera preview texture is landscape-native; for portrait, swap dimensions
+                    final bool isPortrait = orientation == Orientation.portrait;
+                    final double childWidth = isPortrait ? previewSize.height : previewSize.width;
+                    final double childHeight = isPortrait ? previewSize.width : previewSize.height;
                     return ClipRect(
                       child: FittedBox(
                         fit: BoxFit.cover,
                         child: SizedBox(
-                          width: constraints.maxWidth,
-                          height: constraints.maxWidth / _cameraController!.value.aspectRatio,
+                          width: childWidth,
+                          height: childHeight,
                           child: CameraPreview(_cameraController!),
                         ),
                       ),

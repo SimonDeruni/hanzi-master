@@ -16,6 +16,7 @@ import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import 'package:hanzi_master/shared/widgets/info_bulb.dart';
 
+import "package:hanzi_master/core/services/saved_scenarios_service.dart";
 class ScenarioSelectionScreen extends ConsumerStatefulWidget {
   final Deck? deck;
   const ScenarioSelectionScreen({super.key, this.deck});
@@ -54,6 +55,7 @@ class _ScenarioSelectionScreenState extends ConsumerState<ScenarioSelectionScree
   void didChangeDependencies() {
     super.didChangeDependencies();
     _allScenarios = [...getDefaultScenarios(context)];
+    _loadSavedScenarios();
     if (widget.deck != null && !_autoLaunchHandled) {
       _autoLaunchHandled = true;
       _loadAndHandleDeckScenario();
@@ -109,6 +111,16 @@ class _ScenarioSelectionScreenState extends ConsumerState<ScenarioSelectionScree
         : <String, dynamic>{};
     map[scenario.deckId!] = scenario.toJson();
     await prefs.setString('deck_scenarios', jsonEncode(map));
+  }
+
+  void _loadSavedScenarios() {
+    final savedScenarios = ref.read(savedScenariosProvider);
+    for (final saved in savedScenarios) {
+      final exists = _allScenarios.any((s) => s.id == saved.id);
+      if (!exists) {
+        _allScenarios.add(saved);
+      }
+    }
   }
 
   @override
@@ -510,7 +522,7 @@ Respond ONLY with a JSON object containing:
   }
 }
 
-class _ScenarioGlassCard extends StatelessWidget {
+class _ScenarioGlassCard extends ConsumerWidget {
   final ConversationScenario scenario;
   final bool isActive;
 
@@ -520,8 +532,10 @@ class _ScenarioGlassCard extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
+    final savedScenarios = ref.watch(savedScenariosProvider);
+    final isBookmarked = savedScenarios.any((s) => s.id == scenario.id);
     
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
@@ -592,6 +606,17 @@ class _ScenarioGlassCard extends StatelessWidget {
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
                             fontSize: 14,
+                          ),
+                        ),
+                        const SizedBox(height: 4),
+                        GestureDetector(
+                          onTap: () {
+                            ref.read(savedScenariosProvider.notifier).toggle(scenario);
+                          },
+                          child: Icon(
+                            isBookmarked ? Icons.bookmark : Icons.bookmark_border,
+                            color: isBookmarked ? Colors.amber : Colors.white54,
+                            size: 20,
                           ),
                         ),
                       ],
