@@ -137,13 +137,6 @@ void main() async {
   }
   await container.read(analyticsServiceProvider).init();
 
-  // 7. Initialize AmapService for location-aware reading
-  try {
-    await AmapService().load();
-  } catch (e) {
-    debugPrint('AmapService load failed: $e');
-  }
-
   runApp(
     UncontrolledProviderScope(
       container: container,
