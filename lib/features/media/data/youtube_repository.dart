@@ -7,6 +7,7 @@ import 'package:youtube_explode_dart/youtube_explode_dart.dart';
 import '../domain/models/youtube_video.dart';
 import '../domain/models/video_transcript.dart';
 import '../../../core/services/api_key_pool.dart';
+import 'repositories/shows_data.dart';
 
 final youtubeRepositoryProvider = Provider<YoutubeRepository>((ref) {
   final apiKey = ref.watch(apiKeyPoolProvider).youtubeApiKey;
@@ -47,6 +48,17 @@ class YoutubeRepository {
 
     final validVideos = <YoutubeVideo>[];
 
+    // If API key is missing, fall back to local search immediately
+    if (_apiKey == 'MISSING_KEY') {
+      debugPrint('[YT Search] API Key is missing, using local search fallback');
+      final localResults = _localSearchFallback(query);
+      _cache[query] = _CachedResult(
+        videos: localResults,
+        timestamp: DateTime.now(),
+      );
+      return localResults;
+    }
+
     try {
       final searchQuery = '$query 中文';
       final uri = Uri.parse('$_baseUrl/search?part=snippet'
@@ -69,13 +81,29 @@ class YoutubeRepository {
           final message = error['message'] as String? ?? 'Unknown error';
           debugPrint('[YT Search] Error reason: $message');
         } catch (_) {}
-        return validVideos;
+        
+        // Fall back to local search on API failure
+        debugPrint('[YT Search] Falling back to local search after API error');
+        final localResults = _localSearchFallback(query);
+        _cache[query] = _CachedResult(
+          videos: localResults,
+          timestamp: DateTime.now(),
+        );
+        return localResults;
       }
 
       final data = jsonDecode(response.body) as Map<String, dynamic>;
       final items = data['items'] as List<dynamic>? ?? [];
 
-      if (items.isEmpty) return validVideos;
+      if (items.isEmpty) {
+        // Fall back to local search if no results found on YouTube
+        final localResults = _localSearchFallback(query);
+        _cache[query] = _CachedResult(
+          videos: localResults,
+          timestamp: DateTime.now(),
+        );
+        return localResults;
+      }
 
       // Collect video IDs for batch duration lookup
       final videoIds = items
@@ -120,10 +148,90 @@ class YoutubeRepository {
 
       debugPrint('[YT Search] Found ${validVideos.length} videos for "$query"');
     } catch (e) {
-      debugPrint('[YT Search] Error: $e');
+      debugPrint('[YT Search] Error: $e. Falling back to local search.');
+      final localResults = _localSearchFallback(query);
+      _cache[query] = _CachedResult(
+        videos: localResults,
+        timestamp: DateTime.now(),
+      );
+      return localResults;
     }
 
     return validVideos;
+  }
+
+  /// Flattens and searches through local HardcodedShows episodes as a fallback.
+  List<YoutubeVideo> _localSearchFallback(String query) {
+    final results = <YoutubeVideo>[];
+    final cleanQuery = query.replaceAll(RegExp(r'中国|中文|china|chinese'), '').trim();
+    final terms = cleanQuery.toLowerCase().split(RegExp(r'\s+')).where((t) => t.isNotEmpty).toList();
+
+    // Flatten all hardcoded shows and their episodes
+    for (final show in HardcodedShows.data) {
+      final showTitle = (show['title'] as String? ?? '').toLowerCase();
+      final channelTitle = show['channelTitle'] as String? ?? '';
+      final tags = (show['tags'] as List? ?? []).map((t) => t.toString().toLowerCase()).toList();
+      final episodes = show['episodes'] as List? ?? [];
+
+      for (final ep in episodes) {
+        final epMap = ep as Map<String, dynamic>;
+        final epTitle = (epMap['title'] as String? ?? '').toLowerCase();
+        
+        bool matchesAll = true;
+        if (terms.isNotEmpty) {
+          for (final term in terms) {
+            final matchesShow = showTitle.contains(term);
+            final matchesEp = epTitle.contains(term);
+            final matchesTag = tags.any((tag) => tag.contains(term));
+            if (!matchesShow && !matchesEp && !matchesTag) {
+              matchesAll = false;
+              break;
+            }
+          }
+        }
+
+        if (matchesAll) {
+          results.add(YoutubeVideo(
+            id: epMap['id'] as String? ?? '',
+            title: '${show['title']} - ${epMap['title']}',
+            url: 'https://www.youtube.com/watch?v=${epMap['id']}',
+            duration: null,
+            mediumThumbnailUrl: epMap['thumbnailUrl'] as String? ?? '',
+            highThumbnailUrl: epMap['thumbnailUrl'] as String? ?? '',
+            uploadDate: null,
+            channelTitle: channelTitle,
+          ));
+        }
+      }
+    }
+
+    // If we have no/few results, populate with top episodes from featured shows so results are never empty
+    if (results.isEmpty) {
+      int count = 0;
+      for (final show in HardcodedShows.data.take(5)) {
+        final channelTitle = show['channelTitle'] as String? ?? '';
+        final episodes = show['episodes'] as List? ?? [];
+        for (final ep in episodes.take(3)) {
+          final epMap = ep as Map<String, dynamic>;
+          results.add(YoutubeVideo(
+            id: epMap['id'] as String? ?? '',
+            title: '${show['title']} - ${epMap['title']}',
+            url: 'https://www.youtube.com/watch?v=${epMap['id']}',
+            duration: null,
+            mediumThumbnailUrl: epMap['thumbnailUrl'] as String? ?? '',
+            highThumbnailUrl: epMap['thumbnailUrl'] as String? ?? '',
+            uploadDate: null,
+            channelTitle: channelTitle,
+          ));
+          count++;
+          if (count >= 15) break;
+        }
+        if (count >= 15) break;
+      }
+    }
+
+    debugPrint('[YT Search Fallback] Found ${results.length} local results matching "$query"');
+    return results.take(20).toList();
   }
 
   /// Batch-fetches video durations using videos.list endpoint.

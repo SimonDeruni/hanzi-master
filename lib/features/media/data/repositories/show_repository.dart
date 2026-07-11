@@ -185,6 +185,35 @@ class ShowRepository {
   Future<List<YoutubeVideo>> fetchEpisodes(String showId) async {
     if (showId.startsWith("fallback")) return [];
 
+    // Try to load from hardcoded local database first
+    try {
+      final showEntry = HardcodedShows.data.firstWhere(
+        (entry) => entry["id"] == showId,
+      );
+      final hardcodedEpisodesList = showEntry["episodes"] as List<dynamic>?;
+      if (hardcodedEpisodesList != null && hardcodedEpisodesList.isNotEmpty) {
+        final List<YoutubeVideo> episodes = [];
+        for (final ep in hardcodedEpisodesList) {
+          final epMap = ep as Map<String, dynamic>;
+          episodes.add(YoutubeVideo(
+            id: epMap["id"] as String,
+            title: epMap["title"] as String,
+            url: "https://www.youtube.com/watch?v=${epMap["id"]}",
+            mediumThumbnailUrl: epMap["thumbnailUrl"] as String? ?? "",
+            highThumbnailUrl: epMap["thumbnailUrl"] as String? ?? "",
+            channelTitle: showEntry["channelTitle"] as String? ?? "",
+            uploadDate: null,
+            duration: null,
+          ));
+        }
+        debugPrint("[ShowRepo] Loaded ${episodes.length} episodes from local hardcoded shows database");
+        return episodes;
+      }
+    } catch (e) {
+      debugPrint("[ShowRepo] Show not found in local hardcoded shows database or failed parsing: $e");
+    }
+
+    // Fallback to online YouTube API fetch
     final episodes = await _fetchPlaylistVideos(showId);
 
     // Sort by upload date (oldest first for chronological viewing)
