@@ -25,7 +25,9 @@ All notable changes to this project will be documented in this file.
 - **UI/UX Polish**:
     - **Premium AI Hub UI**: Completely redesigned the AI Hub layout into a strict, single-page, flexible dashboard (no scrolling) with deep ink aesthetics (`#131A29`) and textured Zen & Ink backgrounds for all action cards. Replaced the "Calligraphy" card with a focused "TODAY'S WORD" hero card, wired directly to `CharacterDetailScreen`.
     - Redesigned `TravelInterpreterScreen` layout for improved 180-degree split-screen visibility and dynamic state backgrounds.
-    - Revamped `ShadowingStudioScreen` with an audio-first, mimicry-focused interface via `PageView`.
+    - **Shadowing Studio**:
+    - Fixed an issue where the pronunciation grading always returned `0/100`. Stripped Chinese punctuation from the `ReferenceText` passed to the Azure Speech API, preventing alignment failures on complete conversational sentences.
+    - Replaced the conversational chat list with a new audio-first Mimicry UI (PageView).
     - Added Tinder-style swipe gestures with corresponding haptic feedback and scale animations to `ReviewScreen` flashcard grading.
     - Expanded Reading Room features with an anchored audio player, inline sentence translation toggle, and 3-mode Pinyin display (All, Ghost, None).
 - **Performance**:

@@ -21,6 +21,7 @@
 - [x] **Bug**: Fixed invisible AI transcript in Live Call by changing API modality to fetch both TEXT and AUDIO.
 - [x] **Bug**: Replaced Live Call AI text with `TappableMarkdownHanziText` to allow quicklook dictionary access on spoken words.
 - [x] **Bug**: Fixed Dart compilation syntax error (`Target kernel_snapshot_program failed`) causing iOS builds to fail.
+- [x] **Bug**: Fixed Shadowing Studio always returning 0/100 for pronunciation grading. Stripped Chinese punctuation from the `ReferenceText` passed to the Azure Speech Pronunciation Assessment API to prevent alignment failures.
 
 ## Open Issues
 

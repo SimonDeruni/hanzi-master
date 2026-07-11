@@ -1365,8 +1365,11 @@ Respond ONLY in valid JSON format like:
     }
 
     // Azure Pronunciation Assessment parameters
+    // Strip punctuation to prevent Azure Speech API matching failures (especially for Chinese punctuation)
+    final cleanReference = expectedChinese.replaceAll(RegExp(r'[^\p{Script=Hani}a-zA-Z0-9 ]', unicode: true), '');
+    
     final Map<String, dynamic> params = {
-      "ReferenceText": expectedChinese,
+      "ReferenceText": cleanReference.isEmpty ? expectedChinese : cleanReference,
       "GradingSystem": "HundredMark",
       "Granularity": "Phoneme",
       "Dimension": "Comprehensive"
