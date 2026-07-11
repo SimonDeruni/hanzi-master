@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/models/pronunciation_grade.dart';
+import '../../../../core/services/audio_service.dart';
 
-class PronunciationReportSheet extends StatelessWidget {
+class PronunciationReportSheet extends ConsumerWidget {
   final PronunciationGrade grade;
 
   const PronunciationReportSheet({super.key, required this.grade});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Container(
       decoration: const BoxDecoration(
         color: Colors.white,
@@ -23,10 +25,10 @@ class PronunciationReportSheet extends StatelessWidget {
             children: [
               const Text(
                 'Report',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black87),
               ),
               IconButton(
-                icon: const Icon(Icons.close),
+                icon: const Icon(Icons.close, color: Colors.black54),
                 onPressed: () => Navigator.pop(context),
               ),
             ],
@@ -41,9 +43,32 @@ class PronunciationReportSheet extends StatelessWidget {
               borderRadius: BorderRadius.circular(16),
               border: Border.all(color: Colors.grey.shade200),
             ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: grade.words.map((w) => _buildCharacterColumn(w)).toList(),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: grade.words.map((w) => _buildCharacterColumn(w)).toList(),
+                ),
+                const Divider(height: 24),
+                ElevatedButton.icon(
+                  onPressed: () {
+                    final sentence = grade.words.map((w) => w.word).join('');
+                    ref.read(audioServiceProvider).playSentence(sentence);
+                  },
+                  icon: const Icon(Icons.volume_up, size: 20),
+                  label: const Text('Play Reference Pronunciation', style: TextStyle(fontWeight: FontWeight.bold)),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.orange.shade50,
+                    foregroundColor: Colors.orange.shade800,
+                    elevation: 0,
+                    padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                      side: BorderSide(color: Colors.orange.shade200),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
           const SizedBox(height: 24),
@@ -69,7 +94,7 @@ class PronunciationReportSheet extends StatelessWidget {
                     const SizedBox(width: 8),
                     const Text(
                       'Good! 😊',
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black87),
                     ),
                   ],
                 ),
@@ -134,10 +159,10 @@ class PronunciationReportSheet extends StatelessWidget {
         ),
         Text(
           word.word,
-          style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black87),
         ),
         Text(
-          word.isCorrect ? '95' : '64', // We don't have individual scores from gemini right now, but we can mock it based on isCorrect
+          word.isCorrect ? '95' : '64', // Mock score based on isCorrect
           style: TextStyle(fontSize: 12, color: color, fontWeight: FontWeight.bold),
         ),
       ],
@@ -173,7 +198,7 @@ class PronunciationReportSheet extends StatelessWidget {
         const SizedBox(height: 8),
         Text(
           label,
-          style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+          style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.black87),
         ),
       ],
     );
