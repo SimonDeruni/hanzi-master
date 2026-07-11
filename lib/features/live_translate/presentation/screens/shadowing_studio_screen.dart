@@ -181,7 +181,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
         _recordingStartTime = DateTime.now();
 
         await _audioRecorder.start(
-          const RecordConfig(encoder: AudioEncoder.wav, sampleRate: 16000, numChannels: 1),
+          const RecordConfig(encoder: AudioEncoder.pcm16bits, sampleRate: 16000, numChannels: 1),
           path: _recordingPath!,
         );
         setState(() {
@@ -1177,6 +1177,8 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
             ),
           ],
           
+          // Tone Graph is hidden for V1 MVP as requested by user
+          /*
           if (_lastGrade != null && _userPitch.isNotEmpty) ...[
             const SizedBox(height: 24),
             Container(
@@ -1206,6 +1208,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
               ),
             ),
           ],
+          */
           
           const SizedBox(height: 24),
           Text(

@@ -23,7 +23,7 @@ class ConversationScreen extends ConsumerStatefulWidget {
 
 class _ConversationScreenState extends ConsumerState<ConversationScreen> {
   final ScrollController _scrollController = ScrollController();
-  final Set<String> _expandedTranslations = {};
+  final Map<String, bool> _translationVisibility = {};
 
   @override
   void initState() {
@@ -95,9 +95,11 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
           const InfoBulb(id: "conversation", title: "AI Conversation", message: "Practice natural Chinese conversations with AI. Respond in Chinese to improve your speaking skills. Do not worry about mistakes!"),
         ],
       ),
-      body: CalligraphyBackground(
-        child: Stack(
-          children: [
+      body: GestureDetector(
+        onTap: () => FocusScope.of(context).unfocus(),
+        child: CalligraphyBackground(
+          child: Stack(
+            children: [
             // 1. Avatar Image at Top (Cover)
             Positioned(
               top: 0,
@@ -163,6 +165,7 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
                     Expanded(
                       child: ListView.builder(
                         controller: _scrollController,
+                        keyboardDismissMode: ScrollViewKeyboardDismissMode.onDrag,
                         padding: const EdgeInsets.fromLTRB(16, 24, 16, 100),
                         itemCount: state.messages.length,
                         itemBuilder: (context, index) {
@@ -356,7 +359,7 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
   Widget _buildMessage(GradedChatMessage message, ThemeData theme) {
     final isUser = message.role == ChatRole.user;
     final hasTranslation = (message.english != null && message.english!.isNotEmpty) || (message.pinyin != null && message.pinyin!.isNotEmpty);
-    final isExpanded = _expandedTranslations.contains(message.id) || (_expandedTranslations.isEmpty && hasTranslation);
+    final isExpanded = _translationVisibility[message.id] ?? hasTranslation;
 
     return GestureDetector(
       onTap: () {
@@ -463,11 +466,7 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
                             InkWell(
                               onTap: () {
                                 setState(() {
-                                  if (isExpanded) {
-                                    _expandedTranslations.remove(message.id);
-                                  } else {
-                                    _expandedTranslations.add(message.id);
-                                  }
+                                  _translationVisibility[message.id] = !isExpanded;
                                 });
                               },
                               borderRadius: BorderRadius.circular(12),

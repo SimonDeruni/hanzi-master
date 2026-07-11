@@ -12,6 +12,14 @@
 - [x] Added AI explanation button for specific sentences.
 - [x] **Bug**: Fixed total loss of audio output during media playback caused by iframe muting.
 - [x] **Bug**: Fixed "0/100" and Tone Graph glitches in Shadowing Studio grading by passing raw byte arrays to pitch extractor and dynamically scaling rendering coordinates.
+- [x] **Bug**: Fixed `MediaSearchScreen` empty state crash and video fetch failures. Implemented live API key rotation to intercept 403 quota errors and seamlessly cycle through backup keys before falling back to the local database, guaranteeing live videos fetch successfully.
+- [x] **Bug**: Fixed Roleplay Chat Keyboard trapping (added scroll-to-dismiss and tap-to-dismiss).
+- [x] **Bug**: Fixed Roleplay Chat "Hide Translation" toggle button (resolved state logic issue).
+- [x] **Bug**: Fixed Roleplay Chat Pinyin formatting (converted raw numeric tone output from AI to standard diacritic marks).
+- [x] **Bug**: Fixed infinite reconnection loop in Travel Interpreter caused by invalid `realtimeInput` WebSocket payload crashing the server connection.
+- [x] **Bug**: Fixed Gemini Live Call severe echo and self-interruption loop by migrating from a software muting hack to OS-level hardware echo cancellation.
+- [x] **Bug**: Fixed invisible AI transcript in Live Call by changing API modality to fetch both TEXT and AUDIO.
+- [x] **Bug**: Replaced Live Call AI text with `TappableMarkdownHanziText` to allow quicklook dictionary access on spoken words.
 
 ## Open Issues
 

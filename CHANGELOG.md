@@ -47,7 +47,18 @@ All notable changes to this project will be documented in this file.
     - Resolved fragmented UI rendering of the user's pitch contour in the Shadowing Studio's Tone Graph by correctly scaling X/Y coordinates and continuously drawing the line despite zero-pitch pauses.
     - Fixed audio pitch extraction crash during Shadowing Studio grading by ensuring raw audio byte arrays are passed natively to the extraction tool instead of temporary file paths.
 - **API Management**:
-    - Implemented API key rotation for YouTube Data API to handle daily quota limits gracefully without blocking media search.
+    - Implemented live API key rotation for YouTube Data API. Both `searchVideos` and `fetchEpisodes` now intercept 403 (Quota Exceeded) errors and automatically try the next keys in the pool before failing.
+- Fixed an issue where `MediaSearchScreen` and other features would fail to fetch videos when the YouTube API quota was reached. Modified the local search fallback to return default content when exact tag matches are not found, preventing UI crashes and empty states.
+- **Roleplay Chat Polish**:
+    - Fixed a bug causing the keyboard to permanently trap users. Tapping the chat background or scrolling the message list now successfully dismisses the keyboard.
+    - Fixed a component state failure where the "Hide Translation" toggle button was unresponsive for AI messages.
+    - Improved Pinyin formatting by routing raw numeric tone outputs (e.g., `hao3`) through a utility to render standard Unicode diacritics (e.g., `hǎo`).
+- **Gemini Live & Travel Interpreter Stability**:
+    - Fixed an infinite WebSocket crash loop in Travel Interpreter caused by an invalid `realtimeInput` payload format. Audio streaming is now correctly chunked into `mediaChunks`.
+    - Eliminated severe echo and interruption loops in Live Call by enabling OS-level hardware echo cancellation instead of software-based muting.
+    - Fixed a bug where the AI's transcript was invisible by properly configuring `responseModalities` to request both `["TEXT", "AUDIO"]`.
+    - Integrated `TappableMarkdownHanziText` into Live Call transcripts, allowing users to tap AI-generated Chinese for instant QuickLook dictionary definitions.
+    - Added pre-flight API token validation and graceful degradation UI to stop runaway auto-reconnects when the WebSocket connection is permanently rejected.
 
 ## [1.2.0] - 2026-06-17
 

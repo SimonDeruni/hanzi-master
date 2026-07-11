@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/core/services/notification_service.dart';
+import 'package:hanzi_master/features/flashcards/presentation/screens/main_navigation_screen.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
+import 'package:hanzi_master/features/premium/presentation/screens/paywall_sheet.dart';
 import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
 
 class NotificationPermissionScreen extends ConsumerStatefulWidget {
-  final VoidCallback onComplete;
-
   const NotificationPermissionScreen({
     super.key,
-    required this.onComplete,
   });
 
   @override
@@ -18,6 +17,29 @@ class NotificationPermissionScreen extends ConsumerStatefulWidget {
 
 class _NotificationPermissionScreenState extends ConsumerState<NotificationPermissionScreen> {
   bool _isRequested = false;
+  bool _isNavigating = false;
+
+  Future<void> _navigateToApp() async {
+    if (_isNavigating) return;
+    _isNavigating = true;
+    try {
+      await PaywallSheet.show(context, isHardPaywall: false);
+    } catch (e) {
+      debugPrint('Paywall error during onboarding: $e');
+    } finally {
+      if (mounted) {
+        Navigator.pushReplacement(
+          context,
+          PageRouteBuilder(
+            pageBuilder: (context, animation, secondaryAnimation) => const MainNavigationScreen(),
+            transitionsBuilder: (context, animation, secondaryAnimation, child) {
+              return FadeTransition(opacity: animation, child: child);
+            },
+          ),
+        );
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -143,7 +165,7 @@ class _NotificationPermissionScreenState extends ConsumerState<NotificationPermi
                   )
                 else
                   BouncingButton(
-                    onPressed: widget.onComplete,
+                    onPressed: _navigateToApp,
                     child: Container(
                       padding: const EdgeInsets.symmetric(vertical: 18),
                       decoration: BoxDecoration(
@@ -173,7 +195,7 @@ class _NotificationPermissionScreenState extends ConsumerState<NotificationPermi
                 if (!_isRequested) ...[
                   const SizedBox(height: 16),
                   TextButton(
-                    onPressed: widget.onComplete,
+                    onPressed: _navigateToApp,
                     style: TextButton.styleFrom(
                       foregroundColor: isDark ? Colors.white60 : Colors.black54,
                     ),

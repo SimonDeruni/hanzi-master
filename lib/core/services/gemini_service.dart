@@ -1375,7 +1375,7 @@ Respond ONLY in valid JSON format like:
     final String jsonParams = jsonEncode(params);
     final String base64Params = base64Encode(utf8.encode(jsonParams));
 
-    final String endpoint = 'https://$region.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?language=zh-CN';
+    final String endpoint = 'https://$region.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?language=zh-CN&format=detailed';
 
     final request = http.Request('POST', Uri.parse(endpoint));
     request.headers.addAll({
@@ -1414,16 +1414,27 @@ Respond ONLY in valid JSON format like:
       if (response.statusCode == 200) {
         final data = jsonDecode(responseBody);
 
+        final status = data['RecognitionStatus'];
+        if (status != 'Success') {
+          if (status == 'NoMatch' || status == 'InitialSilenceTimeout') {
+            throw Exception("We couldn't hear you clearly. Please try again.");
+          } else {
+            throw Exception("Recognition failed: $status");
+          }
+        }
+
         // Map Azure response to our UI's expected format
         if (data['NBest'] == null || data['NBest'].isEmpty) {
           throw Exception("No NBest result found.");
         }
         
         final bestResult = data['NBest'][0];
-        final pronScore = bestResult['PronunciationScore'] ?? 0;
-        final accuracyScore = bestResult['AccuracyScore'] ?? 0;
-        final completenessScore = bestResult['CompletenessScore'] ?? 0;
-        final fluencyScore = bestResult['FluencyScore'] ?? 0;
+        final assessment = bestResult['PronunciationAssessment'];
+        
+        final pronScore = (assessment?['PronScore'] as num?)?.toInt() ?? 0;
+        final accuracyScore = (assessment?['AccuracyScore'] as num?)?.toInt() ?? 0;
+        final completenessScore = (assessment?['CompletenessScore'] as num?)?.toInt() ?? 0;
+        final fluencyScore = (assessment?['FluencyScore'] as num?)?.toInt() ?? 0;
 
         List<Map<String, dynamic>> mappedWords = [];
 
@@ -1539,16 +1550,25 @@ Respond ONLY in valid JSON format like:
       if (response.statusCode == 200) {
         final data = jsonDecode(responseBody);
 
+        final status = data['RecognitionStatus'];
+        if (status != 'Success') {
+          if (status == 'NoMatch' || status == 'InitialSilenceTimeout') {
+            throw Exception("We couldn't hear you clearly. Please try again.");
+          } else {
+            throw Exception("Recognition failed: $status");
+          }
+        }
+
         if (data['NBest'] == null || data['NBest'].isEmpty) {
           throw Exception("No NBest result found.");
         }
         
         final bestResult = data['NBest'][0];
         final transcribedText = bestResult['Lexical'] ?? '';
-        final pronScore = bestResult['PronunciationScore'] ?? 0;
-        final accuracyScore = bestResult['AccuracyScore'] ?? 0;
-        final completenessScore = bestResult['CompletenessScore'] ?? 0;
-        final fluencyScore = bestResult['FluencyScore'] ?? 0;
+        final pronScore = (bestResult['PronunciationScore'] as num?)?.toInt() ?? 0;
+        final accuracyScore = (bestResult['AccuracyScore'] as num?)?.toInt() ?? 0;
+        final completenessScore = (bestResult['CompletenessScore'] as num?)?.toInt() ?? 0;
+        final fluencyScore = (bestResult['FluencyScore'] as num?)?.toInt() ?? 0;
 
         List<Map<String, dynamic>> mappedWords = [];
 

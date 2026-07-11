@@ -70,16 +70,16 @@ class ShowChannels {
   ];
 }
 final showRepositoryProvider = Provider<ShowRepository>((ref) {
-  final apiKey = ref.watch(apiKeyPoolProvider).youtubeApiKey;
-  return ShowRepository(apiKey: apiKey);
+  final pool = ref.watch(apiKeyPoolProvider);
+  return ShowRepository(apiKeyPool: pool);
 });
 
 class ShowRepository {
-  final String _apiKey;
+  final ApiKeyPool _apiKeyPool;
   final http.Client _client;
 
-  ShowRepository({required String apiKey, http.Client? client})
-      : _apiKey = apiKey,
+  ShowRepository({required ApiKeyPool apiKeyPool, http.Client? client})
+      : _apiKeyPool = apiKeyPool,
         _client = client ?? http.Client();
 
   static const String _baseUrl = 'https://www.googleapis.com/youtube/v3';
@@ -139,13 +139,30 @@ class ShowRepository {
     final videos = <YoutubeVideo>[];
     String? nextPageToken;
     for (int page = 0; page < 4; page++) {
-      final uri = Uri.parse('$_baseUrl/playlistItems?part=snippet,contentDetails'
-          '&playlistId=$playlistId'
-          '&maxResults=50'
-          '&key=$_apiKey'
-          '${nextPageToken != null ? '&pageToken=$nextPageToken' : ''}');
-      final response = await _client.get(uri);
-      if (response.statusCode != 200) break;
+      http.Response? response;
+      for (int i = 0; i < 3; i++) {
+        final currentApiKey = _apiKeyPool.youtubeApiKey;
+        if (currentApiKey == 'MISSING_KEY') break;
+        
+        final uri = Uri.parse('$_baseUrl/playlistItems?part=snippet,contentDetails'
+            '&playlistId=$playlistId'
+            '&maxResults=50'
+            '&key=$currentApiKey'
+            '${nextPageToken != null ? '&pageToken=$nextPageToken' : ''}');
+        
+        response = await _client.get(uri);
+        if (response.statusCode == 200) {
+          break;
+        } else if (response.statusCode == 403) {
+          debugPrint('[ShowRepo] Key quota exceeded, trying next key...');
+          continue;
+        } else {
+          break;
+        }
+      }
+
+      if (response == null || response.statusCode != 200) break;
+      
       final data = jsonDecode(response.body) as Map<String, dynamic>;
       final items = data['items'] as List<dynamic>? ?? [];
       for (final item in items) {

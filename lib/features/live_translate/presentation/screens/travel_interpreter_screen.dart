@@ -63,6 +63,7 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
       _messages.where((msg) => msg.sideId == 'b').toList();
 
   bool _isSessionStarted = false;
+  bool _isSetupComplete = false;
   late AnimationController _pulseController;
 
   @override
@@ -108,9 +109,11 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
   Future<void> _connectToGemini() async {
     if (!mounted) return;
     setState(() => _status = "Connecting...");
+    _isSetupComplete = false;
 
     final apiKey = ref.read(apiKeyPoolProvider).googleKey;
     if (apiKey.isEmpty) {
+      _stopAudioStreaming(keepStatus: true);
       setState(() { _status = "Missing API Key"; _hasError = true; });
       return;
     }
@@ -154,7 +157,7 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
             }
 
             if (data.containsKey('setupComplete')) {
-              setState(() { _status = "Ready to interpret..."; _reconnectAttempts = 0; });
+              setState(() { _status = "Ready to interpret..."; _reconnectAttempts = 0; _isSetupComplete = true; });
             }
 
             if (data.containsKey('serverContent')) {
@@ -185,6 +188,7 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
           final code = _channel?.closeCode;
           final reason = _channel?.closeReason;
           debugPrint("TravelInterpreter: Connection closed. Code: $code, Reason: $reason");
+          _isSetupComplete = false;
           if (mounted && _isSessionStarted && _reconnectAttempts < _maxReconnectAttempts) {
             _reconnectAttempts++;
             final delay = Duration(seconds: [1, 2, 4, 8, 16][_reconnectAttempts - 1].clamp(1, 30));
@@ -196,12 +200,15 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
               }
             });
           } else if (mounted && _isSessionStarted) {
-            setState(() { _status = "Disconnected — tap mic to retry"; _hasError = true; _reconnectAttempts = 0; });
+            _stopAudioStreaming(keepStatus: true);
+            setState(() { _status = "Connection Failed. Tap mic to retry"; _hasError = true; _reconnectAttempts = 0; });
           } else {
+            _stopAudioStreaming(keepStatus: true);
             if (mounted) setState(() { _status = "Connection closed ($code): ${reason ?? 'unknown'}"; _hasError = true; });
           }
         },
         onError: (e) {
+          _isSetupComplete = false;
           if (mounted && _reconnectAttempts < _maxReconnectAttempts) {
             _reconnectAttempts++;
             final delay = Duration(seconds: [1, 2, 4, 8, 16][_reconnectAttempts - 1].clamp(1, 30));
@@ -211,6 +218,7 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
               if (mounted && _isSessionStarted) { _initAudioAndConnect(); }
             });
           } else {
+            _stopAudioStreaming(keepStatus: true);
             if (mounted) setState(() { _status = "Connection Error: $e"; _hasError = true; });
           }
         },
@@ -279,8 +287,8 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
     if (_channel == null || _channel?.closeCode != null) {
       _reconnectAttempts = 0; // Reset reconnection attempts to try fresh
       await _initAudioAndConnect();
-      if (_channel == null || _channel?.closeCode != null) {
-        // If connection fails, status is already updated in _initAudioAndConnect
+      if (_channel == null || _channel?.closeCode != null || _hasError) {
+        // If connection fails instantly, do not start recording
         return;
       }
     }
@@ -300,14 +308,16 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
           _audioBuffer.addAll(data);
 
           if (_audioBuffer.length >= 16000) {
-            if (_channel != null && _channel?.closeCode == null) {
+            if (_channel != null && _channel?.closeCode == null && _isSetupComplete) {
               try {
                 _channel!.sink.add(jsonEncode({
                   "realtimeInput": {
-                    "audio": {
-                      "mimeType": "audio/pcm;rate=16000",
-                      "data": base64Encode(_audioBuffer)
-                    }
+                    "mediaChunks": [
+                      {
+                        "mimeType": "audio/pcm;rate=16000",
+                        "data": base64Encode(_audioBuffer)
+                      }
+                    ]
                   }
                 }));
                 _audioBuffer.clear();
@@ -327,7 +337,7 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
     }
   }
 
-  Future<void> _stopAudioStreaming() async {
+  Future<void> _stopAudioStreaming({bool keepStatus = false}) async {
     if (_isStopping || _recordingSide == null) return;
     _isStopping = true;
     await _audioSubscription?.cancel();
@@ -339,21 +349,23 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
       // Recorder may be in an invalid state
     }
 
-    if (_audioBuffer.isNotEmpty && _channel != null && _channel?.closeCode == null) {
+    if (_audioBuffer.isNotEmpty && _channel != null && _channel?.closeCode == null && _isSetupComplete) {
       try {
         _channel!.sink.add(jsonEncode({
           "realtimeInput": {
-            "audio": {
-              "mimeType": "audio/pcm;rate=16000",
-              "data": base64Encode(_audioBuffer)
-            }
+            "mediaChunks": [
+              {
+                "mimeType": "audio/pcm;rate=16000",
+                "data": base64Encode(_audioBuffer)
+              }
+            ]
           }
         }));
       } catch (_) {}
       _audioBuffer.clear();
     }
 
-    if (_channel != null && _channel?.closeCode == null) {
+    if (_channel != null && _channel?.closeCode == null && _isSetupComplete) {
       try {
         _channel!.sink.add(jsonEncode({
           "clientContent": {
@@ -366,7 +378,7 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
     setState(() {
       _recordingSide = null;
       _isStopping = false;
-      _status = "Paused";
+      if (!keepStatus) _status = "Paused";
     });
   }
 

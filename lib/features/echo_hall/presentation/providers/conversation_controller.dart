@@ -6,6 +6,7 @@ import '../../../../core/services/audio_recording_service.dart';
 import '../../../../core/services/gemini_service.dart';
 import '../../../../core/models/pronunciation_grade.dart';
 import '../../../chat/domain/entities/chat_message.dart';
+import '../../../../core/utils/pinyin_utils.dart';
 
 final conversationControllerProvider = StateNotifierProvider.autoDispose<ConversationController, ConversationState>((ref) {
   return ConversationController(
@@ -234,12 +235,23 @@ class ConversationController extends StateNotifier<ConversationState> {
       
       final replyJson = await _echoHallService.getConversationResponse(state.messages, hardenedPrompt);
       
+      String? rawPinyin = replyJson['pinyin'];
+      String? rawSuggestionPinyin = replyJson['suggestion']?['pinyin'];
+      
+      Map<String, dynamic>? formattedSuggestion;
+      if (replyJson['suggestion'] != null) {
+        formattedSuggestion = Map<String, dynamic>.from(replyJson['suggestion']);
+        if (rawSuggestionPinyin != null) {
+          formattedSuggestion['pinyin'] = PinyinUtils.convertNumericToMarks(rawSuggestionPinyin);
+        }
+      }
+
       final aiMsg = GradedChatMessage(
         id: DateTime.now().millisecondsSinceEpoch.toString(),
         content: replyJson['chinese'] ?? '',
-        pinyin: replyJson['pinyin'],
+        pinyin: rawPinyin != null ? PinyinUtils.convertNumericToMarks(rawPinyin) : null,
         english: replyJson['english'],
-        suggestion: replyJson['suggestion'],
+        suggestion: formattedSuggestion,
         role: ChatRole.scholar,
         timestamp: DateTime.now(),
       );

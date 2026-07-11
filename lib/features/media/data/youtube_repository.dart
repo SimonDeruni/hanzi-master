@@ -10,16 +10,16 @@ import '../../../core/services/api_key_pool.dart';
 import 'repositories/shows_data.dart';
 
 final youtubeRepositoryProvider = Provider<YoutubeRepository>((ref) {
-  final apiKey = ref.watch(apiKeyPoolProvider).youtubeApiKey;
-  return YoutubeRepository(apiKey: apiKey);
+  final pool = ref.watch(apiKeyPoolProvider);
+  return YoutubeRepository(apiKeyPool: pool);
 });
 
 class YoutubeRepository {
-  final String _apiKey;
+  final ApiKeyPool _apiKeyPool;
   final http.Client _client;
 
-  YoutubeRepository({required String apiKey, http.Client? client})
-      : _apiKey = apiKey,
+  YoutubeRepository({required ApiKeyPool apiKeyPool, http.Client? client})
+      : _apiKeyPool = apiKeyPool,
         _client = client ?? http.Client();
 
   static const _baseUrl = 'https://www.googleapis.com/youtube/v3';
@@ -48,39 +48,42 @@ class YoutubeRepository {
 
     final validVideos = <YoutubeVideo>[];
 
-    // If API key is missing, fall back to local search immediately
-    if (_apiKey == 'MISSING_KEY') {
-      debugPrint('[YT Search] API Key is missing, using local search fallback');
-      final localResults = _localSearchFallback(query);
-      _cache[query] = _CachedResult(
-        videos: localResults,
-        timestamp: DateTime.now(),
-      );
-      return localResults;
-    }
-
     try {
       final searchQuery = '$query 中文';
-      final uri = Uri.parse('$_baseUrl/search?part=snippet'
-          '&q=${Uri.encodeQueryComponent(searchQuery)}'
-          '&type=video'
-          '&videoCaption=closedCaption'
-          '&relevanceLanguage=zh'
-          '&maxResults=20'
-          '&key=$_apiKey');
+      http.Response? response;
+      String currentApiKey = '';
+      
+      // Try up to 3 keys from the pool
+      for (int i = 0; i < 3; i++) {
+        currentApiKey = _apiKeyPool.youtubeApiKey;
+        if (currentApiKey == 'MISSING_KEY') {
+          break;
+        }
+        
+        final uri = Uri.parse('$_baseUrl/search?part=snippet'
+            '&q=${Uri.encodeQueryComponent(searchQuery)}'
+            '&type=video'
+            '&videoCaption=closedCaption'
+            '&relevanceLanguage=zh'
+            '&maxResults=20'
+            '&key=$currentApiKey');
 
-      final response = await _client.get(uri);
+        response = await _client.get(uri);
 
-      if (response.statusCode != 200) {
-        final errorBody = response.body;
-        debugPrint('[YT Search] API error ${response.statusCode}: $errorBody');
-        // Parse the error message for better debugging
-        try {
-          final errorData = jsonDecode(errorBody) as Map<String, dynamic>;
-          final error = errorData['error'] as Map<String, dynamic>? ?? {};
-          final message = error['message'] as String? ?? 'Unknown error';
-          debugPrint('[YT Search] Error reason: $message');
-        } catch (_) {}
+        if (response.statusCode == 200) {
+          break; // Success, stop trying keys
+        } else if (response.statusCode == 403) {
+          debugPrint('[YT Search] Key quota exceeded or 403, trying next key...');
+          continue; // Try next key
+        } else {
+          break; // Other error, don't retry keys
+        }
+      }
+
+      if (currentApiKey == 'MISSING_KEY' || response == null || response.statusCode != 200) {
+        if (response != null) {
+          debugPrint('[YT Search] API error ${response.statusCode}: ${response.body}');
+        }
         
         // Fall back to local search on API failure
         debugPrint('[YT Search] Falling back to local search after API error');
@@ -150,6 +153,9 @@ class YoutubeRepository {
     } catch (e) {
       debugPrint('[YT Search] Error: $e. Falling back to local search.');
       final localResults = _localSearchFallback(query);
+      if (localResults.isEmpty) {
+        throw Exception('Network request failed and no fallback available: $e');
+      }
       _cache[query] = _CachedResult(
         videos: localResults,
         timestamp: DateTime.now(),
@@ -207,6 +213,31 @@ class YoutubeRepository {
 
 
     debugPrint('[YT Search Fallback] Found ${results.length} local results matching "$query"');
+    
+    // If no exact matches found, just return the first 20 episodes of the first show
+    // so the app at least shows some content instead of breaking entirely.
+    if (results.isEmpty && HardcodedShows.data.isNotEmpty) {
+      debugPrint('[YT Search Fallback] No exact matches, returning default videos');
+      for (final show in HardcodedShows.data) {
+        final channelTitle = show['channelTitle'] as String? ?? '';
+        final episodes = show['episodes'] as List? ?? [];
+        for (final ep in episodes) {
+          final epMap = ep as Map<String, dynamic>;
+          results.add(YoutubeVideo(
+            id: epMap['id'] as String? ?? '',
+            title: '${show['title']} - ${epMap['title']}',
+            url: 'https://www.youtube.com/watch?v=${epMap['id']}',
+            duration: null,
+            mediumThumbnailUrl: epMap['thumbnailUrl'] as String? ?? '',
+            highThumbnailUrl: epMap['thumbnailUrl'] as String? ?? '',
+            uploadDate: null,
+            channelTitle: channelTitle,
+          ));
+          if (results.length >= 20) return results;
+        }
+      }
+    }
+
     return results.take(20).toList();
   }
 
@@ -216,12 +247,27 @@ class YoutubeRepository {
     if (videoIds.isEmpty) return result;
 
     try {
-      final uri = Uri.parse('$_baseUrl/videos?part=contentDetails'
-          '&id=${videoIds.join(',')}'
-          '&key=$_apiKey');
+      http.Response? response;
+      for (int i = 0; i < 3; i++) {
+        final currentApiKey = _apiKeyPool.youtubeApiKey;
+        if (currentApiKey == 'MISSING_KEY') break;
+        
+        final uri = Uri.parse('$_baseUrl/videos?part=contentDetails'
+            '&id=${videoIds.join(',')}'
+            '&key=$currentApiKey');
 
-      final response = await _client.get(uri);
-      if (response.statusCode != 200) return result;
+        response = await _client.get(uri);
+        if (response.statusCode == 200) {
+          break;
+        } else if (response.statusCode == 403) {
+          debugPrint('[YT Durations] Key quota exceeded, trying next key...');
+          continue;
+        } else {
+          break;
+        }
+      }
+
+      if (response == null || response.statusCode != 200) return result;
 
       final data = jsonDecode(response.body) as Map<String, dynamic>;
       final items = data['items'] as List<dynamic>? ?? [];

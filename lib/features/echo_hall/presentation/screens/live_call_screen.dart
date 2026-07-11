@@ -19,6 +19,7 @@ import 'package:hanzi_master/core/services/gemini_service.dart';
 import '../widgets/live_call_summary_screen.dart';
 import 'package:hanzi_master/shared/widgets/info_bulb.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
+import 'package:hanzi_master/shared/widgets/tappable_hanzi_text.dart';
 
 enum LiveCallState {
   connecting,
@@ -85,16 +86,10 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
   final List<int> _audioBuffer = [];
   final ScrollController _scrollController = ScrollController();
 
-  // VAD / Silence Detection
-  Timer? _silenceTimer;
-  static const Duration _silenceThreshold = Duration(milliseconds: 3000);
+  // VAD / Silence Detection removed, relying on Gemini Server VAD
   DateTime _lastAudioReceived = DateTime.now();
   bool _isModelSpeaking = false;
   DateTime? _firstTranscriptionTime;
-
-  // Timeout for AI thinking
-  Timer? _thinkingTimeout;
-  static const Duration _thinkingTimeoutDuration = Duration(seconds: 10);
 
   // Audio level for visual feedback
   double _audioLevel = 0.0;
@@ -155,66 +150,7 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
     });
   }
 
-  void _resetSilenceTimer() {
-    _silenceTimer?.cancel();
-    _lastAudioReceived = DateTime.now();
-    _silenceTimer = Timer(_silenceThreshold, _onSilenceDetected);
-  }
 
-  void _onSilenceDetected() {
-    if (_callState != LiveCallState.listening) return;
-
-    // Guard: require minimum 2s of utterance before silence can complete the turn
-    if (_firstTranscriptionTime != null &&
-        DateTime.now().difference(_firstTranscriptionTime!) < const Duration(seconds: 2)) {
-      debugPrint("LiveCall: Silence detected but minimum utterance not met — ignoring");
-      _resetSilenceTimer();
-      return;
-    }
-
-    debugPrint("LiveCall: Silence detected, completing turn...");
-    _setCallState(LiveCallState.thinking, "Thinking...");
-    _flushAndCompleteTurn();
-  }
-
-  void _flushAndCompleteTurn() {
-    // Flush remaining audio buffer
-    if (_audioBuffer.isNotEmpty && _channel != null && _channel?.closeCode == null) {
-      try {
-        _channel!.sink.add(jsonEncode({
-          "realtimeInput": {
-            "audio": {
-              "mimeType": "audio/pcm;rate=16000",
-              "data": base64Encode(_audioBuffer)
-            }
-          }
-        }));
-      } catch (_) {}
-      _audioBuffer.clear();
-    }
-
-    // Send turnComplete to signal end of user speech
-    if (_channel != null && _channel?.closeCode == null) {
-      try {
-        _channel!.sink.add(jsonEncode({
-          "clientContent": {
-            "turnComplete": true
-          }
-        }));
-      } catch (_) {}
-    }
-
-    // Start thinking timeout
-    _thinkingTimeout?.cancel();
-    _thinkingTimeout = Timer(_thinkingTimeoutDuration, _onThinkingTimeout);
-  }
-
-  void _onThinkingTimeout() {
-    if (_callState != LiveCallState.thinking) return;
-    debugPrint("LiveCall: Thinking timeout — triggering fallback...");
-    _setCallState(LiveCallState.error, "Connection unstable. Tap to retry.");
-    _hasError = true;
-  }
 
   double _computeAudioLevel(List<int> samples) {
     if (samples.isEmpty) return 0.0;
@@ -255,7 +191,7 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
         "setup": {
           "model": "models/gemini-3.1-flash-live-preview",
           "generationConfig": {
-             "responseModalities": ["AUDIO"],
+             "responseModalities": ["TEXT", "AUDIO"],
              "speechConfig": {
                "voiceConfig": { "prebuiltVoiceConfig": { "voiceName": "${widget.scenario.voiceName}" } }
              }
@@ -298,9 +234,8 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
               final content = data['serverContent'];
               
               if (content.containsKey('modelTurn')) {
-                // AI is speaking — cancel thinking timeout and block VAD
+                // AI is speaking
                 _isModelSpeaking = true;
-                _thinkingTimeout?.cancel();
                 if (_callState != LiveCallState.speaking) {
                   _setCallState(LiveCallState.speaking, "Speaking...");
                 }
@@ -396,7 +331,7 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
   void _handleUserInputTranscription(String text, bool finished) {
     if (text.trim().isEmpty) return;
 
-    // Guard: ignore VAD transcriptions while the model is speaking or thinking
+    // Guard: ignore transcriptions while the model is speaking or thinking
     if (_isModelSpeaking || _callState == LiveCallState.thinking || _callState == LiveCallState.speaking) {
       debugPrint("LiveCall: Ignoring inputTranscription — model is active (state: $_callState)");
       return;
@@ -413,16 +348,13 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
       }
     });
 
-    // Only reset silence timer on the FIRST transcription of a turn
+    // Record first transcription time
     if (!wasAlreadyListening) {
       _firstTranscriptionTime = DateTime.now();
-      _resetSilenceTimer();
     }
 
     if (finished) {
-      // Cancel silence timer — Gemini has declared the utterance complete,
-      // so let the server-side turn detection handle the boundary
-      _silenceTimer?.cancel();
+      // Gemini has declared the utterance complete, trigger grading
       _triggerGradingForLastUserTurn();
     }
     _scrollToBottom();
@@ -463,8 +395,6 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
   Future<void> _togglePause() async {
     setState(() {
       _isMuted = !_isMuted;
-      _silenceTimer?.cancel();
-      _thinkingTimeout?.cancel();
       if (_isMuted) {
         _setCallState(LiveCallState.idle, "Paused - Take a break");
       } else {
@@ -488,12 +418,15 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
           encoder: AudioEncoder.pcm16bits,
           sampleRate: 16000,
           numChannels: 1,
+          echoCancel: true,
+          noiseSuppress: true,
         ),
       );
 
       _audioSubscription = stream.listen((data) {
         if (data.isEmpty) return;
-        if (!_isMuted && _channel != null) {
+        // Half-duplex mode: do not send audio while the model is speaking to prevent echoing/interrupting itself
+        if (!_isMuted && !_isModelSpeaking && _channel != null) {
           _audioBuffer.addAll(data);
           _userAudioBuffer.add(data);
 
@@ -505,22 +438,19 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
             _setCallState(LiveCallState.listening, "Listening...");
           }
 
-          // Only reset silence timer when audio level indicates actual speech
-          // (not background noise), and only after the user has started producing
-          // recognizable speech (first transcription received)
-          if (_audioLevel > 0.02 && _firstTranscriptionTime != null) {
-            _resetSilenceTimer();
-          }
+          // removed silence timer logic
           
           // Buffer ~0.5 seconds of audio (16000 bytes/samples at 16kHz 16-bit mono)
           // to prevent websocket congestion and make the connection stable
           if (_audioBuffer.length >= 16000) {
             _channel!.sink.add(jsonEncode({
               "realtimeInput": {
-                "audio": {
-                  "mimeType": "audio/pcm;rate=16000",
-                  "data": base64Encode(_audioBuffer)
-                }
+                "mediaChunks": [
+                  {
+                    "mimeType": "audio/pcm;rate=16000",
+                    "data": base64Encode(_audioBuffer)
+                  }
+                ]
               }
             }));
             _audioBuffer.clear();
@@ -533,8 +463,6 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
 
   @override
   void dispose() {
-    _silenceTimer?.cancel();
-    _thinkingTimeout?.cancel();
     _audioSubscription?.cancel();
     _audioRecorder.dispose();
     _player.closePlayer();
@@ -804,7 +732,7 @@ class _LiveTranscriptBubble extends StatelessWidget {
           if (isUser && message.grade != null)
              _buildGradedText(message.grade!['words'] ?? [], theme, context)
           else
-            Text(
+            TappableMarkdownHanziText(
               message.text,
               textAlign: isUser ? TextAlign.right : TextAlign.left,
               style: theme.textTheme.bodyLarge?.copyWith(

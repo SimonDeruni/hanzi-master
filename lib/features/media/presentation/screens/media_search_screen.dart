@@ -76,6 +76,34 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
     await Future.wait(futures);
   }
 
+  Future<void> _loadCategory(String categoryKey) async {
+    final query = _categoryQueries[categoryKey];
+    if (query == null) return;
+    
+    setState(() {
+      _categoryStates[categoryKey] = _CategoryLoadState.loading;
+    });
+
+    try {
+      final repository = ref.read(youtubeRepositoryProvider);
+      final results = await repository.searchVideos(query);
+      if (mounted) {
+        setState(() {
+          _categories[categoryKey] = results;
+          _categoryStates[categoryKey] = results.isEmpty
+              ? _CategoryLoadState.empty
+              : _CategoryLoadState.loaded;
+        });
+      }
+    } catch (e) {
+      if (mounted) {
+        setState(() {
+          _categoryStates[categoryKey] = _CategoryLoadState.error;
+        });
+      }
+    }
+  }
+
   Future<void> _performSearch(String query) async {
     if (query.trim().isEmpty) {
       setState(() {
@@ -256,7 +284,7 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
                       ),
                       SizedBox(
                         height: 220,
-                        child: _buildCategoryContent(state, entry.value),
+                        child: _buildCategoryContent(entry.key, state, entry.value),
                       ),
                     ],
                   );
@@ -268,7 +296,7 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
     );
   }
 
-  Widget _buildCategoryContent(_CategoryLoadState state, List<YoutubeVideo> videos) {
+  Widget _buildCategoryContent(String categoryKey, _CategoryLoadState state, List<YoutubeVideo> videos) {
     switch (state) {
       case _CategoryLoadState.loading:
         return _buildSkeletonRow();
@@ -283,12 +311,28 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
           ),
         );
       case _CategoryLoadState.error:
-        return const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20),
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Center(
-            child: Text(
-              'Failed to load',
-              style: TextStyle(color: Colors.redAccent, fontSize: 14),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  'Failed to load content',
+                  style: TextStyle(color: Colors.redAccent, fontSize: 14),
+                ),
+                const SizedBox(height: 12),
+                ElevatedButton.icon(
+                  onPressed: () => _loadCategory(categoryKey),
+                  icon: const Icon(Icons.refresh, size: 18),
+                  label: const Text('Tap to Retry'),
+                  style: ElevatedButton.styleFrom(
+                    foregroundColor: Colors.indigo,
+                    backgroundColor: Colors.indigo.withOpacity(0.1),
+                    elevation: 0,
+                  ),
+                ),
+              ],
             ),
           ),
         );
