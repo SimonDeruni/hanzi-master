@@ -355,7 +355,8 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
 
   Widget _buildMessage(GradedChatMessage message, ThemeData theme) {
     final isUser = message.role == ChatRole.user;
-    final isExpanded = _expandedTranslations.contains(message.id);
+    final hasTranslation = (message.english != null && message.english!.isNotEmpty) || (message.pinyin != null && message.pinyin!.isNotEmpty);
+    final isExpanded = _expandedTranslations.contains(message.id) || (_expandedTranslations.isEmpty && hasTranslation);
 
     return GestureDetector(
       onTap: () {

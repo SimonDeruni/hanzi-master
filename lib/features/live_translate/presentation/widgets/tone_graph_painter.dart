@@ -31,13 +31,16 @@ class ToneGraphPainter extends CustomPainter {
       );
     }
 
-    final double minPitch = 50.0;
-    final double maxPitch = 800.0;
-    final double range = maxPitch - minPitch;
+    // Dynamically calculate min and max pitch from valid data points
+    final allPitches = [...idealPitch, ...userPitch].whereType<double>().toList();
+    final double minPitch = allPitches.isEmpty ? 50.0 : (allPitches.reduce((a, b) => a < b ? a : b) - 20).clamp(50.0, 1000.0);
+    final double maxPitch = allPitches.isEmpty ? 800.0 : (allPitches.reduce((a, b) => a > b ? a : b) + 20).clamp(50.0, 1000.0);
+    final double range = maxPitch - minPitch <= 0 ? 1 : maxPitch - minPitch;
 
     // Function to draw a pitch curve
     void drawCurve(List<double?> pitchData, Color color, double strokeWidth, bool isDashed) {
-      if (pitchData.isEmpty) return;
+      if (pitchData.isEmpty || !pitchData.any((p) => p != null)) return;
+      
       final paint = Paint()
         ..color = color
         ..strokeWidth = strokeWidth
@@ -48,8 +51,9 @@ class ToneGraphPainter extends CustomPainter {
       bool isFirst = true;
 
       for (int i = 0; i < pitchData.length; i++) {
-        if (pitchData[i] == null) {
-          isFirst = true;
+        if (pitchData[i] == null || pitchData[i]! <= 0) {
+          // Do not set isFirst = true. We want to connect across gaps 
+          // so sparse pitch data forms a continuous contour.
           continue;
         }
         
@@ -66,7 +70,6 @@ class ToneGraphPainter extends CustomPainter {
       }
 
       if (isDashed) {
-        // Draw dashed path (simplified, just draw normal for now or implement dash path)
         canvas.drawPath(path, paint..color = color.withValues(alpha: 0.4));
       } else {
         canvas.drawPath(path, paint);

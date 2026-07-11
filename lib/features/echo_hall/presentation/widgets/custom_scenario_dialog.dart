@@ -132,6 +132,8 @@ class _CustomScenarioDialogState extends ConsumerState<CustomScenarioDialog> {
         title: _titleController.text,
         description: _descController.text,
         initialAiMessage: "你好！我们可以开始对话了。",
+        initialEnglish: null,
+        initialPinyin: null,
         systemPrompt: _promptController.text,
         targetHskLevel: _hskLevel,
         avatarAssetPath: localImagePath,

@@ -73,6 +73,8 @@ class ConversationController extends StateNotifier<ConversationState> {
           content: scenario.initialAiMessage,
           role: ChatRole.scholar,
           timestamp: DateTime.now(),
+          english: scenario.initialEnglish,
+          pinyin: scenario.initialPinyin,
         ),
       ],
       isProcessing: false,
