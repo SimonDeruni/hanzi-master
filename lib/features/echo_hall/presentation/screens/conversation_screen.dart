@@ -252,12 +252,12 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
                       Expanded(
                         child: TextField(
                           controller: _textController,
-                          enabled: state.error == null,
+                          enabled: !state.isProcessing,
                           style: theme.textTheme.bodyLarge,
                           maxLines: 4,
                           minLines: 1,
                           decoration: InputDecoration(
-                            hintText: state.error != null ? "Disconnected" : (state.isRecording ? "Listening..." : "Type your message..."),
+                            hintText: state.isProcessing ? "Thinking..." : (state.isRecording ? "Listening..." : "Type your message..."),
                             hintStyle: theme.textTheme.bodyMedium?.copyWith(
                               color: theme.colorScheme.onSurface.withValues(alpha: 0.4),
                             ),
@@ -303,13 +303,13 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
                     );
                   } else {
                     return Listener(
-                      onPointerDown: state.error != null ? null : (_) {
+                      onPointerDown: (_) {
                         if (!state.isProcessing) ref.read(conversationControllerProvider.notifier).startRecording();
                       },
-                      onPointerUp: state.error != null ? null : (_) {
+                      onPointerUp: (_) {
                         if (!state.isProcessing) ref.read(conversationControllerProvider.notifier).stopRecordingAndProcess();
                       },
-                      onPointerCancel: state.error != null ? null : (_) {
+                      onPointerCancel: (_) {
                         if (!state.isProcessing) ref.read(conversationControllerProvider.notifier).stopRecordingAndProcess();
                       },
                       child: Container(
