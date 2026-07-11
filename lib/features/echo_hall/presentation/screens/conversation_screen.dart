@@ -23,6 +23,7 @@ class ConversationScreen extends ConsumerStatefulWidget {
 
 class _ConversationScreenState extends ConsumerState<ConversationScreen> {
   final ScrollController _scrollController = ScrollController();
+  final Set<String> _expandedTranslations = {};
 
   @override
   void initState() {
@@ -354,6 +355,7 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
 
   Widget _buildMessage(GradedChatMessage message, ThemeData theme) {
     final isUser = message.role == ChatRole.user;
+    final isExpanded = _expandedTranslations.contains(message.id);
 
     return GestureDetector(
       onTap: () {
@@ -432,25 +434,66 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
                             message.content,
                             style: theme.textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold),
                           ),
-                          if (message.pinyin != null && message.pinyin!.isNotEmpty) ...[
-                            const SizedBox(height: 4),
-                            Text(
-                              message.pinyin!,
-                              style: theme.textTheme.bodyMedium?.copyWith(
-                                color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
+                          
+                          if (isExpanded) ...[
+                            if (message.pinyin != null && message.pinyin!.isNotEmpty) ...[
+                              const SizedBox(height: 6),
+                              Text(
+                                message.pinyin!,
+                                style: theme.textTheme.bodyMedium?.copyWith(
+                                  color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
+                                ),
                               ),
-                            ),
+                            ],
+                            if (message.english != null && message.english!.isNotEmpty) ...[
+                              const SizedBox(height: 6),
+                              Text(
+                                message.english!,
+                                style: theme.textTheme.bodyMedium?.copyWith(
+                                  color: theme.colorScheme.onSurface.withValues(alpha: 0.8),
+                                  fontStyle: FontStyle.italic,
+                                ),
+                              ),
+                            ],
                           ],
+                          
                           if (message.english != null && message.english!.isNotEmpty) ...[
-                            const SizedBox(height: 4),
-                            Text(
-                              message.english!,
-                              style: theme.textTheme.bodyMedium?.copyWith(
-                                color: theme.colorScheme.onSurface.withValues(alpha: 0.8),
-                                fontStyle: FontStyle.italic,
+                            const SizedBox(height: 8),
+                            InkWell(
+                              onTap: () {
+                                setState(() {
+                                  if (isExpanded) {
+                                    _expandedTranslations.remove(message.id);
+                                  } else {
+                                    _expandedTranslations.add(message.id);
+                                  }
+                                });
+                              },
+                              borderRadius: BorderRadius.circular(12),
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Icon(
+                                      isExpanded ? Icons.visibility_off_outlined : Icons.translate_rounded,
+                                      size: 14,
+                                      color: theme.colorScheme.primary,
+                                    ),
+                                    const SizedBox(width: 4),
+                                    Text(
+                                      isExpanded ? "Hide Translation" : "Translate",
+                                      style: theme.textTheme.labelSmall?.copyWith(
+                                        color: theme.colorScheme.primary,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ],
+                          
                           if (message.suggestion != null) ...[
                             const SizedBox(height: 16),
                             Container(
