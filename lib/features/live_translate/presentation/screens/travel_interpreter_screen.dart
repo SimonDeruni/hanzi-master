@@ -1037,8 +1037,8 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
             ],
           ),
 
-          // The Floating Center Control Bar
-          _buildStatusBar(),
+          // The Floating Center Control Bar (only visible when not in keyboard typing mode)
+          if (!_isSideAKeyboardMode) _buildStatusBar(),
         ],
       ),
     );
