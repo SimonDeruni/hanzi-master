@@ -107,7 +107,7 @@ class AudioService {
     }
 
     // Tier 2: Local Cache
-    final cacheFile = File('${_cacheDir!.path}/tts_cache/$hanzi.mp3');
+    final cacheFile = File('${_cacheDir!.path}/tts_cache/$hanzi.wav');
     if (await cacheFile.exists()) {
       try {
         await _player.play(DeviceFileSource(cacheFile.path));
@@ -152,7 +152,7 @@ class AudioService {
     await stop();
 
     final hash = _hashText(sentence);
-    final cacheFile = File('${_cacheDir!.path}/tts_cache/$hash.mp3');
+    final cacheFile = File('${_cacheDir!.path}/tts_cache/$hash.wav');
     final boundaryFile = File('${_cacheDir!.path}/tts_cache/$hash.json');
     
     if (await cacheFile.exists()) {
@@ -186,6 +186,25 @@ class AudioService {
     return ttsResult != null && ttsResult == 1;
   }
 
+  Future<Uint8List?> getSentenceAudioBytes(String sentence) async {
+    if (!_isInitialized) await init();
+    final hash = _hashText(sentence);
+    final cacheFile = File('${_cacheDir!.path}/tts_cache/$hash.wav');
+    
+    if (await cacheFile.exists()) {
+      return await cacheFile.readAsBytes();
+    }
+    
+    // Try to fetch it
+    final boundaryFile = File('${_cacheDir!.path}/tts_cache/$hash.json');
+    final result = await _fetchCloudTTS(sentence, cacheFile: cacheFile, boundaryFile: boundaryFile);
+    if (result != null && result.success) {
+      return result.audio;
+    }
+    return null;
+  }
+
+
 
   /// Fetches premium TTS audio from Azure Cognitive Services via REST API.
   /// Fast 3-second timeout; falls through to local TTS on any failure.
@@ -214,7 +233,7 @@ class AudioService {
               headers: {
                 'Ocp-Apim-Subscription-Key': apiKey,
                 'Content-Type': 'application/ssml+xml',
-                'X-Microsoft-OutputFormat': 'audio-16khz-32kbitrate-mono-mp3',
+                'X-Microsoft-OutputFormat': 'riff-16khz-16bit-mono-pcm',
               },
               body: ssml,
             )
@@ -226,7 +245,7 @@ class AudioService {
           final audio = response.bodyBytes;
 
           // Save to cache file
-          final tmpFile = cacheFile ?? File('${_cacheDir!.path}/tts_cache/tmp_${DateTime.now().millisecondsSinceEpoch}.mp3');
+          final tmpFile = cacheFile ?? File('${_cacheDir!.path}/tts_cache/tmp_${DateTime.now().millisecondsSinceEpoch}.wav');
           await tmpFile.writeAsBytes(audio);
 
           // REST API doesn't provide word boundaries; boundaries list stays empty

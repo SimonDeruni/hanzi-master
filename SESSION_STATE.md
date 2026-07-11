@@ -38,6 +38,7 @@
 
 - [x] **Task 25: Smart Media Desk — UX Polish**: (1) AI Prep Room collapsible — starts compact (header + vocab chips only), expands on tap via `AnimatedCrossFade`. (2) QuickLook buttons less cramped: height 52→46, added icons, smaller font. (3) Fullscreen overlay button (⛶) on video. (4) Auto-fullscreen on device rotation via `OrientationBuilder`; orientation unlocked while on screen, restored on exit.
 - [x] **Task 26: AI Hub UI Overhaul**: Redesigned the AI Hub into a non-scrolling, flexible dashboard matching the premium "Zen & Ink" aesthetic. Converted white bottom cards to dark `#131A29` textured cards. Replaced "Today's Lesson" with a direct "Today's Word" card linked to `CharacterDetailScreen`.
+- [x] **Task 27: Shadowing Studio & Video Playback Polish**: Fixed silent video bug by unmute configurations. Fixed Tone Graph path continuity by handling edge cases. Fixed type mismatch in Audio Service passing byte arrays instead of file paths to pitch extraction tool. Added dynamic scaling to the UI for correct Tone Graph visualization.
 
 #### 🔜 Up Next (Possible)
 - [ ] **Phase 9: Sound FX**: Add subtle "paper scratching" audio during drawing.

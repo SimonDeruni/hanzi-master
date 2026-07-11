@@ -10,6 +10,8 @@
 - [x] Added localized translation languages to replace subtitle placeholders.
 - [x] Implemented seek-on-tap gesture on subtitle blocks.
 - [x] Added AI explanation button for specific sentences.
+- [x] **Bug**: Fixed total loss of audio output during media playback caused by iframe muting.
+- [x] **Bug**: Fixed "0/100" and Tone Graph glitches in Shadowing Studio grading by passing raw byte arrays to pitch extractor and dynamically scaling rendering coordinates.
 
 ## Open Issues
 

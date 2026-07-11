@@ -41,6 +41,13 @@ All notable changes to this project will be documented in this file.
     - Fixed `SettingsController` constructor malformation causing Gradle build failures.
     - Resolved `invalid_constant` and `const_eval_method_invocation` errors across multiple UI screens caused by `AppLocalizations` lookups inside `const` widgets.
     - Fixed missing `strokePaths` and `modeStats` arguments in `Flashcard` instantiations within `vision_provider.dart`.
+- **Media Playback**:
+    - Fixed silent video bug during YouTube media playback by properly configuring the iframe player's unmute options.
+- **Audio Processing**:
+    - Resolved fragmented UI rendering of the user's pitch contour in the Shadowing Studio's Tone Graph by correctly scaling X/Y coordinates and continuously drawing the line despite zero-pitch pauses.
+    - Fixed audio pitch extraction crash during Shadowing Studio grading by ensuring raw audio byte arrays are passed natively to the extraction tool instead of temporary file paths.
+- **API Management**:
+    - Implemented API key rotation for YouTube Data API to handle daily quota limits gracefully without blocking media search.
 
 ## [1.2.0] - 2026-06-17
 

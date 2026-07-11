@@ -181,7 +181,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
         _recordingStartTime = DateTime.now();
 
         await _audioRecorder.start(
-          const RecordConfig(encoder: AudioEncoder.pcm16bits, sampleRate: 16000, numChannels: 1),
+          const RecordConfig(encoder: AudioEncoder.wav, sampleRate: 16000, numChannels: 1),
           path: _recordingPath!,
         );
         setState(() {
@@ -286,43 +286,22 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
           _currentPhrase!['hanzi']!,
           _currentPhrase!['pinyin']!,
         );
+        List<double?> actualIdealPitch = [];
+        try {
+          final audioService = ref.read(audioServiceProvider);
+          final audioBytes = await audioService.getSentenceAudioBytes(_currentPhrase!['hanzi'] ?? '');
+          if (audioBytes != null) {
+            actualIdealPitch = await _pitchService.extractPitchContour(audioBytes);
+          }
+        } catch (e) {
+          debugPrint('Failed to extract ideal pitch: $e');
+        }
 
         if (mounted) {
           setState(() {
             _lastGrade = grade;
-            List<double?> generatedIdeal = [];
-            if (pitchArray.isNotEmpty) {
-               final pinyin = _currentPhrase!['pinyin'] ?? '';
-               final words = pinyin.split(RegExp(r'\s+')).where((s) => s.isNotEmpty).toList();
-               final numSyllables = words.isNotEmpty ? words.length : 1;
-               final segmentLength = pitchArray.length ~/ numSyllables;
-               
-               for (int w = 0; w < numSyllables; w++) {
-                  final word = words[w];
-                  bool isTone1 = word.contains('1') || word.contains('ā') || word.contains('ō') || word.contains('ē') || word.contains('ī') || word.contains('ū');
-                  bool isTone2 = word.contains('2') || word.contains('á') || word.contains('ó') || word.contains('é') || word.contains('í') || word.contains('ú');
-                  bool isTone3 = word.contains('3') || word.contains('ǎ') || word.contains('ǒ') || word.contains('ě') || word.contains('ǐ') || word.contains('ǔ');
-                  bool isTone4 = word.contains('4') || word.contains('à') || word.contains('ò') || word.contains('è') || word.contains('ì') || word.contains('ù');
-                  
-                  for (int i = 0; i < segmentLength; i++) {
-                    double progress = i / segmentLength;
-                    double pitch = 200.0;
-                    if (isTone1) pitch = 280.0;
-                    else if (isTone2) pitch = 200.0 + (80.0 * progress);
-                    else if (isTone3) pitch = progress < 0.5 ? 200.0 - (40.0 * (progress * 2)) : 160.0 + (120.0 * ((progress - 0.5) * 2));
-                    else if (isTone4) pitch = 280.0 - (100.0 * progress);
-                    else pitch = 220.0;
-                    
-                    generatedIdeal.add(pitch);
-                  }
-               }
-               while(generatedIdeal.length < pitchArray.length) {
-                 generatedIdeal.add(generatedIdeal.isNotEmpty ? generatedIdeal.last : 200.0);
-               }
-            }
-            
             _userPitch = pitchArray;
-            _idealPitch = generatedIdeal;
+            _idealPitch = actualIdealPitch;
             _isGrading = false;
 
             if (grade['words'] != null) {
