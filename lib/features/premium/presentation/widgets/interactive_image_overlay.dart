@@ -40,14 +40,7 @@ class InteractiveImageOverlay extends StatelessWidget {
             child: GestureDetector(
               onTap: () => onWordTapped(block.text),
               child: Container(
-                decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.3),
-                  border: Border.all(
-                    color: Theme.of(context).colorScheme.primary,
-                    width: 1.5,
-                  ),
-                  borderRadius: BorderRadius.circular(4),
-                ),
+                color: Colors.transparent,
               ),
             ),
           );
