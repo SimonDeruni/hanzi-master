@@ -122,6 +122,10 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
       _idealPitch = [];
       _errorMessage = null;
       _sentenceCount++;
+      // Cleanse any stuck recording/grading states when transitioning
+      _isRecording = false;
+      _isGrading = false;
+      _isStopping = false;
     });
 
     try {
@@ -202,131 +206,139 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
     _isStopping = true;
     HapticFeedback.lightImpact();
 
-    // 1. Validate minimum recording duration BEFORE calling stop()
-    //    This prevents InvalidAudioBufferException from being thrown
-    //    when the internal audio buffer is empty/corrupted.
-    final recordDuration = _recordingStartTime != null
-        ? DateTime.now().difference(_recordingStartTime!)
-        : Duration.zero;
-
-    if (recordDuration.inMilliseconds < 400) {
-      if (mounted) {
-        setState(() {
-          _isRecording = false;
-          _isGrading = false;
-          _pulseController.stop();
-          _pulseController.reset();
-          _errorMessage = "Recording too short. Hold the mic button longer.";
-        });
-      }
-      return;
-    }
-
-    // 2. Stop recorder (now safe — buffer has enough data)
-    String? path;
     try {
-      path = await _audioRecorder.stop();
-    } catch (e) {
-      debugPrint("Recorder stop error: $e");
-      if (mounted) {
-        setState(() {
-          _isRecording = false;
-          _isGrading = false;
-          _pulseController.stop();
-          _pulseController.reset();
-          _errorMessage = "Recording error. Please try again.";
-        });
+      // 1. Validate minimum recording duration BEFORE calling stop()
+      //    This prevents InvalidAudioBufferException from being thrown
+      //    when the internal audio buffer is empty/corrupted.
+      final recordDuration = _recordingStartTime != null
+          ? DateTime.now().difference(_recordingStartTime!)
+          : Duration.zero;
+
+      if (recordDuration.inMilliseconds < 400) {
+        if (mounted) {
+          setState(() {
+            _isRecording = false;
+            _isGrading = false;
+            _pulseController.stop();
+            _pulseController.reset();
+            _errorMessage = "Recording too short. Hold the mic button longer.";
+          });
+        }
+        return;
       }
-      return;
-    }
 
-    setState(() {
-      _isRecording = false;
-      _isGrading = true;
-      _pulseController.stop();
-      _pulseController.reset();
-    });
-
-    if (path == null || _currentPhrase == null) {
-      if (mounted) {
-        setState(() {
-          _isGrading = false;
-          _errorMessage = "No recording captured. Please try again.";
-        });
+      // 2. Stop recorder (now safe — buffer has enough data)
+      String? path;
+      try {
+        path = await _audioRecorder.stop();
+      } catch (e) {
+        debugPrint("Recorder stop error: $e");
+        if (mounted) {
+          setState(() {
+            _isRecording = false;
+            _isGrading = false;
+            _pulseController.stop();
+            _pulseController.reset();
+            _errorMessage = "Recording error. Please try again.";
+          });
+        }
+        return;
       }
-      return;
-    }
 
-    // 3. Validate audio file
-    final file = File(path);
-    if (!file.existsSync() || file.lengthSync() < 1000) {
-      if (mounted) {
-        setState(() {
-          _isGrading = false;
-          _errorMessage = "Recorded audio is empty. Please try again and speak clearly.";
-        });
+      setState(() {
+        _isRecording = false;
+        _isGrading = true;
+        _pulseController.stop();
+        _pulseController.reset();
+      });
+
+      if (path == null || _currentPhrase == null) {
+        if (mounted) {
+          setState(() {
+            _isGrading = false;
+            _errorMessage = "No recording captured. Please try again.";
+          });
+        }
+        return;
       }
-      return;
-    }
 
-    // 4. Grade
-    try {
-      final bytes = await file.readAsBytes();
+      // 3. Validate audio file
+      final file = File(path);
+      if (!file.existsSync() || file.lengthSync() < 1000) {
+        if (mounted) {
+          setState(() {
+            _isGrading = false;
+            _errorMessage = "Recorded audio is empty. Please try again and speak clearly.";
+          });
+        }
+        return;
+      }
 
-      final pitchArray = await _pitchService.extractPitchContour(bytes);
+      // 4. Grade
+      try {
+        final bytes = await file.readAsBytes();
 
-      final geminiService = ref.read(geminiServiceProvider);
-      final grade = await geminiService.gradeAudio(
-        bytes,
-        _currentPhrase!['hanzi']!,
-        _currentPhrase!['pinyin']!,
-      );
+        final pitchArray = await _pitchService.extractPitchContour(bytes);
 
-      if (mounted) {
-        setState(() {
-          _lastGrade = grade;
-          _userPitch = pitchArray;
-          _idealPitch = List.generate(pitchArray.length, (i) => pitchArray[i] != null ? pitchArray[i]! + 20 : null);
-          _isGrading = false;
+        final geminiService = ref.read(geminiServiceProvider);
+        final grade = await geminiService.gradeAudio(
+          bytes,
+          _currentPhrase!['hanzi']!,
+          _currentPhrase!['pinyin']!,
+        );
 
-          if (grade['words'] != null) {
-            for (var word in grade['words']) {
-              if (word['isCorrect'] == false) {
-                final existingIndex = _weakCharacters.indexWhere((w) => w['word'] == word['word']);
-                if (existingIndex >= 0) {
-                  _weakCharacters[existingIndex] = word;
-                } else {
-                  _weakCharacters.add(word);
+        if (mounted) {
+          setState(() {
+            _lastGrade = grade;
+            _userPitch = pitchArray;
+            _idealPitch = List.generate(pitchArray.length, (i) => pitchArray[i] != null ? pitchArray[i]! + 20 : null);
+            _isGrading = false;
+
+            if (grade['words'] != null) {
+              for (var word in grade['words']) {
+                if (word['isCorrect'] == false) {
+                  final existingIndex = _weakCharacters.indexWhere((w) => w['word'] == word['word']);
+                  if (existingIndex >= 0) {
+                    _weakCharacters[existingIndex] = word;
+                  } else {
+                    _weakCharacters.add(word);
+                  }
                 }
               }
             }
-          }
-        });
+          });
+        }
+      } on PremiumRequiredException {
+        if (mounted) {
+          setState(() {
+            _isGrading = false;
+          });
+          PaywallSheet.show(context);
+        }
+      } on Exception catch (e) {
+        final msg = e.toString();
+        debugPrint("Grading error: $msg");
+        if (mounted) {
+          setState(() {
+            _isGrading = false;
+            if (msg.contains("Azure Speech API keys are missing")) {
+              _errorMessage = "Azure Speech keys not configured. Add AZURE_SPEECH_KEY and AZURE_SPEECH_REGION to .env";
+            } else if (msg.contains("Azure Error 401")) {
+              _errorMessage = "Azure authentication failed. Check your Speech API key and region in .env";
+            } else if (msg.contains("Azure Error 429")) {
+              _errorMessage = "Azure quota exceeded. Try again later.";
+            } else if (msg.contains("TimeoutException") || msg.contains("timed out")) {
+              _errorMessage = "Azure grading timed out. Check your internet connection.";
+            } else {
+              _errorMessage = "Error analyzing audio: $e";
+            }
+          });
+        }
       }
-    } on PremiumRequiredException {
+    } finally {
       if (mounted) {
         setState(() {
-          _isGrading = false;
-        });
-        PaywallSheet.show(context);
-      }
-    } on Exception catch (e) {
-      final msg = e.toString();
-      debugPrint("Grading error: $msg");
-      if (mounted) {
-        setState(() {
-          _isGrading = false;
-          if (msg.contains("Azure Speech API keys are missing")) {
-            _errorMessage = "Azure Speech keys not configured. Add AZURE_SPEECH_KEY and AZURE_SPEECH_REGION to .env";
-          } else if (msg.contains("Azure Error 401")) {
-            _errorMessage = "Azure authentication failed. Check your Speech API key and region in .env";
-          } else if (msg.contains("Azure Error 429")) {
-            _errorMessage = "Azure quota exceeded. Try again later.";
-          } else if (msg.contains("TimeoutException") || msg.contains("timed out")) {
-            _errorMessage = "Azure grading timed out. Check your internet connection.";
-          } else {
-            _errorMessage = "Error analyzing audio: $e";
-          }
+          _isStopping = false;
         });
       }
     }
