@@ -224,7 +224,7 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
       autoPlay: true,
       params: const YoutubePlayerParams(
         showControls: false,
-        mute: true,
+        mute: false,
         showFullscreenButton: false,
         loop: false,
         color: 'white',
