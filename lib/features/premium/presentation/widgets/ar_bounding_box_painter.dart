@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:google_mlkit_object_detection/google_mlkit_object_detection.dart';
 import '../../../../features/flashcards/domain/entities/flashcard.dart';
 
@@ -162,12 +162,27 @@ class ARBoundingBoxPainter extends CustomPainter {
     final double badgeHeight = textPainterTitle.height + (subtitle.isNotEmpty ? textPainterSubtitle.height + 4.0 : 0) + 16.0;
 
     final canvasBounds = canvas.getLocalClipBounds();
+
+    // Vertical anchoring: prefer above, flip below if it would overflow top
     final double preferredTop = box.top - badgeHeight - 8.0;
     final double badgeTop = preferredTop < canvasBounds.top
         ? box.bottom + 8.0
         : preferredTop;
+
+    // Horizontal anchoring with right-edge collision detection
+    // Default: align badge left edge with box left edge
+    double badgeLeft = box.left;
+
+    // If badge overflows right screen edge, anchor from the right side of the box
+    if (badgeLeft + badgeWidth > canvasBounds.width) {
+      badgeLeft = box.right - badgeWidth;
+    }
+
+    // Final clamp to ensure badge stays fully within screen bounds
+    badgeLeft = badgeLeft.clamp(canvasBounds.left, canvasBounds.width - badgeWidth);
+
     final Rect badgeRect = Rect.fromLTWH(
-      box.left.clamp(canvasBounds.left, canvasBounds.width - badgeWidth),
+      badgeLeft,
       badgeTop.clamp(canvasBounds.top, canvasBounds.height - badgeHeight),
       badgeWidth,
       badgeHeight,

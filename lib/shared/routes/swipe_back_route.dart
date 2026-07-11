@@ -9,36 +9,64 @@ class _SwipeBackDetector extends StatefulWidget {
 }
 
 class _SwipeBackDetectorState extends State<_SwipeBackDetector> {
-  double? _dragStartX;
+  double _dragStartX = 0;
   double _dragDistance = 0;
+  bool _isDragging = false;
+  DateTime _lastPointerDown = DateTime.now();
+
+  void _onPointerDown(PointerDownEvent event) {
+    _dragStartX = event.position.dx;
+    _dragDistance = 0;
+    _isDragging = false;
+    _lastPointerDown = DateTime.now();
+  }
+
+  void _onPointerMove(PointerMoveEvent event) {
+    if (_dragStartX < 40) {
+      final delta = event.position.dx - _dragStartX;
+      _dragDistance = delta;
+      if (delta > 5) {
+        _isDragging = true;
+      }
+    }
+  }
+
+  void _onPointerUp(PointerUpEvent event) {
+    final startX = _dragStartX;
+    final distance = _dragDistance;
+    _dragStartX = 0;
+    _dragDistance = 0;
+    _isDragging = false;
+    if (startX < 40 && distance > 0) {
+      final duration = DateTime.now().difference(_lastPointerDown);
+      final velocity = duration.inMilliseconds > 0
+          ? distance / (duration.inMilliseconds / 1000)
+          : 0.0;
+      if (distance > 80 || velocity > 500) {
+        final navigator = Navigator.of(context);
+        if (navigator.canPop()) navigator.pop();
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      behavior: HitTestBehavior.translucent,
-      onHorizontalDragStart: (details) {
-        _dragStartX = details.globalPosition.dx;
-        _dragDistance = 0;
-      },
-      onHorizontalDragUpdate: (details) {
-        if (_dragStartX != null && _dragStartX! < 40) {
-          _dragDistance += details.primaryDelta ?? 0;
-        }
-      },
-      onHorizontalDragEnd: (details) {
-        final startX = _dragStartX;
-        final distance = _dragDistance;
-        _dragStartX = null;
-        _dragDistance = 0;
-        if (startX != null && startX < 40) {
-          final velocity = details.primaryVelocity ?? 0;
-          if (distance > 80 || velocity > 500) {
-            final navigator = Navigator.of(context);
-            if (navigator.canPop()) navigator.pop();
-          }
-        }
-      },
-      child: widget.child,
+    return Stack(
+      children: [
+        widget.child,
+        Positioned(
+          left: 0,
+          top: 0,
+          bottom: 0,
+          width: 40,
+          child: Listener(
+            behavior: HitTestBehavior.deferToChild,
+            onPointerDown: _onPointerDown,
+            onPointerMove: _onPointerMove,
+            onPointerUp: _onPointerUp,
+          ),
+        ),
+      ],
     );
   }
 }

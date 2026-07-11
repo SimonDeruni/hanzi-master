@@ -4,6 +4,7 @@ import 'package:hanzi_master/l10n/app_localizations.dart';
 import '../providers/story_controller.dart';
 import '../screens/story_reader_screen.dart';
 import 'package:hanzi_master/features/premium/presentation/screens/universal_scanner_screen.dart';
+import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 
 class CustomStoryCreatorSheet extends ConsumerStatefulWidget {
   const CustomStoryCreatorSheet({super.key});
@@ -67,7 +68,7 @@ class _CustomStoryCreatorSheetState extends ConsumerState<CustomStoryCreatorShee
   void _openStoryImmediate(BuildContext context, StoryBlueprint blueprint) {
     Navigator.push(
       context,
-      MaterialPageRoute(
+      SwipeBackPageRoute(
         builder: (_) => StoryReaderScreen(blueprint: blueprint, hskLevel: _selectedHskLevel),
       ),
     );
@@ -76,7 +77,7 @@ class _CustomStoryCreatorSheetState extends ConsumerState<CustomStoryCreatorShee
   Future<void> _scanText() async {
     final extractedText = await Navigator.push<String>(
       context,
-      MaterialPageRoute(builder: (context) => const UniversalScannerScreen(intent: CameraIntent.textExtraction)),
+      SwipeBackPageRoute(builder: (context) => const UniversalScannerScreen(intent: CameraIntent.textExtraction)),
     );
 
     if (extractedText != null && extractedText.isNotEmpty && mounted) {

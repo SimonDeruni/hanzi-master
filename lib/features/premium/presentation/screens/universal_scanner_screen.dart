@@ -1,4 +1,4 @@
-import 'dart:ui';
+import 'dart:ui' as ui;
 import 'dart:math' as math;
 import 'package:camera/camera.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -398,7 +398,24 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
 
     final processed = result;
     if (processed != null && processed.text.isNotEmpty) {
-      final decodedImage = await decodeImageFromList(await image.readAsBytes());
+      // Read image dimensions from raw bytes to match ML Kit coordinate space.
+      // decodeImageFromList may apply EXIF rotation, causing coordinate mismatch.
+      final imageBytes = await image.readAsBytes();
+      var imageWidth = 0.0;
+      var imageHeight = 0.0;
+      try {
+        final codec = await ui.instantiateImageCodec(imageBytes);
+        final frame = await codec.getNextFrame();
+        imageWidth = frame.image.width.toDouble();
+        imageHeight = frame.image.height.toDouble();
+        frame.image.dispose();
+        codec.dispose();
+      } catch (_) {
+        // Fallback: use decodeImageFromList dimensions
+        final decodedImage = await decodeImageFromList(imageBytes);
+        imageWidth = decodedImage.width.toDouble();
+        imageHeight = decodedImage.height.toDouble();
+      }
 
       setState(() {
         _isScanning = false;
@@ -406,7 +423,7 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
         _capturedImage = image;
         _recognizedText = processed.text;
         _aiTextBlocks = processed.blocks;
-        _imageSize = Size(decodedImage.width.toDouble(), decodedImage.height.toDouble());
+        _imageSize = Size(imageWidth, imageHeight);
         _showingInteractiveImage = true;
       });
       _cameraController?.stopImageStream();
@@ -600,7 +617,7 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
           if (_isScanning || _isLookingUp || _showingResults)
             Positioned.fill(
               child: BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+                filter: ui.ImageFilter.blur(sigmaX: 20, sigmaY: 20),
                 child: Container(
                   color: Colors.black.withValues(alpha: 0.3),
                 ),
@@ -981,7 +998,7 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
        child: ClipRRect(
          borderRadius: BorderRadius.circular(40),
          child: BackdropFilter(
-           filter: ImageFilter.blur(sigmaX: 30, sigmaY: 30),
+           filter: ui.ImageFilter.blur(sigmaX: 30, sigmaY: 30),
            child: Container(
              padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
              decoration: BoxDecoration(

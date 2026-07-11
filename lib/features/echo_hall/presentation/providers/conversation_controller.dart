@@ -62,17 +62,21 @@ class ConversationController extends StateNotifier<ConversationState> {
         super(ConversationState());
 
   Future<void> startScenario(ConversationScenario scenario) async {
+    // Clear any previous scenario state to prevent bleed
     state = ConversationState(
       currentScenario: scenario,
       messages: [],
       isProcessing: true,
+      error: null,
     );
 
     try {
-      // Call AI to generate the first message including translations and suggestions
+      // Build a hardened prompt that anchors the persona
+      final hardenedPrompt = '${scenario.systemPrompt}\n\nCRITICAL: You are "${scenario.personaName}". Stay in this exact persona. Do not switch characters, introduce yourself differently, or reference other scenarios.';
+      
       final replyJson = await _echoHallService.getConversationResponse(
         [], // empty history
-        "\${scenario.systemPrompt}\n\nUSER: Please start the conversation according to the scenario. Your first message should be similar to: '\${scenario.initialAiMessage}'"
+        "$hardenedPrompt\n\nUSER: Please start the conversation according to the scenario. Your first message should be similar to: '${scenario.initialAiMessage}'"
       );
 
       final aiMsg = GradedChatMessage(
@@ -127,7 +131,7 @@ class ConversationController extends StateNotifier<ConversationState> {
       state = state.copyWith(error: null);
       await _audioService.startRecording('user_reply');
       state = state.copyWith(isRecording: true);
-    } on Exception catch (e) {
+    } catch (e) {
       final msg = e.toString().toLowerCase();
       if (msg.contains('permission')) {
         state = state.copyWith(
@@ -206,7 +210,7 @@ class ConversationController extends StateNotifier<ConversationState> {
         
         state = state.copyWith(messages: [...state.messages, userMsg]);
         await _fetchAiResponse();
-      } on Exception catch (e) {
+      } catch (e) {
         final msg = e.toString().toLowerCase();
         if (msg.contains('nomatch') || msg.contains('no nbest') || msg.contains('inaudible')) {
           state = state.copyWith(
@@ -230,7 +234,7 @@ class ConversationController extends StateNotifier<ConversationState> {
           );
         }
       }
-    } on Exception catch (e) {
+    } catch (e) {
       final msg = e.toString();
       if (msg.contains('Permission') || msg.contains('permission')) {
         state = state.copyWith(
@@ -250,7 +254,10 @@ class ConversationController extends StateNotifier<ConversationState> {
 
   Future<void> _fetchAiResponse() async {
     try {
-      final replyJson = await _echoHallService.getConversationResponse(state.messages, state.currentScenario!.systemPrompt);
+      // Re-anchor persona on every turn to prevent drift
+      final hardenedPrompt = '${state.currentScenario!.systemPrompt}\n\nCRITICAL: You are "${state.currentScenario!.personaName}". Stay in this exact persona. Do not switch characters.';
+      
+      final replyJson = await _echoHallService.getConversationResponse(state.messages, hardenedPrompt);
       
       final aiMsg = GradedChatMessage(
         id: DateTime.now().millisecondsSinceEpoch.toString(),
@@ -263,7 +270,8 @@ class ConversationController extends StateNotifier<ConversationState> {
       );
       
       state = state.copyWith(messages: [...state.messages, aiMsg], isProcessing: false);
-    } on Exception catch (e) {
+    } catch (e) {
+      // Catch ALL error types (not just Exception) and guarantee isProcessing reset
       final msg = e.toString().toLowerCase();
       if (msg.contains('timeout') || msg.contains('timed out')) {
         state = state.copyWith(
@@ -287,5 +295,9 @@ class ConversationController extends StateNotifier<ConversationState> {
   Future<void> retry() async {
     state = state.copyWith(error: null, isProcessing: true);
     await _fetchAiResponse();
+    // Safety net: if _fetchAiResponse somehow didn't reset isProcessing
+    if (state.isProcessing) {
+      state = state.copyWith(isProcessing: false);
+    }
   }
 }

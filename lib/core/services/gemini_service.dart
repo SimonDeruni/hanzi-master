@@ -242,6 +242,7 @@ class GeminiService {
   final Ref ref;
 
   static const int _freeTierDailyLimit = 5; // Reduced based on user request
+  static const _conversationTimeout = Duration(seconds: 15);
 
   GeminiService({required this.pool, required this.analytics, this.targetLanguage = 'English', required this.ref});
 
@@ -254,6 +255,7 @@ class GeminiService {
     required String model,
     required List<Map<String, dynamic>> messages,
     bool jsonMode = false,
+    Duration? timeout,
   }) async {
     await _checkUsageLimit();
     final body = {
@@ -273,7 +275,7 @@ class GeminiService {
         'Content-Type': 'application/json',
       },
       body: jsonEncode(body),
-    ).timeout(const Duration(seconds: 90));
+    ).timeout(timeout ?? const Duration(seconds: 90));
 
     if (response.statusCode == 200) {
       final json = jsonDecode(utf8.decode(response.bodyBytes));
@@ -1528,8 +1530,10 @@ Respond ONLY in valid JSON format like:
     request.bodyBytes = finalBytes;
 
     try {
-      final response = await http.Client().send(request);
-      final responseBody = await response.stream.bytesToString();
+      final response = await http.Client().send(request)
+          .timeout(const Duration(seconds: 15));
+      final responseBody = await response.stream.bytesToString()
+          .timeout(const Duration(seconds: 10));
 
       if (response.statusCode == 200) {
         final data = jsonDecode(responseBody);

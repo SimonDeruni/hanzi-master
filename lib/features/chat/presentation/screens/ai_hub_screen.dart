@@ -128,7 +128,7 @@ class AiHubScreen extends ConsumerWidget {
                         HapticsManager.medium();
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (_) => const ShadowingStudioScreen()),
+                          SwipeBackPageRoute(builder: (_) => const ShadowingStudioScreen()),
                         );
                       },
                     ),
@@ -405,7 +405,7 @@ class _FeaturedCarouselState extends State<_FeaturedCarousel> {
                     if (context.mounted) {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(
+                        SwipeBackPageRoute(
                             builder: (_) => const ScenarioSelectionScreen()),
                       );
                     }
@@ -427,7 +427,7 @@ class _FeaturedCarouselState extends State<_FeaturedCarousel> {
                     if (context.mounted) {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (_) => const MediaHubScreen()),
+                        SwipeBackPageRoute(builder: (_) => const MediaHubScreen()),
                       );
                     }
                   },

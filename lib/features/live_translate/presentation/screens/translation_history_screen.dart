@@ -5,6 +5,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/features/live_translate/domain/entities/translation_session.dart';
 import 'package:hanzi_master/features/live_translate/presentation/screens/translation_session_detail_screen.dart';
+import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 
 class TranslationHistoryScreen extends ConsumerWidget {
   const TranslationHistoryScreen({super.key});
@@ -64,7 +65,7 @@ class TranslationHistoryScreen extends ConsumerWidget {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(
+                        SwipeBackPageRoute(
                           builder: (_) => TranslationSessionDetailScreen(session: session),
                         ),
                       );

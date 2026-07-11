@@ -315,9 +315,6 @@ class AppLocalizationsId extends AppLocalizations {
   String get haptics => 'Haptics';
 
   @override
-  String get hapticsDesc => 'Haptics Desc';
-
-  @override
   String get displayAndContent => 'Display And Content';
 
   @override
@@ -656,7 +653,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get yourBookshelf => 'Rak Buku Anda';
 
   @override
-  String get text_1782026184579 => '字';
+  String get text_1782026184579 => 'å­—';
 
   @override
   String get searchYourDictionary => 'Cari kamus Anda...';
@@ -811,7 +808,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get sessionDetails => 'Detail Sesi';
 
   @override
-  String get partner => 'Mitra (中文)';
+  String get partner => 'Mitra (ä¸­æ–‡)';
 
   @override
   String get youEnglish => 'Anda (English)';
@@ -851,7 +848,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get onTheMapWe =>
-      'Di peta, kami mengelompokkan karakter independen ini ke dalam KONSTELASI (✨).';
+      'Di peta, kami mengelompokkan karakter independen ini ke dalam KONSTELASI (âœ¨).';
 
   @override
   String get iUnderstand => 'SAYA PAHAM';
@@ -1086,7 +1083,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get upcomingReviews => 'Ulasan Mendatang (7 Hari ke Depan)';
 
   @override
-  String get culturalReadingRoom => '文化书房 (Ruang Baca Budaya)';
+  String get culturalReadingRoom => 'æ–‡åŒ–ä¹¦æˆ¿ (Ruang Baca Budaya)';
 
   @override
   String storyTitleHsk(Object level, Object title) {
@@ -1179,7 +1176,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get jobInterview => 'Wawancara Kerja';
 
   @override
-  String get searchRadicalsHint => 'Cari radikal (mis. Air, 氵)';
+  String get searchRadicalsHint => 'Cari radikal (mis. Air, æ°µ)';
 
   @override
   String get definition => 'Definisi';
@@ -1321,7 +1318,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get historyAndCulture => 'Sejarah & Budaya';
 
   @override
-  String get idiomsTitle => 'Idiom (成语)';
+  String get idiomsTitle => 'Idiom (æˆè¯­)';
 
   @override
   String get theMonkeyKing => 'Raja Kera';
@@ -1383,13 +1380,13 @@ class AppLocalizationsId extends AppLocalizations {
   String get hsk3Intermediate => 'HSK 3: Menengah';
 
   @override
-  String get inDeckCheck => 'Sudah di Deck ✓';
+  String get inDeckCheck => 'Sudah di Deck âœ“';
 
   @override
   String get addToDeckPlus => '+ Tambah ke Deck';
 
   @override
-  String get openCardArrow => 'Buka Kartu →';
+  String get openCardArrow => 'Buka Kartu â†’';
 
   @override
   String get pronunciationPartial => 'Nada kurang tepat';
@@ -1412,7 +1409,7 @@ class AppLocalizationsId extends AppLocalizations {
   }
 
   @override
-  String get lookingUpCharacters => 'Mencari karakter…';
+  String get lookingUpCharacters => 'Mencari karakterâ€¦';
 
   @override
   String get practiceAll => 'Latih semua';

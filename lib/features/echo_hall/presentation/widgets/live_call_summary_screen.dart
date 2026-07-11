@@ -90,12 +90,59 @@ class LiveCallSummaryScreen extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 16),
-          Text(
-            scholarVerdict,
-            style: theme.textTheme.bodyLarge?.copyWith(height: 1.6),
-          ),
+          _buildMarkdownText(scholarVerdict, theme),
         ],
       ),
+    );
+  }
+
+  Widget _buildMarkdownText(String text, ThemeData theme) {
+    final baseStyle = theme.textTheme.bodyLarge?.copyWith(height: 1.6);
+    final spans = <TextSpan>[];
+    final pattern = RegExp(r'(\*\*(.+?)\*\*)|(\*(.+?)\*)|(__(.+?)__)');
+
+    int lastEnd = 0;
+    for (final match in pattern.allMatches(text)) {
+      // Text before this match
+      if (match.start > lastEnd) {
+        spans.add(TextSpan(text: text.substring(lastEnd, match.start)));
+      }
+
+      if (match.group(1) != null) {
+        // **bold**
+        spans.add(TextSpan(
+          text: match.group(2),
+          style: baseStyle?.copyWith(fontWeight: FontWeight.bold),
+        ));
+      } else if (match.group(3) != null) {
+        // *italic*
+        spans.add(TextSpan(
+          text: match.group(4),
+          style: baseStyle?.copyWith(fontStyle: FontStyle.italic),
+        ));
+      } else if (match.group(5) != null) {
+        // __underline__
+        spans.add(TextSpan(
+          text: match.group(6),
+          style: baseStyle?.copyWith(decoration: TextDecoration.underline),
+        ));
+      }
+
+      lastEnd = match.end;
+    }
+
+    // Remaining text after last match
+    if (lastEnd < text.length) {
+      spans.add(TextSpan(text: text.substring(lastEnd)));
+    }
+
+    // Fallback: plain text if no matches
+    if (spans.isEmpty) {
+      return Text(text, style: baseStyle);
+    }
+
+    return RichText(
+      text: TextSpan(style: baseStyle, children: spans),
     );
   }
 

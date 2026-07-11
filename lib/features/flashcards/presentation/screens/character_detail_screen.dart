@@ -26,6 +26,7 @@ import 'package:hanzi_master/features/flashcards/presentation/widgets/deck_selec
 import 'package:hanzi_master/core/utils/definition_formatter.dart';
 import 'package:hanzi_master/features/live_translate/presentation/screens/shadowing_studio_screen.dart';
 import 'package:hanzi_master/shared/widgets/calligraphy_canvas_sheet.dart';
+import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 
 class CharacterDetailScreen extends ConsumerStatefulWidget {
   final Flashcard card;
@@ -453,7 +454,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
                             Navigator.pop(ctx);
                             Navigator.push(
                               context,
-                              MaterialPageRoute(
+                              SwipeBackPageRoute(
                                 builder: (_) => ShadowingStudioScreen(
                                   initialHanzi: currentCard.hanzi,
                                   initialPinyin: currentCard.pinyin,

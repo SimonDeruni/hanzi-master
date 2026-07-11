@@ -42,7 +42,14 @@ class AudioRecordingService {
   }
 
   Future<String?> stopRecording() async {
-    return await _audioRecorder.stop();
+    try {
+      if (await _audioRecorder.isRecording()) {
+        return await _audioRecorder.stop();
+      }
+    } catch (e) {
+      // Recorder may be in an invalid state — return null gracefully
+    }
+    return null;
   }
 
   Future<void> dispose() async {

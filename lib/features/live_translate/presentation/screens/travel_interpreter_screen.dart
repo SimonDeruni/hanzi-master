@@ -17,6 +17,7 @@ import 'package:hanzi_master/core/providers/translation_language_provider.dart';
 import 'package:hanzi_master/shared/widgets/tappable_hanzi_text.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 
 class TravelInterpreterScreen extends ConsumerStatefulWidget {
   const TravelInterpreterScreen({super.key});
@@ -33,7 +34,13 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
 
   String _status = "Initializing...";
   bool _hasError = false;
-  bool _isRecording = false;
+  String? _recordingSide; // null = idle, 'a' = User mic, 'b' = Partner mic
+  bool _isStopping = false;
+
+  // Reconnection state
+  int _reconnectAttempts = 0;
+  static const int _maxReconnectAttempts = 5;
+  Timer? _reconnectTimer;
 
   // Side language state (decoupled from global provider)
   String _sideALanguage = 'English';
@@ -146,7 +153,7 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
             }
 
             if (data.containsKey('setupComplete')) {
-              setState(() => _status = "Ready to interpret...");
+              setState(() { _status = "Ready to interpret..."; _reconnectAttempts = 0; });
             }
 
             if (data.containsKey('serverContent')) {
@@ -176,19 +183,34 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
           final code = _channel?.closeCode;
           final reason = _channel?.closeReason;
           debugPrint("TravelInterpreter: Connection closed. Code: $code, Reason: $reason");
-          if (mounted && _isSessionStarted) {
-            setState(() { _status = "Reconnecting..."; _hasError = false; });
-            Future.delayed(const Duration(seconds: 2), () {
+          if (mounted && _isSessionStarted && _reconnectAttempts < _maxReconnectAttempts) {
+            _reconnectAttempts++;
+            final delay = Duration(seconds: [1, 2, 4, 8, 16][_reconnectAttempts - 1].clamp(1, 30));
+            setState(() { _status = "Reconnecting in ${delay.inSeconds}s..."; _hasError = false; });
+            _reconnectTimer?.cancel();
+            _reconnectTimer = Timer(delay, () {
               if (mounted && _isSessionStarted) {
                 _initAudioAndConnect();
               }
             });
+          } else if (mounted && _isSessionStarted) {
+            setState(() { _status = "Disconnected — tap mic to retry"; _hasError = true; _reconnectAttempts = 0; });
           } else {
             if (mounted) setState(() { _status = "Connection closed ($code): ${reason ?? 'unknown'}"; _hasError = true; });
           }
         },
         onError: (e) {
-          if (mounted) setState(() { _status = "Connection Error: $e"; _hasError = true; });
+          if (mounted && _reconnectAttempts < _maxReconnectAttempts) {
+            _reconnectAttempts++;
+            final delay = Duration(seconds: [1, 2, 4, 8, 16][_reconnectAttempts - 1].clamp(1, 30));
+            setState(() { _status = "Connection Error — retrying in ${delay.inSeconds}s..."; _hasError = false; });
+            _reconnectTimer?.cancel();
+            _reconnectTimer = Timer(delay, () {
+              if (mounted && _isSessionStarted) { _initAudioAndConnect(); }
+            });
+          } else {
+            if (mounted) setState(() { _status = "Connection Error: $e"; _hasError = true; });
+          }
         },
       );
     } catch (e) {
@@ -242,11 +264,12 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
     });
   }
 
-  Future<void> _startAudioStreaming() async {
+  Future<void> _startAudioStreaming(String sideId) async {
+    if (_recordingSide != null || _isStopping) return;
     if (await _audioRecorder.hasPermission()) {
       setState(() {
-        _isRecording = true;
-        _status = "Listening...";
+        _recordingSide = sideId;
+        _status = sideId == 'b' ? "Partner listening..." : "Listening...";
       });
       final stream = await _audioRecorder.startStream(
         const RecordConfig(encoder: AudioEncoder.pcm16bits, sampleRate: 16000, numChannels: 1),
@@ -277,8 +300,16 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
   }
 
   Future<void> _stopAudioStreaming() async {
+    if (_isStopping || _recordingSide == null) return;
+    _isStopping = true;
     await _audioSubscription?.cancel();
-    await _audioRecorder.stop();
+    try {
+      if (await _audioRecorder.isRecording()) {
+        await _audioRecorder.stop();
+      }
+    } catch (_) {
+      // Recorder may be in an invalid state
+    }
 
     if (_audioBuffer.isNotEmpty && _channel != null && _channel?.closeCode == null) {
       try {
@@ -305,7 +336,8 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
     }
 
     setState(() {
-      _isRecording = false;
+      _recordingSide = null;
+      _isStopping = false;
       _status = "Paused";
     });
   }
@@ -355,7 +387,7 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
             language: targetLang,
           ));
           _isTranslatingText = false;
-          _status = _isRecording ? "Listening..." : "Paused";
+          _status = _recordingSide != null ? "Listening..." : "Paused";
         });
       }
     } catch (e) {
@@ -489,7 +521,11 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
   void dispose() {
     _pulseController.dispose();
     _audioSubscription?.cancel();
-    _audioRecorder.dispose();
+    try {
+      _audioRecorder.dispose();
+    } catch (_) {
+      // Recorder may be in an invalid state during disposal
+    }
     _channel?.sink.close(status.normalClosure);
     super.dispose();
   }
@@ -575,6 +611,128 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
     );
   }
 
+  Widget _buildStatusBar() {
+    return Positioned(
+      bottom: 0,
+      left: 0,
+      right: 0,
+      child: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+            decoration: BoxDecoration(
+              color: Colors.black.withValues(alpha: 0.8),
+              borderRadius: BorderRadius.circular(40),
+              border: Border.all(color: Colors.white.withValues(alpha: 0.15)),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                // Side B (Partner) mic button
+                _buildMicButton(
+                  sideId: 'b',
+                  label: 'Partner',
+                  isActive: _recordingSide == 'b',
+                ),
+                // Status text
+                Expanded(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        _status,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: _hasError ? Colors.redAccent : Colors.white70,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      if (_isTranslatingText)
+                        const Padding(
+                          padding: EdgeInsets.only(top: 4),
+                          child: SizedBox(
+                            width: 16,
+                            height: 16,
+                            child: CircularProgressIndicator(
+                              strokeWidth: 2,
+                              color: Colors.white54,
+                            ),
+                          ),
+                        ),
+                    ],
+                  ),
+                ),
+                // Side A (User) mic button
+                _buildMicButton(
+                  sideId: 'a',
+                  label: 'You',
+                  isActive: _recordingSide == 'a',
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildMicButton({
+    required String sideId,
+    required String label,
+    required bool isActive,
+  }) {
+    return GestureDetector(
+      onTap: () {
+        if (isActive) {
+          _stopAudioStreaming();
+        } else {
+          if (_recordingSide != null) {
+            _stopAudioStreaming();
+          }
+          _startAudioStreaming(sideId);
+        }
+      },
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 300),
+        width: 56,
+        height: 56,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: isActive ? Colors.redAccent : Colors.white.withValues(alpha: 0.15),
+          boxShadow: isActive
+              ? [
+                  BoxShadow(
+                    color: Colors.redAccent.withValues(alpha: 0.4),
+                    blurRadius: 16,
+                    spreadRadius: 2,
+                  ),
+                ]
+              : null,
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.mic,
+              color: isActive ? Colors.white : Colors.white70,
+              size: 24,
+            ),
+            Text(
+              label,
+              style: TextStyle(
+                color: isActive ? Colors.white : Colors.white54,
+                fontSize: 9,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
@@ -596,7 +754,7 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                   quarterTurns: 2,
                   child: AnimatedContainer(
                     duration: const Duration(milliseconds: 500),
-                    color: _isRecording ? const Color(0xFF3E1F1F) : const Color(0xFF1E1313),
+                    color: _recordingSide != null ? const Color(0xFF3E1F1F) : const Color(0xFF1E1313),
                     width: double.infinity,
                     padding: const EdgeInsets.only(left: 24, right: 24, bottom: 24, top: 64),
                     child: Column(
@@ -607,14 +765,14 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                           children: [
                             Row(
                               children: [
-                                // Side B language dropdown
+                                // Side B language dropdown — locked to Partner (Mandarin/Chinese) only
                                 DropdownButtonHideUnderline(
                                   child: DropdownButton<String>(
                                     value: _sideBLanguage,
                                     icon: const Icon(Icons.language, color: Colors.white70),
                                     dropdownColor: Colors.grey[900],
                                     style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
-                                    items: supportedTranslationLanguages.map((lang) => DropdownMenuItem(value: lang, child: Text("Partner ($lang)"))).toList(),
+                                    items: supportedPartnerLanguages.map((lang) => DropdownMenuItem(value: lang, child: Text("Partner ($lang)"))).toList(),
                                     onChanged: (val) {
                                       if (val != null) setState(() => _sideBLanguage = val);
                                     },
@@ -629,18 +787,18 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                                     size: 20,
                                   ),
                                   onPressed: () {
-                                    if (_isRecording) _stopAudioStreaming();
+                                    if (_recordingSide != null) _stopAudioStreaming();
                                     _showPartnerKeyboard();
                                   },
                                 ),
                               ],
                             ),
-                            if (_isRecording)
+                            if (_recordingSide != null)
                               const Row(
                                 children: [
                                   Icon(Icons.mic, color: Colors.redAccent, size: 16),
                                   SizedBox(width: 8),
-                                  Text("录音中", style: TextStyle(color: Colors.redAccent, fontWeight: FontWeight.bold)),
+                                  Text("Partner speaking…", style: TextStyle(color: Colors.redAccent, fontWeight: FontWeight.bold)),
                                 ],
                               ),
                           ],
@@ -655,26 +813,36 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                               final isFromSideB = msg.sideId == 'b';
                               return Padding(
                                 padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                child: Container(
-                                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-                                  decoration: BoxDecoration(
-                                    color: isFromSideB ? Colors.blue.withValues(alpha: 0.1) : Colors.grey.withValues(alpha: 0.1),
-                                    borderRadius: BorderRadius.only(
-                                      topLeft: const Radius.circular(24),
-                                      topRight: const Radius.circular(24),
-                                      bottomLeft: Radius.circular(isFromSideB ? 24 : 4),
-                                      bottomRight: Radius.circular(isFromSideB ? 4 : 24),
+                                child: Column(
+                                  crossAxisAlignment: isFromSideB ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      isFromSideB ? 'Partner (${msg.language})' : 'You (${msg.language})',
+                                      style: const TextStyle(color: Colors.white38, fontSize: 11, fontWeight: FontWeight.w600),
                                     ),
-                                    border: Border.all(color: isFromSideB ? Colors.blue.withValues(alpha: 0.3) : Colors.grey.withValues(alpha: 0.2)),
-                                  ),
-                                  child: Text(
-                                    msg.text,
-                                    style: TextStyle(
-                                      color: isFromSideB ? Colors.blue.shade200 : Colors.white,
-                                      fontSize: 24,
-                                      fontWeight: FontWeight.w500,
+                                    const SizedBox(height: 4),
+                                    Container(
+                                      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+                                      decoration: BoxDecoration(
+                                        color: isFromSideB ? Colors.blue.withValues(alpha: 0.1) : Colors.grey.withValues(alpha: 0.1),
+                                        borderRadius: BorderRadius.only(
+                                          topLeft: const Radius.circular(24),
+                                          topRight: const Radius.circular(24),
+                                          bottomLeft: Radius.circular(isFromSideB ? 24 : 4),
+                                          bottomRight: Radius.circular(isFromSideB ? 4 : 24),
+                                        ),
+                                        border: Border.all(color: isFromSideB ? Colors.blue.withValues(alpha: 0.3) : Colors.grey.withValues(alpha: 0.2)),
+                                      ),
+                                      child: Text(
+                                        msg.text,
+                                        style: TextStyle(
+                                          color: isFromSideB ? Colors.blue.shade200 : Colors.white,
+                                          fontSize: 24,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
                                     ),
-                                  ),
+                                  ],
                                 ),
                               );
                             },
@@ -690,7 +858,7 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
               Expanded(
                 child: AnimatedContainer(
                   duration: const Duration(milliseconds: 500),
-                  color: _isRecording ? const Color(0xFF152A3B) : const Color(0xFF121A20),
+                  color: _recordingSide != null ? const Color(0xFF152A3B) : const Color(0xFF121A20),
                   width: double.infinity,
                   padding: const EdgeInsets.only(left: 24, right: 24, bottom: 24, top: 64),
                   child: Column(
@@ -724,18 +892,18 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                                 onPressed: () {
                                   setState(() {
                                     _isSideAKeyboardMode = !_isSideAKeyboardMode;
-                                    if (_isSideAKeyboardMode && _isRecording) {
+                                    if (_isSideAKeyboardMode && _recordingSide != null) {
                                       _stopAudioStreaming();
                                     }
                                   });
                                 },
                               ),
-                              if (_isRecording)
+                              if (_recordingSide != null)
                                 const Row(
                                   children: [
                                     Icon(Icons.circle, color: Colors.redAccent, size: 12),
                                     SizedBox(width: 8),
-                                    Text("Recording", style: TextStyle(color: Colors.redAccent, fontWeight: FontWeight.bold)),
+                                    Text("You are speaking", style: TextStyle(color: Colors.redAccent, fontWeight: FontWeight.bold)),
                                   ],
                                 ),
                             ],
@@ -747,7 +915,7 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                                 onPressed: () {
                                   Navigator.push(
                                     context,
-                                    MaterialPageRoute(builder: (_) => const UniversalScannerScreen(intent: CameraIntent.travelAR)),
+                                    SwipeBackPageRoute(builder: (_) => const UniversalScannerScreen(intent: CameraIntent.travelAR)),
                                   );
                                 },
                               ),
@@ -769,27 +937,37 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                             final isFromSideA = msg.sideId == 'a';
                             return Padding(
                               padding: const EdgeInsets.symmetric(vertical: 8.0),
-                              child: Container(
-                                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-                                decoration: BoxDecoration(
-                                  color: isFromSideA ? Colors.blue.withValues(alpha: 0.1) : Colors.grey.withValues(alpha: 0.1),
-                                  borderRadius: BorderRadius.only(
-                                    topLeft: const Radius.circular(24),
-                                    topRight: const Radius.circular(24),
-                                    bottomLeft: Radius.circular(isFromSideA ? 24 : 4),
-                                    bottomRight: Radius.circular(isFromSideA ? 4 : 24),
+                              child: Column(
+                                crossAxisAlignment: isFromSideA ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    isFromSideA ? 'You (${msg.language})' : 'Partner (${msg.language})',
+                                    style: const TextStyle(color: Colors.white38, fontSize: 11, fontWeight: FontWeight.w600),
                                   ),
-                                  border: Border.all(color: isFromSideA ? Colors.blue.withValues(alpha: 0.3) : Colors.grey.withValues(alpha: 0.2)),
-                                ),
-                                child: isFromSideA
-                                  ? Text(
-                                      msg.text,
-                                      style: const TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.w500),
-                                    )
-                                  : TappableMarkdownHanziText(
-                                      msg.text,
-                                      style: const TextStyle(color: Colors.blue, fontSize: 24, fontWeight: FontWeight.w500),
+                                  const SizedBox(height: 4),
+                                  Container(
+                                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+                                    decoration: BoxDecoration(
+                                      color: isFromSideA ? Colors.blue.withValues(alpha: 0.1) : Colors.grey.withValues(alpha: 0.1),
+                                      borderRadius: BorderRadius.only(
+                                        topLeft: const Radius.circular(24),
+                                        topRight: const Radius.circular(24),
+                                        bottomLeft: Radius.circular(isFromSideA ? 24 : 4),
+                                        bottomRight: Radius.circular(isFromSideA ? 4 : 24),
+                                      ),
+                                      border: Border.all(color: isFromSideA ? Colors.blue.withValues(alpha: 0.3) : Colors.grey.withValues(alpha: 0.2)),
                                     ),
+                                    child: isFromSideA
+                                      ? Text(
+                                          msg.text,
+                                          style: const TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.w500),
+                                        )
+                                      : TappableMarkdownHanziText(
+                                          msg.text,
+                                          style: const TextStyle(color: Colors.blue, fontSize: 24, fontWeight: FontWeight.w500),
+                                        ),
+                                  ),
+                                ],
                               ),
                             );
                           },
@@ -832,105 +1010,10 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
           ),
 
           // The Floating Center Control Bar
-          _buildCenterControlBar(),
+          _buildStatusBar(),
         ],
       ),
     );
   }
 
-  Widget _buildCenterControlBar() {
-    return AnimatedBuilder(
-      animation: _pulseController,
-      builder: (context, child) {
-        final blur = _isRecording ? (_pulseController.value * 20.0 + 10.0) : 0.0;
-        final spread = _isRecording ? (_pulseController.value * 5.0) : 0.0;
-        return Positioned(
-          child: Container(
-            margin: const EdgeInsets.symmetric(horizontal: 32),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(32),
-              boxShadow: [
-                if (_isRecording)
-                  BoxShadow(
-                    color: Colors.blueAccent.withValues(alpha: 0.3),
-                    blurRadius: blur,
-                    spreadRadius: spread,
-                  )
-              ],
-            ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(32),
-              child: BackdropFilter(
-                filter: ui.ImageFilter.blur(sigmaX: 15, sigmaY: 15),
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-                  decoration: BoxDecoration(
-                    color: Colors.black.withValues(alpha: 0.4),
-                    borderRadius: BorderRadius.circular(32),
-                    border: Border.all(color: Colors.white.withValues(alpha: 0.15), width: 1.5),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      // Language Icon
-                      const Icon(Icons.translate, color: Colors.white70, size: 24),
-                      const SizedBox(width: 8),
-                      // Mic Button
-                      GestureDetector(
-                        onTap: () {
-                          if (_isRecording) {
-                            _stopAudioStreaming();
-                          } else {
-                            _startAudioStreaming();
-                          }
-                        },
-                        child: AnimatedContainer(
-                          duration: const Duration(milliseconds: 300),
-                          padding: const EdgeInsets.all(12),
-                          decoration: BoxDecoration(
-                            color: _isRecording ? Colors.redAccent.withValues(alpha: 0.2) : Colors.white.withValues(alpha: 0.1),
-                            shape: BoxShape.circle,
-                            border: Border.all(
-                              color: _isRecording ? Colors.redAccent : Colors.white24,
-                              width: 2,
-                            ),
-                          ),
-                          child: Icon(
-                            _isRecording ? Icons.mic : Icons.mic_none,
-                            color: _isRecording ? Colors.redAccent : Colors.white,
-                            size: 28,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(width: 16),
-                      // Status Text
-                      Expanded(
-                        child: Text(
-                          _status,
-                          style: TextStyle(
-                            color: _hasError ? Colors.redAccent : Colors.white,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
-                          ),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                      // Save button
-                      IconButton(
-                        icon: const Icon(Icons.save_alt, color: Colors.white70, size: 22),
-                        onPressed: _saveSession,
-                        tooltip: "Save session",
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ),
-        );
-      }
-    );
-  }
 }

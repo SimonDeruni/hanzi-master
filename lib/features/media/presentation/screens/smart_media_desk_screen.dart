@@ -3,11 +3,12 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:youtube_explode_dart/youtube_explode_dart.dart' as yt show Video;
+import 'package:url_launcher/url_launcher.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 import '../../data/youtube_repository.dart';
 import '../../domain/models/video_transcript.dart';
 import '../../domain/models/media_briefing.dart';
+import '../../domain/models/youtube_video.dart';
 import '../../../../core/services/gemini_service.dart';
 import '../../../../core/services/audio_recording_service.dart';
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
@@ -20,11 +21,12 @@ import 'package:hanzi_master/features/media/presentation/widgets/premium_transcr
 import 'package:hanzi_master/core/presentation/widgets/ai_progress_bar.dart';
 
 class SmartMediaDeskScreen extends ConsumerStatefulWidget {
-  final yt.Video video;
+  final YoutubeVideo video;
   const SmartMediaDeskScreen({super.key, required this.video});
 
   @override
-  ConsumerState<SmartMediaDeskScreen> createState() => _SmartMediaDeskScreenState();
+  ConsumerState<SmartMediaDeskScreen> createState() =>
+      _SmartMediaDeskScreenState();
 }
 
 // ─── AI Task Progress Dot ─────────────────────────────────────────────────────
@@ -75,7 +77,8 @@ class _SkeletonTranscriptLine extends StatefulWidget {
   const _SkeletonTranscriptLine({required this.index});
 
   @override
-  State<_SkeletonTranscriptLine> createState() => _SkeletonTranscriptLineState();
+  State<_SkeletonTranscriptLine> createState() =>
+      _SkeletonTranscriptLineState();
 }
 
 class _SkeletonTranscriptLineState extends State<_SkeletonTranscriptLine>
@@ -112,7 +115,20 @@ class _SkeletonTranscriptLineState extends State<_SkeletonTranscriptLine>
           _animation.value,
         )!;
         // Vary the width to simulate real text
-        final widths = [0.7, 0.9, 0.5, 0.8, 0.6, 0.95, 0.55, 0.75, 0.85, 0.4, 0.9, 0.65];
+        final widths = [
+          0.7,
+          0.9,
+          0.5,
+          0.8,
+          0.6,
+          0.95,
+          0.55,
+          0.75,
+          0.85,
+          0.4,
+          0.9,
+          0.65
+        ];
         final w = widths[widget.index % widths.length];
 
         return Padding(
@@ -204,11 +220,11 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
   void initState() {
     super.initState();
     _playerController = YoutubePlayerController.fromVideoId(
-      videoId: widget.video.id.value,
-      autoPlay: true, // Try to autoplay to bypass the initial white play button
+      videoId: widget.video.id,
+      autoPlay: true,
       params: const YoutubePlayerParams(
-        showControls: false, // Disables native YouTube HTML controls
-        mute: true, // Required to bypass mobile autoplay blockers
+        showControls: false,
+        mute: true,
         showFullscreenButton: false,
         loop: false,
         color: 'white',
@@ -230,13 +246,14 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
     try {
       final repository = ref.read(youtubeRepositoryProvider);
       if (mounted) setState(() => _loadingStep = 'Fetching subtitles...');
-      final transcript = await repository.getTranscript(widget.video.id.value);
+      final transcript = await repository.getTranscript(widget.video.id);
       if (transcript != null) {
         if (mounted) {
           setState(() {
             _transcript = transcript;
             _lineKeys.clear();
-            _lineKeys.addAll(List.generate(transcript.lines.length, (_) => GlobalKey()));
+            _lineKeys.addAll(
+                List.generate(transcript.lines.length, (_) => GlobalKey()));
             _isLoading = false;
             _loadingStep = 'Generating AI briefing...';
           });
@@ -245,49 +262,59 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
         final gemini = ref.read(geminiServiceProvider);
 
         // Track briefing
-        gemini.generateVideoBriefing(widget.video.title, transcript.lines)
+        gemini
+            .generateVideoBriefing(widget.video.title, transcript.lines)
             .then((b) {
-              if (mounted) {
-                setState(() {
-                  _briefing = b;
-                  _briefingReady = true;
-                  _updateLoadingStep();
-                });
-              }
-            })
-            .catchError((Object e) {
-              debugPrint('Briefing error: $e');
-              if (mounted) {
-                _briefingReady = true;
-                _updateLoadingStep();
-              }
+          if (mounted) {
+            setState(() {
+              _briefing = b;
+              _briefingReady = true;
+              _updateLoadingStep();
             });
+          }
+        }).catchError((Object e) {
+          debugPrint('Briefing error: $e');
+          if (mounted) {
+            _briefingReady = true;
+            _updateLoadingStep();
+          }
+        });
 
         // Track memes
-        gemini.generateCulturalMemes(transcript.lines.map((e) => e.text).toList())
+        gemini
+            .generateCulturalMemes(transcript.lines.map((e) => e.text).toList())
             .then((m) {
-              if (mounted) {
-                setState(() {
-                  _culturalMemes = m;
-                  _memesReady = true;
-                  _updateLoadingStep();
-                });
-              }
-            })
-            .catchError((Object e) {
-              debugPrint('Memes error: $e');
-              if (mounted) {
-                _memesReady = true;
-                _updateLoadingStep();
-              }
+          if (mounted) {
+            setState(() {
+              _culturalMemes = m;
+              _memesReady = true;
+              _updateLoadingStep();
             });
+          }
+        }).catchError((Object e) {
+          debugPrint('Memes error: $e');
+          if (mounted) {
+            _memesReady = true;
+            _updateLoadingStep();
+          }
+        });
 
         _translateIncrementally(transcript, gemini);
       } else {
-        if (mounted) setState(() { _error = 'No closed captions available.'; _isLoading = false; });
+        // Captions failed — fall back to YouTube native captions via the player
+        if (mounted)
+          setState(() {
+            _error =
+                'No captions available. You can still watch with YouTube native captions.';
+            _isLoading = false;
+          });
       }
     } catch (e) {
-      if (mounted) setState(() { _error = e.toString(); _isLoading = false; });
+      if (mounted)
+        setState(() {
+          _error = e.toString();
+          _isLoading = false;
+        });
     }
   }
 
@@ -306,8 +333,8 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
     }
 
     if (_simplifiedTranscript.isNotEmpty) {
-       setState(() => _isHskSimplified = true);
-       return;
+      setState(() => _isHskSimplified = true);
+      return;
     }
 
     if (_transcript == null) return;
@@ -315,7 +342,8 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
     // Prompt for HSK level
     final selectedLevel = await showModalBottomSheet<int>(
       context: context,
-      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
+      shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
       builder: (context) {
         return SafeArea(
           child: Column(
@@ -323,14 +351,17 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
             children: [
               const Padding(
                 padding: EdgeInsets.all(16.0),
-                child: Text('Select Target HSK Level', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                child: Text('Select Target HSK Level',
+                    style:
+                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
               ),
               ...List.generate(6, (index) {
                 final level = index + 1;
                 return ListTile(
                   leading: CircleAvatar(
                     backgroundColor: Colors.orange.withValues(alpha: 0.1),
-                    child: Text('$level', style: const TextStyle(color: Colors.orange)),
+                    child: Text('$level',
+                        style: const TextStyle(color: Colors.orange)),
                   ),
                   title: Text('HSK $level'),
                   onTap: () => Navigator.pop(context, level),
@@ -357,9 +388,7 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
     final gemini = ref.read(geminiServiceProvider);
     try {
       final result = await gemini.simplifyTranscriptToHsk(
-        _transcript!.lines.map((e) => e.text).toList(), 
-        _hskLevel
-      );
+          _transcript!.lines.map((e) => e.text).toList(), _hskLevel);
       if (mounted) setState(() => _simplifiedTranscript = result);
     } catch (e) {
       debugPrint('Simplify error: $e');
@@ -369,18 +398,25 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
     }
   }
 
-  Future<void> _translateIncrementally(VideoTranscript transcript, GeminiService gemini) async {
+  Future<void> _translateIncrementally(
+      VideoTranscript transcript, GeminiService gemini) async {
     const chunkSize = 20;
     final workingLines = List<TranscriptLine>.from(transcript.lines);
     for (int start = 0; start < workingLines.length; start += chunkSize) {
       if (!mounted) return;
       final end = (start + chunkSize).clamp(0, workingLines.length);
       try {
-        final translated = await gemini.translateChunk(workingLines.sublist(start, end), language: 'English');
+        final translated = await gemini.translateChunk(
+            workingLines.sublist(start, end),
+            language: 'English');
         for (int i = 0; i < translated.length; i++) {
           workingLines[start + i] = translated[i];
         }
-        if (mounted) setState(() { _transcript = VideoTranscript(videoId: transcript.videoId, lines: List.from(workingLines)); });
+        if (mounted)
+          setState(() {
+            _transcript = VideoTranscript(
+                videoId: transcript.videoId, lines: List.from(workingLines));
+          });
       } catch (e) {
         debugPrint('Chunk translate error ($start-$end): $e');
       }
@@ -389,10 +425,15 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
 
   void _startSyncEngine() {
     _positionSubscription = _playerController.videoStateStream.listen((state) {
-      if (_playerController.value.playerState == PlayerState.playing && _wasMutedForAutoplay) {
-        _playerController.unMute();
-        _playerController.setPlaybackRate(_playbackRate);
-        _wasMutedForAutoplay = false;
+      // Guard: if YouTube reports an error, show it to the user immediately
+      if (_playerController.value.hasError && _error == null) {
+        debugPrint('[YouTube] Player error: ${_playerController.value.error}');
+        if (mounted) {
+          setState(() {
+            _error = _mapYoutubePlayerError(_playerController.value.error);
+          });
+        }
+        return;
       }
 
       if (!_captionsDisabled) {
@@ -401,13 +442,14 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
           'player.setOption("captions", "track", {});',
         );
       }
-      
+
       if (_transcript == null) return;
       final now = DateTime.now();
       if (now.difference(_lastSyncUpdate) < _syncInterval) return;
       _lastSyncUpdate = now;
       final position = state.position;
-      final newIndex = _transcript!.lines.indexWhere((l) => position >= l.start && position <= l.end);
+      final newIndex = _transcript!.lines
+          .indexWhere((l) => position >= l.start && position <= l.end);
       final indexChanged = newIndex != -1 && newIndex != _currentIndex;
       setState(() {
         _currentPosition = position;
@@ -415,7 +457,7 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
           _currentIndex = newIndex;
           // Removed auto-pause for shadowing mode based on user feedback
         }
-        
+
         // Cultural Meme check
         if (_culturalMemes.isNotEmpty && _currentIndex >= 0) {
           final meme = _culturalMemes.firstWhere(
@@ -436,7 +478,8 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
               key.currentContext!,
               duration: const Duration(milliseconds: 400),
               curve: Curves.easeInOutCubic,
-              alignment: 0.3, // Keeps the active subtitle positioned beautifully at 30% down the list
+              alignment:
+                  0.3, // Keeps the active subtitle positioned beautifully at 30% down the list
             );
           }
         }
@@ -447,30 +490,29 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
   void _showCulturalMeme(Map<String, dynamic> meme) {
     if (!mounted) return;
     ScaffoldMessenger.of(context).hideCurrentSnackBar();
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Row(
-          children: [
-            const Icon(Icons.lightbulb, color: Colors.amber),
-            const SizedBox(width: 12),
-            Expanded(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text("Cultural Note: \${meme['keyword']}", style: const TextStyle(fontWeight: FontWeight.bold)),
-                  Text("\${meme['explanation']}"),
-                ],
-              ),
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Row(
+        children: [
+          const Icon(Icons.lightbulb, color: Colors.amber),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("Cultural Note: \${meme['keyword']}",
+                    style: const TextStyle(fontWeight: FontWeight.bold)),
+                Text("\${meme['explanation']}"),
+              ],
             ),
-          ],
-        ),
-        duration: const Duration(seconds: 5),
-        behavior: SnackBarBehavior.floating,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-        margin: const EdgeInsets.only(bottom: 100, left: 16, right: 16),
-      )
-    );
+          ),
+        ],
+      ),
+      duration: const Duration(seconds: 5),
+      behavior: SnackBarBehavior.floating,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      margin: const EdgeInsets.only(bottom: 100, left: 16, right: 16),
+    ));
   }
 
   void _onWordTapped(String word) {
@@ -479,7 +521,8 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
   }
 
   void _replayLine(Duration start) {
-    _playerController.seekTo(seconds: start.inSeconds.toDouble(), allowSeekAhead: true);
+    _playerController.seekTo(
+        seconds: start.inSeconds.toDouble(), allowSeekAhead: true);
     _playerController.playVideo();
   }
 
@@ -488,39 +531,56 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
-      backgroundColor: Theme.of(context).brightness == Brightness.dark ? const Color(0xFF1C1C1E) : Colors.white,
-      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
+      backgroundColor: Theme.of(context).brightness == Brightness.dark
+          ? const Color(0xFF1C1C1E)
+          : Colors.white,
+      shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
       builder: (context) => Container(
         height: MediaQuery.of(context).size.height * 0.6,
         padding: const EdgeInsets.all(24),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text("AI Micro-Lesson", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+            const Text("AI Micro-Lesson",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
             const SizedBox(height: 16),
             Expanded(
               child: FutureBuilder<AiSentence>(
-                future: ref.read(geminiServiceProvider).generateSentenceLesson(sentence),
+                future: ref
+                    .read(geminiServiceProvider)
+                    .generateSentenceLesson(sentence),
                 builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) return const Center(child: CircularProgressIndicator());
-                  if (snapshot.hasError) return Text("Error: ${snapshot.error}", style: const TextStyle(color: Colors.red));
+                  if (snapshot.connectionState == ConnectionState.waiting)
+                    return const Center(child: CircularProgressIndicator());
+                  if (snapshot.hasError)
+                    return Text("Error: ${snapshot.error}",
+                        style: const TextStyle(color: Colors.red));
                   final s = snapshot.data;
                   if (s == null) return const SizedBox.shrink();
                   return SingleChildScrollView(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(s.chinese, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                        Text(s.chinese,
+                            style: const TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold)),
                         const SizedBox(height: 8),
-                        Text(s.english, style: const TextStyle(fontSize: 16, fontStyle: FontStyle.italic)),
+                        Text(s.english,
+                            style: const TextStyle(
+                                fontSize: 16, fontStyle: FontStyle.italic)),
                         const SizedBox(height: 16),
                         ...s.words.map((w) => Padding(
-                          padding: const EdgeInsets.only(bottom: 8),
-                          child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                            Text("${w.hanzi} (${w.pinyin}): ", style: const TextStyle(fontWeight: FontWeight.bold)),
-                            Expanded(child: Text(w.meaning)),
-                          ]),
-                        )),
+                              padding: const EdgeInsets.only(bottom: 8),
+                              child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text("${w.hanzi} (${w.pinyin}): ",
+                                        style: const TextStyle(
+                                            fontWeight: FontWeight.bold)),
+                                    Expanded(child: Text(w.meaning)),
+                                  ]),
+                            )),
                       ],
                     ),
                   );
@@ -543,40 +603,43 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
 
   Future<void> _toggleShadowRecording([int? index]) async {
     final audioService = ref.read(audioRecordingServiceProvider);
-    
+
     if (_isRecording) {
-      if (index != null && _recordingLineIndex != null && index != _recordingLineIndex) {
+      if (index != null &&
+          _recordingLineIndex != null &&
+          index != _recordingLineIndex) {
         await audioService.stopRecording();
       } else {
         setState(() {
           _isRecording = false;
           _shadowFeedback = "Processing your pronunciation...";
         });
-        
+
         final path = await audioService.stopRecording();
         if (path != null && _transcript != null) {
           try {
             final file = File(path);
             final byteData = await file.readAsBytes();
-            
+
             // Determine the line we were shadowing
             final targetIndex = _recordingLineIndex ?? _currentIndex;
             if (targetIndex >= 0 && targetIndex < _transcript!.lines.length) {
               final line = _transcript!.lines[targetIndex];
-              
+
               final gemini = ref.read(geminiServiceProvider);
-              final result = await gemini.gradeAudio(byteData, line.text, line.pinyin ?? "");
+              final result = await gemini.gradeAudio(
+                  byteData, line.text, line.pinyin ?? "");
               final score = result['score'] ?? 0;
-              
+
               setState(() {
                 _shadowFeedback = "Score: $score/100. Resuming video...";
                 _recordingLineIndex = null;
               });
-              
+
               Future.delayed(const Duration(seconds: 3), () {
                 if (mounted) {
-                   setState(() => _shadowFeedback = "");
-                   _playerController.playVideo();
+                  setState(() => _shadowFeedback = "");
+                  _playerController.playVideo();
                 }
               });
             } else {
@@ -594,18 +657,18 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
             _playerController.playVideo();
           }
         } else {
-           _playerController.playVideo();
+          _playerController.playVideo();
         }
-        return; 
+        return;
       }
-    } 
+    }
 
     final hasPerm = await audioService.requestPermission();
     if (!hasPerm) return;
-    
+
     // Pause video while recording!
     _playerController.pauseVideo();
-    
+
     setState(() {
       _isRecording = true;
       _recordingLineIndex = index;
@@ -688,7 +751,56 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
     );
   }
 
-  @override
+  Widget _buildErrorState() {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 40),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                color: Colors.orange.withValues(alpha: 0.1),
+                shape: BoxShape.circle,
+              ),
+              child: const Icon(Icons.subtitles_off,
+                  color: Colors.orange, size: 48),
+            ),
+            const SizedBox(height: 24),
+            Text(
+              _error!,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
+                color: Colors.black87,
+              ),
+            ),
+            const SizedBox(height: 8),
+            const Text(
+              'The video player is still active above. Try YouTube'
+              's built-in CC button in the player.',
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 13, color: Colors.black54),
+            ),
+            const SizedBox(height: 16),
+            TextButton.icon(
+              onPressed: () {
+                final uri = Uri.tryParse(widget.video.url);
+                if (uri != null) {
+                  launchUrl(uri, mode: LaunchMode.externalApplication);
+                }
+              },
+              icon: const Icon(Icons.open_in_browser),
+              label: const Text('Open in YouTube'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   void dispose() {
     _positionSubscription?.cancel();
     _playerController.close();
@@ -703,66 +815,74 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
     return Scaffold(
       backgroundColor: const Color(0xFFFDFCF0),
       // Hide AppBar when in fullscreen
-      appBar: _isFullscreen ? null : AppBar(
-        title: const Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            InfoBulb(
-              id: 'learn_chinese_video',
-              title: "Learn Chinese",
-              message: "Watch Chinese videos with interactive subtitles. Tap any word to see its definition, or tap a subtitle line to practice shadowing and improve your pronunciation.",
+      appBar: _isFullscreen
+          ? null
+          : AppBar(
+              title: const Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  InfoBulb(
+                    id: 'learn_chinese_video',
+                    title: "Learn Chinese",
+                    message:
+                        "Watch Chinese videos with interactive subtitles. Tap any word to see its definition, or tap a subtitle line to practice shadowing and improve your pronunciation.",
+                  ),
+                  Text("Learn Chinese",
+                      style: TextStyle(
+                          color: Color(0xFF1C2541),
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold)),
+                ],
+              ),
+              centerTitle: true,
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+              iconTheme: const IconThemeData(color: Color(0xFF1C2541)),
+              actions: [
+                PopupMenuButton<String>(
+                  icon: const Icon(Icons.closed_caption, color: Colors.indigo),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16)),
+                  itemBuilder: (context) => [
+                    PopupMenuItem(
+                        child: StatefulBuilder(
+                            builder: (ctx, set) => SwitchListTile(
+                                  title: const Text('Show Pinyin'),
+                                  value: _showPinyin,
+                                  activeThumbColor: Colors.indigo,
+                                  onChanged: (v) {
+                                    set(() {});
+                                    setState(() => _showPinyin = v);
+                                  },
+                                ))),
+                    PopupMenuItem(
+                        child: StatefulBuilder(
+                            builder: (ctx, set) => SwitchListTile(
+                                  title: const Text('Show Translation'),
+                                  value: _showEnglish,
+                                  activeThumbColor: Colors.indigo,
+                                  onChanged: (v) {
+                                    set(() {});
+                                    setState(() => _showEnglish = v);
+                                  },
+                                ))),
+                    const PopupMenuDivider(),
+                    PopupMenuItem(
+                        child: StatefulBuilder(
+                            builder: (ctx, set) => SwitchListTile(
+                                  title: const Text('HSK Simplify Subtitles'),
+                                  value: _isHskSimplified,
+                                  activeThumbColor: Colors.orange,
+                                  onChanged: (v) {
+                                    set(() {});
+                                    _toggleHskSimplified(v);
+                                  },
+                                ))),
+                  ],
+                ),
+              ],
             ),
-            Text("Learn Chinese",
-                style: TextStyle(color: Color(0xFF1C2541), fontSize: 18, fontWeight: FontWeight.bold)),
-          ],
-        ),
-        centerTitle: true,
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        iconTheme: const IconThemeData(color: Color(0xFF1C2541)),
-        actions: [
-          PopupMenuButton<String>(
-            icon: const Icon(Icons.closed_caption, color: Colors.indigo),
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-            itemBuilder: (context) => [
-              PopupMenuItem(child: StatefulBuilder(builder: (ctx, set) => SwitchListTile(
-                title: const Text('Show Pinyin'),
-                value: _showPinyin,
-                activeThumbColor: Colors.indigo,
-                onChanged: (v) { set(() {}); setState(() => _showPinyin = v); },
-              ))),
-              PopupMenuItem(child: StatefulBuilder(builder: (ctx, set) => SwitchListTile(
-                title: const Text('Show Translation'),
-                value: _showEnglish,
-                activeThumbColor: Colors.indigo,
-                onChanged: (v) { set(() {}); setState(() => _showEnglish = v); },
-              ))),
-              const PopupMenuDivider(),
-              PopupMenuItem(child: StatefulBuilder(builder: (ctx, set) => SwitchListTile(
-                title: const Text('HSK Simplify Subtitles'),
-                value: _isHskSimplified,
-                activeThumbColor: Colors.orange,
-                onChanged: (v) { set(() {}); _toggleHskSimplified(v); },
-              ))),
-              PopupMenuItem(child: StatefulBuilder(builder: (ctx, set) => SwitchListTile(
-                title: const Text('Shadow Mode (Mic)'),
-                value: _isShadowingMode,
-                activeThumbColor: Colors.redAccent,
-                onChanged: (v) { set(() {}); setState(() => _isShadowingMode = v); },
-              ))),
-            ],
-          ),
-        ],
-      ),
-      // Only show FAB when in fullscreen (otherwise handled by inline mics)
-      floatingActionButton: _isShadowingMode && _isFullscreen
-          ? FloatingActionButton.extended(
-              onPressed: () => _toggleShadowRecording(null),
-              backgroundColor: _isRecording ? Colors.red : Colors.indigo,
-              icon: Icon(_isRecording ? Icons.stop : Icons.mic, color: Colors.white),
-              label: Text(_isRecording ? "Stop" : "Hold to Speak", style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
-            )
-          : null,
+
       body: Column(
         children: [
           // ── Video Player with OrientationBuilder for auto-rotate ──
@@ -773,7 +893,8 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
                 if (!mounted) return;
                 if (orientation == Orientation.landscape && !_isFullscreen) {
                   setState(() => _isFullscreen = true);
-                } else if (orientation == Orientation.portrait && _isFullscreen) {
+                } else if (orientation == Orientation.portrait &&
+                    _isFullscreen) {
                   setState(() => _isFullscreen = false);
                 }
               });
@@ -794,72 +915,86 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
                           builder: (context) {
                             // If not fullscreen, just show the transparent Play/Pause layer + Fullscreen button
                             if (!isFullscreenState) {
-                    return Stack(
-                      children: [
-                        // BLOCK TOUCHES TO YOUTUBE NATIVE CONTROLS
-                        Positioned.fill(
-                          child: GestureDetector(
-                            behavior: HitTestBehavior.opaque,
-                            onTap: () {
-                              if (_playerController.value.playerState == PlayerState.playing) {
-                                _playerController.pauseVideo();
-                              } else {
-                                _playerController.playVideo();
-                              }
-                            },
-                            child: const SizedBox.expand(),
-                          ),
-                        ),
-                        // The Fullscreen Button
-                        Positioned(
-                          bottom: 8,
-                          right: 8,
-                          child: GestureDetector(
-                            onTap: () {
-                              HapticsManager.light();
-                              _enterFullscreen();
-                            },
-                            child: Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-                              decoration: BoxDecoration(
-                                color: Colors.black.withValues(alpha: 0.6),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: const Row(
-                                mainAxisSize: MainAxisSize.min,
+                              return Stack(
                                 children: [
-                                  Icon(Icons.fullscreen, color: Colors.white, size: 20),
-                                  SizedBox(width: 4),
-                                  Text('Full', style: TextStyle(color: Colors.white, fontSize: 11, fontWeight: FontWeight.w600)),
+                                  // BLOCK TOUCHES TO YOUTUBE NATIVE CONTROLS
+                                  Positioned.fill(
+                                    child: GestureDetector(
+                                      behavior: HitTestBehavior.opaque,
+                                      onTap: () {
+                                        if (_playerController
+                                                .value.playerState ==
+                                            PlayerState.playing) {
+                                          _playerController.pauseVideo();
+                                        } else {
+                                          _playerController.playVideo();
+                                        }
+                                      },
+                                      child: const SizedBox.expand(),
+                                    ),
+                                  ),
+                                  // The Fullscreen Button
+                                  Positioned(
+                                    bottom: 8,
+                                    right: 8,
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        HapticsManager.light();
+                                        _enterFullscreen();
+                                      },
+                                      child: Container(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 10, vertical: 6),
+                                        decoration: BoxDecoration(
+                                          color: Colors.black
+                                              .withValues(alpha: 0.6),
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        ),
+                                        child: const Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Icon(Icons.fullscreen,
+                                                color: Colors.white, size: 20),
+                                            SizedBox(width: 4),
+                                            Text('Full',
+                                                style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 11,
+                                                    fontWeight:
+                                                        FontWeight.w600)),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
                                 ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    );
-                  }
+                              );
+                            }
 
-                  // If fullscreen, show our full custom overlay
-                  if (_transcript == null || _currentIndex < 0 || _currentIndex >= _transcript!.lines.length) {
-                    return const SizedBox.shrink();
-                  }
-                  
-                  return FullscreenMediaOverlay(
-                    controller: _playerController,
-                    transcript: _transcript!,
-                    currentIndex: _currentIndex,
-                    currentPosition: _currentPosition,
-                    onWordTapped: _onWordTapped,
-                    videoTitle: widget.video.title,
-                    onExitFullscreen: _exitFullscreen,
-                    playbackRate: _playbackRate,
-                    onSpeedChanged: _changeSpeed,
-                    isShadowingMode: _isShadowingMode,
-                    isRecording: _isRecording,
-                    shadowFeedback: _shadowFeedback,
-                    onToggleRecord: () => _toggleShadowRecording(null),
-                  );
+                            // If fullscreen, show our full custom overlay
+                            if (_transcript == null ||
+                                _currentIndex < 0 ||
+                                _currentIndex >= _transcript!.lines.length) {
+                              return const SizedBox.shrink();
+                            }
+
+                            return FullscreenMediaOverlay(
+                              controller: _playerController,
+                              transcript: _transcript!,
+                              currentIndex: _currentIndex,
+                              currentPosition: _currentPosition,
+                              onWordTapped: _onWordTapped,
+                              videoTitle: widget.video.title,
+                              onExitFullscreen: _exitFullscreen,
+                              playbackRate: _playbackRate,
+                              onSpeedChanged: _changeSpeed,
+                              isShadowingMode: _isShadowingMode,
+                              isRecording: _isRecording,
+                              shadowFeedback: _shadowFeedback,
+                              onToggleRecord: () =>
+                                  _toggleShadowRecording(null),
+                            );
                           },
                         ),
                       );
@@ -873,79 +1008,145 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
           // ── Scrollable content (hidden if fullscreen) ──
           if (!_isFullscreen)
             Expanded(
-              child: _isLoading 
-                ? _buildLoadingState()
-                : _error != null 
-                  ? Center(child: Text(_error!, style: const TextStyle(color: Colors.red)))
-                  : Column(
-                      children: [
-                        if (_shadowFeedback.isNotEmpty)
-                          Container(
-                            width: double.infinity,
-                            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-                            color: _shadowFeedback.contains("Perfect") ? Colors.green.withValues(alpha: 0.1) : Colors.red.withValues(alpha: 0.1),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(_shadowFeedback.contains("Perfect") ? Icons.check_circle : Icons.mic, 
-                                  color: _shadowFeedback.contains("Perfect") ? Colors.green : Colors.red, size: 20),
-                                const SizedBox(width: 8),
-                                Expanded(
-                                  child: Text(_shadowFeedback, style: TextStyle(
-                                    color: _shadowFeedback.contains("Perfect") ? Colors.green : Colors.red,
-                                    fontWeight: FontWeight.bold,
-                                  )),
+              child: _isLoading
+                  ? _buildLoadingState()
+                  : _error != null
+                      ? _buildErrorState()
+                      : Column(
+                          children: [
+                            if (_shadowFeedback.isNotEmpty)
+                              Container(
+                                width: double.infinity,
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 8, horizontal: 16),
+                                color: _shadowFeedback.contains("Perfect")
+                                    ? Colors.green.withValues(alpha: 0.1)
+                                    : Colors.red.withValues(alpha: 0.1),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                        _shadowFeedback.contains("Perfect")
+                                            ? Icons.check_circle
+                                            : Icons.mic,
+                                        color:
+                                            _shadowFeedback.contains("Perfect")
+                                                ? Colors.green
+                                                : Colors.red,
+                                        size: 20),
+                                    const SizedBox(width: 8),
+                                    Expanded(
+                                      child: Text(_shadowFeedback,
+                                          style: TextStyle(
+                                            color: _shadowFeedback
+                                                    .contains("Perfect")
+                                                ? Colors.green
+                                                : Colors.red,
+                                            fontWeight: FontWeight.bold,
+                                          )),
+                                    ),
+                                  ],
                                 ),
-                              ],
+                              ),
+                            if (_isSimplifyingAi)
+                              const Padding(
+                                padding: EdgeInsets.all(16.0),
+                                child: AiProgressBar(
+                                    label: 'Simplifying subtitles...'),
+                              ),
+                            Expanded(
+                              child: ListView(
+                                controller: _scrollController,
+                                padding: const EdgeInsets.fromLTRB(16, 24, 16,
+                                    120), // Extra padding for scrolling
+                                physics: const BouncingScrollPhysics(),
+                                children: [
+                                  if (_briefing != null) ...[
+                                    PremiumAiPrepCard(
+                                        briefing: _briefing!,
+                                        onWordTapped: _onWordTapped),
+                                    const SizedBox(height: 32),
+                                  ],
+                                  if (_transcript != null)
+                                    ..._transcript!.lines
+                                        .asMap()
+                                        .entries
+                                        .map((entry) {
+                                      final index = entry.key;
+                                      final line = entry.value;
+                                      return PremiumTranscriptLine(
+                                        key: _lineKeys[index],
+                                        line: line,
+                                        isCurrent: _currentIndex == index,
+                                        highlightedCount: _currentIndex == index
+                                            ? _getHighlightedCharCount(
+                                                line, _currentPosition)
+                                            : (index < _currentIndex
+                                                ? line.text.length
+                                                : 0),
+                                        onReplay: () => _replayLine(line.start),
+                                        onLineTapped: () {
+                                          _playerController.seekTo(
+                                              seconds: line.start.inSeconds
+                                                  .toDouble(),
+                                              allowSeekAhead: true);
+                                          _playerController.playVideo();
+                                        },
+                                        onAiExplain: () =>
+                                            _showSentenceLesson(line.text),
+                                        onWordTapped: _onWordTapped,
+                                        showPinyin: _showPinyin,
+                                        showEnglish: _showEnglish,
+                                        simplifiedText: _isHskSimplified
+                                            ? _simplifiedTranscript[index]
+                                            : null,
+                                        isShadowingMode: false,
+                                        isRecordingThisLine: false,
+                                        onShadowTapped: null,
+                                      );
+                                    }),
+                                ],
+                              ),
                             ),
-                          ),
-                        if (_isSimplifyingAi)
-                          const Padding(
-                            padding: EdgeInsets.all(16.0),
-                            child: AiProgressBar(label: 'Simplifying subtitles...'),
-                          ),
-                        Expanded(
-                          child: ListView(
-                            controller: _scrollController,
-                            padding: const EdgeInsets.fromLTRB(16, 24, 16, 120), // Extra padding for scrolling
-                            physics: const BouncingScrollPhysics(),
-                            children: [
-                              if (_briefing != null) ...[
-                                PremiumAiPrepCard(briefing: _briefing!, onWordTapped: _onWordTapped),
-                                const SizedBox(height: 32),
-                              ],
-                              if (_transcript != null)
-                                ..._transcript!.lines.asMap().entries.map((entry) {
-                                  final index = entry.key;
-                                  final line = entry.value;
-                                  return PremiumTranscriptLine(
-                                    key: _lineKeys[index],
-                                    line: line,
-                                    isCurrent: _currentIndex == index,
-                                    highlightedCount: _currentIndex == index ? _getHighlightedCharCount(line, _currentPosition) : (index < _currentIndex ? line.text.length : 0),
-                                    onReplay: () => _replayLine(line.start),
-                                    onLineTapped: () {
-                                      _playerController.seekTo(seconds: line.start.inSeconds.toDouble(), allowSeekAhead: true);
-                                      _playerController.playVideo();
-                                    },
-                                    onAiExplain: () => _showSentenceLesson(line.text),
-                                    onWordTapped: _onWordTapped,
-                                    showPinyin: _showPinyin,
-                                    showEnglish: _showEnglish,
-                                    simplifiedText: _isHskSimplified ? _simplifiedTranscript[index] : null,
-                                    isShadowingMode: _isShadowingMode,
-                                    isRecordingThisLine: _isRecording && _recordingLineIndex == index,
-                                    onShadowTapped: () => _toggleShadowRecording(index),
-                                  );
-                                }),
-                            ],
-                          ),
+                          ],
                         ),
-                      ],
-                    ),
             ),
         ],
       ),
     );
+  }
+
+  String _mapYoutubeWebError(String description) {
+    final lower = description.toLowerCase();
+    if (lower.contains('video unavailable') ||
+        lower.contains('removed') ||
+        lower.contains('private')) {
+      return 'This video has been removed or is no longer available.';
+    }
+    if (lower.contains('not embeddable') || lower.contains('restricted')) {
+      return 'This video cannot be played in the app. You can still watch it on YouTube.';
+    }
+    if (lower.contains('not found') || lower.contains('unavailable')) {
+      return 'Video not found. It may have been deleted or is region-blocked.';
+    }
+    return 'Unable to load this video. Please try another one.';
+  }
+
+  String _mapYoutubePlayerError(YoutubeError error) {
+    switch (error) {
+      case YoutubeError.videoNotFound:
+      case YoutubeError.cannotFindVideo:
+        return 'This video has been removed or is no longer available.';
+      case YoutubeError.notEmbeddable:
+      case YoutubeError.sameAsNotEmbeddable:
+      case YoutubeError.sameAsNotEmbeddable2:
+        return 'This video cannot be played in the app. You can still watch it on YouTube.';
+      case YoutubeError.html5Error:
+        return 'Your device cannot play this video. Please try a different one.';
+      case YoutubeError.invalidParam:
+        return 'Invalid video reference. Please try again.';
+      default:
+        return 'Unable to load this video. Please try another one.';
+    }
   }
 }

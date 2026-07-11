@@ -8,9 +8,8 @@ import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 
 import 'dart:async';
-import 'package:uuid/uuid.dart';
 import 'dart:math' as math;
-import 'package:web_socket_channel/io.dart';
+import 'package:http/http.dart' as http;
 
 import 'package:hanzi_master/core/services/api_key_pool.dart';
 
@@ -187,172 +186,75 @@ class AudioService {
     return ttsResult != null && ttsResult == 1;
   }
 
+
+  /// Fetches premium TTS audio from Azure Cognitive Services via REST API.
+  /// Fast 3-second timeout; falls through to local TTS on any failure.
   Future<CloudTtsResult?> _fetchCloudTTS(String text, {File? cacheFile, File? boundaryFile}) async {
     final apiKey = _pool.azureSpeechKey;
     final region = _pool.azureSpeechRegion;
-    if (apiKey.isEmpty || region.isEmpty || apiKey == 'MISSING_KEY') return null;
-
-    final safeText = text.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
-    final uuid = const Uuid().v4().replaceAll('-', '');
-    final uri = Uri.parse('wss://$region.tts.speech.microsoft.com/cognitiveservices/websocket/v1?X-ConnectionId=$uuid');
-
-    IOWebSocketChannel? channel;
-    try {
-      channel = IOWebSocketChannel.connect(
-        uri,
-        headers: {
-          'Ocp-Apim-Subscription-Key': apiKey,
-        },
-      );
-    } catch(e) {
-      debugPrint("WebSocket connect failed: $e");
+    if (apiKey.isEmpty || region.isEmpty || apiKey == 'MISSING_KEY') {
+      debugPrint('[AudioService] Azure key missing, skipping cloud TTS');
       return null;
     }
 
-    final audioBuffer = <int>[];
-    final boundaries = <Map<String, dynamic>>[];
-    bool playbackStarted = false;
-    const int kStreamPlaybackThreshold = 50000;
-    final completer = Completer<CloudTtsResult?>();
-
-    final tmpFile = cacheFile ?? File('${_cacheDir!.path}/tts_cache/tmp_${DateTime.now().millisecondsSinceEpoch}.mp3');
-    final sink = tmpFile.openWrite(mode: FileMode.write);
-
-    channel.stream.listen((message) {
-      if (message is String) {
-        if (message.contains('Path:turn.end') || message.contains('Path: turn.end')) {
-          if (!completer.isCompleted) {
-            sink.flush().then((_) async {
-              await sink.close();
-              if (boundaryFile != null) {
-                try { await boundaryFile.writeAsString(jsonEncode(boundaries)); } catch(_) {}
-              }
-              if (!playbackStarted) {
-                _currentBoundaries = boundaries;
-                _currentBoundaryIndex = 0;
-                await _player.setPlaybackRate(1.0);
-                await _player.play(DeviceFileSource(tmpFile.path));
-              }
-              completer.complete(CloudTtsResult(
-                audio: Uint8List.fromList(audioBuffer),
-                boundaries: boundaries,
-                success: true,
-              ));
-            });
-          }
-        } else if (message.contains('Path:audio.metadata') || message.contains('Path: audio.metadata')) {
-          try {
-            final parts = message.split('\r\n\r\n');
-            if (parts.length > 1) {
-              final data = jsonDecode(parts[1]);
-              if (data['Metadata'] != null) {
-                for (var meta in data['Metadata']) {
-                  if (meta['Type'] == 'WordBoundary') {
-                    boundaries.add(meta['Data']);
-                  }
-                }
-              }
-            }
-          } catch(e) {
-            debugPrint('Failed to parse metadata: $e');
-          }
-        }
-      } else if (message is List<int>) {
-        if (message.length > 2) {
-          final headerLength = (message[0] << 8) | message[1];
-          final offset = 2 + headerLength;
-          if (offset < message.length) {
-            // Retrieve header to confirm it is indeed audio payload and not something else
-            try {
-              final headerText = ascii.decode(message.sublist(2, offset), allowInvalid: true);
-              if (headerText.contains('Path:audio')) {
-                audioBuffer.addAll(message.sublist(offset));
-                if (!playbackStarted && audioBuffer.length >= kStreamPlaybackThreshold) {
-                  playbackStarted = true;
-                  sink.flush().then((_) {
-                    _currentBoundaries = boundaries;
-                    _currentBoundaryIndex = 0;
-                    _player.setPlaybackRate(1.0);
-                    _player.play(DeviceFileSource(tmpFile.path));
-                  });
-                }
-              }
-            } catch(e) {
-              // Fallback to appending directly if header decoding fails for some reason
-              audioBuffer.addAll(message.sublist(offset));
-              if (!playbackStarted && audioBuffer.length >= kStreamPlaybackThreshold) {
-                playbackStarted = true;
-                sink.flush().then((_) {
-                  _currentBoundaries = boundaries;
-                  _currentBoundaryIndex = 0;
-                  _player.setPlaybackRate(1.0);
-                  _player.play(DeviceFileSource(tmpFile.path));
-                });
-              }
-            }
-          }
-        }
-      }
-    }, onError: (e) {
-      debugPrint('Azure TTS WS error: $e');
-      if (!completer.isCompleted) { sink.close(); completer.complete(null); }
-    }, onDone: () {
-      sink.flush().then((_) async {
-        await sink.close();
-        if (boundaryFile != null) {
-          try { await boundaryFile.writeAsString(jsonEncode(boundaries)); } catch(_) {}
-        }
-        if (!completer.isCompleted) {
-        if (audioBuffer.isNotEmpty) {
-          if (!playbackStarted) {
-            _currentBoundaries = boundaries;
-            _currentBoundaryIndex = 0;
-            await _player.setPlaybackRate(1.0);
-            await _player.play(DeviceFileSource(tmpFile.path));
-          }
-          completer.complete(CloudTtsResult(
-            audio: Uint8List.fromList(audioBuffer),
-            boundaries: boundaries,
-            success: true,
-          ));
-        } else {
-          completer.complete(null);
-        }
-      }
-      });
-    });
-
-    final requestId = const Uuid().v4().replaceAll('-', '');
-    final timestamp = DateTime.now().toUtc().toIso8601String();
-
-    channel.sink.add(
-      'Path: speech.config\r\n'
-      'X-RequestId: $requestId\r\n'
-      'X-Timestamp: $timestamp\r\n'
-      'Content-Type: application/json; charset=utf-8\r\n'
-      '\r\n'
-      '{"context":{"synthesis":{"audio":{"metadataOptions":{"wordBoundaryEnabled":true,"sentenceBoundaryEnabled":true},"outputFormat":"audio-16khz-32kbitrate-mono-mp3"}}}}'
-    );
-
+    final safeText = text.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
     final ratePercent = math.max(-50, math.min(200, ((_speechRate - 0.5) * 200).round()));
     final ssml = '''<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xml:lang='zh-CN'><voice name='zh-CN-XiaoxiaoNeural'><prosody rate='$ratePercent%'>$safeText</prosody></voice></speak>''';
 
-    channel.sink.add(
-      'Path: ssml\r\n'
-      'X-RequestId: $requestId\r\n'
-      'X-Timestamp: $timestamp\r\n'
-      'Content-Type: application/ssml+xml\r\n'
-      '\r\n'
-      '$ssml'
-    );
+    final uri = Uri.parse('https://$region.tts.speech.microsoft.com/cognitiveservices/v1');
 
-    return completer.future.timeout(const Duration(seconds: 15), onTimeout: () {
-      channel?.sink.close();
-      sink.close();
+    debugPrint('[AudioService] Requesting Azure TTS for: $text');
+
+    try {
+      final client = http.Client();
+      try {
+        final response = await client
+            .post(
+              uri,
+              headers: {
+                'Ocp-Apim-Subscription-Key': apiKey,
+                'Content-Type': 'application/ssml+xml',
+                'X-Microsoft-OutputFormat': 'audio-16khz-32kbitrate-mono-mp3',
+              },
+              body: ssml,
+            )
+            .timeout(const Duration(seconds: 3));
+
+        debugPrint('[AudioService] Azure TTS response: ${response.statusCode} (${response.bodyBytes.length} bytes)');
+
+        if (response.statusCode == 200 && response.bodyBytes.isNotEmpty) {
+          final audio = response.bodyBytes;
+
+          // Save to cache file
+          final tmpFile = cacheFile ?? File('${_cacheDir!.path}/tts_cache/tmp_${DateTime.now().millisecondsSinceEpoch}.mp3');
+          await tmpFile.writeAsBytes(audio);
+
+          // REST API doesn't provide word boundaries; boundaries list stays empty
+          _currentBoundaries = [];
+          _currentBoundaryIndex = 0;
+          await _player.setPlaybackRate(1.0);
+          await _player.play(DeviceFileSource(tmpFile.path));
+
+          return CloudTtsResult(
+            audio: audio,
+            boundaries: [],
+            success: true,
+          );
+        } else {
+          debugPrint('[AudioService] Azure TTS failed with status ${response.statusCode}: ${response.body}');
+          return null;
+        }
+      } finally {
+        client.close();
+      }
+    } on TimeoutException {
+      debugPrint('[AudioService] Azure TTS request timed out (3s)');
       return null;
-    }).whenComplete(() => channel?.sink.close());
+    } catch (e) {
+      debugPrint('[AudioService] Azure TTS request error: $e');
+      return null;
+    }
   }
-
   Future<void> stop() async {
     await _player.stop();
     await _tts.stop();

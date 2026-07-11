@@ -6,6 +6,7 @@ import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraph
 import 'package:hanzi_master/features/flashcards/presentation/screens/radical_detail_screen.dart';
 import 'package:lpinyin/lpinyin.dart';
 import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
+import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 
 class RadicalLibraryScreen extends StatefulWidget {
   const RadicalLibraryScreen({super.key});
@@ -167,7 +168,7 @@ class _RadicalLibraryScreenState extends State<RadicalLibraryScreen> {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(
+          SwipeBackPageRoute(
             builder: (context) => RadicalDetailScreen(
               radicalChar: character,
               radicalData: data,

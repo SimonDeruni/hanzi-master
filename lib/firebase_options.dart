@@ -52,27 +52,27 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyBYuC7Y5vJklmM0xDxSWIsUcCeg8K9JanQ',
-    appId: '1:168461209502:android:e69d50a9b6d5e8b983108f',
+    appId: '1:168461209502:android:0d8e3bbef9eea12a83108f',
     messagingSenderId: '168461209502',
     projectId: 'hanzi-master-bcef9',
     storageBucket: 'hanzi-master-bcef9.firebasestorage.app',
   );
-
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyA8EWtkITxlJ3qUE1W2hrVe9pIWIsh6r7s',
-    appId: '1:168461209502:ios:42b9c379a6d8223283108f',
+    appId: '1:168461209502:ios:7d8785d933c3705583108f',
     messagingSenderId: '168461209502',
     projectId: 'hanzi-master-bcef9',
     storageBucket: 'hanzi-master-bcef9.firebasestorage.app',
-    iosBundleId: 'app.cabbage9277.winter105',
+    iosClientId: '168461209502-3il6a2r77i4qtb35osobao250mcb6u97.apps.googleusercontent.com',
+    iosBundleId: 'com.sinospark.app',
   );
-
   static const FirebaseOptions macos = FirebaseOptions(
     apiKey: 'AIzaSyA8EWtkITxlJ3qUE1W2hrVe9pIWIsh6r7s',
     appId: '1:168461209502:ios:ff3c8f4f07a70e5083108f',
     messagingSenderId: '168461209502',
     projectId: 'hanzi-master-bcef9',
     storageBucket: 'hanzi-master-bcef9.firebasestorage.app',
+    iosClientId: '168461209502-1uvlgno23pd2g0rreq59n97rs3ka6h9e.apps.googleusercontent.com',
     iosBundleId: 'com.example.hanziMaster',
   );
 

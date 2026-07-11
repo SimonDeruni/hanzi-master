@@ -210,7 +210,7 @@ class ProfileScreen extends ConsumerWidget {
                 ),
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => const AuthScreen()));
+                    Navigator.push(context, SwipeBackPageRoute(builder: (context) => const AuthScreen()));
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.transparent,

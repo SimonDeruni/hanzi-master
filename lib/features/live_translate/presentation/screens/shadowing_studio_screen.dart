@@ -49,6 +49,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
   Map<String, String>? _currentPhrase;
   bool _isRecording = false;
   bool _isGrading = false;
+  bool _isStopping = false; // Prevents re-entry during stop→grade→reset cycle
   Map<String, dynamic>? _lastGrade;
   
   // Tone Graph State
@@ -90,6 +91,14 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
 
   @override
   void dispose() {
+    // Stop any active recording before disposing to prevent crashes
+    if (_isRecording) {
+      try {
+        _audioRecorder.stop();
+      } catch (_) {
+        // Ignore — recorder may already be in an invalid state
+      }
+    }
     _audioRecorder.dispose();
     _pulseController.dispose();
     super.dispose();
@@ -159,6 +168,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
   }
 
   Future<void> _startRecording() async {
+    if (_isRecording || _isGrading || _isStopping) return; // Prevent double-tap / rapid restart / re-entry
     try {
       if (await _audioRecorder.hasPermission()) {
         HapticFeedback.heavyImpact();
@@ -187,9 +197,33 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
   }
 
   Future<void> _stopRecordingAndGrade() async {
-    // 1. Stop recorder (may throw if buffer is empty/null)
-    String? path;
+    // Guard: prevent re-entry if already stopping/grading
+    if (_isStopping || !_isRecording) return;
+    _isStopping = true;
     HapticFeedback.lightImpact();
+
+    // 1. Validate minimum recording duration BEFORE calling stop()
+    //    This prevents InvalidAudioBufferException from being thrown
+    //    when the internal audio buffer is empty/corrupted.
+    final recordDuration = _recordingStartTime != null
+        ? DateTime.now().difference(_recordingStartTime!)
+        : Duration.zero;
+
+    if (recordDuration.inMilliseconds < 400) {
+      if (mounted) {
+        setState(() {
+          _isRecording = false;
+          _isGrading = false;
+          _pulseController.stop();
+          _pulseController.reset();
+          _errorMessage = "Recording too short. Hold the mic button longer.";
+        });
+      }
+      return;
+    }
+
+    // 2. Stop recorder (now safe — buffer has enough data)
+    String? path;
     try {
       path = await _audioRecorder.stop();
     } catch (e) {
@@ -200,7 +234,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
           _isGrading = false;
           _pulseController.stop();
           _pulseController.reset();
-          _errorMessage = "Recording was too short. Hold the mic button for at least half a second.";
+          _errorMessage = "Recording error. Please try again.";
         });
       }
       return;
@@ -221,20 +255,6 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
         });
       }
       return;
-    }
-
-    // 2. Validate minimum recording duration
-    if (_recordingStartTime != null) {
-      final elapsed = DateTime.now().difference(_recordingStartTime!);
-      if (elapsed.inMilliseconds < 300) {
-        if (mounted) {
-          setState(() {
-            _isGrading = false;
-            _errorMessage = "Recording was too short (${elapsed.inMilliseconds}ms). Hold the mic button longer.";
-          });
-        }
-        return;
-      }
     }
 
     // 3. Validate audio file

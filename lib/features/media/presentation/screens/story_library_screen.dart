@@ -8,6 +8,7 @@ import 'package:hanzi_master/features/media/presentation/screens/story_cultural_
 import 'package:hanzi_master/features/media/presentation/screens/story_summary_screen.dart';
 import 'package:hanzi_master/features/reading/presentation/widgets/custom_story_creator_sheet.dart';
 import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
+import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 
 class CategoryStyle {
   final List<Color> gradient;
@@ -98,7 +99,7 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
   void _openStory(LibraryStory story) {
     Navigator.push(
       context,
-      MaterialPageRoute(
+      SwipeBackPageRoute(
         builder: (context) => StorySummaryScreen(story: story),
       ),
     );
@@ -337,7 +338,7 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(
+          SwipeBackPageRoute(
             builder: (_) => StoryCulturalInsightScreen(
               story: dailyStory!,
               heroTag: 'daily_story_${dailyStory.hashCode}',

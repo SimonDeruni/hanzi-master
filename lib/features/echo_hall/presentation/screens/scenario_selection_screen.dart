@@ -448,11 +448,15 @@ Create a Chinese roleplay scenario for a user practicing these words: $words.
 IMPORTANT: The title, description, personaName, and quests MUST be written in English. The initialAiMessage MUST be written in Chinese.
 You must also pick the MOST SUITABLE avatar for this persona from this exact list: $avatarsList. If NONE of them make sense for the persona (e.g. it's an alien or a pirate), you MUST return the exact string "none" for avatarAssetPath.
 
+The systemPrompt MUST follow this exact pattern:
+"You are [personaName]. Your ONLY role is [role description]. Use [language style]. NEVER break character or introduce yourself as anything other than [role]. [Behavioral instructions]."
+This pattern is MANDATORY to prevent persona bleed during conversation.
+
 Respond ONLY with a JSON object containing:
 {
   "title": "Short title of the scenario (in English)",
   "description": "Short description (in English)",
-  "systemPrompt": "System prompt for the AI persona. They should organically steer the conversation so the user can use the vocabulary.",
+  "systemPrompt": "System prompt following the exact pattern: 'You are [personaName]. Your ONLY role is...'",
   "initialAiMessage": "The first message the AI says (in Chinese)",
   "personaName": "Name of the persona (in English or Pinyin)",
   "avatarAssetPath": "The exact path of the most suitable avatar from the list provided, or 'none'",

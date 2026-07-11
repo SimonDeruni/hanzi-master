@@ -732,12 +732,6 @@ abstract class AppLocalizations {
   /// **'Haptics'**
   String get haptics;
 
-  /// No description provided for @hapticsDesc.
-  ///
-  /// In en, this message translates to:
-  /// **'Haptics Desc'**
-  String get hapticsDesc;
-
   /// No description provided for @displayAndContent.
   ///
   /// In en, this message translates to:

@@ -42,3 +42,8 @@ const List<String> supportedTranslationLanguages = [
   'Indonesian',
   'Vietnamese',
 ];
+
+/// Partner language is locked to Mandarin/Chinese — the app's target language.
+const List<String> supportedPartnerLanguages = [
+  'Mandarin',
+];

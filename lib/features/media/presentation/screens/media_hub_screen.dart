@@ -9,6 +9,10 @@ import 'package:hanzi_master/shared/widgets/info_bulb.dart';
 import 'package:hanzi_master/features/media/presentation/screens/media_search_screen.dart';
 import 'package:hanzi_master/features/media/presentation/screens/cultural_context_screen.dart';
 import 'package:hanzi_master/features/media/presentation/screens/web_browser_screen.dart';
+import 'package:hanzi_master/features/media/presentation/screens/show_catalog_screen.dart';
+import 'package:hanzi_master/features/media/data/repositories/show_repository.dart';
+import 'package:hanzi_master/features/media/presentation/screens/show_detail_screen.dart';
+import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hanzi_master/features/media/domain/models/saved_article.dart';
 import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
@@ -27,9 +31,15 @@ class MediaHubScreen extends ConsumerWidget {
           slivers: [
             const GlobalSliverAppBar(
               title: "Media Hub",
-              actions: [InfoBulb(id: "media_hub", title: "Media Hub", message: "Browse Chinese YouTube channels, music, and videos. Use media to immerse yourself in the language naturally.")],
+              actions: [
+                InfoBulb(
+                    id: "media_hub",
+                    title: "Media Hub",
+                    message:
+                        "Browse Chinese YouTube channels, music, and videos. Use media to immerse yourself in the language naturally.")
+              ],
             ),
-            
+
             const SliverToBoxAdapter(child: SizedBox(height: 16)),
 
             // Carousel: Video & News of the day
@@ -57,7 +67,8 @@ class MediaHubScreen extends ConsumerWidget {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (_) => const MediaSearchScreen()),
+                          MaterialPageRoute(
+                              builder: (_) => const MediaSearchScreen()),
                         );
                       },
                     ),
@@ -71,7 +82,24 @@ class MediaHubScreen extends ConsumerWidget {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (_) => const WebBrowserScreen()),
+                          MaterialPageRoute(
+                              builder: (_) => const WebBrowserScreen()),
+                        );
+                      },
+                    ),
+                    const SizedBox(height: 16),
+                    _buildThematicCard(
+                      context: context,
+                      title: "SHOWS & DRAMAS",
+                      subtitle: "Chinese TV series with interactive subtitles",
+                      icon: Icons.live_tv,
+                      brandColor: const Color(0xFFFFA000),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          SwipeBackPageRoute(
+                            builder: (_) => const ShowCatalogScreen(),
+                          ),
                         );
                       },
                     ),
@@ -85,7 +113,8 @@ class MediaHubScreen extends ConsumerWidget {
             // Quick Bookmarks Section Title
             SliverToBoxAdapter(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 8.0),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 24.0, vertical: 8.0),
                 child: Text(
                   "Quick Bookmarks",
                   style: theme.textTheme.titleLarge?.copyWith(
@@ -116,7 +145,8 @@ class MediaHubScreen extends ConsumerWidget {
                       title: "Wikipedia",
                       icon: Icons.travel_explore,
                       brandColor: const Color(0xFF555555),
-                      url: 'https://zh.wikipedia.org/wiki/Portal:%E6%96%B0%E9%97%BB%E5%8A%A8%E6%80%81',
+                      url:
+                          'https://zh.wikipedia.org/wiki/Portal:%E6%96%B0%E9%97%BB%E5%8A%A8%E6%80%81',
                     ),
                     _buildBookmarkChip(
                       context: context,
@@ -136,13 +166,14 @@ class MediaHubScreen extends ConsumerWidget {
                 ),
               ),
             ),
-            
+
             const SliverToBoxAdapter(child: SizedBox(height: 32)),
 
             // Saved Articles Section
             SliverToBoxAdapter(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 8.0),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 24.0, vertical: 8.0),
                 child: Text(
                   "Saved Articles",
                   style: theme.textTheme.titleLarge?.copyWith(
@@ -154,12 +185,16 @@ class MediaHubScreen extends ConsumerWidget {
 
             SliverToBoxAdapter(
               child: ValueListenableBuilder<Box<SavedArticle>>(
-                valueListenable: Hive.box<SavedArticle>('saved_articles').listenable(),
+                valueListenable:
+                    Hive.box<SavedArticle>('saved_articles').listenable(),
                 builder: (context, box, _) {
                   if (box.isEmpty) {
                     return Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
-                      child: Text("No saved articles yet.", style: theme.textTheme.bodyMedium?.copyWith(color: Colors.grey)),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 24.0, vertical: 16.0),
+                      child: Text("No saved articles yet.",
+                          style: theme.textTheme.bodyMedium
+                              ?.copyWith(color: Colors.grey)),
                     );
                   }
                   return ListView.builder(
@@ -170,10 +205,11 @@ class MediaHubScreen extends ConsumerWidget {
                     itemBuilder: (context, index) {
                       final article = box.getAt(index);
                       if (article == null) return const SizedBox.shrink();
-                      
+
                       return Card(
                         margin: const EdgeInsets.only(bottom: 12),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16)),
                         child: ListTile(
                           contentPadding: const EdgeInsets.all(16),
                           leading: Container(
@@ -182,15 +218,20 @@ class MediaHubScreen extends ConsumerWidget {
                               color: theme.colorScheme.primaryContainer,
                               shape: BoxShape.circle,
                             ),
-                            child: Icon(Icons.bookmark, color: theme.colorScheme.primary),
+                            child: Icon(Icons.bookmark,
+                                color: theme.colorScheme.primary),
                           ),
-                          title: Text(article.title, style: const TextStyle(fontWeight: FontWeight.bold)),
-                          subtitle: Text(article.url, maxLines: 1, overflow: TextOverflow.ellipsis),
+                          title: Text(article.title,
+                              style:
+                                  const TextStyle(fontWeight: FontWeight.bold)),
+                          subtitle: Text(article.url,
+                              maxLines: 1, overflow: TextOverflow.ellipsis),
                           trailing: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               IconButton(
-                                icon: const Icon(Icons.delete_outline, color: Colors.redAccent),
+                                icon: const Icon(Icons.delete_outline,
+                                    color: Colors.redAccent),
                                 onPressed: () => box.deleteAt(index),
                               ),
                               const Icon(Icons.arrow_forward_ios, size: 16),
@@ -200,7 +241,8 @@ class MediaHubScreen extends ConsumerWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (_) => WebBrowserScreen(initialUrl: article.url),
+                                builder: (_) =>
+                                    WebBrowserScreen(initialUrl: article.url),
                               ),
                             );
                           },
@@ -211,7 +253,7 @@ class MediaHubScreen extends ConsumerWidget {
                 },
               ),
             ),
-            
+
             const SliverToBoxAdapter(child: SizedBox(height: 40)),
           ],
         ),
@@ -228,7 +270,7 @@ class MediaHubScreen extends ConsumerWidget {
     required VoidCallback onTap,
   }) {
     final theme = Theme.of(context);
-    
+
     return BouncingButton(
       scaleFactor: 0.98,
       onPressed: onTap,
@@ -289,13 +331,17 @@ class MediaHubScreen extends ConsumerWidget {
                           Text(
                             subtitle,
                             style: theme.textTheme.bodyMedium?.copyWith(
-                              color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
+                              color: theme.colorScheme.onSurface
+                                  .withValues(alpha: 0.6),
                             ),
                           ),
                         ],
                       ),
                     ),
-                    Icon(Icons.arrow_forward_ios, size: 16, color: theme.colorScheme.onSurface.withValues(alpha: 0.2)),
+                    Icon(Icons.arrow_forward_ios,
+                        size: 16,
+                        color:
+                            theme.colorScheme.onSurface.withValues(alpha: 0.2)),
                   ],
                 ),
               ),
@@ -315,7 +361,7 @@ class MediaHubScreen extends ConsumerWidget {
   }) {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
-    
+
     return Padding(
       padding: const EdgeInsets.only(right: 12.0),
       child: BouncingButton(
@@ -333,7 +379,10 @@ class MediaHubScreen extends ConsumerWidget {
           decoration: BoxDecoration(
             color: theme.colorScheme.surface,
             borderRadius: BorderRadius.circular(100),
-            border: Border.all(color: isDark ? Colors.white12 : Colors.black.withValues(alpha: 0.05)),
+            border: Border.all(
+                color: isDark
+                    ? Colors.white12
+                    : Colors.black.withValues(alpha: 0.05)),
             boxShadow: [
               BoxShadow(
                 color: Colors.black.withValues(alpha: 0.02),
@@ -365,10 +414,12 @@ class _DailyDiscoveryCarousel extends ConsumerStatefulWidget {
   const _DailyDiscoveryCarousel();
 
   @override
-  ConsumerState<_DailyDiscoveryCarousel> createState() => _DailyDiscoveryCarouselState();
+  ConsumerState<_DailyDiscoveryCarousel> createState() =>
+      _DailyDiscoveryCarouselState();
 }
 
-class _DailyDiscoveryCarouselState extends ConsumerState<_DailyDiscoveryCarousel> {
+class _DailyDiscoveryCarouselState
+    extends ConsumerState<_DailyDiscoveryCarousel> {
   final PageController _pageController = PageController(viewportFraction: 0.85);
 
   @override
@@ -381,16 +432,26 @@ class _DailyDiscoveryCarouselState extends ConsumerState<_DailyDiscoveryCarousel
   Widget build(BuildContext context) {
     final dailyState = ref.watch(dailyDiscoveryProvider);
     final completedItems = ref.watch(completedDailyMediaProvider);
+    final showOfTheDay = ref.watch(dailyShowProvider);
 
     return SizedBox(
       height: 240,
       child: dailyState.when(
         data: (items) {
+          // Calculate total page count: daily items + optional show of the day
+          final showItem = showOfTheDay.valueOrNull;
+          final totalItems = items.length + (showItem != null ? 1 : 0);
+
           return PageView.builder(
             controller: _pageController,
             physics: const BouncingScrollPhysics(),
-            itemCount: items.length,
+            itemCount: totalItems,
             itemBuilder: (context, index) {
+              // Show of the day is always the last page
+              if (showItem != null && index == items.length) {
+                return _buildDailyShowCard(context, showItem);
+              }
+
               final item = items[index];
               final isCompleted = completedItems.contains(item.url);
               return _buildDiscoveryCard(
@@ -398,7 +459,9 @@ class _DailyDiscoveryCarouselState extends ConsumerState<_DailyDiscoveryCarousel
                 item: item,
                 isCompleted: isCompleted,
                 onTap: () {
-                  ref.read(completedDailyMediaProvider.notifier).markCompleted(item.url);
+                  ref
+                      .read(completedDailyMediaProvider.notifier)
+                      .markCompleted(item.url);
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -410,8 +473,22 @@ class _DailyDiscoveryCarouselState extends ConsumerState<_DailyDiscoveryCarousel
             },
           );
         },
-        loading: () => const Center(child: CircularProgressIndicator()),
-        error: (err, stack) => Center(child: Text('Failed to load daily content')),
+        loading: () {
+          // Show show of the day even while daily items are loading
+          final showItem = showOfTheDay.valueOrNull;
+          if (showItem != null) {
+            return _buildDailyShowCard(context, showItem);
+          }
+          return const Center(child: CircularProgressIndicator());
+        },
+        error: (err, stack) {
+          // Show show of the day even when daily items fail
+          final showItem = showOfTheDay.valueOrNull;
+          if (showItem != null) {
+            return _buildDailyShowCard(context, showItem);
+          }
+          return Center(child: Text('Failed to load daily content'));
+        },
       ),
     );
   }
@@ -448,13 +525,17 @@ class _DailyDiscoveryCarouselState extends ConsumerState<_DailyDiscoveryCarousel
                 fit: BoxFit.cover,
                 loadingBuilder: (context, child, loadingProgress) {
                   if (loadingProgress == null) return child;
-                  return Container(color: theme.colorScheme.surfaceContainerHighest);
+                  return Container(
+                      color: theme.colorScheme.surfaceContainerHighest);
                 },
                 errorBuilder: (context, error, stackTrace) {
                   return Container(
                     color: theme.colorScheme.surfaceContainerHighest,
                     child: Center(
-                      child: Icon(Icons.broken_image, color: theme.colorScheme.onSurfaceVariant.withValues(alpha: 0.5), size: 40),
+                      child: Icon(Icons.broken_image,
+                          color: theme.colorScheme.onSurfaceVariant
+                              .withValues(alpha: 0.5),
+                          size: 40),
                     ),
                   );
                 },
@@ -468,7 +549,8 @@ class _DailyDiscoveryCarouselState extends ConsumerState<_DailyDiscoveryCarousel
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 6),
                       decoration: BoxDecoration(
                         color: theme.colorScheme.primary,
                         borderRadius: BorderRadius.circular(8),
@@ -476,7 +558,8 @@ class _DailyDiscoveryCarouselState extends ConsumerState<_DailyDiscoveryCarousel
                       child: Text(
                         isCompleted ? "✓ COMPLETED" : item.tag,
                         style: TextStyle(
-                          color: isCompleted ? Colors.greenAccent : Colors.white,
+                          color:
+                              isCompleted ? Colors.greenAccent : Colors.white,
                           fontWeight: FontWeight.bold,
                           fontSize: 10,
                           letterSpacing: 1.0,
@@ -499,14 +582,131 @@ class _DailyDiscoveryCarouselState extends ConsumerState<_DailyDiscoveryCarousel
                     Row(
                       children: [
                         Icon(
-                          item.tag == "VIDEO OF THE DAY" ? Icons.play_circle_fill : Icons.article, 
-                          color: Colors.white.withValues(alpha: 0.8), 
-                          size: 16
-                        ),
+                            item.tag == "VIDEO OF THE DAY"
+                                ? Icons.play_circle_fill
+                                : Icons.article,
+                            color: Colors.white.withValues(alpha: 0.8),
+                            size: 16),
                         const SizedBox(width: 6),
                         Expanded(
                           child: Text(
                             item.subtitle,
+                            style: TextStyle(
+                              color: Colors.white.withValues(alpha: 0.8),
+                              fontSize: 13,
+                            ),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildDailyShowCard(BuildContext context, Show show) {
+    final theme = Theme.of(context);
+
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          SwipeBackPageRoute(
+            builder: (_) => ShowDetailScreen(show: show),
+          ),
+        );
+      },
+      child: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 8.0),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(28),
+          color: Colors.black87,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.2),
+              blurRadius: 20,
+              offset: const Offset(0, 10),
+            ),
+          ],
+        ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(28),
+          child: Stack(
+            fit: StackFit.expand,
+            children: [
+              Image.network(
+                show.thumbnailUrl,
+                fit: BoxFit.cover,
+                loadingBuilder: (context, child, loadingProgress) {
+                  if (loadingProgress == null) return child;
+                  return Container(
+                      color: theme.colorScheme.surfaceContainerHighest);
+                },
+                errorBuilder: (context, error, stackTrace) {
+                  return Container(
+                    color: theme.colorScheme.surfaceContainerHighest,
+                    child: Center(
+                      child: Icon(Icons.broken_image,
+                          color: theme.colorScheme.onSurfaceVariant
+                              .withValues(alpha: 0.5),
+                          size: 40),
+                    ),
+                  );
+                },
+              ),
+              Positioned.fill(
+                child: Container(color: Colors.black.withValues(alpha: 0.5)),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(24.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 6),
+                      decoration: BoxDecoration(
+                        color: Colors.orangeAccent,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: const Text(
+                        '\u{1f3ac} SHOW OF THE DAY',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 10,
+                          letterSpacing: 1.0,
+                        ),
+                      ),
+                    ),
+                    const Spacer(),
+                    Text(
+                      show.title,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        height: 1.2,
+                      ),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    const SizedBox(height: 8),
+                    Row(
+                      children: [
+                        const Icon(Icons.live_tv,
+                            color: Colors.white70, size: 16),
+                        const SizedBox(width: 6),
+                        Expanded(
+                          child: Text(
+                            '${show.episodeCount} episodes · ${show.channelTitle}',
                             style: TextStyle(
                               color: Colors.white.withValues(alpha: 0.8),
                               fontSize: 13,

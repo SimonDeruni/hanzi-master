@@ -9,223 +9,224 @@ class AppLocalizationsKo extends AppLocalizations {
   AppLocalizationsKo([String locale = 'ko']) : super(locale);
 
   @override
-  String get globalMastery => '전체 마스터리';
+  String get globalMastery => 'ì „ì²´ ë§ˆìŠ¤í„°ë¦¬';
 
   @override
-  String get masteredCards => '마스터함';
+  String get masteredCards => 'ë§ˆìŠ¤í„°í•¨';
 
   @override
-  String get hsk1Candidate => 'HSK 1 후보';
+  String get hsk1Candidate => 'HSK 1 í›„ë³´';
 
   @override
-  String get hsk2Candidate => 'HSK 2 후보';
+  String get hsk2Candidate => 'HSK 2 í›„ë³´';
 
   @override
-  String get hsk3Candidate => 'HSK 3 후보';
+  String get hsk3Candidate => 'HSK 3 í›„ë³´';
 
   @override
-  String get hsk4Candidate => 'HSK 4 후보';
+  String get hsk4Candidate => 'HSK 4 í›„ë³´';
 
   @override
-  String get hsk5Candidate => 'HSK 5 후보';
+  String get hsk5Candidate => 'HSK 5 í›„ë³´';
 
   @override
-  String get hsk6Candidate => 'HSK 6 후보';
+  String get hsk6Candidate => 'HSK 6 í›„ë³´';
 
   @override
-  String get hsk6Master => 'HSK 6 마스터';
+  String get hsk6Master => 'HSK 6 ë§ˆìŠ¤í„°';
 
   @override
-  String get currentRank => '현재 랭크';
+  String get currentRank => 'í˜„ìž¬ ëž­í¬';
 
   @override
-  String get next => '다음';
+  String get next => 'ë‹¤ìŒ';
 
   @override
-  String get searchHanziOrPinyin => '검색...';
+  String get searchHanziOrPinyin => 'ê²€ìƒ‰...';
 
   @override
-  String get dailyReview => '일일 복습';
+  String get dailyReview => 'ì¼ì¼ ë³µìŠµ';
 
   @override
-  String get upcomingForecast => '예정된 복습';
+  String get upcomingForecast => 'ì˜ˆì •ëœ ë³µìŠµ';
 
   @override
-  String get laterToday => '오늘 나중에';
+  String get laterToday => 'ì˜¤ëŠ˜ ë‚˜ì¤‘ì—';
 
   @override
-  String get tomorrow => '내일';
+  String get tomorrow => 'ë‚´ì¼';
 
   @override
-  String get next7Days => '다음 7일';
+  String get next7Days => 'ë‹¤ìŒ 7ì¼';
 
   @override
-  String get theScholarWay => '학자의 길';
+  String get theScholarWay => 'í•™ìžì˜ ê¸¸';
 
   @override
-  String get beginJourney => '시작하기';
+  String get beginJourney => 'ì‹œìž‘í•˜ê¸°';
 
   @override
-  String get settingsTitle => '설정';
+  String get settingsTitle => 'ì„¤ì •';
 
   @override
-  String get darkMode => '다크 모드';
+  String get darkMode => 'ë‹¤í¬ ëª¨ë“œ';
 
   @override
-  String get darkModeDesc => '눈에 편안한 모드';
+  String get darkModeDesc => 'ëˆˆì— íŽ¸ì•ˆí•œ ëª¨ë“œ';
 
   @override
-  String get voiceSpeed => '음성 속도';
+  String get voiceSpeed => 'ìŒì„± ì†ë„';
 
   @override
-  String get artAndIntellect => '예술과 지성';
+  String get artAndIntellect => 'ì˜ˆìˆ ê³¼ ì§€ì„±';
 
   @override
-  String get theDigitalScholar => '디지털 학자';
+  String get theDigitalScholar => 'ë””ì§€í„¸ í•™ìž';
 
   @override
-  String get refineBrushVoice => 'AI로 붓과 목소리를 다듬으세요.';
+  String get refineBrushVoice => 'AIë¡œ ë¶“ê³¼ ëª©ì†Œë¦¬ë¥¼ ë‹¤ë“¬ìœ¼ì„¸ìš”.';
 
   @override
-  String get liveVoiceCall => '실시간 음성 통화';
+  String get liveVoiceCall => 'ì‹¤ì‹œê°„ ìŒì„± í†µí™”';
 
   @override
-  String get immersiveRoleplay => 'AI 롤플레잉';
+  String get immersiveRoleplay => 'AI ë¡¤í”Œë ˆìž‰';
 
   @override
-  String get readingRoom => '독서실';
+  String get readingRoom => 'ë…ì„œì‹¤';
 
   @override
-  String get shadowingStudio => '섀도잉 스튜디오';
+  String get shadowingStudio => 'ì„€ë„ìž‰ ìŠ¤íŠœë””ì˜¤';
 
   @override
-  String get errorPrefix => '오류: ';
+  String get errorPrefix => 'ì˜¤ë¥˜: ';
 
   @override
-  String get initializingLibrary => '초기화 중...';
+  String get initializingLibrary => 'ì´ˆê¸°í™” ì¤‘...';
 
   @override
-  String get unlockCharactersToQuiz => '퀴즈를 위해 4자를 잠금 해제하세요!';
+  String get unlockCharactersToQuiz =>
+      'í€´ì¦ˆë¥¼ ìœ„í•´ 4ìžë¥¼ ìž ê¸ˆ í•´ì œí•˜ì„¸ìš”!';
 
   @override
-  String get practiceQuiz => '퀴즈';
+  String get practiceQuiz => 'í€´ì¦ˆ';
 
   @override
-  String get curriculumPaths => '학습 경로';
+  String get curriculumPaths => 'í•™ìŠµ ê²½ë¡œ';
 
   @override
-  String get noDecksFound => '덱이 없습니다.';
+  String get noDecksFound => 'ë±ì´ ì—†ìŠµë‹ˆë‹¤.';
 
   @override
-  String get addCardsFirst => '먼저 카드를 추가하세요!';
+  String get addCardsFirst => 'ë¨¼ì € ì¹´ë“œë¥¼ ì¶”ê°€í•˜ì„¸ìš”!';
 
   @override
-  String get aiDraftingPath => 'AI가 경로를 준비 중입니다...';
+  String get aiDraftingPath => 'AIê°€ ê²½ë¡œë¥¼ ì¤€ë¹„ ì¤‘ìž…ë‹ˆë‹¤...';
 
   @override
-  String get pathReady => '경로 준비 완료!';
+  String get pathReady => 'ê²½ë¡œ ì¤€ë¹„ ì™„ë£Œ!';
 
   @override
-  String get errorGeneratingPath => '오류';
+  String get errorGeneratingPath => 'ì˜¤ë¥˜';
 
   @override
-  String get brushingCurriculum => '경로 생성 중...';
+  String get brushingCurriculum => 'ê²½ë¡œ ìƒì„± ì¤‘...';
 
   @override
-  String get warmUp => '워밍업';
+  String get warmUp => 'ì›Œë°ì—…';
 
   @override
-  String get lessonComplete => '레슨 완료! +10 포인트';
+  String get lessonComplete => 'ë ˆìŠ¨ ì™„ë£Œ! +10 í¬ì¸íŠ¸';
 
   @override
-  String get step1Origin => '1단계: 기원';
+  String get step1Origin => '1ë‹¨ê³„: ê¸°ì›';
 
   @override
-  String get traceRadical => '부수 따라 쓰기';
+  String get traceRadical => 'ë¶€ìˆ˜ ë”°ë¼ ì“°ê¸°';
 
   @override
-  String get step2Forge => '2단계: 단련';
+  String get step2Forge => '2ë‹¨ê³„: ë‹¨ë ¨';
 
   @override
-  String get chooseEssence => '본질 선택';
+  String get chooseEssence => 'ë³¸ì§ˆ ì„ íƒ';
 
   @override
-  String get wrongEssence => '틀렸습니다! 다시 시도하세요.';
+  String get wrongEssence => 'í‹€ë ¸ìŠµë‹ˆë‹¤! ë‹¤ì‹œ ì‹œë„í•˜ì„¸ìš”.';
 
   @override
-  String get step3Hunt => '3단계: 사냥';
+  String get step3Hunt => '3ë‹¨ê³„: ì‚¬ëƒ¥';
 
   @override
-  String get findCharacters => '한자 찾기';
+  String get findCharacters => 'í•œìž ì°¾ê¸°';
 
   @override
-  String get notThatOne => '그게 아닙니다!';
+  String get notThatOne => 'ê·¸ê²Œ ì•„ë‹™ë‹ˆë‹¤!';
 
   @override
-  String get successfullyInstalled => '설치 완료:';
+  String get successfullyInstalled => 'ì„¤ì¹˜ ì™„ë£Œ:';
 
   @override
-  String get failedToDownload => '다운로드 실패.';
+  String get failedToDownload => 'ë‹¤ìš´ë¡œë“œ ì‹¤íŒ¨.';
 
   @override
-  String get rescindTitle => '취소하시겠습니까?';
+  String get rescindTitle => 'ì·¨ì†Œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?';
 
   @override
-  String get removeCharactersWarning => '이 한자들이 삭제됩니다.';
+  String get removeCharactersWarning => 'ì´ í•œìžë“¤ì´ ì‚­ì œë©ë‹ˆë‹¤.';
 
   @override
-  String get cancel => '취소';
+  String get cancel => 'ì·¨ì†Œ';
 
   @override
-  String get uninstall => '제거';
+  String get uninstall => 'ì œê±°';
 
   @override
-  String get removedLibrary => '삭제됨:';
+  String get removedLibrary => 'ì‚­ì œë¨:';
 
   @override
-  String get tomeLibrary => '라이브러리';
+  String get tomeLibrary => 'ë¼ì´ë¸ŒëŸ¬ë¦¬';
 
   @override
-  String get libraryError => '라이브러리 오류';
+  String get libraryError => 'ë¼ì´ë¸ŒëŸ¬ë¦¬ ì˜¤ë¥˜';
 
   @override
-  String get installTome => '설치';
+  String get installTome => 'ì„¤ì¹˜';
 
   @override
-  String get unitIntro => '단원 소개';
+  String get unitIntro => 'ë‹¨ì› ì†Œê°œ';
 
   @override
-  String get constellationCluster => '별자리 군집';
+  String get constellationCluster => 'ë³„ìžë¦¬ êµ°ì§‘';
 
   @override
-  String get ok => '확인';
+  String get ok => 'í™•ì¸';
 
   @override
-  String get divingInto => '심층 탐구...';
+  String get divingInto => 'ì‹¬ì¸µ íƒêµ¬...';
 
   @override
-  String get keyRadicals => '핵심 부수';
+  String get keyRadicals => 'í•µì‹¬ ë¶€ìˆ˜';
 
   @override
-  String get noRadicalData => '데이터 없음.';
+  String get noRadicalData => 'ë°ì´í„° ì—†ìŒ.';
 
   @override
-  String get discovery => '발견';
+  String get discovery => 'ë°œê²¬';
 
   @override
-  String get startLearning => '학습 시작';
+  String get startLearning => 'í•™ìŠµ ì‹œìž‘';
 
   @override
-  String get selectPersona => '페르소나 선택';
+  String get selectPersona => 'íŽ˜ë¥´ì†Œë‚˜ ì„ íƒ';
 
   @override
-  String get customPersona => '맞춤 페르소나';
+  String get customPersona => 'ë§žì¶¤ íŽ˜ë¥´ì†Œë‚˜';
 
   @override
-  String get geminiLiveCall => '라이브 통화';
+  String get geminiLiveCall => 'ë¼ì´ë¸Œ í†µí™”';
 
   @override
-  String get returnToMenu => '뒤로';
+  String get returnToMenu => 'ë’¤ë¡œ';
 
   @override
   String get strokeAnalysis => 'Stroke Analysis';
@@ -270,7 +271,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get uninstallButton => 'UNINSTALL';
 
   @override
-  String get gradedAiStories => 'AI 이야기';
+  String get gradedAiStories => 'AI ì´ì•¼ê¸°';
 
   @override
   String get calligraphy => 'Calligraphy';
@@ -315,9 +316,6 @@ class AppLocalizationsKo extends AppLocalizations {
   String get haptics => 'Haptics';
 
   @override
-  String get hapticsDesc => 'Haptics Desc';
-
-  @override
   String get displayAndContent => 'Display And Content';
 
   @override
@@ -351,721 +349,752 @@ class AppLocalizationsKo extends AppLocalizations {
   String get appLanguage => 'App Language';
 
   @override
-  String get howDidYouDo => '어떠셨나요?';
+  String get howDidYouDo => 'ì–´ë– ì…¨ë‚˜ìš”?';
 
   @override
-  String get missedItEntirely => '완전히 잊었어요';
+  String get missedItEntirely => 'ì™„ì „ížˆ ìžŠì—ˆì–´ìš”';
 
   @override
-  String get gotItButStruggled => '알았지만 어려웠어요';
+  String get gotItButStruggled => 'ì•Œì•˜ì§€ë§Œ ì–´ë ¤ì› ì–´ìš”';
 
   @override
-  String get gotItClearly => '확실히 알았어요';
+  String get gotItClearly => 'í™•ì‹¤ížˆ ì•Œì•˜ì–´ìš”';
 
   @override
-  String get perfectAndImmediate => '완벽하고 바로 알았어요';
+  String get perfectAndImmediate => 'ì™„ë²½í•˜ê³  ë°”ë¡œ ì•Œì•˜ì–´ìš”';
 
   @override
-  String get again => '다시';
+  String get again => 'ë‹¤ì‹œ';
 
   @override
-  String get hard => '어려움';
+  String get hard => 'ì–´ë ¤ì›€';
 
   @override
-  String get good => '보통';
+  String get good => 'ë³´í†µ';
 
   @override
-  String get easy => '쉬움';
+  String get easy => 'ì‰¬ì›€';
 
   @override
-  String get tapToReveal => '탭하여 정답 확인';
+  String get tapToReveal => 'íƒ­í•˜ì—¬ ì •ë‹µ í™•ì¸';
 
   @override
-  String get howWellDidYouRemember => '얼마나 잘 기억하셨나요?';
+  String get howWellDidYouRemember => 'ì–¼ë§ˆë‚˜ ìž˜ ê¸°ì–µí•˜ì…¨ë‚˜ìš”?';
 
   @override
-  String get completelyForgot => '완전히 잊어버렸어요';
+  String get completelyForgot => 'ì™„ì „ížˆ ìžŠì–´ë²„ë ¸ì–´ìš”';
 
   @override
-  String get gotItWithDifficulty => '어렵게 기억했어요';
+  String get gotItWithDifficulty => 'ì–´ë µê²Œ ê¸°ì–µí–ˆì–´ìš”';
 
   @override
-  String get recalledCorrectly => '정확히 기억했어요';
+  String get recalledCorrectly => 'ì •í™•ížˆ ê¸°ì–µí–ˆì–´ìš”';
 
   @override
-  String get perfectRecall => '완벽하게 기억했어요';
+  String get perfectRecall => 'ì™„ë²½í•˜ê²Œ ê¸°ì–µí–ˆì–´ìš”';
 
   @override
-  String get practiceWriting => '쓰기 연습';
+  String get practiceWriting => 'ì“°ê¸° ì—°ìŠµ';
 
   @override
-  String get hideScratchpad => '쓰기판 숨기기';
+  String get hideScratchpad => 'ì“°ê¸°íŒ ìˆ¨ê¸°ê¸°';
 
   @override
-  String get whatCharacterMeans => '글자의 의미:';
+  String get whatCharacterMeans => 'ê¸€ìžì˜ ì˜ë¯¸:';
 
   @override
-  String get tapCardToReveal => '카드를 탭하여 공개';
+  String get tapCardToReveal => 'ì¹´ë“œë¥¼ íƒ­í•˜ì—¬ ê³µê°œ';
 
   @override
-  String get ratePronunciationConfidence => '발음 자신감 평가';
+  String get ratePronunciationConfidence => 'ë°œìŒ ìžì‹ ê° í‰ê°€';
 
   @override
-  String get botchedIt => '완전히 망쳤어요';
+  String get botchedIt => 'ì™„ì „ížˆ ë§ì³¤ì–´ìš”';
 
   @override
-  String get struggledWithTones => '성조가 어려웠어요';
+  String get struggledWithTones => 'ì„±ì¡°ê°€ ì–´ë ¤ì› ì–´ìš”';
 
   @override
-  String get acceptable => '괜찮았어요';
+  String get acceptable => 'ê´œì°®ì•˜ì–´ìš”';
 
   @override
-  String get perfectlyNatural => '완벽하게 자연스러웠어요';
+  String get perfectlyNatural => 'ì™„ë²½í•˜ê²Œ ìžì—°ìŠ¤ëŸ¬ì› ì–´ìš”';
 
   @override
-  String get sessionComplete => '학습 완료!';
+  String get sessionComplete => 'í•™ìŠµ ì™„ë£Œ!';
 
   @override
-  String get accuracy => '정확도';
+  String get accuracy => 'ì •í™•ë„';
 
   @override
-  String get reviewed => '복습한 항목';
+  String get reviewed => 'ë³µìŠµí•œ í•­ëª©';
 
   @override
-  String get correct => '정답';
+  String get correct => 'ì •ë‹µ';
 
   @override
-  String get backToLibrary => '라이브러리로 돌아가기';
+  String get backToLibrary => 'ë¼ì´ë¸ŒëŸ¬ë¦¬ë¡œ ëŒì•„ê°€ê¸°';
 
   @override
-  String get revealAnswer => '정답 확인';
+  String get revealAnswer => 'ì •ë‹µ í™•ì¸';
 
   @override
-  String get aiHubTitle => 'AI 허브';
+  String get aiHubTitle => 'AI í—ˆë¸Œ';
 
   @override
-  String get textChat => '텍스트 채팅';
+  String get textChat => 'í…ìŠ¤íŠ¸ ì±„íŒ…';
 
   @override
-  String get scholarlyPersonas => '학자 페르소나';
+  String get scholarlyPersonas => 'í•™ìž íŽ˜ë¥´ì†Œë‚˜';
 
   @override
-  String get shadowing => '쉐도잉';
+  String get shadowing => 'ì‰ë„ìž‰';
 
   @override
-  String get liveTranslation => '실시간 번역';
+  String get liveTranslation => 'ì‹¤ì‹œê°„ ë²ˆì—­';
 
   @override
-  String get scholarsLibrary => '학자의 서재';
+  String get scholarsLibrary => 'í•™ìžì˜ ì„œìž¬';
 
   @override
-  String get generate => '생성';
+  String get generate => 'ìƒì„±';
 
   @override
-  String get searchPinyinHanziEnglish => '병음, 한자 또는 영어 검색...';
+  String get searchPinyinHanziEnglish =>
+      'ë³‘ìŒ, í•œìž ë˜ëŠ” ì˜ì–´ ê²€ìƒ‰...';
 
   @override
-  String get liveTranslate => '실시간 번역';
+  String get liveTranslate => 'ì‹¤ì‹œê°„ ë²ˆì—­';
 
   @override
-  String get travelInterpreter => '여행 통역사';
+  String get travelInterpreter => 'ì—¬í–‰ í†µì—­ì‚¬';
 
   @override
-  String get realTimeSplitScreen => '원어민과의 실시간 분할 화면 대화. 즉시 언어 장벽을 허뭅니다.';
+  String get realTimeSplitScreen =>
+      'ì›ì–´ë¯¼ê³¼ì˜ ì‹¤ì‹œê°„ ë¶„í•  í™”ë©´ ëŒ€í™”. ì¦‰ì‹œ ì–¸ì–´ ìž¥ë²½ì„ í—ˆë­…ë‹ˆë‹¤.';
 
   @override
-  String get whisperEarpiece => '속삭임 이어피스';
+  String get whisperEarpiece => 'ì†ì‚­ìž„ ì´ì–´í”¼ìŠ¤';
 
   @override
-  String get listenToChineseAudio => '중국어 오디오를 듣고 실시간 영어 자막을 화면에서 바로 확인하세요.';
+  String get listenToChineseAudio =>
+      'ì¤‘êµ­ì–´ ì˜¤ë””ì˜¤ë¥¼ ë“£ê³  ì‹¤ì‹œê°„ ì˜ì–´ ìžë§‰ì„ í™”ë©´ì—ì„œ ë°”ë¡œ í™•ì¸í•˜ì„¸ìš”.';
 
   @override
-  String get dashboardTitle => '대시보드';
+  String get dashboardTitle => 'ëŒ€ì‹œë³´ë“œ';
 
   @override
-  String get yourMindIsClear => '당신의 마음은 맑습니다.';
+  String get yourMindIsClear => 'ë‹¹ì‹ ì˜ ë§ˆìŒì€ ë§‘ìŠµë‹ˆë‹¤.';
 
   @override
-  String get noReviewsDueToday => '오늘 복습할 내용이 없습니다.';
+  String get noReviewsDueToday => 'ì˜¤ëŠ˜ ë³µìŠµí•  ë‚´ìš©ì´ ì—†ìŠµë‹ˆë‹¤.';
 
   @override
-  String get done => '완료';
+  String get done => 'ì™„ë£Œ';
 
   @override
-  String get hskLevel1 => 'HSK 1급';
+  String get hskLevel1 => 'HSK 1ê¸‰';
 
   @override
-  String get hskLevel2 => 'HSK 2급';
+  String get hskLevel2 => 'HSK 2ê¸‰';
 
   @override
-  String get hskLevel3 => 'HSK 3급';
+  String get hskLevel3 => 'HSK 3ê¸‰';
 
   @override
-  String get hskLevel4 => 'HSK 4급';
+  String get hskLevel4 => 'HSK 4ê¸‰';
 
   @override
-  String get hskLevel5 => 'HSK 5급';
+  String get hskLevel5 => 'HSK 5ê¸‰';
 
   @override
-  String get hskLevel6 => 'HSK 6급';
+  String get hskLevel6 => 'HSK 6ê¸‰';
 
   @override
-  String get generalVocabulary => '일반 어휘';
+  String get generalVocabulary => 'ì¼ë°˜ ì–´íœ˜';
 
   @override
-  String get cardsRequireAttention => '개의 카드가 복습을 기다립니다.';
+  String get cardsRequireAttention =>
+      'ê°œì˜ ì¹´ë“œê°€ ë³µìŠµì„ ê¸°ë‹¤ë¦½ë‹ˆë‹¤.';
 
   @override
-  String get begin => '시작';
+  String get begin => 'ì‹œìž‘';
 
   @override
-  String get poweredByAi => '최첨단 AI 기반. 어떤 상황에서도 끊김 없는 실시간 번역.';
+  String get poweredByAi =>
+      'ìµœì²¨ë‹¨ AI ê¸°ë°˜. ì–´ë–¤ ìƒí™©ì—ì„œë„ ëŠê¹€ ì—†ëŠ” ì‹¤ì‹œê°„ ë²ˆì—­.';
 
   @override
-  String get downloadingModel => '모델 다운로드 중...';
+  String get downloadingModel => 'ëª¨ë¸ ë‹¤ìš´ë¡œë“œ ì¤‘...';
 
   @override
-  String get soon => '출시 예정';
+  String get soon => 'ì¶œì‹œ ì˜ˆì •';
 
   @override
-  String get installed => '설치됨';
+  String get installed => 'ì„¤ì¹˜ë¨';
 
   @override
-  String get premium => '프리미엄';
+  String get premium => 'í”„ë¦¬ë¯¸ì—„';
 
   @override
-  String get coreModule => '코어 모듈';
+  String get coreModule => 'ì½”ì–´ ëª¨ë“ˆ';
 
   @override
-  String get step6Context => '6단계: 문맥 파악';
+  String get step6Context => '6ë‹¨ê³„: ë¬¸ë§¥ íŒŒì•…';
 
   @override
-  String get tapBuildingBlocksTo => '구성 요소를 탭하여 그 유래를 알아보세요.';
+  String get tapBuildingBlocksTo =>
+      'êµ¬ì„± ìš”ì†Œë¥¼ íƒ­í•˜ì—¬ ê·¸ ìœ ëž˜ë¥¼ ì•Œì•„ë³´ì„¸ìš”.';
 
   @override
-  String get initiateRadicalSequence => '부수 시퀀스 시작';
+  String get initiateRadicalSequence => 'ë¶€ìˆ˜ ì‹œí€€ìŠ¤ ì‹œìž‘';
 
   @override
-  String get holdToTalk => '말하려면 길게 누르세요';
+  String get holdToTalk => 'ë§í•˜ë ¤ë©´ ê¸¸ê²Œ ëˆ„ë¥´ì„¸ìš”';
 
   @override
-  String get customScenario => '맞춤 시나리오';
+  String get customScenario => 'ë§žì¶¤ ì‹œë‚˜ë¦¬ì˜¤';
 
   @override
-  String get voiceCall => '음성 통화';
+  String get voiceCall => 'ìŒì„± í†µí™”';
 
   @override
-  String get pronunciation => '발음';
+  String get pronunciation => 'ë°œìŒ';
 
   @override
-  String get selectAScenarioTo => '대본을 선택하여 중국어 회화를 연습하세요. 학자가 음조와 명확도를 평가합니다.';
+  String get selectAScenarioTo =>
+      'ëŒ€ë³¸ì„ ì„ íƒí•˜ì—¬ ì¤‘êµ­ì–´ íšŒí™”ë¥¼ ì—°ìŠµí•˜ì„¸ìš”. í•™ìžê°€ ìŒì¡°ì™€ ëª…í™•ë„ë¥¼ í‰ê°€í•©ë‹ˆë‹¤.';
 
   @override
-  String get create => '생성';
+  String get create => 'ìƒì„±';
 
   @override
-  String get createYourScenario => '시나리오 만들기';
+  String get createYourScenario => 'ì‹œë‚˜ë¦¬ì˜¤ ë§Œë“¤ê¸°';
 
   @override
-  String get difficulty => '난이도';
+  String get difficulty => 'ë‚œì´ë„';
 
   @override
-  String get scholarsVerdict => '학자의 평결';
+  String get scholarsVerdict => 'í•™ìžì˜ í‰ê²°';
 
   @override
-  String get completeReview => '완료 검토';
+  String get completeReview => 'ì™„ë£Œ ê²€í† ';
 
   @override
-  String get conversationReview => '대화 검토';
+  String get conversationReview => 'ëŒ€í™” ê²€í† ';
 
   @override
-  String get linguisticAnalysis => '언어 분석';
+  String get linguisticAnalysis => 'ì–¸ì–´ ë¶„ì„';
 
   @override
-  String get examplesInHsk1 => 'HSK 1 예시';
+  String get examplesInHsk1 => 'HSK 1 ì˜ˆì‹œ';
 
   @override
-  String get characterReference => '문자 참조';
+  String get characterReference => 'ë¬¸ìž ì°¸ì¡°';
 
   @override
-  String get askTutor => '튜터에게 질문하기';
+  String get askTutor => 'íŠœí„°ì—ê²Œ ì§ˆë¬¸í•˜ê¸°';
 
   @override
-  String get addToStudyDeck => '학습 덱에 추가';
+  String get addToStudyDeck => 'í•™ìŠµ ë±ì— ì¶”ê°€';
 
   @override
-  String get startPractice => '연습 시작';
+  String get startPractice => 'ì—°ìŠµ ì‹œìž‘';
 
   @override
-  String get noOtherHsk1 => '이 부수를 사용하는 다른 HSK 1 문자는 없습니다.';
+  String get noOtherHsk1 =>
+      'ì´ ë¶€ìˆ˜ë¥¼ ì‚¬ìš©í•˜ëŠ” ë‹¤ë¥¸ HSK 1 ë¬¸ìžëŠ” ì—†ìŠµë‹ˆë‹¤.';
 
   @override
   String get couldNotLoadAi =>
-      'AI 문맥을 로드할 수 없습니다. (속도 제한 또는 네트워크 오류)\\n나중에 다시 시도하려면 아래 새로고침 버튼을 탭하세요.';
+      'AI ë¬¸ë§¥ì„ ë¡œë“œí•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤. (ì†ë„ ì œí•œ ë˜ëŠ” ë„¤íŠ¸ì›Œí¬ ì˜¤ë¥˜)\\në‚˜ì¤‘ì— ë‹¤ì‹œ ì‹œë„í•˜ë ¤ë©´ ì•„ëž˜ ìƒˆë¡œê³ ì¹¨ ë²„íŠ¼ì„ íƒ­í•˜ì„¸ìš”.';
 
   @override
-  String get noAvailableCardsFound => '사용 가능한 카드를 찾을 수 없습니다.';
+  String get noAvailableCardsFound =>
+      'ì‚¬ìš© ê°€ëŠ¥í•œ ì¹´ë“œë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.';
 
   @override
-  String get addCards => '카드 추가';
+  String get addCards => 'ì¹´ë“œ ì¶”ê°€';
 
   @override
-  String get removeCard => '카드 제거';
+  String get removeCard => 'ì¹´ë“œ ì œê±°';
 
   @override
-  String get remove => '제거';
+  String get remove => 'ì œê±°';
 
   @override
-  String get review => '복습';
+  String get review => 'ë³µìŠµ';
 
   @override
-  String get story => '이야기';
+  String get story => 'ì´ì•¼ê¸°';
 
   @override
-  String get thisDeckIsEmpty => '이 덱은 비어 있습니다.';
+  String get thisDeckIsEmpty => 'ì´ ë±ì€ ë¹„ì–´ ìžˆìŠµë‹ˆë‹¤.';
 
   @override
-  String get tapTheAddCards => '카드 추가 버튼을 탭하세요!';
+  String get tapTheAddCards => 'ì¹´ë“œ ì¶”ê°€ ë²„íŠ¼ì„ íƒ­í•˜ì„¸ìš”!';
 
   @override
-  String get noCardsFound => '카드를 찾을 수 없습니다.';
+  String get noCardsFound => 'ì¹´ë“œë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.';
 
   @override
-  String get addCardsToSee => '통계를 보려면 카드를 추가하세요.';
+  String get addCardsToSee => 'í†µê³„ë¥¼ ë³´ë ¤ë©´ ì¹´ë“œë¥¼ ì¶”ê°€í•˜ì„¸ìš”.';
 
   @override
-  String get aiGenerated => 'AI 생성됨';
+  String get aiGenerated => 'AI ìƒì„±ë¨';
 
   @override
-  String get allCardsCaughtUp => '모든 카드 학습 완료! 잘하셨습니다.';
+  String get allCardsCaughtUp =>
+      'ëª¨ë“  ì¹´ë“œ í•™ìŠµ ì™„ë£Œ! ìž˜í•˜ì…¨ìŠµë‹ˆë‹¤.';
 
   @override
-  String get latestDiscoveries => '최신 발견';
+  String get latestDiscoveries => 'ìµœì‹  ë°œê²¬';
 
   @override
-  String get noCharactersInLexicon => '아직 어휘집에 문자가 없습니다.';
+  String get noCharactersInLexicon =>
+      'ì•„ì§ ì–´íœ˜ì§‘ì— ë¬¸ìžê°€ ì—†ìŠµë‹ˆë‹¤.';
 
   @override
-  String get yourBookshelf => '내 책장';
+  String get yourBookshelf => 'ë‚´ ì±…ìž¥';
 
   @override
-  String get text_1782026184579 => '자';
+  String get text_1782026184579 => 'ìž';
 
   @override
-  String get searchYourDictionary => '사전 검색...';
+  String get searchYourDictionary => 'ì‚¬ì „ ê²€ìƒ‰...';
 
   @override
-  String get saveCard => '카드 저장';
+  String get saveCard => 'ì¹´ë“œ ì €ìž¥';
 
   @override
-  String get noCharactersFound => '문자를 찾을 수 없습니다.';
+  String get noCharactersFound => 'ë¬¸ìžë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.';
 
   @override
-  String get radicalsIndex => '부수 색인';
+  String get radicalsIndex => 'ë¶€ìˆ˜ ìƒ‰ì¸';
 
   @override
   String get masteringRadicalsIsThe =>
-      '부수 숙달은 수천 개의 한자를 해독하는 열쇠입니다. 부수를 선택하여 해당 부수를 사용하는 모든 한자를 확인하세요.';
+      'ë¶€ìˆ˜ ìˆ™ë‹¬ì€ ìˆ˜ì²œ ê°œì˜ í•œìžë¥¼ í•´ë…í•˜ëŠ” ì—´ì‡ ìž…ë‹ˆë‹¤. ë¶€ìˆ˜ë¥¼ ì„ íƒí•˜ì—¬ í•´ë‹¹ ë¶€ìˆ˜ë¥¼ ì‚¬ìš©í•˜ëŠ” ëª¨ë“  í•œìžë¥¼ í™•ì¸í•˜ì„¸ìš”.';
 
   @override
-  String get noRadicalsFound => '부수를 찾을 수 없습니다.';
+  String get noRadicalsFound => 'ë¶€ìˆ˜ë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.';
 
   @override
-  String get yourDrawing => '내 그림';
+  String get yourDrawing => 'ë‚´ ê·¸ë¦¼';
 
   @override
-  String get reference => '참고';
+  String get reference => 'ì°¸ê³ ';
 
   @override
-  String get rateYourRecall => '기억력 평가';
+  String get rateYourRecall => 'ê¸°ì–µë ¥ í‰ê°€';
 
   @override
-  String get contactUs => 'Contáctanos';
+  String get contactUs => 'ContÃ¡ctanos';
 
   @override
-  String get reportBugsOrRequest => '버그 보고 또는 기능 요청';
+  String get reportBugsOrRequest => 'ë²„ê·¸ ë³´ê³  ë˜ëŠ” ê¸°ëŠ¥ ìš”ì²­';
 
   @override
-  String get allDataHasBeen => '모든 데이터가 초기화되었습니다.';
+  String get allDataHasBeen => 'ëª¨ë“  ë°ì´í„°ê°€ ì´ˆê¸°í™”ë˜ì—ˆìŠµë‹ˆë‹¤.';
 
   @override
-  String get hanziMasterV100 => '한자 마스터 v1.0.0';
+  String get hanziMasterV100 => 'í•œìž ë§ˆìŠ¤í„° v1.0.0';
 
   @override
   String get myProgress => 'Mi progreso';
 
   @override
-  String get overview => '개요';
+  String get overview => 'ê°œìš”';
 
   @override
-  String get aiStory => 'AI 스토리';
+  String get aiStory => 'AI ìŠ¤í† ë¦¬';
 
   @override
-  String get usingYourDecksVocabulary => '덱의 어휘 사용 중';
+  String get usingYourDecksVocabulary => 'ë±ì˜ ì–´íœ˜ ì‚¬ìš© ì¤‘';
 
   @override
-  String get tryAgain => '다시 시도';
+  String get tryAgain => 'ë‹¤ì‹œ ì‹œë„';
 
   @override
-  String get translate => '번역';
+  String get translate => 'ë²ˆì—­';
 
   @override
-  String get pinyin => '병음';
+  String get pinyin => 'ë³‘ìŒ';
 
   @override
-  String get fullTranslation => '전체 번역';
+  String get fullTranslation => 'ì „ì²´ ë²ˆì—­';
 
   @override
-  String get geminiFlashIsStructuring => '제미니 플래시가 스토리를 구성 중입니다...';
+  String get geminiFlashIsStructuring =>
+      'ì œë¯¸ë‹ˆ í”Œëž˜ì‹œê°€ ìŠ¤í† ë¦¬ë¥¼ êµ¬ì„± ì¤‘ìž…ë‹ˆë‹¤...';
 
   @override
-  String get aiDeckGenerator => 'AI 덱 생성기';
+  String get aiDeckGenerator => 'AI ë± ìƒì„±ê¸°';
 
   @override
-  String get whatDoYouWant => '무엇을 배우고 싶으신가요?';
+  String get whatDoYouWant => 'ë¬´ì—‡ì„ ë°°ìš°ê³  ì‹¶ìœ¼ì‹ ê°€ìš”?';
 
   @override
-  String get targetDifficulty => '목표 난이도';
+  String get targetDifficulty => 'ëª©í‘œ ë‚œì´ë„';
 
   @override
-  String get focusArea => '집중 영역';
+  String get focusArea => 'ì§‘ì¤‘ ì˜ì—­';
 
   @override
-  String get specificContextOrTone => '특정 문맥 또는 어조 (선택 사항)';
+  String get specificContextOrTone =>
+      'íŠ¹ì • ë¬¸ë§¥ ë˜ëŠ” ì–´ì¡° (ì„ íƒ ì‚¬í•­)';
 
   @override
-  String get numberOfCards => '카드 수';
+  String get numberOfCards => 'ì¹´ë“œ ìˆ˜';
 
   @override
-  String get generateDeck => '덱 생성';
+  String get generateDeck => 'ë± ìƒì„±';
 
   @override
-  String get aiGrammarExplanation => 'AI 문법 설명';
+  String get aiGrammarExplanation => 'AI ë¬¸ë²• ì„¤ëª…';
 
   @override
-  String get scholarsDesk => '학자의 책상';
+  String get scholarsDesk => 'í•™ìžì˜ ì±…ìƒ';
 
   @override
-  String get chooseADeck => '덱 선택';
+  String get chooseADeck => 'ë± ì„ íƒ';
 
   @override
-  String get whereWouldYouLike => '이 한자를 어디에 저장하시겠습니까?';
+  String get whereWouldYouLike =>
+      'ì´ í•œìžë¥¼ ì–´ë””ì— ì €ìž¥í•˜ì‹œê² ìŠµë‹ˆê¹Œ?';
 
   @override
-  String get addToDefaultStudy => '기본 학습 덱에 추가';
+  String get addToDefaultStudy => 'ê¸°ë³¸ í•™ìŠµ ë±ì— ì¶”ê°€';
 
   @override
-  String get ifOffItsOnly => '비활성화하면 글로벌 사전 에만 저장됩니다';
+  String get ifOffItsOnly =>
+      'ë¹„í™œì„±í™”í•˜ë©´ ê¸€ë¡œë²Œ ì‚¬ì „ ì—ë§Œ ì €ìž¥ë©ë‹ˆë‹¤';
 
   @override
-  String get saveToLibrary => '라이브러리에 저장';
+  String get saveToLibrary => 'ë¼ì´ë¸ŒëŸ¬ë¦¬ì— ì €ìž¥';
 
   @override
-  String get pleaseEnterValidChinese => '유효한 중국어 한자를 입력하세요.';
+  String get pleaseEnterValidChinese =>
+      'ìœ íš¨í•œ ì¤‘êµ­ì–´ í•œìžë¥¼ ìž…ë ¥í•˜ì„¸ìš”.';
 
   @override
-  String get reviewAiCard => 'AI 카드 검토';
+  String get reviewAiCard => 'AI ì¹´ë“œ ê²€í† ';
 
   @override
   String get pleaseDoublecheckTheAis =>
-      '아래 AI의 출력을 다시 확인하세요. 영구 라이브러리에 저장하기 전에 병음이나 정의를 자유롭게 수정하세요.';
+      'ì•„ëž˜ AIì˜ ì¶œë ¥ì„ ë‹¤ì‹œ í™•ì¸í•˜ì„¸ìš”. ì˜êµ¬ ë¼ì´ë¸ŒëŸ¬ë¦¬ì— ì €ìž¥í•˜ê¸° ì „ì— ë³‘ìŒì´ë‚˜ ì •ì˜ë¥¼ ìžìœ ë¡­ê²Œ ìˆ˜ì •í•˜ì„¸ìš”.';
 
   @override
-  String get alreadyInYourLibrary => '이미 라이브러리에 있습니다!';
+  String get alreadyInYourLibrary => 'ì´ë¯¸ ë¼ì´ë¸ŒëŸ¬ë¦¬ì— ìžˆìŠµë‹ˆë‹¤!';
 
   @override
-  String get meaningInContext => '문맥 속 의미';
+  String get meaningInContext => 'ë¬¸ë§¥ ì† ì˜ë¯¸';
 
   @override
-  String get explainGrammar => '문법 설명';
+  String get explainGrammar => 'ë¬¸ë²• ì„¤ëª…';
 
   @override
-  String get addToLibrary => '라이브러리에 추가';
+  String get addToLibrary => 'ë¼ì´ë¸ŒëŸ¬ë¦¬ì— ì¶”ê°€';
 
   @override
   String get masterYourMandarinPronunciation =>
-      '실시간으로 원어민의 발음을 모방하여 중국어 발음을 완벽하게 마스터하세요.';
+      'ì‹¤ì‹œê°„ìœ¼ë¡œ ì›ì–´ë¯¼ì˜ ë°œìŒì„ ëª¨ë°©í•˜ì—¬ ì¤‘êµ­ì–´ ë°œìŒì„ ì™„ë²½í•˜ê²Œ ë§ˆìŠ¤í„°í•˜ì„¸ìš”.';
 
   @override
-  String get startSession => '세션 시작';
+  String get startSession => 'ì„¸ì…˜ ì‹œìž‘';
 
   @override
-  String get sessionHistory => '세션 기록';
+  String get sessionHistory => 'ì„¸ì…˜ ê¸°ë¡';
 
   @override
-  String get noSavedSessions => '저장된 세션이 없습니다.';
+  String get noSavedSessions => 'ì €ìž¥ëœ ì„¸ì…˜ì´ ì—†ìŠµë‹ˆë‹¤.';
 
   @override
-  String get aiBreakdown => 'AI 분석';
+  String get aiBreakdown => 'AI ë¶„ì„';
 
   @override
-  String get sessionDetails => '세션 상세';
+  String get sessionDetails => 'ì„¸ì…˜ ìƒì„¸';
 
   @override
-  String get partner => '파트너 (中文)';
+  String get partner => 'íŒŒíŠ¸ë„ˆ (ä¸­æ–‡)';
 
   @override
-  String get youEnglish => '나 (영어)';
+  String get youEnglish => 'ë‚˜ (ì˜ì–´)';
 
   @override
-  String get noTranscriptToSave => '저장할 기록이 없습니다!';
+  String get noTranscriptToSave => 'ì €ìž¥í•  ê¸°ë¡ì´ ì—†ìŠµë‹ˆë‹¤!';
 
   @override
-  String get sessionSaved => '세션 저장됨!';
+  String get sessionSaved => 'ì„¸ì…˜ ì €ìž¥ë¨!';
 
   @override
   String get realtimeBidirectionalTranslationSpeak =>
-      '실시간 양방향 번역. 영어 또는 중국어를 말하면 즉시 당신과 파트너에게 번역됩니다.';
+      'ì‹¤ì‹œê°„ ì–‘ë°©í–¥ ë²ˆì—­. ì˜ì–´ ë˜ëŠ” ì¤‘êµ­ì–´ë¥¼ ë§í•˜ë©´ ì¦‰ì‹œ ë‹¹ì‹ ê³¼ íŒŒíŠ¸ë„ˆì—ê²Œ ë²ˆì—­ë©ë‹ˆë‹¤.';
 
   @override
-  String get text_1782026184665 => '녹음 중';
+  String get text_1782026184665 => 'ë…¹ìŒ ì¤‘';
 
   @override
-  String get recording => '녹음 중';
+  String get recording => 'ë…¹ìŒ ì¤‘';
 
   @override
   String get yourSilentCompanionListen =>
-      '당신의 조용한 동반자. 중국어를 들으면 즉시 영어 번역을 들을 수 있습니다.';
+      'ë‹¹ì‹ ì˜ ì¡°ìš©í•œ ë™ë°˜ìž. ì¤‘êµ­ì–´ë¥¼ ë“¤ìœ¼ë©´ ì¦‰ì‹œ ì˜ì–´ ë²ˆì—­ì„ ë“¤ì„ ìˆ˜ ìžˆìŠµë‹ˆë‹¤.';
 
   @override
-  String get startListening => '듣기 시작';
+  String get startListening => 'ë“£ê¸° ì‹œìž‘';
 
   @override
-  String get skip => '건너뛰기';
+  String get skip => 'ê±´ë„ˆë›°ê¸°';
 
   @override
-  String get independentStars => '독립 별';
+  String get independentStars => 'ë…ë¦½ ë³„';
 
   @override
   String get notEveryCharacterHas =>
-      '모든 한자가 부수를 가지고 있는 것은 아닙니다. 일부는 독립적인 상형 문자이거나 단독으로 사용됩니다.';
+      'ëª¨ë“  í•œìžê°€ ë¶€ìˆ˜ë¥¼ ê°€ì§€ê³  ìžˆëŠ” ê²ƒì€ ì•„ë‹™ë‹ˆë‹¤. ì¼ë¶€ëŠ” ë…ë¦½ì ì¸ ìƒí˜• ë¬¸ìžì´ê±°ë‚˜ ë‹¨ë…ìœ¼ë¡œ ì‚¬ìš©ë©ë‹ˆë‹¤.';
 
   @override
-  String get onTheMapWe => '지도에서 이러한 독립적인 한자들을 별자리(✨)로 묶었습니다.';
+  String get onTheMapWe =>
+      'ì§€ë„ì—ì„œ ì´ëŸ¬í•œ ë…ë¦½ì ì¸ í•œìžë“¤ì„ ë³„ìžë¦¬(âœ¨)ë¡œ ë¬¶ì—ˆìŠµë‹ˆë‹¤.';
 
   @override
-  String get iUnderstand => '알겠습니다';
+  String get iUnderstand => 'ì•Œê² ìŠµë‹ˆë‹¤';
 
   @override
-  String get whatAreRadicals => '부수란 무엇인가요?';
+  String get whatAreRadicals => 'ë¶€ìˆ˜ëž€ ë¬´ì—‡ì¸ê°€ìš”?';
 
   @override
   String get hanziAreBuiltFrom =>
-      '한자는 부수라고 불리는 구성 요소로 만들어집니다.\\n\\n이들은 한자에게 핵심 의미나 주제를 부여합니다.';
+      'í•œìžëŠ” ë¶€ìˆ˜ë¼ê³  ë¶ˆë¦¬ëŠ” êµ¬ì„± ìš”ì†Œë¡œ ë§Œë“¤ì–´ì§‘ë‹ˆë‹¤.\\n\\nì´ë“¤ì€ í•œìžì—ê²Œ í•µì‹¬ ì˜ë¯¸ë‚˜ ì£¼ì œë¥¼ ë¶€ì—¬í•©ë‹ˆë‹¤.';
 
   @override
-  String get continueText => '계속';
+  String get continueText => 'ê³„ì†';
 
   @override
   String get hanziAreNotJust =>
-      '한자는 단순한 글자가 아닙니다. 시간에 갇힌 그림입니다.\\n\\n마스터하려면 그 흐름을 따라가는 법을 배워야 합니다.';
+      'í•œìžëŠ” ë‹¨ìˆœí•œ ê¸€ìžê°€ ì•„ë‹™ë‹ˆë‹¤. ì‹œê°„ì— ê°‡ížŒ ê·¸ë¦¼ìž…ë‹ˆë‹¤.\\n\\në§ˆìŠ¤í„°í•˜ë ¤ë©´ ê·¸ íë¦„ì„ ë”°ë¼ê°€ëŠ” ë²•ì„ ë°°ì›Œì•¼ í•©ë‹ˆë‹¤.';
 
   @override
-  String get iAmReady => '준비되었습니다';
+  String get iAmReady => 'ì¤€ë¹„ë˜ì—ˆìŠµë‹ˆë‹¤';
 
   @override
-  String get youAreAScholar => '당신은 학자입니다';
+  String get youAreAScholar => 'ë‹¹ì‹ ì€ í•™ìžìž…ë‹ˆë‹¤';
 
   @override
   String get theGalaxyMapAwaitsnmaster =>
-      '갤럭시 맵이 기다립니다.\\n태양(부수)을 마스터하여 행성(한자)을 해제하세요.';
+      'ê°¤ëŸ­ì‹œ ë§µì´ ê¸°ë‹¤ë¦½ë‹ˆë‹¤.\\níƒœì–‘(ë¶€ìˆ˜)ì„ ë§ˆìŠ¤í„°í•˜ì—¬ í–‰ì„±(í•œìž)ì„ í•´ì œí•˜ì„¸ìš”.';
 
   @override
-  String get enterTheScroll => '두루마리 들어가기';
+  String get enterTheScroll => 'ë‘ë£¨ë§ˆë¦¬ ë“¤ì–´ê°€ê¸°';
 
   @override
-  String get openingTheOriginScroll => '원천의 두루마리 열기...';
+  String get openingTheOriginScroll => 'ì›ì²œì˜ ë‘ë£¨ë§ˆë¦¬ ì—´ê¸°...';
 
   @override
   String get text_1782026184670 => '+';
 
   @override
-  String get theScholarsEdition => '학자 에디션';
+  String get theScholarsEdition => 'í•™ìž ì—ë””ì…˜';
 
   @override
-  String get weArePreparingThe => '학자 에디션 출시를 준비 중입니다.';
+  String get weArePreparingThe =>
+      'í•™ìž ì—ë””ì…˜ ì¶œì‹œë¥¼ ì¤€ë¹„ ì¤‘ìž…ë‹ˆë‹¤.';
 
   @override
-  String get devBypassUnlockNow => '개발자 우회: 지금 해제';
+  String get devBypassUnlockNow => 'ê°œë°œìž ìš°íšŒ: ì§€ê¸ˆ í•´ì œ';
 
   @override
-  String get restorePurchases => '구매 복원';
+  String get restorePurchases => 'êµ¬ë§¤ ë³µì›';
 
   @override
-  String get welcomeScholarTheScroll => '환영합니다, 학자님. 두루마리가 완전히 열렸습니다.';
+  String get welcomeScholarTheScroll =>
+      'í™˜ì˜í•©ë‹ˆë‹¤, í•™ìžë‹˜. ë‘ë£¨ë§ˆë¦¬ê°€ ì™„ì „ížˆ ì—´ë ¸ìŠµë‹ˆë‹¤.';
 
   @override
-  String get purchasesRestoredSuccessfully => '구매가 성공적으로 복원되었습니다.';
+  String get purchasesRestoredSuccessfully =>
+      'êµ¬ë§¤ê°€ ì„±ê³µì ìœ¼ë¡œ ë³µì›ë˜ì—ˆìŠµë‹ˆë‹¤.';
 
   @override
-  String get noPreviousPurchasesFound => '이 계정에서 이전 구매를 찾을 수 없습니다.';
+  String get noPreviousPurchasesFound =>
+      'ì´ ê³„ì •ì—ì„œ ì´ì „ êµ¬ë§¤ë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.';
 
   @override
-  String get unlockTheFullPotential => '여정의 잠재력을 최대한 발휘하세요. 한 번 구매로 영원히 소유하세요.';
+  String get unlockTheFullPotential =>
+      'ì—¬ì •ì˜ ìž ìž¬ë ¥ì„ ìµœëŒ€í•œ ë°œíœ˜í•˜ì„¸ìš”. í•œ ë²ˆ êµ¬ë§¤ë¡œ ì˜ì›ížˆ ì†Œìœ í•˜ì„¸ìš”.';
 
   @override
-  String get universalScanner => '범용 스캐너';
+  String get universalScanner => 'ë²”ìš© ìŠ¤ìºë„ˆ';
 
   @override
-  String get noChineseCharactersFound => '이미지에서 중국어 한자를 찾을 수 없습니다.';
+  String get noChineseCharactersFound =>
+      'ì´ë¯¸ì§€ì—ì„œ ì¤‘êµ­ì–´ í•œìžë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.';
 
   @override
-  String get addedNewCharactersTo => '새로운 한자를 라이브러리에 추가했습니다!';
+  String get addedNewCharactersTo =>
+      'ìƒˆë¡œìš´ í•œìžë¥¼ ë¼ì´ë¸ŒëŸ¬ë¦¬ì— ì¶”ê°€í–ˆìŠµë‹ˆë‹¤!';
 
   @override
-  String get extractingTextAndObjects => '텍스트 및 객체 추출 중...';
+  String get extractingTextAndObjects => 'í…ìŠ¤íŠ¸ ë° ê°ì²´ ì¶”ì¶œ ì¤‘...';
 
   @override
-  String get scanATextbookSign => '교과서, 표지판 또는 물체를 스캔하여 중국어 한자를 추출하세요.';
+  String get scanATextbookSign =>
+      'êµê³¼ì„œ, í‘œì§€íŒ ë˜ëŠ” ë¬¼ì²´ë¥¼ ìŠ¤ìº”í•˜ì—¬ ì¤‘êµ­ì–´ í•œìžë¥¼ ì¶”ì¶œí•˜ì„¸ìš”.';
 
   @override
-  String get extractedText => '추출된 텍스트';
+  String get extractedText => 'ì¶”ì¶œëœ í…ìŠ¤íŠ¸';
 
   @override
-  String get useText => '텍스트 사용';
+  String get useText => 'í…ìŠ¤íŠ¸ ì‚¬ìš©';
 
   @override
-  String get noMatchingDictionaryEntries => '일치하는 사전 항목을 찾을 수 없습니다.';
+  String get noMatchingDictionaryEntries =>
+      'ì¼ì¹˜í•˜ëŠ” ì‚¬ì „ í•­ëª©ì„ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.';
 
   @override
-  String get quizComplete => '퀴즈 완료!';
+  String get quizComplete => 'í€´ì¦ˆ ì™„ë£Œ!';
 
   @override
-  String get returnToCourse => '코스로 돌아가기';
+  String get returnToCourse => 'ì½”ìŠ¤ë¡œ ëŒì•„ê°€ê¸°';
 
   @override
-  String get notEnoughCardsFor => '퀴즈를 풀기에 카드가 충분하지 않습니다! 최소 4장이 필요합니다.';
+  String get notEnoughCardsFor =>
+      'í€´ì¦ˆë¥¼ í’€ê¸°ì— ì¹´ë“œê°€ ì¶©ë¶„í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤! ìµœì†Œ 4ìž¥ì´ í•„ìš”í•©ë‹ˆë‹¤.';
 
   @override
-  String get creatorMode => '크리에이터 모드';
+  String get creatorMode => 'í¬ë¦¬ì—ì´í„° ëª¨ë“œ';
 
   @override
-  String get noStoriesFoundMatching => '검색 조건에 맞는 스토리를 찾을 수 없습니다.';
+  String get noStoriesFoundMatching =>
+      'ê²€ìƒ‰ ì¡°ê±´ì— ë§žëŠ” ìŠ¤í† ë¦¬ë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.';
 
   @override
-  String get discard => '버리기';
+  String get discard => 'ë²„ë¦¬ê¸°';
 
   @override
-  String get save => '저장';
+  String get save => 'ì €ìž¥';
 
   @override
-  String get generatingStoryViaDeepseek => 'DeepSeek를 통해 스토리 생성 중...';
+  String get generatingStoryViaDeepseek =>
+      'DeepSeekë¥¼ í†µí•´ ìŠ¤í† ë¦¬ ìƒì„± ì¤‘...';
 
   @override
-  String get storySavedToLibrary => '스토리가 라이브러리에 저장되었습니다!';
+  String get storySavedToLibrary =>
+      'ìŠ¤í† ë¦¬ê°€ ë¼ì´ë¸ŒëŸ¬ë¦¬ì— ì €ìž¥ë˜ì—ˆìŠµë‹ˆë‹¤!';
 
   @override
-  String get storyNotFound => '스토리를 찾을 수 없습니다.';
+  String get storyNotFound => 'ìŠ¤í† ë¦¬ë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.';
 
   @override
-  String get targetHskLevel => '목표 HSK 레벨';
+  String get targetHskLevel => 'ëª©í‘œ HSK ë ˆë²¨';
 
   @override
-  String get wedLoveToHear => '당신의 의견을 듣고 싶습니다!';
+  String get wedLoveToHear => 'ë‹¹ì‹ ì˜ ì˜ê²¬ì„ ë“£ê³  ì‹¶ìŠµë‹ˆë‹¤!';
 
   @override
   String get whetherYouveFoundA =>
-      '버그를 발견했거나, 기능 요청이 있거나, 단순히 인사하고 싶어도, 당신의 피드백은 SinoSpark 개선에 도움이 됩니다.';
+      'ë²„ê·¸ë¥¼ ë°œê²¬í–ˆê±°ë‚˜, ê¸°ëŠ¥ ìš”ì²­ì´ ìžˆê±°ë‚˜, ë‹¨ìˆœížˆ ì¸ì‚¬í•˜ê³  ì‹¶ì–´ë„, ë‹¹ì‹ ì˜ í”¼ë“œë°±ì€ SinoSpark ê°œì„ ì— ë„ì›€ì´ ë©ë‹ˆë‹¤.';
 
   @override
-  String get pointYourCameraAt => '카메라를 사물에 대세요';
+  String get pointYourCameraAt => 'ì¹´ë©”ë¼ë¥¼ ì‚¬ë¬¼ì— ëŒ€ì„¸ìš”';
 
   @override
-  String get reviewAddToLibrary => '검토 및 라이브러리에 추가';
+  String get reviewAddToLibrary => 'ê²€í†  ë° ë¼ì´ë¸ŒëŸ¬ë¦¬ì— ì¶”ê°€';
 
   @override
   String hideStrokeGuideStreak(Object streak) {
-    return '획 가이드 숨기기: $streak 스트릭';
+    return 'íš ê°€ì´ë“œ ìˆ¨ê¸°ê¸°: $streak ìŠ¤íŠ¸ë¦­';
   }
 
   @override
   String inkPoints(Object points) {
-    return '잉크 포인트 $points점';
+    return 'ìž‰í¬ í¬ì¸íŠ¸ $pointsì ';
   }
 
   @override
   String speechRateMultiplier(Object rate) {
-    return '$rate배';
+    return '$rateë°°';
   }
 
   @override
   String animationSpeedMultiplier(Object rate) {
-    return '$rate배';
+    return '$rateë°°';
   }
 
   @override
-  String get supportAndFeedback => '지원 및 피드백';
+  String get supportAndFeedback => 'ì§€ì› ë° í”¼ë“œë°±';
 
   @override
-  String get reportBug => '버그 신고';
+  String get reportBug => 'ë²„ê·¸ ì‹ ê³ ';
 
   @override
-  String get suggestFeature => '기능 제안';
+  String get suggestFeature => 'ê¸°ëŠ¥ ì œì•ˆ';
 
   @override
-  String get generalFeedback => '일반 피드백';
+  String get generalFeedback => 'ì¼ë°˜ í”¼ë“œë°±';
 
   @override
-  String get pleaseDrawSomethingFirst => '먼저 그림을 그려주세요';
+  String get pleaseDrawSomethingFirst => 'ë¨¼ì € ê·¸ë¦¼ì„ ê·¸ë ¤ì£¼ì„¸ìš”';
 
   @override
-  String get drawThisCharacter => '이 한자를 작성하세요:';
+  String get drawThisCharacter => 'ì´ í•œìžë¥¼ ìž‘ì„±í•˜ì„¸ìš”:';
 
   @override
   String followGuideStroke(Object current, Object total) {
-    return '파란색 가이드에 따라 $total개의 획 중 $current번째 획을 그립니다';
+    return 'íŒŒëž€ìƒ‰ ê°€ì´ë“œì— ë”°ë¼ $totalê°œì˜ íš ì¤‘ $currentë²ˆì§¸ íšì„ ê·¸ë¦½ë‹ˆë‹¤';
   }
 
   @override
-  String get skipCurrentStroke => '현재 획 건너뛰기';
+  String get skipCurrentStroke => 'í˜„ìž¬ íš ê±´ë„ˆë›°ê¸°';
 
   @override
-  String get submitDrawing => '그림 제출';
+  String get submitDrawing => 'ê·¸ë¦¼ ì œì¶œ';
 
   @override
   String addedToDeck(Object deckName, Object hanzi) {
-    return '$deckName에 $hanzi 추가됨';
+    return '$deckNameì— $hanzi ì¶”ê°€ë¨';
   }
 
   @override
   String removedFromDeck(Object hanzi) {
-    return '덱에서 $hanzi 제거됨';
+    return 'ë±ì—ì„œ $hanzi ì œê±°ë¨';
   }
 
   @override
   String skippedNoStrokeData(Object hanzi) {
-    return '$hanzi 건너뜀 - 이 AI 한자에 대한 획 데이터 없음.';
+    return '$hanzi ê±´ë„ˆëœ€ - ì´ AI í•œìžì— ëŒ€í•œ íš ë°ì´í„° ì—†ìŒ.';
   }
 
   @override
-  String get startingSession => '세션 시작 중...';
+  String get startingSession => 'ì„¸ì…˜ ì‹œìž‘ ì¤‘...';
 
   @override
-  String get masterBuildingBlocks => '한자의 기본 구성 요소를 마스터하세요';
+  String get masterBuildingBlocks =>
+      'í•œìžì˜ ê¸°ë³¸ êµ¬ì„± ìš”ì†Œë¥¼ ë§ˆìŠ¤í„°í•˜ì„¸ìš”';
 
   @override
-  String get totalWords => '총 단어';
+  String get totalWords => 'ì´ ë‹¨ì–´';
 
   @override
-  String get newInk => '새 잉크';
+  String get newInk => 'ìƒˆ ìž‰í¬';
 
   @override
-  String get learningStatus => '학습 중';
+  String get learningStatus => 'í•™ìŠµ ì¤‘';
 
   @override
-  String get masteredStatus => '마스터함';
+  String get masteredStatus => 'ë§ˆìŠ¤í„°í•¨';
 
   @override
-  String get libraryMastery => '라이브러리 숙련도';
+  String get libraryMastery => 'ë¼ì´ë¸ŒëŸ¬ë¦¬ ìˆ™ë ¨ë„';
 
   @override
-  String get accuracyByMode => '모드별 정확도';
+  String get accuracyByMode => 'ëª¨ë“œë³„ ì •í™•ë„';
 
   @override
-  String get upcomingReviews => '예정된 복습 (향후 7일)';
+  String get upcomingReviews => 'ì˜ˆì •ëœ ë³µìŠµ (í–¥í›„ 7ì¼)';
 
   @override
-  String get culturalReadingRoom => '문화 서재 (Cultural Reading Room)';
+  String get culturalReadingRoom => 'ë¬¸í™” ì„œìž¬ (Cultural Reading Room)';
 
   @override
   String storyTitleHsk(Object level, Object title) {
@@ -1073,323 +1102,336 @@ class AppLocalizationsKo extends AppLocalizations {
   }
 
   @override
-  String get pleaseEnterTopic => '주제를 입력해주세요';
+  String get pleaseEnterTopic => 'ì£¼ì œë¥¼ ìž…ë ¥í•´ì£¼ì„¸ìš”';
 
   @override
   String createdDeckCards(Object count, Object name) {
-    return '$count장의 카드로 $name 생성 완료!';
+    return '$countìž¥ì˜ ì¹´ë“œë¡œ $name ìƒì„± ì™„ë£Œ!';
   }
 
   @override
   String gradeResult(Object grade) {
-    return '등급: $grade';
+    return 'ë“±ê¸‰: $grade';
   }
 
   @override
-  String get listeningMode => '듣기 모드';
+  String get listeningMode => 'ë“£ê¸° ëª¨ë“œ';
 
   @override
-  String get readingMode => '읽기 모드';
+  String get readingMode => 'ì½ê¸° ëª¨ë“œ';
 
   @override
-  String get recallMode => '회상 모드';
+  String get recallMode => 'íšŒìƒ ëª¨ë“œ';
 
   @override
-  String get speakingMode => '말하기 모드';
+  String get speakingMode => 'ë§í•˜ê¸° ëª¨ë“œ';
 
   @override
-  String get aiMemoryHook => 'AI 기억 후크';
+  String get aiMemoryHook => 'AI ê¸°ì–µ í›„í¬';
 
   @override
-  String get exampleSentences => '예시 문장';
+  String get exampleSentences => 'ì˜ˆì‹œ ë¬¸ìž¥';
 
   @override
-  String get ghostCharacters => '유령 문자';
+  String get ghostCharacters => 'ìœ ë ¹ ë¬¸ìž';
 
   @override
-  String get commonWords => '자주 쓰는 단어';
+  String get commonWords => 'ìžì£¼ ì“°ëŠ” ë‹¨ì–´';
 
   @override
-  String get personalNotes => '개인 노트';
+  String get personalNotes => 'ê°œì¸ ë…¸íŠ¸';
 
   @override
-  String get addPersonalNotes => '여기에 자신만의 기억술이나 노트를 추가하세요...';
+  String get addPersonalNotes =>
+      'ì—¬ê¸°ì— ìžì‹ ë§Œì˜ ê¸°ì–µìˆ ì´ë‚˜ ë…¸íŠ¸ë¥¼ ì¶”ê°€í•˜ì„¸ìš”...';
 
   @override
-  String get takePhoto => '사진 찍기';
+  String get takePhoto => 'ì‚¬ì§„ ì°ê¸°';
 
   @override
-  String get gallery => '갤러리';
+  String get gallery => 'ê°¤ëŸ¬ë¦¬';
 
   @override
-  String get arLens => 'AR 렌즈';
+  String get arLens => 'AR ë Œì¦ˆ';
 
   @override
   String addedCharToLibrary(Object char) {
-    return '라이브러리에 $char 추가됨';
+    return 'ë¼ì´ë¸ŒëŸ¬ë¦¬ì— $char ì¶”ê°€ë¨';
   }
 
   @override
-  String get scoreText => '점수';
+  String get scoreText => 'ì ìˆ˜';
 
   @override
-  String get searchDictionaryHint => '한자, 병음 또는 뜻으로 검색...';
+  String get searchDictionaryHint =>
+      'í•œìž, ë³‘ìŒ ë˜ëŠ” ëœ»ìœ¼ë¡œ ê²€ìƒ‰...';
 
   @override
-  String get searchDeckHint => '한자, 병음으로 검색...';
+  String get searchDeckHint => 'í•œìž, ë³‘ìŒìœ¼ë¡œ ê²€ìƒ‰...';
 
   @override
-  String get localRestaurant => '현지 식당';
+  String get localRestaurant => 'í˜„ì§€ ì‹ë‹¹';
 
   @override
-  String get taxiToAirport => '공항 택시';
+  String get taxiToAirport => 'ê³µí•­ íƒì‹œ';
 
   @override
-  String get silkMarketHaggling => '비단 시장 흥정';
+  String get silkMarketHaggling => 'ë¹„ë‹¨ ì‹œìž¥ í¥ì •';
 
   @override
-  String get medicalClinic => '의료 클리닉';
+  String get medicalClinic => 'ì˜ë£Œ í´ë¦¬ë‹‰';
 
   @override
-  String get meetingAFriend => '친구 만나기';
+  String get meetingAFriend => 'ì¹œêµ¬ ë§Œë‚˜ê¸°';
 
   @override
-  String get jobInterview => '취업 면접';
+  String get jobInterview => 'ì·¨ì—… ë©´ì ‘';
 
   @override
-  String get searchRadicalsHint => '부수 검색 (예: Water, 氵)';
+  String get searchRadicalsHint => 'ë¶€ìˆ˜ ê²€ìƒ‰ (ì˜ˆ: Water, æ°µ)';
 
   @override
-  String get definition => '정의';
+  String get definition => 'ì •ì˜';
 
   @override
-  String get undo => '실행 취소';
+  String get undo => 'ì‹¤í–‰ ì·¨ì†Œ';
 
   @override
-  String get hanziMaster => '한자 마스터';
+  String get hanziMaster => 'í•œìž ë§ˆìŠ¤í„°';
 
   @override
-  String get unlockForever => '영구 잠금 해제 - \$9.99';
+  String get unlockForever => 'ì˜êµ¬ ìž ê¸ˆ í•´ì œ - \$9.99';
 
   @override
-  String get clear => '지우기';
+  String get clear => 'ì§€ìš°ê¸°';
 
   @override
-  String get clearChat => '채팅 지우기';
+  String get clearChat => 'ì±„íŒ… ì§€ìš°ê¸°';
 
   @override
-  String get typeMessage => '메시지를 입력하세요...';
+  String get typeMessage => 'ë©”ì‹œì§€ë¥¼ ìž…ë ¥í•˜ì„¸ìš”...';
 
   @override
   String addedToLibrary(Object hanzi) {
-    return '보관함에 \'$hanzi\' 추가됨';
+    return 'ë³´ê´€í•¨ì— \'$hanzi\' ì¶”ê°€ë¨';
   }
 
   @override
-  String get generateNewStory => '새 이야기 생성';
+  String get generateNewStory => 'ìƒˆ ì´ì•¼ê¸° ìƒì„±';
 
   @override
   String failedToGenerateStory(Object error) {
-    return '이야기 생성 실패:\\n$error';
+    return 'ì´ì•¼ê¸° ìƒì„± ì‹¤íŒ¨:\\n$error';
   }
 
   @override
-  String get detail => '세부 정보';
+  String get detail => 'ì„¸ë¶€ ì •ë³´';
 
   @override
-  String get scanText => '텍스트 스캔';
+  String get scanText => 'í…ìŠ¤íŠ¸ ìŠ¤ìº”';
 
   @override
-  String get createMagic => '마법 만들기';
+  String get createMagic => 'ë§ˆë²• ë§Œë“¤ê¸°';
 
   @override
-  String get learning => '학습 중';
+  String get learning => 'í•™ìŠµ ì¤‘';
 
   @override
-  String get upcomingReviews7Days => '예정된 복습 (다음 7일)';
+  String get upcomingReviews7Days => 'ì˜ˆì •ëœ ë³µìŠµ (ë‹¤ìŒ 7ì¼)';
 
   @override
-  String get askFollowUpQuestion => '추가 질문하기...';
+  String get askFollowUpQuestion => 'ì¶”ê°€ ì§ˆë¬¸í•˜ê¸°...';
 
   @override
-  String get pasteScanToSimplify => '중국어 텍스트를 붙여넣거나 스캔하여 간체화';
+  String get pasteScanToSimplify =>
+      'ì¤‘êµ­ì–´ í…ìŠ¤íŠ¸ë¥¼ ë¶™ì—¬ë„£ê±°ë‚˜ ìŠ¤ìº”í•˜ì—¬ ê°„ì²´í™”';
 
   @override
-  String get searchStoriesHint => '제목 또는 태그로 스토리 검색 (예: 신화, 여행)';
+  String get searchStoriesHint =>
+      'ì œëª© ë˜ëŠ” íƒœê·¸ë¡œ ìŠ¤í† ë¦¬ ê²€ìƒ‰ (ì˜ˆ: ì‹ í™”, ì—¬í–‰)';
 
   @override
-  String get importAll => '모두 가져오기';
+  String get importAll => 'ëª¨ë‘ ê°€ì ¸ì˜¤ê¸°';
 
   @override
-  String get ascendAll => '모두 승격';
+  String get ascendAll => 'ëª¨ë‘ ìŠ¹ê²©';
 
   @override
-  String get startAscension => '수련 시작';
+  String get startAscension => 'ìˆ˜ë ¨ ì‹œìž‘';
 
   @override
-  String get scenarioLocalRestaurant => '현지 식당';
+  String get scenarioLocalRestaurant => 'í˜„ì§€ ì‹ë‹¹';
 
   @override
-  String get scenarioLocalRestaurantDesc => '음식을 주문하고 추천을 요청하는 연습을 해보세요.';
+  String get scenarioLocalRestaurantDesc =>
+      'ìŒì‹ì„ ì£¼ë¬¸í•˜ê³  ì¶”ì²œì„ ìš”ì²­í•˜ëŠ” ì—°ìŠµì„ í•´ë³´ì„¸ìš”.';
 
   @override
-  String get scenarioTaxiAirport => '공항 택시';
+  String get scenarioTaxiAirport => 'ê³µí•­ íƒì‹œ';
 
   @override
-  String get scenarioTaxiAirportDesc => '운전기사에게 목적지를 말하고 교통 상황에 대해 이야기하세요.';
+  String get scenarioTaxiAirportDesc =>
+      'ìš´ì „ê¸°ì‚¬ì—ê²Œ ëª©ì ì§€ë¥¼ ë§í•˜ê³  êµí†µ ìƒí™©ì— ëŒ€í•´ ì´ì•¼ê¸°í•˜ì„¸ìš”.';
 
   @override
-  String get scenarioSilkMarket => '비단 시장 흥정';
+  String get scenarioSilkMarket => 'ë¹„ë‹¨ ì‹œìž¥ í¥ì •';
 
   @override
-  String get scenarioSilkMarketDesc => '기념품을 더 좋은 가격에 사기 위해 흥정해 보세요.';
+  String get scenarioSilkMarketDesc =>
+      'ê¸°ë…í’ˆì„ ë” ì¢‹ì€ ê°€ê²©ì— ì‚¬ê¸° ìœ„í•´ í¥ì •í•´ ë³´ì„¸ìš”.';
 
   @override
-  String get scenarioMedicalClinic => '의료 클리닉';
+  String get scenarioMedicalClinic => 'ì˜ë£Œ í´ë¦¬ë‹‰';
 
   @override
-  String get scenarioMedicalClinicDesc => '전통 의사에게 증상을 설명하세요.';
+  String get scenarioMedicalClinicDesc =>
+      'ì „í†µ ì˜ì‚¬ì—ê²Œ ì¦ìƒì„ ì„¤ëª…í•˜ì„¸ìš”.';
 
   @override
-  String get scenarioMeetingFriend => '친구 만나기';
+  String get scenarioMeetingFriend => 'ì¹œêµ¬ ë§Œë‚˜ê¸°';
 
   @override
-  String get scenarioMeetingFriendDesc => '자신을 소개하고 스몰톡을 나누세요.';
+  String get scenarioMeetingFriendDesc =>
+      'ìžì‹ ì„ ì†Œê°œí•˜ê³  ìŠ¤ëª°í†¡ì„ ë‚˜ëˆ„ì„¸ìš”.';
 
   @override
-  String get scenarioJobInterview => '취업 면접';
+  String get scenarioJobInterview => 'ì·¨ì—… ë©´ì ‘';
 
   @override
-  String get scenarioJobInterviewDesc => '상하이의 기술 회사에서 역할에 지원하세요.';
+  String get scenarioJobInterviewDesc =>
+      'ìƒí•˜ì´ì˜ ê¸°ìˆ  íšŒì‚¬ì—ì„œ ì—­í• ì— ì§€ì›í•˜ì„¸ìš”.';
 
   @override
-  String get createCustomScenario => '사용자 지정 시나리오 만들기';
+  String get createCustomScenario => 'ì‚¬ìš©ìž ì§€ì • ì‹œë‚˜ë¦¬ì˜¤ ë§Œë“¤ê¸°';
 
   @override
-  String get customScenarioTitleHint => '제목 (예: 결혼 피로연)';
+  String get customScenarioTitleHint => 'ì œëª© (ì˜ˆ: ê²°í˜¼ í”¼ë¡œì—°)';
 
   @override
-  String get customScenarioDescHint => '설명 (컨텍스트)';
+  String get customScenarioDescHint => 'ì„¤ëª… (ì»¨í…ìŠ¤íŠ¸)';
 
   @override
-  String get customScenarioPersonaHint => 'AI 페르소나 (예: 호기심 많은 동료)';
+  String get customScenarioPersonaHint =>
+      'AI íŽ˜ë¥´ì†Œë‚˜ (ì˜ˆ: í˜¸ê¸°ì‹¬ ë§Žì€ ë™ë£Œ)';
 
   @override
-  String get customScenarioDifficulty => '난이도';
+  String get customScenarioDifficulty => 'ë‚œì´ë„';
 
   @override
-  String get createAction => '만들기';
+  String get createAction => 'ë§Œë“¤ê¸°';
 
   @override
-  String get cancelAction => '취소';
+  String get cancelAction => 'ì·¨ì†Œ';
 
   @override
-  String get mythsAndLegends => '신화와 전설';
+  String get mythsAndLegends => 'ì‹ í™”ì™€ ì „ì„¤';
 
   @override
-  String get historyAndCulture => '역사와 문화';
+  String get historyAndCulture => 'ì—­ì‚¬ì™€ ë¬¸í™”';
 
   @override
-  String get idiomsTitle => '관용구 (성어)';
+  String get idiomsTitle => 'ê´€ìš©êµ¬ (ì„±ì–´)';
 
   @override
-  String get theMonkeyKing => '손오공';
+  String get theMonkeyKing => 'ì†ì˜¤ê³µ';
 
   @override
-  String get theMonkeyKingDesc => '손오공 (서유기)';
+  String get theMonkeyKingDesc => 'ì†ì˜¤ê³µ (ì„œìœ ê¸°)';
 
   @override
-  String get huaMulan => '화목란';
+  String get huaMulan => 'í™”ëª©ëž€';
 
   @override
-  String get huaMulanDesc => '아버지를 대신하여 군대에 입대한 화목란';
+  String get huaMulanDesc =>
+      'ì•„ë²„ì§€ë¥¼ ëŒ€ì‹ í•˜ì—¬ êµ°ëŒ€ì— ìž…ëŒ€í•œ í™”ëª©ëž€';
 
   @override
-  String get confuciusTitle => '공자';
+  String get confuciusTitle => 'ê³µìž';
 
   @override
-  String get confuciusDesc => '공자의 삶과 가르침';
+  String get confuciusDesc => 'ê³µìžì˜ ì‚¶ê³¼ ê°€ë¥´ì¹¨';
 
   @override
-  String get theGreatWall => '만리장성';
+  String get theGreatWall => 'ë§Œë¦¬ìž¥ì„±';
 
   @override
-  String get theGreatWallDesc => '중국의 만리장성 건설';
+  String get theGreatWallDesc => 'ì¤‘êµ­ì˜ ë§Œë¦¬ìž¥ì„± ê±´ì„¤';
 
   @override
-  String get generateTopic => '주제 생성';
+  String get generateTopic => 'ì£¼ì œ ìƒì„±';
 
   @override
-  String get simplifyText => '텍스트 간소화';
+  String get simplifyText => 'í…ìŠ¤íŠ¸ ê°„ì†Œí™”';
 
   @override
-  String get topicHint => '주제 (예: 베이징의 외계인)';
+  String get topicHint => 'ì£¼ì œ (ì˜ˆ: ë² ì´ì§•ì˜ ì™¸ê³„ì¸)';
 
   @override
-  String get tagsHint => '태그 (쉼표로 구분, 선택 사항)';
+  String get tagsHint => 'íƒœê·¸ (ì‰¼í‘œë¡œ êµ¬ë¶„, ì„ íƒ ì‚¬í•­)';
 
   @override
-  String get speakWithMasterLin => '린 사부와 대화하기';
+  String get speakWithMasterLin => 'ë¦° ì‚¬ë¶€ì™€ ëŒ€í™”í•˜ê¸°';
 
   @override
-  String get masterLinGreeting => '잘 왔다, 학생. 먹물이 준비되었다. 오늘은 어떤 글자나 구절을 살펴볼까?';
+  String get masterLinGreeting =>
+      'ìž˜ ì™”ë‹¤, í•™ìƒ. ë¨¹ë¬¼ì´ ì¤€ë¹„ë˜ì—ˆë‹¤. ì˜¤ëŠ˜ì€ ì–´ë–¤ ê¸€ìžë‚˜ êµ¬ì ˆì„ ì‚´íŽ´ë³¼ê¹Œ?';
 
   @override
-  String get typeYourMessage => '메시지를 입력하세요...';
+  String get typeYourMessage => 'ë©”ì‹œì§€ë¥¼ ìž…ë ¥í•˜ì„¸ìš”...';
 
   @override
-  String get theMainLibrary => '메인 라이브러리';
+  String get theMainLibrary => 'ë©”ì¸ ë¼ì´ë¸ŒëŸ¬ë¦¬';
 
   @override
-  String get hsk1Foundation => 'HSK 1: 기초';
+  String get hsk1Foundation => 'HSK 1: ê¸°ì´ˆ';
 
   @override
-  String get hsk2Elementary => 'HSK 2: 초급';
+  String get hsk2Elementary => 'HSK 2: ì´ˆê¸‰';
 
   @override
-  String get hsk3Intermediate => 'HSK 3: 중급';
+  String get hsk3Intermediate => 'HSK 3: ì¤‘ê¸‰';
 
   @override
-  String get inDeckCheck => '덱에 있음 ✓';
+  String get inDeckCheck => 'ë±ì— ìžˆìŒ âœ“';
 
   @override
-  String get addToDeckPlus => '+ 덱에 추가';
+  String get addToDeckPlus => '+ ë±ì— ì¶”ê°€';
 
   @override
-  String get openCardArrow => '카드 열기 →';
+  String get openCardArrow => 'ì¹´ë“œ ì—´ê¸° â†’';
 
   @override
-  String get pronunciationPartial => '발음 부정확';
+  String get pronunciationPartial => 'ë°œìŒ ë¶€ì •í™•';
 
   @override
-  String get pronunciationWrong => '정확하지 않음';
+  String get pronunciationWrong => 'ì •í™•í•˜ì§€ ì•ŠìŒ';
 
   @override
-  String get toneExpected => '예상';
+  String get toneExpected => 'ì˜ˆìƒ';
 
   @override
-  String get toneYouSaid => '말한 내용';
+  String get toneYouSaid => 'ë§í•œ ë‚´ìš©';
 
   @override
-  String get gotIt => '알겠습니다!';
+  String get gotIt => 'ì•Œê² ìŠµë‹ˆë‹¤!';
 
   @override
   String foundNCharacters(int count) {
-    return '$count자 찾음';
+    return '$countìž ì°¾ìŒ';
   }
 
   @override
-  String get lookingUpCharacters => '문자 검색 중…';
+  String get lookingUpCharacters => 'ë¬¸ìž ê²€ìƒ‰ ì¤‘â€¦';
 
   @override
-  String get practiceAll => '모두 연습';
+  String get practiceAll => 'ëª¨ë‘ ì—°ìŠµ';
 
   @override
-  String get arLensObjects => '객체';
+  String get arLensObjects => 'ê°ì²´';
 
   @override
-  String get arLensText => '텍스트';
+  String get arLensText => 'í…ìŠ¤íŠ¸';
 
   @override
-  String get arLensDetectedText => '감지된 텍스트';
+  String get arLensDetectedText => 'ê°ì§€ëœ í…ìŠ¤íŠ¸';
 }

@@ -318,9 +318,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get haptics => 'Haptics';
 
   @override
-  String get hapticsDesc => 'Haptics Desc';
-
-  @override
   String get displayAndContent => 'Display And Content';
 
   @override

@@ -10,6 +10,7 @@ import 'package:hanzi_master/features/flashcards/presentation/screens/review_scr
 import 'package:hanzi_master/features/flashcards/presentation/providers/settings_controller.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/study_mode.dart';
+import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 
 class CourseSelectionScreen extends ConsumerStatefulWidget {
   const CourseSelectionScreen({super.key});
@@ -84,7 +85,7 @@ class _CourseSelectionScreenState extends ConsumerState<CourseSelectionScreen> {
                     if (engine.hasCachedCurriculum(deck.id) || deck.id == 'default') {
                       Navigator.push(
                         context, 
-                        MaterialPageRoute(builder: (context) => CourseScreen(deckId: deck.id, deckName: deck.localizedName(context))),
+                        SwipeBackPageRoute(builder: (context) => CourseScreen(deckId: deck.id, deckName: deck.localizedName(context))),
                       );
                     } else {
                       if (isGenerating) return;

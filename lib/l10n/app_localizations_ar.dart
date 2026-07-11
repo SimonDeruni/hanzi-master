@@ -9,223 +9,227 @@ class AppLocalizationsAr extends AppLocalizations {
   AppLocalizationsAr([String locale = 'ar']) : super(locale);
 
   @override
-  String get globalMastery => 'الإتقان الشامل';
+  String get globalMastery => 'Ø§Ù„Ø¥ØªÙ‚Ø§Ù† Ø§Ù„Ø´Ø§Ù…Ù„';
 
   @override
-  String get masteredCards => 'متقن';
+  String get masteredCards => 'Ù…ØªÙ‚Ù†';
 
   @override
-  String get hsk1Candidate => 'مرشح HSK 1';
+  String get hsk1Candidate => 'Ù…Ø±Ø´Ø­ HSK 1';
 
   @override
-  String get hsk2Candidate => 'مرشح HSK 2';
+  String get hsk2Candidate => 'Ù…Ø±Ø´Ø­ HSK 2';
 
   @override
-  String get hsk3Candidate => 'مرشح HSK 3';
+  String get hsk3Candidate => 'Ù…Ø±Ø´Ø­ HSK 3';
 
   @override
-  String get hsk4Candidate => 'مرشح HSK 4';
+  String get hsk4Candidate => 'Ù…Ø±Ø´Ø­ HSK 4';
 
   @override
-  String get hsk5Candidate => 'مرشح HSK 5';
+  String get hsk5Candidate => 'Ù…Ø±Ø´Ø­ HSK 5';
 
   @override
-  String get hsk6Candidate => 'مرشح HSK 6';
+  String get hsk6Candidate => 'Ù…Ø±Ø´Ø­ HSK 6';
 
   @override
-  String get hsk6Master => 'سيد HSK 6';
+  String get hsk6Master => 'Ø³ÙŠØ¯ HSK 6';
 
   @override
-  String get currentRank => 'الرتبة الحالية';
+  String get currentRank => 'Ø§Ù„Ø±ØªØ¨Ø© Ø§Ù„Ø­Ø§Ù„ÙŠØ©';
 
   @override
-  String get next => 'التالي';
+  String get next => 'Ø§Ù„ØªØ§Ù„ÙŠ';
 
   @override
-  String get searchHanziOrPinyin => 'البحث...';
+  String get searchHanziOrPinyin => 'Ø§Ù„Ø¨Ø­Ø«...';
 
   @override
-  String get dailyReview => 'المراجعة اليومية';
+  String get dailyReview => 'Ø§Ù„Ù…Ø±Ø§Ø¬Ø¹Ø© Ø§Ù„ÙŠÙˆÙ…ÙŠØ©';
 
   @override
-  String get upcomingForecast => 'التوقعات القادمة';
+  String get upcomingForecast => 'Ø§Ù„ØªÙˆÙ‚Ø¹Ø§Øª Ø§Ù„Ù‚Ø§Ø¯Ù…Ø©';
 
   @override
-  String get laterToday => 'لاحقاً اليوم';
+  String get laterToday => 'Ù„Ø§Ø­Ù‚Ø§Ù‹ Ø§Ù„ÙŠÙˆÙ…';
 
   @override
-  String get tomorrow => 'غداً';
+  String get tomorrow => 'ØºØ¯Ø§Ù‹';
 
   @override
-  String get next7Days => 'الأيام السبعة القادمة';
+  String get next7Days => 'Ø§Ù„Ø£ÙŠØ§Ù… Ø§Ù„Ø³Ø¨Ø¹Ø© Ø§Ù„Ù‚Ø§Ø¯Ù…Ø©';
 
   @override
-  String get theScholarWay => 'طريق العالم';
+  String get theScholarWay => 'Ø·Ø±ÙŠÙ‚ Ø§Ù„Ø¹Ø§Ù„Ù…';
 
   @override
-  String get beginJourney => 'ابدأ';
+  String get beginJourney => 'Ø§Ø¨Ø¯Ø£';
 
   @override
-  String get settingsTitle => 'الإعدادات';
+  String get settingsTitle => 'Ø§Ù„Ø¥Ø¹Ø¯Ø§Ø¯Ø§Øª';
 
   @override
-  String get darkMode => 'الوضع الداكن';
+  String get darkMode => 'Ø§Ù„ÙˆØ¶Ø¹ Ø§Ù„Ø¯Ø§ÙƒÙ†';
 
   @override
-  String get darkModeDesc => 'مريح للعين';
+  String get darkModeDesc => 'Ù…Ø±ÙŠØ­ Ù„Ù„Ø¹ÙŠÙ†';
 
   @override
-  String get voiceSpeed => 'سرعة الصوت';
+  String get voiceSpeed => 'Ø³Ø±Ø¹Ø© Ø§Ù„ØµÙˆØª';
 
   @override
-  String get artAndIntellect => 'الفن والفكر';
+  String get artAndIntellect => 'Ø§Ù„ÙÙ† ÙˆØ§Ù„ÙÙƒØ±';
 
   @override
-  String get theDigitalScholar => 'العالم الرقمي';
+  String get theDigitalScholar => 'Ø§Ù„Ø¹Ø§Ù„Ù… Ø§Ù„Ø±Ù‚Ù…ÙŠ';
 
   @override
-  String get refineBrushVoice => 'حسّن فرشاتك وصوتك مع الذكاء الاصطناعي.';
+  String get refineBrushVoice =>
+      'Ø­Ø³Ù‘Ù† ÙØ±Ø´Ø§ØªÙƒ ÙˆØµÙˆØªÙƒ Ù…Ø¹ Ø§Ù„Ø°ÙƒØ§Ø¡ Ø§Ù„Ø§ØµØ·Ù†Ø§Ø¹ÙŠ.';
 
   @override
-  String get liveVoiceCall => 'مكالمة صوتية مباشرة';
+  String get liveVoiceCall => 'Ù…ÙƒØ§Ù„Ù…Ø© ØµÙˆØªÙŠØ© Ù…Ø¨Ø§Ø´Ø±Ø©';
 
   @override
-  String get immersiveRoleplay => 'لعب أدوار مع الذكاء الاصطناعي';
+  String get immersiveRoleplay =>
+      'Ù„Ø¹Ø¨ Ø£Ø¯ÙˆØ§Ø± Ù…Ø¹ Ø§Ù„Ø°ÙƒØ§Ø¡ Ø§Ù„Ø§ØµØ·Ù†Ø§Ø¹ÙŠ';
 
   @override
-  String get readingRoom => 'غرفة القراءة';
+  String get readingRoom => 'ØºØ±ÙØ© Ø§Ù„Ù‚Ø±Ø§Ø¡Ø©';
 
   @override
-  String get shadowingStudio => 'استوديو التظليل';
+  String get shadowingStudio => 'Ø§Ø³ØªÙˆØ¯ÙŠÙˆ Ø§Ù„ØªØ¸Ù„ÙŠÙ„';
 
   @override
-  String get errorPrefix => 'خطأ: ';
+  String get errorPrefix => 'Ø®Ø·Ø£: ';
 
   @override
-  String get initializingLibrary => 'جاري التهيئة...';
+  String get initializingLibrary => 'Ø¬Ø§Ø±ÙŠ Ø§Ù„ØªÙ‡ÙŠØ¦Ø©...';
 
   @override
-  String get unlockCharactersToQuiz => 'افتح 4 رموز للاختبار!';
+  String get unlockCharactersToQuiz => 'Ø§ÙØªØ­ 4 Ø±Ù…ÙˆØ² Ù„Ù„Ø§Ø®ØªØ¨Ø§Ø±!';
 
   @override
-  String get practiceQuiz => 'اختبار';
+  String get practiceQuiz => 'Ø§Ø®ØªØ¨Ø§Ø±';
 
   @override
-  String get curriculumPaths => 'مسارات المناهج';
+  String get curriculumPaths => 'Ù…Ø³Ø§Ø±Ø§Øª Ø§Ù„Ù…Ù†Ø§Ù‡Ø¬';
 
   @override
-  String get noDecksFound => 'لا توجد مجموعات.';
+  String get noDecksFound => 'Ù„Ø§ ØªÙˆØ¬Ø¯ Ù…Ø¬Ù…ÙˆØ¹Ø§Øª.';
 
   @override
-  String get addCardsFirst => 'أضف بطاقات أولاً!';
+  String get addCardsFirst => 'Ø£Ø¶Ù Ø¨Ø·Ø§Ù‚Ø§Øª Ø£ÙˆÙ„Ø§Ù‹!';
 
   @override
-  String get aiDraftingPath => 'الذكاء الاصطناعي يجهز مسارك...';
+  String get aiDraftingPath =>
+      'Ø§Ù„Ø°ÙƒØ§Ø¡ Ø§Ù„Ø§ØµØ·Ù†Ø§Ø¹ÙŠ ÙŠØ¬Ù‡Ø² Ù…Ø³Ø§Ø±Ùƒ...';
 
   @override
-  String get pathReady => 'مسارك جاهز!';
+  String get pathReady => 'Ù…Ø³Ø§Ø±Ùƒ Ø¬Ø§Ù‡Ø²!';
 
   @override
-  String get errorGeneratingPath => 'خطأ';
+  String get errorGeneratingPath => 'Ø®Ø·Ø£';
 
   @override
-  String get brushingCurriculum => 'إنشاء المسار...';
+  String get brushingCurriculum => 'Ø¥Ù†Ø´Ø§Ø¡ Ø§Ù„Ù…Ø³Ø§Ø±...';
 
   @override
-  String get warmUp => 'إحماء';
+  String get warmUp => 'Ø¥Ø­Ù…Ø§Ø¡';
 
   @override
-  String get lessonComplete => 'اكتمل الدرس! +10 نقاط';
+  String get lessonComplete => 'Ø§ÙƒØªÙ…Ù„ Ø§Ù„Ø¯Ø±Ø³! +10 Ù†Ù‚Ø§Ø·';
 
   @override
-  String get step1Origin => 'الخطوة 1: الأصل';
+  String get step1Origin => 'Ø§Ù„Ø®Ø·ÙˆØ© 1: Ø§Ù„Ø£ØµÙ„';
 
   @override
-  String get traceRadical => 'تتبع الجذر';
+  String get traceRadical => 'ØªØªØ¨Ø¹ Ø§Ù„Ø¬Ø°Ø±';
 
   @override
-  String get step2Forge => 'الخطوة 2: الصياغة';
+  String get step2Forge => 'Ø§Ù„Ø®Ø·ÙˆØ© 2: Ø§Ù„ØµÙŠØ§ØºØ©';
 
   @override
-  String get chooseEssence => 'اختر الجوهر';
+  String get chooseEssence => 'Ø§Ø®ØªØ± Ø§Ù„Ø¬ÙˆÙ‡Ø±';
 
   @override
-  String get wrongEssence => 'خطأ! حاول مرة أخرى.';
+  String get wrongEssence => 'Ø®Ø·Ø£! Ø­Ø§ÙˆÙ„ Ù…Ø±Ø© Ø£Ø®Ø±Ù‰.';
 
   @override
-  String get step3Hunt => 'الخطوة 3: الصيد';
+  String get step3Hunt => 'Ø§Ù„Ø®Ø·ÙˆØ© 3: Ø§Ù„ØµÙŠØ¯';
 
   @override
-  String get findCharacters => 'ابحث عن الرموز';
+  String get findCharacters => 'Ø§Ø¨Ø­Ø« Ø¹Ù† Ø§Ù„Ø±Ù…ÙˆØ²';
 
   @override
-  String get notThatOne => 'ليس هذا!';
+  String get notThatOne => 'Ù„ÙŠØ³ Ù‡Ø°Ø§!';
 
   @override
-  String get successfullyInstalled => 'تم التثبيت:';
+  String get successfullyInstalled => 'ØªÙ… Ø§Ù„ØªØ«Ø¨ÙŠØª:';
 
   @override
-  String get failedToDownload => 'فشل التنزيل.';
+  String get failedToDownload => 'ÙØ´Ù„ Ø§Ù„ØªÙ†Ø²ÙŠÙ„.';
 
   @override
-  String get rescindTitle => 'إلغاء؟';
+  String get rescindTitle => 'Ø¥Ù„ØºØ§Ø¡ØŸ';
 
   @override
-  String get removeCharactersWarning => 'سيتم إزالة هذه الرموز.';
+  String get removeCharactersWarning =>
+      'Ø³ÙŠØªÙ… Ø¥Ø²Ø§Ù„Ø© Ù‡Ø°Ù‡ Ø§Ù„Ø±Ù…ÙˆØ².';
 
   @override
-  String get cancel => 'إلغاء';
+  String get cancel => 'Ø¥Ù„ØºØ§Ø¡';
 
   @override
-  String get uninstall => 'إلغاء التثبيت';
+  String get uninstall => 'Ø¥Ù„ØºØ§Ø¡ Ø§Ù„ØªØ«Ø¨ÙŠØª';
 
   @override
-  String get removedLibrary => 'تمت الإزالة:';
+  String get removedLibrary => 'ØªÙ…Øª Ø§Ù„Ø¥Ø²Ø§Ù„Ø©:';
 
   @override
-  String get tomeLibrary => 'المكتبة';
+  String get tomeLibrary => 'Ø§Ù„Ù…ÙƒØªØ¨Ø©';
 
   @override
-  String get libraryError => 'خطأ في المكتبة';
+  String get libraryError => 'Ø®Ø·Ø£ ÙÙŠ Ø§Ù„Ù…ÙƒØªØ¨Ø©';
 
   @override
-  String get installTome => 'تثبيت';
+  String get installTome => 'ØªØ«Ø¨ÙŠØª';
 
   @override
-  String get unitIntro => 'مقدمة الوحدة';
+  String get unitIntro => 'Ù…Ù‚Ø¯Ù…Ø© Ø§Ù„ÙˆØ­Ø¯Ø©';
 
   @override
-  String get constellationCluster => 'مجموعة الأبراج';
+  String get constellationCluster => 'Ù…Ø¬Ù…ÙˆØ¹Ø© Ø§Ù„Ø£Ø¨Ø±Ø§Ø¬';
 
   @override
-  String get ok => 'حسنا';
+  String get ok => 'Ø­Ø³Ù†Ø§';
 
   @override
-  String get divingInto => 'الغوص في...';
+  String get divingInto => 'Ø§Ù„ØºÙˆØµ ÙÙŠ...';
 
   @override
-  String get keyRadicals => 'الجذور الرئيسية';
+  String get keyRadicals => 'Ø§Ù„Ø¬Ø°ÙˆØ± Ø§Ù„Ø±Ø¦ÙŠØ³ÙŠØ©';
 
   @override
-  String get noRadicalData => 'لا توجد بيانات.';
+  String get noRadicalData => 'Ù„Ø§ ØªÙˆØ¬Ø¯ Ø¨ÙŠØ§Ù†Ø§Øª.';
 
   @override
-  String get discovery => 'اكتشاف';
+  String get discovery => 'Ø§ÙƒØªØ´Ø§Ù';
 
   @override
-  String get startLearning => 'ابدأ التعلم';
+  String get startLearning => 'Ø§Ø¨Ø¯Ø£ Ø§Ù„ØªØ¹Ù„Ù…';
 
   @override
-  String get selectPersona => 'اختر الشخصية';
+  String get selectPersona => 'Ø§Ø®ØªØ± Ø§Ù„Ø´Ø®ØµÙŠØ©';
 
   @override
-  String get customPersona => 'شخصية مخصصة';
+  String get customPersona => 'Ø´Ø®ØµÙŠØ© Ù…Ø®ØµØµØ©';
 
   @override
-  String get geminiLiveCall => 'مكالمة مباشرة';
+  String get geminiLiveCall => 'Ù…ÙƒØ§Ù„Ù…Ø© Ù…Ø¨Ø§Ø´Ø±Ø©';
 
   @override
-  String get returnToMenu => 'عودة';
+  String get returnToMenu => 'Ø¹ÙˆØ¯Ø©';
 
   @override
   String get strokeAnalysis => 'Stroke Analysis';
@@ -270,7 +274,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get uninstallButton => 'UNINSTALL';
 
   @override
-  String get gradedAiStories => 'قصص متدرجة';
+  String get gradedAiStories => 'Ù‚ØµØµ Ù…ØªØ¯Ø±Ø¬Ø©';
 
   @override
   String get calligraphy => 'Calligraphy';
@@ -315,9 +319,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get haptics => 'Haptics';
 
   @override
-  String get hapticsDesc => 'Haptics Desc';
-
-  @override
   String get displayAndContent => 'Display And Content';
 
   @override
@@ -351,650 +352,680 @@ class AppLocalizationsAr extends AppLocalizations {
   String get appLanguage => 'App Language';
 
   @override
-  String get howDidYouDo => 'كيف كان أداؤك؟';
+  String get howDidYouDo => 'ÙƒÙŠÙ ÙƒØ§Ù† Ø£Ø¯Ø§Ø¤ÙƒØŸ';
 
   @override
-  String get missedItEntirely => 'أخطأت كليًا';
+  String get missedItEntirely => 'Ø£Ø®Ø·Ø£Øª ÙƒÙ„ÙŠÙ‹Ø§';
 
   @override
-  String get gotItButStruggled => 'فهمتها ولكن مع بعض الصعوبة';
+  String get gotItButStruggled =>
+      'ÙÙ‡Ù…ØªÙ‡Ø§ ÙˆÙ„ÙƒÙ† Ù…Ø¹ Ø¨Ø¹Ø¶ Ø§Ù„ØµØ¹ÙˆØ¨Ø©';
 
   @override
-  String get gotItClearly => 'فهمتها بوضوح';
+  String get gotItClearly => 'ÙÙ‡Ù…ØªÙ‡Ø§ Ø¨ÙˆØ¶ÙˆØ­';
 
   @override
-  String get perfectAndImmediate => 'مثالي وفوري';
+  String get perfectAndImmediate => 'Ù…Ø«Ø§Ù„ÙŠ ÙˆÙÙˆØ±ÙŠ';
 
   @override
-  String get again => 'مرة أخرى';
+  String get again => 'Ù…Ø±Ø© Ø£Ø®Ø±Ù‰';
 
   @override
-  String get hard => 'صعب';
+  String get hard => 'ØµØ¹Ø¨';
 
   @override
-  String get good => 'جيد';
+  String get good => 'Ø¬ÙŠØ¯';
 
   @override
-  String get easy => 'سهل';
+  String get easy => 'Ø³Ù‡Ù„';
 
   @override
-  String get tapToReveal => 'انقر للكشف';
+  String get tapToReveal => 'Ø§Ù†Ù‚Ø± Ù„Ù„ÙƒØ´Ù';
 
   @override
-  String get howWellDidYouRemember => 'ما مدى تذكرك؟';
+  String get howWellDidYouRemember => 'Ù…Ø§ Ù…Ø¯Ù‰ ØªØ°ÙƒØ±ÙƒØŸ';
 
   @override
-  String get completelyForgot => 'نسيت تمامًا';
+  String get completelyForgot => 'Ù†Ø³ÙŠØª ØªÙ…Ø§Ù…Ù‹Ø§';
 
   @override
-  String get gotItWithDifficulty => 'تذكرتها بصعوبة';
+  String get gotItWithDifficulty => 'ØªØ°ÙƒØ±ØªÙ‡Ø§ Ø¨ØµØ¹ÙˆØ¨Ø©';
 
   @override
-  String get recalledCorrectly => 'تذكرت بشكل صحيح';
+  String get recalledCorrectly => 'ØªØ°ÙƒØ±Øª Ø¨Ø´ÙƒÙ„ ØµØ­ÙŠØ­';
 
   @override
-  String get perfectRecall => 'تذكر مثالي';
+  String get perfectRecall => 'ØªØ°ÙƒØ± Ù…Ø«Ø§Ù„ÙŠ';
 
   @override
-  String get practiceWriting => 'تدرب على الكتابة';
+  String get practiceWriting => 'ØªØ¯Ø±Ø¨ Ø¹Ù„Ù‰ Ø§Ù„ÙƒØªØ§Ø¨Ø©';
 
   @override
-  String get hideScratchpad => 'إخفاء لوح الرسم';
+  String get hideScratchpad => 'Ø¥Ø®ÙØ§Ø¡ Ù„ÙˆØ­ Ø§Ù„Ø±Ø³Ù…';
 
   @override
-  String get whatCharacterMeans => 'ماذا يعني هذا الحرف:';
+  String get whatCharacterMeans => 'Ù…Ø§Ø°Ø§ ÙŠØ¹Ù†ÙŠ Ù‡Ø°Ø§ Ø§Ù„Ø­Ø±Ù:';
 
   @override
-  String get tapCardToReveal => 'انقر على البطاقة للكشف';
+  String get tapCardToReveal => 'Ø§Ù†Ù‚Ø± Ø¹Ù„Ù‰ Ø§Ù„Ø¨Ø·Ø§Ù‚Ø© Ù„Ù„ÙƒØ´Ù';
 
   @override
-  String get ratePronunciationConfidence => 'قيّم ثقتك في النطق';
+  String get ratePronunciationConfidence => 'Ù‚ÙŠÙ‘Ù… Ø«Ù‚ØªÙƒ ÙÙŠ Ø§Ù„Ù†Ø·Ù‚';
 
   @override
-  String get botchedIt => 'أخطأت بشدة';
+  String get botchedIt => 'Ø£Ø®Ø·Ø£Øª Ø¨Ø´Ø¯Ø©';
 
   @override
-  String get struggledWithTones => 'واجهت صعوبة في النغمات';
+  String get struggledWithTones => 'ÙˆØ§Ø¬Ù‡Øª ØµØ¹ÙˆØ¨Ø© ÙÙŠ Ø§Ù„Ù†ØºÙ…Ø§Øª';
 
   @override
-  String get acceptable => 'مقبول';
+  String get acceptable => 'Ù…Ù‚Ø¨ÙˆÙ„';
 
   @override
-  String get perfectlyNatural => 'طبيعي تمامًا';
+  String get perfectlyNatural => 'Ø·Ø¨ÙŠØ¹ÙŠ ØªÙ…Ø§Ù…Ù‹Ø§';
 
   @override
-  String get sessionComplete => 'الجلسة اكتملت!';
+  String get sessionComplete => 'Ø§Ù„Ø¬Ù„Ø³Ø© Ø§ÙƒØªÙ…Ù„Øª!';
 
   @override
-  String get accuracy => 'الدقة';
+  String get accuracy => 'Ø§Ù„Ø¯Ù‚Ø©';
 
   @override
-  String get reviewed => 'تمت المراجعة';
+  String get reviewed => 'ØªÙ…Øª Ø§Ù„Ù…Ø±Ø§Ø¬Ø¹Ø©';
 
   @override
-  String get correct => 'صحيح';
+  String get correct => 'ØµØ­ÙŠØ­';
 
   @override
-  String get backToLibrary => 'العودة إلى المكتبة';
+  String get backToLibrary => 'Ø§Ù„Ø¹ÙˆØ¯Ø© Ø¥Ù„Ù‰ Ø§Ù„Ù…ÙƒØªØ¨Ø©';
 
   @override
-  String get revealAnswer => 'كشف الإجابة';
+  String get revealAnswer => 'ÙƒØ´Ù Ø§Ù„Ø¥Ø¬Ø§Ø¨Ø©';
 
   @override
-  String get aiHubTitle => 'مركز الذكاء الاصطناعي';
+  String get aiHubTitle => 'Ù…Ø±ÙƒØ² Ø§Ù„Ø°ÙƒØ§Ø¡ Ø§Ù„Ø§ØµØ·Ù†Ø§Ø¹ÙŠ';
 
   @override
-  String get textChat => 'محادثة نصية';
+  String get textChat => 'Ù…Ø­Ø§Ø¯Ø«Ø© Ù†ØµÙŠØ©';
 
   @override
-  String get scholarlyPersonas => 'شخصيات علمية';
+  String get scholarlyPersonas => 'Ø´Ø®ØµÙŠØ§Øª Ø¹Ù„Ù…ÙŠØ©';
 
   @override
-  String get shadowing => 'التظليل';
+  String get shadowing => 'Ø§Ù„ØªØ¸Ù„ÙŠÙ„';
 
   @override
-  String get liveTranslation => 'ترجمة فورية';
+  String get liveTranslation => 'ØªØ±Ø¬Ù…Ø© ÙÙˆØ±ÙŠØ©';
 
   @override
-  String get scholarsLibrary => 'مكتبة الباحث';
+  String get scholarsLibrary => 'Ù…ÙƒØªØ¨Ø© Ø§Ù„Ø¨Ø§Ø­Ø«';
 
   @override
-  String get generate => 'توليد';
+  String get generate => 'ØªÙˆÙ„ÙŠØ¯';
 
   @override
   String get searchPinyinHanziEnglish =>
-      'ابحث عن البينيين أو الهانزي أو الإنجليزية...';
+      'Ø§Ø¨Ø­Ø« Ø¹Ù† Ø§Ù„Ø¨ÙŠÙ†ÙŠÙŠÙ† Ø£Ùˆ Ø§Ù„Ù‡Ø§Ù†Ø²ÙŠ Ø£Ùˆ Ø§Ù„Ø¥Ù†Ø¬Ù„ÙŠØ²ÙŠØ©...';
 
   @override
-  String get liveTranslate => 'ترجمة مباشرة';
+  String get liveTranslate => 'ØªØ±Ø¬Ù…Ø© Ù…Ø¨Ø§Ø´Ø±Ø©';
 
   @override
-  String get travelInterpreter => 'مترجم السفر';
+  String get travelInterpreter => 'Ù…ØªØ±Ø¬Ù… Ø§Ù„Ø³ÙØ±';
 
   @override
   String get realTimeSplitScreen =>
-      'محادثة بشاشة مقسمة في الوقت الفعلي مع متحدث أصلي. يزيل حواجز اللغة فوراً.';
+      'Ù…Ø­Ø§Ø¯Ø«Ø© Ø¨Ø´Ø§Ø´Ø© Ù…Ù‚Ø³Ù…Ø© ÙÙŠ Ø§Ù„ÙˆÙ‚Øª Ø§Ù„ÙØ¹Ù„ÙŠ Ù…Ø¹ Ù…ØªØ­Ø¯Ø« Ø£ØµÙ„ÙŠ. ÙŠØ²ÙŠÙ„ Ø­ÙˆØ§Ø¬Ø² Ø§Ù„Ù„ØºØ© ÙÙˆØ±Ø§Ù‹.';
 
   @override
-  String get whisperEarpiece => 'سماعة الأذن اللاسلكية';
+  String get whisperEarpiece => 'Ø³Ù…Ø§Ø¹Ø© Ø§Ù„Ø£Ø°Ù† Ø§Ù„Ù„Ø§Ø³Ù„ÙƒÙŠØ©';
 
   @override
   String get listenToChineseAudio =>
-      'استمع إلى الصوت الصيني واحصل على ترجمة فورية باللغة الإنجليزية مباشرة على شاشتك.';
+      'Ø§Ø³ØªÙ…Ø¹ Ø¥Ù„Ù‰ Ø§Ù„ØµÙˆØª Ø§Ù„ØµÙŠÙ†ÙŠ ÙˆØ§Ø­ØµÙ„ Ø¹Ù„Ù‰ ØªØ±Ø¬Ù…Ø© ÙÙˆØ±ÙŠØ© Ø¨Ø§Ù„Ù„ØºØ© Ø§Ù„Ø¥Ù†Ø¬Ù„ÙŠØ²ÙŠØ© Ù…Ø¨Ø§Ø´Ø±Ø© Ø¹Ù„Ù‰ Ø´Ø§Ø´ØªÙƒ.';
 
   @override
-  String get dashboardTitle => 'لوحة التحكم';
+  String get dashboardTitle => 'Ù„ÙˆØ­Ø© Ø§Ù„ØªØ­ÙƒÙ…';
 
   @override
-  String get yourMindIsClear => 'ذهنك صافٍ.';
+  String get yourMindIsClear => 'Ø°Ù‡Ù†Ùƒ ØµØ§ÙÙ.';
 
   @override
-  String get noReviewsDueToday => 'لا توجد مراجعات مستحقة اليوم.';
+  String get noReviewsDueToday =>
+      'Ù„Ø§ ØªÙˆØ¬Ø¯ Ù…Ø±Ø§Ø¬Ø¹Ø§Øª Ù…Ø³ØªØ­Ù‚Ø© Ø§Ù„ÙŠÙˆÙ….';
 
   @override
-  String get done => 'تم';
+  String get done => 'ØªÙ…';
 
   @override
-  String get hskLevel1 => 'مستوى HSK 1';
+  String get hskLevel1 => 'Ù…Ø³ØªÙˆÙ‰ HSK 1';
 
   @override
-  String get hskLevel2 => 'مستوى HSK 2';
+  String get hskLevel2 => 'Ù…Ø³ØªÙˆÙ‰ HSK 2';
 
   @override
-  String get hskLevel3 => 'مستوى HSK 3';
+  String get hskLevel3 => 'Ù…Ø³ØªÙˆÙ‰ HSK 3';
 
   @override
-  String get hskLevel4 => 'مستوى HSK 4';
+  String get hskLevel4 => 'Ù…Ø³ØªÙˆÙ‰ HSK 4';
 
   @override
-  String get hskLevel5 => 'مستوى HSK 5';
+  String get hskLevel5 => 'Ù…Ø³ØªÙˆÙ‰ HSK 5';
 
   @override
-  String get hskLevel6 => 'مستوى HSK 6';
+  String get hskLevel6 => 'Ù…Ø³ØªÙˆÙ‰ HSK 6';
 
   @override
-  String get generalVocabulary => 'مفردات عامة';
+  String get generalVocabulary => 'Ù…ÙØ±Ø¯Ø§Øª Ø¹Ø§Ù…Ø©';
 
   @override
-  String get cardsRequireAttention => 'بطاقات تتطلب اهتمامًا.';
+  String get cardsRequireAttention =>
+      'Ø¨Ø·Ø§Ù‚Ø§Øª ØªØªØ·Ù„Ø¨ Ø§Ù‡ØªÙ…Ø§Ù…Ù‹Ø§.';
 
   @override
-  String get begin => 'ابدأ';
+  String get begin => 'Ø§Ø¨Ø¯Ø£';
 
   @override
   String get poweredByAi =>
-      'مدعوم بالذكاء الاصطناعي المتقدم. ترجمة سلسة وفورية لأي سيناريو.';
+      'Ù…Ø¯Ø¹ÙˆÙ… Ø¨Ø§Ù„Ø°ÙƒØ§Ø¡ Ø§Ù„Ø§ØµØ·Ù†Ø§Ø¹ÙŠ Ø§Ù„Ù…ØªÙ‚Ø¯Ù…. ØªØ±Ø¬Ù…Ø© Ø³Ù„Ø³Ø© ÙˆÙÙˆØ±ÙŠØ© Ù„Ø£ÙŠ Ø³ÙŠÙ†Ø§Ø±ÙŠÙˆ.';
 
   @override
-  String get downloadingModel => 'يتم تنزيل النموذج...';
+  String get downloadingModel => 'ÙŠØªÙ… ØªÙ†Ø²ÙŠÙ„ Ø§Ù„Ù†Ù…ÙˆØ°Ø¬...';
 
   @override
-  String get soon => 'قريباً';
+  String get soon => 'Ù‚Ø±ÙŠØ¨Ø§Ù‹';
 
   @override
-  String get installed => 'مثبت';
+  String get installed => 'Ù…Ø«Ø¨Øª';
 
   @override
-  String get premium => 'مميز';
+  String get premium => 'Ù…Ù…ÙŠØ²';
 
   @override
-  String get coreModule => 'الوحدة الأساسية';
+  String get coreModule => 'Ø§Ù„ÙˆØ­Ø¯Ø© Ø§Ù„Ø£Ø³Ø§Ø³ÙŠØ©';
 
   @override
-  String get step6Context => 'الخطوة 6: السياق';
+  String get step6Context => 'Ø§Ù„Ø®Ø·ÙˆØ© 6: Ø§Ù„Ø³ÙŠØ§Ù‚';
 
   @override
-  String get tapBuildingBlocksTo => 'انقر على الكتل الأساسية لاستكشاف أصلها.';
+  String get tapBuildingBlocksTo =>
+      'Ø§Ù†Ù‚Ø± Ø¹Ù„Ù‰ Ø§Ù„ÙƒØªÙ„ Ø§Ù„Ø£Ø³Ø§Ø³ÙŠØ© Ù„Ø§Ø³ØªÙƒØ´Ø§Ù Ø£ØµÙ„Ù‡Ø§.';
 
   @override
-  String get initiateRadicalSequence => 'بدء تسلسل الجذر';
+  String get initiateRadicalSequence => 'Ø¨Ø¯Ø¡ ØªØ³Ù„Ø³Ù„ Ø§Ù„Ø¬Ø°Ø±';
 
   @override
-  String get holdToTalk => 'اضغط للتحدث';
+  String get holdToTalk => 'Ø§Ø¶ØºØ· Ù„Ù„ØªØ­Ø¯Ø«';
 
   @override
-  String get customScenario => 'سيناريو مخصص';
+  String get customScenario => 'Ø³ÙŠÙ†Ø§Ø±ÙŠÙˆ Ù…Ø®ØµØµ';
 
   @override
-  String get voiceCall => 'مكالمة صوتية';
+  String get voiceCall => 'Ù…ÙƒØ§Ù„Ù…Ø© ØµÙˆØªÙŠØ©';
 
   @override
-  String get pronunciation => 'النطق';
+  String get pronunciation => 'Ø§Ù„Ù†Ø·Ù‚';
 
   @override
   String get selectAScenarioTo =>
-      'اختر سيناريو لممارسة لغتك الماندارينية المنطوقة. سيقوم العالم بتقييم نبرات صوتك ووضوحها.';
+      'Ø§Ø®ØªØ± Ø³ÙŠÙ†Ø§Ø±ÙŠÙˆ Ù„Ù…Ù…Ø§Ø±Ø³Ø© Ù„ØºØªÙƒ Ø§Ù„Ù…Ø§Ù†Ø¯Ø§Ø±ÙŠÙ†ÙŠØ© Ø§Ù„Ù…Ù†Ø·ÙˆÙ‚Ø©. Ø³ÙŠÙ‚ÙˆÙ… Ø§Ù„Ø¹Ø§Ù„Ù… Ø¨ØªÙ‚ÙŠÙŠÙ… Ù†Ø¨Ø±Ø§Øª ØµÙˆØªÙƒ ÙˆÙˆØ¶ÙˆØ­Ù‡Ø§.';
 
   @override
-  String get create => 'إنشاء';
+  String get create => 'Ø¥Ù†Ø´Ø§Ø¡';
 
   @override
-  String get createYourScenario => 'أنشئ سيناريو خاصًا بك';
+  String get createYourScenario => 'Ø£Ù†Ø´Ø¦ Ø³ÙŠÙ†Ø§Ø±ÙŠÙˆ Ø®Ø§ØµÙ‹Ø§ Ø¨Ùƒ';
 
   @override
-  String get difficulty => 'الصعوبة';
+  String get difficulty => 'Ø§Ù„ØµØ¹ÙˆØ¨Ø©';
 
   @override
-  String get scholarsVerdict => 'حكم العالم';
+  String get scholarsVerdict => 'Ø­ÙƒÙ… Ø§Ù„Ø¹Ø§Ù„Ù…';
 
   @override
-  String get completeReview => 'مراجعة كاملة';
+  String get completeReview => 'Ù…Ø±Ø§Ø¬Ø¹Ø© ÙƒØ§Ù…Ù„Ø©';
 
   @override
-  String get conversationReview => 'مراجعة المحادثة';
+  String get conversationReview => 'Ù…Ø±Ø§Ø¬Ø¹Ø© Ø§Ù„Ù…Ø­Ø§Ø¯Ø«Ø©';
 
   @override
-  String get linguisticAnalysis => 'التحليل اللغوي';
+  String get linguisticAnalysis => 'Ø§Ù„ØªØ­Ù„ÙŠÙ„ Ø§Ù„Ù„ØºÙˆÙŠ';
 
   @override
-  String get examplesInHsk1 => 'أمثلة في HSK 1';
+  String get examplesInHsk1 => 'Ø£Ù…Ø«Ù„Ø© ÙÙŠ HSK 1';
 
   @override
-  String get characterReference => 'مرجع الحرف';
+  String get characterReference => 'Ù…Ø±Ø¬Ø¹ Ø§Ù„Ø­Ø±Ù';
 
   @override
-  String get askTutor => 'اسأل المعلم';
+  String get askTutor => 'Ø§Ø³Ø£Ù„ Ø§Ù„Ù…Ø¹Ù„Ù…';
 
   @override
-  String get addToStudyDeck => 'أضف إلى مجموعة الدراسة';
+  String get addToStudyDeck => 'Ø£Ø¶Ù Ø¥Ù„Ù‰ Ù…Ø¬Ù…ÙˆØ¹Ø© Ø§Ù„Ø¯Ø±Ø§Ø³Ø©';
 
   @override
-  String get startPractice => 'ابدأ التدريب';
+  String get startPractice => 'Ø§Ø¨Ø¯Ø£ Ø§Ù„ØªØ¯Ø±ÙŠØ¨';
 
   @override
-  String get noOtherHsk1 => 'لا توجد أحرف HSK 1 أخرى تستخدم هذا الجذر.';
+  String get noOtherHsk1 =>
+      'Ù„Ø§ ØªÙˆØ¬Ø¯ Ø£Ø­Ø±Ù HSK 1 Ø£Ø®Ø±Ù‰ ØªØ³ØªØ®Ø¯Ù… Ù‡Ø°Ø§ Ø§Ù„Ø¬Ø°Ø±.';
 
   @override
   String get couldNotLoadAi =>
-      'تعذر تحميل سياق الذكاء الاصطناعي. (حد المعدل أو خطأ في الشبكة)\nانقر على زر التحديث أدناه للمحاولة مرة أخرى لاحقًا.';
+      'ØªØ¹Ø°Ø± ØªØ­Ù…ÙŠÙ„ Ø³ÙŠØ§Ù‚ Ø§Ù„Ø°ÙƒØ§Ø¡ Ø§Ù„Ø§ØµØ·Ù†Ø§Ø¹ÙŠ. (Ø­Ø¯ Ø§Ù„Ù…Ø¹Ø¯Ù„ Ø£Ùˆ Ø®Ø·Ø£ ÙÙŠ Ø§Ù„Ø´Ø¨ÙƒØ©)\nØ§Ù†Ù‚Ø± Ø¹Ù„Ù‰ Ø²Ø± Ø§Ù„ØªØ­Ø¯ÙŠØ« Ø£Ø¯Ù†Ø§Ù‡ Ù„Ù„Ù…Ø­Ø§ÙˆÙ„Ø© Ù…Ø±Ø© Ø£Ø®Ø±Ù‰ Ù„Ø§Ø­Ù‚Ù‹Ø§.';
 
   @override
-  String get noAvailableCardsFound => 'لم يتم العثور على بطاقات متاحة.';
+  String get noAvailableCardsFound =>
+      'Ù„Ù… ÙŠØªÙ… Ø§Ù„Ø¹Ø«ÙˆØ± Ø¹Ù„Ù‰ Ø¨Ø·Ø§Ù‚Ø§Øª Ù…ØªØ§Ø­Ø©.';
 
   @override
-  String get addCards => 'إضافة بطاقات';
+  String get addCards => 'Ø¥Ø¶Ø§ÙØ© Ø¨Ø·Ø§Ù‚Ø§Øª';
 
   @override
-  String get removeCard => 'إزالة البطاقة';
+  String get removeCard => 'Ø¥Ø²Ø§Ù„Ø© Ø§Ù„Ø¨Ø·Ø§Ù‚Ø©';
 
   @override
-  String get remove => 'إزالة';
+  String get remove => 'Ø¥Ø²Ø§Ù„Ø©';
 
   @override
-  String get review => 'مراجعة';
+  String get review => 'Ù…Ø±Ø§Ø¬Ø¹Ø©';
 
   @override
-  String get story => 'قصة';
+  String get story => 'Ù‚ØµØ©';
 
   @override
-  String get thisDeckIsEmpty => 'هذه المجموعة فارغة.';
+  String get thisDeckIsEmpty => 'Ù‡Ø°Ù‡ Ø§Ù„Ù…Ø¬Ù…ÙˆØ¹Ø© ÙØ§Ø±ØºØ©.';
 
   @override
-  String get tapTheAddCards => 'انقر على زر إضافة بطاقات!';
+  String get tapTheAddCards => 'Ø§Ù†Ù‚Ø± Ø¹Ù„Ù‰ Ø²Ø± Ø¥Ø¶Ø§ÙØ© Ø¨Ø·Ø§Ù‚Ø§Øª!';
 
   @override
-  String get noCardsFound => 'لم يتم العثور على بطاقات.';
+  String get noCardsFound => 'Ù„Ù… ÙŠØªÙ… Ø§Ù„Ø¹Ø«ÙˆØ± Ø¹Ù„Ù‰ Ø¨Ø·Ø§Ù‚Ø§Øª.';
 
   @override
-  String get addCardsToSee => 'أضف بطاقات لرؤية الإحصائيات.';
+  String get addCardsToSee =>
+      'Ø£Ø¶Ù Ø¨Ø·Ø§Ù‚Ø§Øª Ù„Ø±Ø¤ÙŠØ© Ø§Ù„Ø¥Ø­ØµØ§Ø¦ÙŠØ§Øª.';
 
   @override
-  String get aiGenerated => 'تم إنشاؤه بواسطة الذكاء الاصطناعي';
+  String get aiGenerated =>
+      'ØªÙ… Ø¥Ù†Ø´Ø§Ø¤Ù‡ Ø¨ÙˆØ§Ø³Ø·Ø© Ø§Ù„Ø°ÙƒØ§Ø¡ Ø§Ù„Ø§ØµØ·Ù†Ø§Ø¹ÙŠ';
 
   @override
-  String get allCardsCaughtUp => 'تم استعراض جميع البطاقات! عمل رائع.';
+  String get allCardsCaughtUp =>
+      'ØªÙ… Ø§Ø³ØªØ¹Ø±Ø§Ø¶ Ø¬Ù…ÙŠØ¹ Ø§Ù„Ø¨Ø·Ø§Ù‚Ø§Øª! Ø¹Ù…Ù„ Ø±Ø§Ø¦Ø¹.';
 
   @override
-  String get latestDiscoveries => 'أحدث الاكتشافات';
+  String get latestDiscoveries => 'Ø£Ø­Ø¯Ø« Ø§Ù„Ø§ÙƒØªØ´Ø§ÙØ§Øª';
 
   @override
-  String get noCharactersInLexicon => 'لا توجد أحرف في المعجم حتى الآن.';
+  String get noCharactersInLexicon =>
+      'Ù„Ø§ ØªÙˆØ¬Ø¯ Ø£Ø­Ø±Ù ÙÙŠ Ø§Ù„Ù…Ø¹Ø¬Ù… Ø­ØªÙ‰ Ø§Ù„Ø¢Ù†.';
 
   @override
-  String get yourBookshelf => 'رف كتبك';
+  String get yourBookshelf => 'Ø±Ù ÙƒØªØ¨Ùƒ';
 
   @override
-  String get text_1782026184579 => '字';
+  String get text_1782026184579 => 'å­—';
 
   @override
-  String get searchYourDictionary => 'ابحث في قاموسك...';
+  String get searchYourDictionary => 'Ø§Ø¨Ø­Ø« ÙÙŠ Ù‚Ø§Ù…ÙˆØ³Ùƒ...';
 
   @override
-  String get saveCard => 'حفظ البطاقة';
+  String get saveCard => 'Ø­ÙØ¸ Ø§Ù„Ø¨Ø·Ø§Ù‚Ø©';
 
   @override
-  String get noCharactersFound => 'لم يتم العثور على أحرف.';
+  String get noCharactersFound => 'Ù„Ù… ÙŠØªÙ… Ø§Ù„Ø¹Ø«ÙˆØ± Ø¹Ù„Ù‰ Ø£Ø­Ø±Ù.';
 
   @override
-  String get radicalsIndex => 'فهرس الجذور';
+  String get radicalsIndex => 'ÙÙ‡Ø±Ø³ Ø§Ù„Ø¬Ø°ÙˆØ±';
 
   @override
   String get masteringRadicalsIsThe =>
-      'إتقان الجذور هو مفتاح فهم آلاف أحرف الهانزي. حدد جذرًا لرؤية جميع الأحرف التي تستخدمه.';
+      'Ø¥ØªÙ‚Ø§Ù† Ø§Ù„Ø¬Ø°ÙˆØ± Ù‡Ùˆ Ù…ÙØªØ§Ø­ ÙÙ‡Ù… Ø¢Ù„Ø§Ù Ø£Ø­Ø±Ù Ø§Ù„Ù‡Ø§Ù†Ø²ÙŠ. Ø­Ø¯Ø¯ Ø¬Ø°Ø±Ù‹Ø§ Ù„Ø±Ø¤ÙŠØ© Ø¬Ù…ÙŠØ¹ Ø§Ù„Ø£Ø­Ø±Ù Ø§Ù„ØªÙŠ ØªØ³ØªØ®Ø¯Ù…Ù‡.';
 
   @override
-  String get noRadicalsFound => 'لم يتم العثور على جذور.';
+  String get noRadicalsFound => 'Ù„Ù… ÙŠØªÙ… Ø§Ù„Ø¹Ø«ÙˆØ± Ø¹Ù„Ù‰ Ø¬Ø°ÙˆØ±.';
 
   @override
-  String get yourDrawing => 'رسمك';
+  String get yourDrawing => 'Ø±Ø³Ù…Ùƒ';
 
   @override
-  String get reference => 'مرجع';
+  String get reference => 'Ù…Ø±Ø¬Ø¹';
 
   @override
-  String get rateYourRecall => 'قيم استدعاءك';
+  String get rateYourRecall => 'Ù‚ÙŠÙ… Ø§Ø³ØªØ¯Ø¹Ø§Ø¡Ùƒ';
 
   @override
-  String get contactUs => 'اتصل بنا';
+  String get contactUs => 'Ø§ØªØµÙ„ Ø¨Ù†Ø§';
 
   @override
-  String get reportBugsOrRequest => 'الإبلاغ عن الأخطاء أو طلب الميزات';
+  String get reportBugsOrRequest =>
+      'Ø§Ù„Ø¥Ø¨Ù„Ø§Øº Ø¹Ù† Ø§Ù„Ø£Ø®Ø·Ø§Ø¡ Ø£Ùˆ Ø·Ù„Ø¨ Ø§Ù„Ù…ÙŠØ²Ø§Øª';
 
   @override
-  String get allDataHasBeen => 'تم مسح جميع البيانات.';
+  String get allDataHasBeen => 'ØªÙ… Ù…Ø³Ø­ Ø¬Ù…ÙŠØ¹ Ø§Ù„Ø¨ÙŠØ§Ù†Ø§Øª.';
 
   @override
   String get hanziMasterV100 => 'SinoSpark v1.0.0';
 
   @override
-  String get myProgress => 'تقدمي';
+  String get myProgress => 'ØªÙ‚Ø¯Ù…ÙŠ';
 
   @override
-  String get overview => 'نظرة عامة';
+  String get overview => 'Ù†Ø¸Ø±Ø© Ø¹Ø§Ù…Ø©';
 
   @override
-  String get aiStory => 'قصة بالذكاء الاصطناعي';
+  String get aiStory => 'Ù‚ØµØ© Ø¨Ø§Ù„Ø°ÙƒØ§Ø¡ Ø§Ù„Ø§ØµØ·Ù†Ø§Ø¹ÙŠ';
 
   @override
-  String get usingYourDecksVocabulary => 'باستخدام مفردات مجموعتك';
+  String get usingYourDecksVocabulary =>
+      'Ø¨Ø§Ø³ØªØ®Ø¯Ø§Ù… Ù…ÙØ±Ø¯Ø§Øª Ù…Ø¬Ù…ÙˆØ¹ØªÙƒ';
 
   @override
-  String get tryAgain => 'حاول مرة أخرى';
+  String get tryAgain => 'Ø­Ø§ÙˆÙ„ Ù…Ø±Ø© Ø£Ø®Ø±Ù‰';
 
   @override
-  String get translate => 'ترجمة';
+  String get translate => 'ØªØ±Ø¬Ù…Ø©';
 
   @override
-  String get pinyin => 'بينيين';
+  String get pinyin => 'Ø¨ÙŠÙ†ÙŠÙŠÙ†';
 
   @override
-  String get fullTranslation => 'ترجمة كاملة';
+  String get fullTranslation => 'ØªØ±Ø¬Ù…Ø© ÙƒØ§Ù…Ù„Ø©';
 
   @override
-  String get geminiFlashIsStructuring => 'تقوم Gemini Flash ببناء قصتك...';
+  String get geminiFlashIsStructuring =>
+      'ØªÙ‚ÙˆÙ… Gemini Flash Ø¨Ø¨Ù†Ø§Ø¡ Ù‚ØµØªÙƒ...';
 
   @override
-  String get aiDeckGenerator => 'مولد مجموعة الذكاء الاصطناعي';
+  String get aiDeckGenerator =>
+      'Ù…ÙˆÙ„Ø¯ Ù…Ø¬Ù…ÙˆØ¹Ø© Ø§Ù„Ø°ÙƒØ§Ø¡ Ø§Ù„Ø§ØµØ·Ù†Ø§Ø¹ÙŠ';
 
   @override
-  String get whatDoYouWant => 'ماذا تريد أن تتعلم؟';
+  String get whatDoYouWant => 'Ù…Ø§Ø°Ø§ ØªØ±ÙŠØ¯ Ø£Ù† ØªØªØ¹Ù„Ù…ØŸ';
 
   @override
-  String get targetDifficulty => 'الصعوبة المستهدفة';
+  String get targetDifficulty => 'Ø§Ù„ØµØ¹ÙˆØ¨Ø© Ø§Ù„Ù…Ø³ØªÙ‡Ø¯ÙØ©';
 
   @override
-  String get focusArea => 'منطقة التركيز';
+  String get focusArea => 'Ù…Ù†Ø·Ù‚Ø© Ø§Ù„ØªØ±ÙƒÙŠØ²';
 
   @override
-  String get specificContextOrTone => 'سياق أو نبرة محددة (اختياري)';
+  String get specificContextOrTone =>
+      'Ø³ÙŠØ§Ù‚ Ø£Ùˆ Ù†Ø¨Ø±Ø© Ù…Ø­Ø¯Ø¯Ø© (Ø§Ø®ØªÙŠØ§Ø±ÙŠ)';
 
   @override
-  String get numberOfCards => 'عدد البطاقات';
+  String get numberOfCards => 'Ø¹Ø¯Ø¯ Ø§Ù„Ø¨Ø·Ø§Ù‚Ø§Øª';
 
   @override
-  String get generateDeck => 'إنشاء مجموعة';
+  String get generateDeck => 'Ø¥Ù†Ø´Ø§Ø¡ Ù…Ø¬Ù…ÙˆØ¹Ø©';
 
   @override
-  String get aiGrammarExplanation => 'شرح قواعد اللغة بالذكاء الاصطناعي';
+  String get aiGrammarExplanation =>
+      'Ø´Ø±Ø­ Ù‚ÙˆØ§Ø¹Ø¯ Ø§Ù„Ù„ØºØ© Ø¨Ø§Ù„Ø°ÙƒØ§Ø¡ Ø§Ù„Ø§ØµØ·Ù†Ø§Ø¹ÙŠ';
 
   @override
-  String get scholarsDesk => 'مكتب العالم';
+  String get scholarsDesk => 'Ù…ÙƒØªØ¨ Ø§Ù„Ø¹Ø§Ù„Ù…';
 
   @override
-  String get chooseADeck => 'اختر مجموعة';
+  String get chooseADeck => 'Ø§Ø®ØªØ± Ù…Ø¬Ù…ÙˆØ¹Ø©';
 
   @override
-  String get whereWouldYouLike => 'أين تود حفظ هذا الحرف؟';
+  String get whereWouldYouLike => 'Ø£ÙŠÙ† ØªÙˆØ¯ Ø­ÙØ¸ Ù‡Ø°Ø§ Ø§Ù„Ø­Ø±ÙØŸ';
 
   @override
-  String get addToDefaultStudy => 'أضف إلى مجموعة الدراسة الافتراضية';
+  String get addToDefaultStudy =>
+      'Ø£Ø¶Ù Ø¥Ù„Ù‰ Ù…Ø¬Ù…ÙˆØ¹Ø© Ø§Ù„Ø¯Ø±Ø§Ø³Ø© Ø§Ù„Ø§ÙØªØ±Ø§Ø¶ÙŠØ©';
 
   @override
   String get ifOffItsOnly =>
-      'إذا كان غير مفعل، فسيتم حفظه في القاموس العام فقط';
+      'Ø¥Ø°Ø§ ÙƒØ§Ù† ØºÙŠØ± Ù…ÙØ¹Ù„ØŒ ÙØ³ÙŠØªÙ… Ø­ÙØ¸Ù‡ ÙÙŠ Ø§Ù„Ù‚Ø§Ù…ÙˆØ³ Ø§Ù„Ø¹Ø§Ù… ÙÙ‚Ø·';
 
   @override
-  String get saveToLibrary => 'حفظ في المكتبة';
+  String get saveToLibrary => 'Ø­ÙØ¸ ÙÙŠ Ø§Ù„Ù…ÙƒØªØ¨Ø©';
 
   @override
-  String get pleaseEnterValidChinese => 'الرجاء إدخال أحرف صينية صحيحة';
+  String get pleaseEnterValidChinese =>
+      'Ø§Ù„Ø±Ø¬Ø§Ø¡ Ø¥Ø¯Ø®Ø§Ù„ Ø£Ø­Ø±Ù ØµÙŠÙ†ÙŠØ© ØµØ­ÙŠØ­Ø©';
 
   @override
-  String get reviewAiCard => 'مراجعة بطاقة الذكاء الاصطناعي';
+  String get reviewAiCard =>
+      'Ù…Ø±Ø§Ø¬Ø¹Ø© Ø¨Ø·Ø§Ù‚Ø© Ø§Ù„Ø°ÙƒØ§Ø¡ Ø§Ù„Ø§ØµØ·Ù†Ø§Ø¹ÙŠ';
 
   @override
   String get pleaseDoublecheckTheAis =>
-      'يرجى التحقق مرة أخرى من إخراج الذكاء الاصطناعي أدناه. لا تتردد في تعديل البينيين أو التعريف قبل حفظه في مكتبتك الدائمة.';
+      'ÙŠØ±Ø¬Ù‰ Ø§Ù„ØªØ­Ù‚Ù‚ Ù…Ø±Ø© Ø£Ø®Ø±Ù‰ Ù…Ù† Ø¥Ø®Ø±Ø§Ø¬ Ø§Ù„Ø°ÙƒØ§Ø¡ Ø§Ù„Ø§ØµØ·Ù†Ø§Ø¹ÙŠ Ø£Ø¯Ù†Ø§Ù‡. Ù„Ø§ ØªØªØ±Ø¯Ø¯ ÙÙŠ ØªØ¹Ø¯ÙŠÙ„ Ø§Ù„Ø¨ÙŠÙ†ÙŠÙŠÙ† Ø£Ùˆ Ø§Ù„ØªØ¹Ø±ÙŠÙ Ù‚Ø¨Ù„ Ø­ÙØ¸Ù‡ ÙÙŠ Ù…ÙƒØªØ¨ØªÙƒ Ø§Ù„Ø¯Ø§Ø¦Ù…Ø©.';
 
   @override
-  String get alreadyInYourLibrary => 'موجود بالفعل في مكتبتك!';
+  String get alreadyInYourLibrary =>
+      'Ù…ÙˆØ¬ÙˆØ¯ Ø¨Ø§Ù„ÙØ¹Ù„ ÙÙŠ Ù…ÙƒØªØ¨ØªÙƒ!';
 
   @override
-  String get meaningInContext => 'المعنى في السياق';
+  String get meaningInContext => 'Ø§Ù„Ù…Ø¹Ù†Ù‰ ÙÙŠ Ø§Ù„Ø³ÙŠØ§Ù‚';
 
   @override
-  String get explainGrammar => 'اشرح القواعد';
+  String get explainGrammar => 'Ø§Ø´Ø±Ø­ Ø§Ù„Ù‚ÙˆØ§Ø¹Ø¯';
 
   @override
-  String get addToLibrary => 'أضف إلى المكتبة';
+  String get addToLibrary => 'Ø£Ø¶Ù Ø¥Ù„Ù‰ Ø§Ù„Ù…ÙƒØªØ¨Ø©';
 
   @override
   String get masterYourMandarinPronunciation =>
-      'أتقن نطقك للماندارينية من خلال محاكاة النطق الأصلي في الوقت الفعلي.';
+      'Ø£ØªÙ‚Ù† Ù†Ø·Ù‚Ùƒ Ù„Ù„Ù…Ø§Ù†Ø¯Ø§Ø±ÙŠÙ†ÙŠØ© Ù…Ù† Ø®Ù„Ø§Ù„ Ù…Ø­Ø§ÙƒØ§Ø© Ø§Ù„Ù†Ø·Ù‚ Ø§Ù„Ø£ØµÙ„ÙŠ ÙÙŠ Ø§Ù„ÙˆÙ‚Øª Ø§Ù„ÙØ¹Ù„ÙŠ.';
 
   @override
-  String get startSession => 'ابدأ الجلسة';
+  String get startSession => 'Ø§Ø¨Ø¯Ø£ Ø§Ù„Ø¬Ù„Ø³Ø©';
 
   @override
-  String get sessionHistory => 'سجل الجلسات';
+  String get sessionHistory => 'Ø³Ø¬Ù„ Ø§Ù„Ø¬Ù„Ø³Ø§Øª';
 
   @override
-  String get noSavedSessions => 'لا توجد جلسات محفوظة.';
+  String get noSavedSessions => 'Ù„Ø§ ØªÙˆØ¬Ø¯ Ø¬Ù„Ø³Ø§Øª Ù…Ø­ÙÙˆØ¸Ø©.';
 
   @override
-  String get aiBreakdown => 'تحليل الذكاء الاصطناعي';
+  String get aiBreakdown => 'ØªØ­Ù„ÙŠÙ„ Ø§Ù„Ø°ÙƒØ§Ø¡ Ø§Ù„Ø§ØµØ·Ù†Ø§Ø¹ÙŠ';
 
   @override
-  String get sessionDetails => 'تفاصيل الجلسة';
+  String get sessionDetails => 'ØªÙØ§ØµÙŠÙ„ Ø§Ù„Ø¬Ù„Ø³Ø©';
 
   @override
-  String get partner => 'شريك (中文)';
+  String get partner => 'Ø´Ø±ÙŠÙƒ (ä¸­æ–‡)';
 
   @override
-  String get youEnglish => 'أنت (إنجليزي)';
+  String get youEnglish => 'Ø£Ù†Øª (Ø¥Ù†Ø¬Ù„ÙŠØ²ÙŠ)';
 
   @override
-  String get noTranscriptToSave => 'لا يوجد نص لحفظه!';
+  String get noTranscriptToSave => 'Ù„Ø§ ÙŠÙˆØ¬Ø¯ Ù†Øµ Ù„Ø­ÙØ¸Ù‡!';
 
   @override
-  String get sessionSaved => 'تم حفظ الجلسة!';
+  String get sessionSaved => 'ØªÙ… Ø­ÙØ¸ Ø§Ù„Ø¬Ù„Ø³Ø©!';
 
   @override
   String get realtimeBidirectionalTranslationSpeak =>
-      'ترجمة ثنائية الاتجاه في الوقت الفعلي. تحدث الإنجليزية أو الماندارينية، وسيترجمها لك ولشريكك على الفور.';
+      'ØªØ±Ø¬Ù…Ø© Ø«Ù†Ø§Ø¦ÙŠØ© Ø§Ù„Ø§ØªØ¬Ø§Ù‡ ÙÙŠ Ø§Ù„ÙˆÙ‚Øª Ø§Ù„ÙØ¹Ù„ÙŠ. ØªØ­Ø¯Ø« Ø§Ù„Ø¥Ù†Ø¬Ù„ÙŠØ²ÙŠØ© Ø£Ùˆ Ø§Ù„Ù…Ø§Ù†Ø¯Ø§Ø±ÙŠÙ†ÙŠØ©ØŒ ÙˆØ³ÙŠØªØ±Ø¬Ù…Ù‡Ø§ Ù„Ùƒ ÙˆÙ„Ø´Ø±ÙŠÙƒÙƒ Ø¹Ù„Ù‰ Ø§Ù„ÙÙˆØ±.';
 
   @override
-  String get text_1782026184665 => 'تسجيل';
+  String get text_1782026184665 => 'ØªØ³Ø¬ÙŠÙ„';
 
   @override
-  String get recording => 'تسجيل';
+  String get recording => 'ØªØ³Ø¬ÙŠÙ„';
 
   @override
   String get yourSilentCompanionListen =>
-      'رفيقك الصامت. استمع إلى الماندارينية، واستمع إلى الترجمة الإنجليزية على الفور.';
+      'Ø±ÙÙŠÙ‚Ùƒ Ø§Ù„ØµØ§Ù…Øª. Ø§Ø³ØªÙ…Ø¹ Ø¥Ù„Ù‰ Ø§Ù„Ù…Ø§Ù†Ø¯Ø§Ø±ÙŠÙ†ÙŠØ©ØŒ ÙˆØ§Ø³ØªÙ…Ø¹ Ø¥Ù„Ù‰ Ø§Ù„ØªØ±Ø¬Ù…Ø© Ø§Ù„Ø¥Ù†Ø¬Ù„ÙŠØ²ÙŠØ© Ø¹Ù„Ù‰ Ø§Ù„ÙÙˆØ±.';
 
   @override
-  String get startListening => 'ابدا الاستماع';
+  String get startListening => 'Ø§Ø¨Ø¯Ø§ Ø§Ù„Ø§Ø³ØªÙ…Ø§Ø¹';
 
   @override
-  String get skip => 'تخطي';
+  String get skip => 'ØªØ®Ø·ÙŠ';
 
   @override
-  String get independentStars => 'نجوم مستقلة';
+  String get independentStars => 'Ù†Ø¬ÙˆÙ… Ù…Ø³ØªÙ‚Ù„Ø©';
 
   @override
   String get notEveryCharacterHas =>
-      'ليس لكل حرف جذر أصلي. بعضها صور رمزية فريدة أو قائمة بذاتها.';
+      'Ù„ÙŠØ³ Ù„ÙƒÙ„ Ø­Ø±Ù Ø¬Ø°Ø± Ø£ØµÙ„ÙŠ. Ø¨Ø¹Ø¶Ù‡Ø§ ØµÙˆØ± Ø±Ù…Ø²ÙŠØ© ÙØ±ÙŠØ¯Ø© Ø£Ùˆ Ù‚Ø§Ø¦Ù…Ø© Ø¨Ø°Ø§ØªÙ‡Ø§.';
 
   @override
   String get onTheMapWe =>
-      'على الخريطة، نقوم بتجميع هذه الأحرف المستقلة في مجموعات (✨).';
+      'Ø¹Ù„Ù‰ Ø§Ù„Ø®Ø±ÙŠØ·Ø©ØŒ Ù†Ù‚ÙˆÙ… Ø¨ØªØ¬Ù…ÙŠØ¹ Ù‡Ø°Ù‡ Ø§Ù„Ø£Ø­Ø±Ù Ø§Ù„Ù…Ø³ØªÙ‚Ù„Ø© ÙÙŠ Ù…Ø¬Ù…ÙˆØ¹Ø§Øª (âœ¨).';
 
   @override
-  String get iUnderstand => 'أنا أفهم';
+  String get iUnderstand => 'Ø£Ù†Ø§ Ø£ÙÙ‡Ù…';
 
   @override
-  String get whatAreRadicals => 'ما هي الجذور؟';
+  String get whatAreRadicals => 'Ù…Ø§ Ù‡ÙŠ Ø§Ù„Ø¬Ø°ÙˆØ±ØŸ';
 
   @override
   String get hanziAreBuiltFrom =>
-      'أحرف الهانزي مبنية من لبنات بناء تسمى الجذور.\n\nإنها تعطي الحرف معناه أو موضوعه الأساسي.';
+      'Ø£Ø­Ø±Ù Ø§Ù„Ù‡Ø§Ù†Ø²ÙŠ Ù…Ø¨Ù†ÙŠØ© Ù…Ù† Ù„Ø¨Ù†Ø§Øª Ø¨Ù†Ø§Ø¡ ØªØ³Ù…Ù‰ Ø§Ù„Ø¬Ø°ÙˆØ±.\n\nØ¥Ù†Ù‡Ø§ ØªØ¹Ø·ÙŠ Ø§Ù„Ø­Ø±Ù Ù…Ø¹Ù†Ø§Ù‡ Ø£Ùˆ Ù…ÙˆØ¶ÙˆØ¹Ù‡ Ø§Ù„Ø£Ø³Ø§Ø³ÙŠ.';
 
   @override
-  String get continueText => 'متابعة';
+  String get continueText => 'Ù…ØªØ§Ø¨Ø¹Ø©';
 
   @override
   String get hanziAreNotJust =>
-      'أحرف الهانزي ليست مجرد حروف. إنها صور مجمدة في الزمن.\n\nلإتقانها، يجب أن تتعلم تتبع تدفقها.';
+      'Ø£Ø­Ø±Ù Ø§Ù„Ù‡Ø§Ù†Ø²ÙŠ Ù„ÙŠØ³Øª Ù…Ø¬Ø±Ø¯ Ø­Ø±ÙˆÙ. Ø¥Ù†Ù‡Ø§ ØµÙˆØ± Ù…Ø¬Ù…Ø¯Ø© ÙÙŠ Ø§Ù„Ø²Ù…Ù†.\n\nÙ„Ø¥ØªÙ‚Ø§Ù†Ù‡Ø§ØŒ ÙŠØ¬Ø¨ Ø£Ù† ØªØªØ¹Ù„Ù… ØªØªØ¨Ø¹ ØªØ¯ÙÙ‚Ù‡Ø§.';
 
   @override
-  String get iAmReady => 'أنا جاهز';
+  String get iAmReady => 'Ø£Ù†Ø§ Ø¬Ø§Ù‡Ø²';
 
   @override
-  String get youAreAScholar => 'أنت عالم';
+  String get youAreAScholar => 'Ø£Ù†Øª Ø¹Ø§Ù„Ù…';
 
   @override
   String get theGalaxyMapAwaitsnmaster =>
-      'خريطة المجرة تنتظر.\nأتقن الشمس (الجذور) لفتح الكواكب (الأحرف).';
+      'Ø®Ø±ÙŠØ·Ø© Ø§Ù„Ù…Ø¬Ø±Ø© ØªÙ†ØªØ¸Ø±.\nØ£ØªÙ‚Ù† Ø§Ù„Ø´Ù…Ø³ (Ø§Ù„Ø¬Ø°ÙˆØ±) Ù„ÙØªØ­ Ø§Ù„ÙƒÙˆØ§ÙƒØ¨ (Ø§Ù„Ø£Ø­Ø±Ù).';
 
   @override
-  String get enterTheScroll => 'ادخل إلى اللفافة';
+  String get enterTheScroll => 'Ø§Ø¯Ø®Ù„ Ø¥Ù„Ù‰ Ø§Ù„Ù„ÙØ§ÙØ©';
 
   @override
-  String get openingTheOriginScroll => 'جاري فتح لفافة الأصل...';
+  String get openingTheOriginScroll =>
+      'Ø¬Ø§Ø±ÙŠ ÙØªØ­ Ù„ÙØ§ÙØ© Ø§Ù„Ø£ØµÙ„...';
 
   @override
   String get text_1782026184670 => '+';
 
   @override
-  String get theScholarsEdition => 'نسخة العالم';
+  String get theScholarsEdition => 'Ù†Ø³Ø®Ø© Ø§Ù„Ø¹Ø§Ù„Ù…';
 
   @override
-  String get weArePreparingThe => 'نحن نعد نسخة العالم للإطلاق.';
+  String get weArePreparingThe =>
+      'Ù†Ø­Ù† Ù†Ø¹Ø¯ Ù†Ø³Ø®Ø© Ø§Ù„Ø¹Ø§Ù„Ù… Ù„Ù„Ø¥Ø·Ù„Ø§Ù‚.';
 
   @override
-  String get devBypassUnlockNow => 'تجاوز المطور: افتح الآن';
+  String get devBypassUnlockNow => 'ØªØ¬Ø§ÙˆØ² Ø§Ù„Ù…Ø·ÙˆØ±: Ø§ÙØªØ­ Ø§Ù„Ø¢Ù†';
 
   @override
-  String get restorePurchases => 'استعادة المشتريات';
+  String get restorePurchases => 'Ø§Ø³ØªØ¹Ø§Ø¯Ø© Ø§Ù„Ù…Ø´ØªØ±ÙŠØ§Øª';
 
   @override
   String get welcomeScholarTheScroll =>
-      'مرحبًا أيها العالم، اللفافة مفتوحة بالكامل لك.';
+      'Ù…Ø±Ø­Ø¨Ù‹Ø§ Ø£ÙŠÙ‡Ø§ Ø§Ù„Ø¹Ø§Ù„Ù…ØŒ Ø§Ù„Ù„ÙØ§ÙØ© Ù…ÙØªÙˆØ­Ø© Ø¨Ø§Ù„ÙƒØ§Ù…Ù„ Ù„Ùƒ.';
 
   @override
-  String get purchasesRestoredSuccessfully => 'تم استعادة المشتريات بنجاح.';
+  String get purchasesRestoredSuccessfully =>
+      'ØªÙ… Ø§Ø³ØªØ¹Ø§Ø¯Ø© Ø§Ù„Ù…Ø´ØªØ±ÙŠØ§Øª Ø¨Ù†Ø¬Ø§Ø­.';
 
   @override
   String get noPreviousPurchasesFound =>
-      'لم يتم العثور على مشتريات سابقة لهذا الحساب.';
+      'Ù„Ù… ÙŠØªÙ… Ø§Ù„Ø¹Ø«ÙˆØ± Ø¹Ù„Ù‰ Ù…Ø´ØªØ±ÙŠØ§Øª Ø³Ø§Ø¨Ù‚Ø© Ù„Ù‡Ø°Ø§ Ø§Ù„Ø­Ø³Ø§Ø¨.';
 
   @override
   String get unlockTheFullPotential =>
-      'افتح الإمكانات الكاملة لرحلتك. شراء لمرة واحدة، ملكك إلى الأبد.';
+      'Ø§ÙØªØ­ Ø§Ù„Ø¥Ù…ÙƒØ§Ù†Ø§Øª Ø§Ù„ÙƒØ§Ù…Ù„Ø© Ù„Ø±Ø­Ù„ØªÙƒ. Ø´Ø±Ø§Ø¡ Ù„Ù…Ø±Ø© ÙˆØ§Ø­Ø¯Ø©ØŒ Ù…Ù„ÙƒÙƒ Ø¥Ù„Ù‰ Ø§Ù„Ø£Ø¨Ø¯.';
 
   @override
-  String get universalScanner => 'ماسح ضوئي عالمي';
+  String get universalScanner => 'Ù…Ø§Ø³Ø­ Ø¶ÙˆØ¦ÙŠ Ø¹Ø§Ù„Ù…ÙŠ';
 
   @override
   String get noChineseCharactersFound =>
-      'لم يتم العثور على أحرف صينية في الصورة.';
+      'Ù„Ù… ÙŠØªÙ… Ø§Ù„Ø¹Ø«ÙˆØ± Ø¹Ù„Ù‰ Ø£Ø­Ø±Ù ØµÙŠÙ†ÙŠØ© ÙÙŠ Ø§Ù„ØµÙˆØ±Ø©.';
 
   @override
-  String get addedNewCharactersTo => 'تمت إضافة أحرف جديدة إلى مكتبتك!';
+  String get addedNewCharactersTo =>
+      'ØªÙ…Øª Ø¥Ø¶Ø§ÙØ© Ø£Ø­Ø±Ù Ø¬Ø¯ÙŠØ¯Ø© Ø¥Ù„Ù‰ Ù…ÙƒØªØ¨ØªÙƒ!';
 
   @override
-  String get extractingTextAndObjects => 'جاري استخراج النص والكائنات...';
+  String get extractingTextAndObjects =>
+      'Ø¬Ø§Ø±ÙŠ Ø§Ø³ØªØ®Ø±Ø§Ø¬ Ø§Ù„Ù†Øµ ÙˆØ§Ù„ÙƒØ§Ø¦Ù†Ø§Øª...';
 
   @override
   String get scanATextbookSign =>
-      'امسح كتابًا دراسيًا أو لافتة أو كائنًا لاستخراج الأحرف الصينية.';
+      'Ø§Ù…Ø³Ø­ ÙƒØªØ§Ø¨Ù‹Ø§ Ø¯Ø±Ø§Ø³ÙŠÙ‹Ø§ Ø£Ùˆ Ù„Ø§ÙØªØ© Ø£Ùˆ ÙƒØ§Ø¦Ù†Ù‹Ø§ Ù„Ø§Ø³ØªØ®Ø±Ø§Ø¬ Ø§Ù„Ø£Ø­Ø±Ù Ø§Ù„ØµÙŠÙ†ÙŠØ©.';
 
   @override
-  String get extractedText => 'النص المستخرج';
+  String get extractedText => 'Ø§Ù„Ù†Øµ Ø§Ù„Ù…Ø³ØªØ®Ø±Ø¬';
 
   @override
-  String get useText => 'استخدام النص';
+  String get useText => 'Ø§Ø³ØªØ®Ø¯Ø§Ù… Ø§Ù„Ù†Øµ';
 
   @override
   String get noMatchingDictionaryEntries =>
-      'لم يتم العثور على إدخالات قاموس مطابقة.';
+      'Ù„Ù… ÙŠØªÙ… Ø§Ù„Ø¹Ø«ÙˆØ± Ø¹Ù„Ù‰ Ø¥Ø¯Ø®Ø§Ù„Ø§Øª Ù‚Ø§Ù…ÙˆØ³ Ù…Ø·Ø§Ø¨Ù‚Ø©.';
 
   @override
-  String get quizComplete => 'اكتمل الاختبار!';
+  String get quizComplete => 'Ø§ÙƒØªÙ…Ù„ Ø§Ù„Ø§Ø®ØªØ¨Ø§Ø±!';
 
   @override
-  String get returnToCourse => 'العودة إلى الدورة';
+  String get returnToCourse => 'Ø§Ù„Ø¹ÙˆØ¯Ø© Ø¥Ù„Ù‰ Ø§Ù„Ø¯ÙˆØ±Ø©';
 
   @override
   String get notEnoughCardsFor =>
-      'لا توجد بطاقات كافية للاختبار! تحتاج 4 على الأقل.';
+      'Ù„Ø§ ØªÙˆØ¬Ø¯ Ø¨Ø·Ø§Ù‚Ø§Øª ÙƒØ§ÙÙŠØ© Ù„Ù„Ø§Ø®ØªØ¨Ø§Ø±! ØªØ­ØªØ§Ø¬ 4 Ø¹Ù„Ù‰ Ø§Ù„Ø£Ù‚Ù„.';
 
   @override
-  String get creatorMode => 'وضع المنشئ';
+  String get creatorMode => 'ÙˆØ¶Ø¹ Ø§Ù„Ù…Ù†Ø´Ø¦';
 
   @override
-  String get noStoriesFoundMatching => 'لم يتم العثور على قصص مطابقة لبحثك.';
+  String get noStoriesFoundMatching =>
+      'Ù„Ù… ÙŠØªÙ… Ø§Ù„Ø¹Ø«ÙˆØ± Ø¹Ù„Ù‰ Ù‚ØµØµ Ù…Ø·Ø§Ø¨Ù‚Ø© Ù„Ø¨Ø­Ø«Ùƒ.';
 
   @override
-  String get discard => 'تجاهل';
+  String get discard => 'ØªØ¬Ø§Ù‡Ù„';
 
   @override
-  String get save => 'حفظ';
+  String get save => 'Ø­ÙØ¸';
 
   @override
-  String get generatingStoryViaDeepseek => 'جاري إنشاء القصة عبر DeepSeek...';
+  String get generatingStoryViaDeepseek =>
+      'Ø¬Ø§Ø±ÙŠ Ø¥Ù†Ø´Ø§Ø¡ Ø§Ù„Ù‚ØµØ© Ø¹Ø¨Ø± DeepSeek...';
 
   @override
-  String get storySavedToLibrary => 'تم حفظ القصة في المكتبة!';
+  String get storySavedToLibrary =>
+      'ØªÙ… Ø­ÙØ¸ Ø§Ù„Ù‚ØµØ© ÙÙŠ Ø§Ù„Ù…ÙƒØªØ¨Ø©!';
 
   @override
-  String get storyNotFound => 'لم يتم العثور على القصة.';
+  String get storyNotFound => 'Ù„Ù… ÙŠØªÙ… Ø§Ù„Ø¹Ø«ÙˆØ± Ø¹Ù„Ù‰ Ø§Ù„Ù‚ØµØ©.';
 
   @override
-  String get targetHskLevel => 'مستوى HSK المستهدف';
+  String get targetHskLevel => 'Ù…Ø³ØªÙˆÙ‰ HSK Ø§Ù„Ù…Ø³ØªÙ‡Ø¯Ù';
 
   @override
-  String get wedLoveToHear => 'نحن نحب أن نسمع منك!';
+  String get wedLoveToHear => 'Ù†Ø­Ù† Ù†Ø­Ø¨ Ø£Ù† Ù†Ø³Ù…Ø¹ Ù…Ù†Ùƒ!';
 
   @override
   String get whetherYouveFoundA =>
-      'سواء وجدت خطأً، أو لديك طلب ميزة، أو أردت فقط أن تقول مرحبًا، فإن ملاحظاتك تساعدنا على تحسين SinoSpark.';
+      'Ø³ÙˆØ§Ø¡ ÙˆØ¬Ø¯Øª Ø®Ø·Ø£Ù‹ØŒ Ø£Ùˆ Ù„Ø¯ÙŠÙƒ Ø·Ù„Ø¨ Ù…ÙŠØ²Ø©ØŒ Ø£Ùˆ Ø£Ø±Ø¯Øª ÙÙ‚Ø· Ø£Ù† ØªÙ‚ÙˆÙ„ Ù…Ø±Ø­Ø¨Ù‹Ø§ØŒ ÙØ¥Ù† Ù…Ù„Ø§Ø­Ø¸Ø§ØªÙƒ ØªØ³Ø§Ø¹Ø¯Ù†Ø§ Ø¹Ù„Ù‰ ØªØ­Ø³ÙŠÙ† SinoSpark.';
 
   @override
-  String get pointYourCameraAt => 'وجه الكاميرا نحو الأشياء';
+  String get pointYourCameraAt =>
+      'ÙˆØ¬Ù‡ Ø§Ù„ÙƒØ§Ù…ÙŠØ±Ø§ Ù†Ø­Ùˆ Ø§Ù„Ø£Ø´ÙŠØ§Ø¡';
 
   @override
-  String get reviewAddToLibrary => 'مراجعة وإضافة إلى المكتبة';
+  String get reviewAddToLibrary =>
+      'Ù…Ø±Ø§Ø¬Ø¹Ø© ÙˆØ¥Ø¶Ø§ÙØ© Ø¥Ù„Ù‰ Ø§Ù„Ù…ÙƒØªØ¨Ø©';
 
   @override
   String hideStrokeGuideStreak(Object streak) {
-    return 'إخفاء دليل خطوط الحرف عند: $streak';
+    return 'Ø¥Ø®ÙØ§Ø¡ Ø¯Ù„ÙŠÙ„ Ø®Ø·ÙˆØ· Ø§Ù„Ø­Ø±Ù Ø¹Ù†Ø¯: $streak';
   }
 
   @override
   String inkPoints(Object points) {
-    return 'نقاط الحبر: $points';
+    return 'Ù†Ù‚Ø§Ø· Ø§Ù„Ø­Ø¨Ø±: $points';
   }
 
   @override
@@ -1008,407 +1039,426 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
-  String get supportAndFeedback => 'الدعم والملاحظات';
+  String get supportAndFeedback => 'Ø§Ù„Ø¯Ø¹Ù… ÙˆØ§Ù„Ù…Ù„Ø§Ø­Ø¸Ø§Øª';
 
   @override
-  String get reportBug => 'الإبلاغ عن خطأ';
+  String get reportBug => 'Ø§Ù„Ø¥Ø¨Ù„Ø§Øº Ø¹Ù† Ø®Ø·Ø£';
 
   @override
-  String get suggestFeature => 'اقتراح ميزة';
+  String get suggestFeature => 'Ø§Ù‚ØªØ±Ø§Ø­ Ù…ÙŠØ²Ø©';
 
   @override
-  String get generalFeedback => 'ملاحظات عامة';
+  String get generalFeedback => 'Ù…Ù„Ø§Ø­Ø¸Ø§Øª Ø¹Ø§Ù…Ø©';
 
   @override
-  String get pleaseDrawSomethingFirst => 'الرجاء رسم شيء أولاً';
+  String get pleaseDrawSomethingFirst =>
+      'Ø§Ù„Ø±Ø¬Ø§Ø¡ Ø±Ø³Ù… Ø´ÙŠØ¡ Ø£ÙˆÙ„Ø§Ù‹';
 
   @override
-  String get drawThisCharacter => 'ارسم هذا الحرف:';
+  String get drawThisCharacter => 'Ø§Ø±Ø³Ù… Ù‡Ø°Ø§ Ø§Ù„Ø­Ø±Ù:';
 
   @override
   String followGuideStroke(Object current, Object total) {
-    return 'اتبع الدليل الأزرق لرسم المسار $current من $total';
+    return 'Ø§ØªØ¨Ø¹ Ø§Ù„Ø¯Ù„ÙŠÙ„ Ø§Ù„Ø£Ø²Ø±Ù‚ Ù„Ø±Ø³Ù… Ø§Ù„Ù…Ø³Ø§Ø± $current Ù…Ù† $total';
   }
 
   @override
-  String get skipCurrentStroke => 'تخطي المسار الحالي';
+  String get skipCurrentStroke => 'ØªØ®Ø·ÙŠ Ø§Ù„Ù…Ø³Ø§Ø± Ø§Ù„Ø­Ø§Ù„ÙŠ';
 
   @override
-  String get submitDrawing => 'إرسال الرسم';
+  String get submitDrawing => 'Ø¥Ø±Ø³Ø§Ù„ Ø§Ù„Ø±Ø³Ù…';
 
   @override
   String addedToDeck(Object deckName, Object hanzi) {
-    return 'تمت إضافة $hanzi إلى $deckName';
+    return 'ØªÙ…Øª Ø¥Ø¶Ø§ÙØ© $hanzi Ø¥Ù„Ù‰ $deckName';
   }
 
   @override
   String removedFromDeck(Object hanzi) {
-    return 'أزيلت $hanzi من المجموعة';
+    return 'Ø£Ø²ÙŠÙ„Øª $hanzi Ù…Ù† Ø§Ù„Ù…Ø¬Ù…ÙˆØ¹Ø©';
   }
 
   @override
   String skippedNoStrokeData(Object hanzi) {
-    return 'تم تخطي \"$hanzi\" - لا توجد بيانات مسار متاحة لهذا الحرف.';
+    return 'ØªÙ… ØªØ®Ø·ÙŠ \"$hanzi\" - Ù„Ø§ ØªÙˆØ¬Ø¯ Ø¨ÙŠØ§Ù†Ø§Øª Ù…Ø³Ø§Ø± Ù…ØªØ§Ø­Ø© Ù„Ù‡Ø°Ø§ Ø§Ù„Ø­Ø±Ù.';
   }
 
   @override
-  String get startingSession => 'بدء الجلسة...';
+  String get startingSession => 'Ø¨Ø¯Ø¡ Ø§Ù„Ø¬Ù„Ø³Ø©...';
 
   @override
-  String get masterBuildingBlocks => 'إتقان لبنات بناء الهانزي';
+  String get masterBuildingBlocks =>
+      'Ø¥ØªÙ‚Ø§Ù† Ù„Ø¨Ù†Ø§Øª Ø¨Ù†Ø§Ø¡ Ø§Ù„Ù‡Ø§Ù†Ø²ÙŠ';
 
   @override
-  String get totalWords => 'إجمالي الكلمات';
+  String get totalWords => 'Ø¥Ø¬Ù…Ø§Ù„ÙŠ Ø§Ù„ÙƒÙ„Ù…Ø§Øª';
 
   @override
-  String get newInk => 'حبر جديد';
+  String get newInk => 'Ø­Ø¨Ø± Ø¬Ø¯ÙŠØ¯';
 
   @override
-  String get learningStatus => 'يتعلم';
+  String get learningStatus => 'ÙŠØªØ¹Ù„Ù…';
 
   @override
-  String get masteredStatus => 'أتقن';
+  String get masteredStatus => 'Ø£ØªÙ‚Ù†';
 
   @override
-  String get libraryMastery => 'إتقان المكتبة';
+  String get libraryMastery => 'Ø¥ØªÙ‚Ø§Ù† Ø§Ù„Ù…ÙƒØªØ¨Ø©';
 
   @override
-  String get accuracyByMode => 'الدقة حسب الوضع';
+  String get accuracyByMode => 'Ø§Ù„Ø¯Ù‚Ø© Ø­Ø³Ø¨ Ø§Ù„ÙˆØ¶Ø¹';
 
   @override
-  String get upcomingReviews => 'المراجعات القادمة (خلال 7 أيام)';
+  String get upcomingReviews =>
+      'Ø§Ù„Ù…Ø±Ø§Ø¬Ø¹Ø§Øª Ø§Ù„Ù‚Ø§Ø¯Ù…Ø© (Ø®Ù„Ø§Ù„ 7 Ø£ÙŠØ§Ù…)';
 
   @override
-  String get culturalReadingRoom => 'غرفة المطالعة الثقافية (文化书房)';
+  String get culturalReadingRoom =>
+      'ØºØ±ÙØ© Ø§Ù„Ù…Ø·Ø§Ù„Ø¹Ø© Ø§Ù„Ø«Ù‚Ø§ÙÙŠØ© (æ–‡åŒ–ä¹¦æˆ¿)';
 
   @override
   String storyTitleHsk(Object level, Object title) {
-    return '$title (مستوى HSK $level)';
+    return '$title (Ù…Ø³ØªÙˆÙ‰ HSK $level)';
   }
 
   @override
-  String get pleaseEnterTopic => 'الرجاء إدخال موضوع';
+  String get pleaseEnterTopic => 'Ø§Ù„Ø±Ø¬Ø§Ø¡ Ø¥Ø¯Ø®Ø§Ù„ Ù…ÙˆØ¶ÙˆØ¹';
 
   @override
   String createdDeckCards(Object count, Object name) {
-    return 'تم إنشاء $name بـ $count بطاقة!';
+    return 'ØªÙ… Ø¥Ù†Ø´Ø§Ø¡ $name Ø¨Ù€ $count Ø¨Ø·Ø§Ù‚Ø©!';
   }
 
   @override
   String gradeResult(Object grade) {
-    return 'الدرجة: $grade';
+    return 'Ø§Ù„Ø¯Ø±Ø¬Ø©: $grade';
   }
 
   @override
-  String get listeningMode => 'وضع الاستماع';
+  String get listeningMode => 'ÙˆØ¶Ø¹ Ø§Ù„Ø§Ø³ØªÙ…Ø§Ø¹';
 
   @override
-  String get readingMode => 'وضع القراءة';
+  String get readingMode => 'ÙˆØ¶Ø¹ Ø§Ù„Ù‚Ø±Ø§Ø¡Ø©';
 
   @override
-  String get recallMode => 'وضع التذكر';
+  String get recallMode => 'ÙˆØ¶Ø¹ Ø§Ù„ØªØ°ÙƒØ±';
 
   @override
-  String get speakingMode => 'وضع التحدث';
+  String get speakingMode => 'ÙˆØ¶Ø¹ Ø§Ù„ØªØ­Ø¯Ø«';
 
   @override
-  String get aiMemoryHook => 'خطاف الذاكرة بالذكاء الاصطناعي';
+  String get aiMemoryHook =>
+      'Ø®Ø·Ø§Ù Ø§Ù„Ø°Ø§ÙƒØ±Ø© Ø¨Ø§Ù„Ø°ÙƒØ§Ø¡ Ø§Ù„Ø§ØµØ·Ù†Ø§Ø¹ÙŠ';
 
   @override
-  String get exampleSentences => 'جمل الأمثلة';
+  String get exampleSentences => 'Ø¬Ù…Ù„ Ø§Ù„Ø£Ù…Ø«Ù„Ø©';
 
   @override
-  String get ghostCharacters => 'الشخصيات الشبحية';
+  String get ghostCharacters => 'Ø§Ù„Ø´Ø®ØµÙŠØ§Øª Ø§Ù„Ø´Ø¨Ø­ÙŠØ©';
 
   @override
-  String get commonWords => 'الكلمات الشائعة';
+  String get commonWords => 'Ø§Ù„ÙƒÙ„Ù…Ø§Øª Ø§Ù„Ø´Ø§Ø¦Ø¹Ø©';
 
   @override
-  String get personalNotes => 'ملاحظات شخصية';
+  String get personalNotes => 'Ù…Ù„Ø§Ø­Ø¸Ø§Øª Ø´Ø®ØµÙŠØ©';
 
   @override
-  String get addPersonalNotes => 'أضف حِفظياتك أو ملاحظاتك هنا...';
+  String get addPersonalNotes =>
+      'Ø£Ø¶Ù Ø­ÙÙØ¸ÙŠØ§ØªÙƒ Ø£Ùˆ Ù…Ù„Ø§Ø­Ø¸Ø§ØªÙƒ Ù‡Ù†Ø§...';
 
   @override
-  String get takePhoto => 'التقاط صورة';
+  String get takePhoto => 'Ø§Ù„ØªÙ‚Ø§Ø· ØµÙˆØ±Ø©';
 
   @override
-  String get gallery => 'المعرض';
+  String get gallery => 'Ø§Ù„Ù…Ø¹Ø±Ø¶';
 
   @override
-  String get arLens => 'عدسة الواقع المعزز';
+  String get arLens => 'Ø¹Ø¯Ø³Ø© Ø§Ù„ÙˆØ§Ù‚Ø¹ Ø§Ù„Ù…Ø¹Ø²Ø²';
 
   @override
   String addedCharToLibrary(Object char) {
-    return 'تمت إضافة $char إلى المكتبة';
+    return 'ØªÙ…Øª Ø¥Ø¶Ø§ÙØ© $char Ø¥Ù„Ù‰ Ø§Ù„Ù…ÙƒØªØ¨Ø©';
   }
 
   @override
-  String get scoreText => 'النقاط';
+  String get scoreText => 'Ø§Ù„Ù†Ù‚Ø§Ø·';
 
   @override
-  String get searchDictionaryHint => 'ابحث عن الحرف، البينيين، أو المعنى...';
+  String get searchDictionaryHint =>
+      'Ø§Ø¨Ø­Ø« Ø¹Ù† Ø§Ù„Ø­Ø±ÙØŒ Ø§Ù„Ø¨ÙŠÙ†ÙŠÙŠÙ†ØŒ Ø£Ùˆ Ø§Ù„Ù…Ø¹Ù†Ù‰...';
 
   @override
-  String get searchDeckHint => 'ابحث عن الحرف، البينيين...';
+  String get searchDeckHint => 'Ø§Ø¨Ø­Ø« Ø¹Ù† Ø§Ù„Ø­Ø±ÙØŒ Ø§Ù„Ø¨ÙŠÙ†ÙŠÙŠÙ†...';
 
   @override
-  String get localRestaurant => 'مطعم محلي';
+  String get localRestaurant => 'Ù…Ø·Ø¹Ù… Ù…Ø­Ù„ÙŠ';
 
   @override
-  String get taxiToAirport => 'تاكسي إلى المطار';
+  String get taxiToAirport => 'ØªØ§ÙƒØ³ÙŠ Ø¥Ù„Ù‰ Ø§Ù„Ù…Ø·Ø§Ø±';
 
   @override
-  String get silkMarketHaggling => 'المساومة في سوق الحرير';
+  String get silkMarketHaggling => 'Ø§Ù„Ù…Ø³Ø§ÙˆÙ…Ø© ÙÙŠ Ø³ÙˆÙ‚ Ø§Ù„Ø­Ø±ÙŠØ±';
 
   @override
-  String get medicalClinic => 'عيادة طبية';
+  String get medicalClinic => 'Ø¹ÙŠØ§Ø¯Ø© Ø·Ø¨ÙŠØ©';
 
   @override
-  String get meetingAFriend => 'مقابلة صديق';
+  String get meetingAFriend => 'Ù…Ù‚Ø§Ø¨Ù„Ø© ØµØ¯ÙŠÙ‚';
 
   @override
-  String get jobInterview => 'مقابلة عمل';
+  String get jobInterview => 'Ù…Ù‚Ø§Ø¨Ù„Ø© Ø¹Ù…Ù„';
 
   @override
-  String get searchRadicalsHint => 'ابحث عن الجذور (مثل الماء، 氵)';
+  String get searchRadicalsHint =>
+      'Ø§Ø¨Ø­Ø« Ø¹Ù† Ø§Ù„Ø¬Ø°ÙˆØ± (Ù…Ø«Ù„ Ø§Ù„Ù…Ø§Ø¡ØŒ æ°µ)';
 
   @override
-  String get definition => 'تعريف';
+  String get definition => 'ØªØ¹Ø±ÙŠÙ';
 
   @override
-  String get undo => 'تراجع';
+  String get undo => 'ØªØ±Ø§Ø¬Ø¹';
 
   @override
-  String get hanziMaster => 'هانزي ماستر';
+  String get hanziMaster => 'Ù‡Ø§Ù†Ø²ÙŠ Ù…Ø§Ø³ØªØ±';
 
   @override
-  String get unlockForever => 'فتح إلى الأبد - \$9.99';
+  String get unlockForever => 'ÙØªØ­ Ø¥Ù„Ù‰ Ø§Ù„Ø£Ø¨Ø¯ - \$9.99';
 
   @override
-  String get clear => 'مسح';
+  String get clear => 'Ù…Ø³Ø­';
 
   @override
-  String get clearChat => 'مسح المحادثة';
+  String get clearChat => 'Ù…Ø³Ø­ Ø§Ù„Ù…Ø­Ø§Ø¯Ø«Ø©';
 
   @override
-  String get typeMessage => 'اكتب رسالتك...';
+  String get typeMessage => 'Ø§ÙƒØªØ¨ Ø±Ø³Ø§Ù„ØªÙƒ...';
 
   @override
   String addedToLibrary(Object hanzi) {
-    return 'تمت إضافة \'$hanzi\' إلى مكتبتك';
+    return 'ØªÙ…Øª Ø¥Ø¶Ø§ÙØ© \'$hanzi\' Ø¥Ù„Ù‰ Ù…ÙƒØªØ¨ØªÙƒ';
   }
 
   @override
-  String get generateNewStory => 'توليد قصة جديدة';
+  String get generateNewStory => 'ØªÙˆÙ„ÙŠØ¯ Ù‚ØµØ© Ø¬Ø¯ÙŠØ¯Ø©';
 
   @override
   String failedToGenerateStory(Object error) {
-    return 'فشل توليد القصة:\\n$error';
+    return 'ÙØ´Ù„ ØªÙˆÙ„ÙŠØ¯ Ø§Ù„Ù‚ØµØ©:\\n$error';
   }
 
   @override
-  String get detail => 'تفصيل';
+  String get detail => 'ØªÙØµÙŠÙ„';
 
   @override
-  String get scanText => 'مسح النص';
+  String get scanText => 'Ù…Ø³Ø­ Ø§Ù„Ù†Øµ';
 
   @override
-  String get createMagic => 'ابتكار سحر';
+  String get createMagic => 'Ø§Ø¨ØªÙƒØ§Ø± Ø³Ø­Ø±';
 
   @override
-  String get learning => 'تعلم';
+  String get learning => 'ØªØ¹Ù„Ù…';
 
   @override
-  String get upcomingReviews7Days => 'المراجعات القادمة (الـ 7 أيام القادمة)';
+  String get upcomingReviews7Days =>
+      'Ø§Ù„Ù…Ø±Ø§Ø¬Ø¹Ø§Øª Ø§Ù„Ù‚Ø§Ø¯Ù…Ø© (Ø§Ù„Ù€ 7 Ø£ÙŠØ§Ù… Ø§Ù„Ù‚Ø§Ø¯Ù…Ø©)';
 
   @override
-  String get askFollowUpQuestion => 'اسأل سؤال متابعة...';
+  String get askFollowUpQuestion => 'Ø§Ø³Ø£Ù„ Ø³Ø¤Ø§Ù„ Ù…ØªØ§Ø¨Ø¹Ø©...';
 
   @override
-  String get pasteScanToSimplify => 'الصق أو امسح النص الصيني للتبسيط';
+  String get pasteScanToSimplify =>
+      'Ø§Ù„ØµÙ‚ Ø£Ùˆ Ø§Ù…Ø³Ø­ Ø§Ù„Ù†Øµ Ø§Ù„ØµÙŠÙ†ÙŠ Ù„Ù„ØªØ¨Ø³ÙŠØ·';
 
   @override
   String get searchStoriesHint =>
-      'ابحث في القصص حسب العنوان أو العلامات (مثل الأساطير، السفر)';
+      'Ø§Ø¨Ø­Ø« ÙÙŠ Ø§Ù„Ù‚ØµØµ Ø­Ø³Ø¨ Ø§Ù„Ø¹Ù†ÙˆØ§Ù† Ø£Ùˆ Ø§Ù„Ø¹Ù„Ø§Ù…Ø§Øª (Ù…Ø«Ù„ Ø§Ù„Ø£Ø³Ø§Ø·ÙŠØ±ØŒ Ø§Ù„Ø³ÙØ±)';
 
   @override
-  String get importAll => 'استيراد الكل';
+  String get importAll => 'Ø§Ø³ØªÙŠØ±Ø§Ø¯ Ø§Ù„ÙƒÙ„';
 
   @override
-  String get ascendAll => 'ارتقِ بالجميع';
+  String get ascendAll => 'Ø§Ø±ØªÙ‚Ù Ø¨Ø§Ù„Ø¬Ù…ÙŠØ¹';
 
   @override
-  String get startAscension => 'بدء التعلم';
+  String get startAscension => 'Ø¨Ø¯Ø¡ Ø§Ù„ØªØ¹Ù„Ù…';
 
   @override
-  String get scenarioLocalRestaurant => 'مطعم محلي';
+  String get scenarioLocalRestaurant => 'Ù…Ø·Ø¹Ù… Ù…Ø­Ù„ÙŠ';
 
   @override
   String get scenarioLocalRestaurantDesc =>
-      'تدرب على طلب الأطباق وطلب التوصيات.';
+      'ØªØ¯Ø±Ø¨ Ø¹Ù„Ù‰ Ø·Ù„Ø¨ Ø§Ù„Ø£Ø·Ø¨Ø§Ù‚ ÙˆØ·Ù„Ø¨ Ø§Ù„ØªÙˆØµÙŠØ§Øª.';
 
   @override
-  String get scenarioTaxiAirport => 'تاكسي إلى المطار';
+  String get scenarioTaxiAirport => 'ØªØ§ÙƒØ³ÙŠ Ø¥Ù„Ù‰ Ø§Ù„Ù…Ø·Ø§Ø±';
 
   @override
-  String get scenarioTaxiAirportDesc => 'أخبر السائق وجهتك وناقش حركة المرور.';
+  String get scenarioTaxiAirportDesc =>
+      'Ø£Ø®Ø¨Ø± Ø§Ù„Ø³Ø§Ø¦Ù‚ ÙˆØ¬Ù‡ØªÙƒ ÙˆÙ†Ø§Ù‚Ø´ Ø­Ø±ÙƒØ© Ø§Ù„Ù…Ø±ÙˆØ±.';
 
   @override
-  String get scenarioSilkMarket => 'مساومة سوق الحرير';
+  String get scenarioSilkMarket => 'Ù…Ø³Ø§ÙˆÙ…Ø© Ø³ÙˆÙ‚ Ø§Ù„Ø­Ø±ÙŠØ±';
 
   @override
-  String get scenarioSilkMarketDesc => 'حاول الحصول على سعر أفضل لتذكار.';
+  String get scenarioSilkMarketDesc =>
+      'Ø­Ø§ÙˆÙ„ Ø§Ù„Ø­ØµÙˆÙ„ Ø¹Ù„Ù‰ Ø³Ø¹Ø± Ø£ÙØ¶Ù„ Ù„ØªØ°ÙƒØ§Ø±.';
 
   @override
-  String get scenarioMedicalClinic => 'عيادة طبية';
+  String get scenarioMedicalClinic => 'Ø¹ÙŠØ§Ø¯Ø© Ø·Ø¨ÙŠØ©';
 
   @override
   String get scenarioMedicalClinicDesc =>
-      'اشرح الأعراض التي تعاني منها لطبيب تقليدي.';
+      'Ø§Ø´Ø±Ø­ Ø§Ù„Ø£Ø¹Ø±Ø§Ø¶ Ø§Ù„ØªÙŠ ØªØ¹Ø§Ù†ÙŠ Ù…Ù†Ù‡Ø§ Ù„Ø·Ø¨ÙŠØ¨ ØªÙ‚Ù„ÙŠØ¯ÙŠ.';
 
   @override
-  String get scenarioMeetingFriend => 'مقابلة صديق';
+  String get scenarioMeetingFriend => 'Ù…Ù‚Ø§Ø¨Ù„Ø© ØµØ¯ÙŠÙ‚';
 
   @override
-  String get scenarioMeetingFriendDesc => 'قدم نفسك وتحدث في مواضيع عامة.';
+  String get scenarioMeetingFriendDesc =>
+      'Ù‚Ø¯Ù… Ù†ÙØ³Ùƒ ÙˆØªØ­Ø¯Ø« ÙÙŠ Ù…ÙˆØ§Ø¶ÙŠØ¹ Ø¹Ø§Ù…Ø©.';
 
   @override
-  String get scenarioJobInterview => 'مقابلة عمل';
+  String get scenarioJobInterview => 'Ù…Ù‚Ø§Ø¨Ù„Ø© Ø¹Ù…Ù„';
 
   @override
-  String get scenarioJobInterviewDesc => 'تقدم لوظيفة في شركة تقنية في شنغهاي.';
+  String get scenarioJobInterviewDesc =>
+      'ØªÙ‚Ø¯Ù… Ù„ÙˆØ¸ÙŠÙØ© ÙÙŠ Ø´Ø±ÙƒØ© ØªÙ‚Ù†ÙŠØ© ÙÙŠ Ø´Ù†ØºÙ‡Ø§ÙŠ.';
 
   @override
-  String get createCustomScenario => 'إنشاء سيناريو مخصص';
+  String get createCustomScenario => 'Ø¥Ù†Ø´Ø§Ø¡ Ø³ÙŠÙ†Ø§Ø±ÙŠÙˆ Ù…Ø®ØµØµ';
 
   @override
-  String get customScenarioTitleHint => 'العنوان (مثال: حفل زفاف)';
+  String get customScenarioTitleHint =>
+      'Ø§Ù„Ø¹Ù†ÙˆØ§Ù† (Ù…Ø«Ø§Ù„: Ø­ÙÙ„ Ø²ÙØ§Ù)';
 
   @override
-  String get customScenarioDescHint => 'الوصف (السياق)';
+  String get customScenarioDescHint => 'Ø§Ù„ÙˆØµÙ (Ø§Ù„Ø³ÙŠØ§Ù‚)';
 
   @override
   String get customScenarioPersonaHint =>
-      'شخصية الذكاء الاصطناعي (مثال: زميل عمل فضولي)';
+      'Ø´Ø®ØµÙŠØ© Ø§Ù„Ø°ÙƒØ§Ø¡ Ø§Ù„Ø§ØµØ·Ù†Ø§Ø¹ÙŠ (Ù…Ø«Ø§Ù„: Ø²Ù…ÙŠÙ„ Ø¹Ù…Ù„ ÙØ¶ÙˆÙ„ÙŠ)';
 
   @override
-  String get customScenarioDifficulty => 'الصعوبة';
+  String get customScenarioDifficulty => 'Ø§Ù„ØµØ¹ÙˆØ¨Ø©';
 
   @override
-  String get createAction => 'إنشاء';
+  String get createAction => 'Ø¥Ù†Ø´Ø§Ø¡';
 
   @override
-  String get cancelAction => 'إلغاء';
+  String get cancelAction => 'Ø¥Ù„ØºØ§Ø¡';
 
   @override
-  String get mythsAndLegends => 'الأساطير والحكايات';
+  String get mythsAndLegends => 'Ø§Ù„Ø£Ø³Ø§Ø·ÙŠØ± ÙˆØ§Ù„Ø­ÙƒØ§ÙŠØ§Øª';
 
   @override
-  String get historyAndCulture => 'التاريخ والثقافة';
+  String get historyAndCulture => 'Ø§Ù„ØªØ§Ø±ÙŠØ® ÙˆØ§Ù„Ø«Ù‚Ø§ÙØ©';
 
   @override
-  String get idiomsTitle => 'مصطلحات (成语)';
+  String get idiomsTitle => 'Ù…ØµØ·Ù„Ø­Ø§Øª (æˆè¯­)';
 
   @override
-  String get theMonkeyKing => 'ملك القردة';
+  String get theMonkeyKing => 'Ù…Ù„Ùƒ Ø§Ù„Ù‚Ø±Ø¯Ø©';
 
   @override
-  String get theMonkeyKingDesc => 'سون ووكونغ (رحلة إلى الغرب)';
+  String get theMonkeyKingDesc =>
+      'Ø³ÙˆÙ† ÙˆÙˆÙƒÙˆÙ†Øº (Ø±Ø­Ù„Ø© Ø¥Ù„Ù‰ Ø§Ù„ØºØ±Ø¨)';
 
   @override
-  String get huaMulan => 'هوا مولان';
+  String get huaMulan => 'Ù‡ÙˆØ§ Ù…ÙˆÙ„Ø§Ù†';
 
   @override
-  String get huaMulanDesc => 'انضمام هوا مولان للجيش بدلاً من والدها';
+  String get huaMulanDesc =>
+      'Ø§Ù†Ø¶Ù…Ø§Ù… Ù‡ÙˆØ§ Ù…ÙˆÙ„Ø§Ù† Ù„Ù„Ø¬ÙŠØ´ Ø¨Ø¯Ù„Ø§Ù‹ Ù…Ù† ÙˆØ§Ù„Ø¯Ù‡Ø§';
 
   @override
-  String get confuciusTitle => 'كونفوشيوس';
+  String get confuciusTitle => 'ÙƒÙˆÙ†ÙÙˆØ´ÙŠÙˆØ³';
 
   @override
-  String get confuciusDesc => 'حياة وتعاليم كونفوشيوس';
+  String get confuciusDesc => 'Ø­ÙŠØ§Ø© ÙˆØªØ¹Ø§Ù„ÙŠÙ… ÙƒÙˆÙ†ÙÙˆØ´ÙŠÙˆØ³';
 
   @override
-  String get theGreatWall => 'سور الصين العظيم';
+  String get theGreatWall => 'Ø³ÙˆØ± Ø§Ù„ØµÙŠÙ† Ø§Ù„Ø¹Ø¸ÙŠÙ…';
 
   @override
-  String get theGreatWallDesc => 'بناء سور الصين العظيم';
+  String get theGreatWallDesc => 'Ø¨Ù†Ø§Ø¡ Ø³ÙˆØ± Ø§Ù„ØµÙŠÙ† Ø§Ù„Ø¹Ø¸ÙŠÙ…';
 
   @override
-  String get generateTopic => 'إنشاء موضوع';
+  String get generateTopic => 'Ø¥Ù†Ø´Ø§Ø¡ Ù…ÙˆØ¶ÙˆØ¹';
 
   @override
-  String get simplifyText => 'تبسيط النص';
+  String get simplifyText => 'ØªØ¨Ø³ÙŠØ· Ø§Ù„Ù†Øµ';
 
   @override
-  String get topicHint => 'الموضوع (مثال: كائنات فضائية في بكين)';
+  String get topicHint =>
+      'Ø§Ù„Ù…ÙˆØ¶ÙˆØ¹ (Ù…Ø«Ø§Ù„: ÙƒØ§Ø¦Ù†Ø§Øª ÙØ¶Ø§Ø¦ÙŠØ© ÙÙŠ Ø¨ÙƒÙŠÙ†)';
 
   @override
-  String get tagsHint => 'العلامات (مفصولة بفاصلة، اختيارية)';
+  String get tagsHint =>
+      'Ø§Ù„Ø¹Ù„Ø§Ù…Ø§Øª (Ù…ÙØµÙˆÙ„Ø© Ø¨ÙØ§ØµÙ„Ø©ØŒ Ø§Ø®ØªÙŠØ§Ø±ÙŠØ©)';
 
   @override
-  String get speakWithMasterLin => 'تحدث مع المعلم لين';
+  String get speakWithMasterLin => 'ØªØ­Ø¯Ø« Ù…Ø¹ Ø§Ù„Ù…Ø¹Ù„Ù… Ù„ÙŠÙ†';
 
   @override
   String get masterLinGreeting =>
-      'تحياتي، أيها الطالب. الحبر جاهز. أي شخصية أو عبارة سنفحصها اليوم؟';
+      'ØªØ­ÙŠØ§ØªÙŠØŒ Ø£ÙŠÙ‡Ø§ Ø§Ù„Ø·Ø§Ù„Ø¨. Ø§Ù„Ø­Ø¨Ø± Ø¬Ø§Ù‡Ø². Ø£ÙŠ Ø´Ø®ØµÙŠØ© Ø£Ùˆ Ø¹Ø¨Ø§Ø±Ø© Ø³Ù†ÙØ­ØµÙ‡Ø§ Ø§Ù„ÙŠÙˆÙ…ØŸ';
 
   @override
-  String get typeYourMessage => 'اكتب رسالتك...';
+  String get typeYourMessage => 'Ø§ÙƒØªØ¨ Ø±Ø³Ø§Ù„ØªÙƒ...';
 
   @override
-  String get theMainLibrary => 'المكتبة الرئيسية';
+  String get theMainLibrary => 'Ø§Ù„Ù…ÙƒØªØ¨Ø© Ø§Ù„Ø±Ø¦ÙŠØ³ÙŠØ©';
 
   @override
-  String get hsk1Foundation => 'HSK 1: أُسُس';
+  String get hsk1Foundation => 'HSK 1: Ø£ÙØ³ÙØ³';
 
   @override
-  String get hsk2Elementary => 'HSK 2: اِبتدائيّ';
+  String get hsk2Elementary => 'HSK 2: Ø§ÙØ¨ØªØ¯Ø§Ø¦ÙŠÙ‘';
 
   @override
-  String get hsk3Intermediate => 'HSK 3: مُتوسِّط';
+  String get hsk3Intermediate => 'HSK 3: Ù…ÙØªÙˆØ³ÙÙ‘Ø·';
 
   @override
-  String get inDeckCheck => 'موجود في المجموعة ✓';
+  String get inDeckCheck => 'Ù…ÙˆØ¬ÙˆØ¯ ÙÙŠ Ø§Ù„Ù…Ø¬Ù…ÙˆØ¹Ø© âœ“';
 
   @override
-  String get addToDeckPlus => '+ إضافة للمجموعة';
+  String get addToDeckPlus => '+ Ø¥Ø¶Ø§ÙØ© Ù„Ù„Ù…Ø¬Ù…ÙˆØ¹Ø©';
 
   @override
-  String get openCardArrow => 'فتح البطاقة →';
+  String get openCardArrow => 'ÙØªØ­ Ø§Ù„Ø¨Ø·Ø§Ù‚Ø© â†’';
 
   @override
-  String get pronunciationPartial => 'النغمة غير دقيقة';
+  String get pronunciationPartial => 'Ø§Ù„Ù†ØºÙ…Ø© ØºÙŠØ± Ø¯Ù‚ÙŠÙ‚Ø©';
 
   @override
-  String get pronunciationWrong => 'غير صحيح';
+  String get pronunciationWrong => 'ØºÙŠØ± ØµØ­ÙŠØ­';
 
   @override
-  String get toneExpected => 'المتوقع';
+  String get toneExpected => 'Ø§Ù„Ù…ØªÙˆÙ‚Ø¹';
 
   @override
-  String get toneYouSaid => 'قلت';
+  String get toneYouSaid => 'Ù‚Ù„Øª';
 
   @override
-  String get gotIt => 'فهمت!';
+  String get gotIt => 'ÙÙ‡Ù…Øª!';
 
   @override
   String foundNCharacters(int count) {
-    return '$count حرف تم العثور عليه';
+    return '$count Ø­Ø±Ù ØªÙ… Ø§Ù„Ø¹Ø«ÙˆØ± Ø¹Ù„ÙŠÙ‡';
   }
 
   @override
-  String get lookingUpCharacters => 'جارٍ البحث عن الأحرف…';
+  String get lookingUpCharacters => 'Ø¬Ø§Ø±Ù Ø§Ù„Ø¨Ø­Ø« Ø¹Ù† Ø§Ù„Ø£Ø­Ø±Ùâ€¦';
 
   @override
-  String get practiceAll => 'التدرب على الكل';
+  String get practiceAll => 'Ø§Ù„ØªØ¯Ø±Ø¨ Ø¹Ù„Ù‰ Ø§Ù„ÙƒÙ„';
 
   @override
-  String get arLensObjects => 'الكائنات';
+  String get arLensObjects => 'Ø§Ù„ÙƒØ§Ø¦Ù†Ø§Øª';
 
   @override
-  String get arLensText => 'نص';
+  String get arLensText => 'Ù†Øµ';
 
   @override
-  String get arLensDetectedText => 'النص المكتشف';
+  String get arLensDetectedText => 'Ø§Ù„Ù†Øµ Ø§Ù„Ù…ÙƒØªØ´Ù';
 }

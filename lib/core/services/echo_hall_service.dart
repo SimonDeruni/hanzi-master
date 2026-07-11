@@ -43,6 +43,7 @@ You MUST respond ONLY in valid JSON format with this exact structure:
         model: 'google/gemini-2.5-flash',
         messages: messages,
         jsonMode: true,
+        timeout: const Duration(seconds: 15),
       );
 
       final cleanText = responseText
@@ -71,6 +72,7 @@ You MUST respond ONLY in valid JSON format with this exact structure:
         model: 'google/gemini-2.5-flash',
         messages: messages,
         jsonMode: false,
+        timeout: const Duration(seconds: 15),
       );
     } catch (e) {
       debugPrint('EchoHallService Error: $e');

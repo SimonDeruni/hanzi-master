@@ -1,0 +1,301 @@
+Running build hooks...Running build hooks...[CHANNEL] UCYQPTeY3HOk0BprrGuCWCaA -> 100 playlists fetched
+[CHANNEL] UCUhpu5MJQ_bjPkXO00jyxsw -> 100 playlists fetched
+[CHANNEL] UCdpiId0eJGnnIvfhpbJIM1w -> 100 playlists fetched
+[CHANNEL] UCQatgKoA7lylp_UzvsLCgcw -> 100 playlists fetched
+[CHANNEL] UCD_83Jh-UFQXRDwC6S8caCQ -> 84 playlists fetched
+[CHANNEL] UCFh5x5AZHQQ6FaGKnG-QXDA -> 100 playlists fetched
+[CHANNEL] UCRABdhiBHX4Bie-jfPCd2pg -> 100 playlists fetched
+[CHANNEL] UC3PKcYXUAhao3p4kuNS4_9w -> 100 playlists fetched
+
+=== Total playlists before filtering: 784 ===
+
+[1/784] Checking: [Get APP Now]ENGSUB【信息素说我们不可能】 | 动漫 青春 | 优酷 YOUKU
+  SKIP: Video rQbHCU7gS88 has no Chinese captions
+[2/784] Checking: [Get APP Now]ENGSUB【末世囚心：死对头暗恋我】 | 动漫 爱情 | 优酷 YOUKU
+  KEPT (1 episodes, all with Chinese captions)
+[3/784] Checking: [Get APP Now] ENGSUB【悬案 Unsettled Case】一季双案封尘启封，黑白追逃生死对弈！| 王传君 / 江奇霖 / 杨烁 / 郎月婷 / 岳龙刚（岳云鹏）  | 悬疑 罪案 | 优酷 YOUKU
+  SKIP: Video gzhd353OTjE has no Chinese captions
+[4/784] Checking: 【Get APP Now】【将军家的小娘子 General's Lady】人人嫌弃的落魄千金，一转身成了将军夫人！ | 张慧雯 / 吴希泽 | 优酷 YOUKU
+  SKIP: Video rLDjUExsKY8 has no Chinese captions
+[5/784] Checking: [Get APP Now]  【千香The Eternal Fragrance】 | 宋威龙/鞠婧祎（按姓氏笔画排序） | 古装 爱情 |优酷 YOUKU
+  SKIP: Has private videos
+[6/784] Checking: 预告Trailer +BTS花絮+OST 【千香The Eternal Fragrance】 | 宋威龙/鞠婧祎（按姓氏笔画排序） | 古装 爱情 |优酷 YOUKU
+  SKIP: Has private videos
+[7/784] Checking: [Get APP Now] ENGSUB【非处方青春 Youth Unprescribed】丨宋楠惜/马浩东/袁雨萱/王润泽丨青春 爱情丨优酷 YOUKU
+  SKIP: Video G21bCJ83njw has no Chinese captions
+[8/784] Checking: [Get APP Now] ENGSUB【机智的上半场 Be Your Self】| 沈月/章若楠/梁靖康/薇薇/张歆怡 | 青春校园 | 优酷 YOUKU
+  SKIP: Has private videos
+[9/784] Checking: [Get APP Now] ENGSUB【帝师长安 The Imperial Master】| 刘智扬/马赫 | 古装 剧情  | 优酷 YOUKU
+  SKIP: Video i0v8XxQmdgw has no Chinese captions
+[10/784] Checking: [Get APP Now] ENGSUB【我在香港遇见他 The Journey Across The Night】丨曾舜晞/颜卓灵丨悬疑丨优酷 YOUKU
+  SKIP: Video 16NlCi9vZKc has no Chinese captions
+[11/784] Checking: 预告Trailer +BTS花絮+OST 【帝师长安 The Imperial Master】 | 优酷 YOUKU
+  SKIP: Has trailer/promo videos
+[12/784] Checking: [Get APP Now] ENGSUB【姻缘大人请留步 Ms. Cupid In Love】💘月老贬落凡间与人间小红娘开启爆笑情缘丨曹煜辰/田曦薇丨 优酷 YOUKU
+  SKIP: Video vOQspQ2RUXs has no Chinese captions
+[13/784] Checking: [Get APP Now] MULTISUB【这个皇后有点野 The Queen's Exit Plan】打工妹逆袭拥兵三十万，入宫硬刚腹黑皇帝！ | 优酷 YOUKU
+  SKIP: Has private videos
+[14/784] Checking: [Get APP Now] ENGSUB【花轿喜事 Wrong Carriage Right Groom】田曦薇敖瑞鹏上错花轿天赐良缘！丨田曦薇/敖瑞鹏丨 优酷 YOUKU
+  SKIP: Video VyweWarzYHY has no Chinese captions
+[15/784] Checking: 预告Trailer +BTS花絮+OST 【归良辰 Sea of No Return】| 李昀锐 / 刘些宁 / 章时安 / 周奇 | 古装 爱情 | 优酷 YOUKU
+  SKIP: Has trailer/promo videos
+[16/784] Checking: [Get APP Now] ENGSUB【师爷请自重 Love Is All】搞怪女师爷恋上腹黑县令丨章若楠/张昊唯/马闻远  | 优酷 YOUKU
+  SKIP: Video a_Kbu9VhOgM has no Chinese captions
+[17/784] Checking: [Get APP Now] MULTISUB【翘楚 Ashes to Crown】弃女翻盘斩枭雄，携手权臣共守万里江山！丨陈都灵 /周翊然（排名不分先后，按姓氏首字母排序） | 优酷 YOUKU
+  SKIP: Has private videos
+[18/784] Checking: [Get APP Now] ENGSUB【花间令🌺In Blossom】| 危难中相爱，勘破迷雾！共谱华章！| 优酷 YOUKU
+  SKIP: Video fW12zQM2R0Y has no Chinese captions
+[19/784] Checking: [Get APP Now]MULTISUB【迟迟春欲晚 Shadows of the Late Spring】 | 王轩/邓佳蔚/房函冰/陈智慧 | 古装 | 优酷 YOUKU
+  SKIP: Video M-Ih0zZj1GM has no Chinese captions
+[20/784] Checking: [Get APP Now]ENGSUB【爱如天山不化雪 Millennium Love】| 阚琳娜/星择 | 古装 奇幻 | 优酷 YOUKU
+  SKIP: Video 1HLvfC4BKfg has no Chinese captions
+[21/784] Checking: Trailer +BTS花絮+OST 【迟迟春欲晚 Shadows of the Late Spring】 | 王轩/邓佳蔚/房函冰/陈智慧 | 优酷 YOUKU
+  SKIP: Has trailer/promo videos
+[22/784] Checking: [Get APP Now] ENGSUB【一不小心捡到爱Please Feel at Ease Mr. Ling】赵露思经典剧集！捡个霸总回家爱 | 赵露思/刘特/周峻纬/漆培鑫 | 剧情 爱情 | 优酷YOUKU
+  SKIP: Has trailer/promo videos
+[23/784] Checking: 预告Trailer +BTS花絮+OST【无邪 The Lotus Secret 】 | 刘烨/王影璐/宋洋/韩静 | 悬疑 罪案 | 优酷 YOUKU
+  SKIP: Has trailer/promo videos
+[24/784] Checking: 预告Trailer +BTS花絮+OST【夜幕下的烟火 Days of Chasing Light】 | 警匪 剧情 | 优酷 YOUKU
+  SKIP: Has trailer/promo videos
+[25/784] Checking: 预告Trailer +BTS花絮+OST【踏雪寻踪 Hunting Traces in the Snow】 | 悬疑 剧情 | 优酷YOUKU
+  SKIP: Has trailer/promo videos
+[26/784] Checking: 预告Trailer +BTS花絮+OST【紫色大丽花 PURPLE DAHLIA 】  | 贾静雯/陈靖可/赵志伟/刘家祎 | 都市 爱情 | 优酷 YOUKU
+  SKIP: Has trailer/promo videos
+[27/784] Checking: 预告Trailer +BTS花絮+OST【疾风劲草】 | 郭京飞 / 宋茜 / 曹骏 / 惠英红 | 悬疑 | 剧情  | 优酷 YOUKU
+  SKIP: Has trailer/promo videos
+[28/784] Checking: 预告Trailer +BTS花絮+OST【悬案 Unsettled Case】 | 王传君 / 江奇霖 / 杨烁 / 郎月婷 / 岳龙刚（岳云鹏）  | 悬疑 罪案 | 优酷 YOUKU
+  SKIP: Has private videos
+[29/784] Checking: 预告Trailer +BTS花絮+OST【早春晴朗 The early spring】 | 井柏然 / 孙千 | 都市 爱情 | 优酷 YOUKU
+  SKIP: Has trailer/promo videos
+[30/784] Checking: 预告Trailer +BTS花絮+OST【奇换人生 Ctrl+Alt+Life】 | 曾舜晞/张康乐/刘些宁/姜来  | 现代 剧情 | 优酷 YOUKU
+  SKIP: Has trailer/promo videos
+[31/784] Checking: 预告Trailer +BTS花絮+OST 【无可替代IRREPLACEABLE】 | 赵今麦 / 魏大勋 / 周奇 / 白冰 | 都市 爱情 | 优酷 YOUKU
+  SKIP: Has trailer/promo videos
+[32/784] Checking: 预告Trailer +BTS花絮+OST 【翘楚 Ashes to Crown】 | 优酷 YOUKU
+  SKIP: Has private videos
+[33/784] Checking: [Get APP Now]ENGSUB【孔雀缚金戈】 | 古装 奇幻 | 优酷 YOUKU
+  SKIP: Video bOrB8iuYEkI has no Chinese captions
+[34/784] Checking: Trailer +BTS花絮+OST 【黑夜告白 Light To The Night】 | 潘粤明/王鹤棣/任敏/姜珮瑶 | 悬疑 刑侦 | 优酷 YOUKU
+  SKIP: Has private videos
+[35/784] Checking: [Get APP Now]MULTISUB【黑夜告白 Light To The Night】💥全员入局，极限追凶！ | 潘粤明/王鹤棣/任敏/姜珮瑶 | 悬疑 刑侦 | 优酷 YOUKU
+  SKIP: Has trailer/promo videos
+[36/784] Checking: [Get APP Now]ENGSUB【重案解密 Case X Decoded 】粵語版💥八大奇案真實改編 | 苗僑偉 / 岑麗香 | 罪案 刑偵 | 優酷 YOUKU
+  SKIP: Has private videos
+[37/784] Checking: [Get APP Now]ENGSUB【金关 Gimlet Eyes】书写海关旅检人的忠诚坚守 | 经超/黄尧/屠芷莹/杨凯程 | 剧情 悬疑 | 优酷 YOUKU
+  SKIP: Has private videos
+[38/784] Checking: Trailer +BTS花絮+OST【金关】经超/黄尧/屠芷莹/杨凯程 | 剧情 悬疑 | 优酷 YOUKU
+  SKIP: Has private videos
+[39/784] Checking: [Get APP Now]ENGSUB【重案解密 Case X Decoded 】💥八大奇案真实改编 | 苗侨伟 / 岑丽香 | 罪案 刑侦 | 优酷 YOUKU
+  SKIP: Has private videos
+[40/784] Checking: [Get APP Now] MULTISUB【无限超越班第四季】丨Memories Beyond Horizon S4丨曾志伟/郝蕾/何赛飞/刘涛/刘晓庆/吴镇宇丨优酷
+  SKIP: Video AA0fuxdBYVc has no Chinese captions
+[41/784] Checking: 预告Trailer +BTS花絮+OST【沧元图3 The Demon Hunter3】  | 优酷 YOUKU
+  SKIP: Video 4xyM20B5OfY has no Chinese captions
+[42/784] Checking: [Get APP Now]MULTISUB【春霆念未央Revenge of the False Bride】孤女归来联姻复仇 | 韩东霖/张婉莹 | 剧情 爱情 | 优酷 YOUKU
+  SKIP: Has trailer/promo videos
+[43/784] Checking: 预告Trailer + BTS + OST【春霆念未央Revenge of the False Bride】韩东霖/张婉莹 | 剧情 爱情 | 优酷 YOUKU
+  SKIP: Has trailer/promo videos
+[44/784] Checking: 预告Trailer +BTS花絮+OST 【月鳞绮纪 Veil of Shadows】| 优酷 YOUKU
+  SKIP: Has trailer/promo videos
+[45/784] Checking: [Get APP Now]MULTISUB【月鳞绮纪 Veil of Shadows】三大剧本杀已开启！妖会画皮🎭人会伪装 | 鞠婧祎/曾舜晞/陈都灵/田嘉瑞 | 古装 悬疑 | 优酷YOUKU
+  SKIP: Has trailer/promo videos
+[46/784] Checking: [Get APP Now]ENGSUB【司藤 Rattan】异界女妖复活收割亿万富翁！当傲娇司藤遇上忠犬设计师，这种跨时空的“主仆拉扯”太顶了！❤️ | 景甜/张彬彬/张亦驰/金泽灏 | 奇幻 爱情 | 优酷 YOUKU
+  SKIP: Video ND5XKwmYFko has no Chinese captions
+[47/784] Checking: [Get APP Now]ENGSUB【幸福到万家 The Story of Xing Fu】赵丽颖演绎当代女性成长史 | 赵丽颖/刘威/唐曾/罗晋 | 剧情 都市 | 优酷 YOUKU
+  SKIP: Video FOkLDBN32Qs has no Chinese captions
+[48/784] Checking: 预告Trailer +BTS花絮+OST 【不好笑就露宿街头No Funny No Money】| 优酷 YOUKU
+  SKIP: Has trailer/promo videos
+[49/784] Checking: [Get APP Now]ENGSUB【不好笑就露宿街头No Funny No Money】| 赵露思喜剧首秀嗨翻全场🥳| 优酷YOUKU
+  SKIP: Has trailer/promo videos
+[50/784] Checking: 预告Trailer +BTS花絮+OST 【怦然心动20岁：冬季Twinkle Love in Winter】| 优酷 YOUKU
+  SKIP: Video 2H4akOmex8o has no Chinese captions
+[51/784] Checking: [Get APP Now]MULTISUB【怦然心动20岁：冬季Twinkle Love in Winter】| 解锁冬日心动奇遇💓| 优酷YOUKU
+  SKIP: Video r4csoG4BsrE has no Chinese captions
+[52/784] Checking: [Get APP Now]ENGSUB【情满九道弯 Love Is Full of Jiudaowan】💥韩东君热依扎陈瑶演绎小人物暴富逆袭 | 韩东君/热依扎/陈瑶/萨日娜 | 剧情 都市 | 优酷  YOUKU
+  SKIP: Video YgpgvH0dGk0 has no Chinese captions
+[53/784] Checking: [Get APP Now] ENGSUB【做自己的光 Be Your Own Light】刘涛刘宇宁逆转人生向光而行 | 刘涛/秦海璐/刘宇宁/柴碧云 | 都市 剧情片 | 优酷 YOUKU
+  SKIP: Video u-nETFRpVI4 has no Chinese captions
+[54/784] Checking: 我的山与海正片
+  SKIP: Video GeH4weP_Ibs has no Chinese captions
+[55/784] Checking: [Get APP Now]MULTISUB【我的山与海 MY DESTINY】谭松韵破茧而生！在时代浪潮中书写人生传奇 | 谭松韵/董晴/奚望/高至霆 | 都市 剧情 | 优酷 YOUKU
+  SKIP: Has trailer/promo videos
+[56/784] Checking: 预告Trailer +BTS花絮+OST 【我的山与海 MY DESTINY】| 优酷 YOUKU
+  SKIP: Has trailer/promo videos
+[57/784] Checking: [Get APP Now] ENGSUB【冷宫传 Limbo Biography】破产贵妃爆笑突围 | 徐晓璐/来源/徐荷媛/杨悦心 | 喜剧 古装 | 优酷 YOUKU
+  SKIP: Video iMKwOawx7yQ has no Chinese captions
+[58/784] Checking: [Get APP Now] ENGSUB【惜花芷Blossoms in Adversity】胡一天张婧仪双强救赎！落魄千金天降世子相公！| 胡一天/张婧仪/吴希泽/卢昱晓 | 爱情 古装 | 优酷 YOUKU
+  SKIP: Video VotZdjWDywc has no Chinese captions
+[59/784] Checking: 乡村爱情18正片
+  SKIP: Has private videos
+[60/784] Checking: 预告Trailer +BTS花絮+OST 【乡村爱情18Country Love 18】| 优酷 YOUKU
+  SKIP: Has private videos
+[61/784] Checking: 预告Trailer +BTS花絮+OST 【璀璨的她Fall in Love Again】| 优酷 YOUKU
+  SKIP: Has trailer/promo videos
+[62/784] Checking: [Get APP Now]MULTISUB【璀璨的她Fall in Love Again】过气女星逆风翻盘直面人生 | 关芯 / 李哲豪 / 张子璇 / 朱轩熠 | 爱情 剧情 | 优酷 YOUKU
+  SKIP: Video ulzL-CbWioM has no Chinese captions
+[63/784] Checking: [Get APP Now]ENGSUB【膝下之臣Ministers at Your Knees】绝望主妇黑化复仇 | 复仇爽剧 都市爱情 | 优酷 YOUKU
+  SKIP: Has private videos
+[64/784] Checking: 预告Trailer +BTS花絮+OST【唐宫奇案之青雾风鸣 Unveil: Jadewind】白鹿 / 王星越 / 姚安娜 / 赵晴 | 古装 悬疑 | 优酷 YOUKU
+  SKIP: Has trailer/promo videos
+[65/784] Checking: [Get APP Now]MULTISUB【唐宫奇案之青雾风鸣 Unveil: Jadewind】白鹿王星越联手破案 | 白鹿 / 王星越 / 姚安娜 / 赵晴 | 古装 悬疑 | 优酷 YOUKU
+  SKIP: Has trailer/promo videos
+[66/784] Checking: [Get APP Now] ENGSUB【乡村爱情18 Country Love 18】象牙山全村出动，国民喜剧爆笑升级 | 唐鉴军 / 王小利 / 刘小光 / 宋晓峰 | 农村 喜剧 | 优酷 YOUKU
+  SKIP: Has trailer/promo videos
+[67/784] Checking: [Get APP Now]粤语版【蚀日风暴】张智霖薛凯琪探案寻凶  | 张智霖 /薛凯琪 / 王阳明 / 陈瑾如 | 犯罪 悬疑 | 优酷 YOUKU
+  SKIP: Video P-FOymXM6TI has no Chinese captions
+[68/784] Checking: 💥【炽热吸引姊妹篇】ENGSUB【我们在黑夜中相拥 Embrace in the Dark Night】霸道雇佣兵守护清纯小白花 | 任运杰/方瑾 | 爱情 剧情 | 优酷 YOUKU
+  SKIP: Video _EXC4KAu4JA has no Chinese captions
+[69/784] Checking: [Get APP Now]ENGSUB【重返狼群10周年特别纪念版Return to the Wolves】狼王格林催泪后续！ | 动物 纪实 | 优酷 YOUKU
+  SKIP: Video FJA_-18q3uI has no Chinese captions
+[70/784] Checking: 预告Trailer +BTS花絮+OST【少年歌行之天下无双The Blood of Youth: Quest of Heroic Hearts】丨古装 武侠丨优酷YOUKU
+  SKIP: Has private videos
+[71/784] Checking: [Get APP Now]MULTISUB【少年歌行之天下无双The Blood of Youth: Quest of Heroic Hearts】未归雷灵泽宿命相遇，携手共闯江湖路丨林泽辉/蔡正杰丨古装武侠丨优酷YOUKU
+  SKIP: Has trailer/promo videos
+[72/784] Checking: 预告Trailer +BTS花絮+OST 【炽热吸引Affinity】| 优酷 YOUKU
+  SKIP: Has private videos
+[73/784] Checking: [Get APP Now]MULTISUB【炽热吸引Affinity】失控恶魔攻略小白花 | 方瑾 / 崔雨鑫 / 王一钧 / 高维蔓 | 现代 爱情 | 优酷 YOUKU
+  SKIP: Has trailer/promo videos
+[74/784] Checking: [Get APP Now]MULTISUB【这是心动的感觉 This Is the Feeling of Love】群狼环伺，“天降女总裁”遭遇“协议未婚夫” | 陈柏融/余文诗 | 现代 爱情 | 优酷 YOUKU
+  SKIP: Has trailer/promo videos
+[75/784] Checking: 预告Trailer +BTS花絮+OST【这是心动的感觉 This Is the Feeling of Love】假戏真做陷情局 | 陈柏融/余文诗 | 现代 爱情 | 优酷 YOUKU
+  SKIP: Has trailer/promo videos
+[76/784] Checking: [Get APP Now]MULTISUB【秋雪漫过的冬天 Loving Strangers】赵又廷张子枫烂牌翻盘重启人生 | 都市 剧情 | 优酷 YOUKU
+  SKIP: Has trailer/promo videos
+[77/784] Checking: 预告Trailer +BTS花絮+OST 【秋雪漫过的冬天 Loving Strangers】| 优酷 YOUKU
+  SKIP: Has trailer/promo videos
+[78/784] Checking: [Get APP Now]ENGSUB【寻秦记 A Legend Of A Modern Man Gets Back To Qin Dynasty】陈翔郭晓婷隔世情缘 | 陈翔/郭晓婷/牛子藩 | 古装 奇幻 | 优酷 YOUKU
+  SKIP: Video -bFLSc3D9Fc has no Chinese captions
+[79/784] Checking: 【MOVIE】悬疑大电影💥高能探案烧脑解密，一口气看到爽🥳
+  SKIP: Video b7HVxUYxRwU has no Chinese captions
+[80/784] Checking: [Get APP Now]MULTISUB【山海经密码 Threads of Fate: A War Untold】以热血为刃，斩热血枷锁 | 热血 古风漫 | 优酷 YOUKU
+  SKIP: Has private videos
+[81/784] Checking: 剥茧正片
+  SKIP: Has private videos
+[82/784] Checking: 预告Trailer +BTS花絮+OST 【剥茧The Truth Within】| 优酷 YOUKU
+  SKIP: Has private videos
+[83/784] Checking: [Get APP Now]MULTISUB【剥茧The Truth Within】识骨寻凶！罗云熙变天才法医解码诡案 | 罗云熙/刘雅瑟/江奇霖 | 悬疑 剧情 | 优酷 YOUKU
+  SKIP: Has trailer/promo videos
+[84/784] Checking: [Get APP Now]ENGSUB【长安二十四计 The Vendetta of An】EP21 |  成毅 / 刘奕君 / 王劲松 / 周奇  |古装 剧情| 优酷 YOUKU
+  SKIP: Video KguAf9PaXpU has no Chinese captions
+[85/784] Checking: [Get APP Now]ENGSUB【长安二十四计 The Vendetta of An】EP12 |  成毅 / 刘奕君 / 王劲松 / 周奇  |古装 剧情| 优酷 YOUKU
+  SKIP: Video z7KmUpXL8gk has no Chinese captions
+[86/784] Checking: [Get APP Now]ENGSUB【长安二十四计 The Vendetta of An】EP20 |  成毅 / 刘奕君 / 王劲松 / 周奇  |古装 剧情| 优酷 YOUKU
+  SKIP: Video nN04B-aeT7s has no Chinese captions
+[87/784] Checking: [Get APP Now]ENGSUB【长安二十四计 The Vendetta of An】EP16 |  成毅 / 刘奕君 / 王劲松 / 周奇  |古装 剧情| 优酷 YOUKU
+  SKIP: Video A97fareYMlU has no Chinese captions
+[88/784] Checking: [Get APP Now]ENGSUB【长安二十四计 The Vendetta of An】EP15 |  成毅 / 刘奕君 / 王劲松 / 周奇  |古装 剧情| 优酷 YOUKU
+  SKIP: Video 6P5-RXMlp5M has no Chinese captions
+[89/784] Checking: [Get APP Now]ENGSUB【长安二十四计 The Vendetta of An】EP14 |  成毅 / 刘奕君 / 王劲松 / 周奇  |古装 剧情| 优酷 YOUKU
+  SKIP: Video AOPO5VjnAhw has no Chinese captions
+[90/784] Checking: [Get APP Now]【一路繁花相送】钟汉良江疏影为爱造梦 | 钟汉良/江疏影/炎亚纶/李晟  | 都市 爱情 | 优酷 YOUKU
+  Captions: 10/30...
+  Captions: 20/30...
+  Captions: 30/30...
+  KEPT (30 episodes, all with Chinese captions)
+[91/784] Checking: [Get APP Now]ENGSUB【长安二十四计 The Vendetta of An】EP19 |  成毅 / 刘奕君 / 王劲松 / 周奇  |古装 剧情| 优酷 YOUKU
+  SKIP: Video UM2xI-kdf0Y has no Chinese captions
+[92/784] Checking: [Get APP Now]ENGSUB【长安二十四计 The Vendetta of An】EP18 |  成毅 / 刘奕君 / 王劲松 / 周奇  |古装 剧情| 优酷 YOUKU
+  SKIP: Video gxr2Jh60NXc has no Chinese captions
+[93/784] Checking: [Get APP Now]ENGSUB【长安二十四计 The Vendetta of An】EP17 |  成毅 / 刘奕君 / 王劲松 / 周奇  |古装 剧情| 优酷 YOUKU
+  SKIP: Video Ukwfy3CfADE has no Chinese captions
+[94/784] Checking: [Get APP Now]ENGSUB【长安二十四计 The Vendetta of An】EP13 |  成毅 / 刘奕君 / 王劲松 / 周奇  |古装 剧情| 优酷 YOUKU
+  SKIP: Video WswDkk9-ieY has no Chinese captions
+[95/784] Checking: 预告Trailer +BTS花絮+OST 【藏香记The Glory of Queen】| 优酷 YOUKU
+  SKIP: Has trailer/promo videos
+[96/784] Checking: [Get APP Now]MULTISUB【藏香记The Glory of Queen】 | 金子璇 / 李宇皓 / 郁葱 / 梁浩川 | 爱情 古装 | 优酷 YOUKU
+  SKIP: Has trailer/promo videos
+[97/784] Checking: 预告Trailer +BTS花絮+OST 【柔情史 Love Me Tender】| 优酷 YOUKU
+  SKIP: Has trailer/promo videos
+[98/784] Checking: [Get APP Now]ENGSUB【 柔情史 Love Me Tender】千金小姐涅槃重生破棋局 | 王梓桐/徐凯鑫/谷丰帆/王婷羽 | 爱情 剧情 | 优酷 YOUKU
+  SKIP: Has trailer/promo videos
+[99/784] Checking: [Get APP Now]ENGSUB【长安二十四计 The Vendetta of An】EP11 |  成毅 / 刘奕君 / 王劲松 / 周奇  |古装 剧情| 优酷 YOUKU
+  SKIP: Video DHxUpRqSGoE has no Chinese captions
+[100/784] Checking: [Get APP Now]ENGSUB【长安二十四计 The Vendetta of An】EP10 |  成毅 / 刘奕君 / 王劲松 / 周奇  |古装 剧情| 优酷 YOUKU
+  SKIP: Video g_mRdorhwnU has no Chinese captions
+[101/784] Checking: 【Member】Key to the Phoenix Heart 雀骨 | Aimee, Neo | iQIYI 👑【Kiwi Only | FULL】
+  SKIP: No videos
+[102/784] Checking: 【凤骨涅槃 🔥 执棋天下】Key to the Phoenix Heart 雀骨 | 艾米 & 侯明昊 命运交错难逃宿命，相爱相杀共赴乱世 | iQIYI | 正片/预告/特辑/高光/花絮/幕后
+  KEPT (1 episodes, all with Chinese captions)
+[103/784] Checking: 【逆风启航 🌟 星光可期】Road to Success 灿如繁星 |吕煜（陈靖可）、虞书欣 从平凡到闪耀，每一次跌倒都是通往梦想的下一步 （按姓氏笔画排序）| iQIYI | 正片/预告/特辑/高光/花絮/幕后
+  SKIP: Has trailer/promo videos
+[104/784] Checking: 【Member】INSEPARABLE 昨夜将至 | David, Esther, Ma Su, Ren Zhong, Jiang Shuying, Zhang Baiqiao | iQIYI 👑【Kiwi Only | FULL】
+  SKIP: Has private videos
+[105/784] Checking: 【暗夜追凶 🌙 真相将至】INSEPARABLE 昨夜将至 | 烈火灼烧旧日罪孽，漫漫长夜藏尽阴谋 | iQIYI | 正片/预告/特辑/高光/花絮/幕后
+  QUOTA EXCEEDED! Waiting 60s...
+  QUOTA EXCEEDED! Waiting 60s...
+  QUOTA EXCEEDED! Waiting 60s...
+  QUOTA EXCEEDED! Waiting 60s...
+  QUOTA EXCEEDED! Waiting 60s...
+  SKIP: Video iCQnoeNdgN4 has no Chinese captions
+[106/784] Checking: 【仲夏心动 ☀️ 炽爱如火】Never-Ending Summer 炽夏 | 包上恩 & 周柯宇 （排名不分先后）校园初恋热烈生长，奔赴一场永不落幕的夏日之约 | iQIYI | 正片/预告/特辑/高光/花絮/幕后
+  SKIP: Has trailer/promo videos
+[107/784] Checking: 【Member】The Legend of Rosy Clouds 云秀行 | Shirley, Joseph Zeng, Deng Wei | iQIYI 👑【Kiwi Only | FULL】
+  SKIP: Has private videos
+[108/784] Checking: 【云霞相伴 ☁️ 宿命相依】The Legend of Rosy Clouds 云秀行 | 李一桐 & 曾舜晞 & 邓为 历经试探终交付真心，携手看尽九城人间繁华 | iQIYI | 正片/预告/特辑/高光/花絮/幕后
+  QUOTA EXCEEDED! Waiting 60s...
+  QUOTA EXCEEDED! Waiting 60s...
+  QUOTA EXCEEDED! Waiting 60s...
+  SKIP: Video HxKVjyPcTBE has no Chinese captions
+[109/784] Checking: 【并肩逐梦 🎇 烟火人间】Love Has Fireworks 爱情有烟火 | 檀健次 & 王楚然 欢喜冤家屋檐相遇，解锁双向浪漫情缘 | iQIYI | 正片/预告/特辑/高光/花絮/幕后
+  QUOTA EXCEEDED! Waiting 60s...
+  QUOTA EXCEEDED! Waiting 60s...
+  QUOTA EXCEEDED! Waiting 60s...
+  QUOTA EXCEEDED! Waiting 60s...
+  SKIP: Video WojgXgei7IM has no Chinese captions
+[110/784] Checking: 【Member】Archives: The Nanyang Mystery 南部档案 | Ding Yuxi, Zhang Xincheng | iQIYI 👑【Kiwi Only | FULL】
+  QUOTA EXCEEDED! Waiting 60s...
+  QUOTA EXCEEDED! Waiting 60s...
+  QUOTA EXCEEDED! Waiting 60s...
+  SKIP: Video xVATuiaprys has no Chinese captions
+[111/784] Checking: 【深海迷局 ⚓ 宿命破浪】Archives: The Nanyang Mystery 南部档案 | 张新成 & 丁禹兮（排名不分先后）南洋惊天死局生死相托，双雄少年波诡云谲中拨云见日 | iQIYI | 正片/预告/特辑/高光/花絮/幕后
+  QUOTA EXCEEDED! Waiting 60s...
+  QUOTA EXCEEDED! Waiting 60s...
+  QUOTA EXCEEDED! Waiting 60s...
+  QUOTA EXCEEDED! Waiting 60s...
+  QUOTA EXCEEDED! Waiting 60s...
+  QUOTA EXCEEDED! Waiting 60s...
+  QUOTA EXCEEDED! Waiting 60s...
+  QUOTA EXCEEDED! Waiting 60s...
+  SKIP: Video ayFSsbQF9xQ has no Chinese captions
+[112/784] Checking: 【月光依旧 💕 浪漫如初】Moonlight 月光变奏曲 | 虞书欣 & 丁禹兮 携手五周年，重温傲娇作家与元气编辑的初恋乐章 | iQIYI | 正片/预告/特辑/高光/花絮/幕后
+  QUOTA EXCEEDED! Waiting 60s...
+  QUOTA EXCEEDED! Waiting 60s...
+  QUOTA EXCEEDED! Waiting 60s...
+  SKIP: No videos
+[113/784] Checking: 【深夜摆渡 🕯️ 幽冥档案】Midnight Soul Files | The Ferry Man 灵魂摆渡 Season 1-3 | iQIYI
+  QUOTA EXCEEDED! Waiting 60s...
+  QUOTA EXCEEDED! Waiting 60s...
+  QUOTA EXCEEDED! Waiting 60s...
+  SKIP: No videos
+[114/784] Checking: 【Member】The Ferry Man 10th Anniversary 灵魂摆渡·十年 | Yu Yi, Liu Zhiyang, Xiao Yin | iQIYI 👑【Kiwi Only | FULL】
+  QUOTA EXCEEDED! Waiting 60s...
+  QUOTA EXCEEDED! Waiting 60s...
+  QUOTA EXCEEDED! Waiting 60s...
+  SKIP: No videos
+[115/784] Checking: 【红月夜归 🌕👻 十年之约】The Ferry Man 10th Anniversary 灵魂摆渡·十年 | 于毅 & 刘智扬 & 肖茵 十年执念未散，灵魂永值摆渡| iQIYI | 正片/预告/特辑/高光/花絮/幕后
+  QUOTA EXCEEDED! Waiting 60s...
+  QUOTA EXCEEDED! Waiting 60s...
+  QUOTA EXCEEDED! Waiting 60s...
+  SKIP: No videos
+[116/784] Checking: 【ENG DUB | FULL】We Are Criminal Police (English ver.）我是刑警 英语版 | Yu Hewei & Fu Dalong & Ding Yongdai & Bai Fan & Ma Su | iQIYI
+  QUOTA EXCEEDED! Waiting 60s...
+  QUOTA EXCEEDED! Waiting 60s...
+  QUOTA EXCEEDED! Waiting 60s...
+  SKIP: No videos
+[117/784] Checking: 【风雨重逢 ✨ 执手逐光】Dazzling 耀眼 | 关晓彤 & 李昀锐 倾情演绎，从迷茫小镇到繁华都市，原来你就是我生命中最耀眼的光 | iQIYI | 正片/预告/特辑/高光/花絮/幕后
+  QUOTA EXCEEDED! Waiting 60s...
+  QUOTA EXCEEDED! Waiting 60s...
+  QUOTA EXCEEDED! Waiting 60s...
+  SKIP: No videos
+[118/784] Checking: 【 七情复苏🌸全糖纯享】Love Between Fairy and Devil 苍兰诀 | 虞书欣 & 王鹤棣 & 张凌赫 傲娇大魔王遇上命中克星 | iQIYI | 正片/预告/特辑/高光/花絮/幕后
+  QUOTA EXCEEDED! Waiting 60s...
+  QUOTA EXCEEDED! Waiting 60s...
+  QUOTA EXCEEDED! Waiting 60s...
+  SKIP: No videos
+[119/784] Checking: 【墨染风华 🖤 匠心传世】The Heir 家业 | 杨紫 & 韩东君 强强联手，墨香日盛，家业绵长 | iQIYI | 正片/预告/特辑/高光/花絮/幕后
+  QUOTA EXCEEDED! Waiting 60s...
+  QUOTA EXCEEDED! Waiting 60s...
+  QUOTA EXCEEDED! Waiting 60s...
+  SKIP: No videos
+[120/784] Checking: 【Member】Bloom Life 喀什恋歌 | Landy, Guo Junchen | iQIYI 👑【Kiwi Only | FULL】
+  QUOTA EXCEEDED! Waiting 60s...

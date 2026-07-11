@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/dictionary_provider.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/character_detail_screen.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
+import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 
 class CrossReferenceText extends ConsumerStatefulWidget {
   final String text;
@@ -55,7 +56,7 @@ class _CrossReferenceTextState extends ConsumerState<CrossReferenceText> {
       
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => CharacterDetailScreen(card: card)),
+        SwipeBackPageRoute(builder: (context) => CharacterDetailScreen(card: card)),
       );
     } else {
       // Show "Pre-import" detail view or a snackbar with basic info
@@ -77,7 +78,7 @@ class _CrossReferenceTextState extends ConsumerState<CrossReferenceText> {
               );
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => CharacterDetailScreen(card: card)),
+                SwipeBackPageRoute(builder: (context) => CharacterDetailScreen(card: card)),
               );
             },
           ),

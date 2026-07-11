@@ -8,6 +8,7 @@ import 'package:hanzi_master/features/onboarding/presentation/screens/notificati
 import 'package:hanzi_master/features/premium/presentation/screens/paywall_sheet.dart';
 import 'package:hanzi_master/features/auth/presentation/screens/auth_screen.dart';
 import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
+import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 
 class OnboardingScreen extends ConsumerStatefulWidget {
   const OnboardingScreen({super.key});
@@ -269,7 +270,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                   onPressed: () {
                     Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(builder: (context) => const AuthScreen()),
+                      SwipeBackPageRoute(builder: (context) => const AuthScreen()),
                     );
                   },
                   child: OutlinedButton(

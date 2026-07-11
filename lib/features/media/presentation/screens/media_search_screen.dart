@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:youtube_explode_dart/youtube_explode_dart.dart';
 import '../../data/youtube_repository.dart';
+import '../../domain/models/youtube_video.dart';
 import 'smart_media_desk_screen.dart';
 import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import 'package:hanzi_master/shared/widgets/info_bulb.dart';
+import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 
 class MediaSearchScreen extends ConsumerStatefulWidget {
   const MediaSearchScreen({super.key});
@@ -17,7 +18,7 @@ class MediaSearchScreen extends ConsumerStatefulWidget {
 class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
   final TextEditingController _searchController = TextEditingController();
 
-  final Map<String, List<Video>> _categories = {
+  final Map<String, List<YoutubeVideo>> _categories = {
     'Lifestyle & Vlog': [],
     'Gaming & Esports': [],
     'Food & Cooking': [],
@@ -35,7 +36,7 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
   final Map<String, _CategoryLoadState> _categoryStates = {};
 
   bool _isSearching = false;
-  List<Video> _searchResults = [];
+  List<YoutubeVideo> _searchResults = [];
   String? _error;
   String _searchStatus = '';
 
@@ -267,7 +268,7 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
     );
   }
 
-  Widget _buildCategoryContent(_CategoryLoadState state, List<Video> videos) {
+  Widget _buildCategoryContent(_CategoryLoadState state, List<YoutubeVideo> videos) {
     switch (state) {
       case _CategoryLoadState.loading:
         return _buildSkeletonRow();
@@ -326,7 +327,7 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
     );
   }
 
-  Widget _buildVideoCard(Video video, {required bool isLarge}) {
+  Widget _buildVideoCard(YoutubeVideo video, {required bool isLarge}) {
     final width = isLarge ? double.infinity : 260.0;
     final imageHeight = isLarge ? 200.0 : 140.0;
 
@@ -335,7 +336,7 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
         HapticsManager.medium();
         Navigator.push(
           context,
-          MaterialPageRoute(
+          SwipeBackPageRoute(
             builder: (context) => SmartMediaDeskScreen(video: video),
           ),
         );
@@ -368,8 +369,8 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
                       const BorderRadius.vertical(top: Radius.circular(16)),
                   child: Image.network(
                     isLarge
-                        ? video.thumbnails.highResUrl
-                        : video.thumbnails.mediumResUrl,
+                        ? video.highThumbnailUrl
+                        : video.mediumThumbnailUrl,
                     width: width,
                     height: imageHeight,
                     fit: BoxFit.cover,
@@ -457,7 +458,7 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
                   ),
                   const SizedBox(height: 6),
                   Text(
-                    video.author,
+                    video.channelTitle,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(

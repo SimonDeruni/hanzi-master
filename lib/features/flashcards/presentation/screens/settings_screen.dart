@@ -36,15 +36,6 @@ class SettingsScreen extends ConsumerWidget {
             context: context,
             children: [
 
-              _buildSwitchTile(
-                icon: Icons.vibration,
-                iconColor: Colors.orange,
-                title: l10n?.haptics ?? "Haptic Feedback",
-                subtitle: l10n?.hapticsDesc ?? "Feel the brush strokes",
-                value: settings.hapticsEnabled,
-                onChanged: (val) => ref.read(settingsProvider.notifier).toggleHaptics(val),
-              ),
-              _buildDivider(),
               _buildSliderTile(
                 icon: Icons.speed,
                 iconColor: Colors.lightBlue,

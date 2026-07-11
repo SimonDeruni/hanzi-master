@@ -24,6 +24,7 @@ import 'package:hanzi_master/features/flashcards/presentation/widgets/word_detai
 import 'package:hanzi_master/core/presentation/widgets/ai_progress_bar.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import 'package:hanzi_master/shared/widgets/info_bulb.dart';
+import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 
 class WebBrowserScreen extends ConsumerStatefulWidget {
   final String initialUrl;
@@ -645,12 +646,9 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
       _controller.runJavaScript(js);
       
       if (_currentInsight == null) {
-        // Wait a tiny bit for the JS to finish extracting text before analyzing
-        Future.delayed(const Duration(milliseconds: 500), () {
-          if (mounted && _isZenMode) {
-            _runAnalyzeArticle();
-          }
-        });
+        if (mounted && _isZenMode) {
+          _runAnalyzeArticle();
+        }
       }
     } else {
       final js = '''
@@ -666,14 +664,12 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
     setState(() => _isProcessingAi = true);
     
     try {
-      final text = await _controller.runJavaScriptReturningResult('document.body.innerText');
+      // Extract only what Gemini needs to save platform channel overhead
+      final text = await _controller.runJavaScriptReturningResult('document.body.innerText.substring(0, 3000)');
       
-      final repo = ref.read(flashcardRepositoryProvider);
-      final cardsResult = await repo.getFlashcards();
-      final knownWords = cardsResult.fold(
-        (l) => <String>[],
-        (r) => r.map((c) => c.hanzi).toList(),
-      );
+      // Use synchronous cached provider instead of hitting the database
+      final allCards = ref.read(flashcardControllerProvider).value ?? [];
+      final knownWords = allCards.map((c) => c.hanzi).toList();
       
       final gemini = ref.read(geminiServiceProvider);
       final langCode = Localizations.localeOf(context).languageCode;
@@ -824,7 +820,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
       
       Navigator.push(
         context,
-        MaterialPageRoute(
+        SwipeBackPageRoute(
           builder: (_) => SimplifiedArticleReaderScreen(story: simplifiedStory),
         ),
       );
@@ -1103,7 +1099,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
                                 if (!mounted) return;
                                 Navigator.push(
                                   context,
-                                  MaterialPageRoute(
+                                  SwipeBackPageRoute(
                                     builder: (_) => SimplifiedArticleReaderScreen(story: simplifiedStory),
                                   ),
                                 );

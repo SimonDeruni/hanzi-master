@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:hanzi_master/features/media/domain/models/library_story.dart';
 import 'package:hanzi_master/features/media/presentation/screens/story_summary_screen.dart';
+import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 
 class StoryCulturalInsightScreen extends ConsumerStatefulWidget {
   final LibraryStory story;
@@ -148,7 +149,7 @@ class _StoryCulturalInsightScreenState extends ConsumerState<StoryCulturalInsigh
             onPressed: () {
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(
+                SwipeBackPageRoute(
                   builder: (context) => StorySummaryScreen(story: widget.story),
                 ),
               );

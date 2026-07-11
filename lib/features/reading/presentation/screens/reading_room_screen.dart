@@ -6,6 +6,7 @@ import 'story_reader_screen.dart';
 import '../widgets/custom_story_creator_sheet.dart';
 import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
 import '../../../../shared/widgets/info_bulb.dart';
+import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 
 class ReadingRoomScreen extends ConsumerStatefulWidget {
   const ReadingRoomScreen({super.key});
@@ -306,7 +307,7 @@ class _ReadingRoomScreenState extends ConsumerState<ReadingRoomScreen> {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(
+              SwipeBackPageRoute(
                 builder: (context) => StoryReaderScreen(
                   blueprint: blueprint,
                   hskLevel: _selectedHskLevel,

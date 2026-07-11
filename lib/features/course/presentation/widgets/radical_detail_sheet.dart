@@ -9,6 +9,7 @@ import 'package:hanzi_master/features/flashcards/presentation/providers/flashcar
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/features/course/domain/entities/course_unit.dart';
 import '../screens/radical_lesson_screen.dart';
+import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 
 class RadicalDetailSheet extends ConsumerStatefulWidget {
   final CourseNode sunNode;
@@ -189,7 +190,7 @@ class _RadicalDetailSheetState extends ConsumerState<RadicalDetailSheet> {
                         if (context.mounted) {
                           Navigator.push(
                             context, 
-                            MaterialPageRoute(
+                            SwipeBackPageRoute(
                               builder: (context) => RadicalLessonScreen(
                                 sunNode: widget.sunNode,
                                 clusterNodes: widget.clusterNodes,

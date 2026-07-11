@@ -14,7 +14,6 @@ class SettingsState {
   // Phase 2 Settings
   final bool isHardMode;
   final bool autoPlayAudio;
-  final bool hapticsEnabled;
   final bool strictGrading;
   final String locale;
   final bool showPinyinInSpeaking;
@@ -28,7 +27,6 @@ class SettingsState {
     this.guideDisappearanceStreak = 2,
     this.isHardMode = false,
     this.autoPlayAudio = false,
-    this.hapticsEnabled = true,
     this.strictGrading = false,
     this.locale = 'en',
     this.showPinyinInSpeaking = true,
@@ -43,7 +41,6 @@ class SettingsState {
     int? guideDisappearanceStreak,
     bool? isHardMode,
     bool? autoPlayAudio,
-    bool? hapticsEnabled,
     bool? strictGrading,
     String? locale,
     bool? showPinyinInSpeaking,
@@ -57,7 +54,6 @@ class SettingsState {
       guideDisappearanceStreak: guideDisappearanceStreak ?? this.guideDisappearanceStreak,
       isHardMode: isHardMode ?? this.isHardMode,
       autoPlayAudio: autoPlayAudio ?? this.autoPlayAudio,
-      hapticsEnabled: hapticsEnabled ?? this.hapticsEnabled,
       strictGrading: strictGrading ?? this.strictGrading,
       locale: locale ?? this.locale,
       showPinyinInSpeaking: showPinyinInSpeaking ?? this.showPinyinInSpeaking,
@@ -78,12 +74,10 @@ class SettingsController extends StateNotifier<SettingsState> {
       guideDisappearanceStreak: prefs.getInt(_keyGuideStreak) ?? 2,
       isHardMode: prefs.getBool(_keyHardMode) ?? false,
       autoPlayAudio: prefs.getBool(_keyAutoPlay) ?? false,
-      hapticsEnabled: prefs.getBool(_keyHaptics) ?? true,
       strictGrading: prefs.getBool(_keyStrictGrading) ?? false,
       locale: prefs.getString(_keyLocale) ?? 'en',
       showPinyinInSpeaking: prefs.getBool(_keyPinyinSpeaking) ?? true,
     )) {
-      HapticsManager.setEnabled(state.hapticsEnabled);
     }
 
   static const _keyTheme = 'is_dark_mode';
@@ -94,7 +88,6 @@ class SettingsController extends StateNotifier<SettingsState> {
   static const _keyGuideStreak = 'guide_disappearance_streak';
   static const _keyHardMode = 'hard_mode_enabled';
   static const _keyAutoPlay = 'auto_play_audio';
-  static const _keyHaptics = 'haptics_enabled';
   static const _keyStrictGrading = 'strict_grading';
   static const _keyLocale = 'app_locale';
   static const _keyPinyinSpeaking = 'pinyin_speaking';
@@ -137,12 +130,6 @@ class SettingsController extends StateNotifier<SettingsState> {
   Future<void> toggleAutoPlayAudio(bool value) async {
     await prefs.setBool(_keyAutoPlay, value);
     state = state.copyWith(autoPlayAudio: value);
-  }
-
-  Future<void> toggleHaptics(bool value) async {
-    await prefs.setBool(_keyHaptics, value);
-    HapticsManager.setEnabled(value);
-    state = state.copyWith(hapticsEnabled: value);
   }
 
   Future<void> toggleStrictGrading(bool value) async {

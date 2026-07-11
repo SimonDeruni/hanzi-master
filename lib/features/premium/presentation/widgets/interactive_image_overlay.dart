@@ -21,12 +21,13 @@ class InteractiveImageOverlay extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        final fittedSizes = applyBoxFit(BoxFit.contain, imageSize, constraints.biggest);
+        final fittedSizes = applyBoxFit(BoxFit.cover, imageSize, constraints.biggest);
         final renderedSize = fittedSizes.destination;
 
         final scaleX = renderedSize.width / imageSize.width;
         final scaleY = renderedSize.height / imageSize.height;
 
+        // For cover, the image may be shifted. Compute overflow offsets.
         final offsetX = (constraints.maxWidth - renderedSize.width) / 2;
         final offsetY = (constraints.maxHeight - renderedSize.height) / 2;
 
@@ -55,9 +56,19 @@ class InteractiveImageOverlay extends StatelessWidget {
         return Stack(
           fit: StackFit.expand,
           children: [
-            Image.file(
-              File(image.path),
-              fit: BoxFit.contain,
+            Positioned.fill(
+              child: FittedBox(
+                fit: BoxFit.cover,
+                alignment: Alignment.center,
+                child: SizedBox(
+                  width: imageSize.width,
+                  height: imageSize.height,
+                  child: Image.file(
+                    File(image.path),
+                    fit: BoxFit.fill,
+                  ),
+                ),
+              ),
             ),
             ...interactiveWidgets,
           ],

@@ -29,23 +29,12 @@ Future<void> main() async {
     return;
   }
 
-  // 2. Unzip using OS command (faster than Dart libs for this specific task)
+  // 2. Unzip using dart:io GZipCodec
   print('📦 Unzipping database...');
   try {
-    // Windows specific unzip using tar (built into modern Windows 10/11)
-    final result = await Process.run('tar', ['-xf', gzPath]);
-    if (result.exitCode != 0) {
-       print('❌ Unzip failed. Make sure tar is available on Windows, or use a manual tool.');
-       return;
-    }
-    // Rename the extracted file (usually cedict_ts.u8) to cedict.txt for easier handling
-    final extractedFile = Directory.current.listSync().firstWhere(
-      (e) => e.path.contains('cedict_ts.u8') || e.path.endsWith('.u8'),
-      orElse: () => File(''),
-    );
-    if (extractedFile.existsSync()) {
-      extractedFile.renameSync(txtPath);
-    }
+    final gzipBytes = File(gzPath).readAsBytesSync();
+    final decompressed = gzip.decode(gzipBytes);
+    File(txtPath).writeAsBytesSync(decompressed);
     print('✅ Unzipped successfully.');
   } catch (e) {
     print('❌ Unzip error: $e');
@@ -75,10 +64,8 @@ Future<void> main() async {
       // Clean up the definition string (replace / with semicolons)
       String definition = match.group(4)!.replaceAll('/', '; ');
       
-      // To keep the file size tiny (~3MB), we only save the first definition block if it's huge
-      if (definition.length > 100) {
-         definition = '${definition.substring(0, 97)}...';
-      }
+      // We save the full definition. Truncating by String length splits UTF-16 surrogate pairs, 
+      // which corrupts rare characters and causes U+FFFD () errors.
 
       // If a word has multiple pronunciations/meanings, we just take the first one for the MVP
       // to keep the database strictly key-value for maximum speed.

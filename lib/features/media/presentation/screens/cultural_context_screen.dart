@@ -2,14 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:hanzi_master/features/media/domain/models/daily_media_item.dart';
+import 'package:hanzi_master/features/media/domain/models/youtube_video.dart';
 import 'package:hanzi_master/features/media/presentation/providers/cultural_context_provider.dart';
 import 'package:hanzi_master/features/media/presentation/screens/web_browser_screen.dart';
 import 'package:hanzi_master/features/media/presentation/screens/media_search_screen.dart';
 import 'package:hanzi_master/features/media/presentation/screens/smart_media_desk_screen.dart';
-import 'package:youtube_explode_dart/youtube_explode_dart.dart';
 import 'package:flutter/gestures.dart';
 import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
+import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class CulturalContextScreen extends ConsumerWidget {
   final DailyMediaItem mediaItem;
@@ -162,33 +164,39 @@ class CulturalContextScreen extends ConsumerWidget {
       floatingActionButton: BouncingButton(
         onPressed: () async {
           if (mediaItem.url.contains("youtube.com") || mediaItem.url.contains("youtu.be")) {
-            showDialog(
-              context: context,
-              barrierDismissible: false,
-              builder: (ctx) => const Center(child: CircularProgressIndicator()),
-            );
-            try {
-              final yt = YoutubeExplode();
-              final video = await yt.videos.get(mediaItem.url);
-              yt.close();
+            // Extract video ID from URL and create a YoutubeVideo
+            final videoId = _extractVideoId(mediaItem.url);
+            if (videoId != null) {
+              final video = YoutubeVideo(
+                id: videoId,
+                title: mediaItem.title,
+                url: mediaItem.url,
+                mediumThumbnailUrl: mediaItem.imageUrl,
+                highThumbnailUrl: mediaItem.imageUrl,
+                channelTitle: '',
+              );
               if (!context.mounted) return;
-              Navigator.pop(context); // hide loading
-              
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(
+                SwipeBackPageRoute(
                   builder: (_) => SmartMediaDeskScreen(video: video),
                 ),
               );
-            } catch (e) {
-              if (!context.mounted) return;
-              Navigator.pop(context);
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Failed to load video: $e')));
+            } else {
+              // Fallback: open the video directly in YouTube app or browser
+              final uri = Uri.tryParse(mediaItem.url);
+              if (uri != null) {
+                launchUrl(uri, mode: LaunchMode.externalApplication);
+              } else {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Unable to open this video. Please try again later.')),
+                );
+              }
             }
           } else {
             Navigator.pushReplacement(
               context,
-              MaterialPageRoute(
+              SwipeBackPageRoute(
                 builder: (_) => WebBrowserScreen(initialUrl: mediaItem.url),
               ),
             );
@@ -226,6 +234,31 @@ class CulturalContextScreen extends ConsumerWidget {
         ),
       ),
     );
+  }
+
+  /// Extract YouTube video ID from various URL formats
+  String? _extractVideoId(String url) {
+    final uri = Uri.tryParse(url);
+    if (uri == null) return null;
+
+    // youtu.be/VIDEO_ID
+    if (uri.host.contains('youtu.be')) {
+      return uri.pathSegments.isNotEmpty ? uri.pathSegments.first : null;
+    }
+
+    // youtube.com/watch?v=VIDEO_ID
+    // youtube.com/embed/VIDEO_ID
+    // youtube.com/v/VIDEO_ID
+    if (uri.host.contains('youtube.com')) {
+      if (uri.pathSegments.contains('watch')) {
+        return uri.queryParameters['v'];
+      }
+      if (uri.pathSegments.contains('embed') || uri.pathSegments.contains('v')) {
+        return uri.pathSegments.last;
+      }
+    }
+
+    return null;
   }
 
   Widget _buildClickableContext(BuildContext context, String text, ThemeData theme, {TextStyle? customBaseStyle, TextStyle? customHanziStyle}) {
@@ -271,4 +304,3 @@ class CulturalContextScreen extends ConsumerWidget {
     );
   }
 }
-

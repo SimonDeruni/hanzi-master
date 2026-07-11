@@ -8,6 +8,7 @@ import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart'
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
+import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 
 class RadicalDetailScreen extends ConsumerStatefulWidget {
   final String radicalChar;
@@ -286,7 +287,7 @@ class _RadicalDetailScreenState extends ConsumerState<RadicalDetailScreen> {
         
         Navigator.push(
           context,
-          MaterialPageRoute(
+          SwipeBackPageRoute(
             builder: (context) => CharacterDetailScreen(card: targetCard),
           ),
         );

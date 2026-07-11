@@ -6,7 +6,7 @@ part of 'premium_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$premiumControllerHash() => r'ec89b30ac81ac4e00d855af9a47aa16d7a633c82';
+String _$premiumControllerHash() => r'23eeb57caccc2da31b2694d1e8882b21b8cff866';
 
 /// See also [PremiumController].
 @ProviderFor(PremiumController)

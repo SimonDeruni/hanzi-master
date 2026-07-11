@@ -15,6 +15,7 @@ import 'package:hanzi_master/shared/widgets/calligraphy_canvas_sheet.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/ai_explainer_sheet.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/deck_selection_sheet.dart';
+import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 
 // ---------------------------------------------------------------------------
 // Helpers — clean raw CC-CEDICT strings before display
@@ -436,7 +437,7 @@ class _FoundBody extends ConsumerWidget {
                     Navigator.pop(context);
                     Navigator.push(
                       context,
-                      MaterialPageRoute(
+                      SwipeBackPageRoute(
                           builder: (_) => CharacterDetailScreen(card: card)),
                     );
                   },

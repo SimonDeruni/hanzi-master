@@ -9,223 +9,235 @@ class AppLocalizationsHi extends AppLocalizations {
   AppLocalizationsHi([String locale = 'hi']) : super(locale);
 
   @override
-  String get globalMastery => 'संपूर्ण महारत';
+  String get globalMastery => 'à¤¸à¤‚à¤ªà¥‚à¤°à¥à¤£ à¤®à¤¹à¤¾à¤°à¤¤';
 
   @override
-  String get masteredCards => 'महारत हासिल';
+  String get masteredCards => 'à¤®à¤¹à¤¾à¤°à¤¤ à¤¹à¤¾à¤¸à¤¿à¤²';
 
   @override
-  String get hsk1Candidate => 'HSK 1 उम्मीदवार';
+  String get hsk1Candidate => 'HSK 1 à¤‰à¤®à¥à¤®à¥€à¤¦à¤µà¤¾à¤°';
 
   @override
-  String get hsk2Candidate => 'HSK 2 उम्मीदवार';
+  String get hsk2Candidate => 'HSK 2 à¤‰à¤®à¥à¤®à¥€à¤¦à¤µà¤¾à¤°';
 
   @override
-  String get hsk3Candidate => 'HSK 3 उम्मीदवार';
+  String get hsk3Candidate => 'HSK 3 à¤‰à¤®à¥à¤®à¥€à¤¦à¤µà¤¾à¤°';
 
   @override
-  String get hsk4Candidate => 'HSK 4 उम्मीदवार';
+  String get hsk4Candidate => 'HSK 4 à¤‰à¤®à¥à¤®à¥€à¤¦à¤µà¤¾à¤°';
 
   @override
-  String get hsk5Candidate => 'HSK 5 उम्मीदवार';
+  String get hsk5Candidate => 'HSK 5 à¤‰à¤®à¥à¤®à¥€à¤¦à¤µà¤¾à¤°';
 
   @override
-  String get hsk6Candidate => 'HSK 6 उम्मीदवार';
+  String get hsk6Candidate => 'HSK 6 à¤‰à¤®à¥à¤®à¥€à¤¦à¤µà¤¾à¤°';
 
   @override
-  String get hsk6Master => 'HSK 6 मास्टर';
+  String get hsk6Master => 'HSK 6 à¤®à¤¾à¤¸à¥à¤Ÿà¤°';
 
   @override
-  String get currentRank => 'वर्तमान रैंक';
+  String get currentRank => 'à¤µà¤°à¥à¤¤à¤®à¤¾à¤¨ à¤°à¥ˆà¤‚à¤•';
 
   @override
   String get next => 'Suivant';
 
   @override
-  String get searchHanziOrPinyin => 'खोजें...';
+  String get searchHanziOrPinyin => 'à¤–à¥‹à¤œà¥‡à¤‚...';
 
   @override
-  String get dailyReview => 'दैनिक समीक्षा';
+  String get dailyReview => 'à¤¦à¥ˆà¤¨à¤¿à¤• à¤¸à¤®à¥€à¤•à¥à¤·à¤¾';
 
   @override
-  String get upcomingForecast => 'आगामी पूर्वानुमान';
+  String get upcomingForecast =>
+      'à¤†à¤—à¤¾à¤®à¥€ à¤ªà¥‚à¤°à¥à¤µà¤¾à¤¨à¥à¤®à¤¾à¤¨';
 
   @override
-  String get laterToday => 'आज बाद में';
+  String get laterToday => 'à¤†à¤œ à¤¬à¤¾à¤¦ à¤®à¥‡à¤‚';
 
   @override
-  String get tomorrow => 'कल';
+  String get tomorrow => 'à¤•à¤²';
 
   @override
-  String get next7Days => 'अगले 7 दिन';
+  String get next7Days => 'à¤…à¤—à¤²à¥‡ 7 à¤¦à¤¿à¤¨';
 
   @override
-  String get theScholarWay => 'विद्वान का मार्ग';
+  String get theScholarWay => 'à¤µà¤¿à¤¦à¥à¤µà¤¾à¤¨ à¤•à¤¾ à¤®à¤¾à¤°à¥à¤—';
 
   @override
-  String get beginJourney => 'शुरू करें';
+  String get beginJourney => 'à¤¶à¥à¤°à¥‚ à¤•à¤°à¥‡à¤‚';
 
   @override
-  String get settingsTitle => 'सेटिंग्स';
+  String get settingsTitle => 'à¤¸à¥‡à¤Ÿà¤¿à¤‚à¤—à¥à¤¸';
 
   @override
-  String get darkMode => 'डार्क मोड';
+  String get darkMode => 'à¤¡à¤¾à¤°à¥à¤• à¤®à¥‹à¤¡';
 
   @override
-  String get darkModeDesc => 'आंखों के लिए आरामदायक';
+  String get darkModeDesc =>
+      'à¤†à¤‚à¤–à¥‹à¤‚ à¤•à¥‡ à¤²à¤¿à¤ à¤†à¤°à¤¾à¤®à¤¦à¤¾à¤¯à¤•';
 
   @override
-  String get voiceSpeed => 'आवाज़ की गति';
+  String get voiceSpeed => 'à¤†à¤µà¤¾à¤œà¤¼ à¤•à¥€ à¤—à¤¤à¤¿';
 
   @override
-  String get artAndIntellect => 'कला और बुद्धि';
+  String get artAndIntellect => 'à¤•à¤²à¤¾ à¤”à¤° à¤¬à¥à¤¦à¥à¤§à¤¿';
 
   @override
-  String get theDigitalScholar => 'डिजिटल विद्वान';
+  String get theDigitalScholar => 'à¤¡à¤¿à¤œà¤¿à¤Ÿà¤² à¤µà¤¿à¤¦à¥à¤µà¤¾à¤¨';
 
   @override
-  String get refineBrushVoice => 'AI के साथ ब्रश और आवाज को निखारें।';
+  String get refineBrushVoice =>
+      'AI à¤•à¥‡ à¤¸à¤¾à¤¥ à¤¬à¥à¤°à¤¶ à¤”à¤° à¤†à¤µà¤¾à¤œ à¤•à¥‹ à¤¨à¤¿à¤–à¤¾à¤°à¥‡à¤‚à¥¤';
 
   @override
-  String get liveVoiceCall => 'लाइव वॉयस कॉल';
+  String get liveVoiceCall => 'à¤²à¤¾à¤‡à¤µ à¤µà¥‰à¤¯à¤¸ à¤•à¥‰à¤²';
 
   @override
-  String get immersiveRoleplay => 'इमर्सिव रोलप्ले';
+  String get immersiveRoleplay => 'à¤‡à¤®à¤°à¥à¤¸à¤¿à¤µ à¤°à¥‹à¤²à¤ªà¥à¤²à¥‡';
 
   @override
-  String get readingRoom => 'रीडिंग रूम';
+  String get readingRoom => 'à¤°à¥€à¤¡à¤¿à¤‚à¤— à¤°à¥‚à¤®';
 
   @override
-  String get shadowingStudio => 'शैडोइंग स्टूडियो';
+  String get shadowingStudio =>
+      'à¤¶à¥ˆà¤¡à¥‹à¤‡à¤‚à¤— à¤¸à¥à¤Ÿà¥‚à¤¡à¤¿à¤¯à¥‹';
 
   @override
-  String get errorPrefix => 'त्रुटि: ';
+  String get errorPrefix => 'à¤¤à¥à¤°à¥à¤Ÿà¤¿: ';
 
   @override
-  String get initializingLibrary => 'शुरू हो रहा है...';
+  String get initializingLibrary => 'à¤¶à¥à¤°à¥‚ à¤¹à¥‹ à¤°à¤¹à¤¾ à¤¹à¥ˆ...';
 
   @override
-  String get unlockCharactersToQuiz => 'क्विज़ के लिए 4 वर्ण अनलॉक करें!';
+  String get unlockCharactersToQuiz =>
+      'à¤•à¥à¤µà¤¿à¤œà¤¼ à¤•à¥‡ à¤²à¤¿à¤ 4 à¤µà¤°à¥à¤£ à¤…à¤¨à¤²à¥‰à¤• à¤•à¤°à¥‡à¤‚!';
 
   @override
-  String get practiceQuiz => 'क्विज़';
+  String get practiceQuiz => 'à¤•à¥à¤µà¤¿à¤œà¤¼';
 
   @override
-  String get curriculumPaths => 'पाठ्यक्रम';
+  String get curriculumPaths => 'à¤ªà¤¾à¤ à¥à¤¯à¤•à¥à¤°à¤®';
 
   @override
-  String get noDecksFound => 'कोई डेक नहीं।';
+  String get noDecksFound => 'à¤•à¥‹à¤ˆ à¤¡à¥‡à¤• à¤¨à¤¹à¥€à¤‚à¥¤';
 
   @override
-  String get addCardsFirst => 'पहले कार्ड जोड़ें!';
+  String get addCardsFirst =>
+      'à¤ªà¤¹à¤²à¥‡ à¤•à¤¾à¤°à¥à¤¡ à¤œà¥‹à¤¡à¤¼à¥‡à¤‚!';
 
   @override
-  String get aiDraftingPath => 'AI आपका मार्ग तैयार कर रहा है...';
+  String get aiDraftingPath =>
+      'AI à¤†à¤ªà¤•à¤¾ à¤®à¤¾à¤°à¥à¤— à¤¤à¥ˆà¤¯à¤¾à¤° à¤•à¤° à¤°à¤¹à¤¾ à¤¹à¥ˆ...';
 
   @override
-  String get pathReady => 'मार्ग तैयार है!';
+  String get pathReady => 'à¤®à¤¾à¤°à¥à¤— à¤¤à¥ˆà¤¯à¤¾à¤° à¤¹à¥ˆ!';
 
   @override
-  String get errorGeneratingPath => 'त्रुटि';
+  String get errorGeneratingPath => 'à¤¤à¥à¤°à¥à¤Ÿà¤¿';
 
   @override
-  String get brushingCurriculum => 'मार्ग बना रहा है...';
+  String get brushingCurriculum =>
+      'à¤®à¤¾à¤°à¥à¤— à¤¬à¤¨à¤¾ à¤°à¤¹à¤¾ à¤¹à¥ˆ...';
 
   @override
-  String get warmUp => 'वार्म अप';
+  String get warmUp => 'à¤µà¤¾à¤°à¥à¤® à¤…à¤ª';
 
   @override
-  String get lessonComplete => 'पाठ पूरा! +10 अंक';
+  String get lessonComplete => 'à¤ªà¤¾à¤  à¤ªà¥‚à¤°à¤¾! +10 à¤…à¤‚à¤•';
 
   @override
-  String get step1Origin => 'चरण 1: उत्पत्ति';
+  String get step1Origin => 'à¤šà¤°à¤£ 1: à¤‰à¤¤à¥à¤ªà¤¤à¥à¤¤à¤¿';
 
   @override
-  String get traceRadical => 'रेडिकल को ट्रेस करें';
+  String get traceRadical =>
+      'à¤°à¥‡à¤¡à¤¿à¤•à¤² à¤•à¥‹ à¤Ÿà¥à¤°à¥‡à¤¸ à¤•à¤°à¥‡à¤‚';
 
   @override
-  String get step2Forge => 'चरण 2: निर्माण';
+  String get step2Forge => 'à¤šà¤°à¤£ 2: à¤¨à¤¿à¤°à¥à¤®à¤¾à¤£';
 
   @override
-  String get chooseEssence => 'सार चुनें';
+  String get chooseEssence => 'à¤¸à¤¾à¤° à¤šà¥à¤¨à¥‡à¤‚';
 
   @override
-  String get wrongEssence => 'गलत! पुनः प्रयास करें।';
+  String get wrongEssence =>
+      'à¤—à¤²à¤¤! à¤ªà¥à¤¨à¤ƒ à¤ªà¥à¤°à¤¯à¤¾à¤¸ à¤•à¤°à¥‡à¤‚à¥¤';
 
   @override
-  String get step3Hunt => 'चरण 3: शिकार';
+  String get step3Hunt => 'à¤šà¤°à¤£ 3: à¤¶à¤¿à¤•à¤¾à¤°';
 
   @override
-  String get findCharacters => 'वर्ण खोजें';
+  String get findCharacters => 'à¤µà¤°à¥à¤£ à¤–à¥‹à¤œà¥‡à¤‚';
 
   @override
-  String get notThatOne => 'वह नहीं!';
+  String get notThatOne => 'à¤µà¤¹ à¤¨à¤¹à¥€à¤‚!';
 
   @override
-  String get successfullyInstalled => 'सफलतापूर्वक स्थापित:';
+  String get successfullyInstalled =>
+      'à¤¸à¤«à¤²à¤¤à¤¾à¤ªà¥‚à¤°à¥à¤µà¤• à¤¸à¥à¤¥à¤¾à¤ªà¤¿à¤¤:';
 
   @override
-  String get failedToDownload => 'डाउनलोड विफल।';
+  String get failedToDownload => 'à¤¡à¤¾à¤‰à¤¨à¤²à¥‹à¤¡ à¤µà¤¿à¤«à¤²à¥¤';
 
   @override
-  String get rescindTitle => 'रद्द करें?';
+  String get rescindTitle => 'à¤°à¤¦à¥à¤¦ à¤•à¤°à¥‡à¤‚?';
 
   @override
-  String get removeCharactersWarning => 'यह इन वर्णों को हटा देगा।';
+  String get removeCharactersWarning =>
+      'à¤¯à¤¹ à¤‡à¤¨ à¤µà¤°à¥à¤£à¥‹à¤‚ à¤•à¥‹ à¤¹à¤Ÿà¤¾ à¤¦à¥‡à¤—à¤¾à¥¤';
 
   @override
   String get cancel => 'Annuler';
 
   @override
-  String get uninstall => 'अनइंस्टॉल करें';
+  String get uninstall => 'à¤…à¤¨à¤‡à¤‚à¤¸à¥à¤Ÿà¥‰à¤² à¤•à¤°à¥‡à¤‚';
 
   @override
-  String get removedLibrary => 'हटा दिया गया:';
+  String get removedLibrary => 'à¤¹à¤Ÿà¤¾ à¤¦à¤¿à¤¯à¤¾ à¤—à¤¯à¤¾:';
 
   @override
-  String get tomeLibrary => 'पुस्तकालय';
+  String get tomeLibrary => 'à¤ªà¥à¤¸à¥à¤¤à¤•à¤¾à¤²à¤¯';
 
   @override
-  String get libraryError => 'पुस्तकालय त्रुटि';
+  String get libraryError => 'à¤ªà¥à¤¸à¥à¤¤à¤•à¤¾à¤²à¤¯ à¤¤à¥à¤°à¥à¤Ÿà¤¿';
 
   @override
-  String get installTome => 'इंस्टॉल करें';
+  String get installTome => 'à¤‡à¤‚à¤¸à¥à¤Ÿà¥‰à¤² à¤•à¤°à¥‡à¤‚';
 
   @override
-  String get unitIntro => 'यूनिट इंट्रो';
+  String get unitIntro => 'à¤¯à¥‚à¤¨à¤¿à¤Ÿ à¤‡à¤‚à¤Ÿà¥à¤°à¥‹';
 
   @override
-  String get constellationCluster => 'नक्षत्र समूह';
+  String get constellationCluster => 'à¤¨à¤•à¥à¤·à¤¤à¥à¤° à¤¸à¤®à¥‚à¤¹';
 
   @override
-  String get ok => 'ओके';
+  String get ok => 'à¤“à¤•à¥‡';
 
   @override
-  String get divingInto => 'इसमें गोता लगाना...';
+  String get divingInto => 'à¤‡à¤¸à¤®à¥‡à¤‚ à¤—à¥‹à¤¤à¤¾ à¤²à¤—à¤¾à¤¨à¤¾...';
 
   @override
-  String get keyRadicals => 'मुख्य रेडिकल्स';
+  String get keyRadicals => 'à¤®à¥à¤–à¥à¤¯ à¤°à¥‡à¤¡à¤¿à¤•à¤²à¥à¤¸';
 
   @override
-  String get noRadicalData => 'कोई डेटा नहीं।';
+  String get noRadicalData => 'à¤•à¥‹à¤ˆ à¤¡à¥‡à¤Ÿà¤¾ à¤¨à¤¹à¥€à¤‚à¥¤';
 
   @override
-  String get discovery => 'खोज';
+  String get discovery => 'à¤–à¥‹à¤œ';
 
   @override
-  String get startLearning => 'सीखना शुरू करें';
+  String get startLearning => 'à¤¸à¥€à¤–à¤¨à¤¾ à¤¶à¥à¤°à¥‚ à¤•à¤°à¥‡à¤‚';
 
   @override
-  String get selectPersona => 'व्यक्तित्व चुनें';
+  String get selectPersona => 'à¤µà¥à¤¯à¤•à¥à¤¤à¤¿à¤¤à¥à¤µ à¤šà¥à¤¨à¥‡à¤‚';
 
   @override
-  String get customPersona => 'कस्टम व्यक्तित्व';
+  String get customPersona => 'à¤•à¤¸à¥à¤Ÿà¤® à¤µà¥à¤¯à¤•à¥à¤¤à¤¿à¤¤à¥à¤µ';
 
   @override
-  String get geminiLiveCall => 'लाइव कॉल';
+  String get geminiLiveCall => 'à¤²à¤¾à¤‡à¤µ à¤•à¥‰à¤²';
 
   @override
-  String get returnToMenu => 'वापस जाएँ';
+  String get returnToMenu => 'à¤µà¤¾à¤ªà¤¸ à¤œà¤¾à¤à¤';
 
   @override
   String get strokeAnalysis => 'Stroke Analysis';
@@ -270,7 +282,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get uninstallButton => 'UNINSTALL';
 
   @override
-  String get gradedAiStories => 'AI कहानियाँ';
+  String get gradedAiStories => 'AI à¤•à¤¹à¤¾à¤¨à¤¿à¤¯à¤¾à¤';
 
   @override
   String get calligraphy => 'Calligraphy';
@@ -315,9 +327,6 @@ class AppLocalizationsHi extends AppLocalizations {
   String get haptics => 'Haptics';
 
   @override
-  String get hapticsDesc => 'Haptics Desc';
-
-  @override
   String get displayAndContent => 'Display And Content';
 
   @override
@@ -351,658 +360,736 @@ class AppLocalizationsHi extends AppLocalizations {
   String get appLanguage => 'App Language';
 
   @override
-  String get howDidYouDo => 'आपने कैसा प्रदर्शन किया?';
+  String get howDidYouDo =>
+      'à¤†à¤ªà¤¨à¥‡ à¤•à¥ˆà¤¸à¤¾ à¤ªà¥à¤°à¤¦à¤°à¥à¤¶à¤¨ à¤•à¤¿à¤¯à¤¾?';
 
   @override
-  String get missedItEntirely => 'पूरी तरह से चूक गए';
+  String get missedItEntirely =>
+      'à¤ªà¥‚à¤°à¥€ à¤¤à¤°à¤¹ à¤¸à¥‡ à¤šà¥‚à¤• à¤—à¤';
 
   @override
-  String get gotItButStruggled => 'समझ आ गया, पर संघर्ष हुआ';
+  String get gotItButStruggled =>
+      'à¤¸à¤®à¤ à¤† à¤—à¤¯à¤¾, à¤ªà¤° à¤¸à¤‚à¤˜à¤°à¥à¤· à¤¹à¥à¤†';
 
   @override
-  String get gotItClearly => 'स्पष्ट रूप से समझ आ गया';
+  String get gotItClearly =>
+      'à¤¸à¥à¤ªà¤·à¥à¤Ÿ à¤°à¥‚à¤ª à¤¸à¥‡ à¤¸à¤®à¤ à¤† à¤—à¤¯à¤¾';
 
   @override
-  String get perfectAndImmediate => 'उत्तम और तुरंत';
+  String get perfectAndImmediate => 'à¤‰à¤¤à¥à¤¤à¤® à¤”à¤° à¤¤à¥à¤°à¤‚à¤¤';
 
   @override
-  String get again => 'फिर से';
+  String get again => 'à¤«à¤¿à¤° à¤¸à¥‡';
 
   @override
-  String get hard => 'कठिन';
+  String get hard => 'à¤•à¤ à¤¿à¤¨';
 
   @override
-  String get good => 'अच्छा';
+  String get good => 'à¤…à¤šà¥à¤›à¤¾';
 
   @override
-  String get easy => 'आसान';
+  String get easy => 'à¤†à¤¸à¤¾à¤¨';
 
   @override
-  String get tapToReveal => 'दिखाने के लिए टैप करें';
+  String get tapToReveal =>
+      'à¤¦à¤¿à¤–à¤¾à¤¨à¥‡ à¤•à¥‡ à¤²à¤¿à¤ à¤Ÿà¥ˆà¤ª à¤•à¤°à¥‡à¤‚';
 
   @override
-  String get howWellDidYouRemember => 'आपको कितना याद रहा?';
+  String get howWellDidYouRemember =>
+      'à¤†à¤ªà¤•à¥‹ à¤•à¤¿à¤¤à¤¨à¤¾ à¤¯à¤¾à¤¦ à¤°à¤¹à¤¾?';
 
   @override
-  String get completelyForgot => 'पूरी तरह से भूल गए';
+  String get completelyForgot =>
+      'à¤ªà¥‚à¤°à¥€ à¤¤à¤°à¤¹ à¤¸à¥‡ à¤­à¥‚à¤² à¤—à¤';
 
   @override
-  String get gotItWithDifficulty => 'कठिनाई से याद आया';
+  String get gotItWithDifficulty =>
+      'à¤•à¤ à¤¿à¤¨à¤¾à¤ˆ à¤¸à¥‡ à¤¯à¤¾à¤¦ à¤†à¤¯à¤¾';
 
   @override
-  String get recalledCorrectly => 'सही ढंग से याद किया';
+  String get recalledCorrectly =>
+      'à¤¸à¤¹à¥€ à¤¢à¤‚à¤— à¤¸à¥‡ à¤¯à¤¾à¤¦ à¤•à¤¿à¤¯à¤¾';
 
   @override
-  String get perfectRecall => 'पूरी तरह याद';
+  String get perfectRecall => 'à¤ªà¥‚à¤°à¥€ à¤¤à¤°à¤¹ à¤¯à¤¾à¤¦';
 
   @override
-  String get practiceWriting => 'लिखने का अभ्यास करें';
+  String get practiceWriting =>
+      'à¤²à¤¿à¤–à¤¨à¥‡ à¤•à¤¾ à¤…à¤­à¥à¤¯à¤¾à¤¸ à¤•à¤°à¥‡à¤‚';
 
   @override
-  String get hideScratchpad => 'स्क्रैचपैड छुपाएँ';
+  String get hideScratchpad =>
+      'à¤¸à¥à¤•à¥à¤°à¥ˆà¤šà¤ªà¥ˆà¤¡ à¤›à¥à¤ªà¤¾à¤à¤';
 
   @override
-  String get whatCharacterMeans => 'इस अक्षर का अर्थ है:';
+  String get whatCharacterMeans =>
+      'à¤‡à¤¸ à¤…à¤•à¥à¤·à¤° à¤•à¤¾ à¤…à¤°à¥à¤¥ à¤¹à¥ˆ:';
 
   @override
-  String get tapCardToReveal => 'दिखाने के लिए कार्ड पर टैप करें';
+  String get tapCardToReveal =>
+      'à¤¦à¤¿à¤–à¤¾à¤¨à¥‡ à¤•à¥‡ à¤²à¤¿à¤ à¤•à¤¾à¤°à¥à¤¡ à¤ªà¤° à¤Ÿà¥ˆà¤ª à¤•à¤°à¥‡à¤‚';
 
   @override
   String get ratePronunciationConfidence =>
-      'अपने उच्चारण आत्मविश्वास को रेट करें';
+      'à¤…à¤ªà¤¨à¥‡ à¤‰à¤šà¥à¤šà¤¾à¤°à¤£ à¤†à¤¤à¥à¤®à¤µà¤¿à¤¶à¥à¤µà¤¾à¤¸ à¤•à¥‹ à¤°à¥‡à¤Ÿ à¤•à¤°à¥‡à¤‚';
 
   @override
-  String get botchedIt => 'पूरी तरह से बिगाड़ दिया';
+  String get botchedIt =>
+      'à¤ªà¥‚à¤°à¥€ à¤¤à¤°à¤¹ à¤¸à¥‡ à¤¬à¤¿à¤—à¤¾à¤¡à¤¼ à¤¦à¤¿à¤¯à¤¾';
 
   @override
-  String get struggledWithTones => 'टोन में संघर्ष हुआ';
+  String get struggledWithTones =>
+      'à¤Ÿà¥‹à¤¨ à¤®à¥‡à¤‚ à¤¸à¤‚à¤˜à¤°à¥à¤· à¤¹à¥à¤†';
 
   @override
-  String get acceptable => 'स्वीकार्य';
+  String get acceptable => 'à¤¸à¥à¤µà¥€à¤•à¤¾à¤°à¥à¤¯';
 
   @override
-  String get perfectlyNatural => 'पूरी तरह से स्वाभाविक';
+  String get perfectlyNatural =>
+      'à¤ªà¥‚à¤°à¥€ à¤¤à¤°à¤¹ à¤¸à¥‡ à¤¸à¥à¤µà¤¾à¤­à¤¾à¤µà¤¿à¤•';
 
   @override
-  String get sessionComplete => 'सेशन पूरा हुआ!';
+  String get sessionComplete => 'à¤¸à¥‡à¤¶à¤¨ à¤ªà¥‚à¤°à¤¾ à¤¹à¥à¤†!';
 
   @override
-  String get accuracy => 'सटीकता';
+  String get accuracy => 'à¤¸à¤Ÿà¥€à¤•à¤¤à¤¾';
 
   @override
-  String get reviewed => 'समीक्षित';
+  String get reviewed => 'à¤¸à¤®à¥€à¤•à¥à¤·à¤¿à¤¤';
 
   @override
   String get correct => 'Correct !';
 
   @override
-  String get backToLibrary => 'लाइब्रेरी पर वापस जाएं';
+  String get backToLibrary =>
+      'à¤²à¤¾à¤‡à¤¬à¥à¤°à¥‡à¤°à¥€ à¤ªà¤° à¤µà¤¾à¤ªà¤¸ à¤œà¤¾à¤à¤‚';
 
   @override
-  String get revealAnswer => 'उत्तर दिखाएँ';
+  String get revealAnswer => 'à¤‰à¤¤à¥à¤¤à¤° à¤¦à¤¿à¤–à¤¾à¤à¤';
 
   @override
-  String get aiHubTitle => 'एआई हब';
+  String get aiHubTitle => 'à¤à¤†à¤ˆ à¤¹à¤¬';
 
   @override
-  String get textChat => 'टेक्स्ट चैट';
+  String get textChat => 'à¤Ÿà¥‡à¤•à¥à¤¸à¥à¤Ÿ à¤šà¥ˆà¤Ÿ';
 
   @override
-  String get scholarlyPersonas => 'विद्वत्तापूर्ण व्यक्तित्व';
+  String get scholarlyPersonas =>
+      'à¤µà¤¿à¤¦à¥à¤µà¤¤à¥à¤¤à¤¾à¤ªà¥‚à¤°à¥à¤£ à¤µà¥à¤¯à¤•à¥à¤¤à¤¿à¤¤à¥à¤µ';
 
   @override
-  String get shadowing => 'शैडोइंग';
+  String get shadowing => 'à¤¶à¥ˆà¤¡à¥‹à¤‡à¤‚à¤—';
 
   @override
-  String get liveTranslation => 'लाइव अनुवाद';
+  String get liveTranslation => 'à¤²à¤¾à¤‡à¤µ à¤…à¤¨à¥à¤µà¤¾à¤¦';
 
   @override
-  String get scholarsLibrary => 'विद्वान की लाइब्रेरी';
+  String get scholarsLibrary =>
+      'à¤µà¤¿à¤¦à¥à¤µà¤¾à¤¨ à¤•à¥€ à¤²à¤¾à¤‡à¤¬à¥à¤°à¥‡à¤°à¥€';
 
   @override
-  String get generate => 'जनरेट करें';
+  String get generate => 'à¤œà¤¨à¤°à¥‡à¤Ÿ à¤•à¤°à¥‡à¤‚';
 
   @override
   String get searchPinyinHanziEnglish =>
-      'पिनयिन, हान्ज़ी या अंग्रेज़ी खोजें...';
+      'à¤ªà¤¿à¤¨à¤¯à¤¿à¤¨, à¤¹à¤¾à¤¨à¥à¤œà¤¼à¥€ à¤¯à¤¾ à¤…à¤‚à¤—à¥à¤°à¥‡à¤œà¤¼à¥€ à¤–à¥‹à¤œà¥‡à¤‚...';
 
   @override
-  String get liveTranslate => 'लाइव अनुवाद करें';
+  String get liveTranslate => 'à¤²à¤¾à¤‡à¤µ à¤…à¤¨à¥à¤µà¤¾à¤¦ à¤•à¤°à¥‡à¤‚';
 
   @override
-  String get travelInterpreter => 'यात्रा दुभाषिया';
+  String get travelInterpreter => 'à¤¯à¤¾à¤¤à¥à¤°à¤¾ à¤¦à¥à¤­à¤¾à¤·à¤¿à¤¯à¤¾';
 
   @override
   String get realTimeSplitScreen =>
-      'एक देशी वक्ता के साथ वास्तविक समय में स्प्लिट-स्क्रीन बातचीत। भाषा बाधाओं को तुरंत तोड़ता है।';
+      'à¤à¤• à¤¦à¥‡à¤¶à¥€ à¤µà¤•à¥à¤¤à¤¾ à¤•à¥‡ à¤¸à¤¾à¤¥ à¤µà¤¾à¤¸à¥à¤¤à¤µà¤¿à¤• à¤¸à¤®à¤¯ à¤®à¥‡à¤‚ à¤¸à¥à¤ªà¥à¤²à¤¿à¤Ÿ-à¤¸à¥à¤•à¥à¤°à¥€à¤¨ à¤¬à¤¾à¤¤à¤šà¥€à¤¤à¥¤ à¤­à¤¾à¤·à¤¾ à¤¬à¤¾à¤§à¤¾à¤“à¤‚ à¤•à¥‹ à¤¤à¥à¤°à¤‚à¤¤ à¤¤à¥‹à¤¡à¤¼à¤¤à¤¾ à¤¹à¥ˆà¥¤';
 
   @override
-  String get whisperEarpiece => 'फुसफुसाहट इयरपीस';
+  String get whisperEarpiece =>
+      'à¤«à¥à¤¸à¤«à¥à¤¸à¤¾à¤¹à¤Ÿ à¤‡à¤¯à¤°à¤ªà¥€à¤¸';
 
   @override
   String get listenToChineseAudio =>
-      'चीनी ऑडियो सुनें और अपनी स्क्रीन पर सीधे वास्तविक समय में अंग्रेजी उपशीर्षक प्राप्त करें।';
+      'à¤šà¥€à¤¨à¥€ à¤‘à¤¡à¤¿à¤¯à¥‹ à¤¸à¥à¤¨à¥‡à¤‚ à¤”à¤° à¤…à¤ªà¤¨à¥€ à¤¸à¥à¤•à¥à¤°à¥€à¤¨ à¤ªà¤° à¤¸à¥€à¤§à¥‡ à¤µà¤¾à¤¸à¥à¤¤à¤µà¤¿à¤• à¤¸à¤®à¤¯ à¤®à¥‡à¤‚ à¤…à¤‚à¤—à¥à¤°à¥‡à¤œà¥€ à¤‰à¤ªà¤¶à¥€à¤°à¥à¤·à¤• à¤ªà¥à¤°à¤¾à¤ªà¥à¤¤ à¤•à¤°à¥‡à¤‚à¥¤';
 
   @override
-  String get dashboardTitle => 'डैशबोर्ड';
+  String get dashboardTitle => 'à¤¡à¥ˆà¤¶à¤¬à¥‹à¤°à¥à¤¡';
 
   @override
-  String get yourMindIsClear => 'आपका मन स्पष्ट है।';
+  String get yourMindIsClear =>
+      'à¤†à¤ªà¤•à¤¾ à¤®à¤¨ à¤¸à¥à¤ªà¤·à¥à¤Ÿ à¤¹à¥ˆà¥¤';
 
   @override
-  String get noReviewsDueToday => 'आज कोई समीक्षा बाकी नहीं है।';
+  String get noReviewsDueToday =>
+      'à¤†à¤œ à¤•à¥‹à¤ˆ à¤¸à¤®à¥€à¤•à¥à¤·à¤¾ à¤¬à¤¾à¤•à¥€ à¤¨à¤¹à¥€à¤‚ à¤¹à¥ˆà¥¤';
 
   @override
-  String get done => 'हो गया';
+  String get done => 'à¤¹à¥‹ à¤—à¤¯à¤¾';
 
   @override
-  String get hskLevel1 => 'एचएसके स्तर 1';
+  String get hskLevel1 => 'à¤à¤šà¤à¤¸à¤•à¥‡ à¤¸à¥à¤¤à¤° 1';
 
   @override
-  String get hskLevel2 => 'एचएसके स्तर 2';
+  String get hskLevel2 => 'à¤à¤šà¤à¤¸à¤•à¥‡ à¤¸à¥à¤¤à¤° 2';
 
   @override
-  String get hskLevel3 => 'एचएसके स्तर 3';
+  String get hskLevel3 => 'à¤à¤šà¤à¤¸à¤•à¥‡ à¤¸à¥à¤¤à¤° 3';
 
   @override
-  String get hskLevel4 => 'एचएसके स्तर 4';
+  String get hskLevel4 => 'à¤à¤šà¤à¤¸à¤•à¥‡ à¤¸à¥à¤¤à¤° 4';
 
   @override
-  String get hskLevel5 => 'एचएसके स्तर 5';
+  String get hskLevel5 => 'à¤à¤šà¤à¤¸à¤•à¥‡ à¤¸à¥à¤¤à¤° 5';
 
   @override
-  String get hskLevel6 => 'एचएसके स्तर 6';
+  String get hskLevel6 => 'à¤à¤šà¤à¤¸à¤•à¥‡ à¤¸à¥à¤¤à¤° 6';
 
   @override
-  String get generalVocabulary => 'सामान्य शब्दावली';
+  String get generalVocabulary =>
+      'à¤¸à¤¾à¤®à¤¾à¤¨à¥à¤¯ à¤¶à¤¬à¥à¤¦à¤¾à¤µà¤²à¥€';
 
   @override
-  String get cardsRequireAttention => 'कार्ड्स पर ध्यान देने की आवश्यकता है।';
+  String get cardsRequireAttention =>
+      'à¤•à¤¾à¤°à¥à¤¡à¥à¤¸ à¤ªà¤° à¤§à¥à¤¯à¤¾à¤¨ à¤¦à¥‡à¤¨à¥‡ à¤•à¥€ à¤†à¤µà¤¶à¥à¤¯à¤•à¤¤à¤¾ à¤¹à¥ˆà¥¤';
 
   @override
-  String get begin => 'शुरू करें';
+  String get begin => 'à¤¶à¥à¤°à¥‚ à¤•à¤°à¥‡à¤‚';
 
   @override
   String get poweredByAi =>
-      'उन्नत एआई द्वारा संचालित। किसी भी परिदृश्य के लिए सहज वास्तविक समय अनुवाद।';
+      'à¤‰à¤¨à¥à¤¨à¤¤ à¤à¤†à¤ˆ à¤¦à¥à¤µà¤¾à¤°à¤¾ à¤¸à¤‚à¤šà¤¾à¤²à¤¿à¤¤à¥¤ à¤•à¤¿à¤¸à¥€ à¤­à¥€ à¤ªà¤°à¤¿à¤¦à¥ƒà¤¶à¥à¤¯ à¤•à¥‡ à¤²à¤¿à¤ à¤¸à¤¹à¤œ à¤µà¤¾à¤¸à¥à¤¤à¤µà¤¿à¤• à¤¸à¤®à¤¯ à¤…à¤¨à¥à¤µà¤¾à¤¦à¥¤';
 
   @override
-  String get downloadingModel => 'मॉडल डाउनलोड हो रहा है...';
+  String get downloadingModel =>
+      'à¤®à¥‰à¤¡à¤² à¤¡à¤¾à¤‰à¤¨à¤²à¥‹à¤¡ à¤¹à¥‹ à¤°à¤¹à¤¾ à¤¹à¥ˆ...';
 
   @override
-  String get soon => 'जल्द ही';
+  String get soon => 'à¤œà¤²à¥à¤¦ à¤¹à¥€';
 
   @override
-  String get installed => 'स्थापित';
+  String get installed => 'à¤¸à¥à¤¥à¤¾à¤ªà¤¿à¤¤';
 
   @override
-  String get premium => 'प्रीमियम';
+  String get premium => 'à¤ªà¥à¤°à¥€à¤®à¤¿à¤¯à¤®';
 
   @override
-  String get coreModule => 'मुख्य मॉड्यूल';
+  String get coreModule => 'à¤®à¥à¤–à¥à¤¯ à¤®à¥‰à¤¡à¥à¤¯à¥‚à¤²';
 
   @override
-  String get step6Context => 'चरण 6: संदर्भ';
+  String get step6Context => 'à¤šà¤°à¤£ 6: à¤¸à¤‚à¤¦à¤°à¥à¤­';
 
   @override
   String get tapBuildingBlocksTo =>
-      'उनके मूल को जानने के लिए बिल्डिंग ब्लॉक्स पर टैप करें।';
+      'à¤‰à¤¨à¤•à¥‡ à¤®à¥‚à¤² à¤•à¥‹ à¤œà¤¾à¤¨à¤¨à¥‡ à¤•à¥‡ à¤²à¤¿à¤ à¤¬à¤¿à¤²à¥à¤¡à¤¿à¤‚à¤— à¤¬à¥à¤²à¥‰à¤•à¥à¤¸ à¤ªà¤° à¤Ÿà¥ˆà¤ª à¤•à¤°à¥‡à¤‚à¥¤';
 
   @override
-  String get initiateRadicalSequence => 'रेडिकल अनुक्रम प्रारंभ करें';
+  String get initiateRadicalSequence =>
+      'à¤°à¥‡à¤¡à¤¿à¤•à¤² à¤…à¤¨à¥à¤•à¥à¤°à¤® à¤ªà¥à¤°à¤¾à¤°à¤‚à¤­ à¤•à¤°à¥‡à¤‚';
 
   @override
-  String get holdToTalk => 'बात करने के लिए दबाकर रखें';
+  String get holdToTalk =>
+      'à¤¬à¤¾à¤¤ à¤•à¤°à¤¨à¥‡ à¤•à¥‡ à¤²à¤¿à¤ à¤¦à¤¬à¤¾à¤•à¤° à¤°à¤–à¥‡à¤‚';
 
   @override
-  String get customScenario => 'अनुकूलित परिदृश्य';
+  String get customScenario =>
+      'à¤…à¤¨à¥à¤•à¥‚à¤²à¤¿à¤¤ à¤ªà¤°à¤¿à¤¦à¥ƒà¤¶à¥à¤¯';
 
   @override
-  String get voiceCall => 'वॉयस कॉल';
+  String get voiceCall => 'à¤µà¥‰à¤¯à¤¸ à¤•à¥‰à¤²';
 
   @override
   String get pronunciation => 'Prononciation';
 
   @override
   String get selectAScenarioTo =>
-      'अपनी बोली जाने वाली मंदारिन का अभ्यास करने के लिए एक परिदृश्य चुनें। विद्वान आपके स्वरों और स्पष्टता को ग्रेड देंगे।';
+      'à¤…à¤ªà¤¨à¥€ à¤¬à¥‹à¤²à¥€ à¤œà¤¾à¤¨à¥‡ à¤µà¤¾à¤²à¥€ à¤®à¤‚à¤¦à¤¾à¤°à¤¿à¤¨ à¤•à¤¾ à¤…à¤­à¥à¤¯à¤¾à¤¸ à¤•à¤°à¤¨à¥‡ à¤•à¥‡ à¤²à¤¿à¤ à¤à¤• à¤ªà¤°à¤¿à¤¦à¥ƒà¤¶à¥à¤¯ à¤šà¥à¤¨à¥‡à¤‚à¥¤ à¤µà¤¿à¤¦à¥à¤µà¤¾à¤¨ à¤†à¤ªà¤•à¥‡ à¤¸à¥à¤µà¤°à¥‹à¤‚ à¤”à¤° à¤¸à¥à¤ªà¤·à¥à¤Ÿà¤¤à¤¾ à¤•à¥‹ à¤—à¥à¤°à¥‡à¤¡ à¤¦à¥‡à¤‚à¤—à¥‡à¥¤';
 
   @override
-  String get create => 'बनाएँ';
+  String get create => 'à¤¬à¤¨à¤¾à¤à¤';
 
   @override
-  String get createYourScenario => 'अपना परिदृश्य बनाएँ';
+  String get createYourScenario =>
+      'à¤…à¤ªà¤¨à¤¾ à¤ªà¤°à¤¿à¤¦à¥ƒà¤¶à¥à¤¯ à¤¬à¤¨à¤¾à¤à¤';
 
   @override
-  String get difficulty => 'कठिनाई';
+  String get difficulty => 'à¤•à¤ à¤¿à¤¨à¤¾à¤ˆ';
 
   @override
-  String get scholarsVerdict => 'विद्वान का निर्णय';
+  String get scholarsVerdict =>
+      'à¤µà¤¿à¤¦à¥à¤µà¤¾à¤¨ à¤•à¤¾ à¤¨à¤¿à¤°à¥à¤£à¤¯';
 
   @override
-  String get completeReview => 'समीक्षा पूर्ण करें';
+  String get completeReview =>
+      'à¤¸à¤®à¥€à¤•à¥à¤·à¤¾ à¤ªà¥‚à¤°à¥à¤£ à¤•à¤°à¥‡à¤‚';
 
   @override
-  String get conversationReview => 'बातचीत की समीक्षा';
+  String get conversationReview =>
+      'à¤¬à¤¾à¤¤à¤šà¥€à¤¤ à¤•à¥€ à¤¸à¤®à¥€à¤•à¥à¤·à¤¾';
 
   @override
-  String get linguisticAnalysis => 'भाषाई विश्लेषण';
+  String get linguisticAnalysis => 'à¤­à¤¾à¤·à¤¾à¤ˆ à¤µà¤¿à¤¶à¥à¤²à¥‡à¤·à¤£';
 
   @override
-  String get examplesInHsk1 => 'एचएसके 1 में उदाहरण';
+  String get examplesInHsk1 =>
+      'à¤à¤šà¤à¤¸à¤•à¥‡ 1 à¤®à¥‡à¤‚ à¤‰à¤¦à¤¾à¤¹à¤°à¤£';
 
   @override
-  String get characterReference => 'वर्ण संदर्भ';
+  String get characterReference => 'à¤µà¤°à¥à¤£ à¤¸à¤‚à¤¦à¤°à¥à¤­';
 
   @override
-  String get askTutor => 'शिक्षक से पूछें';
+  String get askTutor => 'à¤¶à¤¿à¤•à¥à¤·à¤• à¤¸à¥‡ à¤ªà¥‚à¤›à¥‡à¤‚';
 
   @override
-  String get addToStudyDeck => 'अध्ययन डेक में जोड़ें';
+  String get addToStudyDeck =>
+      'à¤…à¤§à¥à¤¯à¤¯à¤¨ à¤¡à¥‡à¤• à¤®à¥‡à¤‚ à¤œà¥‹à¤¡à¤¼à¥‡à¤‚';
 
   @override
-  String get startPractice => 'अभ्यास शुरू करें';
+  String get startPractice => 'à¤…à¤­à¥à¤¯à¤¾à¤¸ à¤¶à¥à¤°à¥‚ à¤•à¤°à¥‡à¤‚';
 
   @override
   String get noOtherHsk1 =>
-      'कोई अन्य एचएसके 1 वर्ण इस रेडिकल का उपयोग नहीं करते हैं।';
+      'à¤•à¥‹à¤ˆ à¤…à¤¨à¥à¤¯ à¤à¤šà¤à¤¸à¤•à¥‡ 1 à¤µà¤°à¥à¤£ à¤‡à¤¸ à¤°à¥‡à¤¡à¤¿à¤•à¤² à¤•à¤¾ à¤‰à¤ªà¤¯à¥‹à¤— à¤¨à¤¹à¥€à¤‚ à¤•à¤°à¤¤à¥‡ à¤¹à¥ˆà¤‚à¥¤';
 
   @override
   String get couldNotLoadAi =>
-      'एआई संदर्भ लोड नहीं हो सका। (दर सीमा या नेटवर्क त्रुटि)\nबाद में फिर से प्रयास करने के लिए नीचे दिए गए रिफ्रेश बटन पर टैप करें।';
+      'à¤à¤†à¤ˆ à¤¸à¤‚à¤¦à¤°à¥à¤­ à¤²à¥‹à¤¡ à¤¨à¤¹à¥€à¤‚ à¤¹à¥‹ à¤¸à¤•à¤¾à¥¤ (à¤¦à¤° à¤¸à¥€à¤®à¤¾ à¤¯à¤¾ à¤¨à¥‡à¤Ÿà¤µà¤°à¥à¤• à¤¤à¥à¤°à¥à¤Ÿà¤¿)\nà¤¬à¤¾à¤¦ à¤®à¥‡à¤‚ à¤«à¤¿à¤° à¤¸à¥‡ à¤ªà¥à¤°à¤¯à¤¾à¤¸ à¤•à¤°à¤¨à¥‡ à¤•à¥‡ à¤²à¤¿à¤ à¤¨à¥€à¤šà¥‡ à¤¦à¤¿à¤ à¤—à¤ à¤°à¤¿à¤«à¥à¤°à¥‡à¤¶ à¤¬à¤Ÿà¤¨ à¤ªà¤° à¤Ÿà¥ˆà¤ª à¤•à¤°à¥‡à¤‚à¥¤';
 
   @override
-  String get noAvailableCardsFound => 'कोई उपलब्ध कार्ड नहीं मिला।';
+  String get noAvailableCardsFound =>
+      'à¤•à¥‹à¤ˆ à¤‰à¤ªà¤²à¤¬à¥à¤§ à¤•à¤¾à¤°à¥à¤¡ à¤¨à¤¹à¥€à¤‚ à¤®à¤¿à¤²à¤¾à¥¤';
 
   @override
-  String get addCards => 'कार्ड जोड़ें';
+  String get addCards => 'à¤•à¤¾à¤°à¥à¤¡ à¤œà¥‹à¤¡à¤¼à¥‡à¤‚';
 
   @override
-  String get removeCard => 'कार्ड हटाएँ';
+  String get removeCard => 'à¤•à¤¾à¤°à¥à¤¡ à¤¹à¤Ÿà¤¾à¤à¤';
 
   @override
-  String get remove => 'हटाएँ';
+  String get remove => 'à¤¹à¤Ÿà¤¾à¤à¤';
 
   @override
-  String get review => 'Révision';
+  String get review => 'RÃ©vision';
 
   @override
-  String get story => 'कहानी';
+  String get story => 'à¤•à¤¹à¤¾à¤¨à¥€';
 
   @override
-  String get thisDeckIsEmpty => 'यह डेक खाली है।';
+  String get thisDeckIsEmpty => 'à¤¯à¤¹ à¤¡à¥‡à¤• à¤–à¤¾à¤²à¥€ à¤¹à¥ˆà¥¤';
 
   @override
-  String get tapTheAddCards => 'कार्ड जोड़ें बटन पर टैप करें!';
+  String get tapTheAddCards =>
+      'à¤•à¤¾à¤°à¥à¤¡ à¤œà¥‹à¤¡à¤¼à¥‡à¤‚ à¤¬à¤Ÿà¤¨ à¤ªà¤° à¤Ÿà¥ˆà¤ª à¤•à¤°à¥‡à¤‚!';
 
   @override
-  String get noCardsFound => 'कोई कार्ड नहीं मिला।';
+  String get noCardsFound =>
+      'à¤•à¥‹à¤ˆ à¤•à¤¾à¤°à¥à¤¡ à¤¨à¤¹à¥€à¤‚ à¤®à¤¿à¤²à¤¾à¥¤';
 
   @override
-  String get addCardsToSee => 'आँकड़े देखने के लिए कार्ड जोड़ें।';
+  String get addCardsToSee =>
+      'à¤†à¤à¤•à¤¡à¤¼à¥‡ à¤¦à¥‡à¤–à¤¨à¥‡ à¤•à¥‡ à¤²à¤¿à¤ à¤•à¤¾à¤°à¥à¤¡ à¤œà¥‹à¤¡à¤¼à¥‡à¤‚à¥¤';
 
   @override
-  String get aiGenerated => 'एआई द्वारा जनरेट किया गया';
+  String get aiGenerated =>
+      'à¤à¤†à¤ˆ à¤¦à¥à¤µà¤¾à¤°à¤¾ à¤œà¤¨à¤°à¥‡à¤Ÿ à¤•à¤¿à¤¯à¤¾ à¤—à¤¯à¤¾';
 
   @override
-  String get allCardsCaughtUp => 'सभी कार्ड कवर किए गए! बहुत बढ़िया काम।';
+  String get allCardsCaughtUp =>
+      'à¤¸à¤­à¥€ à¤•à¤¾à¤°à¥à¤¡ à¤•à¤µà¤° à¤•à¤¿à¤ à¤—à¤! à¤¬à¤¹à¥à¤¤ à¤¬à¤¢à¤¼à¤¿à¤¯à¤¾ à¤•à¤¾à¤®à¥¤';
 
   @override
-  String get latestDiscoveries => 'नवीनतम खोजें';
+  String get latestDiscoveries => 'à¤¨à¤µà¥€à¤¨à¤¤à¤® à¤–à¥‹à¤œà¥‡à¤‚';
 
   @override
-  String get noCharactersInLexicon => 'अभी तक लेक्सिकन में कोई वर्ण नहीं हैं।';
+  String get noCharactersInLexicon =>
+      'à¤…à¤­à¥€ à¤¤à¤• à¤²à¥‡à¤•à¥à¤¸à¤¿à¤•à¤¨ à¤®à¥‡à¤‚ à¤•à¥‹à¤ˆ à¤µà¤°à¥à¤£ à¤¨à¤¹à¥€à¤‚ à¤¹à¥ˆà¤‚à¥¤';
 
   @override
-  String get yourBookshelf => 'आपकी किताबों की अलमारी';
+  String get yourBookshelf =>
+      'à¤†à¤ªà¤•à¥€ à¤•à¤¿à¤¤à¤¾à¤¬à¥‹à¤‚ à¤•à¥€ à¤…à¤²à¤®à¤¾à¤°à¥€';
 
   @override
-  String get text_1782026184579 => '字';
+  String get text_1782026184579 => 'å­—';
 
   @override
-  String get searchYourDictionary => 'अपने शब्दकोश में खोजें...';
+  String get searchYourDictionary =>
+      'à¤…à¤ªà¤¨à¥‡ à¤¶à¤¬à¥à¤¦à¤•à¥‹à¤¶ à¤®à¥‡à¤‚ à¤–à¥‹à¤œà¥‡à¤‚...';
 
   @override
-  String get saveCard => 'कार्ड सहेजें';
+  String get saveCard => 'à¤•à¤¾à¤°à¥à¤¡ à¤¸à¤¹à¥‡à¤œà¥‡à¤‚';
 
   @override
-  String get noCharactersFound => 'कोई वर्ण नहीं मिला।';
+  String get noCharactersFound =>
+      'à¤•à¥‹à¤ˆ à¤µà¤°à¥à¤£ à¤¨à¤¹à¥€à¤‚ à¤®à¤¿à¤²à¤¾à¥¤';
 
   @override
-  String get radicalsIndex => 'रेडिकल्स इंडेक्स';
+  String get radicalsIndex => 'à¤°à¥‡à¤¡à¤¿à¤•à¤²à¥à¤¸ à¤‡à¤‚à¤¡à¥‡à¤•à¥à¤¸';
 
   @override
   String get masteringRadicalsIsThe =>
-      'रेडिकल में महारत हासिल करना हजारों हान्ज़ी को अनलॉक करने की कुंजी है। इसका उपयोग करने वाले सभी वर्णों को देखने के लिए एक रेडिकल चुनें।';
+      'à¤°à¥‡à¤¡à¤¿à¤•à¤² à¤®à¥‡à¤‚ à¤®à¤¹à¤¾à¤°à¤¤ à¤¹à¤¾à¤¸à¤¿à¤² à¤•à¤°à¤¨à¤¾ à¤¹à¤œà¤¾à¤°à¥‹à¤‚ à¤¹à¤¾à¤¨à¥à¤œà¤¼à¥€ à¤•à¥‹ à¤…à¤¨à¤²à¥‰à¤• à¤•à¤°à¤¨à¥‡ à¤•à¥€ à¤•à¥à¤‚à¤œà¥€ à¤¹à¥ˆà¥¤ à¤‡à¤¸à¤•à¤¾ à¤‰à¤ªà¤¯à¥‹à¤— à¤•à¤°à¤¨à¥‡ à¤µà¤¾à¤²à¥‡ à¤¸à¤­à¥€ à¤µà¤°à¥à¤£à¥‹à¤‚ à¤•à¥‹ à¤¦à¥‡à¤–à¤¨à¥‡ à¤•à¥‡ à¤²à¤¿à¤ à¤à¤• à¤°à¥‡à¤¡à¤¿à¤•à¤² à¤šà¥à¤¨à¥‡à¤‚à¥¤';
 
   @override
-  String get noRadicalsFound => 'कोई रेडिकल नहीं मिला।';
+  String get noRadicalsFound =>
+      'à¤•à¥‹à¤ˆ à¤°à¥‡à¤¡à¤¿à¤•à¤² à¤¨à¤¹à¥€à¤‚ à¤®à¤¿à¤²à¤¾à¥¤';
 
   @override
-  String get yourDrawing => 'आपका चित्र';
+  String get yourDrawing => 'à¤†à¤ªà¤•à¤¾ à¤šà¤¿à¤¤à¥à¤°';
 
   @override
-  String get reference => 'संदर्भ';
+  String get reference => 'à¤¸à¤‚à¤¦à¤°à¥à¤­';
 
   @override
-  String get rateYourRecall => 'अपनी याददाश्त को रेट करें';
+  String get rateYourRecall =>
+      'à¤…à¤ªà¤¨à¥€ à¤¯à¤¾à¤¦à¤¦à¤¾à¤¶à¥à¤¤ à¤•à¥‹ à¤°à¥‡à¤Ÿ à¤•à¤°à¥‡à¤‚';
 
   @override
-  String get contactUs => 'हमसे संपर्क करें';
+  String get contactUs => 'à¤¹à¤®à¤¸à¥‡ à¤¸à¤‚à¤ªà¤°à¥à¤• à¤•à¤°à¥‡à¤‚';
 
   @override
   String get reportBugsOrRequest =>
-      'बग रिपोर्ट करें या सुविधाओं का अनुरोध करें';
+      'à¤¬à¤— à¤°à¤¿à¤ªà¥‹à¤°à¥à¤Ÿ à¤•à¤°à¥‡à¤‚ à¤¯à¤¾ à¤¸à¥à¤µà¤¿à¤§à¤¾à¤“à¤‚ à¤•à¤¾ à¤…à¤¨à¥à¤°à¥‹à¤§ à¤•à¤°à¥‡à¤‚';
 
   @override
-  String get allDataHasBeen => 'सभी डेटा मिटा दिया गया है।';
+  String get allDataHasBeen =>
+      'à¤¸à¤­à¥€ à¤¡à¥‡à¤Ÿà¤¾ à¤®à¤¿à¤Ÿà¤¾ à¤¦à¤¿à¤¯à¤¾ à¤—à¤¯à¤¾ à¤¹à¥ˆà¥¤';
 
   @override
-  String get hanziMasterV100 => 'हान्ज़ी मास्टर v1.0.0';
+  String get hanziMasterV100 =>
+      'à¤¹à¤¾à¤¨à¥à¤œà¤¼à¥€ à¤®à¤¾à¤¸à¥à¤Ÿà¤° v1.0.0';
 
   @override
-  String get myProgress => 'मेरी प्रगति';
+  String get myProgress => 'à¤®à¥‡à¤°à¥€ à¤ªà¥à¤°à¤—à¤¤à¤¿';
 
   @override
-  String get overview => 'अवलोकन';
+  String get overview => 'à¤…à¤µà¤²à¥‹à¤•à¤¨';
 
   @override
-  String get aiStory => 'एआई कहानी';
+  String get aiStory => 'à¤à¤†à¤ˆ à¤•à¤¹à¤¾à¤¨à¥€';
 
   @override
-  String get usingYourDecksVocabulary => 'आपके डेक की शब्दावली का उपयोग करना';
+  String get usingYourDecksVocabulary =>
+      'à¤†à¤ªà¤•à¥‡ à¤¡à¥‡à¤• à¤•à¥€ à¤¶à¤¬à¥à¤¦à¤¾à¤µà¤²à¥€ à¤•à¤¾ à¤‰à¤ªà¤¯à¥‹à¤— à¤•à¤°à¤¨à¤¾';
 
   @override
-  String get tryAgain => 'फिर से कोशिश करें';
+  String get tryAgain => 'à¤«à¤¿à¤° à¤¸à¥‡ à¤•à¥‹à¤¶à¤¿à¤¶ à¤•à¤°à¥‡à¤‚';
 
   @override
-  String get translate => 'अनुवाद करें';
+  String get translate => 'à¤…à¤¨à¥à¤µà¤¾à¤¦ à¤•à¤°à¥‡à¤‚';
 
   @override
-  String get pinyin => 'पिनयिन';
+  String get pinyin => 'à¤ªà¤¿à¤¨à¤¯à¤¿à¤¨';
 
   @override
-  String get fullTranslation => 'पूर्ण अनुवाद';
+  String get fullTranslation => 'à¤ªà¥‚à¤°à¥à¤£ à¤…à¤¨à¥à¤µà¤¾à¤¦';
 
   @override
   String get geminiFlashIsStructuring =>
-      'जेमिनी फ्लैश आपकी कहानी को संरचित कर रहा है...';
+      'à¤œà¥‡à¤®à¤¿à¤¨à¥€ à¤«à¥à¤²à¥ˆà¤¶ à¤†à¤ªà¤•à¥€ à¤•à¤¹à¤¾à¤¨à¥€ à¤•à¥‹ à¤¸à¤‚à¤°à¤šà¤¿à¤¤ à¤•à¤° à¤°à¤¹à¤¾ à¤¹à¥ˆ...';
 
   @override
-  String get aiDeckGenerator => 'एआई डेक जनरेटर';
+  String get aiDeckGenerator => 'à¤à¤†à¤ˆ à¤¡à¥‡à¤• à¤œà¤¨à¤°à¥‡à¤Ÿà¤°';
 
   @override
-  String get whatDoYouWant => 'आप क्या सीखना चाहते हैं?';
+  String get whatDoYouWant =>
+      'à¤†à¤ª à¤•à¥à¤¯à¤¾ à¤¸à¥€à¤–à¤¨à¤¾ à¤šà¤¾à¤¹à¤¤à¥‡ à¤¹à¥ˆà¤‚?';
 
   @override
-  String get targetDifficulty => 'लक्ष्य कठिनाई';
+  String get targetDifficulty => 'à¤²à¤•à¥à¤·à¥à¤¯ à¤•à¤ à¤¿à¤¨à¤¾à¤ˆ';
 
   @override
-  String get focusArea => 'फोकस क्षेत्र';
+  String get focusArea => 'à¤«à¥‹à¤•à¤¸ à¤•à¥à¤·à¥‡à¤¤à¥à¤°';
 
   @override
-  String get specificContextOrTone => 'विशिष्ट संदर्भ या स्वर (वैकल्पिक)';
+  String get specificContextOrTone =>
+      'à¤µà¤¿à¤¶à¤¿à¤·à¥à¤Ÿ à¤¸à¤‚à¤¦à¤°à¥à¤­ à¤¯à¤¾ à¤¸à¥à¤µà¤° (à¤µà¥ˆà¤•à¤²à¥à¤ªà¤¿à¤•)';
 
   @override
-  String get numberOfCards => 'कार्डों की संख्या';
+  String get numberOfCards => 'à¤•à¤¾à¤°à¥à¤¡à¥‹à¤‚ à¤•à¥€ à¤¸à¤‚à¤–à¥à¤¯à¤¾';
 
   @override
-  String get generateDeck => 'डेक जनरेट करें';
+  String get generateDeck => 'à¤¡à¥‡à¤• à¤œà¤¨à¤°à¥‡à¤Ÿ à¤•à¤°à¥‡à¤‚';
 
   @override
-  String get aiGrammarExplanation => 'एआई व्याकरण स्पष्टीकरण';
+  String get aiGrammarExplanation =>
+      'à¤à¤†à¤ˆ à¤µà¥à¤¯à¤¾à¤•à¤°à¤£ à¤¸à¥à¤ªà¤·à¥à¤Ÿà¥€à¤•à¤°à¤£';
 
   @override
-  String get scholarsDesk => 'विद्वान की मेज';
+  String get scholarsDesk => 'à¤µà¤¿à¤¦à¥à¤µà¤¾à¤¨ à¤•à¥€ à¤®à¥‡à¤œ';
 
   @override
-  String get chooseADeck => 'एक डेक चुनें';
+  String get chooseADeck => 'à¤à¤• à¤¡à¥‡à¤• à¤šà¥à¤¨à¥‡à¤‚';
 
   @override
-  String get whereWouldYouLike => 'आप इस वर्ण को कहाँ सहेजना चाहेंगे?';
+  String get whereWouldYouLike =>
+      'à¤†à¤ª à¤‡à¤¸ à¤µà¤°à¥à¤£ à¤•à¥‹ à¤•à¤¹à¤¾à¤ à¤¸à¤¹à¥‡à¤œà¤¨à¤¾ à¤šà¤¾à¤¹à¥‡à¤‚à¤—à¥‡?';
 
   @override
-  String get addToDefaultStudy => 'डिफ़ॉल्ट अध्ययन डेक में जोड़ें';
+  String get addToDefaultStudy =>
+      'à¤¡à¤¿à¤«à¤¼à¥‰à¤²à¥à¤Ÿ à¤…à¤§à¥à¤¯à¤¯à¤¨ à¤¡à¥‡à¤• à¤®à¥‡à¤‚ à¤œà¥‹à¤¡à¤¼à¥‡à¤‚';
 
   @override
   String get ifOffItsOnly =>
-      'यदि बंद किया गया है, तो यह केवल वैश्विक शब्दकोश में सहेजा जाएगा';
+      'à¤¯à¤¦à¤¿ à¤¬à¤‚à¤¦ à¤•à¤¿à¤¯à¤¾ à¤—à¤¯à¤¾ à¤¹à¥ˆ, à¤¤à¥‹ à¤¯à¤¹ à¤•à¥‡à¤µà¤² à¤µà¥ˆà¤¶à¥à¤µà¤¿à¤• à¤¶à¤¬à¥à¤¦à¤•à¥‹à¤¶ à¤®à¥‡à¤‚ à¤¸à¤¹à¥‡à¤œà¤¾ à¤œà¤¾à¤à¤—à¤¾';
 
   @override
-  String get saveToLibrary => 'पुस्तकालय में सहेजें';
+  String get saveToLibrary =>
+      'à¤ªà¥à¤¸à¥à¤¤à¤•à¤¾à¤²à¤¯ à¤®à¥‡à¤‚ à¤¸à¤¹à¥‡à¤œà¥‡à¤‚';
 
   @override
-  String get pleaseEnterValidChinese => 'कृपया वैध चीनी वर्ण दर्ज करें';
+  String get pleaseEnterValidChinese =>
+      'à¤•à¥ƒà¤ªà¤¯à¤¾ à¤µà¥ˆà¤§ à¤šà¥€à¤¨à¥€ à¤µà¤°à¥à¤£ à¤¦à¤°à¥à¤œ à¤•à¤°à¥‡à¤‚';
 
   @override
-  String get reviewAiCard => 'एआई कार्ड की समीक्षा करें';
+  String get reviewAiCard =>
+      'à¤à¤†à¤ˆ à¤•à¤¾à¤°à¥à¤¡ à¤•à¥€ à¤¸à¤®à¥€à¤•à¥à¤·à¤¾ à¤•à¤°à¥‡à¤‚';
 
   @override
   String get pleaseDoublecheckTheAis =>
-      'कृपया नीचे एआई के आउटपुट की दोबारा जाँच करें। इसे अपनी स्थायी लाइब्रेरी में सहेजने से पहले पिनयिन या परिभाषा को बदलने के लिए स्वतंत्र महसूस करें।';
+      'à¤•à¥ƒà¤ªà¤¯à¤¾ à¤¨à¥€à¤šà¥‡ à¤à¤†à¤ˆ à¤•à¥‡ à¤†à¤‰à¤Ÿà¤ªà¥à¤Ÿ à¤•à¥€ à¤¦à¥‹à¤¬à¤¾à¤°à¤¾ à¤œà¤¾à¤à¤š à¤•à¤°à¥‡à¤‚à¥¤ à¤‡à¤¸à¥‡ à¤…à¤ªà¤¨à¥€ à¤¸à¥à¤¥à¤¾à¤¯à¥€ à¤²à¤¾à¤‡à¤¬à¥à¤°à¥‡à¤°à¥€ à¤®à¥‡à¤‚ à¤¸à¤¹à¥‡à¤œà¤¨à¥‡ à¤¸à¥‡ à¤ªà¤¹à¤²à¥‡ à¤ªà¤¿à¤¨à¤¯à¤¿à¤¨ à¤¯à¤¾ à¤ªà¤°à¤¿à¤­à¤¾à¤·à¤¾ à¤•à¥‹ à¤¬à¤¦à¤²à¤¨à¥‡ à¤•à¥‡ à¤²à¤¿à¤ à¤¸à¥à¤µà¤¤à¤‚à¤¤à¥à¤° à¤®à¤¹à¤¸à¥‚à¤¸ à¤•à¤°à¥‡à¤‚à¥¤';
 
   @override
-  String get alreadyInYourLibrary => 'पहले से ही आपकी लाइब्रेरी में है!';
+  String get alreadyInYourLibrary =>
+      'à¤ªà¤¹à¤²à¥‡ à¤¸à¥‡ à¤¹à¥€ à¤†à¤ªà¤•à¥€ à¤²à¤¾à¤‡à¤¬à¥à¤°à¥‡à¤°à¥€ à¤®à¥‡à¤‚ à¤¹à¥ˆ!';
 
   @override
-  String get meaningInContext => 'संदर्भ में अर्थ';
+  String get meaningInContext => 'à¤¸à¤‚à¤¦à¤°à¥à¤­ à¤®à¥‡à¤‚ à¤…à¤°à¥à¤¥';
 
   @override
-  String get explainGrammar => 'व्याकरण समझाओ';
+  String get explainGrammar => 'à¤µà¥à¤¯à¤¾à¤•à¤°à¤£ à¤¸à¤®à¤à¤¾à¤“';
 
   @override
-  String get addToLibrary => 'पुस्तकालय में जोड़ें';
+  String get addToLibrary =>
+      'à¤ªà¥à¤¸à¥à¤¤à¤•à¤¾à¤²à¤¯ à¤®à¥‡à¤‚ à¤œà¥‹à¤¡à¤¼à¥‡à¤‚';
 
   @override
   String get masterYourMandarinPronunciation =>
-      'वास्तविक समय में मूल उच्चारण का अनुकरण करके अपनी मंदारिन उच्चारण में महारत हासिल करें।';
+      'à¤µà¤¾à¤¸à¥à¤¤à¤µà¤¿à¤• à¤¸à¤®à¤¯ à¤®à¥‡à¤‚ à¤®à¥‚à¤² à¤‰à¤šà¥à¤šà¤¾à¤°à¤£ à¤•à¤¾ à¤…à¤¨à¥à¤•à¤°à¤£ à¤•à¤°à¤•à¥‡ à¤…à¤ªà¤¨à¥€ à¤®à¤‚à¤¦à¤¾à¤°à¤¿à¤¨ à¤‰à¤šà¥à¤šà¤¾à¤°à¤£ à¤®à¥‡à¤‚ à¤®à¤¹à¤¾à¤°à¤¤ à¤¹à¤¾à¤¸à¤¿à¤² à¤•à¤°à¥‡à¤‚à¥¤';
 
   @override
-  String get startSession => 'सत्र शुरू करें';
+  String get startSession => 'à¤¸à¤¤à¥à¤° à¤¶à¥à¤°à¥‚ à¤•à¤°à¥‡à¤‚';
 
   @override
-  String get sessionHistory => 'सत्र इतिहास';
+  String get sessionHistory => 'à¤¸à¤¤à¥à¤° à¤‡à¤¤à¤¿à¤¹à¤¾à¤¸';
 
   @override
-  String get noSavedSessions => 'कोई सहेजे गए सत्र नहीं।';
+  String get noSavedSessions =>
+      'à¤•à¥‹à¤ˆ à¤¸à¤¹à¥‡à¤œà¥‡ à¤—à¤ à¤¸à¤¤à¥à¤° à¤¨à¤¹à¥€à¤‚à¥¤';
 
   @override
-  String get aiBreakdown => 'एआई विश्लेषण';
+  String get aiBreakdown => 'à¤à¤†à¤ˆ à¤µà¤¿à¤¶à¥à¤²à¥‡à¤·à¤£';
 
   @override
-  String get sessionDetails => 'सत्र विवरण';
+  String get sessionDetails => 'à¤¸à¤¤à¥à¤° à¤µà¤¿à¤µà¤°à¤£';
 
   @override
-  String get partner => 'सहभागी (中文)';
+  String get partner => 'à¤¸à¤¹à¤­à¤¾à¤—à¥€ (ä¸­æ–‡)';
 
   @override
-  String get youEnglish => 'आप (अंग्रेजी)';
+  String get youEnglish => 'à¤†à¤ª (à¤…à¤‚à¤—à¥à¤°à¥‡à¤œà¥€)';
 
   @override
-  String get noTranscriptToSave => 'सहेजने के लिए कोई प्रतिलेख नहीं!';
+  String get noTranscriptToSave =>
+      'à¤¸à¤¹à¥‡à¤œà¤¨à¥‡ à¤•à¥‡ à¤²à¤¿à¤ à¤•à¥‹à¤ˆ à¤ªà¥à¤°à¤¤à¤¿à¤²à¥‡à¤– à¤¨à¤¹à¥€à¤‚!';
 
   @override
-  String get sessionSaved => 'सत्र सहेजा गया!';
+  String get sessionSaved => 'à¤¸à¤¤à¥à¤° à¤¸à¤¹à¥‡à¤œà¤¾ à¤—à¤¯à¤¾!';
 
   @override
   String get realtimeBidirectionalTranslationSpeak =>
-      'वास्तविक समय में द्वि-दिशात्मक अनुवाद। अंग्रेजी या मंदारिन बोलें, और यह आपके और आपके साथी के लिए तुरंत अनुवाद करेगा।';
+      'à¤µà¤¾à¤¸à¥à¤¤à¤µà¤¿à¤• à¤¸à¤®à¤¯ à¤®à¥‡à¤‚ à¤¦à¥à¤µà¤¿-à¤¦à¤¿à¤¶à¤¾à¤¤à¥à¤®à¤• à¤…à¤¨à¥à¤µà¤¾à¤¦à¥¤ à¤…à¤‚à¤—à¥à¤°à¥‡à¤œà¥€ à¤¯à¤¾ à¤®à¤‚à¤¦à¤¾à¤°à¤¿à¤¨ à¤¬à¥‹à¤²à¥‡à¤‚, à¤”à¤° à¤¯à¤¹ à¤†à¤ªà¤•à¥‡ à¤”à¤° à¤†à¤ªà¤•à¥‡ à¤¸à¤¾à¤¥à¥€ à¤•à¥‡ à¤²à¤¿à¤ à¤¤à¥à¤°à¤‚à¤¤ à¤…à¤¨à¥à¤µà¤¾à¤¦ à¤•à¤°à¥‡à¤—à¤¾à¥¤';
 
   @override
-  String get text_1782026184665 => 'रिकॉर्डिंग';
+  String get text_1782026184665 => 'à¤°à¤¿à¤•à¥‰à¤°à¥à¤¡à¤¿à¤‚à¤—';
 
   @override
-  String get recording => 'रिकॉर्डिंग';
+  String get recording => 'à¤°à¤¿à¤•à¥‰à¤°à¥à¤¡à¤¿à¤‚à¤—';
 
   @override
   String get yourSilentCompanionListen =>
-      'आपका शांत साथी। मंदारिन सुनें, और तुरंत अंग्रेजी अनुवाद सुनें।';
+      'à¤†à¤ªà¤•à¤¾ à¤¶à¤¾à¤‚à¤¤ à¤¸à¤¾à¤¥à¥€à¥¤ à¤®à¤‚à¤¦à¤¾à¤°à¤¿à¤¨ à¤¸à¥à¤¨à¥‡à¤‚, à¤”à¤° à¤¤à¥à¤°à¤‚à¤¤ à¤…à¤‚à¤—à¥à¤°à¥‡à¤œà¥€ à¤…à¤¨à¥à¤µà¤¾à¤¦ à¤¸à¥à¤¨à¥‡à¤‚à¥¤';
 
   @override
-  String get startListening => 'सुनना शुरू करें';
+  String get startListening => 'à¤¸à¥à¤¨à¤¨à¤¾ à¤¶à¥à¤°à¥‚ à¤•à¤°à¥‡à¤‚';
 
   @override
   String get skip => 'Passer';
 
   @override
-  String get independentStars => 'स्वतंत्र सितारे';
+  String get independentStars => 'à¤¸à¥à¤µà¤¤à¤‚à¤¤à¥à¤° à¤¸à¤¿à¤¤à¤¾à¤°à¥‡';
 
   @override
   String get notEveryCharacterHas =>
-      'हर वर्ण का एक मूल रेडिकल नहीं होता है। कुछ अद्वितीय पिक्टोग्राफ होते हैं या अकेले खड़े होते हैं।';
+      'à¤¹à¤° à¤µà¤°à¥à¤£ à¤•à¤¾ à¤à¤• à¤®à¥‚à¤² à¤°à¥‡à¤¡à¤¿à¤•à¤² à¤¨à¤¹à¥€à¤‚ à¤¹à¥‹à¤¤à¤¾ à¤¹à¥ˆà¥¤ à¤•à¥à¤› à¤…à¤¦à¥à¤µà¤¿à¤¤à¥€à¤¯ à¤ªà¤¿à¤•à¥à¤Ÿà¥‹à¤—à¥à¤°à¤¾à¤« à¤¹à¥‹à¤¤à¥‡ à¤¹à¥ˆà¤‚ à¤¯à¤¾ à¤…à¤•à¥‡à¤²à¥‡ à¤–à¤¡à¤¼à¥‡ à¤¹à¥‹à¤¤à¥‡ à¤¹à¥ˆà¤‚à¥¤';
 
   @override
   String get onTheMapWe =>
-      'मानचित्र पर, हम इन स्वतंत्र वर्णों को CONSTELLATIONS (✨) में समूहित करते हैं।';
+      'à¤®à¤¾à¤¨à¤šà¤¿à¤¤à¥à¤° à¤ªà¤°, à¤¹à¤® à¤‡à¤¨ à¤¸à¥à¤µà¤¤à¤‚à¤¤à¥à¤° à¤µà¤°à¥à¤£à¥‹à¤‚ à¤•à¥‹ CONSTELLATIONS (âœ¨) à¤®à¥‡à¤‚ à¤¸à¤®à¥‚à¤¹à¤¿à¤¤ à¤•à¤°à¤¤à¥‡ à¤¹à¥ˆà¤‚à¥¤';
 
   @override
-  String get iUnderstand => 'मैं समझता हूँ';
+  String get iUnderstand => 'à¤®à¥ˆà¤‚ à¤¸à¤®à¤à¤¤à¤¾ à¤¹à¥‚à¤';
 
   @override
-  String get whatAreRadicals => 'रेडिकल क्या हैं?';
+  String get whatAreRadicals => 'à¤°à¥‡à¤¡à¤¿à¤•à¤² à¤•à¥à¤¯à¤¾ à¤¹à¥ˆà¤‚?';
 
   @override
   String get hanziAreBuiltFrom =>
-      'हान्ज़ी बिल्डिंग ब्लॉक्स से बने होते हैं जिन्हें रेडिकल कहा जाता है।\n\nवे वर्ण को उसका मुख्य अर्थ या विषय देते हैं।';
+      'à¤¹à¤¾à¤¨à¥à¤œà¤¼à¥€ à¤¬à¤¿à¤²à¥à¤¡à¤¿à¤‚à¤— à¤¬à¥à¤²à¥‰à¤•à¥à¤¸ à¤¸à¥‡ à¤¬à¤¨à¥‡ à¤¹à¥‹à¤¤à¥‡ à¤¹à¥ˆà¤‚ à¤œà¤¿à¤¨à¥à¤¹à¥‡à¤‚ à¤°à¥‡à¤¡à¤¿à¤•à¤² à¤•à¤¹à¤¾ à¤œà¤¾à¤¤à¤¾ à¤¹à¥ˆà¥¤\n\nà¤µà¥‡ à¤µà¤°à¥à¤£ à¤•à¥‹ à¤‰à¤¸à¤•à¤¾ à¤®à¥à¤–à¥à¤¯ à¤…à¤°à¥à¤¥ à¤¯à¤¾ à¤µà¤¿à¤·à¤¯ à¤¦à¥‡à¤¤à¥‡ à¤¹à¥ˆà¤‚à¥¤';
 
   @override
   String get continueText => 'Continuer';
 
   @override
   String get hanziAreNotJust =>
-      'हान्ज़ी केवल अक्षर नहीं हैं। वे समय में जमे हुए चित्र हैं।\n\nउनमें महारत हासिल करने के लिए, आपको उनके प्रवाह का पता लगाना सीखना होगा।';
+      'à¤¹à¤¾à¤¨à¥à¤œà¤¼à¥€ à¤•à¥‡à¤µà¤² à¤…à¤•à¥à¤·à¤° à¤¨à¤¹à¥€à¤‚ à¤¹à¥ˆà¤‚à¥¤ à¤µà¥‡ à¤¸à¤®à¤¯ à¤®à¥‡à¤‚ à¤œà¤®à¥‡ à¤¹à¥à¤ à¤šà¤¿à¤¤à¥à¤° à¤¹à¥ˆà¤‚à¥¤\n\nà¤‰à¤¨à¤®à¥‡à¤‚ à¤®à¤¹à¤¾à¤°à¤¤ à¤¹à¤¾à¤¸à¤¿à¤² à¤•à¤°à¤¨à¥‡ à¤•à¥‡ à¤²à¤¿à¤, à¤†à¤ªà¤•à¥‹ à¤‰à¤¨à¤•à¥‡ à¤ªà¥à¤°à¤µà¤¾à¤¹ à¤•à¤¾ à¤ªà¤¤à¤¾ à¤²à¤—à¤¾à¤¨à¤¾ à¤¸à¥€à¤–à¤¨à¤¾ à¤¹à¥‹à¤—à¤¾à¥¤';
 
   @override
-  String get iAmReady => 'मैं तैयार हूँ';
+  String get iAmReady => 'à¤®à¥ˆà¤‚ à¤¤à¥ˆà¤¯à¤¾à¤° à¤¹à¥‚à¤';
 
   @override
-  String get youAreAScholar => 'आप एक विद्वान हैं';
+  String get youAreAScholar => 'à¤†à¤ª à¤à¤• à¤µà¤¿à¤¦à¥à¤µà¤¾à¤¨ à¤¹à¥ˆà¤‚';
 
   @override
   String get theGalaxyMapAwaitsnmaster =>
-      'आकाशगंगा का नक्शा इंतजार कर रहा है।\nग्रहों (वर्णों) को अनलॉक करने के लिए सूर्यों (रेडिकल्स) में महारत हासिल करें।';
+      'à¤†à¤•à¤¾à¤¶à¤—à¤‚à¤—à¤¾ à¤•à¤¾ à¤¨à¤•à¥à¤¶à¤¾ à¤‡à¤‚à¤¤à¤œà¤¾à¤° à¤•à¤° à¤°à¤¹à¤¾ à¤¹à¥ˆà¥¤\nà¤—à¥à¤°à¤¹à¥‹à¤‚ (à¤µà¤°à¥à¤£à¥‹à¤‚) à¤•à¥‹ à¤…à¤¨à¤²à¥‰à¤• à¤•à¤°à¤¨à¥‡ à¤•à¥‡ à¤²à¤¿à¤ à¤¸à¥‚à¤°à¥à¤¯à¥‹à¤‚ (à¤°à¥‡à¤¡à¤¿à¤•à¤²à¥à¤¸) à¤®à¥‡à¤‚ à¤®à¤¹à¤¾à¤°à¤¤ à¤¹à¤¾à¤¸à¤¿à¤² à¤•à¤°à¥‡à¤‚à¥¤';
 
   @override
-  String get enterTheScroll => 'स्क्रॉल दर्ज करें';
+  String get enterTheScroll =>
+      'à¤¸à¥à¤•à¥à¤°à¥‰à¤² à¤¦à¤°à¥à¤œ à¤•à¤°à¥‡à¤‚';
 
   @override
-  String get openingTheOriginScroll => 'ओरिजिन स्क्रॉल खोला जा रहा है...';
+  String get openingTheOriginScroll =>
+      'à¤“à¤°à¤¿à¤œà¤¿à¤¨ à¤¸à¥à¤•à¥à¤°à¥‰à¤² à¤–à¥‹à¤²à¤¾ à¤œà¤¾ à¤°à¤¹à¤¾ à¤¹à¥ˆ...';
 
   @override
   String get text_1782026184670 => '+';
 
   @override
-  String get theScholarsEdition => 'विद्वान का संस्करण';
+  String get theScholarsEdition =>
+      'à¤µà¤¿à¤¦à¥à¤µà¤¾à¤¨ à¤•à¤¾ à¤¸à¤‚à¤¸à¥à¤•à¤°à¤£';
 
   @override
   String get weArePreparingThe =>
-      'हम विद्वान के संस्करण को लॉन्च करने की तैयारी कर रहे हैं।';
+      'à¤¹à¤® à¤µà¤¿à¤¦à¥à¤µà¤¾à¤¨ à¤•à¥‡ à¤¸à¤‚à¤¸à¥à¤•à¤°à¤£ à¤•à¥‹ à¤²à¥‰à¤¨à¥à¤š à¤•à¤°à¤¨à¥‡ à¤•à¥€ à¤¤à¥ˆà¤¯à¤¾à¤°à¥€ à¤•à¤° à¤°à¤¹à¥‡ à¤¹à¥ˆà¤‚à¥¤';
 
   @override
-  String get devBypassUnlockNow => 'देव बाईपास: अभी अनलॉक करें';
+  String get devBypassUnlockNow =>
+      'à¤¦à¥‡à¤µ à¤¬à¤¾à¤ˆà¤ªà¤¾à¤¸: à¤…à¤­à¥€ à¤…à¤¨à¤²à¥‰à¤• à¤•à¤°à¥‡à¤‚';
 
   @override
-  String get restorePurchases => 'खरीद बहाल करें';
+  String get restorePurchases => 'à¤–à¤°à¥€à¤¦ à¤¬à¤¹à¤¾à¤² à¤•à¤°à¥‡à¤‚';
 
   @override
   String get welcomeScholarTheScroll =>
-      'स्वागत है, विद्वान। स्क्रॉल आपके लिए पूरी तरह खुला है।';
+      'à¤¸à¥à¤µà¤¾à¤—à¤¤ à¤¹à¥ˆ, à¤µà¤¿à¤¦à¥à¤µà¤¾à¤¨à¥¤ à¤¸à¥à¤•à¥à¤°à¥‰à¤² à¤†à¤ªà¤•à¥‡ à¤²à¤¿à¤ à¤ªà¥‚à¤°à¥€ à¤¤à¤°à¤¹ à¤–à¥à¤²à¤¾ à¤¹à¥ˆà¥¤';
 
   @override
-  String get purchasesRestoredSuccessfully => 'खरीद सफलतापूर्वक बहाल की गई।';
+  String get purchasesRestoredSuccessfully =>
+      'à¤–à¤°à¥€à¤¦ à¤¸à¤«à¤²à¤¤à¤¾à¤ªà¥‚à¤°à¥à¤µà¤• à¤¬à¤¹à¤¾à¤² à¤•à¥€ à¤—à¤ˆà¥¤';
 
   @override
   String get noPreviousPurchasesFound =>
-      'इस खाते पर कोई पिछली खरीदारी नहीं मिली।';
+      'à¤‡à¤¸ à¤–à¤¾à¤¤à¥‡ à¤ªà¤° à¤•à¥‹à¤ˆ à¤ªà¤¿à¤›à¤²à¥€ à¤–à¤°à¥€à¤¦à¤¾à¤°à¥€ à¤¨à¤¹à¥€à¤‚ à¤®à¤¿à¤²à¥€à¥¤';
 
   @override
   String get unlockTheFullPotential =>
-      'अपनी यात्रा की पूरी क्षमता को अनलॉक करें। एक बार की खरीदारी, हमेशा के लिए आपकी।';
+      'à¤…à¤ªà¤¨à¥€ à¤¯à¤¾à¤¤à¥à¤°à¤¾ à¤•à¥€ à¤ªà¥‚à¤°à¥€ à¤•à¥à¤·à¤®à¤¤à¤¾ à¤•à¥‹ à¤…à¤¨à¤²à¥‰à¤• à¤•à¤°à¥‡à¤‚à¥¤ à¤à¤• à¤¬à¤¾à¤° à¤•à¥€ à¤–à¤°à¥€à¤¦à¤¾à¤°à¥€, à¤¹à¤®à¥‡à¤¶à¤¾ à¤•à¥‡ à¤²à¤¿à¤ à¤†à¤ªà¤•à¥€à¥¤';
 
   @override
-  String get universalScanner => 'यूनिवर्सल स्कैनर';
+  String get universalScanner =>
+      'à¤¯à¥‚à¤¨à¤¿à¤µà¤°à¥à¤¸à¤² à¤¸à¥à¤•à¥ˆà¤¨à¤°';
 
   @override
-  String get noChineseCharactersFound => 'छवि में कोई चीनी वर्ण नहीं मिला।';
+  String get noChineseCharactersFound =>
+      'à¤›à¤µà¤¿ à¤®à¥‡à¤‚ à¤•à¥‹à¤ˆ à¤šà¥€à¤¨à¥€ à¤µà¤°à¥à¤£ à¤¨à¤¹à¥€à¤‚ à¤®à¤¿à¤²à¤¾à¥¤';
 
   @override
-  String get addedNewCharactersTo => 'आपकी लाइब्रेरी में नए वर्ण जोड़े गए!';
+  String get addedNewCharactersTo =>
+      'à¤†à¤ªà¤•à¥€ à¤²à¤¾à¤‡à¤¬à¥à¤°à¥‡à¤°à¥€ à¤®à¥‡à¤‚ à¤¨à¤ à¤µà¤°à¥à¤£ à¤œà¥‹à¤¡à¤¼à¥‡ à¤—à¤!';
 
   @override
   String get extractingTextAndObjects =>
-      'टेक्स्ट और वस्तुओं को निकाला जा रहा है...';
+      'à¤Ÿà¥‡à¤•à¥à¤¸à¥à¤Ÿ à¤”à¤° à¤µà¤¸à¥à¤¤à¥à¤“à¤‚ à¤•à¥‹ à¤¨à¤¿à¤•à¤¾à¤²à¤¾ à¤œà¤¾ à¤°à¤¹à¤¾ à¤¹à¥ˆ...';
 
   @override
   String get scanATextbookSign =>
-      'चीनी वर्णों को निकालने के लिए एक पाठ्यपुस्तक, संकेत या वस्तु को स्कैन करें।';
+      'à¤šà¥€à¤¨à¥€ à¤µà¤°à¥à¤£à¥‹à¤‚ à¤•à¥‹ à¤¨à¤¿à¤•à¤¾à¤²à¤¨à¥‡ à¤•à¥‡ à¤²à¤¿à¤ à¤à¤• à¤ªà¤¾à¤ à¥à¤¯à¤ªà¥à¤¸à¥à¤¤à¤•, à¤¸à¤‚à¤•à¥‡à¤¤ à¤¯à¤¾ à¤µà¤¸à¥à¤¤à¥ à¤•à¥‹ à¤¸à¥à¤•à¥ˆà¤¨ à¤•à¤°à¥‡à¤‚à¥¤';
 
   @override
-  String get extractedText => 'निकाला गया टेक्स्ट';
+  String get extractedText =>
+      'à¤¨à¤¿à¤•à¤¾à¤²à¤¾ à¤—à¤¯à¤¾ à¤Ÿà¥‡à¤•à¥à¤¸à¥à¤Ÿ';
 
   @override
-  String get useText => 'टेक्स्ट का उपयोग करें';
+  String get useText =>
+      'à¤Ÿà¥‡à¤•à¥à¤¸à¥à¤Ÿ à¤•à¤¾ à¤‰à¤ªà¤¯à¥‹à¤— à¤•à¤°à¥‡à¤‚';
 
   @override
   String get noMatchingDictionaryEntries =>
-      'कोई मिलान वाली शब्दकोश प्रविष्टियाँ नहीं मिलीं।';
+      'à¤•à¥‹à¤ˆ à¤®à¤¿à¤²à¤¾à¤¨ à¤µà¤¾à¤²à¥€ à¤¶à¤¬à¥à¤¦à¤•à¥‹à¤¶ à¤ªà¥à¤°à¤µà¤¿à¤·à¥à¤Ÿà¤¿à¤¯à¤¾à¤ à¤¨à¤¹à¥€à¤‚ à¤®à¤¿à¤²à¥€à¤‚à¥¤';
 
   @override
-  String get quizComplete => 'प्रश्नोत्तरी पूर्ण!';
+  String get quizComplete =>
+      'à¤ªà¥à¤°à¤¶à¥à¤¨à¥‹à¤¤à¥à¤¤à¤°à¥€ à¤ªà¥‚à¤°à¥à¤£!';
 
   @override
-  String get returnToCourse => 'पाठ्यक्रम पर लौटें';
+  String get returnToCourse =>
+      'à¤ªà¤¾à¤ à¥à¤¯à¤•à¥à¤°à¤® à¤ªà¤° à¤²à¥Œà¤Ÿà¥‡à¤‚';
 
   @override
   String get notEnoughCardsFor =>
-      'प्रश्नोत्तरी के लिए पर्याप्त कार्ड नहीं हैं! कम से कम 4 की आवश्यकता है।';
+      'à¤ªà¥à¤°à¤¶à¥à¤¨à¥‹à¤¤à¥à¤¤à¤°à¥€ à¤•à¥‡ à¤²à¤¿à¤ à¤ªà¤°à¥à¤¯à¤¾à¤ªà¥à¤¤ à¤•à¤¾à¤°à¥à¤¡ à¤¨à¤¹à¥€à¤‚ à¤¹à¥ˆà¤‚! à¤•à¤® à¤¸à¥‡ à¤•à¤® 4 à¤•à¥€ à¤†à¤µà¤¶à¥à¤¯à¤•à¤¤à¤¾ à¤¹à¥ˆà¥¤';
 
   @override
-  String get creatorMode => 'निर्माता मोड';
+  String get creatorMode => 'à¤¨à¤¿à¤°à¥à¤®à¤¾à¤¤à¤¾ à¤®à¥‹à¤¡';
 
   @override
   String get noStoriesFoundMatching =>
-      'आपकी खोज से मेल खाने वाली कोई कहानी नहीं मिली।';
+      'à¤†à¤ªà¤•à¥€ à¤–à¥‹à¤œ à¤¸à¥‡ à¤®à¥‡à¤² à¤–à¤¾à¤¨à¥‡ à¤µà¤¾à¤²à¥€ à¤•à¥‹à¤ˆ à¤•à¤¹à¤¾à¤¨à¥€ à¤¨à¤¹à¥€à¤‚ à¤®à¤¿à¤²à¥€à¥¤';
 
   @override
-  String get discard => 'खारिज करें';
+  String get discard => 'à¤–à¤¾à¤°à¤¿à¤œ à¤•à¤°à¥‡à¤‚';
 
   @override
   String get save => 'Enregistrer';
 
   @override
   String get generatingStoryViaDeepseek =>
-      'डीपसीक के माध्यम से कहानी जनरेट हो रही है...';
+      'à¤¡à¥€à¤ªà¤¸à¥€à¤• à¤•à¥‡ à¤®à¤¾à¤§à¥à¤¯à¤® à¤¸à¥‡ à¤•à¤¹à¤¾à¤¨à¥€ à¤œà¤¨à¤°à¥‡à¤Ÿ à¤¹à¥‹ à¤°à¤¹à¥€ à¤¹à¥ˆ...';
 
   @override
-  String get storySavedToLibrary => 'कहानी लाइब्रेरी में सहेजी गई!';
+  String get storySavedToLibrary =>
+      'à¤•à¤¹à¤¾à¤¨à¥€ à¤²à¤¾à¤‡à¤¬à¥à¤°à¥‡à¤°à¥€ à¤®à¥‡à¤‚ à¤¸à¤¹à¥‡à¤œà¥€ à¤—à¤ˆ!';
 
   @override
-  String get storyNotFound => 'कहानी नहीं मिली।';
+  String get storyNotFound => 'à¤•à¤¹à¤¾à¤¨à¥€ à¤¨à¤¹à¥€à¤‚ à¤®à¤¿à¤²à¥€à¥¤';
 
   @override
-  String get targetHskLevel => 'लक्ष्य एचएसके स्तर';
+  String get targetHskLevel =>
+      'à¤²à¤•à¥à¤·à¥à¤¯ à¤à¤šà¤à¤¸à¤•à¥‡ à¤¸à¥à¤¤à¤°';
 
   @override
-  String get wedLoveToHear => 'हमें आपसे सुनकर खुशी होगी!';
+  String get wedLoveToHear =>
+      'à¤¹à¤®à¥‡à¤‚ à¤†à¤ªà¤¸à¥‡ à¤¸à¥à¤¨à¤•à¤° à¤–à¥à¤¶à¥€ à¤¹à¥‹à¤—à¥€!';
 
   @override
   String get whetherYouveFoundA =>
-      'चाहे आपको कोई बग मिला हो, कोई सुविधा अनुरोध हो, या सिर्फ नमस्ते कहना चाहते हों, आपकी प्रतिक्रिया हमें हान्ज़ी मास्टर को बेहतर बनाने में मदद करती है।';
+      'à¤šà¤¾à¤¹à¥‡ à¤†à¤ªà¤•à¥‹ à¤•à¥‹à¤ˆ à¤¬à¤— à¤®à¤¿à¤²à¤¾ à¤¹à¥‹, à¤•à¥‹à¤ˆ à¤¸à¥à¤µà¤¿à¤§à¤¾ à¤…à¤¨à¥à¤°à¥‹à¤§ à¤¹à¥‹, à¤¯à¤¾ à¤¸à¤¿à¤°à¥à¤« à¤¨à¤®à¤¸à¥à¤¤à¥‡ à¤•à¤¹à¤¨à¤¾ à¤šà¤¾à¤¹à¤¤à¥‡ à¤¹à¥‹à¤‚, à¤†à¤ªà¤•à¥€ à¤ªà¥à¤°à¤¤à¤¿à¤•à¥à¤°à¤¿à¤¯à¤¾ à¤¹à¤®à¥‡à¤‚ à¤¹à¤¾à¤¨à¥à¤œà¤¼à¥€ à¤®à¤¾à¤¸à¥à¤Ÿà¤° à¤•à¥‹ à¤¬à¥‡à¤¹à¤¤à¤° à¤¬à¤¨à¤¾à¤¨à¥‡ à¤®à¥‡à¤‚ à¤®à¤¦à¤¦ à¤•à¤°à¤¤à¥€ à¤¹à¥ˆà¥¤';
 
   @override
-  String get pointYourCameraAt => 'अपने कैमरे को वस्तुओं पर लक्षित करें';
+  String get pointYourCameraAt =>
+      'à¤…à¤ªà¤¨à¥‡ à¤•à¥ˆà¤®à¤°à¥‡ à¤•à¥‹ à¤µà¤¸à¥à¤¤à¥à¤“à¤‚ à¤ªà¤° à¤²à¤•à¥à¤·à¤¿à¤¤ à¤•à¤°à¥‡à¤‚';
 
   @override
-  String get reviewAddToLibrary => 'समीक्षा करें और लाइब्रेरी में जोड़ें';
+  String get reviewAddToLibrary =>
+      'à¤¸à¤®à¥€à¤•à¥à¤·à¤¾ à¤•à¤°à¥‡à¤‚ à¤”à¤° à¤²à¤¾à¤‡à¤¬à¥à¤°à¥‡à¤°à¥€ à¤®à¥‡à¤‚ à¤œà¥‹à¤¡à¤¼à¥‡à¤‚';
 
   @override
   String hideStrokeGuideStreak(Object streak) {
-    return 'स्ट्रोक गाइड छिपाएँ: $streak';
+    return 'à¤¸à¥à¤Ÿà¥à¤°à¥‹à¤• à¤—à¤¾à¤‡à¤¡ à¤›à¤¿à¤ªà¤¾à¤à¤: $streak';
   }
 
   @override
   String inkPoints(Object points) {
-    return '$points इंक पॉइंट्स';
+    return '$points à¤‡à¤‚à¤• à¤ªà¥‰à¤‡à¤‚à¤Ÿà¥à¤¸';
   }
 
   @override
@@ -1016,79 +1103,89 @@ class AppLocalizationsHi extends AppLocalizations {
   }
 
   @override
-  String get supportAndFeedback => 'सहायता और प्रतिक्रिया';
+  String get supportAndFeedback =>
+      'à¤¸à¤¹à¤¾à¤¯à¤¤à¤¾ à¤”à¤° à¤ªà¥à¤°à¤¤à¤¿à¤•à¥à¤°à¤¿à¤¯à¤¾';
 
   @override
-  String get reportBug => 'बग की रिपोर्ट करें';
+  String get reportBug => 'à¤¬à¤— à¤•à¥€ à¤°à¤¿à¤ªà¥‹à¤°à¥à¤Ÿ à¤•à¤°à¥‡à¤‚';
 
   @override
-  String get suggestFeature => 'सुविधा का सुझाव दें';
+  String get suggestFeature =>
+      'à¤¸à¥à¤µà¤¿à¤§à¤¾ à¤•à¤¾ à¤¸à¥à¤à¤¾à¤µ à¤¦à¥‡à¤‚';
 
   @override
-  String get generalFeedback => 'सामान्य प्रतिक्रिया';
+  String get generalFeedback =>
+      'à¤¸à¤¾à¤®à¤¾à¤¨à¥à¤¯ à¤ªà¥à¤°à¤¤à¤¿à¤•à¥à¤°à¤¿à¤¯à¤¾';
 
   @override
-  String get pleaseDrawSomethingFirst => 'कृपया पहले कुछ बनाएँ';
+  String get pleaseDrawSomethingFirst =>
+      'à¤•à¥ƒà¤ªà¤¯à¤¾ à¤ªà¤¹à¤²à¥‡ à¤•à¥à¤› à¤¬à¤¨à¤¾à¤à¤';
 
   @override
-  String get drawThisCharacter => 'यह अक्षर बनाएँ:';
+  String get drawThisCharacter => 'à¤¯à¤¹ à¤…à¤•à¥à¤·à¤° à¤¬à¤¨à¤¾à¤à¤:';
 
   @override
   String followGuideStroke(Object current, Object total) {
-    return 'स्ट्रोक $current से $total बनाने के लिए नीले गाइड का पालन करें';
+    return 'à¤¸à¥à¤Ÿà¥à¤°à¥‹à¤• $current à¤¸à¥‡ $total à¤¬à¤¨à¤¾à¤¨à¥‡ à¤•à¥‡ à¤²à¤¿à¤ à¤¨à¥€à¤²à¥‡ à¤—à¤¾à¤‡à¤¡ à¤•à¤¾ à¤ªà¤¾à¤²à¤¨ à¤•à¤°à¥‡à¤‚';
   }
 
   @override
-  String get skipCurrentStroke => 'वर्तमान स्ट्रोक छोड़ें';
+  String get skipCurrentStroke =>
+      'à¤µà¤°à¥à¤¤à¤®à¤¾à¤¨ à¤¸à¥à¤Ÿà¥à¤°à¥‹à¤• à¤›à¥‹à¤¡à¤¼à¥‡à¤‚';
 
   @override
-  String get submitDrawing => 'ड्राइंग जमा करें';
+  String get submitDrawing => 'à¤¡à¥à¤°à¤¾à¤‡à¤‚à¤— à¤œà¤®à¤¾ à¤•à¤°à¥‡à¤‚';
 
   @override
   String addedToDeck(Object deckName, Object hanzi) {
-    return '$hanzi को $deckName में जोड़ा गया';
+    return '$hanzi à¤•à¥‹ $deckName à¤®à¥‡à¤‚ à¤œà¥‹à¤¡à¤¼à¤¾ à¤—à¤¯à¤¾';
   }
 
   @override
   String removedFromDeck(Object hanzi) {
-    return '$hanzi को डेक से हटाया गया';
+    return '$hanzi à¤•à¥‹ à¤¡à¥‡à¤• à¤¸à¥‡ à¤¹à¤Ÿà¤¾à¤¯à¤¾ à¤—à¤¯à¤¾';
   }
 
   @override
   String skippedNoStrokeData(Object hanzi) {
-    return 'छोड़ा गया \"$hanzi\" - इस AI अक्षर के लिए स्ट्रोक डेटा उपलब्ध नहीं है।';
+    return 'à¤›à¥‹à¤¡à¤¼à¤¾ à¤—à¤¯à¤¾ \"$hanzi\" - à¤‡à¤¸ AI à¤…à¤•à¥à¤·à¤° à¤•à¥‡ à¤²à¤¿à¤ à¤¸à¥à¤Ÿà¥à¤°à¥‹à¤• à¤¡à¥‡à¤Ÿà¤¾ à¤‰à¤ªà¤²à¤¬à¥à¤§ à¤¨à¤¹à¥€à¤‚ à¤¹à¥ˆà¥¤';
   }
 
   @override
-  String get startingSession => 'सत्र शुरू हो रहा है...';
+  String get startingSession =>
+      'à¤¸à¤¤à¥à¤° à¤¶à¥à¤°à¥‚ à¤¹à¥‹ à¤°à¤¹à¤¾ à¤¹à¥ˆ...';
 
   @override
-  String get masterBuildingBlocks => 'हंज़ी के मूल तत्वों में महारत हासिल करें';
+  String get masterBuildingBlocks =>
+      'à¤¹à¤‚à¤œà¤¼à¥€ à¤•à¥‡ à¤®à¥‚à¤² à¤¤à¤¤à¥à¤µà¥‹à¤‚ à¤®à¥‡à¤‚ à¤®à¤¹à¤¾à¤°à¤¤ à¤¹à¤¾à¤¸à¤¿à¤² à¤•à¤°à¥‡à¤‚';
 
   @override
-  String get totalWords => 'कुल शब्द';
+  String get totalWords => 'à¤•à¥à¤² à¤¶à¤¬à¥à¤¦';
 
   @override
-  String get newInk => 'नई इंक';
+  String get newInk => 'à¤¨à¤ˆ à¤‡à¤‚à¤•';
 
   @override
-  String get learningStatus => 'सीखना';
+  String get learningStatus => 'à¤¸à¥€à¤–à¤¨à¤¾';
 
   @override
-  String get masteredStatus => 'माहिर';
+  String get masteredStatus => 'à¤®à¤¾à¤¹à¤¿à¤°';
 
   @override
-  String get libraryMastery => 'पुस्तकालय में महारत';
+  String get libraryMastery =>
+      'à¤ªà¥à¤¸à¥à¤¤à¤•à¤¾à¤²à¤¯ à¤®à¥‡à¤‚ à¤®à¤¹à¤¾à¤°à¤¤';
 
   @override
-  String get accuracyByMode => 'मोड द्वारा सटीकता';
+  String get accuracyByMode =>
+      'à¤®à¥‹à¤¡ à¤¦à¥à¤µà¤¾à¤°à¤¾ à¤¸à¤Ÿà¥€à¤•à¤¤à¤¾';
 
   @override
-  String get upcomingReviews => 'आगामी समीक्षाएँ (अगले 7 दिन)';
+  String get upcomingReviews =>
+      'à¤†à¤—à¤¾à¤®à¥€ à¤¸à¤®à¥€à¤•à¥à¤·à¤¾à¤à¤ (à¤…à¤—à¤²à¥‡ 7 à¤¦à¤¿à¤¨)';
 
   @override
   String get culturalReadingRoom =>
-      'संस्कृति का अध्ययन करें (सांस्कृतिक पठन कक्ष)';
+      'à¤¸à¤‚à¤¸à¥à¤•à¥ƒà¤¤à¤¿ à¤•à¤¾ à¤…à¤§à¥à¤¯à¤¯à¤¨ à¤•à¤°à¥‡à¤‚ (à¤¸à¤¾à¤‚à¤¸à¥à¤•à¥ƒà¤¤à¤¿à¤• à¤ªà¤ à¤¨ à¤•à¤•à¥à¤·)';
 
   @override
   String storyTitleHsk(Object level, Object title) {
@@ -1096,333 +1193,365 @@ class AppLocalizationsHi extends AppLocalizations {
   }
 
   @override
-  String get pleaseEnterTopic => 'कृपया कोई विषय दर्ज करें';
+  String get pleaseEnterTopic =>
+      'à¤•à¥ƒà¤ªà¤¯à¤¾ à¤•à¥‹à¤ˆ à¤µà¤¿à¤·à¤¯ à¤¦à¤°à¥à¤œ à¤•à¤°à¥‡à¤‚';
 
   @override
   String createdDeckCards(Object count, Object name) {
-    return '$name $count कार्ड के साथ बनाया गया!';
+    return '$name $count à¤•à¤¾à¤°à¥à¤¡ à¤•à¥‡ à¤¸à¤¾à¤¥ à¤¬à¤¨à¤¾à¤¯à¤¾ à¤—à¤¯à¤¾!';
   }
 
   @override
   String gradeResult(Object grade) {
-    return 'ग्रेड: $grade';
+    return 'à¤—à¥à¤°à¥‡à¤¡: $grade';
   }
 
   @override
-  String get listeningMode => 'सुनने का मोड';
+  String get listeningMode => 'à¤¸à¥à¤¨à¤¨à¥‡ à¤•à¤¾ à¤®à¥‹à¤¡';
 
   @override
-  String get readingMode => 'पढ़ने का मोड';
+  String get readingMode => 'à¤ªà¤¢à¤¼à¤¨à¥‡ à¤•à¤¾ à¤®à¥‹à¤¡';
 
   @override
-  String get recallMode => 'याद करने का मोड';
+  String get recallMode => 'à¤¯à¤¾à¤¦ à¤•à¤°à¤¨à¥‡ à¤•à¤¾ à¤®à¥‹à¤¡';
 
   @override
-  String get speakingMode => 'बोलने का मोड';
+  String get speakingMode => 'à¤¬à¥‹à¤²à¤¨à¥‡ à¤•à¤¾ à¤®à¥‹à¤¡';
 
   @override
-  String get aiMemoryHook => 'एआई मेमोरी हुक';
+  String get aiMemoryHook => 'à¤à¤†à¤ˆ à¤®à¥‡à¤®à¥‹à¤°à¥€ à¤¹à¥à¤•';
 
   @override
-  String get exampleSentences => 'उदाहरण वाक्य';
+  String get exampleSentences => 'à¤‰à¤¦à¤¾à¤¹à¤°à¤£ à¤µà¤¾à¤•à¥à¤¯';
 
   @override
-  String get ghostCharacters => 'घोस्ट कैरेक्टर्स';
+  String get ghostCharacters =>
+      'à¤˜à¥‹à¤¸à¥à¤Ÿ à¤•à¥ˆà¤°à¥‡à¤•à¥à¤Ÿà¤°à¥à¤¸';
 
   @override
-  String get commonWords => 'आम शब्द';
+  String get commonWords => 'à¤†à¤® à¤¶à¤¬à¥à¤¦';
 
   @override
-  String get personalNotes => 'व्यक्तिगत नोट्स';
+  String get personalNotes => 'à¤µà¥à¤¯à¤•à¥à¤¤à¤¿à¤—à¤¤ à¤¨à¥‹à¤Ÿà¥à¤¸';
 
   @override
-  String get addPersonalNotes => 'अपने स्मरणीय संकेत या नोट्स यहाँ जोड़ें...';
+  String get addPersonalNotes =>
+      'à¤…à¤ªà¤¨à¥‡ à¤¸à¥à¤®à¤°à¤£à¥€à¤¯ à¤¸à¤‚à¤•à¥‡à¤¤ à¤¯à¤¾ à¤¨à¥‹à¤Ÿà¥à¤¸ à¤¯à¤¹à¤¾à¤ à¤œà¥‹à¤¡à¤¼à¥‡à¤‚...';
 
   @override
-  String get takePhoto => 'फोटो लें';
+  String get takePhoto => 'à¤«à¥‹à¤Ÿà¥‹ à¤²à¥‡à¤‚';
 
   @override
-  String get gallery => 'गैलरी';
+  String get gallery => 'à¤—à¥ˆà¤²à¤°à¥€';
 
   @override
-  String get arLens => 'एआर लेंस';
+  String get arLens => 'à¤à¤†à¤° à¤²à¥‡à¤‚à¤¸';
 
   @override
   String addedCharToLibrary(Object char) {
-    return '$char लाइब्रेरी में जोड़ा गया';
+    return '$char à¤²à¤¾à¤‡à¤¬à¥à¤°à¥‡à¤°à¥€ à¤®à¥‡à¤‚ à¤œà¥‹à¤¡à¤¼à¤¾ à¤—à¤¯à¤¾';
   }
 
   @override
-  String get scoreText => 'स्कोर';
+  String get scoreText => 'à¤¸à¥à¤•à¥‹à¤°';
 
   @override
-  String get searchDictionaryHint => 'अक्षर, पिनयिन, या अर्थ खोजें...';
+  String get searchDictionaryHint =>
+      'à¤…à¤•à¥à¤·à¤°, à¤ªà¤¿à¤¨à¤¯à¤¿à¤¨, à¤¯à¤¾ à¤…à¤°à¥à¤¥ à¤–à¥‹à¤œà¥‡à¤‚...';
 
   @override
-  String get searchDeckHint => 'अक्षर, पिनयिन खोजें...';
+  String get searchDeckHint =>
+      'à¤…à¤•à¥à¤·à¤°, à¤ªà¤¿à¤¨à¤¯à¤¿à¤¨ à¤–à¥‹à¤œà¥‡à¤‚...';
 
   @override
-  String get localRestaurant => 'स्थानीय रेस्तरां';
+  String get localRestaurant =>
+      'à¤¸à¥à¤¥à¤¾à¤¨à¥€à¤¯ à¤°à¥‡à¤¸à¥à¤¤à¤°à¤¾à¤‚';
 
   @override
-  String get taxiToAirport => 'हवाई अड्डे तक टैक्सी';
+  String get taxiToAirport =>
+      'à¤¹à¤µà¤¾à¤ˆ à¤…à¤¡à¥à¤¡à¥‡ à¤¤à¤• à¤Ÿà¥ˆà¤•à¥à¤¸à¥€';
 
   @override
-  String get silkMarketHaggling => 'रेशम बाज़ार में मोलभाव';
+  String get silkMarketHaggling =>
+      'à¤°à¥‡à¤¶à¤® à¤¬à¤¾à¤œà¤¼à¤¾à¤° à¤®à¥‡à¤‚ à¤®à¥‹à¤²à¤­à¤¾à¤µ';
 
   @override
-  String get medicalClinic => 'चिकित्सा क्लिनिक';
+  String get medicalClinic => 'à¤šà¤¿à¤•à¤¿à¤¤à¥à¤¸à¤¾ à¤•à¥à¤²à¤¿à¤¨à¤¿à¤•';
 
   @override
-  String get meetingAFriend => 'एक मित्र से मिलना';
+  String get meetingAFriend => 'à¤à¤• à¤®à¤¿à¤¤à¥à¤° à¤¸à¥‡ à¤®à¤¿à¤²à¤¨à¤¾';
 
   @override
-  String get jobInterview => 'नौकरी का साक्षात्कार';
+  String get jobInterview =>
+      'à¤¨à¥Œà¤•à¤°à¥€ à¤•à¤¾ à¤¸à¤¾à¤•à¥à¤·à¤¾à¤¤à¥à¤•à¤¾à¤°';
 
   @override
-  String get searchRadicalsHint => 'रेडिकल खोजें (जैसे पानी, 氵)';
+  String get searchRadicalsHint =>
+      'à¤°à¥‡à¤¡à¤¿à¤•à¤² à¤–à¥‹à¤œà¥‡à¤‚ (à¤œà¥ˆà¤¸à¥‡ à¤ªà¤¾à¤¨à¥€, æ°µ)';
 
   @override
-  String get definition => 'परिभाषा';
+  String get definition => 'à¤ªà¤°à¤¿à¤­à¤¾à¤·à¤¾';
 
   @override
-  String get undo => 'पूर्ववत करें';
+  String get undo => 'à¤ªà¥‚à¤°à¥à¤µà¤µà¤¤ à¤•à¤°à¥‡à¤‚';
 
   @override
-  String get hanziMaster => 'हंज़ी मास्टर';
+  String get hanziMaster => 'à¤¹à¤‚à¤œà¤¼à¥€ à¤®à¤¾à¤¸à¥à¤Ÿà¤°';
 
   @override
-  String get unlockForever => 'हमेशा के लिए अनलॉक करें - \$9.99';
+  String get unlockForever =>
+      'à¤¹à¤®à¥‡à¤¶à¤¾ à¤•à¥‡ à¤²à¤¿à¤ à¤…à¤¨à¤²à¥‰à¤• à¤•à¤°à¥‡à¤‚ - \$9.99';
 
   @override
-  String get clear => 'स्पष्ट';
+  String get clear => 'à¤¸à¥à¤ªà¤·à¥à¤Ÿ';
 
   @override
-  String get clearChat => 'चैट साफ़ करें';
+  String get clearChat => 'à¤šà¥ˆà¤Ÿ à¤¸à¤¾à¤«à¤¼ à¤•à¤°à¥‡à¤‚';
 
   @override
-  String get typeMessage => 'अपना संदेश लिखें...';
+  String get typeMessage => 'à¤…à¤ªà¤¨à¤¾ à¤¸à¤‚à¤¦à¥‡à¤¶ à¤²à¤¿à¤–à¥‡à¤‚...';
 
   @override
   String addedToLibrary(Object hanzi) {
-    return '\'$hanzi\' आपकी लाइब्रेरी में जोड़ा गया';
+    return '\'$hanzi\' à¤†à¤ªà¤•à¥€ à¤²à¤¾à¤‡à¤¬à¥à¤°à¥‡à¤°à¥€ à¤®à¥‡à¤‚ à¤œà¥‹à¤¡à¤¼à¤¾ à¤—à¤¯à¤¾';
   }
 
   @override
-  String get generateNewStory => 'नई कहानी जनरेट करें';
+  String get generateNewStory =>
+      'à¤¨à¤ˆ à¤•à¤¹à¤¾à¤¨à¥€ à¤œà¤¨à¤°à¥‡à¤Ÿ à¤•à¤°à¥‡à¤‚';
 
   @override
   String failedToGenerateStory(Object error) {
-    return 'कहानी जनरेट करने में विफल रहे:\\n$error';
+    return 'à¤•à¤¹à¤¾à¤¨à¥€ à¤œà¤¨à¤°à¥‡à¤Ÿ à¤•à¤°à¤¨à¥‡ à¤®à¥‡à¤‚ à¤µà¤¿à¤«à¤² à¤°à¤¹à¥‡:\\n$error';
   }
 
   @override
-  String get detail => 'विवरण';
+  String get detail => 'à¤µà¤¿à¤µà¤°à¤£';
 
   @override
-  String get scanText => 'टेक्स्ट स्कैन करें';
+  String get scanText => 'à¤Ÿà¥‡à¤•à¥à¤¸à¥à¤Ÿ à¤¸à¥à¤•à¥ˆà¤¨ à¤•à¤°à¥‡à¤‚';
 
   @override
-  String get createMagic => 'जादू बनाएं';
+  String get createMagic => 'à¤œà¤¾à¤¦à¥‚ à¤¬à¤¨à¤¾à¤à¤‚';
 
   @override
-  String get learning => 'सीखना';
+  String get learning => 'à¤¸à¥€à¤–à¤¨à¤¾';
 
   @override
-  String get upcomingReviews7Days => 'आगामी समीक्षाएं (अगले 7 दिन)';
+  String get upcomingReviews7Days =>
+      'à¤†à¤—à¤¾à¤®à¥€ à¤¸à¤®à¥€à¤•à¥à¤·à¤¾à¤à¤‚ (à¤…à¤—à¤²à¥‡ 7 à¤¦à¤¿à¤¨)';
 
   @override
-  String get askFollowUpQuestion => 'अनुवर्ती प्रश्न पूछें...';
+  String get askFollowUpQuestion =>
+      'à¤…à¤¨à¥à¤µà¤°à¥à¤¤à¥€ à¤ªà¥à¤°à¤¶à¥à¤¨ à¤ªà¥‚à¤›à¥‡à¤‚...';
 
   @override
   String get pasteScanToSimplify =>
-      'सरल बनाने के लिए चीनी पाठ पेस्ट या स्कैन करें';
+      'à¤¸à¤°à¤² à¤¬à¤¨à¤¾à¤¨à¥‡ à¤•à¥‡ à¤²à¤¿à¤ à¤šà¥€à¤¨à¥€ à¤ªà¤¾à¤  à¤ªà¥‡à¤¸à¥à¤Ÿ à¤¯à¤¾ à¤¸à¥à¤•à¥ˆà¤¨ à¤•à¤°à¥‡à¤‚';
 
   @override
   String get searchStoriesHint =>
-      'शीर्षक या टैग द्वारा कहानियाँ खोजें (जैसे पौराणिक कथा, यात्रा)';
+      'à¤¶à¥€à¤°à¥à¤·à¤• à¤¯à¤¾ à¤Ÿà¥ˆà¤— à¤¦à¥à¤µà¤¾à¤°à¤¾ à¤•à¤¹à¤¾à¤¨à¤¿à¤¯à¤¾à¤ à¤–à¥‹à¤œà¥‡à¤‚ (à¤œà¥ˆà¤¸à¥‡ à¤ªà¥Œà¤°à¤¾à¤£à¤¿à¤• à¤•à¤¥à¤¾, à¤¯à¤¾à¤¤à¥à¤°à¤¾)';
 
   @override
-  String get importAll => 'सभी आयात करें';
+  String get importAll => 'à¤¸à¤­à¥€ à¤†à¤¯à¤¾à¤¤ à¤•à¤°à¥‡à¤‚';
 
   @override
-  String get ascendAll => 'सभी आरोहण करें';
+  String get ascendAll => 'à¤¸à¤­à¥€ à¤†à¤°à¥‹à¤¹à¤£ à¤•à¤°à¥‡à¤‚';
 
   @override
-  String get startAscension => 'आरोहण शुरू करें';
+  String get startAscension => 'à¤†à¤°à¥‹à¤¹à¤£ à¤¶à¥à¤°à¥‚ à¤•à¤°à¥‡à¤‚';
 
   @override
-  String get scenarioLocalRestaurant => 'स्थानीय रेस्टोरेंट';
+  String get scenarioLocalRestaurant =>
+      'à¤¸à¥à¤¥à¤¾à¤¨à¥€à¤¯ à¤°à¥‡à¤¸à¥à¤Ÿà¥‹à¤°à¥‡à¤‚à¤Ÿ';
 
   @override
   String get scenarioLocalRestaurantDesc =>
-      'व्यंजन ऑर्डर करने और सुझाव मांगने का अभ्यास करें।';
+      'à¤µà¥à¤¯à¤‚à¤œà¤¨ à¤‘à¤°à¥à¤¡à¤° à¤•à¤°à¤¨à¥‡ à¤”à¤° à¤¸à¥à¤à¤¾à¤µ à¤®à¤¾à¤‚à¤—à¤¨à¥‡ à¤•à¤¾ à¤…à¤­à¥à¤¯à¤¾à¤¸ à¤•à¤°à¥‡à¤‚à¥¤';
 
   @override
-  String get scenarioTaxiAirport => 'हवाई अड्डा टैक्सी';
+  String get scenarioTaxiAirport =>
+      'à¤¹à¤µà¤¾à¤ˆ à¤…à¤¡à¥à¤¡à¤¾ à¤Ÿà¥ˆà¤•à¥à¤¸à¥€';
 
   @override
   String get scenarioTaxiAirportDesc =>
-      'ड्राइवर को अपनी मंजिल बताएं और ट्रैफिक पर चर्चा करें।';
+      'à¤¡à¥à¤°à¤¾à¤‡à¤µà¤° à¤•à¥‹ à¤…à¤ªà¤¨à¥€ à¤®à¤‚à¤œà¤¿à¤² à¤¬à¤¤à¤¾à¤à¤‚ à¤”à¤° à¤Ÿà¥à¤°à¥ˆà¤«à¤¿à¤• à¤ªà¤° à¤šà¤°à¥à¤šà¤¾ à¤•à¤°à¥‡à¤‚à¥¤';
 
   @override
-  String get scenarioSilkMarket => 'सिल्क मार्केट में मोलभाव';
+  String get scenarioSilkMarket =>
+      'à¤¸à¤¿à¤²à¥à¤• à¤®à¤¾à¤°à¥à¤•à¥‡à¤Ÿ à¤®à¥‡à¤‚ à¤®à¥‹à¤²à¤­à¤¾à¤µ';
 
   @override
   String get scenarioSilkMarketDesc =>
-      'एक स्मारिका के लिए बेहतर कीमत पाने का प्रयास करें।';
+      'à¤à¤• à¤¸à¥à¤®à¤¾à¤°à¤¿à¤•à¤¾ à¤•à¥‡ à¤²à¤¿à¤ à¤¬à¥‡à¤¹à¤¤à¤° à¤•à¥€à¤®à¤¤ à¤ªà¤¾à¤¨à¥‡ à¤•à¤¾ à¤ªà¥à¤°à¤¯à¤¾à¤¸ à¤•à¤°à¥‡à¤‚à¥¤';
 
   @override
-  String get scenarioMedicalClinic => 'मेडिकल क्लिनिक';
+  String get scenarioMedicalClinic =>
+      'à¤®à¥‡à¤¡à¤¿à¤•à¤² à¤•à¥à¤²à¤¿à¤¨à¤¿à¤•';
 
   @override
   String get scenarioMedicalClinicDesc =>
-      'एक पारंपरिक डॉक्टर को अपने लक्षण बताएं।';
+      'à¤à¤• à¤ªà¤¾à¤°à¤‚à¤ªà¤°à¤¿à¤• à¤¡à¥‰à¤•à¥à¤Ÿà¤° à¤•à¥‹ à¤…à¤ªà¤¨à¥‡ à¤²à¤•à¥à¤·à¤£ à¤¬à¤¤à¤¾à¤à¤‚à¥¤';
 
   @override
-  String get scenarioMeetingFriend => 'दोस्त से मिलना';
+  String get scenarioMeetingFriend => 'à¤¦à¥‹à¤¸à¥à¤¤ à¤¸à¥‡ à¤®à¤¿à¤²à¤¨à¤¾';
 
   @override
   String get scenarioMeetingFriendDesc =>
-      'अपना परिचय दें और थोड़ी बहुत बात करें।';
+      'à¤…à¤ªà¤¨à¤¾ à¤ªà¤°à¤¿à¤šà¤¯ à¤¦à¥‡à¤‚ à¤”à¤° à¤¥à¥‹à¤¡à¤¼à¥€ à¤¬à¤¹à¥à¤¤ à¤¬à¤¾à¤¤ à¤•à¤°à¥‡à¤‚à¥¤';
 
   @override
-  String get scenarioJobInterview => 'नौकरी का इंटरव्यू';
+  String get scenarioJobInterview =>
+      'à¤¨à¥Œà¤•à¤°à¥€ à¤•à¤¾ à¤‡à¤‚à¤Ÿà¤°à¤µà¥à¤¯à¥‚';
 
   @override
   String get scenarioJobInterviewDesc =>
-      'शंघाई में एक टेक कंपनी में एक भूमिका के लिए आवेदन करें।';
+      'à¤¶à¤‚à¤˜à¤¾à¤ˆ à¤®à¥‡à¤‚ à¤à¤• à¤Ÿà¥‡à¤• à¤•à¤‚à¤ªà¤¨à¥€ à¤®à¥‡à¤‚ à¤à¤• à¤­à¥‚à¤®à¤¿à¤•à¤¾ à¤•à¥‡ à¤²à¤¿à¤ à¤†à¤µà¥‡à¤¦à¤¨ à¤•à¤°à¥‡à¤‚à¥¤';
 
   @override
-  String get createCustomScenario => 'कस्टम परिदृश्य बनाएं';
+  String get createCustomScenario =>
+      'à¤•à¤¸à¥à¤Ÿà¤® à¤ªà¤°à¤¿à¤¦à¥ƒà¤¶à¥à¤¯ à¤¬à¤¨à¤¾à¤à¤‚';
 
   @override
-  String get customScenarioTitleHint => 'शीर्षक (उदा. शादी का रिसेप्शन)';
+  String get customScenarioTitleHint =>
+      'à¤¶à¥€à¤°à¥à¤·à¤• (à¤‰à¤¦à¤¾. à¤¶à¤¾à¤¦à¥€ à¤•à¤¾ à¤°à¤¿à¤¸à¥‡à¤ªà¥à¤¶à¤¨)';
 
   @override
-  String get customScenarioDescHint => 'विवरण (संदर्भ)';
+  String get customScenarioDescHint => 'à¤µà¤¿à¤µà¤°à¤£ (à¤¸à¤‚à¤¦à¤°à¥à¤­)';
 
   @override
   String get customScenarioPersonaHint =>
-      'एआई व्यक्तित्व (उदा. एक जिज्ञासु सहकर्मी)';
+      'à¤à¤†à¤ˆ à¤µà¥à¤¯à¤•à¥à¤¤à¤¿à¤¤à¥à¤µ (à¤‰à¤¦à¤¾. à¤à¤• à¤œà¤¿à¤œà¥à¤žà¤¾à¤¸à¥ à¤¸à¤¹à¤•à¤°à¥à¤®à¥€)';
 
   @override
-  String get customScenarioDifficulty => 'कठिनाई';
+  String get customScenarioDifficulty => 'à¤•à¤ à¤¿à¤¨à¤¾à¤ˆ';
 
   @override
-  String get createAction => 'बनाएं';
+  String get createAction => 'à¤¬à¤¨à¤¾à¤à¤‚';
 
   @override
-  String get cancelAction => 'रद्द करें';
+  String get cancelAction => 'à¤°à¤¦à¥à¤¦ à¤•à¤°à¥‡à¤‚';
 
   @override
-  String get mythsAndLegends => 'मिथक और किंवदंतियाँ';
+  String get mythsAndLegends =>
+      'à¤®à¤¿à¤¥à¤• à¤”à¤° à¤•à¤¿à¤‚à¤µà¤¦à¤‚à¤¤à¤¿à¤¯à¤¾à¤';
 
   @override
-  String get historyAndCulture => 'इतिहास और संस्कृति';
+  String get historyAndCulture =>
+      'à¤‡à¤¤à¤¿à¤¹à¤¾à¤¸ à¤”à¤° à¤¸à¤‚à¤¸à¥à¤•à¥ƒà¤¤à¤¿';
 
   @override
-  String get idiomsTitle => 'मुहावरे (成语)';
+  String get idiomsTitle => 'à¤®à¥à¤¹à¤¾à¤µà¤°à¥‡ (æˆè¯­)';
 
   @override
-  String get theMonkeyKing => 'बंदर राजा';
+  String get theMonkeyKing => 'à¤¬à¤‚à¤¦à¤° à¤°à¤¾à¤œà¤¾';
 
   @override
-  String get theMonkeyKingDesc => 'सन वुकोंग (पश्चिम की यात्रा)';
+  String get theMonkeyKingDesc =>
+      'à¤¸à¤¨ à¤µà¥à¤•à¥‹à¤‚à¤— (à¤ªà¤¶à¥à¤šà¤¿à¤® à¤•à¥€ à¤¯à¤¾à¤¤à¥à¤°à¤¾)';
 
   @override
-  String get huaMulan => 'हुआ मुलान';
+  String get huaMulan => 'à¤¹à¥à¤† à¤®à¥à¤²à¤¾à¤¨';
 
   @override
-  String get huaMulanDesc => 'हुआ मुलान अपने पिता के बजाय सेना में शामिल हुईं';
+  String get huaMulanDesc =>
+      'à¤¹à¥à¤† à¤®à¥à¤²à¤¾à¤¨ à¤…à¤ªà¤¨à¥‡ à¤ªà¤¿à¤¤à¤¾ à¤•à¥‡ à¤¬à¤œà¤¾à¤¯ à¤¸à¥‡à¤¨à¤¾ à¤®à¥‡à¤‚ à¤¶à¤¾à¤®à¤¿à¤² à¤¹à¥à¤ˆà¤‚';
 
   @override
-  String get confuciusTitle => 'कन्फ्यूशियस';
+  String get confuciusTitle => 'à¤•à¤¨à¥à¤«à¥à¤¯à¥‚à¤¶à¤¿à¤¯à¤¸';
 
   @override
-  String get confuciusDesc => 'कन्फ्यूशियस का जीवन और शिक्षाएँ';
+  String get confuciusDesc =>
+      'à¤•à¤¨à¥à¤«à¥à¤¯à¥‚à¤¶à¤¿à¤¯à¤¸ à¤•à¤¾ à¤œà¥€à¤µà¤¨ à¤”à¤° à¤¶à¤¿à¤•à¥à¤·à¤¾à¤à¤';
 
   @override
-  String get theGreatWall => 'चीन की महान दीवार';
+  String get theGreatWall => 'à¤šà¥€à¤¨ à¤•à¥€ à¤®à¤¹à¤¾à¤¨ à¤¦à¥€à¤µà¤¾à¤°';
 
   @override
-  String get theGreatWallDesc => 'चीन की महान दीवार का निर्माण';
+  String get theGreatWallDesc =>
+      'à¤šà¥€à¤¨ à¤•à¥€ à¤®à¤¹à¤¾à¤¨ à¤¦à¥€à¤µà¤¾à¤° à¤•à¤¾ à¤¨à¤¿à¤°à¥à¤®à¤¾à¤£';
 
   @override
-  String get generateTopic => 'विषय उत्पन्न करें';
+  String get generateTopic => 'à¤µà¤¿à¤·à¤¯ à¤‰à¤¤à¥à¤ªà¤¨à¥à¤¨ à¤•à¤°à¥‡à¤‚';
 
   @override
-  String get simplifyText => 'पाठ को सरल बनाएं';
+  String get simplifyText => 'à¤ªà¤¾à¤  à¤•à¥‹ à¤¸à¤°à¤² à¤¬à¤¨à¤¾à¤à¤‚';
 
   @override
-  String get topicHint => 'विषय (उदा. बीजिंग में एलियंस)';
+  String get topicHint =>
+      'à¤µà¤¿à¤·à¤¯ (à¤‰à¤¦à¤¾. à¤¬à¥€à¤œà¤¿à¤‚à¤— à¤®à¥‡à¤‚ à¤à¤²à¤¿à¤¯à¤‚à¤¸)';
 
   @override
-  String get tagsHint => 'टैग (कॉमा से अलग, वैकल्पिक)';
+  String get tagsHint =>
+      'à¤Ÿà¥ˆà¤— (à¤•à¥‰à¤®à¤¾ à¤¸à¥‡ à¤…à¤²à¤—, à¤µà¥ˆà¤•à¤²à¥à¤ªà¤¿à¤•)';
 
   @override
-  String get speakWithMasterLin => 'मास्टर लिन के साथ बात करें';
+  String get speakWithMasterLin =>
+      'à¤®à¤¾à¤¸à¥à¤Ÿà¤° à¤²à¤¿à¤¨ à¤•à¥‡ à¤¸à¤¾à¤¥ à¤¬à¤¾à¤¤ à¤•à¤°à¥‡à¤‚';
 
   @override
   String get masterLinGreeting =>
-      'नमस्ते, छात्र। स्याही तैयार है। आज हम किस चरित्र या वाक्यांश की जांच करें?';
+      'à¤¨à¤®à¤¸à¥à¤¤à¥‡, à¤›à¤¾à¤¤à¥à¤°à¥¤ à¤¸à¥à¤¯à¤¾à¤¹à¥€ à¤¤à¥ˆà¤¯à¤¾à¤° à¤¹à¥ˆà¥¤ à¤†à¤œ à¤¹à¤® à¤•à¤¿à¤¸ à¤šà¤°à¤¿à¤¤à¥à¤° à¤¯à¤¾ à¤µà¤¾à¤•à¥à¤¯à¤¾à¤‚à¤¶ à¤•à¥€ à¤œà¤¾à¤‚à¤š à¤•à¤°à¥‡à¤‚?';
 
   @override
-  String get typeYourMessage => 'अपना संदेश टाइप करें...';
+  String get typeYourMessage =>
+      'à¤…à¤ªà¤¨à¤¾ à¤¸à¤‚à¤¦à¥‡à¤¶ à¤Ÿà¤¾à¤‡à¤ª à¤•à¤°à¥‡à¤‚...';
 
   @override
-  String get theMainLibrary => 'मुख्य पुस्तकालय';
+  String get theMainLibrary => 'à¤®à¥à¤–à¥à¤¯ à¤ªà¥à¤¸à¥à¤¤à¤•à¤¾à¤²à¤¯';
 
   @override
-  String get hsk1Foundation => 'HSK 1: नींव';
+  String get hsk1Foundation => 'HSK 1: à¤¨à¥€à¤‚à¤µ';
 
   @override
-  String get hsk2Elementary => 'HSK 2: प्रारंभिक';
+  String get hsk2Elementary => 'HSK 2: à¤ªà¥à¤°à¤¾à¤°à¤‚à¤­à¤¿à¤•';
 
   @override
-  String get hsk3Intermediate => 'HSK 3: मध्यवर्ती';
+  String get hsk3Intermediate => 'HSK 3: à¤®à¤§à¥à¤¯à¤µà¤°à¥à¤¤à¥€';
 
   @override
-  String get inDeckCheck => 'डेक में ✓';
+  String get inDeckCheck => 'à¤¡à¥‡à¤• à¤®à¥‡à¤‚ âœ“';
 
   @override
-  String get addToDeckPlus => '+ डेक में जोड़ें';
+  String get addToDeckPlus => '+ à¤¡à¥‡à¤• à¤®à¥‡à¤‚ à¤œà¥‹à¤¡à¤¼à¥‡à¤‚';
 
   @override
-  String get openCardArrow => 'कार्ड खोलें →';
+  String get openCardArrow => 'à¤•à¤¾à¤°à¥à¤¡ à¤–à¥‹à¤²à¥‡à¤‚ â†’';
 
   @override
-  String get pronunciationPartial => 'स्वर अस्पष्ट';
+  String get pronunciationPartial => 'à¤¸à¥à¤µà¤° à¤…à¤¸à¥à¤ªà¤·à¥à¤Ÿ';
 
   @override
-  String get pronunciationWrong => 'अशुद्ध';
+  String get pronunciationWrong => 'à¤…à¤¶à¥à¤¦à¥à¤§';
 
   @override
-  String get toneExpected => 'अपेक्षित';
+  String get toneExpected => 'à¤…à¤ªà¥‡à¤•à¥à¤·à¤¿à¤¤';
 
   @override
-  String get toneYouSaid => 'आपने कहा';
+  String get toneYouSaid => 'à¤†à¤ªà¤¨à¥‡ à¤•à¤¹à¤¾';
 
   @override
-  String get gotIt => 'समझ गया!';
+  String get gotIt => 'à¤¸à¤®à¤ à¤—à¤¯à¤¾!';
 
   @override
   String foundNCharacters(int count) {
-    return '$count वर्ण मिले';
+    return '$count à¤µà¤°à¥à¤£ à¤®à¤¿à¤²à¥‡';
   }
 
   @override
-  String get lookingUpCharacters => 'वर्ण खोजे जा रहे हैं…';
+  String get lookingUpCharacters =>
+      'à¤µà¤°à¥à¤£ à¤–à¥‹à¤œà¥‡ à¤œà¤¾ à¤°à¤¹à¥‡ à¤¹à¥ˆà¤‚â€¦';
 
   @override
-  String get practiceAll => 'सभी का अभ्यास करें';
+  String get practiceAll => 'à¤¸à¤­à¥€ à¤•à¤¾ à¤…à¤­à¥à¤¯à¤¾à¤¸ à¤•à¤°à¥‡à¤‚';
 
   @override
-  String get arLensObjects => 'वस्तुएं';
+  String get arLensObjects => 'à¤µà¤¸à¥à¤¤à¥à¤à¤‚';
 
   @override
-  String get arLensText => 'पाठ';
+  String get arLensText => 'à¤ªà¤¾à¤ ';
 
   @override
-  String get arLensDetectedText => 'पहचाना गया पाठ';
+  String get arLensDetectedText => 'à¤ªà¤¹à¤šà¤¾à¤¨à¤¾ à¤—à¤¯à¤¾ à¤ªà¤¾à¤ ';
 }

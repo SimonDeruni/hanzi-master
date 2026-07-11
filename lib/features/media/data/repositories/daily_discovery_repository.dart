@@ -1,22 +1,29 @@
+import 'dart:convert';
 import 'dart:math';
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:xml/xml.dart';
-import 'package:youtube_explode_dart/youtube_explode_dart.dart';
 import 'package:hanzi_master/features/media/domain/models/daily_media_item.dart';
 
 class DailyDiscoveryRepository {
-  static const int _channelsToFetch = 5;
+  final String _apiKey;
+  final http.Client _client;
+
+  DailyDiscoveryRepository({required String apiKey, http.Client? client})
+      : _apiKey = apiKey,
+        _client = client ?? http.Client();
+
+  static const _baseUrl = 'https://www.googleapis.com/youtube/v3';
+  static const int _channelsToFetch = 7;
   static const int _maxVideosPerChannel = 3;
 
   static const Map<String, String> _channelPool = {
+    // Original working channels
     'UCoC47do520osFaCG1YacMEA': '李子柒 Liziqi',
     'UC4R1p5m2sLhD5IysM9F5vzg': '美食作家王刚',
     'UCQ_RJN2yW42jqXIGK2VKIPw': '小高姐的魔法料理',
     'UCJA2N5BTeiEepZxQZJ6KLYw': '日食记',
-    'UC5HcJx5GvGmQH7hMB6yJv4g': '绵羊料理',
     'UCfXmR5lU1Rz7GEdwFv4Yj3g': '影视飓风',
-    'UCt5Oy7RQlS1FK2a0a1f7Ywg': '毕导',
-    'UCj7wKsP6Y_G2F0U3h0V6mBg': '小Lin说',
     'UCB1AtKqZqVb1oZwVZsQmzYg': '老师好我叫何同学',
     'UCnS9mPbLZOuGjSoV90S8PVA': '你好竹子',
     'UC1SnPt6sSHbaqCztp8f3MpQ': '小鹿Lawrence',
@@ -24,8 +31,22 @@ class DailyDiscoveryRepository {
     'UCp8q9rL2jG5hV7xW3mR5bNQ': '星球研究所',
     'UCvZ9W7u3T6a5YJS0VT-28oA': '滇西小哥',
     'UCjqGZKJ5gY5X7hq8m9L2eZQ': '厨师长农国栋',
-    'UCp5Q1s2m8GmG3t5Qc4vL2iA': '大象放映室',
     'UCm7yM8rL5jG5pV6qW3xR2bQ': '戴建业',
+    // New diverse channels - Chinese learning
+    'UCJ10R97LkwGdTqBT6xz-v8g': 'Learn Mandarin with TaiwanPlus',
+    'UCSXriUqkzZmAQklQ0N9XFVw': 'Everyday Chinese',
+    'UCC_fdR7zZ_5SU--xuOrEdKw': 'Grace Mandarin Chinese',
+    // New diverse channels - Daily life vlogs
+    'UCOLBhVvL5dcJLMZeQBUu1Vw': 'Ting-Daily life in China',
+    'UCfwFx_njm0L1_1OGlT2JubQ': 'Xinxin',
+    'UC4Qq2fPqN_LLqqouWg3EtGw': 'Sweet Family Daily Life',
+    'UCRi28IpYY25KfklcsFKH1_Q': 'Chin-Sun Daily Life',
+    // New diverse channels - Food & Travel
+    'UCa_pOrzEvZxZnku27qbUaDw': 'Taste China',
+    'UCID5bhKgWQbsrEpmXc_O2Tg': 'DaWen Food Quest',
+    'UCUIjKFjAww3O4dVoM2K_Yxw': 'China Travel with Cangbao',
+    'UC0QIceiE2Vrt6IeAWHBo37w': 'TFT - FOOD & TRAVEL',
+    'UCs_h_miBJ9r8-7fRH7VAWZw': 'Alin Food Walk',
   };
 
   Future<({DailyMediaItem item, String videoId})> getDailyVideo({
@@ -35,17 +56,18 @@ class DailyDiscoveryRepository {
     final seed = '${now.year}-${now.month}-${now.day}'.hashCode;
     final random = Random(seed);
 
-    final channelEntries = _channelPool.entries.toList();
-    final selected = [...channelEntries]..shuffle(random);
-    final batch = selected.take(_channelsToFetch);
+    final channelEntries = _channelPool.entries.toList()..shuffle(random);
+    final batch = channelEntries.take(_channelsToFetch);
 
-    final feeds = await Future.wait(
-      batch.map((entry) => _fetchChannelVideos(entry.key, entry.value)),
-    );
-
+    // Fetch each channel independently — don't let one failure kill the batch
     final candidates = <_VideoCandidate>[];
-    for (final feed in feeds) {
-      candidates.addAll(feed);
+    for (final entry in batch) {
+      try {
+        final feed = await _fetchChannelVideos(entry.key, entry.value);
+        candidates.addAll(feed);
+      } catch (_) {
+        // Skip failed channels, try the next one
+      }
     }
     candidates.shuffle(random);
 
@@ -58,26 +80,16 @@ class DailyDiscoveryRepository {
         final head = await http.head(thumbUri).timeout(const Duration(seconds: 3));
         if (head.statusCode != 200) continue;
 
-        // Verify the video is actually playable (not private, region-blocked, etc.)
-        final yt = YoutubeExplode();
-        try {
-          await yt.videos.get(candidate.videoId).timeout(const Duration(seconds: 5));
-          return (
-            item: DailyMediaItem(
-              title: candidate.title,
-              subtitle: candidate.channelName,
-              url: 'https://www.youtube.com/watch?v=${candidate.videoId}',
-              imageUrl: thumbUri.toString(),
-              tag: 'VIDEO OF THE DAY',
-            ),
-            videoId: candidate.videoId,
-          );
-        } catch (_) {
-          // Video is not playable — skip to next candidate
-          continue;
-        } finally {
-          yt.close();
-        }
+        return (
+          item: DailyMediaItem(
+            title: candidate.title,
+            subtitle: candidate.channelName,
+            url: 'https://www.youtube.com/watch?v=${candidate.videoId}',
+            imageUrl: thumbUri.toString(),
+            tag: 'VIDEO OF THE DAY',
+          ),
+          videoId: candidate.videoId,
+        );
       } catch (_) {
         continue;
       }
@@ -86,21 +98,34 @@ class DailyDiscoveryRepository {
     throw Exception('No valid video found.');
   }
 
+  /// Fetches recent videos from a channel using YouTube Data API v3 search.list.
   Future<List<_VideoCandidate>> _fetchChannelVideos(String channelId, String channelName) async {
     try {
-      final response = await http
-          .get(Uri.parse('https://www.youtube.com/feeds/videos.xml?channel_id=$channelId'))
-          .timeout(const Duration(seconds: 6));
-      if (response.statusCode != 200) return [];
+      final uri = Uri.parse('$_baseUrl/search?part=snippet'
+          '&channelId=$channelId'
+          '&type=video'
+          '&order=date'
+          '&maxResults=$_maxVideosPerChannel'
+          '&key=$_apiKey');
 
-      final doc = XmlDocument.parse(response.body);
-      final entries = doc.findAllElements('entry').take(_maxVideosPerChannel);
-      return entries.map((e) {
-        final videoId = e.findElements('yt:videoId').first.innerText;
-        final title = e.findElements('title').first.innerText;
+      final response = await _client.get(uri).timeout(const Duration(seconds: 6));
+      if (response.statusCode != 200) {
+        debugPrint('[DailyDiscovery] API error ${response.statusCode}: ${response.body}');
+        return [];
+      }
+
+      final data = jsonDecode(response.body) as Map<String, dynamic>;
+      final items = data['items'] as List<dynamic>? ?? [];
+
+      return items.map((item) {
+        final snippet = item['snippet'] as Map<String, dynamic>? ?? {};
+        final idMap = item['id'] as Map<String, dynamic>? ?? {};
+        final videoId = idMap['videoId'] as String? ?? '';
+        final title = snippet['title'] as String? ?? '';
         return _VideoCandidate(videoId: videoId, title: title, channelName: channelName);
-      }).toList();
-    } catch (_) {
+      }).where((c) => c.videoId.isNotEmpty).toList();
+    } catch (e) {
+      debugPrint('[DailyDiscovery] Error fetching channel $channelId: $e');
       return [];
     }
   }
@@ -118,48 +143,42 @@ class DailyDiscoveryRepository {
       subtitle: "Learn Chinese in the Supermarket",
       url: "https://www.youtube.com/watch?v=rY0_A32XnSg",
       imageUrl: "https://img.youtube.com/vi/rY0_A32XnSg/0.jpg",
-      tag: "VOCABULARY",
+      tag: "VIDEO OF THE DAY",
     ),
     DailyMediaItem(
       title: "Grace Mandarin: 50 Phrases",
       subtitle: "Essential Chinese Phrases for Beginners",
       url: "https://www.youtube.com/watch?v=vV0222xP9uM",
-      imageUrl: "https://img.youtube.com/vi/vV0222xP9uM/hqdefault.jpg",
+      imageUrl: "https://img.youtube.com/vi/vV0222xP9uM/0.jpg",
       tag: "ESSENTIALS",
     ),
     DailyMediaItem(
       title: "李子柒 Liziqi: 竹子家具",
       subtitle: "Making Bamboo Furniture",
       url: "https://www.youtube.com/watch?v=Yf0vP1tN8-w",
-      imageUrl: "https://img.youtube.com/vi/Yf0vP1tN8-w/hqdefault.jpg",
+      imageUrl: "https://img.youtube.com/vi/Yf0vP1tN8-w/0.jpg",
       tag: "2 MIN CULTURAL CONTEXT",
     ),
     DailyMediaItem(
       title: "Peppa Pig Chinese: 泥坑",
       subtitle: "Muddy Puddles - Beginner Friendly",
       url: "https://www.youtube.com/watch?v=LqAObK1tE9w",
-      imageUrl: "https://img.youtube.com/vi/LqAObK1tE9w/hqdefault.jpg",
+      imageUrl: "https://img.youtube.com/vi/LqAObK1tE9w/0.jpg",
       tag: "LISTENING PRACTICE",
     ),
-    DailyMediaItem(
-      title: "ShuoshuoChinese: Real Chinese Speaking",
-      subtitle: "Street Interviews in China",
-      url: "https://www.youtube.com/watch?v=mF_u4s98vT8",
-      imageUrl: "https://img.youtube.com/vi/mF_u4s98vT8/hqdefault.jpg",
-      tag: "REAL LIFE",
-    ),
+
     DailyMediaItem(
       title: "Mandarin Corner: 300 Verbs",
       subtitle: "Most Common Chinese Verbs",
       url: "https://www.youtube.com/watch?v=_p-h-VdM-s0",
-      imageUrl: "https://img.youtube.com/vi/_p-h-VdM-s0/hqdefault.jpg",
-      tag: "VOCABULARY",
+      imageUrl: "https://img.youtube.com/vi/_p-h-VdM-s0/0.jpg",
+      tag: "VIDEO OF THE DAY",
     ),
     DailyMediaItem(
       title: "Grace Mandarin: Order Food",
       subtitle: "How to order food in a Chinese restaurant",
       url: "https://www.youtube.com/watch?v=b4O0Z4qD-x8",
-      imageUrl: "https://img.youtube.com/vi/b4O0Z4qD-x8/hqdefault.jpg",
+      imageUrl: "https://img.youtube.com/vi/b4O0Z4qD-x8/0.jpg",
       tag: "SOCIAL SKILLS",
     ),
     DailyMediaItem(
@@ -170,11 +189,25 @@ class DailyDiscoveryRepository {
       tag: "CULTURAL CONTEXT",
     ),
     DailyMediaItem(
+      title: "Mandarin Corner: 学中文 看病",
+      subtitle: "Going to the Doctor - Real Life Conversation",
+      url: "https://www.youtube.com/watch?v=_cG3Vw1LhQ4",
+      imageUrl: "https://img.youtube.com/vi/_cG3Vw1LhQ4/0.jpg",
+      tag: "REAL LIFE",
+    ),
+    DailyMediaItem(
       title: "Peppa Pig Chinese: 躲猫猫",
       subtitle: "Hide and Seek - Beginner Friendly",
       url: "https://www.youtube.com/watch?v=hB9K3G0mR3g",
-      imageUrl: "https://img.youtube.com/vi/hB9K3G0mR3g/hqdefault.jpg",
+      imageUrl: "https://img.youtube.com/vi/hB9K3G0mR3g/0.jpg",
       tag: "LISTENING PRACTICE",
+    ),
+    DailyMediaItem(
+      title: "小Lin说: 为什么GDP增长6%",
+      subtitle: "Why 6% GDP Growth - Easy Chinese Economics",
+      url: "https://www.youtube.com/watch?v=J0FvB1k9O8w",
+      imageUrl: "https://img.youtube.com/vi/J0FvB1k9O8w/0.jpg",
+      tag: "REAL WORLD",
     ),
   ];
 

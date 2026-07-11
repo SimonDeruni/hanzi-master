@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 ### Added
+- Rewrote `rebuild_shows_catalog.dart` to strictly fetch shows that possess soft-coded Chinese captions (using `youtube_explode_dart` `_hasCaps` verification).
+- Successfully populated `shows_data.dart` with 10 new soft-captioned shows, yielding a total of 14 hardcoded shows for instant playback without live YouTube Data API overhead.
+- Optimized AI text processing in `web_browser_screen.dart` by removing artificial 500ms delays, substituting the DB query with an in-memory cache, and capping the JS text extraction to 3000 chars.
 - **Smart Media Desk Enhancements**:
     - Reconstructed Chinese Hanzi characters from Pinyin-only subtitle tracks using background Gemini processing.
     - Integrated background translation of transcripts into the user's selected `targetLanguage` (aligned with device language).

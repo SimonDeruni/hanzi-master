@@ -6,7 +6,7 @@ part of 'cultural_context_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$culturalContextHash() => r'52d7b2a6f6afc6a75dcbe8090cb9d002d84c0d4d';
+String _$culturalContextHash() => r'674960bbb723e61cf96ab8aacc5c7779bfc38e0b';
 
 /// Copied from Dart SDK
 class _SystemHash {

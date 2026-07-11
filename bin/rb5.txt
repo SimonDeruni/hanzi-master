@@ -1,0 +1,110 @@
+﻿Running build hooks...Running build hooks...[CH] UCYQPTeY3HOk0BprrGuCWCaA -> 100
+[CH] UCUhpu5MJQ_bjPkXO00jyxsw -> 100
+[CH] UCdpiId0eJGnnIvfhpbJIM1w -> 100
+[CH] UCQatgKoA7lylp_UzvsLCgcw -> 100
+[CH] UCD_83Jh-UFQXRDwC6S8caCQ -> 84
+[CH] UCFh5x5AZHQQ6FaGKnG-QXDA -> 100
+[CH] UCRABdhiBHX4Bie-jfPCd2pg -> 100
+[CH] UC3PKcYXUAhao3p4kuNS4_9w -> 100
+
+=== 784 total ===
+
+[0/784] [Get APP Now]ENGSUBÒÇÉõ┐íµü»þ┤áÞ»┤µêæõ╗¼õ©ìÕÅ»Þâ¢ÒÇæ | Õè¿µ╝½ ÚØÆµÿÑ | õ╝ÿÚàÀ YOUKU
+  SKIP nocaps rQbHCU7gS88
+[1/784] [Get APP Now]ENGSUBÒÇÉµ£½õ©ûÕøÜÕ┐â´╝Üµ¡╗Õ»╣Õñ┤µÜùµüïµêæÒÇæ | Õè¿µ╝½ þê▒µâà | õ╝ÿÚàÀ YOUKU
+  SKIP nocaps r2zUw126H2U
+[2/784] [Get APP Now] ENGSUBÒÇÉµé¼µíê Unsettled CaseÒÇæõ©ÇÕ¡úÕÅîµíêÕ░üÕ░ÿÕÉ»Õ░ü´╝îÚ╗æþÖ¢Þ┐¢ÚÇâþöƒµ¡╗Õ»╣Õ╝ê´╝ü| þÄïõ╝áÕÉø / µ▒ƒÕÑçÚ£û / µØ¿þâü / ÚâÄµ£êÕ®À / Õ▓│Ú¥ÖÕêÜ´╝êÕ▓│õ║æÚ╣Å´╝ë  | µé¼þûæ þ¢¬µíê | õ╝ÿÚàÀ YOUKU
+  SKIP nocaps gzhd353OTjE
+[3/784] ÒÇÉGet APP NowÒÇæÒÇÉÕ░åÕåøÕ«ÂþÜäÕ░ÅÕ¿ÿÕ¡É General's LadyÒÇæõ║║õ║║Õ½îÕ╝âþÜäÞÉ¢Ú¡äÕìâÚçæ´╝îõ©ÇÞ¢¼Þ║½µêÉõ║åÕ░åÕåøÕñ½õ║║´╝ü | Õ╝áµàºÚø» / ÕÉ┤Õ©îµ│¢ | õ╝ÿÚàÀ YOUKU
+  SKIP nocaps rLDjUExsKY8
+[4/784] [Get APP Now]  ÒÇÉÕìâÚªÖThe Eternal FragranceÒÇæ | Õ«ïÕ¿üÚ¥Ö/Ú×áÕ®ºþÑÄ´╝êµîëÕºôµ░Åþ¼öþö╗µÄÆÕ║Å´╝ë | ÕÅñÞúà þê▒µâà |õ╝ÿÚàÀ YOUKU
+  SKIP private
+[5/784] ÚóäÕæèTrailer +BTSÞè▒þÁ«+OST ÒÇÉÕìâÚªÖThe Eternal FragranceÒÇæ | Õ«ïÕ¿üÚ¥Ö/Ú×áÕ®ºþÑÄ´╝êµîëÕºôµ░Åþ¼öþö╗µÄÆÕ║Å´╝ë | ÕÅñÞúà þê▒µâà |õ╝ÿÚàÀ YOUKU
+  SKIP private
+[6/784] [Get APP Now] ENGSUBÒÇÉÚØ×Õñäµû╣ÚØÆµÿÑ Youth UnprescribedÒÇæõ©¿Õ«ïµÑáµâ£/Ú®¼µÁ®õ©£/ÞóüÚø¿ÞÉ▒/þÄïµÂªµ│¢õ©¿ÚØÆµÿÑ þê▒µâàõ©¿õ╝ÿÚàÀ YOUKU
+  SKIP nocaps G21bCJ83njw
+[7/784] [Get APP Now] ENGSUBÒÇÉµ£║µÖ║þÜäõ©èÕìèÕ£║ Be Your SelfÒÇæ| µ▓êµ£ê/þ½áÞïÑµÑá/µóüÚØûÕ║À/ÞûçÞûç/Õ╝áµ¡åµÇí | ÚØÆµÿÑµáíÕø¡ | õ╝ÿÚàÀ YOUKU
+  SKIP private
+[8/784] [Get APP Now] ENGSUBÒÇÉÕ©ØÕ©êÚò┐Õ«ë The Imperial MasterÒÇæ| ÕêÿµÖ║µë¼/Ú®¼ÞÁ½ | ÕÅñÞúà Õëºµâà  | õ╝ÿÚàÀ YOUKU
+  SKIP nocaps i0v8XxQmdgw
+[9/784] [Get APP Now] ENGSUBÒÇÉµêæÕ£¿ÚªÖµ©»ÚüçÞºüõ╗û The Journey Across The NightÒÇæõ©¿µø¥Þê£µÖ×/Úó£ÕìôþüÁõ©¿µé¼þûæõ©¿õ╝ÿÚàÀ YOUKU
+  SKIP nocaps 16NlCi9vZKc
+[10/784] ÚóäÕæèTrailer +BTSÞè▒þÁ«+OST ÒÇÉÕ©ØÕ©êÚò┐Õ«ë The Imperial MasterÒÇæ | õ╝ÿÚàÀ YOUKU
+  SKIP nocaps KV6Dv-BPba4
+[11/784] [Get APP Now] ENGSUBÒÇÉÕº╗þ╝ÿÕñºõ║║Þ»ÀþòÖµ¡Ñ Ms. Cupid In LoveÒÇæ­ƒÆÿµ£êÞÇüÞ┤¼ÞÉ¢ÕçíÚù┤õ©Äõ║║Úù┤Õ░Åþ║óÕ¿ÿÕ╝ÇÕÉ»þêåþ¼æµâàþ╝ÿõ©¿µø╣þà£Þ¥░/þö░µøªÞûçõ©¿ õ╝ÿÚàÀ YOUKU
+  SKIP nocaps vOQspQ2RUXs
+[12/784] [Get APP Now] MULTISUBÒÇÉÞ┐Öõ©¬þÜçÕÉÄµ£ëþé╣ÚçÄ The Queen's Exit PlanÒÇæµëôÕÀÑÕª╣ÚÇåÞó¡µïÑÕàÁõ©ëÕìüõ©ç´╝îÕàÑÕ«½þí¼ÕêÜÞà╣Ú╗æþÜçÕ©Ø´╝ü | õ╝ÿÚàÀ YOUKU
+  SKIP private
+[13/784] [Get APP Now] ENGSUBÒÇÉÞè▒Þ¢┐Õû£õ║ï Wrong Carriage Right GroomÒÇæþö░µøªÞûçµòûþæ×Ú╣Åõ©èÚöÖÞè▒Þ¢┐Õñ®ÞÁÉÞë»þ╝ÿ´╝üõ©¿þö░µøªÞûç/µòûþæ×Ú╣Åõ©¿ õ╝ÿÚàÀ YOUKU
+  SKIP nocaps VyweWarzYHY
+[14/784] ÚóäÕæèTrailer +BTSÞè▒þÁ«+OST ÒÇÉÕ¢ÆÞë»Þ¥░ Sea of No ReturnÒÇæ| µØÄµÿÇÚöÉ / Õêÿõ║øÕ«ü / þ½áµùÂÕ«ë / Õæ¿ÕÑç | ÕÅñÞúà þê▒µâà | õ╝ÿÚàÀ YOUKU
+  SKIP all trailers
+[15/784] [Get APP Now] ENGSUBÒÇÉÕ©êþêÀÞ»ÀÞç¬Úçì Love Is AllÒÇæµÉ×µÇ¬ÕÑ│Õ©êþêÀµüïõ©èÞà╣Ú╗æÕÄ┐õ╗ñõ©¿þ½áÞïÑµÑá/Õ╝áµÿèÕö»/Ú®¼Úù╗Þ┐£  | õ╝ÿÚàÀ YOUKU
+  SKIP nocaps a_Kbu9VhOgM
+[16/784] [Get APP Now] MULTISUBÒÇÉþ┐ÿµÑÜ Ashes to CrownÒÇæÕ╝âÕÑ│þ┐╗þøÿµû®µ×¡Úøä´╝îµÉ║µëïµØâÞçúÕà▒Õ«êõ©çÚçîµ▒ƒÕ▒▒´╝üõ©¿ÚÖêÚâ¢þüÁ /Õæ¿þ┐èþäÂ´╝êµÄÆÕÉìõ©ìÕêåÕàêÕÉÄ´╝îµîëÕºôµ░ÅÚªûÕ¡ùµ»ìµÄÆÕ║Å´╝ë | õ╝ÿÚàÀ YOUKU
+  SKIP private
+[17/784] [Get APP Now] ENGSUBÒÇÉÞè▒Úù┤õ╗ñ­ƒî║In BlossomÒÇæ| Õì▒ÚÜ¥õ©¡þø©þê▒´╝îÕïÿþá┤Þ┐ÀÚø¥´╝üÕà▒Þ░▒ÕìÄþ½á´╝ü| õ╝ÿÚàÀ YOUKU
+  SKIP nocaps fW12zQM2R0Y
+[18/784] [Get APP Now]MULTISUBÒÇÉÞ┐ƒÞ┐ƒµÿÑµ¼▓µÖÜ Shadows of the Late SpringÒÇæ | þÄïÞ¢®/Úéôõ¢│ÞöÜ/µê┐Õç¢Õå░/ÚÖêµÖ║µàº | ÕÅñÞúà | õ╝ÿÚàÀ YOUKU
+  SKIP nocaps M-Ih0zZj1GM
+[19/784] [Get APP Now]ENGSUBÒÇÉþê▒ÕªéÕñ®Õ▒▒õ©ìÕîûÚø¬ Millennium LoveÒÇæ| ÚÿÜþÉ│Õ¿£/µÿƒµï® | ÕÅñÞúà ÕÑçÕ╣╗ | õ╝ÿÚàÀ YOUKU
+  SKIP nocaps 1HLvfC4BKfg
+[20/784] Trailer +BTSÞè▒þÁ«+OST ÒÇÉÞ┐ƒÞ┐ƒµÿÑµ¼▓µÖÜ Shadows of the Late SpringÒÇæ | þÄïÞ¢®/Úéôõ¢│ÞöÜ/µê┐Õç¢Õå░/ÚÖêµÖ║µàº | õ╝ÿÚàÀ YOUKU
+  SKIP all trailers
+[21/784] [Get APP Now] ENGSUBÒÇÉõ©Çõ©ìÕ░ÅÕ┐âµìíÕê░þê▒Please Feel at Ease Mr. LingÒÇæÞÁÁÚ£▓µÇØþ╗ÅÕà©ÕëºÚøå´╝üµìíõ©¬Ú£©µÇ╗Õø×Õ«Âþê▒ | ÞÁÁÚ£▓µÇØ/Õêÿþë╣/Õæ¿Õ│╗þ║¼/µ╝åÕƒ╣Úæ½ | Õëºµâà þê▒µâà | õ╝ÿÚàÀYOUKU
+  SKIP nocaps OFQRdJt5G6g
+[22/784] ÚóäÕæèTrailer +BTSÞè▒þÁ«+OSTÒÇÉµùáÚé¬ The Lotus Secret ÒÇæ | Õêÿþâ¿/þÄïÕ¢▒þÆÉ/Õ«ïµ┤ï/Úƒ®ÚØÖ | µé¼þûæ þ¢¬µíê | õ╝ÿÚàÀ YOUKU
+  SKIP all trailers
+[23/784] ÚóäÕæèTrailer +BTSÞè▒þÁ«+OSTÒÇÉÕñ£Õ╣òõ©ïþÜäþâƒþü½ Days of Chasing LightÒÇæ | Þ¡ªÕî¬ Õëºµâà | õ╝ÿÚàÀ YOUKU
+  SKIP all trailers
+[24/784] ÚóäÕæèTrailer +BTSÞè▒þÁ«+OSTÒÇÉÞ©ÅÚø¬Õ»╗Þ©¬ Hunting Traces in the SnowÒÇæ | µé¼þûæ Õëºµâà | õ╝ÿÚàÀYOUKU
+  SKIP all trailers
+[25/784] ÚóäÕæèTrailer +BTSÞè▒þÁ«+OSTÒÇÉþ┤½Þë▓Õñºõ©¢Þè▒ PURPLE DAHLIA ÒÇæ  | Þ┤¥ÚØÖÚø»/ÚÖêÚØûÕÅ»/ÞÁÁÕ┐ùõ╝ƒ/ÕêÿÕ«ÂþÑÄ | Úâ¢Õ©é þê▒µâà | õ╝ÿÚàÀ YOUKU
+  SKIP all trailers
+[26/784] ÚóäÕæèTrailer +BTSÞè▒þÁ«+OSTÒÇÉþû¥ÚúÄÕè▓ÞìëÒÇæ | Úâ¡õ║¼Úú× / Õ«ïÞî£ / µø╣Ú¬Å / µâáÞï▒þ║ó | µé¼þûæ | Õëºµâà  | õ╝ÿÚàÀ YOUKU
+  SKIP all trailers
+[27/784] ÚóäÕæèTrailer +BTSÞè▒þÁ«+OSTÒÇÉµé¼µíê Unsettled CaseÒÇæ | þÄïõ╝áÕÉø / µ▒ƒÕÑçÚ£û / µØ¿þâü / ÚâÄµ£êÕ®À / Õ▓│Ú¥ÖÕêÜ´╝êÕ▓│õ║æÚ╣Å´╝ë  | µé¼þûæ þ¢¬µíê | õ╝ÿÚàÀ YOUKU
+  SKIP private
+[28/784] ÚóäÕæèTrailer +BTSÞè▒þÁ«+OSTÒÇÉµù®µÿÑµÖ┤µ£ù The early springÒÇæ | õ║òµƒÅþäÂ / Õ¡ÖÕìâ | Úâ¢Õ©é þê▒µâà | õ╝ÿÚàÀ YOUKU
+  SKIP all trailers
+[29/784] ÚóäÕæèTrailer +BTSÞè▒þÁ«+OSTÒÇÉÕÑçµìóõ║║þöƒ Ctrl+Alt+LifeÒÇæ | µø¥Þê£µÖ×/Õ╝áÕ║Àõ╣É/Õêÿõ║øÕ«ü/Õº£µØÑ  | þÄ░õ╗ú Õëºµâà | õ╝ÿÚàÀ YOUKU
+  SKIP all trailers
+[30/784] ÚóäÕæèTrailer +BTSÞè▒þÁ«+OST ÒÇÉµùáÕÅ»µø┐õ╗úIRREPLACEABLEÒÇæ | ÞÁÁõ╗èÚ║ª / Ú¡ÅÕñºÕïï / Õæ¿ÕÑç / þÖ¢Õå░ | Úâ¢Õ©é þê▒µâà | õ╝ÿÚàÀ YOUKU
+  SKIP all trailers
+[31/784] ÚóäÕæèTrailer +BTSÞè▒þÁ«+OST ÒÇÉþ┐ÿµÑÜ Ashes to CrownÒÇæ | õ╝ÿÚàÀ YOUKU
+  SKIP private
+[32/784] [Get APP Now]ENGSUBÒÇÉÕ¡öÚøÇþ╝ÜÚçæµêêÒÇæ | ÕÅñÞúà ÕÑçÕ╣╗ | õ╝ÿÚàÀ YOUKU
+  SKIP nocaps bOrB8iuYEkI
+[33/784] Trailer +BTSÞè▒þÁ«+OST ÒÇÉÚ╗æÕñ£ÕæèþÖ¢ Light To The NightÒÇæ | µ¢ÿþ▓ñµÿÄ/þÄïÚ╣ñµúú/õ╗╗µòÅ/Õº£þÅ«þæÂ | µé¼þûæ Õêæõ¥ª | õ╝ÿÚàÀ YOUKU
+  SKIP private
+[34/784] [Get APP Now]MULTISUBÒÇÉÚ╗æÕñ£ÕæèþÖ¢ Light To The NightÒÇæ­ƒÆÑÕà¿ÕæÿÕàÑÕ▒Ç´╝îµ×üÚÖÉÞ┐¢ÕçÂ´╝ü | µ¢ÿþ▓ñµÿÄ/þÄïÚ╣ñµúú/õ╗╗µòÅ/Õº£þÅ«þæÂ | µé¼þûæ Õêæõ¥ª | õ╝ÿÚàÀ YOUKU
+  SKIP nocaps BohqzMiJBOM
+[35/784] [Get APP Now]ENGSUBÒÇÉÚçìµíêÞºúÕ»å Case X Decoded ÒÇæþ▓ÁÞ¬×þëê­ƒÆÑÕà½ÕñºÕÑçµíêþ£ƒÕ»ªµö╣þÀ¿ | ÞïùÕâæÕüë / Õ▓æÚ║ùÚªÖ | þ¢¬µíê ÕêæÕüÁ | Õä¬ÚàÀ YOUKU
+  SKIP private
+[36/784] [Get APP Now]ENGSUBÒÇÉÚçæÕà│ Gimlet EyesÒÇæõ╣ªÕåÖµÁÀÕà│µùàµúÇõ║║þÜäÕ┐áÞ»ÜÕØÜÕ«ê | þ╗ÅÞÂà/Ú╗äÕ░º/Õ▒áÞèÀÞÄ╣/µØ¿Õç»þ¿ï | Õëºµâà µé¼þûæ | õ╝ÿÚàÀ YOUKU
+  SKIP private
+[37/784] Trailer +BTSÞè▒þÁ«+OSTÒÇÉÚçæÕà│ÒÇæþ╗ÅÞÂà/Ú╗äÕ░º/Õ▒áÞèÀÞÄ╣/µØ¿Õç»þ¿ï | Õëºµâà µé¼þûæ | õ╝ÿÚàÀ YOUKU
+  SKIP private
+[38/784] [Get APP Now]ENGSUBÒÇÉÚçìµíêÞºúÕ»å Case X Decoded ÒÇæ­ƒÆÑÕà½ÕñºÕÑçµíêþ£ƒÕ«×µö╣þ╝û | Þïùõ¥¿õ╝ƒ / Õ▓æõ©¢ÚªÖ | þ¢¬µíê Õêæõ¥ª | õ╝ÿÚàÀ YOUKU
+  SKIP private
+[39/784] [Get APP Now] MULTISUBÒÇÉµùáÚÖÉÞÂàÞÂèþÅ¡þ¼¼ÕøøÕ¡úÒÇæõ©¿Memories Beyond Horizon S4õ©¿µø¥Õ┐ùõ╝ƒ/ÚâØÞò¥/õ¢òÞÁøÚú×/ÕêÿµÂø/ÕêÿµÖôÕ║å/ÕÉ┤ÚòçÕ«çõ©¿õ╝ÿÚàÀ
+  SKIP nocaps AA0fuxdBYVc
+[40/784] ÚóäÕæèTrailer +BTSÞè▒þÁ«+OSTÒÇÉµ▓ºÕàâÕø¥3 The Demon Hunter3ÒÇæ  | õ╝ÿÚàÀ YOUKU
+  SKIP nocaps 4xyM20B5OfY
+[41/784] [Get APP Now]MULTISUBÒÇÉµÿÑÚ£åÕ┐Áµ£¬Õñ«Revenge of the False BrideÒÇæÕ¡ñÕÑ│Õ¢ÆµØÑÞüöÕº╗Õñìõ╗ç | Úƒ®õ©£Ú£û/Õ╝áÕ®ëÞÄ╣ | Õëºµâà þê▒µâà | õ╝ÿÚàÀ YOUKU
+  SKIP nocaps u5MYTE8IHWs
+[42/784] ÚóäÕæèTrailer + BTS + OSTÒÇÉµÿÑÚ£åÕ┐Áµ£¬Õñ«Revenge of the False BrideÒÇæÚƒ®õ©£Ú£û/Õ╝áÕ®ëÞÄ╣ | Õëºµâà þê▒µâà | õ╝ÿÚàÀ YOUKU
+  SKIP all trailers
+[43/784] ÚóäÕæèTrailer +BTSÞè▒þÁ«+OST ÒÇÉµ£êÚ│×þ╗«þ║¬ Veil of ShadowsÒÇæ| õ╝ÿÚàÀ YOUKU
+  SKIP nocaps RJR87HuRJbI
+[44/784] [Get APP Now]MULTISUBÒÇÉµ£êÚ│×þ╗«þ║¬ Veil of ShadowsÒÇæõ©ëÕñºÕëºµ£¼µØÇÕÀ▓Õ╝ÇÕÉ»´╝üÕªûõ╝Üþö╗þÜ«­ƒÄ¡õ║║õ╝Üõ╝¬Þúà | Ú×áÕ®ºþÑÄ/µø¥Þê£µÖ×/ÚÖêÚâ¢þüÁ/þö░Õÿëþæ× | ÕÅñÞúà µé¼þûæ | õ╝ÿÚàÀYOUKU
+  SKIP nocaps EAszDJeCNA4
+[45/784] [Get APP Now]ENGSUBÒÇÉÕÅ©Þùñ RattanÒÇæÕ╝éþòîÕÑ│ÕªûÕñìµ┤╗µöÂÕë▓õ║┐õ©çÕ»îþ┐ü´╝üÕ¢ôÕé▓Õ¿çÕÅ©ÞùñÚüçõ©èÕ┐áþè¼Þ«¥Þ«íÕ©ê´╝îÞ┐ÖþºìÞÀ¿µùÂþ®║þÜäÔÇ£õ©╗õ╗åµïëµë»ÔÇØÕñ¬ÚíÂõ║å´╝üÔØñ´©Å | µÖ»þö£/Õ╝áÕ¢¼Õ¢¼/Õ╝áõ║ªÚ®░/Úçæµ│¢þüÅ | ÕÑçÕ╣╗ þê▒µâà | õ╝ÿÚàÀ YOUKU
+  SKIP nocaps ND5XKwmYFko
+[46/784] [Get APP Now]ENGSUBÒÇÉÕ╣©þªÅÕê░õ©çÕ«Â The Story of Xing FuÒÇæÞÁÁõ©¢Úóûµ╝öþ╗ÄÕ¢ôõ╗úÕÑ│µÇºµêÉÚò┐ÕÅ▓ | ÞÁÁõ©¢Úóû/ÕêÿÕ¿ü/ÕöÉµø¥/þ¢ùµÖï | Õëºµâà Úâ¢Õ©é | õ╝ÿÚàÀ YOUKU
+  SKIP nocaps FOkLDBN32Qs
+[47/784] ÚóäÕæèTrailer +BTSÞè▒þÁ«+OST ÒÇÉõ©ìÕÑ¢þ¼æÕ░▒Ú£▓Õ«┐ÞíùÕñ┤No Funny No MoneyÒÇæ| õ╝ÿÚàÀ YOUKU
+  SKIP nocaps I3CE2aDJFy8
+[48/784] [Get APP Now]ENGSUBÒÇÉõ©ìÕÑ¢þ¼æÕ░▒Ú£▓Õ«┐ÞíùÕñ┤No Funny No MoneyÒÇæ| ÞÁÁÚ£▓µÇØÕû£ÕëºÚªûþºÇÕù¿þ┐╗Õà¿Õ£║­ƒÑ│| õ╝ÿÚàÀYOUKU
+  SKIP nocaps vYcvQpNzrEo
+[49/784] ÚóäÕæèTrailer +BTSÞè▒þÁ«+OST ÒÇÉµÇªþäÂÕ┐âÕè¿20Õ▓ü´╝ÜÕå¼Õ¡úTwinkle Love in WinterÒÇæ| õ╝ÿÚàÀ YOUKU

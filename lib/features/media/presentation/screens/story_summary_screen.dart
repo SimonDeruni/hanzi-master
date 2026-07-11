@@ -9,6 +9,7 @@ import '../../../reading/presentation/providers/story_controller.dart';
 import '../../../reading/presentation/screens/story_reader_screen.dart';
 import 'web_browser_screen.dart';
 import '../../../../shared/widgets/tappable_hanzi_text.dart';
+import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 
 class StorySummaryScreen extends ConsumerStatefulWidget {
   final LibraryStory story;
@@ -98,7 +99,7 @@ class _StorySummaryScreenState extends ConsumerState<StorySummaryScreen> {
   void _startReading() {
     Navigator.push(
       context,
-      MaterialPageRoute(
+      SwipeBackPageRoute(
         builder: (context) => StoryReaderScreen(
           blueprint: _blueprint,
           hskLevel: widget.story.hskLevel,
@@ -321,7 +322,7 @@ class _StorySummaryScreenState extends ConsumerState<StorySummaryScreen> {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(
+                        SwipeBackPageRoute(
                           builder: (_) => WebBrowserScreen(
                             initialUrl: widget.story.link,
                             autoReadingMode: true,

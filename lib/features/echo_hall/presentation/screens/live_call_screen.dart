@@ -18,6 +18,7 @@ import 'package:hanzi_master/core/services/api_key_pool.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
 import '../widgets/live_call_summary_screen.dart';
 import 'package:hanzi_master/shared/widgets/info_bulb.dart';
+import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 
 enum LiveCallState {
   connecting,
@@ -86,8 +87,10 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
 
   // VAD / Silence Detection
   Timer? _silenceTimer;
-  static const Duration _silenceThreshold = Duration(milliseconds: 1500);
+  static const Duration _silenceThreshold = Duration(milliseconds: 3000);
   DateTime _lastAudioReceived = DateTime.now();
+  bool _isModelSpeaking = false;
+  DateTime? _firstTranscriptionTime;
 
   // Timeout for AI thinking
   Timer? _thinkingTimeout;
@@ -160,6 +163,15 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
 
   void _onSilenceDetected() {
     if (_callState != LiveCallState.listening) return;
+
+    // Guard: require minimum 2s of utterance before silence can complete the turn
+    if (_firstTranscriptionTime != null &&
+        DateTime.now().difference(_firstTranscriptionTime!) < const Duration(seconds: 2)) {
+      debugPrint("LiveCall: Silence detected but minimum utterance not met — ignoring");
+      _resetSilenceTimer();
+      return;
+    }
+
     debugPrint("LiveCall: Silence detected, completing turn...");
     _setCallState(LiveCallState.thinking, "Thinking...");
     _flushAndCompleteTurn();
@@ -286,7 +298,8 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
               final content = data['serverContent'];
               
               if (content.containsKey('modelTurn')) {
-                // AI is speaking — cancel thinking timeout
+                // AI is speaking — cancel thinking timeout and block VAD
+                _isModelSpeaking = true;
                 _thinkingTimeout?.cancel();
                 if (_callState != LiveCallState.speaking) {
                   _setCallState(LiveCallState.speaking, "Speaking...");
@@ -311,14 +324,18 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
                 _handleUserInputTranscription(trans['text'] ?? "", trans['finished'] ?? false);
               }
 
-              // When AI finishes its turn, go back to idle
+              // When AI finishes its turn, go back to idle and allow VAD again
               if (content['turnComplete'] == true) {
+                _isModelSpeaking = false;
+                _firstTranscriptionTime = null;
                 _setCallState(LiveCallState.idle, "Connected! Speak now.");
               }
 
               if (content['interrupted'] == true) {
                  _player.stopPlayer();
                  _userAudioBuffer.clear();
+                 _isModelSpeaking = false;
+                 _firstTranscriptionTime = null;
               }
             }
           } catch (e) {
@@ -378,6 +395,15 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
 
   void _handleUserInputTranscription(String text, bool finished) {
     if (text.trim().isEmpty) return;
+
+    // Guard: ignore VAD transcriptions while the model is speaking or thinking
+    if (_isModelSpeaking || _callState == LiveCallState.thinking || _callState == LiveCallState.speaking) {
+      debugPrint("LiveCall: Ignoring inputTranscription — model is active (state: $_callState)");
+      return;
+    }
+
+    final wasAlreadyListening = _callState == LiveCallState.listening;
+
     setState(() {
       int lastUserIdx = _transcript.lastIndexWhere((m) => m.role == ChatRole.user);
       if (lastUserIdx != -1 && _transcript[lastUserIdx].grade == null) {
@@ -387,7 +413,16 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
       }
     });
 
+    // Only reset silence timer on the FIRST transcription of a turn
+    if (!wasAlreadyListening) {
+      _firstTranscriptionTime = DateTime.now();
+      _resetSilenceTimer();
+    }
+
     if (finished) {
+      // Cancel silence timer — Gemini has declared the utterance complete,
+      // so let the server-side turn detection handle the boundary
+      _silenceTimer?.cancel();
       _triggerGradingForLastUserTurn();
     }
     _scrollToBottom();
@@ -470,8 +505,12 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
             _setCallState(LiveCallState.listening, "Listening...");
           }
 
-          // Reset silence timer on every audio chunk
-          _resetSilenceTimer();
+          // Only reset silence timer when audio level indicates actual speech
+          // (not background noise), and only after the user has started producing
+          // recognizable speech (first transcription received)
+          if (_audioLevel > 0.02 && _firstTranscriptionTime != null) {
+            _resetSilenceTimer();
+          }
           
           // Buffer ~0.5 seconds of audio (16000 bytes/samples at 16kHz 16-bit mono)
           // to prevent websocket congestion and make the connection stable
@@ -529,7 +568,7 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
       Navigator.pop(context); // Close loading
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(
+        SwipeBackPageRoute(
           builder: (context) => LiveCallSummaryScreen(
             transcript: _transcript,
             scholarVerdict: verdict,

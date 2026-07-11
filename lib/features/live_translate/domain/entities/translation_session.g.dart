@@ -20,8 +20,8 @@ class TranslationMessageAdapter extends TypeAdapter<TranslationMessage> {
       text: fields[0] as String,
       isUser: fields[1] as bool,
       timestamp: fields[2] as DateTime?,
-      sideId: fields[3] as String? ?? 'a',
-      language: fields[4] as String? ?? 'English',
+      sideId: fields[3] as String,
+      language: fields[4] as String,
     );
   }
 
@@ -67,8 +67,8 @@ class TranslationSessionAdapter extends TypeAdapter<TranslationSession> {
       modeName: fields[1] as String,
       date: fields[2] as DateTime,
       messages: (fields[3] as List).cast<TranslationMessage>(),
-      sideALanguage: fields[4] as String? ?? 'English',
-      sideBLanguage: fields[5] as String? ?? 'Mandarin',
+      sideALanguage: fields[4] as String,
+      sideBLanguage: fields[5] as String,
     );
   }
 

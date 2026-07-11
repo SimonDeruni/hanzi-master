@@ -14,6 +14,7 @@ import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/features/progression/presentation/widgets/today_insight_card.dart';
 import 'package:hanzi_master/shared/widgets/global_sliver_app_bar.dart';
 import 'package:hanzi_master/shared/widgets/info_bulb.dart';
+import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 class DashboardScreen extends ConsumerWidget {
   final Function(int) onNavigate;
 
@@ -349,7 +350,7 @@ class DashboardScreen extends ConsumerWidget {
                                   onPressed: () {
                                     Navigator.push(
                                       context,
-                                      MaterialPageRoute(
+                                      SwipeBackPageRoute(
                                         builder: (context) => DeckDetailScreen(
                                           deck: Deck(id: deckId, name: displayDeckName, createdAt: DateTime.now()),
                                         ),
@@ -435,7 +436,7 @@ class DashboardScreen extends ConsumerWidget {
                   padding: const EdgeInsets.only(bottom: 10),
                   child: InkWell(
                     borderRadius: BorderRadius.circular(16),
-                    onTap: () { Navigator.pop(ctx); Navigator.push(context, MaterialPageRoute(builder: (_) => DeckDetailScreen(deck: Deck(id: deckId, name: entry.key, createdAt: DateTime.now())))); },
+                    onTap: () { Navigator.pop(ctx); Navigator.push(context, SwipeBackPageRoute(builder: (_) => DeckDetailScreen(deck: Deck(id: deckId, name: entry.key, createdAt: DateTime.now())))); },
                     child: Container(
                       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
                       decoration: BoxDecoration(color: theme.colorScheme.primary.withValues(alpha: 0.06), borderRadius: BorderRadius.circular(16)),

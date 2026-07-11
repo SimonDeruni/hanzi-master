@@ -1,4 +1,4 @@
-package com.example.hanzi_master
+package com.sinospark.app
 
 import io.flutter.embedding.android.FlutterFragmentActivity
 

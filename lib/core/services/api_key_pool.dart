@@ -16,4 +16,6 @@ class ApiKeyPool {
   String get azureSpeechKey => dotenv.env['AZURE_SPEECH_KEY'] ?? 'MISSING_KEY';
   
   String get azureSpeechRegion => dotenv.env['AZURE_SPEECH_REGION'] ?? 'MISSING_REGION';
+
+  String get youtubeApiKey => dotenv.env['YOUTUBE_API_KEY'] ?? 'MISSING_KEY';
 }

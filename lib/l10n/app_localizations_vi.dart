@@ -9,223 +9,226 @@ class AppLocalizationsVi extends AppLocalizations {
   AppLocalizationsVi([String locale = 'vi']) : super(locale);
 
   @override
-  String get globalMastery => 'MỨC ĐỘ THÀNH THẠO';
+  String get globalMastery => 'Má»¨C Äá»˜ THÃ€NH THáº O';
 
   @override
-  String get masteredCards => 'Đã thành thạo';
+  String get masteredCards => 'ÄÃ£ thÃ nh tháº¡o';
 
   @override
-  String get hsk1Candidate => 'Ứng viên HSK 1';
+  String get hsk1Candidate => 'á»¨ng viÃªn HSK 1';
 
   @override
-  String get hsk2Candidate => 'Ứng viên HSK 2';
+  String get hsk2Candidate => 'á»¨ng viÃªn HSK 2';
 
   @override
-  String get hsk3Candidate => 'Ứng viên HSK 3';
+  String get hsk3Candidate => 'á»¨ng viÃªn HSK 3';
 
   @override
-  String get hsk4Candidate => 'Ứng viên HSK 4';
+  String get hsk4Candidate => 'á»¨ng viÃªn HSK 4';
 
   @override
-  String get hsk5Candidate => 'Ứng viên HSK 5';
+  String get hsk5Candidate => 'á»¨ng viÃªn HSK 5';
 
   @override
-  String get hsk6Candidate => 'Ứng viên HSK 6';
+  String get hsk6Candidate => 'á»¨ng viÃªn HSK 6';
 
   @override
-  String get hsk6Master => 'Bậc thầy HSK 6';
+  String get hsk6Master => 'Báº­c tháº§y HSK 6';
 
   @override
-  String get currentRank => 'XẾP HẠNG HIỆN TẠI';
+  String get currentRank => 'Xáº¾P Háº NG HIá»†N Táº I';
 
   @override
-  String get next => 'Tiếp theo';
+  String get next => 'Tiáº¿p theo';
 
   @override
-  String get searchHanziOrPinyin => 'Tìm kiếm...';
+  String get searchHanziOrPinyin => 'TÃ¬m kiáº¿m...';
 
   @override
-  String get dailyReview => 'Ôn tập hàng ngày';
+  String get dailyReview => 'Ã”n táº­p hÃ ng ngÃ y';
 
   @override
-  String get upcomingForecast => 'Dự báo';
+  String get upcomingForecast => 'Dá»± bÃ¡o';
 
   @override
-  String get laterToday => 'Hôm nay';
+  String get laterToday => 'HÃ´m nay';
 
   @override
-  String get tomorrow => 'Ngày mai';
+  String get tomorrow => 'NgÃ y mai';
 
   @override
-  String get next7Days => '7 ngày tới';
+  String get next7Days => '7 ngÃ y tá»›i';
 
   @override
-  String get theScholarWay => 'Con đường học giả';
+  String get theScholarWay => 'Con Ä‘Æ°á»ng há»c giáº£';
 
   @override
-  String get beginJourney => 'Bắt đầu';
+  String get beginJourney => 'Báº¯t Ä‘áº§u';
 
   @override
-  String get settingsTitle => 'Cài đặt';
+  String get settingsTitle => 'CÃ i Ä‘áº·t';
 
   @override
-  String get darkMode => 'Chế độ tối';
+  String get darkMode => 'Cháº¿ Ä‘á»™ tá»‘i';
 
   @override
-  String get darkModeDesc => 'Dịu mắt';
+  String get darkModeDesc => 'Dá»‹u máº¯t';
 
   @override
-  String get voiceSpeed => 'Tốc độ Giọng nói';
+  String get voiceSpeed => 'Tá»‘c Ä‘á»™ Giá»ng nÃ³i';
 
   @override
-  String get artAndIntellect => 'NGHỆ THUẬT & TRÍ TUỆ';
+  String get artAndIntellect => 'NGHá»† THUáº¬T & TRÃ TUá»†';
 
   @override
-  String get theDigitalScholar => 'Học Giả Kỹ Thuật Số';
+  String get theDigitalScholar => 'Há»c Giáº£ Ká»¹ Thuáº­t Sá»‘';
 
   @override
-  String get refineBrushVoice => 'Rèn luyện nét cọ và giọng nói bằng AI.';
+  String get refineBrushVoice =>
+      'RÃ¨n luyá»‡n nÃ©t cá» vÃ  giá»ng nÃ³i báº±ng AI.';
 
   @override
-  String get liveVoiceCall => 'Cuộc Gọi Trực Tiếp';
+  String get liveVoiceCall => 'Cuá»™c Gá»i Trá»±c Tiáº¿p';
 
   @override
-  String get immersiveRoleplay => 'Nhập vai sống động với AI';
+  String get immersiveRoleplay => 'Nháº­p vai sá»‘ng Ä‘á»™ng vá»›i AI';
 
   @override
-  String get readingRoom => 'Phòng Đọc Sách';
+  String get readingRoom => 'PhÃ²ng Äá»c SÃ¡ch';
 
   @override
-  String get shadowingStudio => 'Phòng Tập Nói';
+  String get shadowingStudio => 'PhÃ²ng Táº­p NÃ³i';
 
   @override
-  String get errorPrefix => 'Lỗi: ';
+  String get errorPrefix => 'Lá»—i: ';
 
   @override
-  String get initializingLibrary => 'Đang khởi tạo...';
+  String get initializingLibrary => 'Äang khá»Ÿi táº¡o...';
 
   @override
-  String get unlockCharactersToQuiz => 'Mở khóa 4 ký tự để bắt đầu!';
+  String get unlockCharactersToQuiz =>
+      'Má»Ÿ khÃ³a 4 kÃ½ tá»± Ä‘á»ƒ báº¯t Ä‘áº§u!';
 
   @override
-  String get practiceQuiz => 'THỰC HÀNH';
+  String get practiceQuiz => 'THá»°C HÃ€NH';
 
   @override
-  String get curriculumPaths => 'LỘ TRÌNH';
+  String get curriculumPaths => 'Lá»˜ TRÃŒNH';
 
   @override
-  String get noDecksFound => 'Không tìm thấy bộ bài.';
+  String get noDecksFound => 'KhÃ´ng tÃ¬m tháº¥y bá»™ bÃ i.';
 
   @override
-  String get addCardsFirst => 'Thêm thẻ trước!';
+  String get addCardsFirst => 'ThÃªm tháº» trÆ°á»›c!';
 
   @override
-  String get aiDraftingPath => 'AI đang chuẩn bị lộ trình...';
+  String get aiDraftingPath => 'AI Ä‘ang chuáº©n bá»‹ lá»™ trÃ¬nh...';
 
   @override
-  String get pathReady => 'Lộ trình đã sẵn sàng!';
+  String get pathReady => 'Lá»™ trÃ¬nh Ä‘Ã£ sáºµn sÃ ng!';
 
   @override
-  String get errorGeneratingPath => 'Lỗi';
+  String get errorGeneratingPath => 'Lá»—i';
 
   @override
-  String get brushingCurriculum => 'Đang tạo lộ trình...';
+  String get brushingCurriculum => 'Äang táº¡o lá»™ trÃ¬nh...';
 
   @override
-  String get warmUp => 'KHỞI ĐỘNG';
+  String get warmUp => 'KHá»žI Äá»˜NG';
 
   @override
-  String get lessonComplete => 'Hoàn thành! +10 Điểm';
+  String get lessonComplete => 'HoÃ n thÃ nh! +10 Äiá»ƒm';
 
   @override
-  String get step1Origin => 'BƯỚC 1: NGUỒN GỐC';
+  String get step1Origin => 'BÆ¯á»šC 1: NGUá»’N Gá»C';
 
   @override
-  String get traceRadical => 'Viết bộ thủ';
+  String get traceRadical => 'Viáº¿t bá»™ thá»§';
 
   @override
-  String get step2Forge => 'BƯỚC 2: RÈN LUYỆN';
+  String get step2Forge => 'BÆ¯á»šC 2: RÃˆN LUYá»†N';
 
   @override
-  String get chooseEssence => 'Chọn bản chất';
+  String get chooseEssence => 'Chá»n báº£n cháº¥t';
 
   @override
-  String get wrongEssence => 'Sai rồi! Thử lại.';
+  String get wrongEssence => 'Sai rá»“i! Thá»­ láº¡i.';
 
   @override
-  String get step3Hunt => 'BƯỚC 3: SĂN LÙNG';
+  String get step3Hunt => 'BÆ¯á»šC 3: SÄ‚N LÃ™NG';
 
   @override
-  String get findCharacters => 'Tìm ký tự';
+  String get findCharacters => 'TÃ¬m kÃ½ tá»±';
 
   @override
-  String get notThatOne => 'Không phải cái đó!';
+  String get notThatOne => 'KhÃ´ng pháº£i cÃ¡i Ä‘Ã³!';
 
   @override
-  String get successfullyInstalled => 'Đã cài đặt:';
+  String get successfullyInstalled => 'ÄÃ£ cÃ i Ä‘áº·t:';
 
   @override
-  String get failedToDownload => 'Lỗi tải xuống.';
+  String get failedToDownload => 'Lá»—i táº£i xuá»‘ng.';
 
   @override
-  String get rescindTitle => 'Gỡ bỏ?';
+  String get rescindTitle => 'Gá»¡ bá»?';
 
   @override
-  String get removeCharactersWarning => 'Điều này sẽ xóa các ký tự này.';
+  String get removeCharactersWarning =>
+      'Äiá»u nÃ y sáº½ xÃ³a cÃ¡c kÃ½ tá»± nÃ y.';
 
   @override
-  String get cancel => 'Hủy';
+  String get cancel => 'Há»§y';
 
   @override
-  String get uninstall => 'Gỡ cài đặt';
+  String get uninstall => 'Gá»¡ cÃ i Ä‘áº·t';
 
   @override
-  String get removedLibrary => 'Đã xóa:';
+  String get removedLibrary => 'ÄÃ£ xÃ³a:';
 
   @override
-  String get tomeLibrary => 'Thư Viện';
+  String get tomeLibrary => 'ThÆ° Viá»‡n';
 
   @override
-  String get libraryError => 'Lỗi Thư Viện';
+  String get libraryError => 'Lá»—i ThÆ° Viá»‡n';
 
   @override
-  String get installTome => 'CÀI ĐẶT';
+  String get installTome => 'CÃ€I Äáº¶T';
 
   @override
-  String get unitIntro => 'GIỚI THIỆU';
+  String get unitIntro => 'GIá»šI THIá»†U';
 
   @override
-  String get constellationCluster => 'Cụm Chòm Sao';
+  String get constellationCluster => 'Cá»¥m ChÃ²m Sao';
 
   @override
   String get ok => 'OK';
 
   @override
-  String get divingInto => 'Đi sâu vào...';
+  String get divingInto => 'Äi sÃ¢u vÃ o...';
 
   @override
-  String get keyRadicals => 'BỘ THỦ CHÍNH';
+  String get keyRadicals => 'Bá»˜ THá»¦ CHÃNH';
 
   @override
-  String get noRadicalData => 'Không có dữ liệu.';
+  String get noRadicalData => 'KhÃ´ng cÃ³ dá»¯ liá»‡u.';
 
   @override
-  String get discovery => 'KHÁM PHÁ';
+  String get discovery => 'KHÃM PHÃ';
 
   @override
-  String get startLearning => 'BẮT ĐẦU HỌC';
+  String get startLearning => 'Báº®T Äáº¦U Há»ŒC';
 
   @override
-  String get selectPersona => 'Chọn nhân vật';
+  String get selectPersona => 'Chá»n nhÃ¢n váº­t';
 
   @override
-  String get customPersona => 'Tùy chỉnh';
+  String get customPersona => 'TÃ¹y chá»‰nh';
 
   @override
-  String get geminiLiveCall => 'GỌI TRỰC TIẾP';
+  String get geminiLiveCall => 'Gá»ŒI TRá»°C TIáº¾P';
 
   @override
-  String get returnToMenu => 'Quay lại';
+  String get returnToMenu => 'Quay láº¡i';
 
   @override
   String get strokeAnalysis => 'Stroke Analysis';
@@ -270,7 +273,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get uninstallButton => 'UNINSTALL';
 
   @override
-  String get gradedAiStories => 'Câu Chuyện AI';
+  String get gradedAiStories => 'CÃ¢u Chuyá»‡n AI';
 
   @override
   String get calligraphy => 'Calligraphy';
@@ -315,9 +318,6 @@ class AppLocalizationsVi extends AppLocalizations {
   String get haptics => 'Haptics';
 
   @override
-  String get hapticsDesc => 'Haptics Desc';
-
-  @override
   String get displayAndContent => 'Display And Content';
 
   @override
@@ -351,659 +351,671 @@ class AppLocalizationsVi extends AppLocalizations {
   String get appLanguage => 'App Language';
 
   @override
-  String get howDidYouDo => 'Bạn đã làm bài thế nào?';
+  String get howDidYouDo => 'Báº¡n Ä‘Ã£ lÃ m bÃ i tháº¿ nÃ o?';
 
   @override
-  String get missedItEntirely => 'Quên hoàn toàn';
+  String get missedItEntirely => 'QuÃªn hoÃ n toÃ n';
 
   @override
-  String get gotItButStruggled => 'Đúng nhưng còn chật vật';
+  String get gotItButStruggled => 'ÄÃºng nhÆ°ng cÃ²n cháº­t váº­t';
 
   @override
-  String get gotItClearly => 'Nắm rõ';
+  String get gotItClearly => 'Náº¯m rÃµ';
 
   @override
-  String get perfectAndImmediate => 'Hoàn hảo & tức thì';
+  String get perfectAndImmediate => 'HoÃ n háº£o & tá»©c thÃ¬';
 
   @override
-  String get again => 'Học lại';
+  String get again => 'Há»c láº¡i';
 
   @override
-  String get hard => 'Khó';
+  String get hard => 'KhÃ³';
 
   @override
-  String get good => 'Tốt';
+  String get good => 'Tá»‘t';
 
   @override
-  String get easy => 'Dễ';
+  String get easy => 'Dá»…';
 
   @override
-  String get tapToReveal => 'Chạm để xem';
+  String get tapToReveal => 'Cháº¡m Ä‘á»ƒ xem';
 
   @override
-  String get howWellDidYouRemember => 'Bạn nhớ được đến đâu?';
+  String get howWellDidYouRemember => 'Báº¡n nhá»› Ä‘Æ°á»£c Ä‘áº¿n Ä‘Ã¢u?';
 
   @override
-  String get completelyForgot => 'Quên hoàn toàn';
+  String get completelyForgot => 'QuÃªn hoÃ n toÃ n';
 
   @override
-  String get gotItWithDifficulty => 'Nhớ được nhưng còn khó khăn';
+  String get gotItWithDifficulty => 'Nhá»› Ä‘Æ°á»£c nhÆ°ng cÃ²n khÃ³ khÄƒn';
 
   @override
-  String get recalledCorrectly => 'Nhớ chính xác';
+  String get recalledCorrectly => 'Nhá»› chÃ­nh xÃ¡c';
 
   @override
-  String get perfectRecall => 'Ghi nhớ hoàn hảo';
+  String get perfectRecall => 'Ghi nhá»› hoÃ n háº£o';
 
   @override
-  String get practiceWriting => 'Luyện viết';
+  String get practiceWriting => 'Luyá»‡n viáº¿t';
 
   @override
-  String get hideScratchpad => 'Ẩn bảng nháp';
+  String get hideScratchpad => 'áº¨n báº£ng nhÃ¡p';
 
   @override
-  String get whatCharacterMeans => 'Ý nghĩa của Hán tự:';
+  String get whatCharacterMeans => 'Ã nghÄ©a cá»§a HÃ¡n tá»±:';
 
   @override
-  String get tapCardToReveal => 'Chạm thẻ để xem';
+  String get tapCardToReveal => 'Cháº¡m tháº» Ä‘á»ƒ xem';
 
   @override
   String get ratePronunciationConfidence =>
-      'Đánh giá độ tự tin phát âm của bạn';
+      'ÄÃ¡nh giÃ¡ Ä‘á»™ tá»± tin phÃ¡t Ã¢m cá»§a báº¡n';
 
   @override
-  String get botchedIt => 'Sai hoàn toàn';
+  String get botchedIt => 'Sai hoÃ n toÃ n';
 
   @override
-  String get struggledWithTones => 'Gặp khó khăn với thanh điệu';
+  String get struggledWithTones => 'Gáº·p khÃ³ khÄƒn vá»›i thanh Ä‘iá»‡u';
 
   @override
-  String get acceptable => 'Chấp nhận được';
+  String get acceptable => 'Cháº¥p nháº­n Ä‘Æ°á»£c';
 
   @override
-  String get perfectlyNatural => 'Tự nhiên hoàn hảo';
+  String get perfectlyNatural => 'Tá»± nhiÃªn hoÃ n háº£o';
 
   @override
-  String get sessionComplete => 'Hoàn thành buổi học!';
+  String get sessionComplete => 'HoÃ n thÃ nh buá»•i há»c!';
 
   @override
-  String get accuracy => 'Độ chính xác';
+  String get accuracy => 'Äá»™ chÃ­nh xÃ¡c';
 
   @override
-  String get reviewed => 'Đã ôn tập';
+  String get reviewed => 'ÄÃ£ Ã´n táº­p';
 
   @override
-  String get correct => 'Chính xác';
+  String get correct => 'ChÃ­nh xÃ¡c';
 
   @override
-  String get backToLibrary => 'Quay lại thư viện';
+  String get backToLibrary => 'Quay láº¡i thÆ° viá»‡n';
 
   @override
-  String get revealAnswer => 'Hiện đáp án';
+  String get revealAnswer => 'Hiá»‡n Ä‘Ã¡p Ã¡n';
 
   @override
-  String get aiHubTitle => 'Trung tâm AI';
+  String get aiHubTitle => 'Trung tÃ¢m AI';
 
   @override
-  String get textChat => 'Nhắn tin';
+  String get textChat => 'Nháº¯n tin';
 
   @override
-  String get scholarlyPersonas => 'Các nhân vật học giả';
+  String get scholarlyPersonas => 'CÃ¡c nhÃ¢n váº­t há»c giáº£';
 
   @override
-  String get shadowing => 'Luyện giọng đuổi';
+  String get shadowing => 'Luyá»‡n giá»ng Ä‘uá»•i';
 
   @override
-  String get liveTranslation => 'Dịch trực tiếp';
+  String get liveTranslation => 'Dá»‹ch trá»±c tiáº¿p';
 
   @override
-  String get scholarsLibrary => 'Thư viện học giả';
+  String get scholarsLibrary => 'ThÆ° viá»‡n há»c giáº£';
 
   @override
-  String get generate => 'Tạo';
+  String get generate => 'Táº¡o';
 
   @override
   String get searchPinyinHanziEnglish =>
-      'Tìm kiếm Pinyin, Hanzi, hoặc tiếng Anh...';
+      'TÃ¬m kiáº¿m Pinyin, Hanzi, hoáº·c tiáº¿ng Anh...';
 
   @override
-  String get liveTranslate => 'Dịch trực tiếp';
+  String get liveTranslate => 'Dá»‹ch trá»±c tiáº¿p';
 
   @override
-  String get travelInterpreter => 'Phiên dịch du lịch';
+  String get travelInterpreter => 'PhiÃªn dá»‹ch du lá»‹ch';
 
   @override
   String get realTimeSplitScreen =>
-      'Trò chuyện chia đôi màn hình theo thời gian thực với người bản xứ. Phá bỏ rào cản ngôn ngữ ngay lập tức.';
+      'TrÃ² chuyá»‡n chia Ä‘Ã´i mÃ n hÃ¬nh theo thá»i gian thá»±c vá»›i ngÆ°á»i báº£n xá»©. PhÃ¡ bá» rÃ o cáº£n ngÃ´n ngá»¯ ngay láº­p tá»©c.';
 
   @override
-  String get whisperEarpiece => 'Tai nghe thì thầm';
+  String get whisperEarpiece => 'Tai nghe thÃ¬ tháº§m';
 
   @override
   String get listenToChineseAudio =>
-      'Nghe âm thanh tiếng Trung và nhận phụ đề tiếng Anh theo thời gian thực trực tiếp trên màn hình của bạn.';
+      'Nghe Ã¢m thanh tiáº¿ng Trung vÃ  nháº­n phá»¥ Ä‘á» tiáº¿ng Anh theo thá»i gian thá»±c trá»±c tiáº¿p trÃªn mÃ n hÃ¬nh cá»§a báº¡n.';
 
   @override
-  String get dashboardTitle => 'Bảng điều khiển';
+  String get dashboardTitle => 'Báº£ng Ä‘iá»u khiá»ƒn';
 
   @override
-  String get yourMindIsClear => 'Tâm trí bạn minh mẫn.';
+  String get yourMindIsClear => 'TÃ¢m trÃ­ báº¡n minh máº«n.';
 
   @override
-  String get noReviewsDueToday => 'Không có bài ôn tập nào đến hạn hôm nay.';
+  String get noReviewsDueToday =>
+      'KhÃ´ng cÃ³ bÃ i Ã´n táº­p nÃ o Ä‘áº¿n háº¡n hÃ´m nay.';
 
   @override
   String get done => 'Xong';
 
   @override
-  String get hskLevel1 => 'HSK Cấp độ 1';
+  String get hskLevel1 => 'HSK Cáº¥p Ä‘á»™ 1';
 
   @override
-  String get hskLevel2 => 'HSK Cấp độ 2';
+  String get hskLevel2 => 'HSK Cáº¥p Ä‘á»™ 2';
 
   @override
-  String get hskLevel3 => 'HSK Cấp độ 3';
+  String get hskLevel3 => 'HSK Cáº¥p Ä‘á»™ 3';
 
   @override
-  String get hskLevel4 => 'HSK Cấp độ 4';
+  String get hskLevel4 => 'HSK Cáº¥p Ä‘á»™ 4';
 
   @override
-  String get hskLevel5 => 'HSK Cấp độ 5';
+  String get hskLevel5 => 'HSK Cáº¥p Ä‘á»™ 5';
 
   @override
-  String get hskLevel6 => 'HSK Cấp độ 6';
+  String get hskLevel6 => 'HSK Cáº¥p Ä‘á»™ 6';
 
   @override
-  String get generalVocabulary => 'Từ vựng tổng quát';
+  String get generalVocabulary => 'Tá»« vá»±ng tá»•ng quÃ¡t';
 
   @override
-  String get cardsRequireAttention => 'thẻ cần xem lại.';
+  String get cardsRequireAttention => 'tháº» cáº§n xem láº¡i.';
 
   @override
-  String get begin => 'Bắt đầu';
+  String get begin => 'Báº¯t Ä‘áº§u';
 
   @override
   String get poweredByAi =>
-      'Được hỗ trợ bởi AI tiên tiến. Dịch thuật tức thời mượt mà cho mọi ngữ cảnh.';
+      'ÄÆ°á»£c há»— trá»£ bá»Ÿi AI tiÃªn tiáº¿n. Dá»‹ch thuáº­t tá»©c thá»i mÆ°á»£t mÃ  cho má»i ngá»¯ cáº£nh.';
 
   @override
-  String get downloadingModel => 'Đang tải mô hình...';
+  String get downloadingModel => 'Äang táº£i mÃ´ hÃ¬nh...';
 
   @override
-  String get soon => 'SẮP RA MẮT';
+  String get soon => 'Sáº®P RA Máº®T';
 
   @override
-  String get installed => 'ĐÃ CÀI ĐẶT';
+  String get installed => 'ÄÃƒ CÃ€I Äáº¶T';
 
   @override
   String get premium => 'PREMIUM';
 
   @override
-  String get coreModule => 'MÔ-ĐUN CỐT LÕI';
+  String get coreModule => 'MÃ”-ÄUN Cá»T LÃ•I';
 
   @override
-  String get step6Context => 'BƯỚC 6: BỐI CẢNH';
+  String get step6Context => 'BÆ¯á»šC 6: Bá»I Cáº¢NH';
 
   @override
   String get tapBuildingBlocksTo =>
-      'Chạm vào các khối xây dựng để khám phá nguồn gốc của chúng.';
+      'Cháº¡m vÃ o cÃ¡c khá»‘i xÃ¢y dá»±ng Ä‘á»ƒ khÃ¡m phÃ¡ nguá»“n gá»‘c cá»§a chÃºng.';
 
   @override
-  String get initiateRadicalSequence => 'BẮT ĐẦU CHUỖI BỘ THỦ';
+  String get initiateRadicalSequence => 'Báº®T Äáº¦U CHUá»–I Bá»˜ THá»¦';
 
   @override
-  String get holdToTalk => 'Giữ để nói';
+  String get holdToTalk => 'Giá»¯ Ä‘á»ƒ nÃ³i';
 
   @override
-  String get customScenario => 'Tình huống tùy chỉnh';
+  String get customScenario => 'TÃ¬nh huá»‘ng tÃ¹y chá»‰nh';
 
   @override
-  String get voiceCall => 'Gọi thoại';
+  String get voiceCall => 'Gá»i thoáº¡i';
 
   @override
-  String get pronunciation => 'Phát âm';
+  String get pronunciation => 'PhÃ¡t Ã¢m';
 
   @override
   String get selectAScenarioTo =>
-      'Chọn một tình huống để luyện nói tiếng Quan Thoại. Học giả sẽ chấm điểm ngữ điệu và sự rõ ràng của bạn.';
+      'Chá»n má»™t tÃ¬nh huá»‘ng Ä‘á»ƒ luyá»‡n nÃ³i tiáº¿ng Quan Thoáº¡i. Há»c giáº£ sáº½ cháº¥m Ä‘iá»ƒm ngá»¯ Ä‘iá»‡u vÃ  sá»± rÃµ rÃ ng cá»§a báº¡n.';
 
   @override
-  String get create => 'Tạo';
+  String get create => 'Táº¡o';
 
   @override
-  String get createYourScenario => 'Tạo Tình Huống Của Bạn';
+  String get createYourScenario => 'Táº¡o TÃ¬nh Huá»‘ng Cá»§a Báº¡n';
 
   @override
-  String get difficulty => 'Độ khó';
+  String get difficulty => 'Äá»™ khÃ³';
 
   @override
-  String get scholarsVerdict => 'PHÁN QUYẾT CỦA HỌC GIẢ';
+  String get scholarsVerdict => 'PHÃN QUYáº¾T Cá»¦A Há»ŒC GIáº¢';
 
   @override
-  String get completeReview => 'Hoàn thành đánh giá';
+  String get completeReview => 'HoÃ n thÃ nh Ä‘Ã¡nh giÃ¡';
 
   @override
-  String get conversationReview => 'ĐÁNH GIÁ ĐỐI THOẠI';
+  String get conversationReview => 'ÄÃNH GIÃ Äá»I THOáº I';
 
   @override
-  String get linguisticAnalysis => 'Phân tích ngôn ngữ';
+  String get linguisticAnalysis => 'PhÃ¢n tÃ­ch ngÃ´n ngá»¯';
 
   @override
-  String get examplesInHsk1 => 'VÍ DỤ TRONG HSK 1';
+  String get examplesInHsk1 => 'VÃ Dá»¤ TRONG HSK 1';
 
   @override
-  String get characterReference => 'Tham chiếu chữ Hán';
+  String get characterReference => 'Tham chiáº¿u chá»¯ HÃ¡n';
 
   @override
-  String get askTutor => 'Hỏi gia sư';
+  String get askTutor => 'Há»i gia sÆ°';
 
   @override
-  String get addToStudyDeck => 'Thêm vào bộ học';
+  String get addToStudyDeck => 'ThÃªm vÃ o bá»™ há»c';
 
   @override
-  String get startPractice => 'BẮT ĐẦU LUYỆN TẬP';
+  String get startPractice => 'Báº®T Äáº¦U LUYá»†N Táº¬P';
 
   @override
-  String get noOtherHsk1 => 'Không có chữ HSK 1 nào khác sử dụng bộ thủ này.';
+  String get noOtherHsk1 =>
+      'KhÃ´ng cÃ³ chá»¯ HSK 1 nÃ o khÃ¡c sá»­ dá»¥ng bá»™ thá»§ nÃ y.';
 
   @override
   String get couldNotLoadAi =>
-      'Không thể tải ngữ cảnh AI. (Giới hạn tốc độ hoặc lỗi mạng)\nChạm vào nút làm mới bên dưới để thử lại sau.';
+      'KhÃ´ng thá»ƒ táº£i ngá»¯ cáº£nh AI. (Giá»›i háº¡n tá»‘c Ä‘á»™ hoáº·c lá»—i máº¡ng)\nCháº¡m vÃ o nÃºt lÃ m má»›i bÃªn dÆ°á»›i Ä‘á»ƒ thá»­ láº¡i sau.';
 
   @override
-  String get noAvailableCardsFound => 'Không tìm thấy thẻ nào.';
+  String get noAvailableCardsFound => 'KhÃ´ng tÃ¬m tháº¥y tháº» nÃ o.';
 
   @override
-  String get addCards => 'Thêm thẻ';
+  String get addCards => 'ThÃªm tháº»';
 
   @override
-  String get removeCard => 'Xóa thẻ';
+  String get removeCard => 'XÃ³a tháº»';
 
   @override
-  String get remove => 'Xóa';
+  String get remove => 'XÃ³a';
 
   @override
-  String get review => 'Ôn tập';
+  String get review => 'Ã”n táº­p';
 
   @override
-  String get story => 'Câu chuyện';
+  String get story => 'CÃ¢u chuyá»‡n';
 
   @override
-  String get thisDeckIsEmpty => 'Bộ này trống.';
+  String get thisDeckIsEmpty => 'Bá»™ nÃ y trá»‘ng.';
 
   @override
-  String get tapTheAddCards => 'Chạm vào nút Thêm thẻ!';
+  String get tapTheAddCards => 'Cháº¡m vÃ o nÃºt ThÃªm tháº»!';
 
   @override
-  String get noCardsFound => 'Không tìm thấy thẻ nào.';
+  String get noCardsFound => 'KhÃ´ng tÃ¬m tháº¥y tháº» nÃ o.';
 
   @override
-  String get addCardsToSee => 'Thêm thẻ để xem số liệu thống kê.';
+  String get addCardsToSee => 'ThÃªm tháº» Ä‘á»ƒ xem sá»‘ liá»‡u thá»‘ng kÃª.';
 
   @override
-  String get aiGenerated => 'Được tạo bởi AI';
+  String get aiGenerated => 'ÄÆ°á»£c táº¡o bá»Ÿi AI';
 
   @override
-  String get allCardsCaughtUp => 'Tất cả thẻ đã được ôn tập xong! Làm tốt lắm.';
+  String get allCardsCaughtUp =>
+      'Táº¥t cáº£ tháº» Ä‘Ã£ Ä‘Æ°á»£c Ã´n táº­p xong! LÃ m tá»‘t láº¯m.';
 
   @override
-  String get latestDiscoveries => 'Khám phá mới nhất';
+  String get latestDiscoveries => 'KhÃ¡m phÃ¡ má»›i nháº¥t';
 
   @override
-  String get noCharactersInLexicon => 'Chưa có chữ Hán nào trong từ vựng.';
+  String get noCharactersInLexicon =>
+      'ChÆ°a cÃ³ chá»¯ HÃ¡n nÃ o trong tá»« vá»±ng.';
 
   @override
-  String get yourBookshelf => 'Giá sách của bạn';
+  String get yourBookshelf => 'GiÃ¡ sÃ¡ch cá»§a báº¡n';
 
   @override
-  String get text_1782026184579 => '字';
+  String get text_1782026184579 => 'å­—';
 
   @override
-  String get searchYourDictionary => 'Tìm kiếm từ điển của bạn...';
+  String get searchYourDictionary => 'TÃ¬m kiáº¿m tá»« Ä‘iá»ƒn cá»§a báº¡n...';
 
   @override
-  String get saveCard => 'Lưu thẻ';
+  String get saveCard => 'LÆ°u tháº»';
 
   @override
-  String get noCharactersFound => 'Không tìm thấy chữ Hán nào.';
+  String get noCharactersFound => 'KhÃ´ng tÃ¬m tháº¥y chá»¯ HÃ¡n nÃ o.';
 
   @override
-  String get radicalsIndex => 'Chỉ mục bộ thủ';
+  String get radicalsIndex => 'Chá»‰ má»¥c bá»™ thá»§';
 
   @override
   String get masteringRadicalsIsThe =>
-      'Làm chủ bộ thủ là chìa khóa để mở khóa hàng ngàn chữ Hán. Chọn một bộ thủ để xem tất cả các chữ Hán sử dụng nó.';
+      'LÃ m chá»§ bá»™ thá»§ lÃ  chÃ¬a khÃ³a Ä‘á»ƒ má»Ÿ khÃ³a hÃ ng ngÃ n chá»¯ HÃ¡n. Chá»n má»™t bá»™ thá»§ Ä‘á»ƒ xem táº¥t cáº£ cÃ¡c chá»¯ HÃ¡n sá»­ dá»¥ng nÃ³.';
 
   @override
-  String get noRadicalsFound => 'Không tìm thấy bộ thủ nào.';
+  String get noRadicalsFound => 'KhÃ´ng tÃ¬m tháº¥y bá»™ thá»§ nÃ o.';
 
   @override
-  String get yourDrawing => 'Bản vẽ của bạn';
+  String get yourDrawing => 'Báº£n váº½ cá»§a báº¡n';
 
   @override
-  String get reference => 'Tham khảo';
+  String get reference => 'Tham kháº£o';
 
   @override
-  String get rateYourRecall => 'Đánh giá khả năng gợi nhớ của bạn';
+  String get rateYourRecall =>
+      'ÄÃ¡nh giÃ¡ kháº£ nÄƒng gá»£i nhá»› cá»§a báº¡n';
 
   @override
-  String get contactUs => 'Liên hệ với chúng tôi';
+  String get contactUs => 'LiÃªn há»‡ vá»›i chÃºng tÃ´i';
 
   @override
-  String get reportBugsOrRequest => 'Báo cáo lỗi hoặc yêu cầu tính năng';
+  String get reportBugsOrRequest =>
+      'BÃ¡o cÃ¡o lá»—i hoáº·c yÃªu cáº§u tÃ­nh nÄƒng';
 
   @override
-  String get allDataHasBeen => 'Tất cả dữ liệu đã bị xóa sạch.';
+  String get allDataHasBeen => 'Táº¥t cáº£ dá»¯ liá»‡u Ä‘Ã£ bá»‹ xÃ³a sáº¡ch.';
 
   @override
   String get hanziMasterV100 => 'SinoSpark v1.0.0';
 
   @override
-  String get myProgress => 'Tiến độ của tôi';
+  String get myProgress => 'Tiáº¿n Ä‘á»™ cá»§a tÃ´i';
 
   @override
-  String get overview => 'Tổng quan';
+  String get overview => 'Tá»•ng quan';
 
   @override
-  String get aiStory => 'Câu chuyện AI';
+  String get aiStory => 'CÃ¢u chuyá»‡n AI';
 
   @override
-  String get usingYourDecksVocabulary => 'Sử dụng từ vựng trong bộ thẻ của bạn';
+  String get usingYourDecksVocabulary =>
+      'Sá»­ dá»¥ng tá»« vá»±ng trong bá»™ tháº» cá»§a báº¡n';
 
   @override
-  String get tryAgain => 'Thử lại';
+  String get tryAgain => 'Thá»­ láº¡i';
 
   @override
-  String get translate => 'Dịch';
+  String get translate => 'Dá»‹ch';
 
   @override
-  String get pinyin => 'Bính âm';
+  String get pinyin => 'BÃ­nh Ã¢m';
 
   @override
-  String get fullTranslation => 'Bản dịch đầy đủ';
+  String get fullTranslation => 'Báº£n dá»‹ch Ä‘áº§y Ä‘á»§';
 
   @override
   String get geminiFlashIsStructuring =>
-      'Gemini Flash đang cấu trúc câu chuyện của bạn...';
+      'Gemini Flash Ä‘ang cáº¥u trÃºc cÃ¢u chuyá»‡n cá»§a báº¡n...';
 
   @override
-  String get aiDeckGenerator => 'Trình tạo bộ thẻ AI';
+  String get aiDeckGenerator => 'TrÃ¬nh táº¡o bá»™ tháº» AI';
 
   @override
-  String get whatDoYouWant => 'Bạn muốn học gì?';
+  String get whatDoYouWant => 'Báº¡n muá»‘n há»c gÃ¬?';
 
   @override
-  String get targetDifficulty => 'Độ khó mục tiêu';
+  String get targetDifficulty => 'Äá»™ khÃ³ má»¥c tiÃªu';
 
   @override
-  String get focusArea => 'Lĩnh vực tập trung';
+  String get focusArea => 'LÄ©nh vá»±c táº­p trung';
 
   @override
   String get specificContextOrTone =>
-      'Ngữ cảnh hoặc giọng điệu cụ thể (Tùy chọn)';
+      'Ngá»¯ cáº£nh hoáº·c giá»ng Ä‘iá»‡u cá»¥ thá»ƒ (TÃ¹y chá»n)';
 
   @override
-  String get numberOfCards => 'Số lượng thẻ';
+  String get numberOfCards => 'Sá»‘ lÆ°á»£ng tháº»';
 
   @override
-  String get generateDeck => 'Tạo bộ thẻ';
+  String get generateDeck => 'Táº¡o bá»™ tháº»';
 
   @override
-  String get aiGrammarExplanation => 'Giải thích ngữ pháp AI';
+  String get aiGrammarExplanation => 'Giáº£i thÃ­ch ngá»¯ phÃ¡p AI';
 
   @override
-  String get scholarsDesk => 'Bàn học giả';
+  String get scholarsDesk => 'BÃ n há»c giáº£';
 
   @override
-  String get chooseADeck => 'Chọn một bộ thẻ';
+  String get chooseADeck => 'Chá»n má»™t bá»™ tháº»';
 
   @override
-  String get whereWouldYouLike => 'Bạn muốn lưu chữ Hán này ở đâu?';
+  String get whereWouldYouLike =>
+      'Báº¡n muá»‘n lÆ°u chá»¯ HÃ¡n nÃ y á»Ÿ Ä‘Ã¢u?';
 
   @override
-  String get addToDefaultStudy => 'Thêm vào bộ học mặc định';
+  String get addToDefaultStudy => 'ThÃªm vÃ o bá»™ há»c máº·c Ä‘á»‹nh';
 
   @override
-  String get ifOffItsOnly => 'Nếu tắt, nó chỉ được lưu vào Từ điển toàn cầu';
+  String get ifOffItsOnly =>
+      'Náº¿u táº¯t, nÃ³ chá»‰ Ä‘Æ°á»£c lÆ°u vÃ o Tá»« Ä‘iá»ƒn toÃ n cáº§u';
 
   @override
-  String get saveToLibrary => 'Lưu vào Thư viện';
+  String get saveToLibrary => 'LÆ°u vÃ o ThÆ° viá»‡n';
 
   @override
   String get pleaseEnterValidChinese =>
-      'Vui lòng nhập các ký tự tiếng Trung hợp lệ';
+      'Vui lÃ²ng nháº­p cÃ¡c kÃ½ tá»± tiáº¿ng Trung há»£p lá»‡';
 
   @override
-  String get reviewAiCard => 'Xem lại thẻ AI';
+  String get reviewAiCard => 'Xem láº¡i tháº» AI';
 
   @override
   String get pleaseDoublecheckTheAis =>
-      'Vui lòng kiểm tra kỹ kết quả từ AI bên dưới. Hãy chỉnh sửa bính âm hoặc định nghĩa trước khi lưu vào thư viện vĩnh viễn của bạn.';
+      'Vui lÃ²ng kiá»ƒm tra ká»¹ káº¿t quáº£ tá»« AI bÃªn dÆ°á»›i. HÃ£y chá»‰nh sá»­a bÃ­nh Ã¢m hoáº·c Ä‘á»‹nh nghÄ©a trÆ°á»›c khi lÆ°u vÃ o thÆ° viá»‡n vÄ©nh viá»…n cá»§a báº¡n.';
 
   @override
-  String get alreadyInYourLibrary => 'Đã có trong Thư viện của bạn!';
+  String get alreadyInYourLibrary => 'ÄÃ£ cÃ³ trong ThÆ° viá»‡n cá»§a báº¡n!';
 
   @override
-  String get meaningInContext => 'Ý nghĩa trong ngữ cảnh';
+  String get meaningInContext => 'Ã nghÄ©a trong ngá»¯ cáº£nh';
 
   @override
-  String get explainGrammar => 'Giải thích ngữ pháp';
+  String get explainGrammar => 'Giáº£i thÃ­ch ngá»¯ phÃ¡p';
 
   @override
-  String get addToLibrary => 'Thêm vào Thư viện';
+  String get addToLibrary => 'ThÃªm vÃ o ThÆ° viá»‡n';
 
   @override
   String get masterYourMandarinPronunciation =>
-      'Nắm vững phát âm tiếng Quan Thoại của bạn bằng cách bắt chước giọng bản xứ theo thời gian thực.';
+      'Náº¯m vá»¯ng phÃ¡t Ã¢m tiáº¿ng Quan Thoáº¡i cá»§a báº¡n báº±ng cÃ¡ch báº¯t chÆ°á»›c giá»ng báº£n xá»© theo thá»i gian thá»±c.';
 
   @override
-  String get startSession => 'BẮT ĐẦU PHIÊN';
+  String get startSession => 'Báº®T Äáº¦U PHIÃŠN';
 
   @override
-  String get sessionHistory => 'Lịch sử phiên';
+  String get sessionHistory => 'Lá»‹ch sá»­ phiÃªn';
 
   @override
-  String get noSavedSessions => 'Không có phiên nào được lưu.';
+  String get noSavedSessions => 'KhÃ´ng cÃ³ phiÃªn nÃ o Ä‘Æ°á»£c lÆ°u.';
 
   @override
-  String get aiBreakdown => 'Phân tích AI';
+  String get aiBreakdown => 'PhÃ¢n tÃ­ch AI';
 
   @override
-  String get sessionDetails => 'Chi tiết phiên';
+  String get sessionDetails => 'Chi tiáº¿t phiÃªn';
 
   @override
-  String get partner => 'Đối tác (中文)';
+  String get partner => 'Äá»‘i tÃ¡c (ä¸­æ–‡)';
 
   @override
-  String get youEnglish => 'Bạn (Tiếng Anh)';
+  String get youEnglish => 'Báº¡n (Tiáº¿ng Anh)';
 
   @override
-  String get noTranscriptToSave => 'Không có bản ghi để lưu!';
+  String get noTranscriptToSave => 'KhÃ´ng cÃ³ báº£n ghi Ä‘á»ƒ lÆ°u!';
 
   @override
-  String get sessionSaved => 'Phiên đã được lưu!';
+  String get sessionSaved => 'PhiÃªn Ä‘Ã£ Ä‘Æ°á»£c lÆ°u!';
 
   @override
   String get realtimeBidirectionalTranslationSpeak =>
-      'Dịch song ngữ thời gian thực. Nói tiếng Anh hoặc tiếng Quan Thoại, và nó sẽ dịch ngay lập tức cho bạn và đối tác của bạn.';
+      'Dá»‹ch song ngá»¯ thá»i gian thá»±c. NÃ³i tiáº¿ng Anh hoáº·c tiáº¿ng Quan Thoáº¡i, vÃ  nÃ³ sáº½ dá»‹ch ngay láº­p tá»©c cho báº¡n vÃ  Ä‘á»‘i tÃ¡c cá»§a báº¡n.';
 
   @override
-  String get text_1782026184665 => 'Đang ghi âm';
+  String get text_1782026184665 => 'Äang ghi Ã¢m';
 
   @override
-  String get recording => 'Đang ghi âm';
+  String get recording => 'Äang ghi Ã¢m';
 
   @override
   String get yourSilentCompanionListen =>
-      'Người bạn đồng hành thầm lặng của bạn. Lắng nghe tiếng Quan Thoại và nghe bản dịch tiếng Anh ngay lập tức.';
+      'NgÆ°á»i báº¡n Ä‘á»“ng hÃ nh tháº§m láº·ng cá»§a báº¡n. Láº¯ng nghe tiáº¿ng Quan Thoáº¡i vÃ  nghe báº£n dá»‹ch tiáº¿ng Anh ngay láº­p tá»©c.';
 
   @override
-  String get startListening => 'BẮT ĐẦU LẮNG NGHE';
+  String get startListening => 'Báº®T Äáº¦U Láº®NG NGHE';
 
   @override
-  String get skip => 'Bỏ qua';
+  String get skip => 'Bá» qua';
 
   @override
-  String get independentStars => 'NGÔI SAO ĐỘC LẬP';
+  String get independentStars => 'NGÃ”I SAO Äá»˜C Láº¬P';
 
   @override
   String get notEveryCharacterHas =>
-      'Không phải mọi chữ Hán đều có bộ thủ gốc. Một số là tượng hình độc đáo hoặc đứng độc lập.';
+      'KhÃ´ng pháº£i má»i chá»¯ HÃ¡n Ä‘á»u cÃ³ bá»™ thá»§ gá»‘c. Má»™t sá»‘ lÃ  tÆ°á»£ng hÃ¬nh Ä‘á»™c Ä‘Ã¡o hoáº·c Ä‘á»©ng Ä‘á»™c láº­p.';
 
   @override
   String get onTheMapWe =>
-      'Trên bản đồ, chúng tôi nhóm các chữ Hán độc lập này thành CÁC CHÒM SAO (✨).';
+      'TrÃªn báº£n Ä‘á»“, chÃºng tÃ´i nhÃ³m cÃ¡c chá»¯ HÃ¡n Ä‘á»™c láº­p nÃ y thÃ nh CÃC CHÃ’M SAO (âœ¨).';
 
   @override
-  String get iUnderstand => 'TÔI HIỂU';
+  String get iUnderstand => 'TÃ”I HIá»‚U';
 
   @override
-  String get whatAreRadicals => 'BỘ THỦ LÀ GÌ?';
+  String get whatAreRadicals => 'Bá»˜ THá»¦ LÃ€ GÃŒ?';
 
   @override
   String get hanziAreBuiltFrom =>
-      'Chữ Hán được xây dựng từ các khối xây dựng gọi là BỘ THỦ.\n\nChúng mang lại cho chữ Hán ý nghĩa hoặc chủ đề cốt lõi của nó.';
+      'Chá»¯ HÃ¡n Ä‘Æ°á»£c xÃ¢y dá»±ng tá»« cÃ¡c khá»‘i xÃ¢y dá»±ng gá»i lÃ  Bá»˜ THá»¦.\n\nChÃºng mang láº¡i cho chá»¯ HÃ¡n Ã½ nghÄ©a hoáº·c chá»§ Ä‘á» cá»‘t lÃµi cá»§a nÃ³.';
 
   @override
-  String get continueText => 'TIẾP TỤC';
+  String get continueText => 'TIáº¾P Tá»¤C';
 
   @override
   String get hanziAreNotJust =>
-      'Chữ Hán không chỉ là chữ cái. Chúng là những bức tranh bị đóng băng trong thời gian.\n\nĐể làm chủ chúng, bạn phải học cách theo dõi dòng chảy của chúng.';
+      'Chá»¯ HÃ¡n khÃ´ng chá»‰ lÃ  chá»¯ cÃ¡i. ChÃºng lÃ  nhá»¯ng bá»©c tranh bá»‹ Ä‘Ã³ng bÄƒng trong thá»i gian.\n\nÄá»ƒ lÃ m chá»§ chÃºng, báº¡n pháº£i há»c cÃ¡ch theo dÃµi dÃ²ng cháº£y cá»§a chÃºng.';
 
   @override
-  String get iAmReady => 'TÔI SẴN SÀNG';
+  String get iAmReady => 'TÃ”I Sáº´N SÃ€NG';
 
   @override
-  String get youAreAScholar => 'BẠN LÀ MỘT HỌC GIẢ';
+  String get youAreAScholar => 'Báº N LÃ€ Má»˜T Há»ŒC GIáº¢';
 
   @override
   String get theGalaxyMapAwaitsnmaster =>
-      'Bản đồ Thiên hà đang chờ đợi.\nLàm chủ các Mặt trời (Bộ thủ) để mở khóa các Hành tinh (Chữ Hán).';
+      'Báº£n Ä‘á»“ ThiÃªn hÃ  Ä‘ang chá» Ä‘á»£i.\nLÃ m chá»§ cÃ¡c Máº·t trá»i (Bá»™ thá»§) Ä‘á»ƒ má»Ÿ khÃ³a cÃ¡c HÃ nh tinh (Chá»¯ HÃ¡n).';
 
   @override
-  String get enterTheScroll => 'ĐI VÀO CUỘN GIẤY';
+  String get enterTheScroll => 'ÄI VÃ€O CUá»˜N GIáº¤Y';
 
   @override
-  String get openingTheOriginScroll => 'Đang mở Cuộn Giấy Khởi Nguyên...';
+  String get openingTheOriginScroll =>
+      'Äang má»Ÿ Cuá»™n Giáº¥y Khá»Ÿi NguyÃªn...';
 
   @override
   String get text_1782026184670 => '+';
 
   @override
-  String get theScholarsEdition => 'Phiên bản Học giả';
+  String get theScholarsEdition => 'PhiÃªn báº£n Há»c giáº£';
 
   @override
   String get weArePreparingThe =>
-      'Chúng tôi đang chuẩn bị ra mắt Phiên bản Học giả.';
+      'ChÃºng tÃ´i Ä‘ang chuáº©n bá»‹ ra máº¯t PhiÃªn báº£n Há»c giáº£.';
 
   @override
-  String get devBypassUnlockNow => 'DEV BỎ QUA: MỞ KHÓA NGAY BÂY GIỜ';
+  String get devBypassUnlockNow => 'DEV Bá»Ž QUA: Má»ž KHÃ“A NGAY BÃ‚Y GIá»œ';
 
   @override
-  String get restorePurchases => 'Khôi phục giao dịch mua';
+  String get restorePurchases => 'KhÃ´i phá»¥c giao dá»‹ch mua';
 
   @override
   String get welcomeScholarTheScroll =>
-      'Chào mừng, Học giả. Cuộn giấy hoàn toàn mở ra cho bạn.';
+      'ChÃ o má»«ng, Há»c giáº£. Cuá»™n giáº¥y hoÃ n toÃ n má»Ÿ ra cho báº¡n.';
 
   @override
   String get purchasesRestoredSuccessfully =>
-      'Đã khôi phục giao dịch mua thành công.';
+      'ÄÃ£ khÃ´i phá»¥c giao dá»‹ch mua thÃ nh cÃ´ng.';
 
   @override
   String get noPreviousPurchasesFound =>
-      'Không tìm thấy giao dịch mua trước đó trên tài khoản này.';
+      'KhÃ´ng tÃ¬m tháº¥y giao dá»‹ch mua trÆ°á»›c Ä‘Ã³ trÃªn tÃ i khoáº£n nÃ y.';
 
   @override
   String get unlockTheFullPotential =>
-      'Mở khóa toàn bộ tiềm năng của hành trình của bạn. Mua một lần, sở hữu vĩnh viễn.';
+      'Má»Ÿ khÃ³a toÃ n bá»™ tiá»m nÄƒng cá»§a hÃ nh trÃ¬nh cá»§a báº¡n. Mua má»™t láº§n, sá»Ÿ há»¯u vÄ©nh viá»…n.';
 
   @override
-  String get universalScanner => 'Máy quét phổ quát';
+  String get universalScanner => 'MÃ¡y quÃ©t phá»• quÃ¡t';
 
   @override
   String get noChineseCharactersFound =>
-      'Không tìm thấy ký tự tiếng Trung nào trong hình ảnh.';
+      'KhÃ´ng tÃ¬m tháº¥y kÃ½ tá»± tiáº¿ng Trung nÃ o trong hÃ¬nh áº£nh.';
 
   @override
-  String get addedNewCharactersTo => 'Đã thêm ký tự mới vào thư viện của bạn!';
+  String get addedNewCharactersTo =>
+      'ÄÃ£ thÃªm kÃ½ tá»± má»›i vÃ o thÆ° viá»‡n cá»§a báº¡n!';
 
   @override
   String get extractingTextAndObjects =>
-      'Đang trích xuất văn bản và đối tượng...';
+      'Äang trÃ­ch xuáº¥t vÄƒn báº£n vÃ  Ä‘á»‘i tÆ°á»£ng...';
 
   @override
   String get scanATextbookSign =>
-      'Quét sách giáo khoa, bảng hiệu hoặc vật thể để trích xuất ký tự tiếng Trung.';
+      'QuÃ©t sÃ¡ch giÃ¡o khoa, báº£ng hiá»‡u hoáº·c váº­t thá»ƒ Ä‘á»ƒ trÃ­ch xuáº¥t kÃ½ tá»± tiáº¿ng Trung.';
 
   @override
-  String get extractedText => 'Văn bản đã trích xuất';
+  String get extractedText => 'VÄƒn báº£n Ä‘Ã£ trÃ­ch xuáº¥t';
 
   @override
-  String get useText => 'Sử dụng văn bản';
+  String get useText => 'Sá»­ dá»¥ng vÄƒn báº£n';
 
   @override
   String get noMatchingDictionaryEntries =>
-      'Không tìm thấy mục từ điển phù hợp.';
+      'KhÃ´ng tÃ¬m tháº¥y má»¥c tá»« Ä‘iá»ƒn phÃ¹ há»£p.';
 
   @override
-  String get quizComplete => 'Hoàn thành bài kiểm tra!';
+  String get quizComplete => 'HoÃ n thÃ nh bÃ i kiá»ƒm tra!';
 
   @override
-  String get returnToCourse => 'Quay lại khóa học';
+  String get returnToCourse => 'Quay láº¡i khÃ³a há»c';
 
   @override
   String get notEnoughCardsFor =>
-      'Không đủ thẻ cho một bài kiểm tra! Cần ít nhất 4 thẻ.';
+      'KhÃ´ng Ä‘á»§ tháº» cho má»™t bÃ i kiá»ƒm tra! Cáº§n Ã­t nháº¥t 4 tháº».';
 
   @override
-  String get creatorMode => 'Chế độ người tạo';
+  String get creatorMode => 'Cháº¿ Ä‘á»™ ngÆ°á»i táº¡o';
 
   @override
   String get noStoriesFoundMatching =>
-      'Không tìm thấy câu chuyện nào phù hợp với tìm kiếm của bạn.';
+      'KhÃ´ng tÃ¬m tháº¥y cÃ¢u chuyá»‡n nÃ o phÃ¹ há»£p vá»›i tÃ¬m kiáº¿m cá»§a báº¡n.';
 
   @override
-  String get discard => 'Hủy bỏ';
+  String get discard => 'Há»§y bá»';
 
   @override
-  String get save => 'Lưu';
+  String get save => 'LÆ°u';
 
   @override
   String get generatingStoryViaDeepseek =>
-      'Đang tạo câu chuyện qua DeepSeek...';
+      'Äang táº¡o cÃ¢u chuyá»‡n qua DeepSeek...';
 
   @override
-  String get storySavedToLibrary => 'Câu chuyện đã được lưu vào Thư viện!';
+  String get storySavedToLibrary =>
+      'CÃ¢u chuyá»‡n Ä‘Ã£ Ä‘Æ°á»£c lÆ°u vÃ o ThÆ° viá»‡n!';
 
   @override
-  String get storyNotFound => 'Không tìm thấy câu chuyện.';
+  String get storyNotFound => 'KhÃ´ng tÃ¬m tháº¥y cÃ¢u chuyá»‡n.';
 
   @override
-  String get targetHskLevel => 'Mức HSK mục tiêu';
+  String get targetHskLevel => 'Má»©c HSK má»¥c tiÃªu';
 
   @override
-  String get wedLoveToHear => 'Chúng tôi rất muốn nghe từ bạn!';
+  String get wedLoveToHear => 'ChÃºng tÃ´i ráº¥t muá»‘n nghe tá»« báº¡n!';
 
   @override
   String get whetherYouveFoundA =>
-      'Cho dù bạn đã tìm thấy lỗi, có yêu cầu tính năng hay chỉ muốn chào, phản hồi của bạn giúp chúng tôi cải thiện SinoSpark.';
+      'Cho dÃ¹ báº¡n Ä‘Ã£ tÃ¬m tháº¥y lá»—i, cÃ³ yÃªu cáº§u tÃ­nh nÄƒng hay chá»‰ muá»‘n chÃ o, pháº£n há»“i cá»§a báº¡n giÃºp chÃºng tÃ´i cáº£i thiá»‡n SinoSpark.';
 
   @override
-  String get pointYourCameraAt => 'Hướng máy ảnh vào các vật thể';
+  String get pointYourCameraAt => 'HÆ°á»›ng mÃ¡y áº£nh vÃ o cÃ¡c váº­t thá»ƒ';
 
   @override
-  String get reviewAddToLibrary => 'Xem lại & Thêm vào Thư viện';
+  String get reviewAddToLibrary => 'Xem láº¡i & ThÃªm vÃ o ThÆ° viá»‡n';
 
   @override
   String hideStrokeGuideStreak(Object streak) {
-    return 'Ẩn hướng dẫn nét bút ở chuỗi: $streak';
+    return 'áº¨n hÆ°á»›ng dáº«n nÃ©t bÃºt á»Ÿ chuá»—i: $streak';
   }
 
   @override
   String inkPoints(Object points) {
-    return '$points điểm Mực';
+    return '$points Ä‘iá»ƒm Má»±c';
   }
 
   @override
@@ -1017,78 +1029,81 @@ class AppLocalizationsVi extends AppLocalizations {
   }
 
   @override
-  String get supportAndFeedback => 'Hỗ trợ & Phản hồi';
+  String get supportAndFeedback => 'Há»— trá»£ & Pháº£n há»“i';
 
   @override
-  String get reportBug => 'Báo cáo lỗi';
+  String get reportBug => 'BÃ¡o cÃ¡o lá»—i';
 
   @override
-  String get suggestFeature => 'Đề xuất tính năng';
+  String get suggestFeature => 'Äá» xuáº¥t tÃ­nh nÄƒng';
 
   @override
-  String get generalFeedback => 'Phản hồi chung';
+  String get generalFeedback => 'Pháº£n há»“i chung';
 
   @override
-  String get pleaseDrawSomethingFirst => 'Vui lòng vẽ gì đó trước';
+  String get pleaseDrawSomethingFirst => 'Vui lÃ²ng váº½ gÃ¬ Ä‘Ã³ trÆ°á»›c';
 
   @override
-  String get drawThisCharacter => 'Vẽ ký tự này:';
+  String get drawThisCharacter => 'Váº½ kÃ½ tá»± nÃ y:';
 
   @override
   String followGuideStroke(Object current, Object total) {
-    return 'Làm theo hướng dẫn màu xanh để vẽ nét $current của $total';
+    return 'LÃ m theo hÆ°á»›ng dáº«n mÃ u xanh Ä‘á»ƒ váº½ nÃ©t $current cá»§a $total';
   }
 
   @override
-  String get skipCurrentStroke => 'Bỏ qua nét hiện tại';
+  String get skipCurrentStroke => 'Bá» qua nÃ©t hiá»‡n táº¡i';
 
   @override
-  String get submitDrawing => 'Gửi bản vẽ';
+  String get submitDrawing => 'Gá»­i báº£n váº½';
 
   @override
   String addedToDeck(Object deckName, Object hanzi) {
-    return 'Đã thêm $hanzi vào $deckName';
+    return 'ÄÃ£ thÃªm $hanzi vÃ o $deckName';
   }
 
   @override
   String removedFromDeck(Object hanzi) {
-    return 'Đã xóa $hanzi khỏi bộ';
+    return 'ÄÃ£ xÃ³a $hanzi khá»i bá»™';
   }
 
   @override
   String skippedNoStrokeData(Object hanzi) {
-    return 'Đã bỏ qua \"$hanzi\" - Không có dữ liệu nét bút cho ký tự AI này.';
+    return 'ÄÃ£ bá» qua \"$hanzi\" - KhÃ´ng cÃ³ dá»¯ liá»‡u nÃ©t bÃºt cho kÃ½ tá»± AI nÃ y.';
   }
 
   @override
-  String get startingSession => 'Đang bắt đầu phiên...';
+  String get startingSession => 'Äang báº¯t Ä‘áº§u phiÃªn...';
 
   @override
-  String get masterBuildingBlocks => 'Nắm vững các khối xây dựng của Hán tự';
+  String get masterBuildingBlocks =>
+      'Náº¯m vá»¯ng cÃ¡c khá»‘i xÃ¢y dá»±ng cá»§a HÃ¡n tá»±';
 
   @override
-  String get totalWords => 'Tổng số từ';
+  String get totalWords => 'Tá»•ng sá»‘ tá»«';
 
   @override
-  String get newInk => 'Mực mới';
+  String get newInk => 'Má»±c má»›i';
 
   @override
-  String get learningStatus => 'Đang học';
+  String get learningStatus => 'Äang há»c';
 
   @override
-  String get masteredStatus => 'Đã thành thạo';
+  String get masteredStatus => 'ÄÃ£ thÃ nh tháº¡o';
 
   @override
-  String get libraryMastery => 'Độ thành thạo thư viện';
+  String get libraryMastery => 'Äá»™ thÃ nh tháº¡o thÆ° viá»‡n';
 
   @override
-  String get accuracyByMode => 'Độ chính xác theo chế độ';
+  String get accuracyByMode => 'Äá»™ chÃ­nh xÃ¡c theo cháº¿ Ä‘á»™';
 
   @override
-  String get upcomingReviews => 'Các bài ôn tập sắp tới (7 ngày tới)';
+  String get upcomingReviews =>
+      'CÃ¡c bÃ i Ã´n táº­p sáº¯p tá»›i (7 ngÃ y tá»›i)';
 
   @override
-  String get culturalReadingRoom => 'Văn hóa Thư phòng (Cultural Reading Room)';
+  String get culturalReadingRoom =>
+      'VÄƒn hÃ³a ThÆ° phÃ²ng (Cultural Reading Room)';
 
   @override
   String storyTitleHsk(Object level, Object title) {
@@ -1096,333 +1111,340 @@ class AppLocalizationsVi extends AppLocalizations {
   }
 
   @override
-  String get pleaseEnterTopic => 'Vui lòng nhập chủ đề';
+  String get pleaseEnterTopic => 'Vui lÃ²ng nháº­p chá»§ Ä‘á»';
 
   @override
   String createdDeckCards(Object count, Object name) {
-    return 'Đã tạo $name với $count thẻ!';
+    return 'ÄÃ£ táº¡o $name vá»›i $count tháº»!';
   }
 
   @override
   String gradeResult(Object grade) {
-    return 'Điểm: $grade';
+    return 'Äiá»ƒm: $grade';
   }
 
   @override
-  String get listeningMode => 'Chế độ Nghe';
+  String get listeningMode => 'Cháº¿ Ä‘á»™ Nghe';
 
   @override
-  String get readingMode => 'Chế độ Đọc';
+  String get readingMode => 'Cháº¿ Ä‘á»™ Äá»c';
 
   @override
-  String get recallMode => 'Chế độ Nhớ lại';
+  String get recallMode => 'Cháº¿ Ä‘á»™ Nhá»› láº¡i';
 
   @override
-  String get speakingMode => 'Chế độ Nói';
+  String get speakingMode => 'Cháº¿ Ä‘á»™ NÃ³i';
 
   @override
-  String get aiMemoryHook => 'Gợi ý AI';
+  String get aiMemoryHook => 'Gá»£i Ã½ AI';
 
   @override
-  String get exampleSentences => 'Câu Ví dụ';
+  String get exampleSentences => 'CÃ¢u VÃ­ dá»¥';
 
   @override
-  String get ghostCharacters => 'Ký tự Ẩn';
+  String get ghostCharacters => 'KÃ½ tá»± áº¨n';
 
   @override
-  String get commonWords => 'Từ thông dụng';
+  String get commonWords => 'Tá»« thÃ´ng dá»¥ng';
 
   @override
-  String get personalNotes => 'Ghi chú Cá nhân';
+  String get personalNotes => 'Ghi chÃº CÃ¡ nhÃ¢n';
 
   @override
   String get addPersonalNotes =>
-      'Thêm ghi nhớ hoặc ghi chú của riêng bạn tại đây...';
+      'ThÃªm ghi nhá»› hoáº·c ghi chÃº cá»§a riÃªng báº¡n táº¡i Ä‘Ã¢y...';
 
   @override
-  String get takePhoto => 'Chụp ảnh';
+  String get takePhoto => 'Chá»¥p áº£nh';
 
   @override
-  String get gallery => 'Thư viện';
+  String get gallery => 'ThÆ° viá»‡n';
 
   @override
-  String get arLens => 'Ống kính AR';
+  String get arLens => 'á»ng kÃ­nh AR';
 
   @override
   String addedCharToLibrary(Object char) {
-    return 'Đã thêm $char vào Thư viện';
+    return 'ÄÃ£ thÃªm $char vÃ o ThÆ° viá»‡n';
   }
 
   @override
-  String get scoreText => 'điểm';
+  String get scoreText => 'Ä‘iá»ƒm';
 
   @override
-  String get searchDictionaryHint => 'Tìm kiếm ký tự, pinyin, hoặc nghĩa...';
+  String get searchDictionaryHint =>
+      'TÃ¬m kiáº¿m kÃ½ tá»±, pinyin, hoáº·c nghÄ©a...';
 
   @override
-  String get searchDeckHint => 'Tìm kiếm ký tự, pinyin...';
+  String get searchDeckHint => 'TÃ¬m kiáº¿m kÃ½ tá»±, pinyin...';
 
   @override
-  String get localRestaurant => 'Nhà hàng địa phương';
+  String get localRestaurant => 'NhÃ  hÃ ng Ä‘á»‹a phÆ°Æ¡ng';
 
   @override
-  String get taxiToAirport => 'Taxi ra sân bay';
+  String get taxiToAirport => 'Taxi ra sÃ¢n bay';
 
   @override
-  String get silkMarketHaggling => 'Mặc cả ở chợ lụa';
+  String get silkMarketHaggling => 'Máº·c cáº£ á»Ÿ chá»£ lá»¥a';
 
   @override
-  String get medicalClinic => 'Phòng khám y tế';
+  String get medicalClinic => 'PhÃ²ng khÃ¡m y táº¿';
 
   @override
-  String get meetingAFriend => 'Gặp gỡ một người bạn';
+  String get meetingAFriend => 'Gáº·p gá»¡ má»™t ngÆ°á»i báº¡n';
 
   @override
-  String get jobInterview => 'Phỏng vấn xin việc';
+  String get jobInterview => 'Phá»ng váº¥n xin viá»‡c';
 
   @override
-  String get searchRadicalsHint => 'Tìm kiếm bộ thủ (ví dụ: Water, 氵)';
+  String get searchRadicalsHint =>
+      'TÃ¬m kiáº¿m bá»™ thá»§ (vÃ­ dá»¥: Water, æ°µ)';
 
   @override
-  String get definition => 'Định nghĩa';
+  String get definition => 'Äá»‹nh nghÄ©a';
 
   @override
-  String get undo => 'HOÀN TÁC';
+  String get undo => 'HOÃ€N TÃC';
 
   @override
   String get hanziMaster => 'SinoSpark';
 
   @override
-  String get unlockForever => 'Mở khóa vĩnh viễn - \$9.99';
+  String get unlockForever => 'Má»Ÿ khÃ³a vÄ©nh viá»…n - \$9.99';
 
   @override
-  String get clear => 'Xóa';
+  String get clear => 'XÃ³a';
 
   @override
-  String get clearChat => 'Xóa đoạn chat';
+  String get clearChat => 'XÃ³a Ä‘oáº¡n chat';
 
   @override
-  String get typeMessage => 'Nhập tin nhắn của bạn...';
+  String get typeMessage => 'Nháº­p tin nháº¯n cá»§a báº¡n...';
 
   @override
   String addedToLibrary(Object hanzi) {
-    return 'Đã thêm \'$hanzi\' vào Thư viện của bạn';
+    return 'ÄÃ£ thÃªm \'$hanzi\' vÃ o ThÆ° viá»‡n cá»§a báº¡n';
   }
 
   @override
-  String get generateNewStory => 'Tạo câu chuyện mới';
+  String get generateNewStory => 'Táº¡o cÃ¢u chuyá»‡n má»›i';
 
   @override
   String failedToGenerateStory(Object error) {
-    return 'Không thể tạo câu chuyện:\\n$error';
+    return 'KhÃ´ng thá»ƒ táº¡o cÃ¢u chuyá»‡n:\\n$error';
   }
 
   @override
-  String get detail => 'Chi tiết';
+  String get detail => 'Chi tiáº¿t';
 
   @override
-  String get scanText => 'Quét văn bản';
+  String get scanText => 'QuÃ©t vÄƒn báº£n';
 
   @override
-  String get createMagic => 'Tạo điều kỳ diệu';
+  String get createMagic => 'Táº¡o Ä‘iá»u ká»³ diá»‡u';
 
   @override
-  String get learning => 'Học tập';
+  String get learning => 'Há»c táº­p';
 
   @override
-  String get upcomingReviews7Days => 'Đánh giá sắp tới (7 ngày tới)';
+  String get upcomingReviews7Days => 'ÄÃ¡nh giÃ¡ sáº¯p tá»›i (7 ngÃ y tá»›i)';
 
   @override
-  String get askFollowUpQuestion => 'Đặt câu hỏi tiếp theo...';
+  String get askFollowUpQuestion => 'Äáº·t cÃ¢u há»i tiáº¿p theo...';
 
   @override
   String get pasteScanToSimplify =>
-      'Dán hoặc quét văn bản tiếng Trung để đơn giản hóa';
+      'DÃ¡n hoáº·c quÃ©t vÄƒn báº£n tiáº¿ng Trung Ä‘á»ƒ Ä‘Æ¡n giáº£n hÃ³a';
 
   @override
   String get searchStoriesHint =>
-      'Tìm kiếm truyện theo tiêu đề hoặc thẻ (ví dụ. thần thoại, du lịch)';
+      'TÃ¬m kiáº¿m truyá»‡n theo tiÃªu Ä‘á» hoáº·c tháº» (vÃ­ dá»¥. tháº§n thoáº¡i, du lá»‹ch)';
 
   @override
-  String get importAll => 'Nhập tất cả';
+  String get importAll => 'Nháº­p táº¥t cáº£';
 
   @override
-  String get ascendAll => 'Thăng cấp tất cả';
+  String get ascendAll => 'ThÄƒng cáº¥p táº¥t cáº£';
 
   @override
-  String get startAscension => 'Bắt đầu thăng tiến';
+  String get startAscension => 'Báº¯t Ä‘áº§u thÄƒng tiáº¿n';
 
   @override
-  String get scenarioLocalRestaurant => 'Nhà hàng địa phương';
+  String get scenarioLocalRestaurant => 'NhÃ  hÃ ng Ä‘á»‹a phÆ°Æ¡ng';
 
   @override
-  String get scenarioLocalRestaurantDesc => 'Thực hành gọi món và xin gợi ý.';
+  String get scenarioLocalRestaurantDesc =>
+      'Thá»±c hÃ nh gá»i mÃ³n vÃ  xin gá»£i Ã½.';
 
   @override
-  String get scenarioTaxiAirport => 'Taxi ra sân bay';
+  String get scenarioTaxiAirport => 'Taxi ra sÃ¢n bay';
 
   @override
   String get scenarioTaxiAirportDesc =>
-      'Cho tài xế biết điểm đến của bạn và thảo luận về giao thông.';
+      'Cho tÃ i xáº¿ biáº¿t Ä‘iá»ƒm Ä‘áº¿n cá»§a báº¡n vÃ  tháº£o luáº­n vá» giao thÃ´ng.';
 
   @override
-  String get scenarioSilkMarket => 'Mặc cả ở chợ lụa';
+  String get scenarioSilkMarket => 'Máº·c cáº£ á»Ÿ chá»£ lá»¥a';
 
   @override
   String get scenarioSilkMarketDesc =>
-      'Cố gắng đạt được mức giá tốt hơn cho một món quà lưu niệm.';
+      'Cá»‘ gáº¯ng Ä‘áº¡t Ä‘Æ°á»£c má»©c giÃ¡ tá»‘t hÆ¡n cho má»™t mÃ³n quÃ  lÆ°u niá»‡m.';
 
   @override
-  String get scenarioMedicalClinic => 'Phòng khám y tế';
+  String get scenarioMedicalClinic => 'PhÃ²ng khÃ¡m y táº¿';
 
   @override
   String get scenarioMedicalClinicDesc =>
-      'Giải thích các triệu chứng của bạn cho một thầy thuốc cổ truyền.';
+      'Giáº£i thÃ­ch cÃ¡c triá»‡u chá»©ng cá»§a báº¡n cho má»™t tháº§y thuá»‘c cá»• truyá»n.';
 
   @override
-  String get scenarioMeetingFriend => 'Gặp gỡ một người bạn';
+  String get scenarioMeetingFriend => 'Gáº·p gá»¡ má»™t ngÆ°á»i báº¡n';
 
   @override
   String get scenarioMeetingFriendDesc =>
-      'Giới thiệu bản thân và trò chuyện xã giao.';
+      'Giá»›i thiá»‡u báº£n thÃ¢n vÃ  trÃ² chuyá»‡n xÃ£ giao.';
 
   @override
-  String get scenarioJobInterview => 'Phỏng vấn xin việc';
+  String get scenarioJobInterview => 'Phá»ng váº¥n xin viá»‡c';
 
   @override
   String get scenarioJobInterviewDesc =>
-      'Ứng tuyển vào một vị trí tại một công ty công nghệ ở Thượng Hải.';
+      'á»¨ng tuyá»ƒn vÃ o má»™t vá»‹ trÃ­ táº¡i má»™t cÃ´ng ty cÃ´ng nghá»‡ á»Ÿ ThÆ°á»£ng Háº£i.';
 
   @override
-  String get createCustomScenario => 'Tạo kịch bản tùy chỉnh';
+  String get createCustomScenario => 'Táº¡o ká»‹ch báº£n tÃ¹y chá»‰nh';
 
   @override
-  String get customScenarioTitleHint => 'Tiêu đề (ví dụ: Tiếp tân đám cưới)';
+  String get customScenarioTitleHint =>
+      'TiÃªu Ä‘á» (vÃ­ dá»¥: Tiáº¿p tÃ¢n Ä‘Ã¡m cÆ°á»›i)';
 
   @override
-  String get customScenarioDescHint => 'Mô tả (Ngữ cảnh)';
+  String get customScenarioDescHint => 'MÃ´ táº£ (Ngá»¯ cáº£nh)';
 
   @override
   String get customScenarioPersonaHint =>
-      'Nhân vật AI (ví dụ: Một đồng nghiệp tò mò)';
+      'NhÃ¢n váº­t AI (vÃ­ dá»¥: Má»™t Ä‘á»“ng nghiá»‡p tÃ² mÃ²)';
 
   @override
-  String get customScenarioDifficulty => 'Độ khó';
+  String get customScenarioDifficulty => 'Äá»™ khÃ³';
 
   @override
-  String get createAction => 'Tạo';
+  String get createAction => 'Táº¡o';
 
   @override
-  String get cancelAction => 'Hủy';
+  String get cancelAction => 'Há»§y';
 
   @override
-  String get mythsAndLegends => 'Thần thoại & Truyền thuyết';
+  String get mythsAndLegends => 'Tháº§n thoáº¡i & Truyá»n thuyáº¿t';
 
   @override
-  String get historyAndCulture => 'Lịch sử & Văn hóa';
+  String get historyAndCulture => 'Lá»‹ch sá»­ & VÄƒn hÃ³a';
 
   @override
-  String get idiomsTitle => 'Thành ngữ (成语)';
+  String get idiomsTitle => 'ThÃ nh ngá»¯ (æˆè¯­)';
 
   @override
-  String get theMonkeyKing => 'Tôn Ngộ Không';
+  String get theMonkeyKing => 'TÃ´n Ngá»™ KhÃ´ng';
 
   @override
-  String get theMonkeyKingDesc => 'Tôn Ngộ Không (Tây Du Ký)';
+  String get theMonkeyKingDesc => 'TÃ´n Ngá»™ KhÃ´ng (TÃ¢y Du KÃ½)';
 
   @override
-  String get huaMulan => 'Hoa Mộc Lan';
+  String get huaMulan => 'Hoa Má»™c Lan';
 
   @override
-  String get huaMulanDesc => 'Hoa Mộc Lan thay cha tòng quân';
+  String get huaMulanDesc => 'Hoa Má»™c Lan thay cha tÃ²ng quÃ¢n';
 
   @override
-  String get confuciusTitle => 'Khổng Tử';
+  String get confuciusTitle => 'Khá»•ng Tá»­';
 
   @override
-  String get confuciusDesc => 'Cuộc đời và lời dạy của Khổng Tử';
+  String get confuciusDesc =>
+      'Cuá»™c Ä‘á»i vÃ  lá»i dáº¡y cá»§a Khá»•ng Tá»­';
 
   @override
-  String get theGreatWall => 'Vạn Lý Trường Thành';
+  String get theGreatWall => 'Váº¡n LÃ½ TrÆ°á»ng ThÃ nh';
 
   @override
-  String get theGreatWallDesc => 'Xây dựng Vạn Lý Trường Thành của Trung Quốc';
+  String get theGreatWallDesc =>
+      'XÃ¢y dá»±ng Váº¡n LÃ½ TrÆ°á»ng ThÃ nh cá»§a Trung Quá»‘c';
 
   @override
-  String get generateTopic => 'Tạo chủ đề';
+  String get generateTopic => 'Táº¡o chá»§ Ä‘á»';
 
   @override
-  String get simplifyText => 'Đơn giản hóa văn bản';
+  String get simplifyText => 'ÄÆ¡n giáº£n hÃ³a vÄƒn báº£n';
 
   @override
-  String get topicHint => 'Chủ đề (ví dụ: Người ngoài hành tinh ở Bắc Kinh)';
+  String get topicHint =>
+      'Chá»§ Ä‘á» (vÃ­ dá»¥: NgÆ°á»i ngoÃ i hÃ nh tinh á»Ÿ Báº¯c Kinh)';
 
   @override
-  String get tagsHint => 'Thẻ (phân tách bằng dấu phẩy, tùy chọn)';
+  String get tagsHint => 'Tháº» (phÃ¢n tÃ¡ch báº±ng dáº¥u pháº©y, tÃ¹y chá»n)';
 
   @override
-  String get speakWithMasterLin => 'Nói chuyện với Sư phụ Lin';
+  String get speakWithMasterLin => 'NÃ³i chuyá»‡n vá»›i SÆ° phá»¥ Lin';
 
   @override
   String get masterLinGreeting =>
-      'Chào mừng, học trò. Mực đã sẵn sàng. Hôm nay chúng ta sẽ xem xét ký tự hoặc cụm từ nào?';
+      'ChÃ o má»«ng, há»c trÃ². Má»±c Ä‘Ã£ sáºµn sÃ ng. HÃ´m nay chÃºng ta sáº½ xem xÃ©t kÃ½ tá»± hoáº·c cá»¥m tá»« nÃ o?';
 
   @override
-  String get typeYourMessage => 'Nhập tin nhắn của bạn...';
+  String get typeYourMessage => 'Nháº­p tin nháº¯n cá»§a báº¡n...';
 
   @override
-  String get theMainLibrary => 'Thư viện chính';
+  String get theMainLibrary => 'ThÆ° viá»‡n chÃ­nh';
 
   @override
-  String get hsk1Foundation => 'HSK 1: Cơ bản';
+  String get hsk1Foundation => 'HSK 1: CÆ¡ báº£n';
 
   @override
-  String get hsk2Elementary => 'HSK 2: Sơ cấp';
+  String get hsk2Elementary => 'HSK 2: SÆ¡ cáº¥p';
 
   @override
-  String get hsk3Intermediate => 'HSK 3: Trung cấp';
+  String get hsk3Intermediate => 'HSK 3: Trung cáº¥p';
 
   @override
-  String get inDeckCheck => 'Trong Bộ Bài ✓';
+  String get inDeckCheck => 'Trong Bá»™ BÃ i âœ“';
 
   @override
-  String get addToDeckPlus => '+ Thêm vào Bộ Bài';
+  String get addToDeckPlus => '+ ThÃªm vÃ o Bá»™ BÃ i';
 
   @override
-  String get openCardArrow => 'Mở Thẻ →';
+  String get openCardArrow => 'Má»Ÿ Tháº» â†’';
 
   @override
-  String get pronunciationPartial => 'Nhấn nhá chưa chuẩn';
+  String get pronunciationPartial => 'Nháº¥n nhÃ¡ chÆ°a chuáº©n';
 
   @override
-  String get pronunciationWrong => 'Chưa đúng';
+  String get pronunciationWrong => 'ChÆ°a Ä‘Ãºng';
 
   @override
-  String get toneExpected => 'Mong đợi';
+  String get toneExpected => 'Mong Ä‘á»£i';
 
   @override
-  String get toneYouSaid => 'Bạn đã nói';
+  String get toneYouSaid => 'Báº¡n Ä‘Ã£ nÃ³i';
 
   @override
-  String get gotIt => 'Đã hiểu!';
+  String get gotIt => 'ÄÃ£ hiá»ƒu!';
 
   @override
   String foundNCharacters(int count) {
-    return 'Tìm thấy $count ký tự';
+    return 'TÃ¬m tháº¥y $count kÃ½ tá»±';
   }
 
   @override
-  String get lookingUpCharacters => 'Đang tra cứu ký tự…';
+  String get lookingUpCharacters => 'Äang tra cá»©u kÃ½ tá»±â€¦';
 
   @override
-  String get practiceAll => 'Luyện tập tất cả';
+  String get practiceAll => 'Luyá»‡n táº­p táº¥t cáº£';
 
   @override
-  String get arLensObjects => 'Đối tượng';
+  String get arLensObjects => 'Äá»‘i tÆ°á»£ng';
 
   @override
-  String get arLensText => 'Văn bản';
+  String get arLensText => 'VÄƒn báº£n';
 
   @override
-  String get arLensDetectedText => 'Văn bản được phát hiện';
+  String get arLensDetectedText => 'VÄƒn báº£n Ä‘Æ°á»£c phÃ¡t hiá»‡n';
 }

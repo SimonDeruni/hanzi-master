@@ -5,6 +5,8 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:hanzi_master/features/media/domain/models/daily_media_item.dart';
 import 'package:hanzi_master/features/media/data/repositories/daily_discovery_repository.dart';
+import 'package:hanzi_master/features/media/data/repositories/show_repository.dart';
+import 'package:hanzi_master/core/services/api_key_pool.dart';
 
 part 'daily_discovery_provider.g.dart';
 
@@ -15,7 +17,7 @@ class DailyDiscovery extends _$DailyDiscovery {
     final prefs = await SharedPreferences.getInstance();
     final now = DateTime.now();
     final todayString = "${now.year}-${now.month}-${now.day}";
-    const cacheVersion = "v3"; // Bump to bust the cache
+    const cacheVersion = "v4"; // Bump to bust the cache
 
     final cacheDate = prefs.getString('daily_discovery_cache_date');
     final cacheData = prefs.getString('daily_discovery_cache_data');
@@ -30,7 +32,8 @@ class DailyDiscovery extends _$DailyDiscovery {
       }
     }
 
-    final repo = DailyDiscoveryRepository();
+    final apiKey = ref.watch(apiKeyPoolProvider).youtubeApiKey;
+    final repo = DailyDiscoveryRepository(apiKey: apiKey);
 
     // Load shown video IDs from persistent storage
     final shownIds = prefs.getStringList('daily_shown_video_ids') ?? [];
@@ -46,23 +49,34 @@ class DailyDiscovery extends _$DailyDiscovery {
       videoItem = result.item;
       newVideoId = result.videoId;
     } catch (e) {
+      // Don't cache fallbacks — return directly so next refresh can try API again
       final fallbacks = List<DailyMediaItem>.from(DailyDiscoveryRepository.fallbackVideos);
       fallbacks.shuffle(Random(todayString.hashCode));
-      videoItem = fallbacks.first;
+      return [fallbacks.first, await _fetchArticle()];
     }
 
     // Persist the new video ID so it won't repeat tomorrow
-    if (newVideoId != null) {
-      final updatedShown = [...shownIds, newVideoId];
-      // Cap the list to prevent unbounded growth; keep the newest 200 entries
-      final trimmed = updatedShown.length > 200 ? updatedShown.sublist(updatedShown.length - 200) : updatedShown;
-      await prefs.setStringList('daily_shown_video_ids', trimmed);
-    }
+    final updatedShown = [...shownIds, newVideoId];
+    final trimmed = updatedShown.length > 200 ? updatedShown.sublist(updatedShown.length - 200) : updatedShown;
+    await prefs.setStringList('daily_shown_video_ids', trimmed);
 
     // Fetch article of the day
-    DailyMediaItem articleItem;
+    final articleItem = await _fetchArticle();
+
+    final results = [videoItem, articleItem];
+
+    // Only cache on success
+    await prefs.setString('daily_discovery_cache_date', todayString);
+    await prefs.setString('daily_discovery_cache_data', jsonEncode(results.map((e) => e.toJson()).toList()));
+    await prefs.setString('daily_discovery_cache_version', cacheVersion);
+
+    return results;
+  }
+
+  Future<DailyMediaItem> _fetchArticle() async {
+    final repo = DailyDiscoveryRepository(apiKey: ref.watch(apiKeyPoolProvider).youtubeApiKey);
     try {
-      articleItem = await repo.getDailyArticle().timeout(
+      return await repo.getDailyArticle().timeout(
         const Duration(seconds: 4),
         onTimeout: () => DailyMediaItem(
           title: "BBC 中文网",
@@ -72,8 +86,8 @@ class DailyDiscovery extends _$DailyDiscovery {
           tag: "2 MIN CULTURAL CONTEXT",
         ),
       );
-    } catch (e) {
-      articleItem = DailyMediaItem(
+    } catch (_) {
+      return DailyMediaItem(
         title: "BBC 中文网",
         subtitle: "Current Events in Simplified Chinese",
         url: "https://www.bbc.com/zhongwen/simp",
@@ -81,16 +95,8 @@ class DailyDiscovery extends _$DailyDiscovery {
         tag: "2 MIN CULTURAL CONTEXT",
       );
     }
-
-    final results = [videoItem, articleItem];
-
-    // Save to cache
-    await prefs.setString('daily_discovery_cache_date', todayString);
-    await prefs.setString('daily_discovery_cache_data', jsonEncode(results.map((e) => e.toJson()).toList()));
-    await prefs.setString('daily_discovery_cache_version', cacheVersion);
-
-    return results;
   }
+
 }
 
 final completedDailyMediaProvider = StateNotifierProvider<CompletedDailyMediaNotifier, List<String>>((ref) {
@@ -126,3 +132,10 @@ class CompletedDailyMediaNotifier extends StateNotifier<List<String>> {
     }
   }
 }
+
+/// Provider that fetches the daily show recommendation.
+/// Uses date-seeded deterministic selection so all users see the same show each day.
+final dailyShowProvider = FutureProvider<Show?>((ref) async {
+  final repo = ref.read(showRepositoryProvider);
+  return repo.getDailyShow();
+});

@@ -45,19 +45,19 @@ class AppLocalizationsDe extends AppLocalizations {
   String get searchHanziOrPinyin => 'Suchen...';
 
   @override
-  String get dailyReview => 'Tägliche Übung';
+  String get dailyReview => 'TÃ¤gliche Ãœbung';
 
   @override
   String get upcomingForecast => 'Vorschau';
 
   @override
-  String get laterToday => 'Später';
+  String get laterToday => 'SpÃ¤ter';
 
   @override
   String get tomorrow => 'Morgen';
 
   @override
-  String get next7Days => 'Nächste 7 Tage';
+  String get next7Days => 'NÃ¤chste 7 Tage';
 
   @override
   String get theScholarWay => 'Der Weg des Gelehrten';
@@ -72,7 +72,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get darkMode => 'Dunkler Modus';
 
   @override
-  String get darkModeDesc => 'Angenehm für die Augen';
+  String get darkModeDesc => 'Angenehm fÃ¼r die Augen';
 
   @override
   String get voiceSpeed => 'Stimmgeschwindigkeit';
@@ -96,7 +96,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get readingRoom => 'Lesesaal';
 
   @override
-  String get shadowingStudio => 'Übungsstudio';
+  String get shadowingStudio => 'Ãœbungsstudio';
 
   @override
   String get errorPrefix => 'Fehler: ';
@@ -105,19 +105,19 @@ class AppLocalizationsDe extends AppLocalizations {
   String get initializingLibrary => 'Initialisiere...';
 
   @override
-  String get unlockCharactersToQuiz => 'Schalte 4 Zeichen frei für ein Quiz!';
+  String get unlockCharactersToQuiz => 'Schalte 4 Zeichen frei fÃ¼r ein Quiz!';
 
   @override
   String get practiceQuiz => 'QUIZ';
 
   @override
-  String get curriculumPaths => 'LEHRPLÄNE';
+  String get curriculumPaths => 'LEHRPLÃ„NE';
 
   @override
-  String get noDecksFound => 'Keine Decks. Füge welche hinzu!';
+  String get noDecksFound => 'Keine Decks. FÃ¼ge welche hinzu!';
 
   @override
-  String get addCardsFirst => 'Füge zuerst Karten hinzu!';
+  String get addCardsFirst => 'FÃ¼ge zuerst Karten hinzu!';
 
   @override
   String get aiDraftingPath => 'Die KI erstellt deinen Pfad...';
@@ -132,7 +132,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get brushingCurriculum => 'Erstelle Pfad...';
 
   @override
-  String get warmUp => 'AUFWÄRMEN';
+  String get warmUp => 'AUFWÃ„RMEN';
 
   @override
   String get lessonComplete => 'Lektion Beendet! +10 Tintenpunkte';
@@ -147,7 +147,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get step2Forge => 'SCHRITT 2: SCHMIEDE';
 
   @override
-  String get chooseEssence => 'Wähle die Essenz';
+  String get chooseEssence => 'WÃ¤hle die Essenz';
 
   @override
   String get wrongEssence => 'Falsch! Versuche es erneut.';
@@ -204,7 +204,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get divingInto => 'Eintauchen...';
 
   @override
-  String get keyRadicals => 'SCHLÜSSELRADIKALE';
+  String get keyRadicals => 'SCHLÃœSSELRADIKALE';
 
   @override
   String get noRadicalData => 'Keine Daten.';
@@ -216,7 +216,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get startLearning => 'STARTEN';
 
   @override
-  String get selectPersona => 'Persona wählen';
+  String get selectPersona => 'Persona wÃ¤hlen';
 
   @override
   String get customPersona => 'Eigene Persona';
@@ -225,7 +225,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get geminiLiveCall => 'LIVE-ANRUF';
 
   @override
-  String get returnToMenu => 'Zurück';
+  String get returnToMenu => 'ZurÃ¼ck';
 
   @override
   String get strokeAnalysis => 'Stroke Analysis';
@@ -315,9 +315,6 @@ class AppLocalizationsDe extends AppLocalizations {
   String get haptics => 'Haptics';
 
   @override
-  String get hapticsDesc => 'Haptics Desc';
-
-  @override
   String get displayAndContent => 'Display And Content';
 
   @override
@@ -387,7 +384,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get completelyForgot => 'Komplett vergessen';
 
   @override
-  String get gotItWithDifficulty => 'Mit Mühe erinnert';
+  String get gotItWithDifficulty => 'Mit MÃ¼he erinnert';
 
   @override
   String get recalledCorrectly => 'Richtig erinnert';
@@ -396,7 +393,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get perfectRecall => 'Perfekte Erinnerung';
 
   @override
-  String get practiceWriting => 'Schreiben üben';
+  String get practiceWriting => 'Schreiben Ã¼ben';
 
   @override
   String get hideScratchpad => 'Notizblock ausblenden';
@@ -415,13 +412,13 @@ class AppLocalizationsDe extends AppLocalizations {
   String get botchedIt => 'Verpatzt';
 
   @override
-  String get struggledWithTones => 'Probleme mit Tönen';
+  String get struggledWithTones => 'Probleme mit TÃ¶nen';
 
   @override
   String get acceptable => 'Akzeptabel';
 
   @override
-  String get perfectlyNatural => 'Völlig natürlich';
+  String get perfectlyNatural => 'VÃ¶llig natÃ¼rlich';
 
   @override
   String get sessionComplete => 'Lektion beendet!';
@@ -436,7 +433,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get correct => 'Richtig';
 
   @override
-  String get backToLibrary => 'Zurück zur Bibliothek';
+  String get backToLibrary => 'ZurÃ¼ck zur Bibliothek';
 
   @override
   String get revealAnswer => 'Antwort aufdecken';
@@ -454,7 +451,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get shadowing => 'Shadowing';
 
   @override
-  String get liveTranslation => 'Live-Übersetzung';
+  String get liveTranslation => 'Live-Ãœbersetzung';
 
   @override
   String get scholarsLibrary => 'Die Bibliothek des Gelehrten';
@@ -467,7 +464,7 @@ class AppLocalizationsDe extends AppLocalizations {
       'Suche nach Pinyin, Hanzi oder Englisch...';
 
   @override
-  String get liveTranslate => 'Live übersetzen';
+  String get liveTranslate => 'Live Ã¼bersetzen';
 
   @override
   String get travelInterpreter => 'Reise-Dolmetscher';
@@ -477,11 +474,11 @@ class AppLocalizationsDe extends AppLocalizations {
       'Echtzeit-Splitscreen-Unterhaltung mit einem Muttersprachler. Beseitigt Sprachbarrieren sofort.';
 
   @override
-  String get whisperEarpiece => 'Flüster-Ohrhörer';
+  String get whisperEarpiece => 'FlÃ¼ster-OhrhÃ¶rer';
 
   @override
   String get listenToChineseAudio =>
-      'Hören Sie chinesische Audioinhalte und erhalten Sie englische Echtzeit-Untertitel direkt auf Ihrem Bildschirm.';
+      'HÃ¶ren Sie chinesische Audioinhalte und erhalten Sie englische Echtzeit-Untertitel direkt auf Ihrem Bildschirm.';
 
   @override
   String get dashboardTitle => 'Dashboard';
@@ -490,7 +487,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get yourMindIsClear => 'Ihr Geist ist klar.';
 
   @override
-  String get noReviewsDueToday => 'Heute keine Wiederholungen fällig.';
+  String get noReviewsDueToday => 'Heute keine Wiederholungen fÃ¤llig.';
 
   @override
   String get done => 'Fertig';
@@ -517,14 +514,14 @@ class AppLocalizationsDe extends AppLocalizations {
   String get generalVocabulary => 'Allgemeiner Wortschatz';
 
   @override
-  String get cardsRequireAttention => 'Karten benötigen Aufmerksamkeit.';
+  String get cardsRequireAttention => 'Karten benÃ¶tigen Aufmerksamkeit.';
 
   @override
   String get begin => 'Starten';
 
   @override
   String get poweredByAi =>
-      'Angetrieben von fortschrittlicher KI. Nahtlose Echtzeitübersetzung für jedes Szenario.';
+      'Angetrieben von fortschrittlicher KI. Nahtlose EchtzeitÃ¼bersetzung fÃ¼r jedes Szenario.';
 
   @override
   String get downloadingModel => 'Lade Modell herunter...';
@@ -565,7 +562,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get selectAScenarioTo =>
-      'Wählen Sie ein Szenario, um Ihr gesprochenes Mandarin zu üben. Der Gelehrte bewertet Ihre Töne und Klarheit.';
+      'WÃ¤hlen Sie ein Szenario, um Ihr gesprochenes Mandarin zu Ã¼ben. Der Gelehrte bewertet Ihre TÃ¶ne und Klarheit.';
 
   @override
   String get create => 'Erstellen';
@@ -580,10 +577,10 @@ class AppLocalizationsDe extends AppLocalizations {
   String get scholarsVerdict => 'URTEIL DES GELEHRTEN';
 
   @override
-  String get completeReview => 'Überprüfung abschließen';
+  String get completeReview => 'ÃœberprÃ¼fung abschlieÃŸen';
 
   @override
-  String get conversationReview => 'GESPRÄCHSÜBERPRÜFUNG';
+  String get conversationReview => 'GESPRÃ„CHSÃœBERPRÃœFUNG';
 
   @override
   String get linguisticAnalysis => 'Linguistische Analyse';
@@ -598,10 +595,10 @@ class AppLocalizationsDe extends AppLocalizations {
   String get askTutor => 'Tutor fragen';
 
   @override
-  String get addToStudyDeck => 'Zum Lernstapel hinzufügen';
+  String get addToStudyDeck => 'Zum Lernstapel hinzufÃ¼gen';
 
   @override
-  String get startPractice => 'ÜBUNG STARTEN';
+  String get startPractice => 'ÃœBUNG STARTEN';
 
   @override
   String get noOtherHsk1 =>
@@ -609,13 +606,13 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get couldNotLoadAi =>
-      'Konnte KI-Kontext nicht laden. (Ratenlimit oder Netzwerkfehler)\nVersuchen Sie es später erneut, indem Sie die Aktualisieren-Schaltfläche unten drücken.';
+      'Konnte KI-Kontext nicht laden. (Ratenlimit oder Netzwerkfehler)\nVersuchen Sie es spÃ¤ter erneut, indem Sie die Aktualisieren-SchaltflÃ¤che unten drÃ¼cken.';
 
   @override
-  String get noAvailableCardsFound => 'Keine verfügbaren Karten gefunden.';
+  String get noAvailableCardsFound => 'Keine verfÃ¼gbaren Karten gefunden.';
 
   @override
-  String get addCards => 'Karten hinzufügen';
+  String get addCards => 'Karten hinzufÃ¼gen';
 
   @override
   String get removeCard => 'Karte entfernen';
@@ -624,7 +621,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get remove => 'Entfernen';
 
   @override
-  String get review => 'Überprüfen';
+  String get review => 'ÃœberprÃ¼fen';
 
   @override
   String get story => 'Geschichte';
@@ -634,14 +631,14 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get tapTheAddCards =>
-      'Tippen Sie auf die Schaltfläche „Karten hinzufügen“!';
+      'Tippen Sie auf die SchaltflÃ¤che â€žKarten hinzufÃ¼genâ€œ!';
 
   @override
   String get noCardsFound => 'Keine Karten gefunden.';
 
   @override
   String get addCardsToSee =>
-      'Fügen Sie Karten hinzu, um Statistiken zu sehen.';
+      'FÃ¼gen Sie Karten hinzu, um Statistiken zu sehen.';
 
   @override
   String get aiGenerated => 'KI-generiert';
@@ -656,13 +653,13 @@ class AppLocalizationsDe extends AppLocalizations {
   String get noCharactersInLexicon => 'Noch keine Zeichen im Lexikon.';
 
   @override
-  String get yourBookshelf => 'Ihr Bücherregal';
+  String get yourBookshelf => 'Ihr BÃ¼cherregal';
 
   @override
   String get text_1782026184579 => 'Wort';
 
   @override
-  String get searchYourDictionary => 'Suchen Sie in Ihrem Wörterbuch...';
+  String get searchYourDictionary => 'Suchen Sie in Ihrem WÃ¶rterbuch...';
 
   @override
   String get saveCard => 'Karte speichern';
@@ -675,7 +672,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get masteringRadicalsIsThe =>
-      'Das Beherrschen von Radikalen ist der Schlüssel, um Tausende von Hanzi zu entschlüsseln. Wählen Sie ein Radikal aus, um alle Zeichen zu sehen, die es verwenden.';
+      'Das Beherrschen von Radikalen ist der SchlÃ¼ssel, um Tausende von Hanzi zu entschlÃ¼sseln. WÃ¤hlen Sie ein Radikal aus, um alle Zeichen zu sehen, die es verwenden.';
 
   @override
   String get noRadicalsFound => 'Keine Radikale gefunden.';
@@ -697,7 +694,7 @@ class AppLocalizationsDe extends AppLocalizations {
       'Melden Sie Fehler oder fordern Sie Funktionen an';
 
   @override
-  String get allDataHasBeen => 'Alle Daten wurden gelöscht.';
+  String get allDataHasBeen => 'Alle Daten wurden gelÃ¶scht.';
 
   @override
   String get hanziMasterV100 => 'SinoSpark v1.0.0';
@@ -706,7 +703,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get myProgress => 'Mein Fortschritt';
 
   @override
-  String get overview => 'Übersicht';
+  String get overview => 'Ãœbersicht';
 
   @override
   String get aiStory => 'KI-Geschichte';
@@ -719,13 +716,13 @@ class AppLocalizationsDe extends AppLocalizations {
   String get tryAgain => 'Erneut versuchen';
 
   @override
-  String get translate => 'Übersetzen';
+  String get translate => 'Ãœbersetzen';
 
   @override
   String get pinyin => 'Pinyin';
 
   @override
-  String get fullTranslation => 'Vollständige Übersetzung';
+  String get fullTranslation => 'VollstÃ¤ndige Ãœbersetzung';
 
   @override
   String get geminiFlashIsStructuring =>
@@ -735,7 +732,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get aiDeckGenerator => 'KI-Deck-Generator';
 
   @override
-  String get whatDoYouWant => 'Was möchten Sie lernen?';
+  String get whatDoYouWant => 'Was mÃ¶chten Sie lernen?';
 
   @override
   String get targetDifficulty => 'Zielschwierigkeit';
@@ -754,37 +751,37 @@ class AppLocalizationsDe extends AppLocalizations {
   String get generateDeck => 'Deck generieren';
 
   @override
-  String get aiGrammarExplanation => 'KI-Grammatikerklärung';
+  String get aiGrammarExplanation => 'KI-GrammatikerklÃ¤rung';
 
   @override
   String get scholarsDesk => 'Schreibtisch des Gelehrten';
 
   @override
-  String get chooseADeck => 'Wählen Sie ein Deck';
+  String get chooseADeck => 'WÃ¤hlen Sie ein Deck';
 
   @override
-  String get whereWouldYouLike => 'Wo möchten Sie dieses Zeichen speichern?';
+  String get whereWouldYouLike => 'Wo mÃ¶chten Sie dieses Zeichen speichern?';
 
   @override
-  String get addToDefaultStudy => 'Zum Standard-Lernstapel hinzufügen';
+  String get addToDefaultStudy => 'Zum Standard-Lernstapel hinzufÃ¼gen';
 
   @override
   String get ifOffItsOnly =>
-      'Wenn ausgeschaltet, wird es nur im globalen Wörterbuch gespeichert';
+      'Wenn ausgeschaltet, wird es nur im globalen WÃ¶rterbuch gespeichert';
 
   @override
   String get saveToLibrary => 'In Bibliothek speichern';
 
   @override
   String get pleaseEnterValidChinese =>
-      'Bitte geben Sie gültige chinesische Zeichen ein';
+      'Bitte geben Sie gÃ¼ltige chinesische Zeichen ein';
 
   @override
-  String get reviewAiCard => 'KI-Karte überprüfen';
+  String get reviewAiCard => 'KI-Karte Ã¼berprÃ¼fen';
 
   @override
   String get pleaseDoublecheckTheAis =>
-      'Bitte überprüfen Sie die Ausgabe der KI unten. Sie können das Pinyin oder die Definition gerne anpassen, bevor Sie es in Ihrer permanenten Bibliothek speichern.';
+      'Bitte Ã¼berprÃ¼fen Sie die Ausgabe der KI unten. Sie kÃ¶nnen das Pinyin oder die Definition gerne anpassen, bevor Sie es in Ihrer permanenten Bibliothek speichern.';
 
   @override
   String get alreadyInYourLibrary => 'Bereits in Ihrer Bibliothek!';
@@ -793,10 +790,10 @@ class AppLocalizationsDe extends AppLocalizations {
   String get meaningInContext => 'Bedeutung im Kontext';
 
   @override
-  String get explainGrammar => 'Grammatik erklären';
+  String get explainGrammar => 'Grammatik erklÃ¤ren';
 
   @override
-  String get addToLibrary => 'Zur Bibliothek hinzufügen';
+  String get addToLibrary => 'Zur Bibliothek hinzufÃ¼gen';
 
   @override
   String get masterYourMandarinPronunciation =>
@@ -818,7 +815,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get sessionDetails => 'Sitzungsdetails';
 
   @override
-  String get partner => 'Partner (中文)';
+  String get partner => 'Partner (ä¸­æ–‡)';
 
   @override
   String get youEnglish => 'Sie (Englisch)';
@@ -831,7 +828,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get realtimeBidirectionalTranslationSpeak =>
-      'Echtzeit-bidirektionale Übersetzung. Sprechen Sie Englisch oder Mandarin, und es wird sofort für Sie und Ihren Partner übersetzt.';
+      'Echtzeit-bidirektionale Ãœbersetzung. Sprechen Sie Englisch oder Mandarin, und es wird sofort fÃ¼r Sie und Ihren Partner Ã¼bersetzt.';
 
   @override
   String get text_1782026184665 => 'Aufnahme';
@@ -841,24 +838,24 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get yourSilentCompanionListen =>
-      'Ihr stiller Begleiter. Hören Sie Mandarin und erhalten Sie sofort die englische Übersetzung.';
+      'Ihr stiller Begleiter. HÃ¶ren Sie Mandarin und erhalten Sie sofort die englische Ãœbersetzung.';
 
   @override
-  String get startListening => 'ZUHÖREN STARTEN';
+  String get startListening => 'ZUHÃ–REN STARTEN';
 
   @override
-  String get skip => 'Überspringen';
+  String get skip => 'Ãœberspringen';
 
   @override
-  String get independentStars => 'UNABHÄNGIGE STERNE';
+  String get independentStars => 'UNABHÃ„NGIGE STERNE';
 
   @override
   String get notEveryCharacterHas =>
-      'Nicht jedes Zeichen hat ein übergeordnetes Radikal. Einige sind einzigartige Piktogramme oder stehen für sich allein.';
+      'Nicht jedes Zeichen hat ein Ã¼bergeordnetes Radikal. Einige sind einzigartige Piktogramme oder stehen fÃ¼r sich allein.';
 
   @override
   String get onTheMapWe =>
-      'Auf der Karte gruppieren wir diese unabhängigen Zeichen in KONSTELLATIONEN (✨).';
+      'Auf der Karte gruppieren wir diese unabhÃ¤ngigen Zeichen in KONSTELLATIONEN (âœ¨).';
 
   @override
   String get iUnderstand => 'ICH VERSTEHE';
@@ -875,7 +872,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get hanziAreNotJust =>
-      'Hanzi sind nicht nur Buchstaben. Sie sind Bilder, die in der Zeit eingefroren sind.\nUm sie zu meistern, müssen Sie lernen, ihren Fluss zu verfolgen.';
+      'Hanzi sind nicht nur Buchstaben. Sie sind Bilder, die in der Zeit eingefroren sind.\nUm sie zu meistern, mÃ¼ssen Sie lernen, ihren Fluss zu verfolgen.';
 
   @override
   String get iAmReady => 'ICH BIN BEREIT';
@@ -891,7 +888,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get enterTheScroll => 'DIE ROLLE BETRETEN';
 
   @override
-  String get openingTheOriginScroll => 'Ursprungsrolle wird geöffnet...';
+  String get openingTheOriginScroll => 'Ursprungsrolle wird geÃ¶ffnet...';
 
   @override
   String get text_1782026184670 => '+';
@@ -901,29 +898,29 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get weArePreparingThe =>
-      'Wir bereiten die Gelehrten-Edition für den Start vor.';
+      'Wir bereiten die Gelehrten-Edition fÃ¼r den Start vor.';
 
   @override
   String get devBypassUnlockNow => 'DEV-UMGEHUNG: JETZT ENTSPERREN';
 
   @override
-  String get restorePurchases => 'Einkäufe wiederherstellen';
+  String get restorePurchases => 'EinkÃ¤ufe wiederherstellen';
 
   @override
   String get welcomeScholarTheScroll =>
-      'Willkommen, Gelehrter. Die Schriftrolle steht Ihnen vollständig offen.';
+      'Willkommen, Gelehrter. Die Schriftrolle steht Ihnen vollstÃ¤ndig offen.';
 
   @override
   String get purchasesRestoredSuccessfully =>
-      'Einkäufe erfolgreich wiederhergestellt.';
+      'EinkÃ¤ufe erfolgreich wiederhergestellt.';
 
   @override
   String get noPreviousPurchasesFound =>
-      'Keine früheren Einkäufe für dieses Konto gefunden.';
+      'Keine frÃ¼heren EinkÃ¤ufe fÃ¼r dieses Konto gefunden.';
 
   @override
   String get unlockTheFullPotential =>
-      'Schalten Sie das volle Potenzial Ihrer Reise frei. Einmaliger Kauf, für immer Ihnen.';
+      'Schalten Sie das volle Potenzial Ihrer Reise frei. Einmaliger Kauf, fÃ¼r immer Ihnen.';
 
   @override
   String get universalScanner => 'Universal-Scanner';
@@ -934,7 +931,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get addedNewCharactersTo =>
-      'Neue Zeichen zu Ihrer Bibliothek hinzugefügt!';
+      'Neue Zeichen zu Ihrer Bibliothek hinzugefÃ¼gt!';
 
   @override
   String get extractingTextAndObjects => 'Text und Objekte extrahieren...';
@@ -951,17 +948,17 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get noMatchingDictionaryEntries =>
-      'Keine passenden Wörterbucheinträge gefunden.';
+      'Keine passenden WÃ¶rterbucheintrÃ¤ge gefunden.';
 
   @override
   String get quizComplete => 'Quiz abgeschlossen!';
 
   @override
-  String get returnToCourse => 'Zurück zum Kurs';
+  String get returnToCourse => 'ZurÃ¼ck zum Kurs';
 
   @override
   String get notEnoughCardsFor =>
-      'Nicht genug Karten für ein Quiz! Mindestens 4 benötigt.';
+      'Nicht genug Karten fÃ¼r ein Quiz! Mindestens 4 benÃ¶tigt.';
 
   @override
   String get creatorMode => 'Erstellermodus';
@@ -978,7 +975,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get generatingStoryViaDeepseek =>
-      'Geschichte wird über DeepSeek generiert...';
+      'Geschichte wird Ã¼ber DeepSeek generiert...';
 
   @override
   String get storySavedToLibrary => 'Geschichte in Bibliothek gespeichert!';
@@ -990,21 +987,21 @@ class AppLocalizationsDe extends AppLocalizations {
   String get targetHskLevel => 'Ziel-HSK-Niveau';
 
   @override
-  String get wedLoveToHear => 'Wir würden uns freuen, von Ihnen zu hören!';
+  String get wedLoveToHear => 'Wir wÃ¼rden uns freuen, von Ihnen zu hÃ¶ren!';
 
   @override
   String get whetherYouveFoundA =>
-      'Egal, ob Sie einen Fehler gefunden, eine Funktionsanfrage haben oder einfach nur Hallo sagen möchten, Ihr Feedback hilft uns, SinoSpark zu verbessern.';
+      'Egal, ob Sie einen Fehler gefunden, eine Funktionsanfrage haben oder einfach nur Hallo sagen mÃ¶chten, Ihr Feedback hilft uns, SinoSpark zu verbessern.';
 
   @override
   String get pointYourCameraAt => 'Richten Sie Ihre Kamera auf Objekte';
 
   @override
-  String get reviewAddToLibrary => 'Überprüfen & zur Bibliothek hinzufügen';
+  String get reviewAddToLibrary => 'ÃœberprÃ¼fen & zur Bibliothek hinzufÃ¼gen';
 
   @override
   String hideStrokeGuideStreak(Object streak) {
-    return 'Strichführung ausblenden bei Serie: $streak';
+    return 'StrichfÃ¼hrung ausblenden bei Serie: $streak';
   }
 
   @override
@@ -1042,18 +1039,18 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String followGuideStroke(Object current, Object total) {
-    return 'Folgen Sie der blauen Führung, um Strich $current von $total zu zeichnen';
+    return 'Folgen Sie der blauen FÃ¼hrung, um Strich $current von $total zu zeichnen';
   }
 
   @override
-  String get skipCurrentStroke => 'Aktuellen Strich überspringen';
+  String get skipCurrentStroke => 'Aktuellen Strich Ã¼berspringen';
 
   @override
   String get submitDrawing => 'Zeichnung einreichen';
 
   @override
   String addedToDeck(Object deckName, Object hanzi) {
-    return '$hanzi wurde zu $deckName hinzugefügt';
+    return '$hanzi wurde zu $deckName hinzugefÃ¼gt';
   }
 
   @override
@@ -1063,7 +1060,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String skippedNoStrokeData(Object hanzi) {
-    return '\"$hanzi\" übersprungen – keine Strichdaten für dieses AI-Zeichen verfügbar.';
+    return '\"$hanzi\" Ã¼bersprungen â€“ keine Strichdaten fÃ¼r dieses AI-Zeichen verfÃ¼gbar.';
   }
 
   @override
@@ -1073,7 +1070,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get masterBuildingBlocks => 'Meistern Sie die Bausteine der Hanzi';
 
   @override
-  String get totalWords => 'Gesamtwörter';
+  String get totalWords => 'GesamtwÃ¶rter';
 
   @override
   String get newInk => 'Neue Tinte';
@@ -1091,10 +1088,10 @@ class AppLocalizationsDe extends AppLocalizations {
   String get accuracyByMode => 'Genauigkeit nach Modus';
 
   @override
-  String get upcomingReviews => 'Anstehende Wiederholungen (Nächste 7 Tage)';
+  String get upcomingReviews => 'Anstehende Wiederholungen (NÃ¤chste 7 Tage)';
 
   @override
-  String get culturalReadingRoom => '文化书房 (Kultureller Lesesaal)';
+  String get culturalReadingRoom => 'æ–‡åŒ–ä¹¦æˆ¿ (Kultureller Lesesaal)';
 
   @override
   String storyTitleHsk(Object level, Object title) {
@@ -1115,7 +1112,7 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
-  String get listeningMode => 'Hören';
+  String get listeningMode => 'HÃ¶ren';
 
   @override
   String get readingMode => 'Lesen';
@@ -1127,23 +1124,23 @@ class AppLocalizationsDe extends AppLocalizations {
   String get speakingMode => 'Sprechen';
 
   @override
-  String get aiMemoryHook => 'AI-Gedächtnishaken';
+  String get aiMemoryHook => 'AI-GedÃ¤chtnishaken';
 
   @override
-  String get exampleSentences => 'Beispielsätze';
+  String get exampleSentences => 'BeispielsÃ¤tze';
 
   @override
   String get ghostCharacters => 'Geisterzeichen';
 
   @override
-  String get commonWords => 'Häufige Wörter';
+  String get commonWords => 'HÃ¤ufige WÃ¶rter';
 
   @override
-  String get personalNotes => 'Persönliche Notizen';
+  String get personalNotes => 'PersÃ¶nliche Notizen';
 
   @override
   String get addPersonalNotes =>
-      'Fügen Sie hier Ihre eigenen Merkhilfen oder Notizen hinzu...';
+      'FÃ¼gen Sie hier Ihre eigenen Merkhilfen oder Notizen hinzu...';
 
   @override
   String get takePhoto => 'Foto aufnehmen';
@@ -1156,7 +1153,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String addedCharToLibrary(Object char) {
-    return '$char zur Bibliothek hinzugefügt';
+    return '$char zur Bibliothek hinzugefÃ¼gt';
   }
 
   @override
@@ -1184,35 +1181,35 @@ class AppLocalizationsDe extends AppLocalizations {
   String get meetingAFriend => 'Einen Freund treffen';
 
   @override
-  String get jobInterview => 'Vorstellungsgespräch';
+  String get jobInterview => 'VorstellungsgesprÃ¤ch';
 
   @override
-  String get searchRadicalsHint => 'Radikale suchen (z. B. Wasser, 氵)';
+  String get searchRadicalsHint => 'Radikale suchen (z. B. Wasser, æ°µ)';
 
   @override
   String get definition => 'Definition';
 
   @override
-  String get undo => 'Rückgängig';
+  String get undo => 'RÃ¼ckgÃ¤ngig';
 
   @override
   String get hanziMaster => 'SinoSpark';
 
   @override
-  String get unlockForever => 'Für immer freischalten – 9,99 \$';
+  String get unlockForever => 'FÃ¼r immer freischalten â€“ 9,99 \$';
 
   @override
-  String get clear => 'Löschen';
+  String get clear => 'LÃ¶schen';
 
   @override
-  String get clearChat => 'Chat löschen';
+  String get clearChat => 'Chat lÃ¶schen';
 
   @override
   String get typeMessage => 'Nachricht eingeben...';
 
   @override
   String addedToLibrary(Object hanzi) {
-    return '\'$hanzi\' zur Bibliothek hinzugefügt';
+    return '\'$hanzi\' zur Bibliothek hinzugefÃ¼gt';
   }
 
   @override
@@ -1237,18 +1234,18 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get upcomingReviews7Days =>
-      'Bevorstehende Wiederholungen (nächste 7 Tage)';
+      'Bevorstehende Wiederholungen (nÃ¤chste 7 Tage)';
 
   @override
   String get askFollowUpQuestion => 'Frage stellen...';
 
   @override
   String get pasteScanToSimplify =>
-      'Chinesischen Text zum Vereinfachen einfügen oder scannen';
+      'Chinesischen Text zum Vereinfachen einfÃ¼gen oder scannen';
 
   @override
   String get searchStoriesHint =>
-      'Geschichten nach Titel oder Stichwörtern suchen (z.B. Mythologie, Reisen)';
+      'Geschichten nach Titel oder StichwÃ¶rtern suchen (z.B. Mythologie, Reisen)';
 
   @override
   String get importAll => 'Alle importieren';
@@ -1264,7 +1261,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get scenarioLocalRestaurantDesc =>
-      'Üben Sie das Bestellen von Gerichten und das Erfragen von Empfehlungen.';
+      'Ãœben Sie das Bestellen von Gerichten und das Erfragen von Empfehlungen.';
 
   @override
   String get scenarioTaxiAirport => 'Taxi zum Flughafen';
@@ -1278,14 +1275,14 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get scenarioSilkMarketDesc =>
-      'Versuchen Sie, einen besseren Preis für ein Souvenir zu bekommen.';
+      'Versuchen Sie, einen besseren Preis fÃ¼r ein Souvenir zu bekommen.';
 
   @override
   String get scenarioMedicalClinic => 'Medizinische Klinik';
 
   @override
   String get scenarioMedicalClinicDesc =>
-      'Erklären Sie einem traditionellen Arzt Ihre Symptome.';
+      'ErklÃ¤ren Sie einem traditionellen Arzt Ihre Symptome.';
 
   @override
   String get scenarioMeetingFriend => 'Einen Freund treffen';
@@ -1295,11 +1292,11 @@ class AppLocalizationsDe extends AppLocalizations {
       'Stellen Sie sich vor und unterhalten Sie sich.';
 
   @override
-  String get scenarioJobInterview => 'Vorstellungsgespräch';
+  String get scenarioJobInterview => 'VorstellungsgesprÃ¤ch';
 
   @override
   String get scenarioJobInterviewDesc =>
-      'Bewerben Sie sich für eine Stelle bei einem Technologieunternehmen in Shanghai.';
+      'Bewerben Sie sich fÃ¼r eine Stelle bei einem Technologieunternehmen in Shanghai.';
 
   @override
   String get createCustomScenario => 'Eigenes Szenario erstellen';
@@ -1330,10 +1327,10 @@ class AppLocalizationsDe extends AppLocalizations {
   String get historyAndCulture => 'Geschichte und Kultur';
 
   @override
-  String get idiomsTitle => 'Idiome (成语)';
+  String get idiomsTitle => 'Idiome (æˆè¯­)';
 
   @override
-  String get theMonkeyKing => 'Der Affenkönig';
+  String get theMonkeyKing => 'Der AffenkÃ¶nig';
 
   @override
   String get theMonkeyKingDesc => 'Sun Wukong (Die Reise nach Westen)';
@@ -1352,7 +1349,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get confuciusDesc => 'Das Leben und die Lehren des Konfuzius';
 
   @override
-  String get theGreatWall => 'Die Große Mauer';
+  String get theGreatWall => 'Die GroÃŸe Mauer';
 
   @override
   String get theGreatWallDesc => 'Der Bau der Chinesischen Mauer';
@@ -1364,7 +1361,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get simplifyText => 'Text vereinfachen';
 
   @override
-  String get topicHint => 'Thema (z.B. Außerirdische in Peking)';
+  String get topicHint => 'Thema (z.B. AuÃŸerirdische in Peking)';
 
   @override
   String get tagsHint => 'Tags (kommagetrennt, optional)';
@@ -1374,7 +1371,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get masterLinGreeting =>
-      'Grüße, Schüler. Die Tinte ist bereit. Welches Zeichen oder welchen Satz sollen wir heute untersuchen?';
+      'GrÃ¼ÃŸe, SchÃ¼ler. Die Tinte ist bereit. Welches Zeichen oder welchen Satz sollen wir heute untersuchen?';
 
   @override
   String get typeYourMessage => 'Geben Sie Ihre Nachricht ein...';
@@ -1392,13 +1389,13 @@ class AppLocalizationsDe extends AppLocalizations {
   String get hsk3Intermediate => 'HSK 3: Mittelstufe';
 
   @override
-  String get inDeckCheck => 'Im Deck ✓';
+  String get inDeckCheck => 'Im Deck âœ“';
 
   @override
-  String get addToDeckPlus => '+ Zum Deck hinzufügen';
+  String get addToDeckPlus => '+ Zum Deck hinzufÃ¼gen';
 
   @override
-  String get openCardArrow => 'Karte öffnen →';
+  String get openCardArrow => 'Karte Ã¶ffnen â†’';
 
   @override
   String get pronunciationPartial => 'Ungenau';
@@ -1421,10 +1418,10 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
-  String get lookingUpCharacters => 'Zeichen werden gesucht…';
+  String get lookingUpCharacters => 'Zeichen werden gesuchtâ€¦';
 
   @override
-  String get practiceAll => 'Alle üben';
+  String get practiceAll => 'Alle Ã¼ben';
 
   @override
   String get arLensObjects => 'Objekte';
