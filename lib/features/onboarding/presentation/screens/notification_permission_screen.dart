@@ -4,7 +4,7 @@ import 'package:hanzi_master/core/services/notification_service.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
 
-class NotificationPermissionScreen extends ConsumerWidget {
+class NotificationPermissionScreen extends ConsumerStatefulWidget {
   final VoidCallback onComplete;
 
   const NotificationPermissionScreen({
@@ -13,7 +13,14 @@ class NotificationPermissionScreen extends ConsumerWidget {
   });
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<NotificationPermissionScreen> createState() => _NotificationPermissionScreenState();
+}
+
+class _NotificationPermissionScreenState extends ConsumerState<NotificationPermissionScreen> {
+  bool _isRequested = false;
+
+  @override
+  Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
 
@@ -35,10 +42,10 @@ class NotificationPermissionScreen extends ConsumerWidget {
                       color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.black.withValues(alpha: 0.03),
                       shape: BoxShape.circle,
                     ),
-                    child: const Icon(
-                      Icons.notifications_active_rounded,
+                    child: Icon(
+                      _isRequested ? Icons.notifications_active : Icons.notifications_active_rounded,
                       size: 64,
-                      color: Color(0xFFD4C4A8),
+                      color: _isRequested ? Colors.green : const Color(0xFFD4C4A8),
                     ),
                   ),
                 ),
@@ -47,7 +54,7 @@ class NotificationPermissionScreen extends ConsumerWidget {
                 
                 // Title
                 Text(
-                  "Never Miss a Stroke",
+                  _isRequested ? "Notifications Configured" : "Never Miss a Stroke",
                   textAlign: TextAlign.center,
                   style: theme.textTheme.headlineMedium?.copyWith(
                     fontWeight: FontWeight.w900,
@@ -60,7 +67,9 @@ class NotificationPermissionScreen extends ConsumerWidget {
                 
                 // Description
                 Text(
-                  "Turn on notifications to get your Word of the Day and friendly reminders when your flashcards are due for review.",
+                  _isRequested
+                      ? "Notifications have been set up successfully. Click Continue to proceed with your journey."
+                      : "Turn on notifications to get your Word of the Day and friendly reminders when your flashcards are due for review.",
                   textAlign: TextAlign.center,
                   style: theme.textTheme.titleMedium?.copyWith(
                     height: 1.6,
@@ -88,58 +97,92 @@ class NotificationPermissionScreen extends ConsumerWidget {
                 const Spacer(flex: 2),
                 
                 // Action Buttons
-                BouncingButton(
-                  onPressed: () async {
-                    try {
-                      final service = ref.read(notificationServiceProvider);
-                      await service.init();
-                      await service.requestPermissions();
-                      // Schedule default daily drop at 9am
-                      await service.scheduleDailyDrop(9, 0);
-                    } catch (e) {
-                      debugPrint('Error enabling notifications: $e');
-                    } finally {
-                      onComplete();
-                    }
-                  },
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(vertical: 18),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFF1A1A1B),
-                      borderRadius: BorderRadius.circular(16),
-                      boxShadow: [
-                        BoxShadow(
-                          color: const Color(0xFF1A1A1B).withValues(alpha: 0.3),
-                          blurRadius: 12,
-                          offset: const Offset(0, 4),
-                        )
-                      ],
+                if (!_isRequested)
+                  BouncingButton(
+                    onPressed: () async {
+                      try {
+                        final service = ref.read(notificationServiceProvider);
+                        await service.init();
+                        await service.requestPermissions();
+                        // Schedule default daily drop at 9am
+                        await service.scheduleDailyDrop(9, 0);
+                      } catch (e) {
+                        debugPrint('Error enabling notifications: $e');
+                      } finally {
+                        if (mounted) {
+                          setState(() {
+                            _isRequested = true;
+                          });
+                        }
+                      }
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(vertical: 18),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFF1A1A1B),
+                        borderRadius: BorderRadius.circular(16),
+                        boxShadow: [
+                          BoxShadow(
+                            color: const Color(0xFF1A1A1B).withValues(alpha: 0.3),
+                            blurRadius: 12,
+                            offset: const Offset(0, 4),
+                          )
+                        ],
+                      ),
+                      child: const Center(
+                        child: Text(
+                          "Enable Notifications",
+                          style: TextStyle(
+                            color: Color(0xFFFDFCF0),
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
                     ),
-                    child: const Center(
-                      child: Text(
-                        "Enable Notifications",
-                        style: TextStyle(
-                          color: Color(0xFFFDFCF0),
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
+                  )
+                else
+                  BouncingButton(
+                    onPressed: widget.onComplete,
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(vertical: 18),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFF1A1A1B),
+                        borderRadius: BorderRadius.circular(16),
+                        boxShadow: [
+                          BoxShadow(
+                            color: const Color(0xFF1A1A1B).withValues(alpha: 0.3),
+                            blurRadius: 12,
+                            offset: const Offset(0, 4),
+                          )
+                        ],
+                      ),
+                      child: const Center(
+                        child: Text(
+                          "Continue",
+                          style: TextStyle(
+                            color: Color(0xFFFDFCF0),
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
                 
-                const SizedBox(height: 16),
-                
-                TextButton(
-                  onPressed: onComplete,
-                  style: TextButton.styleFrom(
-                    foregroundColor: isDark ? Colors.white60 : Colors.black54,
+                if (!_isRequested) ...[
+                  const SizedBox(height: 16),
+                  TextButton(
+                    onPressed: widget.onComplete,
+                    style: TextButton.styleFrom(
+                      foregroundColor: isDark ? Colors.white60 : Colors.black54,
+                    ),
+                    child: const Text(
+                      "Maybe Later",
+                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                    ),
                   ),
-                  child: const Text(
-                    "Maybe Later",
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-                  ),
-                ),
+                ],
               ],
             ),
           ),
