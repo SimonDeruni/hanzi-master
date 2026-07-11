@@ -438,13 +438,14 @@ You are a Chinese language tutor. A student is looking at these Chinese words th
 
 $wordList
 
-Explain the nuanced differences between these words. Cover:
-1. When to use each one (context, formality, register)
-2. Key differences in meaning or usage
-3. Common collocations or fixed expressions
+Keep the explanation very short and concise. Explain:
+- The slight differences in meaning.
+- The differences in formality and context.
+- How to use each one practically.
 
-Keep your explanation clear and practical for a language learner. Use examples where helpful.
+Avoid long paragraphs. Be practical and direct for a language learner.
 CRITICAL: You MUST write your entire explanation in $targetLanguage.
+CRITICAL: Output ONLY the explanation. Do not introduce yourself, do not greet the user, and do not break character. Do not use LaTeX formatting or math symbols like \$ or \\textbf. Use standard Markdown ONLY.
 ''';
 
     yield* streamOpenRouterText(prompt);

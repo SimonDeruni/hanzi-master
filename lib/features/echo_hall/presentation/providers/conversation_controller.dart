@@ -62,49 +62,22 @@ class ConversationController extends StateNotifier<ConversationState> {
         super(ConversationState());
 
   Future<void> startScenario(ConversationScenario scenario) async {
-    // Clear any previous scenario state to prevent bleed
+    // Atomically wipe ALL previous state before loading the new scenario.
+    // Using the hardcoded initialAiMessage guarantees the greeting always
+    // matches the avatar — no LLM call means no possibility of persona bleed.
     state = ConversationState(
       currentScenario: scenario,
-      messages: [],
-      isProcessing: true,
+      messages: [
+        GradedChatMessage(
+          id: DateTime.now().millisecondsSinceEpoch.toString(),
+          content: scenario.initialAiMessage,
+          role: ChatRole.scholar,
+          timestamp: DateTime.now(),
+        ),
+      ],
+      isProcessing: false,
       error: null,
     );
-
-    try {
-      // Build a hardened prompt that anchors the persona
-      final hardenedPrompt = '${scenario.systemPrompt}\n\nCRITICAL: You are "${scenario.personaName}". Stay in this exact persona. Do not switch characters, introduce yourself differently, or reference other scenarios.';
-      
-      final replyJson = await _echoHallService.getConversationResponse(
-        [], // empty history
-        "$hardenedPrompt\n\nUSER: Please start the conversation according to the scenario. Your first message should be similar to: '${scenario.initialAiMessage}'"
-      );
-
-      final aiMsg = GradedChatMessage(
-        id: DateTime.now().millisecondsSinceEpoch.toString(),
-        content: replyJson['chinese'] ?? scenario.initialAiMessage,
-        pinyin: replyJson['pinyin'],
-        english: replyJson['english'],
-        suggestion: replyJson['suggestion'],
-        role: ChatRole.scholar,
-        timestamp: DateTime.now(),
-      );
-
-      state = state.copyWith(messages: [aiMsg], isProcessing: false);
-    } catch (e) {
-      // Fallback with error so user can retry
-      state = state.copyWith(
-        messages: [
-          GradedChatMessage(
-            id: DateTime.now().millisecondsSinceEpoch.toString(),
-            content: scenario.initialAiMessage,
-            role: ChatRole.scholar,
-            timestamp: DateTime.now(),
-          )
-        ],
-        isProcessing: false,
-        error: "The Scholar needs a moment. Tap Retry to try again.",
-      );
-    }
   }
 
   Future<void> sendMessage(String content) async {

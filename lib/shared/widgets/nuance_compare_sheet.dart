@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:hanzi_master/shared/widgets/global_blurred_bottom_sheet.dart';
+import 'package:hanzi_master/shared/widgets/tappable_hanzi_text.dart';
 
 class NuanceCompareSheet extends ConsumerStatefulWidget {
   final List<Map<String, String>> words;
@@ -342,7 +343,7 @@ class _NuanceCompareSheetState extends ConsumerState<NuanceCompareSheet> {
                         ),
                       ),
                       const SizedBox(height: 16),
-                      Text(
+                      TappableMarkdownHanziText(
                         _streamedText,
                         style: theme.textTheme.bodyMedium?.copyWith(
                           height: 1.6,
@@ -412,7 +413,7 @@ class _NuanceCompareSheetState extends ConsumerState<NuanceCompareSheet> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    TappableMarkdownHanziText(
                       _streamedText,
                       style: theme.textTheme.bodyMedium?.copyWith(
                         height: 1.6,
@@ -440,7 +441,7 @@ class _NuanceCompareSheetState extends ConsumerState<NuanceCompareSheet> {
     // Completed — show full text
     return SingleChildScrollView(
       padding: const EdgeInsets.fromLTRB(20, 8, 20, 16),
-      child: Text(
+      child: TappableMarkdownHanziText(
         _streamedText,
         style: theme.textTheme.bodyMedium?.copyWith(
           height: 1.6,

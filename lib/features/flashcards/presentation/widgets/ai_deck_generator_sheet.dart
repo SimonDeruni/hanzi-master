@@ -61,18 +61,22 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
     final bottomPadding = MediaQuery.of(context).viewInsets.bottom;
 
     return Padding(
-      padding: const EdgeInsets.only(
-        left: 24,
-        right: 24,
+      padding: EdgeInsets.only(
         top: 24,
-        bottom: 24,
+        bottom: bottomPadding,
       ),
-      child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Row(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Flexible(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Row(
               children: [
                 Container(
                   padding: const EdgeInsets.all(12),
@@ -229,11 +233,18 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
               },
             ),
             
-            SizedBox(height: 40),
-            
-            // Generate Button
-            SizedBox(
-              width: double.infinity,
+            SizedBox(height: 16),
+                ],
+              ),
+            ),
+          ),
+          SafeArea(
+            bottom: true,
+            top: false,
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(24, 16, 24, 16),
+              child: SizedBox(
+                width: double.infinity,
               height: 56,
               child: ElevatedButton(
                 onPressed: _isGenerating ? null : () async {
@@ -361,8 +372,9 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
                     ),
               ),
             ),
-          ],
-        ),
+            ),
+          ),
+        ],
       ),
     );
   }
