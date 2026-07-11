@@ -1,4 +1,4 @@
-﻿import 'dart:async';
+import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -205,30 +205,6 @@ class YoutubeRepository {
       }
     }
 
-    // If we have no/few results, populate with top episodes from featured shows so results are never empty
-    if (results.isEmpty) {
-      int count = 0;
-      for (final show in HardcodedShows.data.take(5)) {
-        final channelTitle = show['channelTitle'] as String? ?? '';
-        final episodes = show['episodes'] as List? ?? [];
-        for (final ep in episodes.take(3)) {
-          final epMap = ep as Map<String, dynamic>;
-          results.add(YoutubeVideo(
-            id: epMap['id'] as String? ?? '',
-            title: '${show['title']} - ${epMap['title']}',
-            url: 'https://www.youtube.com/watch?v=${epMap['id']}',
-            duration: null,
-            mediumThumbnailUrl: epMap['thumbnailUrl'] as String? ?? '',
-            highThumbnailUrl: epMap['thumbnailUrl'] as String? ?? '',
-            uploadDate: null,
-            channelTitle: channelTitle,
-          ));
-          count++;
-          if (count >= 15) break;
-        }
-        if (count >= 15) break;
-      }
-    }
 
     debugPrint('[YT Search Fallback] Found ${results.length} local results matching "$query"');
     return results.take(20).toList();
