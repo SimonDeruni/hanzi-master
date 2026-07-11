@@ -10,8 +10,6 @@ import 'package:record/record.dart';
 import 'package:hanzi_master/core/services/api_key_pool.dart';
 import 'package:hive/hive.dart';
 import 'package:uuid/uuid.dart';
-import 'package:flutter_tts/flutter_tts.dart';
-import 'package:hanzi_master/core/services/audio_service.dart';
 import 'package:hanzi_master/features/live_translate/domain/entities/translation_session.dart';
 import 'package:hanzi_master/features/premium/presentation/screens/universal_scanner_screen.dart';
 import 'package:hanzi_master/shared/widgets/info_bulb.dart';
@@ -30,7 +28,6 @@ class TravelInterpreterScreen extends ConsumerStatefulWidget {
 
 class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScreen> with SingleTickerProviderStateMixin {
   final AudioRecorder _audioRecorder = AudioRecorder();
-  final FlutterTts _tts = FlutterTts();
 
   WebSocketChannel? _channel;
   StreamSubscription<Uint8List>? _audioSubscription;
@@ -71,7 +68,6 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
   @override
   void initState() {
     super.initState();
-    _tts.setSpeechRate(0.5); // Normal speed
 
     _pulseController = AnimationController(
       vsync: this,
@@ -79,27 +75,6 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
     )..repeat(reverse: true);
 
     _checkFirstTime();
-  }
-
-  Future<void> _speak(String text, String language) async {
-    try {
-      // Release any active microphone streaming focus before playback
-      if (_recordingSide != null) {
-        await _stopAudioStreaming();
-      }
-    } catch (_) {}
-
-    final langCode = language.toLowerCase().contains('chinese') || language.toLowerCase().contains('mandarin')
-        ? 'zh-CN'
-        : 'en-US';
-
-    try {
-      await _tts.setLanguage(langCode);
-      await _tts.setSpeechRate(0.5);
-      await _tts.speak(text);
-    } catch (e) {
-      debugPrint("TravelInterpreter TTS Error: $e");
-    }
   }
 
   Future<void> _checkFirstTime() async {
@@ -201,13 +176,6 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                 _handleUserTranscript(trans['text'] ?? "", trans['finished'] ?? false);
               }
 
-              // Auto-play translation when AI turn is complete
-              if (content.containsKey('turnComplete') && content['turnComplete'] == true) {
-                if (_messages.isNotEmpty && _messages.last.sideId == 'b') {
-                  final lastMsg = _messages.last;
-                  _speak(lastMsg.text, lastMsg.language);
-                }
-              }
             }
           } catch (e) {
             // Ignore malformed messages from the WebSocket stream
@@ -254,22 +222,25 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
 
   void _handleAiTranscript(String text) {
     if (text.trim().isEmpty) return;
+    final targetSideId = _recordingSide == 'a' ? 'b' : 'a';
+    final targetLanguage = _recordingSide == 'a' ? _sideBLanguage : _sideALanguage;
+
     setState(() {
-      if (_messages.isNotEmpty && _messages.last.sideId == 'b') {
+      if (_messages.isNotEmpty && _messages.last.sideId == targetSideId && !_messages.last.isUser) {
         final last = _messages.last;
         _messages[_messages.length - 1] = TranslationMessage(
           text: last.text + text,
           isUser: false,
           timestamp: last.timestamp,
-          sideId: 'b',
-          language: _sideBLanguage,
+          sideId: targetSideId,
+          language: targetLanguage,
         );
       } else {
         _messages.add(TranslationMessage(
           text: text,
           isUser: false,
-          sideId: 'b',
-          language: _sideBLanguage,
+          sideId: targetSideId,
+          language: targetLanguage,
         ));
       }
     });
@@ -277,22 +248,25 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
 
   void _handleUserTranscript(String text, bool finished) {
     if (text.trim().isEmpty) return;
+    final sourceSideId = _recordingSide ?? 'a';
+    final sourceLanguage = sourceSideId == 'a' ? _sideALanguage : _sideBLanguage;
+
     setState(() {
-      if (_messages.isNotEmpty && _messages.last.sideId == 'a') {
+      if (_messages.isNotEmpty && _messages.last.sideId == sourceSideId && _messages.last.isUser) {
         final last = _messages.last;
         _messages[_messages.length - 1] = TranslationMessage(
           text: text,
           isUser: true,
           timestamp: last.timestamp,
-          sideId: 'a',
-          language: _sideALanguage,
+          sideId: sourceSideId,
+          language: sourceLanguage,
         );
       } else {
         _messages.add(TranslationMessage(
           text: text,
           isUser: true,
-          sideId: 'a',
-          language: _sideALanguage,
+          sideId: sourceSideId,
+          language: sourceLanguage,
         ));
       }
     });
@@ -443,9 +417,6 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
           _isTranslatingText = false;
           _status = _recordingSide != null ? "Listening..." : "Paused";
         });
-        
-        // Auto-play the text-input translation
-        _speak(response, targetLang);
       }
     } catch (e) {
       if (mounted) {
@@ -890,28 +861,13 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                                         ),
                                         border: Border.all(color: isFromSideB ? Colors.blue.withValues(alpha: 0.3) : Colors.grey.withValues(alpha: 0.2)),
                                       ),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          Expanded(
-                                            child: Text(
-                                              msg.text,
-                                              style: TextStyle(
-                                                color: isFromSideB ? Colors.blue.shade200 : Colors.white,
-                                                fontSize: 24,
-                                                fontWeight: FontWeight.w500,
-                                              ),
-                                            ),
-                                          ),
-                                          const SizedBox(width: 12),
-                                          IconButton(
-                                            icon: const Icon(Icons.volume_up, color: Colors.white70, size: 20),
-                                            onPressed: () => _speak(msg.text, msg.language),
-                                            padding: EdgeInsets.zero,
-                                            constraints: const BoxConstraints(),
-                                          ),
-                                        ],
+                                      child: Text(
+                                        msg.text,
+                                        style: TextStyle(
+                                          color: isFromSideB ? Colors.blue.shade200 : Colors.white,
+                                          fontSize: 24,
+                                          fontWeight: FontWeight.w500,
+                                        ),
                                       ),
                                     ),
                                   ],
@@ -1029,30 +985,15 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                                       ),
                                       border: Border.all(color: isFromSideA ? Colors.blue.withValues(alpha: 0.3) : Colors.grey.withValues(alpha: 0.2)),
                                     ),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Expanded(
-                                          child: isFromSideA
-                                            ? Text(
-                                                msg.text,
-                                                style: const TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.w500),
-                                              )
-                                            : TappableMarkdownHanziText(
-                                                msg.text,
-                                                style: const TextStyle(color: Colors.blue, fontSize: 24, fontWeight: FontWeight.w500),
-                                              ),
+                                    child: isFromSideA
+                                      ? Text(
+                                          msg.text,
+                                          style: const TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.w500),
+                                        )
+                                      : TappableMarkdownHanziText(
+                                          msg.text,
+                                          style: const TextStyle(color: Colors.blue, fontSize: 24, fontWeight: FontWeight.w500),
                                         ),
-                                        const SizedBox(width: 12),
-                                        IconButton(
-                                          icon: const Icon(Icons.volume_up, color: Colors.white70, size: 20),
-                                          onPressed: () => _speak(msg.text, msg.language),
-                                          padding: EdgeInsets.zero,
-                                          constraints: const BoxConstraints(),
-                                        ),
-                                      ],
-                                    ),
                                   ),
                                 ],
                               ),
