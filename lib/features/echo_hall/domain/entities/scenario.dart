@@ -6,6 +6,8 @@ class ConversationScenario {
   final String title;
   final String description;
   final String initialAiMessage;
+  final String? initialEnglish;
+  final String? initialPinyin;
   final String systemPrompt;
   final int targetHskLevel;
   final String avatarAssetPath;

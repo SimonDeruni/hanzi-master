@@ -17,5 +17,19 @@ class ApiKeyPool {
   
   String get azureSpeechRegion => dotenv.env['AZURE_SPEECH_REGION'] ?? 'MISSING_REGION';
 
-  String get youtubeApiKey => dotenv.env['YOUTUBE_API_KEY'] ?? 'MISSING_KEY';
+  int _youtubeKeyIndex = 0;
+
+  String get youtubeApiKey {
+    final keys = [
+      dotenv.env['YOUTUBE_API_KEY'],
+      dotenv.env['YOUTUBE_API_KEY_2'],
+      dotenv.env['YOUTUBE_API_KEY_3'],
+    ].where((k) => k != null && k.isNotEmpty).toList();
+
+    if (keys.isEmpty) return 'MISSING_KEY';
+
+    final key = keys[_youtubeKeyIndex % keys.length];
+    _youtubeKeyIndex++;
+    return key!;
+  }
 }
