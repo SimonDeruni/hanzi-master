@@ -21,7 +21,7 @@ class GlobalSliverAppBar extends ConsumerWidget {
     final isDark = theme.brightness == Brightness.dark;
     
     return SliverAppBar(
-      backgroundColor: Colors.transparent,
+      backgroundColor: theme.scaffoldBackgroundColor,
       surfaceTintColor: Colors.transparent,
       elevation: 0,
       pinned: true,

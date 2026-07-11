@@ -26,8 +26,15 @@ class DashboardScreen extends ConsumerWidget {
     final l10n = AppLocalizations.of(context);
     
     // 1. Fetch Flashcard Data
-    final allCards = ref.watch(flashcardControllerProvider).valueOrNull ?? [];
+    final rawCards = ref.watch(flashcardControllerProvider).valueOrNull ?? [];
     final allDecks = ref.watch(deckControllerProvider).valueOrNull ?? [];
+    
+    // Filter out cards that belong to deleted decks to prevent ghost reviews and raw UUID displays
+    final validDeckIds = allDecks.map((d) => d.id).toSet();
+    final allCards = rawCards.where((c) {
+      final deckId = c.deckId;
+      return deckId.isEmpty || deckId == 'default' || validDeckIds.contains(deckId);
+    }).toList();
     
     // 2. Calculate Stats
     final knownCards = allCards.where((c) => c.getStatsForMode(StudyMode.reading).streak > 0).length;
