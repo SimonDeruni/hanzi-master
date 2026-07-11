@@ -165,7 +165,7 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
                     Expanded(
                       child: ListView.builder(
                         controller: _scrollController,
-                        keyboardDismissMode: ScrollViewKeyboardDismissMode.onDrag,
+                        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
                         padding: const EdgeInsets.fromLTRB(16, 24, 16, 100),
                         itemCount: state.messages.length,
                         itemBuilder: (context, index) {
@@ -228,8 +228,9 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
           ],
         ),
       ),
-    );
-  }
+    ),
+  );
+}
 
   final TextEditingController _textController = TextEditingController();
 
@@ -338,23 +339,6 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
     );
   }
 
-  Widget _buildSimulatedWaveform(ThemeData theme) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: List.generate(
-        15,
-        (index) => Container(
-          margin: const EdgeInsets.symmetric(horizontal: 2),
-          width: 4,
-          height: 10 + (index % 4) * 5.0, // pseudo random height
-          decoration: BoxDecoration(
-            color: theme.colorScheme.primary,
-            borderRadius: BorderRadius.circular(2),
-          ),
-        ),
-      ),
-    );
-  }
 
   Widget _buildMessage(GradedChatMessage message, ThemeData theme) {
     final isUser = message.role == ChatRole.user;

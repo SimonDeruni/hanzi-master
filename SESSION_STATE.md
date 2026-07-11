@@ -43,6 +43,7 @@
 - [x] **Task 29: Roleplay Chat — UI Polish**: Fixed keyboard trapping by enabling scroll-to-dismiss and tap-to-dismiss behaviors. Fixed un-clickable "Hide Translation" toggle button by isolating component state properly. Formatted AI numeric pinyin responses using `PinyinUtils` to properly display standard Unicode diacritical marks.
 - [x] **Task 30: Travel Interpreter — Reconnection Loop**: Fixed an infinite WebSocket crash loop caused by invalid `realtimeInput` payload formatting. Implemented pre-flight API token checks and graceful UI degradation that halts runaway reconnects upon absolute failure.
 - [x] **Task 31: Gemini Live Call — Echo & Transcript Polish**: Resolved severe echo and self-interruption loops by enabling OS hardware echo cancellation. Re-enabled invisible AI transcripts by correctly passing `["TEXT", "AUDIO"]` modalities. Formatted AI responses via `TappableMarkdownHanziText` for instant QuickLook access.
+- [x] **Task 32: iOS Build Fix**: Fixed Dart syntax errors (missing parenthesis and invalid argument name) in `conversation_screen.dart` that were crashing the kernel snapshot compiler during iOS archiving.
 #### 🔜 Up Next (Possible)
 - [ ] **Phase 9: Sound FX**: Add subtle "paper scratching" audio during drawing.
 - [ ] **Phase 11: Speech Recognition**: Integrated AI grading for tones and pronunciation.

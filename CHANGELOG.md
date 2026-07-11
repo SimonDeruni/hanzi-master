@@ -41,6 +41,7 @@ All notable changes to this project will be documented in this file.
     - Fixed `SettingsController` constructor malformation causing Gradle build failures.
     - Resolved `invalid_constant` and `const_eval_method_invocation` errors across multiple UI screens caused by `AppLocalizations` lookups inside `const` widgets.
     - Fixed missing `strokePaths` and `modeStats` arguments in `Flashcard` instantiations within `vision_provider.dart`.
+    - Resolved a Dart compilation error causing the iOS build `Target kernel_snapshot_program` to fail by fixing a missing closing parenthesis and incorrect parameter (`keyboardDismissMode`) in `conversation_screen.dart`.
 - **Media Playback**:
     - Fixed silent video bug during YouTube media playback by properly configuring the iframe player's unmute options.
 - **Audio Processing**:
