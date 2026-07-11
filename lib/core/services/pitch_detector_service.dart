@@ -1,10 +1,11 @@
-import 'dart:typed_data';
+import 'package:flutter/foundation.dart';
 import 'package:pitch_detector_dart/pitch_detector.dart';
 
 class PitchDetectorService {
   late PitchDetector _detector;
+  final int _bufferSize;
   
-  PitchDetectorService({int sampleRate = 16000, int bufferSize = 2048}) {
+  PitchDetectorService({int sampleRate = 16000, int bufferSize = 1024}) : _bufferSize = bufferSize {
     _detector = PitchDetector(audioSampleRate: sampleRate.toDouble(), bufferSize: bufferSize);
   }
 
@@ -29,15 +30,34 @@ class PitchDetectorService {
     
     for (int i = 0; i < floats.length; i += chunkSize) {
       final end = (i + chunkSize < floats.length) ? i + chunkSize : floats.length;
-      final chunk = floats.sublist(i, end);
-      if (chunk.length < 512) {
+      var chunk = floats.sublist(i, end);
+      
+      // Skip chunks that are extremely short
+      if (chunk.length < 256) {
         contour.add(null);
         continue;
       }
-      final result = await _detector.getPitchFromFloatBuffer(chunk);
-      if (result.pitched && result.probability > 0.7 && result.pitch > 50.0 && result.pitch < 800.0) {
-        contour.add(result.pitch);
-      } else {
+      
+      // Pad chunk with zeros if it is shorter than the configured detector bufferSize
+      if (chunk.length < _bufferSize) {
+        final padded = List<double>.from(chunk);
+        while (padded.length < _bufferSize) {
+          padded.add(0.0);
+        }
+        chunk = padded;
+      } else if (chunk.length > _bufferSize) {
+        chunk = chunk.sublist(0, _bufferSize);
+      }
+      
+      try {
+        final result = await _detector.getPitchFromFloatBuffer(chunk);
+        if (result.pitched && result.probability > 0.7 && result.pitch > 50.0 && result.pitch < 800.0) {
+          contour.add(result.pitch);
+        } else {
+          contour.add(null);
+        }
+      } catch (e) {
+        debugPrint("[PitchDetector] Warning processing chunk at $i: $e");
         contour.add(null);
       }
     }
