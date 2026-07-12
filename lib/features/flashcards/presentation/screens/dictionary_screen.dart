@@ -527,7 +527,7 @@ class _DictionarySearchTab extends ConsumerWidget {
                   ),
                 ),
                 loading: () => const SliverFillRemaining(child: Center(child: CircularProgressIndicator())),
-                error: (e, s) => SliverFillRemaining(child: Center(child: Padding(padding: const EdgeInsets.all(32), child: Column(mainAxisSize: MainAxisSize.min, children: [const Icon(Icons.library_books_outlined, size: 48, color: Colors.grey), const SizedBox(height: 16), const Text("We ran into trouble loading the library. Please try again.", textAlign: TextAlign.center, style: const TextStyle(color: Colors.grey, fontSize: 14)), const SizedBox(height: 16), ElevatedButton.icon(onPressed: () { ref.invalidate(deckControllerProvider); ref.invalidate(flashcardControllerProvider); }, icon: const Icon(Icons.refresh, size: 16), label: const Text("Retry"))])))),
+                error: (e, s) => SliverFillRemaining(child: Center(child: Padding(padding: const EdgeInsets.all(32), child: Column(mainAxisSize: MainAxisSize.min, children: [Icon(Icons.library_books_outlined, size: 48, color: Colors.grey), SizedBox(height: 16), Text("We ran into trouble loading the library. Please try again.", textAlign: TextAlign.center, style: TextStyle(color: Colors.grey, fontSize: 14)), SizedBox(height: 16), ElevatedButton.icon(onPressed: () { ref.invalidate(deckControllerProvider); ref.invalidate(flashcardControllerProvider); }, icon: Icon(Icons.refresh, size: 16), label: Text("Retry"))])))),
               ),
               const SliverPadding(padding: EdgeInsets.only(bottom: 100)),
             ],
@@ -623,7 +623,7 @@ class _DictionarySearchTab extends ConsumerWidget {
         );
       },
       loading: () => Center(child: CircularProgressIndicator()),
-      error: (err, stack) => Center(child: Padding(padding: const EdgeInsets.all(32), child: Column(mainAxisSize: MainAxisSize.min, children: [const Icon(Icons.error_outline, size: 48, color: Colors.grey), const SizedBox(height: 16), const Text("Unable to load this section. Please try again.", textAlign: TextAlign.center, style: const TextStyle(color: Colors.grey, fontSize: 14)), const SizedBox(height: 16), ElevatedButton.icon(onPressed: () => ref.invalidate(flashcardControllerProvider), icon: const Icon(Icons.refresh, size: 16), label: const Text("Retry"))]))),
+      error: (err, stack) => Center(child: Padding(padding: const EdgeInsets.all(32), child: Column(mainAxisSize: MainAxisSize.min, children: [Icon(Icons.error_outline, size: 48, color: Colors.grey), SizedBox(height: 16), Text("Unable to load this section. Please try again.", textAlign: TextAlign.center, style: TextStyle(color: Colors.grey, fontSize: 14)), SizedBox(height: 16), ElevatedButton.icon(onPressed: () => ref.invalidate(flashcardControllerProvider), icon: Icon(Icons.refresh, size: 16), label: Text("Retry"))]))),
     );
   }
 
