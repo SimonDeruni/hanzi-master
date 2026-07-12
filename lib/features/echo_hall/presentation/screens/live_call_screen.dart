@@ -718,10 +718,6 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
                     ),
                   ],
                 ),
-                const Positioned(
-                  top: 0,
-                  right: 8,
-                  child:                 ),
               ],
             ),
           ),

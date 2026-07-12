@@ -4,7 +4,7 @@ import '../../../../core/models/pronunciation_grade.dart';
 import '../../../../core/services/audio_service.dart';
 import '../../../../core/services/gemini_service.dart';
 import '../../../chat/domain/entities/chat_message.dart';
-import '../../providers/conversation_controller.dart';
+import '../providers/conversation_controller.dart';
 
 class PronunciationReportSheet extends ConsumerStatefulWidget {
   final GradedChatMessage message;

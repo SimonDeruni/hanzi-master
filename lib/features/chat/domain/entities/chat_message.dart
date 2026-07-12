@@ -59,12 +59,13 @@ class GradedChatMessage extends ChatMessage {
   });
 
   GradedChatMessage copyWith({
+    String? content,
     PronunciationGrade? grade,
     String? audioPath,
   }) {
     return GradedChatMessage(
       id: id,
-      content: content,
+      content: content ?? this.content,
       pinyin: pinyin,
       english: english,
       suggestion: suggestion,

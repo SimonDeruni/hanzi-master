@@ -168,7 +168,7 @@ class TomeManagerScreen extends ConsumerWidget {
             );
           },
           loading: () => const Center(child: CircularProgressIndicator(color: Color(0xFF1A1A1B))),
-          error: (err, _) => Center(child: Column(mainAxisSize: MainAxisSize.min, children: [Icon(Icons.library_books_outlined, size: 48, color: Colors.grey), SizedBox(height: 16), Text("Oops, we ran into trouble loading the library. Please try again.", style: TextStyle(color: Colors.grey, fontSize: 14)), SizedBox(height: 8), TextButton(onPressed: () { ref.invalidate(flashcardControllerProvider); ref.invalidate(deckControllerProvider); }, child: Text(l10n?.retry ?? "Retry"))])),
+          error: (err, _) => Center(child: Column(mainAxisSize: MainAxisSize.min, children: [Icon(Icons.library_books_outlined, size: 48, color: Colors.grey), SizedBox(height: 16), Text("Oops, we ran into trouble loading the library. Please try again.", style: TextStyle(color: Colors.grey, fontSize: 14)), SizedBox(height: 8), TextButton(onPressed: () { ref.invalidate(flashcardControllerProvider); ref.invalidate(deckControllerProvider); }, child: Text("Retry"))])),
         ),
       ),
     );
