@@ -2,14 +2,69 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/models/pronunciation_grade.dart';
 import '../../../../core/services/audio_service.dart';
+import '../../../../core/services/gemini_service.dart';
+import '../../../chat/domain/entities/chat_message.dart';
+import '../../providers/conversation_controller.dart';
 
-class PronunciationReportSheet extends ConsumerWidget {
-  final PronunciationGrade grade;
+class PronunciationReportSheet extends ConsumerStatefulWidget {
+  final GradedChatMessage message;
 
-  const PronunciationReportSheet({super.key, required this.grade});
+  const PronunciationReportSheet({super.key, required this.message});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<PronunciationReportSheet> createState() => _PronunciationReportSheetState();
+}
+
+class _PronunciationReportSheetState extends ConsumerState<PronunciationReportSheet> {
+  Map<String, String>? _intendedMeaning;
+  bool _isLoadingIntention = true;
+  bool _isRegrading = false;
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.message.audioPath != null) {
+      _fetchIntention();
+    } else {
+      _isLoadingIntention = false;
+    }
+  }
+
+  Future<void> _fetchIntention() async {
+    final chatHistory = ref.read(conversationControllerProvider.notifier).getChatHistory(widget.message.id);
+    final gemini = ref.read(geminiServiceProvider);
+    
+    // Only query if the transcription is somewhat bad or we really want to guess.
+    // For now we always query as requested.
+    final result = await gemini.guessIntendedMeaning(chatHistory, widget.message.content);
+    if (mounted) {
+      setState(() {
+        _intendedMeaning = result;
+        _isLoadingIntention = false;
+      });
+    }
+  }
+
+  void _handleRegrade() async {
+    if (_intendedMeaning == null) return;
+    setState(() => _isRegrading = true);
+    
+    await ref.read(conversationControllerProvider.notifier).regradeMessage(
+      widget.message.id,
+      _intendedMeaning!['intendedHanzi'] ?? "",
+      _intendedMeaning!['intendedPinyin'] ?? "",
+    );
+    
+    if (mounted) {
+      Navigator.pop(context); 
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final grade = widget.message.grade;
+    if (grade == null) return const SizedBox.shrink();
+
     return Container(
       decoration: const BoxDecoration(
         color: Colors.white,
@@ -72,6 +127,12 @@ class PronunciationReportSheet extends ConsumerWidget {
             ),
           ),
           const SizedBox(height: 24),
+
+          // AI Intention
+          if (widget.message.audioPath != null)
+            _buildAiIntentionBox(),
+
+          const SizedBox(height: 16),
           
           // Good tag
           Row(
@@ -144,6 +205,79 @@ class PronunciationReportSheet extends ConsumerWidget {
               ],
             ),
           ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildAiIntentionBox() {
+    if (_isLoadingIntention) {
+      return const Padding(
+        padding: EdgeInsets.symmetric(vertical: 16.0),
+        child: Center(child: CircularProgressIndicator(strokeWidth: 2)),
+      );
+    }
+
+    if (_intendedMeaning == null || _intendedMeaning!['intendedHanzi'] == widget.message.content) {
+      return const SizedBox.shrink(); // No guess, or it matches perfectly
+    }
+
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.blue.shade50,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: Colors.blue.shade200),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Row(
+            children: [
+              Icon(Icons.psychology, size: 18, color: Colors.blue),
+              SizedBox(width: 8),
+              Text(
+                'Did you mean to say...?',
+                style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+          Text(
+            _intendedMeaning!['intendedHanzi'] ?? "",
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black87),
+          ),
+          Text(
+            _intendedMeaning!['intendedPinyin'] ?? "",
+            style: const TextStyle(fontSize: 14, color: Colors.black54),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            _intendedMeaning!['englishTranslation'] ?? "",
+            style: const TextStyle(fontSize: 14, fontStyle: FontStyle.italic, color: Colors.black54),
+          ),
+          const SizedBox(height: 12),
+          if (_isRegrading)
+            const Center(child: CircularProgressIndicator())
+          else
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                TextButton(
+                  onPressed: () {
+                    setState(() {
+                      _intendedMeaning = null; // Hide it
+                    });
+                  },
+                  child: const Text('No'),
+                ),
+                ElevatedButton(
+                  onPressed: _handleRegrade,
+                  child: const Text('Yes, Re-Grade Me!'),
+                ),
+              ],
+            ),
         ],
       ),
     );

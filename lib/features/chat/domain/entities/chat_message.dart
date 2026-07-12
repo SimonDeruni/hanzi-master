@@ -44,6 +44,7 @@ class ChatMessage {
 
 class GradedChatMessage extends ChatMessage {
   final PronunciationGrade? grade;
+  final String? audioPath;
 
   GradedChatMessage({
     required super.id,
@@ -54,5 +55,23 @@ class GradedChatMessage extends ChatMessage {
     required super.role,
     required super.timestamp,
     this.grade,
+    this.audioPath,
   });
+
+  GradedChatMessage copyWith({
+    PronunciationGrade? grade,
+    String? audioPath,
+  }) {
+    return GradedChatMessage(
+      id: id,
+      content: content,
+      pinyin: pinyin,
+      english: english,
+      suggestion: suggestion,
+      role: role,
+      timestamp: timestamp,
+      grade: grade ?? this.grade,
+      audioPath: audioPath ?? this.audioPath,
+    );
+  }
 }

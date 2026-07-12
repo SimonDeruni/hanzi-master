@@ -399,7 +399,7 @@ Widget _buildScoreBadge(PronunciationGrade grade, ThemeData theme, bool isUser) 
             context: context,
             isScrollControlled: true,
             backgroundColor: Colors.transparent,
-            builder: (context) => PronunciationReportSheet(grade: message.grade!),
+            builder: (context) => PronunciationReportSheet(message: message),
           );
         }
       },

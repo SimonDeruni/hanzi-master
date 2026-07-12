@@ -1621,6 +1621,51 @@ Respond ONLY in valid JSON format like:
     }
   }
 
+  Future<Map<String, String>?> guessIntendedMeaning(String chatHistory, String transcribedText) async {
+    final prompt = '''
+You are a linguistic phonetic expert and Chinese conversational assistant.
+A Chinese language learner was speaking into the microphone, but their accent caused the speech-to-text to misinterpret what they said.
+
+Here is the conversational context up to this point:
+---
+$chatHistory
+---
+
+The speech-to-text transcribed their last utterance as: "$transcribedText"
+
+Your task:
+Guess what the user ACTUALLY meant to say in Chinese. 
+1. It must make logical sense in the context of the conversation.
+2. It is highly likely that what they meant to say sounds phonetically similar (in Pinyin) to the incorrect transcription they got.
+
+Return ONLY a valid JSON object matching this structure:
+{
+  "intendedHanzi": "the corrected Chinese text",
+  "intendedPinyin": "the pinyin for the corrected text",
+  "englishTranslation": "the english meaning of the corrected text"
+}
+''';
+
+    try {
+      final text = await makeOpenRouterCall(
+        model: 'google/gemini-2.5-flash',
+        messages: [{'role': 'user', 'content': prompt}],
+        jsonMode: true,
+      );
+
+      final cleanText = text.replaceAll(RegExp(r'^```json\n', multiLine: true), '').replaceAll(RegExp(r'^```\n?', multiLine: true), '');
+      final Map<String, dynamic> jsonObj = jsonDecode(cleanText);
+      
+      return {
+        "intendedHanzi": jsonObj['intendedHanzi']?.toString() ?? "",
+        "intendedPinyin": jsonObj['intendedPinyin']?.toString() ?? "",
+        "englishTranslation": jsonObj['englishTranslation']?.toString() ?? "",
+      };
+    } catch (e) {
+      return null;
+    }
+  }
+
   Future<List<AiWord>> generatePreFlightVocab(String articleText, List<String> knownWords, String languageCode) async {
     final textContent = articleText.length > 4000 ? articleText.substring(0, 4000) : articleText;
     final knownWordsList = knownWords.join(', ');

@@ -182,6 +182,7 @@ class ConversationController extends StateNotifier<ConversationState> {
           role: ChatRole.user,
           timestamp: DateTime.now(),
           grade: grade,
+          audioPath: path,
         );
         
         state = state.copyWith(messages: [...state.messages, userMsg]);
@@ -225,6 +226,51 @@ class ConversationController extends StateNotifier<ConversationState> {
           error: "Could not process your recording. Please try again.",
         );
       }
+    }
+  }
+
+  String getChatHistory(String messageId) {
+    final index = state.messages.indexWhere((m) => m.id == messageId);
+    if (index == -1) return "";
+    
+    // Take up to 10 previous messages for context
+    final startIndex = (index - 10).clamp(0, index);
+    final historyMessages = state.messages.sublist(startIndex, index);
+    
+    final buffer = StringBuffer();
+    for (var msg in historyMessages) {
+      final roleStr = msg.role == ChatRole.user ? "User" : "Scholar";
+      buffer.writeln("$roleStr: ${msg.content}");
+    }
+    return buffer.toString().trim();
+  }
+
+  Future<void> regradeMessage(String messageId, String intendedHanzi, String intendedPinyin) async {
+    final index = state.messages.indexWhere((m) => m.id == messageId);
+    if (index == -1) return;
+    
+    final msg = state.messages[index];
+    if (msg.audioPath == null) return;
+    
+    try {
+      final file = File(msg.audioPath!);
+      if (!await file.exists()) return;
+      
+      final bytes = await file.readAsBytes();
+      final gradeMap = await _geminiService.gradeAudio(bytes, intendedHanzi, intendedPinyin);
+      final newGrade = PronunciationGrade.fromJson(gradeMap);
+      
+      final updatedMsg = msg.copyWith(
+        grade: newGrade,
+        content: intendedHanzi, // Update the content to the intended one!
+      );
+      
+      final newMessages = List<GradedChatMessage>.from(state.messages);
+      newMessages[index] = updatedMsg;
+      
+      state = state.copyWith(messages: newMessages);
+    } catch (e) {
+      // Ignore errors during re-grade, or log them
     }
   }
 
