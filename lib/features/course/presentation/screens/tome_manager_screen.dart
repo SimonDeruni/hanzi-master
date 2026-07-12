@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 
 import '../../../flashcards/domain/entities/flashcard.dart';
+import '../../../flashcards/domain/entities/deck.dart';
 import '../../../flashcards/presentation/providers/flashcard_controller.dart';
 import '../../../flashcards/presentation/providers/deck_controller.dart';
 import '../../../flashcards/presentation/utils/haptics_manager.dart';
@@ -18,6 +19,7 @@ class TomeManagerScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
     final asyncCards = ref.watch(flashcardControllerProvider);
+    final asyncDecks = ref.watch(deckControllerProvider);
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final inkColor = isDark ? const Color(0xFFFDFCF0) : const Color(0xFF1A1A1B);
 
@@ -60,8 +62,8 @@ class TomeManagerScreen extends ConsumerWidget {
       }
     ];
 
-    bool isLevelInstalled(int level, List<Flashcard> cards) {
-      return cards.any((c) => c.hskLevel == level);
+    bool isLevelInstalled(int level, List<Deck> decks) {
+      return decks.any((d) => d.id == 'hsk$level');
     }
 
     Future<void> installTome(Map<String, dynamic> tome) async {
@@ -139,14 +141,14 @@ class TomeManagerScreen extends ConsumerWidget {
         titleTextStyle: TextStyle(color: inkColor, fontSize: 20, fontWeight: FontWeight.bold),
       ),
       body: CalligraphyBackground(
-        child: asyncCards.when(
-          data: (allCards) {
+        child: asyncDecks.when(
+          data: (decks) {
             return ListView.builder(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
               itemCount: catalog.length,
               itemBuilder: (context, index) {
                 final tome = catalog[index];
-                final isInstalled = isLevelInstalled(tome['level'], allCards);
+                final isInstalled = isLevelInstalled(tome['level'], decks);
 
                 return _TomeCard(
                   tome: tome,

@@ -12,6 +12,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/z07AwG5mt3I/hqdefault.jpg',
       'episodeCount': 40,
       'tags': ['Drama'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'z07AwG5mt3I',
@@ -222,6 +223,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/sQDbm84uTiA/hqdefault.jpg',
       'episodeCount': 38,
       'tags': ['Drama'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'sQDbm84uTiA',
@@ -422,6 +424,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/Zx7pUK2J1Uc/hqdefault.jpg',
       'episodeCount': 36,
       'tags': ['Drama'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'Zx7pUK2J1Uc',
@@ -612,6 +615,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/AyItv5z9rJQ/hqdefault.jpg',
       'episodeCount': 36,
       'tags': ['Drama'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'AyItv5z9rJQ',
@@ -802,6 +806,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/Dob3yGGLHIg/default.jpg',
       'episodeCount': 22,
       'tags': ['Drama'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'Dob3yGGLHIg',
@@ -922,6 +927,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/lCG3B9M461k/default.jpg',
       'episodeCount': 27,
       'tags': ['Drama'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'lCG3B9M461k',
@@ -1067,6 +1073,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/j58A93K1Ng0/default.jpg',
       'episodeCount': 19,
       'tags': ['Drama'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'j58A93K1Ng0',
@@ -1172,6 +1179,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/_dOt-fXu1Vw/default.jpg',
       'episodeCount': 15,
       'tags': ['Drama'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': '_dOt-fXu1Vw',
@@ -1257,6 +1265,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/IzK6VTMVTtM/default.jpg',
       'episodeCount': 57,
       'tags': ['Drama'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'IzK6VTMVTtM',
@@ -1552,6 +1561,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/wAaJOo2Olrg/default.jpg',
       'episodeCount': 57,
       'tags': ['Drama'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'wAaJOo2Olrg',
@@ -1847,6 +1857,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/7PcIhhihDNg/default.jpg',
       'episodeCount': 20,
       'tags': ['Drama'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': '7PcIhhihDNg',
@@ -1957,6 +1968,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/vK7dPFkN38E/default.jpg',
       'episodeCount': 44,
       'tags': ['Romance', 'Trailer'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'vK7dPFkN38E',
@@ -2187,6 +2199,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/qAsp4JJM9MQ/default.jpg',
       'episodeCount': 30,
       'tags': ['Drama'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'qAsp4JJM9MQ',
@@ -2347,6 +2360,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/exeWW9tXq2k/default.jpg',
       'episodeCount': 30,
       'tags': ['Drama'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'exeWW9tXq2k',
@@ -2507,6 +2521,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/_rP2OXhVF1c/default.jpg',
       'episodeCount': 36,
       'tags': ['Romance'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': '_rP2OXhVF1c',
@@ -2697,6 +2712,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/WCfp3YN9mPs/default.jpg',
       'episodeCount': 37,
       'tags': ['Action'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'WCfp3YN9mPs',
@@ -2892,6 +2908,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/EGYAJh8Z8Pc/default.jpg',
       'episodeCount': 29,
       'tags': ['Romance'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'EGYAJh8Z8Pc',
@@ -3047,6 +3064,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/jVmOwLjRAm0/default.jpg',
       'episodeCount': 16,
       'tags': ['Drama'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'jVmOwLjRAm0',
@@ -3137,6 +3155,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/jsHQxKQo5ak/default.jpg',
       'episodeCount': 24,
       'tags': ['Drama'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'jsHQxKQo5ak',
@@ -3267,6 +3286,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/m7XBiuw1-tU/default.jpg',
       'episodeCount': 36,
       'tags': ['Drama'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'm7XBiuw1-tU',
@@ -3457,6 +3477,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/k9tVorHxTdw/default.jpg',
       'episodeCount': 24,
       'tags': ['Drama'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'k9tVorHxTdw',
@@ -3587,6 +3608,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/Rce_y8eFoRs/default.jpg',
       'episodeCount': 28,
       'tags': ['Drama'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'Rce_y8eFoRs',
@@ -3737,6 +3759,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/myZFDUeyZeA/default.jpg',
       'episodeCount': 40,
       'tags': ['Drama'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'myZFDUeyZeA',
@@ -3947,6 +3970,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/jVmOwLjRAm0/default.jpg',
       'episodeCount': 48,
       'tags': ['Drama'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'jVmOwLjRAm0',
@@ -4197,6 +4221,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/XcIUdUpn3f0/default.jpg',
       'episodeCount': 23,
       'tags': ['Mystery'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'F2mD3nRwXdQ',
@@ -4322,6 +4347,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/vi7arpH4H6k/default.jpg',
       'episodeCount': 36,
       'tags': ['Romance'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'm1OTp6RcTWE',
@@ -4512,6 +4538,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/XtTr8ZBDp-g/default.jpg',
       'episodeCount': 8,
       'tags': ['Drama'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'XtTr8ZBDp-g',
@@ -4562,6 +4589,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/1QZLXCT0WcU/default.jpg',
       'episodeCount': 4,
       'tags': ['Drama'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': '1QZLXCT0WcU',
@@ -4592,6 +4620,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/2ovslTX3mNM/default.jpg',
       'episodeCount': 24,
       'tags': ['Drama'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': '2ovslTX3mNM',
@@ -4722,6 +4751,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/4ZNejU1OH7c/default.jpg',
       'episodeCount': 61,
       'tags': ['Romance'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': '4ZNejU1OH7c',
@@ -5037,6 +5067,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/EM-zrxHTajM/default.jpg',
       'episodeCount': 23,
       'tags': ['Romance'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'EM-zrxHTajM',
@@ -5162,6 +5193,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/DE_ZKl_jqTo/default.jpg',
       'episodeCount': 29,
       'tags': ['Romance'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'DE_ZKl_jqTo',
@@ -5317,6 +5349,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/A6_trFcvgC0/default.jpg',
       'episodeCount': 30,
       'tags': ['Drama'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'A6_trFcvgC0',
@@ -5477,6 +5510,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/cdyyA5DWGLw/default.jpg',
       'episodeCount': 24,
       'tags': ['Drama'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'cdyyA5DWGLw',
@@ -5607,6 +5641,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/YvjyHUBgOok/default.jpg',
       'episodeCount': 34,
       'tags': ['Drama'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'YvjyHUBgOok',
@@ -5787,6 +5822,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/AYyrt0e-gYw/default.jpg',
       'episodeCount': 24,
       'tags': ['Drama'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'AYyrt0e-gYw',
@@ -5917,6 +5953,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/gFSivdDMNS8/default.jpg',
       'episodeCount': 27,
       'tags': ['Drama'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'gFSivdDMNS8',
@@ -6062,6 +6099,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/KdXHirVzPV8/default.jpg',
       'episodeCount': 6,
       'tags': ['Drama'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'KdXHirVzPV8',
@@ -6102,6 +6140,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/uUUxfjd2ruU/default.jpg',
       'episodeCount': 40,
       'tags': ['Drama'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'uUUxfjd2ruU',
@@ -6312,6 +6351,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/2kLQ0HCIchY/default.jpg',
       'episodeCount': 32,
       'tags': ['Drama'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': '2kLQ0HCIchY',
@@ -6482,6 +6522,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/Te_dx70IJcw/default.jpg',
       'episodeCount': 18,
       'tags': ['Drama'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'Te_dx70IJcw',
@@ -6582,6 +6623,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/7gwhi1TJnuc/default.jpg',
       'episodeCount': 59,
       'tags': ['Drama'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': '7gwhi1TJnuc',
@@ -6887,6 +6929,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/fzqZIMt4Ucs/default.jpg',
       'episodeCount': 35,
       'tags': ['Drama'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'fzqZIMt4Ucs',
@@ -7072,6 +7115,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/01lQKQHRKUs/default.jpg',
       'episodeCount': 32,
       'tags': ['Drama'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': '01lQKQHRKUs',
@@ -7242,6 +7286,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/r0AMvV3FDhA/default.jpg',
       'episodeCount': 24,
       'tags': ['Drama'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'r0AMvV3FDhA',
@@ -7372,6 +7417,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/Bbu8Ct33WGY/default.jpg',
       'episodeCount': 37,
       'tags': ['Romance'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'Bbu8Ct33WGY',
@@ -7567,6 +7613,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/dHH8ta6p1Ig/default.jpg',
       'episodeCount': 32,
       'tags': ['Romance'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'dHH8ta6p1Ig',
@@ -7737,6 +7784,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/ld-Kl7dOoRs/default.jpg',
       'episodeCount': 36,
       'tags': ['Drama'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'ld-Kl7dOoRs',
@@ -7927,6 +7975,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/_ycy1KV2Jes/default.jpg',
       'episodeCount': 20,
       'tags': ['Drama'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': '_ycy1KV2Jes',
@@ -8037,6 +8086,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/r4Y2cweQySI/default.jpg',
       'episodeCount': 19,
       'tags': ['Drama'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'r4Y2cweQySI',
@@ -8142,6 +8192,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/4qyzjXxrVbM/default.jpg',
       'episodeCount': 40,
       'tags': ['Romance'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': '4qyzjXxrVbM',
@@ -8352,6 +8403,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/sLFqTkw0CG4/default.jpg',
       'episodeCount': 2,
       'tags': ['Drama'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'sLFqTkw0CG4',
@@ -8372,6 +8424,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/UmgE50JymjQ/default.jpg',
       'episodeCount': 16,
       'tags': ['Drama'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'UmgE50JymjQ',
@@ -8462,6 +8515,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/aMPS8zKLOmI/default.jpg',
       'episodeCount': 6,
       'tags': ['Drama'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'aMPS8zKLOmI',
@@ -8502,6 +8556,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/_kqPSRbKqpQ/default.jpg',
       'episodeCount': 24,
       'tags': ['Drama'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': '_kqPSRbKqpQ',
@@ -8632,6 +8687,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/wsGeYB_-r_o/default.jpg',
       'episodeCount': 17,
       'tags': ['Drama'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'wsGeYB_-r_o',
@@ -8727,6 +8783,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/N44xfg8aB10/default.jpg',
       'episodeCount': 6,
       'tags': ['Drama'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'N44xfg8aB10',
@@ -8767,6 +8824,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/S5GJnjZPSLE/default.jpg',
       'episodeCount': 21,
       'tags': ['Drama'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'S5GJnjZPSLE',
@@ -8882,6 +8940,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/YbvL2Zi7Axw/default.jpg',
       'episodeCount': 15,
       'tags': ['Drama'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'YbvL2Zi7Axw',
@@ -8967,6 +9026,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/f5pp8w4otNs/default.jpg',
       'episodeCount': 24,
       'tags': ['Historical'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'f5pp8w4otNs',
@@ -9097,6 +9157,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/2TF7nb09W-M/default.jpg',
       'episodeCount': 6,
       'tags': ['Historical'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': '2TF7nb09W-M',
@@ -9137,6 +9198,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/zC8Divtt72g/default.jpg',
       'episodeCount': 41,
       'tags': ['Historical'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'zC8Divtt72g',
@@ -9352,6 +9414,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/5zZ6H04XJI8/default.jpg',
       'episodeCount': 25,
       'tags': ['Historical', 'Action'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': '5zZ6H04XJI8',
@@ -9487,6 +9550,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/vYx1tPyajiA/default.jpg',
       'episodeCount': 37,
       'tags': ['Historical', 'Action'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'vYx1tPyajiA',
@@ -9682,6 +9746,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/zj1Mh_0b-rE/default.jpg',
       'episodeCount': 13,
       'tags': ['Historical'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'zj1Mh_0b-rE',
@@ -9757,6 +9822,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/afpDDk3Hek0/default.jpg',
       'episodeCount': 7,
       'tags': ['Historical'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'afpDDk3Hek0',
@@ -9802,6 +9868,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/mIOS6Jee-mU/default.jpg',
       'episodeCount': 5,
       'tags': ['Historical'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'mIOS6Jee-mU',
@@ -9837,6 +9904,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/c7mfP3CB2ew/default.jpg',
       'episodeCount': 10,
       'tags': ['Historical'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'j4KYRKE3__U',
@@ -9897,6 +9965,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/CnnhQGPEKCY/default.jpg',
       'episodeCount': 28,
       'tags': ['Historical'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'CnnhQGPEKCY',
@@ -10047,6 +10116,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/y7EEUaa_iY8/default.jpg',
       'episodeCount': 5,
       'tags': ['Historical'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'y7EEUaa_iY8',
@@ -10082,6 +10152,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/ZE7tDnfCD8E/default.jpg',
       'episodeCount': 6,
       'tags': ['Historical', 'Romance'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'ZE7tDnfCD8E',
@@ -10122,6 +10193,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/fO_QMUC87b4/default.jpg',
       'episodeCount': 6,
       'tags': ['Historical'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'fO_QMUC87b4',
@@ -10162,6 +10234,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/kfp_RhaoABE/default.jpg',
       'episodeCount': 7,
       'tags': ['Historical'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'kfp_RhaoABE',
@@ -10207,6 +10280,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/txmX_L6BIJ4/default.jpg',
       'episodeCount': 12,
       'tags': ['Historical'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'txmX_L6BIJ4',
@@ -10277,6 +10351,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/uTU51FekaEU/default.jpg',
       'episodeCount': 6,
       'tags': ['Historical'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'uTU51FekaEU',
@@ -10317,6 +10392,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/0MjfIXHKO-M/default.jpg',
       'episodeCount': 6,
       'tags': ['Historical'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': '0MjfIXHKO-M',
@@ -10357,6 +10433,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/XUjdp_B74DU/default.jpg',
       'episodeCount': 6,
       'tags': ['Historical'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'XUjdp_B74DU',
@@ -10397,6 +10474,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/XhSD1IVpKM0/default.jpg',
       'episodeCount': 7,
       'tags': ['Historical'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'XhSD1IVpKM0',
@@ -10442,6 +10520,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/ntuwtD-MChw/default.jpg',
       'episodeCount': 58,
       'tags': ['Historical', 'Romance'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'ntuwtD-MChw',
@@ -10742,6 +10821,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/uGpNxFwFKh0/default.jpg',
       'episodeCount': 40,
       'tags': ['Historical', 'Romance'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'uGpNxFwFKh0',
@@ -10952,6 +11032,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/p4YsJ5Wt-bw/default.jpg',
       'episodeCount': 5,
       'tags': ['Historical'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'p4YsJ5Wt-bw',
@@ -10987,6 +11068,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/rJnbTqLaVng/default.jpg',
       'episodeCount': 9,
       'tags': ['Historical'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'rJnbTqLaVng',
@@ -11042,6 +11124,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/F9qL95mfyxs/default.jpg',
       'episodeCount': 7,
       'tags': ['Historical'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'F9qL95mfyxs',
@@ -11087,6 +11170,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/T1D3w33qTG8/default.jpg',
       'episodeCount': 6,
       'tags': ['Historical'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'T1D3w33qTG8',
@@ -11127,6 +11211,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/Yd9jNY8sZsI/default.jpg',
       'episodeCount': 5,
       'tags': ['Historical'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'Yd9jNY8sZsI',
@@ -11162,6 +11247,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/lQKLW31FGOM/default.jpg',
       'episodeCount': 32,
       'tags': ['Historical', 'Slice of Life'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'lQKLW31FGOM',
@@ -11332,6 +11418,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/2FkI0OMykJQ/default.jpg',
       'episodeCount': 17,
       'tags': ['Historical', 'Highlight'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': '2FkI0OMykJQ',
@@ -11427,6 +11514,7 @@ class HardcodedShows {
       'thumbnailUrl': 'https://i.ytimg.com/vi/FvQ_OvsMYJA/default.jpg',
       'episodeCount': 46,
       'tags': ['Historical', 'Highlight'],
+      'subtitleType': 'hard',
       'episodes': [
         {
           'id': 'FvQ_OvsMYJA',

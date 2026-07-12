@@ -7,6 +7,9 @@ import '../../../../core/services/api_key_pool.dart';
 import '../../domain/models/youtube_video.dart';
 import 'shows_data.dart';
 
+/// Whether a show has softcoded (interactive) or hardcoded (burned-in) subtitles.
+enum SubtitleType { soft, hard }
+
 /// A show (drama series) represented as a YouTube playlist with its episodes.
 class Show {
   final String id; // YouTube playlist ID
@@ -17,6 +20,7 @@ class Show {
   final int episodeCount;
   final List<YoutubeVideo> episodes;
   final List<String> tags;
+  final SubtitleType subtitleType;
   const Show({
     required this.id,
     required this.title,
@@ -26,6 +30,7 @@ class Show {
     required this.episodeCount,
     required this.episodes,
     this.tags = const [],
+    this.subtitleType = SubtitleType.hard,
   });
 }
 
@@ -109,6 +114,9 @@ class ShowRepository {
         episodeCount: entry["episodeCount"] as int,
         episodes: [],
         tags: List<String>.from(entry["tags"] as List? ?? []),
+        subtitleType: entry["subtitleType"] == "soft"
+            ? SubtitleType.soft
+            : SubtitleType.hard,
       ));
     }
 
