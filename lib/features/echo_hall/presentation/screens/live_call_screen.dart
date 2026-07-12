@@ -181,7 +181,7 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
     try {
       // Endpoint for Gemini Multimodal Live API
       final uri = Uri.parse(
-        'wss://generativelanguage.googleapis.com/ws/google.ai.generativelanguage.v1beta.GenerativeService.BidiGenerateContent?key=$apiKey'
+        'wss://generativelanguage.googleapis.com/ws/google.ai.generativelanguage.v1alpha.GenerativeService.BidiGenerateContent?key=$apiKey'
       );
       
       _channel = WebSocketChannel.connect(uri);
@@ -189,7 +189,7 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
       // 1. Setup Phase - Updated for June 2026 stable models
       final setupMessage = jsonEncode({
         "setup": {
-          "model": "models/gemini-2.0-flash-exp",
+          "model": "models/gemini-3.1-flash-live-preview",
           "generationConfig": {
              "responseModalities": ["AUDIO"],
              "speechConfig": {
