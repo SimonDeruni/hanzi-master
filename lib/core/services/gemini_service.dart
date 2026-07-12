@@ -1369,7 +1369,7 @@ Respond ONLY in valid JSON format like:
     final cleanReference = expectedChinese.replaceAll(RegExp(r'[^\p{Script=Hani}a-zA-Z0-9 ]', unicode: true), '');
     
     final Map<String, dynamic> params = {
-      "ReferenceText": cleanReference.isEmpty ? expectedChinese : cleanReference,
+      "ReferenceText": (cleanReference.isEmpty ? expectedChinese : cleanReference).trim(),
       "GradingSystem": "HundredMark",
       "Granularity": "Phoneme",
       "Dimension": "Comprehensive"
@@ -1378,7 +1378,7 @@ Respond ONLY in valid JSON format like:
     final String jsonParams = jsonEncode(params);
     final String base64Params = base64Encode(utf8.encode(jsonParams));
 
-    final String endpoint = 'https://$region.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?language=zh-CN&format=detailed';
+    final String endpoint = 'https://$region.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?language=zh-CN';
 
     final request = http.Request('POST', Uri.parse(endpoint));
     request.headers.addAll({
@@ -1434,18 +1434,18 @@ Respond ONLY in valid JSON format like:
         final bestResult = data['NBest'][0];
         final assessment = bestResult['PronunciationAssessment'];
         
-        final pronScore = (assessment?['PronScore'] as num?)?.toInt() ?? 0;
-        final accuracyScore = (assessment?['AccuracyScore'] as num?)?.toInt() ?? 0;
-        final completenessScore = (assessment?['CompletenessScore'] as num?)?.toInt() ?? 0;
-        final fluencyScore = (assessment?['FluencyScore'] as num?)?.toInt() ?? 0;
+        final pronScore = (assessment?['PronScore'] as num?)?.toInt() ?? (bestResult['PronunciationScore'] as num?)?.toInt() ?? 0;
+        final accuracyScore = (assessment?['AccuracyScore'] as num?)?.toInt() ?? (bestResult['AccuracyScore'] as num?)?.toInt() ?? 0;
+        final completenessScore = (assessment?['CompletenessScore'] as num?)?.toInt() ?? (bestResult['CompletenessScore'] as num?)?.toInt() ?? 0;
+        final fluencyScore = (assessment?['FluencyScore'] as num?)?.toInt() ?? (bestResult['FluencyScore'] as num?)?.toInt() ?? 0;
 
         List<Map<String, dynamic>> mappedWords = [];
 
         if (bestResult['Words'] != null) {
           for (var w in bestResult['Words']) {
             final wordText = w['Word'];
-            final wAccuracy = w['PronunciationAssessment']?['AccuracyScore'] ?? 0;
-            final wErrorType = w['PronunciationAssessment']?['ErrorType'] ?? 'None';
+            final wAccuracy = w['PronunciationAssessment']?['AccuracyScore'] ?? w['AccuracyScore'] ?? 0;
+            final wErrorType = w['PronunciationAssessment']?['ErrorType'] ?? w['ErrorType'] ?? 'None';
             
             bool isCorrect = wAccuracy >= 80 && wErrorType == 'None';
             bool isPartial = wAccuracy >= 60 && wAccuracy < 80;
