@@ -23,6 +23,8 @@
 - [x] **Bug**: Fixed Dart compilation syntax error (`Target kernel_snapshot_program failed`) causing iOS builds to fail.
 - [x] **Bug**: Fixed Shadowing Studio always returning 0/100 for pronunciation grading. Stripped Chinese punctuation from the `ReferenceText` passed to the Azure Speech Pronunciation Assessment API to prevent alignment failures.
 - [x] **Bug**: Fixed Gemini Live Call connection crash (WebSocket 1007 Error) by removing `"TEXT"` from the `responseModalities` payload, which is unsupported by the current model version. Improved error UI to catch WebSocket disconnections gracefully.
+- [x] **UI/UX**: Added "TRAILER" and "HIGHLIGHT" conditional overlay badges to Media Cards in the Shows & Dramas catalog to distinguish content types.
+- [x] **Bug**: Fixed Smart Media Desk data bleed where YouTube API failures caused all video categories to incorrectly display hardcoded historical dramas. Categories will now correctly display a "Failed to load content" state.
 
 ## Open Issues
 

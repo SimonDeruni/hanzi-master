@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../domain/entities/scenario.dart';
 import '../providers/conversation_controller.dart';
-import '../../../../core/models/pronunciation_grade.dart';
-import '../../../chat/domain/entities/chat_message.dart';
+import 'package:hanzi_master/core/models/pronunciation_grade.dart';
+import 'package:hanzi_master/features/chat/domain/entities/chat_message.dart';
 import '../widgets/pronunciation_report_sheet.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
@@ -426,22 +426,39 @@ Widget _buildScoreBadge(PronunciationGrade grade, ThemeData theme, bool isUser) 
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              if (message.grade != null && isUser) ...[
-                _buildScoreBadge(message.grade!, theme, isUser),
-                // User's spoken text
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 4),
-                  child: TappableMarkdownHanziText(
+              if (isUser) ...[
+                if (message.grade != null) ...[
+                  _buildScoreBadge(message.grade!, theme, isUser),
+                  // User's spoken text
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 4),
+                    child: TappableMarkdownHanziText(
+                      message.content,
+                      style: theme.textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Wrap(
+                    spacing: 8,
+                    runSpacing: 8,
+                    children: message.grade!.words.map((w) => _buildGradedWord(w, theme)).toList(),
+                  ),
+                ] else ...[
+                  TappableMarkdownHanziText(
                     message.content,
                     style: theme.textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold),
                   ),
-                ),
-                const SizedBox(height: 8),
-                Wrap(
-                  spacing: 8,
-                  runSpacing: 8,
-                  children: message.grade!.words.map((w) => _buildGradedWord(w, theme)).toList(),
-                ),
+                ],
+                if (message.english != null && message.english!.isNotEmpty) ...[
+                  const SizedBox(height: 8),
+                  Text(
+                    message.english!,
+                    style: theme.textTheme.bodyMedium?.copyWith(
+                      color: theme.colorScheme.onSurface.withValues(alpha: 0.8),
+                      fontStyle: FontStyle.italic,
+                    ),
+                  ),
+                ],
               ] else ...[
                 // AI Message with Pinyin
                 Row(

@@ -370,6 +370,29 @@ class _ShowCard extends ConsumerWidget {
                     ),
                   ),
                 ),
+                if (show.tags.contains('Trailer') || show.tags.contains('Highlight'))
+                  Positioned(
+                    top: 4,
+                    left: 4,
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                      decoration: BoxDecoration(
+                        color: show.tags.contains('Trailer') 
+                            ? Colors.redAccent.withOpacity(0.9)
+                            : Colors.purpleAccent.withOpacity(0.9),
+                        borderRadius: BorderRadius.circular(4),
+                      ),
+                      child: Text(
+                        show.tags.contains('Trailer') ? 'TRAILER' : 'HIGHLIGHT',
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 9,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 0.5,
+                        ),
+                      ),
+                    ),
+                  ),
                 if (isBookmarked)
                   Positioned(
                     top: 4,

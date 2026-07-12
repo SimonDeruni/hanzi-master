@@ -230,6 +230,30 @@ class ConversationController extends StateNotifier<ConversationState> {
 
   Future<void> _fetchAiResponse() async {
     try {
+      // 1. Translate the user's last message to English if it is missing its translation
+      final messages = List<GradedChatMessage>.from(state.messages);
+      final lastUserIdx = messages.lastIndexWhere((m) => m.role == ChatRole.user);
+      if (lastUserIdx != -1 && (messages[lastUserIdx].english == null || messages[lastUserIdx].english!.isEmpty)) {
+        try {
+          final translation = await _geminiService.translateTextToEnglish(messages[lastUserIdx].content);
+          final oldMsg = messages[lastUserIdx];
+          messages[lastUserIdx] = GradedChatMessage(
+            id: oldMsg.id,
+            content: oldMsg.content,
+            pinyin: oldMsg.pinyin,
+            english: translation,
+            suggestion: oldMsg.suggestion,
+            role: ChatRole.user,
+            timestamp: oldMsg.timestamp,
+            grade: oldMsg.grade,
+          );
+          state = state.copyWith(messages: messages);
+        } catch (e) {
+          // Non-fatal, just log and continue
+          print("ConversationController: Reverse translation error: $e");
+        }
+      }
+
       // Re-anchor persona on every turn to prevent drift
       final hardenedPrompt = '${state.currentScenario!.systemPrompt}\n\nCRITICAL: You are "${state.currentScenario!.personaName}". Stay in this exact persona. Do not switch characters.';
       

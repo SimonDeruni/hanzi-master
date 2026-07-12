@@ -88,6 +88,9 @@ class YoutubeRepository {
         // Fall back to local search on API failure
         debugPrint('[YT Search] Falling back to local search after API error');
         final localResults = _localSearchFallback(query);
+        if (localResults.isEmpty) {
+          throw Exception('Network request failed and no fallback available.');
+        }
         _cache[query] = _CachedResult(
           videos: localResults,
           timestamp: DateTime.now(),
@@ -101,6 +104,9 @@ class YoutubeRepository {
       if (items.isEmpty) {
         // Fall back to local search if no results found on YouTube
         final localResults = _localSearchFallback(query);
+        if (localResults.isEmpty) {
+          return [];
+        }
         _cache[query] = _CachedResult(
           videos: localResults,
           timestamp: DateTime.now(),
@@ -214,30 +220,6 @@ class YoutubeRepository {
 
     debugPrint('[YT Search Fallback] Found ${results.length} local results matching "$query"');
     
-    // If no exact matches found, just return the first 20 episodes of the first show
-    // so the app at least shows some content instead of breaking entirely.
-    if (results.isEmpty && HardcodedShows.data.isNotEmpty) {
-      debugPrint('[YT Search Fallback] No exact matches, returning default videos');
-      for (final show in HardcodedShows.data) {
-        final channelTitle = show['channelTitle'] as String? ?? '';
-        final episodes = show['episodes'] as List? ?? [];
-        for (final ep in episodes) {
-          final epMap = ep as Map<String, dynamic>;
-          results.add(YoutubeVideo(
-            id: epMap['id'] as String? ?? '',
-            title: '${show['title']} - ${epMap['title']}',
-            url: 'https://www.youtube.com/watch?v=${epMap['id']}',
-            duration: null,
-            mediumThumbnailUrl: epMap['thumbnailUrl'] as String? ?? '',
-            highThumbnailUrl: epMap['thumbnailUrl'] as String? ?? '',
-            uploadDate: null,
-            channelTitle: channelTitle,
-          ));
-          if (results.length >= 20) return results;
-        }
-      }
-    }
-
     return results.take(20).toList();
   }
 

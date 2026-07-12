@@ -1956,7 +1956,7 @@ class HardcodedShows {
       'channelTitle': '腾讯视频 - Get the WeTV APP',
       'thumbnailUrl': 'https://i.ytimg.com/vi/vK7dPFkN38E/default.jpg',
       'episodeCount': 44,
-      'tags': ['Romance'],
+      'tags': ['Romance', 'Trailer'],
       'episodes': [
         {
           'id': 'vK7dPFkN38E',
@@ -11331,7 +11331,7 @@ class HardcodedShows {
       'channelTitle': '腾讯视频 - 古装剧场 - Get the WeTV APP',
       'thumbnailUrl': 'https://i.ytimg.com/vi/2FkI0OMykJQ/default.jpg',
       'episodeCount': 17,
-      'tags': ['Historical'],
+      'tags': ['Historical', 'Highlight'],
       'episodes': [
         {
           'id': '2FkI0OMykJQ',
@@ -11426,7 +11426,7 @@ class HardcodedShows {
       'channelTitle': '腾讯视频 - 古装剧场 - Get the WeTV APP',
       'thumbnailUrl': 'https://i.ytimg.com/vi/FvQ_OvsMYJA/default.jpg',
       'episodeCount': 46,
-      'tags': ['Historical'],
+      'tags': ['Historical', 'Highlight'],
       'episodes': [
         {
           'id': 'FvQ_OvsMYJA',
