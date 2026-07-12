@@ -1,4 +1,4 @@
-import 'package:hanzi_master/core/models/pronunciation_grade.dart';
+import '../../../../core/models/pronunciation_grade.dart';
 
 enum ChatRole { user, scholar }
 
