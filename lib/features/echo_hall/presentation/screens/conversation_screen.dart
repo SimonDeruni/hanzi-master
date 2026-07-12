@@ -340,6 +340,53 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
   }
 
 
+Widget _buildScoreBadge(PronunciationGrade grade, ThemeData theme, bool isUser) {
+    final scoreVal = grade.score;
+    if (scoreVal == null) {
+      return Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            'Grading...',
+            style: theme.textTheme.titleMedium?.copyWith(
+              color: theme.colorScheme.onSurface.withValues(alpha: 0.5),
+              fontStyle: FontStyle.italic,
+            ),
+          ),
+        ],
+      );
+    }
+    // Compute effective score from dimensions when overall is 0
+    final effectiveScore = scoreVal > 0
+        ? scoreVal
+        : ((grade.accuracy + grade.completeness + grade.fluency) / 3).round();
+
+    final color = effectiveScore >= 80 ? Colors.green.shade600 : Colors.red.shade600;
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(
+          effectiveScore.toString(),
+          style: theme.textTheme.titleMedium?.copyWith(
+            color: color,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        const SizedBox(width: 4),
+        Text('score', style: theme.textTheme.labelSmall?.copyWith(color: color.withValues(alpha: 0.7))),
+        if (scoreVal == 0 && effectiveScore > 0) ...[
+          const SizedBox(width: 4),
+          Text(
+            '(estimated)',
+            style: theme.textTheme.labelSmall?.copyWith(
+              fontStyle: FontStyle.italic,
+              color: theme.colorScheme.onSurface.withValues(alpha: 0.4),
+            ),
+          ),
+        ],
+      ],
+    );
+  }
   Widget _buildMessage(GradedChatMessage message, ThemeData theme) {
     final isUser = message.role == ChatRole.user;
     final hasTranslation = (message.english != null && message.english!.isNotEmpty) || (message.pinyin != null && message.pinyin!.isNotEmpty);
@@ -380,19 +427,14 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               if (message.grade != null && isUser) ...[
-                // User Graded Message
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      message.grade!.score.toString(),
-                      style: theme.textTheme.titleMedium?.copyWith(
-                        color: message.grade!.score >= 80 ? Colors.green.shade600 : Colors.red.shade600,
-                      ),
-                    ),
-                    const SizedBox(width: 4),
-                    Text('score', style: theme.textTheme.labelSmall),
-                  ],
+                _buildScoreBadge(message.grade!, theme, isUser),
+                // User's spoken text
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 4),
+                  child: TappableMarkdownHanziText(
+                    message.content,
+                    style: theme.textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold),
+                  ),
                 ),
                 const SizedBox(height: 8),
                 Wrap(

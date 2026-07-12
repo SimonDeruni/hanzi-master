@@ -86,14 +86,14 @@ class PronunciationReportSheet extends ConsumerWidget {
                 child: Row(
                   children: [
                     Text(
-                      grade.score.toString(),
+                      grade.score?.toString() ?? 'N/A',
                       style: const TextStyle(color: Colors.orange, fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(width: 4),
                     const Icon(Icons.arrow_upward, size: 12, color: Colors.orange),
                     const SizedBox(width: 8),
                     const Text(
-                      'Good! 😊',
+                      grade.score != null ? (grade.score! >= 80 ? 'Great!' : 'Keep trying!') : 'Pending...',
                       style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black87),
                     ),
                   ],
@@ -150,7 +150,11 @@ class PronunciationReportSheet extends ConsumerWidget {
   }
 
   Widget _buildCharacterColumn(SyllableGrade word) {
-    final color = word.isCorrect ? Colors.green : Colors.red;
+    final color = word.isCorrect
+        ? Colors.green
+        : word.isPartial
+            ? Colors.orange
+            : Colors.red;
     return Column(
       children: [
         Text(
@@ -162,7 +166,7 @@ class PronunciationReportSheet extends ConsumerWidget {
           style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black87),
         ),
         Text(
-          word.isCorrect ? '95' : '64', // Mock score based on isCorrect
+          word.wordScore > 0 ? word.wordScore.toString() : (word.isCorrect ? '\u2713' : word.isPartial ? '~' : '\u2717'),
           style: TextStyle(fontSize: 12, color: color, fontWeight: FontWeight.bold),
         ),
       ],

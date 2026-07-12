@@ -191,7 +191,7 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
         "setup": {
           "model": "models/gemini-3.1-flash-live-preview",
           "generationConfig": {
-             "responseModalities": ["TEXT", "AUDIO"],
+             "responseModalities": ["AUDIO"],
              "speechConfig": {
                "voiceConfig": { "prebuiltVoiceConfig": { "voiceName": "${widget.scenario.voiceName}" } }
              }
@@ -222,7 +222,12 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
             
             if (data.containsKey('error')) {
               debugPrint("LiveCall: Server returned error: ${data['error']}");
-              if (mounted) setState(() => _callStatus = "Server Error: ${data['error']['message']}");
+              if (mounted) {
+                setState(() {
+                  _callStatus = "We're sorry, the call encountered a server error. Please try again later.";
+                  _hasError = true;
+                });
+              }
             }
             
             if (data.containsKey('setupComplete')) {
@@ -285,9 +290,11 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
           if (mounted) {
             setState(() {
               if (closeCode == 4403 || closeCode == 403) {
-                _callStatus = "Access Denied (403). Your API Key lacks 'Live' permissions or region is unsupported.";
+                _callStatus = "Access Denied. Your API Key lacks permissions or the region is unsupported.";
+              } else if (closeCode != null && closeCode >= 1000) {
+                _callStatus = "We're sorry, the call disconnected unexpectedly. Please try again later.";
               } else {
-                _callStatus = "Connection closed ($closeCode): ${closeReason ?? 'Unknown reason'}";
+                _callStatus = "Call ended unexpectedly. Please try again.";
               }
               _hasError = true;
             });
@@ -297,7 +304,7 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
           debugPrint("LiveCall: Stream error: $error");
           if (mounted) {
             setState(() {
-              _callStatus = "Connection Error: $error";
+              _callStatus = "We're sorry, a connection error occurred. Please try again later.";
               _hasError = true;
             });
           }
@@ -308,7 +315,7 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
       debugPrint("LiveCall: Connection fail: $e");
       if (mounted) {
         setState(() {
-          _callStatus = "Failed to reach server: $e";
+          _callStatus = "We're sorry, we couldn't connect to the server right now. Please try again later.";
           _hasError = true;
         });
       }
@@ -581,9 +588,23 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
                         ),
                       ),
                       if (_hasError)
-                        TextButton(
-                          onPressed: () => Navigator.pop(context),
-                          child: Text(AppLocalizations.of(context)!.returnToMenu, style: TextStyle(color: Colors.white)),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 16.0),
+                          child: ElevatedButton.icon(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.redAccent,
+                              foregroundColor: Colors.white,
+                              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                              elevation: 8,
+                            ),
+                            icon: const Icon(Icons.arrow_back, size: 20),
+                            label: Text(
+                              AppLocalizations.of(context)!.returnToMenu,
+                              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                            ),
+                            onPressed: () => Navigator.pop(context),
+                          ),
                         ),
                     ],
                   ),

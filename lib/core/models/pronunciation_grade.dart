@@ -1,5 +1,5 @@
 class PronunciationGrade {
-  final int score; // 0 to 100
+  final int? score; // nullable — null means not assessed
   final int accuracy;
   final int completeness;
   final int fluency;
@@ -17,7 +17,7 @@ class PronunciationGrade {
 
   factory PronunciationGrade.fromJson(Map<String, dynamic> json) {
     return PronunciationGrade(
-      score: json['score'] ?? 0,
+      score: (json['score'] is int || json['score'] is num) ? (json['score'] as num).toInt() : null,
       accuracy: json['accuracy'] ?? 0,
       completeness: json['completeness'] ?? 0,
       fluency: json['fluency'] ?? 0,
@@ -47,6 +47,7 @@ class SyllableGrade {
   final int actualTone; // 1-5
   final bool isCorrect;
   final bool isPartial; // Tone wrong but base syllable understood
+  final int wordScore; // Individual word score (0-100)
   final String feedback;
 
   SyllableGrade({
@@ -56,6 +57,7 @@ class SyllableGrade {
     required this.actualTone,
     required this.isCorrect,
     this.isPartial = false,
+    required this.wordScore,
     required this.feedback,
   });
 
@@ -74,6 +76,7 @@ class SyllableGrade {
       actualTone: json['actualTone'] ?? 0,
       isCorrect: json['isCorrect'] ?? false,
       isPartial: json['isPartial'] ?? false,
+      wordScore: (json['wordScore'] is int || json['wordScore'] is num) ? (json['wordScore'] as num).toInt() : 0,
       feedback: json['feedback'] ?? '',
     );
   }
@@ -86,6 +89,7 @@ class SyllableGrade {
       'actualTone': actualTone,
       'isCorrect': isCorrect,
       'isPartial': isPartial,
+      'wordScore': wordScore,
       'feedback': feedback,
     };
   }
