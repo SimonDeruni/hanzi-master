@@ -17,10 +17,19 @@ class FullscreenMediaOverlay extends StatefulWidget {
   final VoidCallback onExitFullscreen;
   final double playbackRate;
   final ValueChanged<double> onSpeedChanged;
+  
   final bool isShadowingMode;
   final bool isRecording;
   final String shadowFeedback;
   final VoidCallback onToggleRecord;
+
+  // Global subtitle state
+  final bool showHanzi;
+  final bool showPinyin;
+  final bool showEnglish;
+  final ValueChanged<bool> onToggleHanzi;
+  final ValueChanged<bool> onTogglePinyin;
+  final ValueChanged<bool> onToggleEnglish;
 
   const FullscreenMediaOverlay({
     super.key,
@@ -33,10 +42,16 @@ class FullscreenMediaOverlay extends StatefulWidget {
     required this.onExitFullscreen,
     required this.playbackRate,
     required this.onSpeedChanged,
-    this.isShadowingMode = false,
-    this.isRecording = false,
-    this.shadowFeedback = '',
+    required this.isShadowingMode,
+    required this.isRecording,
+    required this.shadowFeedback,
     required this.onToggleRecord,
+    required this.showHanzi,
+    required this.showPinyin,
+    required this.showEnglish,
+    required this.onToggleHanzi,
+    required this.onTogglePinyin,
+    required this.onToggleEnglish,
   });
 
   @override
@@ -45,9 +60,6 @@ class FullscreenMediaOverlay extends StatefulWidget {
 
 class _FullscreenMediaOverlayState extends State<FullscreenMediaOverlay>
     with TickerProviderStateMixin {
-  bool _showHanzi = true;
-  bool _showPinyin = true;
-  bool _showEnglish = true;
   bool _controlsVisible = true;
   Timer? _hideTimer;
   double _subtitleBgOpacity = 0.4;
@@ -197,20 +209,20 @@ class _FullscreenMediaOverlayState extends State<FullscreenMediaOverlay>
                 child: PremiumVideoTopBar(
                   title: widget.videoTitle,
                   onExitFullscreen: widget.onExitFullscreen,
-                  showHanzi: _showHanzi,
-                  showPinyin: _showPinyin,
-                  showEnglish: _showEnglish,
+                  showHanzi: widget.showHanzi,
+                  showPinyin: widget.showPinyin,
+                  showEnglish: widget.showEnglish,
                   onToggleHanzi: (v) {
                     _onUserInteraction();
-                    setState(() => _showHanzi = v);
+                    widget.onToggleHanzi(v);
                   },
                   onTogglePinyin: (v) {
                     _onUserInteraction();
-                    setState(() => _showPinyin = v);
+                    widget.onTogglePinyin(v);
                   },
                   onToggleEnglish: (v) {
                     _onUserInteraction();
-                    setState(() => _showEnglish = v);
+                    widget.onToggleEnglish(v);
                   },
                   playbackRate: widget.playbackRate,
                   onSpeedChanged: widget.onSpeedChanged,
@@ -246,9 +258,9 @@ class _FullscreenMediaOverlayState extends State<FullscreenMediaOverlay>
                 _onUserInteraction();
                 widget.onWordTapped(word);
               },
-              showHanzi: _showHanzi,
-              showPinyin: _showPinyin,
-              showEnglish: _showEnglish,
+              showHanzi: widget.showHanzi,
+              showPinyin: widget.showPinyin,
+              showEnglish: widget.showEnglish,
               bgOpacity: _subtitleBgOpacity,
             ),
           ),

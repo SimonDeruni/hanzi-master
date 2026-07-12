@@ -331,7 +331,10 @@ class GeminiService {
     }
   }
 
-  Future<Map<String, String>> generateShadowingPhrase(String mode, String contextInput) async {
+  Future<Map<String, String>> generateShadowingPhrase(String mode, String contextInput, {List<String> previousPhrases = const []}) async {
+    final previousList = previousPhrases.isEmpty
+        ? "None yet."
+        : previousPhrases.map((p) => "- $p").join('\n');
     final prompt = '''
 You are an expert native Chinese pronunciation coach. 
 The user is practicing their pronunciation. Generate ONE natural, conversational Chinese sentence for them to practice.
@@ -339,9 +342,13 @@ Context:
 Mode: $mode
 Topic/Content: $contextInput
 
+Previously generated phrases (DO NOT repeat any of these):
+$previousList
+
 Rules:
 - Keep the sentence between 4 and 10 words.
 - Use highly natural, colloquial phrasing.
+- CRITICAL: Generate a NEW phrase that is NOT in the "Previously generated phrases" list above. Do not repeat any phrase from that list.
 
 Return ONLY a valid JSON object with EXACTLY this structure:
 {
@@ -1440,18 +1447,27 @@ Respond ONLY in valid JSON format like:
         final fluencyScore = (assessment?['FluencyScore'] as num?)?.toInt() ?? (bestResult['FluencyScore'] as num?)?.toInt() ?? 0;
 
         List<Map<String, dynamic>> mappedWords = [];
+        double totalAccuracy = 0;
+        int evaluatedWords = 0;
 
         if (bestResult['Words'] != null) {
           for (var w in bestResult['Words']) {
             final wordText = w['Word'];
-            final wAccuracy = w['PronunciationAssessment']?['AccuracyScore'] ?? w['AccuracyScore'] ?? 0;
+            final wAccuracy = (w['PronunciationAssessment']?['AccuracyScore'] ?? w['AccuracyScore'] ?? 0).toDouble();
             final wErrorType = w['PronunciationAssessment']?['ErrorType'] ?? w['ErrorType'] ?? 'None';
             
-            bool isCorrect = wAccuracy >= 80 && wErrorType == 'None';
-            bool isPartial = wAccuracy >= 60 && wAccuracy < 80;
-            if (wErrorType != 'None') {
-                isCorrect = false;
-                isPartial = false;
+            bool isCorrect = false;
+            bool isPartial = false;
+            bool isOmitted = (wErrorType == 'Omission');
+
+            if (wErrorType == 'None') {
+                if (wAccuracy >= 80) isCorrect = true;
+                else if (wAccuracy >= 60) isPartial = true;
+            }
+
+            if (!isOmitted && wErrorType != 'Insertion') {
+                totalAccuracy += wAccuracy;
+                evaluatedWords++;
             }
 
             String feedback = "";
@@ -1464,20 +1480,26 @@ Respond ONLY in valid JSON format like:
               "pinyin": "", // UI gracefully handles empty pinyin
               "isCorrect": isCorrect,
               "isPartial": isPartial,
+              "isOmitted": isOmitted,
               "feedback": feedback
             });
           }
         }
+        
+        int fairScore = pronScore; // Fallback to Azure's score
+        if (evaluatedWords > 0) {
+            fairScore = (totalAccuracy / evaluatedWords).round();
+        }
 
         String overallFeedback = "Good effort! Keep practicing.";
-        if (pronScore >= 90) overallFeedback = "Perfect pronunciation! Sounds like a native speaker.";
-        else if (pronScore >= 80) overallFeedback = "Great job! A few minor tone inaccuracies.";
-        else if (pronScore >= 60) overallFeedback = "Not bad, but your tones need some work.";
+        if (fairScore >= 90) overallFeedback = "Perfect pronunciation! Sounds like a native speaker.";
+        else if (fairScore >= 80) overallFeedback = "Great job! A few minor tone inaccuracies.";
+        else if (fairScore >= 60) overallFeedback = "Not bad, but your tones need some work.";
         else overallFeedback = "Keep practicing! Listen to the native audio and try again.";
 
         analytics.logApiUsage(apiName: 'azure_speech', feature: 'grade_audio', success: true);
         return {
-          "score": pronScore,
+          "score": fairScore,
           "accuracy": accuracyScore,
           "completeness": completenessScore,
           "fluency": fluencyScore,

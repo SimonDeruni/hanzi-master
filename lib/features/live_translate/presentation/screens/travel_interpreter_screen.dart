@@ -225,7 +225,7 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
         setState(() {
           _messages.add(TranslationMessage(
             text: response,
-            isUser: sideId != 'a',
+            isUser: false,
             sideId: sideId == 'a' ? 'b' : 'a',
             language: targetLang,
           ));
@@ -620,6 +620,7 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                         Expanded(
                           child: ListView.builder(
                             reverse: true,
+                            padding: const EdgeInsets.only(bottom: 100),
                             itemCount: _sideBMessages.length,
                             itemBuilder: (context, index) {
                               final msg = _sideBMessages[_sideBMessages.length - 1 - index];
@@ -744,6 +745,7 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                       Expanded(
                         child: ListView.builder(
                           reverse: true,
+                          padding: const EdgeInsets.only(bottom: 100),
                           itemCount: _sideAMessages.length,
                           itemBuilder: (context, index) {
                             final msg = _sideAMessages[_sideAMessages.length - 1 - index];

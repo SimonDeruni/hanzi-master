@@ -32,6 +32,7 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
   final Set<int> _translatedSentences = {};
   bool _isPlaying = false;
   bool _isPaused = false;
+  bool _isLoadingAudio = false;
   int? _playingSentenceIndex;
   int _playingStartOffset = -1;
   int _playingEndOffset = -1;
@@ -195,12 +196,15 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
 
   Future<void> _initTts() async {
     final audioService = ref.read(audioServiceProvider);
+    // Warm up the audio service (cache dir, player) so first Play tap is fast
+    await audioService.init();
     
     _completionSub = audioService.onPlayerComplete.listen((_) {
       if (mounted) {
         setState(() {
           _isPlaying = false;
           _isPaused = false;
+          _isLoadingAudio = false;
           _playingSentenceIndex = null;
           _playingStartOffset = -1;
           _playingEndOffset = -1;
@@ -260,14 +264,18 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
     super.dispose();
   }
 
-  void _togglePlay(AiStory story, {bool stop = false}) async {
+  void _togglePlay({bool stop = false}) async {
     final audioService = ref.read(audioServiceProvider);
+    final story = ref.read(storyControllerProvider).currentStory;
+    if (story == null) return;
+
     if (stop) {
       await audioService.stop();
       if (mounted) {
         setState(() {
           _isPlaying = false;
           _isPaused = false;
+          _isLoadingAudio = false;
           _playingSentenceIndex = null;
           _playingStartOffset = -1;
           _playingEndOffset = -1;
@@ -282,9 +290,19 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
         setState(() {
           _isPlaying = false;
           _isPaused = true;
+          _isLoadingAudio = false;
         });
       }
     } else {
+      // Show loading spinner immediately for visual feedback
+      if (mounted) {
+        setState(() {
+          _isLoadingAudio = true;
+        });
+      }
+
+      // Capture messenger before async gap to satisfy use_build_context_synchronously
+      final messenger = ScaffoldMessenger.of(context);
       if (!_isPaused || _playingSentenceIndex == null) {
         // Start from beginning of the page
         if (mounted) {
@@ -300,8 +318,15 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
           setState(() {
             _isPlaying = success;
             _isPaused = !success;
+            _isLoadingAudio = false;
             if (!success) {
               _playingSentenceIndex = null;
+              messenger.showSnackBar(
+                const SnackBar(
+                  content: Text('Audio unavailable — check your connection'),
+                  duration: Duration(seconds: 3),
+                ),
+              );
             }
           });
         }
@@ -321,8 +346,15 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
           setState(() {
             _isPlaying = success;
             _isPaused = !success;
+            _isLoadingAudio = false;
             if (!success) {
               _playingSentenceIndex = null;
+              messenger.showSnackBar(
+                const SnackBar(
+                  content: Text('Audio unavailable — check your connection'),
+                  duration: Duration(seconds: 3),
+                ),
+              );
             }
           });
         }
@@ -446,8 +478,9 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
       onPopInvokedWithResult: (didPop, result) async {
         if (!didPop) {
           await ref.read(audioServiceProvider).stop();
-          if (mounted) {
-            setState(() { _isPlaying = false; _isPaused = false; });
+          if (!mounted) return;
+          setState(() { _isPlaying = false; _isPaused = false; });
+          if (context.mounted) {
             Navigator.pop(context);
           }
         }
@@ -465,7 +498,7 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
                     if (!_isSaved && state.currentStory != null) ...[
              TextButton.icon(
                 icon: const Icon(Icons.delete_outline, color: Colors.redAccent),
-                label: Text(AppLocalizations.of(context)!.discard, style: TextStyle(color: Colors.redAccent)),
+                label: Text(AppLocalizations.of(context)!.discard, style: const TextStyle(color: Colors.redAccent)),
                 onPressed: () async {
                    final controller = ref.read(storyControllerProvider.notifier);
                    await controller.deleteCustomStory(widget.blueprint);
@@ -861,10 +894,16 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
                       },
                     ),
                     TextButton.icon(
-                      icon: Icon(_isPlaying ? Icons.stop : Icons.play_arrow, size: 20),
-                      label: Text(_isPlaying ? "Stop" : "Play"),
+                      icon: _isLoadingAudio
+                          ? const SizedBox(
+                              width: 20,
+                              height: 20,
+                              child: CircularProgressIndicator(strokeWidth: 2, color: Colors.purple),
+                            )
+                          : Icon(_isPlaying ? Icons.stop : Icons.play_arrow, size: 20),
+                      label: Text(_isLoadingAudio ? "Loading..." : (_isPlaying ? "Stop" : "Play")),
                       style: TextButton.styleFrom(foregroundColor: _isPlaying ? Colors.red : Colors.purple),
-                      onPressed: () => _togglePlay(AiStory(sentences: state.currentStory!.sentences)),
+                      onPressed: _isLoadingAudio ? null : () => _togglePlay(),
                     ),
                   ],
                 ),

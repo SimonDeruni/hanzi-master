@@ -171,7 +171,7 @@ class _ShowCatalogScreenState extends ConsumerState<ShowCatalogScreen> {
                             });
                           },
                           backgroundColor: const Color(0xFF1A1A1D),
-                          selectedColor: Colors.amber.withOpacity(0.2),
+                          selectedColor: Colors.amber.withValues(alpha: 0.2),
                           checkmarkColor: Colors.amber,
                           labelStyle: TextStyle(
                             color: isSelected ? Colors.amber : Colors.grey[400],
@@ -216,7 +216,7 @@ class _ShowCatalogScreenState extends ConsumerState<ShowCatalogScreen> {
                           });
                         },
                         backgroundColor: const Color(0xFF1A1A1D),
-                        selectedColor: Colors.teal.withOpacity(0.2),
+                        selectedColor: Colors.teal.withValues(alpha: 0.2),
                         checkmarkColor: Colors.teal,
                         labelStyle: TextStyle(
                           color: isSelected ? Colors.teal : Colors.grey[400],
@@ -437,7 +437,7 @@ class _ShowCard extends ConsumerWidget {
                     child: Container(
                       padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                       decoration: BoxDecoration(
-                        color: Colors.teal.withOpacity(0.9),
+                        color: Colors.teal.withValues(alpha: 0.9),
                         borderRadius: BorderRadius.circular(4),
                       ),
                       child: const Text(
@@ -459,8 +459,8 @@ class _ShowCard extends ConsumerWidget {
                       padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                       decoration: BoxDecoration(
                         color: show.tags.contains('Trailer') 
-                            ? Colors.redAccent.withOpacity(0.9)
-                            : Colors.purpleAccent.withOpacity(0.9),
+                            ? Colors.redAccent.withValues(alpha: 0.9)
+                            : Colors.purpleAccent.withValues(alpha: 0.9),
                         borderRadius: BorderRadius.circular(4),
                       ),
                       child: Text(

@@ -95,14 +95,13 @@ class DailyDiscoveryRepository {
     throw Exception('No valid video found.');
   }
 
-  /// Fetches recent uploads from a channel using youtube_explode_dart (no API key).
   Future<List<_VideoCandidate>> _fetchChannelVideos(String channelId, String channelName) async {
     final yt = YoutubeExplode();
     try {
-      final uploads = await yt.channels.getUploads(channelId);
+      final uploads = await yt.search.search(channelName);
       final candidates = <_VideoCandidate>[];
       int count = 0;
-      await for (final video in uploads) {
+      for (final video in uploads) {
         if (count >= _maxVideosPerChannel) break;
         candidates.add(_VideoCandidate(
           videoId: video.id.value,
@@ -129,13 +128,7 @@ class DailyDiscoveryRepository {
       imageUrl: "https://img.youtube.com/vi/gcShBujgsIQ/0.jpg",
       tag: "2 MIN CULTURAL CONTEXT",
     ),
-    DailyMediaItem(
-      title: "Mandarin Corner: Supermarket",
-      subtitle: "Learn Chinese in the Supermarket",
-      url: "https://www.youtube.com/watch?v=rY0_A32XnSg",
-      imageUrl: "https://img.youtube.com/vi/rY0_A32XnSg/0.jpg",
-      tag: "VIDEO OF THE DAY",
-    ),
+
     DailyMediaItem(
       title: "Grace Mandarin: 50 Phrases",
       subtitle: "Essential Chinese Phrases for Beginners",

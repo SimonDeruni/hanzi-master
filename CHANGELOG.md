@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 ### Fixed
+- **Shadowing Studio — Scoring Engine Accuracy**: Replaced Azure's holistic `PronScore` mapping with a pure, mathematical average of the `AccuracyScore` from explicitly spoken words. This prevents the score from plummeting to an absolute `0/100` when a user's microphone cuts off early, restoring parity between the visual breakdown (green/orange/red text) and the global score. Also introduced `Colors.grey` to render explicitly "Omitted" words.
+- **Smart Media Desk — Overlay Event Bubbling & State Synchronization**: Hoisted internal state management from `FullscreenMediaOverlay` to the global parent controller (`_SmartMediaDeskScreenState`), eliminating the bug where entering fullscreen forcibly resets toggles to an "On" default state while maintaining actual values. Also applied `enabled: false` to the switch wrappers in `PremiumVideoTopBar` to prevent the `PopupMenuButton` from closing instantly when interacted with.
+
+### Fixed
 - **Smart Media Desk & Video of the Day — YouTube API Quota Migration**: Replaced all YouTube Data API v3 calls in `youtube_repository.dart` and `daily_discovery_repository.dart` with `youtube_explode_dart` (InnerTube scraping). The category carousels, user search, and daily video discovery no longer consume any API quota. Shows & Dramas is untouched (fully local). The fallback logic now uses ANY matching term (OR) instead of requiring ALL terms (AND), fixing the silent empty-result failure.
 
 ### Fixed

@@ -128,7 +128,7 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
         codec: fs.Codec.pcm16,
         numChannels: 1,
         sampleRate: 24000,
-        bufferSize: 8192,
+        bufferSize: 819200, // 800 KB buffer (holds ~17 seconds of audio safely without blocking)
         interleaved: true,
       );
       await _connectToGemini();

@@ -191,6 +191,7 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
   final ScrollController _scrollController = ScrollController();
   final List<GlobalKey> _lineKeys = [];
   StreamSubscription? _positionSubscription;
+  bool _showHanzi = true;
   bool _showPinyin = true;
   bool _showEnglish = true;
   PlayerState _playerState = PlayerState.unknown;
@@ -986,6 +987,12 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
                               shadowFeedback: _shadowFeedback,
                               onToggleRecord: () =>
                                   _toggleShadowRecording(null),
+                              showHanzi: _showHanzi,
+                              showPinyin: _showPinyin,
+                              showEnglish: _showEnglish,
+                              onToggleHanzi: (v) => setState(() => _showHanzi = v),
+                              onTogglePinyin: (v) => setState(() => _showPinyin = v),
+                              onToggleEnglish: (v) => setState(() => _showEnglish = v),
                             );
                           },
                         ),

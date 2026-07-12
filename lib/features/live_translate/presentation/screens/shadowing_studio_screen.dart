@@ -59,6 +59,8 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
   double? _highlightEnd;
   final _pitchService = PitchDetectorService();
   final List<Map<String, dynamic>> _weakCharacters = [];
+  final List<String> _phraseHistory = [];
+  Map<String, dynamic>? _selectedWordDetail; // null = no detail sheet open
   String? _errorMessage;
   String? _recordingPath;
   DateTime? _recordingStartTime;
@@ -141,12 +143,13 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
       if (_selectedMode == ShadowingMode.customWord) contextInput = "Word: $_customWordInput";
       if (_selectedMode == ShadowingMode.freeFlow) contextInput = "Free flow conversational practice.";
 
-      final phrase = await geminiService.generateShadowingPhrase(_selectedMode.toString(), contextInput);
+      final phrase = await geminiService.generateShadowingPhrase(_selectedMode.toString(), contextInput, previousPhrases: _phraseHistory);
       
       if (mounted) {
         setState(() {
           _currentPhrase = phrase;
           _isLoadingNextPhrase = false;
+          _phraseHistory.add(phrase['hanzi'] ?? '');
         });
       }
     } on PremiumRequiredException {
@@ -306,7 +309,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
 
             if (grade['words'] != null) {
               for (var word in grade['words']) {
-                if (word['isCorrect'] == false) {
+                if (word['isCorrect'] == false && word['isOmitted'] != true) {
                   final existingIndex = _weakCharacters.indexWhere((w) => w['word'] == word['word']);
                   if (existingIndex >= 0) {
                     _weakCharacters[existingIndex] = word;
@@ -360,8 +363,9 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
       setState(() {
         _isSessionStarted = false;
         _currentPhrase = null;
-        _weakCharacters.clear();
+        _lastGrade = null;
         _sentenceCount = 0;
+        _phraseHistory.clear();
       });
       return;
     }
@@ -1150,29 +1154,41 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
               alignment: WrapAlignment.center,
               spacing: 4,
               children: (_lastGrade!['words'] as List).map<Widget>((item) {
-                final isCorrect = item['isCorrect'] ?? true;
+                final isCorrect = item['isCorrect'] ?? false;
                 final isPartial = item['isPartial'] ?? false;
-                final color = isCorrect 
-                    ? (isDark ? Colors.white : const Color(0xFF1A1A1B)) 
-                    : (isPartial ? Colors.orange : Colors.red);
+                final isOmitted = item['isOmitted'] ?? false;
                 
-                return Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      item['pinyin'] ?? "",
-                      style: TextStyle(fontSize: 16, color: color, fontStyle: FontStyle.italic),
-                    ),
-                    Text(
-                      item['word'] ?? "",
-                      style: TextStyle(
-                        fontSize: widget.isCompact ? 40 : 56,
-                        color: color,
-                        fontWeight: FontWeight.w500,
-                        fontFamily: 'NotoSerifSC',
+                Color color;
+                if (isOmitted) {
+                  color = Colors.grey;
+                } else if (isCorrect) {
+                  color = Colors.green;
+                } else if (isPartial) {
+                  color = Colors.orange;
+                } else {
+                  color = Colors.red;
+                }
+                
+                return GestureDetector(
+                  onTap: () => _showWordDetailSheet(context, isDark, item, color),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        item['pinyin'] ?? "",
+                        style: TextStyle(fontSize: 16, color: color, fontStyle: FontStyle.italic),
                       ),
-                    ),
-                  ],
+                      Text(
+                        item['word'] ?? "",
+                        style: TextStyle(
+                          fontSize: widget.isCompact ? 40 : 56,
+                          color: color,
+                          fontWeight: FontWeight.w500,
+                          fontFamily: 'NotoSerifSC',
+                        ),
+                      ),
+                    ],
+                  ),
                 );
               }).toList(),
             ),
@@ -1224,6 +1240,113 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
           ),
         ],
       ),
+    );
+  }
+
+  void _showWordDetailSheet(BuildContext context, bool isDark, Map<String, dynamic> wordData, Color wordColor) {
+    final word = wordData['word'] ?? '';
+    final feedback = wordData['feedback'] ?? '';
+    final isCorrect = wordData['isCorrect'] ?? false;
+    final isPartial = wordData['isPartial'] ?? false;
+    final isOmitted = wordData['isOmitted'] ?? false;
+
+    String errorLabel;
+    if (isOmitted) {
+      errorLabel = 'Omitted';
+    } else if (isCorrect) {
+      errorLabel = 'Correct';
+    } else if (isPartial) {
+      errorLabel = 'Partial';
+    } else {
+      errorLabel = 'Mispronounced';
+    }
+
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
+      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(24))),
+      builder: (context) {
+        return Padding(
+          padding: const EdgeInsets.all(24.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              // Drag handle
+              Center(
+                child: Container(
+                  width: 40,
+                  height: 4,
+                  decoration: BoxDecoration(
+                    color: Colors.grey[400],
+                    borderRadius: BorderRadius.circular(2),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 24),
+              // Word in large font
+              Text(
+                word,
+                style: TextStyle(
+                  fontSize: 48,
+                  fontFamily: 'NotoSerifSC',
+                  color: wordColor,
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 16),
+              // Error type badge
+              Center(
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+                  decoration: BoxDecoration(
+                    color: wordColor.withValues(alpha: 0.15),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Text(
+                    errorLabel,
+                    style: TextStyle(
+                      color: wordColor,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 14,
+                    ),
+                  ),
+                ),
+              ),
+              if (feedback.isNotEmpty) ...[
+                const SizedBox(height: 16),
+                Text(
+                  feedback,
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: isDark ? Colors.white70 : Colors.black87,
+                    height: 1.5,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ],
+              const SizedBox(height: 24),
+              // Listen button
+              ElevatedButton.icon(
+                onPressed: () {
+                  final audioService = ref.read(audioServiceProvider);
+                  audioService.playSentence(word);
+                },
+                icon: const Icon(Icons.volume_up),
+                label: const Text("Listen to this word"),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.orange,
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(vertical: 14),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                ),
+              ),
+              const SizedBox(height: 16),
+            ],
+          ),
+        );
+      },
     );
   }
 

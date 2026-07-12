@@ -68,7 +68,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
   void initState() {
     super.initState();
     _pulseController = AnimationController(vsync: this, duration: const Duration(seconds: 1))..repeat(reverse: true);
-    _initTts();
+    // _initTts(); // [TTS DISABLED] Restore when TTS engine is ready
     _urlController.text = widget.initialUrl;
     _controller = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
@@ -370,11 +370,6 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
         setState(() => _isReadingAloud = false);
         _controller.runJavaScript('''
           if (window.removeTtsHighlight) window.removeTtsHighlight();
-          const btn = document.getElementById('tts-btn');
-          if (btn) {
-            btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg> Listen`;
-            btn.style.opacity = '1';
-          }
         ''');
       }
     }
@@ -688,11 +683,6 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
                 <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 16px;">
                    <div style="background: rgba(255, 193, 7, 0.15); border: 1px solid rgba(255, 193, 7, 0.4); color: #b38600; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; font-family: sans-serif;">HSK ${insight.hskLevel}</div>
                    <div style="background: rgba(76, 175, 80, 0.12); border: 1px solid rgba(76, 175, 80, 0.35); color: #2e7d32; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; font-family: sans-serif;">Readability ${insight.score}%</div>
-                   <div style="flex-grow: 1;"></div>
-                   <button id="tts-btn" style="display: inline-flex; align-items: center; gap: 6px; background: #1A1A1B; color: #FDFCF0; border: none; border-radius: 20px; padding: 6px 14px; font-size: 12px; font-weight: 600; cursor: pointer; font-family: sans-serif; letter-spacing: 0.3px; transition: opacity 0.2s;">
-                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
-                     Listen
-                   </button>
                 </div>
                 <div>
                    <button id="summary-toggle-btn" style="display: inline-flex; align-items: center; gap: 5px; background: none; border: none; padding: 0; color: rgba(26,26,27,0.5); cursor: pointer; font-size: 13px; font-family: sans-serif; letter-spacing: 0.2px;">
@@ -716,11 +706,6 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
                   textDiv.style.display = 'none';
                   chevron.style.transform = 'rotate(0deg)';
                 }
-              });
-              
-              document.getElementById('tts-btn').addEventListener('click', function(e) {
-                e.stopPropagation();
-                HanziMasterChannel.postMessage(JSON.stringify({type: 'tts_toggle'}));
               });
             }
           ''';
@@ -849,14 +834,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
         }
         return;
       }
-      if (data['type'] == 'tts_toggle') {
-        if (_isReadingAloud) {
-          _stopTts();
-        } else {
-          _playTts();
-        }
-        return;
-      }
+      // [TTS DISABLED] tts_toggle handler removed - restore when TTS engine is ready
       if (data['type'] == 'play_sentence') {
         final text = data['text'] as String;
         _playTts(text: text);

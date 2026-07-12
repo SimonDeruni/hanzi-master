@@ -82,6 +82,7 @@ class PremiumVideoTopBar extends StatelessWidget {
               double localOpacity = subtitleBgOpacity;
               return [
                 PopupMenuItem(
+                  enabled: false,
                   child: StatefulBuilder(
                     builder: (context, setState) {
                       return SwitchListTile(
@@ -97,6 +98,7 @@ class PremiumVideoTopBar extends StatelessWidget {
                   ),
                 ),
                 PopupMenuItem(
+                  enabled: false,
                   child: StatefulBuilder(
                     builder: (context, setState) {
                       return SwitchListTile(
@@ -112,6 +114,7 @@ class PremiumVideoTopBar extends StatelessWidget {
                   ),
                 ),
                 PopupMenuItem(
+                  enabled: false,
                   child: StatefulBuilder(
                     builder: (context, setState) {
                       return SwitchListTile(
