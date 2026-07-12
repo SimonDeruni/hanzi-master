@@ -92,9 +92,9 @@ class PronunciationReportSheet extends ConsumerWidget {
                     const SizedBox(width: 4),
                     const Icon(Icons.arrow_upward, size: 12, color: Colors.orange),
                     const SizedBox(width: 8),
-                    const Text(
+                    Text(
                       grade.score != null ? (grade.score! >= 80 ? 'Great!' : 'Keep trying!') : 'Pending...',
-                      style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black87),
+                      style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.black87),
                     ),
                   ],
                 ),

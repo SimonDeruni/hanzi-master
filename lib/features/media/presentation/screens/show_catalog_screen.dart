@@ -11,6 +11,9 @@ final showsProvider = FutureProvider<Map<ShowGenre, List<Show>>>((ref) {
   return repo.fetchAllShows();
 });
 
+/// Possible subtitle type filter states.
+enum SubtitleFilter { all, soft, hard }
+
 class ShowCatalogScreen extends ConsumerStatefulWidget {
   const ShowCatalogScreen({super.key});
 
@@ -21,6 +24,7 @@ class ShowCatalogScreen extends ConsumerStatefulWidget {
 class _ShowCatalogScreenState extends ConsumerState<ShowCatalogScreen> {
   String _searchQuery = '';
   final Set<String> _selectedTags = {};
+  SubtitleFilter _subtitleFilter = SubtitleFilter.all;
   final TextEditingController _searchController = TextEditingController();
 
   @override
@@ -93,7 +97,11 @@ class _ShowCatalogScreenState extends ConsumerState<ShowCatalogScreen> {
             final matchesTags = _selectedTags.isEmpty ||
                 _selectedTags.every((tag) => show.tags.contains(tag));
                 
-            return matchesQuery && matchesTags;
+            final matchesSubtitle = _subtitleFilter == SubtitleFilter.all ||
+                (_subtitleFilter == SubtitleFilter.soft && show.subtitleType == SubtitleType.soft) ||
+                (_subtitleFilter == SubtitleFilter.hard && show.subtitleType == SubtitleType.hard);
+                
+            return matchesQuery && matchesTags && matchesSubtitle;
           }).toList();
 
           final isFiltering = _searchQuery.isNotEmpty || _selectedTags.isNotEmpty;
@@ -181,6 +189,50 @@ class _ShowCatalogScreenState extends ConsumerState<ShowCatalogScreen> {
                   ),
                 ),
                 
+
+              // Subtitle Type Filter
+              SizedBox(
+                height: 48,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  itemCount: SubtitleFilter.values.length,
+                  itemBuilder: (context, index) {
+                    final filter = SubtitleFilter.values[index];
+                    final isSelected = _subtitleFilter == filter;
+                    final label = filter == SubtitleFilter.all
+                        ? 'All'
+                        : filter == SubtitleFilter.soft
+                            ? 'CC Soft Sub'
+                            : 'Hard Sub';
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                      child: FilterChip(
+                        label: Text(label),
+                        selected: isSelected,
+                        onSelected: (_) {
+                          setState(() {
+                            _subtitleFilter = filter;
+                          });
+                        },
+                        backgroundColor: const Color(0xFF1A1A1D),
+                        selectedColor: Colors.teal.withOpacity(0.2),
+                        checkmarkColor: Colors.teal,
+                        labelStyle: TextStyle(
+                          color: isSelected ? Colors.teal : Colors.grey[400],
+                          fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          side: BorderSide(
+                            color: isSelected ? Colors.teal : Colors.transparent,
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
               const SizedBox(height: 8),
 
               // Content Area

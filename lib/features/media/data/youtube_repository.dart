@@ -402,13 +402,8 @@ class YoutubeRepository {
 
   /// Checks if a language code represents Chinese.
   bool _isChineseLanguage(String langCode) {
-    return langCode == 'zh' ||
-        langCode == 'zh-cn' ||
-        langCode == 'zh-tw' ||
-        langCode == 'zh-hans' ||
-        langCode == 'zh-hant' ||
-        langCode == 'cmn' ||
-        langCode == 'yue';
+    final lower = langCode.toLowerCase();
+    return lower.startsWith('zh') || lower == 'cmn' || lower == 'yue';
   }
 
   void dispose() {
