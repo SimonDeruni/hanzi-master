@@ -9,8 +9,6 @@ import '../widgets/course_map_widgets.dart';
 import '../widgets/course_painters.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
-import 'package:hanzi_master/shared/widgets/info_bulb.dart';
-
 class CourseScreen extends ConsumerWidget {
   final String deckId;
   final String deckName;
@@ -34,7 +32,7 @@ class CourseScreen extends ConsumerWidget {
         centerTitle: true,
         backgroundColor: Colors.transparent,
         elevation: 0,
-        actions: const [InfoBulb(id: "course", title: "Course Deck", message: "Swipe through flashcards to learn characters. Tap to flip and see the English meaning. Master 5 cards to complete this session.")],
+        actions: const [],
       ),
       extendBodyBehindAppBar: true,
       body: Stack(

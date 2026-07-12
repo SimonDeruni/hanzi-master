@@ -9,7 +9,6 @@ import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraph
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/shared/widgets/tappable_hanzi_text.dart';
 import 'package:hanzi_master/core/services/audio_service.dart';
-import 'package:hanzi_master/shared/widgets/info_bulb.dart';
 import 'package:hanzi_master/core/services/saved_scenarios_service.dart';
 
 class ConversationScreen extends ConsumerStatefulWidget {
@@ -92,8 +91,7 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
         iconTheme: const IconThemeData(color: Colors.white),
         actions: [
           _buildBookmarkButton(theme),
-          const InfoBulb(id: "conversation", title: "AI Conversation", message: "Practice natural Chinese conversations with AI. Respond in Chinese to improve your speaking skills. Do not worry about mistakes!"),
-        ],
+                  ],
       ),
       body: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),

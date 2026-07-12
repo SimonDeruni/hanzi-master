@@ -1,19 +1,16 @@
-import 'dart:convert';
 import 'dart:math';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:xml/xml.dart';
+import 'package:youtube_explode_dart/youtube_explode_dart.dart';
 import 'package:hanzi_master/features/media/domain/models/daily_media_item.dart';
 
 class DailyDiscoveryRepository {
-  final String _apiKey;
   final http.Client _client;
 
-  DailyDiscoveryRepository({required String apiKey, http.Client? client})
-      : _apiKey = apiKey,
-        _client = client ?? http.Client();
+  DailyDiscoveryRepository({http.Client? client})
+      : _client = client ?? http.Client();
 
-  static const _baseUrl = 'https://www.googleapis.com/youtube/v3';
   static const int _channelsToFetch = 7;
   static const int _maxVideosPerChannel = 3;
 
@@ -98,35 +95,29 @@ class DailyDiscoveryRepository {
     throw Exception('No valid video found.');
   }
 
-  /// Fetches recent videos from a channel using YouTube Data API v3 search.list.
+  /// Fetches recent uploads from a channel using youtube_explode_dart (no API key).
   Future<List<_VideoCandidate>> _fetchChannelVideos(String channelId, String channelName) async {
+    final yt = YoutubeExplode();
     try {
-      final uri = Uri.parse('$_baseUrl/search?part=snippet'
-          '&channelId=$channelId'
-          '&type=video'
-          '&order=date'
-          '&maxResults=$_maxVideosPerChannel'
-          '&key=$_apiKey');
-
-      final response = await _client.get(uri).timeout(const Duration(seconds: 6));
-      if (response.statusCode != 200) {
-        debugPrint('[DailyDiscovery] API error ${response.statusCode}: ${response.body}');
-        return [];
+      final uploads = await yt.channels.getUploads(channelId);
+      final candidates = <_VideoCandidate>[];
+      int count = 0;
+      await for (final video in uploads) {
+        if (count >= _maxVideosPerChannel) break;
+        candidates.add(_VideoCandidate(
+          videoId: video.id.value,
+          title: video.title,
+          channelName: channelName,
+        ));
+        count++;
       }
-
-      final data = jsonDecode(response.body) as Map<String, dynamic>;
-      final items = data['items'] as List<dynamic>? ?? [];
-
-      return items.map((item) {
-        final snippet = item['snippet'] as Map<String, dynamic>? ?? {};
-        final idMap = item['id'] as Map<String, dynamic>? ?? {};
-        final videoId = idMap['videoId'] as String? ?? '';
-        final title = snippet['title'] as String? ?? '';
-        return _VideoCandidate(videoId: videoId, title: title, channelName: channelName);
-      }).where((c) => c.videoId.isNotEmpty).toList();
+      debugPrint('[DailyDiscovery] Fetched ${candidates.length} videos from $channelName');
+      return candidates;
     } catch (e) {
       debugPrint('[DailyDiscovery] Error fetching channel $channelId: $e');
       return [];
+    } finally {
+      yt.close();
     }
   }
 

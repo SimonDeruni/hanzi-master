@@ -1,18 +1,11 @@
-import 'dart:ui' as ui;
 import 'dart:async';
-import 'dart:convert';
-import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:web_socket_channel/web_socket_channel.dart';
-import 'package:web_socket_channel/status.dart' as status;
-import 'package:record/record.dart';
-import 'package:hanzi_master/core/services/api_key_pool.dart';
+import 'package:hanzi_master/core/services/speech_service.dart';
 import 'package:hive/hive.dart';
 import 'package:uuid/uuid.dart';
 import 'package:hanzi_master/features/live_translate/domain/entities/translation_session.dart';
 import 'package:hanzi_master/features/premium/presentation/screens/universal_scanner_screen.dart';
-import 'package:hanzi_master/shared/widgets/info_bulb.dart';
 import 'package:hanzi_master/core/providers/translation_language_provider.dart';
 import 'package:hanzi_master/shared/widgets/tappable_hanzi_text.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
@@ -27,20 +20,10 @@ class TravelInterpreterScreen extends ConsumerStatefulWidget {
 }
 
 class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScreen> with SingleTickerProviderStateMixin {
-  final AudioRecorder _audioRecorder = AudioRecorder();
-
-  WebSocketChannel? _channel;
-  StreamSubscription<Uint8List>? _audioSubscription;
-
-  String _status = "Initializing...";
+  String _status = "Ready";
   bool _hasError = false;
   String? _recordingSide; // null = idle, 'a' = User mic, 'b' = Partner mic
   bool _isStopping = false;
-
-  // Reconnection state
-  int _reconnectAttempts = 0;
-  static const int _maxReconnectAttempts = 5;
-  Timer? _reconnectTimer;
 
   // Side language state (decoupled from global provider)
   String _sideALanguage = 'English';
@@ -53,7 +36,6 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
   bool _isTranslatingText = false;
 
   final List<TranslationMessage> _messages = [];
-  final List<int> _audioBuffer = [];
 
   // Message filtering by sideId
   List<TranslationMessage> get _sideAMessages =>
@@ -63,7 +45,6 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
       _messages.where((msg) => msg.sideId == 'b').toList();
 
   bool _isSessionStarted = false;
-  bool _isSetupComplete = false;
   late AnimationController _pulseController;
 
   @override
@@ -99,239 +80,75 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
   }
 
   Future<void> _initAudioAndConnect() async {
-    try {
-      await _connectToGemini();
-    } catch (e) {
-      if (mounted) setState(() { _status = "Init error: $e"; _hasError = true; });
-    }
-  }
-
-  Future<void> _connectToGemini() async {
-    if (!mounted) return;
-    setState(() => _status = "Connecting...");
-    _isSetupComplete = false;
-
-    final apiKey = ref.read(apiKeyPoolProvider).googleKey;
-    if (apiKey.isEmpty) {
-      _stopAudioStreaming(keepStatus: true);
-      setState(() { _status = "Missing API Key"; _hasError = true; });
-      return;
-    }
-
-    try {
-      final uri = Uri.parse(
-        'wss://generativelanguage.googleapis.com/ws/google.ai.generativelanguage.v1beta.GenerativeService.BidiGenerateContent?key=$apiKey'
-      );
-      _channel = WebSocketChannel.connect(uri);
-
-      final setupMessage = jsonEncode({
-        "setup": {
-          "model": "models/gemini-2.0-flash-exp",
-          "generationConfig": {
-             "responseModalities": ["TEXT"]
-          },
-          "systemInstruction": {
-            "parts": [
-              {"text": "You are a Real-time Travel Interpreter. Your job is to translate spoken $_sideALanguage to $_sideBLanguage AND spoken $_sideBLanguage to $_sideALanguage seamlessly. If the user speaks $_sideALanguage, output $_sideBLanguage. If they speak $_sideBLanguage, output $_sideALanguage. Be conversational and helpful. Output text ONLY."}
-            ]
-          }
-        }
+    final speechService = ref.read(speechServiceProvider);
+    await speechService.init();
+    if (mounted) {
+      setState(() {
+        _status = "Ready to interpret";
       });
-
-      _channel!.sink.add(setupMessage);
-
-      _channel!.stream.listen(
-        (message) async {
-          if (!mounted) return;
-          try {
-            String textMessage;
-            if (message is List<int>) {
-              textMessage = utf8.decode(message);
-            } else {
-              textMessage = message.toString();
-            }
-            final data = jsonDecode(textMessage);
-
-            if (data.containsKey('error')) {
-              if (mounted) setState(() => _status = "Error: ${data['error']['message']}");
-            }
-
-            if (data.containsKey('setupComplete')) {
-              setState(() { _status = "Ready to interpret..."; _reconnectAttempts = 0; _isSetupComplete = true; });
-            }
-
-            if (data.containsKey('serverContent')) {
-              final content = data['serverContent'];
-
-              if (content.containsKey('modelTurn')) {
-                final modelTurn = content['modelTurn'];
-                if (modelTurn['parts'] != null) {
-                  for (var part in modelTurn['parts']) {
-                    if (part.containsKey('text')) {
-                      _handleAiTranscript(part['text']);
-                    }
-                  }
-                }
-              }
-
-              if (content.containsKey('inputTranscription')) {
-                final trans = content['inputTranscription'];
-                _handleUserTranscript(trans['text'] ?? "", trans['finished'] ?? false);
-              }
-
-            }
-          } catch (e) {
-            // Ignore malformed messages from the WebSocket stream
-          }
-        },
-        onDone: () {
-          final code = _channel?.closeCode;
-          final reason = _channel?.closeReason;
-          debugPrint("TravelInterpreter: Connection closed. Code: $code, Reason: $reason");
-          _isSetupComplete = false;
-          if (mounted && _isSessionStarted && _reconnectAttempts < _maxReconnectAttempts) {
-            _reconnectAttempts++;
-            final delay = Duration(seconds: [1, 2, 4, 8, 16][_reconnectAttempts - 1].clamp(1, 30));
-            setState(() { _status = "Reconnecting in ${delay.inSeconds}s..."; _hasError = false; });
-            _reconnectTimer?.cancel();
-            _reconnectTimer = Timer(delay, () {
-              if (mounted && _isSessionStarted) {
-                _initAudioAndConnect();
-              }
-            });
-          } else if (mounted && _isSessionStarted) {
-            _stopAudioStreaming(keepStatus: true);
-            setState(() { _status = "Connection Failed. Tap mic to retry"; _hasError = true; _reconnectAttempts = 0; });
-          } else {
-            _stopAudioStreaming(keepStatus: true);
-            if (mounted) setState(() { _status = "Connection closed ($code): ${reason ?? 'unknown'}"; _hasError = true; });
-          }
-        },
-        onError: (e) {
-          _isSetupComplete = false;
-          if (mounted && _reconnectAttempts < _maxReconnectAttempts) {
-            _reconnectAttempts++;
-            final delay = Duration(seconds: [1, 2, 4, 8, 16][_reconnectAttempts - 1].clamp(1, 30));
-            setState(() { _status = "Connection Error — retrying in ${delay.inSeconds}s..."; _hasError = false; });
-            _reconnectTimer?.cancel();
-            _reconnectTimer = Timer(delay, () {
-              if (mounted && _isSessionStarted) { _initAudioAndConnect(); }
-            });
-          } else {
-            _stopAudioStreaming(keepStatus: true);
-            if (mounted) setState(() { _status = "Connection Error: $e"; _hasError = true; });
-          }
-        },
-      );
-    } catch (e) {
-      if (mounted) setState(() { _status = "Fail: $e"; _hasError = true; });
     }
-  }
-
-  void _handleAiTranscript(String text) {
-    if (text.trim().isEmpty) return;
-    final targetSideId = _recordingSide == 'a' ? 'b' : 'a';
-    final targetLanguage = _recordingSide == 'a' ? _sideBLanguage : _sideALanguage;
-
-    setState(() {
-      if (_messages.isNotEmpty && _messages.last.sideId == targetSideId && !_messages.last.isUser) {
-        final last = _messages.last;
-        _messages[_messages.length - 1] = TranslationMessage(
-          text: last.text + text,
-          isUser: false,
-          timestamp: last.timestamp,
-          sideId: targetSideId,
-          language: targetLanguage,
-        );
-      } else {
-        _messages.add(TranslationMessage(
-          text: text,
-          isUser: false,
-          sideId: targetSideId,
-          language: targetLanguage,
-        ));
-      }
-    });
-  }
-
-  void _handleUserTranscript(String text, bool finished) {
-    if (text.trim().isEmpty) return;
-    final sourceSideId = _recordingSide ?? 'a';
-    final sourceLanguage = sourceSideId == 'a' ? _sideALanguage : _sideBLanguage;
-
-    setState(() {
-      if (_messages.isNotEmpty && _messages.last.sideId == sourceSideId && _messages.last.isUser) {
-        final last = _messages.last;
-        _messages[_messages.length - 1] = TranslationMessage(
-          text: text,
-          isUser: true,
-          timestamp: last.timestamp,
-          sideId: sourceSideId,
-          language: sourceLanguage,
-        );
-      } else {
-        _messages.add(TranslationMessage(
-          text: text,
-          isUser: true,
-          sideId: sourceSideId,
-          language: sourceLanguage,
-        ));
-      }
-    });
   }
 
   Future<void> _startAudioStreaming(String sideId) async {
     if (_recordingSide != null || _isStopping) return;
 
-    // Self-healing auto-reconnection: Reconnect if channel is dead or closed
-    if (_channel == null || _channel?.closeCode != null) {
-      _reconnectAttempts = 0; // Reset reconnection attempts to try fresh
-      await _initAudioAndConnect();
-      if (_channel == null || _channel?.closeCode != null || _hasError) {
-        // If connection fails instantly, do not start recording
-        return;
-      }
+    final lang = sideId == 'a' ? _sideALanguage : _sideBLanguage;
+    
+    setState(() {
+      _recordingSide = sideId;
+      _status = sideId == 'b' ? "Partner listening..." : "Listening...";
+      
+      // Insert an empty draft message for the user's live transcription
+      _messages.add(TranslationMessage(
+        text: "",
+        isUser: true,
+        sideId: sideId,
+        language: lang,
+      ));
+    });
+
+    final speechService = ref.read(speechServiceProvider);
+    
+    String localeId = 'en_US';
+    if (lang == 'Mandarin' || lang == 'Chinese') {
+      localeId = 'zh_CN';
+    } else if (lang == 'Spanish') {
+      localeId = 'es_ES';
+    } else if (lang == 'French') {
+      localeId = 'fr_FR';
+    } else if (lang == 'German') {
+      localeId = 'de_DE';
+    } else if (lang == 'Japanese') {
+      localeId = 'ja_JP';
+    } else if (lang == 'Korean') {
+      localeId = 'ko_KR';
     }
 
-    if (await _audioRecorder.hasPermission()) {
-      setState(() {
-        _recordingSide = sideId;
-        _status = sideId == 'b' ? "Partner listening..." : "Listening...";
-      });
-      
-      try {
-        final stream = await _audioRecorder.startStream(
-          const RecordConfig(encoder: AudioEncoder.pcm16bits, sampleRate: 16000, numChannels: 1),
-        );
-        _audioSubscription = stream.listen((data) {
-          if (data.isEmpty) return;
-          _audioBuffer.addAll(data);
-
-          if (_audioBuffer.length >= 16000) {
-            if (_channel != null && _channel?.closeCode == null && _isSetupComplete) {
-              try {
-                _channel!.sink.add(jsonEncode({
-                  "realtimeInput": {
-                    "mediaChunks": [
-                      {
-                        "mimeType": "audio/pcm;rate=16000",
-                        "data": base64Encode(_audioBuffer)
-                      }
-                    ]
-                  }
-                }));
-                _audioBuffer.clear();
-              } catch (e) {
-                debugPrint("Sink add error: $e");
-              }
-            }
+    try {
+      await speechService.startListening(
+        localeId: localeId,
+        onResult: (text) {
+          if (mounted && _messages.isNotEmpty && _messages.last.isUser && _messages.last.sideId == sideId) {
+            setState(() {
+              _messages[_messages.length - 1] = TranslationMessage(
+                text: text,
+                isUser: true,
+                sideId: sideId,
+                language: lang,
+              );
+            });
           }
-        });
-      } catch (e) {
-        debugPrint("Recorder startStream error: $e");
+        },
+      );
+    } catch (e) {
+      if (mounted) {
         setState(() {
           _recordingSide = null;
           _status = "Microphone error: $e";
+          // Remove draft message on error
+          if (_messages.isNotEmpty && _messages.last.isUser && _messages.last.text.isEmpty) {
+            _messages.removeLast();
+          }
         });
       }
     }
@@ -340,39 +157,21 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
   Future<void> _stopAudioStreaming({bool keepStatus = false}) async {
     if (_isStopping || _recordingSide == null) return;
     _isStopping = true;
-    await _audioSubscription?.cancel();
-    try {
-      if (await _audioRecorder.isRecording()) {
-        await _audioRecorder.stop();
+
+    final speechService = ref.read(speechServiceProvider);
+    await speechService.stopListening();
+    
+    final finalSide = _recordingSide;
+    
+    String finalText = "";
+    if (_messages.isNotEmpty && _messages.last.isUser && _messages.last.sideId == finalSide) {
+      finalText = _messages.last.text.trim();
+      if (finalText.isEmpty) {
+        // Remove empty drafts
+        setState(() {
+          _messages.removeLast();
+        });
       }
-    } catch (_) {
-      // Recorder may be in an invalid state
-    }
-
-    if (_audioBuffer.isNotEmpty && _channel != null && _channel?.closeCode == null && _isSetupComplete) {
-      try {
-        _channel!.sink.add(jsonEncode({
-          "realtimeInput": {
-            "mediaChunks": [
-              {
-                "mimeType": "audio/pcm;rate=16000",
-                "data": base64Encode(_audioBuffer)
-              }
-            ]
-          }
-        }));
-      } catch (_) {}
-      _audioBuffer.clear();
-    }
-
-    if (_channel != null && _channel?.closeCode == null && _isSetupComplete) {
-      try {
-        _channel!.sink.add(jsonEncode({
-          "clientContent": {
-            "turnComplete": true
-          }
-        }));
-      } catch (_) {}
     }
 
     setState(() {
@@ -380,6 +179,10 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
       _isStopping = false;
       if (!keepStatus) _status = "Paused";
     });
+
+    if (finalText.isNotEmpty && finalSide != null) {
+       _sendTextTranslation(finalText, sideId: finalSide);
+    }
   }
 
   /// Send a text translation with explicit source→target routing.
@@ -535,38 +338,11 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
     );
   }
 
-  Future<void> _saveSession() async {
-    if (_messages.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("No transcript to save!")));
-      return;
-    }
 
-    final box = await Hive.openBox<TranslationSession>('translation_sessions');
-    final session = TranslationSession(
-      id: const Uuid().v4(),
-      modeName: 'Travel Interpreter',
-      date: DateTime.now(),
-      messages: _messages.toList(),
-      sideALanguage: _sideALanguage,
-      sideBLanguage: _sideBLanguage,
-    );
-    await box.put(session.id, session);
-
-    if (mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Session saved!")));
-    }
-  }
 
   @override
   void dispose() {
     _pulseController.dispose();
-    _audioSubscription?.cancel();
-    try {
-      _audioRecorder.dispose();
-    } catch (_) {
-      // Recorder may be in an invalid state during disposal
-    }
-    _channel?.sink.close(status.normalClosure);
     super.dispose();
   }
 
@@ -586,8 +362,7 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                     onPressed: () => Navigator.pop(context),
                   ),
                   const Spacer(),
-                  const InfoBulb(id: "travel_interpreter", title: "Travel Interpreter", message: "Translate speech in real time. Speak in English and hear the Chinese translation instantly, or vice versa."),
-                ],
+                                  ],
               ),
             ),
             const Spacer(),
@@ -724,16 +499,14 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
     required bool isActive,
   }) {
     return GestureDetector(
-      onTap: () {
-        if (isActive) {
+      onTapDown: (_) {
+        if (_recordingSide != null) {
           _stopAudioStreaming();
-        } else {
-          if (_recordingSide != null) {
-            _stopAudioStreaming();
-          }
-          _startAudioStreaming(sideId);
         }
+        _startAudioStreaming(sideId);
       },
+      onTapUp: (_) => _stopAudioStreaming(),
+      onTapCancel: () => _stopAudioStreaming(),
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 300),
         width: 56,
@@ -873,7 +646,7 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                                         ),
                                         border: Border.all(color: isFromSideB ? Colors.blue.withValues(alpha: 0.3) : Colors.grey.withValues(alpha: 0.2)),
                                       ),
-                                      child: Text(
+                                      child: TappableMarkdownHanziText(
                                         msg.text,
                                         style: TextStyle(
                                           color: isFromSideB ? Colors.blue.shade200 : Colors.white,
@@ -997,15 +770,14 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                                       ),
                                       border: Border.all(color: isFromSideA ? Colors.blue.withValues(alpha: 0.3) : Colors.grey.withValues(alpha: 0.2)),
                                     ),
-                                    child: isFromSideA
-                                      ? Text(
-                                          msg.text,
-                                          style: const TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.w500),
-                                        )
-                                      : TappableMarkdownHanziText(
-                                          msg.text,
-                                          style: const TextStyle(color: Colors.blue, fontSize: 24, fontWeight: FontWeight.w500),
-                                        ),
+                                    child: TappableMarkdownHanziText(
+                                      msg.text,
+                                      style: TextStyle(
+                                        color: isFromSideA ? Colors.white : Colors.blue,
+                                        fontSize: 24,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
                                   ),
                                 ],
                               ),

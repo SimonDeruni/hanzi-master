@@ -8,8 +8,6 @@ import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/features/premium/presentation/screens/universal_scanner_screen.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
-import 'package:hanzi_master/shared/widgets/info_bulb.dart';
-
 class TranslationHubScreen extends StatelessWidget {
   const TranslationHubScreen({super.key});
 
@@ -27,12 +25,7 @@ class TranslationHubScreen extends StatelessWidget {
             GlobalSliverAppBar(
               title: l10n?.liveTranslate ?? "Live Translate",
               actions: [
-                InfoBulb(
-                  id: 'translation_hub',
-                  title: "Live Translate",
-                  message: "Break down language barriers with real-time translation tools. Use the Travel Interpreter for split-screen conversations, or the Universal Scanner to translate text from your camera in real time.",
-                ),
-                IconButton(
+                                IconButton(
                   icon: const Icon(Icons.history),
                   onPressed: () {
                     Navigator.push(context, SwipeBackPageRoute(builder: (_) => const TranslationHistoryScreen()));

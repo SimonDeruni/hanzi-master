@@ -6,7 +6,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:hanzi_master/features/media/domain/models/daily_media_item.dart';
 import 'package:hanzi_master/features/media/data/repositories/daily_discovery_repository.dart';
 import 'package:hanzi_master/features/media/data/repositories/show_repository.dart';
-import 'package:hanzi_master/core/services/api_key_pool.dart';
 
 part 'daily_discovery_provider.g.dart';
 
@@ -32,8 +31,7 @@ class DailyDiscovery extends _$DailyDiscovery {
       }
     }
 
-    final apiKey = ref.watch(apiKeyPoolProvider).youtubeApiKey;
-    final repo = DailyDiscoveryRepository(apiKey: apiKey);
+    final repo = DailyDiscoveryRepository();
 
     // Load shown video IDs from persistent storage
     final shownIds = prefs.getStringList('daily_shown_video_ids') ?? [];
@@ -74,7 +72,7 @@ class DailyDiscovery extends _$DailyDiscovery {
   }
 
   Future<DailyMediaItem> _fetchArticle() async {
-    final repo = DailyDiscoveryRepository(apiKey: ref.watch(apiKeyPoolProvider).youtubeApiKey);
+    final repo = DailyDiscoveryRepository();
     try {
       return await repo.getDailyArticle().timeout(
         const Duration(seconds: 4),

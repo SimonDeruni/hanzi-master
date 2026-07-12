@@ -9,7 +9,6 @@ import 'package:hanzi_master/features/live_translate/presentation/screens/shadow
 import 'package:hanzi_master/features/media/presentation/screens/media_hub_screen.dart';
 import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
-import 'package:hanzi_master/shared/widgets/info_bulb.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 
 
@@ -42,12 +41,7 @@ class AiHubScreen extends ConsumerWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    InfoBulb(
-                      id: 'ai_hub',
-                      title: "AI Hub",
-                      message: "Your central hub for AI-powered Chinese learning tools. Explore reading, speaking, listening, and writing features — all enhanced with AI to help you master Chinese.",
-                    ),
-                    Text(
+                                        Text(
                       l10n?.aiHubTitle ?? "AI Hub",
                       style: theme.textTheme.headlineMedium?.copyWith(
                         fontWeight: FontWeight.w900,

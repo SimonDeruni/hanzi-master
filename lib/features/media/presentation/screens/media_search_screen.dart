@@ -5,7 +5,6 @@ import '../../domain/models/youtube_video.dart';
 import 'smart_media_desk_screen.dart';
 import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
-import 'package:hanzi_master/shared/widgets/info_bulb.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 
 class MediaSearchScreen extends ConsumerStatefulWidget {
@@ -150,13 +149,7 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
         title: const Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            InfoBulb(
-              id: 'smart_media_desk',
-              title: "Smart Media Desk",
-              message:
-                  "Discover Chinese content from YouTube. Browse curated categories or search for topics you're interested in. Each video comes with interactive subtitles to help you learn while watching.",
-            ),
-            Text('Smart Media Desk',
+                        Text('Smart Media Desk',
                 style: TextStyle(
                     color: Colors.black87, fontWeight: FontWeight.bold)),
           ],

@@ -13,7 +13,6 @@ import '../../../../core/utils/dtw_aligner.dart';
 import '../../../premium/presentation/screens/paywall_sheet.dart';
 
 import 'package:hanzi_master/features/live_translate/presentation/widgets/tone_graph_painter.dart';
-import 'package:hanzi_master/shared/widgets/info_bulb.dart';
 import 'package:hanzi_master/features/live_translate/presentation/widgets/interactive_grading_text.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/deck_controller.dart';
@@ -21,6 +20,7 @@ import 'package:hanzi_master/features/flashcards/presentation/providers/flashcar
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/study_mode.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/deck.dart';
+import 'package:hanzi_master/core/providers.dart';
 
 enum ShadowingMode { freeFlow, theme, deck, customWord }
 
@@ -615,15 +615,17 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
       if (existing != null && existing.isNotEmpty) {
         card = existing.first;
       } else {
-        // Find the weakCharacter data for this word to get some context
+        // Get weak-character context from session grading (pinyin fallback)
         final wData = _weakCharacters.firstWhere((w) => w['word'] == hanzi, orElse: () => {});
+        // Hydrate from the bundled dictionary for authoritative pinyin + definition
+        final dictResult = await ref.read(globalDictionaryRepositoryProvider).getExact(hanzi);
         card = Flashcard(
           id: DateTime.now().millisecondsSinceEpoch.toString() + hanzi.hashCode.toString(),
           deckId: deck.id,
           hanzi: hanzi,
-          pinyin: wData['pinyin'] ?? "",
-          definition: "", // Requires dictionary lookup ideally, but empty for now
-          hskLevel: 0,
+          pinyin: dictResult?.pinyin ?? wData['pinyin'] ?? "",
+          definition: dictResult?.definition ?? "",
+          hskLevel: dictResult?.hskLevel ?? 0,
           strokePaths: const [],
           modeStats: const {},
         );
@@ -971,8 +973,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
                         ],
                       ),
                     ),
-                    const InfoBulb(id: "shadowing", title: "Shadowing Studio", message: "Listen to native pronunciation and repeat aloud. The app analyzes your pitch and gives instant feedback on your tones."),
-                  ],
+                                      ],
                 ),
               ),
             

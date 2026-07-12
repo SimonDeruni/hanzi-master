@@ -14,8 +14,6 @@ import 'package:hanzi_master/features/flashcards/presentation/providers/deck_con
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
-import 'package:hanzi_master/shared/widgets/info_bulb.dart';
-
 import "package:hanzi_master/core/services/saved_scenarios_service.dart";
 class ScenarioSelectionScreen extends ConsumerStatefulWidget {
   final Deck? deck;
@@ -325,12 +323,7 @@ class _ScenarioSelectionScreenState extends ConsumerState<ScenarioSelectionScree
             icon: Icon(Icons.arrow_back_ios, color: isDark ? Colors.white : Colors.black87),
             onPressed: () => Navigator.pop(context),
           ),
-          InfoBulb(
-            id: 'scenario_hub',
-            title: "Scenario Hub",
-            message: "Practice Chinese in realistic roleplay scenarios. Choose a scenario and enter a voice call or text chat. The AI will adapt to your level and help you improve your conversational skills.",
-          ),
-          Text(
+                    Text(
             "Scenario Hub",
             style: TextStyle(
               fontSize: 22,

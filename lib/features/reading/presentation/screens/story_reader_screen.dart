@@ -8,7 +8,6 @@ import '../providers/story_controller.dart';
 import '../../../../core/services/gemini_service.dart';
 import '../../../flashcards/presentation/utils/haptics_manager.dart';
 import '../../../../shared/widgets/quick_look_sheet.dart';
-import '../../../../shared/widgets/info_bulb.dart';
 import '../../../flashcards/presentation/providers/flashcard_controller.dart';
 import '../../../flashcards/domain/entities/study_mode.dart';
 
@@ -463,8 +462,7 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         actions: [
-          const InfoBulb(id: "story_reader", title: "Story Reader", message: "Read along with the story. Tap words for instant translations and listen to native audio. Save vocabulary to your flashcards."),
-          if (!_isSaved && state.currentStory != null) ...[
+                    if (!_isSaved && state.currentStory != null) ...[
              TextButton.icon(
                 icon: const Icon(Icons.delete_outline, color: Colors.redAccent),
                 label: Text(AppLocalizations.of(context)!.discard, style: TextStyle(color: Colors.redAccent)),

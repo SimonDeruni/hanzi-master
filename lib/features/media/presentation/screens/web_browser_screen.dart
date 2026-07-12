@@ -23,7 +23,6 @@ import 'dart:ui';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/word_detail_dialog.dart';
 import 'package:hanzi_master/core/presentation/widgets/ai_progress_bar.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
-import 'package:hanzi_master/shared/widgets/info_bulb.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 
 class WebBrowserScreen extends ConsumerStatefulWidget {
@@ -1156,8 +1155,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
         elevation: 1,
         iconTheme: const IconThemeData(color: Colors.black87),
         actions: [
-          const InfoBulb(id: "web_browser", title: "Web Reader", message: "Read Chinese articles and websites. Tap any character to see its definition and add it to your study list."),
-          IconButton(
+                    IconButton(
             icon: const Icon(Icons.bookmark_border),
             tooltip: 'Save Article',
             onPressed: () async {

@@ -104,7 +104,7 @@ class _ShowCatalogScreenState extends ConsumerState<ShowCatalogScreen> {
             return matchesQuery && matchesTags && matchesSubtitle;
           }).toList();
 
-          final isFiltering = _searchQuery.isNotEmpty || _selectedTags.isNotEmpty;
+          final isFiltering = _searchQuery.isNotEmpty || _selectedTags.isNotEmpty || _subtitleFilter != SubtitleFilter.all;
 
           return Column(
             children: [
@@ -274,7 +274,15 @@ class _ShowCatalogScreenState extends ConsumerState<ShowCatalogScreen> {
 
                           final genreIndex = index - 1;
                           final genre = showsByGenre.keys.elementAt(genreIndex);
-                          final shows = showsByGenre[genre]!;
+                          final rawShows = showsByGenre[genre]!;
+                          // Apply subtitle filter to genre carousels
+                          final shows = _subtitleFilter == SubtitleFilter.all
+                              ? rawShows
+                              : rawShows.where((s) =>
+                                  (_subtitleFilter == SubtitleFilter.soft && s.subtitleType == SubtitleType.soft) ||
+                                  (_subtitleFilter == SubtitleFilter.hard && s.subtitleType == SubtitleType.hard)
+                                ).toList();
+                          if (shows.isEmpty) return const SizedBox.shrink();
                           return _GenreRow(genre: genre, shows: shows);
                         },
                       ),

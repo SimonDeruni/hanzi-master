@@ -5,7 +5,6 @@ import '../providers/story_controller.dart';
 import 'story_reader_screen.dart';
 import '../widgets/custom_story_creator_sheet.dart';
 import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
-import '../../../../shared/widgets/info_bulb.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 
 class ReadingRoomScreen extends ConsumerStatefulWidget {
@@ -98,7 +97,7 @@ class _ReadingRoomScreenState extends ConsumerState<ReadingRoomScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         centerTitle: true,
-        actions: const [InfoBulb(id: "reading_room", title: "Reading Room", message: "Explore culturally rich Chinese stories graded by HSK level. Each story helps you learn vocabulary in context.")],
+        actions: const [],
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

@@ -1,48 +1,38 @@
-import 'dart:async';
-import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:http/http.dart' as http;
 import 'package:youtube_explode_dart/youtube_explode_dart.dart';
 import '../domain/models/youtube_video.dart';
 import '../domain/models/video_transcript.dart';
-import '../../../core/services/api_key_pool.dart';
 import 'repositories/shows_data.dart';
 
 final youtubeRepositoryProvider = Provider<YoutubeRepository>((ref) {
-  final pool = ref.watch(apiKeyPoolProvider);
-  return YoutubeRepository(apiKeyPool: pool);
+  return YoutubeRepository();
 });
 
 class YoutubeRepository {
-  final ApiKeyPool _apiKeyPool;
-  final http.Client _client;
-
-  YoutubeRepository({required ApiKeyPool apiKeyPool, http.Client? client})
-      : _apiKeyPool = apiKeyPool,
-        _client = client ?? http.Client();
-
-  static const _baseUrl = 'https://www.googleapis.com/youtube/v3';
-
   // In-memory cache: query → results with timestamp
   static final Map<String, _CachedResult> _cache = {};
-  static const _cacheTtl = Duration(minutes: 5);
+  static const _cacheTtl = Duration(minutes: 10);
 
-  // Cache for hasChineseCaptions results to avoid repeated API calls
+  // Cache for hasChineseCaptions results
   static final Map<String, _CachedBool> _captionCheckCache = {};
   static const _captionCheckCacheTtl = Duration(hours: 1);
-/// Creates a fresh YoutubeExplode instance.
+
+  // Transcript cache
+  static final Map<String, _CachedTranscript> _transcriptCache = {};
+  static const _transcriptCacheTtl = Duration(hours: 1);
+
+  /// Creates a fresh YoutubeExplode instance.
   YoutubeExplode _createYoutubeExplode() => YoutubeExplode();
 
   /// Searches YouTube for Chinese-language videos matching [query].
-  /// Returns up to 20 videos that have captions available.
+  /// Uses youtube_explode_dart (no API key / no quota).
   Future<List<YoutubeVideo>> searchVideos(String query) async {
     // Check cache first
     final cached = _cache[query];
     if (cached != null &&
         DateTime.now().difference(cached.timestamp) < _cacheTtl) {
-      debugPrint(
-          '[YT Cache] Hit for "$query" → ${cached.videos.length} videos');
+      debugPrint('[YT Cache] Hit for "$query" → ${cached.videos.length} videos');
       return cached.videos;
     }
 
@@ -50,159 +40,119 @@ class YoutubeRepository {
 
     try {
       final searchQuery = '$query 中文';
-      http.Response? response;
-      String currentApiKey = '';
-      
-      // Try up to 3 keys from the pool
-      for (int i = 0; i < 3; i++) {
-        currentApiKey = _apiKeyPool.youtubeApiKey;
-        if (currentApiKey == 'MISSING_KEY') {
-          break;
-        }
-        
-        final uri = Uri.parse('$_baseUrl/search?part=snippet'
-            '&q=${Uri.encodeQueryComponent(searchQuery)}'
-            '&type=video'
-            '&videoCaption=closedCaption'
-            '&relevanceLanguage=zh'
-            '&maxResults=20'
-            '&key=$currentApiKey');
+      final yt = _createYoutubeExplode();
+      try {
+        final results = await yt.search.search(searchQuery);
+        final iterator = results.iterator;
+        int processedCount = 0;
 
-        response = await _client.get(uri);
+        while (processedCount < 20 && validVideos.length < 10) {
+          Video video;
+          try {
+            if (!iterator.moveNext()) break;
+            video = iterator.current;
+          } catch (e) {
+            debugPrint('[YT Search] Error parsing result item: $e');
+            continue;
+          }
+          processedCount++;
 
-        if (response.statusCode == 200) {
-          break; // Success, stop trying keys
-        } else if (response.statusCode == 403) {
-          debugPrint('[YT Search] Key quota exceeded or 403, trying next key...');
-          continue; // Try next key
-        } else {
-          break; // Other error, don't retry keys
+          // Check for Chinese captions
+          try {
+            final manifest =
+                await yt.videos.closedCaptions.getManifest(video.id);
+            final hasChinese = manifest.tracks
+                .any((t) => _isChineseLanguage(t.language.code));
+            if (!hasChinese) continue;
+          } catch (_) {
+            // No captions available — skip
+            continue;
+          }
+
+          validVideos.add(_videoToModel(video));
         }
+      } finally {
+        yt.close();
       }
-
-      if (currentApiKey == 'MISSING_KEY' || response == null || response.statusCode != 200) {
-        if (response != null) {
-          debugPrint('[YT Search] API error ${response.statusCode}: ${response.body}');
-        }
-        
-        // Fall back to local search on API failure
-        debugPrint('[YT Search] Falling back to local search after API error');
-        final localResults = _localSearchFallback(query);
-        if (localResults.isEmpty) {
-          throw Exception('Network request failed and no fallback available.');
-        }
-        _cache[query] = _CachedResult(
-          videos: localResults,
-          timestamp: DateTime.now(),
-        );
-        return localResults;
-      }
-
-      final data = jsonDecode(response.body) as Map<String, dynamic>;
-      final items = data['items'] as List<dynamic>? ?? [];
-
-      if (items.isEmpty) {
-        // Fall back to local search if no results found on YouTube
-        final localResults = _localSearchFallback(query);
-        if (localResults.isEmpty) {
-          return [];
-        }
-        _cache[query] = _CachedResult(
-          videos: localResults,
-          timestamp: DateTime.now(),
-        );
-        return localResults;
-      }
-
-      // Collect video IDs for batch duration lookup
-      final videoIds = items
-          .map((item) {
-            final id = item['id'] as Map<String, dynamic>? ?? {};
-            return id['videoId'] as String? ?? '';
-          })
-          .where((id) => id.isNotEmpty)
-          .toList();
-
-      if (videoIds.isEmpty) return validVideos;
-
-      // Batch fetch video durations via videos.list
-      final durationMap = await _fetchDurations(videoIds);
-
-      for (final item in items) {
-        final video = YoutubeVideo.fromJson(item as Map<String, dynamic>);
-
-        // Enrich with duration if available
-        final duration = durationMap[video.id];
-        if (duration != null) {
-          validVideos.add(YoutubeVideo(
-            id: video.id,
-            title: video.title,
-            url: video.url,
-            duration: duration,
-            mediumThumbnailUrl: video.mediumThumbnailUrl,
-            highThumbnailUrl: video.highThumbnailUrl,
-            uploadDate: video.uploadDate,
-            channelTitle: video.channelTitle,
-          ));
-        } else {
-          validVideos.add(video);
-        }
-      }
-
-      // Cache results
-      _cache[query] = _CachedResult(
-        videos: validVideos,
-        timestamp: DateTime.now(),
-      );
 
       debugPrint('[YT Search] Found ${validVideos.length} videos for "$query"');
     } catch (e) {
       debugPrint('[YT Search] Error: $e. Falling back to local search.');
       final localResults = _localSearchFallback(query);
-      if (localResults.isEmpty) {
-        throw Exception('Network request failed and no fallback available: $e');
+      if (localResults.isNotEmpty) {
+        _cache[query] = _CachedResult(
+          videos: localResults,
+          timestamp: DateTime.now(),
+        );
+        return localResults;
       }
+      // If local fallback also empty, return empty list rather than throwing
+      return [];
+    }
+
+    if (validVideos.isNotEmpty) {
       _cache[query] = _CachedResult(
-        videos: localResults,
+        videos: validVideos,
         timestamp: DateTime.now(),
       );
-      return localResults;
     }
 
     return validVideos;
   }
 
-  /// Flattens and searches through local HardcodedShows episodes as a fallback.
+  /// Converts a youtube_explode_dart [Video] to our [YoutubeVideo] domain model.
+  YoutubeVideo _videoToModel(Video video) {
+    final thumbUrl = video.thumbnails.standardResUrl.isNotEmpty
+        ? video.thumbnails.standardResUrl
+        : video.thumbnails.mediumResUrl;
+    final highUrl = video.thumbnails.maxResUrl.isNotEmpty
+        ? video.thumbnails.maxResUrl
+        : thumbUrl;
+
+    return YoutubeVideo(
+      id: video.id.value,
+      title: video.title,
+      url: 'https://www.youtube.com/watch?v=${video.id.value}',
+      duration: video.duration,
+      mediumThumbnailUrl: thumbUrl,
+      highThumbnailUrl: highUrl,
+      uploadDate: video.publishDate,
+      channelTitle: video.author,
+    );
+  }
+
+  /// Flattens and searches through local HardcodedShows as a no-network fallback.
   List<YoutubeVideo> _localSearchFallback(String query) {
     final results = <YoutubeVideo>[];
-    final cleanQuery = query.replaceAll(RegExp(r'中国|中文|china|chinese'), '').trim();
-    final terms = cleanQuery.toLowerCase().split(RegExp(r'\s+')).where((t) => t.isNotEmpty).toList();
+    // Strip common Chinese search suffixes we add ourselves
+    final cleanQuery = query
+        .replaceAll(RegExp(r'中国|中文|china|chinese'), '')
+        .trim()
+        .toLowerCase();
+    final terms = cleanQuery
+        .split(RegExp(r'\s+'))
+        .where((t) => t.isNotEmpty)
+        .toList();
 
-    // Flatten all hardcoded shows and their episodes
     for (final show in HardcodedShows.data) {
       final showTitle = (show['title'] as String? ?? '').toLowerCase();
       final channelTitle = show['channelTitle'] as String? ?? '';
-      final tags = (show['tags'] as List? ?? []).map((t) => t.toString().toLowerCase()).toList();
+      final tags = (show['tags'] as List? ?? [])
+          .map((t) => t.toString().toLowerCase())
+          .toList();
       final episodes = show['episodes'] as List? ?? [];
 
       for (final ep in episodes) {
         final epMap = ep as Map<String, dynamic>;
         final epTitle = (epMap['title'] as String? ?? '').toLowerCase();
-        
-        bool matchesAll = true;
-        if (terms.isNotEmpty) {
-          for (final term in terms) {
-            final matchesShow = showTitle.contains(term);
-            final matchesEp = epTitle.contains(term);
-            final matchesTag = tags.any((tag) => tag.contains(term));
-            if (!matchesShow && !matchesEp && !matchesTag) {
-              matchesAll = false;
-              break;
-            }
-          }
-        }
 
-        if (matchesAll) {
+        bool matches = terms.isEmpty ||
+            terms.any((t) =>
+                showTitle.contains(t) ||
+                epTitle.contains(t) ||
+                tags.any((tag) => tag.contains(t)));
+
+        if (matches) {
           results.add(YoutubeVideo(
             id: epMap['id'] as String? ?? '',
             title: '${show['title']} - ${epMap['title']}',
@@ -217,85 +167,14 @@ class YoutubeRepository {
       }
     }
 
-
-    debugPrint('[YT Search Fallback] Found ${results.length} local results matching "$query"');
-    
+    debugPrint(
+        '[YT Fallback] Found ${results.length} local results for "$query"');
     return results.take(20).toList();
   }
 
-  /// Batch-fetches video durations using videos.list endpoint.
-  Future<Map<String, Duration>> _fetchDurations(List<String> videoIds) async {
-    final result = <String, Duration>{};
-    if (videoIds.isEmpty) return result;
-
-    try {
-      http.Response? response;
-      for (int i = 0; i < 3; i++) {
-        final currentApiKey = _apiKeyPool.youtubeApiKey;
-        if (currentApiKey == 'MISSING_KEY') break;
-        
-        final uri = Uri.parse('$_baseUrl/videos?part=contentDetails'
-            '&id=${videoIds.join(',')}'
-            '&key=$currentApiKey');
-
-        response = await _client.get(uri);
-        if (response.statusCode == 200) {
-          break;
-        } else if (response.statusCode == 403) {
-          debugPrint('[YT Durations] Key quota exceeded, trying next key...');
-          continue;
-        } else {
-          break;
-        }
-      }
-
-      if (response == null || response.statusCode != 200) return result;
-
-      final data = jsonDecode(response.body) as Map<String, dynamic>;
-      final items = data['items'] as List<dynamic>? ?? [];
-
-      for (final item in items) {
-        final id = item['id'] as String? ?? '';
-        final contentDetails =
-            item['contentDetails'] as Map<String, dynamic>? ?? {};
-        final durationStr = contentDetails['duration'] as String?;
-        if (durationStr != null && durationStr.isNotEmpty) {
-          result[id] = _parseDuration(durationStr);
-        }
-      }
-    } catch (e) {
-      debugPrint('[YT Durations] Error: $e');
-    }
-
-    return result;
-  }
-
-  /// Parses ISO 8601 duration string (e.g., "PT1H23M45S").
-  static Duration _parseDuration(String iso) {
-    final match = RegExp(
-      r'P(?:(\d+)D)?T?(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?',
-    ).firstMatch(iso);
-
-    if (match == null) return Duration.zero;
-
-    final days = int.tryParse(match.group(1) ?? '') ?? 0;
-    final hours = int.tryParse(match.group(2) ?? '') ?? 0;
-    final minutes = int.tryParse(match.group(3) ?? '') ?? 0;
-    final seconds = int.tryParse(match.group(4) ?? '') ?? 0;
-
-    return Duration(
-      days: days,
-      hours: hours,
-      minutes: minutes,
-      seconds: seconds,
-    );
-  }
-
-  /// Lightweight check: returns true if the video has Chinese captions available.
-  /// Uses youtube_explode_dart to inspect the closed captions manifest.
+  /// Lightweight check: returns true if the video has Chinese captions.
   Future<bool> hasChineseCaptions(String videoId) async {
     try {
-      // Check cache first
       final cached = _captionCheckCache[videoId];
       if (cached != null &&
           DateTime.now().difference(cached.timestamp) < _captionCheckCacheTtl) {
@@ -305,17 +184,15 @@ class YoutubeRepository {
       final yt = _createYoutubeExplode();
       try {
         final manifest = await yt.videos.closedCaptions.getManifest(videoId);
-        final hasChinese = manifest.tracks.any(
-          (t) => _isChineseLanguage(t.language.code),
-        );
+        final hasChinese = manifest.tracks
+            .any((t) => _isChineseLanguage(t.language.code));
 
         _captionCheckCache[videoId] = _CachedBool(
           value: hasChinese,
           timestamp: DateTime.now(),
         );
 
-        debugPrint(
-            '[YT hasCaptions] $videoId → $hasChinese (via youtube_explode_dart)');
+        debugPrint('[YT hasCaptions] $videoId → $hasChinese');
         return hasChinese;
       } finally {
         yt.close();
@@ -325,15 +202,10 @@ class YoutubeRepository {
       return false;
     }
   }
-// Transcript cache: videoId → cached transcript
-  static final Map<String, _CachedTranscript> _transcriptCache = {};
-  static const _transcriptCacheTtl = Duration(hours: 1);
 
   /// Fetches the transcript (closed captions) for a YouTube video.
-  /// Uses youtube_explode_dart's closed captions API.
   Future<VideoTranscript?> getTranscript(String videoId) async {
     try {
-      // Check transcript cache first
       final cached = _transcriptCache[videoId];
       if (cached != null &&
           DateTime.now().difference(cached.timestamp) < _transcriptCacheTtl) {
@@ -346,11 +218,10 @@ class YoutubeRepository {
       try {
         final manifest = await yt.videos.closedCaptions.getManifest(videoId);
 
-        // Find a Chinese track (prefer manual, fall back to auto-generated)
+        // Prefer manual track over auto-generated
         ClosedCaptionTrackInfo? bestTrack;
         for (final track in manifest.tracks) {
           if (_isChineseLanguage(track.language.code)) {
-            // Prefer manual ("standard") over auto-generated
             if (!track.isAutoGenerated) {
               bestTrack = track;
               break;
@@ -389,7 +260,7 @@ class YoutubeRepository {
         );
 
         debugPrint(
-            '[YT Transcript] Success: $videoId → ${lines.length} lines (via youtube_explode_dart)');
+            '[YT Transcript] Success: $videoId → ${lines.length} lines');
         return transcript;
       } finally {
         yt.close();
@@ -400,34 +271,26 @@ class YoutubeRepository {
     }
   }
 
-  /// Checks if a language code represents Chinese.
   bool _isChineseLanguage(String langCode) {
     final lower = langCode.toLowerCase();
     return lower.startsWith('zh') || lower == 'cmn' || lower == 'yue';
-  }
-
-  void dispose() {
-    _client.close();
   }
 }
 
 class _CachedResult {
   final List<YoutubeVideo> videos;
   final DateTime timestamp;
-
   _CachedResult({required this.videos, required this.timestamp});
 }
 
 class _CachedTranscript {
   final VideoTranscript transcript;
   final DateTime timestamp;
-
   _CachedTranscript({required this.transcript, required this.timestamp});
 }
 
 class _CachedBool {
   final bool value;
   final DateTime timestamp;
-
   _CachedBool({required this.value, required this.timestamp});
 }

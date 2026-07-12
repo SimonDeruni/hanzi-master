@@ -7,7 +7,6 @@ import 'package:hanzi_master/features/flashcards/domain/entities/study_mode.dart
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/deck_controller.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
-import 'package:hanzi_master/shared/widgets/info_bulb.dart';
 import 'package:hanzi_master/features/echo_hall/presentation/screens/scenario_selection_screen.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/deck_review_session_screen.dart';
@@ -152,12 +151,7 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                       ),
                     ),
                     actions: [
-                      InfoBulb(
-                        id: 'deck_detail',
-                        title: "Deck Detail",
-                        message: "Review your cards with spaced repetition. Tap a card to see its full details. Use the Review button to start a study session, or Story mode to learn in context.",
-                      ),
-                      IconButton(
+                                            IconButton(
                         icon: Icon(Icons.settings_outlined, color: isDark ? Colors.white70 : Colors.black87),
                         onPressed: () {
                           showModalBottomSheet(

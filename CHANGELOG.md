@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Fixed
+- **Smart Media Desk & Video of the Day — YouTube API Quota Migration**: Replaced all YouTube Data API v3 calls in `youtube_repository.dart` and `daily_discovery_repository.dart` with `youtube_explode_dart` (InnerTube scraping). The category carousels, user search, and daily video discovery no longer consume any API quota. Shows & Dramas is untouched (fully local). The fallback logic now uses ANY matching term (OR) instead of requiring ALL terms (AND), fixing the silent empty-result failure.
+
+### Fixed
+- **Shadowing Studio → Deck Export — Data Hydration Bug**: Cards saved after a shadowing session now have a complete `pinyin` and `definition` (English translation). Previously, `definition` was always `""` and `pinyin` was often empty. The fix calls `GlobalDictionaryRepository.getExact(hanzi)` for each saved word, pulling authoritative data from the bundled SQLite dictionary before writing the `Flashcard` to Hive.
+
 ### Added
 - Rewrote `rebuild_shows_catalog.dart` to strictly fetch shows that possess soft-coded Chinese captions (using `youtube_explode_dart` `_hasCaps` verification).
 - Successfully populated `shows_data.dart` with 10 new soft-captioned shows, yielding a total of 14 hardcoded shows for instant playback without live YouTube Data API overhead.

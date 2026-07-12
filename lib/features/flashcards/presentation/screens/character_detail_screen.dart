@@ -18,7 +18,6 @@ import 'package:hanzi_master/features/flashcards/presentation/providers/characte
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/character_chat_sheet.dart';
 import 'package:hanzi_master/shared/widgets/global_blurred_bottom_sheet.dart';
-import 'package:hanzi_master/shared/widgets/info_bulb.dart';
 import 'package:hanzi_master/shared/widgets/tappable_hanzi_text.dart';
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
 import 'package:hanzi_master/core/utils/pinyin_utils.dart';
@@ -590,7 +589,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: Text(AppLocalizations.of(context)!.characterReference),
-        actions: const [InfoBulb(id: "character_detail", title: "Character Reference", message: "Explore stroke order, radical breakdown, example words, and pronunciation for each Chinese character.")],
+        actions: const [],
       ),
       floatingActionButton: Builder(
         builder: (context) {

@@ -32,8 +32,6 @@ import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/core/utils/definition_formatter.dart';
 import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
-import 'package:hanzi_master/shared/widgets/info_bulb.dart';
-
 import 'package:hanzi_master/features/flashcards/domain/entities/study_mode.dart';
 
 class DictionaryScreen extends ConsumerStatefulWidget {
@@ -79,12 +77,7 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
             GlobalSliverAppBar(
               title: l10n?.scholarsLibrary ?? "The Scholar's Library",
               actions: [
-                InfoBulb(
-                  id: 'dictionary',
-                  title: "Scholar's Library",
-                  message: "Search for any Chinese character to see its meaning, stroke order, and add it to your decks. Tap a character to see full details.",
-                ),
-              ],
+                              ],
             ),
             SliverPersistentHeader(
               pinned: true,
@@ -534,7 +527,7 @@ class _DictionarySearchTab extends ConsumerWidget {
                   ),
                 ),
                 loading: () => const SliverFillRemaining(child: Center(child: CircularProgressIndicator())),
-                error: (e, s) => SliverFillRemaining(child: Center(child: Text("Error: $e"))),
+                error: (e, s) => SliverFillRemaining(child: Center(child: Padding(padding: EdgeInsets.all(32), child: Column(mainAxisSize: MainAxisSize.min, children: [Icon(Icons.library_books_outlined, size: 48, color: Colors.grey), SizedBox(height: 16), Text(AppLocalizations.of(context)?.libraryError != null ? "${AppLocalizations.of(context)!.libraryError}: We ran into trouble loading the library. Please try again." : "We ran into trouble loading the library. Please try again.", textAlign: TextAlign.center, style: TextStyle(color: Colors.grey, fontSize: 14)), SizedBox(height: 16), ElevatedButton.icon(onPressed: () { ref.invalidate(deckControllerProvider); ref.invalidate(flashcardControllerProvider); }, icon: Icon(Icons.refresh, size: 16), label: Text(AppLocalizations.of(context)?.retry ?? "Retry"))])))),
               ),
               const SliverPadding(padding: EdgeInsets.only(bottom: 100)),
             ],
@@ -630,7 +623,7 @@ class _DictionarySearchTab extends ConsumerWidget {
         );
       },
       loading: () => Center(child: CircularProgressIndicator()),
-      error: (err, stack) => Center(child: Text("Error: $err")),
+      error: (err, stack) => Center(child: Padding(padding: EdgeInsets.all(32), child: Column(mainAxisSize: MainAxisSize.min, children: [Icon(Icons.error_outline, size: 48, color: Colors.grey), SizedBox(height: 16), Text(AppLocalizations.of(context)?.libraryError != null ? "${AppLocalizations.of(context)!.libraryError}: Unable to load this section. Please try again." : "Unable to load this section. Please try again.", textAlign: TextAlign.center, style: TextStyle(color: Colors.grey, fontSize: 14)), SizedBox(height: 16), ElevatedButton.icon(onPressed: () => ref.invalidate(flashcardControllerProvider), icon: Icon(Icons.refresh, size: 16), label: Text(AppLocalizations.of(context)?.retry ?? "Retry"))]))),
     );
   }
 

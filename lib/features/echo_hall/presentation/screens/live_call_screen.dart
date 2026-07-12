@@ -3,6 +3,9 @@ import 'dart:ui' as ui;
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'dart:math';
+import 'package:googleai_dart/googleai_dart.dart' as googleai;
+import 'package:path_provider/path_provider.dart';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
@@ -17,7 +20,6 @@ import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_mana
 import 'package:hanzi_master/core/services/api_key_pool.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
 import '../widgets/live_call_summary_screen.dart';
-import 'package:hanzi_master/shared/widgets/info_bulb.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/shared/widgets/tappable_hanzi_text.dart';
 
@@ -187,22 +189,25 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
       _channel = WebSocketChannel.connect(uri);
 
       // 1. Setup Phase - Updated for June 2026 stable models
-      final setupMessage = jsonEncode({
-        "setup": {
-          "model": "models/gemini-3.1-flash-live-preview",
-          "generationConfig": {
-             "responseModalities": ["AUDIO"],
-             "speechConfig": {
-               "voiceConfig": { "prebuiltVoiceConfig": { "voiceName": "${widget.scenario.voiceName}" } }
-             }
-          },
-          "systemInstruction": {
-            "parts": [
-              {"text": "You are a professional Mandarin tutor named Master Lin. You are patient, wise, and encouraging. Respond naturally in spoken Mandarin. Keep your responses short (under 3 sentences). Your current scenario: ${widget.scenario.description}"}
-            ]
-          }
-        }
-      });
+      // 1. Setup Phase - Updated for strictly typed Google GenAI Dart SDK
+      final setupMessage = jsonEncode(googleai.BidiGenerateContentSetup(
+        model: "models/gemini-3.1-flash-live-preview",
+        generationConfig: googleai.LiveGenerationConfig(
+          responseModalities: const [googleai.ResponseModality.audio],
+          speechConfig: googleai.SpeechConfig(
+            voiceConfig: googleai.VoiceConfig(
+              prebuiltVoiceConfig: googleai.PrebuiltVoiceConfig(
+                voiceName: widget.scenario.voiceName,
+              ),
+            ),
+          ),
+        ),
+        systemInstruction: googleai.Content(parts: [
+          googleai.TextPart(
+            'You are a professional Mandarin tutor named Master Lin. You are patient, wise, and encouraging. Respond naturally in spoken Mandarin. Keep your responses short (under 3 sentences). Your current scenario: ${widget.scenario.description}',
+          )
+        ]),
+      ).toJson());
 
       _channel!.sink.add(setupMessage);
 
@@ -220,6 +225,7 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
             }
             final data = jsonDecode(textMessage);
             
+            // Check for raw server errors
             if (data.containsKey('error')) {
               debugPrint("LiveCall: Server returned error: ${data['error']}");
               if (mounted) {
@@ -228,50 +234,47 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
                   _hasError = true;
                 });
               }
-            }
-            
-            if (data.containsKey('setupComplete')) {
-              _setCallState(LiveCallState.idle, "Connected! Speak now.");
-              _startAudioStreaming();
+              return;
             }
 
-            if (data.containsKey('serverContent')) {
-              final content = data['serverContent'];
-              
-              if (content.containsKey('modelTurn')) {
+            final parsedMessage = googleai.BidiGenerateContentServerMessage.fromJson(data);
+
+            if (parsedMessage is googleai.BidiGenerateContentSetupComplete) {
+              _setCallState(LiveCallState.idle, "Connected! Speak now.");
+              _startAudioStreaming();
+            } else if (parsedMessage is googleai.BidiGenerateContentServerContent) {
+              if (parsedMessage.modelTurn != null) {
                 // AI is speaking
                 _isModelSpeaking = true;
                 if (_callState != LiveCallState.speaking) {
                   _setCallState(LiveCallState.speaking, "Speaking...");
                 }
-                final modelTurn = content['modelTurn'];
-                if (modelTurn['parts'] != null) {
-                  for (var part in modelTurn['parts']) {
-                    if (part.containsKey('inlineData')) {
-                      final base64Audio = part['inlineData']['data'];
-                      final audioBytes = base64Decode(base64Audio);
-                      _player.feedUint8FromStream(Uint8List.fromList(audioBytes));
-                    }
-                    if (part.containsKey('text')) {
-                      _handleAiTranscript(part['text']);
-                    }
+                
+                for (var part in parsedMessage.modelTurn!.parts) {
+                  if (part is googleai.InlineDataPart) {
+                    final audioBytes = base64Decode(part.inlineData.data);
+                    _player.feedUint8FromStream(Uint8List.fromList(audioBytes));
+                  } else if (part is googleai.TextPart) {
+                    _handleAiTranscript(part.text);
                   }
                 }
               }
 
-              if (content.containsKey('inputTranscription')) {
-                final trans = content['inputTranscription'];
+              // Handle user transcript if present
+              // Wait, googleai_dart doesn't have an inputTranscription typed field directly in BidiGenerateContentServerContent in older versions. 
+              // We can still check the raw map for any custom extensions if needed, but it's safe to fallback to raw map reading.
+              if (data.containsKey('serverContent') && data['serverContent'].containsKey('inputTranscription')) {
+                final trans = data['serverContent']['inputTranscription'];
                 _handleUserInputTranscription(trans['text'] ?? "", trans['finished'] ?? false);
               }
 
-              // When AI finishes its turn, go back to idle and allow VAD again
-              if (content['turnComplete'] == true) {
+              if (parsedMessage.turnComplete == true) {
                 _isModelSpeaking = false;
                 _firstTranscriptionTime = null;
                 _setCallState(LiveCallState.idle, "Connected! Speak now.");
               }
 
-              if (content['interrupted'] == true) {
+              if (parsedMessage.interrupted == true) {
                  _player.stopPlayer();
                  _userAudioBuffer.clear();
                  _isModelSpeaking = false;
@@ -448,16 +451,11 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
           // Buffer ~0.5 seconds of audio (16000 bytes/samples at 16kHz 16-bit mono)
           // to prevent websocket congestion and make the connection stable
           if (_audioBuffer.length >= 16000) {
-            _channel!.sink.add(jsonEncode({
-              "realtimeInput": {
-                "mediaChunks": [
-                  {
-                    "mimeType": "audio/pcm;rate=16000",
-                    "data": base64Encode(_audioBuffer)
-                  }
-                ]
-              }
-            }));
+            _channel!.sink.add(jsonEncode(
+              googleai.BidiGenerateContentRealtimeInput.audio(
+                _audioBuffer.toList()
+              ).toJson()
+            ));
             _audioBuffer.clear();
           }
         }
@@ -723,8 +721,7 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
                 const Positioned(
                   top: 0,
                   right: 8,
-                  child: InfoBulb(id: "live_call", title: "Live Call", message: "Have a real-time voice conversation in Chinese. Speak naturally and the AI will respond. Use this to build speaking confidence."),
-                ),
+                  child:                 ),
               ],
             ),
           ),

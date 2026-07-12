@@ -383,19 +383,10 @@ class FlashcardRepositoryImpl implements FlashcardRepository {
       final jsonString = await rootBundle.loadString(fileName);
       if (jsonString.isEmpty) return Left("HSK$level bundle file is empty");
       
-      final dynamic decoded = await compute(_parseJsonMap, jsonString);
-      final List<dynamic> vocabulary;
-      if (level == 1) {
-        // HSK 1 is sometimes a direct list depending on the parser, wait, _parseJsonMap expects a Map.
-        // Let's use json.decode directly or _parseJsonList if level is 1?
-        // Actually, importHsk1() already handles level 1.
-        // importLevel will only be called for level >= 2.
-        final bundle = decoded as Map<String, dynamic>;
-        vocabulary = bundle['vocabulary'] as List<dynamic>;
-      } else {
-        final bundle = decoded as Map<String, dynamic>;
-        vocabulary = bundle['vocabulary'] as List<dynamic>;
-      }
+      // hsk1.json is a JSON array, hsk2-6_bundle.json are objects with "vocabulary" key.
+      final List<dynamic> vocabulary = level == 1
+          ? await compute(_parseJsonList, jsonString)
+          : ((await compute(_parseJsonMap, jsonString))['vocabulary'] as List<dynamic>?) ?? [];
       
       final Map<String, FlashcardModel> entries = {};
       for (int i = 0; i < vocabulary.length; i++) {
