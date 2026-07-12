@@ -22,6 +22,7 @@
 - [x] **Bug**: Replaced Live Call AI text with `TappableMarkdownHanziText` to allow quicklook dictionary access on spoken words.
 - [x] **Bug**: Fixed Dart compilation syntax error (`Target kernel_snapshot_program failed`) causing iOS builds to fail.
 - [x] **Bug**: Fixed Shadowing Studio always returning 0/100 for pronunciation grading. Stripped Chinese punctuation from the `ReferenceText` passed to the Azure Speech Pronunciation Assessment API to prevent alignment failures.
+- [x] **Bug**: Fixed Gemini Live Call connection crash (WebSocket 1007 Error) by removing `"TEXT"` from the `responseModalities` payload, which is unsupported by the current model version. Improved error UI to catch WebSocket disconnections gracefully.
 
 ## Open Issues
 

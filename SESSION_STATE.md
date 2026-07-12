@@ -45,6 +45,7 @@
 - [x] **Task 31: Gemini Live Call — Echo & Transcript Polish**: Resolved severe echo and self-interruption loops by enabling OS hardware echo cancellation. Re-enabled invisible AI transcripts by correctly passing `["TEXT", "AUDIO"]` modalities. Formatted AI responses via `TappableMarkdownHanziText` for instant QuickLook access.
 - [x] **Task 32: iOS Build Fix**: Fixed Dart syntax errors (missing parenthesis and invalid argument name) in `conversation_screen.dart` that were crashing the kernel snapshot compiler during iOS archiving.
 - [x] **Task 33: Shadowing Studio Grading Fix**: Fixed an issue where the pronunciation grading always returned `0/100`. The Azure Speech Pronunciation Assessment API was failing to align complete conversational sentences due to Chinese punctuation (like `。`, `！`). Stripped all punctuation from the `ReferenceText` payload via Unicode Regex `[^\p{Script=Hani}a-zA-Z0-9 ]` to ensure flawless phoneme alignment.
+- [x] **Task 34: Gemini Live Call Fix**: Fixed a WebSocket 1007 crash loop by removing the unsupported `"TEXT"` modality from the API payload. Also implemented friendly error states to catch 1000-level disconnects gracefully, and added a styled escape button for fallback UI scenarios.
 #### 🔜 Up Next (Possible)
 - [ ] **Phase 9: Sound FX**: Add subtle "paper scratching" audio during drawing.
 - [ ] **Phase 11: Speech Recognition**: Integrated AI grading for tones and pronunciation.
