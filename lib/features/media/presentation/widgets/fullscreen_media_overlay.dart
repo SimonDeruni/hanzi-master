@@ -22,6 +22,7 @@ class FullscreenMediaOverlay extends StatefulWidget {
   final bool isRecording;
   final String shadowFeedback;
   final VoidCallback onToggleRecord;
+  final bool isAdPlaying;
 
   // Global subtitle state
   final bool showHanzi;
@@ -46,6 +47,7 @@ class FullscreenMediaOverlay extends StatefulWidget {
     required this.isRecording,
     required this.shadowFeedback,
     required this.onToggleRecord,
+    required this.isAdPlaying,
     required this.showHanzi,
     required this.showPinyin,
     required this.showEnglish,
@@ -142,9 +144,11 @@ class _FullscreenMediaOverlayState extends State<FullscreenMediaOverlay>
   @override
   Widget build(BuildContext context) {
     // CRITICAL: rendered inside controlsBuilder — must not block the video iframe.
-    return GestureDetector(
-      behavior: HitTestBehavior.opaque,
-      onTap: () {
+    return IgnorePointer(
+      ignoring: widget.isAdPlaying,
+      child: GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTap: () {
         if (_controlsVisible) {
           setState(() => _controlsVisible = false);
         } else {
@@ -358,6 +362,7 @@ class _FullscreenMediaOverlayState extends State<FullscreenMediaOverlay>
               ),
             ),
         ],
+      ),
       ),
     );
   }

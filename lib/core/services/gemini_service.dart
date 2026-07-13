@@ -1473,7 +1473,18 @@ Respond ONLY in valid JSON format like:
             String feedback = "";
             if (wErrorType == 'Omission') feedback = "You missed this word.";
             else if (wErrorType == 'Insertion') feedback = "Extra word added here.";
-            else if (wErrorType == 'Mispronunciation') feedback = "Pronunciation was inaccurate. Score: ${wAccuracy.toStringAsFixed(0)}";
+            else if (wErrorType == 'Mispronunciation') feedback = "Pronunciation was inaccurate.";
+
+            // Extract phoneme sub-scores
+            List<Map<String, dynamic>> phonemesList = [];
+            if (w['Phonemes'] != null) {
+              for (var p in w['Phonemes']) {
+                phonemesList.add({
+                  'phoneme': p['Phoneme'],
+                  'accuracy': (p['PronunciationAssessment']?['AccuracyScore'] ?? 0).toDouble(),
+                });
+              }
+            }
 
             mappedWords.add({
               "word": wordText,
@@ -1481,7 +1492,9 @@ Respond ONLY in valid JSON format like:
               "isCorrect": isCorrect,
               "isPartial": isPartial,
               "isOmitted": isOmitted,
-              "feedback": feedback
+              "feedback": feedback,
+              "accuracyScore": wAccuracy,
+              "phonemes": phonemesList,
             });
           }
         }

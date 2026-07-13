@@ -194,8 +194,73 @@ class LiveCallSummaryScreen extends StatelessWidget {
     if (!isUser) return bubble;
 
     return GestureDetector(
-      onTap: () => showQuickLook(context, msg.text),
+      onTap: () => _showSelectableReviewSheet(context, msg, theme),
       child: bubble,
+    );
+  }
+
+  void _showSelectableReviewSheet(BuildContext context, LiveCallMessage msg, ThemeData theme) {
+    List<dynamic> segmentedWords = [];
+    if (msg.grade != null && msg.grade!['words'] != null) {
+      segmentedWords = msg.grade!['words'];
+    } else {
+      // Fallback: simple character split for Chinese if no grade data
+      final chars = msg.text.runes.map((r) => String.fromCharCode(r)).toList();
+      segmentedWords = chars.map((c) => {"word": c, "pinyin": ""}).toList();
+    }
+
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: theme.colorScheme.surface,
+      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(24))),
+      builder: (context) {
+        return Padding(
+          padding: const EdgeInsets.all(24.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                width: 40, height: 4,
+                decoration: BoxDecoration(color: Colors.grey[400], borderRadius: BorderRadius.circular(2)),
+              ),
+              const SizedBox(height: 24),
+              Text("Select a word to review", style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold)),
+              const SizedBox(height: 24),
+              Wrap(
+                spacing: 12,
+                runSpacing: 12,
+                alignment: WrapAlignment.center,
+                children: segmentedWords.map((w) {
+                  final wordText = w['word'] ?? "";
+                  if (wordText.trim().isEmpty) return const SizedBox.shrink();
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.pop(context); // Close sheet
+                      showQuickLook(context, wordText, contextText: msg.text);
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                      decoration: BoxDecoration(
+                        color: theme.colorScheme.primary.withValues(alpha: 0.1),
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(color: theme.colorScheme.primary.withValues(alpha: 0.2)),
+                      ),
+                      child: Column(
+                        children: [
+                          if ((w['pinyin'] ?? "").isNotEmpty)
+                            Text(w['pinyin'], style: theme.textTheme.labelSmall),
+                          Text(wordText, style: theme.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold)),
+                        ],
+                      ),
+                    ),
+                  );
+                }).toList(),
+              ),
+              const SizedBox(height: 32),
+            ],
+          ),
+        );
+      },
     );
   }
 

@@ -92,6 +92,10 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
   DateTime _lastAudioReceived = DateTime.now();
   bool _isModelSpeaking = false;
   DateTime? _firstTranscriptionTime;
+  
+  // Precise Playback Tracking
+  DateTime? _turnAudioStartTime;
+  int _currentTurnAudioBytes = 0;
 
   // Audio level for visual feedback
   double _audioLevel = 0.0;
@@ -244,15 +248,19 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
               _startAudioStreaming();
             } else if (parsedMessage is googleai.BidiGenerateContentServerContent) {
               if (parsedMessage.modelTurn != null) {
-                // AI is speaking
-                _isModelSpeaking = true;
-                if (_callState != LiveCallState.speaking) {
-                  _setCallState(LiveCallState.speaking, "Speaking...");
+                if (!_isModelSpeaking) {
+                  _isModelSpeaking = true;
+                  _turnAudioStartTime = DateTime.now();
+                  _currentTurnAudioBytes = 0;
+                  if (_callState != LiveCallState.speaking) {
+                    _setCallState(LiveCallState.speaking, "Speaking...");
+                  }
                 }
                 
                 for (var part in parsedMessage.modelTurn!.parts) {
                   if (part is googleai.InlineDataPart) {
                     final audioBytes = base64Decode(part.inlineData.data);
+                    _currentTurnAudioBytes += audioBytes.length;
                     _player.feedUint8FromStream(Uint8List.fromList(audioBytes));
                   } else if (part is googleai.TextPart) {
                     _handleAiTranscript(part.text);
@@ -269,13 +277,46 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
               }
 
               if (parsedMessage.turnComplete == true) {
-                _isModelSpeaking = false;
-                _firstTranscriptionTime = null;
-                _setCallState(LiveCallState.idle, "Connected! Speak now.");
+                // The server finished sending audio chunks.
+                // However, the phone's FlutterSoundPlayer buffer is still playing them!
+                // We must calculate exactly when the physical audio will finish playing.
+                // 24000 Hz, 16-bit mono = 48000 bytes per second.
+                final durationSeconds = _currentTurnAudioBytes / 48000.0;
+                final expectedEndTime = (_turnAudioStartTime ?? DateTime.now()).add(
+                  Duration(milliseconds: (durationSeconds * 1000).toInt() + 500) // 500ms safety pad
+                );
+                
+                final now = DateTime.now();
+                final delay = expectedEndTime.difference(now);
+                
+                if (delay.isNegative) {
+                  _isModelSpeaking = false;
+                  _firstTranscriptionTime = null;
+                  _setCallState(LiveCallState.idle, "Connected! Speak now.");
+                } else {
+                  Future.delayed(delay, () {
+                    if (mounted && _callState != LiveCallState.error) {
+                      setState(() {
+                        _isModelSpeaking = false;
+                        _firstTranscriptionTime = null;
+                        _setCallState(LiveCallState.idle, "Connected! Speak now.");
+                      });
+                    }
+                  });
+                }
               }
 
               if (parsedMessage.interrupted == true) {
-                 _player.stopPlayer();
+                 _player.stopPlayer().then((_) {
+                   // Immediately re-initialize the stream buffer so it's ready for the next audio chunk
+                   _player.startPlayerFromStream(
+                     codec: fs.Codec.pcm16,
+                     numChannels: 1,
+                     sampleRate: 24000,
+                     bufferSize: 819200,
+                     interleaved: true,
+                   );
+                 });
                  _userAudioBuffer.clear();
                  _isModelSpeaking = false;
                  _firstTranscriptionTime = null;
@@ -428,6 +469,9 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
           encoder: AudioEncoder.pcm16bits,
           sampleRate: 16000,
           numChannels: 1,
+          echoCancel: true,
+          noiseSuppress: true,
+          autoGain: true,
         ),
       );
 

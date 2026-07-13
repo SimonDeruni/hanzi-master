@@ -147,11 +147,24 @@ class AudioService {
     return hash.toRadixString(36);
   }
 
-  Future<bool> playSentence(String sentence) async {
+  /// Maps scenario voice names to Azure Neural voice IDs.
+  /// See: https://learn.microsoft.com/en-us/azure/ai-services/speech-service/language-support
+  static const Map<String, String> _azureVoiceMap = {
+    'Fenrir': 'zh-CN-YunxiNeural',       // Male, upbeat
+    'Charon': 'zh-CN-YunyangNeural',     // Male, news-style
+    'Kore': 'zh-CN-XiaoxiaoNeural',      // Female, warm (default)
+    'Aoede': 'zh-CN-XiaoyiNeural',       // Female, cheerful
+    'Puck': 'zh-CN-YunjianNeural',       // Male, older/sporty
+  };
+
+  static const String _defaultAzureVoice = 'zh-CN-XiaoxiaoNeural';
+
+  Future<bool> playSentence(String sentence, {String voiceName = 'Kore'}) async {
     if (!_isInitialized) await init();
     await stop();
 
-    final hash = _hashText(sentence);
+    final azureVoice = _azureVoiceMap[voiceName] ?? _defaultAzureVoice;
+    final hash = _hashText('$voiceName:$sentence');
     final cacheFile = File('${_cacheDir!.path}/tts_cache/$hash.wav');
     final boundaryFile = File('${_cacheDir!.path}/tts_cache/$hash.json');
     
@@ -172,7 +185,7 @@ class AudioService {
 
     // Premium Cloud TTS with streaming (Azure Neural Audio)
     try {
-      final result = await _fetchCloudTTS(sentence, cacheFile: cacheFile, boundaryFile: boundaryFile);
+      final result = await _fetchCloudTTS(sentence, azureVoice: azureVoice, cacheFile: cacheFile, boundaryFile: boundaryFile);
       if (result != null && result.success) {
         return true;
       }
@@ -186,9 +199,10 @@ class AudioService {
     return ttsResult != null && ttsResult == 1;
   }
 
-  Future<Uint8List?> getSentenceAudioBytes(String sentence) async {
+  Future<Uint8List?> getSentenceAudioBytes(String sentence, {String voiceName = 'Kore'}) async {
     if (!_isInitialized) await init();
-    final hash = _hashText(sentence);
+    final azureVoice = _azureVoiceMap[voiceName] ?? _defaultAzureVoice;
+    final hash = _hashText('$voiceName:$sentence');
     final cacheFile = File('${_cacheDir!.path}/tts_cache/$hash.wav');
     
     if (await cacheFile.exists()) {
@@ -197,7 +211,7 @@ class AudioService {
     
     // Try to fetch it
     final boundaryFile = File('${_cacheDir!.path}/tts_cache/$hash.json');
-    final result = await _fetchCloudTTS(sentence, cacheFile: cacheFile, boundaryFile: boundaryFile);
+    final result = await _fetchCloudTTS(sentence, azureVoice: azureVoice, cacheFile: cacheFile, boundaryFile: boundaryFile);
     if (result != null && result.success) {
       return result.audio;
     }
@@ -208,7 +222,7 @@ class AudioService {
 
   /// Fetches premium TTS audio from Azure Cognitive Services via REST API.
   /// Fast 3-second timeout; falls through to local TTS on any failure.
-  Future<CloudTtsResult?> _fetchCloudTTS(String text, {File? cacheFile, File? boundaryFile}) async {
+  Future<CloudTtsResult?> _fetchCloudTTS(String text, {String azureVoice = 'zh-CN-XiaoxiaoNeural', File? cacheFile, File? boundaryFile}) async {
     final apiKey = _pool.azureSpeechKey;
     final region = _pool.azureSpeechRegion;
     if (apiKey.isEmpty || region.isEmpty || apiKey == 'MISSING_KEY') {
@@ -216,9 +230,9 @@ class AudioService {
       return null;
     }
 
-    final safeText = text.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
+    final safeText = text.replaceAll('&', '&').replaceAll('<', '<').replaceAll('>', '>');
     final ratePercent = math.max(-50, math.min(200, ((_speechRate - 0.5) * 200).round()));
-    final ssml = '''<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xml:lang='zh-CN'><voice name='zh-CN-XiaoxiaoNeural'><prosody rate='$ratePercent%'>$safeText</prosody></voice></speak>''';
+    final ssml = '''<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xml:lang='zh-CN'><voice name='$azureVoice'><prosody rate='$ratePercent%'>$safeText</prosody></voice></speak>''';
 
     final uri = Uri.parse('https://$region.tts.speech.microsoft.com/cognitiveservices/v1');
 

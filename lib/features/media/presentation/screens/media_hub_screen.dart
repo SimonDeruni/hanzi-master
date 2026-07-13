@@ -432,9 +432,11 @@ class _DailyDiscoveryCarouselState
       height: 240,
       child: dailyState.when(
         data: (items) {
-          // Calculate total page count: daily items + optional show of the day
+          // Filter out the daily YouTube video — keep only articles
+          final nonVideoItems = items.where((i) => i.tag != 'VIDEO OF THE DAY').toList();
+          // Calculate total page count: non-video items + optional show of the day
           final showItem = showOfTheDay.valueOrNull;
-          final totalItems = items.length + (showItem != null ? 1 : 0);
+          final totalItems = nonVideoItems.length + (showItem != null ? 1 : 0);
 
           return PageView.builder(
             controller: _pageController,
@@ -442,11 +444,11 @@ class _DailyDiscoveryCarouselState
             itemCount: totalItems,
             itemBuilder: (context, index) {
               // Show of the day is always the last page
-              if (showItem != null && index == items.length) {
+              if (showItem != null && index == nonVideoItems.length) {
                 return _buildDailyShowCard(context, showItem);
               }
 
-              final item = items[index];
+              final item = nonVideoItems[index];
               final isCompleted = completedItems.contains(item.url);
               return _buildDiscoveryCard(
                 context,

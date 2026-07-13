@@ -194,6 +194,7 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
   bool _showHanzi = true;
   bool _showPinyin = true;
   bool _showEnglish = true;
+  bool _isAdPlaying = false;
   PlayerState _playerState = PlayerState.unknown;
 
   DateTime _lastSyncUpdate = DateTime.fromMillisecondsSinceEpoch(0);
@@ -228,7 +229,8 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
         loop: false,
         color: 'white',
         enableCaption: false,
-        pointerEvents: PointerEvents.none,
+        // Allow pointer events so the user can interact with ads if we let touches through
+        // pointerEvents: PointerEvents.none, 
       ),
     );
     _loadData();
@@ -433,6 +435,12 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
           });
         }
         return;
+      }
+
+      // Ad Detection Heuristic
+      bool isAd = state.playerState == PlayerState.unstarted;
+      if (_isAdPlaying != isAd && mounted) {
+        setState(() => _isAdPlaying = isAd);
       }
 
       if (!_captionsDisabled) {
@@ -689,6 +697,7 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
       DeviceOrientation.portraitUp,
     ]);
     setState(() => _isFullscreen = false);
+    Navigator.pop(context);
   }
 
   void _changeSpeed(double speed) {
@@ -912,18 +921,21 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
                                 children: [
                                   // BLOCK TOUCHES TO YOUTUBE NATIVE CONTROLS
                                   Positioned.fill(
-                                    child: GestureDetector(
-                                      behavior: HitTestBehavior.opaque,
-                                      onTap: () {
-                                        if (_playerController
-                                                .value.playerState ==
-                                            PlayerState.playing) {
-                                          _playerController.pauseVideo();
-                                        } else {
-                                          _playerController.playVideo();
-                                        }
-                                      },
-                                      child: const SizedBox.expand(),
+                                    child: IgnorePointer(
+                                      ignoring: _isAdPlaying,
+                                      child: GestureDetector(
+                                        behavior: HitTestBehavior.opaque,
+                                        onTap: () {
+                                          if (_playerController
+                                                  .value.playerState ==
+                                              PlayerState.playing) {
+                                            _playerController.pauseVideo();
+                                          } else {
+                                            _playerController.playVideo();
+                                          }
+                                        },
+                                        child: const SizedBox.expand(),
+                                      ),
                                     ),
                                   ),
                                   // The Fullscreen Button
@@ -987,6 +999,7 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
                               shadowFeedback: _shadowFeedback,
                               onToggleRecord: () =>
                                   _toggleShadowRecording(null),
+                              isAdPlaying: _isAdPlaying,
                               showHanzi: _showHanzi,
                               showPinyin: _showPinyin,
                               showEnglish: _showEnglish,

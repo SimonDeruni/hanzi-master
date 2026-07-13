@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/features/live_translate/presentation/screens/travel_interpreter_screen.dart';
-import 'package:hanzi_master/features/live_translate/presentation/screens/translation_history_screen.dart';
 import 'package:hanzi_master/shared/widgets/global_sliver_app_bar.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 
@@ -25,12 +24,6 @@ class TranslationHubScreen extends StatelessWidget {
             GlobalSliverAppBar(
               title: l10n?.liveTranslate ?? "Live Translate",
               actions: [
-                                IconButton(
-                  icon: const Icon(Icons.history),
-                  onPressed: () {
-                    Navigator.push(context, SwipeBackPageRoute(builder: (_) => const TranslationHistoryScreen()));
-                  },
-                )
               ],
             ),
             

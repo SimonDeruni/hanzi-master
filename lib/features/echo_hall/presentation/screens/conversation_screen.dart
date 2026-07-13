@@ -465,7 +465,7 @@ Widget _buildScoreBadge(PronunciationGrade grade, ThemeData theme, bool isUser) 
                     IconButton(
                       icon: Icon(Icons.volume_up, color: theme.colorScheme.onSurface.withValues(alpha: 0.4), size: 20),
                       onPressed: () {
-                        ref.read(audioServiceProvider).playSentence(message.content);
+                        ref.read(audioServiceProvider).playSentence(message.content, voiceName: widget.scenario.voiceName);
                       },
                       padding: EdgeInsets.zero,
                       constraints: const BoxConstraints(),

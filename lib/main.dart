@@ -58,8 +58,6 @@ void main() async {
   Hive.registerAdapter(FlashcardModelAdapter());
   Hive.registerAdapter(ReviewStatsModelAdapter());
   Hive.registerAdapter(DeckModelAdapter());
-  Hive.registerAdapter(TranslationMessageAdapter());
-  Hive.registerAdapter(TranslationSessionAdapter());
   Hive.registerAdapter(SavedArticleAdapter());
   
   await LocalTranslationService.init();
@@ -102,7 +100,6 @@ void main() async {
   await safeOpenBox<String>('custom_blueprints_v2', cipher: cipher);
   final deckBox = await safeOpenBox<DeckModel>('decks', cipher: cipher);
   await safeOpenBox<String>('curriculum_cache_box', cipher: cipher);
-  await safeOpenBox<TranslationSession>('translation_sessions', cipher: cipher);
   final savedArticlesBox = await safeOpenBox<SavedArticle>('saved_articles', cipher: cipher);
 
   // Initialize RevenueCat

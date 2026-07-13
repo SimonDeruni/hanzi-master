@@ -20,6 +20,8 @@ import 'package:hanzi_master/features/flashcards/presentation/providers/flashcar
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/study_mode.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/deck.dart';
+import 'package:hanzi_master/features/flashcards/presentation/screens/character_detail_screen.dart';
+import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/core/providers.dart';
 
 enum ShadowingMode { freeFlow, theme, deck, customWord }
@@ -1263,15 +1265,22 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
 
     showModalBottomSheet(
       context: context,
+      isScrollControlled: true,
       backgroundColor: isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
       shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(24))),
       builder: (context) {
-        return Padding(
-          padding: const EdgeInsets.all(24.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
+        return SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.only(
+              bottom: MediaQuery.of(context).viewInsets.bottom + 24,
+              left: 24,
+              right: 24,
+              top: 24,
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
               // Drag handle
               Center(
                 child: Container(
@@ -1314,6 +1323,52 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
                   ),
                 ),
               ),
+              
+              // Phoneme Breakdown & Exact Score
+              if (wordData['accuracyScore'] != null) ...[
+                const SizedBox(height: 16),
+                Center(
+                  child: Text(
+                    "Score: ${(wordData['accuracyScore'] as num).toInt()}/100",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: isDark ? Colors.white : Colors.black87,
+                    ),
+                  ),
+                ),
+              ],
+              
+              if (wordData['phonemes'] != null && (wordData['phonemes'] as List).isNotEmpty) ...[
+                const SizedBox(height: 12),
+                Center(
+                  child: Wrap(
+                    spacing: 8,
+                    runSpacing: 8,
+                    alignment: WrapAlignment.center,
+                    children: (wordData['phonemes'] as List).map<Widget>((p) {
+                      final acc = (p['accuracy'] as num).toInt();
+                      final color = acc >= 80 ? Colors.green : (acc >= 60 ? Colors.orange : Colors.red);
+                      return Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                        decoration: BoxDecoration(
+                          color: color.withValues(alpha: 0.1),
+                          borderRadius: BorderRadius.circular(8),
+                          border: Border.all(color: color.withValues(alpha: 0.5)),
+                        ),
+                        child: Column(
+                          children: [
+                            Text(p['phoneme'], style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: color)),
+                            const SizedBox(height: 4),
+                            Text("$acc", style: TextStyle(fontSize: 12, color: color)),
+                          ],
+                        ),
+                      );
+                    }).toList(),
+                  ),
+                ),
+              ],
+              
               if (feedback.isNotEmpty) ...[
                 const SizedBox(height: 16),
                 Text(
@@ -1342,9 +1397,37 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                 ),
               ),
+              const SizedBox(height: 12),
+              // Study Character button
+              ElevatedButton.icon(
+                onPressed: () {
+                  final fakeCard = Flashcard(
+                    id: 'temp_${DateTime.now().millisecondsSinceEpoch}',
+                    hanzi: word,
+                    pinyin: wordData['pinyin'] ?? '',
+                    definition: '',
+                    hskLevel: 1,
+                    strokePaths: const [],
+                    modeStats: const {},
+                  );
+                  Navigator.pop(context); // Close sheet
+                  Navigator.push(context, SwipeBackPageRoute(builder: (_) => CharacterDetailScreen(card: fakeCard)));
+                },
+                icon: const Icon(Icons.menu_book),
+                label: const Text("Study Character"),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.transparent,
+                  foregroundColor: wordColor,
+                  shadowColor: Colors.transparent,
+                  side: BorderSide(color: wordColor),
+                  padding: const EdgeInsets.symmetric(vertical: 14),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                ),
+              ),
               const SizedBox(height: 16),
             ],
           ),
+        ),
         );
       },
     );

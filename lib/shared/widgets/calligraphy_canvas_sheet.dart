@@ -117,7 +117,9 @@ class _CalligraphyCanvasDialogState extends ConsumerState<CalligraphyCanvasDialo
       backgroundColor: Colors.transparent,
       insetPadding: const EdgeInsets.all(16),
       child: Container(
-        height: MediaQuery.of(context).size.height * 0.7,
+        height: MediaQuery.of(context).orientation == Orientation.landscape 
+            ? MediaQuery.of(context).size.height * 0.95 
+            : MediaQuery.of(context).size.height * 0.7,
         decoration: BoxDecoration(
           color: bgColor,
           borderRadius: BorderRadius.circular(24),
