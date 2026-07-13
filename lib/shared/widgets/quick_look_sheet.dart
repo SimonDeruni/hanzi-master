@@ -81,6 +81,7 @@ class _QuickLookSheet extends ConsumerWidget {
               inDeck: inDeck,
               asyncCommon: asyncCommon,
               contextText: contextText,
+              tappedHanzi: hanzi,
             ),
     );
   }
@@ -204,6 +205,7 @@ class _FoundBody extends ConsumerWidget {
   final bool inDeck;
   final AsyncValue<List<Flashcard>> asyncCommon;
   final String? contextText;
+  final String tappedHanzi;
 
   const _FoundBody({
     required this.card,
@@ -211,6 +213,7 @@ class _FoundBody extends ConsumerWidget {
     required this.inDeck,
     required this.asyncCommon,
     this.contextText,
+    required this.tappedHanzi,
   });
 
   @override
@@ -365,7 +368,7 @@ class _FoundBody extends ConsumerWidget {
                               child: Container(
                                 color: Theme.of(context).brightness == Brightness.dark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
                                 child: hanzi_shadowing.ShadowingStudioScreen(
-                                  initialHanzi: card.hanzi,
+                                  initialHanzi: tappedHanzi,
                                   initialPinyin: card.pinyin,
                                   initialTranslation: card.definition,
                                   isCompact: true,
@@ -384,7 +387,7 @@ class _FoundBody extends ConsumerWidget {
                         builder: (_) => ClipRRect(
                           borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
                           child: hanzi_shadowing.ShadowingStudioScreen(
-                            initialHanzi: card.hanzi,
+                            initialHanzi: tappedHanzi,
                             initialPinyin: card.pinyin,
                             initialTranslation: card.definition,
                           ),

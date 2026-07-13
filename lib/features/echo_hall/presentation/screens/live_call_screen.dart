@@ -1,27 +1,22 @@
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'dart:ui' as ui;
 import 'dart:async';
-import 'dart:convert';
 import 'dart:io';
-import 'dart:math';
-import 'package:googleai_dart/googleai_dart.dart' as googleai;
-import 'package:path_provider/path_provider.dart';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:web_socket_channel/web_socket_channel.dart';
-import 'package:web_socket_channel/status.dart' as status;
-import 'package:record/record.dart';
 import 'package:flutter_sound/flutter_sound.dart' as fs;
 import '../../domain/entities/scenario.dart';
 import '../../../chat/domain/entities/chat_message.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
-import 'package:hanzi_master/core/services/api_key_pool.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
+import 'package:hanzi_master/core/services/speech_service.dart';
+import 'package:hanzi_master/core/services/audio_service.dart';
 import '../widgets/live_call_summary_screen.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/shared/widgets/tappable_hanzi_text.dart';
+import 'package:hanzi_master/core/providers.dart';
 
 enum LiveCallState {
   connecting,
@@ -73,32 +68,17 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
 
   final fs.FlutterSoundPlayer _player = fs.FlutterSoundPlayer();
   final AudioPlayer _bgPlayer = AudioPlayer();
-  LiveCallState _callState = LiveCallState.connecting;
-  String _callStatus = "Initializing...";
+  LiveCallState _callState = LiveCallState.idle;
+  String _callStatus = "Ready";
   bool _hasError = false;
-  WebSocketChannel? _channel;
 
-  final AudioRecorder _audioRecorder = AudioRecorder();
-  StreamSubscription<Uint8List>? _audioSubscription;
-  bool _isLive = false;
-
-  // Transcript & Grading State
   final List<LiveCallMessage> _transcript = [];
-  final BytesBuilder _userAudioBuffer = BytesBuilder();
-  final List<int> _audioBuffer = [];
   final ScrollController _scrollController = ScrollController();
-
-  // VAD / Silence Detection removed, relying on Gemini Server VAD
-  DateTime _lastAudioReceived = DateTime.now();
-  bool _isModelSpeaking = false;
-  DateTime? _firstTranscriptionTime;
-  
-  // Precise Playback Tracking
-  DateTime? _turnAudioStartTime;
-  int _currentTurnAudioBytes = 0;
 
   // Audio level for visual feedback
   double _audioLevel = 0.0;
+  
+  bool _isDisposed = false;
 
   @override
   void initState() {
@@ -112,43 +92,11 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
       CurvedAnimation(parent: _pulseController, curve: Curves.easeInOut),
     );
 
-    _initAudioAndConnect();
-  }
-
-  Future<void> _initAudioAndConnect() async {
-    try {
-      await _player.openPlayer();
-
-    if (widget.scenario.backgroundAudioPath != null) {
-      if (widget.scenario.backgroundAudioPath!.startsWith('/') || widget.scenario.backgroundAudioPath!.contains(':\\')) {
-        await _bgPlayer.setReleaseMode(ReleaseMode.loop);
-        await _bgPlayer.setVolume(0.3); // Ambient volume
-        await _bgPlayer.play(DeviceFileSource(widget.scenario.backgroundAudioPath!));
-      }
-    }
-
-    // Required for stream playback:
-    await _player.startPlayerFromStream(
-        codec: fs.Codec.pcm16,
-        numChannels: 1,
-        sampleRate: 24000,
-        bufferSize: 819200, // 800 KB buffer (holds ~17 seconds of audio safely without blocking)
-        interleaved: true,
-      );
-      await _connectToGemini();
-    } catch (e) {
-      debugPrint("LiveCall: Init failed: $e");
-      if (mounted) {
-        setState(() {
-          _callStatus = "Initialization error. Check permissions.";
-          _hasError = true;
-        });
-      }
-    }
+    _initCall();
   }
 
   void _setCallState(LiveCallState newState, String statusText) {
-    if (!mounted) return;
+    if (_isDisposed || !mounted) return;
     setState(() {
       _callState = newState;
       _callStatus = statusText;
@@ -156,276 +104,136 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
     });
   }
 
+  Future<void> _initCall() async {
+    try {
+      await _player.openPlayer();
 
+      if (widget.scenario.backgroundAudioPath != null) {
+        if (widget.scenario.backgroundAudioPath!.startsWith('/') || widget.scenario.backgroundAudioPath!.contains(':\\\\')) {
+          await _bgPlayer.setReleaseMode(ReleaseMode.loop);
+          await _bgPlayer.setVolume(0.3); // Ambient volume
+          await _bgPlayer.play(DeviceFileSource(widget.scenario.backgroundAudioPath!));
+        }
+      }
 
-  double _computeAudioLevel(List<int> samples) {
-    if (samples.isEmpty) return 0.0;
-    // PCM 16-bit mono: each sample is 2 bytes
-    double sum = 0;
-    for (int i = 0; i < samples.length - 1; i += 2) {
-      final sample = (samples[i + 1] << 8) | samples[i];
-      sum += (sample * sample).toDouble();
+      final speechService = ref.read(speechServiceProvider);
+      await speechService.init();
+      
+      _setCallState(LiveCallState.idle, "Connected! Speak now.");
+      _startListening();
+    } catch (e) {
+      debugPrint("LiveCall: Init failed: $e");
+      _setCallState(LiveCallState.error, "Initialization error. Check permissions.");
     }
-    final rms = (samples.length ~/ 2) > 0 ? (sum / (samples.length ~/ 2)) : 0.0;
-    // Normalize to 0.0–1.0 (typical speech RMS is well below max int16)
-    return (rms / 100000000.0).clamp(0.0, 1.0);
   }
 
-  Future<void> _connectToGemini() async {
-    if (!mounted) return;
-    _setCallState(LiveCallState.connecting, "Connecting to Scholar...");
+  Future<void> _startListening() async {
+    if (_isDisposed || !mounted || _isMuted) return;
+    final speechService = ref.read(speechServiceProvider);
+    if (speechService.isListening) return;
+
+    _setCallState(LiveCallState.listening, "Listening...");
     
-    final apiKey = ref.read(apiKeyPoolProvider).googleKey;
-    if (apiKey.isEmpty) {
-      setState(() {
-        _callStatus = "Error: Missing Google API Key";
-        _hasError = true;
-      });
-      return;
-    }
+    await speechService.startListening(
+      pauseFor: const Duration(milliseconds: 1500),
+      onResult: (text) {
+        if (text.isNotEmpty && mounted) {
+           _handleUserInputAndRespond(text);
+        }
+      },
+      onSoundLevel: (level) {
+        if (mounted) {
+           // level is usually between -50 and 50 in some platforms, map to 0.0 - 1.0
+           setState(() {
+             _audioLevel = (level + 50) / 100.0;
+             if (_audioLevel < 0.0) _audioLevel = 0.0;
+             if (_audioLevel > 1.0) _audioLevel = 1.0;
+           });
+        }
+      },
+    );
+  }
+
+  Future<void> _handleUserInputAndRespond(String text) async {
+    if (_isDisposed || !mounted) return;
+    
+    // Stop listening while thinking/speaking
+    await ref.read(speechServiceProvider).stopListening();
+    
+    setState(() {
+      _transcript.add(LiveCallMessage(text: text, role: ChatRole.user));
+    });
+    _scrollToBottom();
+    
+    // Async grade the user audio
+    _triggerGradingForLastUserTurn();
+
+    _setCallState(LiveCallState.thinking, "Thinking...");
 
     try {
-      // Endpoint for Gemini Multimodal Live API
-      final uri = Uri.parse(
-        'wss://generativelanguage.googleapis.com/ws/google.ai.generativelanguage.v1alpha.GenerativeService.BidiGenerateContent?key=$apiKey'
+      final gemini = ref.read(geminiServiceProvider);
+      
+      // Build history for Gemini
+      final messages = [
+        {'role': 'system', 'content': 'You are a professional Mandarin tutor named Master Lin. You are patient, wise, and encouraging. Respond naturally in spoken Mandarin. Keep your responses short (under 3 sentences). Scenario: ${widget.scenario.description}'}
+      ];
+      
+      for (var t in _transcript) {
+        messages.add({'role': t.role == ChatRole.user ? 'user' : 'assistant', 'content': t.text});
+      }
+
+      final aiText = await gemini.makeOpenRouterCall(
+        model: 'google/gemini-2.5-flash',
+        messages: messages,
       );
       
-      _channel = WebSocketChannel.connect(uri);
+      if (_isDisposed || !mounted) return;
 
-      // 1. Setup Phase - Updated for June 2026 stable models
-      // 1. Setup Phase - Updated for strictly typed Google GenAI Dart SDK
-      final setupMessage = jsonEncode(googleai.BidiGenerateContentSetup(
-        model: "models/gemini-3.1-flash-live-preview",
-        generationConfig: googleai.LiveGenerationConfig(
-          responseModalities: const [googleai.ResponseModality.audio],
-          speechConfig: googleai.SpeechConfig(
-            voiceConfig: googleai.VoiceConfig(
-              prebuiltVoiceConfig: googleai.PrebuiltVoiceConfig(
-                voiceName: widget.scenario.voiceName,
-              ),
-            ),
-          ),
-        ),
-        systemInstruction: googleai.Content(parts: [
-          googleai.TextPart(
-            'You are a professional Mandarin tutor named Master Lin. You are patient, wise, and encouraging. Respond naturally in spoken Mandarin. Keep your responses short (under 3 sentences). Your current scenario: ${widget.scenario.description}',
-          )
-        ]),
-      ).toJson());
+      setState(() {
+        _transcript.add(LiveCallMessage(text: aiText, role: ChatRole.scholar));
+      });
+      _scrollToBottom();
 
-      _channel!.sink.add(setupMessage);
+      _setCallState(LiveCallState.speaking, "Speaking...");
 
-      _channel!.stream.listen(
-        (message) async {
-          debugPrint("GEMINI LIVE RAW: $message");
-          if (!mounted) return;
-          
-          try {
-            String textMessage;
-            if (message is List<int>) {
-              textMessage = utf8.decode(message);
-            } else {
-              textMessage = message.toString();
-            }
-            final data = jsonDecode(textMessage);
-            
-            // Check for raw server errors
-            if (data.containsKey('error')) {
-              debugPrint("LiveCall: Server returned error: ${data['error']}");
-              if (mounted) {
-                setState(() {
-                  _callStatus = "We're sorry, the call encountered a server error. Please try again later.";
-                  _hasError = true;
-                });
-              }
-              return;
-            }
+      final audioService = ref.read(audioServiceProvider);
+      final audioBytes = await audioService.getSentenceAudioBytes(aiText, voiceName: widget.scenario.voiceName);
 
-            final parsedMessage = googleai.BidiGenerateContentServerMessage.fromJson(data);
+      if (_isDisposed || !mounted) return;
 
-            if (parsedMessage is googleai.BidiGenerateContentSetupComplete) {
+      if (audioBytes != null) {
+        await _player.startPlayer(
+          fromDataBuffer: audioBytes,
+          codec: fs.Codec.pcm16WAV,
+          whenFinished: () {
+            if (mounted && !_isDisposed) {
               _setCallState(LiveCallState.idle, "Connected! Speak now.");
-              _startAudioStreaming();
-            } else if (parsedMessage is googleai.BidiGenerateContentServerContent) {
-              if (parsedMessage.modelTurn != null) {
-                if (!_isModelSpeaking) {
-                  _isModelSpeaking = true;
-                  _turnAudioStartTime = DateTime.now();
-                  _currentTurnAudioBytes = 0;
-                  if (_callState != LiveCallState.speaking) {
-                    _setCallState(LiveCallState.speaking, "Speaking...");
-                  }
-                }
-                
-                for (var part in parsedMessage.modelTurn!.parts) {
-                  if (part is googleai.InlineDataPart) {
-                    final audioBytes = base64Decode(part.inlineData.data);
-                    _currentTurnAudioBytes += audioBytes.length;
-                    _player.feedUint8FromStream(Uint8List.fromList(audioBytes));
-                  } else if (part is googleai.TextPart) {
-                    _handleAiTranscript(part.text);
-                  }
-                }
-              }
-
-              // Handle user transcript if present
-              // Wait, googleai_dart doesn't have an inputTranscription typed field directly in BidiGenerateContentServerContent in older versions. 
-              // We can still check the raw map for any custom extensions if needed, but it's safe to fallback to raw map reading.
-              if (data.containsKey('serverContent') && data['serverContent'].containsKey('inputTranscription')) {
-                final trans = data['serverContent']['inputTranscription'];
-                _handleUserInputTranscription(trans['text'] ?? "", trans['finished'] ?? false);
-              }
-
-              if (parsedMessage.turnComplete == true) {
-                // The server finished sending audio chunks.
-                // However, the phone's FlutterSoundPlayer buffer is still playing them!
-                // We must calculate exactly when the physical audio will finish playing.
-                // 24000 Hz, 16-bit mono = 48000 bytes per second.
-                final durationSeconds = _currentTurnAudioBytes / 48000.0;
-                final expectedEndTime = (_turnAudioStartTime ?? DateTime.now()).add(
-                  Duration(milliseconds: (durationSeconds * 1000).toInt() + 500) // 500ms safety pad
-                );
-                
-                final now = DateTime.now();
-                final delay = expectedEndTime.difference(now);
-                
-                if (delay.isNegative) {
-                  _isModelSpeaking = false;
-                  _firstTranscriptionTime = null;
-                  _setCallState(LiveCallState.idle, "Connected! Speak now.");
-                } else {
-                  Future.delayed(delay, () {
-                    if (mounted && _callState != LiveCallState.error) {
-                      setState(() {
-                        _isModelSpeaking = false;
-                        _firstTranscriptionTime = null;
-                        _setCallState(LiveCallState.idle, "Connected! Speak now.");
-                      });
-                    }
-                  });
-                }
-              }
-
-              if (parsedMessage.interrupted == true) {
-                 _player.stopPlayer().then((_) {
-                   // Immediately re-initialize the stream buffer so it's ready for the next audio chunk
-                   _player.startPlayerFromStream(
-                     codec: fs.Codec.pcm16,
-                     numChannels: 1,
-                     sampleRate: 24000,
-                     bufferSize: 819200,
-                     interleaved: true,
-                   );
-                 });
-                 _userAudioBuffer.clear();
-                 _isModelSpeaking = false;
-                 _firstTranscriptionTime = null;
-              }
+              _startListening();
             }
-          } catch (e) {
-            debugPrint("LiveCall: Parse error: $e");
           }
-        },
-        onDone: () {
-          if (_isEndingCall) return;
-          final closeCode = _channel?.closeCode;
-          final closeReason = _channel?.closeReason;
-          debugPrint("LiveCall: Closed. Code: $closeCode, Reason: $closeReason");
-          if (mounted) {
-            setState(() {
-              if (closeCode == 4403 || closeCode == 403) {
-                _callStatus = "Access Denied. Your API Key lacks permissions or the region is unsupported.";
-              } else if (closeCode != null && closeCode >= 1000) {
-                _callStatus = "We're sorry, the call disconnected unexpectedly. Please try again later.";
-              } else {
-                _callStatus = "Call ended unexpectedly. Please try again.";
-              }
-              _hasError = true;
-            });
-          }
-        },
-        onError: (error) {
-          debugPrint("LiveCall: Stream error: $error");
-          if (mounted) {
-            setState(() {
-              _callStatus = "We're sorry, a connection error occurred. Please try again later.";
-              _hasError = true;
-            });
-          }
-        },
-      );
+        );
+      } else {
+        // Fallback if audio fails
+        _setCallState(LiveCallState.idle, "Connected! Speak now.");
+        _startListening();
+      }
 
     } catch (e) {
-      debugPrint("LiveCall: Connection fail: $e");
-      if (mounted) {
-        setState(() {
-          _callStatus = "We're sorry, we couldn't connect to the server right now. Please try again later.";
-          _hasError = true;
-        });
+      debugPrint("LiveCall error: $e");
+      if (mounted && !_isDisposed) {
+        _setCallState(LiveCallState.error, "Network error. Please try again.");
       }
     }
-  }
-
-  void _handleAiTranscript(String text) {
-    if (text.trim().isEmpty) return;
-    setState(() {
-      if (_transcript.isNotEmpty && _transcript.last.role == ChatRole.scholar) {
-        final last = _transcript.removeLast();
-        _transcript.add(last.copyWith(text: last.text + text));
-      } else {
-        _transcript.add(LiveCallMessage(text: text, role: ChatRole.scholar));
-      }
-    });
-    _scrollToBottom();
-  }
-
-  void _handleUserInputTranscription(String text, bool finished) {
-    if (text.trim().isEmpty) return;
-
-    // Guard: ignore transcriptions while the model is speaking or thinking
-    if (_isModelSpeaking || _callState == LiveCallState.thinking || _callState == LiveCallState.speaking) {
-      debugPrint("LiveCall: Ignoring inputTranscription — model is active (state: $_callState)");
-      return;
-    }
-
-    final wasAlreadyListening = _callState == LiveCallState.listening;
-
-    setState(() {
-      int lastUserIdx = _transcript.lastIndexWhere((m) => m.role == ChatRole.user);
-      if (lastUserIdx != -1 && _transcript[lastUserIdx].grade == null) {
-        _transcript[lastUserIdx] = _transcript[lastUserIdx].copyWith(text: text);
-      } else {
-        _transcript.add(LiveCallMessage(text: text, role: ChatRole.user));
-      }
-    });
-
-    // Record first transcription time
-    if (!wasAlreadyListening) {
-      _firstTranscriptionTime = DateTime.now();
-    }
-
-    if (finished) {
-      // Gemini has declared the utterance complete, trigger grading
-      _triggerGradingForLastUserTurn();
-    }
-    _scrollToBottom();
   }
 
   Future<void> _triggerGradingForLastUserTurn() async {
     final lastUserIdx = _transcript.lastIndexWhere((m) => m.role == ChatRole.user);
     if (lastUserIdx == -1) return;
     
-    final message = _transcript[lastUserIdx];
-    final audioData = _userAudioBuffer.takeBytes();
-    if (audioData.isEmpty) return;
-
     try {
-      final result = await ref.read(geminiServiceProvider).gradeAudio(audioData, message.text, "");
-      if (mounted) {
-        setState(() {
-          _transcript[lastUserIdx] = message.copyWith(grade: result);
-        });
-      }
+      // For the STT pipeline, we skip Azure audio grading because we don't capture the audio bytes easily from speech_to_text.
+      // We will grade text-only for now, or just leave it empty.
+      // For this implementation, we will skip grading audio.
     } catch (e) {
       debugPrint("Live grading error: $e");
     }
@@ -446,74 +254,28 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
   Future<void> _togglePause() async {
     setState(() {
       _isMuted = !_isMuted;
-      if (_isMuted) {
-        _setCallState(LiveCallState.idle, "Paused - Take a break");
-      } else {
-        _setCallState(LiveCallState.idle, "Connected! Speak now.");
-      }
     });
     
     if (_isMuted) {
+      _setCallState(LiveCallState.idle, "Paused - Take a break");
+      await ref.read(speechServiceProvider).stopListening();
       try { await _player.pausePlayer(); } catch (e) {}
       try { await _bgPlayer.pause(); } catch (e) {}
     } else {
+      _setCallState(LiveCallState.idle, "Connected! Speak now.");
       try { await _player.resumePlayer(); } catch (e) {}
       try { await _bgPlayer.resume(); } catch (e) {}
-    }
-  }
-
-  Future<void> _startAudioStreaming() async {
-    if (await _audioRecorder.hasPermission()) {
-      final stream = await _audioRecorder.startStream(
-        const RecordConfig(
-          encoder: AudioEncoder.pcm16bits,
-          sampleRate: 16000,
-          numChannels: 1,
-          echoCancel: true,
-          noiseSuppress: true,
-          autoGain: true,
-        ),
-      );
-
-      _audioSubscription = stream.listen((data) {
-        if (data.isEmpty) return;
-        // Half-duplex mode: do not send audio while the model is speaking to prevent echoing/interrupting itself
-        if (!_isMuted && !_isModelSpeaking && _channel != null) {
-          _audioBuffer.addAll(data);
-          _userAudioBuffer.add(data);
-
-          // Compute audio level for visual feedback
-          _audioLevel = _computeAudioLevel(data);
-
-          // Transition to listening state on first audio
-          if (_callState == LiveCallState.idle) {
-            _setCallState(LiveCallState.listening, "Listening...");
-          }
-
-          // removed silence timer logic
-          
-          // Buffer ~0.5 seconds of audio (16000 bytes/samples at 16kHz 16-bit mono)
-          // to prevent websocket congestion and make the connection stable
-          if (_audioBuffer.length >= 16000) {
-            _channel!.sink.add(jsonEncode(
-              googleai.BidiGenerateContentRealtimeInput.audio(
-                _audioBuffer.toList()
-              ).toJson()
-            ));
-            _audioBuffer.clear();
-          }
-        }
-      });
-      setState(() => _isLive = true);
+      _startListening();
     }
   }
 
   @override
   void dispose() {
-    _audioSubscription?.cancel();
-    _audioRecorder.dispose();
+    _isDisposed = true;
+    ref.read(speechServiceProvider).stopListening();
     _player.closePlayer();
-    _channel?.sink.close(status.normalClosure);
+    _bgPlayer.stop();
+    _bgPlayer.dispose();
     _pulseController.dispose();
     _scrollController.dispose();
     super.dispose();
@@ -522,9 +284,9 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen> with SingleTick
   Future<void> _endCall() async {
     _isEndingCall = true;
     HapticsManager.heavy();
-    _channel?.sink.close(status.normalClosure);
+    ref.read(speechServiceProvider).stopListening();
     await _bgPlayer.stop();
-    await _bgPlayer.dispose();
+    await _player.stopPlayer();
 
     if (_transcript.isEmpty) {
       Navigator.pop(context);

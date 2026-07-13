@@ -229,8 +229,9 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
         loop: false,
         color: 'white',
         enableCaption: false,
-        // Allow pointer events so the user can interact with ads if we let touches through
-        // pointerEvents: PointerEvents.none, 
+        // Disable pointer events so the user cannot interact with the native youtube UI,
+        // preventing the long-press 2x speed bug.
+        pointerEvents: PointerEvents.none, 
       ),
     );
     _loadData();
@@ -933,6 +934,9 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
                                           } else {
                                             _playerController.playVideo();
                                           }
+                                        },
+                                        onLongPress: () {
+                                          // Swallow long press so it doesn't bleed to the native YouTube player
                                         },
                                         child: const SizedBox.expand(),
                                       ),

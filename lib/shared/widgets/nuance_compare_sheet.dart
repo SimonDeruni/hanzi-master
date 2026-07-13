@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:hanzi_master/shared/widgets/global_blurred_bottom_sheet.dart';
 import 'package:hanzi_master/shared/widgets/tappable_hanzi_text.dart';
+import 'package:hanzi_master/core/utils/pinyin_utils.dart';
 
 class NuanceCompareSheet extends ConsumerStatefulWidget {
   final List<Map<String, String>> words;
@@ -301,6 +302,76 @@ class _NuanceCompareSheetState extends ConsumerState<NuanceCompareSheet> {
     );
   }
 
+  Widget _buildFormattedContent(String rawText, ThemeData theme, bool isDark) {
+    if (rawText.isEmpty) return const SizedBox.shrink();
+
+    // Fix Numerical Pinyin
+    String processed = PinyinUtils.convertNumericToMarks(rawText);
+
+    // Split by newlines
+    final blocks = processed.split('\n');
+    final children = <Widget>[];
+
+    for (var block in blocks) {
+      if (block.trim().isEmpty) continue;
+
+      // Highlight Targets at start of bullets
+      for (var w in widget.words) {
+        final hanzi = w['hanzi'];
+        if (hanzi != null && hanzi.isNotEmpty && block.startsWith('* $hanzi')) {
+          block = block.replaceFirst('* $hanzi', '* **$hanzi**');
+        } else if (hanzi != null && hanzi.isNotEmpty && block.startsWith('- $hanzi')) {
+          block = block.replaceFirst('- $hanzi', '- **$hanzi**');
+        } else if (hanzi != null && hanzi.isNotEmpty && block.startsWith('• $hanzi')) {
+          block = block.replaceFirst('• $hanzi', '• **$hanzi**');
+        } else if (hanzi != null && hanzi.isNotEmpty && block.startsWith(hanzi)) {
+          block = block.replaceFirst(hanzi, '**$hanzi**');
+        }
+      }
+
+      // Style Examples
+      if (block.trim().startsWith('Usage:')) {
+        children.add(
+          Container(
+            margin: const EdgeInsets.only(bottom: 16, left: 16, right: 8),
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              color: isDark ? Colors.grey.shade900 : Colors.indigo.shade50,
+              borderRadius: BorderRadius.circular(8),
+              border: Border(left: BorderSide(color: Colors.indigo.shade300, width: 4)),
+            ),
+            child: TappableMarkdownHanziText(
+              block.replaceFirst('Usage:', '').trim(),
+              style: theme.textTheme.bodyMedium?.copyWith(
+                height: 1.6,
+                fontStyle: FontStyle.italic,
+                fontSize: 13,
+                color: isDark ? Colors.grey.shade300 : Colors.grey.shade800,
+              ),
+            ),
+          )
+        );
+      } else {
+        children.add(
+          Padding(
+            padding: const EdgeInsets.only(bottom: 16),
+            child: TappableMarkdownHanziText(
+              block,
+              style: theme.textTheme.bodyMedium?.copyWith(
+                height: 1.7,
+              ),
+            ),
+          )
+        );
+      }
+    }
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: children,
+    );
+  }
+
   Widget _buildContent(ThemeData theme, bool isDark) {
     // Error state with retry
     if (_error != null) {
@@ -343,12 +414,7 @@ class _NuanceCompareSheetState extends ConsumerState<NuanceCompareSheet> {
                         ),
                       ),
                       const SizedBox(height: 16),
-                      TappableMarkdownHanziText(
-                        _streamedText,
-                        style: theme.textTheme.bodyMedium?.copyWith(
-                          height: 1.6,
-                        ),
-                      ),
+                      _buildFormattedContent(_streamedText, theme, isDark),
                     ],
                   ),
                 ),
@@ -413,12 +479,7 @@ class _NuanceCompareSheetState extends ConsumerState<NuanceCompareSheet> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    TappableMarkdownHanziText(
-                      _streamedText,
-                      style: theme.textTheme.bodyMedium?.copyWith(
-                        height: 1.6,
-                      ),
-                    ),
+                    _buildFormattedContent(_streamedText, theme, isDark),
                     // Blinking cursor to indicate still generating
                     const SizedBox(height: 4),
                     _PulsingCursor(),
@@ -441,12 +502,7 @@ class _NuanceCompareSheetState extends ConsumerState<NuanceCompareSheet> {
     // Completed — show full text
     return SingleChildScrollView(
       padding: const EdgeInsets.fromLTRB(20, 8, 20, 16),
-      child: TappableMarkdownHanziText(
-        _streamedText,
-        style: theme.textTheme.bodyMedium?.copyWith(
-          height: 1.6,
-        ),
-      ),
+      child: _buildFormattedContent(_streamedText, theme, isDark),
     );
   }
 

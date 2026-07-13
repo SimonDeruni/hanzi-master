@@ -149,12 +149,15 @@ class _FullscreenMediaOverlayState extends State<FullscreenMediaOverlay>
       child: GestureDetector(
         behavior: HitTestBehavior.opaque,
         onTap: () {
-        if (_controlsVisible) {
-          setState(() => _controlsVisible = false);
-        } else {
-          _onUserInteraction();
-        }
-      },
+          if (_controlsVisible) {
+            setState(() => _controlsVisible = false);
+          } else {
+            _onUserInteraction();
+          }
+        },
+        onLongPress: () {
+          // Swallow long press so it doesn't bleed to the native YouTube player
+        },
       child: Stack(
         children: [
           // ── Top gradient scrim ─────────────────────────────────────────

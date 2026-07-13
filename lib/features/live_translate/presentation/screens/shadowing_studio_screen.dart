@@ -344,6 +344,8 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
               _errorMessage = "Azure quota exceeded. Try again later.";
             } else if (msg.contains("TimeoutException") || msg.contains("timed out")) {
               _errorMessage = "Azure grading timed out. Check your internet connection.";
+            } else if (msg.contains("Recognition failed: null") || msg.contains("null")) {
+              _errorMessage = "Could not hear you clearly. Please try again.";
             } else {
               _errorMessage = "Error analyzing audio: $e";
             }

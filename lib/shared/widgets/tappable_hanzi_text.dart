@@ -248,7 +248,7 @@ class _TappableMarkdownHanziTextState
       }
       if (match.group(1) != null) {
         _addCjkSpans(
-            all, match.group(1)!, base.copyWith(fontWeight: FontWeight.bold));
+            all, match.group(1)!, base.copyWith(fontWeight: FontWeight.bold, color: Colors.indigo));
       } else if (match.group(2) != null) {
         _addCjkSpans(
             all, match.group(2)!, base.copyWith(fontStyle: FontStyle.italic));

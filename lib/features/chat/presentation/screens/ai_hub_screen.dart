@@ -5,19 +5,12 @@ import 'package:hanzi_master/features/echo_hall/presentation/screens/scenario_se
 import 'package:hanzi_master/features/media/presentation/screens/story_library_screen.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/features/live_translate/presentation/screens/shadowing_studio_screen.dart';
-
 import 'package:hanzi_master/features/media/presentation/screens/media_hub_screen.dart';
 import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
-
-
-
 import 'package:hanzi_master/l10n/app_localizations.dart';
-import 'package:hanzi_master/features/flashcards/presentation/screens/profile_screen.dart';
-
-import 'package:hanzi_master/core/services/monetization_service.dart';
-import 'package:hanzi_master/features/premium/presentation/screens/paywall_sheet.dart';
+import 'package:hanzi_master/shared/widgets/global_sliver_app_bar.dart';
 
 class AiHubScreen extends ConsumerWidget {
   const AiHubScreen({super.key});
@@ -25,112 +18,76 @@ class AiHubScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
-    final isDark = theme.brightness == Brightness.dark;
     final l10n = AppLocalizations.of(context);
 
     return Scaffold(
       body: CalligraphyBackground(
         child: SafeArea(
           bottom: false,
-          child: ListView(
-            padding: const EdgeInsets.symmetric(horizontal: 24.0),
-            children: [
-              // Custom Header replacing GlobalSliverAppBar
-              Padding(
-                padding: const EdgeInsets.only(top: 16.0, bottom: 20.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                                        Text(
-                      l10n?.aiHubTitle ?? "AI Hub",
-                      style: theme.textTheme.headlineMedium?.copyWith(
-                        fontWeight: FontWeight.w900,
-                        fontFamily: 'Serif',
-                        color: isDark ? Colors.white : Colors.black87,
-                        letterSpacing: 0.5,
-                        fontSize: 28,
-                      ),
-                    ),
-                    Row(
-                      children: [
-                        GestureDetector(
-                          onTap: () => Navigator.push(
-                            context,
-                            SwipeBackPageRoute(
-                              builder: (_) => const ProfileScreen(),
-                            ),
-                          ),
-                          child: Container(
-                            padding: const EdgeInsets.all(8),
-                            decoration: BoxDecoration(
-                              color: isDark
-                                  ? Colors.white.withValues(alpha: 0.1)
-                                  : Colors.black.withValues(alpha: 0.05),
-                              shape: BoxShape.circle,
-                            ),
-                            child: Icon(
-                              Icons.person_outline,
-                              color: isDark ? Colors.white : Colors.black87,
-                              size: 20,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+          child: CustomScrollView(
+            slivers: [
+              // --- STANDARD HEADER ---
+              GlobalSliverAppBar(
+                title: l10n?.aiHubTitle ?? "AI Hub",
               ),
 
               // Hero Carousel: Featured AI Tools
-              const SizedBox(
-                height: 380,
-                child: _FeaturedCarousel(),
-              ),
-
-              const SizedBox(height: 32),
-
-              // Square Tiles List of Features
-              Row(
-                children: [
-                  Expanded(
-                    child: _buildListActionCard(
-                      context: context,
-                      title: "Reading Room",
-                      subtitle: "Classic literature",
-                      icon: Icons.auto_stories,
-                      gradientColors: const [Color(0xFF8B5E3C), Color(0xFFC4863A)],
-                      onTap: () {
-                        HapticsManager.medium();
-                        if (context.mounted) {
-                          Navigator.push(
-                            context,
-                            SwipeBackPageRoute(builder: (_) => const StoryLibraryScreen()),
-                          );
-                        }
-                      },
-                    ),
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 8),
+                      const SizedBox(
+                        height: 380,
+                        child: _FeaturedCarousel(),
+                      ),
+                      const SizedBox(height: 32),
+                      // Square Tiles List of Features
+                      Row(
+                        children: [
+                          Expanded(
+                            child: _buildListActionCard(
+                              context: context,
+                              title: "Reading Room",
+                              subtitle: "Classic literature",
+                              icon: Icons.auto_stories,
+                              gradientColors: const [Color(0xFF8B5E3C), Color(0xFFC4863A)],
+                              onTap: () {
+                                HapticsManager.medium();
+                                if (context.mounted) {
+                                  Navigator.push(
+                                    context,
+                                    SwipeBackPageRoute(builder: (_) => const StoryLibraryScreen()),
+                                  );
+                                }
+                              },
+                            ),
+                          ),
+                          const SizedBox(width: 16),
+                          Expanded(
+                            child: _buildListActionCard(
+                              context: context,
+                              title: "Shadowing",
+                              subtitle: "Perfect pronunciation",
+                              icon: Icons.mic,
+                              gradientColors: const [Color(0xFF1A4A4A), Color(0xFF2A7070)],
+                              onTap: () {
+                                HapticsManager.medium();
+                                Navigator.push(
+                                  context,
+                                  SwipeBackPageRoute(builder: (_) => const ShadowingStudioScreen()),
+                                );
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 24),
+                    ],
                   ),
-                  const SizedBox(width: 16),
-                  Expanded(
-                    child: _buildListActionCard(
-                      context: context,
-                      title: "Shadowing",
-                      subtitle: "Perfect pronunciation",
-                      icon: Icons.mic,
-                      gradientColors: const [Color(0xFF1A4A4A), Color(0xFF2A7070)],
-                      onTap: () {
-                        HapticsManager.medium();
-                        Navigator.push(
-                          context,
-                          SwipeBackPageRoute(builder: (_) => const ShadowingStudioScreen()),
-                        );
-                      },
-                    ),
-                  ),
-                ],
+                ),
               ),
-              
-              const SizedBox(height: 24),
             ],
           ),
         ),

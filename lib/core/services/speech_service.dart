@@ -19,6 +19,8 @@ class SpeechService {
     required Function(String) onResult,
     Function(double)? onSoundLevel,
     String localeId = 'zh_CN',
+    Duration listenFor = const Duration(seconds: 30),
+    Duration pauseFor = const Duration(seconds: 1),
   }) async {
     if (!_isInitialized) await init();
     
@@ -33,8 +35,8 @@ class SpeechService {
       listenOptions: SpeechListenOptions(
         partialResults: true,
       ),
-      listenFor: const Duration(seconds: 5),
-      pauseFor: const Duration(seconds: 3),
+      listenFor: listenFor,
+      pauseFor: pauseFor,
     );
   }
 
