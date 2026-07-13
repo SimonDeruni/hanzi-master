@@ -438,7 +438,7 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
       }
 
       // Ad Detection Heuristic
-      bool isAd = state.playerState == PlayerState.unstarted;
+      bool isAd = _playerController.value.playerState == PlayerState.unStarted;
       if (_isAdPlaying != isAd && mounted) {
         setState(() => _isAdPlaying = isAd);
       }

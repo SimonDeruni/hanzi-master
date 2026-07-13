@@ -9,7 +9,6 @@ import 'package:hanzi_master/features/flashcards/data/models/review_stats_model.
 import 'package:hanzi_master/features/flashcards/data/models/deck_model.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/settings_controller.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/main_navigation_screen.dart';
-import 'package:hanzi_master/features/live_translate/domain/entities/translation_session.dart';
 import 'package:hanzi_master/features/media/domain/models/saved_article.dart';
 import 'package:hanzi_master/core/services/local_translation_service.dart';
 
