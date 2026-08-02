@@ -1,44 +1,6 @@
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'dart:convert';
 import 'dart:io';
-import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'package:path_provider/path_provider.dart';
-import 'package:uuid/uuid.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:hanzi_master/features/echo_hall/domain/entities/scenario.dart';
-import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
-import 'package:hanzi_master/core/services/gemini_service.dart';
-import 'package:hanzi_master/core/services/api_key_pool.dart';
-
-class CustomScenarioDialog extends ConsumerStatefulWidget {
-  const CustomScenarioDialog({super.key});
-
-  static Future<ConversationScenario?> show(BuildContext context) {
-    return showDialog<ConversationScenario>(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) => const CustomScenarioDialog(),
-    );
-  }
-
-  @override
-  ConsumerState<CustomScenarioDialog> createState() => _CustomScenarioDialogState();
-}
-
-class _CustomScenarioDialogState extends ConsumerState<CustomScenarioDialog> {
-  final _formKey = GlobalKey<FormState>();
-  final _titleController = TextEditingController();
-  final _descController = TextEditingController();
-  final _promptController = TextEditingController();
-  int _hskLevel = 3;
-  bool _isLoading = false;
-  String _loadingText = "Generating scenario...";
-
-  @override
-  void dispose() {
-import 'dart:convert';
-import 'dart:io';
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;

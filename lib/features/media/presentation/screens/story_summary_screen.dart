@@ -409,6 +409,8 @@ class _StorySummaryScreenState extends ConsumerState<StorySummaryScreen> {
   }
 
   Widget _buildKeyWords(StoryState storyState) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    
     if (storyState.isLoading && storyState.currentStory == null) {
       return const Center(
         child: Padding(
