@@ -16,6 +16,8 @@ class HanziTextField extends StatefulWidget {
   final TextInputType? keyboardType;
   final bool autofocus;
   final bool expands;
+  final TextAlign textAlign;
+  final TextAlignVertical? textAlignVertical;
 
   const HanziTextField({
     super.key,
@@ -33,6 +35,8 @@ class HanziTextField extends StatefulWidget {
     this.keyboardType,
     this.autofocus = false,
     this.expands = false,
+    this.textAlign = TextAlign.start,
+    this.textAlignVertical,
   });
 
   @override
@@ -154,6 +158,8 @@ class _HanziTextFieldState extends State<HanziTextField> {
       keyboardType: widget.keyboardType,
       autofocus: widget.autofocus,
       expands: widget.expands,
+      textAlign: widget.textAlign,
+      textAlignVertical: widget.textAlignVertical,
     );
   }
 }
