@@ -99,8 +99,12 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
             _injectHanziInterceptor();
             // Auto-trigger Reading (Zen) Mode by default
             Future.delayed(const Duration(milliseconds: 800), () {
-              if (mounted && !_isZenMode) {
-                _toggleZenMode();
+              if (mounted) {
+                if (!_isZenMode) {
+                  _toggleZenMode();
+                } else {
+                  _applyZenMode();
+                }
               }
             });
             // Auto-trigger simplify if requested
@@ -612,57 +616,65 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
     });
     
     if (_isZenMode) {
-      final js = '''
-        if (!window.zenModeBackup) {
-          window.zenModeBackup = document.body.innerHTML;
-        }
-        
-        let bestNode = document.body;
-        const articles = document.querySelectorAll('article, .article, .post, .content, main');
-        if (articles.length > 0) {
-          bestNode = articles[0];
-        }
-        
-        // Add skeleton loader at the top
-        const skeletonHtml = `
-          <div id="ai-insight-banner" style="margin-bottom: 30px; font-family: sans-serif; opacity: 0.7;">
-            <div style="display: flex; align-items: center; margin-bottom: 15px;">
-               <div style="width: 20px; height: 20px; border: 2px solid #1A1A1B; border-top-color: transparent; border-radius: 50%; animation: spin 1s linear infinite;"></div>
-               <span style="margin-left: 12px; font-size: 14px; font-weight: bold;">AI is reading...</span>
-            </div>
-            <div style="height: 12px; background-color: rgba(26,26,27,0.1); border-radius: 4px; margin-bottom: 8px;"></div>
-            <div style="height: 12px; background-color: rgba(26,26,27,0.1); border-radius: 4px; width: 70%;"></div>
-            <style>@keyframes spin { 100% { transform: rotate(360deg); } }</style>
-          </div>
-        `;
-        
-        document.body.innerHTML = '<div style="max-width: 800px; margin: 0 auto; padding: 20px; font-family: serif; font-size: 22px; line-height: 1.8; background-color: #FDFCF0; color: #1A1A1B;">' + skeletonHtml + bestNode.innerHTML + '</div>';
-        
-        document.body.style.overflow = 'auto';
-        document.documentElement.style.overflow = 'auto';
-        document.body.style.position = 'static';
-        document.documentElement.style.position = 'static';
-        document.body.style.height = 'auto';
-        document.documentElement.style.height = 'auto';
-        
-        window.makeChineseTextClickable(document.body);
-      ''';
-      _controller.runJavaScript(js);
-      
-      if (_currentInsight == null) {
-        if (mounted && _isZenMode) {
-          _runAnalyzeArticle();
-        }
-      }
+      _applyZenMode();
     } else {
-      final js = '''
-        if (window.zenModeBackup) {
-          document.body.innerHTML = window.zenModeBackup;
-          window.makeChineseTextClickable(document.body);
-        }
-      ''';
-      _controller.runJavaScript(js);
+      _removeZenMode();
     }
+  }
+
+  void _applyZenMode() {
+    final js = '''
+      if (!window.zenModeBackup) {
+        window.zenModeBackup = document.body.innerHTML;
+      }
+      
+      let bestNode = document.body;
+      const articles = document.querySelectorAll('article, .article, .post, .content, main');
+      if (articles.length > 0) {
+        bestNode = articles[0];
+      }
+      
+      // Add skeleton loader at the top
+      const skeletonHtml = `
+        <div id="ai-insight-banner" style="margin-bottom: 30px; font-family: sans-serif; opacity: 0.7;">
+          <div style="display: flex; align-items: center; margin-bottom: 15px;">
+             <div style="width: 20px; height: 20px; border: 2px solid #1A1A1B; border-top-color: transparent; border-radius: 50%; animation: spin 1s linear infinite;"></div>
+             <span style="margin-left: 12px; font-size: 14px; font-weight: bold;">AI is reading...</span>
+          </div>
+          <div style="height: 12px; background-color: rgba(26,26,27,0.1); border-radius: 4px; margin-bottom: 8px;"></div>
+          <div style="height: 12px; background-color: rgba(26,26,27,0.1); border-radius: 4px; width: 70%;"></div>
+          <style>@keyframes spin { 100% { transform: rotate(360deg); } }</style>
+        </div>
+      `;
+      
+      document.body.innerHTML = '<div style="max-width: 800px; margin: 0 auto; padding: 20px; font-family: serif; font-size: 22px; line-height: 1.8; background-color: #FDFCF0; color: #1A1A1B;">' + skeletonHtml + bestNode.innerHTML + '</div>';
+      
+      document.body.style.overflow = 'auto';
+      document.documentElement.style.overflow = 'auto';
+      document.body.style.position = 'static';
+      document.documentElement.style.position = 'static';
+      document.body.style.height = 'auto';
+      document.documentElement.style.height = 'auto';
+      
+      window.makeChineseTextClickable(document.body);
+    ''';
+    _controller.runJavaScript(js);
+    
+    if (_currentInsight == null) {
+      if (mounted && _isZenMode) {
+        _runAnalyzeArticle();
+      }
+    }
+  }
+
+  void _removeZenMode() {
+    final js = '''
+      if (window.zenModeBackup) {
+        document.body.innerHTML = window.zenModeBackup;
+        window.makeChineseTextClickable(document.body);
+      }
+    ''';
+    _controller.runJavaScript(js);
   }
   Future<void> _runAnalyzeArticle() async {
     setState(() => _isProcessingAi = true);

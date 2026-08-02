@@ -151,7 +151,7 @@ class MediaHubScreen extends ConsumerWidget {
                       title: "Global Voices",
                       icon: Icons.public,
                       brandColor: const Color(0xFFE65100),
-                      url: 'https://zh.globalvoices.org/hans/',
+                      url: 'https://zht.globalvoices.org/hans/',
                     ),
                     _buildBookmarkChip(
                       context: context,
