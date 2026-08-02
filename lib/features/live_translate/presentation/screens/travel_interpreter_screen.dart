@@ -467,8 +467,8 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                         ),
                       ),
                       if (_isTranslatingText)
-                        const Padding(
-                          padding: EdgeInsets.only(top: 4),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 4),
                           child: SizedBox(
                             width: 16,
                             height: 16,

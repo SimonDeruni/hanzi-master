@@ -15,7 +15,7 @@ import 'package:hanzi_master/features/flashcards/domain/entities/deck.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/deck_selection_sheet.dart';
 import 'package:hanzi_master/features/media/domain/models/saved_article.dart';
-import 'package:hanzi_master/features/media/domain/entities/learning_material.dart';
+
 import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
 import 'package:hive/hive.dart';
 import 'package:hanzi_master/features/media/presentation/screens/simplified_article_reader_screen.dart';

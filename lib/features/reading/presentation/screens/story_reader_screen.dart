@@ -254,7 +254,6 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
                 }
               }
             }
-          }
         });
       }
     });
