@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/features/live_translate/presentation/screens/travel_interpreter_screen.dart';
 import 'package:hanzi_master/shared/widgets/global_sliver_app_bar.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
 
 import 'package:hanzi_master/features/premium/presentation/screens/universal_scanner_screen.dart';

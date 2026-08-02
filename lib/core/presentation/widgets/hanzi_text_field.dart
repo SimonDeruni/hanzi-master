@@ -13,6 +13,9 @@ class HanziTextField extends StatefulWidget {
   final int? maxLines;
   final TextInputAction? textInputAction;
   final Widget? suffixIcon;
+  final TextInputType? keyboardType;
+  final bool autofocus;
+  final bool expands;
 
   const HanziTextField({
     super.key,
@@ -27,6 +30,9 @@ class HanziTextField extends StatefulWidget {
     this.maxLines = 1,
     this.textInputAction,
     this.suffixIcon,
+    this.keyboardType,
+    this.autofocus = false,
+    this.expands = false,
   });
 
   @override
@@ -145,6 +151,9 @@ class _HanziTextFieldState extends State<HanziTextField> {
       validator: widget.validator,
       maxLines: widget.maxLines,
       textInputAction: widget.textInputAction,
+      keyboardType: widget.keyboardType,
+      autofocus: widget.autofocus,
+      expands: widget.expands,
     );
   }
 }
