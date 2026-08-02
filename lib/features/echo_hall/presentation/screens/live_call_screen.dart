@@ -27,20 +27,26 @@ enum LiveCallState {
 
 class LiveCallMessage {
   final String text;
+  final String? pinyin;
+  final String? translation;
   final ChatRole role;
   final Map<String, dynamic>? grade;
   final DateTime timestamp;
 
   LiveCallMessage({
     required this.text,
+    this.pinyin,
+    this.translation,
     required this.role,
     this.grade,
     DateTime? timestamp,
   }) : timestamp = timestamp ?? DateTime.now();
 
-  LiveCallMessage copyWith({Map<String, dynamic>? grade, String? text}) {
+  LiveCallMessage copyWith({Map<String, dynamic>? grade, String? text, String? pinyin, String? translation}) {
     return LiveCallMessage(
       text: text ?? this.text,
+      pinyin: pinyin ?? this.pinyin,
+      translation: translation ?? this.translation,
       role: role,
       grade: grade ?? this.grade,
       timestamp: timestamp,
@@ -284,32 +290,47 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
         {
           'role': 'system',
           'content':
-              'You are a professional Mandarin tutor named Master Lin. You are patient, wise, and encouraging. Respond naturally in spoken Mandarin. Keep your responses short (under 3 sentences). Scenario: ${widget.scenario.description}'
+              'You are a professional Mandarin tutor named Master Lin. You are patient, wise, and encouraging. Respond naturally in spoken Mandarin. Keep your responses short (under 3 sentences). Scenario: ${widget.scenario.description}\nIMPORTANT: You MUST format your response exactly as follows: Chinese Text|||Pinyin|||English Translation'
         }
       ];
 
       for (var t in _transcript) {
         messages.add({
           'role': t.role == ChatRole.user ? 'user' : 'assistant',
-          'content': t.text
+          'content': t.text // only send the Chinese part to maintain history context
         });
       }
 
-      final aiText = (await gemini.makeOpenRouterCall(
+      final aiTextRaw = (await gemini.makeOpenRouterCall(
         model: 'google/gemini-2.5-flash',
         messages: messages,
-      ))
-          .trim();
+      )).trim();
 
       if (_isDisposed || !mounted) return;
-      if (aiText.isEmpty) {
+      if (aiTextRaw.isEmpty) {
         throw StateError('The tutor returned an empty response');
+      }
+
+      String aiText = aiTextRaw;
+      String? pinyin;
+      String? translation;
+      
+      if (aiTextRaw.contains('|||')) {
+        final parts = aiTextRaw.split('|||');
+        aiText = parts[0].trim();
+        if (parts.length > 1) pinyin = parts[1].trim();
+        if (parts.length > 2) translation = parts[2].trim();
       }
 
       // Store the exact text sent to TTS first. This guarantees that the user
       // can read everything the AI says, even if synthesis/playback fails.
       setState(() {
-        _transcript.add(LiveCallMessage(text: aiText, role: ChatRole.scholar));
+        _transcript.add(LiveCallMessage(
+          text: aiText, 
+          pinyin: pinyin, 
+          translation: translation, 
+          role: ChatRole.scholar
+        ));
       });
       _scrollToBottom();
 
@@ -788,7 +809,7 @@ class _LiveTranscriptBubble extends StatelessWidget {
         children: [
           if (isUser && message.grade != null)
             _buildGradedText(message.grade!['words'] ?? [], theme, context)
-          else
+          else ...[
             TappableMarkdownHanziText(
               message.text,
               textAlign: isUser ? TextAlign.right : TextAlign.left,
@@ -800,6 +821,15 @@ class _LiveTranscriptBubble extends StatelessWidget {
                 height: 1.4,
               ),
             ),
+            if (message.pinyin != null && message.pinyin!.isNotEmpty) ...[
+              const SizedBox(height: 6),
+              Text(message.pinyin!, style: theme.textTheme.bodyMedium?.copyWith(color: Colors.white70), textAlign: isUser ? TextAlign.right : TextAlign.left),
+            ],
+            if (message.translation != null && message.translation!.isNotEmpty) ...[
+              const SizedBox(height: 2),
+              Text(message.translation!, style: theme.textTheme.bodySmall?.copyWith(color: Colors.white38, fontStyle: FontStyle.italic), textAlign: isUser ? TextAlign.right : TextAlign.left),
+            ],
+          ]
         ],
       ),
     );

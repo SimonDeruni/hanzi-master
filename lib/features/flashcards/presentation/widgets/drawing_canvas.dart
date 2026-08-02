@@ -438,9 +438,11 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
         aspectRatio: 1.0,
         child: Container(
           decoration: BoxDecoration(
-            color: xuanPaper, // Warm Xuan Paper mandate
+            color: isDark ? const Color(0xFF242322) : xuanPaper, // Warm dark paper in dark mode
             border: Border.all(
-              color: widget.strokeByStrokeMode ? Colors.brown.shade200 : Colors.grey.withValues(alpha: 0.2),
+              color: widget.strokeByStrokeMode
+                  ? (isDark ? Colors.brown.shade700 : Colors.brown.shade200)
+                  : Colors.grey.withValues(alpha: 0.2),
               width: widget.strokeByStrokeMode ? 2.0 : 1.0,
             ),
             borderRadius: BorderRadius.circular(8),

@@ -28,17 +28,21 @@ class _SimplifiedArticleReaderScreenState extends State<SimplifiedArticleReaderS
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final bg = isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0);
+    final textColor = isDark ? Colors.white : Colors.black87;
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Simplified Article", style: TextStyle(fontFamily: 'Serif', fontWeight: FontWeight.bold, color: Colors.black87)),
-        backgroundColor: const Color(0xFFFDFCF0),
+        title: Text("Simplified Article", style: TextStyle(fontFamily: 'Serif', fontWeight: FontWeight.bold, color: textColor)),
+        backgroundColor: bg,
         elevation: 0,
-        iconTheme: const IconThemeData(color: Colors.black87),
+        iconTheme: IconThemeData(color: textColor),
         actions: [
           IconButton(
             icon: Icon(
               Icons.sort_by_alpha,
-              color: _showPinyin ? Colors.blue : Colors.grey,
+              color: _showPinyin ? Colors.blue : (isDark ? Colors.white54 : Colors.grey),
             ),
             tooltip: "Toggle Pinyin",
             onPressed: () {
@@ -50,7 +54,7 @@ class _SimplifiedArticleReaderScreenState extends State<SimplifiedArticleReaderS
           IconButton(
             icon: Icon(
               Icons.translate,
-              color: _showTranslation ? Colors.purple : Colors.grey,
+              color: _showTranslation ? Colors.purple : (isDark ? Colors.white54 : Colors.grey),
             ),
             tooltip: "Toggle Translation",
             onPressed: () {
@@ -61,7 +65,7 @@ class _SimplifiedArticleReaderScreenState extends State<SimplifiedArticleReaderS
           ),
         ],
       ),
-      backgroundColor: const Color(0xFFFDFCF0),
+      backgroundColor: bg,
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(24.0),
         child: Column(
@@ -72,7 +76,7 @@ class _SimplifiedArticleReaderScreenState extends State<SimplifiedArticleReaderS
                 margin: const EdgeInsets.only(bottom: 16.0),
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
-                  color: Colors.orange.shade50,
+                  color: isDark ? Colors.orange.shade900.withValues(alpha: 0.3) : Colors.orange.shade50,
                   borderRadius: BorderRadius.circular(8),
                   border: Border.all(color: Colors.orange.shade200),
                 ),
@@ -83,7 +87,10 @@ class _SimplifiedArticleReaderScreenState extends State<SimplifiedArticleReaderS
                     Expanded(
                       child: Text(
                         "This article contains Traditional Chinese characters.",
-                        style: TextStyle(color: Colors.orange.shade900, fontWeight: FontWeight.w500),
+                        style: TextStyle(
+                          color: isDark ? Colors.orange.shade200 : Colors.orange.shade900, 
+                          fontWeight: FontWeight.w500
+                        ),
                       ),
                     ),
                   ],
@@ -107,25 +114,26 @@ class _SimplifiedArticleReaderScreenState extends State<SimplifiedArticleReaderS
                               if (_showPinyin)
                                 Text(
                                   word.pinyin,
-                                  style: const TextStyle(
+                                  style: TextStyle(
                                     fontSize: 12,
-                                    color: Colors.grey,
+                                    color: isDark ? Colors.white54 : Colors.grey,
                                   ),
                                 ),
                               Text(
                                 word.hanzi,
-                                style: const TextStyle(
+                                style: TextStyle(
                                   fontSize: 24,
                                   height: 1.2,
                                   fontFamily: 'Serif',
+                                  color: textColor,
                                 ),
                               ),
                               if (_showTranslation)
                                 Text(
                                   word.meaning,
-                                  style: const TextStyle(
+                                  style: TextStyle(
                                     fontSize: 10,
-                                    color: Colors.blueGrey,
+                                    color: isDark ? Colors.blue.shade200 : Colors.blueGrey,
                                   ),
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
@@ -139,9 +147,9 @@ class _SimplifiedArticleReaderScreenState extends State<SimplifiedArticleReaderS
                       const SizedBox(height: 8),
                       Text(
                         sentence.english,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 16,
-                          color: Colors.black87,
+                          color: textColor,
                           fontStyle: FontStyle.italic,
                         ),
                       ),

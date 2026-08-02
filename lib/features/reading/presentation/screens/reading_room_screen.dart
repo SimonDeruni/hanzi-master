@@ -105,82 +105,91 @@ class _ReadingRoomScreenState extends ConsumerState<ReadingRoomScreen> {
           // Search Bar
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-            child: HanziTextField(
-              controller: _searchController,
-              hintText: AppLocalizations.of(context)!.searchStoriesHint,
-              decoration: InputDecoration(
-                prefixIcon: Icon(Icons.search, color: Colors.indigo),
-                filled: true,
-                fillColor: Colors.white,
-                contentPadding: const EdgeInsets.symmetric(vertical: 0),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(30),
-                  borderSide: BorderSide.none,
+            child: Builder(builder: (context) {
+              final isDark = Theme.of(context).brightness == Brightness.dark;
+              return HanziTextField(
+                controller: _searchController,
+                hintText: AppLocalizations.of(context)!.searchStoriesHint,
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.search, color: Colors.indigo),
+                  filled: true,
+                  fillColor: isDark ? const Color(0xFF2A2A2B) : Colors.white,
+                  contentPadding: const EdgeInsets.symmetric(vertical: 0),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30),
+                    borderSide: BorderSide.none,
+                  ),
                 ),
-              ),
-              suffixIcon: _searchQuery.isNotEmpty
-                  ? IconButton(
-                      icon: Icon(Icons.clear),
-                      onPressed: () {
-                        _searchController.clear();
-                        setState(() => _searchQuery = "");
-                      },
-                    )
-                  : null,
-              onChanged: (value) {
-                setState(() {
-                  _searchQuery = value;
-                });
-              },
-            ),
+                suffixIcon: _searchQuery.isNotEmpty
+                    ? IconButton(
+                        icon: Icon(Icons.clear),
+                        onPressed: () {
+                          _searchController.clear();
+                          setState(() => _searchQuery = "");
+                        },
+                      )
+                    : null,
+                onChanged: (value) {
+                  setState(() {
+                    _searchQuery = value;
+                  });
+                },
+              );
+            }),
           ),
 
           // Level Selector
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: List.generate(6, (index) {
-                      final level = index + 1;
-                      final isSelected = _selectedHskLevel == level;
-                      return Padding(
-                        padding: const EdgeInsets.only(right: 8.0),
-                        child: ChoiceChip(
-                          label: Text("HSK $level"),
-                          selected: isSelected,
-                          onSelected: (selected) {
-                            if (selected) setState(() => _selectedHskLevel = level);
-                          },
-                          selectedColor: Colors.indigo,
-                          labelStyle: TextStyle(color: isSelected ? Colors.white : Colors.black87),
-                          backgroundColor: Colors.white,
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          Builder(builder: (context) {
+            final isDark = Theme.of(context).brightness == Brightness.dark;
+            return Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: List.generate(6, (index) {
+                    final level = index + 1;
+                    final isSelected = _selectedHskLevel == level;
+                    return Padding(
+                      padding: const EdgeInsets.only(right: 8.0),
+                      child: ChoiceChip(
+                        label: Text("HSK $level"),
+                        selected: isSelected,
+                        onSelected: (selected) {
+                          if (selected) setState(() => _selectedHskLevel = level);
+                        },
+                        selectedColor: Colors.indigo,
+                        labelStyle: TextStyle(
+                          color: isSelected ? Colors.white : (isDark ? Colors.white70 : Colors.black87),
                         ),
-                      );
-                    }),
-                  ),
+                        backgroundColor: isDark ? const Color(0xFF2A2A2B) : Colors.white,
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                      ),
+                    );
+                  }),
                 ),
-              ],
-            ),
-          ),
-          
+              ),
+            );
+          }),
+
           // Stories List
           Expanded(
             child: groupedBlueprints.isEmpty
-                ? Center(
-                    child: Padding(
-                      padding: EdgeInsets.all(32.0),
-                      child: Text(
-                        AppLocalizations.of(context)!.noStoriesFoundMatching,
-                        style: TextStyle(color: Colors.black54, fontSize: 16),
-                        textAlign: TextAlign.center,
+                ? Builder(builder: (context) {
+                    final isDark = Theme.of(context).brightness == Brightness.dark;
+                    return Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(32.0),
+                        child: Text(
+                          AppLocalizations.of(context)!.noStoriesFoundMatching,
+                          style: TextStyle(
+                            color: isDark ? Colors.white38 : Colors.black54,
+                            fontSize: 16,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
                       ),
-                    ),
-                  )
+                    );
+                  })
                 : ListView.builder(
                     padding: const EdgeInsets.only(top: 8, bottom: 24),
                     itemCount: groupedBlueprints.keys.length + 1,
@@ -285,15 +294,16 @@ class _ReadingRoomScreenState extends ConsumerState<ReadingRoomScreen> {
   }
 
   Widget _buildStoryCard(BuildContext context, StoryBlueprint blueprint) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Container(
       width: 200,
       margin: const EdgeInsets.only(right: 16, bottom: 8),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
-        color: Colors.white,
+        color: isDark ? const Color(0xFF2A2A2B) : Colors.white,
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.05),
+            color: Colors.black.withValues(alpha: isDark ? 0.3 : 0.05),
             blurRadius: 10,
             offset: const Offset(0, 4),
           )
@@ -346,7 +356,7 @@ class _ReadingRoomScreenState extends ConsumerState<ReadingRoomScreen> {
                   loadingBuilder: (context, child, loadingProgress) {
                     if (loadingProgress == null) return child;
                     return Container(
-                      color: Colors.grey[100],
+                      color: isDark ? const Color(0xFF1A1A1B) : Colors.grey[100],
                       child: Center(
                         child: CircularProgressIndicator(
                           color: Colors.indigo.withValues(alpha: 0.5),
@@ -365,16 +375,25 @@ class _ReadingRoomScreenState extends ConsumerState<ReadingRoomScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        _localizeTitle(context, blueprint.title), 
-                        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15), 
-                        maxLines: 1, 
+                        _localizeTitle(context, blueprint.title),
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15,
+                          color: isDark ? Colors.white : const Color(0xFF1A1A1B),
+                        ),
+                        maxLines: 1,
                         overflow: TextOverflow.ellipsis
                       ),
-                      SizedBox(height: 4),
+                      const SizedBox(height: 4),
                       Text(
-                        _localizeTopic(context, blueprint.topic), 
-                        style: TextStyle(color: Colors.black.withValues(alpha: 0.6), fontSize: 12), 
-                        maxLines: 2, 
+                        _localizeTopic(context, blueprint.topic),
+                        style: TextStyle(
+                          color: isDark
+                              ? Colors.white.withValues(alpha: 0.5)
+                              : Colors.black.withValues(alpha: 0.6),
+                          fontSize: 12,
+                        ),
+                        maxLines: 2,
                         overflow: TextOverflow.ellipsis
                       ),
                       const Spacer(),
@@ -386,11 +405,11 @@ class _ReadingRoomScreenState extends ConsumerState<ReadingRoomScreen> {
                             margin: const EdgeInsets.only(right: 6),
                             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                             decoration: BoxDecoration(
-                              color: Colors.indigo.withValues(alpha: 0.08), 
+                              color: Colors.indigo.withValues(alpha: isDark ? 0.2 : 0.08),
                               borderRadius: BorderRadius.circular(6)
                             ),
                             child: Text(
-                              '#$tag', 
+                              '#$tag',
                               style: const TextStyle(fontSize: 10, color: Colors.indigo, fontWeight: FontWeight.bold)
                             ),
                           )).toList(),

@@ -19,6 +19,7 @@ import '../../../flashcards/presentation/providers/deck_controller.dart';
 import '../../../flashcards/presentation/utils/haptics_manager.dart';
 import '../../../flashcards/presentation/widgets/deck_selection_sheet.dart';
 import '../../../../shared/widgets/quick_look_sheet.dart';
+import '../../../../shared/widgets/tappable_hanzi_text.dart';
 import '../widgets/ar_bounding_box_painter.dart';
 import '../widgets/interactive_image_overlay.dart';
 
@@ -592,10 +593,12 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                   builder: (context) {
                     final orientation = MediaQuery.of(context).orientation;
                     final previewSize = _cameraController!.value.previewSize!;
-                    // Camera preview texture is landscape-native; for portrait, swap dimensions
+                    final double maxDim = math.max(previewSize.width, previewSize.height);
+                    final double minDim = math.min(previewSize.width, previewSize.height);
+                    
                     final bool isPortrait = orientation == Orientation.portrait;
-                    final double childWidth = isPortrait ? previewSize.height : previewSize.width;
-                    final double childHeight = isPortrait ? previewSize.width : previewSize.height;
+                    final double childWidth = isPortrait ? minDim : maxDim;
+                    final double childHeight = isPortrait ? maxDim : minDim;
                     return ClipRect(
                       child: FittedBox(
                         fit: BoxFit.cover,
@@ -1088,6 +1091,8 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
   }
 
   Widget _buildResultsList(ThemeData theme, AppLocalizations l10n) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    
     if (widget.intent == CameraIntent.textExtraction) {
       return Padding(
         padding: const EdgeInsets.all(24.0),
@@ -1154,6 +1159,45 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
 
     return Column(
       children: [
+        if (_rawExtractedText.isNotEmpty) ...[
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+            child: Container(
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                color: const Color(0xFF1A1A1B).withValues(alpha: 0.8),
+                borderRadius: BorderRadius.circular(24),
+                border: Border.all(color: Colors.white.withValues(alpha: 0.1)),
+                boxShadow: [
+                  BoxShadow(color: Colors.black.withValues(alpha: 0.2), blurRadius: 10, offset: const Offset(0, 5)),
+                ],
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Icon(Icons.text_snippet, size: 20, color: theme.colorScheme.primary),
+                      const SizedBox(width: 12),
+                      Text("Extracted Text (Tap to lookup)", style: theme.textTheme.titleMedium?.copyWith(color: Colors.white, fontWeight: FontWeight.bold)),
+                    ],
+                  ),
+                  const SizedBox(height: 12),
+                  ConstrainedBox(
+                    constraints: const BoxConstraints(maxHeight: 250),
+                    child: SingleChildScrollView(
+                      child: TappableHanziText(
+                        text: _rawExtractedText,
+                        style: theme.textTheme.bodyLarge?.copyWith(height: 1.5, color: Colors.white.withValues(alpha: 0.9)),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          const SizedBox(height: 12),
+        ],
         if (_fullTranslation.isNotEmpty) ...[
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
@@ -1178,7 +1222,12 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                     ],
                   ),
                   const SizedBox(height: 12),
-                  Text(_fullTranslation, style: theme.textTheme.bodyLarge?.copyWith(height: 1.5, color: Colors.white.withValues(alpha: 0.9), fontStyle: FontStyle.italic)),
+                  ConstrainedBox(
+                    constraints: const BoxConstraints(maxHeight: 250),
+                    child: SingleChildScrollView(
+                      child: Text(_fullTranslation, style: theme.textTheme.bodyLarge?.copyWith(height: 1.5, color: Colors.white.withValues(alpha: 0.9), fontStyle: FontStyle.italic)),
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -1225,11 +1274,12 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                   child: Container(
                     padding: const EdgeInsets.all(20),
                     decoration: BoxDecoration(
-                      color: const Color(0xFFFDFCF0),
+                      color: isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
                       borderRadius: BorderRadius.circular(24),
                       boxShadow: [
-                        BoxShadow(color: Colors.black.withValues(alpha: 0.1), blurRadius: 8, offset: const Offset(0, 4)),
+                        BoxShadow(color: Colors.black.withValues(alpha: isDark ? 0.3 : 0.1), blurRadius: 8, offset: const Offset(0, 4)),
                       ],
+                      border: Border.all(color: isDark ? Colors.white.withValues(alpha: 0.1) : Colors.transparent),
                     ),
                     child: Row(
                       children: [
@@ -1245,7 +1295,7 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                             fit: BoxFit.scaleDown,
                             child: Padding(
                               padding: const EdgeInsets.all(4),
-                              child: Text(info.hanzi, style: const TextStyle(fontSize: 40, fontWeight: FontWeight.w900, color: Color(0xFF1A1A1B), height: 1.0)),
+                              child: Text(info.hanzi, style: TextStyle(fontSize: 40, fontWeight: FontWeight.w900, color: isDark ? Colors.white : const Color(0xFF1A1A1B), height: 1.0)),
                             ),
                           ),
                         ),
@@ -1259,7 +1309,7 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                                 style: theme.textTheme.titleMedium?.copyWith(color: theme.colorScheme.primary, fontWeight: FontWeight.bold),
                               ),
                               const SizedBox(height: 6),
-                              Text(info.meaning, style: theme.textTheme.bodyMedium?.copyWith(color: Colors.black87), maxLines: 2, overflow: TextOverflow.ellipsis),
+                              Text(info.meaning, style: theme.textTheme.bodyMedium?.copyWith(color: isDark ? Colors.white70 : Colors.black87), maxLines: 2, overflow: TextOverflow.ellipsis),
                             ],
                           ),
                         ),
@@ -1285,11 +1335,11 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                               ),
                             Container(
                               decoration: BoxDecoration(
-                                color: const Color(0xFF1A1A1B).withValues(alpha: 0.05),
+                                color: isDark ? Colors.white.withValues(alpha: 0.1) : const Color(0xFF1A1A1B).withValues(alpha: 0.05),
                                 shape: BoxShape.circle,
                               ),
                               child: IconButton(
-                                icon: const Icon(Icons.add, color: Color(0xFF1A1A1B)),
+                                icon: Icon(Icons.add, color: isDark ? Colors.white : const Color(0xFF1A1A1B)),
                                 onPressed: () => _addSingleCard(info),
                                 tooltip: l10n.addToStudyDeck,
                               ),

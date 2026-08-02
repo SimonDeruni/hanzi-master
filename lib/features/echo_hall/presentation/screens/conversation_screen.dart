@@ -104,7 +104,7 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
               top: 0,
               left: 0,
               right: 0,
-              height: MediaQuery.of(context).size.height * 0.45,
+              height: MediaQuery.of(context).size.height * 0.26,
               child: TweenAnimationBuilder<double>(
                 tween: Tween(begin: 1.0, end: 1.05),
                 duration: const Duration(seconds: 10),
@@ -136,18 +136,17 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
               ),
             ),
 
-            // Quests Overlay
+            // Quests Overlay (compact floating button)
             if (widget.scenario.quests.isNotEmpty)
               Positioned(
-                top: 100,
-                left: 16,
-                right: 16,
-                child: _QuestsOverlay(quests: widget.scenario.quests),
+                top: 140,
+                right: 12,
+                child: _QuestsFloatingButton(quests: widget.scenario.quests),
               ),
 
             // 2. Chat Area
             Positioned(
-              top: MediaQuery.of(context).size.height * 0.4,
+              top: MediaQuery.of(context).size.height * 0.24,
               left: 0,
               right: 0,
               bottom: 0,
@@ -388,8 +387,7 @@ Widget _buildScoreBadge(PronunciationGrade grade, ThemeData theme, bool isUser) 
   }
   Widget _buildMessage(GradedChatMessage message, ThemeData theme) {
     final isUser = message.role == ChatRole.user;
-    final hasTranslation = (message.english != null && message.english!.isNotEmpty) || (message.pinyin != null && message.pinyin!.isNotEmpty);
-    final isExpanded = _translationVisibility[message.id] ?? hasTranslation;
+    final isExpanded = _translationVisibility[message.id] ?? false;
 
     return GestureDetector(
       onTap: () {
@@ -503,7 +501,7 @@ Widget _buildScoreBadge(PronunciationGrade grade, ThemeData theme, bool isUser) 
                             ],
                           ],
                           
-                          if (message.english != null && message.english!.isNotEmpty) ...[
+                          if (message.english != null && message.english!.isNotEmpty || message.pinyin != null && message.pinyin!.isNotEmpty) ...[
                             const SizedBox(height: 8),
                             InkWell(
                               onTap: () {
@@ -693,84 +691,86 @@ class _ToneChip extends StatelessWidget {
   }
 }
 
-class _QuestsOverlay extends StatefulWidget {
+class _QuestsFloatingButton extends StatefulWidget {
   final List<String> quests;
-  const _QuestsOverlay({required this.quests});
+  const _QuestsFloatingButton({required this.quests});
 
   @override
-  State<_QuestsOverlay> createState() => _QuestsOverlayState();
+  State<_QuestsFloatingButton> createState() => _QuestsFloatingButtonState();
 }
 
-class _QuestsOverlayState extends State<_QuestsOverlay> {
+class _QuestsFloatingButtonState extends State<_QuestsFloatingButton> {
   bool _expanded = false;
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => setState(() => _expanded = !_expanded),
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 300),
-        padding: const EdgeInsets.all(12),
-        decoration: BoxDecoration(
-          color: Colors.black.withValues(alpha: 0.6),
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: Colors.white.withValues(alpha: 0.2)),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                const Icon(Icons.flag, color: Colors.amber, size: 20),
-                const SizedBox(width: 8),
-                const Text(
-                  "ACTIVE QUESTS",
-                  style: TextStyle(
-                    color: Colors.amber,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 12,
-                    letterSpacing: 1.2,
-                  ),
-                ),
-                const Spacer(),
-                Icon(
-                  _expanded ? Icons.keyboard_arrow_up : Icons.keyboard_arrow_down,
-                  color: Colors.white70,
-                ),
-              ],
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        if (_expanded)
+          Container(
+            margin: const EdgeInsets.only(bottom: 8),
+            padding: const EdgeInsets.all(12),
+            constraints: const BoxConstraints(maxWidth: 220),
+            decoration: BoxDecoration(
+              color: Colors.black.withValues(alpha: 0.85),
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(color: Colors.amber.withValues(alpha: 0.4)),
             ),
-            if (_expanded) ...[
-              const SizedBox(height: 12),
-              ...widget.quests.map((q) => Padding(
-                padding: const EdgeInsets.only(bottom: 8.0),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Row(
                   children: [
-                    Container(
-                      margin: const EdgeInsets.only(top: 6, right: 8),
-                      width: 6,
-                      height: 6,
-                      decoration: const BoxDecoration(
-                        color: Colors.white,
-                        shape: BoxShape.circle,
-                      ),
-                    ),
-                    Expanded(
-                      child: Text(
-                        q,
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 14,
-                        ),
-                      ),
+                    const Icon(Icons.flag, color: Colors.amber, size: 16),
+                    const SizedBox(width: 6),
+                    const Text(
+                      "QUESTS",
+                      style: TextStyle(color: Colors.amber, fontWeight: FontWeight.bold, fontSize: 11, letterSpacing: 1),
                     ),
                   ],
                 ),
-              )),
-            ]
-          ],
+                const SizedBox(height: 8),
+                ...widget.quests.map((q) => Padding(
+                  padding: const EdgeInsets.only(bottom: 6),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.only(top: 5),
+                        child: Icon(Icons.circle, size: 5, color: Colors.white70),
+                      ),
+                      const SizedBox(width: 6),
+                      Expanded(
+                        child: Text(
+                          q,
+                          style: const TextStyle(color: Colors.white, fontSize: 12, height: 1.3),
+                        ),
+                      ),
+                    ],
+                  ),
+                )),
+              ],
+            ),
+          ),
+        GestureDetector(
+          onTap: () => setState(() => _expanded = !_expanded),
+          child: Container(
+            padding: const EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              color: Colors.black.withValues(alpha: 0.7),
+              shape: BoxShape.circle,
+              border: Border.all(color: Colors.amber.withValues(alpha: 0.5)),
+            ),
+            child: Icon(
+              _expanded ? Icons.close : Icons.flag_outlined,
+              color: Colors.amber,
+              size: 20,
+            ),
+          ),
         ),
-      ),
+      ],
     );
   }
 }

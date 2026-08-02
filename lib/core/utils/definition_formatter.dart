@@ -84,7 +84,8 @@ class DefinitionFormatter extends ConsumerWidget {
         }
 
         // Tier 2: HSK word-level lookup (for compound words)
-        final wordEntry = ref.read(masterDictionaryProvider.notifier).lookup(hanzi);
+        final wordEntry =
+            ref.read(masterDictionaryProvider.notifier).lookup(hanzi);
         if (wordEntry != null && wordEntry.definition.isNotEmpty) {
           final shortMeaning = wordEntry.definition
               .replaceAll(RegExp(r'\[.*?\]'), '')
@@ -115,20 +116,22 @@ class DefinitionFormatter extends ConsumerWidget {
     return parts
         .map((p) => p.trim())
         .where((p) => p.isNotEmpty)
+        .where((p) => !p.toLowerCase().startsWith('abbreviation for '))
         .map((p) => p[0].toUpperCase() + p.substring(1))
         .map((p) {
-          // "Surname Shi" → "Chinese family name (Shi)"
-          final surnameMatch = RegExp(r'^Surname\s+(\S+)$', caseSensitive: false).firstMatch(p);
-          if (surnameMatch != null) {
-            return 'Chinese family name (${surnameMatch.group(1)})';
-          }
-          // "Surname Shi; also used in ..." → keep the suffix too
-          final surnamePrefix = RegExp(r'^Surname\s+(\S+)(.*)', caseSensitive: false).firstMatch(p);
-          if (surnamePrefix != null && surnamePrefix.group(2)!.isNotEmpty) {
-            return 'Chinese family name (${surnamePrefix.group(1)})${surnamePrefix.group(2)}';
-          }
-          return p;
-        })
-        .toList();
+      // "Surname Shi" → "Chinese family name (Shi)"
+      final surnameMatch =
+          RegExp(r'^Surname\s+(\S+)$', caseSensitive: false).firstMatch(p);
+      if (surnameMatch != null) {
+        return 'Chinese family name (${surnameMatch.group(1)})';
+      }
+      // "Surname Shi; also used in ..." → keep the suffix too
+      final surnamePrefix =
+          RegExp(r'^Surname\s+(\S+)(.*)', caseSensitive: false).firstMatch(p);
+      if (surnamePrefix != null && surnamePrefix.group(2)!.isNotEmpty) {
+        return 'Chinese family name (${surnamePrefix.group(1)})${surnamePrefix.group(2)}';
+      }
+      return p;
+    }).toList();
   }
 }

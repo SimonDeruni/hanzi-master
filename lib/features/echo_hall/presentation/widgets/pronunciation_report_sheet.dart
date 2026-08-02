@@ -34,8 +34,6 @@ class _PronunciationReportSheetState extends ConsumerState<PronunciationReportSh
     final chatHistory = ref.read(conversationControllerProvider.notifier).getChatHistory(widget.message.id);
     final gemini = ref.read(geminiServiceProvider);
     
-    // Only query if the transcription is somewhat bad or we really want to guess.
-    // For now we always query as requested.
     final result = await gemini.guessIntendedMeaning(chatHistory, widget.message.content);
     if (mounted) {
       setState(() {
@@ -65,10 +63,16 @@ class _PronunciationReportSheetState extends ConsumerState<PronunciationReportSh
     final grade = widget.message.grade;
     if (grade == null) return const SizedBox.shrink();
 
+    final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
+    final surfaceColor = theme.colorScheme.surface;
+    final onSurface = theme.colorScheme.onSurface;
+    final subtitleColor = onSurface.withValues(alpha: 0.6);
+
     return Container(
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+      decoration: BoxDecoration(
+        color: surfaceColor,
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
       ),
       padding: const EdgeInsets.all(24),
       child: Column(
@@ -78,12 +82,12 @@ class _PronunciationReportSheetState extends ConsumerState<PronunciationReportSh
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
+              Text(
                 'Report',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black87),
+                style: theme.textTheme.titleLarge?.copyWith(color: onSurface),
               ),
               IconButton(
-                icon: const Icon(Icons.close, color: Colors.black54),
+                icon: Icon(Icons.close, color: subtitleColor),
                 onPressed: () => Navigator.pop(context),
               ),
             ],
@@ -94,15 +98,15 @@ class _PronunciationReportSheetState extends ConsumerState<PronunciationReportSh
           Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: Colors.grey.shade50,
+              color: theme.colorScheme.surfaceContainerHighest.withValues(alpha: isDark ? 0.3 : 0.5),
               borderRadius: BorderRadius.circular(16),
-              border: Border.all(color: Colors.grey.shade200),
+              border: Border.all(color: theme.dividerColor),
             ),
             child: Column(
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: grade.words.map((w) => _buildCharacterColumn(w)).toList(),
+                  children: grade.words.map((w) => _buildCharacterColumn(w, theme)).toList(),
                 ),
                 const Divider(height: 24),
                 ElevatedButton.icon(
@@ -130,7 +134,7 @@ class _PronunciationReportSheetState extends ConsumerState<PronunciationReportSh
 
           // AI Intention
           if (widget.message.audioPath != null)
-            _buildAiIntentionBox(),
+            _buildAiIntentionBox(theme),
 
           const SizedBox(height: 16),
           
@@ -155,7 +159,7 @@ class _PronunciationReportSheetState extends ConsumerState<PronunciationReportSh
                     const SizedBox(width: 8),
                     Text(
                       grade.score != null ? (grade.score! >= 80 ? 'Great!' : 'Keep trying!') : 'Pending...',
-                      style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.black87),
+                      style: TextStyle(fontWeight: FontWeight.bold, color: onSurface),
                     ),
                   ],
                 ),
@@ -168,9 +172,9 @@ class _PronunciationReportSheetState extends ConsumerState<PronunciationReportSh
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              _buildMetricDial('Accuracy', grade.accuracy, Colors.orange),
-              _buildMetricDial('Completeness', grade.completeness, Colors.green),
-              _buildMetricDial('Fluency', grade.fluency, Colors.orange),
+              _buildMetricDial('Accuracy', grade.accuracy, Colors.orange, theme),
+              _buildMetricDial('Completeness', grade.completeness, Colors.green, theme),
+              _buildMetricDial('Fluency', grade.fluency, Colors.orange, theme),
             ],
           ),
           const SizedBox(height: 24),
@@ -180,7 +184,7 @@ class _PronunciationReportSheetState extends ConsumerState<PronunciationReportSh
             width: double.infinity,
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: Colors.yellow.shade50,
+              color: isDark ? Colors.yellow.shade50.withValues(alpha: 0.15) : Colors.yellow.shade50,
               borderRadius: BorderRadius.circular(16),
               border: Border.all(color: Colors.yellow.shade200),
             ),
@@ -210,7 +214,7 @@ class _PronunciationReportSheetState extends ConsumerState<PronunciationReportSh
     );
   }
 
-  Widget _buildAiIntentionBox() {
+  Widget _buildAiIntentionBox(ThemeData theme) {
     if (_isLoadingIntention) {
       return const Padding(
         padding: EdgeInsets.symmetric(vertical: 16.0),
@@ -219,14 +223,17 @@ class _PronunciationReportSheetState extends ConsumerState<PronunciationReportSh
     }
 
     if (_intendedMeaning == null || _intendedMeaning!['intendedHanzi'] == widget.message.content) {
-      return const SizedBox.shrink(); // No guess, or it matches perfectly
+      return const SizedBox.shrink();
     }
+
+    final onSurface = theme.colorScheme.onSurface;
+    final isDark = theme.brightness == Brightness.dark;
 
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.blue.shade50,
+        color: isDark ? Colors.blue.shade50.withValues(alpha: 0.15) : Colors.blue.shade50,
         borderRadius: BorderRadius.circular(16),
         border: Border.all(color: Colors.blue.shade200),
       ),
@@ -246,16 +253,16 @@ class _PronunciationReportSheetState extends ConsumerState<PronunciationReportSh
           const SizedBox(height: 12),
           Text(
             _intendedMeaning!['intendedHanzi'] ?? "",
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black87),
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: onSurface),
           ),
           Text(
             _intendedMeaning!['intendedPinyin'] ?? "",
-            style: const TextStyle(fontSize: 14, color: Colors.black54),
+            style: TextStyle(fontSize: 14, color: onSurface.withValues(alpha: 0.6)),
           ),
           const SizedBox(height: 4),
           Text(
             _intendedMeaning!['englishTranslation'] ?? "",
-            style: const TextStyle(fontSize: 14, fontStyle: FontStyle.italic, color: Colors.black54),
+            style: TextStyle(fontSize: 14, fontStyle: FontStyle.italic, color: onSurface.withValues(alpha: 0.6)),
           ),
           const SizedBox(height: 12),
           if (_isRegrading)
@@ -267,7 +274,7 @@ class _PronunciationReportSheetState extends ConsumerState<PronunciationReportSh
                 TextButton(
                   onPressed: () {
                     setState(() {
-                      _intendedMeaning = null; // Hide it
+                      _intendedMeaning = null;
                     });
                   },
                   child: const Text('No'),
@@ -283,22 +290,36 @@ class _PronunciationReportSheetState extends ConsumerState<PronunciationReportSh
     );
   }
 
-  Widget _buildCharacterColumn(SyllableGrade word) {
+  Widget _buildCharacterColumn(SyllableGrade word, ThemeData theme) {
     final color = word.isCorrect
         ? Colors.green
         : word.isPartial
             ? Colors.orange
             : Colors.red;
+    final onSurface = theme.colorScheme.onSurface;
+
     return Column(
       children: [
+        // Pinyin
         Text(
           word.pinyin,
-          style: const TextStyle(fontSize: 14, color: Colors.grey),
+          style: TextStyle(fontSize: 14, color: onSurface.withValues(alpha: 0.6)),
         ),
+        const SizedBox(height: 2),
+        // Hanzi
         Text(
           word.word,
-          style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black87),
+          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: onSurface),
         ),
+        const SizedBox(height: 2),
+        // English meaning
+        if (word.english != null && word.english!.isNotEmpty)
+          Text(
+            word.english!,
+            style: TextStyle(fontSize: 10, color: onSurface.withValues(alpha: 0.5), fontStyle: FontStyle.italic),
+            textAlign: TextAlign.center,
+          ),
+        // Score / icon
         Text(
           word.wordScore > 0 ? word.wordScore.toString() : (word.isCorrect ? '\u2713' : word.isPartial ? '~' : '\u2717'),
           style: TextStyle(fontSize: 12, color: color, fontWeight: FontWeight.bold),
@@ -307,7 +328,8 @@ class _PronunciationReportSheetState extends ConsumerState<PronunciationReportSh
     );
   }
 
-  Widget _buildMetricDial(String label, int value, Color color) {
+  Widget _buildMetricDial(String label, int value, Color color, ThemeData theme) {
+    final onSurface = theme.colorScheme.onSurface;
     return Column(
       children: [
         Stack(
@@ -336,7 +358,7 @@ class _PronunciationReportSheetState extends ConsumerState<PronunciationReportSh
         const SizedBox(height: 8),
         Text(
           label,
-          style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.black87),
+          style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: onSurface),
         ),
       ],
     );

@@ -519,17 +519,7 @@ class _StoryModeScreenState extends ConsumerState<StoryModeScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    TextButton.icon(
-                      icon: Icon(
-                        _isPlaying ? Icons.stop : Icons.play_arrow,
-                        size: 20,
-                      ),
-                      label: Text(_isPlaying ? "Stop" : "Play"),
-                      style: TextButton.styleFrom(
-                        foregroundColor: _isPlaying ? Colors.red : Colors.purple,
-                      ),
-                      onPressed: () => _togglePlay(asyncStory.value!, stop: _isPlaying),
-                    ),
+
                     TextButton.icon(
                       icon: const Icon(Icons.translate, size: 20),
                       label: const Text("Translate"),

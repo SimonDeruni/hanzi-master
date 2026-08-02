@@ -211,6 +211,14 @@ class _ScenarioSelectionScreenState extends ConsumerState<ScenarioSelectionScree
                             child: _ScenarioGlassCard(
                               scenario: scenario, 
                               isActive: index == _currentIndex,
+                              onDelete: () {
+                                setState(() {
+                                  _allScenarios.removeWhere((s) => s.id == scenario.id);
+                                  if (_currentIndex >= _allScenarios.length) {
+                                    _currentIndex = _allScenarios.length - 1;
+                                  }
+                                });
+                              },
                             ),
                           );
                         },
@@ -338,6 +346,7 @@ class _ScenarioSelectionScreenState extends ConsumerState<ScenarioSelectionScree
               if (value == 'custom') {
                 final newScenario = await CustomScenarioDialog.show(context);
                 if (newScenario != null) {
+                  await ref.read(savedScenariosProvider.notifier).toggle(newScenario);
                   setState(() {
                     _allScenarios.insert(0, newScenario);
                     _pageController.jumpToPage(0);
@@ -425,44 +434,28 @@ class _ScenarioSelectionScreenState extends ConsumerState<ScenarioSelectionScree
     
     try {
       final words = deckCards.map((c) => c.hanzi).take(10).join(', '); // limit to 10
-      final avatars = [
-        'assets/mascot/guide_avatar.png',
-        'assets/mascot/friend_avatar.png',
-        'assets/mascot/doctor_avatar.png',
-        'assets/mascot/waiter_avatar.png',
-        'assets/mascot/market_vendor_avatar.png',
-        'assets/mascot/taxi_driver_avatar.png',
-        'assets/mascot/hr_manager_avatar.png',
-      ];
-      final avatarsList = avatars.join(', ');
-
       final prompt = '''
 Create a Chinese roleplay scenario for a user practicing these words: $words.
 IMPORTANT: The title, description, personaName, and quests MUST be written in English. The initialAiMessage MUST be written in Chinese.
-You must also pick the MOST SUITABLE avatar for this persona from this exact list: $avatarsList. If NONE of them make sense for the persona (e.g. it's an alien or a pirate), you MUST return the exact string "none" for avatarAssetPath.
 
 The systemPrompt MUST follow this exact pattern:
-"You are [personaName]. Your ONLY role is [role description]. Use [language style]. NEVER break character or introduce yourself as anything other than [role]. [Behavioral instructions]."
-This pattern is MANDATORY to prevent persona bleed during conversation.
+"You are [personaName]. Your ONLY role is [role description]. Use [language style]. NEVER break character, NEVER act as an AI assistant, and NEVER introduce yourself as anything other than [role]. [Behavioral instructions]."
+This pattern is MANDATORY to prevent persona bleed. You must NOT be an AI, you are the character.
+
+You MUST generate EXACTLY 3 distinct quests (objectives) for the user to complete in the conversation.
 
 Respond ONLY with a JSON object containing:
 {
   "title": "Short title of the scenario (in English)",
   "description": "Short description (in English)",
-  "systemPrompt": "System prompt following the exact pattern: 'You are [personaName]. Your ONLY role is...'",
+  "systemPrompt": "System prompt following the exact pattern: 'You are [personaName]. Your ONLY role is... NEVER act as an AI...'",
   "initialAiMessage": "The first message the AI says (in Chinese)",
   "personaName": "Name of the persona (in English or Pinyin)",
-  "avatarAssetPath": "The exact path of the most suitable avatar from the list provided, or 'none'",
   "quests": ["Quest 1 (in English)", "Quest 2 (in English)", "Quest 3 (in English)"]
 }
 ''';
       final response = await ref.read(geminiServiceProvider).generateText(prompt);
       final Map<String, dynamic> data = _parseJsonOrFallback(response);
-      
-      final selectedAvatar = data['avatarAssetPath'] as String? ?? 'none';
-      final validAvatar = (selectedAvatar == 'none' || avatars.contains(selectedAvatar)) 
-          ? selectedAvatar 
-          : 'none';
       
       if (!mounted) return;
       Navigator.pop(context); // Close loading
@@ -475,7 +468,7 @@ Respond ONLY with a JSON object containing:
         initialAiMessage: data['initialAiMessage'] ?? '你好！',
         systemPrompt: data['systemPrompt'] ?? 'Help the user practice their vocabulary.',
         targetHskLevel: 3,
-        avatarAssetPath: validAvatar,
+        avatarAssetPath: 'none',
         backgroundAssetPath: 'assets/environments/office.jpg',
         personaName: data['personaName'] ?? 'Teacher',
         quests: List<String>.from(data['quests'] ?? []),
@@ -522,10 +515,12 @@ Respond ONLY with a JSON object containing:
 class _ScenarioGlassCard extends ConsumerWidget {
   final ConversationScenario scenario;
   final bool isActive;
+  final VoidCallback? onDelete;
 
   const _ScenarioGlassCard({
     required this.scenario,
     required this.isActive,
+    this.onDelete,
   });
 
   @override
@@ -562,20 +557,48 @@ class _ScenarioGlassCard extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                      decoration: BoxDecoration(
-                        color: theme.colorScheme.primary.withValues(alpha: 0.8),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Text(
-                        'HSK ${scenario.targetHskLevel}',
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w900,
-                          fontSize: 14,
+                    Row(
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                          decoration: BoxDecoration(
+                            color: theme.colorScheme.primary.withValues(alpha: 0.8),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Text(
+                            'HSK ${scenario.targetHskLevel}',
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w900,
+                              fontSize: 14,
+                            ),
+                          ),
                         ),
-                      ),
+                        if (scenario.isCustom)
+                          IconButton(
+                            icon: const Icon(Icons.delete_outline, color: Colors.white70),
+                            onPressed: () async {
+                              final confirm = await showDialog<bool>(
+                                context: context,
+                                builder: (ctx) => AlertDialog(
+                                  title: const Text("Delete Persona"),
+                                  content: const Text("Are you sure you want to delete this custom persona?"),
+                                  actions: [
+                                    TextButton(onPressed: () => Navigator.pop(ctx, false), child: const Text("Cancel")),
+                                    TextButton(
+                                      onPressed: () => Navigator.pop(ctx, true),
+                                      child: const Text("Delete", style: TextStyle(color: Colors.red)),
+                                    ),
+                                  ],
+                                ),
+                              );
+                              if (confirm == true) {
+                                await ref.read(savedScenariosProvider.notifier).remove(scenario.id);
+                                onDelete?.call();
+                              }
+                            },
+                          ),
+                      ],
                     ),
                     
                     // Avatar Badge

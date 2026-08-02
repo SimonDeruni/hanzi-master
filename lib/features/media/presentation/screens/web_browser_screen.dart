@@ -43,18 +43,19 @@ class WebBrowserScreen extends ConsumerStatefulWidget {
   ConsumerState<WebBrowserScreen> createState() => _WebBrowserScreenState();
 }
 
-class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with SingleTickerProviderStateMixin {
+class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
+    with SingleTickerProviderStateMixin {
   late final WebViewController _controller;
   final TextEditingController _urlController = TextEditingController();
   bool _isLoading = true;
   bool _isZenMode = false;
   bool _isProcessingAi = false;
   String _selectedText = '';
-  
+
   ArticleInsight? _currentInsight;
   bool _isReadingAloud = false;
   late AnimationController _pulseController;
-  
+
   // Translation Panel State
   AiSentence? _activeTranslation;
   bool _isTranslationBlurred = true;
@@ -69,7 +70,9 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
   @override
   void initState() {
     super.initState();
-    _pulseController = AnimationController(vsync: this, duration: const Duration(seconds: 1))..repeat(reverse: true);
+    _pulseController =
+        AnimationController(vsync: this, duration: const Duration(seconds: 1))
+          ..repeat(reverse: true);
     // _initTts(); // [TTS DISABLED] Restore when TTS engine is ready
     _urlController.text = widget.initialUrl;
     _controller = WebViewController()
@@ -80,7 +83,8 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
           onNavigationRequest: (NavigationRequest request) {
             // Force BBC traditional links to use simplified
             if (request.url.contains('bbc.com/zhongwen/trad')) {
-              _controller.loadRequest(Uri.parse(request.url.replaceAll('/trad', '/simp')));
+              _controller.loadRequest(
+                  Uri.parse(request.url.replaceAll('/trad', '/simp')));
               return NavigationDecision.prevent;
             }
             return NavigationDecision.navigate;
@@ -110,7 +114,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
             // Auto-trigger simplify if requested
             if (widget.autoReadingMode) {
               Future.delayed(const Duration(milliseconds: 1500), () {
-                if (mounted) _runAutoSimplify();
+                if (mounted) _runAutoSimplify(3);
               });
             }
           },
@@ -139,9 +143,15 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
     final repo = ref.read(flashcardRepositoryProvider);
     final cardsResult = await repo.getFlashcards();
     final cards = cardsResult.fold((l) => <Flashcard>[], (r) => r);
-    
-    final masteredWords = cards.where((c) => c.globalMasteryLevel >= 0.8).map((c) => c.hanzi).toList();
-    final learningWords = cards.where((c) => c.globalMasteryLevel > 0 && c.globalMasteryLevel < 0.8).map((c) => c.hanzi).toList();
+
+    final masteredWords = cards
+        .where((c) => c.globalMasteryLevel >= 0.8)
+        .map((c) => c.hanzi)
+        .toList();
+    final learningWords = cards
+        .where((c) => c.globalMasteryLevel > 0 && c.globalMasteryLevel < 0.8)
+        .map((c) => c.hanzi)
+        .toList();
 
     final String js = '''
       window.masteredWords = ${jsonEncode(masteredWords)};
@@ -167,8 +177,13 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
         
         // Get surrounding paragraph text as context
         let contextText = '';
-        if (element.parentNode && element.parentNode.parentNode) {
-          contextText = element.parentNode.parentNode.innerText || '';
+        let pNode = element.parentNode;
+        while (pNode) {
+          if (pNode.nodeName === 'P' || pNode.nodeName === 'DIV' || pNode.className === 'sentence-text' || pNode.className === 'sentence-wrapper') {
+            contextText = pNode.textContent || '';
+            break;
+          }
+          pNode = pNode.parentNode;
         }
         
         const payload = {
@@ -184,7 +199,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
         let p = element.parentNode;
         while (p) {
           if (p.nodeName === 'P' || p.nodeName === 'DIV') {
-            contextText = p.innerText || '';
+            contextText = p.textContent || '';
             break;
           }
           p = p.parentNode;
@@ -336,13 +351,13 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
       });
       // -----------------------------------
     ''';
-    
+
     _controller.runJavaScript(js);
   }
 
   void _initTts() {
     final audioService = ref.read(audioServiceProvider);
-    
+
     _ttsCompleteSub = audioService.onPlayerComplete.listen((_) {
       _playNextSentence();
     });
@@ -358,9 +373,11 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
         startOffset = boundary['text']['TextOffset'] ?? -1;
         endOffset = startOffset + (boundary['text']['Length'] as int? ?? 1);
       }
-      
+
       if (startOffset != -1) {
-        final offset = _ttsSentenceOffsets.isNotEmpty ? _ttsSentenceOffsets[_currentSentenceIndex] : 0;
+        final offset = _ttsSentenceOffsets.isNotEmpty
+            ? _ttsSentenceOffsets[_currentSentenceIndex]
+            : 0;
         final js = '''
           if (window.highlightTtsOffset) {
             window.highlightTtsOffset(${startOffset + offset}, ${endOffset + offset});
@@ -488,8 +505,13 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
       return;
     }
 
-    final emojiRegex = RegExp(r'[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{1F600}-\u{1F64F}\u{1F680}-\u{1F6FF}\u{1F1E6}-\u{1F1FF}]', unicode: true);
-    sentences = sentences.map((s) => s.replaceAll(emojiRegex, '').trim()).where((s) => s.isNotEmpty).toList();
+    final emojiRegex = RegExp(
+        r'[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{1F600}-\u{1F64F}\u{1F680}-\u{1F6FF}\u{1F1E6}-\u{1F1FF}]',
+        unicode: true);
+    sentences = sentences
+        .map((s) => s.replaceAll(emojiRegex, '').trim())
+        .where((s) => s.isNotEmpty)
+        .toList();
 
     if (sentences.isEmpty) return;
 
@@ -544,7 +566,10 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
       final nextSentence = _ttsSentences[nextIdx].trim();
       if (nextSentence.isNotEmpty) {
         // Fire-and-forget: start downloading the next sentence in the background
-        ref.read(audioServiceProvider).playSentence(nextSentence).catchError((_) => false);
+        ref
+            .read(audioServiceProvider)
+            .playSentence(nextSentence)
+            .catchError((_) => false);
       }
     }
 
@@ -566,55 +591,104 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
   }
 
   void _showAiToolsMenu(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final bgColor = isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0);
+    final textColor = isDark ? Colors.white : Colors.black87;
+
     showModalBottomSheet(
-      context: context,
-      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(24))),
-      builder: (ctx) {
-        return SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                const Text(
-                  "AI Reading Tools",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(height: 24),
-                ListTile(
-                  leading: const Icon(Icons.playlist_add, color: Colors.blue, size: 32),
-                  title: const Text("Extract to Deck", style: TextStyle(fontWeight: FontWeight.bold)),
-                  subtitle: const Text("Extract all unknown words to a new named Deck"),
-                  onTap: () {
-                    Navigator.pop(ctx);
-                    _runAddAllUnknowns();
-                  },
-                ),
-                const Divider(),
-                ListTile(
-                  leading: const Icon(Icons.auto_fix_high, color: Colors.amber, size: 32),
-                  title: const Text("Auto-Simplify", style: TextStyle(fontWeight: FontWeight.bold)),
-                  subtitle: const Text("Rewrite this article to HSK 3 level"),
-                  onTap: () {
-                    Navigator.pop(ctx);
-                    _runAutoSimplify();
-                  },
-                ),
-              ],
+        context: context,
+        backgroundColor: bgColor,
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(top: Radius.circular(24))),
+        builder: (ctx) {
+          return SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Text(
+                    "AI Reading Tools",
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: textColor),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 24),
+                  ListTile(
+                    leading: const Icon(Icons.playlist_add, color: Colors.blue, size: 32),
+                    title: Text("Extract to Deck", style: TextStyle(fontWeight: FontWeight.bold, color: textColor)),
+                    subtitle: Text("Extract all unknown words to a new named Deck", style: TextStyle(color: isDark ? Colors.white70 : Colors.black54)),
+                    onTap: () {
+                      Navigator.pop(ctx);
+                      _runAddAllUnknowns();
+                    },
+                  ),
+                  Divider(color: isDark ? Colors.white24 : Colors.black12),
+                  ListTile(
+                    leading: const Icon(Icons.auto_fix_high, color: Colors.amber, size: 32),
+                    title: Text("Auto-Simplify", style: TextStyle(fontWeight: FontWeight.bold, color: textColor)),
+                    subtitle: Text("Rewrite this article to your HSK level", style: TextStyle(color: isDark ? Colors.white70 : Colors.black54)),
+                    onTap: () {
+                      Navigator.pop(ctx);
+                      _showAutoSimplifyLevelPicker(context, isDark, bgColor, textColor);
+                    },
+                  ),
+                ],
+              ),
             ),
-          ),
-        );
-      }
-    );
+          );
+        });
+  }
+
+  void _showAutoSimplifyLevelPicker(BuildContext context, bool isDark, Color bgColor, Color textColor) {
+    showModalBottomSheet(
+        context: context,
+        backgroundColor: bgColor,
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(top: Radius.circular(24))),
+        builder: (ctx) {
+          return SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Text(
+                    "Select HSK Level",
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: textColor),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 16),
+                  Wrap(
+                    spacing: 8.0,
+                    runSpacing: 8.0,
+                    alignment: WrapAlignment.center,
+                    children: List.generate(6, (index) {
+                      final level = index + 1;
+                      return ActionChip(
+                        label: Text("HSK $level"),
+                        backgroundColor: isDark ? Colors.grey[800] : Colors.grey[200],
+                        labelStyle: TextStyle(color: textColor, fontWeight: FontWeight.bold),
+                        onPressed: () {
+                          Navigator.pop(ctx);
+                          _runAutoSimplify(level);
+                        },
+                      );
+                    }),
+                  ),
+                ],
+              ),
+            ),
+          );
+        });
   }
 
   void _toggleZenMode() {
     setState(() {
       _isZenMode = !_isZenMode;
     });
-    
+
     if (_isZenMode) {
       _applyZenMode();
     } else {
@@ -623,6 +697,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
   }
 
   void _applyZenMode() {
+    final isStoryMode = widget.isStoryMode;
     final js = '''
       if (!window.zenModeBackup) {
         window.zenModeBackup = document.body.innerHTML;
@@ -632,6 +707,26 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
       const articles = document.querySelectorAll('article, .article, .post, .content, main');
       if (articles.length > 0) {
         bestNode = articles[0];
+      }
+      
+      // Remove common footers and related items that come after the story
+      const elementsToRemove = bestNode.querySelectorAll('.sharedaddy, #jp-post-flair, .entry-meta, .wpcnt, .author-info, #comments, .comments, .post-footer, footer, .related-posts, .share-buttons');
+      elementsToRemove.forEach(el => el.remove());
+      
+      if ($isStoryMode) {
+        // Aggressively cut off everything after the last paragraph
+        const paragraphs = Array.from(bestNode.querySelectorAll('p'));
+        if (paragraphs.length > 0) {
+           const lastP = paragraphs[paragraphs.length - 1];
+           let next = lastP.nextSibling;
+           while(next) {
+             let toRemove = next;
+             next = next.nextSibling;
+             if (toRemove.parentNode) {
+               toRemove.parentNode.removeChild(toRemove);
+             }
+           }
+        }
       }
       
       // Add skeleton loader at the top
@@ -659,7 +754,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
       window.makeChineseTextClickable(document.body);
     ''';
     _controller.runJavaScript(js);
-    
+
     if (_currentInsight == null) {
       if (mounted && _isZenMode) {
         _runAnalyzeArticle();
@@ -676,26 +771,29 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
     ''';
     _controller.runJavaScript(js);
   }
+
   Future<void> _runAnalyzeArticle() async {
     setState(() => _isProcessingAi = true);
-    
+
     try {
       // Extract only what Gemini needs to save platform channel overhead
-      final text = await _controller.runJavaScriptReturningResult('document.body.innerText.substring(0, 3000)');
-      
+      final text = await _controller.runJavaScriptReturningResult(
+          'document.body.innerText.substring(0, 3000)');
+
       // Use synchronous cached provider instead of hitting the database
       final allCards = ref.read(flashcardControllerProvider).value ?? [];
       final knownWords = allCards.map((c) => c.hanzi).toList();
-      
+
       final gemini = ref.read(geminiServiceProvider);
       final langCode = Localizations.localeOf(context).languageCode;
-      final insight = await gemini.generateArticleInsight(text.toString(), knownWords, langCode);
-      
+      final insight = await gemini.generateArticleInsight(
+          text.toString(), knownWords, langCode);
+
       if (mounted) {
         setState(() {
           _currentInsight = insight;
         });
-        
+
         if (_isZenMode) {
           final js = '''
             const banner = document.getElementById('ai-insight-banner');
@@ -736,7 +834,8 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
       }
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Analysis Failed: $e')));
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text('Analysis Failed: $e')));
       }
     } finally {
       if (mounted) {
@@ -747,10 +846,12 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
 
   Future<void> _runAddAllUnknowns() async {
     setState(() => _isProcessingAi = true);
-    
+
     try {
-      final text = await _controller.runJavaScriptReturningResult('document.body.innerText');
-      final pageTitleRaw = await _controller.runJavaScriptReturningResult('document.title');
+      final text = await _controller
+          .runJavaScriptReturningResult('document.body.innerText');
+      final pageTitleRaw =
+          await _controller.runJavaScriptReturningResult('document.title');
       final pageTitle = pageTitleRaw.toString().replaceAll('"', '');
 
       final repo = ref.read(flashcardRepositoryProvider);
@@ -759,14 +860,18 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
         (l) => <String>[],
         (r) => r.map((c) => c.hanzi).toList(),
       );
-      
+
       final gemini = ref.read(geminiServiceProvider);
       final langCode = Localizations.localeOf(context).languageCode;
-      final newWords = await gemini.extractAllUnknownWords(text.toString(), knownWords, langCode);
-      final deckName = pageTitle.isNotEmpty ? 'Article: $pageTitle' : 'Web Extraction';
-      
+      final newWords = await gemini.extractAllUnknownWords(
+          text.toString(), knownWords, langCode);
+      final deckName =
+          pageTitle.isNotEmpty ? 'Article: $pageTitle' : 'Web Extraction';
+
       if (newWords.isEmpty) {
-        if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('No new words found!')));
+        if (mounted)
+          ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('No new words found!')));
         return;
       }
 
@@ -774,27 +879,31 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
       final selectedWords = await showModalBottomSheet<List<AiWord>>(
         context: context,
         isScrollControlled: true,
-        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(24))),
-        builder: (context) => ExtractedWordsReviewSheet(deckName: deckName, words: newWords),
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(top: Radius.circular(24))),
+        builder: (context) =>
+            ExtractedWordsReviewSheet(deckName: deckName, words: newWords),
       );
 
       if (selectedWords == null || selectedWords.isEmpty) {
         return;
       }
 
-      final List<Flashcard> flashcards = selectedWords.map((w) => Flashcard(
-        id: const Uuid().v4(),
-        deckId: '', // Will be assigned by DeckSelectionSheet
-        hanzi: w.hanzi,
-        pinyin: w.pinyin,
-        definition: w.meaning,
-        hskLevel: 0,
-        strokePaths: const [],
-        medianPaths: const [],
-        isFlipped: false,
-        modeStats: const {},
-        inkPoints: 0,
-      )).toList();
+      final List<Flashcard> flashcards = selectedWords
+          .map((w) => Flashcard(
+                id: const Uuid().v4(),
+                deckId: '', // Will be assigned by DeckSelectionSheet
+                hanzi: w.hanzi,
+                pinyin: w.pinyin,
+                definition: w.meaning,
+                hskLevel: 0,
+                strokePaths: const [],
+                medianPaths: const [],
+                isFlipped: false,
+                modeStats: const {},
+                inkPoints: 0,
+              ))
+          .toList();
 
       if (mounted) {
         setState(() => _isProcessingAi = false);
@@ -805,7 +914,8 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
       }
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Extraction Failed: \$e')));
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text('Extraction Failed: \$e')));
       }
     } finally {
       if (mounted) {
@@ -814,16 +924,18 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
     }
   }
 
-  Future<void> _runAutoSimplify() async {
+  Future<void> _runAutoSimplify(int level) async {
     setState(() => _isProcessingAi = true);
-    
+
     try {
-      final text = await _controller.runJavaScriptReturningResult('document.body.innerText');
+      final text = await _controller
+          .runJavaScriptReturningResult('document.body.innerText');
       final gemini = ref.read(geminiServiceProvider);
-      final simplifiedStory = await gemini.simplifyTextToHsk(text.toString(), 3);
-      
+      final simplifiedStory =
+          await gemini.simplifyTextToHsk(text.toString(), level);
+
       if (!mounted) return;
-      
+
       Navigator.push(
         context,
         SwipeBackPageRoute(
@@ -832,7 +944,8 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
       );
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Simplify Failed: $e')));
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text('Simplify Failed: $e')));
       }
     } finally {
       if (mounted) {
@@ -852,7 +965,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
       if (data['type'] == 'selection_changed') {
         final text = data['text'] as String;
         if (_selectedText != text && mounted) {
-           setState(() => _selectedText = text);
+          setState(() => _selectedText = text);
         }
         return;
       }
@@ -864,10 +977,12 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
       }
       final char = data['char'] as String;
       final contextText = data['context'] as String;
-      
+
       final dummyWord = AiWord(hanzi: char, pinyin: '', meaning: '');
-      final dummySentence = AiSentence(chinese: contextText, english: '', words: []);
-      showQuickLook(context, dummyWord.hanzi, contextText: dummySentence.chinese);
+      final dummySentence =
+          AiSentence(chinese: contextText, english: '', words: []);
+      showQuickLook(context, dummyWord.hanzi,
+          contextText: dummySentence.chinese);
     } catch (_) {
       // Fallback if not JSON
       showQuickLook(context, message);
@@ -880,9 +995,13 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
       _activeTranslation = null;
       _isTranslationBlurred = true;
     });
-    
+
     try {
-      final aiSentence = await ref.read(geminiServiceProvider).generateSentenceLesson(sentence);
+      // Remove any pinyin/latin characters that might have been copied from ruby tags
+      final cleanSentence = sentence.replaceAll(RegExp(r'[a-zA-Zāáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜü]+'), '').replaceAll(RegExp(r'\s+'), ' ').trim();
+      final aiSentence = await ref
+          .read(geminiServiceProvider)
+          .generateSentenceLesson(cleanSentence);
       if (mounted) {
         setState(() {
           _activeTranslation = aiSentence;
@@ -894,21 +1013,24 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
         setState(() {
           _isTranslating = false;
         });
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Translation Failed: $e")));
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text("Translation Failed: $e")));
       }
     }
   }
 
   Widget _buildTranslationPanel() {
-    if (!_isTranslating && _activeTranslation == null) return const SizedBox.shrink();
+    if (!_isTranslating && _activeTranslation == null)
+      return const SizedBox.shrink();
 
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
-        color: const Color(0xFFFDFCF0),
+        color: isDark ? const Color(0xFF1E1E1E) : const Color(0xFFFDFCF0),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.1),
+            color: Colors.black.withValues(alpha: isDark ? 0.4 : 0.1),
             blurRadius: 10,
             offset: const Offset(0, -2),
           ),
@@ -921,7 +1043,8 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
           child: _isTranslating
               ? const SizedBox(
                   height: 150,
-                  child: Center(child: AiProgressBar(label: 'Translating text...')),
+                  child: Center(
+                      child: AiProgressBar(label: 'Translating text...')),
                 )
               : ConstrainedBox(
                   constraints: BoxConstraints(
@@ -939,18 +1062,24 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
                             Expanded(
                               child: Text(
                                 _activeTranslation!.chinese,
-                                style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, height: 1.5),
+                                style: const TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    height: 1.5),
                               ),
                             ),
                             Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 IconButton(
-                                  icon: Icon(_isTranslationBlurred ? Icons.visibility_off : Icons.visibility),
+                                  icon: Icon(_isTranslationBlurred
+                                      ? Icons.visibility_off
+                                      : Icons.visibility),
                                   color: Colors.grey[700],
                                   onPressed: () {
                                     setState(() {
-                                      _isTranslationBlurred = !_isTranslationBlurred;
+                                      _isTranslationBlurred =
+                                          !_isTranslationBlurred;
                                     });
                                   },
                                 ),
@@ -976,7 +1105,8 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
                           ),
                           child: Text(
                             _activeTranslation!.english,
-                            style: const TextStyle(fontSize: 16, color: Colors.black87),
+                            style: const TextStyle(
+                                fontSize: 16, color: Colors.black87),
                           ),
                         ),
                         const SizedBox(height: 16),
@@ -1000,36 +1130,47 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         Expanded(
                                           child: GestureDetector(
-                                            onTap: () => showQuickLook(context, w.hanzi, contextText: _activeTranslation!.chinese),
+                                            onTap: () => showQuickLook(
+                                                context, w.hanzi,
+                                                contextText: _activeTranslation!
+                                                    .chinese),
                                             child: Text(
                                               w.hanzi,
-                                              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                                              style: const TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 16),
                                               overflow: TextOverflow.ellipsis,
                                             ),
                                           ),
                                         ),
                                         GestureDetector(
-                                          onTap: () => showQuickLook(context, w.hanzi, contextText: _activeTranslation!.chinese),
-                                          child: const Icon(Icons.add_circle_outline, size: 20, color: Colors.blue),
+                                          onTap: () => showQuickLook(
+                                              context, w.hanzi,
+                                              contextText:
+                                                  _activeTranslation!.chinese),
+                                          child: const Icon(
+                                              Icons.add_circle_outline,
+                                              size: 20,
+                                              color: Colors.blue),
                                         ),
                                       ],
                                     ),
                                     ImageFiltered(
                                       imageFilter: ImageFilter.blur(
-                                        sigmaX: _isTranslationBlurred ? 4.0 : 0.0,
-                                        sigmaY: _isTranslationBlurred ? 4.0 : 0.0,
+                                        sigmaX:
+                                            _isTranslationBlurred ? 4.0 : 0.0,
+                                        sigmaY:
+                                            _isTranslationBlurred ? 4.0 : 0.0,
                                       ),
-                                      child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          Text(w.pinyin, style: const TextStyle(fontSize: 12, color: Colors.grey), overflow: TextOverflow.ellipsis),
-                                          Text(w.meaning, style: const TextStyle(fontSize: 12), overflow: TextOverflow.ellipsis, maxLines: 1),
-                                        ],
-                                      ),
+                                      child: Text(w.meaning,
+                                          style: const TextStyle(fontSize: 12),
+                                          overflow: TextOverflow.ellipsis,
+                                          maxLines: 2),
                                     ),
                                   ],
                                 ),
@@ -1044,48 +1185,69 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
                             icon: const Icon(Icons.auto_awesome),
                             label: const Text('Extract & Simplify'),
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.blueAccent.withValues(alpha: 0.1),
+                              backgroundColor:
+                                  Colors.blueAccent.withValues(alpha: 0.1),
                               foregroundColor: Colors.blueAccent,
                               elevation: 0,
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(12)),
                             ),
                             onPressed: () async {
                               final text = _activeTranslation!.chinese;
-                              
+
                               // Show HSK level picker
-                              final selectedLevel = await showModalBottomSheet<int>(
+                              final selectedLevel =
+                                  await showModalBottomSheet<int>(
                                 context: context,
-                                shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
+                                shape: const RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.vertical(
+                                        top: Radius.circular(20))),
                                 builder: (context) {
+                                  final isDark = Theme.of(context).brightness == Brightness.dark;
                                   return SafeArea(
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        const Padding(
-                                          padding: EdgeInsets.all(16.0),
-                                          child: Text(
-                                            'Select Target HSK Level',
-                                            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                                          ),
-                                        ),
-                                        ...List.generate(6, (index) {
-                                          final level = index + 1;
-                                          return ListTile(
-                                            leading: CircleAvatar(
-                                              backgroundColor: Colors.blueAccent.withValues(alpha: 0.1),
-                                              child: Text('$level', style: const TextStyle(color: Colors.blueAccent)),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        color: isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
+                                        borderRadius: const BorderRadius.vertical(top: Radius.circular(20))
+                                      ),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.all(16.0),
+                                            child: Text(
+                                              'Select Target HSK Level',
+                                              style: TextStyle(
+                                                  fontSize: 18,
+                                                  color: isDark ? Colors.white : Colors.black,
+                                                  fontWeight: FontWeight.bold),
                                             ),
-                                            title: Text('HSK $level'),
-                                            onTap: () => Navigator.pop(context, level),
-                                          );
-                                        }),
-                                      ],
+                                          ),
+                                          ...List.generate(6, (index) {
+                                            final level = index + 1;
+                                            return ListTile(
+                                              leading: CircleAvatar(
+                                                backgroundColor: Colors.blueAccent
+                                                    .withValues(alpha: 0.1),
+                                                child: Text('$level',
+                                                    style: const TextStyle(
+                                                        color:
+                                                            Colors.blueAccent)),
+                                              ),
+                                              title: Text('HSK $level', style: TextStyle(color: isDark ? Colors.white : Colors.black)),
+                                              onTap: () =>
+                                                  Navigator.pop(context, level),
+                                            );
+                                          }),
+                                        ],
+                                      ),
                                     ),
                                   );
                                 },
                               );
 
-                              if (selectedLevel == null) return; // User cancelled
+                              if (selectedLevel == null)
+                                return; // User cancelled
 
                               setState(() {
                                 _activeTranslation = null;
@@ -1094,17 +1256,23 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
                               });
                               try {
                                 final gemini = ref.read(geminiServiceProvider);
-                                final simplifiedStory = await gemini.simplifyTextToHsk(text, selectedLevel);
+                                final simplifiedStory = await gemini
+                                    .simplifyTextToHsk(text, selectedLevel);
                                 if (!mounted) return;
                                 Navigator.push(
                                   context,
                                   SwipeBackPageRoute(
-                                    builder: (_) => SimplifiedArticleReaderScreen(story: simplifiedStory),
+                                    builder: (_) =>
+                                        SimplifiedArticleReaderScreen(
+                                            story: simplifiedStory),
                                   ),
                                 );
                               } catch (e) {
                                 if (mounted) {
-                                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Simplify Failed: $e')));
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                          content:
+                                              Text('Simplify Failed: $e')));
                                 }
                               } finally {
                                 if (mounted) {
@@ -1150,51 +1318,64 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
             },
           ),
         ),
-        backgroundColor: const Color(0xFFFDFCF0),
+        backgroundColor: Theme.of(context).brightness == Brightness.dark
+            ? const Color(0xFF1A1A1B)
+            : const Color(0xFFFDFCF0),
         elevation: 1,
-        iconTheme: const IconThemeData(color: Colors.black87),
+        iconTheme: IconThemeData(
+          color: Theme.of(context).brightness == Brightness.dark
+              ? Colors.white
+              : Colors.black87,
+        ),
         actions: [
-                    IconButton(
+          IconButton(
             icon: const Icon(Icons.bookmark_border),
             tooltip: 'Save Article',
             onPressed: () async {
               HapticsManager.light();
-              final urlRaw = await _controller.runJavaScriptReturningResult('window.location.href');
+              final urlRaw = await _controller
+                  .runJavaScriptReturningResult('window.location.href');
               final url = urlRaw.toString().replaceAll('"', '');
 
               if (widget.isStoryMode) {
                 final prefs = await SharedPreferences.getInstance();
-                final savedUrls = prefs.getStringList('bookmarked_story_urls') ?? [];
+                final savedUrls =
+                    prefs.getStringList('bookmarked_story_urls') ?? [];
                 if (!savedUrls.contains(url)) {
                   savedUrls.add(url);
                   await prefs.setStringList('bookmarked_story_urls', savedUrls);
                   if (mounted) {
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Story bookmarked in Library!')));
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                        content: Text('Story bookmarked in Library!')));
                   }
                 } else {
                   if (mounted) {
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Story already bookmarked!')));
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                        content: Text('Story already bookmarked!')));
                   }
                 }
               } else {
-                final titleRaw = await _controller.runJavaScriptReturningResult('document.title');
+                final titleRaw = await _controller
+                    .runJavaScriptReturningResult('document.title');
                 final title = titleRaw.toString().replaceAll('"', '');
-                
-                final textRaw = await _controller.runJavaScriptReturningResult('document.body.innerText');
+
+                final textRaw = await _controller
+                    .runJavaScriptReturningResult('document.body.innerText');
                 final text = textRaw.toString().replaceAll('"', '');
-                
+
                 final article = SavedArticle(
                   title: title,
                   url: url,
                   extractedText: text,
                   timestamp: DateTime.now(),
                 );
-                
+
                 final box = Hive.box<SavedArticle>('saved_articles');
                 await box.add(article);
-                
+
                 if (mounted) {
-                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Article saved to Media Hub!')));
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      content: Text('Article saved to Media Hub!')));
                 }
               }
             },
@@ -1226,7 +1407,9 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
             : null,
       ),
       bottomNavigationBar: BottomAppBar(
-        color: const Color(0xFFFDFCF0),
+      color: Theme.of(context).brightness == Brightness.dark
+          ? const Color(0xFF1A1A1B)
+          : const Color(0xFFFDFCF0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -1253,36 +1436,47 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: _selectedText.isNotEmpty
-                  ? ElevatedButton.icon(
-                      icon: const Icon(Icons.translate),
-                      label: const Text("Translate Selection", style: TextStyle(fontWeight: FontWeight.bold)),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.deepPurple,
-                        foregroundColor: Colors.white,
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                    ? ElevatedButton.icon(
+                        icon: const Icon(Icons.translate),
+                        label: const Text("Translate Selection",
+                            style: TextStyle(fontWeight: FontWeight.bold)),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.deepPurple,
+                          foregroundColor: Colors.white,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(16)),
+                        ),
+                        onPressed: () {
+                          HapticsManager.light();
+                          _startTranslation(_selectedText);
+                          _controller.runJavaScript(
+                              'window.getSelection().removeAllRanges();');
+                          setState(() => _selectedText = '');
+                        },
+                      )
+                    : ElevatedButton.icon(
+                        icon: _isProcessingAi
+                            ? const SizedBox(
+                                width: 16,
+                                height: 16,
+                                child: CircularProgressIndicator(
+                                    color: Colors.white, strokeWidth: 2))
+                            : const Icon(Icons.auto_awesome),
+                        label: const Text("AI Reading Tools",
+                            style: TextStyle(fontWeight: FontWeight.bold)),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.indigo,
+                          foregroundColor: Colors.white,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(16)),
+                        ),
+                        onPressed: _isProcessingAi
+                            ? null
+                            : () {
+                                HapticsManager.light();
+                                _showAiToolsMenu(context);
+                              },
                       ),
-                      onPressed: () {
-                         HapticsManager.light();
-                         _startTranslation(_selectedText);
-                         _controller.runJavaScript('window.getSelection().removeAllRanges();');
-                         setState(() => _selectedText = '');
-                      },
-                    )
-                  : ElevatedButton.icon(
-                      icon: _isProcessingAi 
-                          ? const SizedBox(width: 16, height: 16, child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2))
-                          : const Icon(Icons.auto_awesome),
-                      label: const Text("AI Reading Tools", style: TextStyle(fontWeight: FontWeight.bold)),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.indigo,
-                        foregroundColor: Colors.white,
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-                      ),
-                      onPressed: _isProcessingAi ? null : () {
-                        HapticsManager.light();
-                        _showAiToolsMenu(context);
-                      },
-                    ),
               ),
             ),
           ],
@@ -1319,10 +1513,12 @@ class ExtractedWordsReviewSheet extends StatefulWidget {
   final String deckName;
   final List<AiWord> words;
 
-  const ExtractedWordsReviewSheet({super.key, required this.deckName, required this.words});
+  const ExtractedWordsReviewSheet(
+      {super.key, required this.deckName, required this.words});
 
   @override
-  State<ExtractedWordsReviewSheet> createState() => _ExtractedWordsReviewSheetState();
+  State<ExtractedWordsReviewSheet> createState() =>
+      _ExtractedWordsReviewSheetState();
 }
 
 class _ExtractedWordsReviewSheetState extends State<ExtractedWordsReviewSheet> {
@@ -1339,28 +1535,46 @@ class _ExtractedWordsReviewSheetState extends State<ExtractedWordsReviewSheet> {
     return Container(
       padding: const EdgeInsets.all(24),
       height: MediaQuery.of(context).size.height * 0.75,
-      decoration: const BoxDecoration(
-        color: Color(0xFFFDFCF0),
-        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+      decoration: BoxDecoration(
+        color: Theme.of(context).brightness == Brightness.dark
+            ? const Color(0xFF1E1E1E)
+            : const Color(0xFFFDFCF0),
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const Text("Review Extracted Deck", style: TextStyle(fontSize: 16, color: Colors.indigo, fontWeight: FontWeight.bold)),
+          Text("Review Extracted Deck",
+              style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.indigo,
+                  fontWeight: FontWeight.bold)),
           const SizedBox(height: 4),
-          Text(widget.deckName, style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+          Text(widget.deckName,
+              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
           const SizedBox(height: 8),
           Text(
-            "${_selected.where((s) => s).length} of ${widget.words.length} words selected", 
-            style: TextStyle(color: Colors.grey.shade700, fontSize: 16),
+            "${_selected.where((s) => s).length} of ${widget.words.length} words selected",
+            style: TextStyle(
+              color: Theme.of(context).brightness == Brightness.dark
+                  ? Colors.white54
+                  : Colors.grey.shade700,
+              fontSize: 16,
+            ),
           ),
           const SizedBox(height: 16),
           Expanded(
             child: Container(
               decoration: BoxDecoration(
-                border: Border.all(color: Colors.grey.shade300),
+                border: Border.all(
+                  color: Theme.of(context).brightness == Brightness.dark
+                      ? Colors.white12
+                      : Colors.grey.shade300,
+                ),
                 borderRadius: BorderRadius.circular(12),
-                color: Colors.white,
+                color: Theme.of(context).brightness == Brightness.dark
+                    ? const Color(0xFF2A2A2B)
+                    : Colors.white,
               ),
               child: ListView.separated(
                 itemCount: widget.words.length,
@@ -1370,8 +1584,11 @@ class _ExtractedWordsReviewSheetState extends State<ExtractedWordsReviewSheet> {
                   return CheckboxListTile(
                     value: _selected[index],
                     activeColor: Colors.indigo,
-                    title: Text(word.hanzi, style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
-                    subtitle: Text("${word.pinyin} - ${word.meaning}", style: const TextStyle(fontSize: 15)),
+                    title: Text(word.hanzi,
+                        style: const TextStyle(
+                            fontSize: 22, fontWeight: FontWeight.bold)),
+                    subtitle: Text("${word.pinyin} - ${word.meaning}",
+                        style: const TextStyle(fontSize: 15)),
                     onChanged: (val) {
                       setState(() => _selected[index] = val ?? false);
                     },
@@ -1389,9 +1606,14 @@ class _ExtractedWordsReviewSheetState extends State<ExtractedWordsReviewSheet> {
                   style: OutlinedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(vertical: 16),
                     side: const BorderSide(color: Colors.indigo),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12)),
                   ),
-                  child: const Text("Cancel", style: TextStyle(color: Colors.indigo, fontSize: 16, fontWeight: FontWeight.bold)),
+                  child: const Text("Cancel",
+                      style: TextStyle(
+                          color: Colors.indigo,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold)),
                 ),
               ),
               const SizedBox(width: 16),
@@ -1401,7 +1623,8 @@ class _ExtractedWordsReviewSheetState extends State<ExtractedWordsReviewSheet> {
                     backgroundColor: Colors.indigo,
                     foregroundColor: Colors.white,
                     padding: const EdgeInsets.symmetric(vertical: 16),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12)),
                   ),
                   onPressed: () {
                     final selectedWords = <AiWord>[];
@@ -1410,7 +1633,9 @@ class _ExtractedWordsReviewSheetState extends State<ExtractedWordsReviewSheet> {
                     }
                     Navigator.pop(context, selectedWords);
                   },
-                  child: const Text("Create Deck", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                  child: const Text("Create Deck",
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                 ),
               ),
             ],

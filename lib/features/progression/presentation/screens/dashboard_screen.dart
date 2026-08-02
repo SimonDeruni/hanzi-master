@@ -129,11 +129,20 @@ class DashboardScreen extends ConsumerWidget {
                   child: Container(
                     padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 18),
                     decoration: BoxDecoration(
-                      color: Colors.white.withValues(alpha: 0.6),
+                      color: Theme.of(context).brightness == Brightness.dark
+                          ? const Color(0xFF1A1A1B).withValues(alpha: 0.8)
+                          : Colors.white.withValues(alpha: 0.6),
                       borderRadius: BorderRadius.circular(30),
+                      border: Border.all(
+                        color: Theme.of(context).brightness == Brightness.dark
+                            ? Colors.white.withValues(alpha: 0.1)
+                            : Colors.transparent,
+                      ),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withValues(alpha: 0.04),
+                          color: Colors.black.withValues(
+                            alpha: Theme.of(context).brightness == Brightness.dark ? 0.3 : 0.04
+                          ),
                           blurRadius: 20,
                           offset: const Offset(0, 8),
                         ),
@@ -472,16 +481,22 @@ class _ForecastItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final fgColor = isDark ? Colors.white : const Color(0xFF2A2D34);
+    
     return GestureDetector(
       onTap: onTap,
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 12),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: isDark ? const Color(0xFF1A1A1B).withValues(alpha: 0.8) : Colors.white,
           borderRadius: BorderRadius.circular(20),
+          border: Border.all(
+            color: isDark ? Colors.white.withValues(alpha: 0.1) : Colors.transparent,
+          ),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withValues(alpha: 0.04),
+              color: Colors.black.withValues(alpha: isDark ? 0.3 : 0.04),
               blurRadius: 16,
               offset: const Offset(0, 6),
             ),
@@ -493,14 +508,14 @@ class _ForecastItem extends StatelessWidget {
               count.toString(),
               style: theme.textTheme.headlineLarge?.copyWith(
                 fontWeight: FontWeight.w900,
-                color: const Color(0xFF2A2D34),
+                color: fgColor,
               ),
             ),
             const SizedBox(height: 8),
             Text(
               title,
               style: theme.textTheme.bodySmall?.copyWith(
-                color: const Color(0xFF2A2D34).withValues(alpha: 0.6),
+                color: fgColor.withValues(alpha: 0.6),
                 fontWeight: FontWeight.w600,
                 letterSpacing: 0.2,
               ),

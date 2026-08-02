@@ -17,14 +17,19 @@ class TravelInterpreterScreen extends ConsumerStatefulWidget {
   const TravelInterpreterScreen({super.key});
 
   @override
-  ConsumerState<TravelInterpreterScreen> createState() => _TravelInterpreterScreenState();
+  ConsumerState<TravelInterpreterScreen> createState() =>
+      _TravelInterpreterScreenState();
 }
 
-class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScreen> with SingleTickerProviderStateMixin {
+class _TravelInterpreterScreenState
+    extends ConsumerState<TravelInterpreterScreen>
+    with SingleTickerProviderStateMixin {
   String _status = "Ready";
   bool _hasError = false;
   String? _recordingSide; // null = idle, 'a' = User mic, 'b' = Partner mic
   bool _isStopping = false;
+  String _liveTranscription =
+      ''; // tracks latest partial text so stop() can use it
 
   // Side language state (decoupled from global provider)
   String _sideALanguage = 'English';
@@ -94,11 +99,11 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
     if (_recordingSide != null || _isStopping) return;
 
     final lang = sideId == 'a' ? _sideALanguage : _sideBLanguage;
-    
+
     setState(() {
       _recordingSide = sideId;
       _status = sideId == 'b' ? "Partner listening..." : "Listening...";
-      
+
       // Insert an empty draft message for the user's live transcription
       _messages.add(TranslationMessage(
         text: "",
@@ -109,7 +114,7 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
     });
 
     final speechService = ref.read(speechServiceProvider);
-    
+
     String localeId = 'en_US';
     if (lang == 'Mandarin' || lang == 'Chinese') {
       localeId = 'zh_CN';
@@ -128,8 +133,15 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
     try {
       await speechService.startListening(
         localeId: localeId,
+        listenFor: const Duration(seconds: 60),
+        pauseFor: const Duration(seconds: 3),
         onResult: (text) {
-          if (mounted && _messages.isNotEmpty && _messages.last.isUser && _messages.last.sideId == sideId) {
+          // Final result confirmed by the engine
+          _liveTranscription = text;
+          if (mounted &&
+              _messages.isNotEmpty &&
+              _messages.last.isUser &&
+              _messages.last.sideId == sideId) {
             setState(() {
               _messages[_messages.length - 1] = TranslationMessage(
                 text: text,
@@ -140,6 +152,32 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
             });
           }
         },
+        onPartialResult: (text) {
+          // Live captions — update draft bubble as the user speaks
+          if (text.isEmpty) return;
+          _liveTranscription = text;
+          if (mounted &&
+              _messages.isNotEmpty &&
+              _messages.last.isUser &&
+              _messages.last.sideId == sideId) {
+            setState(() {
+              _messages[_messages.length - 1] = TranslationMessage(
+                text: text,
+                isUser: true,
+                sideId: sideId,
+                language: lang,
+              );
+            });
+          }
+        },
+        onError: (errorMsg, permanent) {
+          if (mounted) {
+            setState(() {
+              _hasError = true;
+              _status = 'Speech error: $errorMsg';
+            });
+          }
+        },
       );
     } catch (e) {
       if (mounted) {
@@ -147,7 +185,9 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
           _recordingSide = null;
           _status = "Microphone error: $e";
           // Remove draft message on error
-          if (_messages.isNotEmpty && _messages.last.isUser && _messages.last.text.isEmpty) {
+          if (_messages.isNotEmpty &&
+              _messages.last.isUser &&
+              _messages.last.text.isEmpty) {
             _messages.removeLast();
           }
         });
@@ -161,11 +201,13 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
 
     final speechService = ref.read(speechServiceProvider);
     await speechService.stopListening();
-    
+
     final finalSide = _recordingSide;
-    
+
     String finalText = "";
-    if (_messages.isNotEmpty && _messages.last.isUser && _messages.last.sideId == finalSide) {
+    if (_messages.isNotEmpty &&
+        _messages.last.isUser &&
+        _messages.last.sideId == finalSide) {
       finalText = _messages.last.text.trim();
       if (finalText.isEmpty) {
         // Remove empty drafts
@@ -181,14 +223,37 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
       if (!keepStatus) _status = "Paused";
     });
 
+    // If finalResult never fired (e.g. session stopped before engine confirmed),
+    // use the last known partial text instead so the message isn't silently dropped.
+    if (finalText.isEmpty && _liveTranscription.isNotEmpty) {
+      finalText = _liveTranscription.trim();
+      // Update the draft bubble with the recovered text
+      if (_messages.isNotEmpty &&
+          _messages.last.isUser &&
+          _messages.last.sideId == finalSide &&
+          _messages.last.text.isEmpty &&
+          finalSide != null) {
+        setState(() {
+          _messages[_messages.length - 1] = TranslationMessage(
+            text: finalText,
+            isUser: true,
+            sideId: finalSide,
+            language: finalSide == 'a' ? _sideALanguage : _sideBLanguage,
+          );
+        });
+      }
+    }
+    _liveTranscription = '';
+
     if (finalText.isNotEmpty && finalSide != null) {
-       _sendTextTranslation(finalText, sideId: finalSide);
+      _sendTextTranslation(finalText, sideId: finalSide);
     }
   }
 
   /// Send a text translation with explicit source→target routing.
   /// [sideId] determines source language: 'a' → _sideALanguage→_sideBLanguage, 'b' → _sideBLanguage→_sideALanguage.
-  Future<void> _sendTextTranslation(String text, {required String sideId}) async {
+  Future<void> _sendTextTranslation(String text,
+      {required String sideId}) async {
     if (text.trim().isEmpty) return;
 
     final sourceLang = sideId == 'a' ? _sideALanguage : _sideBLanguage;
@@ -208,19 +273,15 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
 
     try {
       final geminiService = ref.read(geminiServiceProvider);
-      final response = await geminiService.makeOpenRouterCall(
-        model: 'google/gemini-2.5-flash',
-        messages: [
-          {
-            "role": "system",
-            "content": "You are a Real-time Travel Interpreter. Translate the following text from $sourceLang to $targetLang. Be conversational and helpful. Output text ONLY. Do not include pinyin in the main response."
-          },
-          {
-            "role": "user",
-            "content": text
-          }
-        ]
-      );
+      final response = await geminiService
+          .makeOpenRouterCall(model: 'google/gemini-2.5-flash', messages: [
+        {
+          "role": "system",
+          "content":
+              "You are a Real-time Travel Interpreter. Translate the following text from $sourceLang to $targetLang. Be conversational and helpful. Output text ONLY. Do not include pinyin in the main response."
+        },
+        {"role": "user", "content": text}
+      ]);
 
       if (mounted) {
         setState(() {
@@ -260,7 +321,8 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
             height: MediaQuery.of(ctx).size.height * 0.5,
             decoration: BoxDecoration(
               color: const Color(0xFF1E1313),
-              borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+              borderRadius:
+                  const BorderRadius.vertical(top: Radius.circular(24)),
             ),
             child: Column(
               children: [
@@ -276,10 +338,14 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                 ),
                 // Label
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
                   child: Text(
                     "Type in $_sideBLanguage",
-                    style: const TextStyle(color: Colors.white54, fontSize: 16, fontWeight: FontWeight.w600),
+                    style: const TextStyle(
+                        color: Colors.white54,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600),
                   ),
                 ),
                 // Text field
@@ -327,7 +393,9 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                         }
                         Navigator.pop(ctx);
                       },
-                      child: const Text("Send", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                      child: const Text("Send",
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold)),
                     ),
                   ),
                 ),
@@ -339,8 +407,6 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
     );
   }
 
-
-
   @override
   void dispose() {
     _pulseController.dispose();
@@ -349,7 +415,8 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
 
   Widget _buildHubUI(BuildContext context, bool isDark) {
     return Scaffold(
-      backgroundColor: isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
+      backgroundColor:
+          isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -359,15 +426,17 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
               child: Row(
                 children: [
                   IconButton(
-                    icon: Icon(Icons.arrow_back, color: isDark ? Colors.white : Colors.black),
+                    icon: Icon(Icons.arrow_back,
+                        color: isDark ? Colors.white : Colors.black),
                     onPressed: () => Navigator.pop(context),
                   ),
                   const Spacer(),
-                                  ],
+                ],
               ),
             ),
             const Spacer(),
-            Icon(Icons.translate, size: 80, color: Colors.blueAccent.withValues(alpha: 0.8)),
+            Icon(Icons.translate,
+                size: 80, color: Colors.blueAccent.withValues(alpha: 0.8)),
             const SizedBox(height: 32),
             Text(
               "Travel Interpreter",
@@ -401,7 +470,10 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                   padding: const EdgeInsets.symmetric(vertical: 20),
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
-                      colors: [Colors.blueAccent.shade700, Colors.blueAccent.shade400],
+                      colors: [
+                        Colors.blueAccent.shade700,
+                        Colors.blueAccent.shade400
+                      ],
                     ),
                     borderRadius: BorderRadius.circular(16),
                     boxShadow: [
@@ -415,7 +487,10 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                   child: const Center(
                     child: Text(
                       "Start Session",
-                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
                     ),
                   ),
                 ),
@@ -438,9 +513,14 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
             decoration: BoxDecoration(
-              color: isDark ? Colors.black.withValues(alpha: 0.8) : Colors.white.withValues(alpha: 0.95),
+              color: isDark
+                  ? Colors.black.withValues(alpha: 0.8)
+                  : Colors.white.withValues(alpha: 0.95),
               borderRadius: BorderRadius.circular(40),
-              border: Border.all(color: isDark ? Colors.white.withValues(alpha: 0.15) : Colors.black.withValues(alpha: 0.1)),
+              border: Border.all(
+                  color: isDark
+                      ? Colors.white.withValues(alpha: 0.15)
+                      : Colors.black.withValues(alpha: 0.1)),
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -461,7 +541,9 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                         _status,
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          color: _hasError ? Colors.redAccent : (isDark ? Colors.white70 : Colors.black87),
+                          color: _hasError
+                              ? Colors.redAccent
+                              : (isDark ? Colors.white70 : Colors.black87),
                           fontSize: 12,
                           fontWeight: FontWeight.w500,
                         ),
@@ -517,9 +599,11 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
         height: 56,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          color: isActive 
-              ? Colors.redAccent 
-              : (isDark ? Colors.white.withValues(alpha: 0.15) : Colors.black.withValues(alpha: 0.05)),
+          color: isActive
+              ? Colors.redAccent
+              : (isDark
+                  ? Colors.white.withValues(alpha: 0.15)
+                  : Colors.black.withValues(alpha: 0.05)),
           boxShadow: isActive
               ? [
                   BoxShadow(
@@ -535,13 +619,17 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
           children: [
             Icon(
               Icons.mic,
-              color: isActive ? Colors.white : (isDark ? Colors.white70 : Colors.black54),
+              color: isActive
+                  ? Colors.white
+                  : (isDark ? Colors.white70 : Colors.black54),
               size: 24,
             ),
             Text(
               label,
               style: TextStyle(
-                color: isActive ? Colors.white : (isDark ? Colors.white54 : Colors.black87),
+                color: isActive
+                    ? Colors.white
+                    : (isDark ? Colors.white54 : Colors.black87),
                 fontSize: 9,
                 fontWeight: FontWeight.w600,
               ),
@@ -573,11 +661,16 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                   quarterTurns: 2,
                   child: AnimatedContainer(
                     duration: const Duration(milliseconds: 500),
-                    color: isDark 
-                        ? (_recordingSide != null ? const Color(0xFF3E1F1F) : const Color(0xFF1E1313))
-                        : (_recordingSide != null ? const Color(0xFFFDE8E8) : const Color(0xFFFDFCF0)),
+                    color: isDark
+                        ? (_recordingSide != null
+                            ? const Color(0xFF3E1F1F)
+                            : const Color(0xFF1E1313))
+                        : (_recordingSide != null
+                            ? const Color(0xFFFDE8E8)
+                            : const Color(0xFFFDFCF0)),
                     width: double.infinity,
-                    padding: const EdgeInsets.only(left: 24, right: 24, bottom: 24, top: 64),
+                    padding: const EdgeInsets.only(
+                        left: 24, right: 24, bottom: 24, top: 64),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -590,12 +683,27 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                                 DropdownButtonHideUnderline(
                                   child: DropdownButton<String>(
                                     value: _sideBLanguage,
-                                    icon: Icon(Icons.language, color: isDark ? Colors.white70 : Colors.black87),
-                                    dropdownColor: isDark ? Colors.grey[900] : Colors.white,
-                                    style: TextStyle(color: isDark ? Colors.white : Colors.black, fontSize: 18, fontWeight: FontWeight.bold),
-                                    items: supportedPartnerLanguages.map((lang) => DropdownMenuItem(value: lang, child: Text("Partner ($lang)"))).toList(),
+                                    icon: Icon(Icons.language,
+                                        color: isDark
+                                            ? Colors.white70
+                                            : Colors.black87),
+                                    dropdownColor: isDark
+                                        ? Colors.grey[900]
+                                        : Colors.white,
+                                    style: TextStyle(
+                                        color: isDark
+                                            ? Colors.white
+                                            : Colors.black,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold),
+                                    items: supportedPartnerLanguages
+                                        .map((lang) => DropdownMenuItem(
+                                            value: lang,
+                                            child: Text("Partner ($lang)")))
+                                        .toList(),
                                     onChanged: (val) {
-                                      if (val != null) setState(() => _sideBLanguage = val);
+                                      if (val != null)
+                                        setState(() => _sideBLanguage = val);
                                     },
                                   ),
                                 ),
@@ -604,11 +712,14 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                                 IconButton(
                                   icon: Icon(
                                     Icons.keyboard,
-                                    color: isDark ? Colors.white54 : Colors.black54,
+                                    color: isDark
+                                        ? Colors.white54
+                                        : Colors.black54,
                                     size: 20,
                                   ),
                                   onPressed: () {
-                                    if (_recordingSide != null) _stopAudioStreaming();
+                                    if (_recordingSide != null)
+                                      _stopAudioStreaming();
                                     _showPartnerKeyboard();
                                   },
                                 ),
@@ -617,9 +728,13 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                             if (_recordingSide != null)
                               const Row(
                                 children: [
-                                  Icon(Icons.mic, color: Colors.redAccent, size: 16),
+                                  Icon(Icons.mic,
+                                      color: Colors.redAccent, size: 16),
                                   SizedBox(width: 8),
-                                  Text("Partner speaking…", style: TextStyle(color: Colors.redAccent, fontWeight: FontWeight.bold)),
+                                  Text("Partner speaking…",
+                                      style: TextStyle(
+                                          color: Colors.redAccent,
+                                          fontWeight: FontWeight.bold)),
                                 ],
                               ),
                           ],
@@ -631,38 +746,69 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                             padding: const EdgeInsets.only(bottom: 100),
                             itemCount: _sideBMessages.length,
                             itemBuilder: (context, index) {
-                              final msg = _sideBMessages[_sideBMessages.length - 1 - index];
+                              final msg = _sideBMessages[
+                                  _sideBMessages.length - 1 - index];
                               final isFromSideB = msg.sideId == 'b';
                               return Padding(
-                                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 8.0),
                                 child: Column(
-                                  crossAxisAlignment: isFromSideB ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+                                  crossAxisAlignment: isFromSideB
+                                      ? CrossAxisAlignment.end
+                                      : CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      isFromSideB ? 'Partner (${msg.language})' : 'You (${msg.language})',
-                                      style: TextStyle(color: isDark ? Colors.white38 : Colors.black38, fontSize: 11, fontWeight: FontWeight.w600),
+                                      isFromSideB
+                                          ? 'Partner (${msg.language})'
+                                          : 'You (${msg.language})',
+                                      style: TextStyle(
+                                          color: isDark
+                                              ? Colors.white38
+                                              : Colors.black38,
+                                          fontSize: 11,
+                                          fontWeight: FontWeight.w600),
                                     ),
                                     const SizedBox(height: 4),
                                     Container(
-                                      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 20, vertical: 16),
                                       decoration: BoxDecoration(
-                                        color: isFromSideB 
-                                            ? (isDark ? Colors.blue.withValues(alpha: 0.1) : Colors.blue.withValues(alpha: 0.05)) 
-                                            : (isDark ? Colors.grey.withValues(alpha: 0.1) : Colors.grey.withValues(alpha: 0.05)),
+                                        color: isFromSideB
+                                            ? (isDark
+                                                ? Colors.blue
+                                                    .withValues(alpha: 0.1)
+                                                : Colors.blue
+                                                    .withValues(alpha: 0.05))
+                                            : (isDark
+                                                ? Colors.grey
+                                                    .withValues(alpha: 0.1)
+                                                : Colors.grey
+                                                    .withValues(alpha: 0.05)),
                                         borderRadius: BorderRadius.only(
                                           topLeft: const Radius.circular(24),
                                           topRight: const Radius.circular(24),
-                                          bottomLeft: Radius.circular(isFromSideB ? 24 : 4),
-                                          bottomRight: Radius.circular(isFromSideB ? 4 : 24),
+                                          bottomLeft: Radius.circular(
+                                              isFromSideB ? 24 : 4),
+                                          bottomRight: Radius.circular(
+                                              isFromSideB ? 4 : 24),
                                         ),
-                                        border: Border.all(color: isFromSideB ? Colors.blue.withValues(alpha: 0.3) : Colors.grey.withValues(alpha: 0.2)),
+                                        border: Border.all(
+                                            color: isFromSideB
+                                                ? Colors.blue
+                                                    .withValues(alpha: 0.3)
+                                                : Colors.grey
+                                                    .withValues(alpha: 0.2)),
                                       ),
                                       child: TappableMarkdownHanziText(
                                         msg.text,
                                         style: TextStyle(
-                                          color: isFromSideB 
-                                              ? (isDark ? Colors.blue.shade200 : Colors.blue.shade800) 
-                                              : (isDark ? Colors.white : Colors.black87),
+                                          color: isFromSideB
+                                              ? (isDark
+                                                  ? Colors.blue.shade200
+                                                  : Colors.blue.shade800)
+                                              : (isDark
+                                                  ? Colors.white
+                                                  : Colors.black87),
                                           fontSize: 24,
                                           fontWeight: FontWeight.w500,
                                         ),
@@ -684,11 +830,16 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
               Expanded(
                 child: AnimatedContainer(
                   duration: const Duration(milliseconds: 500),
-                  color: isDark 
-                      ? (_recordingSide != null ? const Color(0xFF152A3B) : const Color(0xFF121A20))
-                      : (_recordingSide != null ? const Color(0xFFE3F2FD) : const Color(0xFFF8F9FA)),
+                  color: isDark
+                      ? (_recordingSide != null
+                          ? const Color(0xFF152A3B)
+                          : const Color(0xFF121A20))
+                      : (_recordingSide != null
+                          ? const Color(0xFFE3F2FD)
+                          : const Color(0xFFF8F9FA)),
                   width: double.infinity,
-                  padding: const EdgeInsets.only(left: 24, right: 24, bottom: 24, top: 64),
+                  padding: const EdgeInsets.only(
+                      left: 24, right: 24, bottom: 24, top: 64),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -701,12 +852,25 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                               DropdownButtonHideUnderline(
                                 child: DropdownButton<String>(
                                   value: _sideALanguage,
-                                  icon: Icon(Icons.language, color: isDark ? Colors.white70 : Colors.black87),
-                                  dropdownColor: isDark ? Colors.grey[900] : Colors.white,
-                                  style: TextStyle(color: isDark ? Colors.white : Colors.black, fontSize: 18, fontWeight: FontWeight.bold),
-                                  items: supportedTranslationLanguages.map((lang) => DropdownMenuItem(value: lang, child: Text("You ($lang)"))).toList(),
+                                  icon: Icon(Icons.language,
+                                      color: isDark
+                                          ? Colors.white70
+                                          : Colors.black87),
+                                  dropdownColor:
+                                      isDark ? Colors.grey[900] : Colors.white,
+                                  style: TextStyle(
+                                      color:
+                                          isDark ? Colors.white : Colors.black,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold),
+                                  items: supportedTranslationLanguages
+                                      .map((lang) => DropdownMenuItem(
+                                          value: lang,
+                                          child: Text("You ($lang)")))
+                                      .toList(),
                                   onChanged: (val) {
-                                    if (val != null) setState(() => _sideALanguage = val);
+                                    if (val != null)
+                                      setState(() => _sideALanguage = val);
                                   },
                                 ),
                               ),
@@ -714,13 +878,19 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                               IconButton(
                                 icon: Icon(
                                   Icons.keyboard,
-                                  color: _isSideAKeyboardMode ? Colors.blueAccent : (isDark ? Colors.white54 : Colors.black54),
+                                  color: _isSideAKeyboardMode
+                                      ? Colors.blueAccent
+                                      : (isDark
+                                          ? Colors.white54
+                                          : Colors.black54),
                                   size: 20,
                                 ),
                                 onPressed: () {
                                   setState(() {
-                                    _isSideAKeyboardMode = !_isSideAKeyboardMode;
-                                    if (_isSideAKeyboardMode && _recordingSide != null) {
+                                    _isSideAKeyboardMode =
+                                        !_isSideAKeyboardMode;
+                                    if (_isSideAKeyboardMode &&
+                                        _recordingSide != null) {
                                       _stopAudioStreaming();
                                     }
                                   });
@@ -729,9 +899,13 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                               if (_recordingSide != null)
                                 const Row(
                                   children: [
-                                    Icon(Icons.circle, color: Colors.redAccent, size: 12),
+                                    Icon(Icons.circle,
+                                        color: Colors.redAccent, size: 12),
                                     SizedBox(width: 8),
-                                    Text("You are speaking", style: TextStyle(color: Colors.redAccent, fontWeight: FontWeight.bold)),
+                                    Text("You are speaking",
+                                        style: TextStyle(
+                                            color: Colors.redAccent,
+                                            fontWeight: FontWeight.bold)),
                                   ],
                                 ),
                             ],
@@ -739,16 +913,23 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                           Row(
                             children: [
                               IconButton(
-                                icon: Icon(Icons.camera_alt, color: isDark ? Colors.white : Colors.black87),
+                                icon: Icon(Icons.camera_alt,
+                                    color:
+                                        isDark ? Colors.white : Colors.black87),
                                 onPressed: () {
                                   Navigator.push(
                                     context,
-                                    SwipeBackPageRoute(builder: (_) => const UniversalScannerScreen(intent: CameraIntent.travelAR)),
+                                    SwipeBackPageRoute(
+                                        builder: (_) =>
+                                            const UniversalScannerScreen(
+                                                intent: CameraIntent.travelAR)),
                                   );
                                 },
                               ),
                               IconButton(
-                                icon: Icon(Icons.close, color: isDark ? Colors.white : Colors.black87),
+                                icon: Icon(Icons.close,
+                                    color:
+                                        isDark ? Colors.white : Colors.black87),
                                 onPressed: () => Navigator.pop(context),
                               ),
                             ],
@@ -762,38 +943,69 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                           padding: const EdgeInsets.only(bottom: 100),
                           itemCount: _sideAMessages.length,
                           itemBuilder: (context, index) {
-                            final msg = _sideAMessages[_sideAMessages.length - 1 - index];
+                            final msg = _sideAMessages[
+                                _sideAMessages.length - 1 - index];
                             final isFromSideA = msg.sideId == 'a';
                             return Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 8.0),
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 8.0),
                               child: Column(
-                                crossAxisAlignment: isFromSideA ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+                                crossAxisAlignment: isFromSideA
+                                    ? CrossAxisAlignment.end
+                                    : CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    isFromSideA ? 'You (${msg.language})' : 'Partner (${msg.language})',
-                                    style: TextStyle(color: isDark ? Colors.white38 : Colors.black38, fontSize: 11, fontWeight: FontWeight.w600),
+                                    isFromSideA
+                                        ? 'You (${msg.language})'
+                                        : 'Partner (${msg.language})',
+                                    style: TextStyle(
+                                        color: isDark
+                                            ? Colors.white38
+                                            : Colors.black38,
+                                        fontSize: 11,
+                                        fontWeight: FontWeight.w600),
                                   ),
                                   const SizedBox(height: 4),
                                   Container(
-                                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 20, vertical: 16),
                                     decoration: BoxDecoration(
-                                      color: isFromSideA 
-                                          ? (isDark ? Colors.blue.withValues(alpha: 0.1) : Colors.blue.withValues(alpha: 0.05)) 
-                                          : (isDark ? Colors.grey.withValues(alpha: 0.1) : Colors.grey.withValues(alpha: 0.05)),
+                                      color: isFromSideA
+                                          ? (isDark
+                                              ? Colors.blue
+                                                  .withValues(alpha: 0.1)
+                                              : Colors.blue
+                                                  .withValues(alpha: 0.05))
+                                          : (isDark
+                                              ? Colors.grey
+                                                  .withValues(alpha: 0.1)
+                                              : Colors.grey
+                                                  .withValues(alpha: 0.05)),
                                       borderRadius: BorderRadius.only(
                                         topLeft: const Radius.circular(24),
                                         topRight: const Radius.circular(24),
-                                        bottomLeft: Radius.circular(isFromSideA ? 24 : 4),
-                                        bottomRight: Radius.circular(isFromSideA ? 4 : 24),
+                                        bottomLeft: Radius.circular(
+                                            isFromSideA ? 24 : 4),
+                                        bottomRight: Radius.circular(
+                                            isFromSideA ? 4 : 24),
                                       ),
-                                      border: Border.all(color: isFromSideA ? Colors.blue.withValues(alpha: 0.3) : Colors.grey.withValues(alpha: 0.2)),
+                                      border: Border.all(
+                                          color: isFromSideA
+                                              ? Colors.blue
+                                                  .withValues(alpha: 0.3)
+                                              : Colors.grey
+                                                  .withValues(alpha: 0.2)),
                                     ),
                                     child: TappableMarkdownHanziText(
                                       msg.text,
                                       style: TextStyle(
-                                        color: isFromSideA 
-                                            ? (isDark ? Colors.white : Colors.black87) 
-                                            : (isDark ? Colors.blue.shade200 : Colors.blue.shade800),
+                                        color: isFromSideA
+                                            ? (isDark
+                                                ? Colors.white
+                                                : Colors.black87)
+                                            : (isDark
+                                                ? Colors.blue.shade200
+                                                : Colors.blue.shade800),
                                         fontSize: 24,
                                         fontWeight: FontWeight.w500,
                                       ),
@@ -810,28 +1022,41 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                           padding: const EdgeInsets.only(top: 8.0),
                           child: HanziTextField(
                             controller: _sideATextController,
-                            style: TextStyle(color: isDark ? Colors.white : Colors.black, fontSize: 18),
+                            style: TextStyle(
+                                color: isDark ? Colors.white : Colors.black,
+                                fontSize: 18),
                             decoration: InputDecoration(
                               hintText: "Type in $_sideALanguage...",
-                              hintStyle: TextStyle(color: isDark ? Colors.white38 : Colors.black38),
+                              hintStyle: TextStyle(
+                                  color:
+                                      isDark ? Colors.white38 : Colors.black38),
                               filled: true,
-                              fillColor: isDark ? Colors.white.withValues(alpha: 0.1) : Colors.black.withValues(alpha: 0.05),
+                              fillColor: isDark
+                                  ? Colors.white.withValues(alpha: 0.1)
+                                  : Colors.black.withValues(alpha: 0.05),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(16),
                                 borderSide: BorderSide.none,
                               ),
                               suffixIcon: IconButton(
-                                icon: const Icon(Icons.send, color: Colors.blueAccent),
-                                onPressed: _isTranslatingText ? null : () {
-                                  _sendTextTranslation(_sideATextController.text, sideId: 'a');
-                                  _sideATextController.clear();
-                                },
+                                icon: const Icon(Icons.send,
+                                    color: Colors.blueAccent),
+                                onPressed: _isTranslatingText
+                                    ? null
+                                    : () {
+                                        _sendTextTranslation(
+                                            _sideATextController.text,
+                                            sideId: 'a');
+                                        _sideATextController.clear();
+                                      },
                               ),
                             ),
-                            onSubmitted: _isTranslatingText ? null : (val) {
-                              _sendTextTranslation(val, sideId: 'a');
-                              _sideATextController.clear();
-                            },
+                            onSubmitted: _isTranslatingText
+                                ? null
+                                : (val) {
+                                    _sendTextTranslation(val, sideId: 'a');
+                                    _sideATextController.clear();
+                                  },
                           ),
                         ),
                     ],
@@ -847,5 +1072,4 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
       ),
     );
   }
-
 }

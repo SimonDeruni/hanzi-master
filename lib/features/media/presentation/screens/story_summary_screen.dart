@@ -123,9 +123,10 @@ class _StorySummaryScreenState extends ConsumerState<StorySummaryScreen> {
   Widget build(BuildContext context) {
     final storyState = ref.watch(storyControllerProvider);
     final displayImageUrl = widget.story.imageUrl ?? 'assets/images/ai_hub_ink_mountains.png';
+    final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Scaffold(
-      backgroundColor: const Color(0xFFFDFCF0), // Zen Paper
+      backgroundColor: isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0), // Zen Paper / Carbon Ink
       body: Stack(
         children: [
           CustomScrollView(
@@ -202,13 +203,17 @@ class _StorySummaryScreenState extends ConsumerState<StorySummaryScreen> {
                             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                             decoration: BoxDecoration(
                               color: Colors.transparent,
-                              border: Border.all(color: const Color(0xFF1A1A1B).withValues(alpha: 0.2)),
+                              border: Border.all(
+                                color: isDark
+                                    ? Colors.white.withValues(alpha: 0.2)
+                                    : const Color(0xFF1A1A1B).withValues(alpha: 0.2),
+                              ),
                               borderRadius: BorderRadius.circular(12),
                             ),
                             child: Text(
                               widget.story.category,
-                              style: const TextStyle(
-                                color: Color(0xFF1A1A1B),
+                              style: TextStyle(
+                                color: isDark ? Colors.white70 : const Color(0xFF1A1A1B),
                                 fontSize: 12,
                                 fontWeight: FontWeight.w600,
                               ),
@@ -273,7 +278,9 @@ class _StorySummaryScreenState extends ConsumerState<StorySummaryScreen> {
                         style: TextStyle(
                           fontSize: 16,
                           height: 1.6,
-                          color: const Color(0xFF1A1A1B).withValues(alpha: 0.8),
+                          color: isDark
+                              ? Colors.white.withValues(alpha: 0.75)
+                              : const Color(0xFF1A1A1B).withValues(alpha: 0.8),
                         ),
                       ),
                       const SizedBox(height: 32),
@@ -457,12 +464,16 @@ class _StorySummaryScreenState extends ConsumerState<StorySummaryScreen> {
         return Container(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: isDark ? const Color(0xFF2A2A2B) : Colors.white,
             borderRadius: BorderRadius.circular(16),
-            border: Border.all(color: const Color(0xFF1A1A1B).withValues(alpha: 0.1)),
+            border: Border.all(
+              color: isDark
+                  ? Colors.white.withValues(alpha: 0.08)
+                  : const Color(0xFF1A1A1B).withValues(alpha: 0.1),
+            ),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withValues(alpha: 0.03),
+                color: Colors.black.withValues(alpha: isDark ? 0.3 : 0.03),
                 blurRadius: 5,
                 offset: const Offset(0, 2),
               ),

@@ -11,7 +11,8 @@ import 'package:hanzi_master/features/flashcards/presentation/screens/character_
 import 'package:hanzi_master/features/flashcards/presentation/widgets/flashcard_edit_dialog.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:hanzi_master/shared/widgets/global_blurred_bottom_sheet.dart';
-import 'package:hanzi_master/features/live_translate/presentation/screens/shadowing_studio_screen.dart' as hanzi_shadowing;
+import 'package:hanzi_master/features/live_translate/presentation/screens/shadowing_studio_screen.dart'
+    as hanzi_shadowing;
 import 'package:hanzi_master/shared/widgets/calligraphy_canvas_sheet.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/ai_explainer_sheet.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
@@ -32,7 +33,9 @@ String _cleanDefinition(String raw) {
   String s = raw.replaceAll(RegExp(r'\[[a-zA-Z0-9\s:]+\]'), '');
   // 2. Remove standalone numeric pinyin remnants
   s = s.replaceAll(RegExp(r'\b[a-zA-Z]+[1-5]\b'), '');
-  // 3. Split on semicolons and take first 3 distinct parts
+  // 3. Remove "abbr. for ..." phrases
+  s = s.replaceAll(RegExp(r'\babbr\. for [^;]+', caseSensitive: false), '');
+  // 4. Split on semicolons and take first 3 distinct parts
   final parts = s
       .split(';')
       .map((p) => p.trim())
@@ -88,7 +91,6 @@ class _QuickLookSheet extends ConsumerWidget {
   }
 }
 
-
 // ---------------------------------------------------------------------------
 // Loading state
 // ---------------------------------------------------------------------------
@@ -134,7 +136,8 @@ class _NotFoundBodyState extends ConsumerState<_NotFoundBody> {
 
   Future<void> _fetchAiDefinition() async {
     try {
-      final aiDef = await ref.read(geminiServiceProvider).defineWord(widget.hanzi);
+      final aiDef =
+          await ref.read(geminiServiceProvider).defineWord(widget.hanzi);
       if (mounted) {
         setState(() {
           _pinyin = aiDef['pinyin'] ?? '?';
@@ -160,11 +163,17 @@ class _NotFoundBodyState extends ConsumerState<_NotFoundBody> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          _CharacterHero(hanzi: widget.hanzi, isDark: widget.isDark, pinyin: _pinyin, hskLevel: 0, definition: _definition),
+          _CharacterHero(
+              hanzi: widget.hanzi,
+              isDark: widget.isDark,
+              pinyin: _pinyin,
+              hskLevel: 0,
+              definition: _definition),
           const SizedBox(height: 16),
           if (_isLoadingAi)
             const SizedBox(
-              width: 24, height: 24,
+              width: 24,
+              height: 24,
               child: CircularProgressIndicator(strokeWidth: 2),
             )
           else
@@ -176,8 +185,10 @@ class _NotFoundBodyState extends ConsumerState<_NotFoundBody> {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.indigo,
                   foregroundColor: Colors.white,
-                  padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12)),
                   elevation: 0,
                 ),
                 onPressed: () {
@@ -335,13 +346,16 @@ class _FoundBody extends ConsumerWidget {
               // Add / In Deck button
               Expanded(
                 child: _ActionButton(
-                  label: inDeck ? AppLocalizations.of(context)!.inDeckCheck : 'Add to Deck',
+                  label: inDeck
+                      ? AppLocalizations.of(context)!.inDeckCheck
+                      : 'Add to Deck',
                   icon: inDeck ? Icons.check : Icons.add,
                   isPrimary: false,
                   isDisabled: false, // Make it always clickable
                   onTap: () async {
                     Navigator.pop(context);
-                    await DeckSelectionSheet.show(context, card: card.copyWith(sourceSentence: contextText));
+                    await DeckSelectionSheet.show(context,
+                        card: card.copyWith(sourceSentence: contextText));
                   },
                 ),
               ),
@@ -355,7 +369,8 @@ class _FoundBody extends ConsumerWidget {
                   isDisabled: false,
                   onTap: () {
                     Navigator.pop(context);
-                    final isLandscape = MediaQuery.of(context).orientation == Orientation.landscape;
+                    final isLandscape = MediaQuery.of(context).orientation ==
+                        Orientation.landscape;
                     if (isLandscape) {
                       showDialog(
                         context: context,
@@ -363,15 +378,24 @@ class _FoundBody extends ConsumerWidget {
                           backgroundColor: Colors.transparent,
                           insetPadding: const EdgeInsets.all(24),
                           child: ConstrainedBox(
-                            constraints: const BoxConstraints(maxWidth: 400, maxHeight: 500),
+                            constraints: const BoxConstraints(
+                                maxWidth: 400, maxHeight: 500),
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(24),
                               child: Container(
-                                color: Theme.of(context).brightness == Brightness.dark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
+                                color: Theme.of(context).brightness ==
+                                        Brightness.dark
+                                    ? const Color(0xFF1A1A1B)
+                                    : const Color(0xFFFDFCF0),
                                 child: hanzi_shadowing.ShadowingStudioScreen(
                                   initialHanzi: tappedHanzi,
                                   initialPinyin: card.pinyin,
                                   initialTranslation: card.definition,
+                                  initialContextSentence:
+                                      (contextText != null &&
+                                              contextText != tappedHanzi)
+                                          ? contextText
+                                          : null,
                                   isCompact: true,
                                 ),
                               ),
@@ -386,11 +410,16 @@ class _FoundBody extends ConsumerWidget {
                         useSafeArea: true,
                         backgroundColor: Colors.transparent,
                         builder: (_) => ClipRRect(
-                          borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+                          borderRadius: const BorderRadius.vertical(
+                              top: Radius.circular(24)),
                           child: hanzi_shadowing.ShadowingStudioScreen(
                             initialHanzi: tappedHanzi,
                             initialPinyin: card.pinyin,
                             initialTranslation: card.definition,
+                            initialContextSentence: (contextText != null &&
+                                    contextText != tappedHanzi)
+                                ? contextText
+                                : null,
                           ),
                         ),
                       );
@@ -422,8 +451,12 @@ class _FoundBody extends ConsumerWidget {
                     isDisabled: false,
                     onTap: () {
                       Navigator.pop(context);
-                      final aiWord = AiWord(hanzi: card.hanzi, pinyin: card.pinyin, meaning: card.definition);
-                      final aiSentence = AiSentence(chinese: contextText!, english: '', words: []);
+                      final aiWord = AiWord(
+                          hanzi: card.hanzi,
+                          pinyin: card.pinyin,
+                          meaning: card.definition);
+                      final aiSentence = AiSentence(
+                          chinese: contextText!, english: '', words: []);
                       AiExplainerSheet.show(context, aiWord, aiSentence);
                     },
                   ),
@@ -521,7 +554,7 @@ class _CharacterHero extends StatelessWidget {
                 ),
               ),
             ),
-            
+
             // Foreground Content
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
@@ -532,13 +565,15 @@ class _CharacterHero extends StatelessWidget {
                   Text(
                     hanzi,
                     style: TextStyle(
-                      fontSize: (72.0 - (hanzi.length - 1) * 12).clamp(36.0, 72.0),
+                      fontSize:
+                          (72.0 - (hanzi.length - 1) * 12).clamp(36.0, 72.0),
                       fontWeight: FontWeight.w100,
                       color: isDark ? Colors.white : Colors.indigo.shade800,
                       height: 1,
                       shadows: [
                         Shadow(
-                          color: Colors.indigo.withValues(alpha: isDark ? 0.4 : 0.15),
+                          color: Colors.indigo
+                              .withValues(alpha: isDark ? 0.4 : 0.15),
                           blurRadius: 16,
                           offset: const Offset(0, 4),
                         ),
@@ -546,7 +581,7 @@ class _CharacterHero extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(width: 18),
-                  
+
                   // Pinyin + Definition + Badges
                   Expanded(
                     child: Column(
@@ -567,7 +602,7 @@ class _CharacterHero extends StatelessWidget {
                             ),
                           ),
                         const SizedBox(height: 6),
-                        
+
                         // English definition integrated into the card
                         if (definition.isNotEmpty)
                           Text(
@@ -576,12 +611,15 @@ class _CharacterHero extends StatelessWidget {
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
                               fontSize: 14,
-                              color: isDark ? Colors.white.withValues(alpha: 0.75) : const Color(0xFF1A1A1B).withValues(alpha: 0.75),
+                              color: isDark
+                                  ? Colors.white.withValues(alpha: 0.75)
+                                  : const Color(0xFF1A1A1B)
+                                      .withValues(alpha: 0.75),
                               height: 1.3,
                             ),
                           ),
                         const SizedBox(height: 10),
-                        
+
                         Row(
                           children: [
                             if (hskLevel > 0)
@@ -621,7 +659,8 @@ class _Badge extends StatelessWidget {
   final String label;
   final Color color;
   final bool isDark;
-  const _Badge({required this.label, required this.color, required this.isDark});
+  const _Badge(
+      {required this.label, required this.color, required this.isDark});
 
   @override
   Widget build(BuildContext context) {
@@ -676,9 +715,7 @@ class _ActionButton extends StatelessWidget {
         alignment: Alignment.center,
         decoration: BoxDecoration(
           color: isPrimary
-              ? (isDisabled
-                  ? Colors.grey.shade300
-                  : Colors.indigo)
+              ? (isDisabled ? Colors.grey.shade300 : Colors.indigo)
               : Colors.transparent,
           borderRadius: BorderRadius.circular(14),
           border: isPrimary
@@ -718,9 +755,7 @@ class _ActionButton extends StatelessWidget {
                 fontWeight: FontWeight.w600,
                 color: isPrimary
                     ? Colors.white
-                    : (isDisabled
-                        ? Colors.grey
-                        : Colors.indigo),
+                    : (isDisabled ? Colors.grey : Colors.indigo),
                 letterSpacing: 0.1,
               ),
             ),

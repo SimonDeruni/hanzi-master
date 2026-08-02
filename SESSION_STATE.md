@@ -1,23 +1,47 @@
 # 🧠 SESSION_STATE.md - The Hanzi Master "Scholar's Baton"
 
 #### 🎯 Current Context
-- **Objective:** UX Optimization & Performance Polish
-- **Status:** ✅ VERIFIED & COMPLETE (Smart Media Desk fixes applied)
+- **Objective:** Bug Fixes & User Request Resolution
+- **Status:** ✅ VERIFIED & ONGOING
 - **Hygiene:** 🧼 Total Hygiene — `flutter analyze` completed
 - **Locked Files:**
     - [None]
 
-#### 📦 Done
+#### 🎯 Outstanding User Requests
+- [ ] **Travel Interpreter Microphone:** "the speaking in the microphpnoe in the travel intepreter doesnt work" (Status: NOT STARTED)
+- [ ] **Global Voices Link:** "the new global voices link doesnt work" (Status: NOT STARTED)
+- [x] **Scenario Hub Improvements:** (Status: COMPLETED)
+    - "Scenario screen widget is not nice-looking." (UI Overhauled)
+    - "Generated persona disappears 4 seconds after creation." (Fixed persistence)
+    - "Remove the assistant persona." (Fixed AI prompt)
+    - "Cannot delete an AI persona." (Added Delete button)
+    - "Fix persona image/scenario mismatch" (Imagen removed, defaulted to empty portrait)
+    - "Objectives are not created." (Enforced exactly 3 quests in prompt)
+
+#### 👤 User Knowledge
+- **Directives:**
+    - "The speaking in the microphone in the travel interpreter doesn't work."
+    - "The new global voices link doesn't work."
+    - "Live call: issue, the voice sounds two times."
+    - "Scenario hub: Create scenario screen/widget is not nice-looking; persona disappears; remove assistant persona; cannot delete persona; image mismatch (persona image not related to scenario); no objectives created."
+- **Preferences:** High-contrast dark theme; Pinyin and translation must be visible in Live Call.
+
+#### 📦 Work Accomplished
+- [x] **Universal Scanner:** Fixed a severe UI distortion bug in landscape mode caused by hardcoded camera preview aspect ratio dimensions. The scanner now dynamically calculates aspect ratios using `math.max` and `math.min` to flawlessly adapt to any screen rotation.
+- [x] **Scenario Hub Overhaul:** Fixed missing persistence for custom scenarios, rebuilt the custom scenario dialog into a premium glassmorphic UI, stripped faulty Imagen-4 API logic (falling back to an elegant empty portrait), updated AI prompts to enforce exact 3 quests and ban "assistant" personas, and added a delete button for custom scenarios.
+- [x] **Dark Mode Overhaul:** Finalized updates to `DashboardScreen` (Quick Search, Forecast cards) and `web_browser_screen.dart` (HSK picker modal).
+- [x] **Universal Scanner:** Added `TappableHanziText` to OCR extraction output; fixed color palettes for dark mode dictionary lists.
+- [x] **Live Call Audio/UI Fix:**
+    - **Glitch Fix:** Updated AI prompt to strictly format output as `Chinese|||Pinyin|||English`. The app now splits this at `|||`, sending only the Chinese text to TTS (solving the "double voice/glitch" issue).
+    - **Display Fix:** Added Pinyin and translation labels below the chat bubbles in `_LiveTranscriptBubble`.
 - [x] **Task 0: AI Hub & Story Audio Polish**: Fixed `StoryReaderScreen` audio playback bug to correctly read all sentences on a 3-sentence page. Hidden "HSK 0" labels globally for custom stories. Fixed `AiHubScreen` header misalignment by removing an erroneous `SafeArea` wrapping the sliver app bar.
 - [x] **Task 1: Reading Room UI**: Rebuilt `StoryReaderScreen` to use word-by-word structural JSON UI instead of raw text.
 - [x] **Task 2: AI Prompt Update**: Updated Gemini prompts to enforce `AiSentence` array schema for custom stories.
 - [x] **Task 3: Default Stories**: Regenerated all 96 default HSK stories to use the new schema.
 - [x] **Task 4: Database Migration**: Migrated local Hive boxes to `graded_stories_v2` with encryption enforcement.
 - [x] **Task 5: Image Rendering**: Added missing User-Agent headers to allow Wikimedia Commons images to load.
-
 - [x] **Task 6: Advanced Path Gen**: Upgraded AI Curriculum Engine with Two-Pass Strategy, Radical-Based Clustering, and Anchor Word selection.
 - [x] **Task 7: UI Animations**: Added `flutter_animate` dependency, global page transitions, staggered entrance on Dashboard, Mascot subtle breathing, and `BouncingButton` on review screens.
-
 - [x] **Task 8: Global Localization Sweep**: Extracted 200+ UI strings into `.arb` and translated into 12 languages using automated Gemini pipeline. Included triple-check sweep catching edge cases in stats and Custom Story Generator.
 - [x] **Task 9: AI Translation Decoupling**: Added `translationLanguageProvider` so users can target translations into a language different from the app UI. Refactored AI prompts globally to support this.
 - [x] **Task 10: Travel Interpreter Polish**: Redesigned 180-degree split UI with dynamic state colors.
@@ -34,9 +58,7 @@
 - [x] **Task 21: Deep Multimodal Integration (Contextual Learning)**: Added flashcard Source Memory logic so contextual sentences from articles are persisted to the flashcard. Built `CalligraphyCanvasSheet` and integrated it directly into the `QuickLookSheet`. Added `Extract & Simplify` feature inside the Web Browser to instantly turn complex highlighted Chinese paragraphs into simplified HSK 3 stories using Gemini.
 - [x] **Task 22: Search Robustness (Smart Media Desk)**: Fixed a search-blocking `FormatException: Invalid radix-10 number` issue inside `YoutubeRepository` caused by youtube_explode_dart parsing errors on live streams (e.g., view count or duration). Implemented a robust manual iterator pattern to gracefully catch and skip individual items with parsing errors while keeping the rest of the search results intact.
 - [x] **Task 23: Hanzi Recovery, Seek-on-Tap, and Localized Translations (Smart Media Desk)**: Fixed `_showEnglish` defaulting to `false` (translations were hidden). Rewrote `translateTranscriptLines` to use **chunked processing** (20 lines/batch) to fix silent failures on long transcripts. Added Pinyin auto-detection to correctly populate the `pinyin` field when YouTube serves Pinyin-only captions. Renamed toggle to "Show Translation".
-
 - [x] **Task 24: Smart Media Desk — Pinyin→Hanzi & Performance Fix**: Fixed 3 root causes: (1) Track selection now uses `isAutoGenerated` flag to prefer manual Hanzi caption tracks over YouTube's auto-generated Pinyin ones. (2) Translation pipeline changed from "wait for all chunks → one UI update" to **incremental chunk-by-chunk UI updates** so Hanzi appears progressively. (3) Sync engine throttled from 60fps to 4Hz (`setState` max every 250ms) to eliminate jank and slow button taps. Added `translateChunk()` to `GeminiService` for single-chunk processing.
-
 - [x] **Task 25: Smart Media Desk — UX Polish**: (1) AI Prep Room collapsible — starts compact (header + vocab chips only), expands on tap via `AnimatedCrossFade`. (2) QuickLook buttons less cramped: height 52→46, added icons, smaller font. (3) Fullscreen overlay button (⛶) on video. (4) Auto-fullscreen on device rotation via `OrientationBuilder`; orientation unlocked while on screen, restored on exit.
 - [x] **Task 26: AI Hub UI Overhaul**: Redesigned the AI Hub into a non-scrolling, flexible dashboard matching the premium "Zen & Ink" aesthetic. Converted white bottom cards to dark `#131A29` textured cards. Replaced "Today's Lesson" with a direct "Today's Word" card linked to `CharacterDetailScreen`.
 - [x] **Task 27: Shadowing Studio & Video Playback Polish**: Fixed silent video bug by unmute configurations. Fixed Tone Graph path continuity by handling edge cases. Fixed type mismatch in Audio Service passing byte arrays instead of file paths to pitch extraction tool. Added dynamic scaling to the UI for correct Tone Graph visualization.
@@ -49,6 +71,15 @@
 - [x] **Task 34: Gemini Live Call Fix**: Fixed a WebSocket 1007 crash loop by removing the unsupported `"TEXT"` modality from the API payload. Also implemented friendly error states to catch 1000-level disconnects gracefully, and added a styled escape button for fallback UI scenarios.
 - [x] **Task 35: Shadowing Studio — Flashcard Data Hydration Fix**: Cards exported from a shadowing session previously had an empty `definition` (English translation always `""`) and often-empty `pinyin`. Fixed by calling `GlobalDictionaryRepository.getExact(hanzi)` for every word before saving, hydrating `pinyin`, `definition`, and `hskLevel` from the bundled SQLite dictionary. AI grading pinyin is kept as a secondary fallback.
 - [x] **Task 36: Smart Media Desk & Daily Discovery — YouTube API Quota Migration**: Replaced all YouTube Data API v3 calls (`search.list`, channel fetch) with `youtube_explode_dart` (InnerTube, no quota). `youtube_repository.dart` `searchVideos()` now uses `yt.search.search()` + caption verification. `daily_discovery_repository.dart` `_fetchChannelVideos()` now uses `yt.channels.getUploads()`. `ApiKeyPool` dependency removed from both. Shows & Dramas untouched.
+
+#### 🔜 Current Work and Next Steps
+- **Immediate Task:** Address the Travel Interpreter Microphone or Global Voices Link bugs next.
+
+- [x] **Remove "Play Audio" button from stories:** "the play audio button of the stories still doesnt work, remove it." (**Status: COMPLETED**)
+- [x] **Shadowing Sentence Context:** "when we click on the shadow button of a card, if the character was in a sentence, the shadowing actually take the entire sentence it was into." (**Status: COMPLETED**)
+- [x] **Remove "..." from Definitions:** "remove the abbr. for ..... in the word definition." (**Status: COMPLETED**)
+- [x] **Reading Room Truncation:** "in the reading room, when we click on a story that actually link to a website, the reading mode should actually cut off everything that is after the story please only for the reading room." (**Status: COMPLETED**)
+
 #### 🔜 Up Next (Possible)
 - [ ] **Phase 9: Sound FX**: Add subtle "paper scratching" audio during drawing.
 - [ ] **Phase 11: Speech Recognition**: Integrated AI grading for tones and pronunciation.

@@ -62,6 +62,7 @@ class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
       );
     }
 
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       body: IndexedStack(
         index: _selectedIndex,
@@ -69,10 +70,10 @@ class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
       ),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.surface,
+          color: isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withValues(alpha: 0.1),
+              color: Colors.black.withValues(alpha: isDark ? 0.3 : 0.1),
               blurRadius: 10,
               offset: const Offset(0, -2),
             ),
@@ -84,9 +85,11 @@ class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
             HapticsManager.light();
             setState(() => _selectedIndex = index);
           },
-          backgroundColor: const Color(0xFFFDFCF0),
-          selectedItemColor: const Color(0xFF1A1A1B),
-          unselectedItemColor: const Color(0xFF1A1A1B).withValues(alpha: 0.5),
+          backgroundColor: isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
+          selectedItemColor: isDark ? const Color(0xFFFDFCF0) : const Color(0xFF1A1A1B),
+          unselectedItemColor: isDark
+              ? const Color(0xFFFDFCF0).withValues(alpha: 0.4)
+              : const Color(0xFF1A1A1B).withValues(alpha: 0.5),
           showUnselectedLabels: true,
           elevation: 0,
           type: BottomNavigationBarType.fixed,

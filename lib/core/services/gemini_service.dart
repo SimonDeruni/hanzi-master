@@ -26,7 +26,11 @@ final geminiServiceProvider = Provider<GeminiService>((ref) {
   final pool = ref.watch(apiKeyPoolProvider);
   final analytics = ref.watch(analyticsServiceProvider);
   final targetLanguage = ref.watch(translationLanguageProvider);
-  return GeminiService(pool: pool, analytics: analytics, targetLanguage: targetLanguage, ref: ref);
+  return GeminiService(
+      pool: pool,
+      analytics: analytics,
+      targetLanguage: targetLanguage,
+      ref: ref);
 });
 
 class GeminiContext {
@@ -34,7 +38,10 @@ class GeminiContext {
   final List<ExampleSentence> sentences;
   final List<LookAlike> lookAlikes;
 
-  GeminiContext({required this.mnemonic, required this.sentences, required this.lookAlikes});
+  GeminiContext(
+      {required this.mnemonic,
+      required this.sentences,
+      required this.lookAlikes});
 
   factory GeminiContext.fromJson(Map<String, dynamic> json) {
     return GeminiContext(
@@ -98,7 +105,7 @@ class CulturalInsight {
   final String historicalContext;
   final String culturalSignificance;
   final String authorBackground;
-  
+
   CulturalInsight({
     required this.historicalContext,
     required this.culturalSignificance,
@@ -120,9 +127,14 @@ class AiWord {
   final String meaning;
   final String english; // StoryModeScreen uses 'english' in some places
   final int hskLevel;
-  
-  AiWord({required this.hanzi, required this.pinyin, required this.meaning, this.english = '', this.hskLevel = 0});
-  
+
+  AiWord(
+      {required this.hanzi,
+      required this.pinyin,
+      required this.meaning,
+      this.english = '',
+      this.hskLevel = 0});
+
   factory AiWord.fromJson(Map<String, dynamic> json) {
     return AiWord(
       hanzi: json['hanzi'] as String? ?? '',
@@ -149,12 +161,14 @@ class AiSentence {
   final String english;
   final List<AiWord> words;
 
-  AiSentence({required this.chinese, required this.english, required this.words});
+  AiSentence(
+      {required this.chinese, required this.english, required this.words});
 
   factory AiSentence.fromJson(Map<String, dynamic> json) {
     var list = json['words'] as List? ?? [];
-    List<AiWord> wordsList = list.map((i) => AiWord.fromJson(i as Map<String, dynamic>)).toList();
-    
+    List<AiWord> wordsList =
+        list.map((i) => AiWord.fromJson(i as Map<String, dynamic>)).toList();
+
     return AiSentence(
       chinese: json['chinese'] as String? ?? '',
       english: json['english'] as String? ?? '',
@@ -178,8 +192,10 @@ class AiStory {
 
   factory AiStory.fromJson(Map<String, dynamic> json) {
     var list = json['sentences'] as List? ?? [];
-    List<AiSentence> sentencesList = list.map((i) => AiSentence.fromJson(i as Map<String, dynamic>)).toList();
-    
+    List<AiSentence> sentencesList = list
+        .map((i) => AiSentence.fromJson(i as Map<String, dynamic>))
+        .toList();
+
     return AiStory(sentences: sentencesList);
   }
 
@@ -210,7 +226,8 @@ class AiChatSession {
     _history.add({'role': 'user', 'content': text});
 
     final response = await http.post(
-      Uri.parse('https://us-central1-hanzi-master-bcef9.cloudfunctions.net/openRouterProxy'),
+      Uri.parse(
+          'https://us-central1-hanzi-master-bcef9.cloudfunctions.net/openRouterProxy'),
       headers: {
         'Authorization': 'Bearer $apiKey',
         'Content-Type': 'application/json',
@@ -230,7 +247,8 @@ class AiChatSession {
     } else {
       _history.removeLast(); // Rollback on failure
       _history.removeLast();
-      throw Exception('OpenRouter Error ${response.statusCode}: ${response.body}');
+      throw Exception(
+          'OpenRouter Error ${response.statusCode}: ${response.body}');
     }
   }
 }
@@ -244,7 +262,11 @@ class GeminiService {
   static const int _freeTierDailyLimit = 5; // Reduced based on user request
   static const _conversationTimeout = Duration(seconds: 15);
 
-  GeminiService({required this.pool, required this.analytics, this.targetLanguage = 'English', required this.ref});
+  GeminiService(
+      {required this.pool,
+      required this.analytics,
+      this.targetLanguage = 'English',
+      required this.ref});
 
   Future<void> _checkUsageLimit() async {
     // Limits removed because the app is now completely hard-paywalled.
@@ -263,25 +285,29 @@ class GeminiService {
       'messages': messages,
       'max_tokens': 2048,
     };
-    
+
     if (jsonMode) {
       body['response_format'] = {'type': 'json_object'};
     }
 
-    final response = await http.post(
-      Uri.parse('https://us-central1-hanzi-master-bcef9.cloudfunctions.net/openRouterProxy'),
-      headers: {
-        'Authorization': 'Bearer ${pool.nextKey}',
-        'Content-Type': 'application/json',
-      },
-      body: jsonEncode(body),
-    ).timeout(timeout ?? const Duration(seconds: 90));
+    final response = await http
+        .post(
+          Uri.parse(
+              'https://us-central1-hanzi-master-bcef9.cloudfunctions.net/openRouterProxy'),
+          headers: {
+            'Authorization': 'Bearer ${pool.nextKey}',
+            'Content-Type': 'application/json',
+          },
+          body: jsonEncode(body),
+        )
+        .timeout(timeout ?? const Duration(seconds: 90));
 
     if (response.statusCode == 200) {
       final json = jsonDecode(utf8.decode(response.bodyBytes));
       return json['choices']?[0]?['message']?['content'] ?? '';
     } else {
-      throw Exception('OpenRouter Error ${response.statusCode}: ${response.body}');
+      throw Exception(
+          'OpenRouter Error ${response.statusCode}: ${response.body}');
     }
   }
 
@@ -298,7 +324,8 @@ class GeminiService {
     await _checkUsageLimit();
     final request = http.Request(
       'POST',
-      Uri.parse('https://us-central1-hanzi-master-bcef9.cloudfunctions.net/openRouterProxy'),
+      Uri.parse(
+          'https://us-central1-hanzi-master-bcef9.cloudfunctions.net/openRouterProxy'),
     );
     request.headers.addAll({
       'Authorization': 'Bearer ${pool.nextKey}',
@@ -306,7 +333,9 @@ class GeminiService {
     });
     request.body = jsonEncode({
       'model': 'google/gemini-2.5-flash',
-      'messages': [{'role': 'user', 'content': prompt}],
+      'messages': [
+        {'role': 'user', 'content': prompt}
+      ],
       'max_tokens': 2048,
       'stream': true,
     });
@@ -317,7 +346,9 @@ class GeminiService {
       throw Exception('OpenRouter Error ${response.statusCode}: $body');
     }
 
-    await for (final chunk in response.stream.transform(utf8.decoder).transform(const LineSplitter())) {
+    await for (final chunk in response.stream
+        .transform(utf8.decoder)
+        .transform(const LineSplitter())) {
       if (chunk.startsWith('data: ') && !chunk.startsWith('data: [DONE]')) {
         final data = chunk.substring(6);
         try {
@@ -331,11 +362,32 @@ class GeminiService {
     }
   }
 
-  Future<Map<String, String>> generateShadowingPhrase(String mode, String contextInput, {List<String> previousPhrases = const []}) async {
+  Future<Map<String, String>> generateShadowingPhrase(
+      String mode, String contextInput,
+      {List<String> previousPhrases = const []}) async {
     final previousList = previousPhrases.isEmpty
         ? "None yet."
         : previousPhrases.map((p) => "- $p").join('\n');
-    final prompt = '''
+
+    String prompt;
+    if (mode == 'ShadowingMode.customSentence') {
+      prompt = '''
+You are an expert native Chinese pronunciation coach. 
+The user is practicing their pronunciation. Provide the pinyin and English translation for the EXACT sentence they provided.
+Context:
+$contextInput
+
+Rules:
+- DO NOT change the Chinese sentence. Keep it exactly as provided in the "Exact Sentence:" context input.
+- CRITICAL: Return ONLY a valid JSON object with EXACTLY this structure:
+{
+  "hanzi": "the exact sentence provided",
+  "pinyin": "pinyin with tone marks",
+  "english": "English translation"
+}
+''';
+    } else {
+      prompt = '''
 You are an expert native Chinese pronunciation coach. 
 The user is practicing their pronunciation. Generate ONE natural, conversational Chinese sentence for them to practice.
 Context:
@@ -357,10 +409,12 @@ Return ONLY a valid JSON object with EXACTLY this structure:
   "english": "I like drinking apple juice."
 }
 ''';
+    }
 
     final response = await generateText(prompt);
-    final cleanText = response.replaceAll(RegExp(r'^```json\n', multiLine: true), '')
-                            .replaceAll(RegExp(r'^```\n?', multiLine: true), '');
+    final cleanText = response
+        .replaceAll(RegExp(r'^```json\n', multiLine: true), '')
+        .replaceAll(RegExp(r'^```\n?', multiLine: true), '');
     try {
       final json = jsonDecode(cleanText) as Map<String, dynamic>;
       return {
@@ -376,10 +430,13 @@ Return ONLY a valid JSON object with EXACTLY this structure:
   Future<Map<String, String>> defineWord(String word) async {
     final cacheKey = 'def_$word';
     final box = Hive.box<String>('ai_cache');
-    
+
     if (box.containsKey(cacheKey)) {
       final json = jsonDecode(box.get(cacheKey)!);
-      return {'pinyin': json['pinyin'].toString(), 'meaning': json['meaning'].toString()};
+      return {
+        'pinyin': json['pinyin'].toString(),
+        'meaning': json['meaning'].toString()
+      };
     }
 
     final prompt = '''
@@ -394,17 +451,24 @@ Return ONLY valid JSON with this exact structure:
 
     final response = await makeOpenRouterCall(
       model: 'deepseek/deepseek-chat',
-      messages: [{'role': 'user', 'content': prompt}],
+      messages: [
+        {'role': 'user', 'content': prompt}
+      ],
       jsonMode: true,
     );
 
     try {
       final json = jsonDecode(response);
       box.put(cacheKey, response);
-      analytics.logApiUsage(apiName: 'openrouter', feature: 'define_word', success: true);
-      return {'pinyin': json['pinyin'].toString(), 'meaning': json['meaning'].toString()};
+      analytics.logApiUsage(
+          apiName: 'openrouter', feature: 'define_word', success: true);
+      return {
+        'pinyin': json['pinyin'].toString(),
+        'meaning': json['meaning'].toString()
+      };
     } catch (e) {
-      analytics.logApiUsage(apiName: 'openrouter', feature: 'define_word', success: false);
+      analytics.logApiUsage(
+          apiName: 'openrouter', feature: 'define_word', success: false);
       return {'pinyin': '?', 'meaning': 'Failed to fetch definition.'};
     }
   }
@@ -421,12 +485,16 @@ CRITICAL: You MUST write your entire explanation in $targetLanguage.
     try {
       final response = await makeOpenRouterCall(
         model: 'deepseek/deepseek-chat',
-        messages: [{'role': 'user', 'content': prompt}],
+        messages: [
+          {'role': 'user', 'content': prompt}
+        ],
       );
-      analytics.logApiUsage(apiName: 'openrouter', feature: 'grammar_explainer', success: true);
+      analytics.logApiUsage(
+          apiName: 'openrouter', feature: 'grammar_explainer', success: true);
       return response;
     } catch (e) {
-      analytics.logApiUsage(apiName: 'openrouter', feature: 'grammar_explainer', success: false);
+      analytics.logApiUsage(
+          apiName: 'openrouter', feature: 'grammar_explainer', success: false);
       return "Failed to load explanation.";
     }
   }
@@ -439,7 +507,9 @@ CRITICAL: You MUST write your entire explanation in $targetLanguage.
 
   /// Streaming version of compareNuances — yields tokens as they arrive.
   Stream<String> streamCompareNuances(List<Map<String, String>> words) async* {
-    final wordList = words.map((w) => '${w['hanzi']} (${w['pinyin']}): ${w['definition']}').join('\n');
+    final wordList = words
+        .map((w) => '${w['hanzi']} (${w['pinyin']}): ${w['definition']}')
+        .join('\n');
     final prompt = '''
 You are a Chinese language tutor. A student is looking at these Chinese words that share similar meanings:
 
@@ -464,11 +534,14 @@ CRITICAL: Output ONLY the explanation. Do not introduce yourself, do not greet t
 
     // Return cached result instantly if available
     if (box.containsKey(cacheKey)) {
-      analytics.logApiUsage(apiName: 'openrouter', feature: 'compare_nuances', success: true);
+      analytics.logApiUsage(
+          apiName: 'openrouter', feature: 'compare_nuances', success: true);
       return box.get(cacheKey)!;
     }
 
-    final wordList = words.map((w) => '${w['hanzi']} (${w['pinyin']}): ${w['definition']}').join('\n');
+    final wordList = words
+        .map((w) => '${w['hanzi']} (${w['pinyin']}): ${w['definition']}')
+        .join('\n');
     final prompt = '''
 You are a Chinese language tutor. A student is looking at these Chinese words that share similar meanings:
 
@@ -486,13 +559,17 @@ CRITICAL: You MUST write your entire explanation in $targetLanguage.
     try {
       final response = await makeOpenRouterCall(
         model: 'deepseek/deepseek-chat',
-        messages: [{'role': 'user', 'content': prompt}],
+        messages: [
+          {'role': 'user', 'content': prompt}
+        ],
       );
       box.put(cacheKey, response);
-      analytics.logApiUsage(apiName: 'openrouter', feature: 'compare_nuances', success: true);
+      analytics.logApiUsage(
+          apiName: 'openrouter', feature: 'compare_nuances', success: true);
       return response;
     } catch (e) {
-      analytics.logApiUsage(apiName: 'openrouter', feature: 'compare_nuances', success: false);
+      analytics.logApiUsage(
+          apiName: 'openrouter', feature: 'compare_nuances', success: false);
       return "Failed to load comparison.";
     }
   }
@@ -500,7 +577,7 @@ CRITICAL: You MUST write your entire explanation in $targetLanguage.
   Future<GeminiContext> generateContext(String hanzi, int hskLevel) async {
     final cacheKey = '${hanzi}_$hskLevel';
     final box = Hive.box<String>('ai_cache');
-    
+
     if (box.containsKey(cacheKey)) {
       final json = jsonDecode(box.get(cacheKey)!);
       return GeminiContext.fromJson(json);
@@ -545,29 +622,37 @@ CRITICAL: Place the $targetLanguage translation in the "english" JSON keys!
     try {
       final text = await makeOpenRouterCall(
         model: 'google/gemini-2.5-flash',
-        messages: [{'role': 'user', 'content': prompt}],
+        messages: [
+          {'role': 'user', 'content': prompt}
+        ],
         jsonMode: true,
       );
-      
+
       if (text.isNotEmpty) {
-        final cleanText = text.replaceAll(RegExp(r'^```json\n', multiLine: true), '')
-                              .replaceAll(RegExp(r'^```\n?', multiLine: true), '');
+        final cleanText = text
+            .replaceAll(RegExp(r'^```json\n', multiLine: true), '')
+            .replaceAll(RegExp(r'^```\n?', multiLine: true), '');
         final json = jsonDecode(cleanText);
         box.put(cacheKey, cleanText);
-        analytics.logApiUsage(apiName: 'openrouter', feature: 'context_generation', success: true);
+        analytics.logApiUsage(
+            apiName: 'openrouter',
+            feature: 'context_generation',
+            success: true);
         return GeminiContext.fromJson(json);
       }
       throw Exception("Empty response from OpenRouter");
     } catch (e) {
-      analytics.logApiUsage(apiName: 'openrouter', feature: 'context_generation', success: false);
+      analytics.logApiUsage(
+          apiName: 'openrouter', feature: 'context_generation', success: false);
       rethrow;
     }
   }
 
   Future<GeminiContext> analyzeImage(List<int> bytes) async {
-    const prompt = 'Identify the main objects in this image. For each, provide mnemonic, sentences, and lookalikes in the standard JSON format described previously.';
+    const prompt =
+        'Identify the main objects in this image. For each, provide mnemonic, sentences, and lookalikes in the standard JSON format described previously.';
     final base64Image = base64Encode(bytes);
-    
+
     try {
       final text = await makeOpenRouterCall(
         model: 'google/gemini-2.5-flash',
@@ -584,12 +669,14 @@ CRITICAL: Place the $targetLanguage translation in the "english" JSON keys!
           }
         ],
       );
-      
+
       if (text.isNotEmpty) {
-        final cleanText = text.replaceAll(RegExp(r'^```json\n', multiLine: true), '')
-                              .replaceAll(RegExp(r'^```\n?', multiLine: true), '');
+        final cleanText = text
+            .replaceAll(RegExp(r'^```json\n', multiLine: true), '')
+            .replaceAll(RegExp(r'^```\n?', multiLine: true), '');
         final json = jsonDecode(cleanText);
-        analytics.logApiUsage(apiName: 'openrouter', feature: 'image_analysis', success: true);
+        analytics.logApiUsage(
+            apiName: 'openrouter', feature: 'image_analysis', success: true);
         if (json is List && json.isNotEmpty) {
           return GeminiContext.fromJson(json[0]);
         }
@@ -597,13 +684,15 @@ CRITICAL: Place the $targetLanguage translation in the "english" JSON keys!
       }
       throw Exception("Empty response from Vision model");
     } catch (e) {
-      analytics.logApiUsage(apiName: 'openrouter', feature: 'image_analysis', success: false);
+      analytics.logApiUsage(
+          apiName: 'openrouter', feature: 'image_analysis', success: false);
       rethrow;
     }
   }
 
   Future<String> extractTextFromImage(List<int> imageBytes) async {
-    const prompt = 'Extract all Chinese characters from this image. Return ONLY the extracted text — no commentary, no formatting, no translations. Preserve line breaks. If there are no Chinese characters, return an empty string.';
+    const prompt =
+        'Extract all Chinese characters from this image. Return ONLY the extracted text — no commentary, no formatting, no translations. Preserve line breaks. If there are no Chinese characters, return an empty string.';
     final base64Image = base64Encode(imageBytes);
     try {
       final text = await makeOpenRouterCall(
@@ -623,13 +712,15 @@ CRITICAL: Place the $targetLanguage translation in the "english" JSON keys!
       );
       return text.trim();
     } catch (e) {
-      analytics.logApiUsage(apiName: 'openrouter', feature: 'text_extraction', success: false);
+      analytics.logApiUsage(
+          apiName: 'openrouter', feature: 'text_extraction', success: false);
       debugPrint("extractTextFromImage error: $e");
       return '';
     }
   }
 
-  Future<({String fullText, List<Map<String, dynamic>> blocks})> extractTextFromImageDetailed(List<int> imageBytes) async {
+  Future<({String fullText, List<Map<String, dynamic>> blocks})>
+      extractTextFromImageDetailed(List<int> imageBytes) async {
     final prompt = '''
 Extract all Chinese characters from this image. The image is a photograph taken with a camera.
 
@@ -674,24 +765,35 @@ Rules:
         jsonMode: true,
       );
       if (text.isNotEmpty) {
-        final cleanText = text.replaceAll(RegExp(r'^```json\n', multiLine: true), '')
-                              .replaceAll(RegExp(r'^```\n?', multiLine: true), '');
+        final cleanText = text
+            .replaceAll(RegExp(r'^```json\n', multiLine: true), '')
+            .replaceAll(RegExp(r'^```\n?', multiLine: true), '');
         final json = jsonDecode(cleanText);
         final blocks = ((json['blocks'] as List<dynamic>?) ?? <dynamic>[])
             .map<Map<String, dynamic>>((b) => b as Map<String, dynamic>)
             .toList();
-        analytics.logApiUsage(apiName: 'openrouter', feature: 'text_extraction_detailed', success: true);
-        return (fullText: (json['fullText'] as String? ?? '').trim(), blocks: blocks);
+        analytics.logApiUsage(
+            apiName: 'openrouter',
+            feature: 'text_extraction_detailed',
+            success: true);
+        return (
+          fullText: (json['fullText'] as String? ?? '').trim(),
+          blocks: blocks
+        );
       }
       return (fullText: '', blocks: <Map<String, dynamic>>[]);
     } catch (e) {
-      analytics.logApiUsage(apiName: 'openrouter', feature: 'text_extraction_detailed', success: false);
+      analytics.logApiUsage(
+          apiName: 'openrouter',
+          feature: 'text_extraction_detailed',
+          success: false);
       debugPrint("extractTextFromImageDetailed error: $e");
       return (fullText: '', blocks: <Map<String, dynamic>>[]);
     }
   }
 
-  Future<AiWord> identifySpecificObject(List<int> bytes, String genericLabel, String languageCode) async {
+  Future<AiWord> identifySpecificObject(
+      List<int> bytes, String genericLabel, String languageCode) async {
     final prompt = '''
 The user has pointed their camera at an object. An on-device model generally categorized it as "$genericLabel".
 Look at the center of the image. Identify exactly what specific object the user is looking at. Be as precise as possible (e.g., if it's a mug, say "mug" not "household object").
@@ -706,7 +808,7 @@ Output JSON matching this exact structure:
 }
 ''';
     final base64Image = base64Encode(bytes);
-    
+
     try {
       final text = await makeOpenRouterCall(
         model: 'google/gemini-2.5-flash',
@@ -724,22 +826,26 @@ Output JSON matching this exact structure:
         ],
         jsonMode: true,
       );
-      
+
       if (text.isNotEmpty) {
-        final cleanText = text.replaceAll(RegExp(r'^```json\n', multiLine: true), '')
-                              .replaceAll(RegExp(r'^```\n?', multiLine: true), '');
+        final cleanText = text
+            .replaceAll(RegExp(r'^```json\n', multiLine: true), '')
+            .replaceAll(RegExp(r'^```\n?', multiLine: true), '');
         final json = jsonDecode(cleanText);
-        analytics.logApiUsage(apiName: 'openrouter', feature: 'ar_snap', success: true);
+        analytics.logApiUsage(
+            apiName: 'openrouter', feature: 'ar_snap', success: true);
         return AiWord.fromJson(json);
       }
       throw Exception("Empty response from Vision model");
     } catch (e) {
-      analytics.logApiUsage(apiName: 'openrouter', feature: 'ar_snap', success: false);
+      analytics.logApiUsage(
+          apiName: 'openrouter', feature: 'ar_snap', success: false);
       rethrow;
     }
   }
 
-  Future<Map<String, dynamic>> analyzeSceneObjects(List<int> bytes, List<String> currentLabels, String languageCode) async {
+  Future<Map<String, dynamic>> analyzeSceneObjects(
+      List<int> bytes, List<String> currentLabels, String languageCode) async {
     final labelsStr = currentLabels.map((l) => '"$l"').join(', ');
     final prompt = '''
 The user has pointed their camera at a scene. An on-device object detection model found these generic labels: [$labelsStr].
@@ -770,7 +876,7 @@ Output JSON matching this exact structure:
 Make sure "updatedLabels" maps the exact string from the provided generic labels to the specific object you found in the scene. If a generic label is completely wrong or not in the scene, you can omit it.
 ''';
     final base64Image = base64Encode(bytes);
-    
+
     try {
       final text = await makeOpenRouterCall(
         model: 'google/gemini-2.5-flash',
@@ -788,27 +894,29 @@ Make sure "updatedLabels" maps the exact string from the provided generic labels
         ],
         jsonMode: true,
       );
-      
+
       if (text.isNotEmpty) {
-        final cleanText = text.replaceAll(RegExp(r'^```json\n', multiLine: true), '')
-                              .replaceAll(RegExp(r'^```\n?', multiLine: true), '');
+        final cleanText = text
+            .replaceAll(RegExp(r'^```json\n', multiLine: true), '')
+            .replaceAll(RegExp(r'^```\n?', multiLine: true), '');
         final json = jsonDecode(cleanText);
-        
+
         final Map<String, AiWord> updatedLabels = {};
         if (json['updatedLabels'] != null) {
           (json['updatedLabels'] as Map<String, dynamic>).forEach((key, value) {
             updatedLabels[key] = AiWord.fromJson(value);
           });
         }
-        
+
         final List<AiWord> allObjects = [];
         if (json['allObjects'] != null) {
           for (var item in json['allObjects']) {
             allObjects.add(AiWord.fromJson(item));
           }
         }
-        
-        analytics.logApiUsage(apiName: 'openrouter', feature: 'ar_scene_analyze', success: true);
+
+        analytics.logApiUsage(
+            apiName: 'openrouter', feature: 'ar_scene_analyze', success: true);
         return {
           'updatedLabels': updatedLabels,
           'allObjects': allObjects,
@@ -816,7 +924,8 @@ Make sure "updatedLabels" maps the exact string from the provided generic labels
       }
       throw Exception("Empty response from Vision model");
     } catch (e) {
-      analytics.logApiUsage(apiName: 'openrouter', feature: 'ar_scene_analyze', success: false);
+      analytics.logApiUsage(
+          apiName: 'openrouter', feature: 'ar_scene_analyze', success: false);
       rethrow;
     }
   }
@@ -840,15 +949,19 @@ Respond ONLY in valid JSON format with this exact structure:
     try {
       final text = await makeOpenRouterCall(
         model: 'google/gemini-2.5-flash',
-        messages: [{'role': 'user', 'content': prompt}],
+        messages: [
+          {'role': 'user', 'content': prompt}
+        ],
         jsonMode: true,
       );
-      
+
       if (text.isNotEmpty) {
-        final cleanText = text.replaceAll(RegExp(r'^```json\n', multiLine: true), '')
-                              .replaceAll(RegExp(r'^```\n?', multiLine: true), '');
+        final cleanText = text
+            .replaceAll(RegExp(r'^```json\n', multiLine: true), '')
+            .replaceAll(RegExp(r'^```\n?', multiLine: true), '');
         final json = jsonDecode(cleanText);
-        analytics.logApiUsage(apiName: 'openrouter', feature: 'translate_object', success: true);
+        analytics.logApiUsage(
+            apiName: 'openrouter', feature: 'translate_object', success: true);
         return Flashcard(
           id: 'gen_${DateTime.now().millisecondsSinceEpoch}',
           hanzi: json['hanzi'] ?? '',
@@ -861,7 +974,8 @@ Respond ONLY in valid JSON format with this exact structure:
       }
       throw Exception("Failed to translate object: $label");
     } catch (e) {
-      analytics.logApiUsage(apiName: 'openrouter', feature: 'translate_object', success: false);
+      analytics.logApiUsage(
+          apiName: 'openrouter', feature: 'translate_object', success: false);
       rethrow;
     }
   }
@@ -901,28 +1015,36 @@ IMPORTANT RULES for hskLevel and partOfSpeech:
     try {
       final text = await makeOpenRouterCall(
         model: 'google/gemini-2.5-flash',
-        messages: [{'role': 'user', 'content': prompt}],
+        messages: [
+          {'role': 'user', 'content': prompt}
+        ],
         jsonMode: true,
       );
-      
+
       if (text.isNotEmpty) {
-        final cleanText = text.replaceAll(RegExp(r'^```json\n', multiLine: true), '')
-                              .replaceAll(RegExp(r'^```\n?', multiLine: true), '');
+        final cleanText = text
+            .replaceAll(RegExp(r'^```json\n', multiLine: true), '')
+            .replaceAll(RegExp(r'^```\n?', multiLine: true), '');
         final json = jsonDecode(cleanText);
-        analytics.logApiUsage(apiName: 'openrouter', feature: 'generate_deck', success: true);
+        analytics.logApiUsage(
+            apiName: 'openrouter', feature: 'generate_deck', success: true);
         if (json is List) {
-          return json.map((item) => {
-            'hanzi': item['hanzi'].toString(),
-            'pinyin': item['pinyin'].toString(),
-            'english': item['english'].toString(),
-            'hskLevel': (item['hskLevel'] as num?)?.toInt().toString() ?? '3',
-            'partOfSpeech': item['partOfSpeech']?.toString() ?? '',
-          }).toList();
+          return json
+              .map((item) => {
+                    'hanzi': item['hanzi'].toString(),
+                    'pinyin': item['pinyin'].toString(),
+                    'english': item['english'].toString(),
+                    'hskLevel':
+                        (item['hskLevel'] as num?)?.toInt().toString() ?? '3',
+                    'partOfSpeech': item['partOfSpeech']?.toString() ?? '',
+                  })
+              .toList();
         }
       }
       throw Exception("Empty response from OpenRouter");
     } catch (e) {
-      analytics.logApiUsage(apiName: 'openrouter', feature: 'generate_deck', success: false);
+      analytics.logApiUsage(
+          apiName: 'openrouter', feature: 'generate_deck', success: false);
       rethrow;
     }
   }
@@ -972,36 +1094,46 @@ IMPORTANT RULES for hskLevel and partOfSpeech:
     try {
       final text = await makeOpenRouterCall(
         model: 'google/gemini-2.5-flash',
-        messages: [{'role': 'user', 'content': prompt}],
+        messages: [
+          {'role': 'user', 'content': prompt}
+        ],
         jsonMode: true,
       );
 
       if (text.isNotEmpty) {
-        final cleanText = text.replaceAll(RegExp(r'^```json\n', multiLine: true), '')
-                              .replaceAll(RegExp(r'^```\n?', multiLine: true), '');
+        final cleanText = text
+            .replaceAll(RegExp(r'^```json\n', multiLine: true), '')
+            .replaceAll(RegExp(r'^```\n?', multiLine: true), '');
         final json = jsonDecode(cleanText);
-        analytics.logApiUsage(apiName: 'openrouter', feature: 'add_to_deck', success: true);
+        analytics.logApiUsage(
+            apiName: 'openrouter', feature: 'add_to_deck', success: true);
         if (json is List) {
-          return json.map((item) => {
-            'hanzi': item['hanzi'].toString(),
-            'pinyin': item['pinyin'].toString(),
-            'english': item['english'].toString(),
-            'hskLevel': (item['hskLevel'] as num?)?.toInt().toString() ?? '3',
-            'partOfSpeech': item['partOfSpeech']?.toString() ?? '',
-          }).toList();
+          return json
+              .map((item) => {
+                    'hanzi': item['hanzi'].toString(),
+                    'pinyin': item['pinyin'].toString(),
+                    'english': item['english'].toString(),
+                    'hskLevel':
+                        (item['hskLevel'] as num?)?.toInt().toString() ?? '3',
+                    'partOfSpeech': item['partOfSpeech']?.toString() ?? '',
+                  })
+              .toList();
         }
       }
       throw Exception("Empty response from OpenRouter");
     } catch (e) {
-      analytics.logApiUsage(apiName: 'openrouter', feature: 'add_to_deck', success: false);
+      analytics.logApiUsage(
+          apiName: 'openrouter', feature: 'add_to_deck', success: false);
       rethrow;
     }
   }
 
-  Future<AiStory> generateStory(String deckId, String deckName, List<String> vocabulary, {bool forceRegenerate = false}) async {
+  Future<AiStory> generateStory(
+      String deckId, String deckName, List<String> vocabulary,
+      {bool forceRegenerate = false}) async {
     final cacheKey = 'story_$deckId';
     final box = Hive.box<String>('ai_cache');
-    
+
     if (!forceRegenerate && box.containsKey(cacheKey)) {
       final json = jsonDecode(box.get(cacheKey)!);
       if (json is Map<String, dynamic> && json.containsKey('sentences')) {
@@ -1012,7 +1144,7 @@ IMPORTANT RULES for hskLevel and partOfSpeech:
     final wordsList = vocabulary.join(", ");
     final prompt = '''
 You are a professional Chinese language teacher creating Graded Readers.
-Write a substantial, engaging story (8-12 sentences) using primarily the following vocabulary words:
+Write a substantial, engaging story (20-30 sentences) using primarily the following vocabulary words:
 $wordsList
 
 The story should feel like a complete narrative with a beginning, middle, and end. 
@@ -1042,21 +1174,26 @@ Make sure every single character in the 'chinese' sentence is represented in the
     try {
       final text = await makeOpenRouterCall(
         model: 'google/gemini-2.5-flash',
-        messages: [{'role': 'user', 'content': prompt}],
+        messages: [
+          {'role': 'user', 'content': prompt}
+        ],
         jsonMode: true,
       );
-      
+
       if (text.isNotEmpty) {
-        final cleanText = text.replaceAll(RegExp(r'^```json\n', multiLine: true), '')
-                              .replaceAll(RegExp(r'^```\n?', multiLine: true), '');
+        final cleanText = text
+            .replaceAll(RegExp(r'^```json\n', multiLine: true), '')
+            .replaceAll(RegExp(r'^```\n?', multiLine: true), '');
         final json = jsonDecode(cleanText);
         box.put(cacheKey, cleanText);
-        analytics.logApiUsage(apiName: 'openrouter', feature: 'generate_story', success: true);
+        analytics.logApiUsage(
+            apiName: 'openrouter', feature: 'generate_story', success: true);
         return AiStory.fromJson(json);
       }
       throw Exception("Empty response from OpenRouter");
     } catch (e) {
-      analytics.logApiUsage(apiName: 'openrouter', feature: 'generate_story', success: false);
+      analytics.logApiUsage(
+          apiName: 'openrouter', feature: 'generate_story', success: false);
       rethrow;
     }
   }
@@ -1077,15 +1214,18 @@ Respond ONLY with the translated text. Do not add any conversational filler, mar
 
     try {
       final text = await generateText(prompt);
-      analytics.logApiUsage(apiName: 'openrouter', feature: 'translate_article', success: true);
+      analytics.logApiUsage(
+          apiName: 'openrouter', feature: 'translate_article', success: true);
       return text;
     } catch (e) {
-      analytics.logApiUsage(apiName: 'openrouter', feature: 'translate_article', success: false);
+      analytics.logApiUsage(
+          apiName: 'openrouter', feature: 'translate_article', success: false);
       rethrow;
     }
   }
 
-  Future<AiStory> generateGradedStory(String topic, String category, int hskLevel) async {
+  Future<AiStory> generateGradedStory(
+      String topic, String category, int hskLevel) async {
     final prompt = '''
 You are a professional Chinese language professor creating Graded Readers.
 Write an engaging, culturally accurate story or article about "$topic" (Category: $category).
@@ -1115,26 +1255,37 @@ Make sure every single character in the 'chinese' sentence is represented in the
     try {
       final text = await makeOpenRouterCall(
         model: 'google/gemini-2.5-flash',
-        messages: [{'role': 'user', 'content': prompt}],
+        messages: [
+          {'role': 'user', 'content': prompt}
+        ],
         jsonMode: true,
       );
-      
+
       if (text.isNotEmpty) {
-        final cleanText = text.replaceAll(RegExp(r'^```json\n', multiLine: true), '')
-                              .replaceAll(RegExp(r'^```\n?', multiLine: true), '');
+        final cleanText = text
+            .replaceAll(RegExp(r'^```json\n', multiLine: true), '')
+            .replaceAll(RegExp(r'^```\n?', multiLine: true), '');
         final json = jsonDecode(cleanText);
-        analytics.logApiUsage(apiName: 'openrouter', feature: 'generate_graded_story', success: true);
+        analytics.logApiUsage(
+            apiName: 'openrouter',
+            feature: 'generate_graded_story',
+            success: true);
         return AiStory.fromJson(json);
       }
       throw Exception("Empty response from DeepSeek API");
     } catch (e) {
-      analytics.logApiUsage(apiName: 'openrouter', feature: 'generate_graded_story', success: false);
+      analytics.logApiUsage(
+          apiName: 'openrouter',
+          feature: 'generate_graded_story',
+          success: false);
       rethrow;
     }
   }
 
-  Future<AiStory> parseRawStoryToAiStory(String rawChineseText, int hskLevel, {String? englishTranslation}) async {
-    String englishInstruction = englishTranslation != null && englishTranslation.isNotEmpty
+  Future<AiStory> parseRawStoryToAiStory(String rawChineseText, int hskLevel,
+      {String? englishTranslation}) async {
+    String englishInstruction = englishTranslation != null &&
+            englishTranslation.isNotEmpty
         ? 'Here is the English translation for the story:\n"$englishTranslation"\n\nCRITICAL: You MUST use this provided translation to guide your sentence-by-sentence translation. Match your sentence translations to this provided meaning.'
         : 'CRITICAL: Put the English translation in the "english" JSON key!';
 
@@ -1167,37 +1318,48 @@ Respond ONLY with a valid JSON document matching this exact structure:
     try {
       final text = await makeOpenRouterCall(
         model: 'google/gemini-2.5-flash',
-        messages: [{'role': 'user', 'content': prompt}],
+        messages: [
+          {'role': 'user', 'content': prompt}
+        ],
         jsonMode: true,
       );
-      
-      final cleanText = text.replaceAll(RegExp(r'^```json\n', multiLine: true), '')
-                            .replaceAll(RegExp(r'^```\n?', multiLine: true), '');
+
+      final cleanText = text
+          .replaceAll(RegExp(r'^```json\n', multiLine: true), '')
+          .replaceAll(RegExp(r'^```\n?', multiLine: true), '');
       final json = jsonDecode(cleanText);
       return AiStory.fromJson(json);
     } catch (e) {
-      analytics.logApiUsage(apiName: 'openrouter', feature: 'parse_raw_story', success: false);
+      analytics.logApiUsage(
+          apiName: 'openrouter', feature: 'parse_raw_story', success: false);
       rethrow;
     }
   }
 
-  Stream<String> streamGradedStoryRawText(String topic, String category, int hskLevel, {List<String>? dueWords, List<String>? masteredWords, List<String>? strugglingWords}) async* {
+  Stream<String> streamGradedStoryRawText(
+      String topic, String category, int hskLevel,
+      {List<String>? dueWords,
+      List<String>? masteredWords,
+      List<String>? strugglingWords}) async* {
     String focusInstructions = "";
     if (dueWords != null && dueWords.isNotEmpty) {
-      focusInstructions += "\nCRITICAL: Try to include these specific words naturally: ${dueWords.join(', ')}";
+      focusInstructions +=
+          "\nCRITICAL: Try to include these specific words naturally: ${dueWords.join(', ')}";
     }
     if (strugglingWords != null && strugglingWords.isNotEmpty) {
-      focusInstructions += "\nCRITICAL: The user struggles with these words, include them for practice: ${strugglingWords.join(', ')}";
+      focusInstructions +=
+          "\nCRITICAL: The user struggles with these words, include them for practice: ${strugglingWords.join(', ')}";
     }
     if (masteredWords != null && masteredWords.isNotEmpty) {
-      focusInstructions += "\nNote: The user already knows these words well, avoid overusing them: ${masteredWords.join(', ')}";
+      focusInstructions +=
+          "\nNote: The user already knows these words well, avoid overusing them: ${masteredWords.join(', ')}";
     }
 
     final prompt = '''
-You are a Chinese learning assistant. Write a Chinese story (5-8 paragraphs) about "$topic" in the "$category" category.
+You are a Chinese learning assistant. Write a long, engaging Chinese story (10-15 paragraphs) about "$topic" in the "$category" category.
 CRITICAL INSTRUCTION: The story MUST be written strictly using HSK level $hskLevel vocabulary and grammar. Do not use advanced vocabulary.
 $focusInstructions
-Keep it under 800 words.
+Make the story highly engaging, detailed, and at least 1500 words long to provide ample reading practice.
 Respond ONLY with the Chinese text. Do not include pinyin or translations. Do not include any formatting or introductions. Just the raw Chinese characters.
 ''';
     yield* streamOpenRouterText(prompt);
@@ -1238,26 +1400,36 @@ Make sure every single character in the 'chinese' sentence is represented in the
     try {
       final text = await makeOpenRouterCall(
         model: 'deepseek/deepseek-chat',
-        messages: [{'role': 'user', 'content': prompt}],
+        messages: [
+          {'role': 'user', 'content': prompt}
+        ],
         jsonMode: true,
       );
-      
+
       if (text.isNotEmpty) {
-        final cleanText = text.replaceAll(RegExp(r'^```json\n', multiLine: true), '')
-                              .replaceAll(RegExp(r'^```\n?', multiLine: true), '');
+        final cleanText = text
+            .replaceAll(RegExp(r'^```json\n', multiLine: true), '')
+            .replaceAll(RegExp(r'^```\n?', multiLine: true), '');
         final json = jsonDecode(cleanText);
-        analytics.logApiUsage(apiName: 'openrouter', feature: 'simplify_text', success: true);
+        analytics.logApiUsage(
+            apiName: 'openrouter', feature: 'simplify_text', success: true);
         return AiStory.fromJson(json);
       }
       throw Exception("Empty response from DeepSeek API");
     } catch (e) {
-      analytics.logApiUsage(apiName: 'openrouter', feature: 'simplify_text', success: false);
+      analytics.logApiUsage(
+          apiName: 'openrouter', feature: 'simplify_text', success: false);
       rethrow;
     }
   }
 
-  Future<List<Map<String, dynamic>>> generateCulturalMemes(List<String> transcriptLines) async {
-    final transcriptText = transcriptLines.asMap().entries.map((e) => "[Line ${e.key}] ${e.value}").join("\n");
+  Future<List<Map<String, dynamic>>> generateCulturalMemes(
+      List<String> transcriptLines) async {
+    final transcriptText = transcriptLines
+        .asMap()
+        .entries
+        .map((e) => "[Line ${e.key}] ${e.value}")
+        .join("\n");
     final prompt = '''
 You are a Chinese cultural expert. Analyze the following transcript from a video.
 Identify any culturally significant idioms (成语), modern internet slang, or deep cultural references.
@@ -1281,12 +1453,15 @@ Respond ONLY in valid JSON format with this exact structure:
     try {
       final text = await makeOpenRouterCall(
         model: 'deepseek/deepseek-chat',
-        messages: [{'role': 'user', 'content': prompt}],
+        messages: [
+          {'role': 'user', 'content': prompt}
+        ],
         jsonMode: true,
       );
       if (text.isNotEmpty) {
-        final cleanText = text.replaceAll(RegExp(r'^```json\n', multiLine: true), '')
-                              .replaceAll(RegExp(r'^```\n?', multiLine: true), '');
+        final cleanText = text
+            .replaceAll(RegExp(r'^```json\n', multiLine: true), '')
+            .replaceAll(RegExp(r'^```\n?', multiLine: true), '');
         final List<dynamic> json = jsonDecode(cleanText);
         return json.cast<Map<String, dynamic>>();
       }
@@ -1296,8 +1471,13 @@ Respond ONLY in valid JSON format with this exact structure:
     }
   }
 
-  Future<Map<int, String>> simplifyTranscriptToHsk(List<String> transcriptLines, int hskLevel) async {
-    final transcriptText = transcriptLines.asMap().entries.map((e) => "[${e.key}] ${e.value}").join("\n");
+  Future<Map<int, String>> simplifyTranscriptToHsk(
+      List<String> transcriptLines, int hskLevel) async {
+    final transcriptText = transcriptLines
+        .asMap()
+        .entries
+        .map((e) => "[${e.key}] ${e.value}")
+        .join("\n");
     final prompt = '''
 You are a Chinese teacher. Simplify the following transcript lines to strict HSK $hskLevel vocabulary.
 Keep the exact same number of lines. Output a JSON map where the key is the line index and the value is the simplified Chinese string.
@@ -1316,14 +1496,18 @@ Respond ONLY in valid JSON format like:
     try {
       final text = await makeOpenRouterCall(
         model: 'deepseek/deepseek-chat',
-        messages: [{'role': 'user', 'content': prompt}],
+        messages: [
+          {'role': 'user', 'content': prompt}
+        ],
         jsonMode: true,
       );
       if (text.isNotEmpty) {
-        final cleanText = text.replaceAll(RegExp(r'^```json\n', multiLine: true), '')
-                              .replaceAll(RegExp(r'^```\n?', multiLine: true), '');
+        final cleanText = text
+            .replaceAll(RegExp(r'^```json\n', multiLine: true), '')
+            .replaceAll(RegExp(r'^```\n?', multiLine: true), '');
         final Map<String, dynamic> json = jsonDecode(cleanText);
-        return json.map((key, value) => MapEntry(int.parse(key), value.toString()));
+        return json
+            .map((key, value) => MapEntry(int.parse(key), value.toString()));
       }
       return {};
     } catch (e) {
@@ -1332,14 +1516,15 @@ Respond ONLY in valid JSON format like:
   }
 
   AiChatSession startCharacterChat(String hanzi, String languageCode) {
-    final systemInstruction = 'You are a concise Chinese Calligraphy and Etymology tutor inside a mobile flashcard app. '
+    final systemInstruction =
+        'You are a concise Chinese Calligraphy and Etymology tutor inside a mobile flashcard app. '
         'The student is studying the character "$hanzi". '
         'RULES: Answer in 2–3 sentences max. Prefer bullet points for lists. '
         'Never write introductions, sign-offs, or filler phrases like "Great question!" or "Certainly!". '
         'Use **bold** for Chinese characters and key terms. '
         'Be direct and informative. '
         'CRITICAL RULE: You must respond ENTIRELY in the language corresponding to ISO 639-1 code "$languageCode" (except for the Chinese terms).';
-        
+
     return AiChatSession(
       apiKey: pool.nextKey,
       systemInstruction: systemInstruction,
@@ -1347,15 +1532,17 @@ Respond ONLY in valid JSON format like:
     );
   }
 
-  AiChatSession startGrammarChat(String word, String sentence, String languageCode) {
-    final systemInstruction = 'You are a concise Chinese Grammar tutor inside a mobile app. '
+  AiChatSession startGrammarChat(
+      String word, String sentence, String languageCode) {
+    final systemInstruction =
+        'You are a concise Chinese Grammar tutor inside a mobile app. '
         'The student is confused about the word "$word" in the sentence: "$sentence". '
         'RULES: Answer in 2–3 sentences max. '
         'Never write introductions, sign-offs, or filler phrases. '
         'Use **bold** for Chinese characters and key terms. '
         'Be direct and informative. '
         'CRITICAL RULE: You must respond ENTIRELY in the language corresponding to ISO 639-1 code "$languageCode" (except for the Chinese terms).';
-        
+
     return AiChatSession(
       apiKey: pool.nextKey,
       systemInstruction: systemInstruction,
@@ -1363,7 +1550,8 @@ Respond ONLY in valid JSON format like:
     );
   }
 
-  Future<Map<String, dynamic>> gradeAudio(List<int> audioBytes, String expectedChinese, String expectedPinyin) async {
+  Future<Map<String, dynamic>> gradeAudio(List<int> audioBytes,
+      String expectedChinese, String expectedPinyin) async {
     final key = pool.azureSpeechKey;
     final region = pool.azureSpeechRegion;
 
@@ -1373,10 +1561,12 @@ Respond ONLY in valid JSON format like:
 
     // Azure Pronunciation Assessment parameters
     // Strip punctuation to prevent Azure Speech API matching failures (especially for Chinese punctuation)
-    final cleanReference = expectedChinese.replaceAll(RegExp(r'[^\p{Script=Hani}a-zA-Z0-9 ]', unicode: true), '');
-    
+    final cleanReference = expectedChinese.replaceAll(
+        RegExp(r'[^\p{Script=Hani}a-zA-Z0-9 ]', unicode: true), '');
+
     final Map<String, dynamic> params = {
-      "ReferenceText": (cleanReference.isEmpty ? expectedChinese : cleanReference).trim(),
+      "ReferenceText":
+          (cleanReference.isEmpty ? expectedChinese : cleanReference).trim(),
       "GradingSystem": "HundredMark",
       "Granularity": "Phoneme",
       "Dimension": "Comprehensive"
@@ -1385,7 +1575,8 @@ Respond ONLY in valid JSON format like:
     final String jsonParams = jsonEncode(params);
     final String base64Params = base64Encode(utf8.encode(jsonParams));
 
-    final String endpoint = 'https://$region.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?language=zh-CN';
+    final String endpoint =
+        'https://$region.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?language=zh-CN';
 
     final request = http.Request('POST', Uri.parse(endpoint));
     request.headers.addAll({
@@ -1395,30 +1586,67 @@ Respond ONLY in valid JSON format like:
       'Pronunciation-Assessment': base64Params,
     });
     List<int> finalAudioBytes = audioBytes;
-    if (audioBytes.length > 4 && !(audioBytes[0] == 82 && audioBytes[1] == 73 && audioBytes[2] == 70 && audioBytes[3] == 70)) {
+    if (audioBytes.length > 4 &&
+        !(audioBytes[0] == 82 &&
+            audioBytes[1] == 73 &&
+            audioBytes[2] == 70 &&
+            audioBytes[3] == 70)) {
       final byteCount = audioBytes.length;
       final wavHeader = <int>[
-        82, 73, 70, 70, 
-        (36 + byteCount) & 0xff, ((36 + byteCount) >> 8) & 0xff, ((36 + byteCount) >> 16) & 0xff, ((36 + byteCount) >> 24) & 0xff,
-        87, 65, 86, 69, 
-        102, 109, 116, 32, 
-        16, 0, 0, 0, 
-        1, 0, 
-        1, 0, 
-        128, 62, 0, 0, 
-        0, 125, 0, 0, 
-        2, 0, 
-        16, 0, 
-        100, 97, 116, 97, 
-        byteCount & 0xff, (byteCount >> 8) & 0xff, (byteCount >> 16) & 0xff, (byteCount >> 24) & 0xff,
+        82,
+        73,
+        70,
+        70,
+        (36 + byteCount) & 0xff,
+        ((36 + byteCount) >> 8) & 0xff,
+        ((36 + byteCount) >> 16) & 0xff,
+        ((36 + byteCount) >> 24) & 0xff,
+        87,
+        65,
+        86,
+        69,
+        102,
+        109,
+        116,
+        32,
+        16,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        128,
+        62,
+        0,
+        0,
+        0,
+        125,
+        0,
+        0,
+        2,
+        0,
+        16,
+        0,
+        100,
+        97,
+        116,
+        97,
+        byteCount & 0xff,
+        (byteCount >> 8) & 0xff,
+        (byteCount >> 16) & 0xff,
+        (byteCount >> 24) & 0xff,
       ];
       finalAudioBytes = List<int>.from(wavHeader)..addAll(audioBytes);
     }
-    
+
     request.bodyBytes = finalAudioBytes;
 
     try {
-      final response = await http.Client().send(request).timeout(const Duration(seconds: 10));
+      final response = await http.Client()
+          .send(request)
+          .timeout(const Duration(seconds: 10));
       final responseBody = await response.stream.bytesToString();
 
       if (response.statusCode == 200) {
@@ -1437,14 +1665,23 @@ Respond ONLY in valid JSON format like:
         if (data['NBest'] == null || data['NBest'].isEmpty) {
           throw Exception("No NBest result found.");
         }
-        
+
         final bestResult = data['NBest'][0];
         final assessment = bestResult['PronunciationAssessment'];
-        
-        final pronScore = (assessment?['PronScore'] as num?)?.toInt() ?? (bestResult['PronunciationScore'] as num?)?.toInt() ?? 0;
-        final accuracyScore = (assessment?['AccuracyScore'] as num?)?.toInt() ?? (bestResult['AccuracyScore'] as num?)?.toInt() ?? 0;
-        final completenessScore = (assessment?['CompletenessScore'] as num?)?.toInt() ?? (bestResult['CompletenessScore'] as num?)?.toInt() ?? 0;
-        final fluencyScore = (assessment?['FluencyScore'] as num?)?.toInt() ?? (bestResult['FluencyScore'] as num?)?.toInt() ?? 0;
+
+        final pronScore = (assessment?['PronScore'] as num?)?.toInt() ??
+            (bestResult['PronunciationScore'] as num?)?.toInt() ??
+            0;
+        final accuracyScore = (assessment?['AccuracyScore'] as num?)?.toInt() ??
+            (bestResult['AccuracyScore'] as num?)?.toInt() ??
+            0;
+        final completenessScore =
+            (assessment?['CompletenessScore'] as num?)?.toInt() ??
+                (bestResult['CompletenessScore'] as num?)?.toInt() ??
+                0;
+        final fluencyScore = (assessment?['FluencyScore'] as num?)?.toInt() ??
+            (bestResult['FluencyScore'] as num?)?.toInt() ??
+            0;
 
         List<Map<String, dynamic>> mappedWords = [];
         double totalAccuracy = 0;
@@ -1453,27 +1690,36 @@ Respond ONLY in valid JSON format like:
         if (bestResult['Words'] != null) {
           for (var w in bestResult['Words']) {
             final wordText = w['Word'];
-            final wAccuracy = (w['PronunciationAssessment']?['AccuracyScore'] ?? w['AccuracyScore'] ?? 0).toDouble();
-            final wErrorType = w['PronunciationAssessment']?['ErrorType'] ?? w['ErrorType'] ?? 'None';
-            
+            final wAccuracy = (w['PronunciationAssessment']?['AccuracyScore'] ??
+                    w['AccuracyScore'] ??
+                    0)
+                .toDouble();
+            final wErrorType = w['PronunciationAssessment']?['ErrorType'] ??
+                w['ErrorType'] ??
+                'None';
+
             bool isCorrect = false;
             bool isPartial = false;
             bool isOmitted = (wErrorType == 'Omission');
 
             if (wErrorType == 'None') {
-                if (wAccuracy >= 80) isCorrect = true;
-                else if (wAccuracy >= 60) isPartial = true;
+              if (wAccuracy >= 80)
+                isCorrect = true;
+              else if (wAccuracy >= 60) isPartial = true;
             }
 
             if (!isOmitted && wErrorType != 'Insertion') {
-                totalAccuracy += wAccuracy;
-                evaluatedWords++;
+              totalAccuracy += wAccuracy;
+              evaluatedWords++;
             }
 
             String feedback = "";
-            if (wErrorType == 'Omission') feedback = "You missed this word.";
-            else if (wErrorType == 'Insertion') feedback = "Extra word added here.";
-            else if (wErrorType == 'Mispronunciation') feedback = "Pronunciation was inaccurate.";
+            if (wErrorType == 'Omission')
+              feedback = "You missed this word.";
+            else if (wErrorType == 'Insertion')
+              feedback = "Extra word added here.";
+            else if (wErrorType == 'Mispronunciation')
+              feedback = "Pronunciation was inaccurate.";
 
             // Extract phoneme sub-scores
             List<Map<String, dynamic>> phonemesList = [];
@@ -1481,7 +1727,9 @@ Respond ONLY in valid JSON format like:
               for (var p in w['Phonemes']) {
                 phonemesList.add({
                   'phoneme': p['Phoneme'],
-                  'accuracy': (p['PronunciationAssessment']?['AccuracyScore'] ?? 0).toDouble(),
+                  'accuracy':
+                      (p['PronunciationAssessment']?['AccuracyScore'] ?? 0)
+                          .toDouble(),
                 });
               }
             }
@@ -1498,19 +1746,26 @@ Respond ONLY in valid JSON format like:
             });
           }
         }
-        
+
         int fairScore = pronScore; // Fallback to Azure's score
         if (evaluatedWords > 0) {
-            fairScore = (totalAccuracy / evaluatedWords).round();
+          fairScore = (totalAccuracy / evaluatedWords).round();
         }
 
         String overallFeedback = "Good effort! Keep practicing.";
-        if (fairScore >= 90) overallFeedback = "Perfect pronunciation! Sounds like a native speaker.";
-        else if (fairScore >= 80) overallFeedback = "Great job! A few minor tone inaccuracies.";
-        else if (fairScore >= 60) overallFeedback = "Not bad, but your tones need some work.";
-        else overallFeedback = "Keep practicing! Listen to the native audio and try again.";
+        if (fairScore >= 90)
+          overallFeedback =
+              "Perfect pronunciation! Sounds like a native speaker.";
+        else if (fairScore >= 80)
+          overallFeedback = "Great job! A few minor tone inaccuracies.";
+        else if (fairScore >= 60)
+          overallFeedback = "Not bad, but your tones need some work.";
+        else
+          overallFeedback =
+              "Keep practicing! Listen to the native audio and try again.";
 
-        analytics.logApiUsage(apiName: 'azure_speech', feature: 'grade_audio', success: true);
+        analytics.logApiUsage(
+            apiName: 'azure_speech', feature: 'grade_audio', success: true);
         return {
           "score": fairScore,
           "accuracy": accuracyScore,
@@ -1527,7 +1782,8 @@ Respond ONLY in valid JSON format like:
     }
   }
 
-  Future<Map<String, dynamic>> gradeAudioUnscripted(List<int> audioBytes) async {
+  Future<Map<String, dynamic>> gradeAudioUnscripted(
+      List<int> audioBytes) async {
     final key = pool.azureSpeechKey;
     final region = pool.azureSpeechRegion;
 
@@ -1537,7 +1793,8 @@ Respond ONLY in valid JSON format like:
 
     // Azure Pronunciation Assessment parameters for UNSCRIPTED
     final Map<String, dynamic> params = {
-      "ReferenceText": "", // Empty reference text triggers unscripted assessment
+      "ReferenceText":
+          "", // Empty reference text triggers unscripted assessment
       "GradingSystem": "HundredMark",
       "Granularity": "Phoneme",
       "Dimension": "Comprehensive"
@@ -1546,7 +1803,8 @@ Respond ONLY in valid JSON format like:
     final String jsonParams = jsonEncode(params);
     final String base64Params = base64Encode(utf8.encode(jsonParams));
 
-    final String endpoint = 'https://$region.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?language=zh-CN';
+    final String endpoint =
+        'https://$region.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?language=zh-CN';
 
     final request = http.Request('POST', Uri.parse(endpoint));
     request.headers.addAll({
@@ -1555,34 +1813,71 @@ Respond ONLY in valid JSON format like:
       'Accept': 'application/json',
       'Pronunciation-Assessment': base64Params,
     });
-    
+
     List<int> finalBytes = audioBytes;
-    if (audioBytes.length > 4 && !(audioBytes[0] == 82 && audioBytes[1] == 73 && audioBytes[2] == 70 && audioBytes[3] == 70)) {
+    if (audioBytes.length > 4 &&
+        !(audioBytes[0] == 82 &&
+            audioBytes[1] == 73 &&
+            audioBytes[2] == 70 &&
+            audioBytes[3] == 70)) {
       final byteCount = audioBytes.length;
       final wavHeader = <int>[
-        82, 73, 70, 70,
-        (36 + byteCount) & 0xff, ((36 + byteCount) >> 8) & 0xff, ((36 + byteCount) >> 16) & 0xff, ((36 + byteCount) >> 24) & 0xff,
-        87, 65, 86, 69,
-        102, 109, 116, 32,
-        16, 0, 0, 0,
-        1, 0,
-        1, 0,
-        128, 62, 0, 0,
-        0, 125, 0, 0,
-        2, 0,
-        16, 0,
-        100, 97, 116, 97,
-        byteCount & 0xff, (byteCount >> 8) & 0xff, (byteCount >> 16) & 0xff, (byteCount >> 24) & 0xff,
+        82,
+        73,
+        70,
+        70,
+        (36 + byteCount) & 0xff,
+        ((36 + byteCount) >> 8) & 0xff,
+        ((36 + byteCount) >> 16) & 0xff,
+        ((36 + byteCount) >> 24) & 0xff,
+        87,
+        65,
+        86,
+        69,
+        102,
+        109,
+        116,
+        32,
+        16,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        128,
+        62,
+        0,
+        0,
+        0,
+        125,
+        0,
+        0,
+        2,
+        0,
+        16,
+        0,
+        100,
+        97,
+        116,
+        97,
+        byteCount & 0xff,
+        (byteCount >> 8) & 0xff,
+        (byteCount >> 16) & 0xff,
+        (byteCount >> 24) & 0xff,
       ];
       finalBytes = List<int>.from(wavHeader)..addAll(audioBytes);
     }
-    
+
     request.bodyBytes = finalBytes;
 
     try {
-      final response = await http.Client().send(request)
+      final response = await http.Client()
+          .send(request)
           .timeout(const Duration(seconds: 15));
-      final responseBody = await response.stream.bytesToString()
+      final responseBody = await response.stream
+          .bytesToString()
           .timeout(const Duration(seconds: 10));
 
       if (response.statusCode == 200) {
@@ -1600,12 +1895,15 @@ Respond ONLY in valid JSON format like:
         if (data['NBest'] == null || data['NBest'].isEmpty) {
           throw Exception("No NBest result found.");
         }
-        
+
         final bestResult = data['NBest'][0];
         final transcribedText = bestResult['Lexical'] ?? '';
-        final pronScore = (bestResult['PronunciationScore'] as num?)?.toInt() ?? 0;
-        final accuracyScore = (bestResult['AccuracyScore'] as num?)?.toInt() ?? 0;
-        final completenessScore = (bestResult['CompletenessScore'] as num?)?.toInt() ?? 0;
+        final pronScore =
+            (bestResult['PronunciationScore'] as num?)?.toInt() ?? 0;
+        final accuracyScore =
+            (bestResult['AccuracyScore'] as num?)?.toInt() ?? 0;
+        final completenessScore =
+            (bestResult['CompletenessScore'] as num?)?.toInt() ?? 0;
         final fluencyScore = (bestResult['FluencyScore'] as num?)?.toInt() ?? 0;
 
         List<Map<String, dynamic>> mappedWords = [];
@@ -1613,24 +1911,30 @@ Respond ONLY in valid JSON format like:
         if (bestResult['Words'] != null) {
           for (var w in bestResult['Words']) {
             final wordText = w['Word'];
-            final wAccuracy = w['PronunciationAssessment']?['AccuracyScore'] ?? 0;
-            final wErrorType = w['PronunciationAssessment']?['ErrorType'] ?? 'None';
-            
+            final wAccuracy =
+                w['PronunciationAssessment']?['AccuracyScore'] ?? 0;
+            final wErrorType =
+                w['PronunciationAssessment']?['ErrorType'] ?? 'None';
+
             bool isCorrect = wAccuracy >= 80 && wErrorType == 'None';
             bool isPartial = wAccuracy >= 60 && wAccuracy < 80;
             if (wErrorType != 'None') {
-                isCorrect = false;
-                isPartial = false;
+              isCorrect = false;
+              isPartial = false;
             }
 
             String feedback = "";
-            if (wErrorType == 'Omission') feedback = "You missed this word.";
-            else if (wErrorType == 'Insertion') feedback = "Extra word added here.";
-            else if (wErrorType == 'Mispronunciation') feedback = "Pronunciation was inaccurate. Score: ${wAccuracy.toStringAsFixed(0)}";
+            if (wErrorType == 'Omission')
+              feedback = "You missed this word.";
+            else if (wErrorType == 'Insertion')
+              feedback = "Extra word added here.";
+            else if (wErrorType == 'Mispronunciation')
+              feedback =
+                  "Pronunciation was inaccurate. Score: ${wAccuracy.toStringAsFixed(0)}";
 
             mappedWords.add({
               "word": wordText,
-              "pinyin": "", 
+              "pinyin": "",
               "isCorrect": isCorrect,
               "isPartial": isPartial,
               "feedback": feedback
@@ -1638,7 +1942,10 @@ Respond ONLY in valid JSON format like:
           }
         }
 
-        analytics.logApiUsage(apiName: 'azure_speech', feature: 'grade_audio_unscripted', success: true);
+        analytics.logApiUsage(
+            apiName: 'azure_speech',
+            feature: 'grade_audio_unscripted',
+            success: true);
         return {
           "text": transcribedText,
           "score": pronScore,
@@ -1651,12 +1958,16 @@ Respond ONLY in valid JSON format like:
         throw Exception("Azure Error ${response.statusCode}: $responseBody");
       }
     } catch (e) {
-      analytics.logApiUsage(apiName: 'azure_speech', feature: 'grade_audio_unscripted', success: false);
+      analytics.logApiUsage(
+          apiName: 'azure_speech',
+          feature: 'grade_audio_unscripted',
+          success: false);
       rethrow;
     }
   }
 
-  Future<Map<String, String>?> guessIntendedMeaning(String chatHistory, String transcribedText) async {
+  Future<Map<String, String>?> guessIntendedMeaning(
+      String chatHistory, String transcribedText) async {
     final prompt = '''
 You are a linguistic phonetic expert and Chinese conversational assistant.
 A Chinese language learner was speaking into the microphone, but their accent caused the speech-to-text to misinterpret what they said.
@@ -1684,13 +1995,17 @@ Return ONLY a valid JSON object matching this structure:
     try {
       final text = await makeOpenRouterCall(
         model: 'google/gemini-2.5-flash',
-        messages: [{'role': 'user', 'content': prompt}],
+        messages: [
+          {'role': 'user', 'content': prompt}
+        ],
         jsonMode: true,
       );
 
-      final cleanText = text.replaceAll(RegExp(r'^```json\n', multiLine: true), '').replaceAll(RegExp(r'^```\n?', multiLine: true), '');
+      final cleanText = text
+          .replaceAll(RegExp(r'^```json\n', multiLine: true), '')
+          .replaceAll(RegExp(r'^```\n?', multiLine: true), '');
       final Map<String, dynamic> jsonObj = jsonDecode(cleanText);
-      
+
       return {
         "intendedHanzi": jsonObj['intendedHanzi']?.toString() ?? "",
         "intendedPinyin": jsonObj['intendedPinyin']?.toString() ?? "",
@@ -1701,8 +2016,11 @@ Return ONLY a valid JSON object matching this structure:
     }
   }
 
-  Future<List<AiWord>> generatePreFlightVocab(String articleText, List<String> knownWords, String languageCode) async {
-    final textContent = articleText.length > 4000 ? articleText.substring(0, 4000) : articleText;
+  Future<List<AiWord>> generatePreFlightVocab(
+      String articleText, List<String> knownWords, String languageCode) async {
+    final textContent = articleText.length > 4000
+        ? articleText.substring(0, 4000)
+        : articleText;
     final knownWordsList = knownWords.join(', ');
 
     final prompt = '''
@@ -1721,17 +2039,26 @@ Return ONLY a valid JSON array of word objects:
 
     final text = await makeOpenRouterCall(
       model: 'google/gemini-2.5-flash',
-      messages: [{'role': 'user', 'content': prompt}],
+      messages: [
+        {'role': 'user', 'content': prompt}
+      ],
       jsonMode: true,
     );
 
-    final cleanText = text.replaceAll(RegExp(r'^```json\n', multiLine: true), '').replaceAll(RegExp(r'^```\n?', multiLine: true), '');
+    final cleanText = text
+        .replaceAll(RegExp(r'^```json\n', multiLine: true), '')
+        .replaceAll(RegExp(r'^```\n?', multiLine: true), '');
     final List<dynamic> jsonArr = jsonDecode(cleanText);
-    return jsonArr.map((i) => AiWord.fromJson(i as Map<String, dynamic>)).toList();
+    return jsonArr
+        .map((i) => AiWord.fromJson(i as Map<String, dynamic>))
+        .toList();
   }
 
-  Future<List<AiWord>> extractAllUnknownWords(String articleText, List<String> knownWords, String languageCode) async {
-    final textContent = articleText.length > 4000 ? articleText.substring(0, 4000) : articleText;
+  Future<List<AiWord>> extractAllUnknownWords(
+      String articleText, List<String> knownWords, String languageCode) async {
+    final textContent = articleText.length > 4000
+        ? articleText.substring(0, 4000)
+        : articleText;
     final knownWordsList = knownWords.join(', ');
 
     final prompt = '''
@@ -1752,22 +2079,30 @@ Return ONLY a valid JSON object matching this structure:
 
     final text = await makeOpenRouterCall(
       model: 'google/gemini-2.5-flash',
-      messages: [{'role': 'user', 'content': prompt}],
+      messages: [
+        {'role': 'user', 'content': prompt}
+      ],
       jsonMode: true,
     );
 
-    final cleanText = text.replaceAll(RegExp(r'^```json\n', multiLine: true), '').replaceAll(RegExp(r'^```\n?', multiLine: true), '');
+    final cleanText = text
+        .replaceAll(RegExp(r'^```json\n', multiLine: true), '')
+        .replaceAll(RegExp(r'^```\n?', multiLine: true), '');
     final Map<String, dynamic> jsonObj = jsonDecode(cleanText);
     final List<dynamic> wordsArr = jsonObj['words'] ?? [];
-    
-    return wordsArr.map((i) => AiWord.fromJson(i as Map<String, dynamic>)).toList();
+
+    return wordsArr
+        .map((i) => AiWord.fromJson(i as Map<String, dynamic>))
+        .toList();
   }
 
-  Future<List<TranscriptLine>> translateTranscriptLines(List<TranscriptLine> lines) async {
+  Future<List<TranscriptLine>> translateTranscriptLines(
+      List<TranscriptLine> lines) async {
     if (lines.isEmpty) return lines;
 
     // Detect if the text is Pinyin-based (Latin chars with diacritics) so we can store it.
-    final isPinyinBased = !lines.any((l) => RegExp(r'[\u4e00-\u9fff]').hasMatch(l.text));
+    final isPinyinBased =
+        !lines.any((l) => RegExp(r'[\u4e00-\u9fff]').hasMatch(l.text));
 
     // Process in chunks of 20 to avoid LLM token limits and parse failures.
     const chunkSize = 20;
@@ -1778,7 +2113,11 @@ Return ONLY a valid JSON object matching this structure:
       final chunk = lines.sublist(start, end);
 
       try {
-        final chunkText = chunk.asMap().entries.map((e) => '${e.key + 1}. ${e.value.text}').join('\n');
+        final chunkText = chunk
+            .asMap()
+            .entries
+            .map((e) => '${e.key + 1}. ${e.value.text}')
+            .join('\n');
         final prompt = '''
 You are a Chinese learning assistant.
 I will give you ${chunk.length} video transcript lines.
@@ -1798,7 +2137,9 @@ Return ONLY a valid JSON array:
 
         final response = await makeOpenRouterCall(
           model: 'google/gemini-2.5-flash',
-          messages: [{'role': 'user', 'content': prompt}],
+          messages: [
+            {'role': 'user', 'content': prompt}
+          ],
           jsonMode: true,
         );
 
@@ -1852,12 +2193,16 @@ Return ONLY a valid JSON array:
 
   /// Translates a single chunk of transcript lines (Pinyin → Hanzi + localized translation).
   /// Called incrementally by the screen to progressively update the UI.
-  Future<List<TranscriptLine>> translateChunk(List<TranscriptLine> chunk, {String? language}) async {
+  Future<List<TranscriptLine>> translateChunk(List<TranscriptLine> chunk,
+      {String? language}) async {
     if (chunk.isEmpty) return chunk;
 
-    final isPinyinBased = !chunk.any((l) => RegExp(r'[\u4e00-\u9fff]').hasMatch(l.text));
+    final isPinyinBased =
+        !chunk.any((l) => RegExp(r'[\u4e00-\u9fff]').hasMatch(l.text));
 
-    final chunkText = chunk.asMap().entries
+    final chunkText = chunk
+        .asMap()
+        .entries
         .map((e) => '${e.key + 1}. ${e.value.text}')
         .join('\n');
 
@@ -1880,7 +2225,9 @@ Return ONLY a valid JSON array:
 
     final response = await makeOpenRouterCall(
       model: 'google/gemini-2.5-flash',
-      messages: [{'role': 'user', 'content': prompt}],
+      messages: [
+        {'role': 'user', 'content': prompt}
+      ],
       jsonMode: true,
     );
 
@@ -1916,7 +2263,8 @@ Return ONLY a valid JSON array:
     return result;
   }
 
- Future<MediaBriefing> generateVideoBriefing(String title, List<TranscriptLine> lines) async {
+  Future<MediaBriefing> generateVideoBriefing(
+      String title, List<TranscriptLine> lines) async {
     final text = lines.map((l) => l.text).join('\n');
     final prompt = '''
 You are a Chinese learning assistant. Create a briefing for a video titled "$title".
@@ -1931,10 +2279,14 @@ Output JSON matching MediaBriefing format:
     ''';
     final response = await makeOpenRouterCall(
       model: 'google/gemini-2.5-flash',
-      messages: [{'role': 'user', 'content': prompt}],
+      messages: [
+        {'role': 'user', 'content': prompt}
+      ],
       jsonMode: true,
     );
-    final cleanText = response.replaceAll(RegExp(r'^```json\n', multiLine: true), '').replaceAll(RegExp(r'^```\n?', multiLine: true), '');
+    final cleanText = response
+        .replaceAll(RegExp(r'^```json\n', multiLine: true), '')
+        .replaceAll(RegExp(r'^```\n?', multiLine: true), '');
     return MediaBriefing.fromJson(jsonDecode(cleanText));
   }
 
@@ -1953,12 +2305,17 @@ Output JSON matching this exact structure:
     ''';
     final response = await makeOpenRouterCall(
       model: 'google/gemini-2.5-flash',
-      messages: [{'role': 'user', 'content': prompt}],
+      messages: [
+        {'role': 'user', 'content': prompt}
+      ],
       jsonMode: true,
     );
-    final cleanText = response.replaceAll(RegExp(r'^```json\n', multiLine: true), '').replaceAll(RegExp(r'^```\n?', multiLine: true), '');
+    final cleanText = response
+        .replaceAll(RegExp(r'^```json\n', multiLine: true), '')
+        .replaceAll(RegExp(r'^```\n?', multiLine: true), '');
     return AiSentence.fromJson(jsonDecode(cleanText));
   }
+
   Future<String> explainInContext(String hanzi, String contextText) async {
     final prompt = '''
 You are a Chinese learning assistant. A student encountered the word "$hanzi" in the following context:
@@ -1969,14 +2326,17 @@ Explain the meaning of "$hanzi" specifically in this context. Keep the explanati
 
     final text = await makeOpenRouterCall(
       model: 'google/gemini-2.5-flash',
-      messages: [{'role': 'user', 'content': prompt}],
+      messages: [
+        {'role': 'user', 'content': prompt}
+      ],
       jsonMode: false,
     );
 
     return text.trim();
   }
 
-  Future<ArticleInsight> generateArticleInsight(String text, List<String> knownWords, String languageCode) async {
+  Future<ArticleInsight> generateArticleInsight(
+      String text, List<String> knownWords, String languageCode) async {
     final prompt = '''
 You are a Chinese learning assistant. Analyze the following Chinese article for a language learner.
 The learner knows these words (or a subset of them): ${knownWords.take(500).join(", ")}.
@@ -2001,11 +2361,15 @@ Output JSON matching this exact structure:
 
     final response = await makeOpenRouterCall(
       model: 'google/gemini-2.5-flash',
-      messages: [{'role': 'user', 'content': prompt}],
+      messages: [
+        {'role': 'user', 'content': prompt}
+      ],
       jsonMode: true,
     );
 
-    final cleanText = response.replaceAll(RegExp(r'^```json\n', multiLine: true), '').replaceAll(RegExp(r'^```\n?', multiLine: true), '');
+    final cleanText = response
+        .replaceAll(RegExp(r'^```json\n', multiLine: true), '')
+        .replaceAll(RegExp(r'^```\n?', multiLine: true), '');
     return ArticleInsight.fromJson(jsonDecode(cleanText));
   }
 
@@ -2043,23 +2407,31 @@ Output JSON matching this exact structure:
 
     final response = await makeOpenRouterCall(
       model: 'google/gemini-2.5-flash',
-      messages: [{'role': 'user', 'content': prompt}],
+      messages: [
+        {'role': 'user', 'content': prompt}
+      ],
       jsonMode: true,
     );
 
-    final cleanText = response.replaceAll(RegExp(r'^```json\n', multiLine: true), '').replaceAll(RegExp(r'^```\n?', multiLine: true), '');
+    final cleanText = response
+        .replaceAll(RegExp(r'^```json\n', multiLine: true), '')
+        .replaceAll(RegExp(r'^```\n?', multiLine: true), '');
     final json = jsonDecode(cleanText);
-    
-    final words = (json['words'] as List<dynamic>).map((w) => AiWord.fromJson(w as Map<String, dynamic>)).toList();
-    
+
+    final words = (json['words'] as List<dynamic>)
+        .map((w) => AiWord.fromJson(w as Map<String, dynamic>))
+        .toList();
+
     return {
-      'fullTranslation': json['fullTranslation'] as String? ?? 'No translation available.',
+      'fullTranslation':
+          json['fullTranslation'] as String? ?? 'No translation available.',
       'deckName': json['deckName'] as String? ?? 'Scan Results',
       'words': words,
     };
   }
 
-  Future<String> generateDetailedSummary(String title, String fullText, String targetLanguage) async {
+  Future<String> generateDetailedSummary(
+      String title, String fullText, String targetLanguage) async {
     final cacheKey = 'detailed_summary_$title';
     final box = Hive.box<String>('ai_cache');
     if (box.containsKey(cacheKey)) {
@@ -2091,7 +2463,11 @@ Return ONLY the summary text, no markdown formatting, no JSON, no backticks.
       final responseText = await makeOpenRouterCall(
         model: 'google/gemini-2.5-flash',
         messages: [
-          {'role': 'system', 'content': 'You are a Chinese classical literature expert providing detailed accessible summaries of classical Chinese poetry.'},
+          {
+            'role': 'system',
+            'content':
+                'You are a Chinese classical literature expert providing detailed accessible summaries of classical Chinese poetry.'
+          },
           {'role': 'user', 'content': prompt}
         ],
       );
@@ -2105,13 +2481,15 @@ Return ONLY the summary text, no markdown formatting, no JSON, no backticks.
     }
   }
 
-  Future<CulturalInsight> generateCulturalInsight(String storyTitle, String storyContent) async {
+  Future<CulturalInsight> generateCulturalInsight(
+      String storyTitle, String storyContent) async {
     final cacheKey = 'cultural_insight_$storyTitle';
     final box = Hive.box<String>('ai_cache');
     if (box.containsKey(cacheKey)) {
       try {
         final cachedData = jsonDecode(box.get(cacheKey)!);
-        if (cachedData is Map<String, dynamic> && cachedData.containsKey('historicalContext')) {
+        if (cachedData is Map<String, dynamic> &&
+            cachedData.containsKey('historicalContext')) {
           return CulturalInsight.fromJson(cachedData);
         }
       } catch (e) {
@@ -2141,16 +2519,21 @@ No markdown formatting, no backticks, just raw JSON.
       final responseText = await makeOpenRouterCall(
         model: 'google/gemini-2.5-flash',
         messages: [
-          {'role': 'system', 'content': 'You are a Chinese culture and literature expert. Provide highly engaging, beautifully written cultural insights.'},
+          {
+            'role': 'system',
+            'content':
+                'You are a Chinese culture and literature expert. Provide highly engaging, beautifully written cultural insights.'
+          },
           {'role': 'user', 'content': prompt}
         ],
         jsonMode: true,
       );
 
-      var text = responseText.replaceAll('```json', '').replaceAll('```', '').trim();
+      var text =
+          responseText.replaceAll('```json', '').replaceAll('```', '').trim();
       final decoded = jsonDecode(text);
       box.put(cacheKey, jsonEncode(decoded));
-      
+
       return CulturalInsight.fromJson(decoded);
     } catch (e, st) {
       debugPrint('Error generating cultural insight: $e\\n$st');
