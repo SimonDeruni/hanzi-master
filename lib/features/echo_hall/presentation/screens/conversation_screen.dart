@@ -8,6 +8,7 @@ import '../widgets/pronunciation_report_sheet.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/shared/widgets/tappable_hanzi_text.dart';
+import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
 import 'package:hanzi_master/core/services/audio_service.dart';
 import 'package:hanzi_master/core/services/saved_scenarios_service.dart';
 
@@ -232,6 +233,15 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
 
   final TextEditingController _textController = TextEditingController();
 
+  void _handleSubmitted() {
+    final val = _textController.text;
+    if (val.trim().isNotEmpty) {
+      FocusScope.of(context).unfocus();
+      ref.read(conversationControllerProvider.notifier).sendMessage(val);
+      _textController.clear();
+    }
+  }
+
   Widget _buildInputArea(ConversationState state, ThemeData theme) {
     return Container(
       color: theme.colorScheme.surface,
@@ -252,28 +262,19 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
                   child: Row(
                     children: [
                       Expanded(
-                        child: TextField(
+                        child: HanziTextField(
                           controller: _textController,
-                          enabled: !state.isProcessing,
                           style: theme.textTheme.bodyLarge,
                           maxLines: 4,
-                          minLines: 1,
                           decoration: InputDecoration(
                             hintText: state.isProcessing ? "Thinking..." : (state.isRecording ? "Listening..." : "Type your message..."),
                             hintStyle: theme.textTheme.bodyMedium?.copyWith(
                               color: theme.colorScheme.onSurface.withValues(alpha: 0.4),
                             ),
                             border: InputBorder.none,
-                            contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                            contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                           ),
-                          onSubmitted: (val) {
-                            if (val.trim().isNotEmpty) {
-                              FocusScope.of(context).unfocus();
-                              // We need a sendMessage method in ConversationController
-                              ref.read(conversationControllerProvider.notifier).sendMessage(val);
-                              _textController.clear();
-                            }
-                          },
+                          onSubmitted: (_) => _handleSubmitted(),
                         ),
                       ),
                     ],

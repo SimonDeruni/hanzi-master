@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import '../../data/repositories/show_repository.dart';
 import '../../../../shared/routes/swipe_back_route.dart';
+import '../../../../core/presentation/widgets/hanzi_text_field.dart';
 import 'show_detail_screen.dart';
 import '../providers/show_progress_provider.dart';
 
@@ -111,7 +112,7 @@ class _ShowCatalogScreenState extends ConsumerState<ShowCatalogScreen> {
               // Search Bar
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-                child: TextField(
+                child: HanziTextField(
                   controller: _searchController,
                   style: const TextStyle(color: Colors.white),
                   decoration: InputDecoration(

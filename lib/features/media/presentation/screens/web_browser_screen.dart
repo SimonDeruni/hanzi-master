@@ -15,6 +15,8 @@ import 'package:hanzi_master/features/flashcards/domain/entities/deck.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/deck_selection_sheet.dart';
 import 'package:hanzi_master/features/media/domain/models/saved_article.dart';
+import 'package:hanzi_master/features/media/domain/entities/learning_material.dart';
+import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
 import 'package:hive/hive.dart';
 import 'package:hanzi_master/features/media/presentation/screens/simplified_article_reader_screen.dart';
 import 'package:hanzi_master/features/premium/presentation/screens/universal_scanner_screen.dart';
@@ -1120,14 +1122,13 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
             borderRadius: BorderRadius.circular(20),
           ),
           padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: TextField(
+          child: HanziTextField(
             controller: _urlController,
             decoration: const InputDecoration(
               hintText: 'Search or enter website name',
               border: InputBorder.none,
               icon: Icon(Icons.search, size: 20),
             ),
-            keyboardType: TextInputType.url,
             textInputAction: TextInputAction.go,
             onSubmitted: (url) {
               if (!url.startsWith('http')) {
