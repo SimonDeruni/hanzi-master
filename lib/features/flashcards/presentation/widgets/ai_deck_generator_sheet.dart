@@ -1,5 +1,6 @@
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
+import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/core/providers.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
@@ -125,7 +126,7 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 12),
-            TextField(
+            HanziTextField(
               controller: _topicController,
               decoration: InputDecoration(
                 hintText: "e.g., Ordering at a restaurant, Business vocab...",
@@ -183,7 +184,7 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 12),
-            TextField(
+            HanziTextField(
               controller: _contextController,
               decoration: InputDecoration(
                 hintText: "e.g., Formal business language, slang for texting...",
@@ -210,7 +211,7 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
                 SizedBox(
                   width: 70,
                   height: 36,
-                  child: TextField(
+                  child: HanziTextField(
                     controller: _countController,
                     keyboardType: TextInputType.number,
                     textAlign: TextAlign.center,

@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/core/services/speech_service.dart';
 import 'package:hive/hive.dart';
@@ -285,7 +286,7 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 24),
-                    child: TextField(
+                    child: HanziTextField(
                       controller: controller,
                       autofocus: true,
                       maxLines: null,
@@ -807,7 +808,7 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                       if (_isSideAKeyboardMode)
                         Padding(
                           padding: const EdgeInsets.only(top: 8.0),
-                          child: TextField(
+                          child: HanziTextField(
                             controller: _sideATextController,
                             style: TextStyle(color: isDark ? Colors.white : Colors.black, fontSize: 18),
                             decoration: InputDecoration(

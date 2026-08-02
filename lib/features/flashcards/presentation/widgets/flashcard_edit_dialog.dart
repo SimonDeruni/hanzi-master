@@ -1,6 +1,7 @@
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
@@ -143,7 +144,7 @@ class _FlashcardEditDialogState extends ConsumerState<FlashcardEditDialog> {
               style: TextStyle(fontSize: 13, color: textColor.withValues(alpha: 0.6)),
             ),
             const SizedBox(height: 24),
-            TextField(
+            HanziTextField(
               controller: _hanziController,
               decoration: const InputDecoration(
                 labelText: "Character / Word",
@@ -152,7 +153,7 @@ class _FlashcardEditDialogState extends ConsumerState<FlashcardEditDialog> {
               style: TextStyle(color: textColor, fontFamily: 'NotoSerifSC', fontSize: 24),
             ),
             const SizedBox(height: 16),
-            TextField(
+            HanziTextField(
               controller: _pinyinController,
               decoration: const InputDecoration(
                 labelText: "Pinyin",
@@ -161,7 +162,7 @@ class _FlashcardEditDialogState extends ConsumerState<FlashcardEditDialog> {
               style: TextStyle(color: textColor),
             ),
             const SizedBox(height: 16),
-            TextField(
+            HanziTextField(
               controller: _definitionController,
               decoration: const InputDecoration(
                 labelText: "Definition",

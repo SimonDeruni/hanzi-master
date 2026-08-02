@@ -1,5 +1,6 @@
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
+import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ContactScreen extends StatefulWidget {
@@ -154,7 +155,7 @@ class _ContactScreenState extends State<ContactScreen> {
                         ),
                       ],
                     ),
-                    child: TextField(
+                    child: HanziTextField(
                       controller: _messageController,
                       focusNode: _focusNode,
                       maxLines: null,

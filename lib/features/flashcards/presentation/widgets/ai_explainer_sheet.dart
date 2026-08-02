@@ -1,5 +1,6 @@
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
+import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:hanzi_master/shared/widgets/tappable_hanzi_text.dart';
@@ -404,7 +405,7 @@ class _AiExplainerSheetState extends ConsumerState<AiExplainerSheet> {
       child: Row(
         children: [
           Expanded(
-            child: TextField(
+            child: HanziTextField(
               controller: _textController,
               decoration: InputDecoration(
                 hintText: "Ask a follow-up question...",

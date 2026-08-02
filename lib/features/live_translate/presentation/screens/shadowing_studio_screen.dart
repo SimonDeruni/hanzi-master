@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:record/record.dart';
@@ -566,7 +567,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
         return AlertDialog(
           backgroundColor: isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
           title: Text("New Deck Name", style: TextStyle(color: isDark ? Colors.white : Colors.black)),
-          content: TextField(
+          content: HanziTextField(
             controller: controller,
             style: TextStyle(color: isDark ? Colors.white : Colors.black),
             decoration: InputDecoration(
@@ -785,7 +786,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen> w
                               },
                               onSelected: (String selection) => setState(() => _customWordInput = selection),
                               fieldViewBuilder: (context, textEditingController, focusNode, onFieldSubmitted) {
-                                return TextField(
+                                return HanziTextField(
                                   controller: textEditingController,
                                   focusNode: focusNode,
                                   decoration: InputDecoration(

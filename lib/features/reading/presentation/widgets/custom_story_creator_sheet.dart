@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import '../providers/story_controller.dart';
@@ -200,7 +201,7 @@ class _CustomStoryCreatorSheetState extends ConsumerState<CustomStoryCreatorShee
                 // Tab 1
                 Column(
                   children: [
-                    TextField(
+                    HanziTextField(
                       controller: _topicController,
                       decoration: InputDecoration(
                         labelText: AppLocalizations.of(context)!.topicHint,
@@ -208,7 +209,7 @@ class _CustomStoryCreatorSheetState extends ConsumerState<CustomStoryCreatorShee
                       ),
                     ),
                     const SizedBox(height: 12),
-                    TextField(
+                    HanziTextField(
                       controller: _tagsController,
                       decoration: InputDecoration(
                         labelText: AppLocalizations.of(context)!.tagsHint,
@@ -220,7 +221,7 @@ class _CustomStoryCreatorSheetState extends ConsumerState<CustomStoryCreatorShee
                 // Tab 2
                 Stack(
                   children: [
-                    TextField(
+                    HanziTextField(
                       controller: _textToSimplifyController,
                       maxLines: 6,
                       decoration: InputDecoration(

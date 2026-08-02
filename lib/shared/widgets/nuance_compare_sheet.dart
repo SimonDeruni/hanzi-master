@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:hanzi_master/shared/widgets/global_blurred_bottom_sheet.dart';
@@ -610,7 +611,7 @@ class _NuanceCompareSheetState extends ConsumerState<NuanceCompareSheet> {
               child: Row(
                 children: [
                   Expanded(
-                    child: TextField(
+                    child: HanziTextField(
                       controller: _chatController,
                       decoration: InputDecoration(
                         hintText: 'Ask a follow-up...',

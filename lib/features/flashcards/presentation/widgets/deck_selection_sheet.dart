@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
@@ -93,7 +94,7 @@ class DeckSelectionSheet extends ConsumerWidget {
       context: context,
       builder: (ctx) => AlertDialog(
         title: const Text("New Deck"),
-        content: TextField(
+        content: HanziTextField(
           controller: controller,
           decoration: const InputDecoration(hintText: "Deck Name"),
           autofocus: true,

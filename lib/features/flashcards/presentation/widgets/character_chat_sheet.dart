@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:hanzi_master/core/utils/pinyin_utils.dart';
@@ -504,7 +505,7 @@ class _CharacterChatSheetState extends ConsumerState<CharacterChatSheet> {
               child: Row(
                 children: [
                   Expanded(
-                    child: TextField(
+                    child: HanziTextField(
                       controller: _textController,
                       style: TextStyle(fontSize: 14.5, color: textColor),
                       decoration: InputDecoration(
