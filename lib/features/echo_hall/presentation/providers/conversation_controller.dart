@@ -4,7 +4,7 @@ import '../../domain/entities/scenario.dart';
 import '../../../../core/services/echo_hall_service.dart';
 import '../../../../core/services/audio_recording_service.dart';
 import '../../../../core/services/gemini_service.dart';
-import '../../../../core/models/pronunciation_grade.dart';
+import 'package:hanzi_master/core/models/pronunciation_grade.dart';
 import '../../../chat/domain/entities/chat_message.dart';
 import '../../../../core/utils/pinyin_utils.dart';
 

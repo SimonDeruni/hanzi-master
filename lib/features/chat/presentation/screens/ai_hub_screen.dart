@@ -30,95 +30,102 @@ class AiHubScreen extends ConsumerWidget {
             ),
 
             // Feature Rows
-            SliverToBoxAdapter(
+            SliverFillRemaining(
+              hasScrollBody: false,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24.0),
                 child: Column(
                   children: [
                     const SizedBox(height: 24),
                     // Row 1: AI Scenarios & Web Explorer
-                    Row(
-                      children: [
-                        Expanded(
-                          child: _buildListActionCard(
-                            context: context,
-                            title: "Roleplay",
-                            subtitle: "AI avatars",
-                            icon: Icons.auto_awesome,
-                            gradientColors: const [Color(0xFF311B92), Color(0xFF512DA8)],
-                            onTap: () {
-                              HapticsManager.medium();
-                              if (context.mounted) {
-                                Navigator.push(
-                                  context,
-                                  SwipeBackPageRoute(
-                                      builder: (_) => const ScenarioSelectionScreen()),
-                                );
-                              }
-                            },
+                    Expanded(
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Expanded(
+                            child: _buildListActionCard(
+                              context: context,
+                              title: "Roleplay",
+                              subtitle: "AI avatars",
+                              icon: Icons.auto_awesome,
+                              gradientColors: const [Color(0xFF311B92), Color(0xFF512DA8)],
+                              onTap: () {
+                                HapticsManager.medium();
+                                if (context.mounted) {
+                                  Navigator.push(
+                                    context,
+                                    SwipeBackPageRoute(
+                                        builder: (_) => const ScenarioSelectionScreen()),
+                                  );
+                                }
+                              },
+                            ),
                           ),
-                        ),
-                        const SizedBox(width: 16),
-                        Expanded(
-                          child: _buildListActionCard(
-                            context: context,
-                            title: "Web Explorer",
-                            subtitle: "Read the web",
-                            icon: Icons.language,
-                            gradientColors: const [Color(0xFF0D47A1), Color(0xFF1976D2)],
-                            onTap: () {
-                              HapticsManager.medium();
-                              if (context.mounted) {
-                                Navigator.push(
-                                  context,
-                                  SwipeBackPageRoute(builder: (_) => const MediaHubScreen()),
-                                );
-                              }
-                            },
+                          const SizedBox(width: 16),
+                          Expanded(
+                            child: _buildListActionCard(
+                              context: context,
+                              title: "Web Explorer",
+                              subtitle: "Read the web",
+                              icon: Icons.language,
+                              gradientColors: const [Color(0xFF0D47A1), Color(0xFF1976D2)],
+                              onTap: () {
+                                HapticsManager.medium();
+                                if (context.mounted) {
+                                  Navigator.push(
+                                    context,
+                                    SwipeBackPageRoute(builder: (_) => const MediaHubScreen()),
+                                  );
+                                }
+                              },
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                     const SizedBox(height: 16),
                     // Row 2: Reading Room & Shadowing
-                    Row(
-                      children: [
-                        Expanded(
-                          child: _buildListActionCard(
-                            context: context,
-                            title: "Reading Room",
-                            subtitle: "Classic literature",
-                            icon: Icons.auto_stories,
-                            gradientColors: const [Color(0xFF8B5E3C), Color(0xFFC4863A)],
-                            onTap: () {
-                              HapticsManager.medium();
-                              if (context.mounted) {
+                    Expanded(
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Expanded(
+                            child: _buildListActionCard(
+                              context: context,
+                              title: "Reading Room",
+                              subtitle: "Classic literature",
+                              icon: Icons.auto_stories,
+                              gradientColors: const [Color(0xFF8B5E3C), Color(0xFFC4863A)],
+                              onTap: () {
+                                HapticsManager.medium();
+                                if (context.mounted) {
+                                  Navigator.push(
+                                    context,
+                                    SwipeBackPageRoute(builder: (_) => const StoryLibraryScreen()),
+                                  );
+                                }
+                              },
+                            ),
+                          ),
+                          const SizedBox(width: 16),
+                          Expanded(
+                            child: _buildListActionCard(
+                              context: context,
+                              title: "Shadowing",
+                              subtitle: "Perfect pronunciation",
+                              icon: Icons.mic,
+                              gradientColors: const [Color(0xFF1A4A4A), Color(0xFF2A7070)],
+                              onTap: () {
+                                HapticsManager.medium();
                                 Navigator.push(
                                   context,
-                                  SwipeBackPageRoute(builder: (_) => const StoryLibraryScreen()),
+                                  SwipeBackPageRoute(builder: (_) => const ShadowingStudioScreen()),
                                 );
-                              }
-                            },
+                              },
+                            ),
                           ),
-                        ),
-                        const SizedBox(width: 16),
-                        Expanded(
-                          child: _buildListActionCard(
-                            context: context,
-                            title: "Shadowing",
-                            subtitle: "Perfect pronunciation",
-                            icon: Icons.mic,
-                            gradientColors: const [Color(0xFF1A4A4A), Color(0xFF2A7070)],
-                            onTap: () {
-                              HapticsManager.medium();
-                              Navigator.push(
-                                context,
-                                SwipeBackPageRoute(builder: (_) => const ShadowingStudioScreen()),
-                              );
-                            },
-                          ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                     const SizedBox(height: 24),
                   ],
@@ -144,7 +151,8 @@ class AiHubScreen extends ConsumerWidget {
       scaleFactor: 0.96,
       onPressed: onTap,
       child: Container(
-        height: 160,
+        height: double.infinity,
+        width: double.infinity,
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topLeft,

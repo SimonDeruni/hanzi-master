@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../domain/entities/scenario.dart';
 import '../providers/conversation_controller.dart';
-import '../../../../core/models/pronunciation_grade.dart';
+import 'package:hanzi_master/core/models/pronunciation_grade.dart';
 import '../../../chat/domain/entities/chat_message.dart';
 import '../widgets/pronunciation_report_sheet.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../../core/models/pronunciation_grade.dart';
+import 'package:hanzi_master/core/models/pronunciation_grade.dart';
 import '../../../../core/services/audio_service.dart';
 import '../../../../core/services/gemini_service.dart';
 import '../../../chat/domain/entities/chat_message.dart';

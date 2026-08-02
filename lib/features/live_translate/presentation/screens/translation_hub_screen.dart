@@ -31,41 +31,45 @@ class TranslationHubScreen extends StatelessWidget {
             const SliverToBoxAdapter(child: SizedBox(height: 32)),
 
             // Cards
-            SliverToBoxAdapter(
+            SliverFillRemaining(
+              hasScrollBody: false,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24.0),
                 child: Column(
                   children: [
-                    Row(
-                      children: [
-                        Expanded(
-                          child: _buildListActionCard(
-                            context: context,
-                            title: l10n?.travelInterpreter ?? "Travel Interpreter",
-                            subtitle: "Real-time split-screen",
-                            icon: Icons.people_outline,
-                            gradientColors: const [Color(0xFF2E7D32), Color(0xFF4CAF50)], // Green gradient
-                            onTap: () {
-                              HapticsManager.medium();
-                              Navigator.push(context, SwipeBackPageRoute(builder: (_) => const TravelInterpreterScreen()));
-                            },
+                    Expanded(
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Expanded(
+                            child: _buildListActionCard(
+                              context: context,
+                              title: l10n?.travelInterpreter ?? "Travel Interpreter",
+                              subtitle: "Real-time split-screen",
+                              icon: Icons.people_outline,
+                              gradientColors: const [Color(0xFF2E7D32), Color(0xFF4CAF50)], // Green gradient
+                              onTap: () {
+                                HapticsManager.medium();
+                                Navigator.push(context, SwipeBackPageRoute(builder: (_) => const TravelInterpreterScreen()));
+                              },
+                            ),
                           ),
-                        ),
-                        const SizedBox(width: 16),
-                        Expanded(
-                          child: _buildListActionCard(
-                            context: context,
-                            title: "Universal Scanner",
-                            subtitle: "Extract & translate",
-                            icon: Icons.document_scanner_outlined,
-                            gradientColors: const [Color(0xFFE65100), Color(0xFFFF9800)], // Orange gradient
-                            onTap: () {
-                              HapticsManager.medium();
-                              Navigator.push(context, SwipeBackPageRoute(builder: (_) => const UniversalScannerScreen(intent: CameraIntent.translationHub)));
-                            },
+                          const SizedBox(width: 16),
+                          Expanded(
+                            child: _buildListActionCard(
+                              context: context,
+                              title: "Universal Scanner",
+                              subtitle: "Extract & translate",
+                              icon: Icons.document_scanner_outlined,
+                              gradientColors: const [Color(0xFFE65100), Color(0xFFFF9800)], // Orange gradient
+                              onTap: () {
+                                HapticsManager.medium();
+                                Navigator.push(context, SwipeBackPageRoute(builder: (_) => const UniversalScannerScreen(intent: CameraIntent.translationHub)));
+                              },
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                     const SizedBox(height: 48),
                   ],
@@ -91,7 +95,8 @@ class TranslationHubScreen extends StatelessWidget {
       scaleFactor: 0.96,
       onPressed: onTap,
       child: Container(
-        height: 160,
+        height: double.infinity,
+        width: double.infinity,
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topLeft,
