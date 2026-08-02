@@ -169,7 +169,8 @@ class CharacterLoader {
 
   /// Samples points along a path asynchronously in a background isolate.
   static Future<List<Offset>> samplePointsAsync(Path path, {double interval = 5.0}) async {
-    return compute(_samplePointsWorker, _SampleParams(path, interval));
+    // Cannot send dart:ui Path across isolates, so run synchronously in a Future
+    return Future.microtask(() => samplePoints(path, interval: interval));
   }
 
   /// Parses SVG paths and samples points asynchronously in a background isolate.

@@ -426,7 +426,7 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
     );
   }
 
-  Widget _buildStatusBar() {
+  Widget _buildStatusBar(bool isDark) {
     return Positioned(
       bottom: 0,
       left: 0,
@@ -437,9 +437,9 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
             decoration: BoxDecoration(
-              color: Colors.black.withValues(alpha: 0.8),
+              color: isDark ? Colors.black.withValues(alpha: 0.8) : Colors.white.withValues(alpha: 0.95),
               borderRadius: BorderRadius.circular(40),
-              border: Border.all(color: Colors.white.withValues(alpha: 0.15)),
+              border: Border.all(color: isDark ? Colors.white.withValues(alpha: 0.15) : Colors.black.withValues(alpha: 0.1)),
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -449,6 +449,7 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                   sideId: 'b',
                   label: 'Partner',
                   isActive: _recordingSide == 'b',
+                  isDark: isDark,
                 ),
                 // Status text
                 Expanded(
@@ -459,7 +460,7 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                         _status,
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          color: _hasError ? Colors.redAccent : Colors.white70,
+                          color: _hasError ? Colors.redAccent : (isDark ? Colors.white70 : Colors.black87),
                           fontSize: 12,
                           fontWeight: FontWeight.w500,
                         ),
@@ -472,7 +473,7 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                             height: 16,
                             child: CircularProgressIndicator(
                               strokeWidth: 2,
-                              color: Colors.white54,
+                              color: isDark ? Colors.white54 : Colors.black54,
                             ),
                           ),
                         ),
@@ -484,6 +485,7 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                   sideId: 'a',
                   label: 'You',
                   isActive: _recordingSide == 'a',
+                  isDark: isDark,
                 ),
               ],
             ),
@@ -497,6 +499,7 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
     required String sideId,
     required String label,
     required bool isActive,
+    required bool isDark,
   }) {
     return GestureDetector(
       onTapDown: (_) {
@@ -513,7 +516,9 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
         height: 56,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          color: isActive ? Colors.redAccent : Colors.white.withValues(alpha: 0.15),
+          color: isActive 
+              ? Colors.redAccent 
+              : (isDark ? Colors.white.withValues(alpha: 0.15) : Colors.black.withValues(alpha: 0.05)),
           boxShadow: isActive
               ? [
                   BoxShadow(
@@ -529,13 +534,13 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
           children: [
             Icon(
               Icons.mic,
-              color: isActive ? Colors.white : Colors.white70,
+              color: isActive ? Colors.white : (isDark ? Colors.white70 : Colors.black54),
               size: 24,
             ),
             Text(
               label,
               style: TextStyle(
-                color: isActive ? Colors.white : Colors.white54,
+                color: isActive ? Colors.white : (isDark ? Colors.white54 : Colors.black87),
                 fontSize: 9,
                 fontWeight: FontWeight.w600,
               ),
@@ -555,7 +560,7 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
     }
 
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: isDark ? Colors.black : const Color(0xFFFDFCF0),
       body: Stack(
         alignment: Alignment.center,
         children: [
@@ -567,7 +572,9 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                   quarterTurns: 2,
                   child: AnimatedContainer(
                     duration: const Duration(milliseconds: 500),
-                    color: _recordingSide != null ? const Color(0xFF3E1F1F) : const Color(0xFF1E1313),
+                    color: isDark 
+                        ? (_recordingSide != null ? const Color(0xFF3E1F1F) : const Color(0xFF1E1313))
+                        : (_recordingSide != null ? const Color(0xFFFDE8E8) : const Color(0xFFFDFCF0)),
                     width: double.infinity,
                     padding: const EdgeInsets.only(left: 24, right: 24, bottom: 24, top: 64),
                     child: Column(
@@ -582,9 +589,9 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                                 DropdownButtonHideUnderline(
                                   child: DropdownButton<String>(
                                     value: _sideBLanguage,
-                                    icon: const Icon(Icons.language, color: Colors.white70),
-                                    dropdownColor: Colors.grey[900],
-                                    style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+                                    icon: Icon(Icons.language, color: isDark ? Colors.white70 : Colors.black87),
+                                    dropdownColor: isDark ? Colors.grey[900] : Colors.white,
+                                    style: TextStyle(color: isDark ? Colors.white : Colors.black, fontSize: 18, fontWeight: FontWeight.bold),
                                     items: supportedPartnerLanguages.map((lang) => DropdownMenuItem(value: lang, child: Text("Partner ($lang)"))).toList(),
                                     onChanged: (val) {
                                       if (val != null) setState(() => _sideBLanguage = val);
@@ -596,7 +603,7 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                                 IconButton(
                                   icon: Icon(
                                     Icons.keyboard,
-                                    color: Colors.white54,
+                                    color: isDark ? Colors.white54 : Colors.black54,
                                     size: 20,
                                   ),
                                   onPressed: () {
@@ -632,13 +639,15 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                                   children: [
                                     Text(
                                       isFromSideB ? 'Partner (${msg.language})' : 'You (${msg.language})',
-                                      style: const TextStyle(color: Colors.white38, fontSize: 11, fontWeight: FontWeight.w600),
+                                      style: TextStyle(color: isDark ? Colors.white38 : Colors.black38, fontSize: 11, fontWeight: FontWeight.w600),
                                     ),
                                     const SizedBox(height: 4),
                                     Container(
                                       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
                                       decoration: BoxDecoration(
-                                        color: isFromSideB ? Colors.blue.withValues(alpha: 0.1) : Colors.grey.withValues(alpha: 0.1),
+                                        color: isFromSideB 
+                                            ? (isDark ? Colors.blue.withValues(alpha: 0.1) : Colors.blue.withValues(alpha: 0.05)) 
+                                            : (isDark ? Colors.grey.withValues(alpha: 0.1) : Colors.grey.withValues(alpha: 0.05)),
                                         borderRadius: BorderRadius.only(
                                           topLeft: const Radius.circular(24),
                                           topRight: const Radius.circular(24),
@@ -650,7 +659,9 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                                       child: TappableMarkdownHanziText(
                                         msg.text,
                                         style: TextStyle(
-                                          color: isFromSideB ? Colors.blue.shade200 : Colors.white,
+                                          color: isFromSideB 
+                                              ? (isDark ? Colors.blue.shade200 : Colors.blue.shade800) 
+                                              : (isDark ? Colors.white : Colors.black87),
                                           fontSize: 24,
                                           fontWeight: FontWeight.w500,
                                         ),
@@ -672,7 +683,9 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
               Expanded(
                 child: AnimatedContainer(
                   duration: const Duration(milliseconds: 500),
-                  color: _recordingSide != null ? const Color(0xFF152A3B) : const Color(0xFF121A20),
+                  color: isDark 
+                      ? (_recordingSide != null ? const Color(0xFF152A3B) : const Color(0xFF121A20))
+                      : (_recordingSide != null ? const Color(0xFFE3F2FD) : const Color(0xFFF8F9FA)),
                   width: double.infinity,
                   padding: const EdgeInsets.only(left: 24, right: 24, bottom: 24, top: 64),
                   child: Column(
@@ -687,9 +700,9 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                               DropdownButtonHideUnderline(
                                 child: DropdownButton<String>(
                                   value: _sideALanguage,
-                                  icon: const Icon(Icons.language, color: Colors.white70),
-                                  dropdownColor: Colors.grey[900],
-                                  style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+                                  icon: Icon(Icons.language, color: isDark ? Colors.white70 : Colors.black87),
+                                  dropdownColor: isDark ? Colors.grey[900] : Colors.white,
+                                  style: TextStyle(color: isDark ? Colors.white : Colors.black, fontSize: 18, fontWeight: FontWeight.bold),
                                   items: supportedTranslationLanguages.map((lang) => DropdownMenuItem(value: lang, child: Text("You ($lang)"))).toList(),
                                   onChanged: (val) {
                                     if (val != null) setState(() => _sideALanguage = val);
@@ -700,7 +713,7 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                               IconButton(
                                 icon: Icon(
                                   Icons.keyboard,
-                                  color: _isSideAKeyboardMode ? Colors.blueAccent : Colors.white54,
+                                  color: _isSideAKeyboardMode ? Colors.blueAccent : (isDark ? Colors.white54 : Colors.black54),
                                   size: 20,
                                 ),
                                 onPressed: () {
@@ -725,7 +738,7 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                           Row(
                             children: [
                               IconButton(
-                                icon: const Icon(Icons.camera_alt, color: Colors.white),
+                                icon: Icon(Icons.camera_alt, color: isDark ? Colors.white : Colors.black87),
                                 onPressed: () {
                                   Navigator.push(
                                     context,
@@ -734,7 +747,7 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                                 },
                               ),
                               IconButton(
-                                icon: const Icon(Icons.close, color: Colors.white),
+                                icon: Icon(Icons.close, color: isDark ? Colors.white : Colors.black87),
                                 onPressed: () => Navigator.pop(context),
                               ),
                             ],
@@ -757,13 +770,15 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                                 children: [
                                   Text(
                                     isFromSideA ? 'You (${msg.language})' : 'Partner (${msg.language})',
-                                    style: const TextStyle(color: Colors.white38, fontSize: 11, fontWeight: FontWeight.w600),
+                                    style: TextStyle(color: isDark ? Colors.white38 : Colors.black38, fontSize: 11, fontWeight: FontWeight.w600),
                                   ),
                                   const SizedBox(height: 4),
                                   Container(
                                     padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
                                     decoration: BoxDecoration(
-                                      color: isFromSideA ? Colors.blue.withValues(alpha: 0.1) : Colors.grey.withValues(alpha: 0.1),
+                                      color: isFromSideA 
+                                          ? (isDark ? Colors.blue.withValues(alpha: 0.1) : Colors.blue.withValues(alpha: 0.05)) 
+                                          : (isDark ? Colors.grey.withValues(alpha: 0.1) : Colors.grey.withValues(alpha: 0.05)),
                                       borderRadius: BorderRadius.only(
                                         topLeft: const Radius.circular(24),
                                         topRight: const Radius.circular(24),
@@ -775,7 +790,9 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                                     child: TappableMarkdownHanziText(
                                       msg.text,
                                       style: TextStyle(
-                                        color: isFromSideA ? Colors.white : Colors.blue,
+                                        color: isFromSideA 
+                                            ? (isDark ? Colors.white : Colors.black87) 
+                                            : (isDark ? Colors.blue.shade200 : Colors.blue.shade800),
                                         fontSize: 24,
                                         fontWeight: FontWeight.w500,
                                       ),
@@ -792,12 +809,12 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
                           padding: const EdgeInsets.only(top: 8.0),
                           child: TextField(
                             controller: _sideATextController,
-                            style: const TextStyle(color: Colors.white, fontSize: 18),
+                            style: TextStyle(color: isDark ? Colors.white : Colors.black, fontSize: 18),
                             decoration: InputDecoration(
                               hintText: "Type in $_sideALanguage...",
-                              hintStyle: const TextStyle(color: Colors.white38),
+                              hintStyle: TextStyle(color: isDark ? Colors.white38 : Colors.black38),
                               filled: true,
-                              fillColor: Colors.white.withValues(alpha: 0.1),
+                              fillColor: isDark ? Colors.white.withValues(alpha: 0.1) : Colors.black.withValues(alpha: 0.05),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(16),
                                 borderSide: BorderSide.none,
@@ -824,7 +841,7 @@ class _TravelInterpreterScreenState extends ConsumerState<TravelInterpreterScree
           ),
 
           // The Floating Center Control Bar (only visible when not in keyboard typing mode)
-          if (!_isSideAKeyboardMode) _buildStatusBar(),
+          if (!_isSideAKeyboardMode) _buildStatusBar(isDark),
         ],
       ),
     );

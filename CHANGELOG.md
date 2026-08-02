@@ -9,6 +9,11 @@ All notable changes to this project will be documented in this file.
 - **Smart Media Desk — Overlay Event Bubbling & State Synchronization**: Hoisted internal state management from `FullscreenMediaOverlay` to the global parent controller (`_SmartMediaDeskScreenState`), eliminating the bug where entering fullscreen forcibly resets toggles to an "On" default state while maintaining actual values. Also applied `enabled: false` to the switch wrappers in `PremiumVideoTopBar` to prevent the `PopupMenuButton` from closing instantly when interacted with.
 
 ### Fixed
+- **Library Story Audio Playback**: Fixed a bug in `StoryReaderScreen` where the audio reader only played one out of three sentences per page and failed to highlight spoken words correctly. The text is now properly chunked and concatenated per page, and local offsets are mapped to the global chunk, restoring fluid playback and highlighting.
+- **HSK 0 UI Clutter**: Added conditional rendering to hide "HSK 0" labels and badges globally for custom generated stories (which do not inherently have an HSK level).
+- **AI Hub Layout Misalignment**: Fixed an issue where the `AiHubScreen` header appeared misaligned compared to other tabs by removing an erroneous `SafeArea` wrapper around its `CustomScrollView`, allowing `GlobalSliverAppBar` to manage the status bar padding correctly.
+
+### Fixed
 - **Smart Media Desk & Video of the Day — YouTube API Quota Migration**: Replaced all YouTube Data API v3 calls in `youtube_repository.dart` and `daily_discovery_repository.dart` with `youtube_explode_dart` (InnerTube scraping). The category carousels, user search, and daily video discovery no longer consume any API quota. Shows & Dramas is untouched (fully local). The fallback logic now uses ANY matching term (OR) instead of requiring ALL terms (AND), fixing the silent empty-result failure.
 
 ### Fixed

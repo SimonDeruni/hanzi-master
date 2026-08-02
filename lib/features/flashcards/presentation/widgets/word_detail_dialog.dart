@@ -14,6 +14,7 @@ import 'character_chat_sheet.dart';
 import 'package:hanzi_master/core/services/character_lookup_service.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/deck_controller.dart';
 import 'package:hanzi_master/core/services/audio_service.dart';
+import 'package:lpinyin/lpinyin.dart';
 
 class WordDetailDialog extends ConsumerStatefulWidget {
   final AiWord word;
@@ -174,6 +175,20 @@ class _WordDetailDialogState extends ConsumerState<WordDetailDialog> {
                                   color: isDark ? Colors.white : Colors.black87,
                                 ),
                               ),
+                              const SizedBox(width: 8),
+                              if (ChineseHelper.isTraditionalChinese(widget.word.hanzi))
+                                Container(
+                                  padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                                  decoration: BoxDecoration(
+                                    color: Colors.orange.withOpacity(0.2),
+                                    borderRadius: BorderRadius.circular(4),
+                                    border: Border.all(color: Colors.orange),
+                                  ),
+                                  child: const Text(
+                                    'Traditional Character',
+                                    style: TextStyle(fontSize: 10, color: Colors.orange, fontWeight: FontWeight.bold),
+                                  ),
+                                ),
                               const SizedBox(width: 8),
                               IconButton(
                                 icon: const Icon(Icons.volume_up, color: Colors.blueAccent, size: 28),

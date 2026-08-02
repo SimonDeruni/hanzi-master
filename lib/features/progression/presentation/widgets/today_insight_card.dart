@@ -132,8 +132,10 @@ class TodayInsightCard extends ConsumerWidget {
                               const SizedBox(height: 8),
                               Text(
                                 todayWord['meaning']!,
-                                style: theme.textTheme.bodyLarge?.copyWith(
-                                  color: Colors.white.withValues(alpha: 0.7),
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: theme.textTheme.bodyMedium?.copyWith(
+                                  color: Colors.white.withValues(alpha: 0.75),
                                   fontWeight: FontWeight.w400,
                                   height: 1.3,
                                 ),

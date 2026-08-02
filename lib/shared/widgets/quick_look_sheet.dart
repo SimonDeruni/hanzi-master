@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/core/utils/pinyin_utils.dart';
+import 'package:lpinyin/lpinyin.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/character_detail_provider.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
@@ -589,6 +590,14 @@ class _CharacterHero extends StatelessWidget {
                                 color: Colors.indigo,
                                 isDark: isDark,
                               ),
+                            if (ChineseHelper.isTraditionalChinese(hanzi)) ...[
+                              if (hskLevel > 0) const SizedBox(width: 6),
+                              _Badge(
+                                label: 'Traditional',
+                                color: Colors.orange,
+                                isDark: isDark,
+                              ),
+                            ],
                           ],
                         ),
                       ],

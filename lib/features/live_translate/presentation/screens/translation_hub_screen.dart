@@ -30,37 +30,45 @@ class TranslationHubScreen extends StatelessWidget {
             const SliverToBoxAdapter(child: SizedBox(height: 32)),
 
             // Cards
-            SliverPadding(
-              padding: const EdgeInsets.symmetric(horizontal: 24.0),
-              sliver: SliverList(
-                delegate: SliverChildListDelegate([
-                  _buildMinimalCard(
-                    context: context,
-                    isDark: isDark,
-                    title: l10n?.travelInterpreter ?? "Travel Interpreter",
-                    description: l10n?.realTimeSplitScreen ?? "Real-time split-screen conversation with a native speaker. Breaks down language barriers instantly.",
-                    icon: Icons.people_outline,
-                    onTap: () {
-                      HapticsManager.medium();
-                      Navigator.push(context, SwipeBackPageRoute(builder: (_) => const TravelInterpreterScreen()));
-                    },
-                  ),
-
-                  const SizedBox(height: 32),
-                  _buildMinimalCard(
-                    context: context,
-                    isDark: isDark,
-                    title: "Universal Scanner",
-                    description: "Point your camera at real-world objects or text to instantly extract and translate Chinese characters.",
-                    icon: Icons.document_scanner_outlined,
-                    onTap: () {
-                      HapticsManager.medium();
-                      Navigator.push(context, SwipeBackPageRoute(builder: (_) => const UniversalScannerScreen(intent: CameraIntent.translationHub)));
-                    },
-                  ),
-                  const SizedBox(height: 48),
-                  const SizedBox(height: 40),
-                ]),
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        Expanded(
+                          child: _buildListActionCard(
+                            context: context,
+                            title: l10n?.travelInterpreter ?? "Travel Interpreter",
+                            subtitle: "Real-time split-screen",
+                            icon: Icons.people_outline,
+                            gradientColors: const [Color(0xFF2E7D32), Color(0xFF4CAF50)], // Green gradient
+                            onTap: () {
+                              HapticsManager.medium();
+                              Navigator.push(context, SwipeBackPageRoute(builder: (_) => const TravelInterpreterScreen()));
+                            },
+                          ),
+                        ),
+                        const SizedBox(width: 16),
+                        Expanded(
+                          child: _buildListActionCard(
+                            context: context,
+                            title: "Universal Scanner",
+                            subtitle: "Extract & translate",
+                            icon: Icons.document_scanner_outlined,
+                            gradientColors: const [Color(0xFFE65100), Color(0xFFFF9800)], // Orange gradient
+                            onTap: () {
+                              HapticsManager.medium();
+                              Navigator.push(context, SwipeBackPageRoute(builder: (_) => const UniversalScannerScreen(intent: CameraIntent.translationHub)));
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 48),
+                  ],
+                ),
               ),
             ),
           ],
@@ -69,63 +77,86 @@ class TranslationHubScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildMinimalCard({
+  Widget _buildListActionCard({
     required BuildContext context,
-    required bool isDark,
     required String title,
-    required String description,
+    required String subtitle,
     required IconData icon,
+    bool isNew = false,
+    required List<Color> gradientColors,
     required VoidCallback onTap,
   }) {
-    final theme = Theme.of(context);
-    
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(24),
+    return BouncingButton(
+      scaleFactor: 0.96,
+      onPressed: onTap,
       child: Container(
-        width: double.infinity,
-        padding: const EdgeInsets.all(36),
+        height: 160,
         decoration: BoxDecoration(
-          color: isDark ? Colors.grey.shade900 : Colors.white,
-          borderRadius: BorderRadius.circular(24),
-          border: Border.all(
-            color: isDark ? Colors.white10 : Colors.black.withValues(alpha: 0.05),
-            width: 1,
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: gradientColors,
           ),
+          borderRadius: BorderRadius.circular(32),
           boxShadow: [
             BoxShadow(
-              color: isDark ? Colors.black26 : Colors.black.withValues(alpha: 0.03),
-              blurRadius: 24,
+              color: gradientColors.last.withValues(alpha: 0.4),
+              blurRadius: 20,
               offset: const Offset(0, 8),
             ),
           ],
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: Stack(
           children: [
-            Container(
-              padding: const EdgeInsets.all(14),
-              decoration: BoxDecoration(
-                color: isDark ? Colors.white12 : Colors.black.withValues(alpha: 0.03),
-                shape: BoxShape.circle,
+            // NEW badge
+            if (isNew)
+              Positioned(
+                top: 12,
+                right: 12,
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFE27C5A),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: const Text(
+                    'NEW',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 10,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 1,
+                    ),
+                  ),
+                ),
               ),
-              child: Icon(icon, color: isDark ? Colors.white : Colors.black87, size: 28),
-            ),
-            const SizedBox(height: 24),
-            Text(
-              title,
-              style: theme.textTheme.headlineSmall?.copyWith(
-                fontWeight: FontWeight.w800,
-                color: isDark ? Colors.white : const Color(0xFF1A1A1B),
-                letterSpacing: -0.5,
-              ),
-            ),
-            const SizedBox(height: 12),
-            Text(
-              description,
-              style: theme.textTheme.bodyLarge?.copyWith(
-                color: isDark ? Colors.white60 : Colors.black54,
-                height: 1.5,
+            // Content
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Icon(icon, size: 36, color: Colors.white.withValues(alpha: 0.9)),
+                  const SizedBox(height: 12),
+                  Text(
+                    title,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      height: 1.1,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    subtitle,
+                    style: TextStyle(
+                      color: Colors.white.withValues(alpha: 0.75),
+                      fontSize: 12,
+                    ),
+                  ),
+                ],
               ),
             ),
           ],

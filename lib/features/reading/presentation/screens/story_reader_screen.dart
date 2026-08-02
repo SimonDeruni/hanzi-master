@@ -234,17 +234,23 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
             _playingStartOffset = start;
             _playingEndOffset = start + length;
           } else if (boundary['text'] != null && boundary['text']['Text'] != null) {
-            // Fallback: search for the word in the current sentence
-            final word = boundary['text']['Text'] as String;
-            if (_playingSentenceIndex != null) {
-              final story = ref.read(storyControllerProvider).currentStory;
-              if (story != null && _playingSentenceIndex! < story.sentences.length) {
-                final sentence = story.sentences[_playingSentenceIndex!].chinese;
-                final searchStart = _playingEndOffset >= 0 ? _playingEndOffset : 0;
-                final idx = sentence.indexOf(word, searchStart);
-                if (idx != -1) {
-                  _playingStartOffset = idx;
-                  _playingEndOffset = idx + word.length;
+              // Fallback: search for the word in the current sentence
+              final word = boundary['text']['Text'] as String;
+              if (_playingSentenceIndex != null) {
+                final story = ref.read(storyControllerProvider).currentStory;
+                if (story != null) {
+                  final pageIndex = _playingSentenceIndex!;
+                  final startIdx = pageIndex * 3;
+                  final endIdx = (startIdx + 3).clamp(0, story.sentences.length);
+                  final pageSentences = story.sentences.sublist(startIdx, endIdx);
+                  final sentenceText = pageSentences.map((s) => s.chinese).join('');
+                  
+                  final searchStart = _playingEndOffset >= 0 ? _playingEndOffset : 0;
+                  final idx = sentenceText.indexOf(word, searchStart);
+                  if (idx != -1) {
+                    _playingStartOffset = idx;
+                    _playingEndOffset = idx + word.length;
+                  }
                 }
               }
             }
@@ -312,7 +318,10 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
             _playingEndOffset = -1;
           });
         }
-        final text = story.sentences[_currentPage].chinese;
+        final startIdx = _currentPage * 3;
+        final endIdx = (startIdx + 3).clamp(0, story.sentences.length);
+        final pageSentences = story.sentences.sublist(startIdx, endIdx);
+        final text = pageSentences.map((s) => s.chinese).join('');
         final success = await audioService.playSentence(text);
         if (mounted) {
           setState(() {
@@ -332,7 +341,10 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
         }
       } else {
         // Resume from pause
-        final text = story.sentences[_currentPage].chinese;
+        final startIdx = _currentPage * 3;
+        final endIdx = (startIdx + 3).clamp(0, story.sentences.length);
+        final pageSentences = story.sentences.sublist(startIdx, endIdx);
+        final text = pageSentences.map((s) => s.chinese).join('');
         // Since Azure TTS streams the full file, "resuming" mid-sentence is complex.
         // We will just replay the whole sentence for now for the premium experience.
         if (mounted) {
@@ -597,6 +609,7 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
                           !widget.blueprint.id.startsWith('tang_poetry_') && 
                           !widget.blueprint.id.startsWith('simplified_') && 
                           !widget.blueprint.id.startsWith('mandarin_bean_'))
+                      if (widget.hskLevel > 0)
                         Text("HSK ${widget.hskLevel} vocabulary", style: const TextStyle(fontWeight: FontWeight.bold)),
                     ],
                   ),
@@ -697,7 +710,7 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
                                                 const Icon(Icons.auto_awesome, color: Colors.white, size: 48),
                                                 const SizedBox(height: 12),
                                                 Text(
-                                                  "A Tale of HSK ${widget.hskLevel}",
+                                                  widget.hskLevel == 0 ? "A Custom Tale" : "A Tale of HSK ${widget.hskLevel}",
                                                   style: const TextStyle(
                                                     color: Colors.white,
                                                     fontSize: 18,
@@ -754,7 +767,7 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
 
                                                           final isPunctuation = RegExp(r'[^\w\s\u4e00-\u9fa5]', unicode: true).hasMatch(word.hanzi) || word.hanzi.trim().isEmpty;
                                                           
-                                                          final isSpeakingThisSentence = _playingSentenceIndex == globalIndex;
+                                                          final isSpeakingThisSentence = _playingSentenceIndex == pageIndex;
                                                           final isWordActive = isSpeakingThisSentence && _playingStartOffset >= 0 && wordStart <= _playingStartOffset && wordEnd > _playingStartOffset;
 
                                                           final textColor = isWordActive 

@@ -1,6 +1,5 @@
 import 'package:hanzi_master/features/media/domain/models/daily_media_item.dart';
 import 'package:hanzi_master/features/media/presentation/providers/daily_discovery_provider.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
@@ -15,6 +14,7 @@ import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hanzi_master/features/media/domain/models/saved_article.dart';
 import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
+import 'package:hanzi_master/core/config/app_features.dart';
 
 class MediaHubScreen extends ConsumerWidget {
   const MediaHubScreen({super.key});
@@ -30,8 +30,7 @@ class MediaHubScreen extends ConsumerWidget {
           slivers: [
             const GlobalSliverAppBar(
               title: "Media Hub",
-              actions: [
-                              ],
+              actions: [],
             ),
 
             const SliverToBoxAdapter(child: SizedBox(height: 16)),
@@ -52,21 +51,23 @@ class MediaHubScreen extends ConsumerWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 24.0),
                 child: Column(
                   children: [
-                    _buildThematicCard(
-                      context: context,
-                      title: "YOUTUBE DESK",
-                      subtitle: "Interactive transcripts & shadowing",
-                      icon: Icons.smart_display,
-                      brandColor: const Color(0xFFFF0000), // YouTube Red
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (_) => const MediaSearchScreen()),
-                        );
-                      },
-                    ),
-                    const SizedBox(height: 16),
+                    if (AppFeatures.youtubeMedia) ...[
+                      _buildThematicCard(
+                        context: context,
+                        title: "YOUTUBE DESK",
+                        subtitle: "Interactive transcripts & shadowing",
+                        icon: Icons.smart_display,
+                        brandColor: const Color(0xFFFF0000), // YouTube Red
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) => const MediaSearchScreen()),
+                          );
+                        },
+                      ),
+                      const SizedBox(height: 16),
+                    ],
                     _buildThematicCard(
                       context: context,
                       title: "WEB EXPLORER",
@@ -81,22 +82,25 @@ class MediaHubScreen extends ConsumerWidget {
                         );
                       },
                     ),
-                    const SizedBox(height: 16),
-                    _buildThematicCard(
-                      context: context,
-                      title: "SHOWS & DRAMAS",
-                      subtitle: "Chinese TV series with interactive subtitles",
-                      icon: Icons.live_tv,
-                      brandColor: const Color(0xFFFFA000),
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          SwipeBackPageRoute(
-                            builder: (_) => const ShowCatalogScreen(),
-                          ),
-                        );
-                      },
-                    ),
+                    if (AppFeatures.youtubeMedia) ...[
+                      const SizedBox(height: 16),
+                      _buildThematicCard(
+                        context: context,
+                        title: "SHOWS & DRAMAS",
+                        subtitle:
+                            "Chinese TV series with interactive subtitles",
+                        icon: Icons.live_tv,
+                        brandColor: const Color(0xFFFFA000),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            SwipeBackPageRoute(
+                              builder: (_) => const ShowCatalogScreen(),
+                            ),
+                          );
+                        },
+                      ),
+                    ],
                   ],
                 ),
               ),
@@ -140,14 +144,14 @@ class MediaHubScreen extends ConsumerWidget {
                       icon: Icons.travel_explore,
                       brandColor: const Color(0xFF555555),
                       url:
-                          'https://zh.wikipedia.org/wiki/Portal:%E6%96%B0%E9%97%BB%E5%8A%A8%E6%80%81',
+                          'https://zh.wikipedia.org/zh-cn/Portal:%E6%96%B0%E9%97%BB%E5%8A%A8%E6%80%81',
                     ),
                     _buildBookmarkChip(
                       context: context,
                       title: "Global Voices",
                       icon: Icons.public,
                       brandColor: const Color(0xFFE65100),
-                      url: 'https://zh.globalvoices.org/',
+                      url: 'https://zh.globalvoices.org/hans/',
                     ),
                     _buildBookmarkChip(
                       context: context,
@@ -426,17 +430,20 @@ class _DailyDiscoveryCarouselState
   Widget build(BuildContext context) {
     final dailyState = ref.watch(dailyDiscoveryProvider);
     final completedItems = ref.watch(completedDailyMediaProvider);
-    final showOfTheDay = ref.watch(dailyShowProvider);
+    final showOfTheDay = AppFeatures.youtubeMedia
+        ? ref.watch(dailyShowProvider)
+        : const AsyncValue<Show?>.data(null);
 
     return SizedBox(
       height: 240,
       child: dailyState.when(
         data: (items) {
-          // Filter out the daily YouTube video — keep only articles
-          final nonVideoItems = items.where((i) => i.tag != 'VIDEO OF THE DAY').toList();
+          final visibleItems = AppFeatures.youtubeMedia
+              ? items
+              : items.where((i) => i.tag != 'VIDEO OF THE DAY').toList();
           // Calculate total page count: non-video items + optional show of the day
           final showItem = showOfTheDay.valueOrNull;
-          final totalItems = nonVideoItems.length + (showItem != null ? 1 : 0);
+          final totalItems = visibleItems.length + (showItem != null ? 1 : 0);
 
           return PageView.builder(
             controller: _pageController,
@@ -444,11 +451,11 @@ class _DailyDiscoveryCarouselState
             itemCount: totalItems,
             itemBuilder: (context, index) {
               // Show of the day is always the last page
-              if (showItem != null && index == nonVideoItems.length) {
+              if (showItem != null && index == visibleItems.length) {
                 return _buildDailyShowCard(context, showItem);
               }
 
-              final item = nonVideoItems[index];
+              final item = visibleItems[index];
               final isCompleted = completedItems.contains(item.url);
               return _buildDiscoveryCard(
                 context,
@@ -483,7 +490,7 @@ class _DailyDiscoveryCarouselState
           if (showItem != null) {
             return _buildDailyShowCard(context, showItem);
           }
-          return Center(child: Text('Failed to load daily content'));
+          return const Center(child: Text('Failed to load daily content'));
         },
       ),
     );

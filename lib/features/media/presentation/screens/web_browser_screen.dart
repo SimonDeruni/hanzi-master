@@ -75,6 +75,14 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen> with Single
       ..setBackgroundColor(const Color(0x00000000))
       ..setNavigationDelegate(
         NavigationDelegate(
+          onNavigationRequest: (NavigationRequest request) {
+            // Force BBC traditional links to use simplified
+            if (request.url.contains('bbc.com/zhongwen/trad')) {
+              _controller.loadRequest(Uri.parse(request.url.replaceAll('/trad', '/simp')));
+              return NavigationDecision.prevent;
+            }
+            return NavigationDecision.navigate;
+          },
           onPageStarted: (String url) {
             setState(() {
               _isLoading = true;

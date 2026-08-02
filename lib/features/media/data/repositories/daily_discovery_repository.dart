@@ -205,7 +205,12 @@ class DailyDiscoveryRepository {
         if (items.isNotEmpty) {
           final firstItem = items.first;
           final title = firstItem.findElements('title').first.innerText;
-          final link = firstItem.findElements('link').first.innerText;
+          String link = firstItem.findElements('link').first.innerText;
+          
+          // Force simplified Chinese for BBC links
+          if (link.contains('/trad')) {
+            link = link.replaceAll('/trad', '/simp');
+          }
 
           String imageUrl = "https://www.bbc.co.uk/news/special/2015/newsspec_10857/bbc_news_logo.png";
           final mediaThumbnails = firstItem.findElements('media:thumbnail');

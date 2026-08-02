@@ -8,6 +8,7 @@
     - [None]
 
 #### 📦 Done
+- [x] **Task 0: AI Hub & Story Audio Polish**: Fixed `StoryReaderScreen` audio playback bug to correctly read all sentences on a 3-sentence page. Hidden "HSK 0" labels globally for custom stories. Fixed `AiHubScreen` header misalignment by removing an erroneous `SafeArea` wrapping the sliver app bar.
 - [x] **Task 1: Reading Room UI**: Rebuilt `StoryReaderScreen` to use word-by-word structural JSON UI instead of raw text.
 - [x] **Task 2: AI Prompt Update**: Updated Gemini prompts to enforce `AiSentence` array schema for custom stories.
 - [x] **Task 3: Default Stories**: Regenerated all 96 default HSK stories to use the new schema.

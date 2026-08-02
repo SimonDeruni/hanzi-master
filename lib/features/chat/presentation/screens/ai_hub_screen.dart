@@ -22,74 +22,110 @@ class AiHubScreen extends ConsumerWidget {
 
     return Scaffold(
       body: CalligraphyBackground(
-        child: SafeArea(
-          bottom: false,
-          child: CustomScrollView(
-            slivers: [
-              // --- STANDARD HEADER ---
-              GlobalSliverAppBar(
-                title: l10n?.aiHubTitle ?? "AI Hub",
-              ),
+        child: CustomScrollView(
+          slivers: [
+            // --- STANDARD HEADER ---
+            GlobalSliverAppBar(
+              title: l10n?.aiHubTitle ?? "AI Hub",
+            ),
 
-              // Hero Carousel: Featured AI Tools
-              SliverToBoxAdapter(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                  child: Column(
-                    children: [
-                      const SizedBox(height: 8),
-                      const SizedBox(
-                        height: 380,
-                        child: _FeaturedCarousel(),
-                      ),
-                      const SizedBox(height: 32),
-                      // Square Tiles List of Features
-                      Row(
-                        children: [
-                          Expanded(
-                            child: _buildListActionCard(
-                              context: context,
-                              title: "Reading Room",
-                              subtitle: "Classic literature",
-                              icon: Icons.auto_stories,
-                              gradientColors: const [Color(0xFF8B5E3C), Color(0xFFC4863A)],
-                              onTap: () {
-                                HapticsManager.medium();
-                                if (context.mounted) {
-                                  Navigator.push(
-                                    context,
-                                    SwipeBackPageRoute(builder: (_) => const StoryLibraryScreen()),
-                                  );
-                                }
-                              },
-                            ),
-                          ),
-                          const SizedBox(width: 16),
-                          Expanded(
-                            child: _buildListActionCard(
-                              context: context,
-                              title: "Shadowing",
-                              subtitle: "Perfect pronunciation",
-                              icon: Icons.mic,
-                              gradientColors: const [Color(0xFF1A4A4A), Color(0xFF2A7070)],
-                              onTap: () {
-                                HapticsManager.medium();
+            // Feature Rows
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                child: Column(
+                  children: [
+                    const SizedBox(height: 24),
+                    // Row 1: AI Scenarios & Web Explorer
+                    Row(
+                      children: [
+                        Expanded(
+                          child: _buildListActionCard(
+                            context: context,
+                            title: "Roleplay",
+                            subtitle: "AI avatars",
+                            icon: Icons.auto_awesome,
+                            gradientColors: const [Color(0xFF311B92), Color(0xFF512DA8)],
+                            onTap: () {
+                              HapticsManager.medium();
+                              if (context.mounted) {
                                 Navigator.push(
                                   context,
-                                  SwipeBackPageRoute(builder: (_) => const ShadowingStudioScreen()),
+                                  SwipeBackPageRoute(
+                                      builder: (_) => const ScenarioSelectionScreen()),
                                 );
-                              },
-                            ),
+                              }
+                            },
                           ),
-                        ],
-                      ),
-                      const SizedBox(height: 24),
-                    ],
-                  ),
+                        ),
+                        const SizedBox(width: 16),
+                        Expanded(
+                          child: _buildListActionCard(
+                            context: context,
+                            title: "Web Explorer",
+                            subtitle: "Read the web",
+                            icon: Icons.language,
+                            gradientColors: const [Color(0xFF0D47A1), Color(0xFF1976D2)],
+                            onTap: () {
+                              HapticsManager.medium();
+                              if (context.mounted) {
+                                Navigator.push(
+                                  context,
+                                  SwipeBackPageRoute(builder: (_) => const MediaHubScreen()),
+                                );
+                              }
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 16),
+                    // Row 2: Reading Room & Shadowing
+                    Row(
+                      children: [
+                        Expanded(
+                          child: _buildListActionCard(
+                            context: context,
+                            title: "Reading Room",
+                            subtitle: "Classic literature",
+                            icon: Icons.auto_stories,
+                            gradientColors: const [Color(0xFF8B5E3C), Color(0xFFC4863A)],
+                            onTap: () {
+                              HapticsManager.medium();
+                              if (context.mounted) {
+                                Navigator.push(
+                                  context,
+                                  SwipeBackPageRoute(builder: (_) => const StoryLibraryScreen()),
+                                );
+                              }
+                            },
+                          ),
+                        ),
+                        const SizedBox(width: 16),
+                        Expanded(
+                          child: _buildListActionCard(
+                            context: context,
+                            title: "Shadowing",
+                            subtitle: "Perfect pronunciation",
+                            icon: Icons.mic,
+                            gradientColors: const [Color(0xFF1A4A4A), Color(0xFF2A7070)],
+                            onTap: () {
+                              HapticsManager.medium();
+                              Navigator.push(
+                                context,
+                                SwipeBackPageRoute(builder: (_) => const ShadowingStudioScreen()),
+                              );
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 24),
+                  ],
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
@@ -115,7 +151,7 @@ class AiHubScreen extends ConsumerWidget {
             end: Alignment.bottomRight,
             colors: gradientColors,
           ),
-          borderRadius: BorderRadius.circular(24),
+          borderRadius: BorderRadius.circular(32),
           boxShadow: [
             BoxShadow(
               color: gradientColors.last.withValues(alpha: 0.4),
@@ -284,236 +320,3 @@ class AiHubScreen extends ConsumerWidget {
   }
 }
 
-class _FeaturedCarousel extends StatefulWidget {
-  const _FeaturedCarousel();
-
-  @override
-  State<_FeaturedCarousel> createState() => _FeaturedCarouselState();
-}
-
-class _FeaturedCarouselState extends State<_FeaturedCarousel> {
-  final PageController _pageController = PageController();
-  Timer? _timer;
-  int _currentPage = 0;
-
-  @override
-  void initState() {
-    super.initState();
-    _startAutoScroll();
-  }
-
-  void _startAutoScroll() {
-    _timer?.cancel();
-    _timer = Timer.periodic(const Duration(seconds: 5), (Timer timer) {
-      if (_pageController.hasClients) {
-        int nextPage = _currentPage + 1;
-        if (nextPage > 1) {
-          nextPage = 0;
-        }
-        _pageController.animateToPage(
-          nextPage,
-          duration: const Duration(milliseconds: 800),
-          curve: Curves.easeInOutQuart,
-        );
-      }
-    });
-  }
-
-  @override
-  void dispose() {
-    _timer?.cancel();
-    _pageController.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Expanded(
-          child: PageView(
-            controller: _pageController,
-            onPageChanged: (int page) {
-              setState(() {
-                _currentPage = page;
-              });
-              // Reset timer when user manually swipes
-              _startAutoScroll();
-            },
-            physics: const BouncingScrollPhysics(),
-            children: [
-              // Card 1: Roleplay Scenarios
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                child: _CarouselCard(
-                  title: "Roleplay Scenarios",
-                  subtitle: "Immersive roleplay with AI avatars",
-                  category: "AI-Powered Conversations",
-                  imageAsset: 'assets/images/ai_hub_ink_mountains.png',
-                  icon: Icons.auto_awesome,
-                  onTap: () {
-                    HapticsManager.medium();
-                    if (context.mounted) {
-                      Navigator.push(
-                        context,
-                        SwipeBackPageRoute(
-                            builder: (_) => const ScenarioSelectionScreen()),
-                      );
-                    }
-                  },
-                ),
-              ),
-              // Card 2: Web Explorer
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                child: _CarouselCard(
-                  title: "Read The Web",
-                  subtitle: "Turn any webpage into a learning experience",
-                  category: "Web Explorer",
-                  imageAsset: 'assets/images/user_web_explorer.png',
-                  icon: Icons.language,
-                  overlayColor: Colors.black38,
-                  onTap: () {
-                    HapticsManager.medium();
-                    if (context.mounted) {
-                      Navigator.push(
-                        context,
-                        SwipeBackPageRoute(builder: (_) => const MediaHubScreen()),
-                      );
-                    }
-                  },
-                ),
-              ),
-            ],
-          ),
-        ),
-        const SizedBox(height: 16),
-        // Indicators
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: List.generate(2, (index) {
-            return AnimatedContainer(
-              duration: const Duration(milliseconds: 300),
-              margin: const EdgeInsets.symmetric(horizontal: 4.0),
-              height: 6.0,
-              width: _currentPage == index ? 24.0 : 6.0,
-              decoration: BoxDecoration(
-                color: _currentPage == index
-                    ? (Theme.of(context).brightness == Brightness.dark
-                        ? Colors.white
-                        : Colors.black87)
-                    : (Theme.of(context).brightness == Brightness.dark
-                        ? Colors.white24
-                        : Colors.black26),
-                borderRadius: BorderRadius.circular(3.0),
-              ),
-            );
-          }),
-        ),
-      ],
-    );
-  }
-}
-
-class _CarouselCard extends StatelessWidget {
-  final String title;
-  final String subtitle;
-  final String category;
-  final String imageAsset;
-  final IconData icon;
-  final VoidCallback onTap;
-  final Color overlayColor;
-
-  const _CarouselCard({
-    required this.title,
-    required this.subtitle,
-    required this.category,
-    required this.imageAsset,
-    required this.icon,
-    required this.onTap,
-    this.overlayColor = Colors.black26,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        width: double.infinity,
-        decoration: BoxDecoration(
-          color: const Color(0xFF131A29),
-          image: DecorationImage(
-            image: imageAsset.startsWith('http') 
-                ? NetworkImage(imageAsset) as ImageProvider
-                : AssetImage(imageAsset),
-            fit: BoxFit.cover,
-            colorFilter:
-                ColorFilter.mode(overlayColor, BlendMode.srcOver),
-          ),
-          borderRadius: BorderRadius.circular(24),
-          boxShadow: [
-            BoxShadow(
-              color: const Color(0xFF131A29).withValues(alpha: 0.5),
-              blurRadius: 20,
-              offset: const Offset(0, 10),
-            ),
-          ],
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(28.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    title.toUpperCase(),
-                    style: theme.textTheme.labelMedium?.copyWith(
-                      color: Colors.white.withValues(alpha: 0.6),
-                      fontWeight: FontWeight.w600,
-                      letterSpacing: 1.5,
-                    ),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                      color: Colors.white.withValues(alpha: 0.1),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Icon(
-                      icon,
-                      color: Colors.white,
-                      size: 20,
-                    ),
-                  ),
-                ],
-              ),
-              const Spacer(),
-              Text(
-                category,
-                style: theme.textTheme.headlineMedium?.copyWith(
-                  fontFamily: 'Serif',
-                  fontWeight: FontWeight.w900,
-                  color: Colors.white,
-                  letterSpacing: -0.5,
-                  height: 1.1,
-                ),
-              ),
-              const SizedBox(height: 8),
-              Text(
-                subtitle,
-                style: theme.textTheme.bodyMedium?.copyWith(
-                  color: Colors.white.withValues(alpha: 0.8),
-                  height: 1.4,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}

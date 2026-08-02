@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/word_detail_dialog.dart';
+import 'package:lpinyin/lpinyin.dart';
 
 class SimplifiedArticleReaderScreen extends StatefulWidget {
   final AiStory story;
@@ -15,6 +16,15 @@ class SimplifiedArticleReaderScreen extends StatefulWidget {
 class _SimplifiedArticleReaderScreenState extends State<SimplifiedArticleReaderScreen> {
   bool _showPinyin = false;
   bool _showTranslation = false;
+
+  bool get _hasTraditional {
+    for (final s in widget.story.sentences) {
+      for (final w in s.words) {
+        if (ChineseHelper.isTraditionalChinese(w.hanzi)) return true;
+      }
+    }
+    return false;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,6 +67,28 @@ class _SimplifiedArticleReaderScreenState extends State<SimplifiedArticleReaderS
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            if (_hasTraditional)
+              Container(
+                margin: const EdgeInsets.only(bottom: 16.0),
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  color: Colors.orange.shade50,
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(color: Colors.orange.shade200),
+                ),
+                child: Row(
+                  children: [
+                    const Icon(Icons.warning_amber_rounded, color: Colors.orange),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Text(
+                        "This article contains Traditional Chinese characters.",
+                        style: TextStyle(color: Colors.orange.shade900, fontWeight: FontWeight.w500),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ...widget.story.sentences.map((sentence) {
               return Padding(
                 padding: const EdgeInsets.only(bottom: 24.0),
