@@ -1187,7 +1187,7 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                     constraints: const BoxConstraints(maxHeight: 250),
                     child: SingleChildScrollView(
                       child: TappableHanziText(
-                        text: _rawExtractedText,
+                        _rawExtractedText,
                         style: theme.textTheme.bodyLarge?.copyWith(height: 1.5, color: Colors.white.withValues(alpha: 0.9)),
                       ),
                     ),
