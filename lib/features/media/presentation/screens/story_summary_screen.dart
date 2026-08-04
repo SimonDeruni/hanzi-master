@@ -423,7 +423,7 @@ class _StorySummaryScreenState extends ConsumerState<StorySummaryScreen> {
     if (storyState.currentStory == null) {
       return Text(
         'Could not load vocabulary.',
-        style: TextStyle(color: const Color(0xFF1A1A1B).withValues(alpha: 0.5)),
+        style: TextStyle(color: isDark ? Colors.white38 : const Color(0xFF1A1A1B).withValues(alpha: 0.5)),
       );
     }
     
@@ -444,7 +444,7 @@ class _StorySummaryScreenState extends ConsumerState<StorySummaryScreen> {
     if (vocabList.isEmpty) {
       return Text(
         'No key words found for this story.',
-        style: TextStyle(color: const Color(0xFF1A1A1B).withValues(alpha: 0.5)),
+        style: TextStyle(color: isDark ? Colors.white38 : const Color(0xFF1A1A1B).withValues(alpha: 0.5)),
       );
     }
     
@@ -487,11 +487,11 @@ class _StorySummaryScreenState extends ConsumerState<StorySummaryScreen> {
             children: [
               TappableHanziText(
                 word.hanzi,
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                   fontFamily: 'NotoSerifSC',
-                  color: Color(0xFF1A1A1B),
+                  color: isDark ? Colors.white : const Color(0xFF1A1A1B),
                 ),
               ),
               const SizedBox(height: 2),
@@ -499,7 +499,7 @@ class _StorySummaryScreenState extends ConsumerState<StorySummaryScreen> {
                 word.pinyin,
                 style: TextStyle(
                   fontSize: 12,
-                  color: const Color(0xFF1A1A1B).withValues(alpha: 0.8),
+                  color: isDark ? Colors.white70 : const Color(0xFF1A1A1B).withValues(alpha: 0.8),
                   fontWeight: FontWeight.w500,
                 ),
               ),
@@ -508,7 +508,7 @@ class _StorySummaryScreenState extends ConsumerState<StorySummaryScreen> {
                 word.meaning,
                 style: TextStyle(
                   fontSize: 12,
-                  color: const Color(0xFF1A1A1B).withValues(alpha: 0.6),
+                  color: isDark ? Colors.white54 : const Color(0xFF1A1A1B).withValues(alpha: 0.6),
                   fontStyle: FontStyle.italic,
                 ),
               ),

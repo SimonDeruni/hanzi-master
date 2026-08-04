@@ -39,18 +39,19 @@ class _ShowCatalogScreenState extends ConsumerState<ShowCatalogScreen> {
     final showsAsync = ref.watch(showsProvider);
     final savedShows = ref.watch(savedShowsProvider);
 
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
-      backgroundColor: const Color(0xFF0A0A0B),
+      backgroundColor: isDark ? const Color(0xFF0A0A0B) : const Color(0xFFFDFCF0),
       appBar: AppBar(
-        backgroundColor: const Color(0xFF0A0A0B),
+        backgroundColor: isDark ? const Color(0xFF0A0A0B) : const Color(0xFFFDFCF0),
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new, color: Colors.white, size: 20),
+          icon: Icon(Icons.arrow_back_ios_new, color: isDark ? Colors.white : Colors.black87, size: 20),
           onPressed: () => Navigator.of(context).pop(),
         ),
-        title: const Text(
+        title: Text(
           'Shows & Dramas',
-          style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+          style: TextStyle(color: isDark ? Colors.white : Colors.black87, fontSize: 20, fontWeight: FontWeight.bold),
         ),
       ),
       body: showsAsync.when(

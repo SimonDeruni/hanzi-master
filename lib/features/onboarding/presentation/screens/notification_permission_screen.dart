@@ -45,6 +45,10 @@ class _NotificationPermissionScreenState extends ConsumerState<NotificationPermi
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
+    final textColor = isDark ? Colors.white : const Color(0xFF1A1A1B);
+    final surfaceColor = isDark ? const Color(0xFF2A2A2B) : const Color(0xFFFDFCF0);
+    final buttonBg = isDark ? Colors.white : const Color(0xFF1A1A1B);
+    final buttonFg = isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0);
 
     return Scaffold(
       body: CalligraphyBackground(
@@ -141,21 +145,21 @@ class _NotificationPermissionScreenState extends ConsumerState<NotificationPermi
                     child: Container(
                       padding: const EdgeInsets.symmetric(vertical: 18),
                       decoration: BoxDecoration(
-                        color: const Color(0xFF1A1A1B),
+                        color: buttonBg,
                         borderRadius: BorderRadius.circular(16),
                         boxShadow: [
                           BoxShadow(
-                            color: const Color(0xFF1A1A1B).withValues(alpha: 0.3),
+                            color: textColor.withValues(alpha: 0.3),
                             blurRadius: 12,
                             offset: const Offset(0, 4),
                           )
                         ],
                       ),
-                      child: const Center(
+                      child: Center(
                         child: Text(
                           "Enable Notifications",
                           style: TextStyle(
-                            color: Color(0xFFFDFCF0),
+                            color: buttonFg,
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
                           ),
@@ -169,21 +173,21 @@ class _NotificationPermissionScreenState extends ConsumerState<NotificationPermi
                     child: Container(
                       padding: const EdgeInsets.symmetric(vertical: 18),
                       decoration: BoxDecoration(
-                        color: const Color(0xFF1A1A1B),
+                        color: buttonBg,
                         borderRadius: BorderRadius.circular(16),
                         boxShadow: [
                           BoxShadow(
-                            color: const Color(0xFF1A1A1B).withValues(alpha: 0.3),
+                            color: textColor.withValues(alpha: 0.3),
                             blurRadius: 12,
                             offset: const Offset(0, 4),
                           )
                         ],
                       ),
-                      child: const Center(
+                      child: Center(
                         child: Text(
                           "Continue",
                           style: TextStyle(
-                            color: Color(0xFFFDFCF0),
+                            color: buttonFg,
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
                           ),

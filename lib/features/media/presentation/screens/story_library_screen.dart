@@ -130,13 +130,14 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
-      backgroundColor: const Color(0xFFFDFCF0), // Zen Paper
+      backgroundColor: isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0), // Zen Paper
       appBar: AppBar(
         title: const Text('文化书房 Library', style: TextStyle(fontWeight: FontWeight.bold)),
         backgroundColor: Colors.transparent,
         elevation: 0,
-        foregroundColor: const Color(0xFF1A1A1B),
+        foregroundColor: isDark ? const Color(0xFFFDFCF0) : const Color(0xFF1A1A1B),
       ),
       body: Column(
         children: [

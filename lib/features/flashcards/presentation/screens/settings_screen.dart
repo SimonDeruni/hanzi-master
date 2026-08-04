@@ -347,7 +347,8 @@ void _showNotificationSettings(BuildContext context, WidgetRef ref) {
                     } else {
                       notificationService.cancel(1);
                       if (reviewRemindersEnabled) {
-                        notificationService.scheduleSpacedRepetition(reviewTime.hour, reviewTime.minute, 5);
+                        final dueCount = ref.read(dueFlashcardsCountProvider);
+                        notificationService.scheduleSpacedRepetition(reviewTime.hour, reviewTime.minute, dueCount);
                       }
                     }
                   },
@@ -371,7 +372,8 @@ void _showNotificationSettings(BuildContext context, WidgetRef ref) {
                   onChanged: (val) {
                     setSheetState(() => reviewRemindersEnabled = val);
                     if (val) {
-                      notificationService.scheduleSpacedRepetition(reviewTime.hour, reviewTime.minute, 5);
+                      final dueCount = ref.read(dueFlashcardsCountProvider);
+                      notificationService.scheduleSpacedRepetition(reviewTime.hour, reviewTime.minute, dueCount);
                     } else {
                       notificationService.cancel(2);
                       if (dailyDropsEnabled) {
@@ -382,7 +384,8 @@ void _showNotificationSettings(BuildContext context, WidgetRef ref) {
                   onTimePicked: (time) {
                     setSheetState(() => reviewTime = time);
                     if (reviewRemindersEnabled) {
-                      notificationService.scheduleSpacedRepetition(time.hour, time.minute, 5);
+                      final dueCount = ref.read(dueFlashcardsCountProvider);
+                      notificationService.scheduleSpacedRepetition(time.hour, time.minute, dueCount);
                     }
                   },
                 ),

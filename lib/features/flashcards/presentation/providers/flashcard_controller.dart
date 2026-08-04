@@ -185,3 +185,7 @@ final dueFlashcardsProvider = Provider<List<Flashcard>>((ref) {
   final allCards = ref.watch(flashcardControllerProvider).value ?? [];
   return allCards.where((card) => card.isDue(StudyMode.reading)).toList();
 });
+
+final dueFlashcardsCountProvider = Provider<int>((ref) {
+  return ref.watch(dueFlashcardsProvider).length;
+});

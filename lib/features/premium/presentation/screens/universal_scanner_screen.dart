@@ -1105,11 +1105,11 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
               child: Container(
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
-                  color: Colors.white.withValues(alpha: 0.9),
+                  color: isDark ? const Color(0xFF1A1A1B).withValues(alpha: 0.95) : Colors.white.withValues(alpha: 0.9),
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: SingleChildScrollView(
-                  child: Text(_rawExtractedText, style: theme.textTheme.bodyLarge?.copyWith(height: 1.6)),
+                  child: Text(_rawExtractedText, style: theme.textTheme.bodyLarge?.copyWith(height: 1.6, color: isDark ? Colors.white : Colors.black87)),
                 ),
               ),
             ),
@@ -1274,7 +1274,7 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                   child: Container(
                     padding: const EdgeInsets.all(20),
                     decoration: BoxDecoration(
-                      color: isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
+                      color: isDark ? const Color(0xFF2A2A2B) : const Color(0xFFFDFCF0),
                       borderRadius: BorderRadius.circular(24),
                       boxShadow: [
                         BoxShadow(color: Colors.black.withValues(alpha: isDark ? 0.3 : 0.1), blurRadius: 8, offset: const Offset(0, 4)),

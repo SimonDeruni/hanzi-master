@@ -705,7 +705,9 @@ class _ActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     final effectiveColor = isDisabled ? Colors.grey : Colors.indigo;
+    final disabledBg = isDark ? Colors.grey.shade800 : Colors.grey.shade300;
 
     return GestureDetector(
       onTap: onTap,
@@ -715,7 +717,7 @@ class _ActionButton extends StatelessWidget {
         alignment: Alignment.center,
         decoration: BoxDecoration(
           color: isPrimary
-              ? (isDisabled ? Colors.grey.shade300 : Colors.indigo)
+              ? (isDisabled ? disabledBg : Colors.indigo)
               : Colors.transparent,
           borderRadius: BorderRadius.circular(14),
           border: isPrimary

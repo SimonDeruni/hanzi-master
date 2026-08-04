@@ -23,8 +23,9 @@ class ShowDetailScreen extends ConsumerWidget {
     final savedShows = ref.watch(savedShowsProvider);
     final isBookmarked = savedShows.contains(show.id);
 
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
-      backgroundColor: const Color(0xFF0A0A0B),
+      backgroundColor: isDark ? const Color(0xFF0A0A0B) : const Color(0xFFFDFCF0),
       body: CustomScrollView(
         slivers: [
           // Hero header with backdrop

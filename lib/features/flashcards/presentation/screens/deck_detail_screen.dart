@@ -169,13 +169,13 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                             final bool? confirm = await showDialog<bool>(
                               context: context,
                               builder: (ctx) => AlertDialog(
-                                backgroundColor: const Color(0xFFFDFCF0),
-                                title: Text('Erase Deck?', style: const TextStyle(fontWeight: FontWeight.bold)),
-                                content: Text('Are you sure you want to permanently erase "${widget.deck.name}"? This action cannot be undone and will delete all cards inside it.'),
+                                backgroundColor: isDark ? const Color(0xFF2A2A2C) : const Color(0xFFFDFCF0),
+                                title: Text('Erase Deck?', style: TextStyle(fontWeight: FontWeight.bold, color: isDark ? Colors.white : Colors.black)),
+                                content: Text('Are you sure you want to permanently erase "${widget.deck.name}"? This action cannot be undone and will delete all cards inside it.', style: TextStyle(color: isDark ? Colors.white70 : Colors.black87)),
                                 actions: [
                                   TextButton(
                                     onPressed: () => Navigator.pop(ctx, false),
-                                    child: const Text('Cancel', style: TextStyle(color: Colors.grey)),
+                                    child: Text('Cancel', style: TextStyle(color: isDark ? Colors.white60 : Colors.grey)),
                                   ),
                                   TextButton(
                                     onPressed: () => Navigator.pop(ctx, true),
@@ -428,14 +428,18 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                                       confirmDismiss: (direction) async {
                                         return await showDialog<bool>(
                                           context: context,
-                                          builder: (context) => AlertDialog(
-                                            title: Text(AppLocalizations.of(context)!.removeCard),
-                                            content: Text("Remove ${card.hanzi} from this deck?"),
-                                            actions: [
-                                              TextButton(onPressed: () => Navigator.pop(context, false), child: Text(AppLocalizations.of(context)!.cancel)),
-                                              TextButton(onPressed: () => Navigator.pop(context, true), child: Text(AppLocalizations.of(context)!.remove)),
-                                            ],
-                                          ),
+                                          builder: (context) {
+                                            final dialogIsDark = Theme.of(context).brightness == Brightness.dark;
+                                            return AlertDialog(
+                                              backgroundColor: dialogIsDark ? const Color(0xFF2A2A2C) : const Color(0xFFFDFCF0),
+                                              title: Text(AppLocalizations.of(context)!.removeCard, style: TextStyle(color: dialogIsDark ? Colors.white : Colors.black)),
+                                              content: Text("Remove ${card.hanzi} from this deck?", style: TextStyle(color: dialogIsDark ? Colors.white70 : Colors.black87)),
+                                              actions: [
+                                                TextButton(onPressed: () => Navigator.pop(context, false), child: Text(AppLocalizations.of(context)!.cancel, style: TextStyle(color: dialogIsDark ? Colors.white60 : Colors.grey))),
+                                                TextButton(onPressed: () => Navigator.pop(context, true), child: Text(AppLocalizations.of(context)!.remove, style: const TextStyle(color: Colors.red))),
+                                              ],
+                                            );
+                                          },
                                         );
                                       },
                                       onDismissed: (direction) {

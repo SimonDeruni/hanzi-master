@@ -143,8 +143,9 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
-      backgroundColor: const Color(0xFFFDFCF0), // Xuan paper
+      backgroundColor: isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0), // Xuan paper
       appBar: AppBar(
         title: const Row(
           mainAxisSize: MainAxisSize.min,

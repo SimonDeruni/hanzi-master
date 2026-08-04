@@ -337,9 +337,9 @@ class _NuanceCompareSheetState extends ConsumerState<NuanceCompareSheet> {
             margin: const EdgeInsets.only(bottom: 16, left: 16, right: 8),
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
-              color: isDark ? Colors.grey.shade900 : Colors.indigo.shade50,
+              color: isDark ? const Color(0xFF1E1E2E) : Colors.indigo.shade50,
               borderRadius: BorderRadius.circular(8),
-              border: Border(left: BorderSide(color: Colors.indigo.shade300, width: 4)),
+              border: Border(left: BorderSide(color: isDark ? Colors.indigo.shade200 : Colors.indigo.shade300, width: 4)),
             ),
             child: TappableMarkdownHanziText(
               block.replaceFirst('Usage:', '').trim(),
@@ -393,20 +393,20 @@ class _NuanceCompareSheetState extends ConsumerState<NuanceCompareSheet> {
                         width: double.infinity,
                         padding: const EdgeInsets.all(12),
                         decoration: BoxDecoration(
-                          color: Colors.orange.shade50,
+                          color: isDark ? const Color(0xFF3A2A1A) : Colors.orange.shade50,
                           borderRadius: BorderRadius.circular(12),
-                          border: Border.all(color: Colors.orange.shade200),
+                          border: Border.all(color: isDark ? Colors.orange.shade800 : Colors.orange.shade200),
                         ),
                         child: Row(
                           children: [
                             Icon(Icons.warning_amber_rounded,
-                                color: Colors.orange.shade700, size: 20),
+                                color: isDark ? Colors.orange.shade400 : Colors.orange.shade700, size: 20),
                             const SizedBox(width: 8),
                             Expanded(
                               child: Text(
                                 _error!,
                                 style: TextStyle(
-                                  color: Colors.orange.shade800,
+                                  color: isDark ? Colors.orange.shade300 : Colors.orange.shade800,
                                   fontSize: 13,
                                 ),
                               ),
@@ -422,7 +422,7 @@ class _NuanceCompareSheetState extends ConsumerState<NuanceCompareSheet> {
               ),
             ] else ...[
               // No partial text — full error
-              Icon(Icons.cloud_off, size: 48, color: Colors.grey.shade400),
+              Icon(Icons.cloud_off, size: 48, color: isDark ? Colors.grey.shade600 : Colors.grey.shade400),
               const SizedBox(height: 16),
               Text(
                 _error!,
@@ -455,15 +455,14 @@ class _NuanceCompareSheetState extends ConsumerState<NuanceCompareSheet> {
                   height: 16,
                   child: CircularProgressIndicator(
                     strokeWidth: 2,
-                    color: Colors.indigo,
                   ),
                 ),
                 const SizedBox(width: 12),
                 Expanded(
                   child: Text(
                     _statusText,
-                    style: const TextStyle(
-                      color: Colors.black54,
+                    style: TextStyle(
+                      color: isDark ? Colors.white54 : Colors.black54,
                       fontWeight: FontWeight.w600,
                       fontSize: 14,
                     ),
@@ -483,7 +482,7 @@ class _NuanceCompareSheetState extends ConsumerState<NuanceCompareSheet> {
                     _buildFormattedContent(_streamedText, theme, isDark),
                     // Blinking cursor to indicate still generating
                     const SizedBox(height: 4),
-                    _PulsingCursor(),
+                    const _PulsingCursor(),
                   ],
                 ),
               ),
@@ -646,12 +645,25 @@ class _NuanceCompareSheetState extends ConsumerState<NuanceCompareSheet> {
 
 // ─── Pulsing cursor shown at end of streaming text ───────────────────────────
 
-class _PulsingCursor extends StatefulWidget {
+class _PulsingCursor extends StatelessWidget {
+  const _PulsingCursor();
+
   @override
-  State<_PulsingCursor> createState() => _PulsingCursorState();
+  Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    return _PulsingCursorAnimated(isDark: isDark);
+  }
 }
 
-class _PulsingCursorState extends State<_PulsingCursor>
+class _PulsingCursorAnimated extends StatefulWidget {
+  final bool isDark;
+  const _PulsingCursorAnimated({required this.isDark});
+
+  @override
+  State<_PulsingCursorAnimated> createState() => _PulsingCursorAnimatedState();
+}
+
+class _PulsingCursorAnimatedState extends State<_PulsingCursorAnimated>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
 
@@ -678,7 +690,7 @@ class _PulsingCursorState extends State<_PulsingCursor>
         width: 2,
         height: 18,
         decoration: BoxDecoration(
-          color: Colors.indigo.shade400,
+          color: widget.isDark ? Colors.indigo.shade300 : Colors.indigo.shade400,
           borderRadius: BorderRadius.circular(1),
         ),
       ),
