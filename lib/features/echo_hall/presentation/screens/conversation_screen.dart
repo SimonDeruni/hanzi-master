@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../domain/entities/scenario.dart';
@@ -35,6 +36,20 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
 
   @override
   void dispose() {
+    // Delete any locally cached audio files from this session
+    final state = ref.read(conversationControllerProvider);
+    for (var message in state.messages) {
+      if (message.audioPath != null) {
+        try {
+          final file = File(message.audioPath!);
+          if (file.existsSync()) {
+            file.deleteSync();
+          }
+        } catch (e) {
+          debugPrint("Error deleting conversation recording on dispose: $e");
+        }
+      }
+    }
     _scrollController.dispose();
     super.dispose();
   }

@@ -121,6 +121,16 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
         // Ignore — recorder may already be in an invalid state
       }
     }
+    if (_recordingPath != null) {
+      try {
+        final file = File(_recordingPath!);
+        if (file.existsSync()) {
+          file.deleteSync();
+        }
+      } catch (e) {
+        debugPrint("Error deleting shadowing recording on dispose: $e");
+      }
+    }
     _audioRecorder.dispose();
     _pulseController.dispose();
     super.dispose();

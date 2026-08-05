@@ -539,6 +539,18 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
 
   @override
   void dispose() {
+    for (var message in _transcript) {
+      if (message.audioPath != null) {
+        try {
+          final file = File(message.audioPath!);
+          if (file.existsSync()) {
+            file.deleteSync();
+          }
+        } catch (e) {
+          debugPrint("Error deleting live call recording on dispose: $e");
+        }
+      }
+    }
     _audioRecorder.dispose();
     _isDisposed = true;
     _recognitionSession++;
