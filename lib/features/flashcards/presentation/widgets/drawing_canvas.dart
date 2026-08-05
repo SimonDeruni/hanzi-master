@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:hanzi_master/core/character_loader.dart';
 import 'package:hanzi_master/core/stroke_matcher.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
-import 'package:audioplayers/audioplayers.dart';
+
 
 class DrawingCanvas extends StatefulWidget {
   final List<String> strokePaths;
@@ -81,8 +81,6 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
   bool _isHintAnimating = false;
   late AnimationController _hintController;
 
-  final AudioPlayer _inkPlayer = AudioPlayer();
-  final AudioPlayer _thudPlayer = AudioPlayer();
 
   @override
   void initState() {
@@ -90,7 +88,6 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
     if (widget.initialUserPoints != null) _userPoints.addAll(widget.initialUserPoints!);
     _shakeController = AnimationController(vsync: this, duration: const Duration(milliseconds: 500));
     _hintController = AnimationController(vsync: this, duration: const Duration(milliseconds: 1200));
-    _inkPlayer.setReleaseMode(ReleaseMode.loop);
     _syncUserPointsWithNotifier();
     widget.userPointsNotifier?.addListener(_onExternalPointsChanged);
     _refreshData();
@@ -199,8 +196,6 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
     _cycleTimer?.cancel();
     _shakeController.dispose();
     _hintController.dispose();
-    _inkPlayer.dispose();
-    _thudPlayer.dispose();
     widget.userPointsNotifier?.removeListener(_onExternalPointsChanged);
     super.dispose();
   }
@@ -288,7 +283,6 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
       });
     } else {
       HapticsManager.heavy();
-      _thudPlayer.play(AssetSource('audio/thud.wav'));
       _shakeController.forward(from: 0);
       Future.delayed(const Duration(milliseconds: 300), () {
         if (mounted && !_currentStrokeComplete) {
@@ -551,7 +545,6 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
                         onPanStart: (details) {
                           if (widget.readOnly) return;
                           HapticsManager.light();
-                          _inkPlayer.play(AssetSource('audio/wet_ink.wav'));
                           setState(() {
                             final normalizedPoint = Offset(
                               details.localPosition.dx * scaleX - centeringShift.dx,
@@ -578,7 +571,6 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
                         onPanEnd: (details) {
                           if (widget.readOnly) return;
                           HapticsManager.light();
-                          _inkPlayer.stop();
                           setState(() => _userPoints.add(null));
                           _gradeCurrentStroke();
                         },

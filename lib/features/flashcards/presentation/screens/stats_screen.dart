@@ -7,11 +7,12 @@ import '../providers/stats_controller.dart';
 import '../providers/stats_state.dart';
 
 class StatsScreen extends ConsumerWidget {
-  const StatsScreen({super.key});
+  final String? deckId;
+  const StatsScreen({super.key, this.deckId});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final StatsState stats = ref.watch(userStatsProvider);
+    final StatsState stats = ref.watch(userStatsProvider(deckId: deckId));
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
     final bgColor = isDark ? Colors.grey[900]! : Colors.grey.shade100;

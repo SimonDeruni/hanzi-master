@@ -6,12 +6,15 @@ import 'stats_state.dart';
 part 'stats_controller.g.dart';
 
 @riverpod
-StatsState userStats(UserStatsRef ref) {
+StatsState userStats(UserStatsRef ref, {String? deckId}) {
   final cardsAsync = ref.watch(flashcardControllerProvider);
   
   return cardsAsync.maybeWhen(
     data: (cards) {
-      int total = cards.length;
+      final filtered = deckId != null 
+          ? cards.where((c) => c.deckId == deckId).toList()
+          : cards;
+      int total = filtered.length;
       int mastered = 0;
       int learned = 0;
       int successCount = 0;
@@ -23,7 +26,7 @@ StatsState userStats(UserStatsRef ref) {
       final now = DateTime.now();
       final today = DateTime(now.year, now.month, now.day);
 
-      for (var card in cards) {
+      for (var card in filtered) {
         if (card.isMastered(StudyMode.reading)) {
           mastered++;
         } else if (card.isLearning(StudyMode.reading)) {
