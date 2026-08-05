@@ -1083,7 +1083,7 @@ class _DictionaryItemState extends ConsumerState<_DictionaryItem> {
             ),
             
             // Right: Mastery Seal
-            if (isInLibrary) ...[
+            if (widget.isInLibrary) ...[
               SizedBox(width: 12),
               MasterySeal(
                 progress: masteryProgress,

@@ -60,9 +60,10 @@ class LiveCallMessage {
       text: text ?? this.text,
       pinyin: pinyin ?? this.pinyin,
       translation: translation ?? this.translation,
-      role: role,
+      role: role ?? this.role,
       grade: grade ?? this.grade,
-      timestamp: timestamp,
+      audioPath: audioPath ?? this.audioPath,
+      timestamp: timestamp ?? this.timestamp,
     );
   }
 }
