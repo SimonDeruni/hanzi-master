@@ -274,7 +274,7 @@ class _FoundBody extends ConsumerWidget {
                           fontSize: 11.5,
                           fontWeight: FontWeight.w600,
                           letterSpacing: 0.6,
-                          color: textColor.withValues(alpha: 0.45),
+                          color: isDark ? Colors.white70 : textColor.withValues(alpha: 0.45),
                         ),
                       ),
                     ],
@@ -309,9 +309,9 @@ class _FoundBody extends ConsumerWidget {
                               children: [
                                 Text(
                                   w.hanzi,
-                                  style: const TextStyle(
+                                  style: TextStyle(
                                     fontSize: 15,
-                                    color: Colors.indigo,
+                                    color: isDark ? Colors.blue.shade100 : Colors.indigo,
                                     fontWeight: FontWeight.w600,
                                     height: 1,
                                   ),
@@ -321,8 +321,9 @@ class _FoundBody extends ConsumerWidget {
                                   _cleanPinyin(w.pinyin),
                                   style: TextStyle(
                                     fontSize: 11.5,
-                                    color:
-                                        Colors.indigo.withValues(alpha: 0.65),
+                                    color: isDark
+                                        ? Colors.blue.shade200
+                                        : Colors.indigo.withValues(alpha: 0.65),
                                     height: 1,
                                     fontStyle: FontStyle.italic,
                                   ),

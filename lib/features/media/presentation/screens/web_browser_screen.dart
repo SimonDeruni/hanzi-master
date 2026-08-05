@@ -51,6 +51,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
   bool _isZenMode = false;
   bool _isProcessingAi = false;
   String _selectedText = '';
+  bool _isArticleSaved = false;
 
   ArticleInsight? _currentInsight;
   bool _isReadingAloud = false;
@@ -100,6 +101,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
               _isLoading = false;
               _urlController.text = url;
             });
+            _checkArticleSaved(url);
             _injectHanziInterceptor();
             // Auto-trigger Reading (Zen) Mode by default
             Future.delayed(const Duration(milliseconds: 800), () {
@@ -1026,6 +1028,27 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
     }
   }
 
+  Future<void> _checkArticleSaved(String url) async {
+    try {
+      if (widget.isStoryMode) {
+        final prefs = await SharedPreferences.getInstance();
+        final savedUrls =
+            prefs.getStringList('bookmarked_story_urls') ?? [];
+        if (mounted) {
+          setState(() => _isArticleSaved = savedUrls.contains(url));
+        }
+      } else {
+        final box = Hive.box<SavedArticle>('saved_articles');
+        final isSaved = box.values.any((a) => a.url == url);
+        if (mounted) {
+          setState(() => _isArticleSaved = isSaved);
+        }
+      }
+    } catch (_) {
+      // Silently ignore — if we can't check, just assume not saved
+    }
+  }
+
   Future<void> _startTranslation(String sentence) async {
     setState(() {
       _isTranslating = true;
@@ -1373,9 +1396,9 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
         ),
         actions: [
           IconButton(
-            icon: const Icon(Icons.bookmark_border),
-            tooltip: 'Save Article',
-            onPressed: () async {
+            icon: Icon(_isArticleSaved ? Icons.bookmark : Icons.bookmark_border),
+            tooltip: _isArticleSaved ? 'Article saved' : 'Save Article',
+            onPressed: _isArticleSaved ? null : () async {
               HapticsManager.light();
               final urlRaw = await _controller
                   .runJavaScriptReturningResult('window.location.href');
@@ -1389,6 +1412,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                   savedUrls.add(url);
                   await prefs.setStringList('bookmarked_story_urls', savedUrls);
                   if (mounted) {
+                    setState(() => _isArticleSaved = true);
                     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                         content: Text('Story bookmarked in Library!')));
                   }
@@ -1418,6 +1442,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                 await box.add(article);
 
                 if (mounted) {
+                  setState(() => _isArticleSaved = true);
                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                       content: Text('Article saved to Media Hub!')));
                 }
