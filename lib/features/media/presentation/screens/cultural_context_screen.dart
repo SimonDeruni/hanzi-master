@@ -5,7 +5,6 @@ import 'package:hanzi_master/features/media/domain/models/daily_media_item.dart'
 import 'package:hanzi_master/features/media/domain/models/youtube_video.dart';
 import 'package:hanzi_master/features/media/presentation/providers/cultural_context_provider.dart';
 import 'package:hanzi_master/features/media/presentation/screens/web_browser_screen.dart';
-import 'package:hanzi_master/features/media/presentation/screens/media_search_screen.dart';
 import 'package:hanzi_master/features/media/presentation/screens/smart_media_desk_screen.dart';
 import 'package:flutter/gestures.dart';
 import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
@@ -80,7 +79,7 @@ class CulturalContextScreen extends ConsumerWidget {
                 ),
                 SliverToBoxAdapter(
                   child: Padding(
-                    padding: const EdgeInsets.fromLTRB(24.0, 0, 24.0, 40.0),
+                    padding: const EdgeInsets.fromLTRB(24.0, 0, 24.0, 120.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -132,21 +131,10 @@ class CulturalContextScreen extends ConsumerWidget {
                         ),
                         const SizedBox(height: 24),
                         culturalContextAsync.when(
-                          data: (text) => _buildClickableContext(
+                          data: (text) => _buildStructuredInsight(
                             context, 
                             text, 
                             theme,
-                            customBaseStyle: theme.textTheme.bodyLarge?.copyWith(
-                              height: 1.8,
-                              fontSize: 18,
-                              color: theme.colorScheme.onSurface.withValues(alpha: 0.85),
-                            ),
-                            customHanziStyle: theme.textTheme.bodyLarge?.copyWith(
-                              height: 1.8,
-                              fontSize: 18,
-                              color: theme.colorScheme.primary,
-                              fontWeight: FontWeight.w600,
-                            ),
                           ),
                           loading: () => Padding(
                             padding: const EdgeInsets.symmetric(vertical: 40),
@@ -290,6 +278,147 @@ class CulturalContextScreen extends ConsumerWidget {
     return null;
   }
 
+  /// Parses AI-generated structured insight text with ## headings, - bullets, and **bold**.
+  Widget _buildStructuredInsight(BuildContext context, String text, ThemeData theme) {
+    final lines = text.split('\n');
+    final RegExp chineseRegex = RegExp(r'[\u4e00-\u9fa5]');
+    
+    final baseStyle = theme.textTheme.bodyLarge?.copyWith(
+      height: 1.8,
+      fontSize: 17,
+      color: theme.colorScheme.onSurface.withValues(alpha: 0.85),
+    );
+    final hanziStyle = theme.textTheme.bodyLarge?.copyWith(
+      height: 1.8,
+      fontSize: 17,
+      color: theme.colorScheme.primary,
+      fontWeight: FontWeight.w600,
+    );
+    final headingStyle = theme.textTheme.titleMedium?.copyWith(
+      fontWeight: FontWeight.w800,
+      fontSize: 18,
+      color: theme.colorScheme.onSurface,
+      height: 1.4,
+    );
+    
+    final List<Widget> widgets = [];
+    
+    for (final line in lines) {
+      final trimmed = line.trim();
+      if (trimmed.isEmpty) {
+        widgets.add(const SizedBox(height: 8));
+        continue;
+      }
+      
+      // Subheading: "## Something"
+      if (trimmed.startsWith('## ')) {
+        final heading = trimmed.substring(3).trim();
+        widgets.add(Padding(
+          padding: const EdgeInsets.only(top: 20, bottom: 12),
+          child: Text(heading, style: headingStyle),
+        ));
+        continue;
+      }
+      
+      // Bullet point: "- Something"
+      if (trimmed.startsWith('- ')) {
+        final bulletContent = trimmed.substring(2).trim();
+        final spans = _buildRichSpans(bulletContent, baseStyle!, hanziStyle!, chineseRegex, context, theme);
+        widgets.add(Padding(
+          padding: const EdgeInsets.only(left: 12, bottom: 8),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 2, right: 8),
+                child: Text('•', style: baseStyle),
+              ),
+              Expanded(child: RichText(text: TextSpan(children: spans))),
+            ],
+          ),
+        ));
+        continue;
+      }
+      
+      // Regular paragraph
+      final spans = _buildRichSpans(trimmed, baseStyle!, hanziStyle!, chineseRegex, context, theme);
+      widgets.add(Padding(
+        padding: const EdgeInsets.only(bottom: 14),
+        child: RichText(text: TextSpan(children: spans)),
+      ));
+    }
+    
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: widgets,
+    );
+  }
+  
+  /// Builds a list of [TextSpan] from raw text, making Chinese characters tappable
+  /// and preserving **bold** markers.
+  List<TextSpan> _buildRichSpans(
+    String text,
+    TextStyle baseStyle,
+    TextStyle hanziStyle,
+    RegExp chineseRegex,
+    BuildContext context,
+    ThemeData theme,
+  ) {
+    // First, strip ** markers and track bold ranges
+    final List<_BoldRange> boldRanges = [];
+    final StringBuffer cleanBuffer = StringBuffer();
+    bool insideBold = false;
+    
+    for (int i = 0; i < text.length; i++) {
+      if (i + 1 < text.length && text[i] == '*' && text[i + 1] == '*') {
+        insideBold = !insideBold;
+        i++; // skip second *
+        if (insideBold) {
+          // Record start of bold region
+          boldRanges.add(_BoldRange(start: cleanBuffer.length, end: -1));
+        } else {
+          // Close the last opened bold range
+          for (int j = boldRanges.length - 1; j >= 0; j--) {
+            if (boldRanges[j].end == -1) {
+              boldRanges[j] = _BoldRange(start: boldRanges[j].start, end: cleanBuffer.length);
+              break;
+            }
+          }
+        }
+      } else {
+        cleanBuffer.write(text[i]);
+      }
+    }
+    
+    final cleanText = cleanBuffer.toString();
+    final List<TextSpan> spans = [];
+    
+    for (int i = 0; i < cleanText.length; i++) {
+      final char = cleanText[i];
+      bool isInsideBoldRange = boldRanges.any((r) => i >= r.start && i < r.end);
+      
+      final effectiveStyle = isInsideBoldRange
+          ? (chineseRegex.hasMatch(char) ? hanziStyle : baseStyle).copyWith(fontWeight: FontWeight.w800)
+          : chineseRegex.hasMatch(char) ? hanziStyle : baseStyle;
+      
+      if (chineseRegex.hasMatch(char)) {
+        spans.add(TextSpan(
+          text: char,
+          style: effectiveStyle,
+          recognizer: TapGestureRecognizer()
+            ..onTap = () {
+              showQuickLook(context, char);
+            },
+        ));
+      } else {
+        spans.add(TextSpan(text: char, style: effectiveStyle));
+      }
+    }
+    
+    return spans;
+  }
+
+  /// Legacy renderer — kept for backward compatibility with non-structured text.
   Widget _buildClickableContext(BuildContext context, String text, ThemeData theme, {TextStyle? customBaseStyle, TextStyle? customHanziStyle}) {
     final paragraphs = text.split('\n\n');
     final RegExp chineseRegex = RegExp(r'[\u4e00-\u9fa5]');
@@ -297,9 +426,7 @@ class CulturalContextScreen extends ConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: paragraphs.map((p) {
-        // Strip markdown hashes if present
         var content = p.replaceAll(RegExp(r'^#+\s+'), '');
-        // Strip bold asterisks
         content = content.replaceAll('**', '');
 
         final List<TextSpan> spans = [];
@@ -332,4 +459,12 @@ class CulturalContextScreen extends ConsumerWidget {
       }).toList(),
     );
   }
+  
+}
+
+/// Small helper to hold bold region boundaries in the cleaned text.
+class _BoldRange {
+  final int start;
+  final int end;
+  const _BoldRange({required this.start, required this.end});
 }

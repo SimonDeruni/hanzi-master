@@ -107,7 +107,8 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                 if (!_isZenMode) {
                   _toggleZenMode();
                 } else {
-                  _applyZenMode();
+                  final isDark = Theme.of(context).brightness == Brightness.dark;
+                  _applyZenMode(darkMode: isDark);
                 }
               }
             });
@@ -718,7 +719,12 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
         window.zenModeBackup = document.body.innerHTML;
       }
       
-      $darkGlobalCss
+      if (!document.getElementById('hanzi-dark-mode-style')) {
+        const style = document.createElement('style');
+        style.id = 'hanzi-dark-mode-style';
+        style.textContent = `${darkGlobalCss.replaceAll('\n', ' ')}`;
+        document.head.appendChild(style);
+      }
       
       let bestNode = document.body;
       const articles = document.querySelectorAll('article, .article, .post, .content, main');
@@ -767,6 +773,8 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
       document.documentElement.style.position = 'static';
       document.body.style.height = 'auto';
       document.documentElement.style.height = 'auto';
+      document.body.style.backgroundColor = '$bgColor';
+      document.documentElement.style.backgroundColor = '$bgColor';
       
       window.makeChineseTextClickable(document.body);
     ''';
