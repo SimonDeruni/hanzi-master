@@ -33,6 +33,7 @@ import 'package:hanzi_master/core/utils/definition_formatter.dart';
 import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/study_mode.dart';
+import 'package:hanzi_master/core/providers.dart';
 
 class DictionaryScreen extends ConsumerStatefulWidget {
   const DictionaryScreen({super.key});
