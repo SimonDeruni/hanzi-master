@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 
 class BouncingButton extends StatefulWidget {
   final Widget child;
@@ -39,6 +40,7 @@ class _BouncingButtonState extends State<BouncingButton> with SingleTickerProvid
 
   void _onTapDown(TapDownDetails details) {
     if (widget.onPressed != null) {
+      HapticsManager.light();
       _controller.forward();
     }
   }
