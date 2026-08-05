@@ -11,6 +11,7 @@ import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/shared/widgets/tappable_hanzi_text.dart';
 import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
 import 'package:hanzi_master/core/services/audio_service.dart';
+import 'package:hanzi_master/shared/widgets/breathing_widget.dart';
 import 'package:hanzi_master/core/services/saved_scenarios_service.dart';
 
 class ConversationScreen extends ConsumerStatefulWidget {
@@ -344,16 +345,19 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
                       onPointerCancel: (_) {
                         if (!state.isProcessing) ref.read(conversationControllerProvider.notifier).stopRecordingAndProcess();
                       },
-                      child: Container(
-                        padding: const EdgeInsets.all(12),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: state.isRecording ? Colors.redAccent : theme.colorScheme.primary.withValues(alpha: 0.1),
-                        ),
-                        child: Icon(
-                          state.isRecording ? Icons.mic : Icons.mic_none,
-                          color: state.isRecording ? Colors.white : theme.colorScheme.primary,
-                          size: 24,
+                      child: BreathingWidget(
+                        isBreathing: state.isRecording,
+                        child: Container(
+                          padding: const EdgeInsets.all(12),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: state.isRecording ? Colors.redAccent : theme.colorScheme.primary.withValues(alpha: 0.1),
+                          ),
+                          child: Icon(
+                            state.isRecording ? Icons.mic : Icons.mic_none,
+                            color: state.isRecording ? Colors.white : theme.colorScheme.primary,
+                            size: 24,
+                          ),
                         ),
                       ),
                     );

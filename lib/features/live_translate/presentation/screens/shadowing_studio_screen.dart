@@ -22,6 +22,8 @@ import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart'
 import 'package:hanzi_master/features/flashcards/domain/entities/study_mode.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/deck.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/character_detail_screen.dart';
+import 'package:hanzi_master/core/services/saved_scenarios_service.dart';
+import 'package:hanzi_master/shared/widgets/breathing_widget.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/core/providers.dart';
 
@@ -1293,12 +1295,14 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                                           _startRecording(),
                                       onLongPressEnd: (_) =>
                                           _stopRecordingAndGrade(),
-                                      child: AnimatedBuilder(
-                                        animation: _pulseAnimation,
-                                        builder: (context, child) {
-                                          return Transform.scale(
-                                            scale: _pulseAnimation.value,
-                                            child: Container(
+                                      child: BreathingWidget(
+                                        isBreathing: _isRecording,
+                                        child: AnimatedBuilder(
+                                          animation: _pulseAnimation,
+                                          builder: (context, child) {
+                                            return Transform.scale(
+                                              scale: _pulseAnimation.value,
+                                              child: Container(
                                               width: widget.isCompact ? 64 : 80,
                                               height:
                                                   widget.isCompact ? 64 : 80,
@@ -1334,6 +1338,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                                             ),
                                           );
                                         },
+                                      ),
                                       ),
                                     ),
 

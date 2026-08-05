@@ -15,6 +15,7 @@ import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_mana
 import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:hanzi_master/core/services/speech_service.dart';
 import 'package:hanzi_master/core/services/audio_service.dart';
+import 'package:hanzi_master/shared/widgets/breathing_widget.dart';
 import '../widgets/live_call_summary_screen.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/shared/widgets/tappable_hanzi_text.dart';
@@ -855,49 +856,52 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
                                     : _callState == LiveCallState.thinking
                                         ? Colors.amber
                                         : Colors.white24;
-                        return Transform.scale(
-                          scale: scale,
-                          child: Container(
-                            width: 140,
-                            height: 140,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              boxShadow: [
-                                if (isActive ||
-                                    _callState == LiveCallState.thinking)
-                                  BoxShadow(
-                                      color: glowColor.withValues(alpha: 0.5),
-                                      blurRadius: 40 + (_audioLevel * 20),
-                                      spreadRadius: 5),
-                              ],
-                            ),
-                            child: ClipOval(
-                              child: (widget.scenario.avatarAssetPath ==
-                                          'none' ||
-                                      widget.scenario.avatarAssetPath.isEmpty)
-                                  ? Container(
-                                      color: theme.colorScheme.primary,
-                                      child: Center(
-                                        child: Text(
-                                          widget.scenario.personaName.isNotEmpty
-                                              ? widget.scenario.personaName[0]
-                                                  .toUpperCase()
-                                              : '?',
-                                          style: const TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 60,
-                                              fontWeight: FontWeight.bold),
+                        return BreathingWidget(
+                          isBreathing: _callState == LiveCallState.thinking,
+                          child: Transform.scale(
+                            scale: scale,
+                            child: Container(
+                              width: 140,
+                              height: 140,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                boxShadow: [
+                                  if (isActive ||
+                                      _callState == LiveCallState.thinking)
+                                    BoxShadow(
+                                        color: glowColor.withValues(alpha: 0.5),
+                                        blurRadius: 40 + (_audioLevel * 20),
+                                        spreadRadius: 5),
+                                ],
+                              ),
+                              child: ClipOval(
+                                child: (widget.scenario.avatarAssetPath ==
+                                            'none' ||
+                                        widget.scenario.avatarAssetPath.isEmpty)
+                                    ? Container(
+                                        color: theme.colorScheme.primary,
+                                        child: Center(
+                                          child: Text(
+                                            widget.scenario.personaName.isNotEmpty
+                                                ? widget.scenario.personaName[0]
+                                                    .toUpperCase()
+                                                : '?',
+                                            style: const TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 60,
+                                                fontWeight: FontWeight.bold),
+                                          ),
                                         ),
+                                      )
+                                    : Image.asset(
+                                        widget.scenario.avatarAssetPath,
+                                        fit: BoxFit.cover,
+                                        errorBuilder: (context, error,
+                                                stackTrace) =>
+                                            Container(
+                                                color: Colors.indigo.shade900),
                                       ),
-                                    )
-                                  : Image.asset(
-                                      widget.scenario.avatarAssetPath,
-                                      fit: BoxFit.cover,
-                                      errorBuilder: (context, error,
-                                              stackTrace) =>
-                                          Container(
-                                              color: Colors.indigo.shade900),
-                                    ),
+                              ),
                             ),
                           ),
                         );
