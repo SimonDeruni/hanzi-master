@@ -23,6 +23,7 @@ import 'package:hanzi_master/features/premium/presentation/screens/universal_sca
 import 'package:hanzi_master/core/providers/premium_controller.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:hanzi_master/shared/widgets/tappable_hanzi_text.dart';
+import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
 import 'package:hanzi_master/shared/widgets/nuance_compare_sheet.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/radical_library_screen.dart';
@@ -144,12 +145,12 @@ class _LexiconMiniCardState extends ConsumerState<_LexiconMiniCard> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return InkWell(
-      onTap: () {
+    return BouncingButton(
+      onPressed: () {
         HapticsManager.light();
         showQuickLook(context, widget.card.hanzi);
       },
-      borderRadius: BorderRadius.circular(16),
+
       child: Container(
         width: 120,
         padding: const EdgeInsets.all(16),
@@ -212,15 +213,15 @@ class _BookshelfVerticalCard extends StatelessWidget {
     final bool isDefault = deck.id == 'default';
     final Color deckColor = isDefault ? theme.colorScheme.primary : theme.colorScheme.secondary;
     
-    return InkWell(
-      onTap: () {
+    return BouncingButton(
+      onPressed: () {
         HapticsManager.light();
         Navigator.push(
           context,
           SwipeBackPageRoute(builder: (context) => DeckDetailScreen(deck: deck)),
         );
       },
-      borderRadius: BorderRadius.circular(16),
+
       child: Container(
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
@@ -493,11 +494,10 @@ class _DictionarySearchTab extends ConsumerWidget {
                       SizedBox(height: 24),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                        child: InkWell(
-                          onTap: () {
+                        child: BouncingButton(
+                          onPressed: () {
                             Navigator.push(context, SwipeBackPageRoute(builder: (context) => const hanzi_tome.TomeManagerScreen()));
                           },
-                          borderRadius: BorderRadius.circular(16),
                           child: Container(
                             width: double.infinity,
                             padding: const EdgeInsets.all(20),
@@ -674,17 +674,16 @@ class _DictionarySearchTab extends ConsumerWidget {
             final deck = decks[index];
             final deckCardsCount = allCards.where((c) => c.deckId == deck.id).length;
             
-            return InkWell(
-              onTap: () => Navigator.push(
+            return BouncingButton(
+              onPressed: () => Navigator.push(
                 context,
                 SwipeBackPageRoute(builder: (context) => DeckDetailScreen(deck: deck)),
               ),
-              borderRadius: BorderRadius.circular(20),
               child: Container(
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
                   color: isDark ? const Color(0xFF2A2A2B) : Colors.white,
-                  borderRadius: BorderRadius.circular(20),
+            
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black.withValues(alpha: isDark ? 0.2 : 0.05),
@@ -863,8 +862,8 @@ class _RadicalCard extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final bool isDark = Theme.of(context).brightness == Brightness.dark;
 
-    return InkWell(
-      onTap: () {
+    return BouncingButton(
+      onPressed: () {
         HapticsManager.light();
         // 1. Create Sun Node
         final sunNode = CourseNode(uuid: 'rad_$radical', hanzi: radical);
@@ -894,7 +893,6 @@ class _RadicalCard extends ConsumerWidget {
           ),
         );
       },
-      borderRadius: BorderRadius.circular(16),
       child: Container(
         decoration: BoxDecoration(
           color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.white.withValues(alpha: 0.6),
@@ -990,12 +988,11 @@ class _DictionaryItemState extends ConsumerState<_DictionaryItem> {
     final bool isMastered = widget.isInLibrary ? widget.card.isMastered(StudyMode.reading) : false;
     final bool isDark = Theme.of(context).brightness == Brightness.dark;
 
-    return InkWell(
-      onTap: () {
+    return BouncingButton(
+      onPressed: () {
         HapticsManager.light();
         showQuickLook(context, widget.card.hanzi);
       },
-      borderRadius: BorderRadius.circular(16),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         decoration: BoxDecoration(
