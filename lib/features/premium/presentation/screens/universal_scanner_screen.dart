@@ -153,6 +153,7 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
+    ScaffoldMessenger.maybeOf(context)?.hideCurrentSnackBar();
     _cameraController?.stopImageStream();
     _cameraController?.dispose();
     _textRecognizer.close();
