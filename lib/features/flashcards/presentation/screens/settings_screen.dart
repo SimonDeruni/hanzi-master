@@ -50,6 +50,17 @@ class SettingsScreen extends ConsumerWidget {
                   ref.read(audioServiceProvider).setSpeechRate(val);
                 },
               ),
+              _buildDivider(),
+              _buildSwitchTile(
+                icon: Icons.vibration,
+                iconColor: Colors.orange,
+                title: "Haptic Feedback",
+                subtitle: "Vibrations for interactions",
+                value: settings.enableHaptics,
+                onChanged: (val) {
+                  ref.read(settingsProvider.notifier).toggleHaptics(val);
+                },
+              ),
             ],
           ),
           const SizedBox(height: 24),

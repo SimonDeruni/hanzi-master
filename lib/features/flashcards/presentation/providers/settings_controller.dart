@@ -17,6 +17,7 @@ class SettingsState {
   final bool strictGrading;
   final String locale;
   final bool showPinyinInSpeaking;
+  final bool enableHaptics;
 
   SettingsState({
     this.isDarkMode = false, 
@@ -30,6 +31,7 @@ class SettingsState {
     this.strictGrading = false,
     this.locale = 'en',
     this.showPinyinInSpeaking = true,
+    this.enableHaptics = true,
   });
 
   SettingsState copyWith({
@@ -44,6 +46,7 @@ class SettingsState {
     bool? strictGrading,
     String? locale,
     bool? showPinyinInSpeaking,
+    bool? enableHaptics,
   }) {
     return SettingsState(
       isDarkMode: isDarkMode ?? this.isDarkMode,
@@ -57,6 +60,7 @@ class SettingsState {
       strictGrading: strictGrading ?? this.strictGrading,
       locale: locale ?? this.locale,
       showPinyinInSpeaking: showPinyinInSpeaking ?? this.showPinyinInSpeaking,
+      enableHaptics: enableHaptics ?? this.enableHaptics,
     );
   }
 }
@@ -77,7 +81,9 @@ class SettingsController extends StateNotifier<SettingsState> {
       strictGrading: prefs.getBool(_keyStrictGrading) ?? false,
       locale: prefs.getString(_keyLocale) ?? 'en',
       showPinyinInSpeaking: prefs.getBool(_keyPinyinSpeaking) ?? true,
+      enableHaptics: prefs.getBool(_keyHaptics) ?? true,
     )) {
+      HapticsManager.setEnabled(state.enableHaptics);
     }
 
   static const _keyTheme = 'is_dark_mode';
@@ -91,6 +97,7 @@ class SettingsController extends StateNotifier<SettingsState> {
   static const _keyStrictGrading = 'strict_grading';
   static const _keyLocale = 'app_locale';
   static const _keyPinyinSpeaking = 'pinyin_speaking';
+  static const _keyHaptics = 'enable_haptics';
 
   Future<void> completeTutorial() async {
     await prefs.setBool(_keyTutorial, true);
@@ -145,6 +152,12 @@ class SettingsController extends StateNotifier<SettingsState> {
   Future<void> togglePinyinSpeaking(bool value) async {
     await prefs.setBool(_keyPinyinSpeaking, value);
     state = state.copyWith(showPinyinInSpeaking: value);
+  }
+
+  Future<void> toggleHaptics(bool value) async {
+    await prefs.setBool(_keyHaptics, value);
+    state = state.copyWith(enableHaptics: value);
+    HapticsManager.setEnabled(value);
   }
 }
 
