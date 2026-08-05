@@ -5,6 +5,7 @@ import 'package:hanzi_master/features/premium/presentation/screens/paywall_sheet
 import 'package:hanzi_master/core/providers/premium_controller.dart';
 import 'package:hanzi_master/features/settings/presentation/screens/contact_screen.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/settings_screen.dart';
+import 'package:hanzi_master/features/settings/presentation/screens/qa_screen.dart';
 import 'package:hanzi_master/features/auth/presentation/providers/auth_controller.dart';
 import 'package:hanzi_master/features/auth/presentation/screens/auth_screen.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
@@ -87,6 +88,19 @@ class ProfileScreen extends ConsumerWidget {
                 subtitle: const Text("Contact us and report issues", style: TextStyle(fontSize: 12, color: Colors.grey)),
                 trailing: const Icon(Icons.chevron_right, color: Colors.grey),
                 onTap: () => Navigator.push(context, SwipeBackPageRoute(builder: (context) => const ContactScreen())),
+              ),
+              _buildDivider(),
+              ListTile(
+                contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                leading: Container(
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(color: Colors.purple.withValues(alpha: 0.1), shape: BoxShape.circle),
+                  child: const Icon(Icons.forum_outlined, color: Colors.purple),
+                ),
+                title: const Text("Q&A / FAQ", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16)),
+                subtitle: const Text("Audio, privacy, and how things work", style: TextStyle(fontSize: 12, color: Colors.grey)),
+                trailing: const Icon(Icons.chevron_right, color: Colors.grey),
+                onTap: () => Navigator.push(context, SwipeBackPageRoute(builder: (context) => const QAScreen())),
               ),
             ],
           ),
