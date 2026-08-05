@@ -254,7 +254,7 @@ class _RecallModeWidgetState extends ConsumerState<RecallModeWidget> {
                 clipBehavior: Clip.antiAlias,
                 child: Stack(
                   children: [
-                    Container(color: const Color(0xFFFDFCF0)),
+                    Container(color: isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0)),
                     GestureDetector(
                       onPanStart: _isRevealed ? null : (details) {
                         setState(() {

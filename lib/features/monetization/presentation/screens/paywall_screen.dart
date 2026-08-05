@@ -51,37 +51,40 @@ class _PaywallScreenState extends ConsumerState<PaywallScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final surfaceColor = isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0);
+    final inkColor = isDark ? const Color(0xFFFDFCF0) : const Color(0xFF1A1A1B);
     return Scaffold(
-      backgroundColor: const Color(0xFF1A1A1B), // Deep Carbon Ink
+      backgroundColor: surfaceColor,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: widget.onClose != null
-            ? IconButton(icon: const Icon(Icons.close, color: Colors.white), onPressed: widget.onClose)
-            : IconButton(icon: const Icon(Icons.close, color: Colors.white), onPressed: () => Navigator.of(context).pop(false)),
+            ? IconButton(icon: Icon(Icons.close, color: inkColor), onPressed: widget.onClose)
+            : IconButton(icon: Icon(Icons.close, color: inkColor), onPressed: () => Navigator.of(context).pop(false)),
       ),
       body: _isLoading
-          ? const Center(child: CircularProgressIndicator(color: Colors.white))
+          ? Center(child: CircularProgressIndicator(color: inkColor))
           : Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Icon(Icons.workspace_premium, size: 80, color: Color(0xFFFDFCF0)),
+                  Icon(Icons.workspace_premium, size: 80, color: inkColor),
                   const SizedBox(height: 24),
-                  const Text(
+                  Text(
                     "Unlock SinoSpark Premium",
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Color(0xFFFDFCF0)),
+                    style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: inkColor),
                   ),
                   const SizedBox(height: 16),
-                  const Text(
+                  Text(
                     "• Unlimited Smart Dictionary AI\n• Live Voice Calls & Personas\n• YouTube Media Desk",
-                    style: TextStyle(fontSize: 16, color: Colors.white70),
+                    style: TextStyle(fontSize: 16, color: isDark ? Colors.white70 : Colors.black54),
                   ),
                   const SizedBox(height: 40),
                   if (_packages.isEmpty)
-                    const Text("No premium packages available at the moment.", style: TextStyle(color: Colors.white54))
+                    Text("No premium packages available at the moment.", style: TextStyle(color: isDark ? Colors.white54 : Colors.black45))
                   else
                     ..._packages.map((pkg) => Padding(
                           padding: const EdgeInsets.only(bottom: 16.0),
@@ -106,4 +109,3 @@ class _PaywallScreenState extends ConsumerState<PaywallScreen> {
     );
   }
 }
-

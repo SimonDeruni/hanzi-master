@@ -10,6 +10,7 @@
 #### 🎯 Outstanding User Requests
 - [ ] **Travel Interpreter Microphone:** "the speaking in the microphpnoe in the travel intepreter doesnt work" (Status: NOT STARTED)
 - [ ] **Global Voices Link:** "the new global voices link doesnt work" (Status: NOT STARTED)
+- [x] **AR Camera Permission/Soft-lock:** "When launching the AR feature without camera permissions granted, the app displays a solid gray screen... the user is trapped on a dead-end screen" (Status: COMPLETED)
 - [x] **Scenario Hub Improvements:** (Status: COMPLETED)
     - "Scenario screen widget is not nice-looking." (UI Overhauled)
     - "Generated persona disappears 4 seconds after creation." (Fixed persistence)
@@ -27,8 +28,13 @@
 - **Preferences:** High-contrast dark theme; Pinyin and translation must be visible in Live Call.
 
 #### 📦 Work Accomplished
+- [x] **Library / Latest Discoveries**: Fixed an issue where older saved flashcards (like "吃") missing pinyin or definition metadata rendered as visually broken, empty cards. Converted `_LexiconMiniCard` and `_DictionaryItem` into stateful widgets that automatically detect empty fields and asynchronously hydrate themselves from the bundled SQLite dictionary (`GlobalDictionaryRepository`), restoring UI consistency.
+- [x] **AR Camera Permission/Soft-lock:** Fixed a crash when AR feature is accessed without permissions. Added a proper fallback UI displaying a permission request and an "Open Settings" button, and wrapped the background to prevent it from shrinking to 0x0 size and showing a blank light gray screen that hides the white navigation icons.
+- [x] **Universal Scanner Camera Permission**: Fixed a bug where the scanner failed to recognize granted camera permissions or trigger the native iOS prompt. Replaced the outdated beige error banner with a premium, floating toast notification that correctly guides users to settings if permission is permanently denied.
 - [x] **Universal Scanner:** Fixed a severe UI distortion bug in landscape mode caused by hardcoded camera preview aspect ratio dimensions. The scanner now dynamically calculates aspect ratios using `math.max` and `math.min` to flawlessly adapt to any screen rotation.
 - [x] **Scenario Hub Overhaul:** Fixed missing persistence for custom scenarios, rebuilt the custom scenario dialog into a premium glassmorphic UI, stripped faulty Imagen-4 API logic (falling back to an elegant empty portrait), updated AI prompts to enforce exact 3 quests and ban "assistant" personas, and added a delete button for custom scenarios.
+- [x] **AI Hub UI Redesign:** Replaced the infinitely stretching vertical colored cards with a premium dark glassmorphic 2x2 grid of square tiles featuring neon borders and faded watermark icons.
+- [x] **Translation Hub UI Redesign:** Replaced the infinitely stretching vertical colored cards with premium dark glassmorphic side-by-side square tiles featuring neon borders and faded watermark icons.
 - [x] **Dark Mode Overhaul:** Finalized updates to `DashboardScreen` (Quick Search, Forecast cards) and `web_browser_screen.dart` (HSK picker modal).
 - [x] **Universal Scanner:** Added `TappableHanziText` to OCR extraction output; fixed color palettes for dark mode dictionary lists.
 - [x] **Live Call Audio/UI Fix:**
@@ -71,6 +77,7 @@
 - [x] **Task 34: Gemini Live Call Fix**: Fixed a WebSocket 1007 crash loop by removing the unsupported `"TEXT"` modality from the API payload. Also implemented friendly error states to catch 1000-level disconnects gracefully, and added a styled escape button for fallback UI scenarios.
 - [x] **Task 35: Shadowing Studio — Flashcard Data Hydration Fix**: Cards exported from a shadowing session previously had an empty `definition` (English translation always `""`) and often-empty `pinyin`. Fixed by calling `GlobalDictionaryRepository.getExact(hanzi)` for every word before saving, hydrating `pinyin`, `definition`, and `hskLevel` from the bundled SQLite dictionary. AI grading pinyin is kept as a secondary fallback.
 - [x] **Task 36: Smart Media Desk & Daily Discovery — YouTube API Quota Migration**: Replaced all YouTube Data API v3 calls (`search.list`, channel fetch) with `youtube_explode_dart` (InnerTube, no quota). `youtube_repository.dart` `searchVideos()` now uses `yt.search.search()` + caption verification. `daily_discovery_repository.dart` `_fetchChannelVideos()` now uses `yt.channels.getUploads()`. `ApiKeyPool` dependency removed from both. Shows & Dramas untouched.
+- [x] **Cultural Insight UI Redesign**: Overhauled the Article Preview / Cultural Insight screen for a premium aesthetic, expanding the header image behind the status bar, removing clunky bordered cards, refining typography, and moving the CTA to a sticky bottom footer.
 
 #### 🔜 Current Work and Next Steps
 - **Immediate Task:** Address the Travel Interpreter Microphone or Global Voices Link bugs next.

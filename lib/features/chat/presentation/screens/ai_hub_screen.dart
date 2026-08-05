@@ -18,6 +18,7 @@ class AiHubScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
     final l10n = AppLocalizations.of(context);
 
     return Scaffold(
@@ -30,25 +31,25 @@ class AiHubScreen extends ConsumerWidget {
             ),
 
             // Feature Rows
-            SliverFillRemaining(
-              hasScrollBody: false,
+            SliverToBoxAdapter(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24.0),
                 child: Column(
                   children: [
                     const SizedBox(height: 24),
                     // Row 1: AI Scenarios & Web Explorer
-                    Expanded(
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          Expanded(
+                    Row(
+                      children: [
+                        Expanded(
+                          child: AspectRatio(
+                            aspectRatio: 1.0,
                             child: _buildListActionCard(
                               context: context,
+                              isDark: isDark,
                               title: "Roleplay",
                               subtitle: "AI avatars",
                               icon: Icons.auto_awesome,
-                              gradientColors: const [Color(0xFF311B92), Color(0xFF512DA8)],
+                              accentColor: const Color(0xFF9C27B0), // Purple
                               onTap: () {
                                 HapticsManager.medium();
                                 if (context.mounted) {
@@ -61,14 +62,18 @@ class AiHubScreen extends ConsumerWidget {
                               },
                             ),
                           ),
-                          const SizedBox(width: 16),
-                          Expanded(
+                        ),
+                        const SizedBox(width: 16),
+                        Expanded(
+                          child: AspectRatio(
+                            aspectRatio: 1.0,
                             child: _buildListActionCard(
                               context: context,
+                              isDark: isDark,
                               title: "Web Explorer",
                               subtitle: "Read the web",
                               icon: Icons.language,
-                              gradientColors: const [Color(0xFF0D47A1), Color(0xFF1976D2)],
+                              accentColor: const Color(0xFF1976D2), // Blue
                               onTap: () {
                                 HapticsManager.medium();
                                 if (context.mounted) {
@@ -80,22 +85,23 @@ class AiHubScreen extends ConsumerWidget {
                               },
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                     const SizedBox(height: 16),
                     // Row 2: Reading Room & Shadowing
-                    Expanded(
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          Expanded(
+                    Row(
+                      children: [
+                        Expanded(
+                          child: AspectRatio(
+                            aspectRatio: 1.0,
                             child: _buildListActionCard(
                               context: context,
+                              isDark: isDark,
                               title: "Reading Room",
                               subtitle: "Classic literature",
                               icon: Icons.auto_stories,
-                              gradientColors: const [Color(0xFF8B5E3C), Color(0xFFC4863A)],
+                              accentColor: const Color(0xFFFF8F00), // Amber
                               onTap: () {
                                 HapticsManager.medium();
                                 if (context.mounted) {
@@ -107,14 +113,18 @@ class AiHubScreen extends ConsumerWidget {
                               },
                             ),
                           ),
-                          const SizedBox(width: 16),
-                          Expanded(
+                        ),
+                        const SizedBox(width: 16),
+                        Expanded(
+                          child: AspectRatio(
+                            aspectRatio: 1.0,
                             child: _buildListActionCard(
                               context: context,
+                              isDark: isDark,
                               title: "Shadowing",
                               subtitle: "Perfect pronunciation",
                               icon: Icons.mic,
-                              gradientColors: const [Color(0xFF1A4A4A), Color(0xFF2A7070)],
+                              accentColor: const Color(0xFF009688), // Teal
                               onTap: () {
                                 HapticsManager.medium();
                                 Navigator.push(
@@ -124,8 +134,8 @@ class AiHubScreen extends ConsumerWidget {
                               },
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                     const SizedBox(height: 24),
                   ],
@@ -140,88 +150,104 @@ class AiHubScreen extends ConsumerWidget {
 
   Widget _buildListActionCard({
     required BuildContext context,
+    required bool isDark,
     required String title,
     required String subtitle,
     required IconData icon,
     bool isNew = false,
-    required List<Color> gradientColors,
+    required Color accentColor,
     required VoidCallback onTap,
   }) {
     return BouncingButton(
       scaleFactor: 0.96,
       onPressed: onTap,
       child: Container(
-        height: double.infinity,
-        width: double.infinity,
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: gradientColors,
-          ),
+          color: isDark ? const Color(0xFF1A1A1B) : Colors.white,
           borderRadius: BorderRadius.circular(32),
+          border: Border.all(
+            color: accentColor.withValues(alpha: isDark ? 0.3 : 0.5),
+            width: 1.5,
+          ),
           boxShadow: [
             BoxShadow(
-              color: gradientColors.last.withValues(alpha: 0.4),
+              color: accentColor.withValues(alpha: isDark ? 0.15 : 0.1),
               blurRadius: 20,
               offset: const Offset(0, 8),
             ),
           ],
         ),
-        child: Stack(
-          children: [
-            // NEW badge
-            if (isNew)
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(32),
+          child: Stack(
+            children: [
+              // Faded watermark background icon
               Positioned(
-                top: 12,
-                right: 12,
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFE27C5A),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: const Text(
-                    'NEW',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 10,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 1,
+                right: -20,
+                bottom: -20,
+                child: Icon(
+                  icon,
+                  size: 140,
+                  color: (isDark ? Colors.white : Colors.black).withValues(alpha: 0.03),
+                ),
+              ),
+              // NEW badge
+              if (isNew)
+                Positioned(
+                  top: 12,
+                  right: 12,
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFE27C5A),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: const Text(
+                      'NEW',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 10,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 1,
+                      ),
                     ),
                   ),
                 ),
-              ),
-            // Content
-            Padding(
-              padding: const EdgeInsets.all(20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Icon(icon, size: 36, color: Colors.white.withValues(alpha: 0.9)),
-                  const SizedBox(height: 12),
-                  Text(
-                    title,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      height: 1.1,
-                    ),
+              // Content
+              Padding(
+                padding: const EdgeInsets.all(16),
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Icon(icon, size: 42, color: accentColor),
+                      const SizedBox(height: 16),
+                      Text(
+                        title,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: isDark ? Colors.white : Colors.black87,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          height: 1.1,
+                        ),
+                      ),
+                      const SizedBox(height: 6),
+                      Text(
+                        subtitle,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: isDark ? Colors.white.withValues(alpha: 0.75) : Colors.black54,
+                          fontSize: 12,
+                        ),
+                      ),
+                    ],
                   ),
-                  const SizedBox(height: 4),
-                  Text(
-                    subtitle,
-                    style: TextStyle(
-                      color: Colors.white.withValues(alpha: 0.75),
-                      fontSize: 12,
-                    ),
-                  ),
-                ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

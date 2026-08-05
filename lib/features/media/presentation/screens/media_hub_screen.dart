@@ -148,13 +148,6 @@ class MediaHubScreen extends ConsumerWidget {
                     ),
                     _buildBookmarkChip(
                       context: context,
-                      title: "Global Voices",
-                      icon: Icons.public,
-                      brandColor: const Color(0xFFE65100),
-                      url: 'https://zht.globalvoices.org/hans/',
-                    ),
-                    _buildBookmarkChip(
-                      context: context,
                       title: "Baidu",
                       icon: Icons.search,
                       brandColor: const Color(0xFF2932E1),

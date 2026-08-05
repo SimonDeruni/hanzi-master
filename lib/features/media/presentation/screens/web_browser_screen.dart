@@ -690,18 +690,35 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
     });
 
     if (_isZenMode) {
-      _applyZenMode();
+      final isDark = Theme.of(context).brightness == Brightness.dark;
+      _applyZenMode(darkMode: isDark);
     } else {
       _removeZenMode();
     }
   }
 
-  void _applyZenMode() {
+  void _applyZenMode({bool darkMode = false}) {
     final isStoryMode = widget.isStoryMode;
+
+    // Theme-aware colors
+    final bgColor = darkMode ? '#1A1A1B' : '#FDFCF0';
+    final textColor = darkMode ? '#DADADA' : '#1A1A1B';
+    final skeletonBorderColor = darkMode ? '#DADADA' : '#1A1A1B';
+    final skeletonBgColor = darkMode ? 'rgba(218,218,218,0.1)' : 'rgba(26,26,27,0.1)';
+    final aiLoadingTextColor = darkMode ? '#DADADA' : '#1A1A1B';
+
+    // Dark-mode global CSS to also influence unfetched resources & native form controls
+    final darkGlobalCss = darkMode ? '''
+      html { color-scheme: dark; }
+      img, video, iframe, embed, object { opacity: 0.85; }
+    ''' : '';
+
     final js = '''
       if (!window.zenModeBackup) {
         window.zenModeBackup = document.body.innerHTML;
       }
+      
+      $darkGlobalCss
       
       let bestNode = document.body;
       const articles = document.querySelectorAll('article, .article, .post, .content, main');
@@ -733,16 +750,16 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
       const skeletonHtml = `
         <div id="ai-insight-banner" style="margin-bottom: 30px; font-family: sans-serif; opacity: 0.7;">
           <div style="display: flex; align-items: center; margin-bottom: 15px;">
-             <div style="width: 20px; height: 20px; border: 2px solid #1A1A1B; border-top-color: transparent; border-radius: 50%; animation: spin 1s linear infinite;"></div>
-             <span style="margin-left: 12px; font-size: 14px; font-weight: bold;">AI is reading...</span>
+             <div style="width: 20px; height: 20px; border: 2px solid ${skeletonBorderColor}; border-top-color: transparent; border-radius: 50%; animation: spin 1s linear infinite;"></div>
+             <span style="margin-left: 12px; font-size: 14px; font-weight: bold; color: ${aiLoadingTextColor};">AI is reading...</span>
           </div>
-          <div style="height: 12px; background-color: rgba(26,26,27,0.1); border-radius: 4px; margin-bottom: 8px;"></div>
-          <div style="height: 12px; background-color: rgba(26,26,27,0.1); border-radius: 4px; width: 70%;"></div>
+          <div style="height: 12px; background-color: ${skeletonBgColor}; border-radius: 4px; margin-bottom: 8px;"></div>
+          <div style="height: 12px; background-color: ${skeletonBgColor}; border-radius: 4px; width: 70%;"></div>
           <style>@keyframes spin { 100% { transform: rotate(360deg); } }</style>
         </div>
       `;
       
-      document.body.innerHTML = '<div style="max-width: 800px; margin: 0 auto; padding: 20px; font-family: serif; font-size: 22px; line-height: 1.8; background-color: #FDFCF0; color: #1A1A1B;">' + skeletonHtml + bestNode.innerHTML + '</div>';
+      document.body.innerHTML = '<div style="max-width: 800px; margin: 0 auto; padding: 20px; font-family: serif; font-size: 22px; line-height: 1.8; background-color: ${bgColor}; color: ${textColor};">' + skeletonHtml + bestNode.innerHTML + '</div>';
       
       document.body.style.overflow = 'auto';
       document.documentElement.style.overflow = 'auto';
@@ -795,6 +812,13 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
         });
 
         if (_isZenMode) {
+          final isDark = Theme.of(context).brightness == Brightness.dark;
+          final toggleBtnColor =
+              isDark ? 'rgba(218,218,218,0.5)' : 'rgba(26,26,27,0.5)';
+          final summaryTextColor =
+              isDark ? 'rgba(218,218,218,0.75)' : 'rgba(26,26,27,0.75)';
+          final summaryBorderColor =
+              isDark ? 'rgba(218,218,218,0.15)' : 'rgba(26,26,27,0.15)';
           final js = '''
             const banner = document.getElementById('ai-insight-banner');
             if (banner) {
@@ -805,11 +829,11 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                    <div style="background: rgba(76, 175, 80, 0.12); border: 1px solid rgba(76, 175, 80, 0.35); color: #2e7d32; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; font-family: sans-serif;">Readability ${insight.score}%</div>
                 </div>
                 <div>
-                   <button id="summary-toggle-btn" style="display: inline-flex; align-items: center; gap: 5px; background: none; border: none; padding: 0; color: rgba(26,26,27,0.5); cursor: pointer; font-size: 13px; font-family: sans-serif; letter-spacing: 0.2px;">
+                   <button id="summary-toggle-btn" style="display: inline-flex; align-items: center; gap: 5px; background: none; border: none; padding: 0; color: ${toggleBtnColor}; cursor: pointer; font-size: 13px; font-family: sans-serif; letter-spacing: 0.2px;">
                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" id="toggle-chevron"><polyline points="6 9 12 15 18 9"/></svg>
                      AI Summary
                    </button>
-                   <div id="summary-text" style="display: none; margin-top: 12px; font-size: 15px; color: rgba(26,26,27,0.75); line-height: 1.6; font-family: sans-serif; border-left: 2px solid rgba(26,26,27,0.15); padding-left: 12px;">
+                   <div id="summary-text" style="display: none; margin-top: 12px; font-size: 15px; color: ${summaryTextColor}; line-height: 1.6; font-family: sans-serif; border-left: 2px solid ${summaryBorderColor}; padding-left: 12px;">
                      \${safeSummary}
                    </div>
                 </div>
@@ -1024,6 +1048,9 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
       return const SizedBox.shrink();
 
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final cardBgColor = isDark ? const Color(0xFF2A2A2B) : Colors.white;
+    final cardBorderColor = isDark ? Colors.white12 : Colors.black12;
+    final englishTextColor = isDark ? Colors.white70 : Colors.black87;
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
@@ -1062,10 +1089,11 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                             Expanded(
                               child: Text(
                                 _activeTranslation!.chinese,
-                                style: const TextStyle(
+                                style: TextStyle(
                                     fontSize: 20,
                                     fontWeight: FontWeight.bold,
-                                    height: 1.5),
+                                    height: 1.5,
+                                    color: isDark ? Colors.white : Colors.black),
                               ),
                             ),
                             Row(
@@ -1075,7 +1103,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                                   icon: Icon(_isTranslationBlurred
                                       ? Icons.visibility_off
                                       : Icons.visibility),
-                                  color: Colors.grey[700],
+                                  color: isDark ? Colors.white54 : Colors.grey[700],
                                   onPressed: () {
                                     setState(() {
                                       _isTranslationBlurred =
@@ -1085,7 +1113,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                                 ),
                                 IconButton(
                                   icon: const Icon(Icons.close),
-                                  color: Colors.grey[700],
+                                  color: isDark ? Colors.white54 : Colors.grey[700],
                                   onPressed: () {
                                     setState(() {
                                       _activeTranslation = null;
@@ -1105,8 +1133,8 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                           ),
                           child: Text(
                             _activeTranslation!.english,
-                            style: const TextStyle(
-                                fontSize: 16, color: Colors.black87),
+                            style: TextStyle(
+                                fontSize: 16, color: englishTextColor),
                           ),
                         ),
                         const SizedBox(height: 16),
@@ -1122,9 +1150,9 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                                 margin: const EdgeInsets.only(right: 12),
                                 padding: const EdgeInsets.all(8),
                                 decoration: BoxDecoration(
-                                  color: Colors.white,
+                                  color: cardBgColor,
                                   borderRadius: BorderRadius.circular(12),
-                                  border: Border.all(color: Colors.black12),
+                                  border: Border.all(color: cardBorderColor),
                                 ),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -1141,9 +1169,10 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                                                     .chinese),
                                             child: Text(
                                               w.hanzi,
-                                              style: const TextStyle(
+                                              style: TextStyle(
                                                   fontWeight: FontWeight.bold,
-                                                  fontSize: 16),
+                                                  fontSize: 16,
+                                                  color: isDark ? Colors.white : Colors.black),
                                               overflow: TextOverflow.ellipsis,
                                             ),
                                           ),
@@ -1168,7 +1197,9 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                                             _isTranslationBlurred ? 4.0 : 0.0,
                                       ),
                                       child: Text(w.meaning,
-                                          style: const TextStyle(fontSize: 12),
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              color: isDark ? Colors.white54 : Colors.black54),
                                           overflow: TextOverflow.ellipsis,
                                           maxLines: 2),
                                     ),

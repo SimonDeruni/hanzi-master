@@ -14,6 +14,7 @@ import 'analytics_service.dart';
 import '../providers/translation_language_provider.dart';
 import 'gemini_proxy_client.dart';
 import 'revenuecat_service.dart';
+import '../utils/pinyin_utils.dart';
 
 class PremiumRequiredException implements Exception {
   final String message;
@@ -1683,6 +1684,15 @@ Respond ONLY in valid JSON format like:
             (bestResult['FluencyScore'] as num?)?.toInt() ??
             0;
 
+        // Parse expected pinyin into per-word pinyin for display
+        final expectedPinyinWords = expectedPinyin.trim().isNotEmpty
+            ? expectedPinyin
+                .split(RegExp(r'\s+'))
+                .map((p) => PinyinUtils.convertNumericToMarks(p.trim()))
+                .toList()
+            : <String>[];
+        int pinyinIndex = 0;
+
         List<Map<String, dynamic>> mappedWords = [];
         double totalAccuracy = 0;
         int evaluatedWords = 0;
@@ -1734,9 +1744,18 @@ Respond ONLY in valid JSON format like:
               }
             }
 
+            // Assign expected pinyin to each word (not for Insertion/Omission)
+            String wordPinyin = '';
+            if (wErrorType != 'Insertion' && wErrorType != 'Omission') {
+              if (pinyinIndex < expectedPinyinWords.length) {
+                wordPinyin = expectedPinyinWords[pinyinIndex];
+              }
+              pinyinIndex++;
+            }
+
             mappedWords.add({
               "word": wordText,
-              "pinyin": "", // UI gracefully handles empty pinyin
+              "pinyin": wordPinyin,
               "isCorrect": isCorrect,
               "isPartial": isPartial,
               "isOmitted": isOmitted,

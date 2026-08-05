@@ -450,12 +450,30 @@ Respond ONLY with a JSON object containing:
   "description": "Short description (in English)",
   "systemPrompt": "System prompt following the exact pattern: 'You are [personaName]. Your ONLY role is... NEVER act as an AI...'",
   "initialAiMessage": "The first message the AI says (in Chinese)",
+  "initialEnglish": "English translation of the initialAiMessage",
+  "initialPinyin": "Pinyin for the initialAiMessage with tone marks (e.g., nǐ hǎo)",
   "personaName": "Name of the persona (in English or Pinyin)",
   "quests": ["Quest 1 (in English)", "Quest 2 (in English)", "Quest 3 (in English)"]
 }
 ''';
       final response = await ref.read(geminiServiceProvider).generateText(prompt);
       final Map<String, dynamic> data = _parseJsonOrFallback(response);
+      
+      // Determine persona gender to select appropriate TTS voice
+      String voiceName = 'Puck'; // default fallback
+      final personaName = data['personaName'] ?? 'Teacher';
+      try {
+        final genderPrompt = 'Is the persona named "$personaName" female or male? Answer with ONLY one word: "female" or "male".';
+        final genderResponse = await ref.read(geminiServiceProvider).generateText(genderPrompt);
+        final gender = genderResponse.trim().toLowerCase();
+        if (gender.contains('female')) {
+          voiceName = 'Kore'; // zh-CN-XiaoxiaoNeural - warm female
+        } else if (gender.contains('male')) {
+          voiceName = 'Fenrir'; // zh-CN-YunxiNeural - male
+        }
+      } catch (_) {
+        // If gender detection fails, stick with default 'Puck'
+      }
       
       if (!mounted) return;
       Navigator.pop(context); // Close loading
@@ -466,14 +484,16 @@ Respond ONLY with a JSON object containing:
         title: data['title'] ?? 'Deck Practice',
         description: data['description'] ?? 'Practice vocabulary.',
         initialAiMessage: data['initialAiMessage'] ?? '你好！',
+        initialEnglish: data['initialEnglish'],
+        initialPinyin: data['initialPinyin'],
         systemPrompt: data['systemPrompt'] ?? 'Help the user practice their vocabulary.',
         targetHskLevel: 3,
         avatarAssetPath: 'none',
         backgroundAssetPath: 'assets/environments/office.jpg',
-        personaName: data['personaName'] ?? 'Teacher',
+        personaName: personaName,
         quests: List<String>.from(data['quests'] ?? []),
         isCustom: true,
-        voiceName: 'Puck',
+        voiceName: voiceName,
       );
 
       await _saveDeckScenario(newScenario);

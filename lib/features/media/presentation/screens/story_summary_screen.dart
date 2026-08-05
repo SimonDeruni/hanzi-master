@@ -134,8 +134,8 @@ class _StorySummaryScreenState extends ConsumerState<StorySummaryScreen> {
               SliverAppBar(
                 expandedHeight: 300,
                 pinned: true,
-                backgroundColor: const Color(0xFF1A1A1B),
-                foregroundColor: Colors.white,
+                backgroundColor: isDark ? const Color(0xFFFDFCF0) : const Color(0xFF1A1A1B),
+                foregroundColor: isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
                 flexibleSpace: FlexibleSpaceBar(
                   background: displayImageUrl.startsWith('http')
                     ? Image.network(
@@ -226,11 +226,11 @@ class _StorySummaryScreenState extends ConsumerState<StorySummaryScreen> {
                       // Titles
                       TappableHanziText(
                         widget.story.titleEn ?? widget.story.title,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 28,
                           fontWeight: FontWeight.bold,
                           fontFamily: 'NotoSerifSC',
-                          color: Color(0xFF1A1A1B),
+                          color: isDark ? Colors.white : const Color(0xFF1A1A1B),
                           height: 1.2,
                         ),
                       ),
@@ -241,7 +241,7 @@ class _StorySummaryScreenState extends ConsumerState<StorySummaryScreen> {
                           style: TextStyle(
                             fontSize: 20,
                             fontFamily: 'NotoSerifSC',
-                            color: const Color(0xFF1A1A1B).withValues(alpha: 0.6),
+                            color: (isDark ? Colors.white : const Color(0xFF1A1A1B)).withValues(alpha: 0.6),
                           ),
                         ),
                       ],
@@ -250,13 +250,13 @@ class _StorySummaryScreenState extends ConsumerState<StorySummaryScreen> {
                       // Summary
                       Row(
                         children: [
-                          const Text(
+                          Text(
                             'Summary',
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
                               fontFamily: 'NotoSerifSC',
-                              color: Color(0xFF1A1A1B),
+                              color: isDark ? Colors.white : const Color(0xFF1A1A1B),
                             ),
                           ),
                           if (_isEnriching) ...[
@@ -286,13 +286,13 @@ class _StorySummaryScreenState extends ConsumerState<StorySummaryScreen> {
                       const SizedBox(height: 32),
                       
                       // Key Words
-                      const Text(
+                      Text(
                         'Key Words',
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                           fontFamily: 'NotoSerifSC',
-                          color: Color(0xFF1A1A1B),
+                          color: isDark ? Colors.white : const Color(0xFF1A1A1B),
                         ),
                       ),
                       const SizedBox(height: 16),

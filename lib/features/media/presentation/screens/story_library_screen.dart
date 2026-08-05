@@ -206,6 +206,7 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
   }
 
   Widget _buildFilters() {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -220,9 +221,11 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
                 onSelected: (selected) {
                   if (selected) setState(() => _selectedCategory = cat);
                 },
-                selectedColor: const Color(0xFF1A1A1B),
+                selectedColor: isDark ? Colors.white : const Color(0xFF1A1A1B),
                 labelStyle: TextStyle(
-                  color: _selectedCategory == cat ? Colors.white : const Color(0xFF1A1A1B),
+                  color: _selectedCategory == cat
+                      ? (isDark ? const Color(0xFF1A1A1B) : Colors.white)
+                      : (isDark ? Colors.white70 : const Color(0xFF1A1A1B)),
                 ),
               ),
             )).toList(),
@@ -240,9 +243,11 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
                 onSelected: (selected) {
                   if (selected) setState(() => _selectedHskLevel = level);
                 },
-                selectedColor: const Color(0xFF1A1A1B),
+                selectedColor: isDark ? Colors.white : const Color(0xFF1A1A1B),
                 labelStyle: TextStyle(
-                  color: _selectedHskLevel == level ? Colors.white : const Color(0xFF1A1A1B),
+                  color: _selectedHskLevel == level
+                      ? (isDark ? const Color(0xFF1A1A1B) : Colors.white)
+                      : (isDark ? Colors.white70 : const Color(0xFF1A1A1B)),
                 ),
               ),
             )).toList(),
@@ -269,14 +274,17 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
               _buildStoryOfTheDay(),
             ],
             const SizedBox(height: 24),
-            Text(
-              isDefaultState ? 'All Stories' : 'Results (${results.length})',
-              style: const TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.w900,
-                color: Color(0xFF1A1A1B),
-              ),
-            ),
+            Builder(builder: (context) {
+              final isDarkSection = Theme.of(context).brightness == Brightness.dark;
+              return Text(
+                isDefaultState ? 'All Stories' : 'Results (${results.length})',
+                style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.w900,
+                  color: isDarkSection ? const Color(0xFFFDFCF0) : const Color(0xFF1A1A1B),
+                ),
+              );
+            }),
             const SizedBox(height: 16),
             if (results.isEmpty)
               const Center(
@@ -575,11 +583,13 @@ class StoryCardWidget extends StatelessWidget {
                   children: [
                     Text(
                       story.titleEn ?? story.title,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.bold,
                         fontFamily: 'NotoSerifSC',
-                        color: Color(0xFF1A1A1B),
+                        color: theme.brightness == Brightness.dark
+                            ? const Color(0xFFFDFCF0)
+                            : const Color(0xFF1A1A1B),
                       ),
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
@@ -590,7 +600,10 @@ class StoryCardWidget extends StatelessWidget {
                         story.summaryEn ?? story.summary,
                         style: TextStyle(
                           fontSize: 12,
-                          color: const Color(0xFF1A1A1B).withValues(alpha: 0.6),
+                          color: (theme.brightness == Brightness.dark
+                                  ? const Color(0xFFFDFCF0)
+                                  : const Color(0xFF1A1A1B))
+                              .withValues(alpha: 0.6),
                           height: 1.4,
                         ),
                         maxLines: 3,

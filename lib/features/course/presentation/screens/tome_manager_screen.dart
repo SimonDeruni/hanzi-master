@@ -2,15 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 
-import '../../../flashcards/domain/entities/flashcard.dart';
 import '../../../flashcards/domain/entities/deck.dart';
 import '../../../flashcards/presentation/providers/flashcard_controller.dart';
 import '../../../flashcards/presentation/providers/deck_controller.dart';
 import '../../../flashcards/presentation/utils/haptics_manager.dart';
 import '../../../flashcards/presentation/widgets/calligraphy_background.dart';
-import '../../../premium/presentation/screens/paywall_sheet.dart';
 import '../../../../core/providers.dart';
-import '../../../../core/providers/premium_controller.dart';
 
 class TomeManagerScreen extends ConsumerWidget {
   const TomeManagerScreen({super.key});
@@ -18,7 +15,6 @@ class TomeManagerScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
-    final asyncCards = ref.watch(flashcardControllerProvider);
     final asyncDecks = ref.watch(deckControllerProvider);
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final inkColor = isDark ? const Color(0xFFFDFCF0) : const Color(0xFF1A1A1B);
@@ -141,11 +137,10 @@ class TomeManagerScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("HSK Collections", style: TextStyle(fontWeight: FontWeight.bold)),
+        title: Text("HSK Collections", style: TextStyle(fontWeight: FontWeight.bold, color: inkColor)),
         backgroundColor: Colors.transparent,
         elevation: 0,
         iconTheme: IconThemeData(color: inkColor),
-        titleTextStyle: TextStyle(color: inkColor, fontSize: 20, fontWeight: FontWeight.bold),
       ),
       body: CalligraphyBackground(
         child: asyncDecks.when(
@@ -167,8 +162,8 @@ class TomeManagerScreen extends ConsumerWidget {
               },
             );
           },
-          loading: () => const Center(child: CircularProgressIndicator(color: Color(0xFF1A1A1B))),
-          error: (err, _) => Center(child: Column(mainAxisSize: MainAxisSize.min, children: [Icon(Icons.library_books_outlined, size: 48, color: Colors.grey), SizedBox(height: 16), Text("Oops, we ran into trouble loading the library. Please try again.", style: TextStyle(color: Colors.grey, fontSize: 14)), SizedBox(height: 8), TextButton(onPressed: () { ref.invalidate(flashcardControllerProvider); ref.invalidate(deckControllerProvider); }, child: Text("Retry"))])),
+          loading: () => Center(child: CircularProgressIndicator(color: inkColor)),
+          error: (err, _) => Center(child: Column(mainAxisSize: MainAxisSize.min, children: [Icon(Icons.library_books_outlined, size: 48, color: Colors.grey), SizedBox(height: 16), Text("Oops, we ran into trouble loading the library. Please try again.", style: TextStyle(color: isDark ? Colors.white70 : Colors.grey, fontSize: 14)), SizedBox(height: 8), TextButton(onPressed: () { ref.invalidate(flashcardControllerProvider); ref.invalidate(deckControllerProvider); }, child: Text("Retry"))])),
         ),
       ),
     );
@@ -202,7 +197,7 @@ class _TomeCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.04),
+            color: Colors.black.withValues(alpha: isDark ? 0.12 : 0.04),
             blurRadius: 10,
             offset: const Offset(0, 4),
           )

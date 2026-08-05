@@ -106,18 +106,47 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
   }
 }
 
-class _LexiconMiniCard extends ConsumerWidget {
+class _LexiconMiniCard extends ConsumerStatefulWidget {
   final Flashcard card;
 
   const _LexiconMiniCard({required this.card});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<_LexiconMiniCard> createState() => _LexiconMiniCardState();
+}
+
+class _LexiconMiniCardState extends ConsumerState<_LexiconMiniCard> {
+  late String _pinyin;
+  late String _definition;
+
+  @override
+  void initState() {
+    super.initState();
+    _pinyin = widget.card.pinyin;
+    _definition = widget.card.definition;
+    _hydrateIfMissing();
+  }
+
+  Future<void> _hydrateIfMissing() async {
+    if (_pinyin.trim().isEmpty || _definition.trim().isEmpty) {
+      final repo = ref.read(globalDictionaryRepositoryProvider);
+      final dictCard = await repo.getExact(widget.card.hanzi);
+      if (dictCard != null && mounted) {
+        setState(() {
+          _pinyin = dictCard.pinyin;
+          _definition = dictCard.definition;
+        });
+      }
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return InkWell(
       onTap: () {
         HapticsManager.light();
-        showQuickLook(context, card.hanzi);
+        showQuickLook(context, widget.card.hanzi);
       },
       borderRadius: BorderRadius.circular(16),
       child: Container(
@@ -141,20 +170,20 @@ class _LexiconMiniCard extends ConsumerWidget {
             FittedBox(
               fit: BoxFit.scaleDown,
               child: Text(
-                card.hanzi,
+                widget.card.hanzi,
                 style: theme.textTheme.displaySmall?.copyWith(height: 1.1),
               ),
             ),
             SizedBox(height: 8),
             PinyinText(
-              text: card.pinyin,
+              text: _pinyin,
               style: theme.textTheme.labelMedium?.copyWith(
                 color: theme.colorScheme.primary,
               ),
             ),
             SizedBox(height: 4),
             Text(
-              DefinitionFormatter.cleanRaw(card.definition, ref),
+              DefinitionFormatter.cleanRaw(_definition, ref),
               style: theme.textTheme.bodySmall,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
@@ -919,22 +948,51 @@ String _extractDefinitionGroupKey(String definition) {
   return cleaned[0].toUpperCase() + cleaned.substring(1);
 }
 
-class _DictionaryItem extends ConsumerWidget {
+class _DictionaryItem extends ConsumerStatefulWidget {
   final dynamic card;
   final bool isInLibrary;
   const _DictionaryItem({required this.card, this.isInLibrary = false});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<_DictionaryItem> createState() => _DictionaryItemState();
+}
+
+class _DictionaryItemState extends ConsumerState<_DictionaryItem> {
+  late String _pinyin;
+  late String _definition;
+
+  @override
+  void initState() {
+    super.initState();
+    _pinyin = widget.card.pinyin;
+    _definition = widget.card.definition;
+    _hydrateIfMissing();
+  }
+
+  Future<void> _hydrateIfMissing() async {
+    if (_pinyin.trim().isEmpty || _definition.trim().isEmpty) {
+      final repo = ref.read(globalDictionaryRepositoryProvider);
+      final dictCard = await repo.getExact(widget.card.hanzi);
+      if (dictCard != null && mounted) {
+        setState(() {
+          _pinyin = dictCard.pinyin;
+          _definition = dictCard.definition;
+        });
+      }
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
     // If it's not in the library, it has no real mastery progress yet.
-    final double masteryProgress = isInLibrary ? (card.getStatsForMode(StudyMode.reading).streak / 5.0).clamp(0.0, 1.0) : 0.0;
-    final bool isMastered = isInLibrary ? card.isMastered(StudyMode.reading) : false;
+    final double masteryProgress = widget.isInLibrary ? (widget.card.getStatsForMode(StudyMode.reading).streak / 5.0).clamp(0.0, 1.0) : 0.0;
+    final bool isMastered = widget.isInLibrary ? widget.card.isMastered(StudyMode.reading) : false;
     final bool isDark = Theme.of(context).brightness == Brightness.dark;
 
     return InkWell(
       onTap: () {
         HapticsManager.light();
-        showQuickLook(context, card.hanzi);
+        showQuickLook(context, widget.card.hanzi);
       },
       borderRadius: BorderRadius.circular(16),
       child: Container(
@@ -954,7 +1012,7 @@ class _DictionaryItem extends ConsumerWidget {
                 fit: BoxFit.scaleDown,
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  card.hanzi,
+                  widget.card.hanzi,
                   style: TextStyle(
                     fontSize: 42,
                     fontWeight: FontWeight.bold,
@@ -974,7 +1032,7 @@ class _DictionaryItem extends ConsumerWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   PinyinText(
-                    text: card.pinyin,
+                    text: _pinyin,
                     style: TextStyle(
                       fontSize: 16,
                       color: isDark ? Colors.indigo.shade300 : Colors.indigo.shade700,
@@ -983,7 +1041,7 @@ class _DictionaryItem extends ConsumerWidget {
                     ),
                   ),
                   SizedBox(height: 4),
-                  if (card.hskLevel == 0)
+                  if (widget.card.hskLevel == 0)
                     Container(
                       margin: const EdgeInsets.only(bottom: 6),
                       padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
@@ -1009,7 +1067,7 @@ class _DictionaryItem extends ConsumerWidget {
                       ),
                     ),
                   Text(
-                    DefinitionFormatter.cleanRaw(card.definition, ref),
+                    DefinitionFormatter.cleanRaw(_definition, ref),
                     style: TextStyle(
                       fontSize: 14,
                       color: isDark ? Colors.white : Colors.black,

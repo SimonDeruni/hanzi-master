@@ -80,6 +80,7 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
   List<AiTextBlock> _aiTextBlocks = [];
   final TextRecognizer _textRecognizer = TextRecognizer(script: TextRecognitionScript.chinese);
   List<TranslatedTextBlock> _translatedBlocks = [];
+  bool _permissionDenied = false;
 
   @override
   void initState() {
@@ -93,7 +94,11 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
   }
 
   Future<void> _initializeCamera() async {
-    final status = await Permission.camera.request();
+    var status = await Permission.camera.status;
+    if (!status.isGranted) {
+      status = await Permission.camera.request();
+    }
+    
     if (status.isGranted) {
       _cameras = await availableCameras();
       if (_cameras.isNotEmpty) {
@@ -122,8 +127,23 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
       }
     } else {
       if (mounted) {
+        setState(() => _permissionDenied = true);
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Camera permission required for live scanning')),
+          SnackBar(
+            content: const Text(
+              'Camera permission required for live scanning.',
+              style: TextStyle(color: Color(0xFFFDFCF0), fontWeight: FontWeight.w500),
+            ),
+            backgroundColor: const Color(0xFF1A1A1B),
+            behavior: SnackBarBehavior.floating,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+            margin: const EdgeInsets.only(bottom: 24, left: 16, right: 16),
+            action: SnackBarAction(
+              label: 'Settings',
+              textColor: const Color(0xFFFDFCF0),
+              onPressed: () => openAppSettings(),
+            ),
+          ),
         );
       }
     }
@@ -614,7 +634,7 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
               ),
             )
           else
-            Container(color: Colors.black),
+            Positioned.fill(child: Container(color: Colors.black)),
             
           // Blur overlay during loading or results
           if (_isScanning || _isLookingUp || _showingResults)
@@ -734,6 +754,43 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
   }
 
   Widget _buildMainContent(ThemeData theme, AppLocalizations l10n) {
+    if (_permissionDenied) {
+      return Center(
+        child: Padding(
+          padding: const EdgeInsets.all(32.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(Icons.no_photography_outlined, size: 64, color: Colors.white.withValues(alpha: 0.5)),
+              const SizedBox(height: 16),
+              const Text(
+                'Camera Access Required',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                'Please enable camera access in your device settings to use this feature.',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 16, color: Colors.white.withValues(alpha: 0.7)),
+              ),
+              const SizedBox(height: 24),
+              ElevatedButton.icon(
+                onPressed: () => openAppSettings(),
+                icon: const Icon(Icons.settings),
+                label: const Text('Open Settings'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: theme.colorScheme.primaryContainer,
+                  foregroundColor: theme.colorScheme.onPrimaryContainer,
+                  padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
     if (_isScanning || _isLookingUp) {
       final phase = _isScanning ? _scanPhase : 3;
       final steps = ['Analyzing image…', 'Extracting Chinese text…', 'Looking up vocabulary…'];
@@ -875,6 +932,7 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
     }
 
     if (_isArLensMode) {
+      if (_cameraController == null) return const SizedBox.shrink();
       InputImageRotation rotation = InputImageRotation.rotation0deg;
       final sensorOrientation = _cameraController!.description.sensorOrientation;
       final rawRotation = InputImageRotationValue.fromRawValue(sensorOrientation);

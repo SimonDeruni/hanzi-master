@@ -1,4 +1,5 @@
 import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'dart:math' as math;
 import 'dart:ui' as ui;
 import 'dart:async';
 import 'dart:io';
@@ -6,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_sound/flutter_sound.dart' as fs;
+import 'package:record/record.dart';
+import 'package:path_provider/path_provider.dart';
 import '../../domain/entities/scenario.dart';
 import '../../../chat/domain/entities/chat_message.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
@@ -31,6 +34,7 @@ class LiveCallMessage {
   final String? translation;
   final ChatRole role;
   final Map<String, dynamic>? grade;
+  final String? audioPath;
   final DateTime timestamp;
 
   LiveCallMessage({
@@ -39,10 +43,19 @@ class LiveCallMessage {
     this.translation,
     required this.role,
     this.grade,
+    this.audioPath,
     DateTime? timestamp,
   }) : timestamp = timestamp ?? DateTime.now();
 
-  LiveCallMessage copyWith({Map<String, dynamic>? grade, String? text, String? pinyin, String? translation}) {
+  LiveCallMessage copyWith({
+    String? text,
+    String? pinyin,
+    String? translation,
+    ChatRole? role,
+    Map<String, dynamic>? grade,
+    String? audioPath,
+    DateTime? timestamp,
+  }) {
     return LiveCallMessage(
       text: text ?? this.text,
       pinyin: pinyin ?? this.pinyin,
@@ -67,12 +80,25 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
     with SingleTickerProviderStateMixin {
   late AnimationController _pulseController;
   late Animation<double> _pulseAnimation;
+  late AnimationController _analyzePulseController;
   bool _isMuted = false;
   bool _isSpeaker = true;
   bool _isEndingCall = false;
+  bool _isAnalyzing = false;
+  String _analyzeStatusText = "Analyzing your pronunciation...";
+  Timer? _analyzeStatusTimer;
+  int _subtitleMode = 0; // 0=full (Chinese+Pinyin+English), 1=Chinese only, 2=hidden
+
+  static const _analyzeStatusMessages = [
+    "Analyzing your pronunciation...",
+    "Reviewing your tones...",
+    "Preparing your Scholar's Verdict...",
+  ];
 
   final fs.FlutterSoundPlayer _player = fs.FlutterSoundPlayer();
   final AudioPlayer _bgPlayer = AudioPlayer();
+  final AudioRecorder _audioRecorder = AudioRecorder();
+  String? _currentAudioPath;
   LiveCallState _callState = LiveCallState.idle;
   String _callStatus = "Ready";
   bool _hasError = false;
@@ -102,6 +128,11 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
       CurvedAnimation(parent: _pulseController, curve: Curves.easeInOut),
     );
 
+    _analyzePulseController = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 3),
+    )..repeat();
+
     _initCall();
   }
 
@@ -120,7 +151,7 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
 
       if (widget.scenario.backgroundAudioPath != null) {
         if (widget.scenario.backgroundAudioPath!.startsWith('/') ||
-            widget.scenario.backgroundAudioPath!.contains(':\\\\')) {
+            widget.scenario.backgroundAudioPath!.contains(':\\')) {
           await _bgPlayer.setReleaseMode(ReleaseMode.loop);
           await _bgPlayer.setVolume(0.3); // Ambient volume
           await _bgPlayer
@@ -162,6 +193,23 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
     final session = ++_recognitionSession;
     _listeningWatchdog?.cancel();
     _setCallState(LiveCallState.idle, "Starting microphone...");
+
+    try {
+      if (await _audioRecorder.hasPermission()) {
+        final tempDir = await getTemporaryDirectory();
+        _currentAudioPath = '${tempDir.path}/live_call_${DateTime.now().millisecondsSinceEpoch}.wav';
+        await _audioRecorder.start(
+          const RecordConfig(
+            encoder: AudioEncoder.pcm16bits,
+            sampleRate: 16000,
+            numChannels: 1,
+          ),
+          path: _currentAudioPath!,
+        );
+      }
+    } catch (e) {
+      debugPrint("AudioRecorder failed to start: $e");
+    }
 
     final started = await speechService.startListening(
       pauseFor: const Duration(milliseconds: 1500),
@@ -269,16 +317,35 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
     // Stop listening while thinking/speaking
     await ref.read(speechServiceProvider).stopListening();
 
+    String? finalAudioPath = _currentAudioPath;
+    try {
+      if (await _audioRecorder.isRecording()) {
+        finalAudioPath = await _audioRecorder.stop();
+      }
+    } catch (e) {
+      debugPrint("LiveCall: Error stopping audio recorder: $e");
+    }
+
     if (_isDisposed || !mounted || _isEndingCall) return;
     setState(() {
       _partialUserText = '';
       _audioLevel = 0;
-      _transcript.add(LiveCallMessage(text: text, role: ChatRole.user));
+      _transcript.add(LiveCallMessage(text: text, role: ChatRole.user, audioPath: finalAudioPath));
     });
     _scrollToBottom();
 
-    // Async grade the user audio
+    // Async grade the user audio and get AI response
     _triggerGradingForLastUserTurn();
+    await _handleUserInputAndRespond_continued(text);
+  }
+
+  void _cycleSubtitleMode() {
+    setState(() {
+      _subtitleMode = (_subtitleMode + 1) % 3;
+    });
+  }
+
+  Future<void> _handleUserInputAndRespond_continued(String text) async {
 
     _setCallState(LiveCallState.thinking, "Thinking...");
 
@@ -290,7 +357,7 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
         {
           'role': 'system',
           'content':
-              'You are a professional Mandarin tutor named Master Lin. You are patient, wise, and encouraging. Respond naturally in spoken Mandarin. Keep your responses short (under 3 sentences). Scenario: ${widget.scenario.description}\nIMPORTANT: You MUST format your response exactly as follows: Chinese Text|||Pinyin|||English Translation'
+              '${widget.scenario.systemPrompt}\n\nKeep your responses short (under 3 sentences). Use natural spoken Mandarin appropriate for your role.\n\nScenario context: ${widget.scenario.description}\n\nIMPORTANT: You MUST format your response exactly as follows: Chinese Text|||Pinyin|||English Translation'
         }
       ];
 
@@ -379,13 +446,41 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
         _transcript.lastIndexWhere((m) => m.role == ChatRole.user);
     if (lastUserIdx == -1) return;
 
+    final msg = _transcript[lastUserIdx];
+    if (msg.audioPath == null) return;
+
     try {
-      // For the STT pipeline, we skip Azure audio grading because we don't capture the audio bytes easily from speech_to_text.
-      // We will grade text-only for now, or just leave it empty.
-      // For this implementation, we will skip grading audio.
+      final gemini = ref.read(geminiServiceProvider);
+      final file = File(msg.audioPath!);
+      if (!await file.exists()) return;
+
+      final audioBytes = await file.readAsBytes();
+      
+      // We pass the recognized text as expected Chinese to get a phoneme-level pronunciation grade
+      final grade = await gemini.gradeAudio(audioBytes, msg.text, "");
+
+      if (_isDisposed || !mounted) return;
+      
+      setState(() {
+        _transcript[lastUserIdx] = msg.copyWith(grade: grade);
+      });
     } catch (e) {
       debugPrint("Live grading error: $e");
     }
+  }
+
+  void _startAnalyzeStatusCycle() {
+    _analyzeStatusTimer?.cancel();
+    int index = 0;
+    setState(() => _analyzeStatusText = _analyzeStatusMessages[0]);
+    _analyzeStatusTimer = Timer.periodic(const Duration(milliseconds: 1500), (timer) {
+      if (!mounted || _isDisposed || !_isAnalyzing) {
+        timer.cancel();
+        return;
+      }
+      index = (index + 1) % _analyzeStatusMessages.length;
+      setState(() => _analyzeStatusText = _analyzeStatusMessages[index]);
+    });
   }
 
   void _scrollToBottom() {
@@ -411,6 +506,9 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
       _listeningWatchdog?.cancel();
       _setCallState(LiveCallState.idle, "Paused - Take a break");
       await ref.read(speechServiceProvider).cancelListening();
+      if (await _audioRecorder.isRecording()) {
+        await _audioRecorder.stop();
+      }
       if (mounted) setState(() => _partialUserText = '');
       try {
         await _player.pausePlayer();
@@ -440,6 +538,7 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
 
   @override
   void dispose() {
+    _audioRecorder.dispose();
     _isDisposed = true;
     _recognitionSession++;
     _listeningWatchdog?.cancel();
@@ -448,6 +547,8 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
     _bgPlayer.stop();
     _bgPlayer.dispose();
     _pulseController.dispose();
+    _analyzePulseController.dispose();
+    _analyzeStatusTimer?.cancel();
     _scrollController.dispose();
     super.dispose();
   }
@@ -458,6 +559,9 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
     _listeningWatchdog?.cancel();
     HapticsManager.heavy();
     ref.read(speechServiceProvider).stopListening();
+    if (await _audioRecorder.isRecording()) {
+      await _audioRecorder.stop();
+    }
     await _bgPlayer.stop();
     await _player.stopPlayer();
 
@@ -468,17 +572,15 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
       return;
     }
 
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) =>
-          const Center(child: CircularProgressIndicator(color: Colors.white)),
-    );
+    // Show inline analyzing overlay instead of dialog
+    setState(() => _isAnalyzing = true);
+    _startAnalyzeStatusCycle();
 
     final verdict = await _generateFinalVerdict();
 
     if (mounted) {
-      Navigator.pop(context); // Close loading
+      _analyzeStatusTimer?.cancel();
+      setState(() => _isAnalyzing = false);
       Navigator.pushReplacement(
         context,
         SwipeBackPageRoute(
@@ -638,7 +740,7 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
                             }
                             final msg = _transcript[index];
                             return _LiveTranscriptBubble(
-                                message: msg, theme: theme);
+                                message: msg, theme: theme, subtitleMode: _subtitleMode);
                           },
                         ),
                       ),
@@ -725,6 +827,12 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
                             isActive: _isMuted,
                             onTap: _togglePause,
                           ),
+                          _CallControlButton(
+                            icon: _subtitleMode == 2 ? Icons.visibility_off : (_subtitleMode == 1 ? Icons.remove_red_eye : Icons.subtitles),
+                            label: _subtitleMode == 2 ? "Hidden" : (_subtitleMode == 1 ? "ZH Only" : "CC"),
+                            isActive: _subtitleMode != 0,
+                            onTap: _cycleSubtitleMode,
+                          ),
                           GestureDetector(
                             onTap: _endCall,
                             child: Container(
@@ -757,6 +865,89 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
                     ),
                   ],
                 ),
+                // Analyzing overlay
+                if (_isAnalyzing)
+                  Positioned.fill(
+                    child: Container(
+                      color: Colors.black.withValues(alpha: 0.1),
+                      child: Center(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            AnimatedBuilder(
+                              animation: _analyzePulseController,
+                              builder: (context, child) {
+                                final t = _analyzePulseController.value;
+                                return Container(
+                                  width: 160,
+                                  height: 160,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    gradient: SweepGradient(
+                                      colors: [
+                                        theme.colorScheme.primary.withValues(alpha: 0.0),
+                                        theme.colorScheme.primary.withValues(alpha: 0.4),
+                                        Colors.amber.withValues(alpha: 0.6),
+                                        theme.colorScheme.primary.withValues(alpha: 0.4),
+                                        theme.colorScheme.primary.withValues(alpha: 0.0),
+                                      ],
+                                      transform: GradientRotation(t * 2 * math.pi),
+                                    ),
+                                    border: Border.all(
+                                      color: theme.colorScheme.primary.withValues(
+                                        alpha: 0.5 +
+                                            0.3 *
+                                                (1 + math.sin(t * 2 * math.pi)) /
+                                                2,
+                                      ),
+                                      width: 2.5,
+                                    ),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: theme.colorScheme.primary
+                                            .withValues(alpha: 0.3),
+                                        blurRadius: 30 + 10 * t,
+                                        spreadRadius: 2,
+                                      ),
+                                    ],
+                                  ),
+                                  child: const SizedBox.shrink(),
+                                );
+                              },
+                            ),
+                            const SizedBox(height: 32),
+                            AnimatedSwitcher(
+                              duration: const Duration(milliseconds: 400),
+                              child: Text(
+                                _analyzeStatusText,
+                                key: ValueKey(_analyzeStatusText),
+                                textAlign: TextAlign.center,
+                                style: theme.textTheme.titleMedium?.copyWith(
+                                  color: Colors.white.withValues(alpha: 0.85),
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 12),
+                            SizedBox(
+                              width: 120,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(4),
+                                child: LinearProgressIndicator(
+                                  minHeight: 4,
+                                  backgroundColor: Colors.white12,
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                    theme.colorScheme.primary
+                                        .withValues(alpha: 0.7),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
               ],
             ),
           ),
@@ -795,7 +986,8 @@ class _LivePartialTranscriptBubble extends StatelessWidget {
 class _LiveTranscriptBubble extends StatelessWidget {
   final LiveCallMessage message;
   final ThemeData theme;
-  const _LiveTranscriptBubble({required this.message, required this.theme});
+  final int subtitleMode;
+  const _LiveTranscriptBubble({required this.message, required this.theme, this.subtitleMode = 0});
 
   @override
   Widget build(BuildContext context) {
@@ -810,22 +1002,31 @@ class _LiveTranscriptBubble extends StatelessWidget {
           if (isUser && message.grade != null)
             _buildGradedText(message.grade!['words'] ?? [], theme, context)
           else ...[
-            TappableMarkdownHanziText(
-              message.text,
-              textAlign: isUser ? TextAlign.right : TextAlign.left,
-              style: theme.textTheme.bodyLarge?.copyWith(
-                color: isUser
-                    ? Colors.white70
-                    : theme.colorScheme.primary.withValues(alpha: 0.9),
-                fontWeight: isUser ? FontWeight.normal : FontWeight.bold,
-                height: 1.4,
+            if (subtitleMode != 2)
+              TappableMarkdownHanziText(
+                message.text,
+                textAlign: isUser ? TextAlign.right : TextAlign.left,
+                style: theme.textTheme.bodyLarge?.copyWith(
+                  color: isUser
+                      ? Colors.white70
+                      : theme.colorScheme.primary.withValues(alpha: 0.9),
+                  fontWeight: isUser ? FontWeight.normal : FontWeight.bold,
+                  height: 1.4,
+                ),
               ),
-            ),
-            if (message.pinyin != null && message.pinyin!.isNotEmpty) ...[
+            if (subtitleMode == 2 && !isUser)
+              Text(
+                '🔊',
+                textAlign: TextAlign.left,
+                style: theme.textTheme.bodyLarge?.copyWith(
+                  color: Colors.white24,
+                ),
+              ),
+            if (subtitleMode == 0 && message.pinyin != null && message.pinyin!.isNotEmpty) ...[
               const SizedBox(height: 6),
               Text(message.pinyin!, style: theme.textTheme.bodyMedium?.copyWith(color: Colors.white70), textAlign: isUser ? TextAlign.right : TextAlign.left),
             ],
-            if (message.translation != null && message.translation!.isNotEmpty) ...[
+            if (subtitleMode == 0 && message.translation != null && message.translation!.isNotEmpty) ...[
               const SizedBox(height: 2),
               Text(message.translation!, style: theme.textTheme.bodySmall?.copyWith(color: Colors.white38, fontStyle: FontStyle.italic), textAlign: isUser ? TextAlign.right : TextAlign.left),
             ],

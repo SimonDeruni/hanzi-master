@@ -25,6 +25,8 @@
 - [x] **Bug**: Fixed Gemini Live Call connection crash (WebSocket 1007 Error) by removing `"TEXT"` from the `responseModalities` payload, which is unsupported by the current model version. Improved error UI to catch WebSocket disconnections gracefully.
 - [x] **UI/UX**: Added "TRAILER" and "HIGHLIGHT" conditional overlay badges to Media Cards in the Shows & Dramas catalog to distinguish content types.
 - [x] **Bug**: Fixed Smart Media Desk data bleed where YouTube API failures caused all video categories to incorrectly display hardcoded historical dramas. Categories will now correctly display a "Failed to load content" state.
-
+- [x] **Bug**: Fixed Universal Scanner camera permission handling. The app now correctly checks the permission status before requesting, preventing silent failures on iOS, and replaces the basic unpolished SnackBar with a premium floating toast notification (Zen & Ink aesthetic) guiding the user to settings.
+- [x] **Bug**: Fixed AR Camera Permission soft-lock. Accessing the AR feature without permissions previously crashed the UI, resulting in a blank gray screen with invisible navigation elements. Added a permission denied fallback UI and ensured the background properly covers the screen.
+- [x] **Bug**: Fixed "Latest Discoveries" carousel and Dictionary list displaying empty cards for older saved flashcards (like "吃") that were missing pinyin/definition metadata. `_LexiconMiniCard` and `_DictionaryItem` now detect empty metadata on render and asynchronously hydrate the missing fields directly from the offline SQLite dictionary.
 ## Open Issues
 

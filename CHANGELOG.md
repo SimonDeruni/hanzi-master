@@ -5,8 +5,20 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 ### Fixed
+- **Cultural Insight UI**: Redesigned the "Article Preview / Cultural Insight" screen to improve premium aesthetics. Expanded the header image with a dark gradient to ensure iOS status bar visibility. Removed the constrained bordered card for the cultural insight text, replacing it with an open layout and refined typography. Replaced the floating action button with a modern sticky footer for the "Dive into Full Content" CTA to prevent text overlap.
+
+### Fixed
+- **Library / Latest Discoveries**: Fixed an issue where older saved flashcards (like "吃") that were missing pinyin or definition metadata rendered as visually broken, "empty" UI cards in the library carousel and dictionary list. Converted `_LexiconMiniCard` and `_DictionaryItem` into stateful widgets that now automatically detect missing metadata upon render and asynchronously hydrate themselves from the bundled SQLite dictionary, restoring perfect visual consistency without requiring a full database migration.
+- **AR Camera Permission/Soft-lock**: Fixed a complete UI crash when the AR feature was accessed without camera permissions. Added a fallback UI displaying a permission request and an "Open Settings" button, and wrapped the background to prevent it from shrinking to 0x0 size and showing a blank screen.
+- **Universal Scanner Camera Permission**: Fixed a bug where the scanner failed to recognize granted camera permissions or trigger the native iOS prompt. Replaced the outdated beige error banner with a premium, floating toast notification that correctly guides users to settings if permission is permanently denied.
 - **Shadowing Studio — Scoring Engine Accuracy**: Replaced Azure's holistic `PronScore` mapping with a pure, mathematical average of the `AccuracyScore` from explicitly spoken words. This prevents the score from plummeting to an absolute `0/100` when a user's microphone cuts off early, restoring parity between the visual breakdown (green/orange/red text) and the global score. Also introduced `Colors.grey` to render explicitly "Omitted" words.
 - **Smart Media Desk — Overlay Event Bubbling & State Synchronization**: Hoisted internal state management from `FullscreenMediaOverlay` to the global parent controller (`_SmartMediaDeskScreenState`), eliminating the bug where entering fullscreen forcibly resets toggles to an "On" default state while maintaining actual values. Also applied `enabled: false` to the switch wrappers in `PremiumVideoTopBar` to prevent the `PopupMenuButton` from closing instantly when interacted with.
+
+### Fixed
+- **AI Hub**: Completely redesigned the layout of `AiHubScreen`. Replaced the massive, infinitely stretching vertical cards with a balanced, side-by-side square tile 2x2 grid layout (`AspectRatio` 1:1). Converted the solid bright colors into a premium dark glassmorphic design (`#1A1A1B`) featuring subtle neon borders, glowing drop shadows, and faded watermark background icons.
+
+### Fixed
+- **Translation Hub / Live Translate**: Completely redesigned the layout of `TranslationHubScreen`. Replaced the massive, infinitely stretching vertical cards with a balanced, side-by-side square tile layout (`AspectRatio` 1:1). Converted the solid bright colors into a premium dark glassmorphic design (`#1A1A1B`) featuring subtle neon borders, glowing drop shadows, and faded watermark background icons.
 
 ### Fixed
 - **Library Story Audio Playback**: Fixed a bug in `StoryReaderScreen` where the audio reader only played one out of three sentences per page and failed to highlight spoken words correctly. The text is now properly chunked and concatenated per page, and local offsets are mapped to the global chunk, restoring fluid playback and highlighting.

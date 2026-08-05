@@ -300,6 +300,10 @@ class DashboardScreen extends ConsumerWidget {
                         int calligraphyDue = cards.where((c) => c.isDue(StudyMode.calligraphy)).length;
                         int totalDue = cards.length;
 
+                        // Always use white foreground on the dark indigo gradient for high contrast
+                        const onCardColor = Colors.white;
+                        const cardGradientDark = Color(0xFF1A237E);
+
                         return Padding(
                           padding: const EdgeInsets.only(bottom: 12.0),
                           child: Container(
@@ -328,7 +332,7 @@ class DashboardScreen extends ConsumerWidget {
                                       Text(
                                         displayDeckName,
                                         style: theme.textTheme.titleMedium?.copyWith(
-                                          color: theme.colorScheme.onPrimary,
+                                          color: onCardColor,
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
@@ -337,16 +341,16 @@ class DashboardScreen extends ConsumerWidget {
                                         spacing: 12,
                                         runSpacing: 8,
                                         children: [
-                                          if (calligraphyDue > 0) _buildMiniStat(Icons.brush, calligraphyDue, theme),
-                                          if (readingDue > 0) _buildMiniStat(Icons.visibility, readingDue, theme),
-                                          if (listeningDue > 0) _buildMiniStat(Icons.headset, listeningDue, theme),
-                                          if (recallDue > 0) _buildMiniStat(Icons.memory, recallDue, theme),
-                                          if (speakingDue > 0) _buildMiniStat(Icons.mic, speakingDue, theme),
+                                          if (calligraphyDue > 0) _buildMiniStat(Icons.brush, calligraphyDue, onCardColor),
+                                          if (readingDue > 0) _buildMiniStat(Icons.visibility, readingDue, onCardColor),
+                                          if (listeningDue > 0) _buildMiniStat(Icons.headset, listeningDue, onCardColor),
+                                          if (recallDue > 0) _buildMiniStat(Icons.memory, recallDue, onCardColor),
+                                          if (speakingDue > 0) _buildMiniStat(Icons.mic, speakingDue, onCardColor),
                                           if (readingDue == 0 && listeningDue == 0 && recallDue == 0 && speakingDue == 0 && calligraphyDue == 0)
                                             Text(
                                               "$totalDue ${l10n?.cardsRequireAttention ?? 'cards require attention.'}",
                                               style: theme.textTheme.bodyMedium?.copyWith(
-                                                color: theme.colorScheme.onPrimary.withValues(alpha: 0.8),
+                                                color: onCardColor.withValues(alpha: 0.8),
                                               ),
                                             ),
                                         ],
@@ -367,8 +371,8 @@ class DashboardScreen extends ConsumerWidget {
                                     );
                                   },
                                   style: ElevatedButton.styleFrom(
-                                    backgroundColor: theme.colorScheme.onPrimary,
-                                    foregroundColor: theme.colorScheme.primary,
+                                    backgroundColor: Colors.white,
+                                    foregroundColor: cardGradientDark,
                                     padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
                                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                                     elevation: 4,
@@ -393,17 +397,18 @@ class DashboardScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildMiniStat(IconData icon, int count, ThemeData theme) {
+  Widget _buildMiniStat(IconData icon, int count, Color color) {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Icon(icon, size: 14, color: theme.colorScheme.onPrimary.withValues(alpha: 0.7)),
+        Icon(icon, size: 14, color: color.withValues(alpha: 0.7)),
         const SizedBox(width: 4),
         Text(
           "$count",
-          style: theme.textTheme.bodyMedium?.copyWith(
-            color: theme.colorScheme.onPrimary.withValues(alpha: 0.9),
+          style: TextStyle(
+            color: color.withValues(alpha: 0.9),
             fontWeight: FontWeight.bold,
+            fontSize: 14,
           ),
         ),
       ],

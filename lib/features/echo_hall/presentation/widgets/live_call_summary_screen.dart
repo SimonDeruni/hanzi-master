@@ -4,6 +4,8 @@ import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraph
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
 import '../screens/live_call_screen.dart';
 import '../../../chat/domain/entities/chat_message.dart';
+import 'package:audioplayers/audioplayers.dart';
+import 'package:hanzi_master/features/live_translate/presentation/widgets/interactive_grading_text.dart';
 
 class LiveCallSummaryScreen extends StatelessWidget {
   final List<LiveCallMessage> transcript;
@@ -194,72 +196,19 @@ class LiveCallSummaryScreen extends StatelessWidget {
     if (!isUser) return bubble;
 
     return GestureDetector(
-      onTap: () => _showSelectableReviewSheet(context, msg, theme),
+      onTap: () => _showPronunciationReviewSheet(context, msg, theme),
       child: bubble,
     );
   }
 
-  void _showSelectableReviewSheet(BuildContext context, LiveCallMessage msg, ThemeData theme) {
-    List<dynamic> segmentedWords = [];
-    if (msg.grade != null && msg.grade!['words'] != null) {
-      segmentedWords = msg.grade!['words'];
-    } else {
-      // Fallback: simple character split for Chinese if no grade data
-      final chars = msg.text.runes.map((r) => String.fromCharCode(r)).toList();
-      segmentedWords = chars.map((c) => {"word": c, "pinyin": ""}).toList();
-    }
-
+  void _showPronunciationReviewSheet(BuildContext context, LiveCallMessage msg, ThemeData theme) {
     showModalBottomSheet(
       context: context,
+      isScrollControlled: true,
       backgroundColor: theme.colorScheme.surface,
       shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(24))),
       builder: (context) {
-        return Padding(
-          padding: const EdgeInsets.all(24.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Container(
-                width: 40, height: 4,
-                decoration: BoxDecoration(color: Colors.grey[400], borderRadius: BorderRadius.circular(2)),
-              ),
-              const SizedBox(height: 24),
-              Text("Select a word to review", style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold)),
-              const SizedBox(height: 24),
-              Wrap(
-                spacing: 12,
-                runSpacing: 12,
-                alignment: WrapAlignment.center,
-                children: segmentedWords.map((w) {
-                  final wordText = w['word'] ?? "";
-                  if (wordText.trim().isEmpty) return const SizedBox.shrink();
-                  return GestureDetector(
-                    onTap: () {
-                      Navigator.pop(context); // Close sheet
-                      showQuickLook(context, wordText, contextText: msg.text);
-                    },
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                      decoration: BoxDecoration(
-                        color: theme.colorScheme.primary.withValues(alpha: 0.1),
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border.all(color: theme.colorScheme.primary.withValues(alpha: 0.2)),
-                      ),
-                      child: Column(
-                        children: [
-                          if ((w['pinyin'] ?? "").isNotEmpty)
-                            Text(w['pinyin'], style: theme.textTheme.labelSmall),
-                          Text(wordText, style: theme.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold)),
-                        ],
-                      ),
-                    ),
-                  );
-                }).toList(),
-              ),
-              const SizedBox(height: 32),
-            ],
-          ),
-        );
+        return PronunciationReviewSheet(msg: msg);
       },
     );
   }
@@ -287,6 +236,145 @@ class LiveCallSummaryScreen extends StatelessWidget {
           ),
         );
       }).toList(),
+    );
+  }
+}
+
+class PronunciationReviewSheet extends StatefulWidget {
+  final LiveCallMessage msg;
+
+  const PronunciationReviewSheet({Key? key, required this.msg}) : super(key: key);
+
+  @override
+  _PronunciationReviewSheetState createState() => _PronunciationReviewSheetState();
+}
+
+class _PronunciationReviewSheetState extends State<PronunciationReviewSheet> {
+  final AudioPlayer _player = AudioPlayer();
+  bool _isPlaying = false;
+
+  @override
+  void dispose() {
+    _player.dispose();
+    super.dispose();
+  }
+
+  Future<void> _toggleAudio() async {
+    if (widget.msg.audioPath == null) return;
+    
+    if (_isPlaying) {
+      await _player.stop();
+      setState(() => _isPlaying = false);
+    } else {
+      setState(() => _isPlaying = true);
+      await _player.play(DeviceFileSource(widget.msg.audioPath!));
+      _player.onPlayerComplete.listen((_) {
+        if (mounted) setState(() => _isPlaying = false);
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final hasGrade = widget.msg.grade != null;
+    final int score = hasGrade ? (widget.msg.grade!['score'] ?? 0) : 0;
+    final String feedback = hasGrade ? (widget.msg.grade!['overallFeedback'] ?? "") : "No audio grading available.";
+
+    Color scoreColor = Colors.green.shade700;
+    if (score < 60) scoreColor = Colors.red.shade700;
+    else if (score < 80) scoreColor = Colors.orange.shade700;
+
+    return Padding(
+      padding: const EdgeInsets.all(24.0),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            width: 40, height: 4,
+            decoration: BoxDecoration(color: Colors.grey[400], borderRadius: BorderRadius.circular(2)),
+          ),
+          const SizedBox(height: 24),
+          
+          if (!hasGrade) ...[
+            Text("Audio Grading Pending or Unavailable", style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold)),
+            const SizedBox(height: 16),
+            Text(widget.msg.text, style: theme.textTheme.headlineSmall),
+          ] else ...[
+            Text("Pronunciation Score", style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold)),
+            const SizedBox(height: 16),
+            
+            // Score Circle
+            Container(
+              width: 100,
+              height: 100,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(color: scoreColor, width: 4),
+              ),
+              alignment: Alignment.center,
+              child: Text(
+                "$score",
+                style: theme.textTheme.headlineLarge?.copyWith(
+                  color: scoreColor,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 40,
+                ),
+              ),
+            ),
+            const SizedBox(height: 24),
+            
+            InteractiveGradingText(
+              text: widget.msg.text,
+              wordScores: widget.msg.grade!['words'],
+              onCharTap: (charIndex, scoreData) {
+                final word = scoreData['word'] ?? "";
+                if (word.isNotEmpty) {
+                  showQuickLook(context, word, contextText: widget.msg.text);
+                }
+              },
+            ),
+            const SizedBox(height: 16),
+            
+            Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: theme.colorScheme.onSurface.withValues(alpha: 0.05),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Row(
+                children: [
+                  Icon(Icons.lightbulb_outline, color: theme.colorScheme.primary),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Text(feedback, style: theme.textTheme.bodyMedium),
+                  ),
+                ],
+              ),
+            ),
+          ],
+          
+          const SizedBox(height: 32),
+          
+          if (widget.msg.audioPath != null)
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton.icon(
+                onPressed: _toggleAudio,
+                icon: Icon(_isPlaying ? Icons.stop : Icons.play_arrow),
+                label: Text(_isPlaying ? "Stop Playback" : "Play Your Recording"),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: theme.colorScheme.primaryContainer,
+                  foregroundColor: theme.colorScheme.onPrimaryContainer,
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                ),
+              ),
+            ),
+            
+          const SizedBox(height: 32),
+        ],
+      ),
     );
   }
 }

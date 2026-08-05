@@ -260,37 +260,40 @@ class _CharacterChatSheetState extends ConsumerState<CharacterChatSheet> {
       height: MediaQuery.of(context).size.height * 0.85,
       child: SafeArea(
         top: false,
-        child: Column(
-          children: [
-            const SizedBox(height: 8),
-            
-            // ── Header ────────────────────────────────────────────────────
-            _buildHeader(isDark, textColor),
+        child: Padding(
+          padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+          child: Column(
+            children: [
+              const SizedBox(height: 8),
+              
+              // ── Header ────────────────────────────────────────────────────
+              _buildHeader(isDark, textColor),
 
-            // ── Character Info Box ─────────────────────────────────────────
-            _buildCharacterBox(isDark, aiBubbleColor, textColor),
+              // ── Character Info Box ─────────────────────────────────────────
+              _buildCharacterBox(isDark, aiBubbleColor, textColor),
 
-            // ── Message List ──────────────────────────────────────────────
-            Expanded(
-              child: ListView.builder(
-                controller: _scrollController,
-                padding: const EdgeInsets.fromLTRB(12, 12, 12, 8),
-                itemCount: _messages.length + (_isLoading ? 1 : 0),
-                itemBuilder: (context, index) {
-                  if (index == _messages.length) {
-                    return _buildTypingIndicator(aiBubbleColor);
-                  }
-                  final msg = _messages[index];
-                  return msg.isUser
-                      ? _buildUserBubble(msg, drawerWidth, textColor)
-                      : _buildAiBubble(msg, aiBubbleColor, drawerWidth, textColor, isDark);
-                },
+              // ── Message List ──────────────────────────────────────────────
+              Expanded(
+                child: ListView.builder(
+                  controller: _scrollController,
+                  padding: const EdgeInsets.fromLTRB(12, 12, 12, 8),
+                  itemCount: _messages.length + (_isLoading ? 1 : 0),
+                  itemBuilder: (context, index) {
+                    if (index == _messages.length) {
+                      return _buildTypingIndicator(aiBubbleColor);
+                    }
+                    final msg = _messages[index];
+                    return msg.isUser
+                        ? _buildUserBubble(msg, drawerWidth, textColor)
+                        : _buildAiBubble(msg, aiBubbleColor, drawerWidth, textColor, isDark);
+                  },
+                ),
               ),
-            ),
 
-            // ── Input ─────────────────────────────────────────────────────
-            _buildInputBar(isDark, textColor),
-          ],
+              // ── Input ─────────────────────────────────────────────────────
+              _buildInputBar(isDark, textColor),
+            ],
+          ),
         ),
       ),
     );

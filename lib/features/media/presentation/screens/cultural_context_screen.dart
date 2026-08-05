@@ -27,211 +27,240 @@ class CulturalContextScreen extends ConsumerWidget {
 
     return Scaffold(
       backgroundColor: theme.colorScheme.surface,
-      body: CustomScrollView(
-        physics: const BouncingScrollPhysics(),
-        slivers: [
-          SliverAppBar(
-            expandedHeight: 250,
-            pinned: true,
-            stretch: true,
-            backgroundColor: theme.colorScheme.surface,
-            flexibleSpace: FlexibleSpaceBar(
-              stretchModes: const [StretchMode.zoomBackground],
-              background: Stack(
-                fit: StackFit.expand,
-                children: [
-                  CachedNetworkImage(
-                    imageUrl: mediaItem.imageUrl,
-                    fit: BoxFit.cover,
-                    placeholder: (context, url) => Container(color: Colors.black12),
-                    errorWidget: (context, url, error) => Container(color: Colors.black12),
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [
-                          Colors.transparent,
-                          theme.colorScheme.surface,
-                        ],
-                        stops: const [0.4, 1.0],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            leading: IconButton(
-              icon: Container(
-                padding: const EdgeInsets.all(8),
-                decoration: BoxDecoration(
-                  color: theme.colorScheme.surface.withValues(alpha: 0.8),
-                  shape: BoxShape.circle,
-                ),
-                child: Icon(Icons.arrow_back, color: theme.colorScheme.onSurface),
-              ),
-              onPressed: () => Navigator.pop(context),
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.all(24.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                    decoration: BoxDecoration(
-                      color: theme.colorScheme.primary.withValues(alpha: 0.1),
-                      borderRadius: BorderRadius.circular(100),
-                    ),
-                    child: Text(
-                      mediaItem.tag,
-                      style: theme.textTheme.labelMedium?.copyWith(
-                        color: theme.colorScheme.primary,
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 1.0,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  _buildClickableContext(
-                    context, 
-                    mediaItem.title, 
-                    theme,
-                    customBaseStyle: theme.textTheme.headlineSmall?.copyWith(
-                      fontWeight: FontWeight.w900,
-                      fontFamily: 'NotoSerifSC',
-                    ),
-                    customHanziStyle: theme.textTheme.headlineSmall?.copyWith(
-                      fontWeight: FontWeight.w900,
-                      fontFamily: 'NotoSerifSC',
-                    ),
-                  ),
-                  const SizedBox(height: 32),
-                  Row(
-                    children: [
-                      Icon(Icons.auto_awesome, color: Colors.amber, size: 24),
-                      const SizedBox(width: 8),
-                      Text(
-                        "Cultural Insight",
-                        style: theme.textTheme.titleMedium?.copyWith(
-                          fontWeight: FontWeight.bold,
+      body: Column(
+        children: [
+          Expanded(
+            child: CustomScrollView(
+              physics: const BouncingScrollPhysics(),
+              slivers: [
+                SliverAppBar(
+                  expandedHeight: 350,
+                  pinned: true,
+                  stretch: true,
+                  backgroundColor: theme.colorScheme.surface,
+                  flexibleSpace: FlexibleSpaceBar(
+                    stretchModes: const [StretchMode.zoomBackground],
+                    background: Stack(
+                      fit: StackFit.expand,
+                      children: [
+                        CachedNetworkImage(
+                          imageUrl: mediaItem.imageUrl,
+                          fit: BoxFit.cover,
+                          placeholder: (context, url) => Container(color: Colors.black12),
+                          errorWidget: (context, url, error) => Container(color: Colors.black12),
                         ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 16),
-                  Container(
-                    padding: const EdgeInsets.all(24),
-                    decoration: BoxDecoration(
-                      color: isDark ? Colors.white.withValues(alpha: 0.03) : const Color(0xFFF9F7F1),
-                      borderRadius: BorderRadius.circular(24),
-                      border: Border.all(
-                        color: isDark ? Colors.white12 : Colors.black.withValues(alpha: 0.05),
-                      ),
-                    ),
-                    child: culturalContextAsync.when(
-                      data: (text) => _buildClickableContext(context, text, theme),
-                      loading: () => Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          const SizedBox(height: 20),
-                          const Center(child: CircularProgressIndicator()),
-                          const SizedBox(height: 24),
-                          Text(
-                            "AI is translating cultural context...",
-                            style: TextStyle(
-                              color: theme.colorScheme.onSurface.withValues(alpha: 0.5),
-                              fontStyle: FontStyle.italic,
+                        Container(
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter,
+                              colors: [
+                                Colors.black.withValues(alpha: 0.5), // For status bar visibility
+                                Colors.transparent,
+                                theme.colorScheme.surface,
+                              ],
+                              stops: const [0.0, 0.4, 1.0],
                             ),
                           ),
-                          const SizedBox(height: 20),
-                        ],
-                      ),
-                      error: (err, stack) => Text("Failed to load context: \$err"),
+                        ),
+                      ],
                     ),
                   ),
-                  const SizedBox(height: 100), // padding for FAB
-                ],
+                  leading: IconButton(
+                    icon: Container(
+                      padding: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        color: theme.colorScheme.surface.withValues(alpha: 0.5),
+                        shape: BoxShape.circle,
+                      ),
+                      child: Icon(Icons.arrow_back, color: theme.colorScheme.onSurface),
+                    ),
+                    onPressed: () => Navigator.pop(context),
+                  ),
+                ),
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(24.0, 0, 24.0, 40.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                          decoration: BoxDecoration(
+                            color: theme.colorScheme.primary.withValues(alpha: 0.1),
+                            borderRadius: BorderRadius.circular(100),
+                          ),
+                          child: Text(
+                            mediaItem.tag.toUpperCase(),
+                            style: theme.textTheme.labelMedium?.copyWith(
+                              color: theme.colorScheme.primary,
+                              fontWeight: FontWeight.bold,
+                              letterSpacing: 1.5,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 24),
+                        _buildClickableContext(
+                          context, 
+                          mediaItem.title, 
+                          theme,
+                          customBaseStyle: theme.textTheme.headlineMedium?.copyWith(
+                            fontWeight: FontWeight.w900,
+                            fontFamily: 'NotoSerifSC',
+                            height: 1.4,
+                          ),
+                          customHanziStyle: theme.textTheme.headlineMedium?.copyWith(
+                            fontWeight: FontWeight.w900,
+                            fontFamily: 'NotoSerifSC',
+                            color: theme.colorScheme.primary,
+                            height: 1.4,
+                          ),
+                        ),
+                        const SizedBox(height: 40),
+                        Row(
+                          children: [
+                            Icon(Icons.auto_awesome, color: theme.colorScheme.primary, size: 24),
+                            const SizedBox(width: 12),
+                            Text(
+                              "Cultural Insight",
+                              style: theme.textTheme.titleLarge?.copyWith(
+                                fontWeight: FontWeight.bold,
+                                letterSpacing: -0.5,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 24),
+                        culturalContextAsync.when(
+                          data: (text) => _buildClickableContext(
+                            context, 
+                            text, 
+                            theme,
+                            customBaseStyle: theme.textTheme.bodyLarge?.copyWith(
+                              height: 1.8,
+                              fontSize: 18,
+                              color: theme.colorScheme.onSurface.withValues(alpha: 0.85),
+                            ),
+                            customHanziStyle: theme.textTheme.bodyLarge?.copyWith(
+                              height: 1.8,
+                              fontSize: 18,
+                              color: theme.colorScheme.primary,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          loading: () => Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 40),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                const Center(child: CircularProgressIndicator()),
+                                const SizedBox(height: 24),
+                                Center(
+                                  child: Text(
+                                    "AI is analyzing cultural context...",
+                                    style: TextStyle(
+                                      color: theme.colorScheme.onSurface.withValues(alpha: 0.5),
+                                      fontStyle: FontStyle.italic,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          error: (err, stack) => Text("Failed to load context: $err"),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          
+          // Sticky Footer CTA
+          Container(
+            padding: EdgeInsets.fromLTRB(24, 16, 24, MediaQuery.of(context).padding.bottom + 16),
+            decoration: BoxDecoration(
+              color: theme.colorScheme.surface,
+              boxShadow: [
+                BoxShadow(
+                  color: isDark ? Colors.black.withValues(alpha: 0.4) : Colors.black.withValues(alpha: 0.05),
+                  blurRadius: 10,
+                  offset: const Offset(0, -4),
+                ),
+              ],
+            ),
+            child: BouncingButton(
+              onPressed: () async {
+                if (mediaItem.url.contains("youtube.com") || mediaItem.url.contains("youtu.be")) {
+                  final videoId = _extractVideoId(mediaItem.url);
+                  if (videoId != null) {
+                    final video = YoutubeVideo(
+                      id: videoId,
+                      title: mediaItem.title,
+                      url: mediaItem.url,
+                      mediumThumbnailUrl: mediaItem.imageUrl,
+                      highThumbnailUrl: mediaItem.imageUrl,
+                      channelTitle: '',
+                    );
+                    if (!context.mounted) return;
+                    Navigator.pushReplacement(
+                      context,
+                      SwipeBackPageRoute(
+                        builder: (_) => SmartMediaDeskScreen(video: video),
+                      ),
+                    );
+                  } else {
+                    final uri = Uri.tryParse(mediaItem.url);
+                    if (uri != null) {
+                      launchUrl(uri, mode: LaunchMode.externalApplication);
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Unable to open this video. Please try again later.')),
+                      );
+                    }
+                  }
+                } else {
+                  Navigator.pushReplacement(
+                    context,
+                    SwipeBackPageRoute(
+                      builder: (_) => WebBrowserScreen(initialUrl: mediaItem.url),
+                    ),
+                  );
+                }
+              },
+              child: Container(
+                padding: const EdgeInsets.symmetric(vertical: 18),
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: theme.colorScheme.primary,
+                  borderRadius: BorderRadius.circular(16),
+                  boxShadow: [
+                    BoxShadow(
+                      color: theme.colorScheme.primary.withValues(alpha: 0.3),
+                      blurRadius: 15,
+                      offset: const Offset(0, 6),
+                    ),
+                  ],
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Dive into Full Content",
+                      style: theme.textTheme.titleMedium?.copyWith(
+                        color: theme.colorScheme.onPrimary,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                    Icon(Icons.arrow_forward, color: theme.colorScheme.onPrimary),
+                  ],
+                ),
               ),
             ),
           ),
         ],
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: BouncingButton(
-        onPressed: () async {
-          if (mediaItem.url.contains("youtube.com") || mediaItem.url.contains("youtu.be")) {
-            // Extract video ID from URL and create a YoutubeVideo
-            final videoId = _extractVideoId(mediaItem.url);
-            if (videoId != null) {
-              final video = YoutubeVideo(
-                id: videoId,
-                title: mediaItem.title,
-                url: mediaItem.url,
-                mediumThumbnailUrl: mediaItem.imageUrl,
-                highThumbnailUrl: mediaItem.imageUrl,
-                channelTitle: '',
-              );
-              if (!context.mounted) return;
-              Navigator.pushReplacement(
-                context,
-                SwipeBackPageRoute(
-                  builder: (_) => SmartMediaDeskScreen(video: video),
-                ),
-              );
-            } else {
-              // Fallback: open the video directly in YouTube app or browser
-              final uri = Uri.tryParse(mediaItem.url);
-              if (uri != null) {
-                launchUrl(uri, mode: LaunchMode.externalApplication);
-              } else {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Unable to open this video. Please try again later.')),
-                );
-              }
-            }
-          } else {
-            Navigator.pushReplacement(
-              context,
-              SwipeBackPageRoute(
-                builder: (_) => WebBrowserScreen(initialUrl: mediaItem.url),
-              ),
-            );
-          }
-        },
-        child: Container(
-          margin: const EdgeInsets.symmetric(horizontal: 24),
-          padding: const EdgeInsets.symmetric(vertical: 18),
-          width: double.infinity,
-          decoration: BoxDecoration(
-            color: theme.colorScheme.primary,
-            borderRadius: BorderRadius.circular(20),
-            boxShadow: [
-              BoxShadow(
-                color: theme.colorScheme.primary.withValues(alpha: 0.3),
-                blurRadius: 20,
-                offset: const Offset(0, 8),
-              ),
-            ],
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                "Dive into Full Content",
-                style: theme.textTheme.titleMedium?.copyWith(
-                  color: theme.colorScheme.onPrimary,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(width: 8),
-              Icon(Icons.arrow_forward, color: theme.colorScheme.onPrimary),
-            ],
-          ),
-        ),
       ),
     );
   }
