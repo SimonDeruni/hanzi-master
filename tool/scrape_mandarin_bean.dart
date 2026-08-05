@@ -103,8 +103,9 @@ void main() async {
         String mappedCategory = 'Contemporary Stories';
         int hskLevel = 0;
         for (final cat in categories) {
-          if (cat.contains('beginner')) hskLevel = 2;
-          else if (cat.contains('intermediate')) hskLevel = 4;
+          if (cat.contains('beginner')) {
+            hskLevel = 2;
+          } else if (cat.contains('intermediate')) hskLevel = 4;
           else if (cat.contains('advanced')) hskLevel = 6;
         }
         
@@ -130,7 +131,7 @@ void main() async {
   }
   
   final outFile = File('assets/data/mandarin_bean_stories.json');
-  final encoder = JsonEncoder.withIndent('  ');
+  const encoder = JsonEncoder.withIndent('  ');
   outFile.writeAsStringSync(encoder.convert(stories));
   print('Saved ${stories.length} stories to ${outFile.path}');
 }

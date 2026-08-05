@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:typed_data';
 
 // Simple script to fill white/transparent pixels with yellow in the icon
 // Yellow: R=255, G=193, B=7

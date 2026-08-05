@@ -40,7 +40,7 @@ void main() async {
     }
     
     // Slight delay to avoid getting rate limited immediately
-    await Future.delayed(Duration(milliseconds: 200));
+    await Future.delayed(const Duration(milliseconds: 200));
   }
 
   await file.writeAsString(content);

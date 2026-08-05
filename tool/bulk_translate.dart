@@ -101,7 +101,7 @@ void main() async {
       }
       print(''); // new line
       
-      final encoder = JsonEncoder.withIndent('  ');
+      const encoder = JsonEncoder.withIndent('  ');
       outFile.writeAsStringSync(encoder.convert(translatedItems));
       print('Saved translations to $outName');
     }

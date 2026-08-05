@@ -4,7 +4,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:hive/hive.dart';
 import '../../domain/entities/graded_story.dart';
 import '../../../../core/services/gemini_service.dart';
-import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart';
 import '../../data/repositories/story_repository.dart';
 

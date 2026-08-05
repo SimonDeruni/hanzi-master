@@ -349,7 +349,7 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
       scrollDirection: Axis.horizontal,
       itemCount: 4,
       itemBuilder: (context, index) {
-        return _SkeletonCard(width: 260, imageHeight: 140);
+        return const _SkeletonCard(width: 260, imageHeight: 140);
       },
     );
   }
@@ -360,7 +360,7 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
       padding: const EdgeInsets.symmetric(horizontal: 16),
       itemCount: 5,
       itemBuilder: (context, index) {
-        return _SkeletonCard(width: double.infinity, imageHeight: 200);
+        return const _SkeletonCard(width: double.infinity, imageHeight: 200);
       },
     );
   }

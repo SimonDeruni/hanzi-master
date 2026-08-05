@@ -3,7 +3,7 @@ import 'package:youtube_explode_dart/youtube_explode_dart.dart';
 void main() async {
   final yt = YoutubeExplode();
   try {
-    final uploads = await yt.channels.getUploads('UC4R1p5m2sLhD5IysM9F5vzg'); // Wang Gang
+    final uploads = yt.channels.getUploads('UC4R1p5m2sLhD5IysM9F5vzg'); // Wang Gang
     print('Found uploads stream. Reading...');
     int count = 0;
     await for (final video in uploads) {

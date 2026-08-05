@@ -180,7 +180,7 @@ class _FlashcardEditDialogState extends ConsumerState<FlashcardEditDialog> {
                 padding: const EdgeInsets.symmetric(vertical: 14),
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
               ),
-              child: Text(AppLocalizations.of(context)!.saveToLibrary, style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
+              child: Text(AppLocalizations.of(context)!.saveToLibrary, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
             ),
           ],
         ),

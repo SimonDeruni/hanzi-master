@@ -27,8 +27,8 @@ class StatsState extends Equatable {
       learning: 0,
       newCards: 0,
       accuracy: 0.0,
-      accuracyByMode: const {},
-      upcomingReviews: const [0, 0, 0, 0, 0, 0, 0],
+      accuracyByMode: {},
+      upcomingReviews: [0, 0, 0, 0, 0, 0, 0],
     );
   }
 

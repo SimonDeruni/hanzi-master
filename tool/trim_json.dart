@@ -19,7 +19,7 @@ void trimJsonFile(String path, int count) {
     final trimmedList = data.sublist(0, count);
     
     // Write back pretty printed
-    final encoder = JsonEncoder.withIndent('  ');
+    const encoder = JsonEncoder.withIndent('  ');
     file.writeAsStringSync(encoder.convert(trimmedList));
     print('Trimmed $path to $count entries.');
   } else {

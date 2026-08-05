@@ -2,7 +2,7 @@ import 'dart:io';
 import 'dart:convert';
 
 void main() async {
-  final apiKey = 'AQ.Ab8RN6IY_hG6QpIjnjAxCAo-dAbIMS-egNT9cH_vpJgpujXxKA';
+  const apiKey = 'AQ.Ab8RN6IY_hG6QpIjnjAxCAo-dAbIMS-egNT9cH_vpJgpujXxKA';
   final uri = Uri.parse(
       'wss://generativelanguage.googleapis.com/ws/google.ai.generativelanguage.v1alpha.GenerativeService.BidiGenerateContent?key=$apiKey');
 
@@ -54,7 +54,7 @@ void main() async {
     ws.add(setupMessage);
 
     // Keep alive
-    await Future.delayed(Duration(seconds: 5));
+    await Future.delayed(const Duration(seconds: 5));
     ws.close();
   } catch (e) {
     print("Failed: $e");

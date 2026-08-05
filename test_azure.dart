@@ -1,16 +1,15 @@
-import 'dart:io';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 void main() async {
-  final key = "AnZ5l470hrJMMOqPYYH085lWbpFHjRH8nZCkryg0TWFF8yaVzDdOJQQJ99CGACPV0roXJ3w3AAAYACOGk7C0";
-  final region = "germanywestcentral";
+  const key = "AnZ5l470hrJMMOqPYYH085lWbpFHjRH8nZCkryg0TWFF8yaVzDdOJQQJ99CGACPV0roXJ3w3AAAYACOGk7C0";
+  const region = "germanywestcentral";
   
   // We need a short wav file. We can just generate a valid empty/silent wav file or read one from the project if available.
   // I will generate a 1-second silent WAV file.
-  final sampleRate = 16000;
-  final numSamples = sampleRate * 1;
-  final byteCount = numSamples * 2;
+  const sampleRate = 16000;
+  const numSamples = sampleRate * 1;
+  const byteCount = numSamples * 2;
   
   final wavHeader = <int>[
     82, 73, 70, 70, // "RIFF"
@@ -40,7 +39,7 @@ void main() async {
   final String jsonParams = jsonEncode(params);
   final String base64Params = base64Encode(utf8.encode(jsonParams));
 
-  final String endpoint = 'https://$region.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?language=zh-CN&format=detailed';
+  const String endpoint = 'https://$region.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?language=zh-CN&format=detailed';
 
   final request = http.Request('POST', Uri.parse(endpoint));
   request.headers.addAll({
@@ -68,7 +67,7 @@ void main() async {
   final String jsonParamsU = jsonEncode(paramsUnscripted);
   final String base64ParamsU = base64Encode(utf8.encode(jsonParamsU));
 
-  final String endpointU = 'https://$region.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?language=zh-CN';
+  const String endpointU = 'https://$region.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?language=zh-CN';
 
   final requestU = http.Request('POST', Uri.parse(endpointU));
   requestU.headers.addAll({

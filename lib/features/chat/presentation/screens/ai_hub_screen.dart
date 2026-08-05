@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/features/echo_hall/presentation/screens/scenario_selection_screen.dart';
@@ -302,7 +301,6 @@ class AiHubScreen extends ConsumerWidget {
     required String title,
     required String subtitle,
     required IconData icon,
-    String? imageAsset,
     bool isNew = false,
     required VoidCallback onTap,
   }) {

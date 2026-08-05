@@ -29,13 +29,13 @@ class NotificationService {
 
     const AndroidInitializationSettings initializationSettingsAndroid = AndroidInitializationSettings('launcher_icon');
     
-    final DarwinInitializationSettings initializationSettingsDarwin = DarwinInitializationSettings(
+    const DarwinInitializationSettings initializationSettingsDarwin = DarwinInitializationSettings(
       requestAlertPermission: false,
       requestBadgePermission: false,
       requestSoundPermission: false,
     );
 
-    final InitializationSettings initializationSettings = InitializationSettings(
+    const InitializationSettings initializationSettings = InitializationSettings(
       android: initializationSettingsAndroid,
       iOS: initializationSettingsDarwin,
     );
@@ -95,7 +95,7 @@ class NotificationService {
       importance: Importance.max,
       priority: Priority.high,
       icon: 'launcher_icon',
-      color: const Color(0xFFFDFCF0), // Warm Xuan Paper
+      color: Color(0xFFFDFCF0), // Warm Xuan Paper
     );
     const NotificationDetails platformChannelSpecifics = NotificationDetails(
       android: androidPlatformChannelSpecifics,
@@ -193,7 +193,7 @@ class NotificationService {
       importance: Importance.max,
       priority: Priority.high,
       icon: 'launcher_icon',
-      color: const Color(0xFFC4863A), // Gold accent
+      color: Color(0xFFC4863A), // Gold accent
     );
     const NotificationDetails platformChannelSpecifics = NotificationDetails(
       android: androidPlatformChannelSpecifics,

@@ -93,7 +93,7 @@ class _ReadingRoomScreenState extends ConsumerState<ReadingRoomScreen> {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: AppBar(
-        title: Text(AppLocalizations.of(context)!.culturalReadingRoom, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+        title: Text(AppLocalizations.of(context)!.culturalReadingRoom, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
         backgroundColor: Colors.transparent,
         elevation: 0,
         centerTitle: true,
@@ -111,7 +111,7 @@ class _ReadingRoomScreenState extends ConsumerState<ReadingRoomScreen> {
                 controller: _searchController,
                 hintText: AppLocalizations.of(context)!.searchStoriesHint,
                 decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.search, color: Colors.indigo),
+                  prefixIcon: const Icon(Icons.search, color: Colors.indigo),
                   filled: true,
                   fillColor: isDark ? const Color(0xFF2A2A2B) : Colors.white,
                   contentPadding: const EdgeInsets.symmetric(vertical: 0),
@@ -122,7 +122,7 @@ class _ReadingRoomScreenState extends ConsumerState<ReadingRoomScreen> {
                 ),
                 suffixIcon: _searchQuery.isNotEmpty
                     ? IconButton(
-                        icon: Icon(Icons.clear),
+                        icon: const Icon(Icons.clear),
                         onPressed: () {
                           _searchController.clear();
                           setState(() => _searchQuery = "");

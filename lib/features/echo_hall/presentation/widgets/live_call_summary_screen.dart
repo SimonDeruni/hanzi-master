@@ -5,8 +5,6 @@ import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraph
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
 import '../screens/live_call_screen.dart';
 import '../../../chat/domain/entities/chat_message.dart';
-import 'package:audioplayers/audioplayers.dart';
-import 'package:hanzi_master/features/live_translate/presentation/widgets/interactive_grading_text.dart';
 import 'package:hanzi_master/core/models/pronunciation_grade.dart';
 import 'package:hanzi_master/features/echo_hall/presentation/widgets/pronunciation_report_sheet.dart';
 
@@ -216,11 +214,11 @@ class InteractiveMarkdownText extends StatefulWidget {
   final String contextText;
 
   const InteractiveMarkdownText({
-    Key? key,
+    super.key,
     required this.text,
     required this.theme,
     required this.contextText,
-  }) : super(key: key);
+  });
 
   @override
   _InteractiveMarkdownTextState createState() => _InteractiveMarkdownTextState();

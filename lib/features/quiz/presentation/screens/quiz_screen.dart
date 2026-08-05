@@ -194,7 +194,7 @@ class _QuizScreenState extends State<QuizScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(AppLocalizations.of(context)!.quizComplete, style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold)),
+              Text(AppLocalizations.of(context)!.quizComplete, style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold)),
               const SizedBox(height: 16),
               Text("Score: $_score / ${_questions.length}", style: const TextStyle(fontSize: 24, color: Colors.indigo)),
               const SizedBox(height: 32),
@@ -204,7 +204,7 @@ class _QuizScreenState extends State<QuizScreen> {
                   backgroundColor: Colors.indigo,
                   padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
                 ),
-                child: Text(AppLocalizations.of(context)!.returnToCourse, style: TextStyle(color: Colors.white)),
+                child: Text(AppLocalizations.of(context)!.returnToCourse, style: const TextStyle(color: Colors.white)),
               )
             ],
           ),

@@ -356,7 +356,7 @@ void main() async {
   }
 
   final outFile = File('assets/data/150_graded_readers.json');
-  final encoder = JsonEncoder.withIndent('  ');
+  const encoder = JsonEncoder.withIndent('  ');
   outFile.writeAsStringSync(encoder.convert(db));
   print('Saved ${db.length} stories to assets/data/150_graded_readers.json');
 }

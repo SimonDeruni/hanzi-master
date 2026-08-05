@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 Future<String> translate(String text) async {
   if (text.isEmpty) return text;
   final encoded = Uri.encodeComponent(text);
-  final urlStr = 'https://translate.googleapis.com/translate_a/single?client=gtx&sl=zh-CN&tl=en&dt=t&q=' + encoded;
+  final urlStr = 'https://translate.googleapis.com/translate_a/single?client=gtx&sl=zh-CN&tl=en&dt=t&q=$encoded';
   
   try {
     final response = await http.get(Uri.parse(urlStr));
@@ -34,7 +34,7 @@ void main() async {
   // Sequential might be a bit slow, let's just do first 50 for now so the UI looks great.
   
   // Wait, let's do all of them. It's just 1000 requests. We can use a Future.wait in batches of 20.
-  final int batchSize = 20;
+  const int batchSize = 20;
   for (int i = 0; i < stories.length; i += batchSize) {
     int end = (i + batchSize < stories.length) ? i + batchSize : stories.length;
     print('Translating \$i to \$end...');

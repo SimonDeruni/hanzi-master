@@ -39,8 +39,7 @@ class AuthRepository {
   Future<UserCredential?> signInWithGoogle() async {
     try {
       await GoogleSignIn.instance.initialize();
-      final GoogleSignInAccount? googleUser = await GoogleSignIn.instance.authenticate();
-      if (googleUser == null) return null; 
+      final GoogleSignInAccount googleUser = await GoogleSignIn.instance.authenticate(); 
       
       final GoogleSignInAuthentication googleAuth = googleUser.authentication;
       final credential = GoogleAuthProvider.credential(
@@ -48,7 +47,7 @@ class AuthRepository {
       );
       return await _auth.signInWithCredential(credential);
     } catch (e) {
-      throw e;
+      rethrow;
     }
   }
 

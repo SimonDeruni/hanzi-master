@@ -3,12 +3,10 @@ import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/shared/widgets/pinyin_text.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
-import 'package:hanzi_master/features/flashcards/presentation/providers/streak_controller.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import 'package:hanzi_master/core/stroke_matcher.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/drawing_canvas.dart';
-import 'package:hanzi_master/shared/widgets/pinyin_text.dart';
 import 'package:hanzi_master/shared/widgets/swipeable_flashcard.dart';
 import 'package:hanzi_master/core/services/audio_service.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
@@ -18,7 +16,6 @@ import 'package:hanzi_master/features/flashcards/domain/entities/study_mode.dart
 import 'package:hanzi_master/features/flashcards/presentation/widgets/study_session_app_bar.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
-import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
 import 'dart:ui' as ui;
 
 
@@ -53,7 +50,7 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
   ReviewState _state = ReviewState.practice;
   double _score = 0.0;
   
-  bool _strokeByStrokeMode = true; 
+  final bool _strokeByStrokeMode = true; 
   int _currentStrokeIndex = 0;
   final List<List<ui.Offset?>> _completedStrokes = []; 
   
@@ -68,9 +65,9 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
   bool _showHeatmap = true;
   bool _pinyinRevealed = false;
 
-  double _swipeDx = 0.0;
-  double _swipeDy = 0.0;
-  bool _isSwiping = false;
+  final double _swipeDx = 0.0;
+  final double _swipeDy = 0.0;
+  final bool _isSwiping = false;
 
   @override
   void initState() {
@@ -333,7 +330,7 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(AppLocalizations.of(context)!.drawThisCharacter, style: TextStyle(fontSize: 16, color: Colors.white70, fontWeight: FontWeight.w500)),
+                        Text(AppLocalizations.of(context)!.drawThisCharacter, style: const TextStyle(fontSize: 16, color: Colors.white70, fontWeight: FontWeight.w500)),
                         const SizedBox(height: 8),
                         Row(
                           children: [
@@ -366,7 +363,7 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
                     children: [
                       const Icon(Icons.info_outline, color: Colors.white, size: 20),
                       const SizedBox(width: 8),
-                      Expanded(child: Text(AppLocalizations.of(context)!.followGuideStroke(_currentStrokeIndex + 1, totalStrokes), style: TextStyle(color: Colors.white, fontSize: 14))),
+                      Expanded(child: Text(AppLocalizations.of(context)!.followGuideStroke(_currentStrokeIndex + 1, totalStrokes), style: const TextStyle(color: Colors.white, fontSize: 14))),
                       Text('${_currentStrokeIndex + 1}/$totalStrokes', style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold)),
                     ],
                   ),
@@ -416,12 +413,12 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
             width: double.infinity, height: 56,
             child: _strokeByStrokeMode 
               ? OutlinedButton.icon(
-                  icon: Icon(Icons.skip_next), label: Text(AppLocalizations.of(context)!.skipCurrentStroke),
+                  icon: const Icon(Icons.skip_next), label: Text(AppLocalizations.of(context)!.skipCurrentStroke),
                   style: OutlinedButton.styleFrom(foregroundColor: Colors.orange.shade700, side: BorderSide(color: Colors.orange.shade700)),
                   onPressed: () => _onStrokeComplete(_currentStrokeIndex, _lastCanvasSize ?? ui.Size.zero),
                 )
               : ElevatedButton.icon(
-                  icon: Icon(Icons.check_circle, size: 24), label: Text(AppLocalizations.of(context)!.submitDrawing),
+                  icon: const Icon(Icons.check_circle, size: 24), label: Text(AppLocalizations.of(context)!.submitDrawing),
                   style: ElevatedButton.styleFrom(backgroundColor: Colors.green.shade600, foregroundColor: Colors.white),
                   onPressed: () => _submitDrawing(_userPointsNotifier.value),
                 ),

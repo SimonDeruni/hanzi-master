@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/core/services/speech_service.dart';
-import 'package:hive/hive.dart';
-import 'package:uuid/uuid.dart';
 import 'package:hanzi_master/features/live_translate/domain/entities/translation_message.dart';
 import 'package:hanzi_master/features/premium/presentation/screens/universal_scanner_screen.dart';
 import 'package:hanzi_master/core/providers/translation_language_provider.dart';
@@ -319,10 +317,10 @@ class _TravelInterpreterScreenState
           ),
           child: Container(
             height: MediaQuery.of(ctx).size.height * 0.5,
-            decoration: BoxDecoration(
-              color: const Color(0xFF1E1313),
+            decoration: const BoxDecoration(
+              color: Color(0xFF1E1313),
               borderRadius:
-                  const BorderRadius.vertical(top: Radius.circular(24)),
+                  BorderRadius.vertical(top: Radius.circular(24)),
             ),
             child: Column(
               children: [
@@ -702,8 +700,9 @@ class _TravelInterpreterScreenState
                                             child: Text("Partner ($lang)")))
                                         .toList(),
                                     onChanged: (val) {
-                                      if (val != null)
+                                      if (val != null) {
                                         setState(() => _sideBLanguage = val);
+                                      }
                                     },
                                   ),
                                 ),
@@ -718,8 +717,9 @@ class _TravelInterpreterScreenState
                                     size: 20,
                                   ),
                                   onPressed: () {
-                                    if (_recordingSide != null)
+                                    if (_recordingSide != null) {
                                       _stopAudioStreaming();
+                                    }
                                     _showPartnerKeyboard();
                                   },
                                 ),
@@ -869,8 +869,9 @@ class _TravelInterpreterScreenState
                                           child: Text("You ($lang)")))
                                       .toList(),
                                   onChanged: (val) {
-                                    if (val != null)
+                                    if (val != null) {
                                       setState(() => _sideALanguage = val);
+                                    }
                                   },
                                 ),
                               ),

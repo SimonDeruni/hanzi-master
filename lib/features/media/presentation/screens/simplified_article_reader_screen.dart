@@ -170,7 +170,7 @@ class _SimplifiedArticleReaderScreenState extends State<SimplifiedArticleReaderS
                   ],
                 ),
               );
-            }).toList(),
+            }),
           ],
         ),
       ),

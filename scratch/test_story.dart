@@ -2,9 +2,9 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 void main() async {
-  final apiKey = 'YOUR_OPENROUTER_KEY';
-  final model = 'google/gemini-2.5-flash';
-  final prompt = '''
+  const apiKey = 'YOUR_OPENROUTER_KEY';
+  const model = 'google/gemini-2.5-flash';
+  const prompt = '''
 You are an expert Chinese teacher. Please write a short, engaging story (about 2-3 paragraphs) that uses the following vocabulary words:
 你好, 谢谢, 再见
 

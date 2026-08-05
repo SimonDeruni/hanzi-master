@@ -194,7 +194,7 @@ class _NuanceCompareSheetState extends ConsumerState<NuanceCompareSheet> {
     } catch (e) {
       if (mounted) {
         setState(() {
-          _chatMessages.add(_ChatMessage(isUser: false, text: 'Sorry, something went wrong.'));
+          _chatMessages.add(const _ChatMessage(isUser: false, text: 'Sorry, something went wrong.'));
           _isChatLoading = false;
         });
       }

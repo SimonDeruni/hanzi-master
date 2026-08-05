@@ -79,7 +79,7 @@ class MasterDictionary extends _$MasterDictionary {
   DictionaryEntry? lookup(String hanzi) {
     // Check user library first via the flashcard controller
     final libraryCards = ref.read(flashcardControllerProvider).valueOrNull ?? [];
-    final libMatch = libraryCards.firstWhere((c) => c.hanzi == hanzi, orElse: () => Flashcard(id: '', hanzi: '', pinyin: '', definition: '', hskLevel: 0, strokePaths: const [], modeStats: const {}));
+    final libMatch = libraryCards.firstWhere((c) => c.hanzi == hanzi, orElse: () => const Flashcard(id: '', hanzi: '', pinyin: '', definition: '', hskLevel: 0, strokePaths: [], modeStats: {}));
     
     if (libMatch.hanzi.isNotEmpty) {
       return DictionaryEntry(

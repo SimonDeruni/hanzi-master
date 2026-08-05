@@ -1,13 +1,12 @@
 import 'dart:convert';
-import 'dart:typed_data';
 import 'dart:async';
 import 'package:uuid/uuid.dart';
 import 'package:web_socket_channel/io.dart';
 
 void main() async {
-  final apiKey = 'AnZ5l470hrJMMOqPYYH085lWbpFHjRH8nZCkryg0TWFF8yaVzDdOJQQJ99CGACPV0roXJ3w3AAAYACOGk7C0';
-  final region = 'germanywestcentral';
-  final text = '你好';
+  const apiKey = 'AnZ5l470hrJMMOqPYYH085lWbpFHjRH8nZCkryg0TWFF8yaVzDdOJQQJ99CGACPV0roXJ3w3AAAYACOGk7C0';
+  const region = 'germanywestcentral';
+  const text = '你好';
 
   final safeText = text.replaceAll('&', '&').replaceAll('<', '<').replaceAll('>', '>');
   final uuid = const Uuid().v4().replaceAll('-', '');

@@ -15,7 +15,7 @@ void main() async {
 }
 
 Future<void> _generateWav(String filename, double duration, double Function(double, int) generator) async {
-  final sampleRate = 44100;
+  const sampleRate = 44100;
   final numSamples = (duration * sampleRate).toInt();
   final data = ByteData(numSamples * 2);
   
@@ -69,8 +69,11 @@ final _rand = Random();
 double _whoosh(double t, int i) {
   final noise = _rand.nextDouble() * 2 - 1;
   double env = 0;
-  if (t < 0.1) env = t / 0.1;
-  else env = max(0.0, 1.0 - (t - 0.1) / 0.3);
+  if (t < 0.1) {
+    env = t / 0.1;
+  } else {
+    env = max(0.0, 1.0 - (t - 0.1) / 0.3);
+  }
   return noise * env * 0.5;
 }
 

@@ -30,7 +30,7 @@ class StatsScreen extends ConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(AppLocalizations.of(context)!.overview, style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+            Text(AppLocalizations.of(context)!.overview, style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
             const SizedBox(height: 16),
             
             Row(
@@ -134,7 +134,7 @@ class StatsScreen extends ConsumerWidget {
                   BarChartData(
                     alignment: BarChartAlignment.spaceAround,
                     maxY: (stats.upcomingReviews.reduce((a, b) => a > b ? a : b).toDouble() * 1.2).clamp(10.0, double.infinity),
-                    barTouchData: BarTouchData(enabled: false),
+                    barTouchData: const BarTouchData(enabled: false),
                     titlesData: FlTitlesData(
                       show: true,
                       bottomTitles: AxisTitles(
@@ -152,13 +152,13 @@ class StatsScreen extends ConsumerWidget {
                           },
                         ),
                       ),
-                      leftTitles: AxisTitles(
+                      leftTitles: const AxisTitles(
                         sideTitles: SideTitles(showTitles: false),
                       ),
-                      topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-                      rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                      topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                      rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
                     ),
-                    gridData: FlGridData(show: false),
+                    gridData: const FlGridData(show: false),
                     borderData: FlBorderData(show: false),
                     barGroups: List.generate(
                       7,
@@ -223,7 +223,7 @@ class _StatCard extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 8),
-            Text(title, style: TextStyle(color: Colors.grey, fontSize: 16)),
+            Text(title, style: const TextStyle(color: Colors.grey, fontSize: 16)),
           ],
         ),
       ),

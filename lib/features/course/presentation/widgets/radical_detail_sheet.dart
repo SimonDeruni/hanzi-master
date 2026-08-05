@@ -206,7 +206,7 @@ class _RadicalDetailSheetState extends ConsumerState<RadicalDetailSheet> {
                         elevation: 4,
                       ),
                       icon: const Icon(Icons.auto_awesome),
-                      label: Text(AppLocalizations.of(context)!.initiateRadicalSequence, style: TextStyle(fontWeight: FontWeight.bold, letterSpacing: 1.2)),
+                      label: Text(AppLocalizations.of(context)!.initiateRadicalSequence, style: const TextStyle(fontWeight: FontWeight.bold, letterSpacing: 1.2)),
                     ),
                   ),
                 ),

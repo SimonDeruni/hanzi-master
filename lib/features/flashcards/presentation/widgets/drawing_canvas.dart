@@ -323,7 +323,7 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
   @override
   Widget build(BuildContext context) {
     if (_cachedParsedPaths.isEmpty && widget.readOnly) {
-      return Center(child: Icon(Icons.broken_image, color: Colors.grey));
+      return const Center(child: Icon(Icons.broken_image, color: Colors.grey));
     }
 
     // Scratchpad mode: no reference strokes, just a blank canvas for free drawing
@@ -356,7 +356,7 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
               Positioned(
                 top: 8, right: 8,
                 child: IconButton.filled(
-                  icon: Icon(Icons.refresh, size: 20),
+                  icon: const Icon(Icons.refresh, size: 20),
                   style: IconButton.styleFrom(
                     backgroundColor: Colors.black26,
                     foregroundColor: Colors.white,
@@ -883,8 +883,9 @@ class _UserDrawingPainter extends CustomPainter {
     if (showHeatmap && strokeScores != null && strokeIndex < strokeScores!.length) {
       final score = strokeScores![strokeIndex];
       Color strokeColor;
-      if (score >= 85) strokeColor = Colors.green;
-      else if (score >= 60) strokeColor = Colors.orange;
+      if (score >= 85) {
+        strokeColor = Colors.green;
+      } else if (score >= 60) strokeColor = Colors.orange;
       else strokeColor = Colors.red;
       
       final heatmapPaint = Paint()

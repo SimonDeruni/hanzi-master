@@ -100,7 +100,7 @@ class DashboardScreen extends ConsumerWidget {
             // --- STANDARD HEADER ---
             GlobalSliverAppBar(
               title: l10n?.dashboardTitle ?? "Dashboard",
-              actions: [
+              actions: const [
                               ],
             ),
 

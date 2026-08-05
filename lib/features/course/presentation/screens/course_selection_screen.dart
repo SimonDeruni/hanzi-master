@@ -6,10 +6,8 @@ import 'package:hanzi_master/features/flashcards/presentation/providers/deck_con
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'package:hanzi_master/core/providers/ai_job_queue_provider.dart';
 import 'package:hanzi_master/core/services/curriculum_engine.dart';
-import 'package:hanzi_master/features/flashcards/presentation/screens/review_screen.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/settings_controller.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
-import 'package:hanzi_master/features/flashcards/domain/entities/study_mode.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 
 class CourseSelectionScreen extends ConsumerStatefulWidget {
@@ -37,7 +35,7 @@ class _CourseSelectionScreenState extends ConsumerState<CourseSelectionScreen> {
         elevation: 0,
         actions: [
           if (ref.read(aiJobQueueProvider.notifier).hasActiveJobs)
-            Padding(
+            const Padding(
               padding: EdgeInsets.only(right: 16.0),
               child: SizedBox(
                 width: 20,
@@ -61,7 +59,7 @@ class _CourseSelectionScreenState extends ConsumerState<CourseSelectionScreen> {
             return ListView.separated(
               padding: const EdgeInsets.fromLTRB(24, 120, 24, 40),
               itemCount: decks.length,
-              separatorBuilder: (context, index) => SizedBox(height: 20),
+              separatorBuilder: (context, index) => const SizedBox(height: 20),
               itemBuilder: (context, index) {
                 final deck = decks[index];
                 final cardCount = allCards.where((c) => c.deckId == deck.id).length;
@@ -102,7 +100,7 @@ class _CourseSelectionScreenState extends ConsumerState<CourseSelectionScreen> {
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               const CircularProgressIndicator(),
-                              SizedBox(height: 16),
+                              const SizedBox(height: 16),
                               Text(l10n?.aiDraftingPath ?? "The AI Scholar is drafting your path..."),
                             ],
                           ),
@@ -139,7 +137,7 @@ class _CourseSelectionScreenState extends ConsumerState<CourseSelectionScreen> {
               },
             );
           },
-          loading: () => Center(child: CircularProgressIndicator()),
+          loading: () => const Center(child: CircularProgressIndicator()),
           error: (err, stack) => Center(child: Text("${l10n?.errorPrefix ?? 'Error: '}$err")),
         ),
       ),
@@ -216,7 +214,7 @@ class _CourseCard extends StatelessWidget {
                             style: const TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.bold, letterSpacing: 1),
                           ),
                         ),
-                        SizedBox(height: 12),
+                        const SizedBox(height: 12),
                         Text(
                           title,
                           style: TextStyle(
@@ -227,7 +225,7 @@ class _CourseCard extends StatelessWidget {
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),
-                        SizedBox(height: 4),
+                        const SizedBox(height: 4),
                         Text(
                           subtitle,
                           style: TextStyle(
@@ -241,7 +239,7 @@ class _CourseCard extends StatelessWidget {
                     ),
                   ),
                   if (isLocked)
-                    Icon(Icons.lock, color: Colors.grey, size: 32)
+                    const Icon(Icons.lock, color: Colors.grey, size: 32)
                   else if (!isGenerating)
                     Icon(Icons.arrow_forward_ios, color: color.withValues(alpha: 0.5), size: 20),
                 ],
@@ -253,9 +251,9 @@ class _CourseCard extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        CircularProgressIndicator(color: Colors.brown, strokeWidth: 3),
-                        SizedBox(height: 8),
-                        Text(AppLocalizations.of(context)?.brushingCurriculum ?? "Brushing Curriculum...", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.brown)),
+                        const CircularProgressIndicator(color: Colors.brown, strokeWidth: 3),
+                        const SizedBox(height: 8),
+                        Text(AppLocalizations.of(context)?.brushingCurriculum ?? "Brushing Curriculum...", style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.brown)),
                       ],
                     ),
                   ),

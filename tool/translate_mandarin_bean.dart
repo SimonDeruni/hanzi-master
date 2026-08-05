@@ -56,7 +56,7 @@ void main() async {
   }
 
   print('\nDone! Saving...');
-  final encoder = JsonEncoder.withIndent('  ');
+  const encoder = JsonEncoder.withIndent('  ');
   await file.writeAsString(encoder.convert(stories));
   print('Saved to ${file.path}');
 }

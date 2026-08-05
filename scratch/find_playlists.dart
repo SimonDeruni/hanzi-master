@@ -2,7 +2,7 @@ import 'package:http/http.dart' as http;
 
 void main() async {
   final c = http.Client();
-  final videoId = 'dQw4w9WgXcQ'; // Rick Roll — always has captions
+  const videoId = 'dQw4w9WgXcQ'; // Rick Roll — always has captions
   final uri = Uri.parse('https://www.youtube.com/watch?v=$videoId');
   final r = await c.get(uri, headers: {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',

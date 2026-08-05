@@ -8,7 +8,6 @@ import 'package:hanzi_master/features/flashcards/presentation/providers/flashcar
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/drawing_canvas.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/mastery_seal.dart';
-import 'package:hanzi_master/features/flashcards/presentation/screens/review_screen.dart';
 import 'package:flutter/services.dart';
 import 'dart:convert';
 import 'dart:ui';
@@ -242,11 +241,11 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Center(child: Container(width: 40, height: 4, decoration: BoxDecoration(color: Colors.grey.withValues(alpha: 0.3), borderRadius: BorderRadius.circular(2)))),
-            SizedBox(height: 24),
+            const SizedBox(height: 24),
             Row(
               children: [
                 Text(radicalChar, style: const TextStyle(fontSize: 48, fontWeight: FontWeight.bold, color: Colors.red)),
-                SizedBox(width: 16),
+                const SizedBox(width: 16),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -259,7 +258,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
               ],
             ),
 
-            SizedBox(height: 40),
+            const SizedBox(height: 40),
           ],
         ),
       ),
@@ -300,7 +299,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
                 height: canvasSize,
                 width: canvasSize,
                 child: _isLoadingStrokes
-                    ? Center(child: CircularProgressIndicator(color: Colors.indigo))
+                    ? const Center(child: CircularProgressIndicator(color: Colors.indigo))
                     : currentCard.strokePaths.isEmpty
                         ? Center(
                             child: Text(
@@ -367,7 +366,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
               ),
               const SizedBox(width: 8),
               IconButton(
-                icon: Icon(Icons.volume_up, color: Colors.indigo, size: 24),
+                icon: const Icon(Icons.volume_up, color: Colors.indigo, size: 24),
                 onPressed: () => ref.read(audioServiceProvider).playCharacter(currentCard.hanzi),
               ),
             ],
@@ -721,9 +720,9 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
   }
 
   Widget _buildStrokeTimeline(bool isDark) {
-    if (_isLoadingStrokes) return SizedBox(height: 48);
+    if (_isLoadingStrokes) return const SizedBox(height: 48);
     final currentCard = _hydratedCard ?? widget.card;
-    if (currentCard.strokePaths.isEmpty) return SizedBox(height: 48);
+    if (currentCard.strokePaths.isEmpty) return const SizedBox(height: 48);
     
     // Parse character groups from strokePaths using __CHAR_SEPARATOR__
     final chars = currentCard.hanzi.characters.toList();
@@ -764,7 +763,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
               padding: const EdgeInsets.only(bottom: 6, left: 4),
               child: Text(
                 'Drawing: ${chars[activeCharIdx]}',
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
                   color: Colors.indigo,
@@ -895,7 +894,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
             );
           }).toList(),
         ),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         SizedBox(
           height: 220,
           child: PageView.builder(
@@ -931,15 +930,15 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
               children: [
                 Row(
                   children: [
-                    Icon(Icons.architecture, size: 18, color: Colors.indigo),
-                    SizedBox(width: 8),
+                    const Icon(Icons.architecture, size: 18, color: Colors.indigo),
+                    const SizedBox(width: 8),
                     Text("${comp['char']} ANATOMY", style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.indigo, letterSpacing: 1.0)),
                   ],
                 ),
-                Icon(Icons.info_outline, size: 16, color: Colors.indigo),
+                const Icon(Icons.info_outline, size: 16, color: Colors.indigo),
               ],
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -952,13 +951,13 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
                   ),
                   child: Center(child: Text(comp['radical'], style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Color(0xFFB22222)))),
                 ),
-                SizedBox(width: 16),
+                const SizedBox(width: 16),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text("Radical: ${comp['info']['name']}", style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-                      SizedBox(height: 4),
+                      const SizedBox(height: 4),
                       CrossReferenceText(
                         comp['info']['meaning'],
                         style: TextStyle(fontSize: 13, color: isDark ? Colors.white70 : Colors.black87),
@@ -969,14 +968,14 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
               ],
             ),
             if (comp['info']['mnemonic'] != null) ...[
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               Container(
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(color: Colors.white.withValues(alpha: 0.3), borderRadius: BorderRadius.circular(12)),
                 child: Row(
                   children: [
-                    Icon(Icons.lightbulb_outline, size: 16, color: Colors.amber),
-                    SizedBox(width: 8),
+                    const Icon(Icons.lightbulb_outline, size: 16, color: Colors.amber),
+                    const SizedBox(width: 8),
                     Expanded(child: CrossReferenceText(comp['info']['mnemonic'], style: const TextStyle(fontSize: 12, fontStyle: FontStyle.italic))),
                   ],
                 ),
@@ -1058,7 +1057,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
           ),
         );
       },
-      loading: () => Center(child: CircularProgressIndicator()),
+      loading: () => const Center(child: CircularProgressIndicator()),
       error: (e, st) => Text("Error: $e"),
     );
   }
@@ -1079,7 +1078,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
               icon: Icons.lightbulb,
               content: contextData.mnemonic,
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             _buildInfoSection(
               context,
               title: AppLocalizations.of(context)!.exampleSentences,
@@ -1107,16 +1106,16 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
                               ),
                             ),
                             IconButton(
-                              icon: Icon(Icons.volume_up, size: 20, color: Colors.indigo),
+                              icon: const Icon(Icons.volume_up, size: 20, color: Colors.indigo),
                               padding: EdgeInsets.zero,
                               constraints: const BoxConstraints(),
                               onPressed: () => ref.read(audioServiceProvider).playCharacter(sentence.chinese),
                             ),
                           ],
                         ),
-                        SizedBox(height: 4),
+                        const SizedBox(height: 4),
                         Text(sentence.pinyin, style: const TextStyle(fontSize: 14, color: Colors.indigo)),
-                        SizedBox(height: 8),
+                        const SizedBox(height: 8),
                         _TapToRevealText(
                           text: sentence.english,
                           isDark: isDark,
@@ -1129,7 +1128,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
               ),
             ),
             if (contextData.lookAlikes.isNotEmpty) ...[
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               _buildInfoSection(
                 context,
                 title: AppLocalizations.of(context)!.ghostCharacters,
@@ -1151,13 +1150,13 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
                           Row(
                             children: [
                               Text(lookAlike.character, style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.deepOrange)),
-                              SizedBox(width: 8),
+                              const SizedBox(width: 8),
                               Text("(${lookAlike.pinyin})", style: const TextStyle(fontSize: 16, color: Colors.deepOrange)),
                               const Spacer(),
                               Text(lookAlike.english, style: const TextStyle(fontSize: 14, fontStyle: FontStyle.italic)),
                             ],
                           ),
-                          SizedBox(height: 8),
+                          const SizedBox(height: 8),
                           Text(lookAlike.difference, style: TextStyle(fontSize: 14, color: isDark ? Colors.white70 : Colors.black87)),
                         ],
                       ),
@@ -1173,7 +1172,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
         context,
         title: "AI Smart Context",
         icon: Icons.auto_awesome,
-        child: Center(
+        child: const Center(
           child: Padding(
             padding: EdgeInsets.all(16.0),
             child: CircularProgressIndicator(color: Colors.indigo),
@@ -1195,7 +1194,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
                 ),
               ),
               IconButton(
-                icon: Icon(Icons.refresh),
+                icon: const Icon(Icons.refresh),
                 onPressed: () {
                   ref.invalidate(characterContextProvider(widget.card));
                 },
@@ -1222,11 +1221,11 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
           Row(
             children: [
               Icon(icon, size: 18, color: Colors.indigo),
-              SizedBox(width: 8),
+              const SizedBox(width: 8),
               Text(title.toUpperCase(), style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.grey, letterSpacing: 1.0)),
             ],
           ),
-          SizedBox(height: 12),
+          const SizedBox(height: 12),
           if (content != null) CrossReferenceText(content, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500)),
           if (child != null) child,
         ],

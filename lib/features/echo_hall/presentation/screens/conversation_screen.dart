@@ -755,11 +755,11 @@ class _QuestsFloatingButtonState extends State<_QuestsFloatingButton> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                Row(
+                const Row(
                   children: [
-                    const Icon(Icons.flag, color: Colors.amber, size: 16),
-                    const SizedBox(width: 6),
-                    const Text(
+                    Icon(Icons.flag, color: Colors.amber, size: 16),
+                    SizedBox(width: 6),
+                    Text(
                       "QUESTS",
                       style: TextStyle(color: Colors.amber, fontWeight: FontWeight.bold, fontSize: 11, letterSpacing: 1),
                     ),

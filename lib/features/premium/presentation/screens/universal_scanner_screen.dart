@@ -1712,7 +1712,7 @@ class ScannerOverlayPainter extends CustomPainter {
       height: 280,
     );
     
-    final radius = 24.0;
+    const radius = 24.0;
 
     // Removed dimmed background outside the rect
     // Sleek Curved Brackets
@@ -1722,34 +1722,34 @@ class ScannerOverlayPainter extends CustomPainter {
       ..strokeWidth = 3
       ..strokeCap = StrokeCap.round;
       
-    final bracketLength = 40.0;
+    const bracketLength = 40.0;
     
     // Top Left
     canvas.drawPath(Path()
       ..moveTo(rect.left, rect.top + bracketLength)
       ..lineTo(rect.left, rect.top + radius)
-      ..arcToPoint(Offset(rect.left + radius, rect.top), radius: Radius.circular(radius))
+      ..arcToPoint(Offset(rect.left + radius, rect.top), radius: const Radius.circular(radius))
       ..lineTo(rect.left + bracketLength, rect.top), bracketPaint);
       
     // Top Right
     canvas.drawPath(Path()
       ..moveTo(rect.right, rect.top + bracketLength)
       ..lineTo(rect.right, rect.top + radius)
-      ..arcToPoint(Offset(rect.right - radius, rect.top), radius: Radius.circular(radius), clockwise: false)
+      ..arcToPoint(Offset(rect.right - radius, rect.top), radius: const Radius.circular(radius), clockwise: false)
       ..lineTo(rect.right - bracketLength, rect.top), bracketPaint);
       
     // Bottom Left
     canvas.drawPath(Path()
       ..moveTo(rect.left, rect.bottom - bracketLength)
       ..lineTo(rect.left, rect.bottom - radius)
-      ..arcToPoint(Offset(rect.left + radius, rect.bottom), radius: Radius.circular(radius), clockwise: false)
+      ..arcToPoint(Offset(rect.left + radius, rect.bottom), radius: const Radius.circular(radius), clockwise: false)
       ..lineTo(rect.left + bracketLength, rect.bottom), bracketPaint);
       
     // Bottom Right
     canvas.drawPath(Path()
       ..moveTo(rect.right, rect.bottom - bracketLength)
       ..lineTo(rect.right, rect.bottom - radius)
-      ..arcToPoint(Offset(rect.right - radius, rect.bottom), radius: Radius.circular(radius))
+      ..arcToPoint(Offset(rect.right - radius, rect.bottom), radius: const Radius.circular(radius))
       ..lineTo(rect.right - bracketLength, rect.bottom), bracketPaint);
 
     // Guidance Text

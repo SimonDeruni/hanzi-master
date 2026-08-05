@@ -204,7 +204,7 @@ void main() {
         
         // Ensure AppLocalizations is imported
         if (!content.contains('app_localizations.dart')) {
-          content = "import 'package:flutter_gen/gen_l10n/app_localizations.dart';\n" + content;
+          content = "import 'package:flutter_gen/gen_l10n/app_localizations.dart';\n$content";
         }
         
         file.writeAsStringSync(content);
@@ -214,7 +214,7 @@ void main() {
   }
 
   if (arbUpdated) {
-    l10nFile.writeAsStringSync(JsonEncoder.withIndent('  ').convert(l10nData));
+    l10nFile.writeAsStringSync(const JsonEncoder.withIndent('  ').convert(l10nData));
     print('Updated app_en.arb');
   }
 }

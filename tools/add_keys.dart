@@ -47,6 +47,6 @@ void main() {
     'typeYourMessage': 'Type your message...'
   });
 
-  file.writeAsStringSync(JsonEncoder.withIndent('  ').convert(data));
+  file.writeAsStringSync(const JsonEncoder.withIndent('  ').convert(data));
   print('Added keys to app_en.arb');
 }

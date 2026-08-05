@@ -183,7 +183,7 @@ Return ONLY valid JSON:
         }
 
         finalUnits.add(CourseUnit(
-          id: "ai_unit_${deckId}_${unitIndex}",
+          id: "ai_unit_${deckId}_$unitIndex",
           title: aiResponse['title'] ?? "Lesson ${unitIndex + 1}",
           description: aiResponse['description'] ?? "",
           nodes: nodes,

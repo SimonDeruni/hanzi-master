@@ -1,8 +1,6 @@
 import 'package:hanzi_master/l10n/app_localizations.dart';
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:hanzi_master/shared/widgets/pinyin_text.dart';
 import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
 import 'package:hanzi_master/core/utils/pinyin_utils.dart';
 import 'package:lpinyin/lpinyin.dart';
@@ -17,7 +15,6 @@ import 'package:hanzi_master/features/live_translate/presentation/screens/shadow
     as hanzi_shadowing;
 import 'package:hanzi_master/shared/widgets/calligraphy_canvas_sheet.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/ai_explainer_sheet.dart';
-import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/deck_selection_sheet.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 

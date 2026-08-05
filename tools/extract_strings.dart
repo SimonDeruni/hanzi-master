@@ -70,7 +70,7 @@ void main() {
     if (fileUpdated) {
       if (needsImport && !content.contains('app_localizations.dart')) {
         // add import at top
-        content = "import 'package:flutter_gen/gen_l10n/app_localizations.dart';\n" + content;
+        content = "import 'package:flutter_gen/gen_l10n/app_localizations.dart';\n$content";
       }
       file.writeAsStringSync(content);
       print('Updated ${file.path}');
@@ -78,7 +78,7 @@ void main() {
   }
 
   if (arbUpdated) {
-    arbFile.writeAsStringSync(JsonEncoder.withIndent('  ').convert(arbData));
+    arbFile.writeAsStringSync(const JsonEncoder.withIndent('  ').convert(arbData));
     print('Updated app_en.arb with new keys');
   } else {
     print('No new keys found.');

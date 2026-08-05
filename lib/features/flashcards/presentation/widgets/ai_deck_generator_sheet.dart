@@ -2,7 +2,6 @@ import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:hanzi_master/core/providers.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/deck_controller.dart';
@@ -88,22 +87,22 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
                     color: Colors.purple.withValues(alpha: 0.1),
                     shape: BoxShape.circle,
                   ),
-                  child: Icon(Icons.auto_awesome, color: Colors.purple),
+                  child: const Icon(Icons.auto_awesome, color: Colors.purple),
                 ),
-                SizedBox(width: 16),
+                const SizedBox(width: 16),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         AppLocalizations.of(context)!.aiDeckGenerator,
-                        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                        style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                       ),
-                      SizedBox(height: 8),
+                      const SizedBox(height: 8),
                       Row(
                         children: [
                           _buildTab(0, "New Deck"),
-                          SizedBox(width: 8),
+                          const SizedBox(width: 8),
                           _buildTab(1, "Add to Deck"),
                         ],
                       ),
@@ -112,7 +111,7 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
                 ),
               ],
             ),
-            SizedBox(height: 32),
+            const SizedBox(height: 32),
 
             if (_mode == 1)
               // Deck picker for add mode
@@ -123,9 +122,9 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
               _mode == 0
                 ? AppLocalizations.of(context)!.whatDoYouWant
                 : "Topic (for context)",
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 12),
+            const SizedBox(height: 12),
             HanziTextField(
               controller: _topicController,
               decoration: InputDecoration(
@@ -136,37 +135,37 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
                   borderRadius: BorderRadius.circular(16),
                   borderSide: BorderSide.none,
                 ),
-                prefixIcon: Icon(Icons.lightbulb_outline),
+                prefixIcon: const Icon(Icons.lightbulb_outline),
               ),
             ),
             
-            SizedBox(height: 32),
+            const SizedBox(height: 32),
             
             if (_mode == 0) ...[
               // Difficulty
               Text(
                 AppLocalizations.of(context)!.targetDifficulty,
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               ),
-              SizedBox(height: 12),
+              const SizedBox(height: 12),
               Row(
                 children: [
                   _buildDifficultySegment(0, "Beginner", "HSK 1-2"),
-                  SizedBox(width: 8),
+                  const SizedBox(width: 8),
                   _buildDifficultySegment(1, "Intermediate", "HSK 3-4"),
-                  SizedBox(width: 8),
+                  const SizedBox(width: 8),
                   _buildDifficultySegment(2, "Advanced", "HSK 5-6"),
                 ],
               ),
               
-              SizedBox(height: 32),
+              const SizedBox(height: 32),
               
               // Focus Area
               Text(
                 AppLocalizations.of(context)!.focusArea,
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               ),
-              SizedBox(height: 12),
+              const SizedBox(height: 12),
               Wrap(
                 spacing: 8,
                 runSpacing: 8,
@@ -176,14 +175,14 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
               ),
             ],
 
-            SizedBox(height: 32),
+            const SizedBox(height: 32),
 
             // Context / Tone
             Text(
               AppLocalizations.of(context)!.specificContextOrTone,
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 12),
+            const SizedBox(height: 12),
             HanziTextField(
               controller: _contextController,
               decoration: InputDecoration(
@@ -194,11 +193,11 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
                   borderRadius: BorderRadius.circular(16),
                   borderSide: BorderSide.none,
                 ),
-                prefixIcon: Icon(Icons.psychology_alt),
+                prefixIcon: const Icon(Icons.psychology_alt),
               ),
             ),
 
-            SizedBox(height: 32),
+            const SizedBox(height: 32),
             
             // Card Count
             Row(
@@ -206,7 +205,7 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
               children: [
                 Text(
                   AppLocalizations.of(context)!.numberOfCards,
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(
                   width: 70,
@@ -237,7 +236,7 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
               },
             ),
             
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
                 ],
               ),
             ),
@@ -359,18 +358,18 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
                   elevation: 0,
                 ),
                 child: _isGenerating
-                  ? SizedBox(
+                  ? const SizedBox(
                       width: 24, height: 24,
                       child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2),
                     )
                   : Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(Icons.auto_awesome),
-                        SizedBox(width: 8),
+                        const Icon(Icons.auto_awesome),
+                        const SizedBox(width: 8),
                         Text(
                           _mode == 0 ? "Generate Deck" : "Generate & Add",
-                          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),
@@ -413,7 +412,7 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
                   color: isSelected ? Colors.purple : (isDark ? Colors.white70 : Colors.black87),
                 ),
               ),
-              SizedBox(height: 4),
+              const SizedBox(height: 4),
               Text(
                 subtitle,
                 style: TextStyle(
@@ -491,13 +490,13 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          const Text(
             "Target Deck",
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           ),
-          SizedBox(height: 12),
+          const SizedBox(height: 12),
           DropdownButtonFormField<String>(
-            value: _selectedDeckId,
+            initialValue: _selectedDeckId,
             decoration: InputDecoration(
               filled: true,
               fillColor: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.black.withValues(alpha: 0.05),
@@ -505,7 +504,7 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
                 borderRadius: BorderRadius.circular(16),
                 borderSide: BorderSide.none,
               ),
-              prefixIcon: Icon(Icons.folder_open),
+              prefixIcon: const Icon(Icons.folder_open),
             ),
             items: decks.map((d) {
               return DropdownMenuItem(

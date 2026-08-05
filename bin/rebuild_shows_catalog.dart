@@ -144,7 +144,7 @@ String _cleanTitle(String title, bool isEpisode) {
 
 List<String> _generateTags(String title, String channel) {
   List<String> tags = [];
-  final t = title.toLowerCase() + " " + channel.toLowerCase();
+  final t = "${title.toLowerCase()} ${channel.toLowerCase()}";
   
   if (t.contains('古装') || t.contains('historical') || t.contains('wuxia') || t.contains('长安') || t.contains('大唐')) {
     tags.add('Historical');
@@ -304,7 +304,7 @@ Future<String?> _get(String url) async {
         var b = await rs.transform(utf8.decoder).join();
         if (b.contains("quotaExceeded")) {
           print("  QUOTA wait 60s...");
-          await Future.delayed(Duration(seconds: 60));
+          await Future.delayed(const Duration(seconds: 60));
           continue;
         }
       }

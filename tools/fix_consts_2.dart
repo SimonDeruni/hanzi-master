@@ -17,7 +17,7 @@ void main() {
     }
     
     if (modified) {
-      file.writeAsStringSync(lines.join('\n') + '\n');
+      file.writeAsStringSync('${lines.join('\n')}\n');
       print('Fixed \${file.path}');
     }
   }

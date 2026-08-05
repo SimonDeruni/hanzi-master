@@ -48,7 +48,7 @@ class DeckRepositoryImpl implements DeckRepository {
       if (model != null) {
         return Right(model.toDomain());
       }
-      return Left('Deck not found');
+      return const Left('Deck not found');
     } catch (e) {
       return Left('Failed to load deck: $e');
     }
@@ -75,7 +75,7 @@ class DeckRepositoryImpl implements DeckRepository {
   Future<Either<String, Deck>> updateDeck(Deck deck) async {
     try {
       if (!_deckBox.containsKey(deck.id)) {
-        return Left('Deck not found');
+        return const Left('Deck not found');
       }
       final model = DeckModel.fromDomain(deck);
       await _deckBox.put(deck.id, model);
@@ -89,7 +89,7 @@ class DeckRepositoryImpl implements DeckRepository {
   Future<Either<String, void>> deleteDeck(String id) async {
     try {
       if (id == 'default') {
-        return Left('Cannot delete the default deck');
+        return const Left('Cannot delete the default deck');
       }
       await _deckBox.delete(id);
       return const Right(null);

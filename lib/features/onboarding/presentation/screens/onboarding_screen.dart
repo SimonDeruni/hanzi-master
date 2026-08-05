@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:hanzi_master/features/onboarding/presentation/screens/notification_permission_screen.dart';
-import 'package:hanzi_master/features/auth/presentation/screens/auth_screen.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/main_navigation_screen.dart';
 import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
-import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 
 class OnboardingScreen extends ConsumerStatefulWidget {
   const OnboardingScreen({super.key});
@@ -202,12 +198,12 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
               itemCount: options.length,
               separatorBuilder: (c, i) => const SizedBox(height: 16),
               itemBuilder: (context, index) {
-                bool _isSelected = _selectedMastery == index;
+                bool isSelected = _selectedMastery == index;
                 return _buildSelectionCard(
                   title: options[index]["title"] as String,
                   subtitle: options[index]["subtitle"] as String,
                   icon: options[index]["icon"] as IconData,
-                  isSelected: _isSelected,
+                  isSelected: isSelected,
                   onTap: () {
                     setState(() {
                       _selectedMastery = index;
@@ -271,11 +267,11 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
               ),
               itemCount: options.length,
               itemBuilder: (context, index) {
-                bool _isSelected = _selectedDrive == index;
+                bool isSelected = _selectedDrive == index;
                 return _buildGridSelectionCard(
                   title: options[index]["title"] as String,
                   icon: options[index]["icon"] as IconData,
-                  isSelected: _isSelected,
+                  isSelected: isSelected,
                   onTap: () {
                     setState(() {
                       _selectedDrive = index;
@@ -334,11 +330,11 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
               itemCount: options.length,
               separatorBuilder: (c, i) => const SizedBox(height: 16),
               itemBuilder: (context, index) {
-                bool _isSelected = _selectedRitual == index;
+                bool isSelected = _selectedRitual == index;
                 return _buildRitualCard(
                   title: options[index]["title"] as String,
                   subtitle: options[index]["subtitle"] as String,
-                  isSelected: _isSelected,
+                  isSelected: isSelected,
                   onTap: () {
                     setState(() {
                       _selectedRitual = index;

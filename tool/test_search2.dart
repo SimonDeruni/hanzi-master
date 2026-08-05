@@ -10,7 +10,7 @@ void main() async {
       count++;
       if (count >= 3) break;
     }
-  } catch (e, stack) {
+  } catch (e) {
     print('Error: $e');
   } finally {
     yt.close();

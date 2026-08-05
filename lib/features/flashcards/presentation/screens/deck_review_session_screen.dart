@@ -10,7 +10,6 @@ import 'package:hanzi_master/features/flashcards/presentation/widgets/modes/read
 import 'package:hanzi_master/features/flashcards/presentation/widgets/modes/recall_mode.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/modes/listening_mode.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/modes/speaking_mode.dart';
-import 'package:hanzi_master/core/services/analytics_service.dart';
 
 class DeckReviewSessionScreen extends ConsumerStatefulWidget {
   final String deckId;

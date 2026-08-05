@@ -6,11 +6,6 @@ void main(List<String> args) async {
   final envFile = File('.env');
   String apiKey = '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';
 
-  if (apiKey == null) {
-    print('No API key found in .env');
-    return;
-  }
-
   final dir = Directory('lib/l10n');
   final enFile = File('${dir.path}/app_en.arb');
   if (!enFile.existsSync()) {
@@ -79,7 +74,7 @@ Respond ONLY with valid JSON containing the translated key-value pairs.
           fileData[key] = translatedData[key];
         }
 
-        file.writeAsStringSync(JsonEncoder.withIndent('  ').convert(fileData));
+        file.writeAsStringSync(const JsonEncoder.withIndent('  ').convert(fileData));
         print('Updated ${file.path}');
       } else {
         print('Error ${response.statusCode}: ${response.body}');

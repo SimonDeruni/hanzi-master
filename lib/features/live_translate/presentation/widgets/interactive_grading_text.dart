@@ -6,11 +6,11 @@ class InteractiveGradingText extends StatelessWidget {
   final Function(int charIndex, Map<String, dynamic> scoreData) onCharTap;
 
   const InteractiveGradingText({
-    Key? key,
+    super.key,
     required this.text,
     this.wordScores,
     required this.onCharTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

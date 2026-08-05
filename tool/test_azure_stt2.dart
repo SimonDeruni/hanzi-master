@@ -1,10 +1,9 @@
-import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 void main() async {
-  final key = 'AnZ5l470hrJMMOqPYYH085lWbpFHjRH8nZCkryg0TWFF8yaVzDdOJQQJ99CGACPV0roXJ3w3AAAYACOGk7C0';
-  final region = 'germanywestcentral';
+  const key = 'AnZ5l470hrJMMOqPYYH085lWbpFHjRH8nZCkryg0TWFF8yaVzDdOJQQJ99CGACPV0roXJ3w3AAAYACOGk7C0';
+  const region = 'germanywestcentral';
   
   final Map<String, dynamic> params = {
     "ReferenceText": "我今年八岁了",
@@ -14,7 +13,7 @@ void main() async {
   };
 
   final String base64Params = base64Encode(utf8.encode(jsonEncode(params)));
-  final String endpoint = 'https://$region.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?language=zh-CN';
+  const String endpoint = 'https://$region.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?language=zh-CN';
 
   // Read a real test wav file if available, otherwise just use dummy bytes
   // Actually, sending dummy bytes causes InitialSilenceTimeout. Let's assume the user sent real audio.
@@ -22,7 +21,7 @@ void main() async {
   
   // Create a real PCM audio with some noise so it doesn't trigger InitialSilenceTimeout
   // Actually, we can't easily generate spoken Chinese. Let's just create random noise.
-  final byteCount = 16000 * 2;
+  const byteCount = 16000 * 2;
   final wavHeader = <int>[
     82, 73, 70, 70, 
     (36 + byteCount) & 0xff, ((36 + byteCount) >> 8) & 0xff, ((36 + byteCount) >> 16) & 0xff, ((36 + byteCount) >> 24) & 0xff,

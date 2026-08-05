@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:http/http.dart' as http;
 import 'package:xml/xml.dart';
 import 'package:lpinyin/lpinyin.dart';
@@ -39,14 +38,18 @@ class StoryFetcherService {
 
     // Chinese-char comparison: "真/非常", "是否/如果", "次/遍"
     if (RegExp(r'^[\u4e00-\u9fff\(\)a-zA-ZÀ-ÿ\s\/\u00c0-\u00ff]+$').hasMatch(titleTrim) &&
-        titleTrim.contains('/') && titleTrim.length < 40) return false;
+        titleTrim.contains('/') && titleTrim.length < 40) {
+      return false;
+    }
 
     // Single char with pinyin: "与 (yǔ)", "所 (suǒ)"
     if (RegExp(r'^[\u4e00-\u9fff]{1,3}\s*\(').hasMatch(titleTrim)) return false;
 
     // "X vs Y" comparisons
     if (RegExp(r'\bvs\.?\b', caseSensitive: false).hasMatch(titleTrim) &&
-        titleTrim.length < 60) return false;
+        titleTrim.length < 60) {
+      return false;
+    }
 
     final titleLower = title.toLowerCase();
     const blockedWords = [
@@ -153,7 +156,7 @@ class StoryFetcherService {
           
           // Determine thematic category based on keywords
           String theme = 'Contemporary Stories';
-          final fullText = (title + ' ' + summary + ' ' + categories.join(' ')).toLowerCase();
+          final fullText = ('$title $summary ${categories.join(' ')}').toLowerCase();
           
           if (fullText.contains('food') || fullText.contains('recipe') || fullText.contains('restaurant') || fullText.contains('cooking') || fullText.contains('eat') || fullText.contains('delicious') || fullText.contains('dumpling')) {
             theme = 'Food & Dining';
@@ -183,8 +186,9 @@ class StoryFetcherService {
           int hskLevel = 0;
           for (final cat in categories) {
             final catLower = cat.toLowerCase().replaceAll(' ', '');
-            if (catLower.contains('hsk1')) hskLevel = 1;
-            else if (catLower.contains('hsk2')) hskLevel = 2;
+            if (catLower.contains('hsk1')) {
+              hskLevel = 1;
+            } else if (catLower.contains('hsk2')) hskLevel = 2;
             else if (catLower.contains('hsk3')) hskLevel = 3;
             else if (catLower.contains('hsk4')) hskLevel = 4;
             else if (catLower.contains('hsk5')) hskLevel = 5;
@@ -193,8 +197,9 @@ class StoryFetcherService {
           if (hskLevel == 0) {
             // Check title as fallback
             final titleLower = title.toLowerCase().replaceAll(' ', '');
-            if (titleLower.contains('hsk1')) hskLevel = 1;
-            else if (titleLower.contains('hsk2')) hskLevel = 2;
+            if (titleLower.contains('hsk1')) {
+              hskLevel = 1;
+            } else if (titleLower.contains('hsk2')) hskLevel = 2;
             else if (titleLower.contains('hsk3')) hskLevel = 3;
             else if (titleLower.contains('hsk4')) hskLevel = 4;
             else if (titleLower.contains('hsk5')) hskLevel = 5;

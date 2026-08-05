@@ -122,7 +122,7 @@ class _FlashcardFormScreenState extends ConsumerState<FlashcardFormScreen> {
                   backgroundColor: Colors.indigo,
                 ),
                 onPressed: _save,
-                child: Text(AppLocalizations.of(context)!.saveCard, style: TextStyle(color: Colors.white, fontSize: 18)),
+                child: Text(AppLocalizations.of(context)!.saveCard, style: const TextStyle(color: Colors.white, fontSize: 18)),
               ),
             ],
           ),

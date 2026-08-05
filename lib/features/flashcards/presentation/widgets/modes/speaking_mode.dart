@@ -264,7 +264,7 @@ class _SpeakingModeWidgetState extends ConsumerState<SpeakingModeWidget> {
                                 alignment: Alignment.bottomCenter,
                                 child: Text(
                                   AppLocalizations.of(context)!.tapCardToReveal,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontSize: 16,
                                     color: Colors.grey,
                                     fontWeight: FontWeight.bold,
@@ -283,7 +283,7 @@ class _SpeakingModeWidgetState extends ConsumerState<SpeakingModeWidget> {
                                     text: widget.card.pinyin,
                                     style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
                                   ),
-                                  SizedBox(height: 16),
+                                  const SizedBox(height: 16),
                                   Expanded(
                                     child: SingleChildScrollView(
                                       child: Text(
@@ -326,7 +326,7 @@ class _SpeakingModeWidgetState extends ConsumerState<SpeakingModeWidget> {
               ),
 
             if (_isProcessing)
-              Padding(
+              const Padding(
                 padding: EdgeInsets.all(32.0),
                 child: Column(
                   children: [
@@ -432,7 +432,7 @@ class _SpeakingModeWidgetState extends ConsumerState<SpeakingModeWidget> {
                           color: Colors.green,
                         ),
                       ),
-                      SizedBox(height: 8),
+                      const SizedBox(height: 8),
                       Text(
                         _feedbackResult!['overallFeedback'] ?? '',
                         style: const TextStyle(fontSize: 14),
@@ -457,7 +457,7 @@ class _SpeakingModeWidgetState extends ConsumerState<SpeakingModeWidget> {
                         color: isDark ? Colors.white54 : Colors.black45,
                       ),
                     ),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     Text(
                       "⬅️ Again    ➡️ Good    ⬆️ Easy    ⬇️ Hard",
                       style: TextStyle(

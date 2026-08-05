@@ -2,14 +2,14 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 void main() async {
-  final apiKey = 'YOUR_OPENROUTER_KEY';
-  final model = 'google/gemini-2.5-flash';
-  final prompt = 'test';
+  const apiKey = 'YOUR_OPENROUTER_KEY';
+  const model = 'google/gemini-2.5-flash';
+  const prompt = 'test';
   try {
     final response = await http.post(
       Uri.parse('https://openrouter.ai/api/v1/chat/completions'),
       headers: {
-        'Authorization': 'Bearer ' + apiKey,
+        'Authorization': 'Bearer $apiKey',
         'Content-Type': 'application/json',
       },
       body: jsonEncode({

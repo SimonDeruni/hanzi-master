@@ -3,6 +3,7 @@
 ///
 /// XiXi Pictures Official Channel (西嘻影业官方频道):
 ///   https://www.youtube.com/@xixipicturesofficial
+library;
 
 class CuratedShows {
   static const List<Map<String, dynamic>> data = [

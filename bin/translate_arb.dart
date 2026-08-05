@@ -70,7 +70,7 @@ void main() async {
       payloadToTranslate[key] = keysToTranslate[key]!;
     }
 
-    final prompt = '''
+    const prompt = '''
 Translate the following JSON string values from English to \$langName.
 Return ONLY valid JSON. Keep the keys exactly the same. Do not wrap in markdown tags like ```json.
 JSON:

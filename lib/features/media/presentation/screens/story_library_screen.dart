@@ -186,10 +186,10 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
         child: HanziTextField(
           controller: _searchController,
           hintText: 'Search stories, idioms, news...',
-          decoration: InputDecoration(
-            prefixIcon: const Icon(Icons.search, color: Colors.grey),
+          decoration: const InputDecoration(
+            prefixIcon: Icon(Icons.search, color: Colors.grey),
             border: InputBorder.none,
-            contentPadding: const EdgeInsets.symmetric(vertical: 16),
+            contentPadding: EdgeInsets.symmetric(vertical: 16),
           ),
           suffixIcon: _searchController.text.isNotEmpty 
             ? IconButton(

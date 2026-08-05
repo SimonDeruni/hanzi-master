@@ -33,7 +33,7 @@ class SessionSummaryScreen extends StatelessWidget {
               
               Text(
                 AppLocalizations.of(context)!.sessionComplete,
-                style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.indigo),
+                style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.indigo),
               ),
               const SizedBox(height: 32),
 
@@ -45,7 +45,7 @@ class SessionSummaryScreen extends StatelessWidget {
                   padding: const EdgeInsets.all(32.0),
                   child: Column(
                     children: [
-                      Text(AppLocalizations.of(context)!.accuracy, style: TextStyle(fontSize: 16, color: Colors.grey)),
+                      Text(AppLocalizations.of(context)!.accuracy, style: const TextStyle(fontSize: 16, color: Colors.grey)),
                       Text(
                         "$percentageInt%",
                         style: TextStyle(
@@ -88,7 +88,7 @@ class SessionSummaryScreen extends StatelessWidget {
                     onPressed: null,
                     child: Text(
                       AppLocalizations.of(context)!.backToLibrary,
-                      style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+                      style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
                     ),
                   ),
                 ),

@@ -5,13 +5,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
-import 'package:hanzi_master/features/media/presentation/screens/media_search_screen.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'dart:convert';
 import 'package:uuid/uuid.dart';
 import 'package:hanzi_master/core/providers.dart';
-import 'package:hanzi_master/features/flashcards/domain/entities/deck.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/deck_selection_sheet.dart';
 import 'package:hanzi_master/features/media/domain/models/saved_article.dart';
@@ -19,10 +17,7 @@ import 'package:hanzi_master/features/media/domain/models/saved_article.dart';
 import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
 import 'package:hive/hive.dart';
 import 'package:hanzi_master/features/media/presentation/screens/simplified_article_reader_screen.dart';
-import 'package:hanzi_master/features/premium/presentation/screens/universal_scanner_screen.dart';
-import 'package:flutter_tts/flutter_tts.dart';
 import 'dart:ui';
-import 'package:hanzi_master/features/flashcards/presentation/widgets/word_detail_dialog.dart';
 import 'package:hanzi_master/core/presentation/widgets/ai_progress_bar.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
@@ -761,16 +756,16 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
       const skeletonHtml = `
         <div id="ai-insight-banner" style="margin-bottom: 30px; font-family: sans-serif; opacity: 0.7;">
           <div style="display: flex; align-items: center; margin-bottom: 15px;">
-             <div style="width: 20px; height: 20px; border: 2px solid ${skeletonBorderColor}; border-top-color: transparent; border-radius: 50%; animation: spin 1s linear infinite;"></div>
-             <span style="margin-left: 12px; font-size: 14px; font-weight: bold; color: ${aiLoadingTextColor};">AI is reading...</span>
+             <div style="width: 20px; height: 20px; border: 2px solid $skeletonBorderColor; border-top-color: transparent; border-radius: 50%; animation: spin 1s linear infinite;"></div>
+             <span style="margin-left: 12px; font-size: 14px; font-weight: bold; color: $aiLoadingTextColor;">AI is reading...</span>
           </div>
-          <div style="height: 12px; background-color: ${skeletonBgColor}; border-radius: 4px; margin-bottom: 8px;"></div>
-          <div style="height: 12px; background-color: ${skeletonBgColor}; border-radius: 4px; width: 70%;"></div>
+          <div style="height: 12px; background-color: $skeletonBgColor; border-radius: 4px; margin-bottom: 8px;"></div>
+          <div style="height: 12px; background-color: $skeletonBgColor; border-radius: 4px; width: 70%;"></div>
           <style>@keyframes spin { 100% { transform: rotate(360deg); } }</style>
         </div>
       `;
       
-      document.body.innerHTML = '<div style="max-width: 800px; margin: 0 auto; padding: 20px; font-family: serif; font-size: 22px; line-height: 1.8; background-color: ${bgColor}; color: ${textColor};">' + skeletonHtml + bestNode.innerHTML + '</div>';
+      document.body.innerHTML = '<div style="max-width: 800px; margin: 0 auto; padding: 20px; font-family: serif; font-size: 22px; line-height: 1.8; background-color: $bgColor; color: $textColor;">' + skeletonHtml + bestNode.innerHTML + '</div>';
       
       document.body.style.overflow = 'auto';
       document.documentElement.style.overflow = 'auto';
@@ -795,7 +790,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
   void _removeZenMode() {
     setState(() => _isProcessingAi = false);
     _currentInsight = null;
-    final js = '''
+    const js = '''
       if (window.zenModeBackup) {
         document.body.innerHTML = window.zenModeBackup;
         window.makeChineseTextClickable(document.body);
@@ -844,11 +839,11 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                    <div style="background: rgba(76, 175, 80, 0.12); border: 1px solid rgba(76, 175, 80, 0.35); color: #2e7d32; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; font-family: sans-serif;">Readability ${insight.score}%</div>
                 </div>
                 <div>
-                   <button id="summary-toggle-btn" style="display: inline-flex; align-items: center; gap: 5px; background: none; border: none; padding: 0; color: ${toggleBtnColor}; cursor: pointer; font-size: 13px; font-family: sans-serif; letter-spacing: 0.2px;">
+                   <button id="summary-toggle-btn" style="display: inline-flex; align-items: center; gap: 5px; background: none; border: none; padding: 0; color: $toggleBtnColor; cursor: pointer; font-size: 13px; font-family: sans-serif; letter-spacing: 0.2px;">
                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" id="toggle-chevron"><polyline points="6 9 12 15 18 9"/></svg>
                      AI Summary
                    </button>
-                   <div id="summary-text" style="display: none; margin-top: 12px; font-size: 15px; color: ${summaryTextColor}; line-height: 1.6; font-family: sans-serif; border-left: 2px solid ${summaryBorderColor}; padding-left: 12px;">
+                   <div id="summary-text" style="display: none; margin-top: 12px; font-size: 15px; color: $summaryTextColor; line-height: 1.6; font-family: sans-serif; border-left: 2px solid $summaryBorderColor; padding-left: 12px;">
                      \${safeSummary}
                    </div>
                 </div>
@@ -908,9 +903,10 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
           pageTitle.isNotEmpty ? 'Article: $pageTitle' : 'Web Extraction';
 
       if (newWords.isEmpty) {
-        if (mounted)
+        if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(content: Text('No new words found!')));
+        }
         return;
       }
 
@@ -954,7 +950,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context)
-            .showSnackBar(SnackBar(content: Text('Extraction Failed: \$e')));
+            .showSnackBar(const SnackBar(content: Text('Extraction Failed: \$e')));
       }
     } finally {
       if (mounted) {
@@ -1080,8 +1076,9 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
   }
 
   Widget _buildTranslationPanel() {
-    if (!_isTranslating && _activeTranslation == null)
+    if (!_isTranslating && _activeTranslation == null) {
       return const SizedBox.shrink();
+    }
 
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final cardBgColor = isDark ? const Color(0xFF2A2A2B) : Colors.white;
@@ -1313,8 +1310,9 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                                 },
                               );
 
-                              if (selectedLevel == null)
+                              if (selectedLevel == null) {
                                 return; // User cancelled
+                              }
 
                               setState(() {
                                 _activeTranslation = null;
@@ -1613,7 +1611,7 @@ class _ExtractedWordsReviewSheetState extends State<ExtractedWordsReviewSheet> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Text("Review Extracted Deck",
+          const Text("Review Extracted Deck",
               style: TextStyle(
                   fontSize: 16,
                   color: Colors.indigo,

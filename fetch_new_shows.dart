@@ -8,7 +8,7 @@ void main() async {
 
   print('Searching for playlists...');
   // Use a query likely to yield full Chinese dramas.
-  final query = "chinese drama full episodes";
+  const query = "chinese drama full episodes";
   
   // Note: search.getPlaylists doesn't exist directly on yt.search, we have to search normally 
   // and filter by PlaylistSearchQuery or similar, or just search normally and filter by Playlist.
@@ -85,7 +85,7 @@ void main() async {
       addedCount++;
       print('Prepared show $addedCount: $title');
       
-      await Future.delayed(Duration(milliseconds: 500));
+      await Future.delayed(const Duration(milliseconds: 500));
     } catch (e) {
       print('Error fetching playlist $playlistId: $e');
     }

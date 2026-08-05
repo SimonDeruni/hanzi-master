@@ -100,8 +100,8 @@ class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
               icon: const Icon(Icons.auto_awesome),
               label: AppLocalizations.of(context)!.aiHubTitle,
             ),
-            BottomNavigationBarItem(
-              icon: const Icon(Icons.menu_book),
+            const BottomNavigationBarItem(
+              icon: Icon(Icons.menu_book),
               label: "Library",
             ),
           ],

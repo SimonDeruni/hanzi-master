@@ -182,9 +182,9 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
   String _loadingStep = 'Fetching subtitles...';
   bool _briefingReady = false;
   bool _memesReady = false;
-  bool _translationStarted = false;
-  int _translatedChunks = 0;
-  int _totalChunks = 0;
+  final bool _translationStarted = false;
+  final int _translatedChunks = 0;
+  final int _totalChunks = 0;
 
   int _currentIndex = -1;
   Duration _currentPosition = Duration.zero;
@@ -195,20 +195,20 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
   bool _showPinyin = true;
   bool _showEnglish = true;
   bool _isAdPlaying = false;
-  PlayerState _playerState = PlayerState.unknown;
+  final PlayerState _playerState = PlayerState.unknown;
 
   DateTime _lastSyncUpdate = DateTime.fromMillisecondsSinceEpoch(0);
   static const _syncInterval = Duration(milliseconds: 250);
 
   bool _isFullscreen = false;
-  bool _wasMutedForAutoplay = true;
+  final bool _wasMutedForAutoplay = true;
   double _playbackRate = 1.0;
 
   List<Map<String, dynamic>> _culturalMemes = [];
   bool _isHskSimplified = false;
   int _hskLevel = 2;
   Map<int, String> _simplifiedTranscript = {};
-  bool _isShadowingMode = false;
+  final bool _isShadowingMode = false;
   bool _captionsDisabled = false;
   bool _isRecording = false;
   int? _recordingLineIndex;
@@ -304,19 +304,21 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
         _translateIncrementally(transcript, gemini);
       } else {
         // Captions failed — fall back to YouTube native captions via the player
-        if (mounted)
+        if (mounted) {
           setState(() {
             _error =
                 'No captions available. You can still watch with YouTube native captions.';
             _isLoading = false;
           });
+        }
       }
     } catch (e) {
-      if (mounted)
+      if (mounted) {
         setState(() {
           _error = e.toString();
           _isLoading = false;
         });
+      }
     }
   }
 
@@ -414,11 +416,12 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
         for (int i = 0; i < translated.length; i++) {
           workingLines[start + i] = translated[i];
         }
-        if (mounted)
+        if (mounted) {
           setState(() {
             _transcript = VideoTranscript(
                 videoId: transcript.videoId, lines: List.from(workingLines));
           });
+        }
       } catch (e) {
         debugPrint('Chunk translate error ($start-$end): $e');
       }
@@ -499,17 +502,17 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
     if (!mounted) return;
     ScaffoldMessenger.of(context).hideCurrentSnackBar();
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: Row(
+      content: const Row(
         children: [
-          const Icon(Icons.lightbulb, color: Colors.amber),
-          const SizedBox(width: 12),
+          Icon(Icons.lightbulb, color: Colors.amber),
+          SizedBox(width: 12),
           Expanded(
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text("Cultural Note: \${meme['keyword']}",
-                    style: const TextStyle(fontWeight: FontWeight.bold)),
+                    style: TextStyle(fontWeight: FontWeight.bold)),
                 Text("\${meme['explanation']}"),
               ],
             ),
@@ -559,11 +562,13 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
                     .read(geminiServiceProvider)
                     .generateSentenceLesson(sentence),
                 builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting)
+                  if (snapshot.connectionState == ConnectionState.waiting) {
                     return const Center(child: CircularProgressIndicator());
-                  if (snapshot.hasError)
+                  }
+                  if (snapshot.hasError) {
                     return Text("Error: ${snapshot.error}",
                         style: const TextStyle(color: Colors.red));
+                  }
                   final s = snapshot.data;
                   if (s == null) return const SizedBox.shrink();
                   return SingleChildScrollView(
@@ -810,6 +815,7 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
     );
   }
 
+  @override
   void dispose() {
     _positionSubscription?.cancel();
     _playerController.close();

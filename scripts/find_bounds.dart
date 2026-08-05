@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:image/image.dart' as img;
 
 void main() async {
-  final mockupPath = r'C:\Users\simon\Documents\sinospark_website\assets\mockup.png';
+  const mockupPath = r'C:\Users\simon\Documents\sinospark_website\assets\mockup.png';
   final m = img.decodeImage(File(mockupPath).readAsBytesSync());
   if (m == null) return;
   
@@ -23,13 +23,21 @@ void main() async {
   }
 
   // Left
-  while (minX > 0 && isSameColor(m.getPixel(minX, cy))) minX--;
+  while (minX > 0 && isSameColor(m.getPixel(minX, cy))) {
+    minX--;
+  }
   // Right
-  while (maxX < m.width - 1 && isSameColor(m.getPixel(maxX, cy))) maxX++;
+  while (maxX < m.width - 1 && isSameColor(m.getPixel(maxX, cy))) {
+    maxX++;
+  }
   // Top
-  while (minY > 0 && isSameColor(m.getPixel(cx, minY))) minY--;
+  while (minY > 0 && isSameColor(m.getPixel(cx, minY))) {
+    minY--;
+  }
   // Bottom
-  while (maxY < m.height - 1 && isSameColor(m.getPixel(cx, maxY))) maxY++;
+  while (maxY < m.height - 1 && isSameColor(m.getPixel(cx, maxY))) {
+    maxY++;
+  }
 
   print('Screen bounds (approx): X:$minX to $maxX, Y:$minY to $maxY');
   print('Width: ${maxX - minX}, Height: ${maxY - minY}');

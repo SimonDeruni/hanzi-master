@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
@@ -10,11 +9,8 @@ import 'package:path_provider/path_provider.dart';
 import '../../../../core/services/audio_service.dart';
 import '../../../../core/services/gemini_service.dart';
 import '../../../../core/services/pitch_detector_service.dart';
-import '../../../../core/utils/dtw_aligner.dart';
 import '../../../premium/presentation/screens/paywall_sheet.dart';
 
-import 'package:hanzi_master/features/live_translate/presentation/widgets/tone_graph_painter.dart';
-import 'package:hanzi_master/features/live_translate/presentation/widgets/interactive_grading_text.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/deck_controller.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
@@ -22,7 +18,6 @@ import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart'
 import 'package:hanzi_master/features/flashcards/domain/entities/study_mode.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/deck.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/character_detail_screen.dart';
-import 'package:hanzi_master/core/services/saved_scenarios_service.dart';
 import 'package:hanzi_master/shared/widgets/breathing_widget.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/core/providers.dart';
@@ -197,20 +192,24 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
       final geminiService = ref.read(geminiServiceProvider);
 
       String contextInput = "";
-      if (_selectedMode == ShadowingMode.theme)
+      if (_selectedMode == ShadowingMode.theme) {
         contextInput = "Theme: $_selectedTheme";
+      }
       if (_selectedMode == ShadowingMode.deck) {
         final decks = ref.read(deckControllerProvider).valueOrNull ?? [];
         final deck = decks.firstWhere((d) => d.id == _selectedDeckId,
             orElse: () => decks.first);
         contextInput = "Flashcard Deck: ${deck.name}";
       }
-      if (_selectedMode == ShadowingMode.customWord)
+      if (_selectedMode == ShadowingMode.customWord) {
         contextInput = "Word: $_customWordInput";
-      if (_selectedMode == ShadowingMode.customSentence)
+      }
+      if (_selectedMode == ShadowingMode.customSentence) {
         contextInput = "Exact Sentence: $_customWordInput";
-      if (_selectedMode == ShadowingMode.freeFlow)
+      }
+      if (_selectedMode == ShadowingMode.freeFlow) {
         contextInput = "Free flow conversational practice.";
+      }
 
       final phrase = await geminiService.generateShadowingPhrase(
           _selectedMode.toString(), contextInput,
@@ -246,8 +245,9 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
   }
 
   Future<void> _startRecording() async {
-    if (_isRecording || _isGrading || _isStopping)
+    if (_isRecording || _isGrading || _isStopping) {
       return; // Prevent double-tap / rapid restart / re-entry
+    }
     try {
       if (await _audioRecorder.hasPermission()) {
         HapticFeedback.heavyImpact();
@@ -513,10 +513,11 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                             activeColor: Colors.orange,
                             onChanged: (val) {
                               setModalState(() {
-                                if (val == true)
+                                if (val == true) {
                                   selectedWords.add(word);
-                                else
+                                } else {
                                   selectedWords.remove(word);
+                                }
                               });
                             },
                           ),
@@ -616,7 +617,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                     title: const Text(
                         "Apply session grades to Spaced Repetition (Speaking Mode)",
                         style: TextStyle(fontSize: 14)),
-                    activeColor: Colors.orange,
+                    activeThumbColor: Colors.orange,
                     value: applySrs,
                     onChanged: (val) => setModalState(() => applySrs = val),
                     contentPadding: EdgeInsets.zero,
@@ -649,7 +650,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                         )),
                   const Divider(),
                   ListTile(
-                    title: Text("Create New Deck",
+                    title: const Text("Create New Deck",
                         style: TextStyle(
                             color: Colors.orange, fontWeight: FontWeight.bold)),
                     subtitle: Text("Make a custom collection",
@@ -931,8 +932,9 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                           return Autocomplete<String>(
                             optionsBuilder:
                                 (TextEditingValue textEditingValue) {
-                              if (textEditingValue.text.isEmpty)
+                              if (textEditingValue.text.isEmpty) {
                                 return options.take(10);
+                              }
                               return options.where((String option) =>
                                   option.contains(textEditingValue.text));
                             },
@@ -1044,8 +1046,9 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                                     value: theme, child: Text(theme)))
                                 .toList(),
                             onChanged: (val) {
-                              if (val != null)
+                              if (val != null) {
                                 setState(() => _selectedTheme = val);
+                              }
                             },
                           ),
                         ),
@@ -1054,8 +1057,9 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                         const SizedBox(height: 16),
                         ref.watch(deckControllerProvider).when(
                               data: (decks) {
-                                if (decks.isEmpty)
+                                if (decks.isEmpty) {
                                   return const Text("No decks found.");
+                                }
                                 return DropdownButtonHideUnderline(
                                   child: DropdownButton<String>(
                                     value: _selectedDeckId ?? decks.first.id,
@@ -1067,8 +1071,9 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                                             value: d.id, child: Text(d.name)))
                                         .toList(),
                                     onChanged: (val) {
-                                      if (val != null)
+                                      if (val != null) {
                                         setState(() => _selectedDeckId = val);
+                                      }
                                     },
                                   ),
                                 );

@@ -1,9 +1,7 @@
 import 'dart:convert';
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:hanzi_master/features/flashcards/presentation/screens/stats_screen.dart';
 import 'package:hanzi_master/features/course/domain/entities/course_unit.dart';
 import 'package:hanzi_master/features/course/presentation/widgets/radical_detail_sheet.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/dictionary_provider.dart';
@@ -13,17 +11,13 @@ import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/deck.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/deck_detail_screen.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/ai_deck_generator_sheet.dart';
-import 'package:hanzi_master/features/flashcards/presentation/screens/settings_screen.dart';
 import 'package:hanzi_master/core/utils/pinyin_utils.dart';
 import 'package:hanzi_master/shared/widgets/staggered_list_item.dart';
 import 'package:hanzi_master/shared/widgets/pinyin_text.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/mastery_seal.dart';
-import 'package:hanzi_master/features/premium/presentation/screens/paywall_sheet.dart';
 import 'package:hanzi_master/features/premium/presentation/screens/universal_scanner_screen.dart';
-import 'package:hanzi_master/core/providers/premium_controller.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
-import 'package:hanzi_master/shared/widgets/tappable_hanzi_text.dart';
 import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
 import 'package:hanzi_master/shared/widgets/nuance_compare_sheet.dart';
@@ -79,7 +73,7 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
           headerSliverBuilder: (context, innerBoxIsScrolled) => [
             GlobalSliverAppBar(
               title: l10n?.scholarsLibrary ?? "The Scholar's Library",
-              actions: [
+              actions: const [
                               ],
             ),
             SliverPersistentHeader(
@@ -101,7 +95,7 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
       floatingActionButton: FloatingActionButton.extended(
         heroTag: 'dictionary_add_fab',
         backgroundColor: Colors.purple,
-        icon: Icon(Icons.auto_awesome, color: Colors.white),
+        icon: const Icon(Icons.auto_awesome, color: Colors.white),
         label: Text(l10n?.generate ?? "Generate", style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
         onPressed: () => AiDeckGeneratorSheet.show(context),
       ),
@@ -177,14 +171,14 @@ class _LexiconMiniCardState extends ConsumerState<_LexiconMiniCard> {
                 style: theme.textTheme.displaySmall?.copyWith(height: 1.1),
               ),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             PinyinText(
               text: _pinyin,
               style: theme.textTheme.labelMedium?.copyWith(
                 color: theme.colorScheme.primary,
               ),
             ),
-            SizedBox(height: 4),
+            const SizedBox(height: 4),
             Text(
               DefinitionFormatter.cleanRaw(_definition, ref),
               style: theme.textTheme.bodySmall,
@@ -251,7 +245,7 @@ class _BookshelfVerticalCard extends StatelessWidget {
                 size: 28,
               ),
             ),
-            SizedBox(width: 20),
+            const SizedBox(width: 20),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -262,7 +256,7 @@ class _BookshelfVerticalCard extends StatelessWidget {
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  SizedBox(height: 4),
+                  const SizedBox(height: 4),
                   Text(
                     "$cardCount cards",
                     style: theme.textTheme.bodySmall,
@@ -323,7 +317,7 @@ class _SearchBarDelegate extends SliverPersistentHeaderDelegate {
                 hintText: l10n?.searchPinyinHanziEnglish ?? "Search Pinyin, Hanzi, or English...",
                 decoration: InputDecoration(
                   hintStyle: theme.textTheme.bodyMedium?.copyWith(color: theme.colorScheme.onSurface.withValues(alpha: 0.4)),
-                  prefixIcon: Icon(Icons.search, color: Colors.grey),
+                  prefixIcon: const Icon(Icons.search, color: Colors.grey),
                   border: InputBorder.none,
                   contentPadding: const EdgeInsets.symmetric(vertical: 16),
                 ),
@@ -331,7 +325,7 @@ class _SearchBarDelegate extends SliverPersistentHeaderDelegate {
               ),
             ),
           ),
-          SizedBox(width: 12),
+          const SizedBox(width: 12),
           Container(
             decoration: BoxDecoration(
               color: theme.colorScheme.primary,
@@ -345,7 +339,7 @@ class _SearchBarDelegate extends SliverPersistentHeaderDelegate {
               ],
             ),
             child: IconButton(
-              icon: Icon(Icons.camera_alt),
+              icon: const Icon(Icons.camera_alt),
               color: theme.colorScheme.onPrimary,
               onPressed: () {
                 Navigator.push(context, SwipeBackPageRoute(builder: (context) => const UniversalScannerScreen(intent: CameraIntent.dictionary)));
@@ -423,7 +417,7 @@ class _DictionarySearchTab extends ConsumerWidget {
                           style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
                         ),
                       ),
-                      SizedBox(height: 16),
+                      const SizedBox(height: 16),
                       SizedBox(
                         height: 140,
                         child: flashcards.isEmpty 
@@ -432,7 +426,7 @@ class _DictionarySearchTab extends ConsumerWidget {
                               padding: const EdgeInsets.symmetric(horizontal: 24),
                               scrollDirection: Axis.horizontal,
                               itemCount: flashcards.length > 10 ? 10 : flashcards.length,
-                              separatorBuilder: (context, index) => SizedBox(width: 16),
+                              separatorBuilder: (context, index) => const SizedBox(width: 16),
                               itemBuilder: (context, index) {
                                 // latest first -> flashcards are usually appended, so reversed
                                 final card = flashcards[flashcards.length - 1 - index];
@@ -440,7 +434,7 @@ class _DictionarySearchTab extends ConsumerWidget {
                               },
                             ),
                       ),
-                      SizedBox(height: 32),
+                      const SizedBox(height: 32),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 24.0),
                         child: GestureDetector(
@@ -473,26 +467,26 @@ class _DictionarySearchTab extends ConsumerWidget {
                                     color: Colors.white.withValues(alpha: 0.2),
                                     borderRadius: BorderRadius.circular(12),
                                   ),
-                                  child: Text('氵', style: TextStyle(fontSize: 28, color: Colors.white, fontWeight: FontWeight.bold)),
+                                  child: const Text('氵', style: TextStyle(fontSize: 28, color: Colors.white, fontWeight: FontWeight.bold)),
                                 ),
-                                SizedBox(width: 16),
+                                const SizedBox(width: 16),
                                 Expanded(
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      Text(AppLocalizations.of(context)!.radicalsIndex, style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold)),
-                                      SizedBox(height: 4),
-                                      Text(AppLocalizations.of(context)!.masterBuildingBlocks, style: TextStyle(color: Colors.white70, fontSize: 13)),
+                                      Text(AppLocalizations.of(context)!.radicalsIndex, style: const TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold)),
+                                      const SizedBox(height: 4),
+                                      Text(AppLocalizations.of(context)!.masterBuildingBlocks, style: const TextStyle(color: Colors.white70, fontSize: 13)),
                                     ],
                                   ),
                                 ),
-                                Icon(Icons.arrow_forward_ios, color: Colors.white70, size: 16),
+                                const Icon(Icons.arrow_forward_ios, color: Colors.white70, size: 16),
                               ],
                             ),
                           ),
                         ),
                       ),
-                      SizedBox(height: 24),
+                      const SizedBox(height: 24),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 24.0),
                         child: BouncingButton(
@@ -510,13 +504,13 @@ class _DictionarySearchTab extends ConsumerWidget {
                             child: Row(
                               children: [
                                 Icon(Icons.download_for_offline_outlined, color: Theme.of(context).colorScheme.primary, size: 28),
-                                SizedBox(width: 16),
+                                const SizedBox(width: 16),
                                 Expanded(
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Text("HSK Collections", style: TextStyle(color: Theme.of(context).colorScheme.primary, fontSize: 18, fontWeight: FontWeight.bold)),
-                                      SizedBox(height: 4),
+                                      const SizedBox(height: 4),
                                       Text("Download official HSK collections", style: TextStyle(color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.8), fontSize: 13)),
                                     ],
                                   ),
@@ -527,7 +521,7 @@ class _DictionarySearchTab extends ConsumerWidget {
                           ),
                         ),
                       ),
-                      SizedBox(height: 32),
+                      const SizedBox(height: 32),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 24.0),
                         child: Text(
@@ -535,7 +529,7 @@ class _DictionarySearchTab extends ConsumerWidget {
                           style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
                         ),
                       ),
-                      SizedBox(height: 16),
+                      const SizedBox(height: 16),
                     ],
                   ),
                 ),
@@ -561,7 +555,7 @@ class _DictionarySearchTab extends ConsumerWidget {
                   ),
                 ),
                 loading: () => const SliverFillRemaining(child: Center(child: CircularProgressIndicator())),
-                error: (e, s) => SliverFillRemaining(child: Center(child: Padding(padding: const EdgeInsets.all(32), child: Column(mainAxisSize: MainAxisSize.min, children: [Icon(Icons.library_books_outlined, size: 48, color: Colors.grey), SizedBox(height: 16), Text("We ran into trouble loading the library. Please try again.", textAlign: TextAlign.center, style: TextStyle(color: Colors.grey, fontSize: 14)), SizedBox(height: 16), ElevatedButton.icon(onPressed: () { ref.invalidate(deckControllerProvider); ref.invalidate(flashcardControllerProvider); }, icon: Icon(Icons.refresh, size: 16), label: Text("Retry"))])))),
+                error: (e, s) => SliverFillRemaining(child: Center(child: Padding(padding: const EdgeInsets.all(32), child: Column(mainAxisSize: MainAxisSize.min, children: [const Icon(Icons.library_books_outlined, size: 48, color: Colors.grey), const SizedBox(height: 16), const Text("We ran into trouble loading the library. Please try again.", textAlign: TextAlign.center, style: TextStyle(color: Colors.grey, fontSize: 14)), const SizedBox(height: 16), ElevatedButton.icon(onPressed: () { ref.invalidate(deckControllerProvider); ref.invalidate(flashcardControllerProvider); }, icon: const Icon(Icons.refresh, size: 16), label: const Text("Retry"))])))),
               ),
               const SliverPadding(padding: EdgeInsets.only(bottom: 100)),
             ],
@@ -659,8 +653,8 @@ class _DictionarySearchTab extends ConsumerWidget {
           ],
         );
       },
-      loading: () => Center(child: CircularProgressIndicator()),
-      error: (err, stack) => Center(child: Padding(padding: const EdgeInsets.all(32), child: Column(mainAxisSize: MainAxisSize.min, children: [Icon(Icons.error_outline, size: 48, color: Colors.grey), SizedBox(height: 16), Text("Unable to load this section. Please try again.", textAlign: TextAlign.center, style: TextStyle(color: Colors.grey, fontSize: 14)), SizedBox(height: 16), ElevatedButton.icon(onPressed: () => ref.invalidate(flashcardControllerProvider), icon: Icon(Icons.refresh, size: 16), label: Text("Retry"))]))),
+      loading: () => const Center(child: CircularProgressIndicator()),
+      error: (err, stack) => Center(child: Padding(padding: const EdgeInsets.all(32), child: Column(mainAxisSize: MainAxisSize.min, children: [const Icon(Icons.error_outline, size: 48, color: Colors.grey), const SizedBox(height: 16), const Text("Unable to load this section. Please try again.", textAlign: TextAlign.center, style: TextStyle(color: Colors.grey, fontSize: 14)), const SizedBox(height: 16), ElevatedButton.icon(onPressed: () => ref.invalidate(flashcardControllerProvider), icon: const Icon(Icons.refresh, size: 16), label: const Text("Retry"))]))),
     );
   }
 
@@ -729,7 +723,7 @@ class _DictionarySearchTab extends ConsumerWidget {
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
-                    SizedBox(height: 4),
+                    const SizedBox(height: 4),
                     Text(
                       "$deckCardsCount cards",
                       style: TextStyle(
@@ -774,14 +768,14 @@ class _DictionarySearchTab extends ConsumerWidget {
                 Icon(Icons.search_rounded, size: 48, color: isDark ? Colors.white24 : Colors.black26),
               ],
             ),
-            SizedBox(height: 32),
+            const SizedBox(height: 32),
             Text(
               AppLocalizations.of(context)!.searchYourDictionary,
               style: theme.textTheme.titleMedium?.copyWith(
                 color: theme.colorScheme.onSurface.withValues(alpha: 0.5),
               ),
             ),
-            SizedBox(height: 80), // Padding for the FABs
+            const SizedBox(height: 80), // Padding for the FABs
           ],
         ),
       ),
@@ -829,7 +823,7 @@ class _RadicalLibraryTabState extends ConsumerState<_RadicalLibraryTab> {
 
   @override
   Widget build(BuildContext context) {
-    if (_isLoading) return Center(child: CircularProgressIndicator());
+    if (_isLoading) return const Center(child: CircularProgressIndicator());
 
     final filteredRadicals = _radicals.entries.where((entry) {
       final query = widget.searchQuery.toLowerCase();
@@ -913,7 +907,7 @@ class _RadicalCard extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(radical, style: const TextStyle(fontSize: 48, fontWeight: FontWeight.bold, color: Colors.redAccent)),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Text(
               info['name'],
               textAlign: TextAlign.center,
@@ -1031,7 +1025,7 @@ class _DictionaryItemState extends ConsumerState<_DictionaryItem> {
               ),
             ),
             
-            SizedBox(width: 16),
+            const SizedBox(width: 16),
             
             // Middle: Pinyin & Definition
             Expanded(
@@ -1048,7 +1042,7 @@ class _DictionaryItemState extends ConsumerState<_DictionaryItem> {
                       letterSpacing: 0.5,
                     ),
                   ),
-                  SizedBox(height: 4),
+                  const SizedBox(height: 4),
                   if (widget.card.hskLevel == 0)
                     Container(
                       margin: const EdgeInsets.only(bottom: 6),
@@ -1062,7 +1056,7 @@ class _DictionaryItemState extends ConsumerState<_DictionaryItem> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Icon(Icons.auto_awesome, size: 10, color: Colors.purple.shade400),
-                          SizedBox(width: 4),
+                          const SizedBox(width: 4),
                           Text(
                             AppLocalizations.of(context)!.aiGenerated,
                             style: TextStyle(
@@ -1092,7 +1086,7 @@ class _DictionaryItemState extends ConsumerState<_DictionaryItem> {
             
             // Right: Mastery Seal
             if (widget.isInLibrary) ...[
-              SizedBox(width: 12),
+              const SizedBox(width: 12),
               MasterySeal(
                 progress: masteryProgress,
                 isMastered: isMastered,
@@ -1100,7 +1094,7 @@ class _DictionaryItemState extends ConsumerState<_DictionaryItem> {
               ),
             ] else ...[
               // Placeholder for alignment if needed, or just blank
-              SizedBox(width: 48), 
+              const SizedBox(width: 48), 
             ],
           ],
         ),

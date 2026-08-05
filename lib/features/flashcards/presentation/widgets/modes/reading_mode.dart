@@ -104,7 +104,7 @@ class _ReadingModeWidgetState extends ConsumerState<ReadingModeWidget> {
                                 alignment: Alignment.bottomCenter,
                                 child: Text(
                                   AppLocalizations.of(context)!.tapToReveal,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontSize: 16,
                                     color: Colors.grey,
                                     fontWeight: FontWeight.bold,
@@ -123,7 +123,7 @@ class _ReadingModeWidgetState extends ConsumerState<ReadingModeWidget> {
                                     text: widget.card.pinyin,
                                     style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
                                   ),
-                                  SizedBox(height: 16),
+                                  const SizedBox(height: 16),
                                   Text(
                                     widget.card.definition,
                                     style: const TextStyle(fontSize: 20),
@@ -157,7 +157,7 @@ class _ReadingModeWidgetState extends ConsumerState<ReadingModeWidget> {
                         color: isDark ? Colors.white54 : Colors.black45,
                       ),
                     ),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     Text(
                       "⬅️ Again    ➡️ Good    ⬆️ Easy    ⬇️ Hard",
                       style: TextStyle(

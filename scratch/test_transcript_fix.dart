@@ -184,11 +184,11 @@ String _parseXmlTranscript(String xml) {
     // Remove XML tags
     var text = xml.replaceAll(RegExp(r'<[^>]+>'), '');
     // Decode HTML entities using character codes to avoid formatter issues
-    final amp = String.fromCharCode(38) + 'amp;';
-    final lt = String.fromCharCode(38) + 'lt;';
-    final gt = String.fromCharCode(38) + 'gt;';
-    final quot = String.fromCharCode(38) + 'quot;';
-    final apos = String.fromCharCode(38) + 'apos;';
+    final amp = '${String.fromCharCode(38)}amp;';
+    final lt = '${String.fromCharCode(38)}lt;';
+    final gt = '${String.fromCharCode(38)}gt;';
+    final quot = '${String.fromCharCode(38)}quot;';
+    final apos = '${String.fromCharCode(38)}apos;';
     text = text
         .replaceAll(amp, String.fromCharCode(38))
         .replaceAll(lt, String.fromCharCode(60))

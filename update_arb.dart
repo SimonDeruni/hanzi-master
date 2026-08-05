@@ -14,7 +14,7 @@ void main() {
       if (file.path.endsWith('app_en.arb')) {
         data['@appLanguage'] = {'description': 'Label for the app language setting'};
       }
-      file.writeAsStringSync(JsonEncoder.withIndent('  ').convert(data));
+      file.writeAsStringSync(const JsonEncoder.withIndent('  ').convert(data));
       print('Updated ${file.path}');
     }
   }

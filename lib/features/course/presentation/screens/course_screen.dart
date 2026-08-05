@@ -56,9 +56,9 @@ class CourseScreen extends ConsumerWidget {
             child: asyncUnits.when(
               data: (units) {
                 final List<dynamic> viewItems = [];
-                viewItems.add(SizedBox(height: 120)); 
+                viewItems.add(const SizedBox(height: 120)); 
                 viewItems.add(const InkStoneWidget());
-                viewItems.add(SizedBox(height: 40));
+                viewItems.add(const SizedBox(height: 40));
 
                 for (int i = 0; i < units.length; i++) {
                   final unit = units[i];
@@ -89,10 +89,10 @@ class CourseScreen extends ConsumerWidget {
                       labelSuffix: suffix,
                     ));
                   }
-                  viewItems.add(SizedBox(height: 100));
+                  viewItems.add(const SizedBox(height: 100));
                 }
 
-                viewItems.add(SizedBox(height: 200));
+                viewItems.add(const SizedBox(height: 200));
 
                 return CustomScrollView(
                   cacheExtent: 500,
@@ -121,7 +121,7 @@ class CourseScreen extends ConsumerWidget {
                   ],
                 );
               },
-              loading: () => Center(child: CircularProgressIndicator(color: Colors.brown)),
+              loading: () => const Center(child: CircularProgressIndicator(color: Colors.brown)),
               error: (err, stack) => Center(child: Text("${l10n?.errorPrefix}$err", style: const TextStyle(color: Colors.red))),
             ),
           ),
@@ -136,8 +136,8 @@ class CourseScreen extends ConsumerWidget {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        CircularProgressIndicator(color: Colors.white),
-                        SizedBox(height: 16),
+                        const CircularProgressIndicator(color: Colors.white),
+                        const SizedBox(height: 16),
                         Text(l10n?.initializingLibrary ?? "Initializing Library...", style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
                       ],
                     ),
@@ -158,7 +158,7 @@ class CourseScreen extends ConsumerWidget {
           Navigator.push(context, SwipeBackPageRoute(builder: (context) => QuizScreen(availableCards: cards)));
         },
         label: Text(l10n?.practiceQuiz ?? "PRACTICE QUIZ"),
-        icon: Icon(Icons.quiz),
+        icon: const Icon(Icons.quiz),
         backgroundColor: Colors.indigo,
       ),
     );

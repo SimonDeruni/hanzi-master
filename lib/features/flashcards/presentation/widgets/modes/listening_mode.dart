@@ -157,12 +157,12 @@ class _ListeningModeWidgetState extends ConsumerState<ListeningModeWidget> {
                                           ),
                                         ],
                                       ),
-                                      child: Row(
+                                      child: const Row(
                                         mainAxisSize: MainAxisSize.min,
                                         children: [
-                                          const Icon(Icons.volume_up_rounded, color: Colors.white, size: 28),
-                                          const SizedBox(width: 12),
-                                          const Text(
+                                          Icon(Icons.volume_up_rounded, color: Colors.white, size: 28),
+                                          SizedBox(width: 12),
+                                          Text(
                                             'Tap to listen again',
                                             style: TextStyle(
                                               color: Colors.white,
@@ -186,7 +186,7 @@ class _ListeningModeWidgetState extends ConsumerState<ListeningModeWidget> {
                                 alignment: Alignment.bottomCenter,
                                 child: Text(
                                   AppLocalizations.of(context)!.tapCardToReveal,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontSize: 16,
                                     color: Colors.grey,
                                     fontWeight: FontWeight.bold,
@@ -205,12 +205,12 @@ class _ListeningModeWidgetState extends ConsumerState<ListeningModeWidget> {
                                     fit: BoxFit.scaleDown,
                                     child: _buildColoredHanzi(widget.card.hanzi, widget.card.pinyin, isDark),
                                   ),
-                                  SizedBox(height: 8),
+                                  const SizedBox(height: 8),
                                   PinyinText(
                                     text: widget.card.pinyin,
                                     style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
                                   ),
-                                  SizedBox(height: 16),
+                                  const SizedBox(height: 16),
                                   Expanded(
                                     child: SingleChildScrollView(
                                       child: Text(
@@ -248,7 +248,7 @@ class _ListeningModeWidgetState extends ConsumerState<ListeningModeWidget> {
                         color: isDark ? Colors.white54 : Colors.black45,
                       ),
                     ),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     Text(
                       "⬅️ Again    ➡️ Good    ⬆️ Easy    ⬇️ Hard",
                       style: TextStyle(

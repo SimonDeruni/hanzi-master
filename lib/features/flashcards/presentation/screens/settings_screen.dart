@@ -220,7 +220,7 @@ class SettingsScreen extends ConsumerWidget {
         backgroundColor: iconColor.withValues(alpha: 0.1),
         child: Icon(icon, color: iconColor),
       ),
-      activeColor: iconColor,
+      activeThumbColor: iconColor,
     );
   }
 
@@ -509,7 +509,7 @@ Widget _buildNotifToggle({
       Switch(
         value: value,
         onChanged: onChanged,
-        activeColor: Colors.amber,
+        activeThumbColor: Colors.amber,
       ),
     ],
   );

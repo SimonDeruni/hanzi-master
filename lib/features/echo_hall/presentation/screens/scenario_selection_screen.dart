@@ -443,7 +443,7 @@ class _ScenarioSelectionScreenState extends ConsumerState<ScenarioSelectionScree
                 borderRadius: BorderRadius.circular(24),
                 border: Border.all(color: Colors.white24),
               ),
-              child: Column(
+              child: const Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   SizedBox(
@@ -452,15 +452,15 @@ class _ScenarioSelectionScreenState extends ConsumerState<ScenarioSelectionScree
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         ShimmerSkeleton(widthFactor: 0.8, isDark: true, height: 12),
-                        const SizedBox(height: 12),
+                        SizedBox(height: 12),
                         ShimmerSkeleton(widthFactor: 0.6, isDark: true, height: 12),
-                        const SizedBox(height: 12),
+                        SizedBox(height: 12),
                         ShimmerSkeleton(widthFactor: 0.9, isDark: true, height: 12),
                       ],
                     ),
                   ),
-                  const SizedBox(height: 32),
-                  const Text(
+                  SizedBox(height: 32),
+                  Text(
                     "Forging Scenario...",
                     style: TextStyle(
                       color: Colors.white,

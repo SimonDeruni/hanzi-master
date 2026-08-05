@@ -92,7 +92,7 @@ class _DiscoveryStepState extends ConsumerState<DiscoveryStep> with SingleTicker
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(AppLocalizations.of(context)!.discovery, style: TextStyle(fontSize: 14, letterSpacing: 2, color: Colors.grey, fontWeight: FontWeight.bold)),
+        Text(AppLocalizations.of(context)!.discovery, style: const TextStyle(fontSize: 14, letterSpacing: 2, color: Colors.grey, fontWeight: FontWeight.bold)),
         const SizedBox(height: 40),
         
         // Large Hanzi
@@ -187,7 +187,7 @@ class _DiscoveryStepState extends ConsumerState<DiscoveryStep> with SingleTicker
                 backgroundColor: const Color(0xFF1A1A1B),
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
               ),
-              child: Text(AppLocalizations.of(context)!.startLearning, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color(0xFFFDFCF0), letterSpacing: 1.2)),
+              child: Text(AppLocalizations.of(context)!.startLearning, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color(0xFFFDFCF0), letterSpacing: 1.2)),
             ),
           ),
         ),

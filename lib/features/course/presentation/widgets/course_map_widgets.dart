@@ -53,7 +53,7 @@ class UnitHeader extends StatelessWidget {
               builder: (context) => UnitIntroSheet(unit: unit),
             ),
             icon: const Icon(Icons.menu_book, size: 16),
-            label: Text(l10n?.unitIntro?.toUpperCase() ?? "UNIT INTRO", style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, letterSpacing: 1)),
+            label: Text(l10n?.unitIntro.toUpperCase() ?? "UNIT INTRO", style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, letterSpacing: 1)),
             style: OutlinedButton.styleFrom(
               foregroundColor: Colors.brown,
               side: const BorderSide(color: Colors.brown, width: 1),

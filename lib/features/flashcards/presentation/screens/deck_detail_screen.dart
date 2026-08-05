@@ -85,7 +85,7 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
               ),
             );
           },
-          icon: Icon(Icons.add),
+          icon: const Icon(Icons.add),
           label: Text(AppLocalizations.of(context)!.addCards),
           backgroundColor: Colors.indigo,
           foregroundColor: Colors.white,
@@ -167,7 +167,7 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                       ),
                       if (widget.deck.id != 'default')
                         IconButton(
-                          icon: Icon(Icons.delete_outline, color: Colors.redAccent),
+                          icon: const Icon(Icons.delete_outline, color: Colors.redAccent),
                           onPressed: () async {
                             final bool? confirm = await showDialog<bool>(
                               context: context,
@@ -252,15 +252,15 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                                       child: Row(
                                         mainAxisAlignment: MainAxisAlignment.center,
                                         children: [
-                                          Icon(Icons.play_arrow_rounded, size: 24, color: Colors.white),
-                                          SizedBox(width: 8),
-                                          Text(AppLocalizations.of(context)!.review, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white)),
+                                          const Icon(Icons.play_arrow_rounded, size: 24, color: Colors.white),
+                                          const SizedBox(width: 8),
+                                          Text(AppLocalizations.of(context)!.review, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white)),
                                         ],
                                       ),
                                     ),
                                   ),
                                 ),
-                                SizedBox(width: 12),
+                                const SizedBox(width: 12),
                                 Expanded(
                                   flex: 2,
                                   child: SizedBox(
@@ -286,9 +286,9 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                                       child: Row(
                                         mainAxisAlignment: MainAxisAlignment.center,
                                         children: [
-                                          Icon(Icons.auto_awesome, size: 18),
-                                          SizedBox(width: 6),
-                                          Text(AppLocalizations.of(context)!.story, style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+                                          const Icon(Icons.auto_awesome, size: 18),
+                                          const SizedBox(width: 6),
+                                          Text(AppLocalizations.of(context)!.story, style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
                                         ],
                                       ),
                                     ),
@@ -312,7 +312,7 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                                   side: BorderSide(color: isDark ? Colors.tealAccent[400]!.withValues(alpha: 0.5) : Colors.teal[700]!.withValues(alpha: 0.5), width: 1.5),
                                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                                 ),
-                                child: Row(
+                                child: const Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Icon(Icons.record_voice_over, size: 18),
@@ -358,7 +358,7 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                             controller: _searchController,
                             hintText: "Search character, pinyin...",
                             decoration: InputDecoration(
-                              prefixIcon: Icon(Icons.search),
+                              prefixIcon: const Icon(Icons.search),
                               filled: true,
                               fillColor: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.black.withValues(alpha: 0.05),
                               border: OutlineInputBorder(borderRadius: BorderRadius.circular(16), borderSide: BorderSide.none),
@@ -366,7 +366,7 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                             ),
                             suffixIcon: _searchQuery.isNotEmpty 
                                 ? IconButton(
-                                    icon: Icon(Icons.clear), 
+                                    icon: const Icon(Icons.clear), 
                                     onPressed: () {
                                       _searchController.clear();
                                       setState(() => _searchQuery = '');
@@ -383,7 +383,7 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Icon(Icons.inbox_outlined, size: 80, color: Colors.grey.withValues(alpha: 0.3)),
-                                  SizedBox(height: 16),
+                                  const SizedBox(height: 16),
                                   Text(
                                     AppLocalizations.of(context)!.thisDeckIsEmpty,
                                     style: TextStyle(
@@ -391,7 +391,7 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                                       color: isDark ? Colors.white54 : Colors.black54,
                                     ),
                                   ),
-                                  SizedBox(height: 8),
+                                  const SizedBox(height: 8),
                                   Text(
                                     AppLocalizations.of(context)!.tapTheAddCards,
                                     style: TextStyle(
@@ -428,7 +428,7 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                                             color: Colors.redAccent,
                                             borderRadius: BorderRadius.circular(16),
                                           ),
-                                          child: Icon(Icons.delete_sweep, color: Colors.white, size: 32),
+                                          child: const Icon(Icons.delete_sweep, color: Colors.white, size: 32),
                                         ),
                                         confirmDismiss: (direction) async {
                                           return await showDialog<bool>(
@@ -481,7 +481,7 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
               ),
             );
           },
-          loading: () => Center(child: CircularProgressIndicator()),
+          loading: () => const Center(child: CircularProgressIndicator()),
           error: (err, stack) => Center(child: Text('Error: $err')),
         ),
       ),
@@ -532,7 +532,7 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                 ),
               ),
             ),
-            SizedBox(width: 20),
+            const SizedBox(width: 20),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -546,7 +546,7 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                       letterSpacing: 1.0,
                     ),
                   ),
-                  SizedBox(height: 6),
+                  const SizedBox(height: 6),
                   if (card.hskLevel == 0 && widget.deck.id == 'default')
                     Container(
                       margin: const EdgeInsets.only(bottom: 8),
@@ -560,7 +560,7 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Icon(Icons.auto_awesome, size: 10, color: Colors.purple.shade400),
-                          SizedBox(width: 4),
+                          const SizedBox(width: 4),
                           Text(
                             AppLocalizations.of(context)!.aiGenerated,
                             style: TextStyle(
@@ -582,7 +582,7 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  SizedBox(height: 8),
+                  const SizedBox(height: 8),
                   _buildStatusBadge(context, card, isDark),
                 ],
               ),

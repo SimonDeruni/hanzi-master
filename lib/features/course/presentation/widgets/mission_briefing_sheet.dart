@@ -152,7 +152,7 @@ class MissionBriefingSheet extends StatelessWidget {
                         elevation: 4,
                       ),
                       icon: const Icon(Icons.auto_awesome),
-                      label: Text(AppLocalizations.of(context)!.beginJourney, style: TextStyle(fontWeight: FontWeight.bold, letterSpacing: 1.2)),
+                      label: Text(AppLocalizations.of(context)!.beginJourney, style: const TextStyle(fontWeight: FontWeight.bold, letterSpacing: 1.2)),
                     ),
                   ),
                 ),

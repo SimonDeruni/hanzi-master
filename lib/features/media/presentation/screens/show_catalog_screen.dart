@@ -307,9 +307,9 @@ class _BookmarkedRow extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Padding(
-          padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
-          child: const Row(
+        const Padding(
+          padding: EdgeInsets.fromLTRB(16, 16, 16, 8),
+          child: Row(
             children: [
               Icon(Icons.bookmark, color: Colors.amber, size: 18),
               SizedBox(width: 6),

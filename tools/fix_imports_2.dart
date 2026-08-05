@@ -12,7 +12,7 @@ void main() {
     if (file.existsSync()) {
       var content = file.readAsStringSync();
       if (!content.contains('app_localizations.dart')) {
-        content = "import 'package:flutter_gen/gen_l10n/app_localizations.dart';\n" + content;
+        content = "import 'package:flutter_gen/gen_l10n/app_localizations.dart';\n$content";
         file.writeAsStringSync(content);
         print('Added import to $path');
       }

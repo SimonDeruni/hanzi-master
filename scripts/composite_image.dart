@@ -2,9 +2,9 @@ import 'dart:io';
 import 'package:image/image.dart' as img;
 
 void main() async {
-  final mockupPath = r'C:\Users\simon\Documents\sinospark_website\assets\mockup.png';
-  final clipboardPath = r'C:\Users\simon\Documents\sinospark_website\assets\clipboard_image.png';
-  final outPath = r'C:\Users\simon\Documents\sinospark_website\assets\mockup_updated.png';
+  const mockupPath = r'C:\Users\simon\Documents\sinospark_website\assets\mockup.png';
+  const clipboardPath = r'C:\Users\simon\Documents\sinospark_website\assets\clipboard_image.png';
+  const outPath = r'C:\Users\simon\Documents\sinospark_website\assets\mockup_updated.png';
 
   final mockupFile = File(mockupPath);
   final clipboardFile = File(clipboardPath);

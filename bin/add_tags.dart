@@ -1,9 +1,9 @@
 import 'dart:io';
-import '../lib/features/media/data/repositories/shows_data.dart';
+import 'package:hanzi_master/features/media/data/repositories/shows_data.dart';
 
 List<String> _generateTags(String title, String channel) {
   List<String> tags = [];
-  final t = title.toLowerCase() + " " + channel.toLowerCase();
+  final t = "${title.toLowerCase()} ${channel.toLowerCase()}";
   
   if (t.contains('古装') || t.contains('historical') || t.contains('wuxia') || t.contains('长安') || t.contains('大唐')) {
     tags.add('Historical');

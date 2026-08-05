@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/core/services/revenuecat_service.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
-import 'dart:io';
 
 class PaywallScreen extends ConsumerStatefulWidget {
   final VoidCallback? onClose;

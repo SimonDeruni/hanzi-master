@@ -5,8 +5,8 @@ import 'package:xml/xml.dart';
 void main() async {
   print('=== Fixing Mandarin Bean Summaries ===\n');
 
-  final projectId = 'hanzi-master-bcef9';
-  final collectionUrl = 'https://firestore.googleapis.com/v1/projects/$projectId/databases/(default)/documents/mandarin_bean_stories';
+  const projectId = 'hanzi-master-bcef9';
+  const collectionUrl = 'https://firestore.googleapis.com/v1/projects/$projectId/databases/(default)/documents/mandarin_bean_stories';
 
   // 1. Delete all existing documents to prevent duplicates
   print('Fetching existing documents to delete...');
@@ -91,8 +91,9 @@ void main() async {
         int hskLevel = 0;
         for (final cat in categories) {
           final c = cat.toLowerCase().replaceAll(' ', '');
-          if (c.contains('hsk1')) hskLevel = 1;
-          else if (c.contains('hsk2')) hskLevel = 2;
+          if (c.contains('hsk1')) {
+            hskLevel = 1;
+          } else if (c.contains('hsk2')) hskLevel = 2;
           else if (c.contains('hsk3')) hskLevel = 3;
           else if (c.contains('hsk4')) hskLevel = 4;
           else if (c.contains('hsk5')) hskLevel = 5;
@@ -100,7 +101,7 @@ void main() async {
         }
 
         // Determine theme
-        final fullText = (title + ' ' + summary + ' ' + categories.join(' ')).toLowerCase();
+        final fullText = ('$title $summary ${categories.join(' ')}').toLowerCase();
         String theme = 'Contemporary Stories';
         if (fullText.contains('food') || fullText.contains('dumpling') || fullText.contains('eat') || fullText.contains('recipe') || fullText.contains('restaurant')) {
           theme = 'Food & Dining';

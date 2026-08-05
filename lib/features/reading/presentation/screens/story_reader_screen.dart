@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter/services.dart';
 import 'package:hanzi_master/core/services/audio_service.dart';
 import '../providers/story_controller.dart';
 import '../../../../core/services/gemini_service.dart';

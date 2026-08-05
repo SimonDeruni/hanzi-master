@@ -118,7 +118,7 @@ void main() async {
   if (newEntries.isNotEmpty) {
     final closingIdx = content.lastIndexOf("];");
     if (closingIdx != -1) {
-      final newContent = content.substring(0, closingIdx) + newEntries.join("\n") + "\n  " + content.substring(closingIdx);
+      final newContent = "${content.substring(0, closingIdx)}${newEntries.join("\n")}\n  ${content.substring(closingIdx)}";
       await file.writeAsString(newContent);
       print("Successfully added ${newEntries.length} shows.");
     }

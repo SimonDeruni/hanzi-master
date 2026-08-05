@@ -116,7 +116,7 @@ class _ContextStepState extends ConsumerState<ContextStep> {
       children: [
         Text(
           AppLocalizations.of(context)!.step6Context,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
             letterSpacing: 2,

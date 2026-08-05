@@ -4,16 +4,12 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:http/http.dart' as http;
-import 'package:google_generative_ai/google_generative_ai.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:hanzi_master/features/media/domain/models/media_briefing.dart';
 import 'package:hanzi_master/features/media/domain/models/video_transcript.dart';
 import '../../features/flashcards/domain/entities/flashcard.dart';
 import 'api_key_pool.dart';
 import 'analytics_service.dart';
 import '../providers/translation_language_provider.dart';
-import 'gemini_proxy_client.dart';
-import 'revenuecat_service.dart';
 import '../utils/pinyin_utils.dart';
 
 class PremiumRequiredException implements Exception {
@@ -722,7 +718,7 @@ CRITICAL: Place the $targetLanguage translation in the "english" JSON keys!
 
   Future<({String fullText, List<Map<String, dynamic>> blocks})>
       extractTextFromImageDetailed(List<int> imageBytes) async {
-    final prompt = '''
+    const prompt = '''
 Extract all Chinese characters from this image. The image is a photograph taken with a camera.
 
 Return a JSON object with the full text and the pixel position of each distinct text region.
@@ -1713,9 +1709,9 @@ Respond ONLY in valid JSON format like:
             bool isOmitted = (wErrorType == 'Omission');
 
             if (wErrorType == 'None') {
-              if (wAccuracy >= 80)
+              if (wAccuracy >= 80) {
                 isCorrect = true;
-              else if (wAccuracy >= 60) isPartial = true;
+              } else if (wAccuracy >= 60) isPartial = true;
             }
 
             if (!isOmitted && wErrorType != 'Insertion') {
@@ -1724,9 +1720,9 @@ Respond ONLY in valid JSON format like:
             }
 
             String feedback = "";
-            if (wErrorType == 'Omission')
+            if (wErrorType == 'Omission') {
               feedback = "You missed this word.";
-            else if (wErrorType == 'Insertion')
+            } else if (wErrorType == 'Insertion')
               feedback = "Extra word added here.";
             else if (wErrorType == 'Mispronunciation')
               feedback = "Pronunciation was inaccurate.";
@@ -1772,10 +1768,10 @@ Respond ONLY in valid JSON format like:
         }
 
         String overallFeedback = "Good effort! Keep practicing.";
-        if (fairScore >= 90)
+        if (fairScore >= 90) {
           overallFeedback =
               "Perfect pronunciation! Sounds like a native speaker.";
-        else if (fairScore >= 80)
+        } else if (fairScore >= 80)
           overallFeedback = "Great job! A few minor tone inaccuracies.";
         else if (fairScore >= 60)
           overallFeedback = "Not bad, but your tones need some work.";
@@ -1943,9 +1939,9 @@ Respond ONLY in valid JSON format like:
             }
 
             String feedback = "";
-            if (wErrorType == 'Omission')
+            if (wErrorType == 'Omission') {
               feedback = "You missed this word.";
-            else if (wErrorType == 'Insertion')
+            } else if (wErrorType == 'Insertion')
               feedback = "Extra word added here.";
             else if (wErrorType == 'Mispronunciation')
               feedback =
