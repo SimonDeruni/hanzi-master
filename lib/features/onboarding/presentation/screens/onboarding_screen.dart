@@ -5,6 +5,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:hanzi_master/features/onboarding/presentation/screens/notification_permission_screen.dart';
 import 'package:hanzi_master/features/auth/presentation/screens/auth_screen.dart';
+import 'package:hanzi_master/features/flashcards/presentation/screens/main_navigation_screen.dart';
 import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 
@@ -49,6 +50,17 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
         }
       });
     });
+  }
+
+  void _completeOnboarding() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('has_seen_onboarding', true);
+    if (mounted) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const MainNavigationScreen()),
+      );
+    }
   }
 
   @override
@@ -494,7 +506,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
           if (_calibrationComplete)
             _buildPrimaryButton(
               "Start 7-Day Free Trial",
-              _nextPage,
+              _completeOnboarding,
             ).animate().fadeIn(duration: 500.ms).slideY(),
         ],
       ),

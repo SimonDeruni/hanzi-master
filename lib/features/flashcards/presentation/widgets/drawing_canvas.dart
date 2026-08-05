@@ -837,7 +837,9 @@ class _UserDrawingPainter extends CustomPainter {
     
     // Default paint for the whole character
     final defaultPaint = Paint()
-      ..color = gradingResult == null ? carbonInk : (gradingResult! > 40 ? Colors.green : Colors.red)
+      ..color = gradingResult == null 
+          ? (isDark ? Colors.white : carbonInk)
+          : (gradingResult! > 40 ? Colors.green : Colors.red)
       ..strokeWidth = scale * 44.0
       ..strokeCap = StrokeCap.round
       ..strokeJoin = StrokeJoin.round
@@ -976,7 +978,7 @@ class _ProStrokePainter extends CustomPainter {
     final totalStrokes = paths.length;
     final totalTime = progress * totalStrokes;
     const Color carbonInk = Color(0xFF1A1A1B);
-    const inkColor = carbonInk;
+    final inkColor = isDark ? Colors.white : carbonInk;
 
     for (int i = 0; i < totalStrokes; i++) {
       final strokeProgress = (totalTime - i).clamp(0.0, 1.0);
