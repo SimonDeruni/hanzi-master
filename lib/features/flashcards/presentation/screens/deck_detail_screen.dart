@@ -13,6 +13,7 @@ import 'package:hanzi_master/features/flashcards/presentation/screens/deck_revie
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
 import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
 import 'package:hanzi_master/core/services/analytics_service.dart';
+import 'package:hanzi_master/shared/widgets/staggered_list_item.dart';
 
 import 'package:hanzi_master/features/flashcards/presentation/widgets/deck_settings_sheet.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
@@ -413,56 +414,59 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                                 itemCount: filteredCards.length,
                                 itemBuilder: (context, index) {
                                   final card = filteredCards[index];
-                                  return Padding(
-                                    padding: const EdgeInsets.only(bottom: 12.0),
-                                    child: widget.deck.id == 'default' ? _buildCardContent(context, card, isDark) : Dismissible(
-                                      key: Key('dismiss_${card.id}'),
-                                      direction: DismissDirection.endToStart,
-                                      background: Container(
-                                        alignment: Alignment.centerRight,
-                                        padding: const EdgeInsets.symmetric(horizontal: 24),
-                                        decoration: BoxDecoration(
-                                          color: Colors.redAccent,
-                                          borderRadius: BorderRadius.circular(16),
-                                        ),
-                                        child: Icon(Icons.delete_sweep, color: Colors.white, size: 32),
-                                      ),
-                                      confirmDismiss: (direction) async {
-                                        return await showDialog<bool>(
-                                          context: context,
-                                          builder: (context) {
-                                            final dialogIsDark = Theme.of(context).brightness == Brightness.dark;
-                                            return AlertDialog(
-                                              backgroundColor: dialogIsDark ? const Color(0xFF2A2A2C) : const Color(0xFFFDFCF0),
-                                              title: Text(AppLocalizations.of(context)!.removeCard, style: TextStyle(color: dialogIsDark ? Colors.white : Colors.black)),
-                                              content: Text("Remove ${card.hanzi} from this deck?", style: TextStyle(color: dialogIsDark ? Colors.white70 : Colors.black87)),
-                                              actions: [
-                                                TextButton(onPressed: () => Navigator.pop(context, false), child: Text(AppLocalizations.of(context)!.cancel, style: TextStyle(color: dialogIsDark ? Colors.white60 : Colors.grey))),
-                                                TextButton(onPressed: () => Navigator.pop(context, true), child: Text(AppLocalizations.of(context)!.remove, style: const TextStyle(color: Colors.red))),
-                                              ],
-                                            );
-                                          },
-                                        );
-                                      },
-                                      onDismissed: (direction) {
-                                        final updatedCard = card.copyWith(deckId: 'default');
-                                        ref.read(flashcardControllerProvider.notifier).updateFlashcard(updatedCard);
-                                        ScaffoldMessenger.of(context).showSnackBar(
-                                          SnackBar(
-                                            content: Text(AppLocalizations.of(context)!.removedFromDeck(card.hanzi)),
-                                            backgroundColor: Colors.redAccent,
-                                            duration: const Duration(seconds: 2),
-                                            action: SnackBarAction(
-                                              label: 'UNDO',
-                                              textColor: Colors.white,
-                                              onPressed: () {
-                                                ref.read(flashcardControllerProvider.notifier).updateFlashcard(card);
-                                              },
-                                            ),
+                                  return StaggeredListItem(
+                                    index: index,
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(bottom: 12.0),
+                                      child: widget.deck.id == 'default' ? _buildCardContent(context, card, isDark) : Dismissible(
+                                        key: Key('dismiss_${card.id}'),
+                                        direction: DismissDirection.endToStart,
+                                        background: Container(
+                                          alignment: Alignment.centerRight,
+                                          padding: const EdgeInsets.symmetric(horizontal: 24),
+                                          decoration: BoxDecoration(
+                                            color: Colors.redAccent,
+                                            borderRadius: BorderRadius.circular(16),
                                           ),
-                                        );
-                                      },
-                                      child: _buildCardContent(context, card, isDark),
+                                          child: Icon(Icons.delete_sweep, color: Colors.white, size: 32),
+                                        ),
+                                        confirmDismiss: (direction) async {
+                                          return await showDialog<bool>(
+                                            context: context,
+                                            builder: (context) {
+                                              final dialogIsDark = Theme.of(context).brightness == Brightness.dark;
+                                              return AlertDialog(
+                                                backgroundColor: dialogIsDark ? const Color(0xFF2A2A2C) : const Color(0xFFFDFCF0),
+                                                title: Text(AppLocalizations.of(context)!.removeCard, style: TextStyle(color: dialogIsDark ? Colors.white : Colors.black)),
+                                                content: Text("Remove ${card.hanzi} from this deck?", style: TextStyle(color: dialogIsDark ? Colors.white70 : Colors.black87)),
+                                                actions: [
+                                                  TextButton(onPressed: () => Navigator.pop(context, false), child: Text(AppLocalizations.of(context)!.cancel, style: TextStyle(color: dialogIsDark ? Colors.white60 : Colors.grey))),
+                                                  TextButton(onPressed: () => Navigator.pop(context, true), child: Text(AppLocalizations.of(context)!.remove, style: const TextStyle(color: Colors.red))),
+                                                ],
+                                              );
+                                            },
+                                          );
+                                        },
+                                        onDismissed: (direction) {
+                                          final updatedCard = card.copyWith(deckId: 'default');
+                                          ref.read(flashcardControllerProvider.notifier).updateFlashcard(updatedCard);
+                                          ScaffoldMessenger.of(context).showSnackBar(
+                                            SnackBar(
+                                              content: Text(AppLocalizations.of(context)!.removedFromDeck(card.hanzi)),
+                                              backgroundColor: Colors.redAccent,
+                                              duration: const Duration(seconds: 2),
+                                              action: SnackBarAction(
+                                                label: 'UNDO',
+                                                textColor: Colors.white,
+                                                onPressed: () {
+                                                  ref.read(flashcardControllerProvider.notifier).updateFlashcard(card);
+                                                },
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                        child: _buildCardContent(context, card, isDark),
+                                      ),
                                     ),
                                   );
                                 },

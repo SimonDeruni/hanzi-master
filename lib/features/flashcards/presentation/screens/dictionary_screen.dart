@@ -15,6 +15,7 @@ import 'package:hanzi_master/features/flashcards/presentation/screens/deck_detai
 import 'package:hanzi_master/features/flashcards/presentation/widgets/ai_deck_generator_sheet.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/settings_screen.dart';
 import 'package:hanzi_master/core/utils/pinyin_utils.dart';
+import 'package:hanzi_master/shared/widgets/staggered_list_item.dart';
 import 'package:hanzi_master/shared/widgets/pinyin_text.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/mastery_seal.dart';
@@ -549,7 +550,10 @@ class _DictionarySearchTab extends ConsumerWidget {
                         final deckCardsCount = flashcards.where((c) => c.deckId == deck.id).length;
                         return Padding(
                           padding: const EdgeInsets.only(bottom: 16),
-                          child: _BookshelfVerticalCard(deck: deck, cardCount: deckCardsCount),
+                          child: StaggeredListItem(
+                            index: index,
+                            child: _BookshelfVerticalCard(deck: deck, cardCount: deckCardsCount),
+                          ),
                         );
                       },
                       childCount: decks.length,
@@ -643,7 +647,10 @@ class _DictionarySearchTab extends ConsumerWidget {
               padding: const EdgeInsets.symmetric(vertical: 8),
               sliver: SliverList(
                 delegate: SliverChildBuilderDelegate(
-                  (context, index) => items[index],
+                  (context, index) => StaggeredListItem(
+                    index: index,
+                    child: items[index],
+                  ),
                   childCount: items.length,
                 ),
               ),
@@ -674,12 +681,14 @@ class _DictionarySearchTab extends ConsumerWidget {
             final deck = decks[index];
             final deckCardsCount = allCards.where((c) => c.deckId == deck.id).length;
             
-            return BouncingButton(
-              onPressed: () => Navigator.push(
-                context,
-                SwipeBackPageRoute(builder: (context) => DeckDetailScreen(deck: deck)),
-              ),
-              child: Container(
+            return StaggeredListItem(
+              index: index,
+              child: BouncingButton(
+                onPressed: () => Navigator.push(
+                  context,
+                  SwipeBackPageRoute(builder: (context) => DeckDetailScreen(deck: deck)),
+                ),
+                child: Container(
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
                   color: isDark ? const Color(0xFF2A2A2B) : Colors.white,
@@ -730,6 +739,7 @@ class _DictionarySearchTab extends ConsumerWidget {
                     ),
                   ],
                 ),
+              ),
               ),
             );
           },
