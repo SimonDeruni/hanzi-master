@@ -188,7 +188,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
     } catch (e) {
       if (mounted) {
         setState(() {
-          _errorMessage = "Failed to generate phrase: $e";
+          _errorMessage = "Failed to generate phrase. Please try again.";
           _isLoadingNextPhrase = false;
         });
       }
@@ -1181,8 +1181,10 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                                                 : const Color(0xFF1A1A1B)),
                                       ),
                                       Text(
-                                        "Endless AI Stream • Sentence $_sentenceCount",
-                                        style: TextStyle(
+                                        (_selectedMode == ShadowingMode.customWord || _selectedMode == ShadowingMode.customSentence)
+                                            ? "Single Phrase Practice"
+                                            : "Endless AI Stream • Sentence $_sentenceCount",
+                                        style: const TextStyle(
                                             fontSize: 14,
                                             color: Colors.orange,
                                             fontWeight: FontWeight.w600),
@@ -1197,8 +1199,27 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                         if (_errorMessage != null)
                           Padding(
                             padding: const EdgeInsets.all(16.0),
-                            child: Text(_errorMessage!,
-                                style: const TextStyle(color: Colors.red)),
+                            child: Column(
+                              children: [
+                                Text(_errorMessage!,
+                                    style: const TextStyle(color: Colors.red), textAlign: TextAlign.center),
+                                if (_errorMessage!.contains("Failed to generate phrase")) ...[
+                                  const SizedBox(height: 8),
+                                  ElevatedButton.icon(
+                                    onPressed: () {
+                                      setState(() {
+                                        _errorMessage = null;
+                                      });
+                                      if (_currentPhrase == null) {
+                                        _fetchNextPhrase();
+                                      }
+                                    },
+                                    icon: const Icon(Icons.refresh, size: 16),
+                                    label: const Text("Retry"),
+                                  ),
+                                ]
+                              ],
+                            ),
                           ),
 
                         // Main Content Area
@@ -1306,15 +1327,21 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                                       ),
                                     ),
 
-                                    // Next Button
+                                    // Next Button / Done Button
                                     if (!widget.isCompact)
                                       IconButton(
                                         iconSize: 48,
                                         color: isDark
                                             ? Colors.white70
                                             : Colors.black54,
-                                        icon: const Icon(Icons.skip_next),
-                                        onPressed: _fetchNextPhrase,
+                                        icon: Icon((_selectedMode == ShadowingMode.customWord || _selectedMode == ShadowingMode.customSentence) ? Icons.check_circle_outline : Icons.skip_next),
+                                        onPressed: () {
+                                          if (_selectedMode == ShadowingMode.customWord || _selectedMode == ShadowingMode.customSentence) {
+                                            Navigator.of(context).pop();
+                                          } else {
+                                            _fetchNextPhrase();
+                                          }
+                                        },
                                       ),
                                   ],
                                 ),
