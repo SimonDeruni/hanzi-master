@@ -727,7 +727,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get geminiFlashIsStructuring =>
-      'Gemini Flash structure votre histoire...';
+      'Elaboration de votre histoire...';
 
   @override
   String get aiDeckGenerator => 'GÃ©nÃ©rateur de paquets IA';

@@ -649,9 +649,86 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
             ),
           ),
           SafeArea(
-            child: Stack(
-              children: [
-                Column(
+            child: AnimatedSwitcher(
+              duration: const Duration(milliseconds: 400),
+              child: _isAnalyzing
+                  ? Container(
+                      key: const ValueKey('analyzing'),
+                      color: Colors.transparent,
+                      child: Center(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            AnimatedBuilder(
+                              animation: _analyzePulseController,
+                              builder: (context, child) {
+                                final t = _analyzePulseController.value;
+                                return Container(
+                                  width: 160,
+                                  height: 160,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    gradient: SweepGradient(
+                                      colors: [
+                                        theme.colorScheme.primary.withValues(alpha: 0.0),
+                                        theme.colorScheme.primary.withValues(alpha: 0.4),
+                                        Colors.amber.withValues(alpha: 0.6),
+                                        theme.colorScheme.primary.withValues(alpha: 0.4),
+                                        theme.colorScheme.primary.withValues(alpha: 0.0),
+                                      ],
+                                      transform: GradientRotation(t * 2 * math.pi),
+                                    ),
+                                    border: Border.all(
+                                      color: theme.colorScheme.primary.withValues(
+                                        alpha: 0.5 + 0.3 * (1 + math.sin(t * 2 * math.pi)) / 2,
+                                      ),
+                                      width: 2.5,
+                                    ),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: theme.colorScheme.primary.withValues(alpha: 0.3),
+                                        blurRadius: 30 + 10 * t,
+                                        spreadRadius: 2,
+                                      ),
+                                    ],
+                                  ),
+                                  child: const SizedBox.shrink(),
+                                );
+                              },
+                            ),
+                            const SizedBox(height: 32),
+                            AnimatedSwitcher(
+                              duration: const Duration(milliseconds: 400),
+                              child: Text(
+                                _analyzeStatusText,
+                                key: ValueKey(_analyzeStatusText),
+                                textAlign: TextAlign.center,
+                                style: theme.textTheme.titleMedium?.copyWith(
+                                  color: Colors.white.withValues(alpha: 0.85),
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 12),
+                            SizedBox(
+                              width: 120,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(4),
+                                child: LinearProgressIndicator(
+                                  minHeight: 4,
+                                  backgroundColor: Colors.white12,
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                    theme.colorScheme.primary.withValues(alpha: 0.7),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    )
+                  : Column(
+                      key: const ValueKey('call_ui'),
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(top: 20.0),
@@ -866,90 +943,6 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
                     ),
                   ],
                 ),
-                // Analyzing overlay
-                if (_isAnalyzing)
-                  Positioned.fill(
-                    child: Container(
-                      color: Colors.black.withValues(alpha: 0.1),
-                      child: Center(
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            AnimatedBuilder(
-                              animation: _analyzePulseController,
-                              builder: (context, child) {
-                                final t = _analyzePulseController.value;
-                                return Container(
-                                  width: 160,
-                                  height: 160,
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    gradient: SweepGradient(
-                                      colors: [
-                                        theme.colorScheme.primary.withValues(alpha: 0.0),
-                                        theme.colorScheme.primary.withValues(alpha: 0.4),
-                                        Colors.amber.withValues(alpha: 0.6),
-                                        theme.colorScheme.primary.withValues(alpha: 0.4),
-                                        theme.colorScheme.primary.withValues(alpha: 0.0),
-                                      ],
-                                      transform: GradientRotation(t * 2 * math.pi),
-                                    ),
-                                    border: Border.all(
-                                      color: theme.colorScheme.primary.withValues(
-                                        alpha: 0.5 +
-                                            0.3 *
-                                                (1 + math.sin(t * 2 * math.pi)) /
-                                                2,
-                                      ),
-                                      width: 2.5,
-                                    ),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: theme.colorScheme.primary
-                                            .withValues(alpha: 0.3),
-                                        blurRadius: 30 + 10 * t,
-                                        spreadRadius: 2,
-                                      ),
-                                    ],
-                                  ),
-                                  child: const SizedBox.shrink(),
-                                );
-                              },
-                            ),
-                            const SizedBox(height: 32),
-                            AnimatedSwitcher(
-                              duration: const Duration(milliseconds: 400),
-                              child: Text(
-                                _analyzeStatusText,
-                                key: ValueKey(_analyzeStatusText),
-                                textAlign: TextAlign.center,
-                                style: theme.textTheme.titleMedium?.copyWith(
-                                  color: Colors.white.withValues(alpha: 0.85),
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ),
-                            const SizedBox(height: 12),
-                            SizedBox(
-                              width: 120,
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(4),
-                                child: LinearProgressIndicator(
-                                  minHeight: 4,
-                                  backgroundColor: Colors.white12,
-                                  valueColor: AlwaysStoppedAnimation<Color>(
-                                    theme.colorScheme.primary
-                                        .withValues(alpha: 0.7),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-              ],
             ),
           ),
         ],
