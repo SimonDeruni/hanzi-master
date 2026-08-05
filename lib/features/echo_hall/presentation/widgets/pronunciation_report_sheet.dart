@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/core/models/pronunciation_grade.dart';
@@ -19,10 +20,12 @@ class _PronunciationReportSheetState extends ConsumerState<PronunciationReportSh
   Map<String, String>? _intendedMeaning;
   bool _isLoadingIntention = true;
   bool _isRegrading = false;
+  PronunciationGrade? _currentGrade;
 
   @override
   void initState() {
     super.initState();
+    _currentGrade = widget.message.grade;
     if (widget.message.audioPath != null) {
       _fetchIntention();
     } else {
@@ -45,22 +48,48 @@ class _PronunciationReportSheetState extends ConsumerState<PronunciationReportSh
 
   void _handleRegrade() async {
     if (_intendedMeaning == null) return;
+    if (widget.message.audioPath == null) return;
+    
     setState(() => _isRegrading = true);
     
-    await ref.read(conversationControllerProvider.notifier).regradeMessage(
-      widget.message.id,
-      _intendedMeaning!['intendedHanzi'] ?? "",
-      _intendedMeaning!['intendedPinyin'] ?? "",
-    );
-    
-    if (mounted) {
-      Navigator.pop(context); 
+    try {
+      final file = File(widget.message.audioPath!);
+      if (await file.exists()) {
+        final bytes = await file.readAsBytes();
+        final gemini = ref.read(geminiServiceProvider);
+        
+        final intendedHanzi = _intendedMeaning!['intendedHanzi'] ?? "";
+        final intendedPinyin = _intendedMeaning!['intendedPinyin'] ?? "";
+        
+        final gradeMap = await gemini.gradeAudio(bytes, intendedHanzi, intendedPinyin);
+        final newGrade = PronunciationGrade.fromJson(gradeMap);
+        
+        if (mounted) {
+          setState(() {
+            _currentGrade = newGrade;
+            _intendedMeaning = null; // hide the intention box
+          });
+          
+          // Attempt to update global provider if the message exists there
+          ref.read(conversationControllerProvider.notifier).regradeMessage(
+            widget.message.id,
+            intendedHanzi,
+            intendedPinyin,
+          );
+        }
+      }
+    } catch (e) {
+      debugPrint("Error regrading: $e");
+    } finally {
+      if (mounted) {
+        setState(() => _isRegrading = false);
+      }
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final grade = widget.message.grade;
+    final grade = _currentGrade;
     if (grade == null) return const SizedBox.shrink();
 
     final theme = Theme.of(context);

@@ -454,6 +454,7 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
                         painter: _CompletedStrokesPainter(
                           paths: _cachedParsedPaths.sublist(0, (_currentStrokeComplete ? localCurrentIndex + 1 : localCurrentIndex).clamp(0, _cachedParsedPaths.length)),
                           centeringShift: centeringShift,
+                          isDark: isDark,
                         ),
                         size: Size.infinite
                       ),
@@ -476,6 +477,7 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
                               points: currentMedianPoints,
                               progress: _hintController.value,
                               centeringShift: centeringShift,
+                              isDark: isDark,
                             ),
                             size: Size.infinite,
                           ),
@@ -516,6 +518,7 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
                         paths: _cachedParsedPaths,
                         strokeLimit: widget.strokeLimit!,
                         centeringShift: centeringShift,
+                        isDark: isDark,
                       ),
                       size: Size.infinite,
                     ),
@@ -592,7 +595,7 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
               ),
 
               if (widget.showGrade)
-                Positioned(bottom: 10, left: 10, child: Text(AppLocalizations.of(context)!.gradeResult(_gradingResult?.toStringAsFixed(2) ?? "N/A"), style: TextStyle(color: _gradingResult == null ? Colors.black : (_gradingResult! > 40 ? Colors.green : Colors.red), fontSize: 16, fontWeight: FontWeight.bold))),
+                Positioned(bottom: 10, left: 10, child: Text(AppLocalizations.of(context)!.gradeResult(_gradingResult?.toStringAsFixed(2) ?? "N/A"), style: TextStyle(color: _gradingResult == null ? (isDark ? Colors.white : Colors.black) : (_gradingResult! > 40 ? Colors.green : Colors.red), fontSize: 16, fontWeight: FontWeight.bold))),
 
               if (widget.strokeByStrokeMode && !_currentStrokeComplete && !widget.readOnly)
                 Positioned(top: 10, right: 10, child: IconButton.filled(icon: Icon(_isHintAnimating ? Icons.lightbulb : Icons.lightbulb_outline), onPressed: _playHint, style: IconButton.styleFrom(backgroundColor: Colors.amber.withValues(alpha: 0.9), foregroundColor: Colors.white))),
@@ -607,7 +610,8 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
 class _CompletedStrokesPainter extends CustomPainter {
   final List<Path> paths;
   final Offset centeringShift;
-  _CompletedStrokesPainter({required this.paths, required this.centeringShift});
+  final bool isDark;
+  _CompletedStrokesPainter({required this.paths, required this.centeringShift, this.isDark = false});
   @override
   void paint(Canvas canvas, Size size) {
     if (paths.isEmpty) return;
@@ -617,7 +621,7 @@ class _CompletedStrokesPainter extends CustomPainter {
     canvas.scale(scaleX, scaleY);
     canvas.translate(centeringShift.dx, centeringShift.dy);
     final paint = Paint()
-      ..color = const Color(0xFF1A1A1B)
+      ..color = isDark ? Colors.white : const Color(0xFF1A1A1B)
       ..style = PaintingStyle.stroke
       ..strokeWidth = 46.0
       ..strokeCap = StrokeCap.round
@@ -738,8 +742,9 @@ class _StaticHighlightPainter extends CustomPainter {
   final List<Path> paths;
   final int strokeLimit;
   final Offset centeringShift;
+  final bool isDark;
 
-  _StaticHighlightPainter({required this.paths, required this.strokeLimit, required this.centeringShift});
+  _StaticHighlightPainter({required this.paths, required this.strokeLimit, required this.centeringShift, this.isDark = false});
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -750,8 +755,10 @@ class _StaticHighlightPainter extends CustomPainter {
     canvas.scale(scaleX, scaleY);
     canvas.translate(centeringShift.dx, centeringShift.dy);
 
+    final Color inkColor = isDark ? Colors.white : const Color(0xFF1A1A1B);
+
     final standardPaint = Paint()
-      ..color = const Color(0xFF1A1A1B)
+      ..color = inkColor
       ..style = PaintingStyle.stroke
       ..strokeWidth = 46.0
       ..strokeCap = StrokeCap.round
@@ -759,7 +766,7 @@ class _StaticHighlightPainter extends CustomPainter {
       ..isAntiAlias = true;
 
     final highlightPaint = Paint()
-      ..color = Colors.red
+      ..color = isDark ? Colors.orange : Colors.red
       ..style = PaintingStyle.stroke
       ..strokeWidth = 46.0
       ..strokeCap = StrokeCap.round
@@ -779,7 +786,7 @@ class _StaticHighlightPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant _StaticHighlightPainter oldDelegate) {
-    return oldDelegate.paths.length != paths.length || oldDelegate.strokeLimit != strokeLimit;
+    return oldDelegate.paths.length != paths.length || oldDelegate.strokeLimit != strokeLimit || oldDelegate.isDark != isDark;
   }
 }
 
@@ -788,7 +795,8 @@ class _HintStrokePainter extends CustomPainter {
   final List<Offset>? points;
   final double progress;
   final Offset centeringShift;
-  _HintStrokePainter({required this.path, this.points, required this.progress, required this.centeringShift});
+  final bool isDark;
+  _HintStrokePainter({required this.path, this.points, required this.progress, required this.centeringShift, this.isDark = false});
   @override
   void paint(Canvas canvas, Size size) {
     // Standardize Hint to use Pro Logic
@@ -797,7 +805,7 @@ class _HintStrokePainter extends CustomPainter {
       medianPaths: [points ?? []],
       progress: progress,
       centeringShift: centeringShift,
-      isDark: false,
+      isDark: isDark,
       isHint: true,
     );
     painter.paint(canvas, size);
