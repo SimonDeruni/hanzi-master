@@ -11,6 +11,8 @@ import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_mana
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/shared/widgets/global_sliver_app_bar.dart';
+import 'package:hanzi_master/features/live_translate/presentation/screens/travel_interpreter_screen.dart';
+import 'package:hanzi_master/features/premium/presentation/screens/universal_scanner_screen.dart';
 
 class AiHubScreen extends ConsumerWidget {
   const AiHubScreen({super.key});
@@ -31,12 +33,13 @@ class AiHubScreen extends ConsumerWidget {
             ),
 
             // Feature Rows
-            SliverToBoxAdapter(
+            SliverFillRemaining(
+              hasScrollBody: false,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24.0),
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const SizedBox(height: 24),
                     // Row 1: AI Scenarios & Web Explorer
                     Row(
                       children: [
@@ -131,6 +134,47 @@ class AiHubScreen extends ConsumerWidget {
                                   context,
                                   SwipeBackPageRoute(builder: (_) => const ShadowingStudioScreen()),
                                 );
+                              },
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 16),
+                    // Row 3: Travel Interpreter & Universal Scanner
+                    Row(
+                      children: [
+                        Expanded(
+                          child: AspectRatio(
+                            aspectRatio: 1.0,
+                            child: _buildListActionCard(
+                              context: context,
+                              isDark: isDark,
+                              title: l10n?.travelInterpreter ?? "Travel Interpreter",
+                              subtitle: "Real-time split-screen",
+                              icon: Icons.people_outline,
+                              accentColor: const Color(0xFF4CAF50), // Green
+                              onTap: () {
+                                HapticsManager.medium();
+                                Navigator.push(context, SwipeBackPageRoute(builder: (_) => const TravelInterpreterScreen()));
+                              },
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 16),
+                        Expanded(
+                          child: AspectRatio(
+                            aspectRatio: 1.0,
+                            child: _buildListActionCard(
+                              context: context,
+                              isDark: isDark,
+                              title: "Universal Scanner",
+                              subtitle: "Extract & translate",
+                              icon: Icons.document_scanner_outlined,
+                              accentColor: const Color(0xFFFF9800), // Orange
+                              onTap: () {
+                                HapticsManager.medium();
+                                Navigator.push(context, SwipeBackPageRoute(builder: (_) => const UniversalScannerScreen(intent: CameraIntent.translationHub)));
                               },
                             ),
                           ),

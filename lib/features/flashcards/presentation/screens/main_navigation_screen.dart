@@ -7,7 +7,7 @@ import 'package:hanzi_master/features/chat/presentation/screens/ai_hub_screen.da
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
-import 'package:hanzi_master/features/live_translate/presentation/screens/translation_hub_screen.dart';
+import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/core/services/analytics_service.dart';
 import 'package:hanzi_master/features/media/presentation/screens/web_browser_screen.dart';
@@ -28,14 +28,13 @@ class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
       _selectedIndex = index;
     });
     
-    final screenNames = ['Dashboard', 'AI Hub', 'Translation', 'Library'];
+    final screenNames = ['Dashboard', 'AI Hub', 'Library'];
     ref.read(analyticsServiceProvider).logScreenView(screenNames[index]);
   }
 
   late final List<Widget> _screens = [
     DashboardScreen(onNavigate: _onNavigate),
     const AiHubScreen(),
-    const TranslationHubScreen(),
     const DictionaryScreen(),
   ];
 
@@ -101,10 +100,6 @@ class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
             BottomNavigationBarItem(
               icon: const Icon(Icons.auto_awesome),
               label: AppLocalizations.of(context)!.aiHubTitle,
-            ),
-            BottomNavigationBarItem(
-              icon: const Icon(Icons.translate),
-              label: "Translate",
             ),
             BottomNavigationBarItem(
               icon: const Icon(Icons.menu_book),
