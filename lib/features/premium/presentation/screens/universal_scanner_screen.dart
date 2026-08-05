@@ -100,6 +100,7 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
     }
     
     if (status.isGranted) {
+      if (mounted) setState(() => _permissionDenied = false);
       _cameras = await availableCameras();
       if (_cameras.isNotEmpty) {
         _cameraController = CameraController(
@@ -160,16 +161,13 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    final CameraController? cameraController = _cameraController;
-    if (cameraController == null || !cameraController.value.isInitialized) {
-      return;
-    }
-
-    if (state == AppLifecycleState.inactive || state == AppLifecycleState.paused) {
-      cameraController.dispose();
-      _isCameraInitialized = false;
-    } else if (state == AppLifecycleState.resumed) {
+    if (state == AppLifecycleState.resumed) {
       _initializeCamera();
+    } else if (state == AppLifecycleState.inactive || state == AppLifecycleState.paused) {
+      if (_cameraController != null && _cameraController!.value.isInitialized) {
+        _cameraController!.dispose();
+        _isCameraInitialized = false;
+      }
     }
   }
 
