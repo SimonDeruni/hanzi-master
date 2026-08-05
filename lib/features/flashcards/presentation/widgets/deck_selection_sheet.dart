@@ -170,7 +170,7 @@ class DeckSelectionSheet extends ConsumerWidget {
           ElevatedButton(onPressed: () => Navigator.pop(ctx, controller.text), child: const Text("Create")),
         ],
       ),
-    );
+    ).whenComplete(() => controller.dispose());
   }
 
   void _addCardsToDeck(BuildContext context, WidgetRef ref, String deckId, String deckName) {

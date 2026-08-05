@@ -28,6 +28,12 @@ class _TutorialLessonScreenState extends ConsumerState<TutorialLessonScreen> {
     _loadRealDataFromRepository();
   }
 
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
   /// Fetches real HSK1 cards from the library to ensure tutorial accuracy
   Future<void> _loadRealDataFromRepository() async {
     try {
