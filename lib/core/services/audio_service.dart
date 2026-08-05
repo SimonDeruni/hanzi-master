@@ -187,6 +187,7 @@ class AudioService {
     try {
       final result = await _fetchCloudTTS(sentence, azureVoice: azureVoice, cacheFile: cacheFile, boundaryFile: boundaryFile);
       if (result != null && result.success) {
+        await _player.play(DeviceFileSource(cacheFile.path));
         return true;
       }
     } catch (e) {
@@ -265,8 +266,6 @@ class AudioService {
           // REST API doesn't provide word boundaries; boundaries list stays empty
           _currentBoundaries = [];
           _currentBoundaryIndex = 0;
-          await _player.setPlaybackRate(1.0);
-          await _player.play(DeviceFileSource(tmpFile.path));
 
           return CloudTtsResult(
             audio: audio,

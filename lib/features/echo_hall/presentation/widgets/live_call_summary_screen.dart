@@ -201,30 +201,6 @@ class PronunciationReviewSheet extends StatefulWidget {
 }
 
 class _PronunciationReviewSheetState extends State<PronunciationReviewSheet> {
-  final AudioPlayer _player = AudioPlayer();
-  bool _isPlaying = false;
-
-  @override
-  void dispose() {
-    _player.dispose();
-    super.dispose();
-  }
-
-  Future<void> _toggleAudio() async {
-    if (widget.msg.audioPath == null) return;
-    
-    if (_isPlaying) {
-      await _player.stop();
-      setState(() => _isPlaying = false);
-    } else {
-      setState(() => _isPlaying = true);
-      await _player.play(DeviceFileSource(widget.msg.audioPath!));
-      _player.onPlayerComplete.listen((_) {
-        if (mounted) setState(() => _isPlaying = false);
-      });
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -305,24 +281,6 @@ class _PronunciationReviewSheetState extends State<PronunciationReviewSheet> {
             ),
           ],
           
-          const SizedBox(height: 32),
-          
-          if (widget.msg.audioPath != null)
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton.icon(
-                onPressed: _toggleAudio,
-                icon: Icon(_isPlaying ? Icons.stop : Icons.play_arrow),
-                label: Text(_isPlaying ? "Stop Playback" : "Play Your Recording"),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: theme.colorScheme.primaryContainer,
-                  foregroundColor: theme.colorScheme.onPrimaryContainer,
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-                ),
-              ),
-            ),
-            
           const SizedBox(height: 32),
         ],
       ),
