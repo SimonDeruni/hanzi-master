@@ -22,7 +22,8 @@ class CulturalContextScreen extends ConsumerWidget {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
     
-    final culturalContextAsync = ref.watch(culturalContextProvider(mediaItem.title));
+    final encodedParam = '${mediaItem.title}|||${mediaItem.subtitle}';
+    final culturalContextAsync = ref.watch(culturalContextProvider(encodedParam));
 
     return Scaffold(
       backgroundColor: theme.colorScheme.surface,
@@ -79,7 +80,7 @@ class CulturalContextScreen extends ConsumerWidget {
                 ),
                 SliverToBoxAdapter(
                   child: Padding(
-                    padding: const EdgeInsets.fromLTRB(24.0, 0, 24.0, 120.0),
+                    padding: const EdgeInsets.fromLTRB(24.0, 0, 24.0, 140.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [

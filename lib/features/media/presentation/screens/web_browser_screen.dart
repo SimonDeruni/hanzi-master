@@ -225,7 +225,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
               const char = text[i];
               if (chineseRegex.test(char)) {
                 let colorStyle = '';
-                let borderStyle = 'border-bottom: 1px dotted #ccc;'; // Unknown by default
+                let borderStyle = 'text-decoration: underline; text-decoration-style: dotted; text-decoration-color: rgba(150,150,150,0.5); text-underline-offset: 4px;'; // Unknown by default
                 
                 if (window.isWordInList(char, window.masteredWords)) {
                   colorStyle = 'color: #555;'; // Faded
@@ -708,11 +708,14 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
     final skeletonBgColor = darkMode ? 'rgba(218,218,218,0.1)' : 'rgba(26,26,27,0.1)';
     final aiLoadingTextColor = darkMode ? '#DADADA' : '#1A1A1B';
 
-    // Dark-mode global CSS to also influence unfetched resources & native form controls
-    final darkGlobalCss = darkMode ? '''
-      html { color-scheme: dark; }
-      img, video, iframe, embed, object { opacity: 0.85; }
-    ''' : '';
+    final colorCss = darkMode ? '#DADADA' : '#1A1A1B';
+    final darkGlobalCss = '''
+      ${darkMode ? 'html { color-scheme: dark; }' : ''}
+      body, div, p, h1, h2, h3, h4, h5, h6, span:not(.hanzi-clickable), a, li, td, th, article, main {
+        color: $colorCss !important;
+      }
+      ${darkMode ? 'img, video, iframe, embed, object { opacity: 0.85; }' : ''}
+    ''';
 
     final js = '''
       if (!window.zenModeBackup) {
