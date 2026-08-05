@@ -1,5 +1,6 @@
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/gestures.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
 import '../screens/live_call_screen.dart';
@@ -92,59 +93,9 @@ class LiveCallSummaryScreen extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 16),
-          _buildMarkdownText(scholarVerdict, theme),
+          InteractiveMarkdownText(text: scholarVerdict, theme: theme, contextText: scholarVerdict),
         ],
       ),
-    );
-  }
-
-  Widget _buildMarkdownText(String text, ThemeData theme) {
-    final baseStyle = theme.textTheme.bodyLarge?.copyWith(height: 1.6);
-    final spans = <TextSpan>[];
-    final pattern = RegExp(r'(\*\*(.+?)\*\*)|(\*(.+?)\*)|(__(.+?)__)');
-
-    int lastEnd = 0;
-    for (final match in pattern.allMatches(text)) {
-      // Text before this match
-      if (match.start > lastEnd) {
-        spans.add(TextSpan(text: text.substring(lastEnd, match.start)));
-      }
-
-      if (match.group(1) != null) {
-        // **bold**
-        spans.add(TextSpan(
-          text: match.group(2),
-          style: baseStyle?.copyWith(fontWeight: FontWeight.bold),
-        ));
-      } else if (match.group(3) != null) {
-        // *italic*
-        spans.add(TextSpan(
-          text: match.group(4),
-          style: baseStyle?.copyWith(fontStyle: FontStyle.italic),
-        ));
-      } else if (match.group(5) != null) {
-        // __underline__
-        spans.add(TextSpan(
-          text: match.group(6),
-          style: baseStyle?.copyWith(decoration: TextDecoration.underline),
-        ));
-      }
-
-      lastEnd = match.end;
-    }
-
-    // Remaining text after last match
-    if (lastEnd < text.length) {
-      spans.add(TextSpan(text: text.substring(lastEnd)));
-    }
-
-    // Fallback: plain text if no matches
-    if (spans.isEmpty) {
-      return Text(text, style: baseStyle);
-    }
-
-    return RichText(
-      text: TextSpan(style: baseStyle, children: spans),
     );
   }
 
@@ -347,7 +298,7 @@ class _PronunciationReviewSheetState extends State<PronunciationReviewSheet> {
                   Icon(Icons.lightbulb_outline, color: theme.colorScheme.primary),
                   const SizedBox(width: 12),
                   Expanded(
-                    child: Text(feedback, style: theme.textTheme.bodyMedium),
+                    child: InteractiveMarkdownText(text: feedback, theme: theme, contextText: feedback),
                   ),
                 ],
               ),
@@ -375,6 +326,96 @@ class _PronunciationReviewSheetState extends State<PronunciationReviewSheet> {
           const SizedBox(height: 32),
         ],
       ),
+    );
+  }
+}
+
+class InteractiveMarkdownText extends StatefulWidget {
+  final String text;
+  final ThemeData theme;
+  final String contextText;
+
+  const InteractiveMarkdownText({
+    Key? key,
+    required this.text,
+    required this.theme,
+    required this.contextText,
+  }) : super(key: key);
+
+  @override
+  _InteractiveMarkdownTextState createState() => _InteractiveMarkdownTextState();
+}
+
+class _InteractiveMarkdownTextState extends State<InteractiveMarkdownText> {
+  final List<TapGestureRecognizer> _recognizers = [];
+
+  @override
+  void dispose() {
+    for (final r in _recognizers) {
+      r.dispose();
+    }
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final baseStyle = widget.theme.textTheme.bodyLarge?.copyWith(height: 1.6);
+    final spans = <TextSpan>[];
+    
+    // Pattern to match bold, italic, underline OR Chinese characters
+    final pattern = RegExp(r'(\*\*(.+?)\*\*)|(\*(.+?)\*)|(__(.+?)__)|([\u4e00-\u9fff]+)');
+
+    int lastEnd = 0;
+    for (final match in pattern.allMatches(widget.text)) {
+      if (match.start > lastEnd) {
+        spans.add(TextSpan(text: widget.text.substring(lastEnd, match.start)));
+      }
+
+      if (match.group(1) != null) {
+        spans.add(TextSpan(
+          text: match.group(2),
+          style: baseStyle?.copyWith(fontWeight: FontWeight.bold),
+        ));
+      } else if (match.group(3) != null) {
+        spans.add(TextSpan(
+          text: match.group(4),
+          style: baseStyle?.copyWith(fontStyle: FontStyle.italic),
+        ));
+      } else if (match.group(5) != null) {
+        spans.add(TextSpan(
+          text: match.group(6),
+          style: baseStyle?.copyWith(decoration: TextDecoration.underline),
+        ));
+      } else if (match.group(7) != null) {
+        final hanzi = match.group(7)!;
+        final recognizer = TapGestureRecognizer()
+          ..onTap = () => showQuickLook(context, hanzi, contextText: widget.contextText);
+        _recognizers.add(recognizer);
+
+        spans.add(TextSpan(
+          text: hanzi,
+          style: baseStyle?.copyWith(
+            color: widget.theme.colorScheme.primary,
+            decoration: TextDecoration.underline,
+            decorationColor: widget.theme.colorScheme.primary.withValues(alpha: 0.5),
+          ),
+          recognizer: recognizer,
+        ));
+      }
+
+      lastEnd = match.end;
+    }
+
+    if (lastEnd < widget.text.length) {
+      spans.add(TextSpan(text: widget.text.substring(lastEnd)));
+    }
+
+    if (spans.isEmpty) {
+      return Text(widget.text, style: baseStyle);
+    }
+
+    return RichText(
+      text: TextSpan(style: baseStyle, children: spans),
     );
   }
 }
