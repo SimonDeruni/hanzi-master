@@ -81,6 +81,21 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
 
   late AnimationController _pulseController;
   late Animation<double> _pulseAnimation;
+  // Haptic feedback has been added in global widgets where possible.
+
+  double _getHanziFontSize(int length) {
+    if (length < 6) return widget.isCompact ? 40.0 : 56.0;
+    if (length < 12) return widget.isCompact ? 32.0 : 44.0;
+    if (length < 20) return widget.isCompact ? 24.0 : 32.0;
+    return widget.isCompact ? 20.0 : 28.0;
+  }
+
+  double _getPinyinFontSize(int length) {
+    if (length < 6) return widget.isCompact ? 20.0 : 28.0;
+    if (length < 12) return widget.isCompact ? 16.0 : 22.0;
+    if (length < 20) return widget.isCompact ? 14.0 : 18.0;
+    return widget.isCompact ? 12.0 : 16.0;
+  }
 
   @override
   void initState() {
@@ -1433,7 +1448,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
             Text(
               _currentPhrase!['pinyin']!,
               style: TextStyle(
-                fontSize: widget.isCompact ? 20 : 28,
+                fontSize: _getPinyinFontSize(_currentPhrase!['hanzi']!.length),
                 color: isDark ? Colors.white70 : Colors.black87,
                 fontStyle: FontStyle.italic,
                 letterSpacing: 1.2,
@@ -1444,7 +1459,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
             Text(
               _currentPhrase!['hanzi']!,
               style: TextStyle(
-                fontSize: widget.isCompact ? 40 : 56,
+                fontSize: _getHanziFontSize(_currentPhrase!['hanzi']!.length),
                 color: isDark ? Colors.white : const Color(0xFF1A1A1B),
                 fontWeight: FontWeight.w500,
                 fontFamily: 'NotoSerifSC',
@@ -1481,14 +1496,14 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                       Text(
                         item['pinyin'] ?? "",
                         style: TextStyle(
-                            fontSize: 16,
+                            fontSize: _getPinyinFontSize(_currentPhrase!['hanzi']!.length) * 0.8,
                             color: color,
                             fontStyle: FontStyle.italic),
                       ),
                       Text(
                         item['word'] ?? "",
                         style: TextStyle(
-                          fontSize: widget.isCompact ? 40 : 56,
+                          fontSize: _getHanziFontSize(_currentPhrase!['hanzi']!.length),
                           color: color,
                           fontWeight: FontWeight.w500,
                           fontFamily: 'NotoSerifSC',
