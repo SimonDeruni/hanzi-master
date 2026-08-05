@@ -2,6 +2,8 @@ import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hanzi_master/shared/widgets/pinyin_text.dart';
+import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
 import 'package:hanzi_master/core/utils/pinyin_utils.dart';
 import 'package:lpinyin/lpinyin.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
@@ -709,8 +711,8 @@ class _ActionButton extends StatelessWidget {
     final effectiveColor = isDisabled ? Colors.grey : Colors.indigo;
     final disabledBg = isDark ? Colors.grey.shade800 : Colors.grey.shade300;
 
-    return GestureDetector(
-      onTap: onTap,
+    return BouncingButton(
+      onPressed: onTap,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 150),
         height: 46,

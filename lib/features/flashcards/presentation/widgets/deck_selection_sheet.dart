@@ -6,7 +6,7 @@ import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart'
 import 'package:hanzi_master/features/flashcards/presentation/providers/deck_controller.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'package:hanzi_master/shared/widgets/global_blurred_bottom_sheet.dart';
-
+import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
 class DeckSelectionSheet extends ConsumerWidget {
   final Flashcard? card;
   final List<Flashcard>? cards;
@@ -52,8 +52,8 @@ class DeckSelectionSheet extends ConsumerWidget {
                   child: Column(
                     children: [
                       // Create New Deck Action Card
-                      InkWell(
-                        onTap: () async {
+                      BouncingButton(
+                        onPressed: () async {
                           final newDeckName = await _showCreateDeckDialog(context);
                           if (newDeckName != null && newDeckName.trim().isNotEmpty) {
                             final deckCtrl = ref.read(deckControllerProvider.notifier);
@@ -63,7 +63,7 @@ class DeckSelectionSheet extends ConsumerWidget {
                             }
                           }
                         },
-                        borderRadius: BorderRadius.circular(16),
+
                         child: Container(
                           padding: const EdgeInsets.all(16),
                           decoration: BoxDecoration(
@@ -110,7 +110,11 @@ class DeckSelectionSheet extends ConsumerWidget {
                             final deck = decks[index];
                             final deckCardCount = allCards.where((c) => c.deckId == deck.id).length;
                             
-                            return ListTile(
+                            return BouncingButton(
+                              onPressed: () {
+                                _addCardsToDeck(context, ref, deck.id, deck.localizedName(context));
+                              },
+                              child: ListTile(
                               contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
                               leading: Icon(
                                 deck.id == 'default' ? Icons.library_books : Icons.book, 
@@ -132,9 +136,7 @@ class DeckSelectionSheet extends ConsumerWidget {
                                 color: isDark ? Colors.white38 : Colors.black38,
                                 size: 20,
                               ),
-                              onTap: () {
-                                _addCardsToDeck(context, ref, deck.id, deck.localizedName(context));
-                              },
+                              ),
                             );
                           },
                         ),

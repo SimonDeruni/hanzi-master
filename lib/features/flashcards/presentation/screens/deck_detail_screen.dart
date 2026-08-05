@@ -18,6 +18,7 @@ import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraph
 import 'package:hanzi_master/features/flashcards/presentation/screens/story_mode_screen.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/study_mode_selection_sheet.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/deck_card_picker_screen.dart';
+import 'package:hanzi_master/features/flashcards/presentation/screens/stats_screen.dart';
 import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
 
 class _SliverTabBarDelegate extends SliverPersistentHeaderDelegate {
@@ -469,8 +470,8 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                     ],
                   ),
                   
-                  // Tab 2: Statistics
-                  _buildStatisticsTab(context, deckCards),
+                   // Tab 2: Statistics (unified polished view)
+                   StatsScreen(deckId: widget.deck.id),
                 ],
               ),
             );
@@ -479,121 +480,6 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
           error: (err, stack) => Center(child: Text('Error: $err')),
         ),
       ),
-    );
-  }
-
-  Widget _buildStatisticsTab(BuildContext context, List<Flashcard> cards) {
-    if (cards.isEmpty) {
-      return Center(
-        child: Text(
-          AppLocalizations.of(context)!.addCardsToSee,
-          style: TextStyle(color: Theme.of(context).brightness == Brightness.dark ? Colors.white54 : Colors.black54),
-        ),
-      );
-    }
-    
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-    final modes = StudyMode.values;
-
-    return ListView.builder(
-      padding: const EdgeInsets.only(top: 16, left: 16, right: 16, bottom: 80),
-      itemCount: modes.length,
-      itemBuilder: (context, index) {
-        final mode = modes[index];
-        final due = cards.where((c) => c.isDue(mode)).length;
-        final newCount = cards.where((c) => c.isNew(mode)).length;
-        final learning = cards.where((c) {
-            final s = c.getStatsForMode(mode);
-            return !s.isNew && s.interval < 2;
-        }).length;
-        final mastered = cards.where((c) => c.isMastered(mode)).length;
-
-        // Friendly name mapping
-        String modeName = mode.name;
-        modeName = modeName[0].toUpperCase() + modeName.substring(1);
-
-        return Card(
-          margin: const EdgeInsets.only(bottom: 16),
-          color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.white,
-          elevation: isDark ? 0 : 2,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(16),
-            side: BorderSide(color: isDark ? Colors.white12 : Colors.black12, width: 1),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Icon(
-                      _getModeIcon(mode), 
-                      color: isDark ? Colors.purple[300] : Colors.purple[700],
-                      size: 20,
-                    ),
-                    SizedBox(width: 8),
-                    Text(
-                      modeName,
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: isDark ? Colors.purple[300] : Colors.purple[700],
-                        letterSpacing: 1.0,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 16),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    _buildStatItem(context, "New", newCount.toString(), Colors.blue),
-                    _buildStatItem(context, "Due", due.toString(), Colors.orange),
-                    _buildStatItem(context, AppLocalizations.of(context)!.learning, learning.toString(), Colors.indigo),
-                    _buildStatItem(context, AppLocalizations.of(context)!.masteredStatus, mastered.toString(), Colors.green),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        );
-      },
-    );
-  }
-
-  IconData _getModeIcon(StudyMode mode) {
-    switch (mode) {
-      case StudyMode.reading: return Icons.visibility;
-      case StudyMode.calligraphy: return Icons.brush;
-      case StudyMode.recall: return Icons.memory;
-      case StudyMode.listening: return Icons.headset;
-      case StudyMode.speaking: return Icons.mic;
-    }
-  }
-
-  Widget _buildStatItem(BuildContext context, String label, String value, MaterialColor color) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-    return Column(
-      children: [
-        Text(
-          value,
-          style: TextStyle(
-            fontSize: 22,
-            fontWeight: FontWeight.bold,
-            color: isDark ? color.shade300 : color.shade700,
-          ),
-        ),
-        SizedBox(height: 4),
-        Text(
-          label,
-          style: TextStyle(
-            fontSize: 12,
-            fontWeight: FontWeight.w600,
-            color: isDark ? Colors.white54 : Colors.black54,
-          ),
-        ),
-      ],
     );
   }
 
