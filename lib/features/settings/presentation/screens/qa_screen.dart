@@ -104,24 +104,6 @@ class QAScreen extends ConsumerWidget {
             ],
           ),
 
-          _buildCategory(
-            title: "Account & Subscription",
-            icon: Icons.workspace_premium_outlined,
-            cardColor: cardColor,
-            textColor: textColor,
-            accentColor: accentColor,
-            items: [
-              _FaqItem(
-                question: "Do I need an internet connection?",
-                answer: "Yes. While some flashcard data is cached locally, core features like AI conversations, neural voice generation, and pronunciation grading require an active internet connection.",
-              ),
-              _FaqItem(
-                question: "What is SinoSpark Premium?",
-                answer: "SinoSpark Premium unlocks unlimited AI conversations, advanced pronunciation grading, offline mode for select stories, and removes all limits on flashcard reviews.",
-              ),
-            ],
-          ),
-
           const SizedBox(height: 40),
         ],
       ),
