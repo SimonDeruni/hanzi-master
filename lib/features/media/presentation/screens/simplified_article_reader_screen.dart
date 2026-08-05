@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
-import 'package:hanzi_master/features/flashcards/presentation/widgets/word_detail_dialog.dart';
 import 'package:lpinyin/lpinyin.dart';
 
 class SimplifiedArticleReaderScreen extends StatefulWidget {
@@ -107,7 +106,7 @@ class _SimplifiedArticleReaderScreenState extends State<SimplifiedArticleReaderS
                       runSpacing: 12.0,
                       children: sentence.words.map((word) {
                         return GestureDetector(
-                          onTap: () => WordDetailDialog.show(context, word, sentence),
+                          onTap: () => showQuickLook(context, word.hanzi, contextText: sentence.chinese),
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [

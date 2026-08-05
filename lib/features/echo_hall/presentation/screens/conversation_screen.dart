@@ -113,7 +113,16 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
                     scale: scale,
                     child: (widget.scenario.avatarAssetPath == 'none' || widget.scenario.avatarAssetPath.isEmpty)
                       ? Container(
-                          color: theme.colorScheme.primary,
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: [
+                                theme.colorScheme.primary,
+                                theme.colorScheme.secondary,
+                              ],
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                            ),
+                          ),
                           child: Center(
                             child: Text(
                               widget.scenario.personaName.isNotEmpty ? widget.scenario.personaName[0].toUpperCase() : '?',
@@ -136,13 +145,6 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
               ),
             ),
 
-            // Quests Overlay (compact floating button)
-            if (widget.scenario.quests.isNotEmpty)
-              Positioned(
-                top: 140,
-                right: 12,
-                child: _QuestsFloatingButton(quests: widget.scenario.quests),
-              ),
 
             // 2. Chat Area
             Positioned(
@@ -223,6 +225,14 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
               right: 0,
               child: _buildInputArea(state, theme),
             ),
+
+            // Quests Overlay (compact floating button) - moved to bottom of Stack for highest z-index
+            if (widget.scenario.quests.isNotEmpty)
+              Positioned(
+                top: 140,
+                right: 12,
+                child: _QuestsFloatingButton(quests: widget.scenario.quests),
+              ),
           ],
         ),
       ),
