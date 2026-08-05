@@ -791,6 +791,8 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
   }
 
   void _removeZenMode() {
+    setState(() => _isProcessingAi = false);
+    _currentInsight = null;
     final js = '''
       if (window.zenModeBackup) {
         document.body.innerHTML = window.zenModeBackup;
@@ -817,7 +819,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
       final insight = await gemini.generateArticleInsight(
           text.toString(), knownWords, langCode);
 
-      if (mounted) {
+      if (mounted && _isZenMode) {
         setState(() {
           _currentInsight = insight;
         });
@@ -1534,7 +1536,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                   const Center(
                     child: CircularProgressIndicator(),
                   ),
-                if (_isProcessingAi)
+                if (_isProcessingAi && _isZenMode)
                   Container(
                     color: Colors.white.withValues(alpha: 0.9),
                     child: const Center(

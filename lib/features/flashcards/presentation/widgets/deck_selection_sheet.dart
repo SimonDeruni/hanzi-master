@@ -46,15 +46,13 @@ class DeckSelectionSheet extends ConsumerWidget {
           const SizedBox(height: 24),
           asyncDecks.when(
             data: (decks) {
+              final allCards = ref.watch(flashcardControllerProvider).value ?? [];
               return Expanded(
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: decks.length + 1,
-                  itemBuilder: (context, index) {
-                    if (index == 0) {
-                      return ListTile(
-                        leading: const Icon(Icons.add_circle_outline, color: Colors.green),
-                        title: const Text("Create New Deck", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.green)),
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      // Create New Deck Action Card
+                      InkWell(
                         onTap: () async {
                           final newDeckName = await _showCreateDeckDialog(context);
                           if (newDeckName != null && newDeckName.trim().isNotEmpty) {
@@ -65,18 +63,84 @@ class DeckSelectionSheet extends ConsumerWidget {
                             }
                           }
                         },
-                      );
-                    }
-                    
-                    final deck = decks[index - 1];
-                    return ListTile(
-                      leading: Icon(deck.id == 'default' ? Icons.library_books : Icons.book, color: Colors.indigo),
-                      title: Text(deck.localizedName(context), style: const TextStyle(fontWeight: FontWeight.bold)),
-                      onTap: () {
-                        _addCardsToDeck(context, ref, deck.id, deck.localizedName(context));
-                      },
-                    );
-                  },
+                        borderRadius: BorderRadius.circular(16),
+                        child: Container(
+                          padding: const EdgeInsets.all(16),
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.1),
+                            borderRadius: BorderRadius.circular(16),
+                            border: Border.all(color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.2)),
+                          ),
+                          child: Row(
+                            children: [
+                              Icon(Icons.add_circle, color: Theme.of(context).colorScheme.primary),
+                              const SizedBox(width: 16),
+                              Expanded(
+                                child: Text(
+                                  "Create New Deck",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                    color: Theme.of(context).colorScheme.primary,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                      // Grouped Deck List
+                      Container(
+                        decoration: BoxDecoration(
+                          color: isDark ? Colors.white.withValues(alpha: 0.04) : Colors.black.withValues(alpha: 0.04),
+                          borderRadius: BorderRadius.circular(16),
+                          border: Border.all(color: isDark ? Colors.white.withValues(alpha: 0.1) : Colors.black.withValues(alpha: 0.1)),
+                        ),
+                        child: ListView.separated(
+                          physics: const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemCount: decks.length,
+                          separatorBuilder: (context, index) => Divider(
+                            height: 1, 
+                            indent: 56, 
+                            color: isDark ? Colors.white.withValues(alpha: 0.1) : Colors.black.withValues(alpha: 0.1)
+                          ),
+                          itemBuilder: (context, index) {
+                            final deck = decks[index];
+                            final deckCardCount = allCards.where((c) => c.deckId == deck.id).length;
+                            
+                            return ListTile(
+                              contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                              leading: Icon(
+                                deck.id == 'default' ? Icons.library_books : Icons.book, 
+                                color: Theme.of(context).colorScheme.primary
+                              ),
+                              title: Text(
+                                deck.localizedName(context), 
+                                style: const TextStyle(fontWeight: FontWeight.w600)
+                              ),
+                              subtitle: Text(
+                                "$deckCardCount items",
+                                style: TextStyle(
+                                  fontSize: 13,
+                                  color: isDark ? Colors.white70 : Colors.black54,
+                                ),
+                              ),
+                              trailing: Icon(
+                                Icons.chevron_right, 
+                                color: isDark ? Colors.white38 : Colors.black38,
+                                size: 20,
+                              ),
+                              onTap: () {
+                                _addCardsToDeck(context, ref, deck.id, deck.localizedName(context));
+                              },
+                            );
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               );
             },
