@@ -83,6 +83,22 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
   late Animation<double> _pulseAnimation;
   // Haptic feedback has been added in global widgets where possible.
 
+  void _exitSession() {
+    if ((widget.initialContextSentence != null && widget.initialContextSentence!.isNotEmpty) ||
+        widget.initialHanzi != null) {
+      Navigator.pop(context);
+    } else {
+      setState(() {
+        _isSessionStarted = false;
+        _currentPhrase = null;
+        _lastGrade = null;
+        _sentenceCount = 0;
+        _phraseHistory.clear();
+        _weakCharacters.clear();
+      });
+    }
+  }
+
   double _getHanziFontSize(int length) {
     if (length < 6) return widget.isCompact ? 40.0 : 56.0;
     if (length < 12) return widget.isCompact ? 32.0 : 44.0;
@@ -432,14 +448,8 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
 
   void _showSessionSummaryDialog(BuildContext context, bool isDark) {
     if (_weakCharacters.isEmpty) {
-      // Perfect session or just aborting, go back to Hub UI
-      setState(() {
-        _isSessionStarted = false;
-        _currentPhrase = null;
-        _lastGrade = null;
-        _sentenceCount = 0;
-        _phraseHistory.clear();
-      });
+      // Perfect session or just aborting, go back to Hub UI or pop
+      _exitSession();
       return;
     }
 
@@ -536,12 +546,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                         child: TextButton(
                           onPressed: () {
                             Navigator.pop(context); // close sheet
-                            setState(() {
-                              _isSessionStarted = false;
-                              _currentPhrase = null;
-                              _weakCharacters.clear();
-                              _sentenceCount = 0;
-                            });
+                            _exitSession();
                           },
                           child: const Text("Skip",
                               style:
@@ -636,12 +641,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                               color: Colors.orange),
                           onTap: () async {
                             Navigator.pop(context); // Close deck selector
-                            setState(() {
-                              _isSessionStarted = false;
-                              _currentPhrase = null;
-                              _weakCharacters.clear();
-                              _sentenceCount = 0;
-                            });
+                            _exitSession();
 
                             await _saveWordsToDeck(
                                 context, deck, applySrs, wordsToAdd);
@@ -713,11 +713,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                 if (context.mounted && newDeck != null) {
                   Navigator.pop(context); // close create dialog
                   Navigator.pop(context); // close select deck bottom sheet
-                  setState(() {
-                    _isSessionStarted = false;
-                    _currentPhrase = null;
-                    _weakCharacters.clear();
-                  });
+                  _exitSession();
 
                   await _saveWordsToDeck(
                       context, newDeck, applySrs, wordsToAdd);
