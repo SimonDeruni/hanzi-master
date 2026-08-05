@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hanzi_master/features/media/presentation/screens/media_hub_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'dictionary_screen.dart';
 import 'package:hanzi_master/features/progression/presentation/screens/dashboard_screen.dart';
@@ -7,10 +6,8 @@ import 'package:hanzi_master/features/chat/presentation/screens/ai_hub_screen.da
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
-import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/core/services/analytics_service.dart';
-import 'package:hanzi_master/features/media/presentation/screens/web_browser_screen.dart';
 
 class MainNavigationScreen extends ConsumerStatefulWidget {
   const MainNavigationScreen({super.key});
@@ -29,7 +26,9 @@ class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
     });
     
     final screenNames = ['Dashboard', 'AI Hub', 'Library'];
-    ref.read(analyticsServiceProvider).logScreenView(screenNames[index]);
+    if (index >= 0 && index < screenNames.length) {
+      ref.read(analyticsServiceProvider).logScreenView(screenNames[index]);
+    }
   }
 
   late final List<Widget> _screens = [

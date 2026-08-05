@@ -11,6 +11,7 @@ import 'package:hanzi_master/features/echo_hall/presentation/screens/scenario_se
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/deck_review_session_screen.dart';
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
+import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
 import 'package:hanzi_master/core/services/analytics_service.dart';
 
 import 'package:hanzi_master/features/flashcards/presentation/widgets/deck_settings_sheet.dart';
@@ -484,12 +485,11 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
   }
 
   Widget _buildCardContent(BuildContext context, dynamic card, bool isDark) {
-    return InkWell(
-      onTap: () {
+    return BouncingButton(
+      onPressed: () {
         HapticsManager.light();
         showQuickLook(context, card.hanzi);
       },
-      borderRadius: BorderRadius.circular(20),
       child: Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(

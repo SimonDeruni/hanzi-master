@@ -13,6 +13,7 @@ import 'package:hanzi_master/features/flashcards/domain/entities/deck.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/deck_controller.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
+import 'package:hanzi_master/shared/widgets/shimmer_skeleton.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import "package:hanzi_master/core/services/saved_scenarios_service.dart";
 class ScenarioSelectionScreen extends ConsumerStatefulWidget {
@@ -445,8 +446,20 @@ class _ScenarioSelectionScreenState extends ConsumerState<ScenarioSelectionScree
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const CircularProgressIndicator(color: Colors.white, strokeWidth: 3),
-                  const SizedBox(height: 24),
+                  SizedBox(
+                    width: 200,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        ShimmerSkeleton(widthFactor: 0.8, isDark: true, height: 12),
+                        const SizedBox(height: 12),
+                        ShimmerSkeleton(widthFactor: 0.6, isDark: true, height: 12),
+                        const SizedBox(height: 12),
+                        ShimmerSkeleton(widthFactor: 0.9, isDark: true, height: 12),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 32),
                   const Text(
                     "Forging Scenario...",
                     style: TextStyle(

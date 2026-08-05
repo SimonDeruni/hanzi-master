@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
+import 'package:hanzi_master/shared/widgets/shimmer_skeleton.dart';
 import 'package:hanzi_master/shared/widgets/global_blurred_bottom_sheet.dart';
 import 'package:hanzi_master/shared/widgets/tappable_hanzi_text.dart';
 import 'package:hanzi_master/core/utils/pinyin_utils.dart';
@@ -515,7 +516,7 @@ class _NuanceCompareSheetState extends ConsumerState<NuanceCompareSheet> {
         final width = widths[index % widths.length];
         return Padding(
           padding: const EdgeInsets.only(bottom: 12),
-          child: _ShimmerLine(
+          child: ShimmerSkeleton(
             widthFactor: width,
             isDark: isDark,
           ),
@@ -698,64 +699,6 @@ class _PulsingCursorAnimatedState extends State<_PulsingCursorAnimated>
   }
 }
 
-// ─── Shimmer skeleton line ───────────────────────────────────────────────────
-
-class _ShimmerLine extends StatefulWidget {
-  final double widthFactor;
-  final bool isDark;
-  const _ShimmerLine({required this.widthFactor, required this.isDark});
-
-  @override
-  State<_ShimmerLine> createState() => _ShimmerLineState();
-}
-
-class _ShimmerLineState extends State<_ShimmerLine>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  late Animation<double> _animation;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 1200),
-    )..repeat(reverse: true);
-    _animation = Tween<double>(begin: 0.3, end: 0.7).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
-    );
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: _animation,
-      builder: (context, child) {
-        final shimmer = Color.lerp(
-          widget.isDark ? Colors.grey.shade800 : Colors.grey.shade200,
-          widget.isDark ? Colors.grey.shade600 : Colors.grey.shade400,
-          _animation.value,
-        )!;
-        return FractionallySizedBox(
-          widthFactor: widget.widthFactor,
-          child: Container(
-            height: 14,
-            decoration: BoxDecoration(
-              color: shimmer,
-              borderRadius: BorderRadius.circular(4),
-            ),
-          ),
-        );
-      },
-    );
-  }
-}
 
 // ─── Chat message model ──────────────────────────────────────────────────────
 

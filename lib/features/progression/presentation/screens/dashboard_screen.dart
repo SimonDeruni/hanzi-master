@@ -9,6 +9,7 @@ import 'package:hanzi_master/features/flashcards/presentation/screens/deck_detai
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/dictionary_provider.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/deck_controller.dart';
+import 'package:hanzi_master/features/flashcards/presentation/screens/dictionary_screen.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 
 import 'package:hanzi_master/features/progression/presentation/widgets/today_insight_card.dart';
@@ -121,47 +122,57 @@ class DashboardScreen extends ConsumerWidget {
             SliverToBoxAdapter(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                child: GestureDetector(
-                  onTap: () {
-                    ref.read(searchFocusRequestProvider.notifier).state = true;
-                    onNavigate(3);
-                  },
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 18),
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).brightness == Brightness.dark
-                          ? const Color(0xFF1A1A1B).withValues(alpha: 0.8)
-                          : Colors.white.withValues(alpha: 0.6),
-                      borderRadius: BorderRadius.circular(30),
-                      border: Border.all(
-                        color: Theme.of(context).brightness == Brightness.dark
-                            ? Colors.white.withValues(alpha: 0.1)
-                            : Colors.transparent,
+                child: Hero(
+                  tag: 'dashboard_search_bar',
+                  child: Material(
+                    color: Colors.transparent,
+                    child: GestureDetector(
+                      onTap: () {
+                        ref.read(searchFocusRequestProvider.notifier).state = true;
+                        Navigator.of(context).push(
+                          SwipeBackPageRoute(
+                            builder: (_) => const DictionaryScreen(),
+                          ),
+                        );
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 18),
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).brightness == Brightness.dark
+                              ? const Color(0xFF1A1A1B).withValues(alpha: 0.8)
+                              : Colors.white.withValues(alpha: 0.6),
+                          borderRadius: BorderRadius.circular(30),
+                          border: Border.all(
+                            color: Theme.of(context).brightness == Brightness.dark
+                                ? Colors.white.withValues(alpha: 0.1)
+                                : Colors.transparent,
+                          ),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withValues(
+                                alpha: Theme.of(context).brightness == Brightness.dark ? 0.3 : 0.04
+                              ),
+                              blurRadius: 20,
+                              offset: const Offset(0, 8),
+                            ),
+                          ],
+                        ),
+                        child: Row(
+                          children: [
+                            Icon(Icons.search, color: theme.colorScheme.onSurface.withValues(alpha: 0.4), size: 24),
+                            const SizedBox(width: 16),
+                            Text(
+                              l10n?.searchHanziOrPinyin ?? "Search Hanzi or Pinyin...",
+                              style: theme.textTheme.titleMedium?.copyWith(
+                                color: theme.colorScheme.onSurface.withValues(alpha: 0.5),
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                            const Spacer(),
+                            Icon(Icons.arrow_forward_ios, size: 16, color: theme.colorScheme.onSurface.withValues(alpha: 0.3)),
+                          ],
+                        ),
                       ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withValues(
-                            alpha: Theme.of(context).brightness == Brightness.dark ? 0.3 : 0.04
-                          ),
-                          blurRadius: 20,
-                          offset: const Offset(0, 8),
-                        ),
-                      ],
-                    ),
-                    child: Row(
-                      children: [
-                        Icon(Icons.search, color: theme.colorScheme.onSurface.withValues(alpha: 0.4), size: 24),
-                        const SizedBox(width: 16),
-                        Text(
-                          l10n?.searchHanziOrPinyin ?? "Search Hanzi or Pinyin...",
-                          style: theme.textTheme.titleMedium?.copyWith(
-                            color: theme.colorScheme.onSurface.withValues(alpha: 0.5),
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                        const Spacer(),
-                        Icon(Icons.arrow_forward_ios, size: 16, color: theme.colorScheme.onSurface.withValues(alpha: 0.3)),
-                      ],
                     ),
                   ),
                 ).animate(delay: 150.ms)
