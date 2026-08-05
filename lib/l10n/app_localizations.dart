@@ -1527,7 +1527,7 @@ abstract class AppLocalizations {
   /// No description provided for @geminiFlashIsStructuring.
   ///
   /// In en, this message translates to:
-  /// **'Gemini Flash is structuring your story...'**
+  /// **'Crafting your custom story...'**
   String get geminiFlashIsStructuring;
 
   /// No description provided for @aiDeckGenerator.

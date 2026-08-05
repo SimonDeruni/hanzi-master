@@ -722,8 +722,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get fullTranslation => 'Full Translation';
 
   @override
-  String get geminiFlashIsStructuring =>
-      'Crafting your custom story...';
+  String get geminiFlashIsStructuring => 'Crafting your custom story...';
 
   @override
   String get aiDeckGenerator => 'AI Deck Generator';

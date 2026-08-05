@@ -117,13 +117,13 @@ class _PronunciationReportSheetState extends ConsumerState<PronunciationReportSh
                   icon: const Icon(Icons.volume_up, size: 20),
                   label: const Text('Play Reference Pronunciation', style: TextStyle(fontWeight: FontWeight.bold)),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.orange.shade50,
-                    foregroundColor: Colors.orange.shade800,
+                    backgroundColor: isDark ? const Color(0xFF2C2C2E) : Colors.orange.shade50,
+                    foregroundColor: isDark ? const Color(0xFFFDFCF0) : Colors.orange.shade800,
                     elevation: 0,
                     padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
-                      side: BorderSide(color: Colors.orange.shade200),
+                      side: BorderSide(color: isDark ? Colors.white24 : Colors.orange.shade200),
                     ),
                   ),
                 ),
@@ -144,18 +144,18 @@ class _PronunciationReportSheetState extends ConsumerState<PronunciationReportSh
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                 decoration: BoxDecoration(
-                  color: Colors.orange.shade50,
+                  color: isDark ? const Color(0xFF2C2C2E) : Colors.orange.shade50,
                   borderRadius: BorderRadius.circular(20),
-                  border: Border.all(color: Colors.orange.shade200),
+                  border: Border.all(color: isDark ? Colors.white24 : Colors.orange.shade200),
                 ),
                 child: Row(
                   children: [
                     Text(
                       grade.score?.toString() ?? 'N/A',
-                      style: const TextStyle(color: Colors.orange, fontWeight: FontWeight.bold),
+                      style: TextStyle(color: isDark ? Colors.orange.shade300 : Colors.orange, fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(width: 4),
-                    const Icon(Icons.arrow_upward, size: 12, color: Colors.orange),
+                    Icon(Icons.arrow_upward, size: 12, color: isDark ? Colors.orange.shade300 : Colors.orange),
                     const SizedBox(width: 8),
                     Text(
                       grade.score != null ? (grade.score! >= 80 ? 'Great!' : 'Keep trying!') : 'Pending...',
@@ -184,27 +184,27 @@ class _PronunciationReportSheetState extends ConsumerState<PronunciationReportSh
             width: double.infinity,
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: isDark ? Colors.yellow.shade50.withValues(alpha: 0.15) : Colors.yellow.shade50,
+              color: isDark ? Colors.yellow.shade50.withValues(alpha: 0.05) : Colors.yellow.shade50,
               borderRadius: BorderRadius.circular(16),
-              border: Border.all(color: Colors.yellow.shade200),
+              border: Border.all(color: isDark ? Colors.yellow.shade700.withValues(alpha: 0.3) : Colors.yellow.shade200),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Row(
+                Row(
                   children: [
-                    Icon(Icons.auto_awesome, size: 16, color: Colors.orange),
-                    SizedBox(width: 8),
+                    Icon(Icons.auto_awesome, size: 16, color: isDark ? Colors.orange.shade300 : Colors.orange),
+                    const SizedBox(width: 8),
                     Text(
                       'Good pronunciation, but can be better!',
-                      style: TextStyle(color: Colors.orange, fontWeight: FontWeight.bold),
+                      style: TextStyle(color: isDark ? Colors.orange.shade300 : Colors.orange, fontWeight: FontWeight.bold),
                     ),
                   ],
                 ),
-                const Divider(color: Colors.orange, height: 24),
+                Divider(color: isDark ? Colors.orange.shade300 : Colors.orange, height: 24),
                 Text(
                   grade.overallFeedback,
-                  style: TextStyle(color: Colors.orange.shade900, height: 1.5),
+                  style: TextStyle(color: isDark ? Colors.orange.shade100 : Colors.orange.shade900, height: 1.5),
                 ),
               ],
             ),

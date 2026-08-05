@@ -7,6 +7,8 @@ import '../screens/live_call_screen.dart';
 import '../../../chat/domain/entities/chat_message.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:hanzi_master/features/live_translate/presentation/widgets/interactive_grading_text.dart';
+import 'package:hanzi_master/core/models/pronunciation_grade.dart';
+import 'package:hanzi_master/features/echo_hall/presentation/widgets/pronunciation_report_sheet.dart';
 
 class LiveCallSummaryScreen extends StatelessWidget {
   final List<LiveCallMessage> transcript;
@@ -153,13 +155,30 @@ class LiveCallSummaryScreen extends StatelessWidget {
   }
 
   void _showPronunciationReviewSheet(BuildContext context, LiveCallMessage msg, ThemeData theme) {
+    PronunciationGrade? parsedGrade;
+    if (msg.grade != null) {
+      try {
+        parsedGrade = PronunciationGrade.fromJson(msg.grade!);
+      } catch (e) {
+        debugPrint("Error parsing grade: $e");
+      }
+    }
+
+    final gradedMsg = GradedChatMessage(
+      id: DateTime.now().millisecondsSinceEpoch.toString(),
+      content: msg.text,
+      role: msg.role,
+      timestamp: msg.timestamp,
+      grade: parsedGrade,
+      audioPath: msg.audioPath,
+    );
+
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
-      backgroundColor: theme.colorScheme.surface,
-      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(24))),
+      backgroundColor: Colors.transparent,
       builder: (context) {
-        return PronunciationReviewSheet(msg: msg);
+        return PronunciationReportSheet(message: gradedMsg);
       },
     );
   }
@@ -187,103 +206,6 @@ class LiveCallSummaryScreen extends StatelessWidget {
           ),
         );
       }).toList(),
-    );
-  }
-}
-
-class PronunciationReviewSheet extends StatefulWidget {
-  final LiveCallMessage msg;
-
-  const PronunciationReviewSheet({Key? key, required this.msg}) : super(key: key);
-
-  @override
-  _PronunciationReviewSheetState createState() => _PronunciationReviewSheetState();
-}
-
-class _PronunciationReviewSheetState extends State<PronunciationReviewSheet> {
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final hasGrade = widget.msg.grade != null;
-    final int score = hasGrade ? (widget.msg.grade!['score'] ?? 0) : 0;
-    final String feedback = hasGrade ? (widget.msg.grade!['overallFeedback'] ?? "") : "No audio grading available.";
-
-    Color scoreColor = Colors.green.shade700;
-    if (score < 60) scoreColor = Colors.red.shade700;
-    else if (score < 80) scoreColor = Colors.orange.shade700;
-
-    return Padding(
-      padding: const EdgeInsets.all(24.0),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Container(
-            width: 40, height: 4,
-            decoration: BoxDecoration(color: Colors.grey[400], borderRadius: BorderRadius.circular(2)),
-          ),
-          const SizedBox(height: 24),
-          
-          if (!hasGrade) ...[
-            Text("Audio Grading Pending or Unavailable", style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold)),
-            const SizedBox(height: 16),
-            Text(widget.msg.text, style: theme.textTheme.headlineSmall),
-          ] else ...[
-            Text("Pronunciation Score", style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold)),
-            const SizedBox(height: 16),
-            
-            // Score Circle
-            Container(
-              width: 100,
-              height: 100,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(color: scoreColor, width: 4),
-              ),
-              alignment: Alignment.center,
-              child: Text(
-                "$score",
-                style: theme.textTheme.headlineLarge?.copyWith(
-                  color: scoreColor,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 40,
-                ),
-              ),
-            ),
-            const SizedBox(height: 24),
-            
-            InteractiveGradingText(
-              text: widget.msg.text,
-              wordScores: widget.msg.grade!['words'],
-              onCharTap: (charIndex, scoreData) {
-                final word = scoreData['word'] ?? "";
-                if (word.isNotEmpty) {
-                  showQuickLook(context, word, contextText: widget.msg.text);
-                }
-              },
-            ),
-            const SizedBox(height: 16),
-            
-            Container(
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: theme.colorScheme.onSurface.withValues(alpha: 0.05),
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Row(
-                children: [
-                  Icon(Icons.lightbulb_outline, color: theme.colorScheme.primary),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: InteractiveMarkdownText(text: feedback, theme: theme, contextText: feedback),
-                  ),
-                ],
-              ),
-            ),
-          ],
-          
-          const SizedBox(height: 32),
-        ],
-      ),
     );
   }
 }
