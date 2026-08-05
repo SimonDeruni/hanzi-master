@@ -105,12 +105,23 @@ class _SimplifiedArticleReaderScreenState extends State<SimplifiedArticleReaderS
                       spacing: 4.0,
                       runSpacing: 12.0,
                       children: sentence.words.map((word) {
+                        bool hasChineseChars = RegExp(r'[\u4e00-\u9fa5]').hasMatch(word.hanzi);
+                        bool hasChinesePunc = RegExp(r'[\u3000-\u303f\uff00-\uffef]').hasMatch(word.hanzi);
+                        bool isChineseStyle = hasChineseChars || hasChinesePunc;
+
+                        // Avoid duplicating text if the parser blindly copied English into all fields
+                        bool isValidPinyin = word.pinyin.isNotEmpty && word.pinyin != word.hanzi;
+                        bool isValidMeaning = word.meaning.isNotEmpty && word.meaning != word.hanzi;
+
+                        bool showWordPinyin = _showPinyin && hasChineseChars && isValidPinyin;
+                        bool showWordMeaning = _showTranslation && hasChineseChars && isValidMeaning;
+
                         return GestureDetector(
                           onTap: () => showQuickLook(context, word.hanzi, contextText: sentence.chinese),
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              if (_showPinyin)
+                              if (showWordPinyin)
                                 Text(
                                   word.pinyin,
                                   style: TextStyle(
@@ -118,16 +129,19 @@ class _SimplifiedArticleReaderScreenState extends State<SimplifiedArticleReaderS
                                     color: isDark ? Colors.white54 : Colors.grey,
                                   ),
                                 ),
-                              Text(
-                                word.hanzi,
-                                style: TextStyle(
-                                  fontSize: 24,
-                                  height: 1.2,
-                                  fontFamily: 'Serif',
-                                  color: textColor,
+                              Padding(
+                                padding: EdgeInsets.symmetric(vertical: isChineseStyle ? 0 : 8.0),
+                                child: Text(
+                                  word.hanzi,
+                                  style: TextStyle(
+                                    fontSize: isChineseStyle ? 24 : 16,
+                                    height: 1.2,
+                                    fontFamily: isChineseStyle ? 'Serif' : null,
+                                    color: textColor,
+                                  ),
                                 ),
                               ),
-                              if (_showTranslation)
+                              if (showWordMeaning)
                                 Text(
                                   word.meaning,
                                   style: TextStyle(
