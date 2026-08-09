@@ -33,17 +33,26 @@ class MonetizationService {
   }
 
   static Future<void> _initRevenueCat() async {
-    await Purchases.setLogLevel(LogLevel.debug);
-    
-    late PurchasesConfiguration configuration;
-    if (Platform.isAndroid) {
-      configuration = PurchasesConfiguration(ApiKeyPool().revenueCatAndroidKey);
-    } else {
-      configuration = PurchasesConfiguration(ApiKeyPool().revenueCatAppleKey);
+    try {
+      await Purchases.setLogLevel(LogLevel.debug);
+      
+      late PurchasesConfiguration configuration;
+      final androidKey = ApiKeyPool().revenueCatAndroidKey;
+      final appleKey = ApiKeyPool().revenueCatAppleKey;
+
+      if (Platform.isAndroid) {
+        if (androidKey.isEmpty) debugPrint('WARNING: RevenueCat Android key is empty');
+        configuration = PurchasesConfiguration(androidKey);
+      } else {
+        if (appleKey.isEmpty) debugPrint('WARNING: RevenueCat Apple key is empty');
+        configuration = PurchasesConfiguration(appleKey);
+      }
+      
+      await Purchases.configure(configuration);
+      debugPrint('MonetizationService: RevenueCat initialized');
+    } catch (e) {
+      debugPrint('MonetizationService: Failed to initialize RevenueCat: $e');
     }
-    
-    await Purchases.configure(configuration);
-    debugPrint('MonetizationService: RevenueCat initialized');
   }
 
   static Future<void> _initHuaweiIAP() async {
