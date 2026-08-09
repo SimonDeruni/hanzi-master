@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 // import 'package:google_api_availability/google_api_availability.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
+import 'package:hanzi_master/core/services/api_key_pool.dart';
 // import 'package:huawei_iap/huawei_iap.dart' as hia;
 
 enum PaymentProvider { revenueCat, huawei, none }
@@ -9,6 +10,11 @@ enum PaymentProvider { revenueCat, huawei, none }
 class MonetizationService {
   static const String entitlementId = 'scholars_edition';
   static PaymentProvider _activeProvider = PaymentProvider.none;
+  static bool _developerBackdoorUnlocked = false;
+
+  static void unlockDeveloperBackdoor() {
+    _developerBackdoorUnlocked = true;
+  }
 
   static Future<void> init() async {
     if (kIsWeb) {
@@ -28,18 +34,14 @@ class MonetizationService {
 
   static Future<void> _initRevenueCat() async {
     await Purchases.setLogLevel(LogLevel.debug);
-    String apiKey = "test_hKUgycpfNjUxrrXUseinoYNCPRs";
     
-    // RevenueCat actively shuts down release builds that use `test_` keys.
-    // If we're in release mode and don't have a production key yet, we bypass
-    // RevenueCat entirely so the app doesn't crash during TestFlight/AdHoc testing.
-    if (kReleaseMode && apiKey.startsWith('test_')) {
-      debugPrint('MonetizationService: Bypassing RevenueCat init in Release mode with test key');
-      _activeProvider = PaymentProvider.none;
-      return;
+    late PurchasesConfiguration configuration;
+    if (Platform.isAndroid) {
+      configuration = PurchasesConfiguration(ApiKeyPool().revenueCatAndroidKey);
+    } else {
+      configuration = PurchasesConfiguration(ApiKeyPool().revenueCatAppleKey);
     }
-
-    PurchasesConfiguration configuration = PurchasesConfiguration(apiKey);
+    
     await Purchases.configure(configuration);
     debugPrint('MonetizationService: RevenueCat initialized');
   }
@@ -49,10 +51,7 @@ class MonetizationService {
   }
 
   static Future<bool> checkPremiumStatus() async {
-    // Auto-unlock premium for release testing if RevenueCat was bypassed due to a test key.
-    if (kReleaseMode && _activeProvider == PaymentProvider.none) {
-      return true;
-    }
+    if (_developerBackdoorUnlocked) return true;
     
     try {
       if (_activeProvider == PaymentProvider.revenueCat) {

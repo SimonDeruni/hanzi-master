@@ -18,26 +18,40 @@ class NotificationPermissionScreen extends ConsumerStatefulWidget {
 class _NotificationPermissionScreenState extends ConsumerState<NotificationPermissionScreen> {
   bool _isRequested = false;
   bool _isNavigating = false;
+  int _secretTapCount = 0;
 
   Future<void> _navigateToApp() async {
     if (_isNavigating) return;
     _isNavigating = true;
     try {
-      await PaywallSheet.show(context, isHardPaywall: false);
+      await PaywallSheet.show(context, isHardPaywall: true);
+      
+      // Enforce paywall: if they aren't premium, don't let them in!
+      final isPremium = await MonetizationService.checkPremiumStatus();
+      if (!isPremium) {
+        _isNavigating = false;
+        return; // Stay on the screen, force them to try again
+      }
     } catch (e) {
       debugPrint('Paywall error during onboarding: $e');
-    } finally {
-      if (mounted) {
-        Navigator.pushReplacement(
-          context,
-          PageRouteBuilder(
-            pageBuilder: (context, animation, secondaryAnimation) => const MainNavigationScreen(),
-            transitionsBuilder: (context, animation, secondaryAnimation, child) {
-              return FadeTransition(opacity: animation, child: child);
-            },
-          ),
-        );
+      // If error occurs, we still enforce the check
+      final isPremium = await MonetizationService.checkPremiumStatus();
+      if (!isPremium) {
+        _isNavigating = false;
+        return;
       }
+    }
+
+    if (mounted) {
+      Navigator.pushReplacement(
+        context,
+        PageRouteBuilder(
+          pageBuilder: (context, animation, secondaryAnimation) => const MainNavigationScreen(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return FadeTransition(opacity: animation, child: child);
+          },
+        ),
+      );
     }
   }
 
@@ -62,16 +76,26 @@ class _NotificationPermissionScreenState extends ConsumerState<NotificationPermi
                 
                 // Icon Header
                 Center(
-                  child: Container(
-                    padding: const EdgeInsets.all(24),
-                    decoration: BoxDecoration(
-                      color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.black.withValues(alpha: 0.03),
-                      shape: BoxShape.circle,
-                    ),
-                    child: Icon(
-                      _isRequested ? Icons.notifications_active : Icons.notifications_active_rounded,
-                      size: 64,
-                      color: _isRequested ? Colors.green : const Color(0xFFD4C4A8),
+                  child: GestureDetector(
+                    onTap: () {
+                      _secretTapCount++;
+                      if (_secretTapCount >= 5) {
+                        MonetizationService.unlockDeveloperBackdoor();
+                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Developer Backdoor Unlocked!')));
+                        _secretTapCount = 0;
+                      }
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.all(24),
+                      decoration: BoxDecoration(
+                        color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.black.withValues(alpha: 0.03),
+                        shape: BoxShape.circle,
+                      ),
+                      child: Icon(
+                        _isRequested ? Icons.notifications_active : Icons.notifications_active_rounded,
+                        size: 64,
+                        color: _isRequested ? Colors.green : const Color(0xFFD4C4A8),
+                      ),
                     ),
                   ),
                 ),
