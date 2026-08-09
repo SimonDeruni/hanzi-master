@@ -75,7 +75,7 @@ class ConversationController extends StateNotifier<ConversationState> {
           role: ChatRole.scholar,
           timestamp: DateTime.now(),
           english: scenario.initialEnglish,
-          pinyin: scenario.initialPinyin,
+          pinyin: scenario.initialPinyin != null ? PinyinUtils.convertNumericToMarks(scenario.initialPinyin!) : null,
         ),
       ],
       isProcessing: false,
