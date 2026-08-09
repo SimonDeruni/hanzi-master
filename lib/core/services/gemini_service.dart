@@ -276,12 +276,13 @@ class GeminiService {
     required List<Map<String, dynamic>> messages,
     bool jsonMode = false,
     Duration? timeout,
+    int maxTokens = 2048,
   }) async {
     await _checkUsageLimit();
     final body = {
       'model': model,
       'messages': messages,
-      'max_tokens': 2048,
+      'max_tokens': maxTokens,
       'provider': {
         'data_collection': 'deny'
       }
@@ -1024,6 +1025,7 @@ IMPORTANT RULES for hskLevel and partOfSpeech:
           {'role': 'user', 'content': prompt}
         ],
         jsonMode: true,
+        maxTokens: 8000,
       );
 
       if (text.isNotEmpty) {
@@ -1103,6 +1105,7 @@ IMPORTANT RULES for hskLevel and partOfSpeech:
           {'role': 'user', 'content': prompt}
         ],
         jsonMode: true,
+        maxTokens: 8000,
       );
 
       if (text.isNotEmpty) {
