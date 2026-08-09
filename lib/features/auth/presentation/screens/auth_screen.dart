@@ -346,6 +346,12 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
       if (mounted) Navigator.pop(context);
     } catch (e) {
       if (mounted) {
+        final errorStr = e.toString().toLowerCase();
+        if (errorStr.contains('canceled') || errorStr.contains('cancelled')) {
+          // User intentionally cancelled, ignore the error
+          setState(() => _isLoading = false);
+          return;
+        }
         setState(() {
           _errorMessage = e.toString().replaceAll(RegExp(r'\[.*?\]'), '').trim();
         });
