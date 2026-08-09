@@ -69,6 +69,11 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
     final savedScenarios = ref.watch(savedScenariosProvider);
     final isSaved = savedScenarios.any((s) => s.id == widget.scenario.id);
 
+    return IconButton(
+      icon: Icon(
+        isSaved ? Icons.bookmark : Icons.bookmark_border,
+        color: isSaved ? theme.colorScheme.primary : null,
+      ),
       tooltip: isSaved ? 'Remove from saved scenarios' : 'Save this scenario',
       onPressed: () {
         ref.read(savedScenariosProvider.notifier).toggle(widget.scenario);
