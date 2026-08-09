@@ -268,7 +268,7 @@ class _NuanceCompareSheetState extends ConsumerState<NuanceCompareSheet> {
               children: widget.words.map((w) {
                 return Chip(
                   label: Text(
-                    '${w['hanzi']} ${w['pinyin'] ?? ''}',
+                    '${w['hanzi']} ${w['pinyin'] != null ? PinyinUtils.convertNumericToMarks(w['pinyin']!) : ''}',
                     style: const TextStyle(fontSize: 13),
                   ),
                   visualDensity: VisualDensity.compact,
