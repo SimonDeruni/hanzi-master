@@ -349,6 +349,25 @@ class ConversationController extends StateNotifier<ConversationState> {
     }
   }
 
+  Future<void> translateMessage(String messageId) async {
+    final index = state.messages.indexWhere((m) => m.id == messageId);
+    if (index == -1) return;
+
+    final msg = state.messages[index];
+    // Skip if already translated
+    if (msg.english != null && msg.english!.isNotEmpty) return;
+
+    try {
+      final translation = await _geminiService.translateTextToEnglish(msg.content);
+      final updatedMsg = msg.copyWith(english: translation);
+      final newMessages = List<GradedChatMessage>.from(state.messages);
+      newMessages[index] = updatedMsg;
+      state = state.copyWith(messages: newMessages);
+    } catch (e) {
+      print("ConversationController: Lazy translation error: $e");
+    }
+  }
+
   Future<void> retry() async {
     state = state.copyWith(error: null, isProcessing: true);
     await _fetchAiResponse();

@@ -1,6 +1,9 @@
 # Hanzi Master - Known Issues & Feedback
 
 ## Resolved
+- [x] **Bug**: Fixed Universal Scanner permanent lock-out loop caused by failure to refresh camera permission status after returning from OS Settings.
+- [x] **Bug**: Fixed AI Story Reader UI pagination. Replaced fragmented one-sentence-per-page view with a continuous SingleChildScrollView.
+- [x] **Bug**: Fixed Chat Avatar Header iOS Safe Area collision.
 - [x] **Bug**: Haptic feedback and stroke grading bug reported by user.
 - [x] **Story Length**: Increased custom story requirement to 8-12 sentences for more substantial reading material.
 - [x] Fixed "No stories found" bug when navigating back to the Reading Room.

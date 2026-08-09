@@ -11,6 +11,7 @@ import 'api_key_pool.dart';
 import 'analytics_service.dart';
 import '../providers/translation_language_provider.dart';
 import '../utils/pinyin_utils.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class PremiumRequiredException implements Exception {
   final String message;
@@ -281,6 +282,9 @@ class GeminiService {
       'model': model,
       'messages': messages,
       'max_tokens': 2048,
+      'provider': {
+        'data_collection': 'deny'
+      }
     };
 
     if (jsonMode) {
@@ -1512,6 +1516,14 @@ Respond ONLY in valid JSON format like:
     }
   }
 
+  String _getUserAddressingInstruction() {
+    final name = FirebaseAuth.instance.currentUser?.displayName;
+    if (name != null && name.trim().isNotEmpty) {
+      return 'The user you are speaking to is named "$name". Address them by their name occasionally when offering supportive feedback.';
+    }
+    return 'IMPORTANT RULE: Do not address the user by any name. Never use placeholder names like "John". Speak directly to them without using a name.';
+  }
+
   AiChatSession startCharacterChat(String hanzi, String languageCode) {
     final systemInstruction =
         'You are a concise Chinese Calligraphy and Etymology tutor inside a mobile flashcard app. '
@@ -1520,7 +1532,8 @@ Respond ONLY in valid JSON format like:
         'Never write introductions, sign-offs, or filler phrases like "Great question!" or "Certainly!". '
         'Use **bold** for Chinese characters and key terms. '
         'Be direct and informative. '
-        'CRITICAL RULE: You must respond ENTIRELY in the language corresponding to ISO 639-1 code "$languageCode" (except for the Chinese terms).';
+        'CRITICAL RULE: You must respond ENTIRELY in the language corresponding to ISO 639-1 code "$languageCode" (except for the Chinese terms). '
+        '${_getUserAddressingInstruction()}';
 
     return AiChatSession(
       apiKey: pool.nextKey,
@@ -1538,7 +1551,8 @@ Respond ONLY in valid JSON format like:
         'Never write introductions, sign-offs, or filler phrases. '
         'Use **bold** for Chinese characters and key terms. '
         'Be direct and informative. '
-        'CRITICAL RULE: You must respond ENTIRELY in the language corresponding to ISO 639-1 code "$languageCode" (except for the Chinese terms).';
+        'CRITICAL RULE: You must respond ENTIRELY in the language corresponding to ISO 639-1 code "$languageCode" (except for the Chinese terms). '
+        '${_getUserAddressingInstruction()}';
 
     return AiChatSession(
       apiKey: pool.nextKey,

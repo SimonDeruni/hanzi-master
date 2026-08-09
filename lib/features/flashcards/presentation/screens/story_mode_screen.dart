@@ -41,13 +41,9 @@ class _StoryModeScreenState extends ConsumerState<StoryModeScreen> {
   StreamSubscription? _boundarySub;
   bool _isSaved = false;
 
-  late PageController _pageController;
-  int _currentPage = 0;
-
   @override
   void initState() {
     super.initState();
-    _pageController = PageController(initialPage: 0);
     _initTts();
   }
 
@@ -92,7 +88,6 @@ class _StoryModeScreenState extends ConsumerState<StoryModeScreen> {
 
   @override
   void dispose() {
-    _pageController.dispose();
     _boundarySub?.cancel();
     ref.read(audioServiceProvider).stop();
     super.dispose();
@@ -126,22 +121,20 @@ class _StoryModeScreenState extends ConsumerState<StoryModeScreen> {
       if (!_isPaused || _playingSentenceIndex == null) {
         if (mounted) {
           setState(() {
-            _playingSentenceIndex = _currentPage;
             _playingStartOffset = -1;
             _playingEndOffset = -1;
           });
         }
-        final text = story.sentences[_currentPage].chinese;
+        final text = story.sentences.map((s) => s.chinese).join('');
         final success = await audioService.playSentence(text);
         if (mounted) {
           setState(() {
             _isPlaying = success;
             _isPaused = !success;
-            if (!success) _playingSentenceIndex = null;
           });
         }
       } else {
-        final text = story.sentences[_currentPage].chinese;
+        final text = story.sentences.map((s) => s.chinese).join('');
         if (mounted) {
           setState(() {
             _playingStartOffset = -1;
@@ -153,7 +146,6 @@ class _StoryModeScreenState extends ConsumerState<StoryModeScreen> {
           setState(() {
             _isPlaying = success;
             _isPaused = !success;
-            if (!success) _playingSentenceIndex = null;
           });
         }
       }
@@ -226,22 +218,10 @@ class _StoryModeScreenState extends ConsumerState<StoryModeScreen> {
             },
           ),
         ],
-        bottom: asyncStory.hasValue
-            ? PreferredSize(
-                preferredSize: const Size.fromHeight(4),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(2),
-                    child: LinearProgressIndicator(
-                      value: (_currentPage + 1) / asyncStory.value!.sentences.length,
-                      backgroundColor: isDark ? Colors.white12 : Colors.black12,
-                      valueColor: AlwaysStoppedAnimation(isDark ? Colors.white38 : Colors.black38),
-                    ),
-                  ),
-                ),
-              )
-            : null,
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(0),
+          child: const SizedBox.shrink(),
+        ),
       ),
       body: asyncStory.when(
         data: (story) {
@@ -256,12 +236,8 @@ class _StoryModeScreenState extends ConsumerState<StoryModeScreen> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Text(
-                      'Sentence ${_currentPage + 1} of ${story.sentences.length}',
-                      style: TextStyle(fontSize: 13, color: isDark ? Colors.white38 : Colors.black38),
-                    ),
                     GestureDetector(
                       onTap: () {
                         setState(() {
@@ -296,172 +272,148 @@ class _StoryModeScreenState extends ConsumerState<StoryModeScreen> {
                 ),
               ),
               Expanded(
-                child: PageView.builder(
-                  controller: _pageController,
-                  itemCount: story.sentences.length,
-                  onPageChanged: (page) {
-                    setState(() => _currentPage = page);
-                  },
-                  itemBuilder: (context, index) {
-                    final sentence = story.sentences[index];
-                    final isTranslated = _translatedSentences.contains(index);
-                    final isPlaying = _playingSentenceIndex == index;
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+                  child: Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.all(24),
+                    decoration: BoxDecoration(
+                      color: isDark ? const Color(0xFF252529) : Colors.white,
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(color: isDark ? Colors.white12 : Colors.black12),
+                    ),
+                    child: Builder(builder: (context) {
+                      int globalStringOffset = 0;
+                      List<Widget> sentenceWidgets = [];
 
-                    return SingleChildScrollView(
-                      padding: const EdgeInsets.symmetric(horizontal: 24),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          if (index == 0) ...[
-                            Container(
-                              height: 120,
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                  begin: Alignment.topLeft,
-                                  end: Alignment.bottomRight,
-                                  colors: [
-                                    isDark ? const Color(0xFF3A2E2A) : const Color(0xFFE8E0D0),
-                                    isDark ? const Color(0xFF2A2D34) : const Color(0xFFD0C8B8),
-                                  ],
-                                ),
-                                borderRadius: BorderRadius.circular(16),
-                              ),
-                              child: Center(
-                                child: Icon(Icons.auto_stories, size: 48, color: isDark ? Colors.white38 : Colors.black38),
-                              ),
-                            ),
-                            const SizedBox(height: 24),
-                          ],
-                          Container(
-                            width: double.infinity,
-                            padding: const EdgeInsets.all(24),
-                            decoration: BoxDecoration(
-                              color: isDark ? const Color(0xFF252529) : Colors.white,
-                              borderRadius: BorderRadius.circular(20),
-                              border: Border.all(color: isDark ? Colors.white12 : Colors.black12),
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Wrap(
-                                  spacing: 8.0,
-                                  runSpacing: 16.0,
-                                  children: () {
-                                    int charIndex = 0;
-                                    return sentence.words.map((word) {
-                                      final wordStart = charIndex;
-                                      charIndex += word.hanzi.length;
-                                      final wordEnd = charIndex;
+                      for (int index = 0; index < story.sentences.length; index++) {
+                        if (index > 0) {
+                          sentenceWidgets.add(const SizedBox(height: 24));
+                        }
+                        
+                        final sentence = story.sentences[index];
+                        final isTranslated = _translatedSentences.contains(index);
+                        final isPlaying = _isPlaying || _isPaused;
+                        int currentStringOffset = globalStringOffset;
 
-                                      final isBeingSpoken = isPlaying &&
-                                          _playingStartOffset >= 0 &&
-                                          wordStart >= _playingStartOffset &&
-                                          wordEnd <= _playingEndOffset;
-                                      final isDue = dueWords.contains(word.hanzi);
-                                      final isPunctuation = RegExp(r'[^\w\s\u4e00-\u9fa5]', unicode: true).hasMatch(word.hanzi) || word.hanzi.trim().isEmpty;
+                        sentenceWidgets.add(
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Expanded(
+                                    child: Wrap(
+                                      spacing: 8.0,
+                                      runSpacing: 16.0,
+                                      children: sentence.words.map((word) {
+                                        final wordStart = currentStringOffset;
+                                        currentStringOffset += word.hanzi.length;
+                                        final wordEnd = currentStringOffset;
 
-                                      if (isPunctuation) {
-                                        return Padding(
-                                          key: ValueKey('punct_$wordStart'),
-                                          padding: const EdgeInsets.only(top: 8.0),
-                                          child: Text(
-                                            word.hanzi,
-                                            style: TextStyle(
-                                              fontFamily: 'NotoSerifSC',
-                                              fontSize: 26,
-                                              color: isDark ? Colors.white70 : Colors.black87,
-                                            ),
-                                          ),
-                                        );
-                                      }
+                                        final isBeingSpoken = isPlaying &&
+                                            _playingStartOffset >= 0 &&
+                                            wordStart <= _playingStartOffset &&
+                                            wordEnd > _playingStartOffset;
+                                        final isDue = dueWords.contains(word.hanzi);
+                                        final isPunctuation = RegExp(r'[^\w\s\u4e00-\u9fa5]', unicode: true).hasMatch(word.hanzi) || word.hanzi.trim().isEmpty;
 
-                                      return GestureDetector(
-                                        key: ValueKey('word_$wordStart'),
-                                        onTap: () => showQuickLook(context, word.hanzi, contextText: sentence.chinese),
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            Text(
+                                        if (isPunctuation) {
+                                          return Padding(
+                                            key: ValueKey('punct_$wordStart'),
+                                            padding: const EdgeInsets.only(top: 8.0),
+                                            child: Text(
                                               word.hanzi,
                                               style: TextStyle(
                                                 fontFamily: 'NotoSerifSC',
-                                                fontSize: 28,
-                                                fontWeight: isDue ? FontWeight.w900 : FontWeight.w600,
-                                                color: isBeingSpoken
-                                                    ? Colors.orange
-                                                    : isDue
-                                                        ? const Color(0xFFD4AF37)
-                                                        : (isDark ? Colors.white : Colors.black87),
+                                                fontSize: 26,
+                                                color: isDark ? Colors.white70 : Colors.black87,
                                               ),
                                             ),
-                                            if (_pinyinMode != _PinyinMode.none && (_pinyinMode == _PinyinMode.all || isBeingSpoken))
+                                          );
+                                        }
+
+                                        return GestureDetector(
+                                          key: ValueKey('word_$wordStart'),
+                                          onTap: () => showQuickLook(context, word.hanzi, contextText: sentence.chinese),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
                                               Text(
-                                                word.pinyin,
+                                                word.hanzi,
                                                 style: TextStyle(
-                                                  fontSize: 12,
+                                                  fontFamily: 'NotoSerifSC',
+                                                  fontSize: 28,
+                                                  fontWeight: isDue ? FontWeight.w900 : FontWeight.w600,
                                                   color: isBeingSpoken
-                                                      ? Colors.orange.shade300
-                                                      : Colors.blueAccent,
+                                                      ? Colors.orange
+                                                      : isDue
+                                                          ? const Color(0xFFD4AF37)
+                                                          : (isDark ? Colors.white : Colors.black87),
                                                 ),
                                               ),
-                                          ],
-                                        ),
-                                      );
-                                    }).toList();
-                                  }(),
-                                ),
-                                const SizedBox(height: 12),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    GestureDetector(
-                                      onTap: () {
-                                        setState(() {
-                                          if (isTranslated) {
-                                            _translatedSentences.remove(index);
-                                          } else {
-                                            _translatedSentences.add(index);
-                                          }
-                                        });
-                                      },
-                                      child: Container(
-                                        padding: const EdgeInsets.all(8),
-                                        decoration: BoxDecoration(
-                                          color: isDark ? Colors.white10 : Colors.black.withValues(alpha: 0.06),
-                                          shape: BoxShape.circle,
-                                        ),
-                                        child: Icon(
-                                          Icons.translate,
-                                          size: 18,
-                                          color: isTranslated
-                                              ? Colors.blueAccent
-                                              : (isDark ? Colors.white54 : Colors.black54),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                if (isTranslated) ...[
-                                  const SizedBox(height: 12),
-                                  Divider(color: isDark ? Colors.white12 : Colors.black12),
-                                  const SizedBox(height: 12),
-                                  Text(
-                                    sentence.english,
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      height: 1.5,
-                                      color: isDark ? Colors.white70 : Colors.black87,
+                                              if (_pinyinMode != _PinyinMode.none && (_pinyinMode == _PinyinMode.all || isBeingSpoken))
+                                                Text(
+                                                  word.pinyin,
+                                                  style: TextStyle(
+                                                    fontSize: 12,
+                                                    color: isBeingSpoken
+                                                        ? Colors.orange.shade300
+                                                        : Colors.blueAccent,
+                                                  ),
+                                                ),
+                                            ],
+                                          ),
+                                        );
+                                      }).toList(),
                                     ),
                                   ),
+                                  IconButton(
+                                    icon: const Icon(Icons.translate, color: Colors.grey),
+                                    onPressed: () {
+                                      setState(() {
+                                        if (isTranslated) {
+                                          _translatedSentences.remove(index);
+                                        } else {
+                                          _translatedSentences.add(index);
+                                        }
+                                      });
+                                    },
+                                  ),
                                 ],
+                              ),
+                              if (isTranslated) ...[
+                                const SizedBox(height: 12),
+                                Container(
+                                  padding: const EdgeInsets.all(12),
+                                  decoration: BoxDecoration(
+                                    color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.black.withValues(alpha: 0.02),
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                  child: Text(
+                                    sentence.english,
+                                    style: TextStyle(
+                                      fontSize: 15,
+                                      height: 1.5,
+                                      color: isDark ? Colors.white70 : Colors.black87,
+                                      fontStyle: FontStyle.italic,
+                                    ),
+                                  ),
+                                ),
                               ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
-                  },
+                            ],
+                          )
+                        );
+                        globalStringOffset = currentStringOffset;
+                      }
+
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: sentenceWidgets,
+                      );
+                    }),
+                  ),
                 ),
               ),
             ],

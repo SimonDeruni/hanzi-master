@@ -39,8 +39,6 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
   StreamSubscription<void>? _completionSub;
   bool _isSaved = true; // By default assume saved unless it's a new custom
 
-  late PageController _pageController;
-  int _currentPage = 0;
 
   Timer? _loadingTimer;
   int _loadingStep = 0;
@@ -68,7 +66,6 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
   @override
   void initState() {
     super.initState();
-    _pageController = PageController(initialPage: 0);
     _initTts();
 
     // Determine if it's a custom unsaved story
@@ -277,7 +274,6 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
   @override
   void dispose() {
     _loadingTimer?.cancel();
-    _pageController.dispose();
     _boundarySub?.cancel();
     _completionSub?.cancel();
     unawaited(ref.read(audioServiceProvider).stop());
@@ -327,15 +323,11 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
         // Start from beginning of the page
         if (mounted) {
           setState(() {
-            _playingSentenceIndex = _currentPage;
             _playingStartOffset = -1;
             _playingEndOffset = -1;
           });
         }
-        final startIdx = _currentPage * 3;
-        final endIdx = (startIdx + 3).clamp(0, story.sentences.length);
-        final pageSentences = story.sentences.sublist(startIdx, endIdx);
-        final text = pageSentences.map((s) => s.chinese).join('');
+        final text = story.sentences.map((s) => s.chinese).join('');
         final success = await audioService.playSentence(text);
         if (mounted) {
           setState(() {
@@ -355,10 +347,7 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
         }
       } else {
         // Resume from pause
-        final startIdx = _currentPage * 3;
-        final endIdx = (startIdx + 3).clamp(0, story.sentences.length);
-        final pageSentences = story.sentences.sublist(startIdx, endIdx);
-        final text = pageSentences.map((s) => s.chinese).join('');
+        final text = story.sentences.map((s) => s.chinese).join('');
         // Since Azure TTS streams the full file, "resuming" mid-sentence is complex.
         // We will just replay the whole sentence for now for the premium experience.
         if (mounted) {
@@ -558,55 +547,8 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
             ]
           ],
           bottom: PreferredSize(
-            preferredSize: const Size.fromHeight(24),
-            child: state.currentStory != null
-                ? Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
-                    child: Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "Paragraph ${_currentPage + 1} of ${((state.currentStory!.sentences.length - 1) ~/ 3) + 1}",
-                              style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.bold,
-                                color: isDark ? Colors.white54 : Colors.black54,
-                              ),
-                            ),
-                            Text(
-                              "${((_currentPage + 1) / (((state.currentStory!.sentences.length - 1) ~/ 3) + 1) * 100).toInt()}%",
-                              style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.bold,
-                                color: isDark ? Colors.white54 : Colors.black54,
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 8),
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(4),
-                          child: LinearProgressIndicator(
-                            value: state.currentStory!.sentences.isEmpty
-                                ? 0
-                                : (_currentPage + 1) /
-                                    (((state.currentStory!.sentences.length -
-                                                1) ~/
-                                            3) +
-                                        1),
-                            backgroundColor:
-                                isDark ? Colors.white12 : Colors.black12,
-                            color: Colors.indigo,
-                            minHeight: 6,
-                          ),
-                        ),
-                      ],
-                    ),
-                  )
-                : const SizedBox.shrink(),
+            preferredSize: const Size.fromHeight(0),
+            child: const SizedBox.shrink(),
           ),
         ),
         body: _isStreaming
@@ -719,346 +661,178 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
                         ? Center(
                             child: Text(
                                 AppLocalizations.of(context)!.storyNotFound))
-                        : PageView.builder(
-                            controller: _pageController,
-                            onPageChanged: (index) {
-                              setState(() {
-                                _currentPage = index;
-                              });
-                              HapticsManager.light();
-                            },
-                            itemCount:
-                                ((state.currentStory!.sentences.length - 1) ~/
-                                        3) +
-                                    1,
-                            itemBuilder: (context, pageIndex) {
-                              const sentencesPerPage = 3;
-                              final startIdx = pageIndex * sentencesPerPage;
-                              final endIdx = (startIdx + sentencesPerPage)
-                                  .clamp(
-                                      0, state.currentStory!.sentences.length);
-                              final pageSentences = state
-                                  .currentStory!.sentences
-                                  .sublist(startIdx, endIdx);
-
-                              return SingleChildScrollView(
-                                padding: const EdgeInsets.all(24.0),
-                                child: Column(
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.stretch,
-                                  children: [
-                                    if (pageIndex == 0) ...[
-                                      // Thematic Cover Art on the first page
-                                      Container(
-                                        height: 200,
-                                        margin:
-                                            const EdgeInsets.only(bottom: 32),
-                                        decoration: BoxDecoration(
-                                          gradient: LinearGradient(
-                                            colors: [
-                                              Colors.indigo.shade400,
-                                              Colors.purple.shade400
-                                            ],
-                                            begin: Alignment.topLeft,
-                                            end: Alignment.bottomRight,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(24),
-                                          boxShadow: [
-                                            BoxShadow(
-                                              color: Colors.indigo
-                                                  .withValues(alpha: 0.3),
-                                              blurRadius: 15,
-                                              offset: const Offset(0, 8),
-                                            ),
-                                          ],
-                                        ),
-                                        child: Stack(
-                                          children: [
-                                            Positioned(
-                                              right: -20,
-                                              bottom: -20,
-                                              child: Icon(
-                                                Icons.auto_stories,
-                                                size: 150,
-                                                color: Colors.white
-                                                    .withValues(alpha: 0.15),
-                                              ),
-                                            ),
-                                            Center(
-                                              child: Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  const Icon(Icons.auto_awesome,
-                                                      color: Colors.white,
-                                                      size: 48),
-                                                  const SizedBox(height: 12),
-                                                  Text(
-                                                    widget.hskLevel == 0
-                                                        ? "A Custom Tale"
-                                                        : "A Tale of HSK ${widget.hskLevel}",
-                                                    style: const TextStyle(
-                                                      color: Colors.white,
-                                                      fontSize: 18,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      letterSpacing: 2,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ],
-                                        ),
+                        : SingleChildScrollView(
+                            padding: const EdgeInsets.all(24.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [
+                                // Card containing all sentences
+                                Container(
+                                  padding: const EdgeInsets.all(24.0),
+                                  decoration: BoxDecoration(
+                                    color: isDark
+                                        ? const Color(0xFF222222)
+                                        : Colors.white,
+                                    borderRadius: BorderRadius.circular(24),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.black
+                                            .withValues(alpha: 0.05),
+                                        blurRadius: 10,
+                                        offset: const Offset(0, 4),
                                       ),
                                     ],
-
-                                    // Card containing all sentences for this page
-                                    Container(
-                                      padding: const EdgeInsets.all(24.0),
-                                      decoration: BoxDecoration(
+                                    border: Border.all(
                                         color: isDark
-                                            ? const Color(0xFF222222)
-                                            : Colors.white,
-                                        borderRadius: BorderRadius.circular(24),
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: Colors.black
-                                                .withValues(alpha: 0.05),
-                                            blurRadius: 10,
-                                            offset: const Offset(0, 4),
-                                          ),
-                                        ],
-                                        border: Border.all(
-                                            color: isDark
-                                                ? Colors.white12
-                                                : Colors.black12),
-                                      ),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          for (int si = 0;
-                                              si < pageSentences.length;
-                                              si++) ...[
-                                            if (si > 0)
-                                              const Divider(height: 32),
-                                            Builder(builder: (context) {
-                                              final sentence =
-                                                  pageSentences[si];
-                                              final globalIndex = startIdx + si;
-                                              int currentStringOffset = 0;
-                                              return Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Row(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      Expanded(
-                                                        child: Wrap(
-                                                          spacing: 8.0,
-                                                          runSpacing: 16.0,
-                                                          children: sentence
-                                                              .words
-                                                              .map((word) {
-                                                            final int
-                                                                wordStart =
-                                                                currentStringOffset;
-                                                            final int wordEnd =
-                                                                currentStringOffset +
-                                                                    word.hanzi
-                                                                        .length;
-                                                            currentStringOffset =
-                                                                wordEnd;
+                                            ? Colors.white12
+                                            : Colors.black12),
+                                  ),
+                                  child: Builder(builder: (context) {
+                                    int globalStringOffset = 0;
+                                    List<Widget> sentenceWidgets = [];
 
-                                                            final isPunctuation = RegExp(
-                                                                        r'[^\w\s\u4e00-\u9fa5]',
-                                                                        unicode:
-                                                                            true)
-                                                                    .hasMatch(word
-                                                                        .hanzi) ||
-                                                                word.hanzi
-                                                                    .trim()
-                                                                    .isEmpty;
+                                    for (int si = 0; si < state.currentStory!.sentences.length; si++) {
+                                      if (si > 0) {
+                                        sentenceWidgets.add(const SizedBox(height: 24));
+                                      }
 
-                                                            final isSpeakingThisSentence =
-                                                                _playingSentenceIndex ==
-                                                                    pageIndex;
-                                                            final isWordActive =
-                                                                isSpeakingThisSentence &&
-                                                                    _playingStartOffset >=
-                                                                        0 &&
-                                                                    wordStart <=
-                                                                        _playingStartOffset &&
-                                                                    wordEnd >
-                                                                        _playingStartOffset;
+                                      final sentence = state.currentStory!.sentences[si];
+                                      final globalIndex = si;
+                                      int currentStringOffset = globalStringOffset;
 
-                                                            final textColor =
-                                                                isWordActive
-                                                                    ? Colors
-                                                                        .orange
-                                                                    : (isDark
-                                                                        ? Colors
-                                                                            .white
-                                                                        : Colors
-                                                                            .black87);
+                                      sentenceWidgets.add(
+                                        Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Row(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Expanded(
+                                                  child: Wrap(
+                                                    spacing: 8.0,
+                                                    runSpacing: 16.0,
+                                                    children: sentence.words.map((word) {
+                                                      final int wordStart = currentStringOffset;
+                                                      final int wordEnd = currentStringOffset + word.hanzi.length;
+                                                      currentStringOffset = wordEnd;
 
-                                                            if (isPunctuation) {
-                                                              return Padding(
-                                                                padding:
-                                                                    const EdgeInsets
-                                                                        .only(
-                                                                        top:
-                                                                            8.0),
-                                                                child: Text(
-                                                                  word.hanzi,
-                                                                  style:
-                                                                      TextStyle(
-                                                                    fontFamily:
-                                                                        'NotoSerifSC',
-                                                                    fontSize:
-                                                                        26,
-                                                                    color:
-                                                                        textColor,
-                                                                  ),
-                                                                ),
-                                                              );
-                                                            }
+                                                      final isPunctuation = RegExp(
+                                                                  r'[^\w\s\u4e00-\u9fa5]',
+                                                                  unicode: true)
+                                                              .hasMatch(word.hanzi) ||
+                                                          word.hanzi.trim().isEmpty;
 
-                                                            bool
-                                                                shouldShowPinyin =
-                                                                (_pinyinMode ==
-                                                                    PinyinMode
-                                                                        .all);
+                                                      final isSpeakingThisSentence = _isPlaying || _isPaused;
+                                                      final isWordActive = isSpeakingThisSentence &&
+                                                          _playingStartOffset >= 0 &&
+                                                          wordStart <= _playingStartOffset &&
+                                                          wordEnd > _playingStartOffset;
 
-                                                            return GestureDetector(
-                                                              onTap: () => showQuickLook(
-                                                                  context,
-                                                                  word.hanzi,
-                                                                  contextText:
-                                                                      sentence
-                                                                          .chinese),
-                                                              child: Column(
-                                                                mainAxisSize:
-                                                                    MainAxisSize
-                                                                        .min,
-                                                                children: [
-                                                                  Text(
-                                                                    word.hanzi,
-                                                                    style:
-                                                                        TextStyle(
-                                                                      fontFamily:
-                                                                          'NotoSerifSC',
-                                                                      fontSize:
-                                                                          28,
-                                                                      fontWeight: dueWords.contains(word
-                                                                              .hanzi)
-                                                                          ? FontWeight
-                                                                              .bold
-                                                                          : FontWeight
-                                                                              .w600,
-                                                                      color: isWordActive
-                                                                          ? Colors
-                                                                              .orange
-                                                                          : (dueWords.contains(word.hanzi)
-                                                                              ? const Color(0xFFD4AF37)
-                                                                              : textColor),
-                                                                    ),
-                                                                  ),
-                                                                  if (shouldShowPinyin)
-                                                                    Text(
-                                                                      word.pinyin,
-                                                                      style:
-                                                                          const TextStyle(
-                                                                        fontSize:
-                                                                            12,
-                                                                        color: Colors
-                                                                            .blueAccent,
-                                                                      ),
-                                                                    ),
-                                                                ],
-                                                              ),
-                                                            );
-                                                          }).toList(),
-                                                        ),
-                                                      ),
-                                                      IconButton(
-                                                        icon: const Icon(
-                                                            Icons.language,
-                                                            color: Colors.grey),
-                                                        onPressed: () {
-                                                          setState(() {
-                                                            if (_translatedSentences
-                                                                .contains(
-                                                                    globalIndex)) {
-                                                              _translatedSentences
-                                                                  .remove(
-                                                                      globalIndex);
-                                                            } else {
-                                                              _translatedSentences
-                                                                  .add(
-                                                                      globalIndex);
-                                                            }
-                                                          });
-                                                        },
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  if (_translatedSentences
-                                                      .contains(globalIndex))
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              top: 12.0),
-                                                      child: Container(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .all(12),
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: isDark
-                                                              ? Colors.white
-                                                                  .withValues(
-                                                                      alpha:
-                                                                          0.05)
-                                                              : Colors.black
-                                                                  .withValues(
-                                                                      alpha:
-                                                                          0.02),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(12),
-                                                        ),
-                                                        child: Text(
-                                                          sentence.english,
-                                                          style: TextStyle(
-                                                            fontSize: 15,
-                                                            color: isDark
-                                                                ? Colors.white70
-                                                                : Colors
-                                                                    .black87,
-                                                            fontStyle: FontStyle
-                                                                .italic,
+                                                      final textColor = isWordActive
+                                                          ? Colors.orange
+                                                          : (isDark ? Colors.white : Colors.black87);
+
+                                                      if (isPunctuation) {
+                                                        return Padding(
+                                                          padding: const EdgeInsets.only(top: 8.0),
+                                                          child: Text(
+                                                            word.hanzi,
+                                                            style: TextStyle(
+                                                              fontFamily: 'NotoSerifSC',
+                                                              fontSize: 26,
+                                                              color: textColor,
+                                                            ),
                                                           ),
+                                                        );
+                                                      }
+
+                                                      bool shouldShowPinyin = (_pinyinMode == PinyinMode.all);
+
+                                                      return GestureDetector(
+                                                        onTap: () => showQuickLook(
+                                                            context, word.hanzi,
+                                                            contextText: sentence.chinese),
+                                                        child: Column(
+                                                          mainAxisSize: MainAxisSize.min,
+                                                          children: [
+                                                            Text(
+                                                              word.hanzi,
+                                                              style: TextStyle(
+                                                                fontFamily: 'NotoSerifSC',
+                                                                fontSize: 28,
+                                                                fontWeight: dueWords.contains(word.hanzi)
+                                                                    ? FontWeight.bold
+                                                                    : FontWeight.w600,
+                                                                color: isWordActive
+                                                                    ? Colors.orange
+                                                                    : (dueWords.contains(word.hanzi)
+                                                                        ? const Color(0xFFD4AF37)
+                                                                        : textColor),
+                                                              ),
+                                                            ),
+                                                            if (shouldShowPinyin)
+                                                              Text(
+                                                                word.pinyin,
+                                                                style: const TextStyle(
+                                                                  fontSize: 12,
+                                                                  color: Colors.blueAccent,
+                                                                ),
+                                                              ),
+                                                          ],
                                                         ),
-                                                      ),
+                                                      );
+                                                    }).toList(),
+                                                  ),
+                                                ),
+                                                IconButton(
+                                                  icon: const Icon(Icons.translate, color: Colors.grey),
+                                                  onPressed: () {
+                                                    setState(() {
+                                                      if (_translatedSentences.contains(globalIndex)) {
+                                                        _translatedSentences.remove(globalIndex);
+                                                      } else {
+                                                        _translatedSentences.add(globalIndex);
+                                                      }
+                                                    });
+                                                  },
+                                                ),
+                                              ],
+                                            ),
+                                            if (_translatedSentences.contains(globalIndex))
+                                              Padding(
+                                                padding: const EdgeInsets.only(top: 12.0),
+                                                child: Container(
+                                                  padding: const EdgeInsets.all(12),
+                                                  decoration: BoxDecoration(
+                                                    color: isDark
+                                                        ? Colors.white.withValues(alpha: 0.05)
+                                                        : Colors.black.withValues(alpha: 0.02),
+                                                    borderRadius: BorderRadius.circular(12),
+                                                  ),
+                                                  child: Text(
+                                                    sentence.english,
+                                                    style: TextStyle(
+                                                      fontSize: 15,
+                                                      color: isDark ? Colors.white70 : Colors.black87,
+                                                      fontStyle: FontStyle.italic,
                                                     ),
-                                                ],
-                                              );
-                                            }),
+                                                  ),
+                                                ),
+                                              ),
                                           ],
-                                        ],
-                                      ),
-                                    ),
-                                    const SizedBox(height: 80),
-                                  ],
+                                        )
+                                      );
+                                      globalStringOffset = currentStringOffset;
+                                    }
+
+                                    return Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: sentenceWidgets,
+                                    );
+                                  }),
                                 ),
-                              );
-                            },
+                              ],
+                            ),
                           ),
         bottomNavigationBar: state.currentStory != null &&
                 !state.isLoading &&

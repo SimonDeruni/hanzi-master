@@ -17,7 +17,9 @@ class RevenueCatService extends _$RevenueCatService {
 
   Future<void> _initRevenueCat() async {
     try {
-      await Purchases.setLogLevel(LogLevel.debug);
+      if (kDebugMode) {
+        await Purchases.setLogLevel(LogLevel.debug);
+      }
       
       late PurchasesConfiguration configuration;
       if (Platform.isAndroid) {

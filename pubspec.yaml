@@ -1,7 +1,7 @@
 name: hanzi_master
 description: A mobile-first Chinese learning application.
 publish_to: 'none'
-version: 1.0.0+59
+version: 1.0.0+60
 
 environment:
   sdk: '>=3.2.0 <4.0.0'
@@ -72,6 +72,7 @@ dependencies:
   pitch_detector_dart: ^0.0.7
   youtube_explode_dart: ^3.1.0
   googleai_dart: ^9.0.0
+  flutter_secure_storage: ^11.0.0
 
 dev_dependencies:
   flutter_test:
@@ -93,7 +94,9 @@ flutter:
   generate: true
   uses-material-design: true
   assets:
-    - .env
+    # .env is intentionally NOT listed here.
+    # For local development: flutter_dotenv loads it from the filesystem at runtime.
+    # For release builds: keys are injected via --dart-define in build_release.sh.
     - assets/icon/
     - assets/data/dictionary.db
     - assets/data/

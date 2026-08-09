@@ -708,10 +708,11 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
     final colorCss = darkMode ? '#DADADA' : '#1A1A1B';
     final darkGlobalCss = '''
       ${darkMode ? 'html { color-scheme: dark; }' : ''}
-      body, div, p, h1, h2, h3, h4, h5, h6, span:not(.hanzi-clickable), a, li, td, th, article, main {
+      body, div, p, h1, h2, h3, h4, h5, h6, span:not(.hanzi-clickable), a, li, td, th, article, main, section, aside, nav, header, footer {
         color: $colorCss !important;
       }
-      ${darkMode ? 'img, video, iframe, embed, object { opacity: 0.85; }' : ''}
+      ${darkMode ? 'body, div, article, main, section, aside, nav, header, footer, table, tbody, tr, td, th, ul, ol, li, iframe { background-color: $bgColor !important; }' : ''}
+      ${darkMode ? 'img, video, embed, object { opacity: 0.85; }' : ''}
     ''';
 
     final js = '''

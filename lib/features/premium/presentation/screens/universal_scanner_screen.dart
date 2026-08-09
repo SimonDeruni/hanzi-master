@@ -93,13 +93,12 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
     _initializeCamera();
   }
 
+  bool _isInitializingCamera = false;
+
   Future<void> _initializeCamera() async {
-    var status = await Permission.camera.status;
-    if (!status.isGranted) {
-      status = await Permission.camera.request();
-    }
-    
-    if (status.isGranted) {
+    if (_isInitializingCamera) return;
+    _isInitializingCamera = true;
+    try {
       if (mounted) setState(() => _permissionDenied = false);
       _cameras = await availableCameras();
       if (_cameras.isNotEmpty) {
@@ -122,31 +121,49 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
               _cameraController!.startImageStream(_processCameraImage);
             }
           }
-        } catch (e) {
+        } on CameraException catch (e) {
+          if (e.code == 'CameraAccessDenied' || e.code == 'CameraAccessDeniedWithoutPrompt') {
+            if (mounted) {
+              setState(() => _permissionDenied = true);
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: const Text(
+                    'Camera permission required for live scanning.',
+                    style: TextStyle(color: Color(0xFFFDFCF0), fontWeight: FontWeight.w500),
+                  ),
+                  backgroundColor: const Color(0xFF1A1A1B),
+                  behavior: SnackBarBehavior.floating,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                  margin: const EdgeInsets.only(bottom: 24, left: 16, right: 16),
+                  action: SnackBarAction(
+                    label: 'Settings',
+                    textColor: const Color(0xFFFDFCF0),
+                    onPressed: () async {
+                      await openAppSettings();
+                      _startPermissionPolling();
+                    },
+                  ),
+                ),
+              );
+            }
+          }
           debugPrint("Camera Error: $e");
+        } catch (e) {
+          debugPrint("Unknown Camera Error: $e");
         }
       }
-    } else {
-      if (mounted) {
-        setState(() => _permissionDenied = true);
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: const Text(
-              'Camera permission required for live scanning.',
-              style: TextStyle(color: Color(0xFFFDFCF0), fontWeight: FontWeight.w500),
-            ),
-            backgroundColor: const Color(0xFF1A1A1B),
-            behavior: SnackBarBehavior.floating,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-            margin: const EdgeInsets.only(bottom: 24, left: 16, right: 16),
-            action: SnackBarAction(
-              label: 'Settings',
-              textColor: const Color(0xFFFDFCF0),
-              onPressed: () => openAppSettings(),
-            ),
-          ),
-        );
-      }
+    } finally {
+      if (mounted) _isInitializingCamera = false;
+    }
+  }
+
+  void _startPermissionPolling() async {
+    // Poll for up to 30 seconds after opening settings
+    for (int i = 0; i < 30; i++) {
+      await Future.delayed(const Duration(seconds: 1));
+      if (!mounted) break;
+      if (!_permissionDenied) break; // It succeeded
+      _initializeCamera();
     }
   }
 
@@ -163,11 +180,17 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.resumed) {
-      _initializeCamera();
+      // Add a slight delay to allow OS to sync permission changes before we check
+      Future.delayed(const Duration(milliseconds: 300), () {
+        if (mounted) _initializeCamera();
+      });
     } else if (state == AppLifecycleState.inactive || state == AppLifecycleState.paused) {
       if (_cameraController != null && _cameraController!.value.isInitialized) {
         _cameraController!.dispose();
-        _isCameraInitialized = false;
+        setState(() {
+          _isCameraInitialized = false;
+          _cameraController = null;
+        });
       }
     }
   }
@@ -774,7 +797,10 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
               ),
               const SizedBox(height: 24),
               ElevatedButton.icon(
-                onPressed: () => openAppSettings(),
+                onPressed: () async {
+                  await openAppSettings();
+                  _startPermissionPolling();
+                },
                 icon: const Icon(Icons.settings),
                 label: const Text('Open Settings'),
                 style: ElevatedButton.styleFrom(
@@ -783,6 +809,12 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                   padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                 ),
+              ),
+              const SizedBox(height: 16),
+              TextButton.icon(
+                onPressed: () => _initializeCamera(),
+                icon: const Icon(Icons.refresh, color: Colors.white70),
+                label: const Text('I\'ve granted access', style: TextStyle(color: Colors.white70)),
               ),
             ],
           ),

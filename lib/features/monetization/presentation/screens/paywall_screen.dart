@@ -78,7 +78,7 @@ class _PaywallScreenState extends ConsumerState<PaywallScreen> {
                   ),
                   const SizedBox(height: 16),
                   Text(
-                    "• Unlimited Smart Dictionary AI\n• Live Voice Calls & Personas\n• YouTube Media Desk",
+                    "• Unlimited Smart Dictionary AI\n• Live Voice Calls & Personas\n• Scholar's Desk & AI Tutor",
                     style: TextStyle(fontSize: 16, color: isDark ? Colors.white70 : Colors.black54),
                   ),
                   const SizedBox(height: 40),

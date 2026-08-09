@@ -24,6 +24,7 @@ import 'package:hanzi_master/shared/widgets/nuance_compare_sheet.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/radical_library_screen.dart';
 import 'package:hanzi_master/features/course/presentation/screens/tome_manager_screen.dart' as hanzi_tome;
 import 'package:hanzi_master/shared/widgets/global_sliver_app_bar.dart';
+import 'package:hanzi_master/features/flashcards/presentation/widgets/ai_generated_badge.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/core/utils/definition_formatter.dart';
 import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
@@ -1043,30 +1044,12 @@ class _DictionaryItemState extends ConsumerState<_DictionaryItem> {
                     ),
                   ),
                   const SizedBox(height: 4),
-                  if (widget.card.hskLevel == 0)
-                    Container(
-                      margin: const EdgeInsets.only(bottom: 6),
-                      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                      decoration: BoxDecoration(
-                        color: Colors.purple.withValues(alpha: 0.1),
-                        borderRadius: BorderRadius.circular(4),
-                        border: Border.all(color: Colors.purple.withValues(alpha: 0.3)),
-                      ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Icon(Icons.auto_awesome, size: 10, color: Colors.purple.shade400),
-                          const SizedBox(width: 4),
-                          Text(
-                            AppLocalizations.of(context)!.aiGenerated,
-                            style: TextStyle(
-                              fontSize: 9,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.purple.shade400,
-                            ),
-                          ),
-                        ],
-                      ),
+                  if (widget.card.hskLevel == 0 && !widget.card.id.startsWith('global_'))
+                    const AIGeneratedBadge(
+                      fontSize: 9,
+                      iconSize: 10,
+                      margin: EdgeInsets.only(bottom: 6),
+                      padding: EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                     ),
                   Text(
                     DefinitionFormatter.cleanRaw(_definition, ref),

@@ -1,4 +1,5 @@
 import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/features/flashcards/presentation/widgets/ai_generated_badge.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/deck.dart';
@@ -547,30 +548,12 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                     ),
                   ),
                   const SizedBox(height: 6),
-                  if (card.hskLevel == 0 && widget.deck.id == 'default')
-                    Container(
-                      margin: const EdgeInsets.only(bottom: 8),
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                      decoration: BoxDecoration(
-                        color: Colors.purple.withValues(alpha: 0.1),
-                        borderRadius: BorderRadius.circular(6),
-                        border: Border.all(color: Colors.purple.withValues(alpha: 0.2)),
-                      ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Icon(Icons.auto_awesome, size: 10, color: Colors.purple.shade400),
-                          const SizedBox(width: 4),
-                          Text(
-                            AppLocalizations.of(context)!.aiGenerated,
-                            style: TextStyle(
-                              fontSize: 10,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.purple.shade400,
-                            ),
-                          ),
-                        ],
-                      ),
+                  if (card.hskLevel == 0 && !card.id.startsWith('global_'))
+                    const AIGeneratedBadge(
+                      fontSize: 10,
+                      iconSize: 10,
+                      margin: EdgeInsets.only(bottom: 8),
+                      padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                     ),
                   Text(
                     card.definition,

@@ -69,11 +69,6 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
     final savedScenarios = ref.watch(savedScenariosProvider);
     final isSaved = savedScenarios.any((s) => s.id == widget.scenario.id);
 
-    return IconButton(
-      icon: Icon(
-        isSaved ? Icons.bookmark : Icons.bookmark_border,
-        color: isSaved ? Colors.amber : Colors.white,
-      ),
       tooltip: isSaved ? 'Remove from saved scenarios' : 'Save this scenario',
       onPressed: () {
         ref.read(savedScenariosProvider.notifier).toggle(widget.scenario);
@@ -100,166 +95,141 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
     });
 
     return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        title: Text(widget.scenario.title, style: const TextStyle(color: Colors.transparent)),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        iconTheme: const IconThemeData(color: Colors.white),
-        actions: [
-          _buildBookmarkButton(theme),
-                  ],
-      ),
       body: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
         child: CalligraphyBackground(
-          child: Stack(
+          child: Column(
             children: [
-            // 1. Avatar Image at Top (Cover)
-            Positioned(
-              top: 0,
-              left: 0,
-              right: 0,
-              height: MediaQuery.of(context).size.height * 0.26,
-              child: TweenAnimationBuilder<double>(
-                tween: Tween(begin: 1.0, end: 1.05),
-                duration: const Duration(seconds: 10),
-                builder: (context, scale, child) {
-                  return Transform.scale(
-                    scale: scale,
-                    child: (widget.scenario.avatarAssetPath == 'none' || widget.scenario.avatarAssetPath.isEmpty)
-                      ? Container(
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              colors: [
-                                theme.colorScheme.primary,
-                                theme.colorScheme.secondary,
-                              ],
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                            ),
-                          ),
-                          child: Center(
-                            child: Text(
-                              widget.scenario.personaName.isNotEmpty ? widget.scenario.personaName[0].toUpperCase() : '?',
-                              style: const TextStyle(color: Colors.white, fontSize: 100, fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                        )
-                      : Image.asset(
-                          widget.scenario.avatarAssetPath,
-                          fit: BoxFit.cover,
-                          errorBuilder: (context, error, stackTrace) => Container(
-                            color: theme.colorScheme.primary.withValues(alpha: 0.1),
-                            child: Center(
-                              child: Icon(Icons.person, size: 100, color: theme.colorScheme.primary),
-                            ),
-                          ),
-                        ),
-                  );
-                },
-              ),
-            ),
-
-
-            // 2. Chat Area
-            Positioned(
-              top: MediaQuery.of(context).size.height * 0.24,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: theme.colorScheme.surface,
-                  borderRadius: const BorderRadius.vertical(top: Radius.circular(32)),
-                  boxShadow: [
-                    BoxShadow(color: theme.colorScheme.onSurface.withValues(alpha: 0.1), blurRadius: 20, offset: const Offset(0, -5))
-                  ],
-                ),
-                child: Column(
+              Expanded(
+                child: Stack(
                   children: [
-                    Expanded(
-                      child: ListView.builder(
-                        controller: _scrollController,
-                        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-                        padding: EdgeInsets.fromLTRB(
-                          16,
-                          24,
-                          16,
-                          68 + MediaQuery.of(context).padding.bottom,
+                    CustomScrollView(
+                      controller: _scrollController,
+                      slivers: [
+                        SliverAppBar(
+                          expandedHeight: 220,
+                          pinned: true,
+                          backgroundColor: theme.colorScheme.surface,
+                          surfaceTintColor: Colors.transparent,
+                          iconTheme: IconThemeData(color: theme.colorScheme.onSurface),
+                          actions: [
+                            _buildBookmarkButton(theme),
+                          ],
+                          flexibleSpace: FlexibleSpaceBar(
+                            title: Text(
+                              widget.scenario.title,
+                              style: TextStyle(
+                                color: theme.colorScheme.onSurface,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            centerTitle: true,
+                            background: _buildHeaderBackground(theme),
+                          ),
                         ),
-                        itemCount: state.messages.length,
-                        itemBuilder: (context, index) {
-                          final message = state.messages[index];
-                          return _buildMessage(message, theme);
-                        },
-                      ),
+                        SliverPadding(
+                          padding: EdgeInsets.fromLTRB(16, 24, 16, 20),
+                          sliver: SliverList(
+                            delegate: SliverChildBuilderDelegate(
+                              (context, index) {
+                                final message = state.messages[index];
+                                return _buildMessage(message, theme);
+                              },
+                              childCount: state.messages.length,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
+                    // Quests Overlay
+                    if (widget.scenario.quests.isNotEmpty)
+                      Positioned(
+                        top: 240, // Below expanded app bar
+                        right: 12,
+                        child: _QuestsFloatingButton(quests: widget.scenario.quests),
+                      ),
                   ],
                 ),
               ),
-            ),
-            
-            if (state.isProcessing)
-              Center(
-                child: CircularProgressIndicator(color: theme.colorScheme.primary),
-              ),
-
-            if (state.error != null)
-              Positioned(
-                bottom: 120,
-                left: 20,
-                right: 20,
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                  decoration: BoxDecoration(
-                    color: theme.colorScheme.error.withValues(alpha: 0.9),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Text(
-                          state.error!,
-                          style: TextStyle(color: theme.colorScheme.onError, fontSize: 13),
-                        ),
-                      ),
-                      const SizedBox(width: 8),
-                      TextButton(
-                        onPressed: () => ref.read(conversationControllerProvider.notifier).retry(),
-                        style: TextButton.styleFrom(
-                          foregroundColor: theme.colorScheme.onError,
-                          backgroundColor: theme.colorScheme.onError.withValues(alpha: 0.2),
-                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                        ),
-                        child: const Text('Retry', style: TextStyle(fontWeight: FontWeight.bold)),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-
-            // 3. Input Area
-            Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: _buildInputArea(state, theme),
-            ),
-
-            // Quests Overlay (compact floating button) - moved to bottom of Stack for highest z-index
-            if (widget.scenario.quests.isNotEmpty)
-              Positioned(
-                top: 140,
-                right: 12,
-                child: _QuestsFloatingButton(quests: widget.scenario.quests),
-              ),
-          ],
+              // Input Area at the bottom
+              _buildInputArea(state, theme),
+            ],
+          ),
         ),
       ),
-    ),
-  );
-}
+    );
+  }
+
+  Widget _buildHeaderBackground(ThemeData theme) {
+    if (widget.scenario.avatarAssetPath != 'none' && widget.scenario.avatarAssetPath.isNotEmpty) {
+      return SafeArea(
+        bottom: false,
+        child: Image.asset(
+          widget.scenario.avatarAssetPath,
+          fit: BoxFit.cover,
+          errorBuilder: (context, error, stackTrace) => Container(
+            color: theme.colorScheme.primary.withValues(alpha: 0.1),
+            child: Center(
+              child: Icon(Icons.person, size: 100, color: theme.colorScheme.primary),
+            ),
+          ),
+        ),
+      );
+    }
+
+    // Refined Monogram
+    final char = widget.scenario.personaName.isNotEmpty ? widget.scenario.personaName[0].toUpperCase() : '?';
+    return SafeArea(
+      bottom: false,
+      child: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              theme.colorScheme.primary.withValues(alpha: 0.1),
+              theme.colorScheme.surface,
+            ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
+        child: Center(
+          child: Container(
+            width: 100,
+            height: 100,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              gradient: LinearGradient(
+                colors: [
+                  theme.colorScheme.primary,
+                  theme.colorScheme.secondary,
+                ],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: theme.colorScheme.primary.withValues(alpha: 0.3),
+                  blurRadius: 20,
+                  offset: const Offset(0, 10),
+                )
+              ],
+            ),
+            child: Center(
+              child: Text(
+                char,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 48,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 
   final TextEditingController _textController = TextEditingController();
 
@@ -535,10 +505,14 @@ Widget _buildScoreBadge(PronunciationGrade grade, ThemeData theme, bool isUser) 
                             ],
                           ],
                           
-                          if (message.english != null && message.english!.isNotEmpty || message.pinyin != null && message.pinyin!.isNotEmpty) ...[
+                          if (message.role == ChatRole.scholar) ...[
                             const SizedBox(height: 8),
                             InkWell(
                               onTap: () {
+                                // Lazy-load translation if not yet cached
+                                if (message.english == null || message.english!.isEmpty) {
+                                  ref.read(conversationControllerProvider.notifier).translateMessage(message.id);
+                                }
                                 setState(() {
                                   _translationVisibility[message.id] = !isExpanded;
                                 });

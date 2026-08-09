@@ -59,18 +59,24 @@ class GradedChatMessage extends ChatMessage {
   });
 
   GradedChatMessage copyWith({
+    String? id,
     String? content,
+    String? pinyin,
+    String? english,
+    Map<String, dynamic>? suggestion,
+    ChatRole? role,
+    DateTime? timestamp,
     PronunciationGrade? grade,
     String? audioPath,
   }) {
     return GradedChatMessage(
-      id: id,
+      id: id ?? this.id,
       content: content ?? this.content,
-      pinyin: pinyin,
-      english: english,
-      suggestion: suggestion,
-      role: role,
-      timestamp: timestamp,
+      pinyin: pinyin ?? this.pinyin,
+      english: english ?? this.english,
+      suggestion: suggestion ?? this.suggestion,
+      role: role ?? this.role,
+      timestamp: timestamp ?? this.timestamp,
       grade: grade ?? this.grade,
       audioPath: audioPath ?? this.audioPath,
     );
