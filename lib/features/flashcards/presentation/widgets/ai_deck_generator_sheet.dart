@@ -208,9 +208,9 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
                   style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(
-                  width: 70,
+                  width: 80,
                   height: 36,
-                  child: HanziTextField(
+                  child: TextField(
                     controller: _countController,
                     keyboardType: TextInputType.number,
                     textAlign: TextAlign.center,
