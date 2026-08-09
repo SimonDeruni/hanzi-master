@@ -170,15 +170,40 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
     if (widget.scenario.avatarAssetPath != 'none' && widget.scenario.avatarAssetPath.isNotEmpty) {
       return SafeArea(
         bottom: false,
-        child: Image.asset(
-          widget.scenario.avatarAssetPath,
-          fit: BoxFit.cover,
-          errorBuilder: (context, error, stackTrace) => Container(
-            color: theme.colorScheme.primary.withValues(alpha: 0.1),
-            child: Center(
-              child: Icon(Icons.person, size: 100, color: theme.colorScheme.primary),
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            Image.asset(
+              widget.scenario.avatarAssetPath,
+              fit: BoxFit.cover,
+              errorBuilder: (context, error, stackTrace) => Container(
+                color: theme.colorScheme.primary.withValues(alpha: 0.1),
+                child: Center(
+                  child: Icon(Icons.person, size: 100, color: theme.colorScheme.primary),
+                ),
+              ),
             ),
-          ),
+            // Gradient scrim so the title text is perfectly readable
+            Positioned(
+              left: 0,
+              right: 0,
+              bottom: 0,
+              height: 100,
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.bottomCenter,
+                    end: Alignment.topCenter,
+                    colors: [
+                      theme.colorScheme.surface,
+                      theme.colorScheme.surface.withValues(alpha: 0.7),
+                      theme.colorScheme.surface.withValues(alpha: 0.0),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       );
     }
