@@ -583,9 +583,8 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
     IconData icon;
 
     if (stats.isNew) {
-      statusText = "New Card";
-      color = Colors.blue;
-      icon = Icons.fiber_new;
+      return const SizedBox.shrink();
+
     } else if (card.isDue(StudyMode.reading)) {
       statusText = "To Be Reviewed";
       color = Colors.orange;
