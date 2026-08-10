@@ -3,8 +3,6 @@ workflows:
     name: iOS Release & TestFlight
     instance_type: mac_mini_m1
     environment:
-      groups:
-        - api_keys # MAKE SURE your Codemagic environment variables are in a group called "api_keys"
       flutter: default
       # API keys are stored as secret environment variables in the Codemagic dashboard.
       # Go to: App settings → Environment variables → add each key as a secret.
