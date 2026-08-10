@@ -225,7 +225,7 @@ class AiChatSession {
 
     final response = await http.post(
       Uri.parse(
-          'https://us-central1-hanzi-master-bcef9.cloudfunctions.net/openRouterProxy'),
+          'https://us-central1-hanzi-master-bcef9.cloudfunctions.net/openRouterProxyV2'),
       headers: {
         'Authorization': 'Bearer $apiKey',
         'Content-Type': 'application/json',
@@ -295,7 +295,7 @@ class GeminiService {
     final response = await http
         .post(
           Uri.parse(
-              'https://us-central1-hanzi-master-bcef9.cloudfunctions.net/openRouterProxy'),
+              'https://us-central1-hanzi-master-bcef9.cloudfunctions.net/openRouterProxyV2'),
           headers: {
             'Authorization': 'Bearer ${pool.nextKey}',
             'Content-Type': 'application/json',
@@ -327,7 +327,7 @@ class GeminiService {
     final request = http.Request(
       'POST',
       Uri.parse(
-          'https://us-central1-hanzi-master-bcef9.cloudfunctions.net/openRouterProxy'),
+          'https://us-central1-hanzi-master-bcef9.cloudfunctions.net/openRouterProxyV2'),
     );
     request.headers.addAll({
       'Authorization': 'Bearer ${pool.nextKey}',
