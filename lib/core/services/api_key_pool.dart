@@ -22,10 +22,7 @@ class ApiKeyPool {
   }
 
   String get revenueCatAppleKey {
-    const key = String.fromEnvironment('REVENUECAT_APPLE_API_KEY');
-    if (key.isNotEmpty) return key;
-    if (dotenv.isInitialized) return dotenv.env['REVENUECAT_APPLE_API_KEY'] ?? 'appl_YOUR_APPLE_KEY_HERE';
-    return 'appl_YOUR_APPLE_KEY_HERE';
+    return 'appl_AxHBAaTDjxdzKoJVcYXmiaHpQit';
   }
 
   String get revenueCatAndroidKey {
