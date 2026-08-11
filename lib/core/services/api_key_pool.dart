@@ -7,65 +7,59 @@ final apiKeyPoolProvider = Provider<ApiKeyPool>((ref) => ApiKeyPool());
 /// with a fallback to the local .env file (local development via flutter run).
 /// This ensures keys are never bundled as a readable asset in the app binary.
 class ApiKeyPool {
-  static String _key(String name) {
-    if (String.fromEnvironment(name).isNotEmpty) {
-      return String.fromEnvironment(name);
-    }
-    if (dotenv.isInitialized) {
-      return dotenv.env[name] ?? 'MISSING_KEY';
-    }
+  String get nextKey {
+    const key = String.fromEnvironment('OPENROUTER_API_KEY');
+    if (key.isNotEmpty) return key;
+    if (dotenv.isInitialized) return dotenv.env['OPENROUTER_API_KEY'] ?? 'MISSING_KEY';
     return 'MISSING_KEY';
   }
 
-  String get nextKey => _key('OPENROUTER_API_KEY');
-
-  String get googleKey => _key('GEMINI_API_KEY');
+  String get googleKey {
+    const key = String.fromEnvironment('GEMINI_API_KEY');
+    if (key.isNotEmpty) return key;
+    if (dotenv.isInitialized) return dotenv.env['GEMINI_API_KEY'] ?? 'MISSING_KEY';
+    return 'MISSING_KEY';
+  }
 
   String get revenueCatAppleKey {
-    if (String.fromEnvironment('REVENUECAT_APPLE_API_KEY').isNotEmpty) {
-      return String.fromEnvironment('REVENUECAT_APPLE_API_KEY');
-    }
-    if (dotenv.isInitialized) {
-      return dotenv.env['REVENUECAT_APPLE_API_KEY'] ?? 'appl_YOUR_APPLE_KEY_HERE';
-    }
+    const key = String.fromEnvironment('REVENUECAT_APPLE_API_KEY');
+    if (key.isNotEmpty) return key;
+    if (dotenv.isInitialized) return dotenv.env['REVENUECAT_APPLE_API_KEY'] ?? 'appl_YOUR_APPLE_KEY_HERE';
     return 'appl_YOUR_APPLE_KEY_HERE';
   }
 
   String get revenueCatAndroidKey {
-    if (String.fromEnvironment('REVENUECAT_GOOGLE_API_KEY').isNotEmpty) {
-      return String.fromEnvironment('REVENUECAT_GOOGLE_API_KEY');
-    }
-    if (dotenv.isInitialized) {
-      return dotenv.env['REVENUECAT_GOOGLE_API_KEY'] ?? 'goog_YOUR_GOOGLE_KEY_HERE';
-    }
+    const key = String.fromEnvironment('REVENUECAT_GOOGLE_API_KEY');
+    if (key.isNotEmpty) return key;
+    if (dotenv.isInitialized) return dotenv.env['REVENUECAT_GOOGLE_API_KEY'] ?? 'goog_YOUR_GOOGLE_KEY_HERE';
     return 'goog_YOUR_GOOGLE_KEY_HERE';
   }
 
-  String get azureSpeechKey => _key('AZURE_SPEECH_KEY');
+  String get azureSpeechKey {
+    const key = String.fromEnvironment('AZURE_SPEECH_KEY');
+    if (key.isNotEmpty) return key;
+    if (dotenv.isInitialized) return dotenv.env['AZURE_SPEECH_KEY'] ?? 'MISSING_KEY';
+    return 'MISSING_KEY';
+  }
 
   String get azureSpeechRegion {
-    if (String.fromEnvironment('AZURE_SPEECH_REGION').isNotEmpty) {
-      return String.fromEnvironment('AZURE_SPEECH_REGION');
-    }
-    if (dotenv.isInitialized) {
-      return dotenv.env['AZURE_SPEECH_REGION'] ?? 'MISSING_REGION';
-    }
+    const key = String.fromEnvironment('AZURE_SPEECH_REGION');
+    if (key.isNotEmpty) return key;
+    if (dotenv.isInitialized) return dotenv.env['AZURE_SPEECH_REGION'] ?? 'MISSING_REGION';
     return 'MISSING_REGION';
   }
 
   int _youtubeKeyIndex = 0;
 
   String get youtubeApiKey {
+    const key1 = String.fromEnvironment('YOUTUBE_API_KEY');
+    const key2 = String.fromEnvironment('YOUTUBE_API_KEY_2');
+    const key3 = String.fromEnvironment('YOUTUBE_API_KEY_3');
+
     final List<String?> rawKeys = [
-      String.fromEnvironment('YOUTUBE_API_KEY').isNotEmpty
-          ? String.fromEnvironment('YOUTUBE_API_KEY')
-          : (dotenv.isInitialized ? dotenv.env['YOUTUBE_API_KEY'] : null),
-      String.fromEnvironment('YOUTUBE_API_KEY_2').isNotEmpty
-          ? String.fromEnvironment('YOUTUBE_API_KEY_2')
-          : (dotenv.isInitialized ? dotenv.env['YOUTUBE_API_KEY_2'] : null),
-      String.fromEnvironment('YOUTUBE_API_KEY_3').isNotEmpty
-          ? String.fromEnvironment('YOUTUBE_API_KEY_3')
-          : (dotenv.isInitialized ? dotenv.env['YOUTUBE_API_KEY_3'] : null),
+      key1.isNotEmpty ? key1 : (dotenv.isInitialized ? dotenv.env['YOUTUBE_API_KEY'] : null),
+      key2.isNotEmpty ? key2 : (dotenv.isInitialized ? dotenv.env['YOUTUBE_API_KEY_2'] : null),
+      key3.isNotEmpty ? key3 : (dotenv.isInitialized ? dotenv.env['YOUTUBE_API_KEY_3'] : null),
     ];
 
     final keys = rawKeys.where((k) => k != null && k.isNotEmpty).toList();
