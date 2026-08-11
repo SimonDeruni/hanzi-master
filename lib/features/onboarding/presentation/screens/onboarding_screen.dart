@@ -501,7 +501,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
           
           if (_calibrationComplete)
             _buildPrimaryButton(
-              "Start 7-Day Free Trial",
+              "Continue",
               _completeOnboarding,
             ).animate().fadeIn(duration: 500.ms).slideY(),
         ],
