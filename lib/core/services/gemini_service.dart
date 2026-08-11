@@ -225,10 +225,12 @@ class AiChatSession {
 
     final response = await http.post(
       Uri.parse(
-          'https://us-central1-hanzi-master-bcef9.cloudfunctions.net/openRouterProxyV2'),
+          'https://openrouter.ai/api/v1/chat/completions'),
       headers: {
         'Authorization': 'Bearer $apiKey',
         'Content-Type': 'application/json',
+        'HTTP-Referer': 'https://hanzimaster.app',
+        'X-Title': 'Hanzi Master',
       },
       body: jsonEncode({
         'model': model,
@@ -295,10 +297,12 @@ class GeminiService {
     final response = await http
         .post(
           Uri.parse(
-              'https://us-central1-hanzi-master-bcef9.cloudfunctions.net/openRouterProxyV2'),
+              'https://openrouter.ai/api/v1/chat/completions'),
           headers: {
             'Authorization': 'Bearer ${pool.nextKey}',
             'Content-Type': 'application/json',
+            'HTTP-Referer': 'https://hanzimaster.app',
+            'X-Title': 'Hanzi Master',
           },
           body: jsonEncode(body),
         )
@@ -327,11 +331,13 @@ class GeminiService {
     final request = http.Request(
       'POST',
       Uri.parse(
-          'https://us-central1-hanzi-master-bcef9.cloudfunctions.net/openRouterProxyV2'),
+          'https://openrouter.ai/api/v1/chat/completions'),
     );
     request.headers.addAll({
       'Authorization': 'Bearer ${pool.nextKey}',
       'Content-Type': 'application/json',
+      'HTTP-Referer': 'https://hanzimaster.app',
+      'X-Title': 'Hanzi Master',
     });
     request.body = jsonEncode({
       'model': 'google/gemini-2.5-flash',
