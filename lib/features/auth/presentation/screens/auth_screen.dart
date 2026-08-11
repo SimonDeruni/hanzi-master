@@ -191,40 +191,8 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                 const SizedBox(height: 32),
                 _buildSubmitButton(isDark),
                 const SizedBox(height: 24),
-                
-                // --- OAuth Section ---
-                Row(
-                  children: [
-                    Expanded(child: Divider(color: isDark ? Colors.grey.shade800 : Colors.grey.shade300)),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: Text(
-                        "OR",
-                        style: TextStyle(
-                          color: isDark ? Colors.white54 : Colors.black54,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 12,
-                        ),
-                      ),
-                    ),
-                    Expanded(child: Divider(color: isDark ? Colors.grey.shade800 : Colors.grey.shade300)),
-                  ],
-                ),
-                const SizedBox(height: 24),
-                _buildOAuthButton(
-                  isDark: isDark,
-                  text: "Continue with Google",
-                  iconPath: "assets/icon/google_logo.png", // Will default to a generic icon if missing
-                  iconData: Icons.g_mobiledata,
-                  onPressed: () => _handleOAuth(ref.read(authControllerProvider).signInWithGoogle),
-                ),
-                const SizedBox(height: 16),
-                _buildOAuthButton(
-                  isDark: isDark,
-                  text: "Continue with Apple",
-                  iconData: Icons.apple,
-                  onPressed: () => _handleOAuth(ref.read(authControllerProvider).signInWithApple),
-                ),
+
+
                 const SizedBox(height: 32),
                 
                 TextButton(

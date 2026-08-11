@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:purchases_ui_flutter/purchases_ui_flutter.dart';
+import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:hanzi_master/core/services/monetization_service.dart';
 import 'package:hanzi_master/core/providers/premium_controller.dart';
 
@@ -10,9 +11,14 @@ class PaywallSheet {
     final isPremium = await MonetizationService.checkPremiumStatus();
     if (isPremium) return true;
       try {
+        final offerings = await Purchases.getOfferings();
+        if (offerings.current == null || offerings.current!.availablePackages.isEmpty) {
+          throw Exception("RevenueCat is missing a Current Offering or Packages. Please configure your Dashboard.");
+        }
+
         final paywallResult = isHardPaywall 
-            ? await RevenueCatUI.presentPaywall(displayCloseButton: false)
-            : await RevenueCatUI.presentPaywallIfNeeded(MonetizationService.entitlementId);
+            ? await RevenueCatUI.presentPaywall(offering: offerings.current, displayCloseButton: false)
+            : await RevenueCatUI.presentPaywall(offering: offerings.current); // FORCE SHOW FOR TESTING
         
         if (paywallResult == PaywallResult.purchased || paywallResult == PaywallResult.restored) {
           if (ref != null) {
@@ -23,6 +29,9 @@ class PaywallSheet {
         return false;
       } catch (e) {
         debugPrint("Error presenting RevenueCat UI: $e");
+        if (context.mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('RevenueCat Error: $e'), duration: const Duration(seconds: 5)));
+        }
         return false;
       }
     }

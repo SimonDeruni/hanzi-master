@@ -222,11 +222,6 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
           _phraseHistory.add(phrase['hanzi'] ?? '');
         });
       }
-    } on PremiumRequiredException {
-      if (mounted) {
-        setState(() => _isLoadingNextPhrase = false);
-        PaywallSheet.show(context);
-      }
     } catch (e) {
       if (mounted) {
         setState(() {
@@ -402,13 +397,6 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
               }
             }
           });
-        }
-      } on PremiumRequiredException {
-        if (mounted) {
-          setState(() {
-            _isGrading = false;
-          });
-          PaywallSheet.show(context);
         }
       } on Exception catch (e) {
         final msg = e.toString();

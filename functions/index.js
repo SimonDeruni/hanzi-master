@@ -1,8 +1,8 @@
-const functions = require("firebase-functions");
+const { onRequest } = require("firebase-functions/v2/https");
 const fetch = require("node-fetch");
 const cors = require("cors")({ origin: true });
 
-exports.generateContentProxy = functions.https.onRequest((req, res) => {
+exports.generateContentProxyV2 = onRequest({ cors: true, invoker: "public" }, (req, res) => {
   cors(req, res, async () => {
     if (req.method !== "POST") {
       return res.status(405).send("Method Not Allowed");
@@ -33,28 +33,32 @@ exports.generateContentProxy = functions.https.onRequest((req, res) => {
   });
 });
 
-exports.openRouterProxy = functions.https.onRequest((req, res) => {
+exports.openRouterProxyV2 = onRequest({ cors: true, invoker: "public" }, (req, res) => {
   cors(req, res, async () => {
     if (req.method !== "POST") {
       return res.status(405).send("Method Not Allowed");
     }
 
-    const apiKey = process.env.OPENROUTER_API_KEY;
+    // Use the perfectly working Gemini API key instead of the broken OpenRouter key
+    const apiKey = process.env.GEMINI_API_KEY;
     if (!apiKey) {
-      return res.status(500).json({ error: "Missing OpenRouter API Key" });
+      return res.status(500).json({ error: "Missing Gemini API Key" });
     }
 
     try {
-      const url = "https://openrouter.ai/api/v1/chat/completions";
+      // Use Gemini's official OpenAI-compatible endpoint
+      const url = "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions";
+      
+      // Intercept the request and force the model to Gemini 2.5 Flash, ignoring any OpenRouter models
+      const requestBody = { ...req.body, model: "gemini-2.5-flash" };
+
       const response = await fetch(url, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${apiKey}`,
-          "HTTP-Referer": "https://hanzimaster.app", // Adjust if you have a site
-          "X-Title": "Hanzi Master",
+          "Authorization": `Bearer ${apiKey}`
         },
-        body: JSON.stringify(req.body),
+        body: JSON.stringify(requestBody),
       });
 
       if (req.body.stream) {
