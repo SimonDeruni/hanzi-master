@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/main_navigation_screen.dart';
+import 'package:hanzi_master/features/onboarding/presentation/screens/notification_permission_screen.dart';
 import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
 
 class OnboardingScreen extends ConsumerStatefulWidget {
@@ -54,7 +55,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
     if (mounted) {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => const MainNavigationScreen()),
+        MaterialPageRoute(builder: (context) => const NotificationPermissionScreen()),
       );
     }
   }
