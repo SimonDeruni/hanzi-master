@@ -5,6 +5,7 @@ import 'package:hanzi_master/features/flashcards/presentation/screens/main_navig
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/features/premium/presentation/screens/paywall_sheet.dart';
 import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
+import 'package:hanzi_master/core/services/monetization_service.dart';
 
 class NotificationPermissionScreen extends ConsumerStatefulWidget {
   const NotificationPermissionScreen({
