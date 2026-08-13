@@ -8,7 +8,7 @@ import 'package:hanzi_master/core/services/api_key_pool.dart';
 enum PaymentProvider { revenueCat, huawei, none }
 
 class MonetizationService {
-  static const String entitlementId = 'scholars_edition';
+  static const String entitlementId = 'Hanzi AI Pro';
   static PaymentProvider _activeProvider = PaymentProvider.none;
   static bool _developerBackdoorUnlocked = false;
 

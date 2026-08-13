@@ -43,7 +43,7 @@ class RevenueCatService extends _$RevenueCatService {
   }
 
   void _checkEntitlements(CustomerInfo customerInfo) {
-    if (customerInfo.entitlements.all["premium"]?.isActive == true) {
+    if (customerInfo.entitlements.all["Hanzi AI Pro"]?.isActive == true) {
       state = true;
     } else {
       state = false;
