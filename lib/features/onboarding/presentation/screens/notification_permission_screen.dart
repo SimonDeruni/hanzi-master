@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:purchases_ui_flutter/purchases_ui_flutter.dart';
 import 'package:hanzi_master/core/services/notification_service.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/main_navigation_screen.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
@@ -25,7 +26,7 @@ class _NotificationPermissionScreenState extends ConsumerState<NotificationPermi
     if (_isNavigating) return;
     _isNavigating = true;
     try {
-      await PaywallSheet.show(context, isHardPaywall: true);
+      await RevenueCatUI.presentPaywallIfNeeded("Hanzi AI Pro", displayCloseButton: false);
       
       // Enforce paywall: if they aren't premium, don't let them in!
       final isPremium = await MonetizationService.checkPremiumStatus();
