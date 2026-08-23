@@ -20,34 +20,16 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   int _selectedMastery = -1;
   int _selectedDrive = -1;
   int _selectedRitual = -1;
-  bool _calibrationComplete = false;
 
   void _nextPage() {
     if (_currentPage < 3) {
       _pageController.nextPage(
-        duration: 600.ms, 
-        curve: Curves.easeOutQuart,
+        duration: 400.ms, 
+        curve: Curves.easeInOutQuart,
       );
     } else {
-      _startCalibration();
+      _completeOnboarding();
     }
-  }
-
-  void _startCalibration() {
-    setState(() {
-      _calibrationComplete = false;
-      _currentPage = 4;
-      _pageController.animateToPage(
-        4, 
-        duration: 600.ms, 
-        curve: Curves.easeOutQuart,
-      );
-      Future.delayed(const Duration(milliseconds: 2800), () {
-        if (mounted) {
-          _completeOnboarding();
-        }
-      });
-    });
   }
 
   void _completeOnboarding() async {
@@ -86,14 +68,11 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                   _buildMasteryPage(),
                   _buildDrivePage(),
                   _buildRitualPage(),
-                  _buildCalibrationPage(),
                 ],
               ),
             ),
-            if (_currentPage < 4 || _calibrationComplete) ...[
-              _buildProgressIndicator(),
-              const SizedBox(height: 12),
-            ],
+            _buildProgressIndicator(),
+            const SizedBox(height: 12),
           ],
         ),
       ),
@@ -378,129 +357,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
     );
   }
 
-  Widget _buildCalibrationPage() {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-    String masteryText = "Beginner";
-    if (_selectedMastery == 1) masteryText = "Elementary";
-    if (_selectedMastery == 2) masteryText = "Intermediate";
-    if (_selectedMastery == 3) masteryText = "Advanced";
 
-    String driveText = "Business Focus";
-    if (_selectedDrive == 1) driveText = "Travel Focus";
-    if (_selectedDrive == 2) driveText = "HSK Focus";
-    if (_selectedDrive == 3) driveText = "Culture Focus";
-
-    String ritualText = "05 Minutes";
-    if (_selectedRitual == 1) ritualText = "10 Minutes";
-    if (_selectedRitual == 2) ritualText = "20 Minutes";
-    if (_selectedRitual == 3) ritualText = "30 Minutes";
-
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 24.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const SizedBox(height: 16),
-          Text(
-            "Forging Your Path",
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: isDark ? Colors.white : const Color(0xFF1A1A1B),
-              fontSize: 32,
-              fontFamily: 'Serif',
-              height: 1.2,
-            ),
-          ).animate().fadeIn().slideY(),
-          
-          const SizedBox(height: 8),
-          
-          Text(
-            "CALIBRATING AI MASTERS...",
-            style: TextStyle(
-              color: isDark ? Colors.white54 : Colors.black54, 
-              fontSize: 12,
-              letterSpacing: 1.5,
-              fontWeight: FontWeight.bold,
-            ),
-          ).animate().fadeIn(delay: 200.ms),
-          
-          const Spacer(),
-          
-          Image.asset(
-            'assets/icon/icon.png',
-            height: 130,
-          ).animate(onPlay: (controller) => controller.repeat(reverse: true))
-           .moveY(begin: -6, end: 6, duration: 1500.ms, curve: Curves.easeInOut),
-            
-          const Spacer(),
-          
-          _buildSummaryRow("Current Level", masteryText).animate().fadeIn(delay: 300.ms),
-          Divider(color: isDark ? Colors.white12 : Colors.black12, height: 24),
-          _buildSummaryRow("Primary Goal", driveText).animate().fadeIn(delay: 500.ms),
-          Divider(color: isDark ? Colors.white12 : Colors.black12, height: 24),
-          _buildSummaryRow("Daily Ritual", ritualText).animate().fadeIn(delay: 700.ms),
-          Divider(color: isDark ? Colors.white12 : Colors.black12, height: 24),
-          
-          const SizedBox(height: 32),
-          
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "ALIGNING CURRICULUM",
-                    style: TextStyle(color: isDark ? Colors.white38 : Colors.black38, fontSize: 10, fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    "100%",
-                    style: TextStyle(color: isDark ? Colors.white38 : Colors.black38, fontSize: 10, fontWeight: FontWeight.bold),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 8),
-              Stack(
-                children: [
-                  Container(
-                    height: 4,
-                    width: double.infinity,
-                    decoration: BoxDecoration(color: isDark ? Colors.white12 : Colors.black12, borderRadius: BorderRadius.circular(2)),
-                  ),
-                  AnimatedContainer(
-                    duration: const Duration(milliseconds: 2500),
-                    curve: Curves.easeOutQuart,
-                    height: 4,
-                    width: MediaQuery.of(context).size.width - 64,
-                    decoration: BoxDecoration(color: Colors.red[700], borderRadius: BorderRadius.circular(2)),
-                  ),
-                ],
-              ),
-            ],
-          ).animate().fadeIn(delay: 400.ms),
-          
-          const SizedBox(height: 24),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildSummaryRow(String label, String value) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          label,
-          style: TextStyle(color: isDark ? Colors.white54 : Colors.black54, fontSize: 16),
-        ),
-        Text(
-          value,
-          style: TextStyle(color: isDark ? Colors.white : const Color(0xFF1A1A1B), fontSize: 16, fontWeight: FontWeight.w600),
-        ),
-      ],
-    );
-  }
 
   Widget _buildRitualCard({
     required String title,
