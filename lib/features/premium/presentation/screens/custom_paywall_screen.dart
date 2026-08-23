@@ -154,7 +154,7 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
                     Center(
                       child: Image.asset(
                         'assets/images/mascot.png',
-                        height: 100,
+                        height: 120,
                         fit: BoxFit.contain,
                       ),
                     ),
