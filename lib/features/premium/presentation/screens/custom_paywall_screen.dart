@@ -170,9 +170,7 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
                       const SizedBox(height: 12),
                       _buildFeatureRow(textColor, accentColor, Icons.document_scanner, "Universal Scanner"),
                       const SizedBox(height: 12),
-                      _buildFeatureRow(textColor, accentColor, Icons.menu_book, "Complete HSK 1-6 Tomes"),
-                      const SizedBox(height: 12),
-                      _buildFeatureRow(textColor, accentColor, Icons.psychology, "Adaptive Spaced Repetition & AI Custom Decks"),
+                      _buildFeatureRow(textColor, accentColor, Icons.menu_book, "Complete HSK 1-6 Tomes, adaptive spaced repetition and AI custom decks"),
                       
                       const SizedBox(height: 32),
 
@@ -291,9 +289,11 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
       children: [
         Icon(icon, color: accentColor, size: 20),
         const SizedBox(width: 12),
-        Text(
-          text,
-          style: TextStyle(color: textColor.withOpacity(0.9), fontSize: 16),
+        Expanded(
+          child: Text(
+            text,
+            style: TextStyle(color: textColor.withOpacity(0.9), fontSize: 16),
+          ),
         ),
       ],
     );
