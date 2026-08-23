@@ -68,10 +68,10 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
     
     setState(() => _isPurchasing = true);
     try {
-      final customerInfo = await Purchases.purchasePackage(_selectedPackage!);
+      final purchaseResult = await Purchases.purchasePackage(_selectedPackage!);
       final isPremium = await MonetizationService.checkPremiumStatus();
       
-      final entitlement = customerInfo.entitlements.all["Hanzi AI Pro"];
+      final entitlement = purchaseResult.customerInfo.entitlements.all["Hanzi AI Pro"];
       if (entitlement != null && entitlement.periodType == PeriodType.trial && entitlement.expirationDate != null) {
         try {
           final expirationDate = DateTime.parse(entitlement.expirationDate!);
