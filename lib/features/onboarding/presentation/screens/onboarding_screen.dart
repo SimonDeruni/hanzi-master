@@ -177,6 +177,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          const SizedBox(height: 16),
           Text(
             "What is your level\nwith Chinese?",
             style: TextStyle(
@@ -194,13 +195,13 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
             style: TextStyle(color: isDark ? Colors.white54 : Colors.black54, fontSize: 16),
           ).animate().fadeIn(delay: 200.ms),
           
-          const SizedBox(height: 32),
+          const SizedBox(height: 24),
           
           ListView.separated(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemCount: options.length,
-            separatorBuilder: (c, i) => const SizedBox(height: 16),
+            separatorBuilder: (c, i) => const SizedBox(height: 12),
             itemBuilder: (context, index) {
               bool isSelected = _selectedMastery == index;
               return _buildSelectionCard(
@@ -217,14 +218,13 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
             },
           ),
           
-          const SizedBox(height: 32),
+          const Spacer(),
           
           _buildPrimaryButton(
             "Confirm Selection",
             _selectedMastery != -1 ? _nextPage : null,
           ),
-          
-          const Spacer(),
+          const SizedBox(height: 12),
         ],
       ),
     );
@@ -244,6 +244,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          const SizedBox(height: 16),
           Text(
             "What drives your study?",
             style: TextStyle(
@@ -261,7 +262,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
             style: TextStyle(color: isDark ? Colors.white54 : Colors.black54, fontSize: 16),
           ).animate().fadeIn(delay: 200.ms),
           
-          const SizedBox(height: 32),
+          const SizedBox(height: 24),
           
           GridView.builder(
             shrinkWrap: true,
@@ -270,7 +271,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
               crossAxisCount: 2,
               crossAxisSpacing: 16,
               mainAxisSpacing: 16,
-              childAspectRatio: 0.9,
+              childAspectRatio: 0.95,
             ),
             itemCount: options.length,
             itemBuilder: (context, index) {
@@ -288,14 +289,13 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
             },
           ),
           
-          const SizedBox(height: 32),
+          const Spacer(),
           
           _buildPrimaryButton(
             "Next",
             _selectedDrive != -1 ? _nextPage : null,
           ),
-          
-          const Spacer(),
+          const SizedBox(height: 12),
         ],
       ),
     );
@@ -315,6 +315,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          const SizedBox(height: 16),
           Text(
             "Set your daily ritual.",
             style: TextStyle(
@@ -332,13 +333,13 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
             style: TextStyle(color: isDark ? Colors.white54 : Colors.black54, fontSize: 16, fontStyle: FontStyle.italic),
           ).animate().fadeIn(delay: 200.ms),
           
-          const SizedBox(height: 32),
+          const SizedBox(height: 24),
           
           ListView.separated(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemCount: options.length,
-            separatorBuilder: (c, i) => const SizedBox(height: 16),
+            separatorBuilder: (c, i) => const SizedBox(height: 12),
             itemBuilder: (context, index) {
               bool isSelected = _selectedRitual == index;
               return _buildRitualCard(
@@ -354,7 +355,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
             },
           ),
           
-          const SizedBox(height: 32),
+          const Spacer(),
           
           Column(
             children: [
@@ -364,15 +365,14 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                 "You can adjust your ritual any time.",
                 style: TextStyle(color: isDark ? Colors.white38 : Colors.black38, fontSize: 12),
               ),
-              const SizedBox(height: 24),
+              const SizedBox(height: 16),
               _buildPrimaryButton(
                 "Build My Path",
                 _selectedRitual != -1 ? _nextPage : null,
               ),
             ],
           ).animate().fadeIn(delay: 800.ms),
-          
-          const Spacer(),
+          const SizedBox(height: 12),
         ],
       ),
     );
