@@ -42,9 +42,9 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
         duration: 600.ms, 
         curve: Curves.easeOutQuart,
       );
-      Future.delayed(3.seconds, () {
+      Future.delayed(const Duration(milliseconds: 2800), () {
         if (mounted) {
-          setState(() => _calibrationComplete = true);
+          _completeOnboarding();
         }
       });
     });
@@ -396,12 +396,13 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
     if (_selectedRitual == 3) ritualText = "30 Minutes";
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 32.0),
+      padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 24.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          const SizedBox(height: 16),
           Text(
-            _calibrationComplete ? "Curriculum Forged" : "Forging Your Path",
+            "Forging Your Path",
             textAlign: TextAlign.center,
             style: TextStyle(
               color: isDark ? Colors.white : const Color(0xFF1A1A1B),
@@ -414,7 +415,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
           const SizedBox(height: 8),
           
           Text(
-            _calibrationComplete ? "YOUR JOURNEY AWAITS" : "CALIBRATING AI MASTERS...",
+            "CALIBRATING AI MASTERS...",
             style: TextStyle(
               color: isDark ? Colors.white54 : Colors.black54, 
               fontSize: 12,
@@ -425,98 +426,60 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
           
           const Spacer(),
           
-          if (!_calibrationComplete)
-            Image.asset(
-              'assets/icon/icon.png',
-              height: 140,
-            ).animate(onPlay: (controller) => controller.repeat(reverse: true))
-             .moveY(begin: -5, end: 5, duration: 2.seconds, curve: Curves.easeInOut),
-              
-          if (_calibrationComplete)
-            Container(
-              padding: const EdgeInsets.all(24),
-              decoration: BoxDecoration(
-                color: isDark ? const Color(0xFF2A2A2B) : Colors.white,
-                borderRadius: BorderRadius.circular(16),
-                border: Border.all(color: (isDark ? Colors.white : Colors.black).withValues(alpha: 0.05)),
-                boxShadow: [
-                  BoxShadow(color: (isDark ? Colors.white : Colors.black).withValues(alpha: 0.02), blurRadius: 10, offset: const Offset(0, 4))
-                ],
-              ),
-              child: Column(
-                children: [
-                  Icon(Icons.auto_awesome, color: Colors.red[700], size: 32),
-                  const SizedBox(height: 16),
-                  Text(
-                    "With $ritualText a day starting from a $masteryText level, building a strong foundation for $driveText will take patience and consistency. Our AI will guide you every step of the way.",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: isDark ? Colors.white : Colors.black87,
-                      fontSize: 16,
-                      height: 1.5,
-                      fontStyle: FontStyle.italic,
-                    ),
-                  ),
-                ],
-              ),
-            ).animate().fadeIn(duration: 600.ms).slideY(),
-          
+          Image.asset(
+            'assets/icon/icon.png',
+            height: 130,
+          ).animate(onPlay: (controller) => controller.repeat(reverse: true))
+           .moveY(begin: -6, end: 6, duration: 1500.ms, curve: Curves.easeInOut),
+            
           const Spacer(),
           
-          if (!_calibrationComplete) ...[
-            _buildSummaryRow("Current Level", masteryText).animate().fadeIn(delay: 400.ms),
-            Divider(color: isDark ? Colors.white12 : Colors.black12, height: 32),
-            _buildSummaryRow("Primary Goal", driveText).animate().fadeIn(delay: 600.ms),
-            Divider(color: isDark ? Colors.white12 : Colors.black12, height: 32),
-            _buildSummaryRow("Daily Ritual", ritualText).animate().fadeIn(delay: 800.ms),
-            Divider(color: isDark ? Colors.white12 : Colors.black12, height: 32),
-            
-            const SizedBox(height: 48),
-            
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "ALIGNING CURRICULUM",
-                      style: TextStyle(color: isDark ? Colors.white38 : Colors.black38, fontSize: 10, fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      _calibrationComplete ? "100%" : "0%",
-                      style: TextStyle(color: isDark ? Colors.white38 : Colors.black38, fontSize: 10, fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 8),
-                Stack(
-                  children: [
-                    Container(
-                      height: 4,
-                      width: double.infinity,
-                      decoration: BoxDecoration(color: isDark ? Colors.white12 : Colors.black12, borderRadius: BorderRadius.circular(2)),
-                    ),
-                    AnimatedContainer(
-                      duration: const Duration(seconds: 3),
-                      curve: Curves.easeOutQuart,
-                      height: 4,
-                      width: _calibrationComplete ? MediaQuery.of(context).size.width - 64 : 0,
-                      decoration: BoxDecoration(color: Colors.red[700], borderRadius: BorderRadius.circular(2)),
-                    ),
-                  ],
-                ),
-              ],
-            ).animate().fadeIn(delay: 1000.ms),
-          ],
+          _buildSummaryRow("Current Level", masteryText).animate().fadeIn(delay: 300.ms),
+          Divider(color: isDark ? Colors.white12 : Colors.black12, height: 24),
+          _buildSummaryRow("Primary Goal", driveText).animate().fadeIn(delay: 500.ms),
+          Divider(color: isDark ? Colors.white12 : Colors.black12, height: 24),
+          _buildSummaryRow("Daily Ritual", ritualText).animate().fadeIn(delay: 700.ms),
+          Divider(color: isDark ? Colors.white12 : Colors.black12, height: 24),
           
           const SizedBox(height: 32),
           
-          if (_calibrationComplete)
-            _buildPrimaryButton(
-              "Continue",
-              _completeOnboarding,
-            ).animate().fadeIn(duration: 500.ms).slideY(),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "ALIGNING CURRICULUM",
+                    style: TextStyle(color: isDark ? Colors.white38 : Colors.black38, fontSize: 10, fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    "100%",
+                    style: TextStyle(color: isDark ? Colors.white38 : Colors.black38, fontSize: 10, fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 8),
+              Stack(
+                children: [
+                  Container(
+                    height: 4,
+                    width: double.infinity,
+                    decoration: BoxDecoration(color: isDark ? Colors.white12 : Colors.black12, borderRadius: BorderRadius.circular(2)),
+                  ),
+                  AnimatedContainer(
+                    duration: const Duration(milliseconds: 2500),
+                    curve: Curves.easeOutQuart,
+                    height: 4,
+                    width: MediaQuery.of(context).size.width - 64,
+                    decoration: BoxDecoration(color: Colors.red[700], borderRadius: BorderRadius.circular(2)),
+                  ),
+                ],
+              ),
+            ],
+          ).animate().fadeIn(delay: 400.ms),
+          
+          const SizedBox(height: 24),
         ],
       ),
     );
