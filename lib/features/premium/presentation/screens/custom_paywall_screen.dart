@@ -150,27 +150,27 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    const SizedBox(height: 8),
-                    Icon(Icons.auto_awesome, color: accentColor, size: 40),
-                    const SizedBox(height: 12),
+                    const Spacer(flex: 1),
+                    Icon(Icons.auto_awesome, color: accentColor, size: 42),
+                    const SizedBox(height: 10),
                     
                     Text(
                       "Master Chinese with\nSinoSpark",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: textColor,
-                        fontSize: 26,
+                        fontSize: 27,
                         fontFamily: 'Serif',
                         fontWeight: FontWeight.bold,
                         height: 1.15,
                       ),
                     ),
                     
-                    const SizedBox(height: 18),
+                    const Spacer(flex: 1),
                     
                     // 2-Column Features Grid
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
                       decoration: BoxDecoration(
                         color: textColor.withValues(alpha: 0.03),
                         borderRadius: BorderRadius.circular(16),
@@ -181,23 +181,23 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
                           Row(
                             children: [
                               Expanded(child: _buildCompactFeature(Icons.gesture, "Precision Strokes", textColor, accentColor)),
-                              const SizedBox(width: 10),
+                              const SizedBox(width: 12),
                               Expanded(child: _buildCompactFeature(Icons.document_scanner, "Universal Scanner", textColor, accentColor)),
                             ],
                           ),
-                          const SizedBox(height: 12),
+                          const SizedBox(height: 14),
                           Row(
                             children: [
                               Expanded(child: _buildCompactFeature(Icons.mic_none, "AI Pronunciation", textColor, accentColor)),
-                              const SizedBox(width: 10),
+                              const SizedBox(width: 12),
                               Expanded(child: _buildCompactFeature(Icons.translate, "Live Translation", textColor, accentColor)),
                             ],
                           ),
-                          const SizedBox(height: 12),
+                          const SizedBox(height: 14),
                           Row(
                             children: [
                               Expanded(child: _buildCompactFeature(Icons.travel_explore, "Smart News & Dict", textColor, accentColor)),
-                              const SizedBox(width: 10),
+                              const SizedBox(width: 12),
                               Expanded(child: _buildCompactFeature(Icons.menu_book, "HSK 1-6 & AI Decks", textColor, accentColor)),
                             ],
                           ),
@@ -205,12 +205,12 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
                       ),
                     ),
 
-                    const SizedBox(height: 16),
+                    const SizedBox(height: 14),
 
                     // Horizontal Blinkist Timeline
                     _buildHorizontalTimeline(textColor, accentColor),
                     
-                    const Spacer(),
+                    const Spacer(flex: 2),
 
                     // Packages
                     if (_usingMockFallback)
@@ -232,7 +232,7 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
                         }).toList(),
                       ),
 
-                    const SizedBox(height: 14),
+                    const SizedBox(height: 16),
 
                     GestureDetector(
                       behavior: HitTestBehavior.opaque,
@@ -286,7 +286,7 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 6),
+                    const SizedBox(height: 4),
                   ],
                 ),
               ),
@@ -297,7 +297,7 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
   Widget _buildCompactFeature(IconData icon, String text, Color textColor, Color accentColor) {
     return Row(
       children: [
-        Icon(icon, color: accentColor, size: 19),
+        Icon(icon, color: accentColor, size: 21),
         const SizedBox(width: 8),
         Expanded(
           child: Text(
@@ -306,7 +306,7 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
             overflow: TextOverflow.ellipsis,
             style: TextStyle(
               color: textColor.withValues(alpha: 0.95),
-              fontSize: 13.5,
+              fontSize: 14.5,
               fontWeight: FontWeight.w600,
             ),
           ),
