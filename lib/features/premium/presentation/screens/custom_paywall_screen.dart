@@ -144,7 +144,18 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       const SizedBox(height: 16),
-                      Icon(Icons.auto_awesome, color: accentColor, size: 56),
+                      // Social Proof
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          ...List.generate(5, (index) => const Icon(Icons.star, color: Color(0xFFFFD700), size: 16)),
+                          const SizedBox(width: 8),
+                          Text(
+                            "Over 10,000+ characters mastered",
+                            style: TextStyle(color: textColor.withOpacity(0.7), fontSize: 12, fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
                       const SizedBox(height: 24),
                       
                       Text(
@@ -248,8 +259,23 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
                           ),
                         ),
                       ),
-
+                      
                       const SizedBox(height: 16),
+                      
+                      // Cancel Reassurance
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.shield_outlined, color: textColor.withOpacity(0.5), size: 16),
+                          const SizedBox(width: 6),
+                          Text(
+                            "Cancel anytime from your Apple ID settings.",
+                            style: TextStyle(color: textColor.withOpacity(0.5), fontSize: 12),
+                          ),
+                        ],
+                      ),
+
+                      const SizedBox(height: 24),
                       
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -403,6 +429,16 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
                 fontSize: 20,
               ),
             ),
+            if (isAnnual) ...[
+              const SizedBox(height: 4),
+              Text(
+                "Just \$4.99/mo",
+                style: TextStyle(
+                  color: textColor.withOpacity(0.5),
+                  fontSize: 11,
+                ),
+              ),
+            ],
           ],
         ),
       ),
