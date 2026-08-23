@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/main_navigation_screen.dart';
+import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/features/onboarding/presentation/screens/notification_permission_screen.dart';
 import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
 
@@ -71,8 +72,9 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       backgroundColor: isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
-      body: SafeArea(
-        child: Column(
+      body: CalligraphyBackground(
+        child: SafeArea(
+          child: Column(
           children: [
             Expanded(
               child: PageView(
@@ -94,6 +96,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
             ],
           ],
         ),
+      ),
       ),
     );
   }

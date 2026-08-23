@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:purchases_ui_flutter/purchases_ui_flutter.dart';
 import 'package:hanzi_master/core/services/notification_service.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/main_navigation_screen.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
-import 'package:hanzi_master/features/premium/presentation/screens/paywall_sheet.dart';
+import 'package:hanzi_master/features/premium/presentation/screens/custom_paywall_screen.dart';
 import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
 import 'package:hanzi_master/core/services/monetization_service.dart';
 
@@ -25,35 +24,27 @@ class _NotificationPermissionScreenState extends ConsumerState<NotificationPermi
   Future<void> _navigateToApp() async {
     if (_isNavigating) return;
     _isNavigating = true;
-    try {
-      await RevenueCatUI.presentPaywallIfNeeded("Hanzi AI Pro", displayCloseButton: false);
-      
-      // Enforce paywall: if they aren't premium, don't let them in!
-      final isPremium = await MonetizationService.checkPremiumStatus();
-      if (!isPremium) {
-        _isNavigating = false;
-        return; // Stay on the screen, force them to try again
-      }
-    } catch (e) {
-      debugPrint('Paywall error during onboarding: $e');
-      // If error occurs, we still enforce the check
-      final isPremium = await MonetizationService.checkPremiumStatus();
-      if (!isPremium) {
-        _isNavigating = false;
-        return;
-      }
-    }
 
+    final isPremium = await MonetizationService.checkPremiumStatus();
+    
     if (mounted) {
-      Navigator.pushReplacement(
-        context,
-        PageRouteBuilder(
-          pageBuilder: (context, animation, secondaryAnimation) => const MainNavigationScreen(),
-          transitionsBuilder: (context, animation, secondaryAnimation, child) {
-            return FadeTransition(opacity: animation, child: child);
-          },
-        ),
-      );
+      if (isPremium) {
+        Navigator.pushReplacement(
+          context,
+          PageRouteBuilder(
+            pageBuilder: (context, animation, secondaryAnimation) => const MainNavigationScreen(),
+            transitionsBuilder: (context, animation, secondaryAnimation, child) {
+              return FadeTransition(opacity: animation, child: child);
+            },
+          ),
+        );
+      } else {
+        _isNavigating = false;
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const CustomPaywallScreen()),
+        );
+      }
     }
   }
 
