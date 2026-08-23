@@ -196,32 +196,35 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
           
           const SizedBox(height: 32),
           
-          Expanded(
-            child: ListView.separated(
-              physics: const BouncingScrollPhysics(),
-              itemCount: options.length,
-              separatorBuilder: (c, i) => const SizedBox(height: 16),
-              itemBuilder: (context, index) {
-                bool isSelected = _selectedMastery == index;
-                return _buildSelectionCard(
-                  title: options[index]["title"] as String,
-                  subtitle: options[index]["subtitle"] as String,
-                  icon: options[index]["icon"] as IconData,
-                  isSelected: isSelected,
-                  onTap: () {
-                    setState(() {
-                      _selectedMastery = index;
-                    });
-                  },
-                ).animate().fadeIn(delay: Duration(milliseconds: 300 + (100 * index))).slideX();
-              },
-            ),
+          ListView.separated(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: options.length,
+            separatorBuilder: (c, i) => const SizedBox(height: 16),
+            itemBuilder: (context, index) {
+              bool isSelected = _selectedMastery == index;
+              return _buildSelectionCard(
+                title: options[index]["title"] as String,
+                subtitle: options[index]["subtitle"] as String,
+                icon: options[index]["icon"] as IconData,
+                isSelected: isSelected,
+                onTap: () {
+                  setState(() {
+                    _selectedMastery = index;
+                  });
+                },
+              ).animate().fadeIn(delay: Duration(milliseconds: 300 + (100 * index))).slideX();
+            },
           ),
+          
+          const SizedBox(height: 32),
           
           _buildPrimaryButton(
             "Confirm Selection",
             _selectedMastery != -1 ? _nextPage : null,
           ),
+          
+          const Spacer(),
         ],
       ),
     );
@@ -260,36 +263,39 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
           
           const SizedBox(height: 32),
           
-          Expanded(
-            child: GridView.builder(
-              physics: const NeverScrollableScrollPhysics(),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 16,
-                mainAxisSpacing: 16,
-                childAspectRatio: 0.9,
-              ),
-              itemCount: options.length,
-              itemBuilder: (context, index) {
-                bool isSelected = _selectedDrive == index;
-                return _buildGridSelectionCard(
-                  title: options[index]["title"] as String,
-                  icon: options[index]["icon"] as IconData,
-                  isSelected: isSelected,
-                  onTap: () {
-                    setState(() {
-                      _selectedDrive = index;
-                    });
-                  },
-                ).animate().fadeIn(delay: Duration(milliseconds: 300 + (100 * index))).scale();
-              },
+          GridView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 16,
+              mainAxisSpacing: 16,
+              childAspectRatio: 0.9,
             ),
+            itemCount: options.length,
+            itemBuilder: (context, index) {
+              bool isSelected = _selectedDrive == index;
+              return _buildGridSelectionCard(
+                title: options[index]["title"] as String,
+                icon: options[index]["icon"] as IconData,
+                isSelected: isSelected,
+                onTap: () {
+                  setState(() {
+                    _selectedDrive = index;
+                  });
+                },
+              ).animate().fadeIn(delay: Duration(milliseconds: 300 + (100 * index))).scale();
+            },
           ),
+          
+          const SizedBox(height: 32),
           
           _buildPrimaryButton(
             "Next",
             _selectedDrive != -1 ? _nextPage : null,
           ),
+          
+          const Spacer(),
         ],
       ),
     );
@@ -328,26 +334,27 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
           
           const SizedBox(height: 32),
           
-          Expanded(
-            child: ListView.separated(
-              physics: const BouncingScrollPhysics(),
-              itemCount: options.length,
-              separatorBuilder: (c, i) => const SizedBox(height: 16),
-              itemBuilder: (context, index) {
-                bool isSelected = _selectedRitual == index;
-                return _buildRitualCard(
-                  title: options[index]["title"] as String,
-                  subtitle: options[index]["subtitle"] as String,
-                  isSelected: isSelected,
-                  onTap: () {
-                    setState(() {
-                      _selectedRitual = index;
-                    });
-                  },
-                ).animate().fadeIn(delay: Duration(milliseconds: 300 + (100 * index))).slideX();
-              },
-            ),
+          ListView.separated(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: options.length,
+            separatorBuilder: (c, i) => const SizedBox(height: 16),
+            itemBuilder: (context, index) {
+              bool isSelected = _selectedRitual == index;
+              return _buildRitualCard(
+                title: options[index]["title"] as String,
+                subtitle: options[index]["subtitle"] as String,
+                isSelected: isSelected,
+                onTap: () {
+                  setState(() {
+                    _selectedRitual = index;
+                  });
+                },
+              ).animate().fadeIn(delay: Duration(milliseconds: 300 + (100 * index))).slideX();
+            },
           ),
+          
+          const SizedBox(height: 32),
           
           Column(
             children: [
@@ -364,6 +371,8 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
               ),
             ],
           ).animate().fadeIn(delay: 800.ms),
+          
+          const Spacer(),
         ],
       ),
     );
@@ -747,29 +756,30 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   }
 
   Widget _buildPrimaryButton(String text, VoidCallback? onPressed) {
+    final isDisabled = onPressed == null;
     return SizedBox(
       width: double.infinity,
       height: 56,
       child: BouncingButton(
         onPressed: onPressed,
-        child: ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: const Color(0xFF1A1A1B),
-            foregroundColor: const Color(0xFFFDFCF0),
-            disabledBackgroundColor: const Color(0xFF1A1A1B).withValues(alpha: 0.3),
-            disabledForegroundColor: const Color(0xFFFDFCF0).withValues(alpha: 0.5),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16),
-            ),
-            elevation: 0,
+        child: Container(
+          decoration: BoxDecoration(
+            color: isDisabled 
+                ? const Color(0xFF1A1A1B).withValues(alpha: 0.3) 
+                : const Color(0xFF1A1A1B),
+            borderRadius: BorderRadius.circular(16),
           ),
-          onPressed: null, // Let BouncingButton handle it
-          child: Text(
-            text,
-            style: const TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-              letterSpacing: 0.5,
+          child: Center(
+            child: Text(
+              text,
+              style: TextStyle(
+                color: isDisabled 
+                    ? const Color(0xFFFDFCF0).withValues(alpha: 0.5) 
+                    : const Color(0xFFFDFCF0),
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                letterSpacing: 0.5,
+              ),
             ),
           ),
         ),
