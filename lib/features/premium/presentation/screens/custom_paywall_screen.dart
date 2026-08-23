@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:hanzi_master/core/services/monetization_service.dart';
+import 'package:hanzi_master/core/services/notification_service.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/main_navigation_screen.dart';
 
-class CustomPaywallScreen extends StatefulWidget {
+class CustomPaywallScreen extends ConsumerStatefulWidget {
   const CustomPaywallScreen({super.key});
 
   @override
-  State<CustomPaywallScreen> createState() => _CustomPaywallScreenState();
+  ConsumerState<CustomPaywallScreen> createState() => _CustomPaywallScreenState();
 }
 
-class _CustomPaywallScreenState extends State<CustomPaywallScreen> {
+class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
   Offerings? _offerings;
   bool _isLoading = true;
   bool _isPurchasing = false;
@@ -47,8 +49,20 @@ class _CustomPaywallScreenState extends State<CustomPaywallScreen> {
     
     setState(() => _isPurchasing = true);
     try {
-      await Purchases.purchasePackage(_selectedPackage!);
+      final customerInfo = await Purchases.purchasePackage(_selectedPackage!);
       final isPremium = await MonetizationService.checkPremiumStatus();
+      
+      // Schedule the Blinkist Day 5 Notification if they start a trial
+      final entitlement = customerInfo.entitlements.all["Hanzi AI Pro"];
+      if (entitlement != null && entitlement.periodType == PeriodType.trial && entitlement.expirationDate != null) {
+        try {
+          final expirationDate = DateTime.parse(entitlement.expirationDate!);
+          await ref.read(notificationServiceProvider).scheduleTrialEndingReminder(expirationDate);
+        } catch (e) {
+          debugPrint("Failed to schedule trial reminder: $e");
+        }
+      }
+
       if (isPremium && mounted) {
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(builder: (context) => const MainNavigationScreen()),
