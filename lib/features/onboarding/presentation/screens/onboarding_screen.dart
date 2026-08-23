@@ -546,16 +546,20 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
     required VoidCallback onTap,
   }) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    
+    final selectedBg = isDark ? const Color(0xFFFDFCF0) : const Color(0xFF1A1A1B);
+    final selectedText = isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0);
+    
     return GestureDetector(
       onTap: onTap,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
         decoration: BoxDecoration(
-          color: isSelected ? const Color(0xFF1A1A1B) : (isDark ? const Color(0xFF2A2A2B) : Colors.white),
+          color: isSelected ? selectedBg : (isDark ? const Color(0xFF2A2A2B) : Colors.white),
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
-            color: isSelected ? const Color(0xFF1A1A1B) : (isDark ? Colors.white : Colors.black).withValues(alpha: 0.05),
+            color: isSelected ? selectedBg : (isDark ? Colors.white : Colors.black).withValues(alpha: 0.05),
             width: 1.5,
           ),
           boxShadow: [
@@ -572,7 +576,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
             Text(
               title,
               style: TextStyle(
-                color: isSelected ? const Color(0xFFFDFCF0) : (isDark ? Colors.white : const Color(0xFF1A1A1B)),
+                color: isSelected ? selectedText : (isDark ? Colors.white : const Color(0xFF1A1A1B)),
                 fontSize: 24,
                 fontFamily: 'Serif',
               ),
@@ -582,14 +586,14 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
               child: Text(
                 subtitle,
                 style: TextStyle(
-                  color: isSelected ? const Color(0xFFFDFCF0) : (isDark ? Colors.white54 : Colors.black54),
+                  color: isSelected ? selectedText : (isDark ? Colors.white54 : Colors.black54),
                   fontSize: 16,
                   fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
                 ),
               ),
             ),
             if (isSelected)
-              const Icon(Icons.check_circle_outline, color: Color(0xFFFDFCF0)),
+              Icon(Icons.check_circle_outline, color: selectedText),
           ],
         ),
       ),
@@ -756,7 +760,12 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   }
 
   Widget _buildPrimaryButton(String text, VoidCallback? onPressed) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     final isDisabled = onPressed == null;
+    
+    final activeBgColor = isDark ? const Color(0xFFFDFCF0) : const Color(0xFF1A1A1B);
+    final activeTextColor = isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0);
+    
     return SizedBox(
       width: double.infinity,
       height: 56,
@@ -764,18 +773,14 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
         onPressed: onPressed,
         child: Container(
           decoration: BoxDecoration(
-            color: isDisabled 
-                ? const Color(0xFF1A1A1B).withValues(alpha: 0.3) 
-                : const Color(0xFF1A1A1B),
+            color: isDisabled ? activeBgColor.withValues(alpha: 0.3) : activeBgColor,
             borderRadius: BorderRadius.circular(16),
           ),
           child: Center(
             child: Text(
               text,
               style: TextStyle(
-                color: isDisabled 
-                    ? const Color(0xFFFDFCF0).withValues(alpha: 0.5) 
-                    : const Color(0xFFFDFCF0),
+                color: isDisabled ? activeTextColor.withValues(alpha: 0.5) : activeTextColor,
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
                 letterSpacing: 0.5,
