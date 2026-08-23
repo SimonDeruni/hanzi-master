@@ -154,11 +154,11 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
                     Center(
                       child: Image.asset(
                         'assets/images/mascot.png',
-                        height: 72,
+                        height: 100,
                         fit: BoxFit.contain,
                       ),
                     ),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 12),
                     
                     Text(
                       "Master Chinese with\nSinoSpark",
