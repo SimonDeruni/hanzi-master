@@ -151,7 +151,13 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     const Spacer(flex: 1),
-                    Icon(Icons.auto_awesome, color: accentColor, size: 42),
+                    Center(
+                      child: Image.asset(
+                        'assets/images/mascot.png',
+                        height: 72,
+                        fit: BoxFit.contain,
+                      ),
+                    ),
                     const SizedBox(height: 10),
                     
                     Text(
