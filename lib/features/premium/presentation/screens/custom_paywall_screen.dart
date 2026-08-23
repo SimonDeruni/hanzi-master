@@ -136,7 +136,7 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final bgColor = isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0);
     final textColor = isDark ? const Color(0xFFFDFCF0) : const Color(0xFF1A1A1B);
-    final accentColor = const Color(0xFFD4C4A8);
+    const accentColor = Color(0xFFD4C4A8);
     final btnBgColor = isDark ? const Color(0xFFFDFCF0) : const Color(0xFF1A1A1B);
     final btnTextColor = isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0);
 
