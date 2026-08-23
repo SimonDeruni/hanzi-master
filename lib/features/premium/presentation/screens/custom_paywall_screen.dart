@@ -144,18 +144,7 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       const SizedBox(height: 16),
-                      // Social Proof
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          ...List.generate(5, (index) => const Icon(Icons.star, color: Color(0xFFFFD700), size: 16)),
-                          const SizedBox(width: 8),
-                          Text(
-                            "Over 10,000+ characters mastered",
-                            style: TextStyle(color: textColor.withOpacity(0.7), fontSize: 12, fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      ),
+                      Icon(Icons.auto_awesome, color: accentColor, size: 56),
                       const SizedBox(height: 24),
                       
                       Text(
@@ -212,8 +201,8 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
                       if (_usingMockFallback)
                         Row(
                           children: [
-                            Expanded(child: Padding(padding: const EdgeInsets.symmetric(horizontal: 6.0), child: _buildMockPackageCard("Monthly", "\$9.99/mo", false, textColor, accentColor))),
-                            Expanded(child: Padding(padding: const EdgeInsets.symmetric(horizontal: 6.0), child: _buildMockPackageCard("Yearly", "\$59.99/yr", true, textColor, accentColor))),
+                            Expanded(child: Padding(padding: const EdgeInsets.symmetric(horizontal: 6.0), child: _buildMockPackageCard("Monthly", "\$9.99/mo", false, textColor, accentColor, null))),
+                            Expanded(child: Padding(padding: const EdgeInsets.symmetric(horizontal: 6.0), child: _buildMockPackageCard("Yearly", "\$59.99/yr", true, textColor, accentColor, 59.99))),
                           ],
                         )
                       else if (_offerings?.current != null)
@@ -261,21 +250,6 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
                       ),
                       
                       const SizedBox(height: 16),
-                      
-                      // Cancel Reassurance
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(Icons.shield_outlined, color: textColor.withOpacity(0.5), size: 16),
-                          const SizedBox(width: 6),
-                          Text(
-                            "Cancel anytime from your Apple ID settings.",
-                            style: TextStyle(color: textColor.withOpacity(0.5), fontSize: 12),
-                          ),
-                        ],
-                      ),
-
-                      const SizedBox(height: 24),
                       
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -371,21 +345,21 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
     );
   }
 
-  Widget _buildMockPackageCard(String title, String price, bool isAnnual, Color textColor, Color accentColor) {
+  Widget _buildMockPackageCard(String title, String price, bool isAnnual, Color textColor, Color accentColor, double? numericPrice) {
     final isSelected = isAnnual; // Just hardcode selection for mock
-    return _buildPackageCardUI(title, price, isAnnual, isSelected, textColor, accentColor, () {});
+    return _buildPackageCardUI(title, price, isAnnual, isSelected, textColor, accentColor, numericPrice, () {});
   }
 
   Widget _buildPackageCard(Package package, Color textColor, Color accentColor) {
     final isSelected = _selectedPackage?.identifier == package.identifier;
     final isAnnual = package.packageType == PackageType.annual;
-    return _buildPackageCardUI(package.storeProduct.title.split(' ').first, package.storeProduct.priceString, isAnnual, isSelected, textColor, accentColor, () {
+    return _buildPackageCardUI(package.storeProduct.title.split(' ').first, package.storeProduct.priceString, isAnnual, isSelected, textColor, accentColor, package.storeProduct.price, () {
       HapticFeedback.lightImpact();
       setState(() => _selectedPackage = package);
     });
   }
   
-  Widget _buildPackageCardUI(String title, String price, bool isAnnual, bool isSelected, Color textColor, Color accentColor, VoidCallback onTap) {
+  Widget _buildPackageCardUI(String title, String price, bool isAnnual, bool isSelected, Color textColor, Color accentColor, double? numericPrice, VoidCallback onTap) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
@@ -429,10 +403,10 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
                 fontSize: 20,
               ),
             ),
-            if (isAnnual) ...[
+            if (isAnnual && numericPrice != null) ...[
               const SizedBox(height: 4),
               Text(
-                "Just \$4.99/mo",
+                "Just \$${(numericPrice / 12).toStringAsFixed(2)}/mo",
                 style: TextStyle(
                   color: textColor.withOpacity(0.5),
                   fontSize: 11,
