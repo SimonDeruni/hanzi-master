@@ -50,25 +50,28 @@ class _NotificationPermissionScreenState extends ConsumerState<NotificationPermi
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final isDark = theme.brightness == Brightness.dark;
-    final textColor = isDark ? Colors.white : const Color(0xFF1A1A1B);
-    final buttonBg = isDark ? const Color(0xFFFDFCF0) : const Color(0xFF1A1A1B);
-    final buttonFg = isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0);
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final bgColor = isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0);
+    final textColor = isDark ? const Color(0xFFFDFCF0) : const Color(0xFF1A1A1B);
+    const accentColor = Color(0xFFD4C4A8);
+    final btnBgColor = isDark ? const Color(0xFFFDFCF0) : const Color(0xFF1A1A1B);
+    final btnTextColor = isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0);
 
     return Scaffold(
+      backgroundColor: bgColor,
       body: CalligraphyBackground(
         child: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 24.0),
+            padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                const Spacer(flex: 1),
+                const SizedBox(height: 12),
                 
                 // Icon Header
                 Center(
                   child: GestureDetector(
+                    behavior: HitTestBehavior.opaque,
                     onTap: () {
                       _secretTapCount++;
                       if (_secretTapCount >= 5) {
@@ -78,65 +81,83 @@ class _NotificationPermissionScreenState extends ConsumerState<NotificationPermi
                       }
                     },
                     child: Container(
-                      padding: const EdgeInsets.all(24),
+                      width: 80,
+                      height: 80,
                       decoration: BoxDecoration(
-                        color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.black.withValues(alpha: 0.03),
+                        color: textColor.withValues(alpha: 0.05),
                         shape: BoxShape.circle,
+                        border: Border.all(color: textColor.withValues(alpha: 0.08)),
                       ),
                       child: Icon(
-                        _isRequested ? Icons.notifications_active : Icons.notifications_active_rounded,
-                        size: 64,
-                        color: _isRequested ? Colors.green : const Color(0xFFD4C4A8),
+                        _isRequested ? Icons.check_circle_outline : Icons.notifications_active_outlined,
+                        size: 38,
+                        color: _isRequested ? Colors.green[600] : accentColor,
                       ),
                     ),
                   ),
                 ),
                 
-                const SizedBox(height: 48),
+                const SizedBox(height: 20),
                 
                 // Title
                 Text(
                   _isRequested ? "Notifications Configured" : "Never Miss a Stroke",
                   textAlign: TextAlign.center,
-                  style: theme.textTheme.headlineMedium?.copyWith(
-                    fontWeight: FontWeight.w900,
-                    fontFamily: 'NotoSerifSC',
-                    color: isDark ? Colors.white : const Color(0xFF1A1A1B),
+                  style: TextStyle(
+                    color: textColor,
+                    fontSize: 28,
+                    fontFamily: 'Serif',
+                    fontWeight: FontWeight.bold,
+                    height: 1.2,
                   ),
                 ),
                 
-                const SizedBox(height: 24),
+                const SizedBox(height: 8),
                 
                 // Description
                 Text(
                   _isRequested
-                      ? "Notifications have been set up successfully. Click Continue to proceed with your journey."
-                      : "Turn on notifications to get your Word of the Day and friendly reminders when your flashcards are due for review.",
+                      ? "Your daily drop and streak alerts are primed."
+                      : "Stay consistent with daily ritual drops and timely trial reminders.",
                   textAlign: TextAlign.center,
-                  style: theme.textTheme.titleMedium?.copyWith(
-                    height: 1.6,
-                    color: isDark ? Colors.white70 : Colors.black87,
+                  style: TextStyle(
+                    color: textColor.withValues(alpha: 0.65),
+                    fontSize: 14,
+                    height: 1.4,
                   ),
                 ),
                 
-                const SizedBox(height: 48),
-
-                // Bullet points
-                _buildBenefitItem(
-                  context,
-                  icon: Icons.calendar_today,
-                  title: "The Daily Spark",
-                  description: "A new Word, Article, and Video waiting for you every morning.",
-                ),
                 const SizedBox(height: 24),
-                _buildBenefitItem(
-                  context,
-                  icon: Icons.school,
-                  title: "Spaced Repetition",
-                  description: "Timely reminders to review your Hanzi before you forget them.",
+
+                // Benefit Cards
+                _buildBenefitCard(
+                  icon: Icons.auto_awesome,
+                  title: "The Daily Spark",
+                  description: "A new Word, Article, and Video waiting for your daily ritual.",
+                  isDark: isDark,
+                  textColor: textColor,
+                  accentColor: accentColor,
+                ),
+                const SizedBox(height: 12),
+                _buildBenefitCard(
+                  icon: Icons.alarm,
+                  title: "Smart Spaced Repetition",
+                  description: "Gentle prompts before characters fade from your memory.",
+                  isDark: isDark,
+                  textColor: textColor,
+                  accentColor: accentColor,
+                ),
+                const SizedBox(height: 12),
+                _buildBenefitCard(
+                  icon: Icons.shield_outlined,
+                  title: "Trial Protection Alert",
+                  description: "Receive a reminder 2 days before your free trial ends.",
+                  isDark: isDark,
+                  textColor: textColor,
+                  accentColor: accentColor,
                 ),
                 
-                const Spacer(flex: 2),
+                const Spacer(),
                 
                 // Action Buttons
                 if (!_isRequested)
@@ -146,7 +167,6 @@ class _NotificationPermissionScreenState extends ConsumerState<NotificationPermi
                         final service = ref.read(notificationServiceProvider);
                         await service.init();
                         await service.requestPermissions();
-                        // Schedule default daily drop at 9am
                         await service.scheduleDailyDrop(9, 0);
                       } catch (e) {
                         debugPrint('Error enabling notifications: $e');
@@ -155,18 +175,22 @@ class _NotificationPermissionScreenState extends ConsumerState<NotificationPermi
                           setState(() {
                             _isRequested = true;
                           });
+                          // Smoothly advance to paywall after brief delay
+                          Future.delayed(const Duration(milliseconds: 600), () {
+                            if (mounted) _navigateToApp();
+                          });
                         }
                       }
                     },
                     child: Container(
-                      padding: const EdgeInsets.symmetric(vertical: 18),
+                      height: 54,
                       decoration: BoxDecoration(
-                        color: buttonBg,
-                        borderRadius: BorderRadius.circular(16),
+                        color: btnBgColor,
+                        borderRadius: BorderRadius.circular(27),
                         boxShadow: [
                           BoxShadow(
-                            color: textColor.withValues(alpha: 0.3),
-                            blurRadius: 12,
+                            color: btnBgColor.withValues(alpha: 0.1),
+                            blurRadius: 16,
                             offset: const Offset(0, 4),
                           )
                         ],
@@ -175,8 +199,8 @@ class _NotificationPermissionScreenState extends ConsumerState<NotificationPermi
                         child: Text(
                           "Enable Notifications",
                           style: TextStyle(
-                            color: buttonFg,
-                            fontSize: 18,
+                            color: btnTextColor,
+                            fontSize: 16,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -187,14 +211,14 @@ class _NotificationPermissionScreenState extends ConsumerState<NotificationPermi
                   BouncingButton(
                     onPressed: _navigateToApp,
                     child: Container(
-                      padding: const EdgeInsets.symmetric(vertical: 18),
+                      height: 54,
                       decoration: BoxDecoration(
-                        color: buttonBg,
-                        borderRadius: BorderRadius.circular(16),
+                        color: btnBgColor,
+                        borderRadius: BorderRadius.circular(27),
                         boxShadow: [
                           BoxShadow(
-                            color: textColor.withValues(alpha: 0.3),
-                            blurRadius: 12,
+                            color: btnBgColor.withValues(alpha: 0.1),
+                            blurRadius: 16,
                             offset: const Offset(0, 4),
                           )
                         ],
@@ -203,8 +227,8 @@ class _NotificationPermissionScreenState extends ConsumerState<NotificationPermi
                         child: Text(
                           "Continue",
                           style: TextStyle(
-                            color: buttonFg,
-                            fontSize: 18,
+                            color: btnTextColor,
+                            fontSize: 16,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -213,18 +237,21 @@ class _NotificationPermissionScreenState extends ConsumerState<NotificationPermi
                   ),
                 
                 if (!_isRequested) ...[
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 10),
                   TextButton(
                     onPressed: _navigateToApp,
                     style: TextButton.styleFrom(
-                      foregroundColor: isDark ? Colors.white60 : Colors.black54,
+                      foregroundColor: textColor.withValues(alpha: 0.5),
                     ),
                     child: const Text(
                       "Maybe Later",
-                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                      style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
                     ),
                   ),
+                ] else ...[
+                  const SizedBox(height: 38),
                 ],
+                const SizedBox(height: 6),
               ],
             ),
           ),
@@ -233,45 +260,68 @@ class _NotificationPermissionScreenState extends ConsumerState<NotificationPermi
     );
   }
 
-  Widget _buildBenefitItem(BuildContext context, {required IconData icon, required String title, required String description}) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-    
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Container(
-          padding: const EdgeInsets.all(12),
-          decoration: BoxDecoration(
-            color: const Color(0xFFD4C4A8).withValues(alpha: 0.15),
-            borderRadius: BorderRadius.circular(12),
-          ),
-          child: Icon(icon, color: const Color(0xFFD4C4A8), size: 24),
+  Widget _buildBenefitCard({
+    required IconData icon,
+    required String title,
+    required String description,
+    required bool isDark,
+    required Color textColor,
+    required Color accentColor,
+  }) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+      decoration: BoxDecoration(
+        color: isDark ? const Color(0xFF2A2A2B) : Colors.white,
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(
+          color: isDark ? Colors.white.withValues(alpha: 0.08) : Colors.black.withValues(alpha: 0.06),
         ),
-        const SizedBox(width: 16),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                title,
-                style: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 4),
-              Text(
-                description,
-                style: TextStyle(
-                  fontSize: 15,
-                  height: 1.4,
-                  color: isDark ? Colors.white60 : Colors.black54,
-                ),
-              ),
-            ],
+        boxShadow: [
+          BoxShadow(
+            color: (isDark ? Colors.white : Colors.black).withValues(alpha: 0.02),
+            blurRadius: 8,
+            offset: const Offset(0, 2),
           ),
-        ),
-      ],
+        ],
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+            padding: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              color: accentColor.withValues(alpha: 0.15),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Icon(icon, color: accentColor, size: 20),
+          ),
+          const SizedBox(width: 14),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: TextStyle(
+                    color: textColor,
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 2),
+                Text(
+                  description,
+                  style: TextStyle(
+                    fontSize: 12,
+                    height: 1.3,
+                    color: textColor.withValues(alpha: 0.6),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
