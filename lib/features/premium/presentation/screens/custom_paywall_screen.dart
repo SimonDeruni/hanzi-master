@@ -166,14 +166,14 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
                       ),
                     ),
                     
-                    const SizedBox(height: 16),
+                    const SizedBox(height: 18),
                     
                     // 2-Column Features Grid
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
                       decoration: BoxDecoration(
                         color: textColor.withValues(alpha: 0.03),
-                        borderRadius: BorderRadius.circular(14),
+                        borderRadius: BorderRadius.circular(16),
                         border: Border.all(color: textColor.withValues(alpha: 0.06)),
                       ),
                       child: Column(
@@ -181,23 +181,23 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
                           Row(
                             children: [
                               Expanded(child: _buildCompactFeature(Icons.gesture, "Precision Strokes", textColor, accentColor)),
-                              const SizedBox(width: 8),
+                              const SizedBox(width: 10),
                               Expanded(child: _buildCompactFeature(Icons.document_scanner, "Universal Scanner", textColor, accentColor)),
                             ],
                           ),
-                          const SizedBox(height: 10),
+                          const SizedBox(height: 12),
                           Row(
                             children: [
                               Expanded(child: _buildCompactFeature(Icons.mic_none, "AI Pronunciation", textColor, accentColor)),
-                              const SizedBox(width: 8),
+                              const SizedBox(width: 10),
                               Expanded(child: _buildCompactFeature(Icons.translate, "Live Translation", textColor, accentColor)),
                             ],
                           ),
-                          const SizedBox(height: 10),
+                          const SizedBox(height: 12),
                           Row(
                             children: [
                               Expanded(child: _buildCompactFeature(Icons.travel_explore, "Smart News & Dict", textColor, accentColor)),
-                              const SizedBox(width: 8),
+                              const SizedBox(width: 10),
                               Expanded(child: _buildCompactFeature(Icons.menu_book, "HSK 1-6 & AI Decks", textColor, accentColor)),
                             ],
                           ),
@@ -205,7 +205,7 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
                       ),
                     ),
 
-                    const SizedBox(height: 14),
+                    const SizedBox(height: 16),
 
                     // Horizontal Blinkist Timeline
                     _buildHorizontalTimeline(textColor, accentColor),
@@ -297,14 +297,18 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
   Widget _buildCompactFeature(IconData icon, String text, Color textColor, Color accentColor) {
     return Row(
       children: [
-        Icon(icon, color: accentColor, size: 16),
+        Icon(icon, color: accentColor, size: 19),
         const SizedBox(width: 8),
         Expanded(
           child: Text(
             text,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
-            style: TextStyle(color: textColor.withValues(alpha: 0.85), fontSize: 12, fontWeight: FontWeight.w500),
+            style: TextStyle(
+              color: textColor.withValues(alpha: 0.95),
+              fontSize: 13.5,
+              fontWeight: FontWeight.w600,
+            ),
           ),
         ),
       ],
@@ -313,19 +317,19 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
 
   Widget _buildHorizontalTimeline(Color textColor, Color accentColor) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
       decoration: BoxDecoration(
         color: textColor.withValues(alpha: 0.03),
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(16),
         border: Border.all(color: textColor.withValues(alpha: 0.06)),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           _buildTimelineNode(Icons.lock_open, "Today", "Full Access", textColor, accentColor),
-          Icon(Icons.arrow_forward, size: 14, color: textColor.withValues(alpha: 0.25)),
+          Icon(Icons.arrow_forward, size: 16, color: textColor.withValues(alpha: 0.25)),
           _buildTimelineNode(Icons.notifications_none, "Day 5", "Reminder", textColor, accentColor),
-          Icon(Icons.arrow_forward, size: 14, color: textColor.withValues(alpha: 0.25)),
+          Icon(Icons.arrow_forward, size: 16, color: textColor.withValues(alpha: 0.25)),
           _buildTimelineNode(Icons.credit_card, "Day 7", "Trial Begins", textColor, accentColor),
         ],
       ),
@@ -336,15 +340,24 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Icon(icon, size: 16, color: accentColor),
-        const SizedBox(height: 3),
+        Icon(icon, size: 20, color: accentColor),
+        const SizedBox(height: 4),
         Text(
           title,
-          style: TextStyle(color: textColor, fontSize: 11, fontWeight: FontWeight.bold),
+          style: TextStyle(
+            color: textColor,
+            fontSize: 13,
+            fontWeight: FontWeight.bold,
+          ),
         ),
+        const SizedBox(height: 2),
         Text(
           subtitle,
-          style: TextStyle(color: textColor.withValues(alpha: 0.5), fontSize: 9),
+          style: TextStyle(
+            color: textColor.withValues(alpha: 0.65),
+            fontSize: 11,
+            fontWeight: FontWeight.w500,
+          ),
         ),
       ],
     );
