@@ -7,9 +7,9 @@ All notable changes to this project will be documented in this file.
 ### Added
 - **Dynamic Custom Paywall Overhaul**: Rebuilt the paywall with comprehensive feature selling points (Precision Stroke Engine, AI Pronunciation Grading, Smart News & One-Tap Dictionary, Universal Camera & Photo Scanner, Live Translation & Travel Interpreter, Complete HSK 1-6 Tomes, adaptive spaced repetition and AI custom decks), dynamic pricing breakdowns computed directly from RevenueCat store product prices, Blinkist-style trial timeline, and direct legal links (`https://sinospark.app/terms.html`, `https://sinospark.app/privacy.html`).
 - **Unified Dynamic Dark/Light Mode for Onboarding**: Ensured full contrast and color inversion across all onboarding selection cards, grid cards, and notification permissions, perfectly adhering to the Zen & Ink design guidelines.
+- **Overhauled AI Curriculum Calibration Screen**: Replaced the static text card with an interactive, live-animated calibration experience featuring a dynamic percentage progress bar, step-by-step milestone checkmarks (Mastery Level, Focus Alignment, Daily Ritual, AI Neural SRS Decks), haptic tick feedback, and an active completion CTA button.
 
 ### Changed
-- **Streamlined 4-Step Onboarding Architecture**: Eliminated the redundant calibration waiting screen, reducing onboarding to 4 focused steps (Welcome, Mastery, Drive, Ritual) and auto-transitioning immediately to Notification Permission and the Paywall upon completing the daily ritual selection.
 - **Onboarding Vertical Layout Balance**: Rebalanced vertical margins and pinned primary call-to-action buttons to the bottom of the screen across all onboarding steps to prevent top crowding and eliminate bottom voids.
 
 ### Fixed
