@@ -170,6 +170,8 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
                       const SizedBox(height: 12),
                       _buildFeatureRow(textColor, accentColor, Icons.document_scanner, "universal scanner image"),
                       const SizedBox(height: 12),
+                      _buildFeatureRow(textColor, accentColor, Icons.translate, "Live Translation & Travel Interpreter"),
+                      const SizedBox(height: 12),
                       _buildFeatureRow(textColor, accentColor, Icons.menu_book, "Complete HSK 1-6 Tomes, adaptive spaced repetition and AI custom decks"),
                       
                       const SizedBox(height: 32),
