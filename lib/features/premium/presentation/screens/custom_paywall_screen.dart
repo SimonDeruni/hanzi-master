@@ -260,12 +260,12 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
                           ),
                           Text("•", style: TextStyle(color: textColor.withOpacity(0.3))),
                           TextButton(
-                            onPressed: () => _launchURL('https://hanzi.app/terms'),
+                            onPressed: () => _launchURL('https://sinospark.app/terms'),
                             child: Text("Terms", style: TextStyle(color: textColor.withOpacity(0.6))),
                           ),
                           Text("•", style: TextStyle(color: textColor.withOpacity(0.3))),
                           TextButton(
-                            onPressed: () => _launchURL('https://hanzi.app/privacy'),
+                            onPressed: () => _launchURL('https://sinospark.app/privacy'),
                             child: Text("Privacy", style: TextStyle(color: textColor.withOpacity(0.6))),
                           ),
                         ],
