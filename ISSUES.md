@@ -24,6 +24,29 @@
 - [x] **Bug**: Fixed invisible AI transcript in Live Call by changing API modality to fetch both TEXT and AUDIO.
 - [x] **Bug**: Replaced Live Call AI text with `TappableMarkdownHanziText` to allow quicklook dictionary access on spoken words.
 - [x] **Bug**: Fixed Dart compilation syntax error (`Target kernel_snapshot_program failed`) causing iOS builds to fail.
+- [x] **Bug**: Fixed Universal Scanner permanent lock-out loop caused by failure to refresh camera permission status after returning from OS Settings.
+- [x] **Bug**: Fixed AI Story Reader UI pagination. Replaced fragmented one-sentence-per-page view with a continuous SingleChildScrollView.
+- [x] **Bug**: Fixed Chat Avatar Header iOS Safe Area collision.
+- [x] **Bug**: Haptic feedback and stroke grading bug reported by user.
+- [x] **Story Length**: Increased custom story requirement to 8-12 sentences for more substantial reading material.
+- [x] Fixed "No stories found" bug when navigating back to the Reading Room.
+- [x] Fixed broken Wikipedia image links by adding User-Agent headers.
+- [x] **Bug**: Fixed `FormatException: Invalid radix-10 number` crash on Media Search queries due to `youtube_explode_dart` parsing failures on live streams. Gracefully skip problematic videos while showing valid results.
+- [x] Fixed Pinyin-only subtitle rendering on videos lacking a Chinese Hanzi track.
+- [x] Added localized translation languages to replace subtitle placeholders.
+- [x] Implemented seek-on-tap gesture on subtitle blocks.
+- [x] Added AI explanation button for specific sentences.
+- [x] **Bug**: Fixed total loss of audio output during media playback caused by iframe muting.
+- [x] **Bug**: Fixed "0/100" and Tone Graph glitches in Shadowing Studio grading by passing raw byte arrays to pitch extractor and dynamically scaling rendering coordinates.
+- [x] **Bug**: Fixed `MediaSearchScreen` empty state crash and video fetch failures. Implemented live API key rotation to intercept 403 quota errors and seamlessly cycle through backup keys before falling back to the local database, guaranteeing live videos fetch successfully.
+- [x] **Bug**: Fixed Roleplay Chat Keyboard trapping (added scroll-to-dismiss and tap-to-dismiss).
+- [x] **Bug**: Fixed Roleplay Chat "Hide Translation" toggle button (resolved state logic issue).
+- [x] **Bug**: Fixed Roleplay Chat Pinyin formatting (converted raw numeric tone output from AI to standard diacritic marks).
+- [x] **Bug**: Fixed infinite reconnection loop in Travel Interpreter caused by invalid `realtimeInput` WebSocket payload crashing the server connection.
+- [x] **Bug**: Fixed Gemini Live Call severe echo and self-interruption loop by migrating from a software muting hack to OS-level hardware echo cancellation.
+- [x] **Bug**: Fixed invisible AI transcript in Live Call by changing API modality to fetch both TEXT and AUDIO.
+- [x] **Bug**: Replaced Live Call AI text with `TappableMarkdownHanziText` to allow quicklook dictionary access on spoken words.
+- [x] **Bug**: Fixed Dart compilation syntax error (`Target kernel_snapshot_program failed`) causing iOS builds to fail.
 - [x] **Bug**: Fixed Shadowing Studio always returning 0/100 for pronunciation grading. Stripped Chinese punctuation from the `ReferenceText` passed to the Azure Speech Pronunciation Assessment API to prevent alignment failures.
 - [x] **Bug**: Fixed Gemini Live Call connection crash (WebSocket 1007 Error) by removing `"TEXT"` from the `responseModalities` payload, which is unsupported by the current model version. Improved error UI to catch WebSocket disconnections gracefully.
 - [x] **UI/UX**: Added "TRAILER" and "HIGHLIGHT" conditional overlay badges to Media Cards in the Shows & Dramas catalog to distinguish content types.
@@ -31,5 +54,7 @@
 - [x] **Bug**: Fixed Universal Scanner camera permission handling. The app now correctly checks the permission status before requesting, preventing silent failures on iOS, and replaces the basic unpolished SnackBar with a premium floating toast notification (Zen & Ink aesthetic) guiding the user to settings.
 - [x] **Bug**: Fixed AR Camera Permission soft-lock. Accessing the AR feature without permissions previously crashed the UI, resulting in a blank gray screen with invisible navigation elements. Added a permission denied fallback UI and ensured the background properly covers the screen.
 - [x] **Bug**: Fixed "Latest Discoveries" carousel and Dictionary list displaying empty cards for older saved flashcards (like "吃") that were missing pinyin/definition metadata. `_LexiconMiniCard` and `_DictionaryItem` now detect empty metadata on render and asynchronously hydrate the missing fields directly from the offline SQLite dictionary.
+- [x] **UI/UX**: Resolved onboarding color inversion and contrast bugs across Light and Dark mode for selection cards, ritual options, and notification permissions.
+- [x] **UI/UX**: Resolved onboarding vertical layout imbalance and removed the redundant calibration screen to provide an immediate transition to the paywall.
+- [x] **Paywall**: Built dynamic custom paywall with RevenueCat monthly equivalent breakdown, 6 core feature highlights, Blinkist trial timeline, and live legal links.
 ## Open Issues
-
