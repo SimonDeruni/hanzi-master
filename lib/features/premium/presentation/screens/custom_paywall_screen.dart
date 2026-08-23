@@ -123,6 +123,8 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
     }
   }
 
+  String _mockSelectedPackage = "Yearly";
+
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
@@ -137,225 +139,216 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
       body: SafeArea(
         child: _isLoading
             ? Center(child: CircularProgressIndicator(color: textColor))
-            : SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      const SizedBox(height: 16),
-                      Icon(Icons.auto_awesome, color: accentColor, size: 56),
-                      const SizedBox(height: 24),
-                      
-                      Text(
-                        "Master Chinese with\nSinoSpark",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: textColor,
-                          fontSize: 32,
-                          fontFamily: 'Serif',
-                          fontWeight: FontWeight.bold,
-                          height: 1.2,
-                        ),
+            : Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 12.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    const SizedBox(height: 8),
+                    Icon(Icons.auto_awesome, color: accentColor, size: 40),
+                    const SizedBox(height: 12),
+                    
+                    Text(
+                      "Master Chinese with\nSinoSpark",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: textColor,
+                        fontSize: 26,
+                        fontFamily: 'Serif',
+                        fontWeight: FontWeight.bold,
+                        height: 1.15,
                       ),
-                      
-                      const SizedBox(height: 32),
-                      
-                      // Feature list
-                      _buildFeatureRow(textColor, accentColor, Icons.gesture, "Precision Stroke Engine"),
-                      const SizedBox(height: 12),
-                      _buildFeatureRow(textColor, accentColor, Icons.mic_none, "AI Pronunciation Grading"),
-                      const SizedBox(height: 12),
-                      _buildFeatureRow(textColor, accentColor, Icons.travel_explore, "Smart News & One-Tap Dictionary"),
-                      const SizedBox(height: 12),
-                      _buildFeatureRow(textColor, accentColor, Icons.document_scanner, "Universal Camera & Photo Scanner"),
-                      const SizedBox(height: 12),
-                      _buildFeatureRow(textColor, accentColor, Icons.translate, "Live Translation & Travel Interpreter"),
-                      const SizedBox(height: 12),
-                      _buildFeatureRow(textColor, accentColor, Icons.menu_book, "Complete HSK 1-6 Tomes, adaptive spaced repetition and AI custom decks"),
-                      
-                      const SizedBox(height: 32),
-
-                      // Blinkist Timeline
-                      _buildTimelineRow(
-                        icon: Icons.lock_open,
-                        title: "Today",
-                        description: "Unlock all features instantly.",
-                        textColor: textColor,
-                        accentColor: accentColor,
+                    ),
+                    
+                    const SizedBox(height: 16),
+                    
+                    // 2-Column Features Grid
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+                      decoration: BoxDecoration(
+                        color: textColor.withValues(alpha: 0.03),
+                        borderRadius: BorderRadius.circular(14),
+                        border: Border.all(color: textColor.withValues(alpha: 0.06)),
                       ),
-                      _buildTimelineDivider(textColor),
-                      _buildTimelineRow(
-                        icon: Icons.notifications_active_outlined,
-                        title: "Day 5",
-                        description: "We'll send you a reminder.",
-                        textColor: textColor,
-                        accentColor: accentColor,
-                      ),
-                      _buildTimelineDivider(textColor),
-                      _buildTimelineRow(
-                        icon: Icons.credit_card,
-                        title: "Day 7",
-                        description: "Your subscription begins. Cancel easily.",
-                        textColor: textColor,
-                        accentColor: accentColor,
-                      ),
-                      
-                      const SizedBox(height: 48),
-
-                      // Packages
-                      if (_usingMockFallback)
-                        Row(
-                          children: [
-                            Expanded(child: Padding(padding: const EdgeInsets.symmetric(horizontal: 6.0), child: _buildMockPackageCard("Monthly", "\$9.99/mo", false, textColor, accentColor, null))),
-                            Expanded(child: Padding(padding: const EdgeInsets.symmetric(horizontal: 6.0), child: _buildMockPackageCard("Yearly", "\$59.99/yr", true, textColor, accentColor, 59.99))),
-                          ],
-                        )
-                      else if (_offerings?.current != null)
-                        Row(
-                          children: _offerings!.current!.availablePackages.map((package) {
-                            return Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 6.0),
-                                child: _buildPackageCard(package, textColor, accentColor),
-                              ),
-                            );
-                          }).toList(),
-                        ),
-
-                      const SizedBox(height: 24),
-
-                      GestureDetector(
-                        onTap: _isPurchasing ? null : _purchasePackage,
-                        child: Container(
-                          height: 64,
-                          decoration: BoxDecoration(
-                            color: btnBgColor,
-                            borderRadius: BorderRadius.circular(32),
-                            boxShadow: [
-                              BoxShadow(
-                                color: btnBgColor.withOpacity(0.1),
-                                blurRadius: 20,
-                                offset: const Offset(0, 4),
-                              ),
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              Expanded(child: _buildCompactFeature(Icons.gesture, "Precision Strokes", textColor, accentColor)),
+                              const SizedBox(width: 8),
+                              Expanded(child: _buildCompactFeature(Icons.document_scanner, "Universal Scanner", textColor, accentColor)),
                             ],
                           ),
-                          child: Center(
-                            child: _isPurchasing
-                                ? CircularProgressIndicator(color: btnTextColor)
-                                : Text(
-                                    "Start 7-Day Free Trial",
-                                    style: TextStyle(
-                                      color: btnTextColor,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
+                          const SizedBox(height: 10),
+                          Row(
+                            children: [
+                              Expanded(child: _buildCompactFeature(Icons.mic_none, "AI Pronunciation", textColor, accentColor)),
+                              const SizedBox(width: 8),
+                              Expanded(child: _buildCompactFeature(Icons.translate, "Live Translation", textColor, accentColor)),
+                            ],
                           ),
-                        ),
-                      ),
-                      
-                      const SizedBox(height: 16),
-                      
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          TextButton(
-                            onPressed: _restorePurchases,
-                            child: Text("Restore", style: TextStyle(color: textColor.withOpacity(0.6))),
-                          ),
-                          Text("•", style: TextStyle(color: textColor.withOpacity(0.3))),
-                          TextButton(
-                            onPressed: () => _launchURL('https://sinospark.app/terms.html'),
-                            child: Text("Terms", style: TextStyle(color: textColor.withOpacity(0.6))),
-                          ),
-                          Text("•", style: TextStyle(color: textColor.withOpacity(0.3))),
-                          TextButton(
-                            onPressed: () => _launchURL('https://sinospark.app/privacy.html'),
-                            child: Text("Privacy", style: TextStyle(color: textColor.withOpacity(0.6))),
+                          const SizedBox(height: 10),
+                          Row(
+                            children: [
+                              Expanded(child: _buildCompactFeature(Icons.travel_explore, "Smart News & Dict", textColor, accentColor)),
+                              const SizedBox(width: 8),
+                              Expanded(child: _buildCompactFeature(Icons.menu_book, "HSK 1-6 & AI Decks", textColor, accentColor)),
+                            ],
                           ),
                         ],
                       ),
-                      const SizedBox(height: 24),
-                    ],
-                  ),
+                    ),
+
+                    const SizedBox(height: 14),
+
+                    // Horizontal Blinkist Timeline
+                    _buildHorizontalTimeline(textColor, accentColor),
+                    
+                    const Spacer(),
+
+                    // Packages
+                    if (_usingMockFallback)
+                      Row(
+                        children: [
+                          Expanded(child: Padding(padding: const EdgeInsets.symmetric(horizontal: 4.0), child: _buildMockPackageCard("Monthly", "\$9.99/mo", false, textColor, accentColor, null))),
+                          Expanded(child: Padding(padding: const EdgeInsets.symmetric(horizontal: 4.0), child: _buildMockPackageCard("Yearly", "\$59.99/yr", true, textColor, accentColor, 59.99))),
+                        ],
+                      )
+                    else if (_offerings?.current != null)
+                      Row(
+                        children: _offerings!.current!.availablePackages.map((package) {
+                          return Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                              child: _buildPackageCard(package, textColor, accentColor),
+                            ),
+                          );
+                        }).toList(),
+                      ),
+
+                    const SizedBox(height: 14),
+
+                    GestureDetector(
+                      onTap: _isPurchasing ? null : _purchasePackage,
+                      child: Container(
+                        height: 54,
+                        decoration: BoxDecoration(
+                          color: btnBgColor,
+                          borderRadius: BorderRadius.circular(27),
+                          boxShadow: [
+                            BoxShadow(
+                              color: btnBgColor.withValues(alpha: 0.1),
+                              blurRadius: 16,
+                              offset: const Offset(0, 4),
+                            ),
+                          ],
+                        ),
+                        child: Center(
+                          child: _isPurchasing
+                              ? CircularProgressIndicator(color: btnTextColor)
+                              : Text(
+                                  "Start 7-Day Free Trial",
+                                  style: TextStyle(
+                                    color: btnTextColor,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                        ),
+                      ),
+                    ),
+                    
+                    const SizedBox(height: 10),
+                    
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        TextButton(
+                          onPressed: _restorePurchases,
+                          child: Text("Restore", style: TextStyle(color: textColor.withValues(alpha: 0.6), fontSize: 12)),
+                        ),
+                        Text("•", style: TextStyle(color: textColor.withValues(alpha: 0.3))),
+                        TextButton(
+                          onPressed: () => _launchURL('https://sinospark.app/terms.html'),
+                          child: Text("Terms", style: TextStyle(color: textColor.withValues(alpha: 0.6), fontSize: 12)),
+                        ),
+                        Text("•", style: TextStyle(color: textColor.withValues(alpha: 0.3))),
+                        TextButton(
+                          onPressed: () => _launchURL('https://sinospark.app/privacy.html'),
+                          child: Text("Privacy", style: TextStyle(color: textColor.withValues(alpha: 0.6), fontSize: 12)),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 6),
+                  ],
                 ),
               ),
       ),
     );
   }
   
-  Widget _buildFeatureRow(Color textColor, Color accentColor, IconData icon, String text) {
+  Widget _buildCompactFeature(IconData icon, String text, Color textColor, Color accentColor) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Icon(icon, color: accentColor, size: 20),
-        const SizedBox(width: 12),
+        Icon(icon, color: accentColor, size: 16),
+        const SizedBox(width: 8),
         Expanded(
           child: Text(
             text,
-            style: TextStyle(color: textColor.withOpacity(0.9), fontSize: 16),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(color: textColor.withValues(alpha: 0.85), fontSize: 12, fontWeight: FontWeight.w500),
           ),
         ),
       ],
     );
   }
 
-  Widget _buildTimelineRow({required IconData icon, required String title, required String description, required Color textColor, required Color accentColor}) {
-    return Row(
-      children: [
-        Container(
-          width: 48,
-          height: 48,
-          decoration: BoxDecoration(
-            color: textColor.withOpacity(0.1),
-            shape: BoxShape.circle,
-          ),
-          child: Icon(icon, color: accentColor, size: 24),
-        ),
-        const SizedBox(width: 16),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              title,
-              style: TextStyle(
-                color: textColor,
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 4),
-            Text(
-              description,
-              style: TextStyle(
-                color: textColor.withOpacity(0.7),
-                fontSize: 14,
-              ),
-            ),
-          ],
-        ),
-      ],
-    );
-  }
-
-  Widget _buildTimelineDivider(Color textColor) {
-    return Align(
-      alignment: Alignment.centerLeft,
-      child: Padding(
-        padding: const EdgeInsets.only(left: 23.0, top: 4, bottom: 4),
-        child: Container(
-          width: 2,
-          height: 24,
-          color: textColor.withOpacity(0.1),
-        ),
+  Widget _buildHorizontalTimeline(Color textColor, Color accentColor) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+      decoration: BoxDecoration(
+        color: textColor.withValues(alpha: 0.03),
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(color: textColor.withValues(alpha: 0.06)),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          _buildTimelineNode(Icons.lock_open, "Today", "Full Access", textColor, accentColor),
+          Icon(Icons.arrow_forward, size: 14, color: textColor.withValues(alpha: 0.25)),
+          _buildTimelineNode(Icons.notifications_none, "Day 5", "Reminder", textColor, accentColor),
+          Icon(Icons.arrow_forward, size: 14, color: textColor.withValues(alpha: 0.25)),
+          _buildTimelineNode(Icons.credit_card, "Day 7", "Trial Begins", textColor, accentColor),
+        ],
       ),
     );
   }
 
+  Widget _buildTimelineNode(IconData icon, String title, String subtitle, Color textColor, Color accentColor) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Icon(icon, size: 16, color: accentColor),
+        const SizedBox(height: 3),
+        Text(
+          title,
+          style: TextStyle(color: textColor, fontSize: 11, fontWeight: FontWeight.bold),
+        ),
+        Text(
+          subtitle,
+          style: TextStyle(color: textColor.withValues(alpha: 0.5), fontSize: 9),
+        ),
+      ],
+    );
+  }
+
   Widget _buildMockPackageCard(String title, String price, bool isAnnual, Color textColor, Color accentColor, double? numericPrice) {
-    final isSelected = isAnnual; // Just hardcode selection for mock
-    return _buildPackageCardUI(title, price, isAnnual, isSelected, textColor, accentColor, numericPrice, () {});
+    final isSelected = _mockSelectedPackage == title;
+    return _buildPackageCardUI(title, price, isAnnual, isSelected, textColor, accentColor, numericPrice, () {
+      HapticFeedback.lightImpact();
+      setState(() => _mockSelectedPackage = title);
+    });
   }
 
   Widget _buildPackageCard(Package package, Color textColor, Color accentColor) {
