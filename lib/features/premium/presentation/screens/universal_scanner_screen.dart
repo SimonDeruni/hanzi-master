@@ -111,6 +111,11 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
 
         try {
           await _cameraController!.initialize();
+          try {
+            await _cameraController!.lockCaptureOrientation(DeviceOrientation.portraitUp);
+          } catch (e) {
+            debugPrint("Orientation lock error (ignored): $e");
+          }
           _minZoomLevel = await _cameraController!.getMinZoomLevel();
           _maxZoomLevel = await _cameraController!.getMaxZoomLevel();
           if (mounted) {
@@ -631,22 +636,21 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
               child: GestureDetector(
                 onScaleStart: _handleScaleStart,
                 onScaleUpdate: _handleScaleUpdate,
-                child: Builder(
-                  builder: (context) {
-                    final orientation = MediaQuery.of(context).orientation;
-                    final previewSize = _cameraController!.value.previewSize!;
-                    final double maxDim = math.max(previewSize.width, previewSize.height);
-                    final double minDim = math.min(previewSize.width, previewSize.height);
+                child: LayoutBuilder(
+                  builder: (context, constraints) {
+                    final double screenAspectRatio = constraints.maxWidth / constraints.maxHeight;
+                    final double cameraAspectRatio = _cameraController!.value.aspectRatio;
                     
-                    final bool isPortrait = orientation == Orientation.portrait;
-                    final double childWidth = isPortrait ? minDim : maxDim;
-                    final double childHeight = isPortrait ? maxDim : minDim;
+                    // In portrait, camera visual ratio is inverted (1 / cameraAspectRatio)
+                    final double visualCameraRatio = 1 / cameraAspectRatio;
+                    
+                    double scale = screenAspectRatio / visualCameraRatio;
+                    if (scale < 1) scale = 1 / scale;
+
                     return ClipRect(
-                      child: FittedBox(
-                        fit: BoxFit.cover,
-                        child: SizedBox(
-                          width: childWidth,
-                          height: childHeight,
+                      child: Transform.scale(
+                        scale: scale,
+                        child: Center(
                           child: CameraPreview(_cameraController!),
                         ),
                       ),
