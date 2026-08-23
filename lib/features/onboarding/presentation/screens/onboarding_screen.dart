@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -19,6 +20,8 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   int _selectedMastery = -1;
   int _selectedDrive = -1;
   int _selectedRitual = -1;
+  double _calibrationProgress = 0.0;
+  bool _calibrationComplete = false;
 
   void _nextPage() {
     if (_currentPage < 3) {
@@ -27,8 +30,45 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
         curve: Curves.easeInOutQuart,
       );
     } else {
-      _completeOnboarding();
+      _startCalibration();
     }
+  }
+
+  void _startCalibration() {
+    setState(() {
+      _currentPage = 4;
+      _calibrationProgress = 0.0;
+      _calibrationComplete = false;
+      _pageController.animateToPage(
+        4, 
+        duration: 400.ms, 
+        curve: Curves.easeInOutQuart,
+      );
+    });
+
+    Future.delayed(const Duration(milliseconds: 300), () {
+      if (!mounted) return;
+      setState(() => _calibrationProgress = 0.35);
+      HapticFeedback.lightImpact();
+    });
+
+    Future.delayed(const Duration(milliseconds: 1000), () {
+      if (!mounted) return;
+      setState(() => _calibrationProgress = 0.70);
+      HapticFeedback.lightImpact();
+    });
+
+    Future.delayed(const Duration(milliseconds: 1800), () {
+      if (!mounted) return;
+      setState(() => _calibrationProgress = 1.0);
+      HapticFeedback.mediumImpact();
+    });
+
+    Future.delayed(const Duration(milliseconds: 2300), () {
+      if (!mounted) return;
+      setState(() => _calibrationComplete = true);
+      HapticFeedback.heavyImpact();
+    });
   }
 
   void _completeOnboarding() async {
@@ -67,11 +107,14 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                   _buildMasteryPage(),
                   _buildDrivePage(),
                   _buildRitualPage(),
+                  _buildCalibrationPage(),
                 ],
               ),
             ),
-            _buildProgressIndicator(),
-            const SizedBox(height: 12),
+            if (_currentPage < 4) ...[
+              _buildProgressIndicator(),
+              const SizedBox(height: 12),
+            ],
           ],
         ),
       ),
@@ -356,7 +399,240 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
     );
   }
 
+  Widget _buildCalibrationPage() {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    
+    String masteryText = "Brand New";
+    if (_selectedMastery == 1) masteryText = "Elementary";
+    if (_selectedMastery == 2) masteryText = "Intermediate";
+    if (_selectedMastery == 3) masteryText = "Advanced";
 
+    String driveText = "Business & Career";
+    if (_selectedDrive == 1) driveText = "Travel & Survival";
+    if (_selectedDrive == 2) driveText = "HSK Certification";
+    if (_selectedDrive == 3) driveText = "Cultural Appreciation";
+
+    String ritualText = "05 Min / Day";
+    if (_selectedRitual == 1) ritualText = "10 Min / Day";
+    if (_selectedRitual == 2) ritualText = "20 Min / Day";
+    if (_selectedRitual == 3) ritualText = "30 Min / Day";
+
+    final percentInt = (_calibrationProgress * 100).toInt();
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const SizedBox(height: 16),
+          Text(
+            _calibrationComplete ? "Your Plan is Ready" : "Crafting Your Curriculum",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: isDark ? Colors.white : const Color(0xFF1A1A1B),
+              fontSize: 28,
+              fontFamily: 'Serif',
+              fontWeight: FontWeight.bold,
+              height: 1.2,
+            ),
+          ).animate().fadeIn(),
+          
+          const SizedBox(height: 8),
+          
+          Text(
+            _calibrationComplete 
+                ? "PERSONALIZED PATH INITIALIZED" 
+                : "CALIBRATING AI NEURAL MASTERS...",
+            style: TextStyle(
+              color: isDark ? Colors.white54 : Colors.black54, 
+              fontSize: 11,
+              letterSpacing: 1.5,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          
+          const SizedBox(height: 24),
+
+          // Live Progress Bar & Percentage
+          Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: isDark ? const Color(0xFF2A2A2B) : Colors.white,
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(color: (isDark ? Colors.white : Colors.black).withValues(alpha: 0.05)),
+              boxShadow: [
+                BoxShadow(
+                  color: (isDark ? Colors.white : Colors.black).withValues(alpha: 0.02),
+                  blurRadius: 10,
+                  offset: const Offset(0, 4),
+                ),
+              ],
+            ),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      _calibrationComplete ? "Calibration Complete" : "Synthesizing Modules...",
+                      style: TextStyle(
+                        color: isDark ? Colors.white70 : Colors.black87,
+                        fontSize: 13,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    Text(
+                      "$percentInt%",
+                      style: TextStyle(
+                        color: Colors.red[700],
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 12),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(4),
+                  child: LinearProgressIndicator(
+                    value: _calibrationProgress,
+                    minHeight: 8,
+                    backgroundColor: isDark ? Colors.white12 : Colors.black12,
+                    valueColor: AlwaysStoppedAnimation<Color>(Colors.red[700]!),
+                  ),
+                ),
+              ],
+            ),
+          ),
+
+          const SizedBox(height: 20),
+
+          // Interactive Checklist of Milestones
+          Expanded(
+            child: ListView(
+              physics: const NeverScrollableScrollPhysics(),
+              children: [
+                _buildCalibrationStep(
+                  icon: Icons.person_outline,
+                  title: "Mastery Level",
+                  value: masteryText,
+                  isDone: _calibrationProgress >= 0.35,
+                  isDark: isDark,
+                ),
+                const SizedBox(height: 10),
+                _buildCalibrationStep(
+                  icon: Icons.flag_outlined,
+                  title: "Target Objective",
+                  value: driveText,
+                  isDone: _calibrationProgress >= 0.70,
+                  isDark: isDark,
+                ),
+                const SizedBox(height: 10),
+                _buildCalibrationStep(
+                  icon: Icons.access_time,
+                  title: "Daily Practice",
+                  value: ritualText,
+                  isDone: _calibrationProgress >= 0.99,
+                  isDark: isDark,
+                ),
+                const SizedBox(height: 10),
+                _buildCalibrationStep(
+                  icon: Icons.auto_awesome,
+                  title: "AI Spaced Repetition",
+                  value: "Dynamic Decks & Stroke Analysis",
+                  isDone: _calibrationComplete,
+                  isDark: isDark,
+                ),
+              ],
+            ),
+          ),
+
+          if (_calibrationComplete) ...[
+            _buildPrimaryButton(
+              "View My Personalized Plan",
+              _completeOnboarding,
+            ).animate().fadeIn(duration: 400.ms).scale(begin: const Offset(0.95, 0.95)),
+            const SizedBox(height: 12),
+          ] else ...[
+            const SizedBox(height: 68),
+          ],
+        ],
+      ),
+    );
+  }
+
+  Widget _buildCalibrationStep({
+    required IconData icon,
+    required String title,
+    required String value,
+    required bool isDone,
+    required bool isDark,
+  }) {
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 300),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+      decoration: BoxDecoration(
+        color: isDone 
+            ? (isDark ? const Color(0xFF2A2A2B) : Colors.white)
+            : (isDark ? const Color(0xFF222223) : const Color(0xFFF5F4E8)),
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(
+          color: isDone 
+              ? (isDark ? Colors.white.withValues(alpha: 0.1) : Colors.black.withValues(alpha: 0.08))
+              : Colors.transparent,
+        ),
+      ),
+      child: Row(
+        children: [
+          Icon(
+            icon, 
+            color: isDone ? Colors.red[700] : (isDark ? Colors.white24 : Colors.black26), 
+            size: 22,
+          ),
+          const SizedBox(width: 14),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: TextStyle(
+                    color: isDark ? Colors.white54 : Colors.black54,
+                    fontSize: 11,
+                  ),
+                ),
+                const SizedBox(height: 2),
+                Text(
+                  value,
+                  style: TextStyle(
+                    color: isDone 
+                        ? (isDark ? Colors.white : const Color(0xFF1A1A1B))
+                        : (isDark ? Colors.white38 : Colors.black38),
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          AnimatedSwitcher(
+            duration: const Duration(milliseconds: 300),
+            child: isDone
+                ? Icon(Icons.check_circle, color: Colors.green[600], size: 20, key: const ValueKey("done"))
+                : SizedBox(
+                    width: 16,
+                    height: 16,
+                    key: const ValueKey("loading"),
+                    child: CircularProgressIndicator(
+                      strokeWidth: 2,
+                      color: isDark ? Colors.white24 : Colors.black26,
+                    ),
+                  ),
+          ),
+        ],
+      ),
+    );
+  }
 
   Widget _buildRitualCard({
     required String title,
