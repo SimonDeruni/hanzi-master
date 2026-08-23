@@ -54,7 +54,7 @@ class _NotificationPermissionScreenState extends ConsumerState<NotificationPermi
     final isDark = theme.brightness == Brightness.dark;
     final textColor = isDark ? Colors.white : const Color(0xFF1A1A1B);
     final surfaceColor = isDark ? const Color(0xFF2A2A2B) : const Color(0xFFFDFCF0);
-    final buttonBg = isDark ? Colors.white : const Color(0xFF1A1A1B);
+    final buttonBg = isDark ? const Color(0xFFFDFCF0) : const Color(0xFF1A1A1B);
     final buttonFg = isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0);
 
     return Scaffold(

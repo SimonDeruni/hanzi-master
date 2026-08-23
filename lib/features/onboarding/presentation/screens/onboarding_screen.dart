@@ -649,16 +649,19 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
     required VoidCallback onTap,
   }) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final selectedBg = isDark ? const Color(0xFFFDFCF0) : const Color(0xFF1A1A1B);
+    final selectedText = isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0);
+    
     return GestureDetector(
       onTap: onTap,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
-          color: isDark ? const Color(0xFF2A2A2B) : Colors.white,
+          color: isSelected ? selectedBg : (isDark ? const Color(0xFF2A2A2B) : Colors.white),
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
-            color: isSelected ? Colors.red[700]! : (isDark ? Colors.white : Colors.black).withValues(alpha: 0.05),
+            color: isSelected ? selectedBg : (isDark ? Colors.white : Colors.black).withValues(alpha: 0.05),
             width: 1.5,
           ),
           boxShadow: [
@@ -679,7 +682,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                   Text(
                     title,
                     style: TextStyle(
-                      color: isDark ? Colors.white : const Color(0xFF1A1A1B),
+                      color: isSelected ? selectedText : (isDark ? Colors.white : const Color(0xFF1A1A1B)),
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                     ),
@@ -688,7 +691,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                   Text(
                     subtitle,
                     style: TextStyle(
-                      color: isDark ? Colors.white54 : Colors.black54,
+                      color: isSelected ? selectedText : (isDark ? Colors.white54 : Colors.black54),
                       fontSize: 12,
                     ),
                   ),
@@ -697,7 +700,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
             ),
             Icon(
               icon,
-              color: isSelected ? Colors.red[700] : (isDark ? Colors.white38 : Colors.black38),
+              color: isSelected ? selectedText : (isDark ? Colors.white38 : Colors.black38),
               size: 28,
             ),
           ],
@@ -713,16 +716,19 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
     required VoidCallback onTap,
   }) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final selectedBg = isDark ? const Color(0xFFFDFCF0) : const Color(0xFF1A1A1B);
+    final selectedText = isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0);
+    
     return GestureDetector(
       onTap: onTap,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
-          color: isDark ? const Color(0xFF2A2A2B) : Colors.white,
+          color: isSelected ? selectedBg : (isDark ? const Color(0xFF2A2A2B) : Colors.white),
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
-            color: isSelected ? Colors.red[700]! : (isDark ? Colors.white : Colors.black).withValues(alpha: 0.05),
+            color: isSelected ? selectedBg : (isDark ? Colors.white : Colors.black).withValues(alpha: 0.05),
             width: 1.5,
           ),
           boxShadow: [
@@ -739,7 +745,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
           children: [
             Icon(
               icon,
-              color: isSelected ? Colors.red[700] : (isDark ? Colors.white38 : Colors.black38),
+              color: isSelected ? selectedText : (isDark ? Colors.white38 : Colors.black38),
               size: 32,
             ),
             const SizedBox(height: 16),
@@ -747,7 +753,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
               title,
               textAlign: TextAlign.center,
               style: TextStyle(
-                color: isDark ? Colors.white : const Color(0xFF1A1A1B),
+                color: isSelected ? selectedText : (isDark ? Colors.white : const Color(0xFF1A1A1B)),
                 fontSize: 14,
                 fontWeight: FontWeight.w600,
                 height: 1.3,
