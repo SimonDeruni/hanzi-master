@@ -54,14 +54,20 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
   }
 
   Future<void> _purchasePackage() async {
+    HapticFeedback.mediumImpact();
     if (_usingMockFallback) {
-       // Just let them in on emulator if using mock fallback
+       setState(() => _isPurchasing = true);
+       await Future.delayed(const Duration(milliseconds: 300));
        if (mounted) {
          Navigator.of(context).pushReplacement(
            MaterialPageRoute(builder: (context) => const MainNavigationScreen()),
          );
        }
        return;
+    }
+    
+    if (_selectedPackage == null && _offerings?.current != null && _offerings!.current!.availablePackages.isNotEmpty) {
+      _selectedPackage = _offerings!.current!.annual ?? _offerings!.current!.availablePackages.first;
     }
     
     if (_selectedPackage == null) return;
@@ -229,6 +235,7 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
                     const SizedBox(height: 14),
 
                     GestureDetector(
+                      behavior: HitTestBehavior.opaque,
                       onTap: _isPurchasing ? null : _purchasePackage,
                       child: Container(
                         height: 54,
@@ -346,7 +353,7 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
   Widget _buildMockPackageCard(String title, String price, bool isAnnual, Color textColor, Color accentColor, double? numericPrice) {
     final isSelected = _mockSelectedPackage == title;
     return _buildPackageCardUI(title, price, isAnnual, isSelected, textColor, accentColor, numericPrice, () {
-      HapticFeedback.lightImpact();
+      HapticFeedback.selectionClick();
       setState(() => _mockSelectedPackage = title);
     });
   }
@@ -354,65 +361,88 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
   Widget _buildPackageCard(Package package, Color textColor, Color accentColor) {
     final isSelected = _selectedPackage?.identifier == package.identifier;
     final isAnnual = package.packageType == PackageType.annual;
-    return _buildPackageCardUI(package.storeProduct.title.split(' ').first, package.storeProduct.priceString, isAnnual, isSelected, textColor, accentColor, package.storeProduct.price, () {
-      HapticFeedback.lightImpact();
+    final title = isAnnual ? "Yearly" : "Monthly";
+    return _buildPackageCardUI(title, package.storeProduct.priceString, isAnnual, isSelected, textColor, accentColor, package.storeProduct.price, () {
+      HapticFeedback.selectionClick();
       setState(() => _selectedPackage = package);
     });
   }
   
   Widget _buildPackageCardUI(String title, String price, bool isAnnual, bool isSelected, Color textColor, Color accentColor, double? numericPrice, VoidCallback onTap) {
+    final isDark = textColor == const Color(0xFFFDFCF0);
+    final cardBg = isSelected 
+        ? (isDark ? const Color(0xFF2E2E30) : Colors.white)
+        : (isDark ? const Color(0xFF222223) : const Color(0xFFF5F4E8));
+    final borderColor = isSelected 
+        ? (isDark ? Colors.white : const Color(0xFF1A1A1B))
+        : (isDark ? Colors.white12 : Colors.black12);
+
     return GestureDetector(
+      behavior: HitTestBehavior.opaque,
       onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.all(16),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
         decoration: BoxDecoration(
-          color: isSelected ? textColor.withOpacity(0.1) : Colors.transparent,
+          color: cardBg,
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
-            color: isSelected ? accentColor : textColor.withOpacity(0.15),
+            color: borderColor,
             width: isSelected ? 2 : 1,
           ),
+          boxShadow: isSelected ? [
+            BoxShadow(
+              color: (isDark ? Colors.white : Colors.black).withValues(alpha: 0.05),
+              blurRadius: 10,
+              offset: const Offset(0, 4),
+            )
+          ] : null,
         ),
         child: Column(
           children: [
             if (isAnnual)
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                margin: const EdgeInsets.only(bottom: 8),
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                margin: const EdgeInsets.only(bottom: 6),
                 decoration: BoxDecoration(
                   color: const Color(0xFF8B2E2E), // Seal Red
-                  borderRadius: BorderRadius.circular(8),
+                  borderRadius: BorderRadius.circular(6),
                 ),
                 child: const Text(
                   "Best Value",
                   style: TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.bold),
                 ),
-              ),
+              )
+            else
+              const SizedBox(height: 19),
             Text(
               title,
               style: TextStyle(
                 color: textColor,
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
+                fontSize: 15,
+                fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
               ),
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: 6),
             Text(
               price,
               style: TextStyle(
                 color: textColor,
-                fontSize: 20,
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
               ),
             ),
             if (isAnnual && numericPrice != null) ...[
-              const SizedBox(height: 4),
+              const SizedBox(height: 3),
               Text(
                 "Just \$${(numericPrice / 12).toStringAsFixed(2)}/mo",
                 style: TextStyle(
-                  color: textColor.withOpacity(0.5),
-                  fontSize: 11,
+                  color: textColor.withValues(alpha: 0.55),
+                  fontSize: 10,
                 ),
               ),
+            ] else ...[
+              const SizedBox(height: 16),
             ],
           ],
         ),
