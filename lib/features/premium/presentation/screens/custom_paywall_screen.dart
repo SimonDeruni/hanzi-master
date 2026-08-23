@@ -162,11 +162,17 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
                       const SizedBox(height: 32),
                       
                       // Feature list
-                      _buildFeatureRow(textColor, accentColor, Icons.draw, "Native Calligraphy Practice"),
+                      _buildFeatureRow(textColor, accentColor, Icons.gesture, "Precision Stroke Engine"),
                       const SizedBox(height: 12),
-                      _buildFeatureRow(textColor, accentColor, Icons.memory, "AI Spaced Repetition"),
+                      _buildFeatureRow(textColor, accentColor, Icons.mic_none, "AI Pronunciation Grading"),
                       const SizedBox(height: 12),
-                      _buildFeatureRow(textColor, accentColor, Icons.school, "HSK 1-6 Exam Prep"),
+                      _buildFeatureRow(textColor, accentColor, Icons.travel_explore, "Smart News & One-Tap Dictionary"),
+                      const SizedBox(height: 12),
+                      _buildFeatureRow(textColor, accentColor, Icons.document_scanner, "Universal Live Translation Scanner"),
+                      const SizedBox(height: 12),
+                      _buildFeatureRow(textColor, accentColor, Icons.menu_book, "Complete HSK 1-6 Tomes"),
+                      const SizedBox(height: 12),
+                      _buildFeatureRow(textColor, accentColor, Icons.psychology, "Adaptive Spaced Repetition"),
                       
                       const SizedBox(height: 32),
 
