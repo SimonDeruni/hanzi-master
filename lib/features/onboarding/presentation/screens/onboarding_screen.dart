@@ -52,22 +52,27 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
       HapticFeedback.lightImpact();
     });
 
-    Future.delayed(const Duration(milliseconds: 1000), () {
+    Future.delayed(const Duration(milliseconds: 900), () {
       if (!mounted) return;
       setState(() => _calibrationProgress = 0.70);
       HapticFeedback.lightImpact();
     });
 
-    Future.delayed(const Duration(milliseconds: 1800), () {
+    Future.delayed(const Duration(milliseconds: 1600), () {
       if (!mounted) return;
       setState(() => _calibrationProgress = 1.0);
       HapticFeedback.mediumImpact();
     });
 
-    Future.delayed(const Duration(milliseconds: 2300), () {
+    Future.delayed(const Duration(milliseconds: 2100), () {
       if (!mounted) return;
       setState(() => _calibrationComplete = true);
       HapticFeedback.heavyImpact();
+    });
+
+    Future.delayed(const Duration(milliseconds: 2700), () {
+      if (!mounted) return;
+      _completeOnboarding();
     });
   }
 
@@ -546,16 +551,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
               ],
             ),
           ),
-
-          if (_calibrationComplete) ...[
-            _buildPrimaryButton(
-              "View My Personalized Plan",
-              _completeOnboarding,
-            ).animate().fadeIn(duration: 400.ms).scale(begin: const Offset(0.95, 0.95)),
-            const SizedBox(height: 12),
-          ] else ...[
-            const SizedBox(height: 68),
-          ],
+          const SizedBox(height: 24),
         ],
       ),
     );
