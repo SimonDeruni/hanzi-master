@@ -7,7 +7,7 @@
 - **Locked Files:**
     - [None]
 
-#### 🎯 Outstanding User Requests
+- [x] **Universal Scanner Camera Distortion Fix:** Eliminated double-aspect-ratio scaling distortion using proportional `Transform.scale` and locked camera capture orientation to `portraitUp`. (Status: COMPLETED)
 - [ ] **Travel Interpreter Microphone:** "the speaking in the microphpnoe in the travel intepreter doesnt work" (Status: NOT STARTED)
 - [ ] **Global Voices Link:** "the new global voices link doesnt work" (Status: NOT STARTED)
 - [x] **AR Camera Permission/Soft-lock:** "When launching the AR feature without camera permissions granted, the app displays a solid gray screen... the user is trapped on a dead-end screen" (Status: COMPLETED)
