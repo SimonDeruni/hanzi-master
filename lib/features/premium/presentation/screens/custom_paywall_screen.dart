@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:hanzi_master/core/services/monetization_service.dart';
@@ -55,6 +56,20 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
 
   Future<void> _purchasePackage() async {
     HapticFeedback.mediumImpact();
+    
+    // If purchasing annual / trial, check notification permission
+    final isAnnual = _usingMockFallback
+        ? (_mockSelectedPackage == "Yearly")
+        : (_selectedPackage?.packageType == PackageType.annual);
+
+    if (isAnnual) {
+      final status = await Permission.notification.status;
+      if (!status.isGranted && mounted) {
+        final shouldProceed = await _showReminderProtectionDialog();
+        if (!shouldProceed) return;
+      }
+    }
+
     if (_usingMockFallback) {
        setState(() => _isPurchasing = true);
        await Future.delayed(const Duration(milliseconds: 300));
@@ -97,6 +112,90 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
     } finally {
       if (mounted) setState(() => _isPurchasing = false);
     }
+  }
+
+  Future<bool> _showReminderProtectionDialog() async {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final dialogBg = isDark ? const Color(0xFF222223) : const Color(0xFFFDFCF0);
+    final textColor = isDark ? const Color(0xFFFDFCF0) : const Color(0xFF1A1A1B);
+    final btnBgColor = isDark ? const Color(0xFFFDFCF0) : const Color(0xFF1A1A1B);
+    final btnTextColor = isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0);
+
+    return await showDialog<bool>(
+      context: context,
+      barrierDismissible: true,
+      builder: (ctx) => AlertDialog(
+        backgroundColor: dialogBg,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+          side: BorderSide(color: textColor.withValues(alpha: 0.08)),
+        ),
+        title: Row(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: const Color(0xFFD4C4A8).withValues(alpha: 0.15),
+                shape: BoxShape.circle,
+              ),
+              child: const Icon(Icons.notifications_active_outlined, color: Color(0xFFD4C4A8), size: 22),
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Text(
+                "Day 5 Reminder",
+                style: TextStyle(
+                  color: textColor,
+                  fontSize: 18,
+                  fontFamily: 'Serif',
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ],
+        ),
+        content: Text(
+          "We promised to alert you 2 days before your trial ends so you're never charged by surprise. Turn on notifications so we can send your reminder.",
+          style: TextStyle(
+            color: textColor.withValues(alpha: 0.75),
+            fontSize: 14,
+            height: 1.4,
+          ),
+        ),
+        actionsPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(ctx).pop(true),
+            child: Text(
+              "Continue without reminder",
+              style: TextStyle(color: textColor.withValues(alpha: 0.5), fontSize: 13),
+            ),
+          ),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: btnBgColor,
+              foregroundColor: btnTextColor,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+            ),
+            onPressed: () async {
+              Navigator.of(ctx).pop(true);
+              try {
+                final service = ref.read(notificationServiceProvider);
+                await service.init();
+                final granted = await service.requestPermissions();
+                if (!granted) {
+                  await openAppSettings();
+                }
+              } catch (e) {
+                debugPrint("Permission request error: $e");
+              }
+            },
+            child: const Text("Turn On", style: TextStyle(fontWeight: FontWeight.bold)),
+          ),
+        ],
+      ),
+    ) ?? false;
   }
 
   Future<void> _restorePurchases() async {
