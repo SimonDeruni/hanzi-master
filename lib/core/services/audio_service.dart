@@ -253,15 +253,15 @@ class AudioService {
 
 
 
-  /// Plays an isolated tone syllable or native Hanzi exemplar with slightly exaggerated pitch range (+25%)
-  /// and slightly relaxed rate (-12%) so learners can easily distinguish pitch contours.
+  /// Plays an isolated tone syllable or native Hanzi exemplar with exaggerated pitch range (+50%)
+  /// and relaxed pacing (-22%) so learners can effortlessly distinguish pitch contours.
   Future<bool> playToneAudition(String textToSpeak, {String? pinyin, String? cacheKey}) async {
     if (!_isInitialized) await init();
     await stop();
 
-    // Use stable Unicode-aware hash so tone marks (ā, á, ǎ, à) and Hanzi are NEVER stripped by ASCII regex
-    final hash = _hashText('tone_v2:$textToSpeak:${pinyin ?? ''}:${cacheKey ?? ''}');
-    final cacheFile = File('${_cacheDir!.path}/tts_cache/tone_v2_$hash.mp3');
+    // Use stable Unicode-aware hash with tone_v3 prefix for exaggerated pitch auditions
+    final hash = _hashText('tone_v3:$textToSpeak:${pinyin ?? ''}:${cacheKey ?? ''}');
+    final cacheFile = File('${_cacheDir!.path}/tts_cache/tone_v3_$hash.mp3');
     if (await cacheFile.exists()) {
       try {
         await _player.play(DeviceFileSource(cacheFile.path));
@@ -274,8 +274,8 @@ class AudioService {
     try {
       final result = await _fetchCloudTTS(
         textToSpeak,
-        pitchRange: '+25%',
-        rateAdjustment: -12,
+        pitchRange: '+50%',
+        rateAdjustment: -22,
         cacheFile: cacheFile,
       );
       if (result != null && result.audio.isNotEmpty) {

@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- **Exaggerated Tone Comparison Pitch Range (+50%) & Articulated Rate (-22%)**:
+  - Boosted dynamic SSML pitch range in `AudioService.playToneAudition` to `+50%` (maximum register span).
+  - Relaxed pacing to `-22%` for clear contour glide, allowing learners to easily distinguish high flat (55), rising (35), low dipping (214), and sharp falling (51) contours.
+  - Migrated to `tone_v3_` cache namespace. Bumped build to `1.0.0+151`.
 - **Unicode-Safe Tone Audition Cache Hashing (Eliminating Audio Cross-Contamination)**:
   - Fixed regex stripping bug in `AudioService.playToneAudition` where non-ASCII tone marks (e.g. `ā`, `á`, `ǐ`) were stripped into other syllables (e.g. `huān_1` ➔ `hun_1`, causing `huān` to play `hun` audio).
   - Migrated tone audition cache to `tone_v2_` with stable 32-bit Unicode hashing (`_hashText`), ensuring zero cache collisions and eliminating all stale cross-talk between syllables. Bumped build to `1.0.0+150`.
