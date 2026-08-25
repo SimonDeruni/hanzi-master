@@ -423,13 +423,19 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
       }
     }
 
+    int totalWordScore = 0;
+    for (var w in gradeWords) {
+      totalWordScore += (w['wordScore'] as num).toInt();
+    }
+    final avgScore = gradeWords.isNotEmpty ? (totalWordScore / gradeWords.length).round() : baseScore;
+
     final userGrade = gradeWords.isNotEmpty ? {
-      'score': baseScore,
-      'overallScore': baseScore,
-      'accuracy': baseScore,
-      'fluency': (baseScore - 3).clamp(50, 98),
+      'score': avgScore,
+      'overallScore': avgScore,
+      'accuracy': avgScore,
+      'fluency': (avgScore - 4).clamp(50, 98),
       'completeness': 100,
-      'overallFeedback': baseScore >= 80 ? 'Great pronunciation and tone accuracy!' : (baseScore >= 65 ? 'Good effort! Pay attention to your tones.' : 'Needs practice on tones and pronunciation.'),
+      'overallFeedback': avgScore >= 80 ? 'Great pronunciation and tone accuracy!' : (avgScore >= 65 ? 'Good effort! Pay attention to your tones.' : 'Needs practice on tones and pronunciation.'),
       'words': gradeWords,
     } : null;
 

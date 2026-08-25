@@ -7,7 +7,8 @@
 - **Locked Files:**
     - [None]
 
-- [x] **Non-Chinese Utterance Handling in Call Summary:** Suppressed "Tap to review" prompt and click modal on summary screen for English and non-Chinese utterances. Bumped to `1.0.0+136`. (Status: COMPLETED)
+- [x] **Dynamic Character Tone Averaging:** Replaced all static score fallbacks with dynamic character-by-character tone averaging across all recognition events. Bumped to `1.0.0+137`. (Status: COMPLETED)
+- [x] **Non-Chinese Utterance Handling in Call Summary:** Suppressed "Tap to review" prompt and click modal on summary screen for English and non-Chinese utterances. (Status: COMPLETED)
 - [x] **Real Acoustic Tone Assessment & Live Character Coloring:** Connected live acoustic confidence to dynamic Hanzi character coloring (Green / Orange / Red) and dynamic score badges with round review sheets on call summary. (Status: COMPLETED)
 - [x] **Continuous Multi-Word Sentence Recognition:** Enabled `ListenMode.dictation` in `SpeechListenOptions` so recognizer captures complete sentences without cutting off mid-speech. (Status: COMPLETED)
 - [x] **Instant AI Turn Processing & Non-Blocking Translation:** Replaced blocking ML Kit model checks with non-blocking timeout handling, tuned pause timeout to 2.5s, and guaranteed clean session reset in `SpeechService`. (Status: COMPLETED)

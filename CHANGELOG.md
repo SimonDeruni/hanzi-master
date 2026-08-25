@@ -3,6 +3,8 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- **Dynamic Character Tone Averaging**:
+  - Replaced all static score fallbacks with dynamic character-by-character tone averaging across all recognition events. Bumped build to `1.0.0+137`.
 - **Non-Chinese Utterance Handling in Call Summary**:
   - Automatically disabled the "Tap to review" prompt and sheet when an utterance is in English or contains no Chinese characters. Bumped build to `1.0.0+136`.
 - **Real Acoustic Tone Assessment & Live Character Coloring**:
