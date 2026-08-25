@@ -3,6 +3,8 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- **Scholar's Verdict 4th-Wall Integrity & Persona Hardening**:
+  - Hardened system prompt and added multi-layer safety sanitization in `_generateFinalVerdict` so the AI never breaks character, complains about data/recordings, or references AI limitations during summary generation. Bumped build to `1.0.0+142`.
 - **Live Call Pausing & Smart Tone Diagnostics**:
   - Live call listening and tutor audio now automatically pause (`Call Paused (Reviewing Tones)`) whenever the user opens the Tone Comparison Sheet, and cleanly resumes once the sheet is dismissed.
   - Implemented smart 1-sentence diagnostic summaries in `PinyinUtils.getToneDiagnostic` explaining exactly what pitch adjustment is needed.

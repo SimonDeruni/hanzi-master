@@ -751,22 +751,60 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
 
   Future<String> _generateFinalVerdict() async {
     try {
+      final userMessages = _transcript.where((m) => m.role == ChatRole.user).toList();
+      if (userMessages.isEmpty) {
+        return "A brief encounter to warm the brush. In our next dialogue, speak bold and complete sentences to fully awaken your Mandarin fluency.";
+      }
+
+      // If user only spoke a single short word or 1 phrase
+      if (userMessages.length == 1 && userMessages.first.text.trim().length <= 4) {
+        final word = userMessages.first.text.trim();
+        return "A crisp first step with '$word'. As you practice further, expand your responses into complete phrases to let your tones flow like running ink.";
+      }
+
       final gemini = ref.read(geminiServiceProvider);
       final transcriptStr = _transcript
-          .map((m) => "${m.role.name.toUpperCase()}: ${m.text}")
+          .map((m) => "${m.role == ChatRole.user ? 'STUDENT' : 'MASTER'}: ${m.text}")
           .join("\n");
 
-      final prompt =
-          'Analyze this transcript and student\'s pronunciation patterns. Identify top 2 struggle areas. Encouraging, scholarly, <80 words.\n\n$transcriptStr';
+      const systemPrompt = '''
+You are the venerable Chinese Language Master in the Hanzi Master app. You are giving your final "Scholar's Verdict" critique directly to your student.
+STRICT MANDATE:
+1. ALWAYS stay 100% in character as a wise, encouraging Chinese Calligraphy & Language Master. Speak directly to the student ("You articulated...", "Your rhythm...", "Let your tones...").
+2. ABSOLUTELY NEVER mention "transcript", "recordings", "audio", "prompts", "AI", "models", "data", "not enough information", or any technical/system limitations.
+3. NEVER complain about the session length or format.
+4. Give a warm, inspiring, poetic critique (under 60 words) highlighting their rhythm and offering one practical tip to polish their spoken tones.
+''';
 
-      return await gemini.makeOpenRouterCall(
+      final userPrompt = '''
+Student's spoken dialogue:
+$transcriptStr
+
+Provide your short, inspiring Scholar's Verdict directly to the student:
+''';
+
+      final response = await gemini.makeOpenRouterCall(
         model: 'google/gemini-2.5-flash',
         messages: [
-          {'role': 'user', 'content': prompt}
+          {'role': 'system', 'content': systemPrompt},
+          {'role': 'user', 'content': userPrompt}
         ],
       );
+
+      // 4th wall breach safety filter
+      final lower = response.toLowerCase();
+      if (lower.contains("audio") ||
+          lower.contains("transcript") ||
+          lower.contains("not enough information") ||
+          lower.contains("as an ai") ||
+          lower.contains("recording") ||
+          lower.contains("intended")) {
+        return "A commendable dialogue. Continue speaking with confidence and focus on sustaining high, steady pitch on 1st tones and decisive drops on 4th tones.";
+      }
+
+      return response;
     } catch (e) {
-      return "Excellent effort. Continue daily practice to refine tones.";
+      return "Excellent effort. Continue daily practice to let your tones flow with precision.";
     }
   }
 
