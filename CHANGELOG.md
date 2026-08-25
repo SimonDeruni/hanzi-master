@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.0+161] - 2026-08-25
+- **iPhone-Only Targeted Device Family (Disabled iPad)**:
+  - Set `TARGETED_DEVICE_FAMILY = "1"` across Debug, Profile, and Release configurations in `ios/Runner.xcodeproj/project.pbxproj`.
+  - Removed iPad-specific orientations from `ios/Runner/Info.plist`.
+  - Relieves requirement for 13-inch iPad screenshots on App Store Connect.
+
 ## [1.0.0+160] - 2026-08-25
 - **CI/CD CocoaPods Cache & Target Platform Fix**:
   - Added explicit target platform declaration to `target 'Runner'` in `ios/Podfile` to prevent target platform assignment warnings.
