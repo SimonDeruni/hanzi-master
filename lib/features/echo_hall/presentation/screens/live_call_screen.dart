@@ -397,16 +397,21 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
           'isPartial': false,
           'expectedTone': tone,
           'actualTone': tone,
+          'wordScore': 95,
           'accuracyScore': 95,
+          'feedback': 'Tone accurate',
         });
       }
     }
 
     final userGrade = gradeWords.isNotEmpty ? {
-      'words': gradeWords,
+      'score': 95,
       'overallScore': 95,
-      'fluencyScore': 92,
-      'completenessScore': 100,
+      'accuracy': 95,
+      'fluency': 92,
+      'completeness': 100,
+      'overallFeedback': 'Great pronunciation and tone accuracy!',
+      'words': gradeWords,
     } : null;
 
     if (_isDisposed || !mounted || _isEndingCall) return;

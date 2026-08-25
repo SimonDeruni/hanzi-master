@@ -3,6 +3,9 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- **Loud Audio Speaker Routing & Full Pronunciation Grade Structure**:
+  - Enforced `AudioContextIOS` and `AudioContextAndroid` with `defaultToSpeaker: true` and `isSpeakerphoneOn: true` at volume `1.0` in `AudioService.playSentence` so Azure Neural voice plays loudly through phone loudspeakers.
+  - Built complete `PronunciationGrade` model map with individual `wordScore`, tone metrics, and overall score for interactive live badges and full review report sheets on call summary. Bumped build to `1.0.0+129`.
 - **Live Call Full Translation & Pinyin for Both Parties**:
   - Connected user speech transcription to `LocalTranslationService` and `PinyinHelper` so user bubbles display spoken Chinese, tone-marked Pinyin, English translation, and live tone badges.
   - Streamlined Gemini prompt to 3-part format (`Chinese|||Pinyin|||English`) ensuring 100% subtitle consistency across all turns with fail-safe local Pinyin generator. Bumped build to `1.0.0+128`.

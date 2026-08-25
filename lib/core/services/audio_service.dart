@@ -178,6 +178,25 @@ class AudioService {
     final cacheFile = File('${_cacheDir!.path}/tts_cache/$hash.mp3');
     final boundaryFile = File('${_cacheDir!.path}/tts_cache/$hash.json');
     
+    await _player.setAudioContext(AudioContext(
+      iOS: AudioContextIOS(
+        category: AVAudioSessionCategory.playAndRecord,
+        options: const {
+          AVAudioSessionOptions.defaultToSpeaker,
+          AVAudioSessionOptions.allowBluetooth,
+          AVAudioSessionOptions.mixWithOthers,
+        },
+      ),
+      android: const AudioContextAndroid(
+        isSpeakerphoneOn: true,
+        stayAwake: true,
+        contentType: AndroidContentType.speech,
+        usageType: AndroidUsageType.voiceCommunication,
+        audioFocus: AndroidAudioFocus.gainTransient,
+      ),
+    ));
+    await _player.setVolume(1.0);
+
     if (await cacheFile.exists()) {
       _currentBoundaries = [];
       _currentBoundaryIndex = 0;
@@ -199,6 +218,7 @@ class AudioService {
     try {
       final result = await _fetchCloudTTS(sentence, azureVoice: azureVoice, cacheFile: cacheFile, boundaryFile: boundaryFile);
       if (result != null && result.success) {
+        await _player.setPlaybackRate(1.0);
         await _player.play(DeviceFileSource(cacheFile.path));
         return true;
       }
