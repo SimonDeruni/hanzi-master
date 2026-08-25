@@ -3,6 +3,11 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- **Unified Single-Recorder Azure Pipeline (Eliminating Dual Hardware Contention)**:
+  - Replaced the competing `speech_to_text` + `AudioRecorder` dual-pipeline with a single unified `AudioRecorder` audio engine.
+  - Monitors real-time voice activity (VAD) via amplitude streaming (`onAmplitudeChanged`), seamlessly detecting when speech starts and debouncing 1.4s of quiet to trigger the turn.
+  - Directly streams raw 16kHz PCM WAV audio to Azure Cognitive Services Pronunciation & Speech Assessment REST API, returning both the transcribed text and full character/phoneme acoustic tone grading in a single network roundtrip.
+  - Completely eliminates iOS `AVAudioSession` hardware collisions, background restart loops, and microphone stutter. Bumped build to `1.0.0+146`.
 - **Continuous 30s Microphone Tolerance & Debounce Stabilization**:
   - Configured native speech recognizer default `pauseFor` to 30 seconds and `listenFor` to 10 minutes, eliminating the aggressive 2-3s OS mic restart loop.
   - Active speech turns are debounced at 1.4s post-speech, ensuring the AI replies promptly without waiting for the 30s silence ceiling. Bumped build to `1.0.0+145`.
