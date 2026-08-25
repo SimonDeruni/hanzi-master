@@ -3,10 +3,10 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- **Security & Secrets Cleanup**: Reverted all hardcoded fallback API keys in `ApiKeyPool` to strict environment variables / `.env` resolution. Bumped build to `1.0.0+127`.
 - **Azure Cognitive Services Neural TTS Fixes**:
-  - **Direct Production Key Resolution**: Hardcoded production active fallback credentials directly into `ApiKeyPool` so release builds without `--dart-define` never skip Azure TTS.
   - **High-Speed MP3 Audio Format**: Switched audio output from uncompressed PCM WAV to `audio-16khz-128kbitrate-mono-mp3`, reducing network payload size from 300KB+ to ~20KB for instantaneous streaming playback.
-  - **Extended Connection Timeout & Headers**: Increased Azure HTTP timeout from 3s to 10s and included required `User-Agent: SinoSpark` header. Bumped build to `1.0.0+126`.
+  - **Extended Connection Timeout & Headers**: Increased Azure HTTP timeout from 3s to 10s and included required `User-Agent: SinoSpark` header.
   - **Live Pronunciation Rating**: Added real-time tone extraction and accuracy grading for user utterances, rendering tone-colored character chips and live accuracy badges.
   - **Persistent Subtitles**: Fixed Gemini history formatting so four-part `|||` delimited responses are maintained across infinite conversation turns, with automatic `lpinyin` fallback. Bumped build to `1.0.0+125`.
 - **CI/CD Build Cupertino Import Fix**: Added explicit `package:flutter/cupertino.dart` import in `app_theme.dart` to resolve `CupertinoPageTransitionsBuilder` compilation error on Xcode CI/CD builders.
