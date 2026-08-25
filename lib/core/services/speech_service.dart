@@ -59,7 +59,7 @@ class SpeechService {
         localeId: localeId,
         listenOptions: SpeechListenOptions(
           partialResults: true,
-          cancelOnError: true,
+          cancelOnError: false,
         ),
         listenFor: listenFor,
         pauseFor: pauseFor,

@@ -3,6 +3,8 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- **Speech Recognition Robustness**:
+  - Set `cancelOnError: false` in `SpeechListenOptions` within `SpeechService` so ambient acoustic glitches and non-fatal errors do not terminate active speech recognition sessions. Bumped build to `1.0.0+132`.
 - **Optimized 5-Second Silence Timeout**:
   - Fine-tuned speech recognition pause timeout (`pauseFor`) to **5 seconds** in `SpeechService` and `LiveCallScreen` for optimal conversational rhythm without premature cutoffs. Bumped build to `1.0.0+131`.
 - **Loud Audio Speaker Routing & Full Pronunciation Grade Structure**:
