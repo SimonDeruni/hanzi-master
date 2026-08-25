@@ -248,7 +248,7 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
 
     final started = await speechService.startListening(
       listenFor: const Duration(seconds: 60),
-      pauseFor: const Duration(seconds: 3),
+      pauseFor: const Duration(seconds: 7),
       onPartialResult: (text) {
         if (!_isCurrentRecognitionSession(session) || _isHandlingTurn) return;
         setState(() => _partialUserText = text);
@@ -327,7 +327,7 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
 
   void _handleRecognitionError(String message, bool permanent) {
     if (_isDisposed || !mounted || _isEndingCall) return;
-    debugPrint('LiveCall speech recognition error: $message');
+    debugPrint('LiveCall speech recognition error: $message (permanent: $permanent)');
     _recognitionSession++;
     _isStartingListening = false;
     _listeningWatchdog?.cancel();
@@ -335,11 +335,14 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
       _partialUserText = '';
       _audioLevel = 0;
     });
-    if (permanent || message == 'speech_recognition_unavailable') {
+
+    // Only show fatal error if microphone permission was denied
+    if (message.toLowerCase().contains('permission') || message.toLowerCase().contains('denied')) {
       _setCallState(
-          LiveCallState.error, "Microphone or speech recognition unavailable.");
-    } else if (!_isMuted) {
-      Future<void>.delayed(const Duration(milliseconds: 700), () {
+          LiveCallState.error, "Microphone permission required.");
+    } else if (!_isMuted && !_isHandlingTurn && _callState != LiveCallState.speaking && _callState != LiveCallState.thinking) {
+      // Auto-recover from silence/timeout/busy errors smoothly
+      Future<void>.delayed(const Duration(milliseconds: 500), () {
         if (mounted && !_isDisposed && !_isHandlingTurn && !_isMuted) {
           _startListening();
         }

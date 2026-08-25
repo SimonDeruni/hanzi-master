@@ -3,6 +3,9 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- **Extended Silence Timeout & Resilient Speech Recovery**:
+  - Increased speech recognition pause timeout (`pauseFor`) to **7 seconds** in `SpeechService` and `LiveCallScreen` allowing natural speaking pauses without mic cutoffs.
+  - Made speech recognition error handling self-healing so non-fatal Android silence timeouts automatically restart listening smoothly. Bumped build to `1.0.0+130`.
 - **Loud Audio Speaker Routing & Full Pronunciation Grade Structure**:
   - Enforced `AudioContextIOS` and `AudioContextAndroid` with `defaultToSpeaker: true` and `isSpeakerphoneOn: true` at volume `1.0` in `AudioService.playSentence` so Azure Neural voice plays loudly through phone loudspeakers.
   - Built complete `PronunciationGrade` model map with individual `wordScore`, tone metrics, and overall score for interactive live badges and full review report sheets on call summary. Bumped build to `1.0.0+129`.
