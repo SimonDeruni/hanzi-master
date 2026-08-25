@@ -101,12 +101,20 @@ class LiveCallSummaryScreen extends StatelessWidget {
 
   Widget _buildSummaryBubble(BuildContext context, LiveCallMessage msg, ThemeData theme) {
     final isUser = msg.role == ChatRole.user;
+    final hasChinese = RegExp(r'[\u4e00-\u9fa5]').hasMatch(msg.text);
+    final hasReviewableGrade = isUser && hasChinese && msg.grade != null && (msg.grade!['words'] as List?)?.isNotEmpty == true;
+
     final bubble = Container(
-      margin: const EdgeInsets.only(bottom: 20),
+      margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: isUser ? theme.colorScheme.primary.withValues(alpha: 0.05) : theme.colorScheme.onSurface.withValues(alpha: 0.02),
+        color: isUser
+            ? theme.colorScheme.surfaceContainerHighest.withValues(alpha: 0.5)
+            : theme.colorScheme.surface,
         borderRadius: BorderRadius.circular(16),
+        border: Border.all(
+          color: theme.colorScheme.outlineVariant.withValues(alpha: 0.3),
+        ),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -117,7 +125,7 @@ class LiveCallSummaryScreen extends StatelessWidget {
                 isUser ? "YOU" : "SCHOLAR",
                 style: theme.textTheme.labelSmall?.copyWith(color: theme.colorScheme.onSurface.withValues(alpha: 0.4)),
               ),
-              if (isUser) ...[
+              if (hasReviewableGrade) ...[
                 const Spacer(),
                 Icon(
                   Icons.touch_app_outlined,
@@ -136,7 +144,7 @@ class LiveCallSummaryScreen extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 8),
-          if (isUser && msg.grade != null)
+          if (hasReviewableGrade)
             _buildGradedRow(context, msg, msg.grade!['words'] ?? [], theme)
           else
             Text(msg.text, style: theme.textTheme.bodyLarge?.copyWith(fontWeight: !isUser ? FontWeight.bold : FontWeight.normal)),
@@ -144,7 +152,7 @@ class LiveCallSummaryScreen extends StatelessWidget {
       ),
     );
 
-    if (!isUser) return bubble;
+    if (!hasReviewableGrade) return bubble;
 
     return GestureDetector(
       onTap: () => _showPronunciationReviewSheet(context, msg, theme),
