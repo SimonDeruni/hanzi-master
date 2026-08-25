@@ -19,6 +19,8 @@ import 'package:hanzi_master/features/flashcards/presentation/screens/character_
 import 'package:hanzi_master/shared/widgets/breathing_widget.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/core/providers.dart';
+import 'package:hanzi_master/core/utils/pinyin_utils.dart';
+import '../../../echo_hall/presentation/widgets/tone_comparison_sheet.dart';
 
 enum ShadowingMode { freeFlow, theme, deck, customWord, customSentence }
 
@@ -1618,7 +1620,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                       "Score: ${(wordData['accuracyScore'] as num).toInt()}/100",
                       style: TextStyle(
                         fontSize: 20,
-                        fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.bold,
                         color: isDark ? Colors.white : Colors.black87,
                       ),
                     ),
@@ -1628,36 +1630,85 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                 if (wordData['phonemes'] != null &&
                     (wordData['phonemes'] as List).isNotEmpty) ...[
                   const SizedBox(height: 12),
+                  Text(
+                    "Tap any syllable to compare all 4 tones:",
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: isDark ? Colors.white54 : Colors.black54,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
                   Center(
                     child: Wrap(
                       spacing: 8,
                       runSpacing: 8,
                       alignment: WrapAlignment.center,
-                      children: (wordData['phonemes'] as List).map<Widget>((p) {
+                      children: (wordData['phonemes'] as List).asMap().entries.map<Widget>((entry) {
+                        final idx = entry.key;
+                        final p = entry.value;
                         final acc = (p['accuracy'] as num).toInt();
                         final color = acc >= 80
                             ? Colors.green
                             : (acc >= 60 ? Colors.orange : Colors.red);
-                        return Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 12, vertical: 8),
-                          decoration: BoxDecoration(
-                            color: color.withValues(alpha: 0.1),
-                            borderRadius: BorderRadius.circular(8),
-                            border:
-                                Border.all(color: color.withValues(alpha: 0.5)),
-                          ),
-                          child: Column(
-                            children: [
-                              Text(p['phoneme'],
-                                  style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold,
-                                      color: color)),
-                              const SizedBox(height: 4),
-                              Text("$acc",
-                                  style: TextStyle(fontSize: 12, color: color)),
-                            ],
+                        final phonemeStr = (p['phoneme'] ?? '').toString().trim();
+
+                        int tone = 1;
+                        String pinyinBase = phonemeStr;
+                        final match = RegExp(r'^([a-zA-ZüÜāēīōūǖáéíóúǘǎěǐǒǔǚàèìòùǜ]+)\s*(\d)?$').firstMatch(phonemeStr);
+                        if (match != null) {
+                          pinyinBase = match.group(1) ?? phonemeStr;
+                          if (match.group(2) != null) {
+                            tone = int.tryParse(match.group(2)!) ?? PinyinUtils.getTone(pinyinBase);
+                          } else {
+                            tone = PinyinUtils.getTone(pinyinBase);
+                          }
+                        } else {
+                          tone = PinyinUtils.getTone(phonemeStr);
+                        }
+
+                        final char = (word.length > idx) ? word[idx] : word;
+                        final pinyinMarked = PinyinUtils.convertNumericToMarks('$pinyinBase$tone');
+
+                        return InkWell(
+                          onTap: () {
+                            ToneComparisonSheet.show(
+                              context,
+                              character: char,
+                              pinyin: pinyinMarked,
+                              expectedTone: tone,
+                              actualTone: acc >= 80 ? tone : (tone % 4 + 1),
+                              feedback: feedback,
+                            );
+                          },
+                          borderRadius: BorderRadius.circular(10),
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 14, vertical: 8),
+                            decoration: BoxDecoration(
+                              color: color.withValues(alpha: 0.12),
+                              borderRadius: BorderRadius.circular(10),
+                              border:
+                                  Border.all(color: color.withValues(alpha: 0.6)),
+                            ),
+                            child: Column(
+                              children: [
+                                Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Text(p['phoneme'],
+                                        style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                            color: color)),
+                                    const SizedBox(width: 4),
+                                    Icon(Icons.volume_up_outlined, size: 12, color: color),
+                                  ],
+                                ),
+                                const SizedBox(height: 2),
+                                Text("$acc%",
+                                    style: TextStyle(fontSize: 11, fontWeight: FontWeight.w600, color: color)),
+                              ],
+                            ),
                           ),
                         );
                       }).toList(),

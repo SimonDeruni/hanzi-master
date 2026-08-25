@@ -3,6 +3,8 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- **Shadowing Studio 4-Tone Matrix Integration**:
+  - Connected `ToneComparisonSheet` to syllable phoneme chips in `ShadowingStudioScreen` so learners can tap any syllable chip (`ming 2`, `zi 4`) to compare and audition all 4 native tones side-by-side. Bumped build to `1.0.0+139`.
 - **Interactive 4-Tone Comparison & Audio Auditioning Matrix**:
   - Implemented `ToneComparisonSheet` with side-by-side 4-tone matrix (Tones 1 to 4), pitch contour indicators, tone descriptions, and instant audio playback for each tone variation.
   - Integrated with `PronunciationReportSheet`, `LiveCallScreen`, and `LiveCallSummaryScreen` so tapping any character allows direct auditory comparison between target tone and spoken tone without saving user audio. Bumped build to `1.0.0+138`.
