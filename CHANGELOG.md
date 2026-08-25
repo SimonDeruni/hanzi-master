@@ -2,6 +2,9 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.0+163] - 2026-08-25
+- Release build #163.
+
 ## [1.0.0+162] - 2026-08-25
 - **CocoaPods MLKit Version Resolution Fix**:
   - Removed rigid `~> 9.0.0` version constraint on `pod 'GoogleMLKit/TextRecognitionChinese'` in `ios/Podfile` to allow CocoaPods' Molinillo resolver to select the exact version matching `google_mlkit_text_recognition: ^0.15.1` and avoid resolution conflicts.
