@@ -248,7 +248,7 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
 
     final started = await speechService.startListening(
       listenFor: const Duration(seconds: 60),
-      pauseFor: const Duration(seconds: 5),
+      pauseFor: const Duration(milliseconds: 2500),
       onPartialResult: (text) {
         if (!_isCurrentRecognitionSession(session) || _isHandlingTurn) return;
         setState(() => _partialUserText = text);
@@ -372,9 +372,9 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
 
     String? userTranslation;
     try {
-      userTranslation = await ref.read(localTranslationServiceProvider).translate(text);
+      userTranslation = await ref.read(localTranslationServiceProvider).translate(text).timeout(const Duration(milliseconds: 600));
     } catch (e) {
-      debugPrint("User translation error: $e");
+      debugPrint("User translation error/timeout: $e");
     }
 
     // Build real-time grading for the user's spoken words

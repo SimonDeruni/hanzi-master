@@ -43,7 +43,9 @@ class SpeechService {
       return false;
     }
 
-    if (_speechToText.isListening) return true;
+    if (_speechToText.isListening) {
+      await _speechToText.cancel();
+    }
 
     try {
       await _speechToText.listen(

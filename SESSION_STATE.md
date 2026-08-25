@@ -7,7 +7,8 @@
 - **Locked Files:**
     - [None]
 
-- [x] **Speech Recognition Resilience:** Set `cancelOnError: false` in `SpeechListenOptions` within `SpeechService` to prevent premature session terminations from ambient noise. Bumped to `1.0.0+132`. (Status: COMPLETED)
+- [x] **Instant AI Turn Processing & Non-Blocking Translation:** Replaced blocking ML Kit model checks with non-blocking timeout handling, tuned pause timeout to 2.5s, and guaranteed clean session reset in `SpeechService`. Bumped to `1.0.0+133`. (Status: COMPLETED)
+- [x] **Speech Recognition Resilience:** Set `cancelOnError: false` in `SpeechListenOptions` within `SpeechService` to prevent premature session terminations from ambient noise. (Status: COMPLETED)
 - [x] **Optimized 5-Second Silence Timeout & Self-Healing Speech Recovery:** Tuned `pauseFor` timeout to 5 seconds and made error handler automatically recover from non-fatal Android silence timeouts. (Status: COMPLETED)
 - [x] **Loud Audio Speaker Routing & Full Pronunciation Grade Structure:** Enforced speakerphone AudioContext at 1.0 volume before Azure playback and built full `PronunciationGrade` payload for live tone badges and end summary sheet review. (Status: COMPLETED)
 - [x] **Live Call Full Translation & Pinyin for Both Parties:** Connected user speech to `LocalTranslationService` and `PinyinHelper` so user bubbles display spoken Chinese, tone-marked Pinyin, English translation, and live tone badges. (Status: COMPLETED)

@@ -3,6 +3,9 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- **Instant AI Turn Processing & Non-Blocking Translation**:
+  - Replaced blocking ML Kit model lookup with non-blocking timeout handling so Gemini and Azure Neural speech respond instantaneously upon user speech completion.
+  - Set conversational speech pause timeout to 2.5s for snappy turn-taking, and guaranteed clean session reset in `SpeechService`. Bumped build to `1.0.0+133`.
 - **Speech Recognition Robustness**:
   - Set `cancelOnError: false` in `SpeechListenOptions` within `SpeechService` so ambient acoustic glitches and non-fatal errors do not terminate active speech recognition sessions. Bumped build to `1.0.0+132`.
 - **Optimized 5-Second Silence Timeout**:
