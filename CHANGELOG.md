@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- **Unified Azure Pipeline & Direct Character Pinyin Alignment**:
+  - Unified both Speech-to-Text and Pronunciation Assessment onto Microsoft Azure Speech Cognitive Services, eliminating cross-engine discrepancy.
+  - Decomposed multi-character words into single-character tokens with direct character-level pinyin generation (`PinyinHelper.getPinyinE`), preventing syllable index drift.
+  - Audited `PinyinUtils._syllableExemplars` to remove polyphones (e.g. replaced `还` with `环` for `huán`, `充/虫/宠/冲` for `chong`), ensuring Azure Neural TTS always synthesizes the intended tone and syllable. Bumped build to `1.0.0+149`.
 - **Sequential Single-Recorder Azure Pipeline (Zero Microphone Conflicts)**:
   - Implemented `GeminiService.transcribeAudio` for dedicated high-speed Azure Speech-to-Text conversion (~300ms).
   - Single microphone ownership via `AudioRecorder` capturing 16kHz PCM WAV with real-time amplitude VAD.

@@ -341,9 +341,7 @@ class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
     }
 
     final pitchIcon = _getPitchIcon(tone);
-    final exemplarHanzi = (isExpected && widget.character.isNotEmpty)
-        ? widget.character
-        : PinyinUtils.getExemplarHanzi(widget.pinyin, tone);
+    final exemplarHanzi = PinyinUtils.getExemplarHanzi(widget.pinyin, tone);
 
     return InkWell(
       onTap: () => _playToneAudio(tone, pinyinWithTone, exemplarHanzi),

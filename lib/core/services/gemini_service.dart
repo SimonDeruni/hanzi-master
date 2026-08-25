@@ -1938,47 +1938,87 @@ Respond ONLY in valid JSON format like:
               feedback = "Pronunciation was inaccurate.";
             }
 
-            // Assign expected pinyin to each word (not for Insertion/Omission)
-            String wordPinyin = '';
-            if (wErrorType != 'Insertion' && wErrorType != 'Omission') {
-              if (pinyinIndex < expectedPinyinWords.length) {
-                wordPinyin = expectedPinyinWords[pinyinIndex];
-              }
-              pinyinIndex++;
-            }
+            // Assign exact pinyin to each Chinese character directly (preventing index drift / syllable mismatch)
+            final hanziChars = wordText.split('').where((c) => RegExp(r'[\u4e00-\u9fa5]').hasMatch(c)).toList();
+            if (hanziChars.length > 1) {
+              // Decompose multi-character word into individual character pills
+              for (int ci = 0; ci < hanziChars.length; ci++) {
+                final char = hanziChars[ci];
+                String charPinyin = '';
+                try {
+                  charPinyin = PinyinHelper.getPinyinE(char, separator: '', format: PinyinFormat.WITH_TONE_MARK);
+                } catch (_) {}
 
-            // Tone extraction
-            int expTone = PinyinUtils.getTone(wordPinyin);
-            int actTone = expTone;
-            if (w['Syllables'] != null && (w['Syllables'] as List).isNotEmpty) {
-              final syl = w['Syllables'][0]['Syllable']?.toString() ?? '';
-              final toneMatch = RegExp(r'[1-5]$').firstMatch(syl);
-              if (toneMatch != null) {
-                actTone = int.tryParse(toneMatch.group(0)!) ?? expTone;
-              }
-            }
+                int expTone = PinyinUtils.getTone(charPinyin);
+                int actTone = expTone;
+                if (w['Syllables'] != null && (w['Syllables'] as List).length > ci) {
+                  final syl = w['Syllables'][ci]['Syllable']?.toString() ?? '';
+                  final toneMatch = RegExp(r'[1-5]$').firstMatch(syl);
+                  if (toneMatch != null) {
+                    actTone = int.tryParse(toneMatch.group(0)!) ?? expTone;
+                  }
+                }
 
-            if (phonemesList.isEmpty && wAccuracy > 0 && wordPinyin.isNotEmpty) {
-              phonemesList.add({
-                'phoneme': wordPinyin,
-                'accuracy': wAccuracy,
+                mappedWords.add({
+                  "word": char,
+                  "pinyin": charPinyin,
+                  "isCorrect": isCorrect,
+                  "isPartial": isPartial,
+                  "isOmitted": isOmitted,
+                  "feedback": feedback,
+                  "wordScore": wAccuracy.round(),
+                  "accuracyScore": wAccuracy,
+                  "accuracy": wAccuracy.round(),
+                  "expectedTone": expTone,
+                  "actualTone": actTone,
+                  "phonemes": phonemesList,
+                });
+              }
+            } else {
+              // Single character word or non-Hanzi token
+              String singlePinyin = '';
+              if (wordText.isNotEmpty && RegExp(r'[\u4e00-\u9fa5]').hasMatch(wordText)) {
+                try {
+                  singlePinyin = PinyinHelper.getPinyinE(wordText, separator: ' ', format: PinyinFormat.WITH_TONE_MARK);
+                } catch (_) {}
+              }
+              if (singlePinyin.isEmpty && pinyinIndex < expectedPinyinWords.length) {
+                singlePinyin = expectedPinyinWords[pinyinIndex];
+              }
+
+              int expTone = PinyinUtils.getTone(singlePinyin);
+              int actTone = expTone;
+              if (w['Syllables'] != null && (w['Syllables'] as List).isNotEmpty) {
+                final syl = w['Syllables'][0]['Syllable']?.toString() ?? '';
+                final toneMatch = RegExp(r'[1-5]$').firstMatch(syl);
+                if (toneMatch != null) {
+                  actTone = int.tryParse(toneMatch.group(0)!) ?? expTone;
+                }
+              }
+
+              if (phonemesList.isEmpty && wAccuracy > 0 && singlePinyin.isNotEmpty) {
+                phonemesList.add({
+                  'phoneme': singlePinyin,
+                  'accuracy': wAccuracy,
+                });
+              }
+
+              mappedWords.add({
+                "word": wordText,
+                "pinyin": singlePinyin,
+                "isCorrect": isCorrect,
+                "isPartial": isPartial,
+                "isOmitted": isOmitted,
+                "feedback": feedback,
+                "wordScore": wAccuracy.round(),
+                "accuracyScore": wAccuracy,
+                "accuracy": wAccuracy.round(),
+                "expectedTone": expTone,
+                "actualTone": actTone,
+                "phonemes": phonemesList,
               });
             }
-
-            mappedWords.add({
-              "word": wordText,
-              "pinyin": wordPinyin,
-              "isCorrect": isCorrect,
-              "isPartial": isPartial,
-              "isOmitted": isOmitted,
-              "feedback": feedback,
-              "wordScore": wAccuracy.round(),
-              "accuracyScore": wAccuracy,
-              "accuracy": wAccuracy.round(),
-              "expectedTone": expTone,
-              "actualTone": actTone,
-              "phonemes": phonemesList,
-            });
+            pinyinIndex++;
           }
         }
 
