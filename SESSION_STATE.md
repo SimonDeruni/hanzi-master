@@ -7,7 +7,8 @@
 - **Locked Files:**
     - [None]
 
-- [x] **Shadowing Studio 4-Tone Matrix Integration:** Connected `ToneComparisonSheet` to syllable phoneme chips in `ShadowingStudioScreen` with audio auditioning. Bumped to `1.0.0+139`. (Status: COMPLETED)
+- [x] **Shadowing Studio Compare 4 Tones Action & Visual Affordance:** Added dedicated "Compare 4 Tones" button and educational tap hint in `ShadowingStudioScreen` word review sheet. Bumped to `1.0.0+140`. (Status: COMPLETED)
+- [x] **Shadowing Studio 4-Tone Matrix Integration:** Connected `ToneComparisonSheet` to syllable phoneme chips in `ShadowingStudioScreen`. (Status: COMPLETED)
 - [x] **Interactive 4-Tone Comparison & Audio Auditioning Matrix:** Implemented `ToneComparisonSheet` with side-by-side 4-tone matrix, pitch contours, and instant tone auditioning. (Status: COMPLETED)
 - [x] **Dynamic Character Tone Averaging:** Replaced all static score fallbacks with dynamic character-by-character tone averaging across all recognition events. (Status: COMPLETED)
 - [x] **Non-Chinese Utterance Handling in Call Summary:** Suppressed "Tap to review" prompt and click modal on summary screen for English and non-Chinese utterances. (Status: COMPLETED)

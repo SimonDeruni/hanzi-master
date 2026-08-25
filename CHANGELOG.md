@@ -3,6 +3,8 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- **Shadowing Studio Compare 4 Tones Action & Visual Affordance**:
+  - Added dedicated "Compare 4 Tones" button and educational `👆 Tap any syllable to audition all 4 tones` hint in `ShadowingStudioScreen` word review sheet. Bumped build to `1.0.0+140`.
 - **Shadowing Studio 4-Tone Matrix Integration**:
   - Connected `ToneComparisonSheet` to syllable phoneme chips in `ShadowingStudioScreen` so learners can tap any syllable chip (`ming 2`, `zi 4`) to compare and audition all 4 native tones side-by-side. Bumped build to `1.0.0+139`.
 - **Interactive 4-Tone Comparison & Audio Auditioning Matrix**:

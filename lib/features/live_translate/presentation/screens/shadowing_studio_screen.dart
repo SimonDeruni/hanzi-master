@@ -1630,12 +1630,20 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                 if (wordData['phonemes'] != null &&
                     (wordData['phonemes'] as List).isNotEmpty) ...[
                   const SizedBox(height: 12),
-                  Text(
-                    "Tap any syllable to compare all 4 tones:",
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: isDark ? Colors.white54 : Colors.black54,
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.touch_app_outlined, size: 14, color: isDark ? Colors.orange.shade300 : Colors.orange.shade800),
+                      const SizedBox(width: 4),
+                      Text(
+                        "Tap any syllable to audition all 4 tones:",
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                          color: isDark ? Colors.orange.shade300 : Colors.orange.shade800,
+                        ),
+                      ),
+                    ],
                   ),
                   const SizedBox(height: 8),
                   Center(
@@ -1741,6 +1749,63 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                     backgroundColor: Colors.orange,
                     foregroundColor: Colors.white,
                     padding: const EdgeInsets.symmetric(vertical: 14),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16)),
+                  ),
+                ),
+                const SizedBox(height: 12),
+                // Compare 4 Tones button
+                ElevatedButton.icon(
+                  onPressed: () {
+                    final phonemes = (wordData['phonemes'] as List?) ?? [];
+                    if (phonemes.isNotEmpty) {
+                      final firstPhoneme = phonemes.first;
+                      final phonemeStr = (firstPhoneme['phoneme'] ?? '').toString().trim();
+                      int tone = 1;
+                      String pinyinBase = phonemeStr;
+                      final match = RegExp(r'^([a-zA-ZüÜāēīōūǖáéíóúǘǎěǐǒǔǚàèìòùǜ]+)\s*(\d)?$').firstMatch(phonemeStr);
+                      if (match != null) {
+                        pinyinBase = match.group(1) ?? phonemeStr;
+                        if (match.group(2) != null) {
+                          tone = int.tryParse(match.group(2)!) ?? PinyinUtils.getTone(pinyinBase);
+                        } else {
+                          tone = PinyinUtils.getTone(pinyinBase);
+                        }
+                      } else {
+                        tone = PinyinUtils.getTone(phonemeStr);
+                      }
+                      final char = word.isNotEmpty ? word[0] : word;
+                      final pinyinMarked = PinyinUtils.convertNumericToMarks('$pinyinBase$tone');
+                      final acc = (firstPhoneme['accuracy'] as num?)?.toInt() ?? 100;
+                      ToneComparisonSheet.show(
+                        context,
+                        character: char,
+                        pinyin: pinyinMarked,
+                        expectedTone: tone,
+                        actualTone: acc >= 80 ? tone : (tone % 4 + 1),
+                        feedback: feedback,
+                      );
+                    } else {
+                      final pinyinStr = (wordData['pinyin'] ?? '').toString();
+                      final tone = PinyinUtils.getTone(pinyinStr);
+                      ToneComparisonSheet.show(
+                        context,
+                        character: word.isNotEmpty ? word[0] : word,
+                        pinyin: pinyinStr,
+                        expectedTone: tone,
+                        actualTone: tone,
+                        feedback: feedback,
+                      );
+                    }
+                  },
+                  icon: const Icon(Icons.tune),
+                  label: const Text("Compare 4 Tones"),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: isDark ? Colors.white.withValues(alpha: 0.08) : Colors.black.withValues(alpha: 0.05),
+                    foregroundColor: isDark ? Colors.white : Colors.black87,
+                    padding: const EdgeInsets.symmetric(vertical: 14),
+                    elevation: 0,
+                    side: BorderSide(color: isDark ? Colors.white24 : Colors.black12),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(16)),
                   ),
