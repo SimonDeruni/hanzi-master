@@ -42,8 +42,12 @@ class PinyinUtils {
 
   /// Converts numeric pinyin (e.g. "jian4", "lu:4") to tone marks (e.g. "jiàn", "lǜ")
   static String convertNumericToMarks(String text) {
-    // CC-CEDICT uses u: for ü
-    String processed = text.replaceAll('u:', 'ü');
+    // CC-CEDICT uses u: or v for ü
+    String processed = text
+        .replaceAll('u:', 'ü')
+        .replaceAll('U:', 'Ü')
+        .replaceAll('v', 'ü')
+        .replaceAll('V', 'Ü');
     
     return processed.replaceAllMapped(RegExp(r'([a-zA-ZüÜ]+)([1-5])'), (match) {
       String word = match.group(1)!;

@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- **Comprehensive Codebase Regex & Unicode Hardening**:
+  - Audited all regular expressions across the codebase for Unicode safety, pinyin diacritics, and Chinese character matching.
+  - Added support for `v`/`V` input normalization alongside `u:` in `PinyinUtils.convertNumericToMarks` (e.g. `lv4` ➔ `lǜ`, `nv3` ➔ `nǚ`).
+  - Confirmed all character/syllable sanitization functions use Unicode hashing (`_hashText`) or `\p{Script=Hani}` rather than destructive ASCII-only `\w` patterns. Bumped build to `1.0.0+152`.
 - **Exaggerated Tone Comparison Pitch Range (+50%) & Articulated Rate (-22%)**:
   - Boosted dynamic SSML pitch range in `AudioService.playToneAudition` to `+50%` (maximum register span).
   - Relaxed pacing to `-22%` for clear contour glide, allowing learners to easily distinguish high flat (55), rising (35), low dipping (214), and sharp falling (51) contours.

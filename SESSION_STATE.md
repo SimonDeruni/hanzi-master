@@ -7,8 +7,8 @@
 - **Locked Files:**
     - [None]
 
-- [x] **Exaggerated Tone Audition Pitch Range (+50%) & Articulated Rate (-22%):** Boosted dynamic pitch excursion in `AudioService.playToneAudition` with `tone_v3_` cache namespace. Bumped to `1.0.0+151`. (Status: COMPLETED)
-- [x] **Unicode-Safe Tone Audition Cache Hashing:** Fixed regex stripping bug in `AudioService.playToneAudition`. (Status: COMPLETED)
+- [x] **Comprehensive Codebase Regex & Unicode Hardening:** Audited all `RegExp` patterns across the project; added `v`/`V` support for `ü` in `convertNumericToMarks`; verified Unicode-safe hashing. Bumped to `1.0.0+152`. (Status: COMPLETED)
+- [x] **Exaggerated Tone Audition Pitch Range (+50%) & Articulated Rate (-22%):** Boosted dynamic pitch excursion in `AudioService.playToneAudition`. (Status: COMPLETED)
 - [x] **Hanzi Exemplar 4-Tone Audio Auditioning:** Implemented `PinyinUtils.getExemplarHanzi` and wired `ToneComparisonSheet` to synthesize native Hanzi characters. (Status: COMPLETED)
 - [x] **Scholar's Verdict 4th-Wall Integrity & Persona Hardening:** Hardened system prompt and added safety filter in `_generateFinalVerdict`. (Status: COMPLETED)
 - [x] **Live Call Pausing & Smart Tone Diagnostics:** Live call now pauses listening during tone sheet review and resumes upon dismissal; added 1-sentence diagnostic summaries and Azure TTS pitch range expansion (`+25%`). (Status: COMPLETED)
