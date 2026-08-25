@@ -1573,6 +1573,104 @@ Respond ONLY in valid JSON format like:
     );
   }
 
+  /// Dedicated Azure Speech-to-Text REST recognition
+  Future<String> transcribeAudio(List<int> audioBytes, {String language = 'zh-CN'}) async {
+    final key = pool.azureSpeechKey;
+    final region = pool.azureSpeechRegion;
+
+    if (key == 'MISSING_KEY' || region == 'MISSING_REGION') {
+      throw Exception("Azure Speech API keys are missing.");
+    }
+
+    final String endpoint =
+        'https://$region.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?language=$language';
+
+    final request = http.Request('POST', Uri.parse(endpoint));
+    request.headers.addAll({
+      'Ocp-Apim-Subscription-Key': key,
+      'Content-Type': 'audio/wav; codecs=audio/pcm; samplerate=16000',
+      'Accept': 'application/json',
+    });
+
+    List<int> finalAudioBytes = audioBytes;
+    if (audioBytes.length > 4 &&
+        !(audioBytes[0] == 82 &&
+            audioBytes[1] == 73 &&
+            audioBytes[2] == 70 &&
+            audioBytes[3] == 70)) {
+      final byteCount = audioBytes.length;
+      final wavHeader = <int>[
+        82,
+        73,
+        70,
+        70,
+        (36 + byteCount) & 0xff,
+        ((36 + byteCount) >> 8) & 0xff,
+        ((36 + byteCount) >> 16) & 0xff,
+        ((36 + byteCount) >> 24) & 0xff,
+        87,
+        65,
+        86,
+        69,
+        102,
+        109,
+        116,
+        32,
+        16,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        128,
+        62,
+        0,
+        0,
+        0,
+        125,
+        0,
+        0,
+        2,
+        0,
+        16,
+        0,
+        100,
+        97,
+        116,
+        97,
+        byteCount & 0xff,
+        (byteCount >> 8) & 0xff,
+        (byteCount >> 16) & 0xff,
+        (byteCount >> 24) & 0xff,
+      ];
+      finalAudioBytes = List<int>.from(wavHeader)..addAll(audioBytes);
+    }
+
+    request.bodyBytes = finalAudioBytes;
+
+    try {
+      final response = await http.Client()
+          .send(request)
+          .timeout(const Duration(seconds: 10));
+      final responseBody = await response.stream
+          .bytesToString()
+          .timeout(const Duration(seconds: 8));
+
+      if (response.statusCode == 200) {
+        final data = jsonDecode(responseBody);
+        if (data['RecognitionStatus'] == 'Success') {
+          return (data['DisplayText'] as String? ?? '').trim();
+        }
+      }
+      return '';
+    } catch (e) {
+      debugPrint("Azure STT transcribeAudio error: $e");
+      return '';
+    }
+  }
+
   Future<Map<String, dynamic>> gradeAudio(List<int> audioBytes,
       String expectedChinese, String expectedPinyin) async {
     final key = pool.azureSpeechKey;

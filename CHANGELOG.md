@@ -3,6 +3,11 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- **Sequential Single-Recorder Azure Pipeline (Zero Microphone Conflicts)**:
+  - Implemented `GeminiService.transcribeAudio` for dedicated high-speed Azure Speech-to-Text conversion (~300ms).
+  - Single microphone ownership via `AudioRecorder` capturing 16kHz PCM WAV with real-time amplitude VAD.
+  - Sequential pipeline flow: Audio Capture ➔ Azure STT ➔ Instant AI Voice Response + Asynchronous Background Azure Pronunciation Assessment.
+  - Eliminates all dual-microphone collisions on Android/iOS, ensures zero `NoMatch` errors by supplying recognized reference text, and upgrades bubbles with real acoustic character tone scores. Bumped build to `1.0.0+148`.
 - **True Asynchronous Live Call & Background Azure Acoustic Grading**:
   - Restored real-time on-device speech-to-text streaming so Chinese characters appear live on screen as you speak.
   - Concurrently captures turn audio in 16kHz PCM WAV and dispatches Azure Speech & Pronunciation Assessment (`geminiService.gradeAudio`) asynchronously in the background.

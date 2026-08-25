@@ -10,7 +10,6 @@ import '../../domain/entities/scenario.dart';
 import '../../../chat/domain/entities/chat_message.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
-import 'package:hanzi_master/core/services/speech_service.dart';
 import 'package:hanzi_master/core/services/audio_service.dart';
 import 'package:hanzi_master/core/services/local_translation_service.dart';
 import 'package:hanzi_master/shared/widgets/breathing_widget.dart';
@@ -114,10 +113,10 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
   bool _isDisposed = false;
   bool _isStartingListening = false;
   bool _isHandlingTurn = false;
-  int _recognitionSession = 0;
-  String _partialUserText = '';
   Timer? _listeningWatchdog;
   Timer? _silenceDebounceTimer;
+  StreamSubscription<Amplitude>? _amplitudeSub;
+  bool _hasDetectedSpeech = false;
   final AudioRecorder _turnRecorder = AudioRecorder();
   String? _currentTurnAudioPath;
 
@@ -213,10 +212,9 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
         }
       }
 
-      final speechService = ref.read(speechServiceProvider);
-      final initialized = await speechService.init();
-      if (!initialized) {
-        throw StateError('Speech recognition is unavailable');
+      final hasPermission = await _turnRecorder.hasPermission();
+      if (!hasPermission) {
+        throw StateError('Microphone permission required');
       }
 
       _voicePlayer.onPlayerComplete.listen((_) {
@@ -252,156 +250,71 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
       return;
     }
 
-    final speechService = ref.read(speechServiceProvider);
-    if (speechService.isListening) return;
-
     _isStartingListening = true;
-    final session = ++_recognitionSession;
     _listeningWatchdog?.cancel();
     _silenceDebounceTimer?.cancel();
+    _amplitudeSub?.cancel();
+    _hasDetectedSpeech = false;
 
-    // 1. Start raw 16kHz PCM WAV audio capture for Azure Pronunciation Assessment
     try {
-      if (await _turnRecorder.hasPermission()) {
-        final tempDir = await getTemporaryDirectory();
-        final path = '${tempDir.path}/live_call_turn_${DateTime.now().millisecondsSinceEpoch}.wav';
-        _currentTurnAudioPath = path;
-        await _turnRecorder.start(
-          const RecordConfig(
-            encoder: AudioEncoder.pcm16bits,
-            sampleRate: 16000,
-            numChannels: 1,
-          ),
-          path: path,
-        );
+      if (await _turnRecorder.isRecording()) {
+        await _turnRecorder.stop();
       }
-    } catch (e) {
-      debugPrint("LiveCall turn recorder start error: $e");
-    }
 
-    void scheduleTurnExecution(String candidateText) {
-      final cleanText = candidateText.trim();
-      if (cleanText.isEmpty) return;
-      _silenceDebounceTimer?.cancel();
-      // 1400ms silence debounce so user pauses to think don't cut off sentences
-      _silenceDebounceTimer = Timer(const Duration(milliseconds: 1400), () {
-        if (!_isCurrentRecognitionSession(session) || _isHandlingTurn || _isMuted) return;
-        _isHandlingTurn = true;
-        unawaited(_handleUserInputAndRespond(cleanText));
-      });
-    }
+      final tempDir = await getTemporaryDirectory();
+      final path = '${tempDir.path}/live_call_turn_${DateTime.now().millisecondsSinceEpoch}.wav';
+      _currentTurnAudioPath = path;
 
-    final started = await speechService.startListening(
-      listenFor: const Duration(minutes: 10),
-      pauseFor: const Duration(seconds: 30),
-      onPartialResult: (text) {
-        if (!_isCurrentRecognitionSession(session) || _isHandlingTurn) return;
-        setState(() => _partialUserText = text);
-        _scrollToBottom();
-        scheduleTurnExecution(text);
-      },
-      onResultWithConfidence: (text, confidence) {
-        if (!_isCurrentRecognitionSession(session) || _isHandlingTurn) return;
-        scheduleTurnExecution(text);
-      },
-      onResult: (text) {
-        if (!_isCurrentRecognitionSession(session) || _isHandlingTurn) return;
-        scheduleTurnExecution(text);
-      },
-      onStatus: (status) {
-        if (!_isCurrentRecognitionSession(session) || _isHandlingTurn) return;
-        if (status == 'done' || status == 'notListening') {
-          if (_partialUserText.trim().isNotEmpty) {
-            scheduleTurnExecution(_partialUserText.trim());
-          } else if (!_isMuted && _callState == LiveCallState.listening) {
-            _quietlyRestartListening(session);
+      // Sole 16kHz PCM WAV Audio Capture for Azure STT and Pronunciation Assessment
+      await _turnRecorder.start(
+        const RecordConfig(
+          encoder: AudioEncoder.pcm16bits,
+          sampleRate: 16000,
+          numChannels: 1,
+        ),
+        path: path,
+      );
+
+      _isStartingListening = false;
+      _setCallState(LiveCallState.listening, "Listening...");
+
+      // Monitor voice activity level without running any secondary on-device STT plugin
+      _amplitudeSub = _turnRecorder.onAmplitudeChanged(const Duration(milliseconds: 60)).listen((amp) {
+        if (!mounted || _isDisposed || _isHandlingTurn || _callState != LiveCallState.listening) return;
+        
+        final normalized = ((amp.current + 50) / 45).clamp(0.0, 1.0);
+        setState(() => _audioLevel = normalized);
+
+        // Voice Activity Detection (VAD)
+        if (amp.current > -38) {
+          _hasDetectedSpeech = true;
+          _silenceDebounceTimer?.cancel();
+        } else if (_hasDetectedSpeech && amp.current <= -38) {
+          if (_silenceDebounceTimer == null || !_silenceDebounceTimer!.isActive) {
+            _silenceDebounceTimer = Timer(const Duration(milliseconds: 1400), () {
+              if (mounted && !_isDisposed && !_isHandlingTurn && _hasDetectedSpeech) {
+                _finalizeTurnAndRespond();
+              }
+            });
           }
         }
-      },
-      onError: (message, permanent) {
-        if (!_isCurrentRecognitionSession(session)) return;
-        _handleRecognitionError(message, permanent);
-      },
-      onSoundLevel: (level) {
-        if (_isCurrentRecognitionSession(session)) {
-          setState(() => _audioLevel = ((level + 50) / 100).clamp(0.0, 1.0));
-        }
-      },
-    );
-
-    if (!_isCurrentRecognitionSession(session)) return;
-    _isStartingListening = false;
-
-    if (!started) {
-      _handleRecognitionError('Could not start speech recognition.', false);
-      return;
-    }
-
-    _setCallState(LiveCallState.listening, "Listening...");
-  }
-
-  bool _isCurrentRecognitionSession(int session) =>
-      mounted &&
-      !_isDisposed &&
-      !_isEndingCall &&
-      session == _recognitionSession;
-
-  void _quietlyRestartListening(int session) {
-    if (!_isCurrentRecognitionSession(session) || _isHandlingTurn || _isMuted) {
-      return;
-    }
-    _recognitionSession++;
-    _isStartingListening = false;
-    _listeningWatchdog?.cancel();
-    _silenceDebounceTimer?.cancel();
-    if (mounted) {
-      setState(() {
-        _partialUserText = '';
-        _audioLevel = 0;
       });
-    }
-    Future<void>.delayed(const Duration(milliseconds: 300), () {
-      if (mounted && !_isDisposed && !_isHandlingTurn && !_isMuted && _callState != LiveCallState.speaking && _callState != LiveCallState.thinking) {
-        _startListening();
-      }
-    });
-  }
-
-  void _handleRecognitionError(String message, bool permanent) {
-    if (_isDisposed || !mounted || _isEndingCall) return;
-    debugPrint('LiveCall speech recognition error: $message (permanent: $permanent)');
-    _recognitionSession++;
-    _isStartingListening = false;
-    _listeningWatchdog?.cancel();
-    _silenceDebounceTimer?.cancel();
-    setState(() {
-      _partialUserText = '';
-      _audioLevel = 0;
-    });
-
-    if (message.toLowerCase().contains('permission') || message.toLowerCase().contains('denied')) {
-      _setCallState(
-          LiveCallState.error, "Microphone permission required.");
-    } else if (!_isMuted && !_isHandlingTurn && _callState != LiveCallState.speaking && _callState != LiveCallState.thinking) {
-      Future<void>.delayed(const Duration(milliseconds: 500), () {
-        if (mounted && !_isDisposed && !_isHandlingTurn && !_isMuted) {
-          _startListening();
-        }
-      });
+    } catch (e) {
+      debugPrint("LiveCall: Could not start recorder: $e");
+      _isStartingListening = false;
+      _setCallState(LiveCallState.error, "Microphone error. Tap to retry.");
     }
   }
 
-  Future<void> _handleUserInputAndRespond(String text) async {
-    if (_isDisposed || !mounted || _isEndingCall) {
-      _isHandlingTurn = false;
-      return;
-    }
-
-    _recognitionSession++;
-    _listeningWatchdog?.cancel();
+  Future<void> _finalizeTurnAndRespond() async {
+    if (_isDisposed || !mounted || _isHandlingTurn || _isEndingCall) return;
+    _isHandlingTurn = true;
     _silenceDebounceTimer?.cancel();
+    _amplitudeSub?.cancel();
 
-    // 1. Stop audio recording to obtain turn audio for Azure
+    _setCallState(LiveCallState.thinking, "Thinking...");
+    setState(() => _audioLevel = 0);
+
     String? audioPath = _currentTurnAudioPath;
     try {
       if (await _turnRecorder.isRecording()) {
@@ -411,51 +324,82 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
       debugPrint("Turn recorder stop error: $e");
     }
 
-    // Stop listening while thinking/speaking
-    await ref.read(speechServiceProvider).stopListening();
-
-    String? userPinyin;
-    try {
-      final p = PinyinHelper.getPinyinE(text, separator: ' ', format: PinyinFormat.WITH_TONE_MARK);
-      if (p.isNotEmpty) userPinyin = p;
-    } catch (e) {
-      debugPrint("Pinyin generation error: $e");
+    if (audioPath == null) {
+      _isHandlingTurn = false;
+      _startListening();
+      return;
     }
 
-    String? userTranslation;
-    try {
-      userTranslation = await ref.read(localTranslationServiceProvider).translate(text).timeout(const Duration(milliseconds: 600));
-    } catch (e) {
-      debugPrint("User translation error/timeout: $e");
+    final file = File(audioPath);
+    if (!file.existsSync() || file.lengthSync() < 1000) {
+      // Audio snippet too short (ambient tap / noise)
+      _isHandlingTurn = false;
+      if (mounted && !_isDisposed && !_isMuted) {
+        _startListening();
+      }
+      return;
     }
 
-    if (_isDisposed || !mounted || _isEndingCall) return;
+    try {
+      final bytes = await file.readAsBytes();
+      final geminiService = ref.read(geminiServiceProvider);
 
-    // 2. Immediately add user turn to transcript (0ms delay)
-    final messageIndex = _transcript.length;
-    setState(() {
-      _partialUserText = '';
-      _audioLevel = 0;
-      _transcript.add(LiveCallMessage(
-        text: text, 
-        pinyin: userPinyin,
-        translation: userTranslation,
-        role: ChatRole.user, 
-        grade: null, // Evaluating in background with Azure Cognitive Services
+      // 1. Dedicated Azure Speech-to-Text conversion (~300ms)
+      final rawText = await geminiService.transcribeAudio(bytes);
+      final text = rawText.replaceAll(RegExp(r'[。，！？,.!?]'), '').trim();
+
+      if (text.isEmpty || !RegExp(r'[\u4e00-\u9fa5a-zA-Z]').hasMatch(text)) {
+        // No intelligible speech detected (e.g. cough or ambient noise)
+        _isHandlingTurn = false;
+        if (mounted && !_isDisposed && !_isMuted) {
+          _startListening();
+        }
+        return;
+      }
+
+      String? userPinyin;
+      try {
+        final p = PinyinHelper.getPinyinE(text, separator: ' ', format: PinyinFormat.WITH_TONE_MARK);
+        if (p.isNotEmpty) userPinyin = p;
+      } catch (_) {}
+
+      String? userTranslation;
+      try {
+        userTranslation = await ref.read(localTranslationServiceProvider).translate(text).timeout(const Duration(milliseconds: 600));
+      } catch (_) {}
+
+      if (!mounted || _isDisposed) return;
+
+      // 2. Immediately display user message in transcript (0ms UI lag)
+      final messageIndex = _transcript.length;
+      setState(() {
+        _transcript.add(LiveCallMessage(
+          text: text,
+          pinyin: userPinyin,
+          translation: userTranslation,
+          role: ChatRole.user,
+          grade: null, // Evaluating in background with Azure
+          audioPath: audioPath,
+        ));
+      });
+      _scrollToBottom();
+
+      // 3. Concurrently trigger background Azure acoustic pronunciation assessment
+      unawaited(_evaluateTurnWithAzure(
+        messageIndex: messageIndex,
         audioPath: audioPath,
+        fallbackText: text,
       ));
-    });
-    _scrollToBottom();
 
-    // 3. Concurrently trigger background Azure acoustic assessment
-    unawaited(_evaluateTurnWithAzure(
-      messageIndex: messageIndex,
-      audioPath: audioPath,
-      fallbackText: text,
-    ));
-
-    // 4. Immediately proceed to AI Master reply (No blocking!)
-    await _handleUserInputAndRespondContinued(text);
+      // 4. Immediately trigger AI Master reply & voice synthesis
+      await _handleUserInputAndRespondContinued(text);
+    } catch (e) {
+      debugPrint("Live call turn evaluation error: $e");
+      _isHandlingTurn = false;
+      if (mounted && !_isDisposed && !_isMuted) {
+        _startListening();
+      }
+    }
   }
 
   Future<void> _evaluateTurnWithAzure({
@@ -483,32 +427,8 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
       if (messageIndex >= 0 && messageIndex < _transcript.length) {
         final oldMsg = _transcript[messageIndex];
         
-        // Refine transcription if Azure recognized higher fidelity Chinese speech
-        String refinedText = oldMsg.text;
-        if (grade['text'] != null && (grade['text'] as String).trim().isNotEmpty) {
-          final azureText = (grade['text'] as String).trim();
-          if (RegExp(r'[\u4e00-\u9fa5]').hasMatch(azureText)) {
-            refinedText = azureText;
-          }
-        }
-
-        String? refinedPinyin;
-        try {
-          refinedPinyin = PinyinHelper.getPinyinE(refinedText, separator: ' ', format: PinyinFormat.WITH_TONE_MARK);
-        } catch (_) {}
-
-        String? refinedTranslation = oldMsg.translation;
-        if (refinedText != oldMsg.text) {
-          try {
-            refinedTranslation = await ref.read(localTranslationServiceProvider).translate(refinedText);
-          } catch (_) {}
-        }
-
         setState(() {
           _transcript[messageIndex] = oldMsg.copyWith(
-            text: refinedText,
-            pinyin: refinedPinyin ?? oldMsg.pinyin,
-            translation: refinedTranslation ?? oldMsg.translation,
             grade: grade,
             audioPath: audioPath,
           );
@@ -682,11 +602,10 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
     String? feedback,
   }) async {
     // 1. Put the call on a break / pause
-    _recognitionSession++;
-    _listeningWatchdog?.cancel();
     _silenceDebounceTimer?.cancel();
+    _amplitudeSub?.cancel();
+    _hasDetectedSpeech = false;
     _isStartingListening = false;
-    await ref.read(speechServiceProvider).stopListening();
     try {
       if (await _turnRecorder.isRecording()) {
         await _turnRecorder.stop();
@@ -698,10 +617,7 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
     await ref.read(audioServiceProvider).stop();
 
     if (mounted) {
-      setState(() {
-        _partialUserText = '';
-        _audioLevel = 0;
-      });
+      setState(() => _audioLevel = 0);
       _setCallState(LiveCallState.idle, "Call Paused (Reviewing Tones)");
     }
 
@@ -729,23 +645,17 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
     });
 
     if (_isMuted) {
-      _recognitionSession++;
-      _listeningWatchdog?.cancel();
       _silenceDebounceTimer?.cancel();
+      _amplitudeSub?.cancel();
+      _hasDetectedSpeech = false;
       _isStartingListening = false;
       _setCallState(LiveCallState.idle, "Paused - Take a break");
-      await ref.read(speechServiceProvider).cancelListening();
       try {
         if (await _turnRecorder.isRecording()) {
           await _turnRecorder.stop();
         }
       } catch (_) {}
-      if (mounted) {
-        setState(() {
-          _partialUserText = '';
-          _audioLevel = 0;
-        });
-      }
+      if (mounted) setState(() => _audioLevel = 0);
       try {
         await _voicePlayer.pause();
       } catch (e) {
@@ -775,11 +685,9 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
   @override
   void dispose() {
     _isDisposed = true;
-    _recognitionSession++;
-    _listeningWatchdog?.cancel();
     _silenceDebounceTimer?.cancel();
+    _amplitudeSub?.cancel();
     _turnRecorder.dispose();
-    ref.read(speechServiceProvider).stopListening();
     _voicePlayer.stop();
     _voicePlayer.dispose();
     _bgPlayer.stop();
@@ -794,11 +702,10 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
 
   Future<void> _endCall() async {
     _isEndingCall = true;
-    _recognitionSession++;
     _silenceDebounceTimer?.cancel();
+    _amplitudeSub?.cancel();
     _listeningWatchdog?.cancel();
     HapticsManager.heavy();
-    ref.read(speechServiceProvider).stopListening();
     try {
       if (await _turnRecorder.isRecording()) {
         await _turnRecorder.stop();
@@ -1113,15 +1020,8 @@ Provide your short, inspiring Scholar's Verdict directly to the student:
                         child: ListView.builder(
                           controller: _scrollController,
                           padding: const EdgeInsets.symmetric(vertical: 20),
-                          itemCount: _transcript.length +
-                              (_partialUserText.isNotEmpty ? 1 : 0),
+                          itemCount: _transcript.length,
                           itemBuilder: (context, index) {
-                            if (index == _transcript.length) {
-                              return _LivePartialTranscriptBubble(
-                                  text: _partialUserText,
-                                  theme: theme,
-                                  subtitleMode: _subtitleMode);
-                            }
                             final msg = _transcript[index];
                             return _LiveTranscriptBubble(
                               message: msg,
@@ -1258,40 +1158,6 @@ Provide your short, inspiring Scholar's Verdict directly to the student:
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class _LivePartialTranscriptBubble extends StatelessWidget {
-  final String text;
-  final ThemeData theme;
-  final int subtitleMode;
-
-  const _LivePartialTranscriptBubble({
-    required this.text, 
-    required this.theme,
-    this.subtitleMode = 0,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    if (subtitleMode == 2 || text.isEmpty) {
-      return const SizedBox.shrink();
-    }
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 6),
-      child: Align(
-        alignment: Alignment.centerRight,
-        child: Text(
-          text,
-          textAlign: TextAlign.right,
-          style: theme.textTheme.bodyLarge?.copyWith(
-            color: Colors.white54,
-            fontStyle: FontStyle.italic,
-            height: 1.4,
-          ),
-        ),
       ),
     );
   }
