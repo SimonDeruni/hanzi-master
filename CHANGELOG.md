@@ -3,6 +3,9 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- **Continuous 30s Microphone Tolerance & Debounce Stabilization**:
+  - Configured native speech recognizer default `pauseFor` to 30 seconds and `listenFor` to 10 minutes, eliminating the aggressive 2-3s OS mic restart loop.
+  - Active speech turns are debounced at 1.4s post-speech, ensuring the AI replies promptly without waiting for the 30s silence ceiling. Bumped build to `1.0.0+145`.
 - **Live Call Real Azure Pronunciation Assessment Integration**:
   - Integrated `AudioRecorder` to capture 16kHz PCM WAV turn audio during Live Calls.
   - Concurrently evaluates user spoken turns via Azure Cognitive Services Pronunciation Assessment REST API (`geminiService.gradeAudio`), replacing the previous static confidence estimation with 100% genuine Azure acoustic phoneme, tone, accuracy, and fluency scoring.

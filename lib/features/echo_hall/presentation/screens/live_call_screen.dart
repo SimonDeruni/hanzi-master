@@ -285,8 +285,8 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
     }
 
     final started = await speechService.startListening(
-      listenFor: const Duration(seconds: 60),
-      pauseFor: const Duration(seconds: 5),
+      listenFor: const Duration(minutes: 10),
+      pauseFor: const Duration(seconds: 30),
       onPartialResult: (text) {
         if (!_isCurrentRecognitionSession(session) || _isHandlingTurn) return;
         setState(() => _partialUserText = text);
@@ -306,7 +306,7 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
         if (status == 'done' || status == 'notListening') {
           if (_partialUserText.trim().isNotEmpty) {
             scheduleTurnExecution(_partialUserText.trim());
-          } else {
+          } else if (!_isMuted && _callState == LiveCallState.listening) {
             _quietlyRestartListening(session);
           }
         }
