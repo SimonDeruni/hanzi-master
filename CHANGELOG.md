@@ -3,6 +3,9 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- **Real Acoustic Tone Assessment & Live Character Coloring**:
+  - Connected live speech acoustic confidence and phoneme tone alignment to user bubbles, dynamically coloring each Hanzi character (Green / Orange / Red) with exact expected vs spoken tones.
+  - Added dynamic score badges (`Tone Accurate • 88%`, `Tone Needs Work • 65%`) and preserved full round-by-round `PronunciationGrade` metrics for in-depth review sheets on the call summary screen. Bumped build to `1.0.0+135`.
 - **Continuous Multi-Word Sentence Recognition**:
   - Enabled `ListenMode.dictation` in `SpeechListenOptions` so the speech recognizer listens for full sentences and multi-word conversational thoughts rather than cutting off after single words. Bumped build to `1.0.0+134`.
 - **Instant AI Turn Processing & Non-Blocking Translation**:

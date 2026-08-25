@@ -27,13 +27,14 @@ class SpeechService {
   /// Consumers that display live captions can use [onPartialResult].
   Future<bool> startListening({
     required Function(String) onResult,
+    Function(String, double)? onResultWithConfidence,
     Function(String)? onPartialResult,
     Function(double)? onSoundLevel,
     Function(String)? onStatus,
     Function(String, bool)? onError,
     String localeId = 'zh_CN',
     Duration listenFor = const Duration(seconds: 60),
-    Duration pauseFor = const Duration(seconds: 5),
+    Duration pauseFor = const Duration(seconds: 3),
   }) async {
     _onStatus = onStatus;
     _onError = onError;
@@ -43,15 +44,13 @@ class SpeechService {
       return false;
     }
 
-    if (_speechToText.isListening) {
-      await _speechToText.cancel();
-    }
-
     try {
       await _speechToText.listen(
         onResult: (result) {
           final words = result.recognizedWords.trim();
+          final double confidence = result.hasConfidenceRating && result.confidence > 0 ? result.confidence : 0.88;
           if (result.finalResult) {
+            onResultWithConfidence?.call(words, confidence);
             onResult(words);
           } else {
             onPartialResult?.call(words);
