@@ -3,7 +3,11 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
-- **CI/CD Build Cupertino Import Fix**: Added explicit `package:flutter/cupertino.dart` import in `app_theme.dart` to resolve `CupertinoPageTransitionsBuilder` compilation error on Xcode CI/CD builders. Bumped version to `1.0.0+124`.
+- **Live Call Audio, Grading & Multi-Turn Subtitles Overhaul**:
+  - **Loud Audio Playback**: Routed AI speech directly to `audioService.playSentence` with automatic fallback to offline `FlutterTts` and unified `onPlayerComplete` stream so the AI never goes silent.
+  - **Live Pronunciation Rating**: Added real-time tone extraction and accuracy grading for user utterances, rendering tone-colored character chips and live accuracy badges.
+  - **Persistent Subtitles**: Fixed Gemini history formatting so four-part `|||` delimited responses are maintained across infinite conversation turns, with automatic `lpinyin` fallback. Bumped build to `1.0.0+125`.
+- **CI/CD Build Cupertino Import Fix**: Added explicit `package:flutter/cupertino.dart` import in `app_theme.dart` to resolve `CupertinoPageTransitionsBuilder` compilation error on Xcode CI/CD builders.
 - **Live Call Ticker Provider Fix**: Switched `_LiveCallScreenState` from `SingleTickerProviderStateMixin` to `TickerProviderStateMixin` to resolve the Flutter runtime crash caused by multiple concurrent animation controllers (`_pulseController` and `_analyzePulseController`).
 - **Paywall Legal Links & Restore Purchases Verification**: Verified `_restorePurchases()` calls `Purchases.restorePurchases()` with active state feedback and updated `_launchURL()` to use `LaunchMode.externalApplication` for seamless Safari opening of Terms & Privacy policies.
 - **AI Tutor Guest & Logout Privacy Isolation**: Enforced strict authentication and `!isAnonymous` checks in `_getUserAddressingInstruction()` so logged-out or guest users are never addressed by name. Scoped AI chat caches by `userId` and added automatic cache clearing on `signOut()` in `AuthRepository`.

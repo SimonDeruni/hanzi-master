@@ -30,7 +30,9 @@ class AudioService {
 
   final StreamController<Map<String, dynamic>> _wordBoundaryController = StreamController.broadcast();
   Stream<Map<String, dynamic>> get onWordBoundary => _wordBoundaryController.stream;
-  Stream<void> get onPlayerComplete => _player.onPlayerComplete;
+
+  final StreamController<void> _completeController = StreamController.broadcast();
+  Stream<void> get onPlayerComplete => _completeController.stream;
 
   List<Map<String, dynamic>> _currentBoundaries = [];
   int _currentBoundaryIndex = 0;
@@ -84,6 +86,14 @@ class AudioService {
         _wordBoundaryController.add(nextBoundary);
         _currentBoundaryIndex++;
       }
+    });
+
+    _player.onPlayerComplete.listen((_) {
+      if (!_completeController.isClosed) _completeController.add(null);
+    });
+
+    _tts.setCompletionHandler(() {
+      if (!_completeController.isClosed) _completeController.add(null);
     });
 
     await _tts.setLanguage("zh-CN");
@@ -320,6 +330,7 @@ class AudioService {
     _player.dispose();
     _tts.stop();
     _wordBoundaryController.close();
+    _completeController.close();
   }
 }
 
