@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.0+156] - 2026-08-25
+- **Production Release: Unified Azure Pipeline, Lexical Tone Gap Verification & Professional Linguistic Analysis**:
+  - Unified both Speech-to-Text and Pronunciation Assessment on Microsoft Azure Cognitive Services (single source of truth).
+  - Decomposed multi-character words into single-character tokens with direct character-level pinyin binding (`PinyinHelper.getPinyinE`), completely eliminating syllable index drift.
+  - Completed exhaustive dictionary audit across 120,990 CC-CEDICT entries (all 409 syllables $\times$ 4 tones), pruned 404 natural tone gaps, and added `[ Does not exist in Chinese ]` visual indicators with disabled audio playback.
+  - Tuned natural balanced pitch prosody (`+18%`, `-8%` speed) with explicit SAPI phoneme guidance for crystal-clear onset consonants and natural vowels.
+  - Overhauled Scholar's Verdict linguistic critique into a direct, professional Mandarin pronunciation coach persona.
+
 ## [Unreleased]
 - **Professional Linguistic Analysis Prompt (Eliminated Archaic Metaphors)**:
   - Overhauled `_generateFinalVerdict` in `live_call_screen.dart` to adopt an expert, professional Mandarin pronunciation coach persona.
