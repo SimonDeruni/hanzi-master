@@ -33,7 +33,7 @@ class SpeechService {
     Function(String, bool)? onError,
     String localeId = 'zh_CN',
     Duration listenFor = const Duration(seconds: 60),
-    Duration pauseFor = const Duration(seconds: 7),
+    Duration pauseFor = const Duration(seconds: 5),
   }) async {
     _onStatus = onStatus;
     _onError = onError;

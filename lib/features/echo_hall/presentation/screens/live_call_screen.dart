@@ -248,7 +248,7 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
 
     final started = await speechService.startListening(
       listenFor: const Duration(seconds: 60),
-      pauseFor: const Duration(seconds: 7),
+      pauseFor: const Duration(seconds: 5),
       onPartialResult: (text) {
         if (!_isCurrentRecognitionSession(session) || _isHandlingTurn) return;
         setState(() => _partialUserText = text);
