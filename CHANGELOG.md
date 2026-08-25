@@ -3,6 +3,9 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- **Professional Linguistic Analysis Prompt (Eliminated Archaic Metaphors)**:
+  - Overhauled `_generateFinalVerdict` in `live_call_screen.dart` to adopt an expert, professional Mandarin pronunciation coach persona.
+  - Eliminated cheesy/archaic roleplay tropes ("soar like a crane", "gentle stream", "brush and ink", "my student") in favor of concrete, actionable phonetic analysis on tone pitch contours and conversational rhythm. Bumped build to `1.0.0+155`.
 - **Exhaustive Automated Dictionary Tone Audit & Natural Balanced Prosody**:
   - Ran automated validation script across all 120,990 CC-CEDICT / Mandarin dictionary entries covering all 409 Chinese base syllables $\times$ 4 tones (1,636 combinations).
   - Mathematically identified and pruned all 404 natural tone gaps in the Chinese language, ensuring 100% dictionary fidelity in `PinyinUtils._syllableExemplars`.

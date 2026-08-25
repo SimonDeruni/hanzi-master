@@ -747,13 +747,13 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
     try {
       final userMessages = _transcript.where((m) => m.role == ChatRole.user).toList();
       if (userMessages.isEmpty) {
-        return "A brief encounter to warm the brush. In our next dialogue, speak bold and complete sentences to fully awaken your Mandarin fluency.";
+        return "Session completed. In your next practice, speak complete sentences to receive detailed pronunciation and tone diagnostics.";
       }
 
       // If user only spoke a single short word or 1 phrase
       if (userMessages.length == 1 && userMessages.first.text.trim().length <= 4) {
         final word = userMessages.first.text.trim();
-        return "A crisp first step with '$word'. As you practice further, expand your responses into complete phrases to let your tones flow like running ink.";
+        return "Good start practicing '$word'. In your next session, try stringing full sentences together to practice tone transitions and natural flow.";
       }
 
       // Calculate real Azure pronunciation performance
@@ -779,16 +779,18 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
 
       final gemini = ref.read(geminiServiceProvider);
       final transcriptStr = _transcript
-          .map((m) => "${m.role == ChatRole.user ? 'STUDENT' : 'MASTER'}: ${m.text}")
+          .map((m) => "${m.role == ChatRole.user ? 'STUDENT' : 'COACH'}: ${m.text}")
           .join("\n");
 
       const systemPrompt = '''
-You are the venerable Chinese Language Master in the Hanzi Master app. You are giving your final "Scholar's Verdict" critique directly to your student.
-STRICT MANDATE:
-1. ALWAYS stay 100% in character as a wise, encouraging Chinese Calligraphy & Language Master. Speak directly to the student ("You articulated...", "Your rhythm...", "Let your tones...").
-2. ABSOLUTELY NEVER mention "transcript", "recordings", "audio", "prompts", "AI", "models", "data", "not enough information", or any technical/system limitations.
-3. NEVER complain about the session length or format.
-4. Give a warm, inspiring, poetic critique (under 60 words) reflecting their rhythm, tone clarity, and one practical tip to polish their spoken Mandarin.
+You are an expert, professional Mandarin Chinese pronunciation coach and phonetic linguist in the Hanzi Master app.
+Provide a concise, professional linguistic evaluation (2-3 sentences, under 50 words) directly to the learner.
+
+STRICT GUIDELINES:
+1. Tone: Professional, pedagogical, constructive, and direct.
+2. DO NOT use archaic metaphors, roleplay tropes, or flowery poetic language (NO "crane soaring", "gentle stream", "brush and ink", "my student", "honored disciple").
+3. Give concrete, actionable feedback on their pronunciation, tone accuracy, and rhythm. If specific weak characters were provided, give practical advice on their tone contours (e.g., "Keep your 1st tone high and steady on '三' (sān)").
+4. NEVER mention "transcript", "recordings", "audio", "AI", "models", "data", or system limitations.
 ''';
 
       final userPrompt = '''
@@ -798,7 +800,7 @@ $transcriptStr
 ${avgAzureScore != null ? 'Acoustic Pronunciation Accuracy: $avgAzureScore%' : ''}
 ${weakWordSummary != null ? 'Characters Needing Tone Polish: $weakWordSummary' : ''}
 
-Provide your short, inspiring Scholar's Verdict directly to the student:
+Provide your short, professional linguistic analysis directly to the student:
 ''';
 
       final response = await gemini.makeOpenRouterCall(
@@ -817,12 +819,12 @@ Provide your short, inspiring Scholar's Verdict directly to the student:
           lower.contains("as an ai") ||
           lower.contains("recording") ||
           lower.contains("intended")) {
-        return "A commendable dialogue. Continue speaking with confidence and focus on sustaining high, steady pitch on 1st tones and decisive drops on 4th tones.";
+        return "Solid conversational effort. Focus on keeping 1st tones high and steady (55) and 4th tones sharp and decisive (51) to enhance native clarity.";
       }
 
       return response;
     } catch (e) {
-      return "Excellent effort. Continue daily practice to let your tones flow with precision.";
+      return "Good practice session. Continue focusing on clear tone pitch contrasts and natural conversational pacing.";
     }
   }
 
