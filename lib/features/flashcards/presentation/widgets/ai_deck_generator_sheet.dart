@@ -297,7 +297,7 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
                             await flashcardController.addFlashcard(newCard);
                           }
                           
-                          if (mounted) {
+                          if (mounted && context.mounted) {
                             Navigator.pop(context);
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(AppLocalizations.of(context)!.createdDeckCards(newDeck.name, cards.length))));
                           }
@@ -333,14 +333,14 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
                           await flashcardController.addFlashcard(newCard);
                         }
                         
-                        if (mounted) {
+                        if (mounted && context.mounted) {
                           Navigator.pop(context);
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Added ${cards.length} cards to "$_selectedDeckName".')));
                         }
                       }
                     }
                   } catch (e) {
-                    if (mounted) {
+                    if (mounted && context.mounted) {
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error: $e')));
                     }
                   } finally {

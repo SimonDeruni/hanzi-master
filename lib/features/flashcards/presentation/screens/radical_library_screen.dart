@@ -20,7 +20,6 @@ class _RadicalLibraryScreenState extends State<RadicalLibraryScreen> {
   List<String> _radicalKeys = [];
   List<String> _filteredKeys = [];
   bool _isLoading = true;
-  String _searchQuery = "";
   final TextEditingController _searchController = TextEditingController();
 
   @override
@@ -55,7 +54,6 @@ class _RadicalLibraryScreenState extends State<RadicalLibraryScreen> {
 
   void _filterRadicals(String query) {
     setState(() {
-      _searchQuery = query;
       if (query.isEmpty) {
         _filteredKeys = List.from(_radicalKeys);
       } else {

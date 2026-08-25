@@ -5,7 +5,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/core/services/audio_service.dart';
 import '../providers/story_controller.dart';
 import '../../../../core/services/gemini_service.dart';
-import '../../../flashcards/presentation/utils/haptics_manager.dart';
 import '../../../../shared/widgets/quick_look_sheet.dart';
 import '../../../flashcards/presentation/providers/flashcard_controller.dart';
 import '../../../flashcards/domain/entities/study_mode.dart';
@@ -31,7 +30,6 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
   final Set<int> _translatedSentences = {};
   bool _isPlaying = false;
   bool _isPaused = false;
-  bool _isLoadingAudio = false;
   int? _playingSentenceIndex;
   int _playingStartOffset = -1;
   int _playingEndOffset = -1;
@@ -213,7 +211,6 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
         setState(() {
           _isPlaying = false;
           _isPaused = false;
-          _isLoadingAudio = false;
           _playingSentenceIndex = null;
           _playingStartOffset = -1;
           _playingEndOffset = -1;
@@ -278,103 +275,6 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
     _completionSub?.cancel();
     unawaited(ref.read(audioServiceProvider).stop());
     super.dispose();
-  }
-
-  void _togglePlay({bool stop = false}) async {
-    final audioService = ref.read(audioServiceProvider);
-    final story = ref.read(storyControllerProvider).currentStory;
-    if (story == null) return;
-
-    if (stop) {
-      await audioService.stop();
-      if (mounted) {
-        setState(() {
-          _isPlaying = false;
-          _isPaused = false;
-          _isLoadingAudio = false;
-          _playingSentenceIndex = null;
-          _playingStartOffset = -1;
-          _playingEndOffset = -1;
-        });
-      }
-      return;
-    }
-
-    if (_isPlaying) {
-      await audioService.stop();
-      if (mounted) {
-        setState(() {
-          _isPlaying = false;
-          _isPaused = true;
-          _isLoadingAudio = false;
-        });
-      }
-    } else {
-      // Show loading spinner immediately for visual feedback
-      if (mounted) {
-        setState(() {
-          _isLoadingAudio = true;
-        });
-      }
-
-      // Capture messenger before async gap to satisfy use_build_context_synchronously
-      final messenger = ScaffoldMessenger.of(context);
-      if (!_isPaused || _playingSentenceIndex == null) {
-        // Start from beginning of the page
-        if (mounted) {
-          setState(() {
-            _playingStartOffset = -1;
-            _playingEndOffset = -1;
-          });
-        }
-        final text = story.sentences.map((s) => s.chinese).join('');
-        final success = await audioService.playSentence(text);
-        if (mounted) {
-          setState(() {
-            _isPlaying = success;
-            _isPaused = !success;
-            _isLoadingAudio = false;
-            if (!success) {
-              _playingSentenceIndex = null;
-              messenger.showSnackBar(
-                const SnackBar(
-                  content: Text('Audio unavailable — check your connection'),
-                  duration: Duration(seconds: 3),
-                ),
-              );
-            }
-          });
-        }
-      } else {
-        // Resume from pause
-        final text = story.sentences.map((s) => s.chinese).join('');
-        // Since Azure TTS streams the full file, "resuming" mid-sentence is complex.
-        // We will just replay the whole sentence for now for the premium experience.
-        if (mounted) {
-          setState(() {
-            _playingStartOffset = -1;
-            _playingEndOffset = -1;
-          });
-        }
-        final success = await audioService.playSentence(text);
-        if (mounted) {
-          setState(() {
-            _isPlaying = success;
-            _isPaused = !success;
-            _isLoadingAudio = false;
-            if (!success) {
-              _playingSentenceIndex = null;
-              messenger.showSnackBar(
-                const SnackBar(
-                  content: Text('Audio unavailable — check your connection'),
-                  duration: Duration(seconds: 3),
-                ),
-              );
-            }
-          });
-        }
-      }
-    }
   }
 
   void _showSummary(BuildContext context, AiStory story) {
@@ -546,9 +446,9 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
               ),
             ]
           ],
-          bottom: PreferredSize(
-            preferredSize: const Size.fromHeight(0),
-            child: const SizedBox.shrink(),
+          bottom: const PreferredSize(
+            preferredSize: Size.fromHeight(0),
+            child: SizedBox.shrink(),
           ),
         ),
         body: _isStreaming

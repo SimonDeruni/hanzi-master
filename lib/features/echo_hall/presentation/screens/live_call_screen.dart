@@ -3,12 +3,10 @@ import 'dart:math' as math;
 import 'dart:ui' as ui;
 import 'dart:async';
 import 'dart:io';
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_sound/flutter_sound.dart' as fs;
-import 'package:record/record.dart';
-import 'package:path_provider/path_provider.dart';
 import '../../domain/entities/scenario.dart';
 import '../../../chat/domain/entities/chat_message.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
@@ -19,6 +17,7 @@ import 'package:hanzi_master/shared/widgets/breathing_widget.dart';
 import '../widgets/live_call_summary_screen.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/shared/widgets/tappable_hanzi_text.dart';
+import 'package:lpinyin/lpinyin.dart';
 
 enum LiveCallState {
   connecting,
@@ -79,7 +78,7 @@ class LiveCallScreen extends ConsumerStatefulWidget {
 }
 
 class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
-    with SingleTickerProviderStateMixin {
+    with TickerProviderStateMixin {
   late AnimationController _pulseController;
   late Animation<double> _pulseAnimation;
   late AnimationController _analyzePulseController;
@@ -97,10 +96,8 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
     "Preparing your Scholar's Verdict...",
   ];
 
-  final fs.FlutterSoundPlayer _player = fs.FlutterSoundPlayer();
+  final AudioPlayer _voicePlayer = AudioPlayer();
   final AudioPlayer _bgPlayer = AudioPlayer();
-  final AudioRecorder _audioRecorder = AudioRecorder();
-  String? _currentAudioPath;
   LiveCallState _callState = LiveCallState.idle;
   String _callStatus = "Ready";
   bool _hasError = false;
@@ -147,9 +144,58 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
     });
   }
 
+  Future<void> _configureAudioSessionForCall({bool speaker = true}) async {
+    try {
+      await AudioPlayer.global.setAudioContext(AudioContext(
+        iOS: AudioContextIOS(
+          category: AVAudioSessionCategory.playAndRecord,
+          options: speaker
+              ? const {
+                  AVAudioSessionOptions.defaultToSpeaker,
+                  AVAudioSessionOptions.allowBluetooth,
+                  AVAudioSessionOptions.mixWithOthers,
+                }
+              : const {
+                  AVAudioSessionOptions.allowBluetooth,
+                  AVAudioSessionOptions.mixWithOthers,
+                },
+        ),
+        android: AudioContextAndroid(
+          isSpeakerphoneOn: speaker,
+          stayAwake: true,
+          contentType: AndroidContentType.speech,
+          usageType: AndroidUsageType.voiceCommunication,
+          audioFocus: AndroidAudioFocus.gainTransient,
+        ),
+      ));
+    } catch (e) {
+      debugPrint("LiveCall: AudioContext setup error: $e");
+    }
+  }
+
+  Future<void> _restoreAudioSession() async {
+    try {
+      await AudioPlayer.global.setAudioContext(AudioContext(
+        iOS: AudioContextIOS(
+          category: AVAudioSessionCategory.playback,
+          options: const {AVAudioSessionOptions.mixWithOthers},
+        ),
+        android: const AudioContextAndroid(
+          isSpeakerphoneOn: false,
+          stayAwake: false,
+          contentType: AndroidContentType.music,
+          usageType: AndroidUsageType.media,
+          audioFocus: AndroidAudioFocus.none,
+        ),
+      ));
+    } catch (e) {
+      debugPrint("LiveCall: AudioContext restore error: $e");
+    }
+  }
+
   Future<void> _initCall() async {
     try {
-      await _player.openPlayer();
+      await _configureAudioSessionForCall(speaker: _isSpeaker);
 
       if (widget.scenario.backgroundAudioPath != null) {
         if (widget.scenario.backgroundAudioPath!.startsWith('/') ||
@@ -176,6 +222,11 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
     }
   }
 
+  Future<void> _toggleSpeaker() async {
+    setState(() => _isSpeaker = !_isSpeaker);
+    await _configureAudioSessionForCall(speaker: _isSpeaker);
+  }
+
   Future<void> _startListening() async {
     if (_isDisposed ||
         !mounted ||
@@ -194,27 +245,10 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
     _isStartingListening = true;
     final session = ++_recognitionSession;
     _listeningWatchdog?.cancel();
-    _setCallState(LiveCallState.idle, "Starting microphone...");
-
-    try {
-      if (await _audioRecorder.hasPermission()) {
-        final tempDir = await getTemporaryDirectory();
-        _currentAudioPath = '${tempDir.path}/live_call_${DateTime.now().millisecondsSinceEpoch}.wav';
-        await _audioRecorder.start(
-          const RecordConfig(
-            encoder: AudioEncoder.pcm16bits,
-            sampleRate: 16000,
-            numChannels: 1,
-          ),
-          path: _currentAudioPath!,
-        );
-      }
-    } catch (e) {
-      debugPrint("AudioRecorder failed to start: $e");
-    }
 
     final started = await speechService.startListening(
-      pauseFor: const Duration(milliseconds: 1500),
+      listenFor: const Duration(seconds: 60),
+      pauseFor: const Duration(seconds: 3),
       onPartialResult: (text) {
         if (!_isCurrentRecognitionSession(session) || _isHandlingTurn) return;
         setState(() => _partialUserText = text);
@@ -224,7 +258,7 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
         if (!_isCurrentRecognitionSession(session) || _isHandlingTurn) return;
         final finalText = text.trim();
         if (finalText.isEmpty) {
-          _recoverFromRecognitionEnd(session);
+          _quietlyRestartListening(session);
           return;
         }
         _isHandlingTurn = true;
@@ -233,7 +267,13 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
       onStatus: (status) {
         if (!_isCurrentRecognitionSession(session) || _isHandlingTurn) return;
         if (status == 'done' || status == 'notListening') {
-          _recoverFromRecognitionEnd(session);
+          if (_partialUserText.trim().isNotEmpty) {
+            final finalText = _partialUserText.trim();
+            _isHandlingTurn = true;
+            unawaited(_handleUserInputAndRespond(finalText));
+          } else {
+            _quietlyRestartListening(session);
+          }
         }
       },
       onError: (message, permanent) {
@@ -257,12 +297,6 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
     }
 
     _setCallState(LiveCallState.listening, "Listening...");
-    _listeningWatchdog = Timer(const Duration(seconds: 32), () {
-      if (_isCurrentRecognitionSession(session) && !_isHandlingTurn) {
-        unawaited(speechService.cancelListening());
-        _recoverFromRecognitionEnd(session);
-      }
-    });
   }
 
   bool _isCurrentRecognitionSession(int session) =>
@@ -271,7 +305,7 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
       !_isEndingCall &&
       session == _recognitionSession;
 
-  void _recoverFromRecognitionEnd(int session) {
+  void _quietlyRestartListening(int session) {
     if (!_isCurrentRecognitionSession(session) || _isHandlingTurn || _isMuted) {
       return;
     }
@@ -284,8 +318,11 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
         _audioLevel = 0;
       });
     }
-    _setCallState(LiveCallState.idle, "I didn't hear that. Listening again...");
-    Future<void>.delayed(const Duration(milliseconds: 500), _startListening);
+    Future<void>.delayed(const Duration(milliseconds: 300), () {
+      if (mounted && !_isDisposed && !_isHandlingTurn && !_isMuted && _callState != LiveCallState.speaking && _callState != LiveCallState.thinking) {
+        _startListening();
+      }
+    });
   }
 
   void _handleRecognitionError(String message, bool permanent) {
@@ -302,8 +339,11 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
       _setCallState(
           LiveCallState.error, "Microphone or speech recognition unavailable.");
     } else if (!_isMuted) {
-      _setCallState(LiveCallState.idle, "Microphone interrupted. Retrying...");
-      Future<void>.delayed(const Duration(milliseconds: 700), _startListening);
+      Future<void>.delayed(const Duration(milliseconds: 700), () {
+        if (mounted && !_isDisposed && !_isHandlingTurn && !_isMuted) {
+          _startListening();
+        }
+      });
     }
   }
 
@@ -319,26 +359,27 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
     // Stop listening while thinking/speaking
     await ref.read(speechServiceProvider).stopListening();
 
-    String? finalAudioPath = _currentAudioPath;
+    String? userPinyin;
     try {
-      if (await _audioRecorder.isRecording()) {
-        finalAudioPath = await _audioRecorder.stop();
-      }
+      final p = PinyinHelper.getPinyinE(text, separator: ' ', format: PinyinFormat.WITH_TONE_MARK);
+      if (p.isNotEmpty) userPinyin = p;
     } catch (e) {
-      debugPrint("LiveCall: Error stopping audio recorder: $e");
+      debugPrint("Pinyin generation error: $e");
     }
 
     if (_isDisposed || !mounted || _isEndingCall) return;
     setState(() {
       _partialUserText = '';
       _audioLevel = 0;
-      _transcript.add(LiveCallMessage(text: text, role: ChatRole.user, audioPath: finalAudioPath));
+      _transcript.add(LiveCallMessage(
+        text: text, 
+        pinyin: userPinyin,
+        role: ChatRole.user, 
+      ));
     });
     _scrollToBottom();
 
-    // Async grade the user audio and get AI response
-    _triggerGradingForLastUserTurn();
-    await _handleUserInputAndRespond_continued(text);
+    await _handleUserInputAndRespondContinued(text);
   }
 
   void _cycleSubtitleMode() {
@@ -347,7 +388,7 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
     });
   }
 
-  Future<void> _handleUserInputAndRespond_continued(String text) async {
+  Future<void> _handleUserInputAndRespondContinued(String text) async {
 
     _setCallState(LiveCallState.thinking, "Thinking...");
 
@@ -359,7 +400,7 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
         {
           'role': 'system',
           'content':
-              '${widget.scenario.systemPrompt}\n\nKeep your responses short (under 3 sentences). Use natural spoken Mandarin appropriate for your role.\n\nScenario context: ${widget.scenario.description}\n\nIMPORTANT: You MUST format your response exactly as follows: Chinese Text|||Pinyin|||English Translation'
+              '${widget.scenario.systemPrompt}\n\nKeep your responses short (under 3 sentences). Use natural spoken Mandarin appropriate for your role.\n\nScenario context: ${widget.scenario.description}\n\nIMPORTANT: You MUST format your response exactly as follows:\nUser English Translation|||Chinese Response|||Pinyin Response|||English Translation'
         }
       ];
 
@@ -383,17 +424,34 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
       String aiText = aiTextRaw;
       String? pinyin;
       String? translation;
+      String? userTranslation;
       
       if (aiTextRaw.contains('|||')) {
         final parts = aiTextRaw.split('|||');
-        aiText = parts[0].trim();
-        if (parts.length > 1) pinyin = parts[1].trim();
-        if (parts.length > 2) translation = parts[2].trim();
+        if (parts.length >= 4) {
+          userTranslation = parts[0].trim();
+          aiText = parts[1].trim();
+          pinyin = parts[2].trim();
+          translation = parts[3].trim();
+        } else if (parts.length == 3) {
+          aiText = parts[0].trim();
+          pinyin = parts[1].trim();
+          translation = parts[2].trim();
+        } else if (parts.length == 2) {
+          aiText = parts[0].trim();
+          pinyin = parts[1].trim();
+        }
       }
 
       // Store the exact text sent to TTS first. This guarantees that the user
       // can read everything the AI says, even if synthesis/playback fails.
       setState(() {
+        if (userTranslation != null && userTranslation.isNotEmpty) {
+          final lastUserIdx = _transcript.lastIndexWhere((m) => m.role == ChatRole.user);
+          if (lastUserIdx != -1) {
+            _transcript[lastUserIdx] = _transcript[lastUserIdx].copyWith(translation: userTranslation);
+          }
+        }
         _transcript.add(LiveCallMessage(
           text: aiText, 
           pinyin: pinyin, 
@@ -412,12 +470,12 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
       if (_isDisposed || !mounted) return;
 
       if (audioBytes != null) {
-        await _player.startPlayer(
-            fromDataBuffer: audioBytes,
-            codec: fs.Codec.pcm16WAV,
-            whenFinished: () {
-              unawaited(_finishAiTurn());
-            });
+        await _voicePlayer.play(BytesSource(Uint8List.fromList(audioBytes)));
+        _voicePlayer.onPlayerComplete.first.then((_) {
+          if (!_isDisposed && mounted) {
+            unawaited(_finishAiTurn());
+          }
+        });
       } else {
         await _finishAiTurn(
             status: "Audio unavailable. You can read the reply above.");
@@ -441,34 +499,6 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
     _isHandlingTurn = false;
     _setCallState(LiveCallState.idle, status);
     if (!_isMuted) await _startListening();
-  }
-
-  Future<void> _triggerGradingForLastUserTurn() async {
-    final lastUserIdx =
-        _transcript.lastIndexWhere((m) => m.role == ChatRole.user);
-    if (lastUserIdx == -1) return;
-
-    final msg = _transcript[lastUserIdx];
-    if (msg.audioPath == null) return;
-
-    try {
-      final gemini = ref.read(geminiServiceProvider);
-      final file = File(msg.audioPath!);
-      if (!await file.exists()) return;
-
-      final audioBytes = await file.readAsBytes();
-      
-      // We pass the recognized text as expected Chinese to get a phoneme-level pronunciation grade
-      final grade = await gemini.gradeAudio(audioBytes, msg.text, "");
-
-      if (_isDisposed || !mounted) return;
-      
-      setState(() {
-        _transcript[lastUserIdx] = msg.copyWith(grade: grade);
-      });
-    } catch (e) {
-      debugPrint("Live grading error: $e");
-    }
   }
 
   void _startAnalyzeStatusCycle() {
@@ -508,12 +538,9 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
       _listeningWatchdog?.cancel();
       _setCallState(LiveCallState.idle, "Paused - Take a break");
       await ref.read(speechServiceProvider).cancelListening();
-      if (await _audioRecorder.isRecording()) {
-        await _audioRecorder.stop();
-      }
       if (mounted) setState(() => _partialUserText = '');
       try {
-        await _player.pausePlayer();
+        await _voicePlayer.pause();
       } catch (e) {
         debugPrint('LiveCall: Could not pause tutor audio: $e');
       }
@@ -525,7 +552,7 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
     } else {
       _setCallState(LiveCallState.idle, "Connected! Speak now.");
       try {
-        await _player.resumePlayer();
+        await _voicePlayer.resume();
       } catch (e) {
         debugPrint('LiveCall: Could not resume tutor audio: $e');
       }
@@ -540,30 +567,19 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
 
   @override
   void dispose() {
-    for (var message in _transcript) {
-      if (message.audioPath != null) {
-        try {
-          final file = File(message.audioPath!);
-          if (file.existsSync()) {
-            file.deleteSync();
-          }
-        } catch (e) {
-          debugPrint("Error deleting live call recording on dispose: $e");
-        }
-      }
-    }
-    _audioRecorder.dispose();
     _isDisposed = true;
     _recognitionSession++;
     _listeningWatchdog?.cancel();
     ref.read(speechServiceProvider).stopListening();
-    _player.closePlayer();
+    _voicePlayer.stop();
+    _voicePlayer.dispose();
     _bgPlayer.stop();
     _bgPlayer.dispose();
     _pulseController.dispose();
     _analyzePulseController.dispose();
     _analyzeStatusTimer?.cancel();
     _scrollController.dispose();
+    _restoreAudioSession();
     super.dispose();
   }
 
@@ -573,11 +589,9 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
     _listeningWatchdog?.cancel();
     HapticsManager.heavy();
     ref.read(speechServiceProvider).stopListening();
-    if (await _audioRecorder.isRecording()) {
-      await _audioRecorder.stop();
-    }
     await _bgPlayer.stop();
-    await _player.stopPlayer();
+    await _voicePlayer.stop();
+    await _restoreAudioSession();
 
     if (!mounted) return;
 
@@ -827,7 +841,9 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
                           itemBuilder: (context, index) {
                             if (index == _transcript.length) {
                               return _LivePartialTranscriptBubble(
-                                  text: _partialUserText, theme: theme);
+                                  text: _partialUserText,
+                                  theme: theme,
+                                  subtitleMode: _subtitleMode);
                             }
                             final msg = _transcript[index];
                             return _LiveTranscriptBubble(
@@ -951,8 +967,7 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
                                 : Icons.volume_down,
                             label: "Speaker",
                             isActive: _isSpeaker,
-                            onTap: () =>
-                                setState(() => _isSpeaker = !_isSpeaker),
+                            onTap: _toggleSpeaker,
                           ),
                         ],
                       ),
@@ -970,11 +985,19 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
 class _LivePartialTranscriptBubble extends StatelessWidget {
   final String text;
   final ThemeData theme;
+  final int subtitleMode;
 
-  const _LivePartialTranscriptBubble({required this.text, required this.theme});
+  const _LivePartialTranscriptBubble({
+    required this.text, 
+    required this.theme,
+    this.subtitleMode = 0,
+  });
 
   @override
   Widget build(BuildContext context) {
+    if (subtitleMode == 2 || text.isEmpty) {
+      return const SizedBox.shrink();
+    }
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 6),
       child: Align(
@@ -1001,6 +1024,11 @@ class _LiveTranscriptBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Mode 2 is "Hidden": completely hide all subtitles and transcripts (voice-only)
+    if (subtitleMode == 2) {
+      return const SizedBox.shrink();
+    }
+
     final isUser = message.role == ChatRole.user;
 
     return Padding(
@@ -1011,36 +1039,46 @@ class _LiveTranscriptBubble extends StatelessWidget {
         children: [
           if (isUser && message.grade != null)
             _buildGradedText(message.grade!['words'] ?? [], theme, context)
-          else ...[
-            if (subtitleMode != 2)
-              TappableMarkdownHanziText(
-                message.text,
-                textAlign: isUser ? TextAlign.right : TextAlign.left,
-                style: theme.textTheme.bodyLarge?.copyWith(
-                  color: isUser
-                      ? Colors.white70
-                      : theme.colorScheme.primary.withValues(alpha: 0.9),
-                  fontWeight: isUser ? FontWeight.normal : FontWeight.bold,
-                  height: 1.4,
-                ),
+          else
+            TappableMarkdownHanziText(
+              message.text,
+              textAlign: isUser ? TextAlign.right : TextAlign.left,
+              style: theme.textTheme.bodyLarge?.copyWith(
+                color: isUser
+                    ? Colors.white70
+                    : theme.colorScheme.primary.withValues(alpha: 0.9),
+                fontWeight: isUser ? FontWeight.normal : FontWeight.bold,
+                height: 1.4,
               ),
-            if (subtitleMode == 2 && !isUser)
-              Text(
-                '🔊',
-                textAlign: TextAlign.left,
-                style: theme.textTheme.bodyLarge?.copyWith(
-                  color: Colors.white24,
-                ),
+            ),
+          
+          // Pinyin Subtitles (shown when not hidden, if message has pinyin and not already rendered in graded text)
+          if ((subtitleMode == 0 || subtitleMode == 1) &&
+              (message.grade == null || !isUser) &&
+              message.pinyin != null &&
+              message.pinyin!.isNotEmpty) ...[
+            const SizedBox(height: 4),
+            Text(
+              message.pinyin!,
+              style: theme.textTheme.bodyMedium?.copyWith(color: Colors.white70),
+              textAlign: isUser ? TextAlign.right : TextAlign.left,
+            ),
+          ],
+
+          // English Translation Subtitles (shown in CC mode: subtitleMode == 0)
+          if (subtitleMode == 0 &&
+              message.translation != null &&
+              message.translation!.isNotEmpty) ...[
+            const SizedBox(height: 2),
+            Text(
+              message.translation!,
+              style: theme.textTheme.bodySmall?.copyWith(
+                color: Colors.white38,
+                fontStyle: FontStyle.italic,
               ),
-            if (subtitleMode == 0 && message.pinyin != null && message.pinyin!.isNotEmpty) ...[
-              const SizedBox(height: 6),
-              Text(message.pinyin!, style: theme.textTheme.bodyMedium?.copyWith(color: Colors.white70), textAlign: isUser ? TextAlign.right : TextAlign.left),
-            ],
-            if (subtitleMode == 0 && message.translation != null && message.translation!.isNotEmpty) ...[
-              const SizedBox(height: 2),
-              Text(message.translation!, style: theme.textTheme.bodySmall?.copyWith(color: Colors.white38, fontStyle: FontStyle.italic), textAlign: isUser ? TextAlign.right : TextAlign.left),
-            ],
-          ]
+              textAlign: isUser ? TextAlign.right : TextAlign.left,
+            ),
+          ],
         ],
       ),
     );

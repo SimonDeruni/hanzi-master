@@ -132,8 +132,8 @@ class _NotificationPermissionScreenState extends ConsumerState<NotificationPermi
                 // Benefit Cards
                 _buildBenefitCard(
                   icon: Icons.auto_awesome,
-                  title: "The Daily Spark",
-                  description: "A new Word, Article, and Video waiting for your daily ritual.",
+                  title: "Daily Discovery Drop",
+                  description: "A new Word and Story waiting for your daily ritual.",
                   isDark: isDark,
                   textColor: textColor,
                   accentColor: accentColor,

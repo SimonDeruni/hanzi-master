@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../domain/entities/scenario.dart';
 import '../../../../core/services/echo_hall_service.dart';
@@ -296,7 +297,7 @@ class ConversationController extends StateNotifier<ConversationState> {
           state = state.copyWith(messages: messages);
         } catch (e) {
           // Non-fatal, just log and continue
-          print("ConversationController: Reverse translation error: $e");
+          debugPrint("ConversationController: Reverse translation error: $e");
         }
       }
 
@@ -364,7 +365,7 @@ class ConversationController extends StateNotifier<ConversationState> {
       newMessages[index] = updatedMsg;
       state = state.copyWith(messages: newMessages);
     } catch (e) {
-      print("ConversationController: Lazy translation error: $e");
+      debugPrint("ConversationController: Lazy translation error: $e");
     }
   }
 

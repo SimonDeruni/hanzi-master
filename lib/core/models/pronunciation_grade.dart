@@ -71,6 +71,8 @@ class SyllableGrade {
   }
 
   factory SyllableGrade.fromJson(Map<String, dynamic> json) {
+    final rawScore = json['wordScore'] ?? json['accuracyScore'] ?? json['accuracy'];
+    final score = (rawScore is int || rawScore is num) ? (rawScore as num).toInt() : 0;
     return SyllableGrade(
       word: json['word'] ?? '',
       pinyin: json['pinyin'] ?? '',
@@ -79,7 +81,7 @@ class SyllableGrade {
       actualTone: json['actualTone'] ?? 0,
       isCorrect: json['isCorrect'] ?? false,
       isPartial: json['isPartial'] ?? false,
-      wordScore: (json['wordScore'] is int || json['wordScore'] is num) ? (json['wordScore'] as num).toInt() : 0,
+      wordScore: score,
       feedback: json['feedback'] ?? '',
     );
   }

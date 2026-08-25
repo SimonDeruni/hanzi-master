@@ -52,7 +52,7 @@ class RevenueCatService extends _$RevenueCatService {
 
   Future<bool> purchasePackage(Package package) async {
     try {
-      final result = await Purchases.purchasePackage(package);
+      final result = await Purchases.purchase(PurchaseParams.package(package));
       _checkEntitlements(result.customerInfo);
       return state;
     } catch (e) {

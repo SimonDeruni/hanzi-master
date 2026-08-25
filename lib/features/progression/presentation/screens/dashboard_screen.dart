@@ -37,7 +37,6 @@ class DashboardScreen extends ConsumerWidget {
     }).toList();
     
     // 2. Calculate Stats
-    final knownCards = allCards.where((c) => c.getStatsForMode(StudyMode.reading).streak > 0).length;
     final dueCards = allCards.where((c) {
       return StudyMode.values.any((m) => c.isDue(m));
     }).toList();
@@ -47,19 +46,6 @@ class DashboardScreen extends ConsumerWidget {
       dueCardsByDeck.putIfAbsent(card.deckId, () => []).add(card);
     }
     
-    // 3. Determine Rank and Progress
-    String rank = l10n?.hsk1Candidate ?? "HSK 1 Candidate";
-    int nextMilestone = 150;
-    
-    if (knownCards >= 5000) { rank = l10n?.hsk6Master ?? "HSK 6 Master"; nextMilestone = knownCards; }
-    else if (knownCards >= 2500) { rank = l10n?.hsk6Candidate ?? "HSK 6 Candidate"; nextMilestone = 5000; }
-    else if (knownCards >= 1200) { rank = l10n?.hsk5Candidate ?? "HSK 5 Candidate"; nextMilestone = 2500; }
-    else if (knownCards >= 600) { rank = l10n?.hsk4Candidate ?? "HSK 4 Candidate"; nextMilestone = 1200; }
-    else if (knownCards >= 300) { rank = l10n?.hsk3Candidate ?? "HSK 3 Candidate"; nextMilestone = 600; }
-    else if (knownCards >= 150) { rank = l10n?.hsk2Candidate ?? "HSK 2 Candidate"; nextMilestone = 300; }
-    
-    double progress = nextMilestone == knownCards ? 1.0 : knownCards / nextMilestone;
-
     // 4. Calculate Upcoming Forecast
     int dueLaterToday = 0;
     int dueTomorrow = 0;

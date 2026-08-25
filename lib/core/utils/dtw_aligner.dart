@@ -54,7 +54,6 @@ class DtwAligner {
     List<double?> alignedUser = List.filled(reference.length, null);
     for (var p in path) {
       int refIndex = refValid[p.key].key;
-      int userIndex = userValid[p.value].key;
       alignedUser[refIndex] = userValid[p.value].value;
     }
 

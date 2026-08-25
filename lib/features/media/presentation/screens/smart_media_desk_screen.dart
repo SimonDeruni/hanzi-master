@@ -182,9 +182,6 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
   String _loadingStep = 'Fetching subtitles...';
   bool _briefingReady = false;
   bool _memesReady = false;
-  final bool _translationStarted = false;
-  final int _translatedChunks = 0;
-  final int _totalChunks = 0;
 
   int _currentIndex = -1;
   Duration _currentPosition = Duration.zero;
@@ -195,13 +192,11 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
   bool _showPinyin = true;
   bool _showEnglish = true;
   bool _isAdPlaying = false;
-  final PlayerState _playerState = PlayerState.unknown;
 
   DateTime _lastSyncUpdate = DateTime.fromMillisecondsSinceEpoch(0);
   static const _syncInterval = Duration(milliseconds: 250);
 
   bool _isFullscreen = false;
-  final bool _wasMutedForAutoplay = true;
   double _playbackRate = 1.0;
 
   List<Map<String, dynamic>> _culturalMemes = [];
@@ -1137,22 +1132,6 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
         ],
       ),
     );
-  }
-
-  String _mapYoutubeWebError(String description) {
-    final lower = description.toLowerCase();
-    if (lower.contains('video unavailable') ||
-        lower.contains('removed') ||
-        lower.contains('private')) {
-      return 'This video has been removed or is no longer available.';
-    }
-    if (lower.contains('not embeddable') || lower.contains('restricted')) {
-      return 'This video cannot be played in the app. You can still watch it on YouTube.';
-    }
-    if (lower.contains('not found') || lower.contains('unavailable')) {
-      return 'Video not found. It may have been deleted or is region-blocked.';
-    }
-    return 'Unable to load this video. Please try another one.';
   }
 
   String _mapYoutubePlayerError(YoutubeError error) {

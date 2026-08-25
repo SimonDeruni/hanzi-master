@@ -58,7 +58,7 @@ class DeckSelectionSheet extends ConsumerWidget {
                           if (newDeckName != null && newDeckName.trim().isNotEmpty) {
                             final deckCtrl = ref.read(deckControllerProvider.notifier);
                             final newDeck = await deckCtrl.createDeck(newDeckName.trim());
-                            if (newDeck != null) {
+                            if (newDeck != null && context.mounted) {
                               _addCardsToDeck(context, ref, newDeck.id, newDeck.localizedName(context));
                             }
                           }

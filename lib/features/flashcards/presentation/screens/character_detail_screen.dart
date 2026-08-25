@@ -220,13 +220,6 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
     final radicalChar = comp['radical'];
     final info = comp['info'];
     
-    // Find examples (Limit to 8)
-    final examples = _fullHanziMeta!.entries
-        .where((e) => e.value['radical'] == radicalChar && e.key != comp['char'])
-        .map((e) => e.key)
-        .take(8)
-        .toList();
-
     showModalBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,

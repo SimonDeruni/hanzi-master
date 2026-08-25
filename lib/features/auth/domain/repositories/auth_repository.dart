@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:hive/hive.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 final authRepositoryProvider = Provider<AuthRepository>((ref) {
@@ -34,6 +35,12 @@ class AuthRepository {
   }
 
   Future<void> signOut() async {
+    try {
+      if (await Hive.boxExists('character_chat_cache')) {
+        final box = await Hive.openBox<String>('character_chat_cache');
+        await box.clear();
+      }
+    } catch (_) {}
     await GoogleSignIn.instance.signOut();
     await _auth.signOut();
   }

@@ -181,7 +181,6 @@ class _AiExplainerSheetState extends ConsumerState<AiExplainerSheet> {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final bgColor = isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0);
     final aiBubbleColor = isDark ? const Color(0xFF252525) : const Color(0xFFFFF8EE);
     final textColor = isDark ? Colors.white : const Color(0xFF1A1A1B);
     final screenWidth = MediaQuery.of(context).size.width;

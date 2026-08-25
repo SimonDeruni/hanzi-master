@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/stats_screen.dart';
-import 'package:hanzi_master/core/providers/premium_controller.dart';
 import 'package:hanzi_master/features/settings/presentation/screens/contact_screen.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/settings_screen.dart';
 import 'package:hanzi_master/features/settings/presentation/screens/qa_screen.dart';
@@ -15,7 +14,6 @@ class ProfileScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
-    final isPremium = ref.watch(premiumControllerProvider).valueOrNull ?? false;
 
     return Scaffold(
       backgroundColor: isDark ? const Color(0xFF121212) : const Color(0xFFFDFCF0),
@@ -151,7 +149,6 @@ class ProfileScreen extends ConsumerWidget {
 
   Widget _buildIdentityCard(BuildContext context, WidgetRef ref, ThemeData theme, bool isDark) {
     final user = ref.watch(currentUserProvider);
-    final isPremium = ref.watch(premiumControllerProvider).valueOrNull ?? false;
 
     return Container(
       width: double.infinity,

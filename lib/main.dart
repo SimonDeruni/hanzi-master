@@ -99,7 +99,7 @@ void main() async {
   await safeOpenBox<String>('custom_blueprints_v2', cipher: cipher);
   final deckBox = await safeOpenBox<DeckModel>('decks', cipher: cipher);
   await safeOpenBox<String>('curriculum_cache_box', cipher: cipher);
-  final savedArticlesBox = await safeOpenBox<SavedArticle>('saved_articles', cipher: cipher);
+  await safeOpenBox<SavedArticle>('saved_articles', cipher: cipher);
 
   // Initialize RevenueCat
   await MonetizationService.init();

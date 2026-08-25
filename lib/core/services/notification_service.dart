@@ -104,8 +104,8 @@ class NotificationService {
 
     await _flutterLocalNotificationsPlugin.zonedSchedule(
       id: 1,
-      title: 'The Daily Spark is here! ✨',
-      body: 'A new Word, Article, and Video of the Day are waiting for you!',
+      title: 'Your Daily Drop is here! ✨',
+      body: 'A new Word and Story of the Day are waiting for you!',
       scheduledDate: scheduledDate,
       notificationDetails: platformChannelSpecifics,
       androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,

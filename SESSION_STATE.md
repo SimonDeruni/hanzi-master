@@ -1,13 +1,27 @@
 # 🧠 SESSION_STATE.md - The Hanzi Master "Scholar's Baton"
 
 #### 🎯 Current Context
-- **Objective:** Bug Fixes & User Request Resolution
+- **Objective:** Bug Fixes & Codebase Hygiene Sweep
 - **Status:** ✅ VERIFIED & ONGOING
-- **Hygiene:** 🧼 Total Hygiene — `flutter analyze` completed
+- **Hygiene:** 🧼 Perfect Hygiene — `flutter analyze lib/` passed with 0 issues (0 errors, 0 warnings, 0 infos).
 - **Locked Files:**
     - [None]
 
-- [x] **Universal Scanner Camera Distortion Fix:** Eliminated double-aspect-ratio scaling distortion using proportional `Transform.scale` and locked camera capture orientation to `portraitUp`. (Status: COMPLETED)
+- [x] **Live Call Multiple Tickers Fix:** Switched `_LiveCallScreenState` to `TickerProviderStateMixin` to resolve the runtime crash on initiating an AI persona live call. (Status: COMPLETED)
+- [x] **Paywall Legal Links & Restore Purchases Verification:** Verified and optimized `_restorePurchases()` and `_launchURL()` (`LaunchMode.externalApplication`) in `custom_paywall_screen.dart`. (Status: COMPLETED)
+- [x] **AI Tutor Guest & Logout Privacy Isolation:** Enforced strict `user != null && !user.isAnonymous` checks in `_getUserAddressingInstruction()`. Scoped AI chat caches by `userId` and added automatic cache clearing on `signOut()`. (Status: COMPLETED)
+- [x] **Notification Text Cleanup:** Removed outdated "Daily Spark" branding and "Video of the Day" mentions from `NotificationService` and `NotificationPermissionScreen` in favor of "Daily Discovery Drop" (Word and Story of the Day). (Status: COMPLETED)
+- [x] **Full `lib/` Codebase Hygiene Sweep:** Cleared all warnings and async safety issues across all 100+ files while preserving 100% of dynamic Light/Dark mode styling. (Status: COMPLETED)
+- [x] **Live Call Audio Session & Microphone Contention Overhaul:** (Status: COMPLETED)
+    - Replaced `flutter_sound` with `audioplayers`, configured `AudioContextIOS` with `defaultToSpeaker: true` and `allowBluetooth: true`, and added audio session restoration upon call exit to prevent phone sound degradation.
+    - Eliminated microphone buffer contention by giving `speech_to_text` exclusive mic access (removed parallel `Record` lock).
+    - Fixed the 5-second "reconnecting" watchdog loop by extending listening duration to 60s, increasing silence pause tolerance to 3s, and silently maintaining the listening session.
+    - Wired live `_toggleSpeaker()` to native audio session category routing.
+- [x] **Character & Phoneme Score of Zero Fix:** (Status: COMPLETED)
+    - Fixed `SyllableGrade.fromJson` defaulting `wordScore` to 0 due to `wordScore` vs `accuracyScore` JSON key discrepancy.
+    - Resolved Azure Chinese (`zh-CN`) syllable nesting where phonemes and sub-scores reside inside `w['Syllables']` rather than `w['Phonemes']`.
+    - Added automatic fallback to syllable/overall accuracy when Azure omits sub-phoneme scores, preventing false 0/100 ratings.
+    - Extracted and populated `expectedTone` and `actualTone` for pronunciation feedback chips.
 - [ ] **Travel Interpreter Microphone:** "the speaking in the microphpnoe in the travel intepreter doesnt work" (Status: NOT STARTED)
 - [ ] **Global Voices Link:** "the new global voices link doesnt work" (Status: NOT STARTED)
 - [x] **AR Camera Permission/Soft-lock:** "When launching the AR feature without camera permissions granted, the app displays a solid gray screen... the user is trapped on a dead-end screen" (Status: COMPLETED)

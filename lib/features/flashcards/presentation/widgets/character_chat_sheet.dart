@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:hanzi_master/core/utils/pinyin_utils.dart';
 import 'package:hanzi_master/shared/widgets/tappable_hanzi_text.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hive/hive.dart';
 
 // ---------------------------------------------------------------------------
@@ -197,7 +198,9 @@ class _CharacterChatSheetState extends ConsumerState<CharacterChatSheet> {
     _scrollToBottom();
 
     try {
-      final cacheKey = '${widget.hanzi}_${text.hashCode}';
+      final user = FirebaseAuth.instance.currentUser;
+      final userScope = (user != null && !user.isAnonymous) ? user.uid : 'guest';
+      final cacheKey = '${widget.hanzi}_${userScope}_${text.hashCode}';
       final box = await Hive.openBox<String>('character_chat_cache');
       
       String rawText = '';
@@ -250,7 +253,6 @@ class _CharacterChatSheetState extends ConsumerState<CharacterChatSheet> {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final bgColor = isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0);
     final aiBubbleColor = isDark ? const Color(0xFF252525) : const Color(0xFFFFF8EE);
     final textColor = isDark ? Colors.white : const Color(0xFF1A1A1B);
     final screenWidth = MediaQuery.of(context).size.width;

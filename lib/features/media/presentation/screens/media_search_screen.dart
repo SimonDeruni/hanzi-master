@@ -322,7 +322,7 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
                   label: const Text('Tap to Retry'),
                   style: ElevatedButton.styleFrom(
                     foregroundColor: Colors.indigo,
-                    backgroundColor: Colors.indigo.withOpacity(0.1),
+                    backgroundColor: Colors.indigo.withValues(alpha: 0.1),
                     elevation: 0,
                   ),
                 ),

@@ -12,6 +12,7 @@ import 'analytics_service.dart';
 import '../providers/translation_language_provider.dart';
 import '../utils/pinyin_utils.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:lpinyin/lpinyin.dart';
 
 class PremiumRequiredException implements Exception {
   final String message;
@@ -258,9 +259,6 @@ class GeminiService {
   final AnalyticsService analytics;
   final String targetLanguage;
   final Ref ref;
-
-  static const int _freeTierDailyLimit = 5; // Reduced based on user request
-  static const _conversationTimeout = Duration(seconds: 15);
 
   GeminiService(
       {required this.pool,
@@ -1530,8 +1528,9 @@ Respond ONLY in valid JSON format like:
   }
 
   String _getUserAddressingInstruction() {
-    final name = FirebaseAuth.instance.currentUser?.displayName;
-    if (name != null && name.trim().isNotEmpty) {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user != null && !user.isAnonymous && user.displayName != null && user.displayName!.trim().isNotEmpty) {
+      final name = user.displayName!.trim();
       return 'The user you are speaking to is named "$name". Address them by their name occasionally when offering supportive feedback.';
     }
     return 'IMPORTANT RULE: Do not address the user by any name. Never use placeholder names like "John". Speak directly to them without using a name.';
@@ -1720,16 +1719,100 @@ Respond ONLY in valid JSON format like:
         double totalAccuracy = 0;
         int evaluatedWords = 0;
 
+        // Helper to extract accuracy from any map format
+        double extractAccuracy(dynamic item) {
+          if (item is! Map) return 0.0;
+          if (item['AccuracyScore'] != null && item['AccuracyScore'] is num) {
+            return (item['AccuracyScore'] as num).toDouble();
+          }
+          if (item['PronunciationAssessment'] != null &&
+              item['PronunciationAssessment'] is Map) {
+            final pa = item['PronunciationAssessment'] as Map;
+            if (pa['AccuracyScore'] != null && pa['AccuracyScore'] is num) {
+              return (pa['AccuracyScore'] as num).toDouble();
+            }
+            if (pa['PronScore'] != null && pa['PronScore'] is num) {
+              return (pa['PronScore'] as num).toDouble();
+            }
+          }
+          return 0.0;
+        }
+
         if (bestResult['Words'] != null) {
           for (var w in bestResult['Words']) {
-            final wordText = w['Word'];
-            final wAccuracy = (w['PronunciationAssessment']?['AccuracyScore'] ??
-                    w['AccuracyScore'] ??
-                    0)
-                .toDouble();
-            final wErrorType = w['PronunciationAssessment']?['ErrorType'] ??
-                w['ErrorType'] ??
-                'None';
+            final wordText = (w['Word'] ?? '').toString();
+            double wAccuracy = extractAccuracy(w);
+            final wErrorType = (w['PronunciationAssessment']?['ErrorType'] ??
+                    w['ErrorType'] ??
+                    'None')
+                .toString();
+
+            // Extract phoneme sub-scores from Phonemes or Syllables
+            List<Map<String, dynamic>> phonemesList = [];
+            if (w['Phonemes'] != null && w['Phonemes'] is List) {
+              for (var p in w['Phonemes']) {
+                phonemesList.add({
+                  'phoneme': p['Phoneme']?.toString() ?? '',
+                  'accuracy': extractAccuracy(p),
+                });
+              }
+            } else if (w['Syllables'] != null && w['Syllables'] is List) {
+              for (var s in w['Syllables']) {
+                if (s['Phonemes'] != null && s['Phonemes'] is List) {
+                  for (var p in s['Phonemes']) {
+                    phonemesList.add({
+                      'phoneme': p['Phoneme']?.toString() ?? '',
+                      'accuracy': extractAccuracy(p),
+                    });
+                  }
+                } else {
+                  final sylAcc = extractAccuracy(s);
+                  phonemesList.add({
+                    'phoneme': s['Syllable']?.toString() ?? '',
+                    'accuracy': sylAcc > 0 ? sylAcc : wAccuracy,
+                  });
+                }
+              }
+            }
+
+            // If word accuracy was 0 but syllables had scores, calculate from syllables
+            if (wAccuracy == 0 &&
+                w['Syllables'] != null &&
+                (w['Syllables'] as List).isNotEmpty) {
+              double sylTotal = 0;
+              int sylCount = 0;
+              for (var s in w['Syllables']) {
+                final sa = extractAccuracy(s);
+                if (sa > 0) {
+                  sylTotal += sa;
+                  sylCount++;
+                }
+              }
+              if (sylCount > 0) {
+                wAccuracy = sylTotal / sylCount;
+              }
+            }
+
+            // If still 0 but phonemes had scores, calculate from phonemes
+            if (wAccuracy == 0 && phonemesList.isNotEmpty) {
+              double pTotal = 0;
+              int pCount = 0;
+              for (var p in phonemesList) {
+                final pa = (p['accuracy'] as num).toDouble();
+                if (pa > 0) {
+                  pTotal += pa;
+                  pCount++;
+                }
+              }
+              if (pCount > 0) {
+                wAccuracy = pTotal / pCount;
+              }
+            }
+
+            // Fallback: If ErrorType is None and overall accuracy is good, don't falsely report 0
+            if (wAccuracy == 0 && wErrorType == 'None' && accuracyScore > 0) {
+              wAccuracy = accuracyScore.toDouble();
+            }
 
             bool isCorrect = false;
             bool isPartial = false;
@@ -1738,7 +1821,9 @@ Respond ONLY in valid JSON format like:
             if (wErrorType == 'None') {
               if (wAccuracy >= 80) {
                 isCorrect = true;
-              } else if (wAccuracy >= 60) isPartial = true;
+              } else if (wAccuracy >= 60) {
+                isPartial = true;
+              }
             }
 
             if (!isOmitted && wErrorType != 'Insertion') {
@@ -1749,22 +1834,10 @@ Respond ONLY in valid JSON format like:
             String feedback = "";
             if (wErrorType == 'Omission') {
               feedback = "You missed this word.";
-            } else if (wErrorType == 'Insertion')
+            } else if (wErrorType == 'Insertion') {
               feedback = "Extra word added here.";
-            else if (wErrorType == 'Mispronunciation')
+            } else if (wErrorType == 'Mispronunciation') {
               feedback = "Pronunciation was inaccurate.";
-
-            // Extract phoneme sub-scores
-            List<Map<String, dynamic>> phonemesList = [];
-            if (w['Phonemes'] != null) {
-              for (var p in w['Phonemes']) {
-                phonemesList.add({
-                  'phoneme': p['Phoneme'],
-                  'accuracy':
-                      (p['PronunciationAssessment']?['AccuracyScore'] ?? 0)
-                          .toDouble(),
-                });
-              }
             }
 
             // Assign expected pinyin to each word (not for Insertion/Omission)
@@ -1776,6 +1849,24 @@ Respond ONLY in valid JSON format like:
               pinyinIndex++;
             }
 
+            // Tone extraction
+            int expTone = PinyinUtils.getTone(wordPinyin);
+            int actTone = expTone;
+            if (w['Syllables'] != null && (w['Syllables'] as List).isNotEmpty) {
+              final syl = w['Syllables'][0]['Syllable']?.toString() ?? '';
+              final toneMatch = RegExp(r'[1-5]$').firstMatch(syl);
+              if (toneMatch != null) {
+                actTone = int.tryParse(toneMatch.group(0)!) ?? expTone;
+              }
+            }
+
+            if (phonemesList.isEmpty && wAccuracy > 0 && wordPinyin.isNotEmpty) {
+              phonemesList.add({
+                'phoneme': wordPinyin,
+                'accuracy': wAccuracy,
+              });
+            }
+
             mappedWords.add({
               "word": wordText,
               "pinyin": wordPinyin,
@@ -1783,7 +1874,11 @@ Respond ONLY in valid JSON format like:
               "isPartial": isPartial,
               "isOmitted": isOmitted,
               "feedback": feedback,
+              "wordScore": wAccuracy.round(),
               "accuracyScore": wAccuracy,
+              "accuracy": wAccuracy.round(),
+              "expectedTone": expTone,
+              "actualTone": actTone,
               "phonemes": phonemesList,
             });
           }
@@ -1798,13 +1893,14 @@ Respond ONLY in valid JSON format like:
         if (fairScore >= 90) {
           overallFeedback =
               "Perfect pronunciation! Sounds like a native speaker.";
-        } else if (fairScore >= 80)
+        } else if (fairScore >= 80) {
           overallFeedback = "Great job! A few minor tone inaccuracies.";
-        else if (fairScore >= 60)
+        } else if (fairScore >= 60) {
           overallFeedback = "Not bad, but your tones need some work.";
-        else
+        } else {
           overallFeedback =
               "Keep practicing! Listen to the native audio and try again.";
+        }
 
         analytics.logApiUsage(
             apiName: 'azure_speech', feature: 'grade_audio', success: true);
@@ -1950,13 +2046,52 @@ Respond ONLY in valid JSON format like:
 
         List<Map<String, dynamic>> mappedWords = [];
 
+        double extractUnscriptedAccuracy(dynamic item) {
+          if (item is! Map) return 0.0;
+          if (item['AccuracyScore'] != null && item['AccuracyScore'] is num) {
+            return (item['AccuracyScore'] as num).toDouble();
+          }
+          if (item['PronunciationAssessment'] != null &&
+              item['PronunciationAssessment'] is Map) {
+            final pa = item['PronunciationAssessment'] as Map;
+            if (pa['AccuracyScore'] != null && pa['AccuracyScore'] is num) {
+              return (pa['AccuracyScore'] as num).toDouble();
+            }
+            if (pa['PronScore'] != null && pa['PronScore'] is num) {
+              return (pa['PronScore'] as num).toDouble();
+            }
+          }
+          return 0.0;
+        }
+
         if (bestResult['Words'] != null) {
           for (var w in bestResult['Words']) {
-            final wordText = w['Word'];
-            final wAccuracy =
-                w['PronunciationAssessment']?['AccuracyScore'] ?? 0;
-            final wErrorType =
-                w['PronunciationAssessment']?['ErrorType'] ?? 'None';
+            final wordText = (w['Word'] ?? '').toString();
+            double wAccuracy = extractUnscriptedAccuracy(w);
+            final wErrorType = (w['PronunciationAssessment']?['ErrorType'] ??
+                    w['ErrorType'] ??
+                    'None')
+                .toString();
+
+            // Check syllables if 0
+            if (wAccuracy == 0 &&
+                w['Syllables'] != null &&
+                (w['Syllables'] as List).isNotEmpty) {
+              double sylTotal = 0;
+              int sylCount = 0;
+              for (var s in w['Syllables']) {
+                final sa = extractUnscriptedAccuracy(s);
+                if (sa > 0) {
+                  sylTotal += sa;
+                  sylCount++;
+                }
+              }
+              if (sylCount > 0) wAccuracy = sylTotal / sylCount;
+            }
+
+            if (wAccuracy == 0 && wErrorType == 'None' && accuracyScore > 0) {
+              wAccuracy = accuracyScore.toDouble();
+            }
 
             bool isCorrect = wAccuracy >= 80 && wErrorType == 'None';
             bool isPartial = wAccuracy >= 60 && wAccuracy < 80;
@@ -1968,18 +2103,39 @@ Respond ONLY in valid JSON format like:
             String feedback = "";
             if (wErrorType == 'Omission') {
               feedback = "You missed this word.";
-            } else if (wErrorType == 'Insertion')
+            } else if (wErrorType == 'Insertion') {
               feedback = "Extra word added here.";
-            else if (wErrorType == 'Mispronunciation')
+            } else if (wErrorType == 'Mispronunciation') {
               feedback =
                   "Pronunciation was inaccurate. Score: ${wAccuracy.toStringAsFixed(0)}";
+            }
+
+            String wordPinyin = "";
+            try {
+              wordPinyin = PinyinHelper.getPinyinE(wordText, separator: ' ', format: PinyinFormat.WITH_TONE_MARK);
+            } catch (_) {}
+
+            int expTone = PinyinUtils.getTone(wordPinyin);
+            int actTone = expTone;
+            if (w['Syllables'] != null && (w['Syllables'] as List).isNotEmpty) {
+              final syl = w['Syllables'][0]['Syllable']?.toString() ?? '';
+              final toneMatch = RegExp(r'[1-5]$').firstMatch(syl);
+              if (toneMatch != null) {
+                actTone = int.tryParse(toneMatch.group(0)!) ?? expTone;
+              }
+            }
 
             mappedWords.add({
               "word": wordText,
-              "pinyin": "",
+              "pinyin": wordPinyin,
               "isCorrect": isCorrect,
               "isPartial": isPartial,
-              "feedback": feedback
+              "feedback": feedback,
+              "wordScore": wAccuracy.round(),
+              "accuracyScore": wAccuracy,
+              "accuracy": wAccuracy.round(),
+              "expectedTone": expTone,
+              "actualTone": actTone,
             });
           }
         }

@@ -188,22 +188,34 @@ class StoryFetcherService {
             final catLower = cat.toLowerCase().replaceAll(' ', '');
             if (catLower.contains('hsk1')) {
               hskLevel = 1;
-            } else if (catLower.contains('hsk2')) hskLevel = 2;
-            else if (catLower.contains('hsk3')) hskLevel = 3;
-            else if (catLower.contains('hsk4')) hskLevel = 4;
-            else if (catLower.contains('hsk5')) hskLevel = 5;
-            else if (catLower.contains('hsk6')) hskLevel = 6;
+            } else if (catLower.contains('hsk2')) {
+              hskLevel = 2;
+            } else if (catLower.contains('hsk3')) {
+              hskLevel = 3;
+            } else if (catLower.contains('hsk4')) {
+              hskLevel = 4;
+            } else if (catLower.contains('hsk5')) {
+              hskLevel = 5;
+            } else if (catLower.contains('hsk6')) {
+              hskLevel = 6;
+            }
           }
           if (hskLevel == 0) {
             // Check title as fallback
             final titleLower = title.toLowerCase().replaceAll(' ', '');
             if (titleLower.contains('hsk1')) {
               hskLevel = 1;
-            } else if (titleLower.contains('hsk2')) hskLevel = 2;
-            else if (titleLower.contains('hsk3')) hskLevel = 3;
-            else if (titleLower.contains('hsk4')) hskLevel = 4;
-            else if (titleLower.contains('hsk5')) hskLevel = 5;
-            else if (titleLower.contains('hsk6')) hskLevel = 6;
+            } else if (titleLower.contains('hsk2')) {
+              hskLevel = 2;
+            } else if (titleLower.contains('hsk3')) {
+              hskLevel = 3;
+            } else if (titleLower.contains('hsk4')) {
+              hskLevel = 4;
+            } else if (titleLower.contains('hsk5')) {
+              hskLevel = 5;
+            } else if (titleLower.contains('hsk6')) {
+              hskLevel = 6;
+            }
           }
 
           return LibraryStory(

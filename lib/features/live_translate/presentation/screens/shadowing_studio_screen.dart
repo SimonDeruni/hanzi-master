@@ -8,8 +8,6 @@ import 'package:path_provider/path_provider.dart';
 
 import '../../../../core/services/audio_service.dart';
 import '../../../../core/services/gemini_service.dart';
-import '../../../../core/services/pitch_detector_service.dart';
-import '../../../premium/presentation/screens/paywall_sheet.dart';
 
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/deck_controller.dart';
@@ -61,15 +59,9 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
   bool _isStopping = false; // Prevents re-entry during stop→grade→reset cycle
   Map<String, dynamic>? _lastGrade;
 
-  // Tone Graph State
-  List<double?> _userPitch = [];
-  List<double?> _idealPitch = [];
-  double? _highlightStart;
-  double? _highlightEnd;
-  final _pitchService = PitchDetectorService();
+  // Session State
   final List<Map<String, dynamic>> _weakCharacters = [];
   final List<String> _phraseHistory = [];
-  Map<String, dynamic>? _selectedWordDetail; // null = no detail sheet open
   String? _errorMessage;
   String? _recordingPath;
   DateTime? _recordingStartTime;
@@ -178,8 +170,6 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
     setState(() {
       _isLoadingNextPhrase = true;
       _lastGrade = null;
-      _userPitch = [];
-      _idealPitch = [];
       _errorMessage = null;
       _sentenceCount++;
       // Cleanse any stuck recording/grading states when transitioning
@@ -355,32 +345,16 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
       try {
         final bytes = await file.readAsBytes();
 
-        final pitchArray = await _pitchService.extractPitchContour(bytes);
-
         final geminiService = ref.read(geminiServiceProvider);
         final grade = await geminiService.gradeAudio(
           bytes,
           _currentPhrase!['hanzi']!,
           _currentPhrase!['pinyin']!,
         );
-        List<double?> actualIdealPitch = [];
-        try {
-          final audioService = ref.read(audioServiceProvider);
-          final audioBytes = await audioService
-              .getSentenceAudioBytes(_currentPhrase!['hanzi'] ?? '');
-          if (audioBytes != null) {
-            actualIdealPitch =
-                await _pitchService.extractPitchContour(audioBytes);
-          }
-        } catch (e) {
-          debugPrint('Failed to extract ideal pitch: $e');
-        }
 
         if (mounted) {
           setState(() {
             _lastGrade = grade;
-            _userPitch = pitchArray;
-            _idealPitch = actualIdealPitch;
             _isGrading = false;
 
             if (grade['words'] != null) {
@@ -772,10 +746,9 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
       }
     }
 
-    if (mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("Words saved and SRS scheduled!")));
-    }
+    if (!context.mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Words saved and SRS scheduled!")));
   }
 
   Widget _buildHubUI(BuildContext context, bool isDark) {
@@ -1149,7 +1122,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
   Widget _buildSessionUI(BuildContext context, bool isDark) {
     return PopScope(
       canPop: false,
-      onPopInvoked: (didPop) {
+      onPopInvokedWithResult: (didPop, result) {
         if (didPop) return;
         _showSessionSummaryDialog(context, isDark);
       },

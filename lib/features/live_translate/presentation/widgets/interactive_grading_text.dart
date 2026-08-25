@@ -23,7 +23,6 @@ class InteractiveGradingText extends StatelessWidget {
     }
 
     final spans = <TextSpan>[];
-    int charCount = 0;
 
     for (var word in wordScores!) {
       final String wordText = word['Word'] ?? '';
@@ -39,7 +38,6 @@ class InteractiveGradingText extends StatelessWidget {
       }
 
       for (int i = 0; i < wordText.length; i++) {
-        final currentIndex = charCount;
         spans.add(TextSpan(
           text: wordText[i],
           style: TextStyle(
@@ -53,7 +51,6 @@ class InteractiveGradingText extends StatelessWidget {
           // so for simplicity in this prototype, we'll just return standard spans here and wrap 
           // the whole text in a gesture detector that finds the word, or we can use WidgetSpans.
         ));
-        charCount++;
       }
       
       // Add space between words if needed (for Chinese usually not needed, but Azure splits them)

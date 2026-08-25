@@ -65,10 +65,6 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
   bool _showHeatmap = true;
   bool _pinyinRevealed = false;
 
-  final double _swipeDx = 0.0;
-  final double _swipeDy = 0.0;
-  final bool _isSwiping = false;
-
   @override
   void initState() {
     super.initState();

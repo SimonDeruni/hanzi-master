@@ -28,7 +28,6 @@ class _RadicalDetailScreenState extends ConsumerState<RadicalDetailScreen> {
   List<Map<String, dynamic>> _matchingCharacters = [];
   List<Map<String, dynamic>> _filteredCharacters = [];
   bool _isLoading = true;
-  String _searchQuery = "";
   final TextEditingController _searchController = TextEditingController();
 
   @override
@@ -80,7 +79,6 @@ class _RadicalDetailScreenState extends ConsumerState<RadicalDetailScreen> {
 
   void _filterCharacters(String query) {
     setState(() {
-      _searchQuery = query;
       if (query.isEmpty) {
         _filteredCharacters = List.from(_matchingCharacters);
       } else {

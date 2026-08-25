@@ -6,7 +6,6 @@ import 'package:hanzi_master/features/flashcards/presentation/providers/deck_con
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'package:hanzi_master/core/providers/ai_job_queue_provider.dart';
 import 'package:hanzi_master/core/services/curriculum_engine.dart';
-import 'package:hanzi_master/features/flashcards/presentation/providers/settings_controller.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 
@@ -25,7 +24,6 @@ class _CourseSelectionScreenState extends ConsumerState<CourseSelectionScreen> {
     final allCards = ref.watch(flashcardControllerProvider).valueOrNull ?? [];
     final aiQueue = ref.watch(aiJobQueueProvider);
     final engine = ref.read(curriculumEngineProvider);
-    final isDarkMode = ref.watch(settingsProvider).isDarkMode;
 
     return Scaffold(
       appBar: AppBar(
@@ -115,7 +113,7 @@ class _CourseSelectionScreenState extends ConsumerState<CourseSelectionScreen> {
                         await Future.delayed(Duration.zero);
                         ref.read(aiJobQueueProvider.notifier).removeJob(jobId);
                         
-                        if (mounted) {
+                        if (mounted && context.mounted) {
                            Navigator.pop(context); // Close dialog
                            ScaffoldMessenger.of(context).showSnackBar(
                              SnackBar(content: Text(l10n?.pathReady ?? "Your path for '${deck.localizedName(context)}' is ready!"), backgroundColor: Colors.green.shade700),
@@ -124,7 +122,7 @@ class _CourseSelectionScreenState extends ConsumerState<CourseSelectionScreen> {
                       } catch (e) {
                          await Future.delayed(Duration.zero);
                          ref.read(aiJobQueueProvider.notifier).removeJob(jobId);
-                         if (mounted) {
+                         if (mounted && context.mounted) {
                            Navigator.pop(context);
                            ScaffoldMessenger.of(context).showSnackBar(
                              SnackBar(content: Text("${l10n?.errorGeneratingPath ?? 'Error generating path'}: $e"), backgroundColor: Colors.red),

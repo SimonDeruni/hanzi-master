@@ -35,9 +35,7 @@ class _StoryModeScreenState extends ConsumerState<StoryModeScreen> {
   final Set<int> _translatedSentences = {};
   bool _isPlaying = false;
   bool _isPaused = false;
-  int? _playingSentenceIndex;
   int _playingStartOffset = -1;
-  int _playingEndOffset = -1;
   StreamSubscription? _boundarySub;
   bool _isSaved = false;
 
@@ -55,9 +53,7 @@ class _StoryModeScreenState extends ConsumerState<StoryModeScreen> {
         setState(() {
           _isPlaying = false;
           _isPaused = false;
-          _playingSentenceIndex = null;
           _playingStartOffset = -1;
-          _playingEndOffset = -1;
         });
       }
     });
@@ -66,20 +62,16 @@ class _StoryModeScreenState extends ConsumerState<StoryModeScreen> {
       if (mounted) {
         setState(() {
           int start = -1;
-          int length = 0;
 
           if (boundary.containsKey('TextOffset')) {
             start = boundary['TextOffset'];
-            length = boundary['WordLength'] ?? 1;
           } else if (boundary['text'] != null) {
             final textObj = boundary['text'];
             start = textObj['TextOffset'] ?? -1;
-            length = textObj['Length'] ?? 1;
           }
 
           if (start >= 0) {
             _playingStartOffset = start;
-            _playingEndOffset = start + length;
           }
         });
       }
@@ -91,65 +83,6 @@ class _StoryModeScreenState extends ConsumerState<StoryModeScreen> {
     _boundarySub?.cancel();
     ref.read(audioServiceProvider).stop();
     super.dispose();
-  }
-
-  Future<void> _togglePlay(AiStory story, {bool stop = false}) async {
-    final audioService = ref.read(audioServiceProvider);
-    if (stop) {
-      await audioService.stop();
-      if (mounted) {
-        setState(() {
-          _isPlaying = false;
-          _isPaused = false;
-          _playingSentenceIndex = null;
-          _playingStartOffset = -1;
-          _playingEndOffset = -1;
-        });
-      }
-      return;
-    }
-
-    if (_isPlaying) {
-      await audioService.stop();
-      if (mounted) {
-        setState(() {
-          _isPlaying = false;
-          _isPaused = true;
-        });
-      }
-    } else {
-      if (!_isPaused || _playingSentenceIndex == null) {
-        if (mounted) {
-          setState(() {
-            _playingStartOffset = -1;
-            _playingEndOffset = -1;
-          });
-        }
-        final text = story.sentences.map((s) => s.chinese).join('');
-        final success = await audioService.playSentence(text);
-        if (mounted) {
-          setState(() {
-            _isPlaying = success;
-            _isPaused = !success;
-          });
-        }
-      } else {
-        final text = story.sentences.map((s) => s.chinese).join('');
-        if (mounted) {
-          setState(() {
-            _playingStartOffset = -1;
-            _playingEndOffset = -1;
-          });
-        }
-        final success = await audioService.playSentence(text);
-        if (mounted) {
-          setState(() {
-            _isPlaying = success;
-            _isPaused = !success;
-          });
-        }
-      }
-    }
   }
 
   Future<void> _saveStory(AiStory story) async {
@@ -218,9 +151,9 @@ class _StoryModeScreenState extends ConsumerState<StoryModeScreen> {
             },
           ),
         ],
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(0),
-          child: const SizedBox.shrink(),
+        bottom: const PreferredSize(
+          preferredSize: Size.fromHeight(0),
+          child: SizedBox.shrink(),
         ),
       ),
       body: asyncStory.when(

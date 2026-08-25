@@ -176,7 +176,9 @@ class AudioService {
            final jsonStr = await boundaryFile.readAsString();
            final list = jsonDecode(jsonStr) as List<dynamic>;
            _currentBoundaries = list.cast<Map<String, dynamic>>();
-         } catch(e) {}
+         } catch (_) {
+           // Ignore corrupted boundary cache
+         }
       }
       await _player.setPlaybackRate(1.0);
       await _player.play(DeviceFileSource(cacheFile.path));

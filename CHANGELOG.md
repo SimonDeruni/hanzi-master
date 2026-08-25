@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- **Live Call Ticker Provider Fix**: Switched `_LiveCallScreenState` from `SingleTickerProviderStateMixin` to `TickerProviderStateMixin` to resolve the Flutter runtime crash caused by multiple concurrent animation controllers (`_pulseController` and `_analyzePulseController`).
+- **Paywall Legal Links & Restore Purchases Verification**: Verified `_restorePurchases()` calls `Purchases.restorePurchases()` with active state feedback and updated `_launchURL()` to use `LaunchMode.externalApplication` for seamless Safari opening of Terms & Privacy policies.
+- **AI Tutor Guest & Logout Privacy Isolation**: Enforced strict authentication and `!isAnonymous` checks in `_getUserAddressingInstruction()` so logged-out or guest users are never addressed by name. Scoped AI chat caches by `userId` and added automatic cache clearing on `signOut()` in `AuthRepository`.
+- **Notification Text Cleanup**: Removed legacy "Daily Spark" branding and "Video of the Day" references from `NotificationService` and onboarding permission screens, updating copy to "Daily Discovery Drop" (Word and Story of the Day).
 
 ### Added
 - **Dynamic Custom Paywall Overhaul**: Rebuilt the paywall with comprehensive feature selling points (Precision Stroke Engine, AI Pronunciation Grading, Smart News & One-Tap Dictionary, Universal Camera & Photo Scanner, Live Translation & Travel Interpreter, Complete HSK 1-6 Tomes, adaptive spaced repetition and AI custom decks), dynamic pricing breakdowns computed directly from RevenueCat store product prices, Blinkist-style trial timeline, and direct legal links (`https://sinospark.app/terms.html`, `https://sinospark.app/privacy.html`).
@@ -10,9 +14,27 @@ All notable changes to this project will be documented in this file.
 - **Overhauled AI Curriculum Calibration Screen**: Replaced the static text card with an interactive, live-animated calibration experience featuring a dynamic percentage progress bar, step-by-step milestone checkmarks (Mastery Level, Focus Alignment, Daily Ritual, AI Neural SRS Decks), haptic tick feedback, and an active completion CTA button.
 
 ### Changed
+- **Comprehensive Codebase Hygiene & Performance Optimization (`lib/`)**:
+  - Achieved **0 errors and 0 warnings** across the entire application codebase (`lib/`).
+  - Preserved 100% of dynamic Light/Dark theme rendering and color variables.
+  - Eliminated dead fields, unreferenced variables, and unused imports across all features (`shadowing_studio_screen`, `smart_media_desk_screen`, `web_browser_screen`, `profile_screen`, `dashboard_screen`, `story_mode_screen`, `dictionary_screen`, etc.).
+  - Added strict `context.mounted` safety guards across async boundary flows in UI sheets and screens to prevent crashes on pop.
+  - Modernized deprecated APIs (`Color.withOpacity` ➔ `Color.withValues()`, `Purchases.purchasePackage` ➔ `Purchases.purchase(PurchaseParams.package())`, `onPopInvoked` ➔ `onPopInvokedWithResult`).
 - **Onboarding Vertical Layout Balance**: Rebalanced vertical margins and pinned primary call-to-action buttons to the bottom of the screen across all onboarding steps to prevent top crowding and eliminate bottom voids.
 
 ### Fixed
+- **Pronunciation Assessment — Character & Phoneme Score of Zero Fix**:
+  - Fixed a JSON key discrepancy in `SyllableGrade.fromJson` where `wordScore` defaulted to `0` because Azure returned `accuracyScore`.
+  - Added recursive syllable-to-phoneme parsing for Azure Chinese (`zh-CN`), ensuring phoneme sub-scores nested under `w['Syllables']` are accurately parsed rather than being lost.
+  - Added automatic fallback to syllable/sentence accuracy whenever Azure omits sub-phoneme scores, ensuring characters rated above zero in the sentence are accurately scored in word cards and feedback sheets.
+  - Extracted and populated `expectedTone` and `actualTone` for pronunciation feedback chips.
+- **Live Call — Audio Session, Microphone & Listening Loop Overhaul**:
+  - **Phone Audio Route Fix**: Replaced `flutter_sound` with `audioplayers`, configured `AudioContextIOS` with `defaultToSpeaker: true` and `allowBluetooth: true`, and added audio session restoration upon call exit to prevent your phone sound from degrading or getting stuck in earpiece mode.
+  - **Microphone Contention Fix**: Removed parallel `Record` package background recording during live speech recognition, giving `speech_to_text` 100% exclusive access to the microphone for crystal-clear voice capture without choppy/dropped words.
+  - **5-Second Reconnect Loop Fix**: Extended listening duration to 60s, increased silence pause threshold to 3s, and introduced smooth background silence resumption so the screen stays calmly on "Listening..." without flickering or triggering reconnect loops.
+  - **Speaker Toggle**: Connected the Speaker button to active native audio session routing (`defaultToSpeaker: true` vs earpiece).
+  - **Hidden Mode & User Subtitles**: Removed `🔊` emoji in Hidden mode, added real-time Pinyin via `lpinyin`, and added Gemini English translations for user speech turns.
+- **Universal Scanner — Aspect Ratio & Orientation Stabilization**: Fixed horizontal squishing and vertical stretching in camera previews by swapping out flawed FittedBox scaling for proportional `Transform.scale` and locking orientation during scans.
 - **Library / Latest Discoveries**: Fixed an issue where older saved flashcards (like "吃") that were missing pinyin or definition metadata rendered as visually broken, "empty" UI cards in the library carousel and dictionary list. Converted `_LexiconMiniCard` and `_DictionaryItem` into stateful widgets that now automatically detect missing metadata upon render and asynchronously hydrate themselves from the bundled SQLite dictionary, restoring perfect visual consistency without requiring a full database migration.
 - **AR Camera Permission/Soft-lock**: Fixed a complete UI crash when the AR feature was accessed without camera permissions. Added a fallback UI displaying a permission request and an "Open Settings" button, and wrapped the background to prevent it from shrinking to 0x0 size and showing a blank screen.
 - **Universal Scanner Camera Permission**: Fixed a bug where the scanner failed to recognize granted camera permissions or trigger the native iOS prompt. Replaced the outdated beige error banner with a premium, floating toast notification that correctly guides users to settings if permission is permanently denied.

@@ -134,7 +134,7 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
                           ),
                         ),
                         SliverPadding(
-                          padding: EdgeInsets.fromLTRB(16, 24, 16, 20),
+                          padding: const EdgeInsets.fromLTRB(16, 24, 16, 20),
                           sliver: SliverList(
                             delegate: SliverChildBuilderDelegate(
                               (context, index) {

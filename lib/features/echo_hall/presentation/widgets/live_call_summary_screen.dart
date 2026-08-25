@@ -221,7 +221,7 @@ class InteractiveMarkdownText extends StatefulWidget {
   });
 
   @override
-  _InteractiveMarkdownTextState createState() => _InteractiveMarkdownTextState();
+  State<InteractiveMarkdownText> createState() => _InteractiveMarkdownTextState();
 }
 
 class _InteractiveMarkdownTextState extends State<InteractiveMarkdownText> {

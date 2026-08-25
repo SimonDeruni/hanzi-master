@@ -3,19 +3,6 @@ import 'package:flutter/foundation.dart';
 import 'package:vector_math/vector_math_64.dart';
 import 'package:path_drawing/path_drawing.dart';
 
-/// Helper for passing parameters to the background sampling worker.
-class _SampleParams {
-  final Path path;
-  final double interval;
-  _SampleParams(this.path, this.interval);
-}
-
-/// Top-level worker for sampling points from a Path.
-List<Offset> _samplePointsWorker(_SampleParams params) {
-  return CharacterLoader.samplePoints(params.path, interval: params.interval);
-}
-
-
 /// Service responsible for parsing SVG strings into Flutter Path objects
 /// and handling coordinate normalization.
 class CharacterLoader {

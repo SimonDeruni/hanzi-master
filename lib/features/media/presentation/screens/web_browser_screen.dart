@@ -49,7 +49,6 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
   bool _isArticleSaved = false;
 
   ArticleInsight? _currentInsight;
-  bool _isReadingAloud = false;
   late AnimationController _pulseController;
 
   // Translation Panel State
@@ -69,7 +68,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
     _pulseController =
         AnimationController(vsync: this, duration: const Duration(seconds: 1))
           ..repeat(reverse: true);
-    // _initTts(); // [TTS DISABLED] Restore when TTS engine is ready
+    _initTts();
     _urlController.text = widget.initialUrl;
     _controller = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
@@ -133,7 +132,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
     _urlController.dispose();
     _boundarySub?.cancel();
     _ttsCompleteSub?.cancel();
-    ref.read(audioServiceProvider).stop();
+    unawaited(_stopTts());
     super.dispose();
   }
 
@@ -396,7 +395,6 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
       _currentSentenceIndex = 0;
       _ttsSentenceOffsets = [];
       if (mounted) {
-        setState(() => _isReadingAloud = false);
         _controller.runJavaScript('''
           if (window.removeTtsHighlight) window.removeTtsHighlight();
         ''');
@@ -410,7 +408,6 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
       _ttsSentenceOffsets = [0];
       _currentSentenceIndex = 0;
       if (mounted) {
-        setState(() => _isReadingAloud = true);
         _updateTtsButton(true);
       }
       await ref.read(audioServiceProvider).playSentence(text);
@@ -523,7 +520,6 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
     _currentSentenceIndex = 0;
 
     if (mounted) {
-      setState(() => _isReadingAloud = true);
       _updateTtsButton(true);
     }
     await ref.read(audioServiceProvider).playSentence(sentences[0]);
@@ -812,6 +808,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
       final allCards = ref.read(flashcardControllerProvider).value ?? [];
       final knownWords = allCards.map((c) => c.hanzi).toList();
 
+      if (!mounted) return;
       final gemini = ref.read(geminiServiceProvider);
       final langCode = Localizations.localeOf(context).languageCode;
       final insight = await gemini.generateArticleInsight(
@@ -896,6 +893,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
         (r) => r.map((c) => c.hanzi).toList(),
       );
 
+      if (!mounted) return;
       final gemini = ref.read(geminiServiceProvider);
       final langCode = Localizations.localeOf(context).languageCode;
       final newWords = await gemini.extractAllUnknownWords(
@@ -1412,11 +1410,13 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                   await prefs.setStringList('bookmarked_story_urls', savedUrls);
                   if (mounted) {
                     setState(() => _isArticleSaved = true);
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                        content: Text('Story bookmarked in Library!')));
+                    if (context.mounted) {
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                          content: Text('Story bookmarked in Library!')));
+                    }
                   }
                 } else {
-                  if (mounted) {
+                  if (mounted && context.mounted) {
                     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                         content: Text('Story already bookmarked!')));
                   }
@@ -1442,8 +1442,10 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
 
                 if (mounted) {
                   setState(() => _isArticleSaved = true);
-                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                      content: Text('Article saved to Media Hub!')));
+                  if (context.mounted) {
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                        content: Text('Article saved to Media Hub!')));
+                  }
                 }
               }
             },

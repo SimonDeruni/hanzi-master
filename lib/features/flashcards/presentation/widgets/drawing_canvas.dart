@@ -885,8 +885,11 @@ class _UserDrawingPainter extends CustomPainter {
       Color strokeColor;
       if (score >= 85) {
         strokeColor = Colors.green;
-      } else if (score >= 60) strokeColor = Colors.orange;
-      else strokeColor = Colors.red;
+      } else if (score >= 60) {
+        strokeColor = Colors.orange;
+      } else {
+        strokeColor = Colors.red;
+      }
       
       final heatmapPaint = Paint()
         ..color = strokeColor

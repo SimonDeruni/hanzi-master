@@ -267,27 +267,6 @@ class SettingsScreen extends ConsumerWidget {
   Widget _buildDivider() {
     return const Divider(height: 1, thickness: 1, indent: 56);
   }
-
-  String _getLanguageName(String locale) {
-    switch (locale) {
-      case 'en': return 'English';
-      case 'zh': return '中文';
-      case 'es': return 'Español';
-      case 'fr': return 'Français';
-      case 'de': return 'Deutsch';
-      case 'ja': return '日本語';
-      case 'ko': return '한국어';
-      case 'ru': return 'Русский';
-      case 'ar': return 'العربية';
-      case 'hi': return 'हिन्दी';
-      case 'pt': return 'Português';
-      case 'it': return 'Italiano';
-      case 'tr': return 'Türkçe';
-      case 'vi': return 'Tiếng Việt';
-      case 'id': return 'Bahasa Indonesia';
-      default: return 'English';
-    }
-  }
 }
 
 void _showNotificationSettings(BuildContext context, WidgetRef ref) {

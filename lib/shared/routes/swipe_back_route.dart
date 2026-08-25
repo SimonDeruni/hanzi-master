@@ -11,13 +11,11 @@ class _SwipeBackDetector extends StatefulWidget {
 class _SwipeBackDetectorState extends State<_SwipeBackDetector> {
   double _dragStartX = 0;
   double _dragDistance = 0;
-  bool _isDragging = false;
   DateTime _lastPointerDown = DateTime.now();
 
   void _onPointerDown(PointerDownEvent event) {
     _dragStartX = event.position.dx;
     _dragDistance = 0;
-    _isDragging = false;
     _lastPointerDown = DateTime.now();
   }
 
@@ -25,9 +23,6 @@ class _SwipeBackDetectorState extends State<_SwipeBackDetector> {
     if (_dragStartX < 40) {
       final delta = event.position.dx - _dragStartX;
       _dragDistance = delta;
-      if (delta > 5) {
-        _isDragging = true;
-      }
     }
   }
 
@@ -36,7 +31,6 @@ class _SwipeBackDetectorState extends State<_SwipeBackDetector> {
     final distance = _dragDistance;
     _dragStartX = 0;
     _dragDistance = 0;
-    _isDragging = false;
     if (startX < 40 && distance > 0) {
       final duration = DateTime.now().difference(_lastPointerDown);
       final velocity = duration.inMilliseconds > 0

@@ -74,7 +74,7 @@ class DailyDiscoveryRepository {
     for (final candidate in pool) {
       final thumbUri = Uri.parse('https://img.youtube.com/vi/${candidate.videoId}/hqdefault.jpg');
       try {
-        final head = await http.head(thumbUri).timeout(const Duration(seconds: 3));
+        final head = await _client.head(thumbUri).timeout(const Duration(seconds: 3));
         if (head.statusCode != 200) continue;
 
         return (

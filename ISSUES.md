@@ -1,6 +1,7 @@
 # Hanzi Master - Known Issues & Feedback
 
 ## Resolved
+- [x] **Performance & Hygiene**: Completed comprehensive `lib/` hygiene sweep, resolving all unused fields, adding async `context.mounted` guards, and modernizing deprecated Flutter/RevenueCat APIs while preserving 100% of dynamic Light/Dark mode styling. (0 analyzer issues).
 - [x] **Bug**: Fixed Universal Scanner permanent lock-out loop caused by failure to refresh camera permission status after returning from OS Settings.
 - [x] **Bug**: Fixed AI Story Reader UI pagination. Replaced fragmented one-sentence-per-page view with a continuous SingleChildScrollView.
 - [x] **Bug**: Fixed Chat Avatar Header iOS Safe Area collision.

@@ -156,7 +156,6 @@ class _NotFoundBodyState extends ConsumerState<_NotFoundBody> {
 
   @override
   Widget build(BuildContext context) {
-    final textColor = widget.isDark ? Colors.white : const Color(0xFF1A1A1B);
     return Padding(
       padding: const EdgeInsets.fromLTRB(24, 16, 24, 40),
       child: Column(

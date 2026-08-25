@@ -55,10 +55,6 @@ class MonetizationService {
     }
   }
 
-  static Future<void> _initHuaweiIAP() async {
-    debugPrint('MonetizationService: Huawei IAP init temporarily disabled pending Developer Verification');
-  }
-
   static Future<bool> checkPremiumStatus() async {
     if (_developerBackdoorUnlocked) return true;
     
@@ -88,7 +84,7 @@ class MonetizationService {
   static Future<bool> purchasePackage(dynamic package) async {
     try {
       if (_activeProvider == PaymentProvider.revenueCat) {
-        final result = await Purchases.purchasePackage(package as Package);
+        final result = await Purchases.purchase(PurchaseParams.package(package as Package));
         return result.customerInfo.entitlements.all[entitlementId]?.isActive == true;
       }
     } catch (e) {
