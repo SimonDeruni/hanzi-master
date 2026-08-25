@@ -253,9 +253,53 @@ class AudioService {
 
 
 
+  /// Plays an isolated tone syllable with slightly exaggerated pitch range (+25%)
+  /// and slightly relaxed rate (-12%) so learners can easily distinguish pitch contours.
+  Future<bool> playToneAudition(String pinyinWithTone) async {
+    if (!_isInitialized) await init();
+    await stop();
+
+    final safeKey = pinyinWithTone.replaceAll(RegExp(r'[^\w\s]'), '');
+    final cacheFile = File('${_cacheDir!.path}/tts_cache/tone_${safeKey}_audition.mp3');
+    if (await cacheFile.exists()) {
+      try {
+        await _player.play(DeviceFileSource(cacheFile.path));
+        return true;
+      } catch (e) {
+        debugPrint("Failed to play cached tone audition for $pinyinWithTone: $e");
+      }
+    }
+
+    try {
+      final result = await _fetchCloudTTS(
+        pinyinWithTone,
+        pitchRange: '+25%',
+        rateAdjustment: -12,
+        cacheFile: cacheFile,
+      );
+      if (result != null && result.audio.isNotEmpty) {
+        await _player.play(DeviceFileSource(cacheFile.path));
+        return true;
+      }
+    } catch (e) {
+      debugPrint("Azure tone audition failed for $pinyinWithTone: $e");
+    }
+
+    // Fallback to standard TTS
+    await _tts.speak(pinyinWithTone);
+    return true;
+  }
+
   /// Fetches premium TTS audio from Azure Cognitive Services via REST API.
   /// Uses audio-16khz-128kbitrate-mono-mp3 for highest Neural fidelity and rapid transfer.
-  Future<CloudTtsResult?> _fetchCloudTTS(String text, {String azureVoice = 'zh-CN-XiaoxiaoNeural', File? cacheFile, File? boundaryFile}) async {
+  Future<CloudTtsResult?> _fetchCloudTTS(
+    String text, {
+    String azureVoice = 'zh-CN-XiaoxiaoNeural',
+    String pitchRange = '+15%',
+    int rateAdjustment = 0,
+    File? cacheFile,
+    File? boundaryFile,
+  }) async {
     final apiKey = _pool.azureSpeechKey;
     final region = _pool.azureSpeechRegion;
     if (apiKey.isEmpty || region.isEmpty || apiKey == 'MISSING_KEY') {
@@ -264,8 +308,8 @@ class AudioService {
     }
 
     final safeText = text.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
-    final ratePercent = math.max(-50, math.min(200, ((_speechRate - 0.5) * 200).round()));
-    final ssml = '''<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xml:lang='zh-CN'><voice name='$azureVoice'><prosody rate='$ratePercent%'>$safeText</prosody></voice></speak>''';
+    final ratePercent = math.max(-50, math.min(200, ((_speechRate - 0.5) * 200).round() + rateAdjustment));
+    final ssml = '''<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xml:lang='zh-CN'><voice name='$azureVoice'><prosody rate='$ratePercent%' range='$pitchRange'>$safeText</prosody></voice></speak>''';
 
     final uri = Uri.parse('https://$region.tts.speech.microsoft.com/cognitiveservices/v1');
 

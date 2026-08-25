@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- **Live Call Pausing & Smart Tone Diagnostics**:
+  - Live call listening and tutor audio now automatically pause (`Call Paused (Reviewing Tones)`) whenever the user opens the Tone Comparison Sheet, and cleanly resumes once the sheet is dismissed.
+  - Implemented smart 1-sentence diagnostic summaries in `PinyinUtils.getToneDiagnostic` explaining exactly what pitch adjustment is needed.
+  - Enhanced Azure Neural TTS with subtle pitch dynamic expansion (`range="+25%"`, `rate="-12%"`) for crystal-clear tone auditioning. Bumped build to `1.0.0+141`.
 - **Shadowing Studio Compare 4 Tones Action & Visual Affordance**:
   - Added dedicated "Compare 4 Tones" button and educational `👆 Tap any syllable to audition all 4 tones` hint in `ShadowingStudioScreen` word review sheet. Bumped build to `1.0.0+140`.
 - **Shadowing Studio 4-Tone Matrix Integration**:

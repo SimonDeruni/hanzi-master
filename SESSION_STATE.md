@@ -7,7 +7,8 @@
 - **Locked Files:**
     - [None]
 
-- [x] **Shadowing Studio Compare 4 Tones Action & Visual Affordance:** Added dedicated "Compare 4 Tones" button and educational tap hint in `ShadowingStudioScreen` word review sheet. Bumped to `1.0.0+140`. (Status: COMPLETED)
+- [x] **Live Call Pausing & Smart Tone Diagnostics:** Live call now pauses listening during tone sheet review and resumes upon dismissal; added 1-sentence diagnostic summaries and Azure TTS pitch range expansion (`+25%`). Bumped to `1.0.0+141`. (Status: COMPLETED)
+- [x] **Shadowing Studio Compare 4 Tones Action & Visual Affordance:** Added dedicated "Compare 4 Tones" button and educational tap hint. (Status: COMPLETED)
 - [x] **Shadowing Studio 4-Tone Matrix Integration:** Connected `ToneComparisonSheet` to syllable phoneme chips in `ShadowingStudioScreen`. (Status: COMPLETED)
 - [x] **Interactive 4-Tone Comparison & Audio Auditioning Matrix:** Implemented `ToneComparisonSheet` with side-by-side 4-tone matrix, pitch contours, and instant tone auditioning. (Status: COMPLETED)
 - [x] **Dynamic Character Tone Averaging:** Replaced all static score fallbacks with dynamic character-by-character tone averaging across all recognition events. (Status: COMPLETED)

@@ -189,4 +189,51 @@ class PinyinUtils {
         return "Pronounce softly, briefly, and without emphasis.";
     }
   }
+
+  /// Generates a concise diagnostic summary comparing expected tone vs actual spoken tone.
+  static String getToneDiagnostic(int expectedTone, int actualTone) {
+    if (expectedTone == actualTone && expectedTone > 0) {
+      switch (expectedTone) {
+        case 1:
+          return "Spot on! Pitch was high, flat, and steady.";
+        case 2:
+          return "Spot on! Upward pitch rise was clear.";
+        case 3:
+          return "Spot on! Low dipping curve was accurate.";
+        case 4:
+          return "Spot on! Sharp falling drop was decisive.";
+        default:
+          return "Spot on! Tone was pronounced accurately.";
+      }
+    }
+
+    // Specific diagnostic guidance based on the error pair
+    if (expectedTone == 1 && actualTone == 2) {
+      return "You rose your pitch (2nd tone /). Keep your voice flat and high across the whole syllable (1st tone ˉ).";
+    } else if (expectedTone == 1 && actualTone == 3) {
+      return "You dipped your voice (3rd tone ˇ). Keep your pitch steady and high without dipping (1st tone ˉ).";
+    } else if (expectedTone == 1 && actualTone == 4) {
+      return "You dropped your pitch (4th tone \\). Sustain a high, level pitch like singing a note (1st tone ˉ).";
+    } else if (expectedTone == 2 && actualTone == 1) {
+      return "You stayed flat (1st tone ˉ). Slide your pitch upward like asking 'What?' (2nd tone /).";
+    } else if (expectedTone == 2 && actualTone == 3) {
+      return "You dipped too deep (3rd tone ˇ). Start mid-level and rise smoothly without bottoming out (2nd tone /).";
+    } else if (expectedTone == 2 && actualTone == 4) {
+      return "You dropped your pitch (4th tone \\). Rise upward like asking a question (2nd tone /).";
+    } else if (expectedTone == 3 && actualTone == 1) {
+      return "You stayed high and flat (1st tone ˉ). Let your pitch drop low into your chest register before rising (3rd tone ˇ).";
+    } else if (expectedTone == 3 && actualTone == 2) {
+      return "You rose immediately (2nd tone /). Make sure to dip down low first before rising back up (3rd tone ˇ).";
+    } else if (expectedTone == 3 && actualTone == 4) {
+      return "You dropped sharply without rising (4th tone \\). Allow your pitch to bounce gently back up at the end (3rd tone ˇ).";
+    } else if (expectedTone == 4 && actualTone == 1) {
+      return "You stayed flat (1st tone ˉ). Drop your pitch sharply and decisively like a firm 'No!' (4th tone \\).";
+    } else if (expectedTone == 4 && actualTone == 2) {
+      return "You rose your pitch (2nd tone /). Start high and snap sharply downward (4th tone \\).";
+    } else if (expectedTone == 4 && actualTone == 3) {
+      return "You dipped and rose (3rd tone ˇ). Drop straight down without rising back up (4th tone \\).";
+    }
+
+    return "Target was ${getToneName(expectedTone)}. Listen to the 4 tones below to hear the difference.";
+  }
 }

@@ -612,6 +612,49 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
     });
   }
 
+  Future<void> _handleCharacterTap({
+    required String character,
+    required String pinyin,
+    required int expectedTone,
+    required int actualTone,
+    String? feedback,
+  }) async {
+    // 1. Put the call on a break / pause
+    _recognitionSession++;
+    _listeningWatchdog?.cancel();
+    _isStartingListening = false;
+    await ref.read(speechServiceProvider).stopListening();
+    try {
+      await _voicePlayer.pause();
+    } catch (_) {}
+    await ref.read(audioServiceProvider).stop();
+
+    if (mounted) {
+      setState(() {
+        _partialUserText = '';
+        _audioLevel = 0;
+      });
+      _setCallState(LiveCallState.idle, "Call Paused (Reviewing Tones)");
+    }
+
+    if (!mounted) return;
+
+    // 2. Open Tone Comparison Sheet and wait for user to finish reviewing
+    await ToneComparisonSheet.show(
+      context,
+      character: character,
+      pinyin: pinyin,
+      expectedTone: expectedTone,
+      actualTone: actualTone,
+      feedback: feedback,
+    );
+
+    // 3. Resume the call seamlessly once sheet is closed
+    if (mounted && !_isDisposed && !_isEndingCall && !_isMuted && !_isHandlingTurn && _callState != LiveCallState.speaking) {
+      _startListening();
+    }
+  }
+
   Future<void> _togglePause() async {
     setState(() {
       _isMuted = !_isMuted;
@@ -932,7 +975,11 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
                             }
                             final msg = _transcript[index];
                             return _LiveTranscriptBubble(
-                                message: msg, theme: theme, subtitleMode: _subtitleMode);
+                              message: msg,
+                              theme: theme,
+                              subtitleMode: _subtitleMode,
+                              onCharacterTap: _handleCharacterTap,
+                            );
                           },
                         ),
                       ),
@@ -1105,7 +1152,20 @@ class _LiveTranscriptBubble extends StatelessWidget {
   final LiveCallMessage message;
   final ThemeData theme;
   final int subtitleMode;
-  const _LiveTranscriptBubble({required this.message, required this.theme, this.subtitleMode = 0});
+  final Future<void> Function({
+    required String character,
+    required String pinyin,
+    required int expectedTone,
+    required int actualTone,
+    String? feedback,
+  })? onCharacterTap;
+
+  const _LiveTranscriptBubble({
+    required this.message,
+    required this.theme,
+    this.subtitleMode = 0,
+    this.onCharacterTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -1232,14 +1292,24 @@ class _LiveTranscriptBubble extends StatelessWidget {
 
         return GestureDetector(
           onTap: () {
-            ToneComparisonSheet.show(
-              context,
-              character: word,
-              pinyin: pinyin,
-              expectedTone: expectedTone,
-              actualTone: actualTone,
-              feedback: feedback,
-            );
+            if (onCharacterTap != null) {
+              onCharacterTap!(
+                character: word,
+                pinyin: pinyin,
+                expectedTone: expectedTone,
+                actualTone: actualTone,
+                feedback: feedback,
+              );
+            } else {
+              ToneComparisonSheet.show(
+                context,
+                character: word,
+                pinyin: pinyin,
+                expectedTone: expectedTone,
+                actualTone: actualTone,
+                feedback: feedback,
+              );
+            }
           },
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -1278,7 +1348,6 @@ class _LiveTranscriptBubble extends StatelessWidget {
       }).toList(),
     );
   }
-
 }
 
 class _CallControlButton extends StatelessWidget {

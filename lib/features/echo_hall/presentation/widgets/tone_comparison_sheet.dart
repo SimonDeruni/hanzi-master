@@ -19,7 +19,7 @@ class ToneComparisonSheet extends ConsumerStatefulWidget {
     this.feedback,
   });
 
-  static void show(
+  static Future<T?> show<T>(
     BuildContext context, {
     required String character,
     required String pinyin,
@@ -27,7 +27,7 @@ class ToneComparisonSheet extends ConsumerStatefulWidget {
     required int actualTone,
     String? feedback,
   }) {
-    showModalBottomSheet(
+    return showModalBottomSheet<T>(
       context: context,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
@@ -52,8 +52,8 @@ class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
     setState(() => _playingTone = tone);
     try {
       final audioService = ref.read(audioServiceProvider);
-      // Play the syllable with tone via TTS / Azure audio
-      await audioService.playSentence(tonePinyin);
+      // Play isolated tone with exaggerated pitch range (+25%) and slower rate (-12%)
+      await audioService.playToneAudition(tonePinyin);
     } catch (e) {
       debugPrint("Error playing tone audio: $e");
     } finally {
@@ -246,7 +246,48 @@ class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
               ],
             ),
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 14),
+
+          // Diagnostic Guidance Card
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+            decoration: BoxDecoration(
+              color: isCorrect
+                  ? const Color(0xFF10B981).withValues(alpha: isDark ? 0.12 : 0.08)
+                  : const Color(0xFFF59E0B).withValues(alpha: isDark ? 0.12 : 0.08),
+              borderRadius: BorderRadius.circular(14),
+              border: Border.all(
+                color: isCorrect
+                    ? const Color(0xFF10B981).withValues(alpha: 0.3)
+                    : const Color(0xFFF59E0B).withValues(alpha: 0.3),
+              ),
+            ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Icon(
+                  isCorrect ? Icons.check_circle_outline : Icons.lightbulb_outline,
+                  size: 18,
+                  color: isCorrect ? const Color(0xFF10B981) : const Color(0xFFF59E0B),
+                ),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Text(
+                    PinyinUtils.getToneDiagnostic(widget.expectedTone, widget.actualTone),
+                    style: theme.textTheme.bodySmall?.copyWith(
+                      color: isCorrect
+                          ? (isDark ? const Color(0xFF34D399) : const Color(0xFF047857))
+                          : (isDark ? const Color(0xFFFBBF24) : const Color(0xFFB45309)),
+                      fontWeight: FontWeight.w600,
+                      height: 1.4,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 16),
 
           Text(
             "4-Tone Comparison (Tap to Listen):",
