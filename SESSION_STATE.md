@@ -7,8 +7,8 @@
 - **Locked Files:**
     - [None]
 
-- [x] **Production Release (Build #156):** Unified Azure pipeline, automated dictionary tone gap audit, natural balanced pitch prosody, and professional linguistic coaching. Bumped to `1.0.0+156`. (Status: COMPLETED)
-- [x] **Professional Linguistic Analysis Prompt:** Overhauled `_generateFinalVerdict` to deliver direct, professional, actionable phonetic critique. (Status: COMPLETED)
+- [x] **iOS Build & CocoaPods Fix (Build #157):** Cleaned `ios/Podfile`, removed unused `flutter_sound`, and fixed `platform :ios, '15.5'` declaration. Bumped to `1.0.0+157`. (Status: COMPLETED)
+- [x] **Production Release (Build #156):** Unified Azure pipeline, automated dictionary tone gap audit, natural balanced pitch prosody, and professional linguistic coaching. (Status: COMPLETED)
 - [x] **Audited Tone-Gap Detection & Zero-Playback for Non-Existent Tones:** Audited lexicon for tone gaps; displayed `Does not exist in Chinese` badge and disabled audio playback for non-existent tones. Bumped to `1.0.0+153`. (Status: COMPLETED)
 - [x] **Comprehensive Codebase Regex & Unicode Hardening:** Audited all `RegExp` patterns across the project; added `v`/`V` support for `ü` in `convertNumericToMarks`; verified Unicode-safe hashing. Bumped to `1.0.0+152`. (Status: COMPLETED)
 - [x] **Exaggerated Tone Audition Pitch Range (+50%) & Articulated Rate (-22%):** Boosted dynamic pitch excursion in `AudioService.playToneAudition`. (Status: COMPLETED)

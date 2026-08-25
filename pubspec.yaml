@@ -1,7 +1,7 @@
 name: hanzi_master
 description: A mobile-first Chinese learning application.
 publish_to: 'none'
-version: 1.0.0+156
+version: 1.0.0+157
 
 environment:
   sdk: '>=3.2.0 <4.0.0'
@@ -45,8 +45,6 @@ dependencies:
   record: ^6.2.1
   permission_handler: ^12.0.3
   google_generative_ai: ^0.4.7
-  web_socket_channel: ^3.0.3
-  flutter_sound: ^9.30.0
   flutter_dotenv: ^6.0.1
   flutter_localizations:
     sdk: flutter

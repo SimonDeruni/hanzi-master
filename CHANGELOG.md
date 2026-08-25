@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.0+157] - 2026-08-25
+- **iOS Build & CocoaPods Fix**:
+  - Removed brittle hardcoded CDN source line from `ios/Podfile` causing `Pod::Source::Aggregate#search` errors on CI builders.
+  - Ensured global `platform :ios, '15.5'` declaration is loaded before target definitions.
+  - Removed unused `flutter_sound` and `web_socket_channel` dependencies to eliminate redundant iOS native pod resolutions.
+
 ## [1.0.0+156] - 2026-08-25
 - **Production Release: Unified Azure Pipeline, Lexical Tone Gap Verification & Professional Linguistic Analysis**:
   - Unified both Speech-to-Text and Pronunciation Assessment on Microsoft Azure Cognitive Services (single source of truth).
