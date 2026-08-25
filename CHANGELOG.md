@@ -3,6 +3,8 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- **Continuous Multi-Word Sentence Recognition**:
+  - Enabled `ListenMode.dictation` in `SpeechListenOptions` so the speech recognizer listens for full sentences and multi-word conversational thoughts rather than cutting off after single words. Bumped build to `1.0.0+134`.
 - **Instant AI Turn Processing & Non-Blocking Translation**:
   - Replaced blocking ML Kit model lookup with non-blocking timeout handling so Gemini and Azure Neural speech respond instantaneously upon user speech completion.
   - Set conversational speech pause timeout to 2.5s for snappy turn-taking, and guaranteed clean session reset in `SpeechService`. Bumped build to `1.0.0+133`.

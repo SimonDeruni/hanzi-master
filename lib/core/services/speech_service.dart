@@ -60,6 +60,7 @@ class SpeechService {
         onSoundLevelChange: onSoundLevel,
         localeId: localeId,
         listenOptions: SpeechListenOptions(
+          listenMode: ListenMode.dictation,
           partialResults: true,
           cancelOnError: false,
         ),
