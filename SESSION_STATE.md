@@ -7,6 +7,7 @@
 - **Locked Files:**
     - [None]
 
+- [x] **Exhaustive Automated Dictionary Tone Audit & Natural Balanced Prosody:** Audited all 409 syllables / 1,636 tone combinations against 120,990 dictionary entries; pruned 404 tone gaps; tuned natural pitch range (+18%) with SAPI phonemes. Bumped to `1.0.0+154`. (Status: COMPLETED)
 - [x] **Audited Tone-Gap Detection & Zero-Playback for Non-Existent Tones:** Audited lexicon for tone gaps; displayed `Does not exist in Chinese` badge and disabled audio playback for non-existent tones. Bumped to `1.0.0+153`. (Status: COMPLETED)
 - [x] **Comprehensive Codebase Regex & Unicode Hardening:** Audited all `RegExp` patterns across the project; added `v`/`V` support for `ü` in `convertNumericToMarks`; verified Unicode-safe hashing. Bumped to `1.0.0+152`. (Status: COMPLETED)
 - [x] **Exaggerated Tone Audition Pitch Range (+50%) & Articulated Rate (-22%):** Boosted dynamic pitch excursion in `AudioService.playToneAudition`. (Status: COMPLETED)

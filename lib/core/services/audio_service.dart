@@ -12,6 +12,7 @@ import 'dart:math' as math;
 import 'package:http/http.dart' as http;
 
 import 'package:hanzi_master/core/services/api_key_pool.dart';
+import '../utils/pinyin_utils.dart';
 
 final audioServiceProvider = Provider<AudioService>((ref) {
   final pool = ref.watch(apiKeyPoolProvider);
@@ -253,15 +254,15 @@ class AudioService {
 
 
 
-  /// Plays an isolated tone syllable or native Hanzi exemplar with exaggerated pitch range (+50%)
-  /// and relaxed pacing (-22%) so learners can effortlessly distinguish pitch contours.
+  /// Plays an isolated tone syllable or native Hanzi exemplar with balanced natural pitch range (+18%)
+  /// and gentle pacing (-8%) with SAPI phoneme guidance for crystal-clear onset consonants and natural vowels.
   Future<bool> playToneAudition(String textToSpeak, {String? pinyin, String? cacheKey}) async {
     if (!_isInitialized) await init();
     await stop();
 
-    // Use stable Unicode-aware hash with tone_v3 prefix for exaggerated pitch auditions
-    final hash = _hashText('tone_v3:$textToSpeak:${pinyin ?? ''}:${cacheKey ?? ''}');
-    final cacheFile = File('${_cacheDir!.path}/tts_cache/tone_v3_$hash.mp3');
+    // Use stable Unicode-aware hash with tone_v4 prefix for natural balanced pitch auditions
+    final hash = _hashText('tone_v4:$textToSpeak:${pinyin ?? ''}:${cacheKey ?? ''}');
+    final cacheFile = File('${_cacheDir!.path}/tts_cache/tone_v4_$hash.mp3');
     if (await cacheFile.exists()) {
       try {
         await _player.play(DeviceFileSource(cacheFile.path));
@@ -271,11 +272,21 @@ class AudioService {
       }
     }
 
+    String? sapiPhoneme;
+    if (pinyin != null && pinyin.isNotEmpty) {
+      final base = PinyinUtils.removeToneMarks(pinyin).trim().toLowerCase();
+      final tone = PinyinUtils.getTone(pinyin);
+      if (base.isNotEmpty && tone >= 1 && tone <= 5) {
+        sapiPhoneme = '$base $tone';
+      }
+    }
+
     try {
       final result = await _fetchCloudTTS(
         textToSpeak,
-        pitchRange: '+50%',
-        rateAdjustment: -22,
+        pitchRange: '+18%',
+        rateAdjustment: -8,
+        phoneme: sapiPhoneme,
         cacheFile: cacheFile,
       );
       if (result != null && result.audio.isNotEmpty) {
@@ -298,6 +309,7 @@ class AudioService {
     String azureVoice = 'zh-CN-XiaoxiaoNeural',
     String pitchRange = '+15%',
     int rateAdjustment = 0,
+    String? phoneme,
     File? cacheFile,
     File? boundaryFile,
   }) async {
@@ -310,7 +322,10 @@ class AudioService {
 
     final safeText = text.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
     final ratePercent = math.max(-50, math.min(200, ((_speechRate - 0.5) * 200).round() + rateAdjustment));
-    final ssml = '''<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xml:lang='zh-CN'><voice name='$azureVoice'><prosody rate='$ratePercent%' range='$pitchRange'>$safeText</prosody></voice></speak>''';
+    final innerContent = (phoneme != null && phoneme.isNotEmpty)
+        ? "<phoneme alphabet='sapi' ph='$phoneme'>$safeText</phoneme>"
+        : safeText;
+    final ssml = '''<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xml:lang='zh-CN'><voice name='$azureVoice'><prosody rate='$ratePercent%' range='$pitchRange'>$innerContent</prosody></voice></speak>''';
 
     final uri = Uri.parse('https://$region.tts.speech.microsoft.com/cognitiveservices/v1');
 
