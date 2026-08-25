@@ -48,7 +48,8 @@ class ToneComparisonSheet extends ConsumerStatefulWidget {
 class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
   int? _playingTone;
 
-  Future<void> _playToneAudio(int tone, String tonePinyin, String exemplarHanzi) async {
+  Future<void> _playToneAudio(int tone, String tonePinyin, String? exemplarHanzi) async {
+    if (exemplarHanzi == null || exemplarHanzi.isEmpty) return;
     setState(() => _playingTone = tone);
     try {
       final audioService = ref.read(audioServiceProvider);
@@ -330,6 +331,9 @@ class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
     final onSurface = theme.colorScheme.onSurface;
     final isPlaying = _playingTone == tone;
 
+    final exemplarHanzi = PinyinUtils.getExemplarHanzi(widget.pinyin, tone);
+    final bool existsInChinese = exemplarHanzi != null && exemplarHanzi.isNotEmpty;
+
     Color borderColor = theme.colorScheme.outlineVariant.withValues(alpha: 0.3);
     Color cardBg = isDark ? Colors.white.withValues(alpha: 0.03) : Colors.white;
 
@@ -342,116 +346,156 @@ class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
     } else if (isActual) {
       borderColor = const Color(0xFFF59E0B);
       cardBg = const Color(0xFFF59E0B).withValues(alpha: isDark ? 0.12 : 0.06);
+    } else if (!existsInChinese) {
+      borderColor = borderColor.withValues(alpha: 0.15);
+      cardBg = isDark ? Colors.white.withValues(alpha: 0.01) : const Color(0xFFF8F9FA);
     }
 
     final pitchIcon = _getPitchIcon(tone);
-    final exemplarHanzi = PinyinUtils.getExemplarHanzi(widget.pinyin, tone);
 
     return InkWell(
-      onTap: () => _playToneAudio(tone, pinyinWithTone, exemplarHanzi),
+      onTap: existsInChinese ? () => _playToneAudio(tone, pinyinWithTone, exemplarHanzi) : null,
       borderRadius: BorderRadius.circular(16),
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-        decoration: BoxDecoration(
-          color: cardBg,
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: borderColor, width: (isExpected || isActual) ? 1.5 : 1.0),
-        ),
-        child: Row(
-          children: [
-            // Pitch Contour Badge
-            Container(
-              width: 38,
-              height: 38,
-              decoration: BoxDecoration(
-                color: borderColor.withValues(alpha: 0.15),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Center(
-                child: Text(
-                  pitchIcon,
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: isExpected ? const Color(0xFF3B82F6) : (isActual ? const Color(0xFFF59E0B) : onSurface.withValues(alpha: 0.6)),
+      child: Opacity(
+        opacity: existsInChinese ? 1.0 : 0.65,
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          decoration: BoxDecoration(
+            color: cardBg,
+            borderRadius: BorderRadius.circular(16),
+            border: Border.all(color: borderColor, width: (isExpected || isActual) ? 1.5 : 1.0),
+          ),
+          child: Row(
+            children: [
+              // Pitch Contour Badge
+              Container(
+                width: 38,
+                height: 38,
+                decoration: BoxDecoration(
+                  color: existsInChinese ? borderColor.withValues(alpha: 0.15) : Colors.grey.withValues(alpha: 0.1),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Center(
+                  child: Text(
+                    pitchIcon,
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: !existsInChinese
+                          ? onSurface.withValues(alpha: 0.3)
+                          : (isExpected
+                              ? const Color(0xFF3B82F6)
+                              : (isActual ? const Color(0xFFF59E0B) : onSurface.withValues(alpha: 0.6))),
+                    ),
                   ),
                 ),
               ),
-            ),
-            const SizedBox(width: 14),
+              const SizedBox(width: 14),
 
-            // Pinyin + Name + Exemplar Character
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Text(
-                        "$pinyinWithTone  ($exemplarHanzi)",
-                        style: theme.textTheme.titleMedium?.copyWith(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                        ),
-                      ),
-                      const SizedBox(width: 8),
-                      if (isExpected)
-                        Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                          decoration: BoxDecoration(
-                            color: const Color(0xFF3B82F6).withValues(alpha: 0.2),
-                            borderRadius: BorderRadius.circular(6),
+              // Pinyin + Name + Exemplar Character / Gap Badge
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Text(
+                          existsInChinese ? "$pinyinWithTone  ($exemplarHanzi)" : pinyinWithTone,
+                          style: theme.textTheme.titleMedium?.copyWith(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                            color: existsInChinese ? null : onSurface.withValues(alpha: 0.5),
                           ),
-                          child: const Text(
-                            "🎯 Expected",
-                            style: TextStyle(
-                              fontSize: 10,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xFF2563EB),
+                        ),
+                        const SizedBox(width: 8),
+                        if (isExpected)
+                          Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                            decoration: BoxDecoration(
+                              color: const Color(0xFF3B82F6).withValues(alpha: 0.2),
+                              borderRadius: BorderRadius.circular(6),
+                            ),
+                            child: const Text(
+                              "🎯 Expected",
+                              style: TextStyle(
+                                fontSize: 10,
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xFF2563EB),
+                              ),
+                            ),
+                          )
+                        else if (isActual)
+                          Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                            decoration: BoxDecoration(
+                              color: const Color(0xFFF59E0B).withValues(alpha: 0.2),
+                              borderRadius: BorderRadius.circular(6),
+                            ),
+                            child: const Text(
+                              "🗣️ You Said",
+                              style: TextStyle(
+                                fontSize: 10,
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xFFD97706),
+                              ),
+                            ),
+                          )
+                        else if (!existsInChinese)
+                          Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                            decoration: BoxDecoration(
+                              color: isDark
+                                  ? Colors.white.withValues(alpha: 0.08)
+                                  : Colors.black.withValues(alpha: 0.05),
+                              borderRadius: BorderRadius.circular(6),
+                            ),
+                            child: Text(
+                              "Does not exist in Chinese",
+                              style: TextStyle(
+                                fontSize: 10,
+                                fontWeight: FontWeight.w600,
+                                color: onSurface.withValues(alpha: 0.5),
+                              ),
                             ),
                           ),
-                        ),
-                      if (isActual && !isExpected)
-                        Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                          decoration: BoxDecoration(
-                            color: const Color(0xFFF59E0B).withValues(alpha: 0.2),
-                            borderRadius: BorderRadius.circular(6),
-                          ),
-                          child: const Text(
-                            "🗣️ You Said",
-                            style: TextStyle(
-                              fontSize: 10,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xFFD97706),
-                            ),
-                          ),
-                        ),
-                    ],
-                  ),
-                  const SizedBox(height: 2),
-                  Text(
-                    PinyinUtils.getToneDescription(tone),
-                    style: theme.textTheme.bodySmall?.copyWith(
-                      color: onSurface.withValues(alpha: 0.6),
-                      fontSize: 11,
+                      ],
                     ),
-                  ),
-                ],
+                    const SizedBox(height: 2),
+                    Text(
+                      existsInChinese
+                          ? PinyinUtils.getToneDescription(tone)
+                          : "This tone does not exist in standard Mandarin.",
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        color: onSurface.withValues(alpha: existsInChinese ? 0.6 : 0.4),
+                        fontSize: 11,
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
 
-            // Play Audio Action Button
-            IconButton(
-              onPressed: () => _playToneAudio(tone, pinyinWithTone, exemplarHanzi),
-              icon: Icon(
-                isPlaying ? Icons.volume_up : Icons.volume_down_outlined,
-                color: isPlaying ? const Color(0xFF10B981) : theme.colorScheme.primary,
-                size: 24,
-              ),
-              tooltip: "Play $pinyinWithTone",
-            ),
-          ],
+              // Audio Action (Disabled & muted if tone does not exist)
+              if (existsInChinese)
+                IconButton(
+                  onPressed: () => _playToneAudio(tone, pinyinWithTone, exemplarHanzi),
+                  icon: Icon(
+                    isPlaying ? Icons.volume_up : Icons.volume_down_outlined,
+                    color: isPlaying ? const Color(0xFF10B981) : theme.colorScheme.primary,
+                    size: 24,
+                  ),
+                  tooltip: "Play $pinyinWithTone",
+                )
+              else
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  child: Icon(
+                    Icons.volume_off_outlined,
+                    color: onSurface.withValues(alpha: 0.25),
+                    size: 20,
+                  ),
+                ),
+            ],
+          ),
         ),
       ),
     );

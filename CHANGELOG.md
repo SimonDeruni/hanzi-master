@@ -3,6 +3,9 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- **Audited Tone-Gap Detection & Zero-Playback for Non-Existent Tones**:
+  - Audited `PinyinUtils._syllableExemplars` across the Chinese lexicon to remove fake copy-pasted characters for non-existent tones (e.g. removed fake 2nd-tone `蜗` from `wo`, fake tones from `gei`, `shei`, `te`, `de`, `sen`, `ri`, `re`).
+  - Updated `ToneComparisonSheet` to detect when a tone does not exist in standard Mandarin Chinese: displays `[ Does not exist in Chinese ]`, dims the card, and completely disables the speaker button so learners never hear fake or duplicate audio. Bumped build to `1.0.0+153`.
 - **Comprehensive Codebase Regex & Unicode Hardening**:
   - Audited all regular expressions across the codebase for Unicode safety, pinyin diacritics, and Chinese character matching.
   - Added support for `v`/`V` input normalization alongside `u:` in `PinyinUtils.convertNumericToMarks` (e.g. `lv4` ➔ `lǜ`, `nv3` ➔ `nǚ`).

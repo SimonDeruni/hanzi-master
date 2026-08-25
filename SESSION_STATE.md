@@ -7,6 +7,7 @@
 - **Locked Files:**
     - [None]
 
+- [x] **Audited Tone-Gap Detection & Zero-Playback for Non-Existent Tones:** Audited lexicon for tone gaps; displayed `Does not exist in Chinese` badge and disabled audio playback for non-existent tones. Bumped to `1.0.0+153`. (Status: COMPLETED)
 - [x] **Comprehensive Codebase Regex & Unicode Hardening:** Audited all `RegExp` patterns across the project; added `v`/`V` support for `ü` in `convertNumericToMarks`; verified Unicode-safe hashing. Bumped to `1.0.0+152`. (Status: COMPLETED)
 - [x] **Exaggerated Tone Audition Pitch Range (+50%) & Articulated Rate (-22%):** Boosted dynamic pitch excursion in `AudioService.playToneAudition`. (Status: COMPLETED)
 - [x] **Hanzi Exemplar 4-Tone Audio Auditioning:** Implemented `PinyinUtils.getExemplarHanzi` and wired `ToneComparisonSheet` to synthesize native Hanzi characters. (Status: COMPLETED)

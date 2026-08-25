@@ -241,16 +241,18 @@ class PinyinUtils {
     return "Target was ${getToneName(expectedTone)}. Listen to the 4 tones below to hear the difference.";
   }
 
-  /// Returns a native Hanzi exemplar character for a given syllable base and tone.
-  /// This ensures Azure Neural TTS synthesizes a true, native Chinese tone rather than
-  /// flattening an unaccented Latin string.
-  static String getExemplarHanzi(String pinyinWithTone, int tone) {
+  /// Returns a native Hanzi exemplar character for a given syllable base and tone,
+  /// or null if this tone does not exist in standard Mandarin Chinese.
+  static String? getExemplarHanzi(String pinyinWithTone, int tone) {
     final base = removeToneMarks(pinyinWithTone).trim().toLowerCase();
     final map = _syllableExemplars[base];
     if (map != null && map.containsKey(tone)) {
-      return map[tone]!;
+      final val = map[tone];
+      if (val != null && val.trim().isNotEmpty) {
+        return val.trim();
+      }
     }
-    return convertNumericToMarks('$base$tone');
+    return null;
   }
 
   static const Map<String, Map<int, String>> _syllableExemplars = {
@@ -579,7 +581,7 @@ class PinyinUtils {
     'wei': {1: '微', 2: '唯', 3: '伟', 4: '位'},
     'wen': {1: '温', 2: '文', 3: '吻', 4: '问'},
     'weng': {1: '翁', 2: '翁', 3: '嗡', 4: '瓮'},
-    'wo': {1: '窝', 2: '蜗', 3: '我', 4: '握'},
+    'wo': {1: '窝', 3: '我', 4: '握'},
     'wu': {1: '屋', 2: '无', 3: '五', 4: '物'},
     'xi': {1: '西', 2: '席', 3: '洗', 4: '细'},
     'xia': {1: '瞎', 2: '峡', 3: '下', 4: '夏'},
