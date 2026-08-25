@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- **Live Call Real Azure Pronunciation Assessment Integration**:
+  - Integrated `AudioRecorder` to capture 16kHz PCM WAV turn audio during Live Calls.
+  - Concurrently evaluates user spoken turns via Azure Cognitive Services Pronunciation Assessment REST API (`geminiService.gradeAudio`), replacing the previous static confidence estimation with 100% genuine Azure acoustic phoneme, tone, accuracy, and fluency scoring.
+  - Live transcript bubbles display real-time assessing status and seamlessly upgrade with refined transcriptions and authentic character-by-character tone ratings.
+  - Enhanced turn silence tolerance (5s duration + 1.4s debounce) to prevent premature sentence cutoffs.
+  - Added Azure Pronunciation Assessment Overview metrics banner to `LiveCallSummaryScreen` and grounded Scholar's Verdict in genuine acoustic assessment data. Bumped build to `1.0.0+144`.
 - **Hanzi Exemplar 4-Tone Audio Auditioning**:
   - Implemented `PinyinUtils.getExemplarHanzi` mapping Mandarin syllables across all 4 tones to genuine Chinese characters (e.g. `mi` -> `咪`, `迷`, `米`, `密`).
   - Tone auditioning in `ToneComparisonSheet` and `AudioService` now synthesizes native Hanzi exemplar characters, ensuring Azure Neural TTS produces 4 radically distinct, authentic native pitch contours. Bumped build to `1.0.0+143`.

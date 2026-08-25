@@ -18,6 +18,8 @@ import '../widgets/live_call_summary_screen.dart';
 import '../widgets/tone_comparison_sheet.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/shared/widgets/tappable_hanzi_text.dart';
+import 'package:record/record.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:lpinyin/lpinyin.dart';
 
 enum LiveCallState {
@@ -115,6 +117,9 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
   int _recognitionSession = 0;
   String _partialUserText = '';
   Timer? _listeningWatchdog;
+  Timer? _silenceDebounceTimer;
+  final AudioRecorder _turnRecorder = AudioRecorder();
+  String? _currentTurnAudioPath;
 
   @override
   void initState() {
@@ -246,42 +251,61 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
     _isStartingListening = true;
     final session = ++_recognitionSession;
     _listeningWatchdog?.cancel();
+    _silenceDebounceTimer?.cancel();
+
+    // 1. Start raw 16kHz PCM WAV audio capture for Azure Pronunciation Assessment
+    try {
+      if (await _turnRecorder.hasPermission()) {
+        final tempDir = await getTemporaryDirectory();
+        final path = '${tempDir.path}/live_call_turn_${DateTime.now().millisecondsSinceEpoch}.wav';
+        _currentTurnAudioPath = path;
+        await _turnRecorder.start(
+          const RecordConfig(
+            encoder: AudioEncoder.pcm16bits,
+            sampleRate: 16000,
+            numChannels: 1,
+          ),
+          path: path,
+        );
+      }
+    } catch (e) {
+      debugPrint("LiveCall turn recorder start error: $e");
+    }
+
+    void scheduleTurnExecution(String candidateText) {
+      final cleanText = candidateText.trim();
+      if (cleanText.isEmpty) return;
+      _silenceDebounceTimer?.cancel();
+      // Use 1400ms silence debounce so user pauses don't prematurely cut sentences in half
+      _silenceDebounceTimer = Timer(const Duration(milliseconds: 1400), () {
+        if (!_isCurrentRecognitionSession(session) || _isHandlingTurn || _isMuted) return;
+        _isHandlingTurn = true;
+        unawaited(_handleUserInputAndRespond(cleanText));
+      });
+    }
 
     final started = await speechService.startListening(
       listenFor: const Duration(seconds: 60),
-      pauseFor: const Duration(seconds: 3),
+      pauseFor: const Duration(seconds: 5),
       onPartialResult: (text) {
         if (!_isCurrentRecognitionSession(session) || _isHandlingTurn) return;
         setState(() => _partialUserText = text);
         _scrollToBottom();
+        scheduleTurnExecution(text);
       },
       onResultWithConfidence: (text, confidence) {
         if (!_isCurrentRecognitionSession(session) || _isHandlingTurn) return;
-        final finalText = text.trim();
-        if (finalText.isEmpty) {
-          _quietlyRestartListening(session);
-          return;
-        }
-        _isHandlingTurn = true;
-        unawaited(_handleUserInputAndRespond(finalText, confidence: confidence));
+        scheduleTurnExecution(text);
       },
       onResult: (text) {
         if (!_isCurrentRecognitionSession(session) || _isHandlingTurn) return;
-        final finalText = text.trim();
-        if (finalText.isEmpty) {
-          _quietlyRestartListening(session);
-          return;
-        }
-        _isHandlingTurn = true;
-        unawaited(_handleUserInputAndRespond(finalText));
+        scheduleTurnExecution(text);
       },
       onStatus: (status) {
         if (!_isCurrentRecognitionSession(session) || _isHandlingTurn) return;
         if (status == 'done' || status == 'notListening') {
           if (_partialUserText.trim().isNotEmpty) {
-            final finalText = _partialUserText.trim();
-            _isHandlingTurn = true;
-            unawaited(_handleUserInputAndRespond(finalText));
+            scheduleTurnExecution(_partialUserText.trim());
           } else {
             _quietlyRestartListening(session);
           }
@@ -323,6 +347,7 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
     _recognitionSession++;
     _isStartingListening = false;
     _listeningWatchdog?.cancel();
+    _silenceDebounceTimer?.cancel();
     if (mounted) {
       setState(() {
         _partialUserText = '';
@@ -342,6 +367,7 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
     _recognitionSession++;
     _isStartingListening = false;
     _listeningWatchdog?.cancel();
+    _silenceDebounceTimer?.cancel();
     setState(() {
       _partialUserText = '';
       _audioLevel = 0;
@@ -361,7 +387,7 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
     }
   }
 
-  Future<void> _handleUserInputAndRespond(String text, {double confidence = 0.88}) async {
+  Future<void> _handleUserInputAndRespond(String text) async {
     if (_isDisposed || !mounted || _isEndingCall) {
       _isHandlingTurn = false;
       return;
@@ -369,8 +395,19 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
 
     _recognitionSession++;
     _listeningWatchdog?.cancel();
+    _silenceDebounceTimer?.cancel();
 
-    // Stop listening while thinking/speaking
+    // 1. Stop audio recording to preserve the user's spoken audio for Azure Pronunciation Assessment
+    String? audioPath = _currentTurnAudioPath;
+    try {
+      if (await _turnRecorder.isRecording()) {
+        audioPath = await _turnRecorder.stop();
+      }
+    } catch (e) {
+      debugPrint("Turn recorder stop error: $e");
+    }
+
+    // Stop on-device STT listening while tutor thinks/speaks
     await ref.read(speechServiceProvider).stopListening();
 
     String? userPinyin;
@@ -388,59 +425,9 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
       debugPrint("User translation error/timeout: $e");
     }
 
-    // Build authentic real-time acoustic grading for the user's spoken words
-    final baseScore = (confidence > 0 ? (confidence * 100).round() : 88).clamp(55, 98);
-    final gradeWords = <Map<String, dynamic>>[];
-    for (int i = 0; i < text.length; i++) {
-      final char = text[i];
-      if (RegExp(r'[\u4e00-\u9fa5]').hasMatch(char)) {
-        final charPinyin = PinyinHelper.getPinyinE(char, format: PinyinFormat.WITH_TONE_MARK);
-        int tone = 5;
-        if (charPinyin.contains(RegExp(r'[āēīōūǖ]'))) {
-          tone = 1;
-        } else if (charPinyin.contains(RegExp(r'[áéíóúǘ]'))) {
-          tone = 2;
-        } else if (charPinyin.contains(RegExp(r'[ǎěǐǒǔǚ]'))) {
-          tone = 3;
-        } else if (charPinyin.contains(RegExp(r'[àèìòùǜ]'))) {
-          tone = 4;
-        }
-
-        final charScore = (baseScore + ((i % 3 == 0) ? 2 : (i % 3 == 1 ? -3 : 0))).clamp(50, 99);
-        final isCorrect = charScore >= 75;
-        final isPartial = charScore >= 60 && charScore < 75;
-
-        gradeWords.add({
-          'word': char,
-          'pinyin': charPinyin,
-          'isCorrect': isCorrect,
-          'isPartial': isPartial,
-          'expectedTone': tone,
-          'actualTone': isCorrect ? tone : (tone % 4 + 1),
-          'wordScore': charScore,
-          'accuracyScore': charScore,
-          'feedback': isCorrect ? 'Tone accurate' : (isPartial ? 'Tone slightly off' : 'Tone mispronounced'),
-        });
-      }
-    }
-
-    int totalWordScore = 0;
-    for (var w in gradeWords) {
-      totalWordScore += (w['wordScore'] as num).toInt();
-    }
-    final avgScore = gradeWords.isNotEmpty ? (totalWordScore / gradeWords.length).round() : baseScore;
-
-    final userGrade = gradeWords.isNotEmpty ? {
-      'score': avgScore,
-      'overallScore': avgScore,
-      'accuracy': avgScore,
-      'fluency': (avgScore - 4).clamp(50, 98),
-      'completeness': 100,
-      'overallFeedback': avgScore >= 80 ? 'Great pronunciation and tone accuracy!' : (avgScore >= 65 ? 'Good effort! Pay attention to your tones.' : 'Needs practice on tones and pronunciation.'),
-      'words': gradeWords,
-    } : null;
-
     if (_isDisposed || !mounted || _isEndingCall) return;
+    
+    final messageIndex = _transcript.length;
     setState(() {
       _partialUserText = '';
       _audioLevel = 0;
@@ -449,12 +436,81 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
         pinyin: userPinyin,
         translation: userTranslation,
         role: ChatRole.user, 
-        grade: userGrade,
+        grade: null, // Evaluating with Azure Cognitive Services in background
+        audioPath: audioPath,
       ));
     });
     _scrollToBottom();
 
+    // 2. Concurrently evaluate turn audio with Azure Pronunciation Assessment
+    unawaited(_evaluateTurnWithAzure(
+      messageIndex: messageIndex,
+      audioPath: audioPath,
+      fallbackText: text,
+    ));
+
     await _handleUserInputAndRespondContinued(text);
+  }
+
+  Future<void> _evaluateTurnWithAzure({
+    required int messageIndex,
+    required String? audioPath,
+    required String fallbackText,
+  }) async {
+    if (audioPath == null) return;
+    final file = File(audioPath);
+    if (!file.existsSync() || file.lengthSync() < 1000) return;
+
+    try {
+      final bytes = await file.readAsBytes();
+      final geminiService = ref.read(geminiServiceProvider);
+      final expectedPinyin = PinyinHelper.getPinyinE(fallbackText, separator: ' ', format: PinyinFormat.WITH_TONE_MARK);
+
+      // Call genuine Azure Pronunciation Assessment REST API (same as Shadowing Studio)
+      final grade = await geminiService.gradeAudio(
+        bytes,
+        fallbackText,
+        expectedPinyin,
+      );
+
+      if (!mounted || _isDisposed) return;
+      if (messageIndex >= 0 && messageIndex < _transcript.length) {
+        final oldMsg = _transcript[messageIndex];
+        
+        // 1. Refine transcription if Azure recognized higher fidelity Chinese speech
+        String refinedText = oldMsg.text;
+        if (grade['text'] != null && (grade['text'] as String).trim().isNotEmpty) {
+          final azureText = (grade['text'] as String).trim();
+          if (RegExp(r'[\u4e00-\u9fa5]').hasMatch(azureText)) {
+            refinedText = azureText;
+          }
+        }
+
+        String? refinedPinyin;
+        try {
+          refinedPinyin = PinyinHelper.getPinyinE(refinedText, separator: ' ', format: PinyinFormat.WITH_TONE_MARK);
+        } catch (_) {}
+
+        String? refinedTranslation = oldMsg.translation;
+        if (refinedText != oldMsg.text) {
+          try {
+            refinedTranslation = await ref.read(localTranslationServiceProvider).translate(refinedText);
+          } catch (_) {}
+        }
+
+        setState(() {
+          _transcript[messageIndex] = oldMsg.copyWith(
+            text: refinedText,
+            pinyin: refinedPinyin ?? oldMsg.pinyin,
+            translation: refinedTranslation ?? oldMsg.translation,
+            grade: grade,
+            audioPath: audioPath,
+          );
+        });
+      }
+    } catch (e) {
+      debugPrint("Azure live call evaluation error: $e");
+    }
   }
 
   void _cycleSubtitleMode() {
@@ -698,6 +754,8 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
     _isDisposed = true;
     _recognitionSession++;
     _listeningWatchdog?.cancel();
+    _silenceDebounceTimer?.cancel();
+    _turnRecorder.dispose();
     ref.read(speechServiceProvider).stopListening();
     _voicePlayer.stop();
     _voicePlayer.dispose();
@@ -762,6 +820,27 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
         return "A crisp first step with '$word'. As you practice further, expand your responses into complete phrases to let your tones flow like running ink.";
       }
 
+      // Calculate real Azure pronunciation performance
+      int totalScore = 0;
+      int scoredTurns = 0;
+      final weakWords = <String>[];
+      for (final msg in userMessages) {
+        if (msg.grade != null && msg.grade!['score'] != null) {
+          totalScore += (msg.grade!['score'] as num).toInt();
+          scoredTurns++;
+          final words = msg.grade!['words'] as List?;
+          if (words != null) {
+            for (final w in words) {
+              if (w['isCorrect'] == false && w['word'] != null) {
+                weakWords.add(w['word'].toString());
+              }
+            }
+          }
+        }
+      }
+      final avgAzureScore = scoredTurns > 0 ? (totalScore / scoredTurns).round() : null;
+      final weakWordSummary = weakWords.isNotEmpty ? weakWords.take(4).toSet().join(", ") : null;
+
       final gemini = ref.read(geminiServiceProvider);
       final transcriptStr = _transcript
           .map((m) => "${m.role == ChatRole.user ? 'STUDENT' : 'MASTER'}: ${m.text}")
@@ -773,12 +852,15 @@ STRICT MANDATE:
 1. ALWAYS stay 100% in character as a wise, encouraging Chinese Calligraphy & Language Master. Speak directly to the student ("You articulated...", "Your rhythm...", "Let your tones...").
 2. ABSOLUTELY NEVER mention "transcript", "recordings", "audio", "prompts", "AI", "models", "data", "not enough information", or any technical/system limitations.
 3. NEVER complain about the session length or format.
-4. Give a warm, inspiring, poetic critique (under 60 words) highlighting their rhythm and offering one practical tip to polish their spoken tones.
+4. Give a warm, inspiring, poetic critique (under 60 words) reflecting their rhythm, tone clarity, and one practical tip to polish their spoken Mandarin.
 ''';
 
       final userPrompt = '''
 Student's spoken dialogue:
 $transcriptStr
+
+${avgAzureScore != null ? 'Acoustic Pronunciation Accuracy: $avgAzureScore%' : ''}
+${weakWordSummary != null ? 'Characters Needing Tone Polish: $weakWordSummary' : ''}
 
 Provide your short, inspiring Scholar's Verdict directly to the student:
 ''';
@@ -1261,15 +1343,53 @@ class _LiveTranscriptBubble extends StatelessWidget {
                 ),
               );
             }),
+          ] else if (isUser) ...[
+            TappableMarkdownHanziText(
+              message.text,
+              textAlign: TextAlign.right,
+              style: theme.textTheme.bodyLarge?.copyWith(
+                color: Colors.white70,
+                fontWeight: FontWeight.normal,
+                height: 1.4,
+              ),
+            ),
+            const SizedBox(height: 4),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+              decoration: BoxDecoration(
+                color: Colors.white.withValues(alpha: 0.08),
+                borderRadius: BorderRadius.circular(8),
+                border: Border.all(color: Colors.white12),
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const SizedBox(
+                    width: 9,
+                    height: 9,
+                    child: CircularProgressIndicator(
+                      strokeWidth: 1.5,
+                      color: Colors.white54,
+                    ),
+                  ),
+                  const SizedBox(width: 6),
+                  Text(
+                    "Azure Acoustic Assessment...",
+                    style: theme.textTheme.labelSmall?.copyWith(
+                      color: Colors.white54,
+                      fontSize: 10,
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ] else ...[
             TappableMarkdownHanziText(
               message.text,
-              textAlign: isUser ? TextAlign.right : TextAlign.left,
+              textAlign: TextAlign.left,
               style: theme.textTheme.bodyLarge?.copyWith(
-                color: isUser
-                    ? Colors.white70
-                    : theme.colorScheme.primary.withValues(alpha: 0.9),
-                fontWeight: isUser ? FontWeight.normal : FontWeight.bold,
+                color: theme.colorScheme.primary.withValues(alpha: 0.9),
+                fontWeight: FontWeight.bold,
                 height: 1.4,
               ),
             ),

@@ -37,7 +37,10 @@ class LiveCallSummaryScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // 1. AI Pattern Analysis Card
+              // 1. Azure Acoustic Pronunciation Metrics Card
+              _buildAcousticScoreBanner(context, theme),
+
+              // 2. AI Pattern Analysis Card
               _buildVerdictCard(context, theme),
               
               const SizedBox(height: 32),
@@ -69,6 +72,91 @@ class LiveCallSummaryScreen extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildAcousticScoreBanner(BuildContext context, ThemeData theme) {
+    int totalScore = 0;
+    int totalAcc = 0;
+    int totalFlu = 0;
+    int count = 0;
+    for (final msg in transcript) {
+      if (msg.role == ChatRole.user && msg.grade != null && msg.grade!['score'] != null) {
+        totalScore += (msg.grade!['score'] as num).toInt();
+        totalAcc += ((msg.grade!['accuracy'] ?? msg.grade!['score']) as num).toInt();
+        totalFlu += ((msg.grade!['fluency'] ?? msg.grade!['score']) as num).toInt();
+        count++;
+      }
+    }
+
+    if (count == 0) return const SizedBox.shrink();
+
+    final avgScore = (totalScore / count).round();
+    final avgAcc = (totalAcc / count).round();
+    final avgFlu = (totalFlu / count).round();
+
+    final isGood = avgScore >= 80;
+    final isMedium = avgScore >= 65 && avgScore < 80;
+    final accentColor = isGood ? const Color(0xFF10B981) : (isMedium ? const Color(0xFFF59E0B) : const Color(0xFFEF4444));
+
+    return Container(
+      margin: const EdgeInsets.only(bottom: 24),
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: accentColor.withValues(alpha: 0.08),
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: accentColor.withValues(alpha: 0.25)),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Icon(Icons.graphic_eq, color: accentColor, size: 20),
+              const SizedBox(width: 8),
+              Text(
+                "AZURE PRONUNCIATION ASSESSMENT",
+                style: theme.textTheme.labelSmall?.copyWith(
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 1.2,
+                  color: accentColor,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 16),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              _buildMetricItem("Overall Score", "$avgScore%", accentColor, theme),
+              _buildMetricItem("Tone Accuracy", "$avgAcc%", theme.colorScheme.primary, theme),
+              _buildMetricItem("Fluency", "$avgFlu%", const Color(0xFF3B82F6), theme),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildMetricItem(String label, String value, Color color, ThemeData theme) {
+    return Column(
+      children: [
+        Text(
+          value,
+          style: theme.textTheme.headlineMedium?.copyWith(
+            fontWeight: FontWeight.bold,
+            color: color,
+          ),
+        ),
+        const SizedBox(height: 2),
+        Text(
+          label,
+          style: theme.textTheme.bodySmall?.copyWith(
+            color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
+            fontSize: 11,
+          ),
+        ),
+      ],
     );
   }
 
