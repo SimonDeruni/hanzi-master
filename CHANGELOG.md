@@ -3,6 +3,11 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- **True Asynchronous Live Call & Background Azure Acoustic Grading**:
+  - Restored real-time on-device speech-to-text streaming so Chinese characters appear live on screen as you speak.
+  - Concurrently captures turn audio in 16kHz PCM WAV and dispatches Azure Speech & Pronunciation Assessment (`geminiService.gradeAudio`) asynchronously in the background.
+  - Eliminates all blocking loading states: AI Tutor immediately begins thinking and speaking upon turn completion without waiting for Azure network requests.
+  - User speech bubbles seamlessly upgrade with authentic Azure acoustic tone scores and highlights once the background assessment completes. Bumped build to `1.0.0+147`.
 - **Unified Single-Recorder Azure Pipeline (Eliminating Dual Hardware Contention)**:
   - Replaced the competing `speech_to_text` + `AudioRecorder` dual-pipeline with a single unified `AudioRecorder` audio engine.
   - Monitors real-time voice activity (VAD) via amplitude streaming (`onAmplitudeChanged`), seamlessly detecting when speech starts and debouncing 1.4s of quiet to trigger the turn.

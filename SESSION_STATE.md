@@ -7,8 +7,8 @@
 - **Locked Files:**
     - [None]
 
-- [x] **Unified Single-Recorder Azure Pipeline:** Eliminated dual-hardware contention by routing live calls solely through `AudioRecorder` and Azure Cognitive Services Pronunciation REST API with amplitude-based VAD. Bumped to `1.0.0+146`. (Status: COMPLETED)
-- [x] **Continuous 30s Microphone Tolerance & Debounce Stabilization:** Configured `pauseFor: 30s` and 1.4s post-speech debounce. (Status: COMPLETED)
+- [x] **True Asynchronous Live Call & Background Azure Acoustic Grading:** Implemented real-time STT streaming with non-blocking background Azure Pronunciation Assessment, instant AI voice reply, and dynamic in-place bubble scoring. Bumped to `1.0.0+147`. (Status: COMPLETED)
+- [x] **Unified Single-Recorder Azure Pipeline:** Eliminated dual-hardware contention. (Status: COMPLETED)
 - [x] **Hanzi Exemplar 4-Tone Audio Auditioning:** Implemented `PinyinUtils.getExemplarHanzi` and wired `ToneComparisonSheet` to synthesize native Hanzi characters. (Status: COMPLETED)
 - [x] **Scholar's Verdict 4th-Wall Integrity & Persona Hardening:** Hardened system prompt and added safety filter in `_generateFinalVerdict`. (Status: COMPLETED)
 - [x] **Live Call Pausing & Smart Tone Diagnostics:** Live call now pauses listening during tone sheet review and resumes upon dismissal; added 1-sentence diagnostic summaries and Azure TTS pitch range expansion (`+25%`). (Status: COMPLETED)
