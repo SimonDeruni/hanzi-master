@@ -17,8 +17,13 @@ workflows:
         YOUTUBE_API_KEY_2: AIzaSyBYEY2lbPnDPk179ztaw5MxLwu9keTqNlk
         YOUTUBE_API_KEY_3: AIzaSyAYEvgEEbjFXvTAMH7SvYsWMXbyIv0Ev_U
     scripts:
-      - name: Get dependencies
-        script: flutter packages pub get
+      - name: Set up CocoaPods & Dependencies
+        script: |
+          pod cache clean --all
+          rm -rf ios/Pods ios/Podfile.lock
+          flutter packages pub get
+          cd ios
+          pod install --repo-update
       - name: Build iOS IPA
         script: |
           flutter build ipa \

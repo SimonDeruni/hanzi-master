@@ -7,6 +7,7 @@
 - **Locked Files:**
     - [None]
 
+- [x] **CI/CD CocoaPods Cache & Target Platform Fix (Build #160):** Added explicit platform declaration to target Runner in `ios/Podfile` and added `pod cache clean` / `pod install --repo-update` to `codemagic.yaml`. Bumped to `1.0.0+160`. (Status: COMPLETED)
 - [x] **Privacy & App Store Compliance (Build #159):** Removed `NSUserTrackingUsageDescription` from `Info.plist` and stripped `AppTrackingTransparency` / `AdSupport` from `AppDelegate.swift`. Bumped to `1.0.0+159`. (Status: COMPLETED)
 - [x] **iOS Build & CocoaPods Fix (Build #157):** Cleaned `ios/Podfile`, removed unused `flutter_sound`, and fixed `platform :ios, '15.5'` declaration. Bumped to `1.0.0+157`. (Status: COMPLETED)
 - [x] **Production Release (Build #156):** Unified Azure pipeline, automated dictionary tone gap audit, natural balanced pitch prosody, and professional linguistic coaching. (Status: COMPLETED)

@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.0+160] - 2026-08-25
+- **CI/CD CocoaPods Cache & Target Platform Fix**:
+  - Added explicit target platform declaration to `target 'Runner'` in `ios/Podfile` to prevent target platform assignment warnings.
+  - Added `pod cache clean --all` and `pod install --repo-update` pipeline steps in `codemagic.yaml` to ensure clean CocoaPods dependency resolution on CI builders.
+
 ## [1.0.0+159] - 2026-08-25
 - **Privacy & App Store Compliance (Removed App Tracking Transparency)**:
   - Removed `NSUserTrackingUsageDescription` from `ios/Runner/Info.plist`.
