@@ -143,4 +143,50 @@ class PinyinUtils {
     
     return tokens;
   }
+
+  /// Generates the 4 (or 5) tone variations for a given pinyin syllable.
+  /// E.g. "mā" -> {1: "mā", 2: "má", 3: "mǎ", 4: "mà", 5: "ma"}
+  static Map<int, String> getAllTonesForSyllable(String pinyinWithTone) {
+    final base = removeToneMarks(pinyinWithTone).trim();
+    if (base.isEmpty) return {};
+    return {
+      1: convertNumericToMarks('${base}1'),
+      2: convertNumericToMarks('${base}2'),
+      3: convertNumericToMarks('${base}3'),
+      4: convertNumericToMarks('${base}4'),
+      5: base,
+    };
+  }
+
+  /// Human-readable name for each tone (e.g. "1st Tone (High Flat)").
+  static String getToneName(int tone) {
+    switch (tone) {
+      case 1:
+        return "1st Tone (High Flat — 55)";
+      case 2:
+        return "2nd Tone (Rising — 35)";
+      case 3:
+        return "3rd Tone (Falling-Rising — 214)";
+      case 4:
+        return "4th Tone (Falling — 51)";
+      default:
+        return "Neutral Tone (Light)";
+    }
+  }
+
+  /// Description of the pitch shape for each tone.
+  static String getToneDescription(int tone) {
+    switch (tone) {
+      case 1:
+        return "Keep your pitch high and steady like singing a note.";
+      case 2:
+        return "Start in the middle and slide your pitch upward like asking 'What?'";
+      case 3:
+        return "Dip your voice down low, then rise gently back up.";
+      case 4:
+        return "Drop your pitch sharply and decisively like a firm 'No!'";
+      default:
+        return "Pronounce softly, briefly, and without emphasis.";
+    }
+  }
 }

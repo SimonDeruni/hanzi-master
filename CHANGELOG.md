@@ -3,6 +3,9 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- **Interactive 4-Tone Comparison & Audio Auditioning Matrix**:
+  - Implemented `ToneComparisonSheet` with side-by-side 4-tone matrix (Tones 1 to 4), pitch contour indicators, tone descriptions, and instant audio playback for each tone variation.
+  - Integrated with `PronunciationReportSheet`, `LiveCallScreen`, and `LiveCallSummaryScreen` so tapping any character allows direct auditory comparison between target tone and spoken tone without saving user audio. Bumped build to `1.0.0+138`.
 - **Dynamic Character Tone Averaging**:
   - Replaced all static score fallbacks with dynamic character-by-character tone averaging across all recognition events. Bumped build to `1.0.0+137`.
 - **Non-Chinese Utterance Handling in Call Summary**:

@@ -6,6 +6,7 @@ import '../../../../core/services/audio_service.dart';
 import '../../../../core/services/gemini_service.dart';
 import '../../../chat/domain/entities/chat_message.dart';
 import '../providers/conversation_controller.dart';
+import 'tone_comparison_sheet.dart';
 
 class PronunciationReportSheet extends ConsumerStatefulWidget {
   final GradedChatMessage message;
@@ -327,33 +328,56 @@ class _PronunciationReportSheetState extends ConsumerState<PronunciationReportSh
             : Colors.red;
     final onSurface = theme.colorScheme.onSurface;
 
-    return Column(
-      children: [
-        // Pinyin
-        Text(
-          word.pinyin,
-          style: TextStyle(fontSize: 14, color: onSurface.withValues(alpha: 0.6)),
+    return InkWell(
+      onTap: () {
+        ToneComparisonSheet.show(
+          context,
+          character: word.word,
+          pinyin: word.pinyin,
+          expectedTone: word.expectedTone,
+          actualTone: word.actualTone,
+          feedback: word.feedback,
+        );
+      },
+      borderRadius: BorderRadius.circular(12),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
+        child: Column(
+          children: [
+            // Pinyin
+            Text(
+              word.pinyin,
+              style: TextStyle(fontSize: 14, color: onSurface.withValues(alpha: 0.6)),
+            ),
+            const SizedBox(height: 2),
+            // Hanzi
+            Text(
+              word.word,
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: onSurface),
+            ),
+            const SizedBox(height: 2),
+            // English meaning
+            if (word.english != null && word.english!.isNotEmpty)
+              Text(
+                word.english!,
+                style: TextStyle(fontSize: 10, color: onSurface.withValues(alpha: 0.5), fontStyle: FontStyle.italic),
+                textAlign: TextAlign.center,
+              ),
+            // Score / icon
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  word.wordScore > 0 ? word.wordScore.toString() : (word.isCorrect ? '\u2713' : word.isPartial ? '~' : '\u2717'),
+                  style: TextStyle(fontSize: 12, color: color, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(width: 2),
+                Icon(Icons.volume_up_outlined, size: 10, color: onSurface.withValues(alpha: 0.4)),
+              ],
+            ),
+          ],
         ),
-        const SizedBox(height: 2),
-        // Hanzi
-        Text(
-          word.word,
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: onSurface),
-        ),
-        const SizedBox(height: 2),
-        // English meaning
-        if (word.english != null && word.english!.isNotEmpty)
-          Text(
-            word.english!,
-            style: TextStyle(fontSize: 10, color: onSurface.withValues(alpha: 0.5), fontStyle: FontStyle.italic),
-            textAlign: TextAlign.center,
-          ),
-        // Score / icon
-        Text(
-          word.wordScore > 0 ? word.wordScore.toString() : (word.isCorrect ? '\u2713' : word.isPartial ? '~' : '\u2717'),
-          style: TextStyle(fontSize: 12, color: color, fontWeight: FontWeight.bold),
-        ),
-      ],
+      ),
     );
   }
 

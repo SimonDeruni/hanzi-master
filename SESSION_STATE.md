@@ -7,7 +7,8 @@
 - **Locked Files:**
     - [None]
 
-- [x] **Dynamic Character Tone Averaging:** Replaced all static score fallbacks with dynamic character-by-character tone averaging across all recognition events. Bumped to `1.0.0+137`. (Status: COMPLETED)
+- [x] **Interactive 4-Tone Comparison & Audio Auditioning Matrix:** Implemented `ToneComparisonSheet` with side-by-side 4-tone matrix, pitch contours, and instant tone auditioning across Shadowing Studio, Live Call, and Call Summary. Bumped to `1.0.0+138`. (Status: COMPLETED)
+- [x] **Dynamic Character Tone Averaging:** Replaced all static score fallbacks with dynamic character-by-character tone averaging across all recognition events. (Status: COMPLETED)
 - [x] **Non-Chinese Utterance Handling in Call Summary:** Suppressed "Tap to review" prompt and click modal on summary screen for English and non-Chinese utterances. (Status: COMPLETED)
 - [x] **Real Acoustic Tone Assessment & Live Character Coloring:** Connected live acoustic confidence to dynamic Hanzi character coloring (Green / Orange / Red) and dynamic score badges with round review sheets on call summary. (Status: COMPLETED)
 - [x] **Continuous Multi-Word Sentence Recognition:** Enabled `ListenMode.dictation` in `SpeechListenOptions` so recognizer captures complete sentences without cutting off mid-speech. (Status: COMPLETED)

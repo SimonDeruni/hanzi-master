@@ -7,6 +7,7 @@ import '../screens/live_call_screen.dart';
 import '../../../chat/domain/entities/chat_message.dart';
 import 'package:hanzi_master/core/models/pronunciation_grade.dart';
 import 'package:hanzi_master/features/echo_hall/presentation/widgets/pronunciation_report_sheet.dart';
+import 'tone_comparison_sheet.dart';
 
 class LiveCallSummaryScreen extends StatelessWidget {
   final List<LiveCallMessage> transcript;
@@ -191,24 +192,49 @@ class LiveCallSummaryScreen extends StatelessWidget {
 
   Widget _buildGradedRow(BuildContext context, LiveCallMessage msg, List<dynamic> words, ThemeData theme) {
     return Wrap(
-      spacing: 4,
-      runSpacing: 4,
+      spacing: 6,
+      runSpacing: 6,
       children: words.map((w) {
         final bool correct = w['isCorrect'] ?? true;
+        final bool partial = w['isPartial'] ?? false;
         final word = w['word'] ?? "";
-        return GestureDetector(
-          onTap: () => showQuickLook(context, word, contextText: msg.text),
-          child: Column(
-            children: [
-              Text(w['pinyin'] ?? "", style: theme.textTheme.labelSmall?.copyWith(fontSize: 10)),
-              Text(
-                word,
-                style: theme.textTheme.titleLarge?.copyWith(
-                  color: correct ? Colors.green.shade700 : Colors.red.shade700,
-                  fontWeight: FontWeight.bold,
+        final pinyin = w['pinyin'] ?? "";
+        final int expectedTone = w['expectedTone'] ?? 1;
+        final int actualTone = w['actualTone'] ?? 1;
+        final String feedback = w['feedback'] ?? "";
+
+        final Color color = correct
+            ? Colors.green.shade700
+            : partial
+                ? const Color(0xFFD97706)
+                : Colors.red.shade700;
+
+        return InkWell(
+          onTap: () {
+            ToneComparisonSheet.show(
+              context,
+              character: word,
+              pinyin: pinyin,
+              expectedTone: expectedTone,
+              actualTone: actualTone,
+              feedback: feedback,
+            );
+          },
+          borderRadius: BorderRadius.circular(8),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+            child: Column(
+              children: [
+                Text(pinyin, style: theme.textTheme.labelSmall?.copyWith(fontSize: 11)),
+                Text(
+                  word,
+                  style: theme.textTheme.titleLarge?.copyWith(
+                    color: color,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         );
       }).toList(),

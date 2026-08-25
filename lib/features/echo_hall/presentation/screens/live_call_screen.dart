@@ -15,6 +15,7 @@ import 'package:hanzi_master/core/services/audio_service.dart';
 import 'package:hanzi_master/core/services/local_translation_service.dart';
 import 'package:hanzi_master/shared/widgets/breathing_widget.dart';
 import '../widgets/live_call_summary_screen.dart';
+import '../widgets/tone_comparison_sheet.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/shared/widgets/tappable_hanzi_text.dart';
 import 'package:lpinyin/lpinyin.dart';
@@ -1229,13 +1230,17 @@ class _LiveTranscriptBubble extends StatelessWidget {
                 ? const Color(0xFFF59E0B)
                 : Colors.redAccent;
 
-        final bool isClickable = !correct && feedback.isNotEmpty;
-
         return GestureDetector(
-          onTap: isClickable
-              ? () => _showWordFeedback(context, word, pinyin, expectedTone,
-                  actualTone, feedback, partial, color, theme)
-              : null,
+          onTap: () {
+            ToneComparisonSheet.show(
+              context,
+              character: word,
+              pinyin: pinyin,
+              expectedTone: expectedTone,
+              actualTone: actualTone,
+              feedback: feedback,
+            );
+          },
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -1254,7 +1259,7 @@ class _LiveTranscriptBubble extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  if (isClickable)
+                  if (!correct)
                     Positioned(
                       top: 0,
                       right: -2,
@@ -1274,120 +1279,6 @@ class _LiveTranscriptBubble extends StatelessWidget {
     );
   }
 
-  void _showWordFeedback(
-    BuildContext context,
-    String word,
-    String pinyin,
-    int expectedTone,
-    int actualTone,
-    String feedback,
-    bool isPartial,
-    Color color,
-    ThemeData theme,
-  ) {
-    const toneNames = ['', '1st ˉ', '2nd ˊ', '3rd ˇ', '4th ˋ', 'neutral'];
-    showDialog(
-      context: context,
-      builder: (context) => Dialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        child: Padding(
-          padding: const EdgeInsets.all(24),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Container(
-                width: 72,
-                height: 72,
-                decoration: BoxDecoration(
-                    color: color.withValues(alpha: 0.15),
-                    shape: BoxShape.circle),
-                child: Center(
-                  child: Text(word,
-                      style: theme.textTheme.displaySmall?.copyWith(
-                          color: color, fontWeight: FontWeight.bold)),
-                ),
-              ),
-              const SizedBox(height: 8),
-              Text(pinyin,
-                  style: theme.textTheme.titleMedium?.copyWith(
-                      color:
-                          theme.colorScheme.onSurface.withValues(alpha: 0.6))),
-              const SizedBox(height: 12),
-              Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                decoration: BoxDecoration(
-                    color: color.withValues(alpha: 0.15),
-                    borderRadius: BorderRadius.circular(20)),
-                child: Text(
-                  isPartial
-                      ? AppLocalizations.of(context)!.pronunciationPartial
-                      : AppLocalizations.of(context)!.pronunciationWrong,
-                  style: theme.textTheme.labelMedium
-                      ?.copyWith(color: color, fontWeight: FontWeight.bold),
-                ),
-              ),
-              if (expectedTone > 0) ...[
-                const SizedBox(height: 16),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    _toneChip(
-                        context,
-                        AppLocalizations.of(context)!.toneExpected,
-                        expectedTone,
-                        Colors.green.shade600,
-                        theme,
-                        toneNames),
-                    const SizedBox(width: 12),
-                    _toneChip(
-                        context,
-                        AppLocalizations.of(context)!.toneYouSaid,
-                        actualTone,
-                        color,
-                        theme,
-                        toneNames),
-                  ],
-                ),
-              ],
-              const SizedBox(height: 16),
-              Text(feedback,
-                  textAlign: TextAlign.center,
-                  style: theme.textTheme.bodyMedium?.copyWith(height: 1.5)),
-              const SizedBox(height: 20),
-              TextButton(
-                onPressed: () => Navigator.pop(context),
-                child: Text(AppLocalizations.of(context)!.gotIt),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _toneChip(BuildContext context, String label, int tone, Color color,
-      ThemeData theme, List<String> names) {
-    return Column(
-      children: [
-        Text(label,
-            style: theme.textTheme.labelSmall?.copyWith(
-                color: theme.colorScheme.onSurface.withValues(alpha: 0.5))),
-        const SizedBox(height: 4),
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-          decoration: BoxDecoration(
-              color: color.withValues(alpha: 0.15),
-              borderRadius: BorderRadius.circular(8)),
-          child: Text(
-            tone > 0 && tone < names.length ? names[tone] : '?',
-            style: theme.textTheme.labelLarge
-                ?.copyWith(color: color, fontWeight: FontWeight.bold),
-          ),
-        ),
-      ],
-    );
-  }
 }
 
 class _CallControlButton extends StatelessWidget {
