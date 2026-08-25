@@ -53,7 +53,11 @@ class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
     try {
       final audioService = ref.read(audioServiceProvider);
       // Play native Hanzi exemplar to generate authentic Chinese tone contours
-      await audioService.playToneAudition(exemplarHanzi, cacheKey: '${tonePinyin}_$tone');
+      await audioService.playToneAudition(
+        exemplarHanzi,
+        pinyin: tonePinyin,
+        cacheKey: '${exemplarHanzi}_${tonePinyin}_$tone',
+      );
     } catch (e) {
       debugPrint("Error playing tone audio: $e");
     } finally {

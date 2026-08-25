@@ -7,8 +7,8 @@
 - **Locked Files:**
     - [None]
 
-- [x] **Unified Azure Pipeline & Direct Character Pinyin Alignment:** Unified STT and acoustic assessment on Microsoft Azure; direct character-level pinyin binding and audited monophonic exemplars (`环` for `huán`). Bumped to `1.0.0+149`. (Status: COMPLETED)
-- [x] **Sequential Single-Recorder Azure Pipeline:** Single-microphone hardware ownership via `AudioRecorder`. (Status: COMPLETED)
+- [x] **Unicode-Safe Tone Audition Cache Hashing:** Fixed regex stripping bug in `AudioService.playToneAudition`; migrated to `tone_v2_` with stable Unicode hashing, eliminating audio collisions. Bumped to `1.0.0+150`. (Status: COMPLETED)
+- [x] **Unified Azure Pipeline & Direct Character Pinyin Alignment:** Unified STT and acoustic assessment on Microsoft Azure. (Status: COMPLETED)
 - [x] **Hanzi Exemplar 4-Tone Audio Auditioning:** Implemented `PinyinUtils.getExemplarHanzi` and wired `ToneComparisonSheet` to synthesize native Hanzi characters. (Status: COMPLETED)
 - [x] **Scholar's Verdict 4th-Wall Integrity & Persona Hardening:** Hardened system prompt and added safety filter in `_generateFinalVerdict`. (Status: COMPLETED)
 - [x] **Live Call Pausing & Smart Tone Diagnostics:** Live call now pauses listening during tone sheet review and resumes upon dismissal; added 1-sentence diagnostic summaries and Azure TTS pitch range expansion (`+25%`). (Status: COMPLETED)

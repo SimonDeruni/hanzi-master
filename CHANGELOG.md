@@ -3,6 +3,9 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- **Unicode-Safe Tone Audition Cache Hashing (Eliminating Audio Cross-Contamination)**:
+  - Fixed regex stripping bug in `AudioService.playToneAudition` where non-ASCII tone marks (e.g. `ā`, `á`, `ǐ`) were stripped into other syllables (e.g. `huān_1` ➔ `hun_1`, causing `huān` to play `hun` audio).
+  - Migrated tone audition cache to `tone_v2_` with stable 32-bit Unicode hashing (`_hashText`), ensuring zero cache collisions and eliminating all stale cross-talk between syllables. Bumped build to `1.0.0+150`.
 - **Unified Azure Pipeline & Direct Character Pinyin Alignment**:
   - Unified both Speech-to-Text and Pronunciation Assessment onto Microsoft Azure Speech Cognitive Services, eliminating cross-engine discrepancy.
   - Decomposed multi-character words into single-character tokens with direct character-level pinyin generation (`PinyinHelper.getPinyinE`), preventing syllable index drift.

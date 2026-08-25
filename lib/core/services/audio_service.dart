@@ -255,12 +255,13 @@ class AudioService {
 
   /// Plays an isolated tone syllable or native Hanzi exemplar with slightly exaggerated pitch range (+25%)
   /// and slightly relaxed rate (-12%) so learners can easily distinguish pitch contours.
-  Future<bool> playToneAudition(String textToSpeak, {String? cacheKey}) async {
+  Future<bool> playToneAudition(String textToSpeak, {String? pinyin, String? cacheKey}) async {
     if (!_isInitialized) await init();
     await stop();
 
-    final safeKey = (cacheKey ?? textToSpeak).replaceAll(RegExp(r'[^\w\s]'), '');
-    final cacheFile = File('${_cacheDir!.path}/tts_cache/tone_${safeKey}_audition.mp3');
+    // Use stable Unicode-aware hash so tone marks (ā, á, ǎ, à) and Hanzi are NEVER stripped by ASCII regex
+    final hash = _hashText('tone_v2:$textToSpeak:${pinyin ?? ''}:${cacheKey ?? ''}');
+    final cacheFile = File('${_cacheDir!.path}/tts_cache/tone_v2_$hash.mp3');
     if (await cacheFile.exists()) {
       try {
         await _player.play(DeviceFileSource(cacheFile.path));
