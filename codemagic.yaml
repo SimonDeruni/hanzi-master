@@ -4,6 +4,7 @@ workflows:
     instance_type: mac_mini_m1
     environment:
       flutter: default
+      ruby: 3.2.4
       # API keys are stored as secret environment variables in the Codemagic dashboard.
       # Go to: App settings → Environment variables → add each key as a secret.
       vars:

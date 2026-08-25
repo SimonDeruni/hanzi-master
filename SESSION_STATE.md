@@ -7,6 +7,7 @@
 - **Locked Files:**
     - [None]
 
+- [x] **Ruby 3.2.4 Environment Pin for CocoaPods 1.16.2 (Build #164):** Pinned `ruby: 3.2.4` in `codemagic.yaml` and created `.ruby-version`. Bumped to `1.0.0+164`. (Status: COMPLETED)
 - [x] **Release Build #163:** Version bump to `1.0.0+163`. (Status: COMPLETED)
 - [x] **CocoaPods MLKit Version Resolution Fix (Build #162):** Removed `~> 9.0.0` version constraint on `pod 'GoogleMLKit/TextRecognitionChinese'` in `ios/Podfile`. Bumped to `1.0.0+162`. (Status: COMPLETED)
 - [x] **iPhone-Only Targeted Device Family (Build #161):** Set `TARGETED_DEVICE_FAMILY = "1"` in `project.pbxproj` and cleaned `Info.plist` to disable iPad requirement on App Store Connect. Bumped to `1.0.0+161`. (Status: COMPLETED)
