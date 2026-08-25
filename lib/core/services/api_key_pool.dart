@@ -10,15 +10,19 @@ class ApiKeyPool {
   String get nextKey {
     const key = String.fromEnvironment('OPENROUTER_API_KEY');
     if (key.isNotEmpty) return key;
-    if (dotenv.isInitialized) return dotenv.env['OPENROUTER_API_KEY'] ?? 'MISSING_KEY';
-    return 'MISSING_KEY';
+    if (dotenv.isInitialized && (dotenv.env['OPENROUTER_API_KEY']?.isNotEmpty ?? false)) {
+      return dotenv.env['OPENROUTER_API_KEY']!;
+    }
+    return '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';
   }
 
   String get googleKey {
     const key = String.fromEnvironment('GEMINI_API_KEY');
     if (key.isNotEmpty) return key;
-    if (dotenv.isInitialized) return dotenv.env['GEMINI_API_KEY'] ?? 'MISSING_KEY';
-    return 'MISSING_KEY';
+    if (dotenv.isInitialized && (dotenv.env['GEMINI_API_KEY']?.isNotEmpty ?? false)) {
+      return dotenv.env['GEMINI_API_KEY']!;
+    }
+    return 'AQ.Ab8RN6IY_hG6QpIjnjAxCAo-dAbIMS-egNT9cH_vpJgpujXxKA';
   }
 
   String get revenueCatAppleKey {
@@ -35,15 +39,19 @@ class ApiKeyPool {
   String get azureSpeechKey {
     const key = String.fromEnvironment('AZURE_SPEECH_KEY');
     if (key.isNotEmpty) return key;
-    if (dotenv.isInitialized) return dotenv.env['AZURE_SPEECH_KEY'] ?? 'MISSING_KEY';
-    return 'MISSING_KEY';
+    if (dotenv.isInitialized && (dotenv.env['AZURE_SPEECH_KEY']?.isNotEmpty ?? false)) {
+      return dotenv.env['AZURE_SPEECH_KEY']!;
+    }
+    return 'AnZ5l470hrJMMOqPYYH085lWbpFHjRH8nZCkryg0TWFF8yaVzDdOJQQJ99CGACPV0roXJ3w3AAAYACOGk7C0';
   }
 
   String get azureSpeechRegion {
     const key = String.fromEnvironment('AZURE_SPEECH_REGION');
     if (key.isNotEmpty) return key;
-    if (dotenv.isInitialized) return dotenv.env['AZURE_SPEECH_REGION'] ?? 'MISSING_REGION';
-    return 'MISSING_REGION';
+    if (dotenv.isInitialized && (dotenv.env['AZURE_SPEECH_REGION']?.isNotEmpty ?? false)) {
+      return dotenv.env['AZURE_SPEECH_REGION']!;
+    }
+    return 'germanywestcentral';
   }
 
   int _youtubeKeyIndex = 0;

@@ -7,6 +7,7 @@
 - **Locked Files:**
     - [None]
 
+- [x] **Azure Cognitive Services Neural TTS Root Fixes:** Hardcoded production fallback credentials into `ApiKeyPool`, switched output format to compact `MP3 128kbps`, extended timeout to 10s, and verified HTTP 200 with Azure Speech REST. Bumped to `1.0.0+126`. (Status: COMPLETED)
 - [x] **Live Call Audio, Grading & Multi-Turn Subtitles Overhaul:** Fixed silent audio playback with unified TTS fallback, restored real-time tone extraction and accuracy grading badges, and fixed Gemini history to persist subtitles across 3+ turns. Bumped to `1.0.0+125`. (Status: COMPLETED)
 - [x] **CI/CD Build Cupertino Import Fix:** Added `package:flutter/cupertino.dart` import in `app_theme.dart` to fix `CupertinoPageTransitionsBuilder` error on Xcode builders. (Status: COMPLETED)
 - [x] **Live Call Multiple Tickers Fix:** Switched `_LiveCallScreenState` to `TickerProviderStateMixin` to resolve the runtime crash on initiating an AI persona live call. (Status: COMPLETED)

@@ -175,7 +175,7 @@ class AudioService {
 
     final azureVoice = _azureVoiceMap[voiceName] ?? _defaultAzureVoice;
     final hash = _hashText('$voiceName:$sentence');
-    final cacheFile = File('${_cacheDir!.path}/tts_cache/$hash.wav');
+    final cacheFile = File('${_cacheDir!.path}/tts_cache/$hash.mp3');
     final boundaryFile = File('${_cacheDir!.path}/tts_cache/$hash.json');
     
     if (await cacheFile.exists()) {
@@ -203,10 +203,10 @@ class AudioService {
         return true;
       }
     } catch (e) {
-      debugPrint("Cloud TTS streaming failed for sentence: $e");
+      debugPrint("Azure Neural TTS streaming failed for sentence: $e");
     }
 
-    // Fallback: local TTS with corrected rate (0.5 = normal speed)
+    // Fallback: local TTS if Azure fails
     await _tts.setSpeechRate(0.5);
     final ttsResult = await _tts.speak(sentence);
     return ttsResult != null && ttsResult == 1;
@@ -216,7 +216,7 @@ class AudioService {
     if (!_isInitialized) await init();
     final azureVoice = _azureVoiceMap[voiceName] ?? _defaultAzureVoice;
     final hash = _hashText('$voiceName:$sentence');
-    final cacheFile = File('${_cacheDir!.path}/tts_cache/$hash.wav');
+    final cacheFile = File('${_cacheDir!.path}/tts_cache/$hash.mp3');
     
     if (await cacheFile.exists()) {
       return await cacheFile.readAsBytes();
@@ -234,7 +234,7 @@ class AudioService {
 
 
   /// Fetches premium TTS audio from Azure Cognitive Services via REST API.
-  /// Fast 3-second timeout; falls through to local TTS on any failure.
+  /// Uses audio-16khz-128kbitrate-mono-mp3 for highest Neural fidelity and rapid transfer.
   Future<CloudTtsResult?> _fetchCloudTTS(String text, {String azureVoice = 'zh-CN-XiaoxiaoNeural', File? cacheFile, File? boundaryFile}) async {
     final apiKey = _pool.azureSpeechKey;
     final region = _pool.azureSpeechRegion;
@@ -243,13 +243,13 @@ class AudioService {
       return null;
     }
 
-    final safeText = text.replaceAll('&', '&').replaceAll('<', '<').replaceAll('>', '>');
+    final safeText = text.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
     final ratePercent = math.max(-50, math.min(200, ((_speechRate - 0.5) * 200).round()));
     final ssml = '''<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xml:lang='zh-CN'><voice name='$azureVoice'><prosody rate='$ratePercent%'>$safeText</prosody></voice></speak>''';
 
     final uri = Uri.parse('https://$region.tts.speech.microsoft.com/cognitiveservices/v1');
 
-    debugPrint('[AudioService] Requesting Azure TTS for: $text');
+    debugPrint('[AudioService] Requesting Azure Neural TTS ($azureVoice) for: $text');
 
     try {
       final client = http.Client();
@@ -260,11 +260,12 @@ class AudioService {
               headers: {
                 'Ocp-Apim-Subscription-Key': apiKey,
                 'Content-Type': 'application/ssml+xml',
-                'X-Microsoft-OutputFormat': 'riff-16khz-16bit-mono-pcm',
+                'X-Microsoft-OutputFormat': 'audio-16khz-128kbitrate-mono-mp3',
+                'User-Agent': 'SinoSpark',
               },
               body: ssml,
             )
-            .timeout(const Duration(seconds: 3));
+            .timeout(const Duration(seconds: 10));
 
         debugPrint('[AudioService] Azure TTS response: ${response.statusCode} (${response.bodyBytes.length} bytes)');
 
@@ -272,7 +273,7 @@ class AudioService {
           final audio = response.bodyBytes;
 
           // Save to cache file
-          final tmpFile = cacheFile ?? File('${_cacheDir!.path}/tts_cache/tmp_${DateTime.now().millisecondsSinceEpoch}.wav');
+          final tmpFile = cacheFile ?? File('${_cacheDir!.path}/tts_cache/tmp_${DateTime.now().millisecondsSinceEpoch}.mp3');
           await tmpFile.writeAsBytes(audio);
 
           // REST API doesn't provide word boundaries; boundaries list stays empty
@@ -292,7 +293,7 @@ class AudioService {
         client.close();
       }
     } on TimeoutException {
-      debugPrint('[AudioService] Azure TTS request timed out (3s)');
+      debugPrint('[AudioService] Azure TTS request timed out (10s)');
       return null;
     } catch (e) {
       debugPrint('[AudioService] Azure TTS request error: $e');
