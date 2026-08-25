@@ -3,6 +3,7 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- **CI/CD Build Cupertino Import Fix**: Added explicit `package:flutter/cupertino.dart` import in `app_theme.dart` to resolve `CupertinoPageTransitionsBuilder` compilation error on Xcode CI/CD builders. Bumped version to `1.0.0+124`.
 - **Live Call Ticker Provider Fix**: Switched `_LiveCallScreenState` from `SingleTickerProviderStateMixin` to `TickerProviderStateMixin` to resolve the Flutter runtime crash caused by multiple concurrent animation controllers (`_pulseController` and `_analyzePulseController`).
 - **Paywall Legal Links & Restore Purchases Verification**: Verified `_restorePurchases()` calls `Purchases.restorePurchases()` with active state feedback and updated `_launchURL()` to use `LaunchMode.externalApplication` for seamless Safari opening of Terms & Privacy policies.
 - **AI Tutor Guest & Logout Privacy Isolation**: Enforced strict authentication and `!isAnonymous` checks in `_getUserAddressingInstruction()` so logged-out or guest users are never addressed by name. Scoped AI chat caches by `userId` and added automatic cache clearing on `signOut()` in `AuthRepository`.

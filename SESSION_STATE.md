@@ -7,6 +7,7 @@
 - **Locked Files:**
     - [None]
 
+- [x] **CI/CD Build Cupertino Import Fix:** Added `package:flutter/cupertino.dart` import in `app_theme.dart` to fix `CupertinoPageTransitionsBuilder` error on Xcode builders. Bumped to `1.0.0+124`. (Status: COMPLETED)
 - [x] **Live Call Multiple Tickers Fix:** Switched `_LiveCallScreenState` to `TickerProviderStateMixin` to resolve the runtime crash on initiating an AI persona live call. (Status: COMPLETED)
 - [x] **Paywall Legal Links & Restore Purchases Verification:** Verified and optimized `_restorePurchases()` and `_launchURL()` (`LaunchMode.externalApplication`) in `custom_paywall_screen.dart`. (Status: COMPLETED)
 - [x] **AI Tutor Guest & Logout Privacy Isolation:** Enforced strict `user != null && !user.isAnonymous` checks in `_getUserAddressingInstruction()`. Scoped AI chat caches by `userId` and added automatic cache clearing on `signOut()`. (Status: COMPLETED)
