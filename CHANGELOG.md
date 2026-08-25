@@ -2,13 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.0+159] - 2026-08-25
+- **Privacy & App Store Compliance (Removed App Tracking Transparency)**:
+  - Removed `NSUserTrackingUsageDescription` from `ios/Runner/Info.plist`.
+  - Removed unused `AppTrackingTransparency` and `AdSupport` frameworks and `ATTrackingManager.requestTrackingAuthorization` from `ios/Runner/AppDelegate.swift`.
+  - Aligned app binary strictly with first-party anonymous analytics and App Store Connect "No Tracking" privacy declaration.
+
+## [1.0.0+158] - 2026-08-25
+- Release build #158.
+
 ## [1.0.0+157] - 2026-08-25
 - **iOS Build & CocoaPods Fix**:
   - Removed brittle hardcoded CDN source line from `ios/Podfile` causing `Pod::Source::Aggregate#search` errors on CI builders.
   - Ensured global `platform :ios, '15.5'` declaration is loaded before target definitions.
   - Removed unused `flutter_sound` and `web_socket_channel` dependencies to eliminate redundant iOS native pod resolutions.
-## [1.0.0+158] - 2026-08-25
-- Release build #158 completed.
 
 ## [1.0.0+156] - 2026-08-25
 - **Production Release: Unified Azure Pipeline, Lexical Tone Gap Verification & Professional Linguistic Analysis**:

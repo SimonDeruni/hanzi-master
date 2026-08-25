@@ -7,6 +7,7 @@
 - **Locked Files:**
     - [None]
 
+- [x] **Privacy & App Store Compliance (Build #159):** Removed `NSUserTrackingUsageDescription` from `Info.plist` and stripped `AppTrackingTransparency` / `AdSupport` from `AppDelegate.swift`. Bumped to `1.0.0+159`. (Status: COMPLETED)
 - [x] **iOS Build & CocoaPods Fix (Build #157):** Cleaned `ios/Podfile`, removed unused `flutter_sound`, and fixed `platform :ios, '15.5'` declaration. Bumped to `1.0.0+157`. (Status: COMPLETED)
 - [x] **Production Release (Build #156):** Unified Azure pipeline, automated dictionary tone gap audit, natural balanced pitch prosody, and professional linguistic coaching. (Status: COMPLETED)
 - [x] **Audited Tone-Gap Detection & Zero-Playback for Non-Existent Tones:** Audited lexicon for tone gaps; displayed `Does not exist in Chinese` badge and disabled audio playback for non-existent tones. Bumped to `1.0.0+153`. (Status: COMPLETED)

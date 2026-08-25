@@ -55,8 +55,6 @@
 		<string>SinoSpark requires microphone access for real-time AI voice calls, live pronunciation grading, and oral practice.</string>
 		<key>NSSpeechRecognitionUsageDescription</key>
 		<string>SinoSpark uses speech recognition to provide real-time feedback on your pronunciation.</string>
-		<key>NSUserTrackingUsageDescription</key>
-		<string>SinoSpark uses anonymous analytics to improve the app experience and understand which features are most helpful to learners.</string>
 		<key>ITSAppUsesNonExemptEncryption</key>
 		<false/>
 		<key>GIDClientID</key>
