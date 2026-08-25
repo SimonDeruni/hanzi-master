@@ -3,6 +3,9 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- **Hanzi Exemplar 4-Tone Audio Auditioning**:
+  - Implemented `PinyinUtils.getExemplarHanzi` mapping Mandarin syllables across all 4 tones to genuine Chinese characters (e.g. `mi` -> `咪`, `迷`, `米`, `密`).
+  - Tone auditioning in `ToneComparisonSheet` and `AudioService` now synthesizes native Hanzi exemplar characters, ensuring Azure Neural TTS produces 4 radically distinct, authentic native pitch contours. Bumped build to `1.0.0+143`.
 - **Scholar's Verdict 4th-Wall Integrity & Persona Hardening**:
   - Hardened system prompt and added multi-layer safety sanitization in `_generateFinalVerdict` so the AI never breaks character, complains about data/recordings, or references AI limitations during summary generation. Bumped build to `1.0.0+142`.
 - **Live Call Pausing & Smart Tone Diagnostics**:

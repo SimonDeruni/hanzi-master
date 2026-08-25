@@ -253,26 +253,26 @@ class AudioService {
 
 
 
-  /// Plays an isolated tone syllable with slightly exaggerated pitch range (+25%)
+  /// Plays an isolated tone syllable or native Hanzi exemplar with slightly exaggerated pitch range (+25%)
   /// and slightly relaxed rate (-12%) so learners can easily distinguish pitch contours.
-  Future<bool> playToneAudition(String pinyinWithTone) async {
+  Future<bool> playToneAudition(String textToSpeak, {String? cacheKey}) async {
     if (!_isInitialized) await init();
     await stop();
 
-    final safeKey = pinyinWithTone.replaceAll(RegExp(r'[^\w\s]'), '');
+    final safeKey = (cacheKey ?? textToSpeak).replaceAll(RegExp(r'[^\w\s]'), '');
     final cacheFile = File('${_cacheDir!.path}/tts_cache/tone_${safeKey}_audition.mp3');
     if (await cacheFile.exists()) {
       try {
         await _player.play(DeviceFileSource(cacheFile.path));
         return true;
       } catch (e) {
-        debugPrint("Failed to play cached tone audition for $pinyinWithTone: $e");
+        debugPrint("Failed to play cached tone audition for $textToSpeak: $e");
       }
     }
 
     try {
       final result = await _fetchCloudTTS(
-        pinyinWithTone,
+        textToSpeak,
         pitchRange: '+25%',
         rateAdjustment: -12,
         cacheFile: cacheFile,
@@ -282,11 +282,11 @@ class AudioService {
         return true;
       }
     } catch (e) {
-      debugPrint("Azure tone audition failed for $pinyinWithTone: $e");
+      debugPrint("Azure tone audition failed for $textToSpeak: $e");
     }
 
     // Fallback to standard TTS
-    await _tts.speak(pinyinWithTone);
+    await _tts.speak(textToSpeak);
     return true;
   }
 

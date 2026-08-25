@@ -48,12 +48,12 @@ class ToneComparisonSheet extends ConsumerStatefulWidget {
 class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
   int? _playingTone;
 
-  Future<void> _playToneAudio(int tone, String tonePinyin) async {
+  Future<void> _playToneAudio(int tone, String tonePinyin, String exemplarHanzi) async {
     setState(() => _playingTone = tone);
     try {
       final audioService = ref.read(audioServiceProvider);
-      // Play isolated tone with exaggerated pitch range (+25%) and slower rate (-12%)
-      await audioService.playToneAudition(tonePinyin);
+      // Play native Hanzi exemplar to generate authentic Chinese tone contours
+      await audioService.playToneAudition(exemplarHanzi, cacheKey: '${tonePinyin}_$tone');
     } catch (e) {
       debugPrint("Error playing tone audio: $e");
     } finally {
@@ -341,9 +341,12 @@ class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
     }
 
     final pitchIcon = _getPitchIcon(tone);
+    final exemplarHanzi = (isExpected && widget.character.isNotEmpty)
+        ? widget.character
+        : PinyinUtils.getExemplarHanzi(widget.pinyin, tone);
 
     return InkWell(
-      onTap: () => _playToneAudio(tone, pinyinWithTone),
+      onTap: () => _playToneAudio(tone, pinyinWithTone, exemplarHanzi),
       borderRadius: BorderRadius.circular(16),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
@@ -375,7 +378,7 @@ class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
             ),
             const SizedBox(width: 14),
 
-            // Pinyin + Name
+            // Pinyin + Name + Exemplar Character
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -383,7 +386,7 @@ class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
                   Row(
                     children: [
                       Text(
-                        pinyinWithTone,
+                        "$pinyinWithTone  ($exemplarHanzi)",
                         style: theme.textTheme.titleMedium?.copyWith(
                           fontWeight: FontWeight.bold,
                           fontSize: 16,
@@ -438,7 +441,7 @@ class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
 
             // Play Audio Action Button
             IconButton(
-              onPressed: () => _playToneAudio(tone, pinyinWithTone),
+              onPressed: () => _playToneAudio(tone, pinyinWithTone, exemplarHanzi),
               icon: Icon(
                 isPlaying ? Icons.volume_up : Icons.volume_down_outlined,
                 color: isPlaying ? const Color(0xFF10B981) : theme.colorScheme.primary,

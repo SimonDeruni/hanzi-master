@@ -7,7 +7,8 @@
 - **Locked Files:**
     - [None]
 
-- [x] **Scholar's Verdict 4th-Wall Integrity & Persona Hardening:** Hardened system prompt and added multi-layer safety sanitization in `_generateFinalVerdict` to guarantee Scholar persona immersion. Bumped to `1.0.0+142`. (Status: COMPLETED)
+- [x] **Hanzi Exemplar 4-Tone Audio Auditioning:** Implemented `PinyinUtils.getExemplarHanzi` and wired `ToneComparisonSheet` to synthesize native Hanzi characters for 4-tone matrix auditioning. Bumped to `1.0.0+143`. (Status: COMPLETED)
+- [x] **Scholar's Verdict 4th-Wall Integrity & Persona Hardening:** Hardened system prompt and added safety filter in `_generateFinalVerdict`. (Status: COMPLETED)
 - [x] **Live Call Pausing & Smart Tone Diagnostics:** Live call now pauses listening during tone sheet review and resumes upon dismissal; added 1-sentence diagnostic summaries and Azure TTS pitch range expansion (`+25%`). (Status: COMPLETED)
 - [x] **Shadowing Studio Compare 4 Tones Action & Visual Affordance:** Added dedicated "Compare 4 Tones" button and educational tap hint. (Status: COMPLETED)
 - [x] **Shadowing Studio 4-Tone Matrix Integration:** Connected `ToneComparisonSheet` to syllable phoneme chips in `ShadowingStudioScreen`. (Status: COMPLETED)
