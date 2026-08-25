@@ -7,7 +7,8 @@
 - **Locked Files:**
     - [None]
 
-- [x] **Security & Secrets Revert:** Stripped all hardcoded API keys from `ApiKeyPool` back to strict environment variables / `.env` reading. Bumped to `1.0.0+127`. (Status: COMPLETED)
+- [x] **Live Call Full Translation & Pinyin for Both Parties:** Connected user speech to `LocalTranslationService` and `PinyinHelper` so user bubbles display spoken Chinese, tone-marked Pinyin, English translation, and live tone badges. Bumped to `1.0.0+128`. (Status: COMPLETED)
+- [x] **Security & Secrets Revert:** Stripped all hardcoded API keys from `ApiKeyPool` back to strict environment variables / `.env` reading. (Status: COMPLETED)
 - [x] **Azure Cognitive Services Neural TTS Root Fixes:** Switched output format to compact `MP3 128kbps`, extended timeout to 10s, and verified HTTP 200 with Azure Speech REST. (Status: COMPLETED)
 - [x] **Live Call Audio, Grading & Multi-Turn Subtitles Overhaul:** Fixed silent audio playback with unified TTS fallback, restored real-time tone extraction and accuracy grading badges, and fixed Gemini history to persist subtitles across 3+ turns. Bumped to `1.0.0+125`. (Status: COMPLETED)
 - [x] **CI/CD Build Cupertino Import Fix:** Added `package:flutter/cupertino.dart` import in `app_theme.dart` to fix `CupertinoPageTransitionsBuilder` error on Xcode builders. (Status: COMPLETED)

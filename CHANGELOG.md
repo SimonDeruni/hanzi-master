@@ -3,7 +3,10 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
-- **Security & Secrets Cleanup**: Reverted all hardcoded fallback API keys in `ApiKeyPool` to strict environment variables / `.env` resolution. Bumped build to `1.0.0+127`.
+- **Live Call Full Translation & Pinyin for Both Parties**:
+  - Connected user speech transcription to `LocalTranslationService` and `PinyinHelper` so user bubbles display spoken Chinese, tone-marked Pinyin, English translation, and live tone badges.
+  - Streamlined Gemini prompt to 3-part format (`Chinese|||Pinyin|||English`) ensuring 100% subtitle consistency across all turns with fail-safe local Pinyin generator. Bumped build to `1.0.0+128`.
+- **Security & Secrets Cleanup**: Reverted all hardcoded fallback API keys in `ApiKeyPool` to strict environment variables / `.env` resolution.
 - **Azure Cognitive Services Neural TTS Fixes**:
   - **High-Speed MP3 Audio Format**: Switched audio output from uncompressed PCM WAV to `audio-16khz-128kbitrate-mono-mp3`, reducing network payload size from 300KB+ to ~20KB for instantaneous streaming playback.
   - **Extended Connection Timeout & Headers**: Increased Azure HTTP timeout from 3s to 10s and included required `User-Agent: SinoSpark` header.

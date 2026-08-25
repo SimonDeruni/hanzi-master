@@ -12,6 +12,7 @@ import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_mana
 import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:hanzi_master/core/services/speech_service.dart';
 import 'package:hanzi_master/core/services/audio_service.dart';
+import 'package:hanzi_master/core/services/local_translation_service.dart';
 import 'package:hanzi_master/shared/widgets/breathing_widget.dart';
 import '../widgets/live_call_summary_screen.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
@@ -366,6 +367,13 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
       debugPrint("Pinyin generation error: $e");
     }
 
+    String? userTranslation;
+    try {
+      userTranslation = await ref.read(localTranslationServiceProvider).translate(text);
+    } catch (e) {
+      debugPrint("User translation error: $e");
+    }
+
     // Build real-time grading for the user's spoken words
     final gradeWords = <Map<String, dynamic>>[];
     for (int i = 0; i < text.length; i++) {
@@ -408,6 +416,7 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
       _transcript.add(LiveCallMessage(
         text: text, 
         pinyin: userPinyin,
+        translation: userTranslation,
         role: ChatRole.user, 
         grade: userGrade,
       ));
@@ -435,7 +444,7 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
         {
           'role': 'system',
           'content':
-              '${widget.scenario.systemPrompt}\n\nKeep your responses concise (1 to 2 sentences). Use natural, conversational spoken Mandarin.\n\nScenario context: ${widget.scenario.description}\n\nCRITICAL FORMAT REQUIREMENT: You MUST format EVERY response with exactly 4 parts separated by "|||":\nUser English Translation|||Chinese Response|||Pinyin Response|||English Translation\nExample: Hello!|||你好！很高兴见到你。|||nǐ hǎo! hěn gāo xìng jiàn dào nǐ.|||Hello! Very nice to meet you.'
+              '${widget.scenario.systemPrompt}\n\nKeep your responses concise and conversational (1 to 2 sentences). Use natural spoken Mandarin suitable for your role.\n\nScenario context: ${widget.scenario.description}\n\nCRITICAL FORMAT REQUIREMENT: You MUST format EVERY response with exactly 3 parts separated by "|||":\nChinese Response|||Pinyin Response|||English Translation\nExample: 你好！很高兴见到你。|||nǐ hǎo! hěn gāo xìng jiàn dào nǐ.|||Hello! Very nice to meet you.'
         }
       ];
 
@@ -450,7 +459,7 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
           final transStr = t.translation ?? '';
           messages.add({
             'role': 'assistant',
-            'content': 'Translation|||${t.text}|||$pinyinStr|||$transStr',
+            'content': '${t.text}|||$pinyinStr|||$transStr',
           });
         }
       }
@@ -468,16 +477,10 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
       String aiText = aiTextRaw;
       String? pinyin;
       String? translation;
-      String? userTranslation;
       
       if (aiTextRaw.contains('|||')) {
         final parts = aiTextRaw.split('|||');
-        if (parts.length >= 4) {
-          userTranslation = parts[0].trim();
-          aiText = parts[1].trim();
-          pinyin = parts[2].trim();
-          translation = parts[3].trim();
-        } else if (parts.length == 3) {
+        if (parts.length >= 3) {
           aiText = parts[0].trim();
           pinyin = parts[1].trim();
           translation = parts[2].trim();
@@ -498,12 +501,6 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
       // Store the exact text sent to TTS first. This guarantees that the user
       // can read everything the AI says, even if synthesis/playback fails.
       setState(() {
-        if (userTranslation != null && userTranslation.isNotEmpty) {
-          final lastUserIdx = _transcript.lastIndexWhere((m) => m.role == ChatRole.user);
-          if (lastUserIdx != -1) {
-            _transcript[lastUserIdx] = _transcript[lastUserIdx].copyWith(translation: userTranslation);
-          }
-        }
         _transcript.add(LiveCallMessage(
           text: aiText, 
           pinyin: pinyin, 
