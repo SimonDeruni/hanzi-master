@@ -2,6 +2,9 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.0+166] - 2026-08-26
+- Release build #166.
+
 ## [1.0.0+165] - 2026-08-26
 - **Aligned with Working Build #158 (`bc32d860`)**:
   - Maintained clean native Flutter CocoaPods pipeline from build #158 with Ruby 3.2.4 lock.
