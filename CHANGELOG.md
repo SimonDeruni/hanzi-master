@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.0+165] - 2026-08-26
+- **Aligned with Working Build #158 (`bc32d860`)**:
+  - Maintained clean native Flutter CocoaPods pipeline from build #158 with Ruby 3.2.4 lock.
+  - Preserved iPhone-only App Store configuration and ATT removal.
+
 ## [1.0.0+164] - 2026-08-25
 - **Ruby 3.2.4 Environment Pin for CocoaPods 1.16.2 Compatibility**:
   - Pinned `ruby: 3.2.4` in `codemagic.yaml` and added `.ruby-version` to eliminate CocoaPods 1.16.2 / Molinillo crashes on Ruby 4.0.2 builder environments.

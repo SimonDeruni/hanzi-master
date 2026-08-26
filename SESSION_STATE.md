@@ -7,6 +7,7 @@
 - **Locked Files:**
     - [None]
 
+- [x] **Aligned Build #165 with Working Build #158 (`bc32d860`):** Preserved exact working Podfile/pipeline from build #158 with Ruby 3.2.4 lock and iPhone-only/ATT fixes. Bumped to `1.0.0+165`. (Status: COMPLETED)
 - [x] **Ruby 3.2.4 Environment Pin for CocoaPods 1.16.2 (Build #164):** Pinned `ruby: 3.2.4` in `codemagic.yaml` and created `.ruby-version`. Bumped to `1.0.0+164`. (Status: COMPLETED)
 - [x] **Release Build #163:** Version bump to `1.0.0+163`. (Status: COMPLETED)
 - [x] **CocoaPods MLKit Version Resolution Fix (Build #162):** Removed `~> 9.0.0` version constraint on `pod 'GoogleMLKit/TextRecognitionChinese'` in `ios/Podfile`. Bumped to `1.0.0+162`. (Status: COMPLETED)
