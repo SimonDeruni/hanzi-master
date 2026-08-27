@@ -2,12 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
-## [1.0.0+173] - 2026-08-28
-- **UI & Navigation Clean-Up**:
-  - **Explore Tab Header**: Removed emojis from top switcher (`Reading Room` & `Web Explorer`).
-  - **Reading Room**: Removed Chinese translation from `Continue Reading` header, removed emojis from section pills (`Novels (96)`, `Micro-Reads`, `Poetry`).
-  - **Travel Interpreter Direct Launch**: Removed the introductory welcome screen and "Start Session" button; tapping Travel Interpreter now jumps directly into the active bidirectional speech translator.
-  - **AI Hub Streamlining**: Removed duplicate buttons (`Web Explorer`, `Reading Room`, `Travel Interpreter`, `Universal Scanner`) from `AiHubScreen`, focusing the hub exclusively on `Roleplay` and `Shadowing`.
+## [1.0.0+175] - 2026-08-28
+- **AI Hub Segmented Switcher (`Roleplay` & `Shadowing`)**:
+  - Transformed `AiHubScreen` into a top segmented pill switcher matching the user's Explore design.
+  - Hosts `ScenarioSelectionScreen` (AI Roleplay avatars & conversational scenarios) and `ShadowingStudioScreen` (Pronunciation & Speaking Studio) inside an `IndexedStack` to preserve state.
+  - Added `showBackButton` support to both screens for clean embedded presentation.
   - **100% Unabridged Masterpiece Library (96 Complete Works)**: Curated and pruned the Grand Library catalog to feature exclusively 100% full-text, unabridged masterpieces (96 full books ranging from 100 KB to 10.6 MB each with full tone-marked Pinyin, character sentence segmentation, and bilingual reader metadata). Removed all partial/placeholder entries from catalog and asset bundles.
   - **"正在阅读 · Continue Reading" Shelf**: Added horizontal in-progress carousel on `BookCatalogScreen` with chapter progress, percentage completion bars, and instant 1-tap resume.
   - **Author Dossier & Historical Context**: Added author biographical card and historical significance section to `BookDetailScreen`.
