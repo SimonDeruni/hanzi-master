@@ -18,7 +18,8 @@ import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_mana
 import "package:hanzi_master/core/services/saved_scenarios_service.dart";
 class ScenarioSelectionScreen extends ConsumerStatefulWidget {
   final Deck? deck;
-  const ScenarioSelectionScreen({super.key, this.deck});
+  final bool showBackButton;
+  const ScenarioSelectionScreen({super.key, this.deck, this.showBackButton = true});
 
   @override
   ConsumerState<ScenarioSelectionScreen> createState() => _ScenarioSelectionScreenState();
@@ -328,11 +329,14 @@ class _ScenarioSelectionScreenState extends ConsumerState<ScenarioSelectionScree
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          IconButton(
-            icon: Icon(Icons.arrow_back_ios, color: isDark ? Colors.white : Colors.black87),
-            onPressed: () => Navigator.pop(context),
-          ),
-                    Text(
+          if (widget.showBackButton)
+            IconButton(
+              icon: Icon(Icons.arrow_back_ios, color: isDark ? Colors.white : Colors.black87),
+              onPressed: () => Navigator.pop(context),
+            )
+          else
+            const SizedBox(width: 48),
+          Text(
             "Scenario Hub",
             style: TextStyle(
               fontSize: 22,

@@ -30,13 +30,15 @@ class ShadowingStudioScreen extends ConsumerStatefulWidget {
   final String? initialTranslation;
   final String? initialContextSentence;
   final bool isCompact;
+  final bool showBackButton;
   const ShadowingStudioScreen(
       {super.key,
       this.initialHanzi,
       this.initialPinyin,
       this.initialTranslation,
       this.initialContextSentence,
-      this.isCompact = false});
+      this.isCompact = false,
+      this.showBackButton = true});
 
   @override
   ConsumerState<ShadowingStudioScreen> createState() =>
@@ -763,20 +765,21 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               // Header
-              Padding(
-                padding: const EdgeInsets.all(24.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    IconButton(
-                      icon: Icon(Icons.arrow_back,
-                          color:
-                              isDark ? Colors.white : const Color(0xFF1A1A1B)),
-                      onPressed: () => Navigator.pop(context),
-                    ),
-                  ],
+              if (widget.showBackButton)
+                Padding(
+                  padding: const EdgeInsets.all(24.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      IconButton(
+                        icon: Icon(Icons.arrow_back,
+                            color:
+                                isDark ? Colors.white : const Color(0xFF1A1A1B)),
+                        onPressed: () => Navigator.pop(context),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
 
               // Hero Section
               Expanded(
