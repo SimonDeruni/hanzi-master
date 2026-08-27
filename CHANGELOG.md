@@ -3,13 +3,13 @@
 All notable changes to this project will be documented in this file.
 
 ## [1.0.0+171] - 2026-08-27
-- **Explore Hub (探索中心) & Dashboard Polish — Dedicated Bottom Navigation Tab & Refined Dashboard Cards**:
+- **Explore Hub (探索中心) & Media Hub Integration**:
   - Added dedicated **Explore** tab to the bottom navigation bar (`MainNavigationScreen`) between Dashboard and AI Hub.
-  - Created `ExploreScreen` featuring a top segmented pill switcher matching the mobile UI design (`📖 Reading Room` vs `🌐 Web Explorer`).
-  - Seamlessly transferred and embedded the **Grand Library / Reading Room** (`BookCatalogScreen`) and **Web Explorer** (`WebBrowserScreen`) with `IndexedStack` state preservation.
+  - Created `ExploreScreen` with top segmented pill switcher (`📖 Reading Room` vs `🌐 Web Explorer`).
+  - Embedded `MediaHubScreen` into the **Web Explorer** tab (featuring Article of the Day, Web Explorer live translator, Grand Library link, Quick Bookmarks for BBC 中文, Wikipedia, Baidu, and Saved Articles).
   - Cropped and tightened **Today's Word** card on Dashboard by removing bottom whitespace and optimizing font sizes.
   - Compacted **Upcoming Forecast** cards into sleek, space-efficient stat badges.
-  - Added dual rectangular action cards on Dashboard for **Universal Scanner** (`智能扫读`) and **Travel Interpreter** (`同传翻译`).
+  - Added dual rectangular action cards on Dashboard for **Universal Scanner** and **Travel Interpreter**.
   - **100% Unabridged Masterpiece Library (96 Complete Works)**: Curated and pruned the Grand Library catalog to feature exclusively 100% full-text, unabridged masterpieces (96 full books ranging from 100 KB to 10.6 MB each with full tone-marked Pinyin, character sentence segmentation, and bilingual reader metadata). Removed all partial/placeholder entries from catalog and asset bundles.
   - **"正在阅读 · Continue Reading" Shelf**: Added horizontal in-progress carousel on `BookCatalogScreen` with chapter progress, percentage completion bars, and instant 1-tap resume.
   - **Author Dossier & Historical Context**: Added author biographical card and historical significance section to `BookDetailScreen`.
