@@ -1,6 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/features/reading/data/repositories/book_repository.dart';
 import 'package:hanzi_master/features/reading/domain/entities/book_model.dart';
+import 'package:hanzi_master/features/media/data/story_fetcher_service.dart';
+import 'package:hanzi_master/features/media/domain/models/library_story.dart';
 
 final bookRepositoryProvider = Provider<BookRepository>((ref) {
   return BookRepository();
@@ -54,5 +56,17 @@ final inProgressBooksProvider = FutureProvider<List<InProgressBookItem>>((ref) a
 final bookBookmarksProvider = StateProvider.family<List<BookmarkModel>, String>((ref, bookId) {
   final repo = ref.read(bookRepositoryProvider);
   return repo.getBookmarks(bookId);
+});
+
+final microReadsProvider = FutureProvider<List<LibraryStory>>((ref) async {
+  final fetcher = ref.read(storyFetcherServiceProvider);
+  final all = await fetcher.fetchLocalStories();
+  return all.where((s) => s.category != 'Tang Poetry' && s.category != 'Classical Literature').toList();
+});
+
+final tangPoetryProvider = FutureProvider<List<LibraryStory>>((ref) async {
+  final fetcher = ref.read(storyFetcherServiceProvider);
+  final all = await fetcher.fetchLocalStories();
+  return all.where((s) => s.category == 'Tang Poetry' || s.category == 'Classical Literature').toList();
 });
 
