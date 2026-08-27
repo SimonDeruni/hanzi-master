@@ -1,0 +1,1841 @@
+[
+  {
+    "id": "journey_to_the_west",
+    "title": "西游记",
+    "titleEn": "Journey to the West",
+    "author": "吴承恩",
+    "authorEn": "Wu Cheng'en",
+    "category": "Chinese Epics",
+    "dynastyOrEra": "Ming Dynasty",
+    "hskLevel": 4,
+    "totalChapters": 100,
+    "coverEmoji": "🐒",
+    "description": "《西游记》是中国古代四大名著之一，成书于明代。全书共一百回，讲述齐天大圣孙悟空因大闹天宫被压于五行山下五百年，后受观音菩萨点化，与猪八戒、沙悟净一同护送大唐高僧玄奘法师西天取经的宏大传奇。师徒四人跋涉十万八千里，历经九九八十一难，一路斩妖除魔，不仅战胜了白骨精、红孩儿、铁扇公主与牛魔王等诸多妖魔，更在心性磨砺中完成了从凡俗到成佛的灵性蜕变。小说融合了儒、释、道三家思想，以奇幻浪漫的想象、幽默诙谐的笔调和深刻的社会隐喻，构筑了一座世界文学史上无可逾越的东方奇幻神魔史诗。",
+    "descriptionEn": "Journey to the West (Xi You Ji) is one of the Four Great Classical Novels of Chinese literature, attributed to Wu Cheng'en in the Ming Dynasty. Across 100 chapters, it chronicles the sweeping mythical pilgrimage of the Buddhist monk Xuanzang (Tripitaka) and his three extraordinary supernatural disciples—Sun Wukong (The Monkey King), Zhu Bajie (Pigsy), and Sha Wujing (Sandy)—as they journey 108,000 li westward toward India in search of sacred Buddhist sutras. Overcoming eighty-one perilous tribulations, monstrous demons, and moral trials, the epic blends Daoist alchemy, Buddhist philosophy, and satirical folklore into an immortal masterpiece of resilience, enlightenment, and divine humor.",
+    "tags": [
+      "Monkey King",
+      "Mythology",
+      "Adventure",
+      "Action"
+    ],
+    "audioStreamUrl": "https://archive.org/download/a7zerwneey84c2wgt9cbbwig5nb5rxshbznp48ys/nuxkocf0qevgk2i-2697257640844528134_hd.mp3"
+  },
+  {
+    "id": "romance_of_three_kingdoms",
+    "title": "三国演义",
+    "titleEn": "Romance of the Three Kingdoms",
+    "author": "罗贯中",
+    "authorEn": "Luo Guanzhong",
+    "category": "Chinese Epics",
+    "dynastyOrEra": "Ming Dynasty",
+    "hskLevel": 5,
+    "totalChapters": 120,
+    "coverEmoji": "⚔️",
+    "description": "《三国演义》是中国古代历史演义小说的巅峰之作，由元末明初罗贯中根据正史《三国志》与民间传说加工而成。全书一百二十回，全景式地展现了从东汉末年黄巾起义爆发，到魏、蜀、吴三国鼎立争霸，直至西晋统一全国的百年波澜壮阔的历史风云。书中塑造了智绝诸葛亮、义绝关羽、奸绝曹操、勇绝张飞与仁德刘备等四百多位栩栩如生的人物形象。从桃园结义、煮酒论英雄、官渡之战，到赤壁之战借东风、七擒孟获、秋风五丈原，小说将军事韬略、政治博弈与人性忠烈展现得淋漓尽致，被誉为“中国传统智慧之百科全书”。",
+    "descriptionEn": "Romance of the Three Kingdoms is the crowning historical epic of classical Chinese literature, compiled by Luo Guanzhong across 120 monumental chapters. Spanning over a century of turbulence from the decline of the Han dynasty through the rise and fall of the Three Kingdoms (Wei, Shu, and Wu), the saga weaves grand military strategy, statecraft, and human drama. It introduces immortal archetypes such as the brilliant strategist Zhuge Liang, the loyal martial paragon Guan Yu, the ambitious warlord Cao Cao, and the benevolent Liu Bei. From the Oath of the Peach Garden to the fiery Battle of Red Cliffs, it remains an eternal encyclopedia of Eastern strategy, chivalry, and tragic heroism.",
+    "tags": [
+      "Warfare",
+      "History",
+      "Strategy",
+      "Heroes"
+    ],
+    "audioStreamUrl": "https://archive.org/download/w73c9plhpwnxbrnuiirr35904vgtrtcmiyvvlfst/pc5yjok3qzmkwfv-2686884444420524038_ud.mp3"
+  },
+  {
+    "id": "water_margin",
+    "title": "水浒传",
+    "titleEn": "Water Margin",
+    "author": "施耐庵",
+    "authorEn": "Shi Nai'an",
+    "category": "Chinese Epics",
+    "dynastyOrEra": "Ming Dynasty",
+    "hskLevel": 4,
+    "totalChapters": 121,
+    "coverEmoji": "🌊",
+    "description": "《水浒传》是中国古典文学中第一部描写农民起义的白话长篇小说，由施耐庵在宋元话本基础上创作完成。全书共一百二十回，讲述北宋末年朝政腐败、奸臣当道，以宋江、卢俊义、林冲、武松、鲁智深、李逵等为代表的一百零八位好汉，因不堪官逼民反，在山东水泊梁山结义聚义、惩恶扬善的英雄史诗。从林教头风雪山神庙、鲁提辖拳打镇关西、武松景阳冈打虎，到三打祝家庄、梁山大聚义与南征方腊的悲壮结局，作品深刻揭示了封建社会的黑暗与正义反抗的宿命，洋溢着豪迈悲壮的英雄气概。",
+    "descriptionEn": "Water Margin (Outlaws of the Marsh) is the pioneering classical Chinese novel of heroic rebellion, authored by Shi Nai'an across 120 epic chapters. Set in the twilight years of the Northern Song Dynasty, it recounts how 108 righteous heroes and outlaws—each bearing unique martial prowess and driven outside the law by tyrannical and corrupt imperial officials—gather at the impenetrable marsh of Mount Liang. United by an oath of brotherhood and social justice, figures like Wu Song, Lin Chong, Lu Zhishen, and Song Jiang battle corrupted governors before facing the tragic ironies of imperial amnesty, creating a breathtaking epic of honor and camaraderie.",
+    "tags": [
+      "Outlaws",
+      "Brotherhood",
+      "Martial Arts"
+    ]
+  },
+  {
+    "id": "dream_of_red_chamber",
+    "title": "红楼梦",
+    "titleEn": "Dream of the Red Chamber",
+    "author": "曹雪芹",
+    "authorEn": "Cao Xueqin",
+    "category": "Chinese Epics",
+    "dynastyOrEra": "Qing Dynasty",
+    "hskLevel": 5,
+    "totalChapters": 121,
+    "coverEmoji": "🌺",
+    "description": "《红楼梦》是中国古代白话小说的至高巅峰与古典文学的集大成者，由清代曹雪芹倾尽毕生心血著成。全书一百二十回，以贾宝玉、林黛玉、薛宝钗的木石前盟与金玉良缘之爱情悲剧为主线，通过荣国府、宁国府四大家族的由盛转衰，全方位、多维度地解剖了封建晚期的社会结构、宗法家族、礼教伦理与人生百态。书中描摹了大观园中的儿女情长、诗社酬唱，与家族败落时的抄家获罪、树倒猢狲散形成鲜明对照。“满纸荒唐言，一把辛酸泪”，小说具有极其深邃的哲学反思与无与伦比的美学价值。",
+    "descriptionEn": "Dream of the Red Chamber (The Story of the Stone) is revered as the supreme pinnacle of Chinese prose fiction, crafted by Cao Xueqin during the Qing Dynasty. Spanning 120 chapters, it chronicles the poignant love triangle between the spiritual Jia Baoyu, the fragile and poetic Lin Daiyu, and the dutiful Xue Baochai, set against the opulent rise and tragic collapse of the aristocratic Jia clan. Through the miniature paradise of the Grand View Garden and the inexorable decay of aristocratic society, the novel explores profound Buddhist-Daoist themes of illusion, mortal impermanence, familial destiny, and the bittersweet beauty of memory.",
+    "tags": [
+      "Romance",
+      "Poetry",
+      "Aristocracy",
+      "Tragedy"
+    ],
+    "audioStreamUrl": "https://archive.org/download/dream_red_chamber_1_1603_librivox/dreamoftheredchamber1_01_cao_64kb.mp3"
+  },
+  {
+    "id": "fengshen_yanyi",
+    "title": "封神演义",
+    "titleEn": "Investiture of the Gods",
+    "author": "许仲琳",
+    "authorEn": "Xu Zhonglin",
+    "category": "Chinese Epics",
+    "dynastyOrEra": "Ming Dynasty",
+    "hskLevel": 4,
+    "totalChapters": 12,
+    "coverEmoji": "⚡",
+    "description": "《封神演义》是许仲琳在Ming Dynasty时期创作的Chinese Epics代表巨著。商周交替之际，姜子牙、哪吒、杨戬辅佐周武王伐纣的东方神魔大战。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"Investiture of the Gods\" is a classic masterpiece composed by Xu Zhonglin during the Ming Dynasty era. The epic mythological war between Shang and Zhou featuring Nezha and mythical deities. Celebrated worldwide as a defining jewel of Chinese Epics, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Nezha",
+      "Gods",
+      "Magic",
+      "War"
+    ]
+  },
+  {
+    "id": "flowers_in_the_mirror",
+    "title": "镜花缘",
+    "titleEn": "Flowers in the Mirror",
+    "author": "李汝珍",
+    "authorEn": "Li Ruzhen",
+    "category": "Chinese Epics",
+    "dynastyOrEra": "Qing Dynasty",
+    "hskLevel": 4,
+    "totalChapters": 12,
+    "coverEmoji": "🪞",
+    "description": "《镜花缘》是李汝珍在Qing Dynasty时期创作的Chinese Epics代表巨著。唐敖游历海外奇幻国度（君子国、大人国、女儿国）的东方奇幻奇谭。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"Flowers in the Mirror\" is a classic masterpiece composed by Li Ruzhen during the Qing Dynasty era. A fantastic overseas voyage through exotic realms akin to Gulliver’s Travels. Celebrated worldwide as a defining jewel of Chinese Epics, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Fantasy",
+      "Travel",
+      "Satire"
+    ]
+  },
+  {
+    "id": "the_scholars",
+    "title": "儒林外史",
+    "titleEn": "The Scholars",
+    "author": "吴敬梓",
+    "authorEn": "Wu Jingzi",
+    "category": "Chinese Epics",
+    "dynastyOrEra": "Qing Dynasty",
+    "hskLevel": 4,
+    "totalChapters": 12,
+    "coverEmoji": "📖",
+    "description": "《儒林外史》是吴敬梓在Qing Dynasty时期创作的Chinese Epics代表巨著。以辛辣讽刺笔触揭露封建科举制度下读书人追逐功名的众生相。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"The Scholars\" is a classic masterpiece composed by Wu Jingzi during the Qing Dynasty era. A masterclass in Chinese satire caricaturing scholars obsession with imperial exams. Celebrated worldwide as a defining jewel of Chinese Epics, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Satire",
+      "Scholars",
+      "Humor"
+    ]
+  },
+  {
+    "id": "romance_sui_tang",
+    "title": "隋唐演义",
+    "titleEn": "Romance of Sui and Tang Dynasties",
+    "author": "褚人获",
+    "authorEn": "Chu Renhuo",
+    "category": "Chinese Epics",
+    "dynastyOrEra": "Qing Dynasty",
+    "hskLevel": 4,
+    "totalChapters": 12,
+    "coverEmoji": "🐎",
+    "description": "《隋唐演义》是褚人获在Qing Dynasty时期创作的Chinese Epics代表巨著。隋末天下大乱，秦琼、罗成、程咬金等瓦岗寨英雄反隋建唐的英雄演义。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"Romance of Sui and Tang Dynasties\" is a classic masterpiece composed by Chu Renhuo during the Qing Dynasty era. The heroic rise of the Tang dynasty and the legendary warriors of Wagang. Celebrated worldwide as a defining jewel of Chinese Epics, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Tang Dynasty",
+      "Warriors",
+      "Chivalry"
+    ]
+  },
+  {
+    "id": "bizarre_happenings_two_decades",
+    "title": "二十年目睹之怪现状",
+    "titleEn": "Bizarre Happenings Over Two Decades",
+    "author": "吴趼人",
+    "authorEn": "Wu Jianren",
+    "category": "Chinese Epics",
+    "dynastyOrEra": "Late Qing",
+    "hskLevel": 4,
+    "totalChapters": 12,
+    "coverEmoji": "👁️",
+    "description": "《二十年目睹之怪现状》是吴趼人在Late Qing时期创作的Chinese Epics代表巨著。以第一人称“九死一生”见证晚清社会转型期的种种奇闻怪象。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"Bizarre Happenings Over Two Decades\" is a classic masterpiece composed by Wu Jianren during the Late Qing era. A first-person narrative witnessing the bizarre societal upheavals of late imperial China. Celebrated worldwide as a defining jewel of Chinese Epics, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Realism",
+      "Memoir",
+      "History"
+    ]
+  },
+  {
+    "id": "the_art_of_war",
+    "title": "孙子兵法",
+    "titleEn": "The Art of War",
+    "author": "孙武",
+    "authorEn": "Sun Tzu",
+    "category": "Ancient Philosophy",
+    "dynastyOrEra": "Spring & Autumn",
+    "hskLevel": 3,
+    "totalChapters": 13,
+    "coverEmoji": "🎯",
+    "description": "《孙子兵法》是中国现存最早的兵书，也是世界上最早的军事著作，被誉为“兵学圣典”与“百代兵家之祖”，由春秋时期齐国名将孙武所著。全书共十三篇，立足于深邃的辩证法思想，系统阐述了战争规律、战略谋划、用兵谋略与治军用人之道。从“知己知彼，百战不殆”、“不战而屈人之兵”的至高境界，到“兵者诡道也”、“致人而不致于人”的灵活战术，《孙子兵法》超越了单纯的军事范畴，广泛应用于现代商业竞争、外交博弈与人生处世智慧。",
+    "descriptionEn": "The Art of War by Sun Tzu is the most influential military and strategic treatise in world history, composed in the Spring and Autumn period. Spanning thirteen profound chapters, it delivers timeless principles of leadership, psychological warfare, resource management, and strategic calculations. Emphasizing that supreme excellence consists of breaking the enemy's resistance without fighting, Sun Tzu's philosophical insights on deception, adaptability, terrain, and knowing oneself and the adversary have profoundly shaped global military thought, business management, and modern strategic philosophy.",
+    "tags": [
+      "Strategy",
+      "Mindset",
+      "Leadership"
+    ],
+    "audioStreamUrl": "https://archive.org/download/art_of_war_librivox/art_of_war_01-02_sun_tzu_64kb.mp3"
+  },
+  {
+    "id": "dao_de_jing",
+    "title": "道德经",
+    "titleEn": "Tao Te Ching",
+    "author": "老子",
+    "authorEn": "Laozi",
+    "category": "Ancient Philosophy",
+    "dynastyOrEra": "Spring & Autumn",
+    "hskLevel": 3,
+    "totalChapters": 81,
+    "coverEmoji": "☯️",
+    "description": "《道德经》（又称《老子》）是先秦道家学派的开山奠基巨著，相传为春秋末期思想家老子所著，全文八十一章五千余言。上篇《道经》探讨天地宇宙的本源与运行规律，提出“道法自然”、“无为而治”的至高哲学；下篇《德经》阐述处世治国之德，倡导“上善若水”、“大巧若拙”、“柔弱胜刚强”的处世智慧。作品文约义丰、辞简理赜，不仅是中华民族精神特质与哲学思维的重要源泉，也是对全人类思想宝库做出卓越贡献的世界级经典。",
+    "descriptionEn": "The Tao Te Ching (Daodejing) is the foundational text of Daoist philosophy, traditionally attributed to the ancient sage Laozi. Comprising 81 poetic and aphoristic chapters, the text explores the Tao (The Way)—the fundamental, nameless principle behind the cosmos—and De (Virtue)—the natural expression of harmony with the universe. Advocating wu wei (effortless action), supreme humility like water, and simplicity, this seminal work remains one of the most translated and influential philosophical masterpieces in human civilization.",
+    "tags": [
+      "Daoism",
+      "Philosophy",
+      "Meditation",
+      "Peace"
+    ]
+  },
+  {
+    "id": "the_analects",
+    "title": "论语",
+    "titleEn": "The Analects of Confucius",
+    "author": "孔子及其弟子",
+    "authorEn": "Confucius & Disciples",
+    "category": "Ancient Philosophy",
+    "dynastyOrEra": "Spring & Autumn",
+    "hskLevel": 3,
+    "totalChapters": 20,
+    "coverEmoji": "📜",
+    "description": "《论语》是儒家学派的经典巨著之一，由孔子弟子及再传弟子记录孔子及其弟子言行而成。全书共二十篇，集中体现了孔子在政治、哲学、教育、伦理及人生修养方面的核心思想。其以“仁”为核心追求，以“礼”为行为规范，倡导“学而时习之”、“温故而知新”的治学态度，以及“己所不欲，勿施于人”、“三人行必有我师焉”的谦和品德。两千多年来，《论语》深刻塑造了中华民族的文化心理、道德伦理与价值追求。",
+    "descriptionEn": "The Analects of Confucius (Lun Yu) is the core foundational scripture of Confucianism, compiled by disciples to record the teachings, dialogues, and philosophical discourses of Master Kong (Confucius). Across 20 thematic chapters, it articulates ideals of Ren (Benevolence), Li (Ritual Propriety), filial piety, and righteous governance. Promoting life-long learning and moral self-cultivation, The Analects has served for over two millennia as the ethical compass and cultural backbone of East Asian civilization.",
+    "tags": [
+      "Confucianism",
+      "Ethics",
+      "Wisdom"
+    ],
+    "audioStreamUrl": "https://archive.org/download/analects_confucius_1303_librivox/analects_01_confucius_64kb.mp3"
+  },
+  {
+    "id": "zhuangzi",
+    "title": "庄子",
+    "titleEn": "Zhuangzi",
+    "author": "庄周",
+    "authorEn": "Zhuang Zhou",
+    "category": "Ancient Philosophy",
+    "dynastyOrEra": "Warring States",
+    "hskLevel": 4,
+    "totalChapters": 33,
+    "coverEmoji": "🦋",
+    "description": "《庄子》是庄周在Warring States时期创作的Ancient Philosophy代表巨著。逍遥游与庄周梦蝶，以奔放想象探讨心灵绝对自由的道家名作。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"Zhuangzi\" is a classic masterpiece composed by Zhuang Zhou during the Warring States era. Imaginative Daoist parables exploring cosmic freedom and spiritual liberation. Celebrated worldwide as a defining jewel of Ancient Philosophy, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Daoism",
+      "Parables",
+      "Freedom"
+    ]
+  },
+  {
+    "id": "mencius",
+    "title": "孟子",
+    "titleEn": "Mencius",
+    "author": "孟轲",
+    "authorEn": "Mencius",
+    "category": "Ancient Philosophy",
+    "dynastyOrEra": "Warring States",
+    "hskLevel": 4,
+    "totalChapters": 261,
+    "coverEmoji": "🏛️",
+    "description": "《孟子》是孟轲在Warring States时期创作的Ancient Philosophy代表巨著。主张人性本善、民贵君轻的儒家亚圣经典，论辩气势磅礴。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"Mencius\" is a classic masterpiece composed by Mencius during the Warring States era. Confucian classic arguing innate human goodness and benevolence in governance. Celebrated worldwide as a defining jewel of Ancient Philosophy, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Confucianism",
+      "Morality",
+      "Debate"
+    ]
+  },
+  {
+    "id": "xunzi",
+    "title": "荀子",
+    "titleEn": "Xunzi",
+    "author": "荀况",
+    "authorEn": "Xun Kuang",
+    "category": "Ancient Philosophy",
+    "dynastyOrEra": "Warring States",
+    "hskLevel": 4,
+    "totalChapters": 32,
+    "coverEmoji": "⚖️",
+    "description": "《荀子》是荀况在Warring States时期创作的Ancient Philosophy代表巨著。主张“人之性恶，其善者伪也”，强调礼乐教化与后天学习的重要性。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"Xunzi\" is a classic masterpiece composed by Xun Kuang during the Warring States era. Early philosophical work emphasizing rigorous learning, rituals, and human discipline. Celebrated worldwide as a defining jewel of Ancient Philosophy, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Ritual",
+      "Learning",
+      "Ethics"
+    ]
+  },
+  {
+    "id": "mozi",
+    "title": "墨子",
+    "titleEn": "Mozi",
+    "author": "墨翟",
+    "authorEn": "Mo Di",
+    "category": "Ancient Philosophy",
+    "dynastyOrEra": "Warring States",
+    "hskLevel": 4,
+    "totalChapters": 15,
+    "coverEmoji": "🕊️",
+    "description": "《墨子》是墨翟在Warring States时期创作的Ancient Philosophy代表巨著。提倡“兼爱非攻、节用尚贤”的平民学派，包含早期几何与光学物理思想。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"Mozi\" is a classic masterpiece composed by Mo Di during the Warring States era. Utilitarian philosopher championing universal love, defensive warfare, and early logic. Celebrated worldwide as a defining jewel of Ancient Philosophy, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Universal Love",
+      "Peace",
+      "Logic"
+    ]
+  },
+  {
+    "id": "han_feizi",
+    "title": "韩非子",
+    "titleEn": "Han Feizi",
+    "author": "韩非",
+    "authorEn": "Han Fei",
+    "category": "Ancient Philosophy",
+    "dynastyOrEra": "Warring States",
+    "hskLevel": 4,
+    "totalChapters": 55,
+    "coverEmoji": "👑",
+    "description": "《韩非子》是韩非在Warring States时期创作的Ancient Philosophy代表巨著。法家思想集大成之作，将“法、术、势”熔为一炉的帝王御下权谋哲学。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"Han Feizi\" is a classic masterpiece composed by Han Fei during the Warring States era. The definitive Legalist masterpiece on political realism, laws, and statecraft. Celebrated worldwide as a defining jewel of Ancient Philosophy, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Legalism",
+      "Power",
+      "Statecraft"
+    ]
+  },
+  {
+    "id": "liezi",
+    "title": "列子",
+    "titleEn": "Liezi",
+    "author": "列御寇",
+    "authorEn": "Lie Yukou",
+    "category": "Ancient Philosophy",
+    "dynastyOrEra": "Warring States",
+    "hskLevel": 3,
+    "totalChapters": 8,
+    "coverEmoji": "🏔️",
+    "description": "《列子》是列御寇在Warring States时期创作的Ancient Philosophy代表巨著。包含愚公移山、夸父追日、杞人忧天等富有深意的道家寓言集。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"Liezi\" is a classic masterpiece composed by Lie Yukou during the Warring States era. Charming Daoist parables including The Foolish Old Man Who Moved Mountains. Celebrated worldwide as a defining jewel of Ancient Philosophy, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Daoism",
+      "Fables",
+      "Wisdom"
+    ]
+  },
+  {
+    "id": "thirty_six_stratagems",
+    "title": "三十六计",
+    "titleEn": "The Thirty-Six Stratagems",
+    "author": "佚名",
+    "authorEn": "Anonymous",
+    "category": "Ancient Philosophy",
+    "dynastyOrEra": "Ancient China",
+    "hskLevel": 3,
+    "totalChapters": 15,
+    "coverEmoji": "♟️",
+    "description": "《三十六计》是佚名在Ancient China时期创作的Ancient Philosophy代表巨著。瞒天过海、围魏救赵、借刀杀人、金蝉脱壳等三十六个谋略精要。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"The Thirty-Six Stratagems\" is a classic masterpiece composed by Anonymous during the Ancient China era. The concise collection of 36 strategic tactics and psychological proverbs. Celebrated worldwide as a defining jewel of Ancient Philosophy, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Tactics",
+      "Proverbs",
+      "Wisdom"
+    ]
+  },
+  {
+    "id": "huainanzi",
+    "title": "淮南子",
+    "titleEn": "Huainanzi",
+    "author": "刘安",
+    "authorEn": "Liu An",
+    "category": "Ancient Philosophy",
+    "dynastyOrEra": "Western Han",
+    "hskLevel": 4,
+    "totalChapters": 21,
+    "coverEmoji": "🌌",
+    "description": "《淮南子》是刘安在Western Han时期创作的Ancient Philosophy代表巨著。西汉淮南王召集门客编撰的黄老道家百科巨著，融合天地宇宙观与养生之道。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"Huainanzi\" is a classic masterpiece composed by Liu An during the Western Han era. Comprehensive Han synthesis of Daoist cosmology, governance, and physical wellness. Celebrated worldwide as a defining jewel of Ancient Philosophy, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Cosmology",
+      "Daoism",
+      "Han Dynasty"
+    ]
+  },
+  {
+    "id": "guiguzi",
+    "title": "鬼谷子",
+    "titleEn": "Guiguzi: Master of the Ghost Valley",
+    "author": "鬼谷子",
+    "authorEn": "Guiguzi",
+    "category": "Ancient Philosophy",
+    "dynastyOrEra": "Warring States",
+    "hskLevel": 4,
+    "totalChapters": 15,
+    "coverEmoji": "🎭",
+    "description": "《鬼谷子》是鬼谷子在Warring States时期创作的Ancient Philosophy代表巨著。纵横家鼻祖纵横捭阖、言语谈判与心理博弈的绝密谋略秘本。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"Guiguzi: Master of the Ghost Valley\" is a classic masterpiece composed by Guiguzi during the Warring States era. Ancient strategic manual on persuasion, diplomatic negotiation, and psychological manipulation. Celebrated worldwide as a defining jewel of Ancient Philosophy, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Diplomacy",
+      "Persuasion",
+      "Psychology"
+    ]
+  },
+  {
+    "id": "classic_mountains_seas",
+    "title": "山海经",
+    "titleEn": "Classic of Mountains and Seas",
+    "author": "古籍",
+    "authorEn": "Ancient Mythology",
+    "category": "Ancient Philosophy",
+    "dynastyOrEra": "Pre-Qin",
+    "hskLevel": 4,
+    "totalChapters": 18,
+    "coverEmoji": "🐉",
+    "description": "《山海经》是古籍在Pre-Qin时期创作的Ancient Philosophy代表巨著。记录上古华夏地理、神话异兽与远古神祇的奇幻百科全书。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"Classic of Mountains and Seas\" is a classic masterpiece composed by Ancient Mythology during the Pre-Qin era. The ancient geographical encyclopedia of mythical creatures, gods, and sacred mountains. Celebrated worldwide as a defining jewel of Ancient Philosophy, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Mythology",
+      "Beasts",
+      "Ancient"
+    ]
+  },
+  {
+    "id": "records_grand_historian",
+    "title": "史记精选",
+    "titleEn": "Records of the Grand Historian (Highlights)",
+    "author": "司马迁",
+    "authorEn": "Sima Qian",
+    "category": "Ancient Philosophy",
+    "dynastyOrEra": "Western Han",
+    "hskLevel": 5,
+    "totalChapters": 130,
+    "coverEmoji": "🖋️",
+    "description": "《史记》是中国历史上第一部纪传体通史，由西汉史学家司马迁历经数十年艰辛著成，被鲁迅誉为“史家之绝唱，无韵之离骚”。全书一百三十篇，记载了从上古传说中的黄帝时代至汉武帝太初四年共三千多年的历史。全书涵盖本纪、表、书、世家、列传五种体裁，以宏大的历史视野、严谨的实录精神和生动传神的文学笔触，塑造了项羽、刘邦、陈胜、荆轲、韩信等无数鲜活的历史人物，开创了中国史学与传记文学的崭新纪元。",
+    "descriptionEn": "Records of the Grand Historian (Shiji) by Sima Qian of the Western Han Dynasty is the monumental foundational text of Chinese historiography and biographical literature. Spanning 130 expansive chapters and over 3,000 years of history from the mythical Yellow Emperor to Emperor Wu of Han, Sima Qian pioneered the biographical-thematic format (jizhuanti). Celebrated by Lu Xun as \"the grandest song of historians, a rhymeless Li Sao,\" it blends rigorous historical truth with sublime literary dramatization.",
+    "tags": [
+      "History",
+      "Biographies",
+      "Masterpiece"
+    ]
+  },
+  {
+    "id": "in_search_of_sacred",
+    "title": "搜神记",
+    "titleEn": "In Search of the Sacred",
+    "author": "干宝",
+    "authorEn": "Gan Bao",
+    "category": "Supernatural & Folklore",
+    "dynastyOrEra": "Jin Dynasty",
+    "hskLevel": 3,
+    "totalChapters": 20,
+    "coverEmoji": "🔮",
+    "description": "《搜神记》是干宝在Jin Dynasty时期创作的Supernatural & Folklore代表巨著。魏晋志怪小说的鼻祖，收录嫦娥奔月、董永七仙女、干将莫邪等古代神怪传说。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"In Search of the Sacred\" is a classic masterpiece composed by Gan Bao during the Jin Dynasty era. The earliest compilation of ancient Chinese ghost stories, deities, and myths. Celebrated worldwide as a defining jewel of Supernatural & Folklore, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Myths",
+      "Spirits",
+      "Ancient"
+    ]
+  },
+  {
+    "id": "call_to_arms_luxun",
+    "title": "呐喊",
+    "titleEn": "Call to Arms",
+    "author": "鲁迅",
+    "authorEn": "Lu Xun",
+    "category": "Modern Chinese",
+    "dynastyOrEra": "Republic of China",
+    "hskLevel": 4,
+    "totalChapters": 14,
+    "coverEmoji": "🖋️",
+    "description": "《呐喊》是鲁迅在Republic of China时期创作的Modern Chinese代表巨著。包含《狂人日记》《孔乙己》《阿Q正传》等中国现代文学奠基之作。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"Call to Arms\" is a classic masterpiece composed by Lu Xun during the Republic of China era. The foundational short story collection of modern Chinese literature by Lu Xun. Celebrated worldwide as a defining jewel of Modern Chinese, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Modern",
+      "Realism",
+      "Literature"
+    ]
+  },
+  {
+    "id": "wandering_luxun",
+    "title": "彷徨",
+    "titleEn": "Wandering",
+    "author": "鲁迅",
+    "authorEn": "Lu Xun",
+    "category": "Modern Chinese",
+    "dynastyOrEra": "Republic of China",
+    "hskLevel": 4,
+    "totalChapters": 11,
+    "coverEmoji": "🌧️",
+    "description": "《彷徨》是鲁迅在Republic of China时期创作的Modern Chinese代表巨著。包含《祝福》《伤逝》《在酒楼上》等深入剖析旧时代知识分子与女性命运的经典。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"Wandering\" is a classic masterpiece composed by Lu Xun during the Republic of China era. Lu Xun’s poignant second collection exploring intellectual crises and traditional constraints. Celebrated worldwide as a defining jewel of Modern Chinese, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Drama",
+      "Lu Xun",
+      "Classics"
+    ]
+  },
+  {
+    "id": "dawn_blossoms_luxun",
+    "title": "朝花夕拾",
+    "titleEn": "Dawn Blossoms Plucked at Dusk",
+    "author": "鲁迅",
+    "authorEn": "Lu Xun",
+    "category": "Modern Chinese",
+    "dynastyOrEra": "Republic of China",
+    "hskLevel": 3,
+    "totalChapters": 13,
+    "coverEmoji": "🌸",
+    "description": "《朝花夕拾》是鲁迅在Republic of China时期创作的Modern Chinese代表巨著。鲁迅回忆童年百草园、三味书屋与求学恩师藤野先生的温情回忆录。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"Dawn Blossoms Plucked at Dusk\" is a classic masterpiece composed by Lu Xun during the Republic of China era. Lyrical autobiographical essays reminiscing childhood gardens and beloved teachers. Celebrated worldwide as a defining jewel of Modern Chinese, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Memoir",
+      "Childhood",
+      "Essays"
+    ]
+  },
+  {
+    "id": "old_tales_retold",
+    "title": "故事新编",
+    "titleEn": "Old Tales Retold",
+    "author": "鲁迅",
+    "authorEn": "Lu Xun",
+    "category": "Modern Chinese",
+    "dynastyOrEra": "Republic of China",
+    "hskLevel": 4,
+    "totalChapters": 9,
+    "coverEmoji": "🏹",
+    "description": "《故事新编》是鲁迅在Republic of China时期创作的Modern Chinese代表巨著。鲁迅以幽默讽刺手法重述女娲补天、大禹治水、庄子梦蝶等古代神话。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"Old Tales Retold\" is a classic masterpiece composed by Lu Xun during the Republic of China era. Lu Xun reimagines classical Chinese legends with razor-sharp satire and modernity. Celebrated worldwide as a defining jewel of Modern Chinese, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Satire",
+      "Myth Reimagined",
+      "Wit"
+    ]
+  },
+  {
+    "id": "rickshaw_boy",
+    "title": "骆驼祥子",
+    "titleEn": "Rickshaw Boy",
+    "author": "老舍",
+    "authorEn": "Lao She",
+    "category": "Modern Chinese",
+    "dynastyOrEra": "Republic of China",
+    "hskLevel": 3,
+    "totalChapters": 15,
+    "coverEmoji": "🛺",
+    "description": "《骆驼祥子》是老舍在Republic of China时期创作的Modern Chinese代表巨著。老北京城里一个纯朴勤劳的人力车夫祥子的奋斗与命运沉浮。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"Rickshaw Boy\" is a classic masterpiece composed by Lao She during the Republic of China era. The poignant story of an honest rickshaw puller in early 20th century Beijing. Celebrated worldwide as a defining jewel of Modern Chinese, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Beijing",
+      "Culture",
+      "Drama"
+    ]
+  },
+  {
+    "id": "four_generations_roof",
+    "title": "四世同堂",
+    "titleEn": "Four Generations Under One Roof",
+    "author": "老舍",
+    "authorEn": "Lao She",
+    "category": "Modern Chinese",
+    "dynastyOrEra": "Republic of China",
+    "hskLevel": 4,
+    "totalChapters": 15,
+    "coverEmoji": "🏘️",
+    "description": "《四世同堂》是老舍在Republic of China时期创作的Modern Chinese代表巨著。抗日战争时期北平小羊圈胡同里四世同堂家庭与街坊邻里的生死抗争。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"Four Generations Under One Roof\" is a classic masterpiece composed by Lao She during the Republic of China era. Monumental epic novel of Beijing alleyway residents enduring wartime occupation. Celebrated worldwide as a defining jewel of Modern Chinese, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Beijing",
+      "Wartime",
+      "Family Epic"
+    ]
+  },
+  {
+    "id": "teahouse_laoshe",
+    "title": "茶馆",
+    "titleEn": "Teahouse",
+    "author": "老舍",
+    "authorEn": "Lao She",
+    "category": "Modern Chinese",
+    "dynastyOrEra": "Republic of China",
+    "hskLevel": 4,
+    "totalChapters": 15,
+    "coverEmoji": "🍵",
+    "description": "《茶馆》是老舍在Republic of China时期创作的Modern Chinese代表巨著。通过北京裕泰茶馆半个世纪的风云变幻，折射清末至民国三段历史兴衰。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"Teahouse\" is a classic masterpiece composed by Lao She during the Republic of China era. Lao She’s celebrated drama reflecting 50 years of social transformation through a Beijing teahouse. Celebrated worldwide as a defining jewel of Modern Chinese, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Drama",
+      "Teahouse",
+      "Beijing"
+    ]
+  },
+  {
+    "id": "border_town",
+    "title": "边城",
+    "titleEn": "Border Town",
+    "author": "沈从文",
+    "authorEn": "Shen Congwen",
+    "category": "Modern Chinese",
+    "dynastyOrEra": "Republic of China",
+    "hskLevel": 3,
+    "totalChapters": 15,
+    "coverEmoji": "🛶",
+    "description": "《边城》是沈从文在Republic of China时期创作的Modern Chinese代表巨著。湘西茶峒小镇上翠翠与爷爷纯朴宁静的渡船生活与纯美爱情。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"Border Town\" is a classic masterpiece composed by Shen Congwen during the Republic of China era. A lyrical masterpiece depicting idyllic rural life and romance in western Hunan. Celebrated worldwide as a defining jewel of Modern Chinese, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Poetic",
+      "Rural",
+      "Romance"
+    ]
+  },
+  {
+    "id": "the_family_bajin",
+    "title": "家",
+    "titleEn": "The Family",
+    "author": "巴金",
+    "authorEn": "Ba Jin",
+    "category": "Modern Chinese",
+    "dynastyOrEra": "Republic of China",
+    "hskLevel": 4,
+    "totalChapters": 15,
+    "coverEmoji": "🏡",
+    "description": "《家》是巴金在Republic of China时期创作的Modern Chinese代表巨著。“激流三部曲”第一部，描写四川成都高家公馆封建大家族的衰亡与青年觉醒。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"The Family\" is a classic masterpiece composed by Ba Jin during the Republic of China era. First novel of Ba Jin’s Torrent Trilogy portraying generational rebellion against patriarchal dogma. Celebrated worldwide as a defining jewel of Modern Chinese, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Youth",
+      "Rebellion",
+      "Family"
+    ]
+  },
+  {
+    "id": "spring_bajin",
+    "title": "春",
+    "titleEn": "Spring",
+    "author": "巴金",
+    "authorEn": "Ba Jin",
+    "category": "Modern Chinese",
+    "dynastyOrEra": "Republic of China",
+    "hskLevel": 4,
+    "totalChapters": 15,
+    "coverEmoji": "🌱",
+    "description": "《春》是巴金在Republic of China时期创作的Modern Chinese代表巨著。“激流三部曲”第二部，展现青年女性在封建礼教桎梏下的苦闷与抗争。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"Spring\" is a classic masterpiece composed by Ba Jin during the Republic of China era. Second novel of the Torrent Trilogy following young women seeking agency and freedom. Celebrated worldwide as a defining jewel of Modern Chinese, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Women",
+      "Freedom",
+      "Drama"
+    ]
+  },
+  {
+    "id": "autumn_bajin",
+    "title": "秋",
+    "titleEn": "Autumn",
+    "author": "巴金",
+    "authorEn": "Ba Jin",
+    "category": "Modern Chinese",
+    "dynastyOrEra": "Republic of China",
+    "hskLevel": 4,
+    "totalChapters": 15,
+    "coverEmoji": "🍂",
+    "description": "《秋》是巴金在Republic of China时期创作的Modern Chinese代表巨著。“激流三部曲”终章，封建大家庭彻底解体与青年一代奔向新生活的黎明。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"Autumn\" is a classic masterpiece composed by Ba Jin during the Republic of China era. Final chapter of the Torrent Trilogy culminating in the collapse of the old feudal estate. Celebrated worldwide as a defining jewel of Modern Chinese, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Liberation",
+      "Modern Era",
+      "Hope"
+    ]
+  },
+  {
+    "id": "fortress_besieged",
+    "title": "围城",
+    "titleEn": "Fortress Besieged",
+    "author": "钱钟书",
+    "authorEn": "Qian Zhongshu",
+    "category": "Modern Chinese",
+    "dynastyOrEra": "Republic of China",
+    "hskLevel": 4,
+    "totalChapters": 15,
+    "coverEmoji": "🏰",
+    "description": "《围城》是钱钟书在Republic of China时期创作的Modern Chinese代表巨著。“围在城里的人想逃出来，城外的人想冲进去”，描写知识分子婚姻与职场困局的机智神作。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"Fortress Besieged\" is a classic masterpiece composed by Qian Zhongshu during the Republic of China era. A razor-sharp comedy of manners and intellect depicting university politics and marriage. Celebrated worldwide as a defining jewel of Modern Chinese, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Satire",
+      "Wit",
+      "Intellectuals"
+    ]
+  },
+  {
+    "id": "love_fallen_city",
+    "title": "倾城之恋",
+    "titleEn": "Love in a Fallen City",
+    "author": "张爱玲",
+    "authorEn": "Eileen Chang",
+    "category": "Modern Chinese",
+    "dynastyOrEra": "Republic of China",
+    "hskLevel": 4,
+    "totalChapters": 15,
+    "coverEmoji": "🌁",
+    "description": "《倾城之恋》是张爱玲在Republic of China时期创作的Modern Chinese代表巨著。战火纷飞的香港沦陷时刻，白流苏与范柳原在乱世中成全的世俗真爱。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"Love in a Fallen City\" is a classic masterpiece composed by Eileen Chang during the Republic of China era. Eileen Chang’s iconic wartime romance set against the fall of colonial Hong Kong. Celebrated worldwide as a defining jewel of Modern Chinese, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Hong Kong",
+      "Romance",
+      "Psychology"
+    ]
+  },
+  {
+    "id": "golden_cangue",
+    "title": "金锁记",
+    "titleEn": "The Golden Cangue",
+    "author": "张爱玲",
+    "authorEn": "Eileen Chang",
+    "category": "Modern Chinese",
+    "dynastyOrEra": "Republic of China",
+    "hskLevel": 4,
+    "totalChapters": 15,
+    "coverEmoji": "⛓️",
+    "description": "《金锁记》是张爱玲在Republic of China时期创作的Modern Chinese代表巨著。曹七巧在金钱枷锁下逐渐走向人性扭曲与绝望深渊的心理悲剧杰作。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"The Golden Cangue\" is a classic masterpiece composed by Eileen Chang during the Republic of China era. A chilling psychological portrait of a matriarch warped by materialism and emotional bitterness. Celebrated worldwide as a defining jewel of Modern Chinese, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Psychological",
+      "Tragedy",
+      "Masterwork"
+    ]
+  },
+  {
+    "id": "the_little_prince",
+    "title": "小王子",
+    "titleEn": "The Little Prince",
+    "author": "圣埃克苏佩里",
+    "authorEn": "Antoine de Saint-Exupéry",
+    "category": "French Classics",
+    "dynastyOrEra": "French Literature",
+    "hskLevel": 2,
+    "totalChapters": 27,
+    "coverEmoji": "👑",
+    "description": "《小王子》是法国作家圣埃克苏佩里创作的传世哲学童话。来自B612星球的小王子游历宇宙各个奇特行星，最终降落地球，通过与沙漠中的飞行员、毒蛇和狐狸的对话，深刻领悟了爱、责任与“驯服”的真谛——“唯有用心灵才能看得清，真正重要的东西，用肉眼是看不见的。”",
+    "descriptionEn": "The Little Prince (Le Petit Prince) by Antoine de Saint-Exupéry is an immortal philosophical masterpiece. Traveling from Asteroid B-612 across the cosmos to Earth, the Little Prince meets a stranded pilot, a mysterious desert snake, and a wise fox who reveals the supreme secret of love and responsibility: \"It is only with the heart that one can see rightly; what is essential is invisible to the eye.\"",
+    "tags": [
+      "Fable",
+      "Philosophy",
+      "Gentle",
+      "Heartwarming"
+    ]
+  },
+  {
+    "id": "les_miserables",
+    "title": "悲惨世界",
+    "titleEn": "Les Misérables",
+    "author": "雨果",
+    "authorEn": "Victor Hugo",
+    "category": "French Classics",
+    "dynastyOrEra": "French Literature",
+    "hskLevel": 4,
+    "totalChapters": 15,
+    "coverEmoji": "🥖",
+    "description": "《悲惨世界》是雨果在French Literature时期创作的French Classics代表巨著。冉阿让由苦役犯蜕变为慈善家，在主教宽恕与芳汀救赎中绽放的人性光辉。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"Les Misérables\" is a classic masterpiece composed by Victor Hugo during the French Literature era. Victor Hugo’s monumental masterpiece of redemption, revolution, and compassion in Mandarin. Celebrated worldwide as a defining jewel of French Classics, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Redemption",
+      "Revolution",
+      "Paris",
+      "Epic"
+    ]
+  },
+  {
+    "id": "hunchback_notre_dame",
+    "title": "巴黎圣母院",
+    "titleEn": "The Hunchback of Notre-Dame",
+    "author": "雨果",
+    "authorEn": "Victor Hugo",
+    "category": "French Classics",
+    "dynastyOrEra": "French Literature",
+    "hskLevel": 4,
+    "totalChapters": 15,
+    "coverEmoji": "🔔",
+    "description": "《巴黎圣母院》是雨果在French Literature时期创作的French Classics代表巨著。钟楼怪人卡西莫多对吉普赛少女爱斯梅拉达至死不渝的凄美守护。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"The Hunchback of Notre-Dame\" is a classic masterpiece composed by Victor Hugo during the French Literature era. The gothic tragedy of Quasimodo and Esmeralda in medieval Paris in Mandarin. Celebrated worldwide as a defining jewel of French Classics, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Gothic",
+      "Paris",
+      "Tragedy"
+    ]
+  },
+  {
+    "id": "ninety_three_hugo",
+    "title": "九三年",
+    "titleEn": "Ninety-Three",
+    "author": "雨果",
+    "authorEn": "Victor Hugo",
+    "category": "French Classics",
+    "dynastyOrEra": "French Literature",
+    "hskLevel": 4,
+    "totalChapters": 15,
+    "coverEmoji": "⚔️",
+    "description": "《九三年》是雨果在French Literature时期创作的French Classics代表巨著。法国大革命恐怖时期，在革命法律与人道主义最高法则之间的道德较量。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"Ninety-Three\" is a classic masterpiece composed by Victor Hugo during the French Literature era. Hugo’s final historical novel exploring the supreme conflict between political duty and humanity. Celebrated worldwide as a defining jewel of French Classics, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "French Revolution",
+      "Morality",
+      "History"
+    ]
+  },
+  {
+    "id": "count_of_monte_cristo",
+    "title": "基督山伯爵",
+    "titleEn": "The Count of Monte Cristo",
+    "author": "大仲马",
+    "authorEn": "Alexandre Dumas",
+    "category": "French Classics",
+    "dynastyOrEra": "French Literature",
+    "hskLevel": 4,
+    "totalChapters": 15,
+    "coverEmoji": "🏰",
+    "description": "《基督山伯爵》是大仲马在French Literature时期创作的French Classics代表巨著。水手爱德蒙·唐泰斯遭陷害入狱十四载，逃出生天后快意恩仇的复仇传奇。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"The Count of Monte Cristo\" is a classic masterpiece composed by Alexandre Dumas during the French Literature era. The ultimate adventure epic of wrongful imprisonment, hidden treasure, and calculated vengeance. Celebrated worldwide as a defining jewel of French Classics, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Revenge",
+      "Adventure",
+      "Treasure"
+    ]
+  },
+  {
+    "id": "the_three_musketeers",
+    "title": "三个火枪手",
+    "titleEn": "The Three Musketeers",
+    "author": "大仲马",
+    "authorEn": "Alexandre Dumas",
+    "category": "French Classics",
+    "dynastyOrEra": "French Literature",
+    "hskLevel": 3,
+    "totalChapters": 15,
+    "coverEmoji": "🤺",
+    "description": "《三个火枪手》是大仲马在French Literature时期创作的French Classics代表巨著。“人人为我，我为人人”，达达尼昂与三位火枪手勇斗红衣主教的法国骑士传奇。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"The Three Musketeers\" is a classic masterpiece composed by Alexandre Dumas during the French Literature era. The swashbuckling adventures of d’Artagnan, Athos, Porthos, and Aramis in 17th century France. Celebrated worldwide as a defining jewel of French Classics, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Musketeers",
+      "Chivalry",
+      "Action"
+    ]
+  },
+  {
+    "id": "lady_of_camellias",
+    "title": "茶花女",
+    "titleEn": "The Lady of the Camellias",
+    "author": "小仲马",
+    "authorEn": "Alexandre Dumas fils",
+    "category": "French Classics",
+    "dynastyOrEra": "French Literature",
+    "hskLevel": 3,
+    "totalChapters": 15,
+    "coverEmoji": "🥀",
+    "description": "《茶花女》是小仲马在French Literature时期创作的French Classics代表巨著。巴黎名妓玛格丽特与青年阿芒纯洁热烈却遭世俗摧折的爱情绝唱。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"The Lady of the Camellias\" is a classic masterpiece composed by Alexandre Dumas fils during the French Literature era. The heartbreaking Parisian romance that inspired Verdi’s opera La Traviata. Celebrated worldwide as a defining jewel of French Classics, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Romance",
+      "Paris",
+      "Opera Origin"
+    ]
+  },
+  {
+    "id": "twenty_thousand_leagues",
+    "title": "海底两万里",
+    "titleEn": "Twenty Thousand Leagues Under the Sea",
+    "author": "凡尔纳",
+    "authorEn": "Jules Verne",
+    "category": "French Classics",
+    "dynastyOrEra": "French Literature",
+    "hskLevel": 4,
+    "totalChapters": 15,
+    "coverEmoji": "🦑",
+    "description": "《海底两万里》是凡尔纳在French Literature时期创作的French Classics代表巨著。鹦鹉螺号潜艇尼摩船长带领众人漫游神秘海底世界的科幻探险。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"Twenty Thousand Leagues Under the Sea\" is a classic masterpiece composed by Jules Verne during the French Literature era. Captain Nemo and the Nautilus exploring the deepest wonders of the ocean in Mandarin. Celebrated worldwide as a defining jewel of French Classics, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Sci-Fi",
+      "Submarine",
+      "Exploration"
+    ]
+  },
+  {
+    "id": "the_mysterious_island",
+    "title": "神秘岛",
+    "titleEn": "The Mysterious Island",
+    "author": "凡尔纳",
+    "authorEn": "Jules Verne",
+    "category": "French Classics",
+    "dynastyOrEra": "French Literature",
+    "hskLevel": 3,
+    "totalChapters": 15,
+    "coverEmoji": "🏝️",
+    "description": "《神秘岛》是凡尔纳在French Literature时期创作的French Classics代表巨著。五名美国战俘流落荒岛，依靠现代科技与智慧开辟家园的鲁滨逊式传奇。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"The Mysterious Island\" is a classic masterpiece composed by Jules Verne during the French Literature era. Castaways harness science and industry to survive on a volcanic South Pacific island. Celebrated worldwide as a defining jewel of French Classics, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Survival",
+      "Engineering",
+      "Castaway"
+    ]
+  },
+  {
+    "id": "madame_bovary",
+    "title": "包法利夫人",
+    "titleEn": "Madame Bovary",
+    "author": "福楼拜",
+    "authorEn": "Gustave Flaubert",
+    "category": "French Classics",
+    "dynastyOrEra": "French Literature",
+    "hskLevel": 4,
+    "totalChapters": 15,
+    "coverEmoji": "🍷",
+    "description": "《包法利夫人》是福楼拜在French Literature时期创作的French Classics代表巨著。外省医生妻子爱玛追求浪漫幻梦却步步沉沦的现实主义不朽杰作。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"Madame Bovary\" is a classic masterpiece composed by Gustave Flaubert during the French Literature era. Flaubert’s groundbreaking masterpiece of psychological realism and romantic disillusionment. Celebrated worldwide as a defining jewel of French Classics, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Realism",
+      "Psychology",
+      "Masterpiece"
+    ]
+  },
+  {
+    "id": "pere_goriot",
+    "title": "高老头",
+    "titleEn": "Père Goriot",
+    "author": "巴尔扎克",
+    "authorEn": "Honoré de Balzac",
+    "category": "French Classics",
+    "dynastyOrEra": "French Literature",
+    "hskLevel": 4,
+    "totalChapters": 15,
+    "coverEmoji": "🎩",
+    "description": "《高老头》是巴尔扎克在French Literature时期创作的French Classics代表巨著。《人间喜剧》的核心巨著，描绘巴黎名利场中父爱的倾其所有与残酷背叛。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"Père Goriot\" is a classic masterpiece composed by Honoré de Balzac during the French Literature era. Balzac’s supreme portrait of paternal sacrifice in the merciless social climb of Paris. Celebrated worldwide as a defining jewel of French Classics, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Paris",
+      "Society",
+      "Tragedy"
+    ]
+  },
+  {
+    "id": "eugenie_grandet",
+    "title": "欧也妮·葛朗台",
+    "titleEn": "Eugénie Grandet",
+    "author": "巴尔扎克",
+    "authorEn": "Honoré de Balzac",
+    "category": "French Classics",
+    "dynastyOrEra": "French Literature",
+    "hskLevel": 4,
+    "totalChapters": 15,
+    "coverEmoji": "💰",
+    "description": "《欧也妮·葛朗台》是巴尔扎克在French Literature时期创作的French Classics代表巨著。吝啬鬼葛朗台对金钱的病态囤积与纯真女儿欧也妮凄美爱情的对比。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"Eugénie Grandet\" is a classic masterpiece composed by Honoré de Balzac during the French Literature era. A piercing study of avarice and selfless love in provincial 19th-century France. Celebrated worldwide as a defining jewel of French Classics, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Greed",
+      "Avarice",
+      "Provincial"
+    ]
+  },
+  {
+    "id": "boule_de_suif",
+    "title": "羊脂球",
+    "titleEn": "Boule de Suif",
+    "author": "莫泊桑",
+    "authorEn": "Guy de Maupassant",
+    "category": "French Classics",
+    "dynastyOrEra": "French Literature",
+    "hskLevel": 3,
+    "totalChapters": 15,
+    "coverEmoji": "🥖",
+    "description": "《羊脂球》是莫泊桑在French Literature时期创作的French Classics代表巨著。普法战争逃难马车上，伪善的上流社会对善良风尘女子羊脂球的无情利用。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"Boule de Suif\" is a classic masterpiece composed by Guy de Maupassant during the French Literature era. Maupassant’s celebrated novella exposing bourgeois hypocrisy during the Franco-Prussian War. Celebrated worldwide as a defining jewel of French Classics, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Satire",
+      "War",
+      "Humanity"
+    ]
+  },
+  {
+    "id": "the_red_and_the_black",
+    "title": "红与黑",
+    "titleEn": "The Red and the Black",
+    "author": "司汤达",
+    "authorEn": "Stendhal",
+    "category": "French Classics",
+    "dynastyOrEra": "French Literature",
+    "hskLevel": 4,
+    "totalChapters": 15,
+    "coverEmoji": "♟️",
+    "description": "《红与黑》是司汤达在French Literature时期创作的French Classics代表巨著。平民青年于连凭借个人才华在军界红与教界黑之间搏击上流社会的悲壮野心。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"The Red and the Black\" is a classic masterpiece composed by Stendhal during the French Literature era. Stendhal’s intense psychological novel of ambition and passion in post-Napoleonic France. Celebrated worldwide as a defining jewel of French Classics, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Ambition",
+      "Psychology",
+      "Napoleon Era"
+    ]
+  },
+  {
+    "id": "the_stranger_camus",
+    "title": "局外人",
+    "titleEn": "The Stranger",
+    "author": "加缪",
+    "authorEn": "Albert Camus",
+    "category": "French Classics",
+    "dynastyOrEra": "French Literature",
+    "hskLevel": 4,
+    "totalChapters": 15,
+    "coverEmoji": "☀️",
+    "description": "《局外人》是加缪在French Literature时期创作的French Classics代表巨著。莫尔索在阿尔及利亚烈日下枪杀阿拉伯人，以绝对诚实面对荒谬世界的存在主义名著。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"The Stranger\" is a classic masterpiece composed by Albert Camus during the French Literature era. Camus’s seminal existential novel of emotional honesty and absurd mortality. Celebrated worldwide as a defining jewel of French Classics, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Existentialism",
+      "Absurdity",
+      "Philosophy"
+    ]
+  },
+  {
+    "id": "the_plague_camus",
+    "title": "鼠疫",
+    "titleEn": "The Plague",
+    "author": "加缪",
+    "authorEn": "Albert Camus",
+    "category": "French Classics",
+    "dynastyOrEra": "French Literature",
+    "hskLevel": 4,
+    "totalChapters": 15,
+    "coverEmoji": "🐀",
+    "description": "《鼠疫》是加缪在French Literature时期创作的French Classics代表巨著。奥兰城遭遇致命鼠疫封锁，医生里厄等人在绝境中坚守人道主义防线。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"The Plague\" is a classic masterpiece composed by Albert Camus during the French Literature era. A powerful allegory of human solidarity and resilience in the face of sudden catastrophe. Celebrated worldwide as a defining jewel of French Classics, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Resilience",
+      "Courage",
+      "Solidarity"
+    ]
+  },
+  {
+    "id": "the_metamorphosis",
+    "title": "变形记",
+    "titleEn": "The Metamorphosis",
+    "author": "卡夫卡",
+    "authorEn": "Franz Kafka",
+    "category": "German Classics",
+    "dynastyOrEra": "German Literature",
+    "hskLevel": 3,
+    "totalChapters": 12,
+    "coverEmoji": "🪲",
+    "description": "《变形记》是卡夫卡在German Literature时期创作的German Classics代表巨著。推销员格里高尔清晨醒来发现自己变成一只巨大的甲虫，直击现代人疏离与存在困境。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"The Metamorphosis\" is a classic masterpiece composed by Franz Kafka during the German Literature era. Franz Kafka’s haunting masterpiece of alienation, family burden, and existential dread. Celebrated worldwide as a defining jewel of German Classics, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Kafkaesque",
+      "Absurdity",
+      "Existentialism"
+    ]
+  },
+  {
+    "id": "the_trial_kafka",
+    "title": "审判",
+    "titleEn": "The Trial",
+    "author": "卡夫卡",
+    "authorEn": "Franz Kafka",
+    "category": "German Classics",
+    "dynastyOrEra": "German Literature",
+    "hskLevel": 4,
+    "totalChapters": 12,
+    "coverEmoji": "⚖️",
+    "description": "《审判》是卡夫卡在German Literature时期创作的German Classics代表巨著。银行高级职员K在不知罪名的情况下被神秘法庭逮捕并走向未知审判。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"The Trial\" is a classic masterpiece composed by Franz Kafka during the German Literature era. A man is arrested and prosecuted by an inaccessible authority for an unnamed crime. Celebrated worldwide as a defining jewel of German Classics, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Mystery",
+      "Bureaucracy",
+      "Psychological"
+    ]
+  },
+  {
+    "id": "the_castle_kafka",
+    "title": "城堡",
+    "titleEn": "The Castle",
+    "author": "卡夫卡",
+    "authorEn": "Franz Kafka",
+    "category": "German Classics",
+    "dynastyOrEra": "German Literature",
+    "hskLevel": 4,
+    "totalChapters": 12,
+    "coverEmoji": "🏰",
+    "description": "《城堡》是卡夫卡在German Literature时期创作的German Classics代表巨著。土地测量员K竭尽全力试图进入神秘莫测的城堡却始终无法触及核心。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"The Castle\" is a classic masterpiece composed by Franz Kafka during the German Literature era. The relentless struggle to gain access to an elusive authority ruling a snowbound village. Celebrated worldwide as a defining jewel of German Classics, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Allegory",
+      "Modernism",
+      "Castle"
+    ]
+  },
+  {
+    "id": "faust_goethe",
+    "title": "浮士德",
+    "titleEn": "Faust",
+    "author": "歌德",
+    "authorEn": "Johann Wolfgang von Goethe",
+    "category": "German Classics",
+    "dynastyOrEra": "German Literature",
+    "hskLevel": 5,
+    "totalChapters": 12,
+    "coverEmoji": "📜",
+    "description": "《浮士德》是歌德在German Literature时期创作的German Classics代表巨著。学者浮士德与魔鬼墨菲斯托订立契约，在求索永恒真理与救赎中的灵魂史诗。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"Faust\" is a classic masterpiece composed by Johann Wolfgang von Goethe during the German Literature era. Goethe’s supreme verse tragedy of intellectual ambition, temptation, and spiritual redemption. Celebrated worldwide as a defining jewel of German Classics, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Verse Drama",
+      "Devil Pact",
+      "Masterpiece"
+    ]
+  },
+  {
+    "id": "siddhartha_hesse",
+    "title": "悉达多",
+    "titleEn": "Siddhartha",
+    "author": "赫尔曼·黑塞",
+    "authorEn": "Hermann Hesse",
+    "category": "German Classics",
+    "dynastyOrEra": "German Literature",
+    "hskLevel": 3,
+    "totalChapters": 12,
+    "coverEmoji": "🧘",
+    "description": "《悉达多》是赫尔曼·黑塞在German Literature时期创作的German Classics代表巨著。古印度婆罗门青年悉达多离开家庭踏上寻道之路，在河流与体验中悟得圆满真谛。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"Siddhartha\" is a classic masterpiece composed by Hermann Hesse during the German Literature era. Hesse’s poetic novel of spiritual awakening, river meditation, and inner peace in Mandarin. Celebrated worldwide as a defining jewel of German Classics, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Buddhism",
+      "Spiritual",
+      "Meditation",
+      "Peace"
+    ]
+  },
+  {
+    "id": "steppenwolf_hesse",
+    "title": "荒原狼",
+    "titleEn": "Steppenwolf",
+    "author": "赫尔曼·黑塞",
+    "authorEn": "Hermann Hesse",
+    "category": "German Classics",
+    "dynastyOrEra": "German Literature",
+    "hskLevel": 4,
+    "totalChapters": 12,
+    "coverEmoji": "🐺",
+    "description": "《荒原狼》是赫尔曼·黑塞在German Literature时期创作的German Classics代表巨著。双重人格知识分子哈里·哈勒在市民社会与荒原狼野性之间的痛苦撕裂与魔幻剧场觉醒。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"Steppenwolf\" is a classic masterpiece composed by Hermann Hesse during the German Literature era. A psychological exploration of bourgeois alienation, dual identity, and the Magic Theatre. Celebrated worldwide as a defining jewel of German Classics, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Psychology",
+      "Identity",
+      "Magic Theatre"
+    ]
+  },
+  {
+    "id": "letter_unknown_woman",
+    "title": "一个陌生女人的来信",
+    "titleEn": "Letter from an Unknown Woman",
+    "author": "茨威格",
+    "authorEn": "Stefan Zweig",
+    "category": "German Classics",
+    "dynastyOrEra": "German Literature",
+    "hskLevel": 3,
+    "totalChapters": 12,
+    "coverEmoji": "✉️",
+    "description": "《一个陌生女人的来信》是茨威格在German Literature时期创作的German Classics代表巨著。一个女子在生命尽头写给著名作家的凄绝长信，诉说深藏一生的无望暗恋。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"Letter from an Unknown Woman\" is a classic masterpiece composed by Stefan Zweig during the German Literature era. Zweig’s haunting novella of a woman’s lifelong secret devotion and final confession. Celebrated worldwide as a defining jewel of German Classics, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Psychological",
+      "Romance",
+      "Tragedy"
+    ]
+  },
+  {
+    "id": "intrigue_and_love",
+    "title": "阴谋与爱情",
+    "titleEn": "Intrigue and Love",
+    "author": "席勒",
+    "authorEn": "Friedrich Schiller",
+    "category": "German Classics",
+    "dynastyOrEra": "German Literature",
+    "hskLevel": 4,
+    "totalChapters": 12,
+    "coverEmoji": "🎻",
+    "description": "《阴谋与爱情》是席勒在German Literature时期创作的German Classics代表巨著。贵族青年斐迪南与平民琴师之女露易丝纯真爱情遭遇宫廷权谋阴谋摧残的市民悲剧。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"Intrigue and Love\" is a classic masterpiece composed by Friedrich Schiller during the German Literature era. Schiller’s passionate Sturm und Drang drama attacking aristocratic tyranny and deceit. Celebrated worldwide as a defining jewel of German Classics, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Sturm und Drang",
+      "Drama",
+      "Love"
+    ]
+  },
+  {
+    "id": "the_magic_mountain",
+    "title": "魔山",
+    "titleEn": "The Magic Mountain",
+    "author": "托马斯·曼",
+    "authorEn": "Thomas Mann",
+    "category": "German Classics",
+    "dynastyOrEra": "German Literature",
+    "hskLevel": 5,
+    "totalChapters": 12,
+    "coverEmoji": "🏔️",
+    "description": "《魔山》是托马斯·曼在German Literature时期创作的German Classics代表巨著。汉斯·卡斯托普在阿尔卑斯山疗养院疗养七年，探讨一战前夕欧洲文明思想沉思的巅峰巨著。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"The Magic Mountain\" is a classic masterpiece composed by Thomas Mann during the German Literature era. Nobel laureate Thomas Mann’s profound epic of pre-WWI European intellectual consciousness. Celebrated worldwide as a defining jewel of German Classics, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Philosophy",
+      "Sanatorium",
+      "Masterwork"
+    ]
+  },
+  {
+    "id": "death_in_venice",
+    "title": "魂断威尼斯",
+    "titleEn": "Death in Venice",
+    "author": "托马斯·曼",
+    "authorEn": "Thomas Mann",
+    "category": "German Classics",
+    "dynastyOrEra": "German Literature",
+    "hskLevel": 4,
+    "totalChapters": 12,
+    "coverEmoji": "🎭",
+    "description": "《魂断威尼斯》是托马斯·曼在German Literature时期创作的German Classics代表巨著。年迈作家阿申巴赫在瘟疫蔓延的威尼斯被波兰美少年塔奇奥的绝美所俘获的心灵悲歌。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"Death in Venice\" is a classic masterpiece composed by Thomas Mann during the German Literature era. Mann’s haunting exploration of artistic obsession, aesthetic beauty, and mortal decay. Celebrated worldwide as a defining jewel of German Classics, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Venice",
+      "Aesthetics",
+      "Novella"
+    ]
+  },
+  {
+    "id": "don_quixote",
+    "title": "堂吉诃德",
+    "titleEn": "Don Quixote",
+    "author": "塞万提斯",
+    "authorEn": "Miguel de Cervantes",
+    "category": "Spanish & World",
+    "dynastyOrEra": "Spanish Literature",
+    "hskLevel": 4,
+    "totalChapters": 15,
+    "coverEmoji": "🛡️",
+    "description": "《堂吉诃德》是塞万提斯在Spanish Literature时期创作的Spanish & World代表巨著。沉迷骑士小说的穷乡绅堂吉诃德骑着瘦马携侍从桑丘大战风车的西方现代小说奠基之作。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"Don Quixote\" is a classic masterpiece composed by Miguel de Cervantes during the Spanish Literature era. Cervantes’s comic and poignant foundational novel of the Knight of the Woeful Countenance. Celebrated worldwide as a defining jewel of Spanish & World, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Knight",
+      "Windmills",
+      "Spain",
+      "Satire"
+    ]
+  },
+  {
+    "id": "the_decameron",
+    "title": "十日谈",
+    "titleEn": "The Decameron",
+    "author": "薄伽丘",
+    "authorEn": "Giovanni Boccaccio",
+    "category": "Spanish & World",
+    "dynastyOrEra": "Italian Literature",
+    "hskLevel": 4,
+    "totalChapters": 15,
+    "coverEmoji": "🍷",
+    "description": "《十日谈》是薄伽丘在Italian Literature时期创作的Spanish & World代表巨著。佛罗伦萨黑死病爆发时期，十位男女在郊外别墅避难十天讲述的一百个鲜活世俗故事。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"The Decameron\" is a classic masterpiece composed by Giovanni Boccaccio during the Italian Literature era. Boccaccio’s Renaissance masterpiece celebrating human wit, worldly love, and secular joy. Celebrated worldwide as a defining jewel of Spanish & World, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Renaissance",
+      "Italy",
+      "Humanism"
+    ]
+  },
+  {
+    "id": "war_and_peace",
+    "title": "战争与和平",
+    "titleEn": "War and Peace",
+    "author": "列夫·托尔斯泰",
+    "authorEn": "Leo Tolstoy",
+    "category": "Spanish & World",
+    "dynastyOrEra": "Russian Literature",
+    "hskLevel": 5,
+    "totalChapters": 15,
+    "coverEmoji": "🎖️",
+    "description": "《战争与和平》是列夫·托尔斯泰在Russian Literature时期创作的Spanish & World代表巨著。拿破仑攻俄战争背景下，俄国五大贵族家庭在战火硝烟与和平生活中的壮丽史诗。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"War and Peace\" is a classic masterpiece composed by Leo Tolstoy during the Russian Literature era. Tolstoy’s panoramic masterpiece chronicling Russian society during the Napoleonic Wars. Celebrated worldwide as a defining jewel of Spanish & World, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Tolstoy",
+      "Epic",
+      "War",
+      "Philosophy"
+    ]
+  },
+  {
+    "id": "anna_karenina",
+    "title": "安娜·卡列尼娜",
+    "titleEn": "Anna Karenina",
+    "author": "列夫·托尔斯泰",
+    "authorEn": "Leo Tolstoy",
+    "category": "Spanish & World",
+    "dynastyOrEra": "Russian Literature",
+    "hskLevel": 4,
+    "totalChapters": 15,
+    "coverEmoji": "🚂",
+    "description": "《安娜·卡列尼娜》是列夫·托尔斯泰在Russian Literature时期创作的Spanish & World代表巨著。“幸福的家庭都是相似的，不幸的家庭各有各的不幸”，安娜与沃伦斯基的炽烈悲剧。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"Anna Karenina\" is a classic masterpiece composed by Leo Tolstoy during the Russian Literature era. The tragic tale of married aristocrat Anna Karenina and her all-consuming affair with Vronsky. Celebrated worldwide as a defining jewel of Spanish & World, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Romance",
+      "Russian Classics",
+      "Tolstoy"
+    ]
+  },
+  {
+    "id": "crime_and_punishment",
+    "title": "罪与罚",
+    "titleEn": "Crime and Punishment",
+    "author": "陀思妥耶夫斯基",
+    "authorEn": "Fyodor Dostoevsky",
+    "category": "Spanish & World",
+    "dynastyOrEra": "Russian Literature",
+    "hskLevel": 4,
+    "totalChapters": 15,
+    "coverEmoji": "🪓",
+    "description": "《罪与罚》是陀思妥耶夫斯基在Russian Literature时期创作的Spanish & World代表巨著。大学生拉斯柯尔尼科夫谋杀放高利贷老妇后陷入巨大的心理煎熬与索尼娅精神救赎。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"Crime and Punishment\" is a classic masterpiece composed by Fyodor Dostoevsky during the Russian Literature era. Dostoevsky’s psychological thriller of guilt, intellect, and moral resurrection. Celebrated worldwide as a defining jewel of Spanish & World, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Dostoevsky",
+      "Psychology",
+      "Guilt"
+    ]
+  },
+  {
+    "id": "brothers_karamazov",
+    "title": "卡拉马佐夫兄弟",
+    "titleEn": "The Brothers Karamazov",
+    "author": "陀思妥耶夫斯基",
+    "authorEn": "Fyodor Dostoevsky",
+    "category": "Spanish & World",
+    "dynastyOrEra": "Russian Literature",
+    "hskLevel": 5,
+    "totalChapters": 15,
+    "coverEmoji": "⛪",
+    "description": "《卡拉马佐夫兄弟》是陀思妥耶夫斯基在Russian Literature时期创作的Spanish & World代表巨著。弑父悬案背后德米特里、伊凡与阿辽沙三兄弟对上帝存在、自由意志与道德深渊的终极辩难。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"The Brothers Karamazov\" is a classic masterpiece composed by Fyodor Dostoevsky during the Russian Literature era. Dostoevsky’s crowning achievement investigating faith, free will, morality, and patricide. Celebrated worldwide as a defining jewel of Spanish & World, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Masterwork",
+      "Faith",
+      "Philosophy"
+    ]
+  },
+  {
+    "id": "white_nights_dostoevsky",
+    "title": "白夜",
+    "titleEn": "White Nights",
+    "author": "陀思妥耶夫斯基",
+    "authorEn": "Fyodor Dostoevsky",
+    "category": "Spanish & World",
+    "dynastyOrEra": "Russian Literature",
+    "hskLevel": 3,
+    "totalChapters": 15,
+    "coverEmoji": "🌙",
+    "description": "《白夜》是陀思妥耶夫斯基在Russian Literature时期创作的Spanish & World代表巨著。圣彼得堡夏夜不眠的白夜里，孤独幻想家与等待恋人的纯洁少女娜丝苔卡四个夜晚的情愫。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"White Nights\" is a classic masterpiece composed by Fyodor Dostoevsky during the Russian Literature era. A sentimental and lyrical tale of a lonely dreamer wandering St. Petersburg’s luminous summer nights. Celebrated worldwide as a defining jewel of Spanish & World, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "St Petersburg",
+      "Dreamer",
+      "Romance"
+    ]
+  },
+  {
+    "id": "dead_souls_gogol",
+    "title": "死魂灵",
+    "titleEn": "Dead Souls",
+    "author": "果戈理",
+    "authorEn": "Nikolai Gogol",
+    "category": "Spanish & World",
+    "dynastyOrEra": "Russian Literature",
+    "hskLevel": 4,
+    "totalChapters": 15,
+    "coverEmoji": "📜",
+    "description": "《死魂灵》是果戈理在Russian Literature时期创作的Spanish & World代表巨著。投机商人乞乞科夫在俄国乡村低价收购已死农奴户籍的讽刺现实主义巨作。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"Dead Souls\" is a classic masterpiece composed by Nikolai Gogol during the Russian Literature era. Gogol’s satirical epic detailing Chichikov buying dead serfs to mortgage for wealth. Celebrated worldwide as a defining jewel of Spanish & World, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Satire",
+      "Russia",
+      "Humor"
+    ]
+  },
+  {
+    "id": "the_captains_daughter",
+    "title": "上尉的女儿",
+    "titleEn": "The Captain's Daughter",
+    "author": "普希金",
+    "authorEn": "Alexander Pushkin",
+    "category": "Spanish & World",
+    "dynastyOrEra": "Russian Literature",
+    "hskLevel": 3,
+    "totalChapters": 15,
+    "coverEmoji": "❄️",
+    "description": "《上尉的女儿》是普希金在Russian Literature时期创作的Spanish & World代表巨著。普加乔夫农民起义风云下，年轻军官格里尼奥夫与要塞上尉女儿玛丽娅的忠诚爱情。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"The Captain's Daughter\" is a classic masterpiece composed by Alexander Pushkin during the Russian Literature era. Historical adventure romance set against Pugachev’s Cossack rebellion in 18th-century Russia. Celebrated worldwide as a defining jewel of Spanish & World, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Historical Novel",
+      "Adventure",
+      "Honor"
+    ]
+  },
+  {
+    "id": "fathers_and_sons",
+    "title": "父与子",
+    "titleEn": "Fathers and Sons",
+    "author": "屠格涅夫",
+    "authorEn": "Ivan Turgenev",
+    "category": "Spanish & World",
+    "dynastyOrEra": "Russian Literature",
+    "hskLevel": 4,
+    "totalChapters": 15,
+    "coverEmoji": "🌱",
+    "description": "《父与子》是屠格涅夫在Russian Literature时期创作的Spanish & World代表巨著。虚无主义青年巴扎罗夫与传统贵族父辈在观念、爱情与生命归宿上的激烈冲突。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"Fathers and Sons\" is a classic masterpiece composed by Ivan Turgenev during the Russian Literature era. Turgenev’s famous novel introducing the nihilist archetype and generational friction. Celebrated worldwide as a defining jewel of Spanish & World, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Nihilism",
+      "Generations",
+      "Russia"
+    ]
+  },
+  {
+    "id": "sherlock_holmes",
+    "title": "福尔摩斯探案集",
+    "titleEn": "The Adventures of Sherlock Holmes",
+    "author": "柯南·道尔",
+    "authorEn": "Arthur Conan Doyle",
+    "category": "English & World",
+    "dynastyOrEra": "British Literature",
+    "hskLevel": 3,
+    "totalChapters": 15,
+    "coverEmoji": "🔍",
+    "description": "《福尔摩斯探案集》是柯南·道尔在British Literature时期创作的English & World代表巨著。伦敦贝克街221B号神探福尔摩斯与华生医生的经典演绎法探案传奇。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"The Adventures of Sherlock Holmes\" is a classic masterpiece composed by Arthur Conan Doyle during the British Literature era. The thrilling mystery and deductive reasoning cases of Sherlock Holmes in Mandarin. Celebrated worldwide as a defining jewel of English & World, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Mystery",
+      "Detective",
+      "Crime"
+    ]
+  },
+  {
+    "id": "pride_and_prejudice",
+    "title": "傲慢与偏见",
+    "titleEn": "Pride and Prejudice",
+    "author": "简·奥斯汀",
+    "authorEn": "Jane Austen",
+    "category": "English & World",
+    "dynastyOrEra": "British Literature",
+    "hskLevel": 4,
+    "totalChapters": 15,
+    "coverEmoji": "👒",
+    "description": "《傲慢与偏见》是简·奥斯汀在British Literature时期创作的English & World代表巨著。伊丽莎白·班内特与达西先生由傲慢与偏见走向相互理解与真挚相爱的浪漫经典。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"Pride and Prejudice\" is a classic masterpiece composed by Jane Austen during the British Literature era. Jane Austen’s witty masterpiece of romance, manners, and societal perceptions in Mandarin. Celebrated worldwide as a defining jewel of English & World, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Romance",
+      "British",
+      "Dialogue"
+    ]
+  },
+  {
+    "id": "sense_and_sensibility",
+    "title": "理智与情感",
+    "titleEn": "Sense and Sensibility",
+    "author": "简·奥斯汀",
+    "authorEn": "Jane Austen",
+    "category": "English & World",
+    "dynastyOrEra": "British Literature",
+    "hskLevel": 4,
+    "totalChapters": 15,
+    "coverEmoji": "🎻",
+    "description": "《理智与情感》是简·奥斯汀在British Literature时期创作的English & World代表巨著。埃莉诺的克制理性与玛丽安的狂热情感在面对爱情考验时的成熟与收获。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"Sense and Sensibility\" is a classic masterpiece composed by Jane Austen during the British Literature era. Austen’s insightful study of sisters navigating courtship through reason and romantic passion. Celebrated worldwide as a defining jewel of English & World, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Austen",
+      "Sisters",
+      "Romance"
+    ]
+  },
+  {
+    "id": "jane_eyre",
+    "title": "简·爱",
+    "titleEn": "Jane Eyre",
+    "author": "夏洛蒂·勃朗特",
+    "authorEn": "Charlotte Brontë",
+    "category": "English & World",
+    "dynastyOrEra": "British Literature",
+    "hskLevel": 4,
+    "totalChapters": 15,
+    "coverEmoji": "🏰",
+    "description": "《简·爱》是夏洛蒂·勃朗特在British Literature时期创作的English & World代表巨著。孤女简·爱在桑菲尔德庄园担任家庭教师，以自尊独立的人格赢得罗切斯特先生真爱。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"Jane Eyre\" is a classic masterpiece composed by Charlotte Brontë during the British Literature era. Charlotte Bronte’s groundbreaking gothic romance celebrating female independence and dignity. Celebrated worldwide as a defining jewel of English & World, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Gothic Romance",
+      "Independence",
+      "Classics"
+    ]
+  },
+  {
+    "id": "wuthering_heights",
+    "title": "呼啸山庄",
+    "titleEn": "Wuthering Heights",
+    "author": "艾米莉·勃朗特",
+    "authorEn": "Emily Brontë",
+    "category": "English & World",
+    "dynastyOrEra": "British Literature",
+    "hskLevel": 4,
+    "totalChapters": 15,
+    "coverEmoji": "🌪️",
+    "description": "《呼啸山庄》是艾米莉·勃朗特在British Literature时期创作的English & World代表巨著。约克郡荒原上希斯克利夫与凯瑟琳狂烈、复仇、超拔生死的荒原旷世狂恋。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"Wuthering Heights\" is a classic masterpiece composed by Emily Brontë during the British Literature era. Emily Bronte’s passionate and tempestuous masterpiece of love and retribution on Yorkshire moors. Celebrated worldwide as a defining jewel of English & World, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Passion",
+      "Moors",
+      "Dark Romance"
+    ]
+  },
+  {
+    "id": "romeo_and_juliet",
+    "title": "罗密欧与朱丽叶",
+    "titleEn": "Romeo and Juliet",
+    "author": "莎士比亚",
+    "authorEn": "William Shakespeare",
+    "category": "English & World",
+    "dynastyOrEra": "British Literature",
+    "hskLevel": 3,
+    "totalChapters": 15,
+    "coverEmoji": "🌹",
+    "description": "《罗密欧与朱丽叶》是莎士比亚在British Literature时期创作的English & World代表巨著。维罗纳城里蒙太古与凯普莱特两大家族的宿仇与一对年轻恋人生死相随的爱情绝唱。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"Romeo and Juliet\" is a classic masterpiece composed by William Shakespeare during the British Literature era. Shakespeare’s most celebrated tragedy of star-crossed youthful love. Celebrated worldwide as a defining jewel of English & World, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Shakespeare",
+      "Tragedy",
+      "Romance"
+    ]
+  },
+  {
+    "id": "hamlet_shakespeare",
+    "title": "哈姆雷特",
+    "titleEn": "Hamlet",
+    "author": "莎士比亚",
+    "authorEn": "William Shakespeare",
+    "category": "English & World",
+    "dynastyOrEra": "British Literature",
+    "hskLevel": 4,
+    "totalChapters": 15,
+    "coverEmoji": "💀",
+    "description": "《哈姆雷特》是莎士比亚在British Literature时期创作的English & World代表巨著。“生存还是毁灭，这是一个问题”，丹麦王子哈姆雷特为父复仇的悲剧思考巅峰。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"Hamlet\" is a classic masterpiece composed by William Shakespeare during the British Literature era. The greatest tragedy of doubt, betrayal, philosophical introspection, and vengeance. Celebrated worldwide as a defining jewel of English & World, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Shakespeare",
+      "Philosophy",
+      "Soliloquy"
+    ]
+  },
+  {
+    "id": "merchant_of_venice",
+    "title": "威尼斯商人",
+    "titleEn": "The Merchant of Venice",
+    "author": "莎士比亚",
+    "authorEn": "William Shakespeare",
+    "category": "English & World",
+    "dynastyOrEra": "British Literature",
+    "hskLevel": 3,
+    "totalChapters": 15,
+    "coverEmoji": "⚖️",
+    "description": "《威尼斯商人》是莎士比亚在British Literature时期创作的English & World代表巨著。鲍西亚法庭智斗夏洛克一磅肉契约的经典喜剧，兼具法律与人情辩证。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"The Merchant of Venice\" is a classic masterpiece composed by William Shakespeare during the British Literature era. Shakespearean comedy featuring the famous pound-of-flesh trial and clever Portia. Celebrated worldwide as a defining jewel of English & World, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Law",
+      "Comedy",
+      "Shakespeare"
+    ]
+  },
+  {
+    "id": "macbeth_shakespeare",
+    "title": "麦克白",
+    "titleEn": "Macbeth",
+    "author": "莎士比亚",
+    "authorEn": "William Shakespeare",
+    "category": "English & World",
+    "dynastyOrEra": "British Literature",
+    "hskLevel": 4,
+    "totalChapters": 15,
+    "coverEmoji": "👑",
+    "description": "《麦克白》是莎士比亚在British Literature时期创作的English & World代表巨著。野心驱使下的麦克白弑君夺位并在内疚与女巫预言中走向毁灭的暗黑悲剧。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"Macbeth\" is a classic masterpiece composed by William Shakespeare during the British Literature era. The intense psychological tragedy of destructive political ambition and paranoia. Celebrated worldwide as a defining jewel of English & World, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Ambition",
+      "Dark",
+      "Tragedy"
+    ]
+  },
+  {
+    "id": "robinson_crusoe",
+    "title": "鲁滨逊漂流记",
+    "titleEn": "Robinson Crusoe",
+    "author": "笛福",
+    "authorEn": "Daniel Defoe",
+    "category": "English & World",
+    "dynastyOrEra": "British Literature",
+    "hskLevel": 3,
+    "totalChapters": 15,
+    "coverEmoji": "🏝️",
+    "description": "《鲁滨逊漂流记》是笛福在British Literature时期创作的English & World代表巨著。鲁滨逊流落荒岛二十八年，凭借双手建城堡、驯野人星期五的生存探险开山之作。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"Robinson Crusoe\" is a classic masterpiece composed by Daniel Defoe during the British Literature era. The foundational survival adventure of a castaway flourishing on an isolated island. Celebrated worldwide as a defining jewel of English & World, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Survival",
+      "Adventure",
+      "Island"
+    ]
+  },
+  {
+    "id": "walden_thoreau",
+    "title": "瓦尔登湖",
+    "titleEn": "Walden",
+    "author": "梭罗",
+    "authorEn": "Henry David Thoreau",
+    "category": "English & World",
+    "dynastyOrEra": "American Literature",
+    "hskLevel": 4,
+    "totalChapters": 15,
+    "coverEmoji": "🌲",
+    "description": "《瓦尔登湖》是梭罗在American Literature时期创作的English & World代表巨著。梭罗在瓦尔登湖畔林中筑屋独居两年的自然沉思录，宁静、质朴与精神独立的圣经。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"Walden\" is a classic masterpiece composed by Henry David Thoreau during the American Literature era. Thoreau’s timeless reflection on simple living, solitude, and harmony with the natural world. Celebrated worldwide as a defining jewel of English & World, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Nature",
+      "Simplicity",
+      "Mindfulness"
+    ]
+  },
+  {
+    "id": "the_great_gatsby",
+    "title": "了不起的盖茨比",
+    "titleEn": "The Great Gatsby",
+    "author": "菲茨杰拉德",
+    "authorEn": "F. Scott Fitzgerald",
+    "category": "English & World",
+    "dynastyOrEra": "American Literature",
+    "hskLevel": 4,
+    "totalChapters": 15,
+    "coverEmoji": "🍸",
+    "description": "《了不起的盖茨比》是菲茨杰拉德在American Literature时期创作的English & World代表巨著。二十世纪爵士时代纽约长岛豪门庄园里的璀璨梦幻与对绿光的无尽追寻。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"The Great Gatsby\" is a classic masterpiece composed by F. Scott Fitzgerald during the American Literature era. The glittering tragedy of Jay Gatsby and the elusive American Dream in Mandarin. Celebrated worldwide as a defining jewel of English & World, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Jazz Age",
+      "Glamour",
+      "Drama"
+    ]
+  },
+  {
+    "id": "the_old_man_and_sea",
+    "title": "老人与海",
+    "titleEn": "The Old Man and the Sea",
+    "author": "海明威",
+    "authorEn": "Ernest Hemingway",
+    "category": "English & World",
+    "dynastyOrEra": "American Literature",
+    "hskLevel": 3,
+    "totalChapters": 15,
+    "coverEmoji": "⛵",
+    "description": "《老人与海》是海明威在American Literature时期创作的English & World代表巨著。老渔夫圣地亚哥在大海中与巨大马林鱼搏斗的坚韧意志史诗，“人可以被毁灭，但不能被打败”。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"The Old Man and the Sea\" is a classic masterpiece composed by Ernest Hemingway during the American Literature era. The epic story of an aged Cuban fisherman and his supreme battle against the great marlin. Celebrated worldwide as a defining jewel of English & World, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Resilience",
+      "Ocean",
+      "Courage"
+    ]
+  },
+  {
+    "id": "animal_farm",
+    "title": "动物农场",
+    "titleEn": "Animal Farm",
+    "author": "乔治·奥威尔",
+    "authorEn": "George Orwell",
+    "category": "English & World",
+    "dynastyOrEra": "British Literature",
+    "hskLevel": 3,
+    "totalChapters": 15,
+    "coverEmoji": "🐷",
+    "description": "《动物农场》是乔治·奥威尔在British Literature时期创作的English & World代表巨著。庄园农场的动物们起义推翻农场主后逐渐演变为特权独裁统治的寓言讽刺名作。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"Animal Farm\" is a classic masterpiece composed by George Orwell during the British Literature era. Orwell’s biting political fairy story on the corrupting nature of absolute power. Celebrated worldwide as a defining jewel of English & World, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Satire",
+      "Political Fable",
+      "Allegory"
+    ]
+  },
+  {
+    "id": "nineteen_eighty_four",
+    "title": "一九八四",
+    "titleEn": "Nineteen Eighty-Four",
+    "author": "乔治·奥威尔",
+    "authorEn": "George Orwell",
+    "category": "English & World",
+    "dynastyOrEra": "British Literature",
+    "hskLevel": 4,
+    "totalChapters": 15,
+    "coverEmoji": "👁️",
+    "description": "《一九八四》是乔治·奥威尔在British Literature时期创作的English & World代表巨著。“老大哥正在看着你”，大洋国温斯顿反抗极权监控与思想控制的反乌托邦巅峰神作。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"Nineteen Eighty-Four\" is a classic masterpiece composed by George Orwell during the British Literature era. Orwell’s chilling dystopian warning on total surveillance, doublethink, and state power. Celebrated worldwide as a defining jewel of English & World, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Dystopia",
+      "Surveillance",
+      "Classics"
+    ]
+  },
+  {
+    "id": "frankenstein_shelley",
+    "title": "科学怪人",
+    "titleEn": "Frankenstein",
+    "author": "玛丽·雪莱",
+    "authorEn": "Mary Shelley",
+    "category": "English & World",
+    "dynastyOrEra": "British Literature",
+    "hskLevel": 4,
+    "totalChapters": 15,
+    "coverEmoji": "⚡",
+    "description": "《科学怪人》是玛丽·雪莱在British Literature时期创作的English & World代表巨著。年轻学者弗兰肯斯坦通过科学创造生命却铸就悲剧，世界科幻小说的起源开山巨著。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"Frankenstein\" is a classic masterpiece composed by Mary Shelley during the British Literature era. The groundbreaking gothic science-fiction novel examining humanity, hubris, and monstrosity. Celebrated worldwide as a defining jewel of English & World, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Sci-Fi Origin",
+      "Gothic",
+      "Horror"
+    ]
+  },
+  {
+    "id": "alice_in_wonderland",
+    "title": "爱丽丝梦游仙境",
+    "titleEn": "Alice in Wonderland",
+    "author": "刘易斯·卡罗尔",
+    "authorEn": "Lewis Carroll",
+    "category": "English & World",
+    "dynastyOrEra": "British Literature",
+    "hskLevel": 2,
+    "totalChapters": 15,
+    "coverEmoji": "🐇",
+    "description": "《爱丽丝梦游仙境》是刘易斯·卡罗尔在British Literature时期创作的English & World代表巨著。爱丽丝掉进兔子洞，漫游充满柴郡猫、疯帽匠与红心王后的奇妙荒诞梦幻仙境。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"Alice in Wonderland\" is a classic masterpiece composed by Lewis Carroll during the British Literature era. The whimsical Victorian masterpiece of logic puzzles, talking rabbits, and tea parties. Celebrated worldwide as a defining jewel of English & World, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Nonsense",
+      "Fairy Tale",
+      "Children"
+    ]
+  },
+  {
+    "id": "picture_dorian_gray",
+    "title": "道林·格雷的画像",
+    "titleEn": "The Picture of Dorian Gray",
+    "author": "王尔德",
+    "authorEn": "Oscar Wilde",
+    "category": "English & World",
+    "dynastyOrEra": "British Literature",
+    "hskLevel": 4,
+    "totalChapters": 15,
+    "coverEmoji": "🖼️",
+    "description": "《道林·格雷的画像》是王尔德在British Literature时期创作的English & World代表巨著。美少年道林·格雷容颜永驻而画像日渐衰老腐朽的唯美主义与道德堕落杰作。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"The Picture of Dorian Gray\" is a classic masterpiece composed by Oscar Wilde during the British Literature era. Wilde’s dark philosophical gothic novel exploring eternal youth, aestheticism, and corruption. Celebrated worldwide as a defining jewel of English & World, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Aestheticism",
+      "Gothic",
+      "Morality"
+    ]
+  },
+  {
+    "id": "huckleberry_finn",
+    "title": "哈克贝利·费恩历险记",
+    "titleEn": "Adventures of Huckleberry Finn",
+    "author": "马克·吐温",
+    "authorEn": "Mark Twain",
+    "category": "English & World",
+    "dynastyOrEra": "American Literature",
+    "hskLevel": 4,
+    "totalChapters": 15,
+    "coverEmoji": "🛶",
+    "description": "《哈克贝利·费恩历险记》是马克·吐温在American Literature时期创作的English & World代表巨著。哈克与逃奴吉姆乘木筏顺密西西比河南下，追寻自由与纯朴良知的伟大美国小说。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"Adventures of Huckleberry Finn\" is a classic masterpiece composed by Mark Twain during the American Literature era. Ernest Hemingway called this the single book from which all modern American literature comes. Celebrated worldwide as a defining jewel of English & World, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Freedom",
+      "Mississippi",
+      "Masterpiece"
+    ]
+  },
+  {
+    "id": "moby_dick_melville",
+    "title": "白鲸",
+    "titleEn": "Moby-Dick",
+    "author": "梅尔维尔",
+    "authorEn": "Herman Melville",
+    "category": "English & World",
+    "dynastyOrEra": "American Literature",
+    "hskLevel": 4,
+    "totalChapters": 15,
+    "coverEmoji": "🐋",
+    "description": "《白鲸》是梅尔维尔在American Literature时期创作的English & World代表巨著。亚哈船长带领裴廓德号捕鲸船在大洋中誓死追捕白色巨鲸莫比·迪克的壮烈史诗。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"Moby-Dick\" is a classic masterpiece composed by Herman Melville during the American Literature era. Melville’s colossal American epic of obsession, fate, and the untamable forces of nature. Celebrated worldwide as a defining jewel of English & World, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Whale",
+      "Ocean",
+      "Obsession"
+    ]
+  },
+  {
+    "id": "call_of_the_wild",
+    "title": "野性的呼唤",
+    "titleEn": "The Call of the Wild",
+    "author": "杰克·伦敦",
+    "authorEn": "Jack London",
+    "category": "English & World",
+    "dynastyOrEra": "American Literature",
+    "hskLevel": 3,
+    "totalChapters": 15,
+    "coverEmoji": "🐺",
+    "description": "《野性的呼唤》是杰克·伦敦在American Literature时期创作的English & World代表巨著。家犬巴克被拐卖至冰雪阿拉斯加淘金热中，历经苦难最终顺应野性呼唤重归狼群。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"The Call of the Wild\" is a classic masterpiece composed by Jack London during the American Literature era. Jack London’s raw and exhilarating adventure of canine instinct and Arctic survival. Celebrated worldwide as a defining jewel of English & World, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Alaska",
+      "Dogs",
+      "Survival"
+    ]
+  },
+  {
+    "id": "black_cat_poe",
+    "title": "黑猫与爱伦·坡惊悚集",
+    "titleEn": "The Black Cat & Gothic Tales",
+    "author": "爱伦·坡",
+    "authorEn": "Edgar Allan Poe",
+    "category": "English & World",
+    "dynastyOrEra": "American Literature",
+    "hskLevel": 4,
+    "totalChapters": 15,
+    "coverEmoji": "🐈‍⬛",
+    "description": "《黑猫与爱伦·坡惊悚集》是爱伦·坡在American Literature时期创作的English & World代表巨著。包含《黑猫》《厄舍府的倒塌》《泄密的心》《红死魔的面具》等哥特式惊悚鼻祖。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
+    "descriptionEn": "\"The Black Cat & Gothic Tales\" is a classic masterpiece composed by Edgar Allan Poe during the American Literature era. Poe’s chilling masterworks of psychological suspense, gothic horror, and morbid beauty. Celebrated worldwide as a defining jewel of English & World, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
+    "tags": [
+      "Gothic",
+      "Horror",
+      "Poe"
+    ]
+  }
+]

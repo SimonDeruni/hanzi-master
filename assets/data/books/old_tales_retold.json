@@ -1,0 +1,2748 @@
+[
+  {
+    "id": "old_tales_retold_ch_1",
+    "bookId": "old_tales_retold",
+    "chapterIndex": 1,
+    "title": "出关",
+    "titleEn": "Chapter 1: The Chronicle of 出关",
+    "sentences": [
+      {
+        "chinese": "``` 鲁迅《故事新编》 出 关〔１〕 老子〔２〕毫无动静的坐着，好像一段呆木头。",
+        "pinyin": "` ` `   lǔ xùn 《 gù shì xīn biān 》   chū   guān 〔 １ 〕   lǎo zǐ 〔 ２ 〕 háo wú dòng jìng de zuò zhuó ， hǎo xiàng yī duàn dāi mù tóu 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "〔３〕 “先生，孔丘又来了！”",
+        "pinyin": "〔 ３ 〕   “ xiān shēng ， kǒng qiū yòu lái le ！ ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "他的学生庚桑楚〔４〕，不耐烦似的走进来，轻轻的 说。",
+        "pinyin": "tā de xué shēng gēng sāng chǔ 〔 ４ 〕 ， bù nài fán shì de zǒu jìn lái ， qīng qīng de   shuō 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“请……” “先生，您好吗？”",
+        "pinyin": "“ qǐng … … ”   “ xiān shēng ， nín hǎo ma ？ ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "孔子极恭敬的行着礼，一面说。",
+        "pinyin": "kǒng zǐ jí gōng jìng de xíng zhuó lǐ ， yī miàn shuō 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“我总是这样子，”老子答道。",
+        "pinyin": "“ wǒ zǒng shì zhè yàng zǐ ， ” lǎo zǐ dá dào 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“您怎么样？",
+        "pinyin": "“ nín zěn me yàng ？",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "所有这里的藏书，都看过了罢？”",
+        "pinyin": "suǒ yǒu zhè lǐ de cáng shū ， dōu kàn guò le bà ？ ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“都看过了。",
+        "pinyin": "“ dōu kàn guò le 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "不过……”孔子很有些焦躁模样，这是他从来所没有的。",
+        "pinyin": "bù guò … … ” kǒng zǐ hěn yǒu xiē jiāo zào mú yàng ， zhè shì tā cóng lái suǒ méi yǒu de 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“我研 究《诗》，《书》，《礼》，《乐》，《易》，《春秋》六经，自以为很长久了， 够熟透了。",
+        "pinyin": "“ wǒ yán   jiū 《 shī 》 ， 《 shū 》 ， 《 lǐ 》 ， 《 lè 》 ， 《 yì 》 ， 《 chūn qiū 》 liù jīng ， zì yǐ wèi hěn cháng jiǔ le ，   gòu shú tòu le 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "去拜见了七十二位主子，谁也不采用。",
+        "pinyin": "qù bài jiàn le qī shí èr wèi zhǔ zǐ ， shuí yě bù cǎi yòng 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "人可真是难得说明白呵。",
+        "pinyin": "rén kě zhēn shì nán dé shuō míng bái hē 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "还是‘ 道’的难以说明白呢？”",
+        "pinyin": "hái shì ‘   dào ’ de nán yǐ shuō míng bái ne ？ ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“你还算运气的哩，”老子说，“没有遇着能干的主子。",
+        "pinyin": "“ nǐ hái suàn yùn qì de li ， ” lǎo zǐ shuō ， “ méi yǒu yù zhuó néng gān de zhǔ zǐ 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "六经这玩艺儿，只 是先王的陈迹呀。",
+        "pinyin": "liù jīng zhè wán yì ér ， zhǐ   shì xiān wáng de chén jì yā 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "那里是弄出迹来的东西呢？",
+        "pinyin": "nà lǐ shì nòng chū jì lái de dōng xī ne ？",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "你的话，可是和迹一样的。",
+        "pinyin": "nǐ de huà ， kě shì hé jì yī yàng de 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "迹是鞋子 踏成的，但迹难道就是鞋子吗？”",
+        "pinyin": "jì shì xié zǐ   tà chéng de ， dàn jì nán dào jiù shì xié zǐ ma ？ ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "停了一会，又接着说道：“白[儿鸟]们只要瞧着， 眼珠子动也不动，然而自然有孕；",
+        "pinyin": "tíng le yī huì ， yòu jiē zhuó shuō dào ： “ bái [ ér niǎo ] mén zhǐ yào qiáo zhuó ，   yǎn zhū zǐ dòng yě bù dòng ， rán ér zì rán yǒu yùn ；",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "虫呢，雄的在上风叫，雌的在下风应，自然有孕；",
+        "pinyin": "chóng ne ， xióng de zài shàng fēng jiào ， cí de zài xià fēng yīng ， zì rán yǒu yùn ；",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "类是一身上兼具雌雄的，所以自然有孕。",
+        "pinyin": "lèi shì yī shēn shàng jiān jù cí xióng de ， suǒ yǐ zì rán yǒu yùn 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "性，是不能改的；",
+        "pinyin": "xìng ， shì bù néng gǎi de ；",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "命，是不能换的；",
+        "pinyin": "mìng ， shì bù néng huàn de ；",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "时， 是不能留的；",
+        "pinyin": "shí ，   shì bù néng liú de ；",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "道，是不能塞的。",
+        "pinyin": "dào ， shì bù néng sāi de 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "只要得了道，什么都行，可是如果失掉了，那就什 么都不行。”",
+        "pinyin": "zhǐ yào dé le dào ， shén me dōu xíng ， kě shì rú guǒ shī diào le ， nà jiù shén   me dōu bù xíng 。 ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "〔５〕 孔子好像受了当头一棒，亡魂失魄的坐着，恰如一段呆木头。",
+        "pinyin": "〔 ５ 〕   kǒng zǐ hǎo xiàng shòu le dāng tóu yī bàng ， wáng hún shī pò de zuò zhuó ， qià rú yī duàn dāi mù tóu 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "大约过了八分钟，他深深的倒抽了一口气，就起身要告辞，一面照例很客气的 致谢着老子的教训。",
+        "pinyin": "dà yuē guò le bā fēn zhōng ， tā shēn shēn de dǎo chōu le yī kǒu qì ， jiù qǐ shēn yào gào cí ， yī miàn zhào lì hěn kè qì de   zhì xiè zhuó lǎo zǐ de jiào xùn 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "老子也并不挽留他，站起来扶着拄杖，一直送他到图书馆〔６〕的大门外。",
+        "pinyin": "lǎo zǐ yě bìng bù wǎn liú tā ， zhàn qǐ lái fú zhuó zhǔ zhàng ， yī zhí sòng tā dào tú shū guǎn 〔 ６ 〕 de dà mén wài 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "孔 子就要上车了，他才留声机似的说道： “您走了？",
+        "pinyin": "kǒng   zǐ jiù yào shàng chē le ， tā cái liú shēng jī shì de shuō dào ：   “ nín zǒu le ？",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "您不喝点儿茶去吗？",
+        "pinyin": "nín bù hē diǎn ér chá qù ma ？",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "……” 孔子答应着“是是”，上了车，拱着两只手极恭敬的靠在横板〔７〕上；",
+        "pinyin": "… … ”   kǒng zǐ dā yìng zhuó “ shì shì ” ， shàng le chē ， gǒng zhuó liǎng zhǐ shǒu jí gōng jìng de kào zài héng bǎn 〔 ７ 〕 shàng ；",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "冉有 〔８〕把鞭子在空中一挥，嘴里喊一声“都”，车子就走动了。",
+        "pinyin": "rǎn yǒu   〔 ８ 〕 bǎ biān zǐ zài kōng zhōng yī huī ， zuǐ lǐ hǎn yī shēng “ dōu ” ， chē zǐ jiù zǒu dòng le 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "待到车子离开了大 门十几步，老子才回进自己的屋里去。",
+        "pinyin": "dài dào chē zǐ lí kāi le dà   mén shí jǐ bù ， lǎo zǐ cái huí jìn zì jǐ de wū lǐ qù 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“先生今天好像很高兴，”庚桑楚看老子坐定了，才站在旁边，垂着手，说。",
+        "pinyin": "“ xiān shēng jīn tiān hǎo xiàng hěn gāo xìng ， ” gēng sāng chǔ kàn lǎo zǐ zuò dìng le ， cái zhàn zài páng biān ， chuí zhuó shǒu ， shuō 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“话说的很不少……” “你说的对。”",
+        "pinyin": "“ huà shuō de hěn bù shǎo … … ”   “ nǐ shuō de duì 。 ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "老子微微的叹一口气，有些颓唐似的回答道。",
+        "pinyin": "lǎo zǐ wēi wēi de tàn yī kǒu qì ， yǒu xiē tuí táng shì de huí dá dào 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“我的话真也说 的太多了。”",
+        "pinyin": "“ wǒ de huà zhēn yě shuō   de tài duō le 。 ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "他又仿佛突然记起一件事情来，“哦，孔丘送我的一只雁鹅〔９〕， 不是晒了腊鹅了吗？",
+        "pinyin": "tā yòu fǎng fó tū rán jì qǐ yī jiàn shì qíng lái ， “ ò ， kǒng qiū sòng wǒ de yī zhǐ yàn é 〔 ９ 〕 ，   bù shì shài le là é le ma ？",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "你蒸蒸吃去罢。",
+        "pinyin": "nǐ zhēng zhēng chī qù bà 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "我横竖没有牙齿，咬不动。”",
+        "pinyin": "wǒ héng shù méi yǒu yá chǐ ， yǎo bù dòng 。 ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "庚桑楚出去了。",
+        "pinyin": "gēng sāng chǔ chū qù le 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "老子就又静下来，合了眼。",
+        "pinyin": "lǎo zǐ jiù yòu jìng xià lái ， hé le yǎn 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "图书馆里很寂静。",
+        "pinyin": "tú shū guǎn lǐ hěn jì jìng 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "只听得竹竿子碰 着屋檐响，这是庚桑楚在取挂在檐下的腊鹅。",
+        "pinyin": "zhǐ tīng dé zhú gān zǐ pèng   zhuó wū yán xiǎng ， zhè shì gēng sāng chǔ zài qǔ guà zài yán xià de là é 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "一过就是三个月。",
+        "pinyin": "yī guò jiù shì sān gè yuè 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "老子仍旧毫无动静的坐着，好像一段呆木头。",
+        "pinyin": "lǎo zǐ réng jiù háo wú dòng jìng de zuò zhuó ， hǎo xiàng yī duàn dāi mù tóu 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“先生，孔丘来了哩！”",
+        "pinyin": "“ xiān shēng ， kǒng qiū lái le li ！ ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "他的学生庚桑楚，诧异似的走进来，轻轻的说。",
+        "pinyin": "tā de xué shēng gēng sāng chǔ ， chà yì shì de zǒu jìn lái ， qīng qīng de shuō 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“他 不是长久没来了吗？",
+        "pinyin": "“ tā   bù shì cháng jiǔ méi lái le ma ？",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "这的来，不知道是怎的？",
+        "pinyin": "zhè de lái ， bù zhī dào shì zěn de ？",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "……” “请……”老子照例只说了这一个字。",
+        "pinyin": "… … ”   “ qǐng … … ” lǎo zǐ zhào lì zhǐ shuō le zhè yī gè zì 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“先生，您好吗？”",
+        "pinyin": "“ xiān shēng ， nín hǎo ma ？ ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "孔子极恭敬的行着礼，一面说。",
+        "pinyin": "kǒng zǐ jí gōng jìng de xíng zhuó lǐ ， yī miàn shuō 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“我总是这样子，”老子答道。",
+        "pinyin": "“ wǒ zǒng shì zhè yàng zǐ ， ” lǎo zǐ dá dào 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“长久不看见了，一定是躲在寓里用功罢？”",
+        "pinyin": "“ cháng jiǔ bù kàn jiàn le ， yī dìng shì duǒ zài yù lǐ yòng gōng bà ？ ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“那里那里，”孔子谦虚的说。",
+        "pinyin": "“ nà lǐ nà lǐ ， ” kǒng zǐ qiān xū de shuō 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“没有出门，在想着。",
+        "pinyin": "“ méi yǒu chū mén ， zài xiǎng zhuó 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "想通了一点：鸦鹊亲嘴；",
+        "pinyin": "xiǎng tōng le yī diǎn ： yā què qīn zuǐ ；",
+        "english": "Lu Xun literary work passage."
+      }
+    ]
+  },
+  {
+    "id": "old_tales_retold_ch_2",
+    "bookId": "old_tales_retold",
+    "chapterIndex": 2,
+    "title": "奔月",
+    "titleEn": "Chapter 2: The Chronicle of 奔月",
+    "sentences": [
+      {
+        "chinese": "``` 鲁迅《故事新编》 奔 月〔１〕 一 聪明的牲口确乎知道人意，刚刚望见宅门，那马便立刻放缓脚步了，并且 和它背上的主人同时垂了头，一步一顿，像捣米一样。",
+        "pinyin": "` ` `   lǔ xùn 《 gù shì xīn biān 》   bēn   yuè 〔 １ 〕   yī   cōng míng de shēng kǒu què hū zhī dào rén yì ， gāng gāng wàng jiàn zhái mén ， nà mǎ biàn lì kè fàng huǎn jiǎo bù le ， bìng qiě   hé tā bēi shàng de zhǔ rén tóng shí chuí le tóu ， yī bù yī dùn ， xiàng dǎo mǐ yī yàng 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "暮霭笼罩了大宅，邻屋上都腾起浓黑的炊烟，已经是晚饭时候。",
+        "pinyin": "mù ǎi lǒng zhào le dà zhái ， lín wū shàng dōu téng qǐ nóng hēi de chuī yān ， yǐ jīng shì wǎn fàn shí hòu 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "家将们听 得马蹄声，早已迎了出来，都在宅门外垂着手直挺挺地站着。",
+        "pinyin": "jiā jiāng mén tīng   dé mǎ tí shēng ， zǎo yǐ yíng le chū lái ， dōu zài zhái mén wài chuí zhuó shǒu zhí tǐng tǐng dì zhàn zhuó 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "羿〔２〕在垃圾 堆边懒懒地下了马，家将们便接过缰绳和鞭子去。",
+        "pinyin": "yì 〔 ２ 〕 zài lā jī   duī biān lǎn lǎn dì xià le mǎ ， jiā jiāng mén biàn jiē guò jiāng shéng hé biān zǐ qù 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "他刚要跨进大门，低头看看 挂在腰间的满壶的簇新的箭和网里的三匹乌老鸦和一匹射碎了的小麻雀，心里 就非常踌蹰。",
+        "pinyin": "tā gāng yào kuà jìn dà mén ， dī tóu kàn kàn   guà zài yāo jiān de mǎn hú de cù xīn de jiàn hé wǎng lǐ de sān pǐ wū lǎo yā hé yī pǐ shè suì le de xiǎo má què ， xīn lǐ   jiù fēi cháng chóu chú 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "但到底硬着头皮，大踏步走进去了；",
+        "pinyin": "dàn dào dǐ yìng zhuó tóu pí ， dà tà bù zǒu jìn qù le ；",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "箭在壶里豁朗豁朗地响着。",
+        "pinyin": "jiàn zài hú lǐ huō lǎng huō lǎng dì xiǎng zhuó 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "刚到内院，他便见嫦娥〔３〕在圆窗里探了一探头。",
+        "pinyin": "gāng dào nèi yuàn ， tā biàn jiàn cháng é 〔 ３ 〕 zài yuán chuāng lǐ tàn le yī tàn tóu 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "他知道她眼睛快，一 定早瞧见那几匹乌鸦的了，不觉一吓，脚步登时也一停，——但只得往里走。",
+        "pinyin": "tā zhī dào tā yǎn jīng kuài ， yī   dìng zǎo qiáo jiàn nà jǐ pǐ wū yā de le ， bù jué yī xià ， jiǎo bù dēng shí yě yī tíng ， — — dàn zhǐ dé wǎng lǐ zǒu 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "使女们都迎出来，给他卸了弓箭，解下网兜。",
+        "pinyin": "shǐ nǚ mén dōu yíng chū lái ， gěi tā xiè le gōng jiàn ， jiě xià wǎng dōu 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "他仿佛觉得她们都在苦笑。",
+        "pinyin": "tā fǎng fó jué dé tā mén dōu zài kǔ xiào 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“太太……。”",
+        "pinyin": "“ tài tài … … 。 ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "他擦过手脸，走进内房去，一面叫。",
+        "pinyin": "tā cā guò shǒu liǎn ， zǒu jìn nèi fáng qù ， yī miàn jiào 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "嫦娥正在看着圆窗外的暮天，慢慢回过头来，似理不理的向他看了一眼， 没有答应。",
+        "pinyin": "cháng é zhèng zài kàn zhuó yuán chuāng wài de mù tiān ， màn màn huí guò tóu lái ， sì lǐ bù lǐ de xiàng tā kàn le yī yǎn ，   méi yǒu dā yìng 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "这种情形，羿倒久已习惯的了，至少已有一年多。",
+        "pinyin": "zhè zhǒng qíng xíng ， yì dǎo jiǔ yǐ xí guàn de le ， zhì shǎo yǐ yǒu yī nián duō 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "他仍旧走近去，坐在对 面的铺着脱毛的旧豹皮的木榻上，搔着头皮，支支梧梧地说—— “今天的运气仍旧不见佳，还是只有乌鸦……。”",
+        "pinyin": "tā réng jiù zǒu jìn qù ， zuò zài duì   miàn de pū zhuó tuō máo de jiù bào pí de mù tà shàng ， sāo zhuó tóu pí ， zhī zhī wú wú dì shuō — —   “ jīn tiān de yùn qì réng jiù bù jiàn jiā ， hái shì zhǐ yǒu wū yā … … 。 ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“哼！”",
+        "pinyin": "“ hēng ！ ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "嫦娥将柳眉一扬，忽然站起来，风似的往外走，嘴里咕噜着，“ 又是乌鸦的炸酱面，又是乌鸦的炸酱面！",
+        "pinyin": "cháng é jiāng liǔ méi yī yáng ， hū rán zhàn qǐ lái ， fēng shì de wǎng wài zǒu ， zuǐ lǐ gū lū zhuó ， “   yòu shì wū yā de zhà jiàng miàn ， yòu shì wū yā de zhà jiàng miàn ！",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "你去问问去，谁家是一年到头只吃乌 鸦肉的炸酱面的？",
+        "pinyin": "nǐ qù wèn wèn qù ， shuí jiā shì yī nián dào tóu zhǐ chī wū   yā ròu de zhà jiàng miàn de ？",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "我真不知道是走了什么运，竟嫁到这里来，整年的就吃乌鸦 的炸酱面！”",
+        "pinyin": "wǒ zhēn bù zhī dào shì zǒu le shén me yùn ， jìng jià dào zhè lǐ lái ， zhěng nián de jiù chī wū yā   de zhà jiàng miàn ！ ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“太太，”羿赶紧也站起，跟在后面，低声说，“不过今天倒还好，另外 还射了一匹麻雀，可以给你做菜的。",
+        "pinyin": "“ tài tài ， ” yì gǎn jǐn yě zhàn qǐ ， gēn zài hòu miàn ， dī shēng shuō ， “ bù guò jīn tiān dǎo hái hǎo ， lìng wài   hái shè le yī pǐ má què ， kě yǐ gěi nǐ zuò cài de 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "女辛〔４〕！”",
+        "pinyin": "nǚ xīn 〔 ４ 〕 ！ ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "他大声地叫使女，“你把 那一匹麻雀拿过来请太太看！”",
+        "pinyin": "tā dà shēng dì jiào shǐ nǚ ， “ nǐ bǎ   nà yī pǐ má què ná guò lái qǐng tài tài kàn ！ ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "野味已经拿到厨房里去了，女辛便跑去挑出来，两手捧着，送在嫦娥的眼 前。",
+        "pinyin": "yě wèi yǐ jīng ná dào chú fáng lǐ qù le ， nǚ xīn biàn pǎo qù tiāo chū lái ， liǎng shǒu pěng zhuó ， sòng zài cháng é de yǎn   qián 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“哼！”",
+        "pinyin": "“ hēng ！ ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "她瞥了一眼，慢慢地伸手一捏，不高兴地说，“一团糟！",
+        "pinyin": "tā piē le yī yǎn ， màn màn dì shēn shǒu yī niē ， bù gāo xìng dì shuō ， “ yī tuán zāo ！",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "不是全 都粉碎了么？",
+        "pinyin": "bù shì quán   dōu fěn suì le me ？",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "肉在那里？”",
+        "pinyin": "ròu zài nà lǐ ？ ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“是的，”羿很惶恐，“射碎的。",
+        "pinyin": "“ shì de ， ” yì hěn huáng kǒng ， “ shè suì de 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "我的弓太强，箭头太大了。”",
+        "pinyin": "wǒ de gōng tài qiáng ， jiàn tóu tài dà le 。 ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“你不能用小一点的箭头的么？”",
+        "pinyin": "“ nǐ bù néng yòng xiǎo yī diǎn de jiàn tóu de me ？ ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“我没有小的。",
+        "pinyin": "“ wǒ méi yǒu xiǎo de 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "自从我射封豕长蛇〔５〕……。”",
+        "pinyin": "zì cóng wǒ shè fēng shǐ cháng shé 〔 ５ 〕 … … 。 ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“这是封豕长蛇么？”",
+        "pinyin": "“ zhè shì fēng shǐ cháng shé me ？ ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "她说着，一面回转头去对着女辛道，“放一碗汤罢 ！”",
+        "pinyin": "tā shuō zhuó ， yī miàn huí zhuǎn tóu qù duì zhuó nǚ xīn dào ， “ fàng yī wǎn tāng bà   ！ ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "便又退回房里去了。",
+        "pinyin": "biàn yòu tuì huí fáng lǐ qù le 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "只有羿呆呆地留在堂屋里，靠壁坐下，听着厨房里柴草爆炸的声音。",
+        "pinyin": "zhǐ yǒu yì dāi dāi dì liú zài táng wū lǐ ， kào bì zuò xià ， tīng zhuó chú fáng lǐ chái cǎo bào zhà de shēng yīn 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "他回 忆半年的封豕是多么大，远远望去就像一坐小土冈，如果那时不去射杀它，留 到现在，足可以吃半年，又何用天天愁饭菜。",
+        "pinyin": "tā huí   yì bàn nián de fēng shǐ shì duō me dà ， yuǎn yuǎn wàng qù jiù xiàng yī zuò xiǎo tǔ gāng ， rú guǒ nà shí bù qù shè shā tā ， liú   dào xiàn zài ， zú kě yǐ chī bàn nián ， yòu hé yòng tiān tiān chóu fàn cài 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "还有长蛇，也可以做羹喝……。",
+        "pinyin": "hái yǒu cháng shé ， yě kě yǐ zuò gēng hē … … 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "女乙来点灯了，对面墙上挂着的彤弓，彤矢，卢弓，卢矢，弩机〔６〕， 长剑，短剑，便都在昏暗的灯光中出现。",
+        "pinyin": "nǚ yǐ lái diǎn dēng le ， duì miàn qiáng shàng guà zhuó de tóng gōng ， tóng shǐ ， lú gōng ， lú shǐ ， nǔ jī 〔 ６ 〕 ，   cháng jiàn ， duǎn jiàn ， biàn dōu zài hūn àn de dēng guāng zhōng chū xiàn 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "羿看了一眼，就低了头，叹一口气；",
+        "pinyin": "yì kàn le yī yǎn ， jiù dī le tóu ， tàn yī kǒu qì ；",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "只见女辛搬进夜饭来，放在中间的案上，左边是五大碗白面；",
+        "pinyin": "zhǐ jiàn nǚ xīn bān jìn yè fàn lái ， fàng zài zhōng jiān de àn shàng ， zuǒ biān shì wǔ dà wǎn bái miàn ；",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "右边两大碗，一 碗汤；",
+        "pinyin": "yòu biān liǎng dà wǎn ， yī   wǎn tāng ；",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "中央是一大碗乌鸦肉做的炸酱。",
+        "pinyin": "zhōng yāng shì yī dà wǎn wū yā ròu zuò de zhà jiàng 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "羿吃着炸酱面，自己觉得确也不好吃；",
+        "pinyin": "yì chī zhuó zhà jiàng miàn ， zì jǐ jué dé què yě bù hǎo chī ；",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "偷眼去看嫦娥，她炸酱是看也不看， 只用汤泡了面，吃了半碗，又放下了。",
+        "pinyin": "tōu yǎn qù kàn cháng é ， tā zhà jiàng shì kàn yě bù kàn ，   zhǐ yòng tāng pào le miàn ， chī le bàn wǎn ， yòu fàng xià le 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "他觉得她脸上仿佛比往常黄瘦些，生怕 她生了病。",
+        "pinyin": "tā jué dé tā liǎn shàng fǎng fó bǐ wǎng cháng huáng shòu xiē ， shēng pà   tā shēng le bìng 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "到二更时，她似乎和气一些了，默坐在床沿上喝水。",
+        "pinyin": "dào èr gèng shí ， tā sì hū hé qì yī xiē le ， mò zuò zài chuáng yán shàng hē shuǐ 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "羿就坐在旁边的木榻 上，手摩着脱毛的旧豹皮。",
+        "pinyin": "yì jiù zuò zài páng biān de mù tà   shàng ， shǒu mó zhuó tuō máo de jiù bào pí 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“唉，”他和蔼地说，“这西山的文豹，还是我们结婚以前射得的，那时 多么好看，全体黄金光。”",
+        "pinyin": "“ āi ， ” tā hé ǎi dì shuō ， “ zhè xī shān de wén bào ， hái shì wǒ mén jié hūn yǐ qián shè dé de ， nà shí   duō me hǎo kàn ， quán tǐ huáng jīn guāng 。 ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "他于是回想当年的食物，熊是只吃四个掌，驼留峰， 其余的就都赏给使女和家将们。",
+        "pinyin": "tā yú shì huí xiǎng dāng nián de shí wù ， xióng shì zhǐ chī sì gè zhǎng ， tuó liú fēng ，   qí yú de jiù dōu shǎng gěi shǐ nǚ hé jiā jiāng mén 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "后来大动物射完了，就吃野猪兔山鸡；",
+        "pinyin": "hòu lái dà dòng wù shè wán le ， jiù chī yě zhū tù shān jī ；",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "射法又 高强，要多少有多少。",
+        "pinyin": "shè fǎ yòu   gāo qiáng ， yào duō shǎo yǒu duō shǎo 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“唉，”他不觉叹息，“我的箭法掌太巧妙了，竟射得 遍地精光。",
+        "pinyin": "“ āi ， ” tā bù jué tàn xī ， “ wǒ de jiàn fǎ zhǎng tài qiǎo miào le ， jìng shè dé   biàn dì jīng guāng 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "那时谁料到只剩下乌鸦做菜……。”",
+        "pinyin": "nà shí shuí liào dào zhǐ shèng xià wū yā zuò cài … … 。 ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“哼。”",
+        "pinyin": "“ hēng 。 ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "嫦娥微微一笑。",
+        "pinyin": "cháng é wēi wēi yī xiào 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“今天总还要算运气的，”羿也高兴起来，“居然猎到一只麻雀。",
+        "pinyin": "“ jīn tiān zǒng hái yào suàn yùn qì de ， ” yì yě gāo xìng qǐ lái ， “ jū rán liè dào yī zhǐ má què 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "这是远 绕了三十里路才找到的。”",
+        "pinyin": "zhè shì yuǎn   rào le sān shí lǐ lù cái zhǎo dào de 。 ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“你不能走得更远一点的么？",
+        "pinyin": "“ nǐ bù néng zǒu dé gèng yuǎn yī diǎn de me ？",
+        "english": "Lu Xun literary work passage."
+      }
+    ]
+  },
+  {
+    "id": "old_tales_retold_ch_3",
+    "bookId": "old_tales_retold",
+    "chapterIndex": 3,
+    "title": "序言",
+    "titleEn": "Prologue: The Awakening of Destiny",
+    "sentences": [
+      {
+        "chinese": "``` 鲁迅《故事新编》 〖本书收作者一九二二年至一九三五年所作小说八篇。",
+        "pinyin": "` ` `   lǔ xùn 《 gù shì xīn biān 》   〖 běn shū shōu zuò zhě yī jiǔ èr èr nián zhì yī jiǔ sān wǔ nián suǒ zuò xiǎo shuō bā piān 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "一九三六年一月由上 海文化生活出版社初版，列为巴金所编的《文学丛刊》之一。",
+        "pinyin": "yī jiǔ sān liù nián yī yuè yóu shàng   hǎi wén huà shēng huó chū bǎn shè chū bǎn ， liè wèi bā jīn suǒ biān de 《 wén xué cóng kān 》 zhī yī 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "〗 序 言 这一本很小的集子，从开手写起到编成，经过的日子却可以算得很长久了： 足足有十三年。",
+        "pinyin": "〗   xù   yán   zhè yī běn hěn xiǎo de jí zǐ ， cóng kāi shǒu xiě qǐ dào biān chéng ， jīng guò de rì zǐ què kě yǐ suàn dé hěn cháng jiǔ le ：   zú zú yǒu shí sān nián 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "第一篇《补天》——原先题作《不周山》——还是一九二二年的冬天写成的。",
+        "pinyin": "dì yī piān 《 bǔ tiān 》 — — yuán xiān tí zuò 《 bù zhōu shān 》 — — hái shì yī jiǔ èr èr nián de dōng tiān xiě chéng de 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "那时的意见，是想从古代和现代都采取题材，来做短篇小说，《不周山》便是取 了“女娲炼石补天”的神话，动手试作的第一篇。",
+        "pinyin": "nà shí de yì jiàn ， shì xiǎng cóng gǔ dài hé xiàn dài dōu cǎi qǔ tí cái ， lái zuò duǎn piān xiǎo shuō ， 《 bù zhōu shān 》 biàn shì qǔ   le “ nǚ wā liàn shí bǔ tiān ” de shén huà ， dòng shǒu shì zuò de dì yī piān 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "首先，是很认真的，虽然也不 过取了弗罗特说〔１〕来解释创造——人和文学的——的缘起。",
+        "pinyin": "shǒu xiān ， shì hěn rèn zhēn de ， suī rán yě bù   guò qǔ le fú luó tè shuō 〔 １ 〕 lái jiě shì chuàng zào — — rén hé wén xué de — — de yuán qǐ 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "不记得怎么一来， 中途停了笔，去看日报了，不幸正看见了谁——现在忘记了名字——的对于汪静 之君的《蕙的风》的批评，他说要含泪哀求，请青年不要再写这样的文字。",
+        "pinyin": "bù jì dé zěn me yī lái ，   zhōng tú tíng le bǐ ， qù kàn rì bào le ， bù xìng zhèng kàn jiàn le shuí — — xiàn zài wàng jì le míng zì — — de duì yú wāng jìng   zhī jūn de 《 huì de fēng 》 de pī píng ， tā shuō yào hán lèi āi qiú ， qǐng qīng nián bù yào zài xiě zhè yàng de wén zì 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "〔２〕 这可怜的阴险使我感到滑稽，当再写小说时，就无论如何，止不住有一个古 衣冠的小丈夫，在女娲的两腿之间出现了。",
+        "pinyin": "〔 ２ 〕   zhè kě lián de yīn xiǎn shǐ wǒ gǎn dào huá jī ， dāng zài xiě xiǎo shuō shí ， jiù wú lùn rú hé ， zhǐ bù zhù yǒu yī gè gǔ   yī guàn de xiǎo zhàng fū ， zài nǚ wā de liǎng tuǐ zhī jiān chū xiàn le 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "这就是从认真陷入了油滑的开端。",
+        "pinyin": "zhè jiù shì cóng rèn zhēn xiàn rù le yóu huá de kāi duān 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "油 滑是创作的大敌，我对于自己很不满。",
+        "pinyin": "yóu   huá shì chuàng zuò de dà dí ， wǒ duì yú zì jǐ hěn bù mǎn 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "我决计不再写这样的小说，当编印《呐喊》时，便将它附在卷末，算是一个 开始，也就是一个收场。",
+        "pinyin": "wǒ jué jì bù zài xiě zhè yàng de xiǎo shuō ， dāng biān yìn 《 nà hǎn 》 shí ， biàn jiāng tā fù zài juǎn mò ， suàn shì yī gè   kāi shǐ ， yě jiù shì yī gè shōu chǎng 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "这时我们的批评家成仿吾〔３〕先生正在创造社门口的“灵魂的冒险”的旗 子底下抡板斧。",
+        "pinyin": "zhè shí wǒ mén de pī píng jiā chéng fǎng wú 〔 ３ 〕 xiān shēng zhèng zài chuàng zào shè mén kǒu de “ líng hún de mào xiǎn ” de qí   zǐ dǐ xià lūn bǎn fǔ 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "他以“庸俗”的罪名，几斧砍杀了《呐喊》，只推《不周山》为 佳作，——自然也仍有不好的地方。",
+        "pinyin": "tā yǐ “ yōng sú ” de zuì míng ， jǐ fǔ kǎn shā le 《 nà hǎn 》 ， zhǐ tuī 《 bù zhōu shān 》 wèi   jiā zuò ， — — zì rán yě réng yǒu bù hǎo de dì fāng 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "坦白的说罢，这就是使我不但不能心服，而 轻视了这位勇士的原因。",
+        "pinyin": "tǎn bái de shuō bà ， zhè jiù shì shǐ wǒ bù dàn bù néng xīn fú ， ér   qīng shì le zhè wèi yǒng shì de yuán yīn 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "我是不薄“庸俗”，也自甘“庸俗”的；",
+        "pinyin": "wǒ shì bù báo “ yōng sú ” ， yě zì gān “ yōng sú ” de ；",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "对于历史小说， 则以为博考文献，言必有据者，纵使有人讥为“教授小说”，其实是很难组织之 作，至于只取一点因由，随意点染，铺成一篇，倒无需怎样的手腕；",
+        "pinyin": "duì yú lì shǐ xiǎo shuō ，   zé yǐ wèi bó kǎo wén xiàn ， yán bì yǒu jù zhě ， zòng shǐ yǒu rén jī wèi “ jiào shòu xiǎo shuō ” ， qí shí shì hěn nán zǔ zhī zhī   zuò ， zhì yú zhǐ qǔ yī diǎn yīn yóu ， suí yì diǎn rǎn ， pū chéng yī piān ， dǎo wú xū zěn yàng de shǒu wàn ；",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "况且“如鱼 饮水，冷暖自知”，用庸俗的话来说，就是“自家有病自家知”罢：《不周山》 的后半是很草率的，决不能称为佳作。",
+        "pinyin": "kuàng qiě “ rú yú   yǐn shuǐ ， lěng nuǎn zì zhī ” ， yòng yōng sú de huà lái shuō ， jiù shì “ zì jiā yǒu bìng zì jiā zhī ” bà ： 《 bù zhōu shān 》   de hòu bàn shì hěn cǎo shuài de ， jué bù néng chēng wèi jiā zuò 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "倘使读者相信了这冒险家的话，一定自误， 而我也成了误人，于是当《呐喊》印行第二版时〔４〕，即将这一篇删除；",
+        "pinyin": "tǎng shǐ dú zhě xiāng xìn le zhè mào xiǎn jiā de huà ， yī dìng zì wù ，   ér wǒ yě chéng le wù rén ， yú shì dāng 《 nà hǎn 》 yìn xíng dì èr bǎn shí 〔 ４ 〕 ， jí jiāng zhè yī piān shān chú ；",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "向这 位“魂灵”回敬了当头一棒——我的集子里，只剩着“庸俗”在跋扈了。",
+        "pinyin": "xiàng zhè   wèi “ hún líng ” huí jìng le dāng tóu yī bàng — — wǒ de jí zǐ lǐ ， zhǐ shèng zhuó “ yōng sú ” zài bá hù le 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "直到一九二六年的秋天，一个人住在厦门的石屋〔５〕里，对着大海，翻着 古书，四近无生人气，心里空空洞洞。",
+        "pinyin": "zhí dào yī jiǔ èr liù nián de qiū tiān ， yī gè rén zhù zài xià mén de shí wū 〔 ５ 〕 lǐ ， duì zhuó dà hǎi ， fān zhuó   gǔ shū ， sì jìn wú shēng rén qì ， xīn lǐ kōng kōng dòng dòng 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "而北京的未名社〔６〕，却不绝的来信， 催促杂志的文章。",
+        "pinyin": "ér běi jīng de wèi míng shè 〔 ６ 〕 ， què bù jué de lái xìn ，   cuī cù zá zhì de wén zhāng 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "这时我不愿意想到目前；",
+        "pinyin": "zhè shí wǒ bù yuàn yì xiǎng dào mù qián ；",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "于是回忆在心里出土了，写了十篇《 朝华夕拾》；",
+        "pinyin": "yú shì huí yì zài xīn lǐ chū tǔ le ， xiě le shí piān 《   cháo huá xī shí 》 ；",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "并且仍旧拾取古代的传说之类，预备足成八则《故事新编》。",
+        "pinyin": "bìng qiě réng jiù shí qǔ gǔ dài de chuán shuō zhī lèi ， yù bèi zú chéng bā zé 《 gù shì xīn biān 》 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "但刚 写了《奔月》和《铸剑》——发表的那时题为《眉间尺》，——我便奔向广州， 这事就又完全搁起了。",
+        "pinyin": "dàn gāng   xiě le 《 bēn yuè 》 hé 《 zhù jiàn 》 — — fā biǎo de nà shí tí wèi 《 méi jiān chǐ 》 ， — — wǒ biàn bēn xiàng guǎng zhōu ，   zhè shì jiù yòu wán quán gē qǐ le 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "后来虽然偶尔得到一点题材，作一段速写，却一向不加整 理。",
+        "pinyin": "hòu lái suī rán ǒu ěr dé dào yī diǎn tí cái ， zuò yī duàn sù xiě ， què yī xiàng bù jiā zhěng   lǐ 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "现在才总算编成了一本书。",
+        "pinyin": "xiàn zài cái zǒng suàn biān chéng le yī běn shū 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "其中也还是速写居多，不足称为“文学概论”之 所谓小说。",
+        "pinyin": "qí zhōng yě hái shì sù xiě jū duō ， bù zú chēng wèi “ wén xué gài lùn ” zhī   suǒ wèi xiǎo shuō 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "叙事有时也有一点旧书上的根据，有时却不过信口开河。",
+        "pinyin": "xù shì yǒu shí yě yǒu yī diǎn jiù shū shàng de gēn jù ， yǒu shí què bù guò xìn kǒu kāi hé 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "而且因为自 己的对于古人，不及对于今人的诚敬，所以仍不免时有油滑之处。",
+        "pinyin": "ér qiě yīn wèi zì   jǐ de duì yú gǔ rén ， bù jí duì yú jīn rén de chéng jìng ， suǒ yǐ réng bù miǎn shí yǒu yóu huá zhī chù 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "过了十三年， 依然并无长进，看起来真也是“无非《不周山》之流”；",
+        "pinyin": "guò le shí sān nián ，   yī rán bìng wú cháng jìn ， kàn qǐ lái zhēn yě shì “ wú fēi 《 bù zhōu shān 》 zhī liú ” ；",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "不过并没有将古人写得 更死，却也许暂时还有存在的余地的罢。",
+        "pinyin": "bù guò bìng méi yǒu jiāng gǔ rén xiě dé   gèng sǐ ， què yě xǔ zàn shí hái yǒu cún zài de yú dì de bà 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "一九三五年十二月二十六日，鲁迅。",
+        "pinyin": "yī jiǔ sān wǔ nián shí èr yuè èr shí liù rì ， lǔ xùn 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "〔１〕 弗罗特说 弗罗特，参看本卷第２４１页注〔１４〕。",
+        "pinyin": "〔 １ 〕   fú luó tè shuō   fú luó tè ， cān kàn běn juǎn dì ２ ４ １ yè zhù 〔 １ ４ 〕 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "这里所说的“弗 罗特说”，即指弗洛伊德的精神分析学说。",
+        "pinyin": "zhè lǐ suǒ shuō de “ fú   luó tè shuō ” ， jí zhǐ fú luò yī dé de jīng shén fēn xī xué shuō 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "作者对这种学说，虽曾一度注意过， 受过它的若干影响，但后来是采取怀疑和批判的态度的；",
+        "pinyin": "zuò zhě duì zhè zhǒng xué shuō ， suī céng yī dù zhù yì guò ，   shòu guò tā de ruò gān yǐng xiǎng ， dàn hòu lái shì cǎi qǔ huái yí hé pī pàn de tài dù de ；",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "在一九三三年所作《听 说梦》（收入《南腔北调集》）中，他曾批评过这种学说。",
+        "pinyin": "zài yī jiǔ sān sān nián suǒ zuò 《 tīng   shuō mèng 》 （ shōu rù 《 nán qiāng běi tiáo jí 》 ） zhōng ， tā céng pī píng guò zhè zhǒng xué shuō 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "〔２〕 指胡梦华对汪静之的诗集《蕙的风》的批评。",
+        "pinyin": "〔 ２ 〕   zhǐ hú mèng huá duì wāng jìng zhī de shī jí 《 huì de fēng 》 de pī píng 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "《蕙的风》于一九二二年 八月由上海亚东图书馆出版后，南京东南大学学生胡梦华在同年十月二十四日上 海《时事新报·学灯》发表一篇《读了〈蕙的风〉以后》，攻击其中某些爱情诗 是“堕落轻薄”的作品，“有不道德的嫌疑”。",
+        "pinyin": "《 huì de fēng 》 yú yī jiǔ èr èr nián   bā yuè yóu shàng hǎi yà dōng tú shū guǎn chū bǎn hòu ， nán jīng dōng nán dà xué xué shēng hú mèng huá zài tóng nián shí yuè èr shí sì rì shàng   hǎi 《 shí shì xīn bào · xué dēng 》 fā biǎo yī piān 《 dú le 〈 huì de fēng 〉 yǐ hòu 》 ， gōng jī qí zhōng mǒu xiē ài qíng shī   shì “ duò luò qīng báo ” de zuò pǐn ， “ yǒu bù dào dé de xián yí ” 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "鲁迅曾对胡文进行过批评。",
+        "pinyin": "lǔ xùn céng duì hú wén jìn xíng guò pī píng 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "参看 《热风·反对“含泪”的批评家》。",
+        "pinyin": "cān kàn   《 rè fēng · fǎn duì “ hán lèi ” de pī píng jiā 》 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "〔３〕 成仿吾 湖南新化人，“五四”时期著名文学团体创造社主要成员之一， 文学评论家。",
+        "pinyin": "〔 ３ 〕   chéng fǎng wú   hú nán xīn huà rén ， “ wǔ sì ” shí qī zhuó míng wén xué tuán tǐ chuàng zào shè zhǔ yào chéng yuán zhī yī ，   wén xué píng lùn jiā 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "约在一九二五年五卅运动后，他开始倾向革命。",
+        "pinyin": "yuē zài yī jiǔ èr wǔ nián wǔ sà yùn dòng hòu ， tā kāi shǐ qīng xiàng gé mìng 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "一九二七年至一九 二八年间曾同郭沫若等发起革命文学运动；",
+        "pinyin": "yī jiǔ èr qī nián zhì yī jiǔ   èr bā nián jiān céng tóng guō mò ruò děng fā qǐ gé mìng wén xué yùn dòng ；",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "后进入革命根据地，参加二万五千里 长征，长期从事革命教育工作。",
+        "pinyin": "hòu jìn rù gé mìng gēn jù dì ， cān jiā èr wàn wǔ qiān lǐ   cháng zhēng ， cháng qī cóng shì gé mìng jiào yù gōng zuò 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "鲁迅的《呐喊》出版后不久，成仿吾曾在《创造 季刊》第二卷第二期（一九二四年二月）发表《〈呐喊〉的评论》一文，从他当 时的文学见解出发，认为《呐喊》中的《狂人日记》、《孔乙己》、《药》、《 阿Ｑ正传》等都是“浅薄”“庸俗”的“自然主义”作品，只有《不周山》一篇， “虽然也还有不能令人满足的地方”，却是表示作者“要进而入纯文艺的宫庭” 的“杰作”。",
+        "pinyin": "lǔ xùn de 《 nà hǎn 》 chū bǎn hòu bù jiǔ ， chéng fǎng wú céng zài 《 chuàng zào   jì kān 》 dì èr juǎn dì èr qī （ yī jiǔ èr sì nián èr yuè ） fā biǎo 《 〈 nà hǎn 〉 de píng lùn 》 yī wén ， cóng tā dāng   shí de wén xué jiàn jiě chū fā ， rèn wèi 《 nà hǎn 》 zhōng de 《 kuáng rén rì jì 》 、 《 kǒng yǐ jǐ 》 、 《 yào 》 、 《   ā Ｑ zhèng chuán 》 děng dōu shì “ qiǎn báo ” “ yōng sú ” de “ zì rán zhǔ yì ” zuò pǐn ， zhǐ yǒu 《 bù zhōu shān 》 yī piān ，   “ suī rán yě hái yǒu bù néng lìng rén mǎn zú de dì fāng ” ， què shì biǎo shì zuò zhě “ yào jìn ér rù chún wén yì de gōng tíng ”   de “ jié zuò ” 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "成仿吾在这篇评论里，曾引用法国作家法朗士在《文学生活》一书 中所说文学批评是“灵魂在杰作中的冒险”这句话说：“假使批评是灵魂的冒险 啊，这呐喊的雄声，不是值得使灵魂去试一冒险？”",
+        "pinyin": "chéng fǎng wú zài zhè piān píng lùn lǐ ， céng yǐn yòng fǎ guó zuò jiā fǎ lǎng shì zài 《 wén xué shēng huó 》 yī shū   zhōng suǒ shuō wén xué pī píng shì “ líng hún zài jié zuò zhōng de mào xiǎn ” zhè jù huà shuō ： “ jiǎ shǐ pī píng shì líng hún de mào xiǎn   ā ， zhè nà hǎn de xióng shēng ， bù shì zhí dé shǐ líng hún qù shì yī mào xiǎn ？ ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "〔４〕 《呐喊》印行第二版 一九三○年一月《呐喊》第十三次印刷时，作者 将《不周山》篇抽出，因为篇目与过去印行者不同，成为一种新的版本，所以这 里称为“第二版”。",
+        "pinyin": "〔 ４ 〕   《 nà hǎn 》 yìn xíng dì èr bǎn   yī jiǔ sān ○ nián yī yuè 《 nà hǎn 》 dì shí sān cì yìn shuā shí ， zuò zhě   jiāng 《 bù zhōu shān 》 piān chōu chū ， yīn wèi piān mù yǔ guò qù yìn xíng zhě bù tóng ， chéng wéi yī zhǒng xīn de bǎn běn ， suǒ yǐ zhè   lǐ chēng wèi “ dì èr bǎn ” 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "〔５〕 厦门的石屋 指作者在厦门大学任教时居住的“集美楼”。",
+        "pinyin": "〔 ５ 〕   xià mén de shí wū   zhǐ zuò zhě zài xià mén dà xué rèn jiào shí jū zhù de “ jí měi lóu ” 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "〔６〕 未名社 文学团体，一九二五年成立于北京，主要成员有鲁迅、韦素园、 曹靖华、李霁野、台静农、韦丛芜等。",
+        "pinyin": "〔 ６ 〕   wèi míng shè   wén xué tuán tǐ ， yī jiǔ èr wǔ nián chéng lì yú běi jīng ， zhǔ yào chéng yuán yǒu lǔ xùn 、 wéi sù yuán 、   cáo jìng huá 、 lǐ jì yě 、 tái jìng nóng 、 wéi cóng wú děng 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "一九三一年解散。",
+        "pinyin": "yī jiǔ sān yī nián jiě sàn 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "该社注重介绍外国文学， 特别是俄国和苏联文学，并编印《未名》半月刊和《未名丛刊》、《未名新集》 等。",
+        "pinyin": "gāi shè zhù zhòng jiè shào wài guó wén xué ，   tè bié shì é guó hé sū lián wén xué ， bìng biān yìn 《 wèi míng 》 bàn yuè kān hé 《 wèi míng cóng kān 》 、 《 wèi míng xīn jí 》   děng 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "---- ```",
+        "pinyin": "- - - -   ` ` `",
+        "english": "Lu Xun literary work passage."
+      }
+    ]
+  },
+  {
+    "id": "old_tales_retold_ch_4",
+    "bookId": "old_tales_retold",
+    "chapterIndex": 4,
+    "title": "理水",
+    "titleEn": "Chapter 4: The Chronicle of 理水",
+    "sentences": [
+      {
+        "chinese": "``` 鲁迅《故事新编》 理 水〔１〕 一 这时候是“汤汤洪水方割，浩浩怀山襄陵”；",
+        "pinyin": "` ` `   lǔ xùn 《 gù shì xīn biān 》   lǐ   shuǐ 〔 １ 〕   yī   zhè shí hòu shì “ tāng tāng hóng shuǐ fāng gē ， hào hào huái shān xiāng líng ” ；",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "舜爷〔２〕〔３〕的百姓，倒 并不都挤在露出水面的山顶上，有的捆在树顶，有的坐着木排，有些木排上还搭 有小小的板棚，从岸上看起来，很富于诗趣。",
+        "pinyin": "shùn yé 〔 ２ 〕 〔 ３ 〕 de bǎi xìng ， dǎo   bìng bù dōu jǐ zài lòu chū shuǐ miàn de shān dǐng shàng ， yǒu de kǔn zài shù dǐng ， yǒu de zuò zhuó mù pái ， yǒu xiē mù pái shàng hái dā   yǒu xiǎo xiǎo de bǎn péng ， cóng àn shàng kàn qǐ lái ， hěn fù yú shī qù 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "远地里的消息，是从木排上传过来的。",
+        "pinyin": "yuǎn dì lǐ de xiāo xī ， shì cóng mù pái shàng chuán guò lái de 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "大家终于知道鲧大人因为治了九整年 的水，什么效验也没有，上头龙心震怒，把他充军到羽山去了，接任的好像就是 他的儿子文命少爷，〔４〕乳名叫作阿禹。",
+        "pinyin": "dà jiā zhōng yú zhī dào gǔn dà rén yīn wèi zhì le jiǔ zhěng nián   de shuǐ ， shén me xiào yàn yě méi yǒu ， shàng tóu lóng xīn zhèn nù ， bǎ tā chōng jūn dào yǔ shān qù le ， jiē rèn de hǎo xiàng jiù shì   tā de ér zǐ wén mìng shǎo yé ， 〔 ４ 〕 rǔ míng jiào zuò ā yǔ 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "〔５〕 灾荒得久了，大学早已解散，连幼稚园也没有地方开，所以百姓们都有些混 混沌沌。",
+        "pinyin": "〔 ５ 〕   zāi huāng dé jiǔ le ， dà xué zǎo yǐ jiě sàn ， lián yòu zhì yuán yě méi yǒu dì fāng kāi ， suǒ yǐ bǎi xìng mén dōu yǒu xiē hùn   hùn dùn dùn 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "只在文化山上〔６〕，还聚集着许多学者，他们的食粮，是都从奇肱国 〔７〕用飞车运来的，因此不怕缺乏，因此也能够研究学问。",
+        "pinyin": "zhǐ zài wén huà shān shàng 〔 ６ 〕 ， hái jù jí zhuó xǔ duō xué zhě ， tā mén de shí liáng ， shì dōu cóng qí gōng guó   〔 ７ 〕 yòng fēi chē yùn lái de ， yīn cǐ bù pà quē fá ， yīn cǐ yě néng gòu yán jiū xué wèn 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "然而他们里面，大 抵是反对禹的，或者简直不相信世界上真有这个禹。",
+        "pinyin": "rán ér tā mén lǐ miàn ， dà   dǐ shì fǎn duì yǔ de ， huò zhě jiǎn zhí bù xiāng xìn shì jiè shàng zhēn yǒu zhè gè yǔ 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "每月一次，照例的半空中要簌簌的发响，愈响愈厉害，飞车看得清楚了，车 上插一张旗，画着一个黄圆圈在发毫光。",
+        "pinyin": "měi yuè yī cì ， zhào lì de bàn kōng zhōng yào sù sù de fā xiǎng ， yù xiǎng yù lì hài ， fēi chē kàn dé qīng chǔ le ， chē   shàng chā yī zhāng qí ， huà zhuó yī gè huáng yuán quān zài fā háo guāng 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "离地五尺，就挂下几只篮子来，别人可 不知道里面装的是什么，只听得上下在讲话： “古貌林！”",
+        "pinyin": "lí dì wǔ chǐ ， jiù guà xià jǐ zhǐ lán zǐ lái ， bié rén kě   bù zhī dào lǐ miàn zhuāng de shì shén me ， zhǐ tīng dé shàng xià zài jiǎng huà ：   “ gǔ mào lín ！ ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "〔８〕 “古鲁几哩……” “Ｏ．Ｋ！”",
+        "pinyin": "〔 ８ 〕   “ gǔ lǔ jǐ li … … ”   “ Ｏ ． Ｋ ！ ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "〔１０〕 飞车向奇肱国疾飞而去，天空中不再留下微声，学者们也静悄悄，这是大家 在吃饭。",
+        "pinyin": "〔 １ ０ 〕   fēi chē xiàng qí gōng guó jí fēi ér qù ， tiān kōng zhōng bù zài liú xià wēi shēng ， xué zhě mén yě jìng qiāo qiāo ， zhè shì dà jiā   zài chī fàn 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "独有山周围的水波，撞着石头，不住的澎湃的在发响。",
+        "pinyin": "dú yǒu shān zhōu wéi de shuǐ bō ， zhuàng zhuó shí tóu ， bù zhù de péng pài de zài fā xiǎng 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "午觉醒来，精神 百倍，于是学说也就压倒了涛声了。",
+        "pinyin": "wǔ jué xǐng lái ， jīng shén   bǎi bèi ， yú shì xué shuō yě jiù yā dǎo le tāo shēng le 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“禹来治水，一定不成功，如果他是鲧的儿子的话，”一个拿拄杖的学者说。",
+        "pinyin": "“ yǔ lái zhì shuǐ ， yī dìng bù chéng gōng ， rú guǒ tā shì gǔn de ér zǐ de huà ， ” yī gè ná zhǔ zhàng de xué zhě shuō 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“我曾经搜集了许多王公大臣和豪富人家的家谱，很下过一番研究工夫，得到一 个结论：阔人的子孙都是阔人，坏人的子孙都是坏人——这就叫作‘遗传’。",
+        "pinyin": "“ wǒ céng jīng sōu jí le xǔ duō wáng gōng dà chén hé háo fù rén jiā de jiā pǔ ， hěn xià guò yī fān yán jiū gōng fū ， dé dào yī   gè jié lùn ： kuò rén de zǐ sūn dōu shì kuò rén ， huài rén de zǐ sūn dōu shì huài rén — — zhè jiù jiào zuò ‘ yí chuán ’ 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "所 以，鲧不成功，他的儿子禹一定也不会成功，因为愚人是生不出聪明人来的！”",
+        "pinyin": "suǒ   yǐ ， gǔn bù chéng gōng ， tā de ér zǐ yǔ yī dìng yě bù huì chéng gōng ， yīn wèi yú rén shì shēng bù chū cōng míng rén lái de ！ ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“Ｏ．Ｋ！”",
+        "pinyin": "“ Ｏ ． Ｋ ！ ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "一个不拿拄杖的学者说。",
+        "pinyin": "yī gè bù ná zhǔ zhàng de xué zhě shuō 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“不过您要想想咱们的太上皇〔１１〕，”别一个不拿拄杖的学者道。",
+        "pinyin": "“ bù guò nín yào xiǎng xiǎng zán mén de tài shàng huáng 〔 １ １ 〕 ， ” bié yī gè bù ná zhǔ zhàng de xué zhě dào 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“他先前虽然有些‘顽’，现在可是改好了。",
+        "pinyin": "“ tā xiān qián suī rán yǒu xiē ‘ wán ’ ， xiàn zài kě shì gǎi hǎo le 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "倘是愚人，就永远不会改好… …” “Ｏ．Ｋ！”",
+        "pinyin": "tǎng shì yú rén ， jiù yǒng yuǎn bù huì gǎi hǎo …   … ”   “ Ｏ ． Ｋ ！ ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“这这些些都是费话，”又一个学者吃吃的说，立刻把鼻尖胀得通红。",
+        "pinyin": "“ zhè zhè xiē xiē dōu shì fèi huà ， ” yòu yī gè xué zhě chī chī de shuō ， lì kè bǎ bí jiān zhàng dé tōng hóng 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“你 们是受了谣言的骗的。",
+        "pinyin": "“ nǐ   mén shì shòu le yáo yán de piàn de 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "其实并没有所谓禹，‘禹’是一条虫，虫虫会治水的吗？",
+        "pinyin": "qí shí bìng méi yǒu suǒ wèi yǔ ， ‘ yǔ ’ shì yī tiáo chóng ， chóng chóng huì zhì shuǐ de ma ？",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "我看鲧也没有的，‘鲧’是一条鱼，鱼鱼会治水水水的吗？”",
+        "pinyin": "wǒ kàn gǔn yě méi yǒu de ， ‘ gǔn ’ shì yī tiáo yú ， yú yú huì zhì shuǐ shuǐ shuǐ de ma ？ ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "他说到这里，把两 脚一蹬，显得非常用劲。",
+        "pinyin": "tā shuō dào zhè lǐ ， bǎ liǎng   jiǎo yī dēng ， xiǎn dé fēi cháng yòng jìn 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“不过鲧却的确是有的，七年以前，我还亲眼看见他到昆仑山脚下去赏梅花 的。”",
+        "pinyin": "“ bù guò gǔn què dí què shì yǒu de ， qī nián yǐ qián ， wǒ hái qīn yǎn kàn jiàn tā dào kūn lún shān jiǎo xià qù shǎng méi huā   de 。 ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“那么，他的名字弄错了，他大概不叫‘鲧’，他的名字应该叫‘人’！",
+        "pinyin": "“ nà me ， tā de míng zì nòng cuò le ， tā dà gài bù jiào ‘ gǔn ’ ， tā de míng zì yīng gāi jiào ‘ rén ’ ！",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "至 于禹，那可一定是一条虫，我有许多证据，可以证明他的乌有，叫大家来公评… …” 于是他勇猛的站了起来，摸出削刀，刮去了五株大松树皮，用吃剩的面包末 屑和水研成浆，调了炭粉，在树身上用很小的蝌蚪文写上抹杀阿禹的考据，足足 化掉了三九廿七天工夫。",
+        "pinyin": "zhì   yú yǔ ， nà kě yī dìng shì yī tiáo chóng ， wǒ yǒu xǔ duō zhèng jù ， kě yǐ zhèng míng tā de wū yǒu ， jiào dà jiā lái gōng píng …   … ”   yú shì tā yǒng měng de zhàn le qǐ lái ， mō chū xiāo dāo ， guā qù le wǔ zhū dà sōng shù pí ， yòng chī shèng de miàn bāo mò   xiè hé shuǐ yán chéng jiāng ， tiáo le tàn fěn ， zài shù shēn shàng yòng hěn xiǎo de kē dǒu wén xiě shàng mǒ shā ā yǔ de kǎo jù ， zú zú   huà diào le sān jiǔ niàn qī tiān gōng fū 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "但是凡有要看的人，得拿出十片嫩榆叶，如果住在木排 上，就改给一贝壳鲜水苔。",
+        "pinyin": "dàn shì fán yǒu yào kàn de rén ， dé ná chū shí piàn nèn yú yè ， rú guǒ zhù zài mù pái   shàng ， jiù gǎi gěi yī bèi ké xiān shuǐ tái 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "横竖到处都是水，猎也不能打，地也不能种，只要还活着，所有的是闲工夫， 来看的人倒也很不少。",
+        "pinyin": "héng shù dào chù dōu shì shuǐ ， liè yě bù néng dǎ ， dì yě bù néng zhǒng ， zhǐ yào hái huó zhuó ， suǒ yǒu de shì xián gōng fū ，   lái kàn de rén dǎo yě hěn bù shǎo 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "松树下挨挤了三天，到处都发出叹息的声音，有的是佩服， 有的是皮劳。",
+        "pinyin": "sōng shù xià āi jǐ le sān tiān ， dào chù dōu fā chū tàn xī de shēng yīn ， yǒu de shì pèi fú ，   yǒu de shì pí láo 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "但到第四天的正午，一个乡下人终于说话了，这时那学者正在吃炒 面。",
+        "pinyin": "dàn dào dì sì tiān de zhèng wǔ ， yī gè xiāng xià rén zhōng yú shuō huà le ， zhè shí nà xué zhě zhèng zài chī chǎo   miàn 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“人里面，是有叫作阿禹的，”乡下人说。",
+        "pinyin": "“ rén lǐ miàn ， shì yǒu jiào zuò ā yǔ de ， ” xiāng xià rén shuō 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“况且‘禹’也不是虫，这是我 们乡下人的简笔字，老爷们都写作‘禺’，〔１２〕是大猴子……” “人有叫作大大猴子的吗？",
+        "pinyin": "“ kuàng qiě ‘ yǔ ’ yě bù shì chóng ， zhè shì wǒ   mén xiāng xià rén de jiǎn bǐ zì ， lǎo yé mén dōu xiě zuò ‘ yú ’ ， 〔 １ ２ 〕 shì dà hóu zǐ … … ”   “ rén yǒu jiào zuò dà dà hóu zǐ de ma ？",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "……”学者跳起来了，连忙咽下没有嚼烂的一口 面，鼻子红到发紫，吆喝道。",
+        "pinyin": "… … ” xué zhě tiào qǐ lái le ， lián máng yàn xià méi yǒu jiáo làn de yī kǒu   miàn ， bí zǐ hóng dào fā zǐ ， yāo hè dào 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“有的呀，连叫阿狗阿猫的也有。”",
+        "pinyin": "“ yǒu de yā ， lián jiào ā gǒu ā māo de yě yǒu 。 ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“鸟头先生，您不要和他去辩论了，”拿拄杖的学者放下面包，拦在中间， 说。",
+        "pinyin": "“ niǎo tóu xiān shēng ， nín bù yào hé tā qù biàn lùn le ， ” ná zhǔ zhàng de xué zhě fàng xià miàn bāo ， lán zài zhōng jiān ，   shuō 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“乡下人都是愚人。",
+        "pinyin": "“ xiāng xià rén dōu shì yú rén 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "拿你的家谱来，”他又转向乡下人，大声道，“我一定 会发见你的上代都是愚人……” “我就从来没有过家谱……” “呸，使我的研究不能精密，就是你们这些东西可恶！”",
+        "pinyin": "ná nǐ de jiā pǔ lái ， ” tā yòu zhuǎn xiàng xiāng xià rén ， dà shēng dào ， “ wǒ yī dìng   huì fā jiàn nǐ de shàng dài dōu shì yú rén … … ”   “ wǒ jiù cóng lái méi yǒu guò jiā pǔ … … ”   “ pēi ， shǐ wǒ de yán jiū bù néng jīng mì ， jiù shì nǐ mén zhè xiē dōng xī kě è ！ ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“不过这这也用不着家谱，我的学说是不会错的。”",
+        "pinyin": "“ bù guò zhè zhè yě yòng bù zhuó jiā pǔ ， wǒ de xué shuō shì bù huì cuò de 。 ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "鸟头先生更加愤愤的说。",
+        "pinyin": "niǎo tóu xiān shēng gèng jiā fèn fèn de shuō 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“先前，许多学者都写信来赞成我的学说，那些信我都带在这里……” “不不，那可应该查家谱……” “但是我竟没有家谱，”那“愚人”说。",
+        "pinyin": "“ xiān qián ， xǔ duō xué zhě dōu xiě xìn lái zàn chéng wǒ de xué shuō ， nà xiē xìn wǒ dōu dài zài zhè lǐ … … ”   “ bù bù ， nà kě yīng gāi chá jiā pǔ … … ”   “ dàn shì wǒ jìng méi yǒu jiā pǔ ， ” nà “ yú rén ” shuō 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“现在又是这么的人荒马乱，交通 不方便，要等您的朋友们来信赞成，当作证据，真也比螺蛳壳里做道场还难。",
+        "pinyin": "“ xiàn zài yòu shì zhè me de rén huāng mǎ luàn ， jiāo tōng   bù fāng biàn ， yào děng nín de péng yǒu mén lái xìn zàn chéng ， dāng zuò zhèng jù ， zhēn yě bǐ luó sī ké lǐ zuò dào chǎng hái nán 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "证 据就在眼前：您叫鸟头先生，莫非真的是一个鸟儿的头，并不是人吗？”",
+        "pinyin": "zhèng   jù jiù zài yǎn qián ： nín jiào niǎo tóu xiān shēng ， mò fēi zhēn de shì yī gè niǎo ér de tóu ， bìng bù shì rén ma ？ ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“哼！”",
+        "pinyin": "“ hēng ！ ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "鸟头先生气忿到连耳轮都发紫了。",
+        "pinyin": "niǎo tóu xiān shēng qì fèn dào lián ěr lún dōu fā zǐ le 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“你竟这样的侮辱我！",
+        "pinyin": "“ nǐ jìng zhè yàng de wǔ rǔ wǒ ！",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "说我不是 人！",
+        "pinyin": "shuō wǒ bù shì   rén ！",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "我要和你到皋陶〔１３〕大人那里去法律解决！",
+        "pinyin": "wǒ yào hé nǐ dào gāo táo 〔 １ ３ 〕 dà rén nà lǐ qù fǎ lǜ jiě jué ！",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "如果我真的不是人，我情愿 大辟——就是杀头呀，你懂了没有？",
+        "pinyin": "rú guǒ wǒ zhēn de bù shì rén ， wǒ qíng yuàn   dà pì — — jiù shì shā tóu yā ， nǐ dǒng le méi yǒu ？",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "要不然，你是应该反坐的。",
+        "pinyin": "yào bù rán ， nǐ shì yīng gāi fǎn zuò de 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "你等着罢，不要 动，等我吃完了炒面。”",
+        "pinyin": "nǐ děng zhuó bà ， bù yào   dòng ， děng wǒ chī wán le chǎo miàn 。 ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“先生，”乡下人麻木而平静的回答道，“您是学者，总该知道现在已是午 后，别人也要肚子饿的。",
+        "pinyin": "“ xiān shēng ， ” xiāng xià rén má mù ér píng jìng de huí dá dào ， “ nín shì xué zhě ， zǒng gāi zhī dào xiàn zài yǐ shì wǔ   hòu ， bié rén yě yào dù zǐ è de 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "可恨的是愚人的肚子却和聪明人的一样：也要饿。",
+        "pinyin": "kě hèn de shì yú rén de dù zǐ què hé cōng míng rén de yī yàng ： yě yào è 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "真是 对不起得很，我要捞青苔去了，等您上了呈子之后，我再来投案罢。”",
+        "pinyin": "zhēn shì   duì bù qǐ dé hěn ， wǒ yào lāo qīng tái qù le ， děng nín shàng le chéng zǐ zhī hòu ， wǒ zài lái tóu àn bà 。 ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "于是他跳 上木排，拿起网兜，捞着水草，泛泛的远开去了。",
+        "pinyin": "yú shì tā tiào   shàng mù pái ， ná qǐ wǎng dōu ， lāo zhe shuǐ cǎo ， fàn fàn de yuǎn kāi qù le 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "看客也渐渐的走散，鸟头先生 就红着耳轮和鼻尖从新吃炒面，拿拄杖的学者在摇头。",
+        "pinyin": "kàn kè yě jiàn jiàn de zǒu sàn ， niǎo tóu xiān shēng   jiù hóng zhuó ěr lún hé bí jiān cóng xīn chī chǎo miàn ， ná zhǔ zhàng de xué zhě zài yáo tóu 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "然而“禹”究竟是一条虫，还是一个人呢，却仍然是一个大疑问。",
+        "pinyin": "rán ér “ yǔ ” jiū jìng shì yī tiáo chóng ， hái shì yī gè rén ne ， què réng rán shì yī gè dà yí wèn 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "二 禹也真好像是一条虫。",
+        "pinyin": "èr   yǔ yě zhēn hǎo xiàng shì yī tiáo chóng 。",
+        "english": "Lu Xun literary work passage."
+      }
+    ]
+  },
+  {
+    "id": "old_tales_retold_ch_5",
+    "bookId": "old_tales_retold",
+    "chapterIndex": 5,
+    "title": "补天",
+    "titleEn": "Chapter 5: The Chronicle of 补天",
+    "sentences": [
+      {
+        "chinese": "``` 鲁迅《故事新编》 补 天〔１〕 一 女娲〔２〕忽然醒来了。",
+        "pinyin": "` ` `   lǔ xùn 《 gù shì xīn biān 》   bǔ   tiān 〔 １ 〕   yī   nǚ wā 〔 ２ 〕 hū rán xǐng lái le 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "伊〔３〕似乎是从梦中惊醒的，然而已经记不清做了什么梦；",
+        "pinyin": "yī 〔 ３ 〕 sì hū shì cóng mèng zhōng jīng xǐng de ， rán ér yǐ jīng jì bù qīng zuò le shén me mèng ；",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "只是很懊恼， 觉得有什么不足，又觉得有什么太多了。",
+        "pinyin": "zhǐ shì hěn ào nǎo ，   jué dé yǒu shén me bù zú ， yòu jué dé yǒu shén me tài duō le 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "煽动的和风，暖暾的将伊的气力吹得弥 漫在宇宙里。",
+        "pinyin": "shān dòng de hé fēng ， nuǎn tūn de jiāng yī de qì lì chuī dé mí   màn zài yǔ zhòu lǐ 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "伊揉一揉自己的眼睛。",
+        "pinyin": "yī róu yī róu zì jǐ de yǎn jīng 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "粉红的天空中，曲曲折折的漂着许多条石绿色的浮云，星便在那后面忽明忽 灭的[目夹]眼。",
+        "pinyin": "fěn hóng de tiān kōng zhōng ， qǔ qǔ zhé zhé de piāo zhuó xǔ duō tiáo shí lǜ sè de fú yún ， xīng biàn zài nà hòu miàn hū míng hū   miè de [ mù jiá ] yǎn 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "天边的血红的云彩里有一个光芒四射的太阳，如流动的金球包在 荒古的熔岩中；",
+        "pinyin": "tiān biān de xiě hóng de yún cǎi lǐ yǒu yī gè guāng máng sì shè de tài yáng ， rú liú dòng de jīn qiú bāo zài   huāng gǔ de róng yán zhōng ；",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "那一边，却是一个生铁一般的冷而且白的月亮。",
+        "pinyin": "nà yī biān ， què shì yī gè shēng tiě yī bān de lěng ér qiě bái de yuè liàng 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "然而伊并不理会 谁是下去，和谁是上来。",
+        "pinyin": "rán ér yī bìng bù lǐ huì   shuí shì xià qù ， hé shuí shì shàng lái 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "地上都嫩绿了，便是不很换叶的松柏也显得格外的娇嫩。",
+        "pinyin": "dì shàng dōu nèn lǜ le ， biàn shì bù hěn huàn yè de sōng bǎi yě xiǎn dé gé wài de jiāo nèn 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "桃红和青白色的斗大的杂花，在眼前还分明，到远处可就成为斑斓的烟霭了。",
+        "pinyin": "táo hóng hé qīng bái sè de dòu dà de zá huā ， zài yǎn qián hái fēn míng ， dào yuǎn chù kě jiù chéng wéi bān lán de yān ǎi le 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“唉唉，我从来没有这样的无聊过！”",
+        "pinyin": "“ āi āi ， wǒ cóng lái méi yǒu zhè yàng de wú liáo guò ！ ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "伊想着，猛然间站立起来了，擎上那 非常圆满而精力洋溢的臂膊，向天打一个欠伸，天空便突然失了色，化为神异的 肉红，暂时再也辨不出伊所在的处所。",
+        "pinyin": "yī xiǎng zhuó ， měng rán jiān zhàn lì qǐ lái le ， qíng shàng nà   fēi cháng yuán mǎn ér jīng lì yáng yì de bì bó ， xiàng tiān dǎ yī gè qiàn shēn ， tiān kōng biàn tū rán shī le sè ， huà wèi shén yì de   ròu hóng ， zàn shí zài yě biàn bù chū yī suǒ zài de chù suǒ 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "伊在这肉红色的天地间走到海边，全身的曲线都消融在淡玫瑰似的光海里， 直到身中央才浓成一段纯白。",
+        "pinyin": "yī zài zhè ròu hóng sè de tiān dì jiān zǒu dào hǎi biān ， quán shēn de qǔ xiàn dōu xiāo róng zài dàn méi guī shì de guāng hǎi lǐ ，   zhí dào shēn zhōng yāng cái nóng chéng yī duàn chún bái 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "波涛都惊异，起伏得很有秩序了，然而浪花溅在伊 身上。",
+        "pinyin": "bō tāo dōu jīng yì ， qǐ fú dé hěn yǒu zhì xù le ， rán ér làng huā jiàn zài yī   shēn shàng 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "这纯白的影子在海水里动摇，仿佛全体都正在四面八方的迸散。",
+        "pinyin": "zhè chún bái de yǐng zǐ zài hǎi shuǐ lǐ dòng yáo ， fǎng fó quán tǐ dōu zhèng zài sì miàn bā fāng de bèng sàn 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "但伊自己 并没有见，只是不由的跪下一足，伸手掬起带水的软泥来，同时又揉捏几回，便 有一个和自己差不多的小东西在两手里。",
+        "pinyin": "dàn yī zì jǐ   bìng méi yǒu jiàn ， zhǐ shì bù yóu de guì xià yī zú ， shēn shǒu jū qǐ dài shuǐ de ruǎn ní lái ， tóng shí yòu róu niē jǐ huí ， biàn   yǒu yī gè hé zì jǐ chà bù duō de xiǎo dōng xī zài liǎng shǒu lǐ 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“阿，阿！”",
+        "pinyin": "“ ā ， ā ！ ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "伊固然以为是自己做的，但也疑心这东西就白薯似的原在泥土 里，禁不住很诧异了。",
+        "pinyin": "yī gù rán yǐ wèi shì zì jǐ zuò de ， dàn yě yí xīn zhè dōng xī jiù bái shǔ shì de yuán zài ní tǔ   lǐ ， jīn bù zhù hěn chà yì le 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "然而这诧异使伊喜欢，以未曾有的勇往和愉快继续着伊的 事业，呼吸吹嘘着，汗混和着…… “Ｎｇａ！",
+        "pinyin": "rán ér zhè chà yì shǐ yī xǐ huān ， yǐ wèi céng yǒu de yǒng wǎng hé yú kuài jì xù zhuó yī de   shì yè ， hū xī chuī xū zhuó ， hàn hùn hé zhuó … …   “ Ｎ ｇ ａ ！",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "ｎｇａ！”",
+        "pinyin": "ｎ ｇ ａ ！ ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "〔４〕那些小东西可是叫起来了。",
+        "pinyin": "〔 ４ 〕 nà xiē xiǎo dōng xī kě shì jiào qǐ lái le 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“阿，阿！”",
+        "pinyin": "“ ā ， ā ！ ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "伊又吃了惊，觉得全身的毛孔中无不有什么东西飞散，于是地 上便罩满了乳白色的烟云，伊才定了神，那些小东西也住了口。",
+        "pinyin": "yī yòu chī le jīng ， jué dé quán shēn de máo kǒng zhōng wú bù yǒu shén me dōng xī fēi sàn ， yú shì dì   shàng biàn zhào mǎn le rǔ bái sè de yān yún ， yī cái dìng le shén ， nà xiē xiǎo dōng xī yě zhù le kǒu 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“ＡｋｏｎＡｇｏｎ，！”",
+        "pinyin": "“ Ａ ｋ ｏ ｎ Ａ ｇ ｏ ｎ ， ！ ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "有些东西向伊说。",
+        "pinyin": "yǒu xiē dōng xī xiàng yī shuō 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“阿阿，可爱的宝贝。”",
+        "pinyin": "“ ā ā ， kě ài de bǎo bèi 。 ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "伊看定他们，伸出带着泥土的手指去拨他肥白的脸。",
+        "pinyin": "yī kàn dìng tā mén ， shēn chū dài zhuó ní tǔ de shǒu zhǐ qù bō tā féi bái de liǎn 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“ＵｖｕＡｈａｈａ，！”",
+        "pinyin": "“ Ｕ ｖ ｕ Ａ ｈ ａ ｈ ａ ， ！ ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "他们笑了。",
+        "pinyin": "tā mén xiào le 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "这是伊第一回在天地间看见的笑，于 是自己也第一回笑得合不上嘴唇来。",
+        "pinyin": "zhè shì yī dì yī huí zài tiān dì jiān kàn jiàn de xiào ， yú   shì zì jǐ yě dì yī huí xiào dé hé bù shàng zuǐ chún lái 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "伊一面抚弄他们，一面还是做，被做的都在伊的身边打圈，但他们渐渐的走 得远，说得多了，伊也渐渐的懂不得，只觉得耳朵边满是嘈杂的嚷，嚷得颇有些 头昏。",
+        "pinyin": "yī yī miàn fǔ nòng tā mén ， yī miàn hái shì zuò ， bèi zuò de dōu zài yī de shēn biān dǎ quān ， dàn tā mén jiàn jiàn de zǒu   dé yuǎn ， shuō dé duō le ， yī yě jiàn jiàn de dǒng bù dé ， zhǐ jué dé ěr duǒ biān mǎn shì cáo zá de rǎng ， rǎng dé pō yǒu xiē   tóu hūn 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "伊在长久的欢喜中，早已带着疲乏了。",
+        "pinyin": "yī zài cháng jiǔ de huān xǐ zhōng ， zǎo yǐ dài zhuó pí fá le 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "几乎吹完了呼吸，流完了汗，而况又 头昏，两眼便蒙胧起来，两颊也渐渐的发了热，自己觉得无所谓了，而且不耐烦。",
+        "pinyin": "jǐ hū chuī wán le hū xī ， liú wán le hàn ， ér kuàng yòu   tóu hūn ， liǎng yǎn biàn mēng lóng qǐ lái ， liǎng jiá yě jiàn jiàn de fā le rè ， zì jǐ jué dé wú suǒ wèi le ， ér qiě bù nài fán 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "然而伊还是照旧的不歇手，不自觉的只是做。",
+        "pinyin": "rán ér yī hái shì zhào jiù de bù xiē shǒu ， bù zì jué de zhǐ shì zuò 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "终于，腰腿的酸痛辨得伊站立起来，倚在一座较为光滑的高山上，仰面一看， 满天是鱼鳞样的白云，下面则是黑压压的浓绿。",
+        "pinyin": "zhōng yú ， yāo tuǐ de suān tòng biàn dé yī zhàn lì qǐ lái ， yǐ zài yī zuò jiào wèi guāng huá de gāo shān shàng ， yǎng miàn yī kàn ，   mǎn tiān shì yú lín yàng de bái yún ， xià miàn zé shì hēi yā yā de nóng lǜ 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "伊自己也不知道怎样，总觉得左 右不如意了，便焦躁的伸出手去，信手一拉，拔起一株从山上长到天边的紫藤， 一房一房的刚开着大不可言的紫花，伊一挥，那藤便横搭在地面上，遍地散满了 半紫半白的花瓣。",
+        "pinyin": "yī zì jǐ yě bù zhī dào zěn yàng ， zǒng jué dé zuǒ   yòu bù rú yì le ， biàn jiāo zào de shēn chū shǒu qù ， xìn shǒu yī lā ， bá qǐ yī zhū cóng shān shàng cháng dào tiān biān de zǐ téng ，   yī fáng yī fáng de gāng kāi zhuó dà bù kě yán de zǐ huā ， yī yī huī ， nà téng biàn héng dā zài dì miàn shàng ， biàn dì sàn mǎn le   bàn zǐ bàn bái de huā bàn 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "伊接着一摆手，紫藤便在泥和水里一翻身，同时也溅出拌着水 的泥土来，待到落在地上，就成了许多伊先前做过了一般的小东西，只是大半呆 头呆脑，獐头鼠目的有些讨厌。",
+        "pinyin": "yī jiē zhuó yī bǎi shǒu ， zǐ téng biàn zài ní hé shuǐ lǐ yī fān shēn ， tóng shí yě jiàn chū bàn zhe shuǐ   de ní tǔ lái ， dài dào luò zài dì shàng ， jiù chéng le xǔ duō yī xiān qián zuò guò le yī bān de xiǎo dōng xī ， zhǐ shì dà bàn dāi   tóu dāi nǎo ， zhāng tóu shǔ mù dì yǒu xiē tǎo yàn 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "然而伊不暇理会这等事了，单是有趣而且烦躁， 夹着恶作剧的将手只是抡，愈抡愈飞速了，那藤便拖泥带水的在地上滚，像一条 给沸水烫伤了的赤练蛇。",
+        "pinyin": "rán ér yī bù xiá lǐ huì zhè děng shì le ， dān shì yǒu qù ér qiě fán zào ，   jiá zhuó è zuò jù de jiāng shǒu zhǐ shì lūn ， yù lūn yù fēi sù le ， nà téng biàn tuō ní dài shuǐ de zài dì shàng gǔn ， xiàng yī tiáo   gěi fèi shuǐ tàng shāng le de chì liàn shé 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "泥点也就暴雨似的从藤身上飞溅开来，还在空中便成了 哇哇地啼哭的小东西，爬来爬去的撒得满地。",
+        "pinyin": "ní diǎn yě jiù bào yǔ shì de cóng téng shēn shàng fēi jiàn kāi lái ， hái zài kōng zhōng biàn chéng le   wā wā dì tí kū de xiǎo dōng xī ， pá lái pá qù de sā dé mǎn dì 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "伊近于失神了，更其抡，但是不独腰腿痛，连两条臂膊也都乏了力，伊于是 不由的蹲下身子去，将头靠着高山，头发漆黑的搭在山顶上，喘息一回之后，叹 一口气，两眼就合上了。",
+        "pinyin": "yī jìn yú shī shén le ， gèng qí lūn ， dàn shì bù dú yāo tuǐ tòng ， lián liǎng tiáo bì bó yě dōu fá le lì ， yī yú shì   bù yóu de dūn xià shēn zǐ qù ， jiāng tóu kào zhuó gāo shān ， tóu fā qī hēi de dā zài shān dǐng shàng ， chuǎn xī yī huí zhī hòu ， tàn   yī kǒu qì ， liǎng yǎn jiù hé shàng le 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "紫藤从伊的手里落了下来，也困顿不堪似的懒洋洋的躺 在地面上。",
+        "pinyin": "zǐ téng cóng yī de shǒu lǐ luò le xià lái ， yě kùn dùn bù kān shì de lǎn yáng yáng de tǎng   zài dì miàn shàng 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "二 轰！",
+        "pinyin": "èr   hōng ！",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "在这天崩地塌价的声音中，女娲猛然醒来，同时也就向东南方直溜下去了。",
+        "pinyin": "zài zhè tiān bēng dì tā jià de shēng yīn zhōng ， nǚ wā měng rán xǐng lái ， tóng shí yě jiù xiàng dōng nán fāng zhí liū xià qù le 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "伊伸了脚想踏住，然而什么也踹不到，〔５〕连忙一舒臂揪住了山峰，这才没有 再向下滑的形势。",
+        "pinyin": "yī shēn le jiǎo xiǎng tà zhù ， rán ér shén me yě chuài bù dào ， 〔 ５ 〕 lián máng yī shū bì jiū zhù le shān fēng ， zhè cái méi yǒu   zài xiàng xià huá de xíng shì 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "但伊又觉得水和沙石都从背后向伊头上和身边滚泼过去了，略一回头，便灌 了一口和两耳朵的水，伊赶紧低了头，又只见地面不住的动摇。",
+        "pinyin": "dàn yī yòu jué dé shuǐ hé shā shí dōu cóng bēi hòu xiàng yī tóu shàng hé shēn biān gǔn pō guò qù le ， lüè yī huí tóu ， biàn guàn   le yī kǒu hé liǎng ěr duǒ de shuǐ ， yī gǎn jǐn dī le tóu ， yòu zhǐ jiàn dì miàn bù zhù de dòng yáo 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "幸而这动摇也似 乎平静下去了，伊向后一移，坐稳了身子，这才挪出手来拭去额角上和眼睛边的 水，细看是怎样的情形。",
+        "pinyin": "xìng ér zhè dòng yáo yě sì   hū píng jìng xià qù le ， yī xiàng hòu yī yí ， zuò wěn le shēn zǐ ， zhè cái nuó chū shǒu lái shì qù é jiǎo shàng hé yǎn jīng biān de   shuǐ ， xì kàn shì zěn yàng de qíng xíng 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "情形很不清楚，遍地是瀑布般的流水；",
+        "pinyin": "qíng xíng hěn bù qīng chǔ ， biàn dì shì pù bù bān de liú shuǐ ；",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "大概是海里罢，有几处更站起很尖的 波浪来。",
+        "pinyin": "dà gài shì hǎi lǐ bà ， yǒu jǐ chù gèng zhàn qǐ hěn jiān de   bō làng lái 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "伊只得呆呆的等着。",
+        "pinyin": "yī zhǐ dé dāi dāi de děng zhuó 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "可是终于大平静了，大波不过高如从前的山，像是陆地的处所便露出棱棱的 石骨。",
+        "pinyin": "kě shì zhōng yú dà píng jìng le ， dà bō bù guò gāo rú cóng qián de shān ， xiàng shì lù dì de chù suǒ biàn lòu chū léng léng de   shí gǔ 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "伊正向海上看，只见几座山奔流过来，一面又在波浪堆里打旋子。",
+        "pinyin": "yī zhèng xiàng hǎi shàng kàn ， zhǐ jiàn jǐ zuò shān bēn liú guò lái ， yī miàn yòu zài bō làng duī lǐ dǎ xuán zǐ 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "伊恐怕 那些山碰了自己的脚，便伸手将他们撮住，望那山坳里，还伏着许多未曾见过的 东西。",
+        "pinyin": "yī kǒng pà   nà xiē shān pèng le zì jǐ de jiǎo ， biàn shēn shǒu jiāng tā mén cuō zhù ， wàng nà shān ào lǐ ， hái fú zhuó xǔ duō wèi céng jiàn guò de   dōng xī 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "伊将手一缩，拉近山来仔细的看，只见那些东西旁边的地上吐得很狼藉，似 乎是金玉的粉末〔６〕，又夹杂些嚼碎的松柏叶和鱼肉。",
+        "pinyin": "yī jiāng shǒu yī suō ， lā jìn shān lái zǐ xì de kàn ， zhǐ jiàn nà xiē dōng xī páng biān de dì shàng tǔ dé hěn láng jiè ， sì   hū shì jīn yù de fěn mò 〔 ６ 〕 ， yòu jiá zá xiē jiáo suì de sōng bǎi yè hé yú ròu 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "他们也慢慢的陆续抬起 头来了，女娲圆睁了眼睛，好容易才省悟到这便是自己先前所做的小东西，只是 怪模怪样的已经都用什么包了身子，有几个还在脸的下半截长着雪白的毛毛了， 虽然被海水粘得像一片尖尖的白杨叶。",
+        "pinyin": "tā mén yě màn màn de lù xù tái qǐ   tóu lái le ， nǚ wā yuán zhēng le yǎn jīng ， hǎo róng yì cái shěng wù dào zhè biàn shì zì jǐ xiān qián suǒ zuò de xiǎo dōng xī ， zhǐ shì   guài mó guài yàng de yǐ jīng dōu yòng shén me bāo le shēn zǐ ， yǒu jǐ gè hái zài liǎn de xià bàn jié cháng zhuó xuě bái de máo máo le ，   suī rán bèi hǎi shuǐ nián dé xiàng yī piàn jiān jiān de bái yáng yè 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“阿，阿！”",
+        "pinyin": "“ ā ， ā ！ ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "伊诧异而且害怕的叫，皮肤上都起粟，就像触着一支毛刺虫。",
+        "pinyin": "yī chà yì ér qiě hài pà de jiào ， pí fū shàng dōu qǐ sù ， jiù xiàng chù zhuó yī zhī máo cì chóng 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“上真〔７〕救命……”一个脸的下半截长着白毛的昂了头，一面呕吐，一 面断断续续的说，“救命……臣等……是学仙的。",
+        "pinyin": "“ shàng zhēn 〔 ７ 〕 jiù mìng … … ” yī gè liǎn de xià bàn jié cháng zhuó bái máo de áng le tóu ， yī miàn ǒu tǔ ， yī   miàn duàn duàn xù xù de shuō ， “ jiù mìng … … chén děng … … shì xué xiān de 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "谁料坏劫到来，天地分崩了。",
+        "pinyin": "shuí liào huài jié dào lái ， tiān dì fēn bēng le 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "……现在幸而……遇到上真，……请救蚁命，……并赐仙……仙药……”他于是 将头一起一落的做出异样的举动。",
+        "pinyin": "… … xiàn zài xìng ér … … yù dào shàng zhēn ， … … qǐng jiù yǐ mìng ， … … bìng cì xiān … … xiān yào … … ” tā yú shì   jiāng tóu yī qǐ yī luò de zuò chū yì yàng de jǔ dòng 。",
+        "english": "Lu Xun literary work passage."
+      }
+    ]
+  },
+  {
+    "id": "old_tales_retold_ch_6",
+    "bookId": "old_tales_retold",
+    "chapterIndex": 6,
+    "title": "起死",
+    "titleEn": "Chapter 6: The Chronicle of 起死",
+    "sentences": [
+      {
+        "chinese": "``` 鲁迅《故事新编》 起 死〔１〕 （一大片荒地。",
+        "pinyin": "` ` `   lǔ xùn 《 gù shì xīn biān 》   qǐ   sǐ 〔 １ 〕   （ yī dà piàn huāng dì 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "处处有些土冈，最高的不过六七尺。",
+        "pinyin": "chù chù yǒu xiē tǔ gāng ， zuì gāo de bù guò liù qī chǐ 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "没有树木。",
+        "pinyin": "méi yǒu shù mù 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "遍地都是杂乱 的蓬草；",
+        "pinyin": "biàn dì dōu shì zá luàn   de péng cǎo ；",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "草间有一条人马踏成的路径。",
+        "pinyin": "cǎo jiān yǒu yī tiáo rén mǎ tà chéng de lù jìng 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "离路不远，有一个水溜。",
+        "pinyin": "lí lù bù yuǎn ， yǒu yī gè shuǐ liū 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "远处望见房屋。",
+        "pinyin": "yuǎn chù wàng jiàn fáng wū 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "） 庄子〔２〕——（黑瘦面皮，花白的络腮胡子，道冠〔３〕，布袍，拿着马鞭， 上。",
+        "pinyin": "）   zhuāng zǐ 〔 ２ 〕 — — （ hēi shòu miàn pí ， huā bái de luò sāi hú zǐ ， dào guàn 〔 ３ 〕 ， bù páo ， ná zhuó mǎ biān ，   shàng 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "）出门没有水喝，一下子就觉得口渴。",
+        "pinyin": "） chū mén méi yǒu shuǐ hē ， yī xià zǐ jiù jué dé kǒu kě 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "口渴可不是玩意儿呀，真不如化为 蝴蝶。",
+        "pinyin": "kǒu kě kě bù shì wán yì ér yā ， zhēn bù rú huà wèi   hú dié 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "可是这里也没有花儿呀，……哦！",
+        "pinyin": "kě shì zhè lǐ yě méi yǒu huā ér yā ， … … ò ！",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "海子〔４〕在这里了，运气，运气！",
+        "pinyin": "hǎi zǐ 〔 ４ 〕 zài zhè lǐ le ， yùn qì ， yùn qì ！",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "（他跑到水溜旁边，拨开浮萍，用手掬起水来，喝了十几口。",
+        "pinyin": "（ tā pǎo dào shuǐ liū páng biān ， bō kāi fú píng ， yòng shǒu jū qǐ shuǐ lái ， hē le shí jǐ kǒu 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "）唔，好了。",
+        "pinyin": "） wù ， hǎo le 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "慢 慢的上路。",
+        "pinyin": "màn   màn de shàng lù 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "（走着，向四处看，）阿呀！",
+        "pinyin": "（ zǒu zhuó ， xiàng sì chù kàn ， ） ā yā ！",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "一个髑髅。",
+        "pinyin": "yī gè dú lóu 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "这是怎的？",
+        "pinyin": "zhè shì zěn de ？",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "（用马鞭在蓬 草间拨了一拨，敲着，说：） 您是贪生怕死，倒行逆施，成了这样的呢？",
+        "pinyin": "（ yòng mǎ biān zài péng   cǎo jiān bō le yī bō ， qiāo zhuó ， shuō ： ）   nín shì tān shēng pà sǐ ， dǎo xíng nì shī ， chéng le zhè yàng de ne ？",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "（橐橐。",
+        "pinyin": "（ tuó tuó 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "）还是失掉地盘，吃着板 刀，成了这样的呢？",
+        "pinyin": "） hái shì shī diào dì pán ， chī zhuó bǎn   dāo ， chéng le zhè yàng de ne ？",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "（橐橐。",
+        "pinyin": "（ tuó tuó 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "）还是闹得一榻胡涂，对不起父母妻子，成了这 样的呢？",
+        "pinyin": "） hái shì nào dé yī tà hú tú ， duì bù qǐ fù mǔ qī zǐ ， chéng le zhè   yàng de ne ？",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "（橐橐。",
+        "pinyin": "（ tuó tuó 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "）您不知道自杀是弱者的行为〔５〕吗？",
+        "pinyin": "） nín bù zhī dào zì shā shì ruò zhě de xíng wèi 〔 ５ 〕 ma ？",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "（橐橐橐！",
+        "pinyin": "（ tuó tuó tuó ！",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "）还是 您没有饭吃，没有衣穿，成了这样的呢？",
+        "pinyin": "） hái shì   nín méi yǒu fàn chī ， méi yǒu yī chuān ， chéng le zhè yàng de ne ？",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "（橐橐。",
+        "pinyin": "（ tuó tuó 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "）还是年纪老了，活该死掉， 成了这样的呢？",
+        "pinyin": "） hái shì nián jì lǎo le ， huó gāi sǐ diào ，   chéng le zhè yàng de ne ？",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "（橐橐。",
+        "pinyin": "（ tuó tuó 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "）还是……唉，这倒是我胡涂，好像在做戏了。",
+        "pinyin": "） hái shì … … āi ， zhè dǎo shì wǒ hú tú ， hǎo xiàng zài zuò xì le 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "那里 会回答。",
+        "pinyin": "nà lǐ   huì huí dá 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "好在离楚国已经不远，用不着忙，还是请司命大神〔６〕复他的形， 生他的肉，和他谈谈闲天，再给他重回家乡，骨肉团聚罢。",
+        "pinyin": "hǎo zài lí chǔ guó yǐ jīng bù yuǎn ， yòng bù zháo máng ， hái shì qǐng sī mìng dà shén 〔 ６ 〕 fù tā de xíng ，   shēng tā de ròu ， hé tā tán tán xián tiān ， zài gěi tā zhòng huí jiā xiāng ， gǔ ròu tuán jù bà 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "（放下马鞭，朝着 东方，拱两手向天，提高了喉咙，大叫起来：） 至心朝礼〔７〕，司命大天尊！",
+        "pinyin": "（ fàng xià mǎ biān ， cháo zhuó   dōng fāng ， gǒng liǎng shǒu xiàng tiān ， tí gāo le hóu lóng ， dà jiào qǐ lái ： ）   zhì xīn cháo lǐ 〔 ７ 〕 ， sī mìng dà tiān zūn ！",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "…… （一阵阴风，许多蓬头的，秃头的，瘦的，胖的，男的，女的，老的，少的鬼 魂出现。",
+        "pinyin": "… …   （ yī zhèn yīn fēng ， xǔ duō péng tóu de ， tū tóu de ， shòu de ， pàng de ， nán de ， nǚ de ， lǎo de ， shǎo de guǐ   hún chū xiàn 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "） 鬼魂——庄周，你这胡涂虫！",
+        "pinyin": "）   guǐ hún — — zhuāng zhōu ， nǐ zhè hú tú chóng ！",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "花白了胡子，还是想不通。",
+        "pinyin": "huā bái le hú zǐ ， hái shì xiǎng bù tōng 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "死了没有四季，也没 有主人公。",
+        "pinyin": "sǐ le méi yǒu sì jì ， yě méi   yǒu zhǔ rén gōng 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "天地就是春秋，做皇帝也没有这么轻松。",
+        "pinyin": "tiān dì jiù shì chūn qiū ， zuò huáng dì yě méi yǒu zhè me qīng sōng 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "还是莫管闲事罢，快到楚 国去干你自家的运动。",
+        "pinyin": "hái shì mò guǎn xián shì bà ， kuài dào chǔ   guó qù gān nǐ zì jiā de yùn dòng 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "…… 庄子——你们才是胡涂鬼，死了也还是想不通。",
+        "pinyin": "… …   zhuāng zǐ — — nǐ mén cái shì hú tú guǐ ， sǐ le yě hái shì xiǎng bù tōng 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "要知道活就是死，死就是活呀， 奴才也就是主人公。",
+        "pinyin": "yào zhī dào huó jiù shì sǐ ， sǐ jiù shì huó yā ，   nú cái yě jiù shì zhǔ rén gōng 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "我是达性命之源的，可不受你们小鬼的运动。",
+        "pinyin": "wǒ shì dá xìng mìng zhī yuán de ， kě bù shòu nǐ mén xiǎo guǐ de yùn dòng 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "鬼魂——那么，就给你当场出丑…… 庄子——楚王的圣旨在我头上，更不怕你们小鬼的起哄！",
+        "pinyin": "guǐ hún — — nà me ， jiù gěi nǐ dāng chǎng chū chǒu … …   zhuāng zǐ — — chǔ wáng de shèng zhǐ zài wǒ tóu shàng ， gèng bù pà nǐ mén xiǎo guǐ de qǐ hòng ！",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "（又拱两手向天，提 高了喉咙，大叫起来：） 至心朝礼，司命大天尊！",
+        "pinyin": "（ yòu gǒng liǎng shǒu xiàng tiān ， tí   gāo le hóu lóng ， dà jiào qǐ lái ： ）   zhì xīn cháo lǐ ， sī mìng dà tiān zūn ！",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "天地玄黄，宇宙洪荒。",
+        "pinyin": "tiān dì xuán huáng ， yǔ zhòu hóng huāng 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "日月盈昃，辰宿列张。",
+        "pinyin": "rì yuè yíng zè ， chén sù liè zhāng 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "赵钱孙李，周吴郑王。",
+        "pinyin": "zhào qián sūn lǐ ， zhōu wú zhèng wáng 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "冯秦褚卫，姜沈韩杨。",
+        "pinyin": "féng qín zhǔ wèi ， jiāng shěn hán yáng 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "〔８〕 太上老君急急如律令〔９〕！",
+        "pinyin": "〔 ８ 〕   tài shàng lǎo jūn jí jí rú lǜ lìng 〔 ９ 〕 ！",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "（一阵清风，司命大神道冠布袍，黑瘦面皮，花白的络腮胡子，手执马鞭，在 东方的朦胧中出现。",
+        "pinyin": "（ yī zhèn qīng fēng ， sī mìng dà shén dào guàn bù páo ， hēi shòu miàn pí ， huā bái de luò sāi hú zǐ ， shǒu zhí mǎ biān ， zài   dōng fāng de méng lóng zhōng chū xiàn 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "鬼魂全都隐去。",
+        "pinyin": "guǐ hún quán dōu yǐn qù 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "） 司命——庄周，你找我，又要闹什么玩意儿了？",
+        "pinyin": "）   sī mìng — — zhuāng zhōu ， nǐ zhǎo wǒ ， yòu yào nào shén me wán yì ér le ？",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "喝够了水，不安分起来了吗？",
+        "pinyin": "hē gòu le shuǐ ， bù ān fēn qǐ lái le ma ？",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "庄子——臣是见楚王去的，路经此地，看见一个空髑髅，却还存着头样子。",
+        "pinyin": "zhuāng zǐ — — chén shì jiàn chǔ wáng qù de ， lù jīng cǐ dì ， kàn jiàn yī gè kōng dú lóu ， què hái cún zhuó tóu yàng zǐ 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "该 有父母妻子的罢，死在这里了，真是呜呼哀哉，可怜得很。",
+        "pinyin": "gāi   yǒu fù mǔ qī zǐ de bà ， sǐ zài zhè lǐ le ， zhēn shì wū hū āi zāi ， kě lián dé hěn 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "所以恳请大神复他 的形，还他的肉，给他活转来，好回家乡去。",
+        "pinyin": "suǒ yǐ kěn qǐng dà shén fù tā   de xíng ， hái tā de ròu ， gěi tā huó zhuǎn lái ， hǎo huí jiā xiāng qù 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "司命——哈哈！",
+        "pinyin": "sī mìng — — hā hā ！",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "这也不是真心话，你是肚子还没饱就找闲事做。",
+        "pinyin": "zhè yě bù shì zhēn xīn huà ， nǐ shì dù zǐ hái méi bǎo jiù zhǎo xián shì zuò 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "认真不像认真， 玩耍又不像玩耍。",
+        "pinyin": "rèn zhēn bù xiàng rèn zhēn ，   wán shuǎ yòu bù xiàng wán shuǎ 。",
+        "english": "Lu Xun literary work passage."
+      }
+    ]
+  },
+  {
+    "id": "old_tales_retold_ch_7",
+    "bookId": "old_tales_retold",
+    "chapterIndex": 7,
+    "title": "采薇",
+    "titleEn": "Chapter 7: The Chronicle of 采薇",
+    "sentences": [
+      {
+        "chinese": "``` 鲁迅《故事新编》 采 薇〔１〕 一 这半年来，不知怎的连养老堂里也不大平静了，一部分的老头子，也都交头 接耳，跑进跑出的很起劲。",
+        "pinyin": "` ` `   lǔ xùn 《 gù shì xīn biān 》   cǎi   wēi 〔 １ 〕   yī   zhè bàn nián lái ， bù zhī zěn de lián yǎng lǎo táng lǐ yě bù dà píng jìng le ， yī bù fēn de lǎo tóu zǐ ， yě dōu jiāo tóu   jiē ěr ， pǎo jìn pǎo chū de hěn qǐ jìn 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "只有伯夷〔２〕最不留心闲事，秋凉到了，他又老的 很怕冷，就整天的坐在阶沿上晒太阳，纵使听到匆忙的脚步声，也决不抬起头来 看。",
+        "pinyin": "zhǐ yǒu bó yí 〔 ２ 〕 zuì bù liú xīn xián shì ， qiū liáng dào le ， tā yòu lǎo de   hěn pà lěng ， jiù zhěng tiān de zuò zài jiē yán shàng shài tài yáng ， zòng shǐ tīng dào cōng máng de jiǎo bù shēng ， yě jué bù tái qǐ tóu lái   kàn 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“大哥！”",
+        "pinyin": "“ dà gē ！ ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "一听声音自然就知道是叔齐。",
+        "pinyin": "yī tīng shēng yīn zì rán jiù zhī dào shì shū qí 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "伯夷是向来最讲礼让的，便在抬头之前，先站 起身，把手一摆，意思是请兄弟在阶沿上坐下。",
+        "pinyin": "bó yí shì xiàng lái zuì jiǎng lǐ ràng de ， biàn zài tái tóu zhī qián ， xiān zhàn   qǐ shēn ， bǎ shǒu yī bǎi ， yì sī shì qǐng xiōng dì zài jiē yán shàng zuò xià 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“大哥，时局好像不大好！”",
+        "pinyin": "“ dà gē ， shí jú hǎo xiàng bù dà hǎo ！ ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "叔齐一面并排坐下去，一面气喘吁吁的说，声 音有些发抖。",
+        "pinyin": "shū qí yī miàn bìng pái zuò xià qù ， yī miàn qì chuǎn xū xū de shuō ， shēng   yīn yǒu xiē fā dǒu 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“怎么了呀？”",
+        "pinyin": "“ zěn me le yā ？ ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "伯夷这才转过脸去看，只见叔齐的原是苍白的脸色，好像更 加苍白了。",
+        "pinyin": "bó yí zhè cái zhuǎn guò liǎn qù kàn ， zhǐ jiàn shū qí de yuán shì cāng bái de liǎn sè ， hǎo xiàng gèng   jiā cāng bái le 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“您听到过从商王〔３〕那里，逃来两个瞎子的事了罢。”",
+        "pinyin": "“ nín tīng dào guò cóng shāng wáng 〔 ３ 〕 nà lǐ ， táo lái liǎng gè xiā zǐ de shì le bà 。 ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“唔，前几天，散宜生〔４〕好像提起过。",
+        "pinyin": "“ wù ， qián jǐ tiān ， sàn yí shēng 〔 ４ 〕 hǎo xiàng tí qǐ guò 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "我没有留心。”",
+        "pinyin": "wǒ méi yǒu liú xīn 。 ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“我今天去拜访过了。",
+        "pinyin": "“ wǒ jīn tiān qù bài fǎng guò le 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "一个是太师疵，一个是少师强，还带来许多乐器〔５ 〕。",
+        "pinyin": "yī gè shì tài shī cī ， yī gè shì shǎo shī qiáng ， hái dài lái xǔ duō yuè qì 〔 ５   〕 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "听说前几时还开过一个展览会，参观者都‘啧啧称美’，——不过好像这边 就要动兵了。”",
+        "pinyin": "tīng shuō qián jǐ shí hái kāi guò yī gè zhǎn lǎn huì ， cān guān zhě dōu ‘ zé zé chēng měi ’ ， — — bù guò hǎo xiàng zhè biān   jiù yào dòng bīng le 。 ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“为了乐器动兵，是不合先王之道的。”",
+        "pinyin": "“ wèi le yuè qì dòng bīng ， shì bù hé xiān wáng zhī dào de 。 ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "伯夷慢吞吞的说。",
+        "pinyin": "bó yí màn tūn tūn de shuō 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“也不单为了乐器。",
+        "pinyin": "“ yě bù dān wèi le yuè qì 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "您不早听到过商王无道，砍早上渡河不怕水冷的人的脚 骨，看看他的骨髓，挖出比干王爷的心来，看它可有七窍吗？",
+        "pinyin": "nín bù zǎo tīng dào guò shāng wáng wú dào ， kǎn zǎo shàng dù hé bù pà shuǐ lěng de rén de jiǎo   gǔ ， kàn kàn tā de gǔ suǐ ， wā chū bǐ gān wáng yé de xīn lái ， kàn tā kě yǒu qī qiào ma ？",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "〔６〕先前还是传 闻，瞎子一到，可就证实了。",
+        "pinyin": "〔 ６ 〕 xiān qián hái shì chuán   wén ， xiā zǐ yī dào ， kě jiù zhèng shí le 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "况且还切切实实的证明了商王的变乱旧章。",
+        "pinyin": "kuàng qiě hái qiē qiē shí shí de zhèng míng le shāng wáng de biàn luàn jiù zhāng 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "变乱旧 章，原是应该征伐的。",
+        "pinyin": "biàn luàn jiù   zhāng ， yuán shì yīng gāi zhēng fá de 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "不过我想，以下犯上，究竟也不合先王之道……” “近来的烙饼，一天一天的小下去了，看来确也像要出事情，”伯夷想了一 想，说。",
+        "pinyin": "bù guò wǒ xiǎng ， yǐ xià fàn shàng ， jiū jìng yě bù hé xiān wáng zhī dào … … ”   “ jìn lái de lào bǐng ， yī tiān yī tiān de xiǎo xià qù le ， kàn lái què yě xiàng yào chū shì qíng ， ” bó yí xiǎng le yī   xiǎng ， shuō 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“但我看你还是少出门，少说话，仍旧每天练你的太极拳的好！”",
+        "pinyin": "“ dàn wǒ kàn nǐ hái shì shǎo chū mén ， shǎo shuō huà ， réng jiù měi tiān liàn nǐ de tài jí quán de hǎo ！ ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“是……”叔齐是很悌的，应了半声。",
+        "pinyin": "“ shì … … ” shū qí shì hěn tì de ， yīng le bàn shēng 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“你想想看，”伯夷知道他心里其实并不服气，便接着说。",
+        "pinyin": "“ nǐ xiǎng xiǎng kàn ， ” bó yí zhī dào tā xīn lǐ qí shí bìng bù fú qì ， biàn jiē zhuó shuō 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“我们是客人， 因为西伯肯养老〔７〕，呆在这里的。",
+        "pinyin": "“ wǒ mén shì kè rén ，   yīn wèi xī bó kěn yǎng lǎo 〔 ７ 〕 ， dāi zài zhè lǐ de 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "烙饼小下去了，固然不该说什么，就是事 情闹起来了，也不该说什么的。”",
+        "pinyin": "lào bǐng xiǎo xià qù le ， gù rán bù gāi shuō shén me ， jiù shì shì   qíng nào qǐ lái le ， yě bù gāi shuō shén me de 。 ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“那么，我们可就成了为养老而养老了。”",
+        "pinyin": "“ nà me ， wǒ mén kě jiù chéng le wèi yǎng lǎo ér yǎng lǎo le 。 ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“最好是少说话。",
+        "pinyin": "“ zuì hǎo shì shǎo shuō huà 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "我也没有力气来听这些事。”",
+        "pinyin": "wǒ yě méi yǒu lì qì lái tīng zhè xiē shì 。 ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "伯夷咳了起来，叔齐也不再开口。",
+        "pinyin": "bó yí ké le qǐ lái ， shū qí yě bù zài kāi kǒu 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "咳嗽一止，万籁寂然，秋末的夕阳，照着 两部白胡子，都在闪闪的发亮。",
+        "pinyin": "ké sòu yī zhǐ ， wàn lài jì rán ， qiū mò de xī yáng ， zhào zhuó   liǎng bù bái hú zǐ ， dōu zài shǎn shǎn de fā liàng 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "二 然而这不平静，却总是滋长起来，烙饼不但小下去，粉也粗起来了。",
+        "pinyin": "èr   rán ér zhè bù píng jìng ， què zǒng shì zī cháng qǐ lái ， lào bǐng bù dàn xiǎo xià qù ， fěn yě cū qǐ lái le 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "养老堂 的人们更加交头接耳，外面只听得车马行走声，叔齐更加喜欢出门，虽然回来也 不说什么话，但那不安的神色，却惹得伯夷也很难闲适了：他似乎觉得这碗平稳 饭快要吃不稳。",
+        "pinyin": "yǎng lǎo táng   de rén mén gèng jiā jiāo tóu jiē ěr ， wài miàn zhǐ tīng dé chē mǎ xíng zǒu shēng ， shū qí gèng jiā xǐ huān chū mén ， suī rán huí lái yě   bù shuō shén me huà ， dàn nà bù ān de shén sè ， què rě dé bó yí yě hěn nán xián shì le ： tā sì hū jué dé zhè wǎn píng wěn   fàn kuài yào chī bù wěn 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "十一月下旬，叔齐照例一早起了床，要练太极拳，但他走到院子里，听了一 听，却开开堂门，跑出去了。",
+        "pinyin": "shí yī yuè xià xún ， shū qí zhào lì yī zǎo qǐ le chuáng ， yào liàn tài jí quán ， dàn tā zǒu dào yuàn zǐ lǐ ， tīng le yī   tīng ， què kāi kāi táng mén ， pǎo chū qù le 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "约摸有烙十张饼的时候，这才气急败坏的跑回来， 鼻子冻得通红，嘴里一阵一阵的喷着白蒸气。",
+        "pinyin": "yuē mō yǒu lào shí zhāng bǐng de shí hòu ， zhè cái qì jí bài huài de pǎo huí lái ，   bí zǐ dòng dé tōng hóng ， zuǐ lǐ yī zhèn yī zhèn de pēn zhuó bái zhēng qì 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“大哥！",
+        "pinyin": "“ dà gē ！",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "你起来！",
+        "pinyin": "nǐ qǐ lái ！",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "出兵了！”",
+        "pinyin": "chū bīng le ！ ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "他恭敬的垂手站在伯夷的床前，大声说，声音 有些比平常粗。",
+        "pinyin": "tā gōng jìng de chuí shǒu zhàn zài bó yí de chuáng qián ， dà shēng shuō ， shēng yīn   yǒu xiē bǐ píng cháng cū 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "伯夷怕冷，很不愿意这么早就起身，但他是非常友爱的，看见兄弟着急，只 好把牙齿一咬，坐了起来，披上皮袍，在被窝里慢吞吞的穿裤子。",
+        "pinyin": "bó yí pà lěng ， hěn bù yuàn yì zhè me zǎo jiù qǐ shēn ， dàn tā shì fēi cháng yǒu ài de ， kàn jiàn xiōng dì zháo jí ， zhǐ   hǎo bǎ yá chǐ yī yǎo ， zuò le qǐ lái ， pī shàng pí páo ， zài bèi wō lǐ màn tūn tūn de chuān kù zǐ 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“我刚要练拳，”叔齐等着，一面说。",
+        "pinyin": "“ wǒ gāng yào liàn quán ， ” shū qí děng zhuó ， yī miàn shuō 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“却听得外面有人马走动，连忙跑到 大路上去看时——果然，来了。",
+        "pinyin": "“ què tīng dé wài miàn yǒu rén mǎ zǒu dòng ， lián máng pǎo dào   dà lù shàng qù kàn shí — — guǒ rán ， lái le 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "首先是一乘白彩的大轿，总该有八十一人抬着罢， 里面一座木主，写的是‘大周文王之灵位’；",
+        "pinyin": "shǒu xiān shì yī chéng bái cǎi de dà jiào ， zǒng gāi yǒu bā shí yī rén tái zhuó bà ，   lǐ miàn yī zuò mù zhǔ ， xiě de shì ‘ dà zhōu wén wáng zhī líng wèi ’ ；",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "后面跟的都是兵。",
+        "pinyin": "hòu miàn gēn de dōu shì bīng 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "我想：这一定是 要去伐纣了。",
+        "pinyin": "wǒ xiǎng ： zhè yī dìng shì   yào qù fá zhòu le 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "现在的周王是孝子，他要做大事，一定是把文王抬在前面的。",
+        "pinyin": "xiàn zài de zhōu wáng shì xiào zǐ ， tā yào zuò dà shì ， yī dìng shì bǎ wén wáng tái zài qián miàn de 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "看了 一会，我就跑回来，不料我们养老堂的墙外就贴着告示……” 伯夷的衣服穿好了，弟兄俩走出屋子，就觉得一阵冷气，赶紧缩紧了身子。",
+        "pinyin": "kàn le   yī huì ， wǒ jiù pǎo huí lái ， bù liào wǒ mén yǎng lǎo táng de qiáng wài jiù tiē zhuó gào shì … … ”   bó yí de yī fú chuān hǎo le ， dì xiōng liǎng zǒu chū wū zǐ ， jiù jué dé yī zhèn lěng qì ， gǎn jǐn suō jǐn le shēn zǐ 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "伯夷向来不大走动，一出大门，很看得有些新鲜。",
+        "pinyin": "bó yí xiàng lái bù dà zǒu dòng ， yī chū dà mén ， hěn kàn dé yǒu xiē xīn xiān 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "不几步，叔齐就伸手向墙上一 指，可真的贴着一张大告示〔８〕： “照得今殷王纣，乃用驿妇人之言，自绝于天，毁坏其三 正，离□（辶易）其王父母弟。",
+        "pinyin": "bù jǐ bù ， shū qí jiù shēn shǒu xiàng qiáng shàng yī   zhǐ ， kě zhēn de tiē zhuó yī zhāng dà gào shì 〔 ８ 〕 ：   “ zhào dé jīn yīn wáng zhòu ， nǎi yòng yì fù rén zhī yán ， zì jué yú tiān ， huǐ huài qí sān   zhèng ， lí □ （ chuò yì ） qí wáng fù mǔ dì 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "乃断弃其先祖之乐；",
+        "pinyin": "nǎi duàn qì qí xiān zǔ zhī lè ；",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "乃为 淫声，用变乱正声，怡说妇人。",
+        "pinyin": "nǎi wèi   yín shēng ， yòng biàn luàn zhèng shēng ， yí shuō fù rén 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "故今予发，维共行天罚。",
+        "pinyin": "gù jīn yú fā ， wéi gòng xíng tiān fá 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "勉哉夫子，不可再，不可三！",
+        "pinyin": "miǎn zāi fū zǐ ， bù kě zài ， bù kě sān ！",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "此示。”",
+        "pinyin": "cǐ shì 。 ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "两人看完之后，都不作声，径向大路走去。",
+        "pinyin": "liǎng rén kàn wán zhī hòu ， dōu bù zuò shēng ， jìng xiàng dà lù zǒu qù 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "只见路边都挤满了民众，站得水 泄不通。",
+        "pinyin": "zhǐ jiàn lù biān dōu jǐ mǎn le mín zhòng ， zhàn dé shuǐ   xiè bù tōng 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "两人在后面说一声“借光”，民众回头一看，见是两位白须老者，便照 文王敬老的上谕，赶忙闪开，让他们走到前面。",
+        "pinyin": "liǎng rén zài hòu miàn shuō yī shēng “ jiè guāng ” ， mín zhòng huí tóu yī kàn ， jiàn shì liǎng wèi bái xū lǎo zhě ， biàn zhào   wén wáng jìng lǎo de shàng yù ， gǎn máng shǎn kāi ， ràng tā mén zǒu dào qián miàn 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "这时打头的木主早已望不见了， 走过去的都是一排一排的甲士，约有烙三百五十二张大饼的工夫，这才见别有许 多兵丁，肩着九旒云罕旗〔９〕，仿佛五色云一样。",
+        "pinyin": "zhè shí dǎ tóu de mù zhǔ zǎo yǐ wàng bù jiàn le ，   zǒu guò qù de dōu shì yī pái yī pái de jiǎ shì ， yuē yǒu lào sān bǎi wǔ shí èr zhāng dà bǐng de gōng fū ， zhè cái jiàn bié yǒu xǔ   duō bīng dīng ， jiān zhuó jiǔ liú yún hǎn qí 〔 ９ 〕 ， fǎng fó wǔ sè yún yī yàng 。",
+        "english": "Lu Xun literary work passage."
+      }
+    ]
+  },
+  {
+    "id": "old_tales_retold_ch_8",
+    "bookId": "old_tales_retold",
+    "chapterIndex": 8,
+    "title": "铸剑",
+    "titleEn": "Chapter 8: The Chronicle of 铸剑",
+    "sentences": [
+      {
+        "chinese": "``` 鲁迅《故事新编》 铸 剑〔１〕 一 眉间尺〔２〕刚和他的母亲睡下，老鼠便出来咬锅盖，使他听得发烦。",
+        "pinyin": "` ` `   lǔ xùn 《 gù shì xīn biān 》   zhù   jiàn 〔 １ 〕   yī   méi jiān chǐ 〔 ２ 〕 gāng hé tā de mǔ qīn shuì xià ， lǎo shǔ biàn chū lái yǎo guō gài ， shǐ tā tīng dé fā fán 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "他轻 轻地叱了几声，最初还有些效验，后来是简直不理他了，格支格支地径自咬。",
+        "pinyin": "tā qīng   qīng dì chì le jǐ shēng ， zuì chū hái yǒu xiē xiào yàn ， hòu lái shì jiǎn zhí bù lǐ tā le ， gé zhī gé zhī dì jìng zì yǎo 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "他 又不敢大声赶，怕惊醒了白天做得劳乏，晚上一躺就睡着了的母亲。",
+        "pinyin": "tā   yòu bù gǎn dà shēng gǎn ， pà jīng xǐng le bái tiān zuò dé láo fá ， wǎn shàng yī tǎng jiù shuì zhuó le de mǔ qīn 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "许多时光之后，平静了；",
+        "pinyin": "xǔ duō shí guāng zhī hòu ， píng jìng le ；",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "他也想睡去。",
+        "pinyin": "tā yě xiǎng shuì qù 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "忽然，扑通一声，惊得他又睁开眼。",
+        "pinyin": "hū rán ， pū tōng yī shēng ， jīng dé tā yòu zhēng kāi yǎn 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "同时听到沙沙地响，是爪子抓着瓦器的声音。",
+        "pinyin": "tóng shí tīng dào shā shā dì xiǎng ， shì zhǎo zǐ zhuā zhuó wǎ qì de shēng yīn 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "该死！”",
+        "pinyin": "gāi sǐ ！ ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "他想着，心里非常高兴，一面就轻轻地坐起来。",
+        "pinyin": "tā xiǎng zhuó ， xīn lǐ fēi cháng gāo xìng ， yī miàn jiù qīng qīng dì zuò qǐ lái 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "他跨下床，借着月光走向门背后，摸到钻火家伙，点上松明，向水瓮里一照。",
+        "pinyin": "tā kuà xià chuáng ， jiè zhuó yuè guāng zǒu xiàng mén bēi hòu ， mō dào zuān huǒ jiā huǒ ， diǎn shàng sōng míng ， xiàng shuǐ wèng lǐ yī zhào 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "果然，一匹很大的老鼠落在那里面了；",
+        "pinyin": "guǒ rán ， yī pǐ hěn dà de lǎo shǔ luò zài nà lǐ miàn le ；",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "但是，存水已经不多，爬不出来，只沿着 水瓮内壁，抓着，团团地转圈子。",
+        "pinyin": "dàn shì ， cún shuǐ yǐ jīng bù duō ， pá bù chū lái ， zhǐ yán zhuó   shuǐ wèng nèi bì ， zhuā zhuó ， tuán tuán dì zhuǎn quān zǐ 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“活该！”",
+        "pinyin": "“ huó gāi ！ ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "他一想到夜夜咬家具，闹得他不能安稳睡觉的便是它们，很觉得 畅快。",
+        "pinyin": "tā yī xiǎng dào yè yè yǎo jiā jù ， nào dé tā bù néng ān wěn shuì jué de biàn shì tā mén ， hěn jué dé   chàng kuài 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "他将松明插在土墙的小孔里，赏玩着；",
+        "pinyin": "tā jiāng sōng míng chā zài tǔ qiáng de xiǎo kǒng lǐ ， shǎng wán zhuó ；",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "然而那圆睁的小眼睛，又使他发生 了憎恨，伸手抽出一根芦柴，将它直按到水底去。",
+        "pinyin": "rán ér nà yuán zhēng de xiǎo yǎn jīng ， yòu shǐ tā fā shēng   le zēng hèn ， shēn shǒu chōu chū yī gēn lú chái ， jiāng tā zhí àn dào shuǐ dǐ qù 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "过了一会，才放手，那老鼠也 随着浮了上来，还是抓着瓮壁转圈子。",
+        "pinyin": "guò le yī huì ， cái fàng shǒu ， nà lǎo shǔ yě   suí zhuó fú le shàng lái ， hái shì zhuā zhuó wèng bì zhuǎn quān zǐ 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "只是抓劲已经没有先前似的有力，眼睛也 淹在水里面，单露出一点尖尖的通红的小鼻子，咻咻地急促地喘气。",
+        "pinyin": "zhǐ shì zhuā jìn yǐ jīng méi yǒu xiān qián shì de yǒu lì ， yǎn jīng yě   yān zài shuǐ lǐ miàn ， dān lòu chū yī diǎn jiān jiān de tōng hóng de xiǎo bí zǐ ， xiū xiū dì jí cù dì chuǎn qì 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "他近来很有点不大喜欢红鼻子的人。",
+        "pinyin": "tā jìn lái hěn yǒu diǎn bù dà xǐ huān hóng bí zǐ de rén 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "但这回见了这尖尖的小红鼻子，却忽然 觉得它可怜了，就又用那芦柴，伸到它的肚下去，老鼠抓着，歇了一回力，便沿 着芦干爬了上来。",
+        "pinyin": "dàn zhè huí jiàn le zhè jiān jiān de xiǎo hóng bí zǐ ， què hū rán   jué dé tā kě lián le ， jiù yòu yòng nà lú chái ， shēn dào tā de dù xià qù ， lǎo shǔ zhuā zhuó ， xiē le yī huí lì ， biàn yán   zhuó lú gān pá le shàng lái 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "待到他看见全身，——湿淋淋的黑毛，大的肚子，蚯蚓随的尾 巴，——便又觉得可恨可憎得很，慌忙将芦柴一抖，扑通一声，老鼠又落在水瓮 里，他接着就用芦柴在它头上捣了几下，叫它赶快沉下去。",
+        "pinyin": "dài dào tā kàn jiàn quán shēn ， — — shī lín lín de hēi máo ， dà de dù zǐ ， qiū yǐn suí de wěi   bā ， — — biàn yòu jué dé kě hèn kě zēng dé hěn ， huāng máng jiāng lú chái yī dǒu ， pū tōng yī shēng ， lǎo shǔ yòu luò zài shuǐ wèng   lǐ ， tā jiē zhuó jiù yòng lú chái zài tā tóu shàng dǎo le jǐ xià ， jiào tā gǎn kuài chén xià qù 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "换了六回松明之后，那老鼠已经不能动弹，不过沉浮在水中间，有时还向水 面微微一跳。",
+        "pinyin": "huàn le liù huí sōng míng zhī hòu ， nà lǎo shǔ yǐ jīng bù néng dòng tán ， bù guò chén fú zài shuǐ zhōng jiān ， yǒu shí hái xiàng shuǐ   miàn wēi wēi yī tiào 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "眉间尺又觉得很可怜，随即折断芦柴，好容易将它夹了出来，放在 地面上。",
+        "pinyin": "méi jiān chǐ yòu jué dé hěn kě lián ， suí jí zhé duàn lú chái ， hǎo róng yì jiāng tā jiá le chū lái ， fàng zài   dì miàn shàng 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "老鼠先是丝毫不动，后来才有一点呼吸；",
+        "pinyin": "lǎo shǔ xiān shì sī háo bù dòng ， hòu lái cái yǒu yī diǎn hū xī ；",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "又许多时，四只脚运动了，一 翻身，似乎要站起来逃走。",
+        "pinyin": "yòu xǔ duō shí ， sì zhǐ jiǎo yùn dòng le ， yī   fān shēn ， sì hū yào zhàn qǐ lái táo zǒu 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "这使眉间尺大吃一惊，不觉提起左脚，一脚踏下去。",
+        "pinyin": "zhè shǐ méi jiān chǐ dà chī yī jīng ， bù jué tí qǐ zuǒ jiǎo ， yī jiǎo tà xià qù 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "只听得吱的一声，他蹲下去仔细看时，只见口角上微有鲜血，大概是死掉了。",
+        "pinyin": "zhǐ tīng dé zhī de yī shēng ， tā dūn xià qù zǐ xì kàn shí ， zhǐ jiàn kǒu jiǎo shàng wēi yǒu xiān xiě ， dà gài shì sǐ diào le 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "他又觉得很可怜，仿佛自己作了大恶似的，非常难受。",
+        "pinyin": "tā yòu jué dé hěn kě lián ， fǎng fó zì jǐ zuò le dà è shì de ， fēi cháng nán shòu 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "他蹲着，呆看着，站 不起来。",
+        "pinyin": "tā dūn zhuó ， dāi kàn zhuó ， zhàn   bù qǐ lái 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“尺儿，你在做什么？”",
+        "pinyin": "“ chǐ ér ， nǐ zài zuò shén me ？ ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "他的母亲已经醒来了，在床上问。",
+        "pinyin": "tā de mǔ qīn yǐ jīng xǐng lái le ， zài chuáng shàng wèn 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“老鼠……。”",
+        "pinyin": "“ lǎo shǔ … … 。 ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "他慌忙站起，回转身去，却只答了两个字。",
+        "pinyin": "tā huāng máng zhàn qǐ ， huí zhuǎn shēn qù ， què zhǐ dá le liǎng gè zì 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“是的，老鼠。",
+        "pinyin": "“ shì de ， lǎo shǔ 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "这我知道。",
+        "pinyin": "zhè wǒ zhī dào 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "可是你在做什么？",
+        "pinyin": "kě shì nǐ zài zuò shén me ？",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "杀它呢，还是在救它？”",
+        "pinyin": "shā tā ne ， hái shì zài jiù tā ？ ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "他没有回答。",
+        "pinyin": "tā méi yǒu huí dá 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "松明烧尽了；",
+        "pinyin": "sōng míng shāo jìn le ；",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "他默默地立在暗中，渐看见月光的皎洁。",
+        "pinyin": "tā mò mò dì lì zài àn zhōng ， jiàn kàn jiàn yuè guāng de jiǎo jié 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“唉！”",
+        "pinyin": "“ āi ！ ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "他的母亲叹息说，“一交子时〔３〕，你就是十六岁了，性情还是 那样，不冷不热地，一点也不变。",
+        "pinyin": "tā de mǔ qīn tàn xī shuō ， “ yī jiāo zǐ shí 〔 ３ 〕 ， nǐ jiù shì shí liù suì le ， xìng qíng hái shì   nà yàng ， bù lěng bù rè dì ， yī diǎn yě bù biàn 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "看来，你的父亲的仇是没有人报的了。”",
+        "pinyin": "kàn lái ， nǐ de fù qīn de chóu shì méi yǒu rén bào de le 。 ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "他看见他的母亲坐在灰白色的月影中，仿佛身体都在颤动；",
+        "pinyin": "tā kàn jiàn tā de mǔ qīn zuò zài huī bái sè de yuè yǐng zhōng ， fǎng fó shēn tǐ dōu zài chàn dòng ；",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "低微的声音里， 含着无限的悲哀，使他冷得毛骨悚然，而一转眼间，又觉得热血在全身中忽然腾 沸。",
+        "pinyin": "dī wēi de shēng yīn lǐ ，   hán zhuó wú xiàn de bēi āi ， shǐ tā lěng dé máo gǔ sǒng rán ， ér yī zhuǎn yǎn jiān ， yòu jué dé rè xiě zài quán shēn zhōng hū rán téng   fèi 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“父亲的仇？",
+        "pinyin": "“ fù qīn de chóu ？",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "父亲有什么仇呢？”",
+        "pinyin": "fù qīn yǒu shén me chóu ne ？ ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "他前进几步，惊急地问。",
+        "pinyin": "tā qián jìn jǐ bù ， jīng jí dì wèn 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“有的。",
+        "pinyin": "“ yǒu de 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "还要你去报。",
+        "pinyin": "hái yào nǐ qù bào 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "我早想告诉你的了；",
+        "pinyin": "wǒ zǎo xiǎng gào sù nǐ de le ；",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "只因为你太小，没有说。",
+        "pinyin": "zhǐ yīn wèi nǐ tài xiǎo ， méi yǒu shuō 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "现在你 已经成人了，却还是那样的性情。",
+        "pinyin": "xiàn zài nǐ   yǐ jīng chéng rén le ， què hái shì nà yàng de xìng qíng 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "这教我怎么办呢？",
+        "pinyin": "zhè jiào wǒ zěn me bàn ne ？",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "你似的性情，能行大事的么？”",
+        "pinyin": "nǐ shì de xìng qíng ， néng xíng dà shì de me ？ ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "说罢，母亲。",
+        "pinyin": "shuō bà ， mǔ qīn 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "我要改过……。”",
+        "pinyin": "wǒ yào gǎi guò … … 。 ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“自然。",
+        "pinyin": "“ zì rán 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "我也只得说。",
+        "pinyin": "wǒ yě zhǐ dé shuō 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "你必须改过……。",
+        "pinyin": "nǐ bì xū gǎi guò … … 。",
+        "english": "Lu Xun literary work passage."
+      }
+    ]
+  },
+  {
+    "id": "old_tales_retold_ch_9",
+    "bookId": "old_tales_retold",
+    "chapterIndex": 9,
+    "title": "非攻",
+    "titleEn": "Chapter 9: The Chronicle of 非攻",
+    "sentences": [
+      {
+        "chinese": "``` 鲁迅《故事新编》 非 攻〔１〕 一 子夏〔２〕的徒弟公孙高〔３〕来找墨子〔４〕，已经好几回了，总是不在 家，见不着。",
+        "pinyin": "` ` `   lǔ xùn 《 gù shì xīn biān 》   fēi   gōng 〔 １ 〕   yī   zǐ xià 〔 ２ 〕 de tú dì gōng sūn gāo 〔 ３ 〕 lái zhǎo mò zǐ 〔 ４ 〕 ， yǐ jīng hǎo jǐ huí le ， zǒng shì bù zài   jiā ， jiàn bù zhuó 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "大约是第四或者第五回罢，这才恰巧在门口遇见，因为公孙高刚一 到，墨子也适值回家来。",
+        "pinyin": "dà yuē shì dì sì huò zhě dì wǔ huí bà ， zhè cái qià qiǎo zài mén kǒu yù jiàn ， yīn wèi gōng sūn gāo gāng yī   dào ， mò zǐ yě shì zhí huí jiā lái 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "他们一同走进屋子里。",
+        "pinyin": "tā mén yī tóng zǒu jìn wū zǐ lǐ 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "公孙高辞让了一通之后，眼睛看着席子〔５〕的破洞，和气的问道： “先生是主张非战的？”",
+        "pinyin": "gōng sūn gāo cí ràng le yī tōng zhī hòu ， yǎn jīng kàn zhuó xí zǐ 〔 ５ 〕 de pò dòng ， hé qì de wèn dào ：   “ xiān shēng shì zhǔ zhāng fēi zhàn de ？ ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“不错！”",
+        "pinyin": "“ bù cuò ！ ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "墨子说。",
+        "pinyin": "mò zǐ shuō 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“那么，君子就不斗么？”",
+        "pinyin": "“ nà me ， jūn zǐ jiù bù dòu me ？ ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“是的！”",
+        "pinyin": "“ shì de ！ ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "墨子说。",
+        "pinyin": "mò zǐ shuō 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“猪狗尚且要斗，何况人……” “唉唉，你们儒者，说话称着尧舜，做事却要学猪狗，可怜，可怜！”",
+        "pinyin": "“ zhū gǒu shàng qiě yào dòu ， hé kuàng rén … … ”   “ āi āi ， nǐ mén rú zhě ， shuō huà chēng zhuó yáo shùn ， zuò shì què yào xué zhū gǒu ， kě lián ， kě lián ！ ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "〔６〕 墨子说着，站了起来，匆匆的跑到厨下去了，一面说：“你不懂我的意思……” 他穿过厨下，到得后门外的井边，绞着辘轳，汲起半瓶井水来，捧着吸了十 多口，于是放下瓦瓶，抹一抹嘴，忽然望着园角上叫了起来道： “阿廉〔７〕！",
+        "pinyin": "〔 ６ 〕   mò zǐ shuō zhuó ， zhàn le qǐ lái ， cōng cōng de pǎo dào chú xià qù le ， yī miàn shuō ： “ nǐ bù dǒng wǒ de yì sī … … ”   tā chuān guò chú xià ， dào dé hòu mén wài de jǐng biān ， jiǎo zhuó lù lú ， jí qǐ bàn píng jǐng shuǐ lái ， pěng zhuó xī le shí   duō kǒu ， yú shì fàng xià wǎ píng ， mǒ yī mǒ zuǐ ， hū rán wàng zhuó yuán jiǎo shàng jiào le qǐ lái dào ：   “ ā lián 〔 ７ 〕 ！",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "你怎么回来了？”",
+        "pinyin": "nǐ zěn me huí lái le ？ ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "阿廉也已经看见，正在跑过来，一到面前，就规规矩矩的站定，垂着手，叫 一声“先生”，于是略有些气愤似的接着说： “我不干了。",
+        "pinyin": "ā lián yě yǐ jīng kàn jiàn ， zhèng zài pǎo guò lái ， yī dào miàn qián ， jiù guī guī ju jǔ de zhàn dìng ， chuí zhuó shǒu ， jiào   yī shēng “ xiān shēng ” ， yú shì lüè yǒu xiē qì fèn shì de jiē zhuó shuō ：   “ wǒ bù gān le 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "他们言行不一致。",
+        "pinyin": "tā mén yán xíng bù yī zhì 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "说定给我一千盆粟米的，却只给了我五百盆。",
+        "pinyin": "shuō dìng gěi wǒ yī qiān pén sù mǐ de ， què zhǐ gěi le wǒ wǔ bǎi pén 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "我只得走了。”",
+        "pinyin": "wǒ zhǐ dé zǒu le 。 ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“如果给你一千多盆，你走么？”",
+        "pinyin": "“ rú guǒ gěi nǐ yī qiān duō pén ， nǐ zǒu me ？ ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“不。”",
+        "pinyin": "“ bù 。 ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "阿廉答。",
+        "pinyin": "ā lián dá 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“那么，就并非因为他们言行不一致，倒是因为少了呀！”",
+        "pinyin": "“ nà me ， jiù bìng fēi yīn wèi tā mén yán xíng bù yī zhì ， dǎo shì yīn wèi shǎo le yā ！ ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "墨子一面说，一面又跑进厨房里，叫道： “耕柱子〔８〕！",
+        "pinyin": "mò zǐ yī miàn shuō ， yī miàn yòu pǎo jìn chú fáng lǐ ， jiào dào ：   “ gēng zhù zǐ 〔 ８ 〕 ！",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "给我和起玉米粉来！”",
+        "pinyin": "gěi wǒ hé qǐ yù mǐ fěn lái ！ ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "耕柱子恰恰从堂屋里走到，是一个很精神的青年。",
+        "pinyin": "gēng zhù zǐ qià qià cóng táng wū lǐ zǒu dào ， shì yī gè hěn jīng shén de qīng nián 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“先生，是做十多天的干粮罢？”",
+        "pinyin": "“ xiān shēng ， shì zuò shí duō tiān de gān liáng bà ？ ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“对咧。”",
+        "pinyin": "“ duì liē 。 ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "墨子说。",
+        "pinyin": "mò zǐ shuō 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“公孙高走了罢？”",
+        "pinyin": "“ gōng sūn gāo zǒu le bà ？ ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“走了，”耕柱子笑道。",
+        "pinyin": "“ zǒu le ， ” gēng zhù zǐ xiào dào 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“他很生气，说我们兼爱无父，像禽兽一样。”",
+        "pinyin": "“ tā hěn shēng qì ， shuō wǒ mén jiān ài wú fù ， xiàng qín shòu yī yàng 。 ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "〔９〕 墨子也笑了一笑。",
+        "pinyin": "〔 ９ 〕   mò zǐ yě xiào le yī xiào 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“先生到楚国去？”",
+        "pinyin": "“ xiān shēng dào chǔ guó qù ？ ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“是的。",
+        "pinyin": "“ shì de 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "你也知道了？”",
+        "pinyin": "nǐ yě zhī dào le ？ ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "墨子让耕柱子用水和着玉米粉，自己却取火石和艾 绒打了火，点起枯枝来沸水，眼睛看火焰，慢慢的说道：“我们的老乡公输般〔 １０〕，他总是倚恃着自己的一点小聪明，兴风作浪的。",
+        "pinyin": "mò zǐ ràng gēng zhù zǐ yòng shuǐ hé zhuó yù mǐ fěn ， zì jǐ què qǔ huǒ shí hé ài   róng dǎ le huǒ ， diǎn qǐ kū zhī lái fèi shuǐ ， yǎn jīng kàn huǒ yàn ， màn màn de shuō dào ： “ wǒ mén de lǎo xiāng gōng shū bān 〔   １ ０ 〕 ， tā zǒng shì yǐ shì zhuó zì jǐ de yī diǎn xiǎo cōng míng ， xìng fēng zuò làng de 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "造了钩拒〔１１〕，教 楚王和越人打仗还不够，这回是又想出了什么云梯，要耸恿楚王攻宋去了。",
+        "pinyin": "zào le gōu jù 〔 １ １ 〕 ， jiào   chǔ wáng hé yuè rén dǎ zhàng hái bù gòu ， zhè huí shì yòu xiǎng chū le shén me yún tī ， yào sǒng yǒng chǔ wáng gōng sòng qù le 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "宋是 小国，怎禁得这么一攻。",
+        "pinyin": "sòng shì   xiǎo guó ， zěn jīn dé zhè me yī gōng 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "我去按他一下罢。”",
+        "pinyin": "wǒ qù àn tā yī xià bà 。 ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "他看得耕柱子已经把窝窝头上了蒸笼，便回到自己的房里，在壁厨里摸出一 把盐渍藜菜干，一柄破铜刀，另外找了一张破包袱，等耕柱子端进蒸熟的窝窝头 来，就一起打成一个包裹。",
+        "pinyin": "tā kàn dé gēng zhù zǐ yǐ jīng bǎ wō wō tóu shàng le zhēng lóng ， biàn huí dào zì jǐ de fáng lǐ ， zài bì chú lǐ mō chū yī   bǎ yán zì lí cài gān ， yī bǐng pò tóng dāo ， lìng wài zhǎo le yī zhāng pò bāo fú ， děng gēng zhù zǐ duān jìn zhēng shú de wō wō tóu   lái ， jiù yī qǐ dǎ chéng yī gè bāo guǒ 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "衣服却不打点，也不带洗脸的手巾，只把皮带紧了一 紧，走到堂下，穿好草鞋，背上包裹，头也不回的走了。",
+        "pinyin": "yī fú què bù dǎ diǎn ， yě bù dài xǐ liǎn de shǒu jīn ， zhǐ bǎ pí dài jǐn le yī   jǐn ， zǒu dào táng xià ， chuān hǎo cǎo xié ， bēi shàng bāo guǒ ， tóu yě bù huí de zǒu le 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "从包裹里，还一阵一阵 的冒着热蒸气。",
+        "pinyin": "cóng bāo guǒ lǐ ， hái yī zhèn yī zhèn   de mào zhuó rè zhēng qì 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“先生什么时候回来呢？”",
+        "pinyin": "“ xiān shēng shén me shí hòu huí lái ne ？ ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "耕柱子在后面叫喊道。",
+        "pinyin": "gēng zhù zǐ zài hòu miàn jiào hǎn dào 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“总得二十来天罢，”墨子答着，只是走。",
+        "pinyin": "“ zǒng dé èr shí lái tiān bà ， ” mò zǐ dá zhuó ， zhǐ shì zǒu 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "二 墨子走进宋国的国界的时候，草鞋带已经断了三四回，觉得脚底上很发热， 停下来一看，鞋底也磨成了大窟窿，脚上有些地方起茧，有些地方起泡了。",
+        "pinyin": "èr   mò zǐ zǒu jìn sòng guó de guó jiè de shí hòu ， cǎo xié dài yǐ jīng duàn le sān sì huí ， jué dé jiǎo dǐ shàng hěn fā rè ，   tíng xià lái yī kàn ， xié dǐ yě mó chéng le dà kū lóng ， jiǎo shàng yǒu xiē dì fāng qǐ jiǎn ， yǒu xiē dì fāng qǐ pào le 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "〔１２〕 他毫不在意，仍然走；",
+        "pinyin": "〔 １ ２ 〕   tā háo bù zài yì ， réng rán zǒu ；",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "沿路看看情形，人口倒很不少，然而历来的水灾和兵灾的 痕迹，却到处存留，没有人民的变换得飞快。",
+        "pinyin": "yán lù kàn kàn qíng xíng ， rén kǒu dǎo hěn bù shǎo ， rán ér lì lái de shuǐ zāi hé bīng zāi de   hén jì ， què dào chù cún liú ， méi yǒu rén mín de biàn huàn dé fēi kuài 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "走了三天，看不见一所大屋，看不 见一颗大树，看不见一个活泼的人，看不见一片肥沃的田地，就这样的到了都城 〔１３〕。",
+        "pinyin": "zǒu le sān tiān ， kàn bù jiàn yī suǒ dà wū ， kàn bù   jiàn yī kē dà shù ， kàn bù jiàn yī gè huó pō de rén ， kàn bù jiàn yī piàn féi wò de tián dì ， jiù zhè yàng de dào le dōu chéng   〔 １ ３ 〕 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "城墙也很破旧，但有几处添了新石头；",
+        "pinyin": "chéng qiáng yě hěn pò jiù ， dàn yǒu jǐ chù tiān le xīn shí tóu ；",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "护城沟边看见烂泥堆，像是有人淘掘 过，但只见有几个闲人坐在沟沿上似乎钓着鱼。",
+        "pinyin": "hù chéng gōu biān kàn jiàn làn ní duī ， xiàng shì yǒu rén táo jué   guò ， dàn zhǐ jiàn yǒu jǐ gè xián rén zuò zài gōu yán shàng sì hū diào zhuó yú 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“他们大约也听到消息了，”墨子想。",
+        "pinyin": "“ tā mén dà yuē yě tīng dào xiāo xī le ， ” mò zǐ xiǎng 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "细看那些钓鱼人，却没有自己的学生 在里面。",
+        "pinyin": "xì kàn nà xiē diào yú rén ， què méi yǒu zì jǐ de xué shēng   zài lǐ miàn 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "他决计穿城而过，于是走近北关，顺着中央的一条街，一径向南走。",
+        "pinyin": "tā jué jì chuān chéng ér guò ， yú shì zǒu jìn běi guān ， shùn zhuó zhōng yāng de yī tiáo jiē ， yī jìng xiàng nán zǒu 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "城里面 也很萧条，但也很平静；",
+        "pinyin": "chéng lǐ miàn   yě hěn xiāo tiáo ， dàn yě hěn píng jìng ；",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "店铺都贴着减价的条子，然而并不见买主，可是店里也 并无怎样的货色；",
+        "pinyin": "diàn pū dōu tiē zhuó jiǎn jià de tiáo zǐ ， rán ér bìng bù jiàn mǎi zhǔ ， kě shì diàn lǐ yě   bìng wú zěn yàng de huò sè ；",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "街道上满积着又细又粘的黄尘。",
+        "pinyin": "jiē dào shàng mǎn jī zhuó yòu xì yòu nián de huáng chén 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "“这模样了，还要来攻它！”",
+        "pinyin": "“ zhè mú yàng le ， hái yào lái gōng tā ！ ”",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "墨子想。",
+        "pinyin": "mò zǐ xiǎng 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "他在大街上前行，除看见了贫弱而外，也没有什么异样。",
+        "pinyin": "tā zài dà jiē shàng qián xíng ， chú kàn jiàn le pín ruò ér wài ， yě méi yǒu shén me yì yàng 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "楚国要来进攻的消 息，是也许已经听到了的，然而大家被攻得习惯了，自认是活该受攻的了，竟并 不觉得特别，况且谁都只剩了一条性命，无衣无食，所以也没有什么人想搬家。",
+        "pinyin": "chǔ guó yào lái jìn gōng de xiāo   xī ， shì yě xǔ yǐ jīng tīng dào le de ， rán ér dà jiā bèi gōng dé xí guàn le ， zì rèn shì huó gāi shòu gōng de le ， jìng bìng   bù jué dé tè bié ， kuàng qiě shuí dōu zhǐ shèng le yī tiáo xìng mìng ， wú yī wú shí ， suǒ yǐ yě méi yǒu shén me rén xiǎng bān jiā 。",
+        "english": "Lu Xun literary work passage."
+      },
+      {
+        "chinese": "待到望见南关的城楼了，这才看见街角上聚着十多个人，好像在听一个人讲故事。",
+        "pinyin": "dài dào wàng jiàn nán guān de chéng lóu le ， zhè cái kàn jiàn jiē jiǎo shàng jù zhuó shí duō gè rén ， hǎo xiàng zài tīng yī gè rén jiǎng gù shì 。",
+        "english": "Lu Xun literary work passage."
+      }
+    ]
+  }
+]

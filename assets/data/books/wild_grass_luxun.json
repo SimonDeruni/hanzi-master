@@ -1,0 +1,5393 @@
+[
+  {
+    "id": "wild_grass_luxun_ch_1",
+    "bookId": "wild_grass_luxun",
+    "chapterIndex": 1,
+    "title": "第1章",
+    "titleEn": "Chapter 1",
+    "sentences": [
+      {
+        "chinese": "《野草》英文译本序",
+        "pinyin": "《 yě cǎo 》 yīng wén yì běn xù",
+        "english": ""
+      },
+      {
+        "chinese": "冯y·s·先生由他的友人给我看《野草》的英文译本，并且要我说几句话。",
+        "pinyin": "féng y · s · xiān shēng yóu tā de yǒu rén gěi wǒ kàn 《 yě cǎo 》 de yīng wén yì běn ， bìng qiě yào wǒ shuō jǐ jù huà 。",
+        "english": ""
+      },
+      {
+        "chinese": "可惜我不懂英文，只能自己说几句。",
+        "pinyin": "kě xī wǒ bù dǒng yīng wén ， zhǐ néng zì jǐ shuō jǐ jù 。",
+        "english": ""
+      },
+      {
+        "chinese": "但我希望，译者将不嫌我只做了他所希望的一半的。",
+        "pinyin": "dàn wǒ xī wàng ， yì zhě jiāng bù xián wǒ zhǐ zuò le tā suǒ xī wàng de yī bàn de 。",
+        "english": ""
+      },
+      {
+        "chinese": "这二十多篇小品，如每篇末尾所注，是一九二四至二六年在北京所作，陆续发表于期刊《语丝》上的。",
+        "pinyin": "zhè èr shí duō piān xiǎo pǐn ， rú měi piān mò wěi suǒ zhù ， shì yī jiǔ èr sì zhì èr liù nián zài běi jīng suǒ zuò ， lù xù fā biǎo yú qī kān 《 yǔ sī 》 shàng de 。",
+        "english": ""
+      },
+      {
+        "chinese": "大抵仅仅是随时的小感想。",
+        "pinyin": "dà dǐ jǐn jǐn shì suí shí de xiǎo gǎn xiǎng 。",
+        "english": ""
+      },
+      {
+        "chinese": "因为那时难于直说，所以有时措辞就很含糊了。",
+        "pinyin": "yīn wèi nà shí nán yú zhí shuō ， suǒ yǐ yǒu shí cuò cí jiù hěn hán hú le 。",
+        "english": ""
+      },
+      {
+        "chinese": "现在举几个例罢。",
+        "pinyin": "xiàn zài jǔ jǐ gè lì bà 。",
+        "english": ""
+      },
+      {
+        "chinese": "因为讽刺当时盛行的失恋诗，作《我的失恋》，因为憎恶社会上旁观者之多，作《复仇》第一篇，又因为惊异于青年之消沉，作《希望》。",
+        "pinyin": "yīn wèi fěng cì dāng shí shèng xíng de shī liàn shī ， zuò 《 wǒ de shī liàn 》 ， yīn wèi zēng è shè huì shàng páng guān zhě zhī duō ， zuò 《 fù chóu 》 dì yī piān ， yòu yīn wèi jīng yì yú qīng nián zhī xiāo chén ， zuò 《 xī wàng 》 。",
+        "english": ""
+      },
+      {
+        "chinese": "《这样的战士》，是有感于文人学士们帮助军阀而作。",
+        "pinyin": "《 zhè yàng de zhàn shì 》 ， shì yǒu gǎn yú wén rén xué shì mén bāng zhù jūn fá ér zuò 。",
+        "english": ""
+      },
+      {
+        "chinese": "《腊叶》，是为爱我者的想要保存我而作的。",
+        "pinyin": "《 là yè 》 ， shì wèi ài wǒ zhě de xiǎng yào bǎo cún wǒ ér zuò de 。",
+        "english": ""
+      },
+      {
+        "chinese": "段祺瑞政府枪击徒手民众后，作《淡淡的血痕中》，其时我已避居别处；",
+        "pinyin": "duàn qí ruì zhèng fǔ qiāng jī tú shǒu mín zhòng hòu ， zuò 《 dàn dàn de xiě hén zhōng 》 ， qí shí wǒ yǐ bì jū bié chù ；",
+        "english": ""
+      },
+      {
+        "chinese": "奉天派和直隶派军阀战争的时候，作《一觉》，此后我就不能住在北京了。",
+        "pinyin": "fèng tiān pài hé zhí lì pài jūn fá zhàn zhēng de shí hòu ， zuò 《 yī jué 》 ， cǐ hòu wǒ jiù bù néng zhù zài běi jīng le 。",
+        "english": ""
+      },
+      {
+        "chinese": "所以，这也可以说，大半是废驰的地狱边沿的惨白色小花，当然不会美丽。",
+        "pinyin": "suǒ yǐ ， zhè yě kě yǐ shuō ， dà bàn shì fèi chí de dì yù biān yán de cǎn bái sè xiǎo huā ， dāng rán bù huì měi lì 。",
+        "english": ""
+      },
+      {
+        "chinese": "但这地狱也必须失掉。",
+        "pinyin": "dàn zhè dì yù yě bì xū shī diào 。",
+        "english": ""
+      },
+      {
+        "chinese": "这是由几个有雄辩和辣手，而当时还未得志的英雄们的脸色和语气所告诉我的。",
+        "pinyin": "zhè shì yóu jǐ gè yǒu xióng biàn hé là shǒu ， ér dāng shí hái wèi dé zhì de yīng xióng mén de liǎn sè hé yǔ qì suǒ gào sù wǒ de 。",
+        "english": ""
+      },
+      {
+        "chinese": "我于是作《失掉的好地狱》。",
+        "pinyin": "wǒ yú shì zuò 《 shī diào de hǎo dì yù 》 。",
+        "english": ""
+      },
+      {
+        "chinese": "后来，我不再作这样的东西了。",
+        "pinyin": "hòu lái ， wǒ bù zài zuò zhè yàng de dōng xī le 。",
+        "english": ""
+      },
+      {
+        "chinese": "日在变化的时代，已不许这样的文章，甚而至于这样的感想存在。",
+        "pinyin": "rì zài biàn huà de shí dài ， yǐ bù xǔ zhè yàng de wén zhāng ， shèn ér zhì yú zhè yàng de gǎn xiǎng cún zài 。",
+        "english": ""
+      },
+      {
+        "chinese": "我想，这也许倒是好的罢。",
+        "pinyin": "wǒ xiǎng ， zhè yě xǔ dǎo shì hǎo de bà 。",
+        "english": ""
+      },
+      {
+        "chinese": "为译本而作的序言，也应该在这里结束了。",
+        "pinyin": "wèi yì běn ér zuò de xù yán ， yě yīng gāi zài zhè lǐ jié shù le 。",
+        "english": ""
+      },
+      {
+        "chinese": "《野草》题辞",
+        "pinyin": "《 yě cǎo 》 tí cí",
+        "english": ""
+      },
+      {
+        "chinese": "当我沉默着的时候，我觉得充实；",
+        "pinyin": "dāng wǒ chén mò zhuó de shí hòu ， wǒ jué dé chōng shí ；",
+        "english": ""
+      },
+      {
+        "chinese": "我将开口，同时感到空虚。",
+        "pinyin": "wǒ jiāng kāi kǒu ， tóng shí gǎn dào kōng xū 。",
+        "english": ""
+      },
+      {
+        "chinese": "过去的生命已经死亡。",
+        "pinyin": "guò qù de shēng mìng yǐ jīng sǐ wáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "我对于这死亡有大欢喜，因为我借此知道它曾经存活。",
+        "pinyin": "wǒ duì yú zhè sǐ wáng yǒu dà huān xǐ ， yīn wèi wǒ jiè cǐ zhī dào tā céng jīng cún huó 。",
+        "english": ""
+      },
+      {
+        "chinese": "死亡的生命已经朽腐。",
+        "pinyin": "sǐ wáng de shēng mìng yǐ jīng xiǔ fǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "我对于这朽腐有大欢喜，因为我借此知道它还非空虚。",
+        "pinyin": "wǒ duì yú zhè xiǔ fǔ yǒu dà huān xǐ ， yīn wèi wǒ jiè cǐ zhī dào tā hái fēi kōng xū 。",
+        "english": ""
+      },
+      {
+        "chinese": "生命的泥委弃在地面上，不生乔木，只生野草，这是我的罪过。",
+        "pinyin": "shēng mìng de ní wěi qì zài dì miàn shàng ， bù shēng qiáo mù ， zhǐ shēng yě cǎo ， zhè shì wǒ de zuì guò 。",
+        "english": ""
+      },
+      {
+        "chinese": "野草，根本不深，花叶不美，然而吸取露，吸取水，吸取陈死人的血和肉，各各夺取它的生存。",
+        "pinyin": "yě cǎo ， gēn běn bù shēn ， huā yè bù měi ， rán ér xī qǔ lòu ， xī qǔ shuǐ ， xī qǔ chén sǐ rén de xiě hé ròu ， gè gè duó qǔ tā de shēng cún 。",
+        "english": ""
+      },
+      {
+        "chinese": "当生存时，还是将遭践踏，将遭删刈，直至于死亡而朽腐。",
+        "pinyin": "dāng shēng cún shí ， hái shì jiāng zāo jiàn tà ， jiāng zāo shān yì ， zhí zhì yú sǐ wáng ér xiǔ fǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "但我坦然，欣然。",
+        "pinyin": "dàn wǒ tǎn rán ， xīn rán 。",
+        "english": ""
+      },
+      {
+        "chinese": "我将大笑，我将歌唱。",
+        "pinyin": "wǒ jiāng dà xiào ， wǒ jiāng gē chàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "我自爱我的野草，但我憎恶这以野草作装饰的地面。",
+        "pinyin": "wǒ zì ài wǒ de yě cǎo ， dàn wǒ zēng è zhè yǐ yě cǎo zuò zhuāng shì de dì miàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "地火在地下运行，奔突；",
+        "pinyin": "dì huǒ zài dì xià yùn xíng ， bēn tū ；",
+        "english": ""
+      },
+      {
+        "chinese": "熔岩一旦喷出，将烧尽一切野草，以及乔木，于是并且无可朽腐。",
+        "pinyin": "róng yán yī dàn pēn chū ， jiāng shāo jìn yī qiē yě cǎo ， yǐ jí qiáo mù ， yú shì bìng qiě wú kě xiǔ fǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "但我坦然，欣然。",
+        "pinyin": "dàn wǒ tǎn rán ， xīn rán 。",
+        "english": ""
+      },
+      {
+        "chinese": "我将大笑，我将歌唱。",
+        "pinyin": "wǒ jiāng dà xiào ， wǒ jiāng gē chàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "天地有如此静穆，我不能大笑而且歌唱。",
+        "pinyin": "tiān dì yǒu rú cǐ jìng mù ， wǒ bù néng dà xiào ér qiě gē chàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "天地即不如此静穆，我或者也将不能。",
+        "pinyin": "tiān dì jí bù rú cǐ jìng mù ， wǒ huò zhě yě jiāng bù néng 。",
+        "english": ""
+      },
+      {
+        "chinese": "我以这一丛野草，在明与暗，生与死，过去与未来之际，献于友与仇，人与兽，爱者与不爱者之前作证。",
+        "pinyin": "wǒ yǐ zhè yī cóng yě cǎo ， zài míng yǔ àn ， shēng yǔ sǐ ， guò qù yǔ wèi lái zhī jì ， xiàn yú yǒu yǔ chóu ， rén yǔ shòu ， ài zhě yǔ bù ài zhě zhī qián zuò zhèng 。",
+        "english": ""
+      },
+      {
+        "chinese": "为我自己，为友与仇，人与兽，爱者与不爱者，我希望这野草的朽腐，火速到来。",
+        "pinyin": "wèi wǒ zì jǐ ， wèi yǒu yǔ chóu ， rén yǔ shòu ， ài zhě yǔ bù ài zhě ， wǒ xī wàng zhè yě cǎo de xiǔ fǔ ， huǒ sù dào lái 。",
+        "english": ""
+      },
+      {
+        "chinese": "要不然，我先就未曾生存，这实在比死亡与朽腐更其不幸。",
+        "pinyin": "yào bù rán ， wǒ xiān jiù wèi céng shēng cún ， zhè shí zài bǐ sǐ wáng yǔ xiǔ fǔ gèng qí bù xìng 。",
+        "english": ""
+      },
+      {
+        "chinese": "去罢，野草，连着我的题辞！",
+        "pinyin": "qù bà ， yě cǎo ， lián zhuó wǒ de tí cí ！",
+        "english": ""
+      },
+      {
+        "chinese": "一九二七年四月二十六日",
+        "pinyin": "yī jiǔ èr qī nián sì yuè èr shí liù rì",
+        "english": ""
+      },
+      {
+        "chinese": "鲁迅记于广州之白云楼上",
+        "pinyin": "lǔ xùn jì yú guǎng zhōu zhī bái yún lóu shàng",
+        "english": ""
+      },
+      {
+        "chinese": "野草秋夜",
+        "pinyin": "yě cǎo qiū yè",
+        "english": ""
+      },
+      {
+        "chinese": "在我的后园，可以看见墙外有两株树，一株是枣树，还有一株也是枣树。",
+        "pinyin": "zài wǒ de hòu yuán ， kě yǐ kàn jiàn qiáng wài yǒu liǎng zhū shù ， yī zhū shì zǎo shù ， hái yǒu yī zhū yě shì zǎo shù 。",
+        "english": ""
+      },
+      {
+        "chinese": "这上面的夜的天空，奇怪而高，我生平没有见过这样奇怪而高的天空。",
+        "pinyin": "zhè shàng miàn de yè de tiān kōng ， qí guài ér gāo ， wǒ shēng píng méi yǒu jiàn guò zhè yàng qí guài ér gāo de tiān kōng 。",
+        "english": ""
+      },
+      {
+        "chinese": "他仿佛要离开人间而去，使人们仰面不再看见。",
+        "pinyin": "tā fǎng fó yào lí kāi rén jiān ér qù ， shǐ rén mén yǎng miàn bù zài kàn jiàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "然而现在却非常之蓝，闪闪地〖目夹〗着几十个星星的眼，冷眼。",
+        "pinyin": "rán ér xiàn zài què fēi cháng zhī lán ， shǎn shǎn dì 〖 mù jiá 〗 zhuó jǐ shí gè xīng xīng de yǎn ， lěng yǎn 。",
+        "english": ""
+      },
+      {
+        "chinese": "他的口角上现出微笑，似乎自以为大有深意，而将繁霜洒在我的园里的野花草上。",
+        "pinyin": "tā de kǒu jiǎo shàng xiàn chū wēi xiào ， sì hū zì yǐ wèi dà yǒu shēn yì ， ér jiāng fán shuāng sǎ zài wǒ de yuán lǐ de yě huā cǎo shàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "我不知道那些花草真叫什么名字，人们叫他们什么名字。",
+        "pinyin": "wǒ bù zhī dào nà xiē huā cǎo zhēn jiào shén me míng zì ， rén mén jiào tā mén shén me míng zì 。",
+        "english": ""
+      },
+      {
+        "chinese": "我记得有一种开过极细小的粉红花，现在还开着，但是更极细小了，她在冷的夜气中，瑟缩地做梦，梦见春的到来，梦见秋的到来，梦见瘦的诗人将眼泪擦在她最末的花瓣上，告诉她秋虽然来，冬虽然来，而此后接着还是春，胡蝶乱飞，蜜蜂都唱起春词来了。",
+        "pinyin": "wǒ jì dé yǒu yī zhǒng kāi guò jí xì xiǎo de fěn hóng huā ， xiàn zài hái kāi zhuó ， dàn shì gèng jí xì xiǎo le ， tā zài lěng de yè qì zhōng ， sè suō dì zuò mèng ， mèng jiàn chūn de dào lái ， mèng jiàn qiū de dào lái ， mèng jiàn shòu de shī rén jiāng yǎn lèi cā zài tā zuì mò de huā bàn shàng ， gào sù tā qiū suī rán lái ， dōng suī rán lái ， ér cǐ hòu jiē zhuó hái shì chūn ， hú dié luàn fēi ， mì fēng dōu chàng qǐ chūn cí lái le 。",
+        "english": ""
+      },
+      {
+        "chinese": "她于是一笑，虽然颜色冻得红惨惨地，仍然瑟缩着。",
+        "pinyin": "tā yú shì yī xiào ， suī rán yán sè dòng dé hóng cǎn cǎn dì ， réng rán sè suō zhuó 。",
+        "english": ""
+      },
+      {
+        "chinese": "枣树，他们简直落尽了叶子。",
+        "pinyin": "zǎo shù ， tā mén jiǎn zhí luò jìn le yè zǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "先前，还有一两个孩子来打他们别人打剩的枣子，现在是一个也不剩，连叶子也落尽了。",
+        "pinyin": "xiān qián ， hái yǒu yī liǎng gè hái zǐ lái dǎ tā mén bié rén dǎ shèng de zǎo zǐ ， xiàn zài shì yī gè yě bù shèng ， lián yè zǐ yě luò jìn le 。",
+        "english": ""
+      },
+      {
+        "chinese": "他知道小粉红花的梦，秋后要有春；",
+        "pinyin": "tā zhī dào xiǎo fěn hóng huā de mèng ， qiū hòu yào yǒu chūn ；",
+        "english": ""
+      },
+      {
+        "chinese": "他也知道落叶的梦，春后还是秋。",
+        "pinyin": "tā yě zhī dào luò yè de mèng ， chūn hòu hái shì qiū 。",
+        "english": ""
+      },
+      {
+        "chinese": "他简直落尽叶子，单剩干子，然而脱了当初满树是果实和叶子时候的弧形，欠伸得很舒服。",
+        "pinyin": "tā jiǎn zhí luò jìn yè zǐ ， dān shèng gān zǐ ， rán ér tuō le dāng chū mǎn shù shì guǒ shí hé yè zǐ shí hòu de hú xíng ， qiàn shēn dé hěn shū fú 。",
+        "english": ""
+      },
+      {
+        "chinese": "但是，有几枝还低亚着，护定他从打枣的竿梢所得的皮伤，而最直最长的几枝，却已默默地铁似的直刺着奇怪而高的天空，使天空闪闪地鬼〖目夹〗眼；",
+        "pinyin": "dàn shì ， yǒu jǐ zhī hái dī yà zhuó ， hù dìng tā cóng dǎ zǎo de gān shāo suǒ dé de pí shāng ， ér zuì zhí zuì cháng de jǐ zhī ， què yǐ mò mò dì tiě shì de zhí cì zhuó qí guài ér gāo de tiān kōng ， shǐ tiān kōng shǎn shǎn dì guǐ 〖 mù jiá 〗 yǎn ；",
+        "english": ""
+      },
+      {
+        "chinese": "直刺着天空中圆满的月亮，使月亮窘得发白。",
+        "pinyin": "zhí cì zhuó tiān kōng zhōng yuán mǎn de yuè liàng ， shǐ yuè liàng jiǒng dé fā bái 。",
+        "english": ""
+      },
+      {
+        "chinese": "鬼〖目夹〗眼的天空越加非常之蓝，不安了，仿佛想离去人间，避开枣树，只将月亮剩下。",
+        "pinyin": "guǐ 〖 mù jiá 〗 yǎn de tiān kōng yuè jiā fēi cháng zhī lán ， bù ān le ， fǎng fó xiǎng lí qù rén jiān ， bì kāi zǎo shù ， zhǐ jiāng yuè liàng shèng xià 。",
+        "english": ""
+      },
+      {
+        "chinese": "然而月亮也暗暗地躲到东边去了。",
+        "pinyin": "rán ér yuè liàng yě àn àn dì duǒ dào dōng biān qù le 。",
+        "english": ""
+      },
+      {
+        "chinese": "而一无所有的干子，却仍然默默地铁似的直刺着奇怪而高的天空，一意要制他的死命，不管他各式各样地〖目夹〗着许多蛊惑的眼睛。",
+        "pinyin": "ér yī wú suǒ yǒu de gān zǐ ， què réng rán mò mò dì tiě shì de zhí cì zhuó qí guài ér gāo de tiān kōng ， yī yì yào zhì tā de sǐ mìng ， bù guǎn tā gè shì gè yàng dì 〖 mù jiá 〗 zhuó xǔ duō gǔ huò de yǎn jīng 。",
+        "english": ""
+      },
+      {
+        "chinese": "哇的一声，夜游的恶鸟飞过了。",
+        "pinyin": "wā de yī shēng ， yè yóu de è niǎo fēi guò le 。",
+        "english": ""
+      },
+      {
+        "chinese": "我忽而听到夜半的笑声，吃吃地，似乎不愿意惊动睡着的人，然而四围的空气都应和着笑。",
+        "pinyin": "wǒ hū ér tīng dào yè bàn de xiào shēng ， chī chī dì ， sì hū bù yuàn yì jīng dòng shuì zhuó de rén ， rán ér sì wéi de kōng qì dōu yīng hé zhuó xiào 。",
+        "english": ""
+      },
+      {
+        "chinese": "夜半，没有别的人，我即刻听出这声音就在我嘴里，我也即刻被这笑声所驱逐，回进自己的房。",
+        "pinyin": "yè bàn ， méi yǒu bié de rén ， wǒ jí kè tīng chū zhè shēng yīn jiù zài wǒ zuǐ lǐ ， wǒ yě jí kè bèi zhè xiào shēng suǒ qū zhú ， huí jìn zì jǐ de fáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "灯火的带子也即刻被我旋高了。",
+        "pinyin": "dēng huǒ de dài zǐ yě jí kè bèi wǒ xuán gāo le 。",
+        "english": ""
+      },
+      {
+        "chinese": "后窗的玻璃上丁丁地响，还有许多小飞虫乱撞。",
+        "pinyin": "hòu chuāng de bō lí shàng dīng dīng dì xiǎng ， hái yǒu xǔ duō xiǎo fēi chóng luàn zhuàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "不多久，几个进来了，许是从窗纸的破孔进来的。",
+        "pinyin": "bù duō jiǔ ， jǐ gè jìn lái le ， xǔ shì cóng chuāng zhǐ de pò kǒng jìn lái de 。",
+        "english": ""
+      },
+      {
+        "chinese": "他们一进来，又在玻璃的灯罩上撞得丁丁地响。",
+        "pinyin": "tā mén yī jìn lái ， yòu zài bō lí de dēng zhào shàng zhuàng dé dīng dīng dì xiǎng 。",
+        "english": ""
+      },
+      {
+        "chinese": "一个从上面撞进去了，他于是遇到火，而且我以为这火是真的。",
+        "pinyin": "yī gè cóng shàng miàn zhuàng jìn qù le ， tā yú shì yù dào huǒ ， ér qiě wǒ yǐ wèi zhè huǒ shì zhēn de 。",
+        "english": ""
+      },
+      {
+        "chinese": "两三个却休息在灯的纸罩上喘气。",
+        "pinyin": "liǎng sān gè què xiū xī zài dēng de zhǐ zhào shàng chuǎn qì 。",
+        "english": ""
+      },
+      {
+        "chinese": "那罩是昨晚新换的罩，雪白的纸，折出波浪纹的叠痕，一角还画出一枝猩红色的栀子。",
+        "pinyin": "nà zhào shì zuó wǎn xīn huàn de zhào ， xuě bái de zhǐ ， zhé chū bō làng wén de dié hén ， yī jiǎo hái huà chū yī zhī xīng hóng sè de zhī zǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "猩红的栀子开花时，枣树又要做小粉红花的梦，青葱地弯成弧形了……我又听到夜半的笑声；",
+        "pinyin": "xīng hóng de zhī zǐ kāi huā shí ， zǎo shù yòu yào zuò xiǎo fěn hóng huā de mèng ， qīng cōng dì wān chéng hú xíng le … … wǒ yòu tīng dào yè bàn de xiào shēng ；",
+        "english": ""
+      },
+      {
+        "chinese": "我赶紧砍断我的心绪，看那老在白纸罩上的小青虫，头大尾小，向日葵子似的，只有半粒小麦那么大，遍身的颜色苍翠得可爱，可怜。",
+        "pinyin": "wǒ gǎn jǐn kǎn duàn wǒ de xīn xù ， kàn nà lǎo zài bái zhǐ zhào shàng de xiǎo qīng chóng ， tóu dà wěi xiǎo ， xiàng rì kuí zǐ shì de ， zhǐ yǒu bàn lì xiǎo mài nà me dà ， biàn shēn de yán sè cāng cuì dé kě ài ， kě lián 。",
+        "english": ""
+      },
+      {
+        "chinese": "我打一个呵欠，点起一支纸烟，喷出烟来，对着灯默默地敬奠这些苍翠精致的英雄们。",
+        "pinyin": "wǒ dǎ yī gè hē qiàn ， diǎn qǐ yī zhī zhǐ yān ， pēn chū yān lái ， duì zhuó dēng mò mò dì jìng diàn zhè xiē cāng cuì jīng zhì de yīng xióng mén 。",
+        "english": ""
+      },
+      {
+        "chinese": "一九二四年九月十五日。",
+        "pinyin": "yī jiǔ èr sì nián jiǔ yuè shí wǔ rì 。",
+        "english": ""
+      },
+      {
+        "chinese": "影的告别",
+        "pinyin": "yǐng de gào bié",
+        "english": ""
+      }
+    ]
+  },
+  {
+    "id": "wild_grass_luxun_ch_2",
+    "bookId": "wild_grass_luxun",
+    "chapterIndex": 2,
+    "title": "第2章",
+    "titleEn": "Chapter 2",
+    "sentences": [
+      {
+        "chinese": "人睡到不知道时候的时候，就会有影来告别，说出那些话——",
+        "pinyin": "rén shuì dào bù zhī dào shí hòu de shí hòu ， jiù huì yǒu yǐng lái gào bié ， shuō chū nà xiē huà — —",
+        "english": ""
+      },
+      {
+        "chinese": "有我所不乐意的在天堂里，我不愿去；",
+        "pinyin": "yǒu wǒ suǒ bù lè yì de zài tiān táng lǐ ， wǒ bù yuàn qù ；",
+        "english": ""
+      },
+      {
+        "chinese": "有我所不乐意的在地狱里，我不愿去；",
+        "pinyin": "yǒu wǒ suǒ bù lè yì de zài dì yù lǐ ， wǒ bù yuàn qù ；",
+        "english": ""
+      },
+      {
+        "chinese": "有我所不乐意的在你们将来的黄金世界里，我不愿去。",
+        "pinyin": "yǒu wǒ suǒ bù lè yì de zài nǐ mén jiāng lái de huáng jīn shì jiè lǐ ， wǒ bù yuàn qù 。",
+        "english": ""
+      },
+      {
+        "chinese": "然而你就是我所不乐意的。",
+        "pinyin": "rán ér nǐ jiù shì wǒ suǒ bù lè yì de 。",
+        "english": ""
+      },
+      {
+        "chinese": "朋友，我不想跟随你了，我不愿住。",
+        "pinyin": "péng yǒu ， wǒ bù xiǎng gēn suí nǐ le ， wǒ bù yuàn zhù 。",
+        "english": ""
+      },
+      {
+        "chinese": "我不愿意！",
+        "pinyin": "wǒ bù yuàn yì ！",
+        "english": ""
+      },
+      {
+        "chinese": "呜呼呜呼，我不愿意，我不如彷徨于无地。",
+        "pinyin": "wū hū wū hū ， wǒ bù yuàn yì ， wǒ bù rú páng huáng yú wú dì 。",
+        "english": ""
+      },
+      {
+        "chinese": "我不过一个影，要别你而沉没在黑暗里了。",
+        "pinyin": "wǒ bù guò yī gè yǐng ， yào bié nǐ ér chén méi zài hēi àn lǐ le 。",
+        "english": ""
+      },
+      {
+        "chinese": "然而黑暗又会吞并我，然而光明又会使我消失。",
+        "pinyin": "rán ér hēi àn yòu huì tūn bìng wǒ ， rán ér guāng míng yòu huì shǐ wǒ xiāo shī 。",
+        "english": ""
+      },
+      {
+        "chinese": "然而我不愿彷徨于明暗之间，我不如在黑暗里沉没。",
+        "pinyin": "rán ér wǒ bù yuàn páng huáng yú míng àn zhī jiān ， wǒ bù rú zài hēi àn lǐ chén méi 。",
+        "english": ""
+      },
+      {
+        "chinese": "然而我终于彷徨于明暗之间，我不知道是黄昏还是黎明。",
+        "pinyin": "rán ér wǒ zhōng yú páng huáng yú míng àn zhī jiān ， wǒ bù zhī dào shì huáng hūn hái shì lí míng 。",
+        "english": ""
+      },
+      {
+        "chinese": "我姑且举灰黑的手装作喝干一杯酒，我将在不知道时候的时候独自远行。",
+        "pinyin": "wǒ gū qiě jǔ huī hēi de shǒu zhuāng zuò hē gān yī bēi jiǔ ， wǒ jiāng zài bù zhī dào shí hòu de shí hòu dú zì yuǎn xíng 。",
+        "english": ""
+      },
+      {
+        "chinese": "呜呼呜呼，倘是黄昏，黑夜自然会来沉没我，否则我要被白天消失，如果现是黎明。",
+        "pinyin": "wū hū wū hū ， tǎng shì huáng hūn ， hēi yè zì rán huì lái chén méi wǒ ， fǒu zé wǒ yào bèi bái tiān xiāo shī ， rú guǒ xiàn shì lí míng 。",
+        "english": ""
+      },
+      {
+        "chinese": "朋友，时候近了。",
+        "pinyin": "péng yǒu ， shí hòu jìn le 。",
+        "english": ""
+      },
+      {
+        "chinese": "我将向黑暗里彷徨于无地。",
+        "pinyin": "wǒ jiāng xiàng hēi àn lǐ páng huáng yú wú dì 。",
+        "english": ""
+      },
+      {
+        "chinese": "你还想我的赠品。",
+        "pinyin": "nǐ hái xiǎng wǒ de zèng pǐn 。",
+        "english": ""
+      },
+      {
+        "chinese": "我能献你甚么呢？",
+        "pinyin": "wǒ néng xiàn nǐ shèn me ne ？",
+        "english": ""
+      },
+      {
+        "chinese": "无已，则仍是黑暗和虚空而已。",
+        "pinyin": "wú yǐ ， zé réng shì hēi àn hé xū kōng ér yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "但是，我愿意只是黑暗，或者会消失于你的白天；",
+        "pinyin": "dàn shì ， wǒ yuàn yì zhǐ shì hēi àn ， huò zhě huì xiāo shī yú nǐ de bái tiān ；",
+        "english": ""
+      },
+      {
+        "chinese": "我愿意只是虚空，决不占你的心地。",
+        "pinyin": "wǒ yuàn yì zhǐ shì xū kōng ， jué bù zhàn nǐ de xīn dì 。",
+        "english": ""
+      },
+      {
+        "chinese": "我愿意这样，朋友——",
+        "pinyin": "wǒ yuàn yì zhè yàng ， péng yǒu — —",
+        "english": ""
+      },
+      {
+        "chinese": "我独自远行，不但没有你，并且再没有别的影在黑暗里。",
+        "pinyin": "wǒ dú zì yuǎn xíng ， bù dàn méi yǒu nǐ ， bìng qiě zài méi yǒu bié de yǐng zài hēi àn lǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "只有我被黑暗沉没，那世界全属于我自己。",
+        "pinyin": "zhǐ yǒu wǒ bèi hēi àn chén méi ， nà shì jiè quán shǔ yú wǒ zì jǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "一九二四年九月二十四日。",
+        "pinyin": "yī jiǔ èr sì nián jiǔ yuè èr shí sì rì 。",
+        "english": ""
+      },
+      {
+        "chinese": "求乞者",
+        "pinyin": "qiú qǐ zhě",
+        "english": ""
+      },
+      {
+        "chinese": "我顺着剥落的高墙走路，踏着松的灰土。",
+        "pinyin": "wǒ shùn zhuó bō luò de gāo qiáng zǒu lù ， tà zhuó sōng de huī tǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "另外有几个人，各自走路。",
+        "pinyin": "lìng wài yǒu jǐ gè rén ， gè zì zǒu lù 。",
+        "english": ""
+      },
+      {
+        "chinese": "微风起来，露在墙头的高树的枝条带着还未干枯的叶子在我头上摇动。",
+        "pinyin": "wēi fēng qǐ lái ， lòu zài qiáng tóu de gāo shù de zhī tiáo dài zhuó hái wèi gān kū de yè zǐ zài wǒ tóu shàng yáo dòng 。",
+        "english": ""
+      },
+      {
+        "chinese": "微风起来，四面都是灰土。",
+        "pinyin": "wēi fēng qǐ lái ， sì miàn dōu shì huī tǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "一个孩子向我求乞，也穿着夹衣，也不见得悲戚，近于儿戏；",
+        "pinyin": "yī gè hái zǐ xiàng wǒ qiú qǐ ， yě chuān zhuó jiá yī ， yě bù jiàn dé bēi qī ， jìn yú ér xì ；",
+        "english": ""
+      },
+      {
+        "chinese": "我烦腻他这追着哀呼。",
+        "pinyin": "wǒ fán nì tā zhè zhuī zhuó āi hū 。",
+        "english": ""
+      },
+      {
+        "chinese": "我走路。",
+        "pinyin": "wǒ zǒu lù 。",
+        "english": ""
+      },
+      {
+        "chinese": "另外有几个人各自走路。",
+        "pinyin": "lìng wài yǒu jǐ gè rén gè zì zǒu lù 。",
+        "english": ""
+      },
+      {
+        "chinese": "微风起来，四面都是灰土。",
+        "pinyin": "wēi fēng qǐ lái ， sì miàn dōu shì huī tǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "一个孩子向我求乞，也穿着夹衣，也不见得悲戚，但是哑的，摊开手，装着手势。",
+        "pinyin": "yī gè hái zǐ xiàng wǒ qiú qǐ ， yě chuān zhuó jiá yī ， yě bù jiàn dé bēi qī ， dàn shì yǎ de ， tān kāi shǒu ， zhuāng zhuó shǒu shì 。",
+        "english": ""
+      },
+      {
+        "chinese": "我就憎恶他这手势。",
+        "pinyin": "wǒ jiù zēng è tā zhè shǒu shì 。",
+        "english": ""
+      },
+      {
+        "chinese": "而且，他或者并不哑，这不过是一种求乞的法子。",
+        "pinyin": "ér qiě ， tā huò zhě bìng bù yǎ ， zhè bù guò shì yī zhǒng qiú qǐ de fǎ zǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "我不布施，我无布施心，我但居布施者之上，给与烦腻，疑心，憎恶。",
+        "pinyin": "wǒ bù bù shī ， wǒ wú bù shī xīn ， wǒ dàn jū bù shī zhě zhī shàng ， gěi yǔ fán nì ， yí xīn ， zēng è 。",
+        "english": ""
+      },
+      {
+        "chinese": "我顺着倒败的泥墙走路，断砖叠在墙缺口，墙里面没有什么。",
+        "pinyin": "wǒ shùn zhuó dǎo bài de ní qiáng zǒu lù ， duàn zhuān dié zài qiáng quē kǒu ， qiáng lǐ miàn méi yǒu shén me 。",
+        "english": ""
+      },
+      {
+        "chinese": "微风起来，送秋寒穿透我的夹衣；",
+        "pinyin": "wēi fēng qǐ lái ， sòng qiū hán chuān tòu wǒ de jiá yī ；",
+        "english": ""
+      },
+      {
+        "chinese": "四面都是灰土。",
+        "pinyin": "sì miàn dōu shì huī tǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "我想着我将用什么方法求乞：发声，用怎样声调？",
+        "pinyin": "wǒ xiǎng zhuó wǒ jiāng yòng shén me fāng fǎ qiú qǐ ： fā shēng ， yòng zěn yàng shēng diào ？",
+        "english": ""
+      },
+      {
+        "chinese": "装哑，用怎样手势？",
+        "pinyin": "zhuāng yǎ ， yòng zěn yàng shǒu shì ？",
+        "english": ""
+      },
+      {
+        "chinese": "另外有几个人各自走路。",
+        "pinyin": "lìng wài yǒu jǐ gè rén gè zì zǒu lù 。",
+        "english": ""
+      },
+      {
+        "chinese": "我将得不到布施，得不到布施心；",
+        "pinyin": "wǒ jiāng dé bù dào bù shī ， dé bù dào bù shī xīn ；",
+        "english": ""
+      },
+      {
+        "chinese": "我将得到自居于布施之上者的烦腻，疑心，憎恶。",
+        "pinyin": "wǒ jiāng dé dào zì jū yú bù shī zhī shàng zhě de fán nì ， yí xīn ， zēng è 。",
+        "english": ""
+      },
+      {
+        "chinese": "我将用无所为和沉默求乞！",
+        "pinyin": "wǒ jiāng yòng wú suǒ wèi hé chén mò qiú qǐ ！",
+        "english": ""
+      },
+      {
+        "chinese": "我至少将得到虚无。",
+        "pinyin": "wǒ zhì shǎo jiāng dé dào xū wú 。",
+        "english": ""
+      },
+      {
+        "chinese": "微风起来，四面都是灰土。",
+        "pinyin": "wēi fēng qǐ lái ， sì miàn dōu shì huī tǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "另外有几个人各自走路。",
+        "pinyin": "lìng wài yǒu jǐ gè rén gè zì zǒu lù 。",
+        "english": ""
+      },
+      {
+        "chinese": "灰土，灰土，……",
+        "pinyin": "huī tǔ ， huī tǔ ， … …",
+        "english": ""
+      },
+      {
+        "chinese": "灰土……",
+        "pinyin": "huī tǔ … …",
+        "english": ""
+      },
+      {
+        "chinese": "一九二四年九月二十四日。",
+        "pinyin": "yī jiǔ èr sì nián jiǔ yuè èr shí sì rì 。",
+        "english": ""
+      },
+      {
+        "chinese": "我的失恋",
+        "pinyin": "wǒ de shī liàn",
+        "english": ""
+      },
+      {
+        "chinese": "——拟古的新打油诗——",
+        "pinyin": "— — nǐ gǔ de xīn dǎ yóu shī — —",
+        "english": ""
+      },
+      {
+        "chinese": "我的所爱在山腰；",
+        "pinyin": "wǒ de suǒ ài zài shān yāo ；",
+        "english": ""
+      },
+      {
+        "chinese": "想去寻她山太高，",
+        "pinyin": "xiǎng qù xún tā shān tài gāo ，",
+        "english": ""
+      },
+      {
+        "chinese": "低头无法泪沾袍。",
+        "pinyin": "dī tóu wú fǎ lèi zhān páo 。",
+        "english": ""
+      },
+      {
+        "chinese": "爱人赠我百蝶巾；",
+        "pinyin": "ài rén zèng wǒ bǎi dié jīn ；",
+        "english": ""
+      },
+      {
+        "chinese": "回她什么：猫头鹰。",
+        "pinyin": "huí tā shén me ： māo tóu yīng 。",
+        "english": ""
+      },
+      {
+        "chinese": "从此翻脸不理我，",
+        "pinyin": "cóng cǐ fān liǎn bù lǐ wǒ ，",
+        "english": ""
+      },
+      {
+        "chinese": "不知何故兮使我心惊。",
+        "pinyin": "bù zhī hé gù xī shǐ wǒ xīn jīng 。",
+        "english": ""
+      },
+      {
+        "chinese": "我的所爱在闹市；",
+        "pinyin": "wǒ de suǒ ài zài nào shì ；",
+        "english": ""
+      },
+      {
+        "chinese": "想去寻她人拥挤，",
+        "pinyin": "xiǎng qù xún tā rén yōng jǐ ，",
+        "english": ""
+      },
+      {
+        "chinese": "仰头无法泪沾耳。",
+        "pinyin": "yǎng tóu wú fǎ lèi zhān ěr 。",
+        "english": ""
+      },
+      {
+        "chinese": "爱人赠我双燕图；",
+        "pinyin": "ài rén zèng wǒ shuāng yàn tú ；",
+        "english": ""
+      },
+      {
+        "chinese": "回她什么：冰糖壶庐。",
+        "pinyin": "huí tā shén me ： bīng táng hú lú 。",
+        "english": ""
+      },
+      {
+        "chinese": "从此翻脸不理我，",
+        "pinyin": "cóng cǐ fān liǎn bù lǐ wǒ ，",
+        "english": ""
+      },
+      {
+        "chinese": "不知何故兮使我胡涂。",
+        "pinyin": "bù zhī hé gù xī shǐ wǒ hú tú 。",
+        "english": ""
+      },
+      {
+        "chinese": "我的所爱在河滨；",
+        "pinyin": "wǒ de suǒ ài zài hé bīn ；",
+        "english": ""
+      },
+      {
+        "chinese": "想去寻她河水深，",
+        "pinyin": "xiǎng qù xún tā hé shuǐ shēn ，",
+        "english": ""
+      },
+      {
+        "chinese": "歪头无法泪沾襟。",
+        "pinyin": "wāi tóu wú fǎ lèi zhān jīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "爱人赠我金表索；",
+        "pinyin": "ài rén zèng wǒ jīn biǎo suǒ ；",
+        "english": ""
+      },
+      {
+        "chinese": "回她什么：发汗药。",
+        "pinyin": "huí tā shén me ： fā hàn yào 。",
+        "english": ""
+      },
+      {
+        "chinese": "从此翻脸不理我，",
+        "pinyin": "cóng cǐ fān liǎn bù lǐ wǒ ，",
+        "english": ""
+      },
+      {
+        "chinese": "不知何故兮使我神经衰弱。",
+        "pinyin": "bù zhī hé gù xī shǐ wǒ shén jīng shuāi ruò 。",
+        "english": ""
+      },
+      {
+        "chinese": "我的所爱在豪家；",
+        "pinyin": "wǒ de suǒ ài zài háo jiā ；",
+        "english": ""
+      },
+      {
+        "chinese": "想去寻她兮没有汽车，",
+        "pinyin": "xiǎng qù xún tā xī méi yǒu qì chē ，",
+        "english": ""
+      },
+      {
+        "chinese": "摇头无法泪如麻。",
+        "pinyin": "yáo tóu wú fǎ lèi rú má 。",
+        "english": ""
+      }
+    ]
+  },
+  {
+    "id": "wild_grass_luxun_ch_3",
+    "bookId": "wild_grass_luxun",
+    "chapterIndex": 3,
+    "title": "第3章",
+    "titleEn": "Chapter 3",
+    "sentences": [
+      {
+        "chinese": "爱人赠我玫瑰花；",
+        "pinyin": "ài rén zèng wǒ méi guī huā ；",
+        "english": ""
+      },
+      {
+        "chinese": "回她什么：赤练蛇。",
+        "pinyin": "huí tā shén me ： chì liàn shé 。",
+        "english": ""
+      },
+      {
+        "chinese": "从此翻脸不理我，",
+        "pinyin": "cóng cǐ fān liǎn bù lǐ wǒ ，",
+        "english": ""
+      },
+      {
+        "chinese": "不知何故兮——由她去罢。",
+        "pinyin": "bù zhī hé gù xī — — yóu tā qù bà 。",
+        "english": ""
+      },
+      {
+        "chinese": "一九二四年十月三日。",
+        "pinyin": "yī jiǔ èr sì nián shí yuè sān rì 。",
+        "english": ""
+      },
+      {
+        "chinese": "野草复仇",
+        "pinyin": "yě cǎo fù chóu",
+        "english": ""
+      },
+      {
+        "chinese": "人的皮肤之厚，大概不到半分，鲜红的热血，就循着那后面，在比密密层层地爬在墙壁上的槐蚕更其密的血管里奔流，散出温热。",
+        "pinyin": "rén de pí fū zhī hòu ， dà gài bù dào bàn fēn ， xiān hóng de rè xiě ， jiù xún zhuó nà hòu miàn ， zài bǐ mì mì céng céng dì pá zài qiáng bì shàng de huái cán gèng qí mì de xiě guǎn lǐ bēn liú ， sàn chū wēn rè 。",
+        "english": ""
+      },
+      {
+        "chinese": "于是各以这温热互相蛊惑，煽动，牵引，拼命希求偎倚，接吻，拥抱，以得生命的沉酣的大欢喜。",
+        "pinyin": "yú shì gè yǐ zhè wēn rè hù xiāng gǔ huò ， shān dòng ， qiān yǐn ， pīn mìng xī qiú wēi yǐ ， jiē wěn ， yōng bào ， yǐ dé shēng mìng de chén hān de dà huān xǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "但倘若用一柄尖锐的利刃，只一击，穿透这桃红色的，菲薄的皮肤，将见那鲜红的热血激箭似的以所有温热直接灌溉杀戮者；",
+        "pinyin": "dàn tǎng ruò yòng yī bǐng jiān ruì de lì rèn ， zhǐ yī jī ， chuān tòu zhè táo hóng sè de ， fēi báo de pí fū ， jiāng jiàn nà xiān hóng de rè xiě jī jiàn shì de yǐ suǒ yǒu wēn rè zhí jiē guàn gài shā lù zhě ；",
+        "english": ""
+      },
+      {
+        "chinese": "其次，则给以冰冷的呼吸，示以淡白的嘴唇，使之人性茫然，得到生命的飞扬的极致的大欢喜；",
+        "pinyin": "qí cì ， zé gěi yǐ bīng lěng de hū xī ， shì yǐ dàn bái de zuǐ chún ， shǐ zhī rén xìng máng rán ， dé dào shēng mìng de fēi yáng de jí zhì de dà huān xǐ ；",
+        "english": ""
+      },
+      {
+        "chinese": "而其自身，则永远沉浸于生命的飞扬的极致的大欢喜中。",
+        "pinyin": "ér qí zì shēn ， zé yǒng yuǎn chén jìn yú shēng mìng de fēi yáng de jí zhì de dà huān xǐ zhōng 。",
+        "english": ""
+      },
+      {
+        "chinese": "这样，所以，有他们俩裸着全身，捏着利刃，对立于广漠的旷野之上。",
+        "pinyin": "zhè yàng ， suǒ yǐ ， yǒu tā mēn liǎ luǒ zhuó quán shēn ， niē zhuó lì rèn ， duì lì yú guǎng mò de kuàng yě zhī shàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "他们俩将要拥抱，将要杀戮……",
+        "pinyin": "tā mēn liǎ jiāng yào yōng bào ， jiāng yào shā lù … …",
+        "english": ""
+      },
+      {
+        "chinese": "路人们从四面奔来，密密层层地，如槐蚕爬上墙壁，如马蚁要扛鲞头。",
+        "pinyin": "lù rén mén cóng sì miàn bēn lái ， mì mì céng céng dì ， rú huái cán pá shàng qiáng bì ， rú mǎ yǐ yào káng xiǎng tóu 。",
+        "english": ""
+      },
+      {
+        "chinese": "衣服都漂亮，手倒空的。",
+        "pinyin": "yī fú dōu piāo liàng ， shǒu dǎo kōng de 。",
+        "english": ""
+      },
+      {
+        "chinese": "然而从四面奔来，而且拼命地伸长脖子，要赏鉴这拥抱或杀戮。",
+        "pinyin": "rán ér cóng sì miàn bēn lái ， ér qiě pīn mìng dì shēn cháng bó zǐ ， yào shǎng jiàn zhè yōng bào huò shā lù 。",
+        "english": ""
+      },
+      {
+        "chinese": "他们已经预觉着事后自己的舌上的汗或血的鲜味。",
+        "pinyin": "tā mén yǐ jīng yù jué zhuó shì hòu zì jǐ de shé shàng de hàn huò xiě de xiān wèi 。",
+        "english": ""
+      },
+      {
+        "chinese": "然而他们俩对立着，在广漠的旷野之上，裸着全身，捏着利刃，然而也不拥抱，也不杀戮，而且也不见有拥抱或杀戮之意。",
+        "pinyin": "rán ér tā mēn liǎ duì lì zhuó ， zài guǎng mò de kuàng yě zhī shàng ， luǒ zhuó quán shēn ， niē zhuó lì rèn ， rán ér yě bù yōng bào ， yě bù shā lù ， ér qiě yě bù jiàn yǒu yōng bào huò shā lù zhī yì 。",
+        "english": ""
+      },
+      {
+        "chinese": "他们俩这样地至于永久，圆活的身体，已将干枯，然而毫不见有拥抱或杀戮之意。",
+        "pinyin": "tā mēn liǎ zhè yàng dì zhì yú yǒng jiǔ ， yuán huó de shēn tǐ ， yǐ jiāng gān kū ， rán ér háo bù jiàn yǒu yōng bào huò shā lù zhī yì 。",
+        "english": ""
+      },
+      {
+        "chinese": "路人们于是乎无聊；",
+        "pinyin": "lù rén mén yú shì hū wú liáo ；",
+        "english": ""
+      },
+      {
+        "chinese": "觉得有无聊钻进他们的毛孔，觉得有无聊从他们自己的心中由毛孔钻出，爬满旷野，又钻进别人的毛孔中。",
+        "pinyin": "jué dé yǒu wú liáo zuān jìn tā mén de máo kǒng ， jué dé yǒu wú liáo cóng tā mén zì jǐ de xīn zhōng yóu máo kǒng zuān chū ， pá mǎn kuàng yě ， yòu zuān jìn bié rén de máo kǒng zhōng 。",
+        "english": ""
+      },
+      {
+        "chinese": "他们于是觉得喉舌干燥，脖子也乏了；",
+        "pinyin": "tā mén yú shì jué dé hóu shé gān zào ， bó zǐ yě fá le ；",
+        "english": ""
+      },
+      {
+        "chinese": "终至于面面相觑，慢慢走散；",
+        "pinyin": "zhōng zhì yú miàn miàn xiāng qù ， màn màn zǒu sàn ；",
+        "english": ""
+      },
+      {
+        "chinese": "甚而至于居然觉得干枯到失了生趣。",
+        "pinyin": "shèn ér zhì yú jū rán jué dé gān kū dào shī le shēng qù 。",
+        "english": ""
+      },
+      {
+        "chinese": "于是只剩下广漠的旷野，而他们俩在其间裸着全身，捏着利刃，干枯地立着；",
+        "pinyin": "yú shì zhǐ shèng xià guǎng mò de kuàng yě ， ér tā mēn liǎ zài qí jiān luǒ zhuó quán shēn ， niē zhuó lì rèn ， gān kū dì lì zhuó ；",
+        "english": ""
+      },
+      {
+        "chinese": "以死人似的眼光，赏鉴这路人们的干枯，无血的大戮，而永远沉浸于生命的飞扬的极致的大欢喜中。",
+        "pinyin": "yǐ sǐ rén shì de yǎn guāng ， shǎng jiàn zhè lù rén mén de gān kū ， wú xiě de dà lù ， ér yǒng yuǎn chén jìn yú shēng mìng de fēi yáng de jí zhì de dà huān xǐ zhōng 。",
+        "english": ""
+      },
+      {
+        "chinese": "一九二四年十二月二十日。",
+        "pinyin": "yī jiǔ èr sì nián shí èr yuè èr shí rì 。",
+        "english": ""
+      },
+      {
+        "chinese": "复仇〔其二〕",
+        "pinyin": "fù chóu 〔 qí èr 〕",
+        "english": ""
+      },
+      {
+        "chinese": "因为他自以为神之子，以色列的王，所以去钉十字架。",
+        "pinyin": "yīn wèi tā zì yǐ wèi shén zhī zǐ ， yǐ sè liè de wáng ， suǒ yǐ qù dīng shí zì jià 。",
+        "english": ""
+      },
+      {
+        "chinese": "兵丁们给他穿上紫袍，戴上荆冠，庆贺他；",
+        "pinyin": "bīng dīng mén gěi tā chuān shàng zǐ páo ， dài shàng jīng guàn ， qìng hè tā ；",
+        "english": ""
+      },
+      {
+        "chinese": "又拿一根苇子打他的头，吐他，屈膝拜他；",
+        "pinyin": "yòu ná yī gēn wěi zǐ dǎ tā de tóu ， tǔ tā ， qū xī bài tā ；",
+        "english": ""
+      },
+      {
+        "chinese": "戏弄完了，就给他脱了紫袍，仍穿他自己的衣服。",
+        "pinyin": "xì nòng wán le ， jiù gěi tā tuō le zǐ páo ， réng chuān tā zì jǐ de yī fú 。",
+        "english": ""
+      },
+      {
+        "chinese": "看哪，他们打他的头，吐他，拜他……",
+        "pinyin": "kàn nǎ ， tā mén dǎ tā de tóu ， tǔ tā ， bài tā … …",
+        "english": ""
+      },
+      {
+        "chinese": "他不肯喝那用没药调和的酒，要分明地玩味以色列人怎样对付他们的神之子，而且较永久地悲悯他们的前途，然而仇恨他们的现在。",
+        "pinyin": "tā bù kěn hē nà yòng méi yào tiáo hé de jiǔ ， yào fēn míng dì wán wèi yǐ sè liè rén zěn yàng duì fù tā mén de shén zhī zǐ ， ér qiě jiào yǒng jiǔ dì bēi mǐn tā mén de qián tú ， rán ér chóu hèn tā mén de xiàn zài 。",
+        "english": ""
+      },
+      {
+        "chinese": "四面都是敌意，可悲悯的，可咒诅的。",
+        "pinyin": "sì miàn dōu shì dí yì ， kě bēi mǐn de ， kě zhòu zǔ de 。",
+        "english": ""
+      },
+      {
+        "chinese": "丁丁地想，钉尖从掌心穿透，他们要钉杀他们的神之子了；",
+        "pinyin": "dīng dīng dì xiǎng ， dīng jiān cóng zhǎng xīn chuān tòu ， tā mén yào dīng shā tā mén de shén zhī zǐ le ；",
+        "english": ""
+      },
+      {
+        "chinese": "可悯的人们呵，使他痛得柔和。",
+        "pinyin": "kě mǐn de rén mén hē ， shǐ tā tòng dé róu hé 。",
+        "english": ""
+      },
+      {
+        "chinese": "丁丁地想，钉尖从脚背穿透，钉碎了一块骨，痛楚也透到心髓中，然而他们钉杀着他们的神之子了，可咒诅的人们呵，这使他痛得舒服。",
+        "pinyin": "dīng dīng dì xiǎng ， dīng jiān cóng jiǎo bēi chuān tòu ， dīng suì le yī kuài gǔ ， tòng chǔ yě tòu dào xīn suǐ zhōng ， rán ér tā mén dīng shā zhuó tā mén de shén zhī zǐ le ， kě zhòu zǔ de rén mén hē ， zhè shǐ tā tòng dé shū fú 。",
+        "english": ""
+      },
+      {
+        "chinese": "十字架竖起来了；",
+        "pinyin": "shí zì jià shù qǐ lái le ；",
+        "english": ""
+      },
+      {
+        "chinese": "他悬在虚空中。",
+        "pinyin": "tā xuán zài xū kōng zhōng 。",
+        "english": ""
+      },
+      {
+        "chinese": "他没有喝那用没药调和的酒，要分明地玩味以色列人怎样对付他们的神之子，而且较永久地悲悯他们的前途，然而仇恨他们的现在。",
+        "pinyin": "tā méi yǒu hē nà yòng méi yào tiáo hé de jiǔ ， yào fēn míng dì wán wèi yǐ sè liè rén zěn yàng duì fù tā mén de shén zhī zǐ ， ér qiě jiào yǒng jiǔ dì bēi mǐn tā mén de qián tú ， rán ér chóu hèn tā mén de xiàn zài 。",
+        "english": ""
+      },
+      {
+        "chinese": "路人都辱骂他，祭司长和文士也戏弄他，和他同钉的两个强盗也讥诮他。",
+        "pinyin": "lù rén dōu rǔ mà tā ， jì sī cháng hé wén shì yě xì nòng tā ， hé tā tóng dīng de liǎng gè qiáng dào yě jī qiào tā 。",
+        "english": ""
+      },
+      {
+        "chinese": "看哪，和他同钉的……",
+        "pinyin": "kàn nǎ ， hé tā tóng dīng de … …",
+        "english": ""
+      },
+      {
+        "chinese": "四面都是敌意，可悲悯的，可咒诅的。",
+        "pinyin": "sì miàn dōu shì dí yì ， kě bēi mǐn de ， kě zhòu zǔ de 。",
+        "english": ""
+      },
+      {
+        "chinese": "他在手足的痛楚中，玩味着可悯的人们的钉杀神之子的悲哀和可咒诅的人们要钉杀神之子，而神之子就要被钉杀了的欢喜。",
+        "pinyin": "tā zài shǒu zú de tòng chǔ zhōng ， wán wèi zhuó kě mǐn de rén mén de dīng shā shén zhī zǐ de bēi āi hé kě zhòu zǔ de rén mén yào dīng shā shén zhī zǐ ， ér shén zhī zǐ jiù yào bèi dīng shā le de huān xǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "突然间，碎骨的大痛楚透到心髓了，他即沉酣于大欢喜和大悲悯中。",
+        "pinyin": "tū rán jiān ， suì gǔ de dà tòng chǔ tòu dào xīn suǐ le ， tā jí chén hān yú dà huān xǐ hé dà bēi mǐn zhōng 。",
+        "english": ""
+      },
+      {
+        "chinese": "他腹部波动了，悲悯和咒诅的痛楚的波。",
+        "pinyin": "tā fù bù bō dòng le ， bēi mǐn hé zhòu zǔ de tòng chǔ de bō 。",
+        "english": ""
+      },
+      {
+        "chinese": "遍地都黑暗了。",
+        "pinyin": "biàn dì dōu hēi àn le 。",
+        "english": ""
+      },
+      {
+        "chinese": "“以罗伊，以罗伊，拉马撒巴各大尼？",
+        "pinyin": "“ yǐ luó yī ， yǐ luó yī ， lā mǎ sā bā gè dà ní ？",
+        "english": ""
+      },
+      {
+        "chinese": "”〔翻出来，就是：我的上帝，你为甚么离弃我？",
+        "pinyin": "” 〔 fān chū lái ， jiù shì ： wǒ de shàng dì ， nǐ wèi shèn me lí qì wǒ ？",
+        "english": ""
+      },
+      {
+        "chinese": "上帝离弃了他，他终于还是一个“人之子”；",
+        "pinyin": "shàng dì lí qì le tā ， tā zhōng yú hái shì yī gè “ rén zhī zǐ ” ；",
+        "english": ""
+      },
+      {
+        "chinese": "然而以色列人连“人之子”都钉杀了。",
+        "pinyin": "rán ér yǐ sè liè rén lián “ rén zhī zǐ ” dōu dīng shā le 。",
+        "english": ""
+      },
+      {
+        "chinese": "钉杀了“人之子”的人们身上，比钉杀了“神之子”的尤其血污，血腥。",
+        "pinyin": "dīng shā le “ rén zhī zǐ ” de rén mén shēn shàng ， bǐ dīng shā le “ shén zhī zǐ ” de yóu qí xiě wū ， xiě xīng 。",
+        "english": ""
+      },
+      {
+        "chinese": "一九二四年十二月二十日。",
+        "pinyin": "yī jiǔ èr sì nián shí èr yuè èr shí rì 。",
+        "english": ""
+      },
+      {
+        "chinese": "野草希望",
+        "pinyin": "yě cǎo xī wàng",
+        "english": ""
+      },
+      {
+        "chinese": "我的心分外地寂寞。",
+        "pinyin": "wǒ de xīn fēn wài dì jì mò 。",
+        "english": ""
+      },
+      {
+        "chinese": "然而我的心很平安；",
+        "pinyin": "rán ér wǒ de xīn hěn píng ān ；",
+        "english": ""
+      },
+      {
+        "chinese": "没有爱憎，没有哀乐，也没有颜色和声音。",
+        "pinyin": "méi yǒu ài zēng ， méi yǒu āi lè ， yě méi yǒu yán sè hé shēng yīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "我大概老了。",
+        "pinyin": "wǒ dà gài lǎo le 。",
+        "english": ""
+      },
+      {
+        "chinese": "我的头发已经苍白，不是很明白的事么？",
+        "pinyin": "wǒ de tóu fā yǐ jīng cāng bái ， bù shì hěn míng bái de shì me ？",
+        "english": ""
+      },
+      {
+        "chinese": "我的手颤抖着，不是很明白的事么？",
+        "pinyin": "wǒ de shǒu chàn dǒu zhuó ， bù shì hěn míng bái de shì me ？",
+        "english": ""
+      },
+      {
+        "chinese": "那么我的灵魂的手一定也颤抖着，头发也一定苍白了。",
+        "pinyin": "nà me wǒ de líng hún de shǒu yī dìng yě chàn dǒu zhuó ， tóu fā yě yī dìng cāng bái le 。",
+        "english": ""
+      },
+      {
+        "chinese": "然而这是许多年前的事了。",
+        "pinyin": "rán ér zhè shì xǔ duō nián qián de shì le 。",
+        "english": ""
+      },
+      {
+        "chinese": "这以前，我的心也曾充满过血腥的歌声：血和铁，火焰和毒，恢复和报仇。",
+        "pinyin": "zhè yǐ qián ， wǒ de xīn yě céng chōng mǎn guò xiě xīng de gē shēng ： xiě hé tiě ， huǒ yàn hé dú ， huī fù hé bào chóu 。",
+        "english": ""
+      },
+      {
+        "chinese": "而忽然这些都空虚了，但有时故意地填以没奈何的自欺的希望。",
+        "pinyin": "ér hū rán zhè xiē dōu kōng xū le ， dàn yǒu shí gù yì dì tián yǐ méi nài hé de zì qī de xī wàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "希望，希望，用这希望的盾，抗拒那空虚中的暗夜的袭来，虽然盾后面也依然是空虚中的暗夜。",
+        "pinyin": "xī wàng ， xī wàng ， yòng zhè xī wàng de dùn ， kàng jù nà kōng xū zhōng de àn yè de xí lái ， suī rán dùn hòu miàn yě yī rán shì kōng xū zhōng de àn yè 。",
+        "english": ""
+      },
+      {
+        "chinese": "然而就是如此，陆续地耗尽了我的青春。",
+        "pinyin": "rán ér jiù shì rú cǐ ， lù xù dì hào jìn le wǒ de qīng chūn 。",
+        "english": ""
+      },
+      {
+        "chinese": "我早先岂不知我的青春已经逝去？",
+        "pinyin": "wǒ zǎo xiān qǐ bù zhī wǒ de qīng chūn yǐ jīng shì qù ？",
+        "english": ""
+      },
+      {
+        "chinese": "但以为身外的青春固在：星，月光，僵坠的蝴蝶，暗中的花，猫头鹰的不祥之言，杜鹃的啼血，笑的渺茫，爱的翔舞。",
+        "pinyin": "dàn yǐ wèi shēn wài de qīng chūn gù zài ： xīng ， yuè guāng ， jiāng zhuì de hú dié ， àn zhōng de huā ， māo tóu yīng de bù xiáng zhī yán ， dù juān de tí xiě ， xiào de miǎo máng ， ài de xiáng wǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "……虽然是悲凉漂渺的青春罢，然而究竟是青春。",
+        "pinyin": "… … suī rán shì bēi liáng piāo miǎo de qīng chūn bà ， rán ér jiū jìng shì qīng chūn 。",
+        "english": ""
+      },
+      {
+        "chinese": "然而现在何以如此寂寞？",
+        "pinyin": "rán ér xiàn zài hé yǐ rú cǐ jì mò ？",
+        "english": ""
+      },
+      {
+        "chinese": "难道连身外的青春也都逝去，世上的青年也多衰老了么？",
+        "pinyin": "nán dào lián shēn wài de qīng chūn yě dōu shì qù ， shì shàng de qīng nián yě duō shuāi lǎo le me ？",
+        "english": ""
+      },
+      {
+        "chinese": "我只得由我来肉薄这空虚中的暗夜了。",
+        "pinyin": "wǒ zhǐ dé yóu wǒ lái ròu báo zhè kōng xū zhōng de àn yè le 。",
+        "english": ""
+      },
+      {
+        "chinese": "我放下了希望之盾，我听到petofi sandor(1823-49)的“希望”之歌：",
+        "pinyin": "wǒ fàng xià le xī wàng zhī dùn ， wǒ tīng dào p e t o f i   s a n d o r ( 1 8 2 3 - 4 9 ) de “ xī wàng ” zhī gē ：",
+        "english": ""
+      },
+      {
+        "chinese": "希望是什么？",
+        "pinyin": "xī wàng shì shén me ？",
+        "english": ""
+      },
+      {
+        "chinese": "是娼妓：",
+        "pinyin": "shì chāng jì ：",
+        "english": ""
+      },
+      {
+        "chinese": "她对谁都蛊惑，将一切都献给；",
+        "pinyin": "tā duì shuí dōu gǔ huò ， jiāng yī qiē dōu xiàn gěi ；",
+        "english": ""
+      },
+      {
+        "chinese": "待你牺牲了极多的宝贝——",
+        "pinyin": "dài nǐ xī shēng le jí duō de bǎo bèi — —",
+        "english": ""
+      },
+      {
+        "chinese": "你的青春——她就抛弃你。",
+        "pinyin": "nǐ de qīng chūn — — tā jiù pāo qì nǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "这伟大的抒情诗人，匈牙利的爱国者，为了祖国而死在可萨克兵的矛尖上，已经七十五年了。",
+        "pinyin": "zhè wěi dà de shū qíng shī rén ， xiōng yá lì de ài guó zhě ， wèi le zǔ guó ér sǐ zài kě sà kè bīng de máo jiān shàng ， yǐ jīng qī shí wǔ nián le 。",
+        "english": ""
+      }
+    ]
+  },
+  {
+    "id": "wild_grass_luxun_ch_4",
+    "bookId": "wild_grass_luxun",
+    "chapterIndex": 4,
+    "title": "第4章",
+    "titleEn": "Chapter 4",
+    "sentences": [
+      {
+        "chinese": "悲哉死也，然而更可悲的是他的诗至今没有死。",
+        "pinyin": "bēi zāi sǐ yě ， rán ér gèng kě bēi de shì tā de shī zhì jīn méi yǒu sǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "但是，可惨的人生！",
+        "pinyin": "dàn shì ， kě cǎn de rén shēng ！",
+        "english": ""
+      },
+      {
+        "chinese": "桀骜英勇如petofi，也终于对了暗夜止步，回顾茫茫的东方了。",
+        "pinyin": "jié áo yīng yǒng rú p e t o f i ， yě zhōng yú duì le àn yè zhǐ bù ， huí gù máng máng de dōng fāng le 。",
+        "english": ""
+      },
+      {
+        "chinese": "他说：",
+        "pinyin": "tā shuō ：",
+        "english": ""
+      },
+      {
+        "chinese": "绝望之为虚妄，正与希望相同。",
+        "pinyin": "jué wàng zhī wèi xū wàng ， zhèng yǔ xī wàng xiāng tóng 。",
+        "english": ""
+      },
+      {
+        "chinese": "倘使我还得偷生在不明不暗的这“虚妄”中，我就还要寻求那逝去的悲凉漂渺的青春，但不妨在我的身外。",
+        "pinyin": "tǎng shǐ wǒ hái dé tōu shēng zài bù míng bù àn de zhè “ xū wàng ” zhōng ， wǒ jiù hái yào xún qiú nà shì qù de bēi liáng piāo miǎo de qīng chūn ， dàn bù fáng zài wǒ de shēn wài 。",
+        "english": ""
+      },
+      {
+        "chinese": "因为身外的青春倘一消灭，我身中的迟暮也即凋零了。",
+        "pinyin": "yīn wèi shēn wài de qīng chūn tǎng yī xiāo miè ， wǒ shēn zhōng de chí mù yě jí diāo líng le 。",
+        "english": ""
+      },
+      {
+        "chinese": "然而现在没有星和月光，没有僵坠的蝴蝶以至笑的渺茫，爱的翔舞。",
+        "pinyin": "rán ér xiàn zài méi yǒu xīng hé yuè guāng ， méi yǒu jiāng zhuì de hú dié yǐ zhì xiào de miǎo máng ， ài de xiáng wǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "然而青年们很平安。",
+        "pinyin": "rán ér qīng nián mén hěn píng ān 。",
+        "english": ""
+      },
+      {
+        "chinese": "我只得由我来肉薄这空虚中的暗夜了，纵使寻不到身外的青春，也总得自己来一掷我身中的迟暮。",
+        "pinyin": "wǒ zhǐ dé yóu wǒ lái ròu báo zhè kōng xū zhōng de àn yè le ， zòng shǐ xún bù dào shēn wài de qīng chūn ， yě zǒng dé zì jǐ lái yī zhì wǒ shēn zhōng de chí mù 。",
+        "english": ""
+      },
+      {
+        "chinese": "但暗夜又在那里呢？",
+        "pinyin": "dàn àn yè yòu zài nà lǐ ne ？",
+        "english": ""
+      },
+      {
+        "chinese": "现在没有星，没有月光以至没有笑的渺茫和爱的翔舞；",
+        "pinyin": "xiàn zài méi yǒu xīng ， méi yǒu yuè guāng yǐ zhì méi yǒu xiào de miǎo máng hé ài de xiáng wǔ ；",
+        "english": ""
+      },
+      {
+        "chinese": "青年们很平安，而我的面前又竟至于并且没有真的暗夜。",
+        "pinyin": "qīng nián mén hěn píng ān ， ér wǒ de miàn qián yòu jìng zhì yú bìng qiě méi yǒu zhēn de àn yè 。",
+        "english": ""
+      },
+      {
+        "chinese": "绝望之为虚妄，正与希望相同！",
+        "pinyin": "jué wàng zhī wèi xū wàng ， zhèng yǔ xī wàng xiāng tóng ！",
+        "english": ""
+      },
+      {
+        "chinese": "一九二五年一月一日",
+        "pinyin": "yī jiǔ èr wǔ nián yī yuè yī rì",
+        "english": ""
+      },
+      {
+        "chinese": "野草雪",
+        "pinyin": "yě cǎo xuě",
+        "english": ""
+      },
+      {
+        "chinese": "暖国的雨，向来没有变过冰冷的坚硬的灿烂的雪花。",
+        "pinyin": "nuǎn guó de yǔ ， xiàng lái méi yǒu biàn guò bīng lěng de jiān yìng de càn làn de xuě huā 。",
+        "english": ""
+      },
+      {
+        "chinese": "博识的人们觉得他单调，他自己也以为不幸否耶？",
+        "pinyin": "bó shí de rén mén jué dé tā dān tiáo ， tā zì jǐ yě yǐ wèi bù xìng fǒu yé ？",
+        "english": ""
+      },
+      {
+        "chinese": "江南的雪，可是滋润美艳之至了；",
+        "pinyin": "jiāng nán de xuě ， kě shì zī rùn měi yàn zhī zhì le ；",
+        "english": ""
+      },
+      {
+        "chinese": "那是还在隐约着的青春的消息，是极壮健的处子的皮肤。",
+        "pinyin": "nà shì hái zài yǐn yuē zhuó de qīng chūn de xiāo xī ， shì jí zhuàng jiàn de chù zǐ de pí fū 。",
+        "english": ""
+      },
+      {
+        "chinese": "雪野中有血红的宝珠山茶，白中隐青的单瓣梅花，深黄的磬口的蜡梅花；",
+        "pinyin": "xuě yě zhōng yǒu xiě hóng de bǎo zhū shān chá ， bái zhōng yǐn qīng de dān bàn méi huā ， shēn huáng de qìng kǒu de là méi huā ；",
+        "english": ""
+      },
+      {
+        "chinese": "雪下面还有冷绿的杂草。",
+        "pinyin": "xuě xià miàn hái yǒu lěng lǜ de zá cǎo 。",
+        "english": ""
+      },
+      {
+        "chinese": "蝴蝶确乎没有；",
+        "pinyin": "hú dié què hū méi yǒu ；",
+        "english": ""
+      },
+      {
+        "chinese": "蜜蜂是否来采山茶花和梅花的蜜，我可记不真切了。",
+        "pinyin": "mì fēng shì fǒu lái cǎi shān chá huā hé méi huā de mì ， wǒ kě jì bù zhēn qiē le 。",
+        "english": ""
+      },
+      {
+        "chinese": "但我的眼前仿佛看见冬花开在雪野中，有许多蜜蜂们忙碌地飞着，也听得他们嗡嗡地闹着。",
+        "pinyin": "dàn wǒ de yǎn qián fǎng fó kàn jiàn dōng huā kāi zài xuě yě zhōng ， yǒu xǔ duō mì fēng mén máng lù dì fēi zhuó ， yě tīng dé tā mén wēng wēng dì nào zhuó 。",
+        "english": ""
+      },
+      {
+        "chinese": "孩子们呵着冻得通红，象紫芽姜一般的小手，七八个一齐来塑雪罗汉。",
+        "pinyin": "hái zǐ mén hē zhuó dòng dé tōng hóng ， xiàng zǐ yá jiāng yī bān de xiǎo shǒu ， qī bā gè yī qí lái sù xuě luó hàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "因为不成功，谁的父亲也来帮忙了。",
+        "pinyin": "yīn wèi bù chéng gōng ， shuí de fù qīn yě lái bāng máng le 。",
+        "english": ""
+      },
+      {
+        "chinese": "罗汉就塑得比孩子们高得多，虽然不过是上小下大的一堆，终于分不清是壶卢还是罗汉，然而很洁白，很明艳，以自身的滋润相粘结，整个地闪闪地生光。",
+        "pinyin": "luó hàn jiù sù dé bǐ hái zǐ mén gāo dé duō ， suī rán bù guò shì shàng xiǎo xià dà de yī duī ， zhōng yú fēn bù qīng shì hú lú hái shì luó hàn ， rán ér hěn jié bái ， hěn míng yàn ， yǐ zì shēn de zī rùn xiāng nián jié ， zhěng gè dì shǎn shǎn dì shēng guāng 。",
+        "english": ""
+      },
+      {
+        "chinese": "孩子们用龙眼核给他做眼珠，又从谁的母亲的脂粉奁中偷得胭脂来涂在嘴唇上。",
+        "pinyin": "hái zǐ mén yòng lóng yǎn hé gěi tā zuò yǎn zhū ， yòu cóng shuí de mǔ qīn de zhī fěn lián zhōng tōu dé yān zhī lái tú zài zuǐ chún shàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "这回确是一个大阿罗汉了。",
+        "pinyin": "zhè huí què shì yī gè dà ā luó hàn le 。",
+        "english": ""
+      },
+      {
+        "chinese": "他也就目光灼灼地嘴唇通红地坐在雪地里。",
+        "pinyin": "tā yě jiù mù guāng zhuó zhuó dì zuǐ chún tōng hóng dì zuò zài xuě dì lǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "第二天还有几个孩子来访问他；",
+        "pinyin": "dì èr tiān hái yǒu jǐ gè hái zǐ lái fǎng wèn tā ；",
+        "english": ""
+      },
+      {
+        "chinese": "对了他拍手，点头，嘻笑。",
+        "pinyin": "duì le tā pāi shǒu ， diǎn tóu ， xī xiào 。",
+        "english": ""
+      },
+      {
+        "chinese": "但他终于独自坐着了。",
+        "pinyin": "dàn tā zhōng yú dú zì zuò zhuó le 。",
+        "english": ""
+      },
+      {
+        "chinese": "晴天又来消释他的皮肤，寒夜又使他结一层冰，化作不透明的水晶模样，连续的晴天又使他成为不知道算什么，而嘴上的胭脂也褪尽了。",
+        "pinyin": "qíng tiān yòu lái xiāo shì tā de pí fū ， hán yè yòu shǐ tā jié yī céng bīng ， huà zuò bù tòu míng de shuǐ jīng mú yàng ， lián xù de qíng tiān yòu shǐ tā chéng wéi bù zhī dào suàn shén me ， ér zuǐ shàng de yān zhī yě tuì jìn le 。",
+        "english": ""
+      },
+      {
+        "chinese": "但是，朔方的雪花在纷飞之后，却永远如粉，如沙，他们决不粘连，撒在屋上，地上，枯草上，就是这样。",
+        "pinyin": "dàn shì ， shuò fāng de xuě huā zài fēn fēi zhī hòu ， què yǒng yuǎn rú fěn ， rú shā ， tā mén jué bù nián lián ， sā zài wū shàng ， dì shàng ， kū cǎo shàng ， jiù shì zhè yàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "屋上的雪是早已就有消化了的，因为屋里居人的火的温热。",
+        "pinyin": "wū shàng de xuě shì zǎo yǐ jiù yǒu xiāo huà le de ， yīn wèi wū lǐ jū rén de huǒ de wēn rè 。",
+        "english": ""
+      },
+      {
+        "chinese": "别的，在晴天之下，旋风忽来，便蓬勃地奋飞，在日光中灿灿地生光，如包藏火焰的大雾，旋转而且升腾，弥漫太空，使太空旋转而且升腾地闪烁。",
+        "pinyin": "bié de ， zài qíng tiān zhī xià ， xuán fēng hū lái ， biàn péng bó dì fèn fēi ， zài rì guāng zhōng càn càn dì shēng guāng ， rú bāo cáng huǒ yàn de dà wù ， xuán zhuǎn ér qiě shēng téng ， mí màn tài kōng ， shǐ tài kōng xuán zhuǎn ér qiě shēng téng dì shǎn shuò 。",
+        "english": ""
+      },
+      {
+        "chinese": "在无边的旷野上，在凛冽的天宇下，闪闪地旋转升腾着的是雨的精魂……",
+        "pinyin": "zài wú biān de kuàng yě shàng ， zài lǐn liè de tiān yǔ xià ， shǎn shǎn dì xuán zhuǎn shēng téng zhuó de shì yǔ de jīng hún … …",
+        "english": ""
+      },
+      {
+        "chinese": "是的，那是孤独的雪，是死掉的雨，是雨的精魂。",
+        "pinyin": "shì de ， nà shì gū dú de xuě ， shì sǐ diào de yǔ ， shì yǔ de jīng hún 。",
+        "english": ""
+      },
+      {
+        "chinese": "一九二五年一月十八日",
+        "pinyin": "yī jiǔ èr wǔ nián yī yuè shí bā rì",
+        "english": ""
+      },
+      {
+        "chinese": "野草风筝",
+        "pinyin": "yě cǎo fēng zhēng",
+        "english": ""
+      },
+      {
+        "chinese": "北京的冬季，地上还有积雪，灰黑色的秃树枝丫叉于晴朗的天空中，而远处有一二风筝浮动，在我是一种惊异和悲哀。",
+        "pinyin": "běi jīng de dōng jì ， dì shàng hái yǒu jī xuě ， huī hēi sè de tū shù zhī yā chā yú qíng lǎng de tiān kōng zhōng ， ér yuǎn chù yǒu yī èr fēng zhēng fú dòng ， zài wǒ shì yī zhǒng jīng yì hé bēi āi 。",
+        "english": ""
+      },
+      {
+        "chinese": "故乡的风筝时节，是春二月，倘听到沙沙的风轮声，仰头便能看见一个淡墨色的蟹风筝或嫩蓝色的蜈蚣风筝。",
+        "pinyin": "gù xiāng de fēng zhēng shí jié ， shì chūn èr yuè ， tǎng tīng dào shā shā de fēng lún shēng ， yǎng tóu biàn néng kàn jiàn yī gè dàn mò sè de xiè fēng zhēng huò nèn lán sè de wú gōng fēng zhēng 。",
+        "english": ""
+      },
+      {
+        "chinese": "还有寂寞的瓦片风筝，没有风轮，又放得很低，伶仃地显出憔悴可怜的模样。",
+        "pinyin": "hái yǒu jì mò de wǎ piàn fēng zhēng ， méi yǒu fēng lún ， yòu fàng dé hěn dī ， líng dīng dì xiǎn chū qiáo cuì kě lián de mú yàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "但此时地上的杨柳已经发芽，早的山桃也多吐蕾，和孩子们的天上的点缀相照应，打成一片春日的温和。",
+        "pinyin": "dàn cǐ shí dì shàng de yáng liǔ yǐ jīng fā yá ， zǎo de shān táo yě duō tǔ lěi ， hé hái zǐ mén de tiān shàng de diǎn zhuì xiāng zhào yīng ， dǎ chéng yī piàn chūn rì de wēn hé 。",
+        "english": ""
+      },
+      {
+        "chinese": "我现在在哪里呢？",
+        "pinyin": "wǒ xiàn zài zài nǎ lǐ ne ？",
+        "english": ""
+      },
+      {
+        "chinese": "四面都还是严冬的肃杀，而久经诀别的故乡的久经逝去的春天，却就在这天空中荡漾了。",
+        "pinyin": "sì miàn dōu hái shì yán dōng de sù shā ， ér jiǔ jīng jué bié de gù xiāng de jiǔ jīng shì qù de chūn tiān ， què jiù zài zhè tiān kōng zhōng dàng yàng le 。",
+        "english": ""
+      },
+      {
+        "chinese": "但我是向来不爱放风筝的，不但不爱，并且嫌恶它，因为我以为这是没出息孩子所做的玩艺。",
+        "pinyin": "dàn wǒ shì xiàng lái bù ài fàng fēng zhēng de ， bù dàn bù ài ， bìng qiě xián è tā ， yīn wèi wǒ yǐ wèi zhè shì méi chū xī hái zǐ suǒ zuò de wán yì 。",
+        "english": ""
+      },
+      {
+        "chinese": "和我相反的是我的小兄弟，他那时大概十岁内外罢，多病，瘦得不堪，然而最喜欢风筝，自己买不起，我又不许放，他只得张着小嘴，呆看着空中出神，有时竟至于小半日。",
+        "pinyin": "hé wǒ xiāng fǎn de shì wǒ de xiǎo xiōng dì ， tā nà shí dà gài shí suì nèi wài bà ， duō bìng ， shòu dé bù kān ， rán ér zuì xǐ huān fēng zhēng ， zì jǐ mǎi bù qǐ ， wǒ yòu bù xǔ fàng ， tā zhǐ dé zhāng zhuó xiǎo zuǐ ， dāi kàn zhuó kōng zhōng chū shén ， yǒu shí jìng zhì yú xiǎo bàn rì 。",
+        "english": ""
+      },
+      {
+        "chinese": "远处的蟹风筝突然落下来了，他惊呼；",
+        "pinyin": "yuǎn chù de xiè fēng zhēng tū rán luò xià lái le ， tā jīng hū ；",
+        "english": ""
+      },
+      {
+        "chinese": "两个瓦片风筝的缠绕解开了，他高兴得跳跃。",
+        "pinyin": "liǎng gè wǎ piàn fēng zhēng de chán rào jiě kāi le ， tā gāo xìng dé tiào yuè 。",
+        "english": ""
+      },
+      {
+        "chinese": "他的这些，在我看来都是笑柄，可鄙的。",
+        "pinyin": "tā de zhè xiē ， zài wǒ kàn lái dōu shì xiào bǐng ， kě bǐ de 。",
+        "english": ""
+      },
+      {
+        "chinese": "有一天，我忽然想起，似乎多日不很看见他了，但记得曾见他在后园拾枯竹。",
+        "pinyin": "yǒu yī tiān ， wǒ hū rán xiǎng qǐ ， sì hū duō rì bù hěn kàn jiàn tā le ， dàn jì dé céng jiàn tā zài hòu yuán shí kū zhú 。",
+        "english": ""
+      },
+      {
+        "chinese": "我恍然大悟似的，便跑向少有人去的一间堆积杂物的小屋去，推开门，果然就在尘封的什物堆中发现了他。",
+        "pinyin": "wǒ huǎng rán dà wù shì de ， biàn pǎo xiàng shǎo yǒu rén qù de yī jiān duī jī zá wù de xiǎo wū qù ， tuī kāi mén ， guǒ rán jiù zài chén fēng de shí wù duī zhōng fā xiàn le tā 。",
+        "english": ""
+      },
+      {
+        "chinese": "他向着大方凳，坐在小凳上；",
+        "pinyin": "tā xiàng zhuó dà fāng dèng ， zuò zài xiǎo dèng shàng ；",
+        "english": ""
+      },
+      {
+        "chinese": "便很惊惶地站了起来，失了色瑟缩着。",
+        "pinyin": "biàn hěn jīng huáng dì zhàn le qǐ lái ， shī le sè sè suō zhuó 。",
+        "english": ""
+      },
+      {
+        "chinese": "大方凳旁靠着一个蝴蝶风筝的竹骨，还没有糊上纸，凳上是一对做眼睛用的小风轮，正用红纸条装饰着，将要完工了。",
+        "pinyin": "dà fāng dèng páng kào zhuó yī gè hú dié fēng zhēng de zhú gǔ ， hái méi yǒu hú shàng zhǐ ， dèng shàng shì yī duì zuò yǎn jīng yòng de xiǎo fēng lún ， zhèng yòng hóng zhǐ tiáo zhuāng shì zhuó ， jiāng yào wán gōng le 。",
+        "english": ""
+      },
+      {
+        "chinese": "我在破获秘密的满足中，又很愤怒他的瞒了我的眼睛，这样苦心孤诣地来偷做没出息孩子的玩艺。",
+        "pinyin": "wǒ zài pò huò mì mì de mǎn zú zhōng ， yòu hěn fèn nù tā de mán le wǒ de yǎn jīng ， zhè yàng kǔ xīn gū yì dì lái tōu zuò méi chū xī hái zǐ de wán yì 。",
+        "english": ""
+      },
+      {
+        "chinese": "我即刻伸手折断了蝴蝶的一支翅骨，又将风轮掷在地下，踏扁了。",
+        "pinyin": "wǒ jí kè shēn shǒu zhé duàn le hú dié de yī zhī chì gǔ ， yòu jiāng fēng lún zhì zài dì xià ， tà biǎn le 。",
+        "english": ""
+      },
+      {
+        "chinese": "论长幼，论力气，他是都敌不过我的，我当然得到完全的胜利，于是傲然走出，留他绝望地站在小屋里。",
+        "pinyin": "lùn cháng yòu ， lùn lì qì ， tā shì dōu dí bù guò wǒ de ， wǒ dāng rán dé dào wán quán de shèng lì ， yú shì ào rán zǒu chū ， liú tā jué wàng dì zhàn zài xiǎo wū lǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "后来他怎样，我不知道，也没有留心。",
+        "pinyin": "hòu lái tā zěn yàng ， wǒ bù zhī dào ， yě méi yǒu liú xīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "然而我的惩罚终于轮到了，在我们离别得很久之后，我已经是中年。",
+        "pinyin": "rán ér wǒ de chéng fá zhōng yú lún dào le ， zài wǒ mén lí bié dé hěn jiǔ zhī hòu ， wǒ yǐ jīng shì zhōng nián 。",
+        "english": ""
+      },
+      {
+        "chinese": "我不幸偶而看到了一本外国的讲论儿童的书，才知道游戏是儿童最正当的行为，玩具是儿童的天使。",
+        "pinyin": "wǒ bù xìng ǒu ér kàn dào le yī běn wài guó de jiǎng lùn ér tóng de shū ， cái zhī dào yóu xì shì ér tóng zuì zhèng dāng de xíng wèi ， wán jù shì ér tóng de tiān shǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "于是二十年来毫不忆及的幼小时候对于精神的虐杀的这一幕，忽地在眼前展开，而我的心也仿佛同时变了铅块，很重很重地坠下去了。",
+        "pinyin": "yú shì èr shí nián lái háo bù yì jí de yòu xiǎo shí hòu duì yú jīng shén de nüè shā de zhè yī mù ， hū dì zài yǎn qián zhǎn kāi ， ér wǒ de xīn yě fǎng fó tóng shí biàn le qiān kuài ， hěn zhòng hěn zhòng dì zhuì xià qù le 。",
+        "english": ""
+      },
+      {
+        "chinese": "但心又不竟坠下去而至于断绝，它只是很重很重地坠着，坠着。",
+        "pinyin": "dàn xīn yòu bù jìng zhuì xià qù ér zhì yú duàn jué ， tā zhǐ shì hěn zhòng hěn zhòng dì zhuì zhuó ， zhuì zhuó 。",
+        "english": ""
+      },
+      {
+        "chinese": "我也知道补过的方法的：送他风筝，赞成他放，劝他放，我和他一同放。",
+        "pinyin": "wǒ yě zhī dào bǔ guò de fāng fǎ de ： sòng tā fēng zhēng ， zàn chéng tā fàng ， quàn tā fàng ， wǒ hé tā yī tóng fàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "我们嚷着，跑着，笑着——然而他其时已经和我一样，早已有了胡子了。",
+        "pinyin": "wǒ mén rǎng zhuó ， pǎo zhuó ， xiào zhuó — — rán ér tā qí shí yǐ jīng hé wǒ yī yàng ， zǎo yǐ yǒu le hú zǐ le 。",
+        "english": ""
+      },
+      {
+        "chinese": "我也知道还有一个补过的方法的：去讨他的宽恕，等他说，“我可是毫不怪你呵。",
+        "pinyin": "wǒ yě zhī dào hái yǒu yī gè bǔ guò de fāng fǎ de ： qù tǎo tā de kuān shù ， děng tā shuō ， “ wǒ kě shì háo bù guài nǐ hē 。",
+        "english": ""
+      },
+      {
+        "chinese": "”那么，我的心一定就轻松了，这确是一个可行的方法。",
+        "pinyin": "” nà me ， wǒ de xīn yī dìng jiù qīng sōng le ， zhè què shì yī gè kě xíng de fāng fǎ 。",
+        "english": ""
+      },
+      {
+        "chinese": "有一回，我们会面的时候，是脸上都已添刻了许多“生”的辛苦的条纹，而我的心很沉重。",
+        "pinyin": "yǒu yī huí ， wǒ mén huì miàn de shí hòu ， shì liǎn shàng dōu yǐ tiān kè le xǔ duō “ shēng ” de xīn kǔ de tiáo wén ， ér wǒ de xīn hěn chén zhòng 。",
+        "english": ""
+      },
+      {
+        "chinese": "我们渐渐谈起儿时的旧事来，我便叙述到这一节，自说少年时代的糊涂。",
+        "pinyin": "wǒ mén jiàn jiàn tán qǐ ér shí de jiù shì lái ， wǒ biàn xù shù dào zhè yī jié ， zì shuō shǎo nián shí dài de hú tú 。",
+        "english": ""
+      },
+      {
+        "chinese": "“我可是毫不怪你呵。",
+        "pinyin": "“ wǒ kě shì háo bù guài nǐ hē 。",
+        "english": ""
+      },
+      {
+        "chinese": "”我想，他要说了，我即刻便受了宽恕，我的心从此也宽松了罢。",
+        "pinyin": "” wǒ xiǎng ， tā yào shuō le ， wǒ jí kè biàn shòu le kuān shù ， wǒ de xīn cóng cǐ yě kuān sōng le bà 。",
+        "english": ""
+      },
+      {
+        "chinese": "“有过这样的事么？",
+        "pinyin": "“ yǒu guò zhè yàng de shì me ？",
+        "english": ""
+      },
+      {
+        "chinese": "”他惊异地笑着说，就象旁听着别人的故事一样。",
+        "pinyin": "” tā jīng yì dì xiào zhuó shuō ， jiù xiàng páng tīng zhuó bié rén de gù shì yī yàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "他什么也记不得了。",
+        "pinyin": "tā shén me yě jì bù dé le 。",
+        "english": ""
+      },
+      {
+        "chinese": "全然忘却，毫无怨恨，又有什么宽恕可言呢？",
+        "pinyin": "quán rán wàng què ， háo wú yuàn hèn ， yòu yǒu shén me kuān shù kě yán ne ？",
+        "english": ""
+      },
+      {
+        "chinese": "无怨的恕，说谎罢了。",
+        "pinyin": "wú yuàn de shù ， shuō huǎng bà le 。",
+        "english": ""
+      },
+      {
+        "chinese": "我还能希求什么呢？",
+        "pinyin": "wǒ hái néng xī qiú shén me ne ？",
+        "english": ""
+      }
+    ]
+  },
+  {
+    "id": "wild_grass_luxun_ch_5",
+    "bookId": "wild_grass_luxun",
+    "chapterIndex": 5,
+    "title": "第5章",
+    "titleEn": "Chapter 5",
+    "sentences": [
+      {
+        "chinese": "我的心只得沉重着。",
+        "pinyin": "wǒ de xīn zhǐ dé chén zhòng zhuó 。",
+        "english": ""
+      },
+      {
+        "chinese": "现在，故乡的春天又在这异地的空中了，既给我久经逝去的儿时的回忆，而一并也带着无可把握的悲哀。",
+        "pinyin": "xiàn zài ， gù xiāng de chūn tiān yòu zài zhè yì dì de kōng zhōng le ， jì gěi wǒ jiǔ jīng shì qù de ér shí de huí yì ， ér yī bìng yě dài zhuó wú kě bǎ wò de bēi āi 。",
+        "english": ""
+      },
+      {
+        "chinese": "我倒不如躲到肃杀的严冬中去罢，——但是，四面又明明是严冬，正给我非常的寒威和冷气。",
+        "pinyin": "wǒ dǎo bù rú duǒ dào sù shā de yán dōng zhōng qù bà ， — — dàn shì ， sì miàn yòu míng míng shì yán dōng ， zhèng gěi wǒ fēi cháng de hán wēi hé lěng qì 。",
+        "english": ""
+      },
+      {
+        "chinese": "一九二五年一月二十四日",
+        "pinyin": "yī jiǔ èr wǔ nián yī yuè èr shí sì rì",
+        "english": ""
+      },
+      {
+        "chinese": "好的故事",
+        "pinyin": "hǎo de gù shì",
+        "english": ""
+      },
+      {
+        "chinese": "灯火渐渐地缩小了，在预告石油的已经不多；",
+        "pinyin": "dēng huǒ jiàn jiàn dì suō xiǎo le ， zài yù gào shí yóu de yǐ jīng bù duō ；",
+        "english": ""
+      },
+      {
+        "chinese": "石油又不是老牌的，早熏得灯罩很昏暗，鞭爆的繁响在四近，烟草的烟雾在身边：是昏沉的夜。",
+        "pinyin": "shí yóu yòu bù shì lǎo pái de ， zǎo xūn dé dēng zhào hěn hūn àn ， biān bào de fán xiǎng zài sì jìn ， yān cǎo de yān wù zài shēn biān ： shì hūn chén de yè 。",
+        "english": ""
+      },
+      {
+        "chinese": "我闭了眼睛，向后一仰，靠在椅背上；",
+        "pinyin": "wǒ bì le yǎn jīng ， xiàng hòu yī yǎng ， kào zài yǐ bēi shàng ；",
+        "english": ""
+      },
+      {
+        "chinese": "捏着《初学记》的手搁在膝踝上。",
+        "pinyin": "niē zhuó 《 chū xué jì 》 de shǒu gē zài xī huái shàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "我在蒙胧中，看见一个好的故事。",
+        "pinyin": "wǒ zài mēng lóng zhōng ， kàn jiàn yī gè hǎo de gù shì 。",
+        "english": ""
+      },
+      {
+        "chinese": "这故事很美丽，幽雅，有趣。",
+        "pinyin": "zhè gù shì hěn měi lì ， yōu yǎ ， yǒu qù 。",
+        "english": ""
+      },
+      {
+        "chinese": "许多美的人和美的事，错综起来象一天云锦，而且万颗奔星似的飞动着，同时又展开去，以至于无穷。",
+        "pinyin": "xǔ duō měi de rén hé měi de shì ， cuò zōng qǐ lái xiàng yī tiān yún jǐn ， ér qiě wàn kē bēn xīng shì de fēi dòng zhuó ， tóng shí yòu zhǎn kāi qù ， yǐ zhì yú wú qióng 。",
+        "english": ""
+      },
+      {
+        "chinese": "我仿佛记得曾坐小船经过山阴道，两岸边的乌桕，新禾，野花，鸡，狗，丛树和枯树，茅屋，塔，伽蓝，农夫和村妇，村女，晒着的衣裳，和尚，蓑笠，天，云，竹，……都倒影在澄碧的小河中，随着每一打桨，各各夹带了闪烁的日光，并水里的萍藻游鱼，一同荡漾。",
+        "pinyin": "wǒ fǎng fó jì dé céng zuò xiǎo chuán jīng guò shān yīn dào ， liǎng àn biān de wū jiù ， xīn hé ， yě huā ， jī ， gǒu ， cóng shù hé kū shù ， máo wū ， tǎ ， jiā lán ， nóng fū hé cūn fù ， cūn nǚ ， shài zhuó de yī cháng ， hé shàng ， suō lì ， tiān ， yún ， zhú ， … … dōu dǎo yǐng zài chéng bì de xiǎo hé zhōng ， suí zhuó měi yī dǎ jiǎng ， gè gè jiā dài le shǎn shuò de rì guāng ， bìng shuǐ lǐ de píng zǎo yóu yú ， yī tóng dàng yàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "诸影诸物：无不解散，而且摇动，扩大，互相融和；",
+        "pinyin": "zhū yǐng zhū wù ： wú bù jiě sàn ， ér qiě yáo dòng ， kuò dà ， hù xiāng róng hé ；",
+        "english": ""
+      },
+      {
+        "chinese": "刚一融和，却又退缩，复近于原形。",
+        "pinyin": "gāng yī róng hé ， què yòu tuì suō ， fù jìn yú yuán xíng 。",
+        "english": ""
+      },
+      {
+        "chinese": "边缘都参差如夏云头，镶着日光，发出水银色焰。",
+        "pinyin": "biān yuán dōu cēn cī rú xià yún tóu ， xiāng zhuó rì guāng ， fā chū shuǐ yín sè yàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "凡是我所经过的河，都是如此。",
+        "pinyin": "fán shì wǒ suǒ jīng guò de hé ， dōu shì rú cǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "现在我所见的故事也如此。",
+        "pinyin": "xiàn zài wǒ suǒ jiàn de gù shì yě rú cǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "水中的青天的底子，一切事物统在上面交错，织成一篇，永是生动，永是展开，我看不见这一篇的结束。",
+        "pinyin": "shuǐ zhōng de qīng tiān de dǐ zǐ ， yī qiē shì wù tǒng zài shàng miàn jiāo cuò ， zhī chéng yī piān ， yǒng shì shēng dòng ， yǒng shì zhǎn kāi ， wǒ kàn bù jiàn zhè yī piān de jié shù 。",
+        "english": ""
+      },
+      {
+        "chinese": "河边枯柳树下的几株瘦削的一丈红，该是村女种的罢。",
+        "pinyin": "hé biān kū liǔ shù xià de jǐ zhū shòu xuē de yī zhàng hóng ， gāi shì cūn nǚ zhǒng de bà 。",
+        "english": ""
+      },
+      {
+        "chinese": "大红花和斑红花，都在水里面浮动，忽而碎散，拉长了，缕缕的胭脂水，然而没有晕。",
+        "pinyin": "dà hóng huā hé bān hóng huā ， dōu zài shuǐ lǐ miàn fú dòng ， hū ér suì sàn ， lā cháng le ， lǚ lǚ de yān zhī shuǐ ， rán ér méi yǒu yūn 。",
+        "english": ""
+      },
+      {
+        "chinese": "茅屋，狗，塔，村女，云，……也都浮动着。",
+        "pinyin": "máo wū ， gǒu ， tǎ ， cūn nǚ ， yún ， … … yě dōu fú dòng zhuó 。",
+        "english": ""
+      },
+      {
+        "chinese": "大红花一朵朵全被拉长了，这时是泼剌奔迸的红锦带。",
+        "pinyin": "dà hóng huā yī duǒ duǒ quán bèi lā cháng le ， zhè shí shì pō là bēn bèng de hóng jǐn dài 。",
+        "english": ""
+      },
+      {
+        "chinese": "带织入狗中，狗织入白云中，白云织入村女中……在一瞬间，他们又退缩了。",
+        "pinyin": "dài zhī rù gǒu zhōng ， gǒu zhī rù bái yún zhōng ， bái yún zhī rù cūn nǚ zhōng … … zài yī shùn jiān ， tā mén yòu tuì suō le 。",
+        "english": ""
+      },
+      {
+        "chinese": "但斑红花影也已碎散，伸长，就要织进塔、村女、狗、茅屋、云里去了。",
+        "pinyin": "dàn bān hóng huā yǐng yě yǐ suì sàn ， shēn cháng ， jiù yào zhī jìn tǎ 、 cūn nǚ 、 gǒu 、 máo wū 、 yún lǐ qù le 。",
+        "english": ""
+      },
+      {
+        "chinese": "现在我所见的故事清楚起来了，美丽，幽雅，有趣，而且分明。",
+        "pinyin": "xiàn zài wǒ suǒ jiàn de gù shì qīng chǔ qǐ lái le ， měi lì ， yōu yǎ ， yǒu qù ， ér qiě fēn míng 。",
+        "english": ""
+      },
+      {
+        "chinese": "青天上面，有无数美的人和美的事，我一一看见，一一知道。",
+        "pinyin": "qīng tiān shàng miàn ， yǒu wú shù měi de rén hé měi de shì ， wǒ yī yī kàn jiàn ， yī yī zhī dào 。",
+        "english": ""
+      },
+      {
+        "chinese": "我就要凝视他们……",
+        "pinyin": "wǒ jiù yào níng shì tā mén … …",
+        "english": ""
+      },
+      {
+        "chinese": "我正要凝视他们时，骤然一惊，睁开眼，云锦也已皱蹙，凌乱，仿佛有谁掷一块大石下河水中，水波陡然起立，将整篇的影子撕成片片了。",
+        "pinyin": "wǒ zhèng yào níng shì tā mén shí ， zhòu rán yī jīng ， zhēng kāi yǎn ， yún jǐn yě yǐ zhòu cù ， líng luàn ， fǎng fó yǒu shuí zhì yī kuài dà shí xià hé shuǐ zhōng ， shuǐ bō dǒu rán qǐ lì ， jiāng zhěng piān de yǐng zǐ sī chéng piàn piàn le 。",
+        "english": ""
+      },
+      {
+        "chinese": "我无意识地赶忙捏住几乎坠地的《初学记》，眼前还剩着几点虹霓色的碎影。",
+        "pinyin": "wǒ wú yì shí dì gǎn máng niē zhù jǐ hū zhuì dì de 《 chū xué jì 》 ， yǎn qián hái shèng zhuó jǐ diǎn hóng ní sè de suì yǐng 。",
+        "english": ""
+      },
+      {
+        "chinese": "我真爱这一篇好的故事，趁碎影还在，我要追回他，完成他，留下他。",
+        "pinyin": "wǒ zhēn ài zhè yī piān hǎo de gù shì ， chèn suì yǐng hái zài ， wǒ yào zhuī huí tā ， wán chéng tā ， liú xià tā 。",
+        "english": ""
+      },
+      {
+        "chinese": "我抛了书，欠身伸手去取，——何尝有一丝碎影，只见昏暗的灯光，我不在小船里了。",
+        "pinyin": "wǒ pāo le shū ， qiàn shēn shēn shǒu qù qǔ ， — — hé cháng yǒu yī sī suì yǐng ， zhǐ jiàn hūn àn de dēng guāng ， wǒ bù zài xiǎo chuán lǐ le 。",
+        "english": ""
+      },
+      {
+        "chinese": "但我总记得见过这一篇好的故事，在昏沉的夜……",
+        "pinyin": "dàn wǒ zǒng jì dé jiàn guò zhè yī piān hǎo de gù shì ， zài hūn chén de yè … …",
+        "english": ""
+      },
+      {
+        "chinese": "一九二五年二月二十四日",
+        "pinyin": "yī jiǔ èr wǔ nián èr yuè èr shí sì rì",
+        "english": ""
+      },
+      {
+        "chinese": "野草过客",
+        "pinyin": "yě cǎo guò kè",
+        "english": ""
+      },
+      {
+        "chinese": "时：或一日的黄昏",
+        "pinyin": "shí ： huò yī rì de huáng hūn",
+        "english": ""
+      },
+      {
+        "chinese": "地：或一处",
+        "pinyin": "dì ： huò yī chù",
+        "english": ""
+      },
+      {
+        "chinese": "老翁——约七十岁，白头发，黑长袍。",
+        "pinyin": "lǎo wēng — — yuē qī shí suì ， bái tóu fā ， hēi cháng páo 。",
+        "english": ""
+      },
+      {
+        "chinese": "女孩——约十岁，紫发，乌眼珠，白地黑方格长衫。",
+        "pinyin": "nǚ hái — — yuē shí suì ， zǐ fā ， wū yǎn zhū ， bái dì hēi fāng gé cháng shān 。",
+        "english": ""
+      },
+      {
+        "chinese": "过客——约三四十岁，状态困顿倔强，眼光阴沉，黑须，乱发，",
+        "pinyin": "guò kè — — yuē sān sì shí suì ， zhuàng tài kùn dùn jué jiàng ， yǎn guāng yīn chén ， hēi xū ， luàn fā ，",
+        "english": ""
+      },
+      {
+        "chinese": "黑色短衣裤皆破碎，赤足著破鞋，胁下挂一个口袋，支着等身的竹杖。",
+        "pinyin": "hēi sè duǎn yī kù jiē pò suì ， chì zú zhuó pò xié ， xié xià guà yī gè kǒu dài ， zhī zhuó děng shēn de zhú zhàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "东，是几株杂树和瓦砾；",
+        "pinyin": "dōng ， shì jǐ zhū zá shù hé wǎ lì ；",
+        "english": ""
+      },
+      {
+        "chinese": "西，是荒凉破败的丛葬；",
+        "pinyin": "xī ， shì huāng liáng pò bài de cóng zàng ；",
+        "english": ""
+      },
+      {
+        "chinese": "其间有一条似路非路的痕迹。",
+        "pinyin": "qí jiān yǒu yī tiáo sì lù fēi lù de hén jì 。",
+        "english": ""
+      },
+      {
+        "chinese": "一间小土屋向这痕迹开着一扇门；",
+        "pinyin": "yī jiān xiǎo tǔ wū xiàng zhè hén jì kāi zhuó yī shàn mén ；",
+        "english": ""
+      },
+      {
+        "chinese": "门侧有一段枯树根。",
+        "pinyin": "mén cè yǒu yī duàn kū shù gēn 。",
+        "english": ""
+      },
+      {
+        "chinese": "〔女孩正要将坐在树根上的老翁搀起。",
+        "pinyin": "〔 nǚ hái zhèng yào jiāng zuò zài shù gēn shàng de lǎo wēng chān qǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "翁——孩子。",
+        "pinyin": "wēng — — hái zǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "喂，孩子！",
+        "pinyin": "wèi ， hái zǐ ！",
+        "english": ""
+      },
+      {
+        "chinese": "怎么不动了呢？",
+        "pinyin": "zěn me bù dòng le ne ？",
+        "english": ""
+      },
+      {
+        "chinese": "孩——〔向东望着，〕有谁走来了，看一看罢。",
+        "pinyin": "hái — — 〔 xiàng dōng wàng zhuó ， 〕 yǒu shuí zǒu lái le ， kàn yī kàn bà 。",
+        "english": ""
+      },
+      {
+        "chinese": "翁——不用看他。",
+        "pinyin": "wēng — — bù yòng kàn tā 。",
+        "english": ""
+      },
+      {
+        "chinese": "扶我进去罢。",
+        "pinyin": "fú wǒ jìn qù bà 。",
+        "english": ""
+      },
+      {
+        "chinese": "太阳要下去了。",
+        "pinyin": "tài yáng yào xià qù le 。",
+        "english": ""
+      },
+      {
+        "chinese": "孩——我，——看一看。",
+        "pinyin": "hái — — wǒ ， — — kàn yī kàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "翁——唉，你这孩子！",
+        "pinyin": "wēng — — āi ， nǐ zhè hái zǐ ！",
+        "english": ""
+      },
+      {
+        "chinese": "天天看见天，看见土，看见风，还不够好看么？",
+        "pinyin": "tiān tiān kàn jiàn tiān ， kàn jiàn tǔ ， kàn jiàn fēng ， hái bù gòu hǎo kàn me ？",
+        "english": ""
+      },
+      {
+        "chinese": "什么也不比这些好看。",
+        "pinyin": "shén me yě bù bǐ zhè xiē hǎo kàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "你偏是要看谁。",
+        "pinyin": "nǐ piān shì yào kàn shuí 。",
+        "english": ""
+      },
+      {
+        "chinese": "太阳下去时候出现的东西，不会给你什么好处的。",
+        "pinyin": "tài yáng xià qù shí hòu chū xiàn de dōng xī ， bù huì gěi nǐ shén me hǎo chù de 。",
+        "english": ""
+      },
+      {
+        "chinese": "……还是进去罢。",
+        "pinyin": "… … hái shì jìn qù bà 。",
+        "english": ""
+      },
+      {
+        "chinese": "孩——可是，已经近来了。",
+        "pinyin": "hái — — kě shì ， yǐ jīng jìn lái le 。",
+        "english": ""
+      },
+      {
+        "chinese": "阿阿，是一个乞丐。",
+        "pinyin": "ā ā ， shì yī gè qǐ gài 。",
+        "english": ""
+      },
+      {
+        "chinese": "翁——乞丐？",
+        "pinyin": "wēng — — qǐ gài ？",
+        "english": ""
+      },
+      {
+        "chinese": "不见得罢。",
+        "pinyin": "bù jiàn dé bà 。",
+        "english": ""
+      },
+      {
+        "chinese": "〔过客从东面的杂树间跄踉走出，暂时踌躇之后，慢慢地走近老翁去。",
+        "pinyin": "〔 guò kè cóng dōng miàn de zá shù jiān qiāng liáng zǒu chū ， zàn shí chóu chú zhī hòu ， màn màn dì zǒu jìn lǎo wēng qù 。",
+        "english": ""
+      },
+      {
+        "chinese": "客——老丈，你晚上好？",
+        "pinyin": "kè — — lǎo zhàng ， nǐ wǎn shàng hǎo ？",
+        "english": ""
+      },
+      {
+        "chinese": "翁——阿，好！",
+        "pinyin": "wēng — — ā ， hǎo ！",
+        "english": ""
+      },
+      {
+        "chinese": "托福。",
+        "pinyin": "tuō fú 。",
+        "english": ""
+      },
+      {
+        "chinese": "你好？",
+        "pinyin": "nǐ hǎo ？",
+        "english": ""
+      },
+      {
+        "chinese": "客——老丈，我实在冒昧，我想在你那里讨一杯水喝。",
+        "pinyin": "kè — — lǎo zhàng ， wǒ shí zài mào mèi ， wǒ xiǎng zài nǐ nà lǐ tǎo yī bēi shuǐ hē 。",
+        "english": ""
+      },
+      {
+        "chinese": "我走得渴极了。",
+        "pinyin": "wǒ zǒu dé kě jí le 。",
+        "english": ""
+      },
+      {
+        "chinese": "这地方又没有一个池塘，一个水洼。",
+        "pinyin": "zhè dì fāng yòu méi yǒu yī gè chí táng ， yī gè shuǐ wā 。",
+        "english": ""
+      },
+      {
+        "chinese": "翁——唔，可以可以。",
+        "pinyin": "wēng — — wù ， kě yǐ kě yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "你请坐罢。",
+        "pinyin": "nǐ qǐng zuò bà 。",
+        "english": ""
+      },
+      {
+        "chinese": "〔向女孩，〕孩子，你拿水来，杯子要洗干净。",
+        "pinyin": "〔 xiàng nǚ hái ， 〕 hái zǐ ， nǐ ná shuǐ lái ， bēi zǐ yào xǐ gān jìng 。",
+        "english": ""
+      },
+      {
+        "chinese": "〔女孩默默地走进土屋去。",
+        "pinyin": "〔 nǚ hái mò mò dì zǒu jìn tǔ wū qù 。",
+        "english": ""
+      },
+      {
+        "chinese": "翁——客官，你请坐。",
+        "pinyin": "wēng — — kè guān ， nǐ qǐng zuò 。",
+        "english": ""
+      },
+      {
+        "chinese": "你是怎么称呼的。",
+        "pinyin": "nǐ shì zěn me chēng hū de 。",
+        "english": ""
+      },
+      {
+        "chinese": "客——称呼？",
+        "pinyin": "kè — — chēng hū ？",
+        "english": ""
+      }
+    ]
+  },
+  {
+    "id": "wild_grass_luxun_ch_6",
+    "bookId": "wild_grass_luxun",
+    "chapterIndex": 6,
+    "title": "第6章",
+    "titleEn": "Chapter 6",
+    "sentences": [
+      {
+        "chinese": "——我不知道。",
+        "pinyin": "— — wǒ bù zhī dào 。",
+        "english": ""
+      },
+      {
+        "chinese": "从我还能记得的时候起，我就只一个人，我不知道我本来叫什么。",
+        "pinyin": "cóng wǒ hái néng jì dé de shí hòu qǐ ， wǒ jiù zhǐ yī gè rén ， wǒ bù zhī dào wǒ běn lái jiào shén me 。",
+        "english": ""
+      },
+      {
+        "chinese": "我一路走，有时人们也随便称呼我，各式各样，我也记不清楚了，况且相同的称呼也没有听到过第二回。",
+        "pinyin": "wǒ yī lù zǒu ， yǒu shí rén mén yě suí biàn chēng hū wǒ ， gè shì gè yàng ， wǒ yě jì bù qīng chǔ le ， kuàng qiě xiāng tóng de chēng hū yě méi yǒu tīng dào guò dì èr huí 。",
+        "english": ""
+      },
+      {
+        "chinese": "翁——阿阿。",
+        "pinyin": "wēng — — ā ā 。",
+        "english": ""
+      },
+      {
+        "chinese": "那么，你是从哪里来的呢？",
+        "pinyin": "nà me ， nǐ shì cóng nǎ lǐ lái de ne ？",
+        "english": ""
+      },
+      {
+        "chinese": "客——〔略略迟疑，〕我不知道。",
+        "pinyin": "kè — — 〔 lüè lüè chí yí ， 〕 wǒ bù zhī dào 。",
+        "english": ""
+      },
+      {
+        "chinese": "从我还能记得的时候起，我就在这么走。",
+        "pinyin": "cóng wǒ hái néng jì dé de shí hòu qǐ ， wǒ jiù zài zhè me zǒu 。",
+        "english": ""
+      },
+      {
+        "chinese": "翁——对了。",
+        "pinyin": "wēng — — duì le 。",
+        "english": ""
+      },
+      {
+        "chinese": "那么，我可以问你到哪里去么？",
+        "pinyin": "nà me ， wǒ kě yǐ wèn nǐ dào nǎ lǐ qù me ？",
+        "english": ""
+      },
+      {
+        "chinese": "客——自然可以。",
+        "pinyin": "kè — — zì rán kě yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "——但是，我不知道。",
+        "pinyin": "— — dàn shì ， wǒ bù zhī dào 。",
+        "english": ""
+      },
+      {
+        "chinese": "从我还能记得的时候起，我就在这么走，要走到一个地方去，这地方就在前面。",
+        "pinyin": "cóng wǒ hái néng jì dé de shí hòu qǐ ， wǒ jiù zài zhè me zǒu ， yào zǒu dào yī gè dì fāng qù ， zhè dì fāng jiù zài qián miàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "我单记得走了许多路，现在来到这里了。",
+        "pinyin": "wǒ dān jì dé zǒu le xǔ duō lù ， xiàn zài lái dào zhè lǐ le 。",
+        "english": ""
+      },
+      {
+        "chinese": "我接着就要走向那边去，〔西指，〕前面！",
+        "pinyin": "wǒ jiē zhuó jiù yào zǒu xiàng nà biān qù ， 〔 xī zhǐ ， 〕 qián miàn ！",
+        "english": ""
+      },
+      {
+        "chinese": "〔女孩小心地捧出一个木杯来，递去。",
+        "pinyin": "〔 nǚ hái xiǎo xīn dì pěng chū yī gè mù bēi lái ， dì qù 。",
+        "english": ""
+      },
+      {
+        "chinese": "客——〔接杯，〕多谢，姑娘。",
+        "pinyin": "kè — — 〔 jiē bēi ， 〕 duō xiè ， gū niáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "〔将水两口喝尽，还杯，〕多谢，姑娘。",
+        "pinyin": "〔 jiāng shuǐ liǎng kǒu hē jìn ， hái bēi ， 〕 duō xiè ， gū niáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "这真是少有的好意。",
+        "pinyin": "zhè zhēn shì shǎo yǒu de hǎo yì 。",
+        "english": ""
+      },
+      {
+        "chinese": "我真不知道应该怎样感谢！",
+        "pinyin": "wǒ zhēn bù zhī dào yīng gāi zěn yàng gǎn xiè ！",
+        "english": ""
+      },
+      {
+        "chinese": "翁——不要这么感激。",
+        "pinyin": "wēng — — bù yào zhè me gǎn jī 。",
+        "english": ""
+      },
+      {
+        "chinese": "这于你是没有好处的。",
+        "pinyin": "zhè yú nǐ shì méi yǒu hǎo chù de 。",
+        "english": ""
+      },
+      {
+        "chinese": "客——是的，这于我没有好处。",
+        "pinyin": "kè — — shì de ， zhè yú wǒ méi yǒu hǎo chù 。",
+        "english": ""
+      },
+      {
+        "chinese": "可是我现在很恢复了些力气了。",
+        "pinyin": "kě shì wǒ xiàn zài hěn huī fù le xiē lì qì le 。",
+        "english": ""
+      },
+      {
+        "chinese": "我就要前去。",
+        "pinyin": "wǒ jiù yào qián qù 。",
+        "english": ""
+      },
+      {
+        "chinese": "老丈，你大约是久住在这里的，你可知道前面是怎么一个所在么？",
+        "pinyin": "lǎo zhàng ， nǐ dà yuē shì jiǔ zhù zài zhè lǐ de ， nǐ kě zhī dào qián miàn shì zěn me yī gè suǒ zài me ？",
+        "english": ""
+      },
+      {
+        "chinese": "翁——前面？",
+        "pinyin": "wēng — — qián miàn ？",
+        "english": ""
+      },
+      {
+        "chinese": "前面，是坟。",
+        "pinyin": "qián miàn ， shì fén 。",
+        "english": ""
+      },
+      {
+        "chinese": "客——〔诧异地，〕坟？",
+        "pinyin": "kè — — 〔 chà yì dì ， 〕 fén ？",
+        "english": ""
+      },
+      {
+        "chinese": "孩——不，不，不。",
+        "pinyin": "hái — — bù ， bù ， bù 。",
+        "english": ""
+      },
+      {
+        "chinese": "那里有许多许多野百合，野蔷薇，我常常去玩，去看他们的。",
+        "pinyin": "nà lǐ yǒu xǔ duō xǔ duō yě bǎi hé ， yě qiáng wēi ， wǒ cháng cháng qù wán ， qù kàn tā mén de 。",
+        "english": ""
+      },
+      {
+        "chinese": "客——〔西顾，仿佛微笑，〕不错。",
+        "pinyin": "kè — — 〔 xī gù ， fǎng fó wēi xiào ， 〕 bù cuò 。",
+        "english": ""
+      },
+      {
+        "chinese": "那些地方有许多许多野百合，野蔷薇，我也常常去玩过，去看过的。",
+        "pinyin": "nà xiē dì fāng yǒu xǔ duō xǔ duō yě bǎi hé ， yě qiáng wēi ， wǒ yě cháng cháng qù wán guò ， qù kàn guò de 。",
+        "english": ""
+      },
+      {
+        "chinese": "但是，那是坟。",
+        "pinyin": "dàn shì ， nà shì fén 。",
+        "english": ""
+      },
+      {
+        "chinese": "〔向老翁，〕老丈，走完了那坟地之后呢？",
+        "pinyin": "〔 xiàng lǎo wēng ， 〕 lǎo zhàng ， zǒu wán le nà fén dì zhī hòu ne ？",
+        "english": ""
+      },
+      {
+        "chinese": "翁——走完之后？",
+        "pinyin": "wēng — — zǒu wán zhī hòu ？",
+        "english": ""
+      },
+      {
+        "chinese": "那我可不知道。",
+        "pinyin": "nà wǒ kě bù zhī dào 。",
+        "english": ""
+      },
+      {
+        "chinese": "我没有走过。",
+        "pinyin": "wǒ méi yǒu zǒu guò 。",
+        "english": ""
+      },
+      {
+        "chinese": "客——不知道？",
+        "pinyin": "kè — — bù zhī dào ？",
+        "english": ""
+      },
+      {
+        "chinese": "孩——我也不知道。",
+        "pinyin": "hái — — wǒ yě bù zhī dào 。",
+        "english": ""
+      },
+      {
+        "chinese": "翁——我单知道南边；",
+        "pinyin": "wēng — — wǒ dān zhī dào nán biān ；",
+        "english": ""
+      },
+      {
+        "chinese": "北边；",
+        "pinyin": "běi biān ；",
+        "english": ""
+      },
+      {
+        "chinese": "东边，你的来路。",
+        "pinyin": "dōng biān ， nǐ de lái lù 。",
+        "english": ""
+      },
+      {
+        "chinese": "那是我最熟悉的地方，也许倒是于你们最好的地方。",
+        "pinyin": "nà shì wǒ zuì shú xī de dì fāng ， yě xǔ dǎo shì yú nǐ mén zuì hǎo de dì fāng 。",
+        "english": ""
+      },
+      {
+        "chinese": "你莫怪我多嘴，据我看来，你已经这么劳顿了，还不如回转去，因为你前去也料不定可能走完。",
+        "pinyin": "nǐ mò guài wǒ duō zuǐ ， jù wǒ kàn lái ， nǐ yǐ jīng zhè me láo dùn le ， hái bù rú huí zhuǎn qù ， yīn wèi nǐ qián qù yě liào bù dìng kě néng zǒu wán 。",
+        "english": ""
+      },
+      {
+        "chinese": "客——料不定可能走完？",
+        "pinyin": "kè — — liào bù dìng kě néng zǒu wán ？",
+        "english": ""
+      },
+      {
+        "chinese": "……〔沉思，忽然惊起〕那不行！",
+        "pinyin": "… … 〔 chén sī ， hū rán jīng qǐ 〕 nà bù xíng ！",
+        "english": ""
+      },
+      {
+        "chinese": "我只得走。",
+        "pinyin": "wǒ zhǐ dé zǒu 。",
+        "english": ""
+      },
+      {
+        "chinese": "回到那里去，就没一处没有名目，没一处没有地主，没一处没有驱逐和牢笼，没一处没有皮面的笑容，没一处没有眶外的眼泪。",
+        "pinyin": "huí dào nà lǐ qù ， jiù méi yī chù méi yǒu míng mù ， méi yī chù méi yǒu dì zhǔ ， méi yī chù méi yǒu qū zhú hé láo lóng ， méi yī chù méi yǒu pí miàn de xiào róng ， méi yī chù méi yǒu kuàng wài de yǎn lèi 。",
+        "english": ""
+      },
+      {
+        "chinese": "我憎恶他们，我不回转去。",
+        "pinyin": "wǒ zēng è tā mén ， wǒ bù huí zhuǎn qù 。",
+        "english": ""
+      },
+      {
+        "chinese": "翁——那也不然。",
+        "pinyin": "wēng — — nà yě bù rán 。",
+        "english": ""
+      },
+      {
+        "chinese": "你也会遇见心底的眼泪，为你的悲哀。",
+        "pinyin": "nǐ yě huì yù jiàn xīn dǐ de yǎn lèi ， wèi nǐ de bēi āi 。",
+        "english": ""
+      },
+      {
+        "chinese": "客——不。",
+        "pinyin": "kè — — bù 。",
+        "english": ""
+      },
+      {
+        "chinese": "我不愿看见他们心底的眼泪，不要他们为我的悲哀。",
+        "pinyin": "wǒ bù yuàn kàn jiàn tā mén xīn dǐ de yǎn lèi ， bù yào tā mén wèi wǒ de bēi āi 。",
+        "english": ""
+      },
+      {
+        "chinese": "翁——那么，你，〔摇头，〕你只得走了。",
+        "pinyin": "wēng — — nà me ， nǐ ， 〔 yáo tóu ， 〕 nǐ zhǐ dé zǒu le 。",
+        "english": ""
+      },
+      {
+        "chinese": "客——是的，我只得走了。",
+        "pinyin": "kè — — shì de ， wǒ zhǐ dé zǒu le 。",
+        "english": ""
+      },
+      {
+        "chinese": "况且还有声音常在前面催促我，叫唤我，使我息不下。",
+        "pinyin": "kuàng qiě hái yǒu shēng yīn cháng zài qián miàn cuī cù wǒ ， jiào huàn wǒ ， shǐ wǒ xī bù xià 。",
+        "english": ""
+      },
+      {
+        "chinese": "可恨的是我的脚早经走破了，有许多伤，流了许多血。",
+        "pinyin": "kě hèn de shì wǒ de jiǎo zǎo jīng zǒu pò le ， yǒu xǔ duō shāng ， liú le xǔ duō xiě 。",
+        "english": ""
+      },
+      {
+        "chinese": "〔举起一足给老人看，〕因此，我的血不够了；",
+        "pinyin": "〔 jǔ qǐ yī zú gěi lǎo rén kàn ， 〕 yīn cǐ ， wǒ de xiě bù gòu le ；",
+        "english": ""
+      },
+      {
+        "chinese": "我要喝些血。",
+        "pinyin": "wǒ yào hē xiē xiě 。",
+        "english": ""
+      },
+      {
+        "chinese": "但血在哪里呢？",
+        "pinyin": "dàn xiě zài nǎ lǐ ne ？",
+        "english": ""
+      },
+      {
+        "chinese": "可是我也不愿意喝无论谁的血。",
+        "pinyin": "kě shì wǒ yě bù yuàn yì hē wú lùn shuí de xiě 。",
+        "english": ""
+      },
+      {
+        "chinese": "我只得喝些水，来补充我的血。",
+        "pinyin": "wǒ zhǐ dé hē xiē shuǐ ， lái bǔ chōng wǒ de xiě 。",
+        "english": ""
+      },
+      {
+        "chinese": "一路上总有水，我倒也并不感到什么不足。",
+        "pinyin": "yī lù shàng zǒng yǒu shuǐ ， wǒ dǎo yě bìng bù gǎn dào shén me bù zú 。",
+        "english": ""
+      },
+      {
+        "chinese": "只是我的力气太稀薄了，血里面太多了水的缘故罢。",
+        "pinyin": "zhǐ shì wǒ de lì qì tài xī bó le ， xiě lǐ miàn tài duō le shuǐ de yuán gù bà 。",
+        "english": ""
+      },
+      {
+        "chinese": "今天连一个小水洼也遇不到，也就是少走了路的缘故罢。",
+        "pinyin": "jīn tiān lián yī gè xiǎo shuǐ wā yě yù bù dào ， yě jiù shì shǎo zǒu le lù de yuán gù bà 。",
+        "english": ""
+      },
+      {
+        "chinese": "翁——那也未必。",
+        "pinyin": "wēng — — nà yě wèi bì 。",
+        "english": ""
+      },
+      {
+        "chinese": "太阳下去了，我想，还不如休息一会的好罢，象我似的。",
+        "pinyin": "tài yáng xià qù le ， wǒ xiǎng ， hái bù rú xiū xī yī huì de hǎo bà ， xiàng wǒ shì de 。",
+        "english": ""
+      },
+      {
+        "chinese": "客——但是，那前面的声音叫我走。",
+        "pinyin": "kè — — dàn shì ， nà qián miàn de shēng yīn jiào wǒ zǒu 。",
+        "english": ""
+      },
+      {
+        "chinese": "翁——我知道。",
+        "pinyin": "wēng — — wǒ zhī dào 。",
+        "english": ""
+      },
+      {
+        "chinese": "客——你知道？",
+        "pinyin": "kè — — nǐ zhī dào ？",
+        "english": ""
+      },
+      {
+        "chinese": "你知道那声音么？",
+        "pinyin": "nǐ zhī dào nà shēng yīn me ？",
+        "english": ""
+      },
+      {
+        "chinese": "翁——是的。",
+        "pinyin": "wēng — — shì de 。",
+        "english": ""
+      },
+      {
+        "chinese": "他似乎曾经也叫过我。",
+        "pinyin": "tā sì hū céng jīng yě jiào guò wǒ 。",
+        "english": ""
+      },
+      {
+        "chinese": "客——那也就是现在叫我的声音么？",
+        "pinyin": "kè — — nà yě jiù shì xiàn zài jiào wǒ de shēng yīn me ？",
+        "english": ""
+      },
+      {
+        "chinese": "翁——那我可不知道。",
+        "pinyin": "wēng — — nà wǒ kě bù zhī dào 。",
+        "english": ""
+      },
+      {
+        "chinese": "他也就是叫过几声，我不理他，他也就不叫了，我也就记不清楚了。",
+        "pinyin": "tā yě jiù shì jiào guò jǐ shēng ， wǒ bù lǐ tā ， tā yě jiù bù jiào le ， wǒ yě jiù jì bù qīng chǔ le 。",
+        "english": ""
+      },
+      {
+        "chinese": "客——唉唉，不理他……。",
+        "pinyin": "kè — — āi āi ， bù lǐ tā … … 。",
+        "english": ""
+      },
+      {
+        "chinese": "〔沉思，忽然吃惊，倾听着，〕不行！",
+        "pinyin": "〔 chén sī ， hū rán chī jīng ， qīng tīng zhuó ， 〕 bù xíng ！",
+        "english": ""
+      },
+      {
+        "chinese": "我还是走的好。",
+        "pinyin": "wǒ hái shì zǒu de hǎo 。",
+        "english": ""
+      },
+      {
+        "chinese": "我息不下。",
+        "pinyin": "wǒ xī bù xià 。",
+        "english": ""
+      }
+    ]
+  },
+  {
+    "id": "wild_grass_luxun_ch_7",
+    "bookId": "wild_grass_luxun",
+    "chapterIndex": 7,
+    "title": "第7章",
+    "titleEn": "Chapter 7",
+    "sentences": [
+      {
+        "chinese": "可恨我的脚早经走破了。",
+        "pinyin": "kě hèn wǒ de jiǎo zǎo jīng zǒu pò le 。",
+        "english": ""
+      },
+      {
+        "chinese": "〔准备走路。",
+        "pinyin": "〔 zhǔn bèi zǒu lù 。",
+        "english": ""
+      },
+      {
+        "chinese": "孩——给你！",
+        "pinyin": "hái — — gěi nǐ ！",
+        "english": ""
+      },
+      {
+        "chinese": "〔递给一片布，〕裹上你的伤去。",
+        "pinyin": "〔 dì gěi yī piàn bù ， 〕 guǒ shàng nǐ de shāng qù 。",
+        "english": ""
+      },
+      {
+        "chinese": "客——多谢，〔接取，〕姑娘。",
+        "pinyin": "kè — — duō xiè ， 〔 jiē qǔ ， 〕 gū niáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "这真是……。",
+        "pinyin": "zhè zhēn shì … … 。",
+        "english": ""
+      },
+      {
+        "chinese": "这真是极少有的好意。",
+        "pinyin": "zhè zhēn shì jí shǎo yǒu de hǎo yì 。",
+        "english": ""
+      },
+      {
+        "chinese": "这能使我可以走更多的路。",
+        "pinyin": "zhè néng shǐ wǒ kě yǐ zǒu gèng duō de lù 。",
+        "english": ""
+      },
+      {
+        "chinese": "〔就断砖坐下，要将布缠在踝上，〕但是，不行！",
+        "pinyin": "〔 jiù duàn zhuān zuò xià ， yào jiāng bù chán zài huái shàng ， 〕 dàn shì ， bù xíng ！",
+        "english": ""
+      },
+      {
+        "chinese": "〔竭力站起，〕",
+        "pinyin": "〔 jié lì zhàn qǐ ， 〕",
+        "english": ""
+      },
+      {
+        "chinese": "姑娘，还了你罢，还是裹不下。",
+        "pinyin": "gū niáng ， hái le nǐ bà ， hái shì guǒ bù xià 。",
+        "english": ""
+      },
+      {
+        "chinese": "况且这太多的好意，我没法感激。",
+        "pinyin": "kuàng qiě zhè tài duō de hǎo yì ， wǒ méi fǎ gǎn jī 。",
+        "english": ""
+      },
+      {
+        "chinese": "翁——你不要这么感激，这于你没有好处。",
+        "pinyin": "wēng — — nǐ bù yào zhè me gǎn jī ， zhè yú nǐ méi yǒu hǎo chù 。",
+        "english": ""
+      },
+      {
+        "chinese": "客——是的，这于我没有什么好处。",
+        "pinyin": "kè — — shì de ， zhè yú wǒ méi yǒu shén me hǎo chù 。",
+        "english": ""
+      },
+      {
+        "chinese": "但在我，这布施是最上的东西了。",
+        "pinyin": "dàn zài wǒ ， zhè bù shī shì zuì shàng de dōng xī le 。",
+        "english": ""
+      },
+      {
+        "chinese": "你看，我全身上可有这样的。",
+        "pinyin": "nǐ kàn ， wǒ quán shēn shàng kě yǒu zhè yàng de 。",
+        "english": ""
+      },
+      {
+        "chinese": "翁——你不要当真就是。",
+        "pinyin": "wēng — — nǐ bù yào dāng zhēn jiù shì 。",
+        "english": ""
+      },
+      {
+        "chinese": "客——是的。",
+        "pinyin": "kè — — shì de 。",
+        "english": ""
+      },
+      {
+        "chinese": "但是我不能。",
+        "pinyin": "dàn shì wǒ bù néng 。",
+        "english": ""
+      },
+      {
+        "chinese": "我怕我会这样：倘使我得到了谁的布施，我就要象兀鹰看见死尸一样，在四近徘徊，祝愿她的灭亡，给我亲自看见；",
+        "pinyin": "wǒ pà wǒ huì zhè yàng ： tǎng shǐ wǒ dé dào le shuí de bù shī ， wǒ jiù yào xiàng wù yīng kàn jiàn sǐ shī yī yàng ， zài sì jìn pái huái ， zhù yuàn tā de miè wáng ， gěi wǒ qīn zì kàn jiàn ；",
+        "english": ""
+      },
+      {
+        "chinese": "或者咒诅她以外的一切全都灭亡，连我自己，因为我就应该得到咒诅。",
+        "pinyin": "huò zhě zhòu zǔ tā yǐ wài de yī qiē quán dōu miè wáng ， lián wǒ zì jǐ ， yīn wèi wǒ jiù yīng gāi dé dào zhòu zǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "但是我还没有这样的力量；",
+        "pinyin": "dàn shì wǒ hái méi yǒu zhè yàng de lì liàng ；",
+        "english": ""
+      },
+      {
+        "chinese": "即使有这力量，我也不愿意她有这样的境遇，因为她们大概总不愿意有这样的境遇。",
+        "pinyin": "jí shǐ yǒu zhè lì liàng ， wǒ yě bù yuàn yì tā yǒu zhè yàng de jìng yù ， yīn wèi tā mén dà gài zǒng bù yuàn yì yǒu zhè yàng de jìng yù 。",
+        "english": ""
+      },
+      {
+        "chinese": "我想，这最稳当。",
+        "pinyin": "wǒ xiǎng ， zhè zuì wěn dāng 。",
+        "english": ""
+      },
+      {
+        "chinese": "〔向女孩，〕姑娘，你这布片太好，可是太小一点了，还了你罢。",
+        "pinyin": "〔 xiàng nǚ hái ， 〕 gū niáng ， nǐ zhè bù piàn tài hǎo ， kě shì tài xiǎo yī diǎn le ， hái le nǐ bà 。",
+        "english": ""
+      },
+      {
+        "chinese": "孩——〔惊惧，退后，〕我不要了！",
+        "pinyin": "hái — — 〔 jīng jù ， tuì hòu ， 〕 wǒ bù yào le ！",
+        "english": ""
+      },
+      {
+        "chinese": "你带走！",
+        "pinyin": "nǐ dài zǒu ！",
+        "english": ""
+      },
+      {
+        "chinese": "客——〔似笑，〕哦哦，……因为我拿过了？",
+        "pinyin": "kè — — 〔 sì xiào ， 〕 ò ò ， … … yīn wèi wǒ ná guò le ？",
+        "english": ""
+      },
+      {
+        "chinese": "孩——〔点头，指口袋，〕你装在那里，去玩玩。",
+        "pinyin": "hái — — 〔 diǎn tóu ， zhǐ kǒu dài ， 〕 nǐ zhuāng zài nà lǐ ， qù wán wán 。",
+        "english": ""
+      },
+      {
+        "chinese": "客——〔颓唐地退后，〕但这背在身上，怎么走呢？",
+        "pinyin": "kè — — 〔 tuí táng dì tuì hòu ， 〕 dàn zhè bēi zài shēn shàng ， zěn me zǒu ne ？",
+        "english": ""
+      },
+      {
+        "chinese": "翁——你息不下，也就背不动。",
+        "pinyin": "wēng — — nǐ xī bù xià ， yě jiù bēi bù dòng 。",
+        "english": ""
+      },
+      {
+        "chinese": "——休息一会，就没有什么了。",
+        "pinyin": "— — xiū xī yī huì ， jiù méi yǒu shén me le 。",
+        "english": ""
+      },
+      {
+        "chinese": "客——对咧，休息……。",
+        "pinyin": "kè — — duì liē ， xiū xī … … 。",
+        "english": ""
+      },
+      {
+        "chinese": "〔但忽然惊醒，倾听。",
+        "pinyin": "〔 dàn hū rán jīng xǐng ， qīng tīng 。",
+        "english": ""
+      },
+      {
+        "chinese": "〕不，我不能！",
+        "pinyin": "〕 bù ， wǒ bù néng ！",
+        "english": ""
+      },
+      {
+        "chinese": "我还是走好。",
+        "pinyin": "wǒ hái shì zǒu hǎo 。",
+        "english": ""
+      },
+      {
+        "chinese": "翁——你总不愿意休息么？",
+        "pinyin": "wēng — — nǐ zǒng bù yuàn yì xiū xī me ？",
+        "english": ""
+      },
+      {
+        "chinese": "客——我愿意休息。",
+        "pinyin": "kè — — wǒ yuàn yì xiū xī 。",
+        "english": ""
+      },
+      {
+        "chinese": "翁——那么，你就休息一会罢。",
+        "pinyin": "wēng — — nà me ， nǐ jiù xiū xī yī huì bà 。",
+        "english": ""
+      },
+      {
+        "chinese": "客——但是，我不能……。",
+        "pinyin": "kè — — dàn shì ， wǒ bù néng … … 。",
+        "english": ""
+      },
+      {
+        "chinese": "翁——你总还是觉得走好么？",
+        "pinyin": "wēng — — nǐ zǒng hái shì jué dé zǒu hǎo me ？",
+        "english": ""
+      },
+      {
+        "chinese": "客——是的。",
+        "pinyin": "kè — — shì de 。",
+        "english": ""
+      },
+      {
+        "chinese": "还是走好。",
+        "pinyin": "hái shì zǒu hǎo 。",
+        "english": ""
+      },
+      {
+        "chinese": "翁——那么，你还是走好罢。",
+        "pinyin": "wēng — — nà me ， nǐ hái shì zǒu hǎo bà 。",
+        "english": ""
+      },
+      {
+        "chinese": "客——〔将腰一伸，〕好，我告别了。",
+        "pinyin": "kè — — 〔 jiāng yāo yī shēn ， 〕 hǎo ， wǒ gào bié le 。",
+        "english": ""
+      },
+      {
+        "chinese": "我很感激你们。",
+        "pinyin": "wǒ hěn gǎn jī nǐ mén 。",
+        "english": ""
+      },
+      {
+        "chinese": "〔向着女孩，〕姑娘，",
+        "pinyin": "〔 xiàng zhuó nǚ hái ， 〕 gū niáng ，",
+        "english": ""
+      },
+      {
+        "chinese": "这还你，请你收回去。",
+        "pinyin": "zhè hái nǐ ， qǐng nǐ shōu huí qù 。",
+        "english": ""
+      },
+      {
+        "chinese": "〔女孩惊惧，敛手，要躲进土屋里去。",
+        "pinyin": "〔 nǚ hái jīng jù ， liǎn shǒu ， yào duǒ jìn tǔ wū lǐ qù 。",
+        "english": ""
+      },
+      {
+        "chinese": "翁——你带去罢。",
+        "pinyin": "wēng — — nǐ dài qù bà 。",
+        "english": ""
+      },
+      {
+        "chinese": "要是太重了，可以随时抛在坟地里面的。",
+        "pinyin": "yào shì tài zhòng le ， kě yǐ suí shí pāo zài fén dì lǐ miàn de 。",
+        "english": ""
+      },
+      {
+        "chinese": "孩——〔走向前，〕阿阿，那不行！",
+        "pinyin": "hái — — 〔 zǒu xiàng qián ， 〕 ā ā ， nà bù xíng ！",
+        "english": ""
+      },
+      {
+        "chinese": "客——阿阿，那不行的。",
+        "pinyin": "kè — — ā ā ， nà bù xíng de 。",
+        "english": ""
+      },
+      {
+        "chinese": "翁——那么，你挂在野百合野蔷薇上就是了。",
+        "pinyin": "wēng — — nà me ， nǐ guà zài yě bǎi hé yě qiáng wēi shàng jiù shì le 。",
+        "english": ""
+      },
+      {
+        "chinese": "孩——〔拍手，〕哈哈！",
+        "pinyin": "hái — — 〔 pāi shǒu ， 〕 hā hā ！",
+        "english": ""
+      },
+      {
+        "chinese": "翁——哦哦……",
+        "pinyin": "wēng — — ò ò … …",
+        "english": ""
+      },
+      {
+        "chinese": "〔极暂时中，沉默。",
+        "pinyin": "〔 jí zàn shí zhōng ， chén mò 。",
+        "english": ""
+      },
+      {
+        "chinese": "翁——那么，再见了。",
+        "pinyin": "wēng — — nà me ， zài jiàn le 。",
+        "english": ""
+      },
+      {
+        "chinese": "祝你平安。",
+        "pinyin": "zhù nǐ píng ān 。",
+        "english": ""
+      },
+      {
+        "chinese": "〔站起，向女孩，〕孩子，扶我进去罢。",
+        "pinyin": "〔 zhàn qǐ ， xiàng nǚ hái ， 〕 hái zǐ ， fú wǒ jìn qù bà 。",
+        "english": ""
+      },
+      {
+        "chinese": "你看，太阳早已下去了。",
+        "pinyin": "nǐ kàn ， tài yáng zǎo yǐ xià qù le 。",
+        "english": ""
+      },
+      {
+        "chinese": "〔转身向门。",
+        "pinyin": "〔 zhuǎn shēn xiàng mén 。",
+        "english": ""
+      },
+      {
+        "chinese": "客——多谢你们。",
+        "pinyin": "kè — — duō xiè nǐ mén 。",
+        "english": ""
+      },
+      {
+        "chinese": "祝你们平安。",
+        "pinyin": "zhù nǐ mén píng ān 。",
+        "english": ""
+      },
+      {
+        "chinese": "〔徘徊，沉思，忽然吃惊，〕然而我不能！",
+        "pinyin": "〔 pái huái ， chén sī ， hū rán chī jīng ， 〕 rán ér wǒ bù néng ！",
+        "english": ""
+      },
+      {
+        "chinese": "我只得走。",
+        "pinyin": "wǒ zhǐ dé zǒu 。",
+        "english": ""
+      },
+      {
+        "chinese": "我还是走好罢……。",
+        "pinyin": "wǒ hái shì zǒu hǎo bà … … 。",
+        "english": ""
+      },
+      {
+        "chinese": "〔即刻昂了头，奋然向西走去。",
+        "pinyin": "〔 jí kè áng le tóu ， fèn rán xiàng xī zǒu qù 。",
+        "english": ""
+      },
+      {
+        "chinese": "〔女孩扶老人走进土屋，随即关了门。",
+        "pinyin": "〔 nǚ hái fú lǎo rén zǒu jìn tǔ wū ， suí jí guān le mén 。",
+        "english": ""
+      },
+      {
+        "chinese": "过客向野地里跄踉地闯进去，夜色跟在他后面。",
+        "pinyin": "guò kè xiàng yě dì lǐ qiāng liáng dì chuǎng jìn qù ， yè sè gēn zài tā hòu miàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "一九二五年三月二日",
+        "pinyin": "yī jiǔ èr wǔ nián sān yuè èr rì",
+        "english": ""
+      },
+      {
+        "chinese": "野草死火",
+        "pinyin": "yě cǎo sǐ huǒ",
+        "english": ""
+      },
+      {
+        "chinese": "我梦见自己在冰山间奔驰。",
+        "pinyin": "wǒ mèng jiàn zì jǐ zài bīng shān jiān bēn chí 。",
+        "english": ""
+      },
+      {
+        "chinese": "这是高大的冰山，上接冰天，天上冻云弥漫，片片如鱼鳞模样。",
+        "pinyin": "zhè shì gāo dà de bīng shān ， shàng jiē bīng tiān ， tiān shàng dòng yún mí màn ， piàn piàn rú yú lín mú yàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "山麓有冰树林，枝叶都如松杉。",
+        "pinyin": "shān lù yǒu bīng shù lín ， zhī yè dōu rú sōng shān 。",
+        "english": ""
+      },
+      {
+        "chinese": "一切冰冷，一切青白。",
+        "pinyin": "yī qiē bīng lěng ， yī qiē qīng bái 。",
+        "english": ""
+      },
+      {
+        "chinese": "但我忽然坠在冰谷中。",
+        "pinyin": "dàn wǒ hū rán zhuì zài bīng gǔ zhōng 。",
+        "english": ""
+      },
+      {
+        "chinese": "上下四旁无不冰冷，青白。",
+        "pinyin": "shàng xià sì páng wú bù bīng lěng ， qīng bái 。",
+        "english": ""
+      },
+      {
+        "chinese": "而一切青白冰上，却有红影无数，纠结如珊瑚网。",
+        "pinyin": "ér yī qiē qīng bái bīng shàng ， què yǒu hóng yǐng wú shù ， jiū jié rú shān hú wǎng 。",
+        "english": ""
+      },
+      {
+        "chinese": "我俯看脚下，有火焰在。",
+        "pinyin": "wǒ fǔ kàn jiǎo xià ， yǒu huǒ yàn zài 。",
+        "english": ""
+      }
+    ]
+  },
+  {
+    "id": "wild_grass_luxun_ch_8",
+    "bookId": "wild_grass_luxun",
+    "chapterIndex": 8,
+    "title": "第8章",
+    "titleEn": "Chapter 8",
+    "sentences": [
+      {
+        "chinese": "这是死火。",
+        "pinyin": "zhè shì sǐ huǒ 。",
+        "english": ""
+      },
+      {
+        "chinese": "有炎炎的形，但毫不摇动，全体冰结，象珊瑚枝；",
+        "pinyin": "yǒu yán yán de xíng ， dàn háo bù yáo dòng ， quán tǐ bīng jié ， xiàng shān hú zhī ；",
+        "english": ""
+      },
+      {
+        "chinese": "尖端还有凝固的黑烟，疑这才从火宅中出，所以枯焦。",
+        "pinyin": "jiān duān hái yǒu níng gù de hēi yān ， yí zhè cái cóng huǒ zhái zhōng chū ， suǒ yǐ kū jiāo 。",
+        "english": ""
+      },
+      {
+        "chinese": "这样，映在冰的四壁，而且互相反映，化成无量数影，使这冰谷，成红珊瑚色。",
+        "pinyin": "zhè yàng ， yìng zài bīng de sì bì ， ér qiě hù xiāng fǎn yìng ， huà chéng wú liàng shǔ yǐng ， shǐ zhè bīng gǔ ， chéng hóng shān hú sè 。",
+        "english": ""
+      },
+      {
+        "chinese": "哈哈！",
+        "pinyin": "hā hā ！",
+        "english": ""
+      },
+      {
+        "chinese": "当我幼小的时候，本就爱看快舰激起的浪花，洪炉喷出的烈焰。",
+        "pinyin": "dāng wǒ yòu xiǎo de shí hòu ， běn jiù ài kàn kuài jiàn jī qǐ de làng huā ， hóng lú pēn chū de liè yàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "不但爱看，还想看清。",
+        "pinyin": "bù dàn ài kàn ， hái xiǎng kàn qīng 。",
+        "english": ""
+      },
+      {
+        "chinese": "可惜他们都息息变幻，永无定形。",
+        "pinyin": "kě xī tā mén dōu xī xī biàn huàn ， yǒng wú dìng xíng 。",
+        "english": ""
+      },
+      {
+        "chinese": "虽然凝视又凝视，总不留下怎样一定的迹象。",
+        "pinyin": "suī rán níng shì yòu níng shì ， zǒng bù liú xià zěn yàng yī dìng de jì xiàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "死的火焰，现在先得到了你了！",
+        "pinyin": "sǐ de huǒ yàn ， xiàn zài xiān dé dào le nǐ le ！",
+        "english": ""
+      },
+      {
+        "chinese": "我拾起死火，正要细看，那冷气已使我的指头焦灼；",
+        "pinyin": "wǒ shí qǐ sǐ huǒ ， zhèng yào xì kàn ， nà lěng qì yǐ shǐ wǒ de zhǐ tóu jiāo zhuó ；",
+        "english": ""
+      },
+      {
+        "chinese": "但是，我还熬着，将他塞入衣袋中间。",
+        "pinyin": "dàn shì ， wǒ hái āo zhuó ， jiāng tā sāi rù yī dài zhōng jiān 。",
+        "english": ""
+      },
+      {
+        "chinese": "冰谷四面，登时完全青白。",
+        "pinyin": "bīng gǔ sì miàn ， dēng shí wán quán qīng bái 。",
+        "english": ""
+      },
+      {
+        "chinese": "我一面思索着走出冰谷的法子。",
+        "pinyin": "wǒ yī miàn sī suǒ zhuó zǒu chū bīng gǔ de fǎ zǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "我的身上喷出一缕黑烟，上升如铁线蛇。",
+        "pinyin": "wǒ de shēn shàng pēn chū yī lǚ hēi yān ， shàng shēng rú tiě xiàn shé 。",
+        "english": ""
+      },
+      {
+        "chinese": "冰谷四面，又登时满有红焰流动，如大火聚，将我包围。",
+        "pinyin": "bīng gǔ sì miàn ， yòu dēng shí mǎn yǒu hóng yàn liú dòng ， rú dà huǒ jù ， jiāng wǒ bāo wéi 。",
+        "english": ""
+      },
+      {
+        "chinese": "我低头一看，死火已经燃烧，烧穿了我的衣裳，流在冰地上了。",
+        "pinyin": "wǒ dī tóu yī kàn ， sǐ huǒ yǐ jīng rán shāo ， shāo chuān le wǒ de yī cháng ， liú zài bīng dì shàng le 。",
+        "english": ""
+      },
+      {
+        "chinese": "“唉，朋友！",
+        "pinyin": "“ āi ， péng yǒu ！",
+        "english": ""
+      },
+      {
+        "chinese": "你用了你的温热，将我惊醒了。",
+        "pinyin": "nǐ yòng le nǐ de wēn rè ， jiāng wǒ jīng xǐng le 。",
+        "english": ""
+      },
+      {
+        "chinese": "”他说。",
+        "pinyin": "” tā shuō 。",
+        "english": ""
+      },
+      {
+        "chinese": "我连忙和他招呼，问他名姓。",
+        "pinyin": "wǒ lián máng hé tā zhāo hū ， wèn tā míng xìng 。",
+        "english": ""
+      },
+      {
+        "chinese": "“我原先被人遗弃在冰谷中，”他答非所问地说，“遗弃我的早已灭亡，消尽了。",
+        "pinyin": "“ wǒ yuán xiān bèi rén yí qì zài bīng gǔ zhōng ， ” tā dá fēi suǒ wèn dì shuō ， “ yí qì wǒ de zǎo yǐ miè wáng ， xiāo jìn le 。",
+        "english": ""
+      },
+      {
+        "chinese": "我也被冰冻冻得要死。",
+        "pinyin": "wǒ yě bèi bīng dòng dòng dé yào sǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "倘使你不给我温热，使我重行烧起，我不久就须灭亡。",
+        "pinyin": "tǎng shǐ nǐ bù gěi wǒ wēn rè ， shǐ wǒ zhòng xíng shāo qǐ ， wǒ bù jiǔ jiù xū miè wáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "“你的醒来，使我欢喜。",
+        "pinyin": "“ nǐ de xǐng lái ， shǐ wǒ huān xǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "我正在想着走出冰谷的方法；",
+        "pinyin": "wǒ zhèng zài xiǎng zhuó zǒu chū bīng gǔ de fāng fǎ ；",
+        "english": ""
+      },
+      {
+        "chinese": "我愿意携带你去，使你永不冰结，永得燃烧。",
+        "pinyin": "wǒ yuàn yì xié dài nǐ qù ， shǐ nǐ yǒng bù bīng jié ， yǒng dé rán shāo 。",
+        "english": ""
+      },
+      {
+        "chinese": "“唉唉！",
+        "pinyin": "“ āi āi ！",
+        "english": ""
+      },
+      {
+        "chinese": "那么，我将烧完！",
+        "pinyin": "nà me ， wǒ jiāng shāo wán ！",
+        "english": ""
+      },
+      {
+        "chinese": "“你的烧完，使我惋惜。",
+        "pinyin": "“ nǐ de shāo wán ， shǐ wǒ wǎn xī 。",
+        "english": ""
+      },
+      {
+        "chinese": "我便将你留下，仍在这里罢。",
+        "pinyin": "wǒ biàn jiāng nǐ liú xià ， réng zài zhè lǐ bà 。",
+        "english": ""
+      },
+      {
+        "chinese": "“唉唉！",
+        "pinyin": "“ āi āi ！",
+        "english": ""
+      },
+      {
+        "chinese": "那么，我将冻灭了！",
+        "pinyin": "nà me ， wǒ jiāng dòng miè le ！",
+        "english": ""
+      },
+      {
+        "chinese": "“那么，怎么办呢？",
+        "pinyin": "“ nà me ， zěn me bàn ne ？",
+        "english": ""
+      },
+      {
+        "chinese": "“但你自己，又怎么办呢？",
+        "pinyin": "“ dàn nǐ zì jǐ ， yòu zěn me bàn ne ？",
+        "english": ""
+      },
+      {
+        "chinese": "”他反而问。",
+        "pinyin": "” tā fǎn ér wèn 。",
+        "english": ""
+      },
+      {
+        "chinese": "“我说过了：我要出这冰谷……”",
+        "pinyin": "“ wǒ shuō guò le ： wǒ yào chū zhè bīng gǔ … … ”",
+        "english": ""
+      },
+      {
+        "chinese": "“那我就不如烧完！",
+        "pinyin": "“ nà wǒ jiù bù rú shāo wán ！",
+        "english": ""
+      },
+      {
+        "chinese": "他忽而跃起，如红慧星，并我都出冰谷口外。",
+        "pinyin": "tā hū ér yuè qǐ ， rú hóng huì xīng ， bìng wǒ dōu chū bīng gǔ kǒu wài 。",
+        "english": ""
+      },
+      {
+        "chinese": "有大石车突然驰来，我终于碾死在车轮底下，但我还来得及看见那车坠入冰谷中。",
+        "pinyin": "yǒu dà shí chē tū rán chí lái ， wǒ zhōng yú niǎn sǐ zài chē lún dǐ xià ， dàn wǒ hái lái dé jí kàn jiàn nà chē zhuì rù bīng gǔ zhōng 。",
+        "english": ""
+      },
+      {
+        "chinese": "“哈哈！",
+        "pinyin": "“ hā hā ！",
+        "english": ""
+      },
+      {
+        "chinese": "你们是再也遇不着死火了！",
+        "pinyin": "nǐ mén shì zài yě yù bù zhuó sǐ huǒ le ！",
+        "english": ""
+      },
+      {
+        "chinese": "”我得意地笑着说，仿佛就愿意这样似的。",
+        "pinyin": "” wǒ dé yì dì xiào zhuó shuō ， fǎng fó jiù yuàn yì zhè yàng shì de 。",
+        "english": ""
+      },
+      {
+        "chinese": "一九二五年四月二十三日",
+        "pinyin": "yī jiǔ èr wǔ nián sì yuè èr shí sān rì",
+        "english": ""
+      },
+      {
+        "chinese": "狗的驳诘",
+        "pinyin": "gǒu de bó jié",
+        "english": ""
+      },
+      {
+        "chinese": "我梦见自己在隘巷中行走，衣履破碎，象乞食者。",
+        "pinyin": "wǒ mèng jiàn zì jǐ zài ài xiàng zhōng xíng zǒu ， yī lǚ pò suì ， xiàng qǐ shí zhě 。",
+        "english": ""
+      },
+      {
+        "chinese": "一条狗在背后叫起来了。",
+        "pinyin": "yī tiáo gǒu zài bēi hòu jiào qǐ lái le 。",
+        "english": ""
+      },
+      {
+        "chinese": "我傲慢地回顾，叱咤说：",
+        "pinyin": "wǒ ào màn dì huí gù ， chì zhà shuō ：",
+        "english": ""
+      },
+      {
+        "chinese": "“呔！",
+        "pinyin": "“ dāi ！",
+        "english": ""
+      },
+      {
+        "chinese": "住口！",
+        "pinyin": "zhù kǒu ！",
+        "english": ""
+      },
+      {
+        "chinese": "你这势力的狗！",
+        "pinyin": "nǐ zhè shì lì de gǒu ！",
+        "english": ""
+      },
+      {
+        "chinese": "“嘻嘻！",
+        "pinyin": "“ xī xī ！",
+        "english": ""
+      },
+      {
+        "chinese": "”他笑了，还接着说，“不敢，愧不如人呢。",
+        "pinyin": "” tā xiào le ， hái jiē zhuó shuō ， “ bù gǎn ， kuì bù rú rén ne 。",
+        "english": ""
+      },
+      {
+        "chinese": "“什么！",
+        "pinyin": "“ shén me ！",
+        "english": ""
+      },
+      {
+        "chinese": "”我气愤了，觉得这是一个极端的侮辱。",
+        "pinyin": "” wǒ qì fèn le ， jué dé zhè shì yī gè jí duān de wǔ rǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "“我惭愧：我终于还不知道分别铜和银；",
+        "pinyin": "“ wǒ cán kuì ： wǒ zhōng yú hái bù zhī dào fēn bié tóng hé yín ；",
+        "english": ""
+      },
+      {
+        "chinese": "还不知道分别布和绸；",
+        "pinyin": "hái bù zhī dào fēn bié bù hé chóu ；",
+        "english": ""
+      },
+      {
+        "chinese": "还不知道分别官和民；",
+        "pinyin": "hái bù zhī dào fēn bié guān hé mín ；",
+        "english": ""
+      },
+      {
+        "chinese": "还不知道分别主和奴；",
+        "pinyin": "hái bù zhī dào fēn bié zhǔ hé nú ；",
+        "english": ""
+      },
+      {
+        "chinese": "还不知道……”",
+        "pinyin": "hái bù zhī dào … … ”",
+        "english": ""
+      },
+      {
+        "chinese": "我逃走了。",
+        "pinyin": "wǒ táo zǒu le 。",
+        "english": ""
+      },
+      {
+        "chinese": "“且慢！",
+        "pinyin": "“ qiě màn ！",
+        "english": ""
+      },
+      {
+        "chinese": "我们再谈谈……”他在后面大声挽留。",
+        "pinyin": "wǒ mén zài tán tán … … ” tā zài hòu miàn dà shēng wǎn liú 。",
+        "english": ""
+      },
+      {
+        "chinese": "我一径逃走，尽力地走，直到逃出梦境，躺在自己的床上。",
+        "pinyin": "wǒ yī jìng táo zǒu ， jìn lì dì zǒu ， zhí dào táo chū mèng jìng ， tǎng zài zì jǐ de chuáng shàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "一九二五年四月二十三日。",
+        "pinyin": "yī jiǔ èr wǔ nián sì yuè èr shí sān rì 。",
+        "english": ""
+      },
+      {
+        "chinese": "失掉的好地狱",
+        "pinyin": "shī diào de hǎo dì yù",
+        "english": ""
+      },
+      {
+        "chinese": "我梦见自己躺在床上，在荒寒的野外，地狱的旁边。",
+        "pinyin": "wǒ mèng jiàn zì jǐ tǎng zài chuáng shàng ， zài huāng hán de yě wài ， dì yù de páng biān 。",
+        "english": ""
+      },
+      {
+        "chinese": "一切鬼魂们的叫唤无不低微，然有秩序，与火焰的怒吼，油的沸腾，钢叉的震颤相和鸣，造成醉心的大乐，布告三界：天下太平。",
+        "pinyin": "yī qiē guǐ hún mén de jiào huàn wú bù dī wēi ， rán yǒu zhì xù ， yǔ huǒ yàn de nù hǒu ， yóu de fèi téng ， gāng chā de zhèn chàn xiāng hé míng ， zào chéng zuì xīn de dà lè ， bù gào sān jiè ： tiān xià tài píng 。",
+        "english": ""
+      },
+      {
+        "chinese": "有一个伟大的男子站在我面前，美丽，慈悲，遍身有大光辉，然而我知道他是魔鬼。",
+        "pinyin": "yǒu yī gè wěi dà de nán zǐ zhàn zài wǒ miàn qián ， měi lì ， cí bēi ， biàn shēn yǒu dà guāng huī ， rán ér wǒ zhī dào tā shì mó guǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "“一切都已完结，一切都已完结！",
+        "pinyin": "“ yī qiē dōu yǐ wán jié ， yī qiē dōu yǐ wán jié ！",
+        "english": ""
+      },
+      {
+        "chinese": "可怜的魔鬼们将那好的地狱失掉了！",
+        "pinyin": "kě lián de mó guǐ mén jiāng nà hǎo de dì yù shī diào le ！",
+        "english": ""
+      },
+      {
+        "chinese": "”他悲愤地说，于是坐下，讲给我一个他所知道的故事——",
+        "pinyin": "” tā bēi fèn dì shuō ， yú shì zuò xià ， jiǎng gěi wǒ yī gè tā suǒ zhī dào de gù shì — —",
+        "english": ""
+      },
+      {
+        "chinese": "“天地作蜂蜜色的时候，就是魔鬼战胜天神，掌握了主宰一切的大权威的时候。",
+        "pinyin": "“ tiān dì zuò fēng mì sè de shí hòu ， jiù shì mó guǐ zhàn shèng tiān shén ， zhǎng wò le zhǔ zǎi yī qiē de dà quán wēi de shí hòu 。",
+        "english": ""
+      },
+      {
+        "chinese": "他收得天国，收得人间，也收得地狱。",
+        "pinyin": "tā shōu dé tiān guó ， shōu dé rén jiān ， yě shōu dé dì yù 。",
+        "english": ""
+      },
+      {
+        "chinese": "他于是亲临地狱，坐在中央，遍身发大光辉，照见一切鬼众。",
+        "pinyin": "tā yú shì qīn lín dì yù ， zuò zài zhōng yāng ， biàn shēn fā dà guāng huī ， zhào jiàn yī qiē guǐ zhòng 。",
+        "english": ""
+      },
+      {
+        "chinese": "“地狱原已废弃得很久了：剑树消却光芒；",
+        "pinyin": "“ dì yù yuán yǐ fèi qì dé hěn jiǔ le ： jiàn shù xiāo què guāng máng ；",
+        "english": ""
+      },
+      {
+        "chinese": "沸油的边缘早不腾涌；",
+        "pinyin": "fèi yóu de biān yuán zǎo bù téng yǒng ；",
+        "english": ""
+      },
+      {
+        "chinese": "大火聚有时不过冒些青烟；",
+        "pinyin": "dà huǒ jù yǒu shí bù guò mào xiē qīng yān ；",
+        "english": ""
+      },
+      {
+        "chinese": "远处还萌生曼陀罗花，花极细小，惨白而可怜——那是不足为奇的，因为地上曾经大被焚烧，自然失了他的肥沃。",
+        "pinyin": "yuǎn chù hái méng shēng màn tuó luó huā ， huā jí xì xiǎo ， cǎn bái ér kě lián — — nà shì bù zú wèi qí de ， yīn wèi dì shàng céng jīng dà bèi fén shāo ， zì rán shī le tā de féi wò 。",
+        "english": ""
+      },
+      {
+        "chinese": "“鬼魂们在冷油温火里醒来，从魔鬼的光辉中看见地狱小花，惨白可怜，被大蛊惑，倏忽间记起人世，默想至不知几多年，遂同时向着人间，发一声反狱的绝叫。",
+        "pinyin": "“ guǐ hún mén zài lěng yóu wēn huǒ lǐ xǐng lái ， cóng mó guǐ de guāng huī zhōng kàn jiàn dì yù xiǎo huā ， cǎn bái kě lián ， bèi dà gǔ huò ， shū hū jiān jì qǐ rén shì ， mò xiǎng zhì bù zhī jǐ duō nián ， suì tóng shí xiàng zhuó rén jiān ， fā yī shēng fǎn yù de jué jiào 。",
+        "english": ""
+      }
+    ]
+  },
+  {
+    "id": "wild_grass_luxun_ch_9",
+    "bookId": "wild_grass_luxun",
+    "chapterIndex": 9,
+    "title": "第9章",
+    "titleEn": "Chapter 9",
+    "sentences": [
+      {
+        "chinese": "“人类便应声而起，仗义直言，与魔鬼战斗。",
+        "pinyin": "“ rén lèi biàn yīng shēng ér qǐ ， zhàng yì zhí yán ， yǔ mó guǐ zhàn dòu 。",
+        "english": ""
+      },
+      {
+        "chinese": "战声遍满三界，远过雷霆。",
+        "pinyin": "zhàn shēng biàn mǎn sān jiè ， yuǎn guò léi tíng 。",
+        "english": ""
+      },
+      {
+        "chinese": "终于运大谋略，布大罗网，使魔鬼并且不得不从地狱出走。",
+        "pinyin": "zhōng yú yùn dà móu lüè ， bù dà luó wǎng ， shǐ mó guǐ bìng qiě bù dé bù cóng dì yù chū zǒu 。",
+        "english": ""
+      },
+      {
+        "chinese": "最后的胜利，是地狱门上也竖了人类的旌旗！",
+        "pinyin": "zuì hòu de shèng lì ， shì dì yù mén shàng yě shù le rén lèi de jīng qí ！",
+        "english": ""
+      },
+      {
+        "chinese": "“当魔鬼们一齐欢呼时，人类的整饬地狱使者已临地狱，做在中央，用人类的威严，叱咤一切鬼众。",
+        "pinyin": "“ dāng mó guǐ mén yī qí huān hū shí ， rén lèi de zhěng chì dì yù shǐ zhě yǐ lín dì yù ， zuò zài zhōng yāng ， yòng rén lèi de wēi yán ， chì zhà yī qiē guǐ zhòng 。",
+        "english": ""
+      },
+      {
+        "chinese": "“当鬼魂们又发出一声反狱的绝叫时，即已成为人类的叛徒，得到永久沉沦的罚，迁入剑树林的中央。",
+        "pinyin": "“ dāng guǐ hún mén yòu fā chū yī shēng fǎn yù de jué jiào shí ， jí yǐ chéng wéi rén lèi de pàn tú ， dé dào yǒng jiǔ chén lún de fá ， qiān rù jiàn shù lín de zhōng yāng 。",
+        "english": ""
+      },
+      {
+        "chinese": "“人类于是完全掌握了地狱的大威权，那威棱且在魔鬼以上。",
+        "pinyin": "“ rén lèi yú shì wán quán zhǎng wò le dì yù de dà wēi quán ， nà wēi léng qiě zài mó guǐ yǐ shàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "人类于是整顿废弛，先给牛首阿旁以最高的俸草；",
+        "pinyin": "rén lèi yú shì zhěng dùn fèi chí ， xiān gěi niú shǒu ā páng yǐ zuì gāo de fèng cǎo ；",
+        "english": ""
+      },
+      {
+        "chinese": "而且，添薪加火，磨砺刀山，使地狱全体改观，一洗先前颓废的气象。",
+        "pinyin": "ér qiě ， tiān xīn jiā huǒ ， mó lì dāo shān ， shǐ dì yù quán tǐ gǎi guān ， yī xǐ xiān qián tuí fèi de qì xiàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "“曼陀罗花立即焦枯了。",
+        "pinyin": "“ màn tuó luó huā lì jí jiāo kū le 。",
+        "english": ""
+      },
+      {
+        "chinese": "油一样沸；",
+        "pinyin": "yóu yī yàng fèi ；",
+        "english": ""
+      },
+      {
+        "chinese": "刀一样钅舌；",
+        "pinyin": "dāo yī yàng jīn shé ；",
+        "english": ""
+      },
+      {
+        "chinese": "火一样热；",
+        "pinyin": "huǒ yī yàng rè ；",
+        "english": ""
+      },
+      {
+        "chinese": "鬼众一样呻吟，一样宛转，至于都不暇记起失掉的好地狱。",
+        "pinyin": "guǐ zhòng yī yàng shēn yín ， yī yàng wǎn zhuǎn ， zhì yú dōu bù xiá jì qǐ shī diào de hǎo dì yù 。",
+        "english": ""
+      },
+      {
+        "chinese": "“这是人类的成功，是鬼魂的不幸……。",
+        "pinyin": "“ zhè shì rén lèi de chéng gōng ， shì guǐ hún de bù xìng … … 。",
+        "english": ""
+      },
+      {
+        "chinese": "“朋友，你在猜疑我了。",
+        "pinyin": "“ péng yǒu ， nǐ zài cāi yí wǒ le 。",
+        "english": ""
+      },
+      {
+        "chinese": "是的，你是人！",
+        "pinyin": "shì de ， nǐ shì rén ！",
+        "english": ""
+      },
+      {
+        "chinese": "我且去寻野兽和恶鬼……”",
+        "pinyin": "wǒ qiě qù xún yě shòu hé è guǐ … … ”",
+        "english": ""
+      },
+      {
+        "chinese": "一九二五年六月十六日。",
+        "pinyin": "yī jiǔ èr wǔ nián liù yuè shí liù rì 。",
+        "english": ""
+      },
+      {
+        "chinese": "墓碣文",
+        "pinyin": "mù jié wén",
+        "english": ""
+      },
+      {
+        "chinese": "我梦见自己正和墓碣对立，读着上面的刻辞。",
+        "pinyin": "wǒ mèng jiàn zì jǐ zhèng hé mù jié duì lì ， dú zhuó shàng miàn de kè cí 。",
+        "english": ""
+      },
+      {
+        "chinese": "那墓碣似是沙石所制，剥落很多，又有苔藓丛生，仅存有限的文句——",
+        "pinyin": "nà mù jié sì shì shā shí suǒ zhì ， bō luò hěn duō ， yòu yǒu tái xiǎn cóng shēng ， jǐn cún yǒu xiàn de wén jù — —",
+        "english": ""
+      },
+      {
+        "chinese": "$r%“……于浩歌狂热之际中寒；",
+        "pinyin": "$ r % “ … … yú hào gē kuáng rè zhī jì zhōng hán ；",
+        "english": ""
+      },
+      {
+        "chinese": "于天上看见深渊。",
+        "pinyin": "yú tiān shàng kàn jiàn shēn yuān 。",
+        "english": ""
+      },
+      {
+        "chinese": "于一切眼中看见无所有；",
+        "pinyin": "yú yī qiē yǎn zhōng kàn jiàn wú suǒ yǒu ；",
+        "english": ""
+      },
+      {
+        "chinese": "于无所希望中得救。",
+        "pinyin": "yú wú suǒ xī wàng zhōng dé jiù 。",
+        "english": ""
+      },
+      {
+        "chinese": "“……有一游魂，化为长蛇，口有毒牙。",
+        "pinyin": "“ … … yǒu yī yóu hún ， huà wèi cháng shé ， kǒu yǒu dú yá 。",
+        "english": ""
+      },
+      {
+        "chinese": "不以啮人，自啮其身，终以陨颠。",
+        "pinyin": "bù yǐ niè rén ， zì niè qí shēn ， zhōng yǐ yǔn diān 。",
+        "english": ""
+      },
+      {
+        "chinese": "“……离开！",
+        "pinyin": "“ … … lí kāi ！",
+        "english": ""
+      },
+      {
+        "chinese": "……”$r%",
+        "pinyin": "… … ” $ r %",
+        "english": ""
+      },
+      {
+        "chinese": "我绕到碣后，才见孤坟，上无草木，且已颓坏。",
+        "pinyin": "wǒ rào dào jié hòu ， cái jiàn gū fén ， shàng wú cǎo mù ， qiě yǐ tuí huài 。",
+        "english": ""
+      },
+      {
+        "chinese": "即从大阙口中，窥见死尸，胸腹俱破，中无心肝。",
+        "pinyin": "jí cóng dà quē kǒu zhōng ， kuī jiàn sǐ shī ， xiōng fù jù pò ， zhōng wú xīn gān 。",
+        "english": ""
+      },
+      {
+        "chinese": "而脸上却绝不显哀乐之状，但蒙蒙如烟然。",
+        "pinyin": "ér liǎn shàng què jué bù xiǎn āi lè zhī zhuàng ， dàn mēng mēng rú yān rán 。",
+        "english": ""
+      },
+      {
+        "chinese": "我在疑惧中不及回身，然而已看见墓碣阴面的残存的文句——",
+        "pinyin": "wǒ zài yí jù zhōng bù jí huí shēn ， rán ér yǐ kàn jiàn mù jié yīn miàn de cán cún de wén jù — —",
+        "english": ""
+      },
+      {
+        "chinese": "$r%“……抉心自食，欲知本味。",
+        "pinyin": "$ r % “ … … jué xīn zì shí ， yù zhī běn wèi 。",
+        "english": ""
+      },
+      {
+        "chinese": "创痛酷烈，本味何能知？",
+        "pinyin": "chuàng tòng kù liè ， běn wèi hé néng zhī ？",
+        "english": ""
+      },
+      {
+        "chinese": "“……痛定之后，徐徐食之。",
+        "pinyin": "“ … … tòng dìng zhī hòu ， xú xú shí zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "然其心已陈旧，本味又何由知？",
+        "pinyin": "rán qí xīn yǐ chén jiù ， běn wèi yòu hé yóu zhī ？",
+        "english": ""
+      },
+      {
+        "chinese": "“……答我。",
+        "pinyin": "“ … … dá wǒ 。",
+        "english": ""
+      },
+      {
+        "chinese": "否则，离开！",
+        "pinyin": "fǒu zé ， lí kāi ！",
+        "english": ""
+      },
+      {
+        "chinese": "……”$r%",
+        "pinyin": "… … ” $ r %",
+        "english": ""
+      },
+      {
+        "chinese": "我就要离开。",
+        "pinyin": "wǒ jiù yào lí kāi 。",
+        "english": ""
+      },
+      {
+        "chinese": "而死尸已在坟中坐起，口唇不动，然而说——",
+        "pinyin": "ér sǐ shī yǐ zài fén zhōng zuò qǐ ， kǒu chún bù dòng ， rán ér shuō — —",
+        "english": ""
+      },
+      {
+        "chinese": "“待我成尘时，你将见我的微笑！",
+        "pinyin": "“ dài wǒ chéng chén shí ， nǐ jiāng jiàn wǒ de wēi xiào ！",
+        "english": ""
+      },
+      {
+        "chinese": "我疾走，不敢反顾，生怕看见他的追随。",
+        "pinyin": "wǒ jí zǒu ， bù gǎn fǎn gù ， shēng pà kàn jiàn tā de zhuī suí 。",
+        "english": ""
+      },
+      {
+        "chinese": "一九二五年六月十七日。",
+        "pinyin": "yī jiǔ èr wǔ nián liù yuè shí qī rì 。",
+        "english": ""
+      },
+      {
+        "chinese": "颓败线的颤动",
+        "pinyin": "tuí bài xiàn de chàn dòng",
+        "english": ""
+      },
+      {
+        "chinese": "我梦见自己在做梦。",
+        "pinyin": "wǒ mèng jiàn zì jǐ zài zuò mèng 。",
+        "english": ""
+      },
+      {
+        "chinese": "自身不知所在，眼前却有一间在深夜中禁闭的小屋的内部，但也看见屋上瓦松的茂密的森林。",
+        "pinyin": "zì shēn bù zhī suǒ zài ， yǎn qián què yǒu yī jiān zài shēn yè zhōng jīn bì de xiǎo wū de nèi bù ， dàn yě kàn jiàn wū shàng wǎ sōng de mào mì de sēn lín 。",
+        "english": ""
+      },
+      {
+        "chinese": "板桌上的灯罩是新拭的，照得屋子里分外明亮。",
+        "pinyin": "bǎn zhuō shàng de dēng zhào shì xīn shì de ， zhào dé wū zǐ lǐ fēn wài míng liàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "在光明中，在破榻上，在初不相识的披毛的强悍的肉块底下，有瘦弱渺小的身躯，为饥饿，苦痛，惊异，羞辱，欢欣而颤动。",
+        "pinyin": "zài guāng míng zhōng ， zài pò tà shàng ， zài chū bù xiāng shí de pī máo de qiáng hàn de ròu kuài dǐ xià ， yǒu shòu ruò miǎo xiǎo de shēn qū ， wèi jī è ， kǔ tòng ， jīng yì ， xiū rǔ ， huān xīn ér chàn dòng 。",
+        "english": ""
+      },
+      {
+        "chinese": "弛缓，然而尚且丰腴的皮肤光润了；",
+        "pinyin": "chí huǎn ， rán ér shàng qiě fēng yú de pí fū guāng rùn le ；",
+        "english": ""
+      },
+      {
+        "chinese": "青白的两颊泛出轻红，如铅上涂了胭脂水。",
+        "pinyin": "qīng bái de liǎng jiá fàn chū qīng hóng ， rú qiān shàng tú le yān zhī shuǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "灯火也因惊惧而缩小了，东方已经发白。",
+        "pinyin": "dēng huǒ yě yīn jīng jù ér suō xiǎo le ， dōng fāng yǐ jīng fā bái 。",
+        "english": ""
+      },
+      {
+        "chinese": "然而空中还弥漫地摇动着饥饿，苦痛，惊异，羞辱，欢欣的波涛……",
+        "pinyin": "rán ér kōng zhōng hái mí màn dì yáo dòng zhuó jī è ， kǔ tòng ， jīng yì ， xiū rǔ ， huān xīn de bō tāo … …",
+        "english": ""
+      },
+      {
+        "chinese": "“妈！",
+        "pinyin": "“ mā ！",
+        "english": ""
+      },
+      {
+        "chinese": "”约略两岁的女孩被门的开合声惊醒，在草席围着的屋角的地上叫起来了。",
+        "pinyin": "” yuē lüè liǎng suì de nǚ hái bèi mén de kāi hé shēng jīng xǐng ， zài cǎo xí wéi zhuó de wū jiǎo de dì shàng jiào qǐ lái le 。",
+        "english": ""
+      },
+      {
+        "chinese": "“还早哩，再睡一会罢！",
+        "pinyin": "“ hái zǎo li ， zài shuì yī huì bà ！",
+        "english": ""
+      },
+      {
+        "chinese": "”她惊惶地说。",
+        "pinyin": "” tā jīng huáng dì shuō 。",
+        "english": ""
+      },
+      {
+        "chinese": "“妈！",
+        "pinyin": "“ mā ！",
+        "english": ""
+      },
+      {
+        "chinese": "我饿，肚子痛。",
+        "pinyin": "wǒ è ， dù zǐ tòng 。",
+        "english": ""
+      },
+      {
+        "chinese": "我们今天能有什么吃的？",
+        "pinyin": "wǒ mén jīn tiān néng yǒu shén me chī de ？",
+        "english": ""
+      },
+      {
+        "chinese": "“我们今天有吃的了。",
+        "pinyin": "“ wǒ mén jīn tiān yǒu chī de le 。",
+        "english": ""
+      },
+      {
+        "chinese": "等一会有卖烧饼的来，妈就买给你。",
+        "pinyin": "děng yī huì yǒu mài shāo bǐng de lái ， mā jiù mǎi gěi nǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "”她欣慰地更加紧捏着掌中的小银片，低微的声音悲凉地发抖，走近屋角去一看她的女儿，移开草席，抱起来放在破榻上。",
+        "pinyin": "” tā xīn wèi dì gèng jiā jǐn niē zhuó zhǎng zhōng de xiǎo yín piàn ， dī wēi de shēng yīn bēi liáng dì fā dǒu ， zǒu jìn wū jiǎo qù yī kàn tā de nǚ ér ， yí kāi cǎo xí ， bào qǐ lái fàng zài pò tà shàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "“还早哩，再睡一会罢。",
+        "pinyin": "“ hái zǎo li ， zài shuì yī huì bà 。",
+        "english": ""
+      },
+      {
+        "chinese": "”她说着，同时抬起眼睛，无可告诉地一看破旧屋顶以上的天空。",
+        "pinyin": "” tā shuō zhuó ， tóng shí tái qǐ yǎn jīng ， wú kě gào sù dì yī kàn pò jiù wū dǐng yǐ shàng de tiān kōng 。",
+        "english": ""
+      },
+      {
+        "chinese": "空中突然另起了一个很大的波涛，和先前的相撞击，回旋而成旋涡，将一切并我尽行淹没，口鼻都不能呼吸。",
+        "pinyin": "kōng zhōng tū rán lìng qǐ le yī gè hěn dà de bō tāo ， hé xiān qián de xiāng zhuàng jī ， huí xuán ér chéng xuán wō ， jiāng yī qiē bìng wǒ jìn xíng yān méi ， kǒu bí dōu bù néng hū xī 。",
+        "english": ""
+      },
+      {
+        "chinese": "我呻吟着醒来，窗外满是如银的月色，离天明还很辽远似的。",
+        "pinyin": "wǒ shēn yín zhuó xǐng lái ， chuāng wài mǎn shì rú yín de yuè sè ， lí tiān míng hái hěn liáo yuǎn shì de 。",
+        "english": ""
+      },
+      {
+        "chinese": "我自身不知所在，眼前却有一间在深夜中禁闭的小屋的内部，我自己知道是在续着残梦。",
+        "pinyin": "wǒ zì shēn bù zhī suǒ zài ， yǎn qián què yǒu yī jiān zài shēn yè zhōng jīn bì de xiǎo wū de nèi bù ， wǒ zì jǐ zhī dào shì zài xù zhuó cán mèng 。",
+        "english": ""
+      },
+      {
+        "chinese": "可是梦的年代隔了许多年了。",
+        "pinyin": "kě shì mèng de nián dài gé le xǔ duō nián le 。",
+        "english": ""
+      },
+      {
+        "chinese": "屋的内外已经是这样整齐；",
+        "pinyin": "wū de nèi wài yǐ jīng shì zhè yàng zhěng qí ；",
+        "english": ""
+      },
+      {
+        "chinese": "里面是青年的夫妻，一群小孩子，都怨恨鄙夷地对着一个垂老的女人。",
+        "pinyin": "lǐ miàn shì qīng nián de fū qī ， yī qún xiǎo hái zǐ ， dōu yuàn hèn bǐ yí dì duì zhuó yī gè chuí lǎo de nǚ rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "“我们没有脸见人，就只因为你，”男人气忿地说。",
+        "pinyin": "“ wǒ mén méi yǒu liǎn jiàn rén ， jiù zhǐ yīn wèi nǐ ， ” nán rén qì fèn dì shuō 。",
+        "english": ""
+      },
+      {
+        "chinese": "“你还以为养大了她，其实正是害苦了她，倒不如小时候饿死的好！",
+        "pinyin": "“ nǐ hái yǐ wèi yǎng dà le tā ， qí shí zhèng shì hài kǔ le tā ， dǎo bù rú xiǎo shí hòu è sǐ de hǎo ！",
+        "english": ""
+      },
+      {
+        "chinese": "“使我委屈一世的就是你！",
+        "pinyin": "“ shǐ wǒ wěi qū yī shì de jiù shì nǐ ！",
+        "english": ""
+      },
+      {
+        "chinese": "”女的说。",
+        "pinyin": "” nǚ de shuō 。",
+        "english": ""
+      },
+      {
+        "chinese": "“还要带累了我！",
+        "pinyin": "“ hái yào dài lěi le wǒ ！",
+        "english": ""
+      },
+      {
+        "chinese": "”男的说。",
+        "pinyin": "” nán de shuō 。",
+        "english": ""
+      },
+      {
+        "chinese": "“还要带累他们哩！",
+        "pinyin": "“ hái yào dài lěi tā mén li ！",
+        "english": ""
+      }
+    ]
+  },
+  {
+    "id": "wild_grass_luxun_ch_10",
+    "bookId": "wild_grass_luxun",
+    "chapterIndex": 10,
+    "title": "第10章",
+    "titleEn": "Chapter 10",
+    "sentences": [
+      {
+        "chinese": "”女的说，指着孩子们。",
+        "pinyin": "” nǚ de shuō ， zhǐ zhuó hái zǐ mén 。",
+        "english": ""
+      },
+      {
+        "chinese": "最小的一个正玩着一片干芦叶，这时便向空中一挥，仿佛一柄钢刀，大声说道：",
+        "pinyin": "zuì xiǎo de yī gè zhèng wán zhuó yī piàn gān lú yè ， zhè shí biàn xiàng kōng zhōng yī huī ， fǎng fó yī bǐng gāng dāo ， dà shēng shuō dào ：",
+        "english": ""
+      },
+      {
+        "chinese": "“杀！",
+        "pinyin": "“ shā ！",
+        "english": ""
+      },
+      {
+        "chinese": "那垂老的女人口角正在痉挛，登时一怔，接着便都平静，不多时候，她冷静地，骨立的石像似的站起来了。",
+        "pinyin": "nà chuí lǎo de nǚ rén kǒu jiǎo zhèng zài jìng luán ， dēng shí yī zhēng ， jiē zhuó biàn dōu píng jìng ， bù duō shí hòu ， tā lěng jìng dì ， gǔ lì de shí xiàng shì de zhàn qǐ lái le 。",
+        "english": ""
+      },
+      {
+        "chinese": "她开开板门，迈步在深夜中走出，遗弃了背后一切的冷骂和毒笑。",
+        "pinyin": "tā kāi kāi bǎn mén ， mài bù zài shēn yè zhōng zǒu chū ， yí qì le bēi hòu yī qiē de lěng mà hé dú xiào 。",
+        "english": ""
+      },
+      {
+        "chinese": "她在深夜中尽走，一直走到无边的荒野；",
+        "pinyin": "tā zài shēn yè zhōng jìn zǒu ， yī zhí zǒu dào wú biān de huāng yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "四面都是荒野，头上只有高天，并无一个虫鸟飞过。",
+        "pinyin": "sì miàn dōu shì huāng yě ， tóu shàng zhǐ yǒu gāo tiān ， bìng wú yī gè chóng niǎo fēi guò 。",
+        "english": ""
+      },
+      {
+        "chinese": "她赤身露体地，石像似的站在荒野的中央，于一刹那间照见过往的一切：饥饿，苦痛，惊异，羞辱，欢欣，于是发抖；",
+        "pinyin": "tā chì shēn lù tǐ dì ， shí xiàng shì de zhàn zài huāng yě de zhōng yāng ， yú yī chà nà jiān zhào jiàn guò wǎng de yī qiē ： jī è ， kǔ tòng ， jīng yì ， xiū rǔ ， huān xīn ， yú shì fā dǒu ；",
+        "english": ""
+      },
+      {
+        "chinese": "害苦，委屈，带累，于是痉挛；",
+        "pinyin": "hài kǔ ， wěi qū ， dài lěi ， yú shì jìng luán ；",
+        "english": ""
+      },
+      {
+        "chinese": "杀，于是平静。",
+        "pinyin": "shā ， yú shì píng jìng 。",
+        "english": ""
+      },
+      {
+        "chinese": "……又于一刹那间将一切并合：眷念与决绝，爱抚与复仇，养育与歼除，祝福与咒诅。",
+        "pinyin": "… … yòu yú yī chà nà jiān jiāng yī qiē bìng hé ： juàn niàn yǔ jué jué ， ài fǔ yǔ fù chóu ， yǎng yù yǔ jiān chú ， zhù fú yǔ zhòu zǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "……她于是举两手尽量向天，口唇间漏出人与兽的，非人间所有，所以无词的言语。",
+        "pinyin": "… … tā yú shì jǔ liǎng shǒu jìn liàng xiàng tiān ， kǒu chún jiān lòu chū rén yǔ shòu de ， fēi rén jiān suǒ yǒu ， suǒ yǐ wú cí de yán yǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "当她说出无词的言语时，她那伟大如石像，然而已经荒废的，颓败的身躯的全面都颤动了。",
+        "pinyin": "dāng tā shuō chū wú cí de yán yǔ shí ， tā nà wěi dà rú shí xiàng ， rán ér yǐ jīng huāng fèi de ， tuí bài de shēn qū de quán miàn dōu chàn dòng le 。",
+        "english": ""
+      },
+      {
+        "chinese": "这颤动点点如鱼鳞，仿佛暴风雨中的荒海的波涛。",
+        "pinyin": "zhè chàn dòng diǎn diǎn rú yú lín ， fǎng fó bào fēng yǔ zhōng de huāng hǎi de bō tāo 。",
+        "english": ""
+      },
+      {
+        "chinese": "她于是抬起眼睛向着天空，并无词的言语也沉默尽绝，惟有颤动，辐射若太阳光，使空中的波涛立刻回旋，如遭飓风，汹涌奔腾于无边的荒野。",
+        "pinyin": "tā yú shì tái qǐ yǎn jīng xiàng zhuó tiān kōng ， bìng wú cí de yán yǔ yě chén mò jìn jué ， wéi yǒu chàn dòng ， fú shè ruò tài yáng guāng ， shǐ kōng zhōng de bō tāo lì kè huí xuán ， rú zāo jù fēng ， xiōng yǒng bēn téng yú wú biān de huāng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "我梦魇了，自己却知道是因为将手搁在胸脯上了的缘故；",
+        "pinyin": "wǒ mèng yǎn le ， zì jǐ què zhī dào shì yīn wèi jiāng shǒu gē zài xiōng pú shàng le de yuán gù ；",
+        "english": ""
+      },
+      {
+        "chinese": "我梦中还用尽平生之力，要将这十分沉重的手移开。",
+        "pinyin": "wǒ mèng zhōng hái yòng jìn píng shēng zhī lì ， yào jiāng zhè shí fēn chén zhòng de shǒu yí kāi 。",
+        "english": ""
+      },
+      {
+        "chinese": "一九二五年六月二十九日",
+        "pinyin": "yī jiǔ èr wǔ nián liù yuè èr shí jiǔ rì",
+        "english": ""
+      },
+      {
+        "chinese": "野草立论",
+        "pinyin": "yě cǎo lì lùn",
+        "english": ""
+      },
+      {
+        "chinese": "我梦见自己正在小学校的讲堂上预备作文，向老师请教立论的方法。",
+        "pinyin": "wǒ mèng jiàn zì jǐ zhèng zài xiǎo xué xiào de jiǎng táng shàng yù bèi zuò wén ， xiàng lǎo shī qǐng jiào lì lùn de fāng fǎ 。",
+        "english": ""
+      },
+      {
+        "chinese": "“难！",
+        "pinyin": "“ nán ！",
+        "english": ""
+      },
+      {
+        "chinese": "”老师从眼镜圈外斜射出眼光来，看着我，说。",
+        "pinyin": "” lǎo shī cóng yǎn jìng quān wài xié shè chū yǎn guāng lái ， kàn zhuó wǒ ， shuō 。",
+        "english": ""
+      },
+      {
+        "chinese": "“我告诉你一件事——",
+        "pinyin": "“ wǒ gào sù nǐ yī jiàn shì — —",
+        "english": ""
+      },
+      {
+        "chinese": "“一家人家生了一个男孩，合家高兴透顶了。",
+        "pinyin": "“ yī jiā rén jiā shēng le yī gè nán hái ， hé jiā gāo xìng tòu dǐng le 。",
+        "english": ""
+      },
+      {
+        "chinese": "满月的时候，抱出来给客人看，——大概自然是想得一点好兆头。",
+        "pinyin": "mǎn yuè de shí hòu ， bào chū lái gěi kè rén kàn ， — — dà gài zì rán shì xiǎng dé yī diǎn hǎo zhào tóu 。",
+        "english": ""
+      },
+      {
+        "chinese": "“一个说：‘这孩子将来要发财的。",
+        "pinyin": "“ yī gè shuō ： ‘ zhè hái zǐ jiāng lái yào fā cái de 。",
+        "english": ""
+      },
+      {
+        "chinese": "’他于是得到一番感谢。",
+        "pinyin": "’ tā yú shì dé dào yī fān gǎn xiè 。",
+        "english": ""
+      },
+      {
+        "chinese": "“一个说：‘这孩子将来是要死的。",
+        "pinyin": "“ yī gè shuō ： ‘ zhè hái zǐ jiāng lái shì yào sǐ de 。",
+        "english": ""
+      },
+      {
+        "chinese": "’他于是得到一顿大家合力的痛打。",
+        "pinyin": "’ tā yú shì dé dào yī dùn dà jiā hé lì de tòng dǎ 。",
+        "english": ""
+      },
+      {
+        "chinese": "“说要死的必然，说富贵的许谎。",
+        "pinyin": "“ shuō yào sǐ de bì rán ， shuō fù guì de xǔ huǎng 。",
+        "english": ""
+      },
+      {
+        "chinese": "但说谎的得好报，说必然的遭打。",
+        "pinyin": "dàn shuō huǎng de dé hǎo bào ， shuō bì rán de zāo dǎ 。",
+        "english": ""
+      },
+      {
+        "chinese": "你……”",
+        "pinyin": "nǐ … … ”",
+        "english": ""
+      },
+      {
+        "chinese": "“我愿意既不说谎，也不遭打。",
+        "pinyin": "“ wǒ yuàn yì jì bù shuō huǎng ， yě bù zāo dǎ 。",
+        "english": ""
+      },
+      {
+        "chinese": "那么，老师，我得怎么说呢？",
+        "pinyin": "nà me ， lǎo shī ， wǒ dé zěn me shuō ne ？",
+        "english": ""
+      },
+      {
+        "chinese": "“那么，你得说：‘啊呀！",
+        "pinyin": "“ nà me ， nǐ dé shuō ： ‘ ā yā ！",
+        "english": ""
+      },
+      {
+        "chinese": "这孩子呵！",
+        "pinyin": "zhè hái zǐ hē ！",
+        "english": ""
+      },
+      {
+        "chinese": "您瞧！",
+        "pinyin": "nín qiáo ！",
+        "english": ""
+      },
+      {
+        "chinese": "那么……。",
+        "pinyin": "nà me … … 。",
+        "english": ""
+      },
+      {
+        "chinese": "阿唷！",
+        "pinyin": "ā yō ！",
+        "english": ""
+      },
+      {
+        "chinese": "哈哈！",
+        "pinyin": "hā hā ！",
+        "english": ""
+      },
+      {
+        "chinese": "heh e！",
+        "pinyin": "h e h   e ！",
+        "english": ""
+      },
+      {
+        "chinese": "he，he he he he！",
+        "pinyin": "h e ， h e   h e   h e   h e ！",
+        "english": ""
+      },
+      {
+        "chinese": "一九二五年七月八日。",
+        "pinyin": "yī jiǔ èr wǔ nián qī yuè bā rì 。",
+        "english": ""
+      },
+      {
+        "chinese": "野草死后",
+        "pinyin": "yě cǎo sǐ hòu",
+        "english": ""
+      },
+      {
+        "chinese": "我梦见自己死在道路上。",
+        "pinyin": "wǒ mèng jiàn zì jǐ sǐ zài dào lù shàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "这是那里，我怎么到这里来，怎么死的，这些事我全不明白。",
+        "pinyin": "zhè shì nà lǐ ， wǒ zěn me dào zhè lǐ lái ， zěn me sǐ de ， zhè xiē shì wǒ quán bù míng bái 。",
+        "english": ""
+      },
+      {
+        "chinese": "总之，待我自己知道已经死掉的时候，就已经死在那里了。",
+        "pinyin": "zǒng zhī ， dài wǒ zì jǐ zhī dào yǐ jīng sǐ diào de shí hòu ， jiù yǐ jīng sǐ zài nà lǐ le 。",
+        "english": ""
+      },
+      {
+        "chinese": "听到几声喜鹊叫，接着是一阵乌老鸦。",
+        "pinyin": "tīng dào jǐ shēng xǐ què jiào ， jiē zhuó shì yī zhèn wū lǎo yā 。",
+        "english": ""
+      },
+      {
+        "chinese": "空气很清爽，——虽然也带些土气息，——大约正当黎明时候罢。",
+        "pinyin": "kōng qì hěn qīng shuǎng ， — — suī rán yě dài xiē tǔ qì xī ， — — dà yuē zhèng dāng lí míng shí hòu bà 。",
+        "english": ""
+      },
+      {
+        "chinese": "我想睁开眼睛来，他却丝毫也不动，简直不象是我的眼睛；",
+        "pinyin": "wǒ xiǎng zhēng kāi yǎn jīng lái ， tā què sī háo yě bù dòng ， jiǎn zhí bù xiàng shì wǒ de yǎn jīng ；",
+        "english": ""
+      },
+      {
+        "chinese": "于是想抬手，也一样。",
+        "pinyin": "yú shì xiǎng tái shǒu ， yě yī yàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "恐怖的利镞忽然穿透我的心了。",
+        "pinyin": "kǒng bù de lì zú hū rán chuān tòu wǒ de xīn le 。",
+        "english": ""
+      },
+      {
+        "chinese": "在我生存时，曾经玩笑地设想：假使一个人的死亡，只是运动神经的废灭，而知觉还在，那就比全死了更可怕。",
+        "pinyin": "zài wǒ shēng cún shí ， céng jīng wán xiào dì shè xiǎng ： jiǎ shǐ yī gè rén de sǐ wáng ， zhǐ shì yùn dòng shén jīng de fèi miè ， ér zhī jué hái zài ， nà jiù bǐ quán sǐ le gèng kě pà 。",
+        "english": ""
+      },
+      {
+        "chinese": "谁知道我的预想竟的中了，我自己就在证实这预想。",
+        "pinyin": "shuí zhī dào wǒ de yù xiǎng jìng de zhōng le ， wǒ zì jǐ jiù zài zhèng shí zhè yù xiǎng 。",
+        "english": ""
+      },
+      {
+        "chinese": "听到脚步声，走路的罢。",
+        "pinyin": "tīng dào jiǎo bù shēng ， zǒu lù de bà 。",
+        "english": ""
+      },
+      {
+        "chinese": "一辆独轮车从我的头边推过，大约是重载的，轧轧地叫得人心烦，还有些牙齿〖齿楚〗。",
+        "pinyin": "yī liàng dú lún chē cóng wǒ de tóu biān tuī guò ， dà yuē shì chóng zǎi de ， yà yà dì jiào dé rén xīn fán ， hái yǒu xiē yá chǐ 〖 chǐ chǔ 〗 。",
+        "english": ""
+      },
+      {
+        "chinese": "很觉得满眼绯红，一定是太阳上来了。",
+        "pinyin": "hěn jué dé mǎn yǎn fēi hóng ， yī dìng shì tài yáng shàng lái le 。",
+        "english": ""
+      },
+      {
+        "chinese": "那么，我的脸是朝东的。",
+        "pinyin": "nà me ， wǒ de liǎn shì cháo dōng de 。",
+        "english": ""
+      },
+      {
+        "chinese": "但那都没有什么关系。",
+        "pinyin": "dàn nà dōu méi yǒu shén me guān xì 。",
+        "english": ""
+      },
+      {
+        "chinese": "切切嚓嚓的人声，看热闹的。",
+        "pinyin": "qiē qiē cā cā de rén shēng ， kàn rè nào de 。",
+        "english": ""
+      },
+      {
+        "chinese": "他们踹起黄土来，飞进我的鼻孔，使我想打喷嚏了，但终于没有打，仅有想打的心。",
+        "pinyin": "tā mén chuài qǐ huáng tǔ lái ， fēi jìn wǒ de bí kǒng ， shǐ wǒ xiǎng dǎ pēn tì le ， dàn zhōng yú méi yǒu dǎ ， jǐn yǒu xiǎng dǎ de xīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "陆陆续续地又是脚步声，都到近旁就停下，还有更多的低语声：看的人多起来了。",
+        "pinyin": "lù lù xù xù dì yòu shì jiǎo bù shēng ， dōu dào jìn páng jiù tíng xià ， hái yǒu gèng duō de dī yǔ shēng ： kàn de rén duō qǐ lái le 。",
+        "english": ""
+      },
+      {
+        "chinese": "我忽然很想听听他们的议论。",
+        "pinyin": "wǒ hū rán hěn xiǎng tīng tīng tā mén de yì lùn 。",
+        "english": ""
+      },
+      {
+        "chinese": "但同时想，我生存时说的什么批评不值一笑的话，大概是违心之论罢：才死，就露了破绽了。",
+        "pinyin": "dàn tóng shí xiǎng ， wǒ shēng cún shí shuō de shén me pī píng bù zhí yī xiào de huà ， dà gài shì wéi xīn zhī lùn bà ： cái sǐ ， jiù lòu le pò zhàn le 。",
+        "english": ""
+      },
+      {
+        "chinese": "然而还是听；",
+        "pinyin": "rán ér hái shì tīng ；",
+        "english": ""
+      },
+      {
+        "chinese": "然而毕竟得不到结论，归纳起来不过是这样——",
+        "pinyin": "rán ér bì jìng dé bù dào jié lùn ， guī nà qǐ lái bù guò shì zhè yàng — —",
+        "english": ""
+      },
+      {
+        "chinese": "“死了……”",
+        "pinyin": "“ sǐ le … … ”",
+        "english": ""
+      },
+      {
+        "chinese": "“嗡。",
+        "pinyin": "“ wēng 。",
+        "english": ""
+      },
+      {
+        "chinese": "——这……”",
+        "pinyin": "— — zhè … … ”",
+        "english": ""
+      },
+      {
+        "chinese": "“哼！",
+        "pinyin": "“ hēng ！",
+        "english": ""
+      },
+      {
+        "chinese": "……”",
+        "pinyin": "… … ”",
+        "english": ""
+      },
+      {
+        "chinese": "“啧。",
+        "pinyin": "“ zé 。",
+        "english": ""
+      },
+      {
+        "chinese": "……唉！",
+        "pinyin": "… … āi ！",
+        "english": ""
+      },
+      {
+        "chinese": "……”",
+        "pinyin": "… … ”",
+        "english": ""
+      },
+      {
+        "chinese": "我十分高兴，因为始终没有听到一个熟识的声音。",
+        "pinyin": "wǒ shí fēn gāo xìng ， yīn wèi shǐ zhōng méi yǒu tīng dào yī gè shú shí de shēng yīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "否则，或者害得他们伤心；",
+        "pinyin": "fǒu zé ， huò zhě hài dé tā mén shāng xīn ；",
+        "english": ""
+      },
+      {
+        "chinese": "或则要使他们快意；",
+        "pinyin": "huò zé yào shǐ tā mén kuài yì ；",
+        "english": ""
+      },
+      {
+        "chinese": "或则要使他们添些饭后闲谈的材料，多破费宝贵的工夫；",
+        "pinyin": "huò zé yào shǐ tā mén tiān xiē fàn hòu xián tán de cái liào ， duō pò fèi bǎo guì de gōng fū ；",
+        "english": ""
+      },
+      {
+        "chinese": "这都会使我很抱歉。",
+        "pinyin": "zhè dōu huì shǐ wǒ hěn bào qiàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "现在谁也看不见，就是谁也不受影响。",
+        "pinyin": "xiàn zài shuí yě kàn bù jiàn ， jiù shì shuí yě bù shòu yǐng xiǎng 。",
+        "english": ""
+      }
+    ]
+  },
+  {
+    "id": "wild_grass_luxun_ch_11",
+    "bookId": "wild_grass_luxun",
+    "chapterIndex": 11,
+    "title": "第11章",
+    "titleEn": "Chapter 11",
+    "sentences": [
+      {
+        "chinese": "好了，总算对得起人了！",
+        "pinyin": "hǎo le ， zǒng suàn duì dé qǐ rén le ！",
+        "english": ""
+      },
+      {
+        "chinese": "但是，大约是一个马蚁，在我的脊梁上爬着，痒痒的。",
+        "pinyin": "dàn shì ， dà yuē shì yī gè mǎ yǐ ， zài wǒ de jǐ liáng shàng pá zhuó ， yǎng yǎng de 。",
+        "english": ""
+      },
+      {
+        "chinese": "我一点也不能动，已经没有除去他的能力了；",
+        "pinyin": "wǒ yī diǎn yě bù néng dòng ， yǐ jīng méi yǒu chú qù tā de néng lì le ；",
+        "english": ""
+      },
+      {
+        "chinese": "倘在平时，只将身子一扭，就能使他退避。",
+        "pinyin": "tǎng zài píng shí ， zhǐ jiāng shēn zǐ yī niǔ ， jiù néng shǐ tā tuì bì 。",
+        "english": ""
+      },
+      {
+        "chinese": "而且，大腿上又爬着一个哩！",
+        "pinyin": "ér qiě ， dà tuǐ shàng yòu pá zhuó yī gè li ！",
+        "english": ""
+      },
+      {
+        "chinese": "你们是做什么的？",
+        "pinyin": "nǐ mén shì zuò shén me de ？",
+        "english": ""
+      },
+      {
+        "chinese": "虫豸！",
+        "pinyin": "chóng zhì ！",
+        "english": ""
+      },
+      {
+        "chinese": "事情可更坏了：嗡的一声，就有一个青蝇停在我的颧骨上，走了几步，又一飞，开口便舐我的鼻尖。",
+        "pinyin": "shì qíng kě gèng huài le ： wēng de yī shēng ， jiù yǒu yī gè qīng yíng tíng zài wǒ de quán gǔ shàng ， zǒu le jǐ bù ， yòu yī fēi ， kāi kǒu biàn shì wǒ de bí jiān 。",
+        "english": ""
+      },
+      {
+        "chinese": "我懊恼地想：足下，我不是什么伟人，你无须到我身上来寻做论的材料……。",
+        "pinyin": "wǒ ào nǎo dì xiǎng ： zú xià ， wǒ bù shì shén me wěi rén ， nǐ wú xū dào wǒ shēn shàng lái xún zuò lùn de cái liào … … 。",
+        "english": ""
+      },
+      {
+        "chinese": "但是不能说出来。",
+        "pinyin": "dàn shì bù néng shuō chū lái 。",
+        "english": ""
+      },
+      {
+        "chinese": "他却从鼻尖跑下，又用冷舌头来舐我的嘴唇了，不知道可是表示亲爱。",
+        "pinyin": "tā què cóng bí jiān pǎo xià ， yòu yòng lěng shé tóu lái shì wǒ de zuǐ chún le ， bù zhī dào kě shì biǎo shì qīn ài 。",
+        "english": ""
+      },
+      {
+        "chinese": "还有几个则聚在眉毛上，跨一步，我的毛根就一摇。",
+        "pinyin": "hái yǒu jǐ gè zé jù zài méi máo shàng ， kuà yī bù ， wǒ de máo gēn jiù yī yáo 。",
+        "english": ""
+      },
+      {
+        "chinese": "实在使我烦厌得不堪，——不堪之至。",
+        "pinyin": "shí zài shǐ wǒ fán yàn dé bù kān ， — — bù kān zhī zhì 。",
+        "english": ""
+      },
+      {
+        "chinese": "忽然，一阵风，一片东西从上面盖下来，他们就一同飞开了，临走时还说——",
+        "pinyin": "hū rán ， yī zhèn fēng ， yī piàn dōng xī cóng shàng miàn gài xià lái ， tā mén jiù yī tóng fēi kāi le ， lín zǒu shí hái shuō — —",
+        "english": ""
+      },
+      {
+        "chinese": "“惜哉！",
+        "pinyin": "“ xī zāi ！",
+        "english": ""
+      },
+      {
+        "chinese": "……”",
+        "pinyin": "… … ”",
+        "english": ""
+      },
+      {
+        "chinese": "我愤怒得几乎昏厥过去。",
+        "pinyin": "wǒ fèn nù dé jǐ hū hūn jué guò qù 。",
+        "english": ""
+      },
+      {
+        "chinese": "木材摔在地上的钝重的声音同着地面的震动，使我忽然清醒，前额上感着芦席的条纹。",
+        "pinyin": "mù cái shuāi zài dì shàng de dùn zhòng de shēng yīn tóng zhuó dì miàn de zhèn dòng ， shǐ wǒ hū rán qīng xǐng ， qián é shàng gǎn zhuó lú xí de tiáo wén 。",
+        "english": ""
+      },
+      {
+        "chinese": "但那芦席就被掀去了，又立刻感到了日光的灼热。",
+        "pinyin": "dàn nà lú xí jiù bèi xiān qù le ， yòu lì kè gǎn dào le rì guāng de zhuó rè 。",
+        "english": ""
+      },
+      {
+        "chinese": "还听得有人说——",
+        "pinyin": "hái tīng dé yǒu rén shuō — —",
+        "english": ""
+      },
+      {
+        "chinese": "“怎么要死在这里？",
+        "pinyin": "“ zěn me yào sǐ zài zhè lǐ ？",
+        "english": ""
+      },
+      {
+        "chinese": "……”",
+        "pinyin": "… … ”",
+        "english": ""
+      },
+      {
+        "chinese": "这声音离我很近，他正弯着腰罢。",
+        "pinyin": "zhè shēng yīn lí wǒ hěn jìn ， tā zhèng wān zhuó yāo bà 。",
+        "english": ""
+      },
+      {
+        "chinese": "但人应该死在那里呢？",
+        "pinyin": "dàn rén yīng gāi sǐ zài nà lǐ ne ？",
+        "english": ""
+      },
+      {
+        "chinese": "我先前以为人在地上虽没有任意生存的权利，却总有任意死掉的权利的。",
+        "pinyin": "wǒ xiān qián yǐ wèi rén zài dì shàng suī méi yǒu rèn yì shēng cún de quán lì ， què zǒng yǒu rèn yì sǐ diào de quán lì de 。",
+        "english": ""
+      },
+      {
+        "chinese": "现在才知道并不然，也很难适合人们的公意。",
+        "pinyin": "xiàn zài cái zhī dào bìng bù rán ， yě hěn nán shì hé rén mén de gōng yì 。",
+        "english": ""
+      },
+      {
+        "chinese": "可惜我久没了纸笔；",
+        "pinyin": "kě xī wǒ jiǔ méi le zhǐ bǐ ；",
+        "english": ""
+      },
+      {
+        "chinese": "即有也不能写，而且即使写了也没有地方发表了。",
+        "pinyin": "jí yǒu yě bù néng xiě ， ér qiě jí shǐ xiě le yě méi yǒu dì fāng fā biǎo le 。",
+        "english": ""
+      },
+      {
+        "chinese": "只好就这样抛开。",
+        "pinyin": "zhǐ hǎo jiù zhè yàng pāo kāi 。",
+        "english": ""
+      },
+      {
+        "chinese": "有人来抬我，也不知道是谁。",
+        "pinyin": "yǒu rén lái tái wǒ ， yě bù zhī dào shì shuí 。",
+        "english": ""
+      },
+      {
+        "chinese": "听到刀鞘声，还有巡警在这里罢，在我所不应该“死在这里”的这里。",
+        "pinyin": "tīng dào dāo qiào shēng ， hái yǒu xún jǐng zài zhè lǐ bà ， zài wǒ suǒ bù yīng gāi “ sǐ zài zhè lǐ ” de zhè lǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "我被翻了几个转身，便觉得向上一举，又往下一沉；",
+        "pinyin": "wǒ bèi fān le jǐ gè zhuǎn shēn ， biàn jué dé xiàng shàng yī jǔ ， yòu wǎng xià yī chén ；",
+        "english": ""
+      },
+      {
+        "chinese": "又听得盖了盖，钉着钉。",
+        "pinyin": "yòu tīng dé gài le gài ， dīng zhuó dīng 。",
+        "english": ""
+      },
+      {
+        "chinese": "但是，奇怪，只钉了两个。",
+        "pinyin": "dàn shì ， qí guài ， zhǐ dīng le liǎng gè 。",
+        "english": ""
+      },
+      {
+        "chinese": "难道这里的棺材钉，是钉两个的么？",
+        "pinyin": "nán dào zhè lǐ de guān cái dīng ， shì dīng liǎng gè de me ？",
+        "english": ""
+      },
+      {
+        "chinese": "我想：这回是六面碰壁，外加钉子。",
+        "pinyin": "wǒ xiǎng ： zhè huí shì liù miàn pèng bì ， wài jiā dīng zǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "真是完全失败，呜呼哀哉了！",
+        "pinyin": "zhēn shì wán quán shī bài ， wū hū āi zāi le ！",
+        "english": ""
+      },
+      {
+        "chinese": "“气闷！",
+        "pinyin": "“ qì mèn ！",
+        "english": ""
+      },
+      {
+        "chinese": "……”我又想。",
+        "pinyin": "… … ” wǒ yòu xiǎng 。",
+        "english": ""
+      },
+      {
+        "chinese": "然而我其实却比先前已经宁静得多，虽然知不清埋了没有。",
+        "pinyin": "rán ér wǒ qí shí què bǐ xiān qián yǐ jīng níng jìng dé duō ， suī rán zhī bù qīng mái le méi yǒu 。",
+        "english": ""
+      },
+      {
+        "chinese": "在手背上触到草席的条纹，觉得这尸衾倒也不恶。",
+        "pinyin": "zài shǒu bēi shàng chù dào cǎo xí de tiáo wén ， jué dé zhè shī qīn dǎo yě bù è 。",
+        "english": ""
+      },
+      {
+        "chinese": "只不知道是谁给我化钱的，可惜！",
+        "pinyin": "zhǐ bù zhī dào shì shuí gěi wǒ huà qián de ， kě xī ！",
+        "english": ""
+      },
+      {
+        "chinese": "但是，可恶，收敛的小子们！",
+        "pinyin": "dàn shì ， kě è ， shōu liǎn de xiǎo zǐ mén ！",
+        "english": ""
+      },
+      {
+        "chinese": "我背后的小衫的一角皱起来了，他们并不给我拉平，现在抵得我很难受。",
+        "pinyin": "wǒ bēi hòu de xiǎo shān de yī jiǎo zhòu qǐ lái le ， tā mén bìng bù gěi wǒ lā píng ， xiàn zài dǐ dé wǒ hěn nán shòu 。",
+        "english": ""
+      },
+      {
+        "chinese": "你们以为死人无知，做事就这样地草率？",
+        "pinyin": "nǐ mén yǐ wèi sǐ rén wú zhī ， zuò shì jiù zhè yàng dì cǎo shuài ？",
+        "english": ""
+      },
+      {
+        "chinese": "哈哈！",
+        "pinyin": "hā hā ！",
+        "english": ""
+      },
+      {
+        "chinese": "我的身体似乎比活的时候要重得多，所以压着衣皱便格外的不舒服。",
+        "pinyin": "wǒ de shēn tǐ sì hū bǐ huó de shí hòu yào zhòng dé duō ， suǒ yǐ yā zhuó yī zhòu biàn gé wài de bù shū fú 。",
+        "english": ""
+      },
+      {
+        "chinese": "但我想，不久就可以习惯的；",
+        "pinyin": "dàn wǒ xiǎng ， bù jiǔ jiù kě yǐ xí guàn de ；",
+        "english": ""
+      },
+      {
+        "chinese": "或者就要腐烂，不至于再有什么大麻烦。",
+        "pinyin": "huò zhě jiù yào fǔ làn ， bù zhì yú zài yǒu shén me dà má fán 。",
+        "english": ""
+      },
+      {
+        "chinese": "此刻还不如静静地静着想。",
+        "pinyin": "cǐ kè hái bù rú jìng jìng dì jìng zhuó xiǎng 。",
+        "english": ""
+      },
+      {
+        "chinese": "“您好？",
+        "pinyin": "“ nín hǎo ？",
+        "english": ""
+      },
+      {
+        "chinese": "您死了么？",
+        "pinyin": "nín sǐ le me ？",
+        "english": ""
+      },
+      {
+        "chinese": "是一个颇为耳熟的声音。",
+        "pinyin": "shì yī gè pō wèi ěr shú de shēng yīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "睁眼看时，却是勃古斋旧书铺的跑外的小伙计。",
+        "pinyin": "zhēng yǎn kàn shí ， què shì bó gǔ zhāi jiù shū pū de pǎo wài de xiǎo huǒ jì 。",
+        "english": ""
+      },
+      {
+        "chinese": "不见约有二十多年了，倒还是一副老样子。",
+        "pinyin": "bù jiàn yuē yǒu èr shí duō nián le ， dǎo hái shì yī fù lǎo yàng zǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "我又看看六面的壁，委实太毛糙，简直毫没有加过一点修刮，锯绒还是毛毵毵的。",
+        "pinyin": "wǒ yòu kàn kàn liù miàn de bì ， wěi shí tài máo cāo ， jiǎn zhí háo méi yǒu jiā guò yī diǎn xiū guā ， jù róng hái shì máo sān sān de 。",
+        "english": ""
+      },
+      {
+        "chinese": "“那不碍事，那不要紧。",
+        "pinyin": "“ nà bù ài shì ， nà bù yào jǐn 。",
+        "english": ""
+      },
+      {
+        "chinese": "”他说，一面打开暗蓝色布的包裹来。",
+        "pinyin": "” tā shuō ， yī miàn dǎ kāi àn lán sè bù de bāo guǒ lái 。",
+        "english": ""
+      },
+      {
+        "chinese": "“这是明板《公羊传》，嘉靖黑口本，给您送来了。",
+        "pinyin": "“ zhè shì míng bǎn 《 gōng yáng chuán 》 ， jiā jìng hēi kǒu běn ， gěi nín sòng lái le 。",
+        "english": ""
+      },
+      {
+        "chinese": "您留下他罢。",
+        "pinyin": "nín liú xià tā bà 。",
+        "english": ""
+      },
+      {
+        "chinese": "这是……”",
+        "pinyin": "zhè shì … … ”",
+        "english": ""
+      },
+      {
+        "chinese": "“你！",
+        "pinyin": "“ nǐ ！",
+        "english": ""
+      },
+      {
+        "chinese": "”我诧异地看定他的眼睛，说，“你莫非真正胡涂了？",
+        "pinyin": "” wǒ chà yì dì kàn dìng tā de yǎn jīng ， shuō ， “ nǐ mò fēi zhēn zhèng hú tú le ？",
+        "english": ""
+      },
+      {
+        "chinese": "你看我这模样，还要看什么明板？",
+        "pinyin": "nǐ kàn wǒ zhè mú yàng ， hái yào kàn shén me míng bǎn ？",
+        "english": ""
+      },
+      {
+        "chinese": "……”",
+        "pinyin": "… … ”",
+        "english": ""
+      },
+      {
+        "chinese": "“那可以看，那不碍事。",
+        "pinyin": "“ nà kě yǐ kàn ， nà bù ài shì 。",
+        "english": ""
+      },
+      {
+        "chinese": "我即刻闭上眼睛，因为对他很烦厌。",
+        "pinyin": "wǒ jí kè bì shàng yǎn jīng ， yīn wèi duì tā hěn fán yàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "停了一会，没有声息，他大约走了。",
+        "pinyin": "tíng le yī huì ， méi yǒu shēng xī ， tā dà yuē zǒu le 。",
+        "english": ""
+      },
+      {
+        "chinese": "但是似乎一个马蚁又在脖子上爬起来，终于爬到脸上，只绕着眼眶转圈子。",
+        "pinyin": "dàn shì sì hū yī gè mǎ yǐ yòu zài bó zǐ shàng pá qǐ lái ， zhōng yú pá dào liǎn shàng ， zhǐ rào zhuó yǎn kuàng zhuǎn quān zǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "万不料人的思想，是死掉之后也会变化的。",
+        "pinyin": "wàn bù liào rén de sī xiǎng ， shì sǐ diào zhī hòu yě huì biàn huà de 。",
+        "english": ""
+      },
+      {
+        "chinese": "忽而，有一种力将我的心的平安冲破；",
+        "pinyin": "hū ér ， yǒu yī zhǒng lì jiāng wǒ de xīn de píng ān chōng pò ；",
+        "english": ""
+      },
+      {
+        "chinese": "同时，许多梦也都做在眼前了。",
+        "pinyin": "tóng shí ， xǔ duō mèng yě dōu zuò zài yǎn qián le 。",
+        "english": ""
+      },
+      {
+        "chinese": "几个朋友祝我安乐，几个仇敌祝我灭亡。",
+        "pinyin": "jǐ gè péng yǒu zhù wǒ ān lè ， jǐ gè chóu dí zhù wǒ miè wáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "我却总是既不安乐，也不灭亡地不上不下地生活下来，都不能副任何一面的期望。",
+        "pinyin": "wǒ què zǒng shì jì bù ān lè ， yě bù miè wáng dì bù shàng bù xià dì shēng huó xià lái ， dōu bù néng fù rèn hé yī miàn de qī wàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "现在又影一般死掉了，连仇敌也不使知道，不肯赠给他们一点惠而不费的欢欣。",
+        "pinyin": "xiàn zài yòu yǐng yī bān sǐ diào le ， lián chóu dí yě bù shǐ zhī dào ， bù kěn zèng gěi tā mén yī diǎn huì ér bù fèi de huān xīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "我觉得在快意中要哭出来。",
+        "pinyin": "wǒ jué dé zài kuài yì zhōng yào kū chū lái 。",
+        "english": ""
+      },
+      {
+        "chinese": "这大概是我死后第一次的哭。",
+        "pinyin": "zhè dà gài shì wǒ sǐ hòu dì yī cì de kū 。",
+        "english": ""
+      },
+      {
+        "chinese": "然而终于也没有眼泪流下；",
+        "pinyin": "rán ér zhōng yú yě méi yǒu yǎn lèi liú xià ；",
+        "english": ""
+      },
+      {
+        "chinese": "只看见眼前仿佛有火花一样，我于是坐了起来。",
+        "pinyin": "zhǐ kàn jiàn yǎn qián fǎng fó yǒu huǒ huā yī yàng ， wǒ yú shì zuò le qǐ lái 。",
+        "english": ""
+      },
+      {
+        "chinese": "一九二五年七月十二日。",
+        "pinyin": "yī jiǔ èr wǔ nián qī yuè shí èr rì 。",
+        "english": ""
+      }
+    ]
+  },
+  {
+    "id": "wild_grass_luxun_ch_12",
+    "bookId": "wild_grass_luxun",
+    "chapterIndex": 12,
+    "title": "第12章",
+    "titleEn": "Chapter 12",
+    "sentences": [
+      {
+        "chinese": "这样的战士",
+        "pinyin": "zhè yàng de zhàn shì",
+        "english": ""
+      },
+      {
+        "chinese": "要有这样的一种战士——",
+        "pinyin": "yào yǒu zhè yàng de yī zhǒng zhàn shì — —",
+        "english": ""
+      },
+      {
+        "chinese": "已不是蒙昧如非洲土人而背着雪亮的毛瑟枪的；",
+        "pinyin": "yǐ bù shì mēng mèi rú fēi zhōu tǔ rén ér bēi zhuó xuě liàng de máo sè qiāng de ；",
+        "english": ""
+      },
+      {
+        "chinese": "也并不疲惫如中国绿营兵而却佩着盒子炮。",
+        "pinyin": "yě bìng bù pí bèi rú zhōng guó lǜ yíng bīng ér què pèi zhuó hé zǐ pào 。",
+        "english": ""
+      },
+      {
+        "chinese": "他毫无乞灵于牛皮和废铁的甲胄；",
+        "pinyin": "tā háo wú qǐ líng yú niú pí hé fèi tiě de jiǎ zhòu ；",
+        "english": ""
+      },
+      {
+        "chinese": "他只有自己，但拿着蛮人所用的，脱手一掷的投枪。",
+        "pinyin": "tā zhǐ yǒu zì jǐ ， dàn ná zhuó mán rén suǒ yòng de ， tuō shǒu yī zhì de tóu qiāng 。",
+        "english": ""
+      },
+      {
+        "chinese": "他走进无物之阵，所遇见的都对他一式点头。",
+        "pinyin": "tā zǒu jìn wú wù zhī zhèn ， suǒ yù jiàn de dōu duì tā yī shì diǎn tóu 。",
+        "english": ""
+      },
+      {
+        "chinese": "他知道这点头就是敌人的武器，是杀人不见血的武器，许多战士都在此灭亡，正如炮弹一般，使猛士无所用其力。",
+        "pinyin": "tā zhī dào zhè diǎn tóu jiù shì dí rén de wǔ qì ， shì shā rén bù jiàn xiě de wǔ qì ， xǔ duō zhàn shì dōu zài cǐ miè wáng ， zhèng rú pào dàn yī bān ， shǐ měng shì wú suǒ yòng qí lì 。",
+        "english": ""
+      },
+      {
+        "chinese": "那些头上有各种旗帜，绣出各样好名称：慈善家，学者，文士，长者，青年，雅人，君子……。",
+        "pinyin": "nà xiē tóu shàng yǒu gè zhǒng qí zhì ， xiù chū gè yàng hǎo míng chēng ： cí shàn jiā ， xué zhě ， wén shì ， cháng zhě ， qīng nián ， yǎ rén ， jūn zǐ … … 。",
+        "english": ""
+      },
+      {
+        "chinese": "头下有各样外套，绣出各式好花样：学问，道德，国粹，民意，逻辑，公义，东方文明……",
+        "pinyin": "tóu xià yǒu gè yàng wài tào ， xiù chū gè shì hǎo huā yàng ： xué wèn ， dào dé ， guó cuì ， mín yì ， luó jí ， gōng yì ， dōng fāng wén míng … …",
+        "english": ""
+      },
+      {
+        "chinese": "但他举起了投枪。",
+        "pinyin": "dàn tā jǔ qǐ le tóu qiāng 。",
+        "english": ""
+      },
+      {
+        "chinese": "他们都同声立了誓来讲说，他们的心都在胸膛的中央，和别的偏心的人类两样。",
+        "pinyin": "tā mén dōu tóng shēng lì le shì lái jiǎng shuō ， tā mén de xīn dōu zài xiōng táng de zhōng yāng ， hé bié de piān xīn de rén lèi liǎng yàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "他们都在胸前放着护心镜，就为自己也深信在胸膛中央的事作证。",
+        "pinyin": "tā mén dōu zài xiōng qián fàng zhuó hù xīn jìng ， jiù wèi zì jǐ yě shēn xìn zài xiōng táng zhōng yāng de shì zuò zhèng 。",
+        "english": ""
+      },
+      {
+        "chinese": "但他举起了投枪。",
+        "pinyin": "dàn tā jǔ qǐ le tóu qiāng 。",
+        "english": ""
+      },
+      {
+        "chinese": "他微笑，偏侧一掷，却正中了他们的心窝。",
+        "pinyin": "tā wēi xiào ， piān cè yī zhì ， què zhèng zhōng le tā mén de xīn wō 。",
+        "english": ""
+      },
+      {
+        "chinese": "一切都颓然倒地；",
+        "pinyin": "yī qiē dōu tuí rán dǎo dì ；",
+        "english": ""
+      },
+      {
+        "chinese": "——然而只有一件外套，其中无物。",
+        "pinyin": "— — rán ér zhǐ yǒu yī jiàn wài tào ， qí zhōng wú wù 。",
+        "english": ""
+      },
+      {
+        "chinese": "无物之物已经脱走，得了胜利，因为他这时成了戕害慈善家等类的罪人。",
+        "pinyin": "wú wù zhī wù yǐ jīng tuō zǒu ， dé le shèng lì ， yīn wèi tā zhè shí chéng le qiāng hài cí shàn jiā děng lèi de zuì rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "但他举起了投枪。",
+        "pinyin": "dàn tā jǔ qǐ le tóu qiāng 。",
+        "english": ""
+      },
+      {
+        "chinese": "他在无物之阵中大踏步走，再见一式的点头，各种的旗帜，各样的外套……",
+        "pinyin": "tā zài wú wù zhī zhèn zhōng dà tà bù zǒu ， zài jiàn yī shì de diǎn tóu ， gè zhǒng de qí zhì ， gè yàng de wài tào … …",
+        "english": ""
+      },
+      {
+        "chinese": "但他举起了投枪。",
+        "pinyin": "dàn tā jǔ qǐ le tóu qiāng 。",
+        "english": ""
+      },
+      {
+        "chinese": "他终于在无物之阵中老衰，寿终。",
+        "pinyin": "tā zhōng yú zài wú wù zhī zhèn zhōng lǎo shuāi ， shòu zhōng 。",
+        "english": ""
+      },
+      {
+        "chinese": "他终于不是战士，但无物之物则是胜者。",
+        "pinyin": "tā zhōng yú bù shì zhàn shì ， dàn wú wù zhī wù zé shì shèng zhě 。",
+        "english": ""
+      },
+      {
+        "chinese": "在这样的境地里，谁也不闻战叫：太平。",
+        "pinyin": "zài zhè yàng de jìng dì lǐ ， shuí yě bù wén zhàn jiào ： tài píng 。",
+        "english": ""
+      },
+      {
+        "chinese": "太平……。",
+        "pinyin": "tài píng … … 。",
+        "english": ""
+      },
+      {
+        "chinese": "但他举起了投枪！",
+        "pinyin": "dàn tā jǔ qǐ le tóu qiāng ！",
+        "english": ""
+      },
+      {
+        "chinese": "一九二五年十二月十四日。",
+        "pinyin": "yī jiǔ èr wǔ nián shí èr yuè shí sì rì 。",
+        "english": ""
+      },
+      {
+        "chinese": "聪明人和傻子和奴才",
+        "pinyin": "cōng míng rén hé shǎ zǐ hé nú cái",
+        "english": ""
+      },
+      {
+        "chinese": "奴才总不过是寻人诉苦。",
+        "pinyin": "nú cái zǒng bù guò shì xún rén sù kǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "只要这样，也只能这样。",
+        "pinyin": "zhǐ yào zhè yàng ， yě zhǐ néng zhè yàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "有一日，他遇到一个聪明人。",
+        "pinyin": "yǒu yī rì ， tā yù dào yī gè cōng míng rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "“先生！",
+        "pinyin": "“ xiān shēng ！",
+        "english": ""
+      },
+      {
+        "chinese": "”他悲哀地说，眼泪联成一线，就从眼角上直流下来。",
+        "pinyin": "” tā bēi āi dì shuō ， yǎn lèi lián chéng yī xiàn ， jiù cóng yǎn jiǎo shàng zhí liú xià lái 。",
+        "english": ""
+      },
+      {
+        "chinese": "“你知道的。",
+        "pinyin": "“ nǐ zhī dào de 。",
+        "english": ""
+      },
+      {
+        "chinese": "我所过的简直不是人的生活。",
+        "pinyin": "wǒ suǒ guò de jiǎn zhí bù shì rén de shēng huó 。",
+        "english": ""
+      },
+      {
+        "chinese": "吃的是一天未必有一餐，这一餐又不过是高粱皮，连猪狗都不要吃的，尚且只有一小碗……”",
+        "pinyin": "chī de shì yī tiān wèi bì yǒu yī cān ， zhè yī cān yòu bù guò shì gāo liáng pí ， lián zhū gǒu dōu bù yào chī de ， shàng qiě zhǐ yǒu yī xiǎo wǎn … … ”",
+        "english": ""
+      },
+      {
+        "chinese": "“这实在令人同情。",
+        "pinyin": "“ zhè shí zài lìng rén tóng qíng 。",
+        "english": ""
+      },
+      {
+        "chinese": "”聪明人也惨然说。",
+        "pinyin": "” cōng míng rén yě cǎn rán shuō 。",
+        "english": ""
+      },
+      {
+        "chinese": "“可不是么！",
+        "pinyin": "“ kě bù shì me ！",
+        "english": ""
+      },
+      {
+        "chinese": "”他高兴了。",
+        "pinyin": "” tā gāo xìng le 。",
+        "english": ""
+      },
+      {
+        "chinese": "“可是做工是昼夜无休息：清早担水晚烧饭，上午跑街夜磨面，晴洗衣裳雨张伞，冬烧汽炉夏打扇。",
+        "pinyin": "“ kě shì zuò gōng shì zhòu yè wú xiū xī ： qīng zǎo dān shuǐ wǎn shāo fàn ， shàng wǔ pǎo jiē yè mó miàn ， qíng xǐ yī cháng yǔ zhāng sǎn ， dōng shāo qì lú xià dǎ shàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "半夜要煨银耳，侍候主人耍钱；",
+        "pinyin": "bàn yè yào wēi yín ěr ， shì hòu zhǔ rén shuǎ qián ；",
+        "english": ""
+      },
+      {
+        "chinese": "头钱从来没分，有时还挨皮鞭……。",
+        "pinyin": "tóu qián cóng lái méi fēn ， yǒu shí hái āi pí biān … … 。",
+        "english": ""
+      },
+      {
+        "chinese": "“唉唉……”聪明人叹息着，眼圈有些发红，似乎要下泪。",
+        "pinyin": "“ āi āi … … ” cōng míng rén tàn xī zhuó ， yǎn quān yǒu xiē fā hóng ， sì hū yào xià lèi 。",
+        "english": ""
+      },
+      {
+        "chinese": "“先生！",
+        "pinyin": "“ xiān shēng ！",
+        "english": ""
+      },
+      {
+        "chinese": "我这样是敷衍不下去的。",
+        "pinyin": "wǒ zhè yàng shì fū yǎn bù xià qù de 。",
+        "english": ""
+      },
+      {
+        "chinese": "我总得另外想法子。",
+        "pinyin": "wǒ zǒng dé lìng wài xiǎng fǎ zǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "可是什么法子呢？",
+        "pinyin": "kě shì shén me fǎ zǐ ne ？",
+        "english": ""
+      },
+      {
+        "chinese": "……”",
+        "pinyin": "… … ”",
+        "english": ""
+      },
+      {
+        "chinese": "“我想，你总会好起来……”",
+        "pinyin": "“ wǒ xiǎng ， nǐ zǒng huì hǎo qǐ lái … … ”",
+        "english": ""
+      },
+      {
+        "chinese": "“是么？",
+        "pinyin": "“ shì me ？",
+        "english": ""
+      },
+      {
+        "chinese": "但愿如此。",
+        "pinyin": "dàn yuàn rú cǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "可是我对先生诉了冤苦，又得你的同情和慰安，已经舒坦得不少了。",
+        "pinyin": "kě shì wǒ duì xiān shēng sù le yuān kǔ ， yòu dé nǐ de tóng qíng hé wèi ān ， yǐ jīng shū tǎn dé bù shǎo le 。",
+        "english": ""
+      },
+      {
+        "chinese": "可见天理没有灭绝……”",
+        "pinyin": "kě jiàn tiān lǐ méi yǒu miè jué … … ”",
+        "english": ""
+      },
+      {
+        "chinese": "但是，不几日，他又不平起来了，仍然寻人去诉苦。",
+        "pinyin": "dàn shì ， bù jǐ rì ， tā yòu bù píng qǐ lái le ， réng rán xún rén qù sù kǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "“先生！",
+        "pinyin": "“ xiān shēng ！",
+        "english": ""
+      },
+      {
+        "chinese": "”他流着眼泪说，“你知道的。",
+        "pinyin": "” tā liú zhuó yǎn lèi shuō ， “ nǐ zhī dào de 。",
+        "english": ""
+      },
+      {
+        "chinese": "我住的简直比猪窝还不如。",
+        "pinyin": "wǒ zhù de jiǎn zhí bǐ zhū wō hái bù rú 。",
+        "english": ""
+      },
+      {
+        "chinese": "主人并不将我当人；",
+        "pinyin": "zhǔ rén bìng bù jiāng wǒ dāng rén ；",
+        "english": ""
+      },
+      {
+        "chinese": "他对他的叭儿狗还要好到几万倍……”",
+        "pinyin": "tā duì tā de bā ér gǒu hái yào hǎo dào jǐ wàn bèi … … ”",
+        "english": ""
+      },
+      {
+        "chinese": "“混帐！",
+        "pinyin": "“ hùn zhàng ！",
+        "english": ""
+      },
+      {
+        "chinese": "”那人大叫起来，使他吃惊了。",
+        "pinyin": "” nà rén dà jiào qǐ lái ， shǐ tā chī jīng le 。",
+        "english": ""
+      },
+      {
+        "chinese": "那人是一个傻子。",
+        "pinyin": "nà rén shì yī gè shǎ zǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "“先生，我住的只是一间破小屋，又湿，又阴，满是臭虫，睡下去就咬得真可以。",
+        "pinyin": "“ xiān shēng ， wǒ zhù de zhǐ shì yī jiān pò xiǎo wū ， yòu shī ， yòu yīn ， mǎn shì chòu chóng ， shuì xià qù jiù yǎo dé zhēn kě yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "秽气冲着鼻子，四面又没有一个窗子……”",
+        "pinyin": "huì qì chōng zhuó bí zǐ ， sì miàn yòu méi yǒu yī gè chuāng zǐ … … ”",
+        "english": ""
+      },
+      {
+        "chinese": "“你不会要你的主人开一个窗的么？",
+        "pinyin": "“ nǐ bù huì yào nǐ de zhǔ rén kāi yī gè chuāng de me ？",
+        "english": ""
+      },
+      {
+        "chinese": "“这怎么行？",
+        "pinyin": "“ zhè zěn me xíng ？",
+        "english": ""
+      },
+      {
+        "chinese": "……”",
+        "pinyin": "… … ”",
+        "english": ""
+      },
+      {
+        "chinese": "“那么，你带我去看去！",
+        "pinyin": "“ nà me ， nǐ dài wǒ qù kàn qù ！",
+        "english": ""
+      },
+      {
+        "chinese": "傻子跟奴才到他屋外，动手就砸那泥墙。",
+        "pinyin": "shǎ zǐ gēn nú cái dào tā wū wài ， dòng shǒu jiù zá nà ní qiáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "“先生！",
+        "pinyin": "“ xiān shēng ！",
+        "english": ""
+      },
+      {
+        "chinese": "你干什么？",
+        "pinyin": "nǐ gān shén me ？",
+        "english": ""
+      },
+      {
+        "chinese": "”他大惊地说。",
+        "pinyin": "” tā dà jīng dì shuō 。",
+        "english": ""
+      },
+      {
+        "chinese": "“我给你打开一个窗洞来。",
+        "pinyin": "“ wǒ gěi nǐ dǎ kāi yī gè chuāng dòng lái 。",
+        "english": ""
+      },
+      {
+        "chinese": "“这不行！",
+        "pinyin": "“ zhè bù xíng ！",
+        "english": ""
+      },
+      {
+        "chinese": "主人要骂的！",
+        "pinyin": "zhǔ rén yào mà de ！",
+        "english": ""
+      },
+      {
+        "chinese": "“管他呢！",
+        "pinyin": "“ guǎn tā ne ！",
+        "english": ""
+      },
+      {
+        "chinese": "”他仍然砸。",
+        "pinyin": "” tā réng rán zá 。",
+        "english": ""
+      },
+      {
+        "chinese": "“人来呀！",
+        "pinyin": "“ rén lái yā ！",
+        "english": ""
+      },
+      {
+        "chinese": "强盗在毁咱们的屋子了！",
+        "pinyin": "qiáng dào zài huǐ zán mén de wū zǐ le ！",
+        "english": ""
+      }
+    ]
+  },
+  {
+    "id": "wild_grass_luxun_ch_13",
+    "bookId": "wild_grass_luxun",
+    "chapterIndex": 13,
+    "title": "第13章",
+    "titleEn": "Chapter 13",
+    "sentences": [
+      {
+        "chinese": "快来呀！",
+        "pinyin": "kuài lái yā ！",
+        "english": ""
+      },
+      {
+        "chinese": "迟一点可要打出窟窿来了！",
+        "pinyin": "chí yī diǎn kě yào dǎ chū kū lóng lái le ！",
+        "english": ""
+      },
+      {
+        "chinese": "……”",
+        "pinyin": "… … ”",
+        "english": ""
+      },
+      {
+        "chinese": "他哭嚷着，在地上团团地打滚。",
+        "pinyin": "tā kū rǎng zhuó ， zài dì shàng tuán tuán dì dǎ gǔn 。",
+        "english": ""
+      },
+      {
+        "chinese": "一群奴才都出来，将傻子赶走。",
+        "pinyin": "yī qún nú cái dōu chū lái ， jiāng shǎ zǐ gǎn zǒu 。",
+        "english": ""
+      },
+      {
+        "chinese": "听到了喊声，慢慢地最后出来的是主人。",
+        "pinyin": "tīng dào le hǎn shēng ， màn màn dì zuì hòu chū lái de shì zhǔ rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "“有强盗要来毁咱们的屋子，我首先叫喊起来，大家一同把他赶走了。",
+        "pinyin": "“ yǒu qiáng dào yào lái huǐ zán mén de wū zǐ ， wǒ shǒu xiān jiào hǎn qǐ lái ， dà jiā yī tóng bǎ tā gǎn zǒu le 。",
+        "english": ""
+      },
+      {
+        "chinese": "”他恭敬而得胜地说。",
+        "pinyin": "” tā gōng jìng ér dé shèng dì shuō 。",
+        "english": ""
+      },
+      {
+        "chinese": "“你不错。",
+        "pinyin": "“ nǐ bù cuò 。",
+        "english": ""
+      },
+      {
+        "chinese": "”主人这样夸奖他。",
+        "pinyin": "” zhǔ rén zhè yàng kuā jiǎng tā 。",
+        "english": ""
+      },
+      {
+        "chinese": "这一天就来了许多慰问的人，聪明人也在内。",
+        "pinyin": "zhè yī tiān jiù lái le xǔ duō wèi wèn de rén ， cōng míng rén yě zài nèi 。",
+        "english": ""
+      },
+      {
+        "chinese": "“先生。",
+        "pinyin": "“ xiān shēng 。",
+        "english": ""
+      },
+      {
+        "chinese": "这回因为我有功，主人夸奖了我了。",
+        "pinyin": "zhè huí yīn wèi wǒ yǒu gōng ， zhǔ rén kuā jiǎng le wǒ le 。",
+        "english": ""
+      },
+      {
+        "chinese": "你先前说我总会好起来，实在是有先见之明……。",
+        "pinyin": "nǐ xiān qián shuō wǒ zǒng huì hǎo qǐ lái ， shí zài shì yǒu xiān jiàn zhī míng … … 。",
+        "english": ""
+      },
+      {
+        "chinese": "”他大有希望似的高兴地说。",
+        "pinyin": "” tā dà yǒu xī wàng shì de gāo xìng dì shuō 。",
+        "english": ""
+      },
+      {
+        "chinese": "“可不是么……”聪明人也代为高兴似的回答他。",
+        "pinyin": "“ kě bù shì me … … ” cōng míng rén yě dài wèi gāo xìng shì de huí dá tā 。",
+        "english": ""
+      },
+      {
+        "chinese": "一九二五年十二月二十六日。",
+        "pinyin": "yī jiǔ èr wǔ nián shí èr yuè èr shí liù rì 。",
+        "english": ""
+      },
+      {
+        "chinese": "野草腊叶",
+        "pinyin": "yě cǎo là yè",
+        "english": ""
+      },
+      {
+        "chinese": "灯下看《雁门集》，忽然翻出一片压干的枫叶来。",
+        "pinyin": "dēng xià kàn 《 yàn mén jí 》 ， hū rán fān chū yī piàn yā gān de fēng yè lái 。",
+        "english": ""
+      },
+      {
+        "chinese": "这使我记起去年的深秋。",
+        "pinyin": "zhè shǐ wǒ jì qǐ qù nián de shēn qiū 。",
+        "english": ""
+      },
+      {
+        "chinese": "繁霜夜降，木叶多半凋零，庭前的一株小小的枫树也变成红色了。",
+        "pinyin": "fán shuāng yè jiàng ， mù yè duō bàn diāo líng ， tíng qián de yī zhū xiǎo xiǎo de fēng shù yě biàn chéng hóng sè le 。",
+        "english": ""
+      },
+      {
+        "chinese": "我曾绕树徘徊，细看叶片的颜色，当他青葱的时候是从没有这么注意的。",
+        "pinyin": "wǒ céng rào shù pái huái ， xì kàn yè piàn de yán sè ， dāng tā qīng cōng de shí hòu shì cóng méi yǒu zhè me zhù yì de 。",
+        "english": ""
+      },
+      {
+        "chinese": "他也并非全树通红，最多的是浅绛，有几片则在绯红地上，还带着几团浓绿。",
+        "pinyin": "tā yě bìng fēi quán shù tōng hóng ， zuì duō de shì qiǎn jiàng ， yǒu jǐ piàn zé zài fēi hóng dì shàng ， hái dài zhuó jǐ tuán nóng lǜ 。",
+        "english": ""
+      },
+      {
+        "chinese": "一片独有一点蛀孔，镶着乌黑的花边，在红，黄和绿的斑驳中，明眸似的向人凝视。",
+        "pinyin": "yī piàn dú yǒu yī diǎn zhù kǒng ， xiāng zhuó wū hēi de huā biān ， zài hóng ， huáng hé lǜ de bān bó zhōng ， míng móu shì de xiàng rén níng shì 。",
+        "english": ""
+      },
+      {
+        "chinese": "我自念：这是病叶呵！",
+        "pinyin": "wǒ zì niàn ： zhè shì bìng yè hē ！",
+        "english": ""
+      },
+      {
+        "chinese": "便将他摘了下来，夹在刚才买到的《雁门集》里。",
+        "pinyin": "biàn jiāng tā zhāi le xià lái ， jiá zài gāng cái mǎi dào de 《 yàn mén jí 》 lǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "大概是愿使这将坠的被蚀而斑斓的颜色，暂得保存，不即与群叶一同飘散罢。",
+        "pinyin": "dà gài shì yuàn shǐ zhè jiāng zhuì de bèi shí ér bān lán de yán sè ， zàn dé bǎo cún ， bù jí yǔ qún yè yī tóng piāo sàn bà 。",
+        "english": ""
+      },
+      {
+        "chinese": "但今夜他却黄蜡似的躺在我的眼前，那眸子也不复似去年一般灼灼。",
+        "pinyin": "dàn jīn yè tā què huáng là shì de tǎng zài wǒ de yǎn qián ， nà móu zǐ yě bù fù sì qù nián yī bān zhuó zhuó 。",
+        "english": ""
+      },
+      {
+        "chinese": "假使再过几年，旧时的颜色在我记忆中消去，怕连我也不知道他何以夹在书里面的原因了。",
+        "pinyin": "jiǎ shǐ zài guò jǐ nián ， jiù shí de yán sè zài wǒ jì yì zhōng xiāo qù ， pà lián wǒ yě bù zhī dào tā hé yǐ jiá zài shū lǐ miàn de yuán yīn le 。",
+        "english": ""
+      },
+      {
+        "chinese": "将坠的病叶的斑斓，似乎也只能在极短时中相对，更何况是葱郁的呢。",
+        "pinyin": "jiāng zhuì de bìng yè de bān lán ， sì hū yě zhǐ néng zài jí duǎn shí zhōng xiāng duì ， gèng hé kuàng shì cōng yù de ne 。",
+        "english": ""
+      },
+      {
+        "chinese": "看看窗外，很能耐寒的树木也早经秃尽了；",
+        "pinyin": "kàn kàn chuāng wài ， hěn néng nài hán de shù mù yě zǎo jīng tū jìn le ；",
+        "english": ""
+      },
+      {
+        "chinese": "枫树更何消说得。",
+        "pinyin": "fēng shù gèng hé xiāo shuō dé 。",
+        "english": ""
+      },
+      {
+        "chinese": "当深秋时，想来也许有和这去年的模样相似的病叶罢，但可惜我今年竟没有赏玩秋树的余闲。",
+        "pinyin": "dāng shēn qiū shí ， xiǎng lái yě xǔ yǒu hé zhè qù nián de mú yàng xiāng sì de bìng yè bà ， dàn kě xī wǒ jīn nián jìng méi yǒu shǎng wán qiū shù de yú xián 。",
+        "english": ""
+      },
+      {
+        "chinese": "一九二五年十二月二十六日。",
+        "pinyin": "yī jiǔ èr wǔ nián shí èr yuè èr shí liù rì 。",
+        "english": ""
+      },
+      {
+        "chinese": "淡淡的血痕中",
+        "pinyin": "dàn dàn de xiě hén zhōng",
+        "english": ""
+      },
+      {
+        "chinese": "—纪念几个死者和生者和未生者—",
+        "pinyin": "— jì niàn jǐ gè sǐ zhě hé shēng zhě hé wèi shēng zhě —",
+        "english": ""
+      },
+      {
+        "chinese": "目前的造物主，还是一个怯弱者。",
+        "pinyin": "mù qián de zào wù zhǔ ， hái shì yī gè qiè ruò zhě 。",
+        "english": ""
+      },
+      {
+        "chinese": "他暗暗地使天地变异，却不敢毁灭一个这地球；",
+        "pinyin": "tā àn àn dì shǐ tiān dì biàn yì ， què bù gǎn huǐ miè yī gè zhè dì qiú ；",
+        "english": ""
+      },
+      {
+        "chinese": "暗暗地使生物衰亡，却不敢长存一切尸体；",
+        "pinyin": "àn àn dì shǐ shēng wù shuāi wáng ， què bù gǎn cháng cún yī qiē shī tǐ ；",
+        "english": ""
+      },
+      {
+        "chinese": "暗暗地使人类流血，却不敢使血色永远鲜浓；",
+        "pinyin": "àn àn dì shǐ rén lèi liú xiě ， què bù gǎn shǐ xiě sè yǒng yuǎn xiān nóng ；",
+        "english": ""
+      },
+      {
+        "chinese": "暗暗地使人类受苦，却不敢使人类永远记得。",
+        "pinyin": "àn àn dì shǐ rén lèi shòu kǔ ， què bù gǎn shǐ rén lèi yǒng yuǎn jì dé 。",
+        "english": ""
+      },
+      {
+        "chinese": "他专为他的同类——人类中的怯弱者——设想，用废墟荒坟来衬托华屋，用时光来冲淡苦痛和血痕；",
+        "pinyin": "tā zhuān wèi tā de tóng lèi — — rén lèi zhōng de qiè ruò zhě — — shè xiǎng ， yòng fèi xū huāng fén lái chèn tuō huá wū ， yòng shí guāng lái chōng dàn kǔ tòng hé xiě hén ；",
+        "english": ""
+      },
+      {
+        "chinese": "日日斟出一杯微甘的苦酒，不太少，不太多，以能微醉为度，递给人间，使饮者可以哭，可以歌，也如醒，也如醉，若有知，若无知，也欲死，也欲生。",
+        "pinyin": "rì rì zhēn chū yī bēi wēi gān de kǔ jiǔ ， bù tài shǎo ， bù tài duō ， yǐ néng wēi zuì wèi dù ， dì gěi rén jiān ， shǐ yǐn zhě kě yǐ kū ， kě yǐ gē ， yě rú xǐng ， yě rú zuì ， ruò yǒu zhī ， ruò wú zhī ， yě yù sǐ ， yě yù shēng 。",
+        "english": ""
+      },
+      {
+        "chinese": "他必须使一切也欲生；",
+        "pinyin": "tā bì xū shǐ yī qiē yě yù shēng ；",
+        "english": ""
+      },
+      {
+        "chinese": "他还没有灭尽人类的勇气。",
+        "pinyin": "tā hái méi yǒu miè jìn rén lèi de yǒng qì 。",
+        "english": ""
+      },
+      {
+        "chinese": "几片废墟和几个荒坟散在地上，映以淡淡的血痕，人们都在其间咀嚼着人我的渺茫的悲苦。",
+        "pinyin": "jǐ piàn fèi xū hé jǐ gè huāng fén sàn zài dì shàng ， yìng yǐ dàn dàn de xiě hén ， rén mén dōu zài qí jiān jǔ jué zhuó rén wǒ de miǎo máng de bēi kǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "但是不肯吐弃，以为究竟胜于空虚，各各自称为“天之戮民”，以作咀嚼着人我的渺茫的悲苦的辩解，而且悚息着静待新的悲苦的到来。",
+        "pinyin": "dàn shì bù kěn tǔ qì ， yǐ wèi jiū jìng shèng yú kōng xū ， gè gè zì chēng wèi “ tiān zhī lù mín ” ， yǐ zuò jǔ jué zhuó rén wǒ de miǎo máng de bēi kǔ de biàn jiě ， ér qiě sǒng xī zhuó jìng dài xīn de bēi kǔ de dào lái 。",
+        "english": ""
+      },
+      {
+        "chinese": "新的，这就使他们恐惧，而又渴欲相遇。",
+        "pinyin": "xīn de ， zhè jiù shǐ tā mén kǒng jù ， ér yòu kě yù xiāng yù 。",
+        "english": ""
+      },
+      {
+        "chinese": "这都是造物主的良民。",
+        "pinyin": "zhè dōu shì zào wù zhǔ de liáng mín 。",
+        "english": ""
+      },
+      {
+        "chinese": "他就需要这样。",
+        "pinyin": "tā jiù xū yào zhè yàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "叛逆的猛士出于人间；",
+        "pinyin": "pàn nì de měng shì chū yú rén jiān ；",
+        "english": ""
+      },
+      {
+        "chinese": "他屹立着，洞见一切已改和现有的废墟和荒坟，记得一切深广和久远的苦痛，正视一切重叠淤积的凝血，深知一切已死，方生，将生和未生。",
+        "pinyin": "tā yì lì zhuó ， dòng jiàn yī qiē yǐ gǎi hé xiàn yǒu de fèi xū hé huāng fén ， jì dé yī qiē shēn guǎng hé jiǔ yuǎn de kǔ tòng ， zhèng shì yī qiē chóng dié yū jī de níng xiě ， shēn zhī yī qiē yǐ sǐ ， fāng shēng ， jiāng shēng hé wèi shēng 。",
+        "english": ""
+      },
+      {
+        "chinese": "他看透了造化的把戏；",
+        "pinyin": "tā kàn tòu le zào huà de bǎ xì ；",
+        "english": ""
+      },
+      {
+        "chinese": "他将要起来使人类苏生，或者使人类灭尽，这些造物主的良民们。",
+        "pinyin": "tā jiāng yào qǐ lái shǐ rén lèi sū shēng ， huò zhě shǐ rén lèi miè jìn ， zhè xiē zào wù zhǔ de liáng mín mén 。",
+        "english": ""
+      },
+      {
+        "chinese": "造物主，怯弱者，羞惭了，于是伏藏。",
+        "pinyin": "zào wù zhǔ ， qiè ruò zhě ， xiū cán le ， yú shì fú cáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "天地在猛士的眼中于是变色。",
+        "pinyin": "tiān dì zài měng shì de yǎn zhōng yú shì biàn sè 。",
+        "english": ""
+      },
+      {
+        "chinese": "一九二六年四月八日。",
+        "pinyin": "yī jiǔ èr liù nián sì yuè bā rì 。",
+        "english": ""
+      },
+      {
+        "chinese": "野草一觉",
+        "pinyin": "yě cǎo yī jué",
+        "english": ""
+      },
+      {
+        "chinese": "飞机负了掷下炸弹的使命，象学校的上课似的，每日上午在北京城上飞行。",
+        "pinyin": "fēi jī fù le zhì xià zhà tán de shǐ mìng ， xiàng xué xiào de shàng kè shì de ， měi rì shàng wǔ zài běi jīng chéng shàng fēi xíng 。",
+        "english": ""
+      },
+      {
+        "chinese": "每听得机件搏击空气的声音，我常觉到一种轻微的紧张，宛然目睹了“死”的袭来，",
+        "pinyin": "měi tīng dé jī jiàn bó jī kōng qì de shēng yīn ， wǒ cháng jué dào yī zhǒng qīng wēi de jǐn zhāng ， wǎn rán mù dǔ le “ sǐ ” de xí lái ，",
+        "english": ""
+      },
+      {
+        "chinese": "但同时也深切地感着“生”的存在。",
+        "pinyin": "dàn tóng shí yě shēn qiē dì gǎn zhuó “ shēng ” de cún zài 。",
+        "english": ""
+      },
+      {
+        "chinese": "隐约听到一二爆发声以后，飞机嗡嗡地叫着，冉冉地飞去了。",
+        "pinyin": "yǐn yuē tīng dào yī èr bào fā shēng yǐ hòu ， fēi jī wēng wēng dì jiào zhuó ， rǎn rǎn dì fēi qù le 。",
+        "english": ""
+      },
+      {
+        "chinese": "也许有人死伤了罢，然而天下却似乎更显得太平。",
+        "pinyin": "yě xǔ yǒu rén sǐ shāng le bà ， rán ér tiān xià què sì hū gèng xiǎn dé tài píng 。",
+        "english": ""
+      },
+      {
+        "chinese": "窗外的白杨的嫩叶，在日光下发乌金光；",
+        "pinyin": "chuāng wài de bái yáng de nèn yè ， zài rì guāng xià fā wū jīn guāng ；",
+        "english": ""
+      },
+      {
+        "chinese": "榆叶梅也比昨日开得更烂漫。",
+        "pinyin": "yú yè méi yě bǐ zuó rì kāi dé gèng làn màn 。",
+        "english": ""
+      },
+      {
+        "chinese": "收拾了散乱满床的日报，拂去昨夜聚在书桌上的苍白的微尘，我的四方的小书斋，今日也依然是所谓“窗明几净”。",
+        "pinyin": "shōu shí le sàn luàn mǎn chuáng de rì bào ， fú qù zuó yè jù zài shū zhuō shàng de cāng bái de wēi chén ， wǒ de sì fāng de xiǎo shū zhāi ， jīn rì yě yī rán shì suǒ wèi “ chuāng míng jǐ jìng ” 。",
+        "english": ""
+      },
+      {
+        "chinese": "因为或一种原因，我开手编校那历来积压在我这里的青年作者的文稿了；",
+        "pinyin": "yīn wèi huò yī zhǒng yuán yīn ， wǒ kāi shǒu biān xiào nà lì lái jī yā zài wǒ zhè lǐ de qīng nián zuò zhě de wén gǎo le ；",
+        "english": ""
+      },
+      {
+        "chinese": "我要全都给一个清理。",
+        "pinyin": "wǒ yào quán dōu gěi yī gè qīng lǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "我照作品的年月看下去，这些不肯涂脂抹粉的青年们的魂灵便依次屹立在我眼前。",
+        "pinyin": "wǒ zhào zuò pǐn de nián yuè kàn xià qù ， zhè xiē bù kěn tú zhī mǒ fěn de qīng nián mén de hún líng biàn yī cì yì lì zài wǒ yǎn qián 。",
+        "english": ""
+      },
+      {
+        "chinese": "他们是绰约的，是纯真的，——呵，然而他们苦恼了，呻吟了，愤怒了，而且终于粗暴了，我的可爱的青年们。",
+        "pinyin": "tā mén shì chuò yuē de ， shì chún zhēn de ， — — hē ， rán ér tā mén kǔ nǎo le ， shēn yín le ， fèn nù le ， ér qiě zhōng yú cū bào le ， wǒ de kě ài de qīng nián mén 。",
+        "english": ""
+      },
+      {
+        "chinese": "魂灵被风沙打击得粗暴，因为这是人的魂灵，我爱这样的魂灵；",
+        "pinyin": "hún líng bèi fēng shā dǎ jī dé cū bào ， yīn wèi zhè shì rén de hún líng ， wǒ ài zhè yàng de hún líng ；",
+        "english": ""
+      },
+      {
+        "chinese": "我愿意在无形无色的鲜血淋漓的粗暴上接吻。",
+        "pinyin": "wǒ yuàn yì zài wú xíng wú sè de xiān xiě lín lí de cū bào shàng jiē wěn 。",
+        "english": ""
+      },
+      {
+        "chinese": "漂渺的名园中，奇花盛开着，红颜的静女正在超然无事地逍遥，鹤唳一声，白云郁然而起……。",
+        "pinyin": "piāo miǎo de míng yuán zhōng ， qí huā shèng kāi zhuó ， hóng yán de jìng nǚ zhèng zài chāo rán wú shì dì xiāo yáo ， hè lì yī shēng ， bái yún yù rán ér qǐ … … 。",
+        "english": ""
+      },
+      {
+        "chinese": "这自然使人神往的罢，然而我总记得我活在人间。",
+        "pinyin": "zhè zì rán shǐ rén shén wǎng de bà ， rán ér wǒ zǒng jì dé wǒ huó zài rén jiān 。",
+        "english": ""
+      },
+      {
+        "chinese": "我忽然记起一件事：两三年前，我在北京大学的教员预备室里，看见进来一个并不熟悉的青年，默默地给我一包书，便出去了，打开看时，是一本《浅草》。",
+        "pinyin": "wǒ hū rán jì qǐ yī jiàn shì ： liǎng sān nián qián ， wǒ zài běi jīng dà xué de jiào yuán yù bèi shì lǐ ， kàn jiàn jìn lái yī gè bìng bù shú xī de qīng nián ， mò mò dì gěi wǒ yī bāo shū ， biàn chū qù le ， dǎ kāi kàn shí ， shì yī běn 《 qiǎn cǎo 》 。",
+        "english": ""
+      },
+      {
+        "chinese": "就在这默默中，使我懂得了许多话。",
+        "pinyin": "jiù zài zhè mò mò zhōng ， shǐ wǒ dǒng dé le xǔ duō huà 。",
+        "english": ""
+      },
+      {
+        "chinese": "阿，这赠品是多么丰饶呵！",
+        "pinyin": "ā ， zhè zèng pǐn shì duō me fēng ráo hē ！",
+        "english": ""
+      },
+      {
+        "chinese": "可惜那《浅草》不再出版了，似乎只成了《沉钟》的前身。",
+        "pinyin": "kě xī nà 《 qiǎn cǎo 》 bù zài chū bǎn le ， sì hū zhǐ chéng le 《 chén zhōng 》 de qián shēn 。",
+        "english": ""
+      },
+      {
+        "chinese": "那《沉钟》就在这风沙氵项洞中，深深地在人海的底里寂寞地鸣动。",
+        "pinyin": "nà 《 chén zhōng 》 jiù zài zhè fēng shā shuǐ xiàng dòng zhōng ， shēn shēn dì zài rén hǎi de dǐ lǐ jì mò dì míng dòng 。",
+        "english": ""
+      },
+      {
+        "chinese": "野蓟经了几乎致命的摧折，还要开一朵小花，我记得托尔斯泰曾受了很大的感动，因此写出一篇小说来。",
+        "pinyin": "yě jì jīng le jǐ hū zhì mìng de cuī zhé ， hái yào kāi yī duǒ xiǎo huā ， wǒ jì dé tuō ěr sī tài céng shòu le hěn dà de gǎn dòng ， yīn cǐ xiě chū yī piān xiǎo shuō lái 。",
+        "english": ""
+      }
+    ]
+  },
+  {
+    "id": "wild_grass_luxun_ch_14",
+    "bookId": "wild_grass_luxun",
+    "chapterIndex": 14,
+    "title": "第14章",
+    "titleEn": "Chapter 14",
+    "sentences": [
+      {
+        "chinese": "但是，草木在旱干的沙漠中间，拼命伸长他的根，吸取深地中的水泉，来造成碧绿的林莽，自然是为了自己的“生”的，然而使疲劳枯渴的旅人，一见就怡然觉得遇到了暂时息肩之所，这是如何的可以感激，而且可以悲",
+        "pinyin": "dàn shì ， cǎo mù zài hàn gān de shā mò zhōng jiān ， pīn mìng shēn cháng tā de gēn ， xī qǔ shēn dì zhōng de shuǐ quán ， lái zào chéng bì lǜ de lín mǎng ， zì rán shì wèi le zì jǐ de “ shēng ” de ， rán ér shǐ pí láo kū kě de lǚ rén ， yī jiàn jiù yí rán jué dé yù dào le zàn shí xī jiān zhī suǒ ， zhè shì rú hé de kě yǐ gǎn jī ， ér qiě kě yǐ bēi",
+        "english": ""
+      },
+      {
+        "chinese": "哀的事？",
+        "pinyin": "āi de shì ？",
+        "english": ""
+      },
+      {
+        "chinese": "《沉钟》的《无题》——代启事——说：“有人说：我们的社会是一片沙漠。",
+        "pinyin": "《 chén zhōng 》 de 《 wú tí 》 — — dài qǐ shì — — shuō ： “ yǒu rén shuō ： wǒ mén de shè huì shì yī piàn shā mò 。",
+        "english": ""
+      },
+      {
+        "chinese": "——如果当真是一片沙漠，这虽然荒漠一点也还静肃；",
+        "pinyin": "— — rú guǒ dāng zhēn shì yī piàn shā mò ， zhè suī rán huāng mò yī diǎn yě hái jìng sù ；",
+        "english": ""
+      },
+      {
+        "chinese": "虽然寂寞一点也还会使你感觉苍茫。",
+        "pinyin": "suī rán jì mò yī diǎn yě hái huì shǐ nǐ gǎn jué cāng máng 。",
+        "english": ""
+      },
+      {
+        "chinese": "何至于象这样的混沌，这样的阴沉，而且这样的离奇变幻！",
+        "pinyin": "hé zhì yú xiàng zhè yàng de hùn dùn ， zhè yàng de yīn chén ， ér qiě zhè yàng de lí qí biàn huàn ！",
+        "english": ""
+      },
+      {
+        "chinese": "是的，青年的魂灵屹立在我眼前，他们已经粗暴了，或者将要粗暴了，然而我爱这些流血和隐痛的魂灵，因为他使我觉得是在人间，是在人间活着。",
+        "pinyin": "shì de ， qīng nián de hún líng yì lì zài wǒ yǎn qián ， tā mén yǐ jīng cū bào le ， huò zhě jiāng yào cū bào le ， rán ér wǒ ài zhè xiē liú xiě hé yǐn tòng de hún líng ， yīn wèi tā shǐ wǒ jué dé shì zài rén jiān ， shì zài rén jiān huó zhuó 。",
+        "english": ""
+      },
+      {
+        "chinese": "在编校中夕阳居然西下，灯火给我接续的光。",
+        "pinyin": "zài biān xiào zhōng xī yáng jū rán xī xià ， dēng huǒ gěi wǒ jiē xù de guāng 。",
+        "english": ""
+      },
+      {
+        "chinese": "各样的青春在眼前一一驰去了，身外但有昏黄环绕。",
+        "pinyin": "gè yàng de qīng chūn zài yǎn qián yī yī chí qù le ， shēn wài dàn yǒu hūn huáng huán rào 。",
+        "english": ""
+      },
+      {
+        "chinese": "我疲劳着，捏着纸烟，在无名的思想中静静地合了眼睛，看见很长的梦。",
+        "pinyin": "wǒ pí láo zhuó ， niē zhuó zhǐ yān ， zài wú míng de sī xiǎng zhōng jìng jìng dì hé le yǎn jīng ， kàn jiàn hěn cháng de mèng 。",
+        "english": ""
+      },
+      {
+        "chinese": "忽而警觉，身外也还是环绕着昏黄；",
+        "pinyin": "hū ér jǐng jué ， shēn wài yě hái shì huán rào zhuó hūn huáng ；",
+        "english": ""
+      },
+      {
+        "chinese": "烟篆在不动的空气中飞升，如几片小小夏云，徐徐幻出难以指名的形象。",
+        "pinyin": "yān zhuàn zài bù dòng de kōng qì zhōng fēi shēng ， rú jǐ piàn xiǎo xiǎo xià yún ， xú xú huàn chū nán yǐ zhǐ míng de xíng xiàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "一九二六年四月十日。",
+        "pinyin": "yī jiǔ èr liù nián sì yuè shí rì 。",
+        "english": ""
+      }
+    ]
+  }
+]

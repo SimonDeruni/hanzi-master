@@ -1,0 +1,968 @@
+{
+  "total": 96,
+  "fullCount": 96,
+  "partialCount": 0,
+  "fullBooks": [
+    {
+      "id": "journey_to_the_west",
+      "title": "西游记",
+      "titleEn": "Journey to the West",
+      "author": "吴承恩",
+      "category": "Chinese Epics",
+      "sizeKB": 2747,
+      "chapters": 100,
+      "sentences": 10000
+    },
+    {
+      "id": "romance_of_three_kingdoms",
+      "title": "三国演义",
+      "titleEn": "Romance of the Three Kingdoms",
+      "author": "罗贯中",
+      "category": "Chinese Epics",
+      "sizeKB": 3112,
+      "chapters": 120,
+      "sentences": 12000
+    },
+    {
+      "id": "water_margin",
+      "title": "水浒传",
+      "titleEn": "Water Margin",
+      "author": "施耐庵",
+      "category": "Chinese Epics",
+      "sizeKB": 513,
+      "chapters": 121,
+      "sentences": 847
+    },
+    {
+      "id": "dream_of_red_chamber",
+      "title": "红楼梦",
+      "titleEn": "Dream of the Red Chamber",
+      "author": "曹雪芹",
+      "category": "Chinese Epics",
+      "sizeKB": 3663,
+      "chapters": 121,
+      "sentences": 12100
+    },
+    {
+      "id": "fengshen_yanyi",
+      "title": "封神演义",
+      "titleEn": "Investiture of the Gods",
+      "author": "许仲琳",
+      "category": "Chinese Epics",
+      "sizeKB": 4115,
+      "chapters": 112,
+      "sentences": 16335
+    },
+    {
+      "id": "flowers_in_the_mirror",
+      "title": "镜花缘",
+      "titleEn": "Flowers in the Mirror",
+      "author": "李汝珍",
+      "category": "Chinese Epics",
+      "sizeKB": 233,
+      "chapters": 10,
+      "sentences": 680
+    },
+    {
+      "id": "the_scholars",
+      "title": "儒林外史",
+      "titleEn": "The Scholars",
+      "author": "吴敬梓",
+      "category": "Chinese Epics",
+      "sizeKB": 199,
+      "chapters": 7,
+      "sentences": 1049
+    },
+    {
+      "id": "romance_sui_tang",
+      "title": "隋唐演义",
+      "titleEn": "Romance of Sui and Tang Dynasties",
+      "author": "褚人获",
+      "category": "Chinese Epics",
+      "sizeKB": 876,
+      "chapters": 47,
+      "sentences": 3688
+    },
+    {
+      "id": "bizarre_happenings_two_decades",
+      "title": "二十年目睹之怪现状",
+      "titleEn": "Bizarre Happenings Over Two Decades",
+      "author": "吴趼人",
+      "category": "Chinese Epics",
+      "sizeKB": 279,
+      "chapters": 9,
+      "sentences": 1080
+    },
+    {
+      "id": "the_art_of_war",
+      "title": "孙子兵法",
+      "titleEn": "The Art of War",
+      "author": "孙武",
+      "category": "Ancient Philosophy",
+      "sizeKB": 47,
+      "chapters": 8,
+      "sentences": 209
+    },
+    {
+      "id": "dao_de_jing",
+      "title": "道德经",
+      "titleEn": "Tao Te Ching",
+      "author": "老子",
+      "category": "Ancient Philosophy",
+      "sizeKB": 125,
+      "chapters": 81,
+      "sentences": 573
+    },
+    {
+      "id": "the_analects",
+      "title": "论语",
+      "titleEn": "The Analects of Confucius",
+      "author": "孔子及其弟子",
+      "category": "Ancient Philosophy",
+      "sizeKB": 307,
+      "chapters": 20,
+      "sentences": 1407
+    },
+    {
+      "id": "zhuangzi",
+      "title": "庄子",
+      "titleEn": "Zhuangzi",
+      "author": "庄周",
+      "category": "Ancient Philosophy",
+      "sizeKB": 1117,
+      "chapters": 33,
+      "sentences": 4892
+    },
+    {
+      "id": "mencius",
+      "title": "孟子",
+      "titleEn": "Mencius",
+      "author": "孟轲",
+      "category": "Ancient Philosophy",
+      "sizeKB": 692,
+      "chapters": 261,
+      "sentences": 2888
+    },
+    {
+      "id": "xunzi",
+      "title": "荀子",
+      "titleEn": "Xunzi",
+      "author": "荀况",
+      "category": "Ancient Philosophy",
+      "sizeKB": 126,
+      "chapters": 32,
+      "sentences": 224
+    },
+    {
+      "id": "mozi",
+      "title": "墨子",
+      "titleEn": "Mozi",
+      "author": "墨翟",
+      "category": "Ancient Philosophy",
+      "sizeKB": 211,
+      "chapters": 10,
+      "sentences": 866
+    },
+    {
+      "id": "han_feizi",
+      "title": "韩非子",
+      "titleEn": "Han Feizi",
+      "author": "韩非",
+      "category": "Ancient Philosophy",
+      "sizeKB": 1707,
+      "chapters": 55,
+      "sentences": 6993
+    },
+    {
+      "id": "liezi",
+      "title": "列子",
+      "titleEn": "Liezi",
+      "author": "列御寇",
+      "category": "Ancient Philosophy",
+      "sizeKB": 537,
+      "chapters": 8,
+      "sentences": 2417
+    },
+    {
+      "id": "thirty_six_stratagems",
+      "title": "三十六计",
+      "titleEn": "The Thirty-Six Stratagems",
+      "author": "佚名",
+      "category": "Ancient Philosophy",
+      "sizeKB": 109,
+      "chapters": 15,
+      "sentences": 195
+    },
+    {
+      "id": "huainanzi",
+      "title": "淮南子",
+      "titleEn": "Huainanzi",
+      "author": "刘安",
+      "category": "Ancient Philosophy",
+      "sizeKB": 2132,
+      "chapters": 21,
+      "sentences": 8423
+    },
+    {
+      "id": "guiguzi",
+      "title": "鬼谷子",
+      "titleEn": "Guiguzi: Master of the Ghost Valley",
+      "author": "鬼谷子",
+      "category": "Ancient Philosophy",
+      "sizeKB": 45,
+      "chapters": 6,
+      "sentences": 234
+    },
+    {
+      "id": "classic_mountains_seas",
+      "title": "山海经",
+      "titleEn": "Classic of Mountains and Seas",
+      "author": "古籍",
+      "category": "Ancient Philosophy",
+      "sizeKB": 402,
+      "chapters": 18,
+      "sentences": 1660
+    },
+    {
+      "id": "records_grand_historian",
+      "title": "史记精选",
+      "titleEn": "Records of the Grand Historian (Highlights)",
+      "author": "司马迁",
+      "category": "Ancient Philosophy",
+      "sizeKB": 8391,
+      "chapters": 130,
+      "sentences": 34998
+    },
+    {
+      "id": "in_search_of_sacred",
+      "title": "搜神记",
+      "titleEn": "In Search of the Sacred",
+      "author": "干宝",
+      "category": "Supernatural & Folklore",
+      "sizeKB": 971,
+      "chapters": 20,
+      "sentences": 4163
+    },
+    {
+      "id": "call_to_arms_luxun",
+      "title": "呐喊",
+      "titleEn": "Call to Arms",
+      "author": "鲁迅",
+      "category": "Modern Chinese",
+      "sizeKB": 280,
+      "chapters": 14,
+      "sentences": 825
+    },
+    {
+      "id": "wandering_luxun",
+      "title": "彷徨",
+      "titleEn": "Wandering",
+      "author": "鲁迅",
+      "category": "Modern Chinese",
+      "sizeKB": 197,
+      "chapters": 10,
+      "sentences": 751
+    },
+    {
+      "id": "dawn_blossoms_luxun",
+      "title": "朝花夕拾",
+      "titleEn": "Dawn Blossoms Plucked at Dusk",
+      "author": "鲁迅",
+      "category": "Modern Chinese",
+      "sizeKB": 238,
+      "chapters": 13,
+      "sentences": 703
+    },
+    {
+      "id": "old_tales_retold",
+      "title": "故事新编",
+      "titleEn": "Old Tales Retold",
+      "author": "鲁迅",
+      "category": "Modern Chinese",
+      "sizeKB": 165,
+      "chapters": 9,
+      "sentences": 533
+    },
+    {
+      "id": "rickshaw_boy",
+      "title": "骆驼祥子",
+      "titleEn": "Rickshaw Boy",
+      "author": "老舍",
+      "category": "Modern Chinese",
+      "sizeKB": 1521,
+      "chapters": 75,
+      "sentences": 5990
+    },
+    {
+      "id": "four_generations_roof",
+      "title": "四世同堂",
+      "titleEn": "Four Generations Under One Roof",
+      "author": "老舍",
+      "category": "Modern Chinese",
+      "sizeKB": 78,
+      "chapters": 3,
+      "sentences": 306
+    },
+    {
+      "id": "teahouse_laoshe",
+      "title": "茶馆",
+      "titleEn": "Teahouse",
+      "author": "老舍",
+      "category": "Modern Chinese",
+      "sizeKB": 123,
+      "chapters": 7,
+      "sentences": 643
+    },
+    {
+      "id": "border_town",
+      "title": "边城",
+      "titleEn": "Border Town",
+      "author": "沈从文",
+      "category": "Modern Chinese",
+      "sizeKB": 506,
+      "chapters": 21,
+      "sentences": 1658
+    },
+    {
+      "id": "the_family_bajin",
+      "title": "家",
+      "titleEn": "The Family",
+      "author": "巴金",
+      "category": "Modern Chinese",
+      "sizeKB": 178,
+      "chapters": 5,
+      "sentences": 633
+    },
+    {
+      "id": "spring_bajin",
+      "title": "春",
+      "titleEn": "Spring",
+      "author": "巴金",
+      "category": "Modern Chinese",
+      "sizeKB": 124,
+      "chapters": 5,
+      "sentences": 476
+    },
+    {
+      "id": "autumn_bajin",
+      "title": "秋",
+      "titleEn": "Autumn",
+      "author": "巴金",
+      "category": "Modern Chinese",
+      "sizeKB": 3824,
+      "chapters": 200,
+      "sentences": 15968
+    },
+    {
+      "id": "fortress_besieged",
+      "title": "围城",
+      "titleEn": "Fortress Besieged",
+      "author": "钱钟书",
+      "category": "Modern Chinese",
+      "sizeKB": 808,
+      "chapters": 19,
+      "sentences": 2734
+    },
+    {
+      "id": "love_fallen_city",
+      "title": "倾城之恋",
+      "titleEn": "Love in a Fallen City",
+      "author": "张爱玲",
+      "category": "Modern Chinese",
+      "sizeKB": 305,
+      "chapters": 14,
+      "sentences": 1074
+    },
+    {
+      "id": "golden_cangue",
+      "title": "金锁记",
+      "titleEn": "The Golden Cangue",
+      "author": "张爱玲",
+      "category": "Modern Chinese",
+      "sizeKB": 330,
+      "chapters": 15,
+      "sentences": 1168
+    },
+    {
+      "id": "the_little_prince",
+      "title": "小王子",
+      "titleEn": "The Little Prince",
+      "author": "圣埃克苏佩里",
+      "category": "French Classics",
+      "sizeKB": 109,
+      "chapters": 27,
+      "sentences": 179
+    },
+    {
+      "id": "les_miserables",
+      "title": "悲惨世界",
+      "titleEn": "Les Misérables",
+      "author": "雨果",
+      "category": "French Classics",
+      "sizeKB": 2717,
+      "chapters": 69,
+      "sentences": 9200
+    },
+    {
+      "id": "hunchback_notre_dame",
+      "title": "巴黎圣母院",
+      "titleEn": "The Hunchback of Notre-Dame",
+      "author": "雨果",
+      "category": "French Classics",
+      "sizeKB": 1918,
+      "chapters": 68,
+      "sentences": 6245
+    },
+    {
+      "id": "ninety_three_hugo",
+      "title": "九三年",
+      "titleEn": "Ninety-Three",
+      "author": "雨果",
+      "category": "French Classics",
+      "sizeKB": 779,
+      "chapters": 23,
+      "sentences": 3313
+    },
+    {
+      "id": "count_of_monte_cristo",
+      "title": "基督山伯爵",
+      "titleEn": "The Count of Monte Cristo",
+      "author": "大仲马",
+      "category": "French Classics",
+      "sizeKB": 4910,
+      "chapters": 122,
+      "sentences": 16347
+    },
+    {
+      "id": "the_three_musketeers",
+      "title": "三个火枪手",
+      "titleEn": "The Three Musketeers",
+      "author": "大仲马",
+      "category": "French Classics",
+      "sizeKB": 2879,
+      "chapters": 80,
+      "sentences": 10129
+    },
+    {
+      "id": "lady_of_camellias",
+      "title": "茶花女",
+      "titleEn": "The Lady of the Camellias",
+      "author": "小仲马",
+      "category": "French Classics",
+      "sizeKB": 1068,
+      "chapters": 29,
+      "sentences": 3675
+    },
+    {
+      "id": "twenty_thousand_leagues",
+      "title": "海底两万里",
+      "titleEn": "Twenty Thousand Leagues Under the Sea",
+      "author": "凡尔纳",
+      "category": "French Classics",
+      "sizeKB": 2003,
+      "chapters": 51,
+      "sentences": 6751
+    },
+    {
+      "id": "the_mysterious_island",
+      "title": "神秘岛",
+      "titleEn": "The Mysterious Island",
+      "author": "凡尔纳",
+      "category": "French Classics",
+      "sizeKB": 2543,
+      "chapters": 61,
+      "sentences": 8792
+    },
+    {
+      "id": "madame_bovary",
+      "title": "包法利夫人",
+      "titleEn": "Madame Bovary",
+      "author": "福楼拜",
+      "category": "French Classics",
+      "sizeKB": 1319,
+      "chapters": 39,
+      "sentences": 4806
+    },
+    {
+      "id": "pere_goriot",
+      "title": "高老头",
+      "titleEn": "Père Goriot",
+      "author": "巴尔扎克",
+      "category": "French Classics",
+      "sizeKB": 520,
+      "chapters": 15,
+      "sentences": 1968
+    },
+    {
+      "id": "eugenie_grandet",
+      "title": "欧也妮·葛朗台",
+      "titleEn": "Eugénie Grandet",
+      "author": "巴尔扎克",
+      "category": "French Classics",
+      "sizeKB": 504,
+      "chapters": 15,
+      "sentences": 1735
+    },
+    {
+      "id": "boule_de_suif",
+      "title": "羊脂球",
+      "titleEn": "Boule de Suif",
+      "author": "莫泊桑",
+      "category": "French Classics",
+      "sizeKB": 1231,
+      "chapters": 33,
+      "sentences": 4206
+    },
+    {
+      "id": "the_red_and_the_black",
+      "title": "红与黑",
+      "titleEn": "The Red and the Black",
+      "author": "司汤达",
+      "category": "French Classics",
+      "sizeKB": 2612,
+      "chapters": 78,
+      "sentences": 8780
+    },
+    {
+      "id": "the_stranger_camus",
+      "title": "局外人",
+      "titleEn": "The Stranger",
+      "author": "加缪",
+      "category": "French Classics",
+      "sizeKB": 128,
+      "chapters": 3,
+      "sentences": 450
+    },
+    {
+      "id": "the_plague_camus",
+      "title": "鼠疫",
+      "titleEn": "The Plague",
+      "author": "加缪",
+      "category": "French Classics",
+      "sizeKB": 93,
+      "chapters": 2,
+      "sentences": 300
+    },
+    {
+      "id": "the_metamorphosis",
+      "title": "变形记",
+      "titleEn": "The Metamorphosis",
+      "author": "卡夫卡",
+      "category": "German Classics",
+      "sizeKB": 2870,
+      "chapters": 103,
+      "sentences": 8198
+    },
+    {
+      "id": "the_trial_kafka",
+      "title": "审判",
+      "titleEn": "The Trial",
+      "author": "卡夫卡",
+      "category": "German Classics",
+      "sizeKB": 1440,
+      "chapters": 61,
+      "sentences": 4838
+    },
+    {
+      "id": "the_castle_kafka",
+      "title": "城堡",
+      "titleEn": "The Castle",
+      "author": "卡夫卡",
+      "category": "German Classics",
+      "sizeKB": 1055,
+      "chapters": 20,
+      "sentences": 2810
+    },
+    {
+      "id": "faust_goethe",
+      "title": "浮士德",
+      "titleEn": "Faust",
+      "author": "歌德",
+      "category": "German Classics",
+      "sizeKB": 1062,
+      "chapters": 56,
+      "sentences": 6874
+    },
+    {
+      "id": "siddhartha_hesse",
+      "title": "悉达多",
+      "titleEn": "Siddhartha",
+      "author": "赫尔曼·黑塞",
+      "category": "German Classics",
+      "sizeKB": 638,
+      "chapters": 25,
+      "sentences": 1997
+    },
+    {
+      "id": "steppenwolf_hesse",
+      "title": "荒原狼",
+      "titleEn": "Steppenwolf",
+      "author": "赫尔曼·黑塞",
+      "category": "German Classics",
+      "sizeKB": 1351,
+      "chapters": 51,
+      "sentences": 4007
+    },
+    {
+      "id": "letter_unknown_woman",
+      "title": "一个陌生女人的来信",
+      "titleEn": "Letter from an Unknown Woman",
+      "author": "茨威格",
+      "category": "German Classics",
+      "sizeKB": 278,
+      "chapters": 7,
+      "sentences": 696
+    },
+    {
+      "id": "intrigue_and_love",
+      "title": "阴谋与爱情",
+      "titleEn": "Intrigue and Love",
+      "author": "席勒",
+      "category": "German Classics",
+      "sizeKB": 703,
+      "chapters": 37,
+      "sentences": 2885
+    },
+    {
+      "id": "the_magic_mountain",
+      "title": "魔山",
+      "titleEn": "The Magic Mountain",
+      "author": "托马斯·曼",
+      "category": "German Classics",
+      "sizeKB": 1623,
+      "chapters": 63,
+      "sentences": 5024
+    },
+    {
+      "id": "death_in_venice",
+      "title": "魂断威尼斯",
+      "titleEn": "Death in Venice",
+      "author": "托马斯·曼",
+      "category": "German Classics",
+      "sizeKB": 481,
+      "chapters": 10,
+      "sentences": 1320
+    },
+    {
+      "id": "don_quixote",
+      "title": "堂吉诃德",
+      "titleEn": "Don Quixote",
+      "author": "塞万提斯",
+      "category": "Spanish & World",
+      "sizeKB": 4864,
+      "chapters": 138,
+      "sentences": 16396
+    },
+    {
+      "id": "the_decameron",
+      "title": "十日谈",
+      "titleEn": "The Decameron",
+      "author": "薄伽丘",
+      "category": "Spanish & World",
+      "sizeKB": 4700,
+      "chapters": 165,
+      "sentences": 13158
+    },
+    {
+      "id": "war_and_peace",
+      "title": "战争与和平",
+      "titleEn": "War and Peace",
+      "author": "列夫·托尔斯泰",
+      "category": "Spanish & World",
+      "sizeKB": 851,
+      "chapters": 27,
+      "sentences": 2803
+    },
+    {
+      "id": "anna_karenina",
+      "title": "安娜·卡列尼娜",
+      "titleEn": "Anna Karenina",
+      "author": "列夫·托尔斯泰",
+      "category": "Spanish & World",
+      "sizeKB": 3258,
+      "chapters": 98,
+      "sentences": 11347
+    },
+    {
+      "id": "crime_and_punishment",
+      "title": "罪与罚",
+      "titleEn": "Crime and Punishment",
+      "author": "陀思妥耶夫斯基",
+      "category": "Spanish & World",
+      "sizeKB": 734,
+      "chapters": 21,
+      "sentences": 2333
+    },
+    {
+      "id": "brothers_karamazov",
+      "title": "卡拉马佐夫兄弟",
+      "titleEn": "The Brothers Karamazov",
+      "author": "陀思妥耶夫斯基",
+      "category": "Spanish & World",
+      "sizeKB": 4275,
+      "chapters": 111,
+      "sentences": 13675
+    },
+    {
+      "id": "white_nights_dostoevsky",
+      "title": "白夜",
+      "titleEn": "White Nights",
+      "author": "陀思妥耶夫斯基",
+      "category": "Spanish & World",
+      "sizeKB": 431,
+      "chapters": 20,
+      "sentences": 1557
+    },
+    {
+      "id": "dead_souls_gogol",
+      "title": "死魂灵",
+      "titleEn": "Dead Souls",
+      "author": "果戈理",
+      "category": "Spanish & World",
+      "sizeKB": 789,
+      "chapters": 18,
+      "sentences": 2605
+    },
+    {
+      "id": "the_captains_daughter",
+      "title": "上尉的女儿",
+      "titleEn": "The Captain's Daughter",
+      "author": "普希金",
+      "category": "Spanish & World",
+      "sizeKB": 500,
+      "chapters": 17,
+      "sentences": 2178
+    },
+    {
+      "id": "fathers_and_sons",
+      "title": "父与子",
+      "titleEn": "Fathers and Sons",
+      "author": "屠格涅夫",
+      "category": "Spanish & World",
+      "sizeKB": 1396,
+      "chapters": 64,
+      "sentences": 5058
+    },
+    {
+      "id": "sherlock_holmes",
+      "title": "福尔摩斯探案集",
+      "titleEn": "The Adventures of Sherlock Holmes",
+      "author": "柯南·道尔",
+      "category": "English & World",
+      "sizeKB": 4183,
+      "chapters": 111,
+      "sentences": 14786
+    },
+    {
+      "id": "pride_and_prejudice",
+      "title": "傲慢与偏见",
+      "titleEn": "Pride and Prejudice",
+      "author": "简·奥斯汀",
+      "category": "English & World",
+      "sizeKB": 2038,
+      "chapters": 62,
+      "sentences": 6494
+    },
+    {
+      "id": "sense_and_sensibility",
+      "title": "理智与情感",
+      "titleEn": "Sense and Sensibility",
+      "author": "简·奥斯汀",
+      "category": "English & World",
+      "sizeKB": 1865,
+      "chapters": 50,
+      "sentences": 5988
+    },
+    {
+      "id": "jane_eyre",
+      "title": "简·爱",
+      "titleEn": "Jane Eyre",
+      "author": "夏洛蒂·勃朗特",
+      "category": "English & World",
+      "sizeKB": 3453,
+      "chapters": 151,
+      "sentences": 12042
+    },
+    {
+      "id": "wuthering_heights",
+      "title": "呼啸山庄",
+      "titleEn": "Wuthering Heights",
+      "author": "艾米莉·勃朗特",
+      "category": "English & World",
+      "sizeKB": 1379,
+      "chapters": 39,
+      "sentences": 5074
+    },
+    {
+      "id": "romeo_and_juliet",
+      "title": "罗密欧与朱丽叶",
+      "titleEn": "Romeo and Juliet",
+      "author": "莎士比亚",
+      "category": "English & World",
+      "sizeKB": 148,
+      "chapters": 7,
+      "sentences": 770
+    },
+    {
+      "id": "hamlet_shakespeare",
+      "title": "哈姆雷特",
+      "titleEn": "Hamlet",
+      "author": "莎士比亚",
+      "category": "English & World",
+      "sizeKB": 742,
+      "chapters": 40,
+      "sentences": 3187
+    },
+    {
+      "id": "merchant_of_venice",
+      "title": "威尼斯商人",
+      "titleEn": "The Merchant of Venice",
+      "author": "莎士比亚",
+      "category": "English & World",
+      "sizeKB": 197,
+      "chapters": 6,
+      "sentences": 751
+    },
+    {
+      "id": "macbeth_shakespeare",
+      "title": "麦克白",
+      "titleEn": "Macbeth",
+      "author": "莎士比亚",
+      "category": "English & World",
+      "sizeKB": 177,
+      "chapters": 6,
+      "sentences": 756
+    },
+    {
+      "id": "robinson_crusoe",
+      "title": "鲁滨逊漂流记",
+      "titleEn": "Robinson Crusoe",
+      "author": "笛福",
+      "category": "English & World",
+      "sizeKB": 572,
+      "chapters": 13,
+      "sentences": 1850
+    },
+    {
+      "id": "walden_thoreau",
+      "title": "瓦尔登湖",
+      "titleEn": "Walden",
+      "author": "梭罗",
+      "category": "English & World",
+      "sizeKB": 1890,
+      "chapters": 64,
+      "sentences": 5049
+    },
+    {
+      "id": "the_great_gatsby",
+      "title": "了不起的盖茨比",
+      "titleEn": "The Great Gatsby",
+      "author": "菲茨杰拉德",
+      "category": "English & World",
+      "sizeKB": 408,
+      "chapters": 10,
+      "sentences": 1358
+    },
+    {
+      "id": "the_old_man_and_sea",
+      "title": "老人与海",
+      "titleEn": "The Old Man and the Sea",
+      "author": "海明威",
+      "category": "English & World",
+      "sizeKB": 519,
+      "chapters": 26,
+      "sentences": 2006
+    },
+    {
+      "id": "animal_farm",
+      "title": "动物农场",
+      "titleEn": "Animal Farm",
+      "author": "乔治·奥威尔",
+      "category": "English & World",
+      "sizeKB": 452,
+      "chapters": 11,
+      "sentences": 1423
+    },
+    {
+      "id": "nineteen_eighty_four",
+      "title": "一九八四",
+      "titleEn": "Nineteen Eighty-Four",
+      "author": "乔治·奥威尔",
+      "category": "English & World",
+      "sizeKB": 329,
+      "chapters": 10,
+      "sentences": 1036
+    },
+    {
+      "id": "frankenstein_shelley",
+      "title": "科学怪人",
+      "titleEn": "Frankenstein",
+      "author": "玛丽·雪莱",
+      "category": "English & World",
+      "sizeKB": 1482,
+      "chapters": 59,
+      "sentences": 4663
+    },
+    {
+      "id": "alice_in_wonderland",
+      "title": "爱丽丝梦游仙境",
+      "titleEn": "Alice in Wonderland",
+      "author": "刘易斯·卡罗尔",
+      "category": "English & World",
+      "sizeKB": 60,
+      "chapters": 3,
+      "sentences": 248
+    },
+    {
+      "id": "picture_dorian_gray",
+      "title": "道林·格雷的画像",
+      "titleEn": "The Picture of Dorian Gray",
+      "author": "王尔德",
+      "category": "English & World",
+      "sizeKB": 982,
+      "chapters": 24,
+      "sentences": 1914
+    },
+    {
+      "id": "huckleberry_finn",
+      "title": "哈克贝利·费恩历险记",
+      "titleEn": "Adventures of Huckleberry Finn",
+      "author": "马克·吐温",
+      "category": "English & World",
+      "sizeKB": 1641,
+      "chapters": 47,
+      "sentences": 2865
+    },
+    {
+      "id": "moby_dick_melville",
+      "title": "白鲸",
+      "titleEn": "Moby-Dick",
+      "author": "梅尔维尔",
+      "category": "English & World",
+      "sizeKB": 2758,
+      "chapters": 121,
+      "sentences": 9601
+    },
+    {
+      "id": "call_of_the_wild",
+      "title": "野性的呼唤",
+      "titleEn": "The Call of the Wild",
+      "author": "杰克·伦敦",
+      "category": "English & World",
+      "sizeKB": 307,
+      "chapters": 9,
+      "sentences": 1067
+    },
+    {
+      "id": "black_cat_poe",
+      "title": "黑猫与爱伦·坡惊悚集",
+      "titleEn": "The Black Cat & Gothic Tales",
+      "author": "爱伦·坡",
+      "category": "English & World",
+      "sizeKB": 1893,
+      "chapters": 77,
+      "sentences": 6152
+    }
+  ],
+  "partialBooks": []
+}

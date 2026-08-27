@@ -26,12 +26,14 @@ class WebBrowserScreen extends ConsumerStatefulWidget {
   final String initialUrl;
   final bool autoReadingMode;
   final bool isStoryMode;
+  final bool showBackButton;
 
   const WebBrowserScreen({
     super.key,
     this.initialUrl = 'https://www.bbc.com/zhongwen/simp',
     this.autoReadingMode = false,
     this.isStoryMode = false,
+    this.showBackButton = true,
   });
 
   @override
@@ -1359,6 +1361,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: widget.showBackButton,
         title: Container(
           height: 40,
           decoration: BoxDecoration(

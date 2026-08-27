@@ -1,0 +1,3811 @@
+[
+  {
+    "id": "merchant_of_venice_ch_1",
+    "bookId": "merchant_of_venice",
+    "chapterIndex": 1,
+    "title": "第一幕 第一场 威尼斯.街道",
+    "titleEn": "Chapter 1: 第一幕 第一场 威尼斯.街道",
+    "sentences": [
+      {
+        "chinese": "安东尼奥、萨拉里诺及萨莱尼奥上。",
+        "pinyin": "ān dōng ní ào 、 sà lā lǐ nuò jí sà lái ní ào shàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "安东尼奥  真的，我不知道我为什么这样闷闷不乐。",
+        "pinyin": "ān dōng ní ào     zhēn de ， wǒ bù zhī dào wǒ wèi shén me zhè yàng mèn mèn bù lè 。",
+        "english": ""
+      },
+      {
+        "chinese": "你们说你们见我这样子，心里觉得很厌烦，其实我自己也觉得很厌烦呢；",
+        "pinyin": "nǐ mén shuō nǐ mén jiàn wǒ zhè yàng zǐ ， xīn lǐ jué dé hěn yàn fán ， qí shí wǒ zì jǐ yě jué dé hěn yàn fán ne ；",
+        "english": ""
+      },
+      {
+        "chinese": "可是我怎样会让忧愁沾上身，这种忧愁究竟是怎么一种东西，它是从什么地方产生的，我却全不知道；",
+        "pinyin": "kě shì wǒ zěn yàng huì ràng yōu chóu zhān shàng shēn ， zhè zhǒng yōu chóu jiū jìng shì zěn me yī zhǒng dōng xī ， tā shì cóng shén me dì fāng chǎn shēng de ， wǒ què quán bù zhī dào ；",
+        "english": ""
+      },
+      {
+        "chinese": "忧愁已经使我变成了一个傻子，我简直有点自己不了解自己了。",
+        "pinyin": "yōu chóu yǐ jīng shǐ wǒ biàn chéng le yī gè shǎ zǐ ， wǒ jiǎn zhí yǒu diǎn zì jǐ bù liǎo jiě zì jǐ le 。",
+        "english": ""
+      },
+      {
+        "chinese": "萨拉里诺  您的心是跟着您那些扯着满帆的大船在海洋上簸荡着呢；",
+        "pinyin": "sà lā lǐ nuò     nín de xīn shì gēn zhuó nín nà xiē chě zhuó mǎn fān de dà chuán zài hǎi yáng shàng bò dàng zhuó ne ；",
+        "english": ""
+      },
+      {
+        "chinese": "它们就像水上的达官富绅，炫示着它们的豪华，那些小商船向它们点头敬礼，它们却睬也不睬，凌风直驶。",
+        "pinyin": "tā mén jiù xiàng shuǐ shàng de dá guān fù shēn ， xuàn shì zhuó tā mén de háo huá ， nà xiē xiǎo shāng chuán xiàng tā mén diǎn tóu jìng lǐ ， tā mén què cǎi yě bù cǎi ， líng fēng zhí shǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "萨莱尼奥  相信我，老兄，要是我也有这么一笔买卖在外洋，我一定要用大部分的心思牵挂它；",
+        "pinyin": "sà lái ní ào     xiāng xìn wǒ ， lǎo xiōng ， yào shì wǒ yě yǒu zhè me yī bǐ mǎi mài zài wài yáng ， wǒ yī dìng yào yòng dà bù fēn de xīn sī qiān guà tā ；",
+        "english": ""
+      },
+      {
+        "chinese": "我一定常常拔草观测风吹的方向，在地图上查看港口码头的名字；",
+        "pinyin": "wǒ yī dìng cháng cháng bá cǎo guān cè fēng chuī de fāng xiàng ， zài dì tú shàng chá kàn gǎng kǒu mǎ tóu de míng zì ；",
+        "english": ""
+      },
+      {
+        "chinese": "凡是足以使我担心那些货物的命运的一切事情，不用说都会引起我的忧愁。",
+        "pinyin": "fán shì zú yǐ shǐ wǒ dān xīn nà xiē huò wù de mìng yùn de yī qiē shì qíng ， bù yòng shuō dōu huì yǐn qǐ wǒ de yōu chóu 。",
+        "english": ""
+      },
+      {
+        "chinese": "萨拉里诺  吹凉我的粥的一口气，也会吹痛我的心，只要我想到海面上的一阵暴风将会造成怎样一场灾祸。",
+        "pinyin": "sà lā lǐ nuò     chuī liáng wǒ de zhōu de yī kǒu qì ， yě huì chuī tòng wǒ de xīn ， zhǐ yào wǒ xiǎng dào hǎi miàn shàng de yī zhèn bào fēng jiāng huì zào chéng zěn yàng yī chǎng zāi huò 。",
+        "english": ""
+      },
+      {
+        "chinese": "我一看见沙漏的时计，就会想起海边的沙滩，仿佛看见我那艘满载货物的商船倒插在沙里，船底朝天，它的高高的桅樯吻着它的葬身之地。",
+        "pinyin": "wǒ yī kàn jiàn shā lòu de shí jì ， jiù huì xiǎng qǐ hǎi biān de shā tān ， fǎng fó kàn jiàn wǒ nà sōu mǎn zài huò wù de shāng chuán dǎo chā zài shā lǐ ， chuán dǐ cháo tiān ， tā de gāo gāo de wéi qiáng wěn zhuó tā de zàng shēn zhī dì 。",
+        "english": ""
+      },
+      {
+        "chinese": "要是我到教堂里去，看见那用石块筑成的神圣的殿堂，我怎么会不立刻想起那些危险的礁石，它们只要略微碰一碰我那艘好船的船舷，就会把满船的香料倾泻在水里，让汹涌的波涛披戴着我的绸缎绫罗；",
+        "pinyin": "yào shì wǒ dào jiào táng lǐ qù ， kàn jiàn nà yòng shí kuài zhù chéng de shén shèng de diàn táng ， wǒ zěn me huì bù lì kè xiǎng qǐ nà xiē wēi xiǎn de jiāo shí ， tā mén zhǐ yào lüè wēi pèng yī pèng wǒ nà sōu hǎo chuán de chuán xián ， jiù huì bǎ mǎn chuán de xiāng liào qīng xiè zài shuǐ lǐ ， ràng xiōng yǒng de bō tāo pī dài zhuó wǒ de chóu duàn líng luó ；",
+        "english": ""
+      },
+      {
+        "chinese": "方才还是价值连城的，一转瞬间尽归乌有？",
+        "pinyin": "fāng cái hái shì jià zhí lián chéng de ， yī zhuǎn shùn jiān jìn guī wū yǒu ？",
+        "english": ""
+      },
+      {
+        "chinese": "要是我想到了这种情形，我怎么会不担心这种情形也许会果然发生，从而发起愁来呢？",
+        "pinyin": "yào shì wǒ xiǎng dào le zhè zhǒng qíng xíng ， wǒ zěn me huì bù dān xīn zhè zhǒng qíng xíng yě xǔ huì guǒ rán fā shēng ， cóng ér fā qǐ chóu lái ne ？",
+        "english": ""
+      },
+      {
+        "chinese": "不用对我说，我知道安东尼奥是因为担心他的货物而忧愁。",
+        "pinyin": "bù yòng duì wǒ shuō ， wǒ zhī dào ān dōng ní ào shì yīn wèi dān xīn tā de huò wù ér yōu chóu 。",
+        "english": ""
+      },
+      {
+        "chinese": "安东尼奥  不，相信我；",
+        "pinyin": "ān dōng ní ào     bù ， xiāng xìn wǒ ；",
+        "english": ""
+      },
+      {
+        "chinese": "感谢我的命运，我的买卖的成败并不完全寄托在一艘船上，更不是倚赖着一处地方；",
+        "pinyin": "gǎn xiè wǒ de mìng yùn ， wǒ de mǎi mài de chéng bài bìng bù wán quán jì tuō zài yī sōu chuán shàng ， gèng bù shì yǐ lài zhuó yī chù dì fāng ；",
+        "english": ""
+      },
+      {
+        "chinese": "我的全部财产，也不会因为这一年的盈亏而受到影响，所以我的货物并不能使我忧愁。",
+        "pinyin": "wǒ de quán bù cái chǎn ， yě bù huì yīn wèi zhè yī nián de yíng kuī ér shòu dào yǐng xiǎng ， suǒ yǐ wǒ de huò wù bìng bù néng shǐ wǒ yōu chóu 。",
+        "english": ""
+      },
+      {
+        "chinese": "萨拉里诺  啊，那么您是在恋爱了。",
+        "pinyin": "sà lā lǐ nuò     ā ， nà me nín shì zài liàn ài le 。",
+        "english": ""
+      },
+      {
+        "chinese": "安东尼奥  呸！",
+        "pinyin": "ān dōng ní ào     pēi ！",
+        "english": ""
+      },
+      {
+        "chinese": "哪儿的话！",
+        "pinyin": "nǎ ér de huà ！",
+        "english": ""
+      },
+      {
+        "chinese": "萨拉里诺  也不是在恋爱吗？",
+        "pinyin": "sà lā lǐ nuò     yě bù shì zài liàn ài ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "那么让我们说，您忧愁，因为您不快乐；",
+        "pinyin": "nà me ràng wǒ mén shuō ， nín yōu chóu ， yīn wèi nín bù kuài lè ；",
+        "english": ""
+      },
+      {
+        "chinese": "就像您笑笑跳跳，说您很快乐，因为您不忧愁，实在再简单也没有了。",
+        "pinyin": "jiù xiàng nín xiào xiào tiào tiào ， shuō nín hěn kuài lè ， yīn wèi nín bù yōu chóu ， shí zài zài jiǎn dān yě méi yǒu le 。",
+        "english": ""
+      },
+      {
+        "chinese": "凭二脸神雅努斯起誓，老天造下人来，真是无奇不有：有的人老是眯着眼睛笑，好像鹦鹉见了吹风笛的人一样；",
+        "pinyin": "píng èr liǎn shén yǎ nǔ sī qǐ shì ， lǎo tiān zào xià rén lái ， zhēn shì wú qí bù yǒu ： yǒu de rén lǎo shì mī zhuó yǎn jīng xiào ， hǎo xiàng yīng wǔ jiàn le chuī fēng dí de rén yī yàng ；",
+        "english": ""
+      },
+      {
+        "chinese": "有的人终日皱着眉头，即使涅斯托发誓说那笑话很可笑，他听了也不肯露一露他的牙齿，装出一个笑容来。",
+        "pinyin": "yǒu de rén zhōng rì zhòu zhuó méi tóu ， jí shǐ niè sī tuō fā shì shuō nà xiào huà hěn kě xiào ， tā tīng le yě bù kěn lòu yī lòu tā de yá chǐ ， zhuāng chū yī gè xiào róng lái 。",
+        "english": ""
+      },
+      {
+        "chinese": "巴萨尼奥，罗兰佐及葛莱西安诺上。",
+        "pinyin": "bā sà ní ào ， luó lán zuǒ jí gé lái xī ān nuò shàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "萨莱尼奥  您的一位最尊贵的朋友，巴萨尼奥，跟葛莱西安诺、罗兰佐都来了。",
+        "pinyin": "sà lái ní ào     nín de yī wèi zuì zūn guì de péng yǒu ， bā sà ní ào ， gēn gé lái xī ān nuò 、 luó lán zuǒ dōu lái le 。",
+        "english": ""
+      },
+      {
+        "chinese": "再见；",
+        "pinyin": "zài jiàn ；",
+        "english": ""
+      },
+      {
+        "chinese": "您现在有了更好的同伴，我们可以少陪啦。",
+        "pinyin": "nín xiàn zài yǒu le gèng hǎo de tóng bàn ， wǒ mén kě yǐ shǎo péi lā 。",
+        "english": ""
+      },
+      {
+        "chinese": "萨拉里诺  倘不是因为您的好朋友来了，我一定要叫您快乐了才走。",
+        "pinyin": "sà lā lǐ nuò     tǎng bù shì yīn wèi nín de hǎo péng yǒu lái le ， wǒ yī dìng yào jiào nín kuài lè le cái zǒu 。",
+        "english": ""
+      },
+      {
+        "chinese": "安东尼奥  你们的友谊我是十分看重的。",
+        "pinyin": "ān dōng ní ào     nǐ mén de yǒu yì wǒ shì shí fēn kàn zhòng de 。",
+        "english": ""
+      },
+      {
+        "chinese": "照我看来，恐怕还是你们自己有事，所以借着这个机会想抽身出去吧？",
+        "pinyin": "zhào wǒ kàn lái ， kǒng pà hái shì nǐ mén zì jǐ yǒu shì ， suǒ yǐ jiè zhuó zhè gè jī huì xiǎng chōu shēn chū qù bā ？",
+        "english": ""
+      },
+      {
+        "chinese": "萨拉里诺  早安，各位大爷。",
+        "pinyin": "sà lā lǐ nuò     zǎo ān ， gè wèi dà yé 。",
+        "english": ""
+      },
+      {
+        "chinese": "巴萨尼奥  两位先生，咱们什么时候再聚在一起谈谈笑笑？",
+        "pinyin": "bā sà ní ào     liǎng wèi xiān shēng ， zán mén shén me shí hòu zài jù zài yī qǐ tán tán xiào xiào ？",
+        "english": ""
+      },
+      {
+        "chinese": "你们近来跟我十分疏远了。",
+        "pinyin": "nǐ mén jìn lái gēn wǒ shí fēn shū yuǎn le 。",
+        "english": ""
+      },
+      {
+        "chinese": "难道非走不可吗？",
+        "pinyin": "nán dào fēi zǒu bù kě ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "萨拉里诺  您什么时候有空，我们一定奉陪。",
+        "pinyin": "sà lā lǐ nuò     nín shén me shí hòu yǒu kōng ， wǒ mén yī dìng fèng péi 。",
+        "english": ""
+      },
+      {
+        "chinese": "（萨拉里诺、萨莱尼奥下。",
+        "pinyin": "（ sà lā lǐ nuò 、 sà lái ní ào xià 。",
+        "english": ""
+      },
+      {
+        "chinese": "罗兰佐  巴萨尼奥大爷，您现在已经找到安东尼奥，我们也要少陪啦；",
+        "pinyin": "luó lán zuǒ     bā sà ní ào dà yé ， nín xiàn zài yǐ jīng zhǎo dào ān dōng ní ào ， wǒ mén yě yào shǎo péi lā ；",
+        "english": ""
+      },
+      {
+        "chinese": "可是请您千万别忘记吃饭的时候咱们在什么地方会面。",
+        "pinyin": "kě shì qǐng nín qiān wàn bié wàng jì chī fàn de shí hòu zán mén zài shén me dì fāng huì miàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "巴萨尼奥  我一定不失约。",
+        "pinyin": "bā sà ní ào     wǒ yī dìng bù shī yuē 。",
+        "english": ""
+      },
+      {
+        "chinese": "葛莱西安诺  安东尼奥先生，您的脸色不大好，您把世间的事情看得太认真了；",
+        "pinyin": "gé lái xī ān nuò     ān dōng ní ào xiān shēng ， nín de liǎn sè bù dà hǎo ， nín bǎ shì jiān de shì qíng kàn dé tài rèn zhēn le ；",
+        "english": ""
+      },
+      {
+        "chinese": "一个人思虑太多，就会失却做人的乐趣。",
+        "pinyin": "yī gè rén sī lǜ tài duō ， jiù huì shī què zuò rén de lè qù 。",
+        "english": ""
+      },
+      {
+        "chinese": "相信我，您近来真是变的太厉害啦。",
+        "pinyin": "xiāng xìn wǒ ， nín jìn lái zhēn shì biàn de tài lì hài lā 。",
+        "english": ""
+      },
+      {
+        "chinese": "安东尼奥  葛莱西安诺，我把这世界不过看作一个世界，每一个人必须在这舞台上扮演一个角色，我扮演的是一个悲哀的角色。",
+        "pinyin": "ān dōng ní ào     gé lái xī ān nuò ， wǒ bǎ zhè shì jiè bù guò kàn zuò yī gè shì jiè ， měi yī gè rén bì xū zài zhè wǔ tái shàng bàn yǎn yī gè jiǎo sè ， wǒ bàn yǎn de shì yī gè bēi āi de jiǎo sè 。",
+        "english": ""
+      },
+      {
+        "chinese": "葛莱西安诺  让我扮演一个小丑吧。",
+        "pinyin": "gé lái xī ān nuò     ràng wǒ bàn yǎn yī gè xiǎo chǒu bā 。",
+        "english": ""
+      },
+      {
+        "chinese": "让我在嘻嘻哈哈的欢笑声中不知不觉地老去；",
+        "pinyin": "ràng wǒ zài xī xī hā hā de huān xiào shēng zhōng bù zhī bù jué dì lǎo qù ；",
+        "english": ""
+      },
+      {
+        "chinese": "宁可用酒温暖我的肠胃，不要用折磨自己的呻吟冰冷我的心。",
+        "pinyin": "nìng kě yòng jiǔ wēn nuǎn wǒ de cháng wèi ， bù yào yòng zhé mó zì jǐ de shēn yín bīng lěng wǒ de xīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "为什么一个身体里面流着热血的人，要那么正襟危坐，就像他祖宗爷爷的石膏像一样呢？",
+        "pinyin": "wèi shén me yī gè shēn tǐ lǐ miàn liú zhuó rè xiě de rén ， yào nà me zhèng jīn wēi zuò ， jiù xiàng tā zǔ zōng yé yé de shí gāo xiàng yī yàng ne ？",
+        "english": ""
+      },
+      {
+        "chinese": "明明醒着的时候，为什么偏要像睡去了一般？",
+        "pinyin": "míng míng xǐng zhuó de shí hòu ， wèi shén me piān yào xiàng shuì qù le yī bān ？",
+        "english": ""
+      },
+      {
+        "chinese": "为什么动不动翻脸生气，把自己气出了一场黄疸病来？",
+        "pinyin": "wèi shén me dòng bù dòng fān liǎn shēng qì ， bǎ zì jǐ qì chū le yī chǎng huáng dǎn bìng lái ？",
+        "english": ""
+      },
+      {
+        "chinese": "我告诉你吧，安东尼奥——因为我爱你，所以我才对你说这样的话：世界上有一种人，他们的脸上装出一副心如止水的神气，故意表示他们的冷静，好让人家称赞他们一声智慧深沉，思想渊博；",
+        "pinyin": "wǒ gào sù nǐ bā ， ān dōng ní ào — — yīn wèi wǒ ài nǐ ， suǒ yǐ wǒ cái duì nǐ shuō zhè yàng de huà ： shì jiè shàng yǒu yī zhǒng rén ， tā mén de liǎn shàng zhuāng chū yī fù xīn rú zhǐ shuǐ de shén qì ， gù yì biǎo shì tā mén de lěng jìng ， hǎo ràng rén jiā chēng zàn tā mén yī shēng zhì huì shēn chén ， sī xiǎng yuān bó ；",
+        "english": ""
+      },
+      {
+        "chinese": "他们的神气之间，好像说，“我的说话都是纶音天语，我要是一张开嘴唇来，不许有一头狗乱叫！",
+        "pinyin": "tā mén de shén qì zhī jiān ， hǎo xiàng shuō ， “ wǒ de shuō huà dōu shì lún yīn tiān yǔ ， wǒ yào shì yī zhāng kāi zuǐ chún lái ， bù xǔ yǒu yī tóu gǒu luàn jiào ！",
+        "english": ""
+      },
+      {
+        "chinese": "”啊，我的安东尼奥，我看透这一种人，他们只是因为不说话，博得了智慧的名声；",
+        "pinyin": "” ā ， wǒ de ān dōng ní ào ， wǒ kàn tòu zhè yī zhǒng rén ， tā mén zhǐ shì yīn wèi bù shuō huà ， bó dé le zhì huì de míng shēng ；",
+        "english": ""
+      },
+      {
+        "chinese": "可是我可以确定说一句，要是他们说起话来，听见的人，谁都会骂他们是傻瓜的。",
+        "pinyin": "kě shì wǒ kě yǐ què dìng shuō yī jù ， yào shì tā mén shuō qǐ huà lái ， tīng jiàn de rén ， shuí dōu huì mà tā mén shì shǎ guā de 。",
+        "english": ""
+      },
+      {
+        "chinese": "等有机会的时候，我再告诉你关于这种人的笑话吧；",
+        "pinyin": "děng yǒu jī huì de shí hòu ， wǒ zài gào sù nǐ guān yú zhè zhǒng rén de xiào huà bā ；",
+        "english": ""
+      },
+      {
+        "chinese": "可是请你千万别再用悲哀做钓饵，去钓这种无聊的名誉了。",
+        "pinyin": "kě shì qǐng nǐ qiān wàn bié zài yòng bēi āi zuò diào ěr ， qù diào zhè zhǒng wú liáo de míng yù le 。",
+        "english": ""
+      },
+      {
+        "chinese": "来，好罗兰佐。",
+        "pinyin": "lái ， hǎo luó lán zuǒ 。",
+        "english": ""
+      },
+      {
+        "chinese": "回头见；",
+        "pinyin": "huí tóu jiàn ；",
+        "english": ""
+      },
+      {
+        "chinese": "等我吃完了饭，再来向你结束我的劝告。",
+        "pinyin": "děng wǒ chī wán le fàn ， zài lái xiàng nǐ jié shù wǒ de quàn gào 。",
+        "english": ""
+      },
+      {
+        "chinese": "罗兰佐  好，咱们在吃饭的时候再见吧。",
+        "pinyin": "luó lán zuǒ     hǎo ， zán mén zài chī fàn de shí hòu zài jiàn bā 。",
+        "english": ""
+      },
+      {
+        "chinese": "我大概也就是他所说的那种以不说话为聪明的人，因为葛莱西安诺不让我有说话的机会。",
+        "pinyin": "wǒ dà gài yě jiù shì tā suǒ shuō de nà zhǒng yǐ bù shuō huà wèi cōng míng de rén ， yīn wèi gé lái xī ān nuò bù ràng wǒ yǒu shuō huà de jī huì 。",
+        "english": ""
+      },
+      {
+        "chinese": "葛莱西安诺  嘿，你只要再跟我两年，就会连你自己说话的口音也听不出来。",
+        "pinyin": "gé lái xī ān nuò     hēi ， nǐ zhǐ yào zài gēn wǒ liǎng nián ， jiù huì lián nǐ zì jǐ shuō huà de kǒu yīn yě tīng bù chū lái 。",
+        "english": ""
+      },
+      {
+        "chinese": "安东尼奥  再见，我会把自己慢慢儿训练得多说话一点的。",
+        "pinyin": "ān dōng ní ào     zài jiàn ， wǒ huì bǎ zì jǐ màn màn ér xùn liàn dé duō shuō huà yī diǎn de 。",
+        "english": ""
+      },
+      {
+        "chinese": "葛莱西安诺  那就再好没有了；",
+        "pinyin": "gé lái xī ān nuò     nà jiù zài hǎo méi yǒu le ；",
+        "english": ""
+      },
+      {
+        "chinese": "只有干牛舌和没人要的老处女，才是应该沉默的。",
+        "pinyin": "zhǐ yǒu gān niú shé hé méi rén yào de lǎo chǔ nǚ ， cái shì yīng gāi chén mò de 。",
+        "english": ""
+      },
+      {
+        "chinese": "（葛莱西安诺、罗兰佐下。",
+        "pinyin": "（ gé lái xī ān nuò 、 luó lán zuǒ xià 。",
+        "english": ""
+      },
+      {
+        "chinese": "安东尼奥  他说的这一番话有些什么意思？",
+        "pinyin": "ān dōng ní ào     tā shuō de zhè yī fān huà yǒu xiē shén me yì sī ？",
+        "english": ""
+      },
+      {
+        "chinese": "巴萨尼奥  葛莱西安诺比全威尼斯城里无论哪一个人都更会拉上一大堆废话。",
+        "pinyin": "bā sà ní ào     gé lái xī ān nuò bǐ quán wēi ní sī chéng lǐ wú lùn nǎ yī gè rén dōu gèng huì lā shàng yī dà duī fèi huà 。",
+        "english": ""
+      },
+      {
+        "chinese": "他的道理就像藏在两桶砻糠里的两粒麦子，你必须费去整天工夫才能够把它们找到，可是找到了它们以后，你会觉得费这许多气力找它们出来，是一点不值得的。",
+        "pinyin": "tā de dào lǐ jiù xiàng cáng zài liǎng tǒng lóng kāng lǐ de liǎng lì mài zǐ ， nǐ bì xū fèi qù zhěng tiān gōng fū cái néng gòu bǎ tā mén zhǎo dào ， kě shì zhǎo dào le tā mén yǐ hòu ， nǐ huì jué dé fèi zhè xǔ duō qì lì zhǎo tā mén chū lái ， shì yī diǎn bù zhí dé de 。",
+        "english": ""
+      },
+      {
+        "chinese": "安东尼奥  好，您今天答应告诉我您立誓要去秘密拜访的那位姑娘的名字，现在请您告诉我吧。",
+        "pinyin": "ān dōng ní ào     hǎo ， nín jīn tiān dā yìng gào sù wǒ nín lì shì yào qù mì mì bài fǎng de nà wèi gū niáng de míng zì ， xiàn zài qǐng nín gào sù wǒ bā 。",
+        "english": ""
+      },
+      {
+        "chinese": "巴萨尼奥  安东尼奥，您知道得很清楚，我怎样为了维持我外强中干的体面，把一份微薄的资产都挥霍光了；",
+        "pinyin": "bā sà ní ào     ān dōng ní ào ， nín zhī dào dé hěn qīng chǔ ， wǒ zěn yàng wèi le wéi chí wǒ wài qiáng zhōng gān de tǐ miàn ， bǎ yī fèn wēi báo de zī chǎn dōu huī huò guāng le ；",
+        "english": ""
+      },
+      {
+        "chinese": "现在我对于家道中落、生活紧缩，倒也不怎么在乎了；",
+        "pinyin": "xiàn zài wǒ duì yú jiā dào zhōng luò 、 shēng huó jǐn suō ， dǎo yě bù zěn me zài hū le ；",
+        "english": ""
+      },
+      {
+        "chinese": "我最大的烦恼是怎样可以解脱我背上这一重重由于挥霍而积欠下来的债务。",
+        "pinyin": "wǒ zuì dà de fán nǎo shì zěn yàng kě yǐ jiě tuō wǒ bēi shàng zhè yī zhòng zhòng yóu yú huī huò ér jī qiàn xià lái de zhài wù 。",
+        "english": ""
+      },
+      {
+        "chinese": "无论在钱财方面或是友谊方面，安东尼奥，我欠您的债都是顶多的；",
+        "pinyin": "wú lùn zài qián cái fāng miàn huò shì yǒu yì fāng miàn ， ān dōng ní ào ， wǒ qiàn nín de zhài dōu shì dǐng duō de ；",
+        "english": ""
+      },
+      {
+        "chinese": "因为你我交情深厚，我才敢大胆把我心里所打算的怎样了清这一切债务的计划全部告诉您。",
+        "pinyin": "yīn wèi nǐ wǒ jiāo qíng shēn hòu ， wǒ cái gǎn dà dǎn bǎ wǒ xīn lǐ suǒ dǎ suàn de zěn yàng le qīng zhè yī qiē zhài wù de jì huá quán bù gào sù nín 。",
+        "english": ""
+      },
+      {
+        "chinese": "安东尼奥  好巴萨尼奥，请您告诉我吧。",
+        "pinyin": "ān dōng ní ào     hǎo bā sà ní ào ， qǐng nín gào sù wǒ bā 。",
+        "english": ""
+      },
+      {
+        "chinese": "只要您的计划跟您向来的立身行事一样光明正大，那么我的钱囊可以让您任意取用，我自己也可以供您驱使；",
+        "pinyin": "zhǐ yào nín de jì huá gēn nín xiàng lái de lì shēn xíng shì yī yàng guāng míng zhèng dà ， nà me wǒ de qián náng kě yǐ ràng nín rèn yì qǔ yòng ， wǒ zì jǐ yě kě yǐ gòng nín qū shǐ ；",
+        "english": ""
+      },
+      {
+        "chinese": "我愿意用我所有的力量，帮助您达到目的。",
+        "pinyin": "wǒ yuàn yì yòng wǒ suǒ yǒu de lì liàng ， bāng zhù nín dá dào mù dì 。",
+        "english": ""
+      },
+      {
+        "chinese": "巴萨尼奥  我在学校里练习射箭的时候，每次把一枝箭射得不知去向，便用另一枝同样射程的箭向着同一方向射去，眼睛看准了它掉在什么地方，就往往可以把那失去的箭找回来；",
+        "pinyin": "bā sà ní ào     wǒ zài xué xiào lǐ liàn xí shè jiàn de shí hòu ， měi cì bǎ yī zhī jiàn shè dé bù zhī qù xiàng ， biàn yòng lìng yī zhī tóng yàng shè chéng de jiàn xiàng zhuó tóng yī fāng xiàng shè qù ， yǎn jīng kàn zhǔn le tā diào zài shén me dì fāng ， jiù wǎng wǎng kě yǐ bǎ nà shī qù de jiàn zhǎo huí lái ；",
+        "english": ""
+      },
+      {
+        "chinese": "这样，冒着双重的险，就能找到两枝箭。",
+        "pinyin": "zhè yàng ， mào zhuó shuāng zhòng de xiǎn ， jiù néng zhǎo dào liǎng zhī jiàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "我提起这一件儿童时代的往事作为譬喻，因为我将要对您说的话，完全是一种很天真的思想。",
+        "pinyin": "wǒ tí qǐ zhè yī jiàn ér tóng shí dài de wǎng shì zuò wéi pì yù ， yīn wèi wǒ jiāng yào duì nín shuō de huà ， wán quán shì yī zhǒng hěn tiān zhēn de sī xiǎng 。",
+        "english": ""
+      },
+      {
+        "chinese": "我欠了您很多的债，而且像一个不听话的孩子一样，把借来的钱一起挥霍完了；",
+        "pinyin": "wǒ qiàn le nín hěn duō de zhài ， ér qiě xiàng yī gè bù tīng huà de hái zǐ yī yàng ， bǎ jiè lái de qián yī qǐ huī huò wán le ；",
+        "english": ""
+      },
+      {
+        "chinese": "可是您要是愿意向着您放射第一枝箭的方向，再射出您的第二枝箭，那么这一回我一定会把目标看准，即使不把两枝箭一起找回来，至少也可以把第二枝箭交还给您，让我仍旧对于您先前给我的援助做一个知恩图报的负债者。",
+        "pinyin": "kě shì nín yào shì yuàn yì xiàng zhuó nín fàng shè dì yī zhī jiàn de fāng xiàng ， zài shè chū nín de dì èr zhī jiàn ， nà me zhè yī huí wǒ yī dìng huì bǎ mù biāo kàn zhǔn ， jí shǐ bù bǎ liǎng zhī jiàn yī qǐ zhǎo huí lái ， zhì shǎo yě kě yǐ bǎ dì èr zhī jiàn jiāo hái gěi nín ， ràng wǒ réng jiù duì yú nín xiān qián gěi wǒ de yuán zhù zuò yī gè zhī ēn tú bào de fù zhài zhě 。",
+        "english": ""
+      },
+      {
+        "chinese": "安东尼奥  您是知道我的为人的，现在您用这种譬喻的话来试探我的友谊，不过是浪费时间罢了；",
+        "pinyin": "ān dōng ní ào     nín shì zhī dào wǒ de wèi rén de ， xiàn zài nín yòng zhè zhǒng pì yù de huà lái shì tàn wǒ de yǒu yì ， bù guò shì làng fèi shí jiān bà le ；",
+        "english": ""
+      },
+      {
+        "chinese": "您要是怀疑我不肯尽力相助，那就比花掉我所有的钱还要对不起我。",
+        "pinyin": "nín yào shì huái yí wǒ bù kěn jìn lì xiāng zhù ， nà jiù bǐ huā diào wǒ suǒ yǒu de qián hái yào duì bù qǐ wǒ 。",
+        "english": ""
+      },
+      {
+        "chinese": "所以您只要对我说我应该怎么做，如果您知道哪件事是我的力量所能办到的，我一定会给您办到。",
+        "pinyin": "suǒ yǐ nín zhǐ yào duì wǒ shuō wǒ yīng gāi zěn me zuò ， rú guǒ nín zhī dào nǎ jiàn shì shì wǒ de lì liàng suǒ néng bàn dào de ， wǒ yī dìng huì gěi nín bàn dào 。",
+        "english": ""
+      },
+      {
+        "chinese": "您说吧。",
+        "pinyin": "nín shuō bā 。",
+        "english": ""
+      },
+      {
+        "chinese": "巴萨尼奥  在贝尔蒙特有一位富家的嗣女，长得非常美貌，尤其值得称道的，她有非常卓越的德性；",
+        "pinyin": "bā sà ní ào     zài bèi ěr mēng tè yǒu yī wèi fù jiā de sì nǚ ， cháng dé fēi cháng měi mào ， yóu qí zhí dé chēng dào de ， tā yǒu fēi cháng zhuó yuè de dé xìng ；",
+        "english": ""
+      },
+      {
+        "chinese": "从她的眼睛里，我有时接到她的脉脉含情的流盼。",
+        "pinyin": "cóng tā de yǎn jīng lǐ ， wǒ yǒu shí jiē dào tā de mò mò hán qíng de liú pàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "她的名字叫做鲍西娅，比起古代凯图的女儿，勃鲁托斯的贤妻鲍西娅来，毫无逊色。",
+        "pinyin": "tā de míng zì jiào zuò bào xī yà ， bǐ qǐ gǔ dài kǎi tú de nǚ ér ， bó lǔ tuō sī de xián qī bào xī yà lái ， háo wú xùn sè 。",
+        "english": ""
+      },
+      {
+        "chinese": "这广大的世界也没有漠视她的好处，四方的风从每一处海岸上带来了声名藉藉的求婚者；",
+        "pinyin": "zhè guǎng dà de shì jiè yě méi yǒu mò shì tā de hǎo chù ， sì fāng de fēng cóng měi yī chù hǎi àn shàng dài lái le shēng míng jiè jiè de qiú hūn zhě ；",
+        "english": ""
+      },
+      {
+        "chinese": "她的光亮的长发就像是传说中的金羊毛，把她所住的贝尔蒙特变做了神话中的王国，引诱着无数的伊阿宋①前来向她追求。",
+        "pinyin": "tā de guāng liàng de cháng fā jiù xiàng shì chuán shuō zhōng de jīn yáng máo ， bǎ tā suǒ zhù de bèi ěr mēng tè biàn zuò le shén huà zhōng de wáng guó ， yǐn yòu zhuó wú shù de yī ā sòng ① qián lái xiàng tā zhuī qiú 。",
+        "english": ""
+      },
+      {
+        "chinese": "啊，我的安东尼奥！",
+        "pinyin": "ā ， wǒ de ān dōng ní ào ！",
+        "english": ""
+      },
+      {
+        "chinese": "只要我有相当的财力，可以和他们中间无论哪一个人匹敌，那么我觉得我有充分的把握，一定会达到愿望的。",
+        "pinyin": "zhǐ yào wǒ yǒu xiāng dāng de cái lì ， kě yǐ hé tā mén zhōng jiān wú lùn nǎ yī gè rén pǐ dí ， nà me wǒ jué dé wǒ yǒu chōng fēn de bǎ wò ， yī dìng huì dá dào yuàn wàng de 。",
+        "english": ""
+      },
+      {
+        "chinese": "安东尼奥  你知道我的全部财产都在海上；",
+        "pinyin": "ān dōng ní ào     nǐ zhī dào wǒ de quán bù cái chǎn dōu zài hǎi shàng ；",
+        "english": ""
+      },
+      {
+        "chinese": "我现在既没有钱，也没有可以变换现款的货物。",
+        "pinyin": "wǒ xiàn zài jì méi yǒu qián ， yě méi yǒu kě yǐ biàn huàn xiàn kuǎn de huò wù 。",
+        "english": ""
+      },
+      {
+        "chinese": "所以我们还是去试一试我的信用，看它在威尼斯城里有些什么效力吧；",
+        "pinyin": "suǒ yǐ wǒ mén hái shì qù shì yī shì wǒ de xìn yòng ， kàn tā zài wēi ní sī chéng lǐ yǒu xiē shén me xiào lì bā ；",
+        "english": ""
+      },
+      {
+        "chinese": "我一定凭着我这一点面子，能借多少就借多少，尽我最大的力量供给你到贝尔蒙特去见那位美貌的鲍西娅。",
+        "pinyin": "wǒ yī dìng píng zhuó wǒ zhè yī diǎn miàn zǐ ， néng jiè duō shǎo jiù jiè duō shǎo ， jìn wǒ zuì dà de lì liàng gōng jǐ nǐ dào bèi ěr mēng tè qù jiàn nà wèi měi mào de bào xī yà 。",
+        "english": ""
+      },
+      {
+        "chinese": "去，我们两人就去分头打听什么地方可以借到钱，我就用我的信用做担保，或者用我自己的名义给你借下来。",
+        "pinyin": "qù ， wǒ mén liǎng rén jiù qù fēn tóu dǎ tīng shén me dì fāng kě yǐ jiè dào qián ， wǒ jiù yòng wǒ de xìn yòng zuò dān bǎo ， huò zhě yòng wǒ zì jǐ de míng yì gěi nǐ jiè xià lái 。",
+        "english": ""
+      },
+      {
+        "chinese": "（同下。",
+        "pinyin": "（ tóng xià 。",
+        "english": ""
+      },
+      {
+        "chinese": "第二场　贝尔蒙特。",
+        "pinyin": "dì èr chǎng 　 bèi ěr mēng tè 。",
+        "english": ""
+      },
+      {
+        "chinese": "鲍西娅家中一室",
+        "pinyin": "bào xī yà jiā zhōng yī shì",
+        "english": ""
+      },
+      {
+        "chinese": "鲍西娅及尼莉莎上。",
+        "pinyin": "bào xī yà jí ní lì suō shàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "鲍西娅  真的，尼莉莎，我这小小的身体已经厌倦了这个广大的世界了。",
+        "pinyin": "bào xī yà     zhēn de ， ní lì suō ， wǒ zhè xiǎo xiǎo de shēn tǐ yǐ jīng yàn juàn le zhè gè guǎng dà de shì jiè le 。",
+        "english": ""
+      },
+      {
+        "chinese": "尼莉莎  好小姐，您的不幸要是跟您的好运气一样大，那么无怪您会厌倦这个世界的；",
+        "pinyin": "ní lì suō     hǎo xiǎo jiě ， nín de bù xìng yào shì gēn nín de hǎo yùn qì yī yàng dà ， nà me wú guài nín huì yàn juàn zhè gè shì jiè de ；",
+        "english": ""
+      },
+      {
+        "chinese": "可是照我的愚见看来，吃得太饱的人，跟挨饿不吃东西的人，一样是会害病的，所以中庸之道才是最大的幸福：富贵催人生白发，布衣蔬食易长年。",
+        "pinyin": "kě shì zhào wǒ de yú jiàn kàn lái ， chī dé tài bǎo de rén ， gēn āi è bù chī dōng xī de rén ， yī yàng shì huì hài bìng de ， suǒ yǐ zhōng yōng zhī dào cái shì zuì dà de xìng fú ： fù guì cuī rén shēng bái fā ， bù yī shū shí yì cháng nián 。",
+        "english": ""
+      },
+      {
+        "chinese": "鲍西娅  很好的句子。",
+        "pinyin": "bào xī yà     hěn hǎo de jù zǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "尼莉莎  要是能够照着它做去，那就更好了。",
+        "pinyin": "ní lì suō     yào shì néng gòu zhào zhuó tā zuò qù ， nà jiù gèng hǎo le 。",
+        "english": ""
+      },
+      {
+        "chinese": "鲍西娅  倘使做一件事情就跟知道应该做什么事情一样容易，那么小教堂都要变成大礼拜堂，穷人的草屋都要变成王侯的宫殿了。",
+        "pinyin": "bào xī yà     tǎng shǐ zuò yī jiàn shì qíng jiù gēn zhī dào yīng gāi zuò shén me shì qíng yī yàng róng yì ， nà me xiǎo jiào táng dōu yào biàn chéng dà lǐ bài táng ， qióng rén de cǎo wū dōu yào biàn chéng wáng hóu de gōng diàn le 。",
+        "english": ""
+      },
+      {
+        "chinese": "一个好的说教师才会遵从他自己的训诲；",
+        "pinyin": "yī gè hǎo de shuō jiào shī cái huì zūn cóng tā zì jǐ de xùn huì ；",
+        "english": ""
+      },
+      {
+        "chinese": "我可以教训二十个人，吩咐他们应该做些什么事，可是要我做这二十个人中间的一个，履行我自己的教训，我就要敬谢不敏了。",
+        "pinyin": "wǒ kě yǐ jiào xùn èr shí gè rén ， fēn fù tā mén yīng gāi zuò xiē shén me shì ， kě shì yào wǒ zuò zhè èr shí gè rén zhōng jiān de yī gè ， lǚ xíng wǒ zì jǐ de jiào xùn ， wǒ jiù yào jìng xiè bù mǐn le 。",
+        "english": ""
+      },
+      {
+        "chinese": "理智可以制定法律来约束感情，可是热情激动起来，就会把冷酷的法令蔑弃不顾；",
+        "pinyin": "lǐ zhì kě yǐ zhì dìng fǎ lǜ lái yuē shù gǎn qíng ， kě shì rè qíng jī dòng qǐ lái ， jiù huì bǎ lěng kù de fǎ lìng miè qì bù gù ；",
+        "english": ""
+      },
+      {
+        "chinese": "年轻人是一头不受拘束的野兔，会跳过老年人所设立的理智的藩篱。",
+        "pinyin": "nián qīng rén shì yī tóu bù shòu jū shù de yě tù ， huì tiào guò lǎo nián rén suǒ shè lì de lǐ zhì de fān lí 。",
+        "english": ""
+      },
+      {
+        "chinese": "可是我这样大发议论，是不会帮助我选择一个丈夫的。",
+        "pinyin": "kě shì wǒ zhè yàng dà fā yì lùn ， shì bù huì bāng zhù wǒ xuǎn zé yī gè zhàng fū de 。",
+        "english": ""
+      },
+      {
+        "chinese": "唉，说什么选择！",
+        "pinyin": "āi ， shuō shén me xuǎn zé ！",
+        "english": ""
+      },
+      {
+        "chinese": "我既不能选择我所中意的人，又不能拒绝我所憎厌的人；",
+        "pinyin": "wǒ jì bù néng xuǎn zé wǒ suǒ zhōng yì de rén ， yòu bù néng jù jué wǒ suǒ zēng yàn de rén ；",
+        "english": ""
+      },
+      {
+        "chinese": "一个活着的女儿的意志，却要被一个死了的父亲的遗嘱所箝制。",
+        "pinyin": "yī gè huó zhuó de nǚ ér de yì zhì ， què yào bèi yī gè sǐ le de fù qīn de yí zhǔ suǒ qián zhì 。",
+        "english": ""
+      },
+      {
+        "chinese": "尼莉莎，像我这样不能选择，也不能拒绝，不是太叫人难堪了吗？",
+        "pinyin": "ní lì suō ， xiàng wǒ zhè yàng bù néng xuǎn zé ， yě bù néng jù jué ， bù shì tài jiào rén nán kān le ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "尼莉莎  老太爷生前道高德重，大凡有道君子临终之时，必有神悟；",
+        "pinyin": "ní lì suō     lǎo tài yé shēng qián dào gāo dé zhòng ， dà fán yǒu dào jūn zǐ lín zhōng zhī shí ， bì yǒu shén wù ；",
+        "english": ""
+      },
+      {
+        "chinese": "他既然定下这抽签取决的方法，叫谁能够在这金、银、铅三匣之中选中了他预定的一只，便可以跟您匹配成亲，那么能够选中的人，一定是值得您倾心相爱的。",
+        "pinyin": "tā jì rán dìng xià zhè chōu qiān qǔ jué de fāng fǎ ， jiào shuí néng gòu zài zhè jīn 、 yín 、 qiān sān xiá zhī zhōng xuǎn zhōng le tā yù dìng de yī zhǐ ， biàn kě yǐ gēn nín pǐ pèi chéng qīn ， nà me néng gòu xuǎn zhōng de rén ， yī dìng shì zhí dé nín qīng xīn xiāng ài de 。",
+        "english": ""
+      },
+      {
+        "chinese": "可是在这些已经到来向您求婚的王孙公子中间，您对于哪一个最有好感呢？",
+        "pinyin": "kě shì zài zhè xiē yǐ jīng dào lái xiàng nín qiú hūn de wáng sūn gōng zǐ zhōng jiān ， nín duì yú nǎ yī gè zuì yǒu hǎo gǎn ne ？",
+        "english": ""
+      },
+      {
+        "chinese": "鲍西娅  请你列举他们的名字，当你提到什么人的时候，我就对他下几句评语；",
+        "pinyin": "bào xī yà     qǐng nǐ liè jǔ tā mén de míng zì ， dāng nǐ tí dào shén me rén de shí hòu ， wǒ jiù duì tā xià jǐ jù píng yǔ ；",
+        "english": ""
+      },
+      {
+        "chinese": "凭着我的评语，你就可以知道我对于他们各人的印象。",
+        "pinyin": "píng zhuó wǒ de píng yǔ ， nǐ jiù kě yǐ zhī dào wǒ duì yú tā mén gè rén de yìn xiàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "尼莉莎  第一个是那不勒斯的亲王。",
+        "pinyin": "ní lì suō     dì yī gè shì nà bù lè sī de qīn wáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "鲍西娅  嗯，他真是一匹小马；",
+        "pinyin": "bào xī yà     èn ， tā zhēn shì yī pǐ xiǎo mǎ ；",
+        "english": ""
+      },
+      {
+        "chinese": "他不讲话则已，讲起话来，老是说他的马怎么怎么；",
+        "pinyin": "tā bù jiǎng huà zé yǐ ， jiǎng qǐ huà lái ， lǎo shì shuō tā de mǎ zěn me zěn me ；",
+        "english": ""
+      },
+      {
+        "chinese": "他因为能够亲自替自己的马装上蹄铁，算是一件天大的本领。",
+        "pinyin": "tā yīn wèi néng gòu qīn zì tì zì jǐ de mǎ zhuāng shàng tí tiě ， suàn shì yī jiàn tiān dà de běn lǐng 。",
+        "english": ""
+      },
+      {
+        "chinese": "我很有点儿疑心他的令堂太太是跟铁匠有过勾搭的。",
+        "pinyin": "wǒ hěn yǒu diǎn ér yí xīn tā de lìng táng tài tài shì gēn tiě jiàng yǒu guò gōu dā de 。",
+        "english": ""
+      },
+      {
+        "chinese": "尼莉莎  还有那位巴拉廷伯爵呢？",
+        "pinyin": "ní lì suō     hái yǒu nà wèi bā lā tíng bó jué ne ？",
+        "english": ""
+      },
+      {
+        "chinese": "鲍西娅  他一天到晚皱着眉头，好像说，“你要是不爱我，随你的便。",
+        "pinyin": "bào xī yà     tā yī tiān dào wǎn zhòu zhuó méi tóu ， hǎo xiàng shuō ， “ nǐ yào shì bù ài wǒ ， suí nǐ de biàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "”他听见笑话也不露一丝笑容。",
+        "pinyin": "” tā tīng jiàn xiào huà yě bù lòu yī sī xiào róng 。",
+        "english": ""
+      },
+      {
+        "chinese": "我看他年纪轻轻，就这么愁眉苦脸，到老来只好一天到晚痛哭流涕了。",
+        "pinyin": "wǒ kàn tā nián jì qīng qīng ， jiù zhè me chóu méi kǔ liǎn ， dào lǎo lái zhǐ hǎo yī tiān dào wǎn tòng kū liú tì le 。",
+        "english": ""
+      },
+      {
+        "chinese": "我宁愿嫁给一个骷髅，也不愿嫁给这两人中间的任何一个；",
+        "pinyin": "wǒ nìng yuàn jià gěi yī gè kū lóu ， yě bù yuàn jià gěi zhè liǎng rén zhōng jiān de rèn hé yī gè ；",
+        "english": ""
+      },
+      {
+        "chinese": "上帝保佑我不要落在这两个人手里！",
+        "pinyin": "shàng dì bǎo yòu wǒ bù yào luò zài zhè liǎng gè rén shǒu lǐ ！",
+        "english": ""
+      },
+      {
+        "chinese": "尼莉莎  您说那位法国贵族勒·滂先生怎样？",
+        "pinyin": "ní lì suō     nín shuō nà wèi fǎ guó guì zú lè · pāng xiān shēng zěn yàng ？",
+        "english": ""
+      },
+      {
+        "chinese": "鲍西娅  既然上帝造下他来，就算他是个人吧。",
+        "pinyin": "bào xī yà     jì rán shàng dì zào xià tā lái ， jiù suàn tā shì gè rén bā 。",
+        "english": ""
+      },
+      {
+        "chinese": "凭良心说，我知道讥笑人是一桩罪过，可是他！",
+        "pinyin": "píng liáng xīn shuō ， wǒ zhī dào jī xiào rén shì yī zhuāng zuì guò ， kě shì tā ！",
+        "english": ""
+      },
+      {
+        "chinese": "他的马比那不勒斯亲王那一匹好一点，他的皱眉头的坏脾气也胜过那位巴拉廷伯爵。",
+        "pinyin": "tā de mǎ bǐ nà bù lè sī qīn wáng nà yī pǐ hǎo yī diǎn ， tā de zhòu méi tóu de huài pí qì yě shèng guò nà wèi bā lā tíng bó jué 。",
+        "english": ""
+      },
+      {
+        "chinese": "什么人的坏处他都有一点，可是一点没有他自己的特色；",
+        "pinyin": "shén me rén de huài chù tā dōu yǒu yī diǎn ， kě shì yī diǎn méi yǒu tā zì jǐ de tè sè ；",
+        "english": ""
+      },
+      {
+        "chinese": "听见画眉唱歌，他就会手舞足蹈；",
+        "pinyin": "tīng jiàn huà méi chàng gē ， tā jiù huì shǒu wǔ zú dǎo ；",
+        "english": ""
+      },
+      {
+        "chinese": "见了自己的影子，也会跟它比剑。",
+        "pinyin": "jiàn le zì jǐ de yǐng zǐ ， yě huì gēn tā bǐ jiàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "我倘然嫁给他，等于嫁给二十个丈夫；",
+        "pinyin": "wǒ tǎng rán jià gěi tā ， děng yú jià gěi èr shí gè zhàng fū ；",
+        "english": ""
+      },
+      {
+        "chinese": "要是他瞧不起我，我会原谅他，因为即使他爱我爱到发狂，我也是永远不会报答他的。",
+        "pinyin": "yào shì tā qiáo bù qǐ wǒ ， wǒ huì yuán liàng tā ， yīn wèi jí shǐ tā ài wǒ ài dào fā kuáng ， wǒ yě shì yǒng yuǎn bù huì bào dá tā de 。",
+        "english": ""
+      },
+      {
+        "chinese": "尼莉莎  那么您说那个英国的少年男爵，福康勃立琪呢？",
+        "pinyin": "ní lì suō     nà me nín shuō nà gè yīng guó de shǎo nián nán jué ， fú kāng bó lì qí ne ？",
+        "english": ""
+      },
+      {
+        "chinese": "鲍西娅  你知道我没有对他说过一句话，因为我的话他听不懂，他的话我也听不懂；",
+        "pinyin": "bào xī yà     nǐ zhī dào wǒ méi yǒu duì tā shuō guò yī jù huà ， yīn wèi wǒ de huà tā tīng bù dǒng ， tā de huà wǒ yě tīng bù dǒng ；",
+        "english": ""
+      },
+      {
+        "chinese": "他不会说拉丁话、法国话、意大利话；",
+        "pinyin": "tā bù huì shuō lā dīng huà 、 fǎ guó huà 、 yì dà lì huà ；",
+        "english": ""
+      },
+      {
+        "chinese": "至于我的英国话是如何高明，你是可以替我出席法庭作证的。",
+        "pinyin": "zhì yú wǒ de yīng guó huà shì rú hé gāo míng ， nǐ shì kě yǐ tì wǒ chū xí fǎ tíng zuò zhèng de 。",
+        "english": ""
+      }
+    ]
+  },
+  {
+    "id": "merchant_of_venice_ch_2",
+    "bookId": "merchant_of_venice",
+    "chapterIndex": 2,
+    "title": "第二幕 第一场　贝尔蒙特。鲍西娅家中一室",
+    "titleEn": "Chapter 2: 第二幕 第一场　贝尔蒙特。鲍西娅家中一室",
+    "sentences": [
+      {
+        "chinese": "喇叭奏花腔。",
+        "pinyin": "lǎ bā zòu huā qiāng 。",
+        "english": ""
+      },
+      {
+        "chinese": "摩洛哥亲王率侍从；",
+        "pinyin": "mó luò gē qīn wáng lǜ shì cóng ；",
+        "english": ""
+      },
+      {
+        "chinese": "鲍西娅、尼莉莎及婢仆等同上。",
+        "pinyin": "bào xī yà 、 ní lì suō jí bì pū děng tóng shàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "摩洛哥亲王  不要因为我的肤色而憎厌我；",
+        "pinyin": "mó luò gē qīn wáng     bù yào yīn wèi wǒ de fū sè ér zēng yàn wǒ ；",
+        "english": ""
+      },
+      {
+        "chinese": "我是骄阳的近邻，我这一身黝黑的制服，便是它的威焰的赐予。",
+        "pinyin": "wǒ shì jiāo yáng de jìn lín ， wǒ zhè yī shēn yǒu hēi de zhì fú ， biàn shì tā de wēi yàn de cì yú 。",
+        "english": ""
+      },
+      {
+        "chinese": "给我在终年不见阳光、冰山雪柱的极北找一个最白皙姣好的人来，让我们刺血察验对您的爱情，看看究竟是他的血红还是我的血红。",
+        "pinyin": "gěi wǒ zài zhōng nián bù jiàn yáng guāng 、 bīng shān xuě zhù de jí běi zhǎo yī gè zuì bái xī jiāo hǎo de rén lái ， ràng wǒ mén cì xiě chá yàn duì nín de ài qíng ， kàn kàn jiū jìng shì tā de xiě hóng hái shì wǒ de xiě hóng 。",
+        "english": ""
+      },
+      {
+        "chinese": "我告诉你，小姐，我这副容貌曾经吓破了勇士的肝胆；",
+        "pinyin": "wǒ gào sù nǐ ， xiǎo jiě ， wǒ zhè fù róng mào céng jīng xià pò le yǒng shì de gān dǎn ；",
+        "english": ""
+      },
+      {
+        "chinese": "凭着我的爱情起誓，我们国土里最有声誉的少女也曾为它害过相思。",
+        "pinyin": "píng zhuó wǒ de ài qíng qǐ shì ， wǒ mén guó tǔ lǐ zuì yǒu shēng yù de shǎo nǚ yě céng wèi tā hài guò xiāng sī 。",
+        "english": ""
+      },
+      {
+        "chinese": "我不愿变更我的肤色，除非为了取得您的欢心，我的温柔的女王！",
+        "pinyin": "wǒ bù yuàn biàn gèng wǒ de fū sè ， chú fēi wèi le qǔ dé nín de huān xīn ， wǒ de wēn róu de nǚ wáng ！",
+        "english": ""
+      },
+      {
+        "chinese": "鲍西娅  讲到选择这一件事，我倒并不单单凭信一双善于挑剔的少女的眼睛；",
+        "pinyin": "bào xī yà     jiǎng dào xuǎn zé zhè yī jiàn shì ， wǒ dǎo bìng bù dān dān píng xìn yī shuāng shàn yú tiāo tī de shǎo nǚ de yǎn jīng ；",
+        "english": ""
+      },
+      {
+        "chinese": "而且我的命运由抽签决定，自己也没有任意取舍的权力；",
+        "pinyin": "ér qiě wǒ de mìng yùn yóu chōu qiān jué dìng ， zì jǐ yě méi yǒu rèn yì qǔ shě de quán lì ；",
+        "english": ""
+      },
+      {
+        "chinese": "可是我的父亲倘不曾用他的远见把我束缚住了，使我只能委身于按照他所规定的方法赢得我的男子，那么您，声名卓著的王子，您的容貌在我的心目之中，并不比我所已经看到的那些求婚者有什么逊色。",
+        "pinyin": "kě shì wǒ de fù qīn tǎng bù céng yòng tā de yuǎn jiàn bǎ wǒ shù fù zhù le ， shǐ wǒ zhǐ néng wěi shēn yú àn zhào tā suǒ guī dìng de fāng fǎ yíng dé wǒ de nán zǐ ， nà me nín ， shēng míng zhuó zhuó de wáng zǐ ， nín de róng mào zài wǒ de xīn mù zhī zhōng ， bìng bù bǐ wǒ suǒ yǐ jīng kàn dào de nà xiē qiú hūn zhě yǒu shén me xùn sè 。",
+        "english": ""
+      },
+      {
+        "chinese": "摩洛哥亲王  单是您这一番美意，已经使我万分感激了；",
+        "pinyin": "mó luò gē qīn wáng     dān shì nín zhè yī fān měi yì ， yǐ jīng shǐ wǒ wàn fēn gǎn jī le ；",
+        "english": ""
+      },
+      {
+        "chinese": "所以请您带我去瞧瞧那几个匣子，试一试我的命运吧。",
+        "pinyin": "suǒ yǐ qǐng nín dài wǒ qù qiáo qiáo nà jǐ gè xiá zǐ ， shì yī shì wǒ de mìng yùn bā 。",
+        "english": ""
+      },
+      {
+        "chinese": "凭着这一柄曾经手刃波斯王并且使一个三次战败苏里曼苏丹的波斯王子授首的宝剑起誓，我要瞪眼吓退世间最狰狞的猛汉，跟全世界最勇武的壮士比赛胆量，从母熊的胸前夺下哺乳的小熊；",
+        "pinyin": "píng zhuó zhè yī bǐng céng jīng shǒu rèn bō sī wáng bìng qiě shǐ yī gè sān cì zhàn bài sū lǐ màn sū dān de bō sī wáng zǐ shòu shǒu de bǎo jiàn qǐ shì ， wǒ yào dèng yǎn xià tuì shì jiān zuì zhēng níng de měng hàn ， gēn quán shì jiè zuì yǒng wǔ de zhuàng shì bǐ sài dǎn liàng ， cóng mǔ xióng de xiōng qián duó xià bǔ rǔ de xiǎo xióng ；",
+        "english": ""
+      },
+      {
+        "chinese": "当一头饿狮咆哮攫食的时候，我要向它揶揄侮弄，为了要博得你的垂青，小姐。",
+        "pinyin": "dāng yī tóu è shī páo xiào jué shí de shí hòu ， wǒ yào xiàng tā yé yú wǔ nòng ， wèi le yào bó dé nǐ de chuí qīng ， xiǎo jiě 。",
+        "english": ""
+      },
+      {
+        "chinese": "可是唉！",
+        "pinyin": "kě shì āi ！",
+        "english": ""
+      },
+      {
+        "chinese": "即使像赫剌克勒斯那样的盖世英雄，要是跟他的奴仆赌起骰子来，也许他的运气还不如一个下贱之人——而赫剌克勒斯终于在他的奴仆的手里送了命④。",
+        "pinyin": "jí shǐ xiàng hè là kè lè sī nà yàng de gài shì yīng xióng ， yào shì gēn tā de nú pū dǔ qǐ tóu zǐ lái ， yě xǔ tā de yùn qì hái bù rú yī gè xià jiàn zhī rén — — ér hè là kè lè sī zhōng yú zài tā de nú pū de shǒu lǐ sòng le mìng ④ 。",
+        "english": ""
+      },
+      {
+        "chinese": "我现在听从着盲目的命运的指挥，也许结果终于失望，眼看着一个不如我的人把我的意中人挟走，而自己在悲哀中死去。",
+        "pinyin": "wǒ xiàn zài tīng cóng zhuó máng mù dì mìng yùn de zhǐ huī ， yě xǔ jié guǒ zhōng yú shī wàng ， yǎn kàn zhuó yī gè bù rú wǒ de rén bǎ wǒ de yì zhōng rén xié zǒu ， ér zì jǐ zài bēi āi zhōng sǐ qù 。",
+        "english": ""
+      },
+      {
+        "chinese": "鲍西娅  您必须信任命运，或者死了心放弃选择的尝试，或者当您开始选择以前，先立下一个誓言，要是选得不对，终身不再向任何女子求婚；",
+        "pinyin": "bào xī yà     nín bì xū xìn rèn mìng yùn ， huò zhě sǐ le xīn fàng qì xuǎn zé de cháng shì ， huò zhě dāng nín kāi shǐ xuǎn zé yǐ qián ， xiān lì xià yī gè shì yán ， yào shì xuǎn dé bù duì ， zhōng shēn bù zài xiàng rèn hé nǚ zǐ qiú hūn ；",
+        "english": ""
+      },
+      {
+        "chinese": "所以还是请您考虑考虑吧。",
+        "pinyin": "suǒ yǐ hái shì qǐng nín kǎo lǜ kǎo lǜ bā 。",
+        "english": ""
+      },
+      {
+        "chinese": "摩洛哥亲王  我的主意已决，不必考虑了；",
+        "pinyin": "mó luò gē qīn wáng     wǒ de zhǔ yì yǐ jué ， bù bì kǎo lǜ le ；",
+        "english": ""
+      },
+      {
+        "chinese": "来，带我去试我的运气吧。",
+        "pinyin": "lái ， dài wǒ qù shì wǒ de yùn qì bā 。",
+        "english": ""
+      },
+      {
+        "chinese": "鲍西娅  第一先到教堂里去；",
+        "pinyin": "bào xī yà     dì yī xiān dào jiào táng lǐ qù ；",
+        "english": ""
+      },
+      {
+        "chinese": "吃过了饭，您就可以试试您的命运。",
+        "pinyin": "chī guò le fàn ， nín jiù kě yǐ shì shì nín de mìng yùn 。",
+        "english": ""
+      },
+      {
+        "chinese": "摩洛哥亲王  好，成功失败，在此一举！",
+        "pinyin": "mó luò gē qīn wáng     hǎo ， chéng gōng shī bài ， zài cǐ yī jǔ ！",
+        "english": ""
+      },
+      {
+        "chinese": "正是不挟美人归，壮士无颜色。",
+        "pinyin": "zhèng shì bù xié měi rén guī ， zhuàng shì wú yán sè 。",
+        "english": ""
+      },
+      {
+        "chinese": "（奏喇叭；",
+        "pinyin": "（ zòu lǎ bā ；",
+        "english": ""
+      },
+      {
+        "chinese": "众下。",
+        "pinyin": "zhòng xià 。",
+        "english": ""
+      },
+      {
+        "chinese": "第二场　威尼斯.街道",
+        "pinyin": "dì èr chǎng 　 wēi ní sī . jiē dào",
+        "english": ""
+      },
+      {
+        "chinese": "朗斯洛特·高波上。",
+        "pinyin": "lǎng sī luò tè · gāo bō shàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "朗斯洛特  要是我从我的主人这个犹太人的家里逃走，我的良心是一定要责备我的。",
+        "pinyin": "lǎng sī luò tè     yào shì wǒ cóng wǒ de zhǔ rén zhè gè yóu tài rén de jiā lǐ táo zǒu ， wǒ de liáng xīn shì yī dìng yào zé bèi wǒ de 。",
+        "english": ""
+      },
+      {
+        "chinese": "可是魔鬼拉着我的臂膀，引诱着我，对我说，“高波，朗斯洛特·高波，好朗斯洛特，拔起你的腿来，开步，走！",
+        "pinyin": "kě shì mó guǐ lā zhuó wǒ de bì bǎng ， yǐn yòu zhuó wǒ ， duì wǒ shuō ， “ gāo bō ， lǎng sī luò tè · gāo bō ， hǎo lǎng sī luò tè ， bá qǐ nǐ de tuǐ lái ， kāi bù ， zǒu ！",
+        "english": ""
+      },
+      {
+        "chinese": "”我的良心说，“不，留心，老实的朗斯洛特；",
+        "pinyin": "” wǒ de liáng xīn shuō ， “ bù ， liú xīn ， lǎo shí de lǎng sī luò tè ；",
+        "english": ""
+      },
+      {
+        "chinese": "留心，老实的高波；",
+        "pinyin": "liú xīn ， lǎo shí de gāo bō ；",
+        "english": ""
+      },
+      {
+        "chinese": "”或者就是这么说，“老实的朗斯洛特·高波，别逃跑；",
+        "pinyin": "” huò zhě jiù shì zhè me shuō ， “ lǎo shí de lǎng sī luò tè · gāo bō ， bié táo pǎo ；",
+        "english": ""
+      },
+      {
+        "chinese": "用你的脚跟把逃跑的念头踢得远远的。",
+        "pinyin": "yòng nǐ de jiǎo gēn bǎ táo pǎo de niàn tóu tī dé yuǎn yuǎn de 。",
+        "english": ""
+      },
+      {
+        "chinese": "”好，那个大胆的魔鬼却劝我卷起铺盖滚蛋；",
+        "pinyin": "” hǎo ， nà gè dà dǎn de mó guǐ què quàn wǒ juǎn qǐ pū gài gǔn dàn ；",
+        "english": ""
+      },
+      {
+        "chinese": "“去呀！",
+        "pinyin": "“ qù yā ！",
+        "english": ""
+      },
+      {
+        "chinese": "”魔鬼说，“去呀！",
+        "pinyin": "” mó guǐ shuō ， “ qù yā ！",
+        "english": ""
+      },
+      {
+        "chinese": "看在老天的面上，鼓起勇气来，跑吧！",
+        "pinyin": "kàn zài lǎo tiān de miàn shàng ， gǔ qǐ yǒng qì lái ， pǎo bā ！",
+        "english": ""
+      },
+      {
+        "chinese": "”好，我的良心挽住我心里的脖子，很聪明地对我说，“朗斯洛特我的老实朋友，你是一个老实人的儿子，”——或者还不如说一个老实妇人的儿子，因为我的父亲的确有点儿不大那个，有点儿很丢脸的坏脾气——好，我的良心说，“朗斯洛特，别动！",
+        "pinyin": "” hǎo ， wǒ de liáng xīn wǎn zhù wǒ xīn lǐ de bó zǐ ， hěn cōng míng dì duì wǒ shuō ， “ lǎng sī luò tè wǒ de lǎo shí péng yǒu ， nǐ shì yī gè lǎo shí rén de ér zǐ ， ” — — huò zhě hái bù rú shuō yī gè lǎo shí fù rén de ér zǐ ， yīn wèi wǒ de fù qīn dí què yǒu diǎn ér bù dà nà gè ， yǒu diǎn ér hěn diū liǎn de huài pí qì — — hǎo ， wǒ de liáng xīn shuō ， “ lǎng sī luò tè ， bié dòng ！",
+        "english": ""
+      },
+      {
+        "chinese": "”魔鬼说，“动！",
+        "pinyin": "” mó guǐ shuō ， “ dòng ！",
+        "english": ""
+      },
+      {
+        "chinese": "”我的良心说，“别动！",
+        "pinyin": "” wǒ de liáng xīn shuō ， “ bié dòng ！",
+        "english": ""
+      },
+      {
+        "chinese": "”“良心，”我说，“你说得不错；",
+        "pinyin": "” “ liáng xīn ， ” wǒ shuō ， “ nǐ shuō dé bù cuò ；",
+        "english": ""
+      },
+      {
+        "chinese": "”“魔鬼，”我说，“你说得有理。",
+        "pinyin": "” “ mó guǐ ， ” wǒ shuō ， “ nǐ shuō dé yǒu lǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "”要是听良心的话，我就应该留在我的主人那犹太人家里，上帝恕我这样说，他也是一个魔鬼；",
+        "pinyin": "” yào shì tīng liáng xīn de huà ， wǒ jiù yīng gāi liú zài wǒ de zhǔ rén nà yóu tài rén jiā lǐ ， shàng dì shù wǒ zhè yàng shuō ， tā yě shì yī gè mó guǐ ；",
+        "english": ""
+      },
+      {
+        "chinese": "要是从犹太人的地方逃走，那么我就要听从魔鬼的话，对不住，他本身就是魔鬼。",
+        "pinyin": "yào shì cóng yóu tài rén de dì fāng táo zǒu ， nà me wǒ jiù yào tīng cóng mó guǐ de huà ， duì bù zhù ， tā běn shēn jiù shì mó guǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "可是我说，那犹太人一定就是魔鬼的化身；",
+        "pinyin": "kě shì wǒ shuō ， nà yóu tài rén yī dìng jiù shì mó guǐ de huà shēn ；",
+        "english": ""
+      },
+      {
+        "chinese": "凭良心说话，我的良心劝我留在犹太人地方，未免良心太狠。",
+        "pinyin": "píng liáng xīn shuō huà ， wǒ de liáng xīn quàn wǒ liú zài yóu tài rén dì fāng ， wèi miǎn liáng xīn tài hěn 。",
+        "english": ""
+      },
+      {
+        "chinese": "还是魔鬼的话说得像个朋友。",
+        "pinyin": "hái shì mó guǐ de huà shuō dé xiàng gè péng yǒu 。",
+        "english": ""
+      },
+      {
+        "chinese": "我要跑，魔鬼；",
+        "pinyin": "wǒ yào pǎo ， mó guǐ ；",
+        "english": ""
+      },
+      {
+        "chinese": "我的脚跟听从着你的指挥；",
+        "pinyin": "wǒ de jiǎo gēn tīng cóng zhuó nǐ de zhǐ huī ；",
+        "english": ""
+      },
+      {
+        "chinese": "我一定要逃跑。",
+        "pinyin": "wǒ yī dìng yào táo pǎo 。",
+        "english": ""
+      },
+      {
+        "chinese": "老高波携篮上。",
+        "pinyin": "lǎo gāo bō xié lán shàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "老高波  年轻的先生，请问一声，到犹太老爷的家里怎么走？",
+        "pinyin": "lǎo gāo bō     nián qīng de xiān shēng ， qǐng wèn yī shēng ， dào yóu tài lǎo yé de jiā lǐ zěn me zǒu ？",
+        "english": ""
+      },
+      {
+        "chinese": "朗斯洛特  （旁白）天啊！",
+        "pinyin": "lǎng sī luò tè     （ páng bái ） tiān ā ！",
+        "english": ""
+      },
+      {
+        "chinese": "这是我的亲生的父亲，他的眼睛因为有八九分盲，所以不认识我。",
+        "pinyin": "zhè shì wǒ de qīn shēng de fù qīn ， tā de yǎn jīng yīn wèi yǒu bā jiǔ fēn máng ， suǒ yǐ bù rèn shí wǒ 。",
+        "english": ""
+      },
+      {
+        "chinese": "待我戏弄他一下。",
+        "pinyin": "dài wǒ xì nòng tā yī xià 。",
+        "english": ""
+      },
+      {
+        "chinese": "老高波  年轻的少爷先生，请问一声，到犹太老爷的家里怎么走？",
+        "pinyin": "lǎo gāo bō     nián qīng de shǎo yé xiān shēng ， qǐng wèn yī shēng ， dào yóu tài lǎo yé de jiā lǐ zěn me zǒu ？",
+        "english": ""
+      },
+      {
+        "chinese": "朗斯洛特  你在转下一个弯的时候，往右手转过去；",
+        "pinyin": "lǎng sī luò tè     nǐ zài zhuǎn xià yī gè wān de shí hòu ， wǎng yòu shǒu zhuǎn guò qù ；",
+        "english": ""
+      },
+      {
+        "chinese": "临了一次转弯的时候，往左手转过去；",
+        "pinyin": "lín le yī cì zhuǎn wān de shí hòu ， wǎng zuǒ shǒu zhuǎn guò qù ；",
+        "english": ""
+      },
+      {
+        "chinese": "再下一次转弯的时候，什么手也不用转，曲曲弯弯地转下去，就转到那犹太人的家里了。",
+        "pinyin": "zài xià yī cì zhuǎn wān de shí hòu ， shén me shǒu yě bù yòng zhuǎn ， qǔ qǔ wān wān dì zhuǎn xià qù ， jiù zhuǎn dào nà yóu tài rén de jiā lǐ le 。",
+        "english": ""
+      },
+      {
+        "chinese": "老高波  哎哟，这条路可不容易走哩！",
+        "pinyin": "lǎo gāo bō     āi yō ， zhè tiáo lù kě bù róng yì zǒu li ！",
+        "english": ""
+      },
+      {
+        "chinese": "您知道不知道有一个住在他家里的朗斯洛特，现在还在不在他家里？",
+        "pinyin": "nín zhī dào bù zhī dào yǒu yī gè zhù zài tā jiā lǐ de lǎng sī luò tè ， xiàn zài hái zài bù zài tā jiā lǐ ？",
+        "english": ""
+      },
+      {
+        "chinese": "朗斯洛特  你说的是朗斯洛特少爷吗？",
+        "pinyin": "lǎng sī luò tè     nǐ shuō de shì lǎng sī luò tè shǎo yé ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "（旁白）瞧着我吧，现在我要诱他流起眼泪来了。",
+        "pinyin": "（ páng bái ） qiáo zhuó wǒ bā ， xiàn zài wǒ yào yòu tā liú qǐ yǎn lèi lái le 。",
+        "english": ""
+      },
+      {
+        "chinese": "——你说的是朗斯洛特少爷吗？",
+        "pinyin": "— — nǐ shuō de shì lǎng sī luò tè shǎo yé ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "老高波  不是什么少爷，先生，他是一个穷人的儿子；",
+        "pinyin": "lǎo gāo bō     bù shì shén me shǎo yé ， xiān shēng ， tā shì yī gè qióng rén de ér zǐ ；",
+        "english": ""
+      },
+      {
+        "chinese": "他的父亲，不是我说一句，是个老老实实的穷光蛋，多谢上帝，他还活得好好的。",
+        "pinyin": "tā de fù qīn ， bù shì wǒ shuō yī jù ， shì gè lǎo lǎo shí shí de qióng guāng dàn ， duō xiè shàng dì ， tā hái huó dé hǎo hǎo de 。",
+        "english": ""
+      },
+      {
+        "chinese": "朗斯洛特  好，不要管他的父亲是个什么人，咱们讲的是朗斯洛特少爷。",
+        "pinyin": "lǎng sī luò tè     hǎo ， bù yào guǎn tā de fù qīn shì gè shén me rén ， zán mén jiǎng de shì lǎng sī luò tè shǎo yé 。",
+        "english": ""
+      },
+      {
+        "chinese": "老高波  他是您少爷的朋友，他就叫朗斯洛特。",
+        "pinyin": "lǎo gāo bō     tā shì nín shǎo yé de péng yǒu ， tā jiù jiào lǎng sī luò tè 。",
+        "english": ""
+      },
+      {
+        "chinese": "朗斯洛特  对不住，老人家，所以我要问你，你说的是朗斯洛特少爷吗？",
+        "pinyin": "lǎng sī luò tè     duì bù zhù ， lǎo rén jiā ， suǒ yǐ wǒ yào wèn nǐ ， nǐ shuō de shì lǎng sī luò tè shǎo yé ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "老高波  是朗斯洛特，少爷。",
+        "pinyin": "lǎo gāo bō     shì lǎng sī luò tè ， shǎo yé 。",
+        "english": ""
+      },
+      {
+        "chinese": "朗斯洛特  所以就是朗斯洛特少爷。",
+        "pinyin": "lǎng sī luò tè     suǒ yǐ jiù shì lǎng sī luò tè shǎo yé 。",
+        "english": ""
+      },
+      {
+        "chinese": "老人家，你别提起朗斯洛特少爷啦；",
+        "pinyin": "lǎo rén jiā ， nǐ bié tí qǐ lǎng sī luò tè shǎo yé lā ；",
+        "english": ""
+      },
+      {
+        "chinese": "因为这位年轻的少爷，根据天命气数鬼神这一类阴阳怪气的说法，是已经去世啦，或者说得明白一点是已经归天啦。",
+        "pinyin": "yīn wèi zhè wèi nián qīng de shǎo yé ， gēn jù tiān mìng qì shǔ guǐ shén zhè yī lèi yīn yáng guài qì de shuō fǎ ， shì yǐ jīng qù shì lā ， huò zhě shuō dé míng bái yī diǎn shì yǐ jīng guī tiān lā 。",
+        "english": ""
+      },
+      {
+        "chinese": "老高波  哎哟，天哪！",
+        "pinyin": "lǎo gāo bō     āi yō ， tiān nǎ ！",
+        "english": ""
+      },
+      {
+        "chinese": "这孩子是我老年的拐杖，我的唯一的靠傍哩。",
+        "pinyin": "zhè hái zǐ shì wǒ lǎo nián de guǎi zhàng ， wǒ de wéi yī de kào bàng li 。",
+        "english": ""
+      },
+      {
+        "chinese": "朗斯洛特  （旁白）我难道像一根棒儿，或是一根柱子？",
+        "pinyin": "lǎng sī luò tè     （ páng bái ） wǒ nán dào xiàng yī gēn bàng ér ， huò shì yī gēn zhù zǐ ？",
+        "english": ""
+      },
+      {
+        "chinese": "一根撑棒，或是一根拐杖？",
+        "pinyin": "yī gēn chēng bàng ， huò shì yī gēn guǎi zhàng ？",
+        "english": ""
+      },
+      {
+        "chinese": "——爸爸，您不认识我吗？",
+        "pinyin": "— — bà bà ， nín bù rèn shí wǒ ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "老高波  唉，我不认识您，年轻的少爷；",
+        "pinyin": "lǎo gāo bō     āi ， wǒ bù rèn shí nín ， nián qīng de shǎo yé ；",
+        "english": ""
+      },
+      {
+        "chinese": "可是请您告诉我，我的孩子——上帝安息他的灵魂！",
+        "pinyin": "kě shì qǐng nín gào sù wǒ ， wǒ de hái zǐ — — shàng dì ān xī tā de líng hún ！",
+        "english": ""
+      },
+      {
+        "chinese": "——究竟是活着还是死了？",
+        "pinyin": "— — jiū jìng shì huó zhuó hái shì sǐ le ？",
+        "english": ""
+      },
+      {
+        "chinese": "朗斯洛特  您不认识我吗，爸爸？",
+        "pinyin": "lǎng sī luò tè     nín bù rèn shí wǒ ma ， bà bà ？",
+        "english": ""
+      },
+      {
+        "chinese": "老高波  唉，少爷，我是个瞎子；",
+        "pinyin": "lǎo gāo bō     āi ， shǎo yé ， wǒ shì gè xiā zǐ ；",
+        "english": ""
+      },
+      {
+        "chinese": "我不认识您。",
+        "pinyin": "wǒ bù rèn shí nín 。",
+        "english": ""
+      },
+      {
+        "chinese": "朗斯洛特  哦，真的，您就是眼睛明亮，也许会不认识我，只有聪明的父亲才会知道自己的儿子。",
+        "pinyin": "lǎng sī luò tè     ò ， zhēn de ， nín jiù shì yǎn jīng míng liàng ， yě xǔ huì bù rèn shí wǒ ， zhǐ yǒu cōng míng de fù qīn cái huì zhī dào zì jǐ de ér zǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "好，老人家，让我告诉您关于您儿子的消息吧。",
+        "pinyin": "hǎo ， lǎo rén jiā ， ràng wǒ gào sù nín guān yú nín ér zǐ de xiāo xī bā 。",
+        "english": ""
+      },
+      {
+        "chinese": "请您给我祝福；",
+        "pinyin": "qǐng nín gěi wǒ zhù fú ；",
+        "english": ""
+      },
+      {
+        "chinese": "真理总会显露出来，杀人的凶手总会给人捉住；",
+        "pinyin": "zhēn lǐ zǒng huì xiǎn lòu chū lái ， shā rén de xiōng shǒu zǒng huì gěi rén zhuō zhù ；",
+        "english": ""
+      },
+      {
+        "chinese": "儿子虽然会暂时躲过去，事实到最后总是瞒不过的。",
+        "pinyin": "ér zǐ suī rán huì zàn shí duǒ guò qù ， shì shí dào zuì hòu zǒng shì mán bù guò de 。",
+        "english": ""
+      },
+      {
+        "chinese": "老高波  少爷，请您站起来。",
+        "pinyin": "lǎo gāo bō     shǎo yé ， qǐng nín zhàn qǐ lái 。",
+        "english": ""
+      },
+      {
+        "chinese": "我相信您一定不会是朗斯洛特，我的孩子。",
+        "pinyin": "wǒ xiāng xìn nín yī dìng bù huì shì lǎng sī luò tè ， wǒ de hái zǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "朗斯洛特  废话少说，请您给我祝福：我是朗斯洛特，从前是您的孩子，现在是您的儿子，将来也还是您的小子。",
+        "pinyin": "lǎng sī luò tè     fèi huà shǎo shuō ， qǐng nín gěi wǒ zhù fú ： wǒ shì lǎng sī luò tè ， cóng qián shì nín de hái zǐ ， xiàn zài shì nín de ér zǐ ， jiāng lái yě hái shì nín de xiǎo zǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "老高波  我不能想像您是我的儿子。",
+        "pinyin": "lǎo gāo bō     wǒ bù néng xiǎng xiàng nín shì wǒ de ér zǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "朗斯洛特  那我倒不知道应该怎样想法了；",
+        "pinyin": "lǎng sī luò tè     nà wǒ dǎo bù zhī dào yīng gāi zěn yàng xiǎng fǎ le ；",
+        "english": ""
+      },
+      {
+        "chinese": "可是我的确是在犹太人家里当仆人的朗斯洛特，我也相信您的妻子玛格蕾就是我的母亲。",
+        "pinyin": "kě shì wǒ dí què shì zài yóu tài rén jiā lǐ dāng pū rén de lǎng sī luò tè ， wǒ yě xiāng xìn nín de qī zǐ mǎ gé lěi jiù shì wǒ de mǔ qīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "老高波  她的名字果真是玛格蕾。",
+        "pinyin": "lǎo gāo bō     tā de míng zì guǒ zhēn shì mǎ gé lěi 。",
+        "english": ""
+      },
+      {
+        "chinese": "你倘然真的就是朗斯洛特，那么你就是我亲生血肉了。",
+        "pinyin": "nǐ tǎng rán zhēn de jiù shì lǎng sī luò tè ， nà me nǐ jiù shì wǒ qīn shēng xiě ròu le 。",
+        "english": ""
+      },
+      {
+        "chinese": "上帝果然灵圣！",
+        "pinyin": "shàng dì guǒ rán líng shèng ！",
+        "english": ""
+      },
+      {
+        "chinese": "你长了多长的一把胡子啦！",
+        "pinyin": "nǐ cháng le duō cháng de yī bǎ hú zǐ lā ！",
+        "english": ""
+      },
+      {
+        "chinese": "你脸上的毛，比我那拖车子的马儿道平尾巴上的毛还多呐！",
+        "pinyin": "nǐ liǎn shàng de máo ， bǐ wǒ nà tuō chē zǐ de mǎ ér dào píng wěi bā shàng de máo hái duō nà ！",
+        "english": ""
+      },
+      {
+        "chinese": "朗斯洛特  这样看起来，那么道平的尾巴一定是越长越短了；",
+        "pinyin": "lǎng sī luò tè     zhè yàng kàn qǐ lái ， nà me dào píng de wěi bā yī dìng shì yuè cháng yuè duǎn le ；",
+        "english": ""
+      },
+      {
+        "chinese": "我还清楚记得，上一次我看见它的时候，它尾巴上的毛比我脸上的毛多得多哩。",
+        "pinyin": "wǒ hái qīng chǔ jì dé ， shàng yī cì wǒ kàn jiàn tā de shí hòu ， tā wěi bā shàng de máo bǐ wǒ liǎn shàng de máo duō dé duō li 。",
+        "english": ""
+      },
+      {
+        "chinese": "老高波  上帝啊！",
+        "pinyin": "lǎo gāo bō     shàng dì ā ！",
+        "english": ""
+      },
+      {
+        "chinese": "你真是变了样子啦！",
+        "pinyin": "nǐ zhēn shì biàn le yàng zǐ lā ！",
+        "english": ""
+      },
+      {
+        "chinese": "你跟主人合得来吗？",
+        "pinyin": "nǐ gēn zhǔ rén hé dé lái ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "我给他带了点儿礼物来了。",
+        "pinyin": "wǒ gěi tā dài le diǎn ér lǐ wù lái le 。",
+        "english": ""
+      },
+      {
+        "chinese": "你们现在合得来吗？",
+        "pinyin": "nǐ mén xiàn zài hé dé lái ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "朗斯洛特  合得来，合得来；",
+        "pinyin": "lǎng sī luò tè     hé dé lái ， hé dé lái ；",
+        "english": ""
+      },
+      {
+        "chinese": "可是从我自己这一方面讲，我既然已经决定逃跑，那么非到跑了一程路之后，我是决不会停下来的。",
+        "pinyin": "kě shì cóng wǒ zì jǐ zhè yī fāng miàn jiǎng ， wǒ jì rán yǐ jīng jué dìng táo pǎo ， nà me fēi dào pǎo le yī chéng lù zhī hòu ， wǒ shì jué bù huì tíng xià lái de 。",
+        "english": ""
+      },
+      {
+        "chinese": "我的主人是个十足的犹太人；",
+        "pinyin": "wǒ de zhǔ rén shì gè shí zú de yóu tài rén ；",
+        "english": ""
+      },
+      {
+        "chinese": "给他礼物！",
+        "pinyin": "gěi tā lǐ wù ！",
+        "english": ""
+      },
+      {
+        "chinese": "还是给他一根上吊的绳子吧。",
+        "pinyin": "hái shì gěi tā yī gēn shàng diào de shéng zǐ bā 。",
+        "english": ""
+      },
+      {
+        "chinese": "我替他做事情，把身体都饿瘦了；",
+        "pinyin": "wǒ tì tā zuò shì qíng ， bǎ shēn tǐ dōu è shòu le ；",
+        "english": ""
+      },
+      {
+        "chinese": "您可以用我的肋骨摸出我的每一条手指来。",
+        "pinyin": "nín kě yǐ yòng wǒ de lèi gǔ mō chū wǒ de měi yī tiáo shǒu zhǐ lái 。",
+        "english": ""
+      },
+      {
+        "chinese": "爸爸，您来了我很高兴。",
+        "pinyin": "bà bà ， nín lái le wǒ hěn gāo xìng 。",
+        "english": ""
+      },
+      {
+        "chinese": "把您的礼物送给一位巴萨尼奥大爷吧，他是会赏漂亮的新衣服给用人穿的。",
+        "pinyin": "bǎ nín de lǐ wù sòng gěi yī wèi bā sà ní ào dà yé bā ， tā shì huì shǎng piāo liàng de xīn yī fú gěi yòng rén chuān de 。",
+        "english": ""
+      },
+      {
+        "chinese": "我要是不能服侍他，我宁愿跑到地球的尽头去。",
+        "pinyin": "wǒ yào shì bù néng fú shì tā ， wǒ nìng yuàn pǎo dào dì qiú de jìn tóu qù 。",
+        "english": ""
+      },
+      {
+        "chinese": "啊，运气真好！",
+        "pinyin": "ā ， yùn qì zhēn hǎo ！",
+        "english": ""
+      },
+      {
+        "chinese": "正是他来了。",
+        "pinyin": "zhèng shì tā lái le 。",
+        "english": ""
+      },
+      {
+        "chinese": "到他跟前去，爸爸。",
+        "pinyin": "dào tā gēn qián qù ， bà bà 。",
+        "english": ""
+      },
+      {
+        "chinese": "我要是再继续服侍这个犹太人，连我自己都要变做犹太人了。",
+        "pinyin": "wǒ yào shì zài jì xù fú shì zhè gè yóu tài rén ， lián wǒ zì jǐ dōu yào biàn zuò yóu tài rén le 。",
+        "english": ""
+      },
+      {
+        "chinese": "巴萨尼奥率里奥那多及其他侍从上。",
+        "pinyin": "bā sà ní ào lǜ lǐ ào nà duō jí qí tā shì cóng shàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "巴萨尼奥  你们就这样做吧，可是要赶快点儿，晚饭顶迟必须在五点钟预备好。",
+        "pinyin": "bā sà ní ào     nǐ mén jiù zhè yàng zuò bā ， kě shì yào gǎn kuài diǎn ér ， wǎn fàn dǐng chí bì xū zài wǔ diǎn zhōng yù bèi hǎo 。",
+        "english": ""
+      },
+      {
+        "chinese": "这几封信替我分别送出；",
+        "pinyin": "zhè jǐ fēng xìn tì wǒ fēn bié sòng chū ；",
+        "english": ""
+      },
+      {
+        "chinese": "叫裁缝把制服做起来；",
+        "pinyin": "jiào cái féng bǎ zhì fú zuò qǐ lái ；",
+        "english": ""
+      },
+      {
+        "chinese": "回头再请葛莱西安诺立刻到我的寓所里来。",
+        "pinyin": "huí tóu zài qǐng gé lái xī ān nuò lì kè dào wǒ de yù suǒ lǐ lái 。",
+        "english": ""
+      },
+      {
+        "chinese": "（一仆下。",
+        "pinyin": "（ yī pū xià 。",
+        "english": ""
+      },
+      {
+        "chinese": "朗斯洛特  上去，爸爸。",
+        "pinyin": "lǎng sī luò tè     shàng qù ， bà bà 。",
+        "english": ""
+      },
+      {
+        "chinese": "老高波  上帝保佑大爷！",
+        "pinyin": "lǎo gāo bō     shàng dì bǎo yòu dà yé ！",
+        "english": ""
+      },
+      {
+        "chinese": "巴萨尼奥  谢谢你，有什么事？",
+        "pinyin": "bā sà ní ào     xiè xiè nǐ ， yǒu shén me shì ？",
+        "english": ""
+      },
+      {
+        "chinese": "老高波  大爷，这一个是我的儿子，一个苦命的孩子——",
+        "pinyin": "lǎo gāo bō     dà yé ， zhè yī gè shì wǒ de ér zǐ ， yī gè kǔ mìng de hái zǐ — —",
+        "english": ""
+      },
+      {
+        "chinese": "朗斯洛特  不是苦命的孩子，大爷，我是犹太富翁的跟班，不瞒大爷说，我想要——我的父亲可以给我证明——",
+        "pinyin": "lǎng sī luò tè     bù shì kǔ mìng de hái zǐ ， dà yé ， wǒ shì yóu tài fù wēng de gēn bān ， bù mán dà yé shuō ， wǒ xiǎng yào — — wǒ de fù qīn kě yǐ gěi wǒ zhèng míng — —",
+        "english": ""
+      },
+      {
+        "chinese": "老高波  大爷，正像人家说的，他一心一意地想要侍候——",
+        "pinyin": "lǎo gāo bō     dà yé ， zhèng xiàng rén jiā shuō de ， tā yī xīn yī yì dì xiǎng yào shì hòu — —",
+        "english": ""
+      },
+      {
+        "chinese": "朗斯洛特  总而言之一句话，我本来是侍候那个犹太人的，可是我很想要——我的父亲可以给我证明——",
+        "pinyin": "lǎng sī luò tè     zǒng ér yán zhī yī jù huà ， wǒ běn lái shì shì hòu nà gè yóu tài rén de ， kě shì wǒ hěn xiǎng yào — — wǒ de fù qīn kě yǐ gěi wǒ zhèng míng — —",
+        "english": ""
+      },
+      {
+        "chinese": "老高波  不瞒大爷说，他的主人跟他有点儿意见不合——",
+        "pinyin": "lǎo gāo bō     bù mán dà yé shuō ， tā de zhǔ rén gēn tā yǒu diǎn ér yì jiàn bù hé — —",
+        "english": ""
+      },
+      {
+        "chinese": "朗斯洛特  干脆一句话，实实在在说，这犹太人欺侮了我，他叫我——我的父亲是个老头子，我希望他可以替我向您证明——",
+        "pinyin": "lǎng sī luò tè     gān cuì yī jù huà ， shí shí zài zài shuō ， zhè yóu tài rén qī wǔ le wǒ ， tā jiào wǒ — — wǒ de fù qīn shì gè lǎo tóu zǐ ， wǒ xī wàng tā kě yǐ tì wǒ xiàng nín zhèng míng — —",
+        "english": ""
+      },
+      {
+        "chinese": "老高波  我这儿有一盘烹好的鸽子送给大爷，我要请求大爷一件事——",
+        "pinyin": "lǎo gāo bō     wǒ zhè ér yǒu yī pán pēng hǎo de gē zǐ sòng gěi dà yé ， wǒ yào qǐng qiú dà yé yī jiàn shì — —",
+        "english": ""
+      },
+      {
+        "chinese": "朗斯洛特  废话少说，这请求是关于我的事情，这位老实的老人家可以告诉您；",
+        "pinyin": "lǎng sī luò tè     fèi huà shǎo shuō ， zhè qǐng qiú shì guān yú wǒ de shì qíng ， zhè wèi lǎo shí de lǎo rén jiā kě yǐ gào sù nín ；",
+        "english": ""
+      },
+      {
+        "chinese": "不是我说一句，我这父亲虽然是个老头子，却是个苦人儿。",
+        "pinyin": "bù shì wǒ shuō yī jù ， wǒ zhè fù qīn suī rán shì gè lǎo tóu zǐ ， què shì gè kǔ rén ér 。",
+        "english": ""
+      },
+      {
+        "chinese": "巴萨尼奥  让一个人说话。",
+        "pinyin": "bā sà ní ào     ràng yī gè rén shuō huà 。",
+        "english": ""
+      },
+      {
+        "chinese": "你们究竟要什么？",
+        "pinyin": "nǐ mén jiū jìng yào shén me ？",
+        "english": ""
+      },
+      {
+        "chinese": "朗斯洛特  侍候您，大爷。",
+        "pinyin": "lǎng sī luò tè     shì hòu nín ， dà yé 。",
+        "english": ""
+      },
+      {
+        "chinese": "老高波  正是这一件事，大爷。",
+        "pinyin": "lǎo gāo bō     zhèng shì zhè yī jiàn shì ， dà yé 。",
+        "english": ""
+      },
+      {
+        "chinese": "巴萨尼奥  我认识你；",
+        "pinyin": "bā sà ní ào     wǒ rèn shí nǐ ；",
+        "english": ""
+      },
+      {
+        "chinese": "我可以答应你的要求；",
+        "pinyin": "wǒ kě yǐ dā yìng nǐ de yào qiú ；",
+        "english": ""
+      },
+      {
+        "chinese": "你的主人夏洛克今天曾经向我说起，要把你举荐给我。",
+        "pinyin": "nǐ de zhǔ rén xià luò kè jīn tiān céng jīng xiàng wǒ shuō qǐ ， yào bǎ nǐ jǔ jiàn gěi wǒ 。",
+        "english": ""
+      }
+    ]
+  },
+  {
+    "id": "merchant_of_venice_ch_3",
+    "bookId": "merchant_of_venice",
+    "chapterIndex": 3,
+    "title": "第三幕 第一场　威尼斯.街道",
+    "titleEn": "Chapter 3: 第三幕 第一场　威尼斯.街道",
+    "sentences": [
+      {
+        "chinese": "萨莱尼奥及萨拉里诺上。",
+        "pinyin": "sà lái ní ào jí sà lā lǐ nuò shàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "萨莱尼奥  交易所里有什么消息？",
+        "pinyin": "sà lái ní ào     jiāo yì suǒ lǐ yǒu shén me xiāo xī ？",
+        "english": ""
+      },
+      {
+        "chinese": "萨拉里诺  他们都在那里说安东尼奥有一艘满装着货物的船在海峡里倾覆了；",
+        "pinyin": "sà lā lǐ nuò     tā mén dōu zài nà lǐ shuō ān dōng ní ào yǒu yī sōu mǎn zhuāng zhuó huò wù de chuán zài hǎi xiá lǐ qīng fù le ；",
+        "english": ""
+      },
+      {
+        "chinese": "那地方的名字好像是古德温，是一处很危险的沙滩，听说有许多大船的残骸埋葬在那里，要是那些传闻之辞是确实可靠的话。",
+        "pinyin": "nà dì fāng de míng zì hǎo xiàng shì gǔ dé wēn ， shì yī chù hěn wēi xiǎn de shā tān ， tīng shuō yǒu xǔ duō dà chuán de cán hái mái zàng zài nà lǐ ， yào shì nà xiē chuán wén zhī cí shì què shí kě kào de huà 。",
+        "english": ""
+      },
+      {
+        "chinese": "萨莱尼奥  我但愿那些谣言就像那些吃饱了饭没事做、嚼嚼生姜或者一把鼻涕一把眼泪地假装为了她第三个丈夫死去而痛哭的那些婆子们所说的鬼话一样靠不住。",
+        "pinyin": "sà lái ní ào     wǒ dàn yuàn nà xiē yáo yán jiù xiàng nà xiē chī bǎo le fàn méi shì zuò 、 jiáo jiáo shēng jiāng huò zhě yī bǎ bí tì yī bǎ yǎn lèi dì jiǎ zhuāng wèi le tā dì sān gè zhàng fū sǐ qù ér tòng kū de nà xiē pó zǐ mén suǒ shuō de guǐ huà yī yàng kào bù zhù 。",
+        "english": ""
+      },
+      {
+        "chinese": "可是那的确是事实——不说罗哩罗苏的废话，也不说枝枝节节的闲话——这位善良的安东尼奥，正直的安东尼奥——啊，我希望我有一个可以充分形容他的好处的字眼！",
+        "pinyin": "kě shì nà dí què shì shì shí — — bù shuō luó li luó sū de fèi huà ， yě bù shuō zhī zhī jié jié de xián huà — — zhè wèi shàn liáng de ān dōng ní ào ， zhèng zhí de ān dōng ní ào — — ā ， wǒ xī wàng wǒ yǒu yī gè kě yǐ chōng fēn xíng róng tā de hǎo chù de zì yǎn ！",
+        "english": ""
+      },
+      {
+        "chinese": "萨拉里诺  好了好了，别说下去了吧。",
+        "pinyin": "sà lā lǐ nuò     hǎo le hǎo le ， bié shuō xià qù le bā 。",
+        "english": ""
+      },
+      {
+        "chinese": "萨莱尼奥  嘿！",
+        "pinyin": "sà lái ní ào     hēi ！",
+        "english": ""
+      },
+      {
+        "chinese": "你说什么！",
+        "pinyin": "nǐ shuō shén me ！",
+        "english": ""
+      },
+      {
+        "chinese": "总归一句话，他损失了一艘船。",
+        "pinyin": "zǒng guī yī jù huà ， tā sǔn shī le yī sōu chuán 。",
+        "english": ""
+      },
+      {
+        "chinese": "萨拉里诺  但愿这是他最末一次的损失。",
+        "pinyin": "sà lā lǐ nuò     dàn yuàn zhè shì tā zuì mò yī cì de sǔn shī 。",
+        "english": ""
+      },
+      {
+        "chinese": "萨莱尼奥  让我赶快喊“阿门”，免得给魔鬼打断了我的祷告，因为他已经扮成一个犹太人的样子来啦。",
+        "pinyin": "sà lái ní ào     ràng wǒ gǎn kuài hǎn “ ā mén ” ， miǎn dé gěi mó guǐ dǎ duàn le wǒ de dǎo gào ， yīn wèi tā yǐ jīng bàn chéng yī gè yóu tài rén de yàng zǐ lái lā 。",
+        "english": ""
+      },
+      {
+        "chinese": "夏洛克上。",
+        "pinyin": "xià luò kè shàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "萨莱尼奥  啊，夏洛克！",
+        "pinyin": "sà lái ní ào     ā ， xià luò kè ！",
+        "english": ""
+      },
+      {
+        "chinese": "商人中间有什么消息？",
+        "pinyin": "shāng rén zhōng jiān yǒu shén me xiāo xī ？",
+        "english": ""
+      },
+      {
+        "chinese": "夏洛克  有什么消息！",
+        "pinyin": "xià luò kè     yǒu shén me xiāo xī ！",
+        "english": ""
+      },
+      {
+        "chinese": "我的女儿逃走啦，这件事情是你比谁都格外知道得详细的。",
+        "pinyin": "wǒ de nǚ ér táo zǒu lā ， zhè jiàn shì qíng shì nǐ bǐ shuí dōu gé wài zhī dào dé xiáng xì de 。",
+        "english": ""
+      },
+      {
+        "chinese": "萨拉里诺  那当然啦，就是我也知道她飞走的那对翅膀是哪一个裁缝替她做的。",
+        "pinyin": "sà lā lǐ nuò     nà dāng rán lā ， jiù shì wǒ yě zhī dào tā fēi zǒu de nà duì chì bǎng shì nǎ yī gè cái féng tì tā zuò de 。",
+        "english": ""
+      },
+      {
+        "chinese": "萨莱尼奥  夏洛克自己也何尝不知道，她羽毛已长，当然要离开娘家啦。",
+        "pinyin": "sà lái ní ào     xià luò kè zì jǐ yě hé cháng bù zhī dào ， tā yǔ máo yǐ cháng ， dāng rán yào lí kāi niáng jiā lā 。",
+        "english": ""
+      },
+      {
+        "chinese": "夏洛克  她干出这种不要脸的事来，死了一定要下地狱。",
+        "pinyin": "xià luò kè     tā gān chū zhè zhǒng bù yào liǎn de shì lái ， sǐ le yī dìng yào xià dì yù 。",
+        "english": ""
+      },
+      {
+        "chinese": "萨拉里诺  倘然魔鬼做她的判官，那是当然的事情。",
+        "pinyin": "sà lā lǐ nuò     tǎng rán mó guǐ zuò tā de pàn guān ， nà shì dāng rán de shì qíng 。",
+        "english": ""
+      },
+      {
+        "chinese": "夏洛克  我自己的血肉跟我过不去！",
+        "pinyin": "xià luò kè     wǒ zì jǐ de xiě ròu gēn wǒ guò bù qù ！",
+        "english": ""
+      },
+      {
+        "chinese": "萨莱尼奥  说什么，老东西，活到这么大年纪，还跟你自己过不去？",
+        "pinyin": "sà lái ní ào     shuō shén me ， lǎo dōng xī ， huó dào zhè me dà nián jì ， hái gēn nǐ zì jǐ guò bù qù ？",
+        "english": ""
+      },
+      {
+        "chinese": "夏洛克  我是说我的女儿是我自己的血肉。",
+        "pinyin": "xià luò kè     wǒ shì shuō wǒ de nǚ ér shì wǒ zì jǐ de xiě ròu 。",
+        "english": ""
+      },
+      {
+        "chinese": "萨拉里诺  你的肉跟她的肉比起来，比黑炭和象牙还差得远；",
+        "pinyin": "sà lā lǐ nuò     nǐ de ròu gēn tā de ròu bǐ qǐ lái ， bǐ hēi tàn hé xiàng yá hái chà dé yuǎn ；",
+        "english": ""
+      },
+      {
+        "chinese": "你的血跟她的血比起来，比红葡萄酒和白葡萄酒还差得远。",
+        "pinyin": "nǐ de xiě gēn tā de xiě bǐ qǐ lái ， bǐ hóng pú táo jiǔ hé bái pú táo jiǔ hái chà dé yuǎn 。",
+        "english": ""
+      },
+      {
+        "chinese": "可是告诉我们，你听没听见人家说起安东尼奥在海上遭到了损失？",
+        "pinyin": "kě shì gào sù wǒ mén ， nǐ tīng méi tīng jiàn rén jiā shuō qǐ ān dōng ní ào zài hǎi shàng zāo dào le sǔn shī ？",
+        "english": ""
+      },
+      {
+        "chinese": "夏洛克  说起他，又是我的一桩倒霉事情。",
+        "pinyin": "xià luò kè     shuō qǐ tā ， yòu shì wǒ de yī zhuāng dǎo méi shì qíng 。",
+        "english": ""
+      },
+      {
+        "chinese": "这个败家精，这个破落户，他不敢在交易所里露一露脸；",
+        "pinyin": "zhè gè bài jiā jīng ， zhè gè pò luò hù ， tā bù gǎn zài jiāo yì suǒ lǐ lòu yī lòu liǎn ；",
+        "english": ""
+      },
+      {
+        "chinese": "他平常到市场上来，穿着得多么齐整，现在可变成一个叫化子啦。",
+        "pinyin": "tā píng cháng dào shì chǎng shàng lái ， chuān zhuó dé duō me qí zhěng ， xiàn zài kě biàn chéng yī gè jiào huà zǐ lā 。",
+        "english": ""
+      },
+      {
+        "chinese": "让他留心他的借约吧；",
+        "pinyin": "ràng tā liú xīn tā de jiè yuē bā ；",
+        "english": ""
+      },
+      {
+        "chinese": "他老是骂我盘剥取利；",
+        "pinyin": "tā lǎo shì mà wǒ pán bō qǔ lì ；",
+        "english": ""
+      },
+      {
+        "chinese": "让他留心他的借约吧；",
+        "pinyin": "ràng tā liú xīn tā de jiè yuē bā ；",
+        "english": ""
+      },
+      {
+        "chinese": "他是本着基督徒的精神，放债从来不取利息的；",
+        "pinyin": "tā shì běn zhuó jī dū tú de jīng shén ， fàng zhài cóng lái bù qǔ lì xī de ；",
+        "english": ""
+      },
+      {
+        "chinese": "让他留心他的借约吧。",
+        "pinyin": "ràng tā liú xīn tā de jiè yuē bā 。",
+        "english": ""
+      },
+      {
+        "chinese": "萨拉里诺  我相信要是他不能按约偿还借款，你一定不会要他的肉的；",
+        "pinyin": "sà lā lǐ nuò     wǒ xiāng xìn yào shì tā bù néng àn yuē cháng hái jiè kuǎn ， nǐ yī dìng bù huì yào tā de ròu de ；",
+        "english": ""
+      },
+      {
+        "chinese": "那有什么用处呢？",
+        "pinyin": "nà yǒu shén me yòng chù ne ？",
+        "english": ""
+      },
+      {
+        "chinese": "夏洛克  拿来钓鱼也好；",
+        "pinyin": "xià luò kè     ná lái diào yú yě hǎo ；",
+        "english": ""
+      },
+      {
+        "chinese": "即使他的肉不中吃，至少也可以出出我这一口气。",
+        "pinyin": "jí shǐ tā de ròu bù zhōng chī ， zhì shǎo yě kě yǐ chū chū wǒ zhè yī kǒu qì 。",
+        "english": ""
+      },
+      {
+        "chinese": "他曾经羞辱过我，夺去我几十万块钱的生意，讥笑着我的亏蚀，挖苦着我的盈余，侮蔑我的民族，破坏我的买卖，离间我的朋友，煽动我的仇敌；",
+        "pinyin": "tā céng jīng xiū rǔ guò wǒ ， duó qù wǒ jǐ shí wàn kuài qián de shēng yì ， jī xiào zhuó wǒ de kuī shí ， wā kǔ zhuó wǒ de yíng yú ， wǔ miè wǒ de mín zú ， pò huài wǒ de mǎi mài ， lí jiān wǒ de péng yǒu ， shān dòng wǒ de chóu dí ；",
+        "english": ""
+      },
+      {
+        "chinese": "他的理由是什么？",
+        "pinyin": "tā de lǐ yóu shì shén me ？",
+        "english": ""
+      },
+      {
+        "chinese": "只因为我是一个犹太人。",
+        "pinyin": "zhǐ yīn wèi wǒ shì yī gè yóu tài rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "难道犹太人没有眼睛吗？",
+        "pinyin": "nán dào yóu tài rén méi yǒu yǎn jīng ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "难道犹太人没有五官四肢、没有知觉、没有感情、没有血气吗？",
+        "pinyin": "nán dào yóu tài rén méi yǒu wǔ guān sì zhī 、 méi yǒu zhī jué 、 méi yǒu gǎn qíng 、 méi yǒu xiě qì ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "他不是吃着同样的食物，同样的武器可以伤害他，同样的医药可以疗治他，冬天同样会冷，夏天同样会热，就像一个基督徒一样吗？",
+        "pinyin": "tā bù shì chī zhuó tóng yàng de shí wù ， tóng yàng de wǔ qì kě yǐ shāng hài tā ， tóng yàng de yī yào kě yǐ liáo zhì tā ， dōng tiān tóng yàng huì lěng ， xià tiān tóng yàng huì rè ， jiù xiàng yī gè jī dū tú yī yàng ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "你们要是用刀剑刺我们，我们不是也会出血的吗？",
+        "pinyin": "nǐ mén yào shì yòng dāo jiàn cì wǒ mén ， wǒ mén bù shì yě huì chū xiě de ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "你们要是搔我们的痒，我们不是也会笑起来的吗？",
+        "pinyin": "nǐ mén yào shì sāo wǒ mén de yǎng ， wǒ mén bù shì yě huì xiào qǐ lái de ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "你们要是用毒药谋害我们，我们不是也会死的吗？",
+        "pinyin": "nǐ mén yào shì yòng dú yào móu hài wǒ mén ， wǒ mén bù shì yě huì sǐ de ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "那么要是你们欺侮了我们，我们难道不会复仇吗？",
+        "pinyin": "nà me yào shì nǐ mén qī wǔ le wǒ mén ， wǒ mén nán dào bù huì fù chóu ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "要是在别的地方我们都跟你们一样，那么在这一点上也是彼此相同的。",
+        "pinyin": "yào shì zài bié de dì fāng wǒ mén dōu gēn nǐ mén yī yàng ， nà me zài zhè yī diǎn shàng yě shì bǐ cǐ xiāng tóng de 。",
+        "english": ""
+      },
+      {
+        "chinese": "要是一个犹太人欺侮了一个基督徒，那基督徒怎样表现他的谦逊？",
+        "pinyin": "yào shì yī gè yóu tài rén qī wǔ le yī gè jī dū tú ， nà jī dū tú zěn yàng biǎo xiàn tā de qiān xùn ？",
+        "english": ""
+      },
+      {
+        "chinese": "报仇。",
+        "pinyin": "bào chóu 。",
+        "english": ""
+      },
+      {
+        "chinese": "要是一个基督徒欺侮了一个犹太人，那么照着基督徒的榜样，那犹太人应该怎样表现他的宽容？",
+        "pinyin": "yào shì yī gè jī dū tú qī wǔ le yī gè yóu tài rén ， nà me zhào zhuó jī dū tú de bǎng yàng ， nà yóu tài rén yīng gāi zěn yàng biǎo xiàn tā de kuān róng ？",
+        "english": ""
+      },
+      {
+        "chinese": "报仇。",
+        "pinyin": "bào chóu 。",
+        "english": ""
+      },
+      {
+        "chinese": "你们已经把残虐的手段教给我，我一定会照着你们的教训实行，而且还要加倍奉敬哩。",
+        "pinyin": "nǐ mén yǐ jīng bǎ cán nüè de shǒu duàn jiào gěi wǒ ， wǒ yī dìng huì zhào zhuó nǐ mén de jiào xùn shí xíng ， ér qiě hái yào jiā bèi fèng jìng li 。",
+        "english": ""
+      },
+      {
+        "chinese": "一仆人上。",
+        "pinyin": "yī pū rén shàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "仆人  两位先生，我家主人安东尼奥在家里要请两位过去谈谈。",
+        "pinyin": "pū rén     liǎng wèi xiān shēng ， wǒ jiā zhǔ rén ān dōng ní ào zài jiā lǐ yào qǐng liǎng wèi guò qù tán tán 。",
+        "english": ""
+      },
+      {
+        "chinese": "萨拉里诺  我们正在到处找他呢。",
+        "pinyin": "sà lā lǐ nuò     wǒ mén zhèng zài dào chù zhǎo tā ne 。",
+        "english": ""
+      },
+      {
+        "chinese": "杜伯尔上。",
+        "pinyin": "dù bó ěr shàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "萨莱尼奥  又是一个他的族中人来啦；",
+        "pinyin": "sà lái ní ào     yòu shì yī gè tā de zú zhōng rén lái lā ；",
+        "english": ""
+      },
+      {
+        "chinese": "世上再也找不到第三个像他们这样的人，除非魔鬼自己也变成了犹太人。",
+        "pinyin": "shì shàng zài yě zhǎo bù dào dì sān gè xiàng tā mén zhè yàng de rén ， chú fēi mó guǐ zì jǐ yě biàn chéng le yóu tài rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "（萨莱尼奥、萨拉里诺及仆人下。",
+        "pinyin": "（ sà lái ní ào 、 sà lā lǐ nuò jí pū rén xià 。",
+        "english": ""
+      },
+      {
+        "chinese": "夏洛克  啊，杜伯尔！",
+        "pinyin": "xià luò kè     ā ， dù bó ěr ！",
+        "english": ""
+      },
+      {
+        "chinese": "热那亚有什么消息？",
+        "pinyin": "rè nà yà yǒu shén me xiāo xī ？",
+        "english": ""
+      },
+      {
+        "chinese": "你有没有找到我的女儿？",
+        "pinyin": "nǐ yǒu méi yǒu zhǎo dào wǒ de nǚ ér ？",
+        "english": ""
+      },
+      {
+        "chinese": "杜伯尔  我所到的地方，往往听见人家说起她，可是总找不到她。",
+        "pinyin": "dù bó ěr     wǒ suǒ dào de dì fāng ， wǎng wǎng tīng jiàn rén jiā shuō qǐ tā ， kě shì zǒng zhǎo bù dào tā 。",
+        "english": ""
+      },
+      {
+        "chinese": "夏洛克  哎呀，糟糕！",
+        "pinyin": "xià luò kè     āi yā ， zāo gāo ！",
+        "english": ""
+      },
+      {
+        "chinese": "糟糕！",
+        "pinyin": "zāo gāo ！",
+        "english": ""
+      },
+      {
+        "chinese": "糟糕！",
+        "pinyin": "zāo gāo ！",
+        "english": ""
+      },
+      {
+        "chinese": "我在法兰克府出两千块钱买来的那颗金刚钻也丢啦！",
+        "pinyin": "wǒ zài fǎ lán kè fǔ chū liǎng qiān kuài qián mǎi lái de nà kē jīn gāng zuān yě diū lā ！",
+        "english": ""
+      },
+      {
+        "chinese": "咒诅到现在才降落到咱们民族头上；",
+        "pinyin": "zhòu zǔ dào xiàn zài cái jiàng luò dào zán mén mín zú tóu shàng ；",
+        "english": ""
+      },
+      {
+        "chinese": "我到现在才觉得它的厉害。",
+        "pinyin": "wǒ dào xiàn zài cái jué dé tā de lì hài 。",
+        "english": ""
+      },
+      {
+        "chinese": "那一颗金刚钻就是两千块钱，还有别的贵重的贵重的珠宝。",
+        "pinyin": "nà yī kē jīn gāng zuān jiù shì liǎng qiān kuài qián ， hái yǒu bié de guì zhòng de guì zhòng de zhū bǎo 。",
+        "english": ""
+      },
+      {
+        "chinese": "我希望我的女儿死在我的脚下，那些珠宝都挂在她的耳朵上；",
+        "pinyin": "wǒ xī wàng wǒ de nǚ ér sǐ zài wǒ de jiǎo xià ， nà xiē zhū bǎo dōu guà zài tā de ěr duǒ shàng ；",
+        "english": ""
+      },
+      {
+        "chinese": "我希望她就在我的脚下入土安葬，那些银钱都放在她的棺材里！",
+        "pinyin": "wǒ xī wàng tā jiù zài wǒ de jiǎo xià rù tǔ ān zàng ， nà xiē yín qián dōu fàng zài tā de guān cái lǐ ！",
+        "english": ""
+      },
+      {
+        "chinese": "不知道他们的下落吗？",
+        "pinyin": "bù zhī dào tā mén de xià luò ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "哼，我不知道为了寻访他们，又花去了多少钱。",
+        "pinyin": "hēng ， wǒ bù zhī dào wèi le xún fǎng tā mén ， yòu huā qù le duō shǎo qián 。",
+        "english": ""
+      },
+      {
+        "chinese": "你这你这——损失上再加损失！",
+        "pinyin": "nǐ zhè nǐ zhè — — sǔn shī shàng zài jiā sǔn shī ！",
+        "english": ""
+      },
+      {
+        "chinese": "贼子偷了这么多走了，还要花这么多去寻访贼子，结果仍旧是一无所得，出不了这一口怨气。",
+        "pinyin": "zéi zǐ tōu le zhè me duō zǒu le ， hái yào huā zhè me duō qù xún fǎng zéi zǐ ， jié guǒ réng jiù shì yī wú suǒ dé ， chū bù le zhè yī kǒu yuàn qì 。",
+        "english": ""
+      },
+      {
+        "chinese": "只有我一个人倒霉，只有我一个人叹气，只有我一个人流眼泪！",
+        "pinyin": "zhǐ yǒu wǒ yī gè rén dǎo méi ， zhǐ yǒu wǒ yī gè rén tàn qì ， zhǐ yǒu wǒ yī gè rén liú yǎn lèi ！",
+        "english": ""
+      },
+      {
+        "chinese": "杜伯尔  倒霉的不单是你一个人。",
+        "pinyin": "dù bó ěr     dǎo méi de bù dān shì nǐ yī gè rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "我在热那亚听人家说，安东尼奥——",
+        "pinyin": "wǒ zài rè nà yà tīng rén jiā shuō ， ān dōng ní ào — —",
+        "english": ""
+      },
+      {
+        "chinese": "夏洛克  什么？",
+        "pinyin": "xià luò kè     shén me ？",
+        "english": ""
+      },
+      {
+        "chinese": "什么？",
+        "pinyin": "shén me ？",
+        "english": ""
+      },
+      {
+        "chinese": "什么？",
+        "pinyin": "shén me ？",
+        "english": ""
+      },
+      {
+        "chinese": "他也倒了霉吗？",
+        "pinyin": "tā yě dǎo le méi ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "他也倒了霉吗？",
+        "pinyin": "tā yě dǎo le méi ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "杜伯尔  ——有一艘从特里坡利斯来的大船，在途中触礁。",
+        "pinyin": "dù bó ěr     — — yǒu yī sōu cóng tè lǐ pō lì sī lái de dà chuán ， zài tú zhōng chù jiāo 。",
+        "english": ""
+      },
+      {
+        "chinese": "夏洛克  谢谢上帝！",
+        "pinyin": "xià luò kè     xiè xiè shàng dì ！",
+        "english": ""
+      },
+      {
+        "chinese": "谢谢上帝！",
+        "pinyin": "xiè xiè shàng dì ！",
+        "english": ""
+      },
+      {
+        "chinese": "是真的吗？",
+        "pinyin": "shì zhēn de ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "是真的吗？",
+        "pinyin": "shì zhēn de ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "杜伯尔  我曾经跟几个从那船上出险的水手谈过话。",
+        "pinyin": "dù bó ěr     wǒ céng jīng gēn jǐ gè cóng nà chuán shàng chū xiǎn de shuǐ shǒu tán guò huà 。",
+        "english": ""
+      },
+      {
+        "chinese": "夏洛克  谢谢你，好杜伯尔。",
+        "pinyin": "xià luò kè     xiè xiè nǐ ， hǎo dù bó ěr 。",
+        "english": ""
+      },
+      {
+        "chinese": "好消息，好消息！",
+        "pinyin": "hǎo xiāo xī ， hǎo xiāo xī ！",
+        "english": ""
+      },
+      {
+        "chinese": "哈哈！",
+        "pinyin": "hā hā ！",
+        "english": ""
+      },
+      {
+        "chinese": "什么地方？",
+        "pinyin": "shén me dì fāng ？",
+        "english": ""
+      },
+      {
+        "chinese": "在热那亚吗？",
+        "pinyin": "zài rè nà yà ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "杜伯尔  听说你的女儿在热那亚一个晚上花去八十块钱。",
+        "pinyin": "dù bó ěr     tīng shuō nǐ de nǚ ér zài rè nà yà yī gè wǎn shàng huā qù bā shí kuài qián 。",
+        "english": ""
+      },
+      {
+        "chinese": "夏洛克  你把一把刀戳进我心里！",
+        "pinyin": "xià luò kè     nǐ bǎ yī bǎ dāo chuō jìn wǒ xīn lǐ ！",
+        "english": ""
+      },
+      {
+        "chinese": "我再也瞧不见我的银子啦！",
+        "pinyin": "wǒ zài yě qiáo bù jiàn wǒ de yín zǐ lā ！",
+        "english": ""
+      },
+      {
+        "chinese": "一下子就是八十块钱！",
+        "pinyin": "yī xià zǐ jiù shì bā shí kuài qián ！",
+        "english": ""
+      },
+      {
+        "chinese": "八十块钱！",
+        "pinyin": "bā shí kuài qián ！",
+        "english": ""
+      },
+      {
+        "chinese": "杜伯尔  有几个安东尼奥的债主跟我同路到威尼斯来，他们肯定地说他这次一定要破产。",
+        "pinyin": "dù bó ěr     yǒu jǐ gè ān dōng ní ào de zhài zhǔ gēn wǒ tóng lù dào wēi ní sī lái ， tā mén kěn dìng dì shuō tā zhè cì yī dìng yào pò chǎn 。",
+        "english": ""
+      },
+      {
+        "chinese": "夏洛克  我很高兴。",
+        "pinyin": "xià luò kè     wǒ hěn gāo xìng 。",
+        "english": ""
+      },
+      {
+        "chinese": "我要摆布摆布他；",
+        "pinyin": "wǒ yào bǎi bù bǎi bù tā ；",
+        "english": ""
+      },
+      {
+        "chinese": "我要叫他知道些厉害。",
+        "pinyin": "wǒ yào jiào tā zhī dào xiē lì hài 。",
+        "english": ""
+      },
+      {
+        "chinese": "我很高兴。",
+        "pinyin": "wǒ hěn gāo xìng 。",
+        "english": ""
+      },
+      {
+        "chinese": "杜伯尔  有一个人给我看一个指环，说是你女儿拿它向他买了一头猴子。",
+        "pinyin": "dù bó ěr     yǒu yī gè rén gěi wǒ kàn yī gè zhǐ huán ， shuō shì nǐ nǚ ér ná tā xiàng tā mǎi le yī tóu hóu zǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "夏洛克  该死该死！",
+        "pinyin": "xià luò kè     gāi sǐ gāi sǐ ！",
+        "english": ""
+      },
+      {
+        "chinese": "杜伯尔，你提起这件事，真叫我心里难过；",
+        "pinyin": "dù bó ěr ， nǐ tí qǐ zhè jiàn shì ， zhēn jiào wǒ xīn lǐ nán guò ；",
+        "english": ""
+      },
+      {
+        "chinese": "那是我的绿玉指环，是我的妻子莉娅在我们没有结婚的时候送给我的；",
+        "pinyin": "nà shì wǒ de lǜ yù zhǐ huán ， shì wǒ de qī zǐ lì yà zài wǒ mén méi yǒu jié hūn de shí hòu sòng gěi wǒ de ；",
+        "english": ""
+      },
+      {
+        "chinese": "即使人家把一大群猴子来向我交换，我也不愿把它给人。",
+        "pinyin": "jí shǐ rén jiā bǎ yī dà qún hóu zǐ lái xiàng wǒ jiāo huàn ， wǒ yě bù yuàn bǎ tā gěi rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "杜伯尔  可是安东尼奥这次一定完了。",
+        "pinyin": "dù bó ěr     kě shì ān dōng ní ào zhè cì yī dìng wán le 。",
+        "english": ""
+      },
+      {
+        "chinese": "夏洛克  对了，这是真的，一点不错。",
+        "pinyin": "xià luò kè     duì le ， zhè shì zhēn de ， yī diǎn bù cuò 。",
+        "english": ""
+      },
+      {
+        "chinese": "去，杜伯尔，现在离开借约满期还有半个月，你先给我到衙门里走动走动，花费几个钱。",
+        "pinyin": "qù ， dù bó ěr ， xiàn zài lí kāi jiè yuē mǎn qī hái yǒu bàn gè yuè ， nǐ xiān gěi wǒ dào yá mén lǐ zǒu dòng zǒu dòng ， huā fèi jǐ gè qián 。",
+        "english": ""
+      },
+      {
+        "chinese": "要是他愆了约，我要挖出他的心来；",
+        "pinyin": "yào shì tā qiān le yuē ， wǒ yào wā chū tā de xīn lái ；",
+        "english": ""
+      },
+      {
+        "chinese": "只要威尼斯没有他，生意买卖全凭我一句话了。",
+        "pinyin": "zhǐ yào wēi ní sī méi yǒu tā ， shēng yì mǎi mài quán píng wǒ yī jù huà le 。",
+        "english": ""
+      },
+      {
+        "chinese": "去，去，杜伯尔，咱们在会堂里见面。",
+        "pinyin": "qù ， qù ， dù bó ěr ， zán mén zài huì táng lǐ jiàn miàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "好杜伯尔，去吧；",
+        "pinyin": "hǎo dù bó ěr ， qù bā ；",
+        "english": ""
+      },
+      {
+        "chinese": "会堂里再见，杜伯尔。",
+        "pinyin": "huì táng lǐ zài jiàn ， dù bó ěr 。",
+        "english": ""
+      },
+      {
+        "chinese": "（各下。",
+        "pinyin": "（ gè xià 。",
+        "english": ""
+      },
+      {
+        "chinese": "第二场　贝尔蒙特.鲍西娅家中一室",
+        "pinyin": "dì èr chǎng 　 bèi ěr mēng tè . bào xī yà jiā zhōng yī shì",
+        "english": ""
+      },
+      {
+        "chinese": "巴萨尼奥，鲍西娅，葛莱西安诺、尼莉莎及侍从等上。",
+        "pinyin": "bā sà ní ào ， bào xī yà ， gé lái xī ān nuò 、 ní lì suō jí shì cóng děng shàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "鲍西娅  请您不要太急，停一两天再赌运气吧；",
+        "pinyin": "bào xī yà     qǐng nín bù yào tài jí ， tíng yī liǎng tiān zài dǔ yùn qì bā ；",
+        "english": ""
+      },
+      {
+        "chinese": "因为要是您选得不对，咱们就不能再在一块儿，所以请您暂时缓一下吧。",
+        "pinyin": "yīn wèi yào shì nín xuǎn dé bù duì ， zán mén jiù bù néng zài zài yī kuài ér ， suǒ yǐ qǐng nín zàn shí huǎn yī xià bā 。",
+        "english": ""
+      },
+      {
+        "chinese": "我心里仿佛有一种什么感觉——可是那不是爱情——告诉我我不愿失去您；",
+        "pinyin": "wǒ xīn lǐ fǎng fó yǒu yī zhǒng shén me gǎn jué — — kě shì nà bù shì ài qíng — — gào sù wǒ wǒ bù yuàn shī qù nín ；",
+        "english": ""
+      },
+      {
+        "chinese": "您一定也知道，嫌憎是不会向人说这种话的。",
+        "pinyin": "nín yī dìng yě zhī dào ， xián zēng shì bù huì xiàng rén shuō zhè zhǒng huà de 。",
+        "english": ""
+      },
+      {
+        "chinese": "一个女孩儿家本来不该信口说话，可是唯恐您不能懂得我的意思，我真想留您在这儿住上一两个月，然后再让您为我冒险一试。",
+        "pinyin": "yī gè nǚ hái ér jiā běn lái bù gāi xìn kǒu shuō huà ， kě shì wéi kǒng nín bù néng dǒng dé wǒ de yì sī ， wǒ zhēn xiǎng liú nín zài zhè ér zhù shàng yī liǎng gè yuè ， rán hòu zài ràng nín wèi wǒ mào xiǎn yī shì 。",
+        "english": ""
+      },
+      {
+        "chinese": "我可以教您怎样选才不会有错；",
+        "pinyin": "wǒ kě yǐ jiào nín zěn yàng xuǎn cái bù huì yǒu cuò ；",
+        "english": ""
+      },
+      {
+        "chinese": "可是这样我就要违犯了誓言，那是断断不可的；",
+        "pinyin": "kě shì zhè yàng wǒ jiù yào wéi fàn le shì yán ， nà shì duàn duàn bù kě de ；",
+        "english": ""
+      },
+      {
+        "chinese": "然而那样您也许会选错；",
+        "pinyin": "rán ér nà yàng nín yě xǔ huì xuǎn cuò ；",
+        "english": ""
+      },
+      {
+        "chinese": "要是您选错了，您一定会使我起了一个有罪的愿望，懊悔我不该为了不敢背誓而忍心让您失望。",
+        "pinyin": "yào shì nín xuǎn cuò le ， nín yī dìng huì shǐ wǒ qǐ le yī gè yǒu zuì de yuàn wàng ， ào huǐ wǒ bù gāi wèi le bù gǎn bēi shì ér rěn xīn ràng nín shī wàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "顶可恼的是您这一双眼睛，它们已经瞧透了我的心，把我分成两半：半个我是您的，还有那半个我也是您的——不，我的意思是说那半个我是我的，可是既然是我的，也就是您的，所以整个儿的我都是您的。",
+        "pinyin": "dǐng kě nǎo de shì nín zhè yī shuāng yǎn jīng ， tā mén yǐ jīng qiáo tòu le wǒ de xīn ， bǎ wǒ fēn chéng liǎng bàn ： bàn gè wǒ shì nín de ， hái yǒu nà bàn gè wǒ yě shì nín de — — bù ， wǒ de yì sī shì shuō nà bàn gè wǒ shì wǒ de ， kě shì jì rán shì wǒ de ， yě jiù shì nín de ， suǒ yǐ zhěng gè ér de wǒ dōu shì nín de 。",
+        "english": ""
+      },
+      {
+        "chinese": "都是这些无聊的世俗礼法，使人们不能享受他们合法的权利；",
+        "pinyin": "dōu shì zhè xiē wú liáo de shì sú lǐ fǎ ， shǐ rén mén bù néng xiǎng shòu tā mén hé fǎ de quán lì ；",
+        "english": ""
+      },
+      {
+        "chinese": "所以我虽然是您的，却又不是您的。",
+        "pinyin": "suǒ yǐ wǒ suī rán shì nín de ， què yòu bù shì nín de 。",
+        "english": ""
+      },
+      {
+        "chinese": "要是结果真是这样，造孽的是那命运，不是我。",
+        "pinyin": "yào shì jié guǒ zhēn shì zhè yàng ， zào niè de shì nà mìng yùn ， bù shì wǒ 。",
+        "english": ""
+      },
+      {
+        "chinese": "我说得太噜苏了，可是我的目的是要尽量拖延时间，不放您马上就去选择。",
+        "pinyin": "wǒ shuō dé tài lū sū le ， kě shì wǒ de mù dì shì yào jìn liàng tuō yán shí jiān ， bù fàng nín mǎ shàng jiù qù xuǎn zé 。",
+        "english": ""
+      },
+      {
+        "chinese": "巴萨尼奥  让我选吧；",
+        "pinyin": "bā sà ní ào     ràng wǒ xuǎn bā ；",
+        "english": ""
+      },
+      {
+        "chinese": "我现在这样提心吊胆，才像给人拷问一样受罪呢。",
+        "pinyin": "wǒ xiàn zài zhè yàng tí xīn diào dǎn ， cái xiàng gěi rén kǎo wèn yī yàng shòu zuì ne 。",
+        "english": ""
+      },
+      {
+        "chinese": "鲍西娅  给人拷问，巴萨尼奥！",
+        "pinyin": "bào xī yà     gěi rén kǎo wèn ， bā sà ní ào ！",
+        "english": ""
+      },
+      {
+        "chinese": "那么您给我招认出来，在您的爱情之中，隐藏着什么奸谋？",
+        "pinyin": "nà me nín gěi wǒ zhāo rèn chū lái ， zài nín de ài qíng zhī zhōng ， yǐn cáng zhuó shén me jiān móu ？",
+        "english": ""
+      },
+      {
+        "chinese": "巴萨尼奥  没有什么奸谋，我只是有点怀疑忧惧，但恐我的痴心化为徒劳；",
+        "pinyin": "bā sà ní ào     méi yǒu shén me jiān móu ， wǒ zhǐ shì yǒu diǎn huái yí yōu jù ， dàn kǒng wǒ de chī xīn huà wèi tú láo ；",
+        "english": ""
+      },
+      {
+        "chinese": "奸谋跟我的爱情正像冰炭一样，是无法相容的。",
+        "pinyin": "jiān móu gēn wǒ de ài qíng zhèng xiàng bīng tàn yī yàng ， shì wú fǎ xiāng róng de 。",
+        "english": ""
+      },
+      {
+        "chinese": "鲍西娅  嗯，可是我怕你是因为受不住拷问的痛苦，才说这样的话。",
+        "pinyin": "bào xī yà     èn ， kě shì wǒ pà nǐ shì yīn wèi shòu bù zhù kǎo wèn de tòng kǔ ， cái shuō zhè yàng de huà 。",
+        "english": ""
+      },
+      {
+        "chinese": "一个人给绑上了刑床，还不是要他怎样讲就怎样讲？",
+        "pinyin": "yī gè rén gěi bǎng shàng le xíng chuáng ， hái bù shì yào tā zěn yàng jiǎng jiù zěn yàng jiǎng ？",
+        "english": ""
+      },
+      {
+        "chinese": "巴萨尼奥  您要是答应赦我一死，我愿意招认真情。",
+        "pinyin": "bā sà ní ào     nín yào shì dā yìng shè wǒ yī sǐ ， wǒ yuàn yì zhāo rèn zhēn qíng 。",
+        "english": ""
+      },
+      {
+        "chinese": "鲍西娅  好，赦您一死，您招认吧。",
+        "pinyin": "bào xī yà     hǎo ， shè nín yī sǐ ， nín zhāo rèn bā 。",
+        "english": ""
+      },
+      {
+        "chinese": "巴萨尼奥  “爱”便是我所能招认的一切。",
+        "pinyin": "bā sà ní ào     “ ài ” biàn shì wǒ suǒ néng zhāo rèn de yī qiē 。",
+        "english": ""
+      },
+      {
+        "chinese": "多谢我的刑官，您教给我怎样免罪的答话了！",
+        "pinyin": "duō xiè wǒ de xíng guān ， nín jiào gěi wǒ zěn yàng miǎn zuì de dá huà le ！",
+        "english": ""
+      }
+    ]
+  },
+  {
+    "id": "merchant_of_venice_ch_4",
+    "bookId": "merchant_of_venice",
+    "chapterIndex": 4,
+    "title": "第四幕 第一场　威尼斯.法庭",
+    "titleEn": "Chapter 4: 第四幕 第一场　威尼斯.法庭",
+    "sentences": [
+      {
+        "chinese": "公爵、众绅士、安东尼奥、巴萨尼奥、葛莱西安诺、萨拉里诺、萨莱尼奥及余人等同上。",
+        "pinyin": "gōng jué 、 zhòng shēn shì 、 ān dōng ní ào 、 bā sà ní ào 、 gé lái xī ān nuò 、 sà lā lǐ nuò 、 sà lái ní ào jí yú rén děng tóng shàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "公爵  安东尼奥有没有来？",
+        "pinyin": "gōng jué     ān dōng ní ào yǒu méi yǒu lái ？",
+        "english": ""
+      },
+      {
+        "chinese": "安东尼奥  有，殿下。",
+        "pinyin": "ān dōng ní ào     yǒu ， diàn xià 。",
+        "english": ""
+      },
+      {
+        "chinese": "公爵  我很为你不快乐；",
+        "pinyin": "gōng jué     wǒ hěn wèi nǐ bù kuài lè ；",
+        "english": ""
+      },
+      {
+        "chinese": "你是来跟一个心如铁石的对手当庭质对，一个不懂得怜悯、没有一丝慈悲心的不近人情的恶汉。",
+        "pinyin": "nǐ shì lái gēn yī gè xīn rú tiě shí de duì shǒu dāng tíng zhì duì ， yī gè bù dǒng dé lián mǐn 、 méi yǒu yī sī cí bēi xīn de bù jìn rén qíng de è hàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "安东尼奥  听说殿下曾经用尽力量劝他不要过为已甚，可是他一味坚执，不肯略作让步。",
+        "pinyin": "ān dōng ní ào     tīng shuō diàn xià céng jīng yòng jìn lì liàng quàn tā bù yào guò wèi yǐ shèn ， kě shì tā yī wèi jiān zhí ， bù kěn lüè zuò ràng bù 。",
+        "english": ""
+      },
+      {
+        "chinese": "既然没有合法的手段可以使我脱离他的怨毒的掌握，我只有用默忍迎受他的愤怒，安心等待着他的残暴的处置。",
+        "pinyin": "jì rán méi yǒu hé fǎ de shǒu duàn kě yǐ shǐ wǒ tuō lí tā de yuàn dú de zhǎng wò ， wǒ zhǐ yǒu yòng mò rěn yíng shòu tā de fèn nù ， ān xīn děng dài zhuó tā de cán bào de chǔ zhì 。",
+        "english": ""
+      },
+      {
+        "chinese": "公爵  来人，传那犹太人到庭。",
+        "pinyin": "gōng jué     lái rén ， chuán nà yóu tài rén dào tíng 。",
+        "english": ""
+      },
+      {
+        "chinese": "萨拉里诺  他在门口等着；",
+        "pinyin": "sà lā lǐ nuò     tā zài mén kǒu děng zhuó ；",
+        "english": ""
+      },
+      {
+        "chinese": "他来了，殿下。",
+        "pinyin": "tā lái le ， diàn xià 。",
+        "english": ""
+      },
+      {
+        "chinese": "夏洛克上。",
+        "pinyin": "xià luò kè shàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "公爵  大家让开些，让他站在我的面前。",
+        "pinyin": "gōng jué     dà jiā ràng kāi xiē ， ràng tā zhàn zài wǒ de miàn qián 。",
+        "english": ""
+      },
+      {
+        "chinese": "夏洛克，人家都以为——我也是这样想——你不过故意装出这一副凶恶的姿态，到了最后关头，就会显出你的仁慈恻隐来，比你现在这种表面上的残酷更加出人意料；",
+        "pinyin": "xià luò kè ， rén jiā dōu yǐ wèi — — wǒ yě shì zhè yàng xiǎng — — nǐ bù guò gù yì zhuāng chū zhè yī fù xiōng è de zī tài ， dào le zuì hòu guān tóu ， jiù huì xiǎn chū nǐ de rén cí cè yǐn lái ， bǐ nǐ xiàn zài zhè zhǒng biǎo miàn shàng de cán kù gèng jiā chū rén yì liào ；",
+        "english": ""
+      },
+      {
+        "chinese": "现在你虽然坚持着照约处罚，一定要从这个不幸的商人身上割下一磅肉来，到了那时候，你不但愿意放弃这一种处罚，而且因为受到良心上的感动，说不定还会豁免他一部分的欠款。",
+        "pinyin": "xiàn zài nǐ suī rán jiān chí zhuó zhào yuē chǔ fá ， yī dìng yào cóng zhè gè bù xìng de shāng rén shēn shàng gē xià yī bàng ròu lái ， dào le nà shí hòu ， nǐ bù dàn yuàn yì fàng qì zhè yī zhǒng chǔ fá ， ér qiě yīn wèi shòu dào liáng xīn shàng de gǎn dòng ， shuō bù dìng hái huì huō miǎn tā yī bù fēn de qiàn kuǎn 。",
+        "english": ""
+      },
+      {
+        "chinese": "你看他最近接连遭逢的巨大损失，足以使无论怎样富有的商人倾家荡产，即使铁石一样的心肠，从来不知道人类同情的野蛮人，也不能不对他的境遇发生怜悯。",
+        "pinyin": "nǐ kàn tā zuì jìn jiē lián zāo féng de jù dà sǔn shī ， zú yǐ shǐ wú lùn zěn yàng fù yǒu de shāng rén qīng jiā dàng chǎn ， jí shǐ tiě shí yī yàng de xīn cháng ， cóng lái bù zhī dào rén lèi tóng qíng de yě mán rén ， yě bù néng bù duì tā de jìng yù fā shēng lián mǐn 。",
+        "english": ""
+      },
+      {
+        "chinese": "犹太人，我们都在等候你一句温和的回答。",
+        "pinyin": "yóu tài rén ， wǒ mén dōu zài děng hòu nǐ yī jù wēn hé de huí dá 。",
+        "english": ""
+      },
+      {
+        "chinese": "夏洛克  我的意思已经向殿下告禀过了；",
+        "pinyin": "xià luò kè     wǒ de yì sī yǐ jīng xiàng diàn xià gào bǐng guò le ；",
+        "english": ""
+      },
+      {
+        "chinese": "我也已经指着我们的圣安息日起誓，一定要照约执行处罚；",
+        "pinyin": "wǒ yě yǐ jīng zhǐ zhuó wǒ mén de shèng ān xī rì qǐ shì ， yī dìng yào zhào yuē zhí xíng chǔ fá ；",
+        "english": ""
+      },
+      {
+        "chinese": "要是殿下不准许我的请求，那就是蔑视宪章，我要到京城里去上告，要求撤销贵邦的特权。",
+        "pinyin": "yào shì diàn xià bù zhǔn xǔ wǒ de qǐng qiú ， nà jiù shì miè shì xiàn zhāng ， wǒ yào dào jīng chéng lǐ qù shàng gào ， yào qiú chè xiāo guì bāng de tè quán 。",
+        "english": ""
+      },
+      {
+        "chinese": "您要是问我为什么不愿接受三千块钱，宁愿拿一块腐烂的臭肉，那我可没有什么理由可以回答您，我只能说我欢喜这样，这是不是一个回答？",
+        "pinyin": "nín yào shì wèn wǒ wèi shén me bù yuàn jiē shòu sān qiān kuài qián ， nìng yuàn ná yī kuài fǔ làn de chòu ròu ， nà wǒ kě méi yǒu shén me lǐ yóu kě yǐ huí dá nín ， wǒ zhǐ néng shuō wǒ huān xǐ zhè yàng ， zhè shì bù shì yī gè huí dá ？",
+        "english": ""
+      },
+      {
+        "chinese": "要是我的屋子里有了耗子，我高兴出一万块钱叫人把它们赶掉，谁管得了我？",
+        "pinyin": "yào shì wǒ de wū zǐ lǐ yǒu le hào zǐ ， wǒ gāo xìng chū yī wàn kuài qián jiào rén bǎ tā mén gǎn diào ， shuí guǎn dé le wǒ ？",
+        "english": ""
+      },
+      {
+        "chinese": "这不是回答了您吗？",
+        "pinyin": "zhè bù shì huí dá le nín ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "有的人不爱看张开嘴的猪，有的人瞧见一头猫就要发脾气，还有人听见人家吹风笛的声音，就忍不住要小便；",
+        "pinyin": "yǒu de rén bù ài kàn zhāng kāi zuǐ de zhū ， yǒu de rén qiáo jiàn yī tóu māo jiù yào fā pí qì ， hái yǒu rén tīng jiàn rén jiā chuī fēng dí de shēng yīn ， jiù rěn bù zhù yào xiǎo biàn ；",
+        "english": ""
+      },
+      {
+        "chinese": "因为一个人的感情完全受着喜恶的支配，谁也做不了自己的主。",
+        "pinyin": "yīn wèi yī gè rén de gǎn qíng wán quán shòu zhuó xǐ è de zhī pèi ， shuí yě zuò bù le zì jǐ de zhǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "现在我就这样回答您：为什么有人受不住一头张开嘴的猪，有人受不住一头有益无害的猫，还有人受不住咿咿唔唔的风笛的声音，这些都是毫无充分的理由的，只是因为天生的癖性，使他们一受到刺激，就会情不自禁地现出丑相来；",
+        "pinyin": "xiàn zài wǒ jiù zhè yàng huí dá nín ： wèi shén me yǒu rén shòu bù zhù yī tóu zhāng kāi zuǐ de zhū ， yǒu rén shòu bù zhù yī tóu yǒu yì wú hài de māo ， hái yǒu rén shòu bù zhù yī yī wù wù de fēng dí de shēng yīn ， zhè xiē dōu shì háo wú chōng fēn de lǐ yóu de ， zhǐ shì yīn wèi tiān shēng de pǐ xìng ， shǐ tā mén yī shòu dào cì jī ， jiù huì qíng bù zì jīn dì xiàn chū chǒu xiāng lái ；",
+        "english": ""
+      },
+      {
+        "chinese": "所以我不能举什么理由，也不愿举什么理由，除了因为我对于安东尼奥抱着久积的仇恨和深刻的反感，所以才会向他进行这一场对于我自己并没有好处的诉讼。",
+        "pinyin": "suǒ yǐ wǒ bù néng jǔ shén me lǐ yóu ， yě bù yuàn jǔ shén me lǐ yóu ， chú le yīn wèi wǒ duì yú ān dōng ní ào bào zhuó jiǔ jī de chóu hèn hé shēn kè de fǎn gǎn ， suǒ yǐ cái huì xiàng tā jìn xíng zhè yī chǎng duì yú wǒ zì jǐ bìng méi yǒu hǎo chù de sù sòng 。",
+        "english": ""
+      },
+      {
+        "chinese": "现在您不是已经得到我的回答了吗？",
+        "pinyin": "xiàn zài nín bù shì yǐ jīng dé dào wǒ de huí dá le ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "巴萨尼奥  你这冷酷无情的家伙，这样的回答可不能作为你的残忍的辩解。",
+        "pinyin": "bā sà ní ào     nǐ zhè lěng kù wú qíng de jiā huǒ ， zhè yàng de huí dá kě bù néng zuò wéi nǐ de cán rěn de biàn jiě 。",
+        "english": ""
+      },
+      {
+        "chinese": "夏洛克  我的回答本来不是为了讨你的欢喜。",
+        "pinyin": "xià luò kè     wǒ de huí dá běn lái bù shì wèi le tǎo nǐ de huān xǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "巴萨尼奥  难道人们对于他们所不喜欢的东西，都一定要置之死地吗？",
+        "pinyin": "bā sà ní ào     nán dào rén mén duì yú tā mén suǒ bù xǐ huān de dōng xī ， dōu yī dìng yào zhì zhī sǐ dì ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "夏洛克  哪一个人会恨他所不愿意杀死的东西？",
+        "pinyin": "xià luò kè     nǎ yī gè rén huì hèn tā suǒ bù yuàn yì shā sǐ de dōng xī ？",
+        "english": ""
+      },
+      {
+        "chinese": "巴萨尼奥  初次的冒犯，不应该就引为仇恨。",
+        "pinyin": "bā sà ní ào     chū cì de mào fàn ， bù yīng gāi jiù yǐn wèi chóu hèn 。",
+        "english": ""
+      },
+      {
+        "chinese": "夏洛克  什么！",
+        "pinyin": "xià luò kè     shén me ！",
+        "english": ""
+      },
+      {
+        "chinese": "你愿意给毒蛇咬两次吗？",
+        "pinyin": "nǐ yuàn yì gěi dú shé yǎo liǎng cì ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "安东尼奥  请你想一想，你现在跟这个犹太人讲理，就像站在海滩上，叫那大海的怒涛减低它的奔腾的威力，责问豺狼为什么害母羊为了失去它的羔羊而哀啼，或是叫那山上的松柏，在受到天风吹拂的时候，不要摇头摆脑，发出谡谡的声音。",
+        "pinyin": "ān dōng ní ào     qǐng nǐ xiǎng yī xiǎng ， nǐ xiàn zài gēn zhè gè yóu tài rén jiǎng lǐ ， jiù xiàng zhàn zài hǎi tān shàng ， jiào nà dà hǎi de nù tāo jiǎn dī tā de bēn téng de wēi lì ， zé wèn chái láng wèi shén me hài mǔ yáng wèi le shī qù tā de gāo yáng ér āi tí ， huò shì jiào nà shān shàng de sōng bǎi ， zài shòu dào tiān fēng chuī fú de shí hòu ， bù yào yáo tóu bǎi nǎo ， fā chū sù sù de shēng yīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "要是你能够叫这个犹太人的心变软——世上还有什么东西比它更硬呢？",
+        "pinyin": "yào shì nǐ néng gòu jiào zhè gè yóu tài rén de xīn biàn ruǎn — — shì shàng hái yǒu shén me dōng xī bǐ tā gèng yìng ne ？",
+        "english": ""
+      },
+      {
+        "chinese": "——那么还有什么难事不可以做到？",
+        "pinyin": "— — nà me hái yǒu shén me nán shì bù kě yǐ zuò dào ？",
+        "english": ""
+      },
+      {
+        "chinese": "所以我请你不用再跟他商量什么条件，也不用替我想什么办法，让我爽爽快快受到判决，满足这犹太人的心愿吧。",
+        "pinyin": "suǒ yǐ wǒ qǐng nǐ bù yòng zài gēn tā shāng liàng shén me tiáo jiàn ， yě bù yòng tì wǒ xiǎng shén me bàn fǎ ， ràng wǒ shuǎng shuǎng kuài kuài shòu dào pàn jué ， mǎn zú zhè yóu tài rén de xīn yuàn bā 。",
+        "english": ""
+      },
+      {
+        "chinese": "巴萨尼奥  借了你三千块钱，现在拿六千块钱还你好不好？",
+        "pinyin": "bā sà ní ào     jiè le nǐ sān qiān kuài qián ， xiàn zài ná liù qiān kuài qián hái nǐ hǎo bù hǎo ？",
+        "english": ""
+      },
+      {
+        "chinese": "夏洛克  即使这六千块钱中间的每一块钱都可以分做六份，每一份都可以变成一块钱，我也不要它们；",
+        "pinyin": "xià luò kè     jí shǐ zhè liù qiān kuài qián zhōng jiān de měi yī kuài qián dōu kě yǐ fēn zuò liù fèn ， měi yī fèn dōu kě yǐ biàn chéng yī kuài qián ， wǒ yě bù yào tā mén ；",
+        "english": ""
+      },
+      {
+        "chinese": "我只要照约处罚。",
+        "pinyin": "wǒ zhǐ yào zhào yuē chǔ fá 。",
+        "english": ""
+      },
+      {
+        "chinese": "公爵  你这样一点没有慈悲之心，将来怎么能够希望人家对你慈悲呢？",
+        "pinyin": "gōng jué     nǐ zhè yàng yī diǎn méi yǒu cí bēi zhī xīn ， jiāng lái zěn me néng gòu xī wàng rén jiā duì nǐ cí bēi ne ？",
+        "english": ""
+      },
+      {
+        "chinese": "夏洛克  我又不干错事，怕什么刑罚？",
+        "pinyin": "xià luò kè     wǒ yòu bù gān cuò shì ， pà shén me xíng fá ？",
+        "english": ""
+      },
+      {
+        "chinese": "你们买了许多奴隶，把他们当作驴狗骡马一样看待，叫他们做种种卑贱的工作，因为他们是你们出钱买来的。",
+        "pinyin": "nǐ mén mǎi le xǔ duō nú lì ， bǎ tā mén dāng zuò lǘ gǒu luó mǎ yī yàng kàn dài ， jiào tā mén zuò zhǒng zhǒng bēi jiàn de gōng zuò ， yīn wèi tā mén shì nǐ mén chū qián mǎi lái de 。",
+        "english": ""
+      },
+      {
+        "chinese": "我可不可以对你们说，让他们自由，叫他们跟你们的子女结婚？",
+        "pinyin": "wǒ kě bù kě yǐ duì nǐ mén shuō ， ràng tā mén zì yóu ， jiào tā mén gēn nǐ mén de zǐ nǚ jié hūn ？",
+        "english": ""
+      },
+      {
+        "chinese": "为什么他们要在重担之下流着血汗？",
+        "pinyin": "wèi shén me tā mén yào zài zhòng dān zhī xià liú zhuó xiě hàn ？",
+        "english": ""
+      },
+      {
+        "chinese": "让他们的床铺得跟你们的床同样柔软，让他们的舌头也尝尝你们所吃的东西吧，你们会回答说：“这些奴隶是我们所有的。",
+        "pinyin": "ràng tā mén de chuáng pū dé gēn nǐ mén de chuáng tóng yàng róu ruǎn ， ràng tā mén de shé tóu yě cháng cháng nǐ mén suǒ chī de dōng xī bā ， nǐ mén huì huí dá shuō ： “ zhè xiē nú lì shì wǒ mén suǒ yǒu de 。",
+        "english": ""
+      },
+      {
+        "chinese": "”所以我也可以回答你们：我向他要求的这一磅肉，是我出了很大的代价买来的；",
+        "pinyin": "” suǒ yǐ wǒ yě kě yǐ huí dá nǐ mén ： wǒ xiàng tā yào qiú de zhè yī bàng ròu ， shì wǒ chū le hěn dà de dài jià mǎi lái de ；",
+        "english": ""
+      },
+      {
+        "chinese": "它是属于我的，我一定要把它拿到手里。",
+        "pinyin": "tā shì shǔ yú wǒ de ， wǒ yī dìng yào bǎ tā ná dào shǒu lǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "您要是拒绝了我，那么你们的法律去见鬼吧！",
+        "pinyin": "nín yào shì jù jué le wǒ ， nà me nǐ mén de fǎ lǜ qù jiàn guǐ bā ！",
+        "english": ""
+      },
+      {
+        "chinese": "威尼斯城的法令等于一纸空文。",
+        "pinyin": "wēi ní sī chéng de fǎ lìng děng yú yī zhǐ kōng wén 。",
+        "english": ""
+      },
+      {
+        "chinese": "我现在等候着判决，请快些回答我，我可不可以拿到这一磅肉？",
+        "pinyin": "wǒ xiàn zài děng hòu zhuó pàn jué ， qǐng kuài xiē huí dá wǒ ， wǒ kě bù kě yǐ ná dào zhè yī bàng ròu ？",
+        "english": ""
+      },
+      {
+        "chinese": "公爵  我已经差人去请培拉里奥，一位有学问的博士，来替我们审判这件案子；",
+        "pinyin": "gōng jué     wǒ yǐ jīng chà rén qù qǐng péi lā lǐ ào ， yī wèi yǒu xué wèn de bó shì ， lái tì wǒ mén shěn pàn zhè jiàn àn zǐ ；",
+        "english": ""
+      },
+      {
+        "chinese": "要是他今天不来，我可以有权宣布延期判决。",
+        "pinyin": "yào shì tā jīn tiān bù lái ， wǒ kě yǐ yǒu quán xuān bù yán qī pàn jué 。",
+        "english": ""
+      },
+      {
+        "chinese": "萨拉里诺  殿下，外面有一个使者刚从帕度亚来，带着这位博士的书信，等候着殿下的召唤。",
+        "pinyin": "sà lā lǐ nuò     diàn xià ， wài miàn yǒu yī gè shǐ zhě gāng cóng pà dù yà lái ， dài zhuó zhè wèi bó shì de shū xìn ， děng hòu zhuó diàn xià de zhào huàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "公爵  把信拿来给我；",
+        "pinyin": "gōng jué     bǎ xìn ná lái gěi wǒ ；",
+        "english": ""
+      },
+      {
+        "chinese": "叫那使者进来。",
+        "pinyin": "jiào nà shǐ zhě jìn lái 。",
+        "english": ""
+      },
+      {
+        "chinese": "巴萨尼奥  高兴起来吧，安东尼奥！",
+        "pinyin": "bā sà ní ào     gāo xìng qǐ lái bā ， ān dōng ní ào ！",
+        "english": ""
+      },
+      {
+        "chinese": "喂，老兄，不要灰心！",
+        "pinyin": "wèi ， lǎo xiōng ， bù yào huī xīn ！",
+        "english": ""
+      },
+      {
+        "chinese": "这犹太人可以把我的肉、我的血、我的骨头、我的一切都拿去，可是我决不让你为了我的缘故流一滴血。",
+        "pinyin": "zhè yóu tài rén kě yǐ bǎ wǒ de ròu 、 wǒ de xiě 、 wǒ de gǔ tóu 、 wǒ de yī qiē dōu ná qù ， kě shì wǒ jué bù ràng nǐ wèi le wǒ de yuán gù liú yī dī xiě 。",
+        "english": ""
+      },
+      {
+        "chinese": "安东尼奥  我是羊群里一头不中用的病羊，死是我的应分；",
+        "pinyin": "ān dōng ní ào     wǒ shì yáng qún lǐ yī tóu bù zhōng yòng de bìng yáng ， sǐ shì wǒ de yīng fēn ；",
+        "english": ""
+      },
+      {
+        "chinese": "最软弱的果子最先落到地上，让我也就这样结束了我的一生吧。",
+        "pinyin": "zuì ruǎn ruò de guǒ zǐ zuì xiān luò dào dì shàng ， ràng wǒ yě jiù zhè yàng jié shù le wǒ de yī shēng bā 。",
+        "english": ""
+      },
+      {
+        "chinese": "巴萨尼奥，我只要你活下去，将来替我写一篇墓志铭，那你就是做了再好不过的事。",
+        "pinyin": "bā sà ní ào ， wǒ zhǐ yào nǐ huó xià qù ， jiāng lái tì wǒ xiě yī piān mù zhì míng ， nà nǐ jiù shì zuò le zài hǎo bù guò de shì 。",
+        "english": ""
+      },
+      {
+        "chinese": "尼莉莎扮律师书记上。",
+        "pinyin": "ní lì suō bàn lǜ shī shū jì shàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "公爵  你是从帕度亚培拉里奥那里来的吗？",
+        "pinyin": "gōng jué     nǐ shì cóng pà dù yà péi lā lǐ ào nà lǐ lái de ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "尼莉莎  是，殿下。",
+        "pinyin": "ní lì suō     shì ， diàn xià 。",
+        "english": ""
+      },
+      {
+        "chinese": "培拉里奥叫我向殿下致意。",
+        "pinyin": "péi lā lǐ ào jiào wǒ xiàng diàn xià zhì yì 。",
+        "english": ""
+      },
+      {
+        "chinese": "（呈上一信。",
+        "pinyin": "（ chéng shàng yī xìn 。",
+        "english": ""
+      },
+      {
+        "chinese": "巴萨尼奥  你这样使劲儿磨着刀干吗？",
+        "pinyin": "bā sà ní ào     nǐ zhè yàng shǐ jìn ér mó zhuó dāo gān ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "夏洛克  从那破产的家伙身上割下那磅肉来。",
+        "pinyin": "xià luò kè     cóng nà pò chǎn de jiā huǒ shēn shàng gē xià nà bàng ròu lái 。",
+        "english": ""
+      },
+      {
+        "chinese": "葛莱西安诺  狠心的犹太人，你不是在鞋口上磨刀，你这把刀是放在你的心口上磨；",
+        "pinyin": "gé lái xī ān nuò     hěn xīn de yóu tài rén ， nǐ bù shì zài xié kǒu shàng mó dāo ， nǐ zhè bǎ dāo shì fàng zài nǐ de xīn kǒu shàng mó ；",
+        "english": ""
+      },
+      {
+        "chinese": "无论哪种铁器，就连刽子手的钢刀，都赶不上你这刻毒的心肠一半的锋利。",
+        "pinyin": "wú lùn nǎ zhǒng tiě qì ， jiù lián guì zǐ shǒu de gāng dāo ， dōu gǎn bù shàng nǐ zhè kè dú de xīn cháng yī bàn de fēng lì 。",
+        "english": ""
+      },
+      {
+        "chinese": "难道什么恳求都不能打动你吗？",
+        "pinyin": "nán dào shén me kěn qiú dōu bù néng dǎ dòng nǐ ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "夏洛克  不能，无论你说得多么婉转动听，都没有用。",
+        "pinyin": "xià luò kè     bù néng ， wú lùn nǐ shuō dé duō me wǎn zhuàn dòng tīng ， dōu méi yǒu yòng 。",
+        "english": ""
+      },
+      {
+        "chinese": "葛莱西安诺  万恶不赦的狗，看你死后不下地狱！",
+        "pinyin": "gé lái xī ān nuò     wàn è bù shè de gǒu ， kàn nǐ sǐ hòu bù xià dì yù ！",
+        "english": ""
+      },
+      {
+        "chinese": "让你这种东西活在世上，真是公道不生眼睛。",
+        "pinyin": "ràng nǐ zhè zhǒng dōng xī huó zài shì shàng ， zhēn shì gōng dào bù shēng yǎn jīng 。",
+        "english": ""
+      },
+      {
+        "chinese": "你简直使我的信仰发生摇动，相信起毕达哥拉斯⑩所说畜生的灵魂可以转生人体的议论来了；",
+        "pinyin": "nǐ jiǎn zhí shǐ wǒ de xìn yǎng fā shēng yáo dòng ， xiāng xìn qǐ bì dá gē lā sī ⑩ suǒ shuō chù shēng de líng hún kě yǐ zhuǎn shēng rén tǐ de yì lùn lái le ；",
+        "english": ""
+      },
+      {
+        "chinese": "你的前生一定是一头豺狼，因为吃了人给人捉住吊死，它那凶恶的灵魂就从绞架上逃了出来，钻进了你那老娘的腌臜的胎里，因为你的性情正像豺狼一样残暴贪婪。",
+        "pinyin": "nǐ de qián shēng yī dìng shì yī tóu chái láng ， yīn wèi chī le rén gěi rén zhuō zhù diào sǐ ， tā nà xiōng è de líng hún jiù cóng jiǎo jià shàng táo le chū lái ， zuān jìn le nǐ nà lǎo niáng de ā zā de tāi lǐ ， yīn wèi nǐ de xìng qíng zhèng xiàng chái láng yī yàng cán bào tān lán 。",
+        "english": ""
+      },
+      {
+        "chinese": "夏洛克  除非你能够把我这一张契约上的印章骂掉，否则像你这样拉开了喉咙直嚷，不过白白伤了你的肺，何苦来呢？",
+        "pinyin": "xià luò kè     chú fēi nǐ néng gòu bǎ wǒ zhè yī zhāng qì yuē shàng de yìn zhāng mà diào ， fǒu zé xiàng nǐ zhè yàng lā kāi le hóu lóng zhí rǎng ， bù guò bái bái shāng le nǐ de fèi ， hé kǔ lái ne ？",
+        "english": ""
+      },
+      {
+        "chinese": "好兄弟，我劝你还是让你的脑子休息一下吧，免得它损坏了，将来无法收拾。",
+        "pinyin": "hǎo xiōng dì ， wǒ quàn nǐ hái shì ràng nǐ de nǎo zǐ xiū xī yī xià bā ， miǎn dé tā sǔn huài le ， jiāng lái wú fǎ shōu shí 。",
+        "english": ""
+      },
+      {
+        "chinese": "我在这儿要求法律的裁判。",
+        "pinyin": "wǒ zài zhè ér yào qiú fǎ lǜ de cái pàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "公爵  培拉里奥在这封信上介绍一位年轻有学问的博士出席我们的法庭。",
+        "pinyin": "gōng jué     péi lā lǐ ào zài zhè fēng xìn shàng jiè shào yī wèi nián qīng yǒu xué wèn de bó shì chū xí wǒ mén de fǎ tíng 。",
+        "english": ""
+      },
+      {
+        "chinese": "他在什么地方？",
+        "pinyin": "tā zài shén me dì fāng ？",
+        "english": ""
+      },
+      {
+        "chinese": "尼莉莎  他就在这儿附近等着您的答复，不知道殿下准不准许他进来？",
+        "pinyin": "ní lì suō     tā jiù zài zhè ér fù jìn děng zhuó nín de dá fù ， bù zhī dào diàn xià zhǔn bù zhǔn xǔ tā jìn lái ？",
+        "english": ""
+      },
+      {
+        "chinese": "公爵  非常欢迎。",
+        "pinyin": "gōng jué     fēi cháng huān yíng 。",
+        "english": ""
+      },
+      {
+        "chinese": "来，你们去三四个人，恭恭敬敬领他到这儿来。",
+        "pinyin": "lái ， nǐ mén qù sān sì gè rén ， gōng gōng jìng jìng lǐng tā dào zhè ér lái 。",
+        "english": ""
+      },
+      {
+        "chinese": "现在让我们把培拉里奥的来信当庭宣读。",
+        "pinyin": "xiàn zài ràng wǒ mén bǎ péi lā lǐ ào de lái xìn dāng tíng xuān dú 。",
+        "english": ""
+      },
+      {
+        "chinese": "书记  （读）“尊翰到时，鄙人抱疾方剧；",
+        "pinyin": "shū jì     （ dú ） “ zūn hàn dào shí ， bǐ rén bào jí fāng jù ；",
+        "english": ""
+      },
+      {
+        "chinese": "适有一青年博士鲍尔萨泽君自罗马来此，致其慰问，因与详讨犹太人与安东尼奥一案，徧稽群籍，折衷是非，遂恳其为鄙人庖代，以应殿下之召。",
+        "pinyin": "shì yǒu yī qīng nián bó shì bào ěr sà zé jūn zì luó mǎ lái cǐ ， zhì qí wèi wèn ， yīn yǔ xiáng tǎo yóu tài rén yǔ ān dōng ní ào yī àn ， biàn jī qún jí ， zhé zhōng shì fēi ， suì kěn qí wèi bǐ rén páo dài ， yǐ yīng diàn xià zhī zhào 。",
+        "english": ""
+      },
+      {
+        "chinese": "凡鄙人对此案所具意见，此君已深悉无遗；",
+        "pinyin": "fán bǐ rén duì cǐ àn suǒ jù yì jiàn ， cǐ jūn yǐ shēn xī wú yí ；",
+        "english": ""
+      },
+      {
+        "chinese": "其学问才识，虽穷极赞辞，亦不足道其万一，务希勿以其年少而忽之，盖如此少年老成之士，实鄙人生平所仅见也。",
+        "pinyin": "qí xué wèn cái shí ， suī qióng jí zàn cí ， yì bù zú dào qí wàn yī ， wù xī wù yǐ qí nián shǎo ér hū zhī ， gài rú cǐ shǎo nián lǎo chéng zhī shì ， shí bǐ rén shēng píng suǒ jǐn jiàn yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "倘蒙延纳，必能不辱使命。",
+        "pinyin": "tǎng mēng yán nà ， bì néng bù rǔ shǐ mìng 。",
+        "english": ""
+      },
+      {
+        "chinese": "敬祈钧裁。",
+        "pinyin": "jìng qí jūn cái 。",
+        "english": ""
+      },
+      {
+        "chinese": "公爵  你们已经听到了博学的培拉里奥的来信。",
+        "pinyin": "gōng jué     nǐ mén yǐ jīng tīng dào le bó xué de péi lā lǐ ào de lái xìn 。",
+        "english": ""
+      },
+      {
+        "chinese": "这儿来的大概就是那位博士了。",
+        "pinyin": "zhè ér lái de dà gài jiù shì nà wèi bó shì le 。",
+        "english": ""
+      },
+      {
+        "chinese": "鲍西娅扮律师上。",
+        "pinyin": "bào xī yà bàn lǜ shī shàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "公爵  把您的手给我。",
+        "pinyin": "gōng jué     bǎ nín de shǒu gěi wǒ 。",
+        "english": ""
+      },
+      {
+        "chinese": "足下是从培拉里奥老前辈那儿来的吗？",
+        "pinyin": "zú xià shì cóng péi lā lǐ ào lǎo qián bèi nà ér lái de ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "鲍西娅  正是，殿下。",
+        "pinyin": "bào xī yà     zhèng shì ， diàn xià 。",
+        "english": ""
+      },
+      {
+        "chinese": "公爵  欢迎欢迎；",
+        "pinyin": "gōng jué     huān yíng huān yíng ；",
+        "english": ""
+      },
+      {
+        "chinese": "请上坐。",
+        "pinyin": "qǐng shàng zuò 。",
+        "english": ""
+      },
+      {
+        "chinese": "您有没有明了今天我们在这儿审理的这件案子的两方面的争点？",
+        "pinyin": "nín yǒu méi yǒu míng le jīn tiān wǒ mén zài zhè ér shěn lǐ de zhè jiàn àn zǐ de liǎng fāng miàn de zhēng diǎn ？",
+        "english": ""
+      },
+      {
+        "chinese": "鲍西娅  我对于这件案子的详细情形已经完全知道了。",
+        "pinyin": "bào xī yà     wǒ duì yú zhè jiàn àn zǐ de xiáng xì qíng xíng yǐ jīng wán quán zhī dào le 。",
+        "english": ""
+      },
+      {
+        "chinese": "这儿哪一个是那商人，哪一个是犹太人？",
+        "pinyin": "zhè ér nǎ yī gè shì nà shāng rén ， nǎ yī gè shì yóu tài rén ？",
+        "english": ""
+      },
+      {
+        "chinese": "公爵  安东尼奥，夏洛克，你们两人都上来。",
+        "pinyin": "gōng jué     ān dōng ní ào ， xià luò kè ， nǐ mén liǎng rén dōu shàng lái 。",
+        "english": ""
+      },
+      {
+        "chinese": "鲍西娅  你的名字就叫夏洛克吗？",
+        "pinyin": "bào xī yà     nǐ de míng zì jiù jiào xià luò kè ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "夏洛克  夏洛克是我的名字。",
+        "pinyin": "xià luò kè     xià luò kè shì wǒ de míng zì 。",
+        "english": ""
+      },
+      {
+        "chinese": "鲍西娅  你这场官司打得倒也奇怪，可是按照威尼斯的法律，你的控诉是可以成立的。",
+        "pinyin": "bào xī yà     nǐ zhè chǎng guān sī dǎ dé dǎo yě qí guài ， kě shì àn zhào wēi ní sī de fǎ lǜ ， nǐ de kòng sù shì kě yǐ chéng lì de 。",
+        "english": ""
+      },
+      {
+        "chinese": "（向安东尼奥）你的生死现在操在他的手里，是不是？",
+        "pinyin": "（ xiàng ān dōng ní ào ） nǐ de shēng sǐ xiàn zài cāo zài tā de shǒu lǐ ， shì bù shì ？",
+        "english": ""
+      },
+      {
+        "chinese": "安东尼奥  他是这样说的。",
+        "pinyin": "ān dōng ní ào     tā shì zhè yàng shuō de 。",
+        "english": ""
+      },
+      {
+        "chinese": "鲍西娅  你承认这借约吗？",
+        "pinyin": "bào xī yà     nǐ chéng rèn zhè jiè yuē ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "安东尼奥  我承认。",
+        "pinyin": "ān dōng ní ào     wǒ chéng rèn 。",
+        "english": ""
+      },
+      {
+        "chinese": "鲍西娅  那么犹太人应该慈悲一点。",
+        "pinyin": "bào xī yà     nà me yóu tài rén yīng gāi cí bēi yī diǎn 。",
+        "english": ""
+      },
+      {
+        "chinese": "夏洛克  为什么我应该慈悲一点？",
+        "pinyin": "xià luò kè     wèi shén me wǒ yīng gāi cí bēi yī diǎn ？",
+        "english": ""
+      },
+      {
+        "chinese": "把您的理由告诉我。",
+        "pinyin": "bǎ nín de lǐ yóu gào sù wǒ 。",
+        "english": ""
+      },
+      {
+        "chinese": "鲍西娅  慈悲不是出于勉强，它是像甘霖一样从天上降下尘世；",
+        "pinyin": "bào xī yà     cí bēi bù shì chū yú miǎn qiǎng ， tā shì xiàng gān lín yī yàng cóng tiān shàng jiàng xià chén shì ；",
+        "english": ""
+      },
+      {
+        "chinese": "它不但给幸福于受施的人，也同样给幸福于施与的人；",
+        "pinyin": "tā bù dàn gěi xìng fú yú shòu shī de rén ， yě tóng yàng gěi xìng fú yú shī yǔ de rén ；",
+        "english": ""
+      },
+      {
+        "chinese": "它有超乎一切的无上威力，比皇冠更足以显出一个帝王的高贵：御杖不过象征着俗世的威权，使人民对于君上的尊严凛然生畏；",
+        "pinyin": "tā yǒu chāo hū yī qiē de wú shàng wēi lì ， bǐ huáng guàn gèng zú yǐ xiǎn chū yī gè dì wáng de gāo guì ： yù zhàng bù guò xiàng zhēng zhuó sú shì de wēi quán ， shǐ rén mín duì yú jūn shàng de zūn yán lǐn rán shēng wèi ；",
+        "english": ""
+      },
+      {
+        "chinese": "慈悲的力量却高出于权力之上，它深藏在帝王的内心，是一种属于上帝的德性，执法的人倘能把慈悲调剂着公道，人间的权力就和上帝的神力没有差别。",
+        "pinyin": "cí bēi de lì liàng què gāo chū yú quán lì zhī shàng ， tā shēn cáng zài dì wáng de nèi xīn ， shì yī zhǒng shǔ yú shàng dì de dé xìng ， zhí fǎ de rén tǎng néng bǎ cí bēi tiáo jì zhuó gōng dào ， rén jiān de quán lì jiù hé shàng dì de shén lì méi yǒu chā bié 。",
+        "english": ""
+      },
+      {
+        "chinese": "所以，犹太人，虽然你所要求的是公道，可是请你想一想，要是真的按照公道执行起赏罚来，谁也没有死后得救的希望；",
+        "pinyin": "suǒ yǐ ， yóu tài rén ， suī rán nǐ suǒ yào qiú de shì gōng dào ， kě shì qǐng nǐ xiǎng yī xiǎng ， yào shì zhēn de àn zhào gōng dào zhí xíng qǐ shǎng fá lái ， shuí yě méi yǒu sǐ hòu dé jiù de xī wàng ；",
+        "english": ""
+      },
+      {
+        "chinese": "我们既然祈祷着上帝的慈悲，就应该按照祈祷的指点，自己做一些慈悲的事。",
+        "pinyin": "wǒ mén jì rán qí dǎo zhuó shàng dì de cí bēi ， jiù yīng gāi àn zhào qí dǎo de zhǐ diǎn ， zì jǐ zuò yī xiē cí bēi de shì 。",
+        "english": ""
+      },
+      {
+        "chinese": "我说了这一番话，为的是希望你能够从你的法律的立场上作几分让步；",
+        "pinyin": "wǒ shuō le zhè yī fān huà ， wèi de shì xī wàng nǐ néng gòu cóng nǐ de fǎ lǜ de lì chǎng shàng zuò jǐ fēn ràng bù ；",
+        "english": ""
+      },
+      {
+        "chinese": "可是如果你坚持着原来的要求，那么威尼斯的法庭是执法无私的，只好把那商人宣判定罪了。",
+        "pinyin": "kě shì rú guǒ nǐ jiān chí zhuó yuán lái de yào qiú ， nà me wēi ní sī de fǎ tíng shì zhí fǎ wú sī de ， zhǐ hǎo bǎ nà shāng rén xuān pàn dìng zuì le 。",
+        "english": ""
+      },
+      {
+        "chinese": "夏洛克  我自己做的事，我自己当！",
+        "pinyin": "xià luò kè     wǒ zì jǐ zuò de shì ， wǒ zì jǐ dāng ！",
+        "english": ""
+      },
+      {
+        "chinese": "我只要求法律允许我照约执行处罚。",
+        "pinyin": "wǒ zhǐ yào qiú fǎ lǜ yǔn xǔ wǒ zhào yuē zhí xíng chǔ fá 。",
+        "english": ""
+      },
+      {
+        "chinese": "鲍西娅  他是不是无力偿还这笔借款？",
+        "pinyin": "bào xī yà     tā shì bù shì wú lì cháng hái zhè bǐ jiè kuǎn ？",
+        "english": ""
+      },
+      {
+        "chinese": "巴萨尼奥  不，我愿意替他当庭还清；",
+        "pinyin": "bā sà ní ào     bù ， wǒ yuàn yì tì tā dāng tíng hái qīng ；",
+        "english": ""
+      },
+      {
+        "chinese": "照原数加倍也可以；",
+        "pinyin": "zhào yuán shǔ jiā bèi yě kě yǐ ；",
+        "english": ""
+      },
+      {
+        "chinese": "要是这样他还不满足，那么我愿意签署契约，还他十倍的数目，拿我的手、我的头、我的心做抵押；",
+        "pinyin": "yào shì zhè yàng tā hái bù mǎn zú ， nà me wǒ yuàn yì qiān shǔ qì yuē ， hái tā shí bèi de shù mù ， ná wǒ de shǒu 、 wǒ de tóu 、 wǒ de xīn zuò dǐ yā ；",
+        "english": ""
+      },
+      {
+        "chinese": "要是这样还不能使他满足，那就是存心害人，不顾天理了。",
+        "pinyin": "yào shì zhè yàng hái bù néng shǐ tā mǎn zú ， nà jiù shì cún xīn hài rén ， bù gù tiān lǐ le 。",
+        "english": ""
+      },
+      {
+        "chinese": "请堂上运用权力，把法律稍为变通一下，犯一次小小的错误，干一件大大的功德，别让这个残忍的恶魔逞他杀人的兽欲。",
+        "pinyin": "qǐng táng shàng yùn yòng quán lì ， bǎ fǎ lǜ shāo wèi biàn tōng yī xià ， fàn yī cì xiǎo xiǎo de cuò wù ， gān yī jiàn dà dà de gōng dé ， bié ràng zhè gè cán rěn de è mó chěng tā shā rén de shòu yù 。",
+        "english": ""
+      },
+      {
+        "chinese": "鲍西娅  那可不行，在威尼斯谁也没有权力变更既成的法律；",
+        "pinyin": "bào xī yà     nà kě bù xíng ， zài wēi ní sī shuí yě méi yǒu quán lì biàn gèng jì chéng de fǎ lǜ ；",
+        "english": ""
+      },
+      {
+        "chinese": "要是开了这一个恶例，以后谁都可以借口有例可援，什么坏事情都可以干了。",
+        "pinyin": "yào shì kāi le zhè yī gè è lì ， yǐ hòu shuí dōu kě yǐ jiè kǒu yǒu lì kě yuán ， shén me huài shì qíng dōu kě yǐ gān le 。",
+        "english": ""
+      },
+      {
+        "chinese": "这是不行的。",
+        "pinyin": "zhè shì bù xíng de 。",
+        "english": ""
+      },
+      {
+        "chinese": "夏洛克  一个但尼尔⑾来做法官了！",
+        "pinyin": "xià luò kè     yī gè dàn ní ěr ⑾ lái zuò fǎ guān le ！",
+        "english": ""
+      },
+      {
+        "chinese": "真的是但尼尔再世！",
+        "pinyin": "zhēn de shì dàn ní ěr zài shì ！",
+        "english": ""
+      },
+      {
+        "chinese": "聪明的青年法官啊，我真佩服你！",
+        "pinyin": "cōng míng de qīng nián fǎ guān ā ， wǒ zhēn pèi fú nǐ ！",
+        "english": ""
+      },
+      {
+        "chinese": "鲍西娅  请你让我瞧一瞧那借约。",
+        "pinyin": "bào xī yà     qǐng nǐ ràng wǒ qiáo yī qiáo nà jiè yuē 。",
+        "english": ""
+      },
+      {
+        "chinese": "夏洛克  在这儿，可尊敬的博士；",
+        "pinyin": "xià luò kè     zài zhè ér ， kě zūn jìng de bó shì ；",
+        "english": ""
+      },
+      {
+        "chinese": "请看吧。",
+        "pinyin": "qǐng kàn bā 。",
+        "english": ""
+      },
+      {
+        "chinese": "鲍西娅  夏洛克，他们愿意出三倍的钱还你呢。",
+        "pinyin": "bào xī yà     xià luò kè ， tā mén yuàn yì chū sān bèi de qián hái nǐ ne 。",
+        "english": ""
+      },
+      {
+        "chinese": "夏洛克  不行，不行，我已经对天发过誓啦，难道我可以让我的灵魂背上毁誓的罪名吗？",
+        "pinyin": "xià luò kè     bù xíng ， bù xíng ， wǒ yǐ jīng duì tiān fā guò shì lā ， nán dào wǒ kě yǐ ràng wǒ de líng hún bēi shàng huǐ shì de zuì míng ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "不，把整个儿的威尼斯给我，我都不能答应。",
+        "pinyin": "bù ， bǎ zhěng gè ér de wēi ní sī gěi wǒ ， wǒ dōu bù néng dā yìng 。",
+        "english": ""
+      },
+      {
+        "chinese": "鲍西娅  好，那么就应该照约处罚；",
+        "pinyin": "bào xī yà     hǎo ， nà me jiù yīng gāi zhào yuē chǔ fá ；",
+        "english": ""
+      },
+      {
+        "chinese": "根据法律，这犹太人有权要求从这商人的胸口割下一磅肉来。",
+        "pinyin": "gēn jù fǎ lǜ ， zhè yóu tài rén yǒu quán yào qiú cóng zhè shāng rén de xiōng kǒu gē xià yī bàng ròu lái 。",
+        "english": ""
+      },
+      {
+        "chinese": "还是慈悲一点，把三倍原数的钱拿去，让我撕了这张约吧。",
+        "pinyin": "hái shì cí bēi yī diǎn ， bǎ sān bèi yuán shǔ de qián ná qù ， ràng wǒ sī le zhè zhāng yuē bā 。",
+        "english": ""
+      },
+      {
+        "chinese": "夏洛克  等他按照约中所载条款受罚以后，再撕不迟。",
+        "pinyin": "xià luò kè     děng tā àn zhào yuē zhōng suǒ zài tiáo kuǎn shòu fá yǐ hòu ， zài sī bù chí 。",
+        "english": ""
+      },
+      {
+        "chinese": "您瞧上去像是一个很好的法官；",
+        "pinyin": "nín qiáo shàng qù xiàng shì yī gè hěn hǎo de fǎ guān ；",
+        "english": ""
+      },
+      {
+        "chinese": "您懂得法律，您讲的话也很有道理，不愧是法律界的中流砥柱，所以现在我就用法律的名义，请您立刻进行宣判，凭着我的灵魂起誓，谁也不能用他的口舌改变我的决心。",
+        "pinyin": "nín dǒng dé fǎ lǜ ， nín jiǎng de huà yě hěn yǒu dào lǐ ， bù kuì shì fǎ lǜ jiè de zhōng liú dǐ zhù ， suǒ yǐ xiàn zài wǒ jiù yòng fǎ lǜ de míng yì ， qǐng nín lì kè jìn xíng xuān pàn ， píng zhuó wǒ de líng hún qǐ shì ， shuí yě bù néng yòng tā de kǒu shé gǎi biàn wǒ de jué xīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "我现在但等着执行原约。",
+        "pinyin": "wǒ xiàn zài dàn děng zhuó zhí xíng yuán yuē 。",
+        "english": ""
+      }
+    ]
+  },
+  {
+    "id": "merchant_of_venice_ch_5",
+    "bookId": "merchant_of_venice",
+    "chapterIndex": 5,
+    "title": "第五幕 第一场　贝尔蒙特。通至鲍西娅住宅的林荫路",
+    "titleEn": "Chapter 5: 第五幕 第一场　贝尔蒙特。通至鲍西娅住宅的林荫路",
+    "sentences": [
+      {
+        "chinese": "罗兰佐及杰西卡上。",
+        "pinyin": "luó lán zuǒ jí jié xī kǎ shàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "罗兰佐  好皎洁的月色！",
+        "pinyin": "luó lán zuǒ     hǎo jiǎo jié de yuè sè ！",
+        "english": ""
+      },
+      {
+        "chinese": "微风轻轻地吻着树枝，不发出一点声响；",
+        "pinyin": "wēi fēng qīng qīng dì wěn zhuó shù zhī ， bù fā chū yī diǎn shēng xiǎng ；",
+        "english": ""
+      },
+      {
+        "chinese": "我想正是在这样一个夜里，特洛伊罗斯登上了特洛亚的城墙，遥望着克瑞西达所寄身的希腊人的营幕，发出他的深心中的悲叹。",
+        "pinyin": "wǒ xiǎng zhèng shì zài zhè yàng yī gè yè lǐ ， tè luò yī luó sī dēng shàng le tè luò yà de chéng qiáng ， yáo wàng zhuó kè ruì xī dá suǒ jì shēn de xī là rén de yíng mù ， fā chū tā de shēn xīn zhōng de bēi tàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "杰西卡  正是在这样一个夜里，提斯柏心惊胆战地踩着露水，去赴她情人的约会，因为看见了一头狮子的影子，吓得远远逃走。",
+        "pinyin": "jié xī kǎ     zhèng shì zài zhè yàng yī gè yè lǐ ， tí sī bǎi xīn jīng dǎn zhàn dì cǎi zhuó lòu shuǐ ， qù fù tā qíng rén de yuē huì ， yīn wèi kàn jiàn le yī tóu shī zǐ de yǐng zǐ ， xià dé yuǎn yuǎn táo zǒu 。",
+        "english": ""
+      },
+      {
+        "chinese": "罗兰佐  正是在这样一个夜里，狄多手里执着柳枝，站在辽阔的海滨，招她的爱人回到迦太基来。",
+        "pinyin": "luó lán zuǒ     zhèng shì zài zhè yàng yī gè yè lǐ ， dí duō shǒu lǐ zhí zhuó liǔ zhī ， zhàn zài liáo kuò de hǎi bīn ， zhāo tā de ài rén huí dào jiā tài jī lái 。",
+        "english": ""
+      },
+      {
+        "chinese": "杰西卡  正是在这样一个夜里，美狄亚采集了灵芝仙草，使衰迈的埃宋返老还童。",
+        "pinyin": "jié xī kǎ     zhèng shì zài zhè yàng yī gè yè lǐ ， měi dí yà cǎi jí le líng zhī xiān cǎo ， shǐ shuāi mài de āi sòng fǎn lǎo hái tóng 。",
+        "english": ""
+      },
+      {
+        "chinese": "罗兰佐  正是在这样一个夜里，杰西卡从犹太富翁的家里逃了出来，跟着一个不中用的情郎从威尼斯一直走到贝尔蒙特。",
+        "pinyin": "luó lán zuǒ     zhèng shì zài zhè yàng yī gè yè lǐ ， jié xī kǎ cóng yóu tài fù wēng de jiā lǐ táo le chū lái ， gēn zhuó yī gè bù zhōng yòng de qíng láng cóng wēi ní sī yī zhí zǒu dào bèi ěr mēng tè 。",
+        "english": ""
+      },
+      {
+        "chinese": "杰西卡  正是在这样一个夜里，年轻的罗兰佐发誓说他爱她，用许多忠诚的盟言偷去了她的灵魂，可是没有一句话是真的。",
+        "pinyin": "jié xī kǎ     zhèng shì zài zhè yàng yī gè yè lǐ ， nián qīng de luó lán zuǒ fā shì shuō tā ài tā ， yòng xǔ duō zhōng chéng de méng yán tōu qù le tā de líng hún ， kě shì méi yǒu yī jù huà shì zhēn de 。",
+        "english": ""
+      },
+      {
+        "chinese": "罗兰佐  正是在这样一个夜里，可爱的杰西卡像一个小泼妇似的，信口毁谤她的情人，可是他饶恕了她。",
+        "pinyin": "luó lán zuǒ     zhèng shì zài zhè yàng yī gè yè lǐ ， kě ài de jié xī kǎ xiàng yī gè xiǎo pō fù shì de ， xìn kǒu huǐ bàng tā de qíng rén ， kě shì tā ráo shù le tā 。",
+        "english": ""
+      },
+      {
+        "chinese": "杰西卡  倘不是有人来了，我可以搬弄出比你所知道的更多的夜的典故来。",
+        "pinyin": "jié xī kǎ     tǎng bù shì yǒu rén lái le ， wǒ kě yǐ bān nòng chū bǐ nǐ suǒ zhī dào de gèng duō de yè de diǎn gù lái 。",
+        "english": ""
+      },
+      {
+        "chinese": "可是听！",
+        "pinyin": "kě shì tīng ！",
+        "english": ""
+      },
+      {
+        "chinese": "这不是一个人的脚步声吗？",
+        "pinyin": "zhè bù shì yī gè rén de jiǎo bù shēng ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "罗兰佐  谁在这静悄悄的深夜里跑得这么快？",
+        "pinyin": "luó lán zuǒ     shuí zài zhè jìng qiāo qiāo de shēn yè lǐ pǎo dé zhè me kuài ？",
+        "english": ""
+      },
+      {
+        "chinese": "斯丹法诺  一个朋友。",
+        "pinyin": "sī dān fǎ nuò     yī gè péng yǒu 。",
+        "english": ""
+      },
+      {
+        "chinese": "罗兰佐  一个朋友！",
+        "pinyin": "luó lán zuǒ     yī gè péng yǒu ！",
+        "english": ""
+      },
+      {
+        "chinese": "什么朋友？",
+        "pinyin": "shén me péng yǒu ？",
+        "english": ""
+      },
+      {
+        "chinese": "请问朋友尊姓大名？",
+        "pinyin": "qǐng wèn péng yǒu zūn xìng dà míng ？",
+        "english": ""
+      },
+      {
+        "chinese": "斯丹法诺  我的名字是斯丹法诺，我来向你们报个信，我家女主人在天明以前，就要到贝尔蒙特来了；",
+        "pinyin": "sī dān fǎ nuò     wǒ de míng zì shì sī dān fǎ nuò ， wǒ lái xiàng nǐ mén bào gè xìn ， wǒ jiā nǚ zhǔ rén zài tiān míng yǐ qián ， jiù yào dào bèi ěr mēng tè lái le ；",
+        "english": ""
+      },
+      {
+        "chinese": "她一路上看见圣十字架，便停步下来，长跪祷告，祈求着婚姻的美满。",
+        "pinyin": "tā yī lù shàng kàn jiàn shèng shí zì jià ， biàn tíng bù xià lái ， cháng guì dǎo gào ， qí qiú zhuó hūn yīn de měi mǎn 。",
+        "english": ""
+      },
+      {
+        "chinese": "罗兰佐  谁陪她一起来？",
+        "pinyin": "luó lán zuǒ     shuí péi tā yī qǐ lái ？",
+        "english": ""
+      },
+      {
+        "chinese": "斯丹法诺  没有什么人，只是一个修道的隐士和她的侍女。",
+        "pinyin": "sī dān fǎ nuò     méi yǒu shén me rén ， zhǐ shì yī gè xiū dào de yǐn shì hé tā de shì nǚ 。",
+        "english": ""
+      },
+      {
+        "chinese": "请问我家主人有没有回来？",
+        "pinyin": "qǐng wèn wǒ jiā zhǔ rén yǒu méi yǒu huí lái ？",
+        "english": ""
+      },
+      {
+        "chinese": "罗兰佐  他没有回来，我们也没有听到他的消息。",
+        "pinyin": "luó lán zuǒ     tā méi yǒu huí lái ， wǒ mén yě méi yǒu tīng dào tā de xiāo xī 。",
+        "english": ""
+      },
+      {
+        "chinese": "可是，杰西卡，我们进去吧；",
+        "pinyin": "kě shì ， jié xī kǎ ， wǒ mén jìn qù bā ；",
+        "english": ""
+      },
+      {
+        "chinese": "让我们按照着礼节，准备一些欢迎这屋子的女主人的仪式。",
+        "pinyin": "ràng wǒ mén àn zhào zhuó lǐ jié ， zhǔn bèi yī xiē huān yíng zhè wū zǐ de nǚ zhǔ rén de yí shì 。",
+        "english": ""
+      },
+      {
+        "chinese": "朗斯洛特上。",
+        "pinyin": "lǎng sī luò tè shàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "朗斯洛特  索拉！",
+        "pinyin": "lǎng sī luò tè     suǒ lā ！",
+        "english": ""
+      },
+      {
+        "chinese": "索拉！",
+        "pinyin": "suǒ lā ！",
+        "english": ""
+      },
+      {
+        "chinese": "哦哈呵！",
+        "pinyin": "ò hā hē ！",
+        "english": ""
+      },
+      {
+        "chinese": "索拉！",
+        "pinyin": "suǒ lā ！",
+        "english": ""
+      },
+      {
+        "chinese": "索拉！",
+        "pinyin": "suǒ lā ！",
+        "english": ""
+      },
+      {
+        "chinese": "罗兰佐  谁在那儿嚷？",
+        "pinyin": "luó lán zuǒ     shuí zài nà ér rǎng ？",
+        "english": ""
+      },
+      {
+        "chinese": "朗斯洛特  索拉！",
+        "pinyin": "lǎng sī luò tè     suǒ lā ！",
+        "english": ""
+      },
+      {
+        "chinese": "你看见罗兰佐大爷吗？",
+        "pinyin": "nǐ kàn jiàn luó lán zuǒ dà yé ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "罗兰佐大爷！",
+        "pinyin": "luó lán zuǒ dà yé ！",
+        "english": ""
+      },
+      {
+        "chinese": "索拉！",
+        "pinyin": "suǒ lā ！",
+        "english": ""
+      },
+      {
+        "chinese": "索拉！",
+        "pinyin": "suǒ lā ！",
+        "english": ""
+      },
+      {
+        "chinese": "罗兰佐  别嚷啦，朋友；",
+        "pinyin": "luó lán zuǒ     bié rǎng lā ， péng yǒu ；",
+        "english": ""
+      },
+      {
+        "chinese": "他就在这儿。",
+        "pinyin": "tā jiù zài zhè ér 。",
+        "english": ""
+      },
+      {
+        "chinese": "朗斯洛特  索拉！",
+        "pinyin": "lǎng sī luò tè     suǒ lā ！",
+        "english": ""
+      },
+      {
+        "chinese": "哪儿？",
+        "pinyin": "nǎ ér ？",
+        "english": ""
+      },
+      {
+        "chinese": "哪儿？",
+        "pinyin": "nǎ ér ？",
+        "english": ""
+      },
+      {
+        "chinese": "罗兰佐  这儿。",
+        "pinyin": "luó lán zuǒ     zhè ér 。",
+        "english": ""
+      },
+      {
+        "chinese": "朗斯洛特  对他说我家主人差一个人带了许多好消息来了；",
+        "pinyin": "lǎng sī luò tè     duì tā shuō wǒ jiā zhǔ rén chà yī gè rén dài le xǔ duō hǎo xiāo xī lái le ；",
+        "english": ""
+      },
+      {
+        "chinese": "他在天明以前就要回家来啦。",
+        "pinyin": "tā zài tiān míng yǐ qián jiù yào huí jiā lái lā 。",
+        "english": ""
+      },
+      {
+        "chinese": "（下。",
+        "pinyin": "（ xià 。",
+        "english": ""
+      },
+      {
+        "chinese": "罗兰佐  亲爱的，我们进去，等着他们回来吧。",
+        "pinyin": "luó lán zuǒ     qīn ài de ， wǒ mén jìn qù ， děng zhuó tā mén huí lái bā 。",
+        "english": ""
+      },
+      {
+        "chinese": "不，还是不用进去。",
+        "pinyin": "bù ， hái shì bù yòng jìn qù 。",
+        "english": ""
+      },
+      {
+        "chinese": "我的朋友斯丹法诺，请你进去通知家里的人，你们的女主人就要来啦，叫他们准备好乐器到门外来迎接。",
+        "pinyin": "wǒ de péng yǒu sī dān fǎ nuò ， qǐng nǐ jìn qù tōng zhī jiā lǐ de rén ， nǐ mén de nǚ zhǔ rén jiù yào lái lā ， jiào tā mén zhǔn bèi hǎo yuè qì dào mén wài lái yíng jiē 。",
+        "english": ""
+      },
+      {
+        "chinese": "（斯丹法诺下）月光多么恬静地睡在山坡上！",
+        "pinyin": "（ sī dān fǎ nuò xià ） yuè guāng duō me tián jìng dì shuì zài shān pō shàng ！",
+        "english": ""
+      },
+      {
+        "chinese": "我们就在这儿坐下来，让音乐的声音悄悄送进我们的耳边；",
+        "pinyin": "wǒ mén jiù zài zhè ér zuò xià lái ， ràng yīn yuè de shēng yīn qiāo qiāo sòng jìn wǒ mén de ěr biān ；",
+        "english": ""
+      },
+      {
+        "chinese": "柔和的静寂和夜色，是最足以衬托出音乐的甜美的。",
+        "pinyin": "róu hé de jìng jì hé yè sè ， shì zuì zú yǐ chèn tuō chū yīn yuè de tián měi de 。",
+        "english": ""
+      },
+      {
+        "chinese": "坐下来，杰西卡。",
+        "pinyin": "zuò xià lái ， jié xī kǎ 。",
+        "english": ""
+      },
+      {
+        "chinese": "瞧，天宇中嵌满了多少灿烂的金钹；",
+        "pinyin": "qiáo ， tiān yǔ zhōng qiàn mǎn le duō shǎo càn làn de jīn bó ；",
+        "english": ""
+      },
+      {
+        "chinese": "你所看见的每一颗微小的天体，在转动的时候都会发出天使般的歌声，永远应和着嫩眼的天婴的妙唱。",
+        "pinyin": "nǐ suǒ kàn jiàn de měi yī kē wēi xiǎo de tiān tǐ ， zài zhuàn dòng de shí hòu dōu huì fā chū tiān shǐ bān de gē shēng ， yǒng yuǎn yīng hé zhuó nèn yǎn de tiān yīng de miào chàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "在永生的灵魂里也有这一种音乐，可是当它套上这一具泥土制成的俗恶易朽的皮囊以后，我们便再也听不见了。",
+        "pinyin": "zài yǒng shēng de líng hún lǐ yě yǒu zhè yī zhǒng yīn yuè ， kě shì dāng tā tào shàng zhè yī jù ní tǔ zhì chéng de sú è yì xiǔ de pí náng yǐ hòu ， wǒ mén biàn zài yě tīng bù jiàn le 。",
+        "english": ""
+      },
+      {
+        "chinese": "众乐工上。",
+        "pinyin": "zhòng lè gōng shàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "罗兰佐  来啊！",
+        "pinyin": "luó lán zuǒ     lái ā ！",
+        "english": ""
+      },
+      {
+        "chinese": "奏起一支圣歌来唤醒狄安娜女神；",
+        "pinyin": "zòu qǐ yī zhī shèng gē lái huàn xǐng dí ān nuó nǚ shén ；",
+        "english": ""
+      },
+      {
+        "chinese": "用最温柔的节奏倾注到你们女主人的耳中，让她被乐声吸引着回来。",
+        "pinyin": "yòng zuì wēn róu de jié zòu qīng zhù dào nǐ mén nǚ zhǔ rén de ěr zhōng ， ràng tā bèi lè shēng xī yǐn zhuó huí lái 。",
+        "english": ""
+      },
+      {
+        "chinese": "（音乐。",
+        "pinyin": "（ yīn yuè 。",
+        "english": ""
+      },
+      {
+        "chinese": "杰西卡  我听见了柔和的音乐，总觉得有些惆怅。",
+        "pinyin": "jié xī kǎ     wǒ tīng jiàn le róu hé de yīn yuè ， zǒng jué dé yǒu xiē chóu chàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "罗兰佐  这是因为你有一个敏感的灵魂。",
+        "pinyin": "luó lán zuǒ     zhè shì yīn wèi nǐ yǒu yī gè mǐn gǎn de líng hún 。",
+        "english": ""
+      },
+      {
+        "chinese": "你只要看一群不服管束的畜生，或是那野性未驯的小马，逞着它们奔放的血气，乱跳狂奔，高声嘶叫，倘然偶尔听到一声喇叭，或是任何乐调，就会一齐立定，它们狂野的眼光，因为中了音乐的魅力，变成温和的注视。",
+        "pinyin": "nǐ zhǐ yào kàn yī qún bù fú guǎn shù de chù shēng ， huò shì nà yě xìng wèi xùn de xiǎo mǎ ， chěng zhuó tā mén bēn fàng de xiě qì ， luàn tiào kuáng bēn ， gāo shēng sī jiào ， tǎng rán ǒu ěr tīng dào yī shēng lǎ bā ， huò shì rèn hé lè tiáo ， jiù huì yī qí lì dìng ， tā mén kuáng yě de yǎn guāng ， yīn wèi zhōng le yīn yuè de mèi lì ， biàn chéng wēn hé de zhù shì 。",
+        "english": ""
+      },
+      {
+        "chinese": "所以诗人会造出俄耳甫斯用音乐感动木石、平息风浪的故事，因为无论怎样坚硬顽固狂暴的事物，音乐都可以立刻改变它们的性质；",
+        "pinyin": "suǒ yǐ shī rén huì zào chū é ěr fǔ sī yòng yīn yuè gǎn dòng mù shí 、 píng xī fēng làng de gù shì ， yīn wèi wú lùn zěn yàng jiān yìng wán gù kuáng bào de shì wù ， yīn yuè dōu kě yǐ lì kè gǎi biàn tā mén de xìng zhì ；",
+        "english": ""
+      },
+      {
+        "chinese": "灵魂里没有音乐，或是听了甜蜜和谐的乐声而不会感动的人，都是擅于为非作恶、使奸弄诈的；",
+        "pinyin": "líng hún lǐ méi yǒu yīn yuè ， huò shì tīng le tián mì hé xié de lè shēng ér bù huì gǎn dòng de rén ， dōu shì shàn yú wèi fēi zuò è 、 shǐ jiān nòng zhà de ；",
+        "english": ""
+      },
+      {
+        "chinese": "他们的灵魂像黑夜一样昏沉，他们的感情像鬼域一样幽暗；",
+        "pinyin": "tā mén de líng hún xiàng hēi yè yī yàng hūn chén ， tā mén de gǎn qíng xiàng guǐ yù yī yàng yōu àn ；",
+        "english": ""
+      },
+      {
+        "chinese": "这种人是不可信任的。",
+        "pinyin": "zhè zhǒng rén shì bù kě xìn rèn de 。",
+        "english": ""
+      },
+      {
+        "chinese": "听这音乐！",
+        "pinyin": "tīng zhè yīn yuè ！",
+        "english": ""
+      },
+      {
+        "chinese": "鲍西娅及尼莉莎自远处上。",
+        "pinyin": "bào xī yà jí ní lì suō zì yuǎn chù shàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "鲍西娅  那灯光是从我家里发出来的。",
+        "pinyin": "bào xī yà     nà dēng guāng shì cóng wǒ jiā lǐ fā chū lái de 。",
+        "english": ""
+      },
+      {
+        "chinese": "一枝小小的蜡烛，它的光照耀得多么远！",
+        "pinyin": "yī zhī xiǎo xiǎo de là zhú ， tā de guāng zhào yào dé duō me yuǎn ！",
+        "english": ""
+      },
+      {
+        "chinese": "一件善事也正像这枝蜡烛一样，在这罪恶的世界上发出广大的光辉。",
+        "pinyin": "yī jiàn shàn shì yě zhèng xiàng zhè zhī là zhú yī yàng ， zài zhè zuì è de shì jiè shàng fā chū guǎng dà de guāng huī 。",
+        "english": ""
+      },
+      {
+        "chinese": "尼莉莎  月光明亮的时候，我们就瞧不见灯光。",
+        "pinyin": "ní lì suō     yuè guāng míng liàng de shí hòu ， wǒ mén jiù qiáo bù jiàn dēng guāng 。",
+        "english": ""
+      },
+      {
+        "chinese": "鲍西娅  小小的荣耀也正是这样给更大的光荣所掩。",
+        "pinyin": "bào xī yà     xiǎo xiǎo de róng yào yě zhèng shì zhè yàng gěi gèng dà de guāng róng suǒ yǎn 。",
+        "english": ""
+      },
+      {
+        "chinese": "国王出巡的时候摄政的威权未尝不就像一个君主，可是一到国王回来，他的威权就归于乌有，正像溪涧中的细流注入大海一样。",
+        "pinyin": "guó wáng chū xún de shí hòu shè zhèng de wēi quán wèi cháng bù jiù xiàng yī gè jūn zhǔ ， kě shì yī dào guó wáng huí lái ， tā de wēi quán jiù guī yú wū yǒu ， zhèng xiàng xī jiàn zhōng de xì liú zhù rù dà hǎi yī yàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "音乐！",
+        "pinyin": "yīn yuè ！",
+        "english": ""
+      },
+      {
+        "chinese": "尼莉莎  小姐，这是我们家里的音乐。",
+        "pinyin": "ní lì suō     xiǎo jiě ， zhè shì wǒ mén jiā lǐ de yīn yuè 。",
+        "english": ""
+      },
+      {
+        "chinese": "鲍西娅  没有比较，就显不出长处；",
+        "pinyin": "bào xī yà     méi yǒu bǐ jiào ， jiù xiǎn bù chū cháng chù ；",
+        "english": ""
+      },
+      {
+        "chinese": "我觉得它比在白天好听得多哪。",
+        "pinyin": "wǒ jué dé tā bǐ zài bái tiān hǎo tīng dé duō nǎ 。",
+        "english": ""
+      },
+      {
+        "chinese": "尼莉莎  小姐，那是因为晚上比白天静寂的缘故。",
+        "pinyin": "ní lì suō     xiǎo jiě ， nà shì yīn wèi wǎn shàng bǐ bái tiān jìng jì de yuán gù 。",
+        "english": ""
+      },
+      {
+        "chinese": "鲍西娅  如果没有人欣赏，乌鸦的歌声也就和云雀一样；",
+        "pinyin": "bào xī yà     rú guǒ méi yǒu rén xīn shǎng ， wū yā de gē shēng yě jiù hé yún què yī yàng ；",
+        "english": ""
+      },
+      {
+        "chinese": "要是夜莺在白天杂在群鹅的聒噪里歌唱，人家决不以为它比鹪鹩唱得更美。",
+        "pinyin": "yào shì yè yīng zài bái tiān zá zài qún é de guō zào lǐ gē chàng ， rén jiā jué bù yǐ wèi tā bǐ jiāo liáo chàng dé gèng měi 。",
+        "english": ""
+      },
+      {
+        "chinese": "多少事情因为逢到有利的环境，才能够达到尽善的境界，博得一声恰当的赞赏！",
+        "pinyin": "duō shǎo shì qíng yīn wèi féng dào yǒu lì de huán jìng ， cái néng gòu dá dào jìn shàn de jìng jiè ， bó dé yī shēng qià dāng de zàn shǎng ！",
+        "english": ""
+      },
+      {
+        "chinese": "喂，静下来！",
+        "pinyin": "wèi ， jìng xià lái ！",
+        "english": ""
+      },
+      {
+        "chinese": "月亮正在拥着她的情郎酣睡，不肯就醒来呢。",
+        "pinyin": "yuè liàng zhèng zài yōng zhuó tā de qíng láng hān shuì ， bù kěn jiù xǐng lái ne 。",
+        "english": ""
+      },
+      {
+        "chinese": "（音乐停止。",
+        "pinyin": "（ yīn yuè tíng zhǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "罗兰佐  要是我没有听错，这分明是鲍西娅的声音。",
+        "pinyin": "luó lán zuǒ     yào shì wǒ méi yǒu tīng cuò ， zhè fēn míng shì bào xī yà de shēng yīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "鲍西娅  我的声音太难听，所以一下子就给他听出来了，正像瞎子能够辨认杜鹃一样。",
+        "pinyin": "bào xī yà     wǒ de shēng yīn tài nán tīng ， suǒ yǐ yī xià zǐ jiù gěi tā tīng chū lái le ， zhèng xiàng xiā zǐ néng gòu biàn rèn dù juān yī yàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "罗兰佐  好夫人，欢迎您回家来！",
+        "pinyin": "luó lán zuǒ     hǎo fū rén ， huān yíng nín huí jiā lái ！",
+        "english": ""
+      },
+      {
+        "chinese": "鲍西娅  我们在外边为我们的丈夫祈祷平安，希望他们能够因我们的祈祷而多福。",
+        "pinyin": "bào xī yà     wǒ mén zài wài biān wèi wǒ mén de zhàng fū qí dǎo píng ān ， xī wàng tā mén néng gòu yīn wǒ mén de qí dǎo ér duō fú 。",
+        "english": ""
+      },
+      {
+        "chinese": "他们已经回来了吗？",
+        "pinyin": "tā mén yǐ jīng huí lái le ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "罗兰佐  夫人，他们还没有来；",
+        "pinyin": "luó lán zuǒ     fū rén ， tā mén hái méi yǒu lái ；",
+        "english": ""
+      },
+      {
+        "chinese": "可是刚才有人来送过信，说他们就要来了。",
+        "pinyin": "kě shì gāng cái yǒu rén lái sòng guò xìn ， shuō tā mén jiù yào lái le 。",
+        "english": ""
+      },
+      {
+        "chinese": "鲍西娅  进去，尼莉莎，吩咐我的仆人们，叫他们就当我们两人没有出去过一样；",
+        "pinyin": "bào xī yà     jìn qù ， ní lì suō ， fēn fù wǒ de pū rén mén ， jiào tā mén jiù dāng wǒ mén liǎng rén méi yǒu chū qù guò yī yàng ；",
+        "english": ""
+      },
+      {
+        "chinese": "罗兰佐，您也给我保守秘密；",
+        "pinyin": "luó lán zuǒ ， nín yě gěi wǒ bǎo shǒu mì mì ；",
+        "english": ""
+      },
+      {
+        "chinese": "杰西卡，您也不要多说。",
+        "pinyin": "jié xī kǎ ， nín yě bù yào duō shuō 。",
+        "english": ""
+      },
+      {
+        "chinese": "（喇叭声。",
+        "pinyin": "（ lǎ bā shēng 。",
+        "english": ""
+      },
+      {
+        "chinese": "罗兰佐  您的丈夫来啦，我听见他的喇叭的声音。",
+        "pinyin": "luó lán zuǒ     nín de zhàng fū lái lā ， wǒ tīng jiàn tā de lǎ bā de shēng yīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "我们不是搬嘴弄舌的人，夫人，您放心好了。",
+        "pinyin": "wǒ mén bù shì bān zuǐ nòng shé de rén ， fū rén ， nín fàng xīn hǎo le 。",
+        "english": ""
+      },
+      {
+        "chinese": "鲍西娅  这样的夜色就像一个昏沉的白昼，不过略微惨淡点儿；",
+        "pinyin": "bào xī yà     zhè yàng de yè sè jiù xiàng yī gè hūn chén de bái zhòu ， bù guò lüè wēi cǎn dàn diǎn ér ；",
+        "english": ""
+      },
+      {
+        "chinese": "没有太阳的白天，瞧上去也不过如此。",
+        "pinyin": "méi yǒu tài yáng de bái tiān ， qiáo shàng qù yě bù guò rú cǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "巴萨尼奥、安东尼奥、葛莱西安诺及侍从等上。",
+        "pinyin": "bā sà ní ào 、 ān dōng ní ào 、 gé lái xī ān nuò jí shì cóng děng shàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "巴萨尼奥  要是您在没有太阳的地方走路，我们就可以和地球那一面的人共同享有着白昼。",
+        "pinyin": "bā sà ní ào     yào shì nín zài méi yǒu tài yáng de dì fāng zǒu lù ， wǒ mén jiù kě yǐ hé dì qiú nà yī miàn de rén gòng tóng xiǎng yǒu zhuó bái zhòu 。",
+        "english": ""
+      },
+      {
+        "chinese": "鲍西娅  让我发出光辉，可是不要让我像光一样轻浮；",
+        "pinyin": "bào xī yà     ràng wǒ fā chū guāng huī ， kě shì bù yào ràng wǒ xiàng guāng yī yàng qīng fú ；",
+        "english": ""
+      },
+      {
+        "chinese": "因为一个轻浮的妻子，是会使丈夫的心头沉重的，我决不愿意巴萨尼奥为了我而心头沉重。",
+        "pinyin": "yīn wèi yī gè qīng fú de qī zǐ ， shì huì shǐ zhàng fū de xīn tóu chén zhòng de ， wǒ jué bù yuàn yì bā sà ní ào wèi le wǒ ér xīn tóu chén zhòng 。",
+        "english": ""
+      },
+      {
+        "chinese": "可是一切都是上帝作主！",
+        "pinyin": "kě shì yī qiē dōu shì shàng dì zuò zhǔ ！",
+        "english": ""
+      },
+      {
+        "chinese": "欢迎您回家来，夫君！",
+        "pinyin": "huān yíng nín huí jiā lái ， fū jūn ！",
+        "english": ""
+      },
+      {
+        "chinese": "巴萨尼奥  谢谢您，夫人。",
+        "pinyin": "bā sà ní ào     xiè xiè nín ， fū rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "请您欢迎我这位朋友；",
+        "pinyin": "qǐng nín huān yíng wǒ zhè wèi péng yǒu ；",
+        "english": ""
+      },
+      {
+        "chinese": "这就是安东尼奥，我曾经受过他无穷的恩惠。",
+        "pinyin": "zhè jiù shì ān dōng ní ào ， wǒ céng jīng shòu guò tā wú qióng de ēn huì 。",
+        "english": ""
+      },
+      {
+        "chinese": "鲍西娅  他的确使您受惠无穷，因为我听说您曾经使他受累无穷呢。",
+        "pinyin": "bào xī yà     tā dí què shǐ nín shòu huì wú qióng ， yīn wèi wǒ tīng shuō nín céng jīng shǐ tā shòu léi wú qióng ne 。",
+        "english": ""
+      },
+      {
+        "chinese": "安东尼奥  没有什么，现在一切都已经圆满解决了。",
+        "pinyin": "ān dōng ní ào     méi yǒu shén me ， xiàn zài yī qiē dōu yǐ jīng yuán mǎn jiě jué le 。",
+        "english": ""
+      },
+      {
+        "chinese": "鲍西娅  先生，我们非常欢迎您的光临；",
+        "pinyin": "bào xī yà     xiān shēng ， wǒ mén fēi cháng huān yíng nín de guāng lín ；",
+        "english": ""
+      },
+      {
+        "chinese": "可是口头的空言不能表示诚意，所以一切客套的话，我都不说了。",
+        "pinyin": "kě shì kǒu tóu de kōng yán bù néng biǎo shì chéng yì ， suǒ yǐ yī qiē kè tào de huà ， wǒ dōu bù shuō le 。",
+        "english": ""
+      },
+      {
+        "chinese": "葛莱西安诺  （向尼莉莎）我凭着那边的月亮起誓，你冤枉了我，我真的把它送给了那法官的书记。",
+        "pinyin": "gé lái xī ān nuò     （ xiàng ní lì suō ） wǒ píng zhuó nà biān de yuè liàng qǐ shì ， nǐ yuān wǎng le wǒ ， wǒ zhēn de bǎ tā sòng gěi le nà fǎ guān de shū jì 。",
+        "english": ""
+      },
+      {
+        "chinese": "好人，你既然把这件事情看得这么重，那么我但愿拿了去的人是个割掉了鸡巴的。",
+        "pinyin": "hǎo rén ， nǐ jì rán bǎ zhè jiàn shì qíng kàn dé zhè me zhòng ， nà me wǒ dàn yuàn ná le qù de rén shì gè gē diào le jī bā de 。",
+        "english": ""
+      },
+      {
+        "chinese": "鲍西娅  啊！",
+        "pinyin": "bào xī yà     ā ！",
+        "english": ""
+      },
+      {
+        "chinese": "已经在吵架了吗？",
+        "pinyin": "yǐ jīng zài chǎo jià le ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "为了什么事？",
+        "pinyin": "wèi le shén me shì ？",
+        "english": ""
+      },
+      {
+        "chinese": "葛莱西安诺  为了一个金圈圈儿，她给我的一个不值钱的指环，上面刻着的诗句，就跟那些刀匠们刻在刀子上的差不多，什么“爱我毋相弃”。",
+        "pinyin": "gé lái xī ān nuò     wèi le yī gè jīn quān quān ér ， tā gěi wǒ de yī gè bù zhí qián de zhǐ huán ， shàng miàn kè zhuó de shī jù ， jiù gēn nà xiē dāo jiàng mén kè zài dāo zǐ shàng de chà bù duō ， shén me “ ài wǒ wú xiāng qì ” 。",
+        "english": ""
+      },
+      {
+        "chinese": "尼莉莎  你管它什么诗句，什么值钱不值钱？",
+        "pinyin": "ní lì suō     nǐ guǎn tā shén me shī jù ， shén me zhí qián bù zhí qián ？",
+        "english": ""
+      },
+      {
+        "chinese": "我当初给你的时候，你曾经向我发誓，说你要戴着它直到死去，死了就跟你一起葬在坟墓里；",
+        "pinyin": "wǒ dāng chū gěi nǐ de shí hòu ， nǐ céng jīng xiàng wǒ fā shì ， shuō nǐ yào dài zhuó tā zhí dào sǐ qù ， sǐ le jiù gēn nǐ yī qǐ zàng zài fén mù lǐ ；",
+        "english": ""
+      },
+      {
+        "chinese": "即使不为我，为了你所发的重誓，你也应该把它看重，好好儿地保存着。",
+        "pinyin": "jí shǐ bù wèi wǒ ， wèi le nǐ suǒ fā de zhòng shì ， nǐ yě yīng gāi bǎ tā kàn zhòng ， hǎo hǎo ér dì bǎo cún zhuó 。",
+        "english": ""
+      },
+      {
+        "chinese": "送给一个法官的书记！",
+        "pinyin": "sòng gěi yī gè fǎ guān de shū jì ！",
+        "english": ""
+      },
+      {
+        "chinese": "上帝可以替我判断，拿了这指环去的那个书记，一定是个脸上永远不会出毛的。",
+        "pinyin": "shàng dì kě yǐ tì wǒ pàn duàn ， ná le zhè zhǐ huán qù de nà gè shū jì ， yī dìng shì gè liǎn shàng yǒng yuǎn bù huì chū máo de 。",
+        "english": ""
+      },
+      {
+        "chinese": "葛莱西安诺  他年纪长大起来，自然会出胡子的。",
+        "pinyin": "gé lái xī ān nuò     tā nián jì cháng dà qǐ lái ， zì rán huì chū hú zǐ de 。",
+        "english": ""
+      },
+      {
+        "chinese": "尼莉莎  一个女人也会长成男子吗？",
+        "pinyin": "ní lì suō     yī gè nǚ rén yě huì cháng chéng nán zǐ ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "葛莱西安诺  我举手起誓，我的确把它送给一个少年人，一个年纪小小、发育不全的孩子；",
+        "pinyin": "gé lái xī ān nuò     wǒ jǔ shǒu qǐ shì ， wǒ dí què bǎ tā sòng gěi yī gè shǎo nián rén ， yī gè nián jì xiǎo xiǎo 、 fā yù bù quán de hái zǐ ；",
+        "english": ""
+      },
+      {
+        "chinese": "他的个儿并不比你高，这个法官的书记。",
+        "pinyin": "tā de gè ér bìng bù bǐ nǐ gāo ， zhè gè fǎ guān de shū jì 。",
+        "english": ""
+      },
+      {
+        "chinese": "他是个多话的孩子，一定要我把这指环给他做酬劳，我实在不好意思不给他。",
+        "pinyin": "tā shì gè duō huà de hái zǐ ， yī dìng yào wǒ bǎ zhè zhǐ huán gěi tā zuò chóu láo ， wǒ shí zài bù hǎo yì sī bù gěi tā 。",
+        "english": ""
+      },
+      {
+        "chinese": "鲍西娅  恕我说句不客气的话，这是你的不对；",
+        "pinyin": "bào xī yà     shù wǒ shuō jù bù kè qì de huà ， zhè shì nǐ de bù duì ；",
+        "english": ""
+      },
+      {
+        "chinese": "你怎么可以把你妻子的第一件礼物随随便便给了人？",
+        "pinyin": "nǐ zěn me kě yǐ bǎ nǐ qī zǐ de dì yī jiàn lǐ wù suí suí biàn biàn gěi le rén ？",
+        "english": ""
+      },
+      {
+        "chinese": "你已经发过誓把它套在你的手指上，它就是你身体上不可分的一部分。",
+        "pinyin": "nǐ yǐ jīng fā guò shì bǎ tā tào zài nǐ de shǒu zhǐ shàng ， tā jiù shì nǐ shēn tǐ shàng bù kě fēn de yī bù fēn 。",
+        "english": ""
+      },
+      {
+        "chinese": "我也曾经送给我的爱人一个指环，使他发誓永不把它抛弃；",
+        "pinyin": "wǒ yě céng jīng sòng gěi wǒ de ài rén yī gè zhǐ huán ， shǐ tā fā shì yǒng bù bǎ tā pāo qì ；",
+        "english": ""
+      },
+      {
+        "chinese": "他现在就在这儿，我敢代他发誓，即使把世间所有的财富向他交换，他也不肯丢掉它或是把它从他的手指上取下来的。",
+        "pinyin": "tā xiàn zài jiù zài zhè ér ， wǒ gǎn dài tā fā shì ， jí shǐ bǎ shì jiān suǒ yǒu de cái fù xiàng tā jiāo huàn ， tā yě bù kěn diū diào tā huò shì bǎ tā cóng tā de shǒu zhǐ shàng qǔ xià lái de 。",
+        "english": ""
+      },
+      {
+        "chinese": "真的，葛莱西安诺，你太对不起你的妻子了；",
+        "pinyin": "zhēn de ， gé lái xī ān nuò ， nǐ tài duì bù qǐ nǐ de qī zǐ le ；",
+        "english": ""
+      },
+      {
+        "chinese": "倘然是我的话，我早就发起脾气来啦。",
+        "pinyin": "tǎng rán shì wǒ de huà ， wǒ zǎo jiù fā qǐ pí qì lái lā 。",
+        "english": ""
+      },
+      {
+        "chinese": "巴萨尼奥  （旁白）嗳哟，我应该把我的左手砍掉了，那就可以发誓说，因为强盗要我的指环，我不肯给他，所以连手都给砍下来了。",
+        "pinyin": "bā sà ní ào     （ páng bái ） ài yō ， wǒ yīng gāi bǎ wǒ de zuǒ shǒu kǎn diào le ， nà jiù kě yǐ fā shì shuō ， yīn wèi qiáng dào yào wǒ de zhǐ huán ， wǒ bù kěn gěi tā ， suǒ yǐ lián shǒu dōu gěi kǎn xià lái le 。",
+        "english": ""
+      },
+      {
+        "chinese": "葛莱西安诺  巴萨尼奥大爷也把他的指环给那法官了，因为那法官一定要向他讨那指环；",
+        "pinyin": "gé lái xī ān nuò     bā sà ní ào dà yé yě bǎ tā de zhǐ huán gěi nà fǎ guān le ， yīn wèi nà fǎ guān yī dìng yào xiàng tā tǎo nà zhǐ huán ；",
+        "english": ""
+      },
+      {
+        "chinese": "其实他就是拿了指环去，也一点不算过份。",
+        "pinyin": "qí shí tā jiù shì ná le zhǐ huán qù ， yě yī diǎn bù suàn guò fèn 。",
+        "english": ""
+      },
+      {
+        "chinese": "那个孩子、那法官的书记，因为写了几个字，也就讨了我的指环去做酬劳。",
+        "pinyin": "nà gè hái zǐ 、 nà fǎ guān de shū jì ， yīn wèi xiě le jǐ gè zì ， yě jiù tǎo le wǒ de zhǐ huán qù zuò chóu láo 。",
+        "english": ""
+      },
+      {
+        "chinese": "他们主仆两人什么都不要，就是要这两个指环。",
+        "pinyin": "tā mén zhǔ pū liǎng rén shén me dōu bù yào ， jiù shì yào zhè liǎng gè zhǐ huán 。",
+        "english": ""
+      },
+      {
+        "chinese": "鲍西娅  我的爷，您把什么指环送了人哪？",
+        "pinyin": "bào xī yà     wǒ de yé ， nín bǎ shén me zhǐ huán sòng le rén nǎ ？",
+        "english": ""
+      },
+      {
+        "chinese": "我想不会是我给您的那一个吧？",
+        "pinyin": "wǒ xiǎng bù huì shì wǒ gěi nín de nà yī gè bā ？",
+        "english": ""
+      },
+      {
+        "chinese": "巴萨尼奥  要是我可以用说谎来加重我的过失，那么我会否认的；",
+        "pinyin": "bā sà ní ào     yào shì wǒ kě yǐ yòng shuō huǎng lái jiā zhòng wǒ de guò shī ， nà me wǒ huì fǒu rèn de ；",
+        "english": ""
+      },
+      {
+        "chinese": "可是您瞧我的手指上已没有指环；",
+        "pinyin": "kě shì nín qiáo wǒ de shǒu zhǐ shàng yǐ méi yǒu zhǐ huán ；",
+        "english": ""
+      },
+      {
+        "chinese": "它已经没有了。",
+        "pinyin": "tā yǐ jīng méi yǒu le 。",
+        "english": ""
+      },
+      {
+        "chinese": "鲍西娅  正像您的虚伪的心里没有一丝真情一样。",
+        "pinyin": "bào xī yà     zhèng xiàng nín de xū wěi de xīn lǐ méi yǒu yī sī zhēn qíng yī yàng 。",
+        "english": ""
+      }
+    ]
+  },
+  {
+    "id": "merchant_of_venice_ch_6",
+    "bookId": "merchant_of_venice",
+    "chapterIndex": 6,
+    "title": "第七章。",
+    "titleEn": "Chapter 6: 第七章。",
+    "sentences": [
+      {
+        "chinese": "14. 玛哪（manna），天粮，见《旧约》：《出埃及记》。",
+        "pinyin": "1 4 .   mǎ nǎ （ m a n n a ） ， tiān liáng ， jiàn 《 jiù yuē 》 ： 《 chū āi jí jì 》 。",
+        "english": ""
+      }
+    ]
+  }
+]

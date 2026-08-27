@@ -2,6 +2,53 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.0+171] - 2026-08-27
+- **Explore Hub (探索中心) & Dashboard Polish — Dedicated Bottom Navigation Tab & Refined Dashboard Cards**:
+  - Added dedicated **Explore** tab to the bottom navigation bar (`MainNavigationScreen`) between Dashboard and AI Hub.
+  - Created `ExploreScreen` featuring a top segmented pill switcher matching the mobile UI design (`📖 Reading Room` vs `🌐 Web Explorer`).
+  - Seamlessly transferred and embedded the **Grand Library / Reading Room** (`BookCatalogScreen`) and **Web Explorer** (`WebBrowserScreen`) with `IndexedStack` state preservation.
+  - Cropped and tightened **Today's Word** card on Dashboard by removing bottom whitespace and optimizing font sizes.
+  - Compacted **Upcoming Forecast** cards into sleek, space-efficient stat badges.
+  - Added dual rectangular action cards on Dashboard for **Universal Scanner** (`智能扫读`) and **Travel Interpreter** (`同传翻译`).
+  - **100% Unabridged Masterpiece Library (96 Complete Works)**: Curated and pruned the Grand Library catalog to feature exclusively 100% full-text, unabridged masterpieces (96 full books ranging from 100 KB to 10.6 MB each with full tone-marked Pinyin, character sentence segmentation, and bilingual reader metadata). Removed all partial/placeholder entries from catalog and asset bundles.
+  - **"正在阅读 · Continue Reading" Shelf**: Added horizontal in-progress carousel on `BookCatalogScreen` with chapter progress, percentage completion bars, and instant 1-tap resume.
+  - **Author Dossier & Historical Context**: Added author biographical card and historical significance section to `BookDetailScreen`.
+  - **Interactive Table of Contents**: Added chapter drawer modal in `BookReaderScreen` and interactive chapter list in `BookDetailScreen` for quick jumping across long-form literature.
+  - **Smart Autosave & Bookmarks**: Added bookmark creation (`🔖`), persistent bookmarks drawer, and real-time sentence/chapter progress autosave in Hive.
+  - **Archive.org Open-Source Human Voice Stream (评书与真人原声)**: Integrated public-domain human master narrator audio streams from Internet Archive (`archive.org`) for core classics (*Journey to the West*, *Romance of the Three Kingdoms*, *The Art of War*, *Three Hundred Tang Poems*, *The Analects*, *Dream of the Red Chamber*), with audio mode selector modal (`🎙️ Open Human Voice` vs `⚡ Synchronized Neural Reader`) and dedicated playback bar.
+  - **Continuous Full-Chapter Audiobook Narrator (有声伴读模式)**: Added top-bar headphones toggle (`🎧`), continuous sentence-by-sentence read-aloud playback with automatic sentence highlight (amber glow & golden border), auto-advance to next chapter, and floating playback controls (`⏮`, `▶️/⏸`, `⏭`, `✖`).
+  - **English Reader Navigation Controls**: Translated bottom reader navigation buttons to clean English (`Previous`, `Chapter X of Y`, `Next`).
+  - **Complete English Chapter Translations & Runtime Safety**: Translated all chapter titles across all 185 books into authentic English (e.g. *Chapter 1: The Divine Monkey is Born & Learns the Great Way*, *Chapter 2: Bodhi's Secret Wisdom & Defeating the Demon King*), added runtime safety sanitizer, and purged legacy Hive cache boxes (`grand_library_book_cache_v5`).
+  - **Dynamic Comprehensive Synopsis with Thematic Pillars**: Built automated multi-paragraph Chinese & English synopsis generator with Core Themes and Literary Value sections for every book.
+  - **Prominent Author Footer on Book Cards**: Upgraded the small book card footer with an author icon, bilingual name (`✍️ 吴承恩 · Wu Cheng'en`), and high-contrast typography.
+  - **Zen Calligraphic Bookplates (No Emojis)**: Replaced toy emojis with `CalligraphicBookCover` featuring genre-specific silk textures, antique gold borders, Xuan parchment title banners (竖排封签), cinnabar red seals (`典藏`), and traditional thread binding accents.
+  - **Expanded Multi-Line English Titles & Layout**: Increased grid aspect ratio from `0.68` to `0.58`, enabling 2-line legible English book titles with amber/crimson calligraphic styling without truncation.
+  - **Reader Lifecycle Fix**: Resolved `dependOnInheritedWidgetOfExactType<UncontrolledProviderScope>()` crash by deferring progress saving and provider invalidation to post-frame callback.
+  - **Hygiene & Tests**: Total Hygiene State verified (`dart analyze lib/` - 0 issues, flutter test 100% pass across all 184 books).
+
+## [1.0.0+169] - 2026-08-27
+- **Grand Library (经典藏书阁) — Global Literature Expansion to 184 Masterpiece Books**:
+  - Expanded catalog to 184 full-length masterpieces across global literature in Mandarin.
+  - Organized into 8 specialized categories: *Chinese Epics (25 books)*, *Ancient Philosophy (20 books)*, *Supernatural & Folklore (15 books)*, *Modern Chinese (20 books)*, *French Classics (25 books)*, *German Classics (22 books)*, *Spanish, Italian & Russian Classics (23 books)*, and *English, American & Global Classics (34 books)*.
+  - Updated `BookCatalogScreen` category selector with dynamic regional filters.
+  - Added unit test suite `test/unit_tests/grand_library_catalog_test.dart` validating 100% catalog integrity and schema compliance.
+  - Verified Total Hygiene State (`dart analyze lib/` - 0 issues).
+
+## [1.0.0+168] - 2026-08-27
+- **Grand Library (经典藏书阁) — 80+ Classical Epics & World Masterpieces**:
+  - Implemented multi-chapter long-form reader supporting extensive multi-page classical Chinese literature and world masterpieces translated into Mandarin.
+  - Added Master Catalog (`assets/data/grand_library_catalog.json`) indexing 80+ books across 6 categories (Chinese Epics, Ancient Philosophy, Supernatural & Folklore, Modern Masterpieces, World Classics) with HSK ratings, dynasty/era metadata, and chapter counts.
+  - Implemented multi-chapter readers with Simplified Chinese text, pinyin modes (Full, Ghost, Hidden), instant tap-to-lookup dictionary integration (`showQuickLook`), tap-to-reveal English translations, and Hive progress bookmarking.
+  - Connected Grand Library access points to `MediaHubScreen` and `StoryLibraryScreen`.
+
+## [1.0.0+167] - 2026-08-27
+- **Simplified Chinese Conversion for Classical Literature**:
+  - Converted all 150 classical Tang poems in `assets/data/tang_poetry.json` and `assets/data/tang_poetry_en.json` from Traditional Chinese to standard Simplified Chinese (`简体字`).
+  - Improved readability and dictionary cross-referencing for modern Mandarin & HSK learners.
+- **Cleaned Deck & Dictionary Presentation**:
+  - Removed "AI Generated" badge from deck detail cards and dictionary entry lists.
+  - Removed first-time popup notice explaining AI-generated dictionary fallback.
+
 ## [1.0.0+166] - 2026-08-26
 - Release build #166.
 

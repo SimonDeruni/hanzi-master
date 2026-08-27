@@ -48,19 +48,19 @@ class TodayInsightCard extends ConsumerWidget {
             children: [
               // Subtle animated background or texture
               Positioned(
-                right: -30,
-                bottom: -50,
+                right: -20,
+                bottom: -35,
                 child: Opacity(
                   opacity: 0.04,
                   child: Text(
                     todayWord['hanzi']!,
                     style: const TextStyle(
-                      fontSize: 220,
+                      fontSize: 160,
                       fontWeight: FontWeight.bold,
                       fontFamily: 'NotoSerifSC',
                       color: Colors.white,
                       height: 1,
-                      shadows: [Shadow(color: Colors.white24, blurRadius: 30)],
+                      shadows: [Shadow(color: Colors.white24, blurRadius: 20)],
                     ),
                   ),
                 ),
@@ -68,76 +68,81 @@ class TodayInsightCard extends ConsumerWidget {
               
               // Content
               Padding(
-                padding: const EdgeInsets.all(24.0),
+                padding: const EdgeInsets.symmetric(horizontal: 22.0, vertical: 16.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
                       "TODAY'S WORD",
                       style: theme.textTheme.labelSmall?.copyWith(
                         color: const Color(0xFFD4C4A8),
                         fontWeight: FontWeight.w700,
-                        letterSpacing: 3.0,
+                        letterSpacing: 2.5,
+                        fontSize: 11,
                       ),
                     ),
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 10),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
                           todayWord['hanzi']!,
-                          style: theme.textTheme.displayMedium?.copyWith(
+                          style: theme.textTheme.displaySmall?.copyWith(
                             color: Colors.white,
                             fontFamily: 'NotoSerifSC',
                             fontWeight: FontWeight.w900,
                             height: 1.0,
+                            fontSize: 48,
                             shadows: [
                               Shadow(color: Colors.black.withValues(alpha: 0.5), blurRadius: 10, offset: const Offset(0, 4)),
                             ],
                           ),
                         ),
-                        const SizedBox(width: 24),
+                        const SizedBox(width: 20),
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
                             children: [
                               Row(
                                 children: [
                                   Text(
                                     todayWord['pinyin']!,
-                                    style: theme.textTheme.titleLarge?.copyWith(
+                                    style: theme.textTheme.titleMedium?.copyWith(
                                       color: const Color(0xFFD4C4A8),
-                                      fontWeight: FontWeight.w600,
+                                      fontWeight: FontWeight.bold,
                                       letterSpacing: 0.5,
                                     ),
                                   ),
-                                  const SizedBox(width: 12),
+                                  const SizedBox(width: 10),
                                   GestureDetector(
                                     onTap: () => ref.read(audioServiceProvider).playCharacter(todayWord['hanzi']!),
                                     child: Container(
-                                      padding: const EdgeInsets.all(8),
+                                      padding: const EdgeInsets.all(6),
                                       decoration: BoxDecoration(
-                                        color: Colors.white.withValues(alpha: 0.1),
+                                        color: Colors.white.withValues(alpha: 0.12),
                                         shape: BoxShape.circle,
                                       ),
                                       child: Icon(
                                         Icons.volume_up_rounded,
-                                        size: 18,
+                                        size: 16,
                                         color: Colors.white.withValues(alpha: 0.9),
                                       ),
                                     ),
                                   ),
                                 ],
                               ),
-                              const SizedBox(height: 8),
+                              const SizedBox(height: 4),
                               Text(
                                 todayWord['meaning']!,
                                 maxLines: 2,
                                 overflow: TextOverflow.ellipsis,
-                                style: theme.textTheme.bodyMedium?.copyWith(
+                                style: theme.textTheme.bodySmall?.copyWith(
                                   color: Colors.white.withValues(alpha: 0.75),
                                   fontWeight: FontWeight.w400,
-                                  height: 1.3,
+                                  height: 1.25,
+                                  fontSize: 13,
                                 ),
                               ),
                             ],

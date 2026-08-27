@@ -1,0 +1,4422 @@
+[
+  {
+    "id": "mozi_ch_1",
+    "bookId": "mozi",
+    "chapterIndex": 1,
+    "title": "節用上",
+    "titleEn": "Chapter 1: 節用上",
+    "sentences": [
+      {
+        "chinese": "聖人爲政一國，一國可倍也；",
+        "pinyin": "shèng rén wéi zhèng yī guó ， yī guó kě bèi yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "大之爲政天下，天下可倍也。",
+        "pinyin": "dà zhī wéi zhèng tiān xià ， tiān xià kě bèi yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "其倍之，非外取地也，因其國家，去其無用，足以倍之。",
+        "pinyin": "qí bèi zhī ， fēi wài qǔ dì yě ， yīn qí guó jiā ， qù qí wú yòng ， zú yǐ bèi zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "聖王爲政，其發令興事、使民用財也。",
+        "pinyin": "shèng wáng wéi zhèng ， qí fā lìng xìng shì 、 shǐ mín yòng cái yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "無不加用而爲者，是故用財不費，民德不勞，其興利多矣。",
+        "pinyin": "wú bù jiā yòng ér wéi zhě ， shì gù yòng cái bù fèi ， mín dé bù láo ， qí xìng lì duō yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "其爲衣裘何以爲？",
+        "pinyin": "qí wéi yī qiú hé yǐ wéi ？",
+        "english": ""
+      },
+      {
+        "chinese": "冬以圉寒，夏以圉暑。",
+        "pinyin": "dōng yǐ yǔ hán ， xià yǐ yǔ shǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "凡爲衣裳之道，冬加溫、夏加凊者，𦬒䱉；",
+        "pinyin": "fán wéi yī cháng zhī dào ， dōng jiā wēn 、 xià jiā qìng zhě ， \ud85a \udf12 䱉 ；",
+        "english": ""
+      },
+      {
+        "chinese": "不加者，去之。",
+        "pinyin": "bù jiā zhě ， qù zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "其爲宮室何以爲？",
+        "pinyin": "qí wéi gōng shì hé yǐ wéi ？",
+        "english": ""
+      },
+      {
+        "chinese": "冬以圉風寒，夏以圉暑雨。",
+        "pinyin": "dōng yǐ yǔ fēng hán ， xià yǐ yǔ shǔ yǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "凡爲宮室，加固者，𦬒䱉；",
+        "pinyin": "fán wéi gōng shì ， jiā gù zhě ， \ud85a \udf12 䱉 ；",
+        "english": ""
+      },
+      {
+        "chinese": "不加者，去之。",
+        "pinyin": "bù jiā zhě ， qù zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "其爲甲盾五兵何以爲？",
+        "pinyin": "qí wéi jiǎ dùn wǔ bīng hé yǐ wéi ？",
+        "english": ""
+      },
+      {
+        "chinese": "以圉寇亂盜賊，若有寇亂盜賊，有甲盾五兵者勝，無者不勝，是故聖人作爲甲盾五兵。",
+        "pinyin": "yǐ yǔ kòu luàn dào zéi ， ruò yǒu kòu luàn dào zéi ， yǒu jiǎ dùn wǔ bīng zhě shèng ， wú zhě bù shèng ， shì gù shèng rén zuò wéi jiǎ dùn wǔ bīng 。",
+        "english": ""
+      },
+      {
+        "chinese": "凡爲甲盾五兵，加輕以利堅而難折者，𦬒䱉；",
+        "pinyin": "fán wéi jiǎ dùn wǔ bīng ， jiā qīng yǐ lì jiān ér nán zhé zhě ， \ud85a \udf12 䱉 ；",
+        "english": ""
+      },
+      {
+        "chinese": "不加者，去之。",
+        "pinyin": "bù jiā zhě ， qù zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "其爲舟車何以爲？",
+        "pinyin": "qí wéi zhōu chē hé yǐ wéi ？",
+        "english": ""
+      },
+      {
+        "chinese": "車以行陵陸，舟以行川谷，以通四方之利。",
+        "pinyin": "chē yǐ xíng líng lù ， zhōu yǐ xíng chuān gǔ ， yǐ tōng sì fāng zhī lì 。",
+        "english": ""
+      },
+      {
+        "chinese": "凡爲舟車之道，加輕以利者，𦬒䱉；",
+        "pinyin": "fán wéi zhōu chē zhī dào ， jiā qīng yǐ lì zhě ， \ud85a \udf12 䱉 ；",
+        "english": ""
+      },
+      {
+        "chinese": "不加者，去之。",
+        "pinyin": "bù jiā zhě ， qù zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "凡其爲此物也，無不加用而爲者，是故用財不費，民德不勞，其興利多矣。",
+        "pinyin": "fán qí wéi cǐ wù yě ， wú bù jiā yòng ér wéi zhě ， shì gù yòng cái bù fèi ， mín dé bù láo ， qí xìng lì duō yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "有去大人之好聚珠玉鳥獸犬馬，以益衣裳宮室甲盾五兵舟車之數，於數倍乎？",
+        "pinyin": "yǒu qù dà rén zhī hǎo jù zhū yù niǎo shòu quǎn mǎ ， yǐ yì yī cháng gōng shì jiǎ dùn wǔ bīng zhōu chē zhī shǔ ， yú shǔ bèi hū ？",
+        "english": ""
+      },
+      {
+        "chinese": "若則不難倍。",
+        "pinyin": "ruò zé bù nán bèi 。",
+        "english": ""
+      },
+      {
+        "chinese": "故孰爲難倍？",
+        "pinyin": "gù shú wéi nán bèi ？",
+        "english": ""
+      },
+      {
+        "chinese": "唯人爲難倍。",
+        "pinyin": "wéi rén wéi nán bèi 。",
+        "english": ""
+      },
+      {
+        "chinese": "然人有可倍也。",
+        "pinyin": "rán rén yǒu kě bèi yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "昔者聖王爲法曰：「丈夫年二十，毋敢不處家。",
+        "pinyin": "xī zhě shèng wáng wéi fǎ yuē ： 「 zhàng fū nián èr shí ， wú gǎn bù chù jiā 。",
+        "english": ""
+      },
+      {
+        "chinese": "女子年十五，毋敢不事人。",
+        "pinyin": "nǚ zǐ nián shí wǔ ， wú gǎn bù shì rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "」此聖王之法也。",
+        "pinyin": "」 cǐ shèng wáng zhī fǎ yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "聖王既沒，於民次也。",
+        "pinyin": "shèng wáng jì méi ， yú mín cì yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "其欲蚤處家者，有所二十年處家；",
+        "pinyin": "qí yù zǎo chù jiā zhě ， yǒu suǒ èr shí nián chù jiā ；",
+        "english": ""
+      },
+      {
+        "chinese": "其欲晚處家者，有所四十年處家。",
+        "pinyin": "qí yù wǎn chù jiā zhě ， yǒu suǒ sì shí nián chù jiā 。",
+        "english": ""
+      },
+      {
+        "chinese": "以其蚤與其晚相踐，後聖王之法十年，若純三年而字，子生可以二三年矣。",
+        "pinyin": "yǐ qí zǎo yǔ qí wǎn xiāng jiàn ， hòu shèng wáng zhī fǎ shí nián ， ruò chún sān nián ér zì ， zǐ shēng kě yǐ èr sān nián yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "此不惟使民蚤處家而可以倍與？",
+        "pinyin": "cǐ bù wéi shǐ mín zǎo chù jiā ér kě yǐ bèi yǔ ？",
+        "english": ""
+      },
+      {
+        "chinese": "且不然已。",
+        "pinyin": "qiě bù rán yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "今天下爲政者，其所以寡人之道多。",
+        "pinyin": "jīn tiān xià wéi zhèng zhě ， qí suǒ yǐ guǎ rén zhī dào duō 。",
+        "english": ""
+      },
+      {
+        "chinese": "其使民勞，其籍斂厚，民財不足，凍餓死者不可勝數也。",
+        "pinyin": "qí shǐ mín láo ， qí jí liǎn hòu ， mín cái bù zú ， dòng è sǐ zhě bù kě shèng shǔ yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "且大人惟毋興師以攻伐鄰國，久者終年，速者數月，男女久不相見，此所以寡人之道也。",
+        "pinyin": "qiě dà rén wéi wú xìng shī yǐ gōng fá lín guó ， jiǔ zhě zhōng nián ， sù zhě shǔ yuè ， nán nǚ jiǔ bù xiāng jiàn ， cǐ suǒ yǐ guǎ rén zhī dào yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "與居處不安、飲食不時、作疾病死者，有與侵就𠋠橐、攻城野戰死者，不可勝數。",
+        "pinyin": "yǔ jū chù bù ān 、 yǐn shí bù shí 、 zuò jí bìng sǐ zhě ， yǒu yǔ qīn jiù \ud840 \udee0 tuó 、 gōng chéng yě zhàn sǐ zhě ， bù kě shèng shǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "此不今爲政者所以寡人之道數術而起與？",
+        "pinyin": "cǐ bù jīn wéi zhèng zhě suǒ yǐ guǎ rén zhī dào shǔ shù ér qǐ yǔ ？",
+        "english": ""
+      },
+      {
+        "chinese": "聖人爲政特無此，此不聖人爲政其所以衆人之道亦數術而起與？",
+        "pinyin": "shèng rén wéi zhèng tè wú cǐ ， cǐ bù shèng rén wéi zhèng qí suǒ yǐ zhòng rén zhī dào yì shǔ shù ér qǐ yǔ ？",
+        "english": ""
+      },
+      {
+        "chinese": "故子墨子曰：去無用之務，行聖王之道，天下之大利也。",
+        "pinyin": "gù zǐ mò zǐ yuē ： qù wú yòng zhī wù ， xíng shèng wáng zhī dào ， tiān xià zhī dà lì yě 。",
+        "english": ""
+      }
+    ]
+  },
+  {
+    "id": "mozi_ch_2",
+    "bookId": "mozi",
+    "chapterIndex": 2,
+    "title": "節葬下",
+    "titleEn": "Chapter 2: 節葬下",
+    "sentences": [
+      {
+        "chinese": "子墨子言曰：仁者之爲天下度也，辟之無以異乎孝子之爲親度也。",
+        "pinyin": "zǐ mò zǐ yán yuē ： rén zhě zhī wéi tiān xià dù yě ， pì zhī wú yǐ yì hū xiào zǐ zhī wéi qīn dù yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "今孝子之爲親度也，將柰何哉？",
+        "pinyin": "jīn xiào zǐ zhī wéi qīn dù yě ， jiāng nài hé zāi ？",
+        "english": ""
+      },
+      {
+        "chinese": "曰：親貧則從事乎富之，人民寡則從事乎衆之，衆亂則從事乎治之。",
+        "pinyin": "yuē ： qīn pín zé cóng shì hū fù zhī ， rén mín guǎ zé cóng shì hū zhòng zhī ， zhòng luàn zé cóng shì hū zhì zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "當其於此也，亦有力不足、財不贍、智不智然後已矣，無敢舍餘力，隱謀遺利，而不爲親爲之者矣。",
+        "pinyin": "dāng qí yú cǐ yě ， yì yǒu lì bù zú 、 cái bù shàn 、 zhì bù zhì rán hòu yǐ yǐ ， wú gǎn shě yú lì ， yǐn móu yí lì ， ér bù wéi qīn wéi zhī zhě yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "若三務者，孝子之爲親度也，既若此矣。",
+        "pinyin": "ruò sān wù zhě ， xiào zǐ zhī wéi qīn dù yě ， jì ruò cǐ yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "雖仁者之爲天下度，亦猶此也。",
+        "pinyin": "suī rén zhě zhī wéi tiān xià dù ， yì yóu cǐ yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "曰：天下貧則從事乎富之，人民寡則從事乎衆之，衆而亂則從事乎治之。",
+        "pinyin": "yuē ： tiān xià pín zé cóng shì hū fù zhī ， rén mín guǎ zé cóng shì hū zhòng zhī ， zhòng ér luàn zé cóng shì hū zhì zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "當其於此，亦有力不足、財不贍、智不智然後已矣。",
+        "pinyin": "dāng qí yú cǐ ， yì yǒu lì bù zú 、 cái bù shàn 、 zhì bù zhì rán hòu yǐ yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "無敢舍餘力，隱謀遺利，而不爲天下爲之者矣。",
+        "pinyin": "wú gǎn shě yú lì ， yǐn móu yí lì ， ér bù wéi tiān xià wéi zhī zhě yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "若三務者，此仁者之爲天下度，既若此矣。",
+        "pinyin": "ruò sān wù zhě ， cǐ rén zhě zhī wéi tiān xià dù ， jì ruò cǐ yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "今逮至昔者三代聖王既沒，天下失義。",
+        "pinyin": "jīn dài zhì xī zhě sān dài shèng wáng jì méi ， tiān xià shī yì 。",
+        "english": ""
+      },
+      {
+        "chinese": "後世之君子，或以厚葬久喪以爲仁也、義也、孝子之事也。",
+        "pinyin": "hòu shì zhī jūn zǐ ， huò yǐ hòu zàng jiǔ sàng yǐ wéi rén yě 、 yì yě 、 xiào zǐ zhī shì yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "或以厚葬久喪以爲非仁義、非孝子之事也。",
+        "pinyin": "huò yǐ hòu zàng jiǔ sàng yǐ wéi fēi rén yì 、 fēi xiào zǐ zhī shì yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "曰：二子者，言則相非，行即相反，皆曰：「吾上祖述堯舜禹湯文武之道者也。",
+        "pinyin": "yuē ： èr zǐ zhě ， yán zé xiāng fēi ， xíng jí xiāng fǎn ， jiē yuē ： 「 wú shàng zǔ shù yáo shùn yǔ tāng wén wǔ zhī dào zhě yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "」而言即相非，行即相反，於此乎後世之君子皆疑惑乎二子者言也。",
+        "pinyin": "」 ér yán jí xiāng fēi ， xíng jí xiāng fǎn ， yú cǐ hū hòu shì zhī jūn zǐ jiē yí huò hū èr zǐ zhě yán yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "若苟疑惑乎之二子者言，然則姑嘗傅而爲政乎國家萬民而觀之，計厚葬久喪，奚當此三利者哉？",
+        "pinyin": "ruò gǒu yí huò hū zhī èr zǐ zhě yán ， rán zé gū cháng fù ér wéi zhèng hū guó jiā wàn mín ér guān zhī ， jì hòu zàng jiǔ sàng ， xī dāng cǐ sān lì zhě zāi ？",
+        "english": ""
+      },
+      {
+        "chinese": "意若使法其言，用其謀，厚葬久喪實可以富貧、衆寡、定危、治亂乎？",
+        "pinyin": "yì ruò shǐ fǎ qí yán ， yòng qí móu ， hòu zàng jiǔ sàng shí kě yǐ fù pín 、 zhòng guǎ 、 dìng wēi 、 zhì luàn hū ？",
+        "english": ""
+      },
+      {
+        "chinese": "此仁也，義也，孝子之事也，爲人謀者不可不勸也。",
+        "pinyin": "cǐ rén yě ， yì yě ， xiào zǐ zhī shì yě ， wéi rén móu zhě bù kě bù quàn yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "仁者將求興之，天下誰伯，而使民譽之，終勿廢也。",
+        "pinyin": "rén zhě jiāng qiú xìng zhī ， tiān xià shuí bó ， ér shǐ mín yù zhī ， zhōng wù fèi yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "意亦使法其言，用其謀，厚葬久喪實不可以富貧、衆寡、定危、治亂乎？",
+        "pinyin": "yì yì shǐ fǎ qí yán ， yòng qí móu ， hòu zàng jiǔ sàng shí bù kě yǐ fù pín 、 zhòng guǎ 、 dìng wēi 、 zhì luàn hū ？",
+        "english": ""
+      },
+      {
+        "chinese": "此非仁非義，非孝子之事也，爲人謀者不可不沮也。",
+        "pinyin": "cǐ fēi rén fēi yì ， fēi xiào zǐ zhī shì yě ， wéi rén móu zhě bù kě bù jǔ yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "仁者將求除之，天下誰賈，而使民非之，終身勿爲。",
+        "pinyin": "rén zhě jiāng qiú chú zhī ， tiān xià shuí jiǎ ， ér shǐ mín fēi zhī ， zhōng shēn wù wéi 。",
+        "english": ""
+      },
+      {
+        "chinese": "是故興天下之利，除天下之害，令國家百姓之不治也，自古及今未嘗之有也。",
+        "pinyin": "shì gù xìng tiān xià zhī lì ， chú tiān xià zhī hài ， lìng guó jiā bǎi xìng zhī bù zhì yě ， zì gǔ jí jīn wèi cháng zhī yǒu yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "何以知其然也？",
+        "pinyin": "hé yǐ zhī qí rán yě ？",
+        "english": ""
+      },
+      {
+        "chinese": "今天下之士君子，將猶多皆疑惑厚葬久喪之爲中是非利害也。",
+        "pinyin": "jīn tiān xià zhī shì jūn zǐ ， jiāng yóu duō jiē yí huò hòu zàng jiǔ sàng zhī wéi zhōng shì fēi lì hài yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "故子墨子言曰：然則姑嘗稽之。",
+        "pinyin": "gù zǐ mò zǐ yán yuē ： rán zé gū cháng jī zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "今雖毋法執厚葬久喪者言，以爲事乎國家。",
+        "pinyin": "jīn suī wú fǎ zhí hòu zàng jiǔ sàng zhě yán ， yǐ wéi shì hū guó jiā 。",
+        "english": ""
+      },
+      {
+        "chinese": "此存乎王公大人有喪者，曰棺椁必重，葬埋必厚，衣衾必多，文繡必繁，丘隴必巨。",
+        "pinyin": "cǐ cún hū wáng gōng dà rén yǒu sàng zhě ， yuē guān guǒ bì zhòng ， zàng mái bì hòu ， yī qīn bì duō ， wén xiù bì fán ， qiū lǒng bì jù 。",
+        "english": ""
+      },
+      {
+        "chinese": "存乎匹夫賤人死者，殆竭家室。",
+        "pinyin": "cún hū pǐ fū jiàn rén sǐ zhě ， dài jié jiā shì 。",
+        "english": ""
+      },
+      {
+        "chinese": "存乎諸侯死者，虛庫府，然後金玉珠璣比乎身，綸組節約，車馬藏乎壙，又必多爲屋幕、鼎鼓、几挻、壺濫、戈劒、羽旄、齒革，寢而埋之。",
+        "pinyin": "cún hū zhū hóu sǐ zhě ， xū kù fǔ ， rán hòu jīn yù zhū jī bǐ hū shēn ， lún zǔ jié yuē ， chē mǎ cáng hū kuàng ， yòu bì duō wéi wū mù 、 dǐng gǔ 、 jǐ shān 、 hú lǎn 、 gē jiàn 、 yǔ máo 、 chǐ gé ， qǐn ér mái zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "滿意若殉從，曰：天子殺殉，衆者數百，寡者數十。",
+        "pinyin": "mǎn yì ruò xùn cóng ， yuē ： tiān zǐ shā xùn ， zhòng zhě shǔ bǎi ， guǎ zhě shǔ shí 。",
+        "english": ""
+      },
+      {
+        "chinese": "將軍大夫殺殉，衆者數十，寡者數人。",
+        "pinyin": "jiāng jūn dài fū shā xùn ， zhòng zhě shǔ shí ， guǎ zhě shǔ rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "處喪之法將柰何哉？",
+        "pinyin": "chù sàng zhī fǎ jiāng nài hé zāi ？",
+        "english": ""
+      },
+      {
+        "chinese": "曰：哭泣不秩聲，翁縗絰，垂涕，處倚廬，寢苫枕𠙽。",
+        "pinyin": "yuē ： kū qì bù zhì shēng ， wēng cuī dié ， chuí tì ， chù yǐ lú ， qǐn shān zhěn \ud841 \ude7d 。",
+        "english": ""
+      },
+      {
+        "chinese": "又相率强不食而爲飢，薄衣而爲寒，使面目陷𨼥，顏色黧黑，耳目不聰明，手足不勁强，不可用也。",
+        "pinyin": "yòu xiāng lǜ qiáng bù shí ér wéi jī ， báo yī ér wéi hán ， shǐ miàn mù xiàn \ud863 \udf25 ， yán sè lí hēi ， ěr mù bù cōng míng ， shǒu zú bù jìn qiáng ， bù kě yòng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "又曰：上士之操喪也，必扶而能起，杖而能行，以此共三年。",
+        "pinyin": "yòu yuē ： shàng shì zhī cāo sàng yě ， bì fú ér néng qǐ ， zhàng ér néng xíng ， yǐ cǐ gòng sān nián 。",
+        "english": ""
+      },
+      {
+        "chinese": "若法若言，行若道，使王公大人行此，則必不能蚤朝晏退，治五官六府，辟草木，實倉廪。",
+        "pinyin": "ruò fǎ ruò yán ， xíng ruò dào ， shǐ wáng gōng dà rén xíng cǐ ， zé bì bù néng zǎo cháo yàn tuì ， zhì wǔ guān liù fǔ ， pì cǎo mù ， shí cāng lǐn 。",
+        "english": ""
+      },
+      {
+        "chinese": "使農夫行此，則必不能蚤出夜入，耕稼樹藝。",
+        "pinyin": "shǐ nóng fū xíng cǐ ， zé bì bù néng zǎo chū yè rù ， gēng jià shù yì 。",
+        "english": ""
+      },
+      {
+        "chinese": "使百工行此，則必不能修舟車，爲器皿矣。",
+        "pinyin": "shǐ bǎi gōng xíng cǐ ， zé bì bù néng xiū zhōu chē ， wéi qì mǐn yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "使婦人行此，則必不能夙興夜寐，紡績織絍。",
+        "pinyin": "shǐ fù rén xíng cǐ ， zé bì bù néng sù xìng yè mèi ， fǎng jì zhī rèn 。",
+        "english": ""
+      },
+      {
+        "chinese": "細計厚葬爲多埋賦之財者也，計久喪爲久禁從事者也。",
+        "pinyin": "xì jì hòu zàng wéi duō mái fù zhī cái zhě yě ， jì jiǔ sàng wéi jiǔ jīn cóng shì zhě yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "財以成者，扶而埋之。",
+        "pinyin": "cái yǐ chéng zhě ， fú ér mái zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "後得生者，而久禁之。",
+        "pinyin": "hòu dé shēng zhě ， ér jiǔ jīn zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "以此求富，此譬猶禁耕而求獲也，富之說無可得焉。",
+        "pinyin": "yǐ cǐ qiú fù ， cǐ pì yóu jīn gēng ér qiú huò yě ， fù zhī shuō wú kě dé yān 。",
+        "english": ""
+      },
+      {
+        "chinese": "是故求以富國家，而既已不可矣。",
+        "pinyin": "shì gù qiú yǐ fù guó jiā ， ér jì yǐ bù kě yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "欲以衆人民，意者可邪？",
+        "pinyin": "yù yǐ zhòng rén mín ， yì zhě kě xié ？",
+        "english": ""
+      },
+      {
+        "chinese": "其說又不可矣。",
+        "pinyin": "qí shuō yòu bù kě yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "今惟無以厚葬久喪者爲政。",
+        "pinyin": "jīn wéi wú yǐ hòu zàng jiǔ sàng zhě wéi zhèng 。",
+        "english": ""
+      },
+      {
+        "chinese": "君死喪之三年，父母死喪之三年，妻與後子死者，五皆喪之三年。",
+        "pinyin": "jūn sǐ sàng zhī sān nián ， fù mǔ sǐ sàng zhī sān nián ， qī yǔ hòu zǐ sǐ zhě ， wǔ jiē sàng zhī sān nián 。",
+        "english": ""
+      },
+      {
+        "chinese": "然後伯父、叔父、兄弟、孽子其，族人五月，姑姊、甥舅皆有月數，則毀瘠必有制矣。",
+        "pinyin": "rán hòu bó fù 、 shū fù 、 xiōng dì 、 niè zǐ qí ， zú rén wǔ yuè ， gū zǐ 、 shēng jiù jiē yǒu yuè shǔ ， zé huǐ jí bì yǒu zhì yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "使面目陷𨼥，顏色黧黑，耳目不聰明，手足不勁强，不可用也。",
+        "pinyin": "shǐ miàn mù xiàn \ud863 \udf25 ， yán sè lí hēi ， ěr mù bù cōng míng ， shǒu zú bù jìn qiáng ， bù kě yòng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "又曰：上士操喪也，必扶而能起，杖而能行，以此共三年。",
+        "pinyin": "yòu yuē ： shàng shì cāo sàng yě ， bì fú ér néng qǐ ， zhàng ér néng xíng ， yǐ cǐ gòng sān nián 。",
+        "english": ""
+      },
+      {
+        "chinese": "若法若言，行若道，苟其飢約又若此矣。",
+        "pinyin": "ruò fǎ ruò yán ， xíng ruò dào ， gǒu qí jī yuē yòu ruò cǐ yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "是故百姓冬不仞寒，夏不仞暑，作疾病死者不可勝計也。",
+        "pinyin": "shì gù bǎi xìng dōng bù rèn hán ， xià bù rèn shǔ ， zuò jí bìng sǐ zhě bù kě shèng jì yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "此其爲敗男女之交多矣，以此求衆，譬猶使人負劒而求其壽也，衆之說無可得焉。",
+        "pinyin": "cǐ qí wéi bài nán nǚ zhī jiāo duō yǐ ， yǐ cǐ qiú zhòng ， pì yóu shǐ rén fù jiàn ér qiú qí shòu yě ， zhòng zhī shuō wú kě dé yān 。",
+        "english": ""
+      },
+      {
+        "chinese": "是故求以衆人民，而既以不可矣。",
+        "pinyin": "shì gù qiú yǐ zhòng rén mín ， ér jì yǐ bù kě yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "欲以治刑政，意者可乎？",
+        "pinyin": "yù yǐ zhì xíng zhèng ， yì zhě kě hū ？",
+        "english": ""
+      },
+      {
+        "chinese": "其說又不可矣。",
+        "pinyin": "qí shuō yòu bù kě yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "今惟無以厚葬久喪者爲政，國家必貧，人民必寡，刑政必亂。",
+        "pinyin": "jīn wéi wú yǐ hòu zàng jiǔ sàng zhě wéi zhèng ， guó jiā bì pín ， rén mín bì guǎ ， xíng zhèng bì luàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "若法若言，行若道，使爲上者行此，則不能聽治；",
+        "pinyin": "ruò fǎ ruò yán ， xíng ruò dào ， shǐ wéi shàng zhě xíng cǐ ， zé bù néng tīng zhì ；",
+        "english": ""
+      },
+      {
+        "chinese": "使爲下者行此，則不能從事。",
+        "pinyin": "shǐ wéi xià zhě xíng cǐ ， zé bù néng cóng shì 。",
+        "english": ""
+      },
+      {
+        "chinese": "上不聽治，刑政必亂；",
+        "pinyin": "shàng bù tīng zhì ， xíng zhèng bì luàn ；",
+        "english": ""
+      },
+      {
+        "chinese": "下不從事，衣食之財必不足。",
+        "pinyin": "xià bù cóng shì ， yī shí zhī cái bì bù zú 。",
+        "english": ""
+      },
+      {
+        "chinese": "若苟不足，爲人弟者求其兄而不得，不弟弟必將怨其兄矣；",
+        "pinyin": "ruò gǒu bù zú ， wéi rén dì zhě qiú qí xiōng ér bù dé ， bù dì dì bì jiāng yuàn qí xiōng yǐ ；",
+        "english": ""
+      },
+      {
+        "chinese": "爲人子者求其親而不得，不孝子必是怨其親矣；",
+        "pinyin": "wéi rén zǐ zhě qiú qí qīn ér bù dé ， bù xiào zǐ bì shì yuàn qí qīn yǐ ；",
+        "english": ""
+      },
+      {
+        "chinese": "爲人臣者求之君而不得，不忠臣必且亂其上矣。",
+        "pinyin": "wéi rén chén zhě qiú zhī jūn ér bù dé ， bù zhōng chén bì qiě luàn qí shàng yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "是以僻淫邪行之民，出則無衣也，入則無食也，內續奚吾，並爲淫暴，而不可勝禁也。",
+        "pinyin": "shì yǐ pì yín xié xíng zhī mín ， chū zé wú yī yě ， rù zé wú shí yě ， nèi xù xī wú ， bìng wéi yín bào ， ér bù kě shèng jīn yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "是故盜賊衆而治者寡。",
+        "pinyin": "shì gù dào zéi zhòng ér zhì zhě guǎ 。",
+        "english": ""
+      },
+      {
+        "chinese": "夫衆盜賊而寡治者，以此求治，譬猶使人三睘而毋負己也，治之說無可得焉。",
+        "pinyin": "fū zhòng dào zéi ér guǎ zhì zhě ， yǐ cǐ qiú zhì ， pì yóu shǐ rén sān qióng ér wú fù jǐ yě ， zhì zhī shuō wú kě dé yān 。",
+        "english": ""
+      },
+      {
+        "chinese": "是故求以治刑政，而既已不可矣。",
+        "pinyin": "shì gù qiú yǐ zhì xíng zhèng ， ér jì yǐ bù kě yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "欲以禁止大國之攻小國也，意者可邪？",
+        "pinyin": "yù yǐ jīn zhǐ dà guó zhī gōng xiǎo guó yě ， yì zhě kě xié ？",
+        "english": ""
+      },
+      {
+        "chinese": "其說又不可矣。",
+        "pinyin": "qí shuō yòu bù kě yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "是故昔者聖王既沒，天下失義，諸侯力征，南有楚越之王，而北有齊晉之君，此皆砥礪其卒伍，以攻伐并兼爲政於天下。",
+        "pinyin": "shì gù xī zhě shèng wáng jì méi ， tiān xià shī yì ， zhū hóu lì zhēng ， nán yǒu chǔ yuè zhī wáng ， ér běi yǒu qí jìn zhī jūn ， cǐ jiē dǐ lì qí zú wǔ ， yǐ gōng fá bìng jiān wéi zhèng yú tiān xià 。",
+        "english": ""
+      },
+      {
+        "chinese": "是故凡大國之所以不攻小國者，積委多，城郭修，上下調和，是故大國不耆攻者。",
+        "pinyin": "shì gù fán dà guó zhī suǒ yǐ bù gōng xiǎo guó zhě ， jī wěi duō ， chéng guō xiū ， shàng xià tiáo hé ， shì gù dà guó bù qí gōng zhě 。",
+        "english": ""
+      },
+      {
+        "chinese": "無積委，城郭不修，上下不調和，是故大國耆攻之。",
+        "pinyin": "wú jī wěi ， chéng guō bù xiū ， shàng xià bù tiáo hé ， shì gù dà guó qí gōng zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "今惟毋以厚葬久喪者爲政，國家必貧，人民必寡，刑政必亂。",
+        "pinyin": "jīn wéi wú yǐ hòu zàng jiǔ sàng zhě wéi zhèng ， guó jiā bì pín ， rén mín bì guǎ ， xíng zhèng bì luàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "若苟貧，是無以爲積委也；",
+        "pinyin": "ruò gǒu pín ， shì wú yǐ wéi jī wěi yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "若苟寡，是修城郭溝渠者寡也；",
+        "pinyin": "ruò gǒu guǎ ， shì xiū chéng guō gōu qú zhě guǎ yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "若苟亂，是出戰不克，入守不固。",
+        "pinyin": "ruò gǒu luàn ， shì chū zhàn bù kè ， rù shǒu bù gù 。",
+        "english": ""
+      },
+      {
+        "chinese": "此求禁止大國之攻小國也，而既已不可矣。",
+        "pinyin": "cǐ qiú jīn zhǐ dà guó zhī gōng xiǎo guó yě ， ér jì yǐ bù kě yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "欲以干上帝鬼神之福，意者可邪？",
+        "pinyin": "yù yǐ gān shàng dì guǐ shén zhī fú ， yì zhě kě xié ？",
+        "english": ""
+      },
+      {
+        "chinese": "其說又不可矣。",
+        "pinyin": "qí shuō yòu bù kě yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "今惟無以厚葬久喪者爲政，國家必貧，人民必寡，刑政必亂。",
+        "pinyin": "jīn wéi wú yǐ hòu zàng jiǔ sàng zhě wéi zhèng ， guó jiā bì pín ， rén mín bì guǎ ， xíng zhèng bì luàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "若苟貧，是粢盛酒醴不淨潔也；",
+        "pinyin": "ruò gǒu pín ， shì zī shèng jiǔ lǐ bù jìng jié yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "若苟寡，是事上帝鬼神者寡也；",
+        "pinyin": "ruò gǒu guǎ ， shì shì shàng dì guǐ shén zhě guǎ yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "若苟亂，是祭祀不時度也。",
+        "pinyin": "ruò gǒu luàn ， shì jì sì bù shí dù yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "今又禁止事上帝鬼神，爲政若此，上帝鬼神始得從上撫之曰：「我有是人也，與無是人也，孰愈？",
+        "pinyin": "jīn yòu jīn zhǐ shì shàng dì guǐ shén ， wéi zhèng ruò cǐ ， shàng dì guǐ shén shǐ dé cóng shàng fǔ zhī yuē ： 「 wǒ yǒu shì rén yě ， yǔ wú shì rén yě ， shú yù ？",
+        "english": ""
+      },
+      {
+        "chinese": "」曰：「我有是人也，與無是人也，無擇也。",
+        "pinyin": "」 yuē ： 「 wǒ yǒu shì rén yě ， yǔ wú shì rén yě ， wú zé yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "」則惟上帝鬼神降之罪厲之禍罰而棄之，則豈不亦乃其所哉！",
+        "pinyin": "」 zé wéi shàng dì guǐ shén jiàng zhī zuì lì zhī huò fá ér qì zhī ， zé qǐ bù yì nǎi qí suǒ zāi ！",
+        "english": ""
+      },
+      {
+        "chinese": "故古聖王制爲葬埋之法曰：「棺三寸，足以朽體；",
+        "pinyin": "gù gǔ shèng wáng zhì wéi zàng mái zhī fǎ yuē ： 「 guān sān cùn ， zú yǐ xiǔ tǐ ；",
+        "english": ""
+      },
+      {
+        "chinese": "衣衾三領，足以覆惡。",
+        "pinyin": "yī qīn sān lǐng ， zú yǐ fù è 。",
+        "english": ""
+      },
+      {
+        "chinese": "以及其葬也，下毋及泉，上毋通臭，壟若參耕之畝，則止矣。",
+        "pinyin": "yǐ jí qí zàng yě ， xià wú jí quán ， shàng wú tōng chòu ， lǒng ruò cān gēng zhī mǔ ， zé zhǐ yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "」死者既以葬矣，生者必無久喪，而疾而從事，人爲其所能，以交相利也。",
+        "pinyin": "」 sǐ zhě jì yǐ zàng yǐ ， shēng zhě bì wú jiǔ sàng ， ér jí ér cóng shì ， rén wéi qí suǒ néng ， yǐ jiāo xiāng lì yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "此聖王之法也。",
+        "pinyin": "cǐ shèng wáng zhī fǎ yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "今執厚葬久喪者之言曰：厚葬久喪雖使不可以富貧、衆寡、定危、治亂，然此聖王之道也。",
+        "pinyin": "jīn zhí hòu zàng jiǔ sàng zhě zhī yán yuē ： hòu zàng jiǔ sàng suī shǐ bù kě yǐ fù pín 、 zhòng guǎ 、 dìng wēi 、 zhì luàn ， rán cǐ shèng wáng zhī dào yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "子墨子曰：不然。",
+        "pinyin": "zǐ mò zǐ yuē ： bù rán 。",
+        "english": ""
+      },
+      {
+        "chinese": "昔者堯北教乎八狄，道死，葬蛩山之陰。",
+        "pinyin": "xī zhě yáo běi jiào hū bā dí ， dào sǐ ， zàng qióng shān zhī yīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "衣衾三領，榖木之棺，葛以緘之，既𣳜而後哭，滿埳無封。",
+        "pinyin": "yī qīn sān lǐng ， gǔ mù zhī guān ， gé yǐ jiān zhī ， jì \ud84f \udcdc ér hòu kū ， mǎn xiàn wú fēng 。",
+        "english": ""
+      },
+      {
+        "chinese": "已葬，而牛馬乘之。",
+        "pinyin": "yǐ zàng ， ér niú mǎ chéng zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "舜西教乎七戎，道死，葬南己之市。",
+        "pinyin": "shùn xī jiào hū qī róng ， dào sǐ ， zàng nán jǐ zhī shì 。",
+        "english": ""
+      },
+      {
+        "chinese": "衣衾三領，榖木之棺，葛以緘之。",
+        "pinyin": "yī qīn sān lǐng ， gǔ mù zhī guān ， gé yǐ jiān zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "已葬，而市人乘之。",
+        "pinyin": "yǐ zàng ， ér shì rén chéng zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "禹東教乎九夷，道死，葬會稽之山，衣衾三領，桐棺三寸，葛以緘之，絞之不合，通之不埳。",
+        "pinyin": "yǔ dōng jiào hū jiǔ yí ， dào sǐ ， zàng huì jī zhī shān ， yī qīn sān lǐng ， tóng guān sān cùn ， gé yǐ jiān zhī ， jiǎo zhī bù hé ， tōng zhī bù xiàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "土地之深，下毋及泉，上毋通臭。",
+        "pinyin": "tǔ dì zhī shēn ， xià wú jí quán ， shàng wú tōng chòu 。",
+        "english": ""
+      },
+      {
+        "chinese": "既葬，收餘壤其上，壟若參耕之畝，則止矣。",
+        "pinyin": "jì zàng ， shōu yú rǎng qí shàng ， lǒng ruò cān gēng zhī mǔ ， zé zhǐ yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "若以此若三聖王者觀之，則厚葬久喪果非聖王之道。",
+        "pinyin": "ruò yǐ cǐ ruò sān shèng wáng zhě guān zhī ， zé hòu zàng jiǔ sàng guǒ fēi shèng wáng zhī dào 。",
+        "english": ""
+      },
+      {
+        "chinese": "故三王者，皆貴爲天子，富有天下，豈憂財用之不足哉？",
+        "pinyin": "gù sān wáng zhě ， jiē guì wéi tiān zǐ ， fù yǒu tiān xià ， qǐ yōu cái yòng zhī bù zú zāi ？",
+        "english": ""
+      },
+      {
+        "chinese": "以爲如此葬埋之法。",
+        "pinyin": "yǐ wéi rú cǐ zàng mái zhī fǎ 。",
+        "english": ""
+      },
+      {
+        "chinese": "今王公大人之爲葬埋，則異於此。",
+        "pinyin": "jīn wáng gōng dà rén zhī wéi zàng mái ， zé yì yú cǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "必大棺、中棺，革闠三操，璧玉即具，戈劒鼎鼓壺濫、文繡素練、大鞅萬領、輿馬女樂皆具，曰必捶𡌘差通，壟雖兄山陵。",
+        "pinyin": "bì dà guān 、 zhōng guān ， gé huì sān cāo ， bì yù jí jù ， gē jiàn dǐng gǔ hú lǎn 、 wén xiù sù liàn 、 dà yāng wàn lǐng 、 yú mǎ nǚ lè jiē jù ， yuē bì chuí \ud844 \udf18 chà tōng ， lǒng suī xiōng shān líng 。",
+        "english": ""
+      },
+      {
+        "chinese": "此爲輟民之事，靡民之財，不可勝計也。",
+        "pinyin": "cǐ wéi chuò mín zhī shì ， mí mín zhī cái ， bù kě shèng jì yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "其爲毋用若此矣。",
+        "pinyin": "qí wéi wú yòng ruò cǐ yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "是故子墨子曰：鄉者吾本言曰，意亦使法其言，用其謀，計厚葬久喪，請可以富貧、衆寡、定危、治亂乎？",
+        "pinyin": "shì gù zǐ mò zǐ yuē ： xiāng zhě wú běn yán yuē ， yì yì shǐ fǎ qí yán ， yòng qí móu ， jì hòu zàng jiǔ sàng ， qǐng kě yǐ fù pín 、 zhòng guǎ 、 dìng wēi 、 zhì luàn hū ？",
+        "english": ""
+      },
+      {
+        "chinese": "則仁也，義也，孝子之事也。",
+        "pinyin": "zé rén yě ， yì yě ， xiào zǐ zhī shì yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "爲人謀者，不可不勸也。",
+        "pinyin": "wéi rén móu zhě ， bù kě bù quàn yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "意亦使法其言，用其謀，若人厚葬久喪，實不可以富貧、衆寡、定危、治亂乎？",
+        "pinyin": "yì yì shǐ fǎ qí yán ， yòng qí móu ， ruò rén hòu zàng jiǔ sàng ， shí bù kě yǐ fù pín 、 zhòng guǎ 、 dìng wēi 、 zhì luàn hū ？",
+        "english": ""
+      },
+      {
+        "chinese": "則非仁也，非義也，非孝子之事也。",
+        "pinyin": "zé fēi rén yě ， fēi yì yě ， fēi xiào zǐ zhī shì yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "爲人謀者，不可不沮也。",
+        "pinyin": "wéi rén móu zhě ， bù kě bù jǔ yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "是故求以富國家，甚得貧焉；",
+        "pinyin": "shì gù qiú yǐ fù guó jiā ， shèn dé pín yān ；",
+        "english": ""
+      },
+      {
+        "chinese": "欲以衆人民，甚得寡焉；",
+        "pinyin": "yù yǐ zhòng rén mín ， shèn dé guǎ yān ；",
+        "english": ""
+      }
+    ]
+  },
+  {
+    "id": "mozi_ch_3",
+    "bookId": "mozi",
+    "chapterIndex": 3,
+    "title": "天志上",
+    "titleEn": "Chapter 3: 天志上",
+    "sentences": [
+      {
+        "chinese": "子墨子言曰：今天下之士君子，知小而不知大。",
+        "pinyin": "zǐ mò zǐ yán yuē ： jīn tiān xià zhī shì jūn zǐ ， zhī xiǎo ér bù zhī dà 。",
+        "english": ""
+      },
+      {
+        "chinese": "何以知之？",
+        "pinyin": "hé yǐ zhī zhī ？",
+        "english": ""
+      },
+      {
+        "chinese": "以其處家者知之。",
+        "pinyin": "yǐ qí chù jiā zhě zhī zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "若處家得罪於家長，猶有鄰家所避逃之。",
+        "pinyin": "ruò chù jiā dé zuì yú jiā cháng ， yóu yǒu lín jiā suǒ bì táo zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "然且親戚兄弟所知識共相儆戒，皆曰：「不可不戒矣，不可不慎矣，惡有處家而得罪於家長而可爲也！",
+        "pinyin": "rán qiě qīn qī xiōng dì suǒ zhī shí gòng xiāng jǐng jiè ， jiē yuē ： 「 bù kě bù jiè yǐ ， bù kě bù shèn yǐ ， è yǒu chù jiā ér dé zuì yú jiā cháng ér kě wéi yě ！",
+        "english": ""
+      },
+      {
+        "chinese": "」非獨處家者爲然，雖處國亦然。",
+        "pinyin": "」 fēi dú chù jiā zhě wéi rán ， suī chù guó yì rán 。",
+        "english": ""
+      },
+      {
+        "chinese": "處國得罪於國君，猶有鄰國所避逃之。",
+        "pinyin": "chù guó dé zuì yú guó jūn ， yóu yǒu lín guó suǒ bì táo zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "然且親戚兄弟所知識共相儆戒，皆曰：「不可不戒矣，不可不慎矣，誰亦有處國得罪於國君而可爲也！",
+        "pinyin": "rán qiě qīn qī xiōng dì suǒ zhī shí gòng xiāng jǐng jiè ， jiē yuē ： 「 bù kě bù jiè yǐ ， bù kě bù shèn yǐ ， shuí yì yǒu chù guó dé zuì yú guó jūn ér kě wéi yě ！",
+        "english": ""
+      },
+      {
+        "chinese": "」此有所避逃之者也，相儆戒猶若此其厚。",
+        "pinyin": "」 cǐ yǒu suǒ bì táo zhī zhě yě ， xiāng jǐng jiè yóu ruò cǐ qí hòu 。",
+        "english": ""
+      },
+      {
+        "chinese": "況無所避逃之者，相儆戒豈不愈厚然後可哉？",
+        "pinyin": "kuàng wú suǒ bì táo zhī zhě ， xiāng jǐng jiè qǐ bù yù hòu rán hòu kě zāi ？",
+        "english": ""
+      },
+      {
+        "chinese": "且語言有之曰：「焉而晏日，焉而得罪，將惡避逃之？",
+        "pinyin": "qiě yǔ yán yǒu zhī yuē ： 「 yān ér yàn rì ， yān ér dé zuì ， jiāng è bì táo zhī ？",
+        "english": ""
+      },
+      {
+        "chinese": "」曰：無所避逃之。",
+        "pinyin": "」 yuē ： wú suǒ bì táo zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "夫天不可爲林谷幽閒無人，明必見之。",
+        "pinyin": "fū tiān bù kě wéi lín gǔ yōu xián wú rén ， míng bì jiàn zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "然而天下之士君子之於天也，忽然不知以相儆戒。",
+        "pinyin": "rán ér tiān xià zhī shì jūn zǐ zhī yú tiān yě ， hū rán bù zhī yǐ xiāng jǐng jiè 。",
+        "english": ""
+      },
+      {
+        "chinese": "此我所以知天下士君子知小而不知大也。",
+        "pinyin": "cǐ wǒ suǒ yǐ zhī tiān xià shì jūn zǐ zhī xiǎo ér bù zhī dà yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "然則天亦何欲何惡？",
+        "pinyin": "rán zé tiān yì hé yù hé è ？",
+        "english": ""
+      },
+      {
+        "chinese": "天欲義而惡不義。",
+        "pinyin": "tiān yù yì ér è bù yì 。",
+        "english": ""
+      },
+      {
+        "chinese": "然則率天下之百姓以從事於義，則我乃爲天之所欲也。",
+        "pinyin": "rán zé lǜ tiān xià zhī bǎi xìng yǐ cóng shì yú yì ， zé wǒ nǎi wéi tiān zhī suǒ yù yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "我爲天之所欲，天亦爲我所欲。",
+        "pinyin": "wǒ wéi tiān zhī suǒ yù ， tiān yì wéi wǒ suǒ yù 。",
+        "english": ""
+      },
+      {
+        "chinese": "然則我何欲何惡？",
+        "pinyin": "rán zé wǒ hé yù hé è ？",
+        "english": ""
+      },
+      {
+        "chinese": "我欲福祿而惡禍祟。",
+        "pinyin": "wǒ yù fú lù ér è huò suì 。",
+        "english": ""
+      },
+      {
+        "chinese": "然則率天下之百姓以從事於不義，則我乃爲天之所不欲也。",
+        "pinyin": "rán zé lǜ tiān xià zhī bǎi xìng yǐ cóng shì yú bù yì ， zé wǒ nǎi wéi tiān zhī suǒ bù yù yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "我爲天之所不欲，天亦爲我所不欲，則是我率天下之百姓以從事於禍祟中也。",
+        "pinyin": "wǒ wéi tiān zhī suǒ bù yù ， tiān yì wéi wǒ suǒ bù yù ， zé shì wǒ lǜ tiān xià zhī bǎi xìng yǐ cóng shì yú huò suì zhōng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "然則何以知天之欲義而惡不義？",
+        "pinyin": "rán zé hé yǐ zhī tiān zhī yù yì ér è bù yì ？",
+        "english": ""
+      },
+      {
+        "chinese": "曰：天下有義則生，無義則死；",
+        "pinyin": "yuē ： tiān xià yǒu yì zé shēng ， wú yì zé sǐ ；",
+        "english": ""
+      },
+      {
+        "chinese": "有義則富，無義則貧；",
+        "pinyin": "yǒu yì zé fù ， wú yì zé pín ；",
+        "english": ""
+      },
+      {
+        "chinese": "有義則治，無義則亂。",
+        "pinyin": "yǒu yì zé zhì ， wú yì zé luàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "然則天欲其生而惡其死，欲其富而惡其貧，欲其治而惡其亂，此我所以知天欲義而惡不義也。",
+        "pinyin": "rán zé tiān yù qí shēng ér è qí sǐ ， yù qí fù ér è qí pín ， yù qí zhì ér è qí luàn ， cǐ wǒ suǒ yǐ zhī tiān yù yì ér è bù yì yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "曰：且夫義者，政也。",
+        "pinyin": "yuē ： qiě fū yì zhě ， zhèng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "無從下之政上，必從上之政下。",
+        "pinyin": "wú cóng xià zhī zhèng shàng ， bì cóng shàng zhī zhèng xià 。",
+        "english": ""
+      },
+      {
+        "chinese": "是故庶人竭力從事，未得次己而爲政，有士政之；",
+        "pinyin": "shì gù shù rén jié lì cóng shì ， wèi dé cì jǐ ér wéi zhèng ， yǒu shì zhèng zhī ；",
+        "english": ""
+      },
+      {
+        "chinese": "士竭力從事，未得次己而爲政，有將軍大夫政之；",
+        "pinyin": "shì jié lì cóng shì ， wèi dé cì jǐ ér wéi zhèng ， yǒu jiāng jūn dài fū zhèng zhī ；",
+        "english": ""
+      },
+      {
+        "chinese": "將軍大夫竭力從事，未得次己而爲政，有三公諸侯政之；",
+        "pinyin": "jiāng jūn dài fū jié lì cóng shì ， wèi dé cì jǐ ér wéi zhèng ， yǒu sān gōng zhū hóu zhèng zhī ；",
+        "english": ""
+      },
+      {
+        "chinese": "三公諸侯竭力聽治，未得次己而爲政，有天子政之；",
+        "pinyin": "sān gōng zhū hóu jié lì tīng zhì ， wèi dé cì jǐ ér wéi zhèng ， yǒu tiān zǐ zhèng zhī ；",
+        "english": ""
+      },
+      {
+        "chinese": "天子未得次己而爲政，有天政之。",
+        "pinyin": "tiān zǐ wèi dé cì jǐ ér wéi zhèng ， yǒu tiān zhèng zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "天子爲政於三公、諸侯、士、庶人，天下之士君子固明知之；",
+        "pinyin": "tiān zǐ wéi zhèng yú sān gōng 、 zhū hóu 、 shì 、 shù rén ， tiān xià zhī shì jūn zǐ gù míng zhī zhī ；",
+        "english": ""
+      },
+      {
+        "chinese": "天之爲政於天子，天下百姓未得之明知也。",
+        "pinyin": "tiān zhī wéi zhèng yú tiān zǐ ， tiān xià bǎi xìng wèi dé zhī míng zhī yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "故昔三代聖王禹湯文武，欲以天之爲政於天子明說天下之百姓，故莫不犓牛羊，豢犬彘，潔爲粢盛酒醴，以祭祀上帝鬼神，而求祈福於天。",
+        "pinyin": "gù xī sān dài shèng wáng yǔ tāng wén wǔ ， yù yǐ tiān zhī wéi zhèng yú tiān zǐ míng shuō tiān xià zhī bǎi xìng ， gù mò bù chú niú yáng ， huàn quǎn zhì ， jié wéi zī shèng jiǔ lǐ ， yǐ jì sì shàng dì guǐ shén ， ér qiú qí fú yú tiān 。",
+        "english": ""
+      },
+      {
+        "chinese": "我未嘗聞天下之所求祈福於天子者也，我所以知天之爲政於天子者也。",
+        "pinyin": "wǒ wèi cháng wén tiān xià zhī suǒ qiú qí fú yú tiān zǐ zhě yě ， wǒ suǒ yǐ zhī tiān zhī wéi zhèng yú tiān zǐ zhě yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "故天子者，天下之窮貴也，天下之窮富也。",
+        "pinyin": "gù tiān zǐ zhě ， tiān xià zhī qióng guì yě ， tiān xià zhī qióng fù yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "故欲富且貴者，當天意而不可不順。",
+        "pinyin": "gù yù fù qiě guì zhě ， dàng tiān yì ér bù kě bù shùn 。",
+        "english": ""
+      },
+      {
+        "chinese": "順天意者，兼相愛、交相利，必得賞；",
+        "pinyin": "shùn tiān yì zhě ， jiān xiāng ài 、 jiāo xiāng lì ， bì dé shǎng ；",
+        "english": ""
+      },
+      {
+        "chinese": "反天意者，別相惡、交相賊，必得罰。",
+        "pinyin": "fǎn tiān yì zhě ， bié xiāng è 、 jiāo xiāng zéi ， bì dé fá 。",
+        "english": ""
+      },
+      {
+        "chinese": "然則是誰順天意而得賞者？",
+        "pinyin": "rán zé shì shuí shùn tiān yì ér dé shǎng zhě ？",
+        "english": ""
+      },
+      {
+        "chinese": "誰反天意而得罰者？",
+        "pinyin": "shuí fǎn tiān yì ér dé fá zhě ？",
+        "english": ""
+      },
+      {
+        "chinese": "子墨子言曰：昔三代聖王禹湯文武，此順天意而得賞者也；",
+        "pinyin": "zǐ mò zǐ yán yuē ： xī sān dài shèng wáng yǔ tāng wén wǔ ， cǐ shùn tiān yì ér dé shǎng zhě yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "昔三代之暴王桀紂幽厲，此反天意而得罰者也。",
+        "pinyin": "xī sān dài zhī bào wáng jié zhòu yōu lì ， cǐ fǎn tiān yì ér dé fá zhě yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "然則禹湯文武其得賞何以也？",
+        "pinyin": "rán zé yǔ tāng wén wǔ qí dé shǎng hé yǐ yě ？",
+        "english": ""
+      },
+      {
+        "chinese": "子墨子言曰：其事上尊天，中事鬼神，下愛人。",
+        "pinyin": "zǐ mò zǐ yán yuē ： qí shì shàng zūn tiān ， zhōng shì guǐ shén ， xià ài rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "故天意曰：「此之我所愛，兼而愛之；",
+        "pinyin": "gù tiān yì yuē ： 「 cǐ zhī wǒ suǒ ài ， jiān ér ài zhī ；",
+        "english": ""
+      },
+      {
+        "chinese": "我所利，兼而利之。",
+        "pinyin": "wǒ suǒ lì ， jiān ér lì zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "愛人者此爲博焉，利人者此爲厚焉。",
+        "pinyin": "ài rén zhě cǐ wéi bó yān ， lì rén zhě cǐ wéi hòu yān 。",
+        "english": ""
+      },
+      {
+        "chinese": "」故使貴爲天子，富有天下，業萬世子孫。",
+        "pinyin": "」 gù shǐ guì wéi tiān zǐ ， fù yǒu tiān xià ， yè wàn shì zǐ sūn 。",
+        "english": ""
+      },
+      {
+        "chinese": "傳稱其善，方施天下，至今稱之，謂之聖王。",
+        "pinyin": "chuán chēng qí shàn ， fāng shī tiān xià ， zhì jīn chēng zhī ， wèi zhī shèng wáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "然則桀紂幽厲得其罰何以也？",
+        "pinyin": "rán zé jié zhòu yōu lì dé qí fá hé yǐ yě ？",
+        "english": ""
+      },
+      {
+        "chinese": "子墨子言曰：其事上詬天，中誣鬼，下賊人。",
+        "pinyin": "zǐ mò zǐ yán yuē ： qí shì shàng gòu tiān ， zhōng wū guǐ ， xià zéi rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "故天意曰：「此之我所愛，別而惡之；",
+        "pinyin": "gù tiān yì yuē ： 「 cǐ zhī wǒ suǒ ài ， bié ér è zhī ；",
+        "english": ""
+      },
+      {
+        "chinese": "我所利，交而賊之。",
+        "pinyin": "wǒ suǒ lì ， jiāo ér zéi zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "惡人者此爲之博也，賊人者此爲之厚也。",
+        "pinyin": "è rén zhě cǐ wéi zhī bó yě ， zéi rén zhě cǐ wéi zhī hòu yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "」故使不得終其壽，不歿其世，至今毀之，謂之暴王。",
+        "pinyin": "」 gù shǐ bù dé zhōng qí shòu ， bù mò qí shì ， zhì jīn huǐ zhī ， wèi zhī bào wáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "然則何以知天之愛天下之百姓？",
+        "pinyin": "rán zé hé yǐ zhī tiān zhī ài tiān xià zhī bǎi xìng ？",
+        "english": ""
+      },
+      {
+        "chinese": "以其兼而明之。",
+        "pinyin": "yǐ qí jiān ér míng zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "何以知其兼而明之？",
+        "pinyin": "hé yǐ zhī qí jiān ér míng zhī ？",
+        "english": ""
+      },
+      {
+        "chinese": "以其兼而有之。",
+        "pinyin": "yǐ qí jiān ér yǒu zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "何以知其兼而有之？",
+        "pinyin": "hé yǐ zhī qí jiān ér yǒu zhī ？",
+        "english": ""
+      },
+      {
+        "chinese": "以其兼而食焉。",
+        "pinyin": "yǐ qí jiān ér shí yān 。",
+        "english": ""
+      },
+      {
+        "chinese": "何以知其兼而食焉？",
+        "pinyin": "hé yǐ zhī qí jiān ér shí yān ？",
+        "english": ""
+      },
+      {
+        "chinese": "曰：四海之內，粒食之民，莫不犓牛羊、豢犬彘，潔爲粢盛酒醴，以祭祀於上帝鬼神。",
+        "pinyin": "yuē ： sì hǎi zhī nèi ， lì shí zhī mín ， mò bù chú niú yáng 、 huàn quǎn zhì ， jié wéi zī shèng jiǔ lǐ ， yǐ jì sì yú shàng dì guǐ shén 。",
+        "english": ""
+      },
+      {
+        "chinese": "天有邑人，何用弗愛也？",
+        "pinyin": "tiān yǒu yì rén ， hé yòng fú ài yě ？",
+        "english": ""
+      },
+      {
+        "chinese": "且吾言殺一不辜者，必有一不祥。",
+        "pinyin": "qiě wú yán shā yī bù gū zhě ， bì yǒu yī bù xiáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "殺不辜者誰也？",
+        "pinyin": "shā bù gū zhě shuí yě ？",
+        "english": ""
+      },
+      {
+        "chinese": "則人也。",
+        "pinyin": "zé rén yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "予之不祥者誰也？",
+        "pinyin": "yú zhī bù xiáng zhě shuí yě ？",
+        "english": ""
+      },
+      {
+        "chinese": "則天也。",
+        "pinyin": "zé tiān yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "若以天爲不愛天下之百姓，則何故以人與人相殺，而天予之不祥？",
+        "pinyin": "ruò yǐ tiān wéi bù ài tiān xià zhī bǎi xìng ， zé hé gù yǐ rén yǔ rén xiāng shā ， ér tiān yú zhī bù xiáng ？",
+        "english": ""
+      },
+      {
+        "chinese": "此我所以知天之愛天下之百姓也。",
+        "pinyin": "cǐ wǒ suǒ yǐ zhī tiān zhī ài tiān xià zhī bǎi xìng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "順天意者，義政也。",
+        "pinyin": "shùn tiān yì zhě ， yì zhèng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "反天意者，力政也。",
+        "pinyin": "fǎn tiān yì zhě ， lì zhèng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "然義政將柰何哉？",
+        "pinyin": "rán yì zhèng jiāng nài hé zāi ？",
+        "english": ""
+      },
+      {
+        "chinese": "子墨子言曰：處大國不攻小國，處大家不篡小家，强者不劫弱，貴者不傲賤，多詐者不欺愚。",
+        "pinyin": "zǐ mò zǐ yán yuē ： chù dà guó bù gōng xiǎo guó ， chù dà jiā bù cuàn xiǎo jiā ， qiáng zhě bù jié ruò ， guì zhě bù ào jiàn ， duō zhà zhě bù qī yú 。",
+        "english": ""
+      },
+      {
+        "chinese": "此必上利於天，中利於鬼，下利於人。",
+        "pinyin": "cǐ bì shàng lì yú tiān ， zhōng lì yú guǐ ， xià lì yú rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "三利無所不利，故舉天下美名加之，謂之「聖王」。",
+        "pinyin": "sān lì wú suǒ bù lì ， gù jǔ tiān xià měi míng jiā zhī ， wèi zhī 「 shèng wáng 」 。",
+        "english": ""
+      },
+      {
+        "chinese": "力政者則與此異，言非此，行反此，猶倖馳也。",
+        "pinyin": "lì zhèng zhě zé yǔ cǐ yì ， yán fēi cǐ ， xíng fǎn cǐ ， yóu xìng chí yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "處大國攻小國，處大家篡小家，强者劫弱，貴者傲賤，多詐者欺愚。",
+        "pinyin": "chù dà guó gōng xiǎo guó ， chù dà jiā cuàn xiǎo jiā ， qiáng zhě jié ruò ， guì zhě ào jiàn ， duō zhà zhě qī yú 。",
+        "english": ""
+      },
+      {
+        "chinese": "此上不利於天，中不利於鬼，下不利於人。",
+        "pinyin": "cǐ shàng bù lì yú tiān ， zhōng bù lì yú guǐ ， xià bù lì yú rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "三不利無所利，故舉天下惡名加之，謂之「暴王」。",
+        "pinyin": "sān bù lì wú suǒ lì ， gù jǔ tiān xià è míng jiā zhī ， wèi zhī 「 bào wáng 」 。",
+        "english": ""
+      },
+      {
+        "chinese": "子墨子言曰：我有天志，譬若輪人之有規，匠人之有矩。",
+        "pinyin": "zǐ mò zǐ yán yuē ： wǒ yǒu tiān zhì ， pì ruò lún rén zhī yǒu guī ， jiàng rén zhī yǒu jǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "輪匠執其規矩，以度天下之方圜，曰：中者是也，不中者非也。",
+        "pinyin": "lún jiàng zhí qí guī ju ， yǐ dù tiān xià zhī fāng huán ， yuē ： zhōng zhě shì yě ， bù zhōng zhě fēi yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "今天下之士君子之書不可勝載，言語不可盡計，上說諸侯，下說列士，其於仁義則大相遠也。",
+        "pinyin": "jīn tiān xià zhī shì jūn zǐ zhī shū bù kě shèng zài ， yán yǔ bù kě jìn jì ， shàng shuō zhū hóu ， xià shuō liè shì ， qí yú rén yì zé dà xiāng yuǎn yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "何以知之？",
+        "pinyin": "hé yǐ zhī zhī ？",
+        "english": ""
+      },
+      {
+        "chinese": "曰：我得天下之明法以度之。",
+        "pinyin": "yuē ： wǒ dé tiān xià zhī míng fǎ yǐ dù zhī 。",
+        "english": ""
+      }
+    ]
+  },
+  {
+    "id": "mozi_ch_4",
+    "bookId": "mozi",
+    "chapterIndex": 4,
+    "title": "天志下",
+    "titleEn": "Chapter 4: 天志下",
+    "sentences": [
+      {
+        "chinese": "子墨子言曰：天下之所以亂者，其說將何哉？",
+        "pinyin": "zǐ mò zǐ yán yuē ： tiān xià zhī suǒ yǐ luàn zhě ， qí shuō jiāng hé zāi ？",
+        "english": ""
+      },
+      {
+        "chinese": "則是天下士君子皆明於小而不明於大。",
+        "pinyin": "zé shì tiān xià shì jūn zǐ jiē míng yú xiǎo ér bù míng yú dà 。",
+        "english": ""
+      },
+      {
+        "chinese": "何以知其明於小不明於大也？",
+        "pinyin": "hé yǐ zhī qí míng yú xiǎo bù míng yú dà yě ？",
+        "english": ""
+      },
+      {
+        "chinese": "以其不明於天之意也。",
+        "pinyin": "yǐ qí bù míng yú tiān zhī yì yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "何以知其不明於天之意也？",
+        "pinyin": "hé yǐ zhī qí bù míng yú tiān zhī yì yě ？",
+        "english": ""
+      },
+      {
+        "chinese": "以處人之家者知之。",
+        "pinyin": "yǐ chù rén zhī jiā zhě zhī zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "今人處若家得罪，將猶有異家所以避逃之者。",
+        "pinyin": "jīn rén chù ruò jiā dé zuì ， jiāng yóu yǒu yì jiā suǒ yǐ bì táo zhī zhě 。",
+        "english": ""
+      },
+      {
+        "chinese": "然且父以戒子，兄以戒弟，曰：「戒之慎之，處人之家不戒不慎之，而有處人之國者乎？",
+        "pinyin": "rán qiě fù yǐ jiè zǐ ， xiōng yǐ jiè dì ， yuē ： 「 jiè zhī shèn zhī ， chù rén zhī jiā bù jiè bù shèn zhī ， ér yǒu chù rén zhī guó zhě hū ？",
+        "english": ""
+      },
+      {
+        "chinese": "」今人處若國得罪，將猶有異國所以避逃之者矣。",
+        "pinyin": "」 jīn rén chù ruò guó dé zuì ， jiāng yóu yǒu yì guó suǒ yǐ bì táo zhī zhě yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "然且父以戒子，兄以戒弟，曰：「戒之，慎之，處人之國者，不可不戒慎也。",
+        "pinyin": "rán qiě fù yǐ jiè zǐ ， xiōng yǐ jiè dì ， yuē ： 「 jiè zhī ， shèn zhī ， chù rén zhī guó zhě ， bù kě bù jiè shèn yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "」今人皆處天下而事天，得罪於天，將無所以避逃之者矣。",
+        "pinyin": "」 jīn rén jiē chù tiān xià ér shì tiān ， dé zuì yú tiān ， jiāng wú suǒ yǐ bì táo zhī zhě yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "然而莫知以相極戒也，吾以此知大物則不知者也。",
+        "pinyin": "rán ér mò zhī yǐ xiāng jí jiè yě ， wú yǐ cǐ zhī dà wù zé bù zhī zhě yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "是故子墨子言曰：戒之慎之，必爲天之所欲，而去天之所惡。",
+        "pinyin": "shì gù zǐ mò zǐ yán yuē ： jiè zhī shèn zhī ， bì wéi tiān zhī suǒ yù ， ér qù tiān zhī suǒ è 。",
+        "english": ""
+      },
+      {
+        "chinese": "曰：天之所欲者何也？",
+        "pinyin": "yuē ： tiān zhī suǒ yù zhě hé yě ？",
+        "english": ""
+      },
+      {
+        "chinese": "所惡者何也？",
+        "pinyin": "suǒ è zhě hé yě ？",
+        "english": ""
+      },
+      {
+        "chinese": "天欲義而惡其不義者也。",
+        "pinyin": "tiān yù yì ér è qí bù yì zhě yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "何以知其然也？",
+        "pinyin": "hé yǐ zhī qí rán yě ？",
+        "english": ""
+      },
+      {
+        "chinese": "曰：義者，正也。",
+        "pinyin": "yuē ： yì zhě ， zhèng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "何以知義之爲正也？",
+        "pinyin": "hé yǐ zhī yì zhī wéi zhèng yě ？",
+        "english": ""
+      },
+      {
+        "chinese": "天下有義則治，無義則亂，我以此知義之爲正也。",
+        "pinyin": "tiān xià yǒu yì zé zhì ， wú yì zé luàn ， wǒ yǐ cǐ zhī yì zhī wéi zhèng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "然而正者，無自下正上者，必自上正下。",
+        "pinyin": "rán ér zhèng zhě ， wú zì xià zhèng shàng zhě ， bì zì shàng zhèng xià 。",
+        "english": ""
+      },
+      {
+        "chinese": "是故庶人不得次己而爲正，有士正之；",
+        "pinyin": "shì gù shù rén bù dé cì jǐ ér wéi zhèng ， yǒu shì zhèng zhī ；",
+        "english": ""
+      },
+      {
+        "chinese": "士不得次己而爲正，有大夫正之；",
+        "pinyin": "shì bù dé cì jǐ ér wéi zhèng ， yǒu dài fū zhèng zhī ；",
+        "english": ""
+      },
+      {
+        "chinese": "大夫不得次己而爲正，有諸侯正之；",
+        "pinyin": "dài fū bù dé cì jǐ ér wéi zhèng ， yǒu zhū hóu zhèng zhī ；",
+        "english": ""
+      },
+      {
+        "chinese": "諸侯不得次己而爲正，有三公正之；",
+        "pinyin": "zhū hóu bù dé cì jǐ ér wéi zhèng ， yǒu sān gōng zhèng zhī ；",
+        "english": ""
+      },
+      {
+        "chinese": "三公不得次己而爲正，有天子正之；",
+        "pinyin": "sān gōng bù dé cì jǐ ér wéi zhèng ， yǒu tiān zǐ zhèng zhī ；",
+        "english": ""
+      },
+      {
+        "chinese": "天子不得次己而爲政，有天正之。",
+        "pinyin": "tiān zǐ bù dé cì jǐ ér wéi zhèng ， yǒu tiān zhèng zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "今天下之士君子，皆明於天子之正天下也，而不明於天之正天子也。",
+        "pinyin": "jīn tiān xià zhī shì jūn zǐ ， jiē míng yú tiān zǐ zhī zhèng tiān xià yě ， ér bù míng yú tiān zhī zhèng tiān zǐ yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "是故古者聖人明以此說人曰：天子有善，天能賞之；",
+        "pinyin": "shì gù gǔ zhě shèng rén míng yǐ cǐ shuō rén yuē ： tiān zǐ yǒu shàn ， tiān néng shǎng zhī ；",
+        "english": ""
+      },
+      {
+        "chinese": "天子有過，天能罰之。",
+        "pinyin": "tiān zǐ yǒu guò ， tiān néng fá zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "天子賞罰不當，聽獄不中，天下疾病禍福，霜露不時。",
+        "pinyin": "tiān zǐ shǎng fá bù dāng ， tīng yù bù zhōng ， tiān xià jí bìng huò fú ， shuāng lòu bù shí 。",
+        "english": ""
+      },
+      {
+        "chinese": "天子必且犓豢其牛羊犬彘，絜爲粢盛酒醴，以禱祠祈福於天。",
+        "pinyin": "tiān zǐ bì qiě chú huàn qí niú yáng quǎn zhì ， xié wéi zī shèng jiǔ lǐ ， yǐ dǎo cí qí fú yú tiān 。",
+        "english": ""
+      },
+      {
+        "chinese": "我未嘗聞天之禱祠祈福於天子也，吾以此知天之重且貴於天子也。",
+        "pinyin": "wǒ wèi cháng wén tiān zhī dǎo cí qí fú yú tiān zǐ yě ， wú yǐ cǐ zhī tiān zhī zhòng qiě guì yú tiān zǐ yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "是故義者不自愚且賤者出，必自貴且知者出。",
+        "pinyin": "shì gù yì zhě bù zì yú qiě jiàn zhě chū ， bì zì guì qiě zhī zhě chū 。",
+        "english": ""
+      },
+      {
+        "chinese": "曰：誰爲貴？",
+        "pinyin": "yuē ： shuí wéi guì ？",
+        "english": ""
+      },
+      {
+        "chinese": "誰爲知？",
+        "pinyin": "shuí wéi zhī ？",
+        "english": ""
+      },
+      {
+        "chinese": "曰：天爲貴，天爲知。",
+        "pinyin": "yuē ： tiān wéi guì ， tiān wéi zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "然則義果自天出也。",
+        "pinyin": "rán zé yì guǒ zì tiān chū yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "今天下之士君子之欲爲義者，則不可不順天之意矣。",
+        "pinyin": "jīn tiān xià zhī shì jūn zǐ zhī yù wéi yì zhě ， zé bù kě bù shùn tiān zhī yì yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "曰：順天之意何若？",
+        "pinyin": "yuē ： shùn tiān zhī yì hé ruò ？",
+        "english": ""
+      },
+      {
+        "chinese": "曰：兼愛天下之人。",
+        "pinyin": "yuē ： jiān ài tiān xià zhī rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "何以知其兼愛天下之人也？",
+        "pinyin": "hé yǐ zhī qí jiān ài tiān xià zhī rén yě ？",
+        "english": ""
+      },
+      {
+        "chinese": "以兼而食之也。",
+        "pinyin": "yǐ jiān ér shí zhī yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "何以知其兼而食之也？",
+        "pinyin": "hé yǐ zhī qí jiān ér shí zhī yě ？",
+        "english": ""
+      },
+      {
+        "chinese": "自古及今，無有遠靈孤夷之國，皆犓豢其牛羊犬彘，絜爲粢盛酒醴，以敬祭祀上帝山川鬼神，以此知兼而食之也。",
+        "pinyin": "zì gǔ jí jīn ， wú yǒu yuǎn líng gū yí zhī guó ， jiē chú huàn qí niú yáng quǎn zhì ， xié wéi zī shèng jiǔ lǐ ， yǐ jìng jì sì shàng dì shān chuān guǐ shén ， yǐ cǐ zhī jiān ér shí zhī yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "苟兼而食焉，必兼而愛之。",
+        "pinyin": "gǒu jiān ér shí yān ， bì jiān ér ài zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "譬之若楚越之君，今是楚王食於楚之四境之內，故愛楚之人；",
+        "pinyin": "pì zhī ruò chǔ yuè zhī jūn ， jīn shì chǔ wáng shí yú chǔ zhī sì jìng zhī nèi ， gù ài chǔ zhī rén ；",
+        "english": ""
+      },
+      {
+        "chinese": "越王食於越之四境之內，故愛越之人。",
+        "pinyin": "yuè wáng shí yú yuè zhī sì jìng zhī nèi ， gù ài yuè zhī rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "今天兼天下而食焉，我以此知其兼愛天下之人也。",
+        "pinyin": "jīn tiān jiān tiān xià ér shí yān ， wǒ yǐ cǐ zhī qí jiān ài tiān xià zhī rén yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "且天之愛百姓也，不盡物而止矣。",
+        "pinyin": "qiě tiān zhī ài bǎi xìng yě ， bù jìn wù ér zhǐ yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "今天下之國，粒食之民，國殺一不辜，必有一不祥。",
+        "pinyin": "jīn tiān xià zhī guó ， lì shí zhī mín ， guó shā yī bù gū ， bì yǒu yī bù xiáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "曰：「誰殺不辜？",
+        "pinyin": "yuē ： 「 shuí shā bù gū ？",
+        "english": ""
+      },
+      {
+        "chinese": "」曰：「人也。",
+        "pinyin": "」 yuē ： 「 rén yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "」「孰予之不祥？",
+        "pinyin": "」 「 shú yú zhī bù xiáng ？",
+        "english": ""
+      },
+      {
+        "chinese": "」曰：「天也。",
+        "pinyin": "」 yuē ： 「 tiān yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "」若天之中實不愛此民也，何故而人有殺不辜而天予之不祥哉？",
+        "pinyin": "」 ruò tiān zhī zhōng shí bù ài cǐ mín yě ， hé gù ér rén yǒu shā bù gū ér tiān yú zhī bù xiáng zāi ？",
+        "english": ""
+      },
+      {
+        "chinese": "且天之愛百姓厚矣，天之愛百姓別矣，既可得而知也。",
+        "pinyin": "qiě tiān zhī ài bǎi xìng hòu yǐ ， tiān zhī ài bǎi xìng bié yǐ ， jì kě dé ér zhī yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "何以知天之愛百姓也？",
+        "pinyin": "hé yǐ zhī tiān zhī ài bǎi xìng yě ？",
+        "english": ""
+      },
+      {
+        "chinese": "吾以賢者之必賞善罰暴也。",
+        "pinyin": "wú yǐ xián zhě zhī bì shǎng shàn fá bào yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "何以知賢者之必賞善罰暴也？",
+        "pinyin": "hé yǐ zhī xián zhě zhī bì shǎng shàn fá bào yě ？",
+        "english": ""
+      },
+      {
+        "chinese": "吾以昔者三代之聖王知之。",
+        "pinyin": "wú yǐ xī zhě sān dài zhī shèng wáng zhī zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "故昔也三代之聖王堯舜禹湯文武之兼愛天下也，從而利之，移其百姓之意焉，率以敬上帝山川鬼神。",
+        "pinyin": "gù xī yě sān dài zhī shèng wáng yáo shùn yǔ tāng wén wǔ zhī jiān ài tiān xià yě ， cóng ér lì zhī ， yí qí bǎi xìng zhī yì yān ， lǜ yǐ jìng shàng dì shān chuān guǐ shén 。",
+        "english": ""
+      },
+      {
+        "chinese": "天以爲從其所愛而愛之，從其所利而利之，於是加其賞焉，使之處上位，立爲天子以法也，名之曰聖人。",
+        "pinyin": "tiān yǐ wéi cóng qí suǒ ài ér ài zhī ， cóng qí suǒ lì ér lì zhī ， yú shì jiā qí shǎng yān ， shǐ zhī chù shàng wèi ， lì wéi tiān zǐ yǐ fǎ yě ， míng zhī yuē shèng rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "以此知其賞善之證。",
+        "pinyin": "yǐ cǐ zhī qí shǎng shàn zhī zhèng 。",
+        "english": ""
+      },
+      {
+        "chinese": "是故昔也三代之暴王桀紂幽厲之兼惡天下也，從而賊之，移其百姓之意焉，率以詬侮上帝山川鬼神。",
+        "pinyin": "shì gù xī yě sān dài zhī bào wáng jié zhòu yōu lì zhī jiān è tiān xià yě ， cóng ér zéi zhī ， yí qí bǎi xìng zhī yì yān ， lǜ yǐ gòu wǔ shàng dì shān chuān guǐ shén 。",
+        "english": ""
+      },
+      {
+        "chinese": "天以爲不從其所愛而惡之，不從其所利而賊之，於是加其罰焉，使之父子離散，國家滅亡，抎失社稷，憂以及其身。",
+        "pinyin": "tiān yǐ wéi bù cóng qí suǒ ài ér è zhī ， bù cóng qí suǒ lì ér zéi zhī ， yú shì jiā qí fá yān ， shǐ zhī fù zǐ lí sàn ， guó jiā miè wáng ， yǔn shī shè jì ， yōu yǐ jí qí shēn 。",
+        "english": ""
+      },
+      {
+        "chinese": "是以天下之庶民屬而毀之，業萬世子孫繼嗣，毀之賁不之廢也，名之曰失王。",
+        "pinyin": "shì yǐ tiān xià zhī shù mín shǔ ér huǐ zhī ， yè wàn shì zǐ sūn jì sì ， huǐ zhī bì bù zhī fèi yě ， míng zhī yuē shī wáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "以此知其罰暴之證。",
+        "pinyin": "yǐ cǐ zhī qí fá bào zhī zhèng 。",
+        "english": ""
+      },
+      {
+        "chinese": "今天下之士君子欲爲義者，則不可不順天之意矣。",
+        "pinyin": "jīn tiān xià zhī shì jūn zǐ yù wéi yì zhě ， zé bù kě bù shùn tiān zhī yì yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "曰：順天之意者，兼也；",
+        "pinyin": "yuē ： shùn tiān zhī yì zhě ， jiān yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "反天之意者，別也。",
+        "pinyin": "fǎn tiān zhī yì zhě ， bié yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "兼之爲道也，義正；",
+        "pinyin": "jiān zhī wéi dào yě ， yì zhèng ；",
+        "english": ""
+      },
+      {
+        "chinese": "別之爲道也，力正。",
+        "pinyin": "bié zhī wéi dào yě ， lì zhèng 。",
+        "english": ""
+      },
+      {
+        "chinese": "曰：義正者何若？",
+        "pinyin": "yuē ： yì zhèng zhě hé ruò ？",
+        "english": ""
+      },
+      {
+        "chinese": "曰：大不攻小也，强不侮弱也，衆不賊寡也，詐不欺愚也，貴不傲賤也，富不驕貧也，壯不奪老也。",
+        "pinyin": "yuē ： dà bù gōng xiǎo yě ， qiáng bù wǔ ruò yě ， zhòng bù zéi guǎ yě ， zhà bù qī yú yě ， guì bù ào jiàn yě ， fù bù jiāo pín yě ， zhuàng bù duó lǎo yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "是以天下之庶國，莫以水火毒藥兵刃以相害也。",
+        "pinyin": "shì yǐ tiān xià zhī shù guó ， mò yǐ shuǐ huǒ dú yào bīng rèn yǐ xiāng hài yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "若事上利天，中利鬼，下利人。",
+        "pinyin": "ruò shì shàng lì tiān ， zhōng lì guǐ ， xià lì rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "三利而無所不利，是謂天德。",
+        "pinyin": "sān lì ér wú suǒ bù lì ， shì wèi tiān dé 。",
+        "english": ""
+      },
+      {
+        "chinese": "故凡從事此者，聖知也，仁義也，忠惠也，慈孝也，是故聚斂天下之善名而加之。",
+        "pinyin": "gù fán cóng shì cǐ zhě ， shèng zhī yě ， rén yì yě ， zhōng huì yě ， cí xiào yě ， shì gù jù liǎn tiān xià zhī shàn míng ér jiā zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "是其故何也？",
+        "pinyin": "shì qí gù hé yě ？",
+        "english": ""
+      },
+      {
+        "chinese": "則順天之意也。",
+        "pinyin": "zé shùn tiān zhī yì yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "曰：力正者何若？",
+        "pinyin": "yuē ： lì zhèng zhě hé ruò ？",
+        "english": ""
+      },
+      {
+        "chinese": "曰：大則攻小也，强則侮弱也，衆則賊寡也，詐則欺愚也，貴則傲賤也，富則驕貧也，壯則奪老也。",
+        "pinyin": "yuē ： dà zé gōng xiǎo yě ， qiáng zé wǔ ruò yě ， zhòng zé zéi guǎ yě ， zhà zé qī yú yě ， guì zé ào jiàn yě ， fù zé jiāo pín yě ， zhuàng zé duó lǎo yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "是以天下之庶國，方以水火毒藥兵刃以相賊害也。",
+        "pinyin": "shì yǐ tiān xià zhī shù guó ， fāng yǐ shuǐ huǒ dú yào bīng rèn yǐ xiāng zéi hài yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "若事上不利天，中不利鬼，下不利人。",
+        "pinyin": "ruò shì shàng bù lì tiān ， zhōng bù lì guǐ ， xià bù lì rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "三不利而無所利，是謂天賊。",
+        "pinyin": "sān bù lì ér wú suǒ lì ， shì wèi tiān zéi 。",
+        "english": ""
+      },
+      {
+        "chinese": "故凡從事此者，寇亂也，盜賊也，不仁不義，不忠不惠，不慈不孝，是故聚斂天下之惡名而加之。",
+        "pinyin": "gù fán cóng shì cǐ zhě ， kòu luàn yě ， dào zéi yě ， bù rén bù yì ， bù zhōng bù huì ， bù cí bù xiào ， shì gù jù liǎn tiān xià zhī è míng ér jiā zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "是其故何也？",
+        "pinyin": "shì qí gù hé yě ？",
+        "english": ""
+      },
+      {
+        "chinese": "則反天之意也。",
+        "pinyin": "zé fǎn tiān zhī yì yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "故子墨子置立天之，以爲儀法，若輪人之有規，匠人之有矩也。",
+        "pinyin": "gù zǐ mò zǐ zhì lì tiān zhī ， yǐ wéi yí fǎ ， ruò lún rén zhī yǒu guī ， jiàng rén zhī yǒu jǔ yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "今輪人以規，匠人以矩，以此知方圜之別矣。",
+        "pinyin": "jīn lún rén yǐ guī ， jiàng rén yǐ jǔ ， yǐ cǐ zhī fāng huán zhī bié yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "是故子墨子置立天之，以爲儀法，吾以此知天下之士君子之去義之遠也。",
+        "pinyin": "shì gù zǐ mò zǐ zhì lì tiān zhī ， yǐ wéi yí fǎ ， wú yǐ cǐ zhī tiān xià zhī shì jūn zǐ zhī qù yì zhī yuǎn yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "何以知天下之士君子之去義遠也？",
+        "pinyin": "hé yǐ zhī tiān xià zhī shì jūn zǐ zhī qù yì yuǎn yě ？",
+        "english": ""
+      },
+      {
+        "chinese": "今之世，大國之君寬者然曰：「吾處大國，而不攻小國，吾何以爲大哉！",
+        "pinyin": "jīn zhī shì ， dà guó zhī jūn kuān zhě rán yuē ： 「 wú chù dà guó ， ér bù gōng xiǎo guó ， wú hé yǐ wéi dà zāi ！",
+        "english": ""
+      },
+      {
+        "chinese": "」是以差論其蚤牙之士，比列其舟車之卒，以攻伐無罪之國。",
+        "pinyin": "」 shì yǐ chà lùn qí zǎo yá zhī shì ， bǐ liè qí zhōu chē zhī zú ， yǐ gōng fá wú zuì zhī guó 。",
+        "english": ""
+      },
+      {
+        "chinese": "入其溝境，刈其禾稼，斬其樹木，殘其城郭以御其溝池，焚燒其祖廟，攘殺其犧牷。",
+        "pinyin": "rù qí gōu jìng ， yì qí hé jià ， zhǎn qí shù mù ， cán qí chéng guō yǐ yù qí gōu chí ， fén shāo qí zǔ miào ， rǎng shā qí xī quán 。",
+        "english": ""
+      },
+      {
+        "chinese": "民之格者則勁拔之，不格者則係操而歸。",
+        "pinyin": "mín zhī gé zhě zé jìn bá zhī ， bù gé zhě zé xì cāo ér guī 。",
+        "english": ""
+      },
+      {
+        "chinese": "丈夫以爲僕圉胥靡，婦人以爲舂酋。",
+        "pinyin": "zhàng fū yǐ wéi pú yǔ xū mí ， fù rén yǐ wéi chōng qiú 。",
+        "english": ""
+      },
+      {
+        "chinese": "則夫好攻伐之君，不知此爲不仁義，以告四鄰諸侯曰：「吾攻國、覆軍、殺將若干人矣。",
+        "pinyin": "zé fū hǎo gōng fá zhī jūn ， bù zhī cǐ wéi bù rén yì ， yǐ gào sì lín zhū hóu yuē ： 「 wú gōng guó 、 fù jūn 、 shā jiāng ruò gān rén yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "」其鄰國之君亦不知此爲不仁義也，有具其皮幣，發其総處，使人饗賀焉。",
+        "pinyin": "」 qí lín guó zhī jūn yì bù zhī cǐ wéi bù rén yì yě ， yǒu jù qí pí bì ， fā qí zǒng chù ， shǐ rén xiǎng hè yān 。",
+        "english": ""
+      },
+      {
+        "chinese": "則夫好攻伐之君有重不知此爲不仁不義也，有書之竹帛，藏之府庫。",
+        "pinyin": "zé fū hǎo gōng fá zhī jūn yǒu zhòng bù zhī cǐ wéi bù rén bù yì yě ， yǒu shū zhī zhú bó ， cáng zhī fǔ kù 。",
+        "english": ""
+      },
+      {
+        "chinese": "爲人後子者，必且欲順其先君之行，曰：「何不當發吾庫，視吾先君之法義？",
+        "pinyin": "wéi rén hòu zǐ zhě ， bì qiě yù shùn qí xiān jūn zhī xíng ， yuē ： 「 hé bù dāng fā wú kù ， shì wú xiān jūn zhī fǎ yì ？",
+        "english": ""
+      },
+      {
+        "chinese": "」必不曰文武之爲正。",
+        "pinyin": "」 bì bù yuē wén wǔ zhī wéi zhèng 。",
+        "english": ""
+      },
+      {
+        "chinese": "爲正者若此矣，曰：「吾攻國、覆軍、殺將若干人矣。",
+        "pinyin": "wéi zhèng zhě ruò cǐ yǐ ， yuē ： 「 wú gōng guó 、 fù jūn 、 shā jiāng ruò gān rén yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "」則夫好攻伐之君不知此爲不仁不義也，其鄰國之君不知此爲不仁不義也，是以攻伐世世而不已者。",
+        "pinyin": "」 zé fū hǎo gōng fá zhī jūn bù zhī cǐ wéi bù rén bù yì yě ， qí lín guó zhī jūn bù zhī cǐ wéi bù rén bù yì yě ， shì yǐ gōng fá shì shì ér bù yǐ zhě 。",
+        "english": ""
+      },
+      {
+        "chinese": "此吾所謂大物則不知也。",
+        "pinyin": "cǐ wú suǒ wèi dà wù zé bù zhī yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "所謂小物則知之者，何若？",
+        "pinyin": "suǒ wèi xiǎo wù zé zhī zhī zhě ， hé ruò ？",
+        "english": ""
+      },
+      {
+        "chinese": "今有人於此，入人之場園，取人之桃李瓜薑者，上得且罰之，衆聞則非之，是何也？",
+        "pinyin": "jīn yǒu rén yú cǐ ， rù rén zhī chǎng yuán ， qǔ rén zhī táo lǐ guā jiāng zhě ， shàng dé qiě fá zhī ， zhòng wén zé fēi zhī ， shì hé yě ？",
+        "english": ""
+      },
+      {
+        "chinese": "曰：不與其勞，獲其實，已非其有所取之故。",
+        "pinyin": "yuē ： bù yǔ qí láo ， huò qí shí ， yǐ fēi qí yǒu suǒ qǔ zhī gù 。",
+        "english": ""
+      },
+      {
+        "chinese": "而況有踰於人之墻垣，格人之子女者乎？",
+        "pinyin": "ér kuàng yǒu yú yú rén zhī qiáng yuán ， gé rén zhī zǐ nǚ zhě hū ？",
+        "english": ""
+      },
+      {
+        "chinese": "與角人之府庫，竊人之金玉蚤絫者乎？",
+        "pinyin": "yǔ jiǎo rén zhī fǔ kù ， qiè rén zhī jīn yù zǎo lěi zhě hū ？",
+        "english": ""
+      },
+      {
+        "chinese": "與踰人之欄牢，竊人之牛馬者乎？",
+        "pinyin": "yǔ yú rén zhī lán láo ， qiè rén zhī niú mǎ zhě hū ？",
+        "english": ""
+      },
+      {
+        "chinese": "而況有殺一不辜人乎？",
+        "pinyin": "ér kuàng yǒu shā yī bù gū rén hū ？",
+        "english": ""
+      },
+      {
+        "chinese": "今王公大人之爲政也，自殺一不辜人者，踰人之墻垣，格人之子女者，與角人之府庫，竊人之金玉蚤絫者，與踰人之欄牢，竊人之牛馬者，與入人之場園、竊人之桃李瓜薑者，今王公大人之加罰此也，雖古之堯舜禹湯文武之爲政，亦無以異此矣。",
+        "pinyin": "jīn wáng gōng dà rén zhī wéi zhèng yě ， zì shā yī bù gū rén zhě ， yú rén zhī qiáng yuán ， gé rén zhī zǐ nǚ zhě ， yǔ jiǎo rén zhī fǔ kù ， qiè rén zhī jīn yù zǎo lěi zhě ， yǔ yú rén zhī lán láo ， qiè rén zhī niú mǎ zhě ， yǔ rù rén zhī chǎng yuán 、 qiè rén zhī táo lǐ guā jiāng zhě ， jīn wáng gōng dà rén zhī jiā fá cǐ yě ， suī gǔ zhī yáo shùn yǔ tāng wén wǔ zhī wéi zhèng ， yì wú yǐ yì cǐ yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "今天下之諸侯，將猶皆侵凌攻伐兼并，此爲殺一不辜人者數千萬矣；",
+        "pinyin": "jīn tiān xià zhī zhū hóu ， jiāng yóu jiē qīn líng gōng fá jiān bìng ， cǐ wéi shā yī bù gū rén zhě shǔ qiān wàn yǐ ；",
+        "english": ""
+      },
+      {
+        "chinese": "此爲踰人之墻垣、格人之子女者，與角人府庫、竊人金玉蚤絫者，數千萬矣；",
+        "pinyin": "cǐ wéi yú rén zhī qiáng yuán 、 gé rén zhī zǐ nǚ zhě ， yǔ jiǎo rén fǔ kù 、 qiè rén jīn yù zǎo lěi zhě ， shǔ qiān wàn yǐ ；",
+        "english": ""
+      },
+      {
+        "chinese": "踰人之欄牢、竊人之牛馬者，與入人之場園、竊人之桃李瓜薑者，數千萬矣，而自曰義也。",
+        "pinyin": "yú rén zhī lán láo 、 qiè rén zhī niú mǎ zhě ， yǔ rù rén zhī chǎng yuán 、 qiè rén zhī táo lǐ guā jiāng zhě ， shǔ qiān wàn yǐ ， ér zì yuē yì yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "故子墨子言曰：是蕡我者，則豈有以異是蕡黑白甘苦之辯者哉？",
+        "pinyin": "gù zǐ mò zǐ yán yuē ： shì fén wǒ zhě ， zé qǐ yǒu yǐ yì shì fén hēi bái gān kǔ zhī biàn zhě zāi ？",
+        "english": ""
+      },
+      {
+        "chinese": "今有人於此，少而示之黑謂之黑，多示之黑謂白，必曰：「吾目亂，不知黑白之別。",
+        "pinyin": "jīn yǒu rén yú cǐ ， shǎo ér shì zhī hēi wèi zhī hēi ， duō shì zhī hēi wèi bái ， bì yuē ： 「 wú mù luàn ， bù zhī hēi bái zhī bié 。",
+        "english": ""
+      },
+      {
+        "chinese": "」今有人於此，能少嘗之甘謂甘，多嘗謂苦，必曰：「吾口亂，不知其甘苦之味。",
+        "pinyin": "」 jīn yǒu rén yú cǐ ， néng shǎo cháng zhī gān wèi gān ， duō cháng wèi kǔ ， bì yuē ： 「 wú kǒu luàn ， bù zhī qí gān kǔ zhī wèi 。",
+        "english": ""
+      }
+    ]
+  },
+  {
+    "id": "mozi_ch_5",
+    "bookId": "mozi",
+    "chapterIndex": 5,
+    "title": "非樂上",
+    "titleEn": "Chapter 5: 非樂上",
+    "sentences": [
+      {
+        "chinese": "子墨子言曰：仁人之事者，必務求興天下之利，除天下之害。",
+        "pinyin": "zǐ mò zǐ yán yuē ： rén rén zhī shì zhě ， bì wù qiú xìng tiān xià zhī lì ， chú tiān xià zhī hài 。",
+        "english": ""
+      },
+      {
+        "chinese": "將以爲法乎天下，利人乎即爲，不利人乎即止。",
+        "pinyin": "jiāng yǐ wéi fǎ hū tiān xià ， lì rén hū jí wéi ， bù lì rén hū jí zhǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "且夫仁者之爲天下度也，非爲其目之所美，耳之所樂，口之所甘，身體之所安，以此虧奪民衣食之財，仁者弗爲也。",
+        "pinyin": "qiě fū rén zhě zhī wéi tiān xià dù yě ， fēi wéi qí mù zhī suǒ měi ， ěr zhī suǒ lè ， kǒu zhī suǒ gān ， shēn tǐ zhī suǒ ān ， yǐ cǐ kuī duó mín yī shí zhī cái ， rén zhě fú wéi yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "是故子墨子之所以非樂者，非以大鍾、鳴鼓、琴瑟、竽笙之聲以爲不樂也，非以刻鏤華文章之色以爲不美也，非以犓豢、煎炙之味以爲不甘也，非以高台、厚榭、邃野之居以爲不安也。",
+        "pinyin": "shì gù zǐ mò zǐ zhī suǒ yǐ fēi lè zhě ， fēi yǐ dà zhōng 、 míng gǔ 、 qín sè 、 yú shēng zhī shēng yǐ wéi bù lè yě ， fēi yǐ kè lòu huá wén zhāng zhī sè yǐ wéi bù měi yě ， fēi yǐ chú huàn 、 jiān zhì zhī wèi yǐ wéi bù gān yě ， fēi yǐ gāo tái 、 hòu xiè 、 suì yě zhī jū yǐ wéi bù ān yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "雖身知其安也，口知其甘也，目知其美也，耳知其樂也，然上考之不中聖王之事，下度之不中萬民之利。",
+        "pinyin": "suī shēn zhī qí ān yě ， kǒu zhī qí gān yě ， mù zhī qí měi yě ， ěr zhī qí lè yě ， rán shàng kǎo zhī bù zhōng shèng wáng zhī shì ， xià dù zhī bù zhōng wàn mín zhī lì 。",
+        "english": ""
+      },
+      {
+        "chinese": "是故子墨子曰：爲樂非也。",
+        "pinyin": "shì gù zǐ mò zǐ yuē ： wéi lè fēi yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "今王公大人雖無造爲樂器，以爲事乎國家，非直掊潦水、拆壞垣而爲之也，將必厚措斂乎萬民，以爲大鍾、鳴鼓、琴瑟、竽笙之聲。",
+        "pinyin": "jīn wáng gōng dà rén suī wú zào wéi yuè qì ， yǐ wéi shì hū guó jiā ， fēi zhí pǒu lǎo shuǐ 、 chāi huài yuán ér wéi zhī yě ， jiāng bì hòu cuò liǎn hū wàn mín ， yǐ wéi dà zhōng 、 míng gǔ 、 qín sè 、 yú shēng zhī shēng 。",
+        "english": ""
+      },
+      {
+        "chinese": "然則當用樂器，譬之若聖王之爲舟車也，即我弗敢非也。",
+        "pinyin": "rán zé dāng yòng yuè qì ， pì zhī ruò shèng wáng zhī wéi zhōu chē yě ， jí wǒ fú gǎn fēi yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "古者聖王亦嘗厚措斂乎萬民，以爲舟車，既以成矣，曰：「吾將惡許用之？",
+        "pinyin": "gǔ zhě shèng wáng yì cháng hòu cuò liǎn hū wàn mín ， yǐ wéi zhōu chē ， jì yǐ chéng yǐ ， yuē ： 「 wú jiāng è xǔ yòng zhī ？",
+        "english": ""
+      },
+      {
+        "chinese": "」曰：「舟用之水，車用之陸，君子息其足焉，小人休其肩背焉。",
+        "pinyin": "」 yuē ： 「 zhōu yòng zhī shuǐ ， chē yòng zhī lù ， jūn zǐ xī qí zú yān ， xiǎo rén xiū qí jiān bēi yān 。",
+        "english": ""
+      },
+      {
+        "chinese": "」故萬民出財，齎而予之，不敢以爲慼恨者，何也？",
+        "pinyin": "」 gù wàn mín chū cái ， jī ér yú zhī ， bù gǎn yǐ wéi qī hèn zhě ， hé yě ？",
+        "english": ""
+      },
+      {
+        "chinese": "以其反中民之利也。",
+        "pinyin": "yǐ qí fǎn zhōng mín zhī lì yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "然則樂器反中民之利亦若此，即我弗敢非也。",
+        "pinyin": "rán zé yuè qì fǎn zhōng mín zhī lì yì ruò cǐ ， jí wǒ fú gǎn fēi yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "民有三患：飢者不得食，寒者不得衣，勞者不得息，三者民之巨患也。",
+        "pinyin": "mín yǒu sān huàn ： jī zhě bù dé shí ， hán zhě bù dé yī ， láo zhě bù dé xī ， sān zhě mín zhī jù huàn yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "然即當爲之撞巨鍾、擊鳴鼓、彈琴瑟、吹竽笙而揚干戚，民衣食之財將安可得乎？",
+        "pinyin": "rán jí dāng wéi zhī zhuàng jù zhōng 、 jī míng gǔ 、 tán qín sè 、 chuī yú shēng ér yáng gān qī ， mín yī shí zhī cái jiāng ān kě dé hū ？",
+        "english": ""
+      },
+      {
+        "chinese": "即我以爲未必然也。",
+        "pinyin": "jí wǒ yǐ wéi wèi bì rán yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "意舍此，今有大國即攻小國，有大家即伐小家，强刼弱，衆暴寡，詐欺愚，貴傲賤，寇亂盜賊並興，不可禁止也。",
+        "pinyin": "yì shě cǐ ， jīn yǒu dà guó jí gōng xiǎo guó ， yǒu dà jiā jí fá xiǎo jiā ， qiáng jié ruò ， zhòng bào guǎ ， zhà qī yú ， guì ào jiàn ， kòu luàn dào zéi bìng xìng ， bù kě jīn zhǐ yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "然即當爲之撞巨鍾、擊鳴鼓、彈琴瑟、吹竽笙而揚干戚，天下之亂也，將安可得而治與？",
+        "pinyin": "rán jí dāng wéi zhī zhuàng jù zhōng 、 jī míng gǔ 、 tán qín sè 、 chuī yú shēng ér yáng gān qī ， tiān xià zhī luàn yě ， jiāng ān kě dé ér zhì yǔ ？",
+        "english": ""
+      },
+      {
+        "chinese": "即我以爲未必然也。",
+        "pinyin": "jí wǒ yǐ wéi wèi bì rán yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "是故子墨子曰：姑嘗厚措斂乎萬民，以爲大鍾、鳴鼓、琴瑟、竽笙之聲，以求興天下之利，除天下之害，而無補也。",
+        "pinyin": "shì gù zǐ mò zǐ yuē ： gū cháng hòu cuò liǎn hū wàn mín ， yǐ wéi dà zhōng 、 míng gǔ 、 qín sè 、 yú shēng zhī shēng ， yǐ qiú xìng tiān xià zhī lì ， chú tiān xià zhī hài ， ér wú bǔ yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "是故子墨子曰：爲樂非也。",
+        "pinyin": "shì gù zǐ mò zǐ yuē ： wéi lè fēi yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "今王公大人惟毋處高臺厚榭之上而視之，鍾猶是延鼎也，弗撞擊，將何樂得焉哉？",
+        "pinyin": "jīn wáng gōng dà rén wéi wú chù gāo tái hòu xiè zhī shàng ér shì zhī ， zhōng yóu shì yán dǐng yě ， fú zhuàng jī ， jiāng hé lè dé yān zāi ？",
+        "english": ""
+      },
+      {
+        "chinese": "其說將必撞擊之。",
+        "pinyin": "qí shuō jiāng bì zhuàng jī zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "惟勿撞擊，將必不使老與遲者，老與遲者耳目不聰明，股肱不畢强，聲不和調，明不轉朴。",
+        "pinyin": "wéi wù zhuàng jī ， jiāng bì bù shǐ lǎo yǔ chí zhě ， lǎo yǔ chí zhě ěr mù bù cōng míng ， gǔ gōng bù bì qiáng ， shēng bù hé tiáo ， míng bù zhuǎn pǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "將必使當年，因其耳目之聰明，股肱之畢强，聲之和調，明之轉朴。",
+        "pinyin": "jiāng bì shǐ dāng nián ， yīn qí ěr mù zhī cōng míng ， gǔ gōng zhī bì qiáng ， shēng zhī hé tiáo ， míng zhī zhuǎn pǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "使丈夫爲之，廢丈夫耕稼樹蓺之時；",
+        "pinyin": "shǐ zhàng fū wéi zhī ， fèi zhàng fū gēng jià shù yì zhī shí ；",
+        "english": ""
+      },
+      {
+        "chinese": "使婦人爲之，廢婦人紡績織絍之事。",
+        "pinyin": "shǐ fù rén wéi zhī ， fèi fù rén fǎng jì zhī rèn zhī shì 。",
+        "english": ""
+      },
+      {
+        "chinese": "今王公大人惟毋爲樂，虧奪民衣食之時以拊樂，如此多也。",
+        "pinyin": "jīn wáng gōng dà rén wéi wú wéi lè ， kuī duó mín yī shí zhī shí yǐ fǔ lè ， rú cǐ duō yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "是故子墨子曰：爲樂非也。",
+        "pinyin": "shì gù zǐ mò zǐ yuē ： wéi lè fēi yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "今大鍾、鳴鼓、琴瑟、竽笙之聲既已具矣，大人鏽然奏而獨聽之，將何樂得焉哉？",
+        "pinyin": "jīn dà zhōng 、 míng gǔ 、 qín sè 、 yú shēng zhī shēng jì yǐ jù yǐ ， dà rén xiù rán zòu ér dú tīng zhī ， jiāng hé lè dé yān zāi ？",
+        "english": ""
+      },
+      {
+        "chinese": "其說將必與人。",
+        "pinyin": "qí shuō jiāng bì yǔ rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "不與君子聽之，廢君子聽治；",
+        "pinyin": "bù yǔ jūn zǐ tīng zhī ， fèi jūn zǐ tīng zhì ；",
+        "english": ""
+      },
+      {
+        "chinese": "與賤人聽之，廢賤人之從事。",
+        "pinyin": "yǔ jiàn rén tīng zhī ， fèi jiàn rén zhī cóng shì 。",
+        "english": ""
+      },
+      {
+        "chinese": "今王公大人惟毋爲樂，虧奪民之衣食之財以拊樂，如此多也。",
+        "pinyin": "jīn wáng gōng dà rén wéi wú wéi lè ， kuī duó mín zhī yī shí zhī cái yǐ fǔ lè ， rú cǐ duō yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "是故子墨子曰：爲樂非也。",
+        "pinyin": "shì gù zǐ mò zǐ yuē ： wéi lè fēi yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "昔者齊康公興樂萬，萬人不可衣短褐，不可食穅糟。",
+        "pinyin": "xī zhě qí kāng gōng xìng lè wàn ， wàn rén bù kě yī duǎn hè ， bù kě shí kāng zāo 。",
+        "english": ""
+      },
+      {
+        "chinese": "曰：「食飲不美，面目顏色不足視也；",
+        "pinyin": "yuē ： 「 shí yǐn bù měi ， miàn mù yán sè bù zú shì yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "衣服不美，身體從容不足觀也。",
+        "pinyin": "yī fú bù měi ， shēn tǐ cóng róng bù zú guān yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "」是以食必粱肉，衣必文繡。",
+        "pinyin": "」 shì yǐ shí bì liáng ròu ， yī bì wén xiù 。",
+        "english": ""
+      },
+      {
+        "chinese": "此掌不從事乎衣食之財，而掌食乎人者也。",
+        "pinyin": "cǐ zhǎng bù cóng shì hū yī shí zhī cái ， ér zhǎng shí hū rén zhě yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "是故子墨子曰：今王公大人惟無爲樂，虧奪民衣食之財以拊樂，如此多也。",
+        "pinyin": "shì gù zǐ mò zǐ yuē ： jīn wáng gōng dà rén wéi wú wéi lè ， kuī duó mín yī shí zhī cái yǐ fǔ lè ， rú cǐ duō yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "是故子墨子曰：爲樂非也。",
+        "pinyin": "shì gù zǐ mò zǐ yuē ： wéi lè fēi yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "今人固與禽獸、麋鹿、蜚鳥、貞蟲異者也。",
+        "pinyin": "jīn rén gù yǔ qín shòu 、 mí lù 、 fēi niǎo 、 zhēn chóng yì zhě yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "今之禽獸、麋鹿、蜚鳥、貞蟲，因其羽毛以爲衣裘，因其蹄蚤以爲絝屨，因其水草以爲飲食。",
+        "pinyin": "jīn zhī qín shòu 、 mí lù 、 fēi niǎo 、 zhēn chóng ， yīn qí yǔ máo yǐ wéi yī qiú ， yīn qí tí zǎo yǐ wéi kù jù ， yīn qí shuǐ cǎo yǐ wéi yǐn shí 。",
+        "english": ""
+      },
+      {
+        "chinese": "故唯使雄不耕稼樹蓺，雌亦不紡績織絍，衣食之財固已具矣。",
+        "pinyin": "gù wéi shǐ xióng bù gēng jià shù yì ， cí yì bù fǎng jì zhī rèn ， yī shí zhī cái gù yǐ jù yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "今人與此異者也，賴其力者生，不賴其力者不生。",
+        "pinyin": "jīn rén yǔ cǐ yì zhě yě ， lài qí lì zhě shēng ， bù lài qí lì zhě bù shēng 。",
+        "english": ""
+      },
+      {
+        "chinese": "君子不强聽治，即刑政亂；",
+        "pinyin": "jūn zǐ bù qiáng tīng zhì ， jí xíng zhèng luàn ；",
+        "english": ""
+      },
+      {
+        "chinese": "賤人不强從事，即財用不足。",
+        "pinyin": "jiàn rén bù qiáng cóng shì ， jí cái yòng bù zú 。",
+        "english": ""
+      },
+      {
+        "chinese": "今天下之士君子以吾言不然，然即姑嘗數天下分事，而觀樂之害。",
+        "pinyin": "jīn tiān xià zhī shì jūn zǐ yǐ wú yán bù rán ， rán jí gū cháng shǔ tiān xià fēn shì ， ér guān lè zhī hài 。",
+        "english": ""
+      },
+      {
+        "chinese": "王公大人蚤朝晏退，聽獄治政，此其分事也。",
+        "pinyin": "wáng gōng dà rén zǎo cháo yàn tuì ， tīng yù zhì zhèng ， cǐ qí fēn shì yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "士君子竭股肱之力，亶其思慮之智，內治官府，外收斂關市、山林、澤梁之利，以實倉廩府庫，此其分事也。",
+        "pinyin": "shì jūn zǐ jié gǔ gōng zhī lì ， dǎn qí sī lǜ zhī zhì ， nèi zhì guān fǔ ， wài shōu liǎn guān shì 、 shān lín 、 zé liáng zhī lì ， yǐ shí cāng lǐn fǔ kù ， cǐ qí fēn shì yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "農夫蚤出暮入，耕稼樹蓺，多聚叔粟，此其分事也。",
+        "pinyin": "nóng fū zǎo chū mù rù ， gēng jià shù yì ， duō jù shū sù ， cǐ qí fēn shì yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "婦人夙興夜寐，紡績織絍，多治麻絲葛緒，綑布縿，此其分事也。",
+        "pinyin": "fù rén sù xìng yè mèi ， fǎng jì zhī rèn ， duō zhì má sī gé xù ， kǔn bù shān ， cǐ qí fēn shì yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "今惟毋在乎王公大人說樂而聽之，即必不能蚤朝晏退，聽獄治政，是故國家亂而社稷危矣。",
+        "pinyin": "jīn wéi wú zài hū wáng gōng dà rén shuō lè ér tīng zhī ， jí bì bù néng zǎo cháo yàn tuì ， tīng yù zhì zhèng ， shì gù guó jiā luàn ér shè jì wēi yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "今惟毋在乎士君子說樂而聽之，即必不能竭股肱之力，亶其思慮之智，內治官府，外收斂關市、山林、澤梁之利，以實倉廩府庫，是故倉廪府庫不實。",
+        "pinyin": "jīn wéi wú zài hū shì jūn zǐ shuō lè ér tīng zhī ， jí bì bù néng jié gǔ gōng zhī lì ， dǎn qí sī lǜ zhī zhì ， nèi zhì guān fǔ ， wài shōu liǎn guān shì 、 shān lín 、 zé liáng zhī lì ， yǐ shí cāng lǐn fǔ kù ， shì gù cāng lǐn fǔ kù bù shí 。",
+        "english": ""
+      },
+      {
+        "chinese": "今惟毋在乎農夫說樂而聽之，即必不能蚤出暮入，耕稼樹蓺，多聚叔粟，是故叔粟不足。",
+        "pinyin": "jīn wéi wú zài hū nóng fū shuō lè ér tīng zhī ， jí bì bù néng zǎo chū mù rù ， gēng jià shù yì ， duō jù shū sù ， shì gù shū sù bù zú 。",
+        "english": ""
+      },
+      {
+        "chinese": "今惟毋在乎婦人說樂而聽之，即不必能夙興夜寐，紡績織絍，多治麻絲葛緒，綑布縿，是故布縿不興。",
+        "pinyin": "jīn wéi wú zài hū fù rén shuō lè ér tīng zhī ， jí bù bì néng sù xìng yè mèi ， fǎng jì zhī rèn ， duō zhì má sī gé xù ， kǔn bù shān ， shì gù bù shān bù xìng 。",
+        "english": ""
+      },
+      {
+        "chinese": "曰：孰爲大人之聽治而廢國家之從事，曰樂也。",
+        "pinyin": "yuē ： shú wéi dà rén zhī tīng zhì ér fèi guó jiā zhī cóng shì ， yuē lè yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "是故子墨子曰：爲樂非也。",
+        "pinyin": "shì gù zǐ mò zǐ yuē ： wéi lè fēi yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "何以知其然也？",
+        "pinyin": "hé yǐ zhī qí rán yě ？",
+        "english": ""
+      },
+      {
+        "chinese": "曰：先王之書湯之《官刑》有之，曰：「其恒舞於宮，是謂巫風。",
+        "pinyin": "yuē ： xiān wáng zhī shū tāng zhī 《 guān xíng 》 yǒu zhī ， yuē ： 「 qí héng wǔ yú gōng ， shì wèi wū fēng 。",
+        "english": ""
+      },
+      {
+        "chinese": "其刑，君子出絲二衛，小人否，似二伯黃徑。",
+        "pinyin": "qí xíng ， jūn zǐ chū sī èr wèi ， xiǎo rén fǒu ， sì èr bó huáng jìng 。",
+        "english": ""
+      },
+      {
+        "chinese": "」乃言曰：「嗚呼！",
+        "pinyin": "」 nǎi yán yuē ： 「 wū hū ！",
+        "english": ""
+      },
+      {
+        "chinese": "舞佯佯，黃言孔章，上帝弗常，九有以亡。",
+        "pinyin": "wǔ yáng yáng ， huáng yán kǒng zhāng ， shàng dì fú cháng ， jiǔ yǒu yǐ wáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "上帝不順，降之百𦍙，其家必壞喪。",
+        "pinyin": "shàng dì bù shùn ， jiàng zhī bǎi \ud858 \udf59 ， qí jiā bì huài sàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "」察九有之所以亡者，徒從飾樂也。",
+        "pinyin": "」 chá jiǔ yǒu zhī suǒ yǐ wáng zhě ， tú cóng shì lè yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "於《武觀》曰：「啟乃淫溢康樂，野于飲食，將將銘，莧磬以力。",
+        "pinyin": "yú 《 wǔ guān 》 yuē ： 「 qǐ nǎi yín yì kāng lè ， yě yú yǐn shí ， jiāng jiāng míng ， xiàn qìng yǐ lì 。",
+        "english": ""
+      },
+      {
+        "chinese": "湛濁于酒，渝食于野，萬舞翼翼，章聞于天，天用弗式。",
+        "pinyin": "zhàn zhuó yú jiǔ ， yú shí yú yě ， wàn wǔ yì yì ， zhāng wén yú tiān ， tiān yòng fú shì 。",
+        "english": ""
+      },
+      {
+        "chinese": "」故上者天鬼弗式，下者萬民弗利。",
+        "pinyin": "」 gù shàng zhě tiān guǐ fú shì ， xià zhě wàn mín fú lì 。",
+        "english": ""
+      },
+      {
+        "chinese": "是故子墨子曰：今天下士君子，請將欲求興天下之利，除天下之害，當在樂之爲物，將不可不禁而止也。",
+        "pinyin": "shì gù zǐ mò zǐ yuē ： jīn tiān xià shì jūn zǐ ， qǐng jiāng yù qiú xìng tiān xià zhī lì ， chú tiān xià zhī hài ， dāng zài lè zhī wéi wù ， jiāng bù kě bù jīn ér zhǐ yě 。",
+        "english": ""
+      }
+    ]
+  },
+  {
+    "id": "mozi_ch_6",
+    "bookId": "mozi",
+    "chapterIndex": 6,
+    "title": "非命中",
+    "titleEn": "Chapter 6: 非命中",
+    "sentences": [
+      {
+        "chinese": "子墨子言曰：凡出言談、由文學之爲道也，則不可而不先立義法。",
+        "pinyin": "zǐ mò zǐ yán yuē ： fán chū yán tán 、 yóu wén xué zhī wéi dào yě ， zé bù kě ér bù xiān lì yì fǎ 。",
+        "english": ""
+      },
+      {
+        "chinese": "若言而無義，譬猶立朝夕於員鈞之上也，則雖有巧工，必不能得正焉。",
+        "pinyin": "ruò yán ér wú yì ， pì yóu lì cháo xī yú yuán jūn zhī shàng yě ， zé suī yǒu qiǎo gōng ， bì bù néng dé zhèng yān 。",
+        "english": ""
+      },
+      {
+        "chinese": "然今天下之情僞，未可得而識也，故使言有三法。",
+        "pinyin": "rán jīn tiān xià zhī qíng wěi ， wèi kě dé ér shí yě ， gù shǐ yán yǒu sān fǎ 。",
+        "english": ""
+      },
+      {
+        "chinese": "三法者何也？",
+        "pinyin": "sān fǎ zhě hé yě ？",
+        "english": ""
+      },
+      {
+        "chinese": "有本之者，有原之者，有用之者。",
+        "pinyin": "yǒu běn zhī zhě ， yǒu yuán zhī zhě ， yǒu yòng zhī zhě 。",
+        "english": ""
+      },
+      {
+        "chinese": "於其本之也，考之天鬼之志，聖王之事。",
+        "pinyin": "yú qí běn zhī yě ， kǎo zhī tiān guǐ zhī zhì ， shèng wáng zhī shì 。",
+        "english": ""
+      },
+      {
+        "chinese": "於其原之也，徵以先王之書。",
+        "pinyin": "yú qí yuán zhī yě ， zhēng yǐ xiān wáng zhī shū 。",
+        "english": ""
+      },
+      {
+        "chinese": "用之奈何？",
+        "pinyin": "yòng zhī nài hé ？",
+        "english": ""
+      },
+      {
+        "chinese": "發而爲刑政。",
+        "pinyin": "fā ér wéi xíng zhèng 。",
+        "english": ""
+      },
+      {
+        "chinese": "此言之三法也。",
+        "pinyin": "cǐ yán zhī sān fǎ yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "今天下之士君子，或以命爲亡。",
+        "pinyin": "jīn tiān xià zhī shì jūn zǐ ， huò yǐ mìng wéi wáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "我所以知命之有與亡者，以衆人耳目之情知有與亡。",
+        "pinyin": "wǒ suǒ yǐ zhī mìng zhī yǒu yǔ wáng zhě ， yǐ zhòng rén ěr mù zhī qíng zhī yǒu yǔ wáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "有聞之，有見之，謂之有；",
+        "pinyin": "yǒu wén zhī ， yǒu jiàn zhī ， wèi zhī yǒu ；",
+        "english": ""
+      },
+      {
+        "chinese": "莫之聞，莫之見，謂之亡。",
+        "pinyin": "mò zhī wén ， mò zhī jiàn ， wèi zhī wáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "然胡不嘗考之百姓之情？",
+        "pinyin": "rán hú bù cháng kǎo zhī bǎi xìng zhī qíng ？",
+        "english": ""
+      },
+      {
+        "chinese": "自古以及今，生民以來者，亦嘗有見命之物、聞命之聲者乎？",
+        "pinyin": "zì gǔ yǐ jí jīn ， shēng mín yǐ lái zhě ， yì cháng yǒu jiàn mìng zhī wù 、 wén mìng zhī shēng zhě hū ？",
+        "english": ""
+      },
+      {
+        "chinese": "則未嘗有也。",
+        "pinyin": "zé wèi cháng yǒu yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "若以百姓爲愚不肖，耳目之情不足因而爲法。",
+        "pinyin": "ruò yǐ bǎi xìng wéi yú bù xiāo ， ěr mù zhī qíng bù zú yīn ér wéi fǎ 。",
+        "english": ""
+      },
+      {
+        "chinese": "然則胡不嘗考之諸侯之傳言流語乎？",
+        "pinyin": "rán zé hú bù cháng kǎo zhī zhū hóu zhī chuán yán liú yǔ hū ？",
+        "english": ""
+      },
+      {
+        "chinese": "自古以及今，生民以來者，亦嘗有聞命之聲、見命之體者乎？",
+        "pinyin": "zì gǔ yǐ jí jīn ， shēng mín yǐ lái zhě ， yì cháng yǒu wén mìng zhī shēng 、 jiàn mìng zhī tǐ zhě hū ？",
+        "english": ""
+      },
+      {
+        "chinese": "則未嘗有也。",
+        "pinyin": "zé wèi cháng yǒu yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "然胡不嘗攷之聖王之事？",
+        "pinyin": "rán hú bù cháng kǎo zhī shèng wáng zhī shì ？",
+        "english": ""
+      },
+      {
+        "chinese": "古之聖王，舉孝子而勸之事親，尊賢良而勸之爲善，發憲布令以教誨，明賞罰以勸沮。",
+        "pinyin": "gǔ zhī shèng wáng ， jǔ xiào zǐ ér quàn zhī shì qīn ， zūn xián liáng ér quàn zhī wéi shàn ， fā xiàn bù lìng yǐ jiào huì ， míng shǎng fá yǐ quàn jǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "若此，則亂者可使治，而危者可使安矣。",
+        "pinyin": "ruò cǐ ， zé luàn zhě kě shǐ zhì ， ér wēi zhě kě shǐ ān yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "若以爲不然，昔者桀之所亂，湯治之；",
+        "pinyin": "ruò yǐ wéi bù rán ， xī zhě jié zhī suǒ luàn ， tāng zhì zhī ；",
+        "english": ""
+      },
+      {
+        "chinese": "紂之所亂，武王治之。",
+        "pinyin": "zhòu zhī suǒ luàn ， wǔ wáng zhì zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "此世不渝而民不改，上變政而民易教。",
+        "pinyin": "cǐ shì bù yú ér mín bù gǎi ， shàng biàn zhèng ér mín yì jiào 。",
+        "english": ""
+      },
+      {
+        "chinese": "其在湯武則治，其在桀紂則亂。",
+        "pinyin": "qí zài tāng wǔ zé zhì ， qí zài jié zhòu zé luàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "安危治亂在上之發政也，則豈可謂有命哉？",
+        "pinyin": "ān wēi zhì luàn zài shàng zhī fā zhèng yě ， zé qǐ kě wèi yǒu mìng zāi ？",
+        "english": ""
+      },
+      {
+        "chinese": "夫曰有命云者，亦不然矣。",
+        "pinyin": "fū yuē yǒu mìng yún zhě ， yì bù rán yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "今夫有命者言曰：我非作之後世也，自昔三代有若言以傳流矣。",
+        "pinyin": "jīn fū yǒu mìng zhě yán yuē ： wǒ fēi zuò zhī hòu shì yě ， zì xī sān dài yǒu ruò yán yǐ chuán liú yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "今故先生對之？",
+        "pinyin": "jīn gù xiān shēng duì zhī ？",
+        "english": ""
+      },
+      {
+        "chinese": "曰：夫有命者，不志昔也三代之聖善人與？",
+        "pinyin": "yuē ： fū yǒu mìng zhě ， bù zhì xī yě sān dài zhī shèng shàn rén yǔ ？",
+        "english": ""
+      },
+      {
+        "chinese": "意亡昔三代之暴不肖人也？",
+        "pinyin": "yì wáng xī sān dài zhī bào bù xiāo rén yě ？",
+        "english": ""
+      },
+      {
+        "chinese": "何以知之？",
+        "pinyin": "hé yǐ zhī zhī ？",
+        "english": ""
+      },
+      {
+        "chinese": "初之列士桀大夫，慎言知行，此上有以規諫其君長，下有以教順其百姓。",
+        "pinyin": "chū zhī liè shì jié dài fū ， shèn yán zhī xíng ， cǐ shàng yǒu yǐ guī jiàn qí jūn cháng ， xià yǒu yǐ jiào shùn qí bǎi xìng 。",
+        "english": ""
+      },
+      {
+        "chinese": "故上得其君長之賞，下得其百姓之譽。",
+        "pinyin": "gù shàng dé qí jūn cháng zhī shǎng ， xià dé qí bǎi xìng zhī yù 。",
+        "english": ""
+      },
+      {
+        "chinese": "列士桀大夫聲聞不廢，傳流至今，而天下皆曰其力也，一見命焉。",
+        "pinyin": "liè shì jié dài fū shēng wén bù fèi ， chuán liú zhì jīn ， ér tiān xià jiē yuē qí lì yě ， yī jiàn mìng yān 。",
+        "english": ""
+      },
+      {
+        "chinese": "是故昔者三代之暴王，不繆其耳目之淫，不慎其心志之辟，外之敺騁田獵畢弋，內沈於酒樂，而不顧其國家百姓之政。",
+        "pinyin": "shì gù xī zhě sān dài zhī bào wáng ， bù móu qí ěr mù zhī yín ， bù shèn qí xīn zhì zhī pì ， wài zhī qū chěng tián liè bì yì ， nèi shěn yú jiǔ lè ， ér bù gù qí guó jiā bǎi xìng zhī zhèng 。",
+        "english": ""
+      },
+      {
+        "chinese": "繁爲無用，暴逆百姓，使下不親其上。",
+        "pinyin": "fán wéi wú yòng ， bào nì bǎi xìng ， shǐ xià bù qīn qí shàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "是故國爲虛厲，身在刑僇之中。",
+        "pinyin": "shì gù guó wéi xū lì ， shēn zài xíng lù zhī zhōng 。",
+        "english": ""
+      },
+      {
+        "chinese": "必不能曰：「我罷不肖，我爲刑政不善。",
+        "pinyin": "bì bù néng yuē ： 「 wǒ bà bù xiāo ， wǒ wéi xíng zhèng bù shàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "」必曰：「我命故且亡。",
+        "pinyin": "」 bì yuē ： 「 wǒ mìng gù qiě wáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "」雖昔也三代之窮民，亦由此也。",
+        "pinyin": "」 suī xī yě sān dài zhī qióng mín ， yì yóu cǐ yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "內之不能善事其親戚，外之不能善事其君長，惡恭儉而好簡易，貪飲食而惰從事，衣食之財不足，使身至有飢寒凍餒之憂，必不能曰：「我罷不肖，我從事不疾。",
+        "pinyin": "nèi zhī bù néng shàn shì qí qīn qī ， wài zhī bù néng shàn shì qí jūn cháng ， è gōng jiǎn ér hǎo jiǎn yì ， tān yǐn shí ér duò cóng shì ， yī shí zhī cái bù zú ， shǐ shēn zhì yǒu jī hán dòng něi zhī yōu ， bì bù néng yuē ： 「 wǒ bà bù xiāo ， wǒ cóng shì bù jí 。",
+        "english": ""
+      },
+      {
+        "chinese": "」必曰：「我命固且窮。",
+        "pinyin": "」 bì yuē ： 「 wǒ mìng gù qiě qióng 。",
+        "english": ""
+      },
+      {
+        "chinese": "」雖昔也三代之僞民，亦猶此也。",
+        "pinyin": "」 suī xī yě sān dài zhī wěi mín ， yì yóu cǐ yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "繁飾有命，以教衆愚樸之人矣。",
+        "pinyin": "fán shì yǒu mìng ， yǐ jiào zhòng yú pǔ zhī rén yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "聖王之患此也，故書之竹帛，琢之盤盂，鏤之金石。",
+        "pinyin": "shèng wáng zhī huàn cǐ yě ， gù shū zhī zhú bó ， zhuó zhī pán yú ， lòu zhī jīn shí 。",
+        "english": ""
+      },
+      {
+        "chinese": "於先王之書《仲虺之告》曰：「我聞有夏人矯天命，布命於下，帝式是惡，用闕師。",
+        "pinyin": "yú xiān wáng zhī shū 《 zhòng huǐ zhī gào 》 yuē ： 「 wǒ wén yǒu xià rén jiǎo tiān mìng ， bù mìng yú xià ， dì shì shì è ， yòng quē shī 。",
+        "english": ""
+      },
+      {
+        "chinese": "」此語夏王桀之執有命也，湯與仲虺共非之。",
+        "pinyin": "」 cǐ yǔ xià wáng jié zhī zhí yǒu mìng yě ， tāng yǔ zhòng huǐ gòng fēi zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "先王之書《太誓》之言然，曰：「紂夷之居，而不肎事上帝，棄闕其先神而不祀也。",
+        "pinyin": "xiān wáng zhī shū 《 tài shì 》 zhī yán rán ， yuē ： 「 zhòu yí zhī jū ， ér bù kěn shì shàng dì ， qì quē qí xiān shén ér bù sì yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "曰：『我民有命，毋僇其務。",
+        "pinyin": "yuē ： 『 wǒ mín yǒu mìng ， wú lù qí wù 。",
+        "english": ""
+      },
+      {
+        "chinese": "』天不亦棄縱而不葆。",
+        "pinyin": "』 tiān bù yì qì zòng ér bù bǎo 。",
+        "english": ""
+      },
+      {
+        "chinese": "」此言紂之執有命也，武王以《太誓》非之。",
+        "pinyin": "」 cǐ yán zhòu zhī zhí yǒu mìng yě ， wǔ wáng yǐ 《 tài shì 》 fēi zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "有於《三代》《不國》有之，曰：「女毋崇天之有命也。",
+        "pinyin": "yǒu yú 《 sān dài 》 《 bù guó 》 yǒu zhī ， yuē ： 「 nǚ wú chóng tiān zhī yǒu mìng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "」命《三》《不國》亦言命之無也。",
+        "pinyin": "」 mìng 《 sān 》 《 bù guó 》 yì yán mìng zhī wú yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "於召公之《執令》於然，且：「敬哉！",
+        "pinyin": "yú zhào gōng zhī 《 zhí lìng 》 yú rán ， qiě ： 「 jìng zāi ！",
+        "english": ""
+      },
+      {
+        "chinese": "無天命，惟予二人，而無造言，不自降天之，哉得之。",
+        "pinyin": "wú tiān mìng ， wéi yú èr rén ， ér wú zào yán ， bù zì jiàng tiān zhī ， zāi dé zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "」在於商夏之詩書，曰：「命者，暴王作之。",
+        "pinyin": "」 zài yú shāng xià zhī shī shū ， yuē ： 「 mìng zhě ， bào wáng zuò zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "」且今天下之士君子，將欲辯是非利害之故，當天有命者，不可不疾非也。",
+        "pinyin": "」 qiě jīn tiān xià zhī shì jūn zǐ ， jiāng yù biàn shì fēi lì hài zhī gù ， dàng tiān yǒu mìng zhě ， bù kě bù jí fēi yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "執有命者，此天下之厚害也，是故子墨子非之也。",
+        "pinyin": "zhí yǒu mìng zhě ， cǐ tiān xià zhī hòu hài yě ， shì gù zǐ mò zǐ fēi zhī yě 。",
+        "english": ""
+      }
+    ]
+  },
+  {
+    "id": "mozi_ch_7",
+    "bookId": "mozi",
+    "chapterIndex": 7,
+    "title": "非儒下",
+    "titleEn": "Chapter 7: 非儒下",
+    "sentences": [
+      {
+        "chinese": "儒者曰：「親親有術，尊賢有等。",
+        "pinyin": "rú zhě yuē ： 「 qīn qīn yǒu shù ， zūn xián yǒu děng 。",
+        "english": ""
+      },
+      {
+        "chinese": "」言親疏尊卑之異也。",
+        "pinyin": "」 yán qīn shū zūn bēi zhī yì yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "其禮曰：「喪父母三年，妻、後子三年，伯父、叔父、弟兄、庶子其，戚族人五月。",
+        "pinyin": "qí lǐ yuē ： 「 sàng fù mǔ sān nián ， qī 、 hòu zǐ sān nián ， bó fù 、 shū fù 、 dì xiōng 、 shù zǐ qí ， qī zú rén wǔ yuè 。",
+        "english": ""
+      },
+      {
+        "chinese": "」若以親疏爲歲月之數，則親者多而疏者少矣，是妻、後子與父同也。",
+        "pinyin": "」 ruò yǐ qīn shū wéi suì yuè zhī shǔ ， zé qīn zhě duō ér shū zhě shǎo yǐ ， shì qī 、 hòu zǐ yǔ fù tóng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "若以尊卑爲歲月數，則是尊其妻子與父母同，而親伯父、宗兄而卑子也。",
+        "pinyin": "ruò yǐ zūn bēi wéi suì yuè shǔ ， zé shì zūn qí qī zǐ yǔ fù mǔ tóng ， ér qīn bó fù 、 zōng xiōng ér bēi zǐ yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "逆孰大焉？",
+        "pinyin": "nì shú dà yān ？",
+        "english": ""
+      },
+      {
+        "chinese": "其親死，列尸弗斂，登屋，窺井，挑鼠穴，探滌器，而求其人焉。",
+        "pinyin": "qí qīn sǐ ， liè shī fú liǎn ， dēng wū ， kuī jǐng ， tiāo shǔ xué ， tàn dí qì ， ér qiú qí rén yān 。",
+        "english": ""
+      },
+      {
+        "chinese": "以爲實在，則戇愚甚矣。",
+        "pinyin": "yǐ wéi shí zài ， zé gàng yú shèn yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "如其亡也，必求焉，僞亦大矣。",
+        "pinyin": "rú qí wáng yě ， bì qiú yān ， wěi yì dà yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "取妻身迎，祗褍爲僕，秉轡授綏，如仰嚴親。",
+        "pinyin": "qǔ qī shēn yíng ， zhī duān wéi pú ， bǐng pèi shòu suí ， rú yǎng yán qīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "昏禮威儀，如承祭祀。",
+        "pinyin": "hūn lǐ wēi yí ， rú chéng jì sì 。",
+        "english": ""
+      },
+      {
+        "chinese": "顛覆上下，悖逆父母，下則妻子，妻子上侵。",
+        "pinyin": "diān fù shàng xià ， bèi nì fù mǔ ， xià zé qī zǐ ， qī zǐ shàng qīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "事親若此，可謂孝乎？",
+        "pinyin": "shì qīn ruò cǐ ， kě wèi xiào hū ？",
+        "english": ""
+      },
+      {
+        "chinese": "儒者迎妻：妻之奉祭祀，子將守宗廟，故重之。",
+        "pinyin": "rú zhě yíng qī ： qī zhī fèng jì sì ， zǐ jiāng shǒu zōng miào ， gù zhòng zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "應之曰：此誣言也。",
+        "pinyin": "yīng zhī yuē ： cǐ wū yán yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "其宗兄守其先宗廟數十年，死，喪之其，兄弟之妻奉其先之祭祀，弗服。",
+        "pinyin": "qí zōng xiōng shǒu qí xiān zōng miào shǔ shí nián ， sǐ ， sàng zhī qí ， xiōng dì zhī qī fèng qí xiān zhī jì sì ， fú fú 。",
+        "english": ""
+      },
+      {
+        "chinese": "則喪妻子三年，必非以守奉祭祀也。",
+        "pinyin": "zé sàng qī zǐ sān nián ， bì fēi yǐ shǒu fèng jì sì yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "夫憂妻子，以大負絫，有曰：「所以重親也。",
+        "pinyin": "fū yōu qī zǐ ， yǐ dà fù lěi ， yǒu yuē ： 「 suǒ yǐ zhòng qīn yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "」爲欲厚所至私，輕所至重，豈非大姦也哉？",
+        "pinyin": "」 wéi yù hòu suǒ zhì sī ， qīng suǒ zhì zhòng ， qǐ fēi dà jiān yě zāi ？",
+        "english": ""
+      },
+      {
+        "chinese": "有强執有命以說議曰：「壽夭貧富，安危治亂，固有天命，不可損益。",
+        "pinyin": "yǒu qiáng zhí yǒu mìng yǐ shuō yì yuē ： 「 shòu yāo pín fù ， ān wēi zhì luàn ， gù yǒu tiān mìng ， bù kě sǔn yì 。",
+        "english": ""
+      },
+      {
+        "chinese": "窮達賞罰，幸否有極，人之知力，不能爲焉。",
+        "pinyin": "qióng dá shǎng fá ， xìng fǒu yǒu jí ， rén zhī zhī lì ， bù néng wéi yān 。",
+        "english": ""
+      },
+      {
+        "chinese": "」羣吏信之，則怠於分職；",
+        "pinyin": "」 qún lì xìn zhī ， zé dài yú fēn zhí ；",
+        "english": ""
+      },
+      {
+        "chinese": "庶人信之，則怠於從事。",
+        "pinyin": "shù rén xìn zhī ， zé dài yú cóng shì 。",
+        "english": ""
+      },
+      {
+        "chinese": "不治則亂，農事緩則貧，貧且亂政之本，而儒者以爲道教，是賊天下之人者也。",
+        "pinyin": "bù zhì zé luàn ， nóng shì huǎn zé pín ， pín qiě luàn zhèng zhī běn ， ér rú zhě yǐ wéi dào jiào ， shì zéi tiān xià zhī rén zhě yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "且夫繁飾禮樂以淫人，久喪僞哀以謾親，立命緩貧而高浩居，倍本棄事而安怠徹。",
+        "pinyin": "qiě fū fán shì lǐ lè yǐ yín rén ， jiǔ sàng wěi āi yǐ mán qīn ， lì mìng huǎn pín ér gāo hào jū ， bèi běn qì shì ér ān dài chè 。",
+        "english": ""
+      },
+      {
+        "chinese": "貪於飲食，惰於作務，陷於飢寒，危於凍餒，無以違之。",
+        "pinyin": "tān yú yǐn shí ， duò yú zuò wù ， xiàn yú jī hán ， wēi yú dòng něi ， wú yǐ wéi zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "是苦人氣，𪕼鼠藏，而羝羊視，賁彘起。",
+        "pinyin": "shì kǔ rén qì ， \ud869 \udd7c shǔ cáng ， ér dī yáng shì ， bì zhì qǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "君子笑之，怒曰：「散人，焉知良儒！",
+        "pinyin": "jūn zǐ xiào zhī ， nù yuē ： 「 sàn rén ， yān zhī liáng rú ！",
+        "english": ""
+      },
+      {
+        "chinese": "」夫夏乞麥禾，五穀既收，大喪是隨，子姓皆從，得厭飲食，畢治數喪，足以至矣。",
+        "pinyin": "」 fū xià qǐ mài hé ， wǔ gǔ jì shōu ， dà sàng shì suí ， zǐ xìng jiē cóng ， dé yàn yǐn shí ， bì zhì shǔ sàng ， zú yǐ zhì yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "因人之家以爲翠，恃人之野以爲尊，富人有喪，乃大說喜，曰：「此衣食之端也。",
+        "pinyin": "yīn rén zhī jiā yǐ wéi cuì ， shì rén zhī yě yǐ wéi zūn ， fù rén yǒu sàng ， nǎi dà shuō xǐ ， yuē ： 「 cǐ yī shí zhī duān yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "儒者曰：「君子必古服言，然後仁。",
+        "pinyin": "rú zhě yuē ： 「 jūn zǐ bì gǔ fú yán ， rán hòu rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "」應之曰：所謂古之服言者，皆嘗新矣，而古人服之、言之，則非君子也。",
+        "pinyin": "」 yīng zhī yuē ： suǒ wèi gǔ zhī fú yán zhě ， jiē cháng xīn yǐ ， ér gǔ rén fú zhī 、 yán zhī ， zé fēi jūn zǐ yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "然則必法非君子之服，言非君子之言，而後仁乎？",
+        "pinyin": "rán zé bì fǎ fēi jūn zǐ zhī fú ， yán fēi jūn zǐ zhī yán ， ér hòu rén hū ？",
+        "english": ""
+      },
+      {
+        "chinese": "又曰：「君子循而不作。",
+        "pinyin": "yòu yuē ： 「 jūn zǐ xún ér bù zuò 。",
+        "english": ""
+      },
+      {
+        "chinese": "」應之曰：古者羿作弓，伃作甲，奚仲作車，巧垂作舟。",
+        "pinyin": "」 yīng zhī yuē ： gǔ zhě yì zuò gōng ， yú zuò jiǎ ， xī zhòng zuò chē ， qiǎo chuí zuò zhōu 。",
+        "english": ""
+      },
+      {
+        "chinese": "然則今之鮑、函、車、匠皆君子也，而羿、伃、奚仲、巧垂皆小人邪？",
+        "pinyin": "rán zé jīn zhī bào 、 hán 、 chē 、 jiàng jiē jūn zǐ yě ， ér yì 、 yú 、 xī zhòng 、 qiǎo chuí jiē xiǎo rén xié ？",
+        "english": ""
+      },
+      {
+        "chinese": "且其所循，人必或作之，然則其所循皆小人道也。",
+        "pinyin": "qiě qí suǒ xún ， rén bì huò zuò zhī ， rán zé qí suǒ xún jiē xiǎo rén dào yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "又曰：「君子勝不逐奔，揜函弗射，强則助之胥車。",
+        "pinyin": "yòu yuē ： 「 jūn zǐ shèng bù zhú bēn ， yǎn hán fú shè ， qiáng zé zhù zhī xū chē 。",
+        "english": ""
+      },
+      {
+        "chinese": "」應之曰：若皆仁人也，則無說而相與。",
+        "pinyin": "」 yīng zhī yuē ： ruò jiē rén rén yě ， zé wú shuō ér xiāng yǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "仁人以其取舍是非之理相告，無故從有故也，弗知從有知也，無辭必服，見善必遷，何故相與？",
+        "pinyin": "rén rén yǐ qí qǔ shě shì fēi zhī lǐ xiāng gào ， wú gù cóng yǒu gù yě ， fú zhī cóng yǒu zhī yě ， wú cí bì fú ， jiàn shàn bì qiān ， hé gù xiāng yǔ ？",
+        "english": ""
+      },
+      {
+        "chinese": "若兩暴交爭，其勝者欲不逐奔，揜函弗射，施則助之胥車，雖盡能猶且不得爲君子也。",
+        "pinyin": "ruò liǎng bào jiāo zhēng ， qí shèng zhě yù bù zhú bēn ， yǎn hán fú shè ， shī zé zhù zhī xū chē ， suī jìn néng yóu qiě bù dé wéi jūn zǐ yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "意暴殘之國也，聖將爲世除害，興師誅罰，勝將因用儒術令士卒曰：「毋逐奔，揜函勿射，施則助之胥車。",
+        "pinyin": "yì bào cán zhī guó yě ， shèng jiāng wéi shì chú hài ， xìng shī zhū fá ， shèng jiāng yīn yòng rú shù lìng shì zú yuē ： 「 wú zhú bēn ， yǎn hán wù shè ， shī zé zhù zhī xū chē 。",
+        "english": ""
+      },
+      {
+        "chinese": "」暴亂之人也得活，天下害不除，是爲羣殘父母而深賊世也，不義莫大焉。",
+        "pinyin": "」 bào luàn zhī rén yě dé huó ， tiān xià hài bù chú ， shì wéi qún cán fù mǔ ér shēn zéi shì yě ， bù yì mò dà yān 。",
+        "english": ""
+      },
+      {
+        "chinese": "又曰：「君子若鍾，擊之則鳴，弗擊不鳴。",
+        "pinyin": "yòu yuē ： 「 jūn zǐ ruò zhōng ， jī zhī zé míng ， fú jī bù míng 。",
+        "english": ""
+      },
+      {
+        "chinese": "」應之曰：夫仁人事上竭忠，事親得孝，務善則美，有過則諫，此爲人臣之道也。",
+        "pinyin": "」 yīng zhī yuē ： fū rén rén shì shàng jié zhōng ， shì qīn dé xiào ， wù shàn zé měi ， yǒu guò zé jiàn ， cǐ wéi rén chén zhī dào yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "今擊之則鳴，弗擊不鳴，隱知豫力，恬漠待問而後對，雖有君親之大利，弗問不言。",
+        "pinyin": "jīn jī zhī zé míng ， fú jī bù míng ， yǐn zhī yù lì ， tián mò dài wèn ér hòu duì ， suī yǒu jūn qīn zhī dà lì ， fú wèn bù yán 。",
+        "english": ""
+      },
+      {
+        "chinese": "若將有大寇亂，盜賊將作，若機辟將發也，他人不知，己獨知之，雖其君親皆在，不問不言，是夫大亂之賊也。",
+        "pinyin": "ruò jiāng yǒu dà kòu luàn ， dào zéi jiāng zuò ， ruò jī pì jiāng fā yě ， tā rén bù zhī ， jǐ dú zhī zhī ， suī qí jūn qīn jiē zài ， bù wèn bù yán ， shì fū dà luàn zhī zéi yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "以是爲人臣不忠，爲子不孝，事兄不弟，交遇人不貞良。",
+        "pinyin": "yǐ shì wéi rén chén bù zhōng ， wéi zǐ bù xiào ， shì xiōng bù dì ， jiāo yù rén bù zhēn liáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "夫執後不言之朝，物見利使，己雖恐後言，君若言而未有利焉，則高拱下視，會噎爲深，曰：「惟其未之學也。",
+        "pinyin": "fū zhí hòu bù yán zhī cháo ， wù jiàn lì shǐ ， jǐ suī kǒng hòu yán ， jūn ruò yán ér wèi yǒu lì yān ， zé gāo gǒng xià shì ， huì yē wéi shēn ， yuē ： 「 wéi qí wèi zhī xué yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "」用誰急，遺行遠矣。",
+        "pinyin": "」 yòng shuí jí ， yí xíng yuǎn yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "夫一道術學業，仁義也。",
+        "pinyin": "fū yī dào shù xué yè ， rén yì yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "皆大以治人，小以任官，遠用徧施，近以脩身，不義不處，非理不行，務興天下之利，曲直周旋，利則止，此君子之道也。",
+        "pinyin": "jiē dà yǐ zhì rén ， xiǎo yǐ rèn guān ， yuǎn yòng biàn shī ， jìn yǐ xiū shēn ， bù yì bù chù ， fēi lǐ bù xíng ， wù xìng tiān xià zhī lì ， qǔ zhí zhōu xuán ， lì zé zhǐ ， cǐ jūn zǐ zhī dào yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "以所聞孔丘之行，則本與此相反謬也。",
+        "pinyin": "yǐ suǒ wén kǒng qiū zhī xíng ， zé běn yǔ cǐ xiāng fǎn miù yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "齊景公問晏子曰：「孔子爲人何如？",
+        "pinyin": "qí jǐng gōng wèn yàn zǐ yuē ： 「 kǒng zǐ wéi rén hé rú ？",
+        "english": ""
+      },
+      {
+        "chinese": "」晏子不對，公又復問，不對。",
+        "pinyin": "」 yàn zǐ bù duì ， gōng yòu fù wèn ， bù duì 。",
+        "english": ""
+      },
+      {
+        "chinese": "景公曰：「以孔丘語寡人者衆矣，俱以爲賢人也。",
+        "pinyin": "jǐng gōng yuē ： 「 yǐ kǒng qiū yǔ guǎ rén zhě zhòng yǐ ， jù yǐ wéi xián rén yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "今寡人問之，而子不對，何也？",
+        "pinyin": "jīn guǎ rén wèn zhī ， ér zǐ bù duì ， hé yě ？",
+        "english": ""
+      },
+      {
+        "chinese": "」晏子對曰：「嬰不肖，不足以知賢人。",
+        "pinyin": "」 yàn zǐ duì yuē ： 「 yīng bù xiāo ， bù zú yǐ zhī xián rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "雖然，嬰聞所謂賢人者，入人之國，必務合其君臣之親，而弭其上下之怨。",
+        "pinyin": "suī rán ， yīng wén suǒ wèi xián rén zhě ， rù rén zhī guó ， bì wù hé qí jūn chén zhī qīn ， ér mǐ qí shàng xià zhī yuàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "孔丘之荆，知白公之謀，而奉之以石乞，君身幾滅，而白公僇。",
+        "pinyin": "kǒng qiū zhī jīng ， zhī bái gōng zhī móu ， ér fèng zhī yǐ shí qǐ ， jūn shēn jǐ miè ， ér bái gōng lù 。",
+        "english": ""
+      },
+      {
+        "chinese": "嬰聞賢人得上不虛，得下不危，言聽於君必利人，教行下必於上，是以言明而易知也，行易而易從也，行義可明乎民，謀慮可通乎君臣。",
+        "pinyin": "yīng wén xián rén dé shàng bù xū ， dé xià bù wēi ， yán tīng yú jūn bì lì rén ， jiào xíng xià bì yú shàng ， shì yǐ yán míng ér yì zhī yě ， xíng yì ér yì cóng yě ， xíng yì kě míng hū mín ， móu lǜ kě tōng hū jūn chén 。",
+        "english": ""
+      },
+      {
+        "chinese": "今孔丘深慮同謀以奉賊，勞思盡知以行邪，勸下亂上，教臣殺君，非賢人之行也。",
+        "pinyin": "jīn kǒng qiū shēn lǜ tóng móu yǐ fèng zéi ， láo sī jìn zhī yǐ xíng xié ， quàn xià luàn shàng ， jiào chén shā jūn ， fēi xián rén zhī xíng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "入人之國，而與人之賊，非義之類也。",
+        "pinyin": "rù rén zhī guó ， ér yǔ rén zhī zéi ， fēi yì zhī lèi yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "知人不忠，趣之爲亂，非仁義之也。",
+        "pinyin": "zhī rén bù zhōng ， qù zhī wéi luàn ， fēi rén yì zhī yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "逃人而後謀，避人而後言，行義不可明於民，謀慮不可通於君，臣嬰不知孔丘之有異於白公也，是以不對。",
+        "pinyin": "táo rén ér hòu móu ， bì rén ér hòu yán ， xíng yì bù kě míng yú mín ， móu lǜ bù kě tōng yú jūn ， chén yīng bù zhī kǒng qiū zhī yǒu yì yú bái gōng yě ， shì yǐ bù duì 。",
+        "english": ""
+      },
+      {
+        "chinese": "」景公曰：「嗚呼！",
+        "pinyin": "」 jǐng gōng yuē ： 「 wū hū ！",
+        "english": ""
+      },
+      {
+        "chinese": "貺寡人者衆矣，非夫子，則吾終身不知孔丘之與白公同也。",
+        "pinyin": "kuàng guǎ rén zhě zhòng yǐ ， fēi fū zǐ ， zé wú zhōng shēn bù zhī kǒng qiū zhī yǔ bái gōng tóng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "孔丘之齊，見景公。",
+        "pinyin": "kǒng qiū zhī qí ， jiàn jǐng gōng 。",
+        "english": ""
+      },
+      {
+        "chinese": "景公說，欲封之以尼谿，以告晏子。",
+        "pinyin": "jǐng gōng shuō ， yù fēng zhī yǐ ní xī ， yǐ gào yàn zǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "晏子曰：「不可。",
+        "pinyin": "yàn zǐ yuē ： 「 bù kě 。",
+        "english": ""
+      },
+      {
+        "chinese": "夫儒，浩居而自順者也，不可以教下；",
+        "pinyin": "fū rú ， hào jū ér zì shùn zhě yě ， bù kě yǐ jiào xià ；",
+        "english": ""
+      },
+      {
+        "chinese": "好樂而淫人，不可使親治；",
+        "pinyin": "hǎo lè ér yín rén ， bù kě shǐ qīn zhì ；",
+        "english": ""
+      },
+      {
+        "chinese": "立命而怠事，不可使守職；",
+        "pinyin": "lì mìng ér dài shì ， bù kě shǐ shǒu zhí ；",
+        "english": ""
+      },
+      {
+        "chinese": "宗喪循哀，不可使慈民；",
+        "pinyin": "zōng sàng xún āi ， bù kě shǐ cí mín ；",
+        "english": ""
+      },
+      {
+        "chinese": "機服勉容，不可使導衆。",
+        "pinyin": "jī fú miǎn róng ， bù kě shǐ dǎo zhòng 。",
+        "english": ""
+      },
+      {
+        "chinese": "孔丘盛容脩飾以蠱世，弦歌鼓舞以聚徒，繁登降之禮以示儀，務趨翔之節以觀衆，博學不可使議世，勞思不可以補民，絫壽不能盡其學，當年不能行其禮，積財不能贍其樂，繁飾邪術以營世君，盛爲聲樂以淫遇民，其道不可以期世，其學不可以導衆。",
+        "pinyin": "kǒng qiū shèng róng xiū shì yǐ gǔ shì ， xián gē gǔ wǔ yǐ jù tú ， fán dēng jiàng zhī lǐ yǐ shì yí ， wù qū xiáng zhī jié yǐ guān zhòng ， bó xué bù kě shǐ yì shì ， láo sī bù kě yǐ bǔ mín ， lěi shòu bù néng jìn qí xué ， dāng nián bù néng xíng qí lǐ ， jī cái bù néng shàn qí lè ， fán shì xié shù yǐ yíng shì jūn ， shèng wéi shēng lè yǐ yín yù mín ， qí dào bù kě yǐ qī shì ， qí xué bù kě yǐ dǎo zhòng 。",
+        "english": ""
+      },
+      {
+        "chinese": "今君封之，以利齊俗，非所以導國先衆。",
+        "pinyin": "jīn jūn fēng zhī ， yǐ lì qí sú ， fēi suǒ yǐ dǎo guó xiān zhòng 。",
+        "english": ""
+      },
+      {
+        "chinese": "」公曰：「善。",
+        "pinyin": "」 gōng yuē ： 「 shàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "」於是厚其禮，留其封，敬見而不問其道。",
+        "pinyin": "」 yú shì hòu qí lǐ ， liú qí fēng ， jìng jiàn ér bù wèn qí dào 。",
+        "english": ""
+      },
+      {
+        "chinese": "孔丘乃志怒於景公與晏子，乃樹鴟夷子皮於田常之門，告南郭惠子以所欲爲，歸於魯。",
+        "pinyin": "kǒng qiū nǎi zhì nù yú jǐng gōng yǔ yàn zǐ ， nǎi shù chī yí zǐ pí yú tián cháng zhī mén ， gào nán guō huì zǐ yǐ suǒ yù wéi ， guī yú lǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "有頃，閒齊將伐魯，告子貢曰：「賜乎！",
+        "pinyin": "yǒu qǐng ， xián qí jiāng fá lǔ ， gào zǐ gòng yuē ： 「 cì hū ！",
+        "english": ""
+      },
+      {
+        "chinese": "舉大事於今之時矣。",
+        "pinyin": "jǔ dà shì yú jīn zhī shí yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "」乃遣子貢之齊，因南郭惠子以見田常，勸之伐吳，以教高、國、鮑、晏，使毋得害田常之亂，勸越伐吳。",
+        "pinyin": "」 nǎi qiǎn zǐ gòng zhī qí ， yīn nán guō huì zǐ yǐ jiàn tián cháng ， quàn zhī fá wú ， yǐ jiào gāo 、 guó 、 bào 、 yàn ， shǐ wú dé hài tián cháng zhī luàn ， quàn yuè fá wú 。",
+        "english": ""
+      },
+      {
+        "chinese": "三年之內，齊吳破國之難，伏尸以言術數，孔丘之誅也。",
+        "pinyin": "sān nián zhī nèi ， qí wú pò guó zhī nán ， fú shī yǐ yán shù shǔ ， kǒng qiū zhī zhū yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "孔丘爲魯司寇，舍公家而於季孫，季孫相魯君而走，季氏與邑人爭門關，決植。",
+        "pinyin": "kǒng qiū wéi lǔ sī kòu ， shě gōng jiā ér yú jì sūn ， jì sūn xiāng lǔ jūn ér zǒu ， jì shì yǔ yì rén zhēng mén guān ， jué zhí 。",
+        "english": ""
+      },
+      {
+        "chinese": "孔丘窮於蔡陳之閒，藜羹不糂。",
+        "pinyin": "kǒng qiū qióng yú cài chén zhī xián ， lí gēng bù shēn 。",
+        "english": ""
+      },
+      {
+        "chinese": "十日，子路爲享豚，孔丘不問肉之所由來而食。",
+        "pinyin": "shí rì ， zǐ lù wéi xiǎng tún ， kǒng qiū bù wèn ròu zhī suǒ yóu lái ér shí 。",
+        "english": ""
+      },
+      {
+        "chinese": "褫人衣以酤酒，孔丘不問酒之所由來而飲。",
+        "pinyin": "chǐ rén yī yǐ gū jiǔ ， kǒng qiū bù wèn jiǔ zhī suǒ yóu lái ér yǐn 。",
+        "english": ""
+      },
+      {
+        "chinese": "哀公迎孔丘，席不端弗坐，割不正弗食。",
+        "pinyin": "āi gōng yíng kǒng qiū ， xí bù duān fú zuò ， gē bù zhèng fú shí 。",
+        "english": ""
+      },
+      {
+        "chinese": "子路進，請曰：「何其與陳蔡反也？",
+        "pinyin": "zǐ lù jìn ， qǐng yuē ： 「 hé qí yǔ chén cài fǎn yě ？",
+        "english": ""
+      },
+      {
+        "chinese": "」孔丘曰：「來，吾語女。",
+        "pinyin": "」 kǒng qiū yuē ： 「 lái ， wú yǔ nǚ 。",
+        "english": ""
+      },
+      {
+        "chinese": "曩與女爲苟生，今與女爲苟義。",
+        "pinyin": "nǎng yǔ nǚ wéi gǒu shēng ， jīn yǔ nǚ wéi gǒu yì 。",
+        "english": ""
+      },
+      {
+        "chinese": "」夫飢約則不辭妄取以活身，贏飽則僞行以自飾。",
+        "pinyin": "」 fū jī yuē zé bù cí wàng qǔ yǐ huó shēn ， yíng bǎo zé wěi xíng yǐ zì shì 。",
+        "english": ""
+      },
+      {
+        "chinese": "汙邪詐僞，孰大於此？",
+        "pinyin": "wū xié zhà wěi ， shú dà yú cǐ ？",
+        "english": ""
+      },
+      {
+        "chinese": "孔丘與其門弟子閒坐，曰：「夫舜見瞽叟就然，此時天下圾乎！",
+        "pinyin": "kǒng qiū yǔ qí mén dì zǐ xián zuò ， yuē ： 「 fū shùn jiàn gǔ sǒu jiù rán ， cǐ shí tiān xià jī hū ！",
+        "english": ""
+      },
+      {
+        "chinese": "周公旦非其人也邪？",
+        "pinyin": "zhōu gōng dàn fēi qí rén yě xié ？",
+        "english": ""
+      },
+      {
+        "chinese": "何爲舍亓家室而託寓也？",
+        "pinyin": "hé wéi shě qí jiā shì ér tuō yù yě ？",
+        "english": ""
+      },
+      {
+        "chinese": "」孔丘所行，心術所至也。",
+        "pinyin": "」 kǒng qiū suǒ xíng ， xīn shù suǒ zhì yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "其徒屬弟子皆效孔丘，子貢、季路輔孔悝亂乎衛，陽虎亂乎齊，佛肸以中牟叛，桼雕刑殘，莫大焉。",
+        "pinyin": "qí tú shǔ dì zǐ jiē xiào kǒng qiū ， zǐ gòng 、 jì lù fǔ kǒng kuī luàn hū wèi ， yáng hǔ luàn hū qí ， fó xī yǐ zhōng mù pàn ， qī diāo xíng cán ， mò dà yān 。",
+        "english": ""
+      },
+      {
+        "chinese": "夫爲弟子，後生其師，必脩其言，法其行，力不足、知弗及而後已。",
+        "pinyin": "fū wéi dì zǐ ， hòu shēng qí shī ， bì xiū qí yán ， fǎ qí xíng ， lì bù zú 、 zhī fú jí ér hòu yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "今孔丘之行如此，儒士則可以疑矣。",
+        "pinyin": "jīn kǒng qiū zhī xíng rú cǐ ， rú shì zé kě yǐ yí yǐ 。",
+        "english": ""
+      }
+    ]
+  },
+  {
+    "id": "mozi_ch_8",
+    "bookId": "mozi",
+    "chapterIndex": 8,
+    "title": "貴義",
+    "titleEn": "Chapter 8: 貴義",
+    "sentences": [
+      {
+        "chinese": "子墨子曰：萬事莫貴於義。",
+        "pinyin": "zǐ mò zǐ yuē ： wàn shì mò guì yú yì 。",
+        "english": ""
+      },
+      {
+        "chinese": "今謂人曰：「予子冠履，而斷子之手足，子爲之乎？",
+        "pinyin": "jīn wèi rén yuē ： 「 yú zǐ guàn lǚ ， ér duàn zǐ zhī shǒu zú ， zǐ wéi zhī hū ？",
+        "english": ""
+      },
+      {
+        "chinese": "」必不爲。",
+        "pinyin": "」 bì bù wéi 。",
+        "english": ""
+      },
+      {
+        "chinese": "則冠履不若手足之貴也。",
+        "pinyin": "zé guàn lǚ bù ruò shǒu zú zhī guì yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "又曰：「予子天下，而殺子之身，子爲之乎？",
+        "pinyin": "yòu yuē ： 「 yú zǐ tiān xià ， ér shā zǐ zhī shēn ， zǐ wéi zhī hū ？",
+        "english": ""
+      },
+      {
+        "chinese": "」必不爲。",
+        "pinyin": "」 bì bù wéi 。",
+        "english": ""
+      },
+      {
+        "chinese": "則天下不若身之貴也。",
+        "pinyin": "zé tiān xià bù ruò shēn zhī guì yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "爭一言以相殺，是貴義於其身也。",
+        "pinyin": "zhēng yī yán yǐ xiāng shā ， shì guì yì yú qí shēn yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "故曰：萬事莫貴於義也。",
+        "pinyin": "gù yuē ： wàn shì mò guì yú yì yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "子墨子自魯之齊，即過故人，謂子墨子曰：「今天下莫爲義，子獨自苦而爲義，子不若已。",
+        "pinyin": "zǐ mò zǐ zì lǔ zhī qí ， jí guò gù rén ， wèi zǐ mò zǐ yuē ： 「 jīn tiān xià mò wéi yì ， zǐ dú zì kǔ ér wéi yì ， zǐ bù ruò yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "」子墨子曰：「今有人於此，有子十人，一人耕而九人處，則耕者不可以不益急矣。",
+        "pinyin": "」 zǐ mò zǐ yuē ： 「 jīn yǒu rén yú cǐ ， yǒu zǐ shí rén ， yī rén gēng ér jiǔ rén chù ， zé gēng zhě bù kě yǐ bù yì jí yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "則食者衆而耕者寡也。",
+        "pinyin": "zé shí zhě zhòng ér gēng zhě guǎ yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "今天下莫爲義，則子如勸我者也，何故止我？",
+        "pinyin": "jīn tiān xià mò wéi yì ， zé zǐ rú quàn wǒ zhě yě ， hé gù zhǐ wǒ ？",
+        "english": ""
+      },
+      {
+        "chinese": "子墨子南游於楚，獻書惠王，惠王以老辭，使穆賀見子墨子，子墨子說穆賀，穆賀大說，謂子墨子曰：「子之言則成善矣，而君王天下之大王也，毋乃曰『賤人之所爲』而不用乎？",
+        "pinyin": "zǐ mò zǐ nán yóu yú chǔ ， xiàn shū huì wáng ， huì wáng yǐ lǎo cí ， shǐ mù hè jiàn zǐ mò zǐ ， zǐ mò zǐ shuō mù hè ， mù hè dà shuō ， wèi zǐ mò zǐ yuē ： 「 zǐ zhī yán zé chéng shàn yǐ ， ér jūn wáng tiān xià zhī dài wáng yě ， wú nǎi yuē 『 jiàn rén zhī suǒ wéi 』 ér bù yòng hū ？",
+        "english": ""
+      },
+      {
+        "chinese": "」子墨子曰：「唯其可行。",
+        "pinyin": "」 zǐ mò zǐ yuē ： 「 wéi qí kě xíng 。",
+        "english": ""
+      },
+      {
+        "chinese": "譬若藥然，草之本，天子食之以順其疾，豈曰『一草之本』而不食哉？",
+        "pinyin": "pì ruò yào rán ， cǎo zhī běn ， tiān zǐ shí zhī yǐ shùn qí jí ， qǐ yuē 『 yī cǎo zhī běn 』 ér bù shí zāi ？",
+        "english": ""
+      },
+      {
+        "chinese": "今農夫入其稅於大人，大人爲酒醴粢盛，以祭上帝鬼神，豈曰『賤人之所爲』而不享哉？",
+        "pinyin": "jīn nóng fū rù qí shuì yú dà rén ， dà rén wéi jiǔ lǐ zī shèng ， yǐ jì shàng dì guǐ shén ， qǐ yuē 『 jiàn rén zhī suǒ wéi 』 ér bù xiǎng zāi ？",
+        "english": ""
+      },
+      {
+        "chinese": "故雖賤人也，上比之農，下比之藥，曾不若一草之本乎？",
+        "pinyin": "gù suī jiàn rén yě ， shàng bǐ zhī nóng ， xià bǐ zhī yào ， céng bù ruò yī cǎo zhī běn hū ？",
+        "english": ""
+      },
+      {
+        "chinese": "且主君亦嘗聞湯之說乎？",
+        "pinyin": "qiě zhǔ jūn yì cháng wén tāng zhī shuō hū ？",
+        "english": ""
+      },
+      {
+        "chinese": "昔者湯將往見伊尹，令彭氏之子御，彭氏之子半道而問曰：『君將何之？",
+        "pinyin": "xī zhě tāng jiāng wǎng jiàn yī yǐn ， lìng péng shì zhī zǐ yù ， péng shì zhī zǐ bàn dào ér wèn yuē ： 『 jūn jiāng hé zhī ？",
+        "english": ""
+      },
+      {
+        "chinese": "』湯曰：『將往見伊尹。",
+        "pinyin": "』 tāng yuē ： 『 jiāng wǎng jiàn yī yǐn 。",
+        "english": ""
+      },
+      {
+        "chinese": "』彭氏之子曰：『伊尹，天下之賤人也。",
+        "pinyin": "』 péng shì zhī zǐ yuē ： 『 yī yǐn ， tiān xià zhī jiàn rén yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "君若欲見之，亦令召問焉，彼受賜矣。",
+        "pinyin": "jūn ruò yù jiàn zhī ， yì lìng zhào wèn yān ， bǐ shòu cì yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "』湯曰：『非女所知也。",
+        "pinyin": "』 tāng yuē ： 『 fēi nǚ suǒ zhī yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "今有藥於此，食之則耳加聰、目加明，則吾必說而强食之。",
+        "pinyin": "jīn yǒu yào yú cǐ ， shí zhī zé ěr jiā cōng 、 mù jiā míng ， zé wú bì shuō ér qiáng shí zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "今夫伊尹之於我國也，譬之良醫善藥也，而子不欲我見伊尹，是子不欲吾善也。",
+        "pinyin": "jīn fū yī yǐn zhī yú wǒ guó yě ， pì zhī liáng yī shàn yào yě ， ér zǐ bù yù wǒ jiàn yī yǐn ， shì zǐ bù yù wú shàn yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "』因下彭氏之子，不使御。",
+        "pinyin": "』 yīn xià péng shì zhī zǐ ， bù shǐ yù 。",
+        "english": ""
+      },
+      {
+        "chinese": "彼苟然，然後可也。",
+        "pinyin": "bǐ gǒu rán ， rán hòu kě yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "子墨子曰：凡言、凡動，利於天鬼百姓者爲之；",
+        "pinyin": "zǐ mò zǐ yuē ： fán yán 、 fán dòng ， lì yú tiān guǐ bǎi xìng zhě wéi zhī ；",
+        "english": ""
+      },
+      {
+        "chinese": "凡言、凡動，害於天鬼百姓者舍之。",
+        "pinyin": "fán yán 、 fán dòng ， hài yú tiān guǐ bǎi xìng zhě shě zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "凡言、凡動，合於三代聖王堯舜禹湯文武者爲之；",
+        "pinyin": "fán yán 、 fán dòng ， hé yú sān dài shèng wáng yáo shùn yǔ tāng wén wǔ zhě wéi zhī ；",
+        "english": ""
+      },
+      {
+        "chinese": "凡言、凡動，合於三代暴王桀紂幽厲者舍之。",
+        "pinyin": "fán yán 、 fán dòng ， hé yú sān dài bào wáng jié zhòu yōu lì zhě shě zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "子墨子曰：言足以遷行者，常之；",
+        "pinyin": "zǐ mò zǐ yuē ： yán zú yǐ qiān xíng zhě ， cháng zhī ；",
+        "english": ""
+      },
+      {
+        "chinese": "不足以遷行者，勿常。",
+        "pinyin": "bù zú yǐ qiān xíng zhě ， wù cháng 。",
+        "english": ""
+      },
+      {
+        "chinese": "不足以遷行而常之，是蕩口也。",
+        "pinyin": "bù zú yǐ qiān xíng ér cháng zhī ， shì dàng kǒu yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "子墨子曰：嘿則思，言則誨，動則事，使三者代御，必爲聖人。",
+        "pinyin": "zǐ mò zǐ yuē ： hēi zé sī ， yán zé huì ， dòng zé shì ， shǐ sān zhě dài yù ， bì wéi shèng rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "必去六辟，必去喜、去怒、去樂、去悲、去愛，而用仁義。",
+        "pinyin": "bì qù liù pì ， bì qù xǐ 、 qù nù 、 qù lè 、 qù bēi 、 qù ài ， ér yòng rén yì 。",
+        "english": ""
+      },
+      {
+        "chinese": "手足口鼻耳從事於義，必爲聖人。",
+        "pinyin": "shǒu zú kǒu bí ěr cóng shì yú yì ， bì wéi shèng rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "子墨子謂二三子曰：爲義而不能，必無排其道。",
+        "pinyin": "zǐ mò zǐ wèi èr sān zǐ yuē ： wéi yì ér bù néng ， bì wú pái qí dào 。",
+        "english": ""
+      },
+      {
+        "chinese": "譬若匠人之斵而不能，無排其繩。",
+        "pinyin": "pì ruò jiàng rén zhī zhuó ér bù néng ， wú pái qí shéng 。",
+        "english": ""
+      },
+      {
+        "chinese": "子墨子曰：世之君子，使之爲一彘之宰，不能則辭之；",
+        "pinyin": "zǐ mò zǐ yuē ： shì zhī jūn zǐ ， shǐ zhī wéi yī zhì zhī zǎi ， bù néng zé cí zhī ；",
+        "english": ""
+      },
+      {
+        "chinese": "使爲一國之相，不能而爲之。",
+        "pinyin": "shǐ wéi yī guó zhī xiāng ， bù néng ér wéi zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "豈不悖哉？",
+        "pinyin": "qǐ bù bèi zāi ？",
+        "english": ""
+      },
+      {
+        "chinese": "子墨子曰：今瞽曰「鉅者，白也。",
+        "pinyin": "zǐ mò zǐ yuē ： jīn gǔ yuē 「 jù zhě ， bái yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "黔者，黑也」，雖明目者無以易之。",
+        "pinyin": "qián zhě ， hēi yě 」 ， suī míng mù zhě wú yǐ yì zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "兼白黑，使瞽取焉，不能知也。",
+        "pinyin": "jiān bái hēi ， shǐ gǔ qǔ yān ， bù néng zhī yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "故我曰瞽不知白黑者，非以其名也，以其取也。",
+        "pinyin": "gù wǒ yuē gǔ bù zhī bái hēi zhě ， fēi yǐ qí míng yě ， yǐ qí qǔ yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "今天下之君子之名仁也，雖禹湯無以易之。",
+        "pinyin": "jīn tiān xià zhī jūn zǐ zhī míng rén yě ， suī yǔ tāng wú yǐ yì zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "兼仁與不仁，而使天下之君子取焉，不能知也。",
+        "pinyin": "jiān rén yǔ bù rén ， ér shǐ tiān xià zhī jūn zǐ qǔ yān ， bù néng zhī yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "故我曰天下之君子不知仁者，非以其名也，亦以其取也。",
+        "pinyin": "gù wǒ yuē tiān xià zhī jūn zǐ bù zhī rén zhě ， fēi yǐ qí míng yě ， yì yǐ qí qǔ yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "子墨子曰：今士之用身，不若商人之用一布之慎也。",
+        "pinyin": "zǐ mò zǐ yuē ： jīn shì zhī yòng shēn ， bù ruò shāng rén zhī yòng yī bù zhī shèn yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "商人用一布布，不敢繼苟而讐焉，必擇良者。",
+        "pinyin": "shāng rén yòng yī bù bù ， bù gǎn jì gǒu ér chóu yān ， bì zé liáng zhě 。",
+        "english": ""
+      },
+      {
+        "chinese": "今士之用身則不然，意之所欲則爲之，厚者入刑罰，薄者被毀醜。",
+        "pinyin": "jīn shì zhī yòng shēn zé bù rán ， yì zhī suǒ yù zé wéi zhī ， hòu zhě rù xíng fá ， báo zhě bèi huǐ chǒu 。",
+        "english": ""
+      },
+      {
+        "chinese": "則士之用身，不若商人之用一布之慎也。",
+        "pinyin": "zé shì zhī yòng shēn ， bù ruò shāng rén zhī yòng yī bù zhī shèn yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "子墨子曰：世之君子欲其義之成，而助之脩其身則慍，是猶欲其墻之成，而人助之築則慍也。",
+        "pinyin": "zǐ mò zǐ yuē ： shì zhī jūn zǐ yù qí yì zhī chéng ， ér zhù zhī xiū qí shēn zé yùn ， shì yóu yù qí qiáng zhī chéng ， ér rén zhù zhī zhù zé yùn yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "豈不悖哉？",
+        "pinyin": "qǐ bù bèi zāi ？",
+        "english": ""
+      },
+      {
+        "chinese": "子墨子曰：古之聖王欲傳其道於後世，是故書之竹帛，鏤之金石，傳遺後世子孫，欲後世子孫法之也。",
+        "pinyin": "zǐ mò zǐ yuē ： gǔ zhī shèng wáng yù chuán qí dào yú hòu shì ， shì gù shū zhī zhú bó ， lòu zhī jīn shí ， chuán yí hòu shì zǐ sūn ， yù hòu shì zǐ sūn fǎ zhī yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "今聞先王之遺而不爲，是廢先王之傳也。",
+        "pinyin": "jīn wén xiān wáng zhī yí ér bù wéi ， shì fèi xiān wáng zhī chuán yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "子墨子南遊使衛，關中載書甚多。",
+        "pinyin": "zǐ mò zǐ nán yóu shǐ wèi ， guān zhōng zài shū shèn duō 。",
+        "english": ""
+      },
+      {
+        "chinese": "弦唐子見而怪之，曰：「吾夫子教公尚過曰：『揣曲直而已。",
+        "pinyin": "xián táng zǐ jiàn ér guài zhī ， yuē ： 「 wú fū zǐ jiào gōng shàng guò yuē ： 『 chuài qǔ zhí ér yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "』今夫子載書甚多，何有也？",
+        "pinyin": "』 jīn fū zǐ zài shū shèn duō ， hé yǒu yě ？",
+        "english": ""
+      },
+      {
+        "chinese": "」子墨子曰：「昔者周公旦朝讀書百篇，夕見漆十士，故周公旦佐相天子，其脩至於今。",
+        "pinyin": "」 zǐ mò zǐ yuē ： 「 xī zhě zhōu gōng dàn cháo dú shū bǎi piān ， xī jiàn qī shí shì ， gù zhōu gōng dàn zuǒ xiāng tiān zǐ ， qí xiū zhì yú jīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "翟上無君上之事，下無耕農之難，吾安敢廢此？",
+        "pinyin": "dí shàng wú jūn shàng zhī shì ， xià wú gēng nóng zhī nán ， wú ān gǎn fèi cǐ ？",
+        "english": ""
+      },
+      {
+        "chinese": "翟聞之，同歸之物，信有誤者。",
+        "pinyin": "dí wén zhī ， tóng guī zhī wù ， xìn yǒu wù zhě 。",
+        "english": ""
+      },
+      {
+        "chinese": "然而民聽不鈞，是以書多也。",
+        "pinyin": "rán ér mín tīng bù jūn ， shì yǐ shū duō yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "今若過之心者，數逆於精微，同歸之物既已知其要矣，是以不教以書也。",
+        "pinyin": "jīn ruò guò zhī xīn zhě ， shǔ nì yú jīng wēi ， tóng guī zhī wù jì yǐ zhī qí yào yǐ ， shì yǐ bù jiào yǐ shū yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "而子何怪焉？",
+        "pinyin": "ér zǐ hé guài yān ？",
+        "english": ""
+      },
+      {
+        "chinese": "子墨子謂公良桓子曰：衛小國也，處於齊晉之閒，猶貧家之處於富家之閒也。",
+        "pinyin": "zǐ mò zǐ wèi gōng liáng huán zǐ yuē ： wèi xiǎo guó yě ， chù yú qí jìn zhī xián ， yóu pín jiā zhī chù yú fù jiā zhī xián yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "貧家而學富家之衣食多用，則速亡必矣。",
+        "pinyin": "pín jiā ér xué fù jiā zhī yī shí duō yòng ， zé sù wáng bì yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "今簡子之家，飾車數百乘，馬食菽粟者數百匹，婦人衣文繡者數百人。",
+        "pinyin": "jīn jiǎn zǐ zhī jiā ， shì chē shǔ bǎi chéng ， mǎ shí shū sù zhě shǔ bǎi pǐ ， fù rén yī wén xiù zhě shǔ bǎi rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "吾取飾車食馬之費與繡衣之財以畜士，必千人有餘。",
+        "pinyin": "wú qǔ shì chē shí mǎ zhī fèi yǔ xiù yī zhī cái yǐ chù shì ， bì qiān rén yǒu yú 。",
+        "english": ""
+      },
+      {
+        "chinese": "若有患難，則使數百人處於前，數百於後，與婦人數百人處前後孰安？",
+        "pinyin": "ruò yǒu huàn nán ， zé shǐ shǔ bǎi rén chù yú qián ， shǔ bǎi yú hòu ， yǔ fù rén shǔ bǎi rén chù qián hòu shú ān ？",
+        "english": ""
+      },
+      {
+        "chinese": "吾以爲不若畜士之安也。",
+        "pinyin": "wú yǐ wéi bù ruò chù shì zhī ān yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "子墨子仕人於衛，所仕者至而反。",
+        "pinyin": "zǐ mò zǐ shì rén yú wèi ， suǒ shì zhě zhì ér fǎn 。",
+        "english": ""
+      },
+      {
+        "chinese": "子墨子曰：「何故反？",
+        "pinyin": "zǐ mò zǐ yuē ： 「 hé gù fǎn ？",
+        "english": ""
+      },
+      {
+        "chinese": "」對曰：「與我言而不當，曰『待女以千盆』，授我五百盆，故去之也。",
+        "pinyin": "」 duì yuē ： 「 yǔ wǒ yán ér bù dāng ， yuē 『 dài nǚ yǐ qiān pén 』 ， shòu wǒ wǔ bǎi pén ， gù qù zhī yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "」子墨子曰：「授子過千盆，則子去之乎？",
+        "pinyin": "」 zǐ mò zǐ yuē ： 「 shòu zǐ guò qiān pén ， zé zǐ qù zhī hū ？",
+        "english": ""
+      },
+      {
+        "chinese": "」對曰：「不去。",
+        "pinyin": "」 duì yuē ： 「 bù qù 。",
+        "english": ""
+      },
+      {
+        "chinese": "」子墨子曰：「然則非爲其不審也，爲其寡也。",
+        "pinyin": "」 zǐ mò zǐ yuē ： 「 rán zé fēi wéi qí bù shěn yě ， wéi qí guǎ yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "子墨子曰：世俗之君子，視義士不若視負粟者。",
+        "pinyin": "zǐ mò zǐ yuē ： shì sú zhī jūn zǐ ， shì yì shì bù ruò shì fù sù zhě 。",
+        "english": ""
+      },
+      {
+        "chinese": "今有人於此，負粟息於路側，欲起而不能，君子見之，無長少貴賤，必起之。",
+        "pinyin": "jīn yǒu rén yú cǐ ， fù sù xī yú lù cè ， yù qǐ ér bù néng ， jūn zǐ jiàn zhī ， wú cháng shǎo guì jiàn ， bì qǐ zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "何故也？",
+        "pinyin": "hé gù yě ？",
+        "english": ""
+      },
+      {
+        "chinese": "曰：義也。",
+        "pinyin": "yuē ： yì yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "今爲義之君子，奉承先王之道以語之，縱不說而行，又從而非毀之。",
+        "pinyin": "jīn wéi yì zhī jūn zǐ ， fèng chéng xiān wáng zhī dào yǐ yǔ zhī ， zòng bù shuō ér xíng ， yòu cóng ér fēi huǐ zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "則是世俗之君子之視義士也，不若視負粟者也。",
+        "pinyin": "zé shì shì sú zhī jūn zǐ zhī shì yì shì yě ， bù ruò shì fù sù zhě yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "子墨子曰：商人之四方，市賈倍徙，雖有關梁之難、盜賊之危，必爲之。",
+        "pinyin": "zǐ mò zǐ yuē ： shāng rén zhī sì fāng ， shì jiǎ bèi xǐ ， suī yǒu guān liáng zhī nán 、 dào zéi zhī wēi ， bì wéi zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "今士坐而言義，無關梁之難、盜賊之危，此爲倍徙不可勝計，然而不爲。",
+        "pinyin": "jīn shì zuò ér yán yì ， wú guān liáng zhī nán 、 dào zéi zhī wēi ， cǐ wéi bèi xǐ bù kě shèng jì ， rán ér bù wéi 。",
+        "english": ""
+      },
+      {
+        "chinese": "則士之計利，不若商人之察也。",
+        "pinyin": "zé shì zhī jì lì ， bù ruò shāng rén zhī chá yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "子墨子北之齊，遇日者。",
+        "pinyin": "zǐ mò zǐ běi zhī qí ， yù rì zhě 。",
+        "english": ""
+      },
+      {
+        "chinese": "日者曰：「帝以今日殺黑龍於北方，而先生之色黑，不可以北。",
+        "pinyin": "rì zhě yuē ： 「 dì yǐ jīn rì shā hēi lóng yú běi fāng ， ér xiān shēng zhī sè hēi ， bù kě yǐ běi 。",
+        "english": ""
+      },
+      {
+        "chinese": "」子墨子不聽，遂北至淄水，不遂而反焉。",
+        "pinyin": "」 zǐ mò zǐ bù tīng ， suì běi zhì zī shuǐ ， bù suí ér fǎn yān 。",
+        "english": ""
+      },
+      {
+        "chinese": "日者曰：「我謂先生不可以北。",
+        "pinyin": "rì zhě yuē ： 「 wǒ wèi xiān shēng bù kě yǐ běi 。",
+        "english": ""
+      },
+      {
+        "chinese": "」子墨子曰：「南之人不得北，北之人不得南，其色有黑者，有白者，何故皆不遂也？",
+        "pinyin": "」 zǐ mò zǐ yuē ： 「 nán zhī rén bù dé běi ， běi zhī rén bù dé nán ， qí sè yǒu hēi zhě ， yǒu bái zhě ， hé gù jiē bù suí yě ？",
+        "english": ""
+      },
+      {
+        "chinese": "且帝以甲乙殺青龍於東方，以丙丁殺赤龍於南方，以庚辛殺白龍於西方，以壬癸殺黑龍於北方，若用子之言，則是禁天下之行者也。",
+        "pinyin": "qiě dì yǐ jiǎ yǐ shā qīng lóng yú dōng fāng ， yǐ bǐng dīng shā chì lóng yú nán fāng ， yǐ gēng xīn shā bái lóng yú xī fāng ， yǐ rén guǐ shā hēi lóng yú běi fāng ， ruò yòng zǐ zhī yán ， zé shì jīn tiān xià zhī xíng zhě yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "是圍心而虛天下也，子之言不可用也。",
+        "pinyin": "shì wéi xīn ér xū tiān xià yě ， zǐ zhī yán bù kě yòng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "子墨子曰：吾言足用矣，舍言革思者，是猶舍穫而攈粟也。",
+        "pinyin": "zǐ mò zǐ yuē ： wú yán zú yòng yǐ ， shě yán gé sī zhě ， shì yóu shě huò ér jùn sù yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "以其言非吾言者，是猶以卵投石也，盡天下之卵，其石猶是也，不可毀也。",
+        "pinyin": "yǐ qí yán fēi wú yán zhě ， shì yóu yǐ luǎn tóu shí yě ， jìn tiān xià zhī luǎn ， qí shí yóu shì yě ， bù kě huǐ yě 。",
+        "english": ""
+      }
+    ]
+  },
+  {
+    "id": "mozi_ch_9",
+    "bookId": "mozi",
+    "chapterIndex": 9,
+    "title": "魯問",
+    "titleEn": "Chapter 9: 魯問",
+    "sentences": [
+      {
+        "chinese": "魯君謂子墨子曰：「吾恐齊之攻我也，可救乎？",
+        "pinyin": "lǔ jūn wèi zǐ mò zǐ yuē ： 「 wú kǒng qí zhī gōng wǒ yě ， kě jiù hū ？",
+        "english": ""
+      },
+      {
+        "chinese": "」子墨子曰：「可。",
+        "pinyin": "」 zǐ mò zǐ yuē ： 「 kě 。",
+        "english": ""
+      },
+      {
+        "chinese": "昔者三代之聖王禹湯文武，百里之諸侯也，說忠行義，取天下。",
+        "pinyin": "xī zhě sān dài zhī shèng wáng yǔ tāng wén wǔ ， bǎi lǐ zhī zhū hóu yě ， shuō zhōng xíng yì ， qǔ tiān xià 。",
+        "english": ""
+      },
+      {
+        "chinese": "三代之暴王桀紂幽厲，讐怨行暴，失天下。",
+        "pinyin": "sān dài zhī bào wáng jié zhòu yōu lì ， chóu yuàn xíng bào ， shī tiān xià 。",
+        "english": ""
+      },
+      {
+        "chinese": "吾願主君之上者尊天事鬼，下者愛利百姓，厚爲皮幣，卑辭令，亟徧禮四鄰諸侯，敺國而以事齊，患可救也。",
+        "pinyin": "wú yuàn zhǔ jūn zhī shàng zhě zūn tiān shì guǐ ， xià zhě ài lì bǎi xìng ， hòu wéi pí bì ， bēi cí lìng ， jí biàn lǐ sì lín zhū hóu ， qū guó ér yǐ shì qí ， huàn kě jiù yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "非願無可爲者。",
+        "pinyin": "fēi yuàn wú kě wéi zhě 。",
+        "english": ""
+      },
+      {
+        "chinese": "齊將伐魯，子墨子謂項子牛曰：「伐魯，齊之大過也。",
+        "pinyin": "qí jiāng fá lǔ ， zǐ mò zǐ wèi xiàng zǐ niú yuē ： 「 fá lǔ ， qí zhī dà guò yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "昔者吳王東伐越，棲諸會稽；",
+        "pinyin": "xī zhě wú wáng dōng fá yuè ， qī zhū huì jī ；",
+        "english": ""
+      },
+      {
+        "chinese": "西伐楚，葆昭王於隨；",
+        "pinyin": "xī fá chǔ ， bǎo zhāo wáng yú suí ；",
+        "english": ""
+      },
+      {
+        "chinese": "北伐齊，取國太子以歸於吳。",
+        "pinyin": "běi fá qí ， qǔ guó tài zǐ yǐ guī yú wú 。",
+        "english": ""
+      },
+      {
+        "chinese": "諸侯報其讐，百姓苦其勞而弗爲用，是以國爲虛戾，身爲刑戮也。",
+        "pinyin": "zhū hóu bào qí chóu ， bǎi xìng kǔ qí láo ér fú wéi yòng ， shì yǐ guó wéi xū lì ， shēn wéi xíng lù yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "昔者智伯伐范氏與中行氏，兼三晉之地。",
+        "pinyin": "xī zhě zhì bó fá fàn shì yǔ zhōng xíng shì ， jiān sān jìn zhī dì 。",
+        "english": ""
+      },
+      {
+        "chinese": "諸侯報其讎，百姓苦其勞而弗爲用，是以國爲虛戾，身爲刑戮，用是也。",
+        "pinyin": "zhū hóu bào qí chóu ， bǎi xìng kǔ qí láo ér fú wéi yòng ， shì yǐ guó wéi xū lì ， shēn wéi xíng lù ， yòng shì yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "故大國之攻小國也，是交相賊也，過必反於國。",
+        "pinyin": "gù dà guó zhī gōng xiǎo guó yě ， shì jiāo xiāng zéi yě ， guò bì fǎn yú guó 。",
+        "english": ""
+      },
+      {
+        "chinese": "子墨子見齊大王，曰：「今有刀於此，試之人頭，倅然斷之，可謂利乎？",
+        "pinyin": "zǐ mò zǐ jiàn qí dài wáng ， yuē ： 「 jīn yǒu dāo yú cǐ ， shì zhī rén tóu ， cuì rán duàn zhī ， kě wèi lì hū ？",
+        "english": ""
+      },
+      {
+        "chinese": "」大王曰：「利。",
+        "pinyin": "」 dài wáng yuē ： 「 lì 。",
+        "english": ""
+      },
+      {
+        "chinese": "」子墨子曰：「多試之人頭，倅然斷之，可謂利乎？",
+        "pinyin": "」 zǐ mò zǐ yuē ： 「 duō shì zhī rén tóu ， cuì rán duàn zhī ， kě wèi lì hū ？",
+        "english": ""
+      },
+      {
+        "chinese": "」大王曰：「利。",
+        "pinyin": "」 dài wáng yuē ： 「 lì 。",
+        "english": ""
+      },
+      {
+        "chinese": "」子墨子曰：「刀則利矣，孰將受其不祥？",
+        "pinyin": "」 zǐ mò zǐ yuē ： 「 dāo zé lì yǐ ， shú jiāng shòu qí bù xiáng ？",
+        "english": ""
+      },
+      {
+        "chinese": "」大王曰：「刀受其利，試者受其不祥。",
+        "pinyin": "」 dài wáng yuē ： 「 dāo shòu qí lì ， shì zhě shòu qí bù xiáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "」子墨子曰：「并國覆軍，賊𢽅百姓，孰將受其不祥？",
+        "pinyin": "」 zǐ mò zǐ yuē ： 「 bìng guó fù jūn ， zéi \ud84b \udf45 bǎi xìng ， shú jiāng shòu qí bù xiáng ？",
+        "english": ""
+      },
+      {
+        "chinese": "」大王俯仰而思之，曰：「我受其不祥。",
+        "pinyin": "」 dài wáng fǔ yǎng ér sī zhī ， yuē ： 「 wǒ shòu qí bù xiáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "魯陽文君將攻鄭，子墨子聞而止之，謂陽文君曰：「今使魯四境之內，大都攻其小都，大家伐其小家，殺其人民，取其牛馬狗豕布帛米粟貨財，則何若？",
+        "pinyin": "lǔ yáng wén jūn jiāng gōng zhèng ， zǐ mò zǐ wén ér zhǐ zhī ， wèi yáng wén jūn yuē ： 「 jīn shǐ lǔ sì jìng zhī nèi ， dà dū gōng qí xiǎo dōu ， dà jiā fá qí xiǎo jiā ， shā qí rén mín ， qǔ qí niú mǎ gǒu shǐ bù bó mǐ sù huò cái ， zé hé ruò ？",
+        "english": ""
+      },
+      {
+        "chinese": "」魯陽文君曰：「魯四境之內，皆寡人之臣也。",
+        "pinyin": "」 lǔ yáng wén jūn yuē ： 「 lǔ sì jìng zhī nèi ， jiē guǎ rén zhī chén yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "今大都攻其小都，大家伐其小家，奪之貨財，則寡人必將厚罰之。",
+        "pinyin": "jīn dà dū gōng qí xiǎo dōu ， dà jiā fá qí xiǎo jiā ， duó zhī huò cái ， zé guǎ rén bì jiāng hòu fá zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "」子墨子曰：「夫天之兼有天下也，亦猶君之有四境之內也。",
+        "pinyin": "」 zǐ mò zǐ yuē ： 「 fū tiān zhī jiān yǒu tiān xià yě ， yì yóu jūn zhī yǒu sì jìng zhī nèi yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "今舉兵將以攻鄭，天誅亓不至乎？",
+        "pinyin": "jīn jǔ bīng jiāng yǐ gōng zhèng ， tiān zhū qí bù zhì hū ？",
+        "english": ""
+      },
+      {
+        "chinese": "」魯陽文君曰：「先生何止我攻鄭也？",
+        "pinyin": "」 lǔ yáng wén jūn yuē ： 「 xiān shēng hé zhǐ wǒ gōng zhèng yě ？",
+        "english": ""
+      },
+      {
+        "chinese": "我攻鄭順於天之志，鄭人三世殺其父，天加誅焉，使三年不全，我將助天誅也。",
+        "pinyin": "wǒ gōng zhèng shùn yú tiān zhī zhì ， zhèng rén sān shì shā qí fù ， tiān jiā zhū yān ， shǐ sān nián bù quán ， wǒ jiāng zhù tiān zhū yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "」子墨子曰：「鄭人三世殺其父，而天加誅焉，使三年不全，天誅足矣。",
+        "pinyin": "」 zǐ mò zǐ yuē ： 「 zhèng rén sān shì shā qí fù ， ér tiān jiā zhū yān ， shǐ sān nián bù quán ， tiān zhū zú yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "今又舉兵將以攻鄭，曰：『吾攻鄭也，順於天之志。",
+        "pinyin": "jīn yòu jǔ bīng jiāng yǐ gōng zhèng ， yuē ： 『 wú gōng zhèng yě ， shùn yú tiān zhī zhì 。",
+        "english": ""
+      },
+      {
+        "chinese": "』譬有人於此，其子强梁不材，故其父笞之。",
+        "pinyin": "』 pì yǒu rén yú cǐ ， qí zǐ qiáng liáng bù cái ， gù qí fù chī zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "其鄰家之父舉木而擊之，曰：『吾擊之也，順於其父之志。",
+        "pinyin": "qí lín jiā zhī fù jǔ mù ér jī zhī ， yuē ： 『 wú jī zhī yě ， shùn yú qí fù zhī zhì 。",
+        "english": ""
+      },
+      {
+        "chinese": "』則豈不悖哉！",
+        "pinyin": "』 zé qǐ bù bèi zāi ！",
+        "english": ""
+      },
+      {
+        "chinese": "」子墨子謂魯陽文君曰：「攻其鄰國，殺其民人，取其牛馬粟米貨財，則書之於竹帛，鏤之於金石，以爲銘於鍾鼎，傳遺後世子孫，曰：『莫若吾多。",
+        "pinyin": "」 zǐ mò zǐ wèi lǔ yáng wén jūn yuē ： 「 gōng qí lín guó ， shā qí mín rén ， qǔ qí niú mǎ sù mǐ huò cái ， zé shū zhī yú zhú bó ， lòu zhī yú jīn shí ， yǐ wéi míng yú zhōng dǐng ， chuán yí hòu shì zǐ sūn ， yuē ： 『 mò ruò wú duō 。",
+        "english": ""
+      },
+      {
+        "chinese": "』今賤人也，亦攻其鄰家，殺其人民，取其狗豕食糧衣裘，亦書之竹帛，以爲銘於席豆，以遺後世子孫，曰：『莫若我多。",
+        "pinyin": "』 jīn jiàn rén yě ， yì gōng qí lín jiā ， shā qí rén mín ， qǔ qí gǒu shǐ shí liáng yī qiú ， yì shū zhī zhú bó ， yǐ wéi míng yú xí dòu ， yǐ yí hòu shì zǐ sūn ， yuē ： 『 mò ruò wǒ duō 。",
+        "english": ""
+      },
+      {
+        "chinese": "』亓可乎？",
+        "pinyin": "』 qí kě hū ？",
+        "english": ""
+      },
+      {
+        "chinese": "」魯陽文君曰：「然，吾以子之言觀之，則天下之所謂可者，未必然也。",
+        "pinyin": "」 lǔ yáng wén jūn yuē ： 「 rán ， wú yǐ zǐ zhī yán guān zhī ， zé tiān xià zhī suǒ wèi kě zhě ， wèi bì rán yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "子墨子謂魯陽文君曰：「世俗之君子，皆知小物而不知大物。",
+        "pinyin": "zǐ mò zǐ wèi lǔ yáng wén jūn yuē ： 「 shì sú zhī jūn zǐ ， jiē zhī xiǎo wù ér bù zhī dà wù 。",
+        "english": ""
+      },
+      {
+        "chinese": "今有人於此，竊一犬一彘則謂之不仁，竊一國一都則以爲義。",
+        "pinyin": "jīn yǒu rén yú cǐ ， qiè yī quǎn yī zhì zé wèi zhī bù rén ， qiè yī guó yī dōu zé yǐ wéi yì 。",
+        "english": ""
+      },
+      {
+        "chinese": "譬猶小視白謂之白，大視白則謂之黑。",
+        "pinyin": "pì yóu xiǎo shì bái wèi zhī bái ， dà shì bái zé wèi zhī hēi 。",
+        "english": ""
+      },
+      {
+        "chinese": "是故世俗之君子知小物而不知大物者，此若言之謂也。",
+        "pinyin": "shì gù shì sú zhī jūn zǐ zhī xiǎo wù ér bù zhī dà wù zhě ， cǐ ruò yán zhī wèi yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "魯陽文君語子墨子曰：「楚之南有啖人之國者焉，其國之長子生，則解而食之，謂之宜弟。",
+        "pinyin": "lǔ yáng wén jūn yǔ zǐ mò zǐ yuē ： 「 chǔ zhī nán yǒu dàn rén zhī guó zhě yān ， qí guó zhī cháng zǐ shēng ， zé jiě ér shí zhī ， wèi zhī yí dì 。",
+        "english": ""
+      },
+      {
+        "chinese": "美，則以遺其君，君喜則賞其父。",
+        "pinyin": "měi ， zé yǐ yí qí jūn ， jūn xǐ zé shǎng qí fù 。",
+        "english": ""
+      },
+      {
+        "chinese": "豈不惡俗哉？",
+        "pinyin": "qǐ bù è sú zāi ？",
+        "english": ""
+      },
+      {
+        "chinese": "」子墨子曰：「雖中國之俗，亦猶是也。",
+        "pinyin": "」 zǐ mò zǐ yuē ： 「 suī zhōng guó zhī sú ， yì yóu shì yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "殺其父而賞其子，何以異食其子而賞其父者哉？",
+        "pinyin": "shā qí fù ér shǎng qí zǐ ， hé yǐ yì shí qí zǐ ér shǎng qí fù zhě zāi ？",
+        "english": ""
+      },
+      {
+        "chinese": "苟不用仁義，何以非夷人食其子也？",
+        "pinyin": "gǒu bù yòng rén yì ， hé yǐ fēi yí rén shí qí zǐ yě ？",
+        "english": ""
+      },
+      {
+        "chinese": "魯君之嬖人死，魯君爲之誄，魯人因說而用之。",
+        "pinyin": "lǔ jūn zhī bì rén sǐ ， lǔ jūn wéi zhī lěi ， lǔ rén yīn shuō ér yòng zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "子墨子聞之，曰：「誄者，道死人之志也。",
+        "pinyin": "zǐ mò zǐ wén zhī ， yuē ： 「 lěi zhě ， dào sǐ rén zhī zhì yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "今因說而用之，是猶以來首從服也。",
+        "pinyin": "jīn yīn shuō ér yòng zhī ， shì yóu yǐ lái shǒu cóng fú yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "」魯陽文君謂子墨子曰：「有語我以忠臣者，令之俯則俯，令之仰則仰，處則靜，呼則應，可謂忠臣乎？",
+        "pinyin": "」 lǔ yáng wén jūn wèi zǐ mò zǐ yuē ： 「 yǒu yǔ wǒ yǐ zhōng chén zhě ， lìng zhī fǔ zé fǔ ， lìng zhī yǎng zé yǎng ， chù zé jìng ， hū zé yīng ， kě wèi zhōng chén hū ？",
+        "english": ""
+      },
+      {
+        "chinese": "」子墨子曰：「令之俯則俯，令之仰則仰，是似景也。",
+        "pinyin": "」 zǐ mò zǐ yuē ： 「 lìng zhī fǔ zé fǔ ， lìng zhī yǎng zé yǎng ， shì sì jǐng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "處則靜，呼則應，是似響也。",
+        "pinyin": "chù zé jìng ， hū zé yīng ， shì sì xiǎng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "君將何得於景與響哉？",
+        "pinyin": "jūn jiāng hé dé yú jǐng yǔ xiǎng zāi ？",
+        "english": ""
+      },
+      {
+        "chinese": "若以翟之所謂忠臣者，上有過則微之以諫，己有善則訪之上，而無敢以告外，匡其邪而入其善，尚同而無下比，是以美善在上而怨讐在下，安樂在上而憂慼在臣。",
+        "pinyin": "ruò yǐ dí zhī suǒ wèi zhōng chén zhě ， shàng yǒu guò zé wēi zhī yǐ jiàn ， jǐ yǒu shàn zé fǎng zhī shàng ， ér wú gǎn yǐ gào wài ， kuāng qí xié ér rù qí shàn ， shàng tóng ér wú xià bǐ ， shì yǐ měi shàn zài shàng ér yuàn chóu zài xià ， ān lè zài shàng ér yōu qī zài chén 。",
+        "english": ""
+      },
+      {
+        "chinese": "此翟之所謂忠臣者也。",
+        "pinyin": "cǐ dí zhī suǒ wèi zhōng chén zhě yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "魯君謂子墨子曰：「我有二子，一人者好學，一人者好分人財，孰以爲太子而可？",
+        "pinyin": "lǔ jūn wèi zǐ mò zǐ yuē ： 「 wǒ yǒu èr zǐ ， yī rén zhě hào xué ， yī rén zhě hǎo fēn rén cái ， shú yǐ wéi tài zǐ ér kě ？",
+        "english": ""
+      },
+      {
+        "chinese": "」子墨子曰：「未可知也，或所爲賞與爲是也。",
+        "pinyin": "」 zǐ mò zǐ yuē ： 「 wèi kě zhī yě ， huò suǒ wéi shǎng yǔ wéi shì yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "魡者之恭，非爲魚賜也；",
+        "pinyin": "diào zhě zhī gōng ， fēi wéi yú cì yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "餌鼠以蟲，非愛之也。",
+        "pinyin": "ěr shǔ yǐ chóng ， fēi ài zhī yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "吾願主君之合其志功而觀焉。",
+        "pinyin": "wú yuàn zhǔ jūn zhī hé qí zhì gōng ér guān yān 。",
+        "english": ""
+      },
+      {
+        "chinese": "魯人有因子墨子而學其子者，其子戰而死，其父讓子墨子。",
+        "pinyin": "lǔ rén yǒu yīn zǐ mò zǐ ér xué qí zǐ zhě ， qí zǐ zhàn ér sǐ ， qí fù ràng zǐ mò zǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "子墨子曰：「子欲學子之子，今學成矣，戰而死，而子慍，是猶欲糶糴，讎則慍也，豈不費哉！",
+        "pinyin": "zǐ mò zǐ yuē ： 「 zǐ yù xué zǐ zhī zǐ ， jīn xué chéng yǐ ， zhàn ér sǐ ， ér zǐ yùn ， shì yóu yù tiào dí ， chóu zé yùn yě ， qǐ bù fèi zāi ！",
+        "english": ""
+      },
+      {
+        "chinese": "魯之南鄙人有吳慮者，冬陶夏耕，自比於舜。",
+        "pinyin": "lǔ zhī nán bǐ rén yǒu wú lǜ zhě ， dōng táo xià gēng ， zì bǐ yú shùn 。",
+        "english": ""
+      },
+      {
+        "chinese": "子墨子聞而見之，吳慮謂子墨子曰：「義耳義耳，焉用言之哉？",
+        "pinyin": "zǐ mò zǐ wén ér jiàn zhī ， wú lǜ wèi zǐ mò zǐ yuē ： 「 yì ěr yì ěr ， yān yòng yán zhī zāi ？",
+        "english": ""
+      },
+      {
+        "chinese": "」子墨子曰：「子之所謂義者，亦有力以勞人，有財以分人乎？",
+        "pinyin": "」 zǐ mò zǐ yuē ： 「 zǐ zhī suǒ wèi yì zhě ， yì yǒu lì yǐ láo rén ， yǒu cái yǐ fēn rén hū ？",
+        "english": ""
+      },
+      {
+        "chinese": "」吳慮曰：「有。",
+        "pinyin": "」 wú lǜ yuē ： 「 yǒu 。",
+        "english": ""
+      },
+      {
+        "chinese": "」子墨子曰：「翟嘗計之矣。",
+        "pinyin": "」 zǐ mò zǐ yuē ： 「 dí cháng jì zhī yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "翟慮耕而食天下之人矣，盛，然後當一農之耕，分諸天下，不能人得一升粟。",
+        "pinyin": "dí lǜ gēng ér shí tiān xià zhī rén yǐ ， shèng ， rán hòu dāng yī nóng zhī gēng ， fēn zhū tiān xià ， bù néng rén dé yī shēng sù 。",
+        "english": ""
+      },
+      {
+        "chinese": "籍而以爲得一升粟，其不能飽天下之飢者，既可睹矣。",
+        "pinyin": "jí ér yǐ wéi dé yī shēng sù ， qí bù néng bǎo tiān xià zhī jī zhě ， jì kě dǔ yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "翟慮織而衣天下之人矣，盛，然後當一婦人之織，分諸天下，不能人得尺布。",
+        "pinyin": "dí lǜ zhī ér yī tiān xià zhī rén yǐ ， shèng ， rán hòu dāng yī fù rén zhī zhī ， fēn zhū tiān xià ， bù néng rén dé chǐ bù 。",
+        "english": ""
+      },
+      {
+        "chinese": "籍而以爲得尺布，其不能煖天下之寒者，既可睹矣。",
+        "pinyin": "jí ér yǐ wéi dé chǐ bù ， qí bù néng nuǎn tiān xià zhī hán zhě ， jì kě dǔ yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "翟慮被堅執銳救諸侯之患，盛，然後當一夫之戰。",
+        "pinyin": "dí lǜ bèi jiān zhí ruì jiù zhū hóu zhī huàn ， shèng ， rán hòu dāng yī fū zhī zhàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "一夫之戰，其不御三軍，既可睹矣。",
+        "pinyin": "yī fū zhī zhàn ， qí bù yù sān jūn ， jì kě dǔ yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "翟以爲不若誦先王之道而求其說，通聖人之言而察其辭，上說王公大人，次說匹夫徒步之士。",
+        "pinyin": "dí yǐ wéi bù ruò sòng xiān wáng zhī dào ér qiú qí shuō ， tōng shèng rén zhī yán ér chá qí cí ， shàng shuō wáng gōng dà rén ， cì shuō pǐ fū tú bù zhī shì 。",
+        "english": ""
+      },
+      {
+        "chinese": "王公大人用吾言，國必治；",
+        "pinyin": "wáng gōng dà rén yòng wú yán ， guó bì zhì ；",
+        "english": ""
+      },
+      {
+        "chinese": "匹夫徒步之士用吾言，行必脩。",
+        "pinyin": "pǐ fū tú bù zhī shì yòng wú yán ， xíng bì xiū 。",
+        "english": ""
+      },
+      {
+        "chinese": "故翟以爲雖不耕而食飢，不織而衣寒，功賢於耕而食之、織而衣之者也。",
+        "pinyin": "gù dí yǐ wéi suī bù gēng ér shí jī ， bù zhī ér yī hán ， gōng xián yú gēng ér shí zhī 、 zhī ér yī zhī zhě yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "故翟以爲雖不耕織乎，而功賢於耕織也。",
+        "pinyin": "gù dí yǐ wéi suī bù gēng zhī hū ， ér gōng xián yú gēng zhī yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "吳慮謂子墨子曰：「義耳義耳，焉用言之哉？",
+        "pinyin": "wú lǜ wèi zǐ mò zǐ yuē ： 「 yì ěr yì ěr ， yān yòng yán zhī zāi ？",
+        "english": ""
+      },
+      {
+        "chinese": "」子墨子曰：「籍設而天下不知耕，教人耕，與不教人耕而獨耕者，其功孰多？",
+        "pinyin": "」 zǐ mò zǐ yuē ： 「 jí shè ér tiān xià bù zhī gēng ， jiào rén gēng ， yǔ bù jiào rén gēng ér dú gēng zhě ， qí gōng shú duō ？",
+        "english": ""
+      },
+      {
+        "chinese": "」吳慮曰：「教人耕者其功多。",
+        "pinyin": "」 wú lǜ yuē ： 「 jiào rén gēng zhě qí gōng duō 。",
+        "english": ""
+      },
+      {
+        "chinese": "」子墨子曰：「籍設而攻不義之國，鼓而使衆進戰，與不鼓而使衆進戰而獨進戰者，其功孰多？",
+        "pinyin": "」 zǐ mò zǐ yuē ： 「 jí shè ér gōng bù yì zhī guó ， gǔ ér shǐ zhòng jìn zhàn ， yǔ bù gǔ ér shǐ zhòng jìn zhàn ér dú jìn zhàn zhě ， qí gōng shú duō ？",
+        "english": ""
+      },
+      {
+        "chinese": "」吳慮曰：「鼓而進衆者其功多。",
+        "pinyin": "」 wú lǜ yuē ： 「 gǔ ér jìn zhòng zhě qí gōng duō 。",
+        "english": ""
+      },
+      {
+        "chinese": "」子墨子曰：「天下匹夫徒步之士少知義，而教天下以義者功亦多，何故弗言也？",
+        "pinyin": "」 zǐ mò zǐ yuē ： 「 tiān xià pǐ fū tú bù zhī shì shǎo zhī yì ， ér jiào tiān xià yǐ yì zhě gōng yì duō ， hé gù fú yán yě ？",
+        "english": ""
+      },
+      {
+        "chinese": "若得鼓而進於義，則吾義豈不益進哉？",
+        "pinyin": "ruò dé gǔ ér jìn yú yì ， zé wú yì qǐ bù yì jìn zāi ？",
+        "english": ""
+      },
+      {
+        "chinese": "子墨子游公尚過於越，公尚過說越王，越王大說，謂公尚過曰：「先生苟能使子墨子至於越而教寡人，請裂故吳之地方五百里以封子墨子。",
+        "pinyin": "zǐ mò zǐ yóu gōng shàng guò yú yuè ， gōng shàng guò shuō yuè wáng ， yuè wáng dà shuō ， wèi gōng shàng guò yuē ： 「 xiān shēng gǒu néng shǐ zǐ mò zǐ zhì yú yuè ér jiào guǎ rén ， qǐng liè gù wú zhī dì fāng wǔ bǎi lǐ yǐ fēng zǐ mò zǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "」公尚過許諾，遂爲公尚過束車五十乘，以迎子墨子於魯，曰：「吾以夫子之道說越王，越王大說，謂過曰：苟能使子墨子至於越而教寡人，請裂故吳之地方五百里以封子。",
+        "pinyin": "」 gōng shàng guò xǔ nuò ， suì wéi gōng shàng guò shù chē wǔ shí chéng ， yǐ yíng zǐ mò zǐ yú lǔ ， yuē ： 「 wú yǐ fū zǐ zhī dào shuō yuè wáng ， yuè wáng dà shuō ， wèi guò yuē ： gǒu néng shǐ zǐ mò zǐ zhì yú yuè ér jiào guǎ rén ， qǐng liè gù wú zhī dì fāng wǔ bǎi lǐ yǐ fēng zǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "」子墨子謂公尚過曰：「子觀越王之志何若？",
+        "pinyin": "」 zǐ mò zǐ wèi gōng shàng guò yuē ： 「 zǐ guān yuè wáng zhī zhì hé ruò ？",
+        "english": ""
+      },
+      {
+        "chinese": "意越王將聽吾言，用我道，則翟將往，量腹而食，度身而衣，自比於羣臣，奚能以封爲哉？",
+        "pinyin": "yì yuè wáng jiāng tīng wú yán ， yòng wǒ dào ， zé dí jiāng wǎng ， liàng fù ér shí ， dù shēn ér yī ， zì bǐ yú qún chén ， xī néng yǐ fēng wéi zāi ？",
+        "english": ""
+      },
+      {
+        "chinese": "抑越王不聽吾言，不用吾道，而我往焉，則是我以義䊮也。",
+        "pinyin": "yì yuè wáng bù tīng wú yán ， bù yòng wú dào ， ér wǒ wǎng yān ， zé shì wǒ yǐ yì 䊮 yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "鈞之䊮，亦於中國耳，何必於越哉？",
+        "pinyin": "jūn zhī 䊮 ， yì yú zhōng guó ěr ， hé bì yú yuè zāi ？",
+        "english": ""
+      },
+      {
+        "chinese": "子墨子游，魏越曰：「既得見四方之君，子則將先語？",
+        "pinyin": "zǐ mò zǐ yóu ， wèi yuè yuē ： 「 jì dé jiàn sì fāng zhī jūn ， zǐ zé jiāng xiān yǔ ？",
+        "english": ""
+      },
+      {
+        "chinese": "」子墨子曰：「凡入國，必擇務而從事焉。",
+        "pinyin": "」 zǐ mò zǐ yuē ： 「 fán rù guó ， bì zé wù ér cóng shì yān 。",
+        "english": ""
+      },
+      {
+        "chinese": "國家昏亂，則語之尚賢尚同；",
+        "pinyin": "guó jiā hūn luàn ， zé yǔ zhī shàng xián shàng tóng ；",
+        "english": ""
+      },
+      {
+        "chinese": "國家貧，則語之節用節葬；",
+        "pinyin": "guó jiā pín ， zé yǔ zhī jié yòng jié zàng ；",
+        "english": ""
+      },
+      {
+        "chinese": "國家憙音湛湎，則語之非樂非命；",
+        "pinyin": "guó jiā xǐ yīn zhàn miǎn ， zé yǔ zhī fēi lè fēi mìng ；",
+        "english": ""
+      },
+      {
+        "chinese": "國家淫僻無禮，則語之尊天事鬼；",
+        "pinyin": "guó jiā yín pì wú lǐ ， zé yǔ zhī zūn tiān shì guǐ ；",
+        "english": ""
+      },
+      {
+        "chinese": "國家務奪侵凌，即語之兼愛非攻。",
+        "pinyin": "guó jiā wù duó qīn líng ， jí yǔ zhī jiān ài fēi gōng 。",
+        "english": ""
+      },
+      {
+        "chinese": "故曰：擇務而從事焉。",
+        "pinyin": "gù yuē ： zé wù ér cóng shì yān 。",
+        "english": ""
+      },
+      {
+        "chinese": "子墨子曰出曹公子而於宋，三年而反，睹子墨子曰：「始吾游於子之門，短褐之衣，藜藿之羹，朝得之則夕弗得，弗得祭祀鬼神。",
+        "pinyin": "zǐ mò zǐ yuē chū cáo gōng zǐ ér yú sòng ， sān nián ér fǎn ， dǔ zǐ mò zǐ yuē ： 「 shǐ wú yóu yú zǐ zhī mén ， duǎn hè zhī yī ， lí huò zhī gēng ， cháo dé zhī zé xī fú dé ， fú dé jì sì guǐ shén 。",
+        "english": ""
+      },
+      {
+        "chinese": "今而以夫子之故，家厚於始也，有家厚謹祭祀鬼神。",
+        "pinyin": "jīn ér yǐ fū zǐ zhī gù ， jiā hòu yú shǐ yě ， yǒu jiā hòu jǐn jì sì guǐ shén 。",
+        "english": ""
+      },
+      {
+        "chinese": "然而人徒多死，六畜不蕃，身湛於病，吾未知夫子之道之可用也。",
+        "pinyin": "rán ér rén tú duō sǐ ， liù chù bù fán ， shēn zhàn yú bìng ， wú wèi zhī fū zǐ zhī dào zhī kě yòng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "」子墨子曰：「不然，夫鬼神之所欲於人者多，欲人之處高爵祿則以讓賢也，多財則以分貧也，夫鬼神豈唯擢季拑肺之爲欲哉？",
+        "pinyin": "」 zǐ mò zǐ yuē ： 「 bù rán ， fū guǐ shén zhī suǒ yù yú rén zhě duō ， yù rén zhī chù gāo jué lù zé yǐ ràng xián yě ， duō cái zé yǐ fēn pín yě ， fū guǐ shén qǐ wéi zhuó jì qián fèi zhī wéi yù zāi ？",
+        "english": ""
+      },
+      {
+        "chinese": "今子處高爵祿而不以讓賢，一不祥也；",
+        "pinyin": "jīn zǐ chù gāo jué lù ér bù yǐ ràng xián ， yī bù xiáng yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "多財而不以分貧，二不祥也。",
+        "pinyin": "duō cái ér bù yǐ fēn pín ， èr bù xiáng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "今子事鬼神，唯祭而已矣，而曰：『病何自至哉？",
+        "pinyin": "jīn zǐ shì guǐ shén ， wéi jì ér yǐ yǐ ， ér yuē ： 『 bìng hé zì zhì zāi ？",
+        "english": ""
+      },
+      {
+        "chinese": "』是猶百門而閉一門焉，曰：『盜何從入？",
+        "pinyin": "』 shì yóu bǎi mén ér bì yī mén yān ， yuē ： 『 dào hé cóng rù ？",
+        "english": ""
+      },
+      {
+        "chinese": "』若是而求福，於有？",
+        "pinyin": "』 ruò shì ér qiú fú ， yú yǒu ？",
+        "english": ""
+      },
+      {
+        "chinese": "怪之鬼，豈可哉？",
+        "pinyin": "guài zhī guǐ ， qǐ kě zāi ？",
+        "english": ""
+      },
+      {
+        "chinese": "魯祝以一豚祭，而求百福於鬼神。",
+        "pinyin": "lǔ zhù yǐ yī tún jì ， ér qiú bǎi fú yú guǐ shén 。",
+        "english": ""
+      },
+      {
+        "chinese": "子墨子聞之，曰：「是不可。",
+        "pinyin": "zǐ mò zǐ wén zhī ， yuē ： 「 shì bù kě 。",
+        "english": ""
+      },
+      {
+        "chinese": "今施人薄而望人厚，則人唯恐其有賜於己也。",
+        "pinyin": "jīn shī rén báo ér wàng rén hòu ， zé rén wéi kǒng qí yǒu cì yú jǐ yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "今以一豚祭而求百福於鬼神，鬼神唯恐其以牛羊祀也。",
+        "pinyin": "jīn yǐ yī tún jì ér qiú bǎi fú yú guǐ shén ， guǐ shén wéi kǒng qí yǐ niú yáng sì yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "古者聖王事鬼神，祭而已矣。",
+        "pinyin": "gǔ zhě shèng wáng shì guǐ shén ， jì ér yǐ yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "今以豚祭而求百福，則其富不如其貧也。",
+        "pinyin": "jīn yǐ tún jì ér qiú bǎi fú ， zé qí fù bù rú qí pín yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "彭輕生子曰：「往者可知，來者不可知。",
+        "pinyin": "péng qīng shēng zǐ yuē ： 「 wǎng zhě kě zhī ， lái zhě bù kě zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "」子墨子曰：「籍設而親在百里之外，則遇難焉，期以一日也，及之則生，不及則死。",
+        "pinyin": "」 zǐ mò zǐ yuē ： 「 jí shè ér qīn zài bǎi lǐ zhī wài ， zé yù nán yān ， qī yǐ yī rì yě ， jí zhī zé shēng ， bù jí zé sǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "今有固車良馬於此，又有奴馬四隅之輪於此，使子擇焉，子將可乘？",
+        "pinyin": "jīn yǒu gù chē liáng mǎ yú cǐ ， yòu yǒu nú mǎ sì yú zhī lún yú cǐ ， shǐ zǐ zé yān ， zǐ jiāng kě chéng ？",
+        "english": ""
+      }
+    ]
+  },
+  {
+    "id": "mozi_ch_10",
+    "bookId": "mozi",
+    "chapterIndex": 10,
+    "title": "公輸",
+    "titleEn": "Chapter 10: 公輸",
+    "sentences": [
+      {
+        "chinese": "公輸般爲楚造雲梯之械成，將以攻宋。",
+        "pinyin": "gōng shū bān wéi chǔ zào yún tī zhī xiè chéng ， jiāng yǐ gōng sòng 。",
+        "english": ""
+      },
+      {
+        "chinese": "子墨子聞之，起於齊，行十日十夜，而至於郢，見公輸般。",
+        "pinyin": "zǐ mò zǐ wén zhī ， qǐ yú qí ， xíng shí rì shí yè ， ér zhì yú yǐng ， jiàn gōng shū bān 。",
+        "english": ""
+      },
+      {
+        "chinese": "公輸般曰：「夫子何命焉爲？",
+        "pinyin": "gōng shū bān yuē ： 「 fū zǐ hé mìng yān wéi ？",
+        "english": ""
+      },
+      {
+        "chinese": "」子墨子曰：「北方有侮臣者，願藉子殺之。",
+        "pinyin": "」 zǐ mò zǐ yuē ： 「 běi fāng yǒu wǔ chén zhě ， yuàn jiè zǐ shā zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "」公輸般不說。",
+        "pinyin": "」 gōng shū bān bù shuō 。",
+        "english": ""
+      },
+      {
+        "chinese": "子墨子曰：「請獻十金。",
+        "pinyin": "zǐ mò zǐ yuē ： 「 qǐng xiàn shí jīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "」公輸般曰：「吾義固不殺人。",
+        "pinyin": "」 gōng shū bān yuē ： 「 wú yì gù bù shā rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "」子墨子起，再拜曰：「請說之。",
+        "pinyin": "」 zǐ mò zǐ qǐ ， zài bài yuē ： 「 qǐng shuō zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "吾從北方聞子爲梯，將以攻宋。",
+        "pinyin": "wú cóng běi fāng wén zǐ wéi tī ， jiāng yǐ gōng sòng 。",
+        "english": ""
+      },
+      {
+        "chinese": "宋何罪之有？",
+        "pinyin": "sòng hé zuì zhī yǒu ？",
+        "english": ""
+      },
+      {
+        "chinese": "荆國有餘於地，而不足於民，殺所不足而爭所有餘，不可謂智。",
+        "pinyin": "jīng guó yǒu yú yú dì ， ér bù zú yú mín ， shā suǒ bù zú ér zhēng suǒ yǒu yú ， bù kě wèi zhì 。",
+        "english": ""
+      },
+      {
+        "chinese": "宋無罪而攻之，不可謂仁。",
+        "pinyin": "sòng wú zuì ér gōng zhī ， bù kě wèi rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "知而不爭，不可謂忠。",
+        "pinyin": "zhī ér bù zhēng ， bù kě wèi zhōng 。",
+        "english": ""
+      },
+      {
+        "chinese": "爭而不得，不可謂强。",
+        "pinyin": "zhēng ér bù dé ， bù kě wèi qiáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "義不殺少而殺衆，不可謂知類。",
+        "pinyin": "yì bù shā shǎo ér shā zhòng ， bù kě wèi zhī lèi 。",
+        "english": ""
+      },
+      {
+        "chinese": "」公輸般服。",
+        "pinyin": "」 gōng shū bān fú 。",
+        "english": ""
+      },
+      {
+        "chinese": "子墨子曰：「然乎不已乎？",
+        "pinyin": "zǐ mò zǐ yuē ： 「 rán hū bù yǐ hū ？",
+        "english": ""
+      },
+      {
+        "chinese": "」公輸般曰：「不可，吾既已言之王矣。",
+        "pinyin": "」 gōng shū bān yuē ： 「 bù kě ， wú jì yǐ yán zhī wáng yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "」子墨子曰：「胡不見我於王？",
+        "pinyin": "」 zǐ mò zǐ yuē ： 「 hú bù jiàn wǒ yú wáng ？",
+        "english": ""
+      },
+      {
+        "chinese": "」公輸般曰：「諾。",
+        "pinyin": "」 gōng shū bān yuē ： 「 nuò 。",
+        "english": ""
+      },
+      {
+        "chinese": "」子墨子見王，曰：「今有人於此，舍其文軒，鄰有敝轝而欲竊之；",
+        "pinyin": "」 zǐ mò zǐ jiàn wáng ， yuē ： 「 jīn yǒu rén yú cǐ ， shě qí wén xuān ， lín yǒu bì yú ér yù qiè zhī ；",
+        "english": ""
+      },
+      {
+        "chinese": "舍其錦繡，鄰有短褐而欲竊之；",
+        "pinyin": "shě qí jǐn xiù ， lín yǒu duǎn hè ér yù qiè zhī ；",
+        "english": ""
+      },
+      {
+        "chinese": "舍其粱肉，鄰有穅糟而欲竊之。",
+        "pinyin": "shě qí liáng ròu ， lín yǒu kāng zāo ér yù qiè zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "此爲何若人？",
+        "pinyin": "cǐ wéi hé ruò rén ？",
+        "english": ""
+      },
+      {
+        "chinese": "」王曰：「必爲竊疾矣。",
+        "pinyin": "」 wáng yuē ： 「 bì wéi qiè jí yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "」子墨子曰：「荆之地方五千里，宋方五百里，此猶文軒之與敝轝也；",
+        "pinyin": "」 zǐ mò zǐ yuē ： 「 jīng zhī dì fāng wǔ qiān lǐ ， sòng fāng wǔ bǎi lǐ ， cǐ yóu wén xuān zhī yǔ bì yú yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "荆有雲夢，犀兕麋鹿滿之，江漢之魚鼈黿鼉爲天下富，宋所爲無雉兔狐貍者也，此猶粱肉之與穅糟也；",
+        "pinyin": "jīng yǒu yún mèng ， xī sì mí lù mǎn zhī ， jiāng hàn zhī yú biē yuán tuó wéi tiān xià fù ， sòng suǒ wéi wú zhì tù hú lí zhě yě ， cǐ yóu liáng ròu zhī yǔ kāng zāo yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "荆有長松文梓楩柟豫章，宋無長木，此猶錦繡之與短褐也。",
+        "pinyin": "jīng yǒu cháng sōng wén zǐ pián nán yù zhāng ， sòng wú cháng mù ， cǐ yóu jǐn xiù zhī yǔ duǎn hè yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "臣以三事之攻宋也，爲與此同類。",
+        "pinyin": "chén yǐ sān shì zhī gōng sòng yě ， wéi yǔ cǐ tóng lèi 。",
+        "english": ""
+      },
+      {
+        "chinese": "」王曰：「善哉！",
+        "pinyin": "」 wáng yuē ： 「 shàn zāi ！",
+        "english": ""
+      },
+      {
+        "chinese": "雖然，公輸般爲我爲雲梯，必取宋。",
+        "pinyin": "suī rán ， gōng shū bān wéi wǒ wéi yún tī ， bì qǔ sòng 。",
+        "english": ""
+      },
+      {
+        "chinese": "」於是見公輸般，子墨子解帶爲城，以牒爲械，公輸般九設攻城之機變，子墨子九距之，公輸般之攻械盡，子墨子之守圉有餘。",
+        "pinyin": "」 yú shì jiàn gōng shū bān ， zǐ mò zǐ jiě dài wéi chéng ， yǐ dié wéi xiè ， gōng shū bān jiǔ shè gōng chéng zhī jī biàn ， zǐ mò zǐ jiǔ jù zhī ， gōng shū bān zhī gōng xiè jìn ， zǐ mò zǐ zhī shǒu yǔ yǒu yú 。",
+        "english": ""
+      },
+      {
+        "chinese": "公輸般詘，而曰：「吾知所以距子矣，吾不言。",
+        "pinyin": "gōng shū bān qū ， ér yuē ： 「 wú zhī suǒ yǐ jù zǐ yǐ ， wú bù yán 。",
+        "english": ""
+      },
+      {
+        "chinese": "」子墨子亦曰：「吾知子之所以距我，吾不言。",
+        "pinyin": "」 zǐ mò zǐ yì yuē ： 「 wú zhī zǐ zhī suǒ yǐ jù wǒ ， wú bù yán 。",
+        "english": ""
+      },
+      {
+        "chinese": "」楚王問其故，子墨子曰：「公輸子之意，不過欲殺臣，殺臣，宋莫能守，可攻也。",
+        "pinyin": "」 chǔ wáng wèn qí gù ， zǐ mò zǐ yuē ： 「 gōng shū zǐ zhī yì ， bù guò yù shā chén ， shā chén ， sòng mò néng shǒu ， kě gōng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "然臣之弟子禽滑釐等三百人，已持臣守圉之器，在宋城上而待楚寇矣。",
+        "pinyin": "rán chén zhī dì zǐ qín huá lí děng sān bǎi rén ， yǐ chí chén shǒu yǔ zhī qì ， zài sòng chéng shàng ér dài chǔ kòu yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "雖殺臣，不能絕也。",
+        "pinyin": "suī shā chén ， bù néng jué yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "」楚王曰：「善哉！",
+        "pinyin": "」 chǔ wáng yuē ： 「 shàn zāi ！",
+        "english": ""
+      },
+      {
+        "chinese": "吾請無攻宋矣。",
+        "pinyin": "wú qǐng wú gōng sòng yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "」子墨子歸，過宋，天雨，庇其閭中，守閭者不內也。",
+        "pinyin": "」 zǐ mò zǐ guī ， guò sòng ， tiān yǔ ， bì qí lǘ zhōng ， shǒu lǘ zhě bù nèi yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "故曰：治於神者，衆人不知其功；",
+        "pinyin": "gù yuē ： zhì yú shén zhě ， zhòng rén bù zhī qí gōng ；",
+        "english": ""
+      },
+      {
+        "chinese": "爭於明者，衆人知之。",
+        "pinyin": "zhēng yú míng zhě ， zhòng rén zhī zhī 。",
+        "english": ""
+      }
+    ]
+  }
+]

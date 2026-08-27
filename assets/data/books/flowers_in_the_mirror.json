@@ -1,0 +1,3492 @@
+[
+  {
+    "id": "flowers_in_the_mirror_ch_1",
+    "bookId": "flowers_in_the_mirror",
+    "chapterIndex": 1,
+    "title": "第一章　序",
+    "titleEn": "Chapter 1: 第一章　序",
+    "sentences": [
+      {
+        "chinese": "我要給阿Ｑ做正傳﹐已經不止一兩年了。",
+        "pinyin": "wǒ yào gěi ā Ｑ zuò zhèng chuán ﹐ yǐ jīng bù zhǐ yī liǎng nián le 。",
+        "english": ""
+      },
+      {
+        "chinese": "但一面要做﹐一面又往回想﹐這足見 我不是一個〈立言〉〔２〕的人﹐因為從來不朽之筆﹐須傳不朽之人﹐於是人以文傳﹐文以人傳──究竟誰靠誰傳﹐漸漸的不甚瞭然起來﹐而終於歸結到傳阿Ｑ﹐彷彿思想裡有鬼似的。",
+        "pinyin": "dàn yī miàn yào zuò ﹐ yī miàn yòu wǎng huí xiǎng ﹐ zhè zú jiàn   wǒ bù shì yī gè 〈 lì yán 〉 〔 ２ 〕 de rén ﹐ yīn wèi cóng lái bù xiǔ zhī bǐ ﹐ xū chuán bù xiǔ zhī rén ﹐ yú shì rén yǐ wén chuán ﹐ wén yǐ rén chuán ─ ─ jiū jìng shuí kào shuí chuán ﹐ jiàn jiàn de bù shèn liǎo rán qǐ lái ﹐ ér zhōng yú guī jié dào chuán ā Ｑ ﹐ páng fù sī xiǎng lǐ yǒu guǐ shì de 。",
+        "english": ""
+      },
+      {
+        "chinese": "然而要做這一篇速朽的文章﹐才下筆﹐便感到萬分的困難了。",
+        "pinyin": "rán ér yào zuò zhè yī piān sù xiǔ de wén zhāng ﹐ cái xià bǐ ﹐ biàn gǎn dào wàn fēn de kùn nán le 。",
+        "english": ""
+      },
+      {
+        "chinese": "第一是文章的名目。",
+        "pinyin": "dì yī shì wén zhāng de míng mù 。",
+        "english": ""
+      },
+      {
+        "chinese": "孔子曰：“名不正則言不順”〔３〕。",
+        "pinyin": "kǒng zǐ yuē ： “ míng bù zhèng zé yán bù shùn ” 〔 ３ 〕 。",
+        "english": ""
+      },
+      {
+        "chinese": "這原是應該極注意的。",
+        "pinyin": "zhè yuán shì yīng gāi jí zhù yì de 。",
+        "english": ""
+      },
+      {
+        "chinese": "傳的名目很繁多 ﹕列傳﹐自傳﹐內傳〔４〕﹐外傳﹐別傳﹐家傳﹐小傳……﹐而可惜都不合。",
+        "pinyin": "chuán de míng mù hěn fán duō   ﹕ liè chuán ﹐ zì chuán ﹐ nèi chuán 〔 ４ 〕 ﹐ wài chuán ﹐ bié chuán ﹐ jiā chuán ﹐ xiǎo chuán … … ﹐ ér kě xī dōu bù hé 。",
+        "english": ""
+      },
+      {
+        "chinese": "〈列傳〉麼﹐這一篇並非和許多闊人排在〈正史〉〔５〕裡﹔〈自傳〉麼﹐我又並非就是阿Ｑ。",
+        "pinyin": "〈 liè chuán 〉 me ﹐ zhè yī piān bìng fēi hé xǔ duō kuò rén pái zài 〈 zhèng shǐ 〉 〔 ５ 〕 lǐ ﹔ 〈 zì chuán 〉 me ﹐ wǒ yòu bìng fēi jiù shì ā Ｑ 。",
+        "english": ""
+      },
+      {
+        "chinese": "說是〈外傳〉﹐〈內傳〉在那裡呢﹖倘用〈內傳〉﹐阿Ｑ又決不是神仙。",
+        "pinyin": "shuō shì 〈 wài chuán 〉 ﹐ 〈 nèi chuán 〉 zài nà lǐ ne ﹖ tǎng yòng 〈 nèi chuán 〉 ﹐ ā Ｑ yòu jué bù shì shén xiān 。",
+        "english": ""
+      },
+      {
+        "chinese": "〈別傳〉呢﹐阿Ｑ實在未曾有大總統上諭宣付國史館立〈本傳〉〔６〕──雖說英國正史上並無〈博徒列傳〉﹐ 而文豪迭更司〔７〕也做過《博徒別傳》這一部書﹐但文豪則可﹐在我輩卻不可的。",
+        "pinyin": "〈 bié chuán 〉 ne ﹐ ā Ｑ shí zài wèi céng yǒu dà zǒng tǒng shàng yù xuān fù guó shǐ guǎn lì 〈 běn chuán 〉 〔 ６ 〕 ─ ─ suī shuō yīng guó zhèng shǐ shàng bìng wú 〈 bó tú liè chuán 〉 ﹐   ér wén háo dié gèng sī 〔 ７ 〕 yě zuò guò 《 bó tú bié chuán 》 zhè yī bù shū ﹐ dàn wén háo zé kě ﹐ zài wǒ bèi què bù kě de 。",
+        "english": ""
+      },
+      {
+        "chinese": "其次是〈家傳〉﹐則我既不知與阿Ｑ是否同宗﹐也未曾受他子孫的拜託﹔或〈小傳〉﹐則阿Ｑ又更無別的〈大傳〉了。",
+        "pinyin": "qí cì shì 〈 jiā chuán 〉 ﹐ zé wǒ jì bù zhī yǔ ā Ｑ shì fǒu tóng zōng ﹐ yě wèi céng shòu tā zǐ sūn de bài tuō ﹔ huò 〈 xiǎo chuán 〉 ﹐ zé ā Ｑ yòu gèng wú bié de 〈 dà chuán 〉 le 。",
+        "english": ""
+      },
+      {
+        "chinese": "總而言之﹐這一篇也便是〈本傳〉﹐但從我的文章著想﹐因為文體卑下﹐是“引車賣漿者流”所用的話〔８〕﹐所以不敢僭稱 ﹐便從不入三教九流的小說家〔９〕所謂“閒話休題言歸正傳”這一句套話裡﹐取出〈正傳〉兩個字來﹐作為名目﹐即使與古人所撰《書法正傳》〔１０〕的〈正傳〉字面上很相混﹐也顧不得了。",
+        "pinyin": "zǒng ér yán zhī ﹐ zhè yī piān yě biàn shì 〈 běn chuán 〉 ﹐ dàn cóng wǒ de wén zhāng zhuó xiǎng ﹐ yīn wèi wén tǐ bēi xià ﹐ shì “ yǐn chē mài jiāng zhě liú ” suǒ yòng de huà 〔 ８ 〕 ﹐ suǒ yǐ bù gǎn jiàn chēng   ﹐ biàn cóng bù rù sān jiào jiǔ liú de xiǎo shuō jiā 〔 ９ 〕 suǒ wèi “ xián huà xiū tí yán guī zhèng chuán ” zhè yī jù tào huà lǐ ﹐ qǔ chū 〈 zhèng chuán 〉 liǎng gè zì lái ﹐ zuò wéi míng mù ﹐ jí shǐ yǔ gǔ rén suǒ zhuàn 《 shū fǎ zhèng chuán 》 〔 １ ０ 〕 de 〈 zhèng chuán 〉 zì miàn shàng hěn xiāng hùn ﹐ yě gù bù dé le 。",
+        "english": ""
+      },
+      {
+        "chinese": "第二﹐立傳的通例﹐開首大抵該是“某﹐字某﹐某地人也”﹐而我並不知道阿Ｑ姓什麼。",
+        "pinyin": "dì èr ﹐ lì chuán de tōng lì ﹐ kāi shǒu dà dǐ gāi shì “ mǒu ﹐ zì mǒu ﹐ mǒu dì rén yě ” ﹐ ér wǒ bìng bù zhī dào ā Ｑ xìng shén me 。",
+        "english": ""
+      },
+      {
+        "chinese": "有一回﹐他似乎是姓趙﹐但第二日便模糊了。",
+        "pinyin": "yǒu yī huí ﹐ tā sì hū shì xìng zhào ﹐ dàn dì èr rì biàn mó hú le 。",
+        "english": ""
+      },
+      {
+        "chinese": "那是趙太爺的兒子進了秀才的時候﹐鑼聲鏜鏜的報到村裡來﹐阿Ｑ正喝了兩碗黃酒﹐便手舞足蹈的說﹐這於他也很光采﹐因 為他和趙太爺原來是本家﹐細細的排起來他還比秀才長三輩呢。",
+        "pinyin": "nà shì zhào tài yé de ér zǐ jìn le xiù cái de shí hòu ﹐ luó shēng tāng tāng de bào dào cūn lǐ lái ﹐ ā Ｑ zhèng hē le liǎng wǎn huáng jiǔ ﹐ biàn shǒu wǔ zú dǎo de shuō ﹐ zhè yú tā yě hěn guāng cǎi ﹐ yīn   wèi tā hé zhào tài yé yuán lái shì běn jiā ﹐ xì xì de pái qǐ lái tā hái bǐ xiù cái cháng sān bèi ne 。",
+        "english": ""
+      },
+      {
+        "chinese": "其時幾個旁聽人倒也肅然的有些起敬了。",
+        "pinyin": "qí shí jǐ gè páng tīng rén dǎo yě sù rán de yǒu xiē qǐ jìng le 。",
+        "english": ""
+      },
+      {
+        "chinese": "那知道第二天﹐地保便叫阿Ｑ到趙太爺家裡去﹔太爺一見﹐滿臉濺朱﹐喝道﹕“阿Ｑ﹐你這渾小子﹗你說我是你的本家麼﹖”",
+        "pinyin": "nà zhī dào dì èr tiān ﹐ dì bǎo biàn jiào ā Ｑ dào zhào tài yé jiā lǐ qù ﹔ tài yé yī jiàn ﹐ mǎn liǎn jiàn zhū ﹐ hè dào ﹕ “ ā Ｑ ﹐ nǐ zhè hún xiǎo zǐ ﹗ nǐ shuō wǒ shì nǐ de běn jiā me ﹖ ”",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ不開口。",
+        "pinyin": "ā Ｑ bù kāi kǒu 。",
+        "english": ""
+      },
+      {
+        "chinese": "趙太爺愈看愈生氣了﹐搶進幾步說﹕“你敢胡說﹗我怎麼會有你這樣的本家﹖你姓趙麼﹖”",
+        "pinyin": "zhào tài yé yù kàn yù shēng qì le ﹐ qiǎng jìn jǐ bù shuō ﹕ “ nǐ gǎn hú shuō ﹗ wǒ zěn me huì yǒu nǐ zhè yàng de běn jiā ﹖ nǐ xìng zhào me ﹖ ”",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ不開口﹐想往後退了﹔趙太爺跳過去﹐給了他一個嘴巴。",
+        "pinyin": "ā Ｑ bù kāi kǒu ﹐ xiǎng wǎng hòu tuì le ﹔ zhào tài yé tiào guò qù ﹐ gěi le tā yī gè zuǐ bā 。",
+        "english": ""
+      },
+      {
+        "chinese": "“你怎麼會姓趙﹗──你那裡配姓趙﹗”",
+        "pinyin": "“ nǐ zěn me huì xìng zhào ﹗ ─ ─ nǐ nà lǐ pèi xìng zhào ﹗ ”",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ並沒有抗辯他確鑿姓趙﹐只用手摸著左頰﹐和地保退出去了﹔外面又被地保訓斥了一番﹐謝了地保二百文酒錢。",
+        "pinyin": "ā Ｑ bìng méi yǒu kàng biàn tā què záo xìng zhào ﹐ zhǐ yòng shǒu mō zhuó zuǒ jiá ﹐ hé dì bǎo tuì chū qù le ﹔ wài miàn yòu bèi dì bǎo xùn chì le yī fān ﹐ xiè le dì bǎo èr bǎi wén jiǔ qián 。",
+        "english": ""
+      },
+      {
+        "chinese": "知道的人都說阿Ｑ太荒唐﹐自己去招打﹔他大約未必姓趙﹐即使真姓趙﹐有趙太爺在這裡﹐也不該如此胡說的。",
+        "pinyin": "zhī dào de rén dōu shuō ā Ｑ tài huāng táng ﹐ zì jǐ qù zhāo dǎ ﹔ tā dà yuē wèi bì xìng zhào ﹐ jí shǐ zhēn xìng zhào ﹐ yǒu zhào tài yé zài zhè lǐ ﹐ yě bù gāi rú cǐ hú shuō de 。",
+        "english": ""
+      },
+      {
+        "chinese": "此後便再沒有人提起他的氏族來﹐所以我終於不知道阿Ｑ究竟什麼姓。",
+        "pinyin": "cǐ hòu biàn zài méi yǒu rén tí qǐ tā de shì zú lái ﹐ suǒ yǐ wǒ zhōng yú bù zhī dào ā Ｑ jiū jìng shén me xìng 。",
+        "english": ""
+      },
+      {
+        "chinese": "第三﹐我又不知道阿Ｑ的名字是怎麼寫的。",
+        "pinyin": "dì sān ﹐ wǒ yòu bù zhī dào ā Ｑ de míng zì shì zěn me xiě de 。",
+        "english": ""
+      },
+      {
+        "chinese": "他活著的時候﹐人都叫他阿Ｑｕｅｉ﹐死了以後﹐便沒有一個人再叫阿Ｑｕｅｉ了﹐那裡還會有〈著之竹帛〉〔１１〕的事。",
+        "pinyin": "tā huó zhuó de shí hòu ﹐ rén dōu jiào tā ā Ｑ ｕ ｅ ｉ ﹐ sǐ le yǐ hòu ﹐ biàn méi yǒu yī gè rén zài jiào ā Ｑ ｕ ｅ ｉ le ﹐ nà lǐ hái huì yǒu 〈 zhuó zhī zhú bó 〉 〔 １ １ 〕 de shì 。",
+        "english": ""
+      },
+      {
+        "chinese": "若論〈著之竹帛〉﹐這篇文章要算第一次﹐所以先遇著了這第一個難關。",
+        "pinyin": "ruò lùn 〈 zhuó zhī zhú bó 〉 ﹐ zhè piān wén zhāng yào suàn dì yī cì ﹐ suǒ yǐ xiān yù zhuó le zhè dì yī gè nán guān 。",
+        "english": ""
+      },
+      {
+        "chinese": "我□□□□□□□□□阿Ｑｕｅｉ﹐阿桂還是阿貴呢﹖倘使他號叫月亭﹐或者在八月間做過生日﹐那一定是阿桂了﹔而他既沒有號──也許有號﹐只是沒有人知道他﹐──又未嘗散過生日征文的帖子﹕寫作阿桂﹐是武斷的。",
+        "pinyin": "wǒ □ □ □ □ □ □ □ □ □ ā Ｑ ｕ ｅ ｉ ﹐ ā guì hái shì ā guì ne ﹖ tǎng shǐ tā hào jiào yuè tíng ﹐ huò zhě zài bā yuè jiān zuò guò shēng rì ﹐ nà yī dìng shì ā guì le ﹔ ér tā jì méi yǒu hào ─ ─ yě xǔ yǒu hào ﹐ zhǐ shì méi yǒu rén zhī dào tā ﹐ ─ ─ yòu wèi cháng sàn guò shēng rì zhēng wén de tiě zǐ ﹕ xiě zuò ā guì ﹐ shì wǔ duàn de 。",
+        "english": ""
+      },
+      {
+        "chinese": "又倘若他有一位老兄或令弟叫阿富﹐那一定是阿貴了﹔而他又只是一個人﹕寫作阿貴﹐也沒有佐證的。",
+        "pinyin": "yòu tǎng ruò tā yǒu yī wèi lǎo xiōng huò lìng dì jiào ā fù ﹐ nà yī dìng shì ā guì le ﹔ ér tā yòu zhǐ shì yī gè rén ﹕ xiě zuò ā guì ﹐ yě méi yǒu zuǒ zhèng de 。",
+        "english": ""
+      },
+      {
+        "chinese": "其餘音Ｑｕｅｉ的偏僻字樣﹐更加湊不上了。",
+        "pinyin": "qí yú yīn Ｑ ｕ ｅ ｉ de piān pì zì yàng ﹐ gèng jiā còu bù shàng le 。",
+        "english": ""
+      },
+      {
+        "chinese": "先前﹐我也曾問過趙太爺的兒子茂才〔１２〕先生﹐誰料博雅如此公﹐竟也茫然﹐但據結論說﹐是因為陳獨秀辦了《新青年》提倡洋字〔１３〕﹐所以國粹淪亡﹐無可查攷了。",
+        "pinyin": "xiān qián ﹐ wǒ yě céng wèn guò zhào tài yé de ér zǐ mào cái 〔 １ ２ 〕 xiān shēng ﹐ shuí liào bó yǎ rú cǐ gōng ﹐ jìng yě máng rán ﹐ dàn jù jié lùn shuō ﹐ shì yīn wèi chén dú xiù bàn le 《 xīn qīng nián 》 tí chàng yáng zì 〔 １ ３ 〕 ﹐ suǒ yǐ guó cuì lún wáng ﹐ wú kě chá kǎo le 。",
+        "english": ""
+      },
+      {
+        "chinese": "我的最後的手段﹐只有託一個同鄉去查阿Ｑ犯事的案卷﹐八個月之後才有回信﹐說案卷裡並無與阿Ｑｕｅｉ的聲音相近的人。",
+        "pinyin": "wǒ de zuì hòu de shǒu duàn ﹐ zhǐ yǒu tuō yī gè tóng xiāng qù chá ā Ｑ fàn shì de àn juǎn ﹐ bā gè yuè zhī hòu cái yǒu huí xìn ﹐ shuō àn juǎn lǐ bìng wú yǔ ā Ｑ ｕ ｅ ｉ de shēng yīn xiāng jìn de rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "我雖不知道是真沒有﹐還是沒有查﹐然而也再沒有別的方法了。",
+        "pinyin": "wǒ suī bù zhī dào shì zhēn méi yǒu ﹐ hái shì méi yǒu chá ﹐ rán ér yě zài méi yǒu bié de fāng fǎ le 。",
+        "english": ""
+      },
+      {
+        "chinese": "生怕注音字母還未通行﹐只好用了〈洋字〉﹐照英國流行的拼法寫他為阿Ｑｕｅｉ﹐略作阿Ｑ。",
+        "pinyin": "shēng pà zhù yīn zì mǔ hái wèi tōng xíng ﹐ zhǐ hǎo yòng le 〈 yáng zì 〉 ﹐ zhào yīng guó liú xíng de pīn fǎ xiě tā wèi ā Ｑ ｕ ｅ ｉ ﹐ lüè zuò ā Ｑ 。",
+        "english": ""
+      },
+      {
+        "chinese": "這近於盲從《新青年》﹐自己也很抱歉﹐但茂才公尚且不知﹐我還有什麼好辦法呢。",
+        "pinyin": "zhè jìn yú máng cóng 《 xīn qīng nián 》 ﹐ zì jǐ yě hěn bào qiàn ﹐ dàn mào cái gōng shàng qiě bù zhī ﹐ wǒ hái yǒu shén me hǎo bàn fǎ ne 。",
+        "english": ""
+      },
+      {
+        "chinese": "第四﹐是阿Ｑ的籍貫了。",
+        "pinyin": "dì sì ﹐ shì ā Ｑ de jí guàn le 。",
+        "english": ""
+      },
+      {
+        "chinese": "倘他姓趙﹐則據現在好稱郡望的老例﹐可以照《郡名百家姓》〔１４〕上的註解﹐說是“隴西天水人也”﹐但可惜這姓是不甚可靠的﹐ 因此籍貫也就有些決不定。",
+        "pinyin": "tǎng tā xìng zhào ﹐ zé jù xiàn zài hǎo chēng jùn wàng de lǎo lì ﹐ kě yǐ zhào 《 jùn míng bǎi jiā xìng 》 〔 １ ４ 〕 shàng de zhù jiě ﹐ shuō shì “ lǒng xī tiān shuǐ rén yě ” ﹐ dàn kě xī zhè xìng shì bù shèn kě kào de ﹐   yīn cǐ jí guàn yě jiù yǒu xiē jué bù dìng 。",
+        "english": ""
+      },
+      {
+        "chinese": "他雖然多住未莊﹐然而也常常宿在別處﹐不能說是未莊人﹐即使說是“未莊人也”﹐也仍然有乖史法的。",
+        "pinyin": "tā suī rán duō zhù wèi zhuāng ﹐ rán ér yě cháng cháng sù zài bié chù ﹐ bù néng shuō shì wèi zhuāng rén ﹐ jí shǐ shuō shì “ wèi zhuāng rén yě ” ﹐ yě réng rán yǒu guāi shǐ fǎ de 。",
+        "english": ""
+      },
+      {
+        "chinese": "我所聊以自慰的﹐是還有一個〈阿〉字非常正確﹐絕無附會假借的缺點﹐頗可以就正於通人。",
+        "pinyin": "wǒ suǒ liáo yǐ zì wèi de ﹐ shì hái yǒu yī gè 〈 ā 〉 zì fēi cháng zhèng què ﹐ jué wú fù huì jiǎ jiè de quē diǎn ﹐ pō kě yǐ jiù zhèng yú tōng rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "至於其餘﹐卻都非淺學所能穿鑿﹐只希望有〈歷史癖與考據癖〉的胡適之〔１５〕先生的門人們﹐將來或者能夠尋出許多新端緒來﹐但是我這《阿Ｑ正傳》到那時 卻又怕早經消滅了。",
+        "pinyin": "zhì yú qí yú ﹐ què dōu fēi qiǎn xué suǒ néng chuān záo ﹐ zhǐ xī wàng yǒu 〈 lì shǐ pǐ yǔ kǎo jù pǐ 〉 de hú shì zhī 〔 １ ５ 〕 xiān shēng de mén rén mén ﹐ jiāng lái huò zhě néng gòu xún chū xǔ duō xīn duān xù lái ﹐ dàn shì wǒ zhè 《 ā Ｑ zhèng chuán 》 dào nà shí   què yòu pà zǎo jīng xiāo miè le 。",
+        "english": ""
+      },
+      {
+        "chinese": "以上可以算是序。",
+        "pinyin": "yǐ shàng kě yǐ suàn shì xù 。",
+        "english": ""
+      }
+    ]
+  },
+  {
+    "id": "flowers_in_the_mirror_ch_2",
+    "bookId": "flowers_in_the_mirror",
+    "chapterIndex": 2,
+    "title": "第二章　優　勝　記　略",
+    "titleEn": "Chapter 2: 第二章　優　勝　記　略",
+    "sentences": [
+      {
+        "chinese": "阿Ｑ不獨是姓名籍貫有些渺茫﹐連他先前的〈行狀〉〔１６〕也渺茫。",
+        "pinyin": "ā Ｑ bù dú shì xìng míng jí guàn yǒu xiē miǎo máng ﹐ lián tā xiān qián de 〈 xíng zhuàng 〉 〔 １ ６ 〕 yě miǎo máng 。",
+        "english": ""
+      },
+      {
+        "chinese": "因為未莊的人們之於阿Ｑ﹐只要他幫忙﹐只拿他玩笑﹐從來沒有留心他的〈行狀〉的。",
+        "pinyin": "yīn wèi wèi zhuāng de rén mén zhī yú ā Ｑ ﹐ zhǐ yào tā bāng máng ﹐ zhǐ ná tā wán xiào ﹐ cóng lái méi yǒu liú xīn tā de 〈 xíng zhuàng 〉 de 。",
+        "english": ""
+      },
+      {
+        "chinese": "而阿Ｑ自己也不說﹐獨有和別人口角的時候﹐間或瞪著眼睛道﹕“我們先前──比你闊的多啦﹗你算是什麼東西﹗”阿Ｑ沒有家﹐住在未莊的土谷祠〔１７〕裡 ﹔也沒有固定的職業﹐只給人家做短工﹐割麥便割麥﹐舂米便舂米﹐撐船便撐船。",
+        "pinyin": "ér ā Ｑ zì jǐ yě bù shuō ﹐ dú yǒu hé bié rén kǒu jiǎo de shí hòu ﹐ jiàn huò dèng zhuó yǎn jīng dào ﹕ “ wǒ mén xiān qián ─ ─ bǐ nǐ kuò de duō lā ﹗ nǐ suàn shì shén me dōng xī ﹗ ” ā Ｑ méi yǒu jiā ﹐ zhù zài wèi zhuāng de tǔ gǔ cí 〔 １ ７ 〕 lǐ   ﹔ yě méi yǒu gù dìng de zhí yè ﹐ zhǐ gěi rén jiā zuò duǎn gōng ﹐ gē mài biàn gē mài ﹐ chōng mǐ biàn chōng mǐ ﹐ chēng chuán biàn chēng chuán 。",
+        "english": ""
+      },
+      {
+        "chinese": "工作略長久時﹐他也或住在臨時主人的家裡﹐但一完就走了。",
+        "pinyin": "gōng zuò lüè cháng jiǔ shí ﹐ tā yě huò zhù zài lín shí zhǔ rén de jiā lǐ ﹐ dàn yī wán jiù zǒu le 。",
+        "english": ""
+      },
+      {
+        "chinese": "所以﹐人們忙碌的時候﹐也還記起阿Ｑ來﹐然而記起的是做工﹐並不是〈行狀〉﹔一閒空﹐連阿Ｑ都早忘卻﹐更不必說〈行狀〉了。",
+        "pinyin": "suǒ yǐ ﹐ rén mén máng lù de shí hòu ﹐ yě hái jì qǐ ā Ｑ lái ﹐ rán ér jì qǐ de shì zuò gōng ﹐ bìng bù shì 〈 xíng zhuàng 〉 ﹔ yī xián kōng ﹐ lián ā Ｑ dōu zǎo wàng què ﹐ gèng bù bì shuō 〈 xíng zhuàng 〉 le 。",
+        "english": ""
+      },
+      {
+        "chinese": "只是有一回﹐有一個老頭子頌揚說﹕“阿Ｑ真能做﹗”這時阿Ｑ赤著膊﹐懶洋洋的瘦伶仃的正在他面前﹐別人也摸不著這話是真心還是譏笑﹐然而阿Ｑ很喜歡。",
+        "pinyin": "zhǐ shì yǒu yī huí ﹐ yǒu yī gè lǎo tóu zǐ sòng yáng shuō ﹕ “ ā Ｑ zhēn néng zuò ﹗ ” zhè shí ā Ｑ chì zhuó bó ﹐ lǎn yáng yáng de shòu líng dīng de zhèng zài tā miàn qián ﹐ bié rén yě mō bù zhuó zhè huà shì zhēn xīn hái shì jī xiào ﹐ rán ér ā Ｑ hěn xǐ huān 。",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ又很自尊﹐所有未莊的居民﹐全不在他眼睛裡﹐甚而至於對於兩位〈文童〉〔１８〕也有以為不值一笑的神情。",
+        "pinyin": "ā Ｑ yòu hěn zì zūn ﹐ suǒ yǒu wèi zhuāng de jū mín ﹐ quán bù zài tā yǎn jīng lǐ ﹐ shèn ér zhì yú duì yú liǎng wèi 〈 wén tóng 〉 〔 １ ８ 〕 yě yǒu yǐ wèi bù zhí yī xiào de shén qíng 。",
+        "english": ""
+      },
+      {
+        "chinese": "夫文童者﹐將來恐怕要變秀才者也﹔趙太爺錢太爺大受居民的尊敬﹐除有錢之外﹐就因為都是文童的爹爹﹐而阿Ｑ在精神上獨不表格外的崇奉﹐他想﹕我的兒子會闊得多啦﹗加以進了幾回城﹐阿Ｑ自然更自負 ﹐然而他又很鄙薄城裡人﹐譬如用三尺長三寸寬的木板做成的凳子﹐未莊叫〈長凳〉﹐他也叫〈長凳〉﹐城裡人卻叫〈條凳〉﹐他想﹕這是錯的﹐可笑﹗油煎大頭魚 ﹐未莊都加上半寸長的蔥葉﹐城裡卻加上切細的蔥絲﹐他想﹕這也是錯的﹐可笑﹗然而未莊人真是不見世面的可笑的 鄉下人呵﹐他們沒有見過城裡的煎魚﹗",
+        "pinyin": "fū wén tóng zhě ﹐ jiāng lái kǒng pà yào biàn xiù cái zhě yě ﹔ zhào tài yé qián tài yé dà shòu jū mín de zūn jìng ﹐ chú yǒu qián zhī wài ﹐ jiù yīn wèi dōu shì wén tóng de diē diē ﹐ ér ā Ｑ zài jīng shén shàng dú bù biǎo gé wài de chóng fèng ﹐ tā xiǎng ﹕ wǒ de ér zǐ huì kuò dé duō lā ﹗ jiā yǐ jìn le jǐ huí chéng ﹐ ā Ｑ zì rán gèng zì fù   ﹐ rán ér tā yòu hěn bǐ báo chéng lǐ rén ﹐ pì rú yòng sān chǐ cháng sān cùn kuān de mù bǎn zuò chéng de dèng zǐ ﹐ wèi zhuāng jiào 〈 cháng dèng 〉 ﹐ tā yě jiào 〈 cháng dèng 〉 ﹐ chéng lǐ rén què jiào 〈 tiáo dèng 〉 ﹐ tā xiǎng ﹕ zhè shì cuò de ﹐ kě xiào ﹗ yóu jiān dà tóu yú   ﹐ wèi zhuāng dōu jiā shàng bàn cùn cháng de cōng yè ﹐ chéng lǐ què jiā shàng qiē xì de cōng sī ﹐ tā xiǎng ﹕ zhè yě shì cuò de ﹐ kě xiào ﹗ rán ér wèi zhuāng rén zhēn shì bù jiàn shì miàn de kě xiào de   xiāng xià rén hē ﹐ tā mén méi yǒu jiàn guò chéng lǐ de jiān yú ﹗",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ〈先前闊〉﹐見識高﹐而且〈真能做〉﹐本來幾乎是一個〈完人〉了﹐但可惜他體質上還有一些缺點。",
+        "pinyin": "ā Ｑ 〈 xiān qián kuò 〉 ﹐ jiàn shí gāo ﹐ ér qiě 〈 zhēn néng zuò 〉 ﹐ běn lái jǐ hū shì yī gè 〈 wán rén 〉 le ﹐ dàn kě xī tā tǐ zhì shàng hái yǒu yī xiē quē diǎn 。",
+        "english": ""
+      },
+      {
+        "chinese": "最惱人的是在他頭皮上﹐頗有幾處不知起於何時的癩瘡疤。",
+        "pinyin": "zuì nǎo rén de shì zài tā tóu pí shàng ﹐ pō yǒu jǐ chù bù zhī qǐ yú hé shí de lài chuāng bā 。",
+        "english": ""
+      },
+      {
+        "chinese": "這雖然也在他身上﹐而看阿Ｑ的意思﹐倒也似乎以為不足貴的﹐因為他諱說〈癩〉以及一切近於〈賴〉的音﹐後來推而廣之﹐〈光〉也諱﹐〈亮〉也諱﹐再後來﹐連〈燈〉〈燭〉都諱了。",
+        "pinyin": "zhè suī rán yě zài tā shēn shàng ﹐ ér kàn ā Ｑ de yì sī ﹐ dǎo yě sì hū yǐ wèi bù zú guì de ﹐ yīn wèi tā huì shuō 〈 lài 〉 yǐ jí yī qiē jìn yú 〈 lài 〉 de yīn ﹐ hòu lái tuī ér guǎng zhī ﹐ 〈 guāng 〉 yě huì ﹐ 〈 liàng 〉 yě huì ﹐ zài hòu lái ﹐ lián 〈 dēng 〉 〈 zhú 〉 dōu huì le 。",
+        "english": ""
+      },
+      {
+        "chinese": "一犯諱﹐不問有心與無心﹐阿Ｑ便全疤通紅的發起怒來﹐估量了對手﹐口訥的他便罵﹐氣力小的他便打﹔然而不知怎麼一回事﹐總還是阿Ｑ吃虧的時候多。",
+        "pinyin": "yī fàn huì ﹐ bù wèn yǒu xīn yǔ wú xīn ﹐ ā Ｑ biàn quán bā tōng hóng de fā qǐ nù lái ﹐ gū liang le duì shǒu ﹐ kǒu nè de tā biàn mà ﹐ qì lì xiǎo de tā biàn dǎ ﹔ rán ér bù zhī zěn me yī huí shì ﹐ zǒng hái shì ā Ｑ chī kuī de shí hòu duō 。",
+        "english": ""
+      },
+      {
+        "chinese": "於是他漸漸的變換了方針﹐大抵改為怒目而視了。",
+        "pinyin": "yú shì tā jiàn jiàn de biàn huàn le fāng zhēn ﹐ dà dǐ gǎi wèi nù mù ér shì le 。",
+        "english": ""
+      },
+      {
+        "chinese": "誰知道阿Ｑ採用怒目主義之後﹐未莊的閒人們便愈喜歡玩笑他。",
+        "pinyin": "shuí zhī dào ā Ｑ cǎi yòng nù mù zhǔ yì zhī hòu ﹐ wèi zhuāng de xián rén mén biàn yù xǐ huān wán xiào tā 。",
+        "english": ""
+      },
+      {
+        "chinese": "一見面﹐他們便假作吃驚的說﹕“噲﹐亮起來了。",
+        "pinyin": "yī jiàn miàn ﹐ tā mén biàn jiǎ zuò chī jīng de shuō ﹕ “ kuài ﹐ liàng qǐ lái le 。",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ照例的發了怒﹐他怒目而視了。",
+        "pinyin": "ā Ｑ zhào lì de fā le nù ﹐ tā nù mù ér shì le 。",
+        "english": ""
+      },
+      {
+        "chinese": "“原來有保險燈在這裡﹗”他們並不怕。",
+        "pinyin": "“ yuán lái yǒu bǎo xiǎn dēng zài zhè lǐ ﹗ ” tā mén bìng bù pà 。",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ沒有法﹐祇得另外想出報復的話來﹕“你還不配……”這時候﹐又彷彿在他頭上的是一種高尚的光榮的癩頭瘡﹐並非平常的癩頭瘡了﹔但上文說過﹐阿Ｑ是有見識的﹐他立刻知道和〈犯忌〉有點抵觸﹐便不再往底下說。",
+        "pinyin": "ā Ｑ méi yǒu fǎ ﹐ zhǐ dé lìng wài xiǎng chū bào fù de huà lái ﹕ “ nǐ hái bù pèi … … ” zhè shí hòu ﹐ yòu páng fù zài tā tóu shàng de shì yī zhǒng gāo shàng de guāng róng de lài tóu chuāng ﹐ bìng fēi píng cháng de lài tóu chuāng le ﹔ dàn shàng wén shuō guò ﹐ ā Ｑ shì yǒu jiàn shí de ﹐ tā lì kè zhī dào hé 〈 fàn jì 〉 yǒu diǎn dǐ chù ﹐ biàn bù zài wǎng dǐ xià shuō 。",
+        "english": ""
+      },
+      {
+        "chinese": "閒人還不完﹐只撩他﹐於是終而至於打。",
+        "pinyin": "xián rén hái bù wán ﹐ zhǐ liāo tā ﹐ yú shì zhōng ér zhì yú dǎ 。",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ在形式上打敗了﹐被人揪住黃辮子﹐在壁上碰了四五個響頭﹐閒人這才心滿意足的得勝的走了﹐阿Ｑ站了一刻﹐心裡想：“我總算被兒子打了﹐現在的世界真不像樣……”於是也心滿意足的得勝的走了。",
+        "pinyin": "ā Ｑ zài xíng shì shàng dǎ bài le ﹐ bèi rén jiū zhù huáng biàn zǐ ﹐ zài bì shàng pèng le sì wǔ gè xiǎng tóu ﹐ xián rén zhè cái xīn mǎn yì zú de dé shèng de zǒu le ﹐ ā Ｑ zhàn le yī kè ﹐ xīn lǐ xiǎng ： “ wǒ zǒng suàn bèi ér zǐ dǎ le ﹐ xiàn zài de shì jiè zhēn bù xiàng yàng … … ” yú shì yě xīn mǎn yì zú de dé shèng de zǒu le 。",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ想在心裡的﹐後來每每說出口來﹐所以凡有和阿Ｑ玩笑的人們﹐幾乎全知道他有這一種精神上的勝利法﹐此後每逢揪住他黃辮子的時候﹐人就先對他說﹕“阿Ｑ﹐這不是兒子打老子﹐是人打畜生。",
+        "pinyin": "ā Ｑ xiǎng zài xīn lǐ de ﹐ hòu lái měi měi shuō chū kǒu lái ﹐ suǒ yǐ fán yǒu hé ā Ｑ wán xiào de rén mén ﹐ jǐ hū quán zhī dào tā yǒu zhè yī zhǒng jīng shén shàng de shèng lì fǎ ﹐ cǐ hòu měi féng jiū zhù tā huáng biàn zǐ de shí hòu ﹐ rén jiù xiān duì tā shuō ﹕ “ ā Ｑ ﹐ zhè bù shì ér zǐ dǎ lǎo zǐ ﹐ shì rén dǎ chù shēng 。",
+        "english": ""
+      },
+      {
+        "chinese": "自己說﹕人打畜生﹗”",
+        "pinyin": "zì jǐ shuō ﹕ rén dǎ chù shēng ﹗ ”",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ兩隻手都捏住了自己的辮根﹐歪著頭﹐說道﹕“打蟲豸﹐好不好﹖我是蟲豸──還不放麼﹖”",
+        "pinyin": "ā Ｑ liǎng zhǐ shǒu dōu niē zhù le zì jǐ de biàn gēn ﹐ wāi zhuó tóu ﹐ shuō dào ﹕ “ dǎ chóng zhì ﹐ hǎo bù hǎo ﹖ wǒ shì chóng zhì ─ ─ hái bù fàng me ﹖ ”",
+        "english": ""
+      },
+      {
+        "chinese": "但雖然是蟲豸﹐閒人也並不放﹐仍舊在就近什麼地方給他碰了五六個響頭﹐這才心滿意足的得勝的走了﹐他以為阿Ｑ這回可遭了瘟。",
+        "pinyin": "dàn suī rán shì chóng zhì ﹐ xián rén yě bìng bù fàng ﹐ réng jiù zài jiù jìn shén me dì fāng gěi tā pèng le wǔ liù gè xiǎng tóu ﹐ zhè cái xīn mǎn yì zú de dé shèng de zǒu le ﹐ tā yǐ wèi ā Ｑ zhè huí kě zāo le wēn 。",
+        "english": ""
+      },
+      {
+        "chinese": "然而不到十秒鐘﹐阿Ｑ也心滿意足的得勝的走了﹐他覺得他是第一個能夠自輕自賤的人﹐除了〈自輕自賤〉不算外﹐餘下的就是〈第一個〉。",
+        "pinyin": "rán ér bù dào shí miǎo zhōng ﹐ ā Ｑ yě xīn mǎn yì zú de dé shèng de zǒu le ﹐ tā jué dé tā shì dì yī gè néng gòu zì qīng zì jiàn de rén ﹐ chú le 〈 zì qīng zì jiàn 〉 bù suàn wài ﹐ yú xià de jiù shì 〈 dì yī gè 〉 。",
+        "english": ""
+      },
+      {
+        "chinese": "狀元〔１９〕不也是〈第一個〉麼﹖“你算是什麼東西”呢季孤",
+        "pinyin": "zhuàng yuán 〔 １ ９ 〕 bù yě shì 〈 dì yī gè 〉 me ﹖ “ nǐ suàn shì shén me dōng xī ” ne jì gū",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ以如是等等妙法克服怨敵之後﹐便愉快的跑到酒店裡喝幾碗酒﹐又和別人調笑一通﹐口角一通﹐又得了勝﹐愉快的回到土谷祠﹐放倒頭睡著了。",
+        "pinyin": "ā Ｑ yǐ rú shì děng děng miào fǎ kè fú yuàn dí zhī hòu ﹐ biàn yú kuài de pǎo dào jiǔ diàn lǐ hē jǐ wǎn jiǔ ﹐ yòu hé bié rén tiáo xiào yī tōng ﹐ kǒu jiǎo yī tōng ﹐ yòu dé le shèng ﹐ yú kuài de huí dào tǔ gǔ cí ﹐ fàng dǎo tóu shuì zhuó le 。",
+        "english": ""
+      },
+      {
+        "chinese": "假使有錢﹐他便去押牌寶〔２０〕﹐一堆人蹲在地面上﹐阿Ｑ即汗流滿面的夾在這中間。",
+        "pinyin": "jiǎ shǐ yǒu qián ﹐ tā biàn qù yā pái bǎo 〔 ２ ０ 〕 ﹐ yī duī rén dūn zài dì miàn shàng ﹐ ā Ｑ jí hàn liú mǎn miàn de jiá zài zhè zhōng jiān 。",
+        "english": ""
+      },
+      {
+        "chinese": "聲音他最響﹕",
+        "pinyin": "shēng yīn tā zuì xiǎng ﹕",
+        "english": ""
+      },
+      {
+        "chinese": "“青龍四百﹗”",
+        "pinyin": "“ qīng lóng sì bǎi ﹗ ”",
+        "english": ""
+      },
+      {
+        "chinese": "“咳開啦﹗”樁家揭開盒子蓋﹐也是汗流滿面的唱。",
+        "pinyin": "“ ké kāi lā ﹗ ” zhuāng jiā jiē kāi hé zǐ gài ﹐ yě shì hàn liú mǎn miàn de chàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "“天門啦角回啦﹗人和穿堂空 在那裡啦﹗阿Ｑ的銅錢拿過來﹗”",
+        "pinyin": "“ tiān mén lā jiǎo huí lā ﹗ rén hé chuān táng kōng   zài nà lǐ lā ﹗ ā Ｑ de tóng qián ná guò lái ﹗ ”",
+        "english": ""
+      },
+      {
+        "chinese": "“穿堂一百──一百五十﹗”",
+        "pinyin": "“ chuān táng yī bǎi ─ ─ yī bǎi wǔ shí ﹗ ”",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ的錢便在這樣的歌吟之下﹐漸漸的輸入別個汗流滿面的人物的腰間。",
+        "pinyin": "ā Ｑ de qián biàn zài zhè yàng de gē yín zhī xià ﹐ jiàn jiàn de shū rù bié gè hàn liú mǎn miàn de rén wù de yāo jiān 。",
+        "english": ""
+      },
+      {
+        "chinese": "他終於只好擠出堆外﹐站在後面看﹐替別人著急﹐一直到散場﹐然後戀戀的回到土谷祠﹐第二天﹐腫著眼睛去工作。",
+        "pinyin": "tā zhōng yú zhǐ hǎo jǐ chū duī wài ﹐ zhàn zài hòu miàn kàn ﹐ tì bié rén zháo jí ﹐ yī zhí dào sàn chǎng ﹐ rán hòu liàn liàn de huí dào tǔ gǔ cí ﹐ dì èr tiān ﹐ zhǒng zhuó yǎn jīng qù gōng zuò 。",
+        "english": ""
+      },
+      {
+        "chinese": "但真所謂“塞翁失馬安知非福”〔２１〕罷﹐阿Ｑ不幸而贏了一回﹐他倒幾乎失敗了。",
+        "pinyin": "dàn zhēn suǒ wèi “ sài wēng shī mǎ ān zhī fēi fú ” 〔 ２ １ 〕 bà ﹐ ā Ｑ bù xìng ér yíng le yī huí ﹐ tā dǎo jǐ hū shī bài le 。",
+        "english": ""
+      },
+      {
+        "chinese": "這是未莊賽神〔２２〕的晚上。",
+        "pinyin": "zhè shì wèi zhuāng sài shén 〔 ２ ２ 〕 de wǎn shàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "這晚上照例有一臺戲﹐戲臺左近﹐也照例有許多的賭攤。",
+        "pinyin": "zhè wǎn shàng zhào lì yǒu yī tái xì ﹐ xì tái zuǒ jìn ﹐ yě zhào lì yǒu xǔ duō de dǔ tān 。",
+        "english": ""
+      },
+      {
+        "chinese": "做戲的鑼鼓﹐在阿Ｑ耳朵裡彷彿在十里之外﹔他只聽得樁家的歌唱了。",
+        "pinyin": "zuò xì de luó gǔ ﹐ zài ā Ｑ ěr duǒ lǐ páng fù zài shí lǐ zhī wài ﹔ tā zhǐ tīng dé zhuāng jiā de gē chàng le 。",
+        "english": ""
+      },
+      {
+        "chinese": "他贏而又贏﹐銅錢變成角洋﹐角洋變成大洋﹐大洋又成了疊。",
+        "pinyin": "tā yíng ér yòu yíng ﹐ tóng qián biàn chéng jiǎo yáng ﹐ jiǎo yáng biàn chéng dà yáng ﹐ dà yáng yòu chéng le dié 。",
+        "english": ""
+      },
+      {
+        "chinese": "他興高采烈得非常﹕“天門兩塊﹗”",
+        "pinyin": "tā xìng gāo cǎi liè dé fēi cháng ﹕ “ tiān mén liǎng kuài ﹗ ”",
+        "english": ""
+      },
+      {
+        "chinese": "他不知道誰和誰為什麼打起架來了。",
+        "pinyin": "tā bù zhī dào shuí hé shuí wèi shén me dǎ qǐ jià lái le 。",
+        "english": ""
+      },
+      {
+        "chinese": "罵聲打聲腳步聲﹐昏頭昏腦的一大陣﹐他才爬起來﹐賭攤不見了﹐人們也不見了﹐身上有幾處很似乎有些痛﹐似乎也挨了幾拳幾腳似的﹐幾個人詫異的對他看。",
+        "pinyin": "mà shēng dǎ shēng jiǎo bù shēng ﹐ hūn tóu hūn nǎo de yī dà zhèn ﹐ tā cái pá qǐ lái ﹐ dǔ tān bù jiàn le ﹐ rén mén yě bù jiàn le ﹐ shēn shàng yǒu jǐ chù hěn sì hū yǒu xiē tòng ﹐ sì hū yě āi le jǐ quán jǐ jiǎo shì de ﹐ jǐ gè rén chà yì de duì tā kàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "他如有所失的走進土谷祠﹐定一定神﹐知道他的一堆洋錢不見了。",
+        "pinyin": "tā rú yǒu suǒ shī de zǒu jìn tǔ gǔ cí ﹐ dìng yī dìng shén ﹐ zhī dào tā de yī duī yáng qián bù jiàn le 。",
+        "english": ""
+      },
+      {
+        "chinese": "趕賽會的賭攤多不是本村人﹐還到那裡去尋根柢呢﹖",
+        "pinyin": "gǎn sài huì de dǔ tān duō bù shì běn cūn rén ﹐ hái dào nà lǐ qù xún gēn dǐ ne ﹖",
+        "english": ""
+      },
+      {
+        "chinese": "很白很亮的一堆洋錢﹗而且是他的──現在不見了﹗說是算被兒子拿去了罷﹐總還是忽忽不樂﹔說自己是蟲豸罷﹐也還是忽忽不樂﹕他這回才有些感到失敗的苦痛了。",
+        "pinyin": "hěn bái hěn liàng de yī duī yáng qián ﹗ ér qiě shì tā de ─ ─ xiàn zài bù jiàn le ﹗ shuō shì suàn bèi ér zǐ ná qù le bà ﹐ zǒng hái shì hū hū bù lè ﹔ shuō zì jǐ shì chóng zhì bà ﹐ yě hái shì hū hū bù lè ﹕ tā zhè huí cái yǒu xiē gǎn dào shī bài de kǔ tòng le 。",
+        "english": ""
+      },
+      {
+        "chinese": "但他立刻轉敗為勝了。",
+        "pinyin": "dàn tā lì kè zhuǎn bài wèi shèng le 。",
+        "english": ""
+      },
+      {
+        "chinese": "他擎起右手﹐用力的在自己臉上連打了兩個嘴巴﹐熱剌剌的有些痛﹔打完之後﹐便心平氣和起來﹐似乎打的是自己﹐被打的是別一個自己﹐不久也就彷彿是自己打了別個一般﹐──雖然還有些熱剌剌﹐──心滿意足的得勝的躺下了。",
+        "pinyin": "tā qíng qǐ yòu shǒu ﹐ yòng lì de zài zì jǐ liǎn shàng lián dǎ le liǎng gè zuǐ bā ﹐ rè là là de yǒu xiē tòng ﹔ dǎ wán zhī hòu ﹐ biàn xīn píng qì hé qǐ lái ﹐ sì hū dǎ de shì zì jǐ ﹐ bèi dǎ de shì bié yī gè zì jǐ ﹐ bù jiǔ yě jiù páng fù shì zì jǐ dǎ le bié gè yī bān ﹐ ─ ─ suī rán hái yǒu xiē rè là là ﹐ ─ ─ xīn mǎn yì zú de dé shèng de tǎng xià le 。",
+        "english": ""
+      },
+      {
+        "chinese": "他睡著了。",
+        "pinyin": "tā shuì zhuó le 。",
+        "english": ""
+      }
+    ]
+  },
+  {
+    "id": "flowers_in_the_mirror_ch_3",
+    "bookId": "flowers_in_the_mirror",
+    "chapterIndex": 3,
+    "title": "第三章　續優勝記略",
+    "titleEn": "Chapter 3: 第三章　續優勝記略",
+    "sentences": [
+      {
+        "chinese": "然而阿Ｑ雖然常優勝﹐卻直待蒙趙太爺打他嘴巴之後﹐這才出了名。",
+        "pinyin": "rán ér ā Ｑ suī rán cháng yōu shèng ﹐ què zhí dài mēng zhào tài yé dǎ tā zuǐ bā zhī hòu ﹐ zhè cái chū le míng 。",
+        "english": ""
+      },
+      {
+        "chinese": "他付過地保二百文酒錢﹐憤憤的躺下了﹐後來想﹕“現在的世界太不成話﹐兒子打老子……”於是忽而想到趙太爺的威風﹐而現在是他的兒子了﹐便自己也漸漸的得意起來﹐爬起身﹐唱著《小孤孀上墳》〔２３〕到酒店去。",
+        "pinyin": "tā fù guò dì bǎo èr bǎi wén jiǔ qián ﹐ fèn fèn de tǎng xià le ﹐ hòu lái xiǎng ﹕ “ xiàn zài de shì jiè tài bù chéng huà ﹐ ér zǐ dǎ lǎo zǐ … … ” yú shì hū ér xiǎng dào zhào tài yé de wēi fēng ﹐ ér xiàn zài shì tā de ér zǐ le ﹐ biàn zì jǐ yě jiàn jiàn de dé yì qǐ lái ﹐ pá qǐ shēn ﹐ chàng zhuó 《 xiǎo gū shuāng shàng fén 》 〔 ２ ３ 〕 dào jiǔ diàn qù 。",
+        "english": ""
+      },
+      {
+        "chinese": "這時候﹐他又覺得趙太爺高人一等了。",
+        "pinyin": "zhè shí hòu ﹐ tā yòu jué dé zhào tài yé gāo rén yī děng le 。",
+        "english": ""
+      },
+      {
+        "chinese": "說也奇怪﹐從此之後﹐果然大家也彷彿格外尊敬他。",
+        "pinyin": "shuō yě qí guài ﹐ cóng cǐ zhī hòu ﹐ guǒ rán dà jiā yě páng fù gé wài zūn jìng tā 。",
+        "english": ""
+      },
+      {
+        "chinese": "這在阿Ｑ﹐或者以為因為他是趙太爺的父親﹐而其實也不然。",
+        "pinyin": "zhè zài ā Ｑ ﹐ huò zhě yǐ wèi yīn wèi tā shì zhào tài yé de fù qīn ﹐ ér qí shí yě bù rán 。",
+        "english": ""
+      },
+      {
+        "chinese": "未莊通例﹐倘如阿七打阿八﹐或者李四打張三 ﹐向來本不算一件事﹐必須與一位名人如趙太爺者相關﹐這才載上他們的口碑。",
+        "pinyin": "wèi zhuāng tōng lì ﹐ tǎng rú ā qī dǎ ā bā ﹐ huò zhě lǐ sì dǎ zhāng sān   ﹐ xiàng lái běn bù suàn yī jiàn shì ﹐ bì xū yǔ yī wèi míng rén rú zhào tài yé zhě xiāng guān ﹐ zhè cái zài shàng tā mén de kǒu bēi 。",
+        "english": ""
+      },
+      {
+        "chinese": "一上口碑﹐則打的既有名﹐被打的也就託庇有了名。",
+        "pinyin": "yī shàng kǒu bēi ﹐ zé dǎ de jì yǒu míng ﹐ bèi dǎ de yě jiù tuō bì yǒu le míng 。",
+        "english": ""
+      },
+      {
+        "chinese": "至於錯在阿Ｑ﹐那自然是不必說。",
+        "pinyin": "zhì yú cuò zài ā Ｑ ﹐ nà zì rán shì bù bì shuō 。",
+        "english": ""
+      },
+      {
+        "chinese": "所以者何﹖就因為趙太爺是不會錯的。",
+        "pinyin": "suǒ yǐ zhě hé ﹖ jiù yīn wèi zhào tài yé shì bù huì cuò de 。",
+        "english": ""
+      },
+      {
+        "chinese": "但他既然錯﹐為什麼大家又彷佛格外尊敬他呢﹖這可難解﹐穿鑿起來說﹐或者因為阿Ｑ說是趙太爺的本家﹐雖然挨了打﹐ 大家也還怕有些真﹐總不如尊敬一些穩當。",
+        "pinyin": "dàn tā jì rán cuò ﹐ wèi shén me dà jiā yòu páng fó gé wài zūn jìng tā ne ﹖ zhè kě nán jiě ﹐ chuān záo qǐ lái shuō ﹐ huò zhě yīn wèi ā Ｑ shuō shì zhào tài yé de běn jiā ﹐ suī rán āi le dǎ ﹐   dà jiā yě hái pà yǒu xiē zhēn ﹐ zǒng bù rú zūn jìng yī xiē wěn dāng 。",
+        "english": ""
+      },
+      {
+        "chinese": "否則﹐也如孔廟裡的太牢〔２４〕一般﹐雖然與豬羊一樣﹐同是畜生﹐但既經聖人下箸﹐先儒們便不敢妄動了。",
+        "pinyin": "fǒu zé ﹐ yě rú kǒng miào lǐ de tài láo 〔 ２ ４ 〕 yī bān ﹐ suī rán yǔ zhū yáng yī yàng ﹐ tóng shì chù shēng ﹐ dàn jì jīng shèng rén xià zhù ﹐ xiān rú mén biàn bù gǎn wàng dòng le 。",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ此後倒得意了許多年。",
+        "pinyin": "ā Ｑ cǐ hòu dǎo dé yì le xǔ duō nián 。",
+        "english": ""
+      },
+      {
+        "chinese": "有一年的春天﹐他醉醺醺的在街上走﹐在牆根的日光下﹐看見王胡在那裡赤著膊捉虱子﹐他忽然覺得身上也癢起來了。",
+        "pinyin": "yǒu yī nián de chūn tiān ﹐ tā zuì xūn xūn de zài jiē shàng zǒu ﹐ zài qiáng gēn de rì guāng xià ﹐ kàn jiàn wáng hú zài nà lǐ chì zhuó bó zhuō shī zǐ ﹐ tā hū rán jué dé shēn shàng yě yǎng qǐ lái le 。",
+        "english": ""
+      },
+      {
+        "chinese": "這王胡﹐又癩又胡﹐別人都叫他王癩胡﹐ 阿Ｑ卻刪去了一個癩字﹐然而非常渺視他。",
+        "pinyin": "zhè wáng hú ﹐ yòu lài yòu hú ﹐ bié rén dōu jiào tā wáng lài hú ﹐   ā Ｑ què shān qù le yī gè lài zì ﹐ rán ér fēi cháng miǎo shì tā 。",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ的意思﹐以為癩是不足為奇的﹐只有這一部絡腮鬍子﹐實在太新奇﹐令人看不上眼。",
+        "pinyin": "ā Ｑ de yì sī ﹐ yǐ wèi lài shì bù zú wèi qí de ﹐ zhǐ yǒu zhè yī bù luò sāi hú zǐ ﹐ shí zài tài xīn qí ﹐ lìng rén kàn bù shàng yǎn 。",
+        "english": ""
+      },
+      {
+        "chinese": "他於是並排坐下去了。",
+        "pinyin": "tā yú shì bìng pái zuò xià qù le 。",
+        "english": ""
+      },
+      {
+        "chinese": "倘是別的閒人們﹐阿Ｑ本不敢大意坐下去。",
+        "pinyin": "tǎng shì bié de xián rén mén ﹐ ā Ｑ běn bù gǎn dà yì zuò xià qù 。",
+        "english": ""
+      },
+      {
+        "chinese": "但這王胡旁邊﹐他有什麼怕呢﹖老實說﹕他肯坐下去﹐簡直還是抬舉他。",
+        "pinyin": "dàn zhè wáng hú páng biān ﹐ tā yǒu shén me pà ne ﹖ lǎo shí shuō ﹕ tā kěn zuò xià qù ﹐ jiǎn zhí hái shì tái jǔ tā 。",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ也脫下破夾襖來﹐翻檢了一回﹐不知道因為新洗呢還是因為粗心﹐許多工夫﹐只捉到三四個。",
+        "pinyin": "ā Ｑ yě tuō xià pò jiá ǎo lái ﹐ fān jiǎn le yī huí ﹐ bù zhī dào yīn wèi xīn xǐ ne hái shì yīn wèi cū xīn ﹐ xǔ duō gōng fū ﹐ zhǐ zhuō dào sān sì gè 。",
+        "english": ""
+      },
+      {
+        "chinese": "他看那王胡﹐卻是一個又一個﹐兩個又三個﹐只放在嘴裡畢畢剝剝的響。",
+        "pinyin": "tā kàn nà wáng hú ﹐ què shì yī gè yòu yī gè ﹐ liǎng gè yòu sān gè ﹐ zhǐ fàng zài zuǐ lǐ bì bì bō bō de xiǎng 。",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ最初是失望﹐後來卻不平了﹕看不上眼的王胡尚且那麼多﹐自己倒反這樣少﹐這是怎樣的大失體統的事呵﹗他很想尋一兩個大的﹐然而竟沒有﹐好容易才捉到一個中的﹐恨恨的塞在厚嘴唇裡﹐狠命一咬﹐劈的一聲﹐又不及王胡響。",
+        "pinyin": "ā Ｑ zuì chū shì shī wàng ﹐ hòu lái què bù píng le ﹕ kàn bù shàng yǎn de wáng hú shàng qiě nà me duō ﹐ zì jǐ dǎo fǎn zhè yàng shǎo ﹐ zhè shì zěn yàng de dà shī tǐ tǒng de shì hē ﹗ tā hěn xiǎng xún yī liǎng gè dà de ﹐ rán ér jìng méi yǒu ﹐ hǎo róng yì cái zhuō dào yī gè zhōng de ﹐ hèn hèn de sāi zài hòu zuǐ chún lǐ ﹐ hěn mìng yī yǎo ﹐ pī de yī shēng ﹐ yòu bù jí wáng hú xiǎng 。",
+        "english": ""
+      },
+      {
+        "chinese": "他癩瘡疤塊塊通紅了﹐將衣服摔在地上﹐吐一口唾沫﹐說﹕“這毛蟲﹗”",
+        "pinyin": "tā lài chuāng bā kuài kuài tōng hóng le ﹐ jiāng yī fú shuāi zài dì shàng ﹐ tǔ yī kǒu tuò mò ﹐ shuō ﹕ “ zhè máo chóng ﹗ ”",
+        "english": ""
+      },
+      {
+        "chinese": "“癩皮狗﹐你罵誰﹖”王胡輕蔑的抬起眼來說。",
+        "pinyin": "“ lài pí gǒu ﹐ nǐ mà shuí ﹖ ” wáng hú qīng miè de tái qǐ yǎn lái shuō 。",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ近來雖然比較的受人尊敬﹐自己也更高傲些﹐但和那些打慣的閒人們見面還膽怯﹐獨有這回卻非常武勇了。",
+        "pinyin": "ā Ｑ jìn lái suī rán bǐ jiào de shòu rén zūn jìng ﹐ zì jǐ yě gèng gāo ào xiē ﹐ dàn hé nà xiē dǎ guàn de xián rén mén jiàn miàn hái dǎn qiè ﹐ dú yǒu zhè huí què fēi cháng wǔ yǒng le 。",
+        "english": ""
+      },
+      {
+        "chinese": "這樣滿臉鬍子的東西﹐也敢出言無狀麼﹖",
+        "pinyin": "zhè yàng mǎn liǎn hú zǐ de dōng xī ﹐ yě gǎn chū yán wú zhuàng me ﹖",
+        "english": ""
+      },
+      {
+        "chinese": "“誰認便罵誰﹗”他站起來﹐兩手叉在腰間說。",
+        "pinyin": "“ shuí rèn biàn mà shuí ﹗ ” tā zhàn qǐ lái ﹐ liǎng shǒu chā zài yāo jiān shuō 。",
+        "english": ""
+      },
+      {
+        "chinese": "“你的骨頭癢了麼﹖”王胡也站起來﹐披上衣服說。",
+        "pinyin": "“ nǐ de gǔ tóu yǎng le me ﹖ ” wáng hú yě zhàn qǐ lái ﹐ pī shàng yī fú shuō 。",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ以為他要逃了﹐搶進去就是一拳。",
+        "pinyin": "ā Ｑ yǐ wèi tā yào táo le ﹐ qiǎng jìn qù jiù shì yī quán 。",
+        "english": ""
+      },
+      {
+        "chinese": "這拳頭還未達到身上﹐已經被他抓住了﹐只一拉﹐阿Ｑ蹌蹌踉踉的跌進去﹐立刻又被王胡扭住了辮子﹐要拉到牆上照例去碰頭。",
+        "pinyin": "zhè quán tóu hái wèi dá dào shēn shàng ﹐ yǐ jīng bèi tā zhuā zhù le ﹐ zhǐ yī lā ﹐ ā Ｑ qiāng qiāng liáng liáng de diē jìn qù ﹐ lì kè yòu bèi wáng hú niǔ zhù le biàn zǐ ﹐ yào lā dào qiáng shàng zhào lì qù pèng tóu 。",
+        "english": ""
+      },
+      {
+        "chinese": "“君子動口不動手﹗”阿Ｑ歪著頭說。",
+        "pinyin": "“ jūn zǐ dòng kǒu bù dòng shǒu ﹗ ” ā Ｑ wāi zhuó tóu shuō 。",
+        "english": ""
+      },
+      {
+        "chinese": "王胡似乎不是君子﹐並不理會﹐一連給他碰了五下﹐又用力的一推﹐至於阿Ｑ跌出六尺多遠﹐這才滿足的去了。",
+        "pinyin": "wáng hú sì hū bù shì jūn zǐ ﹐ bìng bù lǐ huì ﹐ yī lián gěi tā pèng le wǔ xià ﹐ yòu yòng lì de yī tuī ﹐ zhì yú ā Ｑ diē chū liù chǐ duō yuǎn ﹐ zhè cái mǎn zú de qù le 。",
+        "english": ""
+      },
+      {
+        "chinese": "在阿Ｑ的記憶上﹐這大約要算是生平第一件的屈辱﹐因為王胡以絡腮鬍子的缺點﹐向來只被他奚落﹐從沒有奚落他﹐更不必說動手了。",
+        "pinyin": "zài ā Ｑ de jì yì shàng ﹐ zhè dà yuē yào suàn shì shēng píng dì yī jiàn de qū rǔ ﹐ yīn wèi wáng hú yǐ luò sāi hú zǐ de quē diǎn ﹐ xiàng lái zhǐ bèi tā xī luò ﹐ cóng méi yǒu xī luò tā ﹐ gèng bù bì shuō dòng shǒu le 。",
+        "english": ""
+      },
+      {
+        "chinese": "而他現在竟動手﹐很意外﹐難道真如市上所說﹐皇帝已經停了考〔２５〕﹐不要秀才和舉人了﹐因此趙家減了威風﹐因此他們也便小覷了他麼﹖",
+        "pinyin": "ér tā xiàn zài jìng dòng shǒu ﹐ hěn yì wài ﹐ nán dào zhēn rú shì shàng suǒ shuō ﹐ huáng dì yǐ jīng tíng le kǎo 〔 ２ ５ 〕 ﹐ bù yào xiù cái hé jǔ rén le ﹐ yīn cǐ zhào jiā jiǎn le wēi fēng ﹐ yīn cǐ tā mén yě biàn xiǎo qù le tā me ﹖",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ無可適從的站著。",
+        "pinyin": "ā Ｑ wú kě shì cóng de zhàn zhuó 。",
+        "english": ""
+      },
+      {
+        "chinese": "遠遠的走來了一個人﹐他的對頭又到了。",
+        "pinyin": "yuǎn yuǎn de zǒu lái le yī gè rén ﹐ tā de duì tóu yòu dào le 。",
+        "english": ""
+      },
+      {
+        "chinese": "這也是阿Ｑ最厭惡的一個人﹐就是錢太爺的大兒子。",
+        "pinyin": "zhè yě shì ā Ｑ zuì yàn wù de yī gè rén ﹐ jiù shì qián tài yé de dà ér zǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "他先前跑上城裡去進洋學堂﹐不知怎麼又跑到東洋去了﹐半年之後他回到家裡來﹐腿也直了﹐辮子也不見了﹐他的母親大哭了十幾場﹐他的老婆跳了三回井。",
+        "pinyin": "tā xiān qián pǎo shàng chéng lǐ qù jìn yáng xué táng ﹐ bù zhī zěn me yòu pǎo dào dōng yáng qù le ﹐ bàn nián zhī hòu tā huí dào jiā lǐ lái ﹐ tuǐ yě zhí le ﹐ biàn zǐ yě bù jiàn le ﹐ tā de mǔ qīn dà kū le shí jǐ chǎng ﹐ tā de lǎo pó tiào le sān huí jǐng 。",
+        "english": ""
+      },
+      {
+        "chinese": "後來﹐他的母親到處說：“這辮子是被壞人灌醉了酒剪去的。",
+        "pinyin": "hòu lái ﹐ tā de mǔ qīn dào chù shuō ： “ zhè biàn zǐ shì bèi huài rén guàn zuì le jiǔ jiǎn qù de 。",
+        "english": ""
+      },
+      {
+        "chinese": "本來可以做大官﹐現在只好等留長再說了。",
+        "pinyin": "běn lái kě yǐ zuò dà guān ﹐ xiàn zài zhǐ hǎo děng liú cháng zài shuō le 。",
+        "english": ""
+      },
+      {
+        "chinese": "”然而阿Ｑ不肯信﹐偏稱他“假洋鬼子”﹐也叫作“裡通外國的人”﹐一見他﹐一定在肚子裡暗暗的咒罵。",
+        "pinyin": "” rán ér ā Ｑ bù kěn xìn ﹐ piān chēng tā “ jiǎ yáng guǐ zǐ ” ﹐ yě jiào zuò “ lǐ tōng wài guó de rén ” ﹐ yī jiàn tā ﹐ yī dìng zài dù zǐ lǐ àn àn de zhòu mà 。",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ尤其“深惡而痛絕之”的﹐是他的一條假辮子。",
+        "pinyin": "ā Ｑ yóu qí “ shēn è ér tòng jué zhī ” de ﹐ shì tā de yī tiáo jiǎ biàn zǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "辮子而至於假﹐就是沒有了做人的資格﹔他的老婆不跳",
+        "pinyin": "biàn zǐ ér zhì yú jiǎ ﹐ jiù shì méi yǒu le zuò rén de zī gé ﹔ tā de lǎo pó bù tiào",
+        "english": ""
+      }
+    ]
+  },
+  {
+    "id": "flowers_in_the_mirror_ch_4",
+    "bookId": "flowers_in_the_mirror",
+    "chapterIndex": 4,
+    "title": "第四回井﹐也不是好女人。",
+    "titleEn": "Chapter 4: 第四回井﹐也不是好女人。",
+    "sentences": [
+      {
+        "chinese": "這“假洋鬼子”近來了。",
+        "pinyin": "zhè “ jiǎ yáng guǐ zǐ ” jìn lái le 。",
+        "english": ""
+      },
+      {
+        "chinese": "“禿兒。",
+        "pinyin": "“ tū ér 。",
+        "english": ""
+      },
+      {
+        "chinese": "驢……”阿Ｑ歷來本只在肚子裡罵﹐沒有出過聲﹐這回因為正氣忿﹐因為要報仇﹐便不由的輕輕的說出來了。",
+        "pinyin": "lǘ … … ” ā Ｑ lì lái běn zhǐ zài dù zǐ lǐ mà ﹐ méi yǒu chū guò shēng ﹐ zhè huí yīn wèi zhèng qì fèn ﹐ yīn wèi yào bào chóu ﹐ biàn bù yóu de qīng qīng de shuō chū lái le 。",
+        "english": ""
+      },
+      {
+        "chinese": "不料這禿兒卻拿一支黃漆的棍子──就是阿Ｑ所謂哭喪棒〔２６〕──大踏步走了過來。",
+        "pinyin": "bù liào zhè tū ér què ná yī zhī huáng qī de gùn zǐ ─ ─ jiù shì ā Ｑ suǒ wèi kū sang bàng 〔 ２ ６ 〕 ─ ─ dà tà bù zǒu le guò lái 。",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ在這剎那﹐便知道大約要打了﹐趕緊抽緊筋骨﹐聳了肩膀等候著﹐果然﹐拍的一聲﹐似乎確鑿打在自己頭上了。",
+        "pinyin": "ā Ｑ zài zhè chà nà ﹐ biàn zhī dào dà yuē yào dǎ le ﹐ gǎn jǐn chōu jǐn jīn gǔ ﹐ sǒng le jiān bǎng děng hòu zhuó ﹐ guǒ rán ﹐ pāi de yī shēng ﹐ sì hū què záo dǎ zài zì jǐ tóu shàng le 。",
+        "english": ""
+      },
+      {
+        "chinese": "“我說他﹗”阿Ｑ指著近旁的一個孩子﹐分辯說。",
+        "pinyin": "“ wǒ shuō tā ﹗ ” ā Ｑ zhǐ zhuó jìn páng de yī gè hái zǐ ﹐ fēn biàn shuō 。",
+        "english": ""
+      },
+      {
+        "chinese": "拍﹗拍拍﹗",
+        "pinyin": "pāi ﹗ pāi pāi ﹗",
+        "english": ""
+      },
+      {
+        "chinese": "在阿Ｑ的記憶上﹐這大約要算是生平第二件的屈辱。",
+        "pinyin": "zài ā Ｑ de jì yì shàng ﹐ zhè dà yuē yào suàn shì shēng píng dì èr jiàn de qū rǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "幸而拍拍的響了之後﹐於他倒似乎完結了一件事﹐反而覺得輕鬆些﹐而且〈忘卻〉這一件祖傳的寶貝也發生了效力﹐他慢慢的走﹐將到酒店門口﹐早已有些高興了。",
+        "pinyin": "xìng ér pāi pāi de xiǎng le zhī hòu ﹐ yú tā dǎo sì hū wán jié le yī jiàn shì ﹐ fǎn ér jué dé qīng sōng xiē ﹐ ér qiě 〈 wàng què 〉 zhè yī jiàn zǔ chuán de bǎo bèi yě fā shēng le xiào lì ﹐ tā màn màn de zǒu ﹐ jiāng dào jiǔ diàn mén kǒu ﹐ zǎo yǐ yǒu xiē gāo xìng le 。",
+        "english": ""
+      },
+      {
+        "chinese": "但對面走來了靜修庵裡的小尼姑。",
+        "pinyin": "dàn duì miàn zǒu lái le jìng xiū ān lǐ de xiǎo ní gū 。",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ便在平時﹐看見伊也一定要唾罵﹐而況在屈辱之後呢﹖他於是發生了回憶﹐又發生了敵愾了。",
+        "pinyin": "ā Ｑ biàn zài píng shí ﹐ kàn jiàn yī yě yī dìng yào tuò mà ﹐ ér kuàng zài qū rǔ zhī hòu ne ﹖ tā yú shì fā shēng le huí yì ﹐ yòu fā shēng le dí kài le 。",
+        "english": ""
+      },
+      {
+        "chinese": "“我不知道我今天為什麼這樣晦氣﹐原來就因為見了你﹗”他想。",
+        "pinyin": "“ wǒ bù zhī dào wǒ jīn tiān wèi shén me zhè yàng huì qì ﹐ yuán lái jiù yīn wèi jiàn le nǐ ﹗ ” tā xiǎng 。",
+        "english": ""
+      },
+      {
+        "chinese": "他迎上去﹐大聲的吐一口唾沫﹕“咳﹐呸﹗”",
+        "pinyin": "tā yíng shàng qù ﹐ dà shēng de tǔ yī kǒu tuò mò ﹕ “ ké ﹐ pēi ﹗ ”",
+        "english": ""
+      },
+      {
+        "chinese": "小尼姑全不睬﹐低了頭只是走。",
+        "pinyin": "xiǎo ní gū quán bù cǎi ﹐ dī le tóu zhǐ shì zǒu 。",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ走近伊身旁﹐突然伸出手去摩著伊新剃的頭皮﹐呆笑著﹐說﹕“禿兒﹗快回去﹐和尚等著你……”",
+        "pinyin": "ā Ｑ zǒu jìn yī shēn páng ﹐ tū rán shēn chū shǒu qù mó zhuó yī xīn tì de tóu pí ﹐ dāi xiào zhuó ﹐ shuō ﹕ “ tū ér ﹗ kuài huí qù ﹐ hé shàng děng zhuó nǐ … … ”",
+        "english": ""
+      },
+      {
+        "chinese": "“你怎麼動手動腳……”尼姑滿臉通紅的說﹐一面趕快走。",
+        "pinyin": "“ nǐ zěn me dòng shǒu dòng jiǎo … … ” ní gū mǎn liǎn tōng hóng de shuō ﹐ yī miàn gǎn kuài zǒu 。",
+        "english": ""
+      },
+      {
+        "chinese": "酒店裡的人大笑了。",
+        "pinyin": "jiǔ diàn lǐ de rén dà xiào le 。",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ看見自己的勛業得了賞識﹐便愈加興高采烈起來﹕",
+        "pinyin": "ā Ｑ kàn jiàn zì jǐ de xūn yè dé le shǎng shí ﹐ biàn yù jiā xìng gāo cǎi liè qǐ lái ﹕",
+        "english": ""
+      },
+      {
+        "chinese": "“和尚動得﹐我動不得﹖”他扭住伊的面頰。",
+        "pinyin": "“ hé shàng dòng dé ﹐ wǒ dòng bù dé ﹖ ” tā niǔ zhù yī de miàn jiá 。",
+        "english": ""
+      },
+      {
+        "chinese": "酒店裡的人大笑了。",
+        "pinyin": "jiǔ diàn lǐ de rén dà xiào le 。",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ更得意﹐而且為滿足那些賞鑒家起見﹐再用力的一擰﹐才放手。",
+        "pinyin": "ā Ｑ gèng dé yì ﹐ ér qiě wèi mǎn zú nà xiē shǎng jiàn jiā qǐ jiàn ﹐ zài yòng lì de yī nǐng ﹐ cái fàng shǒu 。",
+        "english": ""
+      },
+      {
+        "chinese": "他這一戰﹐早忘卻了王胡﹐也忘卻了假洋鬼子﹐似乎對於今天的一切〈晦氣〉都報了仇﹔而且奇怪﹐又彷彿全身比拍拍的響了之後更輕鬆﹐飄飄然的似乎要飛去了。",
+        "pinyin": "tā zhè yī zhàn ﹐ zǎo wàng què le wáng hú ﹐ yě wàng què le jiǎ yáng guǐ zǐ ﹐ sì hū duì yú jīn tiān de yī qiē 〈 huì qì 〉 dōu bào le chóu ﹔ ér qiě qí guài ﹐ yòu páng fù quán shēn bǐ pāi pāi de xiǎng le zhī hòu gèng qīng sōng ﹐ piāo piāo rán de sì hū yào fēi qù le 。",
+        "english": ""
+      },
+      {
+        "chinese": "“這斷子絕孫的阿Ｑ﹗”遠遠地聽得小尼姑的帶哭的聲音。",
+        "pinyin": "“ zhè duàn zǐ jué sūn de ā Ｑ ﹗ ” yuǎn yuǎn dì tīng dé xiǎo ní gū de dài kū de shēng yīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "“哈哈哈﹗”阿Ｑ十分得意的笑。",
+        "pinyin": "“ hā hā hā ﹗ ” ā Ｑ shí fēn dé yì de xiào 。",
+        "english": ""
+      },
+      {
+        "chinese": "“哈哈哈﹗”酒店裡的人也九分得意的笑。",
+        "pinyin": "“ hā hā hā ﹗ ” jiǔ diàn lǐ de rén yě jiǔ fēn dé yì de xiào 。",
+        "english": ""
+      }
+    ]
+  },
+  {
+    "id": "flowers_in_the_mirror_ch_5",
+    "bookId": "flowers_in_the_mirror",
+    "chapterIndex": 5,
+    "title": "第四章　戀愛的悲劇",
+    "titleEn": "Chapter 5: 第四章　戀愛的悲劇",
+    "sentences": [
+      {
+        "chinese": "有人說﹕有些勝利者﹐願意敵手如虎﹐如鷹﹐他才感得勝利的歡喜﹔假使如羊﹐如小雞﹐他便反覺得勝利的無聊。",
+        "pinyin": "yǒu rén shuō ﹕ yǒu xiē shèng lì zhě ﹐ yuàn yì dí shǒu rú hǔ ﹐ rú yīng ﹐ tā cái gǎn dé shèng lì de huān xǐ ﹔ jiǎ shǐ rú yáng ﹐ rú xiǎo jī ﹐ tā biàn fǎn jué dé shèng lì de wú liáo 。",
+        "english": ""
+      },
+      {
+        "chinese": "又有些勝利者﹐當克服一切之後﹐看見死的死了﹐降的降了﹐“臣誠惶誠恐死罪死罪”﹐他於是沒有了敵人﹐沒有了對手﹐沒有了朋友﹐只有自己在上﹐一個﹐孤另另﹐悽涼﹐寂寞﹐便反而感到了勝利的悲哀。",
+        "pinyin": "yòu yǒu xiē shèng lì zhě ﹐ dāng kè fú yī qiē zhī hòu ﹐ kàn jiàn sǐ de sǐ le ﹐ jiàng de jiàng le ﹐ “ chén chéng huáng chéng kǒng sǐ zuì sǐ zuì ” ﹐ tā yú shì méi yǒu le dí rén ﹐ méi yǒu le duì shǒu ﹐ méi yǒu le péng yǒu ﹐ zhǐ yǒu zì jǐ zài shàng ﹐ yī gè ﹐ gū lìng lìng ﹐ qī liáng ﹐ jì mò ﹐ biàn fǎn ér gǎn dào le shèng lì de bēi āi 。",
+        "english": ""
+      },
+      {
+        "chinese": "然而我們的阿Ｑ卻沒有這樣乏﹐他是永遠得意的﹕這或者也是中國精神文明冠於全球的一個證據了。",
+        "pinyin": "rán ér wǒ mén de ā Ｑ què méi yǒu zhè yàng fá ﹐ tā shì yǒng yuǎn dé yì de ﹕ zhè huò zhě yě shì zhōng guó jīng shén wén míng guàn yú quán qiú de yī gè zhèng jù le 。",
+        "english": ""
+      },
+      {
+        "chinese": "看哪﹐他飄飄然的似乎要飛去了﹗",
+        "pinyin": "kàn nǎ ﹐ tā piāo piāo rán de sì hū yào fēi qù le ﹗",
+        "english": ""
+      },
+      {
+        "chinese": "然而這一次的勝利﹐卻又使他有些異樣。",
+        "pinyin": "rán ér zhè yī cì de shèng lì ﹐ què yòu shǐ tā yǒu xiē yì yàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "他飄飄然的飛了大半天﹐飄進土谷祠﹐照例應該躺下便打鼾。",
+        "pinyin": "tā piāo piāo rán de fēi le dà bàn tiān ﹐ piāo jìn tǔ gǔ cí ﹐ zhào lì yīng gāi tǎng xià biàn dǎ hān 。",
+        "english": ""
+      },
+      {
+        "chinese": "誰知道這一晚﹐他很不容易合眼﹐他覺得自己的大拇指和第二指有點古怪﹕彷彿比平常滑膩些。",
+        "pinyin": "shuí zhī dào zhè yī wǎn ﹐ tā hěn bù róng yì hé yǎn ﹐ tā jué dé zì jǐ de dà mǔ zhǐ hé dì èr zhǐ yǒu diǎn gǔ guài ﹕ páng fù bǐ píng cháng huá nì xiē 。",
+        "english": ""
+      },
+      {
+        "chinese": "不知道是小尼姑的臉上有一點滑膩的東西粘在他指上﹐還 是他的指頭在小尼姑臉上磨得滑膩了﹖……",
+        "pinyin": "bù zhī dào shì xiǎo ní gū de liǎn shàng yǒu yī diǎn huá nì de dōng xī nián zài tā zhǐ shàng ﹐ hái   shì tā de zhǐ tóu zài xiǎo ní gū liǎn shàng mó dé huá nì le ﹖ … …",
+        "english": ""
+      },
+      {
+        "chinese": "“斷子絕孫的阿Ｑ﹗”",
+        "pinyin": "“ duàn zǐ jué sūn de ā Ｑ ﹗ ”",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ的耳朵裡又聽到這句話。",
+        "pinyin": "ā Ｑ de ěr duǒ lǐ yòu tīng dào zhè jù huà 。",
+        "english": ""
+      },
+      {
+        "chinese": "他想﹕不錯﹐應該有一個女人﹐斷子絕孫便沒有人供一碗飯﹐……應該有一個女人。",
+        "pinyin": "tā xiǎng ﹕ bù cuò ﹐ yīng gāi yǒu yī gè nǚ rén ﹐ duàn zǐ jué sūn biàn méi yǒu rén gòng yī wǎn fàn ﹐ … … yīng gāi yǒu yī gè nǚ rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "夫“不孝有三無後為大”〔２７〕﹐而“若敖之鬼餒而”〔２８〕﹐也是一件人生的大哀﹐所以他那思想﹐其實是樣樣合於聖經賢傳的﹐只可惜後來有些“不能收其放心”〔２９〕了。",
+        "pinyin": "fū “ bù xiào yǒu sān wú hòu wèi dà ” 〔 ２ ７ 〕 ﹐ ér “ ruò áo zhī guǐ něi ér ” 〔 ２ ８ 〕 ﹐ yě shì yī jiàn rén shēng de dà āi ﹐ suǒ yǐ tā nà sī xiǎng ﹐ qí shí shì yàng yàng hé yú shèng jīng xián chuán de ﹐ zhǐ kě xī hòu lái yǒu xiē “ bù néng shōu qí fàng xīn ” 〔 ２ ９ 〕 le 。",
+        "english": ""
+      },
+      {
+        "chinese": "“女人﹐女人﹗……”他想。",
+        "pinyin": "“ nǚ rén ﹐ nǚ rén ﹗ … … ” tā xiǎng 。",
+        "english": ""
+      },
+      {
+        "chinese": "“……和尚動得……女人﹐女人﹗……女人",
+        "pinyin": "“ … … hé shàng dòng dé … … nǚ rén ﹐ nǚ rén ﹗ … … nǚ rén",
+        "english": ""
+      },
+      {
+        "chinese": "﹗”他又想。",
+        "pinyin": "﹗ ” tā yòu xiǎng 。",
+        "english": ""
+      },
+      {
+        "chinese": "我們不能知道這晚上阿Ｑ在什麼時候才打鼾。",
+        "pinyin": "wǒ mén bù néng zhī dào zhè wǎn shàng ā Ｑ zài shén me shí hòu cái dǎ hān 。",
+        "english": ""
+      },
+      {
+        "chinese": "但大約他從此總覺得指頭有些滑膩﹐所以他從此總有些飄飄然﹔“女……”他想。",
+        "pinyin": "dàn dà yuē tā cóng cǐ zǒng jué dé zhǐ tóu yǒu xiē huá nì ﹐ suǒ yǐ tā cóng cǐ zǒng yǒu xiē piāo piāo rán ﹔ “ nǚ … … ” tā xiǎng 。",
+        "english": ""
+      },
+      {
+        "chinese": "即此一端﹐我們便可以知道女人是害人的東西。",
+        "pinyin": "jí cǐ yī duān ﹐ wǒ mén biàn kě yǐ zhī dào nǚ rén shì hài rén de dōng xī 。",
+        "english": ""
+      },
+      {
+        "chinese": "中國的男人﹐本來大半都可以做聖賢﹐可惜全被女人毀掉了。",
+        "pinyin": "zhōng guó de nán rén ﹐ běn lái dà bàn dōu kě yǐ zuò shèng xián ﹐ kě xī quán bèi nǚ rén huǐ diào le 。",
+        "english": ""
+      },
+      {
+        "chinese": "商是妲己〔３０〕鬧亡的﹔周是褒姒弄壞的﹔秦……雖然史無明文﹐我們也假定他因為女人﹐大約未必十分錯﹔而董卓可是的確給貂蟬害死了。",
+        "pinyin": "shāng shì dá jǐ 〔 ３ ０ 〕 nào wáng de ﹔ zhōu shì bāo sì nòng huài de ﹔ qín … … suī rán shǐ wú míng wén ﹐ wǒ mén yě jiǎ dìng tā yīn wèi nǚ rén ﹐ dà yuē wèi bì shí fēn cuò ﹔ ér dǒng zhuó kě shì dí què gěi diāo chán hài sǐ le 。",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ本來也是正人﹐我們雖然不知道他曾蒙什麼明師指授過﹐但他對於“男女之大防”〔３１〕卻歷來非常嚴﹔也很有排斥異端──如小尼姑及假洋鬼子之類 ──的正氣。",
+        "pinyin": "ā Ｑ běn lái yě shì zhèng rén ﹐ wǒ mén suī rán bù zhī dào tā céng mēng shén me míng shī zhǐ shòu guò ﹐ dàn tā duì yú “ nán nǚ zhī dà fáng ” 〔 ３ １ 〕 què lì lái fēi cháng yán ﹔ yě hěn yǒu pái chì yì duān ─ ─ rú xiǎo ní gū jí jiǎ yáng guǐ zǐ zhī lèi   ─ ─ de zhèng qì 。",
+        "english": ""
+      },
+      {
+        "chinese": "他的學說是﹕凡尼姑﹐一定與和尚私通﹔一個女人在外面走﹐一定想引誘野男人﹔一男一女在那裡講話﹐一定要有勾當了。",
+        "pinyin": "tā de xué shuō shì ﹕ fán ní gū ﹐ yī dìng yǔ hé shàng sī tōng ﹔ yī gè nǚ rén zài wài miàn zǒu ﹐ yī dìng xiǎng yǐn yòu yě nán rén ﹔ yī nán yī nǚ zài nà lǐ jiǎng huà ﹐ yī dìng yào yǒu gòu dàng le 。",
+        "english": ""
+      },
+      {
+        "chinese": "為懲治他們起見﹐所以他往往怒目而視﹐或者大聲說幾句〈誅心〉〔３２〕話﹐或者在冷僻處﹐便從後面擲一塊小石頭。",
+        "pinyin": "wèi chéng zhì tā mén qǐ jiàn ﹐ suǒ yǐ tā wǎng wǎng nù mù ér shì ﹐ huò zhě dà shēng shuō jǐ jù 〈 zhū xīn 〉 〔 ３ ２ 〕 huà ﹐ huò zhě zài lěng pì chù ﹐ biàn cóng hòu miàn zhì yī kuài xiǎo shí tóu 。",
+        "english": ""
+      },
+      {
+        "chinese": "誰知道他將到〈而立〉〔３３〕之年﹐竟被小尼姑害得飄飄然了。",
+        "pinyin": "shuí zhī dào tā jiāng dào 〈 ér lì 〉 〔 ３ ３ 〕 zhī nián ﹐ jìng bèi xiǎo ní gū hài dé piāo piāo rán le 。",
+        "english": ""
+      },
+      {
+        "chinese": "這飄飄然的精神﹐在禮教上是不應該有的﹐──所以女人真可惡﹐假使小尼姑的臉上不滑膩﹐ 阿Ｑ便不至於被蠱﹐又假使小尼姑的臉上蓋一層布﹐阿Ｑ便也不至於被蠱了﹐──他五六年前﹐曾在戲臺下的人叢中擰過一個女人的大腿﹐但因為隔一層褲﹐所以此後並不飄飄然﹐──而小尼姑並不然﹐這也足見異端之可惡。",
+        "pinyin": "zhè piāo piāo rán de jīng shén ﹐ zài lǐ jiào shàng shì bù yīng gāi yǒu de ﹐ ─ ─ suǒ yǐ nǚ rén zhēn kě è ﹐ jiǎ shǐ xiǎo ní gū de liǎn shàng bù huá nì ﹐   ā Ｑ biàn bù zhì yú bèi gǔ ﹐ yòu jiǎ shǐ xiǎo ní gū de liǎn shàng gài yī céng bù ﹐ ā Ｑ biàn yě bù zhì yú bèi gǔ le ﹐ ─ ─ tā wǔ liù nián qián ﹐ céng zài xì tái xià de rén cóng zhōng nǐng guò yī gè nǚ rén de dà tuǐ ﹐ dàn yīn wèi gé yī céng kù ﹐ suǒ yǐ cǐ hòu bìng bù piāo piāo rán ﹐ ─ ─ ér xiǎo ní gū bìng bù rán ﹐ zhè yě zú jiàn yì duān zhī kě è 。",
+        "english": ""
+      },
+      {
+        "chinese": "“女……”阿Ｑ想。",
+        "pinyin": "“ nǚ … … ” ā Ｑ xiǎng 。",
+        "english": ""
+      },
+      {
+        "chinese": "他對於以為“一定想引誘野男人”的女人﹐時常留心看﹐然而伊並不對他笑。",
+        "pinyin": "tā duì yú yǐ wèi “ yī dìng xiǎng yǐn yòu yě nán rén ” de nǚ rén ﹐ shí cháng liú xīn kàn ﹐ rán ér yī bìng bù duì tā xiào 。",
+        "english": ""
+      },
+      {
+        "chinese": "他對於和他講話的女人﹐也時常留心聽﹐然而伊又並不提起關於什麼勾當的話來。",
+        "pinyin": "tā duì yú hé tā jiǎng huà de nǚ rén ﹐ yě shí cháng liú xīn tīng ﹐ rán ér yī yòu bìng bù tí qǐ guān yú shén me gòu dàng de huà lái 。",
+        "english": ""
+      },
+      {
+        "chinese": "哦﹐這也是女人可惡之一節﹕伊們全都要裝〈假正經〉的。",
+        "pinyin": "ò ﹐ zhè yě shì nǚ rén kě è zhī yī jié ﹕ yī mén quán dōu yào zhuāng 〈 jiǎ zhèng jīng 〉 de 。",
+        "english": ""
+      },
+      {
+        "chinese": "這一天﹐阿Ｑ在趙太爺家裡舂了一天米﹐吃過晚飯﹐便坐在廚房裡吸旱煙。",
+        "pinyin": "zhè yī tiān ﹐ ā Ｑ zài zhào tài yé jiā lǐ chōng le yī tiān mǐ ﹐ chī guò wǎn fàn ﹐ biàn zuò zài chú fáng lǐ xī hàn yān 。",
+        "english": ""
+      },
+      {
+        "chinese": "倘在別家﹐吃過晚飯本可以回去的了﹐但趙府上晚飯早﹐雖說定例不准掌燈﹐一吃完便睡覺﹐然而偶然也有一些例外﹕其一﹐是趙大爺未進秀才的時候﹐准其點燈讀文章﹔其二﹐便是阿Ｑ來做短工的時候﹐准其點燈舂米。",
+        "pinyin": "tǎng zài bié jiā ﹐ chī guò wǎn fàn běn kě yǐ huí qù de le ﹐ dàn zhào fǔ shàng wǎn fàn zǎo ﹐ suī shuō dìng lì bù zhǔn zhǎng dēng ﹐ yī chī wán biàn shuì jué ﹐ rán ér ǒu rán yě yǒu yī xiē lì wài ﹕ qí yī ﹐ shì zhào dà yé wèi jìn xiù cái de shí hòu ﹐ zhǔn qí diǎn dēng dú wén zhāng ﹔ qí èr ﹐ biàn shì ā Ｑ lái zuò duǎn gōng de shí hòu ﹐ zhǔn qí diǎn dēng chōng mǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "因為這一條例外﹐所以阿Ｑ在動手舂米之前﹐還坐在廚房裡吸旱煙。",
+        "pinyin": "yīn wèi zhè yī tiáo lì wài ﹐ suǒ yǐ ā Ｑ zài dòng shǒu chōng mǐ zhī qián ﹐ hái zuò zài chú fáng lǐ xī hàn yān 。",
+        "english": ""
+      },
+      {
+        "chinese": "吳媽﹐是趙太爺家裡唯一的女僕﹐洗完了碗碟﹐也就在長凳上坐下了﹐而且和阿Ｑ談閒天﹕“太太兩天沒有吃飯哩﹐因為老爺要買一個小的……”“女人……吳媽……這小孤孀……”阿Ｑ想。",
+        "pinyin": "wú mā ﹐ shì zhào tài yé jiā lǐ wéi yī de nǚ pú ﹐ xǐ wán le wǎn dié ﹐ yě jiù zài cháng dèng shàng zuò xià le ﹐ ér qiě hé ā Ｑ tán xián tiān ﹕ “ tài tài liǎng tiān méi yǒu chī fàn li ﹐ yīn wèi lǎo yé yào mǎi yī gè xiǎo de … … ” “ nǚ rén … … wú mā … … zhè xiǎo gū shuāng … … ” ā Ｑ xiǎng 。",
+        "english": ""
+      },
+      {
+        "chinese": "“我們的少奶奶是八月裡要生孩子了……”",
+        "pinyin": "“ wǒ mén de shǎo nǎi nǎi shì bā yuè lǐ yào shēng hái zǐ le … … ”",
+        "english": ""
+      },
+      {
+        "chinese": "“女人……”阿Ｑ想。",
+        "pinyin": "“ nǚ rén … … ” ā Ｑ xiǎng 。",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ放下煙管﹐站了起來。",
+        "pinyin": "ā Ｑ fàng xià yān guǎn ﹐ zhàn le qǐ lái 。",
+        "english": ""
+      },
+      {
+        "chinese": "“我們的少奶奶……”吳媽還嘮叨說。",
+        "pinyin": "“ wǒ mén de shǎo nǎi nǎi … … ” wú mā hái lào dāo shuō 。",
+        "english": ""
+      },
+      {
+        "chinese": "“我和你睏覺﹐我和你睏覺﹗”阿Ｑ忽然搶上去﹐對伊跪下了。",
+        "pinyin": "“ wǒ hé nǐ kùn jué ﹐ wǒ hé nǐ kùn jué ﹗ ” ā Ｑ hū rán qiǎng shàng qù ﹐ duì yī guì xià le 。",
+        "english": ""
+      },
+      {
+        "chinese": "一剎時中很寂然。",
+        "pinyin": "yī chà shí zhōng hěn jì rán 。",
+        "english": ""
+      },
+      {
+        "chinese": "“阿呀﹗”吳媽楞了一息﹐突然發抖﹐大叫著往外跑﹐且跑且嚷﹐似乎後來帶哭了。",
+        "pinyin": "“ ā yā ﹗ ” wú mā léng le yī xī ﹐ tū rán fā dǒu ﹐ dà jiào zhuó wǎng wài pǎo ﹐ qiě pǎo qiě rǎng ﹐ sì hū hòu lái dài kū le 。",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ對了牆壁跪著也發楞﹐於是兩手扶著空板凳﹐慢慢的站起來﹐彷彿覺得有些糟。",
+        "pinyin": "ā Ｑ duì le qiáng bì guì zhuó yě fā léng ﹐ yú shì liǎng shǒu fú zhuó kōng bǎn dèng ﹐ màn màn de zhàn qǐ lái ﹐ páng fù jué dé yǒu xiē zāo 。",
+        "english": ""
+      },
+      {
+        "chinese": "他這時確也有些忐忑了﹐慌張的將煙管插在褲帶上﹐就想去舂米。",
+        "pinyin": "tā zhè shí què yě yǒu xiē tǎn tè le ﹐ huāng zhāng de jiāng yān guǎn chā zài kù dài shàng ﹐ jiù xiǎng qù chōng mǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "蓬的一聲﹐頭上著了很粗的一下﹐他急忙迴轉身去﹐那秀才便拿了一支大竹杠站在他面前。",
+        "pinyin": "péng de yī shēng ﹐ tóu shàng zhuó le hěn cū de yī xià ﹐ tā jí máng huí zhuǎn shēn qù ﹐ nà xiù cái biàn ná le yī zhī dà zhú gàng zhàn zài tā miàn qián 。",
+        "english": ""
+      },
+      {
+        "chinese": "“你反了﹐……你這……”",
+        "pinyin": "“ nǐ fǎn le ﹐ … … nǐ zhè … … ”",
+        "english": ""
+      },
+      {
+        "chinese": "大竹杠又向他劈下來了。",
+        "pinyin": "dà zhú gàng yòu xiàng tā pī xià lái le 。",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ兩手去抱頭﹐拍的正打在指節上﹐這可很有一些痛。",
+        "pinyin": "ā Ｑ liǎng shǒu qù bào tóu ﹐ pāi de zhèng dǎ zài zhǐ jié shàng ﹐ zhè kě hěn yǒu yī xiē tòng 。",
+        "english": ""
+      },
+      {
+        "chinese": "他衝出廚房門﹐彷彿背上又著了一下似的。",
+        "pinyin": "tā chōng chū chú fáng mén ﹐ páng fù bēi shàng yòu zhuó le yī xià shì de 。",
+        "english": ""
+      },
+      {
+        "chinese": "“忘八蛋﹗”秀才在後面用了官話這樣罵。",
+        "pinyin": "“ wàng bā dàn ﹗ ” xiù cái zài hòu miàn yòng le guān huà zhè yàng mà 。",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ奔入舂米場﹐一個人站著﹐還覺得指頭痛﹐還記得“忘八蛋”﹐因為這話是未莊的鄉下人從來不用﹐專是見過官府的闊人用的﹐所以格外怕﹐而印象也格外深。",
+        "pinyin": "ā Ｑ bēn rù chōng mǐ chǎng ﹐ yī gè rén zhàn zhuó ﹐ hái jué dé zhǐ tóu tòng ﹐ hái jì dé “ wàng bā dàn ” ﹐ yīn wèi zhè huà shì wèi zhuāng de xiāng xià rén cóng lái bù yòng ﹐ zhuān shì jiàn guò guān fǔ de kuò rén yòng de ﹐ suǒ yǐ gé wài pà ﹐ ér yìn xiàng yě gé wài shēn 。",
+        "english": ""
+      },
+      {
+        "chinese": "但這時﹐他那“女……”的思想卻也沒有了。",
+        "pinyin": "dàn zhè shí ﹐ tā nà “ nǚ … … ” de sī xiǎng què yě méi yǒu le 。",
+        "english": ""
+      },
+      {
+        "chinese": "而且打罵之後﹐似乎一件事也已經收束﹐倒反覺得一無窐礙似的﹐便動手去舂米。",
+        "pinyin": "ér qiě dǎ mà zhī hòu ﹐ sì hū yī jiàn shì yě yǐ jīng shōu shù ﹐ dǎo fǎn jué dé yī wú wā ài shì de ﹐ biàn dòng shǒu qù chōng mǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "舂了一會﹐他熱起來了﹐又歇了手脫衣服。",
+        "pinyin": "chōng le yī huì ﹐ tā rè qǐ lái le ﹐ yòu xiē le shǒu tuō yī fú 。",
+        "english": ""
+      },
+      {
+        "chinese": "脫下衣服的時候﹐他聽得外面很熱鬧﹐阿Ｑ生平本來最愛看熱鬧﹐便即尋聲走出去了。",
+        "pinyin": "tuō xià yī fú de shí hòu ﹐ tā tīng dé wài miàn hěn rè nào ﹐ ā Ｑ shēng píng běn lái zuì ài kàn rè nào ﹐ biàn jí xún shēng zǒu chū qù le 。",
+        "english": ""
+      },
+      {
+        "chinese": "尋聲漸漸的尋到趙太爺的內院裡﹐雖然在昏黃中﹐卻辨得出許多人﹐趙府一家連兩日不吃飯的太太也在內﹐還有間壁的鄒七嫂﹐真正本家的趙白眼﹐趙司晨。",
+        "pinyin": "xún shēng jiàn jiàn de xún dào zhào tài yé de nèi yuàn lǐ ﹐ suī rán zài hūn huáng zhōng ﹐ què biàn dé chū xǔ duō rén ﹐ zhào fǔ yī jiā lián liǎng rì bù chī fàn de tài tài yě zài nèi ﹐ hái yǒu jiān bì de zōu qī sǎo ﹐ zhēn zhèng běn jiā de zhào bái yǎn ﹐ zhào sī chén 。",
+        "english": ""
+      },
+      {
+        "chinese": "少奶奶正拖著吳媽走出下房來﹐一面說﹕“你到外面來﹐……不要躲在自己房裡想 ……”",
+        "pinyin": "shǎo nǎi nǎi zhèng tuō zhuó wú mā zǒu chū xià fáng lái ﹐ yī miàn shuō ﹕ “ nǐ dào wài miàn lái ﹐ … … bù yào duǒ zài zì jǐ fáng lǐ xiǎng   … … ”",
+        "english": ""
+      },
+      {
+        "chinese": "“誰不知道你正經﹐……短見是萬萬尋不得的。",
+        "pinyin": "“ shuí bù zhī dào nǐ zhèng jīng ﹐ … … duǎn jiàn shì wàn wàn xún bù dé de 。",
+        "english": ""
+      },
+      {
+        "chinese": "”鄒七嫂也從旁說。",
+        "pinyin": "” zōu qī sǎo yě cóng páng shuō 。",
+        "english": ""
+      },
+      {
+        "chinese": "吳媽只是哭﹐夾些話﹐卻不甚聽得分明。",
+        "pinyin": "wú mā zhǐ shì kū ﹐ jiá xiē huà ﹐ què bù shèn tīng dé fēn míng 。",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ想﹕“哼﹐有趣﹐這小孤孀不知道鬧著什麼玩意兒了﹖”他想打聽﹐走近趙司晨的身邊。",
+        "pinyin": "ā Ｑ xiǎng ﹕ “ hēng ﹐ yǒu qù ﹐ zhè xiǎo gū shuāng bù zhī dào nào zhuó shén me wán yì ér le ﹖ ” tā xiǎng dǎ tīng ﹐ zǒu jìn zhào sī chén de shēn biān 。",
+        "english": ""
+      },
+      {
+        "chinese": "這時他猛然間看見趙大爺向他奔來﹐而且手裡捏著一支大竹杠。",
+        "pinyin": "zhè shí tā měng rán jiān kàn jiàn zhào dà yé xiàng tā bēn lái ﹐ ér qiě shǒu lǐ niē zhuó yī zhī dà zhú gàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "他看見這一支大竹杠﹐便猛然間悟到自己曾經被打﹐和這一場熱鬧似乎有點相關。",
+        "pinyin": "tā kàn jiàn zhè yī zhī dà zhú gàng ﹐ biàn měng rán jiān wù dào zì jǐ céng jīng bèi dǎ ﹐ hé zhè yī chǎng rè nào sì hū yǒu diǎn xiāng guān 。",
+        "english": ""
+      },
+      {
+        "chinese": "他翻身便走﹐想逃回舂米場﹐不圖這支竹杠阻了他的去路﹐於是他又翻身便走﹐自然而然的走出後門﹐不多工夫﹐已在土谷祠內了。",
+        "pinyin": "tā fān shēn biàn zǒu ﹐ xiǎng táo huí chōng mǐ chǎng ﹐ bù tú zhè zhī zhú gàng zǔ le tā de qù lù ﹐ yú shì tā yòu fān shēn biàn zǒu ﹐ zì rán ér rán de zǒu chū hòu mén ﹐ bù duō gōng fū ﹐ yǐ zài tǔ gǔ cí nèi le 。",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ坐了一會﹐皮膚有些起慄﹐他覺得冷了﹐因為雖在春季﹐而夜間頗有餘寒﹐尚不宜於赤膊。",
+        "pinyin": "ā Ｑ zuò le yī huì ﹐ pí fū yǒu xiē qǐ lì ﹐ tā jué dé lěng le ﹐ yīn wèi suī zài chūn jì ﹐ ér yè jiān pō yǒu yú hán ﹐ shàng bù yí yú chì bó 。",
+        "english": ""
+      },
+      {
+        "chinese": "他也記得布衫留在趙家﹐但倘若去取﹐又深怕秀才的竹杠。",
+        "pinyin": "tā yě jì dé bù shān liú zài zhào jiā ﹐ dàn tǎng ruò qù qǔ ﹐ yòu shēn pà xiù cái de zhú gàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "然而地保進來了。",
+        "pinyin": "rán ér dì bǎo jìn lái le 。",
+        "english": ""
+      },
+      {
+        "chinese": "“阿Ｑ﹐你的媽媽的﹗你連趙家的佣人都調戲起來﹐簡直是造反。",
+        "pinyin": "“ ā Ｑ ﹐ nǐ de mā mā de ﹗ nǐ lián zhào jiā de yōng rén dōu tiáo xì qǐ lái ﹐ jiǎn zhí shì zào fǎn 。",
+        "english": ""
+      },
+      {
+        "chinese": "害得我晚上沒有覺睡﹐你的媽媽的﹗……”",
+        "pinyin": "hài dé wǒ wǎn shàng méi yǒu jué shuì ﹐ nǐ de mā mā de ﹗ … … ”",
+        "english": ""
+      },
+      {
+        "chinese": "如是云云的教訓了一通﹐阿Ｑ自然沒有話。",
+        "pinyin": "rú shì yún yún de jiào xùn le yī tōng ﹐ ā Ｑ zì rán méi yǒu huà 。",
+        "english": ""
+      },
+      {
+        "chinese": "臨末﹐因為在晚上﹐應該送地保加倍酒錢四百文﹐阿Ｑ正沒有現錢﹐便用一頂氈帽做抵押﹐並且訂定了五條件﹕",
+        "pinyin": "lín mò ﹐ yīn wèi zài wǎn shàng ﹐ yīng gāi sòng dì bǎo jiā bèi jiǔ qián sì bǎi wén ﹐ ā Ｑ zhèng méi yǒu xiàn qián ﹐ biàn yòng yī dǐng zhān mào zuò dǐ yā ﹐ bìng qiě dìng dìng le wǔ tiáo jiàn ﹕",
+        "english": ""
+      },
+      {
+        "chinese": "一　明天用紅燭──要一斤重的──一對﹐香一封﹐到趙府上去賠罪。",
+        "pinyin": "yī 　 míng tiān yòng hóng zhú ─ ─ yào yī jīn zhòng de ─ ─ yī duì ﹐ xiāng yī fēng ﹐ dào zhào fǔ shàng qù péi zuì 。",
+        "english": ""
+      },
+      {
+        "chinese": "二　趙府上請道士祓除縊鬼﹐費用由阿Ｑ負擔。",
+        "pinyin": "èr 　 zhào fǔ shàng qǐng dào shì fú chú yì guǐ ﹐ fèi yòng yóu ā Ｑ fù dān 。",
+        "english": ""
+      },
+      {
+        "chinese": "三　阿Ｑ從此不准踏進趙府的門檻。",
+        "pinyin": "sān 　 ā Ｑ cóng cǐ bù zhǔn tà jìn zhào fǔ de mén jiàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "四　吳媽此後倘有不測﹐惟阿Ｑ是問。",
+        "pinyin": "sì 　 wú mā cǐ hòu tǎng yǒu bù cè ﹐ wéi ā Ｑ shì wèn 。",
+        "english": ""
+      },
+      {
+        "chinese": "五阿Ｑ不准再去索取工錢和布衫。",
+        "pinyin": "wǔ ā Ｑ bù zhǔn zài qù suǒ qǔ gōng qián hé bù shān 。",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ自然都答應了﹐可惜沒有錢。",
+        "pinyin": "ā Ｑ zì rán dōu dā yìng le ﹐ kě xī méi yǒu qián 。",
+        "english": ""
+      },
+      {
+        "chinese": "幸而已經春天﹐棉被可以無用﹐便質了二千大錢﹐履行條約。",
+        "pinyin": "xìng ér yǐ jīng chūn tiān ﹐ mián bèi kě yǐ wú yòng ﹐ biàn zhì le èr qiān dà qián ﹐ lǚ xíng tiáo yuē 。",
+        "english": ""
+      },
+      {
+        "chinese": "赤膊磕頭之後﹐居然還剩幾文﹐他也不再贖氈帽﹐統統喝了酒了。",
+        "pinyin": "chì bó kē tóu zhī hòu ﹐ jū rán hái shèng jǐ wén ﹐ tā yě bù zài shú zhān mào ﹐ tǒng tǒng hē le jiǔ le 。",
+        "english": ""
+      },
+      {
+        "chinese": "但趙家也並不燒香點燭﹐因為太太拜佛的時候可以用﹐留著了。",
+        "pinyin": "dàn zhào jiā yě bìng bù shāo xiāng diǎn zhú ﹐ yīn wèi tài tài bài fó de shí hòu kě yǐ yòng ﹐ liú zhuó le 。",
+        "english": ""
+      },
+      {
+        "chinese": "那破布衫是大半做了少奶奶八月間生下來的孩子的襯尿布﹐那小半破爛的便都做了吳媽的鞋底。",
+        "pinyin": "nà pò bù shān shì dà bàn zuò le shǎo nǎi nǎi bā yuè jiān shēng xià lái de hái zǐ de chèn niào bù ﹐ nà xiǎo bàn pò làn de biàn dōu zuò le wú mā de xié dǐ 。",
+        "english": ""
+      }
+    ]
+  },
+  {
+    "id": "flowers_in_the_mirror_ch_6",
+    "bookId": "flowers_in_the_mirror",
+    "chapterIndex": 6,
+    "title": "第五章　生　計　問　題",
+    "titleEn": "Chapter 6: 第五章　生　計　問　題",
+    "sentences": [
+      {
+        "chinese": "阿Ｑ禮畢之後﹐仍舊回到土谷祠﹐太陽下去了﹐漸漸覺得世上有些古怪。",
+        "pinyin": "ā Ｑ lǐ bì zhī hòu ﹐ réng jiù huí dào tǔ gǔ cí ﹐ tài yáng xià qù le ﹐ jiàn jiàn jué dé shì shàng yǒu xiē gǔ guài 。",
+        "english": ""
+      },
+      {
+        "chinese": "他仔細一想﹐終於省悟過來﹕其原因蓋在自己的赤膊。",
+        "pinyin": "tā zǐ xì yī xiǎng ﹐ zhōng yú shěng wù guò lái ﹕ qí yuán yīn gài zài zì jǐ de chì bó 。",
+        "english": ""
+      },
+      {
+        "chinese": "他記得破夾襖還在﹐便披在身上﹐躺倒了﹐待張開眼睛﹐原來太陽又已經照在西牆上頭了。",
+        "pinyin": "tā jì dé pò jiá ǎo hái zài ﹐ biàn pī zài shēn shàng ﹐ tǎng dǎo le ﹐ dài zhāng kāi yǎn jīng ﹐ yuán lái tài yáng yòu yǐ jīng zhào zài xī qiáng shàng tóu le 。",
+        "english": ""
+      },
+      {
+        "chinese": "他坐起 身﹐一面說道：“媽媽的……”",
+        "pinyin": "tā zuò qǐ   shēn ﹐ yī miàn shuō dào ： “ mā mā de … … ”",
+        "english": ""
+      },
+      {
+        "chinese": "他起來之後﹐也仍舊在街上逛﹐雖然不比赤膊之有切膚之痛﹐卻又漸漸的覺得世上有些古怪了。",
+        "pinyin": "tā qǐ lái zhī hòu ﹐ yě réng jiù zài jiē shàng guàng ﹐ suī rán bù bǐ chì bó zhī yǒu qiē fū zhī tòng ﹐ què yòu jiàn jiàn de jué dé shì shàng yǒu xiē gǔ guài le 。",
+        "english": ""
+      },
+      {
+        "chinese": "彷彿從這一天起﹐未莊的女人們忽然都怕了羞﹐伊們一見阿Ｑ走來﹐便個個躲進門裡去。",
+        "pinyin": "páng fù cóng zhè yī tiān qǐ ﹐ wèi zhuāng de nǚ rén mén hū rán dōu pà le xiū ﹐ yī mén yī jiàn ā Ｑ zǒu lái ﹐ biàn gè gè duǒ jìn mén lǐ qù 。",
+        "english": ""
+      },
+      {
+        "chinese": "甚而至於將近五十歲的鄒七嫂﹐也跟著別人亂鑽﹐而且將十一歲的女兒都叫進去了。",
+        "pinyin": "shèn ér zhì yú jiāng jìn wǔ shí suì de zōu qī sǎo ﹐ yě gēn zhuó bié rén luàn zuān ﹐ ér qiě jiāng shí yī suì de nǚ ér dōu jiào jìn qù le 。",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ很以為奇﹐而且想﹕“這些東西忽然都學起小姐模樣來了。",
+        "pinyin": "ā Ｑ hěn yǐ wèi qí ﹐ ér qiě xiǎng ﹕ “ zhè xiē dōng xī hū rán dōu xué qǐ xiǎo jiě mú yàng lái le 。",
+        "english": ""
+      },
+      {
+        "chinese": "這娼婦們……”",
+        "pinyin": "zhè chāng fù mén … … ”",
+        "english": ""
+      },
+      {
+        "chinese": "但他更覺得世上有些古怪﹐卻是許多日以後的事。",
+        "pinyin": "dàn tā gèng jué dé shì shàng yǒu xiē gǔ guài ﹐ què shì xǔ duō rì yǐ hòu de shì 。",
+        "english": ""
+      },
+      {
+        "chinese": "其一﹐酒店不肯賒欠了﹔其二﹐ 管土谷祠的老頭子說些廢話﹐似乎叫他走﹔其三﹐他雖然記不清多少日﹐但確乎有許多日﹐沒有一個人來叫他做短工。",
+        "pinyin": "qí yī ﹐ jiǔ diàn bù kěn shē qiàn le ﹔ qí èr ﹐   guǎn tǔ gǔ cí de lǎo tóu zǐ shuō xiē fèi huà ﹐ sì hū jiào tā zǒu ﹔ qí sān ﹐ tā suī rán jì bù qīng duō shǎo rì ﹐ dàn què hū yǒu xǔ duō rì ﹐ méi yǒu yī gè rén lái jiào tā zuò duǎn gōng 。",
+        "english": ""
+      },
+      {
+        "chinese": "酒店不賒﹐熬著也罷了﹔老頭子催他走﹐嚕囌一通也就算了﹔只是沒有人來叫他做短工﹐卻使阿Ｑ肚子餓﹕這委實是一件非常〈媽媽的〉的事情。",
+        "pinyin": "jiǔ diàn bù shē ﹐ āo zhuó yě bà le ﹔ lǎo tóu zǐ cuī tā zǒu ﹐ lū sū yī tōng yě jiù suàn le ﹔ zhǐ shì méi yǒu rén lái jiào tā zuò duǎn gōng ﹐ què shǐ ā Ｑ dù zǐ è ﹕ zhè wěi shí shì yī jiàn fēi cháng 〈 mā mā de 〉 de shì qíng 。",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ忍不下去了﹐他只好到老主顧的家裡去探問﹐──但獨不許踏進趙府的門檻﹐──然而情形也異樣﹕一定走出一個男人來﹐現了十分煩厭的相貌﹐像回覆乞丐一般的搖手道﹕",
+        "pinyin": "ā Ｑ rěn bù xià qù le ﹐ tā zhǐ hǎo dào lǎo zhǔ gù de jiā lǐ qù tàn wèn ﹐ ─ ─ dàn dú bù xǔ tà jìn zhào fǔ de mén jiàn ﹐ ─ ─ rán ér qíng xíng yě yì yàng ﹕ yī dìng zǒu chū yī gè nán rén lái ﹐ xiàn le shí fēn fán yàn de xiāng mào ﹐ xiàng huí fù qǐ gài yī bān de yáo shǒu dào ﹕",
+        "english": ""
+      },
+      {
+        "chinese": "“沒有沒有﹗你出去﹗”",
+        "pinyin": "“ méi yǒu méi yǒu ﹗ nǐ chū qù ﹗ ”",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ愈覺得稀奇了。",
+        "pinyin": "ā Ｑ yù jué dé xī qí le 。",
+        "english": ""
+      },
+      {
+        "chinese": "他想﹐這些人家向來少不了要幫忙﹐不至於現在忽然都無事﹐這總該有些蹊蹺在裡面了。",
+        "pinyin": "tā xiǎng ﹐ zhè xiē rén jiā xiàng lái shǎo bù le yào bāng máng ﹐ bù zhì yú xiàn zài hū rán dōu wú shì ﹐ zhè zǒng gāi yǒu xiē qī qiāo zài lǐ miàn le 。",
+        "english": ""
+      },
+      {
+        "chinese": "他留心打聽﹐才知道他們有事都去叫小Ｄｏｎ〔３４〕。",
+        "pinyin": "tā liú xīn dǎ tīng ﹐ cái zhī dào tā mén yǒu shì dōu qù jiào xiǎo Ｄ ｏ ｎ 〔 ３ ４ 〕 。",
+        "english": ""
+      },
+      {
+        "chinese": "這 小Ｄ﹐是一個窮小子﹐又瘦又乏﹐在阿Ｑ的眼睛裡﹐位置是在王胡之下的﹐誰料這小子竟謀了他的飯碗去。",
+        "pinyin": "zhè   xiǎo Ｄ ﹐ shì yī gè qióng xiǎo zǐ ﹐ yòu shòu yòu fá ﹐ zài ā Ｑ de yǎn jīng lǐ ﹐ wèi zhì shì zài wáng hú zhī xià de ﹐ shuí liào zhè xiǎo zǐ jìng móu le tā de fàn wǎn qù 。",
+        "english": ""
+      },
+      {
+        "chinese": "所以阿Ｑ這一氣﹐更與平常不同﹐當氣憤憤的走著的時候﹐忽然將手一揚﹐喝道﹕“我手執鋼鞭將你打﹗〔３５〕……”",
+        "pinyin": "suǒ yǐ ā Ｑ zhè yī qì ﹐ gèng yǔ píng cháng bù tóng ﹐ dāng qì fèn fèn de zǒu zhuó de shí hòu ﹐ hū rán jiāng shǒu yī yáng ﹐ hè dào ﹕ “ wǒ shǒu zhí gāng biān jiāng nǐ dǎ ﹗ 〔 ３ ５ 〕 … … ”",
+        "english": ""
+      },
+      {
+        "chinese": "幾天之後﹐他竟在錢府的照壁前遇見了小Ｄ。",
+        "pinyin": "jǐ tiān zhī hòu ﹐ tā jìng zài qián fǔ de zhào bì qián yù jiàn le xiǎo Ｄ 。",
+        "english": ""
+      },
+      {
+        "chinese": "〈仇人相見份外眼明〉﹐阿Ｑ便迎上去﹐小Ｄ也站住了。",
+        "pinyin": "〈 chóu rén xiāng jiàn fèn wài yǎn míng 〉 ﹐ ā Ｑ biàn yíng shàng qù ﹐ xiǎo Ｄ yě zhàn zhù le 。",
+        "english": ""
+      },
+      {
+        "chinese": "“畜生﹗”阿Ｑ怒目而視的說﹐嘴角上飛出唾沫來。",
+        "pinyin": "“ chù shēng ﹗ ” ā Ｑ nù mù ér shì de shuō ﹐ zuǐ jiǎo shàng fēi chū tuò mò lái 。",
+        "english": ""
+      },
+      {
+        "chinese": "“我是蟲豸﹐好麼﹖……”小Ｄ說。",
+        "pinyin": "“ wǒ shì chóng zhì ﹐ hǎo me ﹖ … … ” xiǎo Ｄ shuō 。",
+        "english": ""
+      },
+      {
+        "chinese": "這謙遜反使阿Ｑ更加憤怒起來﹐但他手裡沒有鋼鞭﹐於是祇得撲上去﹐伸手去拔小Ｄ的辮子。",
+        "pinyin": "zhè qiān xùn fǎn shǐ ā Ｑ gèng jiā fèn nù qǐ lái ﹐ dàn tā shǒu lǐ méi yǒu gāng biān ﹐ yú shì zhǐ dé pū shàng qù ﹐ shēn shǒu qù bá xiǎo Ｄ de biàn zǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "小Ｄ一手護住了自己的辮根﹐一手也來拔阿Ｑ的辮子﹐阿Ｑ便也將空著的一隻手護住了自己的辮根。",
+        "pinyin": "xiǎo Ｄ yī shǒu hù zhù le zì jǐ de biàn gēn ﹐ yī shǒu yě lái bá ā Ｑ de biàn zǐ ﹐ ā Ｑ biàn yě jiāng kōng zhuó de yī zhǐ shǒu hù zhù le zì jǐ de biàn gēn 。",
+        "english": ""
+      },
+      {
+        "chinese": "從先前的阿Ｑ看來﹐小Ｄ本來是不足齒數的﹐但他近來挨了餓﹐又瘦又乏已經不下於小Ｄ﹐所以便成了勢均力敵的現象﹐四隻手拔著兩顆頭﹐都彎了腰﹐在錢家粉牆上映出一個藍色的虹形﹐至於半點鐘之久了。",
+        "pinyin": "cóng xiān qián de ā Ｑ kàn lái ﹐ xiǎo Ｄ běn lái shì bù zú chǐ shǔ de ﹐ dàn tā jìn lái āi le è ﹐ yòu shòu yòu fá yǐ jīng bù xià yú xiǎo Ｄ ﹐ suǒ yǐ biàn chéng le shì jūn lì dí de xiàn xiàng ﹐ sì zhǐ shǒu bá zhuó liǎng kē tóu ﹐ dōu wān le yāo ﹐ zài qián jiā fěn qiáng shàng yìng chū yī gè lán sè de hóng xíng ﹐ zhì yú bàn diǎn zhōng zhī jiǔ le 。",
+        "english": ""
+      },
+      {
+        "chinese": "“好了﹐好了﹗”看的人們說﹐大約是解勸的。",
+        "pinyin": "“ hǎo le ﹐ hǎo le ﹗ ” kàn de rén mén shuō ﹐ dà yuē shì jiě quàn de 。",
+        "english": ""
+      },
+      {
+        "chinese": "“好﹐好﹗”看的人們說﹐不知道是解勸﹐是頌揚﹐還是煽動。",
+        "pinyin": "“ hǎo ﹐ hǎo ﹗ ” kàn de rén mén shuō ﹐ bù zhī dào shì jiě quàn ﹐ shì sòng yáng ﹐ hái shì shān dòng 。",
+        "english": ""
+      },
+      {
+        "chinese": "然而他們都不聽。",
+        "pinyin": "rán ér tā mén dōu bù tīng 。",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ進三步﹐小Ｄ便退三步﹐都站著﹔小Ｄ進三步﹐阿Ｑ便退三步﹐又都站。",
+        "pinyin": "ā Ｑ jìn sān bù ﹐ xiǎo Ｄ biàn tuì sān bù ﹐ dōu zhàn zhuó ﹔ xiǎo Ｄ jìn sān bù ﹐ ā Ｑ biàn tuì sān bù ﹐ yòu dōu zhàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "大約半點鐘﹐──未莊少有自鳴鐘﹐所以很難說﹐或者二十分﹐──他 們的頭髮裡便都冒煙﹐額上便都流汗﹐阿Ｑ的手放鬆了﹐在同一瞬間﹐小Ｄ的手也正放鬆了﹐同時直起﹐同時退開﹐都擠出人叢去。",
+        "pinyin": "dà yuē bàn diǎn zhōng ﹐ ─ ─ wèi zhuāng shǎo yǒu zì míng zhōng ﹐ suǒ yǐ hěn nán shuō ﹐ huò zhě èr shí fēn ﹐ ─ ─ tā   mén de tóu fà lǐ biàn dōu mào yān ﹐ é shàng biàn dōu liú hàn ﹐ ā Ｑ de shǒu fàng sōng le ﹐ zài tóng yī shùn jiān ﹐ xiǎo Ｄ de shǒu yě zhèng fàng sōng le ﹐ tóng shí zhí qǐ ﹐ tóng shí tuì kāi ﹐ dōu jǐ chū rén cóng qù 。",
+        "english": ""
+      },
+      {
+        "chinese": "“記著罷﹐媽媽的……”阿Ｑ回過頭去說。",
+        "pinyin": "“ jì zhuó bà ﹐ mā mā de … … ” ā Ｑ huí guò tóu qù shuō 。",
+        "english": ""
+      },
+      {
+        "chinese": "“媽媽的﹐記著罷……”﹐小Ｄ也回過頭來說。",
+        "pinyin": "“ mā mā de ﹐ jì zhuó bà … … ” ﹐ xiǎo Ｄ yě huí guò tóu lái shuō 。",
+        "english": ""
+      },
+      {
+        "chinese": "這一場〈龍虎鬥〉似乎並無勝敗﹐也不知道看的人可滿足﹐都沒有發什麼議論﹐而阿Ｑ卻仍然沒有人來叫他做短工。",
+        "pinyin": "zhè yī chǎng 〈 lóng hǔ dòu 〉 sì hū bìng wú shèng bài ﹐ yě bù zhī dào kàn de rén kě mǎn zú ﹐ dōu méi yǒu fā shén me yì lùn ﹐ ér ā Ｑ què réng rán méi yǒu rén lái jiào tā zuò duǎn gōng 。",
+        "english": ""
+      },
+      {
+        "chinese": "有一日很溫和﹐微風拂拂的頗有些夏意了﹐阿Ｑ卻覺得寒冷起來﹐但這還可擔當﹐第一倒是肚子餓。",
+        "pinyin": "yǒu yī rì hěn wēn hé ﹐ wēi fēng fú fú de pō yǒu xiē xià yì le ﹐ ā Ｑ què jué dé hán lěng qǐ lái ﹐ dàn zhè hái kě dān dāng ﹐ dì yī dǎo shì dù zǐ è 。",
+        "english": ""
+      },
+      {
+        "chinese": "棉被﹐氈帽﹐布衫﹐早已沒有了﹐其次就賣了棉襖﹔現在有褲子﹐卻萬不可脫的﹔有破夾襖﹐又除了送人做鞋底之外﹐決定賣不出錢。",
+        "pinyin": "mián bèi ﹐ zhān mào ﹐ bù shān ﹐ zǎo yǐ méi yǒu le ﹐ qí cì jiù mài le mián ǎo ﹔ xiàn zài yǒu kù zǐ ﹐ què wàn bù kě tuō de ﹔ yǒu pò jiá ǎo ﹐ yòu chú le sòng rén zuò xié dǐ zhī wài ﹐ jué dìng mài bù chū qián 。",
+        "english": ""
+      },
+      {
+        "chinese": "他早想在路上拾得一注錢﹐但至今還沒有見﹔他想在自己的破屋裡忽然尋到一注錢﹐慌張的四顧﹐但屋內是空虛而且瞭然。",
+        "pinyin": "tā zǎo xiǎng zài lù shàng shí dé yī zhù qián ﹐ dàn zhì jīn hái méi yǒu jiàn ﹔ tā xiǎng zài zì jǐ de pò wū lǐ hū rán xún dào yī zhù qián ﹐ huāng zhāng de sì gù ﹐ dàn wū nèi shì kōng xū ér qiě liǎo rán 。",
+        "english": ""
+      },
+      {
+        "chinese": "於是他決計出門求食去了。",
+        "pinyin": "yú shì tā jué jì chū mén qiú shí qù le 。",
+        "english": ""
+      },
+      {
+        "chinese": "他在路上走著要〈求食〉﹐看見熟識的酒店﹐看見熟識的饅頭﹐但他都走過了﹐不但沒有暫停﹐而且並不想要。",
+        "pinyin": "tā zài lù shàng zǒu zhuó yào 〈 qiú shí 〉 ﹐ kàn jiàn shú shí de jiǔ diàn ﹐ kàn jiàn shú shí de mán tóu ﹐ dàn tā dōu zǒu guò le ﹐ bù dàn méi yǒu zàn tíng ﹐ ér qiě bìng bù xiǎng yào 。",
+        "english": ""
+      },
+      {
+        "chinese": "他所求的不是這類東西了﹔他求的是什麼東西﹐他自己不知道。",
+        "pinyin": "tā suǒ qiú de bù shì zhè lèi dōng xī le ﹔ tā qiú de shì shén me dōng xī ﹐ tā zì jǐ bù zhī dào 。",
+        "english": ""
+      },
+      {
+        "chinese": "未莊本不是大村鎮﹐不多時便走盡了。",
+        "pinyin": "wèi zhuāng běn bù shì dà cūn zhèn ﹐ bù duō shí biàn zǒu jìn le 。",
+        "english": ""
+      },
+      {
+        "chinese": "村外多是水田﹐滿眼是新秧的嫩綠﹐夾著幾個圓形的活動的黑點﹐便是耕田的農夫。",
+        "pinyin": "cūn wài duō shì shuǐ tián ﹐ mǎn yǎn shì xīn yāng de nèn lǜ ﹐ jiá zhuó jǐ gè yuán xíng de huó dòng de hēi diǎn ﹐ biàn shì gēng tián de nóng fū 。",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ並不賞鑒這田家樂﹐卻只是走﹐因為他直覺的知道這與他的〈求食〉之道是很遼遠的。",
+        "pinyin": "ā Ｑ bìng bù shǎng jiàn zhè tián jiā lè ﹐ què zhǐ shì zǒu ﹐ yīn wèi tā zhí jué de zhī dào zhè yǔ tā de 〈 qiú shí 〉 zhī dào shì hěn liáo yuǎn de 。",
+        "english": ""
+      },
+      {
+        "chinese": "但他終於走到靜修庵的牆外了。",
+        "pinyin": "dàn tā zhōng yú zǒu dào jìng xiū ān de qiáng wài le 。",
+        "english": ""
+      },
+      {
+        "chinese": "庵週圍也是水田﹐粉牆突出在新綠裡﹐後面的低土牆裡是菜園。",
+        "pinyin": "ān zhōu wéi yě shì shuǐ tián ﹐ fěn qiáng tū chū zài xīn lǜ lǐ ﹐ hòu miàn de dī tǔ qiáng lǐ shì cài yuán 。",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ遲疑了一會﹐四面一看﹐並沒有人。",
+        "pinyin": "ā Ｑ chí yí le yī huì ﹐ sì miàn yī kàn ﹐ bìng méi yǒu rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "他便爬上這矮牆去﹐扯著何首烏藤﹐但泥土仍然簌簌的掉﹐阿Ｑ的腳也索索的抖﹔終於攀著桑樹枝﹐跳到裡面了。",
+        "pinyin": "tā biàn pá shàng zhè ǎi qiáng qù ﹐ chě zhuó hé shǒu wū téng ﹐ dàn ní tǔ réng rán sù sù de diào ﹐ ā Ｑ de jiǎo yě suǒ suǒ de dǒu ﹔ zhōng yú pān zhuó sāng shù zhī ﹐ tiào dào lǐ miàn le 。",
+        "english": ""
+      },
+      {
+        "chinese": "裡面真是鬱鬱蔥蔥﹐但似乎並沒有黃酒饅頭﹐以及此外可吃的之類。",
+        "pinyin": "lǐ miàn zhēn shì yù yù cōng cōng ﹐ dàn sì hū bìng méi yǒu huáng jiǔ mán tóu ﹐ yǐ jí cǐ wài kě chī de zhī lèi 。",
+        "english": ""
+      },
+      {
+        "chinese": "靠西牆是竹叢﹐下面許多筍﹐只可惜都是並未煮熟的﹐還有油菜早經結子﹐芥菜已將開花﹐小白菜也很老了。",
+        "pinyin": "kào xī qiáng shì zhú cóng ﹐ xià miàn xǔ duō sǔn ﹐ zhǐ kě xī dōu shì bìng wèi zhǔ shú de ﹐ hái yǒu yóu cài zǎo jīng jié zǐ ﹐ jiè cài yǐ jiāng kāi huā ﹐ xiǎo bái cài yě hěn lǎo le 。",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ彷彿文童落第似的覺得很冤屈﹐他慢慢走近園門去﹐忽而非常驚喜了﹐這分明是一畦老蘿蔔。",
+        "pinyin": "ā Ｑ páng fù wén tóng luò dì shì de jué dé hěn yuān qū ﹐ tā màn màn zǒu jìn yuán mén qù ﹐ hū ér fēi cháng jīng xǐ le ﹐ zhè fēn míng shì yī qí lǎo luó bo 。",
+        "english": ""
+      },
+      {
+        "chinese": "他於是蹲下便拔﹐而門口突然伸出一個很圓的頭來﹐又即縮回去了﹐這分明是小尼姑。",
+        "pinyin": "tā yú shì dūn xià biàn bá ﹐ ér mén kǒu tū rán shēn chū yī gè hěn yuán de tóu lái ﹐ yòu jí suō huí qù le ﹐ zhè fēn míng shì xiǎo ní gū 。",
+        "english": ""
+      },
+      {
+        "chinese": "小尼姑之流是阿Ｑ本來視若草芥的﹐但世事須〈退一步想〉﹐所以他便趕緊拔起四個蘿蔔﹐擰下青葉﹐兜在大襟裡。",
+        "pinyin": "xiǎo ní gū zhī liú shì ā Ｑ běn lái shì ruò cǎo jiè de ﹐ dàn shì shì xū 〈 tuì yī bù xiǎng 〉 ﹐ suǒ yǐ tā biàn gǎn jǐn bá qǐ sì gè luó bo ﹐ nǐng xià qīng yè ﹐ dōu zài dà jīn lǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "然而老尼姑已經出來了。",
+        "pinyin": "rán ér lǎo ní gū yǐ jīng chū lái le 。",
+        "english": ""
+      },
+      {
+        "chinese": "“阿彌陀佛﹐阿Ｑ﹐你怎麼跳進園裡來偷蘿蔔﹗……阿呀﹐罪過呵﹐阿唷﹐阿彌陀佛﹗……”",
+        "pinyin": "“ ē mí tuó fó ﹐ ā Ｑ ﹐ nǐ zěn me tiào jìn yuán lǐ lái tōu luó bo ﹗ … … ā yā ﹐ zuì guò hē ﹐ ā yō ﹐ ē mí tuó fó ﹗ … … ”",
+        "english": ""
+      },
+      {
+        "chinese": "“我什麼時候跳進你的園裡來偷蘿蔔﹖”阿Ｑ且看且走的說。",
+        "pinyin": "“ wǒ shén me shí hòu tiào jìn nǐ de yuán lǐ lái tōu luó bo ﹖ ” ā Ｑ qiě kàn qiě zǒu de shuō 。",
+        "english": ""
+      },
+      {
+        "chinese": "“現在……這不是﹖”老尼姑指著他的衣兜。",
+        "pinyin": "“ xiàn zài … … zhè bù shì ﹖ ” lǎo ní gū zhǐ zhuó tā de yī dōu 。",
+        "english": ""
+      },
+      {
+        "chinese": "“這是你的﹖你能叫得他答應你麼﹖你……”",
+        "pinyin": "“ zhè shì nǐ de ﹖ nǐ néng jiào dé tā dā yìng nǐ me ﹖ nǐ … … ”",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ沒有說完話﹐拔步便跑﹔追來的是一匹很肥大的黑狗。",
+        "pinyin": "ā Ｑ méi yǒu shuō wán huà ﹐ bá bù biàn pǎo ﹔ zhuī lái de shì yī pǐ hěn féi dà de hēi gǒu 。",
+        "english": ""
+      },
+      {
+        "chinese": "這本來在前門的﹐不知怎的到後園來了。",
+        "pinyin": "zhè běn lái zài qián mén de ﹐ bù zhī zěn de dào hòu yuán lái le 。",
+        "english": ""
+      },
+      {
+        "chinese": "黑狗哼而且追﹐已經要咬著阿Ｑ的腿﹐幸而從衣兜裡落下一個蘿蔔來﹐那狗給一嚇﹐略略一停﹐阿Ｑ已經爬上桑樹﹐跨到土牆﹐連人和蘿蔔都滾出牆外面了。",
+        "pinyin": "hēi gǒu hēng ér qiě zhuī ﹐ yǐ jīng yào yǎo zhuó ā Ｑ de tuǐ ﹐ xìng ér cóng yī dōu lǐ luò xià yī gè luó bo lái ﹐ nà gǒu gěi yī xià ﹐ lüè lüè yī tíng ﹐ ā Ｑ yǐ jīng pá shàng sāng shù ﹐ kuà dào tǔ qiáng ﹐ lián rén hé luó bo dōu gǔn chū qiáng wài miàn le 。",
+        "english": ""
+      },
+      {
+        "chinese": "只剩著黑狗還在對著桑樹嗥﹐老尼姑念佛。",
+        "pinyin": "zhǐ shèng zhuó hēi gǒu hái zài duì zhuó sāng shù háo ﹐ lǎo ní gū niàn fó 。",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ怕尼姑又放出黑狗來﹐拾起蘿蔔便走﹐沿路又檢了幾塊小石頭﹐但黑狗卻並不再出現。",
+        "pinyin": "ā Ｑ pà ní gū yòu fàng chū hēi gǒu lái ﹐ shí qǐ luó bo biàn zǒu ﹐ yán lù yòu jiǎn le jǐ kuài xiǎo shí tóu ﹐ dàn hēi gǒu què bìng bù zài chū xiàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ於是拋了石塊﹐一面走一面吃﹐而且想道﹐這裡也沒有什麼東西尋﹐不如進城去……",
+        "pinyin": "ā Ｑ yú shì pāo le shí kuài ﹐ yī miàn zǒu yī miàn chī ﹐ ér qiě xiǎng dào ﹐ zhè lǐ yě méi yǒu shén me dōng xī xún ﹐ bù rú jìn chéng qù … …",
+        "english": ""
+      },
+      {
+        "chinese": "待三個蘿蔔吃完時﹐他已經打定了進城的主意了。",
+        "pinyin": "dài sān gè luó bo chī wán shí ﹐ tā yǐ jīng dǎ dìng le jìn chéng de zhǔ yì le 。",
+        "english": ""
+      }
+    ]
+  },
+  {
+    "id": "flowers_in_the_mirror_ch_7",
+    "bookId": "flowers_in_the_mirror",
+    "chapterIndex": 7,
+    "title": "第六章　從中興到末路",
+    "titleEn": "Chapter 7: 第六章　從中興到末路",
+    "sentences": [
+      {
+        "chinese": "在未莊再看見阿Ｑ出現的時候﹐是剛過了這年的中秋。",
+        "pinyin": "zài wèi zhuāng zài kàn jiàn ā Ｑ chū xiàn de shí hòu ﹐ shì gāng guò le zhè nián de zhōng qiū 。",
+        "english": ""
+      },
+      {
+        "chinese": "人們都驚異﹐說是阿Ｑ回來了﹐於是又回上去想道﹐他先前那裡去了呢﹖阿Ｑ前幾回的上城﹐大抵早就興高采烈的對人說﹐但這一次卻並不﹐所以也沒有一個人留心到。",
+        "pinyin": "rén mén dōu jīng yì ﹐ shuō shì ā Ｑ huí lái le ﹐ yú shì yòu huí shàng qù xiǎng dào ﹐ tā xiān qián nà lǐ qù le ne ﹖ ā Ｑ qián jǐ huí de shàng chéng ﹐ dà dǐ zǎo jiù xìng gāo cǎi liè de duì rén shuō ﹐ dàn zhè yī cì què bìng bù ﹐ suǒ yǐ yě méi yǒu yī gè rén liú xīn dào 。",
+        "english": ""
+      },
+      {
+        "chinese": "他或者也曾告訴過管土谷祠的老頭子﹐然而未莊老例﹐只有趙太爺錢太爺和秀才大爺上城才算一件事。",
+        "pinyin": "tā huò zhě yě céng gào sù guò guǎn tǔ gǔ cí de lǎo tóu zǐ ﹐ rán ér wèi zhuāng lǎo lì ﹐ zhǐ yǒu zhào tài yé qián tài yé hé xiù cái dà yé shàng chéng cái suàn yī jiàn shì 。",
+        "english": ""
+      },
+      {
+        "chinese": "假洋鬼子尚且不足數﹐何況是阿Ｑ﹕因此老頭子也就不替他宣傳﹐而未莊的社會上也就無從知道了。",
+        "pinyin": "jiǎ yáng guǐ zǐ shàng qiě bù zú shǔ ﹐ hé kuàng shì ā Ｑ ﹕ yīn cǐ lǎo tóu zǐ yě jiù bù tì tā xuān chuán ﹐ ér wèi zhuāng de shè huì shàng yě jiù wú cóng zhī dào le 。",
+        "english": ""
+      },
+      {
+        "chinese": "但阿Ｑ這回的回來﹐卻與先前大不同﹐確乎很值得驚異。",
+        "pinyin": "dàn ā Ｑ zhè huí de huí lái ﹐ què yǔ xiān qián dà bù tóng ﹐ què hū hěn zhí dé jīng yì 。",
+        "english": ""
+      },
+      {
+        "chinese": "天色將黑﹐他睡眼矇矓的在酒店門前出現了﹐他走近櫃檯﹐從腰間伸出手來﹐滿把是銀的和銅的﹐在櫃上一扔說：“現錢﹗打酒來﹗”穿的是新夾襖﹐看去腰間還掛著一個大搭連﹐沉鈿鈿的將褲帶墜成了很彎很彎的弧線。",
+        "pinyin": "tiān sè jiāng hēi ﹐ tā shuì yǎn mēng lóng de zài jiǔ diàn mén qián chū xiàn le ﹐ tā zǒu jìn guì tái ﹐ cóng yāo jiān shēn chū shǒu lái ﹐ mǎn bǎ shì yín de hé tóng de ﹐ zài guì shàng yī rēng shuō ： “ xiàn qián ﹗ dǎ jiǔ lái ﹗ ” chuān de shì xīn jiá ǎo ﹐ kàn qù yāo jiān hái guà zhuó yī gè dà dā lián ﹐ chén diàn diàn de jiāng kù dài zhuì chéng le hěn wān hěn wān de hú xiàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "未莊老例﹐看見略有些醒目的人物﹐是與其慢也寧敬的﹐現在雖然明知道是阿Ｑ﹐但因為和破夾襖的阿Ｑ有些兩樣了﹐古人云：“士別三日便當刮目相待”〔３６〕﹐所以堂倌﹐掌櫃﹐酒客﹐路人﹐便自然顯出一種疑而且敬的形態來。",
+        "pinyin": "wèi zhuāng lǎo lì ﹐ kàn jiàn lüè yǒu xiē xǐng mù dì rén wù ﹐ shì yǔ qí màn yě níng jìng de ﹐ xiàn zài suī rán míng zhī dào shì ā Ｑ ﹐ dàn yīn wèi hé pò jiá ǎo de ā Ｑ yǒu xiē liǎng yàng le ﹐ gǔ rén yún ： “ shì bié sān rì biàn dāng guā mù xiāng dài ” 〔 ３ ６ 〕 ﹐ suǒ yǐ táng guān ﹐ zhǎng guì ﹐ jiǔ kè ﹐ lù rén ﹐ biàn zì rán xiǎn chū yī zhǒng yí ér qiě jìng de xíng tài lái 。",
+        "english": ""
+      },
+      {
+        "chinese": "掌櫃既先之以點頭﹐又繼之以談話﹕“阿Ｑ﹐你回來了﹗”",
+        "pinyin": "zhǎng guì jì xiān zhī yǐ diǎn tóu ﹐ yòu jì zhī yǐ tán huà ﹕ “ ā Ｑ ﹐ nǐ huí lái le ﹗ ”",
+        "english": ""
+      },
+      {
+        "chinese": "“回來了。",
+        "pinyin": "“ huí lái le 。",
+        "english": ""
+      },
+      {
+        "chinese": "“發財發財﹐你是──在……”",
+        "pinyin": "“ fā cái fā cái ﹐ nǐ shì ─ ─ zài … … ”",
+        "english": ""
+      },
+      {
+        "chinese": "“上城去了﹗”",
+        "pinyin": "“ shàng chéng qù le ﹗ ”",
+        "english": ""
+      },
+      {
+        "chinese": "這一件新聞﹐第二天便傳遍了全未莊。",
+        "pinyin": "zhè yī jiàn xīn wén ﹐ dì èr tiān biàn chuán biàn le quán wèi zhuāng 。",
+        "english": ""
+      },
+      {
+        "chinese": "人人都願意知道現錢和新夾襖的阿Ｑ的中興史﹐所以在酒店裡﹐茶館裡﹐廟檐下﹐便漸漸的探聽出來了。",
+        "pinyin": "rén rén dōu yuàn yì zhī dào xiàn qián hé xīn jiá ǎo de ā Ｑ de zhōng xìng shǐ ﹐ suǒ yǐ zài jiǔ diàn lǐ ﹐ chá guǎn lǐ ﹐ miào yán xià ﹐ biàn jiàn jiàn de tàn tīng chū lái le 。",
+        "english": ""
+      },
+      {
+        "chinese": "這結果﹐是阿Ｑ得了新敬畏。",
+        "pinyin": "zhè jié guǒ ﹐ shì ā Ｑ dé le xīn jìng wèi 。",
+        "english": ""
+      },
+      {
+        "chinese": "據阿Ｑ說﹐他是在舉人老爺家裡幫忙。",
+        "pinyin": "jù ā Ｑ shuō ﹐ tā shì zài jǔ rén lǎo yé jiā lǐ bāng máng 。",
+        "english": ""
+      },
+      {
+        "chinese": "這一節﹐聽的人都肅然了。",
+        "pinyin": "zhè yī jié ﹐ tīng de rén dōu sù rán le 。",
+        "english": ""
+      },
+      {
+        "chinese": "這老爺本姓白﹐但因為合城裡只有他一個舉人﹐所以不必再冠姓﹐說起舉人來就是他。",
+        "pinyin": "zhè lǎo yé běn xìng bái ﹐ dàn yīn wèi hé chéng lǐ zhǐ yǒu tā yī gè jǔ rén ﹐ suǒ yǐ bù bì zài guàn xìng ﹐ shuō qǐ jǔ rén lái jiù shì tā 。",
+        "english": ""
+      },
+      {
+        "chinese": "這也不獨在未莊是如此﹐便是一百里方圓之內也都如此﹐人們幾乎多以為他的姓名就叫舉人老爺的了。",
+        "pinyin": "zhè yě bù dú zài wèi zhuāng shì rú cǐ ﹐ biàn shì yī bǎi lǐ fāng yuán zhī nèi yě dōu rú cǐ ﹐ rén mén jǐ hū duō yǐ wèi tā de xìng míng jiù jiào jǔ rén lǎo yé de le 。",
+        "english": ""
+      },
+      {
+        "chinese": "在這人的府上幫忙﹐那當然是可敬的。",
+        "pinyin": "zài zhè rén de fǔ shàng bāng máng ﹐ nà dāng rán shì kě jìng de 。",
+        "english": ""
+      },
+      {
+        "chinese": "但據阿Ｑ又說﹐他卻不高興再幫忙了﹐因為這舉人老爺實在太〈媽媽的〉了。",
+        "pinyin": "dàn jù ā Ｑ yòu shuō ﹐ tā què bù gāo xìng zài bāng máng le ﹐ yīn wèi zhè jǔ rén lǎo yé shí zài tài 〈 mā mā de 〉 le 。",
+        "english": ""
+      },
+      {
+        "chinese": "這一節﹐聽的人都嘆息而且快意﹐因為阿Ｑ本不配在舉人老爺家裡幫忙﹐而不幫忙是可惜的。",
+        "pinyin": "zhè yī jié ﹐ tīng de rén dōu tàn xī ér qiě kuài yì ﹐ yīn wèi ā Ｑ běn bù pèi zài jǔ rén lǎo yé jiā lǐ bāng máng ﹐ ér bù bāng máng shì kě xī de 。",
+        "english": ""
+      },
+      {
+        "chinese": "據阿Ｑ說﹐他的回來﹐似乎也由於不滿意城裡人﹐這就在他們將長凳稱為條凳﹐而且煎魚用蔥絲﹐加以最近觀察所得的缺點﹐是女人的走路也扭得不很好。",
+        "pinyin": "jù ā Ｑ shuō ﹐ tā de huí lái ﹐ sì hū yě yóu yú bù mǎn yì chéng lǐ rén ﹐ zhè jiù zài tā mén jiāng cháng dèng chēng wèi tiáo dèng ﹐ ér qiě jiān yú yòng cōng sī ﹐ jiā yǐ zuì jìn guān chá suǒ dé de quē diǎn ﹐ shì nǚ rén de zǒu lù yě niǔ dé bù hěn hǎo 。",
+        "english": ""
+      },
+      {
+        "chinese": "然而也偶有大可佩服的地方﹐即如未莊的鄉下人不過打三十二張的竹牌〔３７〕﹐只有假洋鬼子能夠叉〈麻醬〉﹐城裡卻連小烏龜子都叉得精熟的。",
+        "pinyin": "rán ér yě ǒu yǒu dà kě pèi fú de dì fāng ﹐ jí rú wèi zhuāng de xiāng xià rén bù guò dǎ sān shí èr zhāng de zhú pái 〔 ３ ７ 〕 ﹐ zhǐ yǒu jiǎ yáng guǐ zǐ néng gòu chā 〈 má jiàng 〉 ﹐ chéng lǐ què lián xiǎo wū guī zǐ dōu chā dé jīng shú de 。",
+        "english": ""
+      },
+      {
+        "chinese": "什麼假洋鬼子﹐只要放在城裡的十幾歲的小烏龜子的手裡﹐也就立刻是〈小鬼見閻王〉。",
+        "pinyin": "shén me jiǎ yáng guǐ zǐ ﹐ zhǐ yào fàng zài chéng lǐ de shí jǐ suì de xiǎo wū guī zǐ de shǒu lǐ ﹐ yě jiù lì kè shì 〈 xiǎo guǐ jiàn yán wáng 〉 。",
+        "english": ""
+      },
+      {
+        "chinese": "這一節﹐聽的人都赧然了。",
+        "pinyin": "zhè yī jié ﹐ tīng de rén dōu nǎn rán le 。",
+        "english": ""
+      },
+      {
+        "chinese": "“你們可看見過殺頭麼﹖”阿Ｑ說：“咳﹐好看。",
+        "pinyin": "“ nǐ mén kě kàn jiàn guò shā tóu me ﹖ ” ā Ｑ shuō ： “ ké ﹐ hǎo kàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "殺革命黨。",
+        "pinyin": "shā gé mìng dǎng 。",
+        "english": ""
+      },
+      {
+        "chinese": "唉﹐好看好看﹐……”他搖搖頭﹐將唾沫飛在正對面的趙司晨的臉上。",
+        "pinyin": "āi ﹐ hǎo kàn hǎo kàn ﹐ … … ” tā yáo yáo tóu ﹐ jiāng tuò mò fēi zài zhèng duì miàn de zhào sī chén de liǎn shàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "這一節﹐聽的人都凜然了。",
+        "pinyin": "zhè yī jié ﹐ tīng de rén dōu lǐn rán le 。",
+        "english": ""
+      },
+      {
+        "chinese": "但阿Ｑ又四面一看﹐忽然揚起右手﹐照著伸長脖子聽得出神的王胡的後項窩上直劈下去道﹕",
+        "pinyin": "dàn ā Ｑ yòu sì miàn yī kàn ﹐ hū rán yáng qǐ yòu shǒu ﹐ zhào zhuó shēn cháng bó zǐ tīng dé chū shén de wáng hú de hòu xiàng wō shàng zhí pī xià qù dào ﹕",
+        "english": ""
+      },
+      {
+        "chinese": "“嚓﹗”",
+        "pinyin": "“ cā ﹗ ”",
+        "english": ""
+      },
+      {
+        "chinese": "王胡驚得一跳﹐同時電光石火似的趕快縮了頭﹐而聽的人又都悚然而且欣然了。",
+        "pinyin": "wáng hú jīng dé yī tiào ﹐ tóng shí diàn guāng shí huǒ shì de gǎn kuài suō le tóu ﹐ ér tīng de rén yòu dōu sǒng rán ér qiě xīn rán le 。",
+        "english": ""
+      },
+      {
+        "chinese": "從此王胡瘟頭瘟腦的許多日﹐並且再不敢走近阿Ｑ的身邊﹔別的人也一樣。",
+        "pinyin": "cóng cǐ wáng hú wēn tóu wēn nǎo de xǔ duō rì ﹐ bìng qiě zài bù gǎn zǒu jìn ā Ｑ de shēn biān ﹔ bié de rén yě yī yàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ這時在未莊人眼睛裡的地位﹐雖不敢說超過趙太爺﹐但謂之差不多﹐大約也就沒有什麼語病的了。",
+        "pinyin": "ā Ｑ zhè shí zài wèi zhuāng rén yǎn jīng lǐ de dì wèi ﹐ suī bù gǎn shuō chāo guò zhào tài yé ﹐ dàn wèi zhī chà bù duō ﹐ dà yuē yě jiù méi yǒu shén me yǔ bìng de le 。",
+        "english": ""
+      },
+      {
+        "chinese": "然而不多久﹐這阿Ｑ的大名忽又傳遍了未莊的閨中。",
+        "pinyin": "rán ér bù duō jiǔ ﹐ zhè ā Ｑ de dà míng hū yòu chuán biàn le wèi zhuāng de guī zhōng 。",
+        "english": ""
+      },
+      {
+        "chinese": "雖然未莊只有錢趙兩姓是大屋﹐此外十之九都是淺閨﹐但閨中究竟是閨中﹐所以也算得一件神異。",
+        "pinyin": "suī rán wèi zhuāng zhǐ yǒu qián zhào liǎng xìng shì dà wū ﹐ cǐ wài shí zhī jiǔ dōu shì qiǎn guī ﹐ dàn guī zhōng jiū jìng shì guī zhōng ﹐ suǒ yǐ yě suàn dé yī jiàn shén yì 。",
+        "english": ""
+      },
+      {
+        "chinese": "女人們見面時一定說﹐鄒七嫂在阿Ｑ那裡買了一條藍綢裙﹐舊固然是舊的﹐但只化了九角錢。",
+        "pinyin": "nǚ rén mén jiàn miàn shí yī dìng shuō ﹐ zōu qī sǎo zài ā Ｑ nà lǐ mǎi le yī tiáo lán chóu qún ﹐ jiù gù rán shì jiù de ﹐ dàn zhǐ huà le jiǔ jiǎo qián 。",
+        "english": ""
+      },
+      {
+        "chinese": "還有趙白眼的母親﹐──一說是趙司晨的母親﹐待考﹐──也買了一件孩子穿的大紅洋紗衫﹐七成新﹐只用三百大錢九二串〔３８〕。",
+        "pinyin": "hái yǒu zhào bái yǎn de mǔ qīn ﹐ ─ ─ yī shuō shì zhào sī chén de mǔ qīn ﹐ dài kǎo ﹐ ─ ─ yě mǎi le yī jiàn hái zǐ chuān de dà hóng yáng shā shān ﹐ qī chéng xīn ﹐ zhǐ yòng sān bǎi dà qián jiǔ èr chuàn 〔 ３ ８ 〕 。",
+        "english": ""
+      },
+      {
+        "chinese": "於是伊們都眼巴巴的想見阿Ｑ﹐缺綢裙的想問他買綢裙﹐要洋紗衫的想問他買洋紗衫﹐不但見了不逃避﹐有時阿Ｑ已經走過了﹐也還要追上去叫住他﹐問道﹕“阿Ｑ﹐你還有綢裙麼﹖沒有﹖紗衫也要的﹐有罷﹖”",
+        "pinyin": "yú shì yī mén dōu yǎn bā bā de xiǎng jiàn ā Ｑ ﹐ quē chóu qún de xiǎng wèn tā mǎi chóu qún ﹐ yào yáng shā shān de xiǎng wèn tā mǎi yáng shā shān ﹐ bù dàn jiàn le bù táo bì ﹐ yǒu shí ā Ｑ yǐ jīng zǒu guò le ﹐ yě hái yào zhuī shàng qù jiào zhù tā ﹐ wèn dào ﹕ “ ā Ｑ ﹐ nǐ hái yǒu chóu qún me ﹖ méi yǒu ﹖ shā shān yě yào de ﹐ yǒu bà ﹖ ”",
+        "english": ""
+      },
+      {
+        "chinese": "後來這終於從淺閨傳進深閨裡去了。",
+        "pinyin": "hòu lái zhè zhōng yú cóng qiǎn guī chuán jìn shēn guī lǐ qù le 。",
+        "english": ""
+      },
+      {
+        "chinese": "因為鄒七嫂得意之餘﹐將伊的綢裙請趙太太去鑒賞﹐趙太太又告訴了趙太爺而且著實恭維了一番。",
+        "pinyin": "yīn wèi zōu qī sǎo dé yì zhī yú ﹐ jiāng yī de chóu qún qǐng zhào tài tài qù jiàn shǎng ﹐ zhào tài tài yòu gào sù le zhào tài yé ér qiě zhuó shí gōng wéi le yī fān 。",
+        "english": ""
+      },
+      {
+        "chinese": "趙太爺便在晚飯桌上﹐和秀才大爺討論﹐以為阿Ｑ實在有些古怪﹐我們門窗應該小心些﹔但他的東西﹐不知道可還有什麼可買﹐也許有點好東西罷。",
+        "pinyin": "zhào tài yé biàn zài wǎn fàn zhuō shàng ﹐ hé xiù cái dà yé tǎo lùn ﹐ yǐ wèi ā Ｑ shí zài yǒu xiē gǔ guài ﹐ wǒ mén mén chuāng yīng gāi xiǎo xīn xiē ﹔ dàn tā de dōng xī ﹐ bù zhī dào kě hái yǒu shén me kě mǎi ﹐ yě xǔ yǒu diǎn hǎo dōng xī bà 。",
+        "english": ""
+      },
+      {
+        "chinese": "加以趙太太也正想買一件價廉物美的皮背心。",
+        "pinyin": "jiā yǐ zhào tài tài yě zhèng xiǎng mǎi yī jiàn jià lián wù měi de pí bēi xīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "於是家族決議﹐便託鄒七嫂即刻去尋阿Ｑ﹐而且為此新闢了第三種的例外﹕這晚上也姑且特准點油燈。",
+        "pinyin": "yú shì jiā zú jué yì ﹐ biàn tuō zōu qī sǎo jí kè qù xún ā Ｑ ﹐ ér qiě wèi cǐ xīn pì le dì sān zhǒng de lì wài ﹕ zhè wǎn shàng yě gū qiě tè zhǔn diǎn yóu dēng 。",
+        "english": ""
+      },
+      {
+        "chinese": "油燈幹了不少了﹐阿Ｑ還不到。",
+        "pinyin": "yóu dēng gàn le bù shǎo le ﹐ ā Ｑ hái bù dào 。",
+        "english": ""
+      },
+      {
+        "chinese": "趙府的全眷都很焦急﹐打著呵欠﹐或恨阿Ｑ太飄忽﹐或怨鄒七嫂不上緊。",
+        "pinyin": "zhào fǔ de quán juàn dōu hěn jiāo jí ﹐ dǎ zhuó hē qiàn ﹐ huò hèn ā Ｑ tài piāo hū ﹐ huò yuàn zōu qī sǎo bù shàng jǐn 。",
+        "english": ""
+      },
+      {
+        "chinese": "趙太太還怕他因為春天的條件不敢來﹐而趙太爺以為不足慮﹕因為這是〈我〉去叫他的。",
+        "pinyin": "zhào tài tài hái pà tā yīn wèi chūn tiān de tiáo jiàn bù gǎn lái ﹐ ér zhào tài yé yǐ wèi bù zú lǜ ﹕ yīn wèi zhè shì 〈 wǒ 〉 qù jiào tā de 。",
+        "english": ""
+      },
+      {
+        "chinese": "果然﹐到底趙太爺有見識﹐阿Ｑ終於跟著鄒七嫂進來了。",
+        "pinyin": "guǒ rán ﹐ dào dǐ zhào tài yé yǒu jiàn shí ﹐ ā Ｑ zhōng yú gēn zhuó zōu qī sǎo jìn lái le 。",
+        "english": ""
+      },
+      {
+        "chinese": "“他只說沒有沒有﹐我說你自己當面說去﹐他還要說﹐我說……”鄒七嫂氣喘吁吁的走著說。",
+        "pinyin": "“ tā zhǐ shuō méi yǒu méi yǒu ﹐ wǒ shuō nǐ zì jǐ dāng miàn shuō qù ﹐ tā hái yào shuō ﹐ wǒ shuō … … ” zōu qī sǎo qì chuǎn xū xū de zǒu zhuó shuō 。",
+        "english": ""
+      },
+      {
+        "chinese": "“太爺﹗”阿Ｑ似笑非笑的叫了一聲﹐在檐下站住了。",
+        "pinyin": "“ tài yé ﹗ ” ā Ｑ sì xiào fēi xiào de jiào le yī shēng ﹐ zài yán xià zhàn zhù le 。",
+        "english": ""
+      },
+      {
+        "chinese": "“阿Ｑ﹐聽說你在外面發財﹐”趙太爺踱開去﹐眼睛打量著他的全身﹐一面說。",
+        "pinyin": "“ ā Ｑ ﹐ tīng shuō nǐ zài wài miàn fā cái ﹐ ” zhào tài yé duó kāi qù ﹐ yǎn jīng dǎ liang zhuó tā de quán shēn ﹐ yī miàn shuō 。",
+        "english": ""
+      },
+      {
+        "chinese": "“那很好﹐那很好的。",
+        "pinyin": "“ nà hěn hǎo ﹐ nà hěn hǎo de 。",
+        "english": ""
+      },
+      {
+        "chinese": "這個﹐……聽說你有些舊東西﹐……可以都拿來看一看﹐……這也並不是別的﹐因為我倒要……”",
+        "pinyin": "zhè gè ﹐ … … tīng shuō nǐ yǒu xiē jiù dōng xī ﹐ … … kě yǐ dōu ná lái kàn yī kàn ﹐ … … zhè yě bìng bù shì bié de ﹐ yīn wèi wǒ dǎo yào … … ”",
+        "english": ""
+      },
+      {
+        "chinese": "“我對鄒七嫂說過了。",
+        "pinyin": "“ wǒ duì zōu qī sǎo shuō guò le 。",
+        "english": ""
+      },
+      {
+        "chinese": "都完了。",
+        "pinyin": "dōu wán le 。",
+        "english": ""
+      },
+      {
+        "chinese": "“完了﹖”趙太爺不覺失聲的說﹐“那裡會完得這樣快呢﹖”",
+        "pinyin": "“ wán le ﹖ ” zhào tài yé bù jué shī shēng de shuō ﹐ “ nà lǐ huì wán dé zhè yàng kuài ne ﹖ ”",
+        "english": ""
+      },
+      {
+        "chinese": "“那是朋友的﹐本來不多。",
+        "pinyin": "“ nà shì péng yǒu de ﹐ běn lái bù duō 。",
+        "english": ""
+      },
+      {
+        "chinese": "他們買了些﹐……”",
+        "pinyin": "tā mén mǎi le xiē ﹐ … … ”",
+        "english": ""
+      },
+      {
+        "chinese": "“總該還有一點罷。",
+        "pinyin": "“ zǒng gāi hái yǒu yī diǎn bà 。",
+        "english": ""
+      },
+      {
+        "chinese": "“現在﹐只剩了一張門幕了。",
+        "pinyin": "“ xiàn zài ﹐ zhǐ shèng le yī zhāng mén mù le 。",
+        "english": ""
+      },
+      {
+        "chinese": "“就拿門幕來看看罷。",
+        "pinyin": "“ jiù ná mén mù lái kàn kàn bà 。",
+        "english": ""
+      },
+      {
+        "chinese": "”趙太太慌忙說。",
+        "pinyin": "” zhào tài tài huāng máng shuō 。",
+        "english": ""
+      },
+      {
+        "chinese": "“那麼﹐明天拿來就是﹐”趙太爺卻不甚熱心了。",
+        "pinyin": "“ nà me ﹐ míng tiān ná lái jiù shì ﹐ ” zhào tài yé què bù shèn rè xīn le 。",
+        "english": ""
+      },
+      {
+        "chinese": "“阿Ｑ﹐你以後有什麼東西的時 候﹐你儘先送來給我們看﹐……”",
+        "pinyin": "“ ā Ｑ ﹐ nǐ yǐ hòu yǒu shén me dōng xī de shí   hòu ﹐ nǐ jìn xiān sòng lái gěi wǒ mén kàn ﹐ … … ”",
+        "english": ""
+      },
+      {
+        "chinese": "“價錢決不會比別家出得少﹗”秀才說。",
+        "pinyin": "“ jià qián jué bù huì bǐ bié jiā chū dé shǎo ﹗ ” xiù cái shuō 。",
+        "english": ""
+      },
+      {
+        "chinese": "秀才娘子忙一瞥阿Ｑ的臉﹐看他感動了沒有。",
+        "pinyin": "xiù cái niáng zǐ máng yī piē ā Ｑ de liǎn ﹐ kàn tā gǎn dòng le méi yǒu 。",
+        "english": ""
+      },
+      {
+        "chinese": "“我要一件皮背心。",
+        "pinyin": "“ wǒ yào yī jiàn pí bēi xīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "”趙太太說。",
+        "pinyin": "” zhào tài tài shuō 。",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ雖然答應著﹐卻懶洋洋的出去了﹐也不知道他是否放在心上。",
+        "pinyin": "ā Ｑ suī rán dā yìng zhuó ﹐ què lǎn yáng yáng de chū qù le ﹐ yě bù zhī dào tā shì fǒu fàng zài xīn shàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "這使趙太爺很失望﹐氣憤而且擔心﹐至於停止了打呵欠。",
+        "pinyin": "zhè shǐ zhào tài yé hěn shī wàng ﹐ qì fèn ér qiě dān xīn ﹐ zhì yú tíng zhǐ le dǎ hē qiàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "秀才對於阿Ｑ的態度也很不平﹐於是說﹐這忘八蛋要提防﹐或者竟不如吩咐地保﹐不許他住在未莊。",
+        "pinyin": "xiù cái duì yú ā Ｑ de tài dù yě hěn bù píng ﹐ yú shì shuō ﹐ zhè wàng bā dàn yào dī fáng ﹐ huò zhě jìng bù rú fēn fù dì bǎo ﹐ bù xǔ tā zhù zài wèi zhuāng 。",
+        "english": ""
+      },
+      {
+        "chinese": "但趙太爺以為不然﹐說這也怕要結怨﹐況且做這路生意的大概是〈老鷹不吃窩下食〉﹐本村倒不必擔心的﹔只要自己夜裡警醒點就是了。",
+        "pinyin": "dàn zhào tài yé yǐ wèi bù rán ﹐ shuō zhè yě pà yào jié yuàn ﹐ kuàng qiě zuò zhè lù shēng yì de dà gài shì 〈 lǎo yīng bù chī wō xià shí 〉 ﹐ běn cūn dǎo bù bì dān xīn de ﹔ zhǐ yào zì jǐ yè lǐ jǐng xǐng diǎn jiù shì le 。",
+        "english": ""
+      },
+      {
+        "chinese": "秀才聽了這〈庭訓〉〔３９〕﹐非常之以為然﹐便即刻撤消了驅逐阿Ｑ的提議﹐而且叮囑鄒七嫂﹐請伊萬不要向人提起這一段話。",
+        "pinyin": "xiù cái tīng le zhè 〈 tíng xùn 〉 〔 ３ ９ 〕 ﹐ fēi cháng zhī yǐ wèi rán ﹐ biàn jí kè chè xiāo le qū zhú ā Ｑ de tí yì ﹐ ér qiě dīng zhǔ zōu qī sǎo ﹐ qǐng yī wàn bù yào xiàng rén tí qǐ zhè yī duàn huà 。",
+        "english": ""
+      },
+      {
+        "chinese": "但第二日﹐鄒七嫂便將那藍裙去染了皂﹐又將阿Ｑ可疑之點傳揚出去了﹐可是確沒有提起秀才要驅逐他這一節。",
+        "pinyin": "dàn dì èr rì ﹐ zōu qī sǎo biàn jiāng nà lán qún qù rǎn le zào ﹐ yòu jiāng ā Ｑ kě yí zhī diǎn chuán yáng chū qù le ﹐ kě shì què méi yǒu tí qǐ xiù cái yào qū zhú tā zhè yī jié 。",
+        "english": ""
+      },
+      {
+        "chinese": "然而這已經於阿Ｑ很不利。",
+        "pinyin": "rán ér zhè yǐ jīng yú ā Ｑ hěn bù lì 。",
+        "english": ""
+      },
+      {
+        "chinese": "最先﹐地保尋上門了 ﹐取了他的門幕去﹐阿Ｑ說是趙太太要看的﹐而地保也不還﹐並且要議定每月的孝敬錢。",
+        "pinyin": "zuì xiān ﹐ dì bǎo xún shàng mén le   ﹐ qǔ le tā de mén mù qù ﹐ ā Ｑ shuō shì zhào tài tài yào kàn de ﹐ ér dì bǎo yě bù hái ﹐ bìng qiě yào yì dìng měi yuè de xiào jìng qián 。",
+        "english": ""
+      },
+      {
+        "chinese": "其次﹐是村人對於他的敬畏忽而變相了﹐雖然還不敢來放肆﹐卻很有遠避的神情﹐而這神情和先前的防他來〈嚓〉的時候又不同﹐頗混著〈敬而遠之〉的分子了。",
+        "pinyin": "qí cì ﹐ shì cūn rén duì yú tā de jìng wèi hū ér biàn xiāng le ﹐ suī rán hái bù gǎn lái fàng sì ﹐ què hěn yǒu yuǎn bì de shén qíng ﹐ ér zhè shén qíng hé xiān qián de fáng tā lái 〈 cā 〉 de shí hòu yòu bù tóng ﹐ pō hùn zhuó 〈 jìng ér yuǎn zhī 〉 de fēn zǐ le 。",
+        "english": ""
+      },
+      {
+        "chinese": "只有一班閒人們卻還要尋根究底的去探阿Ｑ的底細。",
+        "pinyin": "zhǐ yǒu yī bān xián rén mén què hái yào xún gēn jiū dǐ de qù tàn ā Ｑ de dǐ xì 。",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ也並不諱飾﹐傲然的說出他的經驗來。",
+        "pinyin": "ā Ｑ yě bìng bù huì shì ﹐ ào rán de shuō chū tā de jīng yàn lái 。",
+        "english": ""
+      },
+      {
+        "chinese": "從此他們才知道﹐他不過是一個小腳色﹐不但不能上牆﹐並且不能進洞﹐只站在洞外接東西。",
+        "pinyin": "cóng cǐ tā mén cái zhī dào ﹐ tā bù guò shì yī gè xiǎo jiǎo sè ﹐ bù dàn bù néng shàng qiáng ﹐ bìng qiě bù néng jìn dòng ﹐ zhǐ zhàn zài dòng wài jiē dōng xī 。",
+        "english": ""
+      },
+      {
+        "chinese": "有一夜﹐他剛纔接到一個包﹐正手再進去﹐不一會﹐只聽得裡面大嚷起來﹐他便趕緊跑﹐連夜爬出城﹐逃回未莊來了﹐從此不敢再去做。",
+        "pinyin": "yǒu yī yè ﹐ tā gāng cái jiē dào yī gè bāo ﹐ zhèng shǒu zài jìn qù ﹐ bù yī huì ﹐ zhǐ tīng dé lǐ miàn dà rǎng qǐ lái ﹐ tā biàn gǎn jǐn pǎo ﹐ lián yè pá chū chéng ﹐ táo huí wèi zhuāng lái le ﹐ cóng cǐ bù gǎn zài qù zuò 。",
+        "english": ""
+      },
+      {
+        "chinese": "然而這故事卻於阿Ｑ更不利﹐村人對於阿Ｑ的〈敬而遠之〉者﹐本因為怕結怨﹐誰料他不過是一個不敢再偷的偷兒呢﹖這實在是〈斯亦不足畏也矣〉〔４０〕。",
+        "pinyin": "rán ér zhè gù shì què yú ā Ｑ gèng bù lì ﹐ cūn rén duì yú ā Ｑ de 〈 jìng ér yuǎn zhī 〉 zhě ﹐ běn yīn wèi pà jié yuàn ﹐ shuí liào tā bù guò shì yī gè bù gǎn zài tōu de tōu ér ne ﹖ zhè shí zài shì 〈 sī yì bù zú wèi yě yǐ 〉 〔 ４ ０ 〕 。",
+        "english": ""
+      }
+    ]
+  },
+  {
+    "id": "flowers_in_the_mirror_ch_8",
+    "bookId": "flowers_in_the_mirror",
+    "chapterIndex": 8,
+    "title": "第七章　革　　命",
+    "titleEn": "Chapter 8: 第七章　革　　命",
+    "sentences": [
+      {
+        "chinese": "宣統三年九月十四日〔４１〕──即阿Ｑ將搭連賣給趙白眼的這一天──三更四點﹐有一隻大烏篷船到了趙府上的河埠頭。",
+        "pinyin": "xuān tǒng sān nián jiǔ yuè shí sì rì 〔 ４ １ 〕 ─ ─ jí ā Ｑ jiāng dā lián mài gěi zhào bái yǎn de zhè yī tiān ─ ─ sān gēng sì diǎn ﹐ yǒu yī zhǐ dà wū péng chuán dào le zhào fǔ shàng de hé bù tóu 。",
+        "english": ""
+      },
+      {
+        "chinese": "這船從黑漆漆中蕩來﹐鄉下人睡得熟﹐都沒有知道﹔出去時將近黎明﹐卻很有幾個看見的了。",
+        "pinyin": "zhè chuán cóng hēi qī qī zhōng dàng lái ﹐ xiāng xià rén shuì dé shú ﹐ dōu méi yǒu zhī dào ﹔ chū qù shí jiāng jìn lí míng ﹐ què hěn yǒu jǐ gè kàn jiàn de le 。",
+        "english": ""
+      },
+      {
+        "chinese": "據探頭探腦的調查來的結果﹐知道那竟是舉人老爺的船﹗",
+        "pinyin": "jù tàn tóu tàn nǎo de diào chá lái de jié guǒ ﹐ zhī dào nà jìng shì jǔ rén lǎo yé de chuán ﹗",
+        "english": ""
+      },
+      {
+        "chinese": "那船便將大不安載給了未莊﹐不到正午﹐全村的人心就很搖動。",
+        "pinyin": "nà chuán biàn jiāng dà bù ān zài gěi le wèi zhuāng ﹐ bù dào zhèng wǔ ﹐ quán cūn de rén xīn jiù hěn yáo dòng 。",
+        "english": ""
+      },
+      {
+        "chinese": "船的使命﹐趙家本來是很秘密的﹐但茶坊酒肆裡卻都說﹐革命黨要進城﹐舉人老爺到我們鄉下來逃難了。",
+        "pinyin": "chuán de shǐ mìng ﹐ zhào jiā běn lái shì hěn mì mì de ﹐ dàn chá fāng jiǔ sì lǐ què dōu shuō ﹐ gé mìng dǎng yào jìn chéng ﹐ jǔ rén lǎo yé dào wǒ mén xiāng xià lái táo nán le 。",
+        "english": ""
+      },
+      {
+        "chinese": "惟有鄒七嫂不以為然﹐說那不過是幾口破衣箱﹐舉人老爺想來寄存的﹐卻已被趙太爺回覆轉去。",
+        "pinyin": "wéi yǒu zōu qī sǎo bù yǐ wèi rán ﹐ shuō nà bù guò shì jǐ kǒu pò yī xiāng ﹐ jǔ rén lǎo yé xiǎng lái jì cún de ﹐ què yǐ bèi zhào tài yé huí fù zhuǎn qù 。",
+        "english": ""
+      },
+      {
+        "chinese": "其實舉人老爺和趙秀才素不相識﹐在理本不能有〈共患難〉的情誼﹐況且鄒七嫂又和趙家是鄰居﹐見聞較為切近﹐所以大概該是伊對的。",
+        "pinyin": "qí shí jǔ rén lǎo yé hé zhào xiù cái sù bù xiāng shí ﹐ zài lǐ běn bù néng yǒu 〈 gòng huàn nán 〉 de qíng yì ﹐ kuàng qiě zōu qī sǎo yòu hé zhào jiā shì lín jū ﹐ jiàn wén jiào wèi qiē jìn ﹐ suǒ yǐ dà gài gāi shì yī duì de 。",
+        "english": ""
+      },
+      {
+        "chinese": "然而謠言很旺盛﹐說舉人老爺雖然似乎沒有親到﹐卻有一封長信﹐和趙家排了〈轉折親〉。",
+        "pinyin": "rán ér yáo yán hěn wàng shèng ﹐ shuō jǔ rén lǎo yé suī rán sì hū méi yǒu qīn dào ﹐ què yǒu yī fēng cháng xìn ﹐ hé zhào jiā pái le 〈 zhuǎn zhé qīn 〉 。",
+        "english": ""
+      },
+      {
+        "chinese": "趙太爺肚裡一輪﹐覺得於他總不會有壞處﹐便將箱子留下了﹐現就塞在太太的床底下。",
+        "pinyin": "zhào tài yé dù lǐ yī lún ﹐ jué dé yú tā zǒng bù huì yǒu huài chù ﹐ biàn jiāng xiāng zǐ liú xià le ﹐ xiàn jiù sāi zài tài tài de chuáng dǐ xià 。",
+        "english": ""
+      },
+      {
+        "chinese": "至於革命黨﹐有的說是便在這一夜進了城﹐個個白盔白甲﹕穿著崇正皇帝的素〔４２〕。",
+        "pinyin": "zhì yú gé mìng dǎng ﹐ yǒu de shuō shì biàn zài zhè yī yè jìn le chéng ﹐ gè gè bái kuī bái jiǎ ﹕ chuān zhuó chóng zhèng huáng dì de sù 〔 ４ ２ 〕 。",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ的耳朵裡﹐本來早聽到過革命黨這一句話﹐今年又親眼見過殺掉革命黨。",
+        "pinyin": "ā Ｑ de ěr duǒ lǐ ﹐ běn lái zǎo tīng dào guò gé mìng dǎng zhè yī jù huà ﹐ jīn nián yòu qīn yǎn jiàn guò shā diào gé mìng dǎng 。",
+        "english": ""
+      },
+      {
+        "chinese": "但他有一種不知從那裡來的意見﹐以為革命黨便是造反﹐造反便是與他為難﹐所以一向是〈深惡而痛絕之〉的。",
+        "pinyin": "dàn tā yǒu yī zhǒng bù zhī cóng nà lǐ lái de yì jiàn ﹐ yǐ wèi gé mìng dǎng biàn shì zào fǎn ﹐ zào fǎn biàn shì yǔ tā wéi nán ﹐ suǒ yǐ yī xiàng shì 〈 shēn è ér tòng jué zhī 〉 de 。",
+        "english": ""
+      },
+      {
+        "chinese": "殊不料這卻使百里聞名的舉人老爺有這樣怕﹐於是他未免也有些〈神往〉了﹐況且未莊的一群鳥男女的慌張的神情﹐也使阿Ｑ更快意。",
+        "pinyin": "shū bù liào zhè què shǐ bǎi lǐ wén míng de jǔ rén lǎo yé yǒu zhè yàng pà ﹐ yú shì tā wèi miǎn yě yǒu xiē 〈 shén wǎng 〉 le ﹐ kuàng qiě wèi zhuāng de yī qún niǎo nán nǚ de huāng zhāng de shén qíng ﹐ yě shǐ ā Ｑ gèng kuài yì 。",
+        "english": ""
+      },
+      {
+        "chinese": "“革命也好罷﹐”阿Ｑ想﹐“革這伙媽媽的的命﹐太可惡﹗太可恨﹗……便是我﹐也要投降革命黨了。",
+        "pinyin": "“ gé mìng yě hǎo bà ﹐ ” ā Ｑ xiǎng ﹐ “ gé zhè huǒ mā mā de de mìng ﹐ tài kě è ﹗ tài kě hèn ﹗ … … biàn shì wǒ ﹐ yě yào tóu jiàng gé mìng dǎng le 。",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ近來用度窘﹐大約略略有些不平﹔加以午間喝了兩碗空肚酒﹐愈加醉得快﹐一面想一面走﹐便又飄飄然起來。",
+        "pinyin": "ā Ｑ jìn lái yòng dù jiǒng ﹐ dà yuē lüè lüè yǒu xiē bù píng ﹔ jiā yǐ wǔ jiān hē le liǎng wǎn kōng dù jiǔ ﹐ yù jiā zuì dé kuài ﹐ yī miàn xiǎng yī miàn zǒu ﹐ biàn yòu piāo piāo rán qǐ lái 。",
+        "english": ""
+      },
+      {
+        "chinese": "不知怎麼一來﹐忽而似乎革命黨便是自己﹐未莊人卻都是他的俘虜了。",
+        "pinyin": "bù zhī zěn me yī lái ﹐ hū ér sì hū gé mìng dǎng biàn shì zì jǐ ﹐ wèi zhuāng rén què dōu shì tā de fú lǔ le 。",
+        "english": ""
+      },
+      {
+        "chinese": "他得意之餘﹐禁不住大聲的嚷道﹕「造反了﹗造反了﹗」",
+        "pinyin": "tā dé yì zhī yú ﹐ jīn bù zhù dà shēng de rǎng dào ﹕ 「 zào fǎn le ﹗ zào fǎn le ﹗ 」",
+        "english": ""
+      },
+      {
+        "chinese": "未莊人都用了驚懼的眼光對他看。",
+        "pinyin": "wèi zhuāng rén dōu yòng le jīng jù de yǎn guāng duì tā kàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "這一種可憐的眼光﹐是阿Ｑ從來沒有見過的﹐一見之下﹐又使他舒服得如六月裡喝了雪水。",
+        "pinyin": "zhè yī zhǒng kě lián de yǎn guāng ﹐ shì ā Ｑ cóng lái méi yǒu jiàn guò de ﹐ yī jiàn zhī xià ﹐ yòu shǐ tā shū fú dé rú liù yuè lǐ hē le xuě shuǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "他更加高興的走而且喊道﹕「好﹐……我要什麼就是什麼﹐我歡喜誰就是誰。",
+        "pinyin": "tā gèng jiā gāo xìng de zǒu ér qiě hǎn dào ﹕ 「 hǎo ﹐ … … wǒ yào shén me jiù shì shén me ﹐ wǒ huān xǐ shuí jiù shì shuí 。",
+        "english": ""
+      },
+      {
+        "chinese": "得得﹐鏘鏘﹗",
+        "pinyin": "dé dé ﹐ qiāng qiāng ﹗",
+        "english": ""
+      },
+      {
+        "chinese": "悔不該﹐酒醉錯斬了鄭賢弟﹐悔不該﹐呀呀呀……",
+        "pinyin": "huǐ bù gāi ﹐ jiǔ zuì cuò zhǎn le zhèng xián dì ﹐ huǐ bù gāi ﹐ yā yā yā … …",
+        "english": ""
+      },
+      {
+        "chinese": "得得﹐鏘鏘﹐得﹐鏘令鏘﹗",
+        "pinyin": "dé dé ﹐ qiāng qiāng ﹐ dé ﹐ qiāng lìng qiāng ﹗",
+        "english": ""
+      },
+      {
+        "chinese": "我手執鋼鞭將你打……」",
+        "pinyin": "wǒ shǒu zhí gāng biān jiāng nǐ dǎ … … 」",
+        "english": ""
+      },
+      {
+        "chinese": "趙府上的兩位男人和兩個真本家﹐也正站在大門口論革命。",
+        "pinyin": "zhào fǔ shàng de liǎng wèi nán rén hé liǎng gè zhēn běn jiā ﹐ yě zhèng zhàn zài dà mén kǒu lùn gé mìng 。",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ沒有見﹐昂了頭直 唱過去。",
+        "pinyin": "ā Ｑ méi yǒu jiàn ﹐ áng le tóu zhí   chàng guò qù 。",
+        "english": ""
+      },
+      {
+        "chinese": "「得得﹐……」",
+        "pinyin": "「 dé dé ﹐ … … 」",
+        "english": ""
+      },
+      {
+        "chinese": "「老Ｑ﹐」趙太爺怯怯的迎¨低聲的叫。",
+        "pinyin": "「 lǎo Ｑ ﹐ 」 zhào tài yé qiè qiè de yíng ¨ dī shēng de jiào 。",
+        "english": ""
+      },
+      {
+        "chinese": "「鏘鏘﹐」阿Ｑ料不到他的名字會和「老」字聯結起來﹐以為是一句別的話﹐與己無干﹔只是唱。",
+        "pinyin": "「 qiāng qiāng ﹐ 」 ā Ｑ liào bù dào tā de míng zì huì hé 「 lǎo 」 zì lián jié qǐ lái ﹐ yǐ wèi shì yī jù bié de huà ﹐ yǔ jǐ wú gān ﹔ zhǐ shì chàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "「得﹐鏘﹐鏘令鏘﹐鏘﹗」「老Ｑ。",
+        "pinyin": "「 dé ﹐ qiāng ﹐ qiāng lìng qiāng ﹐ qiāng ﹗ 」 「 lǎo Ｑ 。",
+        "english": ""
+      },
+      {
+        "chinese": "「悔不該……」",
+        "pinyin": "「 huǐ bù gāi … … 」",
+        "english": ""
+      },
+      {
+        "chinese": "「阿Ｑ﹗」秀才祇得直呼其名了。",
+        "pinyin": "「 ā Ｑ ﹗ 」 xiù cái zhǐ dé zhí hū qí míng le 。",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ這才站住﹐歪¨頭問道﹐「什麼﹖」",
+        "pinyin": "ā Ｑ zhè cái zhàn zhù ﹐ wāi ¨ tóu wèn dào ﹐ 「 shén me ﹖ 」",
+        "english": ""
+      },
+      {
+        "chinese": "「老Ｑ﹐……現在……」趙太爺卻又沒有話﹐「現在……發財麼﹖」",
+        "pinyin": "「 lǎo Ｑ ﹐ … … xiàn zài … … 」 zhào tài yé què yòu méi yǒu huà ﹐ 「 xiàn zài … … fā cái me ﹖ 」",
+        "english": ""
+      },
+      {
+        "chinese": "「發財﹖自然。",
+        "pinyin": "「 fā cái ﹖ zì rán 。",
+        "english": ""
+      },
+      {
+        "chinese": "要什麼就是什麼……」",
+        "pinyin": "yào shén me jiù shì shén me … … 」",
+        "english": ""
+      },
+      {
+        "chinese": "「阿……Ｑ哥﹐像我們這樣窮朋友是不要緊的……」趙白眼惴惴的說﹐似乎想探革命黨的口風。",
+        "pinyin": "「 ā … … Ｑ gē ﹐ xiàng wǒ mén zhè yàng qióng péng yǒu shì bù yào jǐn de … … 」 zhào bái yǎn zhuì zhuì de shuō ﹐ sì hū xiǎng tàn gé mìng dǎng de kǒu fēng 。",
+        "english": ""
+      },
+      {
+        "chinese": "「窮朋友﹖你總比我有錢。",
+        "pinyin": "「 qióng péng yǒu ﹖ nǐ zǒng bǐ wǒ yǒu qián 。",
+        "english": ""
+      },
+      {
+        "chinese": "」阿Ｑ說¨自去了。",
+        "pinyin": "」 ā Ｑ shuō ¨ zì qù le 。",
+        "english": ""
+      },
+      {
+        "chinese": "大家都憮然﹐沒有話。",
+        "pinyin": "dà jiā dōu wǔ rán ﹐ méi yǒu huà 。",
+        "english": ""
+      },
+      {
+        "chinese": "趙太爺父子回家﹐晚上商量到點燈。",
+        "pinyin": "zhào tài yé fù zǐ huí jiā ﹐ wǎn shàng shāng liàng dào diǎn dēng 。",
+        "english": ""
+      },
+      {
+        "chinese": "趙白眼回家﹐便從腰間扯下搭連來﹐交給他女人藏在箱底裡。",
+        "pinyin": "zhào bái yǎn huí jiā ﹐ biàn cóng yāo jiān chě xià dā lián lái ﹐ jiāo gěi tā nǚ rén cáng zài xiāng dǐ lǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ飄飄然的飛了一通﹐回到土谷祠﹐酒已經醒透了。",
+        "pinyin": "ā Ｑ piāo piāo rán de fēi le yī tōng ﹐ huí dào tǔ gǔ cí ﹐ jiǔ yǐ jīng xǐng tòu le 。",
+        "english": ""
+      },
+      {
+        "chinese": "這晚上﹐管祠的老頭子也意外的和氣﹐請他喝茶﹔阿Ｑ便向他要了兩個餅﹐吃完之後﹐又要了一支點過的四兩燭和一個樹燭臺﹐點起來﹐獨自躺在自己的小屋裡。",
+        "pinyin": "zhè wǎn shàng ﹐ guǎn cí de lǎo tóu zǐ yě yì wài de hé qì ﹐ qǐng tā hē chá ﹔ ā Ｑ biàn xiàng tā yào le liǎng gè bǐng ﹐ chī wán zhī hòu ﹐ yòu yào le yī zhī diǎn guò de sì liǎng zhú hé yī gè shù zhú tái ﹐ diǎn qǐ lái ﹐ dú zì tǎng zài zì jǐ de xiǎo wū lǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "他說不出的新鮮而且高興﹐燭火像元夜似的閃閃的跳﹐他的思想也迸跳起來了﹕「造反﹖有趣﹐……來了一陣白盔白甲的革命黨﹐都拿¨板刀﹐鋼鞭﹐炸彈﹐洋炮﹐三尖兩刃刀﹐鉤鐮槍﹐走過土谷祠﹐叫道﹐『阿Ｑ﹗同去同去﹗』於是一同去。",
+        "pinyin": "tā shuō bù chū de xīn xiān ér qiě gāo xìng ﹐ zhú huǒ xiàng yuán yè shì de shǎn shǎn de tiào ﹐ tā de sī xiǎng yě bèng tiào qǐ lái le ﹕ 「 zào fǎn ﹖ yǒu qù ﹐ … … lái le yī zhèn bái kuī bái jiǎ de gé mìng dǎng ﹐ dōu ná ¨ bǎn dāo ﹐ gāng biān ﹐ zhà tán ﹐ yáng pào ﹐ sān jiān liǎng rèn dāo ﹐ gōu lián qiāng ﹐ zǒu guò tǔ gǔ cí ﹐ jiào dào ﹐ 『 ā Ｑ ﹗ tóng qù tóng qù ﹗ 』 yú shì yī tóng qù 。",
+        "english": ""
+      },
+      {
+        "chinese": "……」這時未莊的一夥鳥男女才好笑哩﹐跪下叫道﹐「阿Ｑ﹐饒命﹗」誰聽他﹗第一個該死的是小Ｄ和趙太爺﹐還有秀才﹐ 還有假洋鬼子﹐… …留幾條麼﹖王胡本來還可留﹐但也不要了。",
+        "pinyin": "… … 」 zhè shí wèi zhuāng de yī huǒ niǎo nán nǚ cái hǎo xiào li ﹐ guì xià jiào dào ﹐ 「 ā Ｑ ﹐ ráo mìng ﹗ 」 shuí tīng tā ﹗ dì yī gè gāi sǐ de shì xiǎo Ｄ hé zhào tài yé ﹐ hái yǒu xiù cái ﹐   hái yǒu jiǎ yáng guǐ zǐ ﹐ …   … liú jǐ tiáo me ﹖ wáng hú běn lái hái kě liú ﹐ dàn yě bù yào le 。",
+        "english": ""
+      },
+      {
+        "chinese": "……",
+        "pinyin": "… …",
+        "english": ""
+      },
+      {
+        "chinese": "「東西﹐……直走進去打開箱子來﹕元寶﹐洋錢﹐洋紗衫﹐……秀才娘子的一張寧式床〔４３〕先搬到土谷祠﹐此外便擺了錢家的桌椅﹐──或者也就用趙家的罷。",
+        "pinyin": "「 dōng xī ﹐ … … zhí zǒu jìn qù dǎ kāi xiāng zǐ lái ﹕ yuán bǎo ﹐ yáng qián ﹐ yáng shā shān ﹐ … … xiù cái niáng zǐ de yī zhāng níng shì chuáng 〔 ４ ３ 〕 xiān bān dào tǔ gǔ cí ﹐ cǐ wài biàn bǎi le qián jiā de zhuō yǐ ﹐ ─ ─ huò zhě yě jiù yòng zhào jiā de bà 。",
+        "english": ""
+      },
+      {
+        "chinese": "自己是不動手的了﹐叫小Ｄ來搬﹐要搬得快﹐搬得不快打嘴巴。",
+        "pinyin": "zì jǐ shì bù dòng shǒu de le ﹐ jiào xiǎo Ｄ lái bān ﹐ yào bān dé kuài ﹐ bān dé bù kuài dǎ zuǐ bā 。",
+        "english": ""
+      },
+      {
+        "chinese": "……」趙司晨的妹子真丑。",
+        "pinyin": "… … 」 zhào sī chén de mèi zǐ zhēn chǒu 。",
+        "english": ""
+      },
+      {
+        "chinese": "鄒七嫂的女兒過幾年再說。",
+        "pinyin": "zōu qī sǎo de nǚ ér guò jǐ nián zài shuō 。",
+        "english": ""
+      },
+      {
+        "chinese": "假洋鬼子的老婆會和沒有辮子的男人睡覺﹐嚇﹐不是好東西﹗秀才的老婆是眼胞上有疤的。",
+        "pinyin": "jiǎ yáng guǐ zǐ de lǎo pó huì hé méi yǒu biàn zǐ de nán rén shuì jué ﹐ xià ﹐ bù shì hǎo dōng xī ﹗ xiù cái de lǎo pó shì yǎn bāo shàng yǒu bā de 。",
+        "english": ""
+      },
+      {
+        "chinese": "……吳媽長久不見了﹐不知道在那裡﹐──可惜腳太大。",
+        "pinyin": "… … wú mā cháng jiǔ bù jiàn le ﹐ bù zhī dào zài nà lǐ ﹐ ─ ─ kě xī jiǎo tài dà 。",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ沒有想得十分停當﹐已經發了鼾聲﹐四兩燭還只點去了小半寸﹐紅焰焰的光照 ¨他張開的嘴。",
+        "pinyin": "ā Ｑ méi yǒu xiǎng dé shí fēn tíng dāng ﹐ yǐ jīng fā le hān shēng ﹐ sì liǎng zhú hái zhǐ diǎn qù le xiǎo bàn cùn ﹐ hóng yàn yàn de guāng zhào   ¨ tā zhāng kāi de zuǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "「荷荷﹗」阿Ｑ忽而大叫起來﹐抬了頭倉皇的四顧﹐待到看見四兩燭﹐卻又倒頭睡 去了。",
+        "pinyin": "「 hé hé ﹗ 」 ā Ｑ hū ér dà jiào qǐ lái ﹐ tái le tóu cāng huáng de sì gù ﹐ dài dào kàn jiàn sì liǎng zhú ﹐ què yòu dǎo tóu shuì   qù le 。",
+        "english": ""
+      },
+      {
+        "chinese": "第二天他起得很遲﹐走出街上看時﹐樣樣都照舊。",
+        "pinyin": "dì èr tiān tā qǐ dé hěn chí ﹐ zǒu chū jiē shàng kàn shí ﹐ yàng yàng dōu zhào jiù 。",
+        "english": ""
+      },
+      {
+        "chinese": "他也仍然肚餓﹐他想¨﹐想不起什麼來﹔但他忽而似乎有了主意了﹐慢慢的跨開步﹐有意無意的走到靜修庵。",
+        "pinyin": "tā yě réng rán dù è ﹐ tā xiǎng ¨ ﹐ xiǎng bù qǐ shén me lái ﹔ dàn tā hū ér sì hū yǒu le zhǔ yì le ﹐ màn màn de kuà kāi bù ﹐ yǒu yì wú yì de zǒu dào jìng xiū ān 。",
+        "english": ""
+      },
+      {
+        "chinese": "庵和春天時節一樣靜﹐白的牆壁和漆黑的門。",
+        "pinyin": "ān hé chūn tiān shí jié yī yàng jìng ﹐ bái de qiáng bì hé qī hēi de mén 。",
+        "english": ""
+      },
+      {
+        "chinese": "他想了一想﹐前去打門﹐一隻狗在裡面叫。",
+        "pinyin": "tā xiǎng le yī xiǎng ﹐ qián qù dǎ mén ﹐ yī zhǐ gǒu zài lǐ miàn jiào 。",
+        "english": ""
+      },
+      {
+        "chinese": "他急急拾了幾塊斷磚﹐再上去較為用力的打﹐打到黑門上生出許多麻點的時候﹐ 才聽得有人來開門。",
+        "pinyin": "tā jí jí shí le jǐ kuài duàn zhuān ﹐ zài shàng qù jiào wèi yòng lì de dǎ ﹐ dǎ dào hēi mén shàng shēng chū xǔ duō má diǎn de shí hòu ﹐   cái tīng dé yǒu rén lái kāi mén 。",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ連忙捏好磚頭﹐擺開馬步﹐準備和黑狗來開戰。",
+        "pinyin": "ā Ｑ lián máng niē hǎo zhuān tóu ﹐ bǎi kāi mǎ bù ﹐ zhǔn bèi hé hēi gǒu lái kāi zhàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "但庵門只開了一條縫﹐並無黑狗從中衝出﹐望進去只有一個老尼姑。",
+        "pinyin": "dàn ān mén zhǐ kāi le yī tiáo féng ﹐ bìng wú hēi gǒu cóng zhōng chōng chū ﹐ wàng jìn qù zhǐ yǒu yī gè lǎo ní gū 。",
+        "english": ""
+      },
+      {
+        "chinese": "「你又來什麼事﹖」伊大吃一驚的說。",
+        "pinyin": "「 nǐ yòu lái shén me shì ﹖ 」 yī dà chī yī jīng de shuō 。",
+        "english": ""
+      },
+      {
+        "chinese": "「革命了……你知道﹖……」阿Ｑ說得很含胡。",
+        "pinyin": "「 gé mìng le … … nǐ zhī dào ﹖ … … 」 ā Ｑ shuō dé hěn hán hú 。",
+        "english": ""
+      },
+      {
+        "chinese": "「革命革命﹐革過一革的﹐……你們要革得我們怎麼樣呢﹖」老尼姑兩眼通紅的說。",
+        "pinyin": "「 gé mìng gé mìng ﹐ gé guò yī gé de ﹐ … … nǐ mén yào gé dé wǒ mén zěn me yàng ne ﹖ 」 lǎo ní gū liǎng yǎn tōng hóng de shuō 。",
+        "english": ""
+      },
+      {
+        "chinese": "「什麼﹖……」阿Ｑ詫異了。",
+        "pinyin": "「 shén me ﹖ … … 」 ā Ｑ chà yì le 。",
+        "english": ""
+      },
+      {
+        "chinese": "「你不知道﹐他們已經來革過了﹗」",
+        "pinyin": "「 nǐ bù zhī dào ﹐ tā mén yǐ jīng lái gé guò le ﹗ 」",
+        "english": ""
+      },
+      {
+        "chinese": "「誰﹖……」阿Ｑ更其詫異了。",
+        "pinyin": "「 shuí ﹖ … … 」 ā Ｑ gèng qí chà yì le 。",
+        "english": ""
+      },
+      {
+        "chinese": "「那秀才和洋鬼子﹗」",
+        "pinyin": "「 nà xiù cái hé yáng guǐ zǐ ﹗ 」",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ很出意外﹐不由的一錯愕﹔老尼姑見他失了銳氣﹐便飛速的關了門﹐阿Ｑ再推時﹐牢不可開﹐再打時﹐沒有回答了。",
+        "pinyin": "ā Ｑ hěn chū yì wài ﹐ bù yóu de yī cuò è ﹔ lǎo ní gū jiàn tā shī le ruì qì ﹐ biàn fēi sù de guān le mén ﹐ ā Ｑ zài tuī shí ﹐ láo bù kě kāi ﹐ zài dǎ shí ﹐ méi yǒu huí dá le 。",
+        "english": ""
+      },
+      {
+        "chinese": "那還是上午的事。",
+        "pinyin": "nà hái shì shàng wǔ de shì 。",
+        "english": ""
+      },
+      {
+        "chinese": "趙秀才消息靈﹐一知道革命黨已在夜間進城﹐便將辮子盤在頂上﹐ 一早去拜訪那歷來也不相能的錢洋鬼子。",
+        "pinyin": "zhào xiù cái xiāo xī líng ﹐ yī zhī dào gé mìng dǎng yǐ zài yè jiān jìn chéng ﹐ biàn jiāng biàn zǐ pán zài dǐng shàng ﹐   yī zǎo qù bài fǎng nà lì lái yě bù xiāng néng de qián yáng guǐ zǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "這是「咸與維新」〔４４〕的時候了﹐所以他們便談得很投機﹐立刻成了情投意合的同志﹐也相約去革命。",
+        "pinyin": "zhè shì 「 xián yǔ wéi xīn 」 〔 ４ ４ 〕 de shí hòu le ﹐ suǒ yǐ tā mén biàn tán dé hěn tóu jī ﹐ lì kè chéng le qíng tóu yì hé de tóng zhì ﹐ yě xiāng yuē qù gé mìng 。",
+        "english": ""
+      },
+      {
+        "chinese": "他們想而又想﹐才想出靜修庵裡有一塊「皇帝萬歲萬萬歲」的龍牌﹐是應該趕緊革掉的﹐於是又立刻同到庵裡去革命。",
+        "pinyin": "tā mén xiǎng ér yòu xiǎng ﹐ cái xiǎng chū jìng xiū ān lǐ yǒu yī kuài 「 huáng dì wàn suì wàn wàn suì 」 de lóng pái ﹐ shì yīng gāi gǎn jǐn gé diào de ﹐ yú shì yòu lì kè tóng dào ān lǐ qù gé mìng 。",
+        "english": ""
+      },
+      {
+        "chinese": "因為老尼姑來阻擋﹐說了三句話﹐他們便將伊當作滿政府﹐在頭上很給了不少的棍子和栗鑿。",
+        "pinyin": "yīn wèi lǎo ní gū lái zǔ dǎng ﹐ shuō le sān jù huà ﹐ tā mén biàn jiāng yī dāng zuò mǎn zhèng fǔ ﹐ zài tóu shàng hěn gěi le bù shǎo de gùn zǐ hé lì záo 。",
+        "english": ""
+      },
+      {
+        "chinese": "尼姑待他們走後﹐定了神來檢點﹐龍牌固然已經碎在地上了﹐而且又不見了觀音娘娘座前的一個宣德爐〔４５〕。",
+        "pinyin": "ní gū dài tā mén zǒu hòu ﹐ dìng le shén lái jiǎn diǎn ﹐ lóng pái gù rán yǐ jīng suì zài dì shàng le ﹐ ér qiě yòu bù jiàn le guān yīn niáng niáng zuò qián de yī gè xuān dé lú 〔 ４ ５ 〕 。",
+        "english": ""
+      },
+      {
+        "chinese": "這事阿Ｑ後來才知道。",
+        "pinyin": "zhè shì ā Ｑ hòu lái cái zhī dào 。",
+        "english": ""
+      },
+      {
+        "chinese": "他頗悔自己睡¨﹐但也深怪他們不來招呼他。",
+        "pinyin": "tā pō huǐ zì jǐ shuì ¨ ﹐ dàn yě shēn guài tā mén bù lái zhāo hū tā 。",
+        "english": ""
+      },
+      {
+        "chinese": "他又退一步想道﹕「難道他們還沒有知道我已經投降了革命黨麼﹖」",
+        "pinyin": "tā yòu tuì yī bù xiǎng dào ﹕ 「 nán dào tā mén hái méi yǒu zhī dào wǒ yǐ jīng tóu jiàng le gé mìng dǎng me ﹖ 」",
+        "english": ""
+      }
+    ]
+  },
+  {
+    "id": "flowers_in_the_mirror_ch_9",
+    "bookId": "flowers_in_the_mirror",
+    "chapterIndex": 9,
+    "title": "第八章　不　准　革　命",
+    "titleEn": "Chapter 9: 第八章　不　准　革　命",
+    "sentences": [
+      {
+        "chinese": "未 莊的人心日見其安靜了。",
+        "pinyin": "wèi   zhuāng de rén xīn rì jiàn qí ān jìng le 。",
+        "english": ""
+      },
+      {
+        "chinese": "據傳來的消息﹐知道革命黨雖然進了城﹐倒還沒有什麼大異樣。",
+        "pinyin": "jù chuán lái de xiāo xī ﹐ zhī dào gé mìng dǎng suī rán jìn le chéng ﹐ dǎo hái méi yǒu shén me dà yì yàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "知縣大老爺還是原官﹐不過改稱了什麼﹐而且舉人老爺也做了什麼──這些名目﹐未莊人都說不明白──官﹐帶兵的也還是先前的老把總〔４６〕。",
+        "pinyin": "zhī xiàn dà lǎo yé hái shì yuán guān ﹐ bù guò gǎi chēng le shén me ﹐ ér qiě jǔ rén lǎo yé yě zuò le shén me ─ ─ zhè xiē míng mù ﹐ wèi zhuāng rén dōu shuō bù míng bái ─ ─ guān ﹐ dài bīng de yě hái shì xiān qián de lǎo bǎ zǒng 〔 ４ ６ 〕 。",
+        "english": ""
+      },
+      {
+        "chinese": "只有一件可怕的事是另有幾個不好的革命黨夾在裡面搗亂﹐第二天便動手剪辮子﹐聽說那鄰村的航船七斤便¨了道兒﹐弄得不像人樣子了。",
+        "pinyin": "zhǐ yǒu yī jiàn kě pà de shì shì lìng yǒu jǐ gè bù hǎo de gé mìng dǎng jiá zài lǐ miàn dǎo luàn ﹐ dì èr tiān biàn dòng shǒu jiǎn biàn zǐ ﹐ tīng shuō nà lín cūn de háng chuán qī jīn biàn ¨ le dào ér ﹐ nòng dé bù xiàng rén yàng zǐ le 。",
+        "english": ""
+      },
+      {
+        "chinese": "但這卻還不算大恐怖﹐因為未莊人本來少上城﹐即使偶有想進城的﹐也就立刻變了計﹐碰不¨這危險。",
+        "pinyin": "dàn zhè què hái bù suàn dà kǒng bù ﹐ yīn wèi wèi zhuāng rén běn lái shǎo shàng chéng ﹐ jí shǐ ǒu yǒu xiǎng jìn chéng de ﹐ yě jiù lì kè biàn le jì ﹐ pèng bù ¨ zhè wēi xiǎn 。",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ本也想進城去尋他的老朋友﹐一得這消息﹐也祇得作罷了。",
+        "pinyin": "ā Ｑ běn yě xiǎng jìn chéng qù xún tā de lǎo péng yǒu ﹐ yī dé zhè xiāo xī ﹐ yě zhǐ dé zuò bà le 。",
+        "english": ""
+      },
+      {
+        "chinese": "但未莊也不能說是無改革。",
+        "pinyin": "dàn wèi zhuāng yě bù néng shuō shì wú gǎi gé 。",
+        "english": ""
+      },
+      {
+        "chinese": "幾天之後﹐將辮子盤在頂上的逐漸增加起來了﹐早經說過﹐最先自然是茂才公﹐其次便是趙司晨和趙白眼﹐後來是阿Ｑ。",
+        "pinyin": "jǐ tiān zhī hòu ﹐ jiāng biàn zǐ pán zài dǐng shàng de zhú jiàn zēng jiā qǐ lái le ﹐ zǎo jīng shuō guò ﹐ zuì xiān zì rán shì mào cái gōng ﹐ qí cì biàn shì zhào sī chén hé zhào bái yǎn ﹐ hòu lái shì ā Ｑ 。",
+        "english": ""
+      },
+      {
+        "chinese": "倘在夏天﹐大家將辮子盤在頭頂上或者打一個結﹐本不算什麼稀奇事﹐但現在是暮秋﹐所以這「秋行夏令」 的情形﹐在盤辮家不能不說是萬分的英斷﹐而在未莊也不能說無關於改革了。",
+        "pinyin": "tǎng zài xià tiān ﹐ dà jiā jiāng biàn zǐ pán zài tóu dǐng shàng huò zhě dǎ yī gè jié ﹐ běn bù suàn shén me xī qí shì ﹐ dàn xiàn zài shì mù qiū ﹐ suǒ yǐ zhè 「 qiū xíng xià lìng 」   de qíng xíng ﹐ zài pán biàn jiā bù néng bù shuō shì wàn fēn de yīng duàn ﹐ ér zài wèi zhuāng yě bù néng shuō wú guān yú gǎi gé le 。",
+        "english": ""
+      },
+      {
+        "chinese": "趙司晨腦後空蕩蕩的走來﹐看見的人大嚷說﹐「革命黨來了﹗」",
+        "pinyin": "zhào sī chén nǎo hòu kōng dàng dàng de zǒu lái ﹐ kàn jiàn de rén dà rǎng shuō ﹐ 「 gé mìng dǎng lái le ﹗ 」",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ聽到了很羨慕。",
+        "pinyin": "ā Ｑ tīng dào le hěn xiàn mù 。",
+        "english": ""
+      },
+      {
+        "chinese": "他雖然早知道秀才盤辮的大新聞﹐但總沒有想到自己可以照樣做﹐現在看見趙司晨也如此﹐才有了學樣的意思﹐定下實行的決心。",
+        "pinyin": "tā suī rán zǎo zhī dào xiù cái pán biàn de dà xīn wén ﹐ dàn zǒng méi yǒu xiǎng dào zì jǐ kě yǐ zhào yàng zuò ﹐ xiàn zài kàn jiàn zhào sī chén yě rú cǐ ﹐ cái yǒu le xué yàng de yì sī ﹐ dìng xià shí xíng de jué xīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "他用一支竹筷將辮子盤在頭頂上﹐遲疑多時﹐這才放膽的走去。",
+        "pinyin": "tā yòng yī zhī zhú kuài jiāng biàn zǐ pán zài tóu dǐng shàng ﹐ chí yí duō shí ﹐ zhè cái fàng dǎn de zǒu qù 。",
+        "english": ""
+      },
+      {
+        "chinese": "他在街上走﹐人也看他﹐然而不說什麼話﹐阿Ｑ當初很不快﹐後來便很不平。",
+        "pinyin": "tā zài jiē shàng zǒu ﹐ rén yě kàn tā ﹐ rán ér bù shuō shén me huà ﹐ ā Ｑ dāng chū hěn bù kuài ﹐ hòu lái biàn hěn bù píng 。",
+        "english": ""
+      },
+      {
+        "chinese": "他近來很容易鬧脾氣了﹔其實他的生活﹐倒也並不比造反之前反艱難﹐人見他也客氣﹐店鋪也不說要現錢。",
+        "pinyin": "tā jìn lái hěn róng yì nào pí qì le ﹔ qí shí tā de shēng huó ﹐ dǎo yě bìng bù bǐ zào fǎn zhī qián fǎn jiān nán ﹐ rén jiàn tā yě kè qì ﹐ diàn pū yě bù shuō yào xiàn qián 。",
+        "english": ""
+      },
+      {
+        "chinese": "而阿Ｑ總覺得自己太失意﹕既然革了命﹐不應該只是這樣的。",
+        "pinyin": "ér ā Ｑ zǒng jué dé zì jǐ tài shī yì ﹕ jì rán gé le mìng ﹐ bù yīng gāi zhǐ shì zhè yàng de 。",
+        "english": ""
+      },
+      {
+        "chinese": "況且有一回看見小Ｄ﹐愈使他氣破肚皮了。",
+        "pinyin": "kuàng qiě yǒu yī huí kàn jiàn xiǎo Ｄ ﹐ yù shǐ tā qì pò dù pí le 。",
+        "english": ""
+      },
+      {
+        "chinese": "小Ｄ也將辮子盤在頭頂上了﹐而且也居然用一支竹筷。",
+        "pinyin": "xiǎo Ｄ yě jiāng biàn zǐ pán zài tóu dǐng shàng le ﹐ ér qiě yě jū rán yòng yī zhī zhú kuài 。",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ萬料不到他也敢這樣做﹐ 自己也決不准他這樣做﹗小Ｄ是什麼東西呢﹖他很想即刻揪住他﹐拗斷他的竹筷﹐放下他的辮子﹐並且批他幾個嘴巴﹐聊且懲罰他忘了生辰八字﹐也敢來做革命黨的罪。",
+        "pinyin": "ā Ｑ wàn liào bù dào tā yě gǎn zhè yàng zuò ﹐   zì jǐ yě jué bù zhǔn tā zhè yàng zuò ﹗ xiǎo Ｄ shì shén me dōng xī ne ﹖ tā hěn xiǎng jí kè jiū zhù tā ﹐ ào duàn tā de zhú kuài ﹐ fàng xià tā de biàn zǐ ﹐ bìng qiě pī tā jǐ gè zuǐ bā ﹐ liáo qiě chéng fá tā wàng le shēng chén bā zì ﹐ yě gǎn lái zuò gé mìng dǎng de zuì 。",
+        "english": ""
+      },
+      {
+        "chinese": "但他 終於饒放了﹐單是怒目而視的吐一口唾沫道「呸﹗」",
+        "pinyin": "dàn tā   zhōng yú ráo fàng le ﹐ dān shì nù mù ér shì de tǔ yī kǒu tuò mò dào 「 pēi ﹗ 」",
+        "english": ""
+      },
+      {
+        "chinese": "這幾日裡﹐進城去的只有一個假洋鬼子。",
+        "pinyin": "zhè jǐ rì lǐ ﹐ jìn chéng qù de zhǐ yǒu yī gè jiǎ yáng guǐ zǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "趙秀才本也想靠¨寄存箱子的淵源﹐親身去拜訪舉人老爺的﹐但因為有剪辮的危險﹐所以也就中止了。",
+        "pinyin": "zhào xiù cái běn yě xiǎng kào ¨ jì cún xiāng zǐ de yuān yuán ﹐ qīn shēn qù bài fǎng jǔ rén lǎo yé de ﹐ dàn yīn wèi yǒu jiǎn biàn de wēi xiǎn ﹐ suǒ yǐ yě jiù zhōng zhǐ le 。",
+        "english": ""
+      },
+      {
+        "chinese": "他寫了一封「黃傘格」〔 ４７〕的信﹐託假洋鬼子帶上城﹐而且託他給自己紹介紹介﹐去進自由黨。",
+        "pinyin": "tā xiě le yī fēng 「 huáng sǎn gé 」 〔   ４ ７ 〕 de xìn ﹐ tuō jiǎ yáng guǐ zǐ dài shàng chéng ﹐ ér qiě tuō tā gěi zì jǐ shào jiè shào jiè ﹐ qù jìn zì yóu dǎng 。",
+        "english": ""
+      },
+      {
+        "chinese": "假洋鬼子回來時﹐向秀才討還了四塊洋錢﹐秀才便有一塊銀桃子掛在大襟上了﹔未莊人都驚服﹐說這是柿油黨的頂子〔４８〕﹐抵得一個翰林〔４９〕﹔趙太爺因此也驟然大闊﹐遠過於 他兒子初雋秀才的時候﹐所以目空一切﹐見了阿Ｑ﹐也就很有些不放在眼裡了。",
+        "pinyin": "jiǎ yáng guǐ zǐ huí lái shí ﹐ xiàng xiù cái tǎo hái le sì kuài yáng qián ﹐ xiù cái biàn yǒu yī kuài yín táo zǐ guà zài dà jīn shàng le ﹔ wèi zhuāng rén dōu jīng fú ﹐ shuō zhè shì shì yóu dǎng de dǐng zǐ 〔 ４ ８ 〕 ﹐ dǐ dé yī gè hàn lín 〔 ４ ９ 〕 ﹔ zhào tài yé yīn cǐ yě zhòu rán dà kuò ﹐ yuǎn guò yú   tā ér zǐ chū jùn xiù cái de shí hòu ﹐ suǒ yǐ mù kōng yī qiē ﹐ jiàn le ā Ｑ ﹐ yě jiù hěn yǒu xiē bù fàng zài yǎn lǐ le 。",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ正在不平﹐又時時刻刻感¨冷落﹐一聽得這銀桃子的傳說﹐他立即悟出自己之所以冷落的原因了﹕要革命﹐單說投降﹐是不行的﹔盤上辮子﹐也不行的﹔第一¨仍然要和革命黨 去結識。",
+        "pinyin": "ā Ｑ zhèng zài bù píng ﹐ yòu shí shí kè kè gǎn ¨ lěng luò ﹐ yī tīng dé zhè yín táo zǐ de chuán shuō ﹐ tā lì jí wù chū zì jǐ zhī suǒ yǐ lěng luò de yuán yīn le ﹕ yào gé mìng ﹐ dān shuō tóu jiàng ﹐ shì bù xíng de ﹔ pán shàng biàn zǐ ﹐ yě bù xíng de ﹔ dì yī ¨ réng rán yào hé gé mìng dǎng   qù jié shí 。",
+        "english": ""
+      },
+      {
+        "chinese": "他生平所知道的革命黨只有兩個﹐城裡的一個早已「嚓」的殺掉了﹐現在只剩了一個假洋鬼子。",
+        "pinyin": "tā shēng píng suǒ zhī dào de gé mìng dǎng zhǐ yǒu liǎng gè ﹐ chéng lǐ de yī gè zǎo yǐ 「 cā 」 de shā diào le ﹐ xiàn zài zhǐ shèng le yī gè jiǎ yáng guǐ zǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "他除卻趕緊去和假洋鬼子商量之外﹐再沒有別的道路了。",
+        "pinyin": "tā chú què gǎn jǐn qù hé jiǎ yáng guǐ zǐ shāng liàng zhī wài ﹐ zài méi yǒu bié de dào lù le 。",
+        "english": ""
+      },
+      {
+        "chinese": "錢府的大門正開¨﹐阿Ｑ便怯怯的□進去。",
+        "pinyin": "qián fǔ de dà mén zhèng kāi ¨ ﹐ ā Ｑ biàn qiè qiè de □ jìn qù 。",
+        "english": ""
+      },
+      {
+        "chinese": "他一到裡面﹐很吃了驚﹐只見假洋鬼子正站在院子的中央﹐一身烏黑的大約是洋衣﹐身上也掛¨一塊銀桃子﹐手裡是阿Ｑ曾經領教過的棍子﹐已經留到一尺多長的辮子都拆開了披在肩背上﹐蓬頭散髮的像一個劉海仙 〔５０〕。",
+        "pinyin": "tā yī dào lǐ miàn ﹐ hěn chī le jīng ﹐ zhǐ jiàn jiǎ yáng guǐ zǐ zhèng zhàn zài yuàn zǐ de zhōng yāng ﹐ yī shēn wū hēi de dà yuē shì yáng yī ﹐ shēn shàng yě guà ¨ yī kuài yín táo zǐ ﹐ shǒu lǐ shì ā Ｑ céng jīng lǐng jiào guò de gùn zǐ ﹐ yǐ jīng liú dào yī chǐ duō cháng de biàn zǐ dōu chāi kāi le pī zài jiān bēi shàng ﹐ péng tóu sàn fà de xiàng yī gè liú hǎi xiān   〔 ５ ０ 〕 。",
+        "english": ""
+      },
+      {
+        "chinese": "對面挺直的站¨趙白眼和三個閒人﹐正在必恭必敬的聽說話。",
+        "pinyin": "duì miàn tǐng zhí de zhàn ¨ zhào bái yǎn hé sān gè xián rén ﹐ zhèng zài bì gōng bì jìng de tīng shuō huà 。",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ輕輕的走近了﹐站在趙白眼的背後﹐心裡想招呼﹐卻不知道怎麼說才好﹕叫他假洋鬼子固然是不行的了﹐洋人也不妥﹐革命黨也不妥﹐或者就應該叫洋先生了罷。",
+        "pinyin": "ā Ｑ qīng qīng de zǒu jìn le ﹐ zhàn zài zhào bái yǎn de bēi hòu ﹐ xīn lǐ xiǎng zhāo hū ﹐ què bù zhī dào zěn me shuō cái hǎo ﹕ jiào tā jiǎ yáng guǐ zǐ gù rán shì bù xíng de le ﹐ yáng rén yě bù tuǒ ﹐ gé mìng dǎng yě bù tuǒ ﹐ huò zhě jiù yīng gāi jiào yáng xiān shēng le bà 。",
+        "english": ""
+      },
+      {
+        "chinese": "洋先生卻沒有見他﹐因為白¨眼睛講得正起勁﹕「我是性急的﹐所以我們見面﹐我總是說﹕洪哥〔５１〕﹗我們動手罷﹗他卻總說道Ｎｏ〔５２〕﹗──這是洋話﹐你們不懂的。",
+        "pinyin": "yáng xiān shēng què méi yǒu jiàn tā ﹐ yīn wèi bái ¨ yǎn jīng jiǎng dé zhèng qǐ jìn ﹕ 「 wǒ shì xìng jí de ﹐ suǒ yǐ wǒ mén jiàn miàn ﹐ wǒ zǒng shì shuō ﹕ hóng gē 〔 ５ １ 〕 ﹗ wǒ mén dòng shǒu bà ﹗ tā què zǒng shuō dào Ｎ ｏ 〔 ５ ２ 〕 ﹗ ─ ─ zhè shì yáng huà ﹐ nǐ mén bù dǒng de 。",
+        "english": ""
+      },
+      {
+        "chinese": "否則早已成功了。",
+        "pinyin": "fǒu zé zǎo yǐ chéng gōng le 。",
+        "english": ""
+      },
+      {
+        "chinese": "然而這正是他做事小心的地方。",
+        "pinyin": "rán ér zhè zhèng shì tā zuò shì xiǎo xīn de dì fāng 。",
+        "english": ""
+      },
+      {
+        "chinese": "他再三再四的請我上湖北﹐ 我還沒有肯。",
+        "pinyin": "tā zài sān zài sì de qǐng wǒ shàng hú běi ﹐   wǒ hái méi yǒu kěn 。",
+        "english": ""
+      },
+      {
+        "chinese": "誰願意在這小縣城裡做事情。",
+        "pinyin": "shuí yuàn yì zài zhè xiǎo xiàn chéng lǐ zuò shì qíng 。",
+        "english": ""
+      },
+      {
+        "chinese": "……」",
+        "pinyin": "… … 」",
+        "english": ""
+      },
+      {
+        "chinese": "「唔﹐……這個……」阿Ｑ候他略停﹐終於用十二分的勇氣開口了﹐但不知道因為 什麼﹐又並不叫他洋先生。",
+        "pinyin": "「 wù ﹐ … … zhè gè … … 」 ā Ｑ hòu tā lüè tíng ﹐ zhōng yú yòng shí èr fēn de yǒng qì kāi kǒu le ﹐ dàn bù zhī dào yīn wèi   shén me ﹐ yòu bìng bù jiào tā yáng xiān shēng 。",
+        "english": ""
+      },
+      {
+        "chinese": "聽¨說話的四個人都吃驚的回顧他。",
+        "pinyin": "tīng ¨ shuō huà de sì gè rén dōu chī jīng de huí gù tā 。",
+        "english": ""
+      },
+      {
+        "chinese": "洋先生也才看見﹕「什麼﹖」",
+        "pinyin": "yáng xiān shēng yě cái kàn jiàn ﹕ 「 shén me ﹖ 」",
+        "english": ""
+      },
+      {
+        "chinese": "「我……」",
+        "pinyin": "「 wǒ … … 」",
+        "english": ""
+      },
+      {
+        "chinese": "「出去﹗」",
+        "pinyin": "「 chū qù ﹗ 」",
+        "english": ""
+      },
+      {
+        "chinese": "「我要投……」",
+        "pinyin": "「 wǒ yào tóu … … 」",
+        "english": ""
+      },
+      {
+        "chinese": "「滾出去﹗」洋先生揚起哭喪棒來了。",
+        "pinyin": "「 gǔn chū qù ﹗ 」 yáng xiān shēng yáng qǐ kū sang bàng lái le 。",
+        "english": ""
+      },
+      {
+        "chinese": "趙白眼和閒人們便都吆喝道﹕「先生叫你滾出去﹐你還不聽麼﹗」",
+        "pinyin": "zhào bái yǎn hé xián rén mén biàn dōu yāo hè dào ﹕ 「 xiān shēng jiào nǐ gǔn chū qù ﹐ nǐ hái bù tīng me ﹗ 」",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ將手向頭上一遮﹐不自覺的逃出門外﹔洋先生倒也沒有追。",
+        "pinyin": "ā Ｑ jiāng shǒu xiàng tóu shàng yī zhē ﹐ bù zì jué de táo chū mén wài ﹔ yáng xiān shēng dǎo yě méi yǒu zhuī 。",
+        "english": ""
+      },
+      {
+        "chinese": "他快跑了六十多步﹐ 這才慢慢的走﹐於是心裡便湧起了懮愁﹕洋先生不准他革命﹐他再沒有別的路﹔從此決不能望有白盔白甲的人來叫他﹐他所有的抱負﹐志嚮﹐希望﹐前程﹐全被一筆勾銷了。",
+        "pinyin": "tā kuài pǎo le liù shí duō bù ﹐   zhè cái màn màn de zǒu ﹐ yú shì xīn lǐ biàn yǒng qǐ le yōu chóu ﹕ yáng xiān shēng bù zhǔn tā gé mìng ﹐ tā zài méi yǒu bié de lù ﹔ cóng cǐ jué bù néng wàng yǒu bái kuī bái jiǎ de rén lái jiào tā ﹐ tā suǒ yǒu de bào fù ﹐ zhì xiàng ﹐ xī wàng ﹐ qián chéng ﹐ quán bèi yī bǐ gōu xiāo le 。",
+        "english": ""
+      },
+      {
+        "chinese": "至於閒人們傳揚開去﹐給小Ｄ王胡等輩笑話﹐倒是還在其次的事。",
+        "pinyin": "zhì yú xián rén mén chuán yáng kāi qù ﹐ gěi xiǎo Ｄ wáng hú děng bèi xiào huà ﹐ dǎo shì hái zài qí cì de shì 。",
+        "english": ""
+      },
+      {
+        "chinese": "他似乎從來沒有經驗過這樣的無聊。",
+        "pinyin": "tā sì hū cóng lái méi yǒu jīng yàn guò zhè yàng de wú liáo 。",
+        "english": ""
+      },
+      {
+        "chinese": "他對於自己的盤辮子﹐彷彿也覺得無意味﹐要侮蔑﹔為報仇起見﹐很想立刻放下辮子來﹐但也沒有竟放。",
+        "pinyin": "tā duì yú zì jǐ de pán biàn zǐ ﹐ páng fù yě jué dé wú yì wèi ﹐ yào wǔ miè ﹔ wèi bào chóu qǐ jiàn ﹐ hěn xiǎng lì kè fàng xià biàn zǐ lái ﹐ dàn yě méi yǒu jìng fàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "他游到夜間﹐賒了兩碗酒﹐ 喝下肚去﹐漸漸的高興起來了﹐思想裡才又出現白盔白甲的碎片。",
+        "pinyin": "tā yóu dào yè jiān ﹐ shē le liǎng wǎn jiǔ ﹐   hē xià dù qù ﹐ jiàn jiàn de gāo xìng qǐ lái le ﹐ sī xiǎng lǐ cái yòu chū xiàn bái kuī bái jiǎ de suì piàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "有一天﹐他照例的混到夜深﹐待酒店要關門﹐才踱回土谷祠去。",
+        "pinyin": "yǒu yī tiān ﹐ tā zhào lì de hùn dào yè shēn ﹐ dài jiǔ diàn yào guān mén ﹐ cái duó huí tǔ gǔ cí qù 。",
+        "english": ""
+      },
+      {
+        "chinese": "拍﹐吧﹗",
+        "pinyin": "pāi ﹐ bā ﹗",
+        "english": ""
+      },
+      {
+        "chinese": "他忽而聽得一種異樣的聲音﹐又不是爆竹。",
+        "pinyin": "tā hū ér tīng dé yī zhǒng yì yàng de shēng yīn ﹐ yòu bù shì bào zhú 。",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ本來是愛看熱鬧﹐愛管閒事的﹐便在暗中直尋過去。",
+        "pinyin": "ā Ｑ běn lái shì ài kàn rè nào ﹐ ài guǎn xián shì de ﹐ biàn zài àn zhōng zhí xún guò qù 。",
+        "english": ""
+      },
+      {
+        "chinese": "似乎前面有些腳步聲﹔他正聽﹐猛然間一個人從對面逃來了。",
+        "pinyin": "sì hū qián miàn yǒu xiē jiǎo bù shēng ﹔ tā zhèng tīng ﹐ měng rán jiān yī gè rén cóng duì miàn táo lái le 。",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ一看見﹐便趕緊翻身跟¨逃。",
+        "pinyin": "ā Ｑ yī kàn jiàn ﹐ biàn gǎn jǐn fān shēn gēn ¨ táo 。",
+        "english": ""
+      },
+      {
+        "chinese": "那人轉彎﹐阿Ｑ也轉彎﹐既轉彎﹐那人站住了﹐阿Ｑ也站住。",
+        "pinyin": "nà rén zhuǎn wān ﹐ ā Ｑ yě zhuǎn wān ﹐ jì zhuǎn wān ﹐ nà rén zhàn zhù le ﹐ ā Ｑ yě zhàn zhù 。",
+        "english": ""
+      },
+      {
+        "chinese": "他看後面並無什麼﹐看那人便是小Ｄ。",
+        "pinyin": "tā kàn hòu miàn bìng wú shén me ﹐ kàn nà rén biàn shì xiǎo Ｄ 。",
+        "english": ""
+      },
+      {
+        "chinese": "「什麼﹖」阿Ｑ不平起來了。",
+        "pinyin": "「 shén me ﹖ 」 ā Ｑ bù píng qǐ lái le 。",
+        "english": ""
+      },
+      {
+        "chinese": "「趙……趙家遭搶了﹗」小Ｄ氣喘吁吁的說。",
+        "pinyin": "「 zhào … … zhào jiā zāo qiǎng le ﹗ 」 xiǎo Ｄ qì chuǎn xū xū de shuō 。",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ的心怦怦的跳了。",
+        "pinyin": "ā Ｑ de xīn pēng pēng de tiào le 。",
+        "english": ""
+      },
+      {
+        "chinese": "小Ｄ說了便走﹔阿Ｑ卻逃而又停的兩三回。",
+        "pinyin": "xiǎo Ｄ shuō le biàn zǒu ﹔ ā Ｑ què táo ér yòu tíng de liǎng sān huí 。",
+        "english": ""
+      },
+      {
+        "chinese": "但他究竟是做過 「這路生意」的人﹐格外膽大﹐於是□□□□□□□□□□□□□□□□□□□□□□□□□似乎許多白盔白甲的人﹐絡繹的將箱子抬出了﹐器具抬出了﹐秀才娘子的寧式床也抬出 了﹐但是不分明﹐他還想上前﹐兩只腳卻沒有動。",
+        "pinyin": "dàn tā jiū jìng shì zuò guò   「 zhè lù shēng yì 」 de rén ﹐ gé wài dǎn dà ﹐ yú shì □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ sì hū xǔ duō bái kuī bái jiǎ de rén ﹐ luò yì de jiāng xiāng zǐ tái chū le ﹐ qì jù tái chū le ﹐ xiù cái niáng zǐ de níng shì chuáng yě tái chū   le ﹐ dàn shì bù fēn míng ﹐ tā hái xiǎng shàng qián ﹐ liǎng zhǐ jiǎo què méi yǒu dòng 。",
+        "english": ""
+      },
+      {
+        "chinese": "這一夜沒有月﹐未莊在黑暗裡很寂靜﹐寂靜到像羲皇〔５３〕時候一般太平。",
+        "pinyin": "zhè yī yè méi yǒu yuè ﹐ wèi zhuāng zài hēi àn lǐ hěn jì jìng ﹐ jì jìng dào xiàng xī huáng 〔 ５ ３ 〕 shí hòu yī bān tài píng 。",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ站¨看到自己發煩﹐也似乎還是先前一樣﹐在那裡來來往往的搬﹐箱子抬出了 ﹐器具抬出了﹐秀才娘子的寧式床也抬出了﹐……抬得他自己有些不信他的眼睛了。",
+        "pinyin": "ā Ｑ zhàn ¨ kàn dào zì jǐ fā fán ﹐ yě sì hū hái shì xiān qián yī yàng ﹐ zài nà lǐ lái lái wǎng wǎng de bān ﹐ xiāng zǐ tái chū le   ﹐ qì jù tái chū le ﹐ xiù cái niáng zǐ de níng shì chuáng yě tái chū le ﹐ … … tái dé tā zì jǐ yǒu xiē bù xìn tā de yǎn jīng le 。",
+        "english": ""
+      },
+      {
+        "chinese": "但他決計不再上前﹐卻回到自己的祠裡去了。",
+        "pinyin": "dàn tā jué jì bù zài shàng qián ﹐ què huí dào zì jǐ de cí lǐ qù le 。",
+        "english": ""
+      },
+      {
+        "chinese": "土谷祠裡更漆黑﹔他關好大門﹐摸進自己的屋子裡。",
+        "pinyin": "tǔ gǔ cí lǐ gèng qī hēi ﹔ tā guān hǎo dà mén ﹐ mō jìn zì jǐ de wū zǐ lǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "他躺了好一會﹐這才定了神﹐ 而且發出關於自己的思想來﹕白盔白甲的人明明到了﹐並不來打招呼﹐搬了許多好東西﹐ 又沒有自己的份﹐──這全是假洋鬼子可惡﹐不准我造反﹐否則﹐這次何至於沒有我的 份呢﹖阿Ｑ越想越氣﹐終於禁不住滿心痛恨起來﹐毒毒的點一點頭﹕「不准我造反﹐只 准你造反﹖媽媽的假洋鬼子﹐──好﹐你造反﹗造反是殺頭的罪名呵﹐我總要告一狀﹐ 看你抓進縣裡去殺頭﹐──滿門抄斬﹐──嚓﹗嚓﹗」",
+        "pinyin": "tā tǎng le hǎo yī huì ﹐ zhè cái dìng le shén ﹐   ér qiě fā chū guān yú zì jǐ de sī xiǎng lái ﹕ bái kuī bái jiǎ de rén míng míng dào le ﹐ bìng bù lái dǎ zhāo hū ﹐ bān le xǔ duō hǎo dōng xī ﹐   yòu méi yǒu zì jǐ de fèn ﹐ ─ ─ zhè quán shì jiǎ yáng guǐ zǐ kě è ﹐ bù zhǔn wǒ zào fǎn ﹐ fǒu zé ﹐ zhè cì hé zhì yú méi yǒu wǒ de   fèn ne ﹖ ā Ｑ yuè xiǎng yuè qì ﹐ zhōng yú jīn bù zhù mǎn xīn tòng hèn qǐ lái ﹐ dú dú de diǎn yī diǎn tóu ﹕ 「 bù zhǔn wǒ zào fǎn ﹐ zhǐ   zhǔn nǐ zào fǎn ﹖ mā mā de jiǎ yáng guǐ zǐ ﹐ ─ ─ hǎo ﹐ nǐ zào fǎn ﹗ zào fǎn shì shā tóu de zuì míng hē ﹐ wǒ zǒng yào gào yī zhuàng ﹐   kàn nǐ zhuā jìn xiàn lǐ qù shā tóu ﹐ ─ ─ mǎn mén chāo zhǎn ﹐ ─ ─ cā ﹗ cā ﹗ 」",
+        "english": ""
+      }
+    ]
+  },
+  {
+    "id": "flowers_in_the_mirror_ch_10",
+    "bookId": "flowers_in_the_mirror",
+    "chapterIndex": 10,
+    "title": "第九章　大　團　圓",
+    "titleEn": "Chapter 10: 第九章　大　團　圓",
+    "sentences": [
+      {
+        "chinese": "趙家遭搶之後﹐未莊人大抵很快意而且恐慌﹐阿Ｑ也很快意而且恐慌。",
+        "pinyin": "zhào jiā zāo qiǎng zhī hòu ﹐ wèi zhuāng rén dà dǐ hěn kuài yì ér qiě kǒng huāng ﹐ ā Ｑ yě hěn kuài yì ér qiě kǒng huāng 。",
+        "english": ""
+      },
+      {
+        "chinese": "但四天之後﹐阿Ｑ在半夜裡忽被抓進縣城裡去了。",
+        "pinyin": "dàn sì tiān zhī hòu ﹐ ā Ｑ zài bàn yè lǐ hū bèi zhuā jìn xiàn chéng lǐ qù le 。",
+        "english": ""
+      },
+      {
+        "chinese": "那時恰是暗夜﹐一隊兵﹐一隊團丁﹐一隊警察﹐五個偵探﹐悄悄地到了未莊﹐乘昏暗圍住土谷祠﹐正對門架好機關槍﹔然而阿Ｑ不衝出。",
+        "pinyin": "nà shí qià shì àn yè ﹐ yī duì bīng ﹐ yī duì tuán dīng ﹐ yī duì jǐng chá ﹐ wǔ gè zhēn tàn ﹐ qiāo qiāo dì dào le wèi zhuāng ﹐ chéng hūn àn wéi zhù tǔ gǔ cí ﹐ zhèng duì mén jià hǎo jī guān qiāng ﹔ rán ér ā Ｑ bù chōng chū 。",
+        "english": ""
+      },
+      {
+        "chinese": "許多時沒有動靜﹐把總焦急起來了﹐懸了二十千的賞﹐才有兩個團丁冒了險﹐口止俞垣進去﹐裡應外合﹐一擁而入﹐將阿Ｑ抓出來﹔直待擒出祠外面的機關槍左近﹐他才有些清醒了。",
+        "pinyin": "xǔ duō shí méi yǒu dòng jìng ﹐ bǎ zǒng jiāo jí qǐ lái le ﹐ xuán le èr shí qiān de shǎng ﹐ cái yǒu liǎng gè tuán dīng mào le xiǎn ﹐ kǒu zhǐ yú yuán jìn qù ﹐ lǐ yìng wài hé ﹐ yī yōng ér rù ﹐ jiāng ā Ｑ zhuā chū lái ﹔ zhí dài qín chū cí wài miàn de jī guān qiāng zuǒ jìn ﹐ tā cái yǒu xiē qīng xǐng le 。",
+        "english": ""
+      },
+      {
+        "chinese": "到進城﹐已經是正午﹐阿Ｑ見自己被攙進一所破衙門﹐轉了五六個彎﹐便推在一間小屋裡。",
+        "pinyin": "dào jìn chéng ﹐ yǐ jīng shì zhèng wǔ ﹐ ā Ｑ jiàn zì jǐ bèi chān jìn yī suǒ pò yá mén ﹐ zhuǎn le wǔ liù gè wān ﹐ biàn tuī zài yī jiān xiǎo wū lǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "他剛剛一蹌踉﹐那用整株的木料做成的柵欄門便跟¨他的腳跟闔上了﹐其餘的三面都是牆壁﹐仔細看時﹐屋角上還有兩個人。",
+        "pinyin": "tā gāng gāng yī qiāng liáng ﹐ nà yòng zhěng zhū de mù liào zuò chéng de zhà lán mén biàn gēn ¨ tā de jiǎo gēn hé shàng le ﹐ qí yú de sān miàn dōu shì qiáng bì ﹐ zǐ xì kàn shí ﹐ wū jiǎo shàng hái yǒu liǎng gè rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ雖然有些忐忑﹐卻並不很苦悶﹐因為他那土谷祠裡的臥室﹐也並沒有比這間屋子更高明。",
+        "pinyin": "ā Ｑ suī rán yǒu xiē tǎn tè ﹐ què bìng bù hěn kǔ mèn ﹐ yīn wèi tā nà tǔ gǔ cí lǐ de wò shì ﹐ yě bìng méi yǒu bǐ zhè jiān wū zǐ gèng gāo míng 。",
+        "english": ""
+      },
+      {
+        "chinese": "那兩個也彷彿是鄉下人﹐漸漸和他兜搭起來了﹐一個說是舉人老爺要追他祖父欠下來的陳租﹐一個不知道為了什麼事。",
+        "pinyin": "nà liǎng gè yě páng fù shì xiāng xià rén ﹐ jiàn jiàn hé tā dōu dā qǐ lái le ﹐ yī gè shuō shì jǔ rén lǎo yé yào zhuī tā zǔ fù qiàn xià lái de chén zū ﹐ yī gè bù zhī dào wèi le shén me shì 。",
+        "english": ""
+      },
+      {
+        "chinese": "他們問阿Ｑ﹐阿Ｑ爽利的答道﹐「因為我想造反。",
+        "pinyin": "tā mén wèn ā Ｑ ﹐ ā Ｑ shuǎng lì de dá dào ﹐ 「 yīn wèi wǒ xiǎng zào fǎn 。",
+        "english": ""
+      },
+      {
+        "chinese": "他下半天便又被抓出柵欄門去了﹐到得大堂﹐上面坐¨一個滿頭剃得精光的老頭子。",
+        "pinyin": "tā xià bàn tiān biàn yòu bèi zhuā chū zhà lán mén qù le ﹐ dào dé dà táng ﹐ shàng miàn zuò ¨ yī gè mǎn tóu tì dé jīng guāng de lǎo tóu zǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ疑心他和尚﹐但看見下面站¨一排兵﹐兩旁又站¨十幾個長衫人物﹐也有滿頭剃 得精光像這老頭子的﹐也有將一尺來長的頭髮披在背後像那假洋鬼子的﹐都是一臉橫肉﹐ 怒目而視的看他﹔他便知道這人一定有些來歷﹐膝關節立刻自然而然的寬鬆﹐便跪了下去了。",
+        "pinyin": "ā Ｑ yí xīn tā hé shàng ﹐ dàn kàn jiàn xià miàn zhàn ¨ yī pái bīng ﹐ liǎng páng yòu zhàn ¨ shí jǐ gè cháng shān rén wù ﹐ yě yǒu mǎn tóu tì   dé jīng guāng xiàng zhè lǎo tóu zǐ de ﹐ yě yǒu jiāng yī chǐ lái cháng de tóu fà pī zài bēi hòu xiàng nà jiǎ yáng guǐ zǐ de ﹐ dōu shì yī liǎn héng ròu ﹐   nù mù ér shì de kàn tā ﹔ tā biàn zhī dào zhè rén yī dìng yǒu xiē lái lì ﹐ xī guān jié lì kè zì rán ér rán de kuān sōng ﹐ biàn guì le xià qù le 。",
+        "english": ""
+      },
+      {
+        "chinese": "「站¨說﹗不要跪﹗」長衫人物都吆喝說。",
+        "pinyin": "「 zhàn ¨ shuō ﹗ bù yào guì ﹗ 」 cháng shān rén wù dōu yāo hē shuō 。",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ雖然似乎懂得﹐但總覺得站不住﹐身不由己的蹲了下去﹐而且終於趁勢改為跪下了。",
+        "pinyin": "ā Ｑ suī rán sì hū dǒng dé ﹐ dàn zǒng jué dé zhàn bù zhù ﹐ shēn bù yóu jǐ de dūn le xià qù ﹐ ér qiě zhōng yú chèn shì gǎi wèi guì xià le 。",
+        "english": ""
+      },
+      {
+        "chinese": "「奴隸性﹗……」長衫人物又鄙夷似的說﹐但也沒有叫他起來。",
+        "pinyin": "「 nú lì xìng ﹗ … … 」 cháng shān rén wù yòu bǐ yí shì de shuō ﹐ dàn yě méi yǒu jiào tā qǐ lái 。",
+        "english": ""
+      },
+      {
+        "chinese": "「你從實招來罷﹐免得吃苦。",
+        "pinyin": "「 nǐ cóng shí zhāo lái bà ﹐ miǎn dé chī kǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "我早都知道了。",
+        "pinyin": "wǒ zǎo dōu zhī dào le 。",
+        "english": ""
+      },
+      {
+        "chinese": "招了可以放你。",
+        "pinyin": "zhāo le kě yǐ fàng nǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "」那光頭的老頭子看 定了阿Ｑ的臉﹐沉靜的清楚的說。",
+        "pinyin": "」 nà guāng tóu de lǎo tóu zǐ kàn   dìng le ā Ｑ de liǎn ﹐ chén jìng de qīng chǔ de shuō 。",
+        "english": ""
+      },
+      {
+        "chinese": "「招罷﹗」長衫人物也大聲說。",
+        "pinyin": "「 zhāo bà ﹗ 」 cháng shān rén wù yě dà shēng shuō 。",
+        "english": ""
+      },
+      {
+        "chinese": "「我本來要……來投……」阿Ｑ胡里胡塗的想了一通﹐這才斷斷續續的說。",
+        "pinyin": "「 wǒ běn lái yào … … lái tóu … … 」 ā Ｑ hú lǐ hú tú de xiǎng le yī tōng ﹐ zhè cái duàn duàn xù xù de shuō 。",
+        "english": ""
+      },
+      {
+        "chinese": "「那麼﹐為什麼不來的呢﹖」老頭子和氣的問。",
+        "pinyin": "「 nà me ﹐ wèi shén me bù lái de ne ﹖ 」 lǎo tóu zǐ hé qì de wèn 。",
+        "english": ""
+      },
+      {
+        "chinese": "「假洋鬼子不准我﹗」",
+        "pinyin": "「 jiǎ yáng guǐ zǐ bù zhǔn wǒ ﹗ 」",
+        "english": ""
+      },
+      {
+        "chinese": "「胡說﹗此刻說﹐也遲了。",
+        "pinyin": "「 hú shuō ﹗ cǐ kè shuō ﹐ yě chí le 。",
+        "english": ""
+      },
+      {
+        "chinese": "現在你的同黨在那裡﹖」「什麼﹖……」",
+        "pinyin": "xiàn zài nǐ de tóng dǎng zài nà lǐ ﹖ 」 「 shén me ﹖ … … 」",
+        "english": ""
+      },
+      {
+        "chinese": "「那一晚打劫趙家的一夥人。",
+        "pinyin": "「 nà yī wǎn dǎ jié zhào jiā de yī huǒ rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "「他們沒有來叫我。",
+        "pinyin": "「 tā mén méi yǒu lái jiào wǒ 。",
+        "english": ""
+      },
+      {
+        "chinese": "他們自己搬走了。",
+        "pinyin": "tā mén zì jǐ bān zǒu le 。",
+        "english": ""
+      },
+      {
+        "chinese": "」阿Ｑ提起來便憤憤。",
+        "pinyin": "」 ā Ｑ tí qǐ lái biàn fèn fèn 。",
+        "english": ""
+      },
+      {
+        "chinese": "「走到那裡去了呢﹖說出來便放你了。",
+        "pinyin": "「 zǒu dào nà lǐ qù le ne ﹖ shuō chū lái biàn fàng nǐ le 。",
+        "english": ""
+      },
+      {
+        "chinese": "」老頭子更和氣了。",
+        "pinyin": "」 lǎo tóu zǐ gèng hé qì le 。",
+        "english": ""
+      },
+      {
+        "chinese": "「我不知道﹐……他們沒有來叫我……」",
+        "pinyin": "「 wǒ bù zhī dào ﹐ … … tā mén méi yǒu lái jiào wǒ … … 」",
+        "english": ""
+      },
+      {
+        "chinese": "然而老頭子使了一個眼色﹐阿Ｑ便又被抓進柵欄門裡了。",
+        "pinyin": "rán ér lǎo tóu zǐ shǐ le yī gè yǎn sè ﹐ ā Ｑ biàn yòu bèi zhuā jìn zhà lán mén lǐ le 。",
+        "english": ""
+      },
+      {
+        "chinese": "他第二次抓出柵欄門﹐是第二天的上午。",
+        "pinyin": "tā dì èr cì zhuā chū zhà lán mén ﹐ shì dì èr tiān de shàng wǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "大堂的情形都照舊。",
+        "pinyin": "dà táng de qíng xíng dōu zhào jiù 。",
+        "english": ""
+      },
+      {
+        "chinese": "上面仍然坐¨光頭的老頭子﹐阿Ｑ也仍然下了跪。",
+        "pinyin": "shàng miàn réng rán zuò ¨ guāng tóu de lǎo tóu zǐ ﹐ ā Ｑ yě réng rán xià le guì 。",
+        "english": ""
+      },
+      {
+        "chinese": "老頭子和氣的問道﹐「你還有什麼話說麼﹖」",
+        "pinyin": "lǎo tóu zǐ hé qì de wèn dào ﹐ 「 nǐ hái yǒu shén me huà shuō me ﹖ 」",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ一想﹐沒有話﹐便回答說﹐「沒有。",
+        "pinyin": "ā Ｑ yī xiǎng ﹐ méi yǒu huà ﹐ biàn huí dá shuō ﹐ 「 méi yǒu 。",
+        "english": ""
+      },
+      {
+        "chinese": "於是一個長衫人物拿了一張紙﹐並一支筆送到阿Ｑ的面前﹐要將筆塞在他手裡。",
+        "pinyin": "yú shì yī gè cháng shān rén wù ná le yī zhāng zhǐ ﹐ bìng yī zhī bǐ sòng dào ā Ｑ de miàn qián ﹐ yào jiāng bǐ sāi zài tā shǒu lǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ這時很吃驚﹐幾乎「魂飛魄散」了﹕因為他的手和筆相關﹐這回是初次。",
+        "pinyin": "ā Ｑ zhè shí hěn chī jīng ﹐ jǐ hū 「 hún fēi pò sàn 」 le ﹕ yīn wèi tā de shǒu hé bǐ xiāng guān ﹐ zhè huí shì chū cì 。",
+        "english": ""
+      },
+      {
+        "chinese": "他正不知怎樣拿﹔那人卻又指¨一處地方教他畫花押。",
+        "pinyin": "tā zhèng bù zhī zěn yàng ná ﹔ nà rén què yòu zhǐ ¨ yī chù dì fāng jiào tā huà huā yā 。",
+        "english": ""
+      },
+      {
+        "chinese": "「我……我……不認得字。",
+        "pinyin": "「 wǒ … … wǒ … … bù rèn dé zì 。",
+        "english": ""
+      },
+      {
+        "chinese": "」阿Ｑ一把抓住了筆﹐惶恐而且慚愧的說。",
+        "pinyin": "」 ā Ｑ yī bǎ zhuā zhù le bǐ ﹐ huáng kǒng ér qiě cán kuì de shuō 。",
+        "english": ""
+      },
+      {
+        "chinese": "「那麼﹐便宜你﹐畫一個圓圈﹗」",
+        "pinyin": "「 nà me ﹐ pián yi nǐ ﹐ huà yī gè yuán quān ﹗ 」",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ要畫圓圈了﹐那手捏¨筆卻只是抖。",
+        "pinyin": "ā Ｑ yào huà yuán quān le ﹐ nà shǒu niē ¨ bǐ què zhǐ shì dǒu 。",
+        "english": ""
+      },
+      {
+        "chinese": "於是那人替他將紙鋪在地上﹐阿Ｑ伏下去﹐ 使盡了平生的力畫圓圈。",
+        "pinyin": "yú shì nà rén tì tā jiāng zhǐ pū zài dì shàng ﹐ ā Ｑ fú xià qù ﹐   shǐ jìn le píng shēng de lì huà yuán quān 。",
+        "english": ""
+      },
+      {
+        "chinese": "他生怕被人笑話﹐立志要畫得圓﹐但這可惡的筆不但很沉重﹐ 並且不聽話﹐剛剛一抖一抖的幾乎要合縫﹐卻又向外一聳﹐畫成瓜子模樣了。",
+        "pinyin": "tā shēng pà bèi rén xiào huà ﹐ lì zhì yào huà dé yuán ﹐ dàn zhè kě è de bǐ bù dàn hěn chén zhòng ﹐   bìng qiě bù tīng huà ﹐ gāng gāng yī dǒu yī dǒu de jǐ hū yào hé féng ﹐ què yòu xiàng wài yī sǒng ﹐ huà chéng guā zǐ mú yàng le 。",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ正羞愧自己畫得不圓﹐那人卻不計較﹐早已掣了紙筆去﹐許多人又將他第二次 抓進柵欄門。",
+        "pinyin": "ā Ｑ zhèng xiū kuì zì jǐ huà dé bù yuán ﹐ nà rén què bù jì jiào ﹐ zǎo yǐ chè le zhǐ bǐ qù ﹐ xǔ duō rén yòu jiāng tā dì èr cì   zhuā jìn zhà lán mén 。",
+        "english": ""
+      },
+      {
+        "chinese": "他第二次進了柵欄﹐倒也並不十分懊惱。",
+        "pinyin": "tā dì èr cì jìn le zhà lán ﹐ dǎo yě bìng bù shí fēn ào nǎo 。",
+        "english": ""
+      },
+      {
+        "chinese": "他以為人生天地之間﹐大約本來有時要抓進抓出﹐有時要在紙上畫圓圈的﹐惟有圈而不圓﹐卻是他「行狀」上的一個污點。",
+        "pinyin": "tā yǐ wèi rén shēng tiān dì zhī jiān ﹐ dà yuē běn lái yǒu shí yào zhuā jìn zhuā chū ﹐ yǒu shí yào zài zhǐ shàng huà yuán quān de ﹐ wéi yǒu quān ér bù yuán ﹐ què shì tā 「 xíng zhuàng 」 shàng de yī gè wū diǎn 。",
+        "english": ""
+      },
+      {
+        "chinese": "但不多時也就釋然了﹐他想﹕孫子才畫得很圓的圓圈呢。",
+        "pinyin": "dàn bù duō shí yě jiù shì rán le ﹐ tā xiǎng ﹕ sūn zǐ cái huà dé hěn yuán de yuán quān ne 。",
+        "english": ""
+      },
+      {
+        "chinese": "於是他睡¨了。",
+        "pinyin": "yú shì tā shuì ¨ le 。",
+        "english": ""
+      },
+      {
+        "chinese": "然而這一夜﹐舉人老爺反而不能睡﹕他和把總嘔了氣了。",
+        "pinyin": "rán ér zhè yī yè ﹐ jǔ rén lǎo yé fǎn ér bù néng shuì ﹕ tā hé bǎ zǒng ǒu le qì le 。",
+        "english": ""
+      },
+      {
+        "chinese": "舉人老爺主張第一要追贓﹐ 把總主張第一要示眾。",
+        "pinyin": "jǔ rén lǎo yé zhǔ zhāng dì yī yào zhuī zāng ﹐   bǎ zǒng zhǔ zhāng dì yī yào shì zhòng 。",
+        "english": ""
+      },
+      {
+        "chinese": "把總近來很不將舉人老爺放在眼裡了﹐拍案打凳的說道﹐「懲一儆百﹗你看﹐我做革命黨還不上二十天﹐搶案就是十幾件﹐全不破案﹐我的面子在那裡﹖ 破了案﹐你又來迂。",
+        "pinyin": "bǎ zǒng jìn lái hěn bù jiāng jǔ rén lǎo yé fàng zài yǎn lǐ le ﹐ pāi àn dǎ dèng de shuō dào ﹐ 「 chéng yī jǐng bǎi ﹗ nǐ kàn ﹐ wǒ zuò gé mìng dǎng hái bù shàng èr shí tiān ﹐ qiǎng àn jiù shì shí jǐ jiàn ﹐ quán bù pò àn ﹐ wǒ de miàn zǐ zài nà lǐ ﹖   pò le àn ﹐ nǐ yòu lái yū 。",
+        "english": ""
+      },
+      {
+        "chinese": "不成﹗這是我管的﹗」舉人老爺窘急了﹐然而還堅持﹐說是倘若不追贓﹐他便立刻辭了幫辦民政的職務。",
+        "pinyin": "bù chéng ﹗ zhè shì wǒ guǎn de ﹗ 」 jǔ rén lǎo yé jiǒng jí le ﹐ rán ér hái jiān chí ﹐ shuō shì tǎng ruò bù zhuī zāng ﹐ tā biàn lì kè cí le bāng bàn mín zhèng de zhí wù 。",
+        "english": ""
+      },
+      {
+        "chinese": "而把總卻道﹐「請便罷﹗」於是舉人老爺在這一夜竟沒有睡﹐但幸而第二天倒也沒有辭。",
+        "pinyin": "ér bǎ zǒng què dào ﹐ 「 qǐng biàn bà ﹗ 」 yú shì jǔ rén lǎo yé zài zhè yī yè jìng méi yǒu shuì ﹐ dàn xìng ér dì èr tiān dǎo yě méi yǒu cí 。",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ第三次抓出柵欄門的時候﹐便是舉人老爺睡不¨的那一夜的明天的上午了。",
+        "pinyin": "ā Ｑ dì sān cì zhuā chū zhà lán mén de shí hòu ﹐ biàn shì jǔ rén lǎo yé shuì bù ¨ de nà yī yè de míng tiān de shàng wǔ le 。",
+        "english": ""
+      },
+      {
+        "chinese": "他到了大堂﹐上面還坐¨照例的光頭老頭子﹔阿Ｑ也照例的下了跪。",
+        "pinyin": "tā dào le dà táng ﹐ shàng miàn hái zuò ¨ zhào lì de guāng tóu lǎo tóu zǐ ﹔ ā Ｑ yě zhào lì de xià le guì 。",
+        "english": ""
+      },
+      {
+        "chinese": "老頭子很和氣的問道﹐「你還有什麼話麼﹖」",
+        "pinyin": "lǎo tóu zǐ hěn hé qì de wèn dào ﹐ 「 nǐ hái yǒu shén me huà me ﹖ 」",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ一想﹐沒有話﹐便回答說﹐「沒有。",
+        "pinyin": "ā Ｑ yī xiǎng ﹐ méi yǒu huà ﹐ biàn huí dá shuō ﹐ 「 méi yǒu 。",
+        "english": ""
+      },
+      {
+        "chinese": "許多長衫和短衫人物﹐忽然給他穿上一件洋布的白背心﹐上面有些黑字。",
+        "pinyin": "xǔ duō cháng shān hé duǎn shān rén wù ﹐ hū rán gěi tā chuān shàng yī jiàn yáng bù de bái bēi xīn ﹐ shàng miàn yǒu xiē hēi zì 。",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ很氣苦﹕因為這很像是帶孝﹐而帶孝是晦氣的。",
+        "pinyin": "ā Ｑ hěn qì kǔ ﹕ yīn wèi zhè hěn xiàng shì dài xiào ﹐ ér dài xiào shì huì qì de 。",
+        "english": ""
+      },
+      {
+        "chinese": "然而同時他的兩手反縛了﹐同時又被一直抓出衙門外去了。",
+        "pinyin": "rán ér tóng shí tā de liǎng shǒu fǎn fù le ﹐ tóng shí yòu bèi yī zhí zhuā chū yá mén wài qù le 。",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ被抬上了一輛沒有篷的車﹐幾個短衣人物也和他同坐在一處。",
+        "pinyin": "ā Ｑ bèi tái shàng le yī liàng méi yǒu péng de chē ﹐ jǐ gè duǎn yī rén wù yě hé tā tóng zuò zài yī chù 。",
+        "english": ""
+      },
+      {
+        "chinese": "這車立刻走動了﹐ 前面是一班背¨洋炮的兵們和團丁﹐兩旁是許多張¨嘴的看客﹐後面怎樣﹐阿Ｑ沒有見。",
+        "pinyin": "zhè chē lì kè zǒu dòng le ﹐   qián miàn shì yī bān bēi ¨ yáng pào de bīng mén hé tuán dīng ﹐ liǎng páng shì xǔ duō zhāng ¨ zuǐ de kàn kè ﹐ hòu miàn zěn yàng ﹐ ā Ｑ méi yǒu jiàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "但他突然覺到了﹕這豈不是去殺頭麼﹖他一急﹐兩眼發黑﹐耳朵裡□□□□□□□□□□□ 然而他又沒有全發昏﹐有時雖然¨急﹐有時卻也泰然﹔他意思之間﹐似乎覺得人生天地 間﹐大約本來有時也未免要殺頭的。",
+        "pinyin": "dàn tā tū rán jué dào le ﹕ zhè qǐ bù shì qù shā tóu me ﹖ tā yī jí ﹐ liǎng yǎn fā hēi ﹐ ěr duǒ lǐ □ □ □ □ □ □ □ □ □ □ □   rán ér tā yòu méi yǒu quán fā hūn ﹐ yǒu shí suī rán ¨ jí ﹐ yǒu shí què yě tài rán ﹔ tā yì sī zhī jiān ﹐ sì hū jué dé rén shēng tiān dì   jiān ﹐ dà yuē běn lái yǒu shí yě wèi miǎn yào shā tóu de 。",
+        "english": ""
+      },
+      {
+        "chinese": "他還認得路﹐於是有些詫異了﹕怎麼不向¨法場走呢﹖他不知道這是在游街﹐在示眾。",
+        "pinyin": "tā hái rèn dé lù ﹐ yú shì yǒu xiē chà yì le ﹕ zěn me bù xiàng ¨ fǎ chǎng zǒu ne ﹖ tā bù zhī dào zhè shì zài yóu jiē ﹐ zài shì zhòng 。",
+        "english": ""
+      },
+      {
+        "chinese": "但即使知道也一樣﹐他不過便以為人生天地間﹐大約本來有時也未免要游街要示眾罷了。",
+        "pinyin": "dàn jí shǐ zhī dào yě yī yàng ﹐ tā bù guò biàn yǐ wèi rén shēng tiān dì jiān ﹐ dà yuē běn lái yǒu shí yě wèi miǎn yào yóu jiē yào shì zhòng bà le 。",
+        "english": ""
+      },
+      {
+        "chinese": "他省悟了﹐這是繞到法場去的路﹐這一定是「嚓」的去殺頭。",
+        "pinyin": "tā shěng wù le ﹐ zhè shì rào dào fǎ chǎng qù de lù ﹐ zhè yī dìng shì 「 cā 」 de qù shā tóu 。",
+        "english": ""
+      },
+      {
+        "chinese": "他惘惘的向左右看﹐ 全跟¨馬蟻似的人﹐而在無意中﹐卻在路旁的人叢中發見了一個吳媽。",
+        "pinyin": "tā wǎng wǎng de xiàng zuǒ yòu kàn ﹐   quán gēn ¨ mǎ yǐ shì de rén ﹐ ér zài wú yì zhōng ﹐ què zài lù páng de rén cóng zhōng fā jiàn le yī gè wú mā 。",
+        "english": ""
+      },
+      {
+        "chinese": "很久違﹐伊原來在城裡做工了。",
+        "pinyin": "hěn jiǔ wéi ﹐ yī yuán lái zài chéng lǐ zuò gōng le 。",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ忽然很羞愧自己沒志氣﹕竟沒有唱幾句戲。",
+        "pinyin": "ā Ｑ hū rán hěn xiū kuì zì jǐ méi zhì qì ﹕ jìng méi yǒu chàng jǐ jù xì 。",
+        "english": ""
+      },
+      {
+        "chinese": "他的思想彷佛旋風似的 在腦裡一迴旋﹕《小孤孀上墳》欠堂皇﹐《龍虎斗》裡的「悔不該……」也太乏﹐還是「手執鋼鞭將你打」罷。",
+        "pinyin": "tā de sī xiǎng páng fó xuán fēng shì de   zài nǎo lǐ yī huí xuán ﹕ 《 xiǎo gū shuāng shàng fén 》 qiàn táng huáng ﹐ 《 lóng hǔ dòu 》 lǐ de 「 huǐ bù gāi … … 」 yě tài fá ﹐ hái shì 「 shǒu zhí gāng biān jiāng nǐ dǎ 」 bà 。",
+        "english": ""
+      },
+      {
+        "chinese": "他同時想將手一揚﹐才記得這兩手原來都捆¨﹐於是「手執鋼鞭」也不唱了。",
+        "pinyin": "tā tóng shí xiǎng jiāng shǒu yī yáng ﹐ cái jì dé zhè liǎng shǒu yuán lái dōu kǔn ¨ ﹐ yú shì 「 shǒu zhí gāng biān 」 yě bù chàng le 。",
+        "english": ""
+      },
+      {
+        "chinese": "「過了二十年又是一個……」阿Ｑ在百忙中﹐「無師自通」的說出半句從來不說的話。",
+        "pinyin": "「 guò le èr shí nián yòu shì yī gè … … 」 ā Ｑ zài bǎi máng zhōng ﹐ 「 wú shī zì tōng 」 de shuō chū bàn jù cóng lái bù shuō de huà 。",
+        "english": ""
+      },
+      {
+        "chinese": "「好﹗﹗﹗」從人叢裡﹐便發出豺狼的嗥叫一般的聲音來。",
+        "pinyin": "「 hǎo ﹗ ﹗ ﹗ 」 cóng rén cóng lǐ ﹐ biàn fā chū chái láng de háo jiào yī bān de shēng yīn lái 。",
+        "english": ""
+      },
+      {
+        "chinese": "車子不住的前行﹐阿Ｑ在喝采聲中﹐輪轉眼睛去看吳媽﹐似乎伊一向並沒有見他﹐ 卻只是出神的看¨兵們背上的洋炮。",
+        "pinyin": "chē zǐ bù zhù de qián xíng ﹐ ā Ｑ zài hē cǎi shēng zhōng ﹐ lún zhuǎn yǎn jīng qù kàn wú mā ﹐ sì hū yī yī xiàng bìng méi yǒu jiàn tā ﹐   què zhǐ shì chū shén de kàn ¨ bīng mén bēi shàng de yáng pào 。",
+        "english": ""
+      },
+      {
+        "chinese": "阿Ｑ於是再看那些喝采的人們。",
+        "pinyin": "ā Ｑ yú shì zài kàn nà xiē hē cǎi de rén mén 。",
+        "english": ""
+      },
+      {
+        "chinese": "這剎那中﹐他的思想又彷彿旋風似的在腦裡一迴旋了。",
+        "pinyin": "zhè chà nà zhōng ﹐ tā de sī xiǎng yòu páng fù xuán fēng shì de zài nǎo lǐ yī huí xuán le 。",
+        "english": ""
+      },
+      {
+        "chinese": "四年之前﹐他曾在山腳下遇見一隻餓狼﹐永是不近不遠的跟定他﹐要吃他的肉。",
+        "pinyin": "sì nián zhī qián ﹐ tā céng zài shān jiǎo xià yù jiàn yī zhǐ è láng ﹐ yǒng shì bù jìn bù yuǎn de gēn dìng tā ﹐ yào chī tā de ròu 。",
+        "english": ""
+      },
+      {
+        "chinese": "他那時嚇得幾乎要死﹐幸而手裡有一柄斫柴刀﹐才得仗這壯了膽﹐支持到未莊﹔可是永遠記得那狼眼睛﹐又凶又怯﹐閃閃的像兩顆鬼火﹐似乎遠遠的來穿透了他的皮肉。",
+        "pinyin": "tā nà shí xià dé jǐ hū yào sǐ ﹐ xìng ér shǒu lǐ yǒu yī bǐng zhuó chái dāo ﹐ cái dé zhàng zhè zhuàng le dǎn ﹐ zhī chí dào wèi zhuāng ﹔ kě shì yǒng yuǎn jì dé nà láng yǎn jīng ﹐ yòu xiōng yòu qiè ﹐ shǎn shǎn de xiàng liǎng kē guǐ huǒ ﹐ sì hū yuǎn yuǎn de lái chuān tòu le tā de pí ròu 。",
+        "english": ""
+      },
+      {
+        "chinese": "而這回他又看見從來沒有見過的更可怕的眼睛了﹐又鈍又鋒利﹐不但已經咀嚼了他的話﹐並且還要咀嚼他皮肉以外的東西﹐永是不遠不近的跟他走。",
+        "pinyin": "ér zhè huí tā yòu kàn jiàn cóng lái méi yǒu jiàn guò de gèng kě pà de yǎn jīng le ﹐ yòu dùn yòu fēng lì ﹐ bù dàn yǐ jīng jǔ jué le tā de huà ﹐ bìng qiě hái yào jǔ jué tā pí ròu yǐ wài de dōng xī ﹐ yǒng shì bù yuǎn bù jìn de gēn tā zǒu 。",
+        "english": ""
+      },
+      {
+        "chinese": "這些眼睛們似乎連成一氣﹐已經在那裡咬他的靈魂。",
+        "pinyin": "zhè xiē yǎn jīng mén sì hū lián chéng yī qì ﹐ yǐ jīng zài nà lǐ yǎo tā de líng hún 。",
+        "english": ""
+      },
+      {
+        "chinese": "「救命﹐……」",
+        "pinyin": "「 jiù mìng ﹐ … … 」",
+        "english": ""
+      },
+      {
+        "chinese": "然而阿Ｑ沒有說。",
+        "pinyin": "rán ér ā Ｑ méi yǒu shuō 。",
+        "english": ""
+      },
+      {
+        "chinese": "他早就兩眼發黑﹐耳朵裡嗡的一聲﹐覺得全身彷彿微塵似的迸散了。",
+        "pinyin": "tā zǎo jiù liǎng yǎn fā hēi ﹐ ěr duǒ lǐ wēng de yī shēng ﹐ jué dé quán shēn páng fù wēi chén shì de bèng sàn le 。",
+        "english": ""
+      },
+      {
+        "chinese": "至於當時的影響﹐最大的倒反在舉人老爺﹐因為終於沒有追贓﹐他全家都號*G了。",
+        "pinyin": "zhì yú dāng shí de yǐng xiǎng ﹐ zuì dà de dǎo fǎn zài jǔ rén lǎo yé ﹐ yīn wèi zhōng yú méi yǒu zhuī zāng ﹐ tā quán jiā dōu hào * G le 。",
+        "english": ""
+      },
+      {
+        "chinese": "其次是趙府﹐非特秀才因為上城去報官﹐被不好的革命黨剪了辮子﹐而且又破費了二十千的賞錢﹐所以全家也號□□了。",
+        "pinyin": "qí cì shì zhào fǔ ﹐ fēi tè xiù cái yīn wèi shàng chéng qù bào guān ﹐ bèi bù hǎo de gé mìng dǎng jiǎn le biàn zǐ ﹐ ér qiě yòu pò fèi le èr shí qiān de shǎng qián ﹐ suǒ yǐ quán jiā yě hào □ □ le 。",
+        "english": ""
+      },
+      {
+        "chinese": "從這一天以來﹐他們便漸漸的都發生了遺老的氣味。",
+        "pinyin": "cóng zhè yī tiān yǐ lái ﹐ tā mén biàn jiàn jiàn de dōu fā shēng le yí lǎo de qì wèi 。",
+        "english": ""
+      },
+      {
+        "chinese": "至於輿論﹐在未莊是無異議﹐自然都說阿Ｑ壞﹐被槍斃便是他的壞的證據﹔不壞又何至於被槍斃呢﹖而城裡的輿論卻不佳﹐他們多半不滿足﹐以為槍斃並無殺頭這般好看 ﹔而且那是怎樣的一個可笑的死囚呵﹐游了那麼久的街﹐竟沒有唱一句戲﹕他們白跟一趟了。",
+        "pinyin": "zhì yú yú lùn ﹐ zài wèi zhuāng shì wú yì yì ﹐ zì rán dōu shuō ā Ｑ huài ﹐ bèi qiāng bì biàn shì tā de huài de zhèng jù ﹔ bù huài yòu hé zhì yú bèi qiāng bì ne ﹖ ér chéng lǐ de yú lùn què bù jiā ﹐ tā mén duō bàn bù mǎn zú ﹐ yǐ wèi qiāng bì bìng wú shā tóu zhè bān hǎo kàn   ﹔ ér qiě nà shì zěn yàng de yī gè kě xiào de sǐ qiú hē ﹐ yóu le nà me jiǔ de jiē ﹐ jìng méi yǒu chàng yī jù xì ﹕ tā mén bái gēn yī tàng le 。",
+        "english": ""
+      },
+      {
+        "chinese": "一九二一年十二月。",
+        "pinyin": "yī jiǔ èr yī nián shí èr yuè 。",
+        "english": ""
+      },
+      {
+        "chinese": "〔１〕　本篇最初分章發表於北京《晨報副刊》﹐自一九二一年十二月四日起至一 九二二年二月十二日止﹐每週或隔週刊登一次﹐署名巴人。",
+        "pinyin": "〔 １ 〕 　 běn piān zuì chū fēn zhāng fā biǎo yú běi jīng 《 chén bào fù kān 》 ﹐ zì yī jiǔ èr yī nián shí èr yuè sì rì qǐ zhì yī   jiǔ èr èr nián èr yuè shí èr rì zhǐ ﹐ měi zhōu huò gé zhōu kān dēng yī cì ﹐ shǔ míng bā rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "作者在一九二五年曾為這篇小說的俄文譯本寫過一篇短序﹐後收在《集外集》中﹔ 一九二六年又寫過《阿Ｑ正傳的成因》一文﹐收在《華蓋集續編》中﹐都可參看。",
+        "pinyin": "zuò zhě zài yī jiǔ èr wǔ nián céng wèi zhè piān xiǎo shuō de é wén yì běn xiě guò yī piān duǎn xù ﹐ hòu shōu zài 《 jí wài jí 》 zhōng ﹔   yī jiǔ èr liù nián yòu xiě guò 《 ā Ｑ zhèng chuán de chéng yīn 》 yī wén ﹐ shōu zài 《 huá gài jí xù biān 》 zhōng ﹐ dōu kě cān kàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "〔２〕　「立言」　我國古代所謂「三不朽」之一。",
+        "pinyin": "〔 ２ 〕 　 「 lì yán 」 　 wǒ guó gǔ dài suǒ wèi 「 sān bù xiǔ 」 zhī yī 。",
+        "english": ""
+      },
+      {
+        "chinese": "《左傳》襄公二十四年載魯國大夫叔孫豹的話﹕「太上有立德﹐其次有立功﹐其次有立言﹐雖久不廢﹐此之謂不朽。",
+        "pinyin": "《 zuǒ zhuàn 》 xiāng gōng èr shí sì nián zài lǔ guó dài fū shū sūn bào de huà ﹕ 「 tài shàng yǒu lì dé ﹐ qí cì yǒu lì gōng ﹐ qí cì yǒu lì yán ﹐ suī jiǔ bù fèi ﹐ cǐ zhī wèi bù xiǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "〔３〕　「名不正則言不順」　語見《論語‧子路》。",
+        "pinyin": "〔 ３ 〕 　 「 míng bù zhèng zé yán bù shùn 」 　 yǔ jiàn 《 lùn yǔ ‧ zǐ lù 》 。",
+        "english": ""
+      },
+      {
+        "chinese": "〔４〕　內傳　小說體傳記 的一種。",
+        "pinyin": "〔 ４ 〕 　 nèi chuán 　 xiǎo shuō tǐ zhuàn jì   de yī zhǒng 。",
+        "english": ""
+      },
+      {
+        "chinese": "作者在一九三一年三月三日給《阿Ｑ正傳》日譯者山上正義的校釋中說﹕「昔日道士寫仙人的事多以『內傳』題名。",
+        "pinyin": "zuò zhě zài yī jiǔ sān yī nián sān yuè sān rì gěi 《 ā Ｑ zhèng chuán 》 rì yì zhě shān shàng zhèng yì de xiào shì zhōng shuō ﹕ 「 xī rì dào shì xiě xiān rén de shì duō yǐ 『 nèi chuán 』 tí míng 。",
+        "english": ""
+      },
+      {
+        "chinese": "〔５〕　「正史」　封建時代由官方撰修或認可的史書。",
+        "pinyin": "〔 ５ 〕 　 「 zhèng shǐ 」 　 fēng jiàn shí dài yóu guān fāng zhuàn xiū huò rèn kě de shǐ shū 。",
+        "english": ""
+      },
+      {
+        "chinese": "清代乾隆時規定自《史記》 至《明史》歷代二十四部紀傳體史書為「正史」。",
+        "pinyin": "qīng dài qián lóng shí guī dìng zì 《 shǐ jì 》   zhì 《 míng shǐ 》 lì dài èr shí sì bù jì chuán tǐ shǐ shū wèi 「 zhèng shǐ 」 。",
+        "english": ""
+      },
+      {
+        "chinese": "「正史」中的「列傳」部份﹐一般都是著名人物的傳記。",
+        "pinyin": "「 zhèng shǐ 」 zhōng de 「 liè chuán 」 bù fèn ﹐ yī bān dōu shì zhuó míng rén wù de zhuàn jì 。",
+        "english": ""
+      },
+      {
+        "chinese": "〔６〕　宣付國史館立「本傳」　舊時效忠於統治階級的重要人物或所謂名人﹐死後由政府明令褒揚﹐令文末常有「宣付國史館立傳」的話。",
+        "pinyin": "〔 ６ 〕 　 xuān fù guó shǐ guǎn lì 「 běn chuán 」 　 jiù shí xiào zhōng yú tǒng zhì jiē jí de zhòng yào rén wù huò suǒ wèi míng rén ﹐ sǐ hòu yóu zhèng fǔ míng lìng bāo yáng ﹐ lìng wén mò cháng yǒu 「 xuān fù guó shǐ guǎn lì chuán 」 de huà 。",
+        "english": ""
+      },
+      {
+        "chinese": "歷代編纂史書的機構﹐名稱不一﹐清代叫國史館。",
+        "pinyin": "lì dài biān zuǎn shǐ shū de jī gòu ﹐ míng chēng bù yī ﹐ qīng dài jiào guó shǐ guǎn 。",
+        "english": ""
+      },
+      {
+        "chinese": "辛亥革命後﹐北洋軍閥及國民黨政府都曾沿用這一名稱。",
+        "pinyin": "xīn hài gé mìng hòu ﹐ běi yáng jūn fá jí guó mín dǎng zhèng fǔ dōu céng yán yòng zhè yī míng chēng 。",
+        "english": ""
+      },
+      {
+        "chinese": "〔７〕　迭更司（Ｃ﹒Ｄｉｃｋｅｎｓ﹐１８１２─１８７０）　通譯狄更斯﹐英國小說家。",
+        "pinyin": "〔 ７ 〕 　 dié gèng sī （ Ｃ ﹒ Ｄ ｉ ｃ ｋ ｅ ｎ ｓ ﹐ １ ８ １ ２ ─ １ ８ ７ ０ ） 　 tōng yì dí gèng sī ﹐ yīng guó xiǎo shuō jiā 。",
+        "english": ""
+      },
+      {
+        "chinese": "著有《大衛‧科波菲爾》﹑《雙城記》等。",
+        "pinyin": "zhuó yǒu 《 dà wèi ‧ kē bō fēi ěr 》 ﹑ 《 shuāng chéng jì 》 děng 。",
+        "english": ""
+      },
+      {
+        "chinese": "《博徒別傳》原名《勞特奈‧斯 吞》﹐英國小說家柯南‧道爾（１８５９─１９３０）著﹐陳大澄等譯﹐是商務印書館出版的《說部叢書》之一。",
+        "pinyin": "《 bó tú bié chuán 》 yuán míng 《 láo tè nài ‧ sī   tūn 》 ﹐ yīng guó xiǎo shuō jiā kē nán ‧ dào ěr （ １ ８ ５ ９ ─ １ ９ ３ ０ ） zhuó ﹐ chén dà chéng děng yì ﹐ shì shāng wù yìn shū guǎn chū bǎn de 《 shuō bù cóng shū 》 zhī yī 。",
+        "english": ""
+      },
+      {
+        "chinese": "魯迅在一九二六年八月八日致韋素園信中曾說﹕「《博徒別傳》是Ｒｏｄｎｅｙ　Ｓｔｏｎｅ的譯名﹐但是Ｃ﹒Ｄｏｙｌｅ做的。",
+        "pinyin": "lǔ xùn zài yī jiǔ èr liù nián bā yuè bā rì zhì wéi sù yuán xìn zhōng céng shuō ﹕ 「 《 bó tú bié chuán 》 shì Ｒ ｏ ｄ ｎ ｅ ｙ 　 Ｓ ｔ ｏ ｎ ｅ de yì míng ﹐ dàn shì Ｃ ﹒ Ｄ ｏ ｙ ｌ ｅ zuò de 。",
+        "english": ""
+      },
+      {
+        "chinese": "《阿Ｑ正傳》中說是迭更司作﹐乃是我誤記。",
+        "pinyin": "《 ā Ｑ zhèng chuán 》 zhōng shuō shì dié gèng sī zuò ﹐ nǎi shì wǒ wù jì 。",
+        "english": ""
+      },
+      {
+        "chinese": "〔８〕　「引車賣漿者流」　這是當時林琴南攻擊白話文的用語。",
+        "pinyin": "〔 ８ 〕 　 「 yǐn chē mài jiāng zhě liú 」 　 zhè shì dāng shí lín qín nán gōng jī bái huà wén de yòng yǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "參看本卷第１９０頁注〔２７〕。",
+        "pinyin": "cān kàn běn juǎn dì １ ９ ０ yè zhù 〔 ２ ７ 〕 。",
+        "english": ""
+      },
+      {
+        "chinese": "一九三一年三月三日作者給日本山上正義的校釋中說﹕ 「『引車賣漿』﹐即拉車賣豆腐漿之謂﹐系指蔡元培氏之父。",
+        "pinyin": "yī jiǔ sān yī nián sān yuè sān rì zuò zhě gěi rì běn shān shàng zhèng yì de xiào shì zhōng shuō ﹕   「 『 yǐn chē mài jiāng 』 ﹐ jí lā chē mài dòu fǔ jiāng zhī wèi ﹐ xì zhǐ cài yuán péi shì zhī fù 。",
+        "english": ""
+      },
+      {
+        "chinese": "那時﹐蔡元培氏為北京大學校長﹐亦系主張白話者之一﹐故亦受到攻擊之矢。",
+        "pinyin": "nà shí ﹐ cài yuán péi shì wèi běi jīng dà xué xiào cháng ﹐ yì xì zhǔ zhāng bái huà zhě zhī yī ﹐ gù yì shòu dào gōng jī zhī shǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "〔９〕　不入三教九流的小說家　三教﹐指儒教﹑佛教﹑道教﹔九流﹐即九家。",
+        "pinyin": "〔 ９ 〕 　 bù rù sān jiào jiǔ liú de xiǎo shuō jiā 　 sān jiào ﹐ zhǐ rú jiào ﹑ fó jiào ﹑ dào jiào ﹔ jiǔ liú ﹐ jí jiǔ jiā 。",
+        "english": ""
+      },
+      {
+        "chinese": "《 漢書‧藝文志》中分古代諸子為十家﹕儒家﹑道家﹑陰陽家﹑法家﹑名家﹑墨家﹑縱橫家﹑雜家﹑農家﹑小說家﹐並說﹕「諸子十家﹐其可觀者九家而已。",
+        "pinyin": "《   hàn shū ‧ yì wén zhì 》 zhōng fēn gǔ dài zhū zǐ wèi shí jiā ﹕ rú jiā ﹑ dào jiā ﹑ yīn yáng jiā ﹑ fǎ jiā ﹑ míng jiā ﹑ mò jiā ﹑ zòng héng jiā ﹑ zá jiā ﹑ nóng jiā ﹑ xiǎo shuō jiā ﹐ bìng shuō ﹕ 「 zhū zǐ shí jiā ﹐ qí kě guān zhě jiǔ jiā ér yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "」「小說家者流﹐ 蓋出於稗官。",
+        "pinyin": "」 「 xiǎo shuō jiā zhě liú ﹐   gài chū yú bài guān 。",
+        "english": ""
+      },
+      {
+        "chinese": "街談巷語﹐道聽途說者之所造也。",
+        "pinyin": "jiē tán xiàng yǔ ﹐ dào tīng tú shuō zhě zhī suǒ zào yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "……是以君子弗為也。",
+        "pinyin": "… … shì yǐ jūn zǐ fú wèi yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "〔１０〕　《書法正傳》　一部關於書法的書﹐清代馮武著﹐共十卷。",
+        "pinyin": "〔 １ ０ 〕 　 《 shū fǎ zhèng chuán 》 　 yī bù guān yú shū fǎ de shū ﹐ qīng dài féng wǔ zhuó ﹐ gòng shí juǎn 。",
+        "english": ""
+      },
+      {
+        "chinese": "這裡的「正傳」是「正確的傳授」的意思。",
+        "pinyin": "zhè lǐ de 「 zhèng chuán 」 shì 「 zhèng què de chuán shòu 」 de yì sī 。",
+        "english": ""
+      },
+      {
+        "chinese": "〔１１〕　「著之竹帛」　語出《呂氏春秋‧仲春紀》﹕「著乎竹帛﹐傳乎後世。",
+        "pinyin": "〔 １ １ 〕 　 「 zhuó zhī zhú bó 」 　 yǔ chū 《 lǚ shì chūn qiū ‧ zhòng chūn jì 》 ﹕ 「 zhuó hū zhú bó ﹐ chuán hū hòu shì 。",
+        "english": ""
+      },
+      {
+        "chinese": "」 竹﹐竹簡﹔帛﹐絹綢。",
+        "pinyin": "」   zhú ﹐ zhú jiǎn ﹔ bó ﹐ juàn chóu 。",
+        "english": ""
+      },
+      {
+        "chinese": "我國古代未發明造紙前曾用來書寫文字。",
+        "pinyin": "wǒ guó gǔ dài wèi fā míng zào zhǐ qián céng yòng lái shū xiě wén zì 。",
+        "english": ""
+      },
+      {
+        "chinese": "〔１２〕　茂才　即秀才。",
+        "pinyin": "〔 １ ２ 〕 　 mào cái 　 jí xiù cái 。",
+        "english": ""
+      },
+      {
+        "chinese": "東漢時﹐因為避光武帝劉秀的名諱﹐改秀才為茂才﹔後來有時也沿用作秀才的別稱。",
+        "pinyin": "dōng hàn shí ﹐ yīn wèi bì guāng wǔ dì liú xiù de míng huì ﹐ gǎi xiù cái wèi mào cái ﹔ hòu lái yǒu shí yě yán yòng zuò xiù cái de bié chēng 。",
+        "english": ""
+      },
+      {
+        "chinese": "〔１３〕　陳獨秀辦了《新青年》提倡洋字　指一九一八年前後錢玄同等人在《新青年》雜誌上開展關於廢除漢字﹑改用羅馬字母拼音的討論一事。",
+        "pinyin": "〔 １ ３ 〕 　 chén dú xiù bàn le 《 xīn qīng nián 》 tí chàng yáng zì 　 zhǐ yī jiǔ yī bā nián qián hòu qián xuán tóng děng rén zài 《 xīn qīng nián 》 zá zhì shàng kāi zhǎn guān yú fèi chú hàn zì ﹑ gǎi yòng luó mǎ zì mǔ pīn yīn de tǎo lùn yī shì 。",
+        "english": ""
+      },
+      {
+        "chinese": "一九三一年三月三日 作者在給山上正義的校釋中說﹕「主張使用羅馬字母的是錢玄同﹐這裡說是陳獨秀﹐系茂才公之誤。",
+        "pinyin": "yī jiǔ sān yī nián sān yuè sān rì   zuò zhě zài gěi shān shàng zhèng yì de xiào shì zhōng shuō ﹕ 「 zhǔ zhāng shǐ yòng luó mǎ zì mǔ de shì qián xuán tóng ﹐ zhè lǐ shuō shì chén dú xiù ﹐ xì mào cái gōng zhī wù 。",
+        "english": ""
+      },
+      {
+        "chinese": "〔１４〕　《郡名百家姓》　《百家姓》是以前學塾所用的識字課本之一﹐宋初人編纂。",
+        "pinyin": "〔 １ ４ 〕 　 《 jùn míng bǎi jiā xìng 》 　 《 bǎi jiā xìng 》 shì yǐ qián xué shú suǒ yòng de shí zì kè běn zhī yī ﹐ sòng chū rén biān zuǎn 。",
+        "english": ""
+      },
+      {
+        "chinese": "為便於誦讀﹐將姓氏連綴為四言韻語。",
+        "pinyin": "wèi biàn yú sòng dú ﹐ jiāng xìng shì lián zhuì wèi sì yán yùn yǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "《郡名百家姓》則在每一姓上 都附註郡（古代地方區域的名稱）名﹐表示某姓望族曾居古代某地﹐如趙為「天水」﹑ 錢為「彭城」之類。",
+        "pinyin": "《 jùn míng bǎi jiā xìng 》 zé zài měi yī xìng shàng   dōu fù zhù jùn （ gǔ dài dì fāng qū yù de míng chēng ） míng ﹐ biǎo shì mǒu xìng wàng zú céng jū gǔ dài mǒu dì ﹐ rú zhào wèi 「 tiān shuǐ 」 ﹑   qián wèi 「 péng chéng 」 zhī lèi 。",
+        "english": ""
+      },
+      {
+        "chinese": "〔１５〕　胡適之　即胡適。",
+        "pinyin": "〔 １ ５ 〕 　 hú shì zhī 　 jí hú shì 。",
+        "english": ""
+      },
+      {
+        "chinese": "他在一九二○年七月所作《〈水滸傳 〉考證》中自稱「有歷史癖與考據癖」。",
+        "pinyin": "tā zài yī jiǔ èr ○ nián qī yuè suǒ zuò 《 〈 shuǐ hǔ zhuàn   〉 kǎo zhèng 》 zhōng zì chēng 「 yǒu lì shǐ pǐ yǔ kǎo jù pǐ 」 。",
+        "english": ""
+      },
+      {
+        "chinese": "〔１６〕　「行狀」　原指封建時代記述死者世系﹑籍貫﹑生卒﹑事跡的文字﹐一般由其家屬撰寫。",
+        "pinyin": "〔 １ ６ 〕 　 「 xíng zhuàng 」 　 yuán zhǐ fēng jiàn shí dài jì shù sǐ zhě shì xì ﹑ jí guàn ﹑ shēng zú ﹑ shì jì de wén zì ﹐ yī bān yóu qí jiā shǔ zhuàn xiě 。",
+        "english": ""
+      },
+      {
+        "chinese": "這裡泛指經歷。",
+        "pinyin": "zhè lǐ fàn zhǐ jīng lì 。",
+        "english": ""
+      },
+      {
+        "chinese": "〔１７〕　土谷祠　即土地廟。",
+        "pinyin": "〔 １ ７ 〕 　 tǔ gǔ cí 　 jí tǔ dì miào 。",
+        "english": ""
+      },
+      {
+        "chinese": "土谷﹐指土地神和五穀神。",
+        "pinyin": "tǔ gǔ ﹐ zhǐ tǔ dì shén hé wǔ gǔ shén 。",
+        "english": ""
+      },
+      {
+        "chinese": "〔１８〕　「文童」　 也稱「童生」﹐指科舉時代習舉業而尚未考取秀才的人。",
+        "pinyin": "〔 １ ８ 〕 　 「 wén tóng 」 　   yě chēng 「 tóng shēng 」 ﹐ zhǐ kē jǔ shí dài xí jǔ yè ér shàng wèi kǎo qǔ xiù cái de rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "〔１９〕　狀元　科舉時代﹐經皇帝殿試取中的第一名進士叫狀元。",
+        "pinyin": "〔 １ ９ 〕 　 zhuàng yuán 　 kē jǔ shí dài ﹐ jīng huáng dì diàn shì qǔ zhōng de dì yī míng jìn shì jiào zhuàng yuán 。",
+        "english": ""
+      },
+      {
+        "chinese": "〔２０〕　押牌寶　一種賭博。",
+        "pinyin": "〔 ２ ０ 〕 　 yā pái bǎo 　 yī zhǒng dǔ bó 。",
+        "english": ""
+      },
+      {
+        "chinese": "賭局中為主的人叫「樁家」﹔下文的「青龍」﹑「天門」﹑「穿堂」 等都是押牌寶的用語﹐指押賭注的位置﹔「四百」﹑「一百五十」是押賭注的錢數。",
+        "pinyin": "dǔ jú zhōng wèi zhǔ de rén jiào 「 zhuāng jiā 」 ﹔ xià wén de 「 qīng lóng 」 ﹑ 「 tiān mén 」 ﹑ 「 chuān táng 」   děng dōu shì yā pái bǎo de yòng yǔ ﹐ zhǐ yā dǔ zhù de wèi zhì ﹔ 「 sì bǎi 」 ﹑ 「 yī bǎi wǔ shí 」 shì yā dǔ zhù de qián shǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "〔２１〕　「塞翁失馬安知非福」　據《淮南子‧人間訓》﹕「近塞上之人有善術者﹐馬無故亡胡中﹐人皆吊之。",
+        "pinyin": "〔 ２ １ 〕 　 「 sài wēng shī mǎ ān zhī fēi fú 」 　 jù 《 huái nán zǐ ‧ rén jiān xùn 》 ﹕ 「 jìn sāi shàng zhī rén yǒu shàn shù zhě ﹐ mǎ wú gù wáng hú zhōng ﹐ rén jiē diào zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "其父曰﹕此何遽不能為福乎﹖居數月﹐其馬將胡駿馬而歸﹐人皆賀之。",
+        "pinyin": "qí fù yuē ﹕ cǐ hé jù bù néng wèi fú hū ﹖ jū shǔ yuè ﹐ qí mǎ jiāng hú jùn mǎ ér guī ﹐ rén jiē hè zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "其父曰﹕此何遽不能為禍乎﹖家富馬良﹐其子好騎﹐墮而折髀﹐人皆吊之。",
+        "pinyin": "qí fù yuē ﹕ cǐ hé jù bù néng wèi huò hū ﹖ jiā fù mǎ liáng ﹐ qí zǐ hǎo qí ﹐ duò ér zhé bì ﹐ rén jiē diào zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "其父曰﹕此何遽不能為福乎﹖居一年﹐胡人大入塞﹐丁壯者控弦而戰﹐塞上之人死者十九﹐此獨以跛之故﹐父子相保。",
+        "pinyin": "qí fù yuē ﹕ cǐ hé jù bù néng wèi fú hū ﹖ jū yī nián ﹐ hú rén dà rù sāi ﹐ dīng zhuàng zhě kòng xián ér zhàn ﹐ sāi shàng zhī rén sǐ zhě shí jiǔ ﹐ cǐ dú yǐ bǒ zhī gù ﹐ fù zǐ xiāng bǎo 。",
+        "english": ""
+      },
+      {
+        "chinese": "故福之為禍﹐禍之為福﹐化不可極﹐深不可測也。",
+        "pinyin": "gù fú zhī wèi huò ﹐ huò zhī wèi fú ﹐ huà bù kě jí ﹐ shēn bù kě cè yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "〔２２〕　賽神　即迎神賽會﹐參看本卷第３３７頁注〔３〕。",
+        "pinyin": "〔 ２ ２ 〕 　 sài shén 　 jí yíng shén sài huì ﹐ cān kàn běn juǎn dì ３ ３ ７ yè zhù 〔 ３ 〕 。",
+        "english": ""
+      },
+      {
+        "chinese": "〔２３〕　《小孤孀上墳》　當時流行的一出紹興地方戲。",
+        "pinyin": "〔 ２ ３ 〕 　 《 xiǎo gū shuāng shàng fén 》 　 dāng shí liú xíng de yī chū shào xìng dì fāng xì 。",
+        "english": ""
+      },
+      {
+        "chinese": "〔２４〕　太牢　按古代祭禮﹐原指牛﹑羊﹑ 豕三牲﹐但後來單稱牛為太牢。",
+        "pinyin": "〔 ２ ４ 〕 　 tài láo 　 àn gǔ dài jì lǐ ﹐ yuán zhǐ niú ﹑ yáng ﹑   shǐ sān shēng ﹐ dàn hòu lái dān chēng niú wèi tài láo 。",
+        "english": ""
+      },
+      {
+        "chinese": "〔２５〕　皇帝已經停了考　光緒三十一年（１９０５）﹐清政府下令自丙午科起﹐ 廢止科舉考試。",
+        "pinyin": "〔 ２ ５ 〕 　 huáng dì yǐ jīng tíng le kǎo 　 guāng xù sān shí yī nián （ １ ９ ０ ５ ） ﹐ qīng zhèng fǔ xià lìng zì bǐng wǔ kē qǐ ﹐   fèi zhǐ kē jǔ kǎo shì 。",
+        "english": ""
+      },
+      {
+        "chinese": "〔２６〕　哭喪棒　舊時在為父母送殯時﹐兒子須手拄「孝杖」﹐以表示悲痛難支。",
+        "pinyin": "〔 ２ ６ 〕 　 kū sang bàng 　 jiù shí zài wèi fù mǔ sòng bìn shí ﹐ ér zǐ xū shǒu zhǔ 「 xiào zhàng 」 ﹐ yǐ biǎo shì bēi tòng nán zhī 。",
+        "english": ""
+      }
+    ]
+  }
+]

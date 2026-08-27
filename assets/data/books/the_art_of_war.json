@@ -1,0 +1,1119 @@
+[
+  {
+    "id": "the_art_of_war_ch_1",
+    "bookId": "the_art_of_war",
+    "chapterIndex": 1,
+    "title": "计篇",
+    "titleEn": "Chapter 1: 计篇",
+    "sentences": [
+      {
+        "chinese": "孫子曰：兵者，國之大事，死生之地，存亡之道，不可不察也。",
+        "pinyin": "sūn zǐ yuē ： bīng zhě ， guó zhī dà shì ， sǐ shēng zhī dì ， cún wáng zhī dào ， bù kě bù chá yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "故經之以五事，校之以計，而索其情，一曰道，二曰天，三曰地，四曰將，五曰法。",
+        "pinyin": "gù jīng zhī yǐ wǔ shì ， xiào zhī yǐ jì ， ér suǒ qí qíng ， yī yuē dào ， èr yuē tiān ， sān yuē dì ， sì yuē jiāng ， wǔ yuē fǎ 。",
+        "english": ""
+      },
+      {
+        "chinese": "道者，令民與上同意也，可與之死，可與之生，而不畏危。",
+        "pinyin": "dào zhě ， lìng mín yǔ shàng tóng yì yě ， kě yǔ zhī sǐ ， kě yǔ zhī shēng ， ér bù wèi wēi 。",
+        "english": ""
+      },
+      {
+        "chinese": "天者，陰陽，寒暑，時制也。",
+        "pinyin": "tiān zhě ， yīn yáng ， hán shǔ ， shí zhì yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "地者，遠近，險易，廣狹，死生也。",
+        "pinyin": "dì zhě ， yuǎn jìn ， xiǎn yì ， guǎng xiá ， sǐ shēng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "將者，智，信，仁，勇，嚴也。",
+        "pinyin": "jiāng zhě ， zhì ， xìn ， rén ， yǒng ， yán yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "法者，曲制，官道，主用也。",
+        "pinyin": "fǎ zhě ， qǔ zhì ， guān dào ， zhǔ yòng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "凡此五者，將莫不聞，知之者勝，不知者不勝。",
+        "pinyin": "fán cǐ wǔ zhě ， jiāng mò bù wén ， zhī zhī zhě shèng ， bù zhī zhě bù shèng 。",
+        "english": ""
+      },
+      {
+        "chinese": "故校之以計，而索其情。",
+        "pinyin": "gù xiào zhī yǐ jì ， ér suǒ qí qíng 。",
+        "english": ""
+      },
+      {
+        "chinese": "曰：主孰有道，將孰有能，天地孰得，法令孰行，兵眾孰強，士卒孰練，賞罰孰明，吾以此知勝負矣。",
+        "pinyin": "yuē ： zhǔ shú yǒu dào ， jiāng shú yǒu néng ， tiān dì shú dé ， fǎ lìng shú xíng ， bīng zhòng shú qiáng ， shì zú shú liàn ， shǎng fá shú míng ， wú yǐ cǐ zhī shèng fù yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "將聽吾計，用之必勝，留之；",
+        "pinyin": "jiāng tīng wú jì ， yòng zhī bì shèng ， liú zhī ；",
+        "english": ""
+      },
+      {
+        "chinese": "將不聽吾計，用之必敗，去之。",
+        "pinyin": "jiāng bù tīng wú jì ， yòng zhī bì bài ， qù zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "計利以聽，乃為之勢，以佐其外；",
+        "pinyin": "jì lì yǐ tīng ， nǎi wèi zhī shì ， yǐ zuǒ qí wài ；",
+        "english": ""
+      },
+      {
+        "chinese": "勢者，因利而制權也。",
+        "pinyin": "shì zhě ， yīn lì ér zhì quán yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "兵者，詭道也。",
+        "pinyin": "bīng zhě ， guǐ dào yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "故能而示之不能，用而示之不用，近而示之遠，遠而示之近。",
+        "pinyin": "gù néng ér shì zhī bù néng ， yòng ér shì zhī bù yòng ， jìn ér shì zhī yuǎn ， yuǎn ér shì zhī jìn 。",
+        "english": ""
+      },
+      {
+        "chinese": "利而誘之，亂而取之，實而備之，強而避之，怒而撓之，卑而驕之，佚而勞之，親而離之。",
+        "pinyin": "lì ér yòu zhī ， luàn ér qǔ zhī ， shí ér bèi zhī ， qiáng ér bì zhī ， nù ér náo zhī ， bēi ér jiāo zhī ， yì ér láo zhī ， qīn ér lí zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "攻其無備，出其不意，此兵家之勝，不可先傳也。",
+        "pinyin": "gōng qí wú bèi ， chū qí bù yì ， cǐ bīng jiā zhī shèng ， bù kě xiān chuán yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "夫未戰而廟算勝者，得算多也；",
+        "pinyin": "fū wèi zhàn ér miào suàn shèng zhě ， dé suàn duō yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "未戰而廟算不勝者，得算少也；",
+        "pinyin": "wèi zhàn ér miào suàn bù shèng zhě ， dé suàn shǎo yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "多算勝，少算不勝，而況於無算乎？",
+        "pinyin": "duō suàn shèng ， shǎo suàn bù shèng ， ér kuàng yú wú suàn hū ？",
+        "english": ""
+      },
+      {
+        "chinese": "吾以此觀之，勝負見矣。",
+        "pinyin": "wú yǐ cǐ guān zhī ， shèng fù jiàn yǐ 。",
+        "english": ""
+      }
+    ]
+  },
+  {
+    "id": "the_art_of_war_ch_2",
+    "bookId": "the_art_of_war",
+    "chapterIndex": 2,
+    "title": "作战篇",
+    "titleEn": "Chapter 2: 作战篇",
+    "sentences": [
+      {
+        "chinese": "孫子曰：凡用兵之法，馳車千駟，革車千乘，帶甲十萬；",
+        "pinyin": "sūn zǐ yuē ： fán yòng bīng zhī fǎ ， chí chē qiān sì ， gé chē qiān chéng ， dài jiǎ shí wàn ；",
+        "english": ""
+      },
+      {
+        "chinese": "千里饋糧，則內外之費賓客之用，膠漆之材，車甲之奉，日費千金，然後十萬之師舉矣。",
+        "pinyin": "qiān lǐ kuì liáng ， zé nèi wài zhī fèi bīn kè zhī yòng ， jiāo qī zhī cái ， chē jiǎ zhī fèng ， rì fèi qiān jīn ， rán hòu shí wàn zhī shī jǔ yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "其用戰也，勝久則鈍兵挫銳，攻城則力屈，久暴師則國用不足。",
+        "pinyin": "qí yòng zhàn yě ， shèng jiǔ zé dùn bīng cuò ruì ， gōng chéng zé lì qū ， jiǔ bào shī zé guó yòng bù zú 。",
+        "english": ""
+      },
+      {
+        "chinese": "夫鈍兵，挫銳，屈力，殫貨，則諸侯乘其弊而起，雖有智者，不能善其後矣！",
+        "pinyin": "fū dùn bīng ， cuò ruì ， qū lì ， dān huò ， zé zhū hóu chéng qí bì ér qǐ ， suī yǒu zhì zhě ， bù néng shàn qí hòu yǐ ！",
+        "english": ""
+      },
+      {
+        "chinese": "故兵聞拙速，未睹巧之久也；",
+        "pinyin": "gù bīng wén zhuō sù ， wèi dǔ qiǎo zhī jiǔ yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "夫兵久而國利者，未之有也。",
+        "pinyin": "fū bīng jiǔ ér guó lì zhě ， wèi zhī yǒu yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "故不盡知用兵之害者，則不能盡知用兵之利也。",
+        "pinyin": "gù bù jìn zhī yòng bīng zhī hài zhě ， zé bù néng jìn zhī yòng bīng zhī lì yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "善用兵者，役不再籍，糧不三載，取用于國，因糧于敵，故軍食可足也。",
+        "pinyin": "shàn yòng bīng zhě ， yì bù zài jí ， liáng bù sān zài ， qǔ yòng yú guó ， yīn liáng yú dí ， gù jūn shí kě zú yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "國之貧于師者遠輸，遠輸則百姓貧，近于師者貴賣，貴賣則百姓財竭，財竭則急于丘役，力屈財殫，中原內虛于家，百姓之費，十去其七，公家之費，破車罷馬，甲冑矢弩，戟楯蔽櫓，丘牛大車，十去其六。",
+        "pinyin": "guó zhī pín yú shī zhě yuǎn shū ， yuǎn shū zé bǎi xìng pín ， jìn yú shī zhě guì mài ， guì mài zé bǎi xìng cái jié ， cái jié zé jí yú qiū yì ， lì qū cái dān ， zhōng yuán nèi xū yú jiā ， bǎi xìng zhī fèi ， shí qù qí qī ， gōng jiā zhī fèi ， pò chē bà mǎ ， jiǎ zhòu shǐ nǔ ， jǐ shǔn bì lǔ ， qiū niú dà chē ， shí qù qí liù 。",
+        "english": ""
+      },
+      {
+        "chinese": "故智將務食於敵，食敵一鍾，當吾二十鍾，𦮼秆一石，當我二十石。",
+        "pinyin": "gù zhì jiāng wù shí yú dí ， shí dí yī zhōng ， dāng wú èr shí zhōng ， \ud85a \udfbc gǎn yī shí ， dāng wǒ èr shí shí 。",
+        "english": ""
+      },
+      {
+        "chinese": "故殺敵者怒也，取敵之利者貨也。",
+        "pinyin": "gù shā dí zhě nù yě ， qǔ dí zhī lì zhě huò yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "故車戰，得車十乘以上，賞其先得者，而更其旌旗，車雜而乘之，卒善而養之，是謂勝敵而益強。",
+        "pinyin": "gù chē zhàn ， dé chē shí chéng yǐ shàng ， shǎng qí xiān dé zhě ， ér gèng qí jīng qí ， chē zá ér chéng zhī ， zú shàn ér yǎng zhī ， shì wèi shèng dí ér yì qiáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "故兵貴勝，不貴久；",
+        "pinyin": "gù bīng guì shèng ， bù guì jiǔ ；",
+        "english": ""
+      },
+      {
+        "chinese": "故知兵之將，民之司命，國家安危之主也。",
+        "pinyin": "gù zhī bīng zhī jiāng ， mín zhī sī mìng ， guó jiā ān wēi zhī zhǔ yě 。",
+        "english": ""
+      }
+    ]
+  },
+  {
+    "id": "the_art_of_war_ch_3",
+    "bookId": "the_art_of_war",
+    "chapterIndex": 3,
+    "title": "谋攻篇",
+    "titleEn": "Chapter 3: 谋攻篇",
+    "sentences": [
+      {
+        "chinese": "孫子曰：凡用兵之法，全國為上，破國次之；",
+        "pinyin": "sūn zǐ yuē ： fán yòng bīng zhī fǎ ， quán guó wèi shàng ， pò guó cì zhī ；",
+        "english": ""
+      },
+      {
+        "chinese": "全旅為上，破旅次之；",
+        "pinyin": "quán lǚ wèi shàng ， pò lǚ cì zhī ；",
+        "english": ""
+      },
+      {
+        "chinese": "全卒為上，破卒次之；",
+        "pinyin": "quán zú wèi shàng ， pò zú cì zhī ；",
+        "english": ""
+      },
+      {
+        "chinese": "全伍為上，破伍次之。",
+        "pinyin": "quán wǔ wèi shàng ， pò wǔ cì zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "是故百戰百勝，非善之善者也；",
+        "pinyin": "shì gù bǎi zhàn bǎi shèng ， fēi shàn zhī shàn zhě yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "不戰而屈人之兵，善之善者也。",
+        "pinyin": "bù zhàn ér qū rén zhī bīng ， shàn zhī shàn zhě yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "故上兵伐謀，其次伐交，其次伐兵，其下攻城。",
+        "pinyin": "gù shàng bīng fá móu ， qí cì fá jiāo ， qí cì fá bīng ， qí xià gōng chéng 。",
+        "english": ""
+      },
+      {
+        "chinese": "攻城之法，為不得已；",
+        "pinyin": "gōng chéng zhī fǎ ， wèi bù dé yǐ ；",
+        "english": ""
+      },
+      {
+        "chinese": "修櫓轒轀，具器械，三月而後成；",
+        "pinyin": "xiū lǔ fén wēn ， jù qì xiè ， sān yuè ér hòu chéng ；",
+        "english": ""
+      },
+      {
+        "chinese": "距闉，又三月而後已；",
+        "pinyin": "jù yīn ， yòu sān yuè ér hòu yǐ ；",
+        "english": ""
+      },
+      {
+        "chinese": "將不勝其忿，而蟻附之，殺士卒三分之一，而城不拔者，此攻之災也。",
+        "pinyin": "jiāng bù shèng qí fèn ， ér yǐ fù zhī ， shā shì zú sān fēn zhī yī ， ér chéng bù bá zhě ， cǐ gōng zhī zāi yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "故善用兵者，屈人之兵，而非戰也；",
+        "pinyin": "gù shàn yòng bīng zhě ， qū rén zhī bīng ， ér fēi zhàn yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "拔人之城，而非攻也；",
+        "pinyin": "bá rén zhī chéng ， ér fēi gōng yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "毀人之國，而非久也。",
+        "pinyin": "huǐ rén zhī guó ， ér fēi jiǔ yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "必以全爭于天下，故兵不頓，利可全，此謀攻之法也。",
+        "pinyin": "bì yǐ quán zhēng yú tiān xià ， gù bīng bù dùn ， lì kě quán ， cǐ móu gōng zhī fǎ yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "故用兵之法，十則圍之，五則攻之，倍則分之，敵則能戰之，少則能守之，不若則能避之。",
+        "pinyin": "gù yòng bīng zhī fǎ ， shí zé wéi zhī ， wǔ zé gōng zhī ， bèi zé fēn zhī ， dí zé néng zhàn zhī ， shǎo zé néng shǒu zhī ， bù ruò zé néng bì zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "故小敵之堅，大敵之擒也。",
+        "pinyin": "gù xiǎo dí zhī jiān ， dà dí zhī qín yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "夫將者，國之輔也，輔周則國必強，輔隙則國必弱。",
+        "pinyin": "fū jiāng zhě ， guó zhī fǔ yě ， fǔ zhōu zé guó bì qiáng ， fǔ xì zé guó bì ruò 。",
+        "english": ""
+      },
+      {
+        "chinese": "故軍之所以患于君者三：不知三軍之不可以進，而謂之進；",
+        "pinyin": "gù jūn zhī suǒ yǐ huàn yú jūn zhě sān ： bù zhī sān jūn zhī bù kě yǐ jìn ， ér wèi zhī jìn ；",
+        "english": ""
+      },
+      {
+        "chinese": "不知三軍之不可以退，而謂之退；",
+        "pinyin": "bù zhī sān jūn zhī bù kě yǐ tuì ， ér wèi zhī tuì ；",
+        "english": ""
+      },
+      {
+        "chinese": "是謂縻軍。",
+        "pinyin": "shì wèi mí jūn 。",
+        "english": ""
+      },
+      {
+        "chinese": "不知三軍之事，而同三軍之政，則軍士惑矣。",
+        "pinyin": "bù zhī sān jūn zhī shì ， ér tóng sān jūn zhī zhèng ， zé jūn shì huò yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "不知三軍之權，而同三軍之任，則軍士疑矣。",
+        "pinyin": "bù zhī sān jūn zhī quán ， ér tóng sān jūn zhī rèn ， zé jūn shì yí yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "三軍既惑且疑，則諸侯之難至矣，是謂亂軍引勝。",
+        "pinyin": "sān jūn jì huò qiě yí ， zé zhū hóu zhī nán zhì yǐ ， shì wèi luàn jūn yǐn shèng 。",
+        "english": ""
+      },
+      {
+        "chinese": "故知勝者有五：知可以戰與不可以戰者勝，識眾寡之用者勝，上下同欲者勝，以虞待不虞者勝，將能而君不御者勝；",
+        "pinyin": "gù zhī shèng zhě yǒu wǔ ： zhī kě yǐ zhàn yǔ bù kě yǐ zhàn zhě shèng ， shí zhòng guǎ zhī yòng zhě shèng ， shàng xià tóng yù zhě shèng ， yǐ yú dài bù yú zhě shèng ， jiāng néng ér jūn bù yù zhě shèng ；",
+        "english": ""
+      },
+      {
+        "chinese": "此五者，知勝之道也。",
+        "pinyin": "cǐ wǔ zhě ， zhī shèng zhī dào yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "故曰：知彼知己，百戰不殆；",
+        "pinyin": "gù yuē ： zhī bǐ zhī jǐ ， bǎi zhàn bù dài ；",
+        "english": ""
+      },
+      {
+        "chinese": "不知彼而知己，一勝一負；",
+        "pinyin": "bù zhī bǐ ér zhī jǐ ， yī shèng yī fù ；",
+        "english": ""
+      },
+      {
+        "chinese": "不知彼，不知己，每戰必敗。",
+        "pinyin": "bù zhī bǐ ， bù zhī jǐ ， měi zhàn bì bài 。",
+        "english": ""
+      }
+    ]
+  },
+  {
+    "id": "the_art_of_war_ch_4",
+    "bookId": "the_art_of_war",
+    "chapterIndex": 4,
+    "title": "形篇",
+    "titleEn": "Chapter 4: 形篇",
+    "sentences": [
+      {
+        "chinese": "孫子曰：昔之善戰者，先為不可勝，以待敵之可勝，不可勝在己，可勝在敵。",
+        "pinyin": "sūn zǐ yuē ： xī zhī shàn zhàn zhě ， xiān wèi bù kě shèng ， yǐ dài dí zhī kě shèng ， bù kě shèng zài jǐ ， kě shèng zài dí 。",
+        "english": ""
+      },
+      {
+        "chinese": "故善戰者，能為不可勝，不能使敵必可勝。",
+        "pinyin": "gù shàn zhàn zhě ， néng wèi bù kě shèng ， bù néng shǐ dí bì kě shèng 。",
+        "english": ""
+      },
+      {
+        "chinese": "故曰：勝可知，而不可為。",
+        "pinyin": "gù yuē ： shèng kě zhī ， ér bù kě wèi 。",
+        "english": ""
+      },
+      {
+        "chinese": "不可勝者，守也；",
+        "pinyin": "bù kě shèng zhě ， shǒu yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "可勝者，攻也。",
+        "pinyin": "kě shèng zhě ， gōng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "守則不足，攻則有餘。",
+        "pinyin": "shǒu zé bù zú ， gōng zé yǒu yú 。",
+        "english": ""
+      },
+      {
+        "chinese": "善守者，藏于九地之下；",
+        "pinyin": "shàn shǒu zhě ， cáng yú jiǔ dì zhī xià ；",
+        "english": ""
+      },
+      {
+        "chinese": "善攻者，動于九天之上，故能自保而全勝也。",
+        "pinyin": "shàn gōng zhě ， dòng yú jiǔ tiān zhī shàng ， gù néng zì bǎo ér quán shèng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "見勝，不過眾人之所知，非善之善者也。",
+        "pinyin": "jiàn shèng ， bù guò zhòng rén zhī suǒ zhī ， fēi shàn zhī shàn zhě yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "戰勝，而天下曰善，非善之善者也。",
+        "pinyin": "zhàn shèng ， ér tiān xià yuē shàn ， fēi shàn zhī shàn zhě yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "故舉秋毫，不為多力；",
+        "pinyin": "gù jǔ qiū háo ， bù wèi duō lì ；",
+        "english": ""
+      },
+      {
+        "chinese": "見日月，不為明目；",
+        "pinyin": "jiàn rì yuè ， bù wèi míng mù ；",
+        "english": ""
+      },
+      {
+        "chinese": "聞雷霆，不為聰耳。",
+        "pinyin": "wén léi tíng ， bù wèi cōng ěr 。",
+        "english": ""
+      },
+      {
+        "chinese": "古之善戰者，勝于易勝者；",
+        "pinyin": "gǔ zhī shàn zhàn zhě ， shèng yú yì shèng zhě ；",
+        "english": ""
+      },
+      {
+        "chinese": "故善戰者之勝也，無智名，無勇功。",
+        "pinyin": "gù shàn zhàn zhě zhī shèng yě ， wú zhì míng ， wú yǒng gōng 。",
+        "english": ""
+      },
+      {
+        "chinese": "故其戰勝不忒，不忒者，其措必勝，勝已敗者也。",
+        "pinyin": "gù qí zhàn shèng bù tè ， bù tè zhě ， qí cuò bì shèng ， shèng yǐ bài zhě yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "故善戰者，立于不敗之地，而不失敵之敗也。",
+        "pinyin": "gù shàn zhàn zhě ， lì yú bù bài zhī dì ， ér bù shī dí zhī bài yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "是故勝兵先勝，而後求戰；",
+        "pinyin": "shì gù shèng bīng xiān shèng ， ér hòu qiú zhàn ；",
+        "english": ""
+      },
+      {
+        "chinese": "敗兵先戰，而後求勝。",
+        "pinyin": "bài bīng xiān zhàn ， ér hòu qiú shèng 。",
+        "english": ""
+      },
+      {
+        "chinese": "善用兵者，修道而保法，故能為勝敗之政。",
+        "pinyin": "shàn yòng bīng zhě ， xiū dào ér bǎo fǎ ， gù néng wèi shèng bài zhī zhèng 。",
+        "english": ""
+      },
+      {
+        "chinese": "兵法：「一曰度，二曰量，三曰數，四曰稱，五曰勝；",
+        "pinyin": "bīng fǎ ： 「 yī yuē dù ， èr yuē liàng ， sān yuē shǔ ， sì yuē chēng ， wǔ yuē shèng ；",
+        "english": ""
+      },
+      {
+        "chinese": "地生度，度生量，量生數，數生稱，稱生勝。",
+        "pinyin": "dì shēng dù ， dù shēng liàng ， liàng shēng shǔ ， shǔ shēng chēng ， chēng shēng shèng 。",
+        "english": ""
+      },
+      {
+        "chinese": "」故勝兵若以鎰稱銖，敗兵若以銖稱鎰。",
+        "pinyin": "」 gù shèng bīng ruò yǐ yì chēng zhū ， bài bīng ruò yǐ zhū chēng yì 。",
+        "english": ""
+      },
+      {
+        "chinese": "勝者之戰民也，若決積水于千仞之谿，形也。",
+        "pinyin": "shèng zhě zhī zhàn mín yě ， ruò jué jī shuǐ yú qiān rèn zhī xī ， xíng yě 。",
+        "english": ""
+      }
+    ]
+  },
+  {
+    "id": "the_art_of_war_ch_5",
+    "bookId": "the_art_of_war",
+    "chapterIndex": 5,
+    "title": "势篇",
+    "titleEn": "Chapter 5: 势篇",
+    "sentences": [
+      {
+        "chinese": "孫子曰：凡治眾如治寡，分數是也。",
+        "pinyin": "sūn zǐ yuē ： fán zhì zhòng rú zhì guǎ ， fēn shǔ shì yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "鬥眾如鬥寡，形名是也。",
+        "pinyin": "dòu zhòng rú dòu guǎ ， xíng míng shì yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "三軍之眾，可使必受敵而無敗者，奇正是也。",
+        "pinyin": "sān jūn zhī zhòng ， kě shǐ bì shòu dí ér wú bài zhě ， qí zhèng shì yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "兵之所加，如以碬投卵者，虛實是也。",
+        "pinyin": "bīng zhī suǒ jiā ， rú yǐ xiá tóu luǎn zhě ， xū shí shì yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "凡戰者，以正合，以奇勝。",
+        "pinyin": "fán zhàn zhě ， yǐ zhèng hé ， yǐ qí shèng 。",
+        "english": ""
+      },
+      {
+        "chinese": "故善出奇者，無窮如天地，不竭如江河，終而復始，日月是也；",
+        "pinyin": "gù shàn chū qí zhě ， wú qióng rú tiān dì ， bù jié rú jiāng hé ， zhōng ér fù shǐ ， rì yuè shì yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "死而復生，四時是也。",
+        "pinyin": "sǐ ér fù shēng ， sì shí shì yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "聲不過五，五聲之變，不可勝聽也。",
+        "pinyin": "shēng bù guò wǔ ， wǔ shēng zhī biàn ， bù kě shèng tīng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "色不過五，五色之變，不可勝觀也。",
+        "pinyin": "sè bù guò wǔ ， wǔ sè zhī biàn ， bù kě shèng guān yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "味不過五，五味之變，不可勝嘗也。",
+        "pinyin": "wèi bù guò wǔ ， wǔ wèi zhī biàn ， bù kě shèng cháng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "戰勢不過奇正，奇正之變，不可勝窮也。",
+        "pinyin": "zhàn shì bù guò qí zhèng ， qí zhèng zhī biàn ， bù kě shèng qióng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "奇正相生，如循環之無端，孰能窮之哉！",
+        "pinyin": "qí zhèng xiāng shēng ， rú xún huán zhī wú duān ， shú néng qióng zhī zāi ！",
+        "english": ""
+      },
+      {
+        "chinese": "激水之疾，至于漂石者，勢也。",
+        "pinyin": "jī shuǐ zhī jí ， zhì yú piāo shí zhě ， shì yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "鷙鳥之擊，至于毀折者，節也。",
+        "pinyin": "zhì niǎo zhī jī ， zhì yú huǐ zhé zhě ， jié yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "是故善戰者，其勢險，其節短，勢如張弩，節如機發。",
+        "pinyin": "shì gù shàn zhàn zhě ， qí shì xiǎn ， qí jié duǎn ， shì rú zhāng nǔ ， jié rú jī fā 。",
+        "english": ""
+      },
+      {
+        "chinese": "紛紛紜紜，鬥亂，而不可亂也。",
+        "pinyin": "fēn fēn yún yún ， dòu luàn ， ér bù kě luàn yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "渾渾沌沌，形圓，而不可敗也。",
+        "pinyin": "hún hún dùn dùn ， xíng yuán ， ér bù kě bài yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "亂生于治，怯生于勇，弱生于強。",
+        "pinyin": "luàn shēng yú zhì ， qiè shēng yú yǒng ， ruò shēng yú qiáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "治亂，數也。",
+        "pinyin": "zhì luàn ， shǔ yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "勇怯，勢也。",
+        "pinyin": "yǒng qiè ， shì yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "強弱，形也。",
+        "pinyin": "qiáng ruò ， xíng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "故善動敵者，形之，敵必從之；",
+        "pinyin": "gù shàn dòng dí zhě ， xíng zhī ， dí bì cóng zhī ；",
+        "english": ""
+      },
+      {
+        "chinese": "予之，敵必取之；",
+        "pinyin": "yú zhī ， dí bì qǔ zhī ；",
+        "english": ""
+      },
+      {
+        "chinese": "以利動之，以實待之。",
+        "pinyin": "yǐ lì dòng zhī ， yǐ shí dài zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "故善戰者，求之于勢，不責于人，故能擇人任勢；",
+        "pinyin": "gù shàn zhàn zhě ， qiú zhī yú shì ， bù zé yú rén ， gù néng zé rén rèn shì ；",
+        "english": ""
+      },
+      {
+        "chinese": "任勢者，其戰人也，如轉木石，木石之性，安則靜，危則動，方則止，圓則行。",
+        "pinyin": "rèn shì zhě ， qí zhàn rén yě ， rú zhuǎn mù shí ， mù shí zhī xìng ， ān zé jìng ， wēi zé dòng ， fāng zé zhǐ ， yuán zé xíng 。",
+        "english": ""
+      },
+      {
+        "chinese": "故善戰人之勢，如轉圓石于千仞之山者，勢也。",
+        "pinyin": "gù shàn zhàn rén zhī shì ， rú zhuǎn yuán shí yú qiān rèn zhī shān zhě ， shì yě 。",
+        "english": ""
+      }
+    ]
+  },
+  {
+    "id": "the_art_of_war_ch_6",
+    "bookId": "the_art_of_war",
+    "chapterIndex": 6,
+    "title": "虚实篇",
+    "titleEn": "Chapter 6: 虚实篇",
+    "sentences": [
+      {
+        "chinese": "孫子曰：凡先處戰地而待敵者佚，後處戰地而趨戰者勞。",
+        "pinyin": "sūn zǐ yuē ： fán xiān chù zhàn dì ér dài dí zhě yì ， hòu chù zhàn dì ér qū zhàn zhě láo 。",
+        "english": ""
+      },
+      {
+        "chinese": "故善戰者，致人而不致于人。",
+        "pinyin": "gù shàn zhàn zhě ， zhì rén ér bù zhì yú rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "能使敵人自至者，利之也；",
+        "pinyin": "néng shǐ dí rén zì zhì zhě ， lì zhī yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "能使敵不得至者，害之也。",
+        "pinyin": "néng shǐ dí bù dé zhì zhě ， hài zhī yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "故敵佚能勞之，飽能飢之，安能動之。",
+        "pinyin": "gù dí yì néng láo zhī ， bǎo néng jī zhī ， ān néng dòng zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "出其所不趨，趨其所不意；",
+        "pinyin": "chū qí suǒ bù qū ， qū qí suǒ bù yì ；",
+        "english": ""
+      },
+      {
+        "chinese": "行千里而不勞者，行于無人之地也；",
+        "pinyin": "xíng qiān lǐ ér bù láo zhě ， xíng yú wú rén zhī dì yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "攻而必取者，攻其所不守也；",
+        "pinyin": "gōng ér bì qǔ zhě ， gōng qí suǒ bù shǒu yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "守而必固者，守其所不攻也。",
+        "pinyin": "shǒu ér bì gù zhě ， shǒu qí suǒ bù gōng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "故善攻者，敵不知其所守；",
+        "pinyin": "gù shàn gōng zhě ， dí bù zhī qí suǒ shǒu ；",
+        "english": ""
+      },
+      {
+        "chinese": "善守者，敵不知其所攻。",
+        "pinyin": "shàn shǒu zhě ， dí bù zhī qí suǒ gōng 。",
+        "english": ""
+      },
+      {
+        "chinese": "微乎微乎！",
+        "pinyin": "wēi hū wēi hū ！",
+        "english": ""
+      },
+      {
+        "chinese": "至于無形；",
+        "pinyin": "zhì yú wú xíng ；",
+        "english": ""
+      },
+      {
+        "chinese": "神乎神乎！",
+        "pinyin": "shén hū shén hū ！",
+        "english": ""
+      },
+      {
+        "chinese": "至于無聲，故能為敵之司命。",
+        "pinyin": "zhì yú wú shēng ， gù néng wèi dí zhī sī mìng 。",
+        "english": ""
+      },
+      {
+        "chinese": "進而不可禦者，衝其虛也；",
+        "pinyin": "jìn ér bù kě yù zhě ， chōng qí xū yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "退而不可追者，速而不可及也。",
+        "pinyin": "tuì ér bù kě zhuī zhě ， sù ér bù kě jí yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "故我欲戰，敵雖高壘深溝，不得不與我戰者，攻其所必救也；",
+        "pinyin": "gù wǒ yù zhàn ， dí suī gāo lěi shēn gōu ， bù dé bù yǔ wǒ zhàn zhě ， gōng qí suǒ bì jiù yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "我不欲戰，雖劃地而守之，敵不得與我戰者，乖其所之也。",
+        "pinyin": "wǒ bù yù zhàn ， suī huá dì ér shǒu zhī ， dí bù dé yǔ wǒ zhàn zhě ， guāi qí suǒ zhī yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "故形人而我無形，則我專而敵分，我專為一，敵分為十，是以十攻其一也。",
+        "pinyin": "gù xíng rén ér wǒ wú xíng ， zé wǒ zhuān ér dí fēn ， wǒ zhuān wèi yī ， dí fēn wèi shí ， shì yǐ shí gōng qí yī yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "則我眾而敵寡，能以眾擊寡，則我之所與戰者，約矣。",
+        "pinyin": "zé wǒ zhòng ér dí guǎ ， néng yǐ zhòng jī guǎ ， zé wǒ zhī suǒ yǔ zhàn zhě ， yuē yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "吾所與戰之地不可知，不可知，則敵所備者多，敵所備者多，則我所與戰者寡矣。",
+        "pinyin": "wú suǒ yǔ zhàn zhī dì bù kě zhī ， bù kě zhī ， zé dí suǒ bèi zhě duō ， dí suǒ bèi zhě duō ， zé wǒ suǒ yǔ zhàn zhě guǎ yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "故備前則後寡，備後則前寡，備左則右寡，備右則左寡，無所不備，則無所不寡。",
+        "pinyin": "gù bèi qián zé hòu guǎ ， bèi hòu zé qián guǎ ， bèi zuǒ zé yòu guǎ ， bèi yòu zé zuǒ guǎ ， wú suǒ bù bèi ， zé wú suǒ bù guǎ 。",
+        "english": ""
+      },
+      {
+        "chinese": "寡者，備人者也；",
+        "pinyin": "guǎ zhě ， bèi rén zhě yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "眾者，使人備己者也。",
+        "pinyin": "zhòng zhě ， shǐ rén bèi jǐ zhě yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "故知戰之地，知戰之日，則可千里而會戰。",
+        "pinyin": "gù zhī zhàn zhī dì ， zhī zhàn zhī rì ， zé kě qiān lǐ ér huì zhàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "不知戰地，不知戰日，則左不能救右，右不能救左，前不能救後，後不能救前，而況遠者數十里，近者數里乎？",
+        "pinyin": "bù zhī zhàn dì ， bù zhī zhàn rì ， zé zuǒ bù néng jiù yòu ， yòu bù néng jiù zuǒ ， qián bù néng jiù hòu ， hòu bù néng jiù qián ， ér kuàng yuǎn zhě shǔ shí lǐ ， jìn zhě shǔ lǐ hū ？",
+        "english": ""
+      },
+      {
+        "chinese": "以吾度之，越人之兵雖多，亦奚益于勝哉？",
+        "pinyin": "yǐ wú dù zhī ， yuè rén zhī bīng suī duō ， yì xī yì yú shèng zāi ？",
+        "english": ""
+      },
+      {
+        "chinese": "故曰：勝可為也，敵雖眾，可使無鬥。",
+        "pinyin": "gù yuē ： shèng kě wèi yě ， dí suī zhòng ， kě shǐ wú dòu 。",
+        "english": ""
+      },
+      {
+        "chinese": "故策之而知得失之計，作之而知動靜之理，形之而知死生之地，角之而知有餘不足之處。",
+        "pinyin": "gù cè zhī ér zhī dé shī zhī jì ， zuò zhī ér zhī dòng jìng zhī lǐ ， xíng zhī ér zhī sǐ shēng zhī dì ， jiǎo zhī ér zhī yǒu yú bù zú zhī chù 。",
+        "english": ""
+      },
+      {
+        "chinese": "故形兵之極，至于無形；",
+        "pinyin": "gù xíng bīng zhī jí ， zhì yú wú xíng ；",
+        "english": ""
+      },
+      {
+        "chinese": "無形，則深間不能窺，智者不能謀。",
+        "pinyin": "wú xíng ， zé shēn jiān bù néng kuī ， zhì zhě bù néng móu 。",
+        "english": ""
+      },
+      {
+        "chinese": "因形而措勝于眾，眾不能知，人皆知我所以勝之形，而莫知吾所以制勝之形；",
+        "pinyin": "yīn xíng ér cuò shèng yú zhòng ， zhòng bù néng zhī ， rén jiē zhī wǒ suǒ yǐ shèng zhī xíng ， ér mò zhī wú suǒ yǐ zhì shèng zhī xíng ；",
+        "english": ""
+      },
+      {
+        "chinese": "故其戰勝不復，而應形於無窮。",
+        "pinyin": "gù qí zhàn shèng bù fù ， ér yīng xíng yú wú qióng 。",
+        "english": ""
+      },
+      {
+        "chinese": "夫兵形象水，水之形，避高而趨下：兵之形，避實而擊虛；",
+        "pinyin": "fū bīng xíng xiàng shuǐ ， shuǐ zhī xíng ， bì gāo ér qū xià ： bīng zhī xíng ， bì shí ér jī xū ；",
+        "english": ""
+      },
+      {
+        "chinese": "水因地而制流，兵因敵而制勝。",
+        "pinyin": "shuǐ yīn dì ér zhì liú ， bīng yīn dí ér zhì shèng 。",
+        "english": ""
+      },
+      {
+        "chinese": "故兵無常勢，水無常形；",
+        "pinyin": "gù bīng wú cháng shì ， shuǐ wú cháng xíng ；",
+        "english": ""
+      },
+      {
+        "chinese": "能因敵變化而取勝，謂之神。",
+        "pinyin": "néng yīn dí biàn huà ér qǔ shèng ， wèi zhī shén 。",
+        "english": ""
+      },
+      {
+        "chinese": "故五行無常勝，四時無常位，日有短長，月有死生。",
+        "pinyin": "gù wǔ xíng wú cháng shèng ， sì shí wú cháng wèi ， rì yǒu duǎn cháng ， yuè yǒu sǐ shēng 。",
+        "english": ""
+      }
+    ]
+  },
+  {
+    "id": "the_art_of_war_ch_7",
+    "bookId": "the_art_of_war",
+    "chapterIndex": 7,
+    "title": "九变篇",
+    "titleEn": "Chapter 7: 九变篇",
+    "sentences": [
+      {
+        "chinese": "孫子曰：凡用兵之法，將受命於君，合軍聚眾；",
+        "pinyin": "sūn zǐ yuē ： fán yòng bīng zhī fǎ ， jiāng shòu mìng yú jūn ， hé jūn jù zhòng ；",
+        "english": ""
+      },
+      {
+        "chinese": "圮地無舍，衢地合交，絕地無留，圍地則謀，死地則戰，途有所不由，軍有所不擊，城有所不攻，地有所不爭，君命有所不受。",
+        "pinyin": "pǐ dì wú shě ， qú dì hé jiāo ， jué dì wú liú ， wéi dì zé móu ， sǐ dì zé zhàn ， tú yǒu suǒ bù yóu ， jūn yǒu suǒ bù jī ， chéng yǒu suǒ bù gōng ， dì yǒu suǒ bù zhēng ， jūn mìng yǒu suǒ bù shòu 。",
+        "english": ""
+      },
+      {
+        "chinese": "故將通于九變之利者，知用兵矣。",
+        "pinyin": "gù jiāng tōng yú jiǔ biàn zhī lì zhě ， zhī yòng bīng yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "將不通于九變之利者，雖知地形，不能得地之利矣。",
+        "pinyin": "jiāng bù tōng yú jiǔ biàn zhī lì zhě ， suī zhī dì xíng ， bù néng dé dì zhī lì yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "治兵不知九變之術，雖知地利，不能得人之用矣。",
+        "pinyin": "zhì bīng bù zhī jiǔ biàn zhī shù ， suī zhī dì lì ， bù néng dé rén zhī yòng yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "是故智者之慮，必雜于利害，雜于利而務可信也，雜于害而患可解也。",
+        "pinyin": "shì gù zhì zhě zhī lǜ ， bì zá yú lì hài ， zá yú lì ér wù kě xìn yě ， zá yú hài ér huàn kě jiě yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "是故屈諸侯者以害，役諸侯者以業，趨諸侯者以利。",
+        "pinyin": "shì gù qū zhū hóu zhě yǐ hài ， yì zhū hóu zhě yǐ yè ， qū zhū hóu zhě yǐ lì 。",
+        "english": ""
+      },
+      {
+        "chinese": "故用兵之法，無恃其不來，恃吾有以待之；",
+        "pinyin": "gù yòng bīng zhī fǎ ， wú shì qí bù lái ， shì wú yǒu yǐ dài zhī ；",
+        "english": ""
+      },
+      {
+        "chinese": "無恃其不攻，恃吾有所不可攻也。",
+        "pinyin": "wú shì qí bù gōng ， shì wú yǒu suǒ bù kě gōng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "故將有五危：必死可殺，必生可虜，忿速可侮，廉潔可辱，愛民可煩；",
+        "pinyin": "gù jiāng yǒu wǔ wēi ： bì sǐ kě shā ， bì shēng kě lǔ ， fèn sù kě wǔ ， lián jié kě rǔ ， ài mín kě fán ；",
+        "english": ""
+      },
+      {
+        "chinese": "凡此五危，將之過也，用兵之災也。",
+        "pinyin": "fán cǐ wǔ wēi ， jiāng zhī guò yě ， yòng bīng zhī zāi yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "覆軍殺將，必以五危，不可不察也。",
+        "pinyin": "fù jūn shā jiāng ， bì yǐ wǔ wēi ， bù kě bù chá yě 。",
+        "english": ""
+      }
+    ]
+  },
+  {
+    "id": "the_art_of_war_ch_8",
+    "bookId": "the_art_of_war",
+    "chapterIndex": 8,
+    "title": "地形篇",
+    "titleEn": "Chapter 8: 地形篇",
+    "sentences": [
+      {
+        "chinese": "孫子曰：地形有通者，有挂者，有支者，有隘者，有險者，有遠者。",
+        "pinyin": "sūn zǐ yuē ： dì xíng yǒu tōng zhě ， yǒu guà zhě ， yǒu zhī zhě ， yǒu ài zhě ， yǒu xiǎn zhě ， yǒu yuǎn zhě 。",
+        "english": ""
+      },
+      {
+        "chinese": "我可以往，彼可以來，曰通；",
+        "pinyin": "wǒ kě yǐ wǎng ， bǐ kě yǐ lái ， yuē tōng ；",
+        "english": ""
+      },
+      {
+        "chinese": "通形者，先居高陽，利糧道以戰，則利。",
+        "pinyin": "tōng xíng zhě ， xiān jū gāo yáng ， lì liáng dào yǐ zhàn ， zé lì 。",
+        "english": ""
+      },
+      {
+        "chinese": "可以往，難以返，曰挂；",
+        "pinyin": "kě yǐ wǎng ， nán yǐ fǎn ， yuē guà ；",
+        "english": ""
+      },
+      {
+        "chinese": "挂形者，敵無備，出而勝之，敵若有備，出而不勝，難以返，不利。",
+        "pinyin": "guà xíng zhě ， dí wú bèi ， chū ér shèng zhī ， dí ruò yǒu bèi ， chū ér bù shèng ， nán yǐ fǎn ， bù lì 。",
+        "english": ""
+      },
+      {
+        "chinese": "我出而不利，彼出而不利，曰支；",
+        "pinyin": "wǒ chū ér bù lì ， bǐ chū ér bù lì ， yuē zhī ；",
+        "english": ""
+      },
+      {
+        "chinese": "支形者，敵雖利我，我無出也；",
+        "pinyin": "zhī xíng zhě ， dí suī lì wǒ ， wǒ wú chū yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "引而去之，令敵半出而擊之，利。",
+        "pinyin": "yǐn ér qù zhī ， lìng dí bàn chū ér jī zhī ， lì 。",
+        "english": ""
+      },
+      {
+        "chinese": "隘形者，我先居之，必盈以待敵；",
+        "pinyin": "ài xíng zhě ， wǒ xiān jū zhī ， bì yíng yǐ dài dí ；",
+        "english": ""
+      },
+      {
+        "chinese": "若敵先居之，盈而勿從，不盈而從之。",
+        "pinyin": "ruò dí xiān jū zhī ， yíng ér wù cóng ， bù yíng ér cóng zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "險形者，我先居之，必居高陽以待敵；",
+        "pinyin": "xiǎn xíng zhě ， wǒ xiān jū zhī ， bì jū gāo yáng yǐ dài dí ；",
+        "english": ""
+      },
+      {
+        "chinese": "若敵先居之，引而去之，勿從也。",
+        "pinyin": "ruò dí xiān jū zhī ， yǐn ér qù zhī ， wù cóng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "遠形者，勢均，難以挑戰，戰而不利。",
+        "pinyin": "yuǎn xíng zhě ， shì jūn ， nán yǐ tiāo zhàn ， zhàn ér bù lì 。",
+        "english": ""
+      },
+      {
+        "chinese": "凡此六者，地之道也，將之至任，不可不察也。",
+        "pinyin": "fán cǐ liù zhě ， dì zhī dào yě ， jiāng zhī zhì rèn ， bù kě bù chá yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "故兵有走者，有弛者，有陷者，有崩者，有亂者，有北者；",
+        "pinyin": "gù bīng yǒu zǒu zhě ， yǒu chí zhě ， yǒu xiàn zhě ， yǒu bēng zhě ， yǒu luàn zhě ， yǒu běi zhě ；",
+        "english": ""
+      },
+      {
+        "chinese": "凡此六者，非天地之災，將之過也。",
+        "pinyin": "fán cǐ liù zhě ， fēi tiān dì zhī zāi ， jiāng zhī guò yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "夫勢均，以一擊十，曰走。",
+        "pinyin": "fū shì jūn ， yǐ yī jī shí ， yuē zǒu 。",
+        "english": ""
+      },
+      {
+        "chinese": "卒強吏弱，曰弛。",
+        "pinyin": "zú qiáng lì ruò ， yuē chí 。",
+        "english": ""
+      },
+      {
+        "chinese": "吏強卒弱，曰陷。",
+        "pinyin": "lì qiáng zú ruò ， yuē xiàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "大吏怒而不服，遇敵懟而自戰，將不知其能，曰崩。",
+        "pinyin": "dà lì nù ér bù fú ， yù dí duì ér zì zhàn ， jiāng bù zhī qí néng ， yuē bēng 。",
+        "english": ""
+      },
+      {
+        "chinese": "將弱不嚴，教道不明，吏卒無常，陳兵縱橫，曰亂。",
+        "pinyin": "jiāng ruò bù yán ， jiào dào bù míng ， lì zú wú cháng ， chén bīng zòng héng ， yuē luàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "將不能料敵，以少合眾，以弱擊強，兵無選鋒，曰北。",
+        "pinyin": "jiāng bù néng liào dí ， yǐ shǎo hé zhòng ， yǐ ruò jī qiáng ， bīng wú xuǎn fēng ， yuē běi 。",
+        "english": ""
+      },
+      {
+        "chinese": "凡此六者，敗之道也。",
+        "pinyin": "fán cǐ liù zhě ， bài zhī dào yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "將之至任，不可不察也。",
+        "pinyin": "jiāng zhī zhì rèn ， bù kě bù chá yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "夫地形者，兵之助也。",
+        "pinyin": "fū dì xíng zhě ， bīng zhī zhù yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "料敵制勝，計險阨遠近，上將之道也。",
+        "pinyin": "liào dí zhì shèng ， jì xiǎn è yuǎn jìn ， shàng jiāng zhī dào yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "知此而用戰者，必勝；",
+        "pinyin": "zhī cǐ ér yòng zhàn zhě ， bì shèng ；",
+        "english": ""
+      },
+      {
+        "chinese": "不知此而用戰者必敗。",
+        "pinyin": "bù zhī cǐ ér yòng zhàn zhě bì bài 。",
+        "english": ""
+      },
+      {
+        "chinese": "故戰道必勝；",
+        "pinyin": "gù zhàn dào bì shèng ；",
+        "english": ""
+      },
+      {
+        "chinese": "主曰：無戰；",
+        "pinyin": "zhǔ yuē ： wú zhàn ；",
+        "english": ""
+      },
+      {
+        "chinese": "必戰可也。",
+        "pinyin": "bì zhàn kě yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "戰道不勝，主曰必戰，無戰可也。",
+        "pinyin": "zhàn dào bù shèng ， zhǔ yuē bì zhàn ， wú zhàn kě yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "故進不求名，退不避罪，唯民是保，而利于主，國之寶也。",
+        "pinyin": "gù jìn bù qiú míng ， tuì bù bì zuì ， wéi mín shì bǎo ， ér lì yú zhǔ ， guó zhī bǎo yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "視卒如嬰兒，故可與之赴深谿；",
+        "pinyin": "shì zú rú yīng ér ， gù kě yǔ zhī fù shēn xī ；",
+        "english": ""
+      },
+      {
+        "chinese": "視卒如愛子，故可與之俱死。",
+        "pinyin": "shì zú rú ài zǐ ， gù kě yǔ zhī jù sǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "厚而不能使，愛而不能令，亂而不能治，譬若驕子，不可用也。",
+        "pinyin": "hòu ér bù néng shǐ ， ài ér bù néng lìng ， luàn ér bù néng zhì ， pì ruò jiāo zǐ ， bù kě yòng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "知吾卒之可以擊，而不知敵之不可擊，勝之半也；",
+        "pinyin": "zhī wú zú zhī kě yǐ jī ， ér bù zhī dí zhī bù kě jī ， shèng zhī bàn yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "知敵之可擊，而不知吾卒之不可擊，勝之半也。",
+        "pinyin": "zhī dí zhī kě jī ， ér bù zhī wú zú zhī bù kě jī ， shèng zhī bàn yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "知敵之可擊，知吾卒之可以擊，而不知地形之不可以戰，勝之半也。",
+        "pinyin": "zhī dí zhī kě jī ， zhī wú zú zhī kě yǐ jī ， ér bù zhī dì xíng zhī bù kě yǐ zhàn ， shèng zhī bàn yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "故知兵者，動而不迷，舉而不窮。",
+        "pinyin": "gù zhī bīng zhě ， dòng ér bù mí ， jǔ ér bù qióng 。",
+        "english": ""
+      },
+      {
+        "chinese": "故曰：知彼知己，勝乃不殆；",
+        "pinyin": "gù yuē ： zhī bǐ zhī jǐ ， shèng nǎi bù dài ；",
+        "english": ""
+      },
+      {
+        "chinese": "知天知地，勝乃可全。",
+        "pinyin": "zhī tiān zhī dì ， shèng nǎi kě quán 。",
+        "english": ""
+      }
+    ]
+  }
+]

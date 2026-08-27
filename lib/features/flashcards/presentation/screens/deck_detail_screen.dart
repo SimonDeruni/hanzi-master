@@ -1,5 +1,4 @@
 import 'package:hanzi_master/l10n/app_localizations.dart';
-import 'package:hanzi_master/features/flashcards/presentation/widgets/ai_generated_badge.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/deck.dart';
@@ -548,13 +547,6 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                     ),
                   ),
                   const SizedBox(height: 6),
-                  if (card.hskLevel == 0 && !card.id.startsWith('global_'))
-                    const AIGeneratedBadge(
-                      fontSize: 10,
-                      iconSize: 10,
-                      margin: EdgeInsets.only(bottom: 8),
-                      padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                    ),
                   Text(
                     card.definition,
                     style: TextStyle(

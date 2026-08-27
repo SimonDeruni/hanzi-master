@@ -233,6 +233,20 @@ class AudioService {
     return ttsResult != null && ttsResult == 1;
   }
 
+  /// Streams remote MP3 audio directly from open public-domain archives (Archive.org / LibriVox)
+  Future<bool> playStreamUrl(String url) async {
+    if (!_isInitialized) await init();
+    await stop();
+    try {
+      await _player.setPlaybackRate(1.0);
+      await _player.play(UrlSource(url));
+      return true;
+    } catch (e) {
+      debugPrint("Failed to stream audio from $url: $e");
+      return false;
+    }
+  }
+
   Future<Uint8List?> getSentenceAudioBytes(String sentence, {String voiceName = 'Kore'}) async {
     if (!_isInitialized) await init();
     final azureVoice = _azureVoiceMap[voiceName] ?? _defaultAzureVoice;

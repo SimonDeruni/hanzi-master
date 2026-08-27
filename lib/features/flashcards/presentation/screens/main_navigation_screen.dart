@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'dictionary_screen.dart';
 import 'package:hanzi_master/features/progression/presentation/screens/dashboard_screen.dart';
 import 'package:hanzi_master/features/chat/presentation/screens/ai_hub_screen.dart';
+import 'package:hanzi_master/features/explore/presentation/screens/explore_screen.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
@@ -25,7 +26,7 @@ class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
       _selectedIndex = index;
     });
     
-    final screenNames = ['Dashboard', 'AI Hub', 'Library'];
+    final screenNames = ['Dashboard', 'Explore', 'AI Hub', 'Library'];
     if (index >= 0 && index < screenNames.length) {
       ref.read(analyticsServiceProvider).logScreenView(screenNames[index]);
     }
@@ -33,6 +34,7 @@ class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
 
   late final List<Widget> _screens = [
     DashboardScreen(onNavigate: _onNavigate),
+    const ExploreScreen(),
     const AiHubScreen(),
     const DictionaryScreen(),
   ];
@@ -81,10 +83,10 @@ class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
           currentIndex: _selectedIndex,
           onTap: (index) {
             HapticsManager.light();
-            setState(() => _selectedIndex = index);
+            _onNavigate(index);
           },
           backgroundColor: isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
-          selectedItemColor: isDark ? const Color(0xFFFDFCF0) : const Color(0xFF1A1A1B),
+          selectedItemColor: isDark ? const Color(0xFFFF7A00) : const Color(0xFFFF7A00),
           unselectedItemColor: isDark
               ? const Color(0xFFFDFCF0).withValues(alpha: 0.4)
               : const Color(0xFF1A1A1B).withValues(alpha: 0.5),
@@ -93,15 +95,23 @@ class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
           type: BottomNavigationBarType.fixed,
           items: [
             BottomNavigationBarItem(
-              icon: const Icon(Icons.dashboard),
+              icon: const Icon(Icons.home_outlined),
+              activeIcon: const Icon(Icons.home),
               label: AppLocalizations.of(context)!.dashboardTitle,
             ),
+            const BottomNavigationBarItem(
+              icon: Icon(Icons.explore_outlined),
+              activeIcon: Icon(Icons.explore),
+              label: "Explore",
+            ),
             BottomNavigationBarItem(
-              icon: const Icon(Icons.auto_awesome),
+              icon: const Icon(Icons.auto_awesome_outlined),
+              activeIcon: const Icon(Icons.auto_awesome),
               label: AppLocalizations.of(context)!.aiHubTitle,
             ),
             const BottomNavigationBarItem(
-              icon: Icon(Icons.menu_book),
+              icon: Icon(Icons.menu_book_outlined),
+              activeIcon: Icon(Icons.menu_book),
               label: "Library",
             ),
           ],

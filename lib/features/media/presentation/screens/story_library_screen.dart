@@ -9,6 +9,7 @@ import 'package:hanzi_master/features/media/presentation/screens/story_summary_s
 import 'package:hanzi_master/features/reading/presentation/widgets/custom_story_creator_sheet.dart';
 import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
+import 'package:hanzi_master/features/reading/presentation/screens/book_catalog_screen.dart';
 
 class CategoryStyle {
   final List<Color> gradient;
@@ -142,6 +143,67 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
       body: Column(
         children: [
           _buildSearchBar(),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
+            child: GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  SwipeBackPageRoute(builder: (_) => const BookCatalogScreen()),
+                );
+              },
+              child: Container(
+                padding: const EdgeInsets.all(14),
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: isDark
+                        ? [const Color(0xFF321A1A), const Color(0xFF1E1E24)]
+                        : [const Color(0xFF8B0000), const Color(0xFF5C0000)],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                  borderRadius: BorderRadius.circular(14),
+                  boxShadow: [
+                    BoxShadow(
+                      color: const Color(0xFF8B0000).withValues(alpha: 0.25),
+                      blurRadius: 8,
+                      offset: const Offset(0, 4),
+                    ),
+                  ],
+                ),
+                child: Row(
+                  children: [
+                    const Text('🏛️', style: TextStyle(fontSize: 28)),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            '经典藏书阁 · Grand Library',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15,
+                            ),
+                          ),
+                          Text(
+                            '80+ Complete classic novels & world epics',
+                            style: TextStyle(
+                              color: Colors.white.withValues(alpha: 0.85),
+                              fontSize: 12,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const Icon(Icons.arrow_forward_ios, color: Colors.white, size: 16),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 8),
           Expanded(
             child: _isLoading && _allStories.isEmpty
               ? const Center(child: CircularProgressIndicator(color: Color(0xFF8B0000)))

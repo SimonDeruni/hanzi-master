@@ -15,6 +15,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hanzi_master/features/media/domain/models/saved_article.dart';
 import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
 import 'package:hanzi_master/core/config/app_features.dart';
+import 'package:hanzi_master/features/reading/presentation/screens/book_catalog_screen.dart';
 
 class MediaHubScreen extends ConsumerWidget {
   const MediaHubScreen({super.key});
@@ -29,15 +30,15 @@ class MediaHubScreen extends ConsumerWidget {
           physics: const BouncingScrollPhysics(),
           slivers: [
             const GlobalSliverAppBar(
-              title: "Media Hub",
-              actions: [],
+              title: 'Media Hub',
+              subtitle: 'Immersive Chinese learning through real content',
             ),
 
             const SliverToBoxAdapter(child: SizedBox(height: 16)),
 
-            // Carousel: Video & News of the day
-            const SliverSafeArea(
-              bottom: false,
+            // Daily Discovery Carousel
+            const SliverPadding(
+              padding: EdgeInsets.zero,
               sliver: SliverToBoxAdapter(
                 child: _DailyDiscoveryCarousel(),
               ),
@@ -51,6 +52,21 @@ class MediaHubScreen extends ConsumerWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 24.0),
                 child: Column(
                   children: [
+                    _buildThematicCard(
+                      context: context,
+                      title: "GRAND LIBRARY (80+ BOOKS)",
+                      subtitle: "Complete classical epics, philosophy & world novels",
+                      icon: Icons.menu_book,
+                      brandColor: const Color(0xFF8B0000), // Imperial Crimson
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          SwipeBackPageRoute(
+                              builder: (_) => const BookCatalogScreen()),
+                        );
+                      },
+                    ),
+                    const SizedBox(height: 16),
                     if (AppFeatures.youtubeMedia) ...[
                       _buildThematicCard(
                         context: context,

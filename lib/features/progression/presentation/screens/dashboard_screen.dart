@@ -15,6 +15,11 @@ import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/features/progression/presentation/widgets/today_insight_card.dart';
 import 'package:hanzi_master/shared/widgets/global_sliver_app_bar.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
+import 'package:hanzi_master/features/premium/presentation/screens/universal_scanner_screen.dart';
+import 'package:hanzi_master/features/live_translate/presentation/screens/travel_interpreter_screen.dart';
+import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
+import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
+
 class DashboardScreen extends ConsumerWidget {
   final Function(int) onNavigate;
 
@@ -86,25 +91,20 @@ class DashboardScreen extends ConsumerWidget {
             // --- STANDARD HEADER ---
             GlobalSliverAppBar(
               title: l10n?.dashboardTitle ?? "Dashboard",
-              actions: const [
-                              ],
+              actions: const [],
             ),
 
-            
-            // --- NEW: TODAY'S WORD ---
+            // --- TODAY'S WORD (CROPPED & COMPACT) ---
             const SliverToBoxAdapter(
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 24.0),
-                child: SizedBox(
-                  height: 220,
-                  child: TodayInsightCard(),
-                ),
+                child: TodayInsightCard(),
               ),
             ),
             
-            const SliverToBoxAdapter(child: SizedBox(height: 32)),
+            const SliverToBoxAdapter(child: SizedBox(height: 18)),
             
-            // --- MIDDLE: QUICK SEARCH ---
+            // --- QUICK SEARCH BAR ---
             SliverToBoxAdapter(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24.0),
@@ -122,40 +122,41 @@ class DashboardScreen extends ConsumerWidget {
                         );
                       },
                       child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 18),
+                        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
                         decoration: BoxDecoration(
                           color: Theme.of(context).brightness == Brightness.dark
                               ? const Color(0xFF1A1A1B).withValues(alpha: 0.8)
-                              : Colors.white.withValues(alpha: 0.6),
-                          borderRadius: BorderRadius.circular(30),
+                              : Colors.white.withValues(alpha: 0.7),
+                          borderRadius: BorderRadius.circular(24),
                           border: Border.all(
                             color: Theme.of(context).brightness == Brightness.dark
                                 ? Colors.white.withValues(alpha: 0.1)
-                                : Colors.transparent,
+                                : Colors.black.withValues(alpha: 0.04),
                           ),
                           boxShadow: [
                             BoxShadow(
                               color: Colors.black.withValues(
                                 alpha: Theme.of(context).brightness == Brightness.dark ? 0.3 : 0.04
                               ),
-                              blurRadius: 20,
-                              offset: const Offset(0, 8),
+                              blurRadius: 16,
+                              offset: const Offset(0, 6),
                             ),
                           ],
                         ),
                         child: Row(
                           children: [
-                            Icon(Icons.search, color: theme.colorScheme.onSurface.withValues(alpha: 0.4), size: 24),
-                            const SizedBox(width: 16),
+                            Icon(Icons.search, color: theme.colorScheme.onSurface.withValues(alpha: 0.4), size: 22),
+                            const SizedBox(width: 14),
                             Text(
                               l10n?.searchHanziOrPinyin ?? "Search Hanzi or Pinyin...",
                               style: theme.textTheme.titleMedium?.copyWith(
                                 color: theme.colorScheme.onSurface.withValues(alpha: 0.5),
                                 fontWeight: FontWeight.w500,
+                                fontSize: 15,
                               ),
                             ),
                             const Spacer(),
-                            Icon(Icons.arrow_forward_ios, size: 16, color: theme.colorScheme.onSurface.withValues(alpha: 0.3)),
+                            Icon(Icons.arrow_forward_ios, size: 14, color: theme.colorScheme.onSurface.withValues(alpha: 0.3)),
                           ],
                         ),
                       ),
@@ -167,9 +168,61 @@ class DashboardScreen extends ConsumerWidget {
               ),
             ),
 
-            const SliverToBoxAdapter(child: SizedBox(height: 40)),
+            const SliverToBoxAdapter(child: SizedBox(height: 18)),
+
+            // --- RECTANGLE ACTION BUTTONS: SCANNER & INTERPRETER ---
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                child: Row(
+                  children: [
+                    // Universal Scanner
+                    Expanded(
+                      child: _buildActionRectangle(
+                        context: context,
+                        icon: Icons.document_scanner_rounded,
+                        title: "Scanner",
+                        chineseTitle: "智能扫读",
+                        accentColor: const Color(0xFFFF7A00), // Vibrant Amber
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            SwipeBackPageRoute(
+                              builder: (_) => const UniversalScannerScreen(),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                    const SizedBox(width: 14),
+                    // Travel Interpreter
+                    Expanded(
+                      child: _buildActionRectangle(
+                        context: context,
+                        icon: Icons.translate_rounded,
+                        title: "Interpreter",
+                        chineseTitle: "同传翻译",
+                        accentColor: const Color(0xFF3F51B5), // Deep Indigo
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            SwipeBackPageRoute(
+                              builder: (_) => const TravelInterpreterScreen(),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                ).animate(delay: 200.ms)
+                 .fade(duration: 600.ms, curve: Curves.easeOutCubic)
+                 .slideY(begin: 0.05, end: 0, duration: 600.ms, curve: Curves.easeOutCubic),
+              ),
+            ),
+
+            const SliverToBoxAdapter(child: SizedBox(height: 24)),
             
-            // --- MIDDLE: UPCOMING FORECAST ---
+            // --- UPCOMING FORECAST (COMPACT) ---
             SliverToBoxAdapter(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24.0),
@@ -178,20 +231,21 @@ class DashboardScreen extends ConsumerWidget {
                   children: [
                     Text(
                       l10n?.upcomingForecast ?? "Upcoming Forecast",
-                      style: theme.textTheme.titleLarge?.copyWith(
+                      style: theme.textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.w900,
                         fontFamily: 'NotoSerifSC',
-                        letterSpacing: 0.5,
+                        letterSpacing: 0.3,
+                        fontSize: 16,
                       ),
                     ),
-                    const SizedBox(height: 16),
+                    const SizedBox(height: 12),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Expanded(child: _ForecastItem(title: l10n?.laterToday ?? "Later Today", count: dueLaterToday, theme: theme, onTap: () => _showForecastDetail(context, l10n?.laterToday ?? "Later Today", laterTodayByDeck, allDecks, l10n, theme))),
-                        const SizedBox(width: 12),
+                        const SizedBox(width: 10),
                         Expanded(child: _ForecastItem(title: l10n?.tomorrow ?? "Tomorrow", count: dueTomorrow, theme: theme, onTap: () => _showForecastDetail(context, l10n?.tomorrow ?? "Tomorrow", tomorrowByDeck, allDecks, l10n, theme))),
-                        const SizedBox(width: 12),
+                        const SizedBox(width: 10),
                         Expanded(child: _ForecastItem(title: l10n?.next7Days ?? "Next 7 Days", count: dueNext7Days, theme: theme, onTap: () => _showForecastDetail(context, l10n?.next7Days ?? "Next 7 Days", next7DaysByDeck, allDecks, l10n, theme))),
                       ],
                     ),
@@ -202,7 +256,7 @@ class DashboardScreen extends ConsumerWidget {
                .slideY(begin: 0.05, end: 0, duration: 600.ms, curve: Curves.easeOutCubic),
             ),
 
-            const SliverToBoxAdapter(child: SizedBox(height: 40)),
+            const SliverToBoxAdapter(child: SizedBox(height: 24)),
             
             // --- BOTTOM: DAILY REVIEW ---
             SliverToBoxAdapter(
@@ -394,6 +448,86 @@ class DashboardScreen extends ConsumerWidget {
     );
   }
 
+  Widget _buildActionRectangle({
+    required BuildContext context,
+    required IconData icon,
+    required String title,
+    required String chineseTitle,
+    required Color accentColor,
+    required VoidCallback onTap,
+  }) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final cardBg = isDark ? const Color(0xFF1E1E22) : Colors.white;
+    final textColor = isDark ? Colors.white : const Color(0xFF1A1A1B);
+
+    return BouncingButton(
+      scaleFactor: 0.96,
+      onPressed: () {
+        HapticsManager.light();
+        onTap();
+      },
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+        decoration: BoxDecoration(
+          color: cardBg,
+          borderRadius: BorderRadius.circular(18),
+          border: Border.all(
+            color: isDark ? Colors.white.withValues(alpha: 0.08) : Colors.black.withValues(alpha: 0.04),
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: isDark ? 0.25 : 0.04),
+              blurRadius: 12,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
+        child: Row(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(9),
+              decoration: BoxDecoration(
+                color: accentColor.withValues(alpha: isDark ? 0.2 : 0.12),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Icon(icon, color: accentColor, size: 20),
+            ),
+            const SizedBox(width: 10),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    title,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 13,
+                      color: textColor,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  const SizedBox(height: 2),
+                  Text(
+                    chineseTitle,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 11,
+                      color: textColor.withValues(alpha: 0.5),
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   Widget _buildMiniStat(IconData icon, int count, Color color) {
     return Row(
       mainAxisSize: MainAxisSize.min,
@@ -489,18 +623,18 @@ class _ForecastItem extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 12),
+        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
         decoration: BoxDecoration(
           color: isDark ? const Color(0xFF1A1A1B).withValues(alpha: 0.8) : Colors.white,
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(16),
           border: Border.all(
-            color: isDark ? Colors.white.withValues(alpha: 0.1) : Colors.transparent,
+            color: isDark ? Colors.white.withValues(alpha: 0.08) : Colors.transparent,
           ),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withValues(alpha: isDark ? 0.3 : 0.04),
-              blurRadius: 16,
-              offset: const Offset(0, 6),
+              color: Colors.black.withValues(alpha: isDark ? 0.3 : 0.03),
+              blurRadius: 12,
+              offset: const Offset(0, 4),
             ),
           ],
         ),
@@ -508,18 +642,20 @@ class _ForecastItem extends StatelessWidget {
           children: [
             Text(
               count.toString(),
-              style: theme.textTheme.headlineLarge?.copyWith(
+              style: TextStyle(
                 fontWeight: FontWeight.w900,
+                fontSize: 22,
                 color: fgColor,
               ),
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: 4),
             Text(
               title,
-              style: theme.textTheme.bodySmall?.copyWith(
+              style: TextStyle(
                 color: fgColor.withValues(alpha: 0.6),
                 fontWeight: FontWeight.w600,
-                letterSpacing: 0.2,
+                fontSize: 11,
+                letterSpacing: 0.1,
               ),
               textAlign: TextAlign.center,
             ),

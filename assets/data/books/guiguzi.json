@@ -1,0 +1,1226 @@
+[
+  {
+    "id": "guiguzi_ch_1",
+    "bookId": "guiguzi",
+    "chapterIndex": 1,
+    "title": "捭阖第一",
+    "titleEn": "Chapter 1: 捭阖第一",
+    "sentences": [
+      {
+        "chinese": "粵若稽古聖人之在天地間也，為眾生之先，觀陰陽之開闔以名命物；",
+        "pinyin": "yuè ruò jī gǔ shèng rén zhī zài tiān dì jiān yě ， wèi zhòng shēng zhī xiān ， guān yīn yáng zhī kāi hé yǐ míng mìng wù ；",
+        "english": ""
+      },
+      {
+        "chinese": "知存亡之門戶，籌策萬類之終始，達人心之理，見變化之朕焉，而守司其門戶。",
+        "pinyin": "zhī cún wáng zhī mén hù ， chóu cè wàn lèi zhī zhōng shǐ ， dá rén xīn zhī lǐ ， jiàn biàn huà zhī zhèn yān ， ér shǒu sī qí mén hù 。",
+        "english": ""
+      },
+      {
+        "chinese": "故聖人之在天下也，自古至今，其道一也。",
+        "pinyin": "gù shèng rén zhī zài tiān xià yě ， zì gǔ zhì jīn ， qí dào yī yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "變化無窮，各有所歸，或陰或陽，或柔或剛，或開或閉，或弛或張。",
+        "pinyin": "biàn huà wú qióng ， gè yǒu suǒ guī ， huò yīn huò yáng ， huò róu huò gāng ， huò kāi huò bì ， huò chí huò zhāng 。",
+        "english": ""
+      },
+      {
+        "chinese": "是故，聖人一守",
+        "pinyin": "shì gù ， shèng rén yī shǒu",
+        "english": ""
+      },
+      {
+        "chinese": "司其門戶，審察其所先後，度權量能，校其伎巧短長。",
+        "pinyin": "sī qí mén hù ， shěn chá qí suǒ xiān hòu ， dù quán liàng néng ， xiào qí jì qiǎo duǎn cháng 。",
+        "english": ""
+      },
+      {
+        "chinese": "夫賢不肖、智愚、勇怯、仁、義有差。",
+        "pinyin": "fū xián bù xiāo 、 zhì yú 、 yǒng qiè 、 rén 、 yì yǒu chà 。",
+        "english": ""
+      },
+      {
+        "chinese": "乃可捭，乃可闔；",
+        "pinyin": "nǎi kě bǎi ， nǎi kě hé ；",
+        "english": ""
+      },
+      {
+        "chinese": "乃可進，乃可退；",
+        "pinyin": "nǎi kě jìn ， nǎi kě tuì ；",
+        "english": ""
+      },
+      {
+        "chinese": "乃可賤，乃可貴；",
+        "pinyin": "nǎi kě jiàn ， nǎi kě guì ；",
+        "english": ""
+      },
+      {
+        "chinese": "無為以牧之。",
+        "pinyin": "wú wèi yǐ mù zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "審定有無，與其實虛，隨其嗜欲以見其志意。",
+        "pinyin": "shěn dìng yǒu wú ， yǔ qí shí xū ， suí qí shì yù yǐ jiàn qí zhì yì 。",
+        "english": ""
+      },
+      {
+        "chinese": "微排其所言而捭反之，以求其實，貴得其指。",
+        "pinyin": "wēi pái qí suǒ yán ér bǎi fǎn zhī ， yǐ qiú qí shí ， guì dé qí zhǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "闔而捭之，以求其利。",
+        "pinyin": "hé ér bǎi zhī ， yǐ qiú qí lì 。",
+        "english": ""
+      },
+      {
+        "chinese": "或開而示之，或闔而閉之。",
+        "pinyin": "huò kāi ér shì zhī ， huò hé ér bì zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "開而示之者，同其情也；",
+        "pinyin": "kāi ér shì zhī zhě ， tóng qí qíng yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "闔而閉之者，異其誠也。",
+        "pinyin": "hé ér bì zhī zhě ， yì qí chéng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "可與不可，審明其計謀，以原其同異。",
+        "pinyin": "kě yǔ bù kě ， shěn míng qí jì móu ， yǐ yuán qí tóng yì 。",
+        "english": ""
+      },
+      {
+        "chinese": "離合有守，先從其志。",
+        "pinyin": "lí hé yǒu shǒu ， xiān cóng qí zhì 。",
+        "english": ""
+      },
+      {
+        "chinese": "即欲捭之，貴周；",
+        "pinyin": "jí yù bǎi zhī ， guì zhōu ；",
+        "english": ""
+      },
+      {
+        "chinese": "即欲闔之，貴密。",
+        "pinyin": "jí yù hé zhī ， guì mì 。",
+        "english": ""
+      },
+      {
+        "chinese": "周密之貴，微而與道相追。",
+        "pinyin": "zhōu mì zhī guì ， wēi ér yǔ dào xiāng zhuī 。",
+        "english": ""
+      },
+      {
+        "chinese": "捭之者，料其情也；",
+        "pinyin": "bǎi zhī zhě ， liào qí qíng yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "闔之者，結其誠也。",
+        "pinyin": "hé zhī zhě ， jié qí chéng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "皆見其權衡輕重，乃為之度數，聖人因而為之慮；",
+        "pinyin": "jiē jiàn qí quán héng qīng zhòng ， nǎi wèi zhī dù shǔ ， shèng rén yīn ér wèi zhī lǜ ；",
+        "english": ""
+      },
+      {
+        "chinese": "其不中權衡度數，聖人因而自為之慮。",
+        "pinyin": "qí bù zhōng quán héng dù shǔ ， shèng rén yīn ér zì wèi zhī lǜ 。",
+        "english": ""
+      },
+      {
+        "chinese": "故捭者，或捭而出之，或捭而納之。",
+        "pinyin": "gù bǎi zhě ， huò bǎi ér chū zhī ， huò bǎi ér nà zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "闔者，或闔而取之，或闔而去之。",
+        "pinyin": "hé zhě ， huò hé ér qǔ zhī ， huò hé ér qù zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "捭闔者，天地之道。",
+        "pinyin": "bǎi hé zhě ， tiān dì zhī dào 。",
+        "english": ""
+      },
+      {
+        "chinese": "捭闔者，以變動陰陽，四時開閉，以化萬物；",
+        "pinyin": "bǎi hé zhě ， yǐ biàn dòng yīn yáng ， sì shí kāi bì ， yǐ huà wàn wù ；",
+        "english": ""
+      },
+      {
+        "chinese": "縱橫反出，反覆反忤，必由此矣。",
+        "pinyin": "zòng héng fǎn chū ， fǎn fù fǎn wǔ ， bì yóu cǐ yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "捭闔者，道之大化，說之變也。",
+        "pinyin": "bǎi hé zhě ， dào zhī dà huà ， shuō zhī biàn yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "必豫審其變化，吉凶大命繫焉。",
+        "pinyin": "bì yù shěn qí biàn huà ， jí xiōng dà mìng xì yān 。",
+        "english": ""
+      },
+      {
+        "chinese": "口者，心之門戶也。",
+        "pinyin": "kǒu zhě ， xīn zhī mén hù yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "心者，神之主也。",
+        "pinyin": "xīn zhě ， shén zhī zhǔ yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "志意、喜欲、思慮、智謀，此皆由門戶出入。",
+        "pinyin": "zhì yì 、 xǐ yù 、 sī lǜ 、 zhì móu ， cǐ jiē yóu mén hù chū rù 。",
+        "english": ""
+      },
+      {
+        "chinese": "故關之以捭闔，制之以出入。",
+        "pinyin": "gù guān zhī yǐ bǎi hé ， zhì zhī yǐ chū rù 。",
+        "english": ""
+      },
+      {
+        "chinese": "捭之者，開也，言也，陽也；",
+        "pinyin": "bǎi zhī zhě ， kāi yě ， yán yě ， yáng yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "闔之者，閉也，默也，陰也。",
+        "pinyin": "hé zhī zhě ， bì yě ， mò yě ， yīn yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "陰陽其和，終始其義。",
+        "pinyin": "yīn yáng qí hé ， zhōng shǐ qí yì 。",
+        "english": ""
+      },
+      {
+        "chinese": "故言長生、安樂、富貴、尊榮、顯名、愛好、財利、得意、喜欲，為陽，曰始。",
+        "pinyin": "gù yán cháng shēng 、 ān lè 、 fù guì 、 zūn róng 、 xiǎn míng 、 ài hào 、 cái lì 、 dé yì 、 xǐ yù ， wèi yáng ， yuē shǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "故言死亡、憂患、貧賤、苦辱、棄損、亡利、失意、有害、刑戮、誅罰，為陰，曰終。",
+        "pinyin": "gù yán sǐ wáng 、 yōu huàn 、 pín jiàn 、 kǔ rǔ 、 qì sǔn 、 wáng lì 、 shī yì 、 yǒu hài 、 xíng lù 、 zhū fá ， wèi yīn ， yuē zhōng 。",
+        "english": ""
+      },
+      {
+        "chinese": "諸言法陽之類者，皆曰始；",
+        "pinyin": "zhū yán fǎ yáng zhī lèi zhě ， jiē yuē shǐ ；",
+        "english": ""
+      },
+      {
+        "chinese": "言善以始其事。",
+        "pinyin": "yán shàn yǐ shǐ qí shì 。",
+        "english": ""
+      },
+      {
+        "chinese": "諸言法陰之類者，皆曰終；",
+        "pinyin": "zhū yán fǎ yīn zhī lèi zhě ， jiē yuē zhōng ；",
+        "english": ""
+      },
+      {
+        "chinese": "言惡以終其謀。",
+        "pinyin": "yán è yǐ zhōng qí móu 。",
+        "english": ""
+      },
+      {
+        "chinese": "捭闔之道，以陰陽試之。",
+        "pinyin": "bǎi hé zhī dào ， yǐ yīn yáng shì zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "故與陽言者，依崇高。",
+        "pinyin": "gù yǔ yáng yán zhě ， yī chóng gāo 。",
+        "english": ""
+      },
+      {
+        "chinese": "與陰言者，依卑小。",
+        "pinyin": "yǔ yīn yán zhě ， yī bēi xiǎo 。",
+        "english": ""
+      },
+      {
+        "chinese": "以下求小，以高求大。",
+        "pinyin": "yǐ xià qiú xiǎo ， yǐ gāo qiú dà 。",
+        "english": ""
+      },
+      {
+        "chinese": "由此言之，無所不出，無所不入，無所不可。",
+        "pinyin": "yóu cǐ yán zhī ， wú suǒ bù chū ， wú suǒ bù rù ， wú suǒ bù kě 。",
+        "english": ""
+      },
+      {
+        "chinese": "可以說人，可以說家，可以說國，可以說天下。",
+        "pinyin": "kě yǐ shuō rén ， kě yǐ shuō jiā ， kě yǐ shuō guó ， kě yǐ shuō tiān xià 。",
+        "english": ""
+      },
+      {
+        "chinese": "為小無內，為大無外；",
+        "pinyin": "wèi xiǎo wú nèi ， wèi dà wú wài ；",
+        "english": ""
+      },
+      {
+        "chinese": "益損、去就、倍反，皆以陰陽御其事。",
+        "pinyin": "yì sǔn 、 qù jiù 、 bèi fǎn ， jiē yǐ yīn yáng yù qí shì 。",
+        "english": ""
+      },
+      {
+        "chinese": "陽動而行，陰止而藏；",
+        "pinyin": "yáng dòng ér xíng ， yīn zhǐ ér cáng ；",
+        "english": ""
+      },
+      {
+        "chinese": "陽動而出，陰隱而入；",
+        "pinyin": "yáng dòng ér chū ， yīn yǐn ér rù ；",
+        "english": ""
+      },
+      {
+        "chinese": "陽還終陰，陰極反陽。",
+        "pinyin": "yáng hái zhōng yīn ， yīn jí fǎn yáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "以陽動者，德相生也。",
+        "pinyin": "yǐ yáng dòng zhě ， dé xiāng shēng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "以陰靜者，形相成也。",
+        "pinyin": "yǐ yīn jìng zhě ， xíng xiāng chéng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "以陽求陰，苞以德也；",
+        "pinyin": "yǐ yáng qiú yīn ， bāo yǐ dé yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "以陰結陽，施以力也。",
+        "pinyin": "yǐ yīn jié yáng ， shī yǐ lì yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "陰陽相求，由捭闔也。",
+        "pinyin": "yīn yáng xiāng qiú ， yóu bǎi hé yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "此天地陰陽之道，而說人之法也。",
+        "pinyin": "cǐ tiān dì yīn yáng zhī dào ， ér shuō rén zhī fǎ yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "為萬事之先，是謂圓方之門戶。",
+        "pinyin": "wèi wàn shì zhī xiān ， shì wèi yuán fāng zhī mén hù 。",
+        "english": ""
+      }
+    ]
+  },
+  {
+    "id": "guiguzi_ch_2",
+    "bookId": "guiguzi",
+    "chapterIndex": 2,
+    "title": "反应第二",
+    "titleEn": "Chapter 2: 反应第二",
+    "sentences": [
+      {
+        "chinese": "古之大化者，乃與無形俱生。",
+        "pinyin": "gǔ zhī dà huà zhě ， nǎi yǔ wú xíng jù shēng 。",
+        "english": ""
+      },
+      {
+        "chinese": "反以觀往，覆以驗來；",
+        "pinyin": "fǎn yǐ guān wǎng ， fù yǐ yàn lái ；",
+        "english": ""
+      },
+      {
+        "chinese": "反以知古，覆以知今；",
+        "pinyin": "fǎn yǐ zhī gǔ ， fù yǐ zhī jīn ；",
+        "english": ""
+      },
+      {
+        "chinese": "反以知彼，覆以知此。",
+        "pinyin": "fǎn yǐ zhī bǐ ， fù yǐ zhī cǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "動靜虛實之理不合於今，反古而求之。",
+        "pinyin": "dòng jìng xū shí zhī lǐ bù hé yú jīn ， fǎn gǔ ér qiú zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "事有反而得覆者，聖人之意也，不可不察。",
+        "pinyin": "shì yǒu fǎn ér dé fù zhě ， shèng rén zhī yì yě ， bù kě bù chá 。",
+        "english": ""
+      },
+      {
+        "chinese": "人言者，動也；",
+        "pinyin": "rén yán zhě ， dòng yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "己默者，靜也。",
+        "pinyin": "jǐ mò zhě ， jìng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "因其言，聽其辭。",
+        "pinyin": "yīn qí yán ， tīng qí cí 。",
+        "english": ""
+      },
+      {
+        "chinese": "言有不合者，反而求之，其應必出。",
+        "pinyin": "yán yǒu bù hé zhě ， fǎn ér qiú zhī ， qí yīng bì chū 。",
+        "english": ""
+      },
+      {
+        "chinese": "言有象，事有比；",
+        "pinyin": "yán yǒu xiàng ， shì yǒu bǐ ；",
+        "english": ""
+      },
+      {
+        "chinese": "其有象比，以觀其次。",
+        "pinyin": "qí yǒu xiàng bǐ ， yǐ guān qí cì 。",
+        "english": ""
+      },
+      {
+        "chinese": "象者，象其事；",
+        "pinyin": "xiàng zhě ， xiàng qí shì ；",
+        "english": ""
+      },
+      {
+        "chinese": "比者，比其辭也。",
+        "pinyin": "bǐ zhě ， bǐ qí cí yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "以無形求有聲。",
+        "pinyin": "yǐ wú xíng qiú yǒu shēng 。",
+        "english": ""
+      },
+      {
+        "chinese": "其釣語合事，得人實也。",
+        "pinyin": "qí diào yǔ hé shì ， dé rén shí yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "其猶張罝而取獸也。",
+        "pinyin": "qí yóu zhāng jū ér qǔ shòu yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "多張其會而同之，道合其事，彼自出之，此釣人之網也。",
+        "pinyin": "duō zhāng qí huì ér tóng zhī ， dào hé qí shì ， bǐ zì chū zhī ， cǐ diào rén zhī wǎng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "常持其網而驅之。",
+        "pinyin": "cháng chí qí wǎng ér qū zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "其不言無比，乃為之變。",
+        "pinyin": "qí bù yán wú bǐ ， nǎi wèi zhī biàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "以象動之，以報其心、見其情，隨而牧之。",
+        "pinyin": "yǐ xiàng dòng zhī ， yǐ bào qí xīn 、 jiàn qí qíng ， suí ér mù zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "己反往，彼覆來，言有象比，因而定基。",
+        "pinyin": "jǐ fǎn wǎng ， bǐ fù lái ， yán yǒu xiàng bǐ ， yīn ér dìng jī 。",
+        "english": ""
+      },
+      {
+        "chinese": "重之、襲之、反之、覆之，萬事不失其辭。",
+        "pinyin": "zhòng zhī 、 xí zhī 、 fǎn zhī 、 fù zhī ， wàn shì bù shī qí cí 。",
+        "english": ""
+      },
+      {
+        "chinese": "聖人所誘愚智，事皆不疑。",
+        "pinyin": "shèng rén suǒ yòu yú zhì ， shì jiē bù yí 。",
+        "english": ""
+      },
+      {
+        "chinese": "故善反聽者，乃變鬼神以得其情。",
+        "pinyin": "gù shàn fǎn tīng zhě ， nǎi biàn guǐ shén yǐ dé qí qíng 。",
+        "english": ""
+      },
+      {
+        "chinese": "其變當也，而牧之審也。",
+        "pinyin": "qí biàn dāng yě ， ér mù zhī shěn yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "牧之不審，得情不明。",
+        "pinyin": "mù zhī bù shěn ， dé qíng bù míng 。",
+        "english": ""
+      },
+      {
+        "chinese": "得情不明，定基不審。",
+        "pinyin": "dé qíng bù míng ， dìng jī bù shěn 。",
+        "english": ""
+      },
+      {
+        "chinese": "變象比必有反辭以還聽之。",
+        "pinyin": "biàn xiàng bǐ bì yǒu fǎn cí yǐ hái tīng zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "欲聞其聲，反默；",
+        "pinyin": "yù wén qí shēng ， fǎn mò ；",
+        "english": ""
+      },
+      {
+        "chinese": "欲張，反斂；",
+        "pinyin": "yù zhāng ， fǎn liǎn ；",
+        "english": ""
+      },
+      {
+        "chinese": "欲高，反下；",
+        "pinyin": "yù gāo ， fǎn xià ；",
+        "english": ""
+      },
+      {
+        "chinese": "欲取，反與。",
+        "pinyin": "yù qǔ ， fǎn yǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "欲開情者，象而比之，以牧其辭。",
+        "pinyin": "yù kāi qíng zhě ， xiàng ér bǐ zhī ， yǐ mù qí cí 。",
+        "english": ""
+      },
+      {
+        "chinese": "同聲相呼，實理同歸。",
+        "pinyin": "tóng shēng xiāng hū ， shí lǐ tóng guī 。",
+        "english": ""
+      },
+      {
+        "chinese": "或因此，或因彼；",
+        "pinyin": "huò yīn cǐ ， huò yīn bǐ ；",
+        "english": ""
+      },
+      {
+        "chinese": "或以事上，或以牧下。",
+        "pinyin": "huò yǐ shì shàng ， huò yǐ mù xià 。",
+        "english": ""
+      },
+      {
+        "chinese": "此聽真偽，知同異，得其情詐也。",
+        "pinyin": "cǐ tīng zhēn wěi ， zhī tóng yì ， dé qí qíng zhà yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "動作言默，與此出入；",
+        "pinyin": "dòng zuò yán mò ， yǔ cǐ chū rù ；",
+        "english": ""
+      },
+      {
+        "chinese": "喜怒由此以見其式；",
+        "pinyin": "xǐ nù yóu cǐ yǐ jiàn qí shì ；",
+        "english": ""
+      },
+      {
+        "chinese": "皆以先定為之法則。",
+        "pinyin": "jiē yǐ xiān dìng wèi zhī fǎ zé 。",
+        "english": ""
+      },
+      {
+        "chinese": "以反求覆，觀其所託，故用此者。",
+        "pinyin": "yǐ fǎn qiú fù ， guān qí suǒ tuō ， gù yòng cǐ zhě 。",
+        "english": ""
+      },
+      {
+        "chinese": "己欲平靜以聽其辭，察其事、論萬物、別雌雄。",
+        "pinyin": "jǐ yù píng jìng yǐ tīng qí cí ， chá qí shì 、 lùn wàn wù 、 bié cí xióng 。",
+        "english": ""
+      },
+      {
+        "chinese": "雖非其事，見微知類。",
+        "pinyin": "suī fēi qí shì ， jiàn wēi zhī lèi 。",
+        "english": ""
+      },
+      {
+        "chinese": "若探人而居其內，量其能，射其意也。",
+        "pinyin": "ruò tàn rén ér jū qí nèi ， liàng qí néng ， shè qí yì yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "符應不失，如螣蛇之所指，若羿之引矢；",
+        "pinyin": "fú yīng bù shī ， rú téng shé zhī suǒ zhǐ ， ruò yì zhī yǐn shǐ ；",
+        "english": ""
+      },
+      {
+        "chinese": "故知之始己，自知而後知人也。",
+        "pinyin": "gù zhī zhī shǐ jǐ ， zì zhī ér hòu zhī rén yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "其相知也，若比目之魚；",
+        "pinyin": "qí xiāng zhī yě ， ruò bǐ mù zhī yú ；",
+        "english": ""
+      },
+      {
+        "chinese": "其見形也，若光之與影也。",
+        "pinyin": "qí jiàn xíng yě ， ruò guāng zhī yǔ yǐng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "其察言也不失，若磁石之取鍼；",
+        "pinyin": "qí chá yán yě bù shī ， ruò cí shí zhī qǔ zhēn ；",
+        "english": ""
+      },
+      {
+        "chinese": "如舌之取蟠骨。",
+        "pinyin": "rú shé zhī qǔ pán gǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "其與人也微，其見人也疾；",
+        "pinyin": "qí yǔ rén yě wēi ， qí jiàn rén yě jí ；",
+        "english": ""
+      },
+      {
+        "chinese": "如陰與陽，如陽與陰，如圓與方，如方與圓。",
+        "pinyin": "rú yīn yǔ yáng ， rú yáng yǔ yīn ， rú yuán yǔ fāng ， rú fāng yǔ yuán 。",
+        "english": ""
+      },
+      {
+        "chinese": "未見形，圓以道之；",
+        "pinyin": "wèi jiàn xíng ， yuán yǐ dào zhī ；",
+        "english": ""
+      },
+      {
+        "chinese": "既見形，方以事之。",
+        "pinyin": "jì jiàn xíng ， fāng yǐ shì zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "進退左右，以是司之。",
+        "pinyin": "jìn tuì zuǒ yòu ， yǐ shì sī zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "己不先定，牧人不正，事用不巧，是謂忘情失道。",
+        "pinyin": "jǐ bù xiān dìng ， mù rén bù zhèng ， shì yòng bù qiǎo ， shì wèi wàng qíng shī dào 。",
+        "english": ""
+      },
+      {
+        "chinese": "己審先定以牧人，策而無形容，莫見其門，是謂天神。",
+        "pinyin": "jǐ shěn xiān dìng yǐ mù rén ， cè ér wú xíng róng ， mò jiàn qí mén ， shì wèi tiān shén 。",
+        "english": ""
+      }
+    ]
+  },
+  {
+    "id": "guiguzi_ch_3",
+    "bookId": "guiguzi",
+    "chapterIndex": 3,
+    "title": "抵巇第四",
+    "titleEn": "Chapter 3: 抵巇第四",
+    "sentences": [
+      {
+        "chinese": "物有自然，事有合離。",
+        "pinyin": "wù yǒu zì rán ， shì yǒu hé lí 。",
+        "english": ""
+      },
+      {
+        "chinese": "有近而不可見，有遠而可知。",
+        "pinyin": "yǒu jìn ér bù kě jiàn ， yǒu yuǎn ér kě zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "近而不可見，不察其辭也；",
+        "pinyin": "jìn ér bù kě jiàn ， bù chá qí cí yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "遠而可知者，反往以驗來也。",
+        "pinyin": "yuǎn ér kě zhī zhě ， fǎn wǎng yǐ yàn lái yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "巇者，罅也。",
+        "pinyin": "xī zhě ， xià yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "罅者，𡼏也。",
+        "pinyin": "xià zhě ， \ud847 \udf0f yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "𡼏者，成大隙也。",
+        "pinyin": "\ud847 \udf0f zhě ， chéng dà xì yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "巇始有朕，可抵而塞，可抵而卻，可抵而息，可抵而匿，可抵而得，此謂抵巇之理也。",
+        "pinyin": "xī shǐ yǒu zhèn ， kě dǐ ér sāi ， kě dǐ ér què ， kě dǐ ér xī ， kě dǐ ér nì ， kě dǐ ér dé ， cǐ wèi dǐ xī zhī lǐ yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "事之危也，聖人知之，獨保其身；",
+        "pinyin": "shì zhī wēi yě ， shèng rén zhī zhī ， dú bǎo qí shēn ；",
+        "english": ""
+      },
+      {
+        "chinese": "因化說事，通達計謀，以識細微。",
+        "pinyin": "yīn huà shuō shì ， tōng dá jì móu ， yǐ shí xì wēi 。",
+        "english": ""
+      },
+      {
+        "chinese": "經起秋毫之末，揮之於太山之本。",
+        "pinyin": "jīng qǐ qiū háo zhī mò ， huī zhī yú tài shān zhī běn 。",
+        "english": ""
+      },
+      {
+        "chinese": "其施外兆萌牙櫱之謀，皆由抵巇。",
+        "pinyin": "qí shī wài zhào méng yá niè zhī móu ， jiē yóu dǐ xī 。",
+        "english": ""
+      },
+      {
+        "chinese": "抵巇之隙為道術用。",
+        "pinyin": "dǐ xī zhī xì wèi dào shù yòng 。",
+        "english": ""
+      },
+      {
+        "chinese": "天下紛錯，上無明主，公侯無道德，則小人讒賊、賢人不用、聖人竄匿，貪利詐偽者作；",
+        "pinyin": "tiān xià fēn cuò ， shàng wú míng zhǔ ， gōng hóu wú dào dé ， zé xiǎo rén chán zéi 、 xián rén bù yòng 、 shèng rén cuàn nì ， tān lì zhà wěi zhě zuò ；",
+        "english": ""
+      },
+      {
+        "chinese": "君臣相惑，土崩瓦解而相伐射，父子離散，乖亂反目，是謂萌牙巇罅。",
+        "pinyin": "jūn chén xiāng huò ， tǔ bēng wǎ jiě ér xiāng fá shè ， fù zǐ lí sàn ， guāi luàn fǎn mù ， shì wèi méng yá xī xià 。",
+        "english": ""
+      },
+      {
+        "chinese": "聖人見萌牙巇罅，則抵之以法。",
+        "pinyin": "shèng rén jiàn méng yá xī xià ， zé dǐ zhī yǐ fǎ 。",
+        "english": ""
+      },
+      {
+        "chinese": "世可以治，則抵而塞之；",
+        "pinyin": "shì kě yǐ zhì ， zé dǐ ér sāi zhī ；",
+        "english": ""
+      },
+      {
+        "chinese": "不可治，則抵而得之；",
+        "pinyin": "bù kě zhì ， zé dǐ ér dé zhī ；",
+        "english": ""
+      },
+      {
+        "chinese": "或抵如此，或抵如彼；",
+        "pinyin": "huò dǐ rú cǐ ， huò dǐ rú bǐ ；",
+        "english": ""
+      },
+      {
+        "chinese": "或抵反之，或抵覆之。",
+        "pinyin": "huò dǐ fǎn zhī ， huò dǐ fù zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "五帝之政，抵而塞之；",
+        "pinyin": "wǔ dì zhī zhèng ， dǐ ér sāi zhī ；",
+        "english": ""
+      },
+      {
+        "chinese": "三王之事，抵而得之。",
+        "pinyin": "sān wáng zhī shì ， dǐ ér dé zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "諸侯相抵，不可勝數，當此之時，能抵為右。",
+        "pinyin": "zhū hóu xiāng dǐ ， bù kě shèng shǔ ， dāng cǐ zhī shí ， néng dǐ wèi yòu 。",
+        "english": ""
+      },
+      {
+        "chinese": "自天地之合離終始，必有巇隙，不可不察也。",
+        "pinyin": "zì tiān dì zhī hé lí zhōng shǐ ， bì yǒu xī xì ， bù kě bù chá yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "察之以捭闔，能用此道，聖人也。",
+        "pinyin": "chá zhī yǐ bǎi hé ， néng yòng cǐ dào ， shèng rén yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "聖人者，天地之使也。",
+        "pinyin": "shèng rén zhě ， tiān dì zhī shǐ yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "世無可抵，則深隱而待時；",
+        "pinyin": "shì wú kě dǐ ， zé shēn yǐn ér dài shí ；",
+        "english": ""
+      },
+      {
+        "chinese": "時有可抵，則為之謀。",
+        "pinyin": "shí yǒu kě dǐ ， zé wèi zhī móu 。",
+        "english": ""
+      },
+      {
+        "chinese": "此道，可以上合，可以檢下。",
+        "pinyin": "cǐ dào ， kě yǐ shàng hé ， kě yǐ jiǎn xià 。",
+        "english": ""
+      },
+      {
+        "chinese": "能因能循，為天地守神。",
+        "pinyin": "néng yīn néng xún ， wèi tiān dì shǒu shén 。",
+        "english": ""
+      }
+    ]
+  },
+  {
+    "id": "guiguzi_ch_4",
+    "bookId": "guiguzi",
+    "chapterIndex": 4,
+    "title": "飞箝第五",
+    "titleEn": "Chapter 4: 飞箝第五",
+    "sentences": [
+      {
+        "chinese": "凡度權量能，所以徵遠求近。",
+        "pinyin": "fán dù quán liàng néng ， suǒ yǐ zhēng yuǎn qiú jìn 。",
+        "english": ""
+      },
+      {
+        "chinese": "立勢而制事，必先察同異，別是非之語，見內外之辭，知有無之數，決安危之計，定親疏之事，然後乃權量之。",
+        "pinyin": "lì shì ér zhì shì ， bì xiān chá tóng yì ， bié shì fēi zhī yǔ ， jiàn nèi wài zhī cí ， zhī yǒu wú zhī shǔ ， jué ān wēi zhī jì ， dìng qīn shū zhī shì ， rán hòu nǎi quán liàng zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "其有隱括，乃可徵，乃可求，乃可用。",
+        "pinyin": "qí yǒu yǐn kuò ， nǎi kě zhēng ， nǎi kě qiú ， nǎi kě yòng 。",
+        "english": ""
+      },
+      {
+        "chinese": "引鉤箝之辭，飛而箝之。",
+        "pinyin": "yǐn gōu qián zhī cí ， fēi ér qián zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "鉤箝之語，其說辭也，乍同乍異。",
+        "pinyin": "gōu qián zhī yǔ ， qí shuō cí yě ， zhà tóng zhà yì 。",
+        "english": ""
+      },
+      {
+        "chinese": "其不可善者，或先徵之，而後重累；",
+        "pinyin": "qí bù kě shàn zhě ， huò xiān zhēng zhī ， ér hòu zhòng léi ；",
+        "english": ""
+      },
+      {
+        "chinese": "或先重以累，而後毀之；",
+        "pinyin": "huò xiān zhòng yǐ léi ， ér hòu huǐ zhī ；",
+        "english": ""
+      },
+      {
+        "chinese": "或以重累為毀；",
+        "pinyin": "huò yǐ zhòng léi wèi huǐ ；",
+        "english": ""
+      },
+      {
+        "chinese": "或以毀為重累。",
+        "pinyin": "huò yǐ huǐ wèi zhòng léi 。",
+        "english": ""
+      },
+      {
+        "chinese": "其用或稱財貨、琦瑋、珠玉、璧帛、采邑以事之。",
+        "pinyin": "qí yòng huò chēng cái huò 、 qí wěi 、 zhū yù 、 bì bó 、 cǎi yì yǐ shì zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "或量能立勢以鉤之，或伺候見𡼏而箝之，其事用抵巇。",
+        "pinyin": "huò liàng néng lì shì yǐ gōu zhī ， huò cì hòu jiàn \ud847 \udf0f ér qián zhī ， qí shì yòng dǐ xī 。",
+        "english": ""
+      },
+      {
+        "chinese": "將欲用之於天下，必度權量能，見天時之盛衰，制地形之廣狹、阻險之難易，人民貨財之多少，諸侯之交孰親孰疏、孰愛孰憎，心意之慮懷。",
+        "pinyin": "jiāng yù yòng zhī yú tiān xià ， bì dù quán liàng néng ， jiàn tiān shí zhī shèng shuāi ， zhì dì xíng zhī guǎng xiá 、 zǔ xiǎn zhī nán yì ， rén mín huò cái zhī duō shǎo ， zhū hóu zhī jiāo shú qīn shú shū 、 shú ài shú zēng ， xīn yì zhī lǜ huái 。",
+        "english": ""
+      },
+      {
+        "chinese": "審其意，知其所好惡，乃就說其所重，以飛箝之辭，鉤其所好，乃以箝求之。",
+        "pinyin": "shěn qí yì ， zhī qí suǒ hǎo è ， nǎi jiù shuō qí suǒ zhòng ， yǐ fēi qián zhī cí ， gōu qí suǒ hǎo ， nǎi yǐ qián qiú zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "用之於人，則量智能、權材力、料氣勢，為之樞機，飛以迎之、隨之，以箝和之，以意宣之，此飛箝之綴也。",
+        "pinyin": "yòng zhī yú rén ， zé liàng zhì néng 、 quán cái lì 、 liào qì shì ， wèi zhī shū jī ， fēi yǐ yíng zhī 、 suí zhī ， yǐ qián hé zhī ， yǐ yì xuān zhī ， cǐ fēi qián zhī zhuì yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "用之於人，則空往而實來，綴而不失，以究其辭。",
+        "pinyin": "yòng zhī yú rén ， zé kōng wǎng ér shí lái ， zhuì ér bù shī ， yǐ jiū qí cí 。",
+        "english": ""
+      },
+      {
+        "chinese": "可箝而縱，可箝而橫；",
+        "pinyin": "kě qián ér zòng ， kě qián ér héng ；",
+        "english": ""
+      },
+      {
+        "chinese": "可引而東，可引而西，可引而南，可引而北；",
+        "pinyin": "kě yǐn ér dōng ， kě yǐn ér xī ， kě yǐn ér nán ， kě yǐn ér běi ；",
+        "english": ""
+      },
+      {
+        "chinese": "可引而反，可引而覆，雖覆能復，不失其度。",
+        "pinyin": "kě yǐn ér fǎn ， kě yǐn ér fù ， suī fù néng fù ， bù shī qí dù 。",
+        "english": ""
+      }
+    ]
+  },
+  {
+    "id": "guiguzi_ch_5",
+    "bookId": "guiguzi",
+    "chapterIndex": 5,
+    "title": "忤合第六",
+    "titleEn": "Chapter 5: 忤合第六",
+    "sentences": [
+      {
+        "chinese": "凡趨合背反，計有適合。",
+        "pinyin": "fán qū hé bēi fǎn ， jì yǒu shì hé 。",
+        "english": ""
+      },
+      {
+        "chinese": "化轉環屬，各有形勢，反覆相求，因事為制。",
+        "pinyin": "huà zhuǎn huán shǔ ， gè yǒu xíng shì ， fǎn fù xiāng qiú ， yīn shì wèi zhì 。",
+        "english": ""
+      },
+      {
+        "chinese": "是以聖人居天地之間，立身、御世、施教、揚聲、明名也；",
+        "pinyin": "shì yǐ shèng rén jū tiān dì zhī jiān ， lì shēn 、 yù shì 、 shī jiào 、 yáng shēng 、 míng míng yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "必因事物之會，觀天時之宜，因以所多所少，以此先知之，與之轉化。",
+        "pinyin": "bì yīn shì wù zhī huì ， guān tiān shí zhī yí ， yīn yǐ suǒ duō suǒ shǎo ， yǐ cǐ xiān zhī zhī ， yǔ zhī zhuǎn huà 。",
+        "english": ""
+      },
+      {
+        "chinese": "世無常貴，事無常師。",
+        "pinyin": "shì wú cháng guì ， shì wú cháng shī 。",
+        "english": ""
+      },
+      {
+        "chinese": "聖人無常與，無不與；",
+        "pinyin": "shèng rén wú cháng yǔ ， wú bù yǔ ；",
+        "english": ""
+      },
+      {
+        "chinese": "無所聽，無不聽。",
+        "pinyin": "wú suǒ tīng ， wú bù tīng 。",
+        "english": ""
+      },
+      {
+        "chinese": "成於事而合於計謀，與之為主。",
+        "pinyin": "chéng yú shì ér hé yú jì móu ， yǔ zhī wèi zhǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "合於彼而離於此，計謀不兩忠，必有反忤；",
+        "pinyin": "hé yú bǐ ér lí yú cǐ ， jì móu bù liǎng zhōng ， bì yǒu fǎn wǔ ；",
+        "english": ""
+      },
+      {
+        "chinese": "反於是，忤於彼；",
+        "pinyin": "fǎn yú shì ， wǔ yú bǐ ；",
+        "english": ""
+      },
+      {
+        "chinese": "忤於此，反於彼。",
+        "pinyin": "wǔ yú cǐ ， fǎn yú bǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "其術也，用之於天下，必量天下而與之；",
+        "pinyin": "qí shù yě ， yòng zhī yú tiān xià ， bì liàng tiān xià ér yǔ zhī ；",
+        "english": ""
+      },
+      {
+        "chinese": "用之於國，必量國而與之；",
+        "pinyin": "yòng zhī yú guó ， bì liàng guó ér yǔ zhī ；",
+        "english": ""
+      },
+      {
+        "chinese": "用之於家，必量家而與之；",
+        "pinyin": "yòng zhī yú jiā ， bì liàng jiā ér yǔ zhī ；",
+        "english": ""
+      },
+      {
+        "chinese": "用之於身，必量身材能氣勢而與之；",
+        "pinyin": "yòng zhī yú shēn ， bì liàng shēn cái néng qì shì ér yǔ zhī ；",
+        "english": ""
+      },
+      {
+        "chinese": "大小進退，其用一也。",
+        "pinyin": "dà xiǎo jìn tuì ， qí yòng yī yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "必先謀慮計定，而後行之以飛箝之術。",
+        "pinyin": "bì xiān móu lǜ jì dìng ， ér hòu xíng zhī yǐ fēi qián zhī shù 。",
+        "english": ""
+      },
+      {
+        "chinese": "古之善背向者，乃協四海，包諸侯忤合之地而化轉之，然後以之求合。",
+        "pinyin": "gǔ zhī shàn bēi xiàng zhě ， nǎi xié sì hǎi ， bāo zhū hóu wǔ hé zhī dì ér huà zhuǎn zhī ， rán hòu yǐ zhī qiú hé 。",
+        "english": ""
+      },
+      {
+        "chinese": "故伊尹五就湯，五就桀，而不能有所明，然後合於湯。",
+        "pinyin": "gù yī yǐn wǔ jiù tāng ， wǔ jiù jié ， ér bù néng yǒu suǒ míng ， rán hòu hé yú tāng 。",
+        "english": ""
+      },
+      {
+        "chinese": "呂尚三就文王，三入殷，而不能有所明，然後合於文王。",
+        "pinyin": "lǚ shàng sān jiù wén wáng ， sān rù yīn ， ér bù néng yǒu suǒ míng ， rán hòu hé yú wén wáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "此知天命之箝，故歸之不疑也。",
+        "pinyin": "cǐ zhī tiān mìng zhī qián ， gù guī zhī bù yí yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "非至聖達奧，不能御世；",
+        "pinyin": "fēi zhì shèng dá ào ， bù néng yù shì ；",
+        "english": ""
+      },
+      {
+        "chinese": "非勞心苦思，不能原事；",
+        "pinyin": "fēi láo xīn kǔ sī ， bù néng yuán shì ；",
+        "english": ""
+      },
+      {
+        "chinese": "不悉心見情，不能成名；",
+        "pinyin": "bù xī xīn jiàn qíng ， bù néng chéng míng ；",
+        "english": ""
+      },
+      {
+        "chinese": "材質不惠，不能用兵；",
+        "pinyin": "cái zhì bù huì ， bù néng yòng bīng ；",
+        "english": ""
+      },
+      {
+        "chinese": "忠實無真，不能知人；",
+        "pinyin": "zhōng shí wú zhēn ， bù néng zhī rén ；",
+        "english": ""
+      },
+      {
+        "chinese": "故忤合之道，己必自度材能智睿，量長短遠近孰不如。",
+        "pinyin": "gù wǔ hé zhī dào ， jǐ bì zì dù cái néng zhì ruì ， liàng cháng duǎn yuǎn jìn shú bù rú 。",
+        "english": ""
+      },
+      {
+        "chinese": "乃可以進，乃可以退；",
+        "pinyin": "nǎi kě yǐ jìn ， nǎi kě yǐ tuì ；",
+        "english": ""
+      },
+      {
+        "chinese": "乃可以縱，乃可以橫。",
+        "pinyin": "nǎi kě yǐ zòng ， nǎi kě yǐ héng 。",
+        "english": ""
+      }
+    ]
+  },
+  {
+    "id": "guiguzi_ch_6",
+    "bookId": "guiguzi",
+    "chapterIndex": 6,
+    "title": "符言第十二",
+    "titleEn": "Chapter 6: 符言第十二",
+    "sentences": [
+      {
+        "chinese": "安徐正靜，柔節先定。",
+        "pinyin": "ān xú zhèng jìng ， róu jié xiān dìng 。",
+        "english": ""
+      },
+      {
+        "chinese": "善與而不靜，虛心平意，以待傾損。",
+        "pinyin": "shàn yǔ ér bù jìng ， xū xīn píng yì ， yǐ dài qīng sǔn 。",
+        "english": ""
+      },
+      {
+        "chinese": "右主位。",
+        "pinyin": "yòu zhǔ wèi 。",
+        "english": ""
+      },
+      {
+        "chinese": "目貴明，耳貴聰，心貴智。",
+        "pinyin": "mù guì míng ， ěr guì cōng ， xīn guì zhì 。",
+        "english": ""
+      },
+      {
+        "chinese": "以天下之目視者，則無不見；",
+        "pinyin": "yǐ tiān xià zhī mù shì zhě ， zé wú bù jiàn ；",
+        "english": ""
+      },
+      {
+        "chinese": "以天下之耳聽者，則無不聞；",
+        "pinyin": "yǐ tiān xià zhī ěr tīng zhě ， zé wú bù wén ；",
+        "english": ""
+      },
+      {
+        "chinese": "以天下之心思慮者，則無不知；",
+        "pinyin": "yǐ tiān xià zhī xīn sī lǜ zhě ， zé wú bù zhī ；",
+        "english": ""
+      },
+      {
+        "chinese": "輻輳並進，則明不可塞。",
+        "pinyin": "fú còu bìng jìn ， zé míng bù kě sāi 。",
+        "english": ""
+      },
+      {
+        "chinese": "右主明。",
+        "pinyin": "yòu zhǔ míng 。",
+        "english": ""
+      },
+      {
+        "chinese": "德之術曰：勿堅而拒之，許之則防守，拒之則閉塞。",
+        "pinyin": "dé zhī shù yuē ： wù jiān ér jù zhī ， xǔ zhī zé fáng shǒu ， jù zhī zé bì sāi 。",
+        "english": ""
+      },
+      {
+        "chinese": "高山仰之可極，深淵度之可測，神明之德術正靜，其莫之極歟。",
+        "pinyin": "gāo shān yǎng zhī kě jí ， shēn yuān dù zhī kě cè ， shén míng zhī dé shù zhèng jìng ， qí mò zhī jí yú 。",
+        "english": ""
+      },
+      {
+        "chinese": "右主德。",
+        "pinyin": "yòu zhǔ dé 。",
+        "english": ""
+      },
+      {
+        "chinese": "用賞貴信，用刑貴正。",
+        "pinyin": "yòng shǎng guì xìn ， yòng xíng guì zhèng 。",
+        "english": ""
+      },
+      {
+        "chinese": "賞賜貴信，必驗耳目之所聞見，其所不聞見者，莫不闇化矣。",
+        "pinyin": "shǎng cì guì xìn ， bì yàn ěr mù zhī suǒ wén jiàn ， qí suǒ bù wén jiàn zhě ， mò bù àn huà yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "誠暢於天地，通於神明，見姦偽也。",
+        "pinyin": "chéng chàng yú tiān dì ， tōng yú shén míng ， jiàn jiān wěi yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "右主賞。",
+        "pinyin": "yòu zhǔ shǎng 。",
+        "english": ""
+      },
+      {
+        "chinese": "一曰天之，二曰地之，三曰人之。",
+        "pinyin": "yī yuē tiān zhī ， èr yuē dì zhī ， sān yuē rén zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "四方上下，左右前後，熒惑之處安在。",
+        "pinyin": "sì fāng shàng xià ， zuǒ yòu qián hòu ， yíng huò zhī chù ān zài 。",
+        "english": ""
+      },
+      {
+        "chinese": "右主問。",
+        "pinyin": "yòu zhǔ wèn 。",
+        "english": ""
+      },
+      {
+        "chinese": "心為九竅之治，君為五官之長。",
+        "pinyin": "xīn wèi jiǔ qiào zhī zhì ， jūn wèi wǔ guān zhī cháng 。",
+        "english": ""
+      },
+      {
+        "chinese": "為善者，君與之賞；",
+        "pinyin": "wèi shàn zhě ， jūn yǔ zhī shǎng ；",
+        "english": ""
+      },
+      {
+        "chinese": "為非者，君與之罰。",
+        "pinyin": "wèi fēi zhě ， jūn yǔ zhī fá 。",
+        "english": ""
+      },
+      {
+        "chinese": "君因其政之所以求，因與之，則不勞。",
+        "pinyin": "jūn yīn qí zhèng zhī suǒ yǐ qiú ， yīn yǔ zhī ， zé bù láo 。",
+        "english": ""
+      },
+      {
+        "chinese": "聖人用之，故能賞之。",
+        "pinyin": "shèng rén yòng zhī ， gù néng shǎng zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "因之循理，故能久長。",
+        "pinyin": "yīn zhī xún lǐ ， gù néng jiǔ cháng 。",
+        "english": ""
+      },
+      {
+        "chinese": "右主因。",
+        "pinyin": "yòu zhǔ yīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "人主不可不周。",
+        "pinyin": "rén zhǔ bù kě bù zhōu 。",
+        "english": ""
+      },
+      {
+        "chinese": "人主不周，則群臣生亂，寂乎其無常也，內外不通，安知所開，開閉不善，不見原也。",
+        "pinyin": "rén zhǔ bù zhōu ， zé qún chén shēng luàn ， jì hū qí wú cháng yě ， nèi wài bù tōng ， ān zhī suǒ kāi ， kāi bì bù shàn ， bù jiàn yuán yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "右主周。",
+        "pinyin": "yòu zhǔ zhōu 。",
+        "english": ""
+      },
+      {
+        "chinese": "一曰長目，二曰飛耳，三曰樹明。",
+        "pinyin": "yī yuē cháng mù ， èr yuē fēi ěr ， sān yuē shù míng 。",
+        "english": ""
+      },
+      {
+        "chinese": "明知千里之外，隱微之中，是謂洞天下姦，莫不闇變。",
+        "pinyin": "míng zhī qiān lǐ zhī wài ， yǐn wēi zhī zhōng ， shì wèi dòng tiān xià jiān ， mò bù àn biàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "右主參。",
+        "pinyin": "yòu zhǔ cān 。",
+        "english": ""
+      },
+      {
+        "chinese": "修名而督實，按實而定名。",
+        "pinyin": "xiū míng ér dū shí ， àn shí ér dìng míng 。",
+        "english": ""
+      },
+      {
+        "chinese": "名實相生，反相為情，故曰：名當則生於實，實生於理，理生於名實之德，德生於和，和生於當。",
+        "pinyin": "míng shí xiāng shēng ， fǎn xiāng wèi qíng ， gù yuē ： míng dāng zé shēng yú shí ， shí shēng yú lǐ ， lǐ shēng yú míng shí zhī dé ， dé shēng yú hé ， hé shēng yú dāng 。",
+        "english": ""
+      },
+      {
+        "chinese": "右主名。",
+        "pinyin": "yòu zhǔ míng 。",
+        "english": ""
+      }
+    ]
+  }
+]

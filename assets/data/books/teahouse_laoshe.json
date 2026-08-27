@@ -1,0 +1,3280 @@
+[
+  {
+    "id": "teahouse_laoshe_ch_1",
+    "bookId": "teahouse_laoshe",
+    "chapterIndex": 1,
+    "title": "第十一卷）",
+    "titleEn": "Chapter 1: 第十一卷）",
+    "sentences": [
+      {
+        "chinese": "（三幕话剧）",
+        "pinyin": "（ sān mù huà jù ）",
+        "english": ""
+      },
+      {
+        "chinese": "人物表",
+        "pinyin": "rén wù biǎo",
+        "english": ""
+      },
+      {
+        "chinese": "王利发--男。",
+        "pinyin": "wáng lì fā - - nán 。",
+        "english": ""
+      },
+      {
+        "chinese": "最初与我们见面，他才二十多岁。",
+        "pinyin": "zuì chū yǔ wǒ mén jiàn miàn ， tā cái èr shí duō suì 。",
+        "english": ""
+      },
+      {
+        "chinese": "因父亲早死，他很年轻就作了裕泰茶馆的掌柜。",
+        "pinyin": "yīn fù qīn zǎo sǐ ， tā hěn nián qīng jiù zuò le yù tài chá guǎn de zhǎng guì 。",
+        "english": ""
+      },
+      {
+        "chinese": "精明、有些自私，而心眼不坏。",
+        "pinyin": "jīng míng 、 yǒu xiē zì sī ， ér xīn yǎn bù huài 。",
+        "english": ""
+      },
+      {
+        "chinese": "唐铁嘴--男。",
+        "pinyin": "táng tiě zuǐ - - nán 。",
+        "english": ""
+      },
+      {
+        "chinese": "三十来岁。",
+        "pinyin": "sān shí lái suì 。",
+        "english": ""
+      },
+      {
+        "chinese": "相面为生，吸鸦片。",
+        "pinyin": "xiāng miàn wèi shēng ， xī yā piàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "松二爷--男。",
+        "pinyin": "sōng èr yé - - nán 。",
+        "english": ""
+      },
+      {
+        "chinese": "三十来岁。",
+        "pinyin": "sān shí lái suì 。",
+        "english": ""
+      },
+      {
+        "chinese": "胆小而爱说话。",
+        "pinyin": "dǎn xiǎo ér ài shuō huà 。",
+        "english": ""
+      },
+      {
+        "chinese": "常四爷--男。",
+        "pinyin": "cháng sì yé - - nán 。",
+        "english": ""
+      },
+      {
+        "chinese": "三十来岁。",
+        "pinyin": "sān shí lái suì 。",
+        "english": ""
+      },
+      {
+        "chinese": "松二爷的好友，都是裕泰的主顾。",
+        "pinyin": "sōng èr yé de hǎo yǒu ， dōu shì yù tài de zhǔ gù 。",
+        "english": ""
+      },
+      {
+        "chinese": "正直，体格好。",
+        "pinyin": "zhèng zhí ， tǐ gé hǎo 。",
+        "english": ""
+      },
+      {
+        "chinese": "李三--男。",
+        "pinyin": "lǐ sān - - nán 。",
+        "english": ""
+      },
+      {
+        "chinese": "三十多岁。",
+        "pinyin": "sān shí duō suì 。",
+        "english": ""
+      },
+      {
+        "chinese": "裕泰的跑堂的。",
+        "pinyin": "yù tài de pǎo táng de 。",
+        "english": ""
+      },
+      {
+        "chinese": "勤恳，心眼好。",
+        "pinyin": "qín kěn ， xīn yǎn hǎo 。",
+        "english": ""
+      },
+      {
+        "chinese": "二德子--男。",
+        "pinyin": "èr dé zǐ - - nán 。",
+        "english": ""
+      },
+      {
+        "chinese": "二十多岁。",
+        "pinyin": "èr shí duō suì 。",
+        "english": ""
+      },
+      {
+        "chinese": "善扑营当差。",
+        "pinyin": "shàn pū yíng dāng chà 。",
+        "english": ""
+      },
+      {
+        "chinese": "马五爷--男。",
+        "pinyin": "mǎ wǔ yé - - nán 。",
+        "english": ""
+      },
+      {
+        "chinese": "三十多岁。",
+        "pinyin": "sān shí duō suì 。",
+        "english": ""
+      },
+      {
+        "chinese": "吃洋教的小恶霸。",
+        "pinyin": "chī yáng jiào de xiǎo è bà 。",
+        "english": ""
+      },
+      {
+        "chinese": "刘麻子--男。",
+        "pinyin": "liú má zǐ - - nán 。",
+        "english": ""
+      },
+      {
+        "chinese": "三十来岁。",
+        "pinyin": "sān shí lái suì 。",
+        "english": ""
+      },
+      {
+        "chinese": "说媒拉纤，心狠意毒。",
+        "pinyin": "shuō méi lā xiān ， xīn hěn yì dú 。",
+        "english": ""
+      },
+      {
+        "chinese": "康六--男。",
+        "pinyin": "kāng liù - - nán 。",
+        "english": ""
+      },
+      {
+        "chinese": "四十岁。",
+        "pinyin": "sì shí suì 。",
+        "english": ""
+      },
+      {
+        "chinese": "京郊贫农。",
+        "pinyin": "jīng jiāo pín nóng 。",
+        "english": ""
+      },
+      {
+        "chinese": "黄胖子--男。",
+        "pinyin": "huáng pàng zǐ - - nán 。",
+        "english": ""
+      },
+      {
+        "chinese": "四十多岁。",
+        "pinyin": "sì shí duō suì 。",
+        "english": ""
+      },
+      {
+        "chinese": "流氓头子。",
+        "pinyin": "liú máng tóu zǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "秦仲义--男。",
+        "pinyin": "qín zhòng yì - - nán 。",
+        "english": ""
+      },
+      {
+        "chinese": "王掌柜的房东。",
+        "pinyin": "wáng zhǎng guì de fáng dōng 。",
+        "english": ""
+      }
+    ]
+  },
+  {
+    "id": "teahouse_laoshe_ch_2",
+    "bookId": "teahouse_laoshe",
+    "chapterIndex": 2,
+    "title": "第一幕里二十多岁。阔少，后来成了维新的资本家。",
+    "titleEn": "Chapter 2: 第一幕里二十多岁。阔少，后来成了维新的资本家。",
+    "sentences": [
+      {
+        "chinese": "老人--男。",
+        "pinyin": "lǎo rén - - nán 。",
+        "english": ""
+      },
+      {
+        "chinese": "八十二岁。",
+        "pinyin": "bā shí èr suì 。",
+        "english": ""
+      },
+      {
+        "chinese": "无倚无靠。",
+        "pinyin": "wú yǐ wú kào 。",
+        "english": ""
+      },
+      {
+        "chinese": "乡妇--女。",
+        "pinyin": "xiāng fù - - nǚ 。",
+        "english": ""
+      },
+      {
+        "chinese": "三十多岁。",
+        "pinyin": "sān shí duō suì 。",
+        "english": ""
+      },
+      {
+        "chinese": "穷得出卖小女儿。",
+        "pinyin": "qióng dé chū mài xiǎo nǚ ér 。",
+        "english": ""
+      },
+      {
+        "chinese": "小妞--女。",
+        "pinyin": "xiǎo niū - - nǚ 。",
+        "english": ""
+      },
+      {
+        "chinese": "十岁。",
+        "pinyin": "shí suì 。",
+        "english": ""
+      },
+      {
+        "chinese": "乡妇的女儿。",
+        "pinyin": "xiāng fù de nǚ ér 。",
+        "english": ""
+      },
+      {
+        "chinese": "庞太监--男。",
+        "pinyin": "páng tài jiān - - nán 。",
+        "english": ""
+      },
+      {
+        "chinese": "四十岁。",
+        "pinyin": "sì shí suì 。",
+        "english": ""
+      },
+      {
+        "chinese": "发财之后，想娶老婆。",
+        "pinyin": "fā cái zhī hòu ， xiǎng qǔ lǎo pó 。",
+        "english": ""
+      },
+      {
+        "chinese": "小牛儿--男。",
+        "pinyin": "xiǎo niú ér - - nán 。",
+        "english": ""
+      },
+      {
+        "chinese": "十多岁。",
+        "pinyin": "shí duō suì 。",
+        "english": ""
+      },
+      {
+        "chinese": "庞太监的书童。",
+        "pinyin": "páng tài jiān de shū tóng 。",
+        "english": ""
+      },
+      {
+        "chinese": "宋恩子--男。",
+        "pinyin": "sòng ēn zǐ - - nán 。",
+        "english": ""
+      },
+      {
+        "chinese": "二十多岁。",
+        "pinyin": "èr shí duō suì 。",
+        "english": ""
+      },
+      {
+        "chinese": "老式特务。",
+        "pinyin": "lǎo shì tè wù 。",
+        "english": ""
+      },
+      {
+        "chinese": "吴祥子--男。",
+        "pinyin": "wú xiáng zǐ - - nán 。",
+        "english": ""
+      },
+      {
+        "chinese": "二十多岁。",
+        "pinyin": "èr shí duō suì 。",
+        "english": ""
+      },
+      {
+        "chinese": "宋恩子的同事。",
+        "pinyin": "sòng ēn zǐ de tóng shì 。",
+        "english": ""
+      },
+      {
+        "chinese": "康顺子--女。",
+        "pinyin": "kāng shùn zǐ - - nǚ 。",
+        "english": ""
+      }
+    ]
+  },
+  {
+    "id": "teahouse_laoshe_ch_3",
+    "bookId": "teahouse_laoshe",
+    "chapterIndex": 3,
+    "title": "第一幕中十五岁。康六的女儿。被卖给庞太监为妻。",
+    "titleEn": "Chapter 3: 第一幕中十五岁。康六的女儿。被卖给庞太监为妻。",
+    "sentences": [
+      {
+        "chinese": "王淑芬--女。",
+        "pinyin": "wáng shū fēn - - nǚ 。",
+        "english": ""
+      },
+      {
+        "chinese": "四十来岁。",
+        "pinyin": "sì shí lái suì 。",
+        "english": ""
+      },
+      {
+        "chinese": "王利发掌柜的妻。",
+        "pinyin": "wáng lì fā zhǎng guì de qī 。",
+        "english": ""
+      },
+      {
+        "chinese": "比丈夫更公平正直些。",
+        "pinyin": "bǐ zhàng fū gèng gōng píng zhèng zhí xiē 。",
+        "english": ""
+      },
+      {
+        "chinese": "巡警--男。",
+        "pinyin": "xún jǐng - - nán 。",
+        "english": ""
+      },
+      {
+        "chinese": "二十多岁。",
+        "pinyin": "èr shí duō suì 。",
+        "english": ""
+      },
+      {
+        "chinese": "报童--男。",
+        "pinyin": "bào tóng - - nán 。",
+        "english": ""
+      },
+      {
+        "chinese": "十六岁。",
+        "pinyin": "shí liù suì 。",
+        "english": ""
+      },
+      {
+        "chinese": "康大力--男。",
+        "pinyin": "kāng dà lì - - nán 。",
+        "english": ""
+      },
+      {
+        "chinese": "十二岁。",
+        "pinyin": "shí èr suì 。",
+        "english": ""
+      },
+      {
+        "chinese": "庞太监买来的义子，后与康顺子相依为命。",
+        "pinyin": "páng tài jiān mǎi lái de yì zǐ ， hòu yǔ kāng shùn zǐ xiāng yī wèi mìng 。",
+        "english": ""
+      },
+      {
+        "chinese": "老林--男。",
+        "pinyin": "lǎo lín - - nán 。",
+        "english": ""
+      },
+      {
+        "chinese": "三十多岁。",
+        "pinyin": "sān shí duō suì 。",
+        "english": ""
+      },
+      {
+        "chinese": "逃兵。",
+        "pinyin": "táo bīng 。",
+        "english": ""
+      },
+      {
+        "chinese": "老陈--男。",
+        "pinyin": "lǎo chén - - nán 。",
+        "english": ""
+      },
+      {
+        "chinese": "三十岁。",
+        "pinyin": "sān shí suì 。",
+        "english": ""
+      },
+      {
+        "chinese": "逃兵。",
+        "pinyin": "táo bīng 。",
+        "english": ""
+      },
+      {
+        "chinese": "老林的把弟。",
+        "pinyin": "lǎo lín de bǎ dì 。",
+        "english": ""
+      },
+      {
+        "chinese": "崔久峰--男。",
+        "pinyin": "cuī jiǔ fēng - - nán 。",
+        "english": ""
+      },
+      {
+        "chinese": "四十多岁。",
+        "pinyin": "sì shí duō suì 。",
+        "english": ""
+      },
+      {
+        "chinese": "作过国会议员，后来修道，住在裕泰附设的公寓里。",
+        "pinyin": "zuò guò guó huì yì yuán ， hòu lái xiū dào ， zhù zài yù tài fù shè de gōng yù lǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "军官--男。",
+        "pinyin": "jūn guān - - nán 。",
+        "english": ""
+      },
+      {
+        "chinese": "三十岁。",
+        "pinyin": "sān shí suì 。",
+        "english": ""
+      },
+      {
+        "chinese": "王大拴--男。",
+        "pinyin": "wáng dà shuān - - nán 。",
+        "english": ""
+      },
+      {
+        "chinese": "四十岁左右，王掌柜的长子。",
+        "pinyin": "sì shí suì zuǒ yòu ， wáng zhǎng guì de cháng zǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "为人正直。",
+        "pinyin": "wèi rén zhèng zhí 。",
+        "english": ""
+      },
+      {
+        "chinese": "周秀花--女。",
+        "pinyin": "zhōu xiù huā - - nǚ 。",
+        "english": ""
+      },
+      {
+        "chinese": "四十岁。",
+        "pinyin": "sì shí suì 。",
+        "english": ""
+      },
+      {
+        "chinese": "大拴的妻。",
+        "pinyin": "dà shuān de qī 。",
+        "english": ""
+      },
+      {
+        "chinese": "王小花--女。",
+        "pinyin": "wáng xiǎo huā - - nǚ 。",
+        "english": ""
+      },
+      {
+        "chinese": "十三岁。",
+        "pinyin": "shí sān suì 。",
+        "english": ""
+      },
+      {
+        "chinese": "大拴的女儿。",
+        "pinyin": "dà shuān de nǚ ér 。",
+        "english": ""
+      },
+      {
+        "chinese": "丁宝--女。",
+        "pinyin": "dīng bǎo - - nǚ 。",
+        "english": ""
+      },
+      {
+        "chinese": "十七岁。",
+        "pinyin": "shí qī suì 。",
+        "english": ""
+      },
+      {
+        "chinese": "女招待。",
+        "pinyin": "nǚ zhāo dài 。",
+        "english": ""
+      },
+      {
+        "chinese": "有胆有识。",
+        "pinyin": "yǒu dǎn yǒu shí 。",
+        "english": ""
+      },
+      {
+        "chinese": "小刘麻子--男。",
+        "pinyin": "xiǎo liú má zǐ - - nán 。",
+        "english": ""
+      },
+      {
+        "chinese": "三十多岁。",
+        "pinyin": "sān shí duō suì 。",
+        "english": ""
+      },
+      {
+        "chinese": "刘麻子之子，继承父业而发展之。",
+        "pinyin": "liú má zǐ zhī zǐ ， jì chéng fù yè ér fā zhǎn zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "取电灯费的--男。",
+        "pinyin": "qǔ diàn dēng fèi de - - nán 。",
+        "english": ""
+      },
+      {
+        "chinese": "四十多岁。",
+        "pinyin": "sì shí duō suì 。",
+        "english": ""
+      },
+      {
+        "chinese": "小唐铁嘴--男。",
+        "pinyin": "xiǎo táng tiě zuǐ - - nán 。",
+        "english": ""
+      },
+      {
+        "chinese": "三十多岁。",
+        "pinyin": "sān shí duō suì 。",
+        "english": ""
+      },
+      {
+        "chinese": "唐铁嘴之子，继承父业，有作天师的愿望。",
+        "pinyin": "táng tiě zuǐ zhī zǐ ， jì chéng fù yè ， yǒu zuò tiān shī de yuàn wàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "明师傅--男。",
+        "pinyin": "míng shī fù - - nán 。",
+        "english": ""
+      },
+      {
+        "chinese": "五十多岁。",
+        "pinyin": "wǔ shí duō suì 。",
+        "english": ""
+      },
+      {
+        "chinese": "包办酒席的厨师傅。",
+        "pinyin": "bāo bàn jiǔ xí de chú shī fù 。",
+        "english": ""
+      },
+      {
+        "chinese": "邹福远--男。",
+        "pinyin": "zōu fú yuǎn - - nán 。",
+        "english": ""
+      },
+      {
+        "chinese": "四十多岁。",
+        "pinyin": "sì shí duō suì 。",
+        "english": ""
+      },
+      {
+        "chinese": "说评书的名手。",
+        "pinyin": "shuō píng shū de míng shǒu 。",
+        "english": ""
+      },
+      {
+        "chinese": "卫福喜--男。",
+        "pinyin": "wèi fú xǐ - - nán 。",
+        "english": ""
+      },
+      {
+        "chinese": "三十多岁。",
+        "pinyin": "sān shí duō suì 。",
+        "english": ""
+      },
+      {
+        "chinese": "邹的师弟，先说评书，后改唱京戏。",
+        "pinyin": "zōu de shī dì ， xiān shuō píng shū ， hòu gǎi chàng jīng xì 。",
+        "english": ""
+      },
+      {
+        "chinese": "方六--男。",
+        "pinyin": "fāng liù - - nán 。",
+        "english": ""
+      },
+      {
+        "chinese": "四十多岁。",
+        "pinyin": "sì shí duō suì 。",
+        "english": ""
+      },
+      {
+        "chinese": "打小鼓的，奸诈。",
+        "pinyin": "dǎ xiǎo gǔ de ， jiān zhà 。",
+        "english": ""
+      },
+      {
+        "chinese": "车当当--男。",
+        "pinyin": "chē dāng dāng - - nán 。",
+        "english": ""
+      },
+      {
+        "chinese": "三十岁左右。",
+        "pinyin": "sān shí suì zuǒ yòu 。",
+        "english": ""
+      },
+      {
+        "chinese": "买卖现洋为生。",
+        "pinyin": "mǎi mài xiàn yáng wèi shēng 。",
+        "english": ""
+      },
+      {
+        "chinese": "庞四奶奶--女。",
+        "pinyin": "páng sì nǎi nǎi - - nǚ 。",
+        "english": ""
+      },
+      {
+        "chinese": "四十岁。",
+        "pinyin": "sì shí suì 。",
+        "english": ""
+      },
+      {
+        "chinese": "丑恶，要作皇后。",
+        "pinyin": "chǒu è ， yào zuò huáng hòu 。",
+        "english": ""
+      },
+      {
+        "chinese": "庞太监的四侄媳妇。",
+        "pinyin": "páng tài jiān de sì zhí xí fù 。",
+        "english": ""
+      },
+      {
+        "chinese": "春梅--女。",
+        "pinyin": "chūn méi - - nǚ 。",
+        "english": ""
+      },
+      {
+        "chinese": "十九岁。",
+        "pinyin": "shí jiǔ suì 。",
+        "english": ""
+      },
+      {
+        "chinese": "庞四奶奶的丫环。",
+        "pinyin": "páng sì nǎi nǎi de yā huán 。",
+        "english": ""
+      },
+      {
+        "chinese": "老杨--男。",
+        "pinyin": "lǎo yáng - - nán 。",
+        "english": ""
+      },
+      {
+        "chinese": "三十多岁。",
+        "pinyin": "sān shí duō suì 。",
+        "english": ""
+      },
+      {
+        "chinese": "卖杂货的。",
+        "pinyin": "mài zá huò de 。",
+        "english": ""
+      },
+      {
+        "chinese": "小二德子--男。",
+        "pinyin": "xiǎo èr dé zǐ - - nán 。",
+        "english": ""
+      },
+      {
+        "chinese": "三十岁。",
+        "pinyin": "sān shí suì 。",
+        "english": ""
+      },
+      {
+        "chinese": "二德子之子，打手。",
+        "pinyin": "èr dé zǐ zhī zǐ ， dǎ shǒu 。",
+        "english": ""
+      },
+      {
+        "chinese": "于厚斋--男。",
+        "pinyin": "yú hòu zhāi - - nán 。",
+        "english": ""
+      },
+      {
+        "chinese": "四十多岁。",
+        "pinyin": "sì shí duō suì 。",
+        "english": ""
+      },
+      {
+        "chinese": "小学教员，王小花的老师。",
+        "pinyin": "xiǎo xué jiào yuán ， wáng xiǎo huā de lǎo shī 。",
+        "english": ""
+      },
+      {
+        "chinese": "谢勇仁--男。",
+        "pinyin": "xiè yǒng rén - - nán 。",
+        "english": ""
+      },
+      {
+        "chinese": "三十多岁。",
+        "pinyin": "sān shí duō suì 。",
+        "english": ""
+      },
+      {
+        "chinese": "与于厚斋同事。",
+        "pinyin": "yǔ yú hòu zhāi tóng shì 。",
+        "english": ""
+      },
+      {
+        "chinese": "小宋恩子--男。",
+        "pinyin": "xiǎo sòng ēn zǐ - - nán 。",
+        "english": ""
+      },
+      {
+        "chinese": "三十来岁。",
+        "pinyin": "sān shí lái suì 。",
+        "english": ""
+      },
+      {
+        "chinese": "宋恩子之子，承袭父业，作特务。",
+        "pinyin": "sòng ēn zǐ zhī zǐ ， chéng xí fù yè ， zuò tè wù 。",
+        "english": ""
+      },
+      {
+        "chinese": "小吴祥子--男。",
+        "pinyin": "xiǎo wú xiáng zǐ - - nán 。",
+        "english": ""
+      },
+      {
+        "chinese": "三十来岁。",
+        "pinyin": "sān shí lái suì 。",
+        "english": ""
+      },
+      {
+        "chinese": "吴祥子之子，世袭特务。",
+        "pinyin": "wú xiáng zǐ zhī zǐ ， shì xí tè wù 。",
+        "english": ""
+      },
+      {
+        "chinese": "小心眼--女。",
+        "pinyin": "xiǎo xīn yǎn - - nǚ 。",
+        "english": ""
+      },
+      {
+        "chinese": "十九岁。",
+        "pinyin": "shí jiǔ suì 。",
+        "english": ""
+      },
+      {
+        "chinese": "女招待。",
+        "pinyin": "nǚ zhāo dài 。",
+        "english": ""
+      },
+      {
+        "chinese": "沈处长--男。",
+        "pinyin": "shěn chù cháng - - nán 。",
+        "english": ""
+      },
+      {
+        "chinese": "四十岁。",
+        "pinyin": "sì shí suì 。",
+        "english": ""
+      },
+      {
+        "chinese": "宪兵司令部某处处长。",
+        "pinyin": "xiàn bīng sī lìng bù mǒu chù chù cháng 。",
+        "english": ""
+      },
+      {
+        "chinese": "茶客若干人，都是男的。",
+        "pinyin": "chá kè ruò gān rén ， dōu shì nán de 。",
+        "english": ""
+      },
+      {
+        "chinese": "茶房一两个，都是男的。",
+        "pinyin": "chá fáng yī liǎng gè ， dōu shì nán de 。",
+        "english": ""
+      },
+      {
+        "chinese": "难民数人，有男有女，有老有少。",
+        "pinyin": "nán mín shǔ rén ， yǒu nán yǒu nǚ ， yǒu lǎo yǒu shǎo 。",
+        "english": ""
+      },
+      {
+        "chinese": "大兵三、五人，都是男的。",
+        "pinyin": "dà bīng sān 、 wǔ rén ， dōu shì nán de 。",
+        "english": ""
+      },
+      {
+        "chinese": "公寓住客数人，都是男的。",
+        "pinyin": "gōng yù zhù kè shǔ rén ， dōu shì nán de 。",
+        "english": ""
+      },
+      {
+        "chinese": "押大令的兵七人，都是男的。",
+        "pinyin": "yā dà lìng de bīng qī rén ， dōu shì nán de 。",
+        "english": ""
+      },
+      {
+        "chinese": "宪兵四人。",
+        "pinyin": "xiàn bīng sì rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "傻杨--男。",
+        "pinyin": "shǎ yáng - - nán 。",
+        "english": ""
+      },
+      {
+        "chinese": "数来宝的。",
+        "pinyin": "shǔ lái bǎo de 。",
+        "english": ""
+      }
+    ]
+  },
+  {
+    "id": "teahouse_laoshe_ch_4",
+    "bookId": "teahouse_laoshe",
+    "chapterIndex": 4,
+    "title": "第一幕",
+    "titleEn": "Chapter 4: 第一幕",
+    "sentences": [
+      {
+        "chinese": "时间　一八九八年（戊戌）初秋，康梁等的维新运动失败了。",
+        "pinyin": "shí jiān 　 yī bā jiǔ bā nián （ wù xū ） chū qiū ， kāng liáng děng de wéi xīn yùn dòng shī bài le 。",
+        "english": ""
+      },
+      {
+        "chinese": "早半天。",
+        "pinyin": "zǎo bàn tiān 。",
+        "english": ""
+      },
+      {
+        "chinese": "地点　北京，裕泰大茶馆。",
+        "pinyin": "dì diǎn 　 běi jīng ， yù tài dà chá guǎn 。",
+        "english": ""
+      },
+      {
+        "chinese": "人物　王利发　刘麻子　庞太监　唐铁嘴　康　六小牛儿",
+        "pinyin": "rén wù 　 wáng lì fā 　 liú má zǐ 　 páng tài jiān 　 táng tiě zuǐ 　 kāng 　 liù xiǎo niú ér",
+        "english": ""
+      },
+      {
+        "chinese": "松二爷　黄胖子　宋恩子　常四爷秦仲义　吴祥子",
+        "pinyin": "sōng èr yé 　 huáng pàng zǐ 　 sòng ēn zǐ 　 cháng sì yé qín zhòng yì 　 wú xiáng zǐ",
+        "english": ""
+      },
+      {
+        "chinese": "李　三　老　人　康顺子二德子　乡　妇　茶客甲",
+        "pinyin": "lǐ 　 sān 　 lǎo 　 rén 　 kāng shùn zǐ èr dé zǐ 　 xiāng 　 fù 　 chá kè jiǎ",
+        "english": ""
+      },
+      {
+        "chinese": "乙、丙、丁马五爷　小　妞　茶房一二人",
+        "pinyin": "yǐ 、 bǐng 、 dīng mǎ wǔ yé 　 xiǎo 　 niū 　 chá fáng yī èr rén",
+        "english": ""
+      },
+      {
+        "chinese": "〔幕启：这种大茶馆现在已经不见了。",
+        "pinyin": "〔 mù qǐ ： zhè zhǒng dà chá guǎn xiàn zài yǐ jīng bù jiàn le 。",
+        "english": ""
+      },
+      {
+        "chinese": "在几十年前，每城都起码有一处。",
+        "pinyin": "zài jǐ shí nián qián ， měi chéng dōu qǐ mǎ yǒu yī chù 。",
+        "english": ""
+      },
+      {
+        "chinese": "这里卖茶，也卖简单的点心与菜饭。",
+        "pinyin": "zhè lǐ mài chá ， yě mài jiǎn dān de diǎn xīn yǔ cài fàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "玩鸟的人们，每天在蹓够了画眉、黄鸟等之后，要到这里歇歇腿，喝喝茶，并使鸟儿表演歌唱。",
+        "pinyin": "wán niǎo de rén mén ， měi tiān zài liū gòu le huà méi 、 huáng niǎo děng zhī hòu ， yào dào zhè lǐ xiē xiē tuǐ ， hē hē chá ， bìng shǐ niǎo ér biǎo yǎn gē chàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "商议事情的，说媒拉纤的，也到这里来。",
+        "pinyin": "shāng yì shì qíng de ， shuō méi lā xiān de ， yě dào zhè lǐ lái 。",
+        "english": ""
+      },
+      {
+        "chinese": "那年月，时常有打群架的，但是总会有朋友出头给双方调解；",
+        "pinyin": "nà nián yuè ， shí cháng yǒu dǎ qún jià de ， dàn shì zǒng huì yǒu péng yǒu chū tóu gěi shuāng fāng tiáo jiě ；",
+        "english": ""
+      },
+      {
+        "chinese": "三五十口子打手，经调人东说西说，便都喝碗茶，吃碗烂肉面（大茶馆特殊的食品，价钱便宜，作起来快当），就可以化干戈为玉帛了。",
+        "pinyin": "sān wǔ shí kǒu zǐ dǎ shǒu ， jīng tiáo rén dōng shuō xī shuō ， biàn dōu hē wǎn chá ， chī wǎn làn ròu miàn （ dà chá guǎn tè shū de shí pǐn ， jià qián pián yi ， zuò qǐ lái kuài dāng ） ， jiù kě yǐ huà gān gē wèi yù bó le 。",
+        "english": ""
+      },
+      {
+        "chinese": "总之，这是当日非常重要的地方，有事无事都可以来坐半天。",
+        "pinyin": "zǒng zhī ， zhè shì dāng rì fēi cháng zhòng yào de dì fāng ， yǒu shì wú shì dōu kě yǐ lái zuò bàn tiān 。",
+        "english": ""
+      },
+      {
+        "chinese": "〔在这里，可以听到最荒唐的新闻，如某处的大蜘蛛怎么成了精，受到雷击。",
+        "pinyin": "〔 zài zhè lǐ ， kě yǐ tīng dào zuì huāng táng de xīn wén ， rú mǒu chù de dà zhī zhū zěn me chéng le jīng ， shòu dào léi jī 。",
+        "english": ""
+      },
+      {
+        "chinese": "奇怪的意见也在这里可以听到，象把海边上都修上大墙，就足以挡住洋兵上岸。",
+        "pinyin": "qí guài de yì jiàn yě zài zhè lǐ kě yǐ tīng dào ， xiàng bǎ hǎi biān shàng dōu xiū shàng dà qiáng ， jiù zú yǐ dǎng zhù yáng bīng shàng àn 。",
+        "english": ""
+      },
+      {
+        "chinese": "这里还可以听到某京戏演员新近创造了什么腔儿，和煎熬鸦片烟的最好的方法。",
+        "pinyin": "zhè lǐ hái kě yǐ tīng dào mǒu jīng xì yǎn yuán xīn jìn chuàng zào le shén me qiāng ér ， hé jiān āo yā piàn yān de zuì hǎo de fāng fǎ 。",
+        "english": ""
+      },
+      {
+        "chinese": "这里也可以看到某人新得到的奇珍--一个出土的玉扇坠儿，或三彩的鼻烟壶。",
+        "pinyin": "zhè lǐ yě kě yǐ kàn dào mǒu rén xīn dé dào de qí zhēn - - yī gè chū tǔ de yù shàn zhuì ér ， huò sān cǎi de bí yān hú 。",
+        "english": ""
+      },
+      {
+        "chinese": "这真是个重要的地方，简直可以算作文化交流的所在。",
+        "pinyin": "zhè zhēn shì gè zhòng yào de dì fāng ， jiǎn zhí kě yǐ suàn zuò wén huà jiāo liú de suǒ zài 。",
+        "english": ""
+      },
+      {
+        "chinese": "〔我们现在就要看见这样的一座茶馆。",
+        "pinyin": "〔 wǒ mén xiàn zài jiù yào kàn jiàn zhè yàng de yī zuò chá guǎn 。",
+        "english": ""
+      },
+      {
+        "chinese": "〔一进门是柜台与炉灶--为省点事，我们的舞台上可以不要炉灶；",
+        "pinyin": "〔 yī jìn mén shì guì tái yǔ lú zào - - wèi shěng diǎn shì ， wǒ mén de wǔ tái shàng kě yǐ bù yào lú zào ；",
+        "english": ""
+      },
+      {
+        "chinese": "后面有些锅勺的响声也就够了。",
+        "pinyin": "hòu miàn yǒu xiē guō sháo de xiǎng shēng yě jiù gòu le 。",
+        "english": ""
+      },
+      {
+        "chinese": "屋子非常高大，摆着长桌与方桌，长凳与小凳，都是茶座儿。",
+        "pinyin": "wū zǐ fēi cháng gāo dà ， bǎi zhuó cháng zhuō yǔ fāng zhuō ， cháng dèng yǔ xiǎo dèng ， dōu shì chá zuò ér 。",
+        "english": ""
+      },
+      {
+        "chinese": "隔窗可见后院，高搭着凉棚，棚下也有茶座儿。",
+        "pinyin": "gé chuāng kě jiàn hòu yuàn ， gāo dā zháo liáng péng ， péng xià yě yǒu chá zuò ér 。",
+        "english": ""
+      },
+      {
+        "chinese": "屋里和凉棚下都有挂鸟笼的地方。",
+        "pinyin": "wū lǐ hé liáng péng xià dōu yǒu guà niǎo lóng de dì fāng 。",
+        "english": ""
+      },
+      {
+        "chinese": "各处都贴着\"莫谈国事\"的纸条。",
+        "pinyin": "gè chù dōu tiē zhuó \" mò tán guó shì \" de zhǐ tiáo 。",
+        "english": ""
+      },
+      {
+        "chinese": "〔有两位茶客，不知姓名，正眯着眼，摇着头，拍板低唱。",
+        "pinyin": "〔 yǒu liǎng wèi chá kè ， bù zhī xìng míng ， zhèng mī zhuó yǎn ， yáo zhuó tóu ， pāi bǎn dī chàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "有两三位茶客，也不知姓名，正入神地欣赏瓦罐里的蟋蟀。",
+        "pinyin": "yǒu liǎng sān wèi chá kè ， yě bù zhī xìng míng ， zhèng rù shén dì xīn shǎng wǎ guàn lǐ de xī shuài 。",
+        "english": ""
+      },
+      {
+        "chinese": "两位穿灰色大衫的--宋恩子与吴祥子，正低声地谈话，看样子他们是北衙门的办案的（侦缉）。",
+        "pinyin": "liǎng wèi chuān huī sè dà shān de - - sòng ēn zǐ yǔ wú xiáng zǐ ， zhèng dī shēng dì tán huà ， kàn yàng zǐ tā mén shì běi yá mén de bàn àn de （ zhēn jī ） 。",
+        "english": ""
+      },
+      {
+        "chinese": "〔今天又有一起打群架的，据说是为了争一只家鸽，惹起非用武力解决不可的纠纷。",
+        "pinyin": "〔 jīn tiān yòu yǒu yī qǐ dǎ qún jià de ， jù shuō shì wèi le zhēng yī zhǐ jiā gē ， rě qǐ fēi yòng wǔ lì jiě jué bù kě de jiū fēn 。",
+        "english": ""
+      },
+      {
+        "chinese": "假若真打起来，非出人命不可，因为被约的打手中包括着善扑营的哥儿们和库兵，身手都十分厉害。",
+        "pinyin": "jiǎ ruò zhēn dǎ qǐ lái ， fēi chū rén mìng bù kě ， yīn wèi bèi yuē de dǎ shǒu zhōng bāo kuò zhuó shàn pū yíng de gē ér mén hé kù bīng ， shēn shǒu dōu shí fēn lì hài 。",
+        "english": ""
+      },
+      {
+        "chinese": "好在，不能真打起来，因为在双方还没把打手约齐，已有人出面调停了--现在双方在这里会面。",
+        "pinyin": "hǎo zài ， bù néng zhēn dǎ qǐ lái ， yīn wèi zài shuāng fāng hái méi bǎ dǎ shǒu yuē qí ， yǐ yǒu rén chū miàn tiáo tíng le - - xiàn zài shuāng fāng zài zhè lǐ huì miàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "三三两两的打手，都横眉立目，短打扮，随时进来，往后院去。",
+        "pinyin": "sān sān liǎng liǎng de dǎ shǒu ， dōu héng méi lì mù ， duǎn dǎ bàn ， suí shí jìn lái ， wǎng hòu yuàn qù 。",
+        "english": ""
+      },
+      {
+        "chinese": "〔马五爷在不惹人注意的角落，独自坐着喝茶。",
+        "pinyin": "〔 mǎ wǔ yé zài bù rě rén zhù yì de jiǎo luò ， dú zì zuò zhuó hē chá 。",
+        "english": ""
+      },
+      {
+        "chinese": "〔王利发高高地坐在柜台里。",
+        "pinyin": "〔 wáng lì fā gāo gāo dì zuò zài guì tái lǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "〔唐铁嘴踏拉着鞋，身穿一件极长极脏的大布衫，耳上夹着几张小纸片，进来。",
+        "pinyin": "〔 táng tiě zuǐ tà lā zhuó xié ， shēn chuān yī jiàn jí cháng jí zàng de dà bù shān ， ěr shàng jiá zhuó jǐ zhāng xiǎo zhǐ piàn ， jìn lái 。",
+        "english": ""
+      },
+      {
+        "chinese": "王利发　唐先生，你外边蹓跶吧！",
+        "pinyin": "wáng lì fā 　 táng xiān shēng ， nǐ wài biān liū dá bā ！",
+        "english": ""
+      },
+      {
+        "chinese": "唐铁嘴　（惨笑）王掌柜，捧捧唐铁嘴吧！",
+        "pinyin": "táng tiě zuǐ 　 （ cǎn xiào ） wáng zhǎng guì ， pěng pěng táng tiě zuǐ bā ！",
+        "english": ""
+      },
+      {
+        "chinese": "送给我碗茶喝，我就先给您相相面吧！",
+        "pinyin": "sòng gěi wǒ wǎn chá hē ， wǒ jiù xiān gěi nín xiāng xiāng miàn bā ！",
+        "english": ""
+      },
+      {
+        "chinese": "手相奉送，不取分文！",
+        "pinyin": "shǒu xiāng fèng sòng ， bù qǔ fēn wén ！",
+        "english": ""
+      },
+      {
+        "chinese": "（不容分说，拉过王利发的手来）今年是光绪二十四年，戊戌。",
+        "pinyin": "（ bù róng fēn shuō ， lā guò wáng lì fā de shǒu lái ） jīn nián shì guāng xù èr shí sì nián ， wù xū 。",
+        "english": ""
+      },
+      {
+        "chinese": "您贵庚是……",
+        "pinyin": "nín guì gēng shì … …",
+        "english": ""
+      },
+      {
+        "chinese": "王利发　（夺回手去）算了吧，我送给你一碗茶喝，你就甭卖那套生意口啦！",
+        "pinyin": "wáng lì fā 　 （ duó huí shǒu qù ） suàn le bā ， wǒ sòng gěi nǐ yī wǎn chá hē ， nǐ jiù béng mài nà tào shēng yì kǒu lā ！",
+        "english": ""
+      },
+      {
+        "chinese": "用不着相面，咱们既在江湖内，都是苦命人！",
+        "pinyin": "yòng bù zhuó xiāng miàn ， zán mén jì zài jiāng hú nèi ， dōu shì kǔ mìng rén ！",
+        "english": ""
+      },
+      {
+        "chinese": "（由柜台内走出，让唐铁嘴坐下）坐下！",
+        "pinyin": "（ yóu guì tái nèi zǒu chū ， ràng táng tiě zuǐ zuò xià ） zuò xià ！",
+        "english": ""
+      },
+      {
+        "chinese": "我告诉你，你要是不戒了大烟，就永远交不了好运！",
+        "pinyin": "wǒ gào sù nǐ ， nǐ yào shì bù jiè le dà yān ， jiù yǒng yuǎn jiāo bù le hǎo yùn ！",
+        "english": ""
+      },
+      {
+        "chinese": "这是我的相法，比你的更灵验！",
+        "pinyin": "zhè shì wǒ de xiāng fǎ ， bǐ nǐ de gèng líng yàn ！",
+        "english": ""
+      },
+      {
+        "chinese": "〔松二爷和常四爷都提着鸟笼进来，王利发向他们打招呼。",
+        "pinyin": "〔 sōng èr yé hé cháng sì yé dōu tí zhuó niǎo lóng jìn lái ， wáng lì fā xiàng tā mén dǎ zhāo hū 。",
+        "english": ""
+      },
+      {
+        "chinese": "他们先把鸟笼子挂好，找地方坐下。",
+        "pinyin": "tā mén xiān bǎ niǎo lóng zi guà hǎo ， zhǎo dì fāng zuò xià 。",
+        "english": ""
+      },
+      {
+        "chinese": "松二爷文诌诌的，提着小黄鸟笼；",
+        "pinyin": "sōng èr yé wén zhōu zhōu de ， tí zhuó xiǎo huáng niǎo lóng ；",
+        "english": ""
+      },
+      {
+        "chinese": "常四爷雄赳赳的，提着大而高的画眉笼。",
+        "pinyin": "cháng sì yé xióng jiū jiū de ， tí zhuó dà ér gāo de huà méi lóng 。",
+        "english": ""
+      },
+      {
+        "chinese": "茶房李三赶紧过来，沏上盖碗茶。",
+        "pinyin": "chá fáng lǐ sān gǎn jǐn guò lái ， qī shàng gài wǎn chá 。",
+        "english": ""
+      },
+      {
+        "chinese": "他们自带茶叶。",
+        "pinyin": "tā mén zì dài chá yè 。",
+        "english": ""
+      },
+      {
+        "chinese": "茶沏好，松二爷、常四爷向邻近的茶座让了让。",
+        "pinyin": "chá qī hǎo ， sōng èr yé 、 cháng sì yé xiàng lín jìn de chá zuò ràng le ràng 。",
+        "english": ""
+      },
+      {
+        "chinese": "松二爷",
+        "pinyin": "sōng èr yé",
+        "english": ""
+      },
+      {
+        "chinese": "常四爷　您喝这个！",
+        "pinyin": "cháng sì yé 　 nín hē zhè gè ！",
+        "english": ""
+      },
+      {
+        "chinese": "（然后，往后院看了看）松二爷　好象又有事儿？",
+        "pinyin": "（ rán hòu ， wǎng hòu yuàn kàn le kàn ） sōng èr yé 　 hǎo xiàng yòu yǒu shì ér ？",
+        "english": ""
+      },
+      {
+        "chinese": "常四爷　反正打不起来！",
+        "pinyin": "cháng sì yé 　 fǎn zhèng dǎ bù qǐ lái ！",
+        "english": ""
+      },
+      {
+        "chinese": "要真打的话，早到城外头去啦；",
+        "pinyin": "yào zhēn dǎ de huà ， zǎo dào chéng wài tóu qù lā ；",
+        "english": ""
+      },
+      {
+        "chinese": "到茶馆来干吗？",
+        "pinyin": "dào chá guǎn lái gān ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "〔二德子，一位打手，恰好进来，听见了常四爷的话。",
+        "pinyin": "〔 èr dé zǐ ， yī wèi dǎ shǒu ， qià hǎo jìn lái ， tīng jiàn le cháng sì yé de huà 。",
+        "english": ""
+      },
+      {
+        "chinese": "二德子　（凑过去）你这是对谁甩闲话呢？",
+        "pinyin": "èr dé zǐ 　 （ còu guò qù ） nǐ zhè shì duì shuí shuǎi xián huà ne ？",
+        "english": ""
+      },
+      {
+        "chinese": "常四爷　（不肯示弱）你问我哪？",
+        "pinyin": "cháng sì yé 　 （ bù kěn shì ruò ） nǐ wèn wǒ nǎ ？",
+        "english": ""
+      },
+      {
+        "chinese": "花钱喝茶，难道还教谁管着吗？",
+        "pinyin": "huā qián hē chá ， nán dào hái jiào shuí guǎn zhuó ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "松二爷　（打量了二德子一番）我说这位爷，您是营里当差的吧？",
+        "pinyin": "sōng èr yé 　 （ dǎ liang le èr dé zǐ yī fān ） wǒ shuō zhè wèi yé ， nín shì yíng lǐ dāng chà de bā ？",
+        "english": ""
+      },
+      {
+        "chinese": "来，坐下喝一碗，我们也都是外场人。",
+        "pinyin": "lái ， zuò xià hē yī wǎn ， wǒ mén yě dōu shì wài cháng rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "二德子　你管我当差不当差呢！",
+        "pinyin": "èr dé zǐ 　 nǐ guǎn wǒ dāng chà bù dāng chà ne ！",
+        "english": ""
+      },
+      {
+        "chinese": "常四爷　要抖威风，跟洋人干去，洋人厉害！",
+        "pinyin": "cháng sì yé 　 yào dǒu wēi fēng ， gēn yáng rén gān qù ， yáng rén lì hài ！",
+        "english": ""
+      },
+      {
+        "chinese": "英法联军烧了圆明园，尊家吃着官饷，可没见您去冲锋打仗！",
+        "pinyin": "yīng fǎ lián jūn shāo le yuán míng yuán ， zūn jiā chī zhuó guān xiǎng ， kě méi jiàn nín qù chōng fēng dǎ zhàng ！",
+        "english": ""
+      },
+      {
+        "chinese": "二德子　甭说打洋人不打，我先管教管教你！",
+        "pinyin": "èr dé zǐ 　 béng shuō dǎ yáng rén bù dǎ ， wǒ xiān guǎn jiào guǎn jiào nǐ ！",
+        "english": ""
+      },
+      {
+        "chinese": "（要动手）〔别的茶客依旧进行他们自己的事。",
+        "pinyin": "（ yào dòng shǒu ） 〔 bié de chá kè yī jiù jìn xíng tā mén zì jǐ de shì 。",
+        "english": ""
+      },
+      {
+        "chinese": "王利发急忙跑过来。",
+        "pinyin": "wáng lì fā jí máng pǎo guò lái 。",
+        "english": ""
+      },
+      {
+        "chinese": "王利发　哥儿们，都是街面上的朋友，有话好说。",
+        "pinyin": "wáng lì fā 　 gē ér mén ， dōu shì jiē miàn shàng de péng yǒu ， yǒu huà hǎo shuō 。",
+        "english": ""
+      },
+      {
+        "chinese": "德爷，您后边坐！",
+        "pinyin": "dé yé ， nín hòu biān zuò ！",
+        "english": ""
+      },
+      {
+        "chinese": "〔二德子不听王利友的话，一下子把一个盖碗搂下桌去，摔碎。",
+        "pinyin": "〔 èr dé zǐ bù tīng wáng lì yǒu de huà ， yī xià zǐ bǎ yī gè gài wǎn lǒu xià zhuō qù ， shuāi suì 。",
+        "english": ""
+      },
+      {
+        "chinese": "翻手要抓常四爷的脖领。",
+        "pinyin": "fān shǒu yào zhuā cháng sì yé de bó lǐng 。",
+        "english": ""
+      },
+      {
+        "chinese": "常四爷　（闪过）你要怎么着？",
+        "pinyin": "cháng sì yé 　 （ shǎn guò ） nǐ yào zěn me zhuó ？",
+        "english": ""
+      },
+      {
+        "chinese": "二德子　怎么着？",
+        "pinyin": "èr dé zǐ 　 zěn me zhuó ？",
+        "english": ""
+      },
+      {
+        "chinese": "我碰不了洋人，还碰不了你吗？",
+        "pinyin": "wǒ pèng bù le yáng rén ， hái pèng bù le nǐ ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "马五爷　（并未立起）二德子，你威风啊！",
+        "pinyin": "mǎ wǔ yé 　 （ bìng wèi lì qǐ ） èr dé zǐ ， nǐ wēi fēng ā ！",
+        "english": ""
+      },
+      {
+        "chinese": "二德子　（四下扫视，看到马五爷）喝，马五爷，您在这儿哪？",
+        "pinyin": "èr dé zǐ 　 （ sì xià sǎo shì ， kàn dào mǎ wǔ yé ） hē ， mǎ wǔ yé ， nín zài zhè ér nǎ ？",
+        "english": ""
+      },
+      {
+        "chinese": "我可眼拙，没看见您！",
+        "pinyin": "wǒ kě yǎn zhuō ， méi kàn jiàn nín ！",
+        "english": ""
+      },
+      {
+        "chinese": "（过去请安）",
+        "pinyin": "（ guò qù qǐng ān ）",
+        "english": ""
+      },
+      {
+        "chinese": "马五爷　有什么事好好地说，干吗动不动地就讲打？",
+        "pinyin": "mǎ wǔ yé 　 yǒu shén me shì hǎo hǎo dì shuō ， gān ma dòng bù dòng dì jiù jiǎng dǎ ？",
+        "english": ""
+      },
+      {
+        "chinese": "二德子　*∧档亩裕∥业胶*头坐坐去。",
+        "pinyin": "èr dé zǐ 　 * ∧ dàng mǔ yù ∥ yè jiāo * tóu zuò zuò qù 。",
+        "english": ""
+      },
+      {
+        "chinese": "李三，这儿的茶钱我候啦！",
+        "pinyin": "lǐ sān ， zhè ér de chá qián wǒ hòu lā ！",
+        "english": ""
+      },
+      {
+        "chinese": "（往后面走去）",
+        "pinyin": "（ wǎng hòu miàn zǒu qù ）",
+        "english": ""
+      },
+      {
+        "chinese": "常四爷　（凑过来，要对马五爷发牢骚）这位爷，您圣明，您给评评理！",
+        "pinyin": "cháng sì yé 　 （ còu guò lái ， yào duì mǎ wǔ yé fā láo sāo ） zhè wèi yé ， nín shèng míng ， nín gěi píng píng lǐ ！",
+        "english": ""
+      },
+      {
+        "chinese": "马五爷　（立起来）我还有事，再见！",
+        "pinyin": "mǎ wǔ yé 　 （ lì qǐ lái ） wǒ hái yǒu shì ， zài jiàn ！",
+        "english": ""
+      },
+      {
+        "chinese": "（走出去）常四爷　（对王利发）邪！",
+        "pinyin": "（ zǒu chū qù ） cháng sì yé 　 （ duì wáng lì fā ） xié ！",
+        "english": ""
+      },
+      {
+        "chinese": "这倒是个怪人！",
+        "pinyin": "zhè dǎo shì gè guài rén ！",
+        "english": ""
+      },
+      {
+        "chinese": "王利发　您不知道这是马五爷呀？",
+        "pinyin": "wáng lì fā 　 nín bù zhī dào zhè shì mǎ wǔ yé yā ？",
+        "english": ""
+      },
+      {
+        "chinese": "怪不得您也得罪了他！",
+        "pinyin": "guài bù dé nín yě dé zuì le tā ！",
+        "english": ""
+      },
+      {
+        "chinese": "常四爷　我也得罪了他？",
+        "pinyin": "cháng sì yé 　 wǒ yě dé zuì le tā ？",
+        "english": ""
+      },
+      {
+        "chinese": "我今天出门没挑好日子！",
+        "pinyin": "wǒ jīn tiān chū mén méi tiāo hǎo rì zǐ ！",
+        "english": ""
+      },
+      {
+        "chinese": "王利发　（低声地）刚才您说洋人怎样，他就是吃洋饭的。",
+        "pinyin": "wáng lì fā 　 （ dī shēng dì ） gāng cái nín shuō yáng rén zěn yàng ， tā jiù shì chī yáng fàn de 。",
+        "english": ""
+      },
+      {
+        "chinese": "信洋教，说洋话，有事情可以一直地找宛平县的县太爷去，要不怎么连官面上都不惹他呢！",
+        "pinyin": "xìn yáng jiào ， shuō yáng huà ， yǒu shì qíng kě yǐ yī zhí dì zhǎo wǎn píng xiàn de xiàn tài yé qù ， yào bù zěn me lián guān miàn shàng dōu bù rě tā ne ！",
+        "english": ""
+      },
+      {
+        "chinese": "常四爷　（往原处走）哼，我就不佩服吃洋饭的！",
+        "pinyin": "cháng sì yé 　 （ wǎng yuán chù zǒu ） hēng ， wǒ jiù bù pèi fú chī yáng fàn de ！",
+        "english": ""
+      },
+      {
+        "chinese": "王利发　（向宋恩子、吴祥子那边稍一歪头，低声地）说话请留点神！",
+        "pinyin": "wáng lì fā 　 （ xiàng sòng ēn zǐ 、 wú xiáng zǐ nà biān shāo yī wāi tóu ， dī shēng dì ） shuō huà qǐng liú diǎn shén ！",
+        "english": ""
+      },
+      {
+        "chinese": "（大声地）李三，再给这儿沏一碗来！",
+        "pinyin": "（ dà shēng dì ） lǐ sān ， zài gěi zhè ér qī yī wǎn lái ！",
+        "english": ""
+      },
+      {
+        "chinese": "（拾起地上的碎磁片）",
+        "pinyin": "（ shí qǐ dì shàng de suì cí piàn ）",
+        "english": ""
+      },
+      {
+        "chinese": "松二爷　盖碗多少钱？",
+        "pinyin": "sōng èr yé 　 gài wǎn duō shǎo qián ？",
+        "english": ""
+      },
+      {
+        "chinese": "我赔！",
+        "pinyin": "wǒ péi ！",
+        "english": ""
+      },
+      {
+        "chinese": "外场人不作老娘们事！",
+        "pinyin": "wài cháng rén bù zuò lǎo niáng mén shì ！",
+        "english": ""
+      },
+      {
+        "chinese": "王利发　不忙，待会儿再算吧！",
+        "pinyin": "wáng lì fā 　 bù máng ， dài huì ér zài suàn bā ！",
+        "english": ""
+      },
+      {
+        "chinese": "（走开）〔纤手刘麻子领着康六进来。",
+        "pinyin": "（ zǒu kāi ） 〔 xiān shǒu liú má zǐ lǐng zhuó kāng liù jìn lái 。",
+        "english": ""
+      },
+      {
+        "chinese": "刘麻子先向松二爷、常四爷打招呼。",
+        "pinyin": "liú má zǐ xiān xiàng sōng èr yé 、 cháng sì yé dǎ zhāo hū 。",
+        "english": ""
+      },
+      {
+        "chinese": "刘麻子　您二位真早班儿！",
+        "pinyin": "liú má zǐ 　 nín èr wèi zhēn zǎo bān ér ！",
+        "english": ""
+      },
+      {
+        "chinese": "（掏出鼻烟壶，倒烟）您试试这个！",
+        "pinyin": "（ tāo chū bí yān hú ， dǎo yān ） nín shì shì zhè gè ！",
+        "english": ""
+      },
+      {
+        "chinese": "刚装来的，地道英国造，又细又纯！",
+        "pinyin": "gāng zhuāng lái de ， dì dào yīng guó zào ， yòu xì yòu chún ！",
+        "english": ""
+      },
+      {
+        "chinese": "常四爷　唉！",
+        "pinyin": "cháng sì yé 　 āi ！",
+        "english": ""
+      },
+      {
+        "chinese": "连鼻烟也得从外洋来！",
+        "pinyin": "lián bí yān yě dé cóng wài yáng lái ！",
+        "english": ""
+      },
+      {
+        "chinese": "这得往外流多少银子啊！",
+        "pinyin": "zhè dé wǎng wài liú duō shǎo yín zǐ ā ！",
+        "english": ""
+      },
+      {
+        "chinese": "刘麻子　咱们大清国有的是金山银山，永远花不完！",
+        "pinyin": "liú má zǐ 　 zán mén dà qīng guó yǒu de shì jīn shān yín shān ， yǒng yuǎn huā bù wán ！",
+        "english": ""
+      },
+      {
+        "chinese": "您坐着，我办点小事！",
+        "pinyin": "nín zuò zhuó ， wǒ bàn diǎn xiǎo shì ！",
+        "english": ""
+      },
+      {
+        "chinese": "（领康六找了个座儿）",
+        "pinyin": "（ lǐng kāng liù zhǎo le gè zuò ér ）",
+        "english": ""
+      },
+      {
+        "chinese": "〔李三拿过一碗茶来。",
+        "pinyin": "〔 lǐ sān ná guò yī wǎn chá lái 。",
+        "english": ""
+      },
+      {
+        "chinese": "刘麻子　说说吧，十两银子行不行？",
+        "pinyin": "liú má zǐ 　 shuō shuō bā ， shí liǎng yín zǐ xíng bù xíng ？",
+        "english": ""
+      },
+      {
+        "chinese": "你说干脆的！",
+        "pinyin": "nǐ shuō gān cuì de ！",
+        "english": ""
+      },
+      {
+        "chinese": "我忙，没工夫专伺候你！",
+        "pinyin": "wǒ máng ， méi gōng fū zhuān cì hòu nǐ ！",
+        "english": ""
+      },
+      {
+        "chinese": "康六　刘爷！",
+        "pinyin": "kāng liù 　 liú yé ！",
+        "english": ""
+      },
+      {
+        "chinese": "十五岁的大姑娘，就值十两银子吗？",
+        "pinyin": "shí wǔ suì de dà gū niáng ， jiù zhí shí liǎng yín zǐ ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "刘麻子　卖到窑子去，也许多拿一两八钱的，可是你又不肯！",
+        "pinyin": "liú má zǐ 　 mài dào yáo zǐ qù ， yě xǔ duō ná yī liǎng bā qián de ， kě shì nǐ yòu bù kěn ！",
+        "english": ""
+      },
+      {
+        "chinese": "康　六　那是我的亲女儿！",
+        "pinyin": "kāng 　 liù 　 nà shì wǒ de qīn nǚ ér ！",
+        "english": ""
+      },
+      {
+        "chinese": "我能够……刘麻子　有女儿，你可养活不起，这怪谁呢？",
+        "pinyin": "wǒ néng gòu … … liú má zǐ 　 yǒu nǚ ér ， nǐ kě yǎng huó bù qǐ ， zhè guài shuí ne ？",
+        "english": ""
+      },
+      {
+        "chinese": "康　六　那不是因为乡下种地的都没法子混了吗？",
+        "pinyin": "kāng 　 liù 　 nà bù shì yīn wèi xiāng xià zhǒng dì de dōu méi fǎ zǐ hùn le ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "一家大小要是一天能吃上一顿粥，我要还想卖女儿，我就不是人！",
+        "pinyin": "yī jiā dà xiǎo yào shì yī tiān néng chī shàng yī dùn zhōu ， wǒ yào hái xiǎng mài nǚ ér ， wǒ jiù bù shì rén ！",
+        "english": ""
+      },
+      {
+        "chinese": "刘麻子　那是你们乡下的事，我管不着。",
+        "pinyin": "liú má zǐ 　 nà shì nǐ mén xiāng xià de shì ， wǒ guǎn bù zhuó 。",
+        "english": ""
+      },
+      {
+        "chinese": "我受你之托，教你不吃亏，又教你女儿有个吃跑饭的地方，这还不好吗？",
+        "pinyin": "wǒ shòu nǐ zhī tuō ， jiào nǐ bù chī kuī ， yòu jiào nǐ nǚ ér yǒu gè chī pǎo fàn de dì fāng ， zhè hái bù hǎo ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "康六　到底给谁呢？",
+        "pinyin": "kāng liù 　 dào dǐ gěi shuí ne ？",
+        "english": ""
+      },
+      {
+        "chinese": "刘麻子　我一说，你必定从心眼里乐意！",
+        "pinyin": "liú má zǐ 　 wǒ yī shuō ， nǐ bì dìng cóng xīn yǎn lǐ lè yì ！",
+        "english": ""
+      },
+      {
+        "chinese": "一位在官里当差的！",
+        "pinyin": "yī wèi zài guān lǐ dāng chà de ！",
+        "english": ""
+      },
+      {
+        "chinese": "康　六　宫里当差的谁要个乡下丫头呢？",
+        "pinyin": "kāng 　 liù 　 gōng lǐ dāng chà de shuí yào gè xiāng xià yā tóu ne ？",
+        "english": ""
+      },
+      {
+        "chinese": "刘麻子　那不是你女儿的命好吗？",
+        "pinyin": "liú má zǐ 　 nà bù shì nǐ nǚ ér de mìng hǎo ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "康六　谁呢？",
+        "pinyin": "kāng liù 　 shuí ne ？",
+        "english": ""
+      },
+      {
+        "chinese": "刘麻子　庞总管！",
+        "pinyin": "liú má zǐ 　 páng zǒng guǎn ！",
+        "english": ""
+      },
+      {
+        "chinese": "你也听说过庞总管吧？",
+        "pinyin": "nǐ yě tīng shuō guò páng zǒng guǎn bā ？",
+        "english": ""
+      },
+      {
+        "chinese": "侍候着太后，红的不得了，连家里打醋的瓶子都是玛瑙作的！",
+        "pinyin": "shì hòu zhuó tài hòu ， hóng de bù dé le ， lián jiā lǐ dǎ cù de píng zǐ dōu shì mǎ nǎo zuò de ！",
+        "english": ""
+      },
+      {
+        "chinese": "康　六　刘大爷，把女儿给太监作老婆，我怎么对得起人呢？",
+        "pinyin": "kāng 　 liù 　 liú dà yé ， bǎ nǚ ér gěi tài jiān zuò lǎo pó ， wǒ zěn me duì dé qǐ rén ne ？",
+        "english": ""
+      },
+      {
+        "chinese": "刘麻子　卖女儿，无论怎么卖，也对不起女儿！",
+        "pinyin": "liú má zǐ 　 mài nǚ ér ， wú lùn zěn me mài ， yě duì bù qǐ nǚ ér ！",
+        "english": ""
+      },
+      {
+        "chinese": "你胡涂！",
+        "pinyin": "nǐ hú tú ！",
+        "english": ""
+      },
+      {
+        "chinese": "你看，姑娘一过门，吃的是珍馐美味，穿的是绫罗绸缎，这不是造化吗？",
+        "pinyin": "nǐ kàn ， gū niáng yī guò mén ， chī de shì zhēn xiū měi wèi ， chuān de shì líng luó chóu duàn ， zhè bù shì zào huà ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "怎样，摇头不算点头算，来个干脆的！",
+        "pinyin": "zěn yàng ， yáo tóu bù suàn diǎn tóu suàn ， lái gè gān cuì de ！",
+        "english": ""
+      },
+      {
+        "chinese": "康六　自古以来，哪有……他就给十两银子？",
+        "pinyin": "kāng liù 　 zì gǔ yǐ lái ， nǎ yǒu … … tā jiù gěi shí liǎng yín zǐ ？",
+        "english": ""
+      },
+      {
+        "chinese": "刘麻子　找遍了你们全村儿，找得出十两银子找不出？",
+        "pinyin": "liú má zǐ 　 zhǎo biàn le nǐ mén quán cūn ér ， zhǎo dé chū shí liǎng yín zǐ zhǎo bù chū ？",
+        "english": ""
+      },
+      {
+        "chinese": "在乡下，五斤白面就换个孩子，你不是不知道！",
+        "pinyin": "zài xiāng xià ， wǔ jīn bái miàn jiù huàn gè hái zǐ ， nǐ bù shì bù zhī dào ！",
+        "english": ""
+      },
+      {
+        "chinese": "康　六　我，唉！",
+        "pinyin": "kāng 　 liù 　 wǒ ， āi ！",
+        "english": ""
+      },
+      {
+        "chinese": "我得跟姑娘商量一下！",
+        "pinyin": "wǒ dé gēn gū niáng shāng liàng yī xià ！",
+        "english": ""
+      },
+      {
+        "chinese": "刘麻子　告诉你，过了这个村可没有这个店，耽误了事别怨我！",
+        "pinyin": "liú má zǐ 　 gào sù nǐ ， guò le zhè gè cūn kě méi yǒu zhè gè diàn ， dān wù le shì bié yuàn wǒ ！",
+        "english": ""
+      }
+    ]
+  },
+  {
+    "id": "teahouse_laoshe_ch_5",
+    "bookId": "teahouse_laoshe",
+    "chapterIndex": 5,
+    "title": "第二幕",
+    "titleEn": "Chapter 5: 第二幕",
+    "sentences": [
+      {
+        "chinese": "时间　与前幕相隔十余年，现在是袁世凯死后，帝国主义指使中国军阀进行割据，时时发动内战的时候。",
+        "pinyin": "shí jiān 　 yǔ qián mù xiāng gé shí yú nián ， xiàn zài shì yuán shì kǎi sǐ hòu ， dì guó zhǔ yì zhǐ shǐ zhōng guó jūn fá jìn xíng gē jù ， shí shí fā dòng nèi zhàn de shí hòu 。",
+        "english": ""
+      },
+      {
+        "chinese": "初夏，上午。",
+        "pinyin": "chū xià ， shàng wǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "地点　同前幕。",
+        "pinyin": "dì diǎn 　 tóng qián mù 。",
+        "english": ""
+      },
+      {
+        "chinese": "人物　王淑芬　报　童　康顺子　李　三　常四爷",
+        "pinyin": "rén wù 　 wáng shū fēn 　 bào 　 tóng 　 kāng shùn zǐ 　 lǐ 　 sān 　 cháng sì yé",
+        "english": ""
+      },
+      {
+        "chinese": "康大力　王利发　松二爷　老　林　难民数人",
+        "pinyin": "kāng dà lì 　 wáng lì fā 　 sōng èr yé 　 lǎo 　 lín 　 nán mín shǔ rén",
+        "english": ""
+      },
+      {
+        "chinese": "宋恩子　老　陈　巡　警　吴祥子　崔久峰",
+        "pinyin": "sòng ēn zǐ 　 lǎo 　 chén 　 xún 　 jǐng 　 wú xiáng zǐ 　 cuī jiǔ fēng",
+        "english": ""
+      },
+      {
+        "chinese": "押大令的兵七人　公寓住客二、三人　军　官",
+        "pinyin": "yā dà lìng de bīng qī rén 　 gōng yù zhù kè èr 、 sān rén 　 jūn 　 guān",
+        "english": ""
+      },
+      {
+        "chinese": "唐铁嘴　刘麻子　大兵三、五人",
+        "pinyin": "táng tiě zuǐ 　 liú má zǐ 　 dà bīng sān 、 wǔ rén",
+        "english": ""
+      },
+      {
+        "chinese": "〔幕启：北京城内的大茶馆已先后相继关了门。",
+        "pinyin": "〔 mù qǐ ： běi jīng chéng nèi de dà chá guǎn yǐ xiān hòu xiāng jì guān le mén 。",
+        "english": ""
+      },
+      {
+        "chinese": "\"裕泰\"是硕果仅存的一家了，可是为避免被淘汰，它已改变了样子与作风。",
+        "pinyin": "\" yù tài \" shì shuò guǒ jǐn cún de yī jiā le ， kě shì wèi bì miǎn bèi táo tài ， tā yǐ gǎi biàn le yàng zǐ yǔ zuò fēng 。",
+        "english": ""
+      },
+      {
+        "chinese": "现在，它的前部仍然卖茶，后部却改成了公寓。",
+        "pinyin": "xiàn zài ， tā de qián bù réng rán mài chá ， hòu bù què gǎi chéng le gōng yù 。",
+        "english": ""
+      },
+      {
+        "chinese": "前部只卖茶和瓜子什么的；",
+        "pinyin": "qián bù zhǐ mài chá hé guā zǐ shén me de ；",
+        "english": ""
+      },
+      {
+        "chinese": "\"烂肉面\"等等已成为历史名词。",
+        "pinyin": "\" làn ròu miàn \" děng děng yǐ chéng wéi lì shǐ míng cí 。",
+        "english": ""
+      },
+      {
+        "chinese": "厨房挪到后边去，专包公寓住客的伙食。",
+        "pinyin": "chú fáng nuó dào hòu biān qù ， zhuān bāo gōng yù zhù kè de huǒ shí 。",
+        "english": ""
+      },
+      {
+        "chinese": "茶座也大加改良：一律是小桌与藤椅，桌上铺着浅绿桌布。",
+        "pinyin": "chá zuò yě dà jiā gǎi liáng ： yī lǜ shì xiǎo zhuō yǔ téng yǐ ， zhuō shàng pū zhuó qiǎn lǜ zhuō bù 。",
+        "english": ""
+      },
+      {
+        "chinese": "墙上的\"醉八仙\"大画，连财神龛，均已撤去，代以时装美人--外国香烟公司的广告画。",
+        "pinyin": "qiáng shàng de \" zuì bā xiān \" dà huà ， lián cái shén kān ， jūn yǐ chè qù ， dài yǐ shí zhuāng měi rén - - wài guó xiāng yān gōng sī de guǎng gào huà 。",
+        "english": ""
+      },
+      {
+        "chinese": "\"莫谈国事\"的纸条可是保存了下来，而且字写的更大。",
+        "pinyin": "\" mò tán guó shì \" de zhǐ tiáo kě shì bǎo cún le xià lái ， ér qiě zì xiě de gèng dà 。",
+        "english": ""
+      },
+      {
+        "chinese": "王利发真象个\"圣之时者也\"，不但没使\"裕泰\"灭亡，而且使它有了新的发展。",
+        "pinyin": "wáng lì fā zhēn xiàng gè \" shèng zhī shí zhě yě \" ， bù dàn méi shǐ \" yù tài \" miè wáng ， ér qiě shǐ tā yǒu le xīn de fā zhǎn 。",
+        "english": ""
+      },
+      {
+        "chinese": "〔因为修理门面，茶馆停了几天营业，预备明天开张。",
+        "pinyin": "〔 yīn wèi xiū lǐ mén miàn ， chá guǎn tíng le jǐ tiān yíng yè ， yù bèi míng tiān kāi zhāng 。",
+        "english": ""
+      },
+      {
+        "chinese": "王淑芬正和李三忙着布置，把桌椅移了又移，摆了又摆，以期尽善尽美。",
+        "pinyin": "wáng shū fēn zhèng hé lǐ sān máng zhuó bù zhì ， bǎ zhuō yǐ yí le yòu yí ， bǎi le yòu bǎi ， yǐ qī jìn shàn jìn měi 。",
+        "english": ""
+      },
+      {
+        "chinese": "〔王淑芬梳时行的圆髻，而李三却还带着小辫儿。",
+        "pinyin": "〔 wáng shū fēn shū shí xíng de yuán jì ， ér lǐ sān què hái dài zhuó xiǎo biàn ér 。",
+        "english": ""
+      },
+      {
+        "chinese": "〔二、三学生由后面来，与他们打招呼，出去。",
+        "pinyin": "〔 èr 、 sān xué shēng yóu hòu miàn lái ， yǔ tā mén dǎ zhāo hū ， chū qù 。",
+        "english": ""
+      },
+      {
+        "chinese": "王淑芬　（看李三的辫子碍事）三爷，咱们的茶馆改了良，你的小辫儿也该剪了吧？",
+        "pinyin": "wáng shū fēn 　 （ kàn lǐ sān de biàn zǐ ài shì ） sān yé ， zán mén de chá guǎn gǎi le liáng ， nǐ de xiǎo biàn ér yě gāi jiǎn le bā ？",
+        "english": ""
+      },
+      {
+        "chinese": "李三　改良！",
+        "pinyin": "lǐ sān 　 gǎi liáng ！",
+        "english": ""
+      },
+      {
+        "chinese": "改良！",
+        "pinyin": "gǎi liáng ！",
+        "english": ""
+      },
+      {
+        "chinese": "越改越凉，冰凉！",
+        "pinyin": "yuè gǎi yuè liáng ， bīng liáng ！",
+        "english": ""
+      },
+      {
+        "chinese": "王淑芬　也不能那么说！",
+        "pinyin": "wáng shū fēn 　 yě bù néng nà me shuō ！",
+        "english": ""
+      },
+      {
+        "chinese": "三爷你看，听说西直门的德泰，北新桥的广泰，鼓楼前的天泰，这些大茶馆全先后脚儿关了门！",
+        "pinyin": "sān yé nǐ kàn ， tīng shuō xī zhí mén de dé tài ， běi xīn qiáo de guǎng tài ， gǔ lóu qián de tiān tài ， zhè xiē dà chá guǎn quán xiān hòu jiǎo ér guān le mén ！",
+        "english": ""
+      },
+      {
+        "chinese": "只有咱们裕泰还开着，为什么？",
+        "pinyin": "zhǐ yǒu zán mén yù tài hái kāi zhuó ， wèi shén me ？",
+        "english": ""
+      },
+      {
+        "chinese": "不是因为拴子的爸爸懂得改良吗？",
+        "pinyin": "bù shì yīn wèi shuān zǐ de bà bà dǒng dé gǎi liáng ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "李三　哼！",
+        "pinyin": "lǐ sān 　 hēng ！",
+        "english": ""
+      },
+      {
+        "chinese": "皇上没啦，总算大改良吧？",
+        "pinyin": "huáng shàng méi lā ， zǒng suàn dà gǎi liáng bā ？",
+        "english": ""
+      },
+      {
+        "chinese": "可是改来改去，袁世凯还是要作皇上。",
+        "pinyin": "kě shì gǎi lái gǎi qù ， yuán shì kǎi hái shì yào zuò huáng shàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "袁世凯死后，天下大乱，今儿个打炮，明儿个关城，改良？",
+        "pinyin": "yuán shì kǎi sǐ hòu ， tiān xià dà luàn ， jīn ér gè dǎ pào ， míng ér gè guān chéng ， gǎi liáng ？",
+        "english": ""
+      },
+      {
+        "chinese": "我还留着我的小辫儿，万一把皇上改回来呢！",
+        "pinyin": "wǒ hái liú zhuó wǒ de xiǎo biàn ér ， wàn yī bǎ huáng shàng gǎi huí lái ne ！",
+        "english": ""
+      },
+      {
+        "chinese": "王淑芬　别顽固啦，三爷！",
+        "pinyin": "wáng shū fēn 　 bié wán gù lā ， sān yé ！",
+        "english": ""
+      },
+      {
+        "chinese": "人家给咱们改了民国，咱们还能不随着走吗？",
+        "pinyin": "rén jiā gěi zán mén gǎi le mín guó ， zán mén hái néng bù suí zhuó zǒu ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "你看，咱们这么一收拾，不比以前干净，好看？",
+        "pinyin": "nǐ kàn ， zán mén zhè me yī shōu shí ， bù bǐ yǐ qián gān jìng ， hǎo kàn ？",
+        "english": ""
+      },
+      {
+        "chinese": "专招待文明人，不更体面？",
+        "pinyin": "zhuān zhāo dài wén míng rén ， bù gèng tǐ miàn ？",
+        "english": ""
+      },
+      {
+        "chinese": "可是，你要还带着小辫儿，看着多么不顺眼哪！",
+        "pinyin": "kě shì ， nǐ yào hái dài zhuó xiǎo biàn ér ， kàn zhuó duō me bù shùn yǎn nǎ ！",
+        "english": ""
+      },
+      {
+        "chinese": "李三　太太，你觉得不顺眼，我还不顺心呢！",
+        "pinyin": "lǐ sān 　 tài tài ， nǐ jué dé bù shùn yǎn ， wǒ hái bù shùn xīn ne ！",
+        "english": ""
+      },
+      {
+        "chinese": "王淑芬　哟，你不顺心？",
+        "pinyin": "wáng shū fēn 　 yō ， nǐ bù shùn xīn ？",
+        "english": ""
+      },
+      {
+        "chinese": "怎么？",
+        "pinyin": "zěn me ？",
+        "english": ""
+      },
+      {
+        "chinese": "李三　你还不明白？",
+        "pinyin": "lǐ sān 　 nǐ hái bù míng bái ？",
+        "english": ""
+      },
+      {
+        "chinese": "前面茶馆，后面公寓，全仗着掌柜的跟我两个人，无论怎么说，也忙不过来呀！",
+        "pinyin": "qián miàn chá guǎn ， hòu miàn gōng yù ， quán zhàng zhuó zhǎng guì de gēn wǒ liǎng gè rén ， wú lùn zěn me shuō ， yě máng bù guò lái yā ！",
+        "english": ""
+      },
+      {
+        "chinese": "王淑芬　前面的事归他，后面的事不是还有我帮助你吗？",
+        "pinyin": "wáng shū fēn 　 qián miàn de shì guī tā ， hòu miàn de shì bù shì hái yǒu wǒ bāng zhù nǐ ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "李　三　就算有你帮助，打扫二十来间屋子，侍候二十多人的伙食，还要沏茶灌水，买东西送信，问问你自己，受得了受不了！",
+        "pinyin": "lǐ 　 sān 　 jiù suàn yǒu nǐ bāng zhù ， dǎ sǎo èr shí lái jiān wū zǐ ， shì hòu èr shí duō rén de huǒ shí ， hái yào qī chá guàn shuǐ ， mǎi dōng xī sòng xìn ， wèn wèn nǐ zì jǐ ， shòu dé le shòu bù le ！",
+        "english": ""
+      },
+      {
+        "chinese": "王淑芬　三爷，你说的对！",
+        "pinyin": "wáng shū fēn 　 sān yé ， nǐ shuō de duì ！",
+        "english": ""
+      },
+      {
+        "chinese": "可是呀，这兵荒马乱的年月，能有个事儿作也就得念佛！",
+        "pinyin": "kě shì yā ， zhè bīng huāng mǎ luàn de nián yuè ， néng yǒu gè shì ér zuò yě jiù dé niàn fó ！",
+        "english": ""
+      },
+      {
+        "chinese": "咱们都得忍着点！",
+        "pinyin": "zán mén dōu dé rěn zhuó diǎn ！",
+        "english": ""
+      },
+      {
+        "chinese": "李　三　我干不了！",
+        "pinyin": "lǐ 　 sān 　 wǒ gān bù le ！",
+        "english": ""
+      },
+      {
+        "chinese": "天天睡四、五个钟头的觉，谁也不是铁打的！",
+        "pinyin": "tiān tiān shuì sì 、 wǔ gè zhōng tóu de jué ， shuí yě bù shì tiě dǎ de ！",
+        "english": ""
+      },
+      {
+        "chinese": "王淑芬　唉！",
+        "pinyin": "wáng shū fēn 　 āi ！",
+        "english": ""
+      },
+      {
+        "chinese": "三爷，这年月谁也舒服不了！",
+        "pinyin": "sān yé ， zhè nián yuè shuí yě shū fú bù le ！",
+        "english": ""
+      },
+      {
+        "chinese": "你等着，大拴子暑假就高小毕业，二拴子也快长起来，他们一有用处，咱们可就清闲点啦。",
+        "pinyin": "nǐ děng zhuó ， dà shuān zǐ shǔ jià jiù gāo xiǎo bì yè ， èr shuān zǐ yě kuài cháng qǐ lái ， tā mén yī yǒu yòng chù ， zán mén kě jiù qīng xián diǎn lā 。",
+        "english": ""
+      },
+      {
+        "chinese": "从老王掌柜在世的时候，你就帮助我们，老朋友，老伙计啦！",
+        "pinyin": "cóng lǎo wáng zhǎng guì zài shì de shí hòu ， nǐ jiù bāng zhù wǒ mén ， lǎo péng yǒu ， lǎo huǒ jì lā ！",
+        "english": ""
+      },
+      {
+        "chinese": "〔王利发老气横秋地从后面进来。",
+        "pinyin": "〔 wáng lì fā lǎo qì héng qiū dì cóng hòu miàn jìn lái 。",
+        "english": ""
+      },
+      {
+        "chinese": "李三　老伙计？",
+        "pinyin": "lǐ sān 　 lǎo huǒ jì ？",
+        "english": ""
+      },
+      {
+        "chinese": "二十多年了，他们可给我长过工钱？",
+        "pinyin": "èr shí duō nián le ， tā mén kě gěi wǒ cháng guò gōng qián ？",
+        "english": ""
+      },
+      {
+        "chinese": "什么都改良，为什么工钱不跟着改良呢？",
+        "pinyin": "shén me dōu gǎi liáng ， wèi shén me gōng qián bù gēn zhuó gǎi liáng ne ？",
+        "english": ""
+      },
+      {
+        "chinese": "王利发　哟！",
+        "pinyin": "wáng lì fā 　 yō ！",
+        "english": ""
+      },
+      {
+        "chinese": "你这是什么话呀？",
+        "pinyin": "nǐ zhè shì shén me huà yā ？",
+        "english": ""
+      },
+      {
+        "chinese": "咱们的买卖要是越作越好，我能不给你长工钱吗？",
+        "pinyin": "zán mén de mǎi mài yào shì yuè zuò yuè hǎo ， wǒ néng bù gěi nǐ cháng gōng qián ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "得了，明天咱们开张，取个吉利，先别吵嘴，就这么办吧！",
+        "pinyin": "dé le ， míng tiān zán mén kāi zhāng ， qǔ gè jí lì ， xiān bié chǎo zuǐ ， jiù zhè me bàn bā ！",
+        "english": ""
+      },
+      {
+        "chinese": "Ａｌｌ　ｒｉｇｈｔ？",
+        "pinyin": "Ａ ｌ ｌ 　 ｒ ｉ ｇ ｈ ｔ ？",
+        "english": ""
+      },
+      {
+        "chinese": "①李　三　就怎么办啦？",
+        "pinyin": "① lǐ 　 sān 　 jiù zěn me bàn lā ？",
+        "english": ""
+      },
+      {
+        "chinese": "不改我的良，我干不下去啦！",
+        "pinyin": "bù gǎi wǒ de liáng ， wǒ gān bù xià qù lā ！",
+        "english": ""
+      },
+      {
+        "chinese": "〔后面叫：\"李三！",
+        "pinyin": "〔 hòu miàn jiào ： \" lǐ sān ！",
+        "english": ""
+      },
+      {
+        "chinese": "李三！",
+        "pinyin": "lǐ sān ！",
+        "english": ""
+      },
+      {
+        "chinese": "王利发　崔先生叫，你快去！",
+        "pinyin": "wáng lì fā 　 cuī xiān shēng jiào ， nǐ kuài qù ！",
+        "english": ""
+      },
+      {
+        "chinese": "咱们的事，有工夫再细研究！",
+        "pinyin": "zán mén de shì ， yǒu gōng fū zài xì yán jiū ！",
+        "english": ""
+      },
+      {
+        "chinese": "李　三　哼！",
+        "pinyin": "lǐ 　 sān 　 hēng ！",
+        "english": ""
+      },
+      {
+        "chinese": "王淑芬　我说，昨天就关了城门，今儿个还说不定关不关，三爷，这里的事交给掌柜的，你去买点菜吧！",
+        "pinyin": "wáng shū fēn 　 wǒ shuō ， zuó tiān jiù guān le chéng mén ， jīn ér gè hái shuō bù dìng guān bù guān ， sān yé ， zhè lǐ de shì jiāo gěi zhǎng guì de ， nǐ qù mǎi diǎn cài bā ！",
+        "english": ""
+      },
+      {
+        "chinese": "别的不说，咸菜总得买下点呀！",
+        "pinyin": "bié de bù shuō ， xián cài zǒng dé mǎi xià diǎn yā ！",
+        "english": ""
+      },
+      {
+        "chinese": "〔后面又叫：\"李三！",
+        "pinyin": "〔 hòu miàn yòu jiào ： \" lǐ sān ！",
+        "english": ""
+      },
+      {
+        "chinese": "李三！",
+        "pinyin": "lǐ sān ！",
+        "english": ""
+      },
+      {
+        "chinese": "李三　对，后边叫，前边催，把我劈成两半儿好不好！",
+        "pinyin": "lǐ sān 　 duì ， hòu biān jiào ， qián biān cuī ， bǎ wǒ pī chéng liǎng bàn ér hǎo bù hǎo ！",
+        "english": ""
+      },
+      {
+        "chinese": "（忿忿地往后走）",
+        "pinyin": "（ fèn fèn dì wǎng hòu zǒu ）",
+        "english": ""
+      },
+      {
+        "chinese": "王利发　拴子的妈，他岁数大了点，你可得……王淑芬　他抱怨了大半天了！",
+        "pinyin": "wáng lì fā 　 shuān zǐ de mā ， tā suì shǔ dà le diǎn ， nǐ kě dé … … wáng shū fēn 　 tā bào yuàn le dà bàn tiān le ！",
+        "english": ""
+      },
+      {
+        "chinese": "可是抱怨的对！",
+        "pinyin": "kě shì bào yuàn de duì ！",
+        "english": ""
+      },
+      {
+        "chinese": "当着他，我不便直说；",
+        "pinyin": "dāng zhuó tā ， wǒ bù biàn zhí shuō ；",
+        "english": ""
+      },
+      {
+        "chinese": "对你，我可得说实话：咱们得添人！",
+        "pinyin": "duì nǐ ， wǒ kě dé shuō shí huà ： zán mén dé tiān rén ！",
+        "english": ""
+      },
+      {
+        "chinese": "王利发　添人得给工钱，咱们赚得出来吗？",
+        "pinyin": "wáng lì fā 　 tiān rén dé gěi gōng qián ， zán mén zhuàn dé chū lái ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "我要是会干别的，可是还开茶馆，我是孙子！",
+        "pinyin": "wǒ yào shì huì gān bié de ， kě shì hái kāi chá guǎn ， wǒ shì sūn zǐ ！",
+        "english": ""
+      },
+      {
+        "chinese": "〔远处隐隐有炮声。",
+        "pinyin": "〔 yuǎn chù yǐn yǐn yǒu pào shēng 。",
+        "english": ""
+      },
+      {
+        "chinese": "王利发　听听，又他妈的开炮了！",
+        "pinyin": "wáng lì fā 　 tīng tīng ， yòu tā mā de kāi pào le ！",
+        "english": ""
+      },
+      {
+        "chinese": "你闹，闹！",
+        "pinyin": "nǐ nào ， nào ！",
+        "english": ""
+      },
+      {
+        "chinese": "明天开得了张才怪！",
+        "pinyin": "míng tiān kāi dé le zhāng cái guài ！",
+        "english": ""
+      },
+      {
+        "chinese": "这是怎么说的！",
+        "pinyin": "zhè shì zěn me shuō de ！",
+        "english": ""
+      },
+      {
+        "chinese": "王淑芬　明白人别说胡涂话，开炮是我闹的？",
+        "pinyin": "wáng shū fēn 　 míng bái rén bié shuō hú tú huà ， kāi pào shì wǒ nào de ？",
+        "english": ""
+      },
+      {
+        "chinese": "王利发　别再瞎扯，干活儿去！",
+        "pinyin": "wáng lì fā 　 bié zài xiā chě ， gān huó ér qù ！",
+        "english": ""
+      },
+      {
+        "chinese": "王淑芬　早晚不是累死，就得叫炮轰死，我看透了！",
+        "pinyin": "wáng shū fēn 　 zǎo wǎn bù shì léi sǐ ， jiù dé jiào pào hōng sǐ ， wǒ kàn tòu le ！",
+        "english": ""
+      },
+      {
+        "chinese": "（慢慢地往后边走）",
+        "pinyin": "（ màn màn dì wǎng hòu biān zǒu ）",
+        "english": ""
+      },
+      {
+        "chinese": "王利发　（温和了些）拴子的妈，甭害怕，开过多少回炮，一回也没打死咱们，北京城是宝地！",
+        "pinyin": "wáng lì fā 　 （ wēn hé le xiē ） shuān zǐ de mā ， béng hài pà ， kāi guò duō shǎo huí pào ， yī huí yě méi dǎ sǐ zán mén ， běi jīng chéng shì bǎo dì ！",
+        "english": ""
+      },
+      {
+        "chinese": "王淑芬　心哪，老跳到嗓子眼里，宝地！",
+        "pinyin": "wáng shū fēn 　 xīn nǎ ， lǎo tiào dào sǎng zǐ yǎn lǐ ， bǎo dì ！",
+        "english": ""
+      },
+      {
+        "chinese": "我给三爷拿菜钱去。",
+        "pinyin": "wǒ gěi sān yé ná cài qián qù 。",
+        "english": ""
+      },
+      {
+        "chinese": "（下）",
+        "pinyin": "（ xià ）",
+        "english": ""
+      },
+      {
+        "chinese": "〔一群男女难民在门外央告。",
+        "pinyin": "〔 yī qún nán nǚ nán mín zài mén wài yāng gào 。",
+        "english": ""
+      },
+      {
+        "chinese": "难民　掌柜的，行行好，可怜可怜吧！",
+        "pinyin": "nán mín 　 zhǎng guì de ， xíng xíng hǎo ， kě lián kě lián bā ！",
+        "english": ""
+      },
+      {
+        "chinese": "王利发　走吧，我这儿不打发，还没开张！",
+        "pinyin": "wáng lì fā 　 zǒu bā ， wǒ zhè ér bù dǎ fā ， hái méi kāi zhāng ！",
+        "english": ""
+      },
+      {
+        "chinese": "难民　可怜可怜吧！",
+        "pinyin": "nán mín 　 kě lián kě lián bā ！",
+        "english": ""
+      },
+      {
+        "chinese": "我们都是逃难的！",
+        "pinyin": "wǒ mén dōu shì táo nán de ！",
+        "english": ""
+      },
+      {
+        "chinese": "王利发　别耽误工夫！",
+        "pinyin": "wáng lì fā 　 bié dān wù gōng fū ！",
+        "english": ""
+      },
+      {
+        "chinese": "我自己还顾不了自己呢！",
+        "pinyin": "wǒ zì jǐ hái gù bù le zì jǐ ne ！",
+        "english": ""
+      },
+      {
+        "chinese": "〔巡警上。",
+        "pinyin": "〔 xún jǐng shàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "巡警　走！",
+        "pinyin": "xún jǐng 　 zǒu ！",
+        "english": ""
+      },
+      {
+        "chinese": "快着！",
+        "pinyin": "kuài zhuó ！",
+        "english": ""
+      },
+      {
+        "chinese": "〔难民散去。",
+        "pinyin": "〔 nán mín sàn qù 。",
+        "english": ""
+      },
+      {
+        "chinese": "王利发　怎样啊？",
+        "pinyin": "wáng lì fā 　 zěn yàng ā ？",
+        "english": ""
+      },
+      {
+        "chinese": "六爷！",
+        "pinyin": "liù yé ！",
+        "english": ""
+      },
+      {
+        "chinese": "又打得紧吗？",
+        "pinyin": "yòu dǎ dé jǐn ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "巡　警　紧！",
+        "pinyin": "xún 　 jǐng 　 jǐn ！",
+        "english": ""
+      },
+      {
+        "chinese": "紧得厉害！",
+        "pinyin": "jǐn dé lì hài ！",
+        "english": ""
+      },
+      {
+        "chinese": "仗打得不紧，怎能够有这么多难民呢！",
+        "pinyin": "zhàng dǎ dé bù jǐn ， zěn néng gòu yǒu zhè me duō nán mín ne ！",
+        "english": ""
+      },
+      {
+        "chinese": "上面交派下来，你出八十斤大饼，十二点交齐！",
+        "pinyin": "shàng miàn jiāo pài xià lái ， nǐ chū bā shí jīn dà bǐng ， shí èr diǎn jiāo qí ！",
+        "english": ""
+      },
+      {
+        "chinese": "城里的兵带着干粮，才能出去打仗啊！",
+        "pinyin": "chéng lǐ de bīng dài zhuó gān liáng ， cái néng chū qù dǎ zhàng ā ！",
+        "english": ""
+      },
+      {
+        "chinese": "王利发　您圣明，我这儿现在光包后面的伙食，不再卖饭，也还没开张，别说八十斤大饼，一斤也交不出啊！",
+        "pinyin": "wáng lì fā 　 nín shèng míng ， wǒ zhè ér xiàn zài guāng bāo hòu miàn de huǒ shí ， bù zài mài fàn ， yě hái méi kāi zhāng ， bié shuō bā shí jīn dà bǐng ， yī jīn yě jiāo bù chū ā ！",
+        "english": ""
+      },
+      {
+        "chinese": "巡　警　你有你的理由，我有我的命令，你瞧着办吧！",
+        "pinyin": "xún 　 jǐng 　 nǐ yǒu nǐ de lǐ yóu ， wǒ yǒu wǒ de mìng lìng ， nǐ qiáo zhuó bàn bā ！",
+        "english": ""
+      },
+      {
+        "chinese": "（要走）",
+        "pinyin": "（ yào zǒu ）",
+        "english": ""
+      },
+      {
+        "chinese": "王利发　您等等！",
+        "pinyin": "wáng lì fā 　 nín děng děng ！",
+        "english": ""
+      },
+      {
+        "chinese": "我这儿千真万确还没开张，这您知道！",
+        "pinyin": "wǒ zhè ér qiān zhēn wàn què hái méi kāi zhāng ， zhè nín zhī dào ！",
+        "english": ""
+      },
+      {
+        "chinese": "开张以后，还得多麻烦您呢！",
+        "pinyin": "kāi zhāng yǐ hòu ， hái dé duō má fán nín ne ！",
+        "english": ""
+      },
+      {
+        "chinese": "得啦，您买包茶叶喝吧！",
+        "pinyin": "dé lā ， nín mǎi bāo chá yè hē bā ！",
+        "english": ""
+      },
+      {
+        "chinese": "（递钞票）您多给美言几句，我感恩不尽！",
+        "pinyin": "（ dì chāo piào ） nín duō gěi měi yán jǐ jù ， wǒ gǎn ēn bù jìn ！",
+        "english": ""
+      },
+      {
+        "chinese": "巡　警　（接票子）我给你说说看，行不行可不保准！",
+        "pinyin": "xún 　 jǐng 　 （ jiē piào zǐ ） wǒ gěi nǐ shuō shuō kàn ， xíng bù xíng kě bù bǎo zhǔn ！",
+        "english": ""
+      },
+      {
+        "chinese": "〔三、五个大兵，军装破烂，都背着枪，闯进门口。",
+        "pinyin": "〔 sān 、 wǔ gè dà bīng ， jūn zhuāng pò làn ， dōu bēi zhuó qiāng ， chuǎng jìn mén kǒu 。",
+        "english": ""
+      },
+      {
+        "chinese": "巡　警　老总们，我这儿正查户口呢，这儿还没开张！",
+        "pinyin": "xún 　 jǐng 　 lǎo zǒng mén ， wǒ zhè ér zhèng chá hù kǒu ne ， zhè ér hái méi kāi zhāng ！",
+        "english": ""
+      },
+      {
+        "chinese": "大　兵　oe牛",
+        "pinyin": "dà 　 bīng 　 o e niú",
+        "english": ""
+      },
+      {
+        "chinese": "巡警　王掌柜，孝敬老总们点茶钱，请他们到别处喝去吧！",
+        "pinyin": "xún jǐng 　 wáng zhǎng guì ， xiào jìng lǎo zǒng mén diǎn chá qián ， qǐng tā mén dào bié chù hē qù bā ！",
+        "english": ""
+      },
+      {
+        "chinese": "王利发　老总们，实在对不起，还没开张，要不然，诸位住在这儿，一定欢迎！",
+        "pinyin": "wáng lì fā 　 lǎo zǒng mén ， shí zài duì bù qǐ ， hái méi kāi zhāng ， yào bù rán ， zhū wèi zhù zài zhè ér ， yī dìng huān yíng ！",
+        "english": ""
+      },
+      {
+        "chinese": "（递钞票给巡警）巡　警　（转递给兵们）得啦，老总们多原谅，他实在没法招待诸位！",
+        "pinyin": "（ dì chāo piào gěi xún jǐng ） xún 　 jǐng 　 （ zhuǎn dì gěi bīng mén ） dé lā ， lǎo zǒng mén duō yuán liàng ， tā shí zài méi fǎ zhāo dài zhū wèi ！",
+        "english": ""
+      },
+      {
+        "chinese": "大兵　oe牛∷保恳执笱螅王利发　老总们，让我哪儿找现洋去呢？",
+        "pinyin": "dà bīng 　 o e niú ∷ bǎo kěn zhí gǒu xī wáng lì fā 　 lǎo zǒng mén ， ràng wǒ nǎ ér zhǎo xiàn yáng qù ne ？",
+        "english": ""
+      },
+      {
+        "chinese": "大　兵　oe牛∽崴鲂【俗樱巡　警　快！",
+        "pinyin": "dà 　 bīng 　 o e niú ∽ wēi fáng 【 sú yīng xún 　 jǐng 　 kuài ！",
+        "english": ""
+      },
+      {
+        "chinese": "再添点！",
+        "pinyin": "zài tiān diǎn ！",
+        "english": ""
+      },
+      {
+        "chinese": "王利发　（掏）老总们，我要是还有一块，请把房子烧了！",
+        "pinyin": "wáng lì fā 　 （ tāo ） lǎo zǒng mén ， wǒ yào shì hái yǒu yī kuài ， qǐng bǎ fáng zǐ shāo le ！",
+        "english": ""
+      },
+      {
+        "chinese": "（递钞票）",
+        "pinyin": "（ dì chāo piào ）",
+        "english": ""
+      },
+      {
+        "chinese": "大兵　oe牛。",
+        "pinyin": "dà bīng 　 o e niú 。",
+        "english": ""
+      },
+      {
+        "chinese": "ń忧拢呈帜米吡娇樾伦啦迹巡　警　得，我给你挡住了一场大锅！",
+        "pinyin": "ń yōu lǒng chéng zhì mǐ pǐ jiāo yuè lún lā jì xún 　 jǐng 　 dé ， wǒ gěi nǐ dǎng zhù le yī chǎng dà guō ！",
+        "english": ""
+      },
+      {
+        "chinese": "他们不走呀，你就全完，连一个茶碗也剩不下！",
+        "pinyin": "tā mén bù zǒu yā ， nǐ jiù quán wán ， lián yī gè chá wǎn yě shèng bù xià ！",
+        "english": ""
+      },
+      {
+        "chinese": "王利发　我永远忘不了您这点好处！",
+        "pinyin": "wáng lì fā 　 wǒ yǒng yuǎn wàng bù le nín zhè diǎn hǎo chù ！",
+        "english": ""
+      },
+      {
+        "chinese": "巡警　可是为这点功劳，你不得另有份意思吗？",
+        "pinyin": "xún jǐng 　 kě shì wèi zhè diǎn gōng láo ， nǐ bù dé lìng yǒu fèn yì sī ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "王利发　对！",
+        "pinyin": "wáng lì fā 　 duì ！",
+        "english": ""
+      },
+      {
+        "chinese": "您圣明，我胡涂！",
+        "pinyin": "nín shèng míng ， wǒ hú tú ！",
+        "english": ""
+      },
+      {
+        "chinese": "可是，您搜我吧，真一个铜子儿也没有啦！",
+        "pinyin": "kě shì ， nín sōu wǒ bā ， zhēn yī gè tóng zǐ ér yě méi yǒu lā ！",
+        "english": ""
+      },
+      {
+        "chinese": "（掀起褂子，让他搜）您搜！",
+        "pinyin": "（ xiān qǐ guà zǐ ， ràng tā sōu ） nín sōu ！",
+        "english": ""
+      },
+      {
+        "chinese": "您搜！",
+        "pinyin": "nín sōu ！",
+        "english": ""
+      },
+      {
+        "chinese": "巡　警　我干不过你！",
+        "pinyin": "xún 　 jǐng 　 wǒ gān bù guò nǐ ！",
+        "english": ""
+      },
+      {
+        "chinese": "明天见，明天还不定是风是雨呢！",
+        "pinyin": "míng tiān jiàn ， míng tiān hái bù dìng shì fēng shì yǔ ne ！",
+        "english": ""
+      },
+      {
+        "chinese": "（下）",
+        "pinyin": "（ xià ）",
+        "english": ""
+      },
+      {
+        "chinese": "王利发　您慢走！",
+        "pinyin": "wáng lì fā 　 nín màn zǒu ！",
+        "english": ""
+      }
+    ]
+  },
+  {
+    "id": "teahouse_laoshe_ch_6",
+    "bookId": "teahouse_laoshe",
+    "chapterIndex": 6,
+    "title": "第三幕",
+    "titleEn": "Chapter 6: 第三幕",
+    "sentences": [
+      {
+        "chinese": "时间　抗日战争胜利后，国民党特务和美国兵在北京横行的时候。",
+        "pinyin": "shí jiān 　 kàng rì zhàn zhēng shèng lì hòu ， guó mín dǎng tè wù hé měi guó bīng zài běi jīng héng xíng de shí hòu 。",
+        "english": ""
+      },
+      {
+        "chinese": "秋，清晨。",
+        "pinyin": "qiū ， qīng chén 。",
+        "english": ""
+      },
+      {
+        "chinese": "地点　同前幕。",
+        "pinyin": "dì diǎn 　 tóng qián mù 。",
+        "english": ""
+      },
+      {
+        "chinese": "人物　王大拴　明师傅　于厚斋　周秀花　邹福远",
+        "pinyin": "rén wù 　 wáng dà shuān 　 míng shī fù 　 yú hòu zhāi 　 zhōu xiù huā 　 zōu fú yuǎn",
+        "english": ""
+      },
+      {
+        "chinese": "宋恩子　王小花　卫福喜　小吴祥子　康顺子",
+        "pinyin": "sòng ēn zǐ 　 wáng xiǎo huā 　 wèi fú xǐ 　 xiǎo wú xiáng zǐ 　 kāng shùn zǐ",
+        "english": ""
+      },
+      {
+        "chinese": "方　六　常四爷　丁　宝　车当当　秦仲义",
+        "pinyin": "fāng 　 liù 　 cháng sì yé 　 dīng 　 bǎo 　 chē dāng dāng 　 qín zhòng yì",
+        "english": ""
+      },
+      {
+        "chinese": "王利发　庞四奶奶　小心眼　茶客甲、乙　春　梅",
+        "pinyin": "wáng lì fā 　 páng sì nǎi nǎi 　 xiǎo xīn yǎn 　 chá kè jiǎ 、 yǐ 　 chūn 　 méi",
+        "english": ""
+      },
+      {
+        "chinese": "沈处长　小刘麻子　老　杨宪兵四人　取电灯费的",
+        "pinyin": "shěn chù cháng 　 xiǎo liú má zǐ 　 lǎo 　 yáng xiàn bīng sì rén 　 qǔ diàn dēng fèi de",
+        "english": ""
+      },
+      {
+        "chinese": "小二德子　小唐铁嘴　谢勇仁",
+        "pinyin": "xiǎo èr dé zǐ 　 xiǎo táng tiě zuǐ 　 xiè yǒng rén",
+        "english": ""
+      },
+      {
+        "chinese": "〔幕启：现在，裕泰茶馆的样子可不象前幕那么体面了。",
+        "pinyin": "〔 mù qǐ ： xiàn zài ， yù tài chá guǎn de yàng zǐ kě bù xiàng qián mù nà me tǐ miàn le 。",
+        "english": ""
+      },
+      {
+        "chinese": "藤椅已不见，代以小凳与条凳。",
+        "pinyin": "téng yǐ yǐ bù jiàn ， dài yǐ xiǎo dèng yǔ tiáo dèng 。",
+        "english": ""
+      },
+      {
+        "chinese": "自房屋至家具都显着暗淡无光。",
+        "pinyin": "zì fáng wū zhì jiā jù dōu xiǎn zhuó àn dàn wú guāng 。",
+        "english": ""
+      },
+      {
+        "chinese": "假若有什么突出惹眼的东西，那就是\"莫谈国事\"的纸条更多，字也更大了。",
+        "pinyin": "jiǎ ruò yǒu shén me tū chū rě yǎn de dōng xī ， nà jiù shì \" mò tán guó shì \" de zhǐ tiáo gèng duō ， zì yě gèng dà le 。",
+        "english": ""
+      },
+      {
+        "chinese": "在这些条子旁边还贴着\"茶钱先付\"的新纸条。",
+        "pinyin": "zài zhè xiē tiáo zǐ páng biān hái tiē zhuó \" chá qián xiān fù \" de xīn zhǐ tiáo 。",
+        "english": ""
+      },
+      {
+        "chinese": "〔一清早，还没有下窗板。",
+        "pinyin": "〔 yī qīng zǎo ， hái méi yǒu xià chuāng bǎn 。",
+        "english": ""
+      },
+      {
+        "chinese": "王利发的儿子王大拴，垂头丧气地独自收拾屋子。",
+        "pinyin": "wáng lì fā de ér zǐ wáng dà shuān ， chuí tóu sàng qì dì dú zì shōu shí wū zǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "〔王大拴的妻周秀花，领着小女儿王小花，由后面出来。",
+        "pinyin": "〔 wáng dà shuān de qī zhōu xiù huā ， lǐng zhuó xiǎo nǚ ér wáng xiǎo huā ， yóu hòu miàn chū lái 。",
+        "english": ""
+      },
+      {
+        "chinese": "她们一边走一边说话儿。",
+        "pinyin": "tā mén yī biān zǒu yī biān shuō huà ér 。",
+        "english": ""
+      },
+      {
+        "chinese": "王小花　妈，晌午给我作点热汤面吧！",
+        "pinyin": "wáng xiǎo huā 　 mā ， shǎng wǔ gěi wǒ zuò diǎn rè tāng miàn bā ！",
+        "english": ""
+      },
+      {
+        "chinese": "好多天没吃过啦！",
+        "pinyin": "hǎo duō tiān méi chī guò lā ！",
+        "english": ""
+      },
+      {
+        "chinese": "周秀花　我知道，乖！",
+        "pinyin": "zhōu xiù huā 　 wǒ zhī dào ， guāi ！",
+        "english": ""
+      },
+      {
+        "chinese": "可谁知道买得着面买不着呢！",
+        "pinyin": "kě shuí zhī dào mǎi dé zhuó miàn mǎi bù zhuó ne ！",
+        "english": ""
+      },
+      {
+        "chinese": "就是粮食店里可巧有面，谁知道咱们有钱没有呢！",
+        "pinyin": "jiù shì liáng shí diàn lǐ kě qiǎo yǒu miàn ， shuí zhī dào zán mén yǒu qián méi yǒu ne ！",
+        "english": ""
+      },
+      {
+        "chinese": "王小花　就盼着两样都有吧！",
+        "pinyin": "wáng xiǎo huā 　 jiù pàn zhuó liǎng yàng dōu yǒu bā ！",
+        "english": ""
+      },
+      {
+        "chinese": "周秀花　你倒想得好，可哪能那么容易！",
+        "pinyin": "zhōu xiù huā 　 nǐ dǎo xiǎng dé hǎo ， kě nǎ néng nà me róng yì ！",
+        "english": ""
+      },
+      {
+        "chinese": "去吧，小花，在路上留神吉普车！",
+        "pinyin": "qù bā ， xiǎo huā ， zài lù shàng liú shén jí pǔ chē ！",
+        "english": ""
+      },
+      {
+        "chinese": "王大拴　小花，等等！",
+        "pinyin": "wáng dà shuān 　 xiǎo huā ， děng děng ！",
+        "english": ""
+      },
+      {
+        "chinese": "王小花　干吗？",
+        "pinyin": "wáng xiǎo huā 　 gān ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "王大拴　昨天晚上……周秀花　我已经嘱咐过她了！",
+        "pinyin": "wáng dà shuān 　 zuó tiān wǎn shàng … … zhōu xiù huā 　 wǒ yǐ jīng zhǔ fù guò tā le ！",
+        "english": ""
+      },
+      {
+        "chinese": "她懂事！",
+        "pinyin": "tā dǒng shì ！",
+        "english": ""
+      },
+      {
+        "chinese": "王大拴　你大力叔叔的事万不可对别人说呀！",
+        "pinyin": "wáng dà shuān 　 nǐ dà lì shū shū de shì wàn bù kě duì bié rén shuō yā ！",
+        "english": ""
+      },
+      {
+        "chinese": "说了，咱们全家都得死！",
+        "pinyin": "shuō le ， zán mén quán jiā dōu dé sǐ ！",
+        "english": ""
+      },
+      {
+        "chinese": "明白吧？",
+        "pinyin": "míng bái bā ？",
+        "english": ""
+      },
+      {
+        "chinese": "王小花　我不说，打死我也不说！",
+        "pinyin": "wáng xiǎo huā 　 wǒ bù shuō ， dǎ sǐ wǒ yě bù shuō ！",
+        "english": ""
+      },
+      {
+        "chinese": "有人问我大力叔叔回来过没有，我就说：他走了好几年，一点消息也没有！",
+        "pinyin": "yǒu rén wèn wǒ dà lì shū shū huí lái guò méi yǒu ， wǒ jiù shuō ： tā zǒu le hǎo jǐ nián ， yī diǎn xiāo xī yě méi yǒu ！",
+        "english": ""
+      },
+      {
+        "chinese": "〔康顺子由后面走来。",
+        "pinyin": "〔 kāng shùn zǐ yóu hòu miàn zǒu lái 。",
+        "english": ""
+      },
+      {
+        "chinese": "她的腰有点弯，但还硬朗。",
+        "pinyin": "tā de yāo yǒu diǎn wān ， dàn hái yìng lǎng 。",
+        "english": ""
+      },
+      {
+        "chinese": "她一边走一边叫王小花。",
+        "pinyin": "tā yī biān zǒu yī biān jiào wáng xiǎo huā 。",
+        "english": ""
+      },
+      {
+        "chinese": "康顺子　小花！",
+        "pinyin": "kāng shùn zǐ 　 xiǎo huā ！",
+        "english": ""
+      },
+      {
+        "chinese": "小花！",
+        "pinyin": "xiǎo huā ！",
+        "english": ""
+      },
+      {
+        "chinese": "还没走哪？",
+        "pinyin": "hái méi zǒu nǎ ？",
+        "english": ""
+      },
+      {
+        "chinese": "王小花　康婆婆，干吗呀？",
+        "pinyin": "wáng xiǎo huā 　 kāng pó pó ， gān ma yā ？",
+        "english": ""
+      },
+      {
+        "chinese": "康顺子　小花，乘！",
+        "pinyin": "kāng shùn zǐ 　 xiǎo huā ， chéng ！",
+        "english": ""
+      },
+      {
+        "chinese": "婆婆再看你一眼！",
+        "pinyin": "pó pó zài kàn nǐ yī yǎn ！",
+        "english": ""
+      },
+      {
+        "chinese": "（抚弄王小花的头）多体面哪！",
+        "pinyin": "（ fǔ nòng wáng xiǎo huā de tóu ） duō tǐ miàn nǎ ！",
+        "english": ""
+      },
+      {
+        "chinese": "吃的不足啊，要不然还得更好看呢！",
+        "pinyin": "chī de bù zú ā ， yào bù rán hái dé gèng hǎo kàn ne ！",
+        "english": ""
+      },
+      {
+        "chinese": "周秀花　大婶，您是要走吧？",
+        "pinyin": "zhōu xiù huā 　 dà shěn ， nín shì yào zǒu bā ？",
+        "english": ""
+      },
+      {
+        "chinese": "康顺子　是呀！",
+        "pinyin": "kāng shùn zǐ 　 shì yā ！",
+        "english": ""
+      },
+      {
+        "chinese": "我走，好让你们省点嚼谷呀！",
+        "pinyin": "wǒ zǒu ， hǎo ràng nǐ mén shěng diǎn jiáo gǔ yā ！",
+        "english": ""
+      },
+      {
+        "chinese": "大力是我拉扯大的，他叫我走，我怎能不走呢？",
+        "pinyin": "dà lì shì wǒ lā chě dà de ， tā jiào wǒ zǒu ， wǒ zěn néng bù zǒu ne ？",
+        "english": ""
+      },
+      {
+        "chinese": "当初，我刚到这里的时候，他还没有小花这么高呢！",
+        "pinyin": "dāng chū ， wǒ gāng dào zhè lǐ de shí hòu ， tā hái méi yǒu xiǎo huā zhè me gāo ne ！",
+        "english": ""
+      },
+      {
+        "chinese": "王小花　看大力叔叔现在多么壮实，多么大气！",
+        "pinyin": "wáng xiǎo huā 　 kàn dà lì shū shū xiàn zài duō me zhuàng shí ， duō me dà qì ！",
+        "english": ""
+      },
+      {
+        "chinese": "康顺子　是呀，虽然他只在这儿坐了一袋烟的工夫呀，可是叫我年轻了好几岁！",
+        "pinyin": "kāng shùn zǐ 　 shì yā ， suī rán tā zhǐ zài zhè ér zuò le yī dài yān de gōng fū yā ， kě shì jiào wǒ nián qīng le hǎo jǐ suì ！",
+        "english": ""
+      },
+      {
+        "chinese": "我本来什么也没有，--见着他呀，好象忽然间我什么都有啦！",
+        "pinyin": "wǒ běn lái shén me yě méi yǒu ， - - jiàn zhuó tā yā ， hǎo xiàng hū rán jiān wǒ shén me dōu yǒu lā ！",
+        "english": ""
+      },
+      {
+        "chinese": "我走，跟着他走，受什么累，吃什么苦，也是香甜的！",
+        "pinyin": "wǒ zǒu ， gēn zhuó tā zǒu ， shòu shén me léi ， chī shén me kǔ ， yě shì xiāng tián de ！",
+        "english": ""
+      },
+      {
+        "chinese": "看他那两只大手，那两只大脚，简直是个顶天立地的男子汉！",
+        "pinyin": "kàn tā nà liǎng zhǐ dà shǒu ， nà liǎng zhǐ dà jiǎo ， jiǎn zhí shì gè dǐng tiān lì dì de nán zǐ hàn ！",
+        "english": ""
+      },
+      {
+        "chinese": "王小花　婆婆，我也跟您去！",
+        "pinyin": "wáng xiǎo huā 　 pó pó ， wǒ yě gēn nín qù ！",
+        "english": ""
+      },
+      {
+        "chinese": "康顺子　小花，你乖乖地去上学，我会回来看你！",
+        "pinyin": "kāng shùn zǐ 　 xiǎo huā ， nǐ guāi guāi dì qù shàng xué ， wǒ huì huí lái kàn nǐ ！",
+        "english": ""
+      },
+      {
+        "chinese": "王大拴　小花，上学吧，别迟到！",
+        "pinyin": "wáng dà shuān 　 xiǎo huā ， shàng xué bā ， bié chí dào ！",
+        "english": ""
+      },
+      {
+        "chinese": "王小花　婆婆，等我下了学您再走！",
+        "pinyin": "wáng xiǎo huā 　 pó pó ， děng wǒ xià le xué nín zài zǒu ！",
+        "english": ""
+      },
+      {
+        "chinese": "康顺子　哎！",
+        "pinyin": "kāng shùn zǐ 　 āi ！",
+        "english": ""
+      },
+      {
+        "chinese": "去吧，乖！",
+        "pinyin": "qù bā ， guāi ！",
+        "english": ""
+      },
+      {
+        "chinese": "（王小花下）王大拴　大婶，我爸爸叫您走吗？",
+        "pinyin": "（ wáng xiǎo huā xià ） wáng dà shuān 　 dà shěn ， wǒ bà bà jiào nín zǒu ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "康顺子　他还没打好了主意。",
+        "pinyin": "kāng shùn zǐ 　 tā hái méi dǎ hǎo le zhǔ yì 。",
+        "english": ""
+      },
+      {
+        "chinese": "我倒怕呀，大力回来的事儿万一叫人家知道了啊，我又忽然这么一走，也许要连累了你们！",
+        "pinyin": "wǒ dǎo pà yā ， dà lì huí lái de shì ér wàn yī jiào rén jiā zhī dào le ā ， wǒ yòu hū rán zhè me yī zǒu ， yě xǔ yào lián lěi le nǐ mén ！",
+        "english": ""
+      },
+      {
+        "chinese": "这年月不是天天抓人吗？",
+        "pinyin": "zhè nián yuè bù shì tiān tiān zhuā rén ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "我不能作对不起你们的事！",
+        "pinyin": "wǒ bù néng zuò duì bù qǐ nǐ mén de shì ！",
+        "english": ""
+      },
+      {
+        "chinese": "周秀花　大婶，您走您的，谁逃出去谁得活命！",
+        "pinyin": "zhōu xiù huā 　 dà shěn ， nín zǒu nín de ， shuí táo chū qù shuí dé huó mìng ！",
+        "english": ""
+      },
+      {
+        "chinese": "喝茶的不是常低声儿说：想要活命得上西山①吗？",
+        "pinyin": "hē chá de bù shì cháng dī shēng ér shuō ： xiǎng yào huó mìng dé shàng xī shān ① ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "王大拴　对！",
+        "pinyin": "wáng dà shuān 　 duì ！",
+        "english": ""
+      },
+      {
+        "chinese": "康顺子　小花的妈，来吧，咱们再商量商量！",
+        "pinyin": "kāng shùn zǐ 　 xiǎo huā de mā ， lái bā ， zán mén zài shāng liàng shāng liàng ！",
+        "english": ""
+      },
+      {
+        "chinese": "我不能专顾自己，叫你们吃亏！",
+        "pinyin": "wǒ bù néng zhuān gù zì jǐ ， jiào nǐ mén chī kuī ！",
+        "english": ""
+      },
+      {
+        "chinese": "老大，你也好好想想！",
+        "pinyin": "lǎo dà ， nǐ yě hǎo hǎo xiǎng xiǎng ！",
+        "english": ""
+      },
+      {
+        "chinese": "（同周秀花下）",
+        "pinyin": "（ tóng zhōu xiù huā xià ）",
+        "english": ""
+      },
+      {
+        "chinese": "〔丁宝进来。",
+        "pinyin": "〔 dīng bǎo jìn lái 。",
+        "english": ""
+      },
+      {
+        "chinese": "丁宝　嗨，掌柜的，我来啦！",
+        "pinyin": "dīng bǎo 　 hāi ， zhǎng guì de ， wǒ lái lā ！",
+        "english": ""
+      },
+      {
+        "chinese": "王大拴　你是谁？",
+        "pinyin": "wáng dà shuān 　 nǐ shì shuí ？",
+        "english": ""
+      },
+      {
+        "chinese": "丁宝　小丁宝！",
+        "pinyin": "dīng bǎo 　 xiǎo dīng bǎo ！",
+        "english": ""
+      },
+      {
+        "chinese": "小刘麻子叫我来的，他说这儿的老掌柜托他请个女招待。",
+        "pinyin": "xiǎo liú má zǐ jiào wǒ lái de ， tā shuō zhè ér de lǎo zhǎng guì tuō tā qǐng gè nǚ zhāo dài 。",
+        "english": ""
+      },
+      {
+        "chinese": "王大拴　姑娘，你看看，这么个破茶馆，能用女招待吗？",
+        "pinyin": "wáng dà shuān 　 gū niáng ， nǐ kàn kàn ， zhè me gè pò chá guǎn ， néng yòng nǚ zhāo dài ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "我们老掌柜呀，穷得乱出主意！",
+        "pinyin": "wǒ mén lǎo zhǎng guì yā ， qióng dé luàn chū zhǔ yì ！",
+        "english": ""
+      },
+      {
+        "chinese": "〔王利发慢慢地走出来，他还硬朗，穿的可很不整齐。",
+        "pinyin": "〔 wáng lì fā màn màn dì zǒu chū lái ， tā hái yìng lǎng ， chuān de kě hěn bù zhěng qí 。",
+        "english": ""
+      },
+      {
+        "chinese": "王利发　老大，你怎么老在背后褒贬老人呢？",
+        "pinyin": "wáng lì fā 　 lǎo dà ， nǐ zěn me lǎo zài bēi hòu bāo biǎn lǎo rén ne ？",
+        "english": ""
+      },
+      {
+        "chinese": "谁穷得乱出主意呀？",
+        "pinyin": "shuí qióng dé luàn chū zhǔ yì yā ？",
+        "english": ""
+      },
+      {
+        "chinese": "下板子去！",
+        "pinyin": "xià bǎn zǐ qù ！",
+        "english": ""
+      },
+      {
+        "chinese": "什么时候了，还不开门！",
+        "pinyin": "shén me shí hòu le ， hái bù kāi mén ！",
+        "english": ""
+      },
+      {
+        "chinese": "〔王大拴去下窗板。",
+        "pinyin": "〔 wáng dà shuān qù xià chuāng bǎn 。",
+        "english": ""
+      },
+      {
+        "chinese": "丁宝　老掌柜，你硬朗啊？",
+        "pinyin": "dīng bǎo 　 lǎo zhǎng guì ， nǐ yìng lǎng ā ？",
+        "english": ""
+      },
+      {
+        "chinese": "王利发　嗯！",
+        "pinyin": "wáng lì fā 　 èn ！",
+        "english": ""
+      },
+      {
+        "chinese": "要有炸酱面的话，我还能吃三大碗呢，可惜没有！",
+        "pinyin": "yào yǒu zhà jiàng miàn de huà ， wǒ hái néng chī sān dà wǎn ne ， kě xī méi yǒu ！",
+        "english": ""
+      },
+      {
+        "chinese": "十几了？",
+        "pinyin": "shí jǐ le ？",
+        "english": ""
+      },
+      {
+        "chinese": "姑娘！",
+        "pinyin": "gū niáng ！",
+        "english": ""
+      },
+      {
+        "chinese": "丁宝　十七！",
+        "pinyin": "dīng bǎo 　 shí qī ！",
+        "english": ""
+      },
+      {
+        "chinese": "王利发　才十七？",
+        "pinyin": "wáng lì fā 　 cái shí qī ？",
+        "english": ""
+      },
+      {
+        "chinese": "丁宝　是呀！",
+        "pinyin": "dīng bǎo 　 shì yā ！",
+        "english": ""
+      },
+      {
+        "chinese": "妈妈是寡妇，带着我过日子。",
+        "pinyin": "mā mā shì guǎ fù ， dài zhuó wǒ guò rì zǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "胜利以后呀，政府硬说我爸爸给我们留下的一所小房子是逆产，给没收啦！",
+        "pinyin": "shèng lì yǐ hòu yā ， zhèng fǔ yìng shuō wǒ bà bà gěi wǒ mén liú xià de yī suǒ xiǎo fáng zǐ shì nì chǎn ， gěi mò shōu lā ！",
+        "english": ""
+      },
+      {
+        "chinese": "妈妈气死了，我作了女招待！",
+        "pinyin": "mā mā qì sǐ le ， wǒ zuò le nǚ zhāo dài ！",
+        "english": ""
+      },
+      {
+        "chinese": "老掌柜，我到今天还不明白什么叫逆产，您知道吗？",
+        "pinyin": "lǎo zhǎng guì ， wǒ dào jīn tiān hái bù míng bái shén me jiào nì chǎn ， nín zhī dào ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "王利发　姑娘，说话留点神！",
+        "pinyin": "wáng lì fā 　 gū niáng ， shuō huà liú diǎn shén ！",
+        "english": ""
+      },
+      {
+        "chinese": "一句话说错了，什么都可以变成逆产！",
+        "pinyin": "yī jù huà shuō cuò le ， shén me dōu kě yǐ biàn chéng nì chǎn ！",
+        "english": ""
+      },
+      {
+        "chinese": "你看，这后边呀，是秦二爷的仓库，有人一瞪眼，说是逆产，就给没收啦！",
+        "pinyin": "nǐ kàn ， zhè hòu biān yā ， shì qín èr yé de cāng kù ， yǒu rén yī dèng yǎn ， shuō shì nì chǎn ， jiù gěi mò shōu lā ！",
+        "english": ""
+      },
+      {
+        "chinese": "就是这么一回事！",
+        "pinyin": "jiù shì zhè me yī huí shì ！",
+        "english": ""
+      },
+      {
+        "chinese": "〔王大拴回来。",
+        "pinyin": "〔 wáng dà shuān huí lái 。",
+        "english": ""
+      },
+      {
+        "chinese": "丁宝　老掌柜，您说对了！",
+        "pinyin": "dīng bǎo 　 lǎo zhǎng guì ， nín shuō duì le ！",
+        "english": ""
+      },
+      {
+        "chinese": "连我也是逆产，谁的胳臂粗，我就得侍候谁！",
+        "pinyin": "lián wǒ yě shì nì chǎn ， shuí de gē bei cū ， wǒ jiù dé shì hòu shuí ！",
+        "english": ""
+      },
+      {
+        "chinese": "他妈的，我才十七，就常想还不如死了呢！",
+        "pinyin": "tā mā de ， wǒ cái shí qī ， jiù cháng xiǎng hái bù rú sǐ le ne ！",
+        "english": ""
+      },
+      {
+        "chinese": "死了落个整尸首，干这一行，活着身上就烂了！",
+        "pinyin": "sǐ le luò gè zhěng shī shǒu ， gān zhè yī xíng ， huó zhuó shēn shàng jiù làn le ！",
+        "english": ""
+      },
+      {
+        "chinese": "王大拴　爸，您真想要女招待吗？",
+        "pinyin": "wáng dà shuān 　 bà ， nín zhēn xiǎng yào nǚ zhāo dài ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "王利发　我跟小刘麻子瞎聊来着！",
+        "pinyin": "wáng lì fā 　 wǒ gēn xiǎo liú má zǐ xiā liáo lái zhuó ！",
+        "english": ""
+      },
+      {
+        "chinese": "我一辈子老爱改良，看着生意这么不好，我着急！",
+        "pinyin": "wǒ yī bèi zǐ lǎo ài gǎi liáng ， kàn zhuó shēng yì zhè me bù hǎo ， wǒ zháo jí ！",
+        "english": ""
+      },
+      {
+        "chinese": "王大拴　您着急，我也着急！",
+        "pinyin": "wáng dà shuān 　 nín zháo jí ， wǒ yě zháo jí ！",
+        "english": ""
+      },
+      {
+        "chinese": "可是，您就忘记老裕泰这个老字号了吗？",
+        "pinyin": "kě shì ， nín jiù wàng jì lǎo yù tài zhè gè lǎo zì hào le ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "六十多年的老字号，用女招待？",
+        "pinyin": "liù shí duō nián de lǎo zì hào ， yòng nǚ zhāo dài ？",
+        "english": ""
+      },
+      {
+        "chinese": "丁　宝　什么老字号啊！",
+        "pinyin": "dīng 　 bǎo 　 shén me lǎo zì hào ā ！",
+        "english": ""
+      },
+      {
+        "chinese": "越老越不值钱！",
+        "pinyin": "yuè lǎo yuè bù zhí qián ！",
+        "english": ""
+      },
+      {
+        "chinese": "不信，我现在要是二十八岁，就是叫小小丁宝，小丁宝贝，也没人看我一眼！",
+        "pinyin": "bù xìn ， wǒ xiàn zài yào shì èr shí bā suì ， jiù shì jiào xiǎo xiǎo dīng bǎo ， xiǎo dīng bǎo bèi ， yě méi rén kàn wǒ yī yǎn ！",
+        "english": ""
+      },
+      {
+        "chinese": "〔茶客甲、乙上。",
+        "pinyin": "〔 chá kè jiǎ 、 yǐ shàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "王利发　二位早班儿！",
+        "pinyin": "wáng lì fā 　 èr wèi zǎo bān ér ！",
+        "english": ""
+      },
+      {
+        "chinese": "带着叶子哪？",
+        "pinyin": "dài zhuó yè zǐ nǎ ？",
+        "english": ""
+      },
+      {
+        "chinese": "老大拿开水去！",
+        "pinyin": "lǎo dà ná kāi shuǐ qù ！",
+        "english": ""
+      },
+      {
+        "chinese": "（王大拴下）二位，对不起，茶钱先付！",
+        "pinyin": "（ wáng dà shuān xià ） èr wèi ， duì bù qǐ ， chá qián xiān fù ！",
+        "english": ""
+      },
+      {
+        "chinese": "茶客甲没听说过！",
+        "pinyin": "chá kè jiǎ méi tīng shuō guò ！",
+        "english": ""
+      },
+      {
+        "chinese": "王利发　我开过几十年茶馆，也没听说过！",
+        "pinyin": "wáng lì fā 　 wǒ kāi guò jǐ shí nián chá guǎn ， yě méi tīng shuō guò ！",
+        "english": ""
+      },
+      {
+        "chinese": "可是，您圣明：茶叶、煤球儿都一会儿一个价钱，也许您正喝着茶，茶叶又长了价钱！",
+        "pinyin": "kě shì ， nín shèng míng ： chá yè 、 méi qiú ér dōu yī huì ér yī gè jià qián ， yě xǔ nín zhèng hē zhuó chá ， chá yè yòu cháng le jià qián ！",
+        "english": ""
+      },
+      {
+        "chinese": "您看，先收茶钱不是省得麻烦吗？",
+        "pinyin": "nín kàn ， xiān shōu chá qián bù shì shěng dé má fán ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "茶客乙　我看哪，不喝更省事！",
+        "pinyin": "chá kè yǐ 　 wǒ kàn nǎ ， bù hē gèng shěng shì ！",
+        "english": ""
+      },
+      {
+        "chinese": "（同茶客甲下）王大拴　（提来开水）怎么？",
+        "pinyin": "（ tóng chá kè jiǎ xià ） wáng dà shuān 　 （ tí lái kāi shuǐ ） zěn me ？",
+        "english": ""
+      },
+      {
+        "chinese": "走啦！",
+        "pinyin": "zǒu lā ！",
+        "english": ""
+      },
+      {
+        "chinese": "王利发　这你就明白了！",
+        "pinyin": "wáng lì fā 　 zhè nǐ jiù míng bái le ！",
+        "english": ""
+      },
+      {
+        "chinese": "丁宝　我要是过去说一声：\"来了？",
+        "pinyin": "dīng bǎo 　 wǒ yào shì guò qù shuō yī shēng ： \" lái le ？",
+        "english": ""
+      },
+      {
+        "chinese": "小子！",
+        "pinyin": "xiǎo zǐ ！",
+        "english": ""
+      },
+      {
+        "chinese": "\"他们准给一块现大洋！",
+        "pinyin": "\" tā mén zhǔn gěi yī kuài xiàn dà yáng ！",
+        "english": ""
+      },
+      {
+        "chinese": "王利发　你呀，老大，比石头还顽固！",
+        "pinyin": "wáng lì fā 　 nǐ yā ， lǎo dà ， bǐ shí tóu hái wán gù ！",
+        "english": ""
+      },
+      {
+        "chinese": "王大拴　（放下壶）好吧，我出去蹓跶，这里出不来气！",
+        "pinyin": "wáng dà shuān 　 （ fàng xià hú ） hǎo bā ， wǒ chū qù liū dá ， zhè lǐ chū bù lái qì ！",
+        "english": ""
+      },
+      {
+        "chinese": "（下）",
+        "pinyin": "（ xià ）",
+        "english": ""
+      },
+      {
+        "chinese": "王利发　你出不来气，我还憋得慌呢！",
+        "pinyin": "wáng lì fā 　 nǐ chū bù lái qì ， wǒ hái biē dé huāng ne ！",
+        "english": ""
+      },
+      {
+        "chinese": "〔小刘麻子上，穿着洋服，夹着皮包。",
+        "pinyin": "〔 xiǎo liú má zǐ shàng ， chuān zhuó yáng fú ， jiá zhuó pí bāo 。",
+        "english": ""
+      },
+      {
+        "chinese": "小刘麻子　小丁宝，你来啦？",
+        "pinyin": "xiǎo liú má zǐ 　 xiǎo dīng bǎo ， nǐ lái lā ？",
+        "english": ""
+      },
+      {
+        "chinese": "丁宝　有你的话，谁敢不来呀！",
+        "pinyin": "dīng bǎo 　 yǒu nǐ de huà ， shuí gǎn bù lái yā ！",
+        "english": ""
+      },
+      {
+        "chinese": "小刘麻子　王掌柜，看我给你找来的小宝贝怎样？",
+        "pinyin": "xiǎo liú má zǐ 　 wáng zhǎng guì ， kàn wǒ gěi nǐ zhǎo lái de xiǎo bǎo bèi zěn yàng ？",
+        "english": ""
+      },
+      {
+        "chinese": "人材、岁数、打扮、经验，样样出色！",
+        "pinyin": "rén cái 、 suì shǔ 、 dǎ bàn 、 jīng yàn ， yàng yàng chū sè ！",
+        "english": ""
+      },
+      {
+        "chinese": "王利发　就怕我用不起吧？",
+        "pinyin": "wáng lì fā 　 jiù pà wǒ yòng bù qǐ bā ？",
+        "english": ""
+      },
+      {
+        "chinese": "小刘麻子　没的事！",
+        "pinyin": "xiǎo liú má zǐ 　 méi de shì ！",
+        "english": ""
+      },
+      {
+        "chinese": "她不要工钱！",
+        "pinyin": "tā bù yào gōng qián ！",
+        "english": ""
+      },
+      {
+        "chinese": "是吧，小丁宝？",
+        "pinyin": "shì bā ， xiǎo dīng bǎo ？",
+        "english": ""
+      },
+      {
+        "chinese": "王利发　不要工钱？",
+        "pinyin": "wáng lì fā 　 bù yào gōng qián ？",
+        "english": ""
+      },
+      {
+        "chinese": "小刘麻子　老头儿，你都甭管，全听我的，我跟小丁宝有我们一套办法！",
+        "pinyin": "xiǎo liú má zǐ 　 lǎo tóu ér ， nǐ dōu béng guǎn ， quán tīng wǒ de ， wǒ gēn xiǎo dīng bǎo yǒu wǒ mén yī tào bàn fǎ ！",
+        "english": ""
+      },
+      {
+        "chinese": "是吧，小丁宝？",
+        "pinyin": "shì bā ， xiǎo dīng bǎo ？",
+        "english": ""
+      },
+      {
+        "chinese": "丁宝　要是没你那一套办法，怎会缺德呢！",
+        "pinyin": "dīng bǎo 　 yào shì méi nǐ nà yī tào bàn fǎ ， zěn huì quē dé ne ！",
+        "english": ""
+      }
+    ]
+  },
+  {
+    "id": "teahouse_laoshe_ch_7",
+    "bookId": "teahouse_laoshe",
+    "chapterIndex": 7,
+    "title": "第十一卷①三、四十年前，北京富人出殡，要用三十二人、四十八人或六十四人抬棺材，也叫抬杠。另有四位杠夫拿着拨旗，在四角跟随。杠夫换班须注意拨旗，以便进退有序；一班也叫一拨儿。起杠时和路祭时，领杠者须喊\"加钱\"--本家或姑奶奶赏给杠夫酒钱。加钱数目须夸大地喊出。在喊加钱时，有人撒起纸钱来。",
+    "titleEn": "Chapter 7: 第十一卷①三、四十年前，北京富人出殡，要用三十二人、四十八人或六十四人抬棺材，也叫抬杠。另有四位杠夫拿着拨旗，在四角跟随。杠夫换班须注意拨旗，以便进退有序；一班也叫一拨儿。起杠时和路祭时，领杠者须喊\"加钱\"--本家或姑奶奶赏给杠夫酒钱。加钱数目须夸大地喊出。在喊加钱时，有人撒起纸钱来。",
+    "sentences": [
+      {
+        "chinese": "〔门外有汽车停住声，先进来两个宪兵。",
+        "pinyin": "〔 mén wài yǒu qì chē tíng zhù shēng ， xiān jìn lái liǎng gè xiàn bīng 。",
+        "english": ""
+      },
+      {
+        "chinese": "沈处长进来，穿军便服；",
+        "pinyin": "shěn chù cháng jìn lái ， chuān jūn biàn fú ；",
+        "english": ""
+      },
+      {
+        "chinese": "高靴，带马刺；",
+        "pinyin": "gāo xuē ， dài mǎ cì ；",
+        "english": ""
+      },
+      {
+        "chinese": "手执小鞭。",
+        "pinyin": "shǒu zhí xiǎo biān 。",
+        "english": ""
+      },
+      {
+        "chinese": "后面跟着二宪兵。",
+        "pinyin": "hòu miàn gēn zhuó èr xiàn bīng 。",
+        "english": ""
+      },
+      {
+        "chinese": "沈处长　（检阅似的，看丁宝、小心眼，看完一个说一声）好（蒿）！",
+        "pinyin": "shěn chù cháng 　 （ jiǎn yuè shì de ， kàn dīng bǎo 、 xiǎo xīn yǎn ， kàn wán yī gè shuō yī shēng ） hǎo （ hāo ） ！",
+        "english": ""
+      },
+      {
+        "chinese": "〔丁宝摆上一把椅子，请沈处长坐。",
+        "pinyin": "〔 dīng bǎo bǎi shàng yī bǎ yǐ zǐ ， qǐng shěn chù cháng zuò 。",
+        "english": ""
+      },
+      {
+        "chinese": "小刘麻子　报告处长，老裕泰开了六十多年，九城闻名，地点也好，借着这个老字号，作我们的一个据点，一定成功！",
+        "pinyin": "xiǎo liú má zǐ 　 bào gào chù cháng ， lǎo yù tài kāi le liù shí duō nián ， jiǔ chéng wén míng ， dì diǎn yě hǎo ， jiè zhuó zhè gè lǎo zì hào ， zuò wǒ mén de yī gè jù diǎn ， yī dìng chéng gōng ！",
+        "english": ""
+      },
+      {
+        "chinese": "我打算照旧卖茶，派（指）小丁宝和小心眼作招待。",
+        "pinyin": "wǒ dǎ suàn zhào jiù mài chá ， pài （ zhǐ ） xiǎo dīng bǎo hé xiǎo xīn yǎn zuò zhāo dài 。",
+        "english": ""
+      },
+      {
+        "chinese": "有我在这儿监视着三教九流，各色人等，一定能够得到大量的情报！",
+        "pinyin": "yǒu wǒ zài zhè ér jiān shì zhuó sān jiào jiǔ liú ， gè sè rén děng ， yī dìng néng gòu dé dào dà liàng de qíng bào ！",
+        "english": ""
+      },
+      {
+        "chinese": "沈处长　好（蒿）！",
+        "pinyin": "shěn chù cháng 　 hǎo （ hāo ） ！",
+        "english": ""
+      },
+      {
+        "chinese": "〔丁宝由宪兵手里接过骆驼牌烟，上前献烟；",
+        "pinyin": "〔 dīng bǎo yóu xiàn bīng shǒu lǐ jiē guò luò tuó pái yān ， shàng qián xiàn yān ；",
+        "english": ""
+      },
+      {
+        "chinese": "小心眼接过打火机，点烟。",
+        "pinyin": "xiǎo xīn yǎn jiē guò dǎ huǒ jī ， diǎn yān 。",
+        "english": ""
+      },
+      {
+        "chinese": "小刘麻子　后面原来是仓库，货物已由处长都处理了，现在空着。",
+        "pinyin": "xiǎo liú má zǐ 　 hòu miàn yuán lái shì cāng kù ， huò wù yǐ yóu chù cháng dōu chǔ lǐ le ， xiàn zài kōng zhuó 。",
+        "english": ""
+      },
+      {
+        "chinese": "我打算修理一下，中间作小舞厅，两旁布置几间卧室，都带卫生设备。",
+        "pinyin": "wǒ dǎ suàn xiū lǐ yī xià ， zhōng jiān zuò xiǎo wǔ tīng ， liǎng páng bù zhì jǐ jiān wò shì ， dōu dài wèi shēng shè bèi 。",
+        "english": ""
+      },
+      {
+        "chinese": "处长清闲的时候，可以来跳跳舞，玩玩牌，喝喝咖啡。",
+        "pinyin": "chù cháng qīng xián de shí hòu ， kě yǐ lái tiào tiào wǔ ， wán wán pái ， hē hē kā fēi 。",
+        "english": ""
+      },
+      {
+        "chinese": "天晚了，高兴住下，您就住下。",
+        "pinyin": "tiān wǎn le ， gāo xìng zhù xià ， nín jiù zhù xià 。",
+        "english": ""
+      },
+      {
+        "chinese": "这就算是处长个人的小俱乐部，由我管理，一定要比公馆里更洒脱一点，方便一点，热闹一点！",
+        "pinyin": "zhè jiù suàn shì chù cháng gè rén de xiǎo jù lè bù ， yóu wǒ guǎn lǐ ， yī dìng yào bǐ gōng guǎn lǐ gèng sǎ tuō yī diǎn ， fāng biàn yī diǎn ， rè nào yī diǎn ！",
+        "english": ""
+      },
+      {
+        "chinese": "沈处长　好（蒿）！",
+        "pinyin": "shěn chù cháng 　 hǎo （ hāo ） ！",
+        "english": ""
+      },
+      {
+        "chinese": "丁宝　处长，我可以请示一下吗？",
+        "pinyin": "dīng bǎo 　 chù cháng ， wǒ kě yǐ qǐng shì yī xià ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "沈处长　好（蒿）！",
+        "pinyin": "shěn chù cháng 　 hǎo （ hāo ） ！",
+        "english": ""
+      },
+      {
+        "chinese": "丁宝　这儿的老掌柜怪可怜的。",
+        "pinyin": "dīng bǎo 　 zhè ér de lǎo zhǎng guì guài kě lián de 。",
+        "english": ""
+      },
+      {
+        "chinese": "好不好给他作一身制服，叫他看看门，招呼贵宾们上下汽车？",
+        "pinyin": "hǎo bù hǎo gěi tā zuò yī shēn zhì fú ， jiào tā kàn kān mén ， zhāo hū guì bīn mén shàng xià qì chē ？",
+        "english": ""
+      },
+      {
+        "chinese": "他在这儿几十年了，谁都认识他，简直可以算是老头儿商标！",
+        "pinyin": "tā zài zhè ér jǐ shí nián le ， shuí dōu rèn shí tā ， jiǎn zhí kě yǐ suàn shì lǎo tóu ér shāng biāo ！",
+        "english": ""
+      },
+      {
+        "chinese": "沈处长　好（蒿）！",
+        "pinyin": "shěn chù cháng 　 hǎo （ hāo ） ！",
+        "english": ""
+      },
+      {
+        "chinese": "小刘麻子　是！",
+        "pinyin": "xiǎo liú má zǐ 　 shì ！",
+        "english": ""
+      },
+      {
+        "chinese": "（往后跑）王掌柜！",
+        "pinyin": "（ wǎng hòu pǎo ） wáng zhǎng guì ！",
+        "english": ""
+      },
+      {
+        "chinese": "老掌柜！",
+        "pinyin": "lǎo zhǎng guì ！",
+        "english": ""
+      },
+      {
+        "chinese": "我爸爸的老朋友，老大爷！",
+        "pinyin": "wǒ bà bà de lǎo péng yǒu ， lǎo dà yé ！",
+        "english": ""
+      },
+      {
+        "chinese": "（入。",
+        "pinyin": "（ rù 。",
+        "english": ""
+      },
+      {
+        "chinese": "过一会儿又跑回来）报告处长，他也不是怎么上了吊，吊死啦！",
+        "pinyin": "guò yī huì ér yòu pǎo huí lái ） bào gào chù cháng ， tā yě bù shì zěn me shàng le diào ， diào sǐ lā ！",
+        "english": ""
+      },
+      {
+        "chinese": "沈处长　好（蒿）！",
+        "pinyin": "shěn chù cháng 　 hǎo （ hāo ） ！",
+        "english": ""
+      },
+      {
+        "chinese": "好（蒿）！",
+        "pinyin": "hǎo （ hāo ） ！",
+        "english": ""
+      },
+      {
+        "chinese": "--幕落·全剧终",
+        "pinyin": "- - mù luò · quán jù zhōng",
+        "english": ""
+      },
+      {
+        "chinese": "wＷw．xiＡoshＵotxt.cＯm",
+        "pinyin": "w Ｗ w ． x i Ａ o s h Ｕ o t x t . c Ｏ m",
+        "english": ""
+      }
+    ]
+  }
+]

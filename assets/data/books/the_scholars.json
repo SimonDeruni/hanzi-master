@@ -1,0 +1,5310 @@
+[
+  {
+    "id": "the_scholars_ch_1",
+    "bookId": "the_scholars",
+    "chapterIndex": 1,
+    "title": "第一回",
+    "titleEn": "Chapter 1: 第一回",
+    "sentences": [
+      {
+        "chinese": "譚楚玉遠游吳越　劉藐姑屈志梨園",
+        "pinyin": "tán chǔ yù yuǎn yóu wú yuè 　 liú miǎo gū qū zhì lí yuán",
+        "english": ""
+      },
+      {
+        "chinese": "詩曰：",
+        "pinyin": "shī yuē ：",
+        "english": ""
+      },
+      {
+        "chinese": "無事年來操不律，古今到處搜奇跡。",
+        "pinyin": "wú shì nián lái cāo bù lǜ ， gǔ jīn dào chù sōu qí jì 。",
+        "english": ""
+      },
+      {
+        "chinese": "戲在戲中尋不出，教人枉費探求力。",
+        "pinyin": "xì zài xì zhōng xún bù chū ， jiào rén wǎng fèi tàn qiú lì 。",
+        "english": ""
+      },
+      {
+        "chinese": "這四句詩，只為人生在世，最大者莫過於人倫，最重者莫過於夫婦。",
+        "pinyin": "zhè sì jù shī ， zhǐ wèi rén shēng zài shì ， zuì dà zhě mò guò yú rén lún ， zuì zhòng zhě mò guò yú fū fù 。",
+        "english": ""
+      },
+      {
+        "chinese": "男婚女",
+        "pinyin": "nán hūn nǚ",
+        "english": ""
+      },
+      {
+        "chinese": "配，是人間一件大事。",
+        "pinyin": "pèi ， shì rén jiān yī jiàn dà shì 。",
+        "english": ""
+      },
+      {
+        "chinese": "佳人才子偏於其中，做出多少奇文，許多異事。",
+        "pinyin": "jiā rén cái zǐ piān yú qí zhōng ， zuò chū duō shǎo qí wén ， xǔ duō yì shì 。",
+        "english": ""
+      },
+      {
+        "chinese": "且說本傳中一人，家住襄陽，姓譚，名士珩，字楚玉。",
+        "pinyin": "qiě shuō běn chuán zhōng yī rén ， jiā zhù xiāng yáng ， xìng tán ， míng shì héng ， zì chǔ yù 。",
+        "english": ""
+      },
+      {
+        "chinese": "萬有在腦，一貧徹骨。",
+        "pinyin": "wàn yǒu zài nǎo ， yī pín chè gǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "雖叨世冑，恥說華宗；",
+        "pinyin": "suī dāo shì zhòu ， chǐ shuō huá zōng ；",
+        "english": ""
+      },
+      {
+        "chinese": "盡有高親，羞為仰俯。",
+        "pinyin": "jìn yǒu gāo qīn ， xiū wèi yǎng fǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "襁褓識過人，曾噪神童之譽；",
+        "pinyin": "qiǎng bǎo shí guò rén ， céng zào shén tóng zhī yù ；",
+        "english": ""
+      },
+      {
+        "chinese": "髫齡",
+        "pinyin": "tiáo líng",
+        "english": ""
+      },
+      {
+        "chinese": "遊泮水，便騰國瑞之名。",
+        "pinyin": "yóu pàn shuǐ ， biàn téng guó ruì zhī míng 。",
+        "english": ""
+      },
+      {
+        "chinese": "夙慧未忘，讀異書如逢故物；",
+        "pinyin": "sù huì wèi wàng ， dú yì shū rú féng gù wù ；",
+        "english": ""
+      },
+      {
+        "chinese": "天才獨擅，操弱管似運神",
+        "pinyin": "tiān cái dú shàn ， cāo ruò guǎn sì yùn shén",
+        "english": ""
+      },
+      {
+        "chinese": "機。",
+        "pinyin": "jī 。",
+        "english": ""
+      },
+      {
+        "chinese": "不幸早喪二親，終鮮兄弟。",
+        "pinyin": "bù xìng zǎo sàng èr qīn ， zhōng xiān xiōng dì 。",
+        "english": ""
+      },
+      {
+        "chinese": "只因世態炎涼，那些故鄉的親友，見他一貧如洗，",
+        "pinyin": "zhǐ yīn shì tài yán liáng ， nà xiē gù xiāng de qīn yǒu ， jiàn tā yī pín rú xǐ ，",
+        "english": ""
+      },
+      {
+        "chinese": "未免罷肉眼相看，不能知重，故此離了故土，遨遊四方。",
+        "pinyin": "wèi miǎn bà ròu yǎn xiāng kàn ， bù néng zhī zhòng ， gù cǐ lí le gù tǔ ， áo yóu sì fāng 。",
+        "english": ""
+      },
+      {
+        "chinese": "學太史公讀書之法，借",
+        "pinyin": "xué tài shǐ gōng dú shū zhī fǎ ， jiè",
+        "english": ""
+      },
+      {
+        "chinese": "名山大川，做良師益友，使筆底無局促之形，胸中有活潑之氣。",
+        "pinyin": "míng shān dà chuān ， zuò liáng shī yì yǒu ， shǐ bǐ dǐ wú jú cù zhī xíng ， xiōng zhōng yǒu huó pō zhī qì 。",
+        "english": ""
+      },
+      {
+        "chinese": "一向擔簦負笈，",
+        "pinyin": "yī xiàng dān dēng fù jí ，",
+        "english": ""
+      },
+      {
+        "chinese": "往來吳越之間，替坊間選些詩藝，又帶便賣些詩文。",
+        "pinyin": "wǎng lái wú yuè zhī jiān ， tì fāng jiān xuǎn xiē shī yì ， yòu dài biàn mài xiē shī wén 。",
+        "english": ""
+      },
+      {
+        "chinese": "那些潤筆之資，也可餬口。",
+        "pinyin": "nà xiē rùn bǐ zhī zī ， yě kě hú kǒu 。",
+        "english": ""
+      },
+      {
+        "chinese": "只是年已弱冠，還不曾聘家室，未免伶仃孤寂。",
+        "pinyin": "zhǐ shì nián yǐ ruò guàn ， hái bù céng pìn jiā shì ， wèi miǎn líng dīng gū jì 。",
+        "english": ""
+      },
+      {
+        "chinese": "盡有那不解的事，只說他手內空",
+        "pinyin": "jìn yǒu nà bù jiě de shì ， zhǐ shuō tā shǒu nèi kōng",
+        "english": ""
+      },
+      {
+        "chinese": "乏，不能婚娶；",
+        "pinyin": "fá ， bù néng hūn qǔ ；",
+        "english": ""
+      },
+      {
+        "chinese": "那裏知道才人的妻子，不是有了錢鈔，就容易娶得來的。",
+        "pinyin": "nà lǐ zhī dào cái rén de qī zǐ ， bù shì yǒu le qián chāo ， jiù róng yì qǔ dé lái de 。",
+        "english": ""
+      },
+      {
+        "chinese": "正合著",
+        "pinyin": "zhèng hé zhuó",
+        "english": ""
+      },
+      {
+        "chinese": "古語兩句：「若非兩間之尤物，怎配一代之奇人。",
+        "pinyin": "gǔ yǔ liǎng jù ： 「 ruò fēi liǎng jiān zhī yóu wù ， zěn pèi yī dài zhī qí rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "」這段姻緣好難遇。",
+        "pinyin": "」 zhè duàn yīn yuán hǎo nán yù 。",
+        "english": ""
+      },
+      {
+        "chinese": "譚生一日想道：「我今來到三衢地方，聞得這邊女旦極多，演的都是戲臺。",
+        "pinyin": "tán shēng yī rì xiǎng dào ： 「 wǒ jīn lái dào sān qú dì fāng ， wén dé zhè biān nǚ dàn jí duō ， yǎn de dōu shì xì tái 。",
+        "english": ""
+      },
+      {
+        "chinese": "今早有幾個朋友約我一同去看。",
+        "pinyin": "jīn zǎo yǒu jǐ gè péng yǒu yuē wǒ yī tóng qù kàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "我有些筆債未完，叫他先去。",
+        "pinyin": "wǒ yǒu xiē bǐ zhài wèi wán ， jiào tā xiān qù 。",
+        "english": ""
+      },
+      {
+        "chinese": "如今文字完了，不",
+        "pinyin": "rú jīn wén zì wán le ， bù",
+        "english": ""
+      },
+      {
+        "chinese": "免去走一遭。",
+        "pinyin": "miǎn qù zǒu yī zāo 。",
+        "english": ""
+      },
+      {
+        "chinese": "」及至譚生走到中途，那些看戲的人都回來了。",
+        "pinyin": "」 jí zhì tán shēng zǒu dào zhōng tú ， nà xiē kàn xì de rén dōu huí lái le 。",
+        "english": ""
+      },
+      {
+        "chinese": "譚生道：「也罷，",
+        "pinyin": "tán shēng dào ： 「 yě bà ，",
+        "english": ""
+      },
+      {
+        "chinese": "我且立在路旁，待他們過去，我自有道理。",
+        "pinyin": "wǒ qiě lì zài lù páng ， dài tā mén guò qù ， wǒ zì yǒu dào lǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "」話猶未了，只見那些人，也有老的，",
+        "pinyin": "」 huà yóu wèi le ， zhǐ jiàn nà xiē rén ， yě yǒu lǎo de ，",
+        "english": ""
+      },
+      {
+        "chinese": "也有少的；",
+        "pinyin": "yě yǒu shǎo de ；",
+        "english": ""
+      },
+      {
+        "chinese": "也有禿的，也有瞎的；",
+        "pinyin": "yě yǒu tū de ， yě yǒu xiā de ；",
+        "english": ""
+      },
+      {
+        "chinese": "也有俗人，也有和尚。",
+        "pinyin": "yě yǒu sú rén ， yě yǒu hé shàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "正行之間，有一婦人高",
+        "pinyin": "zhèng xíng zhī jiān ， yǒu yī fù rén gāo",
+        "english": ""
+      },
+      {
+        "chinese": "聲叫云：「誰人拾了我的鞋去了？",
+        "pinyin": "shēng jiào yún ： 「 shuí rén shí le wǒ de xié qù le ？",
+        "english": ""
+      },
+      {
+        "chinese": "若拿出來便罷，若不拿出來，我就叫他背了我",
+        "pinyin": "ruò ná chū lái biàn bà ， ruò bù ná chū lái ， wǒ jiù jiào tā bēi le wǒ",
+        "english": ""
+      },
+      {
+        "chinese": "家去。",
+        "pinyin": "jiā qù 。",
+        "english": ""
+      },
+      {
+        "chinese": "」叫罷，眾人都不理，惟有一個四五十歲的一個和尚，微微的冷笑。",
+        "pinyin": "」 jiào bà ， zhòng rén dōu bù lǐ ， wéi yǒu yī gè sì wǔ shí suì de yī gè hé shàng ， wēi wēi de lěng xiào 。",
+        "english": ""
+      },
+      {
+        "chinese": "旁人",
+        "pinyin": "páng rén",
+        "english": ""
+      },
+      {
+        "chinese": "說：「一定是你這個禿驢拾去了。",
+        "pinyin": "shuō ： 「 yī dìng shì nǐ zhè gè tū lǘ shí qù le 。",
+        "english": ""
+      },
+      {
+        "chinese": "」和尚不肯拿出，眾人上去一搜，果然藏在和",
+        "pinyin": "」 hé shàng bù kěn ná chū ， zhòng rén shàng qù yī sōu ， guǒ rán cáng zài hé",
+        "english": ""
+      },
+      {
+        "chinese": "尚袖裏。",
+        "pinyin": "shàng xiù lǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "眾人說：「給我一齊動手！",
+        "pinyin": "zhòng rén shuō ： 「 gěi wǒ yī qí dòng shǒu ！",
+        "english": ""
+      },
+      {
+        "chinese": "」和尚說：「不要如此，我所以藏這支鞋的",
+        "pinyin": "」 hé shàng shuō ： 「 bù yào rú cǐ ， wǒ suǒ yǐ cáng zhè zhī xié de",
+        "english": ""
+      },
+      {
+        "chinese": "緣故，我實有用他處。",
+        "pinyin": "yuán gù ， wǒ shí yǒu yòng tā chù 。",
+        "english": ""
+      },
+      {
+        "chinese": "」眾人說：「你用他做甚？",
+        "pinyin": "」 zhòng rén shuō ： 「 nǐ yòng tā zuò shèn ？",
+        "english": ""
+      },
+      {
+        "chinese": "」和尚說：「別無用處，待我",
+        "pinyin": "」 hé shàng shuō ： 「 bié wú yòng chù ， dài wǒ",
+        "english": ""
+      },
+      {
+        "chinese": "面壁九年之後，將來掛在杖上，做一雙履西歸。",
+        "pinyin": "miàn bì jiǔ nián zhī hòu ， jiāng lái guà zài zhàng shàng ， zuò yī shuāng lǚ xī guī 。",
+        "english": ""
+      },
+      {
+        "chinese": "」眾人大笑之間，和尚一溜而去。",
+        "pinyin": "」 zhòng rén dà xiào zhī jiān ， hé shàng yī liū ér qù 。",
+        "english": ""
+      },
+      {
+        "chinese": "又見女旦前行，背後那些沒皮的人，挨肩擦背，眼邪腳歪，就像推車的一般。",
+        "pinyin": "yòu jiàn nǚ dàn qián xíng ， bēi hòu nà xiē méi pí de rén ， āi jiān cā bēi ， yǎn xié jiǎo wāi ， jiù xiàng tuī chē de yī bān 。",
+        "english": ""
+      },
+      {
+        "chinese": "譚生云：「這些男子婦人，好沒要緊。",
+        "pinyin": "tán shēng yún ： 「 zhè xiē nán zǐ fù rén ， hǎo méi yào jǐn 。",
+        "english": ""
+      },
+      {
+        "chinese": "那戲有甚麼好處，就這等的挨挨擠擠，弄",
+        "pinyin": "nà xì yǒu shèn me hǎo chù ， jiù zhè děng de āi āi jǐ jǐ ， nòng",
+        "english": ""
+      },
+      {
+        "chinese": "出這許多的醜態來！",
+        "pinyin": "chū zhè xǔ duō de chǒu tài lái ！",
+        "english": ""
+      },
+      {
+        "chinese": "」正說之間，見那約他的兩個朋友，也在其中。",
+        "pinyin": "」 zhèng shuō zhī jiān ， jiàn nà yuē tā de liǎng gè péng yǒu ， yě zài qí zhōng 。",
+        "english": ""
+      },
+      {
+        "chinese": "遂上前問說：",
+        "pinyin": "suì shàng qián wèn shuō ：",
+        "english": ""
+      },
+      {
+        "chinese": "「這戲有甚麼好處呢？",
+        "pinyin": "「 zhè xì yǒu shèn me hǎo chù ne ？",
+        "english": ""
+      },
+      {
+        "chinese": "」二人答云：「這戲名為舞霓班，一班之中個個都好。",
+        "pinyin": "」 èr rén dá yún ： 「 zhè xì míng wèi wǔ ní bān ， yī bān zhī zhōng gè gè dōu hǎo 。",
+        "english": ""
+      },
+      {
+        "chinese": "難得的又有那個女旦，叫做劉絳仙。",
+        "pinyin": "nán dé de yòu yǒu nà gè nǚ dàn ， jiào zuò liú jiàng xiān 。",
+        "english": ""
+      },
+      {
+        "chinese": "那聲容不必說了，我若說出她的容貌，兄就",
+        "pinyin": "nà shēng róng bù bì shuō le ， wǒ ruò shuō chū tā de róng mào ， xiōng jiù",
+        "english": ""
+      },
+      {
+        "chinese": "是老道學，恐亦難於不動心了。",
+        "pinyin": "shì lǎo dào xué ， kǒng yì nán yú bù dòng xīn le 。",
+        "english": ""
+      },
+      {
+        "chinese": "有幾句現成的批語，你且聽我道來：施粉則太白，",
+        "pinyin": "yǒu jǐ jù xiàn chéng de pī yǔ ， nǐ qiě tīng wǒ dào lái ： shī fěn zé tài bái ，",
+        "english": ""
+      },
+      {
+        "chinese": "施朱則太紅，加之一寸則太高，損之一寸則太短。",
+        "pinyin": "shī zhū zé tài hóng ， jiā zhī yī cùn zé tài gāo ， sǔn zhī yī cùn zé tài duǎn 。",
+        "english": ""
+      },
+      {
+        "chinese": "」譚生云：「恐怕將譽過實。",
+        "pinyin": "」 tán shēng yún ： 「 kǒng pà jiāng yù guò shí 。",
+        "english": ""
+      },
+      {
+        "chinese": "二人說：「兄若不信，遲一兩日，還有臺戲要演，親來觀看就是了。",
+        "pinyin": "èr rén shuō ： 「 xiōng ruò bù xìn ， chí yī liǎng rì ， hái yǒu tái xì yào yǎn ， qīn lái guān kàn jiù shì le 。",
+        "english": ""
+      },
+      {
+        "chinese": "」譚生云：",
+        "pinyin": "」 tán shēng yún ：",
+        "english": ""
+      },
+      {
+        "chinese": "「如此最妙。",
+        "pinyin": "「 rú cǐ zuì miào 。",
+        "english": ""
+      },
+      {
+        "chinese": "」遂口唱數語云：「",
+        "pinyin": "」 suì kǒu chàng shǔ yǔ yún ： 「",
+        "english": ""
+      },
+      {
+        "chinese": "國色從來不易逢，休將花眼辨花容。",
+        "pinyin": "guó sè cóng lái bù yì féng ， xiū jiāng huā yǎn biàn huā róng 。",
+        "english": ""
+      },
+      {
+        "chinese": "饒伊此際施高論，眼到花前自解庸。",
+        "pinyin": "ráo yī cǐ jì shī gāo lùn ， yǎn dào huā qián zì jiě yōng 。",
+        "english": ""
+      },
+      {
+        "chinese": "話說劉絳仙丈夫，名喚劉文卿，也在班中做戲。",
+        "pinyin": "huà shuō liú jiàng xiān zhàng fū ， míng huàn liú wén qīng ， yě zài bān zhōng zuò xì 。",
+        "english": ""
+      },
+      {
+        "chinese": "自從得了絳仙，遂掙起一分",
+        "pinyin": "zì cóng dé le jiàng xiān ， suì zhèng qǐ yī fēn",
+        "english": ""
+      },
+      {
+        "chinese": "大家私。",
+        "pinyin": "dà jiā sī 。",
+        "english": ""
+      },
+      {
+        "chinese": "如今世上做女旦的極多，都不能夠致富，為甚的獨他一個偏會掙錢？",
+        "pinyin": "rú jīn shì shàng zuò nǚ dàn de jí duō ， dōu bù néng gòu zhì fù ， wèi shèn de dú tā yī gè piān huì zhèng qián ？",
+        "english": ""
+      },
+      {
+        "chinese": "因他的姿色原好，又虧二郎神保佑。",
+        "pinyin": "yīn tā de zī sè yuán hǎo ， yòu kuī èr láng shén bǎo yòu 。",
+        "english": ""
+      },
+      {
+        "chinese": "走上臺去，就像仙女臨凡一般，另是一種體",
+        "pinyin": "zǒu shàng tái qù ， jiù xiàng xiān nǚ lín fán yī bān ， lìng shì yī zhǒng tǐ",
+        "english": ""
+      },
+      {
+        "chinese": "態。",
+        "pinyin": "tài 。",
+        "english": ""
+      },
+      {
+        "chinese": "又兼他的記性極高，當初學戲的時節，把生旦的腳本都念熟了，一到登場，",
+        "pinyin": "yòu jiān tā de jì xìng jí gāo ， dāng chū xué xì de shí jié ， bǎ shēng dàn de jiǎo běn dōu niàn shú le ， yī dào dēng chǎng ，",
+        "english": ""
+      },
+      {
+        "chinese": "不拘做甚麼腳色，要他妝男就做生，要他妝女就做旦，做來的戲又與別人不同。",
+        "pinyin": "bù jū zuò shèn me jiǎo sè ， yào tā zhuāng nán jiù zuò shēng ， yào tā zhuāng nǚ jiù zuò dàn ， zuò lái de xì yòu yǔ bié rén bù tóng 。",
+        "english": ""
+      },
+      {
+        "chinese": "老實的看了，也要風流起來；",
+        "pinyin": "lǎo shí de kàn le ， yě yào fēng liú qǐ lái ；",
+        "english": ""
+      },
+      {
+        "chinese": "慳吝的遇了，也要撒漫起來。",
+        "pinyin": "qiān lìn de yù le ， yě yào sā màn qǐ lái 。",
+        "english": ""
+      },
+      {
+        "chinese": "況且揀那極肯破鈔的",
+        "pinyin": "kuàng qiě jiǎn nà jí kěn pò chāo de",
+        "english": ""
+      },
+      {
+        "chinese": "人相與幾個，到那樁事上，其風流更不必說了。",
+        "pinyin": "rén xiāng yǔ jǐ gè ， dào nà zhuāng shì shàng ， qí fēng liú gèng bù bì shuō le 。",
+        "english": ""
+      },
+      {
+        "chinese": "所以多則分她半股家私，少則也",
+        "pinyin": "suǒ yǐ duō zé fēn tā bàn gǔ jiā sī ， shǎo zé yě",
+        "english": ""
+      },
+      {
+        "chinese": "得他數年的積蓄。",
+        "pinyin": "dé tā shǔ nián de jī xù 。",
+        "english": ""
+      },
+      {
+        "chinese": "不上十年，掙起許多家產，也夠得發了。",
+        "pinyin": "bù shàng shí nián ， zhèng qǐ xǔ duō jiā chǎn ， yě gòu dé fā le 。",
+        "english": ""
+      },
+      {
+        "chinese": "誰想生個女兒出來，",
+        "pinyin": "shuí xiǎng shēng gè nǚ ér chū lái ，",
+        "english": ""
+      },
+      {
+        "chinese": "名叫藐姑，年方一十四歲。",
+        "pinyin": "míng jiào miǎo gū ， nián fāng yī shí sì suì 。",
+        "english": ""
+      },
+      {
+        "chinese": "他的容顏記性，又在他母親之上。",
+        "pinyin": "tā de róng yán jì xìng ， yòu zài tā mǔ qīn zhī shàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "止教他讀書，還不",
+        "pinyin": "zhǐ jiào tā dú shū ， hái bù",
+        "english": ""
+      },
+      {
+        "chinese": "曾學戲。",
+        "pinyin": "céng xué xì 。",
+        "english": ""
+      },
+      {
+        "chinese": "那些文詞翰墨之事，早已件件精通，將來做起戲來，還不知怎麼樣得利。",
+        "pinyin": "nà xiē wén cí hàn mò zhī shì ， zǎo yǐ jiàn jiàn jīng tōng ， jiāng lái zuò qǐ xì lái ， hái bù zhī zěn me yàng dé lì 。",
+        "english": ""
+      },
+      {
+        "chinese": "絳仙一日無事，將他喚出，不過是要傳授他掙錢的秘訣，動人的方法。",
+        "pinyin": "jiàng xiān yī rì wú shì ， jiāng tā huàn chū ， bù guò shì yào chuán shòu tā zhèng qián de mì jué ， dòng rén de fāng fǎ 。",
+        "english": ""
+      },
+      {
+        "chinese": "絳仙",
+        "pinyin": "jiàng xiān",
+        "english": ""
+      },
+      {
+        "chinese": "說：「我兒，你今年十四歲，也不小了。",
+        "pinyin": "shuō ： 「 wǒ ér ， nǐ jīn nián shí sì suì ， yě bù xiǎo le 。",
+        "english": ""
+      },
+      {
+        "chinese": "你爹爹要另合新班，同你一齊學戲，那",
+        "pinyin": "nǐ diē diē yào lìng hé xīn bān ， tóng nǐ yī qí xué xì ， nà",
+        "english": ""
+      },
+      {
+        "chinese": "些歌容舞態，不愁你演習不來。",
+        "pinyin": "xiē gē róng wǔ tài ， bù chóu nǐ yǎn xí bù lái 。",
+        "english": ""
+      },
+      {
+        "chinese": "只是做女旦的人，另有個掙錢的法子，不在戲文",
+        "pinyin": "zhǐ shì zuò nǚ dàn de rén ， lìng yǒu gè zhèng qián de fǎ zǐ ， bù zài xì wén",
+        "english": ""
+      },
+      {
+        "chinese": "裏面，須要自小學會方好。",
+        "pinyin": "lǐ miàn ， xū yào zì xiǎo xué huì fāng hǎo 。",
+        "english": ""
+      },
+      {
+        "chinese": "」藐姑說：「母親，做婦人的只該學些女工針指，也",
+        "pinyin": "」 miǎo gū shuō ： 「 mǔ qīn ， zuò fù rén de zhǐ gāi xué xiē nǚ gōng zhēn zhǐ ， yě",
+        "english": ""
+      },
+      {
+        "chinese": "盡可度日，這演戲不是女人的本事，孩兒不願學他。",
+        "pinyin": "jìn kě dù rì ， zhè yǎn xì bù shì nǚ rén de běn shì ， hái ér bù yuàn xué tā 。",
+        "english": ""
+      },
+      {
+        "chinese": "就要孩兒學戲，也只好在戲",
+        "pinyin": "jiù yào hái ér xué xì ， yě zhǐ hǎo zài xì",
+        "english": ""
+      },
+      {
+        "chinese": "文裏面，趁些本分錢財罷了。",
+        "pinyin": "wén lǐ miàn ， chèn xiē běn fēn qián cái bà le 。",
+        "english": ""
+      },
+      {
+        "chinese": "若要我喪了廉恥，壞了名節，去做別樣的事，那是",
+        "pinyin": "ruò yào wǒ sàng le lián chǐ ， huài le míng jié ， qù zuò bié yàng de shì ， nà shì",
+        "english": ""
+      },
+      {
+        "chinese": "斷斷不能的。",
+        "pinyin": "duàn duàn bù néng de 。",
+        "english": ""
+      },
+      {
+        "chinese": "絳仙說：「做爹娘的，要在你身上掙起一分大家私，你倒這等迂拙起來。",
+        "pinyin": "jiàng xiān shuō ： 「 zuò diē niáng de ， yào zài nǐ shēn shàng zhèng qǐ yī fēn dà jiā sī ， nǐ dǎo zhè děng yū zhuō qǐ lái 。",
+        "english": ""
+      },
+      {
+        "chinese": "們這樣婦人，顧甚麼名節，惜甚麼廉恥，只要把主意拿定了，與男子相交的時節，",
+        "pinyin": "mén zhè yàng fù rén ， gù shèn me míng jié ， xī shèn me lián chǐ ， zhǐ yào bǎ zhǔ yì ná dìng le ， yǔ nán zǐ xiāng jiāo de shí jié ，",
+        "english": ""
+      },
+      {
+        "chinese": "只當也是做戲一般。",
+        "pinyin": "zhǐ dāng yě shì zuò xì yī bān 。",
+        "english": ""
+      },
+      {
+        "chinese": "他便認真，我只當假，把雲雨繆綢之事，看得淡些。",
+        "pinyin": "tā biàn rèn zhēn ， wǒ zhǐ dāng jiǎ ， bǎ yún yǔ móu chóu zhī shì ， kàn dé dàn xiē 。",
+        "english": ""
+      },
+      {
+        "chinese": "一則身",
+        "pinyin": "yī zé shēn",
+        "english": ""
+      },
+      {
+        "chinese": "子不受虧；",
+        "pinyin": "zǐ bù shòu kuī ；",
+        "english": ""
+      },
+      {
+        "chinese": "二則這就是守節了，何須恁般拘執呢！",
+        "pinyin": "èr zé zhè jiù shì shǒu jié le ， hé xū nèn bān jū zhí ne ！",
+        "english": ""
+      },
+      {
+        "chinese": "古語說的好：煙花門第怎容拘",
+        "pinyin": "gǔ yǔ shuō de hǎo ： yān huā mén dì zěn róng jū",
+        "english": ""
+      },
+      {
+        "chinese": "泥，拚著些假意虛情，去換他真財實惠。",
+        "pinyin": "ní ， pīn zhuó xiē jiǎ yì xū qíng ， qù huàn tā zhēn cái shí huì 。",
+        "english": ""
+      },
+      {
+        "chinese": "把鳳衾鴛被，都認做戲場餘地。",
+        "pinyin": "bǎ fèng qīn yuān bèi ， dōu rèn zuò xì chǎng yú dì 。",
+        "english": ""
+      },
+      {
+        "chinese": "我做娘",
+        "pinyin": "wǒ zuò niáng",
+        "english": ""
+      },
+      {
+        "chinese": "的，也不叫你十分濫交，逢人就接，遇人就睡。",
+        "pinyin": "de ， yě bù jiào nǐ shí fēn lǎn jiāo ， féng rén jiù jiē ， yù rén jiù shuì 。",
+        "english": ""
+      },
+      {
+        "chinese": "有三句秘訣，傳授與你。",
+        "pinyin": "yǒu sān jù mì jué ， chuán shòu yǔ nǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "你若肯",
+        "pinyin": "nǐ ruò kěn",
+        "english": ""
+      },
+      {
+        "chinese": "依計而行，還你名實兼收，賢愚共賞，一生受用不盡。",
+        "pinyin": "yī jì ér xíng ， hái nǐ míng shí jiān shōu ， xián yú gòng shǎng ， yī shēng shòu yòng bù jìn 。",
+        "english": ""
+      },
+      {
+        "chinese": "聽我道來：叫做許看不許",
+        "pinyin": "tīng wǒ dào lái ： jiào zuò xǔ kàn bù xǔ",
+        "english": ""
+      },
+      {
+        "chinese": "吃，許名不許實，許謀不許得。",
+        "pinyin": "chī ， xǔ míng bù xǔ shí ， xǔ móu bù xǔ dé 。",
+        "english": ""
+      },
+      {
+        "chinese": "藐姑說：「怎麼叫做許看不許吃呢？",
+        "pinyin": "miǎo gū shuō ： 「 zěn me jiào zuò xǔ kàn bù xǔ chī ne ？",
+        "english": ""
+      },
+      {
+        "chinese": "」絳仙云：「做戲的時節，渾身上下沒",
+        "pinyin": "」 jiàng xiān yún ： 「 zuò xì de shí jié ， hún shēn shàng xià méi",
+        "english": ""
+      },
+      {
+        "chinese": "有一處不被人看到，就是不做戲的時節，也一般與人玩耍，一般與人調情。",
+        "pinyin": "yǒu yī chù bù bèi rén kàn dào ， jiù shì bù zuò xì de shí jié ， yě yī bān yǔ rén wán shuǎ ， yī bān yǔ rén tiáo qíng 。",
+        "english": ""
+      },
+      {
+        "chinese": "只有",
+        "pinyin": "zhǐ yǒu",
+        "english": ""
+      },
+      {
+        "chinese": "這香噴噴的一盤美包子，不許他到口。",
+        "pinyin": "zhè xiāng pēn pēn de yī pán měi bāo zǐ ， bù xǔ tā dào kǒu 。",
+        "english": ""
+      },
+      {
+        "chinese": "這就叫做許看不許吃。",
+        "pinyin": "zhè jiù jiào zuò xǔ kàn bù xǔ chī 。",
+        "english": ""
+      },
+      {
+        "chinese": "」藐姑道：「那許",
+        "pinyin": "」 miǎo gū dào ： 「 nà xǔ",
+        "english": ""
+      },
+      {
+        "chinese": "名不許實？",
+        "pinyin": "míng bù xǔ shí ？",
+        "english": ""
+      },
+      {
+        "chinese": "」絳仙道：「若有富貴大賈、公子王孫，要與我做實事的，我口便許",
+        "pinyin": "」 jiàng xiān dào ： 「 ruò yǒu fù guì dà jiǎ 、 gōng zǐ wáng sūn ， yào yǔ wǒ zuò shí shì de ， wǒ kǒu biàn xǔ",
+        "english": ""
+      },
+      {
+        "chinese": "他，只是你故延捱，不使到手。",
+        "pinyin": "tā ， zhǐ shì nǐ gù yán ái ， bù shǐ dào shǒu 。",
+        "english": ""
+      },
+      {
+        "chinese": "這叫做許名不許實。",
+        "pinyin": "zhè jiào zuò xǔ míng bù xǔ shí 。",
+        "english": ""
+      },
+      {
+        "chinese": "」藐姑道：「那許謀不許得",
+        "pinyin": "」 miǎo gū dào ： 「 nà xǔ móu bù xǔ dé",
+        "english": ""
+      },
+      {
+        "chinese": "呢？",
+        "pinyin": "ne ？",
+        "english": ""
+      },
+      {
+        "chinese": "」絳仙道：「若遇那些癡心子弟，與我們相厚了，要出大塊銀子，買我從良，",
+        "pinyin": "」 jiàng xiān dào ： 「 ruò yù nà xiē chī xīn zǐ dì ， yǔ wǒ mén xiāng hòu le ， yào chū dà kuài yín zǐ ， mǎi wǒ cóng liáng ，",
+        "english": ""
+      },
+      {
+        "chinese": "我便極口應允，使他終日圖謀，不惜納交之費。",
+        "pinyin": "wǒ biàn jí kǒu yīng yǔn ， shǐ tā zhōng rì tú móu ， bù xī nà jiāo zhī fèi 。",
+        "english": ""
+      },
+      {
+        "chinese": "到了後日，只當做場春夢，決不",
+        "pinyin": "dào le hòu rì ， zhǐ dāng zuò chǎng chūn mèng ， jué bù",
+        "english": ""
+      },
+      {
+        "chinese": "肯把身子嫁他，這叫做許謀不許得。",
+        "pinyin": "kěn bǎ shēn zǐ jià tā ， zhè jiào zuò xǔ móu bù xǔ dé 。",
+        "english": ""
+      }
+    ]
+  },
+  {
+    "id": "the_scholars_ch_2",
+    "bookId": "the_scholars",
+    "chapterIndex": 2,
+    "title": "第二回",
+    "titleEn": "Chapter 2: 第二回",
+    "sentences": [
+      {
+        "chinese": "傾城貌風前露秀　概世才戲場安身",
+        "pinyin": "qīng chéng mào fēng qián lòu xiù 　 gài shì cái xì chǎng ān shēn",
+        "english": ""
+      },
+      {
+        "chinese": "卻說譚楚玉自從那日聽了二位誇美劉絳仙的好處，時刻在心。",
+        "pinyin": "què shuō tán chǔ yù zì cóng nà rì tīng le èr wèi kuā měi liú jiàng xiān de hǎo chù ， shí kè zài xīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "兩三日後，二",
+        "pinyin": "liǎng sān rì hòu ， èr",
+        "english": ""
+      },
+      {
+        "chinese": "位朋友說：「今日有戲，不知老兄可出去看看否？",
+        "pinyin": "wèi péng yǒu shuō ： 「 jīn rì yǒu xì ， bù zhī lǎo xiōng kě chū qù kàn kàn fǒu ？",
+        "english": ""
+      },
+      {
+        "chinese": "」譚生云：「如此，妙，妙！",
+        "pinyin": "」 tán shēng yún ： 「 rú cǐ ， miào ， miào ！",
+        "english": ""
+      },
+      {
+        "chinese": "三人遂攜手而行。",
+        "pinyin": "sān rén suì xié shǒu ér xíng 。",
+        "english": ""
+      },
+      {
+        "chinese": "及至到了戲場臺上，還不曾有人。",
+        "pinyin": "jí zhì dào le xì chǎng tái shàng ， hái bù céng yǒu rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "其友云：「想是梨園子弟未",
+        "pinyin": "qí yǒu yún ： 「 xiǎng shì lí yuán zǐ dì wèi",
+        "english": ""
+      },
+      {
+        "chinese": "到，我們且在這總路口上，站上一會，等劉絳仙走過的時節，先把他凌波俏步，",
+        "pinyin": "dào ， wǒ mén qiě zài zhè zǒng lù kǒu shàng ， zhàn shàng yī huì ， děng liú jiàng xiān zǒu guò de shí jié ， xiān bǎ tā líng bō qiào bù ，",
+        "english": ""
+      },
+      {
+        "chinese": "領略一番，然後跟他去看戲，有何不可。",
+        "pinyin": "lǐng lüè yī fān ， rán hòu gēn tā qù kàn xì ， yǒu hé bù kě 。",
+        "english": ""
+      },
+      {
+        "chinese": "且是那些做戲的婦人，臺上的風姿與臺",
+        "pinyin": "qiě shì nà xiē zuò xì de fù rén ， tái shàng de fēng zī yǔ tái",
+        "english": ""
+      },
+      {
+        "chinese": "下的顏色判然不同。",
+        "pinyin": "xià de yán sè pàn rán bù tóng 。",
+        "english": ""
+      },
+      {
+        "chinese": "我和你立在此處，倒可以識別真才。",
+        "pinyin": "wǒ hé nǐ lì zài cǐ chù ， dǎo kě yǐ shí bié zhēn cái 。",
+        "english": ""
+      },
+      {
+        "chinese": "」譚生說：「同是一個",
+        "pinyin": "」 tán shēng shuō ： 「 tóng shì yī gè",
+        "english": ""
+      },
+      {
+        "chinese": "人，怎麼有兩樣姿色。",
+        "pinyin": "rén ， zěn me yǒu liǎng yàng zī sè 。",
+        "english": ""
+      },
+      {
+        "chinese": "」其友云：「這種道理也有些難解，場上那床氈條，最是",
+        "pinyin": "」 qí yǒu yún ： 「 zhè zhǒng dào lǐ yě yǒu xiē nán jiě ， chǎng shàng nà chuáng zhān tiáo ， zuì shì",
+        "english": ""
+      },
+      {
+        "chinese": "一件作怪的東西，極會凌醜婦、幫佳人。",
+        "pinyin": "yī jiàn zuò guài de dōng xī ， jí huì líng chǒu fù 、 bāng jiā rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "醜陋的走上去，愈加醜陋；",
+        "pinyin": "chǒu lòu de zǒu shàng qù ， yù jiā chǒu lòu ；",
+        "english": ""
+      },
+      {
+        "chinese": "標致的走上",
+        "pinyin": "biāo zhì de zǒu shàng",
+        "english": ""
+      },
+      {
+        "chinese": "去，分外標致。",
+        "pinyin": "qù ， fēn wài biāo zhì 。",
+        "english": ""
+      },
+      {
+        "chinese": "兄若不信，請驗一番就是了。",
+        "pinyin": "xiōng ruò bù xìn ， qǐng yàn yī fān jiù shì le 。",
+        "english": ""
+      },
+      {
+        "chinese": "」說話之間，見一夥人擁擠而至。",
+        "pinyin": "」 shuō huà zhī jiān ， jiàn yī huǒ rén yōng jǐ ér zhì 。",
+        "english": ""
+      },
+      {
+        "chinese": "譚生云：「所謂劉絳仙者，就是前面那一位麼？",
+        "pinyin": "tán shēng yún ： 「 suǒ wèi liú jiàng xiān zhě ， jiù shì qián miàn nà yī wèi me ？",
+        "english": ""
+      },
+      {
+        "chinese": "」其友云：「正是。",
+        "pinyin": "」 qí yǒu yún ： 「 zhèng shì 。",
+        "english": ""
+      },
+      {
+        "chinese": "小弟的說話，",
+        "pinyin": "xiǎo dì de shuō huà ，",
+        "english": ""
+      },
+      {
+        "chinese": "可也贊的不差？",
+        "pinyin": "kě yě zàn de bù chà ？",
+        "english": ""
+      },
+      {
+        "chinese": "」譚生云：「也不過如此。",
+        "pinyin": "」 tán shēng yún ： 「 yě bù guò rú cǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "」其友云：「婦人的姿色，到這般地",
+        "pinyin": "」 qí yǒu yún ： 「 fù rén de zī sè ， dào zhè bān dì",
+        "english": ""
+      },
+      {
+        "chinese": "步，也夠得緊了，難道還有好似他的不成！",
+        "pinyin": "bù ， yě gòu dé jǐn le ， nán dào hái yǒu hǎo sì tā de bù chéng ！",
+        "english": ""
+      },
+      {
+        "chinese": "譚生云：「方纔在後面的那個垂髫女子，難道不是天香國色？",
+        "pinyin": "tán shēng yún ： 「 fāng cái zài hòu miàn de nà gè chuí tiáo nǚ zǐ ， nán dào bù shì tiān xiāng guó sè ？",
+        "english": ""
+      },
+      {
+        "chinese": "為甚麼對了人",
+        "pinyin": "wèi shèn me duì le rén",
+        "english": ""
+      },
+      {
+        "chinese": "間至寶，全不賞鑒，倒把尋常的姿色，那般抬舉起來。",
+        "pinyin": "jiān zhì bǎo ， quán bù shǎng jiàn ， dǎo bǎ xún cháng de zī sè ， nà bān tái jǔ qǐ lái 。",
+        "english": ""
+      },
+      {
+        "chinese": "」其友云：「那是他的親",
+        "pinyin": "」 qí yǒu yún ： 「 nà shì tā de qīn",
+        "english": ""
+      },
+      {
+        "chinese": "生女兒，叫做藐姑，帶在身邊學戲的。",
+        "pinyin": "shēng nǚ ér ， jiào zuò miǎo gū ， dài zài shēn biān xué xì de 。",
+        "english": ""
+      },
+      {
+        "chinese": "據小弟看來，好便是好，也未必在他母親",
+        "pinyin": "jù xiǎo dì kàn lái ， hǎo biàn shì hǎo ， yě wèi bì zài tā mǔ qīn",
+        "english": ""
+      },
+      {
+        "chinese": "之上。",
+        "pinyin": "zhī shàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "」譚生心內想道：「這位女子，就像胎裏的明珠、璞中的美玉，全然不曾",
+        "pinyin": "」 tán shēng xīn nèi xiǎng dào ： 「 zhè wèi nǚ zǐ ， jiù xiàng tāi lǐ de míng zhū 、 pú zhōng de měi yù ， quán rán bù céng",
+        "english": ""
+      },
+      {
+        "chinese": "琢磨的。",
+        "pinyin": "zhuó mó de 。",
+        "english": ""
+      },
+      {
+        "chinese": "非具別眼的人，那能識認得出！",
+        "pinyin": "fēi jù bié yǎn de rén ， nà néng shí rèn dé chū ！",
+        "english": ""
+      },
+      {
+        "chinese": "這種道理，不但他們不知道，也不可使",
+        "pinyin": "zhè zhǒng dào lǐ ， bù dàn tā mén bù zhī dào ， yě bù kě shǐ",
+        "english": ""
+      },
+      {
+        "chinese": "他們知道。",
+        "pinyin": "tā mén zhī dào 。",
+        "english": ""
+      },
+      {
+        "chinese": "若使見知於人，則天下之寶，我必不能獨得矣。",
+        "pinyin": "ruò shǐ jiàn zhī yú rén ， zé tiān xià zhī bǎo ， wǒ bì bù néng dú dé yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "也罷，我且依他說個",
+        "pinyin": "yě bà ， wǒ qiě yī tā shuō gè",
+        "english": ""
+      },
+      {
+        "chinese": "不好，自己肚裏明白就是了。",
+        "pinyin": "bù hǎo ， zì jǐ dù lǐ míng bái jiù shì le 。",
+        "english": ""
+      },
+      {
+        "chinese": "雖如此說，既要結識他，須是在未曾破瓜的時節，",
+        "pinyin": "suī rú cǐ shuō ， jì yào jié shí tā ， xū shì zài wèi céng pò guā de shí jié ，",
+        "english": ""
+      },
+      {
+        "chinese": "相與起頭纔好。",
+        "pinyin": "xiāng yǔ qǐ tóu cái hǎo 。",
+        "english": ""
+      },
+      {
+        "chinese": "我且隨眾人看戲，待他戲完之後，回去的時節，尾在後面，看他",
+        "pinyin": "wǒ qiě suí zhòng rén kàn xì ， dài tā xì wán zhī hòu ， huí qù de shí jié ， wěi zài hòu miàn ， kàn tā",
+        "english": ""
+      },
+      {
+        "chinese": "家住那裏，然後好想個進身之法。",
+        "pinyin": "jiā zhù nà lǐ ， rán hòu hǎo xiǎng gè jìn shēn zhī fǎ 。",
+        "english": ""
+      },
+      {
+        "chinese": "」遂轉身云：「畢竟是兄識貨，方纔那個女子，",
+        "pinyin": "」 suì zhuǎn shēn yún ： 「 bì jìng shì xiōng shí huò ， fāng cái nà gè nǚ zǐ ，",
+        "english": ""
+      },
+      {
+        "chinese": "初見便好，過後想來他沒有甚麼回味。",
+        "pinyin": "chū jiàn biàn hǎo ， guò hòu xiǎng lái tā méi yǒu shèn me huí wèi 。",
+        "english": ""
+      },
+      {
+        "chinese": "還去看戲要緊，不要耽擱了戲。",
+        "pinyin": "hái qù kàn xì yào jǐn ， bù yào dān gē le xì 。",
+        "english": ""
+      },
+      {
+        "chinese": "」這正是：",
+        "pinyin": "」 zhè zhèng shì ：",
+        "english": ""
+      },
+      {
+        "chinese": "當場一刻勝千金，莫把閑詞誤寸陰。",
+        "pinyin": "dāng chǎng yī kè shèng qiān jīn ， mò bǎ xián cí wù cùn yīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "其友也口號一絕云：",
+        "pinyin": "qí yǒu yě kǒu hào yī jué yún ：",
+        "english": ""
+      },
+      {
+        "chinese": "拉友觀場破寂寥，評聲論色興偏饒。",
+        "pinyin": "lā yǒu guān chǎng pò jì liáo ， píng shēng lùn sè xìng piān ráo 。",
+        "english": ""
+      },
+      {
+        "chinese": "非關舉世無明眼，天與忽然秘阿嬌。",
+        "pinyin": "fēi guān jǔ shì wú míng yǎn ， tiān yǔ hū rán mì ā jiāo 。",
+        "english": ""
+      },
+      {
+        "chinese": "及至到了戲場，早本已開演的是《西施歸湖》，接的是《挑簾成衣》。",
+        "pinyin": "jí zhì dào le xì chǎng ， zǎo běn yǐ kāi yǎn de shì 《 xī shī guī hú 》 ， jiē de shì 《 tiāo lián chéng yī 》 。",
+        "english": ""
+      },
+      {
+        "chinese": "真個",
+        "pinyin": "zhēn gè",
+        "english": ""
+      },
+      {
+        "chinese": "是人人的誇好，個個稱強。",
+        "pinyin": "shì rén rén de kuā hǎo ， gè gè chēng qiáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "只是譚生心中，別有所屬，所以唱的雖好，也恨他不",
+        "pinyin": "zhǐ shì tán shēng xīn zhōng ， bié yǒu suǒ shǔ ， suǒ yǐ chàng de suī hǎo ， yě hèn tā bù",
+        "english": ""
+      },
+      {
+        "chinese": "一時散場，早些歸家。",
+        "pinyin": "yī shí sàn chǎng ， zǎo xiē guī jiā 。",
+        "english": ""
+      },
+      {
+        "chinese": "到了殺戲的時節，譚生擠在人空裏，一直送他到家，還覺",
+        "pinyin": "dào le shā xì de shí jié ， tán shēng jǐ zài rén kōng lǐ ， yī zhí sòng tā dào jiā ， hái jué",
+        "english": ""
+      },
+      {
+        "chinese": "餘興未盡，亦唯贊嘆而已。",
+        "pinyin": "yú xìng wèi jìn ， yì wéi zàn tàn ér yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "及歸到下處，飲了幾杯悶酒，用了幾杯悶茶，心即欲",
+        "pinyin": "jí guī dào xià chù ， yǐn le jǐ bēi mèn jiǔ ， yòng le jǐ bēi mèn chá ， xīn jí yù",
+        "english": ""
+      },
+      {
+        "chinese": "睡，那裏一時睡的著。",
+        "pinyin": "shuì ， nà lǐ yī shí shuì de zhuó 。",
+        "english": ""
+      },
+      {
+        "chinese": "這正所謂：「不見可好，不動所欲。",
+        "pinyin": "zhè zhèng suǒ wèi ： 「 bù jiàn kě hǎo ， bù dòng suǒ yù 。",
+        "english": ""
+      },
+      {
+        "chinese": "」遂自嘆云：「我自",
+        "pinyin": "」 suì zì tàn yún ： 「 wǒ zì",
+        "english": ""
+      },
+      {
+        "chinese": "遇劉藐姑，不覺神魂飛越。",
+        "pinyin": "yù liú miǎo gū ， bù jué shén hún fēi yuè 。",
+        "english": ""
+      },
+      {
+        "chinese": "此等尤物，不但近來罕有，只怕自古及今，也未曾生",
+        "pinyin": "cǐ děng yóu wù ， bù dàn jìn lái hǎn yǒu ， zhǐ pà zì gǔ jí jīn ， yě wèi céng shēng",
+        "english": ""
+      },
+      {
+        "chinese": "得幾個。",
+        "pinyin": "dé jǐ gè 。",
+        "english": ""
+      },
+      {
+        "chinese": "我是個種情人，怎肯交臂而失之？",
+        "pinyin": "wǒ shì gè zhǒng qíng rén ， zěn kěn jiāo bì ér shī zhī ？",
+        "english": ""
+      },
+      {
+        "chinese": "日間送他回去，認了所住的地方，又",
+        "pinyin": "rì jiān sòng tā huí qù ， rèn le suǒ zhù de dì fāng ， yòu",
+        "english": ""
+      },
+      {
+        "chinese": "訪問他鄰人，知道此女出身雖賤，志願頗高，學戲之事，也非其本念。",
+        "pinyin": "fǎng wèn tā lín rén ， zhī dào cǐ nǚ chū shēn suī jiàn ， zhì yuàn pō gāo ， xué xì zhī shì ， yě fēi qí běn niàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "若是遇了",
+        "pinyin": "ruò shì yù le",
+        "english": ""
+      },
+      {
+        "chinese": "小生，不怕不是個夫人之料。",
+        "pinyin": "xiǎo shēng ， bù pà bù shì gè fū rén zhī liào 。",
+        "english": ""
+      },
+      {
+        "chinese": "只是一件，聞得他的父母，雖然教他學戲，又防閑",
+        "pinyin": "zhǐ shì yī jiàn ， wén dé tā de fù mǔ ， suī rán jiào tā xué xì ， yòu fáng xián",
+        "english": ""
+      },
+      {
+        "chinese": "得極嚴，不是顧名節，單為蓄錢財。",
+        "pinyin": "dé jí yán ， bù shì gù míng jié ， dān wèi xù qián cái 。",
+        "english": ""
+      },
+      {
+        "chinese": "韞櫝而藏之心，正為待價而沽之地。",
+        "pinyin": "yùn dú ér cáng zhī xīn ， zhèng wèi dài jià ér gū zhī dì 。",
+        "english": ""
+      },
+      {
+        "chinese": "我也曾",
+        "pinyin": "wǒ yě céng",
+        "english": ""
+      },
+      {
+        "chinese": "千方百計，要想個進身之階，再沒有一條門路。",
+        "pinyin": "qiān fāng bǎi jì ， yào xiǎng gè jìn shēn zhī jiē ， zài méi yǒu yī tiáo mén lù 。",
+        "english": ""
+      },
+      {
+        "chinese": "止得一計可以進身，又嫌他是條",
+        "pinyin": "zhǐ dé yī jì kě yǐ jìn shēn ， yòu xián tā shì tiáo",
+        "english": ""
+      },
+      {
+        "chinese": "下策，非是我讀書人所為。",
+        "pinyin": "xià cè ， fēi shì wǒ dú shū rén suǒ wèi 。",
+        "english": ""
+      },
+      {
+        "chinese": "他門上貼著紙條，要招一名淨腳。",
+        "pinyin": "tā mén shàng tiē zhuó zhǐ tiáo ， yào zhāo yī míng jìng jiǎo 。",
+        "english": ""
+      },
+      {
+        "chinese": "若肯投入班中，與",
+        "pinyin": "ruò kěn tóu rù bān zhōng ， yǔ",
+        "english": ""
+      },
+      {
+        "chinese": "他一同學戲，那姻緣之事，就可以拿定九分了。",
+        "pinyin": "tā yī tóng xué xì ， nà yīn yuán zhī shì ， jiù kě yǐ ná dìng jiǔ fēn le 。",
+        "english": ""
+      },
+      {
+        "chinese": "只是這樁營業，豈是我們做得的！",
+        "pinyin": "zhǐ shì zhè zhuāng yíng yè ， qǐ shì wǒ mén zuò dé de ！",
+        "english": ""
+      },
+      {
+        "chinese": "輾轉久之，祇覺捨此別無可圖之機。",
+        "pinyin": "zhǎn zhuǎn jiǔ zhī ， zhǐ jué shě cǐ bié wú kě tú zhī jī 。",
+        "english": ""
+      },
+      {
+        "chinese": "「也罷，學戲之事，雖有妨於名教；",
+        "pinyin": "「 yě bà ， xué xì zhī shì ， suī yǒu fáng yú míng jiào ；",
+        "english": ""
+      },
+      {
+        "chinese": "情之語，昔見諒於前人，我如今說不得了。",
+        "pinyin": "qíng zhī yǔ ， xī jiàn liàng yú qián rén ， wǒ rú jīn shuō bù dé le 。",
+        "english": ""
+      },
+      {
+        "chinese": "且從入班去，或者戲還不曾學成，把",
+        "pinyin": "qiě cóng rù bān qù ， huò zhě xì hái bù céng xué chéng ， bǎ",
+        "english": ""
+      },
+      {
+        "chinese": "好事先弄上手。",
+        "pinyin": "hǎo shì xiān nòng shàng shǒu 。",
+        "english": ""
+      },
+      {
+        "chinese": "得了把柄，即使抽身，連花臉都不消塗得，也未可知。",
+        "pinyin": "dé le bǎ bǐng ， jí shǐ chōu shēn ， lián huā liǎn dōu bù xiāo tú dé ， yě wèi kě zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "」竟收拾",
+        "pinyin": "」 jìng shōu shí",
+        "english": ""
+      },
+      {
+        "chinese": "前去罷。",
+        "pinyin": "qián qù bà 。",
+        "english": ""
+      },
+      {
+        "chinese": "枳棘原非鳳所棲，求凰因使路途迷。",
+        "pinyin": "zhǐ jí yuán fēi fèng suǒ qī ， qiú huáng yīn shǐ lù tú mí 。",
+        "english": ""
+      },
+      {
+        "chinese": "生前結下姻緣債，借口賢人賦簡兮。",
+        "pinyin": "shēng qián jié xià yīn yuán zhài ， jiè kǒu xián rén fù jiǎn xī 。",
+        "english": ""
+      },
+      {
+        "chinese": "卻說劉文卿一向要合小班，只少一名淨腳。",
+        "pinyin": "què shuō liú wén qīng yī xiàng yào hé xiǎo bān ， zhǐ shǎo yī míng jìng jiǎo 。",
+        "english": ""
+      },
+      {
+        "chinese": "前日貼了招帖，也不見有人來應",
+        "pinyin": "qián rì tiē le zhāo tiě ， yě bù jiàn yǒu rén lái yīng",
+        "english": ""
+      },
+      {
+        "chinese": "允。",
+        "pinyin": "yǔn 。",
+        "english": ""
+      },
+      {
+        "chinese": "文卿與絳仙道：「我已約了一位名師，定於今日開館，等不的腳色齊備，先",
+        "pinyin": "wén qīng yǔ jiàng xiān dào ： 「 wǒ yǐ yuē le yī wèi míng shī ， dìng yú jīn rì kāi guǎn ， děng bù de jiǎo sè qí bèi ， xiān",
+        "english": ""
+      },
+      {
+        "chinese": "把有的教習起來。",
+        "pinyin": "bǎ yǒu de jiào xí qǐ lái 。",
+        "english": ""
+      },
+      {
+        "chinese": "等做淨的到了，補上也未遲。",
+        "pinyin": "děng zuò jìng de dào le ， bǔ shàng yě wèi chí 。",
+        "english": ""
+      },
+      {
+        "chinese": "叫孩子們把三牲祭禮，備辦起來。",
+        "pinyin": "jiào hái zǐ mén bǎ sān shēng jì lǐ ， bèi bàn qǐ lái 。",
+        "english": ""
+      },
+      {
+        "chinese": "等先生與眾人來了，好燒紙，我且在門首站之。",
+        "pinyin": "děng xiān shēng yǔ zhòng rén lái le ， hǎo shāo zhǐ ， wǒ qiě zài mén shǒu zhàn zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "」說罷，遂走出門來觀望，正值",
+        "pinyin": "」 shuō bà ， suì zǒu chū mén lái guān wàng ， zhèng zhí",
+        "english": ""
+      },
+      {
+        "chinese": "譚楚玉。",
+        "pinyin": "tán chǔ yù 。",
+        "english": ""
+      },
+      {
+        "chinese": "譚生上前拱手云：「此位就是劉師傅麼？",
+        "pinyin": "tán shēng shàng qián gǒng shǒu yún ： 「 cǐ wèi jiù shì liú shī fù me ？",
+        "english": ""
+      },
+      {
+        "chinese": "小生姓譚名楚玉。",
+        "pinyin": "xiǎo shēng xìng tán míng chǔ yù 。",
+        "english": ""
+      },
+      {
+        "chinese": "聞得府上新",
+        "pinyin": "wén dé fǔ shàng xīn",
+        "english": ""
+      },
+      {
+        "chinese": "合小班少一名淨腳，特來相投。",
+        "pinyin": "hé xiǎo bān shǎo yī míng jìng jiǎo ， tè lái xiāng tóu 。",
+        "english": ""
+      },
+      {
+        "chinese": "」文卿聽說，喜不自勝，答道：「怎麼，你是一",
+        "pinyin": "」 wén qīng tīng shuō ， xǐ bù zì shèng ， dá dào ： 「 zěn me ， nǐ shì yī",
+        "english": ""
+      },
+      {
+        "chinese": "位斯文朋友，竟肯來學戲？",
+        "pinyin": "wèi sī wén péng yǒu ， jìng kěn lái xué xì ？",
+        "english": ""
+      },
+      {
+        "chinese": "這等說，真小班之福也。",
+        "pinyin": "zhè děng shuō ， zhēn xiǎo bān zhī fú yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "既然如此，等眾人來了，一",
+        "pinyin": "jì rán rú cǐ ， děng zhòng rén lái le ， yī",
+        "english": ""
+      },
+      {
+        "chinese": "同開館就是了。",
+        "pinyin": "tóng kāi guǎn jiù shì le 。",
+        "english": ""
+      },
+      {
+        "chinese": "你且在裏邊請坐。",
+        "pinyin": "nǐ qiě zài lǐ biān qǐng zuò 。",
+        "english": ""
+      },
+      {
+        "chinese": "少頃，眾人俱到，大家見過了禮，師父也來了。",
+        "pinyin": "shǎo qǐng ， zhòng rén jù dào ， dà jiā jiàn guò le lǐ ， shī fù yě lái le 。",
+        "english": ""
+      },
+      {
+        "chinese": "文卿說：「叫孩子們，一面",
+        "pinyin": "wén qīng shuō ： 「 jiào hái zǐ mén ， yī miàn",
+        "english": ""
+      },
+      {
+        "chinese": "請姑娘出來，拜見師父；",
+        "pinyin": "qǐng gū niáng chū lái ， bài jiàn shī fù ；",
+        "english": ""
+      },
+      {
+        "chinese": "一面取三牲祭禮，好祭二郎神。",
+        "pinyin": "yī miàn qǔ sān shēng jì lǐ ， hǎo jì èr láng shén 。",
+        "english": ""
+      },
+      {
+        "chinese": "」譚生云：「甚麼叫做",
+        "pinyin": "」 tán shēng yún ： 「 shèn me jiào zuò",
+        "english": ""
+      },
+      {
+        "chinese": "二郎神？",
+        "pinyin": "èr láng shén ？",
+        "english": ""
+      },
+      {
+        "chinese": "」文卿說：「你不知道，凡有一教，就有一教的宗主。",
+        "pinyin": "」 wén qīng shuō ： 「 nǐ bù zhī dào ， fán yǒu yī jiào ， jiù yǒu yī jiào de zōng zhǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "二郎神是做戲的",
+        "pinyin": "èr láng shén shì zuò xì de",
+        "english": ""
+      },
+      {
+        "chinese": "祖宗，我們這位先師，極是靈顯的。",
+        "pinyin": "zǔ zōng ， wǒ mén zhè wèi xiān shī ， jí shì líng xiǎn de 。",
+        "english": ""
+      },
+      {
+        "chinese": "不像儒釋道的教主，都有囗眷，不記人的小",
+        "pinyin": "bù xiàng rú shì dào de jiào zhǔ ， dōu yǒu wéi juàn ， bù jì rén de xiǎo",
+        "english": ""
+      },
+      {
+        "chinese": "過。",
+        "pinyin": "guò 。",
+        "english": ""
+      },
+      {
+        "chinese": "凡是班內有些暗昧不明之事，他就會覺察出來。",
+        "pinyin": "fán shì bān nèi yǒu xiē àn mèi bù míng zhī shì ， tā jiù huì jué chá chū lái 。",
+        "english": ""
+      },
+      {
+        "chinese": "不是降災降禍，就是生病生",
+        "pinyin": "bù shì jiàng zāi jiàng huò ， jiù shì shēng bìng shēng",
+        "english": ""
+      },
+      {
+        "chinese": "瘡。",
+        "pinyin": "chuāng 。",
+        "english": ""
+      },
+      {
+        "chinese": "你都記在心中，切不可犯他的忌諱。",
+        "pinyin": "nǐ dōu jì zài xīn zhōng ， qiē bù kě fàn tā de jì huì 。",
+        "english": ""
+      },
+      {
+        "chinese": "」譚生說：「這等忌的是甚麼事？",
+        "pinyin": "」 tán shēng shuō ： 「 zhè děng jì de shì shèn me shì ？",
+        "english": ""
+      },
+      {
+        "chinese": "求師",
+        "pinyin": "qiú shī",
+        "english": ""
+      },
+      {
+        "chinese": "傅略道幾件。",
+        "pinyin": "fù lüè dào jǐ jiàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "」文卿云：「最忌的是同班之人，不守規矩，做那不端之事。",
+        "pinyin": "」 wén qīng yún ： 「 zuì jì de shì tóng bān zhī rén ， bù shǒu guī ju ， zuò nà bù duān zhī shì 。",
+        "english": ""
+      },
+      {
+        "chinese": "或是",
+        "pinyin": "huò shì",
+        "english": ""
+      },
+      {
+        "chinese": "以長戲幼，或是以男謔女，這是他極計較的。",
+        "pinyin": "yǐ cháng xì yòu ， huò shì yǐ nán xuè nǚ ， zhè shì tā jí jì jiào de 。",
+        "english": ""
+      },
+      {
+        "chinese": "」譚生聽了，心中想道：「這等說",
+        "pinyin": "」 tán shēng tīng le ， xīn zhōng xiǎng dào ： 「 zhè děng shuō",
+        "english": ""
+      },
+      {
+        "chinese": "起來，我的門路又走錯了。",
+        "pinyin": "qǐ lái ， wǒ de mén lù yòu zǒu cuò le 。",
+        "english": ""
+      },
+      {
+        "chinese": "如今來到這邊，又轉不去了，卻怎麼處？",
+        "pinyin": "rú jīn lái dào zhè biān ， yòu zhuǎn bù qù le ， què zěn me chù ？",
+        "english": ""
+      },
+      {
+        "chinese": "正在愁悶之際，見文卿從內領出藐姑來，說：「我兒，這是你師傅，朝上行",
+        "pinyin": "zhèng zài chóu mèn zhī jì ， jiàn wén qīng cóng nèi lǐng chū miǎo gū lái ， shuō ： 「 wǒ ér ， zhè shì nǐ shī fù ， cháo shàng xíng",
+        "english": ""
+      },
+      {
+        "chinese": "禮。",
+        "pinyin": "lǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "」又指著眾人說：「這是你同班兄弟，都過來見了。",
+        "pinyin": "」 yòu zhǐ zhuó zhòng rén shuō ： 「 zhè shì nǐ tóng bān xiōng dì ， dōu guò lái jiàn le 。",
+        "english": ""
+      },
+      {
+        "chinese": "」藐站一見譚生，不覺",
+        "pinyin": "」 miǎo zhàn yī jiàn tán shēng ， bù jué",
+        "english": ""
+      },
+      {
+        "chinese": "驚訝道：「這是一位書生，前日在路上遇見的，他怎麼也來學戲？",
+        "pinyin": "jīng yà dào ： 「 zhè shì yī wèi shū shēng ， qián rì zài lù shàng yù jiàn de ， tā zěn me yě lái xué xì ？",
+        "english": ""
+      },
+      {
+        "chinese": "詎非足件異事。",
+        "pinyin": "jù fēi zú jiàn yì shì 。",
+        "english": ""
+      },
+      {
+        "chinese": "既而見楚玉，不時將他暗窺，遂恍然大悟道：「哦，我知道了。",
+        "pinyin": "jì ér jiàn chǔ yù ， bù shí jiāng tā àn kuī ， suì huǎng rán dà wù dào ： 「 ò ， wǒ zhī dào le 。",
+        "english": ""
+      },
+      {
+        "chinese": "雖是如此，只因",
+        "pinyin": "suī shì rú cǐ ， zhǐ yīn",
+        "english": ""
+      },
+      {
+        "chinese": "奴家一人，遂將這辱身賤行之事，不惜躬親。",
+        "pinyin": "nú jiā yī rén ， suì jiāng zhè rǔ shēn jiàn xíng zhī shì ， bù xī gōng qīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "叫奴家心中，如何承當的起。",
+        "pinyin": "jiào nú jiā xīn zhōng ， rú hé chéng dāng de qǐ 。",
+        "english": ""
+      }
+    ]
+  },
+  {
+    "id": "the_scholars_ch_3",
+    "bookId": "the_scholars",
+    "chapterIndex": 3,
+    "title": "第三回",
+    "titleEn": "Chapter 3: 第三回",
+    "sentences": [
+      {
+        "chinese": "定姻緣曲詞傳簡　改正生戲房調情",
+        "pinyin": "dìng yīn yuán qǔ cí chuán jiǎn 　 gǎi zhèng shēng xì fáng tiáo qíng",
+        "english": ""
+      },
+      {
+        "chinese": "藐姑思念楚玉，自是不必說的了。",
+        "pinyin": "miǎo gū sī niàn chǔ yù ， zì shì bù bì shuō de le 。",
+        "english": ""
+      },
+      {
+        "chinese": "楚玉也自想道：「我為著劉藐姑，不但把",
+        "pinyin": "chǔ yù yě zì xiǎng dào ： 「 wǒ wèi zhuó liú miǎo gū ， bù dàn bǎ",
+        "english": ""
+      },
+      {
+        "chinese": "功名富貴丟過一邊，並棄終身的名節。",
+        "pinyin": "gōng míng fù guì diū guò yī biān ， bìng qì zhōng shēn de míng jié 。",
+        "english": ""
+      },
+      {
+        "chinese": "只道入班之後，就與至親骨肉一般，內外",
+        "pinyin": "zhǐ dào rù bān zhī hòu ， jiù yǔ zhì qīn gǔ ròu yī bān ， nèi wài",
+        "english": ""
+      },
+      {
+        "chinese": "也可以不分，嫌也可以不避，誰想戲房裏面的規矩，更比人家不同。",
+        "pinyin": "yě kě yǐ bù fēn ， xián yě kě yǐ bù bì ， shuí xiǎng xì fáng lǐ miàn de guī ju ， gèng bǐ rén jiā bù tóng 。",
+        "english": ""
+      },
+      {
+        "chinese": "極渾雜之中，",
+        "pinyin": "jí hún zá zhī zhōng ，",
+        "english": ""
+      },
+      {
+        "chinese": "又有極分別去處。",
+        "pinyin": "yòu yǒu jí fēn bié qù chù 。",
+        "english": ""
+      },
+      {
+        "chinese": "但凡做女旦的，普天下之人，都可以調戲的，獨有同班弟兄，",
+        "pinyin": "dàn fán zuò nǚ dàn de ， pǔ tiān xià zhī rén ， dōu kě yǐ tiáo xì de ， dú yǒu tóng bān dì xiōng ，",
+        "english": ""
+      },
+      {
+        "chinese": "倒調戲不得。",
+        "pinyin": "dǎo tiáo xì bù dé 。",
+        "english": ""
+      },
+      {
+        "chinese": "這個陋習，不知甚麼人創起。",
+        "pinyin": "zhè gè lòu xí ， bù zhī shèn me rén chuàng qǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "又說有個二郎神，單管這些閑事，一",
+        "pinyin": "yòu shuō yǒu gè èr láng shén ， dān guǎn zhè xiē xián shì ， yī",
+        "english": ""
+      },
+      {
+        "chinese": "發荒唐可笑。",
+        "pinyin": "fā huāng táng kě xiào 。",
+        "english": ""
+      },
+      {
+        "chinese": "所以這學戲裏面，不但有先生拘束，父母提防，連那同班的人，都",
+        "pinyin": "suǒ yǐ zhè xué xì lǐ miàn ， bù dàn yǒu xiān shēng jū shù ， fù mǔ dī fáng ， lián nà tóng bān de rén ， dōu",
+        "english": ""
+      },
+      {
+        "chinese": "要互相稽察。",
+        "pinyin": "yào hù xiāng jī chá 。",
+        "english": ""
+      },
+      {
+        "chinese": "小生入班一月，莫說別樣的事難行，就是寒暄，也不曾敘得一句。",
+        "pinyin": "xiǎo shēng rù bān yī yuè ， mò shuō bié yàng de shì nán xíng ， jiù shì hán xuān ， yě bù céng xù dé yī jù 。",
+        "english": ""
+      },
+      {
+        "chinese": "只好借眉眼傳情，規模示意罷了。",
+        "pinyin": "zhǐ hǎo jiè méi yǎn chuán qíng ， guī mó shì yì bà le 。",
+        "english": ""
+      },
+      {
+        "chinese": "這刻刻相見的想思，更比那不見面的難害。",
+        "pinyin": "zhè kè kè xiāng jiàn de xiǎng sī ， gèng bǐ nà bù jiàn miàn de nán hài 。",
+        "english": ""
+      },
+      {
+        "chinese": "且說這班人，除譚生之外，俱是本處後生，凡兩餐與夜間俱各回家，惟有楚",
+        "pinyin": "qiě shuō zhè bān rén ， chú tán shēng zhī wài ， jù shì běn chù hòu shēng ， fán liǎng cān yǔ yè jiān jù gè huí jiā ， wéi yǒu chǔ",
+        "english": ""
+      },
+      {
+        "chinese": "玉自從入班之後，晝夜俱在館內。",
+        "pinyin": "yù zì cóng rù bān zhī hòu ， zhòu yè jù zài guǎn nèi 。",
+        "english": ""
+      },
+      {
+        "chinese": "楚玉與藐姑，雖是面目相關，其實話也不曾說。",
+        "pinyin": "chǔ yù yǔ miǎo gū ， suī shì miàn mù xiāng guān ， qí shí huà yě bù céng shuō 。",
+        "english": ""
+      },
+      {
+        "chinese": "一日早飯後，藐姑到了館內，恰值別的俱各未來，惟有楚玉一身。",
+        "pinyin": "yī rì zǎo fàn hòu ， miǎo gū dào le guǎn nèi ， qià zhí bié de jù gè wèi lái ， wéi yǒu chǔ yù yī shēn 。",
+        "english": ""
+      },
+      {
+        "chinese": "楚玉一見，又",
+        "pinyin": "chǔ yù yī jiàn ， yòu",
+        "english": ""
+      },
+      {
+        "chinese": "喜又懼。",
+        "pinyin": "xǐ yòu jù 。",
+        "english": ""
+      },
+      {
+        "chinese": "迎著藐姑道：「這可怎麼樣呢？",
+        "pinyin": "yíng zhuó miǎo gū dào ： 「 zhè kě zěn me yàng ne ？",
+        "english": ""
+      },
+      {
+        "chinese": "」藐姑捏著楚玉的手，楚玉也攀著藐姑",
+        "pinyin": "」 miǎo gū niē zhuó chǔ yù de shǒu ， chǔ yù yě pān zhuó miǎo gū",
+        "english": ""
+      },
+      {
+        "chinese": "的臂，雖是兩口相親，卻無一言相對，正合著古語二句：「滿懷盡是心腹事，及",
+        "pinyin": "de bì ， suī shì liǎng kǒu xiāng qīn ， què wú yī yán xiāng duì ， zhèng hé zhuó gǔ yǔ èr jù ： 「 mǎn huái jìn shì xīn fù shì ， jí",
+        "english": ""
+      },
+      {
+        "chinese": "至相逢半句無。",
+        "pinyin": "zhì xiāng féng bàn jù wú 。",
+        "english": ""
+      },
+      {
+        "chinese": "」藐姑道：「這屋後有閑房半間，雖是茸茅不堪，卻是人跡罕到。",
+        "pinyin": "」 miǎo gū dào ： 「 zhè wū hòu yǒu xián fáng bàn jiān ， suī shì róng máo bù kān ， què shì rén jì hǎn dào 。",
+        "english": ""
+      },
+      {
+        "chinese": "你我到彼，略償素願何如？",
+        "pinyin": "nǐ wǒ dào bǐ ， lüè cháng sù yuàn hé rú ？",
+        "english": ""
+      },
+      {
+        "chinese": "」楚玉說：「如此最好。",
+        "pinyin": "」 chǔ yù shuō ： 「 rú cǐ zuì hǎo 。",
+        "english": ""
+      },
+      {
+        "chinese": "二人足方出門，忽聞戶外有人進來，遂各慌忙上位。",
+        "pinyin": "èr rén zú fāng chū mén ， hū wén hù wài yǒu rén jìn lái ， suì gè huāng máng shàng wèi 。",
+        "english": ""
+      },
+      {
+        "chinese": "藐姑桃腮添朱，楚玉手",
+        "pinyin": "miǎo gū táo sāi tiān zhū ， chǔ yù shǒu",
+        "english": ""
+      },
+      {
+        "chinese": "足無措。",
+        "pinyin": "zú wú cuò 。",
+        "english": ""
+      },
+      {
+        "chinese": "畢竟是個小小的丑兒，那些事全然未曉，所以不曾看出馬腳。",
+        "pinyin": "bì jìng shì gè xiǎo xiǎo de chǒu ér ， nà xiē shì quán rán wèi xiǎo ， suǒ yǐ bù céng kàn chū mǎ jiǎo 。",
+        "english": ""
+      },
+      {
+        "chinese": "一步三趨，",
+        "pinyin": "yī bù sān qū ，",
+        "english": ""
+      },
+      {
+        "chinese": "進門來道：「噯喲！",
+        "pinyin": "jìn mén lái dào ： 「 ài yō ！",
+        "english": ""
+      },
+      {
+        "chinese": "我說我來早，還有早行人。",
+        "pinyin": "wǒ shuō wǒ lái zǎo ， hái yǒu zǎo xíng rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "咱三個趁之師父未到，想個法兒",
+        "pinyin": "zán sān gè chèn zhī shī fù wèi dào ， xiǎng gè fǎ ér",
+        "english": ""
+      },
+      {
+        "chinese": "玩玩罷。",
+        "pinyin": "wán wán bà 。",
+        "english": ""
+      },
+      {
+        "chinese": "若師父來，又要受他的拘束了。",
+        "pinyin": "ruò shī fù lái ， yòu yào shòu tā de jū shù le 。",
+        "english": ""
+      },
+      {
+        "chinese": "」藐姑道：「做麼玩呢？",
+        "pinyin": "」 miǎo gū dào ： 「 zuò me wán ne ？",
+        "english": ""
+      },
+      {
+        "chinese": "」丑說：「背",
+        "pinyin": "」 chǒu shuō ： 「 bēi",
+        "english": ""
+      },
+      {
+        "chinese": "趟趟罷。",
+        "pinyin": "tàng tàng bà 。",
+        "english": ""
+      },
+      {
+        "chinese": "」楚玉有些不肯，藐姑以目視之，楚玉道：「如此妙極！",
+        "pinyin": "」 chǔ yù yǒu xiē bù kěn ， miǎo gū yǐ mù shì zhī ， chǔ yù dào ： 「 rú cǐ miào jí ！",
+        "english": ""
+      },
+      {
+        "chinese": "誰先背誰呢？",
+        "pinyin": "shuí xiān bēi shuí ne ？",
+        "english": ""
+      },
+      {
+        "chinese": "丑說：「你先背我。",
+        "pinyin": "chǒu shuō ： 「 nǐ xiān bēi wǒ 。",
+        "english": ""
+      },
+      {
+        "chinese": "」楚玉道：「你先背我。",
+        "pinyin": "」 chǔ yù dào ： 「 nǐ xiān bēi wǒ 。",
+        "english": ""
+      },
+      {
+        "chinese": "」二人爭論不已。",
+        "pinyin": "」 èr rén zhēng lùn bù yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "藐姑道：「你二人各先背我一趟，我再各背你們一趟，就均勻了。",
+        "pinyin": "miǎo gū dào ： 「 nǐ èr rén gè xiān bēi wǒ yī tàng ， wǒ zài gè bēi nǐ mén yī tàng ， jiù jūn yún le 。",
+        "english": ""
+      },
+      {
+        "chinese": "」藐姑心",
+        "pinyin": "」 miǎo gū xīn",
+        "english": ""
+      },
+      {
+        "chinese": "裏雖是立意要佔他們的便宜，其實還別有所思，小丑那裏知道。",
+        "pinyin": "lǐ suī shì lì yì yào zhàn tā mén de pián yi ， qí shí hái bié yǒu suǒ sī ， xiǎo chǒu nà lǐ zhī dào 。",
+        "english": ""
+      },
+      {
+        "chinese": "遂推楚玉說：「你",
+        "pinyin": "suì tuī chǔ yù shuō ： 「 nǐ",
+        "english": ""
+      },
+      {
+        "chinese": "先背他。",
+        "pinyin": "xiān bēi tā 。",
+        "english": ""
+      },
+      {
+        "chinese": "」楚玉說：「你先背他。",
+        "pinyin": "」 chǔ yù shuō ： 「 nǐ xiān bēi tā 。",
+        "english": ""
+      },
+      {
+        "chinese": "」藐姑道：「論長幼，該譚兄先背我。",
+        "pinyin": "」 miǎo gū dào ： 「 lùn cháng yòu ， gāi tán xiōng xiān bēi wǒ 。",
+        "english": ""
+      },
+      {
+        "chinese": "」楚玉",
+        "pinyin": "」 chǔ yù",
+        "english": ""
+      },
+      {
+        "chinese": "說：「如此，你就上在西頭椅子上，我背到你東頭，回來還送在你椅子上，就算",
+        "pinyin": "shuō ： 「 rú cǐ ， nǐ jiù shàng zài xī tóu yǐ zǐ shàng ， wǒ bēi dào nǐ dōng tóu ， huí lái hái sòng zài nǐ yǐ zǐ shàng ， jiù suàn",
+        "english": ""
+      },
+      {
+        "chinese": "一趟。",
+        "pinyin": "yī tàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "」丑說：「我也是如此，叫我多背一步也不能。",
+        "pinyin": "」 chǒu shuō ： 「 wǒ yě shì rú cǐ ， jiào wǒ duō bēi yī bù yě bù néng 。",
+        "english": ""
+      },
+      {
+        "chinese": "」藐姑遂將一雙小小的金",
+        "pinyin": "」 miǎo gū suì jiāng yī shuāng xiǎo xiǎo de jīn",
+        "english": ""
+      },
+      {
+        "chinese": "蓮撓起，又把兩支摻摻的柔荑，搭在楚玉的膀臂上。",
+        "pinyin": "lián náo qǐ ， yòu bǎ liǎng zhī chān chān de róu yí ， dā zài chǔ yù de bǎng bì shàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "先摸他嘴，繼摸他喉。",
+        "pinyin": "xiān mō tā zuǐ ， jì mō tā hóu 。",
+        "english": ""
+      },
+      {
+        "chinese": "楚玉",
+        "pinyin": "chǔ yù",
+        "english": ""
+      },
+      {
+        "chinese": "遂笑不能止，丑亦歡天呼地。",
+        "pinyin": "suì xiào bù néng zhǐ ， chǒu yì huān tiān hū dì 。",
+        "english": ""
+      },
+      {
+        "chinese": "那楚玉的兩手，在藐姑臀下，亦自不必說了。",
+        "pinyin": "nà chǔ yù de liǎng shǒu ， zài miǎo gū tún xià ， yì zì bù bì shuō le 。",
+        "english": ""
+      },
+      {
+        "chinese": "誰想到東頭，尚未及轉身，先生來了。",
+        "pinyin": "shuí xiǎng dào dōng tóu ， shàng wèi jí zhuǎn shēn ， xiān shēng lái le 。",
+        "english": ""
+      },
+      {
+        "chinese": "聞的館內呼喚不相，遂咳嗽了一聲。",
+        "pinyin": "wén de guǎn nèi hū huàn bù xiāng ， suì ké sòu le yī shēng 。",
+        "english": ""
+      },
+      {
+        "chinese": "他三人就像迷窩的老鼠一般，各自尋位坐定。",
+        "pinyin": "tā sān rén jiù xiàng mí wō de lǎo shǔ yī bān ， gè zì xún wèi zuò dìng 。",
+        "english": ""
+      },
+      {
+        "chinese": "先生進來道：「你三個為何這等的",
+        "pinyin": "xiān shēng jìn lái dào ： 「 nǐ sān gè wèi hé zhè děng de",
+        "english": ""
+      },
+      {
+        "chinese": "喧嘩？",
+        "pinyin": "xuān huá ？",
+        "english": ""
+      },
+      {
+        "chinese": "快些與我說來！",
+        "pinyin": "kuài xiē yǔ wǒ shuō lái ！",
+        "english": ""
+      },
+      {
+        "chinese": "」小丑說：「我三個在這裏念的是腳本，並沒胡鬧。",
+        "pinyin": "」 xiǎo chǒu shuō ： 「 wǒ sān gè zài zhè lǐ niàn de shì jiǎo běn ， bìng méi hú nào 。",
+        "english": ""
+      },
+      {
+        "chinese": "」先",
+        "pinyin": "」 xiān",
+        "english": ""
+      },
+      {
+        "chinese": "生道：「且自由你，待明日背不會腳本，我再與你們算賬！",
+        "pinyin": "shēng dào ： 「 qiě zì yóu nǐ ， dài míng rì bēi bù huì jiǎo běn ， wǒ zài yǔ nǐ mén suàn zhàng ！",
+        "english": ""
+      },
+      {
+        "chinese": "」自此以後，任他兩",
+        "pinyin": "」 zì cǐ yǐ hòu ， rèn tā liǎng",
+        "english": ""
+      },
+      {
+        "chinese": "個欲火熾盛，聽的先生咳嗽一聲，就如倒傾北海的一般，將那火兒滅的乾乾淨淨。",
+        "pinyin": "gè yù huǒ chì shèng ， tīng de xiān shēng ké sòu yī shēng ， jiù rú dǎo qīng běi hǎi de yī bān ， jiāng nà huǒ ér miè de qián qián jìng jìng 。",
+        "english": ""
+      },
+      {
+        "chinese": "所以將近三月，並不從相續片時。",
+        "pinyin": "suǒ yǐ jiāng jìn sān yuè ， bìng bù cóng xiāng xù piàn shí 。",
+        "english": ""
+      },
+      {
+        "chinese": "楚玉想道：「我如今沒奈何，只得把入班的苦心，求婚的私意，寫下一封密",
+        "pinyin": "chǔ yù xiǎng dào ： 「 wǒ rú jīn méi nài hé ， zhǐ dé bǎ rù bān de kǔ xīn ， qiú hūn de sī yì ， xiě xià yī fēng mì",
+        "english": ""
+      },
+      {
+        "chinese": "札，團作一個紙團。",
+        "pinyin": "zhá ， tuán zuò yī gè zhǐ tuán 。",
+        "english": ""
+      },
+      {
+        "chinese": "等到念腳本的時節，趁著眾人不見，丟在他懷裏去。",
+        "pinyin": "děng dào niàn jiǎo běn de shí jié ， chèn zhuó zhòng rén bù jiàn ， diū zài tā huái lǐ qù 。",
+        "english": ""
+      },
+      {
+        "chinese": "他看見",
+        "pinyin": "tā kàn jiàn",
+        "english": ""
+      },
+      {
+        "chinese": "了，自然有個回音。",
+        "pinyin": "le ， zì rán yǒu gè huí yīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "只是一件，萬一被眾人拾了，卻怎麼處！",
+        "pinyin": "zhǐ shì yī jiàn ， wàn yī bèi zhòng rén shí le ， què zěn me chù ！",
+        "english": ""
+      },
+      {
+        "chinese": "也罷，我有道理，",
+        "pinyin": "yě bà ， wǒ yǒu dào lǐ ，",
+        "english": ""
+      },
+      {
+        "chinese": "這一班蠢才，字雖識得幾個，都是不通文理的。",
+        "pinyin": "zhè yī bān chǔn cái ， zì suī shí dé jǐ gè ， dōu shì bù tōng wén lǐ de 。",
+        "english": ""
+      },
+      {
+        "chinese": "我如今把書中的詞意，放深奧些，",
+        "pinyin": "wǒ rú jīn bǎ shū zhōng de cí yì ， fàng shēn ào xiē ，",
+        "english": ""
+      },
+      {
+        "chinese": "多寫幾個難字在裏面，莫說眾人看見全然不解，就是拿住真贓，送與他的父母，",
+        "pinyin": "duō xiě jǐ gè nán zì zài lǐ miàn ， mò shuō zhòng rén kàn jiàn quán rán bù jiě ， jiù shì ná zhù zhēn zāng ， sòng yǔ tā de fù mǔ ，",
+        "english": ""
+      },
+      {
+        "chinese": "只怕也尋不出破綻來。",
+        "pinyin": "zhǐ pà yě xún bù chū pò zhàn lái 。",
+        "english": ""
+      },
+      {
+        "chinese": "我想有心學戲，自然該學做正生。",
+        "pinyin": "wǒ xiǎng yǒu xīn xué xì ， zì rán gāi xué zuò zhèng shēng 。",
+        "english": ""
+      },
+      {
+        "chinese": "一來冠裳齊整，還有些",
+        "pinyin": "yī lái guàn cháng qí zhěng ， hái yǒu xiē",
+        "english": ""
+      },
+      {
+        "chinese": "儒者氣象；",
+        "pinyin": "rú zhě qì xiàng ；",
+        "english": ""
+      },
+      {
+        "chinese": "二者就使前世無緣，不能與他配合，也在戲臺上面，借題說法，兩下",
+        "pinyin": "èr zhě jiù shǐ qián shì wú yuán ， bù néng yǔ tā pèi hé ， yě zài xì tái shàng miàn ， jiè tí shuō fǎ ， liǎng xià",
+        "english": ""
+      },
+      {
+        "chinese": "裏訴訴衷腸。",
+        "pinyin": "lǐ sù sù zhōng cháng 。",
+        "english": ""
+      },
+      {
+        "chinese": "我叫一聲『妻』，他叫一聲『夫』，應破了這場春夢也是好的。",
+        "pinyin": "wǒ jiào yī shēng 『 qī 』 ， tā jiào yī shēng 『 fū 』 ， yīng pò le zhè chǎng chūn mèng yě shì hǎo de 。",
+        "english": ""
+      },
+      {
+        "chinese": "可恨腳色定了，改換不得。",
+        "pinyin": "kě hèn jiǎo sè dìng le ， gǎi huàn bù dé 。",
+        "english": ""
+      },
+      {
+        "chinese": "我今把這個意思也寫在上面，求在他令尊面前，說個",
+        "pinyin": "wǒ jīn bǎ zhè gè yì sī yě xiě zài shàng miàn ， qiú zài tā lìng zūn miàn qián ， shuō gè",
+        "english": ""
+      },
+      {
+        "chinese": "方便，把我改做正生，或者邀天之幸，依了他也不可知。",
+        "pinyin": "fāng biàn ， bǎ wǒ gǎi zuò zhèng shēng ， huò zhě yāo tiān zhī xìng ， yī le tā yě bù kě zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "將書縮做丸，不但傳幽秘。",
+        "pinyin": "jiāng shū suō zuò wán ， bù dàn chuán yōu mì 。",
+        "english": ""
+      },
+      {
+        "chinese": "聊當結同心，稍示團圓意。",
+        "pinyin": "liáo dāng jié tóng xīn ， shāo shì tuán yuán yì 。",
+        "english": ""
+      },
+      {
+        "chinese": "到了次日飯後，一班俱到。",
+        "pinyin": "dào le cì rì fàn hòu ， yī bān jù dào 。",
+        "english": ""
+      },
+      {
+        "chinese": "生對眾人說：「我們這一班兄弟，學了個把月戲",
+        "pinyin": "shēng duì zhòng rén shuō ： 「 wǒ mén zhè yī bān xiōng dì ， xué le gè bǎ yuè xì",
+        "english": ""
+      },
+      {
+        "chinese": "文，還不曾會得一兩本。",
+        "pinyin": "wén ， hái bù céng huì dé yī liǎng běn 。",
+        "english": ""
+      },
+      {
+        "chinese": "誰想做旦的劉藐姑，與做淨的譚楚玉，他兩個記性極好。",
+        "pinyin": "shuí xiǎng zuò dàn de liú miǎo gū ， yǔ zuò jìng de tán chǔ yù ， tā liǎng gè jì xìng jí hǎo 。",
+        "english": ""
+      },
+      {
+        "chinese": "如今念熟了許多，我們只是趕他不上。",
+        "pinyin": "rú jīn niàn shú le xǔ duō ， wǒ mén zhǐ shì gǎn tā bù shàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "師父昨日說，今日要考較我們，大家都要",
+        "pinyin": "shī fù zuó rì shuō ， jīn rì yào kǎo jiào wǒ mén ， dà jiā dōu yào",
+        "english": ""
+      },
+      {
+        "chinese": "仔細。",
+        "pinyin": "zǐ xì 。",
+        "english": ""
+      },
+      {
+        "chinese": "」丑說：「都是淨、旦兩個不好，他倆個要賣弄聰明，故此顯得我們不濟。",
+        "pinyin": "」 chǒu shuō ： 「 dōu shì jìng 、 dàn liǎng gè bù hǎo ， tā liǎng gè yào mài nòng cōng míng ， gù cǐ xiǎn dé wǒ mén bù jì 。",
+        "english": ""
+      },
+      {
+        "chinese": "藐姑是師父的女兒，不好打他，小譚那個畜生，斷然放他不過。",
+        "pinyin": "miǎo gū shì shī fù de nǚ ér ， bù hǎo dǎ tā ， xiǎo tán nà gè chù shēng ， duàn rán fàng tā bù guò 。",
+        "english": ""
+      },
+      {
+        "chinese": "我今日不受打便",
+        "pinyin": "wǒ jīn rì bù shòu dǎ biàn",
+        "english": ""
+      },
+      {
+        "chinese": "罷，若受了打，定要拿他出氣。",
+        "pinyin": "bà ， ruò shòu le dǎ ， dìng yào ná tā chū qì 。",
+        "english": ""
+      },
+      {
+        "chinese": "」生說：「別樣也還可恕，最惱他戴了方巾，要",
+        "pinyin": "」 shēng shuō ： 「 bié yàng yě hái kě shù ， zuì nǎo tā dài le fāng jīn ， yào",
+        "english": ""
+      },
+      {
+        "chinese": "充個斯文的模樣。",
+        "pinyin": "chōng gè sī wén de mú yàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "我和你一齊動手，定要扯他的下來。",
+        "pinyin": "wǒ hé nǐ yī qí dòng shǒu ， dìng yào chě tā de xià lái 。",
+        "english": ""
+      },
+      {
+        "chinese": "師父來了，我們各人上位。",
+        "pinyin": "shī fù lái le ， wǒ mén gè rén shàng wèi 。",
+        "english": ""
+      },
+      {
+        "chinese": "正說之間，先生來了。",
+        "pinyin": "zhèng shuō zhī jiān ， xiān shēng lái le 。",
+        "english": ""
+      },
+      {
+        "chinese": "說道：「你們把念的腳本，都拿上來，待我提你一提，",
+        "pinyin": "shuō dào ： 「 nǐ mén bǎ niàn de jiǎo běn ， dōu ná shàng lái ， dài wǒ tí nǐ yī tí ，",
+        "english": ""
+      },
+      {
+        "chinese": "提一句，就要背到底。",
+        "pinyin": "tí yī jù ， jiù yào bēi dào dǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "背得出就罷，背不出的，都要重打。",
+        "pinyin": "bēi dé chū jiù bà ， bēi bù chū de ， dōu yào zhòng dǎ 。",
+        "english": ""
+      },
+      {
+        "chinese": "」藐姑與楚玉是昨日",
+        "pinyin": "」 miǎo gū yǔ chǔ yù shì zuó rì",
+        "english": ""
+      },
+      {
+        "chinese": "背過的了。",
+        "pinyin": "bēi guò de le 。",
+        "english": ""
+      },
+      {
+        "chinese": "叫末說：「拿你的來。",
+        "pinyin": "jiào mò shuō ： 「 ná nǐ de lái 。",
+        "english": ""
+      },
+      {
+        "chinese": "」末說：「學生只念得一本。",
+        "pinyin": "」 mò shuō ： 「 xué shēng zhǐ niàn dé yī běn 。",
+        "english": ""
+      },
+      {
+        "chinese": "」先生說：「他",
+        "pinyin": "」 xiān shēng shuō ： 「 tā",
+        "english": ""
+      },
+      {
+        "chinese": "們極不濟的，也有兩本，你只得一本，這等且拿來。",
+        "pinyin": "mén jí bù jì de ， yě yǒu liǎng běn ， nǐ zhǐ dé yī běn ， zhè děng qiě ná lái 。",
+        "english": ""
+      },
+      {
+        "chinese": "『提云風塵暗四郊』這是那",
+        "pinyin": "『 tí yún fēng chén àn sì jiāo 』 zhè shì nà",
+        "english": ""
+      },
+      {
+        "chinese": "一本上的。",
+        "pinyin": "yī běn shàng de 。",
+        "english": ""
+      },
+      {
+        "chinese": "」答云：「這是《紅拂記》上的牌名，叫做節節高。",
+        "pinyin": "」 dá yún ： 「 zhè shì 《 hóng fú jì 》 shàng de pái míng ， jiào zuò jié jié gāo 。",
+        "english": ""
+      },
+      {
+        "chinese": "」先生說：「且",
+        "pinyin": "」 xiān shēng shuō ： 「 qiě",
+        "english": ""
+      },
+      {
+        "chinese": "饒你，下次務期多念幾本。",
+        "pinyin": "ráo nǐ ， xià cì wù qī duō niàn jǐ běn 。",
+        "english": ""
+      },
+      {
+        "chinese": "」又叫淨云：「拿你的來。",
+        "pinyin": "」 yòu jiào jìng yún ： 「 ná nǐ de lái 。",
+        "english": ""
+      },
+      {
+        "chinese": "」淨答云：「我的極熟，",
+        "pinyin": "」 jìng dá yún ： 「 wǒ de jí shú ，",
+        "english": ""
+      },
+      {
+        "chinese": "不用背罷。",
+        "pinyin": "bù yòng bēi bà 。",
+        "english": ""
+      },
+      {
+        "chinese": "」先生云：「胡說，快拿來。",
+        "pinyin": "」 xiān shēng yún ： 「 hú shuō ， kuài ná lái 。",
+        "english": ""
+      },
+      {
+        "chinese": "」淨暗叫楚玉說：「我若背不出，煩你",
+        "pinyin": "」 jìng àn jiào chǔ yù shuō ： 「 wǒ ruò bēi bù chū ， fán nǐ",
+        "english": ""
+      },
+      {
+        "chinese": "提一提，我有酬謝你的去處。",
+        "pinyin": "tí yī tí ， wǒ yǒu chóu xiè nǐ de qù chù 。",
+        "english": ""
+      },
+      {
+        "chinese": "」小丑方纔說：「都是你賣弄聰明，顯得他不濟，",
+        "pinyin": "」 xiǎo chǒu fāng cái shuō ： 「 dōu shì nǐ mài nòng cōng míng ， xiǎn dé tā bù jì ，",
+        "english": ""
+      },
+      {
+        "chinese": "要拿你出氣哩！",
+        "pinyin": "yào ná nǐ chū qì li ！",
+        "english": ""
+      },
+      {
+        "chinese": "你若肯提我，我就幫你打他﹔你若不肯，我就幫他打你。",
+        "pinyin": "nǐ ruò kěn tí wǒ ， wǒ jiù bāng nǐ dǎ tā ﹔ nǐ ruò bù kěn ， wǒ jiù bāng tā dǎ nǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "」楚玉",
+        "pinyin": "」 chǔ yù",
+        "english": ""
+      },
+      {
+        "chinese": "說：「你放心去背，我提你就是了。",
+        "pinyin": "shuō ： 「 nǐ fàng xīn qù bēi ， wǒ tí nǐ jiù shì le 。",
+        "english": ""
+      },
+      {
+        "chinese": "」先生提云：「寄命托孤經，史載。",
+        "pinyin": "」 xiān shēng tí yún ： 「 jì mìng tuō gū jīng ， shǐ zài 。",
+        "english": ""
+      },
+      {
+        "chinese": "」楚玉",
+        "pinyin": "」 chǔ yù",
+        "english": ""
+      },
+      {
+        "chinese": "低聲對丑云：「這是《金丸記》上的牌名，叫做三學士。",
+        "pinyin": "dī shēng duì chǒu yún ： 「 zhè shì 《 jīn wán jì 》 shàng de pái míng ， jiào zuò sān xué shì 。",
+        "english": ""
+      },
+      {
+        "chinese": "」丑遂高聲背下。",
+        "pinyin": "」 chǒu suì gāo shēng bēi xià 。",
+        "english": ""
+      },
+      {
+        "chinese": "師父",
+        "pinyin": "shī fù",
+        "english": ""
+      },
+      {
+        "chinese": "又叫正生說：「拿你的來背。",
+        "pinyin": "yòu jiào zhèng shēng shuō ： 「 ná nǐ de lái bēi 。",
+        "english": ""
+      },
+      {
+        "chinese": "」正生說：「他央人提得，我難道央人提不得麼？",
+        "pinyin": "」 zhèng shēng shuō ： 「 tā yāng rén tí dé ， wǒ nán dào yāng rén tí bù dé me ？",
+        "english": ""
+      },
+      {
+        "chinese": "藐姑於我坐在一處，不免央她。",
+        "pinyin": "miǎo gū yú wǒ zuò zài yī chù ， bù miǎn yāng tā 。",
+        "english": ""
+      },
+      {
+        "chinese": "」對藐姑說：「好姐姐，央你提一提，我明日買",
+        "pinyin": "」 duì miǎo gū shuō ： 「 hǎo jiě jiě ， yāng nǐ tí yī tí ， wǒ míng rì mǎi",
+        "english": ""
+      }
+    ]
+  },
+  {
+    "id": "the_scholars_ch_4",
+    "bookId": "the_scholars",
+    "chapterIndex": 4,
+    "title": "第四回",
+    "titleEn": "Chapter 4: 第四回",
+    "sentences": [
+      {
+        "chinese": "一鄉人共尊萬貫　用千金強圖藐姑",
+        "pinyin": "yī xiāng rén gòng zūn wàn guàn 　 yòng qiān jīn qiáng tú miǎo gū",
+        "english": ""
+      },
+      {
+        "chinese": "楚玉與藐站以手示意，以目傳情，向是不必說了。",
+        "pinyin": "chǔ yù yǔ miǎo zhàn yǐ shǒu shì yì ， yǐ mù chuán qíng ， xiàng shì bù bì shuō le 。",
+        "english": ""
+      },
+      {
+        "chinese": "且說埠鎮上，有一個財主",
+        "pinyin": "qiě shuō bù zhèn shàng ， yǒu yī gè cái zhǔ",
+        "english": ""
+      },
+      {
+        "chinese": "鄉宦，名喚錢萬貫。",
+        "pinyin": "xiāng huàn ， míng huàn qián wàn guàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "他家金銀堆積如山，穀米因陳似土。",
+        "pinyin": "tā jiā jīn yín duī jī rú shān ， gǔ mǐ yīn chén sì tǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "良田散滿在各邑，納不",
+        "pinyin": "liáng tián sàn mǎn zài gè yì ， nà bù",
+        "english": ""
+      },
+      {
+        "chinese": "盡東西南北的錢糧。",
+        "pinyin": "jìn dōng xī nán běi de qián liáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "資財放遍在人頭，收不了春夏秋冬的利息。",
+        "pinyin": "zī cái fàng biàn zài rén tóu ， shōu bù le chūn xià qiū dōng de lì xī 。",
+        "english": ""
+      },
+      {
+        "chinese": "用豪奴，使狠僕，",
+        "pinyin": "yòng háo nú ， shǐ hěn pú ，",
+        "english": ""
+      },
+      {
+        "chinese": "叫做「畫虎未成君莫笑，安排爪牙始驚人。",
+        "pinyin": "jiào zuò 「 huà hǔ wèi chéng jūn mò xiào ， ān pái zhǎo yá shǐ jīng rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "」娶美妾，蓄妖姬，叫做「乞食齊人",
+        "pinyin": "」 qǔ měi qiè ， xù yāo jī ， jiào zuò 「 qǐ shí qí rén",
+        "english": ""
+      },
+      {
+        "chinese": "尚有家，富人怎不驕妾妻！",
+        "pinyin": "shàng yǒu jiā ， fù rén zěn bù jiāo qiè qī ！",
+        "english": ""
+      },
+      {
+        "chinese": "」這也還是件小事。",
+        "pinyin": "」 zhè yě hái shì jiàn xiǎo shì 。",
+        "english": ""
+      },
+      {
+        "chinese": "自古道：「財旺生官。",
+        "pinyin": "zì gǔ dào ： 「 cái wàng shēng guān 。",
+        "english": ""
+      },
+      {
+        "chinese": "」就是中",
+        "pinyin": "」 jiù shì zhōng",
+        "english": ""
+      },
+      {
+        "chinese": "了舉人、進士，也要破幾兩少鈔。",
+        "pinyin": "le jǔ rén 、 jìn shì ， yě yào pò jǐ liǎng shǎo chāo 。",
+        "english": ""
+      },
+      {
+        "chinese": "做紗帽的鋪戶，不曾見他白送與人。",
+        "pinyin": "zuò shā mào de pū hù ， bù céng jiàn tā bái sòng yǔ rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "又聽得官",
+        "pinyin": "yòu tīng dé guān",
+        "english": ""
+      },
+      {
+        "chinese": "高必險，反不若他異路前程。",
+        "pinyin": "gāo bì xiǎn ， fǎn bù ruò tā yì lù qián chéng 。",
+        "english": ""
+      },
+      {
+        "chinese": "做不到十分顯職，卷地皮的典史，不曾見有特本參",
+        "pinyin": "zuò bù dào shí fēn xiǎn zhí ， juǎn dì pí de diǎn shǐ ， bù céng jiàn yǒu tè běn cān",
+        "english": ""
+      },
+      {
+        "chinese": "他。",
+        "pinyin": "tā 。",
+        "english": ""
+      },
+      {
+        "chinese": "這等看將起來，他這一位大大的財主，小小的鄉紳，也甚做得過。",
+        "pinyin": "zhè děng kàn jiāng qǐ lái ， tā zhè yī wèi dà dà de cái zhǔ ， xiǎo xiǎo de xiāng shēn ， yě shèn zuò dé guò 。",
+        "english": ""
+      },
+      {
+        "chinese": "所以他出",
+        "pinyin": "suǒ yǐ tā chū",
+        "english": ""
+      },
+      {
+        "chinese": "門則頂其肚皮而搖擺，居然員外氣象﹔在家則高其聲而吆喝，宛然官府排場。",
+        "pinyin": "mén zé dǐng qí dù pí ér yáo bǎi ， jū rán yuán wài qì xiàng ﹔ zài jiā zé gāo qí shēng ér yāo hē ， wǎn rán guān fǔ pái chang 。",
+        "english": ""
+      },
+      {
+        "chinese": "一日，對眾人說：「我錢萬貫自從納粟以後，選在極富庶的地方，做了一任",
+        "pinyin": "yī rì ， duì zhòng rén shuō ： 「 wǒ qián wàn guàn zì cóng nà sù yǐ hòu ， xuǎn zài jí fù shù de dì fāng ， zuò le yī rèn",
+        "english": ""
+      },
+      {
+        "chinese": "縣佐。",
+        "pinyin": "xiàn zuǒ 。",
+        "english": ""
+      },
+      {
+        "chinese": "趁了無數的銀子，做了未滿三年，就被我急流勇退，告了終身的假，急急",
+        "pinyin": "chèn le wú shù de yín zǐ ， zuò le wèi mǎn sān nián ， jiù bèi wǒ jí liú yǒng tuì ， gào le zhōng shēn de jiǎ ， jí jí",
+        "english": ""
+      },
+      {
+        "chinese": "的衣錦還鄉。",
+        "pinyin": "de yī jǐn hái xiāng 。",
+        "english": ""
+      },
+      {
+        "chinese": "如今凡拜縣官，都用治生帖子，他一般也來回拜。",
+        "pinyin": "rú jīn fán bài xiàn guān ， dōu yòng zhì shēng tiě zǐ ， tā yī bān yě lái huí bài 。",
+        "english": ""
+      },
+      {
+        "chinese": "那些租戶、債戶",
+        "pinyin": "nà xiē zū hù 、 zhài hù",
+        "english": ""
+      },
+      {
+        "chinese": "見了，嚇的毛骨悚然。",
+        "pinyin": "jiàn le ， xià de máo gǔ sǒng rán 。",
+        "english": ""
+      },
+      {
+        "chinese": "欠了一升一合，一錢一分，就要寫帖子送他，誰敢不來還",
+        "pinyin": "qiàn le yī shēng yī hé ， yī qián yī fēn ， jiù yào xiě tiě zǐ sòng tā ， shuí gǎn bù lái hái",
+        "english": ""
+      },
+      {
+        "chinese": "納！",
+        "pinyin": "nà ！",
+        "english": ""
+      },
+      {
+        "chinese": "看來不虧別樣，虧我這個住處住的好，不在城而在鄉，若還住在城市之中，",
+        "pinyin": "kàn lái bù kuī bié yàng ， kuī wǒ zhè gè zhù chù zhù de hǎo ， bù zài chéng ér zài xiāng ， ruò hái zhù zài chéng shì zhī zhōng ，",
+        "english": ""
+      },
+      {
+        "chinese": "那舉人、進士，多不過我這個小路前程，如何能充人呢！",
+        "pinyin": "nà jǔ rén 、 jìn shì ， duō bù guò wǒ zhè gè xiǎo lù qián chéng ， rú hé néng chōng rén ne ！",
+        "english": ""
+      },
+      {
+        "chinese": "只是住在鄉間，也有一",
+        "pinyin": "zhǐ shì zhù zài xiāng jiān ， yě yǒu yī",
+        "english": ""
+      },
+      {
+        "chinese": "件不好，那些公祖父母，無故不肯下鄉。",
+        "pinyin": "jiàn bù hǎo ， nà xiē gōng zǔ fù mǔ ， wú gù bù kěn xià xiāng 。",
+        "english": ""
+      },
+      {
+        "chinese": "我這些威風，一年之中裝不上一兩次，",
+        "pinyin": "wǒ zhè xiē wēi fēng ， yī nián zhī zhōng zhuāng bù shàng yī liǎng cì ，",
+        "english": ""
+      },
+      {
+        "chinese": "白白的把一頂紗帽，一件圓領，都收舊了。",
+        "pinyin": "bái bái de bǎ yī dǐng shā mào ， yī jiàn yuán lǐng ， dōu shōu jiù le 。",
+        "english": ""
+      },
+      {
+        "chinese": "今日聞得本縣三衙要巡歷各鄉，清查",
+        "pinyin": "jīn rì wén dé běn xiàn sān yá yào xún lì gè xiāng ， qīng chá",
+        "english": ""
+      },
+      {
+        "chinese": "牌甲。",
+        "pinyin": "pái jiǎ 。",
+        "english": ""
+      },
+      {
+        "chinese": "少不得一到本處，就要來拜我。",
+        "pinyin": "shǎo bù dé yī dào běn chù ， jiù yào lái bài wǒ 。",
+        "english": ""
+      },
+      {
+        "chinese": "地方上辦了酒席，少不得請我去陪他，這",
+        "pinyin": "dì fāng shàng bàn le jiǔ xí ， shǎo bù dé qǐng wǒ qù péi tā ， zhè",
+        "english": ""
+      },
+      {
+        "chinese": "場威風又使得著了。",
+        "pinyin": "chǎng wēi fēng yòu shǐ dé zhuó le 。",
+        "english": ""
+      },
+      {
+        "chinese": "叫家僮，你乘此機會，把一應田租賬目清理一番，有拖欠的，",
+        "pinyin": "jiào jiā tóng ， nǐ chéng cǐ jī huì ， bǎ yī yīng tián zū zhàng mù qīng lǐ yī fān ， yǒu tuō qiàn de ，",
+        "english": ""
+      },
+      {
+        "chinese": "不免開送三衙，求他追比起來。",
+        "pinyin": "bù miǎn kāi sòng sān yá ， qiú tā zhuī bǐ qǐ lái 。",
+        "english": ""
+      },
+      {
+        "chinese": "一則清理今年的賬目，多得些利錢；",
+        "pinyin": "yī zé qīng lǐ jīn nián de zhàng mù ， duō dé xiē lì qián ；",
+        "english": ""
+      },
+      {
+        "chinese": "二則借此示",
+        "pinyin": "èr zé jiè cǐ shì",
+        "english": ""
+      },
+      {
+        "chinese": "眾，免的與我淘氣。",
+        "pinyin": "zhòng ， miǎn de yǔ wǒ táo qì 。",
+        "english": ""
+      },
+      {
+        "chinese": "說話之間，見十數個身穿藍布粗衣，頭帶卷邊氈帽的鄉裏人，都跪下道：「我",
+        "pinyin": "shuō huà zhī jiān ， jiàn shí shǔ gè shēn chuān lán bù cū yī ， tóu dài juǎn biān zhān mào de xiāng lǐ rén ， dōu guì xià dào ： 「 wǒ",
+        "english": ""
+      },
+      {
+        "chinese": "們是地方總甲。",
+        "pinyin": "mén shì dì fāng zǒng jiǎ 。",
+        "english": ""
+      },
+      {
+        "chinese": "只因本縣三衙要來清查牌甲，其實往年的舊規不過要些常例錢，",
+        "pinyin": "zhǐ yīn běn xiàn sān yá yào lái qīng chá pái jiǎ ， qí shí wǎng nián de jiù guī bù guò yào xiē cháng lì qián ，",
+        "english": ""
+      },
+      {
+        "chinese": "少不得出在這裏中。",
+        "pinyin": "shǎo bù dé chū zài zhè lǐ zhōng 。",
+        "english": ""
+      },
+      {
+        "chinese": "如今都斂齊了，只是我們送他，恐怕客多嫌少，不肯就接。",
+        "pinyin": "rú jīn dōu liǎn qí le ， zhǐ shì wǒ mén sòng tā ， kǒng pà kè duō xián shǎo ， bù kěn jiù jiē 。",
+        "english": ""
+      },
+      {
+        "chinese": "要求錢爺，發個名帖，然後送，覺得有體有面些。",
+        "pinyin": "yào qiú qián yé ， fā gè míng tiě ， rán hòu sòng ， jué dé yǒu tǐ yǒu miàn xiē 。",
+        "english": ""
+      },
+      {
+        "chinese": "從來官府下鄉，定有一桌下馬",
+        "pinyin": "cóng lái guān fǔ xià xiāng ， dìng yǒu yī zhuō xià mǎ",
+        "english": ""
+      },
+      {
+        "chinese": "飯。",
+        "pinyin": "fàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "我們也預備下了，要請錢爺做個陪客。",
+        "pinyin": "wǒ mén yě yù bèi xià le ， yào qǐng qián yé zuò gè péi kè 。",
+        "english": ""
+      },
+      {
+        "chinese": "凡有不周之處，官府計較起來，都要",
+        "pinyin": "fán yǒu bù zhōu zhī chù ， guān fǔ jì jiào qǐ lái ， dōu yào",
+        "english": ""
+      },
+      {
+        "chinese": "求錢爺方便一聲。",
+        "pinyin": "qiú qián yé fāng biàn yī shēng 。",
+        "english": ""
+      },
+      {
+        "chinese": "」萬貫說：「我的帖子，是從來不肯輕發的。",
+        "pinyin": "」 wàn guàn shuō ： 「 wǒ de tiě zǐ ， shì cóng lái bù kěn qīng fā de 。",
+        "english": ""
+      },
+      {
+        "chinese": "況且身子有些不",
+        "pinyin": "kuàng qiě shēn zǐ yǒu xiē bù",
+        "english": ""
+      },
+      {
+        "chinese": "受用，陪不得酒，你們去另請別人罷。",
+        "pinyin": "shòu yòng ， péi bù dé jiǔ ， nǐ mén qù lìng qǐng bié rén bà 。",
+        "english": ""
+      },
+      {
+        "chinese": "」眾人說：「我這鎮上，只有你一位鄉紳，",
+        "pinyin": "」 zhòng rén shuō ： 「 wǒ zhè zhèn shàng ， zhǐ yǒu nǐ yī wèi xiāng shēn ，",
+        "english": ""
+      },
+      {
+        "chinese": "那裏還有第二個。",
+        "pinyin": "nà lǐ hái yǒu dì èr gè 。",
+        "english": ""
+      },
+      {
+        "chinese": "」萬貫說：「就是你們自己罷了，何必定要鄉紳。",
+        "pinyin": "」 wàn guàn shuō ： 「 jiù shì nǐ mén zì jǐ bà le ， hé bì dìng yào xiāng shēn 。",
+        "english": ""
+      },
+      {
+        "chinese": "」眾人說：",
+        "pinyin": "」 zhòng rén shuō ：",
+        "english": ""
+      },
+      {
+        "chinese": "「錢爺取笑了，我們做百姓的，如何敢用帖子，如何敢做陪客。",
+        "pinyin": "「 qián yé qǔ xiào le ， wǒ mén zuò bǎi xìng de ， rú hé gǎn yòng tiě zǐ ， rú hé gǎn zuò péi kè 。",
+        "english": ""
+      },
+      {
+        "chinese": "」萬貫說：「哦！",
+        "pinyin": "」 wàn guàn shuō ： 「 ò ！",
+        "english": ""
+      },
+      {
+        "chinese": "原來官民二字，也有些分辨麼。",
+        "pinyin": "yuán lái guān mín èr zì ， yě yǒu xiē fēn biàn me 。",
+        "english": ""
+      },
+      {
+        "chinese": "既然如此，你們平日為何大模大樣，全不放我在",
+        "pinyin": "jì rán rú cǐ ， nǐ mén píng rì wèi hé dà mó dà yàng ， quán bù fàng wǒ zài",
+        "english": ""
+      },
+      {
+        "chinese": "眼裏？",
+        "pinyin": "yǎn lǐ ？",
+        "english": ""
+      },
+      {
+        "chinese": "」眾人說：「我們尊敬的是錢爺，怎麼倒說我不敬呢？",
+        "pinyin": "」 zhòng rén shuō ： 「 wǒ mén zūn jìng de shì qián yé ， zěn me dǎo shuō wǒ bù jìng ne ？",
+        "english": ""
+      },
+      {
+        "chinese": "」旁邊一個家人，",
+        "pinyin": "」 páng biān yī gè jiā rén ，",
+        "english": ""
+      },
+      {
+        "chinese": "跪下稟道：「這些人不是租戶就是債戶，個個都有些賬目不曾清楚。",
+        "pinyin": "guì xià bǐng dào ： 「 zhè xiē rén bù shì zū hù jiù shì zhài hù ， gè gè dōu yǒu xiē zhàng mù bù céng qīng chǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "」萬貫道：",
+        "pinyin": "」 wàn guàn dào ：",
+        "english": ""
+      },
+      {
+        "chinese": "「如何？",
+        "pinyin": "「 rú hé ？",
+        "english": ""
+      },
+      {
+        "chinese": "你們既然尊敬我，為甚麼不肯還賬？",
+        "pinyin": "nǐ mén jì rán zūn jìng wǒ ， wèi shèn me bù kěn hái zhàng ？",
+        "english": ""
+      },
+      {
+        "chinese": "我如今正要開送三衙，叫他當面追",
+        "pinyin": "wǒ rú jīn zhèng yào kāi sòng sān yá ， jiào tā dāng miàn zhuī",
+        "english": ""
+      },
+      {
+        "chinese": "比，恨不得打斷你們的狗筋，還肯管你這樣閑事！",
+        "pinyin": "bǐ ， hèn bù dé dǎ duàn nǐ mén de gǒu jīn ， hái kěn guǎn nǐ zhè yàng xián shì ！",
+        "english": ""
+      },
+      {
+        "chinese": "」眾人聽說，魂不附體。",
+        "pinyin": "」 zhòng rén tīng shuō ， hún bù fù tǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "說道：",
+        "pinyin": "shuō dào ：",
+        "english": ""
+      },
+      {
+        "chinese": "「不消送官，待我們還就是了。",
+        "pinyin": "「 bù xiāo sòng guān ， dài wǒ mén hái jiù shì le 。",
+        "english": ""
+      },
+      {
+        "chinese": "萬貫說：「既然如此，我看地方面上，替你們裝個體面，把斂來的銀子，都",
+        "pinyin": "wàn guàn shuō ： 「 jì rán rú cǐ ， wǒ kàn dì fāng miàn shàng ， tì nǐ mén zhuāng gè tǐ miàn ， bǎ liǎn lái de yín zǐ ， dōu",
+        "english": ""
+      },
+      {
+        "chinese": "放在這邊，待我替送。",
+        "pinyin": "fàng zài zhè biān ， dài wǒ tì sòng 。",
+        "english": ""
+      },
+      {
+        "chinese": "請官的筵席，要齊正些。",
+        "pinyin": "qǐng guān de yán xí ， yào qí zhèng xiē 。",
+        "english": ""
+      },
+      {
+        "chinese": "必有一兩樣海味纔好，那些俗菜，",
+        "pinyin": "bì yǒu yī liǎng yàng hǎi wèi cái hǎo ， nà xiē sú cài ，",
+        "english": ""
+      },
+      {
+        "chinese": "是用不得的。",
+        "pinyin": "shì yòng bù dé de 。",
+        "english": ""
+      },
+      {
+        "chinese": "且是我這兩日懶待出門赴席，也要抬到這邊來。",
+        "pinyin": "qiě shì wǒ zhè liǎng rì lǎn dài chū mén fù xí ， yě yào tái dào zhè biān lái 。",
+        "english": ""
+      },
+      {
+        "chinese": "地方上面，就有些",
+        "pinyin": "dì fāng shàng miàn ， jiù yǒu xiē",
+        "english": ""
+      },
+      {
+        "chinese": "不到之處，我也替你們說個方便。",
+        "pinyin": "bù dào zhī chù ， wǒ yě tì nǐ mén shuō gè fāng biàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "只是以後知事些，你們這些人，莫說別樣放肆，",
+        "pinyin": "zhǐ shì yǐ hòu zhī shì xiē ， nǐ mén zhè xiē rén ， mò shuō bié yàng fàng sì ，",
+        "english": ""
+      },
+      {
+        "chinese": "就是稱呼之間，也有些欠通。",
+        "pinyin": "jiù shì chēng hū zhī jiān ， yě yǒu xiē qiàn tōng 。",
+        "english": ""
+      },
+      {
+        "chinese": "難道錢爺兩個字，是生漆粘住的。",
+        "pinyin": "nán dào qián yé liǎng gè zì ， shì shēng qī nián zhù de 。",
+        "english": ""
+      },
+      {
+        "chinese": "那錢字下面，爺",
+        "pinyin": "nà qián zì xià miàn ， yé",
+        "english": ""
+      },
+      {
+        "chinese": "字上面，就夾不得一個字眼進去麼？",
+        "pinyin": "zì shàng miàn ， jiù jiá bù dé yī gè zì yǎn jìn qù me ？",
+        "english": ""
+      },
+      {
+        "chinese": "」眾人說：「這是我們不知事，自今以後，",
+        "pinyin": "」 zhòng rén shuō ： 「 zhè shì wǒ mén bù zhī shì ， zì jīn yǐ hòu ，",
+        "english": ""
+      },
+      {
+        "chinese": "加上一個字眼，叫錢老爺就是了。",
+        "pinyin": "jiā shàng yī gè zì yǎn ， jiào qián lǎo yé jiù shì le 。",
+        "english": ""
+      },
+      {
+        "chinese": "」萬貫說：「既然如此，你們就多叫幾聲，補",
+        "pinyin": "」 wàn guàn shuō ： 「 jì rán rú cǐ ， nǐ mén jiù duō jiào jǐ shēng ， bǔ",
+        "english": ""
+      },
+      {
+        "chinese": "了以前的數。",
+        "pinyin": "le yǐ qián de shǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "」眾人連叫了幾聲，萬貫連應了幾聲。",
+        "pinyin": "」 zhòng rén lián jiào le jǐ shēng ， wàn guàn lián yīng le jǐ shēng 。",
+        "english": ""
+      },
+      {
+        "chinese": "眾人叫的緊，萬貫應的也緊。",
+        "pinyin": "zhòng rén jiào de jǐn ， wàn guàn yīng de yě jǐn 。",
+        "english": ""
+      },
+      {
+        "chinese": "及至叫完，萬貫將大頭點了數點，笑道：「這纔是個道理。",
+        "pinyin": "jí zhì jiào wán ， wàn guàn jiāng dà tóu diǎn le shǔ diǎn ， xiào dào ： 「 zhè cái shì gè dào lǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "你們說的話，都完了",
+        "pinyin": "nǐ mén shuō de huà ， dōu wán le",
+        "english": ""
+      },
+      {
+        "chinese": "麼？",
+        "pinyin": "me ？",
+        "english": ""
+      },
+      {
+        "chinese": "你老爺身困倦，要進去睡了。",
+        "pinyin": "nǐ lǎo yé shēn kùn juàn ， yào jìn qù shuì le 。",
+        "english": ""
+      },
+      {
+        "chinese": "你們有事者奏來，無事者退班。",
+        "pinyin": "nǐ mén yǒu shì zhě zòu lái ， wú shì zhě tuì bān 。",
+        "english": ""
+      },
+      {
+        "chinese": "」眾人說：「還",
+        "pinyin": "」 zhòng rén shuō ： 「 hái",
+        "english": ""
+      },
+      {
+        "chinese": "有一件大事，要稟告錢老爺。",
+        "pinyin": "yǒu yī jiàn dà shì ， yào bǐng gào qián lǎo yé 。",
+        "english": ""
+      },
+      {
+        "chinese": "那平浪侯晏公，是本境的香老。",
+        "pinyin": "nà píng làng hóu yàn gōng ， shì běn jìng de xiāng lǎo 。",
+        "english": ""
+      },
+      {
+        "chinese": "這位神道，極有靈",
+        "pinyin": "zhè wèi shén dào ， jí yǒu líng",
+        "english": ""
+      },
+      {
+        "chinese": "驗的。",
+        "pinyin": "yàn de 。",
+        "english": ""
+      },
+      {
+        "chinese": "每年十月初三，是他的聖誕，一定要演戲上壽。",
+        "pinyin": "měi nián shí yuè chū sān ， shì tā de shèng dàn ， yī dìng yào yǎn xì shàng shòu 。",
+        "english": ""
+      },
+      {
+        "chinese": "請問錢老爺，該定那一班",
+        "pinyin": "qǐng wèn qián lǎo yé ， gāi dìng nà yī bān",
+        "english": ""
+      },
+      {
+        "chinese": "戲？",
+        "pinyin": "xì ？",
+        "english": ""
+      },
+      {
+        "chinese": "你分付一聲，小的們好去辦。",
+        "pinyin": "nǐ fēn fù yī shēng ， xiǎo de mén hǎo qù bàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "」萬貫說：「往年的戲都是舞霓班做。",
+        "pinyin": "」 wàn guàn shuō ： 「 wǎng nián de xì dōu shì wǔ ní bān zuò 。",
+        "english": ""
+      },
+      {
+        "chinese": "那女旦",
+        "pinyin": "nà nǚ dàn",
+        "english": ""
+      },
+      {
+        "chinese": "名叫劉絳仙，又與我相厚，待我差人去接他便了。",
+        "pinyin": "míng jiào liú jiàng xiān ， yòu yǔ wǒ xiāng hòu ， dài wǒ chà rén qù jiē tā biàn le 。",
+        "english": ""
+      },
+      {
+        "chinese": "」眾人各唯唯而退。",
+        "pinyin": "」 zhòng rén gè wéi wéi ér tuì 。",
+        "english": ""
+      },
+      {
+        "chinese": "萬貫見",
+        "pinyin": "wàn guàn jiàn",
+        "english": ""
+      },
+      {
+        "chinese": "眾人散了，隨將雙膝一拍，笑道：「妙，妙，妙！",
+        "pinyin": "zhòng rén sàn le ， suí jiāng shuāng xī yī pāi ， xiào dào ： 「 miào ， miào ， miào ！",
+        "english": ""
+      },
+      {
+        "chinese": "我錢萬貫的威勢，不拿來恐嚇",
+        "pinyin": "wǒ qián wàn guàn de wēi shì ， bù ná lái kǒng hè",
+        "english": ""
+      },
+      {
+        "chinese": "鄉人，叫我到那裏去使！",
+        "pinyin": "xiāng rén ， jiào wǒ dào nà lǐ qù shǐ ！",
+        "english": ""
+      },
+      {
+        "chinese": "明日官到的時節，拿他們的銀子、酒席，裝自家的體面",
+        "pinyin": "míng rì guān dào de shí jié ， ná tā mén de yín zǐ 、 jiǔ xí ， zhuāng zì jiā de tǐ miàn",
+        "english": ""
+      },
+      {
+        "chinese": "威風，何等不妙！",
+        "pinyin": "wēi fēng ， hé děng bù miào ！",
+        "english": ""
+      },
+      {
+        "chinese": "還有一件上門的生意，不可錯過，等他拿了銀子來，待我取下",
+        "pinyin": "hái yǒu yī jiàn shàng mén de shēng yì ， bù kě cuò guò ， děng tā ná le yín zǐ lái ， dài wǒ qǔ xià",
+        "english": ""
+      },
+      {
+        "chinese": "一半，只拿一半送官，且做個小小的抽豐，再做道理。",
+        "pinyin": "yī bàn ， zhǐ ná yī bàn sòng guān ， qiě zuò gè xiǎo xiǎo de chōu fēng ， zài zuò dào lǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "叫家僮，你打聽舞霓班的",
+        "pinyin": "jiào jiā tóng ， nǐ dǎ tīng wǔ ní bān de",
+        "english": ""
+      },
+      {
+        "chinese": "戲子，在哪裏做戲，好著人去喚他。",
+        "pinyin": "xì zǐ ， zài nǎ lǐ zuò xì ， hǎo zhuó rén qù huàn tā 。",
+        "english": ""
+      },
+      {
+        "chinese": "」家僮道：「稟老爺！",
+        "pinyin": "」 jiā tóng dào ： 「 bǐng lǎo yé ！",
+        "english": ""
+      },
+      {
+        "chinese": "舞霓班雖好，還不如",
+        "pinyin": "wǔ ní bān suī hǎo ， hái bù rú",
+        "english": ""
+      },
+      {
+        "chinese": "玉筍班，更有名聲。",
+        "pinyin": "yù sǔn bān ， gèng yǒu míng shēng 。",
+        "english": ""
+      },
+      {
+        "chinese": "近來的戲，都是他做。",
+        "pinyin": "jìn lái de xì ， dōu shì tā zuò 。",
+        "english": ""
+      },
+      {
+        "chinese": "」萬貫說：「我不單為做戲，要借這",
+        "pinyin": "」 wàn guàn shuō ： 「 wǒ bù dān wèi zuò xì ， yào jiè zhè",
+        "english": ""
+      },
+      {
+        "chinese": "個名色，與絳仙敘敘舊情，你那裏知道。",
+        "pinyin": "gè míng sè ， yǔ jiàng xiān xù xù jiù qíng ， nǐ nà lǐ zhī dào 。",
+        "english": ""
+      },
+      {
+        "chinese": "」家僮說：「玉筍班也有個女旦，就是",
+        "pinyin": "」 jiā tóng shuō ： 「 yù sǔn bān yě yǒu gè nǚ dàn ， jiù shì",
+        "english": ""
+      },
+      {
+        "chinese": "絳仙的女兒，名叫藐姑。",
+        "pinyin": "jiàng xiān de nǚ ér ， míng jiào miǎo gū 。",
+        "english": ""
+      },
+      {
+        "chinese": "他的姿色，比他母親更強十分。",
+        "pinyin": "tā de zī sè ， bǐ tā mǔ qīn gèng qiáng shí fēn 。",
+        "english": ""
+      },
+      {
+        "chinese": "況且絳仙為照管女兒，",
+        "pinyin": "kuàng qiě jiàng xiān wèi zhào guǎn nǚ ér ，",
+        "english": ""
+      },
+      {
+        "chinese": "近日離了大班，也在小班裏面。",
+        "pinyin": "jìn rì lí le dà bān ， yě zài xiǎo bān lǐ miàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "」萬貫說：「是他有個絕標致的女兒，我從前見",
+        "pinyin": "」 wàn guàn shuō ： 「 shì tā yǒu gè jué biāo zhì de nǚ ér ， wǒ cóng qián jiàn",
+        "english": ""
+      },
+      {
+        "chinese": "過他的，如今也出來做戲了？",
+        "pinyin": "guò tā de ， rú jīn yě chū lái zuò xì le ？",
+        "english": ""
+      },
+      {
+        "chinese": "既然如此，你速速去接。",
+        "pinyin": "jì rán rú cǐ ， nǐ sù sù qù jiē 。",
+        "english": ""
+      },
+      {
+        "chinese": "待我央他母親做牽頭，也",
+        "pinyin": "dài wǒ yāng tā mǔ qīn zuò qiān tóu ， yě",
+        "english": ""
+      },
+      {
+        "chinese": "和他相與和與。",
+        "pinyin": "hé tā xiāng yǔ hé yǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "僕說：「但聞姊妹同歸，不見娘兒並嫁。",
+        "pinyin": "pú shuō ： 「 dàn wén zǐ mèi tóng guī ， bù jiàn niáng ér bìng jià 。",
+        "english": ""
+      },
+      {
+        "chinese": "萬貫：「阿婿就是阿爹，一身兼充二夫！",
+        "pinyin": "wàn guàn ： 「 ā xù jiù shì ā diē ， yī shēn jiān chōng èr fū ！",
+        "english": ""
+      },
+      {
+        "chinese": "欲知後事，觀下回便明。",
+        "pinyin": "yù zhī hòu shì ， guān xià huí biàn míng 。",
+        "english": ""
+      }
+    ]
+  },
+  {
+    "id": "the_scholars_ch_5",
+    "bookId": "the_scholars",
+    "chapterIndex": 5,
+    "title": "第五回",
+    "titleEn": "Chapter 5: 第五回",
+    "sentences": [
+      {
+        "chinese": "劉絳仙將身代女　錢二衙巧說情人",
+        "pinyin": "liú jiàng xiān jiāng shēn dài nǚ 　 qián èr yá qiǎo shuō qíng rén",
+        "english": ""
+      },
+      {
+        "chinese": "話說劉絳仙自從女兒出臺，又喜又惱。",
+        "pinyin": "huà shuō liú jiàng xiān zì cóng nǚ ér chū tái ， yòu xǐ yòu nǎo 。",
+        "english": ""
+      },
+      {
+        "chinese": "喜的是藐姑姿色概世，惱的是藐姑矢",
+        "pinyin": "xǐ de shì miǎo gū zī sè gài shì ， nǎo de shì miǎo gū shǐ",
+        "english": ""
+      },
+      {
+        "chinese": "志不淫。",
+        "pinyin": "zhì bù yín 。",
+        "english": ""
+      },
+      {
+        "chinese": "一日，絳仙想道：「我劉絳仙苦了半世，只生得一個女兒，實望他強宗",
+        "pinyin": "yī rì ， jiàng xiān xiǎng dào ： 「 wǒ liú jiàng xiān kǔ le bàn shì ， zhǐ shēng dé yī gè nǚ ér ， shí wàng tā qiáng zōng",
+        "english": ""
+      },
+      {
+        "chinese": "勝祖，挈帶父母，誰料戲便做得極好，當不得性子異樣，動不動要惜廉恥、顧名",
+        "pinyin": "shèng zǔ ， qiè dài fù mǔ ， shuí liào xì biàn zuò dé jí hǎo ， dāng bù dé xìng zǐ yì yàng ， dòng bù dòng yào xī lián chǐ 、 gù míng",
+        "english": ""
+      },
+      {
+        "chinese": "節。",
+        "pinyin": "jié 。",
+        "english": ""
+      },
+      {
+        "chinese": "見了男子莫說別樣事不肯做，就是一顰一笑，也不肯假借與人。",
+        "pinyin": "jiàn le nán zǐ mò shuō bié yàng shì bù kěn zuò ， jiù shì yī pín yī xiào ， yě bù kěn jiǎ jiè yǔ rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "如今來到這",
+        "pinyin": "rú jīn lái dào zhè",
+        "english": ""
+      },
+      {
+        "chinese": "鄉鎮之間，搬演神戲。",
+        "pinyin": "xiāng zhèn zhī jiān ， bān yǎn shén xì 。",
+        "english": ""
+      },
+      {
+        "chinese": "那為首的是個財主，別處雖然慳吝，在我們身上，倒肯撒",
+        "pinyin": "nà wèi shǒu de shì gè cái zhǔ ， bié chù suī rán qiān lìn ， zài wǒ mén shēn shàng ， dǎo kěn sā",
+        "english": ""
+      },
+      {
+        "chinese": "漫使錢。",
+        "pinyin": "màn shǐ qián 。",
+        "english": ""
+      },
+      {
+        "chinese": "是我的舊相識，見了我的女兒，豈有不勸喜的！",
+        "pinyin": "shì wǒ de jiù xiāng shí ， jiàn le wǒ de nǚ ér ， qǐ yǒu bù quàn xǐ de ！",
+        "english": ""
+      },
+      {
+        "chinese": "只是我兒性子如此，恐",
+        "pinyin": "zhǐ shì wǒ ér xìng zǐ rú cǐ ， kǒng",
+        "english": ""
+      },
+      {
+        "chinese": "也不能趁他的銀子。",
+        "pinyin": "yě bù néng chèn tā de yín zǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "及至到了鎮上，見那座廟坐北向南，離廟五十餘步，有一道急湍沙河。",
+        "pinyin": "jí zhì dào le zhèn shàng ， jiàn nà zuò miào zuò běi xiàng nán ， lí miào wǔ shí yú bù ， yǒu yī dào jí tuān shā hé 。",
+        "english": ""
+      },
+      {
+        "chinese": "那臺",
+        "pinyin": "nà tái",
+        "english": ""
+      },
+      {
+        "chinese": "子的後臺，在南岸上。",
+        "pinyin": "zǐ de hòu tái ， zài nán àn shàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "前臺一半，搭在水裏，生板是正對廟口。",
+        "pinyin": "qián tái yī bàn ， dā zài shuǐ lǐ ， shēng bǎn shì zhèng duì miào kǒu 。",
+        "english": ""
+      },
+      {
+        "chinese": "你說這是為何？",
+        "pinyin": "nǐ shuō zhè shì wèi hé ？",
+        "english": ""
+      },
+      {
+        "chinese": "只因是臺女戲，若不搭在水裏，那些沒皮虎，就弄出多少事來。",
+        "pinyin": "zhǐ yīn shì tái nǚ xì ， ruò bù dā zài shuǐ lǐ ， nà xiē méi pí hǔ ， jiù nòng chū duō shǎo shì lái 。",
+        "english": ""
+      },
+      {
+        "chinese": "將臺子如此一搭，",
+        "pinyin": "jiāng tái zǐ rú cǐ yī dā ，",
+        "english": ""
+      },
+      {
+        "chinese": "臺子在水裏，離看戲的約有四五尺，使他只能遠看，不能近前，倒也甚妙，誰知",
+        "pinyin": "tái zǐ zài shuǐ lǐ ， lí kàn xì de yuē yǒu sì wǔ chǐ ， shǐ tā zhǐ néng yuǎn kàn ， bù néng jìn qián ， dǎo yě shèn miào ， shuí zhī",
+        "english": ""
+      },
+      {
+        "chinese": "竟為藐姑與楚玉的便宜之地呢！",
+        "pinyin": "jìng wèi miǎo gū yǔ chǔ yù de pián yi zhī dì ne ！",
+        "english": ""
+      },
+      {
+        "chinese": "及至吃了早飯，搭起浮橋，令戲子上臺，上完了，",
+        "pinyin": "jí zhì chī le zǎo fàn ， dā qǐ fú qiáo ， lìng xì zǐ shàng tái ， shàng wán le ，",
+        "english": ""
+      },
+      {
+        "chinese": "遂將浮橋撤去。",
+        "pinyin": "suì jiāng fú qiáo chè qù 。",
+        "english": ""
+      },
+      {
+        "chinese": "先唱了三出參神的戲，然後開了本戲。",
+        "pinyin": "xiān chàng le sān chū cān shén de xì ， rán hòu kāi le běn xì 。",
+        "english": ""
+      },
+      {
+        "chinese": "及至藐姑出臺，真個如海",
+        "pinyin": "jí zhì miǎo gū chū tái ， zhēn gè rú hǎi",
+        "english": ""
+      },
+      {
+        "chinese": "上的仙女，令人可望而不可即。",
+        "pinyin": "shàng de xiān nǚ ， lìng rén kě wàng ér bù kě jí 。",
+        "english": ""
+      },
+      {
+        "chinese": "未及唱到半本，那些看的人，愚魯的俱各口呆目",
+        "pinyin": "wèi jí chàng dào bàn běn ， nà xiē kàn de rén ， yú lǔ de jù gè kǒu dāi mù",
+        "english": ""
+      },
+      {
+        "chinese": "邪﹔那些風流的，俱各手舞足蹈。",
+        "pinyin": "xié ﹔ nà xiē fēng liú de ， jù gè shǒu wǔ zú dǎo 。",
+        "english": ""
+      },
+      {
+        "chinese": "真是人人誇強，個個稱好！",
+        "pinyin": "zhēn shì rén rén kuā qiáng ， gè gè chēng hǎo ！",
+        "english": ""
+      },
+      {
+        "chinese": "再說那錢萬貫，心中想道：「我嫖了一世的婊子，見過多少婦人，只說劉絳",
+        "pinyin": "zài shuō nà qián wàn guàn ， xīn zhōng xiǎng dào ： 「 wǒ piáo le yī shì de biǎo zǐ ， jiàn guò duō shǎo fù rén ， zhǐ shuō liú jiàng",
+        "english": ""
+      },
+      {
+        "chinese": "仙的姿色，是人中第一了。",
+        "pinyin": "xiān de zī sè ， shì rén zhōng dì yī le 。",
+        "english": ""
+      },
+      {
+        "chinese": "誰想生個女兒出來，比他更強十分。",
+        "pinyin": "shuí xiǎng shēng gè nǚ ér chū lái ， bǐ tā gèng qiáng shí fēn 。",
+        "english": ""
+      },
+      {
+        "chinese": "看了他半本戲，",
+        "pinyin": "kàn le tā bàn běn xì ，",
+        "english": ""
+      },
+      {
+        "chinese": "將我的魂也消出了一半，這便如何是好。",
+        "pinyin": "jiāng wǒ de hún yě xiāo chū le yī bàn ， zhè biàn rú hé shì hǎo 。",
+        "english": ""
+      },
+      {
+        "chinese": "」又想道：「他如今雖是臺上的，到晚",
+        "pinyin": "」 yòu xiǎng dào ： 「 tā rú jīn suī shì tái shàng de ， dào wǎn",
+        "english": ""
+      },
+      {
+        "chinese": "間，不過多加幾兩銀子，就是我懷中之物了。",
+        "pinyin": "jiān ， bù guò duō jiā jǐ liǎng yín zǐ ， jiù shì wǒ huái zhōng zhī wù le 。",
+        "english": ""
+      },
+      {
+        "chinese": "此處難道還有掙我的不成！",
+        "pinyin": "cǐ chù nán dào hái yǒu zhèng wǒ de bù chéng ！",
+        "english": ""
+      },
+      {
+        "chinese": "是便是",
+        "pinyin": "shì biàn shì",
+        "english": ""
+      },
+      {
+        "chinese": "了，怎奈我欲火熾盛，如何等的到晚上呢？",
+        "pinyin": "le ， zěn nài wǒ yù huǒ chì shèng ， rú hé děng de dào wǎn shàng ne ？",
+        "english": ""
+      },
+      {
+        "chinese": "也罷，等他下臺用飯的時節，不免先",
+        "pinyin": "yě bà ， děng tā xià tái yòng fàn de shí jié ， bù miǎn xiān",
+        "english": ""
+      },
+      {
+        "chinese": "調戲他一番，再作道理。",
+        "pinyin": "tiáo xì tā yī fān ， zài zuò dào lǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "」誰知到了飯時，別的俱各下臺，目中惟少藐姑。",
+        "pinyin": "」 shuí zhī dào le fàn shí ， bié de jù gè xià tái ， mù zhōng wéi shǎo miǎo gū 。",
+        "english": ""
+      },
+      {
+        "chinese": "那藐",
+        "pinyin": "nà miǎo",
+        "english": ""
+      },
+      {
+        "chinese": "姑自從唱演以來，只在臺上點心點心，就到黑方纔下來，今日也是如此。",
+        "pinyin": "gū zì cóng chàng yǎn yǐ lái ， zhǐ zài tái shàng diǎn xīn diǎn xīn ， jiù dào hēi fāng cái xià lái ， jīn rì yě shì rú cǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "所以萬",
+        "pinyin": "suǒ yǐ wàn",
+        "english": ""
+      },
+      {
+        "chinese": "貫願望甚急，至此不覺情興索然，雖是威振一方，卻也無可奈何。",
+        "pinyin": "guàn yuàn wàng shèn jí ， zhì cǐ bù jué qíng xìng suǒ rán ， suī shì wēi zhèn yī fāng ， què yě wú kě nài hé 。",
+        "english": ""
+      },
+      {
+        "chinese": "因此罷劉絳仙",
+        "pinyin": "yīn cǐ bà liú jiàng xiān",
+        "english": ""
+      },
+      {
+        "chinese": "也無心與他親熱了。",
+        "pinyin": "yě wú xīn yǔ tā qīn rè le 。",
+        "english": ""
+      },
+      {
+        "chinese": "及至吃飯，上臺演過晚本。",
+        "pinyin": "jí zhì chī fàn ， shàng tái yǎn guò wǎn běn 。",
+        "english": ""
+      },
+      {
+        "chinese": "萬貫道：「家僮把絳仙叫來，我看他說些甚麼，",
+        "pinyin": "wàn guàn dào ： 「 jiā tóng bǎ jiàng xiān jiào lái ， wǒ kàn tā shuō xiē shèn me ，",
+        "english": ""
+      },
+      {
+        "chinese": "再作道理。",
+        "pinyin": "zài zuò dào lǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "」家僮道：「絳仙到了。",
+        "pinyin": "」 jiā tóng dào ： 「 jiàng xiān dào le 。",
+        "english": ""
+      },
+      {
+        "chinese": "」萬貫叫他進來，絳仙見了萬貫，一手摸著",
+        "pinyin": "」 wàn guàn jiào tā jìn lái ， jiàng xiān jiàn le wàn guàn ， yī shǒu mō zhuó",
+        "english": ""
+      },
+      {
+        "chinese": "萬貫的鬍子，說道：「是你老人家，我二人一年沒見，如今你反少面起來了。",
+        "pinyin": "wàn guàn de hú zǐ ， shuō dào ： 「 shì nǐ lǎo rén jiā ， wǒ èr rén yī nián méi jiàn ， rú jīn nǐ fǎn shǎo miàn qǐ lái le 。",
+        "english": ""
+      },
+      {
+        "chinese": "是財主人家養的好，真真令人可愛。",
+        "pinyin": "shì cái zhǔ rén jiā yǎng de hǎo ， zhēn zhēn lìng rén kě ài 。",
+        "english": ""
+      },
+      {
+        "chinese": "」萬貫道：「你可好嘛？",
+        "pinyin": "」 wàn guàn dào ： 「 nǐ kě hǎo má ？",
+        "english": ""
+      },
+      {
+        "chinese": "」絳仙答道：「我",
+        "pinyin": "」 jiàng xiān dá dào ： 「 wǒ",
+        "english": ""
+      },
+      {
+        "chinese": "可好從何來呢？",
+        "pinyin": "kě hǎo cóng hé lái ne ？",
+        "english": ""
+      },
+      {
+        "chinese": "日子不如那二年，生意又不濟，孩子又不聽說，那像你老人家這",
+        "pinyin": "rì zǐ bù rú nà èr nián ， shēng yì yòu bù jì ， hái zǐ yòu bù tīng shuō ， nà xiàng nǐ lǎo rén jiā zhè",
+        "english": ""
+      },
+      {
+        "chinese": "等的受用呢。",
+        "pinyin": "děng de shòu yòng ne 。",
+        "english": ""
+      },
+      {
+        "chinese": "可是咱二人一年不見，不知你老人家也想我不？",
+        "pinyin": "kě shì zán èr rén yī nián bù jiàn ， bù zhī nǐ lǎo rén jiā yě xiǎng wǒ bù ？",
+        "english": ""
+      },
+      {
+        "chinese": "」萬貫道：「不惟",
+        "pinyin": "」 wàn guàn dào ： 「 bù wéi",
+        "english": ""
+      },
+      {
+        "chinese": "常常的想你，就是夜日也還想你。",
+        "pinyin": "cháng cháng de xiǎng nǐ ， jiù shì yè rì yě hái xiǎng nǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "到了今日，卻一毫也不想了。",
+        "pinyin": "dào le jīn rì ， què yī háo yě bù xiǎng le 。",
+        "english": ""
+      },
+      {
+        "chinese": "」絳仙說：「見",
+        "pinyin": "」 jiàng xiān shuō ： 「 jiàn",
+        "english": ""
+      },
+      {
+        "chinese": "了面還想個甚麼呢？",
+        "pinyin": "le miàn hái xiǎng gè shèn me ne ？",
+        "english": ""
+      },
+      {
+        "chinese": "」萬貫道：「卻不是如此，我從前只說你的容貌世間無雙，",
+        "pinyin": "」 wàn guàn dào ： 「 què bù shì rú cǐ ， wǒ cóng qián zhǐ shuō nǐ de róng mào shì jiān wú shuāng ，",
+        "english": ""
+      },
+      {
+        "chinese": "所以放你不下。",
+        "pinyin": "suǒ yǐ fàng nǐ bù xià 。",
+        "english": ""
+      },
+      {
+        "chinese": "自從今日見了令嬡，誰知更比你來俊俏，我一見，就把愛你的心",
+        "pinyin": "zì cóng jīn rì jiàn le lìng ài ， shuí zhī gèng bǐ nǐ lái jùn qiào ， wǒ yī jiàn ， jiù bǎ ài nǐ de xīn",
+        "english": ""
+      },
+      {
+        "chinese": "腸，移在令嬡身上去了，所以夜日還想你，今日一毫也不想了。",
+        "pinyin": "cháng ， yí zài lìng ài shēn shàng qù le ， suǒ yǐ yè rì hái xiǎng nǐ ， jīn rì yī háo yě bù xiǎng le 。",
+        "english": ""
+      },
+      {
+        "chinese": "不知你還念往日",
+        "pinyin": "bù zhī nǐ hái niàn wǎng rì",
+        "english": ""
+      },
+      {
+        "chinese": "舊交，把令嬡也送來，教我享受享受不？",
+        "pinyin": "jiù jiāo ， bǎ lìng ài yě sòng lái ， jiào wǒ xiǎng shòu xiǎng shòu bù ？",
+        "english": ""
+      },
+      {
+        "chinese": "」絳仙心中想道：「我若說不能，今夜",
+        "pinyin": "」 jiàng xiān xīn zhōng xiǎng dào ： 「 wǒ ruò shuō bù néng ， jīn yè",
+        "english": ""
+      },
+      {
+        "chinese": "就不能趁他的銀子了。",
+        "pinyin": "jiù bù néng chèn tā de yín zǐ le 。",
+        "english": ""
+      },
+      {
+        "chinese": "也罷，我自有道理。",
+        "pinyin": "yě bà ， wǒ zì yǒu dào lǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "」對萬貫道：「他的皮味與我不同，",
+        "pinyin": "」 duì wàn guàn dào ： 「 tā de pí wèi yǔ wǒ bù tóng ，",
+        "english": ""
+      },
+      {
+        "chinese": "雖是一樣接客，他偏要嫌好道歹，像你老人家，自然是不嫌的。",
+        "pinyin": "suī shì yī yàng jiē kè ， tā piān yào xián hǎo dào dǎi ， xiàng nǐ lǎo rén jiā ， zì rán shì bù xián de 。",
+        "english": ""
+      },
+      {
+        "chinese": "但自今晚也驟然",
+        "pinyin": "dàn zì jīn wǎn yě zhòu rán",
+        "english": ""
+      },
+      {
+        "chinese": "叫他就來，卻是斷然不能的。",
+        "pinyin": "jiào tā jiù lái ， què shì duàn rán bù néng de 。",
+        "english": ""
+      },
+      {
+        "chinese": "你老人家若果不嫌他，待我明日合他細細的商議，",
+        "pinyin": "nǐ lǎo rén jiā ruò guǒ bù xián tā ， dài wǒ míng rì hé tā xì xì de shāng yì ，",
+        "english": ""
+      },
+      {
+        "chinese": "再來回說。",
+        "pinyin": "zài lái huí shuō 。",
+        "english": ""
+      },
+      {
+        "chinese": "」萬貫見這番光景，不覺動起興來了，叫家僮：「對他班內人說聲，",
+        "pinyin": "」 wàn guàn jiàn zhè fān guāng jǐng ， bù jué dòng qǐ xìng lái le ， jiào jiā tóng ： 「 duì tā bān nèi rén shuō shēng ，",
+        "english": ""
+      },
+      {
+        "chinese": "不用等他，今夜在我這裏睡罷。",
+        "pinyin": "bù yòng děng tā ， jīn yè zài wǒ zhè lǐ shuì bà 。",
+        "english": ""
+      },
+      {
+        "chinese": "」絳仙說：「如此，又在這裏打攪你了。",
+        "pinyin": "」 jiàng xiān shuō ： 「 rú cǐ ， yòu zài zhè lǐ dǎ jiǎo nǐ le 。",
+        "english": ""
+      },
+      {
+        "chinese": "」萬貫",
+        "pinyin": "」 wàn guàn",
+        "english": ""
+      },
+      {
+        "chinese": "說：「你若不要錢，我情願叫你常常的打攪。",
+        "pinyin": "shuō ： 「 nǐ ruò bù yào qián ， wǒ qíng yuàn jiào nǐ cháng cháng de dǎ jiǎo 。",
+        "english": ""
+      },
+      {
+        "chinese": "」絳仙說：「爺們相厚，誰合你要",
+        "pinyin": "」 jiàng xiān shuō ： 「 yé mén xiāng hòu ， shuí hé nǐ yào",
+        "english": ""
+      },
+      {
+        "chinese": "錢來。",
+        "pinyin": "qián lái 。",
+        "english": ""
+      },
+      {
+        "chinese": "」萬貫說：「跟我借的糧食也是錢。",
+        "pinyin": "」 wàn guàn shuō ： 「 gēn wǒ jiè de liáng shí yě shì qián 。",
+        "english": ""
+      },
+      {
+        "chinese": "」兩個遂各寬衣裳，同入帳內。",
+        "pinyin": "」 liǎng gè suì gè kuān yī cháng ， tóng rù zhàng nèi 。",
+        "english": ""
+      },
+      {
+        "chinese": "其中",
+        "pinyin": "qí zhōng",
+        "english": ""
+      },
+      {
+        "chinese": "的情景聲音，自是不必說了。",
+        "pinyin": "de qíng jǐng shēng yīn ， zì shì bù bì shuō le 。",
+        "english": ""
+      },
+      {
+        "chinese": "到了次日起來，萬貫說：「今日是餘賬未了一齊清楚罷。",
+        "pinyin": "dào le cì rì qǐ lái ， wàn guàn shuō ： 「 jīn rì shì yú zhàng wèi le yī qí qīng chǔ bà 。",
+        "english": ""
+      },
+      {
+        "chinese": "」絳仙遂起身而去。",
+        "pinyin": "」 jiàng xiān suì qǐ shēn ér qù 。",
+        "english": ""
+      },
+      {
+        "chinese": "及至演戲的時節，萬貫左右不離，又是一天。",
+        "pinyin": "jí zhì yǎn xì de shí jié ， wàn guàn zuǒ yòu bù lí ， yòu shì yī tiān 。",
+        "english": ""
+      },
+      {
+        "chinese": "到晚來想道：「我也曾千方百計去",
+        "pinyin": "dào wǎn lái xiǎng dào ： 「 wǒ yě céng qiān fāng bǎi jì qù",
+        "english": ""
+      },
+      {
+        "chinese": "勾搭，他一毫也不理。",
+        "pinyin": "gōu dā ， tā yī háo yě bù lǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "想來沒有別的意思，一定是不肯零賣，要揀個有錢的主人，",
+        "pinyin": "xiǎng lái méi yǒu bié de yì sī ， yī dìng shì bù kěn líng mài ， yào jiǎn gè yǒu qián de zhǔ rén ，",
+        "english": ""
+      },
+      {
+        "chinese": "成堆發兌的了。",
+        "pinyin": "chéng duī fā duì de le 。",
+        "english": ""
+      },
+      {
+        "chinese": "我如今拚著一主大鈔，娶他回來做小，他母親是極喜我的，也未",
+        "pinyin": "wǒ rú jīn pīn zhuó yī zhǔ dà chāo ， qǔ tā huí lái zuò xiǎo ， tā mǔ qīn shì jí xǐ wǒ de ， yě wèi",
+        "english": ""
+      },
+      {
+        "chinese": "必十分拒絕。",
+        "pinyin": "bì shí fēn jù jué 。",
+        "english": ""
+      },
+      {
+        "chinese": "自古道：見錢眼開。",
+        "pinyin": "zì gǔ dào ： jiàn qián yǎn kāi 。",
+        "english": ""
+      },
+      {
+        "chinese": "我兌下一千兩銀子，與他說話的時節，就拿來",
+        "pinyin": "wǒ duì xià yī qiān liǎng yín zǐ ， yǔ tā shuō huà de shí jié ， jiù ná lái",
+        "english": ""
+      },
+      {
+        "chinese": "排在面前。",
+        "pinyin": "pái zài miàn qián 。",
+        "english": ""
+      },
+      {
+        "chinese": "他見了自然動火，我又有許多好話到他，不怕他不允。",
+        "pinyin": "tā jiàn le zì rán dòng huǒ ， wǒ yòu yǒu xǔ duō hǎo huà dào tā ， bù pà tā bù yǔn 。",
+        "english": ""
+      },
+      {
+        "chinese": "叫梅香與我暖",
+        "pinyin": "jiào méi xiāng yǔ wǒ nuǎn",
+        "english": ""
+      },
+      {
+        "chinese": "起酒來伺候。",
+        "pinyin": "qǐ jiǔ lái cì hòu 。",
+        "english": ""
+      },
+      {
+        "chinese": "見了絳仙道：「我前夜把令嬡的事，再三托你，為甚麼不見回音？",
+        "pinyin": "jiàn le jiàng xiān dào ： 「 wǒ qián yè bǎ lìng ài de shì ， zài sān tuō nǐ ， wèi shèn me bù jiàn huí yīn ？",
+        "english": ""
+      },
+      {
+        "chinese": "」絳仙道：",
+        "pinyin": "」 jiàng xiān dào ：",
+        "english": ""
+      },
+      {
+        "chinese": "「不要說起，都是前世不修，生出這個怪物來，終日裏與我淘氣。",
+        "pinyin": "「 bù yào shuō qǐ ， dōu shì qián shì bù xiū ， shēng chū zhè gè guài wù lái ， zhōng rì lǐ yǔ wǒ táo qì 。",
+        "english": ""
+      },
+      {
+        "chinese": "我幾次要對他",
+        "pinyin": "wǒ jǐ cì yào duì tā",
+        "english": ""
+      },
+      {
+        "chinese": "講，他見我幾次要張口，就走開去了。",
+        "pinyin": "jiǎng ， tā jiàn wǒ jǐ cì yào zhāng kǒu ， jiù zǒu kāi qù le 。",
+        "english": ""
+      },
+      {
+        "chinese": "料想那沒福的東西，受你培植不起，如今",
+        "pinyin": "liào xiǎng nà méi fú de dōng xī ， shòu nǐ péi zhí bù qǐ ， rú jīn",
+        "english": ""
+      },
+      {
+        "chinese": "還是我來替他罷。",
+        "pinyin": "hái shì wǒ lái tì tā bà 。",
+        "english": ""
+      },
+      {
+        "chinese": "」萬貫道：「我有句好話，和你商議，不知你肯不肯？",
+        "pinyin": "」 wàn guàn dào ： 「 wǒ yǒu jù hǎo huà ， hé nǐ shāng yì ， bù zhī nǐ kěn bù kěn ？",
+        "english": ""
+      },
+      {
+        "chinese": "若肯了，",
+        "pinyin": "ruò kěn le ，",
+        "english": ""
+      },
+      {
+        "chinese": "不但送你一場富貴，還替你省下許多是非，只怕你沒有這般造化！",
+        "pinyin": "bù dàn sòng nǐ yī chǎng fù guì ， hái tì nǐ shěng xià xǔ duō shì fēi ， zhǐ pà nǐ méi yǒu zhè bān zào huà ！",
+        "english": ""
+      },
+      {
+        "chinese": "你令嬡不肯接",
+        "pinyin": "nǐ lìng ài bù kěn jiē",
+        "english": ""
+      },
+      {
+        "chinese": "人，也是有志氣的所在。",
+        "pinyin": "rén ， yě shì yǒu zhì qì de suǒ zài 。",
+        "english": ""
+      },
+      {
+        "chinese": "無非是立意從良，要嫁個好丈夫的意思。",
+        "pinyin": "wú fēi shì lì yì cóng liáng ， yào jià gè hǎo zhàng fū de yì sī 。",
+        "english": ""
+      },
+      {
+        "chinese": "你何不依了他，",
+        "pinyin": "nǐ hé bù yī le tā ，",
+        "english": ""
+      },
+      {
+        "chinese": "多接些銀子，打發他去！",
+        "pinyin": "duō jiē xiē yín zǐ ， dǎ fā tā qù ！",
+        "english": ""
+      },
+      {
+        "chinese": "把銀子買了婦人，教起戲來，一般好做生意。",
+        "pinyin": "bǎ yín zǐ mǎi le fù rén ， jiào qǐ xì lái ， yī bān hǎo zuò shēng yì 。",
+        "english": ""
+      },
+      {
+        "chinese": "你莫怪我",
+        "pinyin": "nǐ mò guài wǒ",
+        "english": ""
+      },
+      {
+        "chinese": "說，做女旦的人，若單靠做戲，那掙來的家私，也看得見。",
+        "pinyin": "shuō ， zuò nǚ dàn de rén ， ruò dān kào zuò xì ， nà zhèng lái de jiā sī ， yě kàn dé jiàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "只除非像你一般，真",
+        "pinyin": "zhǐ chú fēi xiàng nǐ yī bān ， zhēn",
+        "english": ""
+      },
+      {
+        "chinese": "戲也做，假戲也做，臺上的戲也做，臺下的戲也做，方纔趁的些銀子。",
+        "pinyin": "xì yě zuò ， jiǎ xì yě zuò ， tái shàng de xì yě zuò ， tái xià de xì yě zuò ， fāng cái chèn de xiē yín zǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "若像你令",
+        "pinyin": "ruò xiàng nǐ lìng",
+        "english": ""
+      },
+      {
+        "chinese": "嬡那樣性情，要想他趁人家的銀子，只怕也是件難事。",
+        "pinyin": "ài nà yàng xìng qíng ， yào xiǎng tā chèn rén jiā de yín zǐ ， zhǐ pà yě shì jiàn nán shì 。",
+        "english": ""
+      },
+      {
+        "chinese": "」絳仙說：「倒也說得不",
+        "pinyin": "」 jiàng xiān shuō ： 「 dǎo yě shuō dé bù",
+        "english": ""
+      },
+      {
+        "chinese": "差。",
+        "pinyin": "chà 。",
+        "english": ""
+      },
+      {
+        "chinese": "」萬貫說：「他趁不得銀子來，也還是小事，只怕連你趁來的銀子還要被他",
+        "pinyin": "」 wàn guàn shuō ： 「 tā chèn bù dé yín zǐ lái ， yě hái shì xiǎo shì ， zhǐ pà lián nǐ chèn lái de yín zǐ hái yào bèi tā",
+        "english": ""
+      },
+      {
+        "chinese": "送了去。",
+        "pinyin": "sòng le qù 。",
+        "english": ""
+      },
+      {
+        "chinese": "把人家敗的淨光，然後賣到他身上。",
+        "pinyin": "bǎ rén jiā bài de jìng guāng ， rán hòu mài dào tā shēn shàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "那賣來的銀子，又沒得買人，只夠",
+        "pinyin": "nà mài lái de yín zǐ ， yòu méi dé mǎi rén ， zhǐ gòu",
+        "english": ""
+      },
+      {
+        "chinese": "還債。",
+        "pinyin": "hái zhài 。",
+        "english": ""
+      },
+      {
+        "chinese": "這件生意，就要做不成了。",
+        "pinyin": "zhè jiàn shēng yì ， jiù yào zuò bù chéng le 。",
+        "english": ""
+      },
+      {
+        "chinese": "」絳仙說：「雖則如此，也還不到這般地位。",
+        "pinyin": "」 jiàng xiān shuō ： 「 suī zé rú cǐ ， yě hái bù dào zhè bān dì wèi 。",
+        "english": ""
+      },
+      {
+        "chinese": "萬貫說：「你還不知道哩！",
+        "pinyin": "wàn guàn shuō ： 「 nǐ hái bù zhī dào li ！",
+        "english": ""
+      },
+      {
+        "chinese": "有多少王孫公子，都是有才有力的人。",
+        "pinyin": "yǒu duō shǎo wáng sūn gōng zǐ ， dōu shì yǒu cái yǒu lì de rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "說他大模大樣，",
+        "pinyin": "shuō tā dà mó dà yàng ，",
+        "english": ""
+      },
+      {
+        "chinese": "不理人也罷了，又私意動人的風景，弄的人有面皮沒處放，起了火沒水潑，都要",
+        "pinyin": "bù lǐ rén yě bà le ， yòu sī yì dòng rén de fēng jǐng ， nòng de rén yǒu miàn pí méi chù fàng ， qǐ le huǒ méi shuǐ pō ， dōu yào",
+        "english": ""
+      },
+      {
+        "chinese": "生法送你到官，出他的醜，不到散班地步不止哩！",
+        "pinyin": "shēng fǎ sòng nǐ dào guān ， chū tā de chǒu ， bù dào sàn bān dì bù bù zhǐ li ！",
+        "english": ""
+      },
+      {
+        "chinese": "」絳仙聽了道：「這等說起來，",
+        "pinyin": "」 jiàng xiān tīng le dào ： 「 zhè děng shuō qǐ lái ，",
+        "english": ""
+      },
+      {
+        "chinese": "是一定該嫁的了。",
+        "pinyin": "shì yī dìng gāi jià de le 。",
+        "english": ""
+      },
+      {
+        "chinese": "但不知甚麼樣人家纔好打發他去呢？",
+        "pinyin": "dàn bù zhī shèn me yàng rén jiā cái hǎo dǎ fā tā qù ne ？",
+        "english": ""
+      },
+      {
+        "chinese": "萬貫說：「富貴二字，是決要的了。",
+        "pinyin": "wàn guàn shuō ： 「 fù guì èr zì ， shì jué yào de le 。",
+        "english": ""
+      }
+    ]
+  },
+  {
+    "id": "the_scholars_ch_6",
+    "bookId": "the_scholars",
+    "chapterIndex": 6,
+    "title": "第六回",
+    "titleEn": "Chapter 6: 第六回",
+    "sentences": [
+      {
+        "chinese": "賴婚姻堂前巧辯　受財禮誓不回心",
+        "pinyin": "lài hūn yīn táng qián qiǎo biàn 　 shòu cái lǐ shì bù huí xīn",
+        "english": ""
+      },
+      {
+        "chinese": "卻說那日戲完之後，藐姑自己想道：「奴家自與譚郎定約之後，且喜委身得",
+        "pinyin": "què shuō nà rì xì wán zhī hòu ， miǎo gū zì jǐ xiǎng dào ： 「 nú jiā zì yǔ tán láng dìng yuē zhī hòu ， qiě xǐ wěi shēn dé",
+        "english": ""
+      },
+      {
+        "chinese": "人，將來料無失所。",
+        "pinyin": "rén ， jiāng lái liào wú shī suǒ 。",
+        "english": ""
+      },
+      {
+        "chinese": "又喜得他改淨為生，合著奴家的私心。",
+        "pinyin": "yòu xǐ dé tā gǎi jìng wèi shēng ， hé zhuó nú jiā de sī xīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "別的戲的，怕的是上",
+        "pinyin": "bié de xì de ， pà de shì shàng",
+        "english": ""
+      },
+      {
+        "chinese": "場，喜的是下場，上場要費力，下場好粹悚的緣故。",
+        "pinyin": "chǎng ， xǐ de shì xià chǎng ， shàng chǎng yào fèi lì ， xià chǎng hǎo cuì sǒng de yuán gù 。",
+        "english": ""
+      },
+      {
+        "chinese": "我和他兩個，卻與別人相反，",
+        "pinyin": "wǒ hé tā liǎng gè ， què yǔ bié rén xiāng fǎn ，",
+        "english": ""
+      },
+      {
+        "chinese": "喜的是上場，怕的是下場。",
+        "pinyin": "xǐ de shì shàng chǎng ， pà de shì xià chǎng 。",
+        "english": ""
+      },
+      {
+        "chinese": "下場要避嫌疑，上場好做夫妻的緣故。",
+        "pinyin": "xià chǎng yào bì xián yí ， shàng chǎng hǎo zuò fū qī de yuán gù 。",
+        "english": ""
+      },
+      {
+        "chinese": "一到登場的時",
+        "pinyin": "yī dào dēng chǎng de shí",
+        "english": ""
+      },
+      {
+        "chinese": "節，他把我認做真妻子，我把他認做真丈夫，沒有一句話兒不說得鑽心刺骨。",
+        "pinyin": "jié ， tā bǎ wǒ rèn zuò zhēn qī zǐ ， wǒ bǎ tā rèn zuò zhēn zhàng fū ， méi yǒu yī jù huà ér bù shuō dé zuān xīn cì gǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "人看了是戲文，我和他做的是實事。",
+        "pinyin": "rén kàn le shì xì wén ， wǒ hé tā zuò de shì shí shì 。",
+        "english": ""
+      },
+      {
+        "chinese": "戲文當了實事做，又且樂此不疲，焉有不登",
+        "pinyin": "xì wén dāng le shí shì zuò ， yòu qiě lè cǐ bù pí ， yān yǒu bù dēng",
+        "english": ""
+      },
+      {
+        "chinese": "峰造極之理！",
+        "pinyin": "fēng zào jí zhī lǐ ！",
+        "english": ""
+      },
+      {
+        "chinese": "所以這玉筍班的名頭，一日添似一日。",
+        "pinyin": "suǒ yǐ zhè yù sǔn bān de míng tóu ， yī rì tiān sì yī rì 。",
+        "english": ""
+      },
+      {
+        "chinese": "是便是了，戲場上的夫妻，",
+        "pinyin": "shì biàn shì le ， xì chǎng shàng de fū qī ，",
+        "english": ""
+      },
+      {
+        "chinese": "究竟當不得實事。",
+        "pinyin": "jiū jìng dāng bù dé shí shì 。",
+        "english": ""
+      },
+      {
+        "chinese": "須要生個計策，做真了纔好。",
+        "pinyin": "xū yào shēng gè jì cè ， zuò zhēn le cái hǎo 。",
+        "english": ""
+      },
+      {
+        "chinese": "幾次要對母親說，只是不好開口。",
+        "pinyin": "jǐ cì yào duì mǔ qīn shuō ， zhǐ shì bù hǎo kāi kǒu 。",
+        "english": ""
+      },
+      {
+        "chinese": "如今也顧不得了，早晚之間，要把真情吐露出來，方結果了這件心事。",
+        "pinyin": "rú jīn yě gù bù dé le ， zǎo wǎn zhī jiān ， yào bǎ zhēn qíng tǔ lòu chū lái ， fāng jié guǒ le zhè jiàn xīn shì 。",
+        "english": ""
+      },
+      {
+        "chinese": "看見絳仙回來，道：「母親，你往那裏去來？",
+        "pinyin": "kàn jiàn jiàng xiān huí lái ， dào ： 「 mǔ qīn ， nǐ wǎng nà lǐ qù lái ？",
+        "english": ""
+      },
+      {
+        "chinese": "為何至今方回？",
+        "pinyin": "wèi hé zhì jīn fāng huí ？",
+        "english": ""
+      },
+      {
+        "chinese": "這箱子裏面可",
+        "pinyin": "zhè xiāng zǐ lǐ miàn kě",
+        "english": ""
+      },
+      {
+        "chinese": "是甚麼東西？",
+        "pinyin": "shì shèn me dōng xī ？",
+        "english": ""
+      },
+      {
+        "chinese": "」絳仙道：「我心是極明白的，你且猜上一猜。",
+        "pinyin": "」 jiàng xiān dào ： 「 wǒ xīn shì jí míng bái de ， nǐ qiě cāi shàng yī cāi 。",
+        "english": ""
+      },
+      {
+        "chinese": "」藐姑猜道：「是",
+        "pinyin": "」 miǎo gū cāi dào ： 「 shì",
+        "english": ""
+      },
+      {
+        "chinese": "添的新行頭？",
+        "pinyin": "tiān de xīn xíng tóu ？",
+        "english": ""
+      },
+      {
+        "chinese": "」「不是！",
+        "pinyin": "」 「 bù shì ！",
+        "english": ""
+      },
+      {
+        "chinese": "」「是母親清歌換來的詩千首？",
+        "pinyin": "」 「 shì mǔ qīn qīng gē huàn lái de shī qiān shǒu ？",
+        "english": ""
+      },
+      {
+        "chinese": "」「不是！",
+        "pinyin": "」 「 bù shì ！",
+        "english": ""
+      },
+      {
+        "chinese": "」「如此孩",
+        "pinyin": "」 「 rú cǐ hái",
+        "english": ""
+      },
+      {
+        "chinese": "兒知道了，但自說不出口來。",
+        "pinyin": "ér zhī dào le ， dàn zì shuō bù chū kǒu lái 。",
+        "english": ""
+      },
+      {
+        "chinese": "」絳仙道：「你既然猜著，就明說何妨。",
+        "pinyin": "」 jiàng xiān dào ： 「 nǐ jì rán cāi zhuó ， jiù míng shuō hé fáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "」「莫不",
+        "pinyin": "」 「 mò bù",
+        "english": ""
+      },
+      {
+        "chinese": "是母親遇著好事的財主，因此送來這些物件麼？",
+        "pinyin": "shì mǔ qīn yù zhuó hǎo shì de cái zhǔ ， yīn cǐ sòng lái zhè xiē wù jiàn me ？",
+        "english": ""
+      },
+      {
+        "chinese": "」「都不是！",
+        "pinyin": "」 「 dōu bù shì ！",
+        "english": ""
+      },
+      {
+        "chinese": "我對你說了罷，這",
+        "pinyin": "wǒ duì nǐ shuō le bà ， zhè",
+        "english": ""
+      },
+      {
+        "chinese": "皮箱裏頭的物件，就是你的替身。",
+        "pinyin": "pí xiāng lǐ tóu de wù jiàn ， jiù shì nǐ de tì shēn 。",
+        "english": ""
+      },
+      {
+        "chinese": "做娘的有了他，就不用你了。",
+        "pinyin": "zuò niáng de yǒu le tā ， jiù bù yòng nǐ le 。",
+        "english": ""
+      },
+      {
+        "chinese": "」藐姑說：「怎",
+        "pinyin": "」 miǎo gū shuō ： 「 zěn",
+        "english": ""
+      },
+      {
+        "chinese": "麼，不用孩兒做戲了，這等謝天謝地。",
+        "pinyin": "me ， bù yòng hái ér zuò xì le ， zhè děng xiè tiān xiè dì 。",
+        "english": ""
+      },
+      {
+        "chinese": "」絳仙道：「我生你一場，我只說與我一",
+        "pinyin": "」 jiàng xiān dào ： 「 wǒ shēng nǐ yī chǎng ， wǒ zhǐ shuō yǔ wǒ yī",
+        "english": ""
+      },
+      {
+        "chinese": "樣。",
+        "pinyin": "yàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "誰料你動不動要顧廉恥，要惜名節，所以如今弄出這件事來。",
+        "pinyin": "shuí liào nǐ dòng bù dòng yào gù lián chǐ ， yào xī míng jié ， suǒ yǐ rú jīn nòng chū zhè jiàn shì lái 。",
+        "english": ""
+      },
+      {
+        "chinese": "」藐姑說：「母",
+        "pinyin": "」 miǎo gū shuō ： 「 mǔ",
+        "english": ""
+      },
+      {
+        "chinese": "親說的話，孩兒一些也不懂，倒求你明白講了罷。",
+        "pinyin": "qīn shuō de huà ， hái ér yī xiē yě bù dǒng ， dǎo qiú nǐ míng bái jiǎng le bà 。",
+        "english": ""
+      },
+      {
+        "chinese": "」絳仙說：「我老實對你說，",
+        "pinyin": "」 jiàng xiān shuō ： 「 wǒ lǎo shí duì nǐ shuō ，",
+        "english": ""
+      },
+      {
+        "chinese": "你這樣心性，料想不是個掙錢的，將來還要招災惹禍。",
+        "pinyin": "nǐ zhè yàng xīn xìng ， liào xiǎng bù shì gè zhèng qián de ， jiāng lái hái yào zhāo zāi rě huò 。",
+        "english": ""
+      },
+      {
+        "chinese": "不如做個良家的婦人，吃",
+        "pinyin": "bù rú zuò gè liáng jiā de fù rén ， chī",
+        "english": ""
+      },
+      {
+        "chinese": "幾碗現成飯罷。",
+        "pinyin": "jǐ wǎn xiàn chéng fàn bà 。",
+        "english": ""
+      },
+      {
+        "chinese": "這邊有個錢鄉宦，他是這塊的一個大財主，從前也做過一任子官，",
+        "pinyin": "zhè biān yǒu gè qián xiāng huàn ， tā shì zhè kuài de yī gè dà cái zhǔ ， cóng qián yě zuò guò yī rèn zǐ guān ，",
+        "english": ""
+      },
+      {
+        "chinese": "如今告終養回家。",
+        "pinyin": "rú jīn gào zhōng yǎng huí jiā 。",
+        "english": ""
+      },
+      {
+        "chinese": "年紀也不甚大，做人又極慷慨。",
+        "pinyin": "nián jì yě bù shèn dà ， zuò rén yòu jí kāng kǎi 。",
+        "english": ""
+      },
+      {
+        "chinese": "他一眼看上你，要娶你做個二",
+        "pinyin": "tā yī yǎn kàn shàng nǐ ， yào qǔ nǐ zuò gè èr",
+        "english": ""
+      },
+      {
+        "chinese": "房夫人。",
+        "pinyin": "fáng fū rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "等你過了門的時節，不惟你卻奴使婢，受用一輩子，就是做娘的，也就",
+        "pinyin": "děng nǐ guò le mén de shí jié ， bù wéi nǐ què nú shǐ bì ， shòu yòng yī bèi zǐ ， jiù shì zuò niáng de ， yě jiù",
+        "english": ""
+      },
+      {
+        "chinese": "托你的福了！",
+        "pinyin": "tuō nǐ de fú le ！",
+        "english": ""
+      },
+      {
+        "chinese": "你說好不好？",
+        "pinyin": "nǐ shuō hǎo bù hǎo ？",
+        "english": ""
+      },
+      {
+        "chinese": "做娘的已經許下他了。",
+        "pinyin": "zuò niáng de yǐ jīng xǔ xià tā le 。",
+        "english": ""
+      },
+      {
+        "chinese": "這箱子裏面，就是他的財禮。",
+        "pinyin": "zhè xiāng zǐ lǐ miàn ， jiù shì tā de cái lǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "明日戲完之後，就要送你過去了。",
+        "pinyin": "míng rì xì wán zhī hòu ， jiù yào sòng nǐ guò qù le 。",
+        "english": ""
+      },
+      {
+        "chinese": "藐姑聽說，大驚道：「呀！",
+        "pinyin": "miǎo gū tīng shuō ， dà jīng dào ： 「 yā ！",
+        "english": ""
+      },
+      {
+        "chinese": "有這等的奇事！",
+        "pinyin": "yǒu zhè děng de qí shì ！",
+        "english": ""
+      },
+      {
+        "chinese": "我是有了丈夫的，怎麼如今又許",
+        "pinyin": "wǒ shì yǒu le zhàng fū de ， zěn me rú jīn yòu xǔ",
+        "english": ""
+      },
+      {
+        "chinese": "旁人？",
+        "pinyin": "páng rén ？",
+        "english": ""
+      },
+      {
+        "chinese": "烈女不更二夫，我豈有改嫁之理！",
+        "pinyin": "liè nǚ bù gèng èr fū ， wǒ qǐ yǒu gǎi jià zhī lǐ ！",
+        "english": ""
+      },
+      {
+        "chinese": "」絳仙驚問道：「你有甚麼丈夫？",
+        "pinyin": "」 jiàng xiān jīng wèn dào ： 「 nǐ yǒu shèn me zhàng fū ？",
+        "english": ""
+      },
+      {
+        "chinese": "難道",
+        "pinyin": "nán dào",
+        "english": ""
+      },
+      {
+        "chinese": "做爹娘的不曾許人，你竟自家做主，許了那一個不成？",
+        "pinyin": "zuò diē niáng de bù céng xǔ rén ， nǐ jìng zì jiā zuò zhǔ ， xǔ le nà yī gè bù chéng ？",
+        "english": ""
+      },
+      {
+        "chinese": "」藐姑道：「孩兒怎敢自",
+        "pinyin": "」 miǎo gū dào ： 「 hái ér zěn gǎn zì",
+        "english": ""
+      },
+      {
+        "chinese": "家做主，這頭親事，是爹娘一同許下的。",
+        "pinyin": "jiā zuò zhǔ ， zhè tóu qīn shì ， shì diē niáng yī tóng xǔ xià de 。",
+        "english": ""
+      },
+      {
+        "chinese": "難道因他沒有財禮，就悔了親事不成。",
+        "pinyin": "nán dào yīn tā méi yǒu cái lǐ ， jiù huǐ le qīn shì bù chéng 。",
+        "english": ""
+      },
+      {
+        "chinese": "絳仙大驚道：「我何曾許甚麼人家，只怕是你見了鬼了！",
+        "pinyin": "jiàng xiān dà jīng dào ： 「 wǒ hé céng xǔ shèn me rén jiā ， zhǐ pà shì nǐ jiàn le guǐ le ！",
+        "english": ""
+      },
+      {
+        "chinese": "既然如此，你且說我許",
+        "pinyin": "jì rán rú cǐ ， nǐ qiě shuō wǒ xǔ",
+        "english": ""
+      },
+      {
+        "chinese": "的是那一家？",
+        "pinyin": "de shì nà yī jiā ？",
+        "english": ""
+      },
+      {
+        "chinese": "那一個？",
+        "pinyin": "nà yī gè ？",
+        "english": ""
+      },
+      {
+        "chinese": "你且講來。",
+        "pinyin": "nǐ qiě jiǎng lái 。",
+        "english": ""
+      },
+      {
+        "chinese": "」藐姑說：「就是那做生的譚楚玉，難道你忘",
+        "pinyin": "」 miǎo gū shuō ： 「 jiù shì nà zuò shēng de tán chǔ yù ， nán dào nǐ wàng",
+        "english": ""
+      },
+      {
+        "chinese": "了麼？",
+        "pinyin": "le me ？",
+        "english": ""
+      },
+      {
+        "chinese": "」絳仙道：「這一發奇了！",
+        "pinyin": "」 jiàng xiān dào ： 「 zhè yī fā qí le ！",
+        "english": ""
+      },
+      {
+        "chinese": "我何曾許他來呢？",
+        "pinyin": "wǒ hé céng xǔ tā lái ne ？",
+        "english": ""
+      },
+      {
+        "chinese": "」藐姑說：「他是個宦門之",
+        "pinyin": "」 miǎo gū shuō ： 「 tā shì gè huàn mén zhī",
+        "english": ""
+      },
+      {
+        "chinese": "子，現今身列學宮，負了概世之才，取功名易如反掌。",
+        "pinyin": "zǐ ， xiàn jīn shēn liè xué gōng ， fù le gài shì zhī cái ， qǔ gōng míng yì rú fǎn zhǎng 。",
+        "english": ""
+      },
+      {
+        "chinese": "為甚麼肯來學戲？",
+        "pinyin": "wèi shèn me kěn lái xué xì ？",
+        "english": ""
+      },
+      {
+        "chinese": "只因看",
+        "pinyin": "zhǐ yīn kàn",
+        "english": ""
+      },
+      {
+        "chinese": "上了孩兒，不能夠親近，所以借學戲二字，做個進身之階。",
+        "pinyin": "shàng le hái ér ， bù néng gòu qīn jìn ， suǒ yǐ jiè xué xì èr zì ， zuò gè jìn shēn zhī jiē 。",
+        "english": ""
+      },
+      {
+        "chinese": "又怕花面與正旦配合",
+        "pinyin": "yòu pà huā miàn yǔ zhēng dàn pèi hé",
+        "english": ""
+      },
+      {
+        "chinese": "不來，故此要改做正生。",
+        "pinyin": "bù lái ， gù cǐ yào gǎi zuò zhèng shēng 。",
+        "english": ""
+      },
+      {
+        "chinese": "這明明白白是句求親的話，不好直講，做一個啞謎兒與",
+        "pinyin": "zhè míng míng bái bái shì jù qiú qīn de huà ， bù hǎo zhí jiǎng ， zuò yī gè yǎ mí ér yǔ",
+        "english": ""
+      },
+      {
+        "chinese": "人猜的意思，爹爹與母親都曾做過生旦，也是兩位個中人，豈有解不出的道理！",
+        "pinyin": "rén cāi de yì sī ， diē diē yǔ mǔ qīn dōu céng zuò guò shēng dàn ， yě shì liǎng wèi gè zhōng rén ， qǐ yǒu jiě bù chū de dào lǐ ！",
+        "english": ""
+      },
+      {
+        "chinese": "既然不許婚姻，就不該留他學戲；",
+        "pinyin": "jì rán bù xǔ hūn yīn ， jiù bù gāi liú tā xué xì ；",
+        "english": ""
+      },
+      {
+        "chinese": "就留他學戲，也不該許他改淨為生。",
+        "pinyin": "jiù liú tā xué xì ， yě bù gāi xǔ tā gǎi jìng wèi shēng 。",
+        "english": ""
+      },
+      {
+        "chinese": "既然兩件",
+        "pinyin": "jì rán liǎng jiàn",
+        "english": ""
+      },
+      {
+        "chinese": "都依，分明是允從之意了。",
+        "pinyin": "dōu yī ， fēn míng shì yǔn cóng zhī yì le 。",
+        "english": ""
+      },
+      {
+        "chinese": "為甚麼到了如今，忽然又改變起來？",
+        "pinyin": "wèi shèn me dào le rú jīn ， hū rán yòu gǎi biàn qǐ lái ？",
+        "english": ""
+      },
+      {
+        "chinese": "這也覺得沒理。",
+        "pinyin": "zhè yě jué dé méi lǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "絳仙說：「好，好，好！",
+        "pinyin": "jiàng xiān shuō ： 「 hǎo ， hǎo ， hǎo ！",
+        "english": ""
+      },
+      {
+        "chinese": "好一個賴法！",
+        "pinyin": "hǎo yī gè lài fǎ ！",
+        "english": ""
+      },
+      {
+        "chinese": "這等說起來，只消這幾句巧話，就把你的",
+        "pinyin": "zhè děng shuō qǐ lái ， zhǐ xiāo zhè jǐ jù qiǎo huà ， jiù bǎ nǐ de",
+        "english": ""
+      },
+      {
+        "chinese": "身子被他賴去不成！",
+        "pinyin": "shēn zǐ bèi tā lài qù bù chéng ！",
+        "english": ""
+      },
+      {
+        "chinese": "且是婚姻大事，不論貧富，都有個媒人。",
+        "pinyin": "qiě shì hūn yīn dà shì ， bù lùn pín fù ， dōu yǒu gè méi rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "就是告當官，也要",
+        "pinyin": "jiù shì gào dāng guān ， yě yào",
+        "english": ""
+      },
+      {
+        "chinese": "有個干證。",
+        "pinyin": "yǒu gè gān zhèng 。",
+        "english": ""
+      },
+      {
+        "chinese": "你說你的媒人是誰？",
+        "pinyin": "nǐ shuō nǐ de méi rén shì shuí ？",
+        "english": ""
+      },
+      {
+        "chinese": "你的干證是誰？",
+        "pinyin": "nǐ de gān zhèng shì shuí ？",
+        "english": ""
+      },
+      {
+        "chinese": "」藐姑道：「你說我沒有干證麼？",
+        "pinyin": "」 miǎo gū dào ： 「 nǐ shuō wǒ méi yǒu gān zhèng me ？",
+        "english": ""
+      },
+      {
+        "chinese": "那些看戲的人，誰不說我與他，是天配的姻緣呢？",
+        "pinyin": "nà xiē kàn xì de rén ， shuí bù shuō wǒ yǔ tā ， shì tiān pèi de yīn yuán ne ？",
+        "english": ""
+      },
+      {
+        "chinese": "且是我和他，交杯酒也不知吃",
+        "pinyin": "qiě shì wǒ hé tā ， jiāo bēi jiǔ yě bù zhī chī",
+        "english": ""
+      },
+      {
+        "chinese": "過多少，夫妻也不知叫過多少，難道還不是真的麼？",
+        "pinyin": "guò duō shǎo ， fū qī yě bù zhī jiào guò duō shǎo ， nán dào hái bù shì zhēn de me ？",
+        "english": ""
+      },
+      {
+        "chinese": "」絳仙說：「你看這個孩子，",
+        "pinyin": "」 jiàng xiān shuō ： 「 nǐ kàn zhè gè hái zǐ ，",
+        "english": ""
+      },
+      {
+        "chinese": "癡又不癡，乖又不乖，說的都是些夢話！",
+        "pinyin": "chī yòu bù chī ， guāi yòu bù guāi ， shuō de dōu shì xiē mèng huà ！",
+        "english": ""
+      },
+      {
+        "chinese": "那有戲場上的夫妻，是做得准的呢？",
+        "pinyin": "nà yǒu xì chǎng shàng de fū qī ， shì zuò dé zhǔn de ne ？",
+        "english": ""
+      },
+      {
+        "chinese": "古來做戲的甚多，你見誰做生的與旦作儔，做旦的把生認做真夫呢？",
+        "pinyin": "gǔ lái zuò xì de shèn duō ， nǐ jiàn shuí zuò shēng de yǔ dàn zuò chóu ， zuò dàn de bǎ shēng rèn zuò zhēn fū ne ？",
+        "english": ""
+      },
+      {
+        "chinese": "」藐姑說：",
+        "pinyin": "」 miǎo gū shuō ：",
+        "english": ""
+      },
+      {
+        "chinese": "「天下事，別的都戲的，惟有婚姻戲不的。",
+        "pinyin": "「 tiān xià shì ， bié de dōu xì de ， wéi yǒu hūn yīn xì bù de 。",
+        "english": ""
+      },
+      {
+        "chinese": "既要弄假，就要成真。",
+        "pinyin": "jì yào nòng jiǎ ， jiù yào chéng zhēn 。",
+        "english": ""
+      },
+      {
+        "chinese": "我不像別個女",
+        "pinyin": "wǒ bù xiàng bié gè nǚ",
+        "english": ""
+      },
+      {
+        "chinese": "旦，夜間睡的是一個，白日叫的又是一個。",
+        "pinyin": "dàn ， yè jiān shuì de shì yī gè ， bái rì jiào de yòu shì yī gè 。",
+        "english": ""
+      },
+      {
+        "chinese": "一些廉恥也不惜，也不顧名節是何物！",
+        "pinyin": "yī xiē lián chǐ yě bù xī ， yě bù gù míng jié shì hé wù ！",
+        "english": ""
+      },
+      {
+        "chinese": "孩兒是個惜廉恥、顧名節的人，不敢把戲場上的婚姻，當做假事。",
+        "pinyin": "hái ér shì gè xī lián chǐ 、 gù míng jié de rén ， bù gǎn bǎ xì chǎng shàng de hūn yīn ， dāng zuò jiǎ shì 。",
+        "english": ""
+      },
+      {
+        "chinese": "這個丈夫是一",
+        "pinyin": "zhè gè zhàng fū shì yī",
+        "english": ""
+      },
+      {
+        "chinese": "定要嫁的。",
+        "pinyin": "dìng yào jià de 。",
+        "english": ""
+      },
+      {
+        "chinese": "」絳仙說：「好罵！",
+        "pinyin": "」 jiàng xiān shuō ： 「 hǎo mà ！",
+        "english": ""
+      },
+      {
+        "chinese": "好罵！",
+        "pinyin": "hǎo mà ！",
+        "english": ""
+      },
+      {
+        "chinese": "這等說起來，我是不惜廉恥，不顧名節的",
+        "pinyin": "zhè děng shuō qǐ lái ， wǒ shì bù xī lián chǐ ， bù gù míng jié de",
+        "english": ""
+      },
+      {
+        "chinese": "了？",
+        "pinyin": "le ？",
+        "english": ""
+      },
+      {
+        "chinese": "我既然不惜廉恥，不顧名節，還有甚麼母子之情呢？",
+        "pinyin": "wǒ jì rán bù xī lián chǐ ， bù gù míng jié ， hái yǒu shèn me mǔ zǐ zhī qíng ne ？",
+        "english": ""
+      },
+      {
+        "chinese": "就逼你嫁了人，也不是",
+        "pinyin": "jiù bī nǐ jià le rén ， yě bù shì",
+        "english": ""
+      },
+      {
+        "chinese": "甚麼奇事！",
+        "pinyin": "shèn me qí shì ！",
+        "english": ""
+      },
+      {
+        "chinese": "我且進去睡覺，待明日戲完了，我再同你講話。",
+        "pinyin": "wǒ qiě jìn qù shuì jué ， dài míng rì xì wán le ， wǒ zài tóng nǐ jiǎng huà 。",
+        "english": ""
+      },
+      {
+        "chinese": "難道我的貨，倒由不",
+        "pinyin": "nán dào wǒ de huò ， dǎo yóu bù",
+        "english": ""
+      },
+      {
+        "chinese": "的我麼？",
+        "pinyin": "de wǒ me ？",
+        "english": ""
+      },
+      {
+        "chinese": "不怕你飛上天去。",
+        "pinyin": "bù pà nǐ fēi shàng tiān qù 。",
+        "english": ""
+      },
+      {
+        "chinese": "任你百口撓婚約，",
+        "pinyin": "rèn nǐ bǎi kǒu náo hūn yuē ，",
+        "english": ""
+      },
+      {
+        "chinese": "還我千金作枕頭。",
+        "pinyin": "hái wǒ qiān jīn zuò zhěn tóu 。",
+        "english": ""
+      },
+      {
+        "chinese": "藐姑道：「你看他竟自進去了！",
+        "pinyin": "miǎo gū dào ： 「 nǐ kàn tā jìng zì jìn qù le ！",
+        "english": ""
+      },
+      {
+        "chinese": "譚郎，譚郎！",
+        "pinyin": "tán láng ， tán láng ！",
+        "english": ""
+      },
+      {
+        "chinese": "我和你同心苦守，指望守個出",
+        "pinyin": "wǒ hé nǐ tóng xīn kǔ shǒu ， zhǐ wàng shǒu gè chū",
+        "english": ""
+      },
+      {
+        "chinese": "頭的日子，誰想到了半途，忽然生出這樣事來！",
+        "pinyin": "tóu de rì zǐ ， shuí xiǎng dào le bàn tú ， hū rán shēng chū zhè yàng shì lái ！",
+        "english": ""
+      },
+      {
+        "chinese": "我那母親見了這些銀子，就如饞",
+        "pinyin": "wǒ nà mǔ qīn jiàn le zhè xiē yín zǐ ， jiù rú chán",
+        "english": ""
+      },
+      {
+        "chinese": "猴遇果，飢犬聞腥的一般。",
+        "pinyin": "hóu yù guǒ ， jī quǎn wén xīng de yī bān 。",
+        "english": ""
+      },
+      {
+        "chinese": "既然吞在口裏，那裏還肯吐將出來！",
+        "pinyin": "jì rán tūn zài kǒu lǐ ， nà lǐ hái kěn tǔ jiāng chū lái ！",
+        "english": ""
+      },
+      {
+        "chinese": "這場劫數，是斷",
+        "pinyin": "zhè chǎng jié shǔ ， shì duàn",
+        "english": ""
+      },
+      {
+        "chinese": "不能逃的了！",
+        "pinyin": "bù néng táo de le ！",
+        "english": ""
+      },
+      {
+        "chinese": "也罷，譚郎如今現在外邊，我不免將我的軟細東西，收拾收拾，跟",
+        "pinyin": "yě bà ， tán láng rú jīn xiàn zài wài biān ， wǒ bù miǎn jiāng wǒ de ruǎn xì dōng xī ， shōu shí shōu shí ， gēn",
+        "english": ""
+      },
+      {
+        "chinese": "他夤夜逃走。",
+        "pinyin": "tā yín yè táo zǒu 。",
+        "english": ""
+      },
+      {
+        "chinese": "明日意在一個幽密去隨，連日奔往別處，再作道理。",
+        "pinyin": "míng rì yì zài yī gè yōu mì qù suí ， lián rì bēn wǎng bié chù ， zài zuò dào lǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "」及至到了二",
+        "pinyin": "」 jí zhì dào le èr",
+        "english": ""
+      },
+      {
+        "chinese": "門，已被上了鎖了。",
+        "pinyin": "mén ， yǐ bèi shàng le suǒ le 。",
+        "english": ""
+      },
+      {
+        "chinese": "又不敢高聲叫，又不能越牆而過。",
+        "pinyin": "yòu bù gǎn gāo shēng jiào ， yòu bù néng yuè qiáng ér guò 。",
+        "english": ""
+      }
+    ]
+  },
+  {
+    "id": "the_scholars_ch_7",
+    "bookId": "the_scholars",
+    "chapterIndex": 7,
+    "title": "第七回",
+    "titleEn": "Chapter 7: 第七回",
+    "sentences": [
+      {
+        "chinese": "借戲文臺前辱罵　守節義夫婦偕亡",
+        "pinyin": "jiè xì wén tái qián rǔ mà 　 shǒu jié yì fū fù xié wáng",
+        "english": ""
+      },
+      {
+        "chinese": "話說藐姑將帶兒掛在頸下，意在必死。",
+        "pinyin": "huà shuō miǎo gū jiāng dài ér guà zài jǐng xià ， yì zài bì sǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "心中怒轉道：「且住！",
+        "pinyin": "xīn zhōng nù zhuǎn dào ： 「 qiě zhù ！",
+        "english": ""
+      },
+      {
+        "chinese": "做烈婦的人，",
+        "pinyin": "zuò liè fù de rén ，",
+        "english": ""
+      },
+      {
+        "chinese": "既要拚這一條性命，就該對了眾人，把不肯改節的心事，明明白白訴說一番。",
+        "pinyin": "jì yào pīn zhè yī tiáo xìng mìng ， jiù gāi duì le zhòng rén ， bǎ bù kěn gǎi jié de xīn shì ， míng míng bái bái sù shuō yī fān 。",
+        "english": ""
+      },
+      {
+        "chinese": "來使情人見了，也好當面招魂；",
+        "pinyin": "lái shǐ qíng rén jiàn le ， yě hǎo dāng miàn zhāo hún ；",
+        "english": ""
+      },
+      {
+        "chinese": "二來使文人墨士聞之，也好做幾首詩文，留個不",
+        "pinyin": "èr lái shǐ wén rén mò shì wén zhī ， yě hǎo zuò jǐ shǒu shī wén ， liú gè bù",
+        "english": ""
+      },
+      {
+        "chinese": "朽！",
+        "pinyin": "xiǔ ！",
+        "english": ""
+      },
+      {
+        "chinese": "為甚麼死得不明不白，做起啞節婦來！",
+        "pinyin": "wèi shèn me sǐ dé bù míng bù bái ， zuò qǐ yǎ jié fù lái ！",
+        "english": ""
+      },
+      {
+        "chinese": "畢竟用個甚麼死法纔好？",
+        "pinyin": "bì jìng yòng gè shèn me sǐ fǎ cái hǎo ？",
+        "english": ""
+      },
+      {
+        "chinese": "有了，我們",
+        "pinyin": "yǒu le ， wǒ mén",
+        "english": ""
+      },
+      {
+        "chinese": "這段姻緣是在戲場上做起，就該在戲場上死節。",
+        "pinyin": "zhè duàn yīn yuán shì zài xì chǎng shàng zuò qǐ ， jiù gāi zài xì chǎng shàng sǐ jié 。",
+        "english": ""
+      },
+      {
+        "chinese": "那晏公的廟宇，恰好對著大溪，",
+        "pinyin": "nà yàn gōng de miào yǔ ， qià hǎo duì zhuó dà xī ，",
+        "english": ""
+      },
+      {
+        "chinese": "後半個戲臺，雖在岸上，前半個卻在水裏。",
+        "pinyin": "hòu bàn gè xì tái ， suī zài àn shàng ， qián bàn gè què zài shuǐ lǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "不如揀一出死節的戲，認真做將起來。",
+        "pinyin": "bù rú jiǎn yī chū sǐ jié de xì ， rèn zhēn zuò jiāng qǐ lái 。",
+        "english": ""
+      },
+      {
+        "chinese": "做到其間，忽然跳下水去，豈不是自古及今，烈婦死難之中，第一件奇事麼！",
+        "pinyin": "zuò dào qí jiān ， hū rán tiào xià shuǐ qù ， qǐ bù shì zì gǔ jí jīn ， liè fù sǐ nán zhī zhōng ， dì yī jiàn qí shì me ！",
+        "english": ""
+      },
+      {
+        "chinese": "理，有理。",
+        "pinyin": "lǐ ， yǒu lǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "阿母親操逐女戈，人倫欲變待如何？",
+        "pinyin": "ā mǔ qīn cāo zhú nǚ gē ， rén lún yù biàn dài rú hé ？",
+        "english": ""
+      },
+      {
+        "chinese": "一宵緩死非無見，留取芳名利益多。",
+        "pinyin": "yī xiāo huǎn sǐ fēi wú jiàn ， liú qǔ fāng míng lì yì duō 。",
+        "english": ""
+      },
+      {
+        "chinese": "卻說次日，楚玉聞知此事，心中想道：「我為劉藐姑，受盡千般恥辱，指望",
+        "pinyin": "què shuō cì rì ， chǔ yù wén zhī cǐ shì ， xīn zhōng xiǎng dào ： 「 wǒ wèi liú miǎo gū ， shòu jìn qiān bān chǐ rǔ ， zhǐ wàng",
+        "english": ""
+      },
+      {
+        "chinese": "守些機會，出來成就了這樁心事。",
+        "pinyin": "shǒu xiē jī huì ， chū lái chéng jiù le zhè zhuāng xīn shì 。",
+        "english": ""
+      },
+      {
+        "chinese": "誰想他的母親，竟受了千金聘禮，要賣與錢家",
+        "pinyin": "shuí xiǎng tā de mǔ qīn ， jìng shòu le qiān jīn pìn lǐ ， yào mài yǔ qián jiā",
+        "english": ""
+      },
+      {
+        "chinese": "為妾！",
+        "pinyin": "wèi qiè ！",
+        "english": ""
+      },
+      {
+        "chinese": "聞得今日戲完之後，就要過門，難道我和他這段姻緣，就是這等罷了不成！",
+        "pinyin": "wén dé jīn rì xì wán zhī hòu ， jiù yào guò mén ， nán dào wǒ hé tā zhè duàn yīn yuán ， jiù shì zhè děng bà le bù chéng ！",
+        "english": ""
+      },
+      {
+        "chinese": "豈有此理。",
+        "pinyin": "qǐ yǒu cǐ lǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "他當初念腳本的時節，親口對我唱道：『心兒早屬伊，暗相期，不怕",
+        "pinyin": "tā dāng chū niàn jiǎo běn de shí jié ， qīn kǒu duì wǒ chàng dào ： 『 xīn ér zǎo shǔ yī ， àn xiāng qī ， bù pà",
+        "english": ""
+      },
+      {
+        "chinese": "天人不肯依！",
+        "pinyin": "tiān rén bù kěn yī ！",
+        "english": ""
+      },
+      {
+        "chinese": "』這三句話，何等的決烈！",
+        "pinyin": "』 zhè sān jù huà ， hé děng de jué liè ！",
+        "english": ""
+      },
+      {
+        "chinese": "難道天也不怕，單單怕起人來？",
+        "pinyin": "nán dào tiān yě bù pà ， dān dān pà qǐ rén lái ？",
+        "english": ""
+      },
+      {
+        "chinese": "他畢竟",
+        "pinyin": "tā bì jìng",
+        "english": ""
+      },
+      {
+        "chinese": "有個主意，莫說親事不允，連今日這本戲，只怕還不肯做哩。",
+        "pinyin": "yǒu gè zhǔ yì ， mò shuō qīn shì bù yǔn ， lián jīn rì zhè běn xì ， zhǐ pà hái bù kěn zuò li 。",
+        "english": ""
+      },
+      {
+        "chinese": "定要費許多凌逼，",
+        "pinyin": "dìng yào fèi xǔ duō líng bī ，",
+        "english": ""
+      },
+      {
+        "chinese": "方得他上臺。",
+        "pinyin": "fāng dé tā shàng tái 。",
+        "english": ""
+      },
+      {
+        "chinese": "我且先到臺上伺候，看他走到的時節，是個甚麼面容，就知道了。",
+        "pinyin": "wǒ qiě xiān dào tái shàng cì hòu ， kàn tā zǒu dào de shí jié ， shì gè shèn me miàn róng ， jiù zhī dào le 。",
+        "english": ""
+      },
+      {
+        "chinese": "正是：",
+        "pinyin": "zhèng shì ：",
+        "english": ""
+      },
+      {
+        "chinese": "入門休問榮枯事，觀著容顏便得知。",
+        "pinyin": "rù mén xiū wèn róng kū shì ， guān zhuó róng yán biàn dé zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "藐姑道：「奴家昨日要尋短計，只因不曾別得譚郎，還要見他一面；",
+        "pinyin": "miǎo gū dào ： 「 nú jiā zuó rì yào xún duǎn jì ， zhǐ yīn bù céng bié dé tán láng ， hái yào jiàn tā yī miàn ；",
+        "english": ""
+      },
+      {
+        "chinese": "二來要",
+        "pinyin": "èr lái yào",
+        "english": ""
+      },
+      {
+        "chinese": "把滿腔的心事，對眾人暴白一番。",
+        "pinyin": "bǎ mǎn qiāng de xīn shì ， duì zhòng rén bào bái yī fān 。",
+        "english": ""
+      },
+      {
+        "chinese": "所以，挨到今日，被我一夜不睡，把一出舊戲",
+        "pinyin": "suǒ yǐ ， āi dào jīn rì ， bèi wǒ yī yè bù shuì ， bǎ yī chū jiù xì",
+        "english": ""
+      },
+      {
+        "chinese": "文，改了新關目。",
+        "pinyin": "wén ， gǎi le xīn guān mù 。",
+        "english": ""
+      },
+      {
+        "chinese": "先到戲房等候，待眾人一到，就好搬演。",
+        "pinyin": "xiān dào xì fáng děng hòu ， dài zhòng rén yī dào ， jiù hǎo bān yǎn 。",
+        "english": ""
+      },
+      {
+        "chinese": "只是一件，我在眾人",
+        "pinyin": "zhǐ shì yī jiàn ， wǒ zài zhòng rén",
+        "english": ""
+      },
+      {
+        "chinese": "面前，若露出一點愁容，要被人識破，就死也死不成了。",
+        "pinyin": "miàn qián ， ruò lòu chū yī diǎn chóu róng ， yào bèi rén shí pò ， jiù sǐ yě sǐ bù chéng le 。",
+        "english": ""
+      },
+      {
+        "chinese": "須要舉動如常，倒裝個",
+        "pinyin": "xū yào jǔ dòng rú cháng ， dǎo zhuāng gè",
+        "english": ""
+      },
+      {
+        "chinese": "歡喜的模樣，纔是個萬全之策。",
+        "pinyin": "huān xǐ de mú yàng ， cái shì gè wàn quán zhī cè 。",
+        "english": ""
+      },
+      {
+        "chinese": "」正是：",
+        "pinyin": "」 zhèng shì ：",
+        "english": ""
+      },
+      {
+        "chinese": "忠臣視死無難色，烈婦臨危有笑容。",
+        "pinyin": "zhōng chén shì sǐ wú nán sè ， liè fù lín wēi yǒu xiào róng 。",
+        "english": ""
+      },
+      {
+        "chinese": "話說眾人見藐姑上臺，齊道：「劉大姐，聞得你有了人家，今日就要恭喜了。",
+        "pinyin": "huà shuō zhòng rén jiàn miǎo gū shàng tái ， qí dào ： 「 liú dà jiě ， wén dé nǐ yǒu le rén jiā ， jīn rì jiù yào gōng xǐ le 。",
+        "english": ""
+      },
+      {
+        "chinese": "藐姑笑道：「正是！",
+        "pinyin": "miǎo gū xiào dào ： 「 zhèng shì ！",
+        "english": ""
+      },
+      {
+        "chinese": "我學了一場戲，只落了今日一天，明日要做，不能夠了。",
+        "pinyin": "wǒ xué le yī chǎng xì ， zhǐ luò le jīn rì yī tiān ， míng rì yào zuò ， bù néng gòu le 。",
+        "english": ""
+      },
+      {
+        "chinese": "仗列位扶持，大家用心做一做，好結我終身之局，未知列位意下如何？",
+        "pinyin": "zhàng liè wèi fú chí ， dà jiā yòng xīn zuò yī zuò ， hǎo jié wǒ zhōng shēn zhī jú ， wèi zhī liè wèi yì xià rú hé ？",
+        "english": ""
+      },
+      {
+        "chinese": "」眾人說：",
+        "pinyin": "」 zhòng rén shuō ：",
+        "english": ""
+      },
+      {
+        "chinese": "「我們的意思，也要如此，有何不可呢。",
+        "pinyin": "「 wǒ mén de yì sī ， yě yào rú cǐ ， yǒu hé bù kě ne 。",
+        "english": ""
+      },
+      {
+        "chinese": "」楚玉心中暗氣道：「怎麼天地之間，",
+        "pinyin": "」 chǔ yù xīn zhōng àn qì dào ： 「 zěn me tiān dì zhī jiān ，",
+        "english": ""
+      },
+      {
+        "chinese": "竟有這樣寡情的女子，有這樣無恥的婦人！",
+        "pinyin": "jìng yǒu zhè yàng guǎ qíng de nǚ zǐ ， yǒu zhè yàng wú chǐ de fù rén ！",
+        "english": ""
+      },
+      {
+        "chinese": "一些也不煩惱，也就去不得了，還虧",
+        "pinyin": "yī xiē yě bù fán nǎo ， yě jiù qù bù dé le ， hái kuī",
+        "english": ""
+      },
+      {
+        "chinese": "他有這張厚臉，說出這樣話來！",
+        "pinyin": "tā yǒu zhè zhāng hòu liǎn ， shuō chū zhè yàng huà lái ！",
+        "english": ""
+      },
+      {
+        "chinese": "我當初早知如此，豈肯辱身賤行，學這個營生來",
+        "pinyin": "wǒ dāng chū zǎo zhī rú cǐ ， qǐ kěn rǔ shēn jiàn xíng ， xué zhè gè yíng shēng lái",
+        "english": ""
+      },
+      {
+        "chinese": "呢！",
+        "pinyin": "ne ！",
+        "english": ""
+      },
+      {
+        "chinese": "再想到，是我差矣！",
+        "pinyin": "zài xiǎng dào ， shì wǒ chà yǐ ！",
+        "english": ""
+      },
+      {
+        "chinese": "獨不思做女旦的，名為戲子，其實無異於娼婦。",
+        "pinyin": "dú bù sī zuò nǚ dàn de ， míng wèi xì zǐ ， qí shí wú yì yú chāng fù 。",
+        "english": ""
+      },
+      {
+        "chinese": "娼婦如",
+        "pinyin": "chāng fù rú",
+        "english": ""
+      },
+      {
+        "chinese": "何能養出貞節女子來，豈不叫人後悔無及！",
+        "pinyin": "hé néng yǎng chū zhēn jié nǚ zǐ lái ， qǐ bù jiào rén hòu huǐ wú jí ！",
+        "english": ""
+      },
+      {
+        "chinese": "又想他，或者心上煩惱，怕人看出破",
+        "pinyin": "yòu xiǎng tā ， huò zhě xīn shàng fán nǎo ， pà rén kàn chū pò",
+        "english": ""
+      },
+      {
+        "chinese": "綻來，故意裝出這等笑容，說出這樣言語，也不可知。",
+        "pinyin": "zhàn lái ， gù yì zhuāng chū zhè děng xiào róng ， shuō chū zhè yàng yán yǔ ， yě bù kě zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "」遠遠望見那姓錢的來了，",
+        "pinyin": "」 yuǎn yuǎn wàng jiàn nà xìng qián de lái le ，",
+        "english": ""
+      },
+      {
+        "chinese": "自古道：「仇人相見，分外眼明。",
+        "pinyin": "zì gǔ dào ： 「 chóu rén xiāng jiàn ， fēn wài yǎn míng 。",
+        "english": ""
+      },
+      {
+        "chinese": "」且看他如何相待。",
+        "pinyin": "」 qiě kàn tā rú hé xiāng dài 。",
+        "english": ""
+      },
+      {
+        "chinese": "萬貫到了臺下，指著藐姑道：「他如今比往常不同，是我的渾家了。",
+        "pinyin": "wàn guàn dào le tái xià ， zhǐ zhuó miǎo gū dào ： 「 tā rú jīn bǐ wǎng cháng bù tóng ， shì wǒ de hún jiā le 。",
+        "english": ""
+      },
+      {
+        "chinese": "你們就",
+        "pinyin": "nǐ mén jiù",
+        "english": ""
+      },
+      {
+        "chinese": "是做戲，也都要離開些。",
+        "pinyin": "shì zuò xì ， yě dōu yào lí kāi xiē 。",
+        "english": ""
+      },
+      {
+        "chinese": "別了挨挨擠擠，不像個體面。",
+        "pinyin": "bié le āi āi jǐ jǐ ， bù xiàng gè tǐ miàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "」藐姑說：「我今日戲完",
+        "pinyin": "」 miǎo gū shuō ： 「 wǒ jīn rì xì wán",
+        "english": ""
+      },
+      {
+        "chinese": "之後，就要到你家來了。",
+        "pinyin": "zhī hòu ， jiù yào dào nǐ jiā lái le 。",
+        "english": ""
+      },
+      {
+        "chinese": "我的意思，還要盡心竭力做幾出好戲，別了眾人的眼睛，",
+        "pinyin": "wǒ de yì sī ， hái yào jìn xīn jié lì zuò jǐ chū hǎo xì ， bié le zhòng rén de yǎn jīng ，",
+        "english": ""
+      },
+      {
+        "chinese": "你肯容我做麼？",
+        "pinyin": "nǐ kěn róng wǒ zuò me ？",
+        "english": ""
+      },
+      {
+        "chinese": "」萬貫說：「正要如此，有甚麼不容。",
+        "pinyin": "」 wàn guàn shuō ： 「 zhèng yào rú cǐ ， yǒu shèn me bù róng 。",
+        "english": ""
+      },
+      {
+        "chinese": "」藐姑說：「這等有兩件",
+        "pinyin": "」 miǎo gū shuō ： 「 zhè děng yǒu liǎng jiàn",
+        "english": ""
+      },
+      {
+        "chinese": "事，要依我。",
+        "pinyin": "shì ， yào yī wǒ 。",
+        "english": ""
+      },
+      {
+        "chinese": "第一件，不演全本，要做零戲；",
+        "pinyin": "dì yī jiàn ， bù yǎn quán běn ， yào zuò líng xì ；",
+        "english": ""
+      },
+      {
+        "chinese": "第二件，不許點戲，要隨我自做，",
+        "pinyin": "dì èr jiàn ， bù xǔ diǎn xì ， yào suí wǒ zì zuò ，",
+        "english": ""
+      },
+      {
+        "chinese": "纔得盡其所長。",
+        "pinyin": "cái dé jìn qí suǒ cháng 。",
+        "english": ""
+      },
+      {
+        "chinese": "」萬貫說：「這等，你意思要做那幾出呢？",
+        "pinyin": "」 wàn guàn shuō ： 「 zhè děng ， nǐ yì sī yào zuò nà jǐ chū ne ？",
+        "english": ""
+      },
+      {
+        "chinese": "」藐姑說：「我最得",
+        "pinyin": "」 miǎo gū shuō ： 「 wǒ zuì dé",
+        "english": ""
+      },
+      {
+        "chinese": "意的，是那《荊釵記》上，有一出『抱石投江』，是我新近改造的，與舊本不同。",
+        "pinyin": "yì de ， shì nà 《 jīng chāi jì 》 shàng ， yǒu yī chū 『 bào shí tóu jiāng 』 ， shì wǒ xīn jìn gǎi zào de ， yǔ jiù běn bù tóng 。",
+        "english": ""
+      },
+      {
+        "chinese": "要開手就演，其餘的戲，隨意再做。",
+        "pinyin": "yào kāi shǒu jiù yǎn ， qí yú de xì ， suí yì zài zuò 。",
+        "english": ""
+      },
+      {
+        "chinese": "」萬貫說：「領教就是，只求你早些上臺。",
+        "pinyin": "」 wàn guàn shuō ： 「 lǐng jiào jiù shì ， zhǐ qiú nǐ zǎo xiē shàng tái 。",
+        "english": ""
+      },
+      {
+        "chinese": "楚玉聽了道：「這等看起來，竟是安心樂意，要嫁了他了？",
+        "pinyin": "chǔ yù tīng le dào ： 「 zhè děng kàn qǐ lái ， jìng shì ān xīn lè yì ， yào jià le tā le ？",
+        "english": ""
+      },
+      {
+        "chinese": "是我這瞎眼的，",
+        "pinyin": "shì wǒ zhè xiā yǎn de ，",
+        "english": ""
+      },
+      {
+        "chinese": "不是當初錯認了人，如今悔不及了，任他去罷。",
+        "pinyin": "bù shì dāng chū cuò rèn le rén ， rú jīn huǐ bù jí le ， rèn tā qù bà 。",
+        "english": ""
+      },
+      {
+        "chinese": "」藐姑說：「列位快敲鑼鼓，好",
+        "pinyin": "」 miǎo gū shuō ： 「 liè wèi kuài qiāo luó gǔ ， hǎo",
+        "english": ""
+      },
+      {
+        "chinese": "待我上臺。",
+        "pinyin": "dài wǒ shàng tái 。",
+        "english": ""
+      },
+      {
+        "chinese": "」又叫楚玉云：「譚大哥，你不用懮愁，用心看我做。",
+        "pinyin": "」 yòu jiào chǔ yù yún ： 「 tán dà gē ， nǐ bù yòng yōu chóu ， yòng xīn kàn wǒ zuò 。",
+        "english": ""
+      },
+      {
+        "chinese": "」楚玉答云：",
+        "pinyin": "」 chǔ yù dá yún ：",
+        "english": ""
+      },
+      {
+        "chinese": "「我是瞎眼的人，看你不見。",
+        "pinyin": "「 wǒ shì xiā yǎn de rén ， kàn nǐ bù jiàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "」藐姑也不做聲。",
+        "pinyin": "」 miǎo gū yě bù zuò shēng 。",
+        "english": ""
+      },
+      {
+        "chinese": "對眾人云：「天已將午，可開戲",
+        "pinyin": "duì zhòng rén yún ： 「 tiān yǐ jiāng wǔ ， kě kāi xì",
+        "english": ""
+      },
+      {
+        "chinese": "了。",
+        "pinyin": "le 。",
+        "english": ""
+      },
+      {
+        "chinese": "」只見萬貫身穿絲服，頭戴一頂藍色氈帽，取一把交椅，在臺子近前坐定。",
+        "pinyin": "」 zhǐ jiàn wàn guàn shēn chuān sī fú ， tóu dài yī dǐng lán sè zhān mào ， qǔ yī bǎ jiāo yǐ ， zài tái zǐ jìn qián zuò dìng 。",
+        "english": ""
+      },
+      {
+        "chinese": "看戲人，兩旁挨擠。",
+        "pinyin": "kàn xì rén ， liǎng páng āi jǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "藐姑扮錢玉蓮上場。",
+        "pinyin": "miǎo gū bàn qián yù lián shàng chǎng 。",
+        "english": ""
+      },
+      {
+        "chinese": "唱道：",
+        "pinyin": "chàng dào ：",
+        "english": ""
+      },
+      {
+        "chinese": "遭折挫，受禁持，不由人不垂淚。",
+        "pinyin": "zāo zhé cuò ， shòu jīn chí ， bù yóu rén bù chuí lèi 。",
+        "english": ""
+      },
+      {
+        "chinese": "無由洗恨，無由遠恥，事到臨危，拚",
+        "pinyin": "wú yóu xǐ hèn ， wú yóu yuǎn chǐ ， shì dào lín wēi ， pīn",
+        "english": ""
+      },
+      {
+        "chinese": "死在黃泉作怨鬼。",
+        "pinyin": "sǐ zài huáng quán zuò yuàn guǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "白：",
+        "pinyin": "bái ：",
+        "english": ""
+      },
+      {
+        "chinese": "奴家錢玉蓮是也！",
+        "pinyin": "nú jiā qián yù lián shì yě ！",
+        "english": ""
+      },
+      {
+        "chinese": "只因孫汝權那個賊子，暗施鬼計，套寫休書。",
+        "pinyin": "zhǐ yīn sūn rǔ quán nà gè zéi zǐ ， àn shī guǐ jì ， tào xiě xiū shū 。",
+        "english": ""
+      },
+      {
+        "chinese": "又遇著",
+        "pinyin": "yòu yù zhuó",
+        "english": ""
+      },
+      {
+        "chinese": "狠心的繼母，把假事當做真情，逼奴改嫁。",
+        "pinyin": "hěn xīn de jì mǔ ， bǎ jiǎ shì dāng zuò zhēn qíng ， bī nú gǎi jià 。",
+        "english": ""
+      },
+      {
+        "chinese": "我想忠臣不事二君，烈女不更二夫，",
+        "pinyin": "wǒ xiǎng zhōng chén bù shì èr jūn ， liè nǚ bù gèng èr fū ，",
+        "english": ""
+      },
+      {
+        "chinese": "焉有再事他人之理！",
+        "pinyin": "yān yǒu zài shì tā rén zhī lǐ ！",
+        "english": ""
+      },
+      {
+        "chinese": "千休萬休，不如死休！",
+        "pinyin": "qiān xiū wàn xiū ， bù rú sǐ xiū ！",
+        "english": ""
+      },
+      {
+        "chinese": "只得前往江邊投水而死。",
+        "pinyin": "zhǐ dé qián wǎng jiāng biān tóu shuǐ ér sǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "此時已是黃",
+        "pinyin": "cǐ shí yǐ shì huáng",
+        "english": ""
+      },
+      {
+        "chinese": "昏，只索離生門，去尋死路。",
+        "pinyin": "hūn ， zhǐ suǒ lí shēng mén ， qù xún sǐ lù 。",
+        "english": ""
+      },
+      {
+        "chinese": "我錢玉蓮，好苦命也！",
+        "pinyin": "wǒ qián yù lián ， hǎo kǔ mìng yě ！",
+        "english": ""
+      },
+      {
+        "chinese": "唱：",
+        "pinyin": "chàng ：",
+        "english": ""
+      },
+      {
+        "chinese": "心痛苦，難分訴，我那夫呵！",
+        "pinyin": "xīn tòng kǔ ， nán fēn sù ， wǒ nà fū hē ！",
+        "english": ""
+      },
+      {
+        "chinese": "一從往帝都，終朝望你偕夫婦。",
+        "pinyin": "yī cóng wǎng dì dōu ， zhōng cháo wàng nǐ xié fū fù 。",
+        "english": ""
+      },
+      {
+        "chinese": "誰想今朝，",
+        "pinyin": "shuí xiǎng jīn cháo ，",
+        "english": ""
+      },
+      {
+        "chinese": "拆散中途。",
+        "pinyin": "chāi sàn zhōng tú 。",
+        "english": ""
+      },
+      {
+        "chinese": "我母親信讒言，將奴誤。",
+        "pinyin": "wǒ mǔ qīn xìn chán yán ， jiāng nú wù 。",
+        "english": ""
+      },
+      {
+        "chinese": "娘呵！",
+        "pinyin": "niáng hē ！",
+        "english": ""
+      },
+      {
+        "chinese": "你一心貪戀他豪富，把禮義綱常全然",
+        "pinyin": "nǐ yī xīn tān liàn tā háo fù ， bǎ lǐ yì gāng cháng quán rán",
+        "english": ""
+      },
+      {
+        "chinese": "不顧！",
+        "pinyin": "bù gù ！",
+        "english": ""
+      },
+      {
+        "chinese": "白：",
+        "pinyin": "bái ：",
+        "english": ""
+      },
+      {
+        "chinese": "來此已是江邊，喜得有石塊在此，不免抱在懷中，跳下水去。",
+        "pinyin": "lái cǐ yǐ shì jiāng biān ， xǐ dé yǒu shí kuài zài cǐ ， bù miǎn bào zài huái zhōng ， tiào xià shuǐ qù 。",
+        "english": ""
+      },
+      {
+        "chinese": "且住！",
+        "pinyin": "qiě zhù ！",
+        "english": ""
+      },
+      {
+        "chinese": "既然拼了一死，也該把胸中不平之氣，發泄一場。",
+        "pinyin": "jì rán pīn le yī sǐ ， yě gāi bǎ xiōng zhōng bù píng zhī qì ， fā xiè yī chǎng 。",
+        "english": ""
+      },
+      {
+        "chinese": "逼我改嫁的人，是天倫父母，",
+        "pinyin": "bī wǒ gǎi jià de rén ， shì tiān lún fù mǔ ，",
+        "english": ""
+      },
+      {
+        "chinese": "不好傷他。",
+        "pinyin": "bù hǎo shāng tā 。",
+        "english": ""
+      },
+      {
+        "chinese": "那套寫休書的賊子，與我有不共戴天之仇，為甚麼不罵他一場，出口",
+        "pinyin": "nà tào xiě xiū shū de zéi zǐ ， yǔ wǒ yǒu bù gòng dài tiān zhī chóu ， wèi shèn me bù mà tā yī chǎng ， chū kǒu",
+        "english": ""
+      },
+      {
+        "chinese": "氣了好死！",
+        "pinyin": "qì le hǎo sǐ ！",
+        "english": ""
+      },
+      {
+        "chinese": "（指著萬貫道）待我把這江邊的頑石，權當了他。",
+        "pinyin": "（ zhǐ zhuó wàn guàn dào ） dài wǒ bǎ zhè jiāng biān de wán shí ， quán dāng le tā 。",
+        "english": ""
+      },
+      {
+        "chinese": "指他一指，罵他一",
+        "pinyin": "zhǐ tā yī zhǐ ， mà tā yī",
+        "english": ""
+      },
+      {
+        "chinese": "句，直罵到頑石點頭的時節，我方纔住口！",
+        "pinyin": "jù ， zhí mà dào wán shí diǎn tóu de shí jié ， wǒ fāng cái zhù kǒu ！",
+        "english": ""
+      },
+      {
+        "chinese": "唱：",
+        "pinyin": "chàng ：",
+        "english": ""
+      },
+      {
+        "chinese": "真切齒難容！",
+        "pinyin": "zhēn qiē chǐ nán róng ！",
+        "english": ""
+      },
+      {
+        "chinese": "（怒指萬貫道）壞心的賊子，你是個不讀書，不通道理的",
+        "pinyin": "（ nù zhǐ wàn guàn dào ） huài xīn de zéi zǐ ， nǐ shì gè bù dú shū ， bù tōng dào lǐ de",
+        "english": ""
+      },
+      {
+        "chinese": "人。",
+        "pinyin": "rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "不與你講綱常節義，只勸你到江水旁邊，照一照面孔，看是何等的模樣，要",
+        "pinyin": "bù yǔ nǐ jiǎng gāng cháng jié yì ， zhǐ quàn nǐ dào jiāng shuǐ páng biān ， zhào yī zhào miàn kǒng ， kàn shì hé děng de mú yàng ， yào",
+        "english": ""
+      },
+      {
+        "chinese": "配我這絕世的佳人？",
+        "pinyin": "pèi wǒ zhè jué shì de jiā rén ？",
+        "english": ""
+      },
+      {
+        "chinese": "幾曾見鴟鴞做了夫，把嬌鸞彩鳳強為婦？",
+        "pinyin": "jǐ céng jiàn chī xiāo zuò le fū ， bǎ jiāo luán cǎi fèng qiáng wèi fù ？",
+        "english": ""
+      },
+      {
+        "chinese": "唱：",
+        "pinyin": "chàng ：",
+        "english": ""
+      },
+      {
+        "chinese": "（又指道）狠心的強盜，你只圖自已快樂，拆散別個的夫妻。",
+        "pinyin": "（ yòu zhǐ dào ） hěn xīn de qiáng dào ， nǐ zhǐ tú zì yǐ kuài lè ， chāi sàn bié gè de fū qī 。",
+        "english": ""
+      },
+      {
+        "chinese": "譬如你的",
+        "pinyin": "pì rú nǐ de",
+        "english": ""
+      },
+      {
+        "chinese": "妻子，被人強娶了去，你心下何如？",
+        "pinyin": "qī zǐ ， bèi rén qiáng qǔ le qù ， nǐ xīn xià hé rú ？",
+        "english": ""
+      },
+      {
+        "chinese": "勸你自發良心，將胸比肚，為甚的騁淫蕩，",
+        "pinyin": "quàn nǐ zì fā liáng xīn ， jiāng xiōng bǐ dù ， wèi shèn de chěng yín dàng ，",
+        "english": ""
+      }
+    ]
+  }
+]
