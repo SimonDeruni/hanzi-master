@@ -182,7 +182,6 @@ class DashboardScreen extends ConsumerWidget {
                         context: context,
                         icon: Icons.document_scanner_rounded,
                         title: "Scanner",
-                        chineseTitle: "智能扫读",
                         accentColor: const Color(0xFFFF7A00), // Vibrant Amber
                         onTap: () {
                           Navigator.push(
@@ -201,7 +200,6 @@ class DashboardScreen extends ConsumerWidget {
                         context: context,
                         icon: Icons.translate_rounded,
                         title: "Interpreter",
-                        chineseTitle: "同传翻译",
                         accentColor: const Color(0xFF3F51B5), // Deep Indigo
                         onTap: () {
                           Navigator.push(
@@ -452,7 +450,6 @@ class DashboardScreen extends ConsumerWidget {
     required BuildContext context,
     required IconData icon,
     required String title,
-    required String chineseTitle,
     required Color accentColor,
     required VoidCallback onTap,
   }) {
@@ -467,59 +464,44 @@ class DashboardScreen extends ConsumerWidget {
         onTap();
       },
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
         decoration: BoxDecoration(
           color: cardBg,
-          borderRadius: BorderRadius.circular(18),
+          borderRadius: BorderRadius.circular(20),
           border: Border.all(
             color: isDark ? Colors.white.withValues(alpha: 0.08) : Colors.black.withValues(alpha: 0.04),
           ),
           boxShadow: [
             BoxShadow(
               color: Colors.black.withValues(alpha: isDark ? 0.25 : 0.04),
-              blurRadius: 12,
-              offset: const Offset(0, 4),
+              blurRadius: 14,
+              offset: const Offset(0, 5),
             ),
           ],
         ),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              padding: const EdgeInsets.all(9),
+              padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
                 color: accentColor.withValues(alpha: isDark ? 0.2 : 0.12),
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(14),
               ),
-              child: Icon(icon, color: accentColor, size: 20),
+              child: Icon(icon, color: accentColor, size: 24),
             ),
-            const SizedBox(width: 10),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    title,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 13,
-                      color: textColor,
-                    ),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  const SizedBox(height: 2),
-                  Text(
-                    chineseTitle,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 11,
-                      color: textColor.withValues(alpha: 0.5),
-                    ),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ],
+            const SizedBox(width: 12),
+            Flexible(
+              child: Text(
+                title,
+                style: TextStyle(
+                  fontWeight: FontWeight.w700,
+                  fontSize: 15,
+                  letterSpacing: 0.2,
+                  color: textColor,
+                ),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
               ),
             ),
           ],
