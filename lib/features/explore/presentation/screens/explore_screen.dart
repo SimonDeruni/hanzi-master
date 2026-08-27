@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
-import 'package:hanzi_master/features/media/presentation/screens/web_browser_screen.dart';
+import 'package:hanzi_master/features/media/presentation/screens/media_hub_screen.dart';
 import 'package:hanzi_master/features/reading/presentation/screens/book_catalog_screen.dart';
 
 class ExploreScreen extends ConsumerStatefulWidget {
@@ -68,7 +68,7 @@ class _ExploreScreenState extends ConsumerState<ExploreScreen> {
                       ),
                     ),
                     const SizedBox(width: 4),
-                    // TAB 1: WEB EXPLORER (网络探索)
+                    // TAB 1: WEB EXPLORER (网络探索 / 媒体中心)
                     Expanded(
                       child: _buildTabPill(
                         index: 1,
@@ -89,7 +89,7 @@ class _ExploreScreenState extends ConsumerState<ExploreScreen> {
                 index: _selectedTab,
                 children: const [
                   BookCatalogScreen(showBackButton: false),
-                  WebBrowserScreen(showBackButton: false),
+                  MediaHubScreen(showBackButton: false),
                 ],
               ),
             ),

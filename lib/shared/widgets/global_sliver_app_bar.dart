@@ -7,12 +7,14 @@ class GlobalSliverAppBar extends ConsumerWidget {
   final String title;
   final String? subtitle;
   final List<Widget>? actions;
+  final bool showBackButton;
   
   const GlobalSliverAppBar({
     super.key,
     required this.title,
     this.subtitle,
     this.actions,
+    this.showBackButton = true,
   });
 
   @override
@@ -21,6 +23,7 @@ class GlobalSliverAppBar extends ConsumerWidget {
     final isDark = theme.brightness == Brightness.dark;
     
     return SliverAppBar(
+      automaticallyImplyLeading: showBackButton,
       backgroundColor: theme.scaffoldBackgroundColor,
       surfaceTintColor: Colors.transparent,
       elevation: 0,

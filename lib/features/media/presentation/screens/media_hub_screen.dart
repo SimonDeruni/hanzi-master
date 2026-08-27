@@ -18,7 +18,9 @@ import 'package:hanzi_master/core/config/app_features.dart';
 import 'package:hanzi_master/features/reading/presentation/screens/book_catalog_screen.dart';
 
 class MediaHubScreen extends ConsumerWidget {
-  const MediaHubScreen({super.key});
+  final bool showBackButton;
+
+  const MediaHubScreen({super.key, this.showBackButton = true});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -29,9 +31,10 @@ class MediaHubScreen extends ConsumerWidget {
         child: CustomScrollView(
           physics: const BouncingScrollPhysics(),
           slivers: [
-            const GlobalSliverAppBar(
+            GlobalSliverAppBar(
               title: 'Media Hub',
               subtitle: 'Immersive Chinese learning through real content',
+              showBackButton: showBackButton,
             ),
 
             const SliverToBoxAdapter(child: SizedBox(height: 16)),
@@ -54,7 +57,7 @@ class MediaHubScreen extends ConsumerWidget {
                   children: [
                     _buildThematicCard(
                       context: context,
-                      title: "GRAND LIBRARY (80+ BOOKS)",
+                      title: "GRAND LIBRARY (96 FULL BOOKS)",
                       subtitle: "Complete classical epics, philosophy & world novels",
                       icon: Icons.menu_book,
                       brandColor: const Color(0xFF8B0000), // Imperial Crimson
