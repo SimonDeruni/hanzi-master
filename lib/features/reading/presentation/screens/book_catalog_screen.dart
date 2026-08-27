@@ -32,7 +32,7 @@ class BookCatalogScreen extends ConsumerStatefulWidget {
 }
 
 class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
-  late ReadingRoomSection _activeSection;
+  ReadingRoomSection _activeSection = ReadingRoomSection.novels;
 
   // Novel filters
   String _selectedNovelCategory = 'All';
