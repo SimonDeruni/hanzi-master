@@ -2,14 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
-## [1.0.0+171] - 2026-08-27
-- **Explore Hub (探索中心) & Media Hub Integration**:
-  - Added dedicated **Explore** tab to the bottom navigation bar (`MainNavigationScreen`) between Dashboard and AI Hub.
-  - Created `ExploreScreen` with top segmented pill switcher (`📖 Reading Room` vs `🌐 Web Explorer`).
-  - Embedded `MediaHubScreen` into the **Web Explorer** tab (featuring Article of the Day, Web Explorer live translator, Grand Library link, Quick Bookmarks for BBC 中文, Wikipedia, Baidu, and Saved Articles).
-  - Cropped and tightened **Today's Word** card on Dashboard by removing bottom whitespace and optimizing font sizes.
-  - Compacted **Upcoming Forecast** cards into sleek, space-efficient stat badges.
-  - Added dual rectangular action cards on Dashboard for **Universal Scanner** and **Travel Interpreter**.
+## [1.0.0+172] - 2026-08-28
+- **Unified Reading Room (藏书阁) — 3-Tier Experience (Full Novels, Micro-Reads & Poetry)**:
+  - Consolidated all reading material across the app into one unified **Reading Room** under the `Explore` tab.
+  - Implemented top 3-tier section switcher:
+    1. **`📚 Novels (96)`** — All 96 unabridged world classics with Continue Reading shelf, categories, silk covers, audio, and multi-chapter reader.
+    2. **`⚡ Micro-Reads`** — Graded bite-sized stories & fables for HSK 1–5+ learners with reading time badges and sentence breakdown.
+    3. **`🏮 Poetry`** — 300+ Tang poems with traditional cinnabar seal poet badges, Xuan paper calligraphy previews, and verse audio recitation.
+  - Universal live search across all 3 reading tiers with dynamic category and level filters.
   - **100% Unabridged Masterpiece Library (96 Complete Works)**: Curated and pruned the Grand Library catalog to feature exclusively 100% full-text, unabridged masterpieces (96 full books ranging from 100 KB to 10.6 MB each with full tone-marked Pinyin, character sentence segmentation, and bilingual reader metadata). Removed all partial/placeholder entries from catalog and asset bundles.
   - **"正在阅读 · Continue Reading" Shelf**: Added horizontal in-progress carousel on `BookCatalogScreen` with chapter progress, percentage completion bars, and instant 1-tap resume.
   - **Author Dossier & Historical Context**: Added author biographical card and historical significance section to `BookDetailScreen`.

@@ -48,7 +48,7 @@ class _TravelInterpreterScreenState
   List<TranslationMessage> get _sideBMessages =>
       _messages.where((msg) => msg.sideId == 'b').toList();
 
-  bool _isSessionStarted = false;
+  bool _isSessionStarted = true;
   late AnimationController _pulseController;
 
   @override
@@ -60,18 +60,7 @@ class _TravelInterpreterScreenState
       duration: const Duration(seconds: 1),
     )..repeat(reverse: true);
 
-    _checkFirstTime();
-  }
-
-  Future<void> _checkFirstTime() async {
-    final prefs = await SharedPreferences.getInstance();
-    final hasSeenHub = prefs.getBool('has_seen_travel_hub') ?? false;
-    if (hasSeenHub) {
-      if (mounted) {
-        setState(() => _isSessionStarted = true);
-        _initAudioAndConnect();
-      }
-    }
+    _initAudioAndConnect();
   }
 
   void _startSession() async {

@@ -100,7 +100,7 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
               elevation: 0,
               centerTitle: true,
               title: Text(
-                '藏书阁 · Reading Room',
+                'Reading Room',
                 style: TextStyle(
                   color: primaryText,
                   fontWeight: FontWeight.bold,
@@ -185,7 +185,7 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                         // Full Novels
                         Expanded(
                           child: _buildSectionTab(
-                            title: '📚 Novels (96)',
+                            title: 'Novels (96)',
                             section: ReadingRoomSection.novels,
                             isDark: isDark,
                             cardBg: cardBg,
@@ -195,7 +195,7 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                         // Micro-Reads
                         Expanded(
                           child: _buildSectionTab(
-                            title: '⚡ Micro-Reads',
+                            title: 'Micro-Reads',
                             section: ReadingRoomSection.microReads,
                             isDark: isDark,
                             cardBg: cardBg,
@@ -205,7 +205,7 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                         // Poetry
                         Expanded(
                           child: _buildSectionTab(
-                            title: '🏮 Poetry',
+                            title: 'Poetry',
                             section: ReadingRoomSection.poetry,
                             isDark: isDark,
                             cardBg: cardBg,
@@ -1145,7 +1145,7 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                 ),
                 const SizedBox(width: 6),
                 Text(
-                  '正在阅读 · Continue Reading',
+                  'Continue Reading',
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.bold,

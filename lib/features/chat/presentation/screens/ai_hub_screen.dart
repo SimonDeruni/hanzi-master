@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/features/echo_hall/presentation/screens/scenario_selection_screen.dart';
-import 'package:hanzi_master/features/media/presentation/screens/story_library_screen.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/features/live_translate/presentation/screens/shadowing_studio_screen.dart';
-import 'package:hanzi_master/features/media/presentation/screens/media_hub_screen.dart';
 import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/shared/widgets/global_sliver_app_bar.dart';
-import 'package:hanzi_master/features/live_translate/presentation/screens/travel_interpreter_screen.dart';
-import 'package:hanzi_master/features/premium/presentation/screens/universal_scanner_screen.dart';
 
 class AiHubScreen extends ConsumerWidget {
   const AiHubScreen({super.key});
@@ -39,7 +35,7 @@ class AiHubScreen extends ConsumerWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    // Row 1: AI Scenarios & Web Explorer
+                    // Row: Roleplay & Shadowing
                     Row(
                       children: [
                         Expanded(
@@ -72,57 +68,6 @@ class AiHubScreen extends ConsumerWidget {
                             child: _buildListActionCard(
                               context: context,
                               isDark: isDark,
-                              title: "Web Explorer",
-                              subtitle: "Read the web",
-                              icon: Icons.language,
-                              accentColor: const Color(0xFF1976D2), // Blue
-                              onTap: () {
-                                HapticsManager.medium();
-                                if (context.mounted) {
-                                  Navigator.push(
-                                    context,
-                                    SwipeBackPageRoute(builder: (_) => const MediaHubScreen()),
-                                  );
-                                }
-                              },
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 16),
-                    // Row 2: Reading Room & Shadowing
-                    Row(
-                      children: [
-                        Expanded(
-                          child: AspectRatio(
-                            aspectRatio: 1.0,
-                            child: _buildListActionCard(
-                              context: context,
-                              isDark: isDark,
-                              title: "Reading Room",
-                              subtitle: "Classic literature",
-                              icon: Icons.auto_stories,
-                              accentColor: const Color(0xFFFF8F00), // Amber
-                              onTap: () {
-                                HapticsManager.medium();
-                                if (context.mounted) {
-                                  Navigator.push(
-                                    context,
-                                    SwipeBackPageRoute(builder: (_) => const StoryLibraryScreen()),
-                                  );
-                                }
-                              },
-                            ),
-                          ),
-                        ),
-                        const SizedBox(width: 16),
-                        Expanded(
-                          child: AspectRatio(
-                            aspectRatio: 1.0,
-                            child: _buildListActionCard(
-                              context: context,
-                              isDark: isDark,
                               title: "Shadowing",
                               subtitle: "Perfect pronunciation",
                               icon: Icons.mic,
@@ -139,48 +84,6 @@ class AiHubScreen extends ConsumerWidget {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 16),
-                    // Row 3: Travel Interpreter & Universal Scanner
-                    Row(
-                      children: [
-                        Expanded(
-                          child: AspectRatio(
-                            aspectRatio: 1.0,
-                            child: _buildListActionCard(
-                              context: context,
-                              isDark: isDark,
-                              title: l10n?.travelInterpreter ?? "Travel Interpreter",
-                              subtitle: "Real-time split-screen",
-                              icon: Icons.people_outline,
-                              accentColor: const Color(0xFF4CAF50), // Green
-                              onTap: () {
-                                HapticsManager.medium();
-                                Navigator.push(context, SwipeBackPageRoute(builder: (_) => const TravelInterpreterScreen()));
-                              },
-                            ),
-                          ),
-                        ),
-                        const SizedBox(width: 16),
-                        Expanded(
-                          child: AspectRatio(
-                            aspectRatio: 1.0,
-                            child: _buildListActionCard(
-                              context: context,
-                              isDark: isDark,
-                              title: "Universal Scanner",
-                              subtitle: "Extract & translate",
-                              icon: Icons.document_scanner_outlined,
-                              accentColor: const Color(0xFFFF9800), // Orange
-                              onTap: () {
-                                HapticsManager.medium();
-                                Navigator.push(context, SwipeBackPageRoute(builder: (_) => const UniversalScannerScreen(intent: CameraIntent.translationHub)));
-                              },
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 24),
                   ],
                 ),
               ),

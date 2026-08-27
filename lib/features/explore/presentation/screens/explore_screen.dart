@@ -61,7 +61,7 @@ class _ExploreScreenState extends ConsumerState<ExploreScreen> {
                     Expanded(
                       child: _buildTabPill(
                         index: 0,
-                        title: '📖 Reading Room',
+                        title: 'Reading Room',
                         subtitle: '96 Full Books',
                         isSelected: _selectedTab == 0,
                         isDark: isDark,
@@ -72,7 +72,7 @@ class _ExploreScreenState extends ConsumerState<ExploreScreen> {
                     Expanded(
                       child: _buildTabPill(
                         index: 1,
-                        title: '🌐 Web Explorer',
+                        title: 'Web Explorer',
                         subtitle: 'Live Reader',
                         isSelected: _selectedTab == 1,
                         isDark: isDark,
