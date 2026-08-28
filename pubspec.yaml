@@ -101,6 +101,7 @@ flutter:
     - assets/data/
     - assets/data/books/
     - assets/images/
+    - assets/images/books/
     - assets/images/mandarin_bean/
     - assets/images/user_web_explorer.png
     - assets/images/ai_hub_web_explorer_zen1.png
