@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.0+179] - 2026-08-28
+- **Book Detail Action Buttons Repositioned & Cleaned (Build #179)**:
+  - Repositioned primary action buttons (`Start Reading` / `Continue Chapter X` and `Listen to Audiobook`) to the top of `BookDetailScreen` immediately beneath the tags row for quick access.
+  - Stripped Chinese text and emoji prefixes from the buttons for clean English action styling.
+  - Renamed the audio button to `Listen to Audiobook`.
+  - `dart analyze`: 0 issues. Pushed to GitLab and GitHub.
+
 ## [1.0.0+178] - 2026-08-28
 - **Micro-Read Photo Covers from Bundled Images (Build #178)**:
   - Each micro-read card now shows the actual Mandarin Bean article image as a full-bleed cover photo.
