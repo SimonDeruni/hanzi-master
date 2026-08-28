@@ -192,9 +192,8 @@ class AudioService {
     
     await _player.setAudioContext(AudioContext(
       iOS: AudioContextIOS(
-        category: AVAudioSessionCategory.playAndRecord,
+        category: AVAudioSessionCategory.playback,
         options: const {
-          AVAudioSessionOptions.defaultToSpeaker,
           AVAudioSessionOptions.allowBluetooth,
           AVAudioSessionOptions.mixWithOthers,
         },
@@ -202,9 +201,9 @@ class AudioService {
       android: const AudioContextAndroid(
         isSpeakerphoneOn: true,
         stayAwake: true,
-        contentType: AndroidContentType.speech,
-        usageType: AndroidUsageType.voiceCommunication,
-        audioFocus: AndroidAudioFocus.gainTransient,
+        contentType: AndroidContentType.music,
+        usageType: AndroidUsageType.media,
+        audioFocus: AndroidAudioFocus.gain,
       ),
     ));
     await _player.setVolume(1.0);
@@ -251,7 +250,7 @@ class AudioService {
   }
 
   /// Pre-fetches the upcoming sentence in the background to ensure zero gap during continuous reading.
-  Future<void> prefetchSentence(String sentence, {String voiceName = 'xiaoxiao'}) async {
+  Future<void> prefetchSentence(String sentence, {String voiceName = 'Kore'}) async {
     if (!_isInitialized) await init();
     if (!_quotaService.hasQuotaRemaining) return;
 
@@ -511,11 +510,11 @@ class AudioService {
               uri,
               headers: {
                 'Ocp-Apim-Subscription-Key': apiKey,
-                'Content-Type': 'application/ssml+xml',
+                'Content-Type': 'application/ssml+xml; charset=utf-8',
                 'X-Microsoft-OutputFormat': 'audio-16khz-128kbitrate-mono-mp3',
                 'User-Agent': 'SinoSpark',
               },
-              body: ssml,
+              body: utf8.encode(ssml),
             )
             .timeout(const Duration(seconds: 10));
 

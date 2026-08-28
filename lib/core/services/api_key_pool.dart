@@ -35,15 +35,19 @@ class ApiKeyPool {
   String get azureSpeechKey {
     const key = String.fromEnvironment('AZURE_SPEECH_KEY');
     if (key.isNotEmpty) return key;
-    if (dotenv.isInitialized) return dotenv.env['AZURE_SPEECH_KEY'] ?? 'MISSING_KEY';
-    return 'MISSING_KEY';
+    if (dotenv.isInitialized && dotenv.env['AZURE_SPEECH_KEY'] != null && dotenv.env['AZURE_SPEECH_KEY']!.isNotEmpty) {
+      return dotenv.env['AZURE_SPEECH_KEY']!;
+    }
+    return 'AnZ5l470hrJMMOqPYYH085lWbpFHjRH8nZCkryg0TWFF8yaVzDdOJQQJ99CGACPV0roXJ3w3AAAYACOGk7C0';
   }
 
   String get azureSpeechRegion {
     const key = String.fromEnvironment('AZURE_SPEECH_REGION');
     if (key.isNotEmpty) return key;
-    if (dotenv.isInitialized) return dotenv.env['AZURE_SPEECH_REGION'] ?? 'MISSING_REGION';
-    return 'MISSING_REGION';
+    if (dotenv.isInitialized && dotenv.env['AZURE_SPEECH_REGION'] != null && dotenv.env['AZURE_SPEECH_REGION']!.isNotEmpty) {
+      return dotenv.env['AZURE_SPEECH_REGION']!;
+    }
+    return 'germanywestcentral';
   }
 
   int _youtubeKeyIndex = 0;
