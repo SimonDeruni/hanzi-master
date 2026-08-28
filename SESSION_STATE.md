@@ -1,12 +1,13 @@
 # 🧠 SESSION_STATE.md - The Hanzi Master "Scholar's Baton"
 
 #### 🎯 Current Context
-- **Objective:** Redesign Roleplay Scenario Cards in Calligraphic Book Cover Style
-- **Status:** ✅ COMPLETED (Build #212)
+- **Objective:** Remove Redundant Top Bar & Add 'Generate from Deck' Action Card
+- **Status:** ✅ COMPLETED (Build #213)
 - **Hygiene:** App compiles clean, all changes pushed to GitLab and GitHub.
 - **Locked Files:**
     - [None]
 
+- [x] **Remove Redundant Top Bar & Add 'Generate from Deck' Action Card (Build #213):** Removed the redundant "Echo Hall" top header text and "+" PopupMenuButton. Added a dedicated, stylized **"Generate from Deck"** action card positioned alongside the "Create Custom Scenario" card, styled with a glowing violet badge (`Icons.layers_rounded`), Xuan/Carbon background, and direct deck dialogue generator trigger. (Status: COMPLETED)
 - [x] **Redesign Roleplay Scenario Cards & Banner in Calligraphic Book Cover Style (Build #212):** Replaced flat generic indigo blocks with calligraphic book-cover plates: left book spine with gold binding stitches, thematic ink-wash gradients (Culinary Crimson, Midnight Indigo, Silk Terracotta, Forest Jade, Scholar Slate, Twilight Purple), background Hanzi watermarks (`食`, `行`, `市`, `医`, `职`, `友`), and centered Xuan paper plaques with vermilion seal chips. Upgraded the "Create Custom Scenario" top banner and HSK category filter chips to the Zen & Ink golden amber aesthetic. (Status: COMPLETED)
 - [x] **Redesign Custom Scenario Dialog to Match AI Deck Generator Sheet (Build #211):** Transformed `CustomScenarioDialog` from an old popup box into a sleek, frosted `GlobalBlurredBottomSheet` mirroring `AiDeckGeneratorSheet`: glowing circular AI header icon, `Scenario Topic` input with lightbulb icon, segmented `Target Difficulty` cards (Beginner / Intermediate / Advanced / Native) with active amber borders, and a full-width bottom "Create Scenario" button with loading indicator. (Status: COMPLETED)
 - [x] **Bundle Authentic Classical Paintings for All 100 Poems (Builds #209 & #210):** Fetched authentic, high-resolution public domain classical Chinese paintings from Wikimedia Commons matching each poem's author (Li Bai, Du Fu, Wang Wei, Su Shi, Li Qingzhao, etc.), dynasty, and themes (Moon, River, Mountains, Spring, Autumn, Solitude). Bundled all 100 covers into `assets/images/poetry/`, optimized to crisp ~70–300KB mobile assets, declared in `pubspec.yaml`, and wired into `CalligraphicBookCover`. (Status: COMPLETED)
