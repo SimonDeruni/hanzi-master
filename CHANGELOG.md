@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.0+186] - 2026-08-28
+- **Grand Library Overhaul — Uncapped Full Literature & Tier 3/4 Pruning (Build #186)**:
+  - **Pruned Incomplete Books (Tier 3 & 4)**: Completely removed 6 sample-only and synthetic placeholder books (`water_margin`, `xunzi`, `four_generations_roof`, `the_stranger_camus`, `the_plague_camus`, `alice_in_wonderland`) from the catalog and assets.
+  - **Rebuilt All Truncated Books (Tier 2)**: Re-fetched full unabridged texts from open source master editions without any sentence caps (`.take(150)` removed).
+  - **The Great Gatsby**: Now complete 9 chapters (96,966 characters) from the opening line to the iconic ending sentence.
+  - **Classical Epics & Philosophy**: Rebuilt *Journey to the West* (100 ch, 713K chars), *Three Kingdoms* (120 ch, 588K chars), *Red Chamber* (122 ch, 851K chars), and *The Art of War* (13 complete chapters).
+  - **World & Modern Masterpieces Rebuilt**: *Les Misérables* (986K chars), *Monte Cristo* (846K chars), *Karamazov* (663K chars), *Anna Karenina* (620K chars), *Don Quixote* (583K chars), *Crime and Punishment* (434K chars), *1984* (169K chars), *Animal Farm* (52K chars), *The Family* (241K chars), *Spring* (266K chars), *Fortress Besieged* (197K chars), *The Castle* (223K chars).
+  - **Master Library Totals**: 90 verified authentic books, 5,475 chapters, 17.56 Million Chinese characters, 672,462 sentences with tone-marked Pinyin.
+  - `dart analyze`: 0 issues. Pushed to GitLab and GitHub.
+
 ## [1.0.0+185] - 2026-08-28
 - **Duplicate Book Covers Resolved (Build #185)**:
   - Fixed duplicate cover between Eileen Chang's 《倾城之恋》 (*Love in a Fallen City*) and 《金锁记》 (*The Golden Cangue*). Downloaded the dedicated standalone cover for *The Golden Cangue* (`golden_cangue.jpg`).
