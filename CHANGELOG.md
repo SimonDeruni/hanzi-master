@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.0+196] - 2026-08-28
+- **Dynamic Theme, Ruby Pinyin Alignment & Real-Time Spoken Character Highlighting (Build #196)**:
+  - **Dynamic Theme (Light & Dark "Zen & Ink")**: Seamlessly adapts to Light Mode (Warm Xuan Paper `#FDFCF0` with terracotta accents) and Dark Mode (Carbon `#121113` with amber glow).
+  - **Ruby Pinyin Alignment**: Displays tone-marked Pinyin syllables directly above their corresponding Chinese characters in dedicated calligraphic vertical tiles.
+  - **Real-Time Spoken Character Highlighting**: Maps live audio duration and position from `AudioService` to highlight the exact character currently being recited with golden ink halo.
+  - **Universal Character QuickLook**: Tapping any Chinese character in the audiobook player instantly opens the dictionary QuickLook card.
+  - **Automatic Seamless Transition**: Top-bar headphone icon in `BookReaderScreen` now transitions directly into `AudiobookPlayerScreen`.
+  - `flutter test` & `dart analyze`: 0 issues. Pushed to GitLab and GitHub.
+
 ## [1.0.0+195] - 2026-08-28
 - **Azure Neural Voice Encoding & Studio Audio Context Fix (Build #195)**:
   - **UTF-8 SSML Body Encoding**: Explicitly encoded Chinese SSML payloads as UTF-8 bytes with `application/ssml+xml; charset=utf-8` header, fixing Azure HTTP 400 Bad Request caused by default Latin-1 header handling.

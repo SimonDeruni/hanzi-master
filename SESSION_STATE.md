@@ -1,12 +1,13 @@
 # 🧠 SESSION_STATE.md - The Hanzi Master "Scholar's Baton"
 
 #### 🎯 Current Context
-- **Objective:** Azure Neural Voice Encoding & Studio Audio Context Fix
-- **Status:** ✅ COMPLETED (Build #195)
+- **Objective:** Dynamic Theme, Ruby Pinyin, Spoken Character Sync & QuickLook
+- **Status:** ✅ COMPLETED (Build #196)
 - **Hygiene:** 🧼 Perfect Hygiene — `dart analyze lib/` passed with 0 issues.
 - **Locked Files:**
     - [None]
 
+- [x] **Dynamic Theme, Ruby Pinyin Alignment & Real-Time Spoken Character Highlighting (Build #196):** Upgraded `AudiobookPlayerScreen` with dynamic Light Mode (Warm Xuan Paper `#FDFCF0`) and Dark Mode (Carbon `#121113`). Implemented Ruby-style character tiles pairing every Chinese Hanzi character with its tone-marked Pinyin directly above it. Added real-time character-by-character recitation highlighting using live audio position streams. Enabled tap-to-QuickLook dictionary lookup on every character in the player. Configured seamless auto-transition from `BookReaderScreen` into `AudiobookPlayerScreen`. Verified Total Hygiene State (`dart analyze lib/` - 0 issues, 100% test pass). Pushed to GitLab and GitHub. (Status: COMPLETED)
 - [x] **Azure Neural Voice Encoding & Studio Audio Context Fix (Build #195):** Explicitly encoded Chinese SSML payloads as UTF-8 bytes with `application/ssml+xml; charset=utf-8` header, fixing Azure HTTP 400 Bad Request caused by default Latin-1 header handling. Switched `AudioContextIOS` category to `AVAudioSessionCategory.playback` so audio routes through main speakers. Provided built-in fallback in `ApiKeyPool` for Azure Speech credentials to ensure uninterrupted Studio HD synthesis. Verified Total Hygiene State (`dart analyze lib/` - 0 issues, 100% test pass). Pushed to GitLab and GitHub. (Status: COMPLETED)
 - [x] **Spotify-Lyrics Style Audiobook Player, Sentence-Level Resumption & Voice Clarity (Build #194):** Created `AudiobookPlayerScreen` featuring an atmospheric ambient background, live auto-scrolling sentence list with glowing golden calligraphy on active sentences, Pinyin, and English translations. Added instant tap-to-seek from any sentence in lyrics view and reader screen. Updated "Listen to Audiobook" to resume at exact chapter and sentence where user left off. Added unambiguous messaging distinguishing 4.0h Studio HD Voice from Unlimited Standard Voice. Verified Total Hygiene State (`dart analyze lib/` - 0 issues, 100% test pass). Pushed to GitLab and GitHub. (Status: COMPLETED)
 - [x] **Emoji-Free HUD & Prominent Dual Book/Audiobook Architecture (Build #193):** Replaced all emojis in reader HUD with clean calligraphic typography (`Studio Voice: X.Xh left this week` / `On-Device Voice`). Added top-right dark silk `Audiobook` badges over book covers and dedicated `Audio` metadata chips on all 86 catalog cards. Added `Audiobook Included` chip in `BookDetailScreen` tags row and updated catalog header count to `Unabridged Books & Synchronized Audiobooks`. Verified Total Hygiene State (`dart analyze lib/` - 0 issues, 100% test pass). Pushed to GitLab and GitHub. (Status: COMPLETED)
