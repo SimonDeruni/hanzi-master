@@ -1245,7 +1245,9 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
               ),
             ),
             Text(
-              'Chapter ${chapter.chapterIndex} of ${widget.chapters.length}',
+              widget.book.category.contains('Poetry')
+                  ? 'Classical Verse'
+                  : 'Chapter ${chapter.chapterIndex} of ${widget.chapters.length}',
               style: TextStyle(
                 fontSize: 11,
                 color: isDark ? Colors.white54 : Colors.black54,
@@ -1254,16 +1256,17 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
           ],
         ),
         actions: [
-          // Audiobook Mode -> Fullscreen Spotify-Lyrics Player
-          IconButton(
-            icon: Icon(
-              Icons.headphones_rounded,
-              size: 22,
-              color: isDark ? Colors.amber.shade400 : const Color(0xFF8B0000),
+          // Audiobook Mode -> Fullscreen Spotify-Lyrics Player (for novels)
+          if (!widget.book.category.contains('Poetry'))
+            IconButton(
+              icon: Icon(
+                Icons.headphones_rounded,
+                size: 22,
+                color: isDark ? Colors.amber.shade400 : const Color(0xFF8B0000),
+              ),
+              tooltip: 'Audiobook Player',
+              onPressed: _openFullscreenAudiobookPlayer,
             ),
-            tooltip: 'Audiobook Player',
-            onPressed: _openFullscreenAudiobookPlayer,
-          ),
           // Bookmark Toggle
           IconButton(
             icon: Icon(

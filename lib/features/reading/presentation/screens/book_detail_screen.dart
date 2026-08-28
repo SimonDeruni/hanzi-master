@@ -199,7 +199,8 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
                         spacing: 8,
                         runSpacing: 6,
                         children: [
-                          _buildBadge('Audiobook Included', isDark ? Colors.amber.shade400 : const Color(0xFF8B0000)),
+                          if (!book.category.contains('Poetry'))
+                            _buildBadge('Audiobook Included', isDark ? Colors.amber.shade400 : const Color(0xFF8B0000)),
                           _buildBadge(book.category, isDark ? Colors.blue.shade300 : Colors.indigo.shade700),
                           _buildBadge(book.dynastyOrEra, isDark ? Colors.green.shade300 : Colors.teal.shade700),
                           _buildBadge(
@@ -251,8 +252,8 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
                               const SizedBox(width: 8),
                               Text(
                                 currentProgress > 1
-                                    ? 'Continue Chapter $currentProgress'
-                                    : 'Start Reading',
+                                    ? (book.category.contains('Poetry') ? 'Continue Reading' : 'Continue Chapter $currentProgress')
+                                    : (book.category.contains('Poetry') ? 'Read Poem' : 'Start Reading'),
                                 style: const TextStyle(
                                   fontSize: 15,
                                   fontWeight: FontWeight.bold,
@@ -264,7 +265,7 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
                         ),
                       ),
 
-                      if (chapters.isNotEmpty) ...[
+                      if (chapters.isNotEmpty && !book.category.contains('Poetry')) ...[
                         const SizedBox(height: 10),
                         SizedBox(
                           width: double.infinity,
