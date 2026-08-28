@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/core/services/audio_service.dart';
+import 'package:hanzi_master/core/services/audio_quota_service.dart';
 import 'package:hanzi_master/features/reading/domain/entities/book_model.dart';
 import 'package:hanzi_master/features/reading/presentation/providers/book_providers.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
@@ -40,6 +41,11 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen> {
   int _currentAudioSentenceIndex = 0;
   StreamSubscription? _audioCompleteSub;
 
+  // Sleep Timer State
+  Timer? _sleepTimer;
+  int? _sleepSecondsRemaining;
+  bool _stopAtEndOfChapter = false;
+
   @override
   void initState() {
     super.initState();
@@ -64,6 +70,7 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen> {
 
   @override
   void dispose() {
+    _sleepTimer?.cancel();
     _audioCompleteSub?.cancel();
     _stopAudiobook();
     _scrollController.dispose();
@@ -120,6 +127,11 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen> {
       });
     } else {
       // Finished chapter
+      if (_stopAtEndOfChapter) {
+        _stopAudiobook();
+        if (mounted) setState(() => _stopAtEndOfChapter = false);
+        return;
+      }
       if (_currentIndex < widget.chapters.length - 1) {
         Future.delayed(const Duration(milliseconds: 800), () {
           if (_isAudiobookActive && _isAudiobookPlaying && mounted) {
@@ -131,6 +143,119 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen> {
         _stopAudiobook();
       }
     }
+  }
+
+  void _setSleepTimer(int? minutes, {bool endOfChapter = false}) {
+    _sleepTimer?.cancel();
+    setState(() {
+      _stopAtEndOfChapter = endOfChapter;
+      if (minutes != null) {
+        _sleepSecondsRemaining = minutes * 60;
+      } else {
+        _sleepSecondsRemaining = null;
+      }
+    });
+
+    if (minutes != null) {
+      _sleepTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
+        if (_sleepSecondsRemaining != null && _sleepSecondsRemaining! > 0) {
+          if (mounted) setState(() => _sleepSecondsRemaining = _sleepSecondsRemaining! - 1);
+        } else {
+          timer.cancel();
+          _stopAudiobook();
+          if (mounted) {
+            setState(() {
+              _sleepSecondsRemaining = null;
+              _stopAtEndOfChapter = false;
+            });
+          }
+        }
+      });
+    }
+  }
+
+  void _showSleepTimerModal(BuildContext context, bool isDark, Color cardBg, Color primaryText) {
+    HapticsManager.light();
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      builder: (ctx) {
+        return Container(
+          padding: const EdgeInsets.fromLTRB(20, 20, 20, 32),
+          decoration: BoxDecoration(
+            color: cardBg,
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withValues(alpha: isDark ? 0.4 : 0.15),
+                blurRadius: 20,
+              ),
+            ],
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Center(
+                child: Container(
+                  width: 40,
+                  height: 4,
+                  decoration: BoxDecoration(
+                    color: isDark ? Colors.white24 : Colors.black12,
+                    borderRadius: BorderRadius.circular(2),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 16),
+              Row(
+                children: [
+                  Icon(Icons.bedtime, size: 20, color: isDark ? Colors.amber.shade300 : const Color(0xFF8B0000)),
+                  const SizedBox(width: 8),
+                  Text(
+                    '定时关闭 · Sleep Timer',
+                    style: TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold,
+                      color: primaryText,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 16),
+              _buildSleepTimerTile(ctx, 'Off', null, isDark, primaryText, isSelected: _sleepSecondsRemaining == null && !_stopAtEndOfChapter),
+              _buildSleepTimerTile(ctx, '15 Minutes', 15, isDark, primaryText, isSelected: _sleepSecondsRemaining != null && _sleepSecondsRemaining! <= 15 * 60 && _sleepSecondsRemaining! > 0),
+              _buildSleepTimerTile(ctx, '30 Minutes', 30, isDark, primaryText, isSelected: _sleepSecondsRemaining != null && _sleepSecondsRemaining! > 15 * 60 && _sleepSecondsRemaining! <= 30 * 60),
+              _buildSleepTimerTile(ctx, '45 Minutes', 45, isDark, primaryText, isSelected: _sleepSecondsRemaining != null && _sleepSecondsRemaining! > 30 * 60 && _sleepSecondsRemaining! <= 45 * 60),
+              _buildSleepTimerTile(ctx, 'End of Current Chapter', null, isDark, primaryText, isEndOfChapter: true, isSelected: _stopAtEndOfChapter),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _buildSleepTimerTile(BuildContext ctx, String label, int? minutes, bool isDark, Color primaryText, {bool isEndOfChapter = false, bool isSelected = false}) {
+    return ListTile(
+      dense: true,
+      contentPadding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+      leading: Icon(
+        isSelected ? Icons.check_circle : Icons.radio_button_unchecked,
+        size: 18,
+        color: isSelected ? (isDark ? Colors.amber.shade400 : const Color(0xFF8B0000)) : (isDark ? Colors.white38 : Colors.black38),
+      ),
+      title: Text(
+        label,
+        style: TextStyle(
+          fontSize: 14,
+          fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+          color: isSelected ? (isDark ? Colors.amber.shade300 : const Color(0xFF8B0000)) : primaryText,
+        ),
+      ),
+      onTap: () {
+        Navigator.of(ctx).pop();
+        _setSleepTimer(minutes, endOfChapter: isEndOfChapter);
+      },
+    );
   }
 
   void _audiobookPrevSentence() {
@@ -829,67 +954,101 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen> {
 
           // Neural Audiobook Floating Controls Bar
           if (_isAudiobookActive)
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              decoration: BoxDecoration(
-                color: isDark ? const Color(0xFF2A2824) : const Color(0xFFF9F5EC),
-                border: Border(
-                  top: BorderSide(
-                    color: isDark ? Colors.amber.shade700.withValues(alpha: 0.4) : const Color(0xFFD4AF37).withValues(alpha: 0.6),
-                    width: 1.2,
-                  ),
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withValues(alpha: 0.15),
-                    blurRadius: 8,
-                    offset: const Offset(0, -2),
-                  ),
-                ],
-              ),
-              child: Row(
-                children: [
-                  Icon(
-                    Icons.graphic_eq,
-                    size: 20,
-                    color: isDark ? Colors.amber.shade400 : const Color(0xFF8B0000),
-                  ),
-                  const SizedBox(width: 8),
-                  Expanded(
-                    child: Text(
-                      'Audiobook: Sentence ${_currentAudioSentenceIndex + 1} / ${chapter.sentences.length}',
-                      style: TextStyle(
-                        fontSize: 12.5,
-                        fontWeight: FontWeight.bold,
-                        color: primaryText,
+            Builder(
+              builder: (context) {
+                final quotaService = ref.watch(audioQuotaServiceProvider);
+                return Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+                  decoration: BoxDecoration(
+                    color: isDark ? const Color(0xFF2A2824) : const Color(0xFFF9F5EC),
+                    border: Border(
+                      top: BorderSide(
+                        color: isDark ? Colors.amber.shade700.withValues(alpha: 0.4) : const Color(0xFFD4AF37).withValues(alpha: 0.6),
+                        width: 1.2,
                       ),
                     ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withValues(alpha: 0.15),
+                        blurRadius: 8,
+                        offset: const Offset(0, -2),
+                      ),
+                    ],
                   ),
-                  IconButton(
-                    icon: const Icon(Icons.skip_previous, size: 22),
-                    color: primaryText,
-                    onPressed: _currentAudioSentenceIndex > 0 ? _audiobookPrevSentence : null,
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.graphic_eq,
+                        size: 20,
+                        color: isDark ? Colors.amber.shade400 : const Color(0xFF8B0000),
+                      ),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              'Sentence ${_currentAudioSentenceIndex + 1} / ${chapter.sentences.length}',
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold,
+                                color: primaryText,
+                              ),
+                            ),
+                            Text(
+                              quotaService.hasQuotaRemaining
+                                  ? '🎙️ Studio: ${quotaService.remainingHours.toStringAsFixed(1)}h left this week'
+                                  : '🔊 On-Device Mode (4h weekly used)',
+                              style: TextStyle(
+                                fontSize: 10.5,
+                                color: quotaService.hasQuotaRemaining
+                                    ? (isDark ? Colors.amber.shade300 : const Color(0xFF8B0000))
+                                    : (isDark ? Colors.white54 : Colors.black54),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      // Sleep Timer Button
+                      IconButton(
+                        icon: Icon(
+                          (_sleepSecondsRemaining != null || _stopAtEndOfChapter) ? Icons.bedtime : Icons.bedtime_outlined,
+                          size: 20,
+                          color: (_sleepSecondsRemaining != null || _stopAtEndOfChapter)
+                              ? (isDark ? Colors.amber.shade400 : const Color(0xFF8B0000))
+                              : (isDark ? Colors.white60 : Colors.black54),
+                        ),
+                        tooltip: 'Sleep Timer',
+                        onPressed: () => _showSleepTimerModal(context, isDark, cardBg, primaryText),
+                      ),
+                      IconButton(
+                        icon: const Icon(Icons.skip_previous, size: 22),
+                        color: primaryText,
+                        onPressed: _currentAudioSentenceIndex > 0 ? _audiobookPrevSentence : null,
+                      ),
+                      IconButton(
+                        icon: Icon(
+                          _isAudiobookPlaying ? Icons.pause_circle_filled : Icons.play_circle_filled,
+                          size: 32,
+                          color: isDark ? Colors.amber.shade400 : const Color(0xFF8B0000),
+                        ),
+                        onPressed: _togglePlayPauseAudiobook,
+                      ),
+                      IconButton(
+                        icon: const Icon(Icons.skip_next, size: 22),
+                        color: primaryText,
+                        onPressed: _currentAudioSentenceIndex < chapter.sentences.length - 1 ? _audiobookNextSentence : null,
+                      ),
+                      IconButton(
+                        icon: const Icon(Icons.close, size: 20),
+                        color: isDark ? Colors.white54 : Colors.black45,
+                        onPressed: _stopAudiobook,
+                      ),
+                    ],
                   ),
-                  IconButton(
-                    icon: Icon(
-                      _isAudiobookPlaying ? Icons.pause_circle_filled : Icons.play_circle_filled,
-                      size: 32,
-                      color: isDark ? Colors.amber.shade400 : const Color(0xFF8B0000),
-                    ),
-                    onPressed: _togglePlayPauseAudiobook,
-                  ),
-                  IconButton(
-                    icon: const Icon(Icons.skip_next, size: 22),
-                    color: primaryText,
-                    onPressed: _currentAudioSentenceIndex < chapter.sentences.length - 1 ? _audiobookNextSentence : null,
-                  ),
-                  IconButton(
-                    icon: const Icon(Icons.close, size: 20),
-                    color: isDark ? Colors.white54 : Colors.black45,
-                    onPressed: _stopAudiobook,
-                  ),
-                ],
-              ),
+                );
+              },
             ),
 
           // Bottom Chapter Navigation Bar

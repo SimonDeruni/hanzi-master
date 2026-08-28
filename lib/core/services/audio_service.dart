@@ -12,15 +12,18 @@ import 'dart:math' as math;
 import 'package:http/http.dart' as http;
 
 import 'package:hanzi_master/core/services/api_key_pool.dart';
+import 'package:hanzi_master/core/services/audio_quota_service.dart';
 import '../utils/pinyin_utils.dart';
 
 final audioServiceProvider = Provider<AudioService>((ref) {
   final pool = ref.watch(apiKeyPoolProvider);
-  return AudioService(pool: pool);
+  final quota = ref.watch(audioQuotaServiceProvider);
+  return AudioService(pool: pool, quotaService: quota);
 });
 
 class AudioService {
   final ApiKeyPool _pool;
+  final AudioQuotaService _quotaService;
   AudioPlayer? _audioPlayer;
   FlutterTts? _fallbackTts;
   Map<String, String> _nativeManifest = {};
@@ -50,7 +53,11 @@ class AudioService {
     return _fallbackTts!;
   }
 
-  AudioService({required ApiKeyPool pool}) : _pool = pool;
+  AudioService({
+    required ApiKeyPool pool,
+    AudioQuotaService? quotaService,
+  })  : _pool = pool,
+        _quotaService = quotaService ?? AudioQuotaService();
 
   Future<void> init() async {
     if (_isInitialized) return;
@@ -220,18 +227,24 @@ class AudioService {
     }
 
     // Premium Cloud TTS with streaming (Azure Neural Audio)
-    try {
-      final result = await _fetchCloudTTS(sentence, azureVoice: azureVoice, cacheFile: cacheFile, boundaryFile: boundaryFile);
-      if (result != null && result.success) {
-        await _player.setPlaybackRate(1.0);
-        await _player.play(DeviceFileSource(cacheFile.path));
-        return true;
+    // Only synthesize new cloud audio if user has remaining weekly quota
+    if (_quotaService.hasQuotaRemaining) {
+      try {
+        final result = await _fetchCloudTTS(sentence, azureVoice: azureVoice, cacheFile: cacheFile, boundaryFile: boundaryFile);
+        if (result != null && result.success) {
+          await _quotaService.recordSpeech(sentence);
+          await _player.setPlaybackRate(1.0);
+          await _player.play(DeviceFileSource(cacheFile.path));
+          return true;
+        }
+      } catch (e) {
+        debugPrint("[AudioService] Azure Neural TTS streaming failed for sentence: $e");
       }
-    } catch (e) {
-      debugPrint("Azure Neural TTS streaming failed for sentence: $e");
+    } else {
+      debugPrint("[AudioService] Weekly 4-hour Studio Audio allowance reached. Seamlessly playing via On-Device Voice.");
     }
 
-    // Fallback: local TTS if Azure fails
+    // Fallback: local on-device TTS if quota is reached or Azure is offline
     await _tts.setSpeechRate(0.5);
     final ttsResult = await _tts.speak(sentence);
     return ttsResult != null && ttsResult == 1;
