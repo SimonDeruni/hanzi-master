@@ -290,20 +290,6 @@ class _ScenarioSelectionScreenState
     }
   }
 
-  String _getScenarioWatermark(ConversationScenario scenario) {
-    if (scenario.id.startsWith('food')) return '食';
-    if (scenario.id.startsWith('taxi')) return '行';
-    if (scenario.id.startsWith('market')) return '市';
-    if (scenario.id.startsWith('doctor')) return '医';
-    if (scenario.id.startsWith('job')) return '职';
-    if (scenario.id.startsWith('intro')) return '友';
-    if (scenario.title.isNotEmpty) {
-      final match = RegExp(r'[\u4e00-\u9fa5]').firstMatch(scenario.title);
-      if (match != null) return match.group(0)!;
-    }
-    return '话';
-  }
-
   String _getScenarioSealText(ConversationScenario scenario) {
     if (scenario.id.startsWith('food')) return '餐饮';
     if (scenario.id.startsWith('taxi')) return '出行';
@@ -474,21 +460,19 @@ class _ScenarioSelectionScreenState
   Widget _buildScenarioCard(ConversationScenario scenario, bool isDark) {
     final gradientColors =
         _getScenarioGradient(scenario.id, scenario.targetHskLevel);
-    final watermark = _getScenarioWatermark(scenario);
     final sealText = _getScenarioSealText(scenario);
-    final displayTitle = scenario.title.length > 7
-        ? '${scenario.title.substring(0, 6)}…'
-        : scenario.title;
+    final hasAvatar = scenario.avatarAssetPath != 'none' &&
+        scenario.avatarAssetPath.isNotEmpty;
 
     return Padding(
       padding: const EdgeInsets.only(bottom: 12.0),
       child: InkWell(
         onTap: () => _showScenarioDetailSheet(scenario),
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(20),
         child: Container(
           decoration: BoxDecoration(
-            color: isDark ? const Color(0xFF242426) : Colors.white,
-            borderRadius: BorderRadius.circular(16),
+            color: isDark ? const Color(0xFF222224) : Colors.white,
+            borderRadius: BorderRadius.circular(20),
             border: Border.all(
               color: isDark
                   ? Colors.white.withValues(alpha: 0.08)
@@ -496,8 +480,8 @@ class _ScenarioSelectionScreenState
             ),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withValues(alpha: isDark ? 0.3 : 0.06),
-                blurRadius: 10,
+                color: Colors.black.withValues(alpha: isDark ? 0.35 : 0.06),
+                blurRadius: 12,
                 offset: const Offset(0, 4),
               ),
             ],
@@ -505,12 +489,12 @@ class _ScenarioSelectionScreenState
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // ── Calligraphic Book-Cover Plate ───────────────────
+              // ── AI Persona Hero Portrait Header ───────────────────
               ClipRRect(
                 borderRadius:
-                    const BorderRadius.vertical(top: Radius.circular(15)),
+                    const BorderRadius.vertical(top: Radius.circular(19)),
                 child: Container(
-                  height: 110,
+                  height: 125,
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: gradientColors,
@@ -521,11 +505,11 @@ class _ScenarioSelectionScreenState
                   child: Stack(
                     fit: StackFit.expand,
                     children: [
-                      // Background Environment Artwork (if available)
+                      // Background Environment Artwork (subtle overlay)
                       if (scenario.backgroundAssetPath != null &&
                           scenario.backgroundAssetPath!.isNotEmpty)
                         Opacity(
-                          opacity: 0.28,
+                          opacity: 0.22,
                           child: Image.asset(
                             scenario.backgroundAssetPath!,
                             fit: BoxFit.cover,
@@ -533,116 +517,89 @@ class _ScenarioSelectionScreenState
                           ),
                         ),
 
-                      // Left Book Spine Accent
-                      Positioned(
-                        top: 0,
-                        bottom: 0,
-                        left: 0,
-                        width: 12,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Colors.black.withValues(alpha: 0.28),
-                            border: Border(
-                              right: BorderSide(
-                                color: Colors.white.withValues(alpha: 0.15),
-                                width: 1.0,
-                              ),
-                            ),
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: List.generate(
-                              4,
-                              (i) => Container(
-                                width: 5,
-                                height: 1.5,
-                                color: const Color(0xFFD4AF37)
-                                    .withValues(alpha: 0.6),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-
-                      // Background Hanzi Watermark
-                      Positioned(
-                        right: -4,
-                        bottom: -8,
-                        child: Opacity(
-                          opacity: 0.12,
-                          child: Text(
-                            watermark,
-                            style: const TextStyle(
-                              fontSize: 76,
-                              fontWeight: FontWeight.w900,
-                              color: Colors.white,
-                              fontFamily: 'serif',
-                            ),
-                          ),
-                        ),
-                      ),
-
-                      // Center Calligraphic Parchment Plaque
+                      // Ambient Glow behind Avatar
                       Center(
                         child: Container(
-                          margin: const EdgeInsets.symmetric(
-                              horizontal: 16, vertical: 10),
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 10, vertical: 6),
+                          width: 80,
+                          height: 80,
                           decoration: BoxDecoration(
-                            color: const Color(0xFFF9F6EE),
+                            shape: BoxShape.circle,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withValues(alpha: 0.4),
+                                blurRadius: 16,
+                                spreadRadius: 2,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+
+                      // Prominent Hero Avatar
+                      Center(
+                        child: Container(
+                          padding: const EdgeInsets.all(2.5),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                              color: const Color(0xFFFFB300),
+                              width: 2.0,
+                            ),
+                          ),
+                          child: CircleAvatar(
+                            radius: 34,
+                            backgroundColor: isDark
+                                ? const Color(0xFF2C2C2E)
+                                : const Color(0xFFF0EAE1),
+                            backgroundImage: hasAvatar
+                                ? _getAvatarImage(scenario.avatarAssetPath)
+                                : null,
+                            child: !hasAvatar
+                                ? Text(
+                                    scenario.personaName.isNotEmpty
+                                        ? scenario.personaName[0]
+                                        : 'AI',
+                                    style: const TextStyle(
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.bold,
+                                      color: Color(0xFFFFB300),
+                                    ),
+                                  )
+                                : null,
+                          ),
+                        ),
+                      ),
+
+                      // Top Left Role Seal Capsule
+                      Positioned(
+                        top: 8,
+                        left: 8,
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 7, vertical: 2.5),
+                          decoration: BoxDecoration(
+                            color: const Color(0xFF9E2A2B),
                             borderRadius: BorderRadius.circular(6),
                             border: Border.all(
-                              color: const Color(0xFFD4AF37)
-                                  .withValues(alpha: 0.7),
-                              width: 1.0,
+                              color: const Color(0xFFD4AF37).withValues(alpha: 0.8),
+                              width: 0.8,
                             ),
                             boxShadow: [
                               BoxShadow(
-                                color: Colors.black.withValues(alpha: 0.25),
-                                blurRadius: 6,
-                                offset: const Offset(0, 2),
+                                color: Colors.black.withValues(alpha: 0.3),
+                                blurRadius: 4,
+                                offset: const Offset(0, 1),
                               ),
                             ],
                           ),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Flexible(
-                                child: Text(
-                                  displayTitle,
-                                  textAlign: TextAlign.center,
-                                  style: const TextStyle(
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.w900,
-                                    color: Color(0xFF1A1A1B),
-                                    letterSpacing: 0.8,
-                                    fontFamily: 'serif',
-                                    height: 1.2,
-                                  ),
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              ),
-                              const SizedBox(width: 5),
-                              Container(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 4, vertical: 1),
-                                decoration: BoxDecoration(
-                                  color: const Color(0xFF9E2A2B),
-                                  borderRadius: BorderRadius.circular(3),
-                                ),
-                                child: Text(
-                                  sealText,
-                                  style: const TextStyle(
-                                    fontSize: 8,
-                                    fontWeight: FontWeight.bold,
-                                    color: Color(0xFFFFF8E7),
-                                    letterSpacing: 0.5,
-                                  ),
-                                ),
-                              ),
-                            ],
+                          child: Text(
+                            sealText,
+                            style: const TextStyle(
+                              fontSize: 9,
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xFFFFF8E7),
+                              letterSpacing: 0.5,
+                            ),
                           ),
                         ),
                       ),
@@ -655,10 +612,10 @@ class _ScenarioSelectionScreenState
                           padding: const EdgeInsets.symmetric(
                               horizontal: 7, vertical: 2.5),
                           decoration: BoxDecoration(
-                            color: Colors.black.withValues(alpha: 0.55),
+                            color: Colors.black.withValues(alpha: 0.6),
                             borderRadius: BorderRadius.circular(6),
                             border: Border.all(
-                              color: Colors.white.withValues(alpha: 0.15),
+                              color: Colors.white.withValues(alpha: 0.2),
                               width: 0.5,
                             ),
                           ),
@@ -680,64 +637,113 @@ class _ScenarioSelectionScreenState
                 ),
               ),
 
-              // ── Description & Character Persona ─────────────────
+              // ── Persona Name, Context & Speech Bubble ───────────
               Padding(
-                padding: const EdgeInsets.all(12),
+                padding: const EdgeInsets.fromLTRB(12, 10, 12, 12),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    // Persona Name (Hero)
                     Text(
-                      scenario.title,
+                      scenario.personaName,
                       style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 14,
+                        fontWeight: FontWeight.w900,
+                        fontSize: 15,
                         color: isDark
                             ? Colors.white
                             : const Color(0xFF1A1A1B),
+                        letterSpacing: 0.2,
                       ),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
-                    const SizedBox(height: 4),
+                    const SizedBox(height: 2),
+
+                    // Scenario Topic / Context
                     Text(
-                      scenario.description,
+                      scenario.title,
                       style: TextStyle(
                         color: isDark
-                            ? Colors.white.withValues(alpha: 0.55)
-                            : Colors.black.withValues(alpha: 0.6),
+                            ? Colors.white70
+                            : const Color(0xFF555555),
                         fontSize: 12,
-                        height: 1.3,
+                        fontWeight: FontWeight.w500,
                       ),
-                      maxLines: 2,
+                      maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
                     const SizedBox(height: 8),
+
+                    // Opening Dialogue Speech Bubble
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8, vertical: 5),
+                      decoration: BoxDecoration(
+                        color: isDark
+                            ? Colors.white.withValues(alpha: 0.06)
+                            : const Color(0xFFF7F4EA),
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(
+                          color: isDark
+                              ? Colors.white.withValues(alpha: 0.06)
+                              : const Color(0xFFE8E2D2),
+                          width: 0.8,
+                        ),
+                      ),
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.format_quote_rounded,
+                            size: 13,
+                            color: isDark
+                                ? const Color(0xFFFFD54F)
+                                : const Color(0xFF9E2A2B),
+                          ),
+                          const SizedBox(width: 3),
+                          Expanded(
+                            child: Text(
+                              scenario.initialAiMessage,
+                              style: TextStyle(
+                                fontSize: 11,
+                                fontWeight: FontWeight.w600,
+                                color: isDark
+                                    ? const Color(0xFFFFE082)
+                                    : const Color(0xFF6B1D1D),
+                                height: 1.2,
+                              ),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+
+                    // Bottom Action Pill: Tap to Talk
                     Row(
                       children: [
-                        Icon(
-                          Icons.person_rounded,
+                        const Icon(
+                          Icons.graphic_eq_rounded,
                           size: 14,
-                          color: isDark
-                              ? const Color(0xFFFFD54F).withValues(alpha: 0.7)
-                              : const Color(0xFF8B0000).withValues(alpha: 0.7),
+                          color: Color(0xFFFFB300),
                         ),
                         const SizedBox(width: 4),
-                        Expanded(
-                          child: Text(
-                            scenario.personaName,
-                            style: TextStyle(
-                              fontSize: 11,
-                              fontWeight: FontWeight.w600,
-                              color: isDark ? Colors.white60 : Colors.black54,
-                            ),
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
+                        Text(
+                          "Tap to roleplay",
+                          style: TextStyle(
+                            fontSize: 10.5,
+                            fontWeight: FontWeight.bold,
+                            color: isDark
+                                ? const Color(0xFFFFD54F)
+                                : const Color(0xFFB8860B),
                           ),
                         ),
+                        const Spacer(),
                         if (scenario.isCustom)
                           Container(
                             padding: const EdgeInsets.symmetric(
-                                horizontal: 6, vertical: 2),
+                                horizontal: 5, vertical: 1.5),
                             decoration: BoxDecoration(
                               color: const Color(0xFFFFB300)
                                   .withValues(alpha: isDark ? 0.2 : 0.12),
@@ -746,7 +752,7 @@ class _ScenarioSelectionScreenState
                             child: const Text(
                               'Custom',
                               style: TextStyle(
-                                fontSize: 9,
+                                fontSize: 8.5,
                                 color: Color(0xFFFFB300),
                                 fontWeight: FontWeight.bold,
                               ),
