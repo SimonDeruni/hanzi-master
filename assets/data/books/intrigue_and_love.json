@@ -3,12 +3,12 @@
     "id": "intrigue_and_love_ch_1",
     "bookId": "intrigue_and_love",
     "chapterIndex": 1,
-    "title": "第1章 第一幕 第一场",
-    "titleEn": "Chapter 1: 第1章 第一幕 第一场",
+    "title": "序幕 / 导言",
+    "titleEn": "Chapter 1: Prologue",
     "sentences": [
       {
-        "chinese": "乐师家里的一房间。",
-        "pinyin": "lè shī jiā lǐ de yī fáng jiān 。",
+        "chinese": "第1章 第一幕 第一场\n　　乐师家里的一房间。",
+        "pinyin": "dì 1 zhāng   dì yī mù   dì yī chǎng \n 　 　 lè shī jiā lǐ de yī fáng jiān 。",
         "english": ""
       },
       {
@@ -17,13 +17,8 @@
         "english": ""
       },
       {
-        "chinese": "米勒太太坐在桌",
-        "pinyin": "mǐ lè tài tài zuò zài zhuō",
-        "english": ""
-      },
-      {
-        "chinese": "旁喝咖啡，还穿着睡衣。",
-        "pinyin": "páng hē kā fēi ， hái chuān zhuó shuì yī 。",
+        "chinese": "米勒太太坐在桌\n　　旁喝咖啡，还穿着睡衣。",
+        "pinyin": "mǐ lè tài tài zuò zài zhuō \n 　 　 páng hē kā fēi ， hái chuān zhuó shuì yī 。",
         "english": ""
       },
       {
@@ -307,23 +302,13 @@
         "english": ""
       },
       {
-        "chinese": "（准备出门去）",
-        "pinyin": "（ zhǔn bèi chū mén qù ）",
+        "chinese": "（准备出门去）\n　　米勒太太  别胡来，米勒！",
+        "pinyin": "（ zhǔn bèi chū mén qù ） \n 　 　 mǐ lè tài tài     bié hú lái ， mǐ lè ！",
         "english": ""
       },
       {
-        "chinese": "米勒太太  别胡来，米勒！",
-        "pinyin": "mǐ lè tài tài     bié hú lái ， mǐ lè ！",
-        "english": ""
-      },
-      {
-        "chinese": "光他送的礼物就值多少钱啊……",
-        "pinyin": "guāng tā sòng de lǐ wù jiù zhí duō shǎo qián ā … …",
-        "english": ""
-      },
-      {
-        "chinese": "米　勒  （走回来站在她面前）我女儿的卖身钱，是吗？",
-        "pinyin": "mǐ 　 lè     （ zǒu huí lái zhàn zài tā miàn qián ） wǒ nǚ ér de mài shēn qián ， shì ma ？",
+        "chinese": "光他送的礼物就值多少钱啊……\n　　米　勒  （走回来站在她面前）我女儿的卖身钱，是吗？",
+        "pinyin": "guāng tā sòng de lǐ wù jiù zhí duō shǎo qián ā … … \n 　 　 mǐ 　 lè     （ zǒu huí lái zhàn zài tā miàn qián ） wǒ nǚ ér de mài shēn qián ， shì ma ？",
         "english": ""
       },
       {
@@ -441,8 +426,8 @@
         "english": ""
       },
       {
-        "chinese": "瓦尔特少校先生的光临固然给了我们脸面，可我们也并不因此瞧不起任何人啊。",
-        "pinyin": "wǎ ěr tè shǎo xiào xiān shēng de guāng lín gù rán gěi le wǒ mén liǎn miàn ， kě wǒ mén yě bìng bù yīn cǐ qiáo bù qǐ rèn hé rén ā 。",
+        "chinese": "封?瓦尔特少校先生的光临固然给了我们脸面，可我们也并不因此瞧不起任何人啊。",
+        "pinyin": "fēng ? wǎ ěr tè shǎo xiào xiān shēng de guāng lín gù rán gěi le wǒ mén liǎn miàn ， kě wǒ mén yě bìng bù yīn cǐ qiáo bù qǐ rèn hé rén ā 。",
         "english": ""
       },
       {
@@ -671,13 +656,8 @@
         "english": ""
       },
       {
-        "chinese": "我想请您尊重……",
-        "pinyin": "wǒ xiǎng qǐng nín zūn zhòng … …",
-        "english": ""
-      },
-      {
-        "chinese": "米　勒   你给我住嘴，我说！",
-        "pinyin": "mǐ 　 lè       nǐ gěi wǒ zhù zuǐ ， wǒ shuō ！",
+        "chinese": "我想请您尊重……\n　　米　勒   你给我住嘴，我说！",
+        "pinyin": "wǒ xiǎng qǐng nín zūn zhòng … … \n 　 　 mǐ 　 lè       nǐ gěi wǒ zhù zuǐ ， wǒ shuō ！",
         "english": ""
       },
       {
@@ -895,13 +875,8 @@
     "titleEn": "Chapter 3: 第3章 第一幕 第三场",
     "sentences": [
       {
-        "chinese": "露意丝?",
-        "pinyin": "lòu yì sī ?",
-        "english": ""
-      },
-      {
-        "chinese": "米勒上，手里捧着一本书。",
-        "pinyin": "mǐ lè shàng ， shǒu lǐ pěng zhuó yī běn shū 。",
+        "chinese": "露意丝?米勒上，手里捧着一本书。",
+        "pinyin": "lòu yì sī ? mǐ lè shàng ， shǒu lǐ pěng zhuó yī běn shū 。",
         "english": ""
       },
       {
@@ -1105,13 +1080,8 @@
         "english": ""
       },
       {
-        "chinese": "（下）",
-        "pinyin": "（ xià ）",
-        "english": ""
-      },
-      {
-        "chinese": "露意丝  我现在也不指望得到他啊，父亲。",
-        "pinyin": "lòu yì sī     wǒ xiàn zài yě bù zhǐ wàng dé dào tā ā ， fù qīn 。",
+        "chinese": "（下）\n　　露意丝  我现在也不指望得到他啊，父亲。",
+        "pinyin": "（ xià ） \n 　 　 lòu yì sī     wǒ xiàn zài yě bù zhǐ wàng dé dào tā ā ， fù qīn 。",
         "english": ""
       },
       {
@@ -1209,13 +1179,8 @@
     "titleEn": "Chapter 4: 第4章 第一幕 第四场",
     "sentences": [
       {
-        "chinese": "斐迪南?",
-        "pinyin": "fěi dí nán ?",
-        "english": ""
-      },
-      {
-        "chinese": "瓦尔特和露意丝。",
-        "pinyin": "wǎ ěr tè hé lòu yì sī 。",
+        "chinese": "斐迪南?封?瓦尔特和露意丝。",
+        "pinyin": "fěi dí nán ? fēng ? wǎ ěr tè hé lòu yì sī 。",
         "english": ""
       },
       {
@@ -1499,13 +1464,8 @@
         "english": ""
       },
       {
-        "chinese": "（想走开）",
-        "pinyin": "（ xiǎng zǒu kāi ）",
-        "english": ""
-      },
-      {
-        "chinese": "斐迪南  （拉住她）露意丝！",
-        "pinyin": "fěi dí nán     （ lā zhù tā ） lòu yì sī ！",
+        "chinese": "（想走开）\n　　斐迪南  （拉住她）露意丝！",
+        "pinyin": "（ xiǎng zǒu kāi ） \n 　 　 fěi dí nán     （ lā zhù tā ） lòu yì sī ！",
         "english": ""
       },
       {
@@ -1878,13 +1838,8 @@
         "english": ""
       },
       {
-        "chinese": "（准备离开）",
-        "pinyin": "（ zhǔn bèi lí kāi ）",
-        "english": ""
-      },
-      {
-        "chinese": "宰　相  刚才我对你讲的是心腹话，伍尔穆 ——（威胁地）你要讲出去了……",
-        "pinyin": "zǎi 　 xiāng     gāng cái wǒ duì nǐ jiǎng de shì xīn fù huà ， wǔ ěr mù   — — （ wēi xié dì ） nǐ yào jiǎng chū qù le … …",
+        "chinese": "（准备离开）\n　　宰　相  刚才我对你讲的是心腹话，伍尔穆 ——（威胁地）你要讲出去了……",
+        "pinyin": "（ zhǔn bèi lí kāi ） \n 　 　 zǎi 　 xiāng     gāng cái wǒ duì nǐ jiǎng de shì xīn fù huà ， wǔ ěr mù   — — （ wēi xié dì ） nǐ yào jiǎng chū qù le … …",
         "english": ""
       },
       {
@@ -1893,13 +1848,8 @@
         "english": ""
       },
       {
-        "chinese": "（离去）",
-        "pinyin": "（ lí qù ）",
-        "english": ""
-      },
-      {
-        "chinese": "宰　相  你确实攥在咱手心里。",
-        "pinyin": "zǎi 　 xiāng     nǐ què shí zuàn zài zán shǒu xīn lǐ 。",
+        "chinese": "（离去）\n　　宰　相  你确实攥在咱手心里。",
+        "pinyin": "（ lí qù ） \n 　 　 zǎi 　 xiāng     nǐ què shí zuàn zài zán shǒu xīn lǐ 。",
         "english": ""
       },
       {
@@ -1908,13 +1858,8 @@
         "english": ""
       },
       {
-        "chinese": "内　侍 （走进来） 侍卫长封?",
-        "pinyin": "nèi 　 shì   （ zǒu jìn lái ）   shì wèi cháng fēng ?",
-        "english": ""
-      },
-      {
-        "chinese": "卡尔勃大人到 ……",
-        "pinyin": "kǎ ěr bó dà rén dào   … …",
+        "chinese": "内　侍 （走进来） 侍卫长封?卡尔勃大人到 ……",
+        "pinyin": "nèi 　 shì   （ zǒu jìn lái ）   shì wèi cháng fēng ? kǎ ěr bó dà rén dào   … …",
         "english": ""
       },
       {
@@ -1942,13 +1887,8 @@
     "titleEn": "Chapter 6: 第6章 第一幕 第六场",
     "sentences": [
       {
-        "chinese": "宫廷侍卫长封?",
-        "pinyin": "gōng tíng shì wèi cháng fēng ?",
-        "english": ""
-      },
-      {
-        "chinese": "卡尔勃和宰相。",
-        "pinyin": "kǎ ěr bó hé zǎi xiāng 。",
+        "chinese": "宫廷侍卫长封?卡尔勃和宰相。",
+        "pinyin": "gōng tíng shì wèi cháng fēng ? kǎ ěr bó hé zǎi xiāng 。",
         "english": ""
       },
       {
@@ -1967,13 +1907,8 @@
         "english": ""
       },
       {
-        "chinese": "他大声喊着奔向宰相，身上散发的麝香味弥",
-        "pinyin": "tā dà shēng hǎn zhuó bēn xiàng zǎi xiāng ， shēn shàng sàn fā de shè xiāng wèi mí",
-        "english": ""
-      },
-      {
-        "chinese": "漫了整个大厅。",
-        "pinyin": "màn le zhěng gè dà tīng 。",
+        "chinese": "他大声喊着奔向宰相，身上散发的麝香味弥\n　　漫了整个大厅。",
+        "pinyin": "tā dà shēng hǎn zhuó bēn xiàng zǎi xiāng ， shēn shàng sàn fā de shè xiāng wèi mí \n 　 　 màn le zhěng gè dà tīng 。",
         "english": ""
       },
       {
@@ -2132,13 +2067,8 @@
         "english": ""
       },
       {
-        "chinese": "宰　相  我看哪 —— 不，侍卫长，我今天可以告诉您一件更好的消息 —— 弥尔芙特夫人要成为封?",
-        "pinyin": "zǎi 　 xiāng     wǒ kàn nǎ   — —   bù ， shì wèi cháng ， wǒ jīn tiān kě yǐ gào sù nín yī jiàn gèng hǎo de xiāo xī   — —   mí ěr fú tè fū rén yào chéng wéi fēng ?",
-        "english": ""
-      },
-      {
-        "chinese": "瓦尔特夫人啦，对您这肯定算得上新闻吧？",
-        "pinyin": "wǎ ěr tè fū rén lā ， duì nín zhè kěn dìng suàn dé shàng xīn wén bā ？",
+        "chinese": "宰　相  我看哪 —— 不，侍卫长，我今天可以告诉您一件更好的消息 —— 弥尔芙特夫人要成为封?瓦尔特夫人啦，对您这肯定算得上新闻吧？",
+        "pinyin": "zǎi 　 xiāng     wǒ kàn nǎ   — —   bù ， shì wèi cháng ， wǒ jīn tiān kě yǐ gào sù nín yī jiàn gèng hǎo de xiāo xī   — —   mí ěr fú tè fū rén yào chéng wéi fēng ? wǎ ěr tè fū rén lā ， duì nín zhè kěn dìng suàn dé shàng xīn wén bā ？",
         "english": ""
       },
       {
@@ -2172,13 +2102,8 @@
         "english": ""
       },
       {
-        "chinese": "（跳跳蹦蹦地出去了）",
-        "pinyin": "（ tiào tiào bèng bèng dì chū qù le ）",
-        "english": ""
-      },
-      {
-        "chinese": "宰　相  （望着侍卫长的背影笑起来） 还说什么世界上的这种人是废物！",
-        "pinyin": "zǎi 　 xiāng     （ wàng zhuó shì wèi cháng de bēi yǐng xiào qǐ lái ）   hái shuō shén me shì jiè shàng de zhè zhǒng rén shì fèi wù ！",
+        "chinese": "（跳跳蹦蹦地出去了）\n　　宰　相  （望着侍卫长的背影笑起来） 还说什么世界上的这种人是废物！",
+        "pinyin": "（ tiào tiào bèng bèng dì chū qù le ） \n 　 　 zǎi 　 xiāng     （ wàng zhuó shì wèi cháng de bēi yǐng xiào qǐ lái ）   hái shuō shén me shì jiè shàng de zhè zhǒng rén shì fèi wù ！",
         "english": ""
       },
       {
@@ -2226,13 +2151,8 @@
         "english": ""
       },
       {
-        "chinese": "斐迪南  您找我，父亲大人……",
-        "pinyin": "fěi dí nán     nín zhǎo wǒ ， fù qīn dà rén … …",
-        "english": ""
-      },
-      {
-        "chinese": "宰　相  为了有朝一日我能为我的儿子感到荣幸，我不得不叫你来 —— 让我们单独待一会儿吧，伍尔穆！",
-        "pinyin": "zǎi 　 xiāng     wèi le yǒu cháo yī rì wǒ néng wèi wǒ de ér zǐ gǎn dào róng xìng ， wǒ bù dé bù jiào nǐ lái   — —   ràng wǒ mén dān dú dài yī huì ér bā ， wǔ ěr mù ！",
+        "chinese": "斐迪南  您找我，父亲大人……\n　　宰　相  为了有朝一日我能为我的儿子感到荣幸，我不得不叫你来 —— 让我们单独待一会儿吧，伍尔穆！",
+        "pinyin": "fěi dí nán     nín zhǎo wǒ ， fù qīn dà rén … … \n 　 　 zǎi 　 xiāng     wèi le yǒu cháo yī rì wǒ néng wèi wǒ de ér zǐ gǎn dào róng xìng ， wǒ bù dé bù jiào nǐ lái   — —   ràng wǒ mén dān dú dài yī huì ér bā ， wǔ ěr mù ！",
         "english": ""
       },
       {
@@ -2501,13 +2421,8 @@
         "english": ""
       },
       {
-        "chinese": "宰　相  如果你认识她……",
-        "pinyin": "zǎi 　 xiāng     rú guǒ nǐ rèn shí tā … …",
-        "english": ""
-      },
-      {
-        "chinese": "斐迪南  （失去了自持）好个在公国中万人唾弃的女人！",
-        "pinyin": "fěi dí nán     （ shī qù le zì chí ） hǎo gè zài gōng guó zhōng wàn rén tuò qì de nǚ rén ！",
+        "chinese": "宰　相  如果你认识她……\n　　斐迪南  （失去了自持）好个在公国中万人唾弃的女人！",
+        "pinyin": "zǎi 　 xiāng     rú guǒ nǐ rèn shí tā … … \n 　 　 fěi dí nán     （ shī qù le zì chí ） hǎo gè zài gōng guó zhōng wàn rén tuò qì de nǚ rén ！",
         "english": ""
       },
       {
@@ -2546,13 +2461,8 @@
         "english": ""
       },
       {
-        "chinese": "只因为太少见，我不见怪……",
-        "pinyin": "zhǐ yīn wèi tài shǎo jiàn ， wǒ bù jiàn guài … …",
-        "english": ""
-      },
-      {
-        "chinese": "斐迪南  求求您，爸爸！",
-        "pinyin": "fěi dí nán     qiú qiú nín ， bà bà ！",
+        "chinese": "只因为太少见，我不见怪……\n　　斐迪南  求求您，爸爸！",
+        "pinyin": "zhǐ yīn wèi tài shǎo jiàn ， wǒ bù jiàn guài … … \n 　 　 fěi dí nán     qiú qiú nín ， bà bà ！",
         "english": ""
       },
       {
@@ -2581,13 +2491,8 @@
         "english": ""
       },
       {
-        "chinese": "宰　相  （放声大笑）",
-        "pinyin": "zǎi 　 xiāng     （ fàng shēng dà xiào ）",
-        "english": ""
-      },
-      {
-        "chinese": "斐迪南  您笑吧，爸爸，我不计较。",
-        "pinyin": "fěi dí nán     nín xiào bā ， bà bà ， wǒ bù jì jiào 。",
+        "chinese": "宰　相  （放声大笑）\n　　斐迪南  您笑吧，爸爸，我不计较。",
+        "pinyin": "zǎi 　 xiāng     （ fàng shēng dà xiào ） \n 　 　 fěi dí nán     nín xiào bā ， bà bà ， wǒ bù jì jiào 。",
         "english": ""
       },
       {
@@ -2676,13 +2581,8 @@
         "english": ""
       },
       {
-        "chinese": "弗莉德里克?",
-        "pinyin": "fú lì dé lǐ kè ?",
-        "english": ""
-      },
-      {
-        "chinese": "奥斯特海姆可以使任何别的男人无比幸福。",
-        "pinyin": "ào sī tè hǎi mǔ kě yǐ shǐ rèn hé bié de nán rén wú bǐ xìng fú 。",
+        "chinese": "弗莉德里克?封?奥斯特海姆可以使任何别的男人无比幸福。",
+        "pinyin": "fú lì dé lǐ kè ? fēng ? ào sī tè hǎi mǔ kě yǐ shǐ rèn hé bié de nán rén wú bǐ xìng fú 。",
         "english": ""
       },
       {
@@ -2826,13 +2726,8 @@
         "english": ""
       },
       {
-        "chinese": "（下）",
-        "pinyin": "（ xià ）",
-        "english": ""
-      },
-      {
-        "chinese": "斐迪南  （恍若噩梦初醒）他走啦？",
-        "pinyin": "fěi dí nán     （ huǎng ruò è mèng chū xǐng ） tā zǒu lā ？",
+        "chinese": "（下）\n　　斐迪南  （恍若噩梦初醒）他走啦？",
+        "pinyin": "（ xià ） \n 　 　 fěi dí nán     （ huǎng ruò è mèng chū xǐng ） tā zǒu lā ？",
         "english": ""
       },
       {
@@ -2856,13 +2751,8 @@
         "english": ""
       },
       {
-        "chinese": "（匆匆跑出去）",
-        "pinyin": "（ cōng cōng pǎo chū qù ）",
-        "english": ""
-      },
-      {
-        "chinese": "ＷＷw.xiＡosＨuotxt.ＣＯＭ>txt",
-        "pinyin": "Ｗ Ｗ w . x i Ａ o s Ｈ u o t x t . Ｃ Ｏ Ｍ > t x t",
+        "chinese": "（匆匆跑出去）\n>txt",
+        "pinyin": "（ cōng cōng pǎo chū qù ） \n > t x t",
         "english": ""
       }
     ]
@@ -2985,13 +2875,8 @@
         "english": ""
       },
       {
-        "chinese": "（踱到窗前）",
-        "pinyin": "（ duó dào chuāng qián ）",
-        "english": ""
-      },
-      {
-        "chinese": "索　菲  可公爵您该觉得是个例外吧，夫人？",
-        "pinyin": "suǒ 　 fēi     kě gōng jué nín gāi jué dé shì gè lì wài bā ， fū rén ？",
+        "chinese": "（踱到窗前）\n　　索　菲  可公爵您该觉得是个例外吧，夫人？",
+        "pinyin": "（ duó dào chuāng qián ） \n 　 　 suǒ 　 fēi     kě gōng jué nín gāi jué dé shì gè lì wài bā ， fū rén ？",
         "english": ""
       },
       {
@@ -3334,8 +3219,8 @@
         "english": ""
       },
       {
-        "chinese": "夫　人  （震惊，跌倒在沙发上）上帝！",
-        "pinyin": "fū 　 rén     （ zhèn jīng ， diē dǎo zài shā fā shàng ） shàng dì ！",
+        "chinese": "——\n　　夫　人  （震惊，跌倒在沙发上）上帝！",
+        "pinyin": "— — \n 　 　 fū 　 rén     （ zhèn jīng ， diē dǎo zài shā fā shàng ） shàng dì ！",
         "english": ""
       },
       {
@@ -3414,8 +3299,8 @@
         "english": ""
       },
       {
-        "chinese": "—— 到了城门口他们还转过身来高呼：“上帝与你们同在，老婆和孩子们 —— 咱们的公爵万岁 —— 等到接受上帝审判那天，咱们会回来的！",
-        "pinyin": "— —   dào le chéng mén kǒu tā mén hái zhuǎn guò shēn lái gāo hū ： “ shàng dì yǔ nǐ mén tóng zài ， lǎo pó hé hái zǐ mén   — —   zán mén de gōng jué wàn suì   — —   děng dào jiē shòu shàng dì shěn pàn nà tiān ， zán mén huì huí lái de ！",
+        "chinese": "—— 到了城门口他们还转过身来高呼：“上帝与你们同在，老婆和孩子们 —— 咱们的公爵万岁 —— 等到接受上帝审判那天，咱们会回来的！”",
+        "pinyin": "— —   dào le chéng mén kǒu tā mén hái zhuǎn guò shēn lái gāo hū ： “ shàng dì yǔ nǐ mén tóng zài ， lǎo pó hé hái zǐ mén   — —   zán mén de gōng jué wàn suì   — —   děng dào jiē shòu shàng dì shěn pàn nà tiān ， zán mén huì huí lái de ！ ”",
         "english": ""
       },
       {
@@ -3444,13 +3329,8 @@
         "english": ""
       },
       {
-        "chinese": "(下)",
-        "pinyin": "( xià )",
-        "english": ""
-      },
-      {
-        "chinese": "夫　人  （惊讶地目送着他）索菲，快追上去，问他叫什么名字。",
-        "pinyin": "fū 　 rén     （ jīng yà dì mù sòng zhuó tā ） suǒ fēi ， kuài zhuī shàng qù ， wèn tā jiào shén me míng zì 。",
+        "chinese": "(下)\n　　夫　人  （惊讶地目送着他）索菲，快追上去，问他叫什么名字。",
+        "pinyin": "( xià ) \n 　 　 fū 　 rén     （ jīng yà dì mù sòng zhuó tā ） suǒ fēi ， kuài zhuī shàng qù ， wèn tā jiào shén me míng zì 。",
         "english": ""
       },
       {
@@ -3474,13 +3354,8 @@
         "english": ""
       },
       {
-        "chinese": "（按铃）",
-        "pinyin": "（ àn líng ）",
-        "english": ""
-      },
-      {
-        "chinese": "索　菲  你怎么突然想到这个？",
-        "pinyin": "suǒ 　 fēi     nǐ zěn me tū rán xiǎng dào zhè gè ？",
+        "chinese": "（按铃）\n　　索　菲  你怎么突然想到这个？",
+        "pinyin": "（ àn líng ） \n 　 　 suǒ 　 fēi     nǐ zěn me tū rán xiǎng dào zhè gè ？",
         "english": ""
       },
       {
@@ -3554,13 +3429,8 @@
         "english": ""
       },
       {
-        "chinese": "仆　人  （又走进来）封?",
-        "pinyin": "pū 　 rén     （ yòu zǒu jìn lái ） fēng ?",
-        "english": ""
-      },
-      {
-        "chinese": "瓦尔特少校到。",
-        "pinyin": "wǎ ěr tè shǎo xiào dào 。",
+        "chinese": "仆　人  （又走进来）封?瓦尔特少校到。",
+        "pinyin": "pū 　 rén     （ yòu zǒu jìn lái ） fēng ? wǎ ěr tè shǎo xiào dào 。",
         "english": ""
       },
       {
@@ -3569,13 +3439,8 @@
         "english": ""
       },
       {
-        "chinese": "您多么苍白 ——",
-        "pinyin": "nín duō me cāng bái   — —",
-        "english": ""
-      },
-      {
-        "chinese": "夫　人  这是第一个使我惊慌失措的男人——索菲——我不舒服，爱德华——等一等——他开心吗？",
-        "pinyin": "fū 　 rén     zhè shì dì yī gè shǐ wǒ jīng huāng shī cuò de nán rén — — suǒ fēi — — wǒ bù shū fú ， ài dé huá — — děng yī děng — — tā kāi xīn ma ？",
+        "chinese": "您多么苍白 ——\n　　夫　人  这是第一个使我惊慌失措的男人——索菲——我不舒服，爱德华——等一等——他开心吗？",
+        "pinyin": "nín duō me cāng bái   — — \n 　 　 fū 　 rén     zhè shì dì yī gè shǐ wǒ jīng huāng shī cuò de nán rén — — suǒ fēi — — wǒ bù shū fú ， ài dé huá — — děng yī děng — — tā kāi xīn ma ？",
         "english": ""
       },
       {
@@ -3599,13 +3464,8 @@
         "english": ""
       },
       {
-        "chinese": "索　菲  我求求您，夫人……",
-        "pinyin": "suǒ 　 fēi     wǒ qiú qiú nín ， fū rén … …",
-        "english": ""
-      },
-      {
-        "chinese": "仆　人  您吩咐我打发他走吗？",
-        "pinyin": "pū 　 rén     nín fēn fù wǒ dǎ fā tā zǒu ma ？",
+        "chinese": "索　菲  我求求您，夫人……\n　　仆　人  您吩咐我打发他走吗？",
+        "pinyin": "suǒ 　 fēi     wǒ qiú qiú nín ， fū rén … … \n 　 　 pū 　 rén     nín fēn fù wǒ dǎ fā tā zǒu ma ？",
         "english": ""
       },
       {
@@ -3644,13 +3504,8 @@
         "english": ""
       },
       {
-        "chinese": "（少校穿过前厅，走进屋来）",
-        "pinyin": "（ shǎo xiào chuān guò qián tīng ， zǒu jìn wū lái ）",
-        "english": ""
-      },
-      {
-        "chinese": "索　菲  精神一点！",
-        "pinyin": "suǒ 　 fēi     jīng shén yī diǎn ！",
+        "chinese": "（少校穿过前厅，走进屋来）\n　　索　菲  精神一点！",
+        "pinyin": "（ shǎo xiào chuān guò qián tīng ， zǒu jìn wū lái ） \n 　 　 suǒ 　 fēi     jīng shén yī diǎn ！",
         "english": ""
       },
       {
@@ -3668,13 +3523,8 @@
     "titleEn": "Chapter 10: 第10章 第二幕 第三场",
     "sentences": [
       {
-        "chinese": "斐迪南?",
-        "pinyin": "fěi dí nán ?",
-        "english": ""
-      },
-      {
-        "chinese": "瓦尔特。",
-        "pinyin": "wǎ ěr tè 。",
+        "chinese": "斐迪南?封?瓦尔特。",
+        "pinyin": "fěi dí nán ? fēng ? wǎ ěr tè 。",
         "english": ""
       },
       {
@@ -3693,13 +3543,8 @@
         "english": ""
       },
       {
-        "chinese": "斐迪南  我来是奉家父之命……",
-        "pinyin": "fěi dí nán     wǒ lái shì fèng jiā fù zhī mìng … …",
-        "english": ""
-      },
-      {
-        "chinese": "夫　人  那我得感谢他。",
-        "pinyin": "fū 　 rén     nà wǒ dé gǎn xiè tā 。",
+        "chinese": "斐迪南  我来是奉家父之命……\n　　夫　人  那我得感谢他。",
+        "pinyin": "fěi dí nán     wǒ lái shì fèng jiā fù zhī mìng … … \n 　 　 fū 　 rén     nà wǒ dé gǎn xiè tā 。",
         "english": ""
       },
       {
@@ -3813,13 +3658,8 @@
         "english": ""
       },
       {
-        "chinese": "夫　人  公爵的名义 ……",
-        "pinyin": "fū 　 rén     gōng jué de míng yì   … …",
-        "english": ""
-      },
-      {
-        "chinese": "斐迪南  （激动地）公爵难道能歪曲人类的准则，或者像铸造他的三分铜币一样任意支配人的行动吗？",
-        "pinyin": "fěi dí nán     （ jī dòng dì ） gōng jué nán dào néng wāi qǔ rén lèi de zhǔn zé ， huò zhě xiàng zhù zào tā de sān fēn tóng bì yī yàng rèn yì zhī pèi rén de xíng dòng ma ？",
+        "chinese": "夫　人  公爵的名义 ……\n　　斐迪南  （激动地）公爵难道能歪曲人类的准则，或者像铸造他的三分铜币一样任意支配人的行动吗？",
+        "pinyin": "fū 　 rén     gōng jué de míng yì   … … \n 　 　 fěi dí nán     （ jī dòng dì ） gōng jué nán dào néng wāi qǔ rén lèi de zhǔn zé ， huò zhě xiàng zhù zào tā de sān fēn tóng bì yī yàng rèn yì zhī pèi rén de xíng dòng ma ？",
         "english": ""
       },
       {
@@ -3983,13 +3823,8 @@
         "english": ""
       },
       {
-        "chinese": "我本可以趾高气扬地说：我有着高贵的血统 —— 出生在为苏格兰女王玛利亚牺牲了的不幸的托马斯?",
-        "pinyin": "wǒ běn kě yǐ zhǐ gāo qì yáng dì shuō ： wǒ yǒu zhuó gāo guì de xiě tǒng   — —   chū shēng zài wèi sū gé lán nǚ wáng mǎ lì yà xī shēng le de bù xìng de tuō mǎ sī ?",
-        "english": ""
-      },
-      {
-        "chinese": "诺弗克家族。",
-        "pinyin": "nuò fú kè jiā zú 。",
+        "chinese": "我本可以趾高气扬地说：我有着高贵的血统 —— 出生在为苏格兰女王玛利亚牺牲了的不幸的托马斯?诺弗克家族。",
+        "pinyin": "wǒ běn kě yǐ zhǐ gāo qì yáng dì shuō ： wǒ yǒu zhuó gāo guì de xiě tǒng   — —   chū shēng zài wèi sū gé lán nǚ wáng mǎ lì yà xī shēng le de bù xìng de tuō mǎ sī ? nuò fú kè jiā zú 。",
         "english": ""
       },
       {
@@ -4283,13 +4118,8 @@
         "english": ""
       },
       {
-        "chinese": "（沉默片刻，然后更加轻声，更加羞怯）我爱上了，夫人 —— 爱上了一个市民姑娘 —— 她叫露意丝?",
-        "pinyin": "（ chén mò piàn kè ， rán hòu gèng jiā qīng shēng ， gèng jiā xiū qiè ） wǒ ài shàng le ， fū rén   — —   ài shàng le yī gè shì mín gū niáng   — —   tā jiào lòu yì sī ?",
-        "english": ""
-      },
-      {
-        "chinese": "米勒小姐，一位音乐家的女儿。",
-        "pinyin": "mǐ lè xiǎo jiě ， yī wèi yīn yuè jiā de nǚ ér 。",
+        "chinese": "（沉默片刻，然后更加轻声，更加羞怯）我爱上了，夫人 —— 爱上了一个市民姑娘 —— 她叫露意丝? 米勒小姐，一位音乐家的女儿。",
+        "pinyin": "（ chén mò piàn kè ， rán hòu gèng jiā qīng shēng ， gèng jiā xiū qiè ） wǒ ài shàng le ， fū rén   — —   ài shàng le yī gè shì mín gū niáng   — —   tā jiào lòu yì sī ?   mǐ lè xiǎo jiě ， yī wèi yīn yuè jiā de nǚ ér 。",
         "english": ""
       },
       {
@@ -4343,13 +4173,8 @@
         "english": ""
       },
       {
-        "chinese": "夫　人  （表情异常痛苦）没有了，封?",
-        "pinyin": "fū 　 rén     （ biǎo qíng yì cháng tòng kǔ ） méi yǒu le ， fēng ?",
-        "english": ""
-      },
-      {
-        "chinese": "瓦尔特先生！",
-        "pinyin": "wǎ ěr tè xiān shēng ！",
+        "chinese": "夫　人  （表情异常痛苦）没有了，封?瓦尔特先生！",
+        "pinyin": "fū 　 rén     （ biǎo qíng yì cháng tòng kǔ ） méi yǒu le ， fēng ? wǎ ěr tè xiān shēng ！",
         "english": ""
       },
       {
@@ -4415,6 +4240,46 @@
       {
         "chinese": "（严肃而坚定地）我的热情，瓦尔特，压不过我对您的柔情。",
         "pinyin": "（ yán sù ér jiān dìng dì ） wǒ de rè qíng ， wǎ ěr tè ， yā bù guò wǒ duì nín de róu qíng 。",
+        "english": ""
+      },
+      {
+        "chinese": "我的名声，再也不能 …… 全城的人都在谈论我俩的结合。",
+        "pinyin": "wǒ de míng shēng ， zài yě bù néng   … …   quán chéng de rén dōu zài tán lùn wǒ liǎng de jié hé 。",
+        "english": ""
+      },
+      {
+        "chinese": "所有的眼睛，所有嘲讽的利箭，全瞄准了我。",
+        "pinyin": "suǒ yǒu de yǎn jīng ， suǒ yǒu cháo fěng de lì jiàn ， quán miáo zhǔn le wǒ 。",
+        "english": ""
+      },
+      {
+        "chinese": "要是公爵的一个臣仆尚且拒绝了我，那对我将是一个永远洗刷不掉的奇耻大辱。",
+        "pinyin": "yào shì gōng jué de yī gè chén pū shàng qiě jù jué le wǒ ， nà duì wǒ jiāng shì yī gè yǒng yuǎn xǐ shuā bù diào de qí chǐ dà rǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "和您的父亲论理去吧！",
+        "pinyin": "hé nín de fù qīn lùn lǐ qù bā ！",
+        "english": ""
+      },
+      {
+        "chinese": "尽可能地反抗吧！",
+        "pinyin": "jìn kě néng dì fǎn kàng bā ！",
+        "english": ""
+      },
+      {
+        "chinese": "—— 我将一不做，二不休！",
+        "pinyin": "— —   wǒ jiāng yī bù zuò ， èr bù xiū ！",
+        "english": ""
+      },
+      {
+        "chinese": "（快步走下。",
+        "pinyin": "（ kuài bù zǒu xià 。",
+        "english": ""
+      },
+      {
+        "chinese": "少校瞠目结舌，呆若木鸡，随后也冲出门去）",
+        "pinyin": "shǎo xiào chēng mù jié shé ， dāi ruò mù jī ， suí hòu yě chōng chū mén qù ）",
         "english": ""
       }
     ]
@@ -4682,13 +4547,8 @@
         "english": ""
       },
       {
-        "chinese": "（哭喊着在房中乱跑一气）",
-        "pinyin": "（ kū hǎn zhuó zài fáng zhōng luàn pǎo yī qì ）",
-        "english": ""
-      },
-      {
-        "chinese": "米　勒  我这就去见宰相。",
-        "pinyin": "mǐ 　 lè     wǒ zhè jiù qù jiàn zǎi xiāng 。",
+        "chinese": "（哭喊着在房中乱跑一气）\n　　米　勒  我这就去见宰相。",
+        "pinyin": "（ kū hǎn zhuó zài fáng zhōng luàn pǎo yī qì ） \n 　 　 mǐ 　 lè     wǒ zhè jiù qù jiàn zǎi xiāng 。",
         "english": ""
       },
       {
@@ -4746,13 +4606,8 @@
     "titleEn": "Chapter 12: 第12章 第二幕 第五场",
     "sentences": [
       {
-        "chinese": "斐迪南?",
-        "pinyin": "fěi dí nán ?",
-        "english": ""
-      },
-      {
-        "chinese": "瓦尔特冲进房间，慌慌张张，上气不接下气。",
-        "pinyin": "wǎ ěr tè chōng jìn fáng jiān ， huāng huāng zhāng zhāng ， shàng qì bù jiē xià qì 。",
+        "chinese": "斐迪南?封?瓦尔特冲进房间，慌慌张张，上气不接下气。",
+        "pinyin": "fěi dí nán ? fēng ? wǎ ěr tè chōng jìn fáng jiān ， huāng huāng zhāng zhāng ， shàng qì bù jiē xià qì 。",
         "english": ""
       },
       {
@@ -4786,13 +4641,8 @@
         "english": ""
       },
       {
-        "chinese": "（三人异口同声）",
-        "pinyin": "（ sān rén yì kǒu tóng shēng ）",
-        "english": ""
-      },
-      {
-        "chinese": "米　勒  （冷笑两声）赞美上帝！",
-        "pinyin": "mǐ 　 lè     （ lěng xiào liǎng shēng ） zàn měi shàng dì ！",
+        "chinese": "（三人异口同声）\n　　米　勒  （冷笑两声）赞美上帝！",
+        "pinyin": "（ sān rén yì kǒu tóng shēng ） \n 　 　 mǐ 　 lè     （ lěng xiào liǎng shēng ） zàn měi shàng dì ！",
         "english": ""
       },
       {
@@ -4856,13 +4706,8 @@
         "english": ""
       },
       {
-        "chinese": "露意丝  （蒙着脸，倒在椅子上）",
-        "pinyin": "lòu yì sī     （ mēng zhuó liǎn ， dǎo zài yǐ zǐ shàng ）",
-        "english": ""
-      },
-      {
-        "chinese": "斐迪南  （跑向她，目光呆滞地站在她面前，说不出一句话，然后突然离开她，激动异常）不！",
-        "pinyin": "fěi dí nán     （ pǎo xiàng tā ， mù guāng dāi zhì dì zhàn zài tā miàn qián ， shuō bù chū yī jù huà ， rán hòu tū rán lí kāi tā ， jī dòng yì cháng ） bù ！",
+        "chinese": "露意丝  （蒙着脸，倒在椅子上）\n　　斐迪南  （跑向她，目光呆滞地站在她面前，说不出一句话，然后突然离开她，激动异常）不！",
+        "pinyin": "lòu yì sī     （ mēng zhuó liǎn ， dǎo zài yǐ zǐ shàng ） \n 　 　 fěi dí nán     （ pǎo xiàng tā ， mù guāng dāi zhì dì zhàn zài tā miàn qián ， shuō bù chū yī jù huà ， rán hòu tū rán lí kāi tā ， jī dòng yì cháng ） bù ！",
         "english": ""
       },
       {
@@ -4971,8 +4816,8 @@
         "english": ""
       },
       {
-        "chinese": "米　勒  露意丝！",
-        "pinyin": "mǐ 　 lè     lòu yì sī ！",
+        "chinese": "——\n　　米　勒  露意丝！",
+        "pinyin": "— — \n 　 　 mǐ 　 lè     lòu yì sī ！",
         "english": ""
       },
       {
@@ -5016,13 +4861,8 @@
         "english": ""
       },
       {
-        "chinese": "（准备离去）",
-        "pinyin": "（ zhǔn bèi lí qù ）",
-        "english": ""
-      },
-      {
-        "chinese": "露意丝  （战栗着从椅子上站起来，追上他）别走！",
-        "pinyin": "lòu yì sī     （ zhàn lì zhuó cóng yǐ zǐ shàng zhàn qǐ lái ， zhuī shàng tā ） bié zǒu ！",
+        "chinese": "（准备离去）\n　　露意丝  （战栗着从椅子上站起来，追上他）别走！",
+        "pinyin": "（ zhǔn bèi lí qù ） \n 　 　 lòu yì sī     （ zhàn lì zhuó cóng yǐ zǐ shàng zhàn qǐ lái ， zhuī shàng tā ） bié zǒu ！",
         "english": ""
       },
       {
@@ -5041,13 +4881,8 @@
         "english": ""
       },
       {
-        "chinese": "米勒太太  （追上去拉住斐迪南）宰相大人会上这儿来 —— 他会虐待咱闺女 ——他会虐待我们 —— 封?",
-        "pinyin": "mǐ lè tài tài     （ zhuī shàng qù lā zhù fěi dí nán ） zǎi xiāng dà rén huì shàng zhè ér lái   — —   tā huì nüè dài zán guī nǚ   — — tā huì nüè dài wǒ mén   — —   fēng ?",
-        "english": ""
-      },
-      {
-        "chinese": "瓦尔特少爷，你却要扔下我们吗？",
-        "pinyin": "wǎ ěr tè shǎo yé ， nǐ què yào rēng xià wǒ mén ma ？",
+        "chinese": "米勒太太  （追上去拉住斐迪南）宰相大人会上这儿来 —— 他会虐待咱闺女 ——他会虐待我们 —— 封?瓦尔特少爷，你却要扔下我们吗？",
+        "pinyin": "mǐ lè tài tài     （ zhuī shàng qù lā zhù fěi dí nán ） zǎi xiāng dà rén huì shàng zhè ér lái   — —   tā huì nüè dài zán guī nǚ   — — tā huì nüè dài wǒ mén   — —   fēng ? wǎ ěr tè shǎo yé ， nǐ què yào rēng xià wǒ mén ma ？",
         "english": ""
       },
       {
@@ -5121,13 +4956,8 @@
         "english": ""
       },
       {
-        "chinese": "你眼睛转动起来叫人害怕 ……",
-        "pinyin": "nǐ yǎn jīng zhuàn dòng qǐ lái jiào rén hài pà   … …",
-        "english": ""
-      },
-      {
-        "chinese": "斐迪南  不，露意丝，别哆嗦。",
-        "pinyin": "fěi dí nán     bù ， lòu yì sī ， bié duō suō 。",
+        "chinese": "你眼睛转动起来叫人害怕 ……\n　　斐迪南  不，露意丝，别哆嗦。",
+        "pinyin": "nǐ yǎn jīng zhuàn dòng qǐ lái jiào rén hài pà   … … \n 　 　 fěi dí nán     bù ， lòu yì sī ， bié duō suō 。",
         "english": ""
       },
       {
@@ -5175,13 +5005,8 @@
         "english": ""
       },
       {
-        "chinese": "众　人  （惊恐）",
-        "pinyin": "zhòng 　 rén     （ jīng kǒng ）",
-        "english": ""
-      },
-      {
-        "chinese": "斐迪南  （后退几步）在一个清白人家。",
-        "pinyin": "fěi dí nán     （ hòu tuì jǐ bù ） zài yī gè qīng bái rén jiā 。",
+        "chinese": "众　人  （惊恐）\n　　斐迪南  （后退几步）在一个清白人家。",
+        "pinyin": "zhòng 　 rén     （ jīng kǒng ） \n 　 　 fěi dí nán     （ hòu tuì jǐ bù ） zài yī gè qīng bái rén jiā 。",
         "english": ""
       },
       {
@@ -5190,13 +5015,8 @@
         "english": ""
       },
       {
-        "chinese": "斐迪南  请您别扯这个 ——",
-        "pinyin": "fěi dí nán     qǐng nín bié chě zhè gè   — —",
-        "english": ""
-      },
-      {
-        "chinese": "宰　相  （打断他，脸转向米勒）他是父亲吗？",
-        "pinyin": "zǎi 　 xiāng     （ dǎ duàn tā ， liǎn zhuǎn xiàng mǐ lè ） tā shì fù qīn ma ？",
+        "chinese": "斐迪南  请您别扯这个 ——\n　　宰　相  （打断他，脸转向米勒）他是父亲吗？",
+        "pinyin": "fěi dí nán     qǐng nín bié chě zhè gè   — — \n 　 　 zǎi 　 xiāng     （ dǎ duàn tā ， liǎn zhuǎn xiàng mǐ lè ） tā shì fù qīn ma ？",
         "english": ""
       },
       {
@@ -5245,13 +5065,8 @@
         "english": ""
       },
       {
-        "chinese": "从11月起，斐迪南?",
-        "pinyin": "cóng 1 1 yuè qǐ ， fěi dí nán ?",
-        "english": ""
-      },
-      {
-        "chinese": "瓦尔特就来家里看我。",
-        "pinyin": "wǎ ěr tè jiù lái jiā lǐ kàn wǒ 。",
+        "chinese": "从11月起，斐迪南?封?瓦尔特就来家里看我。",
+        "pinyin": "cóng 1 1 yuè qǐ ， fěi dí nán ? fēng ? wǎ ěr tè jiù lái jiā lǐ kàn wǒ 。",
         "english": ""
       },
       {
@@ -5355,13 +5170,8 @@
         "english": ""
       },
       {
-        "chinese": "露意丝  （对斐迪南，庄重而无奈地）封?",
-        "pinyin": "lòu yì sī     （ duì fěi dí nán ， zhuāng zhòng ér wú nài dì ） fēng ?",
-        "english": ""
-      },
-      {
-        "chinese": "瓦尔特先生，现在您自由了。",
-        "pinyin": "wǎ ěr tè xiān shēng ， xiàn zài nín zì yóu le 。",
+        "chinese": "露意丝  （对斐迪南，庄重而无奈地）封?瓦尔特先生，现在您自由了。",
+        "pinyin": "lòu yì sī     （ duì fěi dí nán ， zhuāng zhòng ér wú nài dì ） fēng ? wǎ ěr tè xiān shēng ， xiàn zài nín zì yóu le 。",
         "english": ""
       },
       {
@@ -5405,8 +5215,8 @@
         "english": ""
       },
       {
-        "chinese": "米　勒  （一直恐惧地站在一边，这时激动地走上前来，一会儿气得咬牙切齿，一会儿怕得牙齿磕磕碰碰）我说大人 —— 孩子是父亲的骨肉心肝 —— 劳驾您给我记住 —— 谁骂他女儿是婊子，谁就打了他的耳光；",
-        "pinyin": "mǐ 　 lè     （ yī zhí kǒng jù dì zhàn zài yī biān ， zhè shí jī dòng dì zǒu shàng qián lái ， yī huì ér qì dé yǎo yá qiē chǐ ， yī huì ér pà dé yá chǐ kē kē pèng pèng ） wǒ shuō dà rén   — —   hái zǐ shì fù qīn de gǔ ròu xīn gān   — —   láo jià nín gěi wǒ jì zhù   — —   shuí mà tā nǚ ér shì biǎo zǐ ， shuí jiù dǎ le tā de ěr guāng ；",
+        "chinese": "——\n　　米　勒  （一直恐惧地站在一边，这时激动地走上前来，一会儿气得咬牙切齿，一会儿怕得牙齿磕磕碰碰）我说大人 —— 孩子是父亲的骨肉心肝 —— 劳驾您给我记住 —— 谁骂他女儿是婊子，谁就打了他的耳光；",
+        "pinyin": "— — \n 　 　 mǐ 　 lè     （ yī zhí kǒng jù dì zhàn zài yī biān ， zhè shí jī dòng dì zǒu shàng qián lái ， yī huì ér qì dé yǎo yá qiē chǐ ， yī huì ér pà dé yá chǐ kē kē pèng pèng ） wǒ shuō dà rén   — —   hái zǐ shì fù qīn de gǔ ròu xīn gān   — —   láo jià nín gěi wǒ jì zhù   — —   shuí mà tā nǚ ér shì biǎo zǐ ， shuí jiù dǎ le tā de ěr guāng ；",
         "english": ""
       },
       {
@@ -5510,13 +5320,8 @@
         "english": ""
       },
       {
-        "chinese": "（逼近米勒）",
-        "pinyin": "（ bī jìn mǐ lè ）",
-        "english": ""
-      },
-      {
-        "chinese": "米　勒  （缓缓后退）我就是这个意思，大人 —— 劳您的驾。",
-        "pinyin": "mǐ 　 lè     （ huǎn huǎn hòu tuì ） wǒ jiù shì zhè gè yì sī ， dà rén   — —   láo nín de jià 。",
+        "chinese": "（逼近米勒）\n　　米　勒  （缓缓后退）我就是这个意思，大人 —— 劳您的驾。",
+        "pinyin": "（ bī jìn mǐ lè ） \n 　 　 mǐ 　 lè     （ huǎn huǎn hòu tuì ） wǒ jiù shì zhè gè yì sī ， dà rén   — —   láo nín de jià 。",
         "english": ""
       },
       {
@@ -5625,13 +5430,8 @@
         "english": ""
       },
       {
-        "chinese": "（打算离开）",
-        "pinyin": "（ dǎ suàn lí kāi ）",
-        "english": ""
-      },
-      {
-        "chinese": "宰　相  找公爵，你说 —— 你忘了吧，我是公爵的门槛！",
-        "pinyin": "zǎi 　 xiāng     zhǎo gōng jué ， nǐ shuō   — —   nǐ wàng le bā ， wǒ shì gōng jué de mén jiàn ！",
+        "chinese": "（打算离开）\n　　宰　相  找公爵，你说 —— 你忘了吧，我是公爵的门槛！",
+        "pinyin": "（ dǎ suàn lí kāi ） \n 　 　 zǎi 　 xiāng     zhǎo gōng jué ， nǐ shuō   — —   nǐ wàng le bā ， wǒ shì gōng jué de mén jiàn ！",
         "english": ""
       },
       {
@@ -5699,13 +5499,8 @@
         "english": ""
       },
       {
-        "chinese": "米勒太太  （跪倒在宰相面前）",
-        "pinyin": "mǐ lè tài tài     （ guì dǎo zài zǎi xiāng miàn qián ）",
-        "english": ""
-      },
-      {
-        "chinese": "宰　相  （冲法警亮了亮他的勋章）动手吧，以公爵的名义 —— 孩子，离开这个婊子—— 管她晕倒不晕倒！",
-        "pinyin": "zǎi 　 xiāng     （ chōng fǎ jǐng liàng le liàng tā de xūn zhāng ） dòng shǒu bā ， yǐ gōng jué de míng yì   — —   hái zǐ ， lí kāi zhè gè biǎo zǐ — —   guǎn tā yūn dǎo bù yūn dǎo ！",
+        "chinese": "米勒太太  （跪倒在宰相面前）\n　　宰　相  （冲法警亮了亮他的勋章）动手吧，以公爵的名义 —— 孩子，离开这个婊子—— 管她晕倒不晕倒！",
+        "pinyin": "mǐ lè tài tài     （ guì dǎo zài zǎi xiāng miàn qián ） \n 　 　 zǎi 　 xiāng     （ chōng fǎ jǐng liàng le liàng tā de xūn zhāng ） dòng shǒu bā ， yǐ gōng jué de míng yì   — —   hái zǐ ， lí kāi zhè gè biǎo zǐ — —   guǎn tā yūn dǎo bù yūn dǎo ！",
         "english": ""
       },
       {
@@ -5749,13 +5544,8 @@
         "english": ""
       },
       {
-        "chinese": "众法警  （冲向露意丝）",
-        "pinyin": "zhòng fǎ jǐng     （ chōng xiàng lòu yì sī ）",
-        "english": ""
-      },
-      {
-        "chinese": "斐迪南  （从露意丝身边跳起，挡在她面前，怒不可遏）看谁敢动一动！",
-        "pinyin": "fěi dí nán     （ cóng lòu yì sī shēn biān tiào qǐ ， dǎng zài tā miàn qián ， nù bù kě è ） kàn shuí gǎn dòng yī dòng ！",
+        "chinese": "众法警  （冲向露意丝）\n　　斐迪南  （从露意丝身边跳起，挡在她面前，怒不可遏）看谁敢动一动！",
+        "pinyin": "zhòng fǎ jǐng     （ chōng xiàng lòu yì sī ） \n 　 　 fěi dí nán     （ cóng lòu yì sī shēn biān tiào qǐ ， dǎng zài tā miàn qián ， nù bù kě è ） kàn shuí gǎn dòng yī dòng ！",
         "english": ""
       },
       {
@@ -5779,13 +5569,8 @@
         "english": ""
       },
       {
-        "chinese": "众法警  （重新冲向露意丝）",
-        "pinyin": "zhòng fǎ jǐng     （ chóng xīn chōng xiàng lòu yì sī ）",
-        "english": ""
-      },
-      {
-        "chinese": "斐迪南  该死的东西！",
-        "pinyin": "fěi dí nán     gāi sǐ de dōng xī ！",
+        "chinese": "……\n　　众法警  （重新冲向露意丝）\n　　斐迪南  该死的东西！",
+        "pinyin": "… … \n 　 　 zhòng fǎ jǐng     （ chóng xīn chōng xiàng lòu yì sī ） \n 　 　 fěi dí nán     gāi sǐ de dōng xī ！",
         "english": ""
       },
       {
@@ -5814,13 +5599,8 @@
         "english": ""
       },
       {
-        "chinese": "众法警  （猛冲上去）",
-        "pinyin": "zhòng fǎ jǐng     （ měng chōng shàng qù ）",
-        "english": ""
-      },
-      {
-        "chinese": "斐迪南  事已至此 ——（拔出剑来，砍伤法警数人）只好请你们法律的代表原谅了！",
-        "pinyin": "fěi dí nán     shì yǐ zhì cǐ   — — （ bá chū jiàn lái ， kǎn shāng fǎ jǐng shǔ rén ） zhǐ hǎo qǐng nǐ mén fǎ lǜ de dài biǎo yuán liàng le ！",
+        "chinese": "众法警  （猛冲上去）\n　　斐迪南  事已至此 ——（拔出剑来，砍伤法警数人）只好请你们法律的代表原谅了！",
+        "pinyin": "zhòng fǎ jǐng     （ měng chōng shàng qù ） \n 　 　 fěi dí nán     shì yǐ zhì cǐ   — — （ bá chū jiàn lái ， kǎn shāng fǎ jǐng shǔ rén ） zhǐ hǎo qǐng nǐ mén fǎ lǜ de dài biǎo yuán liàng le ！",
         "english": ""
       },
       {
@@ -5829,13 +5609,8 @@
         "english": ""
       },
       {
-        "chinese": "（亲手抓住露意丝，拽起她来交给一名法警）",
-        "pinyin": "（ qīn shǒu zhuā zhù lòu yì sī ， zhuài qǐ tā lái jiāo gěi yī míng fǎ jǐng ）",
-        "english": ""
-      },
-      {
-        "chinese": "斐迪南  （大声惨笑）爸爸，爸爸，你的行为是对上帝最尖刻的讽刺！",
-        "pinyin": "fěi dí nán     （ dà shēng cǎn xiào ） bà bà ， bà bà ， nǐ de xíng wèi shì duì shàng dì zuì jiān kè de fěng cì ！",
+        "chinese": "（亲手抓住露意丝，拽起她来交给一名法警）\n　　斐迪南  （大声惨笑）爸爸，爸爸，你的行为是对上帝最尖刻的讽刺！",
+        "pinyin": "（ qīn shǒu zhuā zhù lòu yì sī ， zhuài qǐ tā lái jiāo gěi yī míng fǎ jǐng ） \n 　 　 fěi dí nán     （ dà shēng cǎn xiào ） bà bà ， bà bà ， nǐ de xíng wèi shì duì shàng dì zuì jiān kè de fěng cì ！",
         "english": ""
       },
       {
@@ -5924,13 +5699,8 @@
         "english": ""
       },
       {
-        "chinese": "（下）",
-        "pinyin": "（ xià ）",
-        "english": ""
-      },
-      {
-        "chinese": "宰　相  （五雷轰顶似的猛然一惊）你想干什么？",
-        "pinyin": "zǎi 　 xiāng     （ wǔ léi hōng dǐng shì de měng rán yī jīng ） nǐ xiǎng gān shén me ？",
+        "chinese": "（下）\n　　宰　相  （五雷轰顶似的猛然一惊）你想干什么？",
+        "pinyin": "（ xià ） \n 　 　 zǎi 　 xiāng     （ wǔ léi hōng dǐng shì de měng rán yī jīng ） nǐ xiǎng gān shén me ？",
         "english": ""
       },
       {
@@ -6403,13 +6173,8 @@
         "english": ""
       },
       {
-        "chinese": "伍尔穆  （耸耸肩膀）要是我叫露意丝?",
-        "pinyin": "wǔ ěr mù     （ sǒng sǒng jiān bǎng ） yào shì wǒ jiào lòu yì sī ?",
-        "english": ""
-      },
-      {
-        "chinese": "米勒，他自然不合我的口味。",
-        "pinyin": "mǐ lè ， tā zì rán bù hé wǒ de kǒu wèi 。",
+        "chinese": "伍尔穆  （耸耸肩膀）要是我叫露意丝?米勒，他自然不合我的口味。",
+        "pinyin": "wǔ ěr mù     （ sǒng sǒng jiān bǎng ） yào shì wǒ jiào lòu yì sī ? mǐ lè ， tā zì rán bù hé wǒ de kǒu wèi 。",
         "english": ""
       },
       {
@@ -6438,13 +6203,8 @@
         "english": ""
       },
       {
-        "chinese": "（摇铃）",
-        "pinyin": "（ yáo líng ）",
-        "english": ""
-      },
-      {
-        "chinese": "伍尔穆  这事和把提琴师米勒抓起来的事就请大人亲自处理了；",
-        "pinyin": "wǔ ěr mù     zhè shì hé bǎ tí qín shī mǐ lè zhuā qǐ lái de shì jiù qǐng dà rén qīn zì chǔ lǐ le ；",
+        "chinese": "（摇铃）\n　　伍尔穆  这事和把提琴师米勒抓起来的事就请大人亲自处理了；",
+        "pinyin": "（ yáo líng ） \n 　 　 wǔ ěr mù     zhè shì hé bǎ tí qín shī mǐ lè zhuā qǐ lái de shì jiù qǐng dà rén qīn zì chǔ lǐ le ；",
         "english": ""
       },
       {
@@ -6672,13 +6432,8 @@
         "english": ""
       },
       {
-        "chinese": "我同时还接到我的密探们的报告，御酒监封?",
-        "pinyin": "wǒ tóng shí hái jiē dào wǒ de mì tàn mén de bào gào ， yù jiǔ jiān fēng ?",
-        "english": ""
-      },
-      {
-        "chinese": "波克跃跃欲试，正准备向夫人求婚呢。",
-        "pinyin": "bō kè yuè yuè yù shì ， zhèng zhǔn bèi xiàng fū rén qiú hūn ne 。",
+        "chinese": "我同时还接到我的密探们的报告，御酒监封?波克跃跃欲试，正准备向夫人求婚呢。",
+        "pinyin": "wǒ tóng shí hái jiē dào wǒ de mì tàn mén de bào gào ， yù jiǔ jiān fēng ? bō kè yuè yuè yù shì ， zhèng zhǔn bèi xiàng fū rén qiú hūn ne 。",
         "english": ""
       },
       {
@@ -6692,8 +6447,8 @@
         "english": ""
       },
       {
-        "chinese": "波克，您说？",
-        "pinyin": "bō kè ， nín shuō ？",
+        "chinese": "封?波克，您说？",
+        "pinyin": "fēng ? bō kè ， nín shuō ？",
         "english": ""
       },
       {
@@ -6742,18 +6497,8 @@
         "english": ""
       },
       {
-        "chinese": "阿玛丽公主正跳在兴头上掉了一条箍袜带 —— 不难想象，这下所有人全慌作一团 —— 封?",
-        "pinyin": "ā mǎ lì gōng zhǔ zhèng tiào zài xìng tóu shàng diào le yī tiáo gū wà dài   — —   bù nán xiǎng xiàng ， zhè xià suǒ yǒu rén quán huāng zuò yī tuán   — —   fēng ?",
-        "english": ""
-      },
-      {
-        "chinese": "波克和我 —— 我们那会儿还在当宫内侍从 —— 我俩一起在舞厅中爬来爬去找那袜带 —— 终于，我发现了它 ——封?",
-        "pinyin": "bō kè hé wǒ   — —   wǒ mén nà huì ér hái zài dāng gōng nèi shì cóng   — —   wǒ liǎng yī qǐ zài wǔ tīng zhōng pá lái pá qù zhǎo nà wà dài   — —   zhōng yú ， wǒ fā xiàn le tā   — — fēng ?",
-        "english": ""
-      },
-      {
-        "chinese": "波克一见马上扑过来 —— 硬从我手中夺走了袜带 —— 我请您想一想！",
-        "pinyin": "bō kè yī jiàn mǎ shàng pū guò lái   — —   yìng cóng wǒ shǒu zhōng duó zǒu le wà dài   — —   wǒ qǐng nín xiǎng yī xiǎng ！",
+        "chinese": "阿玛丽公主正跳在兴头上掉了一条箍袜带 —— 不难想象，这下所有人全慌作一团 —— 封? 波克和我 —— 我们那会儿还在当宫内侍从 —— 我俩一起在舞厅中爬来爬去找那袜带 —— 终于，我发现了它 ——封?波克一见马上扑过来 —— 硬从我手中夺走了袜带 —— 我请您想一想！",
+        "pinyin": "ā mǎ lì gōng zhǔ zhèng tiào zài xìng tóu shàng diào le yī tiáo gū wà dài   — —   bù nán xiǎng xiàng ， zhè xià suǒ yǒu rén quán huāng zuò yī tuán   — —   fēng ?   bō kè hé wǒ   — —   wǒ mén nà huì ér hái zài dāng gōng nèi shì cóng   — —   wǒ liǎng yī qǐ zài wǔ tīng zhōng pá lái pá qù zhǎo nà wà dài   — —   zhōng yú ， wǒ fā xiàn le tā   — — fēng ? bō kè yī jiàn mǎ shàng pū guò lái   — —   yìng cóng wǒ shǒu zhōng duó zǒu le wà dài   — —   wǒ qǐng nín xiǎng yī xiǎng ！",
         "english": ""
       },
       {
@@ -6782,18 +6527,13 @@
         "english": ""
       },
       {
-        "chinese": "—— 终于，我鼓起了勇气，踅到公主殿下跟前，说道：“殿下，封?",
-        "pinyin": "— —   zhōng yú ， wǒ gǔ qǐ le yǒng qì ， xué dào gōng zhǔ diàn xià gēn qián ， shuō dào ： “ diàn xià ， fēng ?",
+        "chinese": "—— 终于，我鼓起了勇气，踅到公主殿下跟前，说道：“殿下，封?波克真太幸运，能把袜带奉还给您；",
+        "pinyin": "— —   zhōng yú ， wǒ gǔ qǐ le yǒng qì ， xué dào gōng zhǔ diàn xià gēn qián ， shuō dào ： “ diàn xià ， fēng ? bō kè zhēn tài xìng yùn ， néng bǎ wà dài fèng hái gěi nín ；",
         "english": ""
       },
       {
-        "chinese": "波克真太幸运，能把袜带奉还给您；",
-        "pinyin": "bō kè zhēn tài xìng yùn ， néng bǎ wà dài fèng hái gěi nín ；",
-        "english": ""
-      },
-      {
-        "chinese": "可那第一个找到袜带的人，却不事声张，只在心眼儿里感到满足。",
-        "pinyin": "kě nà dì yī gè zhǎo dào wà dài de rén ， què bù shì shēng zhāng ， zhǐ zài xīn yǎn ér lǐ gǎn dào mǎn zú 。",
+        "chinese": "可那第一个找到袜带的人，却不事声张，只在心眼儿里感到满足。”",
+        "pinyin": "kě nà dì yī gè zhǎo dào wà dài de rén ， què bù shì shēng zhāng ， zhǐ zài xīn yǎn ér lǐ gǎn dào mǎn zú 。 ”",
         "english": ""
       },
       {
@@ -6807,13 +6547,8 @@
         "english": ""
       },
       {
-        "chinese": "侍卫长  不事声张 —— 可我一定要对封?",
-        "pinyin": "shì wèi cháng     bù shì shēng zhāng   — —   kě wǒ yī dìng yào duì fēng ?",
-        "english": ""
-      },
-      {
-        "chinese": "波克报这个仇，哪怕是到了世界的末日  —— 这下流无耻的谄媚者！",
-        "pinyin": "bō kè bào zhè gè chóu ， nǎ pà shì dào le shì jiè de mò rì     — —   zhè xià liú wú chǐ de chǎn mèi zhě ！",
+        "chinese": "侍卫长  不事声张 —— 可我一定要对封?波克报这个仇，哪怕是到了世界的末日  —— 这下流无耻的谄媚者！",
+        "pinyin": "shì wèi cháng     bù shì shēng zhāng   — —   kě wǒ yī dìng yào duì fēng ? bō kè bào zhè gè chóu ， nǎ pà shì dào le shì jiè de mò rì     — —   zhè xià liú wú chǐ de chǎn mèi zhě ！",
         "english": ""
       },
       {
@@ -6857,13 +6592,8 @@
         "english": ""
       },
       {
-        "chinese": "—— 只要能排除那该死的封?",
-        "pinyin": "— —   zhǐ yào néng pái chú nà gāi sǐ de fēng ?",
-        "english": ""
-      },
-      {
-        "chinese": "波克，世界上再讨厌的事情咱们现在不是也乐意干么？",
-        "pinyin": "bō kè ， shì jiè shàng zài tǎo yàn de shì qíng zán mén xiàn zài bù shì yě lè yì gān me ？",
+        "chinese": "—— 只要能排除那该死的封?波克，世界上再讨厌的事情咱们现在不是也乐意干么？",
+        "pinyin": "— —   zhǐ yào néng pái chú nà gāi sǐ de fēng ? bō kè ， shì jiè shàng zài tǎo yàn de shì qíng zán mén xiàn zài bù shì yě lè yì gān me ？",
         "english": ""
       },
       {
@@ -7037,13 +6767,8 @@
         "english": ""
       },
       {
-        "chinese": "我祝封?",
-        "pinyin": "wǒ zhù fēng ?",
-        "english": ""
-      },
-      {
-        "chinese": "波克荣升宰相。",
-        "pinyin": "bō kè róng shēng zǎi xiāng 。",
+        "chinese": "我祝封?波克荣升宰相。",
+        "pinyin": "wǒ zhù fēng ? bō kè róng shēng zǎi xiāng 。",
         "english": ""
       },
       {
@@ -7172,13 +6897,8 @@
         "english": ""
       },
       {
-        "chinese": "（下）",
-        "pinyin": "（ xià ）",
-        "english": ""
-      },
-      {
-        "chinese": "宰　相  （摇铃）全靠您的老练狡猾啦，侍卫长。",
-        "pinyin": "zǎi 　 xiāng     （ yáo líng ） quán kào nín de lǎo liàn jiǎo huá lā ， shì wèi cháng 。",
+        "chinese": "（下）\n　　宰　相  （摇铃）全靠您的老练狡猾啦，侍卫长。",
+        "pinyin": "（ xià ） \n 　 　 zǎi 　 xiāng     （ yáo líng ） quán kào nín de lǎo liàn jiǎo huá lā ， shì wèi cháng 。",
         "english": ""
       },
       {
@@ -7570,13 +7290,8 @@
         "english": ""
       },
       {
-        "chinese": "（转过脸去，同时向他伸出颤抖的右手）请多保重，封?",
-        "pinyin": "（ zhuǎn guò liǎn qù ， tóng shí xiàng tā shēn chū chàn dǒu de yòu shǒu ） qǐng duō bǎo zhòng ， fēng ?",
-        "english": ""
-      },
-      {
-        "chinese": "瓦尔特少爷。",
-        "pinyin": "wǎ ěr tè shǎo yé 。",
+        "chinese": "（转过脸去，同时向他伸出颤抖的右手）请多保重，封?瓦尔特少爷。",
+        "pinyin": "（ zhuǎn guò liǎn qù ， tóng shí xiàng tā shēn chū chàn dǒu de yòu shǒu ） qǐng duō bǎo zhòng ， fēng ? wǎ ěr tè shǎo yé 。",
         "english": ""
       },
       {
@@ -7753,13 +7468,8 @@
         "english": ""
       },
       {
-        "chinese": "伍尔穆  米勒小姐，您冤枉我了……",
-        "pinyin": "wǔ ěr mù     mǐ lè xiǎo jiě ， nín yuān wǎng wǒ le … …",
-        "english": ""
-      },
-      {
-        "chinese": "露意丝  （欲答又止，转过话头）请问有何贵干？",
-        "pinyin": "lòu yì sī     （ yù dá yòu zhǐ ， zhuǎn guò huà tóu ） qǐng wèn yǒu hé guì gān ？",
+        "chinese": "伍尔穆  米勒小姐，您冤枉我了……\n　　露意丝  （欲答又止，转过话头）请问有何贵干？",
+        "pinyin": "wǔ ěr mù     mǐ lè xiǎo jiě ， nín yuān wǎng wǒ le … … \n 　 　 lòu yì sī     （ yù dá yòu zhǐ ， zhuǎn guò huà tóu ） qǐng wèn yǒu hé guì gān ？",
         "english": ""
       },
       {
@@ -8098,13 +7808,8 @@
         "english": ""
       },
       {
-        "chinese": "（急忙走进隔壁房间）",
-        "pinyin": "（ jí máng zǒu jìn gé bì fáng jiān ）",
-        "english": ""
-      },
-      {
-        "chinese": "伍尔穆  （不知所措地站在原地）她要去哪儿？",
-        "pinyin": "wǔ ěr mù     （ bù zhī suǒ cuò dì zhàn zài yuán dì ） tā yào qù nǎ ér ？",
+        "chinese": "（急忙走进隔壁房间）\n　　伍尔穆  （不知所措地站在原地）她要去哪儿？",
+        "pinyin": "（ jí máng zǒu jìn gé bì fáng jiān ） \n 　 　 wǔ ěr mù     （ bù zhī suǒ cuò dì zhàn zài yuán dì ） tā yào qù nǎ ér ？",
         "english": ""
       },
       {
@@ -8118,13 +7823,8 @@
         "english": ""
       },
       {
-        "chinese": "（准备去追她）",
-        "pinyin": "（ zhǔn bèi qù zhuī tā ）",
-        "english": ""
-      },
-      {
-        "chinese": "露意丝  （披了一件斗篷走回来）对不起，秘书先生，我要锁门了。",
-        "pinyin": "lòu yì sī     （ pī le yī jiàn dòu péng zǒu huí lái ） duì bù qǐ ， mì shū xiān shēng ， wǒ yào suǒ mén le 。",
+        "chinese": "（准备去追她）\n　　露意丝  （披了一件斗篷走回来）对不起，秘书先生，我要锁门了。",
+        "pinyin": "（ zhǔn bèi qù zhuī tā ） \n 　 　 lòu yì sī     （ pī le yī jiàn dòu péng zǒu huí lái ） duì bù qǐ ， mì shū xiān shēng ， wǒ yào suǒ mén le 。",
         "english": ""
       },
       {
@@ -8138,13 +7838,8 @@
         "english": ""
       },
       {
-        "chinese": "（欲走）",
-        "pinyin": "（ yù zǒu ）",
-        "english": ""
-      },
-      {
-        "chinese": "伍尔穆  什么？",
-        "pinyin": "wǔ ěr mù     shén me ？",
+        "chinese": "（欲走）\n　　伍尔穆  什么？",
+        "pinyin": "（ yù zǒu ） \n 　 　 wǔ ěr mù     shén me ？",
         "english": ""
       },
       {
@@ -8153,13 +7848,8 @@
         "english": ""
       },
       {
-        "chinese": "（慌慌张张地拉着她）",
-        "pinyin": "（ huāng huāng zhāng zhāng dì lā zhuó tā ）",
-        "english": ""
-      },
-      {
-        "chinese": "露意丝  去见公爵。",
-        "pinyin": "lòu yì sī     qù jiàn gōng jué 。",
+        "chinese": "（慌慌张张地拉着她）\n　　露意丝  去见公爵。",
+        "pinyin": "（ huāng huāng zhāng zhāng dì lā zhuó tā ） \n 　 　 lòu yì sī     qù jiàn gōng jué 。",
         "english": ""
       },
       {
@@ -8213,13 +7903,8 @@
         "english": ""
       },
       {
-        "chinese": "（欲走）",
-        "pinyin": "（ yù zǒu ）",
-        "english": ""
-      },
-      {
-        "chinese": "伍尔穆  （恶毒而貌似和气地）您去吧，啊，您快去呀。",
-        "pinyin": "wǔ ěr mù     （ è dú ér mào sì hé qì dì ） nín qù bā ， ā ， nín kuài qù yā 。",
+        "chinese": "（欲走）\n　　伍尔穆  （恶毒而貌似和气地）您去吧，啊，您快去呀。",
+        "pinyin": "（ yù zǒu ） \n 　 　 wǔ ěr mù     （ è dú ér mào sì hé qì dì ） nín qù bā ， ā ， nín kuài qù yā 。",
         "english": ""
       },
       {
@@ -8318,13 +8003,8 @@
         "english": ""
       },
       {
-        "chinese": "（装着要走的样子）",
-        "pinyin": "（ zhuāng zhuó yào zǒu de yàng zǐ ）",
-        "english": ""
-      },
-      {
-        "chinese": "露意丝  （赶上去拉住他）等一等！",
-        "pinyin": "lòu yì sī     （ gǎn shàng qù lā zhù tā ） děng yī děng ！",
+        "chinese": "（装着要走的样子）\n　　露意丝  （赶上去拉住他）等一等！",
+        "pinyin": "（ zhuāng zhuó yào zǒu de yàng zǐ ） \n 　 　 lòu yì sī     （ gǎn shàng qù lā zhù tā ） děng yī děng ！",
         "english": ""
       },
       {
@@ -8378,13 +8058,8 @@
         "english": ""
       },
       {
-        "chinese": "伍尔穆  也是您父亲希望的 ——",
-        "pinyin": "wǔ ěr mù     yě shì nín fù qīn xī wàng de   — —",
-        "english": ""
-      },
-      {
-        "chinese": "露意丝  我父亲也希望？",
-        "pinyin": "lòu yì sī     wǒ fù qīn yě xī wàng ？",
+        "chinese": "伍尔穆  也是您父亲希望的 ——\n　　露意丝  我父亲也希望？",
+        "pinyin": "wǔ ěr mù     yě shì nín fù qīn xī wàng de   — — \n 　 　 lòu yì sī     wǒ fù qīn yě xī wàng ？",
         "english": ""
       },
       {
@@ -8403,13 +8078,8 @@
         "english": ""
       },
       {
-        "chinese": "伍尔穆  要是您同意放弃少校 ……",
-        "pinyin": "wǔ ěr mù     yào shì nín tóng yì fàng qì shǎo xiào   … …",
-        "english": ""
-      },
-      {
-        "chinese": "露意丝  放弃他的爱情？",
-        "pinyin": "lòu yì sī     fàng qì tā de ài qíng ？",
+        "chinese": "伍尔穆  要是您同意放弃少校 ……\n　　露意丝  放弃他的爱情？",
+        "pinyin": "wǔ ěr mù     yào shì nín tóng yì fàng qì shǎo xiào   … … \n 　 　 lòu yì sī     fàng qì tā de ài qíng ？",
         "english": ""
       },
       {
@@ -8435,6 +8105,401 @@
       {
         "chinese": "露意丝  他不会的。",
         "pinyin": "lòu yì sī     tā bù huì de 。",
+        "english": ""
+      },
+      {
+        "chinese": "伍尔穆  看样子是这样。",
+        "pinyin": "wǔ ěr mù     kàn yàng zǐ shì zhè yàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "否则来找您干什么，要不是只有您能促使他那样做？",
+        "pinyin": "fǒu zé lái zhǎo nín gān shén me ， yào bù shì zhǐ yǒu nín néng cù shǐ tā nà yàng zuò ？",
+        "english": ""
+      },
+      {
+        "chinese": "露意丝  难道我能强迫他恨我不成？",
+        "pinyin": "lòu yì sī     nán dào wǒ néng qiǎng pò tā hèn wǒ bù chéng ？",
+        "english": ""
+      },
+      {
+        "chinese": "伍尔穆  咱们可以试一试。",
+        "pinyin": "wǔ ěr mù     zán mén kě yǐ shì yī shì 。",
+        "english": ""
+      },
+      {
+        "chinese": "请坐下。",
+        "pinyin": "qǐng zuò xià 。",
+        "english": ""
+      },
+      {
+        "chinese": "露意丝  （茫然地）嘿，你捣的什么鬼？",
+        "pinyin": "lòu yì sī     （ máng rán dì ） hēi ， nǐ dǎo de shén me guǐ ？",
+        "english": ""
+      },
+      {
+        "chinese": "伍尔穆  坐下吧。",
+        "pinyin": "wǔ ěr mù     zuò xià bā 。",
+        "english": ""
+      },
+      {
+        "chinese": "请您写！",
+        "pinyin": "qǐng nín xiě ！",
+        "english": ""
+      },
+      {
+        "chinese": "这儿是笔、纸和墨水。",
+        "pinyin": "zhè ér shì bǐ 、 zhǐ hé mò shuǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "露意丝  （极度不安地坐下来）叫我写什么？",
+        "pinyin": "lòu yì sī     （ jí dù bù ān dì zuò xià lái ） jiào wǒ xiě shén me ？",
+        "english": ""
+      },
+      {
+        "chinese": "叫我写给谁？",
+        "pinyin": "jiào wǒ xiě gěi shuí ？",
+        "english": ""
+      },
+      {
+        "chinese": "伍尔穆  写给您父亲的刽子手。",
+        "pinyin": "wǔ ěr mù     xiě gěi nín fù qīn de guì zǐ shǒu 。",
+        "english": ""
+      },
+      {
+        "chinese": "露意丝  哈！",
+        "pinyin": "lòu yì sī     hā ！",
+        "english": ""
+      },
+      {
+        "chinese": "你真是个拷打人灵魂的老行家！",
+        "pinyin": "nǐ zhēn shì gè kǎo dǎ rén líng hún de lǎo xíng jiā ！",
+        "english": ""
+      },
+      {
+        "chinese": "（抓起笔）\n　　伍尔穆  （开始口授）“亲爱的先生 ——”",
+        "pinyin": "（ zhuā qǐ bǐ ） \n 　 　 wǔ ěr mù     （ kāi shǐ kǒu shòu ） “ qīn ài de xiān shēng   — — ”",
+        "english": ""
+      },
+      {
+        "chinese": "露意丝  （哆哆嗦嗦地写着）\n　　伍尔穆   “难以忍受的三天已经熬过去了 —— 熬过去了 —— 我们没有能够见面——”",
+        "pinyin": "lòu yì sī     （ duō duō suō suō dì xiě zhuó ） \n 　 　 wǔ ěr mù       “ nán yǐ rěn shòu de sān tiān yǐ jīng āo guò qù le   — —   āo guò qù le   — —   wǒ mén méi yǒu néng gòu jiàn miàn — — ”",
+        "english": ""
+      },
+      {
+        "chinese": "露意丝  （一怔，放下笔）信是给谁的？",
+        "pinyin": "lòu yì sī     （ yī zhēng ， fàng xià bǐ ） xìn shì gěi shuí de ？",
+        "english": ""
+      },
+      {
+        "chinese": "伍尔穆  给您父亲的刽子手呀。",
+        "pinyin": "wǔ ěr mù     gěi nín fù qīn de guì zǐ shǒu yā 。",
+        "english": ""
+      },
+      {
+        "chinese": "露意丝  我的主啊！",
+        "pinyin": "lòu yì sī     wǒ de zhǔ ā ！",
+        "english": ""
+      },
+      {
+        "chinese": "伍尔穆  “为此，您只能怨少校 —— 怨少校 —— 他整天守着我，像百眼巨人阿尔古斯 ——”",
+        "pinyin": "wǔ ěr mù     “ wèi cǐ ， nín zhǐ néng yuàn shǎo xiào   — —   yuàn shǎo xiào   — —   tā zhěng tiān shǒu zhuó wǒ ， xiàng bǎi yǎn jù rén ā ěr gǔ sī   — — ”",
+        "english": ""
+      },
+      {
+        "chinese": "露意丝  （猛然站起来）卑鄙无耻！",
+        "pinyin": "lòu yì sī     （ měng rán zhàn qǐ lái ） bēi bǐ wú chǐ ！",
+        "english": ""
+      },
+      {
+        "chinese": "有谁听说过！",
+        "pinyin": "yǒu shuí tīng shuō guò ！",
+        "english": ""
+      },
+      {
+        "chinese": "—— 这封信到底写给谁？",
+        "pinyin": "— —   zhè fēng xìn dào dǐ xiě gěi shuí ？",
+        "english": ""
+      },
+      {
+        "chinese": "伍尔穆  写给你父亲的刽子手呗。",
+        "pinyin": "wǔ ěr mù     xiě gěi nǐ fù qīn de guì zǐ shǒu bei 。",
+        "english": ""
+      },
+      {
+        "chinese": "露意丝  （绞着手指，走来走去）不！",
+        "pinyin": "lòu yì sī     （ jiǎo zhuó shǒu zhǐ ， zǒu lái zǒu qù ） bù ！",
+        "english": ""
+      },
+      {
+        "chinese": "太残酷啦，天啊！",
+        "pinyin": "tài cán kù lā ， tiān ā ！",
+        "english": ""
+      },
+      {
+        "chinese": "如果世人得罪了你，你给他们惩罚吧，可为什么要把我置于进退维谷的可怕境地？",
+        "pinyin": "rú guǒ shì rén dé zuì le nǐ ， nǐ gěi tā mén chéng fá bā ， kě wèi shén me yào bǎ wǒ zhì yú jìn tuì wéi gǔ de kě pà jìng dì ？",
+        "english": ""
+      },
+      {
+        "chinese": "为什么要把我夹在死亡与耻辱之间，颠来倒去，受尽折磨？",
+        "pinyin": "wèi shén me yào bǎ wǒ jiá zài sǐ wáng yǔ chǐ rǔ zhī jiān ， diān lái dǎo qù ， shòu jìn zhé mó ？",
+        "english": ""
+      },
+      {
+        "chinese": "为什么要让这个吸血的恶魔骑在我脖子上，肆意欺凌我？",
+        "pinyin": "wèi shén me yào ràng zhè gè xī xiě de è mó qí zài wǒ bó zǐ shàng ， sì yì qī líng wǒ ？",
+        "english": ""
+      },
+      {
+        "chinese": "—— 你们想怎么办就怎么办吧！",
+        "pinyin": "— —   nǐ mén xiǎng zěn me bàn jiù zěn me bàn bā ！",
+        "english": ""
+      },
+      {
+        "chinese": "这信我决不再写了。",
+        "pinyin": "zhè xìn wǒ jué bù zài xiě le 。",
+        "english": ""
+      },
+      {
+        "chinese": "伍尔穆  （伸手取帽子）悉听尊便，小姐。",
+        "pinyin": "wǔ ěr mù     （ shēn shǒu qǔ mào zǐ ） xī tīng zūn biàn ， xiǎo jiě 。",
+        "english": ""
+      },
+      {
+        "chinese": "写不写完全看您自愿。",
+        "pinyin": "xiě bù xiě wán quán kàn nín zì yuàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "露意丝  自愿，您说？",
+        "pinyin": "lòu yì sī     zì yuàn ， nín shuō ？",
+        "english": ""
+      },
+      {
+        "chinese": "看我自愿？",
+        "pinyin": "kàn wǒ zì yuàn ？",
+        "english": ""
+      },
+      {
+        "chinese": "—— 滚，野蛮的家伙！",
+        "pinyin": "— —   gǔn ， yě mán de jiā huǒ ！",
+        "english": ""
+      },
+      {
+        "chinese": "你把一个不幸的人吊在地狱的深渊上边，要求她做件什么事，然后却亵渎上帝，问不幸的人是否自愿！",
+        "pinyin": "nǐ bǎ yī gè bù xìng de rén diào zài dì yù de shēn yuān shàng biān ， yào qiú tā zuò jiàn shén me shì ， rán hòu què xiè dú shàng dì ， wèn bù xìng de rén shì fǒu zì yuàn ！",
+        "english": ""
+      },
+      {
+        "chinese": "——啊，您再清楚不过，我的心就像拴在铁链上一样，牢牢地被父女之情束缚住了。",
+        "pinyin": "— — ā ， nín zài qīng chǔ bù guò ， wǒ de xīn jiù xiàng shuān zài tiě liàn shàng yī yàng ， láo láo dì bèi fù nǚ zhī qíng shù fù zhù le 。",
+        "english": ""
+      },
+      {
+        "chinese": "—— 其他一切都已经无所谓。",
+        "pinyin": "— —   qí tā yī qiē dōu yǐ jīng wú suǒ wèi 。",
+        "english": ""
+      },
+      {
+        "chinese": "继续往下念吧，我什么都不再考虑。",
+        "pinyin": "jì xù wǎng xià niàn bā ， wǒ shén me dōu bù zài kǎo lǜ 。",
+        "english": ""
+      },
+      {
+        "chinese": "对阴险狡诈的地狱，我认输了。",
+        "pinyin": "duì yīn xiǎn jiǎo zhà de dì yù ， wǒ rèn shū le 。",
+        "english": ""
+      },
+      {
+        "chinese": "（重新坐下）\n　　伍尔穆  “整天守着我，像百眼巨人阿尔古斯”—— 这句写好了吗？",
+        "pinyin": "（ chóng xīn zuò xià ） \n 　 　 wǔ ěr mù     “ zhěng tiān shǒu zhuó wǒ ， xiàng bǎi yǎn jù rén ā ěr gǔ sī ” — —   zhè jù xiě hǎo le ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "露意丝  往下念！",
+        "pinyin": "lòu yì sī     wǎng xià niàn ！",
+        "english": ""
+      },
+      {
+        "chinese": "往下念！",
+        "pinyin": "wǎng xià niàn ！",
+        "english": ""
+      },
+      {
+        "chinese": "伍尔穆 “昨天，宰相上我家里来了。",
+        "pinyin": "wǔ ěr mù   “ zuó tiān ， zǎi xiāng shàng wǒ jiā lǐ lái le 。",
+        "english": ""
+      },
+      {
+        "chinese": "看见好心的少校拼命维护我的名誉，我心里直乐 ……”",
+        "pinyin": "kàn jiàn hǎo xīn de shǎo xiào pīn mìng wéi hù wǒ de míng yù ， wǒ xīn lǐ zhí lè   … … ”",
+        "english": ""
+      },
+      {
+        "chinese": "露意丝  啊，妙，妙！",
+        "pinyin": "lòu yì sī     ā ， miào ， miào ！",
+        "english": ""
+      },
+      {
+        "chinese": "太高明啦！",
+        "pinyin": "tài gāo míng lā ！",
+        "english": ""
+      },
+      {
+        "chinese": "—— 只管往下念。",
+        "pinyin": "— —   zhǐ guǎn wǎng xià niàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "伍尔穆  “我假装晕倒过去 —— 晕倒过去 —— 怕的是会笑出声来，”",
+        "pinyin": "wǔ ěr mù     “ wǒ jiǎ zhuāng yūn dǎo guò qù   — —   yūn dǎo guò qù   — —   pà de shì huì xiào chū shēng lái ， ”",
+        "english": ""
+      },
+      {
+        "chinese": "露意丝  啊，天哪！",
+        "pinyin": "lòu yì sī     ā ， tiān nǎ ！",
+        "english": ""
+      },
+      {
+        "chinese": "伍尔穆  “可这假面具戴着实在难受 —— 实在难受—— 真恨不得马上逃走！”",
+        "pinyin": "wǔ ěr mù     “ kě zhè jiǎ miàn jù dài zhuó shí zài nán shòu   — —   shí zài nán shòu — —   zhēn hèn bù dé mǎ shàng táo zǒu ！ ”",
+        "english": ""
+      },
+      {
+        "chinese": "露意丝  （停下笔，站起身，低着头来回地走，好似在地上寻找什么，然后又坐下去继续写）“恨不得马上逃走”——",
+        "pinyin": "lòu yì sī     （ tíng xià bǐ ， zhàn qǐ shēn ， dī zhuó tóu lái huí dì zǒu ， hǎo sì zài dì shàng xún zhǎo shén me ， rán hòu yòu zuò xià qù jì xù xiě ） “ hèn bù dé mǎ shàng táo zǒu ” — —",
+        "english": ""
+      },
+      {
+        "chinese": "伍尔穆  “明天他值勤 —— 注意他啥时候离开我这里，然后您就去我俩那个地方”——“我俩那个地方”写上了吗？",
+        "pinyin": "wǔ ěr mù     “ míng tiān tā zhí qín   — —   zhù yì tā shá shí hòu lí kāi wǒ zhè lǐ ， rán hòu nín jiù qù wǒ liǎng nà gè dì fāng ” — — “ wǒ liǎng nà gè dì fāng ” xiě shàng le ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "露意丝  一字不差。",
+        "pinyin": "lòu yì sī     yī zì bù chà 。",
+        "english": ""
+      },
+      {
+        "chinese": "伍尔穆  “去我俩那个地方找您温柔的…… 露意丝吧”——",
+        "pinyin": "wǔ ěr mù     “ qù wǒ liǎng nà gè dì fāng zhǎo nín wēn róu de … …   lòu yì sī bā ” — —",
+        "english": ""
+      },
+      {
+        "chinese": "露意丝  现在还差收信人。",
+        "pinyin": "lòu yì sī     xiàn zài hái chà shōu xìn rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "伍尔穆  “致宫廷侍卫长封? 卡尔勃大人”\n　　露意丝  永恒的主啊！",
+        "pinyin": "wǔ ěr mù     “ zhì gōng tíng shì wèi cháng fēng ?   kǎ ěr bó dà rén ” \n 　 　 lòu yì sī     yǒng héng de zhǔ ā ！",
+        "english": ""
+      },
+      {
+        "chinese": "我从来没听见过这个名字，就像我的心从来没想到过这些可耻的勾当。",
+        "pinyin": "wǒ cóng lái méi tīng jiàn guò zhè gè míng zì ， jiù xiàng wǒ de xīn cóng lái méi xiǎng dào guò zhè xiē kě chǐ de gòu dàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "（站起来，呆呆凝视了自己写的东西好半天，临了还是把它递给秘书，嗓音嘶哑地，气息奄奄地）拿去吧，我的先生。",
+        "pinyin": "（ zhàn qǐ lái ， dāi dāi níng shì le zì jǐ xiě de dōng xī hǎo bàn tiān ， lín le hái shì bǎ tā dì gěi mì shū ， sǎng yīn sī yǎ dì ， qì xī yǎn yǎn dì ） ná qù bā ， wǒ de xiān shēng 。",
+        "english": ""
+      },
+      {
+        "chinese": "我现在交给您的 —— 是我清白的名字 —— 是我的斐迪南 —— 是我生命的全部欢乐！",
+        "pinyin": "wǒ xiàn zài jiāo gěi nín de   — —   shì wǒ qīng bái de míng zì   — —   shì wǒ de fěi dí nán   — —   shì wǒ shēng mìng de quán bù huān lè ！",
+        "english": ""
+      },
+      {
+        "chinese": "—— 现在我已成了一无所有的乞丐！",
+        "pinyin": "— —   xiàn zài wǒ yǐ chéng le yī wú suǒ yǒu de qǐ gài ！",
+        "english": ""
+      },
+      {
+        "chinese": "伍尔穆  嗨，没的事儿，别灰心，亲爱的小姐。",
+        "pinyin": "wǔ ěr mù     hāi ， méi de shì ér ， bié huī xīn ， qīn ài de xiǎo jiě 。",
+        "english": ""
+      },
+      {
+        "chinese": "我打心眼儿里同情您。",
+        "pinyin": "wǒ dǎ xīn yǎn ér lǐ tóng qíng nín 。",
+        "english": ""
+      },
+      {
+        "chinese": "也许 —— 谁知道呢？",
+        "pinyin": "yě xǔ   — —   shuí zhī dào ne ？",
+        "english": ""
+      },
+      {
+        "chinese": "—— 也许我仍然可以不计较某些事 —— 真的！",
+        "pinyin": "— —   yě xǔ wǒ réng rán kě yǐ bù jì jiào mǒu xiē shì   — —   zhēn de ！",
+        "english": ""
+      },
+      {
+        "chinese": "上帝作证！",
+        "pinyin": "shàng dì zuò zhèng ！",
+        "english": ""
+      },
+      {
+        "chinese": "我同情您。",
+        "pinyin": "wǒ tóng qíng nín 。",
+        "english": ""
+      },
+      {
+        "chinese": "露意丝  （目光直瞪着他，像要把他看穿似的）得啦，先生，别说出来，您正在转的念头太可怕。",
+        "pinyin": "lòu yì sī     （ mù guāng zhí dèng zhuó tā ， xiàng yào bǎ tā kàn chuān shì de ） dé lā ， xiān shēng ， bié shuō chū lái ， nín zhèng zài zhuǎn de niàn tóu tài kě pà 。",
+        "english": ""
+      },
+      {
+        "chinese": "伍尔穆  （打算吻她的手）要是这只可爱的小手…… 怎么样，亲爱的小姐？",
+        "pinyin": "wǔ ěr mù     （ dǎ suàn wěn tā de shǒu ） yào shì zhè zhǐ kě ài de xiǎo shǒu … …   zěn me yàng ， qīn ài de xiǎo jiě ？",
+        "english": ""
+      },
+      {
+        "chinese": "露意丝  （庄严地，厉声地）当心我在新婚之夜掐死你，然后再心满意足地自行走上绞架！",
+        "pinyin": "lòu yì sī     （ zhuāng yán dì ， lì shēng dì ） dāng xīn wǒ zài xīn hūn zhī yè qiā sǐ nǐ ， rán hòu zài xīn mǎn yì zú dì zì xíng zǒu shàng jiǎo jià ！",
+        "english": ""
+      },
+      {
+        "chinese": "（打算离开，但马上又走回来）先生，我们现在清账了吗？",
+        "pinyin": "（ dǎ suàn lí kāi ， dàn mǎ shàng yòu zǒu huí lái ） xiān shēng ， wǒ mén xiàn zài qīng zhàng le ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "小鸽子可以飞走了吗？",
+        "pinyin": "xiǎo gē zǐ kě yǐ fēi zǒu le ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "伍尔穆  还有一点点小事，小姐。",
+        "pinyin": "wǔ ěr mù     hái yǒu yī diǎn diǎn xiǎo shì ， xiǎo jiě 。",
+        "english": ""
+      },
+      {
+        "chinese": "您必须当着我的面去教堂发誓，承认这封信是自愿写的。",
+        "pinyin": "nín bì xū dāng zhuó wǒ de miàn qù jiào táng fā shì ， chéng rèn zhè fēng xìn shì zì yuàn xiě de 。",
+        "english": ""
+      },
+      {
+        "chinese": "露意丝  上帝啊！",
+        "pinyin": "lòu yì sī     shàng dì ā ！",
+        "english": ""
+      },
+      {
+        "chinese": "上帝啊！",
+        "pinyin": "shàng dì ā ！",
+        "english": ""
+      },
+      {
+        "chinese": "难道您必须亲自给这地狱的杰作打上封印，以便它完美无缺么？",
+        "pinyin": "nán dào nín bì xū qīn zì gěi zhè dì yù de jié zuò dǎ shàng fēng yìn ， yǐ biàn tā wán měi wú quē me ？",
+        "english": ""
+      },
+      {
+        "chinese": "（被伍尔穆强拉下场）",
+        "pinyin": "（ bèi wǔ ěr mù qiáng lā xià chǎng ）",
         "english": ""
       }
     ]
@@ -8740,13 +8805,8 @@
         "english": ""
       },
       {
-        "chinese": "（趁侍卫长念信的时候，走到墙边取下两支手枪）",
-        "pinyin": "（ chèn shì wèi cháng niàn xìn de shí hòu ， zǒu dào qiáng biān qǔ xià liǎng zhī shǒu qiāng ）",
-        "english": ""
-      },
-      {
-        "chinese": "侍卫长  （将信扔在桌子上，准备溜走）该死！",
-        "pinyin": "shì wèi cháng     （ jiāng xìn rēng zài zhuō zǐ shàng ， zhǔn bèi liū zǒu ） gāi sǐ ！",
+        "chinese": "（趁侍卫长念信的时候，走到墙边取下两支手枪）\n　　侍卫长  （将信扔在桌子上，准备溜走）该死！",
+        "pinyin": "（ chèn shì wèi cháng niàn xìn de shí hòu ， zǒu dào qiáng biān qǔ xià liǎng zhī shǒu qiāng ） \n 　 　 shì wèi cháng     （ jiāng xìn rēng zài zhuō zǐ shàng ， zhǔn bèi liū zǒu ） gāi sǐ ！",
         "english": ""
       },
       {
@@ -8765,13 +8825,8 @@
         "english": ""
       },
       {
-        "chinese": "（把枪递给他）",
-        "pinyin": "（ bǎ qiāng dì gěi tā ）",
-        "english": ""
-      },
-      {
-        "chinese": "侍卫长  （惊愕，后退）请您理智点，亲爱的。",
-        "pinyin": "shì wèi cháng     （ jīng è ， hòu tuì ） qǐng nín lǐ zhì diǎn ， qīn ài de 。",
+        "chinese": "（把枪递给他）\n　　侍卫长  （惊愕，后退）请您理智点，亲爱的。",
+        "pinyin": "（ bǎ qiāng dì gěi tā ） \n 　 　 shì wèi cháng     （ jīng è ， hòu tuì ） qǐng nín lǐ zhì diǎn ， qīn ài de 。",
         "english": ""
       },
       {
@@ -8840,13 +8895,8 @@
         "english": ""
       },
       {
-        "chinese": "（赶到他前边，闩上门）",
-        "pinyin": "（ gǎn dào tā qián biān ， shuān shàng mén ）",
-        "english": ""
-      },
-      {
-        "chinese": "侍卫长  在房子里决斗，男爵？",
-        "pinyin": "shì wèi cháng     zài fáng zǐ lǐ jué dòu ， nán jué ？",
+        "chinese": "（赶到他前边，闩上门）\n　　侍卫长  在房子里决斗，男爵？",
+        "pinyin": "（ gǎn dào tā qián biān ， shuān shàng mén ） \n 　 　 shì wèi cháng     zài fáng zǐ lǐ jué dòu ， nán jué ？",
         "english": ""
       },
       {
@@ -9533,13 +9583,8 @@
         "english": ""
       },
       {
-        "chinese": "（下）",
-        "pinyin": "（ xià ）",
-        "english": ""
-      },
-      {
-        "chinese": "宰　相  （跟着他）等等！",
-        "pinyin": "zǎi 　 xiāng     （ gēn zhuó tā ） děng děng ！",
+        "chinese": "（下）\n　　宰　相  （跟着他）等等！",
+        "pinyin": "（ xià ） \n 　 　 zǎi 　 xiāng     （ gēn zhuó tā ） děng děng ！",
         "english": ""
       },
       {
@@ -9607,8 +9652,8 @@
         "english": ""
       },
       {
-        "chinese": "我原本做好了她会推辞的思想准备，谁知她却眼睛一亮，完全出乎我意料地回答说：“您夫人吩咐的，正是我明天要去求她的事。",
-        "pinyin": "wǒ yuán běn zuò hǎo le tā huì tuī cí de sī xiǎng zhǔn bèi ， shuí zhī tā què yǎn jīng yī liàng ， wán quán chū hū wǒ yì liào dì huí dá shuō ： “ nín fū rén fēn fù de ， zhèng shì wǒ míng tiān yào qù qiú tā de shì 。",
+        "chinese": "我原本做好了她会推辞的思想准备，谁知她却眼睛一亮，完全出乎我意料地回答说：“您夫人吩咐的，正是我明天要去求她的事。”",
+        "pinyin": "wǒ yuán běn zuò hǎo le tā huì tuī cí de sī xiǎng zhǔn bèi ， shuí zhī tā què yǎn jīng yī liàng ， wán quán chū hū wǒ yì liào dì huí dá shuō ： “ nín fū rén fēn fù de ， zhèng shì wǒ míng tiān yào qù qiú tā de shì 。 ”",
         "english": ""
       },
       {
@@ -9687,13 +9732,8 @@
         "english": ""
       },
       {
-        "chinese": "侍　从  （走上场）米勒小姐到 ……",
-        "pinyin": "shì 　 cóng     （ zǒu shàng chǎng ） mǐ lè xiǎo jiě dào   … …",
-        "english": ""
-      },
-      {
-        "chinese": "夫　人  （冲索菲）走吧，你！",
-        "pinyin": "fū 　 rén     （ chōng suǒ fēi ） zǒu bā ， nǐ ！",
+        "chinese": "侍　从  （走上场）米勒小姐到 ……\n　　夫　人  （冲索菲）走吧，你！",
+        "pinyin": "shì 　 cóng     （ zǒu shàng chǎng ） mǐ lè xiǎo jiě dào   … … \n 　 　 fū 　 rén     （ chōng suǒ fēi ） zǒu bā ， nǐ ！",
         "english": ""
       },
       {
@@ -9761,13 +9801,8 @@
     "titleEn": "Chapter 27: 第27章 第四幕 第七场",
     "sentences": [
       {
-        "chinese": "露意丝?",
-        "pinyin": "lòu yì sī ?",
-        "english": ""
-      },
-      {
-        "chinese": "米勒怯生生地走进来，离弥尔芙特夫人老远便站住了；",
-        "pinyin": "mǐ lè qiè shēng shēng dì zǒu jìn lái ， lí mí ěr fú tè fū rén lǎo yuǎn biàn zhàn zhù le ；",
+        "chinese": "露意丝?米勒怯生生地走进来，离弥尔芙特夫人老远便站住了；",
+        "pinyin": "lòu yì sī ? mǐ lè qiè shēng shēng dì zǒu jìn lái ， lí mí ěr fú tè fū rén lǎo yuǎn biàn zhàn zhù le ；",
         "english": ""
       },
       {
@@ -10286,13 +10321,8 @@
         "english": ""
       },
       {
-        "chinese": "我分明听出来另一位导师的声音 ——",
-        "pinyin": "wǒ fēn míng tīng chū lái lìng yī wèi dǎo shī de shēng yīn   — —",
-        "english": ""
-      },
-      {
-        "chinese": "露意丝  （目光温柔而锐利地盯着她的眼睛）这就叫我感到奇怪了，夫人；",
-        "pinyin": "lòu yì sī     （ mù guāng wēn róu ér ruì lì dì dīng zhuó tā de yǎn jīng ） zhè jiù jiào wǒ gǎn dào qí guài le ， fū rén ；",
+        "chinese": "我分明听出来另一位导师的声音 ——\n　　露意丝  （目光温柔而锐利地盯着她的眼睛）这就叫我感到奇怪了，夫人；",
+        "pinyin": "wǒ fēn míng tīng chū lái lìng yī wèi dǎo shī de shēng yīn   — — \n 　 　 lòu yì sī     （ mù guāng wēn róu ér ruì lì dì dīng zhuó tā de yǎn jīng ） zhè jiù jiào wǒ gǎn dào qí guài le ， fū rén ；",
         "english": ""
       },
       {
@@ -10509,6 +10539,31 @@
         "chinese": "现在，夫人，把他拿去吧！",
         "pinyin": "xiàn zài ， fū rén ， bǎ tā ná qù bā ！",
         "english": ""
+      },
+      {
+        "chinese": "快去投入他的怀抱！",
+        "pinyin": "kuài qù tóu rù tā de huái bào ！",
+        "english": ""
+      },
+      {
+        "chinese": "拉他走向祭坛！",
+        "pinyin": "lā tā zǒu xiàng jì tán ！",
+        "english": ""
+      },
+      {
+        "chinese": "—— 只是请您别忘了，当你俩在婚礼进行时准备亲吻的一刹那，将有一个自杀女子的冤魂冲进你们中间！",
+        "pinyin": "— —   zhǐ shì qǐng nín bié wàng le ， dāng nǐ liǎng zài hūn lǐ jìn xíng shí zhǔn bèi qīn wěn de yī chà nà ， jiāng yǒu yī gè zì shā nǚ zǐ de yuān hún chōng jìn nǐ mén zhōng jiān ！",
+        "english": ""
+      },
+      {
+        "chinese": "—— 愿上帝慈悲 —— 我实在没别的路走了！",
+        "pinyin": "— —   yuàn shàng dì cí bēi   — —   wǒ shí zài méi bié de lù zǒu le ！",
+        "english": ""
+      },
+      {
+        "chinese": "（冲出门去）",
+        "pinyin": "（ chōng chū mén qù ）",
+        "english": ""
       }
     ]
   },
@@ -10620,13 +10675,8 @@
         "english": ""
       },
       {
-        "chinese": "—— 艾弥丽?",
-        "pinyin": "— —   ài mí lì ?",
-        "english": ""
-      },
-      {
-        "chinese": "弥尔芙特可以忍受耻辱 —— 可决不让人辱骂！",
-        "pinyin": "mí ěr fú tè kě yǐ rěn shòu chǐ rǔ   — —   kě jué bù ràng rén rǔ mà ！",
+        "chinese": "—— 艾弥丽?弥尔芙特可以忍受耻辱 —— 可决不让人辱骂！",
+        "pinyin": "— —   ài mí lì ? mí ěr fú tè kě yǐ rěn shòu chǐ rǔ   — —   kě jué bù ràng rén rǔ mà ！",
         "english": ""
       },
       {
@@ -10729,13 +10779,8 @@
         "english": ""
       },
       {
-        "chinese": "随后又来了宫廷侍卫长，",
-        "pinyin": "suí hòu yòu lái le gōng tíng shì wèi cháng ，",
-        "english": ""
-      },
-      {
-        "chinese": "最后再进来仆人若干名。",
-        "pinyin": "zuì hòu zài jìn lái pū rén ruò gān míng 。",
+        "chinese": "随后又来了宫廷侍卫长，\n　　最后再进来仆人若干名。",
+        "pinyin": "suí hòu yòu lái le gōng tíng shì wèi cháng ， \n 　 　 zuì hòu zài jìn lái pū rén ruò gān míng 。",
         "english": ""
       },
       {
@@ -10759,13 +10804,8 @@
         "english": ""
       },
       {
-        "chinese": "侍从和索菲   侍卫长，夫人……",
-        "pinyin": "shì cóng hé suǒ fēi       shì wèi cháng ， fū rén … …",
-        "english": ""
-      },
-      {
-        "chinese": "夫　人  （转过头来）谁？",
-        "pinyin": "fū 　 rén     （ zhuǎn guò tóu lái ） shuí ？",
+        "chinese": "侍从和索菲   侍卫长，夫人……\n　　夫　人  （转过头来）谁？",
+        "pinyin": "shì cóng hé suǒ fēi       shì wèi cháng ， fū rén … … \n 　 　 fū 　 rén     （ zhuǎn guò tóu lái ） shuí ？",
         "english": ""
       },
       {
@@ -10789,13 +10829,8 @@
         "english": ""
       },
       {
-        "chinese": "侍　从  （下）",
-        "pinyin": "shì 　 cóng     （ xià ）",
-        "english": ""
-      },
-      {
-        "chinese": "索　菲  （怯生生地踅近夫人）我不得不担心，夫人，我这样做近乎放肆 ——（夫人仍一个劲儿往下写）米勒那丫头发疯似的冲过前厅 —— 您也满脸通红 —— 自言自语 ——（夫人继续写着）我害怕 —— 准保会闹出什么乱子来的！",
-        "pinyin": "suǒ 　 fēi     （ qiè shēng shēng dì xué jìn fū rén ） wǒ bù dé bù dān xīn ， fū rén ， wǒ zhè yàng zuò jìn hū fàng sì   — — （ fū rén réng yī gè jìn ér wǎng xià xiě ） mǐ lè nà yā tóu fā fēng shì de chōng guò qián tīng   — —   nín yě mǎn liǎn tōng hóng   — —   zì yán zì yǔ   — — （ fū rén jì xù xiě zhuó ） wǒ hài pà   — —   zhǔn bǎo huì nào chū shén me luàn zǐ lái de ！",
+        "chinese": "侍　从  （下）\n　　索　菲  （怯生生地踅近夫人）我不得不担心，夫人，我这样做近乎放肆 ——（夫人仍一个劲儿往下写）米勒那丫头发疯似的冲过前厅 —— 您也满脸通红 —— 自言自语 ——（夫人继续写着）我害怕 —— 准保会闹出什么乱子来的！",
+        "pinyin": "shì 　 cóng     （ xià ） \n 　 　 suǒ 　 fēi     （ qiè shēng shēng dì xué jìn fū rén ） wǒ bù dé bù dān xīn ， fū rén ， wǒ zhè yàng zuò jìn hū fàng sì   — — （ fū rén réng yī gè jìn ér wǎng xià xiě ） mǐ lè nà yā tóu fā fēng shì de chōng guò qián tīng   — —   nín yě mǎn liǎn tōng hóng   — —   zì yán zì yǔ   — — （ fū rén jì xù xiě zhuó ） wǒ hài pà   — —   zhǔn bǎo huì nào chū shén me luàn zǐ lái de ！",
         "english": ""
       },
       {
@@ -10934,13 +10969,8 @@
         "english": ""
       },
       {
-        "chinese": "约翰娜?",
-        "pinyin": "yuē hàn nuó ?",
-        "english": ""
-      },
-      {
-        "chinese": "诺弗克。",
-        "pinyin": "nuò fú kè 。",
+        "chinese": "约翰娜?诺弗克。”",
+        "pinyin": "yuē hàn nuó ? nuò fú kè 。 ”",
         "english": ""
       },
       {
@@ -11019,13 +11049,8 @@
         "english": ""
       },
       {
-        "chinese": "（眼里噙着泪水）我现在就辞退你们，我的孩子们 —— 弥尔芙特夫人不复存在，而约翰娜?",
-        "pinyin": "（ yǎn lǐ qín zhuó lèi shuǐ ） wǒ xiàn zài jiù cí tuì nǐ mén ， wǒ de hái zǐ mén   — —   mí ěr fú tè fū rén bù fù cún zài ， ér yuē hàn nuó ?",
-        "english": ""
-      },
-      {
-        "chinese": "诺弗克又太穷，无力偿付她欠的债。",
-        "pinyin": "nuò fú kè yòu tài qióng ， wú lì cháng fù tā qiàn de zhài 。",
+        "chinese": "（眼里噙着泪水）我现在就辞退你们，我的孩子们 —— 弥尔芙特夫人不复存在，而约翰娜?诺弗克又太穷，无力偿付她欠的债。",
+        "pinyin": "（ yǎn lǐ qín zhuó lèi shuǐ ） wǒ xiàn zài jiù cí tuì nǐ mén ， wǒ de hái zǐ mén   — —   mí ěr fú tè fū rén bù fù cún zài ， ér yuē hàn nuó ? nuò fú kè yòu tài qióng ， wú lì cháng fù tā qiàn de zhài 。",
         "english": ""
       },
       {
@@ -11168,13 +11193,8 @@
         "english": ""
       },
       {
-        "chinese": "（痛苦不堪地倒在一把椅子上）",
-        "pinyin": "（ tòng kǔ bù kān dì dǎo zài yī bǎ yǐ zǐ shàng ）",
-        "english": ""
-      },
-      {
-        "chinese": "露意丝  （在屋角里说）您做得对，可怜的老爸爸！",
-        "pinyin": "lòu yì sī     （ zài wū jiǎo lǐ shuō ） nín zuò dé duì ， kě lián de lǎo bà bà ！",
+        "chinese": "（痛苦不堪地倒在一把椅子上）\n　　露意丝  （在屋角里说）您做得对，可怜的老爸爸！",
+        "pinyin": "（ tòng kǔ bù kān dì dǎo zài yī bǎ yǐ zǐ shàng ） \n 　 　 lòu yì sī     （ zài wū jiǎo lǐ shuō ） nín zuò dé duì ， kě lián de lǎo bà bà ！",
         "english": ""
       },
       {
@@ -11398,18 +11418,13 @@
         "english": ""
       },
       {
-        "chinese": "然而，亲爱的，你要是有勇气的话 —— 我还知道第三个地方，那儿誓言不再有约束力，任何密探也闯不进来。",
-        "pinyin": "rán ér ， qīn ài de ， nǐ yào shì yǒu yǒng qì de huà   — —   wǒ hái zhī dào dì sān gè dì fāng ， nà ér shì yán bù zài yǒu yuē shù lì ， rèn hé mì tàn yě chuǎng bù jìn lái 。",
+        "chinese": "然而，亲爱的，你要是有勇气的话 —— 我还知道第三个地方，那儿誓言不再有约束力，任何密探也闯不进来。”",
+        "pinyin": "rán ér ， qīn ài de ， nǐ yào shì yǒu yǒng qì de huà   — —   wǒ hái zhī dào dì sān gè dì fāng ， nà ér shì yán bù zài yǒu yuē shù lì ， rèn hé mì tàn yě chuǎng bù jìn lái 。 ”",
         "english": ""
       },
       {
-        "chinese": "”（停住，严肃地凝视着她的脸）",
-        "pinyin": "” （ tíng zhù ， yán sù dì níng shì zhuó tā de liǎn ）",
-        "english": ""
-      },
-      {
-        "chinese": "露意丝  干吗这样瞅着我？",
-        "pinyin": "lòu yì sī     gān ma zhè yàng chǒu zhuó wǒ ？",
+        "chinese": "（停住，严肃地凝视着她的脸）\n　　露意丝  干吗这样瞅着我？",
+        "pinyin": "（ tíng zhù ， yán sù dì níng shì zhuó tā de liǎn ） \n 　 　 lòu yì sī     gān ma zhè yàng chǒu zhuó wǒ ？",
         "english": ""
       },
       {
@@ -11433,13 +11448,13 @@
         "english": ""
       },
       {
-        "chinese": "你要胆怯 —— 那就从你们男人的称谓前划去‘坚强’这个词，因为一个姑娘叫你蒙受了羞耻。",
-        "pinyin": "nǐ yào dǎn qiè   — —   nà jiù cóng nǐ mén nán rén de chēng wèi qián huá qù ‘ jiān qiáng ’ zhè gè cí ， yīn wèi yī gè gū niáng jiào nǐ mēng shòu le xiū chǐ 。",
+        "chinese": "你要胆怯 —— 那就从你们男人的称谓前划去‘坚强’这个词，因为一个姑娘叫你蒙受了羞耻。”",
+        "pinyin": "nǐ yào dǎn qiè   — —   nà jiù cóng nǐ mén nán rén de chēng wèi qián huá qù ‘ jiān qiáng ’ zhè gè cí ， yīn wèi yī gè gū niáng jiào nǐ mēng shòu le xiū chǐ 。 ”",
         "english": ""
       },
       {
-        "chinese": "”（米勒放下信，目光沉痛、呆滞地久久凝视着前方，好久才转过身来对着露意丝，嗓音低沉嘶哑地）什么第三个地方，孩子？",
-        "pinyin": "” （ mǐ lè fàng xià xìn ， mù guāng chén tòng 、 dāi zhì dì jiǔ jiǔ níng shì zhuó qián fāng ， hǎo jiǔ cái zhuǎn guò shēn lái duì zhuó lòu yì sī ， sǎng yīn dī chén sī yǎ dì ） shén me dì sān gè dì fāng ， hái zǐ ？",
+        "chinese": "（米勒放下信，目光沉痛、呆滞地久久凝视着前方，好久才转过身来对着露意丝，嗓音低沉嘶哑地）什么第三个地方，孩子？",
+        "pinyin": "（ mǐ lè fàng xià xìn ， mù guāng chén tòng 、 dāi zhì dì jiǔ jiǔ níng shì zhuó qián fāng ， hǎo jiǔ cái zhuǎn guò shēn lái duì zhuó lòu yì sī ， sǎng yīn dī chén sī yǎ dì ） shén me dì sān gè dì fāng ， hái zǐ ？",
         "english": ""
       },
       {
@@ -11846,6 +11861,131 @@
         "chinese": "握住我的手！",
         "pinyin": "wò zhù wǒ de shǒu ！",
         "english": ""
+      },
+      {
+        "chinese": "我愿—— 上帝啊！",
+        "pinyin": "wǒ yuàn — —   shàng dì ā ！",
+        "english": ""
+      },
+      {
+        "chinese": "上帝啊！",
+        "pinyin": "shàng dì ā ！",
+        "english": ""
+      },
+      {
+        "chinese": "我这是干什么！",
+        "pinyin": "wǒ zhè shì gān shén me ！",
+        "english": ""
+      },
+      {
+        "chinese": "我打算干什么？",
+        "pinyin": "wǒ dǎ suàn gān shén me ？",
+        "english": ""
+      },
+      {
+        "chinese": "—— 爸爸，我发誓 ——我真该死，真该死！",
+        "pinyin": "— —   bà bà ， wǒ fā shì   — — wǒ zhēn gāi sǐ ， zhēn gāi sǐ ！",
+        "english": ""
+      },
+      {
+        "chinese": "我这有罪的人，我偏向到哪边了啊！",
+        "pinyin": "wǒ zhè yǒu zuì de rén ， wǒ piān xiàng dào nǎ biān le ā ！",
+        "english": ""
+      },
+      {
+        "chinese": "—— 爸爸，行啦！",
+        "pinyin": "— —   bà bà ， xíng lā ！",
+        "english": ""
+      },
+      {
+        "chinese": "——斐迪南 —— 上帝明鉴！",
+        "pinyin": "— — fěi dí nán   — —   shàng dì míng jiàn ！",
+        "english": ""
+      },
+      {
+        "chinese": "—— 我这就彻底消除对他的记忆。",
+        "pinyin": "— —   wǒ zhè jiù chè dǐ xiāo chú duì tā de jì yì 。",
+        "english": ""
+      },
+      {
+        "chinese": "（撕碎她那封信）\n　　米　勒  （大喜过望地冲上去搂住她的脖子）这才是我的女儿！",
+        "pinyin": "（ sī suì tā nà fēng xìn ） \n 　 　 mǐ 　 lè     （ dà xǐ guò wàng dì chōng shàng qù lǒu zhù tā de bó zǐ ） zhè cái shì wǒ de nǚ ér ！",
+        "english": ""
+      },
+      {
+        "chinese": "—— 望着我！",
+        "pinyin": "— —   wàng zhuó wǒ ！",
+        "english": ""
+      },
+      {
+        "chinese": "你摆脱了一个爱人，成全了一个幸福的父亲。",
+        "pinyin": "nǐ bǎi tuō le yī gè ài rén ， chéng quán le yī gè xìng fú de fù qīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "（又是笑又是哭地搂着她）孩子！",
+        "pinyin": "（ yòu shì xiào yòu shì kū dì lǒu zhuó tā ） hái zǐ ！",
+        "english": ""
+      },
+      {
+        "chinese": "孩子！",
+        "pinyin": "hái zǐ ！",
+        "english": ""
+      },
+      {
+        "chinese": "我真不配活到这样一天！",
+        "pinyin": "wǒ zhēn bù pèi huó dào zhè yàng yī tiān ！",
+        "english": ""
+      },
+      {
+        "chinese": "上帝知道，我这坏老头怎么得到了你 —— 我的天使！",
+        "pinyin": "shàng dì zhī dào ， wǒ zhè huài lǎo tóu zěn me dé dào le nǐ   — —   wǒ de tiān shǐ ！",
+        "english": ""
+      },
+      {
+        "chinese": "——我的露意丝，我的天国！",
+        "pinyin": "— — wǒ de lòu yì sī ， wǒ de tiān guó ！",
+        "english": ""
+      },
+      {
+        "chinese": "—— 上帝啊，我不大懂得爱情，但放弃它必定是很痛苦的，这我还能理解。",
+        "pinyin": "— —   shàng dì ā ， wǒ bù dà dǒng dé ài qíng ， dàn fàng qì tā bì dìng shì hěn tòng kǔ de ， zhè wǒ hái néng lǐ jiě 。",
+        "english": ""
+      },
+      {
+        "chinese": "露意丝  离开这个地方吧，爸爸 —— 离开这座城市；",
+        "pinyin": "lòu yì sī     lí kāi zhè gè dì fāng bā ， bà bà   — —   lí kāi zhè zuò chéng shì ；",
+        "english": ""
+      },
+      {
+        "chinese": "在这儿我的女伴们会嘲笑我，我的好名声已经永远失去 —— 走吧，走吧，远远地离开这个地方，在这里处处可以看见我失去了的幸福的痕迹 —— 离开它，只要可能 ——",
+        "pinyin": "zài zhè ér wǒ de nǚ bàn mén huì cháo xiào wǒ ， wǒ de hǎo míng shēng yǐ jīng yǒng yuǎn shī qù   — —   zǒu bā ， zǒu bā ， yuǎn yuǎn dì lí kāi zhè gè dì fāng ， zài zhè lǐ chù chù kě yǐ kàn jiàn wǒ shī qù le de xìng fú de hén jì   — —   lí kāi tā ， zhǐ yào kě néng   — —",
+        "english": ""
+      },
+      {
+        "chinese": "米　勒  你愿上哪儿都行，我的女儿。",
+        "pinyin": "mǐ 　 lè     nǐ yuàn shàng nǎ ér dōu xíng ， wǒ de nǚ ér 。",
+        "english": ""
+      },
+      {
+        "chinese": "世界无处不生长上帝赏赐的食粮，无处没有他的耳朵在聆听我的琴声。",
+        "pinyin": "shì jiè wú chù bù shēng cháng shàng dì shǎng cì de shí liáng ， wú chù méi yǒu tā de ěr duǒ zài líng tīng wǒ de qín shēng 。",
+        "english": ""
+      },
+      {
+        "chinese": "是的，让一切都成为过去吧！",
+        "pinyin": "shì de ， ràng yī qiē dōu chéng wéi guò qù bā ！",
+        "english": ""
+      },
+      {
+        "chinese": "—— 我要让琴弦述说你哀痛的故事，我要唱一支赞美女儿的歌曲，她为敬重她的父亲而撕碎了自己的心 —— 我们唱着这支歌挨家挨户乞讨；",
+        "pinyin": "— —   wǒ yào ràng qín xián shù shuō nǐ āi tòng de gù shì ， wǒ yào chàng yī zhī zàn měi nǚ ér de gē qǔ ， tā wèi jìng zhòng tā de fù qīn ér sī suì le zì jǐ de xīn   — —   wǒ mén chàng zhuó zhè zhī gē āi jiā āi hù qǐ tǎo ；",
+        "english": ""
+      },
+      {
+        "chinese": "从那些感动得掉泪的人手里得来的面包，将别有一番滋味。",
+        "pinyin": "cóng nà xiē gǎn dòng dé diào lèi de rén shǒu lǐ dé lái de miàn bāo ， jiāng bié yǒu yī fān zī wèi 。",
+        "english": ""
       }
     ]
   },
@@ -12092,13 +12232,8 @@
         "english": ""
       },
       {
-        "chinese": "（把露意丝给侍卫长的信扔给她）",
-        "pinyin": "（ bǎ lòu yì sī gěi shì wèi cháng de xìn rēng gěi tā ）",
-        "english": ""
-      },
-      {
-        "chinese": "露意丝  （展开信，脸色惨白地倒下）",
-        "pinyin": "lòu yì sī     （ zhǎn kāi xìn ， liǎn sè cǎn bái dì dǎo xià ）",
+        "chinese": "（把露意丝给侍卫长的信扔给她）\n　　露意丝  （展开信，脸色惨白地倒下）",
+        "pinyin": "（ bǎ lòu yì sī gěi shì wèi cháng de xìn rēng gěi tā ） \n 　 　 lòu yì sī     （ zhǎn kāi xìn ， liǎn sè cǎn bái dì dǎo xià ）",
         "english": ""
       },
       {
@@ -12167,13 +12302,8 @@
         "english": ""
       },
       {
-        "chinese": "（准备向露意丝走去）",
-        "pinyin": "（ zhǔn bèi xiàng lòu yì sī zǒu qù ）",
-        "english": ""
-      },
-      {
-        "chinese": "米　勒  走开！",
-        "pinyin": "mǐ 　 lè     zǒu kāi ！",
+        "chinese": "（准备向露意丝走去）\n　　米　勒  走开！",
+        "pinyin": "（ zhǔn bèi xiàng lòu yì sī zǒu qù ） \n 　 　 mǐ 　 lè     zǒu kāi ！",
         "english": ""
       },
       {
@@ -12252,13 +12382,8 @@
         "english": ""
       },
       {
-        "chinese": "露意丝  啊，这封信，爸爸……",
-        "pinyin": "lòu yì sī     ā ， zhè fēng xìn ， bà bà … …",
-        "english": ""
-      },
-      {
-        "chinese": "斐迪南  它落进了不该落进的人的手里，是吗？",
-        "pinyin": "fěi dí nán     tā luò jìn le bù gāi luò jìn de rén de shǒu lǐ ， shì ma ？",
+        "chinese": "露意丝  啊，这封信，爸爸……\n　　斐迪南  它落进了不该落进的人的手里，是吗？",
+        "pinyin": "lòu yì sī     ā ， zhè fēng xìn ， bà bà … … \n 　 　 fěi dí nán     tā luò jìn le bù gāi luò jìn de rén de shǒu lǐ ， shì ma ？",
         "english": ""
       },
       {
@@ -13264,13 +13389,8 @@
         "english": ""
       },
       {
-        "chinese": "（欲走）",
-        "pinyin": "（ yù zǒu ）",
-        "english": ""
-      },
-      {
-        "chinese": "斐迪南  等一等！",
-        "pinyin": "fěi dí nán     děng yī děng ！",
+        "chinese": "（欲走）\n　　斐迪南  等一等！",
+        "pinyin": "（ yù zǒu ） \n 　 　 fěi dí nán     děng yī děng ！",
         "english": ""
       },
       {
@@ -13319,23 +13439,13 @@
         "english": ""
       },
       {
-        "chinese": "只要她的眼睛流露出什么心愿，她就应该得到满足……",
-        "pinyin": "zhǐ yào tā de yǎn jīng liú lòu chū shén me xīn yuàn ， tā jiù yīng gāi dé dào mǎn zú … …",
+        "chinese": "只要她的眼睛流露出什么心愿，她就应该得到满足……\n　　斐迪南  （赶紧打断他）别讲了！",
+        "pinyin": "zhǐ yào tā de yǎn jīng liú lòu chū shén me xīn yuàn ， tā jiù yīng gāi dé dào mǎn zú … … \n 　 　 fěi dí nán     （ gǎn jǐn dǎ duàn tā ） bié jiǎng le ！",
         "english": ""
       },
       {
-        "chinese": "斐迪南  （赶紧打断他）别讲了！",
-        "pinyin": "fěi dí nán     （ gǎn jǐn dǎ duàn tā ） bié jiǎng le ！",
-        "english": ""
-      },
-      {
-        "chinese": "啊，别……",
-        "pinyin": "ā ， bié … …",
-        "english": ""
-      },
-      {
-        "chinese": "米　勒  （越发激动）我要让她从头开始学法语，学跳法国小步舞，学唱歌；",
-        "pinyin": "mǐ 　 lè     （ yuè fā jī dòng ） wǒ yào ràng tā cóng tóu kāi shǐ xué fǎ yǔ ， xué tiào fǎ guó xiǎo bù wǔ ， xué chàng gē ；",
+        "chinese": "啊，别……\n　　米　勒  （越发激动）我要让她从头开始学法语，学跳法国小步舞，学唱歌；",
+        "pinyin": "ā ， bié … … \n 　 　 mǐ 　 lè     （ yuè fā jī dòng ） wǒ yào ràng tā cóng tóu kāi shǐ xué fǎ yǔ ， xué tiào fǎ guó xiǎo bù wǔ ， xué chàng gē ；",
         "english": ""
       },
       {
@@ -13349,13 +13459,8 @@
         "english": ""
       },
       {
-        "chinese": "让远远近近的人们都谈论提琴师的女儿，让……",
-        "pinyin": "ràng yuǎn yuǎn jìn jìn de rén mén dōu tán lùn tí qín shī de nǚ ér ， ràng … …",
-        "english": ""
-      },
-      {
-        "chinese": "斐迪南  （激动得可怕地抓住米勒的手）别说啦！",
-        "pinyin": "fěi dí nán     （ jī dòng dé kě pà dì zhuā zhù mǐ lè de shǒu ） bié shuō lā ！",
+        "chinese": "让远远近近的人们都谈论提琴师的女儿，让……\n　　斐迪南  （激动得可怕地抓住米勒的手）别说啦！",
+        "pinyin": "ràng yuǎn yuǎn jìn jìn de rén mén dōu tán lùn tí qín shī de nǚ ér ， ràng … … \n 　 　 fěi dí nán     （ jī dòng dé kě pà dì zhuā zhù mǐ lè de shǒu ） bié shuō lā ！",
         "english": ""
       },
       {
@@ -13508,13 +13613,8 @@
         "english": ""
       },
       {
-        "chinese": "（下）",
-        "pinyin": "（ xià ）",
-        "english": ""
-      },
-      {
-        "chinese": "斐迪南  给你父亲照亮，露意丝。",
-        "pinyin": "fěi dí nán     gěi nǐ fù qīn zhào liàng ， lòu yì sī 。",
+        "chinese": "（下）\n　　斐迪南  给你父亲照亮，露意丝。",
+        "pinyin": "（ xià ） \n 　 　 fěi dí nán     gěi nǐ fù qīn zhào liàng ， lòu yì sī 。",
         "english": ""
       },
       {
@@ -13567,13 +13667,8 @@
         "english": ""
       },
       {
-        "chinese": "他站在另",
-        "pinyin": "tā zhàn zài lìng",
-        "english": ""
-      },
-      {
-        "chinese": "一边，目光呆滞。",
-        "pinyin": "yī biān ， mù guāng dāi zhì 。",
+        "chinese": "他站在另\n　　一边，目光呆滞。",
+        "pinyin": "tā zhàn zài lìng \n 　 　 yī biān ， mù guāng dāi zhì 。",
         "english": ""
       },
       {
@@ -13582,23 +13677,13 @@
         "english": ""
       },
       {
-        "chinese": "露意丝  您要乐意我伴奏，封?",
-        "pinyin": "lòu yì sī     nín yào lè yì wǒ bàn zòu ， fēng ?",
+        "chinese": "露意丝  您要乐意我伴奏，封?瓦尔特先生，我就弹一会儿钢琴。",
+        "pinyin": "lòu yì sī     nín yào lè yì wǒ bàn zòu ， fēng ? wǎ ěr tè xiān shēng ， wǒ jiù tán yī huì ér gāng qín 。",
         "english": ""
       },
       {
-        "chinese": "瓦尔特先生，我就弹一会儿钢琴。",
-        "pinyin": "wǎ ěr tè xiān shēng ， wǒ jiù tán yī huì ér gāng qín 。",
-        "english": ""
-      },
-      {
-        "chinese": "（打开琴盖）",
-        "pinyin": "（ dǎ kāi qín gài ）",
-        "english": ""
-      },
-      {
-        "chinese": "斐迪南  （闷声不响，好一会儿不予回答）",
-        "pinyin": "fěi dí nán     （ mèn shēng bù xiǎng ， hǎo yī huì ér bù yú huí dá ）",
+        "chinese": "（打开琴盖）\n　　斐迪南  （闷声不响，好一会儿不予回答）",
+        "pinyin": "（ dǎ kāi qín gài ） \n 　 　 fěi dí nán     （ mèn shēng bù xiǎng ， hǎo yī huì ér bù yú huí dá ）",
         "english": ""
       },
       {
@@ -13607,23 +13692,13 @@
         "english": ""
       },
       {
-        "chinese": "我们再下一次好吗，封?",
-        "pinyin": "wǒ mén zài xià yī cì hǎo ma ， fēng ?",
+        "chinese": "我们再下一次好吗，封?瓦尔特先生？",
+        "pinyin": "wǒ mén zài xià yī cì hǎo ma ， fēng ? wǎ ěr tè xiān shēng ？",
         "english": ""
       },
       {
-        "chinese": "瓦尔特先生？",
-        "pinyin": "wǎ ěr tè xiān shēng ？",
-        "english": ""
-      },
-      {
-        "chinese": "斐迪南 （又是一阵静默）",
-        "pinyin": "fěi dí nán   （ yòu shì yī zhèn jìng mò ）",
-        "english": ""
-      },
-      {
-        "chinese": "露意丝  唉，我好可怜啊！",
-        "pinyin": "lòu yì sī     āi ， wǒ hǎo kě lián ā ！",
+        "chinese": "斐迪南 （又是一阵静默）\n　　露意丝  唉，我好可怜啊！",
+        "pinyin": "fěi dí nán   （ yòu shì yī zhèn jìng mò ） \n 　 　 lòu yì sī     āi ， wǒ hǎo kě lián ā ！",
         "english": ""
       },
       {
@@ -13632,13 +13707,8 @@
         "english": ""
       },
       {
-        "chinese": "露意丝  您心情这么糟，封?",
-        "pinyin": "lòu yì sī     nín xīn qíng zhè me zāo ， fēng ?",
-        "english": ""
-      },
-      {
-        "chinese": "瓦尔特先生，不是我的错。",
-        "pinyin": "wǎ ěr tè xiān shēng ， bù shì wǒ de cuò 。",
+        "chinese": "露意丝  您心情这么糟，封?瓦尔特先生，不是我的错。",
+        "pinyin": "lòu yì sī     nín xīn qíng zhè me zāo ， fēng ? wǎ ěr tè xiān shēng ， bù shì wǒ de cuò 。",
         "english": ""
       },
       {
@@ -13657,13 +13727,8 @@
         "english": ""
       },
       {
-        "chinese": "—— 封?",
-        "pinyin": "— —   fēng ?",
-        "english": ""
-      },
-      {
-        "chinese": "瓦尔特少爷，我猜想，这会儿我们两个人将同样难熬。",
-        "pinyin": "wǎ ěr tè shǎo yé ， wǒ cāi xiǎng ， zhè huì ér wǒ mén liǎng gè rén jiāng tóng yàng nán āo 。",
+        "chinese": "—— 封?瓦尔特少爷，我猜想，这会儿我们两个人将同样难熬。",
+        "pinyin": "— —   fēng ? wǎ ěr tè shǎo yé ， wǒ cāi xiǎng ， zhè huì ér wǒ mén liǎng gè rén jiāng tóng yàng nán āo 。",
         "english": ""
       },
       {
@@ -13682,13 +13747,8 @@
         "english": ""
       },
       {
-        "chinese": "露意丝  （愣愣地望着他）封?",
-        "pinyin": "lòu yì sī     （ lèng lèng dì wàng zhuó tā ） fēng ?",
-        "english": ""
-      },
-      {
-        "chinese": "瓦尔特先生？",
-        "pinyin": "wǎ ěr tè xiān shēng ？",
+        "chinese": "露意丝  （愣愣地望着他）封?瓦尔特先生？",
+        "pinyin": "lòu yì sī     （ lèng lèng dì wàng zhuó tā ） fēng ? wǎ ěr tè xiān shēng ？",
         "english": ""
       },
       {
@@ -13702,13 +13762,8 @@
         "english": ""
       },
       {
-        "chinese": "露意丝  您情绪好些了吗，封?",
-        "pinyin": "lòu yì sī     nín qíng xù hǎo xiē le ma ， fēng ?",
-        "english": ""
-      },
-      {
-        "chinese": "瓦尔特少爷？",
-        "pinyin": "wǎ ěr tè shǎo yé ？",
+        "chinese": "露意丝  您情绪好些了吗，封?瓦尔特少爷？",
+        "pinyin": "lòu yì sī     nín qíng xù hǎo xiē le ma ， fēng ? wǎ ěr tè shǎo yé ？",
         "english": ""
       },
       {
@@ -13842,13 +13897,8 @@
         "english": ""
       },
       {
-        "chinese": "露意丝  （勉强接过杯子，开始喝）",
-        "pinyin": "lòu yì sī     （ miǎn qiǎng jiē guò bēi zǐ ， kāi shǐ hē ）",
-        "english": ""
-      },
-      {
-        "chinese": "斐迪南  （一见她把杯子送到嘴边，立刻转过身，脸色刷的一下白了，同时跑到最里边的屋角去）",
-        "pinyin": "fěi dí nán     （ yī jiàn tā bǎ bēi zǐ sòng dào zuǐ biān ， lì kè zhuǎn guò shēn ， liǎn sè shuā de yī xià bái le ， tóng shí pǎo dào zuì lǐ biān de wū jiǎo qù ）",
+        "chinese": "露意丝  （勉强接过杯子，开始喝）\n　　斐迪南  （一见她把杯子送到嘴边，立刻转过身，脸色刷的一下白了，同时跑到最里边的屋角去）",
+        "pinyin": "lòu yì sī     （ miǎn qiǎng jiē guò bēi zǐ ， kāi shǐ hē ） \n 　 　 fěi dí nán     （ yī jiàn tā bǎ bēi zǐ sòng dào zuǐ biān ， lì kè zhuǎn guò shēn ， liǎn sè shuā de yī xià bái le ， tóng shí pǎo dào zuì lǐ biān de wū jiǎo qù ）",
         "english": ""
       },
       {
@@ -13872,13 +13922,8 @@
         "english": ""
       },
       {
-        "chinese": "露意丝  将来会有一个时间，瓦尔特……",
-        "pinyin": "lòu yì sī     jiāng lái huì yǒu yī gè shí jiān ， wǎ ěr tè … …",
-        "english": ""
-      },
-      {
-        "chinese": "斐迪南  （回到前面）噢，时间一到咱们就一了百了。",
-        "pinyin": "fěi dí nán     （ huí dào qián miàn ） ō ， shí jiān yī dào zán mén jiù yī le bǎi le 。",
+        "chinese": "露意丝  将来会有一个时间，瓦尔特……\n　　斐迪南  （回到前面）噢，时间一到咱们就一了百了。",
+        "pinyin": "lòu yì sī     jiāng lái huì yǒu yī gè shí jiān ， wǎ ěr tè … … \n 　 　 fěi dí nán     （ huí dào qián miàn ） ō ， shí jiān yī dào zán mén jiù yī le bǎi le 。",
         "english": ""
       },
       {
@@ -14187,13 +14232,8 @@
         "english": ""
       },
       {
-        "chinese": "露意丝  我求您啦，瓦尔特……",
-        "pinyin": "lòu yì sī     wǒ qiú nín lā ， wǎ ěr tè … …",
-        "english": ""
-      },
-      {
-        "chinese": "斐迪南  （万分激动地）不！",
-        "pinyin": "fěi dí nán     （ wàn fēn jī dòng dì ） bù ！",
+        "chinese": "露意丝  我求您啦，瓦尔特……\n　　斐迪南  （万分激动地）不！",
+        "pinyin": "lòu yì sī     wǒ qiú nín lā ， wǎ ěr tè … … \n 　 　 fěi dí nán     （ wàn fēn jī dòng dì ） bù ！",
         "english": ""
       },
       {
@@ -14232,13 +14272,8 @@
         "english": ""
       },
       {
-        "chinese": "（坐下）",
-        "pinyin": "（ zuò xià ）",
-        "english": ""
-      },
-      {
-        "chinese": "斐迪南  （激动万分地跪在她脚下）露意丝，你爱过侍卫长吗？",
-        "pinyin": "fěi dí nán     （ jī dòng wàn fēn dì guì zài tā jiǎo xià ） lòu yì sī ， nǐ ài guò shì wèi cháng ma ？",
+        "chinese": "（坐下）\n　　斐迪南  （激动万分地跪在她脚下）露意丝，你爱过侍卫长吗？",
+        "pinyin": "（ zuò xià ） \n 　 　 fěi dí nán     （ jī dòng wàn fēn dì guì zài tā jiǎo xià ） lòu yì sī ， nǐ ài guò shì wèi cháng ma ？",
         "english": ""
       },
       {
@@ -14262,13 +14297,8 @@
         "english": ""
       },
       {
-        "chinese": "（倒在椅子上）",
-        "pinyin": "（ dǎo zài yǐ zǐ shàng ）",
-        "english": ""
-      },
-      {
-        "chinese": "斐迪南  已经感到难受？",
-        "pinyin": "fěi dí nán     yǐ jīng gǎn dào nán shòu ？",
+        "chinese": "（倒在椅子上）\n　　斐迪南  已经感到难受？",
+        "pinyin": "（ dǎo zài yǐ zǐ shàng ） \n 　 　 fěi dí nán     yǐ jīng gǎn dào nán shòu ？",
         "english": ""
       },
       {
@@ -14299,6 +14329,326 @@
       {
         "chinese": "我的上帝！",
         "pinyin": "wǒ de shàng dì ！",
+        "english": ""
+      },
+      {
+        "chinese": "斐迪南  恐怕是喽。",
+        "pinyin": "fěi dí nán     kǒng pà shì lóu 。",
+        "english": ""
+      },
+      {
+        "chinese": "你的柠檬汁是地狱调制的。",
+        "pinyin": "nǐ de níng méng zhī shì dì yù tiáo zhì de 。",
+        "english": ""
+      },
+      {
+        "chinese": "你用它和死神干了杯。",
+        "pinyin": "nǐ yòng tā hé sǐ shén gān le bēi 。",
+        "english": ""
+      },
+      {
+        "chinese": "露意丝  死！",
+        "pinyin": "lòu yì sī     sǐ ！",
+        "english": ""
+      },
+      {
+        "chinese": "仁慈的主啊！",
+        "pinyin": "rén cí de zhǔ ā ！",
+        "english": ""
+      },
+      {
+        "chinese": "柠檬汁有毒，喝了就会死！",
+        "pinyin": "níng méng zhī yǒu dú ， hē le jiù huì sǐ ！",
+        "english": ""
+      },
+      {
+        "chinese": "—— 怜悯我的灵魂吧，仁慈的上帝！",
+        "pinyin": "— —   lián mǐn wǒ de líng hún bā ， rén cí de shàng dì ！",
+        "english": ""
+      },
+      {
+        "chinese": "斐迪南  要紧就要紧在这儿。",
+        "pinyin": "fěi dí nán     yào jǐn jiù yào jǐn zài zhè ér 。",
+        "english": ""
+      },
+      {
+        "chinese": "我也会同样地祈求他。",
+        "pinyin": "wǒ yě huì tóng yàng dì qí qiú tā 。",
+        "english": ""
+      },
+      {
+        "chinese": "露意丝  可我的母亲…… 我的父亲…… 救世主啊！",
+        "pinyin": "lòu yì sī     kě wǒ de mǔ qīn … …   wǒ de fù qīn … …   jiù shì zhǔ ā ！",
+        "english": ""
+      },
+      {
+        "chinese": "我可怜的绝望的父亲！",
+        "pinyin": "wǒ kě lián de jué wàng de fù qīn ！",
+        "english": ""
+      },
+      {
+        "chinese": "难道已没救了吗？",
+        "pinyin": "nán dào yǐ méi jiù le ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "我年纪轻轻，已没救了！",
+        "pinyin": "wǒ nián jì qīng qīng ， yǐ méi jiù le ！",
+        "english": ""
+      },
+      {
+        "chinese": "我现在一定都完了吗？",
+        "pinyin": "wǒ xiàn zài yī dìng dōu wán le ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "斐迪南  没救了，一定完了。",
+        "pinyin": "fěi dí nán     méi jiù le ， yī dìng wán le 。",
+        "english": ""
+      },
+      {
+        "chinese": "—— 可是别紧张：咱俩一块儿走。",
+        "pinyin": "— —   kě shì bié jǐn zhāng ： zán liǎng yī kuài ér zǒu 。",
+        "english": ""
+      },
+      {
+        "chinese": "露意丝  斐迪南，你也一样！",
+        "pinyin": "lòu yì sī     fěi dí nán ， nǐ yě yī yàng ！",
+        "english": ""
+      },
+      {
+        "chinese": "毒药，斐迪南！",
+        "pinyin": "dú yào ， fěi dí nán ！",
+        "english": ""
+      },
+      {
+        "chinese": "是你放的？",
+        "pinyin": "shì nǐ fàng de ？",
+        "english": ""
+      },
+      {
+        "chinese": "上帝啊，原谅他吧！",
+        "pinyin": "shàng dì ā ， yuán liàng tā bā ！",
+        "english": ""
+      },
+      {
+        "chinese": "—— 仁慈的主啊，免除他的罪孽吧！",
+        "pinyin": "— —   rén cí de zhǔ ā ， miǎn chú tā de zuì niè bā ！",
+        "english": ""
+      },
+      {
+        "chinese": "斐迪南  去了结你自己的账吧 —— 我担心，情况不妙哩！",
+        "pinyin": "fěi dí nán     qù le jié nǐ zì jǐ de zhàng bā   — —   wǒ dān xīn ， qíng kuàng bù miào li ！",
+        "english": ""
+      },
+      {
+        "chinese": "露意丝   斐迪南！",
+        "pinyin": "lòu yì sī       fěi dí nán ！",
+        "english": ""
+      },
+      {
+        "chinese": "斐迪南！",
+        "pinyin": "fěi dí nán ！",
+        "english": ""
+      },
+      {
+        "chinese": "—— 啊，我现在不能再沉默下去！",
+        "pinyin": "— —   ā ， wǒ xiàn zài bù néng zài chén mò xià qù ！",
+        "english": ""
+      },
+      {
+        "chinese": "—— 死亡 —— 死亡消除了一切誓约 —— 斐迪南，天地间没有比你更不幸的人啦！",
+        "pinyin": "— —   sǐ wáng   — —   sǐ wáng xiāo chú le yī qiē shì yuē   — —   fěi dí nán ， tiān dì jiān méi yǒu bǐ nǐ gèng bù xìng de rén lā ！",
+        "english": ""
+      },
+      {
+        "chinese": "—— 我死得冤枉哟，斐迪南！",
+        "pinyin": "— —   wǒ sǐ dé yuān wǎng yō ， fěi dí nán ！",
+        "english": ""
+      },
+      {
+        "chinese": "斐迪南  （骇异）她在说什么？",
+        "pinyin": "fěi dí nán     （ hài yì ） tā zài shuō shén me ？",
+        "english": ""
+      },
+      {
+        "chinese": "—— 死到临头，人通常都不再撒谎的呀！",
+        "pinyin": "— —   sǐ dào lín tóu ， rén tōng cháng dōu bù zài sā huǎng de yā ！",
+        "english": ""
+      },
+      {
+        "chinese": "露意丝  我没撒谎 —— 没撒谎 —— 我一辈子仅仅就一次 —— 唉！",
+        "pinyin": "lòu yì sī     wǒ méi sā huǎng   — —   méi sā huǎng   — —   wǒ yī bèi zǐ jǐn jǐn jiù yī cì   — —   āi ！",
+        "english": ""
+      },
+      {
+        "chinese": "我怎么浑身发冷，哆嗦！",
+        "pinyin": "wǒ zěn me hún shēn fā lěng ， duō suō ！",
+        "english": ""
+      },
+      {
+        "chinese": "—— 就撒过一次谎，就是在我写那封给侍卫长的信的时候。",
+        "pinyin": "— —   jiù sā guò yī cì huǎng ， jiù shì zài wǒ xiě nà fēng gěi shì wèi cháng de xìn de shí hòu 。",
+        "english": ""
+      },
+      {
+        "chinese": "斐迪南  哈！",
+        "pinyin": "fěi dí nán     hā ！",
+        "english": ""
+      },
+      {
+        "chinese": "那封信！",
+        "pinyin": "nà fēng xìn ！",
+        "english": ""
+      },
+      {
+        "chinese": "—— 赞美上帝！",
+        "pinyin": "— —   zàn měi shàng dì ！",
+        "english": ""
+      },
+      {
+        "chinese": "现在我又完全恢复了我的男子气概。",
+        "pinyin": "xiàn zài wǒ yòu wán quán huī fù le wǒ de nán zǐ qì gài 。",
+        "english": ""
+      },
+      {
+        "chinese": "露意丝  （舌头渐渐不听使唤，手指开始痉挛）这封信 —— 请您沉住气，准备听一句可怕的自白 —— 是我违心地写的，句句遵照令尊大人的指示。",
+        "pinyin": "lòu yì sī     （ shé tóu jiàn jiàn bù tīng shǐ huàn ， shǒu zhǐ kāi shǐ jìng luán ） zhè fēng xìn   — —   qǐng nín chén zhù qì ， zhǔn bèi tīng yī jù kě pà de zì bái   — —   shì wǒ wéi xīn dì xiě de ， jù jù zūn zhào lìng zūn dà rén de zhǐ shì 。",
+        "english": ""
+      },
+      {
+        "chinese": "斐迪南  （呆若木鸡，久久地毫无生气，最后像遭了雷击似的突然倒下）",
+        "pinyin": "fěi dí nán     （ dāi ruò mù jī ， jiǔ jiǔ dì háo wú shēng qì ， zuì hòu xiàng zāo le léi jī shì de tū rán dǎo xià ）",
+        "english": ""
+      },
+      {
+        "chinese": "露意丝  可怕的误解啊 —— 斐迪南 —— 他们逼迫我 —— 请原谅 —— 你的露意丝宁肯死去啊！",
+        "pinyin": "lòu yì sī     kě pà de wù jiě ā   — —   fěi dí nán   — —   tā mén bī pò wǒ   — —   qǐng yuán liàng   — —   nǐ de lòu yì sī níng kěn sǐ qù ā ！",
+        "english": ""
+      },
+      {
+        "chinese": "—— 可是我父亲 —— 处于危险之中 —— 他们搞的阴谋诡计。",
+        "pinyin": "— —   kě shì wǒ fù qīn   — —   chù yú wēi xiǎn zhī zhōng   — —   tā mén gǎo de yīn móu guǐ jì 。",
+        "english": ""
+      },
+      {
+        "chinese": "斐迪南  （愤怒地跳起）感谢上帝，我还没感到毒性发作。",
+        "pinyin": "fěi dí nán     （ fèn nù dì tiào qǐ ） gǎn xiè shàng dì ， wǒ hái méi gǎn dào dú xìng fā zuò 。",
+        "english": ""
+      },
+      {
+        "chinese": "（拔出佩剑）\n　　露意丝  （越来越虚弱）可悲啊！",
+        "pinyin": "（ bá chū pèi jiàn ） \n 　 　 lòu yì sī     （ yuè lái yuè xū ruò ） kě bēi ā ！",
+        "english": ""
+      },
+      {
+        "chinese": "你打算干什么？",
+        "pinyin": "nǐ dǎ suàn gān shén me ？",
+        "english": ""
+      },
+      {
+        "chinese": "他是你的父亲 ——\n　　斐迪南  凶手加上凶手的父亲！",
+        "pinyin": "tā shì nǐ de fù qīn   — — \n 　 　 fěi dí nán     xiōng shǒu jiā shàng xiōng shǒu de fù qīn ！",
+        "english": ""
+      },
+      {
+        "chinese": "—— 他必须一块儿死，这样，人间的审判者才可能将怒火发泄在真正的罪人身上！",
+        "pinyin": "— —   tā bì xū yī kuài ér sǐ ， zhè yàng ， rén jiān de shěn pàn zhě cái kě néng jiāng nù huǒ fā xiè zài zhēn zhèng de zuì rén shēn shàng ！",
+        "english": ""
+      },
+      {
+        "chinese": "（欲走出房间）\n　　露意丝  救世主临终时会宽恕一切人 —— 愿你和他也得到宽恕。",
+        "pinyin": "（ yù zǒu chū fáng jiān ） \n 　 　 lòu yì sī     jiù shì zhǔ lín zhōng shí huì kuān shù yī qiē rén   — —   yuàn nǐ hé tā yě dé dào kuān shù 。",
+        "english": ""
+      },
+      {
+        "chinese": "（死去）\n　　斐迪南  （很快转过身，正好看见她咽最后一口气，悲痛欲绝地倒在死者面前）等一等！",
+        "pinyin": "（ sǐ qù ） \n 　 　 fěi dí nán     （ hěn kuài zhuǎn guò shēn ， zhèng hǎo kàn jiàn tā yàn zuì hòu yī kǒu qì ， bēi tòng yù jué dì dǎo zài sǐ zhě miàn qián ） děng yī děng ！",
+        "english": ""
+      },
+      {
+        "chinese": "等一等！",
+        "pinyin": "děng yī děng ！",
+        "english": ""
+      },
+      {
+        "chinese": "别扔下我啊，我的天使！",
+        "pinyin": "bié rēng xià wǒ ā ， wǒ de tiān shǐ ！",
+        "english": ""
+      },
+      {
+        "chinese": "（抓起她的手来很快又放下）已经凉了啊，又凉又湿！",
+        "pinyin": "（ zhuā qǐ tā de shǒu lái hěn kuài yòu fàng xià ） yǐ jīng liáng le ā ， yòu liáng yòu shī ！",
+        "english": ""
+      },
+      {
+        "chinese": "她的灵魂已经离开！",
+        "pinyin": "tā de líng hún yǐ jīng lí kāi ！",
+        "english": ""
+      },
+      {
+        "chinese": "（又跳起来）我的露意丝的主啊！",
+        "pinyin": "（ yòu tiào qǐ lái ） wǒ de lòu yì sī de zhǔ ā ！",
+        "english": ""
+      },
+      {
+        "chinese": "慈悲！",
+        "pinyin": "cí bēi ！",
+        "english": ""
+      },
+      {
+        "chinese": "对凶手中最卑劣的凶手发慈悲！",
+        "pinyin": "duì xiōng shǒu zhōng zuì bēi liè de xiōng shǒu fā cí bēi ！",
+        "english": ""
+      },
+      {
+        "chinese": "这是她最后的祈愿呢！",
+        "pinyin": "zhè shì tā zuì hòu de qí yuàn ne ！",
+        "english": ""
+      },
+      {
+        "chinese": "—— 连死后的她也多么美丽，多么动人！",
+        "pinyin": "— —   lián sǐ hòu de tā yě duō me měi lì ， duō me dòng rén ！",
+        "english": ""
+      },
+      {
+        "chinese": "死神也受了感动，在掠过这和善的脸颊时倍加小心。",
+        "pinyin": "sǐ shén yě shòu le gǎn dòng ， zài lüè guò zhè hé shàn de liǎn jiá shí bèi jiā xiǎo xīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "—— 这温柔的容颜才不是毫无生气的面具哩，它抗拒住了死的侵袭。",
+        "pinyin": "— —   zhè wēn róu de róng yán cái bù shì háo wú shēng qì de miàn jù li ， tā kàng jù zhù le sǐ de qīn xí 。",
+        "english": ""
+      },
+      {
+        "chinese": "（过了一会儿）可怎么搞的？",
+        "pinyin": "（ guò le yī huì ér ） kě zěn me gǎo de ？",
+        "english": ""
+      },
+      {
+        "chinese": "我为什么一点感觉没有？",
+        "pinyin": "wǒ wèi shén me yī diǎn gǎn jué méi yǒu ？",
+        "english": ""
+      },
+      {
+        "chinese": "难道我青春的活力会拯救我吗？",
+        "pinyin": "nán dào wǒ qīng chūn de huó lì huì zhěng jiù wǒ ma ？",
+        "english": ""
+      },
+      {
+        "chinese": "枉费心机啊！",
+        "pinyin": "wǎng fèi xīn jī ā ！",
+        "english": ""
+      },
+      {
+        "chinese": "我自己不愿意！",
+        "pinyin": "wǒ zì jǐ bù yuàn yì ！",
+        "english": ""
+      },
+      {
+        "chinese": "（说着抓起杯子）",
+        "pinyin": "（ shuō zhuó zhuā qǐ bēi zǐ ）",
         "english": ""
       }
     ]
@@ -14331,13 +14681,8 @@
         "english": ""
       },
       {
-        "chinese": "—— 我可永远不愿相信 ——",
-        "pinyin": "— —   wǒ kě yǒng yuǎn bù yuàn xiāng xìn   — —",
-        "english": ""
-      },
-      {
-        "chinese": "斐迪南  （把杯子扔在他脚下）那你就瞧吧，凶手！",
-        "pinyin": "fěi dí nán     （ bǎ bēi zǐ rēng zài tā jiǎo xià ） nà nǐ jiù qiáo bā ， xiōng shǒu ！",
+        "chinese": "—— 我可永远不愿相信 ——\n　　斐迪南  （把杯子扔在他脚下）那你就瞧吧，凶手！",
+        "pinyin": "— —   wǒ kě yǒng yuǎn bù yuàn xiāng xìn   — — \n 　 　 fěi dí nán     （ bǎ bēi zǐ rēng zài tā jiǎo xià ） nà nǐ jiù qiáo bā ， xiōng shǒu ！",
         "english": ""
       },
       {
@@ -14411,13 +14756,8 @@
         "english": ""
       },
       {
-        "chinese": "米勒、群众和法庭的差役一拥而入）",
-        "pinyin": "mǐ lè 、 qún zhòng hé fǎ tíng de chà yì yī yōng ér rù ）",
-        "english": ""
-      },
-      {
-        "chinese": "米　勒 （惊恐万状）我的孩子！",
-        "pinyin": "mǐ 　 lè   （ jīng kǒng wàn zhuàng ） wǒ de hái zǐ ！",
+        "chinese": "米勒、群众和法庭的差役一拥而入）\n　　米　勒 （惊恐万状）我的孩子！",
+        "pinyin": "mǐ lè 、 qún zhòng hé fǎ tíng de chà yì yī yōng ér rù ） \n 　 　 mǐ 　 lè   （ jīng kǒng wàn zhuàng ） wǒ de hái zǐ ！",
         "english": ""
       },
       {
@@ -14431,13 +14771,13 @@
         "english": ""
       },
       {
-        "chinese": "这儿有人服毒啦！",
-        "pinyin": "zhè ér yǒu rén fú dú lā ！",
+        "chinese": "这儿有人服毒啦！”",
+        "pinyin": "zhè ér yǒu rén fú dú lā ！ ”",
         "english": ""
       },
       {
-        "chinese": "”）—— 我的女儿哟，你在哪里啊？",
-        "pinyin": "” ） — —   wǒ de nǚ ér yō ， nǐ zài nǎ lǐ ā ？",
+        "chinese": "）—— 我的女儿哟，你在哪里啊？",
+        "pinyin": "） — —   wǒ de nǚ ér yō ， nǐ zài nǎ lǐ ā ？",
         "english": ""
       },
       {
@@ -14506,13 +14846,8 @@
         "english": ""
       },
       {
-        "chinese": "（即将昏厥，被侍从们扶住）",
-        "pinyin": "（ jí jiāng hūn jué ， bèi shì cóng mén fú zhù ）",
-        "english": ""
-      },
-      {
-        "chinese": "宰　相 （手臂举向天空，恐怖地）别怪我！",
-        "pinyin": "zǎi 　 xiāng   （ shǒu bì jǔ xiàng tiān kōng ， kǒng bù dì ） bié guài wǒ ！",
+        "chinese": "（即将昏厥，被侍从们扶住）\n　　宰　相 （手臂举向天空，恐怖地）别怪我！",
+        "pinyin": "（ jí jiāng hūn jué ， bèi shì cóng mén fú zhù ） \n 　 　 zǎi 　 xiāng   （ shǒu bì jǔ xiàng tiān kōng ， kǒng bù dì ） bié guài wǒ ！",
         "english": ""
       },
       {
@@ -14526,13 +14861,8 @@
         "english": ""
       },
       {
-        "chinese": "（走向伍尔穆）",
-        "pinyin": "（ zǒu xiàng wǔ ěr mù ）",
-        "english": ""
-      },
-      {
-        "chinese": "伍尔穆   （气愤地）向我？",
-        "pinyin": "wǔ ěr mù       （ qì fèn dì ） xiàng wǒ ？",
+        "chinese": "（走向伍尔穆）\n　　伍尔穆   （气愤地）向我？",
+        "pinyin": "（ zǒu xiàng wǔ ěr mù ） \n 　 　 wǔ ěr mù       （ qì fèn dì ） xiàng wǒ ？",
         "english": ""
       },
       {
@@ -14636,13 +14966,8 @@
         "english": ""
       },
       {
-        "chinese": "（欲下）",
-        "pinyin": "（ yù xià ）",
-        "english": ""
-      },
-      {
-        "chinese": "宰　相  （拦住他）他真的会吗，疯子？",
-        "pinyin": "zǎi 　 xiāng     （ lán zhù tā ） tā zhēn de huì ma ， fēng zǐ ？",
+        "chinese": "（欲下）\n　　宰　相  （拦住他）他真的会吗，疯子？",
+        "pinyin": "（ yù xià ） \n 　 　 zǎi 　 xiāng     （ lán zhù tā ） tā zhēn de huì ma ， fēng zǐ ？",
         "english": ""
       },
       {
@@ -14666,13 +14991,8 @@
         "english": ""
       },
       {
-        "chinese": "（被带出房间）",
-        "pinyin": "（ bèi dài chū fáng jiān ）",
-        "english": ""
-      },
-      {
-        "chinese": "米　勒  （一直默默地把头埋在露意丝怀里，痛不欲生。",
-        "pinyin": "mǐ 　 lè     （ yī zhí mò mò dì bǎ tóu mái zài lòu yì sī huái lǐ ， tòng bù yù shēng 。",
+        "chinese": "（被带出房间）\n　　米　勒  （一直默默地把头埋在露意丝怀里，痛不欲生。",
+        "pinyin": "（ bèi dài chū fáng jiān ） \n 　 　 mǐ 　 lè     （ yī zhí mò mò dì bǎ tóu mái zài lòu yì sī huái lǐ ， tòng bù yù shēng 。",
         "english": ""
       },
       {
@@ -14686,13 +15006,8 @@
         "english": ""
       },
       {
-        "chinese": "（冲出房去）",
-        "pinyin": "（ chōng chū fáng qù ）",
-        "english": ""
-      },
-      {
-        "chinese": "斐迪南  （嗓音嘶哑）追上他！",
-        "pinyin": "fěi dí nán     （ sǎng yīn sī yǎ ） zhuī shàng tā ！",
+        "chinese": "（冲出房去）\n　　斐迪南  （嗓音嘶哑）追上他！",
+        "pinyin": "（ chōng chū fáng qù ） \n 　 　 fěi dí nán     （ sǎng yīn sī yǎ ） zhuī shàng tā ！",
         "english": ""
       },
       {
@@ -14706,13 +15021,8 @@
         "english": ""
       },
       {
-        "chinese": "—— 让我在这座祭坛前离开人世吧 ——",
-        "pinyin": "— —   ràng wǒ zài zhè zuò jì tán qián lí kāi rén shì bā   — —",
-        "english": ""
-      },
-      {
-        "chinese": "宰　相  （大梦初醒似的走向儿子）斐迪南 —— 儿子！",
-        "pinyin": "zǎi 　 xiāng     （ dà mèng chū xǐng shì de zǒu xiàng ér zǐ ） fěi dí nán   — —   ér zǐ ！",
+        "chinese": "—— 让我在这座祭坛前离开人世吧 ——\n　　宰　相  （大梦初醒似的走向儿子）斐迪南 —— 儿子！",
+        "pinyin": "— —   ràng wǒ zài zhè zuò jì tán qián lí kāi rén shì bā   — — \n 　 　 zǎi 　 xiāng     （ dà mèng chū xǐng shì de zǒu xiàng ér zǐ ） fěi dí nán   — —   ér zǐ ！",
         "english": ""
       },
       {
@@ -14731,13 +15041,8 @@
         "english": ""
       },
       {
-        "chinese": "斐迪南  （把手无力地伸给他）",
-        "pinyin": "fěi dí nán     （ bǎ shǒu wú lì dì shēn gěi tā ）",
-        "english": ""
-      },
-      {
-        "chinese": "宰　相  （迅速站起身）他饶恕我了！",
-        "pinyin": "zǎi 　 xiāng     （ xùn sù zhàn qǐ shēn ） tā ráo shù wǒ le ！",
+        "chinese": "斐迪南  （把手无力地伸给他）\n　　宰　相  （迅速站起身）他饶恕我了！",
+        "pinyin": "fěi dí nán     （ bǎ shǒu wú lì dì shēn gěi tā ） \n 　 　 zǎi 　 xiāng     （ xùn sù zhàn qǐ shēn ） tā ráo shù wǒ le ！",
         "english": ""
       },
       {

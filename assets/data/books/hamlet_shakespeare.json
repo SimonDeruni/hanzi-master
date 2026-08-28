@@ -12,13 +12,8 @@
         "english": ""
       },
       {
-        "chinese": "城堡前的露台",
-        "pinyin": "chéng bǎo qián de lòu tái",
-        "english": ""
-      },
-      {
-        "chinese": "弗兰西斯科立台上守望。",
-        "pinyin": "fú lán xī sī kē lì tái shàng shǒu wàng 。",
+        "chinese": "城堡前的露台\n\t弗兰西斯科立台上守望。",
+        "pinyin": "chéng bǎo qián de lòu tái \n \t fú lán xī sī kē lì tái shàng shǒu wàng 。",
         "english": ""
       },
       {
@@ -167,8 +162,8 @@
         "english": ""
       },
       {
-        "chinese": "马西勒斯 喂！",
-        "pinyin": "mǎ xī lè sī   wèi ！",
+        "chinese": "）\n\t马西勒斯 喂！",
+        "pinyin": "） \n \t mǎ xī lè sī   wèi ！",
         "english": ""
       },
       {
@@ -357,8 +352,8 @@
         "english": ""
       },
       {
-        "chinese": "马西勒斯 它走了，不愿回答我们。",
-        "pinyin": "mǎ xī lè sī   tā zǒu le ， bù yuàn huí dá wǒ mén 。",
+        "chinese": "）\n\t马西勒斯 它走了，不愿回答我们。",
+        "pinyin": "） \n \t mǎ xī lè sī   tā zǒu le ， bù yuàn huí dá wǒ mén 。",
         "english": ""
       },
       {
@@ -405,6 +400,11 @@
         "chinese": "它脸上的那副怒容，活像它有一次在谈判决裂以后把那些乘雪车的波兰人击溃在冰上的时候的神气。",
         "pinyin": "tā liǎn shàng de nà fù nù róng ， huó xiàng tā yǒu yī cì zài tán pàn jué liè yǐ hòu bǎ nà xiē chéng xuě chē de bō lán rén jī kuì zài bīng shàng de shí hòu de shén qì 。",
         "english": ""
+      },
+      {
+        "chinese": "怪事怪事！",
+        "pinyin": "guài shì guài shì ！",
+        "english": ""
       }
     ]
   },
@@ -415,11 +415,6 @@
     "title": "第2章",
     "titleEn": "Chapter 2",
     "sentences": [
-      {
-        "chinese": "怪事怪事！",
-        "pinyin": "guài shì guài shì ！",
-        "english": ""
-      },
       {
         "chinese": "马西勒斯 前两次它也是这样不先不后地在这个静寂的时辰，用军人的步态走过我们的眼前。",
         "pinyin": "mǎ xī lè sī   qián liǎng cì tā yě shì zhè yàng bù xiān bù hòu dì zài zhè gè jìng jì de shí chén ， yòng jūn rén de bù tài zǒu guò wǒ mén de yǎn qián 。",
@@ -616,8 +611,8 @@
         "english": ""
       },
       {
-        "chinese": "马西勒斯 它走了！",
-        "pinyin": "mǎ xī lè sī   tā zǒu le ！",
+        "chinese": "）\n\t马西勒斯 它走了！",
+        "pinyin": "） \n \t mǎ xī lè sī   tā zǒu le ！",
         "english": ""
       },
       {
@@ -711,13 +706,8 @@
         "english": ""
       },
       {
-        "chinese": "第二场 城堡中的大厅",
-        "pinyin": "dì èr chǎng   chéng bǎo zhōng de dà tīng",
-        "english": ""
-      },
-      {
-        "chinese": "国王、王后、哈姆莱特、波洛涅斯、雷欧提斯、伏提曼德、考尼律斯、群臣、侍从等上。",
-        "pinyin": "guó wáng 、 wáng hòu 、 hā mǔ lái tè 、 bō luò niè sī 、 léi ōu tí sī 、 fú tí màn dé 、 kǎo ní lǜ sī 、 qún chén 、 shì cóng děng shàng 。",
+        "chinese": "）\n第二场 城堡中的大厅\n\t国王、王后、哈姆莱特、波洛涅斯、雷欧提斯、伏提曼德、考尼律斯、群臣、侍从等上。",
+        "pinyin": "） \n dì èr chǎng   chéng bǎo zhōng de dà tīng \n \t guó wáng 、 wáng hòu 、 hā mǔ lái tè 、 bō luò niè sī 、 léi ōu tí sī 、 fú tí màn dé 、 kǎo ní lǜ sī 、 qún chén 、 shì cóng děng shàng 。",
         "english": ""
       },
       {
@@ -814,6 +804,16 @@
         "chinese": "你要些什么，雷欧提斯？",
         "pinyin": "nǐ yào xiē shén me ， léi ōu tí sī ？",
         "english": ""
+      },
+      {
+        "chinese": "雷欧提斯 陛下，我要请求您允许我回到法国去。",
+        "pinyin": "léi ōu tí sī   bì xià ， wǒ yào qǐng qiú nín yǔn xǔ wǒ huí dào fǎ guó qù 。",
+        "english": ""
+      },
+      {
+        "chinese": "这一次我回国参加陛下加冕的盛典，略尽臣子的微忱，实在是莫大的荣幸；",
+        "pinyin": "zhè yī cì wǒ huí guó cān jiā bì xià jiā miǎn de shèng diǎn ， lüè jìn chén zǐ de wēi chén ， shí zài shì mò dà de róng xìng ；",
+        "english": ""
       }
     ]
   },
@@ -824,16 +824,6 @@
     "title": "第3章",
     "titleEn": "Chapter 3",
     "sentences": [
-      {
-        "chinese": "雷欧提斯 陛下，我要请求您允许我回到法国去。",
-        "pinyin": "léi ōu tí sī   bì xià ， wǒ yào qǐng qiú nín yǔn xǔ wǒ huí dào fǎ guó qù 。",
-        "english": ""
-      },
-      {
-        "chinese": "这一次我回国参加陛下加冕的盛典，略尽臣子的微忱，实在是莫大的荣幸；",
-        "pinyin": "zhè yī cì wǒ huí guó cān jiā bì xià jiā miǎn de shèng diǎn ， lüè jìn chén zǐ de wēi chén ， shí zài shì mò dà de róng xìng ；",
-        "english": ""
-      },
       {
         "chinese": "可是现在我的任务已尽，我的心愿又向法国飞驰，但求陛下开恩允准。",
         "pinyin": "kě shì xiàn zài wǒ de rèn wù yǐ jìn ， wǒ de xīn yuàn yòu xiàng fǎ guó fēi chí ， dàn qiú bì xià kāi ēn yǔn zhǔn 。",
@@ -865,13 +855,8 @@
         "english": ""
       },
       {
-        "chinese": "可是来，我的侄儿哈姆莱特，我的孩子——",
-        "pinyin": "kě shì lái ， wǒ de zhí ér hā mǔ lái tè ， wǒ de hái zǐ — —",
-        "english": ""
-      },
-      {
-        "chinese": "哈姆莱特 （旁白）超乎寻常的亲族，漠不相干的路人。",
-        "pinyin": "hā mǔ lái tè   （ páng bái ） chāo hū xún cháng de qīn zú ， mò bù xiāng gān de lù rén 。",
+        "chinese": "可是来，我的侄儿哈姆莱特，我的孩子——\n\t哈姆莱特 （旁白）超乎寻常的亲族，漠不相干的路人。",
+        "pinyin": "kě shì lái ， wǒ de zhí ér hā mǔ lái tè ， wǒ de hái zǐ — — \n \t hā mǔ lái tè   （ páng bái ） chāo hū xún cháng de qīn zú ， mò bù xiāng gān de lù rén 。",
         "english": ""
       },
       {
@@ -1045,8 +1030,8 @@
         "english": ""
       },
       {
-        "chinese": "哈姆莱特 啊，但愿这一个太坚实的肉体会融解、消散，化成一堆露水！",
-        "pinyin": "hā mǔ lái tè   ā ， dàn yuàn zhè yī gè tài jiān shí de ròu tǐ huì róng jiě 、 xiāo sàn ， huà chéng yī duī lòu shuǐ ！",
+        "chinese": "）\n\t哈姆莱特 啊，但愿这一个太坚实的肉体会融解、消散，化成一堆露水！",
+        "pinyin": "） \n \t hā mǔ lái tè   ā ， dàn yuàn zhè yī gè tài jiān shí de ròu tǐ huì róng jiě 、 xiāo sàn ， huà chéng yī duī lòu shuǐ ！",
         "english": ""
       },
       {
@@ -1215,24 +1200,10 @@
         "english": ""
       },
       {
-        "chinese": "马西勒斯 殿下——",
-        "pinyin": "mǎ xī lè sī   diàn xià — —",
+        "chinese": "马西勒斯 殿下——\n\t哈姆莱特 我很高兴看见你。",
+        "pinyin": "mǎ xī lè sī   diàn xià — — \n \t hā mǔ lái tè   wǒ hěn gāo xìng kàn jiàn nǐ 。",
         "english": ""
       },
-      {
-        "chinese": "哈姆莱特 我很高兴看见你。",
-        "pinyin": "hā mǔ lái tè   wǒ hěn gāo xìng kàn jiàn nǐ 。",
-        "english": ""
-      }
-    ]
-  },
-  {
-    "id": "hamlet_shakespeare_ch_4",
-    "bookId": "hamlet_shakespeare",
-    "chapterIndex": 4,
-    "title": "第4章",
-    "titleEn": "Chapter 4",
-    "sentences": [
       {
         "chinese": "（向勃那多）你好，朋友。",
         "pinyin": "（ xiàng bó nà duō ） nǐ hǎo ， péng yǒu 。",
@@ -1252,7 +1223,16 @@
         "chinese": "哈姆莱特 我不愿听见你的仇敌说这样的话，你也不能用这样的话刺痛我的耳朵，使它相信你对你自己所作的诽谤；",
         "pinyin": "hā mǔ lái tè   wǒ bù yuàn tīng jiàn nǐ de chóu dí shuō zhè yàng de huà ， nǐ yě bù néng yòng zhè yàng de huà cì tòng wǒ de ěr duǒ ， shǐ tā xiāng xìn nǐ duì nǐ zì jǐ suǒ zuò de fěi bàng ；",
         "english": ""
-      },
+      }
+    ]
+  },
+  {
+    "id": "hamlet_shakespeare_ch_4",
+    "bookId": "hamlet_shakespeare",
+    "chapterIndex": 4,
+    "title": "第4章",
+    "titleEn": "Chapter 4",
+    "sentences": [
       {
         "chinese": "我知道你不是一个偷闲躲懒的人。",
         "pinyin": "wǒ zhī dào nǐ bù shì yī gè tōu xián duǒ lǎn de rén 。",
@@ -1489,13 +1469,8 @@
         "english": ""
       },
       {
-        "chinese": "哈姆莱特",
-        "pinyin": "hā mǔ lái tè",
-        "english": ""
-      },
-      {
-        "chinese": "怎么，它瞧上去像在发怒吗？",
-        "pinyin": "zěn me ， tā qiáo shàng qù xiàng zài fā nù ma ？",
+        "chinese": "哈姆莱特\n\t怎么，它瞧上去像在发怒吗？",
+        "pinyin": "hā mǔ lái tè \n \t zěn me ， tā qiáo shàng qù xiàng zài fā nù ma ？",
         "english": ""
       },
       {
@@ -1544,13 +1519,8 @@
         "english": ""
       },
       {
-        "chinese": "霍拉旭",
-        "pinyin": "huò lā xù",
-        "english": ""
-      },
-      {
-        "chinese": "大概有一个人用不快不慢的速度从一数到一百的那段时间。",
-        "pinyin": "dà gài yǒu yī gè rén yòng bù kuài bù màn de sù dù cóng yī shǔ dào yī bǎi de nà duàn shí jiān 。",
+        "chinese": "霍拉旭\n\t大概有一个人用不快不慢的速度从一数到一百的那段时间。",
+        "pinyin": "huò lā xù \n \t dà gài yǒu yī gè rén yòng bù kuài bù màn de sù dù cóng yī shǔ dào yī bǎi de nà duàn shí jiān 。",
         "english": ""
       },
       {
@@ -1579,13 +1549,8 @@
         "english": ""
       },
       {
-        "chinese": "霍拉旭",
-        "pinyin": "huò lā xù",
-        "english": ""
-      },
-      {
-        "chinese": "我可以担保它一定会出来。",
-        "pinyin": "wǒ kě yǐ dān bǎo tā yī dìng huì chū lái 。",
+        "chinese": "霍拉旭\n\t我可以担保它一定会出来。",
+        "pinyin": "huò lā xù \n \t wǒ kě yǐ dān bǎo tā yī dìng huì chū lái 。",
         "english": ""
       },
       {
@@ -1632,16 +1597,7 @@
         "chinese": "再会！",
         "pinyin": "zài huì ！",
         "english": ""
-      }
-    ]
-  },
-  {
-    "id": "hamlet_shakespeare_ch_5",
-    "bookId": "hamlet_shakespeare",
-    "chapterIndex": 5,
-    "title": "第5章",
-    "titleEn": "Chapter 5",
-    "sentences": [
+      },
       {
         "chinese": "（霍拉旭、马西勒斯、勃那多同下）我父亲的灵魂披着甲胄！",
         "pinyin": "（ huò lā xù 、 mǎ xī lè sī 、 bó nà duō tóng xià ） wǒ fù qīn de líng hún pī zhuó jiǎ zhòu ！",
@@ -1676,15 +1632,19 @@
         "chinese": "（下。",
         "pinyin": "（ xià 。",
         "english": ""
-      },
+      }
+    ]
+  },
+  {
+    "id": "hamlet_shakespeare_ch_5",
+    "bookId": "hamlet_shakespeare",
+    "chapterIndex": 5,
+    "title": "第5章",
+    "titleEn": "Chapter 5",
+    "sentences": [
       {
-        "chinese": "第三场 波洛涅斯家中一室",
-        "pinyin": "dì sān chǎng   bō luò niè sī jiā zhōng yī shì",
-        "english": ""
-      },
-      {
-        "chinese": "雷欧提斯及奥菲利娅上。",
-        "pinyin": "léi ōu tí sī jí ào fēi lì yà shàng 。",
+        "chinese": "）\n第三场 波洛涅斯家中一室\n\t雷欧提斯及奥菲利娅上。",
+        "pinyin": "） \n dì sān chǎng   bō luò niè sī jiā zhōng yī shì \n \t léi ōu tí sī jí ào fēi lì yà shàng 。",
         "english": ""
       },
       {
@@ -1963,8 +1923,8 @@
         "english": ""
       },
       {
-        "chinese": "波洛涅斯 奥菲利娅，他对你说些什么话？",
-        "pinyin": "bō luò niè sī   ào fēi lì yà ， tā duì nǐ shuō xiē shén me huà ？",
+        "chinese": "）\n\t波洛涅斯 奥菲利娅，他对你说些什么话？",
+        "pinyin": "） \n \t bō luò niè sī   ào fēi lì yà ， tā duì nǐ shuō xiē shén me huà ？",
         "english": ""
       },
       {
@@ -2041,16 +2001,7 @@
         "chinese": "奥菲利娅 父亲，他向我求爱的态度是很光明正大的。",
         "pinyin": "ào fēi lì yà   fù qīn ， tā xiàng wǒ qiú ài de tài dù shì hěn guāng míng zhèng dà de 。",
         "english": ""
-      }
-    ]
-  },
-  {
-    "id": "hamlet_shakespeare_ch_6",
-    "bookId": "hamlet_shakespeare",
-    "chapterIndex": 6,
-    "title": "第6章",
-    "titleEn": "Chapter 6",
-    "sentences": [
+      },
       {
         "chinese": "波洛涅斯 不错，那只是态度；",
         "pinyin": "bō luò niè sī   bù cuò ， nà zhǐ shì tài dù ；",
@@ -2090,7 +2041,16 @@
         "chinese": "你应该抬高身价，不要让人家以为你是可以随意呼召的。",
         "pinyin": "nǐ yīng gāi tái gāo shēn jià ， bù yào ràng rén jiā yǐ wèi nǐ shì kě yǐ suí yì hū zhào de 。",
         "english": ""
-      },
+      }
+    ]
+  },
+  {
+    "id": "hamlet_shakespeare_ch_6",
+    "bookId": "hamlet_shakespeare",
+    "chapterIndex": 6,
+    "title": "第6章",
+    "titleEn": "Chapter 6",
+    "sentences": [
       {
         "chinese": "对于哈姆莱特殿下，你应该这样想，他是个年轻的王子，他比你在行动上有更大的自由。",
         "pinyin": "duì yú hā mǔ lái tè diàn xià ， nǐ yīng gāi zhè yàng xiǎng ， tā shì gè nián qīng de wáng zǐ ， tā bǐ nǐ zài xíng dòng shàng yǒu gèng dà de zì yóu 。",
@@ -2127,13 +2087,8 @@
         "english": ""
       },
       {
-        "chinese": "第四场 露 台",
-        "pinyin": "dì sì chǎng   lòu   tái",
-        "english": ""
-      },
-      {
-        "chinese": "哈姆莱特、霍拉旭及马西勒斯上。",
-        "pinyin": "hā mǔ lái tè 、 huò lā xù jí mǎ xī lè sī shàng 。",
+        "chinese": "）\n第四场 露 台\n\t哈姆莱特、霍拉旭及马西勒斯上。",
+        "pinyin": "） \n dì sì chǎng   lòu   tái \n \t hā mǔ lái tè 、 huò lā xù jí mǎ xī lè sī shàng 。",
         "english": ""
       },
       {
@@ -2307,8 +2262,8 @@
         "english": ""
       },
       {
-        "chinese": "霍拉旭 它招手叫您跟着它去，好像它有什么话要对您一个人说似的。",
-        "pinyin": "huò lā xù   tā zhāo shǒu jiào nín gēn zhuó tā qù ， hǎo xiàng tā yǒu shén me huà yào duì nín yī gè rén shuō shì de 。",
+        "chinese": "）\n\t霍拉旭 它招手叫您跟着它去，好像它有什么话要对您一个人说似的。",
+        "pinyin": "） \n \t huò lā xù   tā zhāo shǒu jiào nín gēn zhuó tā qù ， hǎo xiàng tā yǒu shén me huà yào duì nín yī gè rén shuō shì de 。",
         "english": ""
       },
       {
@@ -2437,8 +2392,8 @@
         "english": ""
       },
       {
-        "chinese": "霍拉旭 幻想占据了他的头脑，使他不顾一切。",
-        "pinyin": "huò lā xù   huàn xiǎng zhàn jù le tā de tóu nǎo ， shǐ tā bù gù yī qiē 。",
+        "chinese": "）\n\t霍拉旭 幻想占据了他的头脑，使他不顾一切。",
+        "pinyin": "） \n \t huò lā xù   huàn xiǎng zhàn jù le tā de tóu nǎo ， shǐ tā bù gù yī qiē 。",
         "english": ""
       },
       {
@@ -2450,16 +2405,7 @@
         "chinese": "我们不应该服从他的话。",
         "pinyin": "wǒ mén bù yīng gāi fú cóng tā de huà 。",
         "english": ""
-      }
-    ]
-  },
-  {
-    "id": "hamlet_shakespeare_ch_7",
-    "bookId": "hamlet_shakespeare",
-    "chapterIndex": 7,
-    "title": "第7章",
-    "titleEn": "Chapter 7",
-    "sentences": [
+      },
       {
         "chinese": "霍拉旭 那么跟上去吧。",
         "pinyin": "huò lā xù   nà me gēn shàng qù bā 。",
@@ -2491,13 +2437,8 @@
         "english": ""
       },
       {
-        "chinese": "第五场 露台的另一部分",
-        "pinyin": "dì wǔ chǎng   lòu tái de lìng yī bù fēn",
-        "english": ""
-      },
-      {
-        "chinese": "鬼魂及哈姆莱特上。",
-        "pinyin": "guǐ hún jí hā mǔ lái tè shàng 。",
+        "chinese": "）\n第五场 露台的另一部分\n\t鬼魂及哈姆莱特上。",
+        "pinyin": "） \n dì wǔ chǎng   lòu tái de lìng yī bù fēn \n \t guǐ hún jí hā mǔ lái tè shàng 。",
         "english": ""
       },
       {
@@ -2509,7 +2450,16 @@
         "chinese": "我不愿再前进了。",
         "pinyin": "wǒ bù yuàn zài qián jìn le 。",
         "english": ""
-      },
+      }
+    ]
+  },
+  {
+    "id": "hamlet_shakespeare_ch_7",
+    "bookId": "hamlet_shakespeare",
+    "chapterIndex": 7,
+    "title": "第7章",
+    "titleEn": "Chapter 7",
+    "sentences": [
       {
         "chinese": "鬼魂 听我说。",
         "pinyin": "guǐ hún   tīng wǒ shuō 。",
@@ -2576,13 +2526,8 @@
         "english": ""
       },
       {
-        "chinese": "要是你曾经爱过你的亲爱的父亲——",
-        "pinyin": "yào shì nǐ céng jīng ài guò nǐ de qīn ài de fù qīn — —",
-        "english": ""
-      },
-      {
-        "chinese": "哈姆莱特 上帝啊！",
-        "pinyin": "hā mǔ lái tè   shàng dì ā ！",
+        "chinese": "要是你曾经爱过你的亲爱的父亲——\n\t哈姆莱特 上帝啊！",
+        "pinyin": "yào shì nǐ céng jīng ài guò nǐ de qīn ài de fù qīn — — \n \t hā mǔ lái tè   shàng dì ā ！",
         "english": ""
       },
       {
@@ -2746,8 +2691,8 @@
         "english": ""
       },
       {
-        "chinese": "哈姆莱特 天上的神明啊！",
-        "pinyin": "hā mǔ lái tè   tiān shàng de shén míng ā ！",
+        "chinese": "）\n\t哈姆莱特 天上的神明啊！",
+        "pinyin": "） \n \t hā mǔ lái tè   tiān shàng de shén míng ā ！",
         "english": ""
       },
       {
@@ -2846,29 +2791,20 @@
         "english": ""
       },
       {
-        "chinese": "记着我。",
-        "pinyin": "jì zhuó wǒ 。",
+        "chinese": "记着我。”",
+        "pinyin": "jì zhuó wǒ 。 ”",
         "english": ""
       },
       {
-        "chinese": "”我已经发过誓了。",
-        "pinyin": "” wǒ yǐ jīng fā guò shì le 。",
+        "chinese": "我已经发过誓了。",
+        "pinyin": "wǒ yǐ jīng fā guò shì le 。",
         "english": ""
       },
       {
         "chinese": "霍拉旭 （在内）殿下！",
         "pinyin": "huò lā xù   （ zài nèi ） diàn xià ！",
         "english": ""
-      }
-    ]
-  },
-  {
-    "id": "hamlet_shakespeare_ch_8",
-    "bookId": "hamlet_shakespeare",
-    "chapterIndex": 8,
-    "title": "第8章",
-    "titleEn": "Chapter 8",
-    "sentences": [
+      },
       {
         "chinese": "殿下！",
         "pinyin": "diàn xià ！",
@@ -2923,7 +2859,16 @@
         "chinese": "哈姆莱特 啊！",
         "pinyin": "hā mǔ lái tè   ā ！",
         "english": ""
-      },
+      }
+    ]
+  },
+  {
+    "id": "hamlet_shakespeare_ch_8",
+    "bookId": "hamlet_shakespeare",
+    "chapterIndex": 8,
+    "title": "第8章",
+    "titleEn": "Chapter 8",
+    "sentences": [
       {
         "chinese": "奇怪！",
         "pinyin": "qí guài ！",
@@ -3210,8 +3155,8 @@
         "english": ""
       },
       {
-        "chinese": "哈姆莱特 安息吧，安息吧，受难的灵魂！",
-        "pinyin": "hā mǔ lái tè   ān xī bā ， ān xī bā ， shòu nán de líng hún ！",
+        "chinese": "）\n\t哈姆莱特 安息吧，安息吧，受难的灵魂！",
+        "pinyin": "） \n \t hā mǔ lái tè   ān xī bā ， ān xī bā ， shòu nán de líng hún ！",
         "english": ""
       },
       {
@@ -3250,34 +3195,20 @@
         "english": ""
       },
       {
-        "chinese": "w w w.x iaoshu otx t.c o m",
-        "pinyin": "w   w   w . x   i a o s h u   o t x   t . c   o   m",
+        "chinese": "）\nw w w.x iaoshu otx t.c o m",
+        "pinyin": "） \n w   w   w . x   i a o s h u   o t x   t . c   o   m",
         "english": ""
       },
       {
-        "chinese": "第一场 波洛涅斯家中一室",
-        "pinyin": "dì yī chǎng   bō luò niè sī jiā zhōng yī shì",
-        "english": ""
-      },
-      {
-        "chinese": "波洛涅斯及雷奈尔多上。",
-        "pinyin": "bō luò niè sī jí léi nài ěr duō shàng 。",
+        "chinese": "第一场 波洛涅斯家中一室\n\t波洛涅斯及雷奈尔多上。",
+        "pinyin": "dì yī chǎng   bō luò niè sī jiā zhōng yī shì \n \t bō luò niè sī jí léi nài ěr duō shàng 。",
         "english": ""
       },
       {
         "chinese": "波洛涅斯 把这些钱和这封信交给他，雷奈尔多。",
         "pinyin": "bō luò niè sī   bǎ zhè xiē qián hé zhè fēng xìn jiāo gěi tā ， léi nài ěr duō 。",
         "english": ""
-      }
-    ]
-  },
-  {
-    "id": "hamlet_shakespeare_ch_9",
-    "bookId": "hamlet_shakespeare",
-    "chapterIndex": 9,
-    "title": "第9章",
-    "titleEn": "Chapter 9",
-    "sentences": [
+      },
       {
         "chinese": "雷奈尔多 是，老爷。",
         "pinyin": "léi nài ěr duō   shì ， lǎo yé 。",
@@ -3309,13 +3240,13 @@
         "english": ""
       },
       {
-        "chinese": "你可以这样说：“我知道他的父亲和他的朋友，对他也略为有点认识。",
-        "pinyin": "nǐ kě yǐ zhè yàng shuō ： “ wǒ zhī dào tā de fù qīn hé tā de péng yǒu ， duì tā yě lüè wèi yǒu diǎn rèn shí 。",
+        "chinese": "你可以这样说：“我知道他的父亲和他的朋友，对他也略为有点认识。”",
+        "pinyin": "nǐ kě yǐ zhè yàng shuō ： “ wǒ zhī dào tā de fù qīn hé tā de péng yǒu ， duì tā yě lüè wèi yǒu diǎn rèn shí 。 ”",
         "english": ""
       },
       {
-        "chinese": "”你听见没有，雷奈尔多？",
-        "pinyin": "” nǐ tīng jiàn méi yǒu ， léi nài ěr duō ？",
+        "chinese": "你听见没有，雷奈尔多？",
+        "pinyin": "nǐ tīng jiàn méi yǒu ， léi nài ěr duō ？",
         "english": ""
       },
       {
@@ -3329,15 +3260,24 @@
         "english": ""
       },
       {
-        "chinese": "不过假如果然是他的话，那么他是个很放浪的人，有些怎样怎样的坏习惯。",
-        "pinyin": "bù guò jiǎ rú guǒ rán shì tā de huà ， nà me tā shì gè hěn fàng làng de rén ， yǒu xiē zěn yàng zěn yàng de huài xí guàn 。",
+        "chinese": "不过假如果然是他的话，那么他是个很放浪的人，有些怎样怎样的坏习惯。”",
+        "pinyin": "bù guò jiǎ rú guǒ rán shì tā de huà ， nà me tā shì gè hěn fàng làng de rén ， yǒu xiē zěn yàng zěn yàng de huài xí guàn 。 ”",
         "english": ""
       },
       {
-        "chinese": "”说到这里，你就可以随便捏造一些关于他的坏话；",
-        "pinyin": "” shuō dào zhè lǐ ， nǐ jiù kě yǐ suí biàn niē zào yī xiē guān yú tā de huài huà ；",
+        "chinese": "说到这里，你就可以随便捏造一些关于他的坏话；",
+        "pinyin": "shuō dào zhè lǐ ， nǐ jiù kě yǐ suí biàn niē zào yī xiē guān yú tā de huài huà ；",
         "english": ""
-      },
+      }
+    ]
+  },
+  {
+    "id": "hamlet_shakespeare_ch_9",
+    "bookId": "hamlet_shakespeare",
+    "chapterIndex": 9,
+    "title": "第9章",
+    "titleEn": "Chapter 9",
+    "sentences": [
       {
         "chinese": "当然罗，你不能把他说得太不成样子，那是会损害他的名誉的，这一点你必须注意；",
         "pinyin": "dāng rán luó ， nǐ bù néng bǎ tā shuō dé tài bù chéng yàng zǐ ， nà shì huì sǔn hài tā de míng yù de ， zhè yī diǎn nǐ bì xū zhù yì ；",
@@ -3379,13 +3319,8 @@
         "english": ""
       },
       {
-        "chinese": "雷奈尔多 可是老爷——",
-        "pinyin": "léi nài ěr duō   kě shì lǎo yé — —",
-        "english": ""
-      },
-      {
-        "chinese": "波洛涅斯 为什么叫你做这种事？",
-        "pinyin": "bō luò niè sī   wèi shén me jiào nǐ zuò zhè zhǒng shì ？",
+        "chinese": "雷奈尔多 可是老爷——\n\t波洛涅斯 为什么叫你做这种事？",
+        "pinyin": "léi nài ěr duō   kě shì lǎo yé — — \n \t bō luò niè sī   wèi shén me jiào nǐ zuò zhè zhǒng shì ？",
         "english": ""
       },
       {
@@ -3439,13 +3374,13 @@
         "english": ""
       },
       {
-        "chinese": "他会用这样的话对你表示同意：“我认识这位绅士，昨天我还看见他，或许是前天，或许是什么什么时候，跟什么什么人在一起，正像您所说的，他在什么地方赌钱，在什么地方喝得酩酊大醉，在什么地方因为打网球而跟人家打起架来；",
-        "pinyin": "tā huì yòng zhè yàng de huà duì nǐ biǎo shì tóng yì ： “ wǒ rèn shí zhè wèi shēn shì ， zuó tiān wǒ hái kàn jiàn tā ， huò xǔ shì qián tiān ， huò xǔ shì shén me shén me shí hòu ， gēn shén me shén me rén zài yī qǐ ， zhèng xiàng nín suǒ shuō de ， tā zài shén me dì fāng dǔ qián ， zài shén me dì fāng hē dé mǐng dīng dà zuì ， zài shén me dì fāng yīn wèi dǎ wǎng qiú ér gēn rén jiā dǎ qǐ jià lái ；",
+        "chinese": "他会用这样的话对你表示同意：“我认识这位绅士，昨天我还看见他，或许是前天，或许是什么什么时候，跟什么什么人在一起，正像您所说的，他在什么地方赌钱，在什么地方喝得酩酊大醉，在什么地方因为打网球而跟人家打起架来；”",
+        "pinyin": "tā huì yòng zhè yàng de huà duì nǐ biǎo shì tóng yì ： “ wǒ rèn shí zhè wèi shēn shì ， zuó tiān wǒ hái kàn jiàn tā ， huò xǔ shì qián tiān ， huò xǔ shì shén me shén me shí hòu ， gēn shén me shén me rén zài yī qǐ ， zhèng xiàng nín suǒ shuō de ， tā zài shén me dì fāng dǔ qián ， zài shén me dì fāng hē dé mǐng dīng dà zuì ， zài shén me dì fāng yīn wèi dǎ wǎng qiú ér gēn rén jiā dǎ qǐ jià lái ； ”",
         "english": ""
       },
       {
-        "chinese": "”也许他还会说，“我看见他走进什么什么一家生意人家去，”那就是说窑子或是诸如此类的所在。",
-        "pinyin": "” yě xǔ tā hái huì shuō ， “ wǒ kàn jiàn tā zǒu jìn shén me shén me yī jiā shēng yì rén jiā qù ， ” nà jiù shì shuō yáo zǐ huò shì zhū rú cǐ lèi de suǒ zài 。",
+        "chinese": "也许他还会说，“我看见他走进什么什么一家生意人家去，”那就是说窑子或是诸如此类的所在。",
+        "pinyin": "yě xǔ tā hái huì shuō ， “ wǒ kàn jiàn tā zǒu jìn shén me shén me yī jiā shēng yì rén jiā qù ， ” nà jiù shì shuō yáo zǐ huò shì zhū rú cǐ lèi de suǒ zài 。",
         "english": ""
       },
       {
@@ -3519,8 +3454,8 @@
         "english": ""
       },
       {
-        "chinese": "奥菲利娅上。",
-        "pinyin": "ào fēi lì yà shàng 。",
+        "chinese": "）\n\t奥菲利娅上。",
+        "pinyin": "） \n \t ào fēi lì yà shàng 。",
         "english": ""
       },
       {
@@ -3659,34 +3594,20 @@
         "english": ""
       },
       {
-        "chinese": "wＷw。",
-        "pinyin": "w Ｗ w 。",
+        "chinese": "）\nwＷw。",
+        "pinyin": "） \n w Ｗ w 。",
         "english": ""
       },
       {
-        "chinese": "xiaoshuo txt.coＭ",
-        "pinyin": "x i a o s h u o   t x t . c o Ｍ",
-        "english": ""
-      },
-      {
-        "chinese": "第二场 城堡中一室",
-        "pinyin": "dì èr chǎng   chéng bǎo zhōng yī shì",
+        "chinese": "xiaoshuo txt.coＭ\n第二场 城堡中一室",
+        "pinyin": "x i a o s h u o   t x t . c o Ｍ \n dì èr chǎng   chéng bǎo zhōng yī shì",
         "english": ""
       },
       {
         "chinese": "国王、王后、罗森格兰兹、吉尔登斯吞及侍从等上。",
         "pinyin": "guó wáng 、 wáng hòu 、 luó sēn gé lán zī 、 jí ěr dēng sī tūn jí shì cóng děng shàng 。",
         "english": ""
-      }
-    ]
-  },
-  {
-    "id": "hamlet_shakespeare_ch_10",
-    "bookId": "hamlet_shakespeare",
-    "chapterIndex": 10,
-    "title": "第10章",
-    "titleEn": "Chapter 10",
-    "sentences": [
+      },
       {
         "chinese": "国王 欢迎，亲爱的罗森格兰兹和吉尔登斯吞！",
         "pinyin": "guó wáng   huān yíng ， qīn ài de luó sēn gé lán zī hé jí ěr dēng sī tūn ！",
@@ -3756,7 +3677,16 @@
         "chinese": "现在我就要请你们立刻去看看我的大大变了样子的儿子。",
         "pinyin": "xiàn zài wǒ jiù yào qǐng nǐ mén lì kè qù kàn kàn wǒ de dà dà biàn le yàng zǐ de ér zǐ 。",
         "english": ""
-      },
+      }
+    ]
+  },
+  {
+    "id": "hamlet_shakespeare_ch_10",
+    "bookId": "hamlet_shakespeare",
+    "chapterIndex": 10,
+    "title": "第10章",
+    "titleEn": "Chapter 10",
+    "sentences": [
       {
         "chinese": "来人，领这两位绅士到哈姆莱特的地方去。",
         "pinyin": "lái rén ， lǐng zhè liǎng wèi shēn shì dào hā mǔ lái tè de dì fāng qù 。",
@@ -3778,8 +3708,8 @@
         "english": ""
       },
       {
-        "chinese": "波洛涅斯上。",
-        "pinyin": "bō luò niè sī shàng 。",
+        "chinese": "）\n\t波洛涅斯上。",
+        "pinyin": "） \n \t bō luò niè sī shàng 。",
         "english": ""
       },
       {
@@ -3918,8 +3848,8 @@
         "english": ""
       },
       {
-        "chinese": "波洛涅斯 这件事情总算圆满结束了。",
-        "pinyin": "bō luò niè sī   zhè jiàn shì qíng zǒng suàn yuán mǎn jié shù le 。",
+        "chinese": "）\n\t波洛涅斯 这件事情总算圆满结束了。",
+        "pinyin": "） \n \t bō luò niè sī   zhè jiàn shì qíng zǒng suàn yuán mǎn jié shù le 。",
         "english": ""
       },
       {
@@ -4008,13 +3938,8 @@
         "english": ""
       },
       {
-        "chinese": "“让这几行诗句留下在她的皎洁的胸中——”",
-        "pinyin": "“ ràng zhè jǐ xíng shī jù liú xià zài tā de jiǎo jié de xiōng zhōng — — ”",
-        "english": ""
-      },
-      {
-        "chinese": "王后 这是哈姆莱特写给她的吗？",
-        "pinyin": "wáng hòu   zhè shì hā mǔ lái tè xiě gěi tā de ma ？",
+        "chinese": "“让这几行诗句留下在她的皎洁的胸中——”\n\t王后 这是哈姆莱特写给她的吗？",
+        "pinyin": "“ ràng zhè jǐ xíng shī jù liú xià zài tā de jiǎo jié de xiōng zhōng — — ” \n \t wáng hòu   zhè shì hā mǔ lái tè xiě gěi tā de ma ？",
         "english": ""
       },
       {
@@ -4086,16 +4011,7 @@
         "chinese": "此外，她又把他一次次求爱的情形，在什么时候，用什么方法，在什么所在，全都讲给我听了。",
         "pinyin": "cǐ wài ， tā yòu bǎ tā yī cì cì qiú ài de qíng xíng ， zài shén me shí hòu ， yòng shén me fāng fǎ ， zài shén me suǒ zài ， quán dōu jiǎng gěi wǒ tīng le 。",
         "english": ""
-      }
-    ]
-  },
-  {
-    "id": "hamlet_shakespeare_ch_11",
-    "bookId": "hamlet_shakespeare",
-    "chapterIndex": 11,
-    "title": "第11章",
-    "titleEn": "Chapter 11",
-    "sentences": [
+      },
       {
         "chinese": "国王 可是她对于他的爱情抱着怎样的态度呢？",
         "pinyin": "guó wáng   kě shì tā duì yú tā de ài qíng bào zhuó zěn yàng de tài dù ne ？",
@@ -4127,13 +4043,13 @@
         "english": ""
       },
       {
-        "chinese": "这种事情不能让它继续下去。",
-        "pinyin": "zhè zhǒng shì qíng bù néng ràng tā jì xù xià qù 。",
+        "chinese": "这种事情不能让它继续下去。”",
+        "pinyin": "zhè zhǒng shì qíng bù néng ràng tā jì xù xià qù 。 ”",
         "english": ""
       },
       {
-        "chinese": "”于是我把她教训一番，叫她深居简出，不要和他见面，不要接纳他的来使，也不要收受他的礼物；",
-        "pinyin": "” yú shì wǒ bǎ tā jiào xùn yī fān ， jiào tā shēn jū jiǎn chū ， bù yào hé tā jiàn miàn ， bù yào jiē nà tā de lái shǐ ， yě bù yào shōu shòu tā de lǐ wù ；",
+        "chinese": "于是我把她教训一番，叫她深居简出，不要和他见面，不要接纳他的来使，也不要收受他的礼物；",
+        "pinyin": "yú shì wǒ bǎ tā jiào xùn yī fān ， jiào tā shēn jū jiǎn chū ， bù yào hé tā jiàn miàn ， bù yào jiē nà tā de lái shǐ ， yě bù yào shōu shòu tā de lǐ wù ；",
         "english": ""
       },
       {
@@ -4170,7 +4086,16 @@
         "chinese": "波洛涅斯 要是我说错了话，把这个东西从这个上面拿下来吧。",
         "pinyin": "bō luò niè sī   yào shì wǒ shuō cuò le huà ， bǎ zhè gè dōng xī cóng zhè gè shàng miàn ná xià lái bā 。",
         "english": ""
-      },
+      }
+    ]
+  },
+  {
+    "id": "hamlet_shakespeare_ch_11",
+    "bookId": "hamlet_shakespeare",
+    "chapterIndex": 11,
+    "title": "第11章",
+    "titleEn": "Chapter 11",
+    "sentences": [
       {
         "chinese": "（指自己的头及肩）只要有线索可寻，我总会找出事实的真相，即使那真相一直藏在地球的中心。",
         "pinyin": "（ zhǐ zì jǐ de tóu jí jiān ） zhǐ yào yǒu xiàn suǒ kě xún ， wǒ zǒng huì zhǎo chū shì shí de zhēn xiāng ， jí shǐ nà zhēn xiāng yī zhí cáng zài dì qiú de zhōng xīn 。",
@@ -4227,8 +4152,8 @@
         "english": ""
       },
       {
-        "chinese": "哈姆莱特读书上。",
-        "pinyin": "hā mǔ lái tè dú shū shàng 。",
+        "chinese": "）\n\t哈姆莱特读书上。",
+        "pinyin": "） \n \t hā mǔ lái tè dú shū shàng 。",
         "english": ""
       },
       {
@@ -4437,8 +4362,8 @@
         "english": ""
       },
       {
-        "chinese": "哈姆莱特 这些讨厌的老傻瓜！",
-        "pinyin": "hā mǔ lái tè   zhè xiē tǎo yàn de lǎo shǎ guā ！",
+        "chinese": "）\n\t哈姆莱特 这些讨厌的老傻瓜！",
+        "pinyin": "） \n \t hā mǔ lái tè   zhè xiē tǎo yàn de lǎo shǎ guā ！",
         "english": ""
       },
       {
@@ -4462,8 +4387,8 @@
         "english": ""
       },
       {
-        "chinese": "吉尔登斯吞 我的尊贵的殿下！",
-        "pinyin": "jí ěr dēng sī tūn   wǒ de zūn guì de diàn xià ！",
+        "chinese": "）\n\t吉尔登斯吞 我的尊贵的殿下！",
+        "pinyin": "） \n \t jí ěr dēng sī tūn   wǒ de zūn guì de diàn xià ！",
         "english": ""
       },
       {
@@ -4495,16 +4420,7 @@
         "chinese": "罗森格兰兹 不过像一般庸庸碌碌之辈，在这世上虚度时光而已。",
         "pinyin": "luó sēn gé lán zī   bù guò xiàng yī bān yōng yōng lù lù zhī bèi ， zài zhè shì shàng xū dù shí guāng ér yǐ 。",
         "english": ""
-      }
-    ]
-  },
-  {
-    "id": "hamlet_shakespeare_ch_12",
-    "bookId": "hamlet_shakespeare",
-    "chapterIndex": 12,
-    "title": "第12章",
-    "titleEn": "Chapter 12",
-    "sentences": [
+      },
       {
         "chinese": "吉尔登斯吞 无荣无辱便是我们的幸福；",
         "pinyin": "jí ěr dēng sī tūn   wú róng wú rǔ biàn shì wǒ mén de xìng fú ；",
@@ -4579,7 +4495,16 @@
         "chinese": "我的好朋友们，你们在命运手里犯了什么案子，她把你们送到这儿牢狱里来了？",
         "pinyin": "wǒ de hǎo péng yǒu mén ， nǐ mén zài mìng yùn shǒu lǐ fàn le shén me àn zǐ ， tā bǎ nǐ mén sòng dào zhè ér láo yù lǐ lái le ？",
         "english": ""
-      },
+      }
+    ]
+  },
+  {
+    "id": "hamlet_shakespeare_ch_12",
+    "bookId": "hamlet_shakespeare",
+    "chapterIndex": 12,
+    "title": "第12章",
+    "titleEn": "Chapter 12",
+    "sentences": [
       {
         "chinese": "吉尔登斯吞 牢狱，殿下！",
         "pinyin": "jí ěr dēng sī tūn   láo yù ， diàn xià ！",
@@ -4904,16 +4829,7 @@
         "chinese": "冒险的骑士可以挥舞他的剑盾；",
         "pinyin": "mào xiǎn de qí shì kě yǐ huī wǔ tā de jiàn dùn ；",
         "english": ""
-      }
-    ]
-  },
-  {
-    "id": "hamlet_shakespeare_ch_13",
-    "bookId": "hamlet_shakespeare",
-    "chapterIndex": 13,
-    "title": "第13章",
-    "titleEn": "Chapter 13",
-    "sentences": [
+      },
       {
         "chinese": "情人的叹息不会没有酬报；",
         "pinyin": "qíng rén de tàn xī bù huì méi yǒu chóu bào ；",
@@ -4988,7 +4904,16 @@
         "chinese": "罗森格兰兹 不，他们还是跟从前一样努力；",
         "pinyin": "luó sēn gé lán zī   bù ， tā mén hái shì gēn cóng qián yī yàng nǔ lì ；",
         "english": ""
-      },
+      }
+    ]
+  },
+  {
+    "id": "hamlet_shakespeare_ch_13",
+    "bookId": "hamlet_shakespeare",
+    "chapterIndex": 13,
+    "title": "第13章",
+    "titleEn": "Chapter 13",
+    "sentences": [
       {
         "chinese": "可是，殿下，他们的地位已经被一群羽毛未丰的黄口小儿占夺了去。",
         "pinyin": "kě shì ， diàn xià ， tā mén de dì wèi yǐ jīng bèi yī qún yǔ máo wèi fēng de huáng kǒu xiǎo ér zhàn duó le qù 。",
@@ -5085,8 +5010,8 @@
         "english": ""
       },
       {
-        "chinese": "吉尔登斯吞 这班戏子们来了。",
-        "pinyin": "jí ěr dēng sī tūn   zhè bān xì zǐ mén lái le 。",
+        "chinese": "）\n\t吉尔登斯吞 这班戏子们来了。",
+        "pinyin": "） \n \t jí ěr dēng sī tūn   zhè bān xì zǐ mén lái le 。",
         "english": ""
       },
       {
@@ -5200,13 +5125,8 @@
         "english": ""
       },
       {
-        "chinese": "当罗歇斯在罗马演戏的时候——",
-        "pinyin": "dāng luó xiē sī zài luó mǎ yǎn xì de shí hòu — —",
-        "english": ""
-      },
-      {
-        "chinese": "波洛涅斯 那班戏子们已经到这儿来了，殿下。",
-        "pinyin": "bō luò niè sī   nà bān xì zǐ mén yǐ jīng dào zhè ér lái le ， diàn xià 。",
+        "chinese": "当罗歇斯在罗马演戏的时候——\n\t波洛涅斯 那班戏子们已经到这儿来了，殿下。",
+        "pinyin": "dāng luó xiē sī zài luó mǎ yǎn xì de shí hòu — — \n \t bō luò niè sī   nà bān xì zǐ mén yǐ jīng dào zhè ér lái le ， diàn xià 。",
         "english": ""
       },
       {
@@ -5215,13 +5135,8 @@
         "english": ""
       },
       {
-        "chinese": "波洛涅斯 凭着我的名誉起誓——",
-        "pinyin": "bō luò niè sī   píng zhuó wǒ de míng yù qǐ shì — —",
-        "english": ""
-      },
-      {
-        "chinese": "哈姆莱特 那时每一个伶人都骑着驴子而来——",
-        "pinyin": "hā mǔ lái tè   nà shí měi yī gè líng rén dōu qí zhuó lǘ zǐ ér lái — —",
+        "chinese": "波洛涅斯 凭着我的名誉起誓——\n\t哈姆莱特 那时每一个伶人都骑着驴子而来——",
+        "pinyin": "bō luò niè sī   píng zhuó wǒ de míng yù qǐ shì — — \n \t hā mǔ lái tè   nà shí měi yī gè líng rén dōu qí zhuó lǘ zǐ ér lái — —",
         "english": ""
       },
       {
@@ -5250,18 +5165,8 @@
         "english": ""
       },
       {
-        "chinese": "哈姆莱特 嗨，",
-        "pinyin": "hā mǔ lái tè   hāi ，",
-        "english": ""
-      },
-      {
-        "chinese": "他有一个独生娇女，",
-        "pinyin": "tā yǒu yī gè dú shēng jiāo nǚ ，",
-        "english": ""
-      },
-      {
-        "chinese": "爱她胜过掌上明珠。",
-        "pinyin": "ài tā shèng guò zhǎng shàng míng zhū 。",
+        "chinese": "哈姆莱特 嗨，\n\t他有一个独生娇女，\n\t爱她胜过掌上明珠。",
+        "pinyin": "hā mǔ lái tè   hāi ， \n \t tā yǒu yī gè dú shēng jiāo nǚ ， \n \t ài tā shèng guò zhǎng shàng míng zhū 。",
         "english": ""
       },
       {
@@ -5290,39 +5195,15 @@
         "english": ""
       },
       {
-        "chinese": "哈姆莱特 嗨，",
-        "pinyin": "hā mǔ lái tè   hāi ，",
+        "chinese": "哈姆莱特 嗨，\n\t上天不佑，劫数临头。",
+        "pinyin": "hā mǔ lái tè   hāi ， \n \t shàng tiān bù yòu ， jié shǔ lín tóu 。",
         "english": ""
       },
       {
-        "chinese": "上天不佑，劫数临头。",
-        "pinyin": "shàng tiān bù yòu ， jié shǔ lín tóu 。",
+        "chinese": "下面你知道还有，\n\t偏偏凑巧，谁也难保——\n\t要知道全文，请查这支圣歌的第一节，因为，你瞧，有人来把我的话头打断了。",
+        "pinyin": "xià miàn nǐ zhī dào hái yǒu ， \n \t piān piān còu qiǎo ， shuí yě nán bǎo — — \n \t yào zhī dào quán wén ， qǐng chá zhè zhī shèng gē de dì yī jié ， yīn wèi ， nǐ qiáo ， yǒu rén lái bǎ wǒ de huà tóu dǎ duàn le 。",
         "english": ""
       },
-      {
-        "chinese": "下面你知道还有，",
-        "pinyin": "xià miàn nǐ zhī dào hái yǒu ，",
-        "english": ""
-      },
-      {
-        "chinese": "偏偏凑巧，谁也难保——",
-        "pinyin": "piān piān còu qiǎo ， shuí yě nán bǎo — —",
-        "english": ""
-      },
-      {
-        "chinese": "要知道全文，请查这支圣歌的第一节，因为，你瞧，有人来把我的话头打断了。",
-        "pinyin": "yào zhī dào quán wén ， qǐng chá zhè zhī shèng gē de dì yī jié ， yīn wèi ， nǐ qiáo ， yǒu rén lái bǎ wǒ de huà tóu dǎ duàn le 。",
-        "english": ""
-      }
-    ]
-  },
-  {
-    "id": "hamlet_shakespeare_ch_14",
-    "bookId": "hamlet_shakespeare",
-    "chapterIndex": 14,
-    "title": "第14章",
-    "titleEn": "Chapter 14",
-    "sentences": [
       {
         "chinese": "优伶四五人上。",
         "pinyin": "yōu líng sì wǔ rén shàng 。",
@@ -5432,20 +5313,24 @@
         "chinese": "其中有一段话是我最喜爱的，那就是埃涅阿斯对狄多讲述的故事，尤其是讲到普里阿摩斯被杀的那一节。",
         "pinyin": "qí zhōng yǒu yī duàn huà shì wǒ zuì xǐ ài de ， nà jiù shì āi niè ā sī duì dí duō jiǎng shù de gù shì ， yóu qí shì jiǎng dào pǔ lǐ ā mó sī bèi shā de nà yī jié 。",
         "english": ""
-      },
+      }
+    ]
+  },
+  {
+    "id": "hamlet_shakespeare_ch_14",
+    "bookId": "hamlet_shakespeare",
+    "chapterIndex": 14,
+    "title": "第14章",
+    "titleEn": "Chapter 14",
+    "sentences": [
       {
         "chinese": "要是你们还没有把它忘记，请从这一行念起；",
         "pinyin": "yào shì nǐ mén hái méi yǒu bǎ tā wàng jì ， qǐng cóng zhè yī xíng niàn qǐ ；",
         "english": ""
       },
       {
-        "chinese": "让我想想，让我想想：——",
-        "pinyin": "ràng wǒ xiǎng xiǎng ， ràng wǒ xiǎng xiǎng ： — —",
-        "english": ""
-      },
-      {
-        "chinese": "野蛮的皮洛斯像猛虎一样——",
-        "pinyin": "yě mán de pí luò sī xiàng měng hǔ yī yàng — —",
+        "chinese": "让我想想，让我想想：——\n\t野蛮的皮洛斯像猛虎一样——",
+        "pinyin": "ràng wǒ xiǎng xiǎng ， ràng wǒ xiǎng xiǎng ： — — \n \t yě mán de pí luò sī xiàng měng hǔ yī yàng — —",
         "english": ""
       },
       {
@@ -5454,83 +5339,43 @@
         "english": ""
       },
       {
-        "chinese": "但是的确是从皮洛斯开始的：——",
-        "pinyin": "dàn shì dí què shì cóng pí luò sī kāi shǐ de ： — —",
+        "chinese": "但是的确是从皮洛斯开始的：——\n\t野蛮的皮洛斯蹲伏在木马之中，",
+        "pinyin": "dàn shì dí què shì cóng pí luò sī kāi shǐ de ： — — \n \t yě mán de pí luò sī dūn fú zài mù mǎ zhī zhōng ，",
         "english": ""
       },
       {
-        "chinese": "野蛮的皮洛斯蹲伏在木马之中，",
-        "pinyin": "yě mán de pí luò sī dūn fú zài mù mǎ zhī zhōng ，",
+        "chinese": "黝黑的手臂和他的决心一样，\n\t像黑夜一般阴森而恐怖；",
+        "pinyin": "yǒu hēi de shǒu bì hé tā de jué xīn yī yàng ， \n \t xiàng hēi yè yī bān yīn sēn ér kǒng bù ；",
         "english": ""
       },
       {
-        "chinese": "黝黑的手臂和他的决心一样，",
-        "pinyin": "yǒu hēi de shǒu bì hé tā de jué xīn yī yàng ，",
+        "chinese": "在这黑暗狰狞的肌肤之上，\n\t现在更染上令人惊怖的纹章，",
+        "pinyin": "zài zhè hēi àn zhēng níng de jī fū zhī shàng ， \n \t xiàn zài gèng rǎn shàng lìng rén jīng bù de wén zhāng ，",
         "english": ""
       },
       {
-        "chinese": "像黑夜一般阴森而恐怖；",
-        "pinyin": "xiàng hēi yè yī bān yīn sēn ér kǒng bù ；",
+        "chinese": "从头到脚，他全身一片殷红，\n\t溅满了父母子女们无辜的血，",
+        "pinyin": "cóng tóu dào jiǎo ， tā quán shēn yī piàn yān hóng ， \n \t jiàn mǎn le fù mǔ zǐ nǚ mén wú gū de xiě ，",
         "english": ""
       },
       {
-        "chinese": "在这黑暗狰狞的肌肤之上，",
-        "pinyin": "zài zhè hēi àn zhēng níng de jī fū zhī shàng ，",
+        "chinese": "那些燃烧着熊熊烈火的街道，\n\t发出残忍而惨恶的凶光，",
+        "pinyin": "nà xiē rán shāo zhuó xióng xióng liè huǒ de jiē dào ， \n \t fā chū cán rěn ér cǎn è de xiōng guāng ，",
         "english": ""
       },
       {
-        "chinese": "现在更染上令人惊怖的纹章，",
-        "pinyin": "xiàn zài gèng rǎn shàng lìng rén jīng bù de wén zhāng ，",
+        "chinese": "照亮敌人去肆行他们的杀戮，\n\t也焙干了到处横流的血泊；",
+        "pinyin": "zhào liàng dí rén qù sì xíng tā mén de shā lù ， \n \t yě bèi gān le dào chù héng liú de xuè pō ；",
         "english": ""
       },
       {
-        "chinese": "从头到脚，他全身一片殷红，",
-        "pinyin": "cóng tóu dào jiǎo ， tā quán shēn yī piàn yān hóng ，",
+        "chinese": "冒着火焰的熏炙，像恶魔一般，\n\t全身胶黏着凝结的血块，",
+        "pinyin": "mào zhuó huǒ yàn de xūn zhì ， xiàng è mó yī bān ， \n \t quán shēn jiāo nián zhuó níng jié de xiě kuài ，",
         "english": ""
       },
       {
-        "chinese": "溅满了父母子女们无辜的血，",
-        "pinyin": "jiàn mǎn le fù mǔ zǐ nǚ mén wú gū de xiě ，",
-        "english": ""
-      },
-      {
-        "chinese": "那些燃烧着熊熊烈火的街道，",
-        "pinyin": "nà xiē rán shāo zhuó xióng xióng liè huǒ de jiē dào ，",
-        "english": ""
-      },
-      {
-        "chinese": "发出残忍而惨恶的凶光，",
-        "pinyin": "fā chū cán rěn ér cǎn è de xiōng guāng ，",
-        "english": ""
-      },
-      {
-        "chinese": "照亮敌人去肆行他们的杀戮，",
-        "pinyin": "zhào liàng dí rén qù sì xíng tā mén de shā lù ，",
-        "english": ""
-      },
-      {
-        "chinese": "也焙干了到处横流的血泊；",
-        "pinyin": "yě bèi gān le dào chù héng liú de xuè pō ；",
-        "english": ""
-      },
-      {
-        "chinese": "冒着火焰的熏炙，像恶魔一般，",
-        "pinyin": "mào zhuó huǒ yàn de xūn zhì ， xiàng è mó yī bān ，",
-        "english": ""
-      },
-      {
-        "chinese": "全身胶黏着凝结的血块，",
-        "pinyin": "quán shēn jiāo nián zhuó níng jié de xiě kuài ，",
-        "english": ""
-      },
-      {
-        "chinese": "圆睁着两颗血红的眼睛，",
-        "pinyin": "yuán zhēng zhuó liǎng kē xiě hóng de yǎn jīng ，",
-        "english": ""
-      },
-      {
-        "chinese": "来往寻找普里阿摩斯老王的踪迹。",
-        "pinyin": "lái wǎng xún zhǎo pǔ lǐ ā mó sī lǎo wáng de zōng jì 。",
+        "chinese": "圆睁着两颗血红的眼睛，\n\t来往寻找普里阿摩斯老王的踪迹。",
+        "pinyin": "yuán zhēng zhuó liǎng kē xiě hóng de yǎn jīng ， \n \t lái wǎng xún zhǎo pǔ lǐ ā mó sī lǎo wáng de zōng jì 。",
         "english": ""
       },
       {
@@ -5544,63 +5389,33 @@
         "english": ""
       },
       {
-        "chinese": "伶甲 那老王正在苦战，",
-        "pinyin": "líng jiǎ   nà lǎo wáng zhèng zài kǔ zhàn ，",
+        "chinese": "伶甲 那老王正在苦战，\n\t但是砍不着和他对敌的希腊人；",
+        "pinyin": "líng jiǎ   nà lǎo wáng zhèng zài kǔ zhàn ， \n \t dàn shì kǎn bù zhuó hé tā duì dí de xī là rén ；",
         "english": ""
       },
       {
-        "chinese": "但是砍不着和他对敌的希腊人；",
-        "pinyin": "dàn shì kǎn bù zhuó hé tā duì dí de xī là rén ；",
+        "chinese": "一点不听他手臂的指挥，\n\t他的古老的剑锵然落地；",
+        "pinyin": "yī diǎn bù tīng tā shǒu bì de zhǐ huī ， \n \t tā de gǔ lǎo de jiàn qiāng rán luò dì ；",
         "english": ""
       },
       {
-        "chinese": "一点不听他手臂的指挥，",
-        "pinyin": "yī diǎn bù tīng tā shǒu bì de zhǐ huī ，",
+        "chinese": "皮洛斯瞧他孤弱可欺，\n\t疯狂似的向他猛力攻击，",
+        "pinyin": "pí luò sī qiáo tā gū ruò kě qī ， \n \t fēng kuáng shì de xiàng tā měng lì gōng jī ，",
         "english": ""
       },
       {
-        "chinese": "他的古老的剑锵然落地；",
-        "pinyin": "tā de gǔ lǎo de jiàn qiāng rán luò dì ；",
+        "chinese": "凶恶的利刃虽然没有击中，\n\t一阵风却把那衰弱的老王倒。",
+        "pinyin": "xiōng è de lì rèn suī rán méi yǒu jī zhōng ， \n \t yī zhèn fēng què bǎ nà shuāi ruò de lǎo wáng dǎo 。",
         "english": ""
       },
       {
-        "chinese": "皮洛斯瞧他孤弱可欺，",
-        "pinyin": "pí luò sī qiáo tā gū ruò kě qī ，",
+        "chinese": "这一下打击有如天崩地裂，\n\t惊动了没有感觉的伊利恩，",
+        "pinyin": "zhè yī xià dǎ jī yǒu rú tiān bēng dì liè ， \n \t jīng dòng le méi yǒu gǎn jué de yī lì ēn ，",
         "english": ""
       },
       {
-        "chinese": "疯狂似的向他猛力攻击，",
-        "pinyin": "fēng kuáng shì de xiàng tā měng lì gōng jī ，",
-        "english": ""
-      },
-      {
-        "chinese": "凶恶的利刃虽然没有击中，",
-        "pinyin": "xiōng è de lì rèn suī rán méi yǒu jī zhōng ，",
-        "english": ""
-      },
-      {
-        "chinese": "一阵风却把那衰弱的老王倒。",
-        "pinyin": "yī zhèn fēng què bǎ nà shuāi ruò de lǎo wáng dǎo 。",
-        "english": ""
-      },
-      {
-        "chinese": "这一下打击有如天崩地裂，",
-        "pinyin": "zhè yī xià dǎ jī yǒu rú tiān bēng dì liè ，",
-        "english": ""
-      },
-      {
-        "chinese": "惊动了没有感觉的伊利恩，",
-        "pinyin": "jīng dòng le méi yǒu gǎn jué de yī lì ēn ，",
-        "english": ""
-      },
-      {
-        "chinese": "冒着火焰的城楼霎时坍下，",
-        "pinyin": "mào zhuó huǒ yàn de chéng lóu shà shí tān xià ，",
-        "english": ""
-      },
-      {
-        "chinese": "那轰然的巨响像一个霹雳，",
-        "pinyin": "nà hōng rán de jù xiǎng xiàng yī gè pī lì ，",
+        "chinese": "冒着火焰的城楼霎时坍下，\n\t那轰然的巨响像一个霹雳，",
+        "pinyin": "mào zhuó huǒ yàn de chéng lóu shà shí tān xià ， \n \t nà hōng rán de jù xiǎng xiàng yī gè pī lì ，",
         "english": ""
       },
       {
@@ -5609,23 +5424,13 @@
         "english": ""
       },
       {
-        "chinese": "他的剑还没砍下普里阿摩斯",
-        "pinyin": "tā de jiàn hái méi kǎn xià pǔ lǐ ā mó sī",
+        "chinese": "他的剑还没砍下普里阿摩斯\n\t白发的头颅，却已在空中停住；",
+        "pinyin": "tā de jiàn hái méi kǎn xià pǔ lǐ ā mó sī \n \t bái fā de tóu lú ， què yǐ zài kōng zhōng tíng zhù ；",
         "english": ""
       },
       {
-        "chinese": "白发的头颅，却已在空中停住；",
-        "pinyin": "bái fā de tóu lú ， què yǐ zài kōng zhōng tíng zhù ；",
-        "english": ""
-      },
-      {
-        "chinese": "像一个涂朱抹彩的暴君，",
-        "pinyin": "xiàng yī gè tú zhū mǒ cǎi de bào jūn ，",
-        "english": ""
-      },
-      {
-        "chinese": "对自己的行为漠不关心，",
-        "pinyin": "duì zì jǐ de xíng wèi mò bù guān xīn ，",
+        "chinese": "像一个涂朱抹彩的暴君，\n\t对自己的行为漠不关心，",
+        "pinyin": "xiàng yī gè tú zhū mǒ cǎi de bào jūn ， \n \t duì zì jǐ de xíng wèi mò bù guān xīn ，",
         "english": ""
       },
       {
@@ -5634,23 +5439,13 @@
         "english": ""
       },
       {
-        "chinese": "在一场暴风雨未来以前，",
-        "pinyin": "zài yī chǎng bào fēng yǔ wèi lái yǐ qián ，",
+        "chinese": "在一场暴风雨未来以前，\n\t天上往往有片刻的宁寂，",
+        "pinyin": "zài yī chǎng bào fēng yǔ wèi lái yǐ qián ， \n \t tiān shàng wǎng wǎng yǒu piàn kè de níng jì ，",
         "english": ""
       },
       {
-        "chinese": "天上往往有片刻的宁寂，",
-        "pinyin": "tiān shàng wǎng wǎng yǒu piàn kè de níng jì ，",
-        "english": ""
-      },
-      {
-        "chinese": "一块块乌云静悬在空中，",
-        "pinyin": "yī kuài kuài wū yún jìng xuán zài kōng zhōng ，",
-        "english": ""
-      },
-      {
-        "chinese": "狂风悄悄地收起它的声息，",
-        "pinyin": "kuáng fēng qiāo qiāo dì shōu qǐ tā de shēng xī ，",
+        "chinese": "一块块乌云静悬在空中，\n\t狂风悄悄地收起它的声息，",
+        "pinyin": "yī kuài kuài wū yún jìng xuán zài kōng zhōng ， \n \t kuáng fēng qiāo qiāo dì shōu qǐ tā de shēng xī ，",
         "english": ""
       },
       {
@@ -5659,43 +5454,23 @@
         "english": ""
       },
       {
-        "chinese": "可是就在这片刻之内，",
-        "pinyin": "kě shì jiù zài zhè piàn kè zhī nèi ，",
+        "chinese": "可是就在这片刻之内，\n\t可怕的雷鸣震裂了天空。",
+        "pinyin": "kě shì jiù zài zhè piàn kè zhī nèi ， \n \t kě pà de léi míng zhèn liè le tiān kōng 。",
         "english": ""
       },
       {
-        "chinese": "可怕的雷鸣震裂了天空。",
-        "pinyin": "kě pà de léi míng zhèn liè le tiān kōng 。",
+        "chinese": "经过暂时的休止，杀人的暴念\n\t重新激起了皮洛斯的精神；",
+        "pinyin": "jīng guò zàn shí de xiū zhǐ ， shā rén de bào niàn \n \t chóng xīn jī qǐ le pí luò sī de jīng shén ；",
         "english": ""
       },
       {
-        "chinese": "经过暂时的休止，杀人的暴念",
-        "pinyin": "jīng guò zàn shí de xiū zhǐ ， shā rén de bào niàn",
+        "chinese": "库克罗普斯为战神铸造甲胄，\n\t那巨力的锤击，还不及皮洛斯",
+        "pinyin": "kù kè luó pǔ sī wèi zhàn shén zhù zào jiǎ zhòu ， \n \t nà jù lì de chuí jī ， hái bù jí pí luò sī",
         "english": ""
       },
       {
-        "chinese": "重新激起了皮洛斯的精神；",
-        "pinyin": "chóng xīn jī qǐ le pí luò sī de jīng shén ；",
-        "english": ""
-      },
-      {
-        "chinese": "库克罗普斯为战神铸造甲胄，",
-        "pinyin": "kù kè luó pǔ sī wèi zhàn shén zhù zào jiǎ zhòu ，",
-        "english": ""
-      },
-      {
-        "chinese": "那巨力的锤击，还不及皮洛斯",
-        "pinyin": "nà jù lì de chuí jī ， hái bù jí pí luò sī",
-        "english": ""
-      },
-      {
-        "chinese": "流血的剑向普里阿摩斯身上劈下",
-        "pinyin": "liú xiě de jiàn xiàng pǔ lǐ ā mó sī shēn shàng pī xià",
-        "english": ""
-      },
-      {
-        "chinese": "那样凶狠无情。",
-        "pinyin": "nà yàng xiōng hěn wú qíng 。",
+        "chinese": "流血的剑向普里阿摩斯身上劈下\n\t那样凶狠无情。",
+        "pinyin": "liú xiě de jiàn xiàng pǔ lǐ ā mó sī shēn shàng pī xià \n \t nà yàng xiōng hěn wú qíng 。",
         "english": ""
       },
       {
@@ -5709,32 +5484,13 @@
         "english": ""
       },
       {
-        "chinese": "剥去她的权力，",
-        "pinyin": "bō qù tā de quán lì ，",
+        "chinese": "剥去她的权力，\n\t不要让她僭窃神明的宝座；",
+        "pinyin": "bō qù tā de quán lì ， \n \t bù yào ràng tā jiàn qiè shén míng de bǎo zuò ；",
         "english": ""
       },
       {
-        "chinese": "不要让她僭窃神明的宝座；",
-        "pinyin": "bù yào ràng tā jiàn qiè shén míng de bǎo zuò ；",
-        "english": ""
-      },
-      {
-        "chinese": "拆毁她的车轮，把它滚下神山，",
-        "pinyin": "chāi huǐ tā de chē lún ， bǎ tā gǔn xià shén shān ，",
-        "english": ""
-      }
-    ]
-  },
-  {
-    "id": "hamlet_shakespeare_ch_15",
-    "bookId": "hamlet_shakespeare",
-    "chapterIndex": 15,
-    "title": "第15章",
-    "titleEn": "Chapter 15",
-    "sentences": [
-      {
-        "chinese": "直到地狱的深渊。",
-        "pinyin": "zhí dào dì yù de shēn yuān 。",
+        "chinese": "拆毁她的车轮，把它滚下神山，\n\t直到地狱的深渊。",
+        "pinyin": "chāi huǐ tā de chē lún ， bǎ tā gǔn xià shén shān ， \n \t zhí dào dì yù de shēn yuān 。",
         "english": ""
       },
       {
@@ -5773,13 +5529,8 @@
         "english": ""
       },
       {
-        "chinese": "谁看见那蒙脸的王后——",
-        "pinyin": "shuí kàn jiàn nà mēng liǎn de wáng hòu — —",
-        "english": ""
-      },
-      {
-        "chinese": "哈姆莱特 “那蒙脸的王后”？",
-        "pinyin": "hā mǔ lái tè   “ nà mēng liǎn de wáng hòu ” ？",
+        "chinese": "谁看见那蒙脸的王后——\n\t哈姆莱特 “那蒙脸的王后”？",
+        "pinyin": "shuí kàn jiàn nà mēng liǎn de wáng hòu — — \n \t hā mǔ lái tè   “ nà mēng liǎn de wáng hòu ” ？",
         "english": ""
       },
       {
@@ -5793,23 +5544,13 @@
         "english": ""
       },
       {
-        "chinese": "伶甲 满面流泪，在火焰中赤脚奔走，",
-        "pinyin": "líng jiǎ   mǎn miàn liú lèi ， zài huǒ yàn zhōng chì jiǎo bēn zǒu ，",
+        "chinese": "伶甲 满面流泪，在火焰中赤脚奔走，\n\t一块布覆在失去宝冕的头上，",
+        "pinyin": "líng jiǎ   mǎn miàn liú lèi ， zài huǒ yàn zhōng chì jiǎo bēn zǒu ， \n \t yī kuài bù fù zài shī qù bǎo miǎn de tóu shàng ，",
         "english": ""
       },
       {
-        "chinese": "一块布覆在失去宝冕的头上，",
-        "pinyin": "yī kuài bù fù zài shī qù bǎo miǎn de tóu shàng ，",
-        "english": ""
-      },
-      {
-        "chinese": "也没有一件蔽体的衣服，",
-        "pinyin": "yě méi yǒu yī jiàn bì tǐ de yī fú ，",
-        "english": ""
-      },
-      {
-        "chinese": "只有在惊惶中抓到的一幅毡巾，",
-        "pinyin": "zhǐ yǒu zài jīng huáng zhōng zhuā dào de yī fú zhān jīn ，",
+        "chinese": "也没有一件蔽体的衣服，\n\t只有在惊惶中抓到的一幅毡巾，",
+        "pinyin": "yě méi yǒu yī jiàn bì tǐ de yī fú ， \n \t zhǐ yǒu zài jīng huáng zhōng zhuā dào de yī fú zhān jīn ，",
         "english": ""
       },
       {
@@ -5818,43 +5559,23 @@
         "english": ""
       },
       {
-        "chinese": "谁见了这样伤心惨目的景象，",
-        "pinyin": "shuí jiàn le zhè yàng shāng xīn cǎn mù dì jǐng xiàng ，",
+        "chinese": "谁见了这样伤心惨目的景象，\n\t不要向残酷的命运申申毒詈？",
+        "pinyin": "shuí jiàn le zhè yàng shāng xīn cǎn mù dì jǐng xiàng ， \n \t bù yào xiàng cán kù de mìng yùn shēn shēn dú lì ？",
         "english": ""
       },
       {
-        "chinese": "不要向残酷的命运申申毒詈？",
-        "pinyin": "bù yào xiàng cán kù de mìng yùn shēn shēn dú lì ？",
+        "chinese": "她看见皮洛斯以杀人为戏，\n\t正在把她的丈夫的肢体脔割，",
+        "pinyin": "tā kàn jiàn pí luò sī yǐ shā rén wèi xì ， \n \t zhèng zài bǎ tā de zhàng fū de zhī tǐ luán gē ，",
         "english": ""
       },
       {
-        "chinese": "她看见皮洛斯以杀人为戏，",
-        "pinyin": "tā kàn jiàn pí luò sī yǐ shā rén wèi xì ，",
+        "chinese": "忍不住大放哀声，那凄凉的号叫——\n\t除非人间的哀乐不能感动天庭——",
+        "pinyin": "rěn bù zhù dà fàng āi shēng ， nà qī liáng de hào jiào — — \n \t chú fēi rén jiān de āi lè bù néng gǎn dòng tiān tíng — —",
         "english": ""
       },
       {
-        "chinese": "正在把她的丈夫的肢体脔割，",
-        "pinyin": "zhèng zài bǎ tā de zhàng fū de zhī tǐ luán gē ，",
-        "english": ""
-      },
-      {
-        "chinese": "忍不住大放哀声，那凄凉的号叫——",
-        "pinyin": "rěn bù zhù dà fàng āi shēng ， nà qī liáng de hào jiào — —",
-        "english": ""
-      },
-      {
-        "chinese": "除非人间的哀乐不能感动天庭——",
-        "pinyin": "chú fēi rén jiān de āi lè bù néng gǎn dòng tiān tíng — —",
-        "english": ""
-      },
-      {
-        "chinese": "即使天上的星星也会陪她流泪，",
-        "pinyin": "jí shǐ tiān shàng de xīng xīng yě huì péi tā liú lèi ，",
-        "english": ""
-      },
-      {
-        "chinese": "假使那时诸神曾在场目击，",
-        "pinyin": "jiǎ shǐ nà shí zhū shén céng zài chǎng mù jī ，",
+        "chinese": "即使天上的星星也会陪她流泪，\n\t假使那时诸神曾在场目击，",
+        "pinyin": "jí shǐ tiān shàng de xīng xīng yě huì péi tā liú lèi ， \n \t jiǎ shǐ nà shí zhū shén céng zài chǎng mù jī ，",
         "english": ""
       },
       {
@@ -6001,10 +5722,19 @@
         "chinese": "（罗森格兰兹、吉尔登斯吞同下。",
         "pinyin": "（ luó sēn gé lán zī 、 jí ěr dēng sī tūn tóng xià 。",
         "english": ""
-      },
+      }
+    ]
+  },
+  {
+    "id": "hamlet_shakespeare_ch_15",
+    "bookId": "hamlet_shakespeare",
+    "chapterIndex": 15,
+    "title": "第15章",
+    "titleEn": "Chapter 15",
+    "sentences": [
       {
-        "chinese": "哈姆莱特 好，上帝和你们同在！",
-        "pinyin": "hā mǔ lái tè   hǎo ， shàng dì hé nǐ mén tóng zài ！",
+        "chinese": "）\n\t哈姆莱特 好，上帝和你们同在！",
+        "pinyin": "） \n \t hā mǔ lái tè   hǎo ， shàng dì hé nǐ mén tóng zài ！",
         "english": ""
       },
       {
@@ -6131,16 +5861,7 @@
         "chinese": "我听人家说，犯罪的人在看戏的时候，因为台上表演的巧妙，有时会激动天良，当场供认他们的罪恶；",
         "pinyin": "wǒ tīng rén jiā shuō ， fàn zuì de rén zài kàn xì de shí hòu ， yīn wèi tái shàng biǎo yǎn de qiǎo miào ， yǒu shí huì jī dòng tiān liáng ， dāng chǎng gòng rèn tā mén de zuì è ；",
         "english": ""
-      }
-    ]
-  },
-  {
-    "id": "hamlet_shakespeare_ch_16",
-    "bookId": "hamlet_shakespeare",
-    "chapterIndex": 16,
-    "title": "第16章",
-    "titleEn": "Chapter 16",
-    "sentences": [
+      },
       {
         "chinese": "因为暗杀的事情无论干得怎样秘密，总会借着神奇的喉舌泄露出来。",
         "pinyin": "yīn wèi àn shā de shì qíng wú lùn gān dé zěn yàng mì mì ， zǒng huì jiè zhuó shén qí de hóu shé xiè lòu chū lái 。",
@@ -6187,13 +5908,8 @@
         "english": ""
       },
       {
-        "chinese": "第一场 城堡中一室",
-        "pinyin": "dì yī chǎng   chéng bǎo zhōng yī shì",
-        "english": ""
-      },
-      {
-        "chinese": "国王、王后、波洛涅斯、奥菲利娅、罗森格兰兹及吉尔登斯吞上。",
-        "pinyin": "guó wáng 、 wáng hòu 、 bō luò niè sī 、 ào fēi lì yà 、 luó sēn gé lán zī jí jí ěr dēng sī tūn shàng 。",
+        "chinese": "）\n第一场 城堡中一室\n\t国王、王后、波洛涅斯、奥菲利娅、罗森格兰兹及吉尔登斯吞上。",
+        "pinyin": "） \n dì yī chǎng   chéng bǎo zhōng yī shì \n \t guó wáng 、 wáng hòu 、 bō luò niè sī 、 ào fēi lì yà 、 luó sēn gé lán zī jí jí ěr dēng sī tūn shàng 。",
         "english": ""
       },
       {
@@ -6292,8 +6008,8 @@
         "english": ""
       },
       {
-        "chinese": "国王 亲爱的乔特鲁德，你也暂时离开我们；",
-        "pinyin": "guó wáng   qīn ài de qiáo tè lǔ dé ， nǐ yě zàn shí lí kāi wǒ mén ；",
+        "chinese": "）\n\t国王 亲爱的乔特鲁德，你也暂时离开我们；",
+        "pinyin": "） \n \t guó wáng   qīn ài de qiáo tè lǔ dé ， nǐ yě zàn shí lí kāi wǒ mén ；",
         "english": ""
       },
       {
@@ -6332,8 +6048,8 @@
         "english": ""
       },
       {
-        "chinese": "波洛涅斯 奥菲利娅，你在这儿走走。",
-        "pinyin": "bō luò niè sī   ào fēi lì yà ， nǐ zài zhè ér zǒu zǒu 。",
+        "chinese": "）\n\t波洛涅斯 奥菲利娅，你在这儿走走。",
+        "pinyin": "） \n \t bō luò niè sī   ào fēi lì yà ， nǐ zài zhè ér zǒu zǒu 。",
         "english": ""
       },
       {
@@ -6387,8 +6103,8 @@
         "english": ""
       },
       {
-        "chinese": "哈姆莱特上。",
-        "pinyin": "hā mǔ lái tè shàng 。",
+        "chinese": "）\n\t哈姆莱特上。",
+        "pinyin": "） \n \t hā mǔ lái tè shàng 。",
         "english": ""
       },
       {
@@ -6415,7 +6131,16 @@
         "chinese": "什么都完了；",
         "pinyin": "shén me dōu wán le ；",
         "english": ""
-      },
+      }
+    ]
+  },
+  {
+    "id": "hamlet_shakespeare_ch_16",
+    "bookId": "hamlet_shakespeare",
+    "chapterIndex": 16,
+    "title": "第16章",
+    "titleEn": "Chapter 16",
+    "sentences": [
       {
         "chinese": "要是在这一种睡眠之中，我们心头的创痛，以及其他无数血肉之躯所不能避免的打击，都可以从此消失，那正是我们求之不得的结局。",
         "pinyin": "yào shì zài zhè yī zhǒng shuì mián zhī zhōng ， wǒ mén xīn tóu de chuàng tòng ， yǐ jí qí tā wú shù xiě ròu zhī qū suǒ bù néng bì miǎn de dǎ jī ， dōu kě yǐ cóng cǐ xiāo shī ， nà zhèng shì wǒ mén qiú zhī bù dé de jié jú 。",
@@ -6540,16 +6265,7 @@
         "chinese": "哈姆莱特 你美丽吗？",
         "pinyin": "hā mǔ lái tè   nǐ měi lì ma ？",
         "english": ""
-      }
-    ]
-  },
-  {
-    "id": "hamlet_shakespeare_ch_17",
-    "bookId": "hamlet_shakespeare",
-    "chapterIndex": 17,
-    "title": "第17章",
-    "titleEn": "Chapter 17",
-    "sentences": [
+      },
       {
         "chinese": "奥菲利娅 殿下是什么意思？",
         "pinyin": "ào fēi lì yà   diàn xià shì shén me yì sī ？",
@@ -6771,8 +6487,8 @@
         "english": ""
       },
       {
-        "chinese": "奥菲利娅 啊，一颗多么高贵的心是这样殒落了！",
-        "pinyin": "ào fēi lì yà   ā ， yī kē duō me gāo guì de xīn shì zhè yàng yǔn luò le ！",
+        "chinese": "）\n\t奥菲利娅 啊，一颗多么高贵的心是这样殒落了！",
+        "pinyin": "） \n \t ào fēi lì yà   ā ， yī kē duō me gāo guì de xīn shì zhè yàng yǔn luò le ！",
         "english": ""
       },
       {
@@ -6824,7 +6540,16 @@
         "chinese": "为了防止万一，我已经当机立断，决定了一个办法：他必须立刻到英国去，向他们追索延宕未纳的贡物；",
         "pinyin": "wèi le fáng zhǐ wàn yī ， wǒ yǐ jīng dāng jī lì duàn ， jué dìng le yī gè bàn fǎ ： tā bì xū lì kè dào yīng guó qù ， xiàng tā mén zhuī suǒ yán dàng wèi nà de gòng wù ；",
         "english": ""
-      },
+      }
+    ]
+  },
+  {
+    "id": "hamlet_shakespeare_ch_17",
+    "bookId": "hamlet_shakespeare",
+    "chapterIndex": 17,
+    "title": "第17章",
+    "titleEn": "Chapter 17",
+    "sentences": [
       {
         "chinese": "也许他到海外各国游历一趟以后，时时变换的环境，可以替他排解去这一桩使他神思恍惚的心事。",
         "pinyin": "yě xǔ tā dào hǎi wài gè guó yóu lì yī tàng yǐ hòu ， shí shí biàn huàn de huán jìng ， kě yǐ tì tā pái jiě qù zhè yī zhuāng shǐ tā shén sī huǎng hū de xīn shì 。",
@@ -6896,13 +6621,8 @@
         "english": ""
       },
       {
-        "chinese": "第二场 城堡中的厅堂",
-        "pinyin": "dì èr chǎng   chéng bǎo zhōng de tīng táng",
-        "english": ""
-      },
-      {
-        "chinese": "哈姆莱特及若干伶人上。",
-        "pinyin": "hā mǔ lái tè jí ruò gān líng rén shàng 。",
+        "chinese": "）\n第二场 城堡中的厅堂\n\t哈姆莱特及若干伶人上。",
+        "pinyin": "） \n dì èr chǎng   chéng bǎo zhōng de tīng táng \n \t hā mǔ lái tè jí ruò gān líng rén shàng 。",
         "english": ""
       },
       {
@@ -6949,16 +6669,7 @@
         "chinese": "哈姆莱特 可是太平淡了也不对，你应该接受你自己的常识的指导，把动作和言语互相配合起来；",
         "pinyin": "hā mǔ lái tè   kě shì tài píng dàn le yě bù duì ， nǐ yīng gāi jiē shòu nǐ zì jǐ de cháng shí de zhǐ dǎo ， bǎ dòng zuò hé yán yǔ hù xiāng pèi hé qǐ lái ；",
         "english": ""
-      }
-    ]
-  },
-  {
-    "id": "hamlet_shakespeare_ch_18",
-    "bookId": "hamlet_shakespeare",
-    "chapterIndex": 18,
-    "title": "第18章",
-    "titleEn": "Chapter 18",
-    "sentences": [
+      },
       {
         "chinese": "特别要注意到这一点，你不能越过自然的常道；",
         "pinyin": "tè bié yào zhù yì dào zhè yī diǎn ， nǐ bù néng yuè guò zì rán de cháng dào ；",
@@ -7025,8 +6736,8 @@
         "english": ""
       },
       {
-        "chinese": "波洛涅斯、罗森格兰兹及吉尔登斯吞上。",
-        "pinyin": "bō luò niè sī 、 luó sēn gé lán zī jí jí ěr dēng sī tūn shàng 。",
+        "chinese": "）\n\t波洛涅斯、罗森格兰兹及吉尔登斯吞上。",
+        "pinyin": "） \n \t bō luò niè sī 、 luó sēn gé lán zī jí jí ěr dēng sī tūn shàng 。",
         "english": ""
       },
       {
@@ -7080,8 +6791,8 @@
         "english": ""
       },
       {
-        "chinese": "哈姆莱特 不，不要以为我在恭维了你；",
-        "pinyin": "hā mǔ lái tè   bù ， bù yào yǐ wèi wǒ zài gōng wéi le nǐ ；",
+        "chinese": "——\n\t哈姆莱特 不，不要以为我在恭维了你；",
+        "pinyin": "— — \n \t hā mǔ lái tè   bù ， bù yào yǐ wèi wǒ zài gōng wéi le nǐ ；",
         "english": ""
       },
       {
@@ -7238,7 +6949,16 @@
         "chinese": "波洛涅斯 我扮的是裘力斯·凯撒；",
         "pinyin": "bō luò niè sī   wǒ bàn de shì qiú lì sī · kǎi sā ；",
         "english": ""
-      },
+      }
+    ]
+  },
+  {
+    "id": "hamlet_shakespeare_ch_18",
+    "bookId": "hamlet_shakespeare",
+    "chapterIndex": 18,
+    "title": "第18章",
+    "titleEn": "Chapter 18",
+    "sentences": [
       {
         "chinese": "勃鲁托斯在朱庇特神殿里把我杀死。",
         "pinyin": "bó lǔ tuō sī zài zhū bì tè shén diàn lǐ bǎ wǒ shā sǐ 。",
@@ -7358,16 +7078,7 @@
         "chinese": "你瞧，我的母亲多么高兴，我的父亲还不过死了两个钟头。",
         "pinyin": "nǐ qiáo ， wǒ de mǔ qīn duō me gāo xìng ， wǒ de fù qīn hái bù guò sǐ le liǎng gè zhōng tóu 。",
         "english": ""
-      }
-    ]
-  },
-  {
-    "id": "hamlet_shakespeare_ch_19",
-    "bookId": "hamlet_shakespeare",
-    "chapterIndex": 19,
-    "title": "第19章",
-    "titleEn": "Chapter 19",
-    "sentences": [
+      },
       {
         "chinese": "奥菲利娅 不，已经四个月了，殿下。",
         "pinyin": "ào fēi lì yà   bù ， yǐ jīng sì gè yuè le ， diàn xià 。",
@@ -7529,18 +7240,8 @@
         "english": ""
       },
       {
-        "chinese": "开场词",
-        "pinyin": "kāi chǎng cí",
-        "english": ""
-      },
-      {
-        "chinese": "这悲剧要是演不好，",
-        "pinyin": "zhè bēi jù yào shì yǎn bù hǎo ，",
-        "english": ""
-      },
-      {
-        "chinese": "要请各位原谅指教，",
-        "pinyin": "yào qǐng gè wèi yuán liàng zhǐ jiào ，",
+        "chinese": "开场词\n\t这悲剧要是演不好，\n\t要请各位原谅指教，",
+        "pinyin": "kāi chǎng cí \n \t zhè bēi jù yào shì yǎn bù hǎo ， \n \t yào qǐng gè wèi yuán liàng zhǐ jiào ，",
         "english": ""
       },
       {
@@ -7554,8 +7255,8 @@
         "english": ""
       },
       {
-        "chinese": "哈姆莱特 这算开场词呢，还是指环上的诗铭？",
-        "pinyin": "hā mǔ lái tè   zhè suàn kāi chǎng cí ne ， hái shì zhǐ huán shàng de shī míng ？",
+        "chinese": "）\n\t哈姆莱特 这算开场词呢，还是指环上的诗铭？",
+        "pinyin": "） \n \t hā mǔ lái tè   zhè suàn kāi chǎng cí ne ， hái shì zhǐ huán shàng de shī míng ？",
         "english": ""
       },
       {
@@ -7574,53 +7275,28 @@
         "english": ""
       },
       {
-        "chinese": "伶王 日轮已经盘绕三十春秋，",
-        "pinyin": "líng wáng   rì lún yǐ jīng pán rào sān shí chūn qiū ，",
+        "chinese": "伶王 日轮已经盘绕三十春秋，\n\t那茫茫海水和滚滚地球。",
+        "pinyin": "líng wáng   rì lún yǐ jīng pán rào sān shí chūn qiū ， \n \t nà máng máng hǎi shuǐ hé gǔn gǔn dì qiú 。",
         "english": ""
       },
       {
-        "chinese": "那茫茫海水和滚滚地球。",
-        "pinyin": "nà máng máng hǎi shuǐ hé gǔn gǔn dì qiú 。",
+        "chinese": "月亮吐耀着借来的晶光，\n\t三百六十回向大地环航，",
+        "pinyin": "yuè liàng tǔ yào zhuó jiè lái de jīng guāng ， \n \t sān bǎi liù shí huí xiàng dà dì huán háng ，",
         "english": ""
       },
       {
-        "chinese": "月亮吐耀着借来的晶光，",
-        "pinyin": "yuè liàng tǔ yào zhuó jiè lái de jīng guāng ，",
+        "chinese": "自从爱把我们缔结良姻，\n\t许门替我们证下了鸳盟。",
+        "pinyin": "zì cóng ài bǎ wǒ mén dì jié liáng yīn ， \n \t xǔ mén tì wǒ mén zhèng xià le yuān méng 。",
         "english": ""
       },
       {
-        "chinese": "三百六十回向大地环航，",
-        "pinyin": "sān bǎi liù shí huí xiàng dà dì huán háng ，",
+        "chinese": "伶后 愿日月继续他们的周游，\n\t让我们再厮守三十春秋！",
+        "pinyin": "líng hòu   yuàn rì yuè jì xù tā mén de zhōu yóu ， \n \t ràng wǒ mén zài sī shǒu sān shí chūn qiū ！",
         "english": ""
       },
       {
-        "chinese": "自从爱把我们缔结良姻，",
-        "pinyin": "zì cóng ài bǎ wǒ mén dì jié liáng yīn ，",
-        "english": ""
-      },
-      {
-        "chinese": "许门替我们证下了鸳盟。",
-        "pinyin": "xǔ mén tì wǒ mén zhèng xià le yuān méng 。",
-        "english": ""
-      },
-      {
-        "chinese": "伶后 愿日月继续他们的周游，",
-        "pinyin": "líng hòu   yuàn rì yuè jì xù tā mén de zhōu yóu ，",
-        "english": ""
-      },
-      {
-        "chinese": "让我们再厮守三十春秋！",
-        "pinyin": "ràng wǒ mén zài sī shǒu sān shí chūn qiū ！",
-        "english": ""
-      },
-      {
-        "chinese": "可是唉，你近来这样多病",
-        "pinyin": "kě shì āi ， nǐ jìn lái zhè yàng duō bìng",
-        "english": ""
-      },
-      {
-        "chinese": "郁郁寡欢，失去旧时高兴",
-        "pinyin": "yù yù guǎ huān ， shī qù jiù shí gāo xìng",
+        "chinese": "可是唉，你近来这样多病\n\t郁郁寡欢，失去旧时高兴",
+        "pinyin": "kě shì āi ， nǐ jìn lái zhè yàng duō bìng \n \t yù yù guǎ huān ， shī qù jiù shí gāo xìng",
         "english": ""
       },
       {
@@ -7634,23 +7310,13 @@
         "english": ""
       },
       {
-        "chinese": "女人的忧伤像爱情一样，",
-        "pinyin": "nǚ rén de yōu shāng xiàng ài qíng yī yàng ，",
+        "chinese": "女人的忧伤像爱情一样，\n\t不是大少，就是超过分量；",
+        "pinyin": "nǚ rén de yōu shāng xiàng ài qíng yī yàng ， \n \t bù shì dà shǎo ， jiù shì chāo guò fēn liàng ；",
         "english": ""
       },
       {
-        "chinese": "不是大少，就是超过分量；",
-        "pinyin": "bù shì dà shǎo ， jiù shì chāo guò fēn liàng ；",
-        "english": ""
-      },
-      {
-        "chinese": "你知道我爱你是多么深，",
-        "pinyin": "nǐ zhī dào wǒ ài nǐ shì duō me shēn ，",
-        "english": ""
-      },
-      {
-        "chinese": "所以才会有如此的忧心。",
-        "pinyin": "suǒ yǐ cái huì yǒu rú cǐ de yōu xīn 。",
+        "chinese": "你知道我爱你是多么深，\n\t所以才会有如此的忧心。",
+        "pinyin": "nǐ zhī dào wǒ ài nǐ shì duō me shēn ， \n \t suǒ yǐ cái huì yǒu rú cǐ de yōu xīn 。",
         "english": ""
       },
       {
@@ -7664,33 +7330,18 @@
         "english": ""
       },
       {
-        "chinese": "伶王 爱人，我不久必须离开你，",
-        "pinyin": "líng wáng   ài rén ， wǒ bù jiǔ bì xū lí kāi nǐ ，",
+        "chinese": "伶王 爱人，我不久必须离开你，\n\t我的全身将要失去生机；",
+        "pinyin": "líng wáng   ài rén ， wǒ bù jiǔ bì xū lí kāi nǐ ， \n \t wǒ de quán shēn jiāng yào shī qù shēng jī ；",
         "english": ""
       },
       {
-        "chinese": "我的全身将要失去生机；",
-        "pinyin": "wǒ de quán shēn jiāng yào shī qù shēng jī ；",
+        "chinese": "留下你在这繁华的世界\n\t安享尊荣，受人们的敬爱：",
+        "pinyin": "liú xià nǐ zài zhè fán huá de shì jiè \n \t ān xiǎng zūn róng ， shòu rén mén de jìng ài ：",
         "english": ""
       },
       {
-        "chinese": "留下你在这繁华的世界",
-        "pinyin": "liú xià nǐ zài zhè fán huá de shì jiè",
-        "english": ""
-      },
-      {
-        "chinese": "安享尊荣，受人们的敬爱：",
-        "pinyin": "ān xiǎng zūn róng ， shòu rén mén de jìng ài ：",
-        "english": ""
-      },
-      {
-        "chinese": "也许再嫁一位如意郎君——",
-        "pinyin": "yě xǔ zài jià yī wèi rú yì láng jūn — —",
-        "english": ""
-      },
-      {
-        "chinese": "伶后 啊！",
-        "pinyin": "líng hòu   ā ！",
+        "chinese": "也许再嫁一位如意郎君——\n\t伶后 啊！",
+        "pinyin": "yě xǔ zài jià yī wèi rú yì láng jūn — — \n \t líng hòu   ā ！",
         "english": ""
       },
       {
@@ -7699,137 +7350,77 @@
         "english": ""
       },
       {
-        "chinese": "我倘忘旧迎新，难邀天恕，",
-        "pinyin": "wǒ tǎng wàng jiù yíng xīn ， nán yāo tiān shù ，",
-        "english": ""
-      },
-      {
-        "chinese": "再嫁的除非是杀夫淫妇。",
-        "pinyin": "zài jià de chú fēi shì shā fū yín fù 。",
+        "chinese": "我倘忘旧迎新，难邀天恕，\n\t再嫁的除非是杀夫淫妇。",
+        "pinyin": "wǒ tǎng wàng jiù yíng xīn ， nán yāo tiān shù ， \n \t zài jià de chú fēi shì shā fū yín fù 。",
         "english": ""
       },
       {
         "chinese": "哈姆莱特 （旁白）苦恼，苦恼！",
         "pinyin": "hā mǔ lái tè   （ páng bái ） kǔ nǎo ， kǔ nǎo ！",
         "english": ""
-      },
-      {
-        "chinese": "伶后 妇人失节大半贪慕荣华，",
-        "pinyin": "líng hòu   fù rén shī jié dà bàn tān mù róng huá ，",
-        "english": ""
-      },
-      {
-        "chinese": "多情女子决不另抱琵琶；",
-        "pinyin": "duō qíng nǚ zǐ jué bù lìng bào pí pá ；",
-        "english": ""
-      },
-      {
-        "chinese": "我要是与他人共枕同衾，",
-        "pinyin": "wǒ yào shì yǔ tā rén gòng zhěn tóng qīn ，",
-        "english": ""
-      },
-      {
-        "chinese": "怎么对得起地下的先灵！",
-        "pinyin": "zěn me duì dé qǐ dì xià de xiān líng ！",
-        "english": ""
-      },
-      {
-        "chinese": "伶王 我相信你的话发自心田，",
-        "pinyin": "líng wáng   wǒ xiāng xìn nǐ de huà fā zì xīn tián ，",
-        "english": ""
-      },
-      {
-        "chinese": "可是我们往往自食前言。",
-        "pinyin": "kě shì wǒ mén wǎng wǎng zì shí qián yán 。",
-        "english": ""
-      },
-      {
-        "chinese": "志愿不过是记忆的奴隶，",
-        "pinyin": "zhì yuàn bù guò shì jì yì de nú lì ，",
-        "english": ""
-      },
-      {
-        "chinese": "总是有始无终，虎头蛇尾，",
-        "pinyin": "zǒng shì yǒu shǐ wú zhōng ， hǔ tóu shé wěi ，",
-        "english": ""
-      },
-      {
-        "chinese": "像未熟的果子密布树梢，",
-        "pinyin": "xiàng wèi shú de guǒ zǐ mì bù shù shāo ，",
-        "english": ""
-      },
-      {
-        "chinese": "一朝红烂就会离去枝条。",
-        "pinyin": "yī cháo hóng làn jiù huì lí qù zhī tiáo 。",
-        "english": ""
-      },
-      {
-        "chinese": "我们对自己的所负的债务，",
-        "pinyin": "wǒ mén duì zì jǐ de suǒ fù de zhài wù ，",
-        "english": ""
       }
     ]
   },
   {
-    "id": "hamlet_shakespeare_ch_20",
+    "id": "hamlet_shakespeare_ch_19",
     "bookId": "hamlet_shakespeare",
-    "chapterIndex": 20,
-    "title": "第20章",
-    "titleEn": "Chapter 20",
+    "chapterIndex": 19,
+    "title": "第19章",
+    "titleEn": "Chapter 19",
     "sentences": [
       {
-        "chinese": "最好把它丢在脑后不顾；",
-        "pinyin": "zuì hǎo bǎ tā diū zài nǎo hòu bù gù ；",
+        "chinese": "伶后 妇人失节大半贪慕荣华，\n\t多情女子决不另抱琵琶；",
+        "pinyin": "líng hòu   fù rén shī jié dà bàn tān mù róng huá ， \n \t duō qíng nǚ zǐ jué bù lìng bào pí pá ；",
         "english": ""
       },
       {
-        "chinese": "一时的热情中发下誓愿，",
-        "pinyin": "yī shí de rè qíng zhōng fā xià shì yuàn ，",
+        "chinese": "我要是与他人共枕同衾，\n\t怎么对得起地下的先灵！",
+        "pinyin": "wǒ yào shì yǔ tā rén gòng zhěn tóng qīn ， \n \t zěn me duì dé qǐ dì xià de xiān líng ！",
         "english": ""
       },
       {
-        "chinese": "心冷了，那意志也随云散。",
-        "pinyin": "xīn lěng le ， nà yì zhì yě suí yún sàn 。",
+        "chinese": "伶王 我相信你的话发自心田，\n\t可是我们往往自食前言。",
+        "pinyin": "líng wáng   wǒ xiāng xìn nǐ de huà fā zì xīn tián ， \n \t kě shì wǒ mén wǎng wǎng zì shí qián yán 。",
         "english": ""
       },
       {
-        "chinese": "过分的喜乐，剧烈的哀伤，",
-        "pinyin": "guò fēn de xǐ lè ， jù liè de āi shāng ，",
+        "chinese": "志愿不过是记忆的奴隶，\n\t总是有始无终，虎头蛇尾，",
+        "pinyin": "zhì yuàn bù guò shì jì yì de nú lì ， \n \t zǒng shì yǒu shǐ wú zhōng ， hǔ tóu shé wěi ，",
         "english": ""
       },
       {
-        "chinese": "反会毁害了感惰的本常。",
-        "pinyin": "fǎn huì huǐ hài le gǎn duò de běn cháng 。",
+        "chinese": "像未熟的果子密布树梢，\n\t一朝红烂就会离去枝条。",
+        "pinyin": "xiàng wèi shú de guǒ zǐ mì bù shù shāo ， \n \t yī cháo hóng làn jiù huì lí qù zhī tiáo 。",
         "english": ""
       },
       {
-        "chinese": "人世间的哀乐变幻无端，",
-        "pinyin": "rén shì jiān de āi lè biàn huàn wú duān ，",
+        "chinese": "我们对自己的所负的债务，\n\t最好把它丢在脑后不顾；",
+        "pinyin": "wǒ mén duì zì jǐ de suǒ fù de zhài wù ， \n \t zuì hǎo bǎ tā diū zài nǎo hòu bù gù ；",
         "english": ""
       },
       {
-        "chinese": "痛哭转瞬早变成了狂欢。",
-        "pinyin": "tòng kū zhuǎn shùn zǎo biàn chéng le kuáng huān 。",
+        "chinese": "一时的热情中发下誓愿，\n\t心冷了，那意志也随云散。",
+        "pinyin": "yī shí de rè qíng zhōng fā xià shì yuàn ， \n \t xīn lěng le ， nà yì zhì yě suí yún sàn 。",
         "english": ""
       },
       {
-        "chinese": "世界也会有毁灭的一天，",
-        "pinyin": "shì jiè yě huì yǒu huǐ miè de yī tiān ，",
+        "chinese": "过分的喜乐，剧烈的哀伤，\n\t反会毁害了感惰的本常。",
+        "pinyin": "guò fēn de xǐ lè ， jù liè de āi shāng ， \n \t fǎn huì huǐ hài le gǎn duò de běn cháng 。",
         "english": ""
       },
       {
-        "chinese": "何怪爱情要随境遇变迁；",
-        "pinyin": "hé guài ài qíng yào suí jìng yù biàn qiān ；",
+        "chinese": "人世间的哀乐变幻无端，\n\t痛哭转瞬早变成了狂欢。",
+        "pinyin": "rén shì jiān de āi lè biàn huàn wú duān ， \n \t tòng kū zhuǎn shùn zǎo biàn chéng le kuáng huān 。",
         "english": ""
       },
       {
-        "chinese": "有谁能解答这一个哑谜，",
-        "pinyin": "yǒu shuí néng jiě dá zhè yī gè yǎ mí ，",
+        "chinese": "世界也会有毁灭的一天，\n\t何怪爱情要随境遇变迁；",
+        "pinyin": "shì jiè yě huì yǒu huǐ miè de yī tiān ， \n \t hé guài ài qíng yào suí jìng yù biàn qiān ；",
         "english": ""
       },
       {
-        "chinese": "是境由爱造？",
-        "pinyin": "shì jìng yóu ài zào ？",
+        "chinese": "有谁能解答这一个哑谜，\n\t是境由爱造？",
+        "pinyin": "yǒu shuí néng jiě dá zhè yī gè yǎ mí ， \n \t shì jìng yóu ài zào ？",
         "english": ""
       },
       {
@@ -7848,53 +7439,28 @@
         "english": ""
       },
       {
-        "chinese": "这炎凉的世态古今一辙：",
-        "pinyin": "zhè yán liáng de shì tài gǔ jīn yī zhé ：",
+        "chinese": "这炎凉的世态古今一辙：\n\t富有的门庭挤满了宾客；",
+        "pinyin": "zhè yán liáng de shì tài gǔ jīn yī zhé ： \n \t fù yǒu de mén tíng jǐ mǎn le bīn kè ；",
         "english": ""
       },
       {
-        "chinese": "富有的门庭挤满了宾客；",
-        "pinyin": "fù yǒu de mén tíng jǐ mǎn le bīn kè ；",
+        "chinese": "要是你在穷途向人求助，\n\t即使知交也要情同陌路。",
+        "pinyin": "yào shì nǐ zài qióng tú xiàng rén qiú zhù ， \n \t jí shǐ zhī jiāo yě yào qíng tóng mò lù 。",
         "english": ""
       },
       {
-        "chinese": "要是你在穷途向人求助，",
-        "pinyin": "yào shì nǐ zài qióng tú xiàng rén qiú zhù ，",
+        "chinese": "把我们的谈话拉回本题，\n\t意志命运往往背道而驰，",
+        "pinyin": "bǎ wǒ mén de tán huà lā huí běn tí ， \n \t yì zhì mìng yùn wǎng wǎng bēi dào ér chí ，",
         "english": ""
       },
       {
-        "chinese": "即使知交也要情同陌路。",
-        "pinyin": "jí shǐ zhī jiāo yě yào qíng tóng mò lù 。",
+        "chinese": "决心到最后会全部推倒，\n\t事实的结果总难符预料。",
+        "pinyin": "jué xīn dào zuì hòu huì quán bù tuī dǎo ， \n \t shì shí de jié guǒ zǒng nán fú yù liào 。",
         "english": ""
       },
       {
-        "chinese": "把我们的谈话拉回本题，",
-        "pinyin": "bǎ wǒ mén de tán huà lā huí běn tí ，",
-        "english": ""
-      },
-      {
-        "chinese": "意志命运往往背道而驰，",
-        "pinyin": "yì zhì mìng yùn wǎng wǎng bēi dào ér chí ，",
-        "english": ""
-      },
-      {
-        "chinese": "决心到最后会全部推倒，",
-        "pinyin": "jué xīn dào zuì hòu huì quán bù tuī dǎo ，",
-        "english": ""
-      },
-      {
-        "chinese": "事实的结果总难符预料。",
-        "pinyin": "shì shí de jié guǒ zǒng nán fú yù liào 。",
-        "english": ""
-      },
-      {
-        "chinese": "你以为你自己不会再嫁，",
-        "pinyin": "nǐ yǐ wèi nǐ zì jǐ bù huì zài jià ，",
-        "english": ""
-      },
-      {
-        "chinese": "只怕我一死你就要变卦。",
-        "pinyin": "zhǐ pà wǒ yī sǐ nǐ jiù yào biàn guà 。",
+        "chinese": "你以为你自己不会再嫁，\n\t只怕我一死你就要变卦。",
+        "pinyin": "nǐ yǐ wèi nǐ zì jǐ bù huì zài jià ， \n \t zhǐ pà wǒ yī sǐ nǐ jiù yào biàn guà 。",
         "english": ""
       },
       {
@@ -7918,23 +7484,13 @@
         "english": ""
       },
       {
-        "chinese": "每一种恼人的飞来横逆，",
-        "pinyin": "měi yī zhǒng nǎo rén de fēi lái héng nì ，",
+        "chinese": "每一种恼人的飞来横逆，\n\t把我一重重的心愿摧折！",
+        "pinyin": "měi yī zhǒng nǎo rén de fēi lái héng nì ， \n \t bǎ wǒ yī zhòng zhòng de xīn yuàn cuī zhé ！",
         "english": ""
       },
       {
-        "chinese": "把我一重重的心愿摧折！",
-        "pinyin": "bǎ wǒ yī zhòng zhòng de xīn yuàn cuī zhé ！",
-        "english": ""
-      },
-      {
-        "chinese": "我倘死了丈夫再作新人，",
-        "pinyin": "wǒ tǎng sǐ le zhàng fū zài zuò xīn rén ，",
-        "english": ""
-      },
-      {
-        "chinese": "让我生前死后永陷沉沦！",
-        "pinyin": "ràng wǒ shēng qián sǐ hòu yǒng xiàn chén lún ！",
+        "chinese": "我倘死了丈夫再作新人，\n\t让我生前死后永陷沉沦！",
+        "pinyin": "wǒ tǎng sǐ le zhàng fū zài zuò xīn rén ， \n \t ràng wǒ shēng qián sǐ hòu yǒng xiàn chén lún ！",
         "english": ""
       },
       {
@@ -7953,13 +7509,8 @@
         "english": ""
       },
       {
-        "chinese": "我神思昏倦，",
-        "pinyin": "wǒ shén sī hūn juàn ，",
-        "english": ""
-      },
-      {
-        "chinese": "想要小睡片刻。",
-        "pinyin": "xiǎng yào xiǎo shuì piàn kè 。",
+        "chinese": "我神思昏倦，\n\t想要小睡片刻。",
+        "pinyin": "wǒ shén sī hūn juàn ， \n \t xiǎng yào xiǎo shuì piàn kè 。",
         "english": ""
       },
       {
@@ -7968,8 +7519,8 @@
         "english": ""
       },
       {
-        "chinese": "伶后 愿你安睡；",
-        "pinyin": "líng hòu   yuàn nǐ ān shuì ；",
+        "chinese": "）\n\t伶后 愿你安睡；",
+        "pinyin": "） \n \t líng hòu   yuàn nǐ ān shuì ；",
         "english": ""
       },
       {
@@ -7983,8 +7534,8 @@
         "english": ""
       },
       {
-        "chinese": "哈姆莱特 母亲，您觉得这出戏怎样？",
-        "pinyin": "hā mǔ lái tè   mǔ qīn ， nín jué dé zhè chū xì zěn yàng ？",
+        "chinese": "）\n\t哈姆莱特 母亲，您觉得这出戏怎样？",
+        "pinyin": "） \n \t hā mǔ lái tè   mǔ qīn ， nín jué dé zhè chū xì zěn yàng ？",
         "english": ""
       },
       {
@@ -8128,13 +7679,8 @@
         "english": ""
       },
       {
-        "chinese": "琉西安纳斯",
-        "pinyin": "liú xī ān nà sī",
-        "english": ""
-      },
-      {
-        "chinese": "黑心快手，遇到妙药良机；",
-        "pinyin": "hēi xīn kuài shǒu ， yù dào miào yào liáng jī ；",
+        "chinese": "琉西安纳斯\n\t黑心快手，遇到妙药良机；",
+        "pinyin": "liú xī ān nà sī \n \t hēi xīn kuài shǒu ， yù dào miào yào liáng jī ；",
         "english": ""
       },
       {
@@ -8143,23 +7689,13 @@
         "english": ""
       },
       {
-        "chinese": "你夜半采来的毒草炼成，",
-        "pinyin": "nǐ yè bàn cǎi lái de dú cǎo liàn chéng ，",
+        "chinese": "你夜半采来的毒草炼成，\n\t赫卡忒的咒语念上三巡，",
+        "pinyin": "nǐ yè bàn cǎi lái de dú cǎo liàn chéng ， \n \t hè kǎ tè de zhòu yǔ niàn shàng sān xún ，",
         "english": ""
       },
       {
-        "chinese": "赫卡忒的咒语念上三巡，",
-        "pinyin": "hè kǎ tè de zhòu yǔ niàn shàng sān xún ，",
-        "english": ""
-      },
-      {
-        "chinese": "赶快发挥你凶恶的魔力，",
-        "pinyin": "gǎn kuài fā huī nǐ xiōng è de mó lì ，",
-        "english": ""
-      },
-      {
-        "chinese": "让他的生命速归于幻灭。",
-        "pinyin": "ràng tā de shēng mìng sù guī yú huàn miè 。",
+        "chinese": "赶快发挥你凶恶的魔力，\n\t让他的生命速归于幻灭。",
+        "pinyin": "gǎn kuài fā huī nǐ xiōng è de mó lì ， \n \t ràng tā de shēng mìng sù guī yú huàn miè 。",
         "english": ""
       },
       {
@@ -8168,24 +7704,15 @@
         "english": ""
       },
       {
-        "chinese": "哈姆莱特 他为了觊觎权位，在花园里把他毒死。",
-        "pinyin": "hā mǔ lái tè   tā wèi le jì yú quán wèi ， zài huā yuán lǐ bǎ tā dú sǐ 。",
+        "chinese": "）\n\t哈姆莱特 他为了觊觎权位，在花园里把他毒死。",
+        "pinyin": "） \n \t hā mǔ lái tè   tā wèi le jì yú quán wèi ， zài huā yuán lǐ bǎ tā dú sǐ 。",
         "english": ""
       },
       {
         "chinese": "他的名字叫贡扎古；",
         "pinyin": "tā de míng zì jiào gòng zā gǔ ；",
         "english": ""
-      }
-    ]
-  },
-  {
-    "id": "hamlet_shakespeare_ch_21",
-    "bookId": "hamlet_shakespeare",
-    "chapterIndex": 21,
-    "title": "第21章",
-    "titleEn": "Chapter 21",
-    "sentences": [
+      },
       {
         "chinese": "那故事原文还存在，是用很好的意大利文写成的。",
         "pinyin": "nà gù shì yuán wén hái cún zài ， shì yòng hěn hǎo de yì dà lì wén xiě chéng de 。",
@@ -8240,30 +7767,29 @@
         "chinese": "火把！",
         "pinyin": "huǒ bǎ ！",
         "english": ""
-      },
+      }
+    ]
+  },
+  {
+    "id": "hamlet_shakespeare_ch_20",
+    "bookId": "hamlet_shakespeare",
+    "chapterIndex": 20,
+    "title": "第20章",
+    "titleEn": "Chapter 20",
+    "sentences": [
       {
         "chinese": "（除哈姆莱特、霍拉旭外均下。",
         "pinyin": "（ chú hā mǔ lái tè 、 huò lā xù wài jūn xià 。",
         "english": ""
       },
       {
-        "chinese": "哈姆莱特 嗨，让那中箭的母鹿掉泪，",
-        "pinyin": "hā mǔ lái tè   hāi ， ràng nà zhōng jiàn de mǔ lù diào lèi ，",
+        "chinese": "）\n\t哈姆莱特 嗨，让那中箭的母鹿掉泪，\n\t没有伤的公鹿自去游玩；",
+        "pinyin": "） \n \t hā mǔ lái tè   hāi ， ràng nà zhōng jiàn de mǔ lù diào lèi ， \n \t méi yǒu shāng de gōng lù zì qù yóu wán ；",
         "english": ""
       },
       {
-        "chinese": "没有伤的公鹿自去游玩；",
-        "pinyin": "méi yǒu shāng de gōng lù zì qù yóu wán ；",
-        "english": ""
-      },
-      {
-        "chinese": "有的人失眠，有的人酣睡，",
-        "pinyin": "yǒu de rén shī mián ， yǒu de rén hān shuì ，",
-        "english": ""
-      },
-      {
-        "chinese": "世界就是这样循环轮转。",
-        "pinyin": "shì jiè jiù shì zhè yàng xún huán lún zhuǎn 。",
+        "chinese": "有的人失眠，有的人酣睡，\n\t世界就是这样循环轮转。",
+        "pinyin": "yǒu de rén shī mián ， yǒu de rén hān shuì ， \n \t shì jiè jiù shì zhè yàng xún huán lún zhuǎn 。",
         "english": ""
       },
       {
@@ -8282,23 +7808,13 @@
         "english": ""
       },
       {
-        "chinese": "因为你知道，亲爱的朋友，",
-        "pinyin": "yīn wèi nǐ zhī dào ， qīn ài de péng yǒu ，",
+        "chinese": "因为你知道，亲爱的朋友，\n\t这一个荒凉破碎的国王",
+        "pinyin": "yīn wèi nǐ zhī dào ， qīn ài de péng yǒu ， \n \t zhè yī gè huāng liáng pò suì de guó wáng",
         "english": ""
       },
       {
-        "chinese": "这一个荒凉破碎的国王",
-        "pinyin": "zhè yī gè huāng liáng pò suì de guó wáng",
-        "english": ""
-      },
-      {
-        "chinese": "原本是乔武统治的雄邦，",
-        "pinyin": "yuán běn shì qiáo wǔ tǒng zhì de xióng bāng ，",
-        "english": ""
-      },
-      {
-        "chinese": "而今王位却坐着——孔雀。",
-        "pinyin": "ér jīn wáng wèi què zuò zhuó — — kǒng què 。",
+        "chinese": "原本是乔武统治的雄邦，\n\t而今王位却坐着——孔雀。",
+        "pinyin": "yuán běn shì qiáo wǔ tǒng zhì de xióng bāng ， \n \t ér jīn wáng wèi què zuò zhuó — — kǒng què 。",
         "english": ""
       },
       {
@@ -8352,13 +7868,8 @@
         "english": ""
       },
       {
-        "chinese": "要是国王不爱这出喜剧，",
-        "pinyin": "yào shì guó wáng bù ài zhè chū xǐ jù ，",
-        "english": ""
-      },
-      {
-        "chinese": "那么他多半是不能赏识。",
-        "pinyin": "nà me tā duō bàn shì bù néng shǎng shí 。",
+        "chinese": "要是国王不爱这出喜剧，\n\t那么他多半是不能赏识。",
+        "pinyin": "yào shì guó wáng bù ài zhè chū xǐ jù ， \n \t nà me tā duō bàn shì bù néng shǎng shí 。",
         "english": ""
       },
       {
@@ -8382,13 +7893,8 @@
         "english": ""
       },
       {
-        "chinese": "吉尔登斯吞 殿下，王上——",
-        "pinyin": "jí ěr dēng sī tūn   diàn xià ， wáng shàng — —",
-        "english": ""
-      },
-      {
-        "chinese": "哈姆莱特 嗯，王上怎么样？",
-        "pinyin": "hā mǔ lái tè   èn ， wáng shàng zěn me yàng ？",
+        "chinese": "吉尔登斯吞 殿下，王上——\n\t哈姆莱特 嗯，王上怎么样？",
+        "pinyin": "jí ěr dēng sī tūn   diàn xià ， wáng shàng — — \n \t hā mǔ lái tè   èn ， wáng shàng zěn me yàng ？",
         "english": ""
       },
       {
@@ -8472,13 +7978,8 @@
         "english": ""
       },
       {
-        "chinese": "你说我的母亲——",
-        "pinyin": "nǐ shuō wǒ de mǔ qīn — —",
-        "english": ""
-      },
-      {
-        "chinese": "罗森格兰兹 她这样说：您的行为使她非常吃惊。",
-        "pinyin": "luó sēn gé lán zī   tā zhè yàng shuō ： nín de xíng wèi shǐ tā fēi cháng chī jīng 。",
+        "chinese": "你说我的母亲——\n\t罗森格兰兹 她这样说：您的行为使她非常吃惊。",
+        "pinyin": "nǐ shuō wǒ de mǔ qīn — — \n \t luó sēn gé lán zī   tā zhè yàng shuō ： nín de xíng wèi shǐ tā fēi cháng chī jīng 。",
         "english": ""
       },
       {
@@ -8585,16 +8086,7 @@
         "chinese": "吉尔登斯吞 啊！",
         "pinyin": "jí ěr dēng sī tūn   ā ！",
         "english": ""
-      }
-    ]
-  },
-  {
-    "id": "hamlet_shakespeare_ch_22",
-    "bookId": "hamlet_shakespeare",
-    "chapterIndex": 22,
-    "title": "第22章",
-    "titleEn": "Chapter 22",
-    "sentences": [
+      },
       {
         "chinese": "殿下，要是我有太冒昧放肆的地方，那都是因为我对于您敬爱太深的缘故。",
         "pinyin": "diàn xià ， yào shì wǒ yǒu tài mào mèi fàng sì de dì fāng ， nà dōu shì yīn wèi wǒ duì yú nín jìng ài tài shēn de yuán gù 。",
@@ -8684,7 +8176,16 @@
         "chinese": "你会从我的最低音试到我的最高音；",
         "pinyin": "nǐ huì cóng wǒ de zuì dī yīn shì dào wǒ de zuì gāo yīn ；",
         "english": ""
-      },
+      }
+    ]
+  },
+  {
+    "id": "hamlet_shakespeare_ch_21",
+    "bookId": "hamlet_shakespeare",
+    "chapterIndex": 21,
+    "title": "第21章",
+    "titleEn": "Chapter 21",
+    "sentences": [
       {
         "chinese": "可是在这支小小的乐器之内，藏着绝妙的音乐，你却不会使它发出声音来。",
         "pinyin": "kě shì zài zhè zhī xiǎo xiǎo de yuè qì zhī nèi ， cáng zhuó jué miào de yīn yuè ， nǐ què bù huì shǐ tā fā chū shēng yīn lái 。",
@@ -8771,8 +8272,8 @@
         "english": ""
       },
       {
-        "chinese": "哈姆莱特 说等一会儿是很容易的。",
-        "pinyin": "hā mǔ lái tè   shuō děng yī huì ér shì hěn róng yì de 。",
+        "chinese": "）\n\t哈姆莱特 说等一会儿是很容易的。",
+        "pinyin": "） \n \t hā mǔ lái tè   shuō děng yī huì ér shì hěn róng yì de 。",
         "english": ""
       },
       {
@@ -8831,13 +8332,8 @@
         "english": ""
       },
       {
-        "chinese": "第三场 城堡中一室",
-        "pinyin": "dì sān chǎng   chéng bǎo zhōng yī shì",
-        "english": ""
-      },
-      {
-        "chinese": "国王、罗森格兰兹及吉尔登斯吞上。",
-        "pinyin": "guó wáng 、 luó sēn gé lán zī jí jí ěr dēng sī tūn shàng 。",
+        "chinese": "）\n第三场 城堡中一室\n\t国王、罗森格兰兹及吉尔登斯吞上。",
+        "pinyin": "） \n dì sān chǎng   chéng bǎo zhōng yī shì \n \t guó wáng 、 luó sēn gé lán zī jí jí ěr dēng sī tūn shàng 。",
         "english": ""
       },
       {
@@ -8994,16 +8490,7 @@
         "chinese": "祈祷的目的，不是一方面预防我们的堕落，一方面救拔我们于已堕落之后吗？",
         "pinyin": "qí dǎo de mù dì ， bù shì yī fāng miàn yù fáng wǒ mén de duò luò ， yī fāng miàn jiù bá wǒ mén yú yǐ duò luò zhī hòu ma ？",
         "english": ""
-      }
-    ]
-  },
-  {
-    "id": "hamlet_shakespeare_ch_23",
-    "bookId": "hamlet_shakespeare",
-    "chapterIndex": 23,
-    "title": "第23章",
-    "titleEn": "Chapter 23",
-    "sentences": [
+      },
       {
         "chinese": "那么我要仰望上天；",
         "pinyin": "nà me wǒ yào yǎng wàng shàng tiān ；",
@@ -9098,7 +8585,16 @@
         "chinese": "试一试吗：屈下来，顽强的膝盖；",
         "pinyin": "shì yī shì ma ： qū xià lái ， wán qiáng de xī gài ；",
         "english": ""
-      },
+      }
+    ]
+  },
+  {
+    "id": "hamlet_shakespeare_ch_22",
+    "bookId": "hamlet_shakespeare",
+    "chapterIndex": 22,
+    "title": "第22章",
+    "titleEn": "Chapter 22",
+    "sentences": [
       {
         "chinese": "钢丝一样的心弦，变得像新生之婴的筋肉一样柔嫩吧！",
         "pinyin": "gāng sī yī yàng de xīn xián ， biàn dé xiàng xīn shēng zhī yīng de jīn ròu yī yàng róu nèn bā ！",
@@ -9115,8 +8611,8 @@
         "english": ""
       },
       {
-        "chinese": "哈姆莱特上。",
-        "pinyin": "hā mǔ lái tè shàng 。",
+        "chinese": "）\n\t哈姆莱特上。",
+        "pinyin": "） \n \t hā mǔ lái tè shàng 。",
         "english": ""
       },
       {
@@ -9185,8 +8681,8 @@
         "english": ""
       },
       {
-        "chinese": "国王起立上前。",
-        "pinyin": "guó wáng qǐ lì shàng qián 。",
+        "chinese": "）\n\t国王起立上前。",
+        "pinyin": "） \n \t guó wáng qǐ lì shàng qián 。",
         "english": ""
       },
       {
@@ -9205,13 +8701,8 @@
         "english": ""
       },
       {
-        "chinese": "第四场 王后寝宫",
-        "pinyin": "dì sì chǎng   wáng hòu qǐn gōng",
-        "english": ""
-      },
-      {
-        "chinese": "王后及波洛涅斯上。",
-        "pinyin": "wáng hòu jí bō luò niè sī shàng 。",
+        "chinese": "）\n第四场 王后寝宫\n\t王后及波洛涅斯上。",
+        "pinyin": "） \n dì sì chǎng   wáng hòu qǐn gōng \n \t wáng hòu jí bō luò niè sī shàng 。",
         "english": ""
       },
       {
@@ -9255,8 +8746,8 @@
         "english": ""
       },
       {
-        "chinese": "哈姆莱特上。",
-        "pinyin": "hā mǔ lái tè shàng 。",
+        "chinese": "）\n\t哈姆莱特上。",
+        "pinyin": "） \n \t hā mǔ lái tè shàng 。",
         "english": ""
       },
       {
@@ -9385,8 +8876,8 @@
         "english": ""
       },
       {
-        "chinese": "波洛涅斯 （在后）啊！",
-        "pinyin": "bō luò niè sī   （ zài hòu ） ā ！",
+        "chinese": "）\n\t波洛涅斯 （在后）啊！",
+        "pinyin": "） \n \t bō luò niè sī   （ zài hòu ） ā ！",
         "english": ""
       },
       {
@@ -9403,16 +8894,7 @@
         "chinese": "你干了什么事啦？",
         "pinyin": "nǐ gān le shén me shì lā ？",
         "english": ""
-      }
-    ]
-  },
-  {
-    "id": "hamlet_shakespeare_ch_24",
-    "bookId": "hamlet_shakespeare",
-    "chapterIndex": 24,
-    "title": "第24章",
-    "titleEn": "Chapter 24",
-    "sentences": [
+      },
       {
         "chinese": "哈姆莱特 我也不知道；",
         "pinyin": "hā mǔ lái tè   wǒ yě bù zhī dào ；",
@@ -9512,7 +8994,16 @@
         "chinese": "苍天的脸上也为它带上羞色，大地因为痛心这样的行为，也罩上满面的愁容，好像世界末日就要到来一般。",
         "pinyin": "cāng tiān de liǎn shàng yě wèi tā dài shàng xiū sè ， dà dì yīn wèi tòng xīn zhè yàng de xíng wèi ， yě zhào shàng mǎn miàn de chóu róng ， hǎo xiàng shì jiè mò rì jiù yào dào lái yī bān 。",
         "english": ""
-      },
+      }
+    ]
+  },
+  {
+    "id": "hamlet_shakespeare_ch_23",
+    "bookId": "hamlet_shakespeare",
+    "chapterIndex": 23,
+    "title": "第23章",
+    "titleEn": "Chapter 23",
+    "sentences": [
       {
         "chinese": "王后 唉！",
         "pinyin": "wáng hòu   āi ！",
@@ -9674,13 +9165,8 @@
         "english": ""
       },
       {
-        "chinese": "哈姆莱特 一个下流褴褛的国王——",
-        "pinyin": "hā mǔ lái tè   yī gè xià liú lán lǚ de guó wáng — —",
-        "english": ""
-      },
-      {
-        "chinese": "鬼魂上。",
-        "pinyin": "guǐ hún shàng 。",
+        "chinese": "哈姆莱特 一个下流褴褛的国王——\n\t鬼魂上。",
+        "pinyin": "hā mǔ lái tè   yī gè xià liú lán lǚ de guó wáng — — \n \t guǐ hún shàng 。",
         "english": ""
       },
       {
@@ -9812,16 +9298,7 @@
         "chinese": "也许我会因此而失去勇气，让挥泪代替了流血。",
         "pinyin": "yě xǔ wǒ huì yīn cǐ ér shī qù yǒng qì ， ràng huī lèi dài tì le liú xiě 。",
         "english": ""
-      }
-    ]
-  },
-  {
-    "id": "hamlet_shakespeare_ch_25",
-    "bookId": "hamlet_shakespeare",
-    "chapterIndex": 25,
-    "title": "第25章",
-    "titleEn": "Chapter 25",
-    "sentences": [
+      },
       {
         "chinese": "王后 你这番话是对谁说的？",
         "pinyin": "wáng hòu   nǐ zhè fān huà shì duì shuí shuō de ？",
@@ -9873,8 +9350,8 @@
         "english": ""
       },
       {
-        "chinese": "王后 这是你脑中虚构的意象；",
-        "pinyin": "wáng hòu   zhè shì nǐ nǎo zhōng xū gòu de yì xiàng ；",
+        "chinese": "）\n\t王后 这是你脑中虚构的意象；",
+        "pinyin": "） \n \t wáng hòu   zhè shì nǐ nǎo zhōng xū gòu de yì xiàng ；",
         "english": ""
       },
       {
@@ -9926,7 +9403,16 @@
         "chinese": "原谅我这一番正义的劝告；",
         "pinyin": "yuán liàng wǒ zhè yī fān zhèng yì de quàn gào ；",
         "english": ""
-      },
+      }
+    ]
+  },
+  {
+    "id": "hamlet_shakespeare_ch_24",
+    "bookId": "hamlet_shakespeare",
+    "chapterIndex": 24,
+    "title": "第24章",
+    "titleEn": "Chapter 24",
+    "sentences": [
       {
         "chinese": "因为在这种万恶的时世，正义必须向罪恶乞恕，它必须俯首屈膝，要求人家接纳他的善意的箴规。",
         "pinyin": "yīn wèi zài zhè zhǒng wàn è de shí shì ， zhèng yì bì xū xiàng zuì è qǐ shù ， tā bì xū fǔ shǒu qū xī ， yào qiú rén jiā jiē nà tā de shàn yì de zhēn guī 。",
@@ -10158,18 +9644,8 @@
         "english": ""
       },
       {
-        "chinese": "wＷw．xiＡoshＵotxt.cＯm",
-        "pinyin": "w Ｗ w ． x i Ａ o s h Ｕ o t x t . c Ｏ m",
-        "english": ""
-      },
-      {
-        "chinese": "第一场 城堡中一室",
-        "pinyin": "dì yī chǎng   chéng bǎo zhōng yī shì",
-        "english": ""
-      },
-      {
-        "chinese": "国王、王后、罗森格兰兹及吉尔登斯吞上。",
-        "pinyin": "guó wáng 、 wáng hòu 、 luó sēn gé lán zī jí jí ěr dēng sī tūn shàng 。",
+        "chinese": "）\n第一场 城堡中一室\n\t国王、王后、罗森格兰兹及吉尔登斯吞上。",
+        "pinyin": "） \n dì yī chǎng   chéng bǎo zhōng yī shì \n \t guó wáng 、 wáng hòu 、 luó sēn gé lán zī jí jí ěr dēng sī tūn shàng 。",
         "english": ""
       },
       {
@@ -10218,22 +9694,13 @@
         "english": ""
       },
       {
-        "chinese": "有耗子！",
-        "pinyin": "yǒu hào zǐ ！",
+        "chinese": "有耗子！”",
+        "pinyin": "yǒu hào zǐ ！ ”",
         "english": ""
-      }
-    ]
-  },
-  {
-    "id": "hamlet_shakespeare_ch_26",
-    "bookId": "hamlet_shakespeare",
-    "chapterIndex": 26,
-    "title": "第26章",
-    "titleEn": "Chapter 26",
-    "sentences": [
+      },
       {
-        "chinese": "”于是在一阵疯狂的恐惧之中，把那躲在幕后的好老人家杀死了。",
-        "pinyin": "” yú shì zài yī zhèn fēng kuáng de kǒng jù zhī zhōng ， bǎ nà duǒ zài mù hòu de hǎo lǎo rén jiā shā sǐ le 。",
+        "chinese": "于是在一阵疯狂的恐惧之中，把那躲在幕后的好老人家杀死了。",
+        "pinyin": "yú shì zài yī zhèn fēng kuáng de kǒng jù zhī zhōng ， bǎ nà duǒ zài mù hòu de hǎo lǎo rén jiā shā sǐ le 。",
         "english": ""
       },
       {
@@ -10345,20 +9812,24 @@
         "chinese": "我的灵魂里充满着混乱和惊愕。",
         "pinyin": "wǒ de líng hún lǐ chōng mǎn zhuó hùn luàn hé jīng è 。",
         "english": ""
-      },
+      }
+    ]
+  },
+  {
+    "id": "hamlet_shakespeare_ch_25",
+    "bookId": "hamlet_shakespeare",
+    "chapterIndex": 25,
+    "title": "第25章",
+    "titleEn": "Chapter 25",
+    "sentences": [
       {
         "chinese": "（同下。",
         "pinyin": "（ tóng xià 。",
         "english": ""
       },
       {
-        "chinese": "第二场 城堡中另一室",
-        "pinyin": "dì èr chǎng   chéng bǎo zhōng lìng yī shì",
-        "english": ""
-      },
-      {
-        "chinese": "哈姆莱特上。",
-        "pinyin": "hā mǔ lái tè shàng 。",
+        "chinese": "）\n第二场 城堡中另一室\n\t哈姆莱特上。",
+        "pinyin": "） \n dì èr chǎng   chéng bǎo zhōng lìng yī shì \n \t hā mǔ lái tè shàng 。",
         "english": ""
       },
       {
@@ -10507,13 +9978,8 @@
         "english": ""
       },
       {
-        "chinese": "第三场 城堡中另一室",
-        "pinyin": "dì sān chǎng   chéng bǎo zhōng lìng yī shì",
-        "english": ""
-      },
-      {
-        "chinese": "国王上，侍从后随。",
-        "pinyin": "guó wáng shàng ， shì cóng hòu suí 。",
+        "chinese": "）\n第三场 城堡中另一室\n\t国王上，侍从后随。",
+        "pinyin": "） \n dì sān chǎng   chéng bǎo zhōng lìng yī shì \n \t guó wáng shàng ， shì cóng hòu suí 。",
         "english": ""
       },
       {
@@ -10567,8 +10033,8 @@
         "english": ""
       },
       {
-        "chinese": "可是他呢？",
-        "pinyin": "kě shì tā ne ？",
+        "chinese": "国王\n\t可是他呢？",
+        "pinyin": "guó wáng \n \t kě shì tā ne ？",
         "english": ""
       },
       {
@@ -10630,16 +10096,7 @@
         "chinese": "有一群精明的蛆虫正在他身上大吃特吃哩。",
         "pinyin": "yǒu yī qún jīng míng de qū chóng zhèng zài tā shēn shàng dà chī tè chī li 。",
         "english": ""
-      }
-    ]
-  },
-  {
-    "id": "hamlet_shakespeare_ch_27",
-    "bookId": "hamlet_shakespeare",
-    "chapterIndex": 27,
-    "title": "第27章",
-    "titleEn": "Chapter 27",
-    "sentences": [
+      },
       {
         "chinese": "蛆虫是全世界最大的饕餮家；",
         "pinyin": "qū chóng shì quán shì jiè zuì dà de tāo tiè jiā ；",
@@ -10721,8 +10178,8 @@
         "english": ""
       },
       {
-        "chinese": "国王 哈姆莱特，你干出这种事来，使我非常痛心。",
-        "pinyin": "guó wáng   hā mǔ lái tè ， nǐ gān chū zhè zhǒng shì lái ， shǐ wǒ fēi cháng tòng xīn 。",
+        "chinese": "）\n\t国王 哈姆莱特，你干出这种事来，使我非常痛心。",
+        "pinyin": "） \n \t guó wáng   hā mǔ lái tè ， nǐ gān chū zhè zhǒng shì lái ， shǐ wǒ fēi cháng tòng xīn 。",
         "english": ""
       },
       {
@@ -10764,7 +10221,16 @@
         "chinese": "哈姆莱特 我看见一个明白你的用意的天使。",
         "pinyin": "hā mǔ lái tè   wǒ kàn jiàn yī gè míng bái nǐ de yòng yì de tiān shǐ 。",
         "english": ""
-      },
+      }
+    ]
+  },
+  {
+    "id": "hamlet_shakespeare_ch_26",
+    "bookId": "hamlet_shakespeare",
+    "chapterIndex": 26,
+    "title": "第26章",
+    "titleEn": "Chapter 26",
+    "sentences": [
       {
         "chinese": "可是来，到英国去！",
         "pinyin": "kě shì lái ， dào yīng guó qù ！",
@@ -10806,8 +10272,8 @@
         "english": ""
       },
       {
-        "chinese": "国王 跟在他后面，劝诱他赶快上船，不要耽误；",
-        "pinyin": "guó wáng   gēn zài tā hòu miàn ， quàn yòu tā gǎn kuài shàng chuán ， bù yào dān wù ；",
+        "chinese": "）\n\t国王 跟在他后面，劝诱他赶快上船，不要耽误；",
+        "pinyin": "） \n \t guó wáng   gēn zài tā hòu miàn ， quàn yòu tā gǎn kuài shàng chuán ， bù yào dān wù ；",
         "english": ""
       },
       {
@@ -10841,13 +10307,8 @@
         "english": ""
       },
       {
-        "chinese": "第四场 丹麦原野",
-        "pinyin": "dì sì chǎng   dān mài yuán yě",
-        "english": ""
-      },
-      {
-        "chinese": "福丁布拉斯、一队长及兵士等列队行进上。",
-        "pinyin": "fú dīng bù lā sī 、 yī duì cháng jí bīng shì děng liè duì xíng jìn shàng 。",
+        "chinese": "）\n第四场 丹麦原野\n\t福丁布拉斯、一队长及兵士等列队行进上。",
+        "pinyin": "） \n dì sì chǎng   dān mài yuán yě \n \t fú dīng bù lā sī 、 yī duì cháng jí bīng shì děng liè duì xíng jìn shàng 。",
         "english": ""
       },
       {
@@ -10881,8 +10342,8 @@
         "english": ""
       },
       {
-        "chinese": "哈姆莱特、罗森格兰兹、吉尔登斯吞等同上。",
-        "pinyin": "hā mǔ lái tè 、 luó sēn gé lán zī 、 jí ěr dēng sī tūn děng tóng shàng 。",
+        "chinese": "）\n\t哈姆莱特、罗森格兰兹、吉尔登斯吞等同上。",
+        "pinyin": "） \n \t hā mǔ lái tè 、 luó sēn gé lán zī 、 jí ěr dēng sī tūn děng tóng shàng 。",
         "english": ""
       },
       {
@@ -10976,8 +10437,8 @@
         "english": ""
       },
       {
-        "chinese": "罗森格兰兹 我们去吧，殿下。",
-        "pinyin": "luó sēn gé lán zī   wǒ mén qù bā ， diàn xià 。",
+        "chinese": "）\n\t罗森格兰兹 我们去吧，殿下。",
+        "pinyin": "） \n \t luó sēn gé lán zī   wǒ mén qù bā ， diàn xià 。",
         "english": ""
       },
       {
@@ -11006,13 +10467,13 @@
         "english": ""
       },
       {
-        "chinese": "现在我明明有理由、有决心、有力量、有方法，可以动手干我所要干的事，可是我还是在大言不惭地说：“这件事需要做。",
-        "pinyin": "xiàn zài wǒ míng míng yǒu lǐ yóu 、 yǒu jué xīn 、 yǒu lì liàng 、 yǒu fāng fǎ ， kě yǐ dòng shǒu gān wǒ suǒ yào gān de shì ， kě shì wǒ hái shì zài dà yán bù cán dì shuō ： “ zhè jiàn shì xū yào zuò 。",
+        "chinese": "现在我明明有理由、有决心、有力量、有方法，可以动手干我所要干的事，可是我还是在大言不惭地说：“这件事需要做。”",
+        "pinyin": "xiàn zài wǒ míng míng yǒu lǐ yóu 、 yǒu jué xīn 、 yǒu lì liàng 、 yǒu fāng fǎ ， kě yǐ dòng shǒu gān wǒ suǒ yào gān de shì ， kě shì wǒ hái shì zài dà yán bù cán dì shuō ： “ zhè jiàn shì xū yào zuò 。 ”",
         "english": ""
       },
       {
-        "chinese": "”可是始终不曾在行动上表现出来；",
-        "pinyin": "” kě shì shǐ zhōng bù céng zài xíng dòng shàng biǎo xiàn chū lái ；",
+        "chinese": "可是始终不曾在行动上表现出来；",
+        "pinyin": "kě shì shǐ zhōng bù céng zài xíng dòng shàng biǎo xiàn chū lái ；",
         "english": ""
       },
       {
@@ -11039,16 +10500,7 @@
         "chinese": "可是我的父亲给人惨杀，我的母亲给人污辱，我的理智和感情都被这种不共戴天的大仇所激动，我却因循隐忍，一切听其自然，看着这二万个人为了博取一个空虚的名声，视死如归地走下他们的坟墓里去，目的只是争夺一方还不够给他们作战场或者埋骨之所的土地，相形之下，我将何地自容呢？",
         "pinyin": "kě shì wǒ de fù qīn gěi rén cǎn shā ， wǒ de mǔ qīn gěi rén wū rǔ ， wǒ de lǐ zhì hé gǎn qíng dōu bèi zhè zhǒng bù gòng dài tiān de dà chóu suǒ jī dòng ， wǒ què yīn xún yǐn rěn ， yī qiē tīng qí zì rán ， kàn zhuó zhè èr wàn gè rén wèi le bó qǔ yī gè kōng xū de míng shēng ， shì sǐ rú guī dì zǒu xià tā mén de fén mù lǐ qù ， mù dì zhǐ shì zhēng duó yī fāng hái bù gòu gěi tā mén zuò zhàn chǎng huò zhě mái gǔ zhī suǒ de tǔ dì ， xiāng xíng zhī xià ， wǒ jiāng hé dì zì róng ne ？",
         "english": ""
-      }
-    ]
-  },
-  {
-    "id": "hamlet_shakespeare_ch_28",
-    "bookId": "hamlet_shakespeare",
-    "chapterIndex": 28,
-    "title": "第28章",
-    "titleEn": "Chapter 28",
-    "sentences": [
+      },
       {
         "chinese": "从这一刻起，让我屏除一切的疑虑妄念，把流血的思想充满在我的脑际！",
         "pinyin": "cóng zhè yī kè qǐ ， ràng wǒ bǐng chú yī qiē de yí lǜ wàng niàn ， bǎ liú xiě de sī xiǎng chōng mǎn zài wǒ de nǎo jì ！",
@@ -11060,18 +10512,13 @@
         "english": ""
       },
       {
-        "chinese": "第五场 艾尔西诺。",
-        "pinyin": "dì wǔ chǎng   ài ěr xī nuò 。",
+        "chinese": "）\n第五场 艾尔西诺。",
+        "pinyin": "） \n dì wǔ chǎng   ài ěr xī nuò 。",
         "english": ""
       },
       {
-        "chinese": "城堡中一室",
-        "pinyin": "chéng bǎo zhōng yī shì",
-        "english": ""
-      },
-      {
-        "chinese": "王后、霍拉旭及一侍臣上。",
-        "pinyin": "wáng hòu 、 huò lā xù jí yī shì chén shàng 。",
+        "chinese": "城堡中一室\n\t王后、霍拉旭及一侍臣上。",
+        "pinyin": "chéng bǎo zhōng yī shì \n \t wáng hòu 、 huò lā xù jí yī shì chén shàng 。",
         "english": ""
       },
       {
@@ -11135,23 +10582,13 @@
         "english": ""
       },
       {
-        "chinese": "我负疚的灵魂惴惴惊惶，",
-        "pinyin": "wǒ fù jiù de líng hún zhuì zhuì jīng huáng ，",
+        "chinese": "）\n\t我负疚的灵魂惴惴惊惶，\n\t琐琐细事也像预兆灾殃；",
+        "pinyin": "） \n \t wǒ fù jiù de líng hún zhuì zhuì jīng huáng ， \n \t suǒ suǒ xì shì yě xiàng yù zhào zāi yāng ；",
         "english": ""
       },
       {
-        "chinese": "琐琐细事也像预兆灾殃；",
-        "pinyin": "suǒ suǒ xì shì yě xiàng yù zhào zāi yāng ；",
-        "english": ""
-      },
-      {
-        "chinese": "罪恶是这样充满了疑猜，",
-        "pinyin": "zuì è shì zhè yàng chōng mǎn le yí cāi ，",
-        "english": ""
-      },
-      {
-        "chinese": "越小心越容易流露鬼胎。",
-        "pinyin": "yuè xiǎo xīn yuè róng yì liú lòu guǐ tāi 。",
+        "chinese": "罪恶是这样充满了疑猜，\n\t越小心越容易流露鬼胎。",
+        "pinyin": "zuì è shì zhè yàng chōng mǎn le yí cāi ， \n \t yuè xiǎo xīn yuè róng yì liú lòu guǐ tāi 。",
         "english": ""
       },
       {
@@ -11170,28 +10607,13 @@
         "english": ""
       },
       {
-        "chinese": "奥菲利娅（唱）",
-        "pinyin": "ào fēi lì yà （ chàng ）",
+        "chinese": "奥菲利娅（唱）\n\t张三李四满街走，\n\t谁是你情郎？",
+        "pinyin": "ào fēi lì yà （ chàng ） \n \t zhāng sān lǐ sì mǎn jiē zǒu ， \n \t shuí shì nǐ qíng láng ？",
         "english": ""
       },
       {
-        "chinese": "张三李四满街走，",
-        "pinyin": "zhāng sān lǐ sì mǎn jiē zǒu ，",
-        "english": ""
-      },
-      {
-        "chinese": "谁是你情郎？",
-        "pinyin": "shuí shì nǐ qíng láng ？",
-        "english": ""
-      },
-      {
-        "chinese": "毡帽在头杖在手，",
-        "pinyin": "zhān mào zài tóu zhàng zài shǒu ，",
-        "english": ""
-      },
-      {
-        "chinese": "草鞋穿一双。",
-        "pinyin": "cǎo xié chuān yī shuāng 。",
+        "chinese": "毡帽在头杖在手，\n\t草鞋穿一双。",
+        "pinyin": "zhān mào zài tóu zhàng zài shǒu ， \n \t cǎo xié chuān yī shuāng 。",
         "english": ""
       },
       {
@@ -11208,35 +10630,29 @@
         "chinese": "奥菲利娅 您说？",
         "pinyin": "ào fēi lì yà   nín shuō ？",
         "english": ""
-      },
+      }
+    ]
+  },
+  {
+    "id": "hamlet_shakespeare_ch_27",
+    "bookId": "hamlet_shakespeare",
+    "chapterIndex": 27,
+    "title": "第27章",
+    "titleEn": "Chapter 27",
+    "sentences": [
       {
         "chinese": "请您听好了。",
         "pinyin": "qǐng nín tīng hǎo le 。",
         "english": ""
       },
       {
-        "chinese": "（唱）",
-        "pinyin": "（ chàng ）",
+        "chinese": "（唱）\n\t姑娘，姑娘，他死了，\n\t一去不复来；",
+        "pinyin": "（ chàng ） \n \t gū niáng ， gū niáng ， tā sǐ le ， \n \t yī qù bù fù lái ；",
         "english": ""
       },
       {
-        "chinese": "姑娘，姑娘，他死了，",
-        "pinyin": "gū niáng ， gū niáng ， tā sǐ le ，",
-        "english": ""
-      },
-      {
-        "chinese": "一去不复来；",
-        "pinyin": "yī qù bù fù lái ；",
-        "english": ""
-      },
-      {
-        "chinese": "头上盖着青青草，",
-        "pinyin": "tóu shàng gài zhuó qīng qīng cǎo ，",
-        "english": ""
-      },
-      {
-        "chinese": "脚下石生苔。",
-        "pinyin": "jiǎo xià shí shēng tái 。",
+        "chinese": "头上盖着青青草，\n\t脚下石生苔。",
+        "pinyin": "tóu shàng gài zhuó qīng qīng cǎo ， \n \t jiǎo xià shí shēng tái 。",
         "english": ""
       },
       {
@@ -11245,28 +10661,13 @@
         "english": ""
       },
       {
-        "chinese": "王后 嗳，可是，奥菲利娅——",
-        "pinyin": "wáng hòu   ài ， kě shì ， ào fēi lì yà — —",
+        "chinese": "王后 嗳，可是，奥菲利娅——\n\t奥菲利娅 请您听好了。",
+        "pinyin": "wáng hòu   ài ， kě shì ， ào fēi lì yà — — \n \t ào fēi lì yà   qǐng nín tīng hǎo le 。",
         "english": ""
       },
       {
-        "chinese": "奥菲利娅 请您听好了。",
-        "pinyin": "ào fēi lì yà   qǐng nín tīng hǎo le 。",
-        "english": ""
-      },
-      {
-        "chinese": "（唱）",
-        "pinyin": "（ chàng ）",
-        "english": ""
-      },
-      {
-        "chinese": "殓衾遮体白如雪——",
-        "pinyin": "liàn qīn zhē tǐ bái rú xuě — —",
-        "english": ""
-      },
-      {
-        "chinese": "国王上。",
-        "pinyin": "guó wáng shàng 。",
+        "chinese": "（唱）\n\t殓衾遮体白如雪——\n\t国王上。",
+        "pinyin": "（ chàng ） \n \t liàn qīn zhē tǐ bái rú xuě — — \n \t guó wáng shàng 。",
         "english": ""
       },
       {
@@ -11280,23 +10681,13 @@
         "english": ""
       },
       {
-        "chinese": "奥菲利娅",
-        "pinyin": "ào fēi lì yà",
+        "chinese": "奥菲利娅\n\t鲜花红似雨；",
+        "pinyin": "ào fēi lì yà \n \t xiān huā hóng sì yǔ ；",
         "english": ""
       },
       {
-        "chinese": "鲜花红似雨；",
-        "pinyin": "xiān huā hóng sì yǔ ；",
-        "english": ""
-      },
-      {
-        "chinese": "花上盈盈有泪滴，",
-        "pinyin": "huā shàng yíng yíng yǒu lèi dī ，",
-        "english": ""
-      },
-      {
-        "chinese": "伴郎坟墓去。",
-        "pinyin": "bàn láng fén mù qù 。",
+        "chinese": "花上盈盈有泪滴，\n\t伴郎坟墓去。",
+        "pinyin": "huā shàng yíng yíng yǒu lèi dī ， \n \t bàn láng fén mù qù 。",
         "english": ""
       },
       {
@@ -11340,48 +10731,23 @@
         "english": ""
       },
       {
-        "chinese": "要是有人问您这是什么意思，您就这样对他说：（唱）",
-        "pinyin": "yào shì yǒu rén wèn nín zhè shì shén me yì sī ， nín jiù zhè yàng duì tā shuō ： （ chàng ）",
+        "chinese": "要是有人问您这是什么意思，您就这样对他说：（唱）\n\t情人佳节就在明天，",
+        "pinyin": "yào shì yǒu rén wèn nín zhè shì shén me yì sī ， nín jiù zhè yàng duì tā shuō ： （ chàng ） \n \t qíng rén jiā jié jiù zài míng tiān ，",
         "english": ""
       },
       {
-        "chinese": "情人佳节就在明天，",
-        "pinyin": "qíng rén jiā jié jiù zài míng tiān ，",
+        "chinese": "我要一早起身，\n\t梳洗齐整到你窗前，\n\t来做你的恋人。",
+        "pinyin": "wǒ yào yī zǎo qǐ shēn ， \n \t shū xǐ qí zhěng dào nǐ chuāng qián ， \n \t lái zuò nǐ de liàn rén 。",
         "english": ""
       },
       {
-        "chinese": "我要一早起身，",
-        "pinyin": "wǒ yào yī zǎo qǐ shēn ，",
+        "chinese": "他下了床披了衣裳，\n\t他开开了房门；",
+        "pinyin": "tā xià le chuáng pī le yī cháng ， \n \t tā kāi kāi le fáng mén ；",
         "english": ""
       },
       {
-        "chinese": "梳洗齐整到你窗前，",
-        "pinyin": "shū xǐ qí zhěng dào nǐ chuāng qián ，",
-        "english": ""
-      },
-      {
-        "chinese": "来做你的恋人。",
-        "pinyin": "lái zuò nǐ de liàn rén 。",
-        "english": ""
-      },
-      {
-        "chinese": "他下了床披了衣裳，",
-        "pinyin": "tā xià le chuáng pī le yī cháng ，",
-        "english": ""
-      },
-      {
-        "chinese": "他开开了房门；",
-        "pinyin": "tā kāi kāi le fáng mén ；",
-        "english": ""
-      },
-      {
-        "chinese": "她进去时是个女郎，",
-        "pinyin": "tā jìn qù shí shì gè nǚ láng ，",
-        "english": ""
-      },
-      {
-        "chinese": "出来变了妇人。",
-        "pinyin": "chū lái biàn le fù rén 。",
+        "chinese": "她进去时是个女郎，\n\t出来变了妇人。",
+        "pinyin": "tā jìn qù shí shì gè nǚ láng ， \n \t chū lái biàn le fù rén 。",
         "english": ""
       },
       {
@@ -11395,43 +10761,23 @@
         "english": ""
       },
       {
-        "chinese": "凭着神圣慈悲名字，",
-        "pinyin": "píng zhuó shén shèng cí bēi míng zì ，",
+        "chinese": "凭着神圣慈悲名字，\n\t这种事太丢脸！",
+        "pinyin": "píng zhuó shén shèng cí bēi míng zì ， \n \t zhè zhǒng shì tài diū liǎn ！",
         "english": ""
       },
       {
-        "chinese": "这种事太丢脸！",
-        "pinyin": "zhè zhǒng shì tài diū liǎn ！",
+        "chinese": "少年男子不知羞耻，\n\t一味无赖纠缠。",
+        "pinyin": "shǎo nián nán zǐ bù zhī xiū chǐ ， \n \t yī wèi wú lài jiū chán 。",
         "english": ""
       },
       {
-        "chinese": "少年男子不知羞耻，",
-        "pinyin": "shǎo nián nán zǐ bù zhī xiū chǐ ，",
+        "chinese": "她说你曾答应娶我，\n\t然后再同枕席。",
+        "pinyin": "tā shuō nǐ céng dā yìng qǔ wǒ ， \n \t rán hòu zài tóng zhěn xí 。",
         "english": ""
       },
       {
-        "chinese": "一味无赖纠缠。",
-        "pinyin": "yī wèi wú lài jiū chán 。",
-        "english": ""
-      },
-      {
-        "chinese": "她说你曾答应娶我，",
-        "pinyin": "tā shuō nǐ céng dā yìng qǔ wǒ ，",
-        "english": ""
-      },
-      {
-        "chinese": "然后再同枕席。",
-        "pinyin": "rán hòu zài tóng zhěn xí 。",
-        "english": ""
-      },
-      {
-        "chinese": "——本来确是想这样做，",
-        "pinyin": "— — běn lái què shì xiǎng zhè yàng zuò ，",
-        "english": ""
-      },
-      {
-        "chinese": "无奈你等不及。",
-        "pinyin": "wú nài nǐ děng bù jí 。",
+        "chinese": "——本来确是想这样做，\n\t无奈你等不及。",
+        "pinyin": "— — běn lái què shì xiǎng zhè yàng zuò ， \n \t wú nài nǐ děng bù jí 。",
         "english": ""
       },
       {
@@ -11448,16 +10794,7 @@
         "chinese": "我们必须忍耐；",
         "pinyin": "wǒ mén bì xū rěn nài ；",
         "english": ""
-      }
-    ]
-  },
-  {
-    "id": "hamlet_shakespeare_ch_29",
-    "bookId": "hamlet_shakespeare",
-    "chapterIndex": 29,
-    "title": "第29章",
-    "titleEn": "Chapter 29",
-    "sentences": [
+      },
       {
         "chinese": "可是我一想到他们把他放下寒冷的泥土里去，我就禁不住掉泪。",
         "pinyin": "kě shì wǒ yī xiǎng dào tā mén bǎ tā fàng xià hán lěng de ní tǔ lǐ qù ， wǒ jiù jīn bù zhù diào lèi 。",
@@ -11499,8 +10836,8 @@
         "english": ""
       },
       {
-        "chinese": "国王 紧紧跟着她；",
-        "pinyin": "guó wáng   jǐn jǐn gēn zhuó tā ；",
+        "chinese": "）\n\t国王 紧紧跟着她；",
+        "pinyin": "） \n \t guó wáng   jǐn jǐn gēn zhuó tā ；",
         "english": ""
       },
       {
@@ -11579,8 +10916,8 @@
         "english": ""
       },
       {
-        "chinese": "王后 嗳哟！",
-        "pinyin": "wáng hòu   ài yō ！",
+        "chinese": "）\n\t王后 嗳哟！",
+        "pinyin": "） \n \t wáng hòu   ài yō ！",
         "english": ""
       },
       {
@@ -11619,13 +10956,13 @@
         "english": ""
       },
       {
-        "chinese": "就像世界还不过刚才开始一般，他们推翻了一切的传统和习惯，自己制订规矩，擅作主张，高喊着，“我们推举雷欧提斯做国王！",
-        "pinyin": "jiù xiàng shì jiè hái bù guò gāng cái kāi shǐ yī bān ， tā mén tuī fān le yī qiē de chuán tǒng hé xí guàn ， zì jǐ zhì dìng guī ju ， shàn zuò zhǔ zhāng ， gāo hǎn zhuó ， “ wǒ mén tuī jǔ léi ōu tí sī zuò guó wáng ！",
+        "chinese": "就像世界还不过刚才开始一般，他们推翻了一切的传统和习惯，自己制订规矩，擅作主张，高喊着，“我们推举雷欧提斯做国王！”",
+        "pinyin": "jiù xiàng shì jiè hái bù guò gāng cái kāi shǐ yī bān ， tā mén tuī fān le yī qiē de chuán tǒng hé xí guàn ， zì jǐ zhì dìng guī ju ， shàn zuò zhǔ zhāng ， gāo hǎn zhuó ， “ wǒ mén tuī jǔ léi ōu tí sī zuò guó wáng ！ ”",
         "english": ""
       },
       {
-        "chinese": "”他们掷帽举手，吆呼的声音响彻云霄，“让雷欧提斯做国王，让雷欧提斯做国王！",
-        "pinyin": "” tā mén zhì mào jǔ shǒu ， yāo hū de shēng yīn xiǎng chè yún xiāo ， “ ràng léi ōu tí sī zuò guó wáng ， ràng léi ōu tí sī zuò guó wáng ！",
+        "chinese": "他们掷帽举手，吆呼的声音响彻云霄，“让雷欧提斯做国王，让雷欧提斯做国王！”",
+        "pinyin": "tā mén zhì mào jǔ shǒu ， yāo hū de shēng yīn xiǎng chè yún xiāo ， “ ràng léi ōu tí sī zuò guó wáng ， ràng léi ōu tí sī zuò guó wáng ！ ”",
         "english": ""
       },
       {
@@ -11644,8 +10981,8 @@
         "english": ""
       },
       {
-        "chinese": "国王 宫门都已打破了。",
-        "pinyin": "guó wáng   gōng mén dōu yǐ dǎ pò le 。",
+        "chinese": "）\n\t国王 宫门都已打破了。",
+        "pinyin": "） \n \t guó wáng   gōng mén dōu yǐ dǎ pò le 。",
         "english": ""
       },
       {
@@ -11689,8 +11026,8 @@
         "english": ""
       },
       {
-        "chinese": "雷欧提斯 谢谢你们；",
-        "pinyin": "léi ōu tí sī   xiè xiè nǐ mén ；",
+        "chinese": "）\n\t雷欧提斯 谢谢你们；",
+        "pinyin": "） \n \t léi ōu tí sī   xiè xiè nǐ mén ；",
         "english": ""
       },
       {
@@ -11702,7 +11039,16 @@
         "chinese": "啊，你这万恶的奸王！",
         "pinyin": "ā ， nǐ zhè wàn è de jiān wáng ！",
         "english": ""
-      },
+      }
+    ]
+  },
+  {
+    "id": "hamlet_shakespeare_ch_28",
+    "bookId": "hamlet_shakespeare",
+    "chapterIndex": 28,
+    "title": "第28章",
+    "titleEn": "Chapter 28",
+    "sentences": [
       {
         "chinese": "还我的父亲来！",
         "pinyin": "hái wǒ de fù qīn lái ！",
@@ -11857,16 +11203,7 @@
         "chinese": "众人（在内）放她进去！",
         "pinyin": "zhòng rén （ zài nèi ） fàng tā jìn qù ！",
         "english": ""
-      }
-    ]
-  },
-  {
-    "id": "hamlet_shakespeare_ch_30",
-    "bookId": "hamlet_shakespeare",
-    "chapterIndex": 30,
-    "title": "第30章",
-    "titleEn": "Chapter 30",
-    "sentences": [
+      },
       {
         "chinese": "雷欧提斯 怎么！",
         "pinyin": "léi ōu tí sī   zěn me ！",
@@ -11923,13 +11260,8 @@
         "english": ""
       },
       {
-        "chinese": "奥菲利娅（唱）",
-        "pinyin": "ào fēi lì yà （ chàng ）",
-        "english": ""
-      },
-      {
-        "chinese": "他们把他抬上柩架；",
-        "pinyin": "tā mén bǎ tā tái shàng jiù jià ；",
+        "chinese": "奥菲利娅（唱）\n\t他们把他抬上柩架；",
+        "pinyin": "ào fēi lì yà （ chàng ） \n \t tā mén bǎ tā tái shàng jiù jià ；",
         "english": ""
       },
       {
@@ -11943,8 +11275,8 @@
         "english": ""
       },
       {
-        "chinese": "再会，我的鸽子！",
-        "pinyin": "zài huì ， wǒ de gē zǐ ！",
+        "chinese": "——\n\t再会，我的鸽子！",
+        "pinyin": "— — \n \t zài huì ， wǒ de gē zǐ ！",
         "english": ""
       },
       {
@@ -11953,13 +11285,13 @@
         "english": ""
       },
       {
-        "chinese": "奥菲利娅 你应该唱：“当啊当，还叫他啊当啊。",
-        "pinyin": "ào fēi lì yà   nǐ yīng gāi chàng ： “ dāng ā dāng ， hái jiào tā ā dāng ā 。",
+        "chinese": "奥菲利娅 你应该唱：“当啊当，还叫他啊当啊。”",
+        "pinyin": "ào fēi lì yà   nǐ yīng gāi chàng ： “ dāng ā dāng ， hái jiào tā ā dāng ā 。 ”",
         "english": ""
       },
       {
-        "chinese": "”哦，这纺轮转动的声音配合得多么好听！",
-        "pinyin": "” ò ， zhè fǎng lún zhuàn dòng de shēng yīn pèi hé dé duō me hǎo tīng ！",
+        "chinese": "哦，这纺轮转动的声音配合得多么好听！",
+        "pinyin": "ò ， zhè fǎng lún zhuàn dòng de shēng yīn pèi hé dé duō me hǎo tīng ！",
         "english": ""
       },
       {
@@ -12023,13 +11355,8 @@
         "english": ""
       },
       {
-        "chinese": "他们说他死得很好——（唱）",
-        "pinyin": "tā mén shuō tā sǐ dé hěn hǎo — — （ chàng ）",
-        "english": ""
-      },
-      {
-        "chinese": "可爱的罗宾是我的宝贝。",
-        "pinyin": "kě ài de luó bīn shì wǒ de bǎo bèi 。",
+        "chinese": "他们说他死得很好——（唱）\n\t可爱的罗宾是我的宝贝。",
+        "pinyin": "tā mén shuō tā sǐ dé hěn hǎo — — （ chàng ） \n \t kě ài de luó bīn shì wǒ de bǎo bèi 。",
         "english": ""
       },
       {
@@ -12038,13 +11365,8 @@
         "english": ""
       },
       {
-        "chinese": "奥菲利娅（唱）",
-        "pinyin": "ào fēi lì yà （ chàng ）",
-        "english": ""
-      },
-      {
-        "chinese": "他会不会再回来？",
-        "pinyin": "tā huì bù huì zài huí lái ？",
+        "chinese": "奥菲利娅（唱）\n\t他会不会再回来？",
+        "pinyin": "ào fēi lì yà （ chàng ） \n \t tā huì bù huì zài huí lái ？",
         "english": ""
       },
       {
@@ -12058,33 +11380,18 @@
         "english": ""
       },
       {
-        "chinese": "你的命难保，",
-        "pinyin": "nǐ de mìng nán bǎo ，",
+        "chinese": "你的命难保，\n\t他再也不会回来。",
+        "pinyin": "nǐ de mìng nán bǎo ， \n \t tā zài yě bù huì huí lái 。",
         "english": ""
       },
       {
-        "chinese": "他再也不会回来。",
-        "pinyin": "tā zài yě bù huì huí lái 。",
+        "chinese": "他的胡须像白银，\n\t满头黄发乱纷纷。",
+        "pinyin": "tā de hú xū xiàng bái yín ， \n \t mǎn tóu huáng fā luàn fēn fēn 。",
         "english": ""
       },
       {
-        "chinese": "他的胡须像白银，",
-        "pinyin": "tā de hú xū xiàng bái yín ，",
-        "english": ""
-      },
-      {
-        "chinese": "满头黄发乱纷纷。",
-        "pinyin": "mǎn tóu huáng fā luàn fēn fēn 。",
-        "english": ""
-      },
-      {
-        "chinese": "人死不能活，",
-        "pinyin": "rén sǐ bù néng huó ，",
-        "english": ""
-      },
-      {
-        "chinese": "且把悲声歇；",
-        "pinyin": "qiě bǎ bēi shēng xiē ；",
+        "chinese": "人死不能活，\n\t且把悲声歇；",
+        "pinyin": "rén sǐ bù néng huó ， \n \t qiě bǎ bēi shēng xiē ；",
         "english": ""
       },
       {
@@ -12108,8 +11415,8 @@
         "english": ""
       },
       {
-        "chinese": "雷欧提斯 上帝啊，你看见这种惨事吗？",
-        "pinyin": "léi ōu tí sī   shàng dì ā ， nǐ kàn jiàn zhè zhǒng cǎn shì ma ？",
+        "chinese": "）\n\t雷欧提斯 上帝啊，你看见这种惨事吗？",
+        "pinyin": "） \n \t léi ōu tí sī   shàng dì ā ， nǐ kàn jiàn zhè zhǒng cǎn shì ma ？",
         "english": ""
       },
       {
@@ -12141,7 +11448,16 @@
         "chinese": "他死得这样不明不白，他的下葬又是这样偷偷摸摸的，他的尸体上没有一些战士的荣饰，也不曾替他举行一些哀祭的仪式，从天上到地下都在发了愤懑不平的呼声，我不能不问一个明白。",
         "pinyin": "tā sǐ dé zhè yàng bù míng bù bái ， tā de xià zàng yòu shì zhè yàng tōu tōu mō mō de ， tā de shī tǐ shàng méi yǒu yī xiē zhàn shì de róng shì ， yě bù céng tì tā jǔ xíng yī xiē āi jì de yí shì ， cóng tiān shàng dào dì xià dōu zài fā le fèn mèn bù píng de hū shēng ， wǒ bù néng bù wèn yī gè míng bái 。",
         "english": ""
-      },
+      }
+    ]
+  },
+  {
+    "id": "hamlet_shakespeare_ch_29",
+    "bookId": "hamlet_shakespeare",
+    "chapterIndex": 29,
+    "title": "第29章",
+    "titleEn": "Chapter 29",
+    "sentences": [
       {
         "chinese": "国王 你可以明白一切；",
         "pinyin": "guó wáng   nǐ kě yǐ míng bái yī qiē ；",
@@ -12163,13 +11479,8 @@
         "english": ""
       },
       {
-        "chinese": "第六场 城堡中另一室",
-        "pinyin": "dì liù chǎng   chéng bǎo zhōng lìng yī shì",
-        "english": ""
-      },
-      {
-        "chinese": "霍拉旭及一仆人上。",
-        "pinyin": "huò lā xù jí yī pū rén shàng 。",
+        "chinese": "）\n第六场 城堡中另一室\n\t霍拉旭及一仆人上。",
+        "pinyin": "） \n dì liù chǎng   chéng bǎo zhōng lìng yī shì \n \t huò lā xù jí yī pū rén shàng 。",
         "english": ""
       },
       {
@@ -12266,16 +11577,7 @@
         "chinese": "把我给国王的信交给他以后，请你就像逃命一般火速来见我。",
         "pinyin": "bǎ wǒ gěi guó wáng de xìn jiāo gěi tā yǐ hòu ， qǐng nǐ jiù xiàng táo mìng yī bān huǒ sù lái jiàn wǒ 。",
         "english": ""
-      }
-    ]
-  },
-  {
-    "id": "hamlet_shakespeare_ch_31",
-    "bookId": "hamlet_shakespeare",
-    "chapterIndex": 31,
-    "title": "第31章",
-    "titleEn": "Chapter 31",
-    "sentences": [
+      },
       {
         "chinese": "我有一些可以使你听了咋舌的话要在你的耳边说；",
         "pinyin": "wǒ yǒu yī xiē kě yǐ shǐ nǐ tīng le zǎ shé de huà yào zài nǐ de ěr biān shuō ；",
@@ -12302,13 +11604,13 @@
         "english": ""
       },
       {
-        "chinese": "你的知心朋友哈姆莱特。",
-        "pinyin": "nǐ de zhī xīn péng yǒu hā mǔ lái tè 。",
+        "chinese": "你的知心朋友哈姆莱特。”",
+        "pinyin": "nǐ de zhī xīn péng yǒu hā mǔ lái tè 。 ”",
         "english": ""
       },
       {
-        "chinese": "”来，让我立刻就带你们去把你们的信送出，然后请你们尽快领我到那把这些信交给你们的那个人的地方去。",
-        "pinyin": "” lái ， ràng wǒ lì kè jiù dài nǐ mén qù bǎ nǐ mén de xìn sòng chū ， rán hòu qǐng nǐ mén jìn kuài lǐng wǒ dào nà bǎ zhè xiē xìn jiāo gěi nǐ mén de nà gè rén de dì fāng qù 。",
+        "chinese": "来，让我立刻就带你们去把你们的信送出，然后请你们尽快领我到那把这些信交给你们的那个人的地方去。",
+        "pinyin": "lái ， ràng wǒ lì kè jiù dài nǐ mén qù bǎ nǐ mén de xìn sòng chū ， rán hòu qǐng nǐ mén jìn kuài lǐng wǒ dào nà bǎ zhè xiē xìn jiāo gěi nǐ mén de nà gè rén de dì fāng qù 。",
         "english": ""
       },
       {
@@ -12317,13 +11619,8 @@
         "english": ""
       },
       {
-        "chinese": "第七场 城堡中另一室",
-        "pinyin": "dì qī chǎng   chéng bǎo zhōng lìng yī shì",
-        "english": ""
-      },
-      {
-        "chinese": "国王及雷欧提斯上。",
-        "pinyin": "guó wáng jí léi ōu tí sī shàng 。",
+        "chinese": "）\n第七场 城堡中另一室\n\t国王及雷欧提斯上。",
+        "pinyin": "） \n dì qī chǎng   chéng bǎo zhōng lìng yī shì \n \t guó wáng jí léi ōu tí sī shàng 。",
         "english": ""
       },
       {
@@ -12412,13 +11709,8 @@
         "english": ""
       },
       {
-        "chinese": "那我希望可以使你想到——",
-        "pinyin": "nà wǒ xī wàng kě yǐ shǐ nǐ xiǎng dào — —",
-        "english": ""
-      },
-      {
-        "chinese": "一使者上。",
-        "pinyin": "yī shǐ zhě shàng 。",
+        "chinese": "那我希望可以使你想到——\n\t一使者上。",
+        "pinyin": "nà wǒ xī wàng kě yǐ shǐ nǐ xiǎng dào — — \n \t yī shǐ zhě shàng 。",
         "english": ""
       },
       {
@@ -12492,13 +11784,13 @@
         "english": ""
       },
       {
-        "chinese": "哈姆莱特敬上。",
-        "pinyin": "hā mǔ lái tè jìng shàng 。",
+        "chinese": "哈姆莱特敬上。”",
+        "pinyin": "hā mǔ lái tè jìng shàng 。 ”",
         "english": ""
       },
       {
-        "chinese": "”这是什么意思？",
-        "pinyin": "” zhè shì shén me yì sī ？",
+        "chinese": "这是什么意思？",
+        "pinyin": "zhè shì shén me yì sī ？",
         "english": ""
       },
       {
@@ -12565,7 +11857,16 @@
         "chinese": "雷欧提斯，你愿意听我的吩咐吗？",
         "pinyin": "léi ōu tí sī ， nǐ yuàn yì tīng wǒ de fēn fù ma ？",
         "english": ""
-      },
+      }
+    ]
+  },
+  {
+    "id": "hamlet_shakespeare_ch_30",
+    "bookId": "hamlet_shakespeare",
+    "chapterIndex": 30,
+    "title": "第30章",
+    "titleEn": "Chapter 30",
+    "sentences": [
       {
         "chinese": "雷欧提斯 愿意，陛下，只要您不勉强我跟他和解。",
         "pinyin": "léi ōu tí sī   yuàn yì ， bì xià ， zhǐ yào nín bù miǎn qiǎng wǒ gēn tā hé jiě 。",
@@ -12675,16 +11976,7 @@
         "chinese": "他的确是全国知名的勇士。",
         "pinyin": "tā dí què shì quán guó zhī míng de yǒng shì 。",
         "english": ""
-      }
-    ]
-  },
-  {
-    "id": "hamlet_shakespeare_ch_32",
-    "bookId": "hamlet_shakespeare",
-    "chapterIndex": 32,
-    "title": "第32章",
-    "titleEn": "Chapter 32",
-    "sentences": [
+      },
       {
         "chinese": "国王 他承认你的武艺很了不得，对于你的剑术尤其极口称赞，说是倘有人能够和你对敌，那一定大有可观；",
         "pinyin": "guó wáng   tā chéng rèn nǐ de wǔ yì hěn le bù dé ， duì yú nǐ de jiàn shù yóu qí jí kǒu chēng zàn ， shuō shì tǎng yǒu rén néng gòu hé nǐ duì dí ， nà yī dìng dà yǒu kě guān ；",
@@ -12701,13 +11993,8 @@
         "english": ""
       },
       {
-        "chinese": "从这一点上——",
-        "pinyin": "cóng zhè yī diǎn shàng — —",
-        "english": ""
-      },
-      {
-        "chinese": "雷欧提斯 从这一点上怎么，陛下？",
-        "pinyin": "léi ōu tí sī   cóng zhè yī diǎn shàng zěn me ， bì xià ？",
+        "chinese": "从这一点上——\n\t雷欧提斯 从这一点上怎么，陛下？",
+        "pinyin": "cóng zhè yī diǎn shàng — — \n \t léi ōu tí sī   cóng zhè yī diǎn shàng zěn me ， bì xià ？",
         "english": ""
       },
       {
@@ -12979,10 +12266,19 @@
         "chinese": "（下。",
         "pinyin": "（ xià 。",
         "english": ""
-      },
+      }
+    ]
+  },
+  {
+    "id": "hamlet_shakespeare_ch_31",
+    "bookId": "hamlet_shakespeare",
+    "chapterIndex": 31,
+    "title": "第31章",
+    "titleEn": "Chapter 31",
+    "sentences": [
       {
-        "chinese": "国王 让我们跟上去，乔特鲁德；",
-        "pinyin": "guó wáng   ràng wǒ mén gēn shàng qù ， qiáo tè lǔ dé ；",
+        "chinese": "）\n\t国王 让我们跟上去，乔特鲁德；",
+        "pinyin": "） \n \t guó wáng   ràng wǒ mén gēn shàng qù ， qiáo tè lǔ dé ；",
         "english": ""
       },
       {
@@ -13001,13 +12297,8 @@
         "english": ""
       },
       {
-        "chinese": "第一场 墓 地",
-        "pinyin": "dì yī chǎng   mù   dì",
-        "english": ""
-      },
-      {
-        "chinese": "二小丑携锄锹等上。",
-        "pinyin": "èr xiǎo chǒu xié chú qiāo děng shàng 。",
+        "chinese": "）\n第一场 墓 地\n\t二小丑携锄锹等上。",
+        "pinyin": "） \n dì yī chǎng   mù   dì \n \t èr xiǎo chǒu xié chú qiāo děng shàng 。",
         "english": ""
       },
       {
@@ -13056,13 +12347,8 @@
         "english": ""
       },
       {
-        "chinese": "小丑乙 嗳，你听我说——",
-        "pinyin": "xiǎo chǒu yǐ   ài ， nǐ tīng wǒ shuō — —",
-        "english": ""
-      },
-      {
-        "chinese": "小丑甲 让我说完。",
-        "pinyin": "xiǎo chǒu jiǎ   ràng wǒ shuō wán 。",
+        "chinese": "小丑乙 嗳，你听我说——\n\t小丑甲 让我说完。",
+        "pinyin": "xiǎo chǒu yǐ   ài ， nǐ tīng wǒ shuō — — \n \t xiǎo chǒu jiǎ   ràng wǒ shuō wán 。",
         "english": ""
       },
       {
@@ -13084,16 +12370,7 @@
         "chinese": "你听见了没有？",
         "pinyin": "nǐ tīng jiàn le méi yǒu ？",
         "english": ""
-      }
-    ]
-  },
-  {
-    "id": "hamlet_shakespeare_ch_33",
-    "bookId": "hamlet_shakespeare",
-    "chapterIndex": 33,
-    "title": "第33章",
-    "titleEn": "Chapter 33",
-    "sentences": [
+      },
       {
         "chinese": "可是要是那水来到他的身上把他淹死了，那就不是他自己把自己淹死；",
         "pinyin": "kě shì yào shì nà shuǐ lái dào tā de shēn shàng bǎ tā yān sǐ le ， nà jiù bù shì tā zì jǐ bǎ zì jǐ yān sǐ ；",
@@ -13190,13 +12467,8 @@
         "english": ""
       },
       {
-        "chinese": "要是你口答得不过，那么你就承认你自己——",
-        "pinyin": "yào shì nǐ kǒu dá dé bù guò ， nà me nǐ jiù chéng rèn nǐ zì jǐ — —",
-        "english": ""
-      },
-      {
-        "chinese": "小丑乙 你问吧。",
-        "pinyin": "xiǎo chǒu yǐ   nǐ wèn bā 。",
+        "chinese": "要是你口答得不过，那么你就承认你自己——\n\t小丑乙 你问吧。",
+        "pinyin": "yào shì nǐ kǒu dá dé bù guò ， nà me nǐ jiù chéng rèn nǐ zì jǐ — — \n \t xiǎo chǒu yǐ   nǐ wèn bā 。",
         "english": ""
       },
       {
@@ -13300,28 +12572,13 @@
         "english": ""
       },
       {
-        "chinese": "小丑甲且掘且歌）",
-        "pinyin": "xiǎo chǒu jiǎ qiě jué qiě gē ）",
+        "chinese": "小丑甲且掘且歌）\n\t年轻时候最爱偷情，\n\t觉得那事很有趣味；",
+        "pinyin": "xiǎo chǒu jiǎ qiě jué qiě gē ） \n \t nián qīng shí hòu zuì ài tōu qíng ， \n \t jué dé nà shì hěn yǒu qù wèi ；",
         "english": ""
       },
       {
-        "chinese": "年轻时候最爱偷情，",
-        "pinyin": "nián qīng shí hòu zuì ài tōu qíng ，",
-        "english": ""
-      },
-      {
-        "chinese": "觉得那事很有趣味；",
-        "pinyin": "jué dé nà shì hěn yǒu qù wèi ；",
-        "english": ""
-      },
-      {
-        "chinese": "规规矩矩学做好人，",
-        "pinyin": "guī guī ju jǔ xué zuò hǎo rén ，",
-        "english": ""
-      },
-      {
-        "chinese": "在我看来太无意义。",
-        "pinyin": "zài wǒ kàn lái tài wú yì yì 。",
+        "chinese": "规规矩矩学做好人，\n\t在我看来太无意义。",
+        "pinyin": "guī guī ju jǔ xué zuò hǎo rén ， \n \t zài wǒ kàn lái tài wú yì yì 。",
         "english": ""
       },
       {
@@ -13345,28 +12602,13 @@
         "english": ""
       },
       {
-        "chinese": "小丑甲（唱）",
-        "pinyin": "xiǎo chǒu jiǎ （ chàng ）",
+        "chinese": "小丑甲（唱）\n\t谁料如今岁月潜移，\n\t老景催人急于星火，",
+        "pinyin": "xiǎo chǒu jiǎ （ chàng ） \n \t shuí liào rú jīn suì yuè qián yí ， \n \t lǎo jǐng cuī rén jí yú xīng huǒ ，",
         "english": ""
       },
       {
-        "chinese": "谁料如今岁月潜移，",
-        "pinyin": "shuí liào rú jīn suì yuè qián yí ，",
-        "english": ""
-      },
-      {
-        "chinese": "老景催人急于星火，",
-        "pinyin": "lǎo jǐng cuī rén jí yú xīng huǒ ，",
-        "english": ""
-      },
-      {
-        "chinese": "两腿挺直，一命归西，",
-        "pinyin": "liǎng tuǐ tǐng zhí ， yī mìng guī xī ，",
-        "english": ""
-      },
-      {
-        "chinese": "世上原来不曾有我。",
-        "pinyin": "shì shàng yuán lái bù céng yǒu wǒ 。",
+        "chinese": "两腿挺直，一命归西，\n\t世上原来不曾有我。",
+        "pinyin": "liǎng tuǐ tǐng zhí ， yī mìng guī xī ， \n \t shì shàng yuán lái bù céng yǒu wǒ 。",
         "english": ""
       },
       {
@@ -13375,8 +12617,8 @@
         "english": ""
       },
       {
-        "chinese": "哈姆莱特 那个骷髅里面曾经有一条舌头，它也会唱歌哩；",
-        "pinyin": "hā mǔ lái tè   nà gè kū lóu lǐ miàn céng jīng yǒu yī tiáo shé tóu ， tā yě huì chàng gē li ；",
+        "chinese": "）\n\t哈姆莱特 那个骷髅里面曾经有一条舌头，它也会唱歌哩；",
+        "pinyin": "） \n \t hā mǔ lái tè   nà gè kū lóu lǐ miàn céng jīng yǒu yī tiáo shé tóu ， tā yě huì chàng gē li ；",
         "english": ""
       },
       {
@@ -13405,13 +12647,13 @@
         "english": ""
       },
       {
-        "chinese": "您好，大人！",
-        "pinyin": "nín hǎo ， dà rén ！",
+        "chinese": "您好，大人！”",
+        "pinyin": "nín hǎo ， dà rén ！ ”",
         "english": ""
       },
       {
-        "chinese": "”也许他就是某大人，嘴里称赞某大人的马好，心里却想把它讨了来，你看是不是？",
-        "pinyin": "” yě xǔ tā jiù shì mǒu dà rén ， zuǐ lǐ chēng zàn mǒu dà rén de mǎ hǎo ， xīn lǐ què xiǎng bǎ tā tǎo le lái ， nǐ kàn shì bù shì ？",
+        "chinese": "也许他就是某大人，嘴里称赞某大人的马好，心里却想把它讨了来，你看是不是？",
+        "pinyin": "yě xǔ tā jiù shì mǒu dà rén ， zuǐ lǐ chēng zàn mǒu dà rén de mǎ hǎo ， xīn lǐ què xiǎng bǎ tā tǎo le lái ， nǐ kàn shì bù shì ？",
         "english": ""
       },
       {
@@ -13433,7 +12675,16 @@
         "chinese": "从这种变化上，我们大可看透了生命的无常。",
         "pinyin": "cóng zhè zhǒng biàn huà shàng ， wǒ mén dà kě kàn tòu le shēng mìng de wú cháng 。",
         "english": ""
-      },
+      }
+    ]
+  },
+  {
+    "id": "hamlet_shakespeare_ch_32",
+    "bookId": "hamlet_shakespeare",
+    "chapterIndex": 32,
+    "title": "第32章",
+    "titleEn": "Chapter 32",
+    "sentences": [
       {
         "chinese": "难道这些枯骨生前受了那么多的教养，死后却只好给人家当木块一般抛着玩吗？",
         "pinyin": "nán dào zhè xiē kū gǔ shēng qián shòu le nà me duō de jiào yǎng ， sǐ hòu què zhǐ hǎo gěi rén jiā dāng mù kuài yī bān pāo zhuó wán ma ？",
@@ -13445,28 +12696,13 @@
         "english": ""
       },
       {
-        "chinese": "小丑甲（唱）",
-        "pinyin": "xiǎo chǒu jiǎ （ chàng ）",
+        "chinese": "小丑甲（唱）\n\t锄头一柄，铁铲一把，\n\t殓衾一方掩面随身；",
+        "pinyin": "xiǎo chǒu jiǎ （ chàng ） \n \t chú tóu yī bǐng ， tiě chǎn yī bǎ ， \n \t liàn qīn yī fāng yǎn miàn suí shēn ；",
         "english": ""
       },
       {
-        "chinese": "锄头一柄，铁铲一把，",
-        "pinyin": "chú tóu yī bǐng ， tiě chǎn yī bǎ ，",
-        "english": ""
-      },
-      {
-        "chinese": "殓衾一方掩面随身；",
-        "pinyin": "liàn qīn yī fāng yǎn miàn suí shēn ；",
-        "english": ""
-      },
-      {
-        "chinese": "挖松泥土深深掘下，",
-        "pinyin": "wā sōng ní tǔ shēn shēn jué xià ，",
-        "english": ""
-      },
-      {
-        "chinese": "掘了个坑招待客人。",
-        "pinyin": "jué le gè kēng zhāo dài kè rén 。",
+        "chinese": "挖松泥土深深掘下，\n\t掘了个坑招待客人。",
+        "pinyin": "wā sōng ní tǔ shēn shēn jué xià ， \n \t jué le gè kēng zhāo dài kè rén 。",
         "english": ""
       },
       {
@@ -13475,8 +12711,8 @@
         "english": ""
       },
       {
-        "chinese": "哈姆莱特 又是一个；",
-        "pinyin": "hā mǔ lái tè   yòu shì yī gè ；",
+        "chinese": "）\n\t哈姆莱特 又是一个；",
+        "pinyin": "） \n \t hā mǔ lái tè   yòu shì yī gè ；",
         "english": ""
       },
       {
@@ -13493,16 +12729,7 @@
         "chinese": "为什么他让这个放肆的家伙用龌龊的铁铲敲他的脑壳，不去控告他一个殴打罪？",
         "pinyin": "wèi shén me tā ràng zhè gè fàng sì de jiā huǒ yòng wò chuò de tiě chǎn qiāo tā de nǎo ké ， bù qù kòng gào tā yī gè ōu dǎ zuì ？",
         "english": ""
-      }
-    ]
-  },
-  {
-    "id": "hamlet_shakespeare_ch_34",
-    "bookId": "hamlet_shakespeare",
-    "chapterIndex": 34,
-    "title": "第34章",
-    "titleEn": "Chapter 34",
-    "sentences": [
+      },
       {
         "chinese": "这家伙生前也许曾经买下许多地产，开口闭口用那些条文、具结、罚款、双重保证、赔偿一类的名词吓人；",
         "pinyin": "zhè jiā huǒ shēng qián yě xǔ céng jīng mǎi xià xǔ duō dì chǎn ， kāi kǒu bì kǒu yòng nà xiē tiáo wén 、 jù jié 、 fá kuǎn 、 shuāng zhòng bǎo zhèng 、 péi cháng yī lèi de míng cí xià rén ；",
@@ -13554,18 +12781,8 @@
         "english": ""
       },
       {
-        "chinese": "小丑甲 我的，先生——",
-        "pinyin": "xiǎo chǒu jiǎ   wǒ de ， xiān shēng — —",
-        "english": ""
-      },
-      {
-        "chinese": "挖松泥土深深掘下，",
-        "pinyin": "wā sōng ní tǔ shēn shēn jué xià ，",
-        "english": ""
-      },
-      {
-        "chinese": "掘了个坑招待客人。",
-        "pinyin": "jué le gè kēng zhāo dài kè rén 。",
+        "chinese": "小丑甲 我的，先生——\n\t挖松泥土深深掘下，\n\t掘了个坑招待客人。",
+        "pinyin": "xiǎo chǒu jiǎ   wǒ de ， xiān shēng — — \n \t wā sōng ní tǔ shēn shēn jué xià ， \n \t jué le gè kēng zhāo dài kè rén 。",
         "english": ""
       },
       {
@@ -13867,7 +13084,16 @@
         "chinese": "现在我一想起来，却忍不住胸头作恶。",
         "pinyin": "xiàn zài wǒ yī xiǎng qǐ lái ， què rěn bù zhù xiōng tóu zuò è 。",
         "english": ""
-      },
+      }
+    ]
+  },
+  {
+    "id": "hamlet_shakespeare_ch_33",
+    "bookId": "hamlet_shakespeare",
+    "chapterIndex": 33,
+    "title": "第33章",
+    "titleEn": "Chapter 33",
+    "sentences": [
       {
         "chinese": "这儿本来有两片嘴唇，我不知吻过它们多少次。",
         "pinyin": "zhè ér běn lái yǒu liǎng piàn zuǐ chún ， wǒ bù zhī wěn guò tā mén duō shǎo cì 。",
@@ -13902,16 +13128,7 @@
         "chinese": "这样垂头丧气了吗？",
         "pinyin": "zhè yàng chuí tóu sàng qì le ma ？",
         "english": ""
-      }
-    ]
-  },
-  {
-    "id": "hamlet_shakespeare_ch_35",
-    "bookId": "hamlet_shakespeare",
-    "chapterIndex": 35,
-    "title": "第35章",
-    "titleEn": "Chapter 35",
-    "sentences": [
+      },
       {
         "chinese": "现在你给我到小姐的闺房里去，对她说，凭她脸上的脂粉搽得一寸厚，到后来总要变成这个样子的；",
         "pinyin": "xiàn zài nǐ gěi wǒ dào xiǎo jiě de guī fáng lǐ qù ， duì tā shuō ， píng tā liǎn shàng de zhī fěn chá dé yī cùn hòu ， dào hòu lái zǒng yào biàn chéng zhè gè yàng zǐ de ；",
@@ -13953,8 +13170,8 @@
         "english": ""
       },
       {
-        "chinese": "霍拉旭 也有同样的臭味，殿下。",
-        "pinyin": "huò lā xù   yě yǒu tóng yàng de chòu wèi ， diàn xià 。",
+        "chinese": "）\n\t霍拉旭 也有同样的臭味，殿下。",
+        "pinyin": "） \n \t huò lā xù   yě yǒu tóng yàng de chòu wèi ， diàn xià 。",
         "english": ""
       },
       {
@@ -14003,23 +13220,13 @@
         "english": ""
       },
       {
-        "chinese": "凯撒死了，你尊严的尸体",
-        "pinyin": "kǎi sā sǐ le ， nǐ zūn yán de shī tǐ",
+        "chinese": "凯撒死了，你尊严的尸体\n\t也许变了泥把破墙填砌；",
+        "pinyin": "kǎi sā sǐ le ， nǐ zūn yán de shī tǐ \n \t yě xǔ biàn le ní bǎ pò qiáng tián qì ；",
         "english": ""
       },
       {
-        "chinese": "也许变了泥把破墙填砌；",
-        "pinyin": "yě xǔ biàn le ní bǎ pò qiáng tián qì ；",
-        "english": ""
-      },
-      {
-        "chinese": "他从前是何等的英雄，",
-        "pinyin": "tā cóng qián shì hé děng de yīng xióng ，",
-        "english": ""
-      },
-      {
-        "chinese": "现在只好替人挡雨遮风！",
-        "pinyin": "xiàn zài zhǐ hǎo tì rén dǎng yǔ zhē fēng ！",
+        "chinese": "他从前是何等的英雄，\n\t现在只好替人挡雨遮风！",
+        "pinyin": "tā cóng qián shì hé děng de yīng xióng ， \n \t xiàn zài zhǐ hǎo tì rén dǎng yǔ zhē fēng ！",
         "english": ""
       },
       {
@@ -14088,8 +13295,8 @@
         "english": ""
       },
       {
-        "chinese": "雷欧提斯 还有些什么仪式？",
-        "pinyin": "léi ōu tí sī   hái yǒu xiē shén me yí shì ？",
+        "chinese": "）\n\t雷欧提斯 还有些什么仪式？",
+        "pinyin": "） \n \t léi ōu tí sī   hái yǒu xiē shén me yí shì ？",
         "english": ""
       },
       {
@@ -14238,8 +13445,8 @@
         "english": ""
       },
       {
-        "chinese": "雷欧提斯 魔鬼抓了你的灵魂去！",
-        "pinyin": "léi ōu tí sī   mó guǐ zhuā le nǐ de líng hún qù ！",
+        "chinese": "）\n\t雷欧提斯 魔鬼抓了你的灵魂去！",
+        "pinyin": "） \n \t léi ōu tí sī   mó guǐ zhuā le nǐ de líng hún qù ！",
         "english": ""
       },
       {
@@ -14248,8 +13455,8 @@
         "english": ""
       },
       {
-        "chinese": "哈姆莱特 你祷告错了。",
-        "pinyin": "hā mǔ lái tè   nǐ dǎo gào cuò le 。",
+        "chinese": "）\n\t哈姆莱特 你祷告错了。",
+        "pinyin": "） \n \t hā mǔ lái tè   nǐ dǎo gào cuò le 。",
         "english": ""
       },
       {
@@ -14283,23 +13490,27 @@
         "english": ""
       },
       {
-        "chinese": "众人 殿下，公子——",
-        "pinyin": "zhòng rén   diàn xià ， gōng zǐ — —",
+        "chinese": "众人 殿下，公子——\n\t霍拉旭 好殿下，安静点儿。",
+        "pinyin": "zhòng rén   diàn xià ， gōng zǐ — — \n \t huò lā xù   hǎo diàn xià ， ān jìng diǎn ér 。",
         "english": ""
-      },
-      {
-        "chinese": "霍拉旭 好殿下，安静点儿。",
-        "pinyin": "huò lā xù   hǎo diàn xià ， ān jìng diǎn ér 。",
-        "english": ""
-      },
+      }
+    ]
+  },
+  {
+    "id": "hamlet_shakespeare_ch_34",
+    "bookId": "hamlet_shakespeare",
+    "chapterIndex": 34,
+    "title": "第34章",
+    "titleEn": "Chapter 34",
+    "sentences": [
       {
         "chinese": "（侍从等分开二人，二人自墓中出。",
         "pinyin": "（ shì cóng děng fēn kāi èr rén ， èr rén zì mù zhōng chū 。",
         "english": ""
       },
       {
-        "chinese": "哈姆莱特 嘿，我愿意为了这个题目跟他决斗，直到我的眼皮不再动。",
-        "pinyin": "hā mǔ lái tè   hēi ， wǒ yuàn yì wèi le zhè gè tí mù gēn tā jué dòu ， zhí dào wǒ de yǎn pí bù zài dòng 。",
+        "chinese": "）\n\t哈姆莱特 嘿，我愿意为了这个题目跟他决斗，直到我的眼皮不再动。",
+        "pinyin": "） \n \t hā mǔ lái tè   hēi ， wǒ yuàn yì wèi le zhè gè tí mù gēn tā jué dòu ， zhí dào wǒ de yǎn pí bù zài dòng 。",
         "english": ""
       },
       {
@@ -14311,16 +13522,7 @@
         "chinese": "什么题目？",
         "pinyin": "shén me tí mù ？",
         "english": ""
-      }
-    ]
-  },
-  {
-    "id": "hamlet_shakespeare_ch_36",
-    "bookId": "hamlet_shakespeare",
-    "chapterIndex": 36,
-    "title": "第36章",
-    "titleEn": "Chapter 36",
-    "sentences": [
+      },
       {
         "chinese": "哈姆莱特 我爱奥菲利娅；",
         "pinyin": "hā mǔ lái tè   wǒ ài ào fēi lì yà ；",
@@ -14462,8 +13664,8 @@
         "english": ""
       },
       {
-        "chinese": "国王 好霍拉旭，请你跟住他。",
-        "pinyin": "guó wáng   hǎo huò lā xù ， qǐng nǐ gēn zhù tā 。",
+        "chinese": "）\n\t国王 好霍拉旭，请你跟住他。",
+        "pinyin": "） \n \t guó wáng   hǎo huò lā xù ， qǐng nǐ gēn zhù tā 。",
         "english": ""
       },
       {
@@ -14502,13 +13704,8 @@
         "english": ""
       },
       {
-        "chinese": "第二场 城堡中的厅堂",
-        "pinyin": "dì èr chǎng   chéng bǎo zhōng de tīng táng",
-        "english": ""
-      },
-      {
-        "chinese": "哈姆莱特及霍拉旭上。",
-        "pinyin": "hā mǔ lái tè jí huò lā xù shàng 。",
+        "chinese": "）\n第二场 城堡中的厅堂\n\t哈姆莱特及霍拉旭上。",
+        "pinyin": "） \n dì èr chǎng   chéng bǎo zhōng de tīng táng \n \t hā mǔ lái tè jí huò lā xù shàng 。",
         "english": ""
       },
       {
@@ -14705,7 +13902,16 @@
         "chinese": "可是我很后悔，好霍拉旭，不该在雷欧提斯之前失去了自制；",
         "pinyin": "kě shì wǒ hěn hòu huǐ ， hǎo huò lā xù ， bù gāi zài léi ōu tí sī zhī qián shī qù le zì zhì ；",
         "english": ""
-      },
+      }
+    ]
+  },
+  {
+    "id": "hamlet_shakespeare_ch_35",
+    "bookId": "hamlet_shakespeare",
+    "chapterIndex": 35,
+    "title": "第35章",
+    "titleEn": "Chapter 35",
+    "sentences": [
       {
         "chinese": "因为他所遭遇的惨痛，正是我自己的怨愤的影子。",
         "pinyin": "yīn wèi tā suǒ zāo yù de cǎn tòng ， zhèng shì wǒ zì jǐ de yuàn fèn de yǐng zǐ 。",
@@ -14720,16 +13926,7 @@
         "chinese": "可是他倘不是那样夸大他的悲哀，我也决不会动起那么大的火性来的。",
         "pinyin": "kě shì tā tǎng bù shì nà yàng kuā dà tā de bēi āi ， wǒ yě jué bù huì dòng qǐ nà me dà de huǒ xìng lái de 。",
         "english": ""
-      }
-    ]
-  },
-  {
-    "id": "hamlet_shakespeare_ch_37",
-    "bookId": "hamlet_shakespeare",
-    "chapterIndex": 37,
-    "title": "第37章",
-    "titleEn": "Chapter 37",
-    "sentences": [
+      },
       {
         "chinese": "霍拉旭 不要作声！",
         "pinyin": "huò lā xù   bù yào zuò shēng ！",
@@ -14836,13 +14033,8 @@
         "english": ""
       },
       {
-        "chinese": "殿下，事情是这样的——",
-        "pinyin": "diàn xià ， shì qíng shì zhè yàng de — —",
-        "english": ""
-      },
-      {
-        "chinese": "哈姆莱特 请您不要这样多礼。",
-        "pinyin": "hā mǔ lái tè   qǐng nín bù yào zhè yàng duō lǐ 。",
+        "chinese": "殿下，事情是这样的——\n\t哈姆莱特 请您不要这样多礼。",
+        "pinyin": "diàn xià ， shì qíng shì zhè yàng de — — \n \t hā mǔ lái tè   qǐng nín bù yào zhè yàng duō lǐ 。",
         "english": ""
       },
       {
@@ -14851,8 +14043,8 @@
         "english": ""
       },
       {
-        "chinese": "奥斯里克 不，殿下，我还是这样舒服些，真的。",
-        "pinyin": "ào sī lǐ kè   bù ， diàn xià ， wǒ hái shì zhè yàng shū fú xiē ， zhēn de 。",
+        "chinese": "）\n\t奥斯里克 不，殿下，我还是这样舒服些，真的。",
+        "pinyin": "） \n \t ào sī lǐ kè   bù ， diàn xià ， wǒ hái shì zhè yàng shū fú xiē ， zhēn de 。",
         "english": ""
       },
       {
@@ -14936,13 +14128,8 @@
         "english": ""
       },
       {
-        "chinese": "奥斯里克 我知道您不是不明白——",
-        "pinyin": "ào sī lǐ kè   wǒ zhī dào nín bù shì bù míng bái — —",
-        "english": ""
-      },
-      {
-        "chinese": "哈姆莱特 您真能知道我这人不是不明白，那倒很好；",
-        "pinyin": "hā mǔ lái tè   nín zhēn néng zhī dào wǒ zhè rén bù shì bù míng bái ， nà dǎo hěn hǎo ；",
+        "chinese": "奥斯里克 我知道您不是不明白——\n\t哈姆莱特 您真能知道我这人不是不明白，那倒很好；",
+        "pinyin": "ào sī lǐ kè   wǒ zhī dào nín bù shì bù míng bái — — \n \t hā mǔ lái tè   nín zhēn néng zhī dào wǒ zhè rén bù shì bù míng bái ， nà dǎo hěn hǎo ；",
         "english": ""
       },
       {
@@ -15124,21 +14311,21 @@
         "chinese": "（奥斯里克下）多亏他自己保证，别人谁也不会替他张口的。",
         "pinyin": "（ ào sī lǐ kè xià ） duō kuī tā zì jǐ bǎo zhèng ， bié rén shuí yě bù huì tì tā zhāng kǒu de 。",
         "english": ""
-      },
-      {
-        "chinese": "霍拉旭 这一只小鸭子顶着壳儿逃走了。",
-        "pinyin": "huò lā xù   zhè yī zhǐ xiǎo yā zǐ dǐng zhuó ké ér táo zǒu le 。",
-        "english": ""
       }
     ]
   },
   {
-    "id": "hamlet_shakespeare_ch_38",
+    "id": "hamlet_shakespeare_ch_36",
     "bookId": "hamlet_shakespeare",
-    "chapterIndex": 38,
-    "title": "第38章",
-    "titleEn": "Chapter 38",
+    "chapterIndex": 36,
+    "title": "第36章",
+    "titleEn": "Chapter 36",
     "sentences": [
+      {
+        "chinese": "霍拉旭 这一只小鸭子顶着壳儿逃走了。",
+        "pinyin": "huò lā xù   zhè yī zhǐ xiǎo yā zǐ dǐng zhuó ké ér táo zǒu le 。",
+        "english": ""
+      },
       {
         "chinese": "哈姆莱特 他在母亲怀抱里的时候，也要先把他母亲的奶头恭维几句，然后吮吸。",
         "pinyin": "hā mǔ lái tè   tā zài mǔ qīn huái bào lǐ de shí hòu ， yě yào xiān bǎ tā mǔ qīn de nǎi tóu gōng wéi jǐ jù ， rán hòu shǔn xī 。",
@@ -15205,8 +14392,8 @@
         "english": ""
       },
       {
-        "chinese": "霍拉旭 殿下，您在这一回打赌中间，多半要失败的。",
-        "pinyin": "huò lā xù   diàn xià ， nín zài zhè yī huí dǎ dǔ zhōng jiān ， duō bàn yào shī bài de 。",
+        "chinese": "）\n\t霍拉旭 殿下，您在这一回打赌中间，多半要失败的。",
+        "pinyin": "） \n \t huò lā xù   diàn xià ， nín zài zhè yī huí dǎ dǔ zhōng jiān ， duō bàn yào shī bài de 。",
         "english": ""
       },
       {
@@ -15235,13 +14422,8 @@
         "english": ""
       },
       {
-        "chinese": "霍拉旭 啊，我的好殿下——",
-        "pinyin": "huò lā xù   ā ， wǒ de hǎo diàn xià — —",
-        "english": ""
-      },
-      {
-        "chinese": "哈姆莱特 那不过是一种傻气的心理；",
-        "pinyin": "hā mǔ lái tè   nà bù guò shì yī zhǒng shǎ qì de xīn lǐ ；",
+        "chinese": "霍拉旭 啊，我的好殿下——\n\t哈姆莱特 那不过是一种傻气的心理；",
+        "pinyin": "huò lā xù   ā ， wǒ de hǎo diàn xià — — \n \t hā mǔ lái tè   nà bù guò shì yī zhǒng shǎ qì de xīn lǐ ；",
         "english": ""
       },
       {
@@ -15310,8 +14492,8 @@
         "english": ""
       },
       {
-        "chinese": "哈姆莱特 原谅我，雷欧提斯；",
-        "pinyin": "hā mǔ lái tè   yuán liàng wǒ ， léi ōu tí sī ；",
+        "chinese": "）\n\t哈姆莱特 原谅我，雷欧提斯；",
+        "pinyin": "） \n \t hā mǔ lái tè   yuán liàng wǒ ， léi ōu tí sī ；",
         "english": ""
       },
       {
@@ -15480,13 +14662,8 @@
         "english": ""
       },
       {
-        "chinese": "（二人准备比剑）",
-        "pinyin": "（ èr rén zhǔn bèi bǐ jiàn ）",
-        "english": ""
-      },
-      {
-        "chinese": "国王 替我在那桌子上斟下几杯酒。",
-        "pinyin": "guó wáng   tì wǒ zài nà zhuō zǐ shàng zhēn xià jǐ bēi jiǔ 。",
+        "chinese": "（二人准备比剑）\n\t国王 替我在那桌子上斟下几杯酒。",
+        "pinyin": "（ èr rén zhǔn bèi bǐ jiàn ） \n \t guó wáng   tì wǒ zài nà zhuō zǐ shàng zhēn xià jǐ bēi jiǔ 。",
         "english": ""
       },
       {
@@ -15505,13 +14682,13 @@
         "english": ""
       },
       {
-        "chinese": "鼓声一起，喇叭就接着吹响，通知外面的炮手，让炮声震彻天地，报告这一个消息，“现在国王为哈姆莱特祝饮了！",
-        "pinyin": "gǔ shēng yī qǐ ， lǎ bā jiù jiē zhuó chuī xiǎng ， tōng zhī wài miàn de pào shǒu ， ràng pào shēng zhèn chè tiān dì ， bào gào zhè yī gè xiāo xī ， “ xiàn zài guó wáng wèi hā mǔ lái tè zhù yǐn le ！",
+        "chinese": "鼓声一起，喇叭就接着吹响，通知外面的炮手，让炮声震彻天地，报告这一个消息，“现在国王为哈姆莱特祝饮了！”",
+        "pinyin": "gǔ shēng yī qǐ ， lǎ bā jiù jiē zhuó chuī xiǎng ， tōng zhī wài miàn de pào shǒu ， ràng pào shēng zhèn chè tiān dì ， bào gào zhè yī gè xiāo xī ， “ xiàn zài guó wáng wèi hā mǔ lái tè zhù yǐn le ！ ”",
         "english": ""
       },
       {
-        "chinese": "”来，开始比赛吧；",
-        "pinyin": "” lái ， kāi shǐ bǐ sài bā ；",
+        "chinese": "来，开始比赛吧；",
+        "pinyin": "lái ， kāi shǐ bǐ sài bā ；",
         "english": ""
       },
       {
@@ -15535,24 +14712,24 @@
         "english": ""
       },
       {
-        "chinese": "哈姆莱特 一剑。",
-        "pinyin": "hā mǔ lái tè   yī jiàn 。",
+        "chinese": "）\n\t哈姆莱特 一剑。",
+        "pinyin": "） \n \t hā mǔ lái tè   yī jiàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "雷欧提斯 不，没有击中。",
+        "pinyin": "léi ōu tí sī   bù ， méi yǒu jī zhōng 。",
         "english": ""
       }
     ]
   },
   {
-    "id": "hamlet_shakespeare_ch_39",
+    "id": "hamlet_shakespeare_ch_37",
     "bookId": "hamlet_shakespeare",
-    "chapterIndex": 39,
-    "title": "第39章",
-    "titleEn": "Chapter 39",
+    "chapterIndex": 37,
+    "title": "第37章",
+    "titleEn": "Chapter 37",
     "sentences": [
-      {
-        "chinese": "雷欧提斯 不，没有击中。",
-        "pinyin": "léi ōu tí sī   bù ， méi yǒu jī zhōng 。",
-        "english": ""
-      },
       {
         "chinese": "哈姆莱特 请裁判员公断。",
         "pinyin": "hā mǔ lái tè   qǐng cái pàn yuán gōng duàn 。",
@@ -15609,8 +14786,8 @@
         "english": ""
       },
       {
-        "chinese": "哈姆莱特 让我先赛完这一局；",
-        "pinyin": "hā mǔ lái tè   ràng wǒ xiān sài wán zhè yī jú ；",
+        "chinese": "）\n\t哈姆莱特 让我先赛完这一局；",
+        "pinyin": "） \n \t hā mǔ lái tè   ràng wǒ xiān sài wán zhè yī jú ；",
         "english": ""
       },
       {
@@ -15744,8 +14921,8 @@
         "english": ""
       },
       {
-        "chinese": "奥斯里克 两边都没有中。",
-        "pinyin": "ào sī lǐ kè   liǎng biān dōu méi yǒu zhōng 。",
+        "chinese": "）\n\t奥斯里克 两边都没有中。",
+        "pinyin": "） \n \t ào sī lǐ kè   liǎng biān dōu méi yǒu zhōng 。",
         "english": ""
       },
       {
@@ -15764,8 +14941,8 @@
         "english": ""
       },
       {
-        "chinese": "国王 分开他们！",
-        "pinyin": "guó wáng   fēn kāi tā mén ！",
+        "chinese": "）\n\t国王 分开他们！",
+        "pinyin": "） \n \t guó wáng   fēn kāi tā mén ！",
         "english": ""
       },
       {
@@ -15784,8 +14961,8 @@
         "english": ""
       },
       {
-        "chinese": "奥斯里克 嗳哟，瞧王后怎么啦！",
-        "pinyin": "ào sī lǐ kè   ài yō ， qiáo wáng hòu zěn me lā ！",
+        "chinese": "）\n\t奥斯里克 嗳哟，瞧王后怎么啦！",
+        "pinyin": "） \n \t ào sī lǐ kè   ài yō ， qiáo wáng hòu zěn me lā ！",
         "english": ""
       },
       {
@@ -15839,8 +15016,8 @@
         "english": ""
       },
       {
-        "chinese": "哈姆莱特 啊，奸恶的阴谋！",
-        "pinyin": "hā mǔ lái tè   ā ， jiān è de yīn móu ！",
+        "chinese": "）\n\t哈姆莱特 啊，奸恶的阴谋！",
+        "pinyin": "） \n \t hā mǔ lái tè   ā ， jiān è de yīn móu ！",
         "english": ""
       },
       {
@@ -15864,8 +15041,8 @@
         "english": ""
       },
       {
-        "chinese": "雷欧提斯 凶手就在这儿，哈姆莱特。",
-        "pinyin": "léi ōu tí sī   xiōng shǒu jiù zài zhè ér ， hā mǔ lái tè 。",
+        "chinese": "）\n\t雷欧提斯 凶手就在这儿，哈姆莱特。",
+        "pinyin": "） \n \t léi ōu tí sī   xiōng shǒu jiù zài zhè ér ， hā mǔ lái tè 。",
         "english": ""
       },
       {
@@ -15924,8 +15101,8 @@
         "english": ""
       },
       {
-        "chinese": "众人 反了！",
-        "pinyin": "zhòng rén   fǎn le ！",
+        "chinese": "）\n\t众人 反了！",
+        "pinyin": "） \n \t zhòng rén   fǎn le ！",
         "english": ""
       },
       {
@@ -15947,21 +15124,21 @@
         "chinese": "我不过受了点伤。",
         "pinyin": "wǒ bù guò shòu le diǎn shāng 。",
         "english": ""
-      }
-    ]
-  },
-  {
-    "id": "hamlet_shakespeare_ch_40",
-    "bookId": "hamlet_shakespeare",
-    "chapterIndex": 40,
-    "title": "第40章",
-    "titleEn": "Chapter 40",
-    "sentences": [
+      },
       {
         "chinese": "哈姆莱特 好，你这败坏伦常、嗜杀贪淫、万恶不赦的丹麦奸王！",
         "pinyin": "hā mǔ lái tè   hǎo ， nǐ zhè bài huài lún cháng 、 shì shā tān yín 、 wàn è bù shè de dān mài jiān wáng ！",
         "english": ""
-      },
+      }
+    ]
+  },
+  {
+    "id": "hamlet_shakespeare_ch_38",
+    "bookId": "hamlet_shakespeare",
+    "chapterIndex": 38,
+    "title": "第38章",
+    "titleEn": "Chapter 38",
+    "sentences": [
       {
         "chinese": "喝干了这杯毒药——你那颗珍珠是在这儿吗？",
         "pinyin": "hē gān le zhè bēi dú yào — — nǐ nà kē zhēn zhū shì zài zhè ér ma ？",
@@ -15978,8 +15155,8 @@
         "english": ""
       },
       {
-        "chinese": "雷欧提斯 他死得应该；",
-        "pinyin": "léi ōu tí sī   tā sǐ dé yīng gāi ；",
+        "chinese": "）\n\t雷欧提斯 他死得应该；",
+        "pinyin": "） \n \t léi ōu tí sī   tā sǐ dé yīng gāi ；",
         "english": ""
       },
       {
@@ -16003,8 +15180,8 @@
         "english": ""
       },
       {
-        "chinese": "哈姆莱特 愿上天赦免你的错误！",
-        "pinyin": "hā mǔ lái tè   yuàn shàng tiān shè miǎn nǐ de cuò wù ！",
+        "chinese": "）\n\t哈姆莱特 愿上天赦免你的错误！",
+        "pinyin": "） \n \t hā mǔ lái tè   yuàn shàng tiān shè miǎn nǐ de cuò wù ！",
         "english": ""
       },
       {
@@ -16128,8 +15305,8 @@
         "english": ""
       },
       {
-        "chinese": "霍拉旭 一颗高贵的心现在碎裂了！",
-        "pinyin": "huò lā xù   yī kē gāo guì de xīn xiàn zài suì liè le ！",
+        "chinese": "）\n\t霍拉旭 一颗高贵的心现在碎裂了！",
+        "pinyin": "） \n \t huò lā xù   yī kē gāo guì de xīn xiàn zài suì liè le ！",
         "english": ""
       },
       {
@@ -16148,8 +15325,8 @@
         "english": ""
       },
       {
-        "chinese": "福丁布拉斯、英国使臣及余人等上。",
-        "pinyin": "fú dīng bù lā sī 、 yīng guó shǐ chén jí yú rén děng shàng 。",
+        "chinese": "）\n\t福丁布拉斯、英国使臣及余人等上。",
+        "pinyin": "） \n \t fú dīng bù lā sī 、 yīng guó shǐ chén jí yú rén děng shàng 。",
         "english": ""
       },
       {

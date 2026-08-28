@@ -41,25 +41,6 @@
     ]
   },
   {
-    "id": "water_margin",
-    "title": "水浒传",
-    "titleEn": "Water Margin",
-    "author": "施耐庵",
-    "authorEn": "Shi Nai'an",
-    "category": "Chinese Epics",
-    "dynastyOrEra": "Ming Dynasty",
-    "hskLevel": 4,
-    "totalChapters": 121,
-    "coverEmoji": "🌊",
-    "description": "《水浒传》是中国古典文学中第一部描写农民起义的白话长篇小说，由施耐庵在宋元话本基础上创作完成。全书共一百二十回，讲述北宋末年朝政腐败、奸臣当道，以宋江、卢俊义、林冲、武松、鲁智深、李逵等为代表的一百零八位好汉，因不堪官逼民反，在山东水泊梁山结义聚义、惩恶扬善的英雄史诗。从林教头风雪山神庙、鲁提辖拳打镇关西、武松景阳冈打虎，到三打祝家庄、梁山大聚义与南征方腊的悲壮结局，作品深刻揭示了封建社会的黑暗与正义反抗的宿命，洋溢着豪迈悲壮的英雄气概。",
-    "descriptionEn": "Water Margin (Outlaws of the Marsh) is the pioneering classical Chinese novel of heroic rebellion, authored by Shi Nai'an across 120 epic chapters. Set in the twilight years of the Northern Song Dynasty, it recounts how 108 righteous heroes and outlaws—each bearing unique martial prowess and driven outside the law by tyrannical and corrupt imperial officials—gather at the impenetrable marsh of Mount Liang. United by an oath of brotherhood and social justice, figures like Wu Song, Lin Chong, Lu Zhishen, and Song Jiang battle corrupted governors before facing the tragic ironies of imperial amnesty, creating a breathtaking epic of honor and camaraderie.",
-    "tags": [
-      "Outlaws",
-      "Brotherhood",
-      "Martial Arts"
-    ]
-  },
-  {
     "id": "dream_of_red_chamber",
     "title": "红楼梦",
     "titleEn": "Dream of the Red Chamber",
@@ -272,25 +253,6 @@
       "Confucianism",
       "Morality",
       "Debate"
-    ]
-  },
-  {
-    "id": "xunzi",
-    "title": "荀子",
-    "titleEn": "Xunzi",
-    "author": "荀况",
-    "authorEn": "Xun Kuang",
-    "category": "Ancient Philosophy",
-    "dynastyOrEra": "Warring States",
-    "hskLevel": 4,
-    "totalChapters": 32,
-    "coverEmoji": "⚖️",
-    "description": "《荀子》是荀况在Warring States时期创作的Ancient Philosophy代表巨著。主张“人之性恶，其善者伪也”，强调礼乐教化与后天学习的重要性。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
-    "descriptionEn": "\"Xunzi\" is a classic masterpiece composed by Xun Kuang during the Warring States era. Early philosophical work emphasizing rigorous learning, rituals, and human discipline. Celebrated worldwide as a defining jewel of Ancient Philosophy, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
-    "tags": [
-      "Ritual",
-      "Learning",
-      "Ethics"
     ]
   },
   {
@@ -557,25 +519,6 @@
       "Beijing",
       "Culture",
       "Drama"
-    ]
-  },
-  {
-    "id": "four_generations_roof",
-    "title": "四世同堂",
-    "titleEn": "Four Generations Under One Roof",
-    "author": "老舍",
-    "authorEn": "Lao She",
-    "category": "Modern Chinese",
-    "dynastyOrEra": "Republic of China",
-    "hskLevel": 4,
-    "totalChapters": 15,
-    "coverEmoji": "🏘️",
-    "description": "《四世同堂》是老舍在Republic of China时期创作的Modern Chinese代表巨著。抗日战争时期北平小羊圈胡同里四世同堂家庭与街坊邻里的生死抗争。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
-    "descriptionEn": "\"Four Generations Under One Roof\" is a classic masterpiece composed by Lao She during the Republic of China era. Monumental epic novel of Beijing alleyway residents enduring wartime occupation. Celebrated worldwide as a defining jewel of Modern Chinese, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
-    "tags": [
-      "Beijing",
-      "Wartime",
-      "Family Epic"
     ]
   },
   {
@@ -996,44 +939,6 @@
       "Ambition",
       "Psychology",
       "Napoleon Era"
-    ]
-  },
-  {
-    "id": "the_stranger_camus",
-    "title": "局外人",
-    "titleEn": "The Stranger",
-    "author": "加缪",
-    "authorEn": "Albert Camus",
-    "category": "French Classics",
-    "dynastyOrEra": "French Literature",
-    "hskLevel": 4,
-    "totalChapters": 15,
-    "coverEmoji": "☀️",
-    "description": "《局外人》是加缪在French Literature时期创作的French Classics代表巨著。莫尔索在阿尔及利亚烈日下枪杀阿拉伯人，以绝对诚实面对荒谬世界的存在主义名著。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
-    "descriptionEn": "\"The Stranger\" is a classic masterpiece composed by Albert Camus during the French Literature era. Camus’s seminal existential novel of emotional honesty and absurd mortality. Celebrated worldwide as a defining jewel of French Classics, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
-    "tags": [
-      "Existentialism",
-      "Absurdity",
-      "Philosophy"
-    ]
-  },
-  {
-    "id": "the_plague_camus",
-    "title": "鼠疫",
-    "titleEn": "The Plague",
-    "author": "加缪",
-    "authorEn": "Albert Camus",
-    "category": "French Classics",
-    "dynastyOrEra": "French Literature",
-    "hskLevel": 4,
-    "totalChapters": 15,
-    "coverEmoji": "🐀",
-    "description": "《鼠疫》是加缪在French Literature时期创作的French Classics代表巨著。奥兰城遭遇致命鼠疫封锁，医生里厄等人在绝境中坚守人道主义防线。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
-    "descriptionEn": "\"The Plague\" is a classic masterpiece composed by Albert Camus during the French Literature era. A powerful allegory of human solidarity and resilience in the face of sudden catastrophe. Celebrated worldwide as a defining jewel of French Classics, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
-    "tags": [
-      "Resilience",
-      "Courage",
-      "Solidarity"
     ]
   },
   {
@@ -1721,25 +1626,6 @@
       "Sci-Fi Origin",
       "Gothic",
       "Horror"
-    ]
-  },
-  {
-    "id": "alice_in_wonderland",
-    "title": "爱丽丝梦游仙境",
-    "titleEn": "Alice in Wonderland",
-    "author": "刘易斯·卡罗尔",
-    "authorEn": "Lewis Carroll",
-    "category": "English & World",
-    "dynastyOrEra": "British Literature",
-    "hskLevel": 2,
-    "totalChapters": 15,
-    "coverEmoji": "🐇",
-    "description": "《爱丽丝梦游仙境》是刘易斯·卡罗尔在British Literature时期创作的English & World代表巨著。爱丽丝掉进兔子洞，漫游充满柴郡猫、疯帽匠与红心王后的奇妙荒诞梦幻仙境。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
-    "descriptionEn": "\"Alice in Wonderland\" is a classic masterpiece composed by Lewis Carroll during the British Literature era. The whimsical Victorian masterpiece of logic puzzles, talking rabbits, and tea parties. Celebrated worldwide as a defining jewel of English & World, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
-    "tags": [
-      "Nonsense",
-      "Fairy Tale",
-      "Children"
     ]
   },
   {

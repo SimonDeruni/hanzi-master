@@ -3,22 +3,22 @@
     "id": "letter_unknown_woman_ch_1",
     "bookId": "letter_unknown_woman",
     "chapterIndex": 1,
-    "title": "第一章",
-    "titleEn": "Chapter 1: 第一章",
+    "title": "序幕 / 导言",
+    "titleEn": "Chapter 1: Prologue",
     "sentences": [
       {
-        "chinese": "著名小说家r·到山里去进行了一次为时三天的郊游之后，这天清晨返回维也纳，在火车站买了一份报纸。",
-        "pinyin": "zhuó míng xiǎo shuō jiā r · dào shān lǐ qù jìn xíng le yī cì wèi shí sān tiān de jiāo yóu zhī hòu ， zhè tiān qīng chén fǎn huí wéi yě nà ， zài huǒ chē zhàn mǎi le yī fèn bào zhǐ 。",
+        "chinese": "第一章\n著名小说家r·到山里去进行了一次为时三天的郊游之后，这天清晨返回维也纳，在火车站买了一份报纸。",
+        "pinyin": "dì yī zhāng \n zhuó míng xiǎo shuō jiā r · dào shān lǐ qù jìn xíng le yī cì wèi shí sān tiān de jiāo yóu zhī hòu ， zhè tiān qīng chén fǎn huí wéi yě nà ， zài huǒ chē zhàn mǎi le yī fèn bào zhǐ 。",
         "english": ""
       },
       {
-        "chinese": "他看了一眼日期，突然想起，今天是他的生日。",
-        "pinyin": "tā kàn le yī yǎn rì qī ， tū rán xiǎng qǐ ， jīn tiān shì tā de shēng rì 。",
+        "chinese": "他看了一眼日期，突然想起，今天是他的生日。\"",
+        "pinyin": "tā kàn le yī yǎn rì qī ， tū rán xiǎng qǐ ， jīn tiān shì tā de shēng rì 。 \"",
         "english": ""
       },
       {
-        "chinese": "\"四十一岁了\"，这个念头很快地在他脑子里一闪，他心里既不高兴也不难过。",
-        "pinyin": "\" sì shí yī suì le \" ， zhè gè niàn tóu hěn kuài dì zài tā nǎo zǐ lǐ yī shǎn ， tā xīn lǐ jì bù gāo xìng yě bù nán guò 。",
+        "chinese": "四十一岁了\"，这个念头很快地在他脑子里一闪，他心里既不高兴也不难过。",
+        "pinyin": "sì shí yī suì le \" ， zhè gè niàn tóu hěn kuài dì zài tā nǎo zǐ lǐ yī shǎn ， tā xīn lǐ jì bù gāo xìng yě bù nán guò 。",
         "english": ""
       },
       {
@@ -67,18 +67,18 @@
         "english": ""
       },
       {
-        "chinese": "他心想：\"真怪\"，又把信拿到手里来看。",
-        "pinyin": "tā xīn xiǎng ： \" zhēn guài \" ， yòu bǎ xìn ná dào shǒu lǐ lái kàn 。",
+        "chinese": "他心想：\"真怪\"，又把信拿到手里来看。\"",
+        "pinyin": "tā xīn xiǎng ： \" zhēn guài \" ， yòu bǎ xìn ná dào shǒu lǐ lái kàn 。 \"",
         "english": ""
       },
       {
-        "chinese": "\"你，从来也没有认识过我的你啊！",
-        "pinyin": "\" nǐ ， cóng lái yě méi yǒu rèn shí guò wǒ de nǐ ā ！",
+        "chinese": "你，从来也没有认识过我的你啊！\"",
+        "pinyin": "nǐ ， cóng lái yě méi yǒu rèn shí guò wǒ de nǐ ā ！ \"",
         "english": ""
       },
       {
-        "chinese": "\"这句话写在顶头，算是称呼，算是标题。",
-        "pinyin": "\" zhè jù huà xiě zài dǐng tóu ， suàn shì chēng hū ， suàn shì biāo tí 。",
+        "chinese": "这句话写在顶头，算是称呼，算是标题。",
+        "pinyin": "zhè jù huà xiě zài dǐng tóu ， suàn shì chēng hū ， suàn shì biāo tí 。",
         "english": ""
       },
       {
@@ -97,13 +97,8 @@
         "english": ""
       },
       {
-        "chinese": "他开始往下念：",
-        "pinyin": "tā kāi shǐ wǎng xià niàn ：",
-        "english": ""
-      },
-      {
-        "chinese": "我的儿子昨天死了--为了这条幼小娇弱的生命，我和死神搏斗了三天三夜，我在他的床边足足坐了四十个小时，当时流感袭击着他，他发着高烧，可怜的身子烧得滚烫。",
-        "pinyin": "wǒ de ér zǐ zuó tiān sǐ le - - wèi le zhè tiáo yòu xiǎo jiāo ruò de shēng mìng ， wǒ hé sǐ shén bó dòu le sān tiān sān yè ， wǒ zài tā de chuáng biān zú zú zuò le sì shí gè xiǎo shí ， dāng shí liú gǎn xí jī zhuó tā ， tā fā zhuó gāo shāo ， kě lián de shēn zǐ shāo dé gǔn tàng 。",
+        "chinese": "他开始往下念：\n我的儿子昨天死了--为了这条幼小娇弱的生命，我和死神搏斗了三天三夜，我在他的床边足足坐了四十个小时，当时流感袭击着他，他发着高烧，可怜的身子烧得滚烫。",
+        "pinyin": "tā kāi shǐ wǎng xià niàn ： \n wǒ de ér zǐ zuó tiān sǐ le - - wèi le zhè tiáo yòu xiǎo jiāo ruò de shēng mìng ， wǒ hé sǐ shén bó dòu le sān tiān sān yè ， wǒ zài tā de chuáng biān zú zú zuò le sì shí gè xiǎo shí ， dāng shí liú gǎn xí jī zhuó tā ， tā fā zhuó gāo shāo ， kě lián de shēn zǐ shāo dé gǔn tàng 。",
         "english": ""
       },
       {
@@ -505,11 +500,6 @@
         "chinese": "我当时无意识地感觉到了后来每个人在你身上都得到的那种印象：你过着一种双重生活，既有对外界开放的光亮的一面，另外还有十分阴暗的一面，这一面只有你一个人知道--这种最深藏的两面性是你一生的秘密，我这个十三岁的姑娘，第一眼就感觉到了你身上的这种两重性，当时象着了魔似的被你吸引住了。",
         "pinyin": "wǒ dāng shí wú yì shí dì gǎn jué dào le hòu lái měi gè rén zài nǐ shēn shàng dōu dé dào de nà zhǒng yìn xiàng ： nǐ guò zhuó yī zhǒng shuāng zhòng shēng huó ， jì yǒu duì wài jiè kāi fàng de guāng liàng de yī miàn ， lìng wài hái yǒu shí fēn yīn àn de yī miàn ， zhè yī miàn zhǐ yǒu nǐ yī gè rén zhī dào - - zhè zhǒng zuì shēn cáng de liǎng miàn xìng shì nǐ yī shēng de mì mì ， wǒ zhè gè shí sān suì de gū niáng ， dì yī yǎn jiù gǎn jué dào le nǐ shēn shàng de zhè zhǒng liǎng zhòng xìng ， dāng shí xiàng zhuó le mó shì de bèi nǐ xī yǐn zhù le 。",
         "english": ""
-      },
-      {
-        "chinese": "ＷＷw.xiＡosＨuotxt.ＣＯＭ",
-        "pinyin": "Ｗ Ｗ w . x i Ａ o s Ｈ u o t x t . Ｃ Ｏ Ｍ",
-        "english": ""
       }
     ]
   },
@@ -576,8 +566,8 @@
         "english": ""
       },
       {
-        "chinese": "你看了我一眼，那眼光温暖、柔和、深情，活象是对我的爱抚，你冲着我一笑，用一种非常轻柔的、简直开说是亲昵的声音对我说：\"多谢，小姐。",
-        "pinyin": "nǐ kàn le wǒ yī yǎn ， nà yǎn guāng wēn nuǎn 、 róu hé 、 shēn qíng ， huó xiàng shì duì wǒ de ài fǔ ， nǐ chōng zhuó wǒ yī xiào ， yòng yī zhǒng fēi cháng qīng róu de 、 jiǎn zhí kāi shuō shì qīn nì de shēng yīn duì wǒ shuō ： \" duō xiè ， xiǎo jiě 。",
+        "chinese": "你看了我一眼，那眼光温暖、柔和、深情，活象是对我的爱抚，你冲着我一笑，用一种非常轻柔的、简直开说是亲昵的声音对我说：\"多谢，小姐。\"",
+        "pinyin": "nǐ kàn le wǒ yī yǎn ， nà yǎn guāng wēn nuǎn 、 róu hé 、 shēn qíng ， huó xiàng shì duì wǒ de ài fǔ ， nǐ chōng zhuó wǒ yī xiào ， yòng yī zhǒng fēi cháng qīng róu de 、 jiǎn zhí kāi shuō shì qīn nì de shēng yīn duì wǒ shuō ： \" duō xiè ， xiǎo jiě 。 \"",
         "english": ""
       },
       {
@@ -616,13 +606,13 @@
         "english": ""
       },
       {
-        "chinese": "\"这人是谁阿？",
-        "pinyin": "\" zhè rén shì shuí ā ？",
+        "chinese": "\"这人是谁阿？\"",
+        "pinyin": "\" zhè rén shì shuí ā ？ \"",
         "english": ""
       },
       {
-        "chinese": "\"我的女同学问道。",
-        "pinyin": "\" wǒ de nǚ tóng xué wèn dào 。",
+        "chinese": "我的女同学问道。",
+        "pinyin": "wǒ de nǚ tóng xué wèn dào 。",
         "english": ""
       },
       {
@@ -631,28 +621,28 @@
         "english": ""
       },
       {
-        "chinese": "你的名字我怎么着也说不出口：就在这一秒钟，在这唯一的一秒钟里，你的名字在我心目中变得无比神圣，成了我心里的秘密。",
-        "pinyin": "nǐ de míng zì wǒ zěn me zhuó yě shuō bù chū kǒu ： jiù zài zhè yī miǎo zhōng ， zài zhè wéi yī de yī miǎo zhōng lǐ ， nǐ de míng zì zài wǒ xīn mù zhōng biàn dé wú bǐ shén shèng ， chéng le wǒ xīn lǐ de mì mì 。",
+        "chinese": "你的名字我怎么着也说不出口：就在这一秒钟，在这唯一的一秒钟里，你的名字在我心目中变得无比神圣，成了我心里的秘密。\"",
+        "pinyin": "nǐ de míng zì wǒ zěn me zhuó yě shuō bù chū kǒu ： jiù zài zhè yī miǎo zhōng ， zài zhè wéi yī de yī miǎo zhōng lǐ ， nǐ de míng zì zài wǒ xīn mù zhōng biàn dé wú bǐ shén shèng ， chéng le wǒ xīn lǐ de mì mì 。 \"",
         "english": ""
       },
       {
-        "chinese": "\"唉，住在我们楼里的一位先生呗！",
-        "pinyin": "\" āi ， zhù zài wǒ mén lóu lǐ de yī wèi xiān shēng bei ！",
+        "chinese": "唉，住在我们楼里的一位先生呗！\"",
+        "pinyin": "āi ， zhù zài wǒ mén lóu lǐ de yī wèi xiān shēng bei ！ \"",
         "english": ""
       },
       {
-        "chinese": "\"我结结巴巴笨嘴拙腮地说道。",
-        "pinyin": "\" wǒ jié jiē bā bā bèn zuǐ zhuō sāi dì shuō dào 。",
+        "chinese": "我结结巴巴笨嘴拙腮地说道。\"",
+        "pinyin": "wǒ jié jiē bā bā bèn zuǐ zhuō sāi dì shuō dào 。 \"",
         "english": ""
       },
       {
-        "chinese": "\"那他看你一眼，你干吗脸涨得通红啊！",
-        "pinyin": "\" nà tā kàn nǐ yī yǎn ， nǐ gān ma liǎn zhǎng dé tōng hóng ā ！",
+        "chinese": "那他看你一眼，你干吗脸涨得通红啊！\"",
+        "pinyin": "nà tā kàn nǐ yī yǎn ， nǐ gān ma liǎn zhǎng dé tōng hóng ā ！ \"",
         "english": ""
       },
       {
-        "chinese": "\"我的女同学以一个好管闲事的女孩子的阴坏的神气，连嘲带讽地说道。",
-        "pinyin": "\" wǒ de nǚ tóng xué yǐ yī gè hào guǎn xián shì de nǚ hái zǐ de yīn huài de shén qì ， lián cháo dài fěng dì shuō dào 。",
+        "chinese": "我的女同学以一个好管闲事的女孩子的阴坏的神气，连嘲带讽地说道。",
+        "pinyin": "wǒ de nǚ tóng xué yǐ yī gè hào guǎn xián shì de nǚ hái zǐ de yīn huài de shén qì ， lián cháo dài fěng dì shuō dào 。",
         "english": ""
       },
       {
@@ -666,13 +656,13 @@
         "english": ""
       },
       {
-        "chinese": "我恶狠狠地说了她一句：\"蠢丫头！",
-        "pinyin": "wǒ è hěn hěn dì shuō le tā yī jù ： \" chǔn yā tóu ！",
+        "chinese": "我恶狠狠地说了她一句：\"蠢丫头！\"",
+        "pinyin": "wǒ è hěn hěn dì shuō le tā yī jù ： \" chǔn yā tóu ！ \"",
         "english": ""
       },
       {
-        "chinese": "\"我当时真恨不得把她活活勒死。",
-        "pinyin": "\" wǒ dāng shí zhēn hèn bù dé bǎ tā huó huó lè sǐ 。",
+        "chinese": "我当时真恨不得把她活活勒死。",
+        "pinyin": "wǒ dāng shí zhēn hèn bù dé bǎ tā huó huó lè sǐ 。",
         "english": ""
       },
       {
@@ -951,28 +941,28 @@
         "english": ""
       },
       {
-        "chinese": "一股热血涌到我的心里，我心里只有一个念头，我想到你。",
-        "pinyin": "yī gǔ rè xiě yǒng dào wǒ de xīn lǐ ， wǒ xīn lǐ zhǐ yǒu yī gè niàn tóu ， wǒ xiǎng dào nǐ 。",
+        "chinese": "一股热血涌到我的心里，我心里只有一个念头，我想到你。\"",
+        "pinyin": "yī gǔ rè xiě yǒng dào wǒ de xīn lǐ ， wǒ xīn lǐ zhǐ yǒu yī gè niàn tóu ， wǒ xiǎng dào nǐ 。 \"",
         "english": ""
       },
       {
-        "chinese": "\"那咱们还住在这儿吧？",
-        "pinyin": "\" nà zán mén hái zhù zài zhè ér bā ？",
+        "chinese": "那咱们还住在这儿吧？\"",
+        "pinyin": "nà zán mén hái zhù zài zhè ér bā ？ \"",
         "english": ""
       },
       {
-        "chinese": "\"我只能结结巴巴地说出这么一句话。",
-        "pinyin": "\" wǒ zhǐ néng jié jiē bā bā dì shuō chū zhè me yī jù huà 。",
+        "chinese": "我只能结结巴巴地说出这么一句话。\"",
+        "pinyin": "wǒ zhǐ néng jié jiē bā bā dì shuō chū zhè me yī jù huà 。 \"",
         "english": ""
       },
       {
-        "chinese": "\"不，我们搬到因斯布鲁克去住，斐迪南在那儿有座漂亮的别墅。",
-        "pinyin": "\" bù ， wǒ mén bān dào yīn sī bù lǔ kè qù zhù ， fěi dí nán zài nà ér yǒu zuò piāo liàng de bié shù 。",
+        "chinese": "不，我们搬到因斯布鲁克去住，斐迪南在那儿有座漂亮的别墅。\"",
+        "pinyin": "bù ， wǒ mén bān dào yīn sī bù lǔ kè qù zhù ， fěi dí nán zài nà ér yǒu zuò piāo liàng de bié shù 。 \"",
         "english": ""
       },
       {
-        "chinese": "\"她说的别的话我都没有听见。",
-        "pinyin": "\" tā shuō de bié de huà wǒ dōu méi yǒu tīng jiàn 。",
+        "chinese": "她说的别的话我都没有听见。",
+        "pinyin": "tā shuō de bié de huà wǒ dōu méi yǒu tīng jiàn 。",
         "english": ""
       },
       {
@@ -1774,13 +1764,13 @@
         "english": ""
       },
       {
-        "chinese": "我决定制不言而喻的事，就脱口而出说了句：\"好吧！",
-        "pinyin": "wǒ jué dìng zhì bù yán ér yù de shì ， jiù tuō kǒu ér chū shuō le jù ： \" hǎo bā ！",
+        "chinese": "我决定制不言而喻的事，就脱口而出说了句：\"好吧！\"",
+        "pinyin": "wǒ jué dìng zhì bù yán ér yù de shì ， jiù tuō kǒu ér chū shuō le jù ： \" hǎo bā ！ \"",
         "english": ""
       },
       {
-        "chinese": "\"我立刻发现，我答应得这么快，你感到难过或者感到愉快，反正你显然是深感意外的。",
-        "pinyin": "\" wǒ lì kè fā xiàn ， wǒ dā yìng dé zhè me kuài ， nǐ gǎn dào nán guò huò zhě gǎn dào yú kuài ， fǎn zhèng nǐ xiǎn rán shì shēn gǎn yì wài de 。",
+        "chinese": "我立刻发现，我答应得这么快，你感到难过或者感到愉快，反正你显然是深感意外的。",
+        "pinyin": "wǒ lì kè fā xiàn ， wǒ dā yìng dé zhè me kuài ， nǐ gǎn dào nán guò huò zhě gǎn dào yú kuài ， fǎn zhèng nǐ xiǎn rán shì shēn gǎn yì wài de 。",
         "english": ""
       },
       {
@@ -1959,13 +1949,13 @@
         "english": ""
       },
       {
-        "chinese": "这时你问我：\"你不想带几朵花走吗？",
-        "pinyin": "zhè shí nǐ wèn wǒ ： \" nǐ bù xiǎng dài jǐ duǒ huā zǒu ma ？",
+        "chinese": "这时你问我：\"你不想带几朵花走吗？\"",
+        "pinyin": "zhè shí nǐ wèn wǒ ： \" nǐ bù xiǎng dài jǐ duǒ huā zǒu ma ？ \"",
         "english": ""
       },
       {
-        "chinese": "\"我说好吧。",
-        "pinyin": "\" wǒ shuō hǎo bā 。",
+        "chinese": "我说好吧。",
+        "pinyin": "wǒ shuō hǎo bā 。",
         "english": ""
       },
       {
@@ -2691,16 +2681,17 @@
         "chinese": "耳边乐声靡靡，撩人心弦，我的那种欲望变得越来越炽烈，我不得不使劲挣扎，拚命挺起身子，因为有股力量如此强烈地把我的嘴唇吸引到你那亲爱的手上去。",
         "pinyin": "ěr biān lè shēng mí mí ， liāo rén xīn xián ， wǒ de nà zhǒng yù wàng biàn dé yuè lái yuè chì liè ， wǒ bù dé bù shǐ jìn zhèng zā ， pīn mìng tǐng qǐ shēn zǐ ， yīn wèi yǒu gǔ lì liàng rú cǐ qiáng liè dì bǎ wǒ de zuǐ chún xī yǐn dào nǐ nà qīn ài de shǒu shàng qù 。",
         "english": ""
-      }
-    ]
-  },
-  {
-    "id": "letter_unknown_woman_ch_6",
-    "bookId": "letter_unknown_woman",
-    "chapterIndex": 6,
-    "title": "第一幕演完，我求我的朋友和我一起离开剧院。在黑暗里你对我这样陌生，可是又挨我这么近，我简直受不了。",
-    "titleEn": "Chapter 6: 第一幕演完，我求我的朋友和我一起离开剧院。在黑暗里你对我这样陌生，可是又挨我这么近，我简直受不了。",
-    "sentences": [
+      },
+      {
+        "chinese": "第一幕演完，我求我的朋友和我一起离开剧院。",
+        "pinyin": "dì yī mù yǎn wán ， wǒ qiú wǒ de péng yǒu hé wǒ yī qǐ lí kāi jù yuàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "在黑暗里你对我这样陌生，可是又挨我这么近，我简直受不了。",
+        "pinyin": "zài hēi àn lǐ nǐ duì wǒ zhè yàng mò shēng ， kě shì yòu āi wǒ zhè me jìn ， wǒ jiǎn zhí shòu bù le 。",
+        "english": ""
+      },
       {
         "chinese": "可是这时刻来到了，又一次来到了，在我这浪费掉的一生中这是最后一次。",
         "pinyin": "kě shì zhè shí kè lái dào le ， yòu yī cì lái dào le ， zài wǒ zhè làng fèi diào de yī shēng zhōng zhè shì zuì hòu yī cì 。",
@@ -2862,68 +2853,68 @@
         "english": ""
       },
       {
-        "chinese": "我立即看出，你没有认出我来，没有认出当年的那个小姑娘，也没有认出后来的那个少女，你又一次把我当作一个新相遇的女人，当作一个素不相识的女人来追求。",
-        "pinyin": "wǒ lì jí kàn chū ， nǐ méi yǒu rèn chū wǒ lái ， méi yǒu rèn chū dāng nián de nà gè xiǎo gū niáng ， yě méi yǒu rèn chū hòu lái de nà gè shǎo nǚ ， nǐ yòu yī cì bǎ wǒ dāng zuò yī gè xīn xiāng yù de nǚ rén ， dāng zuò yī gè sù bù xiāng shí de nǚ rén lái zhuī qiú 。",
+        "chinese": "我立即看出，你没有认出我来，没有认出当年的那个小姑娘，也没有认出后来的那个少女，你又一次把我当作一个新相遇的女人，当作一个素不相识的女人来追求。\"",
+        "pinyin": "wǒ lì jí kàn chū ， nǐ méi yǒu rèn chū wǒ lái ， méi yǒu rèn chū dāng nián de nà gè xiǎo gū niáng ， yě méi yǒu rèn chū hòu lái de nà gè shǎo nǚ ， nǐ yòu yī cì bǎ wǒ dāng zuò yī gè xīn xiāng yù de nǚ rén ， dāng zuò yī gè sù bù xiāng shí de nǚ rén lái zhuī qiú 。 \"",
         "english": ""
       },
       {
-        "chinese": "\"您可不可以也给我一小时时间呢？",
-        "pinyin": "\" nín kě bù kě yǐ yě gěi wǒ yī xiǎo shí shí jiān ne ？",
+        "chinese": "您可不可以也给我一小时时间呢？\"",
+        "pinyin": "nín kě bù kě yǐ yě gěi wǒ yī xiǎo shí shí jiān ne ？ \"",
         "english": ""
       },
       {
-        "chinese": "\"你用亲切的语气问我--从你那确有把握的样子我感觉到，你把我当作一个夜间卖笑的女人。",
-        "pinyin": "\" nǐ yòng qīn qiē de yǔ qì wèn wǒ - - cóng nǐ nà què yǒu bǎ wò de yàng zǐ wǒ gǎn jué dào ， nǐ bǎ wǒ dāng zuò yī gè yè jiān mài xiào de nǚ rén 。",
+        "chinese": "你用亲切的语气问我--从你那确有把握的样子我感觉到，你把我当作一个夜间卖笑的女人。\"",
+        "pinyin": "nǐ yòng qīn qiē de yǔ qì wèn wǒ - - cóng nǐ nà què yǒu bǎ wò de yàng zǐ wǒ gǎn jué dào ， nǐ bǎ wǒ dāng zuò yī gè yè jiān mài xiào de nǚ rén 。 \"",
         "english": ""
       },
       {
-        "chinese": "\"好吧，\"我说道。",
-        "pinyin": "\" hǎo bā ， \" wǒ shuō dào 。",
+        "chinese": "好吧，\"我说道。",
+        "pinyin": "hǎo bā ， \" wǒ shuō dào 。",
         "english": ""
       },
       {
-        "chinese": "十多年前那个少女在幽暗的马路上就用这同一个声音抖颤、可是自然而然地表示赞同的\"好吧\"回答你的。",
-        "pinyin": "shí duō nián qián nà gè shǎo nǚ zài yōu àn de mǎ lù shàng jiù yòng zhè tóng yī gè shēng yīn dǒu chàn 、 kě shì zì rán ér rán dì biǎo shì zàn tóng de \" hǎo bā \" huí dá nǐ de 。",
+        "chinese": "十多年前那个少女在幽暗的马路上就用这同一个声音抖颤、可是自然而然地表示赞同的\"好吧\"回答你的。\"",
+        "pinyin": "shí duō nián qián nà gè shǎo nǚ zài yōu àn de mǎ lù shàng jiù yòng zhè tóng yī gè shēng yīn dǒu chàn 、 kě shì zì rán ér rán dì biǎo shì zàn tóng de \" hǎo bā \" huí dá nǐ de 。 \"",
         "english": ""
       },
       {
-        "chinese": "\"我们什么时候可以见面呢？",
-        "pinyin": "\" wǒ mén shén me shí hòu kě yǐ jiàn miàn ne ？",
+        "chinese": "我们什么时候可以见面呢？\"",
+        "pinyin": "wǒ mén shén me shí hòu kě yǐ jiàn miàn ne ？ \"",
         "english": ""
       },
       {
-        "chinese": "\"你问道。",
-        "pinyin": "\" nǐ wèn dào 。",
+        "chinese": "你问道。\"",
+        "pinyin": "nǐ wèn dào 。 \"",
         "english": ""
       },
       {
-        "chinese": "\"您什么时候想见我都行，\"我回答道--我在你面前是没有羞耻感的。",
-        "pinyin": "\" nín shén me shí hòu xiǎng jiàn wǒ dōu xíng ， \" wǒ huí dá dào - - wǒ zài nǐ miàn qián shì méi yǒu xiū chǐ gǎn de 。",
+        "chinese": "您什么时候想见我都行，\"我回答道--我在你面前是没有羞耻感的。",
+        "pinyin": "nín shén me shí hòu xiǎng jiàn wǒ dōu xíng ， \" wǒ huí dá dào - - wǒ zài nǐ miàn qián shì méi yǒu xiū chǐ gǎn de 。",
         "english": ""
       },
       {
-        "chinese": "你稍微有些惊讶地凝视着我，惊讶之中含有怀疑、好奇的成分，就和从前你见我很快接受你的请求时表示惊讶不止一样。",
-        "pinyin": "nǐ shāo wēi yǒu xiē jīng yà dì níng shì zhuó wǒ ， jīng yà zhī zhōng hán yǒu huái yí 、 hào qí de chéng fēn ， jiù hé cóng qián nǐ jiàn wǒ hěn kuài jiē shòu nǐ de qǐng qiú shí biǎo shì jīng yà bù zhǐ yī yàng 。",
+        "chinese": "你稍微有些惊讶地凝视着我，惊讶之中含有怀疑、好奇的成分，就和从前你见我很快接受你的请求时表示惊讶不止一样。\"",
+        "pinyin": "nǐ shāo wēi yǒu xiē jīng yà dì níng shì zhuó wǒ ， jīng yà zhī zhōng hán yǒu huái yí 、 hào qí de chéng fēn ， jiù hé cóng qián nǐ jiàn wǒ hěn kuài jiē shòu nǐ de qǐng qiú shí biǎo shì jīng yà bù zhǐ yī yàng 。 \"",
         "english": ""
       },
       {
-        "chinese": "\"现在行吗？",
-        "pinyin": "\" xiàn zài xíng ma ？",
+        "chinese": "现在行吗？\"",
+        "pinyin": "xiàn zài xíng ma ？ \"",
         "english": ""
       },
       {
-        "chinese": "\"你问道，口气有些迟疑。",
-        "pinyin": "\" nǐ wèn dào ， kǒu qì yǒu xiē chí yí 。",
+        "chinese": "你问道，口气有些迟疑。\"",
+        "pinyin": "nǐ wèn dào ， kǒu qì yǒu xiē chí yí 。 \"",
         "english": ""
       },
       {
-        "chinese": "\"行，\"我说，\"咱们走吧。",
-        "pinyin": "\" xíng ， \" wǒ shuō ， \" zán mén zǒu bā 。",
+        "chinese": "行，\"我说，\"咱们走吧。\"",
+        "pinyin": "xíng ， \" wǒ shuō ， \" zán mén zǒu bā 。 \"",
         "english": ""
       },
       {
-        "chinese": "\"我想到衣帽间去取我的大衣。",
-        "pinyin": "\" wǒ xiǎng dào yī mào jiān qù qǔ wǒ de dà yī 。",
+        "chinese": "我想到衣帽间去取我的大衣。",
+        "pinyin": "wǒ xiǎng dào yī mào jiān qù qǔ wǒ de dà yī 。",
         "english": ""
       },
       {
@@ -2959,11 +2950,11 @@
     ]
   },
   {
-    "id": "letter_unknown_woman_ch_7",
+    "id": "letter_unknown_woman_ch_6",
     "bookId": "letter_unknown_woman",
-    "chapterIndex": 7,
+    "chapterIndex": 6,
     "title": "第六章",
-    "titleEn": "Chapter 7: 第六章",
+    "titleEn": "Chapter 6: 第六章",
     "sentences": [
       {
         "chinese": "门口停着一辆轿车，我们驱车到你的寓所。",
@@ -3091,23 +3082,23 @@
         "english": ""
       },
       {
-        "chinese": "我恨不得扑倒在你的脚下，喊道：\"带我去吧，这样你终于会认出我来，过了这么多年，你终于会认出我是谁！",
-        "pinyin": "wǒ hèn bù dé pū dǎo zài nǐ de jiǎo xià ， hǎn dào ： \" dài wǒ qù bā ， zhè yàng nǐ zhōng yú huì rèn chū wǒ lái ， guò le zhè me duō nián ， nǐ zhōng yú huì rèn chū wǒ shì shuí ！",
+        "chinese": "我恨不得扑倒在你的脚下，喊道：\"带我去吧，这样你终于会认出我来，过了这么多年，你终于会认出我是谁！\"",
+        "pinyin": "wǒ hèn bù dé pū dǎo zài nǐ de jiǎo xià ， hǎn dào ： \" dài wǒ qù bā ， zhè yàng nǐ zhōng yú huì rèn chū wǒ lái ， guò le zhè me duō nián ， nǐ zhōng yú huì rèn chū wǒ shì shuí ！ \"",
         "english": ""
       },
       {
-        "chinese": "\"可是我在你的面前是如此羞怯，胆小，奴性十足，性格软弱。",
-        "pinyin": "\" kě shì wǒ zài nǐ de miàn qián shì rú cǐ xiū qiè ， dǎn xiǎo ， nú xìng shí zú ， xìng gé ruǎn ruò 。",
+        "chinese": "可是我在你的面前是如此羞怯，胆小，奴性十足，性格软弱。",
+        "pinyin": "kě shì wǒ zài nǐ de miàn qián shì rú cǐ xiū qiè ， dǎn xiǎo ， nú xìng shí zú ， xìng gé ruǎn ruò 。",
         "english": ""
       },
       {
-        "chinese": "我只能说一句：\"多遗憾哪！",
-        "pinyin": "wǒ zhǐ néng shuō yī jù ： \" duō yí hàn nǎ ！",
+        "chinese": "我只能说一句：\"多遗憾哪！\"",
+        "pinyin": "wǒ zhǐ néng shuō yī jù ： \" duō yí hàn nǎ ！ \"",
         "english": ""
       },
       {
-        "chinese": "\"你微笑着望着我说：\"你真的觉得遗憾吗？",
-        "pinyin": "\" nǐ wēi xiào zhuó wàng zhuó wǒ shuō ： \" nǐ zhēn de jué dé yí hàn ma ？",
+        "chinese": "你微笑着望着我说：\"你真的觉得遗憾吗？\"",
+        "pinyin": "nǐ wēi xiào zhuó wàng zhuó wǒ shuō ： \" nǐ zhēn de jué dé yí hàn ma ？ \"",
         "english": ""
       },
       {
@@ -3121,33 +3112,33 @@
         "english": ""
       },
       {
-        "chinese": "然后我说道：\"我爱的那个男人也老是出门到外地去。",
-        "pinyin": "rán hòu wǒ shuō dào ： \" wǒ ài de nà gè nán rén yě lǎo shì chū mén dào wài dì qù 。",
+        "chinese": "然后我说道：\"我爱的那个男人也老是出门到外地去。\"",
+        "pinyin": "rán hòu wǒ shuō dào ： \" wǒ ài de nà gè nán rén yě lǎo shì chū mén dào wài dì qù 。 \"",
         "english": ""
       },
       {
-        "chinese": "\"我凝视着你，直视你眼睛里的瞳仁。",
-        "pinyin": "\" wǒ níng shì zhuó nǐ ， zhí shì nǐ yǎn jīng lǐ de tóng rén 。",
+        "chinese": "我凝视着你，直视你眼睛里的瞳仁。\"",
+        "pinyin": "wǒ níng shì zhuó nǐ ， zhí shì nǐ yǎn jīng lǐ de tóng rén 。 \"",
         "english": ""
       },
       {
-        "chinese": "\"现在，现在他要认出我来了！",
-        "pinyin": "\" xiàn zài ， xiàn zài tā yào rèn chū wǒ lái le ！",
+        "chinese": "现在，现在他要认出我来了！\"",
+        "pinyin": "xiàn zài ， xiàn zài tā yào rèn chū wǒ lái le ！ \"",
         "english": ""
       },
       {
-        "chinese": "\"我身上每一根神经都颤抖起来。",
-        "pinyin": "\" wǒ shēn shàng měi yī gēn shén jīng dōu chàn dǒu qǐ lái 。",
+        "chinese": "我身上每一根神经都颤抖起来。",
+        "pinyin": "wǒ shēn shàng měi yī gēn shén jīng dōu chàn dǒu qǐ lái 。",
         "english": ""
       },
       {
-        "chinese": "可是你冲着我微笑，安慰我：\"他会回来的。",
-        "pinyin": "kě shì nǐ chōng zhuó wǒ wēi xiào ， ān wèi wǒ ： \" tā huì huí lái de 。",
+        "chinese": "可是你冲着我微笑，安慰我：\"他会回来的。\"",
+        "pinyin": "kě shì nǐ chōng zhuó wǒ wēi xiào ， ān wèi wǒ ： \" tā huì huí lái de 。 \"",
         "english": ""
       },
       {
-        "chinese": "\"--\"是的，\"我回答道，\"会回来的，可是回来就什么都忘了。",
-        "pinyin": "\" - - \" shì de ， \" wǒ huí dá dào ， \" huì huí lái de ， kě shì huí lái jiù shén me dōu wàng le 。",
+        "chinese": "--\"是的，\"我回答道，\"会回来的，可是回来就什么都忘了。\"",
+        "pinyin": "- - \" shì de ， \" wǒ huí dá dào ， \" huì huí lái de ， kě shì huí lái jiù shén me dōu wàng le 。 \"",
         "english": ""
       },
       {
@@ -3236,58 +3227,58 @@
         "english": ""
       },
       {
-        "chinese": "我心里又产生一个强烈的愿望，不可抗拒的愿望：我想再尝试一次来提醒你：\"你愿意给我一朵你的白玫瑰吗？",
-        "pinyin": "wǒ xīn lǐ yòu chǎn shēng yī gè qiáng liè de yuàn wàng ， bù kě kàng jù de yuàn wàng ： wǒ xiǎng zài cháng shì yī cì lái tí xǐng nǐ ： \" nǐ yuàn yì gěi wǒ yī duǒ nǐ de bái méi guī ma ？",
+        "chinese": "我心里又产生一个强烈的愿望，不可抗拒的愿望：我想再尝试一次来提醒你：\"你愿意给我一朵你的白玫瑰吗？\"",
+        "pinyin": "wǒ xīn lǐ yòu chǎn shēng yī gè qiáng liè de yuàn wàng ， bù kě kàng jù de yuàn wàng ： wǒ xiǎng zài cháng shì yī cì lái tí xǐng nǐ ： \" nǐ yuàn yì gěi wǒ yī duǒ nǐ de bái méi guī ma ？ \"",
         "english": ""
       },
       {
-        "chinese": "\"--\"当然乐意，\"你说着马上就取了一朵。",
-        "pinyin": "\" - - \" dāng rán lè yì ， \" nǐ shuō zhuó mǎ shàng jiù qǔ le yī duǒ 。",
+        "chinese": "--\"当然乐意，\"你说着马上就取了一朵。\"",
+        "pinyin": "- - \" dāng rán lè yì ， \" nǐ shuō zhuó mǎ shàng jiù qǔ le yī duǒ 。 \"",
         "english": ""
       },
       {
-        "chinese": "\"可是这些花也许是一个女人、一个爱你的女人送给你的吧？",
-        "pinyin": "\" kě shì zhè xiē huā yě xǔ shì yī gè nǚ rén 、 yī gè ài nǐ de nǚ rén sòng gěi nǐ de bā ？",
+        "chinese": "可是这些花也许是一个女人、一个爱你的女人送给你的吧？\"",
+        "pinyin": "kě shì zhè xiē huā yě xǔ shì yī gè nǚ rén 、 yī gè ài nǐ de nǚ rén sòng gěi nǐ de bā ？ \"",
         "english": ""
       },
       {
-        "chinese": "\"我说道。",
-        "pinyin": "\" wǒ shuō dào 。",
+        "chinese": "我说道。\"",
+        "pinyin": "wǒ shuō dào 。 \"",
         "english": ""
       },
       {
-        "chinese": "\"也许是，\"你说，\"我不知道，是人家送给我的，我不知道是谁送的；",
-        "pinyin": "\" yě xǔ shì ， \" nǐ shuō ， \" wǒ bù zhī dào ， shì rén jiā sòng gěi wǒ de ， wǒ bù zhī dào shì shuí sòng de ；",
+        "chinese": "也许是，\"你说，\"我不知道，是人家送给我的，我不知道是谁送的；",
+        "pinyin": "yě xǔ shì ， \" nǐ shuō ， \" wǒ bù zhī dào ， shì rén jiā sòng gěi wǒ de ， wǒ bù zhī dào shì shuí sòng de ；",
         "english": ""
       },
       {
-        "chinese": "所以我才这么喜欢它们。",
-        "pinyin": "suǒ yǐ wǒ cái zhè me xǐ huān tā mén 。",
+        "chinese": "所以我才这么喜欢它们。\"",
+        "pinyin": "suǒ yǐ wǒ cái zhè me xǐ huān tā mén 。 \"",
         "english": ""
       },
       {
-        "chinese": "\"我盯着看你。",
-        "pinyin": "\" wǒ dīng zhuó kàn nǐ 。",
+        "chinese": "我盯着看你。\"",
+        "pinyin": "wǒ dīng zhuó kàn nǐ 。 \"",
         "english": ""
       },
       {
-        "chinese": "\"也许是一个被你遗忘的女人送的！",
-        "pinyin": "\" yě xǔ shì yī gè bèi nǐ yí wàng de nǚ rén sòng de ！",
+        "chinese": "也许是一个被你遗忘的女人送的！\"",
+        "pinyin": "yě xǔ shì yī gè bèi nǐ yí wàng de nǚ rén sòng de ！ \"",
         "english": ""
       },
       {
-        "chinese": "\"你脸上露出一副惊愕的神气。",
-        "pinyin": "\" nǐ liǎn shàng lòu chū yī fù jīng è de shén qì 。",
+        "chinese": "你脸上露出一副惊愕的神气。",
+        "pinyin": "nǐ liǎn shàng lòu chū yī fù jīng è de shén qì 。",
         "english": ""
       },
       {
-        "chinese": "我目不转睛地注视着你：\"认出我来，认出我来吧！",
-        "pinyin": "wǒ mù bù zhuǎn jīng dì zhù shì zhuó nǐ ： \" rèn chū wǒ lái ， rèn chū wǒ lái bā ！",
+        "chinese": "我目不转睛地注视着你：\"认出我来，认出我来吧！\"",
+        "pinyin": "wǒ mù bù zhuǎn jīng dì zhù shì zhuó nǐ ： \" rèn chū wǒ lái ， rèn chū wǒ lái bā ！ \"",
         "english": ""
       },
       {
-        "chinese": "\"我的目光叫道。",
-        "pinyin": "\" wǒ de mù guāng jiào dào 。",
+        "chinese": "我的目光叫道。",
+        "pinyin": "wǒ de mù guāng jiào dào 。",
         "english": ""
       },
       {
