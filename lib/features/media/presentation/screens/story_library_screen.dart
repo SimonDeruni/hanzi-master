@@ -9,7 +9,10 @@ import 'package:hanzi_master/features/media/presentation/screens/story_summary_s
 import 'package:hanzi_master/features/reading/presentation/widgets/custom_story_creator_sheet.dart';
 import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
+import 'package:hanzi_master/features/reading/domain/entities/book_model.dart';
+import 'package:hanzi_master/features/reading/presentation/screens/book_detail_screen.dart';
 import 'package:hanzi_master/features/reading/presentation/screens/book_catalog_screen.dart';
+import 'package:hanzi_master/features/reading/domain/entities/poetry_story_id.dart';
 
 class CategoryStyle {
   final List<Color> gradient;
@@ -29,11 +32,12 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
   bool _isLoading = true;
   List<String> _bookmarkedUrls = [];
   final TextEditingController _searchController = TextEditingController();
-  
+
   String _selectedCategory = 'All';
   int _selectedHskLevel = -1; // -1 = All
 
-  List<String> get _categories => ['All', 'Tang Poetry', 'Contemporary', 'AI Stories', 'Bookmarks'];
+  List<String> get _categories =>
+      ['All', 'Chinese Poetry', 'Contemporary', 'AI Stories', 'Bookmarks'];
   List<int> get _hskLevels => [-1, 0, 1, 2, 3, 4, 5, 6];
 
   @override
@@ -44,7 +48,7 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
       setState(() {}); // Re-render when typing
     });
   }
-  
+
   @override
   void dispose() {
     _searchController.dispose();
@@ -87,17 +91,52 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
 
     if (mounted) {
       setState(() {
-        _allStories = [...localStories, ...firebaseStories, ...customLibraryStories];
+        _allStories = [
+          ...localStories,
+          ...firebaseStories,
+          ...customLibraryStories
+        ];
         final uniqueTitles = <String>{};
         _allStories.retainWhere((s) => uniqueTitles.add(s.title));
 
-        _bookmarkedUrls = bookmarks;
+        final poetryEntries = localStories
+            .where((story) => isPoetryStoryId(story.link))
+            .map((story) => <String, dynamic>{'id': story.link})
+            .toList();
+        _bookmarkedUrls = bookmarks
+            .map((id) => canonicalPoetryId(poetryEntries, id) ?? id)
+            .toSet()
+            .toList();
         _isLoading = false;
       });
     }
   }
 
   void _openStory(LibraryStory story) {
+    if (isPoetryStoryId(story.link) || isPoetryCategory(story.category)) {
+      final book = BookModel(
+        id: story.link,
+        title: story.title,
+        titleEn: story.titleEn ?? story.title,
+        author: story.sourceName,
+        authorEn: story.sourceName,
+        category: story.category.isNotEmpty ? story.category : 'Chinese Poetry',
+        description: story.summary,
+        descriptionEn: story.summaryEn ?? story.summary,
+        dynastyOrEra: 'Tang Dynasty',
+        hskLevel: story.hskLevel,
+        totalChapters: 1,
+        coverEmoji: '📜',
+        tags: story.keywords.isNotEmpty ? story.keywords : const ['Poetry', 'Classical', 'Verse'],
+      );
+      Navigator.push(
+        context,
+        SwipeBackPageRoute(
+          builder: (context) => BookDetailScreen(book: book),
+        ),
+      );
+      return;
+    }
     Navigator.push(
       context,
       SwipeBackPageRoute(
@@ -109,42 +148,52 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
   List<LibraryStory> get _filteredStories {
     final query = _searchController.text.toLowerCase();
     return _allStories.where((story) {
-      final matchesSearch = story.title.toLowerCase().contains(query) || 
-             story.summary.toLowerCase().contains(query) ||
-             (story.titleEn?.toLowerCase().contains(query) ?? false) ||
-             (story.summaryEn?.toLowerCase().contains(query) ?? false) ||
-             story.category.toLowerCase().contains(query) ||
-             story.keywords.any((k) => k.contains(query));
-             
-      final matchesCategory = _selectedCategory == 'All' || 
-          (_selectedCategory == 'Tang Poetry' && story.category.contains('Classic')) ||
-          (_selectedCategory == 'Contemporary' && story.category.contains('Contemporary')) ||
-          (_selectedCategory == 'AI Stories' && story.sourceName == 'AI Generated') ||
-          (_selectedCategory == 'Bookmarks' && _bookmarkedUrls.contains(story.link));
-          
-      final matchesHsk = _selectedHskLevel == -1 || story.hskLevel == _selectedHskLevel;
-      
+      final matchesSearch = story.title.toLowerCase().contains(query) ||
+          story.summary.toLowerCase().contains(query) ||
+          (story.titleEn?.toLowerCase().contains(query) ?? false) ||
+          (story.summaryEn?.toLowerCase().contains(query) ?? false) ||
+          story.category.toLowerCase().contains(query) ||
+          story.keywords.any((k) => k.contains(query));
+
+      final matchesCategory = _selectedCategory == 'All' ||
+          (_selectedCategory == 'Chinese Poetry' &&
+              (story.category == 'Chinese Poetry' ||
+                  isPoetryCategory(story.category))) ||
+          (_selectedCategory == 'Contemporary' &&
+              story.category.contains('Contemporary')) ||
+          (_selectedCategory == 'AI Stories' &&
+              story.sourceName == 'AI Generated') ||
+          (_selectedCategory == 'Bookmarks' &&
+              _bookmarkedUrls.contains(story.link));
+
+      final matchesHsk =
+          _selectedHskLevel == -1 || story.hskLevel == _selectedHskLevel;
+
       return matchesSearch && matchesCategory && matchesHsk;
     }).toList();
   }
-
 
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
-      backgroundColor: isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0), // Zen Paper
+      backgroundColor: isDark
+          ? const Color(0xFF1A1A1B)
+          : const Color(0xFFFDFCF0), // Zen Paper
       appBar: AppBar(
-        title: const Text('文化书房 Library', style: TextStyle(fontWeight: FontWeight.bold)),
+        title: const Text('文化书房 Library',
+            style: TextStyle(fontWeight: FontWeight.bold)),
         backgroundColor: Colors.transparent,
         elevation: 0,
-        foregroundColor: isDark ? const Color(0xFFFDFCF0) : const Color(0xFF1A1A1B),
+        foregroundColor:
+            isDark ? const Color(0xFFFDFCF0) : const Color(0xFF1A1A1B),
       ),
       body: Column(
         children: [
           _buildSearchBar(),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
+            padding:
+                const EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
             child: GestureDetector(
               onTap: () {
                 Navigator.push(
@@ -197,7 +246,8 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
                         ],
                       ),
                     ),
-                    const Icon(Icons.arrow_forward_ios, color: Colors.white, size: 16),
+                    const Icon(Icons.arrow_forward_ios,
+                        color: Colors.white, size: 16),
                   ],
                 ),
               ),
@@ -206,11 +256,12 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
           const SizedBox(height: 8),
           Expanded(
             child: _isLoading && _allStories.isEmpty
-              ? const Center(child: CircularProgressIndicator(color: Color(0xFF8B0000)))
-              : RefreshIndicator(
-                  onRefresh: _loadStories,
-                  child: _buildLibraryContent(),
-                ),
+                ? const Center(
+                    child: CircularProgressIndicator(color: Color(0xFF8B0000)))
+                : RefreshIndicator(
+                    onRefresh: _loadStories,
+                    child: _buildLibraryContent(),
+                  ),
           ),
         ],
       ),
@@ -225,7 +276,8 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
         },
         backgroundColor: const Color(0xFF8B0000), // Crimson/Deep Red
         icon: const Icon(Icons.auto_awesome, color: Colors.white),
-        label: const Text('Create Story', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+        label: const Text('Create Story',
+            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
       ),
     );
   }
@@ -253,15 +305,15 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
             border: InputBorder.none,
             contentPadding: EdgeInsets.symmetric(vertical: 16),
           ),
-          suffixIcon: _searchController.text.isNotEmpty 
-            ? IconButton(
-                icon: const Icon(Icons.clear, color: Colors.grey),
-                onPressed: () {
-                  _searchController.clear();
-                  FocusScope.of(context).unfocus();
-                },
-              )
-            : null,
+          suffixIcon: _searchController.text.isNotEmpty
+              ? IconButton(
+                  icon: const Icon(Icons.clear, color: Colors.grey),
+                  onPressed: () {
+                    _searchController.clear();
+                    FocusScope.of(context).unfocus();
+                  },
+                )
+              : null,
         ),
       ),
     );
@@ -275,44 +327,61 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(
-            children: _categories.map((cat) => Padding(
-              padding: const EdgeInsets.only(right: 8.0),
-              child: ChoiceChip(
-                label: Text(cat),
-                selected: _selectedCategory == cat,
-                onSelected: (selected) {
-                  if (selected) setState(() => _selectedCategory = cat);
-                },
-                selectedColor: isDark ? Colors.white : const Color(0xFF1A1A1B),
-                labelStyle: TextStyle(
-                  color: _selectedCategory == cat
-                      ? (isDark ? const Color(0xFF1A1A1B) : Colors.white)
-                      : (isDark ? Colors.white70 : const Color(0xFF1A1A1B)),
-                ),
-              ),
-            )).toList(),
+            children: _categories
+                .map((cat) => Padding(
+                      padding: const EdgeInsets.only(right: 8.0),
+                      child: ChoiceChip(
+                        label: Text(cat),
+                        selected: _selectedCategory == cat,
+                        onSelected: (selected) {
+                          if (selected) setState(() => _selectedCategory = cat);
+                        },
+                        selectedColor:
+                            isDark ? Colors.white : const Color(0xFF1A1A1B),
+                        labelStyle: TextStyle(
+                          color: _selectedCategory == cat
+                              ? (isDark
+                                  ? const Color(0xFF1A1A1B)
+                                  : Colors.white)
+                              : (isDark
+                                  ? Colors.white70
+                                  : const Color(0xFF1A1A1B)),
+                        ),
+                      ),
+                    ))
+                .toList(),
           ),
         ),
         const SizedBox(height: 8),
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(
-            children: _hskLevels.map((level) => Padding(
-              padding: const EdgeInsets.only(right: 8.0),
-              child: ChoiceChip(
-                label: Text(level == -1 ? 'All HSK' : (level == 0 ? 'Native' : 'HSK $level')),
-                selected: _selectedHskLevel == level,
-                onSelected: (selected) {
-                  if (selected) setState(() => _selectedHskLevel = level);
-                },
-                selectedColor: isDark ? Colors.white : const Color(0xFF1A1A1B),
-                labelStyle: TextStyle(
-                  color: _selectedHskLevel == level
-                      ? (isDark ? const Color(0xFF1A1A1B) : Colors.white)
-                      : (isDark ? Colors.white70 : const Color(0xFF1A1A1B)),
-                ),
-              ),
-            )).toList(),
+            children: _hskLevels
+                .map((level) => Padding(
+                      padding: const EdgeInsets.only(right: 8.0),
+                      child: ChoiceChip(
+                        label: Text(level == -1
+                            ? 'All HSK'
+                            : (level == 0 ? 'Native' : 'HSK $level')),
+                        selected: _selectedHskLevel == level,
+                        onSelected: (selected) {
+                          if (selected)
+                            setState(() => _selectedHskLevel = level);
+                        },
+                        selectedColor:
+                            isDark ? Colors.white : const Color(0xFF1A1A1B),
+                        labelStyle: TextStyle(
+                          color: _selectedHskLevel == level
+                              ? (isDark
+                                  ? const Color(0xFF1A1A1B)
+                                  : Colors.white)
+                              : (isDark
+                                  ? Colors.white70
+                                  : const Color(0xFF1A1A1B)),
+                        ),
+                      ),
+                    ))
+                .toList(),
           ),
         ),
       ],
@@ -320,11 +389,14 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
   }
 
   Widget _buildLibraryContent() {
-    final isDefaultState = _searchController.text.isEmpty && _selectedCategory == 'All' && _selectedHskLevel == -1;
+    final isDefaultState = _searchController.text.isEmpty &&
+        _selectedCategory == 'All' &&
+        _selectedHskLevel == -1;
     final results = _filteredStories;
 
     return SingleChildScrollView(
-      physics: const AlwaysScrollableScrollPhysics(), // Required for RefreshIndicator
+      physics:
+          const AlwaysScrollableScrollPhysics(), // Required for RefreshIndicator
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
         child: Column(
@@ -337,13 +409,16 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
             ],
             const SizedBox(height: 24),
             Builder(builder: (context) {
-              final isDarkSection = Theme.of(context).brightness == Brightness.dark;
+              final isDarkSection =
+                  Theme.of(context).brightness == Brightness.dark;
               return Text(
                 isDefaultState ? 'All Stories' : 'Results (${results.length})',
                 style: TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.w900,
-                  color: isDarkSection ? const Color(0xFFFDFCF0) : const Color(0xFF1A1A1B),
+                  color: isDarkSection
+                      ? const Color(0xFFFDFCF0)
+                      : const Color(0xFF1A1A1B),
                 ),
               );
             }),
@@ -352,7 +427,8 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
               const Center(
                 child: Padding(
                   padding: EdgeInsets.all(32.0),
-                  child: Text('No stories found.', style: TextStyle(color: Colors.grey, fontSize: 16)),
+                  child: Text('No stories found.',
+                      style: TextStyle(color: Colors.grey, fontSize: 16)),
                 ),
               )
             else
@@ -381,30 +457,32 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
     LibraryStory? dailyStory;
     if (_allStories.isNotEmpty) {
       // Find all eligible daily stories
-      final eligibleStories = _allStories.where((s) => s.category.contains('Poem') || s.category.contains('Classic')).toList();
+      final eligibleStories =
+          _allStories.where((s) => isPoetryCategory(s.category)).toList();
       if (eligibleStories.isEmpty) {
         eligibleStories.addAll(_allStories);
       }
-      
+
       // Pick one based on the current day of the year so it changes exactly once per day
       final now = DateTime.now();
       final dayOfYear = now.difference(DateTime(now.year, 1, 1)).inDays;
       final dailyIndex = dayOfYear % eligibleStories.length;
-      
+
       dailyStory = eligibleStories[dailyIndex];
     }
-    
+
     if (dailyStory == null) return const SizedBox();
-    
+
     final theme = Theme.of(context);
-    final hasImage = dailyStory.imageUrl != null && dailyStory.imageUrl!.isNotEmpty;
+    final hasImage =
+        dailyStory.imageUrl != null && dailyStory.imageUrl!.isNotEmpty;
     // Use an asset that was already loaded in memory
-    final displayImageUrl = hasImage 
-        ? dailyStory.imageUrl! 
+    final displayImageUrl = hasImage
+        ? dailyStory.imageUrl!
         : 'assets/images/ai_hub_ink_mountains.png';
-        
+
     final isNetworkImage = displayImageUrl.startsWith('http');
-    
+
     return GestureDetector(
       onTap: () {
         Navigator.push(
@@ -441,26 +519,28 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
                   ? Image.network(
                       displayImageUrl,
                       fit: BoxFit.cover,
-                      color: Colors.black.withValues(alpha: 0.6), // Dark overlay
+                      color:
+                          Colors.black.withValues(alpha: 0.6), // Dark overlay
                       colorBlendMode: BlendMode.darken,
                       errorBuilder: (_, __, ___) => _buildFallbackGradient(),
                     )
                   : Image.asset(
                       displayImageUrl,
                       fit: BoxFit.cover,
-                      color: Colors.black.withValues(alpha: 0.6), // Dark overlay
+                      color:
+                          Colors.black.withValues(alpha: 0.6), // Dark overlay
                       colorBlendMode: BlendMode.darken,
                       errorBuilder: (_, __, ___) => _buildFallbackGradient(),
                     ),
             ),
-              
             Padding(
               padding: const EdgeInsets.all(24.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                     decoration: BoxDecoration(
                       color: Colors.white, // Pure white background
                       borderRadius: BorderRadius.circular(20),
@@ -468,12 +548,11 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
                     child: const Text(
                       'STORY OF THE DAY',
                       style: TextStyle(
-                        color: Color(0xFF1A1A1B), 
-                        fontSize: 10, 
-                        fontWeight: FontWeight.w700, 
-                        fontFamily: 'NotoSerifSC',
-                        letterSpacing: 1.2
-                      ),
+                          color: Color(0xFF1A1A1B),
+                          fontSize: 10,
+                          fontWeight: FontWeight.w700,
+                          fontFamily: 'NotoSerifSC',
+                          letterSpacing: 1.2),
                     ),
                   ),
                   const Spacer(),
@@ -482,12 +561,11 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
-                      color: Colors.white, 
-                      fontSize: 32, // Larger title
-                      fontWeight: FontWeight.w600, 
-                      fontFamily: 'NotoSerifSC',
-                      height: 1.1
-                    ),
+                        color: Colors.white,
+                        fontSize: 32, // Larger title
+                        fontWeight: FontWeight.w600,
+                        fontFamily: 'NotoSerifSC',
+                        height: 1.1),
                   ),
                   const SizedBox(height: 8),
                   Text(
@@ -530,18 +608,20 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
   }
 }
 
-
 class StoryCardWidget extends StatelessWidget {
   final LibraryStory story;
   final Function(LibraryStory) openStory;
 
-  const StoryCardWidget({super.key, required this.story, required this.openStory});
+  const StoryCardWidget(
+      {super.key, required this.story, required this.openStory});
 
   Color _getCategoryColor() {
     final cat = story.category.toLowerCase();
     if (cat.contains('idiom')) return const Color(0xFF8B0000); // Deep Red
-    if (cat.contains('classic') || story.title.toLowerCase().contains('poem')) return const Color(0xFF2C3E50); // Slate Blue
-    if (cat.contains('contemporary')) return const Color(0xFF2E8B57); // Forest Green
+    if (isPoetryCategory(story.category))
+      return const Color(0xFF2C3E50); // Slate Blue
+    if (cat.contains('contemporary'))
+      return const Color(0xFF2E8B57); // Forest Green
     return const Color(0xFFD35400); // Orange for Graded Readers / Others
   }
 
@@ -550,10 +630,9 @@ class StoryCardWidget extends StatelessWidget {
     final theme = Theme.of(context);
     final hasImage = story.imageUrl != null && story.imageUrl!.isNotEmpty;
     // Use an asset that was already loaded in memory
-    final displayImageUrl = hasImage 
-        ? story.imageUrl! 
-        : 'assets/images/ai_hub_ink_mountains.png';
-        
+    final displayImageUrl =
+        hasImage ? story.imageUrl! : 'assets/images/ai_hub_ink_mountains.png';
+
     final isNetworkImage = displayImageUrl.startsWith('http');
     final cardColor = _getCategoryColor();
 
@@ -586,13 +665,15 @@ class StoryCardWidget extends StatelessWidget {
                     Image.network(
                       displayImageUrl,
                       fit: BoxFit.cover,
-                      errorBuilder: (_, __, ___) => _buildFallbackGradient(cardColor),
+                      errorBuilder: (_, __, ___) =>
+                          _buildFallbackGradient(cardColor),
                     )
                   else
                     Image.asset(
                       displayImageUrl,
                       fit: BoxFit.cover,
-                      errorBuilder: (_, __, ___) => _buildFallbackGradient(cardColor),
+                      errorBuilder: (_, __, ___) =>
+                          _buildFallbackGradient(cardColor),
                     ),
                   // Tint overlay for category color
                   Container(
@@ -617,13 +698,16 @@ class StoryCardWidget extends StatelessWidget {
                     top: 12,
                     left: 12,
                     child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8, vertical: 4),
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Text(
-                        story.hskLevel == 0 ? 'Native' : 'HSK ${story.hskLevel}',
+                        story.hskLevel == 0
+                            ? 'Native'
+                            : 'HSK ${story.hskLevel}',
                         style: TextStyle(
                           fontSize: 10,
                           fontWeight: FontWeight.bold,
@@ -635,7 +719,7 @@ class StoryCardWidget extends StatelessWidget {
                 ],
               ),
             ),
-            
+
             // Content
             Expanded(
               child: Padding(

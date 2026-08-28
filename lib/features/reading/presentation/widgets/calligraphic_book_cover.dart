@@ -19,6 +19,9 @@ class CalligraphicBookCover extends StatelessWidget {
     switch (category) {
       case 'Chinese Epics':
         return [const Color(0xFF8B1E1E), const Color(0xFF4A0E0E)];
+      case 'Chinese Poetry':
+      case 'Tang Poetry':
+        return [const Color(0xFF4A1212), const Color(0xFF240606)];
       case 'Ancient Philosophy':
         return [const Color(0xFF1E3A2B), const Color(0xFF0F2218)];
       case 'Supernatural & Folklore':

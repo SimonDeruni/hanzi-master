@@ -36,7 +36,7 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
 
   // Novel filters
   String _selectedNovelCategory = 'All';
-  
+
   // Micro-read filters
   int _selectedHsk = -1; // -1 = All
 
@@ -109,7 +109,8 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                 ),
               ),
               leading: IconButton(
-                icon: Icon(Icons.arrow_back_ios_new, size: 20, color: primaryText),
+                icon: Icon(Icons.arrow_back_ios_new,
+                    size: 20, color: primaryText),
                 onPressed: () => Navigator.of(context).pop(),
               ),
             )
@@ -130,11 +131,14 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                       color: cardBg,
                       borderRadius: BorderRadius.circular(16),
                       border: Border.all(
-                        color: isDark ? Colors.white12 : Colors.black.withValues(alpha: 0.06),
+                        color: isDark
+                            ? Colors.white12
+                            : Colors.black.withValues(alpha: 0.06),
                       ),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withValues(alpha: isDark ? 0.2 : 0.03),
+                          color: Colors.black
+                              .withValues(alpha: isDark ? 0.2 : 0.03),
                           blurRadius: 10,
                           offset: const Offset(0, 4),
                         ),
@@ -165,7 +169,8 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                               )
                             : null,
                         border: InputBorder.none,
-                        contentPadding: const EdgeInsets.symmetric(vertical: 14),
+                        contentPadding:
+                            const EdgeInsets.symmetric(vertical: 14),
                       ),
                     ),
                   ),
@@ -177,7 +182,9 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                     height: 44,
                     padding: const EdgeInsets.all(3),
                     decoration: BoxDecoration(
-                      color: isDark ? const Color(0xFF2C2C2E) : Colors.black.withValues(alpha: 0.06),
+                      color: isDark
+                          ? const Color(0xFF2C2C2E)
+                          : Colors.black.withValues(alpha: 0.06),
                       borderRadius: BorderRadius.circular(22),
                     ),
                     child: Row(
@@ -332,10 +339,13 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
               },
               child: AnimatedContainer(
                 duration: const Duration(milliseconds: 180),
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                 decoration: BoxDecoration(
                   color: isSelected
-                      ? (isDark ? Colors.amber.shade700 : const Color(0xFF2C2C2E))
+                      ? (isDark
+                          ? Colors.amber.shade700
+                          : const Color(0xFF2C2C2E))
                       : cardBg,
                   borderRadius: BorderRadius.circular(16),
                   border: Border.all(
@@ -352,7 +362,8 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                           ? Colors.white
                           : (isDark ? Colors.white70 : Colors.black87),
                       fontSize: 11,
-                      fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
+                      fontWeight:
+                          isSelected ? FontWeight.bold : FontWeight.w500,
                     ),
                   ),
                 ),
@@ -388,10 +399,13 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
               },
               child: AnimatedContainer(
                 duration: const Duration(milliseconds: 180),
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                 decoration: BoxDecoration(
                   color: isSelected
-                      ? (isDark ? Colors.orange.shade700 : const Color(0xFFFF7A00))
+                      ? (isDark
+                          ? Colors.orange.shade700
+                          : const Color(0xFFFF7A00))
                       : cardBg,
                   borderRadius: BorderRadius.circular(16),
                   border: Border.all(
@@ -408,7 +422,8 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                           ? Colors.white
                           : (isDark ? Colors.white70 : Colors.black87),
                       fontSize: 11,
-                      fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
+                      fontWeight:
+                          isSelected ? FontWeight.bold : FontWeight.w500,
                     ),
                   ),
                 ),
@@ -436,10 +451,13 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
               },
               child: AnimatedContainer(
                 duration: const Duration(milliseconds: 180),
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                 decoration: BoxDecoration(
                   color: isSelected
-                      ? (isDark ? const Color(0xFF8B0000) : const Color(0xFF8B0000))
+                      ? (isDark
+                          ? const Color(0xFF8B0000)
+                          : const Color(0xFF8B0000))
                       : cardBg,
                   borderRadius: BorderRadius.circular(16),
                   border: Border.all(
@@ -456,7 +474,8 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                           ? Colors.white
                           : (isDark ? Colors.white70 : Colors.black87),
                       fontSize: 11,
-                      fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
+                      fontWeight:
+                          isSelected ? FontWeight.bold : FontWeight.w500,
                     ),
                   ),
                 ),
@@ -482,7 +501,8 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
       data: (books) {
         final query = _searchController.text.trim().toLowerCase();
         final filtered = books.where((b) {
-          final matchesCat = _selectedNovelCategory == 'All' || b.category == _selectedNovelCategory;
+          final matchesCat = _selectedNovelCategory == 'All' ||
+              b.category == _selectedNovelCategory;
           final matchesSearch = query.isEmpty ||
               b.title.toLowerCase().contains(query) ||
               b.titleEn.toLowerCase().contains(query) ||
@@ -495,9 +515,12 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
 
         return [
           // Continue Reading Shelf
-          if (inProgressItems.isNotEmpty && query.isEmpty && _selectedNovelCategory == 'All')
+          if (inProgressItems.isNotEmpty &&
+              query.isEmpty &&
+              _selectedNovelCategory == 'All')
             SliverToBoxAdapter(
-              child: _buildContinueReadingShelf(context, inProgressItems, isDark, cardBg, primaryText),
+              child: _buildContinueReadingShelf(
+                  context, inProgressItems, isDark, cardBg, primaryText),
             ),
 
           // Count indicator
@@ -505,7 +528,7 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
               child: Text(
-                '${filtered.length} Unabridged Books & Synchronized Audiobooks',
+                '${filtered.length} Books & Audiobooks',
                 style: TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
@@ -523,7 +546,9 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
               child: Center(
                 child: Text(
                   'No novels found matching your filter.',
-                  style: TextStyle(color: isDark ? Colors.white38 : Colors.black38, fontSize: 14),
+                  style: TextStyle(
+                      color: isDark ? Colors.white38 : Colors.black38,
+                      fontSize: 14),
                 ),
               ),
             )
@@ -538,7 +563,8 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                   mainAxisSpacing: 16,
                 ),
                 delegate: SliverChildBuilderDelegate(
-                  (context, index) => _buildBookCard(context, filtered[index], isDark, cardBg, primaryText),
+                  (context, index) => _buildBookCard(
+                      context, filtered[index], isDark, cardBg, primaryText),
                   childCount: filtered.length,
                 ),
               ),
@@ -572,7 +598,9 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
         final query = _searchController.text.trim().toLowerCase();
         final filtered = stories.where((s) {
           final matchesHsk = _selectedHsk == -1 ||
-              (_selectedHsk == 5 ? s.hskLevel >= 5 : s.hskLevel == _selectedHsk);
+              (_selectedHsk == 5
+                  ? s.hskLevel >= 5
+                  : s.hskLevel == _selectedHsk);
           final matchesSearch = query.isEmpty ||
               s.title.toLowerCase().contains(query) ||
               (s.titleEn?.toLowerCase().contains(query) ?? false) ||
@@ -603,7 +631,9 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
               child: Center(
                 child: Text(
                   'No micro-reads found matching your filter.',
-                  style: TextStyle(color: isDark ? Colors.white38 : Colors.black38, fontSize: 14),
+                  style: TextStyle(
+                      color: isDark ? Colors.white38 : Colors.black38,
+                      fontSize: 14),
                 ),
               ),
             )
@@ -618,7 +648,8 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                   mainAxisSpacing: 16,
                 ),
                 delegate: SliverChildBuilderDelegate(
-                  (context, index) => _buildMicroReadCard(context, filtered[index], isDark, cardBg, primaryText),
+                  (context, index) => _buildMicroReadCard(
+                      context, filtered[index], isDark, cardBg, primaryText),
                   childCount: filtered.length,
                 ),
               ),
@@ -652,7 +683,9 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
         final query = _searchController.text.trim().toLowerCase();
         final filtered = poems.where((p) {
           final matchesPoet = _selectedPoet == 'All' ||
-              p.sourceName.toLowerCase().contains(_selectedPoet.split(' ').first.toLowerCase());
+              p.sourceName
+                  .toLowerCase()
+                  .contains(_selectedPoet.split(' ').first.toLowerCase());
           final matchesSearch = query.isEmpty ||
               p.title.toLowerCase().contains(query) ||
               (p.titleEn?.toLowerCase().contains(query) ?? false) ||
@@ -684,7 +717,9 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
               child: Center(
                 child: Text(
                   'No poems found matching your filter.',
-                  style: TextStyle(color: isDark ? Colors.white38 : Colors.black38, fontSize: 14),
+                  style: TextStyle(
+                      color: isDark ? Colors.white38 : Colors.black38,
+                      fontSize: 14),
                 ),
               ),
             )
@@ -701,7 +736,8 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                 delegate: SliverChildBuilderDelegate(
                   (context, index) {
                     final poem = filtered[index];
-                    return _buildPoetryGridCard(context, poem, isDark, cardBg, primaryText);
+                    return _buildPoetryGridCard(
+                        context, poem, isDark, cardBg, primaryText);
                   },
                   childCount: filtered.length,
                 ),
@@ -748,7 +784,8 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
           color: cardBg,
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
-            color: isDark ? Colors.white12 : Colors.black.withValues(alpha: 0.06),
+            color:
+                isDark ? Colors.white12 : Colors.black.withValues(alpha: 0.06),
           ),
           boxShadow: [
             BoxShadow(
@@ -764,7 +801,8 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
             Expanded(
               flex: 11,
               child: ClipRRect(
-                borderRadius: const BorderRadius.vertical(top: Radius.circular(15)),
+                borderRadius:
+                    const BorderRadius.vertical(top: Radius.circular(15)),
                 child: Stack(
                   fit: StackFit.expand,
                   children: [
@@ -777,7 +815,8 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                       top: 8,
                       right: 8,
                       child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 3),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 6, vertical: 3),
                         decoration: BoxDecoration(
                           color: Colors.black.withValues(alpha: 0.65),
                           borderRadius: BorderRadius.circular(10),
@@ -789,7 +828,8 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                         child: const Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Icon(Icons.headphones, size: 10, color: Colors.amber),
+                            Icon(Icons.headphones,
+                                size: 10, color: Colors.amber),
                             SizedBox(width: 3),
                             Text(
                               'Audiobook',
@@ -854,14 +894,20 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                             style: TextStyle(
                               fontSize: 11,
                               fontWeight: FontWeight.w600,
-                              color: isDark ? Colors.amber.shade400 : const Color(0xFF8B0000),
+                              color: isDark
+                                  ? Colors.amber.shade400
+                                  : const Color(0xFF8B0000),
                             ),
                           ),
                         ),
                         Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 5, vertical: 2),
                           decoration: BoxDecoration(
-                            color: (isDark ? Colors.amber : const Color(0xFF8B0000)).withValues(alpha: 0.12),
+                            color: (isDark
+                                    ? Colors.amber
+                                    : const Color(0xFF8B0000))
+                                .withValues(alpha: 0.12),
                             borderRadius: BorderRadius.circular(6),
                           ),
                           child: Row(
@@ -870,7 +916,9 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                               Icon(
                                 Icons.graphic_eq,
                                 size: 10,
-                                color: isDark ? Colors.amber.shade300 : const Color(0xFF8B0000),
+                                color: isDark
+                                    ? Colors.amber.shade300
+                                    : const Color(0xFF8B0000),
                               ),
                               const SizedBox(width: 2),
                               Text(
@@ -878,7 +926,9 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                                 style: TextStyle(
                                   fontSize: 9,
                                   fontWeight: FontWeight.bold,
-                                  color: isDark ? Colors.amber.shade300 : const Color(0xFF8B0000),
+                                  color: isDark
+                                      ? Colors.amber.shade300
+                                      : const Color(0xFF8B0000),
                                 ),
                               ),
                             ],
@@ -915,13 +965,13 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
     if (story.link.isNotEmpty) {
       final uri = Uri.tryParse(story.link);
       if (uri != null) {
-        final slug = uri.pathSegments.where((s) => s.isNotEmpty).lastOrNull ?? '';
+        final slug =
+            uri.pathSegments.where((s) => s.isNotEmpty).lastOrNull ?? '';
         if (slug.isNotEmpty) {
           localImagePath = 'assets/images/mandarin_bean/$slug.jpg';
         }
       }
     }
-
 
     return BouncingButton(
       scaleFactor: 0.96,
@@ -938,7 +988,8 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
           color: cardBg,
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
-            color: isDark ? Colors.white12 : Colors.black.withValues(alpha: 0.06),
+            color:
+                isDark ? Colors.white12 : Colors.black.withValues(alpha: 0.06),
           ),
           boxShadow: [
             BoxShadow(
@@ -955,7 +1006,8 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
             Expanded(
               flex: 11,
               child: ClipRRect(
-                borderRadius: const BorderRadius.vertical(top: Radius.circular(15)),
+                borderRadius:
+                    const BorderRadius.vertical(top: Radius.circular(15)),
                 child: Stack(
                   fit: StackFit.expand,
                   children: [
@@ -1025,11 +1077,19 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Container(width: 18, height: 0.8, color: Colors.white38),
+                                Container(
+                                    width: 18,
+                                    height: 0.8,
+                                    color: Colors.white38),
                                 const SizedBox(width: 4),
-                                const Text('·', style: TextStyle(color: Colors.white54, fontSize: 12)),
+                                const Text('·',
+                                    style: TextStyle(
+                                        color: Colors.white54, fontSize: 12)),
                                 const SizedBox(width: 4),
-                                Container(width: 18, height: 0.8, color: Colors.white38),
+                                Container(
+                                    width: 18,
+                                    height: 0.8,
+                                    color: Colors.white38),
                               ],
                             ),
                             if (story.sourceName.isNotEmpty) ...[
@@ -1056,7 +1116,8 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                       top: 8,
                       right: 8,
                       child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 3),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 6, vertical: 3),
                         decoration: BoxDecoration(
                           color: hskColor,
                           borderRadius: BorderRadius.circular(8),
@@ -1099,7 +1160,8 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                             fontFamily: 'NotoSerifSC',
                           ),
                         ),
-                        if (story.titleEn != null && story.titleEn!.isNotEmpty) ...[
+                        if (story.titleEn != null &&
+                            story.titleEn!.isNotEmpty) ...[
                           const SizedBox(height: 2),
                           Text(
                             story.titleEn!,
@@ -1117,7 +1179,8 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                     ),
                     Row(
                       children: [
-                        Icon(Icons.bolt, size: 11, color: Colors.orange.shade700),
+                        Icon(Icons.bolt,
+                            size: 11, color: Colors.orange.shade700),
                         const SizedBox(width: 2),
                         Text(
                           '1-2 min',
@@ -1155,9 +1218,10 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
       scaleFactor: 0.96,
       onPressed: () {
         HapticsManager.light();
+        final book = _poemToBook(poem);
         Navigator.of(context).push(
           SwipeBackPageRoute(
-            builder: (_) => StorySummaryScreen(story: poem),
+            builder: (_) => BookDetailScreen(book: book),
           ),
         );
       },
@@ -1166,7 +1230,8 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
           color: cardBg,
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
-            color: isDark ? Colors.white12 : Colors.black.withValues(alpha: 0.06),
+            color:
+                isDark ? Colors.white12 : Colors.black.withValues(alpha: 0.06),
           ),
           boxShadow: [
             BoxShadow(
@@ -1183,7 +1248,8 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
             Expanded(
               flex: 11,
               child: ClipRRect(
-                borderRadius: const BorderRadius.vertical(top: Radius.circular(15)),
+                borderRadius:
+                    const BorderRadius.vertical(top: Radius.circular(15)),
                 child: Stack(
                   fit: StackFit.expand,
                   children: [
@@ -1236,11 +1302,22 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Container(width: 16, height: 0.8, color: const Color(0xFFF5E6C8).withValues(alpha: 0.35)),
+                                Container(
+                                    width: 16,
+                                    height: 0.8,
+                                    color: const Color(0xFFF5E6C8)
+                                        .withValues(alpha: 0.35)),
                                 const SizedBox(width: 6),
-                                Icon(Icons.auto_stories, size: 10, color: const Color(0xFFF5E6C8).withValues(alpha: 0.4)),
+                                Icon(Icons.auto_stories,
+                                    size: 10,
+                                    color: const Color(0xFFF5E6C8)
+                                        .withValues(alpha: 0.4)),
                                 const SizedBox(width: 6),
-                                Container(width: 16, height: 0.8, color: const Color(0xFFF5E6C8).withValues(alpha: 0.35)),
+                                Container(
+                                    width: 16,
+                                    height: 0.8,
+                                    color: const Color(0xFFF5E6C8)
+                                        .withValues(alpha: 0.35)),
                               ],
                             ),
                             if (poem.sourceName.isNotEmpty) ...[
@@ -1252,7 +1329,8 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                                 overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
                                   fontSize: 10,
-                                  color: const Color(0xFFF5E6C8).withValues(alpha: 0.6),
+                                  color: const Color(0xFFF5E6C8)
+                                      .withValues(alpha: 0.6),
                                   fontStyle: FontStyle.italic,
                                   letterSpacing: 0.5,
                                 ),
@@ -1267,9 +1345,13 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                       bottom: 8,
                       right: 8,
                       child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 3),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 5, vertical: 3),
                         decoration: BoxDecoration(
-                          border: Border.all(color: const Color(0xFFF5E6C8).withValues(alpha: 0.35), width: 0.8),
+                          border: Border.all(
+                              color: const Color(0xFFF5E6C8)
+                                  .withValues(alpha: 0.35),
+                              width: 0.8),
                           borderRadius: BorderRadius.circular(4),
                         ),
                         child: const Row(
@@ -1315,7 +1397,8 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                             fontFamily: 'NotoSerifSC',
                           ),
                         ),
-                        if (poem.titleEn != null && poem.titleEn!.isNotEmpty) ...[
+                        if (poem.titleEn != null &&
+                            poem.titleEn!.isNotEmpty) ...[
                           const SizedBox(height: 2),
                           Text(
                             poem.titleEn!,
@@ -1340,7 +1423,8 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                           style: TextStyle(
                             fontSize: 10,
                             fontWeight: FontWeight.w600,
-                            color: isDark ? Colors.amber.shade400 : poetryAccent,
+                            color:
+                                isDark ? Colors.amber.shade400 : poetryAccent,
                           ),
                         ),
                       ],
@@ -1352,6 +1436,24 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
           ],
         ),
       ),
+    );
+  }
+
+  BookModel _poemToBook(LibraryStory poem) {
+    return BookModel(
+      id: poem.link,
+      title: poem.title,
+      titleEn: poem.titleEn ?? poem.title,
+      author: poem.sourceName,
+      authorEn: poem.sourceName,
+      category: poem.category.isNotEmpty ? poem.category : 'Chinese Poetry',
+      description: poem.summary,
+      descriptionEn: poem.summaryEn ?? poem.summary,
+      dynastyOrEra: 'Tang Dynasty',
+      hskLevel: poem.hskLevel,
+      totalChapters: 1,
+      coverEmoji: '📜',
+      tags: poem.keywords.isNotEmpty ? poem.keywords : const ['Poetry', 'Classical', 'Verse'],
     );
   }
 
@@ -1392,7 +1494,8 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                 Icon(
                   Icons.auto_stories,
                   size: 16,
-                  color: isDark ? Colors.amber.shade400 : const Color(0xFF8B0000),
+                  color:
+                      isDark ? Colors.amber.shade400 : const Color(0xFF8B0000),
                 ),
                 const SizedBox(width: 6),
                 Text(
@@ -1418,23 +1521,26 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
               separatorBuilder: (_, __) => const SizedBox(width: 12),
               itemBuilder: (context, index) {
                 final item = items[index];
-                final progressFraction = item.book.totalChapters > 0
-                    ? (item.progress.chapterIndex / item.book.totalChapters).clamp(0.0, 1.0)
-                    : 0.1;
+                final progressFraction =
+                    item.progress.percentage.clamp(0.0, 1.0);
                 final percentInt = (progressFraction * 100).toInt();
 
                 return GestureDetector(
                   onTap: () async {
                     HapticsManager.medium();
-                    final chapters = await ref.read(bookRepositoryProvider).getBookChapters(item.book.id);
+                    final chapters = await ref
+                        .read(bookRepositoryProvider)
+                        .getBookChapters(item.book.id);
                     if (context.mounted && chapters.isNotEmpty) {
-                      final targetIdx = (item.progress.chapterIndex - 1).clamp(0, chapters.length - 1);
+                      final targetIdx = (item.progress.chapterIndex - 1)
+                          .clamp(0, chapters.length - 1);
                       Navigator.of(context).push(
                         SwipeBackPageRoute(
                           builder: (_) => BookReaderScreen(
                             book: item.book,
                             chapters: chapters,
                             initialChapterIndex: targetIdx,
+                            initialSentenceIndex: item.progress.sentenceIndex,
                           ),
                         ),
                       );
@@ -1447,11 +1553,14 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                       color: cardBg,
                       borderRadius: BorderRadius.circular(16),
                       border: Border.all(
-                        color: isDark ? Colors.white12 : Colors.black.withValues(alpha: 0.08),
+                        color: isDark
+                            ? Colors.white12
+                            : Colors.black.withValues(alpha: 0.08),
                       ),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withValues(alpha: isDark ? 0.25 : 0.05),
+                          color: Colors.black
+                              .withValues(alpha: isDark ? 0.25 : 0.05),
                           blurRadius: 10,
                           offset: const Offset(0, 4),
                         ),
@@ -1500,7 +1609,9 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                                     style: TextStyle(
                                       fontSize: 10,
                                       fontWeight: FontWeight.w600,
-                                      color: isDark ? Colors.amber.shade400 : const Color(0xFF8B0000),
+                                      color: isDark
+                                          ? Colors.amber.shade400
+                                          : const Color(0xFF8B0000),
                                     ),
                                   ),
                                   const Spacer(),
@@ -1520,9 +1631,12 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                                 child: LinearProgressIndicator(
                                   value: progressFraction,
                                   minHeight: 4,
-                                  backgroundColor: isDark ? Colors.white12 : Colors.black12,
+                                  backgroundColor:
+                                      isDark ? Colors.white12 : Colors.black12,
                                   valueColor: AlwaysStoppedAnimation<Color>(
-                                    isDark ? Colors.amber.shade400 : const Color(0xFF8B0000),
+                                    isDark
+                                        ? Colors.amber.shade400
+                                        : const Color(0xFF8B0000),
                                   ),
                                 ),
                               ),

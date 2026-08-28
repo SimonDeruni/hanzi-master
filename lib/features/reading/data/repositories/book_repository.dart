@@ -3,11 +3,15 @@ import 'package:flutter/services.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:lpinyin/lpinyin.dart';
 import 'package:hanzi_master/features/reading/domain/entities/book_model.dart';
+import 'package:hanzi_master/features/reading/domain/entities/poetry_story_id.dart';
+import 'package:hanzi_master/features/reading/domain/logic/reading_session.dart';
 
 class BookRepository {
   static const String _progressBoxName = 'grand_library_progress_v1';
   static const String _bookCacheBoxName = 'grand_library_book_cache_v5'; // Bumped cache key to refresh
   static const String _bookmarksBoxName = 'grand_library_bookmarks_v1';
+  static const String _sessionBoxName = 'grand_library_session_v1';
+  static const String _readingHistoryBoxName = 'grand_library_reading_history_v1';
 
   List<BookModel> _cachedCatalog = [];
 
@@ -20,6 +24,12 @@ class BookRepository {
     }
     if (!Hive.isBoxOpen(_bookmarksBoxName)) {
       await Hive.openBox<dynamic>(_bookmarksBoxName);
+    }
+    if (!Hive.isBoxOpen(_sessionBoxName)) {
+      await Hive.openBox<dynamic>(_sessionBoxName);
+    }
+    if (!Hive.isBoxOpen(_readingHistoryBoxName)) {
+      await Hive.openBox<dynamic>(_readingHistoryBoxName);
     }
     // Delete legacy cache boxes if still present
     for (final oldBox in ['grand_library_book_cache_v1', 'grand_library_book_cache_v2', 'grand_library_book_cache_v3', 'grand_library_book_cache_v4']) {
@@ -44,6 +54,42 @@ class BookRepository {
   }
 
   Future<List<BookChapter>> getBookChapters(String bookId) async {
+    // 0. Check if it's a Poetry story
+    if (isPoetryStoryId(bookId)) {
+      try {
+        final poetryJsonStr = await rootBundle.loadString(chinesePoetryAsset);
+        final List<dynamic> poetryList = jsonDecode(poetryJsonStr);
+        for (final item in poetryList) {
+          final data = Map<String, dynamic>.from(item as Map);
+          if (poetryEntryMatchesId(data, bookId)) {
+            final rawText = (data['rawText'] as String? ?? '').trim();
+            final lines = rawText.split('\n').where((l) => l.trim().isNotEmpty).toList();
+            final sentences = <BookSentence>[];
+            for (final line in lines) {
+              final cleanLine = line.trim();
+              sentences.add(BookSentence(
+                chinese: cleanLine,
+                pinyin: PinyinHelper.getPinyinE(cleanLine, separator: ' ', format: PinyinFormat.WITH_TONE_MARK),
+                english: '',
+              ));
+            }
+            return [
+              BookChapter(
+                id: '${bookId}_verse',
+                bookId: bookId,
+                chapterIndex: 1,
+                title: data['title'] ?? '诗篇',
+                titleEn: data['title_en'] ?? 'Poem',
+                sentences: sentences,
+              ),
+            ];
+          }
+        }
+      } catch (e) {
+        debugPrint('Error loading poetry chapter: $e');
+      }
+    }
+
     // 1. First priority: Check bundled authentic book asset
     try {
       final assetPath = 'assets/data/books/$bookId.json';
@@ -198,6 +244,85 @@ class BookRepository {
     }
     bookmarks.sort((a, b) => b.createdAt.compareTo(a.createdAt));
     return bookmarks;
+  }
+
+  // --- Reading Sessions ---
+
+  Future<void> saveReadingSession({
+    required String bookId,
+    required int chapterIndex,
+    required int sentenceIndex,
+    bool wasAudiobook = false,
+  }) async {
+    if (!Hive.isBoxOpen(_sessionBoxName)) return;
+    final box = Hive.box<dynamic>(_sessionBoxName);
+    await box.put('last_session', ReadingSessionData(
+      bookId: bookId,
+      chapterIndex: chapterIndex,
+      sentenceIndex: sentenceIndex,
+      wasAudiobook: wasAudiobook,
+      lastActiveTimestamp: DateTime.now(),
+    ).toJson());
+  }
+
+  ReadingSessionData? getLastReadingSession() {
+    if (!Hive.isBoxOpen(_sessionBoxName)) return null;
+    final box = Hive.box<dynamic>(_sessionBoxName);
+    final data = box.get('last_session');
+    if (data == null) return null;
+    return ReadingSessionData.fromJson(Map<String, dynamic>.from(data));
+  }
+
+  // --- Reading History (for streak calculation) ---
+
+  Future<void> recordReadingEvent() async {
+    if (!Hive.isBoxOpen(_readingHistoryBoxName)) return;
+    final box = Hive.box<dynamic>(_readingHistoryBoxName);
+    final todayKey = DateTime.now().toIso8601String().substring(0, 10); // YYYY-MM-DD
+    await box.put(todayKey, DateTime.now().toIso8601String());
+  }
+
+  int getReadingStreak() {
+    if (!Hive.isBoxOpen(_readingHistoryBoxName)) return 0;
+    final box = Hive.box<dynamic>(_readingHistoryBoxName);
+    int streak = 0;
+    var checkDate = DateTime.now();
+    while (true) {
+      final key = checkDate.toIso8601String().substring(0, 10);
+      if (box.containsKey(key)) {
+        streak++;
+        checkDate = checkDate.subtract(const Duration(days: 1));
+      } else {
+        // Allow yesterday to be missing only if we haven't read today yet
+        if (streak == 0 && checkDate.day == DateTime.now().day) {
+          checkDate = checkDate.subtract(const Duration(days: 1));
+          continue;
+        }
+        break;
+      }
+    }
+    return streak;
+  }
+
+  // --- All Bookmarks across all books ---
+
+  List<Map<String, dynamic>> getAllBookmarksAcrossBooks() {
+    final result = <Map<String, dynamic>>[];
+    if (!Hive.isBoxOpen(_bookmarksBoxName)) return result;
+    final box = Hive.box<dynamic>(_bookmarksBoxName);
+    for (final val in box.values) {
+      if (val is Map) {
+        try {
+          result.add(Map<String, dynamic>.from(val));
+        } catch (_) {}
+      }
+    }
+    result.sort((a, b) {
+      final aDate = DateTime.tryParse(a['createdAt'] as String? ?? '') ?? DateTime(2000);
+      final bDate = DateTime.tryParse(b['createdAt'] as String? ?? '') ?? DateTime(2000);
+      return bDate.compareTo(aDate);
+    });
+    return result;
   }
 
   List<BookChapter> _generateDefaultChaptersForBook(BookModel book) {

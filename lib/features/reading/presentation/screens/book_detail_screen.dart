@@ -202,7 +202,12 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
                           _buildBadge('Audiobook Included', isDark ? Colors.amber.shade400 : const Color(0xFF8B0000)),
                           _buildBadge(book.category, isDark ? Colors.blue.shade300 : Colors.indigo.shade700),
                           _buildBadge(book.dynastyOrEra, isDark ? Colors.green.shade300 : Colors.teal.shade700),
-                          _buildBadge('${chapters.length} Chapters', isDark ? Colors.purple.shade300 : Colors.deepPurple.shade700),
+                          _buildBadge(
+                            book.category.contains('Poetry')
+                                ? (chapters.length == 1 ? '1 Poem' : '${chapters.length} Poems')
+                                : (chapters.length == 1 ? '1 Chapter' : '${chapters.length} Chapters'),
+                            isDark ? Colors.purple.shade300 : Colors.deepPurple.shade700,
+                          ),
                         ],
                       ),
                       const SizedBox(height: 18),
