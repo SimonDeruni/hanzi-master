@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.0+197] - 2026-08-28
+- **Reader Ruby Pinyin Alignment & Direct Sentence Audiobook Mode Transition (Build #197)**:
+  - **Ruby Pinyin in Reading Mode**: Implemented per-character vertical Ruby alignment in `BookReaderScreen` pairing every Chinese character directly with its tone-marked Pinyin syllable above it (respecting `all`, `ghost`, and `none` modes).
+  - **Direct Sentence Navigation to Audiobook Mode**: Tapping the audio button on any sentence card in reading mode launches `AudiobookPlayerScreen` starting at that exact sentence.
+  - **BytesSource In-Memory Native Playback**: Upgraded `AudioService` to stream cloud and cached audio directly via `BytesSource` in-memory buffers to eliminate iOS sandbox file URI playback issues.
+  - `flutter test` & `dart analyze`: 0 issues. Pushed to GitLab and GitHub.
+
 ## [1.0.0+196] - 2026-08-28
 - **Dynamic Theme, Ruby Pinyin Alignment & Real-Time Spoken Character Highlighting (Build #196)**:
   - **Dynamic Theme (Light & Dark "Zen & Ink")**: Seamlessly adapts to Light Mode (Warm Xuan Paper `#FDFCF0` with terracotta accents) and Dark Mode (Carbon `#121113` with amber glow).
