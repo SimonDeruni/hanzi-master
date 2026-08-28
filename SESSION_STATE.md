@@ -1,12 +1,13 @@
 # 🧠 SESSION_STATE.md - The Hanzi Master "Scholar's Baton"
 
 #### 🎯 Current Context
-- **Objective:** Fix Build Issue & Ensure Total Dart Analysis Hygiene
-- **Status:** ✅ COMPLETED (Build #217)
+- **Objective:** Fix Poetry Covers Rendering in Reading Room / Book Catalog
+- **Status:** ✅ COMPLETED (Build #218)
 - **Hygiene:** App compiles 100% clean (0 errors, 0 warnings), all changes pushed to GitLab and GitHub.
 - **Locked Files:**
     - [None]
 
+- [x] **Render Calligraphic Poetry Book Covers (Build #218):** Replaced hardcoded plain gradient box in `_buildPoetryGridCard` with `CalligraphicBookCover(book: book)`, and updated `StoryFetcherService` to supply `assets/images/poetry/$poemId.jpg` as the story image URL. All 100 authentic classical Chinese painting covers now render across the Poetry grid cards, Book detail screen, and reading summary screens. (Status: COMPLETED)
 - [x] **Fix Shadowing Studio Brackets & SwipeBackRoute Generics (Build #217):** Fixed unclosed bracket in `shadowing_studio_screen.dart`, added `<T>` generic parameter to `SwipeBackRoute<T>` and `SwipeBackPageRoute<T>`, cleaned up imports in `web_browser_screen.dart`, `show_catalog_screen.dart`, `show_detail_screen.dart`, `reading_room_screen.dart`, and `continue_reading_card.dart`. Full `dart analyze` now passes with 0 errors and 0 warnings. (Status: COMPLETED)
 - [x] **Expand Random Persona Library to 50 Scenarios (Build #216):** Greatly expanded `_randomPersonaPresets` in `CustomScenarioDialog` from 14 to 50 authentic Chinese conversational personas across 6 comprehensive categories (Food & Culinary, Travel & Adventure, Art & Traditional Crafts, Modern Youth Culture, Daily Life & Errands, and Career & Tech). (Status: COMPLETED)
 - [x] **Add Random Persona Generator to Custom Scenario Modal (Build #215):** Implemented a rich instant persona generator in `CustomScenarioDialog` with glowing "🎲 Random" header pill and "🎲 Surprise Me" / "🎲 Roll Character" field quick-triggers that immediately fill Topic, Context, Persona prompt, and HSK level with haptics. (Status: COMPLETED)
