@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.0+195] - 2026-08-28
+- **Azure Neural Voice Encoding & Studio Audio Context Fix (Build #195)**:
+  - **UTF-8 SSML Body Encoding**: Explicitly encoded Chinese SSML payloads as UTF-8 bytes with `application/ssml+xml; charset=utf-8` header, fixing Azure HTTP 400 Bad Request caused by default Latin-1 header handling.
+  - **iOS Audio Context Upgraded**: Switched `AudioContextIOS` category from `playAndRecord` to `AVAudioSessionCategory.playback`, directing audio directly through loudspeaker/headphones instead of the quiet phone-call receiver.
+  - **Voice Key Resilience**: Provided built-in fallback in `ApiKeyPool` for Azure Speech credentials to ensure uninterrupted Studio HD synthesis across all build environments.
+  - `flutter test` & `dart analyze`: 0 issues. Pushed to GitLab and GitHub.
+
 ## [1.0.0+194] - 2026-08-28
 - **Spotify-Lyrics Style Audiobook Player, Sentence-Level Resumption & Voice Clarity (Build #194)**:
   - **Fullscreen Spotify-Lyrics Player**: Created `AudiobookPlayerScreen` featuring an atmospheric ambient background, live auto-scrolling sentence list with glowing golden calligraphy on active sentences, Pinyin, and English translations.
