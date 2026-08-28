@@ -250,6 +250,28 @@ class AudioService {
     return ttsResult != null && ttsResult == 1;
   }
 
+  /// Pre-fetches the upcoming sentence in the background to ensure zero gap during continuous reading.
+  Future<void> prefetchSentence(String sentence, {String voiceName = 'xiaoxiao'}) async {
+    if (!_isInitialized) await init();
+    if (!_quotaService.hasQuotaRemaining) return;
+
+    final azureVoice = _azureVoiceMap[voiceName] ?? _defaultAzureVoice;
+    final hash = _hashText('$voiceName:$sentence');
+    final cacheFile = File('${_cacheDir!.path}/tts_cache/$hash.mp3');
+    final boundaryFile = File('${_cacheDir!.path}/tts_cache/$hash.json');
+
+    if (await cacheFile.exists()) return;
+
+    try {
+      final result = await _fetchCloudTTS(sentence, azureVoice: azureVoice, cacheFile: cacheFile, boundaryFile: boundaryFile);
+      if (result != null && result.success) {
+        await _quotaService.recordSpeech(sentence);
+      }
+    } catch (_) {
+      // Background pre-fetch failure is non-blocking
+    }
+  }
+
   /// Streams remote MP3 audio or plays bundled audio assets directly.
   /// Uses rootBundle extraction to local file cache + DeviceFileSource for 100% reliable iOS/Android playback.
   Future<bool> playStreamUrl(String url) async {
@@ -473,11 +495,13 @@ class AudioService {
     final innerContent = (phoneme != null && phoneme.isNotEmpty)
         ? "<phoneme alphabet='sapi' ph='$phoneme'>$safeText</phoneme>"
         : safeText;
-    final ssml = '''<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xml:lang='zh-CN'><voice name='$azureVoice'><prosody rate='$ratePercent%' range='$pitchRange'>$innerContent</prosody></voice></speak>''';
+
+    // Use mstts:express-as for literary storytelling role & relaxed narration cadence
+    final ssml = '''<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xmlns:mstts='https://www.w3.org/2001/mstts' xml:lang='zh-CN'><voice name='$azureVoice'><mstts:express-as style='narration-relaxed' role='Narrator'><prosody rate='$ratePercent%' range='$pitchRange'>$innerContent</prosody></mstts:express-as></voice></speak>''';
 
     final uri = Uri.parse('https://$region.tts.speech.microsoft.com/cognitiveservices/v1');
 
-    debugPrint('[AudioService] Requesting Azure Neural TTS ($azureVoice) for: $text');
+    debugPrint('[AudioService] Requesting Azure Neural TTS ($azureVoice, narration-relaxed) for: $text');
 
     try {
       final client = http.Client();

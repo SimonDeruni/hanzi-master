@@ -114,6 +114,12 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen> {
       setState(() => _currentAudioSentenceIndex = sentenceIdx);
       final text = chapter.sentences[sentenceIdx].chinese;
       ref.read(audioServiceProvider).playSentence(text);
+
+      // Pre-fetch the upcoming sentence in the background for 0ms transition gap
+      if (sentenceIdx + 1 < chapter.sentences.length) {
+        final nextText = chapter.sentences[sentenceIdx + 1].chinese;
+        ref.read(audioServiceProvider).prefetchSentence(nextText);
+      }
     }
   }
 
@@ -254,6 +260,156 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen> {
       onTap: () {
         Navigator.of(ctx).pop();
         _setSleepTimer(minutes, endOfChapter: isEndOfChapter);
+      },
+    );
+  }
+
+  void _showQuotaDetailsSheet(BuildContext context, bool isDark, Color cardBg, Color primaryText, AudioQuotaService quota) {
+    HapticsManager.light();
+    final usedRatio = (quota.usedSeconds / AudioQuotaService.weeklyAllowanceSeconds).clamp(0.0, 1.0);
+    final percentUsed = (usedRatio * 100).round();
+
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      builder: (ctx) {
+        return Container(
+          padding: const EdgeInsets.fromLTRB(24, 20, 24, 36),
+          decoration: BoxDecoration(
+            color: cardBg,
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withValues(alpha: isDark ? 0.4 : 0.15),
+                blurRadius: 20,
+              ),
+            ],
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Center(
+                child: Container(
+                  width: 40,
+                  height: 4,
+                  decoration: BoxDecoration(
+                    color: isDark ? Colors.white24 : Colors.black12,
+                    borderRadius: BorderRadius.circular(2),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 18),
+              Row(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      color: isDark ? Colors.amber.withValues(alpha: 0.2) : const Color(0xFF8B0000).withValues(alpha: 0.1),
+                      shape: BoxShape.circle,
+                    ),
+                    child: Icon(Icons.graphic_eq, size: 20, color: isDark ? Colors.amber.shade300 : const Color(0xFF8B0000)),
+                  ),
+                  const SizedBox(width: 12),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Studio Voice Allowance',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: primaryText,
+                        ),
+                      ),
+                      Text(
+                        'Weekly High-Definition AI Recitation',
+                        style: TextStyle(
+                          fontSize: 11.5,
+                          color: isDark ? Colors.white54 : Colors.black54,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: LinearProgressIndicator(
+                  value: (1.0 - usedRatio).clamp(0.0, 1.0),
+                  minHeight: 10,
+                  backgroundColor: isDark ? Colors.white12 : Colors.black12,
+                  valueColor: AlwaysStoppedAnimation<Color>(
+                    quota.hasQuotaRemaining
+                        ? (isDark ? Colors.amber.shade400 : const Color(0xFF8B0000))
+                        : Colors.grey,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 12),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    '${quota.remainingHours.toStringAsFixed(1)} hours remaining',
+                    style: TextStyle(
+                      fontSize: 13,
+                      fontWeight: FontWeight.bold,
+                      color: isDark ? Colors.amber.shade300 : const Color(0xFF8B0000),
+                    ),
+                  ),
+                  Text(
+                    '$percentUsed% used of 4.0h',
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: isDark ? Colors.white60 : Colors.black54,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 18),
+              Container(
+                padding: const EdgeInsets.all(14),
+                decoration: BoxDecoration(
+                  color: isDark ? Colors.white.withValues(alpha: 0.05) : const Color(0xFFF9F5EC),
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(
+                    color: isDark ? Colors.white12 : Colors.black.withValues(alpha: 0.06),
+                  ),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(Icons.refresh, size: 16, color: isDark ? Colors.white70 : Colors.black87),
+                        const SizedBox(width: 6),
+                        Text(
+                          'Resets every Monday at 00:00',
+                          style: TextStyle(
+                            fontSize: 12.5,
+                            fontWeight: FontWeight.bold,
+                            color: primaryText,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 6),
+                    Text(
+                      'When your weekly 4-hour Studio allowance is used, the app automatically switches to On-Device Voice for unlimited, free listening without interruption.',
+                      style: TextStyle(
+                        fontSize: 11.5,
+                        height: 1.4,
+                        color: isDark ? Colors.white60 : Colors.black54,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        );
       },
     );
   }
@@ -984,30 +1140,46 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen> {
                       ),
                       const SizedBox(width: 8),
                       Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Text(
-                              'Sentence ${_currentAudioSentenceIndex + 1} / ${chapter.sentences.length}',
-                              style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.bold,
-                                color: primaryText,
+                        child: GestureDetector(
+                          onTap: () => _showQuotaDetailsSheet(context, isDark, cardBg, primaryText, quotaService),
+                          behavior: HitTestBehavior.opaque,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                'Sentence ${_currentAudioSentenceIndex + 1} / ${chapter.sentences.length}',
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold,
+                                  color: primaryText,
+                                ),
                               ),
-                            ),
-                            Text(
-                              quotaService.hasQuotaRemaining
-                                  ? '🎙️ Studio: ${quotaService.remainingHours.toStringAsFixed(1)}h left this week'
-                                  : '🔊 On-Device Mode (4h weekly used)',
-                              style: TextStyle(
-                                fontSize: 10.5,
-                                color: quotaService.hasQuotaRemaining
-                                    ? (isDark ? Colors.amber.shade300 : const Color(0xFF8B0000))
-                                    : (isDark ? Colors.white54 : Colors.black54),
+                              Row(
+                                children: [
+                                  Text(
+                                    quotaService.hasQuotaRemaining
+                                        ? '🎙️ Studio: ${quotaService.remainingHours.toStringAsFixed(1)}h left this week'
+                                        : '🔊 On-Device Mode (4h weekly used)',
+                                    style: TextStyle(
+                                      fontSize: 10.5,
+                                      color: quotaService.hasQuotaRemaining
+                                          ? (isDark ? Colors.amber.shade300 : const Color(0xFF8B0000))
+                                          : (isDark ? Colors.white54 : Colors.black54),
+                                    ),
+                                  ),
+                                  const SizedBox(width: 3),
+                                  Icon(
+                                    Icons.info_outline,
+                                    size: 11,
+                                    color: quotaService.hasQuotaRemaining
+                                        ? (isDark ? Colors.amber.shade300.withValues(alpha: 0.7) : const Color(0xFF8B0000).withValues(alpha: 0.7))
+                                        : (isDark ? Colors.white38 : Colors.black38),
+                                  ),
+                                ],
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                       // Sleep Timer Button
