@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.0+194] - 2026-08-28
+- **Spotify-Lyrics Style Audiobook Player, Sentence-Level Resumption & Voice Clarity (Build #194)**:
+  - **Fullscreen Spotify-Lyrics Player**: Created `AudiobookPlayerScreen` featuring an atmospheric ambient background, live auto-scrolling sentence list with glowing golden calligraphy on active sentences, Pinyin, and English translations.
+  - **Instant Tap-to-Seek**: Users can tap any sentence in the lyrics stream or reader to instantly begin audiobook playback from that precise location.
+  - **Smart Resumption**: "Listen to Audiobook" on `BookDetailScreen` and catalog checks `bookDetailedProgressProvider` and resumes playback at the exact chapter and sentence where the user previously stopped.
+  - **Voice Engine Clarity**: Explicitly demarcated **Studio HD Voice (4h/week)** vs. **Standard On-Device Voice (100% Unlimited & Free forever)** in the player console and allowance modal.
+  - `flutter test` & `dart analyze`: 0 issues. Pushed to GitLab and GitHub.
+
 ## [1.0.0+193] - 2026-08-28
 - **Emoji-Free HUD & Prominent Dual Book/Audiobook Architecture (Build #193)**:
   - **Emoji-Free Reader HUD**: Replaced all emojis in the floating audio bar with clean calligraphic typography and iconography (`Studio Voice: X.Xh left this week` / `On-Device Voice`).

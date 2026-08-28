@@ -1,12 +1,13 @@
 # 🧠 SESSION_STATE.md - The Hanzi Master "Scholar's Baton"
 
 #### 🎯 Current Context
-- **Objective:** Emoji-Free HUD & Prominent Dual Book/Audiobook Architecture
-- **Status:** ✅ COMPLETED (Build #193)
+- **Objective:** Fullscreen Spotify-Lyrics Player, Smart Resumption & Voice Clarity
+- **Status:** ✅ COMPLETED (Build #194)
 - **Hygiene:** 🧼 Perfect Hygiene — `dart analyze lib/` passed with 0 issues.
 - **Locked Files:**
     - [None]
 
+- [x] **Spotify-Lyrics Style Audiobook Player, Sentence-Level Resumption & Voice Clarity (Build #194):** Created `AudiobookPlayerScreen` featuring an atmospheric ambient background, live auto-scrolling sentence list with glowing golden calligraphy on active sentences, Pinyin, and English translations. Added instant tap-to-seek from any sentence in lyrics view and reader screen. Updated "Listen to Audiobook" to resume at exact chapter and sentence where user left off. Added unambiguous messaging distinguishing 4.0h Studio HD Voice from Unlimited Standard Voice. Verified Total Hygiene State (`dart analyze lib/` - 0 issues, 100% test pass). Pushed to GitLab and GitHub. (Status: COMPLETED)
 - [x] **Emoji-Free HUD & Prominent Dual Book/Audiobook Architecture (Build #193):** Replaced all emojis in reader HUD with clean calligraphic typography (`Studio Voice: X.Xh left this week` / `On-Device Voice`). Added top-right dark silk `Audiobook` badges over book covers and dedicated `Audio` metadata chips on all 86 catalog cards. Added `Audiobook Included` chip in `BookDetailScreen` tags row and updated catalog header count to `Unabridged Books & Synchronized Audiobooks`. Verified Total Hygiene State (`dart analyze lib/` - 0 issues, 100% test pass). Pushed to GitLab and GitHub. (Status: COMPLETED)
 - [x] **Literary Narrator SSML Express-As, Background Pre-fetching & Quota Details (Build #192):** Upgraded Azure SSML with `mstts:express-as style='narration-relaxed' role='Narrator'` for authentic literary audiobook cadence. Implemented `AudioService.prefetchSentence` for 0ms transition gap between sentences. Added interactive tap-to-view Studio Voice Allowance bottom sheet with progress bar, reset schedule, and on-device fallback explanation. Verified Total Hygiene State (`dart analyze lib/` - 0 issues, 100% test pass). Pushed to GitLab and GitHub. (Status: COMPLETED)
 - [x] **4-Hour Weekly Studio Voice Quota Engine & Sleep Timer (Build #191):** Created `AudioQuotaService` managing 4-hour weekly allowance resetting every Monday 00:00 (ISO Week). Integrated quota check in `AudioService.playSentence` hard-capping cloud costs under \$2.91/mo per subscriber, with seamless auto-fallback to on-device TTS (`flutter_tts`) when quota is exhausted. Added in-reader 🌙 Sleep Timer (15m, 30m, 45m, End of Chapter) and Studio Voice remaining hours badge in floating audio bar. Verified Total Hygiene State (`dart analyze lib/` - 0 issues, 100% test pass). Pushed to GitLab and GitHub. (Status: COMPLETED)
