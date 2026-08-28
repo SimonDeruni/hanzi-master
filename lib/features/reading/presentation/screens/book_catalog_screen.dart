@@ -851,10 +851,24 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
     Color primaryText,
   ) {
     final hskColor = _getHskColor(story.hskLevel);
-    // Terracotta/amber gradient accent for micro-reads (distinct from novel deep-red)
+    // Terracotta/amber gradient accent for micro-reads (fallback when no photo)
     const coverTop = Color(0xFFB85C1A);
     const coverMid = Color(0xFF8C3A0A);
     const coverBot = Color(0xFF5C1F00);
+
+    // Derive local asset path from the story URL slug
+    // e.g. https://mandarinbean.com/confucius/ → assets/images/mandarin_bean/confucius.jpg
+    String? localImagePath;
+    if (story.link.isNotEmpty) {
+      final uri = Uri.tryParse(story.link);
+      if (uri != null) {
+        final slug = uri.pathSegments.where((s) => s.isNotEmpty).lastOrNull ?? '';
+        if (slug.isNotEmpty) {
+          localImagePath = 'assets/images/mandarin_bean/$slug.jpg';
+        }
+      }
+    }
+
 
     return BouncingButton(
       scaleFactor: 0.96,
@@ -892,38 +906,44 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                 child: Stack(
                   fit: StackFit.expand,
                   children: [
-                    // Silk-bound terracotta gradient
-                    Container(
-                      decoration: const BoxDecoration(
-                        gradient: LinearGradient(
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                          colors: [coverTop, coverMid, coverBot],
+                    // ── Background: local photo or gradient fallback ─────
+                    if (localImagePath != null)
+                      Image.asset(
+                        localImagePath,
+                        fit: BoxFit.cover,
+                        width: double.infinity,
+                        height: double.infinity,
+                        errorBuilder: (_, __, ___) => Container(
+                          decoration: const BoxDecoration(
+                            gradient: LinearGradient(
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                              colors: [coverTop, coverMid, coverBot],
+                            ),
+                          ),
+                        ),
+                      )
+                    else
+                      Container(
+                        decoration: const BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            colors: [coverTop, coverMid, coverBot],
+                          ),
                         ),
                       ),
-                    ),
-                    // Subtle grain texture overlay
+                    // Dark scrim for legibility over photo
                     Container(
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
-                          begin: Alignment.topRight,
-                          end: Alignment.bottomLeft,
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
                           colors: [
-                            Colors.white.withValues(alpha: 0.06),
-                            Colors.transparent,
-                            Colors.black.withValues(alpha: 0.15),
+                            Colors.black.withValues(alpha: 0.18),
+                            Colors.black.withValues(alpha: 0.55),
                           ],
                         ),
-                      ),
-                    ),
-                    // Thin left spine line (book binding detail)
-                    Positioned(
-                      left: 10,
-                      top: 0,
-                      bottom: 0,
-                      child: Container(
-                        width: 1,
-                        color: Colors.white.withValues(alpha: 0.15),
                       ),
                     ),
                     // Chinese title — centred, vertical feel
