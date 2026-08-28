@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.0+183] - 2026-08-28
+- **Master Chinese Audiobooks Bundled Offline in App Assets (Build #183)**:
+  - Bundled voice-optimized MP3 master audio files directly into `assets/audio/audiobooks/`:
+    1. **孫子兵法 (The Art of War)**: `the_art_of_war.mp3` (2.2 MB)
+    2. **論語 (The Analects of Confucius)**: `the_analects.mp3` (5.0 MB)
+    3. **紅樓夢 (Dream of the Red Chamber)**: `dream_of_red_chamber.mp3` (8.1 MB)
+    4. **西遊記 (Journey to the West)**: `journey_to_the_west.mp3` (28.5 MB)
+  - Registered `assets/audio/audiobooks/` in `pubspec.yaml`.
+  - Updated `AudioService.playStreamUrl` to play bundled audio assets via `AssetSource` with zero network latency.
+  - Cleaned up audio mode selector dialog and floating audio bar labels to clean, elegant English.
+  - `dart analyze`: 0 issues. Pushed to GitLab and GitHub.
+
 ## [1.0.0+182] - 2026-08-28
 - **Archive.org Anti-Bot Block Bypassed via Buffered Streamer (Build #182)**:
   - Fixed mobile audio failure when playing Archive.org URLs.

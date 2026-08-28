@@ -1,12 +1,13 @@
 # 🧠 SESSION_STATE.md - The Hanzi Master "Scholar's Baton"
 
 #### 🎯 Current Context
-- **Objective:** Archive.org Audio Streamer Buffering & Anti-Bot Bypass
+- **Objective:** Master Chinese Audiobooks Bundled in App Assets
 - **Status:** ✅ COMPLETED
 - **Hygiene:** 🧼 Perfect Hygiene — `dart analyze lib/` passed with 0 issues.
 - **Locked Files:**
     - [None]
 
+- [x] **Master Chinese Audiobooks Bundled Offline in App Assets (Build #183):** Downloaded and bundled voice-optimized audiobooks directly into `assets/audio/audiobooks/` (Art of War, Analects, Dream of Red Chamber, Journey to the West). Zero network latency, instant 100% offline playback. (Status: COMPLETED)
 - [x] **Archive.org Anti-Bot Block Bypassed via Buffered Streamer (Build #182):** Rewrote `AudioService.playStreamUrl` using Dart's `HttpClient` with standard browser headers to download directly into local cache, bypassing mobile OS media player blocks from Archive.org. (Status: COMPLETED)
 - [x] **Archive.org Human Voice Audiobooks Connected for Chinese Classics (Build #181):** Located and linked verified, live `HTTP 200 OK` Archive.org / LibriVox audio stream endpoints for classics (Art of War, Analects, Dream of Red Chamber, Journey to the West) in `grand_library_catalog.json`. Configured "Listen to Audiobook" to play Archive.org human audio when available, with automatic seamless fallback to Neural Narrator. (Status: COMPLETED)
 - [x] **Audiobook Playback & Full Catalog Support (Build #180):** Diagnosed why the audiobook button failed (raw Archive.org MP3 links returning 401/404 & restricted to 5 books). Re-wired to native Synchronized Neural Narrator (`autoStartAudiobook: true`), enabling real-time sentence highlighting and auto-advancing read-aloud for all 96 books. (Status: COMPLETED)
