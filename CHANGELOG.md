@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.0+177] - 2026-08-28
+- **English-First Author Bio & Synopsis with Chinese Dropdown (Build #177)**:
+  - Rewrote `BookDetailScreen` as a `ConsumerStatefulWidget` to manage expand/collapse state for two Chinese language dropdowns.
+  - **Author bio**: Now shows a unique, hand-crafted English biography per author (50+ entries covering all Chinese classical, European, and American authors in the library). The generic template Chinese sentence moves to a collapsible `查看中文简介` dropdown.
+  - **Synopsis**: Shows `descriptionEn` (unique, rich per-book English text) by default. Chinese `description` + Core Themes block moved to a collapsible `查看中文概述` dropdown with tinted container.
+  - Dropdown toggle shows a `▾ / ▴` chevron with muted accent color; Chinese content appears in a bordered tinted box for clear visual separation.
+  - `dart analyze`: 0 issues. Pushed to GitLab and GitHub.
+
 ## [1.0.0+176] - 2026-08-28
 - **Calligraphic Micro-Reads Grid (微读封面卡)**:
   - Transformed Micro-Reads section from a flat horizontal list to a 2-column calligraphic grid matching the novel cover aesthetic.
