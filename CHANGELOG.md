@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.0+190] - 2026-08-28
+- **Audio Engine Streamlined & Monolithic Audio Assets Purged (Build #190)**:
+  - **Reclaimed 44 MB Storage**: Removed monolithic static single-chapter MP3s from `assets/audio/audiobooks/`, significantly lightening the app binary footprint.
+  - **Purged Fragile `audioStreamUrl` References**: Standardized `assets/data/grand_library_catalog.json` across all 86 books.
+  - **Single Unified Audiobook Engine**: "Listen to Audiobook" and top-bar headphone controls now route directly to the interactive **Synchronized Neural Narrator** with real-time sentence highlighting, tone-accurate Mandarin audio, dictionary lookup, and auto-advancing across all 100% of chapters for all 86 books.
+  - `flutter test` & `dart analyze`: 0 issues. Pushed to GitLab and GitHub.
+
 ## [1.0.0+189] - 2026-08-28
 - **Fix iOS AudioContext Crash & Separate Player State Streams (Build #189)**:
   - **Fixed iOS Audio Session Error**: Removed `defaultToSpeaker` from `AVAudioSessionCategory.playback` which previously caused iOS to throw `IncompatibleCategoryOptions (-50)` and abort playback.
