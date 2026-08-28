@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.0+184] - 2026-08-28
+- **Full Library True High-Resolution Book Covers (Build #184)**:
+  - Automated the discovery, download, and asset-bundling of authentic high-resolution book covers for all 96 books across the library (3.29 MB total).
+  - Sources queried: Open Library Covers API and Google Books API for Chinese and World literature editions.
+  - Registered `assets/images/books/` in `pubspec.yaml`.
+  - Updated `CalligraphicBookCover` to render full-bleed authentic book cover art with 3D tactile spine shading, HSK level badge, chapter count, and graceful silk-bound calligraphic fallback.
+  - `dart analyze`: 0 issues. Pushed to GitLab and GitHub.
+
 ## [1.0.0+183] - 2026-08-28
 - **Master Chinese Audiobooks Bundled Offline in App Assets (Build #183)**:
   - Bundled voice-optimized MP3 master audio files directly into `assets/audio/audiobooks/`:

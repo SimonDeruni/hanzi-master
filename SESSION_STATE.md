@@ -1,12 +1,13 @@
 # 🧠 SESSION_STATE.md - The Hanzi Master "Scholar's Baton"
 
 #### 🎯 Current Context
-- **Objective:** Master Chinese Audiobooks Bundled in App Assets
+- **Objective:** Full Library True High-Res Book Covers
 - **Status:** ✅ COMPLETED
 - **Hygiene:** 🧼 Perfect Hygiene — `dart analyze lib/` passed with 0 issues.
 - **Locked Files:**
     - [None]
 
+- [x] **Full Library True High-Resolution Book Covers (Build #184):** Automated downloading and bundling of authentic high-resolution covers for all 96 books into `assets/images/books/` (3.29 MB total). Updated `CalligraphicBookCover` to render true cover images with 3D tactile spine shading and calligraphic fallback. (Status: COMPLETED)
 - [x] **Master Chinese Audiobooks Bundled Offline in App Assets (Build #183):** Downloaded and bundled voice-optimized audiobooks directly into `assets/audio/audiobooks/` (Art of War, Analects, Dream of Red Chamber, Journey to the West). Zero network latency, instant 100% offline playback. (Status: COMPLETED)
 - [x] **Archive.org Anti-Bot Block Bypassed via Buffered Streamer (Build #182):** Rewrote `AudioService.playStreamUrl` using Dart's `HttpClient` with standard browser headers to download directly into local cache, bypassing mobile OS media player blocks from Archive.org. (Status: COMPLETED)
 - [x] **Archive.org Human Voice Audiobooks Connected for Chinese Classics (Build #181):** Located and linked verified, live `HTTP 200 OK` Archive.org / LibriVox audio stream endpoints for classics (Art of War, Analects, Dream of Red Chamber, Journey to the West) in `grand_library_catalog.json`. Configured "Listen to Audiobook" to play Archive.org human audio when available, with automatic seamless fallback to Neural Narrator. (Status: COMPLETED)
