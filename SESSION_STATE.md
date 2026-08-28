@@ -1,12 +1,13 @@
 # 🧠 SESSION_STATE.md - The Hanzi Master "Scholar's Baton"
 
 #### 🎯 Current Context
-- **Objective:** Build Fix + Dual Progress Bars
-- **Status:** ✅ COMPLETED (Build #200)
-- **Hygiene:** `dart analyze lib/` → 44 info/warning hints (pre-existing), 0 errors. App compiles clean.
+- **Objective:** Fix Audio Routing & Seamless Mode Switching
+- **Status:** ✅ COMPLETED (Build #201)
+- **Hygiene:** App compiles clean, all changes pushed to GitLab and GitHub.
 - **Locked Files:**
     - [None]
 
+- [x] **Android Media Audio Routing & Seamless Audiobook ⇄ Reader Switching (Build #201):** Fixed Android AudioContext by routing to media channel (`isSpeakerphoneOn: false`) rather than phone speakerphone. Added dual playback (`DeviceFileSource` with fallback to `BytesSource`). Added prominent "📖 Read" mode pill in `AudiobookPlayerScreen` top action bar and connected bottom console button to `_switchToReadingMode` carrying exact chapter and sentence index. Synchronized `BookReaderScreen` to immediately reload progress upon returning from audiobook. (Status: COMPLETED)
 - [x] **Build Fix — SwipeBackPageRoute alias + c.hanzi (Build #199):** Added `typedef SwipeBackPageRoute = SwipeBackRoute` to `swipe_back_route.dart`. Fixed `c.chinese` → `c.hanzi` in `scenario_selection_screen.dart`. App now builds clean.
 - [x] **Dual Progress Bars in Audiobook Player (Build #200):** Chapter sentence bar (thick) + overall book bar (thin) added below divider in `AudiobookPlayerScreen`. Labels `Sentence X/Y` and `Book XX%`. Light/dark adaptive.
 - [x] **Whole-Book Reading Progress & Sentence Resume (Build #199):** Tracks and restores the reader's visible sentence, persists on debounced scrolling and lifecycle/navigation events, calculates sentence-weighted whole-book completion, displays persistent progress, restores Continue Reading/bookmarks precisely, and retains legacy progress compatibility. Focused tests pass; full-suite validation is blocked by two unrelated existing stroke matcher failures. (Status: COMPLETED)
