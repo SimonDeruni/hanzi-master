@@ -1,12 +1,13 @@
 # 🧠 SESSION_STATE.md - The Hanzi Master "Scholar's Baton"
 
 #### 🎯 Current Context
-- **Objective:** Resilient Translation Fallback for All Sentences
-- **Status:** ✅ COMPLETED (Build #204)
+- **Objective:** Uniformize AI Hub Top Switcher with Explore Style
+- **Status:** ✅ COMPLETED (Build #205)
 - **Hygiene:** App compiles clean, all changes pushed to GitLab and GitHub.
 - **Locked Files:**
     - [None]
 
+- [x] **Uniformize AI Hub Switcher with Explore Screen (Build #205):** Redesigned the top segmented pill switcher in `AiHubScreen` (`Roleplay` & `Shadowing`) to be visually identical to `ExploreScreen`'s top bar (`height: 52`, `borderRadius: 18`, light Xuan/Dark carbon background, golden amber active highlight with subtle border, and accompanying icons). Preserves `IndexedStack` state. (Status: COMPLETED)
 - [x] **Resilient High-Speed Translation Fallback (Build #204):** Resolved sentence translation issues by equipping `LocalTranslationService` with an automatic high-speed endpoint fallback when Google ML Kit models are downloading/uninstalled on emulators/devices. Translations are automatically cached in Hive permanently. All sentences across all 110 books now render fluent English translations in both Reader and Audiobook modes. (Status: COMPLETED)
 - [x] **Remove Arbitrary HSK Badges from Books (Build #203):** Removed random `HSK X` badge overlays and gradients from `CalligraphicBookCover` across catalog/covers, and removed `HSK X` tag chips from `BookDetailScreen`. Book details now showcase authentic, clean covers and meaningful literary metadata (`Audiobook Included`, `Category`, `Dynasty/Era`, and `Chapters`). (Status: COMPLETED)
 - [x] **Universal English Translations for All 110 Library Books (Build #202):** Resolved missing English translations in full-text classics by integrating `TranslatedText` fallback via `LocalTranslationService` (on-device ML translation). If a book has pre-bundled human English translations (`sentence.english`), it renders immediately; if empty, it dynamically translates the Chinese sentence with smooth placeholders. Translations now display on 100% of sentences across both `AudiobookPlayerScreen` and `BookReaderScreen`. (Status: COMPLETED)
