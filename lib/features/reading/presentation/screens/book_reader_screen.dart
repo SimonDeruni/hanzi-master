@@ -111,7 +111,7 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen> {
     }
   }
 
-  void _startHumanAudioStream() {
+  void _startHumanAudioStream() async {
     if (widget.book.audioStreamUrl == null) return;
     _stopAudiobook();
     HapticsManager.medium();
@@ -119,7 +119,14 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen> {
       _isStreamingHumanAudio = true;
       _isHumanAudioPlaying = true;
     });
-    ref.read(audioServiceProvider).playStreamUrl(widget.book.audioStreamUrl!);
+    final success = await ref.read(audioServiceProvider).playStreamUrl(widget.book.audioStreamUrl!);
+    if (!success && mounted) {
+      setState(() {
+        _isStreamingHumanAudio = false;
+        _isHumanAudioPlaying = false;
+      });
+      _startAudiobook();
+    }
   }
 
   void _stopHumanAudioStream() {

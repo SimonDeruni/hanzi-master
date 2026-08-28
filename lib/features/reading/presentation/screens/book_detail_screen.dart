@@ -263,13 +263,15 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
                             onPressed: () {
                               HapticsManager.medium();
                               final initialIndex = (currentProgress - 1).clamp(0, chapters.length - 1);
+                              final hasArchiveUrl = book.audioStreamUrl != null;
                               Navigator.of(context).push(
                                 SwipeBackPageRoute(
                                   builder: (_) => BookReaderScreen(
                                     book: book,
                                     chapters: chapters,
                                     initialChapterIndex: initialIndex,
-                                    autoStartAudiobook: true,
+                                    autoStartHumanAudio: hasArchiveUrl,
+                                    autoStartAudiobook: !hasArchiveUrl,
                                   ),
                                 ),
                               );
