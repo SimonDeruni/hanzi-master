@@ -1,13 +1,14 @@
 # 🧠 SESSION_STATE.md - The Hanzi Master "Scholar's Baton"
 
 #### 🎯 Current Context
-- **Objective:** Add Random Persona Generator & Quick-Roll Triggers to Custom Scenario Modal
-- **Status:** ✅ COMPLETED (Build #215)
+- **Objective:** Expand Random Persona Preset Library to 50 Authentic Chinese Scenarios
+- **Status:** ✅ COMPLETED (Build #216)
 - **Hygiene:** App compiles clean, all changes pushed to GitLab and GitHub.
 - **Locked Files:**
     - [None]
 
-- [x] **Add Random Persona Generator to Custom Scenario Modal (Build #215):** Implemented a rich instant persona generator in `CustomScenarioDialog` with a curated bank of 14 authentic everyday and cultural Chinese conversational personas (Master Zhao, Auntie Ma, Elder Sun, Barista Kevin, Conductor Lin, Chef Zhang, Stylist Yanyan, Innkeeper Auntie Bai, Grandpa Wang, Coach Han, Tech PM Guo, Uncle Liu, Master Shen). Added glowing "🎲 Random" header pill and "🎲 Surprise Me" / "🎲 Roll Character" field quick-triggers that immediately fill Topic, Context, Persona prompt, and HSK level with haptics. (Status: COMPLETED)
+- [x] **Expand Random Persona Library to 50 Scenarios (Build #216):** Greatly expanded `_randomPersonaPresets` in `CustomScenarioDialog` from 14 to 50 authentic Chinese conversational personas across 6 comprehensive categories (Food & Culinary, Travel & Adventure, Art & Traditional Crafts, Modern Youth Culture, Daily Life & Errands, and Career & Tech). (Status: COMPLETED)
+- [x] **Add Random Persona Generator to Custom Scenario Modal (Build #215):** Implemented a rich instant persona generator in `CustomScenarioDialog` with glowing "🎲 Random" header pill and "🎲 Surprise Me" / "🎲 Roll Character" field quick-triggers that immediately fill Topic, Context, Persona prompt, and HSK level with haptics. (Status: COMPLETED)
 - [x] **Spotlight AI Personas on Roleplay Cards (Build #214):** Overhauled `ScenarioSelectionScreen` character cards to put the AI Persona center stage: prominent circular hero avatar portraits (Waiter Li, Driver Wang, Auntie Chen, Dr. Zhang, Friend, Manager Liu) with golden borders and ambient backdrops, primary persona bold titles, conversational speech bubbles previewing their Chinese greeting dialogue, and direct "Tap to roleplay" audio cues. (Status: COMPLETED)
 - [x] **Remove Redundant Top Bar & Add 'Generate from Deck' Action Card (Build #213):** Removed the redundant "Echo Hall" top header text and "+" PopupMenuButton. Added a dedicated, stylized **"Generate from Deck"** action card positioned alongside the "Create Custom Scenario" card, styled with a glowing violet badge (`Icons.layers_rounded`), Xuan/Carbon background, and direct deck dialogue generator trigger. (Status: COMPLETED)
 - [x] **Redesign Roleplay Scenario Cards & Banner in Calligraphic Book Cover Style (Build #212):** Replaced flat generic indigo blocks with calligraphic book-cover plates: left book spine with gold binding stitches, thematic ink-wash gradients (Culinary Crimson, Midnight Indigo, Silk Terracotta, Forest Jade, Scholar Slate, Twilight Purple), background Hanzi watermarks (`食`, `行`, `市`, `医`, `职`, `友`), and centered Xuan paper plaques with vermilion seal chips. Upgraded the "Create Custom Scenario" top banner and HSK category filter chips to the Zen & Ink golden amber aesthetic. (Status: COMPLETED)
