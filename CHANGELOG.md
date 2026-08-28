@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.0+189] - 2026-08-28
+- **Fix iOS AudioContext Crash & Separate Player State Streams (Build #189)**:
+  - **Fixed iOS Audio Session Error**: Removed `defaultToSpeaker` from `AVAudioSessionCategory.playback` which previously caused iOS to throw `IncompatibleCategoryOptions (-50)` and abort playback.
+  - **Stream Synchronization**: Replaced race-prone boolean flag and single completion listener with `onPlayerStateChanged` stream to accurately sync UI playback state with native hardware audio events.
+  - **Fail-safe Fallback Chain**: Added fallback from `DeviceFileSource` to `AssetSource` with automatic parent cache directory creation and extraction debug logging.
+  - `flutter test` & `dart analyze`: 0 issues. Pushed to GitLab and GitHub.
+
 ## [1.0.0+188] - 2026-08-28
 - **Bulletproof Audiobook Playback via Local Asset Extraction & AudioContext (Build #188)**:
   - **Overcame iOS AVPlayer Asset Bug**: Replaced fragile `AssetSource` with `rootBundle` extraction to the app's local document cache, streaming via `DeviceFileSource` (100% reliable on iOS & Android for large multi-megabyte audio files).
