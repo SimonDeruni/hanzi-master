@@ -1,12 +1,13 @@
 # 🧠 SESSION_STATE.md - The Hanzi Master "Scholar's Baton"
 
 #### 🎯 Current Context
-- **Objective:** Bug Fixes & Codebase Hygiene Sweep
-- **Status:** ✅ VERIFIED & ONGOING
-- **Hygiene:** 🧼 Perfect Hygiene — `flutter analyze lib/` passed with 0 issues (0 errors, 0 warnings, 0 infos).
+- **Objective:** UI Polish — Calligraphic Micro-Reads Grid
+- **Status:** ✅ COMPLETED
+- **Hygiene:** 🧼 Perfect Hygiene — `dart analyze lib/` passed with 0 issues.
 - **Locked Files:**
     - [None]
 
+- [x] **Calligraphic Micro-Reads Grid (微读封面卡) (Build #176):** Transformed Micro-Reads section from a flat horizontal list to a 2-column calligraphic grid matching the novel cover aesthetic. Terracotta/amber silk-bound covers with Chinese title, HSK badge (top-right), ⚡ 微读 seal (bottom-right), decorative divider, source name, and spine binding line. Verified Total Hygiene State (`dart analyze lib/` - 0 issues). (Status: COMPLETED)
 - [x] **AI Hub Segmented Switcher (`Roleplay` & `Shadowing`) (Build #175):** Redesigned `AiHubScreen` with a top segmented orange pill toggle switching between `Roleplay` (`ScenarioSelectionScreen`) and `Shadowing` (`ShadowingStudioScreen`), preserving state via `IndexedStack`. Added `showBackButton` support to both screens. Verified Total Hygiene State (`dart analyze lib/` - 0 issues, 100% test pass). (Status: COMPLETED)
 - [x] **Bug Fix - LateInitializationError on `_activeSection` (Build #174):** Initialized `ReadingRoomSection _activeSection = ReadingRoomSection.novels;` at field declaration in `BookCatalogScreen` to avoid `LateInitializationError` across hot reload frames. Verified Total Hygiene State (`dart analyze lib/` - 0 issues, 100% test pass). (Status: COMPLETED)
 - [x] **UI & Navigation Clean-Up (Build #173):** Removed emojis from Explore pill toggle (`Reading Room` & `Web Explorer`), removed Chinese from `Continue Reading` header, removed introductory landing page from `TravelInterpreterScreen` to start directly in active translation mode, and removed duplicate buttons (`Web Explorer`, `Reading Room`, `Travel Interpreter`, `Universal Scanner`) from `AiHubScreen` to leave it focused on `Roleplay` and `Shadowing`. Verified Total Hygiene State (`dart analyze lib/` - 0 issues, 100% test pass). (Status: COMPLETED)

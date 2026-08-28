@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.0+176] - 2026-08-28
+- **Calligraphic Micro-Reads Grid (微读封面卡)**:
+  - Transformed Micro-Reads section from a flat horizontal list to a 2-column calligraphic grid matching the novel cover aesthetic.
+  - Each micro-read card now has a silk-bound terracotta/amber gradient cover (`#B85C1A → #8C3A0A → #5C1F00`), distinct from novel deep-red, with a spine binding line.
+  - Chinese title centred on the cover with serif font, decorative dot divider, and source name in italic.
+  - HSK level badge pinned to top-right corner; `⚡ 微读` seal badge pinned to bottom-right corner.
+  - Bottom info panel retains Chinese title, English subtitle (if available), and `⚡ 1-2 min` reading time.
+  - `dart analyze`: 0 issues. Pushed to GitLab and GitHub.
+
 ## [1.0.0+175] - 2026-08-28
 - **AI Hub Segmented Switcher (`Roleplay` & `Shadowing`)**:
   - Transformed `AiHubScreen` into a top segmented pill switcher matching the user's Explore design.
