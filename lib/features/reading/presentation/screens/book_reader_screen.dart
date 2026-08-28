@@ -42,9 +42,13 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen> {
   int _currentAudioSentenceIndex = 0;
   StreamSubscription? _audioCompleteSub;
 
-  // Open-Source Human Voice Stream State (Archive.org)
+  // Master Voice Audio Stream State
   bool _isStreamingHumanAudio = false;
   bool _isHumanAudioPlaying = false;
+  Duration _humanAudioPosition = Duration.zero;
+  Duration _humanAudioDuration = Duration.zero;
+  StreamSubscription? _posSub;
+  StreamSubscription? _durSub;
 
   @override
   void initState() {
@@ -61,11 +65,28 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen> {
       }
     });
 
-    _audioCompleteSub = ref.read(audioServiceProvider).onPlayerComplete.listen((_) {
+    final audioService = ref.read(audioServiceProvider);
+
+    _audioCompleteSub = audioService.onPlayerComplete.listen((_) {
       if (_isAudiobookActive && _isAudiobookPlaying && mounted) {
         _onSentenceAudioFinished();
       } else if (_isStreamingHumanAudio && mounted) {
-        setState(() => _isHumanAudioPlaying = false);
+        setState(() {
+          _isHumanAudioPlaying = false;
+          _humanAudioPosition = Duration.zero;
+        });
+      }
+    });
+
+    _posSub = audioService.onPositionChanged.listen((pos) {
+      if (_isStreamingHumanAudio && mounted) {
+        setState(() => _humanAudioPosition = pos);
+      }
+    });
+
+    _durSub = audioService.onDurationChanged.listen((dur) {
+      if (_isStreamingHumanAudio && mounted) {
+        setState(() => _humanAudioDuration = dur);
       }
     });
   }
@@ -73,6 +94,8 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen> {
   @override
   void dispose() {
     _audioCompleteSub?.cancel();
+    _posSub?.cancel();
+    _durSub?.cancel();
     _stopAudiobook();
     _stopHumanAudioStream();
     _scrollController.dispose();
@@ -141,19 +164,17 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen> {
 
   void _togglePlayPauseHumanAudio() async {
     HapticsManager.light();
+    final audioService = ref.read(audioServiceProvider);
     if (_isHumanAudioPlaying) {
-      ref.read(audioServiceProvider).stop();
-      setState(() => _isHumanAudioPlaying = false);
+      await audioService.pause();
+      if (mounted) setState(() => _isHumanAudioPlaying = false);
     } else {
       if (widget.book.audioStreamUrl != null) {
-        setState(() => _isHumanAudioPlaying = true);
-        final success = await ref.read(audioServiceProvider).playStreamUrl(widget.book.audioStreamUrl!);
-        if (!success && mounted) {
-          setState(() {
-            _isStreamingHumanAudio = false;
-            _isHumanAudioPlaying = false;
-          });
-          _startAudiobook();
+        if (_humanAudioPosition > Duration.zero) {
+          await audioService.resume();
+          if (mounted) setState(() => _isHumanAudioPlaying = true);
+        } else {
+          _startHumanAudioStream();
         }
       }
     }
@@ -204,6 +225,15 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen> {
       HapticsManager.selection();
       _playSentenceAt(_currentAudioSentenceIndex + 1);
     }
+  }
+
+  String _formatDuration(Duration d) {
+    final minutes = d.inMinutes.remainder(60).toString().padLeft(2, '0');
+    final seconds = d.inSeconds.remainder(60).toString().padLeft(2, '0');
+    if (d.inHours > 0) {
+      return '${d.inHours}:$minutes:$seconds';
+    }
+    return '$minutes:$seconds';
   }
 
   void _saveProgress() {
@@ -1138,7 +1168,7 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Authentic Human Voice',
+                          'Authentic Master Voice',
                           style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.bold,
@@ -1146,7 +1176,7 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen> {
                           ),
                         ),
                         Text(
-                          '${widget.book.title} · ${widget.book.author}',
+                          '${widget.book.title} · ${_formatDuration(_humanAudioPosition)}${_humanAudioDuration > Duration.zero ? ' / ${_formatDuration(_humanAudioDuration)}' : ''}',
                           style: TextStyle(
                             fontSize: 11,
                             color: isDark ? Colors.white60 : Colors.black54,

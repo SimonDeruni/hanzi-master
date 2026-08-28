@@ -238,24 +238,75 @@ class AudioService {
   }
 
   /// Streams remote MP3 audio or plays bundled audio assets directly.
-  /// Downloads and caches locally using standard browser User-Agent headers to bypass anti-bot blocks.
+  /// Uses rootBundle extraction to local file cache + DeviceFileSource for 100% reliable iOS/Android playback.
   Future<bool> playStreamUrl(String url) async {
     if (!_isInitialized) await init();
     await stop();
+
+    // Ensure AudioContext is configured for loudspeaker playback across platforms
+    await _player.setAudioContext(AudioContext(
+      iOS: AudioContextIOS(
+        category: AVAudioSessionCategory.playback,
+        options: const {
+          AVAudioSessionOptions.defaultToSpeaker,
+          AVAudioSessionOptions.allowBluetooth,
+          AVAudioSessionOptions.mixWithOthers,
+        },
+      ),
+      android: const AudioContextAndroid(
+        isSpeakerphoneOn: true,
+        stayAwake: true,
+        contentType: AndroidContentType.music,
+        usageType: AndroidUsageType.media,
+        audioFocus: AndroidAudioFocus.gain,
+      ),
+    ));
+    await _player.setVolume(1.0);
+
     try {
-      if (url.startsWith('asset:')) {
-        final assetPath = url.substring(6); // e.g. 'audio/audiobooks/the_art_of_war.mp3'
-        await _player.setPlaybackRate(1.0);
-        await _player.play(AssetSource(assetPath));
-        return true;
-      }
-      if (url.startsWith('assets/')) {
-        final assetPath = url.substring(7); // e.g. 'audio/audiobooks/the_art_of_war.mp3'
-        await _player.setPlaybackRate(1.0);
-        await _player.play(AssetSource(assetPath));
-        return true;
+      // 1. Handle bundled app asset files (asset:audio/... or assets/audio/...)
+      if (url.startsWith('asset:') || url.startsWith('assets/')) {
+        String cleanAssetPath = url.startsWith('asset:')
+            ? 'assets/${url.substring(6)}'
+            : (url.startsWith('assets/') ? url : 'assets/$url');
+
+        // Extract filename for local caching
+        final filename = cleanAssetPath.split('/').last;
+        final cacheFile = File('${_cacheDir!.path}/audiobook_cache/$filename');
+
+        if (!await cacheFile.exists() || (await cacheFile.length()) < 1024) {
+          try {
+            final byteData = await rootBundle.load(cleanAssetPath);
+            final buffer = byteData.buffer;
+            await cacheFile.writeAsBytes(
+              buffer.asUint8List(byteData.offsetInBytes, byteData.lengthInBytes),
+              flush: true,
+            );
+          } catch (e) {
+            debugPrint("Failed to extract asset $cleanAssetPath to cache: $e");
+            // Try secondary path without leading assets/
+            try {
+              final altPath = cleanAssetPath.replaceFirst('assets/', '');
+              final byteData = await rootBundle.load(altPath);
+              final buffer = byteData.buffer;
+              await cacheFile.writeAsBytes(
+                buffer.asUint8List(byteData.offsetInBytes, byteData.lengthInBytes),
+                flush: true,
+              );
+            } catch (e2) {
+              debugPrint("Secondary asset load failed: $e2");
+            }
+          }
+        }
+
+        if (await cacheFile.exists() && (await cacheFile.length()) > 1024) {
+          await _player.setPlaybackRate(1.0);
+          await _player.play(DeviceFileSource(cacheFile.path));
+          return true;
+        }
       }
 
+      // 2. Handle remote URL streaming with local caching
       final hash = _hashText(url);
       final cacheFile = File('${_cacheDir!.path}/audiobook_cache/$hash.mp3');
 
@@ -445,6 +496,23 @@ class AudioService {
       return null;
     }
   }
+  Future<void> pause() async {
+    await _player.pause();
+    await _tts.pause();
+  }
+
+  Future<void> resume() async {
+    await _player.resume();
+  }
+
+  Future<void> seek(Duration position) async {
+    await _player.seek(position);
+  }
+
+  Stream<Duration> get onPositionChanged => _player.onPositionChanged;
+  Stream<Duration> get onDurationChanged => _player.onDurationChanged;
+  Stream<PlayerState> get onPlayerStateChanged => _player.onPlayerStateChanged;
+
   Future<void> stop() async {
     await _player.stop();
     await _tts.stop();
