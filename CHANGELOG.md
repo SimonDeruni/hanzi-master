@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.0+185] - 2026-08-28
+- **Duplicate Book Covers Resolved (Build #185)**:
+  - Fixed duplicate cover between Eileen Chang's 《倾城之恋》 (*Love in a Fallen City*) and 《金锁记》 (*The Golden Cangue*). Downloaded the dedicated standalone cover for *The Golden Cangue* (`golden_cangue.jpg`).
+  - Also resolved shared anthology cover between 《道德经》 and 《列子》 with dedicated *Book of Lieh-tzu* cover (`liezi.jpg`).
+  - Automated full-library verification: **all 96 book covers are now 100% distinct and unique**.
+  - `dart analyze`: 0 issues. Pushed to GitLab and GitHub.
+
 ## [1.0.0+184] - 2026-08-28
 - **Full Library True High-Resolution Book Covers (Build #184)**:
   - Automated the discovery, download, and asset-bundling of authentic high-resolution book covers for all 96 books across the library (3.29 MB total).

@@ -1,12 +1,13 @@
 # 🧠 SESSION_STATE.md - The Hanzi Master "Scholar's Baton"
 
 #### 🎯 Current Context
-- **Objective:** Full Library True High-Res Book Covers
+- **Objective:** Unique Book Covers Audit & Resolution
 - **Status:** ✅ COMPLETED
 - **Hygiene:** 🧼 Perfect Hygiene — `dart analyze lib/` passed with 0 issues.
 - **Locked Files:**
     - [None]
 
+- [x] **Duplicate Book Covers Resolved (Build #185):** Replaced duplicate cover on *The Golden Cangue* (金锁记) with dedicated standalone cover. Replaced shared anthology cover on *Liezi* (列子). Ran automated uniqueness audit: verified all 96 book covers are 100% unique and distinct. (Status: COMPLETED)
 - [x] **Full Library True High-Resolution Book Covers (Build #184):** Automated downloading and bundling of authentic high-resolution covers for all 96 books into `assets/images/books/` (3.29 MB total). Updated `CalligraphicBookCover` to render true cover images with 3D tactile spine shading and calligraphic fallback. (Status: COMPLETED)
 - [x] **Master Chinese Audiobooks Bundled Offline in App Assets (Build #183):** Downloaded and bundled voice-optimized audiobooks directly into `assets/audio/audiobooks/` (Art of War, Analects, Dream of Red Chamber, Journey to the West). Zero network latency, instant 100% offline playback. (Status: COMPLETED)
 - [x] **Archive.org Anti-Bot Block Bypassed via Buffered Streamer (Build #182):** Rewrote `AudioService.playStreamUrl` using Dart's `HttpClient` with standard browser headers to download directly into local cache, bypassing mobile OS media player blocks from Archive.org. (Status: COMPLETED)
