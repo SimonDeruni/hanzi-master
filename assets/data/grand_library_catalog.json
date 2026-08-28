@@ -62,64 +62,6 @@
     "audioStreamUrl": "asset:audio/audiobooks/dream_of_red_chamber.mp3"
   },
   {
-    "id": "fengshen_yanyi",
-    "title": "封神演义",
-    "titleEn": "Investiture of the Gods",
-    "author": "许仲琳",
-    "authorEn": "Xu Zhonglin",
-    "category": "Chinese Epics",
-    "dynastyOrEra": "Ming Dynasty",
-    "hskLevel": 4,
-    "totalChapters": 12,
-    "coverEmoji": "⚡",
-    "description": "《封神演义》是许仲琳在Ming Dynasty时期创作的Chinese Epics代表巨著。商周交替之际，姜子牙、哪吒、杨戬辅佐周武王伐纣的东方神魔大战。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
-    "descriptionEn": "\"Investiture of the Gods\" is a classic masterpiece composed by Xu Zhonglin during the Ming Dynasty era. The epic mythological war between Shang and Zhou featuring Nezha and mythical deities. Celebrated worldwide as a defining jewel of Chinese Epics, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
-    "tags": [
-      "Nezha",
-      "Gods",
-      "Magic",
-      "War"
-    ]
-  },
-  {
-    "id": "flowers_in_the_mirror",
-    "title": "镜花缘",
-    "titleEn": "Flowers in the Mirror",
-    "author": "李汝珍",
-    "authorEn": "Li Ruzhen",
-    "category": "Chinese Epics",
-    "dynastyOrEra": "Qing Dynasty",
-    "hskLevel": 4,
-    "totalChapters": 12,
-    "coverEmoji": "🪞",
-    "description": "《镜花缘》是李汝珍在Qing Dynasty时期创作的Chinese Epics代表巨著。唐敖游历海外奇幻国度（君子国、大人国、女儿国）的东方奇幻奇谭。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
-    "descriptionEn": "\"Flowers in the Mirror\" is a classic masterpiece composed by Li Ruzhen during the Qing Dynasty era. A fantastic overseas voyage through exotic realms akin to Gulliver’s Travels. Celebrated worldwide as a defining jewel of Chinese Epics, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
-    "tags": [
-      "Fantasy",
-      "Travel",
-      "Satire"
-    ]
-  },
-  {
-    "id": "the_scholars",
-    "title": "儒林外史",
-    "titleEn": "The Scholars",
-    "author": "吴敬梓",
-    "authorEn": "Wu Jingzi",
-    "category": "Chinese Epics",
-    "dynastyOrEra": "Qing Dynasty",
-    "hskLevel": 4,
-    "totalChapters": 12,
-    "coverEmoji": "📖",
-    "description": "《儒林外史》是吴敬梓在Qing Dynasty时期创作的Chinese Epics代表巨著。以辛辣讽刺笔触揭露封建科举制度下读书人追逐功名的众生相。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
-    "descriptionEn": "\"The Scholars\" is a classic masterpiece composed by Wu Jingzi during the Qing Dynasty era. A masterclass in Chinese satire caricaturing scholars obsession with imperial exams. Celebrated worldwide as a defining jewel of Chinese Epics, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
-    "tags": [
-      "Satire",
-      "Scholars",
-      "Humor"
-    ]
-  },
-  {
     "id": "romance_sui_tang",
     "title": "隋唐演义",
     "titleEn": "Romance of Sui and Tang Dynasties",
@@ -136,25 +78,6 @@
       "Tang Dynasty",
       "Warriors",
       "Chivalry"
-    ]
-  },
-  {
-    "id": "bizarre_happenings_two_decades",
-    "title": "二十年目睹之怪现状",
-    "titleEn": "Bizarre Happenings Over Two Decades",
-    "author": "吴趼人",
-    "authorEn": "Wu Jianren",
-    "category": "Chinese Epics",
-    "dynastyOrEra": "Late Qing",
-    "hskLevel": 4,
-    "totalChapters": 12,
-    "coverEmoji": "👁️",
-    "description": "《二十年目睹之怪现状》是吴趼人在Late Qing时期创作的Chinese Epics代表巨著。以第一人称“九死一生”见证晚清社会转型期的种种奇闻怪象。 作品融汇了深厚的人文精神与精妙的艺术构思，以生动的叙事与跌宕起伏的情节，深刻展现了时代的变迁与人性的光辉，具有历久弥新的思想魅力与世界文学价值。",
-    "descriptionEn": "\"Bizarre Happenings Over Two Decades\" is a classic masterpiece composed by Wu Jianren during the Late Qing era. A first-person narrative witnessing the bizarre societal upheavals of late imperial China. Celebrated worldwide as a defining jewel of Chinese Epics, it delves into timeless human experiences, moral dilemmas, and cultural resonance with extraordinary literary artistry.",
-    "tags": [
-      "Realism",
-      "Memoir",
-      "History"
     ]
   },
   {
