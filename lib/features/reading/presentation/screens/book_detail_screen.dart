@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/features/reading/domain/entities/book_model.dart';
 import 'package:hanzi_master/features/reading/presentation/providers/book_providers.dart';
 import 'package:hanzi_master/features/reading/presentation/screens/book_reader_screen.dart';
+import 'package:hanzi_master/features/reading/presentation/screens/audiobook_player_screen.dart';
 import 'package:hanzi_master/features/reading/presentation/widgets/calligraphic_book_cover.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
@@ -264,14 +265,16 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
                           child: OutlinedButton.icon(
                             onPressed: () {
                               HapticsManager.medium();
-                              final initialIndex = (currentProgress - 1).clamp(0, chapters.length - 1);
+                              final detailedProg = ref.read(bookDetailedProgressProvider(book.id));
+                              final initialChapterIndex = (detailedProg != null ? detailedProg.chapterIndex - 1 : currentProgress - 1).clamp(0, chapters.length - 1);
+                              final initialSentenceIndex = detailedProg?.sentenceIndex ?? 0;
                               Navigator.of(context).push(
                                 SwipeBackPageRoute(
-                                  builder: (_) => BookReaderScreen(
+                                  builder: (_) => AudiobookPlayerScreen(
                                     book: book,
                                     chapters: chapters,
-                                    initialChapterIndex: initialIndex,
-                                    autoStartAudiobook: true,
+                                    initialChapterIndex: initialChapterIndex,
+                                    initialSentenceIndex: initialSentenceIndex,
                                   ),
                                 ),
                               );

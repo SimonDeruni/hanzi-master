@@ -25,6 +25,11 @@ final bookProgressProvider = StateProvider.family<int, String>((ref, bookId) {
   return repo.getReadingProgress(bookId);
 });
 
+final bookDetailedProgressProvider = Provider.family<BookReadingProgress?, String>((ref, bookId) {
+  final repo = ref.read(bookRepositoryProvider);
+  return repo.getDetailedReadingProgress(bookId);
+});
+
 class InProgressBookItem {
   final BookModel book;
   final BookReadingProgress progress;

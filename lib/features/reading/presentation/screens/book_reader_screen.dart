@@ -5,6 +5,7 @@ import 'package:hanzi_master/core/services/audio_service.dart';
 import 'package:hanzi_master/core/services/audio_quota_service.dart';
 import 'package:hanzi_master/features/reading/domain/entities/book_model.dart';
 import 'package:hanzi_master/features/reading/presentation/providers/book_providers.dart';
+import 'package:hanzi_master/features/reading/presentation/screens/audiobook_player_screen.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
 
@@ -78,13 +79,32 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen> {
   }
 
   void _startAudiobook() {
+    _startAudiobookFrom(0);
+  }
+
+  void _startAudiobookFrom(int sentenceIdx) {
     HapticsManager.medium();
     setState(() {
       _isAudiobookActive = true;
       _isAudiobookPlaying = true;
-      _currentAudioSentenceIndex = 0;
+      _currentAudioSentenceIndex = sentenceIdx;
     });
     _playSentenceAt(_currentAudioSentenceIndex);
+  }
+
+  void _openFullscreenAudiobookPlayer() {
+    HapticsManager.medium();
+    _stopAudiobook();
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (_) => AudiobookPlayerScreen(
+          book: widget.book,
+          chapters: widget.chapters,
+          initialChapterIndex: _currentIndex,
+          initialSentenceIndex: _currentAudioSentenceIndex,
+        ),
+      ),
+    );
   }
 
   void _stopAudiobook() {
@@ -437,6 +457,7 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen> {
     ref.read(bookRepositoryProvider).saveReadingProgress(
       bookId: widget.book.id,
       chapterIndex: chapterNumber,
+      sentenceIndex: _currentAudioSentenceIndex,
       percentage: fraction,
     );
     Future.microtask(() {
@@ -1050,9 +1071,10 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen> {
                                     size: 18,
                                     color: isDark ? Colors.amber.shade300 : const Color(0xFF8B0000),
                                   ),
+                                  tooltip: 'Play Audiobook from here',
                                   onPressed: () {
                                     HapticsManager.light();
-                                    ref.read(audioServiceProvider).playSentence(sentence.chinese);
+                                    _startAudiobookFrom(index);
                                   },
                                 ),
                               ],
@@ -1211,6 +1233,12 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen> {
                         icon: const Icon(Icons.skip_next, size: 22),
                         color: primaryText,
                         onPressed: _currentAudioSentenceIndex < chapter.sentences.length - 1 ? _audiobookNextSentence : null,
+                      ),
+                      IconButton(
+                        icon: const Icon(Icons.open_in_full_rounded, size: 18),
+                        color: isDark ? Colors.amber.shade300 : const Color(0xFF8B0000),
+                        tooltip: 'Spotify-style Player',
+                        onPressed: _openFullscreenAudiobookPlayer,
                       ),
                       IconButton(
                         icon: const Icon(Icons.close, size: 20),
