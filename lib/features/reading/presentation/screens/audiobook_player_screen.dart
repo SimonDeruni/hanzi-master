@@ -1,12 +1,14 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:lpinyin/lpinyin.dart';
 import 'package:hanzi_master/core/services/audio_service.dart';
 import 'package:hanzi_master/core/services/audio_quota_service.dart';
 import 'package:hanzi_master/features/reading/domain/entities/book_model.dart';
 import 'package:hanzi_master/features/reading/presentation/providers/book_providers.dart';
 import 'package:hanzi_master/features/reading/presentation/widgets/calligraphic_book_cover.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
+import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
 
 class AudiobookPlayerScreen extends ConsumerStatefulWidget {
   final BookModel book;
@@ -29,10 +31,17 @@ class AudiobookPlayerScreen extends ConsumerStatefulWidget {
 class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
   late int _currentChapterIndex;
   late int _currentSentenceIndex;
+  int _currentSpokenCharIndex = 0;
+  int _totalDurationMs = 0;
   bool _isPlaying = true;
   double _playbackSpeed = 1.0;
   final ScrollController _scrollController = ScrollController();
   StreamSubscription? _audioCompleteSub;
+  StreamSubscription? _positionSub;
+  StreamSubscription? _durationSub;
+
+  // Cache for parsed ruby sentence tokens (Chinese char + Pinyin syllable)
+  final Map<String, List<_RubyToken>> _rubyCache = {};
 
   // Sleep Timer State
   Timer? _sleepTimer;
@@ -46,9 +55,24 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
     _currentSentenceIndex = widget.initialSentenceIndex;
 
     final audioService = ref.read(audioServiceProvider);
+
     _audioCompleteSub = audioService.onPlayerComplete.listen((_) {
       if (_isPlaying && mounted) {
         _onSentenceFinished();
+      }
+    });
+
+    _durationSub = audioService.onDurationChanged.listen((duration) {
+      if (mounted && duration.inMilliseconds > 0) {
+        setState(() {
+          _totalDurationMs = duration.inMilliseconds;
+        });
+      }
+    });
+
+    _positionSub = audioService.onPositionChanged.listen((position) {
+      if (mounted && _isPlaying) {
+        _updateSpokenCharIndex(position.inMilliseconds);
       }
     });
 
@@ -64,6 +88,8 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
   void dispose() {
     _sleepTimer?.cancel();
     _audioCompleteSub?.cancel();
+    _positionSub?.cancel();
+    _durationSub?.cancel();
     _saveProgress();
     ref.read(audioServiceProvider).stop();
     _scrollController.dispose();
@@ -87,11 +113,72 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
     });
   }
 
+  List<_RubyToken> _getRubyTokens(String chinese) {
+    if (_rubyCache.containsKey(chinese)) {
+      return _rubyCache[chinese]!;
+    }
+
+    final pinyinString = PinyinHelper.getPinyinE(
+      chinese,
+      separator: ' ',
+      format: PinyinFormat.WITH_TONE_MARK,
+    );
+    final pinyinList = pinyinString.split(' ').where((s) => s.isNotEmpty).toList();
+
+    final tokens = <_RubyToken>[];
+    int pinyinIdx = 0;
+    int hanziIdx = 0;
+    const punctuation = {
+      '，', '。', '！', '？', '、', '“', '”', '‘', '’', '：', '；', '《', '》', '（', '）', '—', '…',
+      ' ', '\n', '\r', '\t', ',', '!', '?', '.', ':', ';', "'", '"', '(', ')', '[', ']', '{', '}'
+    };
+
+    for (final char in chinese.characters) {
+      final isPunctuation = punctuation.contains(char) || RegExp(r'^\d+$').hasMatch(char);
+      if (isPunctuation) {
+        tokens.add(_RubyToken(char: char, pinyin: '', isPunctuation: true, hanziIndex: -1));
+      } else {
+        final pinyin = pinyinIdx < pinyinList.length ? pinyinList[pinyinIdx] : '';
+        tokens.add(_RubyToken(char: char, pinyin: pinyin, isPunctuation: false, hanziIndex: hanziIdx));
+        pinyinIdx++;
+        hanziIdx++;
+      }
+    }
+
+    _rubyCache[chinese] = tokens;
+    return tokens;
+  }
+
+  void _updateSpokenCharIndex(int positionMs) {
+    if (widget.chapters.isEmpty) return;
+    final chapter = widget.chapters[_currentChapterIndex];
+    if (_currentSentenceIndex >= chapter.sentences.length) return;
+
+    final sentence = chapter.sentences[_currentSentenceIndex];
+    final tokens = _getRubyTokens(sentence.chinese);
+    final hanziTokens = tokens.where((t) => !t.isPunctuation).toList();
+
+    if (hanziTokens.isEmpty) return;
+
+    // Estimate duration if stream duration is not yet available (~220ms per character in classical recitation)
+    final totalMs = _totalDurationMs > 0 ? _totalDurationMs : (hanziTokens.length * 220);
+    final fraction = (positionMs / totalMs).clamp(0.0, 1.0);
+    final targetIndex = (fraction * hanziTokens.length).floor().clamp(0, hanziTokens.length - 1);
+
+    if (targetIndex != _currentSpokenCharIndex) {
+      setState(() {
+        _currentSpokenCharIndex = targetIndex;
+      });
+    }
+  }
+
   void _playSentenceAt(int sentenceIdx) {
     final chapter = widget.chapters[_currentChapterIndex];
     if (sentenceIdx >= 0 && sentenceIdx < chapter.sentences.length) {
       setState(() {
         _currentSentenceIndex = sentenceIdx;
+        _currentSpokenCharIndex = 0;
+        _totalDurationMs = 0;
         _isPlaying = true;
       });
       _saveProgress();
@@ -111,7 +198,7 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
   void _onSentenceFinished() {
     final chapter = widget.chapters[_currentChapterIndex];
     if (_currentSentenceIndex < chapter.sentences.length - 1) {
-      Future.delayed(const Duration(milliseconds: 300), () {
+      Future.delayed(const Duration(milliseconds: 250), () {
         if (_isPlaying && mounted) {
           _playSentenceAt(_currentSentenceIndex + 1);
         }
@@ -128,11 +215,12 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
       }
 
       if (_currentChapterIndex < widget.chapters.length - 1) {
-        Future.delayed(const Duration(milliseconds: 700), () {
+        Future.delayed(const Duration(milliseconds: 600), () {
           if (_isPlaying && mounted) {
             setState(() {
               _currentChapterIndex++;
               _currentSentenceIndex = 0;
+              _currentSpokenCharIndex = 0;
             });
             _playSentenceAt(0);
           }
@@ -171,8 +259,7 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
 
   void _scrollToSentence(int index, {bool animate = true}) {
     if (!_scrollController.hasClients) return;
-    // Approximate sentence card height is ~110px
-    final targetOffset = (index * 110.0 - 150.0).clamp(0.0, _scrollController.position.maxScrollExtent);
+    final targetOffset = (index * 130.0 - 140.0).clamp(0.0, _scrollController.position.maxScrollExtent);
     if (animate) {
       _scrollController.animateTo(
         targetOffset,
@@ -227,7 +314,7 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
     }
   }
 
-  void _showSleepTimerModal(BuildContext context) {
+  void _showSleepTimerModal(BuildContext context, bool isDark, Color cardBg, Color primaryText) {
     HapticsManager.light();
     showModalBottomSheet(
       context: context,
@@ -235,12 +322,12 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
       builder: (ctx) {
         return Container(
           padding: const EdgeInsets.fromLTRB(20, 20, 20, 32),
-          decoration: const BoxDecoration(
-            color: Color(0xFF1E1E22),
-            borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+          decoration: BoxDecoration(
+            color: cardBg,
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
             boxShadow: [
               BoxShadow(
-                color: Colors.black54,
+                color: Colors.black.withValues(alpha: isDark ? 0.5 : 0.15),
                 blurRadius: 20,
               ),
             ],
@@ -254,7 +341,7 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
                   width: 40,
                   height: 4,
                   decoration: BoxDecoration(
-                    color: Colors.white24,
+                    color: isDark ? Colors.white24 : Colors.black12,
                     borderRadius: BorderRadius.circular(2),
                   ),
                 ),
@@ -262,24 +349,24 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
               const SizedBox(height: 16),
               Row(
                 children: [
-                  Icon(Icons.bedtime, size: 20, color: Colors.amber.shade300),
+                  Icon(Icons.bedtime, size: 20, color: isDark ? Colors.amber.shade300 : const Color(0xFF8B0000)),
                   const SizedBox(width: 8),
-                  const Text(
+                  Text(
                     'Sleep Timer',
                     style: TextStyle(
                       fontSize: 17,
                       fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                      color: primaryText,
                     ),
                   ),
                 ],
               ),
               const SizedBox(height: 16),
-              _buildSleepTile(ctx, 'Off', null, isSelected: _sleepSecondsRemaining == null && !_stopAtEndOfChapter),
-              _buildSleepTile(ctx, '15 Minutes', 15, isSelected: _sleepSecondsRemaining != null && _sleepSecondsRemaining! <= 15 * 60 && _sleepSecondsRemaining! > 0),
-              _buildSleepTile(ctx, '30 Minutes', 30, isSelected: _sleepSecondsRemaining != null && _sleepSecondsRemaining! > 15 * 60 && _sleepSecondsRemaining! <= 30 * 60),
-              _buildSleepTile(ctx, '45 Minutes', 45, isSelected: _sleepSecondsRemaining != null && _sleepSecondsRemaining! > 30 * 60 && _sleepSecondsRemaining! <= 45 * 60),
-              _buildSleepTile(ctx, 'End of Current Chapter', null, isEndOfChapter: true, isSelected: _stopAtEndOfChapter),
+              _buildSleepTile(ctx, 'Off', null, primaryText, isSelected: _sleepSecondsRemaining == null && !_stopAtEndOfChapter, isDark: isDark),
+              _buildSleepTile(ctx, '15 Minutes', 15, primaryText, isSelected: _sleepSecondsRemaining != null && _sleepSecondsRemaining! <= 15 * 60 && _sleepSecondsRemaining! > 0, isDark: isDark),
+              _buildSleepTile(ctx, '30 Minutes', 30, primaryText, isSelected: _sleepSecondsRemaining != null && _sleepSecondsRemaining! > 15 * 60 && _sleepSecondsRemaining! <= 30 * 60, isDark: isDark),
+              _buildSleepTile(ctx, '45 Minutes', 45, primaryText, isSelected: _sleepSecondsRemaining != null && _sleepSecondsRemaining! > 30 * 60 && _sleepSecondsRemaining! <= 45 * 60, isDark: isDark),
+              _buildSleepTile(ctx, 'End of Current Chapter', null, primaryText, isEndOfChapter: true, isSelected: _stopAtEndOfChapter, isDark: isDark),
             ],
           ),
         );
@@ -287,21 +374,22 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
     );
   }
 
-  Widget _buildSleepTile(BuildContext ctx, String label, int? minutes, {bool isEndOfChapter = false, bool isSelected = false}) {
+  Widget _buildSleepTile(BuildContext ctx, String label, int? minutes, Color primaryText, {bool isEndOfChapter = false, bool isSelected = false, required bool isDark}) {
+    final accent = isDark ? Colors.amber.shade400 : const Color(0xFF8B0000);
     return ListTile(
       dense: true,
       contentPadding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
       leading: Icon(
         isSelected ? Icons.check_circle : Icons.radio_button_unchecked,
         size: 18,
-        color: isSelected ? Colors.amber.shade400 : Colors.white38,
+        color: isSelected ? accent : (isDark ? Colors.white38 : Colors.black26),
       ),
       title: Text(
         label,
         style: TextStyle(
           fontSize: 14,
           fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-          color: isSelected ? Colors.amber.shade300 : Colors.white,
+          color: isSelected ? accent : primaryText,
         ),
       ),
       onTap: () {
@@ -311,10 +399,11 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
     );
   }
 
-  void _showQuotaDetailsSheet(BuildContext context, AudioQuotaService quota) {
+  void _showQuotaDetailsSheet(BuildContext context, AudioQuotaService quota, bool isDark, Color cardBg, Color primaryText) {
     HapticsManager.light();
     final usedRatio = (quota.usedSeconds / AudioQuotaService.weeklyAllowanceSeconds).clamp(0.0, 1.0);
     final percentUsed = (usedRatio * 100).round();
+    final accent = isDark ? Colors.amber.shade400 : const Color(0xFF8B0000);
 
     showModalBottomSheet(
       context: context,
@@ -322,12 +411,12 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
       builder: (ctx) {
         return Container(
           padding: const EdgeInsets.fromLTRB(24, 20, 24, 36),
-          decoration: const BoxDecoration(
-            color: Color(0xFF1E1E22),
-            borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+          decoration: BoxDecoration(
+            color: cardBg,
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
             boxShadow: [
               BoxShadow(
-                color: Colors.black54,
+                color: Colors.black.withValues(alpha: isDark ? 0.5 : 0.15),
                 blurRadius: 20,
               ),
             ],
@@ -341,7 +430,7 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
                   width: 40,
                   height: 4,
                   decoration: BoxDecoration(
-                    color: Colors.white24,
+                    color: isDark ? Colors.white24 : Colors.black12,
                     borderRadius: BorderRadius.circular(2),
                   ),
                 ),
@@ -352,13 +441,13 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
                   Container(
                     padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(
-                      color: Colors.amber.withValues(alpha: 0.2),
+                      color: accent.withValues(alpha: 0.15),
                       shape: BoxShape.circle,
                     ),
-                    child: Icon(Icons.graphic_eq, size: 20, color: Colors.amber.shade300),
+                    child: Icon(Icons.graphic_eq, size: 20, color: accent),
                   ),
                   const SizedBox(width: 12),
-                  const Column(
+                  Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
@@ -366,14 +455,14 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                          color: primaryText,
                         ),
                       ),
                       Text(
                         'Studio HD vs. Unlimited Standard Voice',
                         style: TextStyle(
                           fontSize: 11.5,
-                          color: Colors.white54,
+                          color: isDark ? Colors.white54 : Colors.black54,
                         ),
                       ),
                     ],
@@ -386,9 +475,9 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
                 child: LinearProgressIndicator(
                   value: (1.0 - usedRatio).clamp(0.0, 1.0),
                   minHeight: 10,
-                  backgroundColor: Colors.white12,
+                  backgroundColor: isDark ? Colors.white12 : Colors.black12,
                   valueColor: AlwaysStoppedAnimation<Color>(
-                    quota.hasQuotaRemaining ? Colors.amber.shade400 : Colors.grey,
+                    quota.hasQuotaRemaining ? accent : Colors.grey,
                   ),
                 ),
               ),
@@ -401,14 +490,14 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
                     style: TextStyle(
                       fontSize: 13,
                       fontWeight: FontWeight.bold,
-                      color: Colors.amber.shade300,
+                      color: accent,
                     ),
                   ),
                   Text(
                     '$percentUsed% used of 4.0h',
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 12,
-                      color: Colors.white60,
+                      color: isDark ? Colors.white60 : Colors.black54,
                     ),
                   ),
                 ],
@@ -417,34 +506,34 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
               Container(
                 padding: const EdgeInsets.all(14),
                 decoration: BoxDecoration(
-                  color: Colors.white.withValues(alpha: 0.05),
+                  color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.black.withValues(alpha: 0.04),
                   borderRadius: BorderRadius.circular(12),
-                  border: Border.all(color: Colors.white12),
+                  border: Border.all(color: isDark ? Colors.white12 : Colors.black12),
                 ),
-                child: const Column(
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
                       children: [
-                        Icon(Icons.all_inclusive, size: 16, color: Colors.amber),
-                        SizedBox(width: 6),
+                        Icon(Icons.all_inclusive, size: 16, color: accent),
+                        const SizedBox(width: 6),
                         Text(
                           'Standard Voice is 100% Unlimited & Free',
                           style: TextStyle(
                             fontSize: 12.5,
                             fontWeight: FontWeight.bold,
-                            color: Colors.white,
+                            color: primaryText,
                           ),
                         ),
                       ],
                     ),
-                    SizedBox(height: 6),
+                    const SizedBox(height: 6),
                     Text(
-                      '• Studio HD Voice: 4.0 hours per week of ultra-realistic Azure Neural narration (resets Monday at 00:00).\n• Standard Voice: Unlimited, free on-device voice that never runs out and plays completely offline.',
+                      '• Studio HD Voice: 4.0 hours per week of ultra-realistic Azure Neural recitation (resets Monday at 00:00).\n• Standard Voice: Unlimited, free on-device voice that never runs out and plays completely offline.',
                       style: TextStyle(
                         fontSize: 11.5,
                         height: 1.4,
-                        color: Colors.white70,
+                        color: isDark ? Colors.white70 : Colors.black87,
                       ),
                     ),
                   ],
@@ -457,7 +546,7 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
     );
   }
 
-  void _showChapterPicker(BuildContext context) {
+  void _showChapterPicker(BuildContext context, bool isDark, Color cardBg, Color primaryText) {
     HapticsManager.light();
     showModalBottomSheet(
       context: context,
@@ -466,9 +555,9 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
         return Container(
           height: MediaQuery.of(context).size.height * 0.6,
           padding: const EdgeInsets.fromLTRB(20, 16, 20, 24),
-          decoration: const BoxDecoration(
-            color: Color(0xFF1E1E22),
-            borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+          decoration: BoxDecoration(
+            color: cardBg,
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -478,18 +567,18 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
                   width: 40,
                   height: 4,
                   decoration: BoxDecoration(
-                    color: Colors.white24,
+                    color: isDark ? Colors.white24 : Colors.black12,
                     borderRadius: BorderRadius.circular(2),
                   ),
                 ),
               ),
               const SizedBox(height: 16),
-              const Text(
+              Text(
                 'Select Chapter',
                 style: TextStyle(
                   fontSize: 17,
                   fontWeight: FontWeight.bold,
-                  color: Colors.white,
+                  color: primaryText,
                 ),
               ),
               const SizedBox(height: 12),
@@ -499,6 +588,7 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
                   itemBuilder: (ctx, idx) {
                     final ch = widget.chapters[idx];
                     final isCurrent = idx == _currentChapterIndex;
+                    final accent = isDark ? Colors.amber.shade300 : const Color(0xFF8B0000);
                     return ListTile(
                       dense: true,
                       contentPadding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
@@ -507,7 +597,7 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
                         style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.bold,
-                          color: isCurrent ? Colors.amber.shade300 : Colors.white38,
+                          color: isCurrent ? accent : (isDark ? Colors.white38 : Colors.black38),
                         ),
                       ),
                       title: Text(
@@ -517,20 +607,24 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
                         style: TextStyle(
                           fontSize: 14,
                           fontWeight: isCurrent ? FontWeight.bold : FontWeight.normal,
-                          color: isCurrent ? Colors.amber.shade300 : Colors.white,
+                          color: isCurrent ? accent : primaryText,
                         ),
                       ),
                       subtitle: Text(
                         ch.titleEn,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
-                        style: TextStyle(fontSize: 11, color: Colors.white.withValues(alpha: 0.5)),
+                        style: TextStyle(
+                          fontSize: 11,
+                          color: isDark ? Colors.white54 : Colors.black45,
+                        ),
                       ),
                       onTap: () {
                         Navigator.of(ctx).pop();
                         setState(() {
                           _currentChapterIndex = idx;
                           _currentSentenceIndex = 0;
+                          _currentSpokenCharIndex = 0;
                         });
                         _playSentenceAt(0);
                       },
@@ -547,11 +641,25 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     final quota = ref.watch(audioQuotaServiceProvider);
     final chapter = widget.chapters[_currentChapterIndex];
 
+    // Theme Palette (Zen & Ink Calligraphic Colors)
+    final scaffoldBg = isDark ? const Color(0xFF121113) : const Color(0xFFFDFCF0);
+    final cardBg = isDark ? const Color(0xFF1E1E22) : const Color(0xFFF5F2E4);
+    final primaryText = isDark ? const Color(0xFFFDFCF0) : const Color(0xFF1A1A1B);
+    final secondaryText = isDark ? Colors.white54 : const Color(0xFF7A7067);
+    final activeAccent = isDark ? Colors.amber.shade300 : const Color(0xFF8B0000);
+    final activeBg = isDark
+        ? Colors.amber.shade900.withValues(alpha: 0.25)
+        : const Color(0xFFF7EBD9);
+    final activeBorder = isDark
+        ? Colors.amber.shade400.withValues(alpha: 0.6)
+        : const Color(0xFFD4AF37);
+
     return Scaffold(
-      backgroundColor: const Color(0xFF121113),
+      backgroundColor: scaffoldBg,
       body: Stack(
         children: [
           // Ambient Glow Background
@@ -566,8 +674,12 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
                   center: Alignment.topCenter,
                   radius: 1.2,
                   colors: [
-                    const Color(0xFF8B0000).withValues(alpha: 0.25),
-                    Colors.amber.shade900.withValues(alpha: 0.12),
+                    isDark
+                        ? const Color(0xFF8B0000).withValues(alpha: 0.25)
+                        : const Color(0xFFC85A32).withValues(alpha: 0.12),
+                    isDark
+                        ? Colors.amber.shade900.withValues(alpha: 0.12)
+                        : const Color(0xFFE8DCC4).withValues(alpha: 0.2),
                     Colors.transparent,
                   ],
                 ),
@@ -584,7 +696,7 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
                   child: Row(
                     children: [
                       IconButton(
-                        icon: const Icon(Icons.keyboard_arrow_down, size: 28, color: Colors.white),
+                        icon: Icon(Icons.keyboard_arrow_down, size: 28, color: primaryText),
                         onPressed: () => Navigator.of(context).pop(),
                       ),
                       const SizedBox(width: 8),
@@ -607,15 +719,15 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
                               widget.book.title,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontSize: 15,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.white,
+                                color: primaryText,
                                 fontFamily: 'NotoSerifSC',
                               ),
                             ),
                             GestureDetector(
-                              onTap: () => _showChapterPicker(context),
+                              onTap: () => _showChapterPicker(context, isDark, cardBg, primaryText),
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
@@ -626,13 +738,13 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
                                       overflow: TextOverflow.ellipsis,
                                       style: TextStyle(
                                         fontSize: 11.5,
-                                        color: Colors.amber.shade300,
+                                        color: activeAccent,
                                         fontWeight: FontWeight.w600,
                                       ),
                                     ),
                                   ),
                                   const SizedBox(width: 2),
-                                  Icon(Icons.arrow_drop_down, size: 16, color: Colors.amber.shade300),
+                                  Icon(Icons.arrow_drop_down, size: 16, color: activeAccent),
                                 ],
                               ),
                             ),
@@ -644,26 +756,27 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
                         icon: Icon(
                           (_sleepSecondsRemaining != null || _stopAtEndOfChapter) ? Icons.bedtime : Icons.bedtime_outlined,
                           size: 22,
-                          color: (_sleepSecondsRemaining != null || _stopAtEndOfChapter) ? Colors.amber.shade400 : Colors.white70,
+                          color: (_sleepSecondsRemaining != null || _stopAtEndOfChapter) ? activeAccent : secondaryText,
                         ),
-                        onPressed: () => _showSleepTimerModal(context),
+                        onPressed: () => _showSleepTimerModal(context, isDark, cardBg, primaryText),
                       ),
                     ],
                   ),
                 ),
 
-                const Divider(color: Colors.white12, height: 1),
+                Divider(color: isDark ? Colors.white12 : Colors.black12, height: 1),
 
-                // Spotify-Lyrics Live Sentences Stream
+                // Spotify-Lyrics Live Sentences Stream with Ruby Pinyin Alignment
                 Expanded(
                   child: ListView.builder(
                     controller: _scrollController,
                     physics: const BouncingScrollPhysics(),
-                    padding: const EdgeInsets.fromLTRB(20, 24, 20, 40),
+                    padding: const EdgeInsets.fromLTRB(16, 20, 16, 40),
                     itemCount: chapter.sentences.length,
                     itemBuilder: (context, idx) {
                       final sentence = chapter.sentences[idx];
                       final isActive = idx == _currentSentenceIndex;
+                      final tokens = _getRubyTokens(sentence.chinese);
 
                       return GestureDetector(
                         onTap: () {
@@ -673,60 +786,122 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
                         behavior: HitTestBehavior.opaque,
                         child: AnimatedContainer(
                           duration: const Duration(milliseconds: 300),
-                          margin: const EdgeInsets.symmetric(vertical: 10),
-                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                          margin: const EdgeInsets.symmetric(vertical: 8),
+                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
                           decoration: BoxDecoration(
-                            color: isActive
-                                ? Colors.amber.shade900.withValues(alpha: 0.22)
-                                : Colors.transparent,
+                            color: isActive ? activeBg : Colors.transparent,
                             borderRadius: BorderRadius.circular(16),
                             border: Border.all(
-                              color: isActive
-                                  ? Colors.amber.shade400.withValues(alpha: 0.6)
-                                  : Colors.transparent,
+                              color: isActive ? activeBorder : Colors.transparent,
                               width: 1.2,
                             ),
                           ),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              // Pinyin
-                              Text(
-                                sentence.pinyin,
-                                style: TextStyle(
-                                  fontSize: isActive ? 13 : 11,
-                                  fontWeight: isActive ? FontWeight.w600 : FontWeight.normal,
-                                  color: isActive
-                                      ? Colors.amber.shade200
-                                      : Colors.white.withValues(alpha: 0.35),
-                                  height: 1.2,
-                                ),
+                              // Ruby Chinese Character & Pinyin Alignment
+                              Wrap(
+                                spacing: 4,
+                                runSpacing: 10,
+                                crossAxisAlignment: WrapCrossAlignment.center,
+                                children: tokens.map((token) {
+                                  if (token.isPunctuation) {
+                                    return Text(
+                                      token.char,
+                                      style: TextStyle(
+                                        fontSize: isActive ? 20 : 16,
+                                        color: isActive
+                                            ? primaryText
+                                            : (isDark ? Colors.white38 : Colors.black38),
+                                        fontFamily: 'NotoSerifSC',
+                                      ),
+                                    );
+                                  }
+
+                                  // Check if this specific character is currently being spoken
+                                  final isCharSpoken = isActive && token.hanziIndex == _currentSpokenCharIndex;
+                                  final isPastChar = isActive && token.hanziIndex < _currentSpokenCharIndex;
+
+                                  return GestureDetector(
+                                    onTap: () {
+                                      HapticsManager.light();
+                                      showQuickLook(context, token.char);
+                                    },
+                                    behavior: HitTestBehavior.opaque,
+                                    child: AnimatedContainer(
+                                      duration: const Duration(milliseconds: 150),
+                                      padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 2),
+                                      decoration: BoxDecoration(
+                                        color: isCharSpoken
+                                            ? (isDark
+                                                ? Colors.amber.shade700.withValues(alpha: 0.5)
+                                                : const Color(0xFFD4AF37).withValues(alpha: 0.35))
+                                            : Colors.transparent,
+                                        borderRadius: BorderRadius.circular(6),
+                                        border: Border.all(
+                                          color: isCharSpoken
+                                              ? (isDark ? Colors.amber.shade300 : const Color(0xFF8B0000))
+                                              : Colors.transparent,
+                                          width: 1,
+                                        ),
+                                      ),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          // Pinyin syllable directly above Hanzi
+                                          Text(
+                                            token.pinyin,
+                                            style: TextStyle(
+                                              fontSize: isActive ? 12.5 : 10.5,
+                                              fontWeight: isCharSpoken ? FontWeight.bold : FontWeight.w500,
+                                              color: isCharSpoken
+                                                  ? (isDark ? Colors.amber.shade200 : const Color(0xFF8B0000))
+                                                  : (isActive
+                                                      ? (isPastChar
+                                                          ? (isDark ? Colors.white70 : const Color(0xFF4A4036))
+                                                          : (isDark ? Colors.white38 : const Color(0xFF8C827A)))
+                                                      : (isDark ? Colors.white24 : const Color(0xFFA89F95))),
+                                              height: 1.1,
+                                            ),
+                                          ),
+                                          const SizedBox(height: 2),
+                                          // Chinese Hanzi Character
+                                          Text(
+                                            token.char,
+                                            style: TextStyle(
+                                              fontSize: isActive ? 22 : 17,
+                                              fontWeight: isCharSpoken
+                                                  ? FontWeight.bold
+                                                  : (isActive ? FontWeight.w600 : FontWeight.w500),
+                                              color: isCharSpoken
+                                                  ? (isDark ? Colors.amber.shade100 : const Color(0xFF8B0000))
+                                                  : (isActive
+                                                      ? (isPastChar
+                                                          ? primaryText
+                                                          : (isDark ? Colors.white70 : const Color(0xFF333333)))
+                                                      : (isDark ? Colors.white38 : const Color(0xFF8C827A))),
+                                              fontFamily: 'NotoSerifSC',
+                                              height: 1.2,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  );
+                                }).toList(),
                               ),
-                              const SizedBox(height: 4),
-                              // Chinese Characters (Glowing Calligraphy)
-                              Text(
-                                sentence.chinese,
-                                style: TextStyle(
-                                  fontSize: isActive ? 21 : 16.5,
-                                  fontWeight: isActive ? FontWeight.bold : FontWeight.w500,
-                                  color: isActive
-                                      ? Colors.amber.shade100
-                                      : Colors.white.withValues(alpha: 0.45),
-                                  fontFamily: 'NotoSerifSC',
-                                  height: 1.4,
-                                  letterSpacing: 0.5,
-                                ),
-                              ),
+
+                              // English Translation
                               if (sentence.english.isNotEmpty) ...[
-                                const SizedBox(height: 6),
+                                const SizedBox(height: 8),
                                 Text(
                                   sentence.english,
                                   style: TextStyle(
                                     fontSize: isActive ? 13 : 11.5,
                                     fontStyle: FontStyle.italic,
                                     color: isActive
-                                        ? Colors.white.withValues(alpha: 0.85)
-                                        : Colors.white.withValues(alpha: 0.3),
+                                        ? (isDark ? Colors.white70 : const Color(0xFF4A4036))
+                                        : (isDark ? Colors.white24 : Colors.black26),
                                     height: 1.3,
                                   ),
                                 ),
@@ -743,16 +918,18 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
                 Container(
                   padding: const EdgeInsets.fromLTRB(20, 14, 20, 18),
                   decoration: BoxDecoration(
-                    color: const Color(0xFF1A191C),
+                    color: isDark ? const Color(0xFF1A191C) : const Color(0xFFFAF7EE),
                     border: Border(
                       top: BorderSide(
-                        color: Colors.amber.shade700.withValues(alpha: 0.3),
+                        color: isDark
+                            ? Colors.amber.shade700.withValues(alpha: 0.3)
+                            : const Color(0xFFDCD6C4),
                         width: 1.2,
                       ),
                     ),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withValues(alpha: 0.5),
+                        color: Colors.black.withValues(alpha: isDark ? 0.4 : 0.08),
                         blurRadius: 16,
                         offset: const Offset(0, -4),
                       ),
@@ -766,19 +943,19 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           GestureDetector(
-                            onTap: () => _showQuotaDetailsSheet(context, quota),
+                            onTap: () => _showQuotaDetailsSheet(context, quota, isDark, cardBg, primaryText),
                             behavior: HitTestBehavior.opaque,
                             child: Container(
                               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
                               decoration: BoxDecoration(
                                 color: quota.hasQuotaRemaining
-                                    ? Colors.amber.withValues(alpha: 0.15)
-                                    : Colors.white10,
+                                    ? activeAccent.withValues(alpha: 0.15)
+                                    : (isDark ? Colors.white10 : Colors.black.withValues(alpha: 0.05)),
                                 borderRadius: BorderRadius.circular(8),
                                 border: Border.all(
                                   color: quota.hasQuotaRemaining
-                                      ? Colors.amber.withValues(alpha: 0.4)
-                                      : Colors.white24,
+                                      ? activeAccent.withValues(alpha: 0.4)
+                                      : (isDark ? Colors.white24 : Colors.black12),
                                   width: 0.8,
                                 ),
                               ),
@@ -788,7 +965,7 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
                                   Icon(
                                     quota.hasQuotaRemaining ? Icons.auto_awesome : Icons.all_inclusive,
                                     size: 11,
-                                    color: quota.hasQuotaRemaining ? Colors.amber.shade300 : Colors.white70,
+                                    color: quota.hasQuotaRemaining ? activeAccent : secondaryText,
                                   ),
                                   const SizedBox(width: 4),
                                   Text(
@@ -798,21 +975,21 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
                                     style: TextStyle(
                                       fontSize: 10.5,
                                       fontWeight: FontWeight.bold,
-                                      color: quota.hasQuotaRemaining ? Colors.amber.shade300 : Colors.white70,
+                                      color: quota.hasQuotaRemaining ? activeAccent : secondaryText,
                                     ),
                                   ),
                                   const SizedBox(width: 3),
-                                  Icon(Icons.info_outline, size: 10, color: Colors.white.withValues(alpha: 0.4)),
+                                  Icon(Icons.info_outline, size: 10, color: secondaryText.withValues(alpha: 0.6)),
                                 ],
                               ),
                             ),
                           ),
                           Text(
                             'Sentence ${_currentSentenceIndex + 1} of ${chapter.sentences.length}',
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontSize: 11.5,
                               fontWeight: FontWeight.w600,
-                              color: Colors.white60,
+                              color: secondaryText,
                             ),
                           ),
                         ],
@@ -836,13 +1013,13 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
                               style: TextStyle(
                                 fontSize: 13,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.amber.shade300,
+                                color: activeAccent,
                               ),
                             ),
                           ),
 
                           IconButton(
-                            icon: const Icon(Icons.skip_previous_rounded, size: 30, color: Colors.white),
+                            icon: Icon(Icons.skip_previous_rounded, size: 30, color: primaryText),
                             onPressed: _currentSentenceIndex > 0 ? _prevSentence : null,
                           ),
 
@@ -854,14 +1031,16 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
                               height: 58,
                               decoration: BoxDecoration(
                                 gradient: LinearGradient(
-                                  colors: [Colors.amber.shade400, Colors.amber.shade700],
+                                  colors: isDark
+                                      ? [Colors.amber.shade400, Colors.amber.shade700]
+                                      : [const Color(0xFF8B0000), const Color(0xFF6B0000)],
                                   begin: Alignment.topLeft,
                                   end: Alignment.bottomRight,
                                 ),
                                 shape: BoxShape.circle,
                                 boxShadow: [
                                   BoxShadow(
-                                    color: Colors.amber.withValues(alpha: 0.35),
+                                    color: (isDark ? Colors.amber : const Color(0xFF8B0000)).withValues(alpha: 0.35),
                                     blurRadius: 12,
                                     spreadRadius: 2,
                                   ),
@@ -870,19 +1049,19 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
                               child: Icon(
                                 _isPlaying ? Icons.pause_rounded : Icons.play_arrow_rounded,
                                 size: 34,
-                                color: const Color(0xFF1A1A1B),
+                                color: isDark ? const Color(0xFF1A1A1B) : Colors.white,
                               ),
                             ),
                           ),
 
                           IconButton(
-                            icon: const Icon(Icons.skip_next_rounded, size: 30, color: Colors.white),
+                            icon: Icon(Icons.skip_next_rounded, size: 30, color: primaryText),
                             onPressed: _currentSentenceIndex < chapter.sentences.length - 1 ? _nextSentence : null,
                           ),
 
                           // Text Reader Switcher
                           IconButton(
-                            icon: const Icon(Icons.menu_book_rounded, size: 22, color: Colors.white70),
+                            icon: Icon(Icons.menu_book_rounded, size: 22, color: secondaryText),
                             tooltip: 'Return to Reader',
                             onPressed: () => Navigator.of(context).pop(),
                           ),
@@ -898,4 +1077,18 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
       ),
     );
   }
+}
+
+class _RubyToken {
+  final String char;
+  final String pinyin;
+  final bool isPunctuation;
+  final int hanziIndex;
+
+  const _RubyToken({
+    required this.char,
+    required this.pinyin,
+    required this.isPunctuation,
+    required this.hanziIndex,
+  });
 }

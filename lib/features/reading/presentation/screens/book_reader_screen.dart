@@ -875,23 +875,15 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen> {
           ],
         ),
         actions: [
-          // Audiobook Mode Toggle
+          // Audiobook Mode -> Fullscreen Spotify-Lyrics Player
           IconButton(
             icon: Icon(
-              _isAudiobookActive ? Icons.headphones : Icons.headphones_outlined,
+              Icons.headphones_rounded,
               size: 22,
-              color: _isAudiobookActive
-                  ? (isDark ? Colors.amber.shade400 : const Color(0xFF8B0000))
-                  : primaryText,
+              color: isDark ? Colors.amber.shade400 : const Color(0xFF8B0000),
             ),
-            tooltip: 'Audiobook & Read-Aloud',
-            onPressed: () {
-              if (_isAudiobookActive) {
-                _stopAudiobook();
-              } else {
-                _startAudiobook();
-              }
-            },
+            tooltip: 'Audiobook Player',
+            onPressed: _openFullscreenAudiobookPlayer,
           ),
           // Bookmark Toggle
           IconButton(
