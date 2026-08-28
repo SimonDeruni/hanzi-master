@@ -1,12 +1,13 @@
 # 🧠 SESSION_STATE.md - The Hanzi Master "Scholar's Baton"
 
 #### 🎯 Current Context
-- **Objective:** Reader Ruby Pinyin & Direct Sentence Audiobook Transition
-- **Status:** ✅ COMPLETED (Build #197)
+- **Objective:** Global English Translation Display & Toggles in Both Modes
+- **Status:** ✅ COMPLETED (Build #198)
 - **Hygiene:** 🧼 Perfect Hygiene — `dart analyze lib/` passed with 0 issues.
 - **Locked Files:**
     - [None]
 
+- [x] **Global English Translation Display & Instant 1-Tap Toggles in Both Modes (Build #198):** Added 1-tap translation toggle button (`Icons.translate_rounded`) in `AudiobookPlayerScreen` and `BookReaderScreen`. Enabled English translations by default across all sentences in both reading and audiobook screens with smooth individual card tap override. Verified Total Hygiene State (`dart analyze lib/` - 0 issues, 100% test pass). Pushed to GitLab and GitHub. (Status: COMPLETED)
 - [x] **Reader Ruby Pinyin Alignment & Direct Sentence Audiobook Mode Transition (Build #197):** Implemented per-character vertical Ruby alignment in `BookReaderScreen` pairing every Chinese character directly with its tone-marked Pinyin syllable above it (respecting all, ghost, and none modes). Tapping the audio button on any sentence card in reading mode launches `AudiobookPlayerScreen` starting at that exact sentence. Upgraded `AudioService` to stream cloud and cached audio directly via `BytesSource` in-memory buffers to eliminate iOS sandbox file URI playback issues. Verified Total Hygiene State (`dart analyze lib/` - 0 issues, 100% test pass). Pushed to GitLab and GitHub. (Status: COMPLETED)
 - [x] **Dynamic Theme, Ruby Pinyin Alignment & Real-Time Spoken Character Highlighting (Build #196):** Upgraded `AudiobookPlayerScreen` with dynamic Light Mode (Warm Xuan Paper `#FDFCF0`) and Dark Mode (Carbon `#121113`). Implemented Ruby-style character tiles pairing every Chinese Hanzi character with its tone-marked Pinyin directly above it. Added real-time character-by-character recitation highlighting using live audio position streams. Enabled tap-to-QuickLook dictionary lookup on every character in the player. Configured seamless auto-transition from `BookReaderScreen` into `AudiobookPlayerScreen`. Verified Total Hygiene State (`dart analyze lib/` - 0 issues, 100% test pass). Pushed to GitLab and GitHub. (Status: COMPLETED)
 - [x] **Azure Neural Voice Encoding & Studio Audio Context Fix (Build #195):** Explicitly encoded Chinese SSML payloads as UTF-8 bytes with `application/ssml+xml; charset=utf-8` header, fixing Azure HTTP 400 Bad Request caused by default Latin-1 header handling. Switched `AudioContextIOS` category to `AVAudioSessionCategory.playback` so audio routes through main speakers. Provided built-in fallback in `ApiKeyPool` for Azure Speech credentials to ensure uninterrupted Studio HD synthesis. Verified Total Hygiene State (`dart analyze lib/` - 0 issues, 100% test pass). Pushed to GitLab and GitHub. (Status: COMPLETED)

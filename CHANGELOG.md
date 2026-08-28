@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.0+198] - 2026-08-28
+- **Global English Translation Display & Instant 1-Tap Toggles in Both Modes (Build #198)**:
+  - **Audiobook Translation Display**: Added 1-tap translation toggle button (`Icons.translate_rounded`) to the top action bar in `AudiobookPlayerScreen` with translations visible under Chinese characters.
+  - **Reading Mode Translation Display**: Added English translation toggle button to `appBar.actions` in `BookReaderScreen`, displaying sentence translations by default with smooth individual card tap override.
+  - `flutter test` & `dart analyze`: 0 issues. Pushed to GitLab and GitHub.
+
 ## [1.0.0+197] - 2026-08-28
 - **Reader Ruby Pinyin Alignment & Direct Sentence Audiobook Mode Transition (Build #197)**:
   - **Ruby Pinyin in Reading Mode**: Implemented per-character vertical Ruby alignment in `BookReaderScreen` pairing every Chinese character directly with its tone-marked Pinyin syllable above it (respecting `all`, `ghost`, and `none` modes).
