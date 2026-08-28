@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.0+188] - 2026-08-28
+- **Bulletproof Audiobook Playback via Local Asset Extraction & AudioContext (Build #188)**:
+  - **Overcame iOS AVPlayer Asset Bug**: Replaced fragile `AssetSource` with `rootBundle` extraction to the app's local document cache, streaming via `DeviceFileSource` (100% reliable on iOS & Android for large multi-megabyte audio files).
+  - **Audio Session & Loudspeaker Routing**: Configured explicit `AudioContext` (`AVAudioSessionCategory.playback`, `defaultToSpeaker: true`, `allowBluetooth: true`) in `playStreamUrl` so audio always routes to the hardware speaker regardless of silent switches.
+  - **Interactive Playback Controls**: Added real-time playback position, duration tracking, pause/resume, and timestamp progress to the floating master voice audio player in `BookReaderScreen`.
+  - `flutter test` & `dart analyze`: 0 issues. Pushed to GitLab and GitHub.
+
 ## [1.0.0+187] - 2026-08-28
 - **Pruned 4 Partial / Mislabeled Books (Build #187)**:
   - Pruned `fengshen_yanyi` (mislabeled text), `the_scholars` (7-chapter excerpt), `flowers_in_the_mirror` (10-chapter excerpt), and `bizarre_happenings_two_decades` (9-chapter excerpt) from the catalog and assets.

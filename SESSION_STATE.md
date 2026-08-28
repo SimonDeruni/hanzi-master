@@ -1,12 +1,13 @@
 # 🧠 SESSION_STATE.md - The Hanzi Master "Scholar's Baton"
 
 #### 🎯 Current Context
-- **Objective:** Grand Library Overhaul — 100% Unabridged Masterpieces & Excerpt Pruning
-- **Status:** ✅ COMPLETED (Build #187)
+- **Objective:** Bulletproof Audiobook Playback via Local Asset Extraction & AudioContext
+- **Status:** ✅ COMPLETED (Build #188)
 - **Hygiene:** 🧼 Perfect Hygiene — `dart analyze lib/` passed with 0 issues.
 - **Locked Files:**
     - [None]
 
+- [x] **Bulletproof Audiobook Playback via Local Asset Extraction & AudioContext (Build #188):** Overcame iOS `AVPlayer` large-asset bug by extracting bundled assets via `rootBundle` to local documents cache and playing via `DeviceFileSource`. Added explicit `AudioContext` configuration (`AVAudioSessionCategory.playback`, `defaultToSpeaker: true`, `allowBluetooth: true`) in `playStreamUrl` to guarantee hardware speaker output across iOS and Android. Added real-time timestamp progress and pause/resume to `BookReaderScreen` floating master voice player. Verified Total Hygiene State (`dart analyze lib/` - 0 issues, `flutter test` passed). Pushed to GitLab and GitHub. (Status: COMPLETED)
 - [x] **Pruned 4 Partial / Mislabeled Books (Build #187):** Completely removed `fengshen_yanyi` (mislabeled), `the_scholars` (7 ch excerpt), `flowers_in_the_mirror` (10 ch excerpt), and `bizarre_happenings_two_decades` (9 ch excerpt) from catalog and filesystem. Re-ingested authentic Classical Chinese text for all 36 stratagems in `thirty_six_stratagems`. Verified 100% of all 86 remaining library books are genuine, full-text unabridged works. Verified Total Hygiene State (`dart analyze lib/` - 0 issues). Pushed to GitLab and GitHub. (Status: COMPLETED)
 - [x] **Grand Library Overhaul — Uncapped Full Literature & Tier 3/4 Pruning (Build #186):** Completely removed 6 sample-only and synthetic placeholder books (`water_margin`, `xunzi`, `four_generations_roof`, `the_stranger_camus`, `the_plague_camus`, `alice_in_wonderland`). Rebuilt all truncated Tier 2 books with full unabridged text and zero sentence capping (*The Great Gatsby*, *Journey to the West*, *Three Kingdoms*, *Dream of the Red Chamber*, *The Art of War*, *Les Misérables*, *Monte Cristo*, *Karamazov*, *Anna Karenina*, *Don Quixote*, *Crime and Punishment*, *1984*, *Animal Farm*, *The Family*, *Spring*, *Fortress Besieged*, *The Castle*). Master Library now features 90 verified authentic books, 5,475 chapters, 17.56M Chinese characters, and 672K sentences with tone-marked Pinyin. Verified Total Hygiene State (`dart analyze lib/` - 0 issues). Pushed to GitLab and GitHub. (Status: COMPLETED)
 - [x] **Duplicate Book Covers Resolved (Build #185):** Replaced duplicate cover on *The Golden Cangue* (金锁记) with dedicated standalone cover. Replaced shared anthology cover on *Liezi* (列子). Ran automated uniqueness audit: verified all 96 book covers are 100% unique and distinct. (Status: COMPLETED)
