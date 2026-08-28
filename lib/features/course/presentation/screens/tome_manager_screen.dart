@@ -9,8 +9,69 @@ import '../../../flashcards/presentation/utils/haptics_manager.dart';
 import '../../../flashcards/presentation/widgets/calligraphy_background.dart';
 import '../../../../core/providers.dart';
 
+class _LevelTheme {
+  final Color color;
+  final Color gradientStart;
+  final Color gradientEnd;
+  final String label;
+  final String emoji;
+
+  const _LevelTheme({
+    required this.color,
+    required this.gradientStart,
+    required this.gradientEnd,
+    required this.label,
+    required this.emoji,
+  });
+}
+
 class TomeManagerScreen extends ConsumerWidget {
   const TomeManagerScreen({super.key});
+
+  static const Map<int, _LevelTheme> _levelThemes = {
+    1: _LevelTheme(
+      color: Color(0xFF43A047),
+      gradientStart: Color(0xFFE8F5E9),
+      gradientEnd: Color(0xFFC8E6C9),
+      label: 'Foundation',
+      emoji: '🌱',
+    ),
+    2: _LevelTheme(
+      color: Color(0xFF1E88E5),
+      gradientStart: Color(0xFFE3F2FD),
+      gradientEnd: Color(0xFFBBDEFB),
+      label: 'Elementary',
+      emoji: '🌿',
+    ),
+    3: _LevelTheme(
+      color: Color(0xFFFB8C00),
+      gradientStart: Color(0xFFFFF3E0),
+      gradientEnd: Color(0xFFFFE0B2),
+      label: 'Intermediate',
+      emoji: '🌳',
+    ),
+    4: _LevelTheme(
+      color: Color(0xFFE53935),
+      gradientStart: Color(0xFFFFEBEE),
+      gradientEnd: Color(0xFFFFCDD2),
+      label: 'Upper Int.',
+      emoji: '🔥',
+    ),
+    5: _LevelTheme(
+      color: Color(0xFF8E24AA),
+      gradientStart: Color(0xFFF3E5F5),
+      gradientEnd: Color(0xFFE1BEE7),
+      label: 'Advanced',
+      emoji: '💎',
+    ),
+    6: _LevelTheme(
+      color: Color(0xFF3949AB),
+      gradientStart: Color(0xFFE8EAF6),
+      gradientEnd: Color(0xFFC5CAE9),
+      label: 'Mastery',
+      emoji: '👑',
+    ),
+  };
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -20,42 +81,12 @@ class TomeManagerScreen extends ConsumerWidget {
     final inkColor = isDark ? const Color(0xFFFDFCF0) : const Color(0xFF1A1A1B);
 
     final List<Map<String, dynamic>> catalog = [
-      {
-        'id': 'hsk1',
-        'title': 'HSK 1: Foundation',
-        'cards': '154 cards',
-        'level': 1,
-      },
-      {
-        'id': 'hsk2',
-        'title': 'HSK 2: Elementary',
-        'cards': '162 cards',
-        'level': 2,
-      },
-      {
-        'id': 'hsk3',
-        'title': 'HSK 3: Intermediate',
-        'cards': '299 cards',
-        'level': 3,
-      },
-      {
-        'id': 'hsk4',
-        'title': 'HSK 4: Upper Intermediate',
-        'cards': '602 cards',
-        'level': 4,
-      },
-      {
-        'id': 'hsk5',
-        'title': 'HSK 5: Advanced',
-        'cards': '1300 cards',
-        'level': 5,
-      },
-      {
-        'id': 'hsk6',
-        'title': 'HSK 6: Mastery',
-        'cards': '2500 cards',
-        'level': 6,
-      }
+      {'id': 'hsk1', 'title': 'HSK 1: Foundation',  'cards': '154 cards',  'level': 1},
+      {'id': 'hsk2', 'title': 'HSK 2: Elementary',   'cards': '162 cards',  'level': 2},
+      {'id': 'hsk3', 'title': 'HSK 3: Intermediate', 'cards': '299 cards',  'level': 3},
+      {'id': 'hsk4', 'title': 'HSK 4: Upper Int.',   'cards': '602 cards',  'level': 4},
+      {'id': 'hsk5', 'title': 'HSK 5: Advanced',     'cards': '1300 cards', 'level': 5},
+      {'id': 'hsk6', 'title': 'HSK 6: Mastery',      'cards': '2500 cards', 'level': 6},
     ];
 
     bool isLevelInstalled(int level, List<Deck> decks) {
@@ -151,6 +182,7 @@ class TomeManagerScreen extends ConsumerWidget {
               itemBuilder: (context, index) {
                 final tome = catalog[index];
                 final isInstalled = isLevelInstalled(tome['level'], decks);
+                final theme = _levelThemes[tome['level'] as int];
 
                 return _TomeCard(
                   tome: tome,
@@ -158,6 +190,7 @@ class TomeManagerScreen extends ConsumerWidget {
                   onInstall: () => installTome(tome),
                   onUninstall: () => uninstallTome(tome),
                   inkColor: inkColor,
+                  levelTheme: theme,
                 );
               },
             );
@@ -176,6 +209,7 @@ class _TomeCard extends StatelessWidget {
   final VoidCallback onInstall;
   final VoidCallback onUninstall;
   final Color inkColor;
+  final _LevelTheme? levelTheme;
 
   const _TomeCard({
     required this.tome,
@@ -183,12 +217,14 @@ class _TomeCard extends StatelessWidget {
     required this.onInstall,
     required this.onUninstall,
     required this.inkColor,
+    this.levelTheme,
   });
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final bool isDark = theme.brightness == Brightness.dark;
+    final accentColor = levelTheme?.color ?? const Color(0xFF00897B);
     
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
@@ -214,14 +250,13 @@ class _TomeCard extends StatelessWidget {
               children: [
                 Container(
                   padding: const EdgeInsets.all(12),
-                  decoration: const BoxDecoration(
-                    color: Color(0xFFE0F2F1), // Soft teal
+                  decoration: BoxDecoration(
+                    color: accentColor.withValues(alpha: 0.15),
                     shape: BoxShape.circle,
                   ),
-                  child: const Icon(
-                    Icons.folder,
-                    color: Color(0xFF00897B), // Darker teal
-                    size: 28,
+                  child: Text(
+                    levelTheme?.emoji ?? '📁',
+                    style: const TextStyle(fontSize: 22),
                   ),
                 ),
                 const SizedBox(width: 20),
