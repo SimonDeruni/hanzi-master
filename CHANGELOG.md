@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.0+192] - 2026-08-28
+- **Literary Narrator SSML Express-As, Background Pre-fetching & Quota Details (Build #192)**:
+  - **Azure Literary Narrator SSML**: Upgraded speech synthesis markup with `mstts:express-as style='narration-relaxed' role='Narrator'` for deep, expressive classical storytelling cadence.
+  - **Background Pre-fetching**: Added `AudioService.prefetchSentence` to automatically download upcoming sentences in the background during playback, eliminating transition lag.
+  - **Interactive Studio Voice Sheet**: Tapping the floating audio badge opens a detailed allowance modal showing hours/minutes left, percentage of 4.0h used, Monday 00:00 reset time, and on-device fallback explanation.
+  - **Guaranteed On-Device Fallback**: When the 4.0h limit is reached, recitation continues uninterrupted using offline `flutter_tts`.
+  - `flutter test` & `dart analyze`: 0 issues. Pushed to GitLab and GitHub.
+
 ## [1.0.0+191] - 2026-08-28
 - **4-Hour Weekly Studio Voice Quota Engine & Sleep Timer (Build #191)**:
   - **AudioQuotaService**: Created persistent weekly allowance tracker resetting every Monday at 00:00 via ISO 8601 week calculations.
