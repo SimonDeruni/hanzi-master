@@ -1,12 +1,13 @@
 # 🧠 SESSION_STATE.md - The Hanzi Master "Scholar's Baton"
 
 #### 🎯 Current Context
-- **Objective:** Fix Audio Routing & Seamless Mode Switching
-- **Status:** ✅ COMPLETED (Build #201)
+- **Objective:** Universal English Translations for All Books
+- **Status:** ✅ COMPLETED (Build #202)
 - **Hygiene:** App compiles clean, all changes pushed to GitLab and GitHub.
 - **Locked Files:**
     - [None]
 
+- [x] **Universal English Translations for All 110 Library Books (Build #202):** Resolved missing English translations in full-text classics by integrating `TranslatedText` fallback via `LocalTranslationService` (on-device ML translation). If a book has pre-bundled human English translations (`sentence.english`), it renders immediately; if empty, it dynamically translates the Chinese sentence with smooth placeholders. Translations now display on 100% of sentences across both `AudiobookPlayerScreen` and `BookReaderScreen`. (Status: COMPLETED)
 - [x] **Android Media Audio Routing & Seamless Audiobook ⇄ Reader Switching (Build #201):** Fixed Android AudioContext by routing to media channel (`isSpeakerphoneOn: false`) rather than phone speakerphone. Added dual playback (`DeviceFileSource` with fallback to `BytesSource`). Added prominent "📖 Read" mode pill in `AudiobookPlayerScreen` top action bar and connected bottom console button to `_switchToReadingMode` carrying exact chapter and sentence index. Synchronized `BookReaderScreen` to immediately reload progress upon returning from audiobook. (Status: COMPLETED)
 - [x] **Build Fix — SwipeBackPageRoute alias + c.hanzi (Build #199):** Added `typedef SwipeBackPageRoute = SwipeBackRoute` to `swipe_back_route.dart`. Fixed `c.chinese` → `c.hanzi` in `scenario_selection_screen.dart`. App now builds clean.
 - [x] **Dual Progress Bars in Audiobook Player (Build #200):** Chapter sentence bar (thick) + overall book bar (thin) added below divider in `AudiobookPlayerScreen`. Labels `Sentence X/Y` and `Book XX%`. Light/dark adaptive.
