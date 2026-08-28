@@ -505,7 +505,7 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
               child: Text(
-                '${filtered.length} Unabridged World Masterpieces',
+                '${filtered.length} Unabridged Books & Synchronized Audiobooks',
                 style: TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
@@ -691,11 +691,17 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
           else
             SliverPadding(
               padding: const EdgeInsets.fromLTRB(16, 8, 16, 32),
-              sliver: SliverList(
+              sliver: SliverGrid(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: 0.58,
+                  crossAxisSpacing: 14,
+                  mainAxisSpacing: 16,
+                ),
                 delegate: SliverChildBuilderDelegate(
                   (context, index) {
                     final poem = filtered[index];
-                    return _buildPoetryCard(context, poem, isDark, cardBg, primaryText);
+                    return _buildPoetryGridCard(context, poem, isDark, cardBg, primaryText);
                   },
                   childCount: filtered.length,
                 ),
@@ -759,10 +765,46 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
               flex: 11,
               child: ClipRRect(
                 borderRadius: const BorderRadius.vertical(top: Radius.circular(15)),
-                child: CalligraphicBookCover(
-                  book: book,
-                  width: double.infinity,
-                  height: double.infinity,
+                child: Stack(
+                  fit: StackFit.expand,
+                  children: [
+                    CalligraphicBookCover(
+                      book: book,
+                      width: double.infinity,
+                      height: double.infinity,
+                    ),
+                    Positioned(
+                      top: 8,
+                      right: 8,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 3),
+                        decoration: BoxDecoration(
+                          color: Colors.black.withValues(alpha: 0.65),
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(
+                            color: Colors.amber.withValues(alpha: 0.4),
+                            width: 0.8,
+                          ),
+                        ),
+                        child: const Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(Icons.headphones, size: 10, color: Colors.amber),
+                            SizedBox(width: 3),
+                            Text(
+                              'Audiobook',
+                              style: TextStyle(
+                                fontSize: 9,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                                letterSpacing: 0.3,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -806,31 +848,42 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                       children: [
                         Expanded(
                           child: Text(
-                            '✍️ ${book.author}',
+                            book.author,
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
-                              fontSize: 10,
+                              fontSize: 11,
                               fontWeight: FontWeight.w600,
                               color: isDark ? Colors.amber.shade400 : const Color(0xFF8B0000),
                             ),
                           ),
                         ),
-                        if (book.audioStreamUrl != null && book.audioStreamUrl!.isNotEmpty) ...[
-                          const SizedBox(width: 4),
-                          Container(
-                            padding: const EdgeInsets.all(3),
-                            decoration: BoxDecoration(
-                              color: (isDark ? Colors.amber : const Color(0xFF8B0000)).withValues(alpha: 0.15),
-                              shape: BoxShape.circle,
-                            ),
-                            child: Icon(
-                              Icons.volume_up,
-                              size: 11,
-                              color: isDark ? Colors.amber.shade300 : const Color(0xFF8B0000),
-                            ),
+                        Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+                          decoration: BoxDecoration(
+                            color: (isDark ? Colors.amber : const Color(0xFF8B0000)).withValues(alpha: 0.12),
+                            borderRadius: BorderRadius.circular(6),
                           ),
-                        ],
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Icon(
+                                Icons.graphic_eq,
+                                size: 10,
+                                color: isDark ? Colors.amber.shade300 : const Color(0xFF8B0000),
+                              ),
+                              const SizedBox(width: 2),
+                              Text(
+                                'Audio',
+                                style: TextStyle(
+                                  fontSize: 9,
+                                  fontWeight: FontWeight.bold,
+                                  color: isDark ? Colors.amber.shade300 : const Color(0xFF8B0000),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                       ],
                     ),
                   ],
@@ -1019,34 +1072,6 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                         ),
                       ),
                     ),
-                    // 微读 (Micro-read) seal — bottom right
-                    Positioned(
-                      bottom: 8,
-                      right: 8,
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 3),
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.white38, width: 0.8),
-                          borderRadius: BorderRadius.circular(4),
-                        ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Icon(Icons.bolt, size: 9, color: Colors.amber.shade300),
-                            const SizedBox(width: 2),
-                            const Text(
-                              '微读',
-                              style: TextStyle(
-                                color: Colors.white70,
-                                fontSize: 9,
-                                fontFamily: 'NotoSerifSC',
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
                   ],
                 ),
               ),
@@ -1114,126 +1139,217 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
     );
   }
 
-  Widget _buildPoetryCard(
+  Widget _buildPoetryGridCard(
     BuildContext context,
     LibraryStory poem,
     bool isDark,
     Color cardBg,
     Color primaryText,
   ) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 12),
-      child: BouncingButton(
-        scaleFactor: 0.98,
-        onPressed: () {
-          HapticsManager.light();
-          Navigator.of(context).push(
-            SwipeBackPageRoute(
-              builder: (_) => StorySummaryScreen(story: poem),
-            ),
-          );
-        },
-        child: Container(
-          padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            color: cardBg,
-            borderRadius: BorderRadius.circular(18),
-            border: Border.all(
-              color: isDark ? Colors.white12 : const Color(0xFF8B0000).withValues(alpha: 0.15),
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withValues(alpha: isDark ? 0.2 : 0.03),
-                blurRadius: 10,
-                offset: const Offset(0, 4),
-              ),
-            ],
+    const poetryAccent = Color(0xFF8B0000);
+    const coverTop = Color(0xFF3D0C0C);
+    const coverMid = Color(0xFF5C1A1A);
+    const coverBot = Color(0xFF1A0404);
+
+    return BouncingButton(
+      scaleFactor: 0.96,
+      onPressed: () {
+        HapticsManager.light();
+        Navigator.of(context).push(
+          SwipeBackPageRoute(
+            builder: (_) => StorySummaryScreen(story: poem),
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Header: Poet Seal & Title
-              Row(
-                children: [
-                  // Traditional Cinnabar Seal Badge
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFF8B0000).withValues(alpha: isDark ? 0.25 : 0.1),
-                      borderRadius: BorderRadius.circular(6),
-                      border: Border.all(
-                        color: const Color(0xFF8B0000).withValues(alpha: 0.4),
+        );
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          color: cardBg,
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(
+            color: isDark ? Colors.white12 : Colors.black.withValues(alpha: 0.06),
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: isDark ? 0.25 : 0.06),
+              blurRadius: 10,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // ── Calligraphic cover (top 64%) ────────────────────
+            Expanded(
+              flex: 11,
+              child: ClipRRect(
+                borderRadius: const BorderRadius.vertical(top: Radius.circular(15)),
+                child: Stack(
+                  fit: StackFit.expand,
+                  children: [
+                    // Ink-wash gradient background
+                    Container(
+                      decoration: const BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [coverTop, coverMid, coverBot],
+                        ),
                       ),
                     ),
-                    child: Text(
-                      poem.sourceName.split('(').first.trim(),
-                      style: const TextStyle(
-                        fontFamily: 'NotoSerifSC',
-                        fontWeight: FontWeight.bold,
-                        fontSize: 11,
-                        color: Color(0xFF8B0000),
+                    // Subtle grain overlay
+                    Container(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [
+                            Colors.black.withValues(alpha: 0.12),
+                            Colors.black.withValues(alpha: 0.45),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                  const SizedBox(width: 10),
-                  Expanded(
-                    child: Column(
+                    // Poem text — centred
+                    Positioned.fill(
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(14, 12, 12, 12),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              poem.title,
+                              textAlign: TextAlign.center,
+                              maxLines: 4,
+                              overflow: TextOverflow.ellipsis,
+                              style: const TextStyle(
+                                fontFamily: 'NotoSerifSC',
+                                fontWeight: FontWeight.w700,
+                                fontSize: 18,
+                                color: Color(0xFFF5E6C8),
+                                height: 1.4,
+                                letterSpacing: 3,
+                              ),
+                            ),
+                            const SizedBox(height: 10),
+                            // Decorative divider — ink-brush style
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(width: 16, height: 0.8, color: const Color(0xFFF5E6C8).withValues(alpha: 0.35)),
+                                const SizedBox(width: 6),
+                                Icon(Icons.auto_stories, size: 10, color: const Color(0xFFF5E6C8).withValues(alpha: 0.4)),
+                                const SizedBox(width: 6),
+                                Container(width: 16, height: 0.8, color: const Color(0xFFF5E6C8).withValues(alpha: 0.35)),
+                              ],
+                            ),
+                            if (poem.sourceName.isNotEmpty) ...[
+                              const SizedBox(height: 10),
+                              Text(
+                                poem.sourceName.split('(').first.trim(),
+                                textAlign: TextAlign.center,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  fontSize: 10,
+                                  color: const Color(0xFFF5E6C8).withValues(alpha: 0.6),
+                                  fontStyle: FontStyle.italic,
+                                  letterSpacing: 0.5,
+                                ),
+                              ),
+                            ],
+                          ],
+                        ),
+                      ),
+                    ),
+                    // 唐诗 (Tang Poetry) seal — bottom right
+                    Positioned(
+                      bottom: 8,
+                      right: 8,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 3),
+                        decoration: BoxDecoration(
+                          border: Border.all(color: const Color(0xFFF5E6C8).withValues(alpha: 0.35), width: 0.8),
+                          borderRadius: BorderRadius.circular(4),
+                        ),
+                        child: const Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              '诗经',
+                              style: TextStyle(
+                                color: Color(0xFFF5E6C8),
+                                fontSize: 9,
+                                fontFamily: 'NotoSerifSC',
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            // ── Text info (bottom 36%) ───────────────────────────
+            Expanded(
+              flex: 6,
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(10, 8, 10, 8),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           poem.title,
-                          style: TextStyle(
-                            fontFamily: 'NotoSerifSC',
-                            fontWeight: FontWeight.bold,
-                            fontSize: 15,
-                            color: primaryText,
-                          ),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 13,
+                            color: primaryText,
+                            fontFamily: 'NotoSerifSC',
+                          ),
                         ),
                         if (poem.titleEn != null && poem.titleEn!.isNotEmpty) ...[
+                          const SizedBox(height: 2),
                           Text(
                             poem.titleEn!,
-                            style: TextStyle(
-                              fontSize: 11,
-                              color: primaryText.withValues(alpha: 0.6),
-                            ),
-                            maxLines: 1,
+                            maxLines: 2,
                             overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 10,
+                              color: primaryText.withValues(alpha: 0.65),
+                              height: 1.15,
+                            ),
                           ),
                         ],
                       ],
                     ),
-                  ),
-                  const Icon(Icons.arrow_forward_ios, size: 14, color: Colors.black26),
-                ],
-              ),
-
-              const SizedBox(height: 10),
-
-              // Verse Preview with Calligraphic Xuan Paper Look
-              Container(
-                width: double.infinity,
-                padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-                decoration: BoxDecoration(
-                  color: isDark ? const Color(0xFF141416) : const Color(0xFFFBF8E6),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Text(
-                  poem.summary,
-                  style: TextStyle(
-                    fontFamily: 'NotoSerifSC',
-                    fontSize: 13,
-                    height: 1.5,
-                    color: isDark ? Colors.amber.shade200 : const Color(0xFF2C2C2E),
-                    letterSpacing: 0.8,
-                  ),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
+                    Row(
+                      children: [
+                        Text(
+                          '🖋️ ${poem.sourceName.split('(').first.trim()}',
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontSize: 10,
+                            fontWeight: FontWeight.w600,
+                            color: isDark ? Colors.amber.shade400 : poetryAccent,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

@@ -1159,8 +1159,8 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen> {
                                 children: [
                                   Text(
                                     quotaService.hasQuotaRemaining
-                                        ? '🎙️ Studio: ${quotaService.remainingHours.toStringAsFixed(1)}h left this week'
-                                        : '🔊 On-Device Mode (4h weekly used)',
+                                        ? 'Studio Voice: ${quotaService.remainingHours.toStringAsFixed(1)}h left this week'
+                                        : 'On-Device Voice (4h weekly used)',
                                     style: TextStyle(
                                       fontSize: 10.5,
                                       color: quotaService.hasQuotaRemaining

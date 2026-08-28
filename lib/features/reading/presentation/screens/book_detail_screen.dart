@@ -196,8 +196,10 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
                       Wrap(
                         alignment: WrapAlignment.center,
                         spacing: 8,
+                        runSpacing: 6,
                         children: [
                           _buildBadge('HSK ${book.hskLevel}', isDark ? Colors.amber.shade400 : const Color(0xFF8B0000)),
+                          _buildBadge('Audiobook Included', isDark ? Colors.amber.shade400 : const Color(0xFF8B0000)),
                           _buildBadge(book.category, isDark ? Colors.blue.shade300 : Colors.indigo.shade700),
                           _buildBadge(book.dynastyOrEra, isDark ? Colors.green.shade300 : Colors.teal.shade700),
                           _buildBadge('${chapters.length} Chapters', isDark ? Colors.purple.shade300 : Colors.deepPurple.shade700),
@@ -258,7 +260,7 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
                         const SizedBox(height: 10),
                         SizedBox(
                           width: double.infinity,
-                          height: 44,
+                          height: 46,
                           child: OutlinedButton.icon(
                             onPressed: () {
                               HapticsManager.medium();
@@ -274,17 +276,17 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
                                 ),
                               );
                             },
-                            icon: Icon(Icons.podcasts, size: 18, color: accentColor),
+                            icon: Icon(Icons.headphones, size: 20, color: accentColor),
                             label: Text(
                               'Listen to Audiobook',
                               style: TextStyle(
-                                fontSize: 13,
+                                fontSize: 14,
                                 fontWeight: FontWeight.bold,
                                 color: accentColor,
                               ),
                             ),
                             style: OutlinedButton.styleFrom(
-                              side: BorderSide(color: accentColor, width: 1.2),
+                              side: BorderSide(color: accentColor, width: 1.3),
                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
                             ),
                           ),
