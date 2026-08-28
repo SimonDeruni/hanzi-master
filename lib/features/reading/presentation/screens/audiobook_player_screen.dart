@@ -7,8 +7,10 @@ import 'package:hanzi_master/core/services/audio_quota_service.dart';
 import 'package:hanzi_master/features/reading/domain/entities/book_model.dart';
 import 'package:hanzi_master/features/reading/domain/logic/book_reading_progress.dart';
 import 'package:hanzi_master/features/reading/presentation/providers/book_providers.dart';
+import 'package:hanzi_master/features/reading/presentation/screens/book_reader_screen.dart';
 import 'package:hanzi_master/features/reading/presentation/widgets/calligraphic_book_cover.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
+import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
 
 class AudiobookPlayerScreen extends ConsumerStatefulWidget {
@@ -210,7 +212,12 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
       _scrollToSentence(sentenceIdx);
 
       final text = chapter.sentences[sentenceIdx].chinese;
-      final started = await ref.read(audioServiceProvider).playSentence(text);
+      final audioService = ref.read(audioServiceProvider);
+      // Ensure audio service is initialized before first play
+      await audioService.init();
+      if (!mounted || requestGeneration != _audioRequestGeneration) return;
+
+      final started = await audioService.playSentence(text);
       if (!mounted || requestGeneration != _audioRequestGeneration) return;
       if (!started) {
         setState(() => _isPlaying = false);
@@ -221,7 +228,7 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
       // Pre-fetch next sentence in background
       if (sentenceIdx + 1 < chapter.sentences.length) {
         final nextText = chapter.sentences[sentenceIdx + 1].chinese;
-        unawaited(ref.read(audioServiceProvider).prefetchSentence(nextText));
+        unawaited(audioService.prefetchSentence(nextText));
       }
     }
   }
@@ -295,6 +302,26 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
       HapticsManager.selection();
       await _playSentenceAt(_currentSentenceIndex + 1);
     }
+  }
+
+  Future<void> _switchToReadingMode() async {
+    HapticsManager.medium();
+    _saveProgress();
+    ++_audioRequestGeneration;
+    setState(() => _isPlaying = false);
+    await ref.read(audioServiceProvider).stop();
+    if (!mounted) return;
+
+    Navigator.of(context).pushReplacement(
+      SwipeBackPageRoute(
+        builder: (_) => BookReaderScreen(
+          book: widget.book,
+          chapters: widget.chapters,
+          initialChapterIndex: _currentChapterIndex,
+          initialSentenceIndex: _currentSentenceIndex,
+        ),
+      ),
+    );
   }
 
   void _scrollToSentence(int index, {bool animate = true}) {
@@ -791,6 +818,30 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
                           ],
                         ),
                       ),
+                      // Reading Mode Switcher Button
+                      TextButton.icon(
+                        icon: Icon(Icons.auto_stories_rounded, size: 16, color: activeAccent),
+                        label: Text(
+                          'Read',
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                            color: activeAccent,
+                          ),
+                        ),
+                        style: TextButton.styleFrom(
+                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                          backgroundColor: activeAccent.withValues(alpha: 0.12),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            side: BorderSide(color: activeAccent.withValues(alpha: 0.35)),
+                          ),
+                          minimumSize: Size.zero,
+                          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                        ),
+                        onPressed: _switchToReadingMode,
+                      ),
+                      const SizedBox(width: 4),
                       // Translation Toggle Button
                       IconButton(
                         icon: Icon(
@@ -1180,9 +1231,9 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
 
                           // Text Reader Switcher
                           IconButton(
-                            icon: Icon(Icons.menu_book_rounded, size: 22, color: secondaryText),
-                            tooltip: 'Return to Reader',
-                            onPressed: () => Navigator.of(context).pop(),
+                            icon: Icon(Icons.menu_book_rounded, size: 22, color: activeAccent),
+                            tooltip: 'Reading Mode',
+                            onPressed: _switchToReadingMode,
                           ),
                         ],
                       ),

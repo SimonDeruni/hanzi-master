@@ -18,7 +18,9 @@ import '../utils/pinyin_utils.dart';
 final audioServiceProvider = Provider<AudioService>((ref) {
   final pool = ref.watch(apiKeyPoolProvider);
   final quota = ref.watch(audioQuotaServiceProvider);
-  return AudioService(pool: pool, quotaService: quota);
+  final service = AudioService(pool: pool, quotaService: quota);
+  ref.onDispose(service.dispose);
+  return service;
 });
 
 class AudioService {
@@ -28,6 +30,10 @@ class AudioService {
   FlutterTts? _fallbackTts;
   Map<String, String> _nativeManifest = {};
   bool _isInitialized = false;
+  Future<void>? _initializationFuture;
+  Future<void> _engineOperation = Future<void>.value();
+  int _playbackGeneration = 0;
+  bool _isDisposed = false;
   
   // Cache directory for downloaded TTS audio
   Directory? _cacheDir;
@@ -37,6 +43,9 @@ class AudioService {
 
   final StreamController<void> _completeController = StreamController.broadcast();
   Stream<void> get onPlayerComplete => _completeController.stream;
+
+  final StreamController<String> _errorController = StreamController.broadcast();
+  Stream<String> get onPlaybackError => _errorController.stream;
 
   List<Map<String, dynamic>> _currentBoundaries = [];
   int _currentBoundaryIndex = 0;
@@ -61,7 +70,11 @@ class AudioService {
 
   Future<void> init() async {
     if (_isInitialized) return;
-    
+    final initialization = _initializationFuture ??= _initialize();
+    await initialization;
+  }
+
+  Future<void> _initialize() async {
     try {
       final manifestString = await rootBundle.loadString('assets/data/audio_manifest.json');
       _nativeManifest = Map<String, String>.from(jsonDecode(manifestString));
@@ -108,9 +121,35 @@ class AudioService {
       if (!_completeController.isClosed) _completeController.add(null);
     });
 
+    _tts.setErrorHandler((message) {
+      debugPrint('[AudioService] On-device TTS error: $message');
+      if (!_errorController.isClosed) _errorController.add(message);
+    });
+
     await _tts.setLanguage("zh-CN");
     
     _isInitialized = true;
+  }
+
+  Future<T> _runEngineOperation<T>(Future<T> Function() operation) {
+    final completer = Completer<T>();
+    _engineOperation = _engineOperation.then((_) async {
+      if (_isDisposed) {
+        completer.completeError(StateError('AudioService has been disposed'));
+        return;
+      }
+      try {
+        completer.complete(await operation());
+      } catch (error, stackTrace) {
+        completer.completeError(error, stackTrace);
+      }
+    });
+    return completer.future;
+  }
+
+  Future<void> _stopEngines() async {
+    await _player.stop();
+    await _tts.stop();
   }
 
   Future<bool> playCharacter(String hanzi) async {
@@ -182,8 +221,14 @@ class AudioService {
   static const String _defaultAzureVoice = 'zh-CN-XiaoxiaoNeural';
 
   Future<bool> playSentence(String sentence, {String voiceName = 'Kore'}) async {
+    final generation = ++_playbackGeneration;
     if (!_isInitialized) await init();
-    await stop();
+    if (generation != _playbackGeneration || _isDisposed) return false;
+    await _runEngineOperation(() async {
+      if (generation != _playbackGeneration) return;
+      await _stopEngines();
+    });
+    if (generation != _playbackGeneration || _isDisposed) return false;
 
     final azureVoice = _azureVoiceMap[voiceName] ?? _defaultAzureVoice;
     final hash = _hashText('$voiceName:$sentence');
@@ -199,7 +244,7 @@ class AudioService {
         },
       ),
       android: const AudioContextAndroid(
-        isSpeakerphoneOn: true,
+        isSpeakerphoneOn: false,
         stayAwake: true,
         contentType: AndroidContentType.music,
         usageType: AndroidUsageType.media,
@@ -221,9 +266,19 @@ class AudioService {
          }
       }
       try {
-        final bytes = await cacheFile.readAsBytes();
-        await _player.setPlaybackRate(1.0);
-        await _player.play(BytesSource(bytes));
+        if (generation != _playbackGeneration) return false;
+        await _runEngineOperation(() async {
+          if (generation != _playbackGeneration) return;
+          await _player.setPlaybackRate(1.0);
+          try {
+            await _player.play(DeviceFileSource(cacheFile.path));
+          } catch (_) {
+            final bytes = await cacheFile.readAsBytes();
+            await _player.play(BytesSource(bytes));
+          }
+        });
+        if (generation != _playbackGeneration) return false;
+        debugPrint('[AudioService] Playing cached Azure audio: ${cacheFile.path}');
         return true;
       } catch (e) {
         debugPrint("[AudioService] Cached audio play failed: $e");
@@ -236,9 +291,19 @@ class AudioService {
       try {
         final result = await _fetchCloudTTS(sentence, azureVoice: azureVoice, cacheFile: cacheFile, boundaryFile: boundaryFile);
         if (result != null && result.success && result.audio.isNotEmpty) {
+          if (generation != _playbackGeneration) return false;
           await _quotaService.recordSpeech(sentence);
-          await _player.setPlaybackRate(1.0);
-          await _player.play(BytesSource(result.audio));
+          if (generation != _playbackGeneration) return false;
+          await _runEngineOperation(() async {
+            if (generation != _playbackGeneration) return;
+            await _player.setPlaybackRate(1.0);
+            try {
+              await _player.play(DeviceFileSource(cacheFile.path));
+            } catch (_) {
+              await _player.play(BytesSource(result.audio));
+            }
+          });
+          if (generation != _playbackGeneration) return false;
           debugPrint("[AudioService] Playing Azure Neural Voice (${result.audio.length} bytes)");
           return true;
         }
@@ -250,9 +315,23 @@ class AudioService {
     }
 
     // Fallback: local on-device TTS if quota is reached or Azure is offline
-    await _tts.setSpeechRate(0.5);
-    final ttsResult = await _tts.speak(sentence);
-    return ttsResult != null && ttsResult == 1;
+    if (generation != _playbackGeneration) return false;
+    try {
+      final ttsResult = await _runEngineOperation<dynamic>(() async {
+        if (generation != _playbackGeneration) return null;
+        await _tts.setLanguage('zh-CN');
+        await _tts.setSpeechRate(_speechRate);
+        return _tts.speak(sentence);
+      });
+      final started = generation == _playbackGeneration && ttsResult == 1;
+      if (!started && generation == _playbackGeneration) {
+        debugPrint('[AudioService] On-device TTS did not start');
+      }
+      return started;
+    } catch (e) {
+      debugPrint('[AudioService] On-device TTS failed: $e');
+      return false;
+    }
   }
 
   /// Pre-fetches the upcoming sentence in the background to ensure zero gap during continuous reading.
@@ -531,7 +610,10 @@ class AudioService {
 
           // Save to cache file
           final tmpFile = cacheFile ?? File('${_cacheDir!.path}/tts_cache/tmp_${DateTime.now().millisecondsSinceEpoch}.mp3');
-          await tmpFile.writeAsBytes(audio);
+          if (!await tmpFile.parent.exists()) {
+            await tmpFile.parent.create(recursive: true);
+          }
+          await tmpFile.writeAsBytes(audio, flush: true);
 
           // REST API doesn't provide word boundaries; boundaries list stays empty
           _currentBoundaries = [];
@@ -575,8 +657,9 @@ class AudioService {
   Stream<PlayerState> get onPlayerStateChanged => _player.onPlayerStateChanged;
 
   Future<void> stop() async {
-    await _player.stop();
-    await _tts.stop();
+    ++_playbackGeneration;
+    if (_isDisposed) return;
+    await _runEngineOperation(_stopEngines);
   }
 
   Future<void> setSpeechRate(double rate) async {
@@ -602,10 +685,14 @@ class AudioService {
   }
 
   void dispose() {
-    _player.dispose();
-    _tts.stop();
+    if (_isDisposed) return;
+    _isDisposed = true;
+    ++_playbackGeneration;
+    _audioPlayer?.dispose();
+    _fallbackTts?.stop();
     _wordBoundaryController.close();
     _completeController.close();
+    _errorController.close();
   }
 }
 
