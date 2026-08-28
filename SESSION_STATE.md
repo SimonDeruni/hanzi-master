@@ -1,12 +1,13 @@
 # 🧠 SESSION_STATE.md - The Hanzi Master "Scholar's Baton"
 
 #### 🎯 Current Context
-- **Objective:** Unify Poetry with Book Reader Engine & Presentation UI
-- **Status:** ✅ COMPLETED (Build #206)
+- **Objective:** Fix Missing foundation.dart Import in BookRepository
+- **Status:** ✅ COMPLETED (Build #207)
 - **Hygiene:** App compiles clean, all changes pushed to GitLab and GitHub.
 - **Locked Files:**
     - [None]
 
+- [x] **Fix Missing foundation.dart Import in BookRepository (Build #207):** Added `import 'package:flutter/foundation.dart';` to `book_repository.dart` for `debugPrint`. Dart analysis verified 0 issues. (Status: COMPLETED)
 - [x] **Unify Poetry with Book Reader Engine & Presentation UI (Build #206):** Unified Poetry stories with the core Book presentation and reader flow: tapping any poetry card opens `BookDetailScreen` with calligraphy cover, dynasty/author info, and audiobook controls; tapping "Start Reading" opens `BookReaderScreen` with vertical Ruby tone-marked Pinyin, Azure neural audio narration, tap-to-QuickLook dictionary sheets, and instant fullscreen Audiobook Player switching. (Status: COMPLETED)
 - [x] **Uniformize AI Hub Switcher with Explore Screen (Build #205):** Redesigned the top segmented pill switcher in `AiHubScreen` (`Roleplay` & `Shadowing`) to be visually identical to `ExploreScreen`'s top bar (`height: 52`, `borderRadius: 18`, light Xuan/Dark carbon background, golden amber active highlight with subtle border, and accompanying icons). Preserves `IndexedStack` state. (Status: COMPLETED)
 - [x] **Resilient High-Speed Translation Fallback (Build #204):** Resolved sentence translation issues by equipping `LocalTranslationService` with an automatic high-speed endpoint fallback when Google ML Kit models are downloading/uninstalled on emulators/devices. Translations are automatically cached in Hive permanently. All sentences across all 110 books now render fluent English translations in both Reader and Audiobook modes. (Status: COMPLETED)
