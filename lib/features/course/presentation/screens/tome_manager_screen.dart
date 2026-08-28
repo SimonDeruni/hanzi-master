@@ -10,67 +10,25 @@ import '../../../flashcards/presentation/widgets/calligraphy_background.dart';
 import '../../../../core/providers.dart';
 
 class _LevelTheme {
-  final Color color;
-  final Color gradientStart;
-  final Color gradientEnd;
   final String label;
-  final String emoji;
 
   const _LevelTheme({
-    required this.color,
-    required this.gradientStart,
-    required this.gradientEnd,
     required this.label,
-    required this.emoji,
   });
 }
 
 class TomeManagerScreen extends ConsumerWidget {
   const TomeManagerScreen({super.key});
 
+
+
   static const Map<int, _LevelTheme> _levelThemes = {
-    1: _LevelTheme(
-      color: Color(0xFF43A047),
-      gradientStart: Color(0xFFE8F5E9),
-      gradientEnd: Color(0xFFC8E6C9),
-      label: 'Foundation',
-      emoji: '🌱',
-    ),
-    2: _LevelTheme(
-      color: Color(0xFF1E88E5),
-      gradientStart: Color(0xFFE3F2FD),
-      gradientEnd: Color(0xFFBBDEFB),
-      label: 'Elementary',
-      emoji: '🌿',
-    ),
-    3: _LevelTheme(
-      color: Color(0xFFFB8C00),
-      gradientStart: Color(0xFFFFF3E0),
-      gradientEnd: Color(0xFFFFE0B2),
-      label: 'Intermediate',
-      emoji: '🌳',
-    ),
-    4: _LevelTheme(
-      color: Color(0xFFE53935),
-      gradientStart: Color(0xFFFFEBEE),
-      gradientEnd: Color(0xFFFFCDD2),
-      label: 'Upper Int.',
-      emoji: '🔥',
-    ),
-    5: _LevelTheme(
-      color: Color(0xFF8E24AA),
-      gradientStart: Color(0xFFF3E5F5),
-      gradientEnd: Color(0xFFE1BEE7),
-      label: 'Advanced',
-      emoji: '💎',
-    ),
-    6: _LevelTheme(
-      color: Color(0xFF3949AB),
-      gradientStart: Color(0xFFE8EAF6),
-      gradientEnd: Color(0xFFC5CAE9),
-      label: 'Mastery',
-      emoji: '👑',
-    ),
+    1: _LevelTheme(label: 'Foundation'),
+    2: _LevelTheme(label: 'Elementary'),
+    3: _LevelTheme(label: 'Intermediate'),
+    4: _LevelTheme(label: 'Upper Int.'),
+    5: _LevelTheme(label: 'Advanced'),
+    6: _LevelTheme(label: 'Mastery'),
   };
 
   @override
@@ -89,30 +47,22 @@ class TomeManagerScreen extends ConsumerWidget {
       {'id': 'hsk6', 'title': 'HSK 6: Mastery',      'cards': '2500 cards', 'level': 6},
     ];
 
-    bool isLevelInstalled(int level, List<Deck> decks) {
-      return decks.any((d) => d.id == 'hsk$level');
-    }
+    bool isLevelInstalled(int level, List<Deck> decks) =>
+        decks.any((d) => d.id == 'hsk$level');
 
     Future<void> installTome(Map<String, dynamic> tome) async {
       try {
         HapticsManager.medium();
-        
         await ref.read(flashcardControllerProvider.notifier).importLevel(tome['level'] as int);
-        
-        // Only proceed if flashcard import succeeded
         final flashcardState = ref.read(flashcardControllerProvider);
-        if (flashcardState.hasError) {
-          throw Exception(flashcardState.error);
-        }
-        
+        if (flashcardState.hasError) throw Exception(flashcardState.error);
         await ref.read(deckRepositoryProvider).ensureHSKDeckExists(tome['level'] as int);
         ref.invalidate(deckControllerProvider);
-
         HapticsManager.success();
         if (context.mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text("${l10n?.successfullyInstalled ?? 'Successfully installed'} ${tome['title']}"),
+              content: Text("${l10n?.successfullyInstalled ?? 'Installed'} ${tome['title']}"),
               backgroundColor: const Color(0xFF1A1A1B),
             ),
           );
@@ -121,7 +71,7 @@ class TomeManagerScreen extends ConsumerWidget {
         debugPrint("Installation Error: $e");
         if (context.mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(l10n?.failedToDownload ?? "Failed to download module.")),
+            SnackBar(content: Text(l10n?.failedToDownload ?? "Failed to download.")),
           );
         }
       }
@@ -130,33 +80,33 @@ class TomeManagerScreen extends ConsumerWidget {
     Future<void> uninstallTome(Map<String, dynamic> tome) async {
       final bool? confirm = await showDialog<bool>(
         context: context,
-        builder: (context) => AlertDialog(
+        builder: (ctx) => AlertDialog(
           backgroundColor: const Color(0xFFFDFCF0),
-          title: Text("${l10n?.rescindTitle ?? 'Rescind'} ${tome['title']}?", style: const TextStyle(fontFamily: 'NotoSansSC', fontWeight: FontWeight.bold)),
-          content: Text(l10n?.removeCharactersWarning ?? "This will remove these characters from your library and reset your mastery progress."),
+          title: Text("${l10n?.rescindTitle ?? 'Rescind'} ${tome['title']}?",
+              style: const TextStyle(fontFamily: 'NotoSansSC', fontWeight: FontWeight.bold)),
+          content: Text(l10n?.removeCharactersWarning ??
+              "This will remove these characters from your library and reset your mastery progress."),
           actions: [
-            TextButton(onPressed: () => Navigator.pop(context, false), child: Text(l10n?.cancel ?? "Cancel", style: const TextStyle(color: Colors.grey))),
+            TextButton(onPressed: () => Navigator.pop(ctx, false),
+                child: Text(l10n?.cancel ?? "Cancel", style: const TextStyle(color: Colors.grey))),
             TextButton(
-              onPressed: () => Navigator.pop(context, true), 
-              child: Text(l10n?.uninstall ?? "Uninstall", style: const TextStyle(color: Color(0xFFE53935), fontWeight: FontWeight.bold)),
+              onPressed: () => Navigator.pop(ctx, true),
+              child: Text(l10n?.uninstall ?? "Uninstall",
+                  style: const TextStyle(color: Color(0xFFE53935), fontWeight: FontWeight.bold)),
             ),
           ],
         ),
       );
-
       if (confirm != true) return;
-
       try {
         HapticsManager.light();
-        
         await ref.read(flashcardControllerProvider.notifier).uninstallLevel(tome['level'] as int);
         await ref.read(deckRepositoryProvider).deleteDeck('hsk${tome['level']}');
         ref.invalidate(deckControllerProvider);
-
         if (context.mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text("${l10n?.removedLibrary ?? 'Removed Library'} ${tome['title']}."),
+              content: Text("${l10n?.removedLibrary ?? 'Removed'} ${tome['title']}."),
               backgroundColor: const Color(0xFF1A1A1B),
             ),
           );
@@ -167,36 +117,103 @@ class TomeManagerScreen extends ConsumerWidget {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text("HSK Collections", style: TextStyle(fontWeight: FontWeight.bold, color: inkColor)),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        iconTheme: IconThemeData(color: inkColor),
-      ),
       body: CalligraphyBackground(
         child: asyncDecks.when(
-          data: (decks) {
-            return ListView.builder(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
-              itemCount: catalog.length,
-              itemBuilder: (context, index) {
-                final tome = catalog[index];
-                final isInstalled = isLevelInstalled(tome['level'], decks);
-                final theme = _levelThemes[tome['level'] as int];
-
-                return _TomeCard(
-                  tome: tome,
-                  isInstalled: isInstalled,
-                  onInstall: () => installTome(tome),
-                  onUninstall: () => uninstallTome(tome),
-                  inkColor: inkColor,
-                  levelTheme: theme,
-                );
-              },
-            );
-          },
-          loading: () => Center(child: CircularProgressIndicator(color: inkColor)),
-          error: (err, _) => Center(child: Column(mainAxisSize: MainAxisSize.min, children: [const Icon(Icons.library_books_outlined, size: 48, color: Colors.grey), const SizedBox(height: 16), Text("Oops, we ran into trouble loading the library. Please try again.", style: TextStyle(color: isDark ? Colors.white70 : Colors.grey, fontSize: 14)), const SizedBox(height: 8), TextButton(onPressed: () { ref.invalidate(flashcardControllerProvider); ref.invalidate(deckControllerProvider); }, child: const Text("Retry"))])),
+          data: (decks) => CustomScrollView(
+            physics: const BouncingScrollPhysics(),
+            slivers: [
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(24, 60, 24, 4),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("Library",
+                          style: TextStyle(fontWeight: FontWeight.w600, fontSize: 24, color: inkColor, letterSpacing: -0.5)),
+                      const SizedBox(height: 2),
+                      Text("HSK vocabulary collections",
+                          style: TextStyle(fontSize: 14, color: inkColor.withValues(alpha: 0.45))),
+                    ],
+                  ),
+                ),
+              ),
+              SliverToBoxAdapter(
+                child: SizedBox(
+                  height: 48,
+                  child: ListView.separated(
+                    scrollDirection: Axis.horizontal,
+                    padding: const EdgeInsets.symmetric(horizontal: 24),
+                    physics: const BouncingScrollPhysics(),
+                    itemCount: catalog.length,
+                    separatorBuilder: (_, __) => const SizedBox(width: 10),
+                    itemBuilder: (_, i) {
+                      final tome = catalog[i];
+                      final lvl = tome['level'] as int;
+                      final installed = isLevelInstalled(lvl, decks);
+                      final theme = _levelThemes[lvl]!;
+                      return _LevelChip(level: lvl, label: theme.label, isInstalled: installed, isDark: isDark);
+                    },
+                  ),
+                ),
+              ),
+              const SliverToBoxAdapter(child: SizedBox(height: 20)),
+              SliverPadding(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                sliver: SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                    (_, i) {
+                      final tome = catalog[i];
+                      final lvl = tome['level'] as int;
+                      final installed = isLevelInstalled(lvl, decks);
+                      return _TomeCard(
+                        tome: tome, isInstalled: installed,
+                        onInstall: () => installTome(tome),
+                        onUninstall: () => uninstallTome(tome),
+                        isDark: isDark,
+                      );
+                    },
+                    childCount: catalog.length,
+                  ),
+                ),
+              ),
+              const SliverToBoxAdapter(child: SizedBox(height: 100)),
+            ],
+          ),
+          loading: () => CustomScrollView(
+            slivers: [
+              const SliverToBoxAdapter(child: SizedBox(height: 160)),
+              SliverPadding(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                sliver: SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                    (_, __) => const _ShimmerCard(),
+                    childCount: 6,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          error: (err, _) => Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(Icons.library_books_outlined, size: 48, color: inkColor.withValues(alpha: 0.3)),
+                const SizedBox(height: 16),
+                Text("Couldn't load the library",
+                    style: TextStyle(color: inkColor.withValues(alpha: 0.6), fontSize: 14)),
+                const SizedBox(height: 8),
+                TextButton(
+                  onPressed: () {
+                    ref.invalidate(flashcardControllerProvider);
+                    ref.invalidate(deckControllerProvider);
+                  },
+                  child: Text("Retry",
+                      style: TextStyle(color: const Color(0xFFFB8C00), fontWeight: FontWeight.bold)),
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );
@@ -208,86 +225,146 @@ class _TomeCard extends StatelessWidget {
   final bool isInstalled;
   final VoidCallback onInstall;
   final VoidCallback onUninstall;
-  final Color inkColor;
-  final _LevelTheme? levelTheme;
+  final bool isDark;
 
   const _TomeCard({
     required this.tome,
     required this.isInstalled,
     required this.onInstall,
     required this.onUninstall,
-    required this.inkColor,
-    this.levelTheme,
+    required this.isDark,
   });
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final bool isDark = theme.brightness == Brightness.dark;
-    final accentColor = levelTheme?.color ?? const Color(0xFF00897B);
-    
-    return Container(
-      margin: const EdgeInsets.only(bottom: 16),
-      decoration: BoxDecoration(
-        color: isDark ? const Color(0xFF252526) : const Color(0xFFF9F9F9),
-        borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: isDark ? 0.12 : 0.04),
-            blurRadius: 10,
-            offset: const Offset(0, 4),
-          )
-        ],
-      ),
+    final cardCount = tome['cards'] as String;
+    final level = tome['level'] as int;
+
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 12),
       child: Material(
         color: Colors.transparent,
-        child: InkWell(
-          borderRadius: BorderRadius.circular(16),
-          onTap: isInstalled ? onUninstall : onInstall,
-          child: Padding(
-            padding: const EdgeInsets.all(20),
-            child: Row(
-              children: [
-                Container(
-                  padding: const EdgeInsets.all(12),
-                  decoration: BoxDecoration(
-                    color: accentColor.withValues(alpha: 0.15),
-                    shape: BoxShape.circle,
-                  ),
-                  child: Text(
-                    levelTheme?.emoji ?? '📁',
-                    style: const TextStyle(fontSize: 22),
-                  ),
-                ),
-                const SizedBox(width: 20),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        tome['title'],
-                        style: theme.textTheme.titleMedium?.copyWith(
-                          fontWeight: FontWeight.bold,
-                          color: isDark ? Colors.white : Colors.black87,
-                        ),
-                      ),
-                      const SizedBox(height: 4),
-                      Text(
-                        tome['cards'],
-                        style: theme.textTheme.bodySmall?.copyWith(
-                          color: isDark ? Colors.white54 : Colors.black54,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                if (isInstalled)
-                  const Icon(Icons.check_circle, color: Color(0xFF43A047), size: 24)
-                else
-                  Icon(Icons.arrow_forward_ios_rounded, size: 16, color: isDark ? Colors.white38 : Colors.black26),
-              ],
+        child: Ink(
+          decoration: BoxDecoration(
+            color: isDark ? const Color(0xFF1E1E1F) : Colors.white,
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(
+              color: isDark ? Colors.white10 : Colors.black.withValues(alpha: 0.06),
             ),
           ),
+          child: InkWell(
+            borderRadius: BorderRadius.circular(12),
+            onTap: isInstalled ? onUninstall : onInstall,
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(16, 14, 12, 14),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          tome['title'] as String,
+                          style: TextStyle(
+                            fontSize: 15, fontWeight: FontWeight.w600,
+                            color: isDark ? Colors.white : const Color(0xFF1A1A1B),
+                            letterSpacing: -0.2,
+                          ),
+                        ),
+                        const SizedBox(height: 3),
+                        Text('$cardCount • HSK $level',
+                            style: TextStyle(fontSize: 12,
+                                color: isDark ? Colors.white38 : Colors.black45,
+                                fontWeight: FontWeight.w400)),
+                      ],
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: isInstalled ? onUninstall : onInstall,
+                    style: TextButton.styleFrom(
+                      foregroundColor: isInstalled ? (isDark ? Colors.white54 : Colors.black54) : const Color(0xFF5B6ABF),
+                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                      minimumSize: Size.zero,
+                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    ),
+                    child: Text(
+                      isInstalled ? 'Remove' : 'Install',
+                      style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+class _LevelChip extends StatelessWidget {
+  final int level;
+  final String label;
+  final bool isInstalled;
+  final bool isDark;
+
+  const _LevelChip({
+    required this.level,
+    required this.label,
+    required this.isInstalled,
+    required this.isDark,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final bg = isDark ? const Color(0xFF2C2C2E) : const Color(0xFFF2F2F4);
+    final fg = isDark ? Colors.white70 : const Color(0xFF3A3A3C);
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 14),
+      decoration: BoxDecoration(
+        color: bg,
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            'HSK $level',
+            style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600, color: fg, letterSpacing: 0.2),
+          ),
+          if (isInstalled) ...[
+            const SizedBox(width: 6),
+            Container(
+              width: 6,
+              height: 6,
+              decoration: const BoxDecoration(
+                color: Color(0xFF5B6ABF),
+                shape: BoxShape.circle,
+              ),
+            ),
+          ],
+        ],
+      ),
+    );
+  }
+}
+
+class _ShimmerCard extends StatelessWidget {
+  const _ShimmerCard();
+
+  @override
+  Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final shimmer = isDark ? Colors.white10 : Colors.black.withValues(alpha: 0.06);
+
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 14),
+      child: Container(
+        height: 88,
+        decoration: BoxDecoration(
+          color: shimmer,
+          borderRadius: BorderRadius.circular(16),
+          border: Border(left: BorderSide(color: shimmer, width: 4)),
         ),
       ),
     );

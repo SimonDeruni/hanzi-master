@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hanzi_master/core/presentation/widgets/handwriting_keyboard.dart';
+import 'package:flutter/services.dart';
 
 class HanziTextField extends StatefulWidget {
   final TextEditingController controller;
@@ -12,17 +12,19 @@ class HanziTextField extends StatefulWidget {
   final FocusNode? focusNode;
   final int? maxLines;
   final TextInputAction? textInputAction;
+  final Widget? prefixIcon;
   final Widget? suffixIcon;
   final TextInputType? keyboardType;
   final bool autofocus;
   final bool expands;
+  final bool showClearButton;
   final TextAlign textAlign;
   final TextAlignVertical? textAlignVertical;
 
   const HanziTextField({
     super.key,
     required this.controller,
-    this.hintText = 'Type or draw Hanzi...',
+    this.hintText = 'Type Hanzi, Pinyin, or English...',
     this.style,
     this.decoration,
     this.onSubmitted,
@@ -31,10 +33,12 @@ class HanziTextField extends StatefulWidget {
     this.focusNode,
     this.maxLines = 1,
     this.textInputAction,
+    this.prefixIcon,
     this.suffixIcon,
     this.keyboardType,
     this.autofocus = false,
     this.expands = false,
+    this.showClearButton = true,
     this.textAlign = TextAlign.start,
     this.textAlignVertical,
   });
@@ -45,110 +49,107 @@ class HanziTextField extends StatefulWidget {
 
 class _HanziTextFieldState extends State<HanziTextField> {
   late FocusNode _focusNode;
-  OverlayEntry? _overlayEntry;
 
   @override
   void initState() {
     super.initState();
     _focusNode = widget.focusNode ?? FocusNode();
-    _focusNode.addListener(_onFocusChange);
+    widget.controller.addListener(_onControllerChange);
+  }
+
+  @override
+  void didUpdateWidget(covariant HanziTextField oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.controller != widget.controller) {
+      oldWidget.controller.removeListener(_onControllerChange);
+      widget.controller.addListener(_onControllerChange);
+    }
   }
 
   @override
   void dispose() {
+    widget.controller.removeListener(_onControllerChange);
     if (widget.focusNode == null) _focusNode.dispose();
-    _focusNode.removeListener(_onFocusChange);
-    _removeOverlay();
     super.dispose();
   }
 
-  void _onFocusChange() {
-    // If the system keyboard appears, hide our custom overlay
-    if (_focusNode.hasFocus && _overlayEntry != null) {
-      _removeOverlay();
+  void _onControllerChange() {
+    if (mounted) {
+      setState(() {});
     }
   }
 
-  void _removeOverlay() {
-    _overlayEntry?.remove();
-    _overlayEntry = null;
-  }
+  Widget? _buildSuffix(BuildContext context) {
+    final hasText = widget.controller.text.isNotEmpty;
 
-  void _showHandwritingOverlay() {
-    if (_overlayEntry != null) return;
-
-    // Unfocus the system keyboard first
-    _focusNode.unfocus();
-
-    _overlayEntry = OverlayEntry(
-      builder: (context) {
-        return Positioned(
-          bottom: 0,
-          left: 0,
-          right: 0,
-          child: Material(
-            elevation: 10,
-            child: HandwritingKeyboard(
-              textController: widget.controller,
-              onDismiss: () {
-                _removeOverlay();
-                _focusNode.requestFocus(); // Bring back system keyboard optionally, or just close
-              },
-            ),
-          ),
-        );
-      },
-    );
-
-    Overlay.of(context).insert(_overlayEntry!);
-  }
-
-  Widget _buildHandwritingButton() {
-    return IconButton(
-      icon: const Icon(Icons.draw),
-      onPressed: () {
-        if (_overlayEntry != null) {
-          _removeOverlay();
-          _focusNode.requestFocus();
-        } else {
-          _showHandwritingOverlay();
-        }
-      },
-    );
-  }
-
-  Widget? _buildSuffix() {
-    final handwritingBtn = _buildHandwritingButton();
-    if (widget.suffixIcon != null) {
-      return Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [widget.suffixIcon!, handwritingBtn],
+    if (widget.showClearButton && hasText) {
+      final isDark = Theme.of(context).brightness == Brightness.dark;
+      final clearBtn = IconButton(
+        icon: Icon(
+          Icons.close_rounded,
+          size: 18,
+          color: isDark ? Colors.white54 : Colors.black45,
+        ),
+        splashRadius: 18,
+        tooltip: 'Clear',
+        onPressed: () {
+          HapticFeedback.lightImpact();
+          widget.controller.clear();
+          widget.onChanged?.call('');
+        },
       );
+
+      if (widget.suffixIcon != null) {
+        return Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [clearBtn, widget.suffixIcon!],
+        );
+      }
+      return clearBtn;
     }
-    return handwritingBtn;
+
+    return widget.suffixIcon;
   }
 
   @override
   Widget build(BuildContext context) {
-    final suffix = _buildSuffix();
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final suffix = _buildSuffix(context);
 
     final defaultDeco = InputDecoration(
       hintText: widget.hintText,
+      hintStyle: TextStyle(
+        color: isDark ? Colors.white38 : Colors.black38,
+        fontSize: 14,
+      ),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
         borderSide: BorderSide.none,
       ),
       filled: true,
+      fillColor: isDark
+          ? const Color(0xFF252528)
+          : const Color(0xFFF2EFE9),
       contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      prefixIcon: widget.prefixIcon,
       suffixIcon: suffix,
     );
 
-    final finalDeco = widget.decoration?.copyWith(suffixIcon: suffix) ?? defaultDeco;
+    final finalDeco = widget.decoration != null
+        ? widget.decoration!.copyWith(
+            suffixIcon: suffix ?? widget.decoration!.suffixIcon,
+            prefixIcon: widget.prefixIcon ?? widget.decoration!.prefixIcon,
+          )
+        : defaultDeco;
 
     return TextFormField(
       controller: widget.controller,
       focusNode: _focusNode,
-      style: widget.style,
+      style: widget.style ??
+          TextStyle(
+            color: isDark ? Colors.white : const Color(0xFF1A1A1B),
+            fontSize: 15,
+          ),
       decoration: finalDeco,
       onFieldSubmitted: widget.onSubmitted,
       onChanged: widget.onChanged,
