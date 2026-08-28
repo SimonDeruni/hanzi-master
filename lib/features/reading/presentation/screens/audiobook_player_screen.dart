@@ -12,6 +12,7 @@ import 'package:hanzi_master/features/reading/presentation/widgets/calligraphic_
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
+import 'package:hanzi_master/core/widgets/translated_text.dart';
 
 class AudiobookPlayerScreen extends ConsumerStatefulWidget {
   final BookModel book;
@@ -1062,19 +1063,31 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
                               ),
 
                               // English Translation
-                              if (_showTranslations && sentence.english.isNotEmpty) ...[
+                              if (_showTranslations) ...[
                                 const SizedBox(height: 8),
-                                Text(
-                                  sentence.english,
-                                  style: TextStyle(
-                                    fontSize: isActive ? 13 : 11.5,
-                                    fontStyle: FontStyle.italic,
-                                    color: isActive
-                                        ? (isDark ? Colors.white70 : const Color(0xFF4A4036))
-                                        : (isDark ? Colors.white38 : const Color(0xFF7A7067)),
-                                    height: 1.3,
-                                  ),
-                                ),
+                                sentence.english.isNotEmpty
+                                    ? Text(
+                                        sentence.english,
+                                        style: TextStyle(
+                                          fontSize: isActive ? 13 : 11.5,
+                                          fontStyle: FontStyle.italic,
+                                          color: isActive
+                                              ? (isDark ? Colors.white70 : const Color(0xFF4A4036))
+                                              : (isDark ? Colors.white38 : const Color(0xFF7A7067)),
+                                          height: 1.3,
+                                        ),
+                                      )
+                                    : TranslatedText(
+                                        sentence.chinese,
+                                        style: TextStyle(
+                                          fontSize: isActive ? 13 : 11.5,
+                                          fontStyle: FontStyle.italic,
+                                          color: isActive
+                                              ? (isDark ? Colors.white70 : const Color(0xFF4A4036))
+                                              : (isDark ? Colors.white38 : const Color(0xFF7A7067)),
+                                          height: 1.3,
+                                        ),
+                                      ),
                               ],
                             ],
                           ),

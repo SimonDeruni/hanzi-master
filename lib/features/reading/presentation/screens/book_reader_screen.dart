@@ -10,6 +10,7 @@ import 'package:hanzi_master/features/reading/presentation/providers/book_provid
 import 'package:hanzi_master/features/reading/presentation/screens/audiobook_player_screen.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
+import 'package:hanzi_master/core/widgets/translated_text.dart';
 
 enum BookPinyinMode { all, ghost, none }
 
@@ -1615,25 +1616,40 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
                             ),
 
                             // English Translation (Global toggle or tap to reveal)
-                            if ((_showAllTranslations || isRevealed) &&
-                                sentence.english.isNotEmpty)
+                            if (_showAllTranslations || isRevealed)
                               Padding(
                                 padding: const EdgeInsets.only(top: 8),
-                                child: Text(
-                                  sentence.english,
-                                  style: TextStyle(
-                                    fontSize: 13,
-                                    color: isAudioActiveSentence
-                                        ? (isDark
-                                            ? Colors.amber.shade300
-                                            : const Color(0xFF8B0000))
-                                        : (isDark
-                                            ? Colors.white70
-                                            : const Color(0xFF5A4D41)),
-                                    fontStyle: FontStyle.italic,
-                                    height: 1.3,
-                                  ),
-                                ),
+                                child: sentence.english.isNotEmpty
+                                    ? Text(
+                                        sentence.english,
+                                        style: TextStyle(
+                                          fontSize: 13,
+                                          color: isAudioActiveSentence
+                                              ? (isDark
+                                                  ? Colors.amber.shade300
+                                                  : const Color(0xFF8B0000))
+                                              : (isDark
+                                                  ? Colors.white70
+                                                  : const Color(0xFF5A4D41)),
+                                          fontStyle: FontStyle.italic,
+                                          height: 1.3,
+                                        ),
+                                      )
+                                    : TranslatedText(
+                                        sentence.chinese,
+                                        style: TextStyle(
+                                          fontSize: 13,
+                                          color: isAudioActiveSentence
+                                              ? (isDark
+                                                  ? Colors.amber.shade300
+                                                  : const Color(0xFF8B0000))
+                                              : (isDark
+                                                  ? Colors.white70
+                                                  : const Color(0xFF5A4D41)),
+                                          fontStyle: FontStyle.italic,
+                                          height: 1.3,
+                                        ),
+                                      ),
                               ),
                           ],
                         ),
