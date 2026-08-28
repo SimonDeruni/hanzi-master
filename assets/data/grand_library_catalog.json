@@ -18,7 +18,7 @@
       "Adventure",
       "Action"
     ],
-    "audioStreamUrl": "https://archive.org/download/001_20220304/001%E5%9B%9E_%E8%A5%BF%E6%B8%B8%E8%AE%B0(%E7%B2%A4%E8%AF%AD%E8%AF%84%E4%B9%A6).mp3"
+    "audioStreamUrl": "asset:audio/audiobooks/journey_to_the_west.mp3"
   },
   {
     "id": "romance_of_three_kingdoms",
@@ -38,8 +38,7 @@
       "History",
       "Strategy",
       "Heroes"
-    ],
-    "audioStreamUrl": "https://archive.org/download/w73c9plhpwnxbrnuiirr35904vgtrtcmiyvvlfst/pc5yjok3qzmkwfv-2686884444420524038_ud.mp3"
+    ]
   },
   {
     "id": "water_margin",
@@ -79,7 +78,7 @@
       "Aristocracy",
       "Tragedy"
     ],
-    "audioStreamUrl": "https://archive.org/download/dream_red_chamber_1_1603_librivox/dreamredchamber1_01_cao.mp3"
+    "audioStreamUrl": "asset:audio/audiobooks/dream_of_red_chamber.mp3"
   },
   {
     "id": "fengshen_yanyi",
@@ -195,7 +194,7 @@
       "Mindset",
       "Leadership"
     ],
-    "audioStreamUrl": "https://archive.org/download/art_of_war_chinese_1506_librivox/artofwar_01_sun.mp3"
+    "audioStreamUrl": "asset:audio/audiobooks/the_art_of_war.mp3"
   },
   {
     "id": "dao_de_jing",
@@ -235,7 +234,7 @@
       "Ethics",
       "Wisdom"
     ],
-    "audioStreamUrl": "https://archive.org/download/confucian_analects_1207_librivox/confuciananalects_01_confucius.mp3"
+    "audioStreamUrl": "asset:audio/audiobooks/the_analects.mp3"
   },
   {
     "id": "zhuangzi",

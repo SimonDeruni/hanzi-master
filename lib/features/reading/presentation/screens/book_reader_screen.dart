@@ -665,7 +665,7 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen> {
                     child: Icon(Icons.podcasts, color: isDark ? Colors.amber.shade300 : const Color(0xFF8B0000)),
                   ),
                   title: Text(
-                    '🎙️ 评书与真人原声 · Open Human Voice',
+                    'Authentic Human Voice',
                     style: TextStyle(
                       fontSize: 14.5,
                       fontWeight: FontWeight.bold,
@@ -673,7 +673,7 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen> {
                     ),
                   ),
                   subtitle: Text(
-                    'Streaming open public-domain recording from Internet Archive (Archive.org).',
+                    'Master voice recording bundled offline with crystal-clear pronunciation.',
                     style: TextStyle(
                       fontSize: 11.5,
                       color: isDark ? Colors.white60 : Colors.black54,
@@ -705,7 +705,7 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen> {
                     child: Icon(Icons.graphic_eq, color: isDark ? Colors.blue.shade300 : Colors.indigo.shade700),
                   ),
                   title: Text(
-                    '⚡ 智能逐句伴读 · Synchronized Neural Reader',
+                    'Synchronized Neural Reader',
                     style: TextStyle(
                       fontSize: 14.5,
                       fontWeight: FontWeight.bold,
@@ -1138,7 +1138,7 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          '🎙️ 真人原声流 · Archive.org Stream',
+                          'Authentic Human Voice',
                           style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.bold,

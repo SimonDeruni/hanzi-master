@@ -237,12 +237,25 @@ class AudioService {
     return ttsResult != null && ttsResult == 1;
   }
 
-  /// Streams remote MP3 audio directly from open public-domain archives (Archive.org / LibriVox).
+  /// Streams remote MP3 audio or plays bundled audio assets directly.
   /// Downloads and caches locally using standard browser User-Agent headers to bypass anti-bot blocks.
   Future<bool> playStreamUrl(String url) async {
     if (!_isInitialized) await init();
     await stop();
     try {
+      if (url.startsWith('asset:')) {
+        final assetPath = url.substring(6); // e.g. 'audio/audiobooks/the_art_of_war.mp3'
+        await _player.setPlaybackRate(1.0);
+        await _player.play(AssetSource(assetPath));
+        return true;
+      }
+      if (url.startsWith('assets/')) {
+        final assetPath = url.substring(7); // e.g. 'audio/audiobooks/the_art_of_war.mp3'
+        await _player.setPlaybackRate(1.0);
+        await _player.play(AssetSource(assetPath));
+        return true;
+      }
+
       final hash = _hashText(url);
       final cacheFile = File('${_cacheDir!.path}/audiobook_cache/$hash.mp3');
 
