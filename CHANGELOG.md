@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.0+187] - 2026-08-28
+- **Pruned 4 Partial / Mislabeled Books (Build #187)**:
+  - Pruned `fengshen_yanyi` (mislabeled text), `the_scholars` (7-chapter excerpt), `flowers_in_the_mirror` (10-chapter excerpt), and `bizarre_happenings_two_decades` (9-chapter excerpt) from the catalog and assets.
+  - Re-ingested authentic Classical Chinese text for `thirty_six_stratagems` across all 36 stratagems.
+  - Verified that 100% of all **86 remaining books** in the Grand Library are genuine, unabridged, complete master literature.
+  - `dart analyze`: 0 issues. Pushed to GitLab and GitHub.
+
 ## [1.0.0+186] - 2026-08-28
 - **Grand Library Overhaul — Uncapped Full Literature & Tier 3/4 Pruning (Build #186)**:
   - **Pruned Incomplete Books (Tier 3 & 4)**: Completely removed 6 sample-only and synthetic placeholder books (`water_margin`, `xunzi`, `four_generations_roof`, `the_stranger_camus`, `the_plague_camus`, `alice_in_wonderland`) from the catalog and assets.
