@@ -85,6 +85,7 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen> {
 
   late int _currentIndex;
   BookPinyinMode _pinyinMode = BookPinyinMode.all;
+  bool _showAllTranslations = true;
   final Set<int> _revealedTranslations = {};
   double _fontSize = 20.0;
   final ScrollController _scrollController = ScrollController();
@@ -985,6 +986,21 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen> {
               });
             },
           ),
+          // English Translation Toggle
+          IconButton(
+            icon: Icon(
+              Icons.translate_rounded,
+              size: 20,
+              color: _showAllTranslations
+                  ? (isDark ? Colors.amber.shade400 : const Color(0xFF8B0000))
+                  : primaryText.withValues(alpha: 0.6),
+            ),
+            tooltip: _showAllTranslations ? 'Hide English Translations' : 'Show English Translations',
+            onPressed: () {
+              HapticsManager.light();
+              setState(() => _showAllTranslations = !_showAllTranslations);
+            },
+          ),
           // Font Size Adjust
           IconButton(
             icon: Icon(Icons.text_fields, size: 22, color: primaryText),
@@ -1181,15 +1197,17 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen> {
                               }).toList(),
                             ),
 
-                            // English Translation (Tap to reveal)
-                            if (isRevealed && sentence.english.isNotEmpty)
+                            // English Translation (Global toggle or tap to reveal)
+                            if ((_showAllTranslations || isRevealed) && sentence.english.isNotEmpty)
                               Padding(
                                 padding: const EdgeInsets.only(top: 8),
                                 child: Text(
                                   sentence.english,
                                   style: TextStyle(
                                     fontSize: 13,
-                                    color: isDark ? Colors.amber.shade300 : const Color(0xFF8B0000),
+                                    color: isAudioActiveSentence
+                                        ? (isDark ? Colors.amber.shade300 : const Color(0xFF8B0000))
+                                        : (isDark ? Colors.white70 : const Color(0xFF5A4D41)),
                                     fontStyle: FontStyle.italic,
                                     height: 1.3,
                                   ),

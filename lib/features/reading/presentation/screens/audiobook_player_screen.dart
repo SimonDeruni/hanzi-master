@@ -43,6 +43,9 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
   // Cache for parsed ruby sentence tokens (Chinese char + Pinyin syllable)
   final Map<String, List<_RubyToken>> _rubyCache = {};
 
+  // Translation display toggle
+  bool _showTranslations = true;
+
   // Sleep Timer State
   Timer? _sleepTimer;
   int? _sleepSecondsRemaining;
@@ -751,6 +754,19 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
                           ],
                         ),
                       ),
+                      // Translation Toggle Button
+                      IconButton(
+                        icon: Icon(
+                          Icons.translate_rounded,
+                          size: 20,
+                          color: _showTranslations ? activeAccent : secondaryText.withValues(alpha: 0.5),
+                        ),
+                        tooltip: _showTranslations ? 'Hide English Translations' : 'Show English Translations',
+                        onPressed: () {
+                          HapticsManager.light();
+                          setState(() => _showTranslations = !_showTranslations);
+                        },
+                      ),
                       // Sleep Timer Button
                       IconButton(
                         icon: Icon(
@@ -892,7 +908,7 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
                               ),
 
                               // English Translation
-                              if (sentence.english.isNotEmpty) ...[
+                              if (_showTranslations && sentence.english.isNotEmpty) ...[
                                 const SizedBox(height: 8),
                                 Text(
                                   sentence.english,
@@ -901,7 +917,7 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
                                     fontStyle: FontStyle.italic,
                                     color: isActive
                                         ? (isDark ? Colors.white70 : const Color(0xFF4A4036))
-                                        : (isDark ? Colors.white24 : Colors.black26),
+                                        : (isDark ? Colors.white38 : const Color(0xFF7A7067)),
                                     height: 1.3,
                                   ),
                                 ),
