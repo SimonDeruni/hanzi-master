@@ -200,9 +200,96 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
                           _buildBadge('HSK ${book.hskLevel}', isDark ? Colors.amber.shade400 : const Color(0xFF8B0000)),
                           _buildBadge(book.category, isDark ? Colors.blue.shade300 : Colors.indigo.shade700),
                           _buildBadge(book.dynastyOrEra, isDark ? Colors.green.shade300 : Colors.teal.shade700),
-                          _buildBadge('${chapters.length} 回 / Chapters', isDark ? Colors.purple.shade300 : Colors.deepPurple.shade700),
+                          _buildBadge('${chapters.length} Chapters', isDark ? Colors.purple.shade300 : Colors.deepPurple.shade700),
                         ],
                       ),
+                      const SizedBox(height: 18),
+
+                      // Action Button (Start / Continue Reading)
+                      SizedBox(
+                        width: double.infinity,
+                        height: 52,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            HapticsManager.heavy();
+                            final initialIndex = (currentProgress - 1).clamp(0, chapters.length - 1);
+                            Navigator.of(context).push(
+                              SwipeBackPageRoute(
+                                builder: (_) => BookReaderScreen(
+                                  book: book,
+                                  chapters: chapters,
+                                  initialChapterIndex: initialIndex,
+                                ),
+                              ),
+                            );
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: isDark ? Colors.amber.shade700 : const Color(0xFF1A1A1B),
+                            foregroundColor: Colors.white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(16),
+                            ),
+                            elevation: 4,
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                currentProgress > 1 ? Icons.auto_stories : Icons.play_arrow_rounded,
+                                size: 22,
+                              ),
+                              const SizedBox(width: 8),
+                              Text(
+                                currentProgress > 1
+                                    ? 'Continue Chapter $currentProgress'
+                                    : 'Start Reading',
+                                style: const TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                  letterSpacing: 0.5,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+
+                      if (book.audioStreamUrl != null) ...[
+                        const SizedBox(height: 10),
+                        SizedBox(
+                          width: double.infinity,
+                          height: 44,
+                          child: OutlinedButton.icon(
+                            onPressed: () {
+                              HapticsManager.medium();
+                              final initialIndex = (currentProgress - 1).clamp(0, chapters.length - 1);
+                              Navigator.of(context).push(
+                                SwipeBackPageRoute(
+                                  builder: (_) => BookReaderScreen(
+                                    book: book,
+                                    chapters: chapters,
+                                    initialChapterIndex: initialIndex,
+                                    autoStartHumanAudio: true,
+                                  ),
+                                ),
+                              );
+                            },
+                            icon: Icon(Icons.podcasts, size: 18, color: accentColor),
+                            label: Text(
+                              'Listen to Audiobook',
+                              style: TextStyle(
+                                fontSize: 13,
+                                fontWeight: FontWeight.bold,
+                                color: accentColor,
+                              ),
+                            ),
+                            style: OutlinedButton.styleFrom(
+                              side: BorderSide(color: accentColor, width: 1.2),
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+                            ),
+                          ),
+                        ),
+                      ],
                       const SizedBox(height: 20),
 
                       // ── Author Card ─────────────────────────────────────
@@ -395,93 +482,6 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
                           ],
                         ),
                       ),
-                      const SizedBox(height: 20),
-
-                      // Action Button (Start / Continue Reading)
-                      SizedBox(
-                        width: double.infinity,
-                        height: 52,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            HapticsManager.heavy();
-                            final initialIndex = (currentProgress - 1).clamp(0, chapters.length - 1);
-                            Navigator.of(context).push(
-                              SwipeBackPageRoute(
-                                builder: (_) => BookReaderScreen(
-                                  book: book,
-                                  chapters: chapters,
-                                  initialChapterIndex: initialIndex,
-                                ),
-                              ),
-                            );
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: isDark ? Colors.amber.shade700 : const Color(0xFF1A1A1B),
-                            foregroundColor: Colors.white,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(16),
-                            ),
-                            elevation: 4,
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
-                                currentProgress > 1 ? Icons.auto_stories : Icons.play_arrow_rounded,
-                                size: 22,
-                              ),
-                              const SizedBox(width: 8),
-                              Text(
-                                currentProgress > 1
-                                    ? '继续阅读第 $currentProgress 回 · Continue Chapter $currentProgress'
-                                    : '开始阅读第一回 · Start Reading',
-                                style: const TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold,
-                                  letterSpacing: 0.5,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-
-                      if (book.audioStreamUrl != null) ...[
-                        const SizedBox(height: 10),
-                        SizedBox(
-                          width: double.infinity,
-                          height: 44,
-                          child: OutlinedButton.icon(
-                            onPressed: () {
-                              HapticsManager.medium();
-                              final initialIndex = (currentProgress - 1).clamp(0, chapters.length - 1);
-                              Navigator.of(context).push(
-                                SwipeBackPageRoute(
-                                  builder: (_) => BookReaderScreen(
-                                    book: book,
-                                    chapters: chapters,
-                                    initialChapterIndex: initialIndex,
-                                    autoStartHumanAudio: true,
-                                  ),
-                                ),
-                              );
-                            },
-                            icon: Icon(Icons.podcasts, size: 18, color: accentColor),
-                            label: Text(
-                              '🎙️ 畅听真人原声 · Listen Open Human Audio (Archive.org)',
-                              style: TextStyle(
-                                fontSize: 13,
-                                fontWeight: FontWeight.bold,
-                                color: accentColor,
-                              ),
-                            ),
-                            style: OutlinedButton.styleFrom(
-                              side: BorderSide(color: accentColor, width: 1.2),
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-                            ),
-                          ),
-                        ),
-                      ],
                       const SizedBox(height: 24),
 
                       // Table of Contents Header
