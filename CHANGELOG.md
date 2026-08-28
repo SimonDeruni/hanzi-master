@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.0+178] - 2026-08-28
+- **Micro-Read Photo Covers from Bundled Images (Build #178)**:
+  - Each micro-read card now shows the actual Mandarin Bean article image as a full-bleed cover photo.
+  - Slug extracted from `story.link` URL and matched to `assets/images/mandarin_bean/<slug>.jpg` (499 images already bundled in the app).
+  - Dark scrim gradient applied over photo for title/badge readability.
+  - Graceful fallback to terracotta/amber gradient when no matching image exists in the bundle.
+  - `dart analyze`: 0 issues. Pushed to GitLab and GitHub.
+
 ## [1.0.0+177] - 2026-08-28
 - **English-First Author Bio & Synopsis with Chinese Dropdown (Build #177)**:
   - Rewrote `BookDetailScreen` as a `ConsumerStatefulWidget` to manage expand/collapse state for two Chinese language dropdowns.

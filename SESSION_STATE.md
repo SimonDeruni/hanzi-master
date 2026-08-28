@@ -1,12 +1,13 @@
 # 🧠 SESSION_STATE.md - The Hanzi Master "Scholar's Baton"
 
 #### 🎯 Current Context
-- **Objective:** UI Polish — English-First Book Detail Screen
+- **Objective:** UI Polish — Micro-Read Photo Covers
 - **Status:** ✅ COMPLETED
 - **Hygiene:** 🧼 Perfect Hygiene — `dart analyze lib/` passed with 0 issues.
 - **Locked Files:**
     - [None]
 
+- [x] **Micro-Read Photo Covers from Bundled Images (Build #178):** Each micro-read card now uses its bundled Mandarin Bean photo as a full-bleed cover. Slug extracted from URL → matched to `assets/images/mandarin_bean/<slug>.jpg` (499 images). Dark scrim ensures readability; terracotta gradient fallback for missing images. (Status: COMPLETED)
 - [x] **English-First Author Bio & Synopsis (Build #177):** Rewrote `BookDetailScreen` with unique per-author English bios (50+ lookup map), English-first synopsis layout, and collapsible Chinese dropdowns for both sections. (Status: COMPLETED)
 - [x] **Calligraphic Micro-Reads Grid (Build #176):** Transformed Micro-Reads section from a flat horizontal list to a 2-column calligraphic grid matching the novel cover aesthetic. Terracotta/amber silk-bound covers with Chinese title, HSK badge (top-right), ⚡ 微读 seal (bottom-right), decorative divider, source name, and spine binding line. Verified Total Hygiene State (`dart analyze lib/` - 0 issues). (Status: COMPLETED)
 - [x] **AI Hub Segmented Switcher (`Roleplay` & `Shadowing`) (Build #175):** Redesigned `AiHubScreen` with a top segmented orange pill toggle switching between `Roleplay` (`ScenarioSelectionScreen`) and `Shadowing` (`ShadowingStudioScreen`), preserving state via `IndexedStack`. Added `showBackButton` support to both screens. Verified Total Hygiene State (`dart analyze lib/` - 0 issues, 100% test pass). (Status: COMPLETED)
