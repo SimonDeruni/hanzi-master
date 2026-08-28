@@ -5,7 +5,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:google_mlkit_translation/google_mlkit_translation.dart';
+import 'package:http/http.dart' as http;
 import '../providers/translation_language_provider.dart';
+import '../../features/reading/domain/entities/poetry_story_id.dart';
 
 final localTranslationServiceProvider =
     Provider<LocalTranslationService>((ref) {
@@ -41,13 +43,45 @@ class LocalTranslationService {
 
   static Future<void> _seedEnglishCache() async {
     final box = Hive.box<String>(_boxName);
-    if (box.containsKey('English:阿鼻地狱')) return;
+    await _seedEnglishAsset(
+      box,
+      marker: '__english_seed_stories_v1__',
+      asset: 'assets/data/1000_stories_en.json',
+    );
+    // Migrate from poetry v1 to v2: the dataset was rebuilt with
+    // Traditional Chinese titles and new IDs in b8594f8.
+    const poetryV2Marker = '__english_seed_poetry_v2__';
+    const poetryV1Marker = '__english_seed_poetry_v1__';
+    if (box.containsKey(poetryV1Marker) && !box.containsKey(poetryV2Marker)) {
+      // Remove stale v1 entries (they were keyed by Simplified titles).
+      final keysToRemove =
+          box.keys.where((k) => k.toString().startsWith('English:')).toList();
+      for (final k in keysToRemove) {
+        await box.delete(k);
+      }
+    }
+    await _seedEnglishAsset(
+      box,
+      marker: poetryV2Marker,
+      asset: chinesePoetryAsset,
+    );
+    await _seedEnglishAsset(
+      box,
+      marker: '__english_seed_mandarin_bean_v1__',
+      asset: 'assets/data/mandarin_bean_stories.json',
+    );
+  }
 
+  static Future<void> _seedEnglishAsset(
+    Box<String> box, {
+    required String marker,
+    required String asset,
+  }) async {
+    if (box.containsKey(marker)) return;
     try {
-      final String jsonString =
-          await rootBundle.loadString('assets/data/1000_stories_en.json');
-      final List<dynamic> list = json.decode(jsonString);
-      for (var data in list) {
+      final List<dynamic> list =
+          json.decode(await rootBundle.loadString(asset));
+      for (final data in list) {
         if (data['title'] != null && data['title_en'] != null) {
           box.put('English:${data['title']}', data['title_en']);
         }
@@ -55,35 +89,10 @@ class LocalTranslationService {
           box.put('English:${data['summary']}', data['summary_en']);
         }
       }
-    } catch (_) {}
-
-    try {
-      final String jsonString2 =
-          await rootBundle.loadString('assets/data/tang_poetry_en.json');
-      final List<dynamic> list2 = json.decode(jsonString2);
-      for (var data in list2) {
-        if (data['title'] != null && data['title_en'] != null) {
-          box.put('English:${data['title']}', data['title_en']);
-        }
-        if (data['summary'] != null && data['summary_en'] != null) {
-          box.put('English:${data['summary']}', data['summary_en']);
-        }
-      }
-    } catch (_) {}
-
-    try {
-      final String jsonString3 =
-          await rootBundle.loadString('assets/data/mandarin_bean_stories.json');
-      final List<dynamic> list3 = json.decode(jsonString3);
-      for (var data in list3) {
-        if (data['title'] != null && data['title_en'] != null) {
-          box.put('English:${data['title']}', data['title_en']);
-        }
-        if (data['summary'] != null && data['summary_en'] != null) {
-          box.put('English:${data['summary']}', data['summary_en']);
-        }
-      }
-    } catch (_) {}
+      await box.put(marker, '1');
+    } catch (error) {
+      debugPrint('Unable to seed translations from $asset: $error');
+    }
   }
 
   Future<void> _ensureModelReady(TranslateLanguage targetLanguageEnum) async {
@@ -135,9 +144,16 @@ class LocalTranslationService {
     }
 
     final cacheKey = '$targetLanguage:$cleanedText';
-    final box = Hive.box<String>(_boxName);
+    Box<String>? box;
+    if (Hive.isBoxOpen(_boxName)) {
+      box = Hive.box<String>(_boxName);
+    } else {
+      try {
+        box = await Hive.openBox<String>(_boxName);
+      } catch (_) {}
+    }
 
-    final cached = box.get(cacheKey);
+    final cached = box?.get(cacheKey);
     if (cached != null) {
       return cached.isNotEmpty
           ? cached[0].toUpperCase() + cached.substring(1)
@@ -150,19 +166,83 @@ class LocalTranslationService {
 
       if (_translator != null) {
         String translated = await _translator!.translateText(cleanedText);
-        if (translated.isNotEmpty) {
+        if (translated.isNotEmpty && RegExp(r'[a-zA-Z]').hasMatch(translated)) {
           translated = translated[0].toUpperCase() + translated.substring(1);
-          await box.put(cacheKey, translated);
+          await box?.put(cacheKey, translated);
           return translated;
         }
       }
     } catch (e) {
-      // Fallback silently
+      debugPrint('[LocalTranslationService] On-device translation fallback needed: $e');
+    }
+
+    // High-speed endpoint fallback with automatic persistent Hive caching
+    try {
+      final targetCode = _getTargetLanguageCode(targetLanguage);
+      final uri = Uri.parse(
+          'https://translate.googleapis.com/translate_a/single?client=gtx&sl=zh-CN&tl=$targetCode&dt=t&q=${Uri.encodeComponent(cleanedText)}');
+      final client = http.Client();
+      try {
+        final resp = await client.get(uri).timeout(const Duration(seconds: 4));
+        if (resp.statusCode == 200) {
+          final dynamic data = jsonDecode(resp.body);
+          if (data is List && data.isNotEmpty && data[0] is List) {
+            final sentences = data[0] as List<dynamic>;
+            final sb = StringBuffer();
+            for (final s in sentences) {
+              if (s is List && s.isNotEmpty && s[0] is String) {
+                sb.write(s[0]);
+              }
+            }
+            final translated = sb.toString().trim();
+            if (translated.isNotEmpty) {
+              final formatted = translated[0].toUpperCase() + translated.substring(1);
+              await box?.put(cacheKey, formatted);
+              return formatted;
+            }
+          }
+        }
+      } finally {
+        client.close();
+      }
+    } catch (e) {
+      debugPrint('[LocalTranslationService] Translation request failed: $e');
     }
 
     return cleanedText.isNotEmpty
         ? cleanedText[0].toUpperCase() + cleanedText.substring(1)
         : cleanedText;
+  }
+
+  String _getTargetLanguageCode(String language) {
+    switch (language.toLowerCase()) {
+      case 'french':
+        return 'fr';
+      case 'spanish':
+        return 'es';
+      case 'german':
+        return 'de';
+      case 'japanese':
+        return 'ja';
+      case 'korean':
+        return 'ko';
+      case 'italian':
+        return 'it';
+      case 'portuguese':
+        return 'pt';
+      case 'russian':
+        return 'ru';
+      case 'arabic':
+        return 'ar';
+      case 'indonesian':
+        return 'id';
+      case 'vietnamese':
+        return 'vi';
+      case 'hindi':
+        return 'hi';
+      default:
+        return 'en';
+    }
   }
 
   TranslateLanguage _getTranslateLanguage(String language) {
