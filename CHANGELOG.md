@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.0+193] - 2026-08-28
+- **Emoji-Free HUD & Prominent Dual Book/Audiobook Architecture (Build #193)**:
+  - **Emoji-Free Reader HUD**: Replaced all emojis in the floating audio bar with clean calligraphic typography and iconography (`Studio Voice: X.Xh left this week` / `On-Device Voice`).
+  - **Prominent Catalog Audiobook Badges**: Added top-right dark silk `Audiobook` badges over book covers and dedicated `Audio` metadata chips on all 86 catalog cards.
+  - **Catalog Header Modernization**: Refreshed header count to `86 Unabridged Books & Synchronized Audiobooks`.
+  - **Book Detail Badging**: Added `Audiobook Included` chip in the detail screen tags row and refreshed the secondary action button to `Listen to Audiobook` with headphone iconography.
+  - `flutter test` & `dart analyze`: 0 issues. Pushed to GitLab and GitHub.
+
 ## [1.0.0+192] - 2026-08-28
 - **Literary Narrator SSML Express-As, Background Pre-fetching & Quota Details (Build #192)**:
   - **Azure Literary Narrator SSML**: Upgraded speech synthesis markup with `mstts:express-as style='narration-relaxed' role='Narrator'` for deep, expressive classical storytelling cadence.
