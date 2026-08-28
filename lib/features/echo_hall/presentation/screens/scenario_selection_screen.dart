@@ -140,35 +140,6 @@ class _ScenarioSelectionScreenState
     }
   }
 
-  IconData _getScenarioIcon(ConversationScenario scenario) {
-    final lower =
-        scenario.title.toLowerCase() + ' ' + scenario.description.toLowerCase();
-    if (lower.contains('restaurant') ||
-        lower.contains('waiter') ||
-        lower.contains('food') ||
-        lower.contains('order')) return Icons.restaurant;
-    if (lower.contains('doctor') ||
-        lower.contains('clinic') ||
-        lower.contains('hospital') ||
-        lower.contains('medical')) return Icons.local_hospital;
-    if (lower.contains('market') ||
-        lower.contains('shop') ||
-        lower.contains('store') ||
-        lower.contains('vendor')) return Icons.store;
-    if (lower.contains('interview') ||
-        lower.contains('job') ||
-        lower.contains('work')) return Icons.work;
-    if (lower.contains('friend') ||
-        lower.contains('meet') ||
-        lower.contains('catch')) return Icons.people;
-    if (lower.contains('taxi') ||
-        lower.contains('driver') ||
-        lower.contains('ride') ||
-        lower.contains('transport')) return Icons.local_taxi;
-    if (lower.contains('hotel') || lower.contains('reception'))
-      return Icons.hotel;
-    return Icons.theater_comedy;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -313,6 +284,60 @@ class _ScenarioSelectionScreenState
     );
   }
 
+  List<Color> _getScenarioGradient(String id, int hsk) {
+    if (id.startsWith('food')) {
+      return [const Color(0xFF8B1E1E), const Color(0xFF4A0E0E)]; // Chinese Culinary Crimson
+    } else if (id.startsWith('taxi') || id.startsWith('travel')) {
+      return [const Color(0xFF1E355B), const Color(0xFF0E1E36)]; // Travel Midnight Indigo
+    } else if (id.startsWith('market') || id.startsWith('shop')) {
+      return [const Color(0xFF52221B), const Color(0xFF2E100C)]; // Silk Market Amber Terracotta
+    } else if (id.startsWith('doctor') || id.startsWith('health')) {
+      return [const Color(0xFF1E3A2B), const Color(0xFF0F2218)]; // Herbal Forest Jade
+    } else if (id.startsWith('job') || id.startsWith('work')) {
+      return [const Color(0xFF233142), const Color(0xFF111B26)]; // Professional Scholar Slate
+    } else if (id.startsWith('intro') || id.startsWith('friend')) {
+      return [const Color(0xFF38234D), const Color(0xFF1B0F29)]; // Twilight Purple
+    } else {
+      switch (hsk) {
+        case 1:
+        case 2:
+          return [const Color(0xFF1E3A2B), const Color(0xFF0F2218)];
+        case 3:
+        case 4:
+          return [const Color(0xFF52221B), const Color(0xFF2E100C)];
+        case 5:
+        case 6:
+        default:
+          return [const Color(0xFF3D0C0C), const Color(0xFF1A0404)];
+      }
+    }
+  }
+
+  String _getScenarioWatermark(ConversationScenario scenario) {
+    if (scenario.id.startsWith('food')) return '食';
+    if (scenario.id.startsWith('taxi')) return '行';
+    if (scenario.id.startsWith('market')) return '市';
+    if (scenario.id.startsWith('doctor')) return '医';
+    if (scenario.id.startsWith('job')) return '职';
+    if (scenario.id.startsWith('intro')) return '友';
+    if (scenario.title.isNotEmpty) {
+      final match = RegExp(r'[\u4e00-\u9fa5]').firstMatch(scenario.title);
+      if (match != null) return match.group(0)!;
+    }
+    return '话';
+  }
+
+  String _getScenarioSealText(ConversationScenario scenario) {
+    if (scenario.id.startsWith('food')) return '餐饮';
+    if (scenario.id.startsWith('taxi')) return '出行';
+    if (scenario.id.startsWith('market')) return '市井';
+    if (scenario.id.startsWith('doctor')) return '诊所';
+    if (scenario.id.startsWith('job')) return '职场';
+    if (scenario.id.startsWith('intro')) return '社交';
+    if (scenario.isCustom) return '自创';
+    return '角色';
+  }
+
   Widget _buildCreateScenarioCard(bool isDark) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
@@ -326,54 +351,83 @@ class _ScenarioSelectionScreenState
         },
         borderRadius: BorderRadius.circular(16),
         child: Container(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 16),
           decoration: BoxDecoration(
-            gradient: const LinearGradient(
-                colors: [Color(0xFF3F51B5), Color(0xFF5C6BC0)],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight),
+            color: isDark ? const Color(0xFF1E1E22) : const Color(0xFFFDFCF0),
             borderRadius: BorderRadius.circular(16),
+            border: Border.all(
+              color: const Color(0xFFFFB300).withValues(alpha: isDark ? 0.35 : 0.4),
+              width: 1.2,
+            ),
             boxShadow: [
               BoxShadow(
-                  color: Colors.indigo.withValues(alpha: 0.3),
-                  blurRadius: 10,
-                  offset: const Offset(0, 4))
+                color: (isDark ? Colors.black : const Color(0xFFFFB300))
+                    .withValues(alpha: isDark ? 0.25 : 0.08),
+                blurRadius: 10,
+                offset: const Offset(0, 3),
+              ),
             ],
           ),
-          child: Row(children: [
-            Container(
-                padding: const EdgeInsets.all(12),
+          child: Row(
+            children: [
+              Container(
+                padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
-                    color: Colors.white.withValues(alpha: 0.2),
-                    shape: BoxShape.circle),
-                child: const Icon(Icons.auto_awesome,
-                    color: Colors.white, size: 28)),
-            const SizedBox(width: 16),
-            Expanded(
+                  color: const Color(0xFFFFB300).withValues(alpha: isDark ? 0.2 : 0.12),
+                  shape: BoxShape.circle,
+                ),
+                child: const Icon(
+                  Icons.auto_awesome,
+                  color: Color(0xFFFFB300),
+                  size: 22,
+                ),
+              ),
+              const SizedBox(width: 14),
+              Expanded(
                 child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                  const Text('Create Custom Scenario',
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Create Custom Scenario',
                       style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold)),
-                  const SizedBox(height: 4),
-                  Text('Design your own AI roleplay experience',
+                        color: isDark ? Colors.white : const Color(0xFF1A1A1B),
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 0.2,
+                      ),
+                    ),
+                    const SizedBox(height: 3),
+                    Text(
+                      'Design your own AI roleplay experience',
                       style: TextStyle(
-                          color: Colors.white.withValues(alpha: 0.7),
-                          fontSize: 13)),
-                ])),
-            const Icon(Icons.arrow_forward_ios,
-                color: Colors.white70, size: 18),
-          ]),
+                        color: isDark ? Colors.white54 : Colors.black54,
+                        fontSize: 12,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Icon(
+                Icons.arrow_forward_ios_rounded,
+                color: isDark ? Colors.white38 : Colors.black38,
+                size: 16,
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 
   Widget _buildScenarioCard(ConversationScenario scenario, bool isDark) {
-    final icon = _getScenarioIcon(scenario);
+    final gradientColors =
+        _getScenarioGradient(scenario.id, scenario.targetHskLevel);
+    final watermark = _getScenarioWatermark(scenario);
+    final sealText = _getScenarioSealText(scenario);
+    final displayTitle = scenario.title.length > 7
+        ? '${scenario.title.substring(0, 6)}…'
+        : scenario.title;
+
     return Padding(
       padding: const EdgeInsets.only(bottom: 12.0),
       child: InkWell(
@@ -381,124 +435,278 @@ class _ScenarioSelectionScreenState
         borderRadius: BorderRadius.circular(16),
         child: Container(
           decoration: BoxDecoration(
-            color: isDark ? const Color(0xFF2A2A2B) : Colors.white,
+            color: isDark ? const Color(0xFF242426) : Colors.white,
             borderRadius: BorderRadius.circular(16),
             border: Border.all(
-                color: isDark
-                    ? Colors.white.withValues(alpha: 0.08)
-                    : Colors.black.withValues(alpha: 0.06)),
+              color: isDark
+                  ? Colors.white.withValues(alpha: 0.08)
+                  : Colors.black.withValues(alpha: 0.06),
+            ),
             boxShadow: [
               BoxShadow(
-                  color: Colors.black.withValues(alpha: isDark ? 0.2 : 0.05),
-                  blurRadius: 8,
-                  offset: const Offset(0, 2))
+                color: Colors.black.withValues(alpha: isDark ? 0.3 : 0.06),
+                blurRadius: 10,
+                offset: const Offset(0, 4),
+              ),
             ],
           ),
-          child:
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            ClipRRect(
-              borderRadius:
-                  const BorderRadius.vertical(top: Radius.circular(16)),
-              child: Container(
-                height: 100,
-                decoration: BoxDecoration(
-                    gradient: LinearGradient(colors: [
-                  Colors.indigo.shade400,
-                  Colors.indigo.shade700
-                ], begin: Alignment.topLeft, end: Alignment.bottomRight)),
-                child: Stack(fit: StackFit.expand, children: [
-                  if (scenario.backgroundAssetPath != null &&
-                      scenario.backgroundAssetPath!.isNotEmpty)
-                    Image.asset(scenario.backgroundAssetPath!,
-                        fit: BoxFit.cover,
-                        errorBuilder: (_, __, ___) => const SizedBox()),
-                  Container(
-                      decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                              colors: [
-                        Colors.indigo.withValues(alpha: 0.6),
-                        Colors.indigo.withValues(alpha: 0.9)
-                      ]))),
-                  Center(
-                      child: Icon(icon,
-                          color: Colors.white.withValues(alpha: 0.8),
-                          size: 40)),
-                  Positioned(
-                      top: 8,
-                      right: 8,
-                      child: Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 8, vertical: 3),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // ── Calligraphic Book-Cover Plate ───────────────────
+              ClipRRect(
+                borderRadius:
+                    const BorderRadius.vertical(top: Radius.circular(15)),
+                child: Container(
+                  height: 110,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: gradientColors,
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                  ),
+                  child: Stack(
+                    fit: StackFit.expand,
+                    children: [
+                      // Background Environment Artwork (if available)
+                      if (scenario.backgroundAssetPath != null &&
+                          scenario.backgroundAssetPath!.isNotEmpty)
+                        Opacity(
+                          opacity: 0.28,
+                          child: Image.asset(
+                            scenario.backgroundAssetPath!,
+                            fit: BoxFit.cover,
+                            errorBuilder: (_, __, ___) => const SizedBox(),
+                          ),
+                        ),
+
+                      // Left Book Spine Accent
+                      Positioned(
+                        top: 0,
+                        bottom: 0,
+                        left: 0,
+                        width: 12,
+                        child: Container(
                           decoration: BoxDecoration(
-                              color: Colors.black.withValues(alpha: 0.5),
-                              borderRadius: BorderRadius.circular(6)),
+                            color: Colors.black.withValues(alpha: 0.28),
+                            border: Border(
+                              right: BorderSide(
+                                color: Colors.white.withValues(alpha: 0.15),
+                                width: 1.0,
+                              ),
+                            ),
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: List.generate(
+                              4,
+                              (i) => Container(
+                                width: 5,
+                                height: 1.5,
+                                color: const Color(0xFFD4AF37)
+                                    .withValues(alpha: 0.6),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+
+                      // Background Hanzi Watermark
+                      Positioned(
+                        right: -4,
+                        bottom: -8,
+                        child: Opacity(
+                          opacity: 0.12,
                           child: Text(
-                              scenario.targetHskLevel == 0
-                                  ? 'Native'
-                                  : 'HSK ${scenario.targetHskLevel}',
-                              style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.bold)))),
-                ]),
+                            watermark,
+                            style: const TextStyle(
+                              fontSize: 76,
+                              fontWeight: FontWeight.w900,
+                              color: Colors.white,
+                              fontFamily: 'serif',
+                            ),
+                          ),
+                        ),
+                      ),
+
+                      // Center Calligraphic Parchment Plaque
+                      Center(
+                        child: Container(
+                          margin: const EdgeInsets.symmetric(
+                              horizontal: 16, vertical: 10),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 6),
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFF9F6EE),
+                            borderRadius: BorderRadius.circular(6),
+                            border: Border.all(
+                              color: const Color(0xFFD4AF37)
+                                  .withValues(alpha: 0.7),
+                              width: 1.0,
+                            ),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withValues(alpha: 0.25),
+                                blurRadius: 6,
+                                offset: const Offset(0, 2),
+                              ),
+                            ],
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Flexible(
+                                child: Text(
+                                  displayTitle,
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w900,
+                                    color: Color(0xFF1A1A1B),
+                                    letterSpacing: 0.8,
+                                    fontFamily: 'serif',
+                                    height: 1.2,
+                                  ),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                              const SizedBox(width: 5),
+                              Container(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 4, vertical: 1),
+                                decoration: BoxDecoration(
+                                  color: const Color(0xFF9E2A2B),
+                                  borderRadius: BorderRadius.circular(3),
+                                ),
+                                child: Text(
+                                  sealText,
+                                  style: const TextStyle(
+                                    fontSize: 8,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xFFFFF8E7),
+                                    letterSpacing: 0.5,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+
+                      // Top Right HSK Difficulty Badge
+                      Positioned(
+                        top: 8,
+                        right: 8,
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 7, vertical: 2.5),
+                          decoration: BoxDecoration(
+                            color: Colors.black.withValues(alpha: 0.55),
+                            borderRadius: BorderRadius.circular(6),
+                            border: Border.all(
+                              color: Colors.white.withValues(alpha: 0.15),
+                              width: 0.5,
+                            ),
+                          ),
+                          child: Text(
+                            scenario.targetHskLevel == 0
+                                ? 'Native'
+                                : 'HSK ${scenario.targetHskLevel}',
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 9.5,
+                              fontWeight: FontWeight.bold,
+                              letterSpacing: 0.3,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(12),
-              child: Column(
+
+              // ── Description & Character Persona ─────────────────
+              Padding(
+                padding: const EdgeInsets.all(12),
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(scenario.title,
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 14,
-                            color: isDark
-                                ? Colors.white
-                                : const Color(0xFF1A1A1B)),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis),
+                    Text(
+                      scenario.title,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 14,
+                        color: isDark
+                            ? Colors.white
+                            : const Color(0xFF1A1A1B),
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                     const SizedBox(height: 4),
-                    Text(scenario.description,
-                        style: TextStyle(
-                            color: isDark
-                                ? Colors.white.withValues(alpha: 0.5)
-                                : Colors.black.withValues(alpha: 0.6),
-                            fontSize: 12),
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis),
+                    Text(
+                      scenario.description,
+                      style: TextStyle(
+                        color: isDark
+                            ? Colors.white.withValues(alpha: 0.55)
+                            : Colors.black.withValues(alpha: 0.6),
+                        fontSize: 12,
+                        height: 1.3,
+                      ),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                     const SizedBox(height: 8),
-                    Row(children: [
-                      Icon(Icons.person_outline,
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.person_rounded,
                           size: 14,
-                          color: isDark ? Colors.white38 : Colors.black38),
-                      const SizedBox(width: 4),
-                      Expanded(
-                          child: Text(scenario.personaName,
-                              style: TextStyle(
-                                  fontSize: 11,
-                                  color:
-                                      isDark ? Colors.white38 : Colors.black38),
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis)),
-                      if (scenario.isCustom)
-                        Container(
+                          color: isDark
+                              ? const Color(0xFFFFD54F).withValues(alpha: 0.7)
+                              : const Color(0xFF8B0000).withValues(alpha: 0.7),
+                        ),
+                        const SizedBox(width: 4),
+                        Expanded(
+                          child: Text(
+                            scenario.personaName,
+                            style: TextStyle(
+                              fontSize: 11,
+                              fontWeight: FontWeight.w600,
+                              color: isDark ? Colors.white60 : Colors.black54,
+                            ),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                        if (scenario.isCustom)
+                          Container(
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 6, vertical: 2),
                             decoration: BoxDecoration(
-                                color: Colors.indigo
-                                    .withValues(alpha: isDark ? 0.2 : 0.08),
-                                borderRadius: BorderRadius.circular(4)),
-                            child: const Text('Custom',
-                                style: TextStyle(
-                                    fontSize: 9,
-                                    color: Colors.indigo,
-                                    fontWeight: FontWeight.bold))),
-                    ]),
-                  ]),
-            ),
-          ]),
+                              color: const Color(0xFFFFB300)
+                                  .withValues(alpha: isDark ? 0.2 : 0.12),
+                              borderRadius: BorderRadius.circular(4),
+                            ),
+                            child: const Text(
+                              'Custom',
+                              style: TextStyle(
+                                fontSize: 9,
+                                color: Color(0xFFFFB300),
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -518,9 +726,9 @@ class _ScenarioSelectionScreenState
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
       child: SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(
-              children: categories.map((cat) {
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          children: categories.map((cat) {
             final isSelected = _selectedCategory == cat;
             return Padding(
               padding: const EdgeInsets.only(right: 8.0),
@@ -530,21 +738,28 @@ class _ScenarioSelectionScreenState
                 onSelected: (val) {
                   if (val) setState(() => _selectedCategory = cat);
                 },
-                selectedColor: Colors.indigo,
+                selectedColor: const Color(0xFFFFB300)
+                    .withValues(alpha: isDark ? 0.25 : 0.15),
                 labelStyle: TextStyle(
-                    color: isSelected
-                        ? Colors.white
-                        : (isDark ? Colors.white70 : Colors.black87)),
+                  color: isSelected
+                      ? (isDark ? const Color(0xFFFFD54F) : const Color(0xFF1A1A1B))
+                      : (isDark ? Colors.white70 : Colors.black87),
+                  fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                  fontSize: 12.5,
+                ),
                 backgroundColor:
-                    isDark ? const Color(0xFF2A2A2B) : Colors.white,
+                    isDark ? const Color(0xFF242426) : Colors.white,
                 side: BorderSide(
-                    color: isSelected
-                        ? Colors.indigo
-                        : (isDark ? Colors.white24 : Colors.black12)),
+                  color: isSelected
+                      ? const Color(0xFFFFB300).withValues(alpha: 0.6)
+                      : (isDark ? Colors.white12 : Colors.black12),
+                ),
                 showCheckmark: false,
               ),
             );
-          }).toList())),
+          }).toList(),
+        ),
+      ),
     );
   }
 
@@ -796,8 +1011,6 @@ class _ScenarioSelectionScreenState
 
   Future<void> _generateFromDeck({Deck? preselectedDeck}) async {
     final l10n = AppLocalizations.of(context)!;
-    final theme = Theme.of(context);
-    final isDark = theme.brightness == Brightness.dark;
 
     Deck? selectedDeck = preselectedDeck;
 
@@ -822,6 +1035,7 @@ class _ScenarioSelectionScreenState
       selectedDeck = decks.firstWhere((d) => d.name == picked);
     }
 
+    if (_isGenerating) return;
     setState(() => _isGenerating = true);
 
     try {
@@ -857,7 +1071,7 @@ Respond ONLY in valid JSON:
           result.replaceAll('```json', '').replaceAll('```', '').trim();
       final Map<String, dynamic> json = jsonDecode(cleaned);
 
-      final deck = selectedDeck!;
+      final deck = selectedDeck;
       // Derive HSK level from deck id (e.g. 'hsk3' → 3, 'default' → 1)
       final hskMatch = RegExp(r'hsk(\d)').firstMatch(deck.id);
       final hskLevel = hskMatch != null ? int.parse(hskMatch.group(1)!) : 1;
