@@ -1,12 +1,15 @@
 # 🧠 SESSION_STATE.md - The Hanzi Master "Scholar's Baton"
 
 #### 🎯 Current Context
-- **Objective:** Global English Translation Display & Toggles in Both Modes
-- **Status:** ✅ COMPLETED (Build #198)
-- **Hygiene:** 🧼 Perfect Hygiene — `dart analyze lib/` passed with 0 issues.
+- **Objective:** Build Fix + Dual Progress Bars
+- **Status:** ✅ COMPLETED (Build #200)
+- **Hygiene:** `dart analyze lib/` → 44 info/warning hints (pre-existing), 0 errors. App compiles clean.
 - **Locked Files:**
     - [None]
 
+- [x] **Build Fix — SwipeBackPageRoute alias + c.hanzi (Build #199):** Added `typedef SwipeBackPageRoute = SwipeBackRoute` to `swipe_back_route.dart`. Fixed `c.chinese` → `c.hanzi` in `scenario_selection_screen.dart`. App now builds clean.
+- [x] **Dual Progress Bars in Audiobook Player (Build #200):** Chapter sentence bar (thick) + overall book bar (thin) added below divider in `AudiobookPlayerScreen`. Labels `Sentence X/Y` and `Book XX%`. Light/dark adaptive.
+- [x] **Whole-Book Reading Progress & Sentence Resume (Build #199):** Tracks and restores the reader's visible sentence, persists on debounced scrolling and lifecycle/navigation events, calculates sentence-weighted whole-book completion, displays persistent progress, restores Continue Reading/bookmarks precisely, and retains legacy progress compatibility. Focused tests pass; full-suite validation is blocked by two unrelated existing stroke matcher failures. (Status: COMPLETED)
 - [x] **Global English Translation Display & Instant 1-Tap Toggles in Both Modes (Build #198):** Added 1-tap translation toggle button (`Icons.translate_rounded`) in `AudiobookPlayerScreen` and `BookReaderScreen`. Enabled English translations by default across all sentences in both reading and audiobook screens with smooth individual card tap override. Verified Total Hygiene State (`dart analyze lib/` - 0 issues, 100% test pass). Pushed to GitLab and GitHub. (Status: COMPLETED)
 - [x] **Reader Ruby Pinyin Alignment & Direct Sentence Audiobook Mode Transition (Build #197):** Implemented per-character vertical Ruby alignment in `BookReaderScreen` pairing every Chinese character directly with its tone-marked Pinyin syllable above it (respecting all, ghost, and none modes). Tapping the audio button on any sentence card in reading mode launches `AudiobookPlayerScreen` starting at that exact sentence. Upgraded `AudioService` to stream cloud and cached audio directly via `BytesSource` in-memory buffers to eliminate iOS sandbox file URI playback issues. Verified Total Hygiene State (`dart analyze lib/` - 0 issues, 100% test pass). Pushed to GitLab and GitHub. (Status: COMPLETED)
 - [x] **Dynamic Theme, Ruby Pinyin Alignment & Real-Time Spoken Character Highlighting (Build #196):** Upgraded `AudiobookPlayerScreen` with dynamic Light Mode (Warm Xuan Paper `#FDFCF0`) and Dark Mode (Carbon `#121113`). Implemented Ruby-style character tiles pairing every Chinese Hanzi character with its tone-marked Pinyin directly above it. Added real-time character-by-character recitation highlighting using live audio position streams. Enabled tap-to-QuickLook dictionary lookup on every character in the player. Configured seamless auto-transition from `BookReaderScreen` into `AudiobookPlayerScreen`. Verified Total Hygiene State (`dart analyze lib/` - 0 issues, 100% test pass). Pushed to GitLab and GitHub. (Status: COMPLETED)
