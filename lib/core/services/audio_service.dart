@@ -71,6 +71,10 @@ class AudioService {
     if (!await audioDir.exists()) {
       await audioDir.create(recursive: true);
     }
+    final audiobookDir = Directory('${_cacheDir!.path}/audiobook_cache');
+    if (!await audiobookDir.exists()) {
+      await audiobookDir.create(recursive: true);
+    }
 
     _player.onPositionChanged.listen((position) {
       if (_currentBoundaries.isEmpty || _currentBoundaryIndex >= _currentBoundaries.length) return;
@@ -233,11 +237,45 @@ class AudioService {
     return ttsResult != null && ttsResult == 1;
   }
 
-  /// Streams remote MP3 audio directly from open public-domain archives (Archive.org / LibriVox)
+  /// Streams remote MP3 audio directly from open public-domain archives (Archive.org / LibriVox).
+  /// Downloads and caches locally using standard browser User-Agent headers to bypass anti-bot blocks.
   Future<bool> playStreamUrl(String url) async {
     if (!_isInitialized) await init();
     await stop();
     try {
+      final hash = _hashText(url);
+      final cacheFile = File('${_cacheDir!.path}/audiobook_cache/$hash.mp3');
+
+      if (await cacheFile.exists() && (await cacheFile.length()) > 1024) {
+        await _player.setPlaybackRate(1.0);
+        await _player.play(DeviceFileSource(cacheFile.path));
+        return true;
+      }
+
+      // Download via HttpClient with standard browser User-Agent
+      final client = HttpClient();
+      try {
+        final req = await client.getUrl(Uri.parse(url));
+        req.headers.set('User-Agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36');
+        req.followRedirects = true;
+        req.maxRedirects = 5;
+        final resp = await req.close();
+        if (resp.statusCode == 200) {
+          final tempFile = File('${_cacheDir!.path}/audiobook_cache/${hash}_temp.mp3');
+          final sink = tempFile.openWrite();
+          await resp.pipe(sink);
+          if (await tempFile.exists() && (await tempFile.length()) > 1024) {
+            await tempFile.rename(cacheFile.path);
+            await _player.setPlaybackRate(1.0);
+            await _player.play(DeviceFileSource(cacheFile.path));
+            return true;
+          }
+        }
+      } finally {
+        client.close();
+      }
+
+      // Fallback: direct UrlSource
       await _player.setPlaybackRate(1.0);
       await _player.play(UrlSource(url));
       return true;
