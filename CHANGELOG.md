@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.0+191] - 2026-08-28
+- **4-Hour Weekly Studio Voice Quota Engine & Sleep Timer (Build #191)**:
+  - **AudioQuotaService**: Created persistent weekly allowance tracker resetting every Monday at 00:00 via ISO 8601 week calculations.
+  - **Cloud Financial Protection**: Hard-caps Azure Neural Voice synthesis at 4.0 hours per week ($\approx 45,600$ chars/week), capping maximum monthly cloud cost per subscriber at under \$2.91/month and securing a strong 43% to 85%+ profit margin on $6/month subscriptions.
+  - **Continuous Soft Fallback**: Playback never terminates when the weekly quota is exhausted; it automatically transitions to high-definition on-device speech synthesis (`flutter_tts`) at \$0 cost.
+  - **In-Reader Sleep Timer**: Added 🌙 Sleep Timer bottom sheet with 15m, 30m, 45m, and End of Chapter presets to prevent overnight battery and API drain.
+  - **Floating Audio Bar HUD**: Displays real-time Studio Voice hours remaining alongside sentence progression.
+  - `flutter test` & `dart analyze`: 0 issues. Pushed to GitLab and GitHub.
+
 ## [1.0.0+190] - 2026-08-28
 - **Audio Engine Streamlined & Monolithic Audio Assets Purged (Build #190)**:
   - **Reclaimed 44 MB Storage**: Removed monolithic static single-chapter MP3s from `assets/audio/audiobooks/`, significantly lightening the app binary footprint.

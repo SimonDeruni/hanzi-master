@@ -1,12 +1,13 @@
 # 🧠 SESSION_STATE.md - The Hanzi Master "Scholar's Baton"
 
 #### 🎯 Current Context
-- **Objective:** Streamline Audio Engine & Purge Monolithic Archive MP3s
-- **Status:** ✅ COMPLETED (Build #190)
+- **Objective:** 4-Hour Weekly Studio Voice Quota Engine & Sleep Timer
+- **Status:** ✅ COMPLETED (Build #191)
 - **Hygiene:** 🧼 Perfect Hygiene — `dart analyze lib/` passed with 0 issues.
 - **Locked Files:**
     - [None]
 
+- [x] **4-Hour Weekly Studio Voice Quota Engine & Sleep Timer (Build #191):** Created `AudioQuotaService` managing 4-hour weekly allowance resetting every Monday 00:00 (ISO Week). Integrated quota check in `AudioService.playSentence` hard-capping cloud costs under \$2.91/mo per subscriber, with seamless auto-fallback to on-device TTS (`flutter_tts`) when quota is exhausted. Added in-reader 🌙 Sleep Timer (15m, 30m, 45m, End of Chapter) and Studio Voice remaining hours badge in floating audio bar. Verified Total Hygiene State (`dart analyze lib/` - 0 issues, 100% test pass). Pushed to GitLab and GitHub. (Status: COMPLETED)
 - [x] **Audio Engine Streamlined & Monolithic Audio Assets Purged (Build #190):** Reclaimed 44 MB by removing static single-chapter MP3 assets. Purged legacy `audioStreamUrl` from catalog for 100% uniformity. Unified "Listen to Audiobook" and top-bar headphone controls to launch the interactive Synchronized Neural Narrator with active golden sentence highlighting, auto-advancing, and instant dictionary lookups across all 86 books. Verified Total Hygiene State (`dart analyze lib/` - 0 issues, `flutter test` passed). Pushed to GitLab and GitHub. (Status: COMPLETED)
 - [x] **Fix iOS AudioContext Crash & Separate Player State Streams (Build #189):** Fixed iOS `IncompatibleCategoryOptions (-50)` crash by removing `defaultToSpeaker` from `AVAudioSessionCategory.playback`. Replaced race-prone boolean flag with `onPlayerStateChanged` stream in `BookReaderScreen` to cleanly sync UI playback state with hardware audio events. Added auto-parent directory creation and fallback to direct `AssetSource`. Verified Total Hygiene State (`dart analyze lib/` - 0 issues, `flutter test` passed). Pushed to GitLab and GitHub. (Status: COMPLETED)
 - [x] **Bulletproof Audiobook Playback via Local Asset Extraction & AudioContext (Build #188):** Overcame iOS `AVPlayer` large-asset bug by extracting bundled assets via `rootBundle` to local documents cache and playing via `DeviceFileSource`. Added explicit `AudioContext` configuration (`AVAudioSessionCategory.playback`, `defaultToSpeaker: true`, `allowBluetooth: true`) in `playStreamUrl` to guarantee hardware speaker output across iOS and Android. Added real-time timestamp progress and pause/resume to `BookReaderScreen` floating master voice player. Verified Total Hygiene State (`dart analyze lib/` - 0 issues, `flutter test` passed). Pushed to GitLab and GitHub. (Status: COMPLETED)
