@@ -5,6 +5,7 @@ import 'package:lpinyin/lpinyin.dart';
 import 'package:hanzi_master/core/services/audio_service.dart';
 import 'package:hanzi_master/core/services/audio_quota_service.dart';
 import 'package:hanzi_master/features/reading/domain/entities/book_model.dart';
+import 'package:hanzi_master/features/reading/domain/logic/book_reading_progress.dart';
 import 'package:hanzi_master/features/reading/presentation/providers/book_providers.dart';
 import 'package:hanzi_master/features/reading/presentation/widgets/calligraphic_book_cover.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
@@ -34,11 +35,13 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
   int _currentSpokenCharIndex = 0;
   int _totalDurationMs = 0;
   bool _isPlaying = true;
+  int _audioRequestGeneration = 0;
   double _playbackSpeed = 1.0;
   final ScrollController _scrollController = ScrollController();
   StreamSubscription? _audioCompleteSub;
   StreamSubscription? _positionSub;
   StreamSubscription? _durationSub;
+  StreamSubscription? _errorSub;
 
   // Cache for parsed ruby sentence tokens (Chinese char + Pinyin syllable)
   final Map<String, List<_RubyToken>> _rubyCache = {};
@@ -79,9 +82,16 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
       }
     });
 
+    _errorSub = audioService.onPlaybackError.listen((_) {
+      if (mounted && _isPlaying) {
+        setState(() => _isPlaying = false);
+        _showPlaybackFailure();
+      }
+    });
+
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (mounted) {
-        _playSentenceAt(_currentSentenceIndex);
+        unawaited(_playSentenceAt(_currentSentenceIndex));
         _scrollToSentence(_currentSentenceIndex, animate: false);
       }
     });
@@ -93,8 +103,19 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
     _audioCompleteSub?.cancel();
     _positionSub?.cancel();
     _durationSub?.cancel();
+    _errorSub?.cancel();
     _saveProgress();
-    ref.read(audioServiceProvider).stop();
+    // Persist last reading session (audiobook)
+    ref.read(bookRepositoryProvider).saveReadingSession(
+      bookId: widget.book.id,
+      chapterIndex: _currentChapterIndex,
+      sentenceIndex: _currentSentenceIndex,
+      wasAudiobook: true,
+    );
+    // Record reading event for streak
+    ref.read(bookRepositoryProvider).recordReadingEvent();
+    ++_audioRequestGeneration;
+    unawaited(ref.read(audioServiceProvider).stop());
     _scrollController.dispose();
     super.dispose();
   }
@@ -175,9 +196,10 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
     }
   }
 
-  void _playSentenceAt(int sentenceIdx) {
+  Future<void> _playSentenceAt(int sentenceIdx) async {
     final chapter = widget.chapters[_currentChapterIndex];
     if (sentenceIdx >= 0 && sentenceIdx < chapter.sentences.length) {
+      final requestGeneration = ++_audioRequestGeneration;
       setState(() {
         _currentSentenceIndex = sentenceIdx;
         _currentSpokenCharIndex = 0;
@@ -188,24 +210,30 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
       _scrollToSentence(sentenceIdx);
 
       final text = chapter.sentences[sentenceIdx].chinese;
-      ref.read(audioServiceProvider).playSentence(text);
+      final started = await ref.read(audioServiceProvider).playSentence(text);
+      if (!mounted || requestGeneration != _audioRequestGeneration) return;
+      if (!started) {
+        setState(() => _isPlaying = false);
+        _showPlaybackFailure();
+        return;
+      }
 
       // Pre-fetch next sentence in background
       if (sentenceIdx + 1 < chapter.sentences.length) {
         final nextText = chapter.sentences[sentenceIdx + 1].chinese;
-        ref.read(audioServiceProvider).prefetchSentence(nextText);
+        unawaited(ref.read(audioServiceProvider).prefetchSentence(nextText));
       }
     }
   }
 
-  void _onSentenceFinished() {
+  Future<void> _onSentenceFinished() async {
     final chapter = widget.chapters[_currentChapterIndex];
     if (_currentSentenceIndex < chapter.sentences.length - 1) {
-      Future.delayed(const Duration(milliseconds: 250), () {
+      unawaited(Future.delayed(const Duration(milliseconds: 250), () async {
         if (_isPlaying && mounted) {
-          _playSentenceAt(_currentSentenceIndex + 1);
+          await _playSentenceAt(_currentSentenceIndex + 1);
         }
-      });
+      }));
     } else {
       // Chapter complete
       if (_stopAtEndOfChapter) {
@@ -213,50 +241,59 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
           _isPlaying = false;
           _stopAtEndOfChapter = false;
         });
-        ref.read(audioServiceProvider).stop();
+        await ref.read(audioServiceProvider).stop();
         return;
       }
 
       if (_currentChapterIndex < widget.chapters.length - 1) {
-        Future.delayed(const Duration(milliseconds: 600), () {
+        unawaited(Future.delayed(const Duration(milliseconds: 600), () async {
           if (_isPlaying && mounted) {
             setState(() {
               _currentChapterIndex++;
               _currentSentenceIndex = 0;
               _currentSpokenCharIndex = 0;
             });
-            _playSentenceAt(0);
+            await _playSentenceAt(0);
           }
-        });
+        }));
       } else {
         setState(() => _isPlaying = false);
-        ref.read(audioServiceProvider).stop();
+        await ref.read(audioServiceProvider).stop();
       }
     }
   }
 
-  void _togglePlayPause() {
+  Future<void> _togglePlayPause() async {
     HapticsManager.light();
     if (_isPlaying) {
-      ref.read(audioServiceProvider).stop();
+      ++_audioRequestGeneration;
       setState(() => _isPlaying = false);
+      await ref.read(audioServiceProvider).stop();
     } else {
-      _playSentenceAt(_currentSentenceIndex);
+      await _playSentenceAt(_currentSentenceIndex);
     }
   }
 
-  void _prevSentence() {
+  void _showPlaybackFailure() {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('Audio could not start. Check your connection and device voice settings.'),
+      ),
+    );
+  }
+
+  Future<void> _prevSentence() async {
     if (_currentSentenceIndex > 0) {
       HapticsManager.selection();
-      _playSentenceAt(_currentSentenceIndex - 1);
+      await _playSentenceAt(_currentSentenceIndex - 1);
     }
   }
 
-  void _nextSentence() {
+  Future<void> _nextSentence() async {
     final chapter = widget.chapters[_currentChapterIndex];
     if (_currentSentenceIndex < chapter.sentences.length - 1) {
       HapticsManager.selection();
-      _playSentenceAt(_currentSentenceIndex + 1);
+      await _playSentenceAt(_currentSentenceIndex + 1);
     }
   }
 
@@ -311,7 +348,7 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
             _sleepSecondsRemaining = null;
             _stopAtEndOfChapter = false;
           });
-          ref.read(audioServiceProvider).stop();
+          unawaited(ref.read(audioServiceProvider).stop());
         }
       });
     }
@@ -622,14 +659,14 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
                           color: isDark ? Colors.white54 : Colors.black45,
                         ),
                       ),
-                      onTap: () {
+                      onTap: () async {
                         Navigator.of(ctx).pop();
                         setState(() {
                           _currentChapterIndex = idx;
                           _currentSentenceIndex = 0;
                           _currentSpokenCharIndex = 0;
                         });
-                        _playSentenceAt(0);
+                        await _playSentenceAt(0);
                       },
                     );
                   },
@@ -782,6 +819,72 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
 
                 Divider(color: isDark ? Colors.white12 : Colors.black12, height: 1),
 
+                // Chapter & Book Progress Bar
+                Builder(builder: (context) {
+                  final totalSentences = chapter.sentences.length;
+                  final chapterProgress = totalSentences > 0
+                      ? (_currentSentenceIndex + 1) / totalSentences
+                      : 0.0;
+                  final allSentenceCounts = widget.chapters.map((c) => c.sentences.length).toList();
+                  final bookProgress = calculateBookReadingProgress(
+                    sentenceCounts: allSentenceCounts,
+                    chapterIndex: _currentChapterIndex,
+                    sentenceIndex: _currentSentenceIndex,
+                  );
+                  return Padding(
+                    padding: const EdgeInsets.fromLTRB(16, 10, 16, 4),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Text(
+                              'Sentence ${_currentSentenceIndex + 1} / $totalSentences',
+                              style: TextStyle(
+                                fontSize: 10.5,
+                                fontWeight: FontWeight.w600,
+                                color: secondaryText,
+                              ),
+                            ),
+                            const Spacer(),
+                            Text(
+                              'Book ${(bookProgress * 100).round()}%',
+                              style: TextStyle(
+                                fontSize: 10.5,
+                                fontWeight: FontWeight.bold,
+                                color: activeAccent,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 5),
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(3),
+                          child: LinearProgressIndicator(
+                            value: chapterProgress,
+                            minHeight: 3,
+                            backgroundColor: isDark ? Colors.white10 : Colors.black10,
+                            valueColor: AlwaysStoppedAnimation<Color>(activeAccent),
+                          ),
+                        ),
+                        const SizedBox(height: 3),
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(3),
+                          child: LinearProgressIndicator(
+                            value: bookProgress,
+                            minHeight: 2,
+                            backgroundColor: isDark ? Colors.white10 : Colors.black10,
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                              activeAccent.withValues(alpha: 0.45),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 6),
+                      ],
+                    ),
+                  );
+                }),
+
                 // Spotify-Lyrics Live Sentences Stream with Ruby Pinyin Alignment
                 Expanded(
                   child: ListView.builder(
@@ -795,9 +898,9 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
                       final tokens = _getRubyTokens(sentence.chinese);
 
                       return GestureDetector(
-                        onTap: () {
+                        onTap: () async {
                           HapticsManager.selection();
-                          _playSentenceAt(idx);
+                          await _playSentenceAt(idx);
                         },
                         behavior: HitTestBehavior.opaque,
                         child: AnimatedContainer(
