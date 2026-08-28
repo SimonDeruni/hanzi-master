@@ -1,12 +1,13 @@
 # 🧠 SESSION_STATE.md - The Hanzi Master "Scholar's Baton"
 
 #### 🎯 Current Context
-- **Objective:** Remove Audiobook Button for Poems
-- **Status:** ✅ COMPLETED (Build #208)
+- **Objective:** Fetch and Bundle Authentic Internet Paintings for All 100 Poems
+- **Status:** ✅ COMPLETED (Builds #209 & #210)
 - **Hygiene:** App compiles clean, all changes pushed to GitLab and GitHub.
 - **Locked Files:**
     - [None]
 
+- [x] **Bundle Authentic Classical Paintings for All 100 Poems (Builds #209 & #210):** Fetched authentic, high-resolution public domain classical Chinese paintings from Wikimedia Commons matching each poem's author (Li Bai, Du Fu, Wang Wei, Su Shi, Li Qingzhao, etc.), dynasty, and themes (Moon, River, Mountains, Spring, Autumn, Solitude). Bundled all 100 covers into `assets/images/poetry/`, optimized to crisp ~70–300KB mobile assets, declared in `pubspec.yaml`, and wired into `CalligraphicBookCover`. (Status: COMPLETED)
 - [x] **Remove Audiobook Button for Poems (Build #208):** Removed the "Listen to Audiobook" button and "Audiobook Included" badge from poetry presentation screens in `BookDetailScreen`, and hid the audiobook player action in `BookReaderScreen` for poems. The call-to-action is cleanly set to "Read Poem" with full Zen & Ink reading engine features. (Status: COMPLETED)
 - [x] **Fix Missing foundation.dart Import in BookRepository (Build #207):** Added `import 'package:flutter/foundation.dart';` to `book_repository.dart` for `debugPrint`. Dart analysis verified 0 issues. (Status: COMPLETED)
 - [x] **Unify Poetry with Book Reader Engine & Presentation UI (Build #206):** Unified Poetry stories with the core Book presentation and reader flow: tapping any poetry card opens `BookDetailScreen` with calligraphy cover, dynasty/author info, and audiobook controls; tapping "Start Reading" opens `BookReaderScreen` with vertical Ruby tone-marked Pinyin, Azure neural audio narration, tap-to-QuickLook dictionary sheets, and instant fullscreen Audiobook Player switching. (Status: COMPLETED)
