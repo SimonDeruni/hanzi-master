@@ -89,7 +89,7 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
 
     final catalogAsync = ref.watch(bookCatalogProvider);
     final microReadsAsync = ref.watch(microReadsProvider);
-    final poetryAsync = ref.watch(tangPoetryProvider);
+    final poetryAsync = ref.watch(chinesePoetryProvider);
     final inProgressAsync = ref.watch(inProgressBooksProvider);
 
     return Scaffold(
@@ -1210,15 +1210,12 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
     Color primaryText,
   ) {
     const poetryAccent = Color(0xFF8B0000);
-    const coverTop = Color(0xFF3D0C0C);
-    const coverMid = Color(0xFF5C1A1A);
-    const coverBot = Color(0xFF1A0404);
+    final book = _poemToBook(poem);
 
     return BouncingButton(
       scaleFactor: 0.96,
       onPressed: () {
         HapticsManager.light();
-        final book = _poemToBook(poem);
         Navigator.of(context).push(
           SwipeBackPageRoute(
             builder: (_) => BookDetailScreen(book: book),
@@ -1244,137 +1241,21 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // ── Calligraphic cover (top 64%) ────────────────────
+            // ── Calligraphic Cover Artwork Plate (top 64%) ────────────────────
             Expanded(
               flex: 11,
               child: ClipRRect(
                 borderRadius:
                     const BorderRadius.vertical(top: Radius.circular(15)),
-                child: Stack(
-                  fit: StackFit.expand,
-                  children: [
-                    // Ink-wash gradient background
-                    Container(
-                      decoration: const BoxDecoration(
-                        gradient: LinearGradient(
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                          colors: [coverTop, coverMid, coverBot],
-                        ),
-                      ),
-                    ),
-                    // Subtle grain overlay
-                    Container(
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                          colors: [
-                            Colors.black.withValues(alpha: 0.12),
-                            Colors.black.withValues(alpha: 0.45),
-                          ],
-                        ),
-                      ),
-                    ),
-                    // Poem text — centred
-                    Positioned.fill(
-                      child: Padding(
-                        padding: const EdgeInsets.fromLTRB(14, 12, 12, 12),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              poem.title,
-                              textAlign: TextAlign.center,
-                              maxLines: 4,
-                              overflow: TextOverflow.ellipsis,
-                              style: const TextStyle(
-                                fontFamily: 'NotoSerifSC',
-                                fontWeight: FontWeight.w700,
-                                fontSize: 18,
-                                color: Color(0xFFF5E6C8),
-                                height: 1.4,
-                                letterSpacing: 3,
-                              ),
-                            ),
-                            const SizedBox(height: 10),
-                            // Decorative divider — ink-brush style
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                    width: 16,
-                                    height: 0.8,
-                                    color: const Color(0xFFF5E6C8)
-                                        .withValues(alpha: 0.35)),
-                                const SizedBox(width: 6),
-                                Icon(Icons.auto_stories,
-                                    size: 10,
-                                    color: const Color(0xFFF5E6C8)
-                                        .withValues(alpha: 0.4)),
-                                const SizedBox(width: 6),
-                                Container(
-                                    width: 16,
-                                    height: 0.8,
-                                    color: const Color(0xFFF5E6C8)
-                                        .withValues(alpha: 0.35)),
-                              ],
-                            ),
-                            if (poem.sourceName.isNotEmpty) ...[
-                              const SizedBox(height: 10),
-                              Text(
-                                poem.sourceName.split('(').first.trim(),
-                                textAlign: TextAlign.center,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                  fontSize: 10,
-                                  color: const Color(0xFFF5E6C8)
-                                      .withValues(alpha: 0.6),
-                                  fontStyle: FontStyle.italic,
-                                  letterSpacing: 0.5,
-                                ),
-                              ),
-                            ],
-                          ],
-                        ),
-                      ),
-                    ),
-                    // 唐诗 (Tang Poetry) seal — bottom right
-                    Positioned(
-                      bottom: 8,
-                      right: 8,
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 5, vertical: 3),
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                              color: const Color(0xFFF5E6C8)
-                                  .withValues(alpha: 0.35),
-                              width: 0.8),
-                          borderRadius: BorderRadius.circular(4),
-                        ),
-                        child: const Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Text(
-                              '诗经',
-                              style: TextStyle(
-                                color: Color(0xFFF5E6C8),
-                                fontSize: 9,
-                                fontFamily: 'NotoSerifSC',
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
+                child: CalligraphicBookCover(
+                  book: book,
+                  width: double.infinity,
+                  height: double.infinity,
+                  showBadge: false,
                 ),
               ),
             ),
-            // ── Text info (bottom 36%) ───────────────────────────
+            // ── Text Info (bottom 36%) ───────────────────────────
             Expanded(
               flex: 6,
               child: Padding(
@@ -1392,7 +1273,7 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: 13,
+                            fontSize: 13.5,
                             color: primaryText,
                             fontFamily: 'NotoSerifSC',
                           ),
@@ -1406,7 +1287,7 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
                               fontWeight: FontWeight.w500,
-                              fontSize: 10,
+                              fontSize: 10.5,
                               color: primaryText.withValues(alpha: 0.65),
                               height: 1.15,
                             ),
@@ -1416,15 +1297,39 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                     ),
                     Row(
                       children: [
-                        Text(
-                          '🖋️ ${poem.sourceName.split('(').first.trim()}',
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            fontSize: 10,
-                            fontWeight: FontWeight.w600,
-                            color:
-                                isDark ? Colors.amber.shade400 : poetryAccent,
+                        Expanded(
+                          child: Text(
+                            poem.sourceName.split('(').first.trim(),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontSize: 11,
+                              fontWeight: FontWeight.w600,
+                              color: isDark
+                                  ? Colors.amber.shade400
+                                  : poetryAccent,
+                            ),
+                          ),
+                        ),
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 5, vertical: 1.5),
+                          decoration: BoxDecoration(
+                            color: (isDark
+                                    ? Colors.amber
+                                    : const Color(0xFF8B0000))
+                                .withValues(alpha: 0.12),
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                          child: Text(
+                            'Poetry',
+                            style: TextStyle(
+                              fontSize: 8.5,
+                              fontWeight: FontWeight.bold,
+                              color: isDark
+                                  ? Colors.amber.shade300
+                                  : const Color(0xFF8B0000),
+                            ),
                           ),
                         ),
                       ],

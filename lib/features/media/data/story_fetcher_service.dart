@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
+import 'package:hanzi_master/features/reading/domain/entities/poetry_story_id.dart';
 import 'package:http/http.dart' as http;
 import 'package:xml/xml.dart';
 import 'package:lpinyin/lpinyin.dart';
@@ -13,18 +14,33 @@ final storyFetcherServiceProvider = Provider((ref) => StoryFetcherService());
 class StoryFetcherService {
   /// Returns true if this entry looks like a real narrative/article story,
   /// not a grammar tip, dialogue snippet, single-character lesson, or exercise.
-  bool _isActualStory(String title, String summary, List<dynamic> rssCategories) {
+  bool _isActualStory(
+      String title, String summary, List<dynamic> rssCategories) {
     final cats = rssCategories.map((c) => c.toString().toLowerCase()).toList();
 
     // Mandarin Bean RSS category allowlist — only keep real reading content
     // "live in china" = phrasebook dialogues, NOT stories
     const allowedCats = {
-      'story', 'culture', 'news', 'advanced', 'lifestyle',
-      'business & economics', 'history', 'travel', 'food', 'nature',
+      'story',
+      'culture',
+      'news',
+      'advanced',
+      'lifestyle',
+      'business & economics',
+      'history',
+      'travel',
+      'food',
+      'nature',
     };
     const blockedCats = {
-      'grammar', 'vocabulary', 'exercise', 'dialogue',
-      'hsk preparation', 'jokes', 'lesson', 'live in china',
+      'grammar',
+      'vocabulary',
+      'exercise',
+      'dialogue',
+      'hsk preparation',
+      'jokes',
+      'lesson',
+      'live in china',
     };
 
     if (cats.isNotEmpty) {
@@ -37,8 +53,10 @@ class StoryFetcherService {
     final titleTrim = title.trim();
 
     // Chinese-char comparison: "真/非常", "是否/如果", "次/遍"
-    if (RegExp(r'^[\u4e00-\u9fff\(\)a-zA-ZÀ-ÿ\s\/\u00c0-\u00ff]+$').hasMatch(titleTrim) &&
-        titleTrim.contains('/') && titleTrim.length < 40) {
+    if (RegExp(r'^[\u4e00-\u9fff\(\)a-zA-ZÀ-ÿ\s\/\u00c0-\u00ff]+$')
+            .hasMatch(titleTrim) &&
+        titleTrim.contains('/') &&
+        titleTrim.length < 40) {
       return false;
     }
 
@@ -53,13 +71,18 @@ class StoryFetcherService {
 
     final titleLower = title.toLowerCase();
     const blockedWords = [
-      'comprehensive exercise', 'grammar', 'tutorial',
-      'how to use', 'uses of', 'hsk preparation',
+      'comprehensive exercise',
+      'grammar',
+      'tutorial',
+      'how to use',
+      'uses of',
+      'hsk preparation',
     ];
     if (blockedWords.any((w) => titleLower.contains(w))) return false;
 
     // Stub with no content
-    if (summary.contains('appeared first on Mandarin Bean') && summary.length < 120) return false;
+    if (summary.contains('appeared first on Mandarin Bean') &&
+        summary.length < 120) return false;
 
     return true;
   }
@@ -67,13 +90,19 @@ class StoryFetcherService {
   List<String> _extractKeywords(Map<String, dynamic> data) {
     try {
       final Set<String> keywords = {};
+      for (final value in (data['keywords'] as List<dynamic>? ?? const [])) {
+        keywords.add(value.toString().toLowerCase());
+      }
+      for (final value in (data['themes'] as List<dynamic>? ?? const [])) {
+        keywords.add(value.toString().toLowerCase());
+      }
       int count = 0;
       if (data['sentences'] != null && data['sentences'] is List) {
         for (var sentence in data['sentences']) {
           if (sentence['words'] != null && sentence['words'] is List) {
             for (var word in sentence['words']) {
               if (count > 15) return keywords.toList();
-              
+
               if (word['meaning'] != null) {
                 keywords.add(word['meaning'].toString().toLowerCase());
               }
@@ -93,142 +122,200 @@ class StoryFetcherService {
       return <String>[];
     }
   }
-  
+
   // Option A: RSS Feeds
   Future<List<LibraryStory>> fetchRssFeed(String url, String sourceName) async {
     try {
-      final response = await http.get(Uri.parse(url)).timeout(const Duration(seconds: 10));
+      final response =
+          await http.get(Uri.parse(url)).timeout(const Duration(seconds: 10));
       if (response.statusCode == 200) {
         final document = XmlDocument.parse(response.body);
         final items = document.findAllElements('item');
-        
-        final rawStories = items.map((node) {
-          final title = node.findElements('title').firstOrNull?.innerText ?? 'Untitled';
-          final link = node.findElements('link').firstOrNull?.innerText ?? '';
-          
-          final categories = node.findElements('category').map((e) => e.innerText.toLowerCase()).toList();
-          final titleLower = title.toLowerCase();
-          
-          if (categories.contains('news') || titleLower.startsWith('news:')) return null;
-          if (categories.contains('jokes') || titleLower.startsWith('joke:') || titleLower.startsWith('jokes:')) return null;
-          if (categories.contains('academic / science') || categories.contains('politics & communism')) return null;
-          
-          // Parse description, strip HTML tags for summary
-          String summary = '';
-          String? imageUrl;
-          
-          // Helper to find element by local name regardless of namespace
-          XmlElement? findLocal(String name) {
-            return node.descendants.whereType<XmlElement>().where((e) => e.name.local == name).firstOrNull;
-          }
-          
-          final descNode = node.findElements('description').firstOrNull;
-          final contentNode = findLocal('encoded');
-          
-          if (descNode != null) {
-            final doc = parse(descNode.innerText);
-            summary = doc.body?.text ?? '';
-            summary = summary.replaceAll(RegExp(r'\s+'), ' ').trim();
-            if (summary.length > 150) summary = '${summary.substring(0, 150)}...';
-            
-            // Try image from description
-            imageUrl ??= doc.querySelector('img')?.attributes['src'];
-          }
-          
-          if (contentNode != null && imageUrl == null) {
-            final doc = parse(contentNode.innerText);
-            imageUrl ??= doc.querySelector('img')?.attributes['src'];
-          }
-          
-          // Fallback to enclosure or media:content
-          if (imageUrl == null) {
-             final enclosure = node.findElements('enclosure').firstOrNull;
-             if (enclosure != null && enclosure.getAttribute('type')?.startsWith('image/') == true) {
-                 imageUrl = enclosure.getAttribute('url');
-             }
-          }
-          if (imageUrl == null) {
-             final media = findLocal('content'); // media:content
-             if (media != null && media.getAttribute('medium') == 'image') {
-                 imageUrl = media.getAttribute('url');
-             }
-          }
-          
-          // Determine thematic category based on keywords
-          String theme = 'Contemporary Stories';
-          final fullText = ('$title $summary ${categories.join(' ')}').toLowerCase();
-          
-          if (fullText.contains('food') || fullText.contains('recipe') || fullText.contains('restaurant') || fullText.contains('cooking') || fullText.contains('eat') || fullText.contains('delicious') || fullText.contains('dumpling')) {
-            theme = 'Food & Dining';
-          } else if (fullText.contains('science') || fullText.contains('space') || fullText.contains('alien') || fullText.contains('robot') || fullText.contains('future') || fullText.contains('technology') || fullText.contains('sci-fi')) {
-            theme = 'Science Fiction & Tech';
-          } else if (fullText.contains('history') || fullText.contains('dynasty') || fullText.contains('emperor') || fullText.contains('ancient')) {
-            theme = 'History';
-          } else if (fullText.contains('travel') || fullText.contains('city') || fullText.contains('mountain') || fullText.contains('visit') || fullText.contains('tourist') || fullText.contains('gorges')) {
-            theme = 'Travel & Places';
-          } else if (fullText.contains('myth') || fullText.contains('legend') || fullText.contains('god') || fullText.contains('fairy') || fullText.contains('magic') || fullText.contains('dragon')) {
-            theme = 'Mythology & Fantasy';
-          } else if (fullText.contains('culture') || fullText.contains('festival') || fullText.contains('tradition') || fullText.contains('custom') || fullText.contains('confucius')) {
-            theme = 'Culture & Traditions';
-          } else if (fullText.contains('business') || fullText.contains('economy') || fullText.contains('market') || fullText.contains('money') || fullText.contains('company')) {
-            theme = 'Business & Economy';
-          } else if (fullText.contains('nature') || fullText.contains('animal') || fullText.contains('weather') || fullText.contains('environment') || fullText.contains('cat') || fullText.contains('dog')) {
-            theme = 'Nature & Animals';
-          } else if (categories.contains('advanced')) {
-            theme = 'Advanced Reading';
-          } else if (categories.contains('intermediate')) {
-            theme = 'Intermediate Reading';
-          } else if (categories.contains('beginner')) {
-            theme = 'Beginner Reading';
-          }
-          
-          // Determine HSK Level
-          int hskLevel = 0;
-          for (final cat in categories) {
-            final catLower = cat.toLowerCase().replaceAll(' ', '');
-            if (catLower.contains('hsk1')) {
-              hskLevel = 1;
-            } else if (catLower.contains('hsk2')) {
-              hskLevel = 2;
-            } else if (catLower.contains('hsk3')) {
-              hskLevel = 3;
-            } else if (catLower.contains('hsk4')) {
-              hskLevel = 4;
-            } else if (catLower.contains('hsk5')) {
-              hskLevel = 5;
-            } else if (catLower.contains('hsk6')) {
-              hskLevel = 6;
-            }
-          }
-          if (hskLevel == 0) {
-            // Check title as fallback
-            final titleLower = title.toLowerCase().replaceAll(' ', '');
-            if (titleLower.contains('hsk1')) {
-              hskLevel = 1;
-            } else if (titleLower.contains('hsk2')) {
-              hskLevel = 2;
-            } else if (titleLower.contains('hsk3')) {
-              hskLevel = 3;
-            } else if (titleLower.contains('hsk4')) {
-              hskLevel = 4;
-            } else if (titleLower.contains('hsk5')) {
-              hskLevel = 5;
-            } else if (titleLower.contains('hsk6')) {
-              hskLevel = 6;
-            }
-          }
 
-          return LibraryStory(
-            title: title,
-            sourceName: sourceName,
-            link: link,
-            imageUrl: imageUrl,
-            summary: summary,
-            category: theme,
-            sourceType: StorySourceType.rss,
-            hskLevel: hskLevel,
-          );
-        }).whereType<LibraryStory>().toList();
+        final rawStories = items
+            .map((node) {
+              final title = node.findElements('title').firstOrNull?.innerText ??
+                  'Untitled';
+              final link =
+                  node.findElements('link').firstOrNull?.innerText ?? '';
+
+              final categories = node
+                  .findElements('category')
+                  .map((e) => e.innerText.toLowerCase())
+                  .toList();
+              final titleLower = title.toLowerCase();
+
+              if (categories.contains('news') || titleLower.startsWith('news:'))
+                return null;
+              if (categories.contains('jokes') ||
+                  titleLower.startsWith('joke:') ||
+                  titleLower.startsWith('jokes:')) return null;
+              if (categories.contains('academic / science') ||
+                  categories.contains('politics & communism')) return null;
+
+              // Parse description, strip HTML tags for summary
+              String summary = '';
+              String? imageUrl;
+
+              // Helper to find element by local name regardless of namespace
+              XmlElement? findLocal(String name) {
+                return node.descendants
+                    .whereType<XmlElement>()
+                    .where((e) => e.name.local == name)
+                    .firstOrNull;
+              }
+
+              final descNode = node.findElements('description').firstOrNull;
+              final contentNode = findLocal('encoded');
+
+              if (descNode != null) {
+                final doc = parse(descNode.innerText);
+                summary = doc.body?.text ?? '';
+                summary = summary.replaceAll(RegExp(r'\s+'), ' ').trim();
+                if (summary.length > 150)
+                  summary = '${summary.substring(0, 150)}...';
+
+                // Try image from description
+                imageUrl ??= doc.querySelector('img')?.attributes['src'];
+              }
+
+              if (contentNode != null && imageUrl == null) {
+                final doc = parse(contentNode.innerText);
+                imageUrl ??= doc.querySelector('img')?.attributes['src'];
+              }
+
+              // Fallback to enclosure or media:content
+              if (imageUrl == null) {
+                final enclosure = node.findElements('enclosure').firstOrNull;
+                if (enclosure != null &&
+                    enclosure.getAttribute('type')?.startsWith('image/') ==
+                        true) {
+                  imageUrl = enclosure.getAttribute('url');
+                }
+              }
+              if (imageUrl == null) {
+                final media = findLocal('content'); // media:content
+                if (media != null && media.getAttribute('medium') == 'image') {
+                  imageUrl = media.getAttribute('url');
+                }
+              }
+
+              // Determine thematic category based on keywords
+              String theme = 'Contemporary Stories';
+              final fullText =
+                  ('$title $summary ${categories.join(' ')}').toLowerCase();
+
+              if (fullText.contains('food') ||
+                  fullText.contains('recipe') ||
+                  fullText.contains('restaurant') ||
+                  fullText.contains('cooking') ||
+                  fullText.contains('eat') ||
+                  fullText.contains('delicious') ||
+                  fullText.contains('dumpling')) {
+                theme = 'Food & Dining';
+              } else if (fullText.contains('science') ||
+                  fullText.contains('space') ||
+                  fullText.contains('alien') ||
+                  fullText.contains('robot') ||
+                  fullText.contains('future') ||
+                  fullText.contains('technology') ||
+                  fullText.contains('sci-fi')) {
+                theme = 'Science Fiction & Tech';
+              } else if (fullText.contains('history') ||
+                  fullText.contains('dynasty') ||
+                  fullText.contains('emperor') ||
+                  fullText.contains('ancient')) {
+                theme = 'History';
+              } else if (fullText.contains('travel') ||
+                  fullText.contains('city') ||
+                  fullText.contains('mountain') ||
+                  fullText.contains('visit') ||
+                  fullText.contains('tourist') ||
+                  fullText.contains('gorges')) {
+                theme = 'Travel & Places';
+              } else if (fullText.contains('myth') ||
+                  fullText.contains('legend') ||
+                  fullText.contains('god') ||
+                  fullText.contains('fairy') ||
+                  fullText.contains('magic') ||
+                  fullText.contains('dragon')) {
+                theme = 'Mythology & Fantasy';
+              } else if (fullText.contains('culture') ||
+                  fullText.contains('festival') ||
+                  fullText.contains('tradition') ||
+                  fullText.contains('custom') ||
+                  fullText.contains('confucius')) {
+                theme = 'Culture & Traditions';
+              } else if (fullText.contains('business') ||
+                  fullText.contains('economy') ||
+                  fullText.contains('market') ||
+                  fullText.contains('money') ||
+                  fullText.contains('company')) {
+                theme = 'Business & Economy';
+              } else if (fullText.contains('nature') ||
+                  fullText.contains('animal') ||
+                  fullText.contains('weather') ||
+                  fullText.contains('environment') ||
+                  fullText.contains('cat') ||
+                  fullText.contains('dog')) {
+                theme = 'Nature & Animals';
+              } else if (categories.contains('advanced')) {
+                theme = 'Advanced Reading';
+              } else if (categories.contains('intermediate')) {
+                theme = 'Intermediate Reading';
+              } else if (categories.contains('beginner')) {
+                theme = 'Beginner Reading';
+              }
+
+              // Determine HSK Level
+              int hskLevel = 0;
+              for (final cat in categories) {
+                final catLower = cat.toLowerCase().replaceAll(' ', '');
+                if (catLower.contains('hsk1')) {
+                  hskLevel = 1;
+                } else if (catLower.contains('hsk2')) {
+                  hskLevel = 2;
+                } else if (catLower.contains('hsk3')) {
+                  hskLevel = 3;
+                } else if (catLower.contains('hsk4')) {
+                  hskLevel = 4;
+                } else if (catLower.contains('hsk5')) {
+                  hskLevel = 5;
+                } else if (catLower.contains('hsk6')) {
+                  hskLevel = 6;
+                }
+              }
+              if (hskLevel == 0) {
+                // Check title as fallback
+                final titleLower = title.toLowerCase().replaceAll(' ', '');
+                if (titleLower.contains('hsk1')) {
+                  hskLevel = 1;
+                } else if (titleLower.contains('hsk2')) {
+                  hskLevel = 2;
+                } else if (titleLower.contains('hsk3')) {
+                  hskLevel = 3;
+                } else if (titleLower.contains('hsk4')) {
+                  hskLevel = 4;
+                } else if (titleLower.contains('hsk5')) {
+                  hskLevel = 5;
+                } else if (titleLower.contains('hsk6')) {
+                  hskLevel = 6;
+                }
+              }
+
+              return LibraryStory(
+                title: title,
+                sourceName: sourceName,
+                link: link,
+                imageUrl: imageUrl,
+                summary: summary,
+                category: theme,
+                sourceType: StorySourceType.rss,
+                hskLevel: hskLevel,
+              );
+            })
+            .whereType<LibraryStory>()
+            .toList();
 
         // Return stories immediately WITHOUT waiting for images
         return rawStories;
@@ -241,15 +328,22 @@ class StoryFetcherService {
 
   /// Fetch og:image for a batch of stories that are missing images.
   /// Call this AFTER displaying stories to enrich them lazily.
-  Future<List<LibraryStory>> enrichWithImages(List<LibraryStory> stories) async {
+  Future<List<LibraryStory>> enrichWithImages(
+      List<LibraryStory> stories) async {
     final futures = stories.map((story) async {
       if (story.imageUrl == null && story.link.isNotEmpty) {
         try {
-          final pageResp = await http.get(Uri.parse(story.link)).timeout(const Duration(seconds: 5));
+          final pageResp = await http
+              .get(Uri.parse(story.link))
+              .timeout(const Duration(seconds: 5));
           if (pageResp.statusCode == 200) {
             final doc = parse(pageResp.body);
-            String? img = doc.querySelector('meta[property="og:image"]')?.attributes['content'];
-            img ??= doc.querySelector('meta[name="twitter:image"]')?.attributes['content'];
+            String? img = doc
+                .querySelector('meta[property="og:image"]')
+                ?.attributes['content'];
+            img ??= doc
+                .querySelector('meta[name="twitter:image"]')
+                ?.attributes['content'];
             img ??= doc.querySelector('article img')?.attributes['src'];
             img ??= doc.querySelector('.entry-content img')?.attributes['src'];
             if (img != null && img.isNotEmpty) {
@@ -290,13 +384,13 @@ class StoryFetcherService {
 
   String _translateAuthor(String author) {
     if (author == 'Unknown' || author == 'Local DB') return author;
-    
+
     // Some hardcoded common ones for better formatting
     const Map<String, String> commonTranslations = {
       '太宗皇帝': 'Emperor Taizong',
       '李隆基': 'Emperor Xuanzong',
     };
-    
+
     if (commonTranslations.containsKey(author)) {
       return '$author (${commonTranslations[author]})';
     }
@@ -304,7 +398,8 @@ class StoryFetcherService {
     try {
       // Use lpinyin to generate proper pinyin for the author's name
       // Example: '李白' -> 'Li Bai'
-      String pinyin = PinyinHelper.getPinyinE(author, separator: " ", defPinyin: "", format: PinyinFormat.WITHOUT_TONE);
+      String pinyin = PinyinHelper.getPinyinE(author,
+          separator: " ", defPinyin: "", format: PinyinFormat.WITHOUT_TONE);
       if (pinyin.isNotEmpty) {
         // Capitalize each word
         List<String> words = pinyin.split(" ");
@@ -317,7 +412,7 @@ class StoryFetcherService {
     } catch (e) {
       // Fallback
     }
-    
+
     return author;
   }
 
@@ -325,15 +420,17 @@ class StoryFetcherService {
     final List<LibraryStory> localStories = [];
 
     try {
-      // NOTE: Removed 1000_stories.json loading here as they were just short dictionary citations, 
+      // NOTE: Removed 1000_stories.json loading here as they were just short dictionary citations,
       // not actual narrative stories. The UI now only shows full stories.
 
       // Load Mandarin Bean Stories
       String mbJsonString;
       try {
-        mbJsonString = await rootBundle.loadString('assets/data/mandarin_bean_stories_en.json');
+        mbJsonString = await rootBundle
+            .loadString('assets/data/mandarin_bean_stories_en.json');
       } catch (_) {
-        mbJsonString = await rootBundle.loadString('assets/data/mandarin_bean_stories.json');
+        mbJsonString = await rootBundle
+            .loadString('assets/data/mandarin_bean_stories.json');
       }
       final List<dynamic> listMb = json.decode(mbJsonString);
 
@@ -364,27 +461,25 @@ class StoryFetcherService {
 
     try {
       // Load Poetry
-      String jsonString2;
-      try {
-        jsonString2 = await rootBundle.loadString('assets/data/tang_poetry_en.json');
-      } catch (_) {
-        jsonString2 = await rootBundle.loadString('assets/data/tang_poetry.json');
-      }
+      final jsonString2 = await rootBundle.loadString(chinesePoetryAsset);
       final List<dynamic> list2 = json.decode(jsonString2);
       localStories.addAll(list2.map((data) {
-        final rawAuthor = data['sourceName'] ?? 'Unknown';
+        final poetryData = Map<String, dynamic>.from(data as Map);
+        final rawAuthor = poetryData['sourceName'] ?? 'Unknown';
+        final poemId = poetryEntryId(poetryData);
         return LibraryStory(
-          title: data['title'] ?? '',
-          titleEn: data['title_en'],
+          title: poetryData['title'] ?? '',
+          titleEn: poetryData['title_en'],
           sourceName: _translateAuthor(rawAuthor),
-          link: data['link'] ?? 'tang_poetry_${data['title']}',
-          imageUrl: data['imageUrl'] ?? 'assets/images/ai_hub_ink_mountains.png',
-          summary: data['summary'] ?? '',
-          summaryEn: data['summary_en'],
-          category: data['category'] ?? 'Classical Literature',
+          link: poemId,
+          imageUrl: poetryData['imageUrl'] ??
+              'assets/images/poetry/$poemId.jpg',
+          summary: poetryData['summary'] ?? '',
+          summaryEn: poetryData['summary_en'],
+          category: poetryData['category'] ?? 'Chinese Poetry',
           sourceType: StorySourceType.json,
-          hskLevel: data['hskLevel'] ?? 0,
-          keywords: _extractKeywords(data),
+          hskLevel: poetryData['hskLevel'] ?? 0,
+          keywords: _extractKeywords(poetryData),
         );
       }));
     } catch (e) {
@@ -395,12 +490,14 @@ class StoryFetcherService {
 
   Future<List<LibraryStory>> fetchFirebaseStories() async {
     final List<LibraryStory> localStories = [];
-    
+
     try {
       // Load Graded Readers (default_stories.json)
-      final jsonString = await rootBundle.loadString('assets/default_stories.json');
+      final jsonString =
+          await rootBundle.loadString('assets/default_stories.json');
       final Map<String, dynamic> map = json.decode(jsonString);
-      final List<dynamic> list = map.values.map((v) => v is String ? json.decode(v) : v).toList();
+      final List<dynamic> list =
+          map.values.map((v) => v is String ? json.decode(v) : v).toList();
       localStories.addAll(list.map((data) {
         return LibraryStory(
           title: data['title'] ?? '',
@@ -422,9 +519,11 @@ class StoryFetcherService {
       // Load Contemporary Stories (Mandarin Bean)
       String jsonString;
       try {
-        jsonString = await rootBundle.loadString('assets/data/mandarin_bean_stories_en.json');
+        jsonString = await rootBundle
+            .loadString('assets/data/mandarin_bean_stories_en.json');
       } catch (_) {
-        jsonString = await rootBundle.loadString('assets/data/mandarin_bean_stories.json');
+        jsonString = await rootBundle
+            .loadString('assets/data/mandarin_bean_stories.json');
       }
       final List<dynamic> list = json.decode(jsonString);
       localStories.addAll(list.map((data) {
