@@ -863,7 +863,7 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
                           child: LinearProgressIndicator(
                             value: chapterProgress,
                             minHeight: 3,
-                            backgroundColor: isDark ? Colors.white10 : Colors.black10,
+                            backgroundColor: isDark ? Colors.white10 : Colors.black12,
                             valueColor: AlwaysStoppedAnimation<Color>(activeAccent),
                           ),
                         ),
@@ -873,7 +873,7 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
                           child: LinearProgressIndicator(
                             value: bookProgress,
                             minHeight: 2,
-                            backgroundColor: isDark ? Colors.white10 : Colors.black10,
+                            backgroundColor: isDark ? Colors.white10 : Colors.black12,
                             valueColor: AlwaysStoppedAnimation<Color>(
                               activeAccent.withValues(alpha: 0.45),
                             ),
