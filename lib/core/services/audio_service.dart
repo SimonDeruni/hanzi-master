@@ -220,9 +220,14 @@ class AudioService {
            // Ignore corrupted boundary cache
          }
       }
-      await _player.setPlaybackRate(1.0);
-      await _player.play(DeviceFileSource(cacheFile.path));
-      return true;
+      try {
+        final bytes = await cacheFile.readAsBytes();
+        await _player.setPlaybackRate(1.0);
+        await _player.play(BytesSource(bytes));
+        return true;
+      } catch (e) {
+        debugPrint("[AudioService] Cached audio play failed: $e");
+      }
     }
 
     // Premium Cloud TTS with streaming (Azure Neural Audio)
@@ -230,10 +235,11 @@ class AudioService {
     if (_quotaService.hasQuotaRemaining) {
       try {
         final result = await _fetchCloudTTS(sentence, azureVoice: azureVoice, cacheFile: cacheFile, boundaryFile: boundaryFile);
-        if (result != null && result.success) {
+        if (result != null && result.success && result.audio.isNotEmpty) {
           await _quotaService.recordSpeech(sentence);
           await _player.setPlaybackRate(1.0);
-          await _player.play(DeviceFileSource(cacheFile.path));
+          await _player.play(BytesSource(result.audio));
+          debugPrint("[AudioService] Playing Azure Neural Voice (${result.audio.length} bytes)");
           return true;
         }
       } catch (e) {

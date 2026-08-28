@@ -1,3 +1,4 @@
+import 'package:lpinyin/lpinyin.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -30,6 +31,58 @@ class BookReaderScreen extends ConsumerStatefulWidget {
 }
 
 class _BookReaderScreenState extends ConsumerState<BookReaderScreen> {
+  final Map<String, List<_RubyToken>> _rubyCache = {};
+
+  List<_RubyToken> _getRubyTokens(String chinese) {
+    if (_rubyCache.containsKey(chinese)) {
+      return _rubyCache[chinese]!;
+    }
+
+    final pinyinString = PinyinHelper.getPinyinE(
+      chinese,
+      separator: ' ',
+      format: PinyinFormat.WITH_TONE_MARK,
+    );
+    final pinyinList = pinyinString.split(' ').where((s) => s.isNotEmpty).toList();
+
+    final tokens = <_RubyToken>[];
+    int pinyinIdx = 0;
+    int hanziIdx = 0;
+    const punctuation = {
+      '，', '。', '！', '？', '、', '“', '”', '‘', '’', '：', '；', '《', '》', '（', '）', '—', '…',
+      ' ', '\n', '\r', '\t', ',', '!', '?', '.', ':', ';', "'", '"', '(', ')', '[', ']', '{', '}'
+    };
+
+    for (final char in chinese.characters) {
+      final isPunctuation = punctuation.contains(char) || RegExp(r'^\d+$').hasMatch(char);
+      if (isPunctuation) {
+        tokens.add(_RubyToken(char: char, pinyin: '', isPunctuation: true, hanziIndex: -1));
+      } else {
+        final pinyin = pinyinIdx < pinyinList.length ? pinyinList[pinyinIdx] : '';
+        tokens.add(_RubyToken(char: char, pinyin: pinyin, isPunctuation: false, hanziIndex: hanziIdx));
+        pinyinIdx++;
+        hanziIdx++;
+      }
+    }
+
+    _rubyCache[chinese] = tokens;
+    return tokens;
+  }
+
+  void _openAudiobookAtSentence(int sentenceIdx) {
+    _stopAudiobook();
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (_) => AudiobookPlayerScreen(
+          book: widget.book,
+          chapters: widget.chapters,
+          initialChapterIndex: _currentIndex,
+          initialSentenceIndex: sentenceIdx,
+        ),
+      ),
+    );
+  }
+
   late int _currentIndex;
   BookPinyinMode _pinyinMode = BookPinyinMode.all;
   final Set<int> _revealedTranslations = {};
@@ -1034,65 +1087,95 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            // Top Row: Pinyin & Audio Button
+                            // Top Row: Audio Button & Actions
                             Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Expanded(
-                                  child: _pinyinMode != BookPinyinMode.none && sentence.pinyin.isNotEmpty
-                                      ? Padding(
-                                          padding: const EdgeInsets.only(bottom: 4),
-                                          child: Text(
-                                            sentence.pinyin,
-                                            style: TextStyle(
-                                              fontSize: _fontSize * 0.65,
-                                              color: _pinyinMode == BookPinyinMode.ghost
-                                                  ? (isDark ? Colors.white30 : Colors.black26)
-                                                  : (isDark ? Colors.amber.shade200 : Colors.indigo.shade700),
-                                              fontWeight: FontWeight.w500,
-                                              letterSpacing: 0.5,
-                                            ),
-                                          ),
-                                        )
-                                      : const SizedBox.shrink(),
+                                Text(
+                                  'Sentence ${index + 1}',
+                                  style: TextStyle(
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.bold,
+                                    color: isDark ? Colors.white30 : Colors.black26,
+                                  ),
                                 ),
                                 IconButton(
                                   visualDensity: VisualDensity.compact,
                                   icon: Icon(
                                     Icons.volume_up_outlined,
-                                    size: 18,
+                                    size: 20,
                                     color: isDark ? Colors.amber.shade300 : const Color(0xFF8B0000),
                                   ),
-                                  tooltip: 'Play Audiobook from here',
+                                  tooltip: 'Listen in Audiobook Mode',
                                   onPressed: () {
-                                    HapticsManager.light();
-                                    _startAudiobookFrom(index);
+                                    HapticsManager.medium();
+                                    _openAudiobookAtSentence(index);
                                   },
                                 ),
                               ],
                             ),
 
-                            // Chinese Characters with Tap-to-Lookup
+                            // Ruby Chinese Characters & Pinyin Alignment
                             Wrap(
-                              spacing: 1,
-                              runSpacing: 4,
-                              children: sentence.chinese.characters.map((char) {
-                                final isPunctuation = RegExp(r'[，。！？、“”‘’：；《》（）—…\s]').hasMatch(char);
+                              spacing: 3,
+                              runSpacing: 8,
+                              crossAxisAlignment: WrapCrossAlignment.center,
+                              children: _getRubyTokens(sentence.chinese).map((token) {
+                                if (token.isPunctuation) {
+                                  return Padding(
+                                    padding: EdgeInsets.only(top: _pinyinMode != BookPinyinMode.none ? _fontSize * 0.6 : 0),
+                                    child: Text(
+                                      token.char,
+                                      style: TextStyle(
+                                        fontSize: _fontSize,
+                                        color: isAudioActiveSentence
+                                            ? (isDark ? Colors.amber.shade200 : const Color(0xFF8B0000))
+                                            : primaryText,
+                                        fontFamily: 'NotoSerifSC',
+                                      ),
+                                    ),
+                                  );
+                                }
+
                                 return GestureDetector(
                                   onTap: () {
-                                    if (!isPunctuation) {
-                                      HapticsManager.light();
-                                      showQuickLook(context, char);
-                                    }
+                                    HapticsManager.light();
+                                    showQuickLook(context, token.char);
                                   },
-                                  child: Text(
-                                    char,
-                                    style: TextStyle(
-                                      fontSize: _fontSize,
-                                      color: primaryText,
-                                      fontWeight: FontWeight.w500,
-                                      height: 1.4,
-                                    ),
+                                  behavior: HitTestBehavior.opaque,
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      // Tone-marked Pinyin directly above Hanzi
+                                      if (_pinyinMode != BookPinyinMode.none)
+                                        Text(
+                                          token.pinyin,
+                                          style: TextStyle(
+                                            fontSize: _fontSize * 0.55,
+                                            fontWeight: FontWeight.w500,
+                                            color: _pinyinMode == BookPinyinMode.ghost
+                                                ? (isDark ? Colors.white30 : Colors.black26)
+                                                : (isAudioActiveSentence
+                                                    ? (isDark ? Colors.amber.shade200 : const Color(0xFF8B0000))
+                                                    : (isDark ? Colors.white70 : const Color(0xFF5A4D41))),
+                                            height: 1.1,
+                                          ),
+                                        ),
+                                      const SizedBox(height: 2),
+                                      // Chinese Hanzi Character
+                                      Text(
+                                        token.char,
+                                        style: TextStyle(
+                                          fontSize: _fontSize,
+                                          fontWeight: isAudioActiveSentence ? FontWeight.bold : FontWeight.w500,
+                                          color: isAudioActiveSentence
+                                              ? (isDark ? Colors.amber.shade300 : const Color(0xFF8B0000))
+                                              : primaryText,
+                                          fontFamily: 'NotoSerifSC',
+                                          height: 1.2,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 );
                               }).toList(),
@@ -1310,4 +1393,18 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen> {
       ),
     );
   }
+}
+
+class _RubyToken {
+  final String char;
+  final String pinyin;
+  final bool isPunctuation;
+  final int hanziIndex;
+
+  const _RubyToken({
+    required this.char,
+    required this.pinyin,
+    required this.isPunctuation,
+    required this.hanziIndex,
+  });
 }
