@@ -755,180 +755,386 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
         const SnackBar(content: Text("Words saved and SRS scheduled!")));
   }
 
+  // Accent color matching the rest of the app (Explore / Roleplay / Echo Hall)
+  static const Color _accentGold = Color(0xFFFFB300);
+  static const Color _accentGoldLight = Color(0xFFFFD54F);
+
+  Widget _buildSectionLabel({
+    required IconData icon,
+    required String title,
+    required bool isDark,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 4),
+      child: Row(
+        children: [
+          Icon(icon, size: 18, color: _accentGold),
+          const SizedBox(width: 8),
+          Text(
+            title,
+            style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w700,
+              color: isDark ? Colors.white : const Color(0xFF1A1A1B),
+              letterSpacing: 0.3,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildSegmentModeTab({
+    required ShadowingMode mode,
+    required IconData icon,
+    required String label,
+    required bool isDark,
+  }) {
+    final isSelected = _selectedMode == mode;
+    return Expanded(
+      child: GestureDetector(
+        onTap: () {
+          if (_selectedMode != mode) {
+            setState(() => _selectedMode = mode);
+            HapticFeedback.selectionClick();
+          }
+        },
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeInOutQuart,
+          decoration: BoxDecoration(
+            color: isSelected
+                ? _accentGold.withValues(alpha: isDark ? 0.25 : 0.15)
+                : Colors.transparent,
+            borderRadius: BorderRadius.circular(12),
+            border: isSelected
+                ? Border.all(
+                    color: _accentGold.withValues(alpha: 0.4), width: 1)
+                : null,
+          ),
+          alignment: Alignment.center,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(icon,
+                  size: 15,
+                  color: isSelected
+                      ? _accentGold
+                      : (isDark ? Colors.white54 : Colors.black38)),
+              const SizedBox(width: 4),
+              Flexible(
+                child: Text(
+                  label,
+                  style: TextStyle(
+                    color: isSelected
+                        ? (isDark ? _accentGoldLight : const Color(0xFF1A1A1B))
+                        : (isDark ? Colors.white54 : Colors.black38),
+                    fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
+                    fontSize: 11,
+                    letterSpacing: 0.2,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSecondaryChip({
+    required ShadowingMode mode,
+    required String label,
+    required bool isDark,
+  }) {
+    final isSelected = _selectedMode == mode;
+    final cardBg = isDark ? const Color(0xFF2C2C2E) : Colors.white;
+    return GestureDetector(
+      onTap: () {
+        if (_selectedMode != mode) {
+          setState(() => _selectedMode = mode);
+          HapticFeedback.selectionClick();
+        }
+      },
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 7),
+        decoration: BoxDecoration(
+          color: isSelected
+              ? _accentGold.withValues(alpha: isDark ? 0.2 : 0.12)
+              : cardBg,
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(
+            color: isSelected
+                ? _accentGold.withValues(alpha: 0.5)
+                : (isDark ? Colors.white12 : Colors.black12),
+          ),
+        ),
+        child: Text(
+          label,
+          style: TextStyle(
+            color: isSelected
+                ? _accentGold
+                : (isDark ? Colors.white54 : Colors.black54),
+            fontSize: 12,
+            fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildConfigCard({
+    required bool isDark,
+    required String label,
+    required Widget child,
+  }) {
+    final cardBg = isDark ? const Color(0xFF1E1E22) : Colors.white;
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 10),
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+        decoration: BoxDecoration(
+          color: cardBg,
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(
+            color: isDark
+                ? Colors.white.withValues(alpha: 0.08)
+                : Colors.black.withValues(alpha: 0.06),
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: isDark ? 0.2 : 0.03),
+              blurRadius: 10,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              label,
+              style: TextStyle(
+                fontSize: 11,
+                fontWeight: FontWeight.w600,
+                color: isDark ? Colors.white38 : Colors.black45,
+                letterSpacing: 0.8,
+              ),
+            ),
+            const SizedBox(height: 6),
+            child,
+          ],
+        ),
+      ),
+    );
+  }
+
   Widget _buildHubUI(BuildContext context, bool isDark) {
+    final bgColor = isDark ? const Color(0xFF141416) : const Color(0xFFFDFCF0);
+    final primaryText = isDark ? Colors.white : const Color(0xFF1A1A1B);
+
     return Scaffold(
-      backgroundColor:
-          isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
+      backgroundColor: bgColor,
       body: CalligraphyBackground(
         child: SafeArea(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              // Header
-              if (widget.showBackButton)
-                Padding(
-                  padding: const EdgeInsets.all(24.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
+              // ── Header Bar ────────────────────────────────────────
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                child: Row(
+                  children: [
+                    if (widget.showBackButton)
                       IconButton(
-                        icon: Icon(Icons.arrow_back,
-                            color:
-                                isDark ? Colors.white : const Color(0xFF1A1A1B)),
+                        icon: const Icon(Icons.arrow_back_ios, size: 20),
+                        color: primaryText,
                         onPressed: () => Navigator.pop(context),
+                      )
+                    else
+                      const SizedBox(width: 48),
+                    const Spacer(),
+                    Text(
+                      'Shadowing Studio',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w900,
+                        color: primaryText,
+                        letterSpacing: 0.5,
                       ),
-                    ],
+                    ),
+                    const Spacer(),
+                    const SizedBox(width: 48),
+                  ],
+                ),
+              ),
+
+              // ── Hero Icon ─────────────────────────────────────────
+              Padding(
+                padding: const EdgeInsets.only(top: 8),
+                child: Container(
+                  padding: const EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                    color: _accentGold.withValues(alpha: isDark ? 0.1 : 0.06),
+                    shape: BoxShape.circle,
+                  ),
+                  child: Icon(
+                    Icons.graphic_eq_rounded,
+                    size: 56,
+                    color: isDark ? _accentGoldLight : _accentGold,
                   ),
                 ),
+              ),
 
-              // Hero Section
+              const SizedBox(height: 20),
+
+              // ── Subtitle ──────────────────────────────────────────
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                child: Text(
+                  'Master your Mandarin pronunciation\nby mimicking native speech.',
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: isDark ? Colors.white60 : Colors.black54,
+                    height: 1.5,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+
+              // ── Scrollable Content ────────────────────────────────
               Expanded(
                 child: SingleChildScrollView(
-                  padding: const EdgeInsets.symmetric(horizontal: 32),
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const SizedBox(height: 20),
+                      const SizedBox(height: 24),
+
+                      // ── Mode Selector Section ─────────────────────
+                      _buildSectionLabel(
+                        icon: Icons.tune_rounded,
+                        title: 'Practice Mode',
+                        isDark: isDark,
+                      ),
+                      const SizedBox(height: 10),
+
+                      // Primary modes: segmented pill row
                       Container(
-                        padding: const EdgeInsets.all(24),
+                        height: 46,
+                        padding: const EdgeInsets.all(4),
                         decoration: BoxDecoration(
                           color: isDark
-                              ? Colors.orange.withValues(alpha: 0.1)
-                              : Colors.orange.withValues(alpha: 0.05),
-                          shape: BoxShape.circle,
+                              ? const Color(0xFF2C2C2E)
+                              : Colors.black.withValues(alpha: 0.04),
+                          borderRadius: BorderRadius.circular(16),
                         ),
-                        child: Icon(
-                          Icons.record_voice_over,
-                          size: 80,
-                          color: isDark
-                              ? Colors.orange.shade300
-                              : Colors.orange.shade600,
+                        child: Row(
+                          children: [
+                            _buildSegmentModeTab(
+                              mode: ShadowingMode.freeFlow,
+                              icon: Icons.mic_none_rounded,
+                              label: 'Free Flow',
+                              isDark: isDark,
+                            ),
+                            const SizedBox(width: 2),
+                            _buildSegmentModeTab(
+                              mode: ShadowingMode.theme,
+                              icon: Icons.auto_stories_rounded,
+                              label: 'Theme',
+                              isDark: isDark,
+                            ),
+                            const SizedBox(width: 2),
+                            _buildSegmentModeTab(
+                              mode: ShadowingMode.deck,
+                              icon: Icons.style_rounded,
+                              label: 'Deck',
+                              isDark: isDark,
+                            ),
+                          ],
                         ),
-                      ),
-                      const SizedBox(height: 32),
-                      Text(
-                        "Shadowing Studio",
-                        style: TextStyle(
-                          fontSize: 32,
-                          fontWeight: FontWeight.w900,
-                          color:
-                              isDark ? Colors.white : const Color(0xFF1A1A1B),
-                          letterSpacing: 0.5,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                      const SizedBox(height: 16),
-                      Text(
-                        "Master your Mandarin pronunciation by mimicking native speech.",
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: isDark ? Colors.white70 : Colors.black54,
-                          height: 1.5,
-                        ),
-                        textAlign: TextAlign.center,
                       ),
 
-                      // Mode Selection
-                      const SizedBox(height: 24),
-                      Text(
-                        "PRACTICE MODE",
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 2,
-                          color: isDark ? Colors.white54 : Colors.black54,
-                        ),
-                      ),
-                      const SizedBox(height: 16),
-                      Wrap(
-                        spacing: 12,
-                        runSpacing: 12,
-                        alignment: WrapAlignment.center,
+                      const SizedBox(height: 8),
+
+                      // Custom modes: secondary chips
+                      Row(
                         children: [
-                          ChoiceChip(
-                            label: const Text("Free Flow"),
-                            selected: _selectedMode == ShadowingMode.freeFlow,
-                            onSelected: (val) => setState(
-                                () => _selectedMode = ShadowingMode.freeFlow),
-                            selectedColor: Colors.orange.shade200,
-                            backgroundColor: isDark
-                                ? Colors.grey.shade900
-                                : Colors.grey.shade200,
+                          _buildSecondaryChip(
+                            mode: ShadowingMode.customWord,
+                            label: 'Custom Word',
+                            isDark: isDark,
                           ),
-                          ChoiceChip(
-                            label: const Text("Thematic"),
-                            selected: _selectedMode == ShadowingMode.theme,
-                            onSelected: (val) => setState(
-                                () => _selectedMode = ShadowingMode.theme),
-                            selectedColor: Colors.orange.shade200,
-                            backgroundColor: isDark
-                                ? Colors.grey.shade900
-                                : Colors.grey.shade200,
-                          ),
-                          ChoiceChip(
-                            label: const Text("Deck (Flashcards)"),
-                            selected: _selectedMode == ShadowingMode.deck,
-                            onSelected: (val) => setState(
-                                () => _selectedMode = ShadowingMode.deck),
-                            selectedColor: Colors.orange.shade200,
-                            backgroundColor: isDark
-                                ? Colors.grey.shade900
-                                : Colors.grey.shade200,
-                          ),
-                          ChoiceChip(
-                            label: const Text("Custom Word"),
-                            selected: _selectedMode == ShadowingMode.customWord,
-                            onSelected: (val) => setState(
-                                () => _selectedMode = ShadowingMode.customWord),
-                            selectedColor: Colors.orange.shade200,
-                            backgroundColor: isDark
-                                ? Colors.grey.shade900
-                                : Colors.grey.shade200,
+                          const SizedBox(width: 8),
+                          _buildSecondaryChip(
+                            mode: ShadowingMode.customSentence,
+                            label: 'Custom Sentence',
+                            isDark: isDark,
                           ),
                         ],
                       ),
-                      if (_selectedMode == ShadowingMode.customWord) ...[
-                        const SizedBox(height: 16),
-                        Builder(builder: (context) {
-                          final asyncCards =
-                              ref.watch(flashcardControllerProvider);
-                          final allCards = asyncCards.valueOrNull ?? [];
-                          final options =
-                              allCards.map((c) => c.hanzi).toSet().toList();
 
-                          return Autocomplete<String>(
-                            optionsBuilder:
-                                (TextEditingValue textEditingValue) {
-                              if (textEditingValue.text.isEmpty) {
-                                return options.take(10);
-                              }
-                              return options.where((String option) =>
-                                  option.contains(textEditingValue.text));
-                            },
-                            onSelected: (String selection) =>
-                                setState(() => _customWordInput = selection),
-                            fieldViewBuilder: (context, textEditingController,
-                                focusNode, onFieldSubmitted) {
-                              return HanziTextField(
-                                controller: textEditingController,
-                                focusNode: focusNode,
-                                decoration: InputDecoration(
-                                  hintText: "Search library or type custom",
-                                  filled: true,
-                                  fillColor:
-                                      isDark ? Colors.grey[900] : Colors.white,
-                                  border: OutlineInputBorder(
+                      const SizedBox(height: 24),
+
+                      // ── Configuration Section ─────────────────────
+                      _buildSectionLabel(
+                        icon: Icons.settings_rounded,
+                        title: 'Configuration',
+                        isDark: isDark,
+                      ),
+                      const SizedBox(height: 10),
+
+                      if (_selectedMode == ShadowingMode.customWord) ...[
+                        _buildConfigCard(
+                          isDark: isDark,
+                          label: 'CHINESE CHARACTER',
+                          child: Builder(builder: (context) {
+                            final asyncCards =
+                                ref.watch(flashcardControllerProvider);
+                            final allCards = asyncCards.valueOrNull ?? [];
+                            final options =
+                                allCards.map((c) => c.hanzi).toSet().toList();
+
+                            return Autocomplete<String>(
+                              optionsBuilder:
+                                  (TextEditingValue textEditingValue) {
+                                if (textEditingValue.text.isEmpty) {
+                                  return options.take(10);
+                                }
+                                return options.where((String option) =>
+                                    option.contains(textEditingValue.text));
+                              },
+                              onSelected: (String selection) =>
+                                  setState(() => _customWordInput = selection),
+                              fieldViewBuilder: (context, textEditingController,
+                                  focusNode, onFieldSubmitted) {
+                                return HanziTextField(
+                                  controller: textEditingController,
+                                  focusNode: focusNode,
+                                  decoration: InputDecoration(
+                                    hintText: 'Search library or type custom',
+                                    filled: true,
+                                    fillColor: isDark
+                                        ? const Color(0xFF2C2C2E)
+                                        : const Color(0xFFF5F5F5),
+                                    border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(12),
-                                      borderSide: BorderSide.none),
-                                ),
-                                style: TextStyle(
-                                    color:
-                                        isDark ? Colors.white : Colors.black),
-                                onChanged: (val) =>
-                                    setState(() => _customWordInput = val),
-                              );
-                            },
-                            optionsViewBuilder:
-                                (context, onSelected, optionsView) {
+                                      borderSide: BorderSide.none,
+                                    ),
+                                  ),
+                                  style: TextStyle(
+                                      color:
+                                          isDark ? Colors.white : Colors.black),
+                                  onChanged: (val) =>
+                                      setState(() => _customWordInput = val),
+                                );
+                              },
+                              optionsViewBuilder:
+                                  (context, onSelected, optionsView) {
                               return Align(
                                 alignment: Alignment.topLeft,
                                 child: Material(
@@ -991,14 +1197,23 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                             },
                           );
                         }),
-                      ],
-                      if (_selectedMode == ShadowingMode.theme) ...[
-                        const SizedBox(height: 16),
-                        DropdownButtonHideUnderline(
+                      ),
+                    ],
+                    if (_selectedMode == ShadowingMode.theme) ...[
+                      _buildConfigCard(
+                        isDark: isDark,
+                        label: 'HSK LEVEL',
+                        child: DropdownButtonHideUnderline(
                           child: DropdownButton<String>(
                             value: _selectedTheme,
+                            isExpanded: true,
                             dropdownColor:
-                                isDark ? Colors.grey[900] : Colors.white,
+                                isDark ? const Color(0xFF2C2C2E) : Colors.white,
+                            style: TextStyle(
+                              color:
+                                  isDark ? Colors.white : const Color(0xFF1A1A1B),
+                              fontSize: 15,
+                            ),
                             items: [
                               "HSK 1",
                               "HSK 2",
@@ -1018,102 +1233,88 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                             },
                           ),
                         ),
-                      ],
+                      ),
+                    ],
                       if (_selectedMode == ShadowingMode.deck) ...[
-                        const SizedBox(height: 16),
-                        ref.watch(deckControllerProvider).when(
-                              data: (decks) {
-                                if (decks.isEmpty) {
-                                  return const Text("No decks found.");
-                                }
-                                return DropdownButtonHideUnderline(
-                                  child: DropdownButton<String>(
-                                    value: _selectedDeckId ?? decks.first.id,
-                                    dropdownColor: isDark
-                                        ? Colors.grey[900]
-                                        : Colors.white,
-                                    items: decks
-                                        .map((d) => DropdownMenuItem(
-                                            value: d.id, child: Text(d.name)))
-                                        .toList(),
-                                    onChanged: (val) {
-                                      if (val != null) {
-                                        setState(() => _selectedDeckId = val);
-                                      }
-                                    },
+                        _buildConfigCard(
+                          isDark: isDark,
+                          label: 'FLASHCARD DECK',
+                          child: ref.watch(deckControllerProvider).when(
+                                data: (decks) {
+                                  if (decks.isEmpty) {
+                                    return const Text('No decks found.');
+                                  }
+                                  return DropdownButtonHideUnderline(
+                                    child: DropdownButton<String>(
+                                      value:
+                                          _selectedDeckId ?? decks.first.id,
+                                      isExpanded: true,
+                                      dropdownColor: isDark
+                                          ? const Color(0xFF2C2C2E)
+                                          : Colors.white,
+                                      style: TextStyle(
+                                        color: isDark
+                                            ? Colors.white
+                                            : const Color(0xFF1A1A1B),
+                                        fontSize: 15,
+                                      ),
+                                      items: decks
+                                          .map((d) => DropdownMenuItem(
+                                              value: d.id,
+                                              child: Text(d.name)))
+                                          .toList(),
+                                      onChanged: (val) {
+                                        if (val != null) {
+                                          setState(
+                                              () => _selectedDeckId = val);
+                                        }
+                                      },
+                                    ),
+                                  );
+                                },
+                                loading: () => const Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: SizedBox(
+                                    height: 20,
+                                    width: 20,
+                                    child: CircularProgressIndicator(
+                                        strokeWidth: 2),
                                   ),
-                                );
-                              },
-                              loading: () => const CircularProgressIndicator(
-                                  strokeWidth: 2),
-                              error: (e, st) =>
-                                  const Text("Error loading decks"),
-                            ),
+                                ),
+                                error: (e, st) =>
+                                    const Text('Error loading decks'),
+                              ),
+                        ),
                       ],
+
+                      const SizedBox(height: 24),
                     ],
                   ),
                 ),
               ),
 
               // Start Button Area
-              Container(
-                padding: const EdgeInsets.all(32),
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      (isDark
-                              ? const Color(0xFF1A1A1A)
-                              : const Color(0xFFFDF5E6))
-                          .withValues(alpha: 0.0),
-                      isDark
-                          ? const Color(0xFF1A1A1A)
-                          : const Color(0xFFFDF5E6),
-                    ],
+              Padding(
+                padding: const EdgeInsets.fromLTRB(32, 16, 32, 32),
+                child: FilledButton.icon(
+                  onPressed: _startSession,
+                  icon: const Icon(Icons.mic, size: 24),
+                  label: const Text(
+                    'START SESSION',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
+                      letterSpacing: 1.2,
+                    ),
                   ),
-                ),
-                child: Container(
-                  height: 64,
-                  decoration: BoxDecoration(
-                    gradient: const LinearGradient(
-                      colors: [Color(0xFFFF9800), Color(0xFFF57C00)],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
+                  style: FilledButton.styleFrom(
+                    backgroundColor: _accentGold,
+                    foregroundColor: Colors.black,
+                    minimumSize: const Size(double.infinity, 56),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
                     ),
-                    borderRadius: BorderRadius.circular(32),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.orange.withValues(alpha: 0.4),
-                        blurRadius: 16,
-                        offset: const Offset(0, 8),
-                      ),
-                    ],
-                  ),
-                  child: ElevatedButton(
-                    onPressed: _startSession,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.transparent,
-                      shadowColor: Colors.transparent,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(32)),
-                    ),
-                    child: const Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(Icons.mic, size: 28, color: Colors.white),
-                        SizedBox(width: 12),
-                        Text(
-                          "START SESSION",
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            letterSpacing: 1.5,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ],
-                    ),
+                    elevation: 0,
                   ),
                 ),
               ),
@@ -1134,7 +1335,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
       child: Scaffold(
         backgroundColor: widget.isCompact
             ? Colors.transparent
-            : (isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0)),
+            : (isDark ? const Color(0xFF141416) : const Color(0xFFFDFCF0)),
         body: SafeArea(
           child: LayoutBuilder(
             builder: (context, constraints) {

@@ -7,6 +7,7 @@ import 'package:hanzi_master/features/flashcards/presentation/providers/deck_con
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'package:hanzi_master/shared/widgets/global_blurred_bottom_sheet.dart';
 import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
+import 'package:uuid/uuid.dart';
 class DeckSelectionSheet extends ConsumerWidget {
   final Flashcard? card;
   final List<Flashcard>? cards;
@@ -173,15 +174,22 @@ class DeckSelectionSheet extends ConsumerWidget {
     ).whenComplete(() => controller.dispose());
   }
 
-  void _addCardsToDeck(BuildContext context, WidgetRef ref, String deckId, String deckName) {
+  void _addCardsToDeck(BuildContext context, WidgetRef ref, String deckId, String deckName) async {
     final controller = ref.read(flashcardControllerProvider.notifier);
     final l10n = AppLocalizations.of(context)!;
+    final messenger = ScaffoldMessenger.of(context);
+    final navigator = Navigator.of(context);
     
     if (cards != null && cards!.isNotEmpty) {
+       // Get existing cards to detect duplicates (for accurate count)
+       final existingCards = ref.read(flashcardControllerProvider).value ?? [];
+       final existingHanzi = existingCards.map((c) => c.hanzi).toSet();
+       
        int addedCount = 0;
+       int skippedCount = 0;
        for (final c in cards!) {
          final newCard = Flashcard(
-           id: DateTime.now().millisecondsSinceEpoch.toString() + addedCount.toString(),
+           id: const Uuid().v4(),
            hanzi: c.hanzi,
            pinyin: c.pinyin,
            definition: c.definition,
@@ -190,18 +198,32 @@ class DeckSelectionSheet extends ConsumerWidget {
            modeStats: const {},
            deckId: deckId,
          );
-         controller.addFlashcard(newCard);
-         addedCount++;
+         if (existingHanzi.contains(c.hanzi)) {
+           // Already exists — update its definition/pinyin but keep the existing card
+           skippedCount++;
+           await controller.addFlashcard(newCard); // This will update the existing one
+         } else {
+           await controller.addFlashcard(newCard);
+           addedCount++;
+           existingHanzi.add(c.hanzi); // Track for subsequent duplicates in same batch
+         }
        }
-       ScaffoldMessenger.of(context).showSnackBar(
+       
+       String message;
+       if (skippedCount > 0) {
+         message = 'Added $addedCount new words, updated $skippedCount existing words to $deckName';
+       } else {
+         message = 'Added $addedCount words to $deckName';
+       }
+       messenger.showSnackBar(
          SnackBar(
-           content: Text('Added $addedCount words to $deckName'),
+           content: Text(message),
            backgroundColor: Colors.green,
          ),
        );
     } else if (card != null) {
        final newCard = Flashcard(
-         id: DateTime.now().millisecondsSinceEpoch.toString(),
+         id: const Uuid().v4(),
          hanzi: card!.hanzi,
          pinyin: card!.pinyin,
          definition: card!.definition,
@@ -210,8 +232,8 @@ class DeckSelectionSheet extends ConsumerWidget {
          modeStats: const {},
          deckId: deckId,
        );
-       controller.addFlashcard(newCard);
-       ScaffoldMessenger.of(context).showSnackBar(
+       await controller.addFlashcard(newCard);
+       messenger.showSnackBar(
          SnackBar(
            content: Text(l10n.addedToDeck(card!.hanzi, deckName)),
            backgroundColor: Colors.green,
@@ -219,7 +241,7 @@ class DeckSelectionSheet extends ConsumerWidget {
        );
     }
     
-    Navigator.pop(context);
+    navigator.pop();
     if (onAdded != null) onAdded!();
   }
 }
