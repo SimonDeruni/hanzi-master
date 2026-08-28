@@ -6,6 +6,7 @@ import '../../../../shared/routes/swipe_back_route.dart';
 import '../../../../core/presentation/widgets/hanzi_text_field.dart';
 import 'show_detail_screen.dart';
 import '../providers/show_progress_provider.dart';
+import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 
 final showsProvider = FutureProvider<Map<ShowGenre, List<Show>>>((ref) {
   final repo = ref.watch(showRepositoryProvider);
