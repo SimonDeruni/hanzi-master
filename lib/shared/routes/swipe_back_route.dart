@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 
 /// A page route that supports iOS-style swipe-back gesture.
 /// The previous screen peeks out from behind the current one.
-class SwipeBackRoute extends MaterialPageRoute {
-  SwipeBackRoute({required super.builder});
+class SwipeBackRoute<T> extends MaterialPageRoute<T> {
+  SwipeBackRoute({required super.builder, super.settings});
 
   @override
   bool get fullscreenDialog => false;
 }
 
 /// Alias kept for backwards-compatibility — all existing call-sites use this name.
-typedef SwipeBackPageRoute = SwipeBackRoute;
+typedef SwipeBackPageRoute<T> = SwipeBackRoute<T>;
+

@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hanzi_master/core/services/audio_service.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -12,6 +13,7 @@ import 'package:uuid/uuid.dart';
 import 'package:hanzi_master/core/providers.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/deck_selection_sheet.dart';
+import 'package:hanzi_master/features/flashcards/presentation/providers/deck_controller.dart';
 import 'package:hanzi_master/features/media/domain/models/saved_article.dart';
 
 import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
@@ -1361,210 +1363,21 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: widget.showBackButton,
-        title: Container(
-          height: 40,
-          decoration: BoxDecoration(
-            color: Colors.black.withValues(alpha: 0.05),
-            borderRadius: BorderRadius.circular(20),
-          ),
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: HanziTextField(
-            controller: _urlController,
-            decoration: const InputDecoration(
-              hintText: 'Search or enter website name',
-              border: InputBorder.none,
-              icon: Icon(Icons.search, size: 20),
-            ),
-            textInputAction: TextInputAction.go,
-            onSubmitted: (url) {
-              if (!url.startsWith('http')) {
-                url = 'https://$url';
-              }
-              _controller.loadRequest(Uri.parse(url));
-            },
-          ),
-        ),
-        backgroundColor: Theme.of(context).brightness == Brightness.dark
-            ? const Color(0xFF1A1A1B)
-            : const Color(0xFFFDFCF0),
-        elevation: 1,
-        iconTheme: IconThemeData(
-          color: Theme.of(context).brightness == Brightness.dark
-              ? Colors.white
-              : Colors.black87,
-        ),
-        actions: [
-          IconButton(
-            icon: Icon(_isArticleSaved ? Icons.bookmark : Icons.bookmark_border),
-            tooltip: _isArticleSaved ? 'Article saved' : 'Save Article',
-            onPressed: _isArticleSaved ? null : () async {
-              HapticsManager.light();
-              final urlRaw = await _controller
-                  .runJavaScriptReturningResult('window.location.href');
-              final url = urlRaw.toString().replaceAll('"', '');
-
-              if (widget.isStoryMode) {
-                final prefs = await SharedPreferences.getInstance();
-                final savedUrls =
-                    prefs.getStringList('bookmarked_story_urls') ?? [];
-                if (!savedUrls.contains(url)) {
-                  savedUrls.add(url);
-                  await prefs.setStringList('bookmarked_story_urls', savedUrls);
-                  if (mounted) {
-                    setState(() => _isArticleSaved = true);
-                    if (context.mounted) {
-                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                          content: Text('Story bookmarked in Library!')));
-                    }
-                  }
-                } else {
-                  if (mounted && context.mounted) {
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                        content: Text('Story already bookmarked!')));
-                  }
-                }
-              } else {
-                final titleRaw = await _controller
-                    .runJavaScriptReturningResult('document.title');
-                final title = titleRaw.toString().replaceAll('"', '');
-
-                final textRaw = await _controller
-                    .runJavaScriptReturningResult('document.body.innerText');
-                final text = textRaw.toString().replaceAll('"', '');
-
-                final article = SavedArticle(
-                  title: title,
-                  url: url,
-                  extractedText: text,
-                  timestamp: DateTime.now(),
-                );
-
-                final box = Hive.box<SavedArticle>('saved_articles');
-                await box.add(article);
-
-                if (mounted) {
-                  setState(() => _isArticleSaved = true);
-                  if (context.mounted) {
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                        content: Text('Article saved to Media Hub!')));
-                  }
-                }
-              }
-            },
-          ),
-          IconButton(
-            icon: Icon(
-              Icons.menu_book,
-              color: _isZenMode ? Colors.indigo : Colors.black87,
-            ),
-            onPressed: () {
-              HapticsManager.light();
-              _toggleZenMode();
-            },
-            tooltip: 'Zen Mode',
-          ),
-          IconButton(
-            icon: const Icon(Icons.refresh),
-            onPressed: () {
-              HapticsManager.light();
-              _controller.reload();
-            },
-          ),
-        ],
-        bottom: _isProcessingAi
-            ? const PreferredSize(
-                preferredSize: Size.fromHeight(4.0),
-                child: LinearProgressIndicator(color: Colors.blueAccent),
-              )
-            : null,
-      ),
-      bottomNavigationBar: BottomAppBar(
-      color: Theme.of(context).brightness == Brightness.dark
-          ? const Color(0xFF1A1A1B)
-          : const Color(0xFFFDFCF0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            IconButton(
-              icon: const Icon(Icons.arrow_back_ios),
-              onPressed: () async {
-                HapticsManager.light();
-                if (await _controller.canGoBack()) {
-                  _controller.goBack();
-                }
-              },
-            ),
-            IconButton(
-              icon: const Icon(Icons.arrow_forward_ios),
-              onPressed: () async {
-                HapticsManager.light();
-                if (await _controller.canGoForward()) {
-                  _controller.goForward();
-                }
-              },
-            ),
-            // AI Reading Tools Button OR Translate Selection Button
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: _selectedText.isNotEmpty
-                    ? ElevatedButton.icon(
-                        icon: const Icon(Icons.translate),
-                        label: const Text("Translate Selection",
-                            style: TextStyle(fontWeight: FontWeight.bold)),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.deepPurple,
-                          foregroundColor: Colors.white,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(16)),
-                        ),
-                        onPressed: () {
-                          HapticsManager.light();
-                          _startTranslation(_selectedText);
-                          _controller.runJavaScript(
-                              'window.getSelection().removeAllRanges();');
-                          setState(() => _selectedText = '');
-                        },
-                      )
-                    : ElevatedButton.icon(
-                        icon: _isProcessingAi
-                            ? const SizedBox(
-                                width: 16,
-                                height: 16,
-                                child: CircularProgressIndicator(
-                                    color: Colors.white, strokeWidth: 2))
-                            : const Icon(Icons.auto_awesome),
-                        label: const Text("AI Reading Tools",
-                            style: TextStyle(fontWeight: FontWeight.bold)),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.indigo,
-                          foregroundColor: Colors.white,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(16)),
-                        ),
-                        onPressed: _isProcessingAi
-                            ? null
-                            : () {
-                                HapticsManager.light();
-                                _showAiToolsMenu(context);
-                              },
-                      ),
-              ),
-            ),
-          ],
-        ),
+        toolbarHeight: 0,
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        systemOverlayStyle: Theme.of(context).brightness == Brightness.dark
+            ? SystemUiOverlayStyle.light
+            : SystemUiOverlayStyle.dark,
       ),
       body: Column(
         children: [
+          _buildOmnibox(context),
+          if (_isLoading) const LinearProgressIndicator(minHeight: 2),
           Expanded(
             child: Stack(
               children: [
                 WebViewWidget(controller: _controller),
-                if (_isLoading)
-                  const Center(
-                    child: CircularProgressIndicator(),
-                  ),
                 if (_isProcessingAi && _isZenMode)
                   Container(
                     color: Colors.white.withValues(alpha: 0.9),
@@ -1576,13 +1389,213 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
             ),
           ),
           _buildTranslationPanel(),
+          _buildCommandDock(context),
         ],
       ),
     );
   }
+
+  Widget _buildOmnibox(BuildContext context) {
+    final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
+    return SafeArea(
+      bottom: false,
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
+        child: Material(
+          color: isDark ? const Color(0xFF2A2A2B) : Colors.white,
+          elevation: 1,
+          shadowColor: Colors.black.withValues(alpha: 0.1),
+          borderRadius: BorderRadius.circular(14),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
+            child: Row(
+              children: [
+                if (widget.showBackButton)
+                  IconButton(
+                    icon: const Icon(Icons.arrow_back_ios, size: 20),
+                    onPressed: () => Navigator.of(context).maybePop(),
+                    tooltip: 'Back',
+                  ),
+                Icon(Icons.language, size: 18,
+                    color: isDark ? Colors.white54 : Colors.black54),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Container(
+                    height: 38,
+                    decoration: BoxDecoration(
+                      color: isDark
+                          ? Colors.white.withValues(alpha: 0.06)
+                          : Colors.black.withValues(alpha: 0.04),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    child: HanziTextField(
+                      controller: _urlController,
+                      decoration: const InputDecoration(
+                        hintText: 'Search or enter URL',
+                        border: InputBorder.none,
+                        isDense: true,
+                        contentPadding: EdgeInsets.symmetric(horizontal: 0, vertical: 8),
+                      ),
+                      style: theme.textTheme.bodySmall,
+                      textInputAction: TextInputAction.go,
+                      onSubmitted: (url) {
+                        if (!url.startsWith('http')) url = 'https://$url';
+                        _controller.loadRequest(Uri.parse(url));
+                      },
+                    ),
+                  ),
+                ),
+                IconButton(
+                  icon: Icon(
+                    _urlController.text.isNotEmpty ? Icons.close : Icons.refresh,
+                    size: 20,
+                  ),
+                  onPressed: () {
+                    if (_urlController.text.isNotEmpty) {
+                      _urlController.clear();
+                    } else {
+                      _controller.reload();
+                    }
+                  },
+                  tooltip: _urlController.text.isNotEmpty ? 'Clear' : 'Refresh',
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildCommandDock(BuildContext context) {
+    final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
+    return SafeArea(
+      top: false,
+      child: Material(
+        color: isDark ? const Color(0xFF2A2A2B) : Colors.white,
+        elevation: 2,
+        shadowColor: Colors.black.withValues(alpha: 0.08),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+          child: Row(
+            children: [
+              _DockIcon(icon: Icons.arrow_back, tooltip: 'Back',
+                onTap: () async {
+                  if (await _controller.canGoBack()) _controller.goBack();
+                }),
+              _DockIcon(icon: Icons.arrow_forward, tooltip: 'Forward',
+                onTap: () async {
+                  if (await _controller.canGoForward()) _controller.goForward();
+                }),
+              const SizedBox(width: 12),
+              Expanded(
+                child: _selectedText.isNotEmpty
+                    ? FilledButton.icon(
+                        onPressed: () {
+                          HapticsManager.light();
+                          _startTranslation(_selectedText);
+                          _controller.runJavaScript('window.getSelection().removeAllRanges();');
+                          setState(() => _selectedText = '');
+                        },
+                        icon: const Icon(Icons.translate, size: 18),
+                        label: const Text('Translate'),
+                        style: FilledButton.styleFrom(
+                          backgroundColor: const Color(0xFFFFB300),
+                          foregroundColor: const Color(0xFF1A1A1B),
+                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                          textStyle: theme.textTheme.labelMedium,
+                        ),
+                      )
+                    : FilledButton.tonalIcon(
+                        onPressed: _isProcessingAi ? null : () => _showAiToolsMenu(context),
+                        icon: _isProcessingAi
+                            ? const SizedBox(width: 14, height: 14, child: CircularProgressIndicator(strokeWidth: 2))
+                            : const Icon(Icons.auto_awesome, size: 18),
+                        label: const Text('AI Tools'),
+                        style: FilledButton.styleFrom(
+                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                          textStyle: theme.textTheme.labelMedium,
+                        ),
+                      ),
+              ),
+              _DockIcon(
+                icon: _isArticleSaved ? Icons.bookmark : Icons.bookmark_border,
+                tooltip: _isArticleSaved ? 'Saved' : 'Save',
+                onTap: _isArticleSaved ? null : () => _saveArticle(),
+              ),
+              _DockIcon(
+                icon: _isZenMode ? Icons.wb_sunny : Icons.menu_book,
+                tooltip: _isZenMode ? 'Exit Focus' : 'Focus',
+                onTap: _toggleZenMode,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Future<void> _saveArticle() async {
+    HapticsManager.light();
+    final urlRaw = await _controller.runJavaScriptReturningResult('window.location.href');
+    final url = urlRaw.toString().replaceAll('"', '');
+    if (widget.isStoryMode) {
+      final prefs = await SharedPreferences.getInstance();
+      final savedUrls = prefs.getStringList('bookmarked_story_urls') ?? [];
+      if (!savedUrls.contains(url)) {
+        savedUrls.add(url);
+        await prefs.setStringList('bookmarked_story_urls', savedUrls);
+        if (mounted) {
+          setState(() => _isArticleSaved = true);
+          if (context.mounted) {
+            ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Story bookmarked in Library!')));
+          }
+        }
+      }
+      return;
+    }
+    final titleRaw = await _controller.runJavaScriptReturningResult('document.title');
+    final title = titleRaw.toString().replaceAll('"', '');
+    final textRaw = await _controller.runJavaScriptReturningResult('document.body.innerText');
+    final text = textRaw.toString().replaceAll('"', '');
+    final article = SavedArticle(
+      title: title, url: url, extractedText: text, timestamp: DateTime.now(),
+    );
+    final box = Hive.box<SavedArticle>('saved_articles');
+    await box.add(article);
+    if (mounted) {
+      setState(() => _isArticleSaved = true);
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Article saved to Media Hub!')));
+      }
+    }
+  }
 }
 
-class ExtractedWordsReviewSheet extends StatefulWidget {
+class _DockIcon extends StatelessWidget {
+  final IconData icon;
+  final String tooltip;
+  final VoidCallback? onTap;
+  const _DockIcon({required this.icon, this.tooltip = '', this.onTap});
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      icon: Icon(icon, size: 22),
+      onPressed: onTap,
+      tooltip: tooltip,
+      splashRadius: 20,
+    );
+  }
+}
+
+class ExtractedWordsReviewSheet extends ConsumerStatefulWidget {
   final String deckName;
   final List<AiWord> words;
 
@@ -1590,17 +1603,122 @@ class ExtractedWordsReviewSheet extends StatefulWidget {
       {super.key, required this.deckName, required this.words});
 
   @override
-  State<ExtractedWordsReviewSheet> createState() =>
+  ConsumerState<ExtractedWordsReviewSheet> createState() =>
       _ExtractedWordsReviewSheetState();
 }
 
-class _ExtractedWordsReviewSheetState extends State<ExtractedWordsReviewSheet> {
+class _ExtractedWordsReviewSheetState extends ConsumerState<ExtractedWordsReviewSheet> {
   late List<bool> _selected;
+  bool _isCreating = false;
 
   @override
   void initState() {
     super.initState();
     _selected = List.generate(widget.words.length, (i) => true);
+  }
+
+  Future<void> _createNewDeck() async {
+    final deckName = await _showCreateDeckDialog();
+    if (deckName == null || deckName.trim().isEmpty) return;
+
+    setState(() => _isCreating = true);
+    try {
+      final deckCtrl = ref.read(deckControllerProvider.notifier);
+      final newDeck = await deckCtrl.createDeck(deckName.trim());
+      if (newDeck == null) {
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Failed to create deck')));
+        }
+        return;
+      }
+
+      await _addWordsToDeck(newDeck.id, deckName.trim());
+    } finally {
+      if (mounted) {
+        setState(() => _isCreating = false);
+      }
+    }
+  }
+
+  Future<void> _addWordsToDeck(String deckId, String deckName) async {
+    final selectedWords = <AiWord>[];
+    for (int i = 0; i < widget.words.length; i++) {
+      if (_selected[i]) selectedWords.add(widget.words[i]);
+    }
+    if (selectedWords.isEmpty) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('No words selected')));
+      }
+      return;
+    }
+
+    final cardCtrl = ref.read(flashcardControllerProvider.notifier);
+    final existingCards = ref.read(flashcardControllerProvider).value ?? [];
+    final existingHanzi = existingCards.map((c) => c.hanzi).toSet();
+
+    int addedCount = 0;
+    int updatedCount = 0;
+    for (final w in selectedWords) {
+      final card = Flashcard(
+        id: const Uuid().v4(),
+        deckId: deckId,
+        hanzi: w.hanzi,
+        pinyin: w.pinyin,
+        definition: w.meaning,
+        hskLevel: 0,
+        strokePaths: const [],
+        medianPaths: const [],
+        isFlipped: false,
+        modeStats: const {},
+        inkPoints: 0,
+      );
+      if (existingHanzi.contains(w.hanzi)) {
+        updatedCount++;
+      } else {
+        addedCount++;
+        existingHanzi.add(w.hanzi);
+      }
+      await cardCtrl.addFlashcard(card);
+    }
+
+    if (mounted) {
+      String message;
+      if (updatedCount > 0 && addedCount > 0) {
+        message = 'Added $addedCount new words, updated $updatedCount existing words in $deckName';
+      } else if (updatedCount > 0) {
+        message = 'Updated $updatedCount existing words in $deckName';
+      } else {
+        message = 'Added $addedCount words to $deckName';
+      }
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(message), backgroundColor: Colors.green));
+      Navigator.pop(context, selectedWords);
+    }
+  }
+
+  Future<String?> _showCreateDeckDialog() async {
+    final controller = TextEditingController(text: widget.deckName);
+    return showDialog<String>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text("New Deck"),
+        content: HanziTextField(
+          controller: controller,
+          decoration: const InputDecoration(hintText: "Deck Name"),
+          autofocus: true,
+        ),
+        actions: [
+          TextButton(
+              onPressed: () => Navigator.pop(ctx),
+              child: const Text("Cancel")),
+          ElevatedButton(
+              onPressed: () => Navigator.pop(ctx, controller.text),
+              child: const Text("Create")),
+        ],
+      ),
+    ).whenComplete(() => controller.dispose());
   }
 
   @override
@@ -1675,7 +1793,7 @@ class _ExtractedWordsReviewSheetState extends State<ExtractedWordsReviewSheet> {
             children: [
               Expanded(
                 child: OutlinedButton(
-                  onPressed: () => Navigator.pop(context, null),
+                  onPressed: _isCreating ? null : () => Navigator.pop(context, null),
                   style: OutlinedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(vertical: 16),
                     side: const BorderSide(color: Colors.indigo),
@@ -1689,7 +1807,33 @@ class _ExtractedWordsReviewSheetState extends State<ExtractedWordsReviewSheet> {
                           fontWeight: FontWeight.bold)),
                 ),
               ),
-              const SizedBox(width: 16),
+              const SizedBox(width: 12),
+              // "Create New Deck" — direct creation
+              Expanded(
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.orange.shade700,
+                    foregroundColor: Colors.white,
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12)),
+                  ),
+                  onPressed: _isCreating
+                      ? null
+                      : () => _createNewDeck(),
+                  child: _isCreating
+                      ? const SizedBox(
+                          width: 20,
+                          height: 20,
+                          child: CircularProgressIndicator(
+                              strokeWidth: 2, color: Colors.white))
+                      : const Text("Create New Deck",
+                          style: TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.bold)),
+                ),
+              ),
+              const SizedBox(width: 12),
+              // "Add to Deck" — returns selected words to caller
               Expanded(
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
@@ -1699,14 +1843,16 @@ class _ExtractedWordsReviewSheetState extends State<ExtractedWordsReviewSheet> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12)),
                   ),
-                  onPressed: () {
-                    final selectedWords = <AiWord>[];
-                    for (int i = 0; i < widget.words.length; i++) {
-                      if (_selected[i]) selectedWords.add(widget.words[i]);
-                    }
-                    Navigator.pop(context, selectedWords);
-                  },
-                  child: const Text("Create Deck",
+                  onPressed: _isCreating
+                      ? null
+                      : () {
+                          final selectedWords = <AiWord>[];
+                          for (int i = 0; i < widget.words.length; i++) {
+                            if (_selected[i]) selectedWords.add(widget.words[i]);
+                          }
+                          Navigator.pop(context, selectedWords);
+                        },
+                  child: const Text("Add to Deck",
                       style:
                           TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                 ),

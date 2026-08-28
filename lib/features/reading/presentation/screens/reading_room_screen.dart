@@ -1,9 +1,13 @@
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:collection/collection.dart';
 import '../providers/story_controller.dart';
+import '../providers/book_providers.dart';
 import 'story_reader_screen.dart';
+import 'book_reader_screen.dart';
 import '../widgets/custom_story_creator_sheet.dart';
+import '../widgets/continue_reading_card.dart';
 import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 
@@ -102,6 +106,14 @@ class _ReadingRoomScreenState extends ConsumerState<ReadingRoomScreen> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          // ── Continue Reading Hero ──
+          _buildContinueReadingSection(ref),
+
+          const SizedBox(height: 8),
+
+          // ── Recent Bookmarks Shelf ──
+          _buildRecentBookmarks(ref),
+
           // Search Bar
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
@@ -290,6 +302,138 @@ class _ReadingRoomScreenState extends ConsumerState<ReadingRoomScreen> {
           ),
         ],
       ),
+    );
+  }
+
+  // ─── Continue Reading Hero ─────────────────────
+  Widget _buildContinueReadingSection(WidgetRef ref) {
+    final sessionAsync = ref.watch(lastSessionProvider);
+    final session = sessionAsync;
+
+    if (session == null) return const SizedBox.shrink();
+
+    final inProgressAsync = ref.watch(inProgressBooksProvider);
+    return inProgressAsync.when(
+      data: (items) {
+        final item = items.where((it) => it.book.id == session.bookId).firstOrNull;
+        if (item == null) return const SizedBox.shrink();
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: ContinueReadingCard(
+            item: item,
+            session: session,
+            onTap: () async {
+              final chapters = await ref.read(bookRepositoryProvider).getBookChapters(item.book.id);
+              if (!context.mounted) return;
+              Navigator.of(context).push(
+                PageRouteBuilder(
+                  pageBuilder: (_, __, ___) => BookReaderScreen(
+                    book: item.book,
+                    chapters: chapters,
+                    initialChapterIndex: item.progress.chapterIndex,
+                    initialSentenceIndex: item.progress.sentenceIndex,
+                  ),
+                  transitionsBuilder: (_, animation, __, child) =>
+                      FadeTransition(opacity: animation, child: child),
+                ),
+              );
+            },
+          ),
+        );
+      },
+      error: (_, __) => const SizedBox.shrink(),
+      loading: () => const SizedBox.shrink(),
+    );
+  }
+
+  // ─── Recent Bookmarks Shelf ─────────────────────
+  Widget _buildRecentBookmarks(WidgetRef ref) {
+    final allAsync = ref.watch(allBookmarksProvider);
+    return allAsync.when(
+      data: (items) {
+        if (items.isEmpty) return const SizedBox.shrink();
+        final recent = items.take(5).toList();
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Row(
+                children: [
+                  // TODO: localize
+                  const Text('Recent Bookmarks',
+                      style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
+                  const Spacer(),
+                  if (items.length > 5)
+                    TextButton(
+                      onPressed: () {
+                        // TODO: full bookmarks page
+                      },
+                      child: const Text('See all', style: TextStyle(fontSize: 12)),
+                    ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 72,
+              child: ListView.separated(
+                scrollDirection: Axis.horizontal,
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                itemCount: recent.length,
+                separatorBuilder: (_, __) => const SizedBox(width: 10),
+                itemBuilder: (_, i) {
+                  final entry = recent[i];
+                  return GestureDetector(
+                    onTap: () async {
+                      final chapters = await ref.read(bookRepositoryProvider).getBookChapters(entry.book.id);
+                      if (!context.mounted) return;
+                      Navigator.of(context).push(
+                        PageRouteBuilder(
+                          pageBuilder: (_, __, ___) => BookReaderScreen(
+                            book: entry.book,
+                            chapters: chapters,
+                            initialChapterIndex: entry.bookmark.chapterIndex,
+                            initialSentenceIndex: entry.bookmark.sentenceIndex,
+                          ),
+                          transitionsBuilder: (_, animation, __, child) =>
+                              FadeTransition(opacity: animation, child: child),
+                        ),
+                      );
+                    },
+                    child: Container(
+                      width: 140,
+                      padding: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).colorScheme.surfaceContainerHighest.withValues(alpha: 0.4),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            entry.book.title,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+                          ),
+                          const SizedBox(height: 4),
+                          Text(
+                            'Ch ${entry.bookmark.chapterIndex} · Sent ${entry.bookmark.sentenceIndex}',
+                            style: TextStyle(fontSize: 11, color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.5)),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
+        );
+      },
+      error: (_, __) => const SizedBox.shrink(),
+      loading: () => const SizedBox.shrink(),
     );
   }
 
