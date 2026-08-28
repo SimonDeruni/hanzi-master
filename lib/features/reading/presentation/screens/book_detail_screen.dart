@@ -199,7 +199,6 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
                         spacing: 8,
                         runSpacing: 6,
                         children: [
-                          _buildBadge('HSK ${book.hskLevel}', isDark ? Colors.amber.shade400 : const Color(0xFF8B0000)),
                           _buildBadge('Audiobook Included', isDark ? Colors.amber.shade400 : const Color(0xFF8B0000)),
                           _buildBadge(book.category, isDark ? Colors.blue.shade300 : Colors.indigo.shade700),
                           _buildBadge(book.dynastyOrEra, isDark ? Colors.green.shade300 : Colors.teal.shade700),
@@ -215,13 +214,16 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
                         child: ElevatedButton(
                           onPressed: () {
                             HapticsManager.heavy();
-                            final initialIndex = (currentProgress - 1).clamp(0, chapters.length - 1);
+                            final detailedProg = ref.read(bookDetailedProgressProvider(book.id));
+                            final initialIndex = (detailedProg != null ? detailedProg.chapterIndex - 1 : currentProgress - 1).clamp(0, chapters.length - 1);
+                            final initialSentenceIndex = detailedProg?.sentenceIndex ?? 0;
                             Navigator.of(context).push(
                               SwipeBackPageRoute(
                                 builder: (_) => BookReaderScreen(
                                   book: book,
                                   chapters: chapters,
                                   initialChapterIndex: initialIndex,
+                                  initialSentenceIndex: initialSentenceIndex,
                                 ),
                               ),
                             );

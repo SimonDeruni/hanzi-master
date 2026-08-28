@@ -215,27 +215,6 @@ class CalligraphicBookCover extends StatelessWidget {
               ),
             ),
 
-            // Top gradient overlay for HSK badge readability
-            if (showBadge)
-              Positioned(
-                top: 0,
-                left: 0,
-                right: 0,
-                height: 38,
-                child: Container(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        Colors.black.withValues(alpha: 0.55),
-                        Colors.transparent,
-                      ],
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                    ),
-                  ),
-                ),
-              ),
-
             // Bottom gradient overlay for Chapter badge readability
             if (showBadge)
               Positioned(
@@ -252,32 +231,6 @@ class CalligraphicBookCover extends StatelessWidget {
                       ],
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
-                    ),
-                  ),
-                ),
-              ),
-
-            // 3. HSK Badge (Top Right)
-            if (showBadge)
-              Positioned(
-                top: 8,
-                right: 8,
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                  decoration: BoxDecoration(
-                    color: Colors.black.withValues(alpha: 0.75),
-                    borderRadius: BorderRadius.circular(6),
-                    border: Border.all(
-                      color: const Color(0xFFD4AF37).withValues(alpha: 0.7),
-                      width: 0.8,
-                    ),
-                  ),
-                  child: Text(
-                    'HSK ${book.hskLevel}',
-                    style: const TextStyle(
-                      fontSize: 9,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFFFFDF78),
                     ),
                   ),
                 ),
