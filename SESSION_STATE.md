@@ -1,12 +1,13 @@
 # 🧠 SESSION_STATE.md - The Hanzi Master "Scholar's Baton"
 
 #### 🎯 Current Context
-- **Objective:** Expand Random Persona Preset Library to 50 Authentic Chinese Scenarios
-- **Status:** ✅ COMPLETED (Build #216)
-- **Hygiene:** App compiles clean, all changes pushed to GitLab and GitHub.
+- **Objective:** Fix Build Issue & Ensure Total Dart Analysis Hygiene
+- **Status:** ✅ COMPLETED (Build #217)
+- **Hygiene:** App compiles 100% clean (0 errors, 0 warnings), all changes pushed to GitLab and GitHub.
 - **Locked Files:**
     - [None]
 
+- [x] **Fix Shadowing Studio Brackets & SwipeBackRoute Generics (Build #217):** Fixed unclosed bracket in `shadowing_studio_screen.dart`, added `<T>` generic parameter to `SwipeBackRoute<T>` and `SwipeBackPageRoute<T>`, cleaned up imports in `web_browser_screen.dart`, `show_catalog_screen.dart`, `show_detail_screen.dart`, `reading_room_screen.dart`, and `continue_reading_card.dart`. Full `dart analyze` now passes with 0 errors and 0 warnings. (Status: COMPLETED)
 - [x] **Expand Random Persona Library to 50 Scenarios (Build #216):** Greatly expanded `_randomPersonaPresets` in `CustomScenarioDialog` from 14 to 50 authentic Chinese conversational personas across 6 comprehensive categories (Food & Culinary, Travel & Adventure, Art & Traditional Crafts, Modern Youth Culture, Daily Life & Errands, and Career & Tech). (Status: COMPLETED)
 - [x] **Add Random Persona Generator to Custom Scenario Modal (Build #215):** Implemented a rich instant persona generator in `CustomScenarioDialog` with glowing "🎲 Random" header pill and "🎲 Surprise Me" / "🎲 Roll Character" field quick-triggers that immediately fill Topic, Context, Persona prompt, and HSK level with haptics. (Status: COMPLETED)
 - [x] **Spotlight AI Personas on Roleplay Cards (Build #214):** Overhauled `ScenarioSelectionScreen` character cards to put the AI Persona center stage: prominent circular hero avatar portraits (Waiter Li, Driver Wang, Auntie Chen, Dr. Zhang, Friend, Manager Liu) with golden borders and ambient backdrops, primary persona bold titles, conversational speech bubbles previewing their Chinese greeting dialogue, and direct "Tap to roleplay" audio cues. (Status: COMPLETED)
