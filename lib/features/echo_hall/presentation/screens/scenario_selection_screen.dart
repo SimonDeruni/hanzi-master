@@ -146,67 +146,29 @@ class _ScenarioSelectionScreenState
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
     final scenarios = _filteredScenarios;
+    final isSearching = _searchQuery.isNotEmpty;
 
     return Scaffold(
       backgroundColor: theme.colorScheme.surface,
       body: Column(
         children: [
-          SafeArea(
-            bottom: false,
-            child: Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-              child: Row(children: [
-                if (widget.showBackButton)
-                  IconButton(
-                      icon: const Icon(Icons.arrow_back_ios),
-                      onPressed: () => Navigator.pop(context))
-                else
-                  const SizedBox(width: 48),
-                const Spacer(),
-                Text('Echo Hall',
-                    style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w900,
-                        color: isDark ? Colors.white : const Color(0xFF1A1A1B),
-                        letterSpacing: 1.0)),
-                const Spacer(),
-                PopupMenuButton<String>(
-                  icon: const Icon(Icons.add_circle_outline),
-                  onSelected: (value) async {
-                    if (value == 'custom') {
-                      final newScenario =
-                          await CustomScenarioDialog.show(context);
-                      if (newScenario != null) {
-                        await ref
-                            .read(savedScenariosProvider.notifier)
-                            .toggle(newScenario);
-                        setState(() => _allScenarios.insert(0, newScenario));
-                      }
-                    } else if (value == 'deck') {
-                      _generateFromDeck();
-                    }
-                  },
-                  itemBuilder: (context) => [
-                    const PopupMenuItem(
-                        value: 'custom',
-                        child: Row(children: [
-                          Icon(Icons.edit),
-                          SizedBox(width: 8),
-                          Text("AI Custom Scenario")
-                        ])),
-                    const PopupMenuItem(
-                        value: 'deck',
-                        child: Row(children: [
-                          Icon(Icons.style),
-                          SizedBox(width: 8),
-                          Text("Generate from Deck")
-                        ])),
+          if (widget.showBackButton)
+            SafeArea(
+              bottom: false,
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+                child: Row(
+                  children: [
+                    IconButton(
+                      icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 20),
+                      onPressed: () => Navigator.pop(context),
+                    ),
                   ],
                 ),
-              ]),
+              ),
             ),
-          ),
+          const SizedBox(height: 4),
           // Search bar
           Padding(
             padding:
@@ -215,13 +177,17 @@ class _ScenarioSelectionScreenState
               controller: _searchController,
               hintText: 'Search scenarios...',
               decoration: InputDecoration(
-                prefixIcon: const Icon(Icons.search, color: Colors.indigo),
+                prefixIcon: Icon(
+                  Icons.search,
+                  color: isDark ? Colors.white54 : Colors.black45,
+                ),
                 filled: true,
-                fillColor: isDark ? const Color(0xFF2A2A2B) : Colors.white,
+                fillColor: isDark ? const Color(0xFF242426) : Colors.white,
                 contentPadding: const EdgeInsets.symmetric(vertical: 0),
                 border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30),
-                    borderSide: BorderSide.none),
+                  borderRadius: BorderRadius.circular(30),
+                  borderSide: BorderSide.none,
+                ),
               ),
               suffixIcon: _searchQuery.isNotEmpty
                   ? IconButton(
@@ -242,17 +208,26 @@ class _ScenarioSelectionScreenState
           Expanded(
             child: scenarios.isEmpty
                 ? Center(
-                    child: Text("No scenarios found.",
-                        style: TextStyle(
-                            color: isDark ? Colors.white38 : Colors.black54,
-                            fontSize: 16),
-                        textAlign: TextAlign.center))
+                    child: Text(
+                      "No scenarios found.",
+                      style: TextStyle(
+                        color: isDark ? Colors.white38 : Colors.black54,
+                        fontSize: 16,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  )
                 : ListView.builder(
                     padding: const EdgeInsets.only(top: 4, bottom: 24),
-                    itemCount: (scenarios.length / 2).ceil() + 1,
+                    itemCount: isSearching
+                        ? (scenarios.length / 2).ceil()
+                        : (scenarios.length / 2).ceil() + 2,
                     itemBuilder: (context, index) {
-                      if (index == 0) return _buildCreateScenarioCard(isDark);
-                      final rowIndex = index - 1;
+                      if (!isSearching) {
+                        if (index == 0) return _buildCreateScenarioCard(isDark);
+                        if (index == 1) return _buildCreateFromDeckCard(isDark);
+                      }
+                      final rowIndex = isSearching ? index : index - 2;
                       final leftScenario = rowIndex * 2 < scenarios.length
                           ? scenarios[rowIndex * 2]
                           : null;
@@ -262,19 +237,21 @@ class _ScenarioSelectionScreenState
                       return Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 16.0),
                         child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Expanded(
-                                  child: leftScenario != null
-                                      ? _buildScenarioCard(leftScenario, isDark)
-                                      : const SizedBox()),
-                              const SizedBox(width: 12),
-                              Expanded(
-                                  child: rightScenario != null
-                                      ? _buildScenarioCard(
-                                          rightScenario, isDark)
-                                      : const SizedBox()),
-                            ]),
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              child: leftScenario != null
+                                  ? _buildScenarioCard(leftScenario, isDark)
+                                  : const SizedBox(),
+                            ),
+                            const SizedBox(width: 12),
+                            Expanded(
+                              child: rightScenario != null
+                                  ? _buildScenarioCard(rightScenario, isDark)
+                                  : const SizedBox(),
+                            ),
+                          ],
+                        ),
                       );
                     },
                   ),
@@ -340,7 +317,7 @@ class _ScenarioSelectionScreenState
 
   Widget _buildCreateScenarioCard(bool isDark) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
       child: InkWell(
         onTap: () async {
           final newScenario = await CustomScenarioDialog.show(context);
@@ -351,7 +328,7 @@ class _ScenarioSelectionScreenState
         },
         borderRadius: BorderRadius.circular(16),
         child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 16),
+          padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 15),
           decoration: BoxDecoration(
             color: isDark ? const Color(0xFF1E1E22) : const Color(0xFFFDFCF0),
             borderRadius: BorderRadius.circular(16),
@@ -391,7 +368,7 @@ class _ScenarioSelectionScreenState
                       'Create Custom Scenario',
                       style: TextStyle(
                         color: isDark ? Colors.white : const Color(0xFF1A1A1B),
-                        fontSize: 16,
+                        fontSize: 15.5,
                         fontWeight: FontWeight.bold,
                         letterSpacing: 0.2,
                       ),
@@ -410,7 +387,82 @@ class _ScenarioSelectionScreenState
               Icon(
                 Icons.arrow_forward_ios_rounded,
                 color: isDark ? Colors.white38 : Colors.black38,
-                size: 16,
+                size: 15,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildCreateFromDeckCard(bool isDark) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 4.0, bottom: 8.0),
+      child: InkWell(
+        onTap: _generateFromDeck,
+        borderRadius: BorderRadius.circular(16),
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 15),
+          decoration: BoxDecoration(
+            color: isDark ? const Color(0xFF1E1E22) : const Color(0xFFFDFCF0),
+            borderRadius: BorderRadius.circular(16),
+            border: Border.all(
+              color: const Color(0xFFBA68C8).withValues(alpha: isDark ? 0.35 : 0.4),
+              width: 1.2,
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: (isDark ? Colors.black : const Color(0xFFBA68C8))
+                    .withValues(alpha: isDark ? 0.25 : 0.08),
+                blurRadius: 10,
+                offset: const Offset(0, 3),
+              ),
+            ],
+          ),
+          child: Row(
+            children: [
+              Container(
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: const Color(0xFFBA68C8).withValues(alpha: isDark ? 0.2 : 0.12),
+                  shape: BoxShape.circle,
+                ),
+                child: const Icon(
+                  Icons.layers_rounded,
+                  color: Color(0xFFBA68C8),
+                  size: 22,
+                ),
+              ),
+              const SizedBox(width: 14),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Generate from Deck',
+                      style: TextStyle(
+                        color: isDark ? Colors.white : const Color(0xFF1A1A1B),
+                        fontSize: 15.5,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 0.2,
+                      ),
+                    ),
+                    const SizedBox(height: 3),
+                    Text(
+                      'Practice flashcard vocabulary in a live dialogue',
+                      style: TextStyle(
+                        color: isDark ? Colors.white54 : Colors.black54,
+                        fontSize: 12,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Icon(
+                Icons.arrow_forward_ios_rounded,
+                color: isDark ? Colors.white38 : Colors.black38,
+                size: 15,
               ),
             ],
           ),
