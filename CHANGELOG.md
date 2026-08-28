@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.0+181] - 2026-08-28
+- **Archive.org Human Voice Audiobooks Connected for Chinese Classics (Build #181)**:
+  - Discovered verified, live `HTTP 200 OK` Archive.org / LibriVox public-domain direct stream URLs for key Chinese classics:
+    1. **Sun Tzu's The Art of War (孙子兵法)**: `art_of_war_chinese_1506_librivox`
+    2. **The Analects of Confucius (论语)**: `confucian_analects_1207_librivox`
+    3. **Dream of the Red Chamber (红楼梦)**: `dream_red_chamber_1_1603_librivox`
+    4. **Journey to the West (西游记)**: `001_20220304` (master storyteller recitation)
+  - Updated `grand_library_catalog.json` with these direct endpoints.
+  - In `BookDetailScreen`, tapping **Listen to Audiobook** plays the authentic human Archive.org stream for books with human recordings, and the Synchronized Neural Narrator for all other books.
+  - Implemented automatic seamless fallback: if an Archive.org stream ever drops or fails to connect, the player automatically falls back to the Synchronized Neural Narrator so playback is never interrupted.
+  - `dart analyze`: 0 issues. Pushed to GitLab and GitHub.
+
 ## [1.0.0+180] - 2026-08-28
 - **Audiobook Playback & Full Catalog Support (Build #180)**:
   - Investigated and resolved the "Listen to Audiobook" button failure.
