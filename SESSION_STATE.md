@@ -1,12 +1,13 @@
 # 🧠 SESSION_STATE.md - The Hanzi Master "Scholar's Baton"
 
 #### 🎯 Current Context
-- **Objective:** Fetch and Bundle Authentic Internet Paintings for All 100 Poems
-- **Status:** ✅ COMPLETED (Builds #209 & #210)
+- **Objective:** Redesign Custom Scenario Modal to Match AI Deck Generator UI
+- **Status:** ✅ COMPLETED (Build #211)
 - **Hygiene:** App compiles clean, all changes pushed to GitLab and GitHub.
 - **Locked Files:**
     - [None]
 
+- [x] **Redesign Custom Scenario Dialog to Match AI Deck Generator Sheet (Build #211):** Transformed `CustomScenarioDialog` from an old popup box into a sleek, frosted `GlobalBlurredBottomSheet` mirroring `AiDeckGeneratorSheet`: glowing circular AI header icon, `Scenario Topic` input with lightbulb icon, segmented `Target Difficulty` cards (Beginner / Intermediate / Advanced / Native) with active amber borders, and a full-width bottom "Create Scenario" button with loading indicator. (Status: COMPLETED)
 - [x] **Bundle Authentic Classical Paintings for All 100 Poems (Builds #209 & #210):** Fetched authentic, high-resolution public domain classical Chinese paintings from Wikimedia Commons matching each poem's author (Li Bai, Du Fu, Wang Wei, Su Shi, Li Qingzhao, etc.), dynasty, and themes (Moon, River, Mountains, Spring, Autumn, Solitude). Bundled all 100 covers into `assets/images/poetry/`, optimized to crisp ~70–300KB mobile assets, declared in `pubspec.yaml`, and wired into `CalligraphicBookCover`. (Status: COMPLETED)
 - [x] **Remove Audiobook Button for Poems (Build #208):** Removed the "Listen to Audiobook" button and "Audiobook Included" badge from poetry presentation screens in `BookDetailScreen`, and hid the audiobook player action in `BookReaderScreen` for poems. The call-to-action is cleanly set to "Read Poem" with full Zen & Ink reading engine features. (Status: COMPLETED)
 - [x] **Fix Missing foundation.dart Import in BookRepository (Build #207):** Added `import 'package:flutter/foundation.dart';` to `book_repository.dart` for `debugPrint`. Dart analysis verified 0 issues. (Status: COMPLETED)
