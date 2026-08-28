@@ -610,12 +610,15 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
           else
             SliverPadding(
               padding: const EdgeInsets.fromLTRB(16, 8, 16, 32),
-              sliver: SliverList(
+              sliver: SliverGrid(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: 0.58,
+                  crossAxisSpacing: 14,
+                  mainAxisSpacing: 16,
+                ),
                 delegate: SliverChildBuilderDelegate(
-                  (context, index) {
-                    final story = filtered[index];
-                    return _buildMicroReadCard(context, story, isDark, cardBg, primaryText);
-                  },
+                  (context, index) => _buildMicroReadCard(context, filtered[index], isDark, cardBg, primaryText),
                   childCount: filtered.length,
                 ),
               ),
@@ -847,133 +850,245 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
     Color cardBg,
     Color primaryText,
   ) {
-    final hskBadgeColor = _getHskColor(story.hskLevel);
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 12),
-      child: BouncingButton(
-        scaleFactor: 0.98,
-        onPressed: () {
-          HapticsManager.light();
-          Navigator.of(context).push(
-            SwipeBackPageRoute(
-              builder: (_) => StorySummaryScreen(story: story),
-            ),
-          );
-        },
-        child: Container(
-          padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            color: cardBg,
-            borderRadius: BorderRadius.circular(18),
-            border: Border.all(
-              color: isDark ? Colors.white12 : Colors.black.withValues(alpha: 0.06),
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withValues(alpha: isDark ? 0.2 : 0.03),
-                blurRadius: 10,
-                offset: const Offset(0, 4),
-              ),
-            ],
-          ),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Badge Icon Box
-              Container(
-                width: 48,
-                height: 48,
-                decoration: BoxDecoration(
-                  color: hskBadgeColor.withValues(alpha: 0.15),
-                  borderRadius: BorderRadius.circular(14),
-                ),
-                child: Center(
-                  child: Text(
-                    story.hskLevel > 0 ? 'HSK\n${story.hskLevel}' : '短篇',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w900,
-                      fontSize: 11,
-                      color: hskBadgeColor,
-                      height: 1.1,
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(width: 14),
+    final hskColor = _getHskColor(story.hskLevel);
+    // Terracotta/amber gradient accent for micro-reads (distinct from novel deep-red)
+    const coverTop = Color(0xFFB85C1A);
+    const coverMid = Color(0xFF8C3A0A);
+    const coverBot = Color(0xFF5C1F00);
 
-              // Title & Excerpt
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+    return BouncingButton(
+      scaleFactor: 0.96,
+      onPressed: () {
+        HapticsManager.light();
+        Navigator.of(context).push(
+          SwipeBackPageRoute(
+            builder: (_) => StorySummaryScreen(story: story),
+          ),
+        );
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          color: cardBg,
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(
+            color: isDark ? Colors.white12 : Colors.black.withValues(alpha: 0.06),
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: isDark ? 0.25 : 0.06),
+              blurRadius: 10,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // ── Calligraphic cover (top 64%) ────────────────────
+            Expanded(
+              flex: 11,
+              child: ClipRRect(
+                borderRadius: const BorderRadius.vertical(top: Radius.circular(15)),
+                child: Stack(
+                  fit: StackFit.expand,
                   children: [
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            story.title,
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 15,
-                              color: primaryText,
-                              fontFamily: 'NotoSerifSC',
-                            ),
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                          ),
+                    // Silk-bound terracotta gradient
+                    Container(
+                      decoration: const BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [coverTop, coverMid, coverBot],
                         ),
-                        Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-                          decoration: BoxDecoration(
-                            color: isDark ? Colors.white10 : Colors.black.withValues(alpha: 0.05),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Row(
-                            children: [
-                              Icon(Icons.bolt, size: 12, color: Colors.orange.shade700),
-                              const SizedBox(width: 2),
+                      ),
+                    ),
+                    // Subtle grain texture overlay
+                    Container(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topRight,
+                          end: Alignment.bottomLeft,
+                          colors: [
+                            Colors.white.withValues(alpha: 0.06),
+                            Colors.transparent,
+                            Colors.black.withValues(alpha: 0.15),
+                          ],
+                        ),
+                      ),
+                    ),
+                    // Thin left spine line (book binding detail)
+                    Positioned(
+                      left: 10,
+                      top: 0,
+                      bottom: 0,
+                      child: Container(
+                        width: 1,
+                        color: Colors.white.withValues(alpha: 0.15),
+                      ),
+                    ),
+                    // Chinese title — centred, vertical feel
+                    Positioned.fill(
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(16, 14, 14, 14),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              story.title,
+                              textAlign: TextAlign.center,
+                              maxLines: 4,
+                              overflow: TextOverflow.ellipsis,
+                              style: const TextStyle(
+                                fontFamily: 'NotoSerifSC',
+                                fontWeight: FontWeight.w700,
+                                fontSize: 16,
+                                color: Colors.white,
+                                height: 1.35,
+                                letterSpacing: 2,
+                              ),
+                            ),
+                            const SizedBox(height: 10),
+                            // Decorative divider
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(width: 18, height: 0.8, color: Colors.white38),
+                                const SizedBox(width: 4),
+                                const Text('·', style: TextStyle(color: Colors.white54, fontSize: 12)),
+                                const SizedBox(width: 4),
+                                Container(width: 18, height: 0.8, color: Colors.white38),
+                              ],
+                            ),
+                            if (story.sourceName.isNotEmpty) ...[
+                              const SizedBox(height: 8),
                               Text(
-                                '1-2 min',
-                                style: TextStyle(
+                                story.sourceName,
+                                textAlign: TextAlign.center,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: const TextStyle(
                                   fontSize: 10,
-                                  fontWeight: FontWeight.w600,
-                                  color: isDark ? Colors.white70 : Colors.black54,
+                                  color: Colors.white60,
+                                  fontStyle: FontStyle.italic,
+                                  letterSpacing: 0.5,
                                 ),
                               ),
                             ],
+                          ],
+                        ),
+                      ),
+                    ),
+                    // HSK badge — top right
+                    Positioned(
+                      top: 8,
+                      right: 8,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 3),
+                        decoration: BoxDecoration(
+                          color: hskColor,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Text(
+                          story.hskLevel > 0 ? 'HSK ${story.hskLevel}' : '短篇',
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 9,
+                            fontWeight: FontWeight.w800,
+                            letterSpacing: 0.3,
                           ),
                         ),
-                      ],
+                      ),
                     ),
-                    if (story.titleEn != null && story.titleEn!.isNotEmpty) ...[
-                      const SizedBox(height: 3),
-                      Text(
-                        story.titleEn!,
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
-                          color: primaryText.withValues(alpha: 0.65),
+                    // 微读 (Micro-read) seal — bottom right
+                    Positioned(
+                      bottom: 8,
+                      right: 8,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 3),
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.white38, width: 0.8),
+                          borderRadius: BorderRadius.circular(4),
                         ),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(Icons.bolt, size: 9, color: Colors.amber.shade300),
+                            const SizedBox(width: 2),
+                            const Text(
+                              '微读',
+                              style: TextStyle(
+                                color: Colors.white70,
+                                fontSize: 9,
+                                fontFamily: 'NotoSerifSC',
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ],
-                    const SizedBox(height: 6),
-                    Text(
-                      story.summary,
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: primaryText.withValues(alpha: 0.5),
-                        height: 1.3,
-                      ),
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
                     ),
                   ],
                 ),
               ),
-            ],
-          ),
+            ),
+            // ── Text info (bottom 36%) ───────────────────────────
+            Expanded(
+              flex: 6,
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(10, 8, 10, 8),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          story.title,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 13,
+                            color: primaryText,
+                            fontFamily: 'NotoSerifSC',
+                          ),
+                        ),
+                        if (story.titleEn != null && story.titleEn!.isNotEmpty) ...[
+                          const SizedBox(height: 2),
+                          Text(
+                            story.titleEn!,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 10,
+                              color: primaryText.withValues(alpha: 0.65),
+                              height: 1.15,
+                            ),
+                          ),
+                        ],
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Icon(Icons.bolt, size: 11, color: Colors.orange.shade700),
+                        const SizedBox(width: 2),
+                        Text(
+                          '1-2 min',
+                          style: TextStyle(
+                            fontSize: 10,
+                            fontWeight: FontWeight.w600,
+                            color: isDark ? Colors.amber.shade400 : coverTop,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
