@@ -107,7 +107,6 @@ flutter:
     - assets/images/ai_hub_web_explorer_zen1.png
     - assets/images/web_explorer_hero.png
     - assets/audio/
-    - assets/audio/audiobooks/
     - assets/default_stories.json
     - assets/mascot/
     - assets/mascot/data/

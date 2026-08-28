@@ -17,8 +17,7 @@
       "Mythology",
       "Adventure",
       "Action"
-    ],
-    "audioStreamUrl": "asset:audio/audiobooks/journey_to_the_west.mp3"
+    ]
   },
   {
     "id": "romance_of_three_kingdoms",
@@ -58,8 +57,7 @@
       "Poetry",
       "Aristocracy",
       "Tragedy"
-    ],
-    "audioStreamUrl": "asset:audio/audiobooks/dream_of_red_chamber.mp3"
+    ]
   },
   {
     "id": "romance_sui_tang",
@@ -97,8 +95,7 @@
       "Strategy",
       "Mindset",
       "Leadership"
-    ],
-    "audioStreamUrl": "asset:audio/audiobooks/the_art_of_war.mp3"
+    ]
   },
   {
     "id": "dao_de_jing",
@@ -137,8 +134,7 @@
       "Confucianism",
       "Ethics",
       "Wisdom"
-    ],
-    "audioStreamUrl": "asset:audio/audiobooks/the_analects.mp3"
+    ]
   },
   {
     "id": "zhuangzi",

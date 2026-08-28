@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:audioplayers/audioplayers.dart';
 import 'package:hanzi_master/core/services/audio_service.dart';
 import 'package:hanzi_master/features/reading/domain/entities/book_model.dart';
 import 'package:hanzi_master/features/reading/presentation/providers/book_providers.dart';
@@ -15,7 +14,6 @@ class BookReaderScreen extends ConsumerStatefulWidget {
   final List<BookChapter> chapters;
   final int initialChapterIndex;
   final bool autoStartAudiobook;
-  final bool autoStartHumanAudio;
 
   const BookReaderScreen({
     super.key,
@@ -23,7 +21,6 @@ class BookReaderScreen extends ConsumerStatefulWidget {
     required this.chapters,
     required this.initialChapterIndex,
     this.autoStartAudiobook = false,
-    this.autoStartHumanAudio = false,
   });
 
   @override
@@ -37,20 +34,11 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen> {
   double _fontSize = 20.0;
   final ScrollController _scrollController = ScrollController();
 
-  // Neural Audiobook State
+  // Synchronized Neural Audiobook State
   bool _isAudiobookActive = false;
   bool _isAudiobookPlaying = false;
   int _currentAudioSentenceIndex = 0;
   StreamSubscription? _audioCompleteSub;
-
-  // Master Voice Audio Stream State
-  bool _isStreamingHumanAudio = false;
-  bool _isHumanAudioPlaying = false;
-  Duration _humanAudioPosition = Duration.zero;
-  Duration _humanAudioDuration = Duration.zero;
-  StreamSubscription? _posSub;
-  StreamSubscription? _durSub;
-  StreamSubscription? _stateSub;
 
   @override
   void initState() {
@@ -61,8 +49,6 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen> {
         _saveProgress();
         if (widget.autoStartAudiobook) {
           _startAudiobook();
-        } else if (widget.autoStartHumanAudio && widget.book.audioStreamUrl != null) {
-          _startHumanAudioStream();
         }
       }
     });
@@ -74,49 +60,17 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen> {
         _onSentenceAudioFinished();
       }
     });
-
-    _stateSub = audioService.onPlayerStateChanged.listen((state) {
-      if (_isStreamingHumanAudio && mounted) {
-        if (state == PlayerState.playing) {
-          setState(() => _isHumanAudioPlaying = true);
-        } else if (state == PlayerState.paused || state == PlayerState.stopped) {
-          setState(() => _isHumanAudioPlaying = false);
-        } else if (state == PlayerState.completed) {
-          setState(() {
-            _isHumanAudioPlaying = false;
-            _humanAudioPosition = Duration.zero;
-          });
-        }
-      }
-    });
-
-    _posSub = audioService.onPositionChanged.listen((pos) {
-      if (_isStreamingHumanAudio && mounted) {
-        setState(() => _humanAudioPosition = pos);
-      }
-    });
-
-    _durSub = audioService.onDurationChanged.listen((dur) {
-      if (_isStreamingHumanAudio && mounted) {
-        setState(() => _humanAudioDuration = dur);
-      }
-    });
   }
 
   @override
   void dispose() {
     _audioCompleteSub?.cancel();
-    _stateSub?.cancel();
-    _posSub?.cancel();
-    _durSub?.cancel();
     _stopAudiobook();
-    _stopHumanAudioStream();
     _scrollController.dispose();
     super.dispose();
   }
 
   void _startAudiobook() {
-    _stopHumanAudioStream();
     HapticsManager.medium();
     setState(() {
       _isAudiobookActive = true;
@@ -144,52 +98,6 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen> {
     } else {
       setState(() => _isAudiobookPlaying = true);
       _playSentenceAt(_currentAudioSentenceIndex);
-    }
-  }
-
-  void _startHumanAudioStream() async {
-    if (widget.book.audioStreamUrl == null) return;
-    _stopAudiobook();
-    HapticsManager.medium();
-    setState(() {
-      _isStreamingHumanAudio = true;
-      _isHumanAudioPlaying = true;
-    });
-    final success = await ref.read(audioServiceProvider).playStreamUrl(widget.book.audioStreamUrl!);
-    if (!success && mounted) {
-      setState(() {
-        _isStreamingHumanAudio = false;
-        _isHumanAudioPlaying = false;
-      });
-      _startAudiobook();
-    }
-  }
-
-  void _stopHumanAudioStream() {
-    ref.read(audioServiceProvider).stop();
-    if (mounted) {
-      setState(() {
-        _isStreamingHumanAudio = false;
-        _isHumanAudioPlaying = false;
-      });
-    }
-  }
-
-  void _togglePlayPauseHumanAudio() async {
-    HapticsManager.light();
-    final audioService = ref.read(audioServiceProvider);
-    if (_isHumanAudioPlaying) {
-      await audioService.pause();
-      if (mounted) setState(() => _isHumanAudioPlaying = false);
-    } else {
-      if (widget.book.audioStreamUrl != null) {
-        if (_humanAudioPosition > Duration.zero) {
-          await audioService.resume();
-          if (mounted) setState(() => _isHumanAudioPlaying = true);
-        } else {
-          _startHumanAudioStream();
-        }
-      }
     }
   }
 
@@ -238,15 +146,6 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen> {
       HapticsManager.selection();
       _playSentenceAt(_currentAudioSentenceIndex + 1);
     }
-  }
-
-  String _formatDuration(Duration d) {
-    final minutes = d.inMinutes.remainder(60).toString().padLeft(2, '0');
-    final seconds = d.inSeconds.remainder(60).toString().padLeft(2, '0');
-    if (d.inHours > 0) {
-      return '${d.inHours}:$minutes:$seconds';
-    }
-    return '$minutes:$seconds';
   }
 
   void _saveProgress() {
@@ -633,148 +532,6 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen> {
     );
   }
 
-  void _showAudioModeSelector(
-    BuildContext context,
-    bool isDark,
-    Color cardBg,
-    Color primaryText,
-  ) {
-    HapticsManager.light();
-    showModalBottomSheet(
-      context: context,
-      backgroundColor: Colors.transparent,
-      builder: (ctx) {
-        return Container(
-          padding: const EdgeInsets.fromLTRB(20, 20, 20, 32),
-          decoration: BoxDecoration(
-            color: cardBg,
-            borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withValues(alpha: isDark ? 0.4 : 0.15),
-                blurRadius: 20,
-              ),
-            ],
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Center(
-                child: Container(
-                  width: 40,
-                  height: 4,
-                  decoration: BoxDecoration(
-                    color: isDark ? Colors.white24 : Colors.black12,
-                    borderRadius: BorderRadius.circular(2),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 16),
-              Text(
-                '选择听书伴读模式 · Audio Mode',
-                style: TextStyle(
-                  fontSize: 17,
-                  fontWeight: FontWeight.bold,
-                  color: primaryText,
-                ),
-              ),
-              const SizedBox(height: 6),
-              Text(
-                'Choose how you want to listen to this classical work.',
-                style: TextStyle(
-                  fontSize: 12.5,
-                  color: isDark ? Colors.white54 : Colors.black54,
-                ),
-              ),
-              const SizedBox(height: 16),
-              // Option 1: Open Human Stream (Archive.org)
-              Container(
-                decoration: BoxDecoration(
-                  color: isDark ? Colors.white.withValues(alpha: 0.05) : const Color(0xFFF9F5EC),
-                  borderRadius: BorderRadius.circular(14),
-                  border: Border.all(
-                    color: isDark ? Colors.amber.shade700.withValues(alpha: 0.5) : const Color(0xFFD4AF37),
-                    width: 1.2,
-                  ),
-                ),
-                child: ListTile(
-                  leading: Container(
-                    padding: const EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                      color: isDark ? Colors.amber.withValues(alpha: 0.2) : const Color(0xFF8B0000).withValues(alpha: 0.1),
-                      shape: BoxShape.circle,
-                    ),
-                    child: Icon(Icons.podcasts, color: isDark ? Colors.amber.shade300 : const Color(0xFF8B0000)),
-                  ),
-                  title: Text(
-                    'Authentic Human Voice',
-                    style: TextStyle(
-                      fontSize: 14.5,
-                      fontWeight: FontWeight.bold,
-                      color: primaryText,
-                    ),
-                  ),
-                  subtitle: Text(
-                    'Master voice recording bundled offline with crystal-clear pronunciation.',
-                    style: TextStyle(
-                      fontSize: 11.5,
-                      color: isDark ? Colors.white60 : Colors.black54,
-                    ),
-                  ),
-                  onTap: () {
-                    Navigator.of(ctx).pop();
-                    _startHumanAudioStream();
-                  },
-                ),
-              ),
-              const SizedBox(height: 12),
-              // Option 2: Synchronized Neural Reader
-              Container(
-                decoration: BoxDecoration(
-                  color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.black.withValues(alpha: 0.02),
-                  borderRadius: BorderRadius.circular(14),
-                  border: Border.all(
-                    color: isDark ? Colors.white12 : Colors.black.withValues(alpha: 0.06),
-                  ),
-                ),
-                child: ListTile(
-                  leading: Container(
-                    padding: const EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                      color: isDark ? Colors.blue.withValues(alpha: 0.2) : Colors.indigo.withValues(alpha: 0.1),
-                      shape: BoxShape.circle,
-                    ),
-                    child: Icon(Icons.graphic_eq, color: isDark ? Colors.blue.shade300 : Colors.indigo.shade700),
-                  ),
-                  title: Text(
-                    'Synchronized Neural Reader',
-                    style: TextStyle(
-                      fontSize: 14.5,
-                      fontWeight: FontWeight.bold,
-                      color: primaryText,
-                    ),
-                  ),
-                  subtitle: Text(
-                    'Sentence-by-sentence reading with real-time text highlight and word lookup.',
-                    style: TextStyle(
-                      fontSize: 11.5,
-                      color: isDark ? Colors.white60 : Colors.black54,
-                    ),
-                  ),
-                  onTap: () {
-                    Navigator.of(ctx).pop();
-                    _startAudiobook();
-                  },
-                ),
-              ),
-            ],
-          ),
-        );
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
@@ -819,9 +576,9 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen> {
           // Audiobook Mode Toggle
           IconButton(
             icon: Icon(
-              (_isAudiobookActive || _isStreamingHumanAudio) ? Icons.headphones : Icons.headphones_outlined,
+              _isAudiobookActive ? Icons.headphones : Icons.headphones_outlined,
               size: 22,
-              color: (_isAudiobookActive || _isStreamingHumanAudio)
+              color: _isAudiobookActive
                   ? (isDark ? Colors.amber.shade400 : const Color(0xFF8B0000))
                   : primaryText,
             ),
@@ -829,14 +586,8 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen> {
             onPressed: () {
               if (_isAudiobookActive) {
                 _stopAudiobook();
-              } else if (_isStreamingHumanAudio) {
-                _stopHumanAudioStream();
               } else {
-                if (widget.book.audioStreamUrl != null) {
-                  _showAudioModeSelector(context, isDark, cardBg, primaryText);
-                } else {
-                  _startAudiobook();
-                }
+                _startAudiobook();
               }
             },
           ),
@@ -1136,80 +887,6 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen> {
                     icon: const Icon(Icons.close, size: 20),
                     color: isDark ? Colors.white54 : Colors.black45,
                     onPressed: _stopAudiobook,
-                  ),
-                ],
-              ),
-            ),
-
-          // Archive.org Open Human Voice Stream Floating Bar
-          if (_isStreamingHumanAudio)
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              decoration: BoxDecoration(
-                color: isDark ? const Color(0xFF1E2430) : const Color(0xFFEDF3FC),
-                border: Border(
-                  top: BorderSide(
-                    color: isDark ? Colors.blue.shade600.withValues(alpha: 0.5) : Colors.indigo.shade300,
-                    width: 1.2,
-                  ),
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withValues(alpha: 0.15),
-                    blurRadius: 8,
-                    offset: const Offset(0, -2),
-                  ),
-                ],
-              ),
-              child: Row(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(6),
-                    decoration: BoxDecoration(
-                      color: isDark ? Colors.blue.withValues(alpha: 0.25) : Colors.indigo.withValues(alpha: 0.1),
-                      shape: BoxShape.circle,
-                    ),
-                    child: Icon(
-                      Icons.podcasts,
-                      size: 18,
-                      color: isDark ? Colors.blue.shade300 : Colors.indigo.shade700,
-                    ),
-                  ),
-                  const SizedBox(width: 10),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Authentic Master Voice',
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold,
-                            color: isDark ? Colors.blue.shade200 : Colors.indigo.shade900,
-                          ),
-                        ),
-                        Text(
-                          '${widget.book.title} · ${_formatDuration(_humanAudioPosition)}${_humanAudioDuration > Duration.zero ? ' / ${_formatDuration(_humanAudioDuration)}' : ''}',
-                          style: TextStyle(
-                            fontSize: 11,
-                            color: isDark ? Colors.white60 : Colors.black54,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  IconButton(
-                    icon: Icon(
-                      _isHumanAudioPlaying ? Icons.pause_circle_filled : Icons.play_circle_filled,
-                      size: 32,
-                      color: isDark ? Colors.blue.shade300 : Colors.indigo.shade700,
-                    ),
-                    onPressed: _togglePlayPauseHumanAudio,
-                  ),
-                  IconButton(
-                    icon: const Icon(Icons.close, size: 20),
-                    color: isDark ? Colors.white54 : Colors.black45,
-                    onPressed: _stopHumanAudioStream,
                   ),
                 ],
               ),
