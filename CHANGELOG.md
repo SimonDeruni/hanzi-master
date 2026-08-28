@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.0+182] - 2026-08-28
+- **Archive.org Anti-Bot Block Bypassed via Buffered Streamer (Build #182)**:
+  - Fixed mobile audio failure when playing Archive.org URLs.
+  - *Root Cause*: Native iOS (AVPlayer) and Android (ExoPlayer) send platform User-Agents (`AppleCoreMedia`, `ExoPlayer`) which Archive.org's anti-bot system blocks or rejects on 302 redirects.
+  - *Resolution*: Upgraded `AudioService.playStreamUrl` to stream and buffer audio directly via Dart's `HttpClient` with standard browser headers into `_cacheDir/audiobook_cache/<hash>.mp3`, then play seamlessly via `DeviceFileSource`.
+  - Cached files provide instant, offline playback with zero buffering on subsequent plays.
+  - `dart analyze`: 0 issues. Pushed to GitLab and GitHub.
+
 ## [1.0.0+181] - 2026-08-28
 - **Archive.org Human Voice Audiobooks Connected for Chinese Classics (Build #181)**:
   - Discovered verified, live `HTTP 200 OK` Archive.org / LibriVox public-domain direct stream URLs for key Chinese classics:
