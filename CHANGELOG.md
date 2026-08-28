@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.0+180] - 2026-08-28
+- **Audiobook Playback & Full Catalog Support (Build #180)**:
+  - Investigated and resolved the "Listen to Audiobook" button failure.
+  - *Root Cause*: The button was previously wired to raw external Archive.org stream URLs, which only existed for 5 books and failed with `401 Unauthorized` / `404 Not Found` due to Archive.org download restrictions.
+  - *Resolution*: Re-wired `Listen to Audiobook` to trigger `autoStartAudiobook: true` in `BookReaderScreen`, instantly engaging the native **Synchronized Neural Narrator** (Azure Neural TTS + local fallback with synchronized sentence highlighting, auto-advancing, floating playback controls, and word lookups) across all 96 books in the library.
+  - `dart analyze`: 0 issues. Pushed to GitLab and GitHub.
+
 ## [1.0.0+179] - 2026-08-28
 - **Book Detail Action Buttons Repositioned & Cleaned (Build #179)**:
   - Repositioned primary action buttons (`Start Reading` / `Continue Chapter X` and `Listen to Audiobook`) to the top of `BookDetailScreen` immediately beneath the tags row for quick access.

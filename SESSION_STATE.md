@@ -1,12 +1,13 @@
 # 🧠 SESSION_STATE.md - The Hanzi Master "Scholar's Baton"
 
 #### 🎯 Current Context
-- **Objective:** UI Polish — Book Detail Action Buttons
+- **Objective:** Audiobook Playback Resolution & Full Library Support
 - **Status:** ✅ COMPLETED
 - **Hygiene:** 🧼 Perfect Hygiene — `dart analyze lib/` passed with 0 issues.
 - **Locked Files:**
     - [None]
 
+- [x] **Audiobook Playback & Full Catalog Support (Build #180):** Diagnosed why the audiobook button failed (raw Archive.org MP3 links returning 401/404 & restricted to 5 books). Re-wired to native Synchronized Neural Narrator (`autoStartAudiobook: true`), enabling real-time sentence highlighting and auto-advancing read-aloud for all 96 books. (Status: COMPLETED)
 - [x] **Book Detail Action Buttons Repositioned & Cleaned (Build #179):** Moved `Start Reading` / `Continue Chapter X` and `Listen to Audiobook` action buttons to the top right under the tags row. Removed Chinese characters and emojis from button labels. (Status: COMPLETED)
 - [x] **Micro-Read Photo Covers from Bundled Images (Build #178):** Each micro-read card now uses its bundled Mandarin Bean photo as a full-bleed cover. Slug extracted from URL → matched to `assets/images/mandarin_bean/<slug>.jpg` (499 images). Dark scrim ensures readability; terracotta gradient fallback for missing images. (Status: COMPLETED)
 - [x] **English-First Author Bio & Synopsis (Build #177):** Rewrote `BookDetailScreen` with unique per-author English bios (50+ lookup map), English-first synopsis layout, and collapsible Chinese dropdowns for both sections. (Status: COMPLETED)
