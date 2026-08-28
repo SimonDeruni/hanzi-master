@@ -13,6 +13,7 @@ class BookReaderScreen extends ConsumerStatefulWidget {
   final BookModel book;
   final List<BookChapter> chapters;
   final int initialChapterIndex;
+  final bool autoStartAudiobook;
   final bool autoStartHumanAudio;
 
   const BookReaderScreen({
@@ -20,6 +21,7 @@ class BookReaderScreen extends ConsumerStatefulWidget {
     required this.book,
     required this.chapters,
     required this.initialChapterIndex,
+    this.autoStartAudiobook = false,
     this.autoStartHumanAudio = false,
   });
 
@@ -51,7 +53,9 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (mounted) {
         _saveProgress();
-        if (widget.autoStartHumanAudio && widget.book.audioStreamUrl != null) {
+        if (widget.autoStartAudiobook) {
+          _startAudiobook();
+        } else if (widget.autoStartHumanAudio && widget.book.audioStreamUrl != null) {
           _startHumanAudioStream();
         }
       }

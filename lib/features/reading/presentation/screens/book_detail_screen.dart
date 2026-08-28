@@ -254,7 +254,7 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
                         ),
                       ),
 
-                      if (book.audioStreamUrl != null) ...[
+                      if (chapters.isNotEmpty) ...[
                         const SizedBox(height: 10),
                         SizedBox(
                           width: double.infinity,
@@ -269,7 +269,7 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
                                     book: book,
                                     chapters: chapters,
                                     initialChapterIndex: initialIndex,
-                                    autoStartHumanAudio: true,
+                                    autoStartAudiobook: true,
                                   ),
                                 ),
                               );
