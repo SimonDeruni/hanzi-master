@@ -170,7 +170,12 @@ class CalligraphicBookCover extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final imagePath = 'assets/images/books/${book.id}.jpg';
+    final isPoetry = book.category.contains('Poetry') ||
+        book.id.startsWith('poetry_') ||
+        book.id.startsWith('tang_poetry_');
+    final imagePath = isPoetry
+        ? 'assets/images/poetry/${book.id}.jpg'
+        : 'assets/images/books/${book.id}.jpg';
 
     return Container(
       width: width,
@@ -195,7 +200,16 @@ class CalligraphicBookCover extends StatelessWidget {
             Image.asset(
               imagePath,
               fit: BoxFit.cover,
-              errorBuilder: (context, error, stackTrace) => _buildCalligraphicFallback(context, isDark),
+              errorBuilder: (context, error, stackTrace) {
+                if (isPoetry) {
+                  return Image.asset(
+                    'assets/images/books/${book.id}.jpg',
+                    fit: BoxFit.cover,
+                    errorBuilder: (ctx, err, st) => _buildCalligraphicFallback(context, isDark),
+                  );
+                }
+                return _buildCalligraphicFallback(context, isDark);
+              },
             ),
 
             // 2. Subtle Spine Left Shadow (Tactile 3D book illusion)

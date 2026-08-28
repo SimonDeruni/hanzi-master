@@ -102,11 +102,13 @@ flutter:
     - assets/data/books/
     - assets/images/
     - assets/images/books/
+    - assets/images/poetry/
     - assets/images/mandarin_bean/
     - assets/images/user_web_explorer.png
     - assets/images/ai_hub_web_explorer_zen1.png
     - assets/images/web_explorer_hero.png
     - assets/audio/
+    - third_party/chinese-poetry-LICENSE
     - assets/default_stories.json
     - assets/mascot/
     - assets/mascot/data/
