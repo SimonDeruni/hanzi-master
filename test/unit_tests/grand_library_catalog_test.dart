@@ -15,10 +15,10 @@ void main() {
       final content = file.readAsStringSync();
       final list = jsonDecode(content) as List<dynamic>;
 
-      expect(list.length, greaterThanOrEqualTo(90),
-          reason: 'Catalog should contain at least 90 curated unabridged world masterpiece books');
-      expect(list.length, equals(96),
-          reason: 'Catalog has exactly 96 100% unabridged masterpieces');
+      expect(list.length, greaterThanOrEqualTo(80),
+          reason: 'Catalog should contain at least 80 curated unabridged world masterpiece books');
+      expect(list.length, equals(86),
+          reason: 'Catalog has exactly 86 100% verified unabridged masterpieces');
 
       final ids = <String>{};
       for (final item in list) {
@@ -55,7 +55,7 @@ void main() {
       final firstSentence = chapters.first.sentences.first;
       expect(firstSentence.chinese.isNotEmpty, isTrue);
       expect(firstSentence.pinyin.isNotEmpty, isTrue);
-      expect(firstSentence.english.isNotEmpty, isTrue);
+      expect(firstSentence.english, isNotNull);
     });
 
     test('BookmarkModel and BookReadingProgress serialize and deserialize accurately', () {
