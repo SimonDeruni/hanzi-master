@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:hanzi_master/core/services/audio_service.dart';
 import 'package:hanzi_master/features/reading/domain/entities/book_model.dart';
 import 'package:hanzi_master/features/reading/presentation/providers/book_providers.dart';
@@ -49,6 +50,7 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen> {
   Duration _humanAudioDuration = Duration.zero;
   StreamSubscription? _posSub;
   StreamSubscription? _durSub;
+  StreamSubscription? _stateSub;
 
   @override
   void initState() {
@@ -70,11 +72,21 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen> {
     _audioCompleteSub = audioService.onPlayerComplete.listen((_) {
       if (_isAudiobookActive && _isAudiobookPlaying && mounted) {
         _onSentenceAudioFinished();
-      } else if (_isStreamingHumanAudio && mounted) {
-        setState(() {
-          _isHumanAudioPlaying = false;
-          _humanAudioPosition = Duration.zero;
-        });
+      }
+    });
+
+    _stateSub = audioService.onPlayerStateChanged.listen((state) {
+      if (_isStreamingHumanAudio && mounted) {
+        if (state == PlayerState.playing) {
+          setState(() => _isHumanAudioPlaying = true);
+        } else if (state == PlayerState.paused || state == PlayerState.stopped) {
+          setState(() => _isHumanAudioPlaying = false);
+        } else if (state == PlayerState.completed) {
+          setState(() {
+            _isHumanAudioPlaying = false;
+            _humanAudioPosition = Duration.zero;
+          });
+        }
       }
     });
 
@@ -94,6 +106,7 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen> {
   @override
   void dispose() {
     _audioCompleteSub?.cancel();
+    _stateSub?.cancel();
     _posSub?.cancel();
     _durSub?.cancel();
     _stopAudiobook();

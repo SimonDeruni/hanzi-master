@@ -243,25 +243,31 @@ class AudioService {
     if (!_isInitialized) await init();
     await stop();
 
-    // Ensure AudioContext is configured for loudspeaker playback across platforms
-    await _player.setAudioContext(AudioContext(
-      iOS: AudioContextIOS(
-        category: AVAudioSessionCategory.playback,
-        options: const {
-          AVAudioSessionOptions.defaultToSpeaker,
-          AVAudioSessionOptions.allowBluetooth,
-          AVAudioSessionOptions.mixWithOthers,
-        },
-      ),
-      android: const AudioContextAndroid(
-        isSpeakerphoneOn: true,
-        stayAwake: true,
-        contentType: AndroidContentType.music,
-        usageType: AndroidUsageType.media,
-        audioFocus: AndroidAudioFocus.gain,
-      ),
-    ));
-    await _player.setVolume(1.0);
+    // Ensure AudioContext is configured safely for loudspeaker playback across platforms
+    try {
+      await _player.setAudioContext(AudioContext(
+        iOS: AudioContextIOS(
+          category: AVAudioSessionCategory.playback,
+          options: const {
+            AVAudioSessionOptions.allowBluetooth,
+            AVAudioSessionOptions.mixWithOthers,
+          },
+        ),
+        android: const AudioContextAndroid(
+          isSpeakerphoneOn: true,
+          stayAwake: true,
+          contentType: AndroidContentType.music,
+          usageType: AndroidUsageType.media,
+          audioFocus: AndroidAudioFocus.gain,
+        ),
+      ));
+    } catch (e) {
+      debugPrint("[AudioService] Warning: could not set audio context: $e");
+    }
+
+    try {
+      await _player.setVolume(1.0);
+    } catch (_) {}
 
     try {
       // 1. Handle bundled app asset files (asset:audio/... or assets/audio/...)
@@ -273,17 +279,20 @@ class AudioService {
         // Extract filename for local caching
         final filename = cleanAssetPath.split('/').last;
         final cacheFile = File('${_cacheDir!.path}/audiobook_cache/$filename');
+        await cacheFile.parent.create(recursive: true);
 
         if (!await cacheFile.exists() || (await cacheFile.length()) < 1024) {
           try {
+            debugPrint('[AudioService] Extracting bundled asset: $cleanAssetPath');
             final byteData = await rootBundle.load(cleanAssetPath);
             final buffer = byteData.buffer;
             await cacheFile.writeAsBytes(
               buffer.asUint8List(byteData.offsetInBytes, byteData.lengthInBytes),
               flush: true,
             );
+            debugPrint('[AudioService] Extracted ${cacheFile.lengthSync()} bytes to ${cacheFile.path}');
           } catch (e) {
-            debugPrint("Failed to extract asset $cleanAssetPath to cache: $e");
+            debugPrint("[AudioService] Failed to extract asset $cleanAssetPath to cache: $e");
             // Try secondary path without leading assets/
             try {
               final altPath = cleanAssetPath.replaceFirst('assets/', '');
@@ -293,22 +302,32 @@ class AudioService {
                 buffer.asUint8List(byteData.offsetInBytes, byteData.lengthInBytes),
                 flush: true,
               );
+              debugPrint('[AudioService] Extracted from alt path: $altPath');
             } catch (e2) {
-              debugPrint("Secondary asset load failed: $e2");
+              debugPrint("[AudioService] Secondary asset load failed: $e2");
             }
           }
         }
 
         if (await cacheFile.exists() && (await cacheFile.length()) > 1024) {
+          debugPrint('[AudioService] Playing DeviceFileSource: ${cacheFile.path}');
           await _player.setPlaybackRate(1.0);
           await _player.play(DeviceFileSource(cacheFile.path));
           return true;
         }
+
+        // Fallback: direct AssetSource
+        final relPath = cleanAssetPath.startsWith('assets/') ? cleanAssetPath.substring(7) : cleanAssetPath;
+        debugPrint('[AudioService] Direct AssetSource fallback: $relPath');
+        await _player.setPlaybackRate(1.0);
+        await _player.play(AssetSource(relPath));
+        return true;
       }
 
       // 2. Handle remote URL streaming with local caching
       final hash = _hashText(url);
       final cacheFile = File('${_cacheDir!.path}/audiobook_cache/$hash.mp3');
+      await cacheFile.parent.create(recursive: true);
 
       if (await cacheFile.exists() && (await cacheFile.length()) > 1024) {
         await _player.setPlaybackRate(1.0);
