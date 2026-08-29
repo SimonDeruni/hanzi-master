@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:hanzi_master/features/reading/domain/logic/reading_session.dart';
 import 'package:hanzi_master/features/reading/presentation/widgets/calligraphic_book_cover.dart';
 import 'package:hanzi_master/features/reading/presentation/providers/book_providers.dart';

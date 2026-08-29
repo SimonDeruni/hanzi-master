@@ -19,6 +19,10 @@ class SettingsState {
   final bool showPinyinInSpeaking;
   final bool enableHaptics;
 
+  // Audiobook voice selection
+  // 'Kore', 'Fenrir', 'Charon', 'Aoede', 'Puck', or 'local'
+  final String audiobookVoice;
+
   SettingsState({
     this.isDarkMode = false, 
     this.speechRate = 0.5, 
@@ -32,6 +36,7 @@ class SettingsState {
     this.locale = 'en',
     this.showPinyinInSpeaking = true,
     this.enableHaptics = true,
+    this.audiobookVoice = 'Kore',
   });
 
   SettingsState copyWith({
@@ -47,6 +52,7 @@ class SettingsState {
     String? locale,
     bool? showPinyinInSpeaking,
     bool? enableHaptics,
+    String? audiobookVoice,
   }) {
     return SettingsState(
       isDarkMode: isDarkMode ?? this.isDarkMode,
@@ -61,6 +67,7 @@ class SettingsState {
       locale: locale ?? this.locale,
       showPinyinInSpeaking: showPinyinInSpeaking ?? this.showPinyinInSpeaking,
       enableHaptics: enableHaptics ?? this.enableHaptics,
+      audiobookVoice: audiobookVoice ?? this.audiobookVoice,
     );
   }
 }
@@ -82,6 +89,7 @@ class SettingsController extends StateNotifier<SettingsState> {
       locale: prefs.getString(_keyLocale) ?? 'en',
       showPinyinInSpeaking: prefs.getBool(_keyPinyinSpeaking) ?? true,
       enableHaptics: prefs.getBool(_keyHaptics) ?? true,
+      audiobookVoice: prefs.getString(_keyAudiobookVoice) ?? 'Kore',
     )) {
       HapticsManager.setEnabled(state.enableHaptics);
     }
@@ -98,6 +106,7 @@ class SettingsController extends StateNotifier<SettingsState> {
   static const _keyLocale = 'app_locale';
   static const _keyPinyinSpeaking = 'pinyin_speaking';
   static const _keyHaptics = 'enable_haptics';
+  static const _keyAudiobookVoice = 'audiobook_voice';
 
   Future<void> completeTutorial() async {
     await prefs.setBool(_keyTutorial, true);
@@ -158,6 +167,11 @@ class SettingsController extends StateNotifier<SettingsState> {
     await prefs.setBool(_keyHaptics, value);
     state = state.copyWith(enableHaptics: value);
     HapticsManager.setEnabled(value);
+  }
+
+  Future<void> setAudiobookVoice(String value) async {
+    await prefs.setString(_keyAudiobookVoice, value);
+    state = state.copyWith(audiobookVoice: value);
   }
 }
 

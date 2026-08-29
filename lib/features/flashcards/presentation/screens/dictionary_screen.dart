@@ -26,7 +26,7 @@ import 'package:hanzi_master/features/course/presentation/screens/tome_manager_s
 import 'package:hanzi_master/shared/widgets/global_sliver_app_bar.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/core/utils/definition_formatter.dart';
-import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
+import 'package:hanzi_master/core/presentation/widgets/zen_search_bar.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/study_mode.dart';
 import 'package:hanzi_master/core/providers.dart';
@@ -291,38 +291,18 @@ class _SearchBarDelegate extends SliverPersistentHeaderDelegate {
   Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
     final theme = Theme.of(context);
     final l10n = AppLocalizations.of(context);
-    
+
     return Container(
       color: Colors.transparent,
       padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
       child: Row(
         children: [
           Expanded(
-            child: Container(
-              decoration: BoxDecoration(
-                color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.white.withValues(alpha: 0.9),
-                borderRadius: BorderRadius.circular(30),
-                boxShadow: [
-                  BoxShadow(
-                    color: theme.colorScheme.onSurface.withValues(alpha: 0.05),
-                    blurRadius: 10,
-                    offset: const Offset(0, 4),
-                  ),
-                ],
-              ),
-              child: HanziTextField(
-                controller: controller,
-                focusNode: focusNode,
-                style: theme.textTheme.bodyLarge,
-                hintText: l10n?.searchPinyinHanziEnglish ?? "Search Pinyin, Hanzi, or English...",
-                decoration: InputDecoration(
-                  hintStyle: theme.textTheme.bodyMedium?.copyWith(color: theme.colorScheme.onSurface.withValues(alpha: 0.4)),
-                  prefixIcon: const Icon(Icons.search, color: Colors.grey),
-                  border: InputBorder.none,
-                  contentPadding: const EdgeInsets.symmetric(vertical: 16),
-                ),
-                onChanged: onChanged,
-              ),
+            child: ZenSearchBar(
+              controller: controller,
+              focusNode: focusNode,
+              hintText: l10n?.searchPinyinHanziEnglish ?? "Search Pinyin, Hanzi, or English...",
+              onChanged: onChanged,
             ),
           ),
           const SizedBox(width: 12),

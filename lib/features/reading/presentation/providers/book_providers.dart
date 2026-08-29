@@ -75,3 +75,9 @@ final tangPoetryProvider = FutureProvider<List<LibraryStory>>((ref) async {
   return all.where((s) => s.category == 'Tang Poetry' || s.category == 'Classical Literature').toList();
 });
 
+
+final chinesePoetryProvider = FutureProvider<List<LibraryStory>>((ref) async {
+  final fetcher = ref.read(storyFetcherServiceProvider);
+  final all = await fetcher.fetchLocalStories();
+  return all.where((s) => s.category == 'Chinese Poetry' || s.category == 'Tang Poetry' || s.category == 'Classical Literature').toList();
+});

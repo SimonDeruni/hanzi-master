@@ -32,7 +32,8 @@ class YoutubeRepository {
     final cached = _cache[query];
     if (cached != null &&
         DateTime.now().difference(cached.timestamp) < _cacheTtl) {
-      debugPrint('[YT Cache] Hit for "$query" → ${cached.videos.length} videos');
+      debugPrint(
+          '[YT Cache] Hit for "$query" → ${cached.videos.length} videos');
       return cached.videos;
     }
 
@@ -61,8 +62,8 @@ class YoutubeRepository {
           try {
             final manifest =
                 await yt.videos.closedCaptions.getManifest(video.id);
-            final hasChinese = manifest.tracks
-                .any((t) => _isChineseLanguage(t.language.code));
+            final hasChinese =
+                manifest.tracks.any((t) => _isChineseLanguage(t.language.code));
             if (!hasChinese) continue;
           } catch (_) {
             // No captions available — skip
@@ -129,10 +130,8 @@ class YoutubeRepository {
         .replaceAll(RegExp(r'中国|中文|china|chinese'), '')
         .trim()
         .toLowerCase();
-    final terms = cleanQuery
-        .split(RegExp(r'\s+'))
-        .where((t) => t.isNotEmpty)
-        .toList();
+    final terms =
+        cleanQuery.split(RegExp(r'\s+')).where((t) => t.isNotEmpty).toList();
 
     for (final show in HardcodedShows.data) {
       final showTitle = (show['title'] as String? ?? '').toLowerCase();
@@ -184,8 +183,8 @@ class YoutubeRepository {
       final yt = _createYoutubeExplode();
       try {
         final manifest = await yt.videos.closedCaptions.getManifest(videoId);
-        final hasChinese = manifest.tracks
-            .any((t) => _isChineseLanguage(t.language.code));
+        final hasChinese =
+            manifest.tracks.any((t) => _isChineseLanguage(t.language.code));
 
         _captionCheckCache[videoId] = _CachedBool(
           value: hasChinese,
@@ -259,8 +258,7 @@ class YoutubeRepository {
           timestamp: DateTime.now(),
         );
 
-        debugPrint(
-            '[YT Transcript] Success: $videoId → ${lines.length} lines');
+        debugPrint('[YT Transcript] Success: $videoId → ${lines.length} lines');
         return transcript;
       } finally {
         yt.close();
@@ -268,6 +266,169 @@ class YoutubeRepository {
     } catch (e) {
       debugPrint('[YT Transcript] Error for $videoId: $e');
       return null;
+    }
+  }
+
+  // ── Channel cache ──
+  static final Map<String, _CachedChannel> _channelCache = {};
+  static const _channelCacheTtl = Duration(hours: 1);
+
+  // ── Channel uploads cache ──
+  static final Map<String, _CachedResult> _channelUploadsCache = {};
+
+  /// Gets channel metadata by @handle.
+  Future<Map<String, String>> getChannelByHandle(String handle) async {
+    final cacheKey = 'handle:$handle';
+    final cached = _channelCache[cacheKey];
+    if (cached != null &&
+        DateTime.now().difference(cached.timestamp) < _channelCacheTtl) {
+      return cached.data;
+    }
+
+    final yt = _createYoutubeExplode();
+    try {
+      final channel = await yt.channels.getByHandle(handle);
+      final data = {
+        'id': channel.id.value,
+        'title': channel.title,
+        'logoUrl': channel.logoUrl,
+      };
+      _channelCache[cacheKey] = _CachedChannel(
+        data: data,
+        timestamp: DateTime.now(),
+      );
+      debugPrint('[YT Channel] Resolved handle "$handle" → ${channel.title}');
+      return data;
+    } catch (e) {
+      debugPrint('[YT Channel] Error resolving handle "$handle": $e');
+      rethrow;
+    } finally {
+      yt.close();
+    }
+  }
+
+  /// Gets channel metadata by channel ID (UC...).
+  Future<Map<String, String>> getChannelById(String channelId) async {
+    final cacheKey = 'id:$channelId';
+    final cached = _channelCache[cacheKey];
+    if (cached != null &&
+        DateTime.now().difference(cached.timestamp) < _channelCacheTtl) {
+      return cached.data;
+    }
+
+    final yt = _createYoutubeExplode();
+    try {
+      final channel = await yt.channels.get(channelId);
+      final data = {
+        'id': channel.id.value,
+        'title': channel.title,
+        'logoUrl': channel.logoUrl,
+      };
+      _channelCache[cacheKey] = _CachedChannel(
+        data: data,
+        timestamp: DateTime.now(),
+      );
+      debugPrint('[YT Channel] Resolved id "$channelId" → ${channel.title}');
+      return data;
+    } catch (e) {
+      debugPrint('[YT Channel] Error resolving id "$channelId": $e');
+      rethrow;
+    } finally {
+      yt.close();
+    }
+  }
+
+  /// Gets channel metadata by discovering which channel uploaded a video.
+  Future<Map<String, String>> getChannelByVideo(String videoId) async {
+    final cacheKey = 'video:$videoId';
+    final cached = _channelCache[cacheKey];
+    if (cached != null &&
+        DateTime.now().difference(cached.timestamp) < _channelCacheTtl) {
+      return cached.data;
+    }
+
+    final yt = _createYoutubeExplode();
+    try {
+      final channel = await yt.channels.getByVideo(videoId);
+      final data = {
+        'id': channel.id.value,
+        'title': channel.title,
+        'logoUrl': channel.logoUrl,
+      };
+      _channelCache[cacheKey] = _CachedChannel(
+        data: data,
+        timestamp: DateTime.now(),
+      );
+      debugPrint('[YT Channel] Resolved video "$videoId" → ${channel.title}');
+      return data;
+    } catch (e) {
+      debugPrint('[YT Channel] Error resolving video "$videoId": $e');
+      rethrow;
+    } finally {
+      yt.close();
+    }
+  }
+
+  /// Fetches recent uploads from a channel.
+  /// Returns up to [maxPages] × 30 videos (capped at [maxVideos]).
+  Future<List<YoutubeVideo>> getChannelUploads(String channelId,
+      {int maxPages = 3, int maxVideos = 120}) async {
+    final cacheKey = 'uploads:$channelId:$maxPages';
+    final cached = _channelUploadsCache[cacheKey];
+    if (cached != null &&
+        DateTime.now().difference(cached.timestamp) < _cacheTtl) {
+      debugPrint(
+          '[YT ChUploads] Cache hit for "$channelId" → ${cached.videos.length} videos');
+      return cached.videos;
+    }
+
+    final yt = _createYoutubeExplode();
+    try {
+      final uploads = await yt.channels.getUploadsFromPage(channelId);
+      final videos = <YoutubeVideo>[];
+
+      var page = 1;
+      var current = uploads;
+      while (true) {
+        for (final video in current) {
+          videos.add(YoutubeVideo(
+            id: video.id.value,
+            title: video.title,
+            url: 'https://www.youtube.com/watch?v=${video.id.value}',
+            duration: video.duration,
+            mediumThumbnailUrl: video.thumbnails.mediumResUrl,
+            highThumbnailUrl: video.thumbnails.maxResUrl.isNotEmpty
+                ? video.thumbnails.maxResUrl
+                : video.thumbnails.mediumResUrl,
+            uploadDate: video.publishDate,
+            channelTitle: video.author,
+          ));
+        }
+
+        // Stop if we've hit the page cap or video cap.
+        if (page >= maxPages || videos.length >= maxVideos) {
+          break;
+        }
+
+        // Try to fetch the next page.
+        final next = await current.nextPage();
+        if (next == null) break; // no more results
+        current = next;
+        page++;
+      }
+
+      _channelUploadsCache[cacheKey] = _CachedResult(
+        videos: videos,
+        timestamp: DateTime.now(),
+      );
+      debugPrint(
+          '[YT ChUploads] Loaded ${videos.length} videos in $page page(s) for "$channelId"');
+      return videos;
+    } catch (e) {
+      debugPrint('[YT ChUploads] Error for "$channelId": $e');
+      rethrow;
+    } finally {
+      yt.close();
     }
   }
 
@@ -293,4 +454,10 @@ class _CachedBool {
   final bool value;
   final DateTime timestamp;
   _CachedBool({required this.value, required this.timestamp});
+}
+
+class _CachedChannel {
+  final Map<String, String> data;
+  final DateTime timestamp;
+  _CachedChannel({required this.data, required this.timestamp});
 }

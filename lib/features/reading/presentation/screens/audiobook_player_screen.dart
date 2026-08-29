@@ -1,4 +1,4 @@
-import 'dart:async';
+﻿import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lpinyin/lpinyin.dart';
@@ -9,6 +9,7 @@ import 'package:hanzi_master/features/reading/domain/logic/book_reading_progress
 import 'package:hanzi_master/features/reading/presentation/providers/book_providers.dart';
 import 'package:hanzi_master/features/reading/presentation/screens/book_reader_screen.dart';
 import 'package:hanzi_master/features/reading/presentation/widgets/calligraphic_book_cover.dart';
+import 'package:hanzi_master/features/flashcards/presentation/providers/settings_controller.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
@@ -214,11 +215,12 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
 
       final text = chapter.sentences[sentenceIdx].chinese;
       final audioService = ref.read(audioServiceProvider);
+      final voiceName = ref.read(settingsProvider).audiobookVoice;
       // Ensure audio service is initialized before first play
       await audioService.init();
       if (!mounted || requestGeneration != _audioRequestGeneration) return;
 
-      final started = await audioService.playSentence(text);
+      final started = await audioService.playSentence(text, voiceName: voiceName);
       if (!mounted || requestGeneration != _audioRequestGeneration) return;
       if (!started) {
         setState(() => _isPlaying = false);
@@ -229,7 +231,7 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
       // Pre-fetch next sentence in background
       if (sentenceIdx + 1 < chapter.sentences.length) {
         final nextText = chapter.sentences[sentenceIdx + 1].chinese;
-        unawaited(audioService.prefetchSentence(nextText));
+        unawaited(audioService.prefetchSentence(nextText, voiceName: voiceName));
       }
     }
   }
@@ -286,6 +288,140 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
         content: Text('Audio could not start. Check your connection and device voice settings.'),
+      ),
+    );
+  }
+
+  Widget _buildVoicePickerRow(bool isDark, Color cardBg, Color primaryText, Color secondaryText, Color activeAccent, AudioQuotaService quota) {
+    final settings = ref.watch(settingsProvider);
+    final currentVoice = settings.audiobookVoice;
+    final hasQuota = quota.hasQuotaRemaining;
+
+    const voiceOptions = [
+      ('Kore', 'Kore', 'Female, warm'),
+      ('Aoede', 'Aoede', 'Female, cheerful'),
+      ('Fenrir', 'Fenrir', 'Male, upbeat'),
+      ('Charon', 'Charon', 'Male, news-style'),
+      ('Puck', 'Puck', 'Male, sporty'),
+      ('local', 'Local', 'On-device'),
+    ];
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
+      child: Row(
+        children: [
+          Icon(Icons.record_voice_over, size: 16, color: secondaryText),
+          const SizedBox(width: 6),
+          Text('Voice:', style: TextStyle(fontSize: 11.5, color: secondaryText, fontWeight: FontWeight.w600)),
+          const SizedBox(width: 6),
+          Expanded(
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: voiceOptions.map((opt) {
+                  final isSelected = currentVoice == opt.$1;
+                  final isAzure = opt.$1 != 'local';
+                  final disabled = isAzure && !hasQuota && !isSelected;
+                  final labelColor = disabled
+                      ? (isDark ? Colors.white24 : Colors.black26)
+                      : isSelected
+                          ? activeAccent
+                          : secondaryText;
+                  final bgColor = isSelected
+                      ? activeAccent.withValues(alpha: isDark ? 0.2 : 0.12)
+                      : Colors.transparent;
+                  return Padding(
+                    padding: const EdgeInsets.only(right: 4),
+                    child: GestureDetector(
+                      onTap: disabled ? null : () {
+                        HapticsManager.selection();
+                        ref.read(settingsProvider.notifier).setAudiobookVoice(opt.$1);
+                      },
+                      child: Tooltip(
+                        message: disabled
+                            ? '${opt.$2} — Azure quota exhausted'
+                            : isAzure
+                                ? '${opt.$2} (Azure) — ${opt.$3}'
+                                : 'Local on-device TTS',
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                          decoration: BoxDecoration(
+                            color: bgColor,
+                            borderRadius: BorderRadius.circular(14),
+                            border: Border.all(
+                              color: isSelected
+                                  ? activeAccent.withValues(alpha: 0.5)
+                                  : (disabled ? Colors.transparent : (isDark ? Colors.white12 : Colors.black12)),
+                              width: 1,
+                            ),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                opt.$2,
+                                style: TextStyle(
+                                  fontSize: 11.5,
+                                  fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
+                                  color: labelColor,
+                                ),
+                              ),
+                              if (disabled && isAzure)
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 3),
+                                  child: Icon(Icons.lock, size: 10, color: labelColor),
+                                ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  );
+                }).toList(),
+              ),
+            ),
+          ),
+          // Quota indicator badge
+          if (hasQuota)
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
+              decoration: BoxDecoration(
+                color: Colors.green.withValues(alpha: isDark ? 0.2 : 0.12),
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(color: Colors.green.withValues(alpha: 0.4)),
+              ),
+              child: Text(
+                '${quota.remainingHours.toStringAsFixed(1)}h',
+                style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold,
+                    color: isDark ? Colors.green.shade300 : Colors.green.shade700),
+              ),
+            )
+          else
+            GestureDetector(
+              onTap: () => _showQuotaDetailsSheet(context, quota, isDark, cardBg, primaryText),
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
+                decoration: BoxDecoration(
+                  color: Colors.orange.withValues(alpha: isDark ? 0.2 : 0.12),
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(color: Colors.orange.withValues(alpha: 0.5)),
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.warning_amber_rounded, size: 12,
+                        color: isDark ? Colors.orange.shade300 : Colors.orange.shade700),
+                    const SizedBox(width: 3),
+                    Text(
+                      'Local',
+                      style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold,
+                          color: isDark ? Colors.orange.shade300 : Colors.orange.shade700),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+        ],
       ),
     );
   }
@@ -870,6 +1006,9 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
                 ),
 
                 Divider(color: isDark ? Colors.white12 : Colors.black12, height: 1),
+
+                // Voice Picker Row
+                _buildVoicePickerRow(isDark, cardBg, primaryText, secondaryText, activeAccent, quota),
 
                 // Chapter & Book Progress Bar
                 Builder(builder: (context) {

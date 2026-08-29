@@ -1383,6 +1383,8 @@ You are an expert Chinese teacher and translator.
 The user has provided a complex text. Rewrite and simplify the entire meaning of the text so that it strictly only uses HSK $hskLevel vocabulary. 
 Keep the core narrative and main ideas intact, but adjust the grammar and vocabulary to fit the target level.
 
+IMPORTANT: Preserve the full length of the original article. Do NOT shorten it — rewrite EVERY paragraph at the target HSK level. The output must cover all the content of the source text.
+
 Source Text:
 """
 $sourceText
@@ -1416,6 +1418,7 @@ Make sure every single character in the 'chinese' sentence is represented in the
           {'role': 'user', 'content': prompt}
         ],
         jsonMode: true,
+        maxTokens: 8192,
       );
 
       if (text.isNotEmpty) {

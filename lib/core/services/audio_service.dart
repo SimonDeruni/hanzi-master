@@ -230,6 +230,12 @@ class AudioService {
     });
     if (generation != _playbackGeneration || _isDisposed) return false;
 
+    // If user explicitly selected local voice, skip Azure entirely
+    if (voiceName == 'local') {
+      debugPrint('[AudioService] User selected local on-device voice — skipping Azure');
+      return await _playLocalTTS(sentence, generation);
+    }
+
     final azureVoice = _azureVoiceMap[voiceName] ?? _defaultAzureVoice;
     final hash = _hashText('$voiceName:$sentence');
     final cacheFile = File('${_cacheDir!.path}/tts_cache/$hash.mp3');
@@ -315,6 +321,11 @@ class AudioService {
     }
 
     // Fallback: local on-device TTS if quota is reached or Azure is offline
+    return await _playLocalTTS(sentence, generation);
+  }
+
+  /// Plays the sentence through local on-device TTS (flutter_tts).
+  Future<bool> _playLocalTTS(String sentence, int generation) async {
     if (generation != _playbackGeneration) return false;
     try {
       final ttsResult = await _runEngineOperation<dynamic>(() async {
@@ -337,6 +348,8 @@ class AudioService {
   /// Pre-fetches the upcoming sentence in the background to ensure zero gap during continuous reading.
   Future<void> prefetchSentence(String sentence, {String voiceName = 'Kore'}) async {
     if (!_isInitialized) await init();
+    // Skip prefetch if user selected local voice — nothing to cache
+    if (voiceName == 'local') return;
     if (!_quotaService.hasQuotaRemaining) return;
 
     final azureVoice = _azureVoiceMap[voiceName] ?? _defaultAzureVoice;

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:hanzi_master/features/reading/domain/entities/book_model.dart';
 
 class CalligraphicBookCover extends StatelessWidget {

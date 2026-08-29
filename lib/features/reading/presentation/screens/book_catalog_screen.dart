@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/features/media/domain/models/library_story.dart';
 import 'package:hanzi_master/features/media/presentation/screens/story_summary_screen.dart';
@@ -10,6 +10,7 @@ import 'package:hanzi_master/features/reading/presentation/widgets/calligraphic_
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
+import 'package:hanzi_master/core/presentation/widgets/zen_search_bar.dart';
 
 enum ReadingRoomSection {
   novels,
@@ -40,9 +41,6 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
   // Micro-read filters
   int _selectedHsk = -1; // -1 = All
 
-  // Poetry filters
-  String _selectedPoet = 'All';
-
   final TextEditingController _searchController = TextEditingController();
 
   final List<String> _novelCategories = [
@@ -57,16 +55,6 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
     'English & World',
   ];
 
-  final List<String> _poets = [
-    'All',
-    '李白 (Li Bai)',
-    '杜甫 (Du Fu)',
-    '王维 (Wang Wei)',
-    '白居易 (Bai Juyi)',
-    '孟浩然 (Meng Haoran)',
-    '李商隐 (Li Shangyin)',
-    '杜牧 (Du Mu)',
-  ];
 
   @override
   void initState() {
@@ -126,53 +114,10 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // --- SEARCH BAR ---
-                  Container(
-                    decoration: BoxDecoration(
-                      color: cardBg,
-                      borderRadius: BorderRadius.circular(16),
-                      border: Border.all(
-                        color: isDark
-                            ? Colors.white12
-                            : Colors.black.withValues(alpha: 0.06),
-                      ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black
-                              .withValues(alpha: isDark ? 0.2 : 0.03),
-                          blurRadius: 10,
-                          offset: const Offset(0, 4),
-                        ),
-                      ],
-                    ),
-                    child: TextField(
-                      controller: _searchController,
-                      onChanged: (_) => setState(() {}),
-                      style: TextStyle(color: primaryText, fontSize: 15),
-                      decoration: InputDecoration(
-                        hintText: _getSearchHint(),
-                        hintStyle: TextStyle(
-                          color: isDark ? Colors.white38 : Colors.black38,
-                          fontSize: 14,
-                        ),
-                        prefixIcon: Icon(
-                          Icons.search,
-                          color: isDark ? Colors.white54 : Colors.black45,
-                          size: 22,
-                        ),
-                        suffixIcon: _searchController.text.isNotEmpty
-                            ? IconButton(
-                                icon: const Icon(Icons.clear, size: 18),
-                                onPressed: () {
-                                  _searchController.clear();
-                                  setState(() {});
-                                },
-                              )
-                            : null,
-                        border: InputBorder.none,
-                        contentPadding:
-                            const EdgeInsets.symmetric(vertical: 14),
-                      ),
-                    ),
+                  ZenSearchBar(
+                    controller: _searchController,
+                    hintText: _getSearchHint(),
+                    onChanged: (_) => setState(() {}),
                   ),
 
                   const SizedBox(height: 12),
@@ -266,7 +211,7 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
       case ReadingRoomSection.microReads:
         return 'Search graded micro-stories & fables...';
       case ReadingRoomSection.poetry:
-        return 'Search Tang poems, Li Bai, Du Fu...';
+        return 'Search classical poems, authors, verses...';
     }
   }
 
@@ -432,59 +377,8 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
           },
         ),
       );
-    } else {
-      // Poetry Filters
-      return SizedBox(
-        height: 34,
-        child: ListView.separated(
-          scrollDirection: Axis.horizontal,
-          physics: const BouncingScrollPhysics(),
-          itemCount: _poets.length,
-          separatorBuilder: (_, __) => const SizedBox(width: 8),
-          itemBuilder: (context, index) {
-            final poet = _poets[index];
-            final isSelected = _selectedPoet == poet;
-            return GestureDetector(
-              onTap: () {
-                HapticsManager.light();
-                setState(() => _selectedPoet = poet);
-              },
-              child: AnimatedContainer(
-                duration: const Duration(milliseconds: 180),
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                decoration: BoxDecoration(
-                  color: isSelected
-                      ? (isDark
-                          ? const Color(0xFF8B0000)
-                          : const Color(0xFF8B0000))
-                      : cardBg,
-                  borderRadius: BorderRadius.circular(16),
-                  border: Border.all(
-                    color: isSelected
-                        ? Colors.transparent
-                        : (isDark ? Colors.white12 : Colors.black12),
-                  ),
-                ),
-                child: Center(
-                  child: Text(
-                    poet,
-                    style: TextStyle(
-                      color: isSelected
-                          ? Colors.white
-                          : (isDark ? Colors.white70 : Colors.black87),
-                      fontSize: 11,
-                      fontWeight:
-                          isSelected ? FontWeight.bold : FontWeight.w500,
-                    ),
-                  ),
-                ),
-              ),
-            );
-          },
-        ),
-      );
     }
+    return const SizedBox.shrink();
   }
 
   // ==========================================
@@ -682,16 +576,12 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
       data: (poems) {
         final query = _searchController.text.trim().toLowerCase();
         final filtered = poems.where((p) {
-          final matchesPoet = _selectedPoet == 'All' ||
-              p.sourceName
-                  .toLowerCase()
-                  .contains(_selectedPoet.split(' ').first.toLowerCase());
           final matchesSearch = query.isEmpty ||
               p.title.toLowerCase().contains(query) ||
               (p.titleEn?.toLowerCase().contains(query) ?? false) ||
               p.sourceName.toLowerCase().contains(query) ||
               p.summary.toLowerCase().contains(query);
-          return matchesPoet && matchesSearch;
+          return matchesSearch;
         }).toList();
 
         return [
@@ -700,7 +590,7 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
               child: Text(
-                '${filtered.length} Classical Tang Poems & Verse',
+                '${filtered.length} Classical Poems & Verse',
                 style: TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w600,

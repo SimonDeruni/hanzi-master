@@ -101,9 +101,9 @@ class DashboardScreen extends ConsumerWidget {
                 child: TodayInsightCard(),
               ),
             ),
-            
-            const SliverToBoxAdapter(child: SizedBox(height: 18)),
-            
+
+            const SliverToBoxAdapter(child: SizedBox(height: 22)),
+
             // --- QUICK SEARCH BAR ---
             SliverToBoxAdapter(
               child: Padding(

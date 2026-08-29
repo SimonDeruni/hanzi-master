@@ -3,9 +3,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../data/youtube_repository.dart';
 import '../../domain/models/youtube_video.dart';
 import 'smart_media_desk_screen.dart';
-import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
+import 'channel_videos_screen.dart';
+import 'package:hanzi_master/core/presentation/widgets/zen_search_bar.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
+import '../../data/channels_data.dart';
 
 class MediaSearchScreen extends ConsumerStatefulWidget {
   const MediaSearchScreen({super.key});
@@ -25,10 +27,10 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
   };
 
   final Map<String, String> _categoryQueries = {
-    'Lifestyle & Vlog': '中国 日常 vlog',
-    'Gaming & Esports': '中国 游戏 实况',
-    'Food & Cooking': '中国 美食 菜谱',
-    'Tech & Gadgets': '中国 科技 测评',
+    'Lifestyle & Vlog': 'ä¸­å›½ æ—¥å¸¸ vlog',
+    'Gaming & Esports': 'ä¸­å›½ æ¸¸æˆ å®žå†µ',
+    'Food & Cooking': 'ä¸­å›½ ç¾Žé£Ÿ èœè°±',
+    'Tech & Gadgets': 'ä¸­å›½ ç§‘æŠ€ æµ‹è¯„',
   };
 
   // Track loading state per category for progressive rendering
@@ -39,6 +41,10 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
   String? _error;
   String _searchStatus = '';
 
+  // Channel row state: resolved channel info for quick access
+  final List<Map<String, String>> _channelInfos = [];
+  bool _channelsLoading = true;
+
   @override
   void initState() {
     super.initState();
@@ -46,6 +52,7 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
       _categoryStates[key] = _CategoryLoadState.loading;
     }
     _loadInitialCategories();
+    _loadChannelInfos();
   }
 
   Future<void> _loadInitialCategories() async {
@@ -75,10 +82,46 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
     await Future.wait(futures);
   }
 
+  Future<void> _loadChannelInfos() async {
+    final repository = ref.read(youtubeRepositoryProvider);
+    final infos = <Map<String, String>>[];
+
+    for (final entry in ChannelsData.entries) {
+      try {
+        Map<String, String> data;
+        switch (entry.sourceType) {
+          case SourceType.handle:
+            data = await repository.getChannelByHandle(entry.handle);
+          case SourceType.channelId:
+            data = await repository.getChannelById(entry.channelId);
+          case SourceType.video:
+            data = await repository.getChannelByVideo(entry.resolveVideoId);
+        }
+        infos.add(data);
+      } catch (e) {
+        // Fallback to hardcoded data from the registry
+        infos.add({
+          'id': entry.channelId.isNotEmpty
+              ? entry.channelId
+              : (entry.handle.isNotEmpty ? entry.handle : entry.resolveVideoId),
+          'title': entry.displayName,
+          'logoUrl': entry.logoUrl,
+        });
+      }
+    }
+
+    if (mounted) {
+      setState(() {
+        _channelInfos.addAll(infos);
+        _channelsLoading = false;
+      });
+    }
+  }
+
   Future<void> _loadCategory(String categoryKey) async {
     final query = _categoryQueries[categoryKey];
     if (query == null) return;
-    
+
     setState(() {
       _categoryStates[categoryKey] = _CategoryLoadState.loading;
     });
@@ -121,7 +164,7 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
     try {
       final repository = ref.read(youtubeRepositoryProvider);
       setState(() => _searchStatus = 'Checking captions...');
-      final results = await repository.searchVideos('$query 中国 中文');
+      final results = await repository.searchVideos('$query ä¸­å›½ ä¸­æ–‡');
 
       if (mounted) {
         setState(() {
@@ -145,12 +188,14 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
-      backgroundColor: isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0), // Xuan paper
+      backgroundColor: isDark
+          ? const Color(0xFF1A1A1B)
+          : const Color(0xFFFDFCF0), // Xuan paper
       appBar: AppBar(
         title: const Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-                        Text('Smart Media Desk',
+            Text('Smart Media Desk',
                 style: TextStyle(
                     color: Colors.black87, fontWeight: FontWeight.bold)),
           ],
@@ -164,29 +209,20 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
         children: [
           Padding(
             padding: const EdgeInsets.all(16.0),
-            child: HanziTextField(
+            child: ZenSearchBar(
               controller: _searchController,
               hintText: 'Search topics (e.g., Cooking, History)',
-              decoration: InputDecoration(
-                prefixIcon: const Icon(Icons.search),
-                filled: true,
-                fillColor: Colors.white,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(16),
-                  borderSide: BorderSide(color: Colors.grey.shade200),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(16),
-                  borderSide: BorderSide(color: Colors.grey.shade200),
-                ),
-              ),
-              suffixIcon: IconButton(
+              trailing: IconButton(
                 icon: const Icon(Icons.send, color: Colors.indigo),
                 onPressed: () => _performSearch(_searchController.text),
               ),
               onSubmitted: _performSearch,
             ),
           ),
+
+          // â”€â”€ Channel quick-access row â”€â”€
+          _buildChannelRow(),
+          const SizedBox(height: 4),
 
           if (_error != null)
             Expanded(
@@ -225,7 +261,8 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
                       ),
                     ),
                   Expanded(
-                    child: _searchResults.isEmpty && _searchStatus.contains('Searching')
+                    child: _searchResults.isEmpty &&
+                            _searchStatus.contains('Searching')
                         ? _buildSkeletonGrid()
                         : ListView.builder(
                             padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -244,8 +281,8 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
               child: ListView(
                 padding: const EdgeInsets.only(bottom: 40),
                 children: _categories.entries.map((entry) {
-                  final state = _categoryStates[entry.key] ??
-                      _CategoryLoadState.loading;
+                  final state =
+                      _categoryStates[entry.key] ?? _CategoryLoadState.loading;
 
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -278,7 +315,8 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
                       ),
                       SizedBox(
                         height: 220,
-                        child: _buildCategoryContent(entry.key, state, entry.value),
+                        child: _buildCategoryContent(
+                            entry.key, state, entry.value),
                       ),
                     ],
                   );
@@ -290,7 +328,8 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
     );
   }
 
-  Widget _buildCategoryContent(String categoryKey, _CategoryLoadState state, List<YoutubeVideo> videos) {
+  Widget _buildCategoryContent(
+      String categoryKey, _CategoryLoadState state, List<YoutubeVideo> videos) {
     switch (state) {
       case _CategoryLoadState.loading:
         return _buildSkeletonRow();
@@ -406,9 +445,7 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
                   borderRadius:
                       const BorderRadius.vertical(top: Radius.circular(16)),
                   child: Image.network(
-                    isLarge
-                        ? video.highThumbnailUrl
-                        : video.mediumThumbnailUrl,
+                    isLarge ? video.highThumbnailUrl : video.mediumThumbnailUrl,
                     width: width,
                     height: imageHeight,
                     fit: BoxFit.cover,
@@ -490,9 +527,7 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 14,
-                        height: 1.3),
+                        fontWeight: FontWeight.bold, fontSize: 14, height: 1.3),
                   ),
                   const SizedBox(height: 6),
                   Text(
@@ -513,6 +548,93 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
     );
   }
 
+  Widget _buildChannelRow() {
+    return Container(
+      height: 80,
+      margin: const EdgeInsets.symmetric(horizontal: 4),
+      child: Row(
+        children: [
+          const SizedBox(width: 12),
+          Expanded(
+            child: _channelsLoading
+                ? ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: 8,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 6),
+                        child: CircleAvatar(
+                          radius: 28,
+                          backgroundColor: Colors.grey.shade200,
+                        ),
+                      );
+                    },
+                  )
+                : ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: _channelInfos.length,
+                    itemBuilder: (context, index) {
+                      final channel = _channelInfos[index];
+                      final logoUrl = channel['logoUrl'] ?? '';
+                      final title = channel['title'] ?? '';
+                      final channelId = channel['id'] ?? '';
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 6),
+                        child: GestureDetector(
+                          onTap: () {
+                            HapticsManager.medium();
+                            Navigator.push(
+                              context,
+                              SwipeBackPageRoute(
+                                builder: (context) => ChannelVideosScreen(
+                                  channelId: channelId,
+                                  channelName: title,
+                                  channelLogoUrl: logoUrl,
+                                ),
+                              ),
+                            );
+                          },
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              CircleAvatar(
+                                radius: 28,
+                                backgroundColor: Colors.grey.shade200,
+                                backgroundImage: logoUrl.isNotEmpty
+                                    ? NetworkImage(logoUrl)
+                                    : null,
+                                child: logoUrl.isEmpty
+                                    ? Icon(Icons.person,
+                                        size: 22, color: Colors.grey.shade500)
+                                    : null,
+                              ),
+                              const SizedBox(height: 4),
+                              SizedBox(
+                                width: 64,
+                                child: Text(
+                                  title,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.black87,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+          ),
+        ],
+      ),
+    );
+  }
+
   String _formatDuration(Duration? duration) {
     if (duration == null) return "0:00";
     String twoDigits(int n) => n.toString().padLeft(2, '0');
@@ -522,11 +644,11 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
   }
 }
 
-// ─── Loading state enum ───────────────────────────────────────────────────────
+// â”€â”€â”€ Loading state enum â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 enum _CategoryLoadState { loading, loaded, empty, error }
 
-// ─── Shimmer Skeleton Card ────────────────────────────────────────────────────
+// â”€â”€â”€ Shimmer Skeleton Card â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 class _SkeletonCard extends StatefulWidget {
   final double width;

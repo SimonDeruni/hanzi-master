@@ -21,7 +21,7 @@ import 'package:hanzi_master/features/flashcards/presentation/screens/story_mode
 import 'package:hanzi_master/features/flashcards/presentation/widgets/study_mode_selection_sheet.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/deck_card_picker_screen.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/stats_screen.dart';
-import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
+import 'package:hanzi_master/core/presentation/widgets/zen_search_bar.dart';
 
 class _SliverTabBarDelegate extends SliverPersistentHeaderDelegate {
   final TabBar tabBar;
@@ -354,25 +354,9 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                       if (deckCards.isNotEmpty)
                         Padding(
                           padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
-                          child: HanziTextField(
+                          child: ZenSearchBar(
                             controller: _searchController,
                             hintText: "Search character, pinyin...",
-                            decoration: InputDecoration(
-                              prefixIcon: const Icon(Icons.search),
-                              filled: true,
-                              fillColor: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.black.withValues(alpha: 0.05),
-                              border: OutlineInputBorder(borderRadius: BorderRadius.circular(16), borderSide: BorderSide.none),
-                              contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                            ),
-                            suffixIcon: _searchQuery.isNotEmpty 
-                                ? IconButton(
-                                    icon: const Icon(Icons.clear), 
-                                    onPressed: () {
-                                      _searchController.clear();
-                                      setState(() => _searchQuery = '');
-                                    }
-                                  ) 
-                                : null,
                             onChanged: (val) => setState(() => _searchQuery = val.toLowerCase()),
                           ),
                         ),

@@ -592,6 +592,8 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final bgColor = isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0);
     final textColor = isDark ? Colors.white : Colors.black87;
+    final cardBg = isDark ? const Color(0xFF2A2A2B) : Colors.white;
+    final borderColor = isDark ? Colors.white.withValues(alpha: 0.08) : Colors.black.withValues(alpha: 0.06);
 
     showModalBottomSheet(
         context: context,
@@ -601,32 +603,74 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
         builder: (ctx) {
           return SafeArea(
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
+              padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 20),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
+                  // Drag handle
+                  Center(
+                    child: Container(
+                      width: 36,
+                      height: 4,
+                      decoration: BoxDecoration(
+                        color: isDark ? Colors.white24 : Colors.black12,
+                        borderRadius: BorderRadius.circular(2),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
                   Text(
                     "AI Reading Tools",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: textColor),
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: textColor,
+                      letterSpacing: -0.3,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    "Enhance your reading with AI-powered tools",
+                    style: TextStyle(
+                      fontSize: 13,
+                      color: isDark ? Colors.white54 : Colors.black38,
+                    ),
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 24),
-                  ListTile(
-                    leading: const Icon(Icons.playlist_add, color: Colors.blue, size: 32),
-                    title: Text("Extract to Deck", style: TextStyle(fontWeight: FontWeight.bold, color: textColor)),
-                    subtitle: Text("Extract all unknown words to a new named Deck", style: TextStyle(color: isDark ? Colors.white70 : Colors.black54)),
+                  // Extract to Deck card
+                  _AiToolTile(
+                    icon: Icons.playlist_add,
+                    iconColor: const Color(0xFF4A90D9),
+                    iconBgColor: const Color(0xFF4A90D9).withValues(alpha: 0.12),
+                    title: 'Extract to Deck',
+                    subtitle: 'Extract all unknown words to a new flashcard deck',
+                    isDark: isDark,
+                    cardBg: cardBg,
+                    borderColor: borderColor,
+                    textColor: textColor,
                     onTap: () {
+                      HapticsManager.medium();
                       Navigator.pop(ctx);
                       _runAddAllUnknowns();
                     },
                   ),
-                  Divider(color: isDark ? Colors.white24 : Colors.black12),
-                  ListTile(
-                    leading: const Icon(Icons.auto_fix_high, color: Colors.amber, size: 32),
-                    title: Text("Auto-Simplify", style: TextStyle(fontWeight: FontWeight.bold, color: textColor)),
-                    subtitle: Text("Rewrite this article to your HSK level", style: TextStyle(color: isDark ? Colors.white70 : Colors.black54)),
+                  const SizedBox(height: 12),
+                  // Auto-Simplify card
+                  _AiToolTile(
+                    icon: Icons.auto_fix_high,
+                    iconColor: const Color(0xFFFFB300),
+                    iconBgColor: const Color(0xFFFFB300).withValues(alpha: 0.12),
+                    title: 'Auto-Simplify',
+                    subtitle: 'Rewrite this article to match your HSK level',
+                    isDark: isDark,
+                    cardBg: cardBg,
+                    borderColor: borderColor,
+                    textColor: textColor,
                     onTap: () {
+                      HapticsManager.medium();
                       Navigator.pop(ctx);
                       _showAutoSimplifyLevelPicker(context, isDark, bgColor, textColor);
                     },
@@ -639,6 +683,10 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
   }
 
   void _showAutoSimplifyLevelPicker(BuildContext context, bool isDark, Color bgColor, Color textColor) {
+    final amberColor = const Color(0xFFFFB300);
+    final amberLight = amberColor.withValues(alpha: 0.12);
+    final amberBorder = amberColor.withValues(alpha: 0.30);
+
     showModalBottomSheet(
         context: context,
         backgroundColor: bgColor,
@@ -647,31 +695,114 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
         builder: (ctx) {
           return SafeArea(
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
+              padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 20),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Text(
-                    "Select HSK Level",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: textColor),
-                    textAlign: TextAlign.center,
+                  // Drag handle
+                  Center(
+                    child: Container(
+                      width: 36,
+                      height: 4,
+                      decoration: BoxDecoration(
+                        color: isDark ? Colors.white24 : Colors.black12,
+                        borderRadius: BorderRadius.circular(2),
+                      ),
+                    ),
                   ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 20),
+                  Row(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          color: amberLight,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: const Icon(Icons.auto_fix_high, color: amberColor, size: 22),
+                      ),
+                      const SizedBox(width: 12),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Select HSK Level",
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: textColor,
+                              letterSpacing: -0.3,
+                            ),
+                          ),
+                          const SizedBox(height: 2),
+                          Text(
+                            "Choose the target difficulty for simplification",
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: isDark ? Colors.white54 : Colors.black38,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 24),
                   Wrap(
-                    spacing: 8.0,
-                    runSpacing: 8.0,
+                    spacing: 10,
+                    runSpacing: 10,
                     alignment: WrapAlignment.center,
                     children: List.generate(6, (index) {
                       final level = index + 1;
-                      return ActionChip(
-                        label: Text("HSK $level"),
-                        backgroundColor: isDark ? Colors.grey[800] : Colors.grey[200],
-                        labelStyle: TextStyle(color: textColor, fontWeight: FontWeight.bold),
-                        onPressed: () {
+                      final descriptions = [
+                        'Beginner',
+                        'Elementary',
+                        'Intermediate',
+                        'Upper-Intermediate',
+                        'Advanced',
+                        'Master',
+                      ];
+                      return GestureDetector(
+                        onTap: () {
+                          HapticsManager.medium();
                           Navigator.pop(ctx);
                           _runAutoSimplify(level);
                         },
+                        child: Container(
+                          width: (MediaQuery.of(context).size.width - 60) / 3,
+                          padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 8),
+                          decoration: BoxDecoration(
+                            color: amberLight,
+                            borderRadius: BorderRadius.circular(14),
+                            border: Border.all(
+                              color: amberBorder,
+                              width: 1,
+                            ),
+                          ),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                'HSK $level',
+                                style: TextStyle(
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.bold,
+                                  color: amberColor,
+                                ),
+                              ),
+                              const SizedBox(height: 2),
+                              Text(
+                                descriptions[index],
+                                style: TextStyle(
+                                  fontSize: 11,
+                                  color: isDark
+                                      ? Colors.white54
+                                      : Colors.black45,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                       );
                     }),
                   ),
@@ -1277,35 +1408,109 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                                         color: isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
                                         borderRadius: const BorderRadius.vertical(top: Radius.circular(20))
                                       ),
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.all(16.0),
-                                            child: Text(
-                                              'Select Target HSK Level',
-                                              style: TextStyle(
-                                                  fontSize: 18,
-                                                  color: isDark ? Colors.white : Colors.black,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                          ),
-                                          ...List.generate(6, (index) {
-                                            final level = index + 1;
-                                            return ListTile(
-                                              leading: CircleAvatar(
-                                                backgroundColor: Colors.blueAccent
-                                                    .withValues(alpha: 0.1),
-                                                child: Text('$level',
-                                                    style: const TextStyle(
-                                                        color:
-                                                            Colors.blueAccent)),
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 20),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                                          children: [
+                                            // Drag handle
+                                            Center(
+                                              child: Container(
+                                                width: 36,
+                                                height: 4,
+                                                decoration: BoxDecoration(
+                                                  color: isDark ? Colors.white24 : Colors.black12,
+                                                  borderRadius: BorderRadius.circular(2),
+                                                ),
                                               ),
-                                              title: Text('HSK $level', style: TextStyle(color: isDark ? Colors.white : Colors.black)),
-                                              onTap: () =>
-                                                  Navigator.pop(context, level),
-                                            );
-                                          }),
+                                            ),
+                                            const SizedBox(height: 20),
+                                            Row(
+                                              children: [
+                                                Container(
+                                                  padding: const EdgeInsets.all(8),
+                                                  decoration: BoxDecoration(
+                                                    color: const Color(0xFFFFB300).withValues(alpha: 0.12),
+                                                    borderRadius: BorderRadius.circular(10),
+                                                  ),
+                                                  child: const Icon(Icons.auto_fix_high, color: Color(0xFFFFB300), size: 22),
+                                                ),
+                                                const SizedBox(width: 12),
+                                                Column(
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      'Select Target HSK Level',
+                                                      style: TextStyle(
+                                                        fontSize: 20,
+                                                        fontWeight: FontWeight.bold,
+                                                        color: isDark ? Colors.white : Colors.black87,
+                                                        letterSpacing: -0.3,
+                                                      ),
+                                                    ),
+                                                    const SizedBox(height: 2),
+                                                    Text(
+                                                      'Choose difficulty for simplification',
+                                                      style: TextStyle(
+                                                        fontSize: 12,
+                                                        color: isDark ? Colors.white54 : Colors.black38,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                            const SizedBox(height: 24),
+                                          Wrap(
+                                              spacing: 10,
+                                              runSpacing: 10,
+                                              alignment: WrapAlignment.center,
+                                              children: List.generate(6, (index) {
+                                                final level = index + 1;
+                                                final descriptions = [
+                                                  'Beginner', 'Elementary', 'Intermediate',
+                                                  'Upper-Intermediate', 'Advanced', 'Master',
+                                                ];
+                                                return GestureDetector(
+                                                  onTap: () =>
+                                                      Navigator.pop(context, level),
+                                                  child: Container(
+                                                    width: (MediaQuery.of(context).size.width - 60) / 3,
+                                                    padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 8),
+                                                    decoration: BoxDecoration(
+                                                      color: const Color(0xFFFFB300).withValues(alpha: 0.12),
+                                                      borderRadius: BorderRadius.circular(14),
+                                                      border: Border.all(
+                                                        color: const Color(0xFFFFB300).withValues(alpha: 0.30),
+                                                        width: 1,
+                                                      ),
+                                                    ),
+                                                    child: Column(
+                                                      mainAxisSize: MainAxisSize.min,
+                                                      children: [
+                                                        Text(
+                                                          'HSK $level',
+                                                          style: TextStyle(
+                                                            fontSize: 17,
+                                                            fontWeight: FontWeight.bold,
+                                                            color: const Color(0xFFFFB300),
+                                                          ),
+                                                        ),
+                                                        const SizedBox(height: 2),
+                                                        Text(
+                                                          descriptions[index],
+                                                          style: TextStyle(
+                                                            fontSize: 11,
+                                                            color: isDark ? Colors.white54 : Colors.black45,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                );
+                                              }),
+                                            ),
                                         ],
                                       ),
                                     ),
@@ -1510,16 +1715,61 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                           textStyle: theme.textTheme.labelMedium,
                         ),
                       )
-                    : FilledButton.tonalIcon(
-                        onPressed: _isProcessingAi ? null : () => _showAiToolsMenu(context),
-                        icon: _isProcessingAi
-                            ? const SizedBox(width: 14, height: 14, child: CircularProgressIndicator(strokeWidth: 2))
-                            : const Icon(Icons.auto_awesome, size: 18),
-                        label: const Text('AI Tools'),
-                        style: FilledButton.styleFrom(
+                    : GestureDetector(
+                        onTap: _isProcessingAi ? null : () {
+                          HapticsManager.selection();
+                          _showAiToolsMenu(context);
+                        },
+                        child: AnimatedContainer(
+                          duration: const Duration(milliseconds: 250),
+                          curve: Curves.easeInOutQuad,
                           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                          textStyle: theme.textTheme.labelMedium,
+                          decoration: BoxDecoration(
+                            color: isDark
+                                ? const Color(0xFFFFB300).withValues(alpha: 0.15)
+                                : const Color(0xFFFFB300).withValues(alpha: 0.10),
+                            borderRadius: BorderRadius.circular(12),
+                            border: Border.all(
+                              color: isDark
+                                  ? const Color(0xFFFFB300).withValues(alpha: 0.35)
+                                  : const Color(0xFFFFB300).withValues(alpha: 0.30),
+                              width: 1,
+                            ),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              if (_isProcessingAi)
+                                SizedBox(
+                                  width: 16,
+                                  height: 16,
+                                  child: CircularProgressIndicator(
+                                    strokeWidth: 2,
+                                    color: const Color(0xFFFFB300),
+                                  ),
+                                )
+                              else
+                                Icon(
+                                  Icons.auto_awesome,
+                                  size: 16,
+                                  color: isDark
+                                      ? const Color(0xFFFFD54F)
+                                      : const Color(0xFFB8860B),
+                                ),
+                              const SizedBox(width: 6),
+                              Text(
+                                _isProcessingAi ? 'Processing…' : 'AI Tools',
+                                style: TextStyle(
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.w600,
+                                  letterSpacing: 0.3,
+                                  color: isDark
+                                      ? const Color(0xFFFFD54F)
+                                      : const Color(0xFFB8860B),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
               ),
@@ -1576,6 +1826,91 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
             const SnackBar(content: Text('Article saved to Media Hub!')));
       }
     }
+  }
+}
+
+class _AiToolTile extends StatelessWidget {
+  final IconData icon;
+  final Color iconColor;
+  final Color iconBgColor;
+  final String title;
+  final String subtitle;
+  final bool isDark;
+  final Color cardBg;
+  final Color borderColor;
+  final Color textColor;
+  final VoidCallback onTap;
+
+  const _AiToolTile({
+    required this.icon,
+    required this.iconColor,
+    required this.iconBgColor,
+    required this.title,
+    required this.subtitle,
+    required this.isDark,
+    required this.cardBg,
+    required this.borderColor,
+    required this.textColor,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: cardBg,
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(color: borderColor),
+        ),
+        child: Row(
+          children: [
+            // Icon circle
+            Container(
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: iconBgColor,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Icon(icon, color: iconColor, size: 24),
+            ),
+            const SizedBox(width: 14),
+            // Text content
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 15,
+                      color: textColor,
+                    ),
+                  ),
+                  const SizedBox(height: 2),
+                  Text(
+                    subtitle,
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: isDark ? Colors.white54 : Colors.black45,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            // Chevron
+            Icon(
+              Icons.chevron_right,
+              size: 20,
+              color: isDark ? Colors.white38 : Colors.black26,
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
 

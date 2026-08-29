@@ -15,7 +15,7 @@ import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import 'package:hanzi_master/core/services/saved_scenarios_service.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
-import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
+import 'package:hanzi_master/core/presentation/widgets/zen_search_bar.dart';
 
 class ScenarioSelectionScreen extends ConsumerStatefulWidget {
   final Deck? deck;
@@ -170,35 +170,11 @@ class _ScenarioSelectionScreenState
             ),
           const SizedBox(height: 4),
           // Search bar
-          Padding(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
-            child: HanziTextField(
-              controller: _searchController,
-              hintText: 'Search scenarios...',
-              decoration: InputDecoration(
-                prefixIcon: Icon(
-                  Icons.search,
-                  color: isDark ? Colors.white54 : Colors.black45,
-                ),
-                filled: true,
-                fillColor: isDark ? const Color(0xFF242426) : Colors.white,
-                contentPadding: const EdgeInsets.symmetric(vertical: 0),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(30),
-                  borderSide: BorderSide.none,
-                ),
-              ),
-              suffixIcon: _searchQuery.isNotEmpty
-                  ? IconButton(
-                      icon: const Icon(Icons.clear),
-                      onPressed: () {
-                        _searchController.clear();
-                        setState(() => _searchQuery = '');
-                      })
-                  : null,
-              onChanged: (value) => setState(() => _searchQuery = value),
-            ),
+          ZenSearchBar(
+            controller: _searchController,
+            hintText: 'Search scenarios...',
+            margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
+            onChanged: (value) => setState(() => _searchQuery = value),
           ),
           const SizedBox(height: 8),
           // Filter chips

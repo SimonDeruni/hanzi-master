@@ -68,7 +68,7 @@ class TodayInsightCard extends ConsumerWidget {
               
               // Content
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 22.0, vertical: 16.0),
+                padding: const EdgeInsets.symmetric(horizontal: 28.0, vertical: 22.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
@@ -79,7 +79,7 @@ class TodayInsightCard extends ConsumerWidget {
                         color: const Color(0xFFD4C4A8),
                         fontWeight: FontWeight.w700,
                         letterSpacing: 2.5,
-                        fontSize: 11,
+                        fontSize: 12,
                       ),
                     ),
                     const SizedBox(height: 10),
@@ -93,7 +93,7 @@ class TodayInsightCard extends ConsumerWidget {
                             fontFamily: 'NotoSerifSC',
                             fontWeight: FontWeight.w900,
                             height: 1.0,
-                            fontSize: 48,
+                            fontSize: 54,
                             shadows: [
                               Shadow(color: Colors.black.withValues(alpha: 0.5), blurRadius: 10, offset: const Offset(0, 4)),
                             ],
@@ -142,7 +142,7 @@ class TodayInsightCard extends ConsumerWidget {
                                   color: Colors.white.withValues(alpha: 0.75),
                                   fontWeight: FontWeight.w400,
                                   height: 1.25,
-                                  fontSize: 13,
+                                  fontSize: 14,
                                 ),
                               ),
                             ],

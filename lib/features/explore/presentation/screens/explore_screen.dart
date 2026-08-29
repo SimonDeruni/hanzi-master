@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import 'package:hanzi_master/features/media/presentation/screens/media_hub_screen.dart';
+import 'package:hanzi_master/features/media/presentation/screens/media_search_screen.dart';
+import 'package:hanzi_master/features/media/presentation/screens/show_catalog_screen.dart';
 import 'package:hanzi_master/features/reading/presentation/screens/book_catalog_screen.dart';
 
 class ExploreScreen extends ConsumerStatefulWidget {
@@ -29,7 +31,6 @@ class _ExploreScreenState extends ConsumerState<ExploreScreen> {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final bgColor = isDark ? const Color(0xFF141416) : const Color(0xFFFDFCF0);
-    final topBarBg = isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0);
 
     return Scaffold(
       backgroundColor: bgColor,
@@ -37,44 +38,60 @@ class _ExploreScreenState extends ConsumerState<ExploreScreen> {
         bottom: false,
         child: Column(
           children: [
-            // --- TOP SEGMENTED PILL SWITCHER (MATCHING DESIGN) ---
-            Container(
-              color: topBarBg,
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            // --- Segmented tab switcher (Matching AI Hub style) ---
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 12, 20, 8),
               child: Container(
-                height: 48,
+                height: 52,
                 padding: const EdgeInsets.all(4),
                 decoration: BoxDecoration(
-                  color: isDark ? const Color(0xFF2C2C2E) : const Color(0xFFFF7A00),
-                  borderRadius: BorderRadius.circular(24),
-                  boxShadow: [
-                    BoxShadow(
-                      color: (isDark ? Colors.black : const Color(0xFFFF7A00)).withValues(alpha: 0.25),
-                      blurRadius: 10,
-                      offset: const Offset(0, 3),
-                    ),
-                  ],
+                  color: isDark
+                      ? const Color(0xFF2C2C2E)
+                      : Colors.black.withValues(alpha: 0.04),
+                  borderRadius: BorderRadius.circular(18),
                 ),
                 child: Row(
                   children: [
-                    // TAB 0: READING ROOM (藏书阁)
+                    // TAB 0: BOOKS
                     Expanded(
-                      child: _buildTabPill(
+                      child: _buildSegmentTab(
                         index: 0,
-                        title: 'Reading Room',
-                        subtitle: '96 Full Books',
+                        icon: Icons.menu_book_rounded,
+                        label: 'Books',
                         isSelected: _selectedTab == 0,
                         isDark: isDark,
                       ),
                     ),
-                    const SizedBox(width: 4),
-                    // TAB 1: WEB EXPLORER (网络探索 / 媒体中心)
+                    const SizedBox(width: 2),
+                    // TAB 1: WEB
                     Expanded(
-                      child: _buildTabPill(
+                      child: _buildSegmentTab(
                         index: 1,
-                        title: 'Web Explorer',
-                        subtitle: 'Live Reader',
+                        icon: Icons.language_rounded,
+                        label: 'Web',
                         isSelected: _selectedTab == 1,
+                        isDark: isDark,
+                      ),
+                    ),
+                    const SizedBox(width: 2),
+                    // TAB 2: SHOWS
+                    Expanded(
+                      child: _buildSegmentTab(
+                        index: 2,
+                        icon: Icons.live_tv_rounded,
+                        label: 'Shows',
+                        isSelected: _selectedTab == 2,
+                        isDark: isDark,
+                      ),
+                    ),
+                    const SizedBox(width: 2),
+                    // TAB 3: VIDEO
+                    Expanded(
+                      child: _buildSegmentTab(
+                        index: 3,
+                        icon: Icons.smart_display_rounded,
+                        label: 'Video',
+                        isSelected: _selectedTab == 3,
                         isDark: isDark,
                       ),
                     ),
@@ -90,6 +107,8 @@ class _ExploreScreenState extends ConsumerState<ExploreScreen> {
                 children: const [
                   BookCatalogScreen(showBackButton: false),
                   MediaHubScreen(showBackButton: false),
+                  ShowCatalogScreen(),
+                  MediaSearchScreen(),
                 ],
               ),
             ),
@@ -99,10 +118,10 @@ class _ExploreScreenState extends ConsumerState<ExploreScreen> {
     );
   }
 
-  Widget _buildTabPill({
+  Widget _buildSegmentTab({
     required int index,
-    required String title,
-    required String subtitle,
+    required IconData icon,
+    required String label,
     required bool isSelected,
     required bool isDark,
   }) {
@@ -110,42 +129,45 @@ class _ExploreScreenState extends ConsumerState<ExploreScreen> {
       onTap: () {
         if (_selectedTab != index) {
           HapticsManager.selection();
-          setState(() {
-            _selectedTab = index;
-          });
+          setState(() => _selectedTab = index);
         }
       },
       child: AnimatedContainer(
-        duration: const Duration(milliseconds: 200),
-        curve: Curves.easeInOut,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeInOutQuart,
         decoration: BoxDecoration(
           color: isSelected
-              ? (isDark ? const Color(0xFF3A3A3C) : Colors.white)
+              ? const Color(0xFFFFB300).withValues(alpha: isDark ? 0.25 : 0.15)
               : Colors.transparent,
-          borderRadius: BorderRadius.circular(20),
-          boxShadow: isSelected
-              ? [
-                  BoxShadow(
-                    color: Colors.black.withValues(alpha: 0.12),
-                    blurRadius: 6,
-                    offset: const Offset(0, 2),
-                  ),
-                ]
+          borderRadius: BorderRadius.circular(14),
+          border: isSelected
+              ? Border.all(
+                  color: const Color(0xFFFFB300).withValues(alpha: 0.4),
+                  width: 1,
+                )
               : null,
         ),
         alignment: Alignment.center,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Icon(
+              icon,
+              size: 18,
+              color: isSelected
+                  ? const Color(0xFFFFB300)
+                  : (isDark ? Colors.white54 : Colors.black38),
+            ),
+            const SizedBox(width: 6),
             Text(
-              title,
+              label,
               style: TextStyle(
                 color: isSelected
-                    ? (isDark ? Colors.white : const Color(0xFF1A1A1B))
-                    : (isDark ? Colors.white70 : Colors.white),
-                fontWeight: isSelected ? FontWeight.bold : FontWeight.w600,
-                fontSize: 14,
-                letterSpacing: 0.3,
+                    ? (isDark ? const Color(0xFFFFD54F) : const Color(0xFF1A1A1B))
+                    : (isDark ? Colors.white54 : Colors.black38),
+                fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
+                fontSize: 13,
+                letterSpacing: 0.2,
               ),
             ),
           ],

@@ -8,7 +8,6 @@ class PremiumTranscriptLine extends StatefulWidget {
   final int highlightedCount;
   final VoidCallback onReplay;
   final VoidCallback? onLineTapped;
-  final VoidCallback onAiExplain;
   final Function(String) onWordTapped;
   final bool showPinyin;
   final bool showEnglish;
@@ -24,7 +23,6 @@ class PremiumTranscriptLine extends StatefulWidget {
     required this.highlightedCount,
     required this.onReplay,
     this.onLineTapped,
-    required this.onAiExplain,
     required this.onWordTapped,
     this.showPinyin = true,
     this.showEnglish = true,
@@ -193,7 +191,7 @@ class _PremiumTranscriptLineState extends State<PremiumTranscriptLine> with Sing
                         ),
                       ),
                       
-                    // 3. English/Local Translation Line + AI/Shadow Row
+                    // 3. English/Local Translation Line + Shadowing Button
                     if (widget.showEnglish || widget.isShadowingMode)
                       Padding(
                         padding: const EdgeInsets.only(top: 6),
@@ -215,54 +213,33 @@ class _PremiumTranscriptLineState extends State<PremiumTranscriptLine> with Sing
                               const Spacer(),
                             const SizedBox(width: 8),
                             
-                            // Inline Microphone Button (Shadowing Mode)
-                            if (widget.isShadowingMode)
-                              GestureDetector(
-                                onTap: widget.onShadowTapped,
-                                child: AnimatedBuilder(
-                                  animation: _pulseAnimation,
-                                  builder: (context, child) {
-                                    return Transform.scale(
-                                      scale: widget.isRecordingThisLine ? _pulseAnimation.value : 1.0,
-                                      child: Container(
-                                        padding: const EdgeInsets.all(6),
-                                        decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          color: widget.isRecordingThisLine 
-                                              ? Colors.red.withValues(alpha: 0.2) 
-                                              : Colors.indigo.withValues(alpha: 0.1),
-                                          boxShadow: widget.isRecordingThisLine ? [
-                                            BoxShadow(color: Colors.red.withValues(alpha: 0.4), blurRadius: 8, spreadRadius: 2)
-                                          ] : null,
-                                        ),
-                                        child: Icon(
-                                          widget.isRecordingThisLine ? Icons.stop : Icons.mic,
-                                          color: widget.isRecordingThisLine ? Colors.red : Colors.indigo,
-                                          size: 20,
-                                        ),
-                                      ),
-                                    );
-                                  }
-                                ),
-                              ),
-                            
-                            if (widget.isShadowingMode)
-                              const SizedBox(width: 8),
-                              
-                            // AI Explain Button
+                            // Shadowing / Mic Button
                             GestureDetector(
-                              onTap: widget.onAiExplain,
-                              child: Container(
-                                padding: const EdgeInsets.all(6),
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: Colors.amber.withValues(alpha: 0.1),
-                                ),
-                                child: const Icon(
-                                  Icons.auto_awesome,
-                                  color: Colors.amber,
-                                  size: 20,
-                                ),
+                              onTap: widget.onShadowTapped,
+                              child: AnimatedBuilder(
+                                animation: _pulseAnimation,
+                                builder: (context, child) {
+                                  return Transform.scale(
+                                    scale: widget.isRecordingThisLine ? _pulseAnimation.value : 1.0,
+                                    child: Container(
+                                      padding: const EdgeInsets.all(6),
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: widget.isRecordingThisLine 
+                                            ? Colors.red.withValues(alpha: 0.2) 
+                                            : Colors.indigo.withValues(alpha: 0.1),
+                                        boxShadow: widget.isRecordingThisLine ? [
+                                          BoxShadow(color: Colors.red.withValues(alpha: 0.4), blurRadius: 8, spreadRadius: 2)
+                                        ] : null,
+                                      ),
+                                      child: Icon(
+                                        widget.isRecordingThisLine ? Icons.stop : Icons.mic,
+                                        color: widget.isRecordingThisLine ? Colors.red : Colors.indigo,
+                                        size: 20,
+                                      ),
+                                    ),
+                                  );
+                                }
                               ),
                             ),
                           ],

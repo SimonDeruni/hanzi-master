@@ -61,6 +61,17 @@ class SettingsScreen extends ConsumerWidget {
                   ref.read(settingsProvider.notifier).toggleHaptics(val);
                 },
               ),
+              _buildDivider(),
+              ListTile(
+                leading: CircleAvatar(
+                  backgroundColor: Colors.purple.withValues(alpha: 0.1),
+                  child: const Icon(Icons.record_voice_over, color: Colors.purple, size: 20),
+                ),
+                title: const Text("Audiobook Voice", style: TextStyle(fontWeight: FontWeight.w600)),
+                subtitle: Text(_voiceDisplayName(settings.audiobookVoice)),
+                trailing: const Icon(Icons.chevron_right, color: Colors.grey),
+                onTap: () => _showVoicePickerDialog(context, ref),
+              ),
             ],
           ),
           const SizedBox(height: 24),
@@ -266,6 +277,64 @@ class SettingsScreen extends ConsumerWidget {
 
   Widget _buildDivider() {
     return const Divider(height: 1, thickness: 1, indent: 56);
+  }
+
+  static String _voiceDisplayName(String voice) {
+    switch (voice) {
+      case 'Kore': return 'Kore — Female, warm (Azure)';
+      case 'Aoede': return 'Aoede — Female, cheerful (Azure)';
+      case 'Fenrir': return 'Fenrir — Male, upbeat (Azure)';
+      case 'Charon': return 'Charon — Male, news-style (Azure)';
+      case 'Puck': return 'Puck — Male, sporty (Azure)';
+      case 'local': return 'Local — On-device TTS';
+      default: return voice;
+    }
+  }
+
+  static void _showVoicePickerDialog(BuildContext context, WidgetRef ref) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final currentVoice = ref.read(settingsProvider).audiobookVoice;
+    final accent = isDark ? Colors.amber.shade400 : const Color(0xFF8B0000);
+    final cardBg = isDark ? const Color(0xFF1C1C1E) : const Color(0xFFFDFCF0);
+
+    const voiceOptions = [
+      ('Kore', 'Kore — Female, warm', 'zh-CN-XiaoxiaoNeural'),
+      ('Aoede', 'Aoede — Female, cheerful', 'zh-CN-XiaoyiNeural'),
+      ('Fenrir', 'Fenrir — Male, upbeat', 'zh-CN-YunxiNeural'),
+      ('Charon', 'Charon — Male, news-style', 'zh-CN-YunyangNeural'),
+      ('Puck', 'Puck — Male, sporty', 'zh-CN-YunjianNeural'),
+      ('local', 'Local — On-device TTS', 'System voice'),
+    ];
+
+    showDialog(
+      context: context,
+      builder: (ctx) {
+        return AlertDialog(
+          backgroundColor: cardBg,
+          title: Text('Choose Audiobook Voice', style: TextStyle(fontWeight: FontWeight.bold, color: isDark ? Colors.white : Colors.black87)),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: voiceOptions.map((opt) {
+              final isSelected = currentVoice == opt.$1;
+              return ListTile(
+                dense: true,
+                contentPadding: EdgeInsets.zero,
+                leading: Icon(
+                  isSelected ? Icons.radio_button_checked : Icons.radio_button_unchecked,
+                  color: isSelected ? accent : Colors.grey,
+                ),
+                title: Text(opt.$2, style: TextStyle(fontSize: 14, fontWeight: isSelected ? FontWeight.bold : FontWeight.normal)),
+                subtitle: Text(opt.$3, style: const TextStyle(fontSize: 11)),
+                onTap: () {
+                  ref.read(settingsProvider.notifier).setAudiobookVoice(opt.$1);
+                  Navigator.of(ctx).pop();
+                },
+              );
+            }).toList(),
+          ),
+        );
+      },
+    );
   }
 }
 

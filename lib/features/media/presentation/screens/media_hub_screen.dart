@@ -3,7 +3,6 @@ import 'package:hanzi_master/features/media/presentation/providers/daily_discove
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
-import 'package:hanzi_master/shared/widgets/global_sliver_app_bar.dart';
 import 'package:hanzi_master/features/media/presentation/screens/media_search_screen.dart';
 import 'package:hanzi_master/features/media/presentation/screens/cultural_context_screen.dart';
 import 'package:hanzi_master/features/media/presentation/screens/web_browser_screen.dart';
@@ -15,7 +14,6 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hanzi_master/features/media/domain/models/saved_article.dart';
 import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
 import 'package:hanzi_master/core/config/app_features.dart';
-import 'package:hanzi_master/features/reading/presentation/screens/book_catalog_screen.dart';
 
 class MediaHubScreen extends ConsumerWidget {
   final bool showBackButton;
@@ -31,103 +29,17 @@ class MediaHubScreen extends ConsumerWidget {
         child: CustomScrollView(
           physics: const BouncingScrollPhysics(),
           slivers: [
-            GlobalSliverAppBar(
-              title: 'Media Hub',
-              subtitle: 'Immersive Chinese learning through real content',
-              showBackButton: showBackButton,
-            ),
-
-            const SliverToBoxAdapter(child: SizedBox(height: 16)),
-
-            // Daily Discovery Carousel
-            const SliverPadding(
-              padding: EdgeInsets.zero,
-              sliver: SliverToBoxAdapter(
-                child: _DailyDiscoveryCarousel(),
-              ),
-            ),
-
-            const SliverToBoxAdapter(child: SizedBox(height: 24)),
-
-            // Core Tools Layout
+            // 1. WEB EXPLORER - Prominent Hero Card
             SliverToBoxAdapter(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                child: Column(
-                  children: [
-                    _buildThematicCard(
-                      context: context,
-                      title: "GRAND LIBRARY (96 FULL BOOKS)",
-                      subtitle: "Complete classical epics, philosophy & world novels",
-                      icon: Icons.menu_book,
-                      brandColor: const Color(0xFF8B0000), // Imperial Crimson
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          SwipeBackPageRoute(
-                              builder: (_) => const BookCatalogScreen()),
-                        );
-                      },
-                    ),
-                    const SizedBox(height: 16),
-                    if (AppFeatures.youtubeMedia) ...[
-                      _buildThematicCard(
-                        context: context,
-                        title: "YOUTUBE DESK",
-                        subtitle: "Interactive transcripts & shadowing",
-                        icon: Icons.smart_display,
-                        brandColor: const Color(0xFFFF0000), // YouTube Red
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (_) => const MediaSearchScreen()),
-                          );
-                        },
-                      ),
-                      const SizedBox(height: 16),
-                    ],
-                    _buildThematicCard(
-                      context: context,
-                      title: "WEB EXPLORER",
-                      subtitle: "Live dictionary translation overlay",
-                      icon: Icons.language,
-                      brandColor: const Color(0xFF1E88E5), // Web Blue
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (_) => const WebBrowserScreen()),
-                        );
-                      },
-                    ),
-                    if (AppFeatures.youtubeMedia) ...[
-                      const SizedBox(height: 16),
-                      _buildThematicCard(
-                        context: context,
-                        title: "SHOWS & DRAMAS",
-                        subtitle:
-                            "Chinese TV series with interactive subtitles",
-                        icon: Icons.live_tv,
-                        brandColor: const Color(0xFFFFA000),
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            SwipeBackPageRoute(
-                              builder: (_) => const ShowCatalogScreen(),
-                            ),
-                          );
-                        },
-                      ),
-                    ],
-                  ],
-                ),
+                padding: const EdgeInsets.fromLTRB(24, 16, 24, 8),
+                child: _buildWebExplorerHeroCard(context),
               ),
             ),
 
-            const SliverToBoxAdapter(child: SizedBox(height: 32)),
+            const SliverToBoxAdapter(child: SizedBox(height: 20)),
 
-            // Quick Bookmarks Section Title
+            // 2. Quick Bookmarks
             SliverToBoxAdapter(
               child: Padding(
                 padding:
@@ -172,6 +84,64 @@ class MediaHubScreen extends ConsumerWidget {
                       brandColor: const Color(0xFF2932E1),
                       url: 'https://www.baidu.com',
                     ),
+                  ],
+                ),
+              ),
+            ),
+
+            const SliverToBoxAdapter(child: SizedBox(height: 24)),
+
+            // 3. Daily Discovery Carousel (Article of the Day)
+            const SliverPadding(
+              padding: EdgeInsets.zero,
+              sliver: SliverToBoxAdapter(
+                child: _DailyDiscoveryCarousel(),
+              ),
+            ),
+
+            const SliverToBoxAdapter(child: SizedBox(height: 24)),
+
+            // Additional Core Tools (YouTube Desk, Shows)
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                child: Column(
+                  children: [
+                    if (AppFeatures.youtubeMedia) ...[
+                      _buildThematicCard(
+                        context: context,
+                        title: "YOUTUBE DESK",
+                        subtitle: "Interactive transcripts & shadowing",
+                        icon: Icons.smart_display,
+                        brandColor: const Color(0xFFFF0000),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) => const MediaSearchScreen()),
+                          );
+                        },
+                      ),
+                      const SizedBox(height: 16),
+                    ],
+                    if (AppFeatures.youtubeMedia) ...[
+                      _buildThematicCard(
+                        context: context,
+                        title: "SHOWS & DRAMAS",
+                        subtitle:
+                            "Chinese TV series with interactive subtitles",
+                        icon: Icons.live_tv,
+                        brandColor: const Color(0xFFFFA000),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            SwipeBackPageRoute(
+                              builder: (_) => const ShowCatalogScreen(),
+                            ),
+                          );
+                        },
+                      ),
+                    ],
                   ],
                 ),
               ),
@@ -271,6 +241,143 @@ class MediaHubScreen extends ConsumerWidget {
     );
   }
 
+Widget _buildWebExplorerHeroCard(BuildContext context) {
+    return BouncingButton(
+      scaleFactor: 0.97,
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => const WebBrowserScreen()),
+        );
+      },
+      child: AspectRatio(
+        aspectRatio: 1.0,
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(24),
+            gradient: const LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [Color(0xFF1E88E5), Color(0xFF0D47A1)],
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: const Color(0xFF1E88E5).withValues(alpha: 0.3),
+                blurRadius: 24,
+                offset: const Offset(0, 8),
+              ),
+            ],
+          ),
+          child: Stack(
+            fit: StackFit.expand,
+            children: [
+              // Decorative circles
+              Positioned(
+                top: -40,
+                right: -40,
+                child: Container(
+                  width: 160,
+                  height: 160,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                        color: Colors.white.withValues(alpha: 0.08),
+                        width: 1.5),
+                  ),
+                ),
+              ),
+              Positioned(
+                bottom: -20,
+                left: -20,
+                child: Container(
+                  width: 100,
+                  height: 100,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                        color: Colors.white.withValues(alpha: 0.06),
+                        width: 1),
+                  ),
+                ),
+              ),
+              // Content
+              Padding(
+                padding: const EdgeInsets.all(28.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Icon in a circle
+                    Container(
+                      padding: const EdgeInsets.all(14),
+                      decoration: BoxDecoration(
+                        color: Colors.white.withValues(alpha: 0.18),
+                        shape: BoxShape.circle,
+                      ),
+                      child: const Icon(
+                        Icons.language,
+                        color: Colors.white,
+                        size: 32,
+                      ),
+                    ),
+                    const Spacer(),
+                    // Title
+                    const Text(
+                      'WEB EXPLORER',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 26,
+                        fontWeight: FontWeight.w900,
+                        letterSpacing: 1.2,
+                        fontFamily: 'NotoSerifSC',
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    // Subtitle
+                    Text(
+                      'Live dictionary translation overlay\nfor any Chinese website',
+                      style: TextStyle(
+                        color: Colors.white.withValues(alpha: 0.8),
+                        fontSize: 14,
+                        height: 1.4,
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    // CTA row
+                    Row(
+                      children: [
+                        const Text(
+                          'START EXPLORING',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 13,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 1.0,
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        Container(
+                          padding: const EdgeInsets.all(4),
+                          decoration: BoxDecoration(
+                            color: Colors.white.withValues(alpha: 0.2),
+                            shape: BoxShape.circle,
+                          ),
+                          child: const Icon(
+                            Icons.arrow_forward,
+                            color: Colors.white,
+                            size: 16,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
   Widget _buildThematicCard({
     required BuildContext context,
     required String title,
@@ -583,7 +690,7 @@ class _DailyDiscoveryCarouselState
                     ),
                     const Spacer(),
                     Text(
-                      item.title,
+                      item.subtitle,
                       style: const TextStyle(
                         color: Colors.white,
                         fontSize: 22,
@@ -605,10 +712,11 @@ class _DailyDiscoveryCarouselState
                         const SizedBox(width: 6),
                         Expanded(
                           child: Text(
-                            item.subtitle,
+                            item.title,
                             style: TextStyle(
-                              color: Colors.white.withValues(alpha: 0.8),
+                              color: Colors.white.withValues(alpha: 0.6),
                               fontSize: 13,
+                              fontStyle: FontStyle.italic,
                             ),
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,

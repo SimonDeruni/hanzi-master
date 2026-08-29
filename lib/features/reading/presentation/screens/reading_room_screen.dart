@@ -8,7 +8,7 @@ import 'story_reader_screen.dart';
 import 'book_reader_screen.dart';
 import '../widgets/custom_story_creator_sheet.dart';
 import '../widgets/continue_reading_card.dart';
-import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
+import 'package:hanzi_master/core/presentation/widgets/zen_search_bar.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 
 class ReadingRoomScreen extends ConsumerStatefulWidget {
@@ -115,39 +115,15 @@ class _ReadingRoomScreenState extends ConsumerState<ReadingRoomScreen> {
           _buildRecentBookmarks(ref),
 
           // Search Bar
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-            child: Builder(builder: (context) {
-              final isDark = Theme.of(context).brightness == Brightness.dark;
-              return HanziTextField(
-                controller: _searchController,
-                hintText: AppLocalizations.of(context)!.searchStoriesHint,
-                decoration: InputDecoration(
-                  prefixIcon: const Icon(Icons.search, color: Colors.indigo),
-                  filled: true,
-                  fillColor: isDark ? const Color(0xFF2A2A2B) : Colors.white,
-                  contentPadding: const EdgeInsets.symmetric(vertical: 0),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30),
-                    borderSide: BorderSide.none,
-                  ),
-                ),
-                suffixIcon: _searchQuery.isNotEmpty
-                    ? IconButton(
-                        icon: const Icon(Icons.clear),
-                        onPressed: () {
-                          _searchController.clear();
-                          setState(() => _searchQuery = "");
-                        },
-                      )
-                    : null,
-                onChanged: (value) {
-                  setState(() {
-                    _searchQuery = value;
-                  });
-                },
-              );
-            }),
+          ZenSearchBar(
+            controller: _searchController,
+            hintText: AppLocalizations.of(context)!.searchStoriesHint,
+            margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+            onChanged: (value) {
+              setState(() {
+                _searchQuery = value;
+              });
+            },
           ),
 
           // Level Selector

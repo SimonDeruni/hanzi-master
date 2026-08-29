@@ -569,7 +569,7 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
                             ),
                           ),
                           title: Text(
-                            ch.title,
+                            ch.titleEn,
                             style: TextStyle(
                               fontSize: 15,
                               fontWeight: FontWeight.bold,
@@ -579,7 +579,7 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
                           subtitle: Padding(
                             padding: const EdgeInsets.only(top: 2),
                             child: Text(
-                              ch.titleEn,
+                              ch.title,
                               style: TextStyle(
                                 fontSize: 12.5,
                                 color: isDarkLocal ? Colors.amber.shade300 : const Color(0xFF8B0000),

@@ -15,6 +15,7 @@ import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import 'package:hanzi_master/features/media/presentation/widgets/fullscreen_media_overlay.dart';
 import 'package:hanzi_master/features/media/presentation/widgets/premium_ai_prep_card.dart';
+import 'package:hanzi_master/features/live_translate/presentation/screens/shadowing_studio_screen.dart';
 import 'package:hanzi_master/features/media/presentation/widgets/premium_transcript_line.dart';
 import 'package:hanzi_master/core/presentation/widgets/ai_progress_bar.dart';
 
@@ -698,7 +699,6 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
       DeviceOrientation.portraitUp,
     ]);
     setState(() => _isFullscreen = false);
-    Navigator.pop(context);
   }
 
   void _changeSpeed(double speed) {
@@ -707,6 +707,43 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
       _playerController.setPlaybackRate(speed);
     });
   }
+
+  /// Portrait-mode video controls placed below the video, above the transcript.
+  /// Shows scrubber with time labels, play/pause, rewind 10s, forward 10s.
+  Widget _buildPortraitControls() {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final isPlaying =
+        _playerController.value.playerState == PlayerState.playing;
+
+    return _PortraitVideoControls(
+      controller: _playerController,
+      currentPosition: _currentPosition,
+      isPlaying: isPlaying,
+      isDark: isDark,
+      onSeekCompleted: _scrollToCurrentPosition,
+    );
+  }
+
+  /// Scroll the transcript list to the line matching the given video position.
+  void _scrollToCurrentPosition(Duration targetPosition) {
+    if (_transcript == null || !_scrollController.hasClients) return;
+    final newIndex = _transcript!.lines
+        .indexWhere((l) => targetPosition >= l.start && targetPosition <= l.end);
+    if (newIndex >= 0 && newIndex < _lineKeys.length) {
+      final key = _lineKeys[newIndex];
+      if (key.currentContext != null) {
+        Scrollable.ensureVisible(
+          key.currentContext!,
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeInOutCubic,
+          alignment: 0.3,
+        );
+      }
+    }
+  }
+
+  // ─── Portrait Controls Widget ──────────────────────────────────────────────
+  // (inline private widget for the embedded control bar below the video)
 
   /// Skeleton transcript list + step indicator shown while data loads.
   /// The video player is already visible above — we don't block it.
@@ -912,14 +949,14 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
                     aspectRatio: 16 / 9,
                     // CRITICAL: We MUST use controlsBuilder to render UI on top of the iframe.
                     // Sibling Positioned widgets get swallowed by the Android WebView Z-index.
-                    controlsBuilder: (context, isFullscreenState) {
+                    controlsBuilder: (context, _) {
                       // Apply counter-scale so our controls don't get stretched/clipped
                       return Transform.scale(
                         scale: 1 / 1.05,
                         child: Builder(
                           builder: (context) {
                             // If not fullscreen, just show the transparent Play/Pause layer + Fullscreen button
-                            if (!isFullscreenState) {
+                            if (!_isFullscreen) {
                               return Stack(
                                 children: [
                                   // BLOCK TOUCHES TO YOUTUBE NATIVE CONTROLS
@@ -1023,6 +1060,9 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
             },
           ),
 
+          // ── Portrait Video Controls (only when NOT fullscreen) ──
+          if (!_isFullscreen) _buildPortraitControls(),
+
           // ── Scrollable content (hidden if fullscreen) ──
           if (!_isFullscreen)
             Expanded(
@@ -1110,17 +1150,26 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
                                               allowSeekAhead: true);
                                           _playerController.playVideo();
                                         },
-                                        onAiExplain: () =>
-                                            _showSentenceLesson(line.text),
                                         onWordTapped: _onWordTapped,
                                         showPinyin: _showPinyin,
                                         showEnglish: _showEnglish,
                                         simplifiedText: _isHskSimplified
                                             ? _simplifiedTranscript[index]
                                             : null,
-                                        isShadowingMode: false,
+                                        isShadowingMode: true,
                                         isRecordingThisLine: false,
-                                        onShadowTapped: null,
+                                        onShadowTapped: () {
+                                          _playerController.pauseVideo();
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (_) => ShadowingStudioScreen(
+                                                initialContextSentence: line.text,
+                                                isCompact: true,
+                                              ),
+                                            ),
+                                          );
+                                        },
                                       );
                                     }),
                                 ],
@@ -1150,5 +1199,227 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
       default:
         return 'Unable to load this video. Please try another one.';
     }
+  }
+}
+
+// ─── Portrait Video Controls (below video player) ─────────────────────────
+
+/// Compact video controls bar shown below the video player in portrait mode.
+/// Includes: time labels, scrubber, play/pause, rewind 10s, forward 10s.
+class _PortraitVideoControls extends StatefulWidget {
+  final YoutubePlayerController controller;
+  final Duration currentPosition;
+  final bool isPlaying;
+  final bool isDark;
+  final void Function(Duration targetPosition) onSeekCompleted;
+
+  const _PortraitVideoControls({
+    required this.controller,
+    required this.currentPosition,
+    required this.isPlaying,
+    required this.isDark,
+    required this.onSeekCompleted,
+  });
+
+  @override
+  State<_PortraitVideoControls> createState() => _PortraitVideoControlsState();
+}
+
+class _PortraitVideoControlsState extends State<_PortraitVideoControls> {
+  double _duration = 1.0;
+  bool _isDragging = false;
+  double _dragValue = 0.0;
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchDuration();
+  }
+
+  Future<void> _fetchDuration() async {
+    final dur = await widget.controller.duration;
+    if (mounted) setState(() => _duration = dur);
+  }
+
+  String _fmt(Duration d) {
+    final h = d.inHours;
+    final m = d.inMinutes.remainder(60).toString().padLeft(2, '0');
+    final s = d.inSeconds.remainder(60).toString().padLeft(2, '0');
+    return h > 0 ? '$h:$m:$s' : '$m:$s';
+  }
+
+  void _seek(double delta) {
+    final current = widget.currentPosition.inSeconds.toDouble();
+    final target = (current + delta).clamp(0.0, _duration);
+    widget.controller.seekTo(seconds: target, allowSeekAhead: true);
+    // Immediately scroll transcript to the target position
+    widget.onSeekCompleted(Duration(seconds: target.toInt()));
+  }
+
+  void _togglePlayPause() {
+    if (widget.isPlaying) {
+      widget.controller.pauseVideo();
+    } else {
+      widget.controller.playVideo();
+    }
+  }
+@override
+  Widget build(BuildContext context) {
+    final accent =
+        widget.isDark ? Colors.amber.shade400 : const Color(0xFF8B0000);
+
+    final currentPos = _isDragging
+        ? _dragValue
+        : widget.currentPosition.inSeconds.toDouble();
+    final currentDuration = Duration(seconds: currentPos.toInt());
+    final totalDuration = Duration(seconds: _duration.toInt());
+
+    return Container(
+      padding: const EdgeInsets.fromLTRB(12, 4, 12, 2),
+      decoration: BoxDecoration(
+        color: widget.isDark ? const Color(0xFF1E1E22) : const Color(0xFFF5F2E4),
+        border: Border(
+          bottom: BorderSide(
+            color: (widget.isDark ? Colors.white : Colors.black).withValues(alpha: 0.08),
+          ),
+        ),
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          // Scrubber row: current time / slider / total time
+          Row(
+            children: [
+              SizedBox(
+                width: 40,
+                child: Text(
+                  _fmt(currentDuration),
+                  style: TextStyle(
+                    fontSize: 11,
+                    fontWeight: FontWeight.w600,
+                    fontFeatures: const [FontFeature.tabularFigures()],
+                    color: widget.isDark ? Colors.white70 : Colors.black87,
+                  ),
+                ),
+              ),
+              Expanded(
+                child: SliderTheme(
+                  data: SliderTheme.of(context).copyWith(
+                    activeTrackColor: accent,
+                    inactiveTrackColor:
+                        (widget.isDark ? Colors.white : Colors.black)
+                            .withValues(alpha: 0.2),
+                    thumbColor: accent,
+                    overlayColor: accent.withValues(alpha: 0.15),
+                    trackHeight: 3.0,
+                    thumbShape: const RoundSliderThumbShape(
+                      enabledThumbRadius: 6.0,
+                    ),
+                    overlayShape: const RoundSliderOverlayShape(
+                      overlayRadius: 14.0,
+                    ),
+                  ),
+                  child: Slider(
+                    value: currentPos.clamp(0.0, _duration),
+                    min: 0.0,
+                    max: _duration > 0 ? _duration : 1.0,
+                    onChangeStart: (_) => setState(() => _isDragging = true),
+                    onChanged: (v) =>
+                        setState(() => _dragValue = v.clamp(0.0, _duration)),
+                    onChangeEnd: (v) {
+                      final target = v.clamp(0.0, _duration);
+                      widget.controller.seekTo(
+                        seconds: target,
+                        allowSeekAhead: true,
+                      );
+                      setState(() => _isDragging = false);
+                      // Immediately scroll transcript to the target position
+                      widget.onSeekCompleted(Duration(seconds: target.toInt()));
+                    },
+                  ),
+                ),
+              ),
+              SizedBox(
+                width: 40,
+                child: Text(
+                  _fmt(totalDuration),
+                  textAlign: TextAlign.end,
+                  style: TextStyle(
+                    fontSize: 11,
+                    fontWeight: FontWeight.w600,
+                    fontFeatures: const [FontFeature.tabularFigures()],
+                    color: widget.isDark ? Colors.white54 : Colors.black54,
+                  ),
+                ),
+              ),
+            ],
+          ),
+
+          // Control buttons row
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                // Rewind 10s
+                _PortraitCtrlIcon(
+                  icon: Icons.replay_10,
+                  size: 24,
+                  onTap: () => _seek(-10),
+                ),
+
+                // Play / Pause
+                GestureDetector(
+                  onTap: _togglePlayPause,
+                  child: Container(
+                    padding: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      color: accent.withValues(alpha: 0.15),
+                      shape: BoxShape.circle,
+                    ),
+                    child: Icon(
+                      widget.isPlaying ? Icons.pause : Icons.play_arrow,
+                      color: accent,
+                      size: 24,
+                    ),
+                  ),
+                ),
+
+                // Forward 10s
+                _PortraitCtrlIcon(
+                  icon: Icons.forward_10,
+                  size: 24,
+                  onTap: () => _seek(10),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _PortraitCtrlIcon extends StatelessWidget {
+  final IconData icon;
+  final double size;
+  final VoidCallback onTap;
+
+  const _PortraitCtrlIcon({
+    required this.icon,
+    required this.size,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      behavior: HitTestBehavior.opaque,
+      child: Padding(
+        padding: const EdgeInsets.all(8),
+        child: Icon(icon, color: Colors.grey.shade600, size: size),
+      ),
+    );
   }
 }

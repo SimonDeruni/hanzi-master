@@ -1,4 +1,4 @@
-import 'package:lpinyin/lpinyin.dart';
+﻿import 'package:lpinyin/lpinyin.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -8,6 +8,7 @@ import 'package:hanzi_master/features/reading/domain/entities/book_model.dart';
 import 'package:hanzi_master/features/reading/domain/logic/book_reading_progress.dart';
 import 'package:hanzi_master/features/reading/presentation/providers/book_providers.dart';
 import 'package:hanzi_master/features/reading/presentation/screens/audiobook_player_screen.dart';
+import 'package:hanzi_master/features/flashcards/presentation/providers/settings_controller.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
 import 'package:hanzi_master/core/widgets/translated_text.dart';
@@ -186,6 +187,8 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
         if (widget.autoStartAudiobook) {
           _startAudiobook();
         }
+        // Show resume toast if restoring from a non-start position
+        _showResumeToastIfRestored();
       }
     });
 
@@ -268,6 +271,47 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
     } else {
       _isRestoringPosition = false;
     }
+  }
+
+  void _showResumeToastIfRestored() {
+    // Only show toast when restoring from a non-start position (chapter > 0 or sentence > 0)
+    final isFromStart =
+        _currentIndex == 0 && _currentReadingSentenceIndex == 0;
+    if (isFromStart) return;
+
+    final chapter = widget.chapters[_currentIndex];
+    final chapterNum = chapter.chapterIndex;
+    final sentNum = _currentReadingSentenceIndex + 1;
+    final totalChapters = widget.chapters.length;
+    final totalSentences = chapter.sentences.length;
+
+    Future.delayed(const Duration(milliseconds: 600), () {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).removeCurrentSnackBar();
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Row(
+            children: [
+              Icon(Icons.my_location_rounded, size: 18,
+                color: Theme.of(context).brightness == Brightness.dark
+                    ? Colors.amber.shade300
+                    : const Color(0xFF8B0000)),
+              const SizedBox(width: 8),
+              Text(
+                'Resumed: Ch.$chapterNum/$totalChapters, Sent.$sentNum/$totalSentences',
+                style: const TextStyle(fontSize: 13),
+              ),
+            ],
+          ),
+          behavior: SnackBarBehavior.floating,
+          duration: const Duration(seconds: 3),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          margin: const EdgeInsets.fromLTRB(20, 0, 20, 80),
+        ),
+      );
+    });
   }
 
   void _handleReadingScroll() {
@@ -368,7 +412,8 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
       final requestGeneration = ++_audioRequestGeneration;
       setState(() => _currentAudioSentenceIndex = sentenceIdx);
       final text = chapter.sentences[sentenceIdx].chinese;
-      final started = await ref.read(audioServiceProvider).playSentence(text);
+      final voiceName = ref.read(settingsProvider).audiobookVoice;
+      final started = await ref.read(audioServiceProvider).playSentence(text, voiceName: voiceName);
       if (!mounted || requestGeneration != _audioRequestGeneration) return;
       if (!started) {
         setState(() {
@@ -382,7 +427,7 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
       // Pre-fetch the upcoming sentence in the background for 0ms transition gap
       if (sentenceIdx + 1 < chapter.sentences.length) {
         final nextText = chapter.sentences[sentenceIdx + 1].chinese;
-        unawaited(ref.read(audioServiceProvider).prefetchSentence(nextText));
+        unawaited(ref.read(audioServiceProvider).prefetchSentence(nextText, voiceName: voiceName));
       }
     }
   }
@@ -393,6 +438,167 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
         content: Text(
             'Audio could not start. Check your connection and device voice settings.'),
       ),
+    );
+  }
+
+  Widget _buildCompactVoiceChip(bool isDark, AudioQuotaService quotaService) {
+    final voice = ref.watch(settingsProvider).audiobookVoice;
+    final hasQuota = quotaService.hasQuotaRemaining;
+    final isLocal = voice == 'local' || !hasQuota;
+    final accent = isDark ? Colors.amber.shade400 : const Color(0xFF8B0000);
+
+    return GestureDetector(
+      onTap: () => _showVoicePickerSheet(context, isDark, quotaService),
+      child: Tooltip(
+        message: isLocal ? 'Local device voice' : 'Azure Neural: $voice',
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            border: Border.all(
+              color: isLocal
+                  ? (isDark ? Colors.orange.shade700 : Colors.orange.shade400)
+                  : accent.withValues(alpha: 0.4),
+            ),
+            color: isLocal
+                ? (isDark ? Colors.orange.shade900.withValues(alpha: 0.2) : Colors.orange.shade50)
+                : accent.withValues(alpha: 0.08),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(
+                Icons.record_voice_over,
+                size: 14,
+                color: isLocal
+                    ? (isDark ? Colors.orange.shade300 : Colors.orange.shade700)
+                    : accent,
+              ),
+              const SizedBox(width: 3),
+              Text(
+                voice == 'local' ? 'Local' : voice,
+                style: TextStyle(
+                  fontSize: 10.5,
+                  fontWeight: FontWeight.bold,
+                  color: isLocal
+                      ? (isDark ? Colors.orange.shade300 : Colors.orange.shade700)
+                      : accent,
+                ),
+              ),
+              const SizedBox(width: 2),
+              Icon(Icons.arrow_drop_down, size: 14,
+                color: isLocal
+                    ? (isDark ? Colors.orange.shade300 : Colors.orange.shade700)
+                    : accent),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  void _showVoicePickerSheet(BuildContext context, bool isDark, AudioQuotaService quotaService) {
+    HapticsManager.light();
+    final accent = isDark ? Colors.amber.shade400 : const Color(0xFF8B0000);
+    final cardBg = isDark ? const Color(0xFF1E1E22) : const Color(0xFFF5F2E4);
+    final primaryText = isDark ? const Color(0xFFFDFCF0) : const Color(0xFF1A1A1B);
+    final hasQuota = quotaService.hasQuotaRemaining;
+    final currentVoice = ref.read(settingsProvider).audiobookVoice;
+
+    const voiceOptions = [
+      ('Kore', 'Kore — Female, warm', 'zh-CN-XiaoxiaoNeural'),
+      ('Aoede', 'Aoede — Female, cheerful', 'zh-CN-XiaoyiNeural'),
+      ('Fenrir', 'Fenrir — Male, upbeat', 'zh-CN-YunxiNeural'),
+      ('Charon', 'Charon — Male, news-style', 'zh-CN-YunyangNeural'),
+      ('Puck', 'Puck — Male, sporty', 'zh-CN-YunjianNeural'),
+      ('local', 'Local — On-device TTS', 'System voice'),
+    ];
+
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      builder: (ctx) {
+        return Container(
+          padding: const EdgeInsets.fromLTRB(24, 20, 24, 36),
+          decoration: BoxDecoration(
+            color: cardBg,
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Center(
+                child: Container(
+                  width: 40, height: 4,
+                  decoration: BoxDecoration(
+                    color: isDark ? Colors.white24 : Colors.black12,
+                    borderRadius: BorderRadius.circular(2),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 16),
+              Text('Choose Voice', style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold, color: primaryText)),
+              if (!hasQuota)
+                Padding(
+                  padding: const EdgeInsets.only(top: 6),
+                  child: Row(
+                    children: [
+                      Icon(Icons.info_outline, size: 14, color: Colors.orange.shade400),
+                      const SizedBox(width: 4),
+                      Text(
+                        'Weekly Azure quota reached — switching to local voice',
+                        style: TextStyle(fontSize: 12, color: isDark ? Colors.orange.shade300 : Colors.orange.shade700),
+                      ),
+                    ],
+                  ),
+                ),
+              const SizedBox(height: 12),
+              ...voiceOptions.map((opt) {
+                final isSelected = currentVoice == opt.$1;
+                final isAzure = opt.$1 != 'local';
+                final disabled = isAzure && !hasQuota;
+                return ListTile(
+                  dense: true,
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+                  leading: Icon(
+                    isSelected ? Icons.check_circle : Icons.radio_button_unchecked,
+                    size: 20,
+                    color: isSelected
+                        ? accent
+                        : (disabled ? (isDark ? Colors.white24 : Colors.black26) : (isDark ? Colors.white54 : Colors.black54)),
+                  ),
+                  title: Text(
+                    opt.$2,
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                      color: disabled ? (isDark ? Colors.white30 : Colors.black38) : primaryText,
+                    ),
+                  ),
+                  subtitle: isAzure
+                      ? Text(
+                          opt.$3,
+                          style: TextStyle(
+                            fontSize: 11,
+                            color: disabled ? (isDark ? Colors.white24 : Colors.black26) : (isDark ? Colors.white38 : Colors.black45),
+                          ),
+                        )
+                      : null,
+                  trailing: disabled
+                      ? Icon(Icons.lock, size: 16, color: isDark ? Colors.white24 : Colors.black26)
+                      : null,
+                  onTap: disabled ? null : () {
+                    HapticsManager.selection();
+                    ref.read(settingsProvider.notifier).setAudiobookVoice(opt.$1);
+                    Navigator.of(ctx).pop();
+                  },
+                );
+              }),
+            ],
+          ),
+        );
+      },
     );
   }
 
@@ -1247,7 +1453,7 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
             Text(
               widget.book.category.contains('Poetry')
                   ? 'Classical Verse'
-                  : 'Chapter ${chapter.chapterIndex} of ${widget.chapters.length}',
+                  : 'Ch.${chapter.chapterIndex}/${widget.chapters.length} · Sent.${_currentReadingSentenceIndex + 1}/${chapter.sentences.length}',
               style: TextStyle(
                 fontSize: 11,
                 color: isDark ? Colors.white54 : Colors.black54,
@@ -1374,6 +1580,24 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
                           fontSize: 11,
                           fontWeight: FontWeight.w600,
                           color: primaryText.withValues(alpha: 0.62),
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      Text(
+                        '·',
+                        style: TextStyle(
+                          fontSize: 11,
+                          fontWeight: FontWeight.bold,
+                          color: primaryText.withValues(alpha: 0.45),
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      Text(
+                        'Sentence ${_currentReadingSentenceIndex + 1} of ${chapter.sentences.length}',
+                        style: TextStyle(
+                          fontSize: 11,
+                          fontWeight: FontWeight.w500,
+                          color: primaryText.withValues(alpha: 0.55),
                         ),
                       ),
                       const Spacer(),
@@ -1692,71 +1916,76 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
                       ),
                     ],
                   ),
-                  child: Row(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
                     children: [
-                      Icon(
-                        Icons.graphic_eq,
-                        size: 20,
-                        color: isDark
-                            ? Colors.amber.shade400
-                            : const Color(0xFF8B0000),
-                      ),
-                      const SizedBox(width: 8),
-                      Expanded(
-                        child: GestureDetector(
-                          onTap: () => _showQuotaDetailsSheet(context, isDark,
-                              cardBg, primaryText, quotaService),
-                          behavior: HitTestBehavior.opaque,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text(
-                                'Sentence ${_currentAudioSentenceIndex + 1} / ${chapter.sentences.length}',
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.bold,
-                                  color: primaryText,
-                                ),
-                              ),
-                              Row(
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.graphic_eq,
+                            size: 20,
+                            color: isDark
+                                ? Colors.amber.shade400
+                                : const Color(0xFF8B0000),
+                          ),
+                          const SizedBox(width: 8),
+                          Expanded(
+                            child: GestureDetector(
+                              onTap: () => _showQuotaDetailsSheet(context, isDark,
+                                  cardBg, primaryText, quotaService),
+                              behavior: HitTestBehavior.opaque,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisSize: MainAxisSize.min,
                                 children: [
                                   Text(
-                                    quotaService.hasQuotaRemaining
-                                        ? 'Studio Voice: ${quotaService.remainingHours.toStringAsFixed(1)}h left this week'
-                                        : 'On-Device Voice (4h weekly used)',
+                                    'Sentence ${_currentAudioSentenceIndex + 1} / ${chapter.sentences.length}',
                                     style: TextStyle(
-                                      fontSize: 10.5,
-                                      color: quotaService.hasQuotaRemaining
-                                          ? (isDark
-                                              ? Colors.amber.shade300
-                                              : const Color(0xFF8B0000))
-                                          : (isDark
-                                              ? Colors.white54
-                                              : Colors.black54),
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.bold,
+                                      color: primaryText,
                                     ),
                                   ),
-                                  const SizedBox(width: 3),
-                                  Icon(
-                                    Icons.info_outline,
-                                    size: 11,
-                                    color: quotaService.hasQuotaRemaining
-                                        ? (isDark
-                                            ? Colors.amber.shade300
-                                                .withValues(alpha: 0.7)
-                                            : const Color(0xFF8B0000)
-                                                .withValues(alpha: 0.7))
-                                        : (isDark
-                                            ? Colors.white38
-                                            : Colors.black38),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        quotaService.hasQuotaRemaining
+                                            ? 'Studio Voice: ${quotaService.remainingHours.toStringAsFixed(1)}h left this week'
+                                            : 'On-Device Voice (4h weekly used)',
+                                        style: TextStyle(
+                                          fontSize: 10.5,
+                                          color: quotaService.hasQuotaRemaining
+                                              ? (isDark
+                                                  ? Colors.amber.shade300
+                                                  : const Color(0xFF8B0000))
+                                              : (isDark
+                                                  ? Colors.white54
+                                                  : Colors.black54),
+                                        ),
+                                      ),
+                                      const SizedBox(width: 3),
+                                      Icon(
+                                        Icons.info_outline,
+                                        size: 11,
+                                        color: quotaService.hasQuotaRemaining
+                                            ? (isDark
+                                                ? Colors.amber.shade300
+                                                    .withValues(alpha: 0.7)
+                                                : const Color(0xFF8B0000)
+                                                    .withValues(alpha: 0.7))
+                                            : (isDark
+                                                ? Colors.white38
+                                                : Colors.black38),
+                                      ),
+                                    ],
                                   ),
                                 ],
                               ),
-                            ],
+                            ),
                           ),
-                        ),
-                      ),
-                      // Sleep Timer Button
+                          // Voice quick-select chip
+                          _buildCompactVoiceChip(isDark, quotaService),
+                          // Sleep Timer Button
                       IconButton(
                         icon: Icon(
                           (_sleepSecondsRemaining != null ||
@@ -1817,8 +2046,10 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
                       ),
                     ],
                   ),
-                );
-              },
+                  ],  // Column.children
+                ),    // Column
+              );
+            },
             ),
 
           // Bottom Chapter Navigation Bar

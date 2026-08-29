@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/radical_detail_screen.dart';
 import 'package:lpinyin/lpinyin.dart';
-import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
+import 'package:hanzi_master/core/presentation/widgets/zen_search_bar.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 
 class RadicalLibraryScreen extends StatefulWidget {
@@ -107,28 +107,9 @@ class _RadicalLibraryScreenState extends State<RadicalLibraryScreen> {
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(32, 16, 32, 8),
-                child: HanziTextField(
+                child: ZenSearchBar(
                   controller: _searchController,
                   hintText: "Search radicals (e.g. Water, 氵)",
-                  style: TextStyle(color: isDark ? Colors.white : Colors.black87),
-                  decoration: InputDecoration(
-                    hintStyle: TextStyle(color: isDark ? Colors.white54 : Colors.black54),
-                    prefixIcon: const Icon(Icons.search, color: Colors.indigo),
-                    filled: true,
-                    fillColor: isDark ? Colors.white.withValues(alpha: 0.1) : Colors.white,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(16),
-                      borderSide: BorderSide(color: Colors.indigo.withValues(alpha: 0.2)),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(16),
-                      borderSide: BorderSide(color: Colors.indigo.withValues(alpha: 0.1)),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(16),
-                      borderSide: const BorderSide(color: Colors.indigo, width: 2),
-                    ),
-                  ),
                   onChanged: _filterRadicals,
                 ),
               ),

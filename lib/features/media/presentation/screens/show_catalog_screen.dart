@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import '../../data/repositories/show_repository.dart';
 import '../../../../shared/routes/swipe_back_route.dart';
-import '../../../../core/presentation/widgets/hanzi_text_field.dart';
+import '../../../../core/presentation/widgets/zen_search_bar.dart';
 import 'show_detail_screen.dart';
 import '../providers/show_progress_provider.dart';
 
@@ -11,9 +11,6 @@ final showsProvider = FutureProvider<Map<ShowGenre, List<Show>>>((ref) {
   final repo = ref.watch(showRepositoryProvider);
   return repo.fetchAllShows();
 });
-
-/// Possible subtitle type filter states.
-enum SubtitleFilter { all, soft, hard }
 
 class ShowCatalogScreen extends ConsumerStatefulWidget {
   const ShowCatalogScreen({super.key});
@@ -24,8 +21,6 @@ class ShowCatalogScreen extends ConsumerStatefulWidget {
 
 class _ShowCatalogScreenState extends ConsumerState<ShowCatalogScreen> {
   String _searchQuery = '';
-  final Set<String> _selectedTags = {};
-  SubtitleFilter _subtitleFilter = SubtitleFilter.all;
   final TextEditingController _searchController = TextEditingController();
 
   @override
@@ -42,18 +37,6 @@ class _ShowCatalogScreenState extends ConsumerState<ShowCatalogScreen> {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       backgroundColor: isDark ? const Color(0xFF0A0A0B) : const Color(0xFFFDFCF0),
-      appBar: AppBar(
-        backgroundColor: isDark ? const Color(0xFF0A0A0B) : const Color(0xFFFDFCF0),
-        elevation: 0,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios_new, color: isDark ? Colors.white : Colors.black87, size: 20),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
-        title: Text(
-          'Shows & Dramas',
-          style: TextStyle(color: isDark ? Colors.white : Colors.black87, fontSize: 20, fontWeight: FontWeight.bold),
-        ),
-      ),
       body: showsAsync.when(
         loading: () => const Center(
           child: CircularProgressIndicator(color: Colors.amber),
@@ -88,57 +71,25 @@ class _ShowCatalogScreenState extends ConsumerState<ShowCatalogScreen> {
           }
 
           final allShows = showsByGenre.values.expand((shows) => shows).toSet().toList();
-          final allTags = allShows.expand((show) => show.tags).toSet().toList()..sort();
 
           // Filtering logic
           final filteredShows = allShows.where((show) {
             final matchesQuery = _searchQuery.isEmpty ||
                 show.title.toLowerCase().contains(_searchQuery.toLowerCase()) ||
                 show.tags.any((tag) => tag.toLowerCase().contains(_searchQuery.toLowerCase()));
-                
-            final matchesTags = _selectedTags.isEmpty ||
-                _selectedTags.every((tag) => show.tags.contains(tag));
-                
-            final matchesSubtitle = _subtitleFilter == SubtitleFilter.all ||
-                (_subtitleFilter == SubtitleFilter.soft && show.subtitleType == SubtitleType.soft) ||
-                (_subtitleFilter == SubtitleFilter.hard && show.subtitleType == SubtitleType.hard);
-                
-            return matchesQuery && matchesTags && matchesSubtitle;
+            return matchesQuery;
           }).toList();
 
-          final isFiltering = _searchQuery.isNotEmpty || _selectedTags.isNotEmpty || _subtitleFilter != SubtitleFilter.all;
+          final isFiltering = _searchQuery.isNotEmpty;
 
           return Column(
             children: [
               // Search Bar
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-                child: HanziTextField(
+                child: ZenSearchBar(
                   controller: _searchController,
-                  style: const TextStyle(color: Colors.white),
-                  decoration: InputDecoration(
-                    hintText: 'Search by title or tag...',
-                    hintStyle: TextStyle(color: Colors.grey[600]),
-                    prefixIcon: Icon(Icons.search, color: Colors.grey[400]),
-                    suffixIcon: _searchQuery.isNotEmpty
-                        ? IconButton(
-                            icon: const Icon(Icons.clear, color: Colors.grey),
-                            onPressed: () {
-                              _searchController.clear();
-                              setState(() {
-                                _searchQuery = '';
-                              });
-                            },
-                          )
-                        : null,
-                    filled: true,
-                    fillColor: const Color(0xFF1A1A1D),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide.none,
-                    ),
-                    contentPadding: const EdgeInsets.symmetric(vertical: 0),
-                  ),
+                  hintText: 'Search by title or tag...',
                   onChanged: (value) {
                     setState(() {
                       _searchQuery = value;
@@ -147,94 +98,6 @@ class _ShowCatalogScreenState extends ConsumerState<ShowCatalogScreen> {
                 ),
               ),
               
-              // Tags Filter Scroll
-              if (allTags.isNotEmpty)
-                SizedBox(
-                  height: 48,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    padding: const EdgeInsets.symmetric(horizontal: 12),
-                    itemCount: allTags.length,
-                    itemBuilder: (context, index) {
-                      final tag = allTags[index];
-                      final isSelected = _selectedTags.contains(tag);
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 4.0),
-                        child: FilterChip(
-                          label: Text(tag),
-                          selected: isSelected,
-                          onSelected: (selected) {
-                            setState(() {
-                              if (selected) {
-                                _selectedTags.add(tag);
-                              } else {
-                                _selectedTags.remove(tag);
-                              }
-                            });
-                          },
-                          backgroundColor: const Color(0xFF1A1A1D),
-                          selectedColor: Colors.amber.withValues(alpha: 0.2),
-                          checkmarkColor: Colors.amber,
-                          labelStyle: TextStyle(
-                            color: isSelected ? Colors.amber : Colors.grey[400],
-                            fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-                          ),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
-                            side: BorderSide(
-                              color: isSelected ? Colors.amber : Colors.transparent,
-                            ),
-                          ),
-                        ),
-                      );
-                    },
-                  ),
-                ),
-                
-
-              // Subtitle Type Filter
-              SizedBox(
-                height: 48,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  padding: const EdgeInsets.symmetric(horizontal: 12),
-                  itemCount: SubtitleFilter.values.length,
-                  itemBuilder: (context, index) {
-                    final filter = SubtitleFilter.values[index];
-                    final isSelected = _subtitleFilter == filter;
-                    final label = filter == SubtitleFilter.all
-                        ? 'All'
-                        : filter == SubtitleFilter.soft
-                            ? 'CC Soft Sub'
-                            : 'Hard Sub';
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 4.0),
-                      child: FilterChip(
-                        label: Text(label),
-                        selected: isSelected,
-                        onSelected: (_) {
-                          setState(() {
-                            _subtitleFilter = filter;
-                          });
-                        },
-                        backgroundColor: const Color(0xFF1A1A1D),
-                        selectedColor: Colors.teal.withValues(alpha: 0.2),
-                        checkmarkColor: Colors.teal,
-                        labelStyle: TextStyle(
-                          color: isSelected ? Colors.teal : Colors.grey[400],
-                          fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-                        ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          side: BorderSide(
-                            color: isSelected ? Colors.teal : Colors.transparent,
-                          ),
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              ),
               const SizedBox(height: 8),
 
               // Content Area
@@ -277,13 +140,7 @@ class _ShowCatalogScreenState extends ConsumerState<ShowCatalogScreen> {
                           final genreIndex = index - 1;
                           final genre = showsByGenre.keys.elementAt(genreIndex);
                           final rawShows = showsByGenre[genre]!;
-                          // Apply subtitle filter to genre carousels
-                          final shows = _subtitleFilter == SubtitleFilter.all
-                              ? rawShows
-                              : rawShows.where((s) =>
-                                  (_subtitleFilter == SubtitleFilter.soft && s.subtitleType == SubtitleType.soft) ||
-                                  (_subtitleFilter == SubtitleFilter.hard && s.subtitleType == SubtitleType.hard)
-                                ).toList();
+                          final shows = rawShows;
                           if (shows.isEmpty) return const SizedBox.shrink();
                           return _GenreRow(genre: genre, shows: shows);
                         },

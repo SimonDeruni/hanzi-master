@@ -9,7 +9,6 @@ import 'package:path_provider/path_provider.dart';
 import '../../../../core/services/audio_service.dart';
 import '../../../../core/services/gemini_service.dart';
 
-import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/deck_controller.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
@@ -934,13 +933,12 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
   }
 
   Widget _buildHubUI(BuildContext context, bool isDark) {
-    final bgColor = isDark ? const Color(0xFF141416) : const Color(0xFFFDFCF0);
+    final bgColor = Theme.of(context).colorScheme.surface;
     final primaryText = isDark ? Colors.white : const Color(0xFF1A1A1B);
 
     return Scaffold(
       backgroundColor: bgColor,
-      body: CalligraphyBackground(
-        child: SafeArea(
+      body: SafeArea(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
@@ -1321,7 +1319,6 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
             ],
           ),
         ),
-      ),
     );
   }
 
@@ -1335,7 +1332,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
       child: Scaffold(
         backgroundColor: widget.isCompact
             ? Colors.transparent
-            : (isDark ? const Color(0xFF141416) : const Color(0xFFFDFCF0)),
+            : Theme.of(context).colorScheme.surface,
         body: SafeArea(
           child: LayoutBuilder(
             builder: (context, constraints) {
