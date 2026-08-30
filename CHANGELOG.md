@@ -2,7 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
-## [1.0.0+198] - 2026-08-28
+## [1.0.0+261] - 2026-08-30
+- **Azure Neural TTS Hardening, Show Catalog & YouTube Media Pipeline (Builds #245-#261)**:
+  - **Azure Speech Synthesis**: Standardized SSML 1.0 generation with explicit `xml:lang="zh-CN"`, quote normalization, and 24kHz MP3 encoding (`audio-24khz-48kbitrate-mono-mp3`); moved audio session category setup into startup initialization to prevent playback interruptions.
+  - **YouTube Media & Shows**: Standardized video thumbnails to universally available `hqdefault.jpg`, decoupled search feeds from drama shows, batched subtitle verification to avoid rate limiting, added `TransientFailureException` fallback for channel uploads, and enhanced `getTranscript` to fall back gracefully to any available caption track.
+  - **Channel Videos UI**: Added dynamic high-contrast typography and theme adaptation in `ChannelVideosScreen`.
+  - `flutter analyze`: 0 issues found.
+
 - **Global English Translation Display & Instant 1-Tap Toggles in Both Modes (Build #198)**:
   - **Audiobook Translation Display**: Added 1-tap translation toggle button (`Icons.translate_rounded`) to the top action bar in `AudiobookPlayerScreen` with translations visible under Chinese characters.
   - **Reading Mode Translation Display**: Added English translation toggle button to `appBar.actions` in `BookReaderScreen`, displaying sentence translations by default with smooth individual card tap override.

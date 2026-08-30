@@ -127,6 +127,27 @@ class AudioService {
     });
 
     await _tts.setLanguage("zh-CN");
+
+    try {
+      await AudioPlayer.global.setAudioContext(AudioContext(
+        iOS: AudioContextIOS(
+          category: AVAudioSessionCategory.playback,
+          options: const {
+            AVAudioSessionOptions.allowBluetooth,
+            AVAudioSessionOptions.mixWithOthers,
+          },
+        ),
+        android: const AudioContextAndroid(
+          isSpeakerphoneOn: false,
+          stayAwake: true,
+          contentType: AndroidContentType.music,
+          usageType: AndroidUsageType.media,
+          audioFocus: AndroidAudioFocus.gain,
+        ),
+      ));
+    } catch (e) {
+      debugPrint('[AudioService] AudioContext configuration failed: $e');
+    }
     
     _isInitialized = true;
   }
@@ -240,54 +261,46 @@ class AudioService {
     final hash = _hashText('$voiceName:$sentence');
     final cacheFile = File('${_cacheDir!.path}/tts_cache/$hash.mp3');
     final boundaryFile = File('${_cacheDir!.path}/tts_cache/$hash.json');
-    
-    await _player.setAudioContext(AudioContext(
-      iOS: AudioContextIOS(
-        category: AVAudioSessionCategory.playback,
-        options: const {
-          AVAudioSessionOptions.allowBluetooth,
-          AVAudioSessionOptions.mixWithOthers,
-        },
-      ),
-      android: const AudioContextAndroid(
-        isSpeakerphoneOn: false,
-        stayAwake: true,
-        contentType: AndroidContentType.music,
-        usageType: AndroidUsageType.media,
-        audioFocus: AndroidAudioFocus.gain,
-      ),
-    ));
+
     await _player.setVolume(1.0);
 
+    // Ensure quota service is initialized
+    await _quotaService.init();
+
+    // Validate cached file (must exist and be > 500 bytes to not be an error payload)
     if (await cacheFile.exists()) {
-      _currentBoundaries = [];
-      _currentBoundaryIndex = 0;
-      if (await boundaryFile.exists()) {
-         try {
-           final jsonStr = await boundaryFile.readAsString();
-           final list = jsonDecode(jsonStr) as List<dynamic>;
-           _currentBoundaries = list.cast<Map<String, dynamic>>();
-         } catch (_) {
-           // Ignore corrupted boundary cache
-         }
-      }
-      try {
-        if (generation != _playbackGeneration) return false;
-        await _runEngineOperation(() async {
-          if (generation != _playbackGeneration) return;
-          await _player.setPlaybackRate(1.0);
+      final length = await cacheFile.length();
+      if (length > 500) {
+        _currentBoundaries = [];
+        _currentBoundaryIndex = 0;
+        if (await boundaryFile.exists()) {
           try {
-            await _player.play(DeviceFileSource(cacheFile.path));
+            final jsonStr = await boundaryFile.readAsString();
+            final list = jsonDecode(jsonStr) as List<dynamic>;
+            _currentBoundaries = list.cast<Map<String, dynamic>>();
           } catch (_) {
-            final bytes = await cacheFile.readAsBytes();
-            await _player.play(BytesSource(bytes));
+            // Ignore corrupted boundary cache
           }
-        });
-        if (generation != _playbackGeneration) return false;
-        debugPrint('[AudioService] Playing cached Azure audio: ${cacheFile.path}');
-        return true;
-      } catch (e) {
-        debugPrint("[AudioService] Cached audio play failed: $e");
+        }
+        try {
+          if (generation != _playbackGeneration) return false;
+          final bytes = await cacheFile.readAsBytes();
+          await _runEngineOperation(() async {
+            if (generation != _playbackGeneration) return;
+            await _player.setPlaybackRate(1.0);
+            await _player.play(BytesSource(bytes));
+          });
+          if (generation != _playbackGeneration) return false;
+          debugPrint('[AudioService] Playing cached Azure audio: ${cacheFile.path} (${bytes.length} bytes)');
+          return true;
+        } catch (e) {
+          debugPrint("[AudioService] Cached audio play failed: $e");
+        }
+      } else {
+        // Corrupt/stub cache file from prior error -> delete
+        try {
+          await cacheFile.delete();
+        } catch (_) {}
       }
     }
 
@@ -303,14 +316,10 @@ class AudioService {
           await _runEngineOperation(() async {
             if (generation != _playbackGeneration) return;
             await _player.setPlaybackRate(1.0);
-            try {
-              await _player.play(DeviceFileSource(cacheFile.path));
-            } catch (_) {
-              await _player.play(BytesSource(result.audio));
-            }
+            await _player.play(BytesSource(result.audio));
           });
           if (generation != _playbackGeneration) return false;
-          debugPrint("[AudioService] Playing Azure Neural Voice (${result.audio.length} bytes)");
+          debugPrint("[AudioService] Playing Azure Neural Voice ($azureVoice, ${result.audio.length} bytes)");
           return true;
         }
       } catch (e) {
@@ -587,18 +596,16 @@ class AudioService {
       return null;
     }
 
-    final safeText = text.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
-    final ratePercent = math.max(-50, math.min(200, ((_speechRate - 0.5) * 200).round() + rateAdjustment));
-    final innerContent = (phoneme != null && phoneme.isNotEmpty)
-        ? "<phoneme alphabet='sapi' ph='$phoneme'>$safeText</phoneme>"
-        : safeText;
+    final safeText = text.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;');
+    final num rateValue = math.max(-50, math.min(200, ((_speechRate - 0.5) * 200).round() + rateAdjustment));
+    final rateStr = rateValue >= 0 ? '+$rateValue%' : '$rateValue%';
 
-    // Use mstts:express-as for literary storytelling role & relaxed narration cadence
-    final ssml = '''<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xmlns:mstts='https://www.w3.org/2001/mstts' xml:lang='zh-CN'><voice name='$azureVoice'><mstts:express-as style='narration-relaxed' role='Narrator'><prosody rate='$ratePercent%' range='$pitchRange'>$innerContent</prosody></mstts:express-as></voice></speak>''';
+    // Ultra-clean standard SSML with zero style extensions to guarantee 200 OK across all Azure endpoints
+    final ssml = '<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="zh-CN"><voice name="$azureVoice"><prosody rate="$rateStr">$safeText</prosody></voice></speak>';
 
     final uri = Uri.parse('https://$region.tts.speech.microsoft.com/cognitiveservices/v1');
 
-    debugPrint('[AudioService] Requesting Azure Neural TTS ($azureVoice, narration-relaxed) for: $text');
+    debugPrint('[AudioService] Requesting Azure Neural TTS ($azureVoice) for: $text');
 
     try {
       final client = http.Client();
@@ -608,9 +615,9 @@ class AudioService {
               uri,
               headers: {
                 'Ocp-Apim-Subscription-Key': apiKey,
-                'Content-Type': 'application/ssml+xml; charset=utf-8',
-                'X-Microsoft-OutputFormat': 'audio-16khz-128kbitrate-mono-mp3',
-                'User-Agent': 'SinoSpark',
+                'Content-Type': 'application/ssml+xml',
+                'X-Microsoft-OutputFormat': 'audio-24khz-48kbitrate-mono-mp3',
+                'User-Agent': 'HanziMasterApp',
               },
               body: utf8.encode(ssml),
             )

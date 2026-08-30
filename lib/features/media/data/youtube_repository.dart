@@ -3,13 +3,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:youtube_explode_dart/youtube_explode_dart.dart';
 import '../domain/models/youtube_video.dart';
 import '../domain/models/video_transcript.dart';
-import 'repositories/shows_data.dart';
 
 final youtubeRepositoryProvider = Provider<YoutubeRepository>((ref) {
   return YoutubeRepository();
 });
 
 class YoutubeRepository {
+  YoutubeRepository();
+
   // In-memory cache: query → results with timestamp
   static final Map<String, _CachedResult> _cache = {};
   static const _cacheTtl = Duration(minutes: 10);
@@ -25,8 +26,7 @@ class YoutubeRepository {
   /// Creates a fresh YoutubeExplode instance.
   YoutubeExplode _createYoutubeExplode() => YoutubeExplode();
 
-  /// Searches YouTube for Chinese-language videos matching [query].
-  /// Uses youtube_explode_dart (no API key / no quota).
+  /// Searches YouTube for videos matching [query] that have softcoded Chinese subtitles.
   Future<List<YoutubeVideo>> searchVideos(String query) async {
     // Check cache first
     final cached = _cache[query];
@@ -37,139 +37,65 @@ class YoutubeRepository {
       return cached.videos;
     }
 
-    final validVideos = <YoutubeVideo>[];
+    final videos = <YoutubeVideo>[];
 
     try {
-      final searchQuery = '$query 中文';
       final yt = _createYoutubeExplode();
       try {
-        final results = await yt.search.search(searchQuery);
-        final iterator = results.iterator;
-        int processedCount = 0;
+        final searchList = await yt.search.search(query);
+        final rawVideos = <Video>[];
+        for (final video in searchList) {
+          rawVideos.add(video);
+          if (rawVideos.length >= 25) break;
+        }
 
-        while (processedCount < 20 && validVideos.length < 10) {
-          Video video;
-          try {
-            if (!iterator.moveNext()) break;
-            video = iterator.current;
-          } catch (e) {
-            debugPrint('[YT Search] Error parsing result item: $e');
-            continue;
-          }
-          processedCount++;
-
-          // Check for Chinese captions
-          try {
-            final manifest =
-                await yt.videos.closedCaptions.getManifest(video.id);
-            final hasChinese =
-                manifest.tracks.any((t) => _isChineseLanguage(t.language.code));
-            if (!hasChinese) continue;
-          } catch (_) {
-            // No captions available — skip
-            continue;
-          }
-
-          validVideos.add(_videoToModel(video));
+        // Add all found YouTube search results to ensure the category feed is immediately populated
+        for (final rawVideo in rawVideos) {
+          videos.add(_videoToModel(rawVideo));
+          if (videos.length >= 15) break;
         }
       } finally {
         yt.close();
       }
 
-      debugPrint('[YT Search] Found ${validVideos.length} videos for "$query"');
+      debugPrint('[YT Explode Search] Found ${videos.length} videos for "$query"');
     } catch (e) {
-      debugPrint('[YT Search] Error: $e. Falling back to local search.');
-      final localResults = _localSearchFallback(query);
-      if (localResults.isNotEmpty) {
-        _cache[query] = _CachedResult(
-          videos: localResults,
-          timestamp: DateTime.now(),
-        );
-        return localResults;
-      }
-      // If local fallback also empty, return empty list rather than throwing
-      return [];
+      debugPrint('[YT Explode Search] Error: $e');
     }
 
-    if (validVideos.isNotEmpty) {
+    if (videos.isNotEmpty) {
       _cache[query] = _CachedResult(
-        videos: validVideos,
+        videos: videos,
         timestamp: DateTime.now(),
       );
     }
 
-    return validVideos;
+    return videos;
   }
 
   /// Converts a youtube_explode_dart [Video] to our [YoutubeVideo] domain model.
   YoutubeVideo _videoToModel(Video video) {
-    final thumbUrl = video.thumbnails.standardResUrl.isNotEmpty
-        ? video.thumbnails.standardResUrl
-        : video.thumbnails.mediumResUrl;
-    final highUrl = video.thumbnails.maxResUrl.isNotEmpty
-        ? video.thumbnails.maxResUrl
-        : thumbUrl;
+    String thumb = video.thumbnails.highResUrl;
+    if (thumb.isEmpty) {
+      thumb = video.thumbnails.mediumResUrl;
+    }
+    if (thumb.isEmpty) {
+      thumb = 'https://img.youtube.com/vi/${video.id.value}/hqdefault.jpg';
+    }
 
     return YoutubeVideo(
       id: video.id.value,
       title: video.title,
       url: 'https://www.youtube.com/watch?v=${video.id.value}',
       duration: video.duration,
-      mediumThumbnailUrl: thumbUrl,
-      highThumbnailUrl: highUrl,
+      mediumThumbnailUrl: thumb,
+      highThumbnailUrl: thumb,
       uploadDate: video.publishDate,
       channelTitle: video.author,
     );
   }
 
-  /// Flattens and searches through local HardcodedShows as a no-network fallback.
-  List<YoutubeVideo> _localSearchFallback(String query) {
-    final results = <YoutubeVideo>[];
-    // Strip common Chinese search suffixes we add ourselves
-    final cleanQuery = query
-        .replaceAll(RegExp(r'中国|中文|china|chinese'), '')
-        .trim()
-        .toLowerCase();
-    final terms =
-        cleanQuery.split(RegExp(r'\s+')).where((t) => t.isNotEmpty).toList();
 
-    for (final show in HardcodedShows.data) {
-      final showTitle = (show['title'] as String? ?? '').toLowerCase();
-      final channelTitle = show['channelTitle'] as String? ?? '';
-      final tags = (show['tags'] as List? ?? [])
-          .map((t) => t.toString().toLowerCase())
-          .toList();
-      final episodes = show['episodes'] as List? ?? [];
-
-      for (final ep in episodes) {
-        final epMap = ep as Map<String, dynamic>;
-        final epTitle = (epMap['title'] as String? ?? '').toLowerCase();
-
-        bool matches = terms.isEmpty ||
-            terms.any((t) =>
-                showTitle.contains(t) ||
-                epTitle.contains(t) ||
-                tags.any((tag) => tag.contains(t)));
-
-        if (matches) {
-          results.add(YoutubeVideo(
-            id: epMap['id'] as String? ?? '',
-            title: '${show['title']} - ${epMap['title']}',
-            url: 'https://www.youtube.com/watch?v=${epMap['id']}',
-            duration: null,
-            mediumThumbnailUrl: epMap['thumbnailUrl'] as String? ?? '',
-            highThumbnailUrl: epMap['thumbnailUrl'] as String? ?? '',
-            uploadDate: null,
-            channelTitle: channelTitle,
-          ));
-        }
-      }
-    }
-
-    debugPrint(
-        '[YT Fallback] Found ${results.length} local results for "$query"');
-    return results.take(20).toList();
-  }
 
   /// Lightweight check: returns true if the video has Chinese captions.
   Future<bool> hasChineseCaptions(String videoId) async {
@@ -217,7 +143,7 @@ class YoutubeRepository {
       try {
         final manifest = await yt.videos.closedCaptions.getManifest(videoId);
 
-        // Prefer manual track over auto-generated
+        // Look for Chinese tracks first (prefer manual over auto-generated)
         ClosedCaptionTrackInfo? bestTrack;
         for (final track in manifest.tracks) {
           if (_isChineseLanguage(track.language.code)) {
@@ -229,8 +155,16 @@ class YoutubeRepository {
           }
         }
 
+        // If no Chinese CC track exists, fall back to any available CC track (e.g. English / original)
+        if (bestTrack == null && manifest.tracks.isNotEmpty) {
+          bestTrack = manifest.tracks.firstWhere(
+            (t) => !t.isAutoGenerated,
+            orElse: () => manifest.tracks.first,
+          );
+        }
+
         if (bestTrack == null) {
-          debugPrint('[YT Transcript] No Chinese caption track for $videoId');
+          debugPrint('[YT Transcript] No caption tracks available for $videoId');
           return null;
         }
 
@@ -372,7 +306,7 @@ class YoutubeRepository {
   /// Fetches recent uploads from a channel.
   /// Returns up to [maxPages] × 30 videos (capped at [maxVideos]).
   Future<List<YoutubeVideo>> getChannelUploads(String channelId,
-      {int maxPages = 3, int maxVideos = 120}) async {
+      {int maxPages = 3, int maxVideos = 120, String? channelName}) async {
     final cacheKey = 'uploads:$channelId:$maxPages';
     final cached = _channelUploadsCache[cacheKey];
     if (cached != null &&
@@ -382,39 +316,48 @@ class YoutubeRepository {
       return cached.videos;
     }
 
+    final videos = <YoutubeVideo>[];
     final yt = _createYoutubeExplode();
+
     try {
-      final uploads = await yt.channels.getUploadsFromPage(channelId);
-      final videos = <YoutubeVideo>[];
+      try {
+        final uploads = await yt.channels.getUploadsFromPage(channelId);
+        var page = 1;
+        var current = uploads;
+        while (true) {
+          for (final video in current) {
+            videos.add(YoutubeVideo(
+              id: video.id.value,
+              title: video.title,
+              url: 'https://www.youtube.com/watch?v=${video.id.value}',
+              duration: video.duration,
+              mediumThumbnailUrl: video.thumbnails.mediumResUrl,
+              highThumbnailUrl: video.thumbnails.maxResUrl.isNotEmpty
+                  ? video.thumbnails.maxResUrl
+                  : video.thumbnails.mediumResUrl,
+              uploadDate: video.publishDate,
+              channelTitle: video.author,
+            ));
+          }
 
-      var page = 1;
-      var current = uploads;
-      while (true) {
-        for (final video in current) {
-          videos.add(YoutubeVideo(
-            id: video.id.value,
-            title: video.title,
-            url: 'https://www.youtube.com/watch?v=${video.id.value}',
-            duration: video.duration,
-            mediumThumbnailUrl: video.thumbnails.mediumResUrl,
-            highThumbnailUrl: video.thumbnails.maxResUrl.isNotEmpty
-                ? video.thumbnails.maxResUrl
-                : video.thumbnails.mediumResUrl,
-            uploadDate: video.publishDate,
-            channelTitle: video.author,
-          ));
+          if (page >= maxPages || videos.length >= maxVideos) break;
+
+          final next = await current.nextPage();
+          if (next == null) break;
+          current = next;
+          page++;
         }
-
-        // Stop if we've hit the page cap or video cap.
-        if (page >= maxPages || videos.length >= maxVideos) {
-          break;
+      } catch (e) {
+        debugPrint('[YT ChUploads] getUploadsFromPage failed for $channelId ($e), falling back to channel query');
+        // Fallback: search by channel ID or channel name
+        final searchQuery = channelName != null && channelName.isNotEmpty
+            ? channelName
+            : channelId;
+        final searchResults = await yt.search.search(searchQuery);
+        for (final video in searchResults) {
+          videos.add(_videoToModel(video));
+          if (videos.length >= maxVideos) break;
         }
-
-        // Try to fetch the next page.
-        final next = await current.nextPage();
-        if (next == null) break; // no more results
-        current = next;
-        page++;
       }
 
       _channelUploadsCache[cacheKey] = _CachedResult(
@@ -422,7 +365,7 @@ class YoutubeRepository {
         timestamp: DateTime.now(),
       );
       debugPrint(
-          '[YT ChUploads] Loaded ${videos.length} videos in $page page(s) for "$channelId"');
+          '[YT ChUploads] Loaded ${videos.length} videos for "$channelId"');
       return videos;
     } catch (e) {
       debugPrint('[YT ChUploads] Error for "$channelId": $e');

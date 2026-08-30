@@ -533,75 +533,6 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
     _playerController.playVideo();
   }
 
-  void _showSentenceLesson(String sentence) {
-    _playerController.pauseVideo();
-    showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      backgroundColor: Theme.of(context).brightness == Brightness.dark
-          ? const Color(0xFF1C1C1E)
-          : Colors.white,
-      shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
-      builder: (context) => Container(
-        height: MediaQuery.of(context).size.height * 0.6,
-        padding: const EdgeInsets.all(24),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text("AI Micro-Lesson",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-            const SizedBox(height: 16),
-            Expanded(
-              child: FutureBuilder<AiSentence>(
-                future: ref
-                    .read(geminiServiceProvider)
-                    .generateSentenceLesson(sentence),
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const Center(child: CircularProgressIndicator());
-                  }
-                  if (snapshot.hasError) {
-                    return Text("Error: ${snapshot.error}",
-                        style: const TextStyle(color: Colors.red));
-                  }
-                  final s = snapshot.data;
-                  if (s == null) return const SizedBox.shrink();
-                  return SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(s.chinese,
-                            style: const TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.bold)),
-                        const SizedBox(height: 8),
-                        Text(s.english,
-                            style: const TextStyle(
-                                fontSize: 16, fontStyle: FontStyle.italic)),
-                        const SizedBox(height: 16),
-                        ...s.words.map((w) => Padding(
-                              padding: const EdgeInsets.only(bottom: 8),
-                              child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text("${w.hanzi} (${w.pinyin}): ",
-                                        style: const TextStyle(
-                                            fontWeight: FontWeight.bold)),
-                                    Expanded(child: Text(w.meaning)),
-                                  ]),
-                            )),
-                      ],
-                    ),
-                  );
-                },
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
   int _getHighlightedCharCount(TranscriptLine line, Duration position) {
     if (position < line.start) return 0;
     if (position >= line.end) return line.text.length;
@@ -1060,9 +991,6 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
             },
           ),
 
-          // ── Portrait Video Controls (only when NOT fullscreen) ──
-          if (!_isFullscreen) _buildPortraitControls(),
-
           // ── Scrollable content (hidden if fullscreen) ──
           if (!_isFullscreen)
             Expanded(
@@ -1115,8 +1043,7 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
                             Expanded(
                               child: ListView(
                                 controller: _scrollController,
-                                padding: const EdgeInsets.fromLTRB(16, 24, 16,
-                                    120), // Extra padding for scrolling
+                                padding: const EdgeInsets.fromLTRB(16, 16, 16, 32),
                                 physics: const BouncingScrollPhysics(),
                                 children: [
                                   if (_briefing != null) ...[
@@ -1165,7 +1092,9 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
                                             MaterialPageRoute(
                                               builder: (_) => ShadowingStudioScreen(
                                                 initialContextSentence: line.text,
-                                                isCompact: true,
+                                                initialPinyin: line.pinyin,
+                                                initialTranslation: line.translation,
+                                                isCompact: false,
                                               ),
                                             ),
                                           );
@@ -1178,6 +1107,9 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
                           ],
                         ),
             ),
+
+          // ── Portrait Video Controls (docked at the BOTTOM of the screen) ──
+          if (!_isFullscreen) _buildPortraitControls(),
         ],
       ),
     );
@@ -1274,19 +1206,28 @@ class _PortraitVideoControlsState extends State<_PortraitVideoControls> {
     final currentDuration = Duration(seconds: currentPos.toInt());
     final totalDuration = Duration(seconds: _duration.toInt());
 
-    return Container(
-      padding: const EdgeInsets.fromLTRB(12, 4, 12, 2),
-      decoration: BoxDecoration(
-        color: widget.isDark ? const Color(0xFF1E1E22) : const Color(0xFFF5F2E4),
-        border: Border(
-          bottom: BorderSide(
-            color: (widget.isDark ? Colors.white : Colors.black).withValues(alpha: 0.08),
+    return SafeArea(
+      top: false,
+      child: Container(
+        padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+        decoration: BoxDecoration(
+          color: widget.isDark ? const Color(0xFF1E1E22) : const Color(0xFFFAF8EE),
+          border: Border(
+            top: BorderSide(
+              color: (widget.isDark ? Colors.white : Colors.black).withValues(alpha: 0.08),
+            ),
           ),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: widget.isDark ? 0.3 : 0.06),
+              blurRadius: 10,
+              offset: const Offset(0, -3),
+            ),
+          ],
         ),
-      ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
           // Scrubber row: current time / slider / total time
           Row(
             children: [
@@ -1396,6 +1337,7 @@ class _PortraitVideoControlsState extends State<_PortraitVideoControls> {
           ),
         ],
       ),
+    ),
     );
   }
 }

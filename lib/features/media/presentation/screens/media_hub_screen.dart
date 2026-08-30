@@ -241,130 +241,212 @@ class MediaHubScreen extends ConsumerWidget {
     );
   }
 
-Widget _buildWebExplorerHeroCard(BuildContext context) {
+  Widget _buildWebExplorerHeroCard(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
     return BouncingButton(
-      scaleFactor: 0.97,
+      scaleFactor: 0.98,
       onPressed: () {
         Navigator.push(
           context,
           MaterialPageRoute(builder: (_) => const WebBrowserScreen()),
         );
       },
-      child: AspectRatio(
-        aspectRatio: 1.0,
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(24),
-            gradient: const LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [Color(0xFF1E88E5), Color(0xFF0D47A1)],
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: const Color(0xFF1E88E5).withValues(alpha: 0.3),
-                blurRadius: 24,
-                offset: const Offset(0, 8),
-              ),
-            ],
+      child: Container(
+        width: double.infinity,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: isDark
+                ? const [Color(0xFF26262B), Color(0xFF141416)]
+                : const [Color(0xFF24252A), Color(0xFF16171A)],
           ),
+          borderRadius: BorderRadius.circular(24),
+          border: Border.all(
+            color: const Color(0xFFFFD54F).withValues(alpha: isDark ? 0.22 : 0.28),
+            width: 1.2,
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: isDark ? 0.45 : 0.25),
+              blurRadius: 24,
+              offset: const Offset(0, 10),
+            ),
+          ],
+        ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(24),
           child: Stack(
-            fit: StackFit.expand,
             children: [
-              // Decorative circles
+              // Subtle background calligraphic Hanzi watermark
+              const Positioned(
+                right: -12,
+                bottom: -28,
+                child: Opacity(
+                  opacity: 0.06,
+                  child: Text(
+                    '网',
+                    style: TextStyle(
+                      fontSize: 160,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'NotoSerifSC',
+                      color: Colors.white,
+                      height: 1,
+                    ),
+                  ),
+                ),
+              ),
+
+              // Ambient Gold Glow
               Positioned(
                 top: -40,
-                right: -40,
+                right: -20,
                 child: Container(
-                  width: 160,
-                  height: 160,
+                  width: 150,
+                  height: 150,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    border: Border.all(
-                        color: Colors.white.withValues(alpha: 0.08),
-                        width: 1.5),
+                    gradient: RadialGradient(
+                      colors: [
+                        const Color(0xFFFFB300).withValues(alpha: 0.18),
+                        Colors.transparent,
+                      ],
+                    ),
                   ),
                 ),
               ),
-              Positioned(
-                bottom: -20,
-                left: -20,
-                child: Container(
-                  width: 100,
-                  height: 100,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                        color: Colors.white.withValues(alpha: 0.06),
-                        width: 1),
-                  ),
-                ),
-              ),
-              // Content
+
+              // Content Layout
               Padding(
-                padding: const EdgeInsets.all(28.0),
+                padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 24.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
                   children: [
-                    // Icon in a circle
-                    Container(
-                      padding: const EdgeInsets.all(14),
-                      decoration: BoxDecoration(
-                        color: Colors.white.withValues(alpha: 0.18),
-                        shape: BoxShape.circle,
-                      ),
-                      child: const Icon(
-                        Icons.language,
-                        color: Colors.white,
-                        size: 32,
-                      ),
-                    ),
-                    const Spacer(),
-                    // Title
-                    const Text(
-                      'WEB EXPLORER',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 26,
-                        fontWeight: FontWeight.w900,
-                        letterSpacing: 1.2,
-                        fontFamily: 'NotoSerifSC',
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    // Subtitle
-                    Text(
-                      'Live dictionary translation overlay\nfor any Chinese website',
-                      style: TextStyle(
-                        color: Colors.white.withValues(alpha: 0.8),
-                        fontSize: 14,
-                        height: 1.4,
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                    // CTA row
+                    // Top Row: Icon Badge & Live Overlay Pill
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFFFB300).withValues(alpha: 0.15),
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                              color: const Color(0xFFFFB300).withValues(alpha: 0.35),
+                              width: 1,
+                            ),
+                          ),
+                          child: const Icon(
+                            Icons.language_rounded,
+                            color: Color(0xFFFFD54F),
+                            size: 22,
+                          ),
+                        ),
+                        Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFFFB300).withValues(alpha: 0.12),
+                            borderRadius: BorderRadius.circular(20),
+                            border: Border.all(
+                              color: const Color(0xFFFFB300).withValues(alpha: 0.3),
+                              width: 1,
+                            ),
+                          ),
+                          child: const Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Icon(Icons.auto_awesome, color: Color(0xFFFFD54F), size: 12),
+                              SizedBox(width: 5),
+                              Text(
+                                "LIVE OVERLAY",
+                                style: TextStyle(
+                                  color: Color(0xFFFFE082),
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.w800,
+                                  letterSpacing: 1.0,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+
+                    const SizedBox(height: 18),
+
+                    // Title & Description
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.baseline,
+                      textBaseline: TextBaseline.alphabetic,
                       children: [
                         const Text(
-                          'START EXPLORING',
+                          'WEB EXPLORER',
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 13,
-                            fontWeight: FontWeight.bold,
-                            letterSpacing: 1.0,
+                            fontSize: 20,
+                            fontWeight: FontWeight.w900,
+                            letterSpacing: 1.2,
                           ),
                         ),
                         const SizedBox(width: 8),
-                        Container(
-                          padding: const EdgeInsets.all(4),
-                          decoration: BoxDecoration(
-                            color: Colors.white.withValues(alpha: 0.2),
-                            shape: BoxShape.circle,
+                        Text(
+                          '网页探索',
+                          style: TextStyle(
+                            color: const Color(0xFFFFD54F).withValues(alpha: 0.8),
+                            fontSize: 14,
+                            fontFamily: 'NotoSerifSC',
+                            fontWeight: FontWeight.w600,
                           ),
-                          child: const Icon(
-                            Icons.arrow_forward,
-                            color: Colors.white,
-                            size: 16,
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      'Browse any Chinese website with real-time tap dictionary, pinyin annotations & instant translations.',
+                      style: TextStyle(
+                        color: Colors.white.withValues(alpha: 0.78),
+                        fontSize: 13,
+                        fontWeight: FontWeight.w400,
+                        height: 1.35,
+                      ),
+                    ),
+
+                    const SizedBox(height: 20),
+
+                    // Refined CTA Button
+                    Row(
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 7),
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFFFB300).withValues(alpha: 0.18),
+                            borderRadius: BorderRadius.circular(12),
+                            border: Border.all(
+                              color: const Color(0xFFFFB300).withValues(alpha: 0.4),
+                              width: 1,
+                            ),
+                          ),
+                          child: const Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                'START EXPLORING',
+                                style: TextStyle(
+                                  color: Color(0xFFFFE082),
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.w800,
+                                  letterSpacing: 1.0,
+                                ),
+                              ),
+                              SizedBox(width: 6),
+                              Icon(
+                                Icons.arrow_forward_rounded,
+                                color: Color(0xFFFFE082),
+                                size: 14,
+                              ),
+                            ],
                           ),
                         ),
                       ],
@@ -378,6 +460,7 @@ Widget _buildWebExplorerHeroCard(BuildContext context) {
       ),
     );
   }
+
   Widget _buildThematicCard({
     required BuildContext context,
     required String title,

@@ -4,7 +4,6 @@ import '../../data/youtube_repository.dart';
 import '../../domain/models/youtube_video.dart';
 import 'smart_media_desk_screen.dart';
 import 'channel_videos_screen.dart';
-import 'package:hanzi_master/core/presentation/widgets/zen_search_bar.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import '../../data/channels_data.dart';
@@ -27,10 +26,10 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
   };
 
   final Map<String, String> _categoryQueries = {
-    'Lifestyle & Vlog': 'ä¸­å›½ æ—¥å¸¸ vlog',
-    'Gaming & Esports': 'ä¸­å›½ æ¸¸æˆ å®žå†µ',
-    'Food & Cooking': 'ä¸­å›½ ç¾Žé£Ÿ èœè°±',
-    'Tech & Gadgets': 'ä¸­å›½ ç§‘æŠ€ æµ‹è¯„',
+    'Lifestyle & Vlog': '中国 日常 vlog',
+    'Gaming & Esports': '中国 游戏 实况',
+    'Food & Cooking': '中国 美食 菜谱',
+    'Tech & Gadgets': '中国 科技 测评',
   };
 
   // Track loading state per category for progressive rendering
@@ -163,8 +162,8 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
 
     try {
       final repository = ref.read(youtubeRepositoryProvider);
-      setState(() => _searchStatus = 'Checking captions...');
-      final results = await repository.searchVideos('$query ä¸­å›½ ä¸­æ–‡');
+      setState(() => _searchStatus = 'Searching...');
+      final results = await repository.searchVideos(query);
 
       if (mounted) {
         setState(() {
@@ -189,141 +188,181 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       backgroundColor: isDark
-          ? const Color(0xFF1A1A1B)
+          ? const Color(0xFF141416)
           : const Color(0xFFFDFCF0), // Xuan paper
-      appBar: AppBar(
-        title: const Row(
-          mainAxisSize: MainAxisSize.min,
+      body: SafeArea(
+        bottom: false,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Smart Media Desk',
-                style: TextStyle(
-                    color: Colors.black87, fontWeight: FontWeight.bold)),
-          ],
-        ),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        iconTheme: const IconThemeData(color: Colors.black87),
-      ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: ZenSearchBar(
-              controller: _searchController,
-              hintText: 'Search topics (e.g., Cooking, History)',
-              trailing: IconButton(
-                icon: const Icon(Icons.send, color: Colors.indigo),
-                onPressed: () => _performSearch(_searchController.text),
-              ),
-              onSubmitted: _performSearch,
-            ),
-          ),
+            // ── Channel quick-access row ──
+            const SizedBox(height: 8),
+            _buildChannelRow(),
+            const SizedBox(height: 12),
 
-          // â”€â”€ Channel quick-access row â”€â”€
-          _buildChannelRow(),
-          const SizedBox(height: 4),
-
-          if (_error != null)
-            Expanded(
-                child: Center(
-                    child: Text('Error: $_error',
-                        style: const TextStyle(color: Colors.red))))
-          else if (_isSearching)
-            Expanded(
-              child: Column(
-                children: [
-                  // Dynamic status text
-                  if (_searchStatus.isNotEmpty)
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 20, vertical: 8),
-                      child: Row(
-                        children: [
-                          const SizedBox(
-                            width: 16,
-                            height: 16,
-                            child: CircularProgressIndicator(
-                              strokeWidth: 2,
-                              color: Colors.indigo,
-                            ),
+            // ── Pill Search Bar (matching reference) ──
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Container(
+                height: 52,
+                decoration: BoxDecoration(
+                  color: isDark ? const Color(0xFF1E1E22) : Colors.white,
+                  borderRadius: BorderRadius.circular(26),
+                  border: Border.all(
+                    color: isDark
+                        ? Colors.white.withValues(alpha: 0.08)
+                        : Colors.black.withValues(alpha: 0.06),
+                    width: 1,
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withValues(alpha: isDark ? 0.25 : 0.03),
+                      blurRadius: 10,
+                      offset: const Offset(0, 3),
+                    ),
+                  ],
+                ),
+                child: Row(
+                  children: [
+                    const SizedBox(width: 16),
+                    Icon(
+                      Icons.search_rounded,
+                      size: 22,
+                      color: isDark ? Colors.white60 : Colors.black54,
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: TextField(
+                        controller: _searchController,
+                        style: TextStyle(
+                          color: isDark ? Colors.white : const Color(0xFF1A1A1B),
+                          fontSize: 15,
+                        ),
+                        decoration: InputDecoration(
+                          hintText: 'Search topics (e.g., Cooking, History)',
+                          hintStyle: TextStyle(
+                            color: isDark ? Colors.white38 : Colors.black38,
+                            fontSize: 14,
                           ),
-                          const SizedBox(width: 12),
-                          Text(
-                            _searchStatus,
-                            style: const TextStyle(
-                              color: Colors.black54,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 14,
-                            ),
-                          ),
-                        ],
+                          border: InputBorder.none,
+                          isDense: true,
+                        ),
+                        onSubmitted: _performSearch,
                       ),
                     ),
-                  Expanded(
-                    child: _searchResults.isEmpty &&
-                            _searchStatus.contains('Searching')
-                        ? _buildSkeletonGrid()
-                        : ListView.builder(
-                            padding: const EdgeInsets.symmetric(horizontal: 16),
-                            itemCount: _searchResults.length,
-                            itemBuilder: (context, index) {
-                              return _buildVideoCard(_searchResults[index],
-                                  isLarge: true);
-                            },
-                          ),
-                  ),
-                ],
+                    IconButton(
+                      icon: const Icon(Icons.send_rounded, color: Color(0xFF3F51B5), size: 22),
+                      onPressed: () => _performSearch(_searchController.text),
+                    ),
+                    const SizedBox(width: 4),
+                  ],
+                ),
               ),
-            )
-          else
-            Expanded(
-              child: ListView(
-                padding: const EdgeInsets.only(bottom: 40),
-                children: _categories.entries.map((entry) {
-                  final state =
-                      _categoryStates[entry.key] ?? _CategoryLoadState.loading;
+            ),
+            const SizedBox(height: 12),
 
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
+            if (_error != null)
+              Expanded(
+                  child: Center(
+                      child: Text('Error: $_error',
+                          style: const TextStyle(color: Colors.red))))
+            else if (_isSearching)
+              Expanded(
+                child: Column(
+                  children: [
+                    // Dynamic status text
+                    if (_searchStatus.isNotEmpty)
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(20, 24, 20, 12),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 20, vertical: 8),
                         child: Row(
                           children: [
-                            Text(
-                              entry.key,
-                              style: const TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w900,
-                                color: Colors.black87,
+                            const SizedBox(
+                              width: 16,
+                              height: 16,
+                              child: CircularProgressIndicator(
+                                strokeWidth: 2,
+                                color: Color(0xFF3F51B5),
                               ),
                             ),
-                            if (state == _CategoryLoadState.loading) ...[
-                              const SizedBox(width: 12),
-                              const SizedBox(
-                                width: 14,
-                                height: 14,
-                                child: CircularProgressIndicator(
-                                  strokeWidth: 2,
-                                  color: Colors.indigo,
-                                ),
+                            const SizedBox(width: 12),
+                            Text(
+                              _searchStatus,
+                              style: TextStyle(
+                                color: isDark ? Colors.white70 : Colors.black54,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 14,
                               ),
-                            ],
+                            ),
                           ],
                         ),
                       ),
-                      SizedBox(
-                        height: 220,
-                        child: _buildCategoryContent(
-                            entry.key, state, entry.value),
-                      ),
-                    ],
-                  );
-                }).toList(),
+                    Expanded(
+                      child: _searchResults.isEmpty &&
+                              _searchStatus.contains('Searching')
+                          ? _buildSkeletonGrid()
+                          : ListView.builder(
+                              padding: const EdgeInsets.symmetric(horizontal: 16),
+                              itemCount: _searchResults.length,
+                              itemBuilder: (context, index) {
+                                return _buildVideoCard(_searchResults[index],
+                                    isLarge: true);
+                              },
+                            ),
+                    ),
+                  ],
+                ),
+              )
+            else
+              Expanded(
+                child: ListView(
+                  padding: const EdgeInsets.only(bottom: 40),
+                  children: _categories.entries.map((entry) {
+                    final state =
+                        _categoryStates[entry.key] ?? _CategoryLoadState.loading;
+
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(16, 20, 16, 12),
+                          child: Row(
+                            children: [
+                              Text(
+                                entry.key,
+                                style: TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w900,
+                                  fontFamily: 'NotoSerifSC',
+                                  color: isDark ? Colors.white : const Color(0xFF1A1A1B),
+                                ),
+                              ),
+                              if (state == _CategoryLoadState.loading) ...[
+                                const SizedBox(width: 12),
+                                const SizedBox(
+                                  width: 14,
+                                  height: 14,
+                                  child: CircularProgressIndicator(
+                                    strokeWidth: 2,
+                                    color: Color(0xFF3F51B5),
+                                  ),
+                                ),
+                              ],
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 250,
+                          child: _buildCategoryContent(
+                              entry.key, state, entry.value),
+                        ),
+                      ],
+                    );
+                  }).toList(),
+                ),
               ),
-            ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -360,8 +399,8 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
                   icon: const Icon(Icons.refresh, size: 18),
                   label: const Text('Tap to Retry'),
                   style: ElevatedButton.styleFrom(
-                    foregroundColor: Colors.indigo,
-                    backgroundColor: Colors.indigo.withValues(alpha: 0.1),
+                    foregroundColor: const Color(0xFF3F51B5),
+                    backgroundColor: const Color(0xFF3F51B5).withValues(alpha: 0.1),
                     elevation: 0,
                   ),
                 ),
@@ -371,7 +410,7 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
         );
       case _CategoryLoadState.loaded:
         return ListView.builder(
-          padding: const EdgeInsets.symmetric(horizontal: 12),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           scrollDirection: Axis.horizontal,
           itemCount: videos.length,
           itemBuilder: (context, index) {
@@ -384,11 +423,11 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
   /// Shimmer skeleton for horizontal category rows (loading state)
   Widget _buildSkeletonRow() {
     return ListView.builder(
-      padding: const EdgeInsets.symmetric(horizontal: 12),
+      padding: const EdgeInsets.symmetric(horizontal: 16),
       scrollDirection: Axis.horizontal,
       itemCount: 4,
       itemBuilder: (context, index) {
-        return const _SkeletonCard(width: 260, imageHeight: 140);
+        return const _SkeletonCard(width: 240, imageHeight: 155);
       },
     );
   }
@@ -405,8 +444,9 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
   }
 
   Widget _buildVideoCard(YoutubeVideo video, {required bool isLarge}) {
-    final width = isLarge ? double.infinity : 260.0;
-    final imageHeight = isLarge ? 200.0 : 140.0;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final width = isLarge ? double.infinity : 240.0;
+    final imageHeight = isLarge ? 200.0 : 155.0;
 
     return GestureDetector(
       onTap: () {
@@ -425,213 +465,229 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
           bottom: isLarge ? 24 : 0,
         ),
         decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(16),
+          color: isDark ? const Color(0xFF1E1E22) : Colors.white,
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(
+            color: isDark
+                ? Colors.white.withValues(alpha: 0.06)
+                : Colors.black.withValues(alpha: 0.04),
+          ),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withValues(alpha: 0.05),
-              blurRadius: 10,
-              offset: const Offset(0, 4),
+              color: Colors.black.withValues(alpha: isDark ? 0.3 : 0.04),
+              blurRadius: 12,
+              offset: const Offset(0, 5),
             ),
           ],
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Thumbnail with Duration & CC Badge
-            Stack(
-              children: [
-                ClipRRect(
-                  borderRadius:
-                      const BorderRadius.vertical(top: Radius.circular(16)),
-                  child: Image.network(
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Thumbnail with Duration, CC Badge, & Play overlay
+              Stack(
+                children: [
+                  Image.network(
                     isLarge ? video.highThumbnailUrl : video.mediumThumbnailUrl,
                     width: width,
                     height: imageHeight,
                     fit: BoxFit.cover,
                     errorBuilder: (_, __, ___) => Container(
-                        width: width,
-                        height: imageHeight,
-                        color: Colors.grey.shade300),
-                  ),
-                ),
-                Positioned(
-                  bottom: 8,
-                  right: 8,
-                  child: Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
-                    decoration: BoxDecoration(
-                      color: Colors.black.withValues(alpha: 0.8),
-                      borderRadius: BorderRadius.circular(6),
-                    ),
-                    child: Text(
-                      _formatDuration(video.duration),
-                      style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold),
+                      width: width,
+                      height: imageHeight,
+                      color: isDark ? const Color(0xFF2C2C2E) : Colors.grey.shade300,
                     ),
                   ),
-                ),
-                Positioned(
-                  top: 8,
-                  left: 8,
-                  child: Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
-                    decoration: BoxDecoration(
-                      color: Colors.indigo.shade600,
-                      borderRadius: BorderRadius.circular(6),
-                    ),
-                    child: const Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Icon(Icons.closed_caption,
-                            color: Colors.white, size: 14),
-                        SizedBox(width: 4),
-                        Text("CC",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 10,
-                                fontWeight: FontWeight.bold)),
-                      ],
-                    ),
-                  ),
-                ),
-                // Play Icon Overlay
-                Positioned.fill(
-                  child: Center(
+                  // Duration badge (bottom-right)
+                  Positioned(
+                    bottom: 8,
+                    right: 8,
                     child: Container(
-                      padding: const EdgeInsets.all(12),
+                      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 3),
                       decoration: BoxDecoration(
-                        color: Colors.black.withValues(alpha: 0.3),
-                        shape: BoxShape.circle,
+                        color: Colors.black.withValues(alpha: 0.8),
+                        borderRadius: BorderRadius.circular(6),
                       ),
-                      child: const Icon(Icons.play_arrow,
-                          color: Colors.white, size: 32),
+                      child: Text(
+                        _formatDuration(video.duration),
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 11,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ),
                   ),
-                ),
-              ],
-            ),
-
-            // Video Info
-            Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    video.title,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                        fontWeight: FontWeight.bold, fontSize: 14, height: 1.3),
+                  // CC Badge (top-left, matching reference screenshot)
+                  Positioned(
+                    top: 8,
+                    left: 8,
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 3),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFF3252C7), // Vibrant blue CC badge
+                        borderRadius: BorderRadius.circular(6),
+                      ),
+                      child: const Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(Icons.closed_caption_rounded,
+                              color: Colors.white, size: 14),
+                          SizedBox(width: 3),
+                          Text(
+                            "CC",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 10,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
-                  const SizedBox(height: 6),
-                  Text(
-                    video.channelTitle,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                        color: Colors.grey.shade600,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600),
+                  // Play Icon Overlay
+                  Positioned.fill(
+                    child: Center(
+                      child: Container(
+                        padding: const EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          color: Colors.black.withValues(alpha: 0.28),
+                          shape: BoxShape.circle,
+                        ),
+                        child: const Icon(
+                          Icons.play_arrow_rounded,
+                          color: Colors.white,
+                          size: 28,
+                        ),
+                      ),
+                    ),
                   ),
                 ],
               ),
-            ),
-          ],
+
+              // Video Info
+              Padding(
+                padding: const EdgeInsets.fromLTRB(12, 10, 12, 10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      video.title,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w700,
+                        fontSize: 14,
+                        color: isDark ? Colors.white : const Color(0xFF1A1A1B),
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      video.channelTitle,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        color: isDark ? Colors.white54 : Colors.grey.shade600,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 
   Widget _buildChannelRow() {
-    return Container(
-      height: 80,
-      margin: const EdgeInsets.symmetric(horizontal: 4),
-      child: Row(
-        children: [
-          const SizedBox(width: 12),
-          Expanded(
-            child: _channelsLoading
-                ? ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: 8,
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 6),
-                        child: CircleAvatar(
-                          radius: 28,
-                          backgroundColor: Colors.grey.shade200,
-                        ),
-                      );
-                    },
-                  )
-                : ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: _channelInfos.length,
-                    itemBuilder: (context, index) {
-                      final channel = _channelInfos[index];
-                      final logoUrl = channel['logoUrl'] ?? '';
-                      final title = channel['title'] ?? '';
-                      final channelId = channel['id'] ?? '';
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 6),
-                        child: GestureDetector(
-                          onTap: () {
-                            HapticsManager.medium();
-                            Navigator.push(
-                              context,
-                              SwipeBackPageRoute(
-                                builder: (context) => ChannelVideosScreen(
-                                  channelId: channelId,
-                                  channelName: title,
-                                  channelLogoUrl: logoUrl,
-                                ),
-                              ),
-                            );
-                          },
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              CircleAvatar(
-                                radius: 28,
-                                backgroundColor: Colors.grey.shade200,
-                                backgroundImage: logoUrl.isNotEmpty
-                                    ? NetworkImage(logoUrl)
-                                    : null,
-                                child: logoUrl.isEmpty
-                                    ? Icon(Icons.person,
-                                        size: 22, color: Colors.grey.shade500)
-                                    : null,
-                              ),
-                              const SizedBox(height: 4),
-                              SizedBox(
-                                width: 64,
-                                child: Text(
-                                  title,
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  textAlign: TextAlign.center,
-                                  style: const TextStyle(
-                                    fontSize: 10,
-                                    fontWeight: FontWeight.w600,
-                                    color: Colors.black87,
-                                  ),
-                                ),
-                              ),
-                            ],
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
+    return SizedBox(
+      height: 86,
+      child: _channelsLoading
+          ? ListView.builder(
+              scrollDirection: Axis.horizontal,
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              itemCount: 8,
+              itemBuilder: (context, index) {
+                return const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 6),
+                  child: CircleAvatar(
+                    radius: 28,
+                    backgroundColor: Color(0xFFD6D6D6),
+                  ),
+                );
+              },
+            )
+          : ListView.builder(
+              scrollDirection: Axis.horizontal,
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              itemCount: _channelInfos.length,
+              itemBuilder: (context, index) {
+                final channel = _channelInfos[index];
+                final logoUrl = channel['logoUrl'] ?? '';
+                final title = channel['title'] ?? '';
+                final channelId = channel['id'] ?? '';
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 6),
+                  child: GestureDetector(
+                    onTap: () {
+                      HapticsManager.medium();
+                      Navigator.push(
+                        context,
+                        SwipeBackPageRoute(
+                          builder: (context) => ChannelVideosScreen(
+                            channelId: channelId,
+                            channelName: title,
+                            channelLogoUrl: logoUrl,
+                            initialChannelInfos: _channelInfos,
                           ),
                         ),
                       );
                     },
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        CircleAvatar(
+                          radius: 28,
+                          backgroundColor: isDark
+                              ? const Color(0xFF2C2C2E)
+                              : const Color(0xFFB0C4DE).withValues(alpha: 0.6),
+                          backgroundImage: logoUrl.isNotEmpty
+                              ? NetworkImage(logoUrl)
+                              : null,
+                          child: logoUrl.isEmpty
+                              ? Icon(Icons.person,
+                                  size: 22,
+                                  color: isDark ? Colors.white54 : Colors.grey.shade600)
+                              : null,
+                        ),
+                        const SizedBox(height: 4),
+                        SizedBox(
+                          width: 64,
+                          child: Text(
+                            title,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 10,
+                              fontWeight: FontWeight.w600,
+                              color: isDark ? Colors.white70 : Colors.black87,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-          ),
-        ],
-      ),
+                );
+              },
+            ),
     );
   }
 

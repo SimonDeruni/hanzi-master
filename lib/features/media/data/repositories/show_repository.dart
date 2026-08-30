@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 import '../../../../core/services/api_key_pool.dart';
 import '../../domain/models/youtube_video.dart';
 import 'shows_data.dart';
+import 'valid_show_ids.dart';
 
 /// Whether a show has softcoded (interactive) or hardcoded (burned-in) subtitles.
 enum SubtitleType { soft, hard }
@@ -36,25 +37,48 @@ class Show {
 
 /// Genre categories for Chinese dramas.
 enum ShowGenre {
-  romance('Romance', ['爱情', '恋爱', '甜宠', '总裁', '浪漫', 'love', 'romance']),
-  historical('Historical', ['古装', '宫廷', '武侠', '仙侠', '江湖', '朝代', 'historical', 'dynasty']),
-  modern('Modern Drama', ['现代', '都市', '职场', '青春', '校园', 'modern', 'city']),
-  fantasy('Fantasy', ['玄幻', '奇幻', '修仙', '魔幻', '神话', 'fantasy', 'magic']),
-  mystery('Mystery/Thriller', ['悬疑', '推理', '刑侦', '犯罪', '侦探', 'mystery', 'thriller']),
-  family('Family', ['家庭', '亲情', '育儿', '婆媳', 'family']),
-  comedy('Comedy', ['喜剧', '搞笑', '幽默', 'comedy', 'funny']),
+  romance('Romance', [
+    '爱情', '恋爱', '甜宠', '总裁', '浪漫', '情', '恋', '嫁', '夫', '妻', '妻主', '妃', '宠',
+    '心动', '相爱', 'love', 'romance', 'sweet', 'lover', 'wedding', 'heart', 'kiss', 'girl',
+    'girlfriend', 'boy', 'boyfriend', 'fall in love', 'my girl', 'first romance', 'fall for'
+  ]),
+  historical('Historical / Costume', [
+    '古装', '宫廷', '武侠', '仙侠', '江湖', '朝代', '大唐', '大宋', '明朝', '清朝', '皇', '帝',
+    '剑', '刀', '侠', '宗', '门', '国', '天下', '锦', '令', '传', '世家', 'historical',
+    'dynasty', 'costume', 'wuxia', 'xianxia', 'palace', 'emperor', 'king', 'sword', 'blade'
+  ]),
+  modern('Modern & Youth', [
+    '现代', '都市', '职场', '青春', '校园', '生活', '日常', '少年', '同学', '大学', '高中',
+    '毕业', '奋斗', '逆袭', '成长', '青年', '时代', '年华', '岁', '守诚', 'police', 'guardian',
+    '刑侦', '犯罪', '侦探', '破案', '真相', '探案', '重案', 'modern', 'city', 'youth',
+    'campus', 'school', 'student', 'life', 'story', 'dream', 'young'
+  ]),
+  fantasy('Fantasy & Mythology', [
+    '玄幻', '奇幻', '修仙', '魔幻', '神话', '妖', '魔', '神', '灵', '九', '龙', '凤',
+    '异能', '转世', '重生', '异界', 'fantasy', 'magic', 'myth', 'demon', 'fairy', 'god',
+    'immortal', 'spirit', 'dragon', 'reborn', 'rebirth'
+  ]),
+  family('Family & Drama', [
+    '家庭', '亲情', '育儿', '婆媳', '父母', '父母爱情', '儿女', '姊妹', '兄弟', '家', '亲',
+    '大院', '巷', '家常', '门第', 'family', 'parents', 'sister', 'brother', 'home',
+    'mother', 'father', 'drama'
+  ]),
+  comedy('Comedy', [
+    '喜剧', '搞笑', '幽默', '欢乐', '爆笑', '段子', '开心', '笑', '喜事', 'comedy', 'funny',
+    'humor', 'laugh', 'hilarious'
+  ]),
   other('Other', []);
 
   final String label;
   final List<String> keywords;
   const ShowGenre(this.label, this.keywords);
 
-  static ShowGenre detect(String text) {
-    final lower = text.toLowerCase();
+  static ShowGenre detect(String title, {List<String> tags = const [], String channel = ''}) {
+    final combined = '$title ${tags.join(" ")} $channel'.toLowerCase();
     for (final genre in ShowGenre.values) {
       if (genre == other) continue;
       for (final keyword in genre.keywords) {
-        if (lower.contains(keyword)) return genre;
+        if (combined.contains(keyword.toLowerCase())) return genre;
       }
     }
     return other;
@@ -95,7 +119,7 @@ class ShowRepository {
   /// All shows have been pre-verified to have Chinese captions.
   /// Episodes are still fetched on-demand via [fetchEpisodes].
   Future<Map<ShowGenre, List<Show>>> fetchAllShows() async {
-    const cacheKey = "all_shows_v2";
+    const cacheKey = "all_shows_v7";
     final cached = _cache[cacheKey];
     if (cached != null &&
         DateTime.now().difference(cached.timestamp) < _cacheTtl) {
@@ -105,29 +129,64 @@ class ShowRepository {
 
     final allShows = <Show>[];
     for (final entry in HardcodedShows.data) {
+      final playlistId = entry["id"] as String? ?? '';
+      // Exclude any playlist that contains trailers, short teasers, or clips under 13 minutes
+      if (!kValidLongShowIds.contains(playlistId)) continue;
+
+      String thumb = (entry["thumbnailUrl"] as String? ?? '').trim();
+      final episodes = entry["episodes"] as List? ?? [];
+      
+      // If thumb is empty or missing, fall back to first episode's thumb
+      if ((thumb.isEmpty || !thumb.startsWith('http')) && episodes.isNotEmpty) {
+        final firstEp = episodes.first as Map<String, dynamic>?;
+        thumb = (firstEp?['thumbnailUrl'] as String? ?? '').trim();
+      }
+
+      // Convert maxresdefault / default to hqdefault which is universally guaranteed to exist for all YouTube videos
+      if (thumb.contains('maxresdefault.jpg') || thumb.contains('sddefault.jpg') || (thumb.contains('default.jpg') && !thumb.contains('hqdefault.jpg'))) {
+        thumb = thumb.replaceAll('maxresdefault.jpg', 'hqdefault.jpg')
+                     .replaceAll('sddefault.jpg', 'hqdefault.jpg')
+                     .replaceAll('default.jpg', 'hqdefault.jpg');
+      }
+
+      // If still empty or no hqdefault, construct from first episode ID
+      if ((thumb.isEmpty || !thumb.startsWith('http')) && episodes.isNotEmpty) {
+        final firstEp = episodes.first as Map<String, dynamic>?;
+        final epId = firstEp?['id'] as String? ?? '';
+        if (epId.isNotEmpty) {
+          thumb = 'https://i.ytimg.com/vi/$epId/hqdefault.jpg';
+        }
+      }
+
+      final title = entry["title"] as String? ?? '';
+      final channelTitle = entry["channelTitle"] as String? ?? '';
+      final tags = List<String>.from(entry["tags"] as List? ?? []);
+
+      final detectedGenre = ShowGenre.detect(title, tags: tags, channel: channelTitle);
+
       allShows.add(Show(
-        id: entry["id"] as String,
-        title: entry["title"] as String,
-        channelTitle: entry["channelTitle"] as String,
-        thumbnailUrl: entry["thumbnailUrl"] as String,
-        genre: ShowGenre.detect(entry["title"] as String).label,
-        episodeCount: entry["episodeCount"] as int,
+        id: playlistId,
+        title: title,
+        channelTitle: channelTitle,
+        thumbnailUrl: thumb,
+        genre: detectedGenre.label,
+        episodeCount: entry["episodeCount"] as int? ?? episodes.length,
         episodes: [],
-        tags: List<String>.from(entry["tags"] as List? ?? []),
+        tags: tags,
         subtitleType: entry["subtitleType"] == "soft"
             ? SubtitleType.soft
             : SubtitleType.hard,
       ));
     }
 
-    debugPrint("[ShowRepo] Loaded ${allShows.length} shows from hardcoded catalog");
+    debugPrint("[ShowRepo] Loaded ${allShows.length} qualified shows (filtered short playlists)");
 
     final showsByGenre = <ShowGenre, List<Show>>{};
     for (final genre in ShowGenre.values) {
       showsByGenre[genre] = [];
     }
     for (final show in allShows) {
-      final genre = ShowGenre.detect(show.title);
+      final genre = ShowGenre.detect(show.title, tags: show.tags, channel: show.channelTitle);
       showsByGenre[genre]!.add(show);
     }
     showsByGenre.removeWhere((_, list) => list.isEmpty);

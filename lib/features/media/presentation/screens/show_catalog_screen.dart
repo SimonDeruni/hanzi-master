@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import '../../data/repositories/show_repository.dart';
 import '../../../../shared/routes/swipe_back_route.dart';
 import '../../../../core/presentation/widgets/zen_search_bar.dart';
@@ -206,6 +205,8 @@ class _GenreRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -213,15 +214,16 @@ class _GenreRow extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
           child: Text(
             genre.label,
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
+            style: TextStyle(
+              color: isDark ? Colors.white : const Color(0xFF1A1A1B),
+              fontSize: 20,
+              fontWeight: FontWeight.w900,
+              fontFamily: 'NotoSerifSC',
             ),
           ),
         ),
         SizedBox(
-          height: 200,
+          height: 210,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -245,6 +247,7 @@ class _ShowCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     final savedShows = ref.watch(savedShowsProvider);
     final isBookmarked = savedShows.contains(show.id);
 
@@ -257,126 +260,164 @@ class _ShowCard extends ConsumerWidget {
         );
       },
       child: Container(
-        width: isWide ? double.infinity : 140,
+        width: isWide ? double.infinity : 150,
         margin: EdgeInsets.symmetric(horizontal: isWide ? 0 : 4),
         decoration: BoxDecoration(
-          color: const Color(0xFF1A1A2E),
-          borderRadius: BorderRadius.circular(8),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Thumbnail with bookmark badge
-            Stack(
-              children: [
-                ClipRRect(
-                  borderRadius: const BorderRadius.vertical(top: Radius.circular(8)),
-                  child: CachedNetworkImage(
-                    imageUrl: show.thumbnailUrl,
-                    height: 100,
-                    width: isWide ? double.infinity : 140,
-                    fit: BoxFit.cover,
-                    placeholder: (_, __) => Container(
-                      height: 100,
-                      width: isWide ? double.infinity : 140,
-                      color: const Color(0xFF2A2A3E),
-                    ),
-                    errorWidget: (_, __, ___) => Container(
-                      height: 100,
-                      width: isWide ? double.infinity : 140,
-                      color: const Color(0xFF2A2A3E),
-                      child: const Icon(Icons.broken_image, color: Colors.grey, size: 28),
-                    ),
-                  ),
-                ),
-                if (show.subtitleType == SubtitleType.soft)
-                  Positioned(
-                    top: 4,
-                    left: 4,
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                      decoration: BoxDecoration(
-                        color: Colors.teal.withValues(alpha: 0.9),
-                        borderRadius: BorderRadius.circular(4),
-                      ),
-                      child: const Text(
-                        'CC',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 9,
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 0.5,
-                        ),
-                      ),
-                    ),
-                  ),
-                if (show.tags.contains('Trailer') || show.tags.contains('Highlight'))
-                  Positioned(
-                    top: 4,
-                    left: show.subtitleType == SubtitleType.soft ? 44 : 4,
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                      decoration: BoxDecoration(
-                        color: show.tags.contains('Trailer') 
-                            ? Colors.redAccent.withValues(alpha: 0.9)
-                            : Colors.purpleAccent.withValues(alpha: 0.9),
-                        borderRadius: BorderRadius.circular(4),
-                      ),
-                      child: Text(
-                        show.tags.contains('Trailer') ? 'TRAILER' : 'HIGHLIGHT',
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 9,
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 0.5,
-                        ),
-                      ),
-                    ),
-                  ),
-                if (isBookmarked)
-                  Positioned(
-                    top: 4,
-                    right: 4,
-                    child: Container(
-                      padding: const EdgeInsets.all(3),
-                      decoration: BoxDecoration(
-                        color: Colors.black54,
-                        borderRadius: BorderRadius.circular(4),
-                      ),
-                      child: const Icon(Icons.bookmark, color: Colors.amber, size: 14),
-                    ),
-                  ),
-              ],
-            ),
-            // Title and episode count
-            Padding(
-              padding: const EdgeInsets.all(8),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    show.title,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 13,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    '${show.episodeCount} episodes',
-                    style: TextStyle(
-                      color: Colors.grey[500],
-                      fontSize: 11,
-                    ),
-                  ),
-                ],
-              ),
+          color: isDark ? const Color(0xFF1E1E22) : Colors.white,
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(
+            color: isDark
+                ? Colors.white.withValues(alpha: 0.08)
+                : Colors.black.withValues(alpha: 0.04),
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: isDark ? 0.3 : 0.04),
+              blurRadius: 10,
+              offset: const Offset(0, 4),
             ),
           ],
         ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Thumbnail with bookmark badge
+              Stack(
+                children: [
+                  Image.network(
+                    show.thumbnailUrl,
+                    height: 105,
+                    width: isWide ? double.infinity : 150,
+                    fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) {
+                      // If the original URL failed and contains maxresdefault, attempt hqdefault
+                      if (show.thumbnailUrl.contains('maxresdefault.jpg')) {
+                        final fallbackUrl = show.thumbnailUrl.replaceAll('maxresdefault.jpg', 'hqdefault.jpg');
+                        return Image.network(
+                          fallbackUrl,
+                          height: 105,
+                          width: isWide ? double.infinity : 150,
+                          fit: BoxFit.cover,
+                          errorBuilder: (_, __, ___) => _buildPlaceholder(isDark, isWide),
+                        );
+                      }
+                      return _buildPlaceholder(isDark, isWide);
+                    },
+                    loadingBuilder: (context, child, loadingProgress) {
+                      if (loadingProgress == null) return child;
+                      return Container(
+                        height: 105,
+                        width: isWide ? double.infinity : 150,
+                        color: isDark ? const Color(0xFF2C2C2E) : Colors.grey.shade200,
+                      );
+                    },
+                  ),
+                  if (show.subtitleType == SubtitleType.soft)
+                    Positioned(
+                      top: 6,
+                      left: 6,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                        decoration: BoxDecoration(
+                          color: const Color(0xFF3252C7), // Blue CC badge matching media
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        child: const Text(
+                          'CC',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 9,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 0.5,
+                          ),
+                        ),
+                      ),
+                    ),
+                  if (show.tags.contains('Trailer') || show.tags.contains('Highlight'))
+                    Positioned(
+                      top: 6,
+                      left: show.subtitleType == SubtitleType.soft ? 42 : 6,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                        decoration: BoxDecoration(
+                          color: show.tags.contains('Trailer') 
+                              ? Colors.redAccent.withValues(alpha: 0.9)
+                              : Colors.purpleAccent.withValues(alpha: 0.9),
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        child: Text(
+                          show.tags.contains('Trailer') ? 'TRAILER' : 'HIGHLIGHT',
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 9,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 0.5,
+                          ),
+                        ),
+                      ),
+                    ),
+                  if (isBookmarked)
+                    Positioned(
+                      top: 6,
+                      right: 6,
+                      child: Container(
+                        padding: const EdgeInsets.all(4),
+                        decoration: BoxDecoration(
+                          color: Colors.black54,
+                          borderRadius: BorderRadius.circular(6),
+                        ),
+                        child: const Icon(Icons.bookmark_rounded, color: Colors.amber, size: 14),
+                      ),
+                    ),
+                ],
+              ),
+              // Title and episode count
+              Padding(
+                padding: const EdgeInsets.all(10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      show.title,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        color: isDark ? Colors.white : const Color(0xFF1A1A1B),
+                        fontSize: 13,
+                        fontWeight: FontWeight.w700,
+                        height: 1.25,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      '${show.episodeCount} episodes',
+                      style: TextStyle(
+                        color: isDark ? Colors.white54 : Colors.grey.shade600,
+                        fontSize: 11,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildPlaceholder(bool isDark, bool isWide) {
+    return Container(
+      height: 105,
+      width: isWide ? double.infinity : 150,
+      color: isDark ? const Color(0xFF2C2C2E) : Colors.grey.shade300,
+      child: Icon(
+        Icons.movie_creation_outlined,
+        color: isDark ? Colors.white38 : Colors.black26,
+        size: 32,
       ),
     );
   }

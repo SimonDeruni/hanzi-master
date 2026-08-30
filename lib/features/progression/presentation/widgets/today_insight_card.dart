@@ -68,7 +68,7 @@ class TodayInsightCard extends ConsumerWidget {
               
               // Content
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 28.0, vertical: 22.0),
+                padding: const EdgeInsets.symmetric(horizontal: 28.0, vertical: 42.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
@@ -78,11 +78,11 @@ class TodayInsightCard extends ConsumerWidget {
                       style: theme.textTheme.labelSmall?.copyWith(
                         color: const Color(0xFFD4C4A8),
                         fontWeight: FontWeight.w700,
-                        letterSpacing: 2.5,
-                        fontSize: 12,
+                        letterSpacing: 2.8,
+                        fontSize: 13,
                       ),
                     ),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 20),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
@@ -93,13 +93,13 @@ class TodayInsightCard extends ConsumerWidget {
                             fontFamily: 'NotoSerifSC',
                             fontWeight: FontWeight.w900,
                             height: 1.0,
-                            fontSize: 54,
+                            fontSize: 72,
                             shadows: [
-                              Shadow(color: Colors.black.withValues(alpha: 0.5), blurRadius: 10, offset: const Offset(0, 4)),
+                              Shadow(color: Colors.black.withValues(alpha: 0.5), blurRadius: 12, offset: const Offset(0, 4)),
                             ],
                           ),
                         ),
-                        const SizedBox(width: 20),
+                        const SizedBox(width: 24),
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -113,36 +113,37 @@ class TodayInsightCard extends ConsumerWidget {
                                       color: const Color(0xFFD4C4A8),
                                       fontWeight: FontWeight.bold,
                                       letterSpacing: 0.5,
+                                      fontSize: 18,
                                     ),
                                   ),
-                                  const SizedBox(width: 10),
+                                  const SizedBox(width: 12),
                                   GestureDetector(
                                     onTap: () => ref.read(audioServiceProvider).playCharacter(todayWord['hanzi']!),
                                     child: Container(
-                                      padding: const EdgeInsets.all(6),
+                                      padding: const EdgeInsets.all(8),
                                       decoration: BoxDecoration(
                                         color: Colors.white.withValues(alpha: 0.12),
                                         shape: BoxShape.circle,
                                       ),
                                       child: Icon(
                                         Icons.volume_up_rounded,
-                                        size: 16,
+                                        size: 18,
                                         color: Colors.white.withValues(alpha: 0.9),
                                       ),
                                     ),
                                   ),
                                 ],
                               ),
-                              const SizedBox(height: 4),
+                              const SizedBox(height: 8),
                               Text(
                                 todayWord['meaning']!,
-                                maxLines: 2,
+                                maxLines: 3,
                                 overflow: TextOverflow.ellipsis,
                                 style: theme.textTheme.bodySmall?.copyWith(
-                                  color: Colors.white.withValues(alpha: 0.75),
+                                  color: Colors.white.withValues(alpha: 0.8),
                                   fontWeight: FontWeight.w400,
-                                  height: 1.25,
-                                  fontSize: 14,
+                                  height: 1.35,
+                                  fontSize: 15,
                                 ),
                               ),
                             ],

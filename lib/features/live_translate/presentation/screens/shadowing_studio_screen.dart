@@ -111,9 +111,17 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
       _selectedMode = ShadowingMode.customSentence;
       _customWordInput = widget.initialContextSentence!;
       _isSessionStarted = true;
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        _fetchNextPhrase();
-      });
+      if (widget.initialPinyin != null || widget.initialTranslation != null) {
+        _currentPhrase = {
+          "hanzi": widget.initialContextSentence!,
+          "pinyin": widget.initialPinyin ?? "",
+          "english": widget.initialTranslation ?? "",
+        };
+      } else {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          _fetchNextPhrase();
+        });
+      }
     } else if (widget.initialHanzi != null) {
       _selectedMode = ShadowingMode.customWord;
       _customWordInput = widget.initialHanzi!;
@@ -843,48 +851,6 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
     );
   }
 
-  Widget _buildSecondaryChip({
-    required ShadowingMode mode,
-    required String label,
-    required bool isDark,
-  }) {
-    final isSelected = _selectedMode == mode;
-    final cardBg = isDark ? const Color(0xFF2C2C2E) : Colors.white;
-    return GestureDetector(
-      onTap: () {
-        if (_selectedMode != mode) {
-          setState(() => _selectedMode = mode);
-          HapticFeedback.selectionClick();
-        }
-      },
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 200),
-        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 7),
-        decoration: BoxDecoration(
-          color: isSelected
-              ? _accentGold.withValues(alpha: isDark ? 0.2 : 0.12)
-              : cardBg,
-          borderRadius: BorderRadius.circular(20),
-          border: Border.all(
-            color: isSelected
-                ? _accentGold.withValues(alpha: 0.5)
-                : (isDark ? Colors.white12 : Colors.black12),
-          ),
-        ),
-        child: Text(
-          label,
-          style: TextStyle(
-            color: isSelected
-                ? _accentGold
-                : (isDark ? Colors.white54 : Colors.black54),
-            fontSize: 12,
-            fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
-          ),
-        ),
-      ),
-    );
-  }
-
   Widget _buildConfigCard({
     required bool isDark,
     required String label,
@@ -943,6 +909,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               // ── Header Bar ────────────────────────────────────────
+              const SizedBox(height: 20),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                 child: Row(
@@ -1053,27 +1020,15 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                               label: 'Deck',
                               isDark: isDark,
                             ),
+                            const SizedBox(width: 2),
+                            _buildSegmentModeTab(
+                              mode: ShadowingMode.customWord,
+                              icon: Icons.text_fields_rounded,
+                              label: 'Custom Word',
+                              isDark: isDark,
+                            ),
                           ],
                         ),
-                      ),
-
-                      const SizedBox(height: 8),
-
-                      // Custom modes: secondary chips
-                      Row(
-                        children: [
-                          _buildSecondaryChip(
-                            mode: ShadowingMode.customWord,
-                            label: 'Custom Word',
-                            isDark: isDark,
-                          ),
-                          const SizedBox(width: 8),
-                          _buildSecondaryChip(
-                            mode: ShadowingMode.customSentence,
-                            label: 'Custom Sentence',
-                            isDark: isDark,
-                          ),
-                        ],
                       ),
 
                       const SizedBox(height: 24),

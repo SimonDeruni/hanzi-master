@@ -1,4 +1,4 @@
-﻿import 'dart:async';
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lpinyin/lpinyin.dart';
@@ -307,16 +307,17 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
     ];
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
+      padding: const EdgeInsets.symmetric(vertical: 2),
       child: Row(
         children: [
-          Icon(Icons.record_voice_over, size: 16, color: secondaryText),
-          const SizedBox(width: 6),
-          Text('Voice:', style: TextStyle(fontSize: 11.5, color: secondaryText, fontWeight: FontWeight.w600)),
+          Icon(Icons.record_voice_over_outlined, size: 15, color: secondaryText.withValues(alpha: 0.7)),
+          const SizedBox(width: 5),
+          Text('Voice:', style: TextStyle(fontSize: 11, color: secondaryText, fontWeight: FontWeight.w600)),
           const SizedBox(width: 6),
           Expanded(
             child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
+              physics: const BouncingScrollPhysics(),
               child: Row(
                 children: voiceOptions.map((opt) {
                   final isSelected = currentVoice == opt.$1;
@@ -1005,11 +1006,6 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
                   ),
                 ),
 
-                Divider(color: isDark ? Colors.white12 : Colors.black12, height: 1),
-
-                // Voice Picker Row
-                _buildVoicePickerRow(isDark, cardBg, primaryText, secondaryText, activeAccent, quota),
-
                 // Chapter & Book Progress Bar
                 Builder(builder: (context) {
                   final totalSentences = chapter.sentences.length;
@@ -1260,7 +1256,7 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      // Voice Engine Badge & Progress Indicator
+                      // Voice Engine, Quota Badge & Voice Selection Pills
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -1268,7 +1264,7 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
                             onTap: () => _showQuotaDetailsSheet(context, quota, isDark, cardBg, primaryText),
                             behavior: HitTestBehavior.opaque,
                             child: Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                               decoration: BoxDecoration(
                                 color: quota.hasQuotaRemaining
                                     ? activeAccent.withValues(alpha: 0.15)
@@ -1292,8 +1288,8 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
                                   const SizedBox(width: 4),
                                   Text(
                                     quota.hasQuotaRemaining
-                                        ? 'Studio HD: ${quota.remainingHours.toStringAsFixed(1)}h left'
-                                        : 'Unlimited Standard Voice',
+                                        ? 'Studio HD: ${quota.remainingHours.toStringAsFixed(1)}h'
+                                        : 'Standard Voice',
                                     style: TextStyle(
                                       fontSize: 10.5,
                                       fontWeight: FontWeight.bold,
@@ -1316,7 +1312,13 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
                           ),
                         ],
                       ),
-                      const SizedBox(height: 12),
+
+                      const SizedBox(height: 8),
+
+                      // Voice Selection Chips in Bottom Console
+                      _buildVoicePickerRow(isDark, cardBg, primaryText, secondaryText, activeAccent, quota),
+
+                      const SizedBox(height: 10),
 
                       // Transport Controls
                       Row(

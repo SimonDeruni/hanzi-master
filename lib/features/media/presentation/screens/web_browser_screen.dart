@@ -720,7 +720,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                           color: amberLight,
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        child: const Icon(Icons.auto_fix_high, color: amberColor, size: 22),
+                        child: Icon(Icons.auto_fix_high, color: amberColor, size: 22),
                       ),
                       const SizedBox(width: 12),
                       Column(
@@ -1513,6 +1513,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                                             ),
                                         ],
                                       ),
+                                    ),
                                     ),
                                   );
                                 },

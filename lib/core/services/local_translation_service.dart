@@ -1,4 +1,4 @@
-﻿import 'dart:async';
+import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
@@ -6,25 +6,34 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:google_mlkit_translation/google_mlkit_translation.dart';
 import 'package:http/http.dart' as http;
+import 'api_key_pool.dart';
 import '../providers/translation_language_provider.dart';
 import '../../features/reading/domain/entities/poetry_story_id.dart';
 
 final localTranslationServiceProvider =
     Provider<LocalTranslationService>((ref) {
   final targetLanguage = ref.watch(translationLanguageProvider);
-  final service = LocalTranslationService(targetLanguage: targetLanguage);
+  final apiKeyPool = ref.watch(apiKeyPoolProvider);
+  final service = LocalTranslationService(
+    targetLanguage: targetLanguage,
+    apiKeyPool: apiKeyPool,
+  );
   ref.onDispose(() => service.dispose());
   return service;
 });
 
 class LocalTranslationService {
   final String targetLanguage;
+  final ApiKeyPool? apiKeyPool;
   static const String _boxName = 'local_translations_cache_v5';
 
   OnDeviceTranslator? _translator;
   bool _isModelDownloaded = false;
 
-  LocalTranslationService({required this.targetLanguage});
+  LocalTranslationService({
+    required this.targetLanguage,
+    this.apiKeyPool,
+  });
 
   static Future<void> init() async {
     try {
@@ -160,6 +169,62 @@ class LocalTranslationService {
           : cached;
     }
 
+    // 1. Try AI-powered translation via OpenRouter (Gemini 2.5 Flash) for nuanced, poetic & literary accuracy
+    final key = apiKeyPool?.nextKey ?? '';
+    if (key.isNotEmpty && key != 'MISSING_KEY') {
+      try {
+        final client = http.Client();
+        try {
+          final prompt =
+              'You are a master literary and classical Chinese translator. Translate the following Chinese sentence or title into natural, eloquent $targetLanguage. Capture any poetic imagery, idioms, or classical references accurately.\n\nChinese: "$cleanedText"\n\nReturn ONLY the direct translation. Do not add quotes, notes, or explanations.';
+
+          final response = await client
+              .post(
+                Uri.parse('https://openrouter.ai/api/v1/chat/completions'),
+                headers: {
+                  'Authorization': 'Bearer $key',
+                  'Content-Type': 'application/json',
+                  'HTTP-Referer': 'https://hanzimaster.app',
+                  'X-Title': 'Hanzi Master',
+                },
+                body: jsonEncode({
+                  'model': 'google/gemini-2.5-flash',
+                  'messages': [
+                    {'role': 'user', 'content': prompt}
+                  ],
+                  'max_tokens': 250,
+                  'provider': {'data_collection': 'deny'}
+                }),
+              )
+              .timeout(const Duration(seconds: 6));
+
+          if (response.statusCode == 200) {
+            final dynamic json = jsonDecode(utf8.decode(response.bodyBytes));
+            String reply =
+                json['choices']?[0]?['message']?['content'] as String? ?? '';
+            reply = reply.trim();
+            // Strip any wrapping quotes or markdown backticks if returned
+            if ((reply.startsWith('"') && reply.endsWith('"')) ||
+                (reply.startsWith('“') && reply.endsWith('”')) ||
+                (reply.startsWith("'") && reply.endsWith("'"))) {
+              reply = reply.substring(1, reply.length - 1).trim();
+            }
+            if (reply.isNotEmpty) {
+              final formatted =
+                  reply[0].toUpperCase() + reply.substring(1);
+              await box?.put(cacheKey, formatted);
+              return formatted;
+            }
+          }
+        } finally {
+          client.close();
+        }
+      } catch (e) {
+        debugPrint('[LocalTranslationService] AI translation fallback: $e');
+      }
+    }
+
+    // 2. On-Device ML Kit Fallback
     try {
       final tl = _getTranslateLanguage(targetLanguage);
       await _ensureModelReady(tl);
@@ -176,7 +241,7 @@ class LocalTranslationService {
       debugPrint('[LocalTranslationService] On-device translation fallback needed: $e');
     }
 
-    // High-speed endpoint fallback with automatic persistent Hive caching
+    // 3. High-speed mechanical endpoint fallback with automatic persistent Hive caching
     try {
       final targetCode = _getTargetLanguageCode(targetLanguage);
       final uri = Uri.parse(
