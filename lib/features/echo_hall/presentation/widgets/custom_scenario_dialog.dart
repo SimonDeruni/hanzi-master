@@ -616,8 +616,10 @@ Respond ONLY in valid JSON format:
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-              content:
-                  Text(AppLocalizations.of(context)!.error_creating_scenario(e.toString()))),
+            content: Text(
+              '${AppLocalizations.of(context)?.errorPrefix ?? "Error: "}$e',
+            ),
+          ),
         );
       }
     } finally {

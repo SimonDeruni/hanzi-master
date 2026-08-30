@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.0+293] - 2026-08-30
+- **Full 12-Language Channel Descriptions & Exhaustive UI Localization Integration (Build #293)**:
+  - Extracted and translated all 42 channel description points and fallback sentences across all 12 supported languages into `assets/data/l10n/channels_<lang>.json`.
+  - Extended [`LocalizedCatalogService`](file:///c:/Users/simon/Documents/hanzi_master/lib/core/services/localized_catalog_service.dart) with `getChannelDescriptionPoints` for instant cached retrieval.
+  - Connected [`ChannelVideosScreen`](file:///c:/Users/simon/Documents/hanzi_master/lib/features/media/presentation/screens/channel_videos_screen.dart) to dynamically display localized bullet points based on the active user locale.
+  - Verified `dart analyze lib/`: 0 compilation errors (Exit Code 0).
+
 ## [1.0.0+292] - 2026-08-30
 - **Exhaustive Multi-Screen UI Localization Wiring & 13-Language Verification (Build #292)**:
   - Extracted 108 remaining hardcoded UI strings across tabs, action chips, dialogs, settings sliders, search hints, onboarding steps, and dashboard cards.

@@ -1278,7 +1278,7 @@ Respond ONLY in valid JSON format with NO markdown formatting:
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content:
-              Text(AppLocalizations.of(context)!.failed_to_generate_scenario(e.toString()))));
+              Text('${AppLocalizations.of(context)?.errorPrefix ?? "Error: "}$e')));
     } finally {
       if (mounted) {
         setState(() => _isGenerating = false);

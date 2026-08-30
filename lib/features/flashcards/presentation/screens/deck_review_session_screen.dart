@@ -102,7 +102,7 @@ class _DeckReviewSessionScreenState extends ConsumerState<DeckReviewSessionScree
       if (card.strokePaths.isEmpty) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text(AppLocalizations.of(context)!.skippedNoStrokeData(card.hanzi)),
+            content: Text('${AppLocalizations.of(context)?.skippedNoStrokeData ?? 'Skipped'} (${card.hanzi})'),
             duration: const Duration(seconds: 2),
             behavior: SnackBarBehavior.floating,
           ),

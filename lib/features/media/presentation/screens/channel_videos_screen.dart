@@ -7,6 +7,7 @@ import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_mana
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import '../../data/channels_data.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/core/services/localized_catalog_service.dart';
 
 /// Displays all recent uploads from a specific YouTube channel.
 class ChannelVideosScreen extends ConsumerStatefulWidget {
@@ -226,89 +227,104 @@ class _ChannelVideosScreenState extends ConsumerState<ChannelVideosScreen> {
             'Engaging video material with interactive synchronized subtitles.',
           ];
 
-    return AnimatedSwitcher(
-      duration: const Duration(milliseconds: 250),
-      child: Container(
-        key: ValueKey(_currentChannelId),
-        margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-        decoration: BoxDecoration(
-          color: isDark ? const Color(0xFF1E1E22) : Colors.white,
-          borderRadius: BorderRadius.circular(14),
-          border: Border.all(
-            color: isDark
-                ? Colors.white.withValues(alpha: 0.08)
-                : Colors.black.withValues(alpha: 0.05),
-          ),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withValues(alpha: isDark ? 0.2 : 0.03),
-              blurRadius: 8,
-              offset: const Offset(0, 2),
-            ),
-          ],
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
-                  decoration: BoxDecoration(
-                    color: const Color(0xFF3F51B5).withValues(alpha: 0.12),
-                    borderRadius: BorderRadius.circular(6),
-                  ),
-                  child: const Text(
-                    'ABOUT CHANNEL',
-                    style: TextStyle(
-                      color: Color(0xFF3F51B5),
-                      fontSize: 10,
-                      fontWeight: FontWeight.w800,
-                      letterSpacing: 0.6,
-                    ),
-                  ),
+    final channelKey = match.handle.isNotEmpty ? match.handle : match.displayName;
+    final localeCode = Localizations.localeOf(context).languageCode;
+
+    return FutureBuilder<List<String>>(
+      future: LocalizedCatalogService.getChannelDescriptionPoints(
+        channelKey: channelKey,
+        localeCode: localeCode,
+        fallbackPoints: points,
+      ),
+      initialData: points,
+      builder: (context, snapshot) {
+        final localizedPoints = snapshot.data ?? points;
+
+        return AnimatedSwitcher(
+          duration: const Duration(milliseconds: 250),
+          child: Container(
+            key: ValueKey('$_currentChannelId-$localeCode'),
+            margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            decoration: BoxDecoration(
+              color: isDark ? const Color(0xFF1E1E22) : Colors.white,
+              borderRadius: BorderRadius.circular(14),
+              border: Border.all(
+                color: isDark
+                    ? Colors.white.withValues(alpha: 0.08)
+                    : Colors.black.withValues(alpha: 0.05),
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withValues(alpha: isDark ? 0.2 : 0.03),
+                  blurRadius: 8,
+                  offset: const Offset(0, 2),
                 ),
               ],
             ),
-            const SizedBox(height: 8),
-            for (final sentence in points)
-              Padding(
-                padding: const EdgeInsets.only(bottom: 4.0),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 5, right: 8),
-                      child: Container(
-                        width: 5,
-                        height: 5,
-                        decoration: BoxDecoration(
-                          color:
-                              isDark ? Colors.amber : const Color(0xFF3F51B5),
-                          shape: BoxShape.circle,
-                        ),
+                    Container(
+                      padding:
+                          const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFF3F51B5).withValues(alpha: 0.12),
+                        borderRadius: BorderRadius.circular(6),
                       ),
-                    ),
-                    Expanded(
-                      child: Text(
-                        sentence,
+                      child: const Text(
+                        'ABOUT CHANNEL',
                         style: TextStyle(
-                          fontSize: 12,
-                          height: 1.35,
-                          color:
-                              isDark ? Colors.white70 : const Color(0xFF2C2C2E),
-                          fontWeight: FontWeight.w500,
+                          color: Color(0xFF3F51B5),
+                          fontSize: 10,
+                          fontWeight: FontWeight.w800,
+                          letterSpacing: 0.6,
                         ),
                       ),
                     ),
                   ],
                 ),
-              ),
-          ],
-        ),
-      ),
+                const SizedBox(height: 8),
+                for (final sentence in localizedPoints)
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 4.0),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 5, right: 8),
+                          child: Container(
+                            width: 5,
+                            height: 5,
+                            decoration: BoxDecoration(
+                              color:
+                                  isDark ? Colors.amber : const Color(0xFF3F51B5),
+                              shape: BoxShape.circle,
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Text(
+                            sentence,
+                            style: TextStyle(
+                              fontSize: 12,
+                              height: 1.35,
+                              color:
+                                  isDark ? Colors.white70 : const Color(0xFF2C2C2E),
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 

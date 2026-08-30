@@ -657,10 +657,7 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                                                         .showSnackBar(
                                                       SnackBar(
                                                         content: Text(
-                                                            AppLocalizations.of(
-                                                                    context)!
-                                                                .removedFromDeck(
-                                                                    card.hanzi)),
+                                                            '${card.hanzi} ${AppLocalizations.of(context)?.removedFromDeck ?? "removed from deck"}'),
                                                         backgroundColor:
                                                             Colors.redAccent,
                                                         duration:

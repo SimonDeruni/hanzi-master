@@ -117,9 +117,7 @@ class _DeckCardPickerScreenState extends ConsumerState<DeckCardPickerScreen> {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text(
-                                          AppLocalizations.of(context)!
-                                              .addedToDeck(
-                                                  card.hanzi, widget.deckName)),
+                                          '${card.hanzi} ${AppLocalizations.of(context)?.addedToDeck ?? "added to"} ${widget.deckName}'),
                                       duration: const Duration(seconds: 1),
                                       backgroundColor: Colors.green,
                                     ),

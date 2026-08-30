@@ -34,6 +34,8 @@ class LocalizedCatalogService {
     return fallbackEn;
   }
 
+  static final Map<String, Map<String, List<String>>> _channelCache = {};
+
   /// Loads and returns the localized show summary for [showTitle] and [localeCode].
   /// Falls back to [fallbackEn] if not found or if English is selected.
   static Future<String> getShowSummary({
@@ -60,5 +62,38 @@ class LocalizedCatalogService {
       return localized;
     }
     return fallbackEn;
+  }
+
+  /// Loads and returns the localized description points for [channelKey] and [localeCode].
+  /// Falls back to [fallbackPoints] if not found or if English is selected.
+  static Future<List<String>> getChannelDescriptionPoints({
+    required String channelKey,
+    required String localeCode,
+    required List<String> fallbackPoints,
+  }) async {
+    if (localeCode == 'en' || localeCode.isEmpty) {
+      return fallbackPoints;
+    }
+
+    if (!_channelCache.containsKey(localeCode)) {
+      try {
+        final jsonStr = await rootBundle.loadString('assets/data/l10n/channels_$localeCode.json');
+        final Map<String, dynamic> raw = json.decode(jsonStr);
+        _channelCache[localeCode] = raw.map((k, v) => MapEntry(
+            k,
+            (v as List<dynamic>)
+                .map((e) => e.toString())
+                .where((s) => s.isNotEmpty)
+                .toList()));
+      } catch (_) {
+        _channelCache[localeCode] = {};
+      }
+    }
+
+    final localized = _channelCache[localeCode]?[channelKey] ?? _channelCache[localeCode]?['DEFAULT'];
+    if (localized != null && localized.isNotEmpty) {
+      return localized;
+    }
+    return fallbackPoints;
   }
 }
