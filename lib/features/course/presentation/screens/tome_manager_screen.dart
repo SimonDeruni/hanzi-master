@@ -169,7 +169,7 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(
-                  "${l10n?.successfullyInstalled ?? AppLocalizations.of(context)!.installed} ${tome[AppLocalizations.of(context)!.title]}"),
+                  "${l10n?.successfullyInstalled ?? AppLocalizations.of(context)!.installed} ${tome['title']}"),
               backgroundColor: const Color(0xFF1A1A1B),
               behavior: SnackBarBehavior.floating,
               shape: RoundedRectangleBorder(
@@ -198,7 +198,7 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
           title: Text(
-            "${l10n?.rescindTitle ?? AppLocalizations.of(context)!.remove} ${tome[AppLocalizations.of(context)!.title]}?",
+            "${l10n?.rescindTitle ?? AppLocalizations.of(context)!.remove} ${tome['title']}?",
             style: TextStyle(
               fontWeight: FontWeight.bold,
               color: isDark ? Colors.white : const Color(0xFF1A1A1B),
@@ -247,7 +247,7 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(
-                  "${l10n?.removedLibrary ?? AppLocalizations.of(context)!.removed} ${tome[AppLocalizations.of(context)!.title]}."),
+                  "${l10n?.removedLibrary ?? AppLocalizations.of(context)!.removed} ${tome['title']}."),
               backgroundColor: const Color(0xFF1A1A1B),
               behavior: SnackBarBehavior.floating,
               shape: RoundedRectangleBorder(

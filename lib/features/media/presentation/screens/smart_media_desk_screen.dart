@@ -501,19 +501,19 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
     if (!mounted) return;
     ScaffoldMessenger.of(context).hideCurrentSnackBar();
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: const Row(
+      content: Row(
         children: [
-          Icon(Icons.lightbulb, color: Colors.amber),
-          SizedBox(width: 12),
+          const Icon(Icons.lightbulb, color: Colors.amber),
+          const SizedBox(width: 12),
           Expanded(
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                    "Cultural Note: \${meme[AppLocalizations.of(context)!.keyword]}",
-                    style: TextStyle(fontWeight: FontWeight.bold)),
-                Text("\${meme[AppLocalizations.of(context)!.explanation]}"),
+                    "Cultural Note: ${meme['keyword'] ?? ''}",
+                    style: const TextStyle(fontWeight: FontWeight.bold)),
+                Text("${meme['explanation'] ?? ''}"),
               ],
             ),
           ),

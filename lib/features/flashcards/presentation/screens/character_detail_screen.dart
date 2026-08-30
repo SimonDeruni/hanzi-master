@@ -197,7 +197,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
         }
 
         if (meta != null) {
-          final primaryRadical = meta[AppLocalizations.of(context)!.radical];
+          final primaryRadical = meta['radical'];
           if (primaryRadical != null &&
               radicalData.containsKey(primaryRadical)) {
             found.add(primaryRadical);
@@ -245,7 +245,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
 
   void _showRadicalDetails(Map<String, dynamic> comp) {
     if (_fullHanziMeta == null) return;
-    final radicalChar = comp[AppLocalizations.of(context)!.radical];
+    final radicalChar = comp['radical']?.toString() ?? '';
     final info = comp['info'];
 
     showModalBottomSheet(
@@ -283,14 +283,12 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
                     children: [
                       TranslatedDefinition(
                           definition:
-                              info[AppLocalizations.of(context)!.nameLabel]
-                                  .toString(),
+                              info?['name']?.toString() ?? '',
                           originalStyle: const TextStyle(
                               fontSize: 24, fontWeight: FontWeight.bold)),
                       TranslatedDefinition(
                           definition:
-                              info[AppLocalizations.of(context)!.meaning]
-                                  .toString(),
+                              info?['meaning']?.toString() ?? '',
                           originalStyle: const TextStyle(
                               fontSize: 16, color: Colors.grey)),
                     ],
@@ -1003,7 +1001,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
           children: _anatomyComponents.asMap().entries.map((entry) {
             final int idx = entry.key;
             final String radical =
-                entry.value[AppLocalizations.of(context)!.radical];
+                entry.value['radical']?.toString() ?? '';
             final bool isActive = _activeAnatomyIndex == idx;
             return GestureDetector(
               onTap: () {

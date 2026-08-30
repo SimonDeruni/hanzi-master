@@ -1864,7 +1864,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                             ? Colors.green
                             : (acc >= 60 ? Colors.orange : Colors.red);
                         final phonemeStr =
-                            (p[AppLocalizations.of(context)!.phoneme] ?? '')
+                            (p['phoneme'] ?? '')
                                 .toString()
                                 .trim();
 
@@ -1916,8 +1916,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
                                     Text(
-                                        p[AppLocalizations.of(context)!
-                                            .phoneme],
+                                        p['phoneme']?.toString() ?? '',
                                         style: TextStyle(
                                             fontSize: 16,
                                             fontWeight: FontWeight.bold,

@@ -808,8 +808,7 @@ Example: 你好！很高兴见到你。|||nǐ hǎo! hěn gāo xìng jiàn dào n
         if (msg.grade != null && msg.grade!['score'] != null) {
           totalScore += (msg.grade!['score'] as num).toInt();
           scoredTurns++;
-          final words =
-              msg.grade![AppLocalizations.of(context)!.words] as List?;
+          final words = msg.grade!['words'] as List?;
           if (words != null) {
             for (final w in words) {
               if (w['isCorrect'] == false && w['word'] != null) {
@@ -1379,7 +1378,7 @@ class _LiveTranscriptBubble extends StatelessWidget {
             children: [
               if (isUser && message.grade != null) ...[
                 _buildGradedText(
-                    message.grade![AppLocalizations.of(context)!.words] ?? [],
+                    message.grade!['words'] ?? [],
                     theme,
                     context),
                 const SizedBox(height: 4),

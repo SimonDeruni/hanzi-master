@@ -1,12 +1,13 @@
 # 🧠 SESSION_STATE.md - The Hanzi Master "Scholar's Baton"
 
 #### 🎯 Current Context
-- **Objective:** Total Project Hygiene & Zero Flutter Analyzer Issues
-- **Status:** ✅ COMPLETED (Build #294)
+- **Objective:** Fix Character Reference Screen Null String Crash & Full Project Hygiene
+- **Status:** ✅ COMPLETED (Build #295)
 - **Hygiene:** App compiles 100% clean (0 errors, 0 warnings, 0 infos), all changes pushed to GitLab and GitHub.
 - **Locked Files:**
     - [None]
 
+- [x] **Character Reference Screen Null String Crash Fix (Build #295):** (1) Fixed `type 'Null' is not a subtype of type 'String'` crash in `CharacterDetailScreen` by reverting localized dictionary key lookups (`meta[AppLocalizations.of(context)!.radical]` -> `meta['radical']`, `comp['info']['name']`, etc.) back to static JSON map keys; (2) Fixed identical map key lookups in `TomeManagerScreen`, `LiveCallScreen`, `ShadowingStudioScreen`, and `SmartMediaDeskScreen`; (3) Verified `flutter analyze`: **No issues found! (0 errors, 0 warnings, 0 infos)**. (Status: COMPLETED)
 - [x] **Total Project Hygiene & Zero Flutter Analyzer Issues (Build #294):** (1) Renamed Dart reserved keyword `new` -> `newLabel` across all 13 `.arb` localization files and regenerated clean getters via `flutter gen-l10n`; (2) Fixed async gaps, deprecated test binary messenger bindings, and map key localizations in `CharacterDetailScreen`, `ReadingRoomScreen`, and `CourseMapWidgets`; (3) Configured `analysis_options.yaml` to exclude standalone scripts; (4) Verified `flutter analyze`: **No issues found! (0 errors, 0 warnings, 0 infos)**. (Status: COMPLETED)
 - [x] **Full 12-Language Channel Descriptions & Exhaustive UI Localization Integration (Build #293):** (1) Extracted and translated all 42 channel description points and fallback sentences across all 12 supported languages into `assets/data/l10n/channels_<lang>.json`; (2) Extended `LocalizedCatalogService` with `getChannelDescriptionPoints` for zero-latency in-memory cached retrieval based on active user locale; (3) Connected `ChannelVideosScreen` to dynamically render localized channel description bullet points; (4) Verified `dart analyze lib/`: 0 compilation errors (Exit Code: 0). (Status: COMPLETED)
 - [x] **Exhaustive Multi-Screen UI Localization Wiring & 13-Language Verification (Build #292):** (1) Extracted and translated 108 remaining UI text strings across all 13 supported languages (FR, ES, DE, IT, PT, RU, AR, HI, JA, KO, VI, ID, ZH) into `lib/l10n/app_<lang>.arb`; (2) Sanitized all ARB key names to strict camelCase ASCII format and successfully regenerated all `AppLocalizations` classes with `flutter gen-l10n`; (3) Wired remaining UI widgets across reading catalogs, reader room, media hub, web browser, study modes (Listening, Reading, Recall, Speaking), deck settings, radical library, onboarding, and dashboard; (4) Verified `dart analyze lib/`: 0 errors. (Status: COMPLETED)

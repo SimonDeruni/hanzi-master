@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.0+295] - 2026-08-30
+- **Character Reference Screen Null String Crash Fix (Build #295)**:
+  - Resolved `type 'Null' is not a subtype of type 'String'` red screen error in [`CharacterDetailScreen`](file:///c:/Users/simon/Documents/hanzi_master/lib/features/flashcards/presentation/screens/character_detail_screen.dart).
+  - Reverted map indexing brackets that mistakenly used `AppLocalizations` getters (e.g. `meta[l10n.radical]`, `comp['info'][l10n.nameLabel]`, `entry.value[l10n.radical]`) back to constant JSON keys (`'radical'`, `'name'`, `'meaning'`, `'char'`).
+  - Fixed similar map indexing in `TomeManagerScreen`, `LiveCallScreen`, `ShadowingStudioScreen`, and `SmartMediaDeskScreen`.
+  - Verified `flutter analyze`: **No issues found! (0 errors, 0 warnings, 0 infos)**.
+
 ## [1.0.0+294] - 2026-08-30
 - **Total Project Hygiene & Zero Flutter Analyzer Issues (Build #294)**:
   - Renamed Dart reserved keyword `"new"` -> `"newLabel"` across all 13 `.arb` files and regenerated localization classes via `flutter gen-l10n`.
