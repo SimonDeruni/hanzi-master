@@ -39,6 +39,18 @@ class SavedScenariosNotifier extends StateNotifier<List<ConversationScenario>> {
 
   bool isSaved(String id) => state.any((s) => s.id == id);
 
+  Future<void> saveScenario(ConversationScenario scenario) async {
+    final existingIndex = state.indexWhere((s) => s.id == scenario.id);
+    if (existingIndex >= 0) {
+      final updated = [...state];
+      updated[existingIndex] = scenario;
+      state = updated;
+    } else {
+      state = [scenario, ...state];
+    }
+    await _persist();
+  }
+
   Future<void> toggle(ConversationScenario scenario) async {
     final existingIndex = state.indexWhere((s) => s.id == scenario.id);
     if (existingIndex >= 0) {

@@ -2,9 +2,6 @@
 import 'package:hanzi_master/features/reading/domain/entities/book_model.dart';
 import 'package:hanzi_master/features/reading/domain/entities/poetry_story_id.dart';
 
-String poetryPaintingAssetPath(String poetryId) =>
-    'assets/images/poetry/$poetryId.jpg';
-
 class PoetryPaintingCover extends StatelessWidget {
   const PoetryPaintingCover({
     super.key,
@@ -38,7 +35,7 @@ class PoetryPaintingCover extends StatelessWidget {
           fit: StackFit.expand,
           children: [
             Image.asset(
-              poetryPaintingAssetPath(book.id),
+              poetryCoverAssetPath(book.id),
               key: const ValueKey('poetry-painting'),
               fit: BoxFit.cover,
               errorBuilder: (context, error, stackTrace) =>

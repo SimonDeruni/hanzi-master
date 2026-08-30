@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:lpinyin/lpinyin.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 import '../../data/youtube_repository.dart';
@@ -205,7 +206,6 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
   int _hskLevel = 2;
   Map<int, String> _simplifiedTranscript = {};
   final bool _isShadowingMode = false;
-  bool _captionsDisabled = false;
   bool _isRecording = false;
   int? _recordingLineIndex;
   String _shadowFeedback = '';
@@ -225,12 +225,16 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
         loop: false,
         color: 'white',
         enableCaption: false,
-        // Disable pointer events so the user cannot interact with the native youtube UI,
-        // preventing the long-press 2x speed bug.
-        pointerEvents: PointerEvents.none, 
+        showVideoAnnotations: false,
+        strictRelatedVideos: true,
+        playsInline: true,
+        // Block pointer events to YouTube's webview iframe completely so all taps,
+        // gestures, scrubbers, and controls are exclusively handled by our custom UI.
+        pointerEvents: PointerEvents.none,
       ),
     );
     _loadData();
+    _startSyncEngine();
 
     // Allow landscape orientation so we can auto-trigger fullscreen when phone is rotated
     SystemChrome.setPreferredOrientations([
@@ -256,7 +260,6 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
             _loadingStep = 'Generating AI briefing...';
           });
         }
-        _startSyncEngine();
         final gemini = ref.read(geminiServiceProvider);
 
         // Track briefing
@@ -303,7 +306,8 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
         if (mounted) {
           setState(() {
             _error =
-                'No captions available. You can still watch with YouTube native captions.';
+                'No Closed Captions (CC) found for this video. '
+                'Videos with hardcoded or burned-in subtitles do not have digital text tracks available on YouTube.';
             _isLoading = false;
           });
         }
@@ -443,32 +447,30 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
         setState(() => _isAdPlaying = isAd);
       }
 
-      if (!_captionsDisabled) {
-        _captionsDisabled = true;
-        _playerController.webViewController.runJavaScript(
-          'player.setOption("captions", "track", {});',
-        );
+      // Don't force-disable captions — let users toggle YouTube native CC
+        // _captionsDisabled flag is now kept for tracking but no JS override
+
+      final position = state.position;
+      if (_currentPosition != position) {
+        setState(() => _currentPosition = position);
       }
 
       if (_transcript == null) return;
       final now = DateTime.now();
       if (now.difference(_lastSyncUpdate) < _syncInterval) return;
       _lastSyncUpdate = now;
-      final position = state.position;
       final newIndex = _transcript!.lines
           .indexWhere((l) => position >= l.start && position <= l.end);
       final indexChanged = newIndex != -1 && newIndex != _currentIndex;
-      setState(() {
-        _currentPosition = position;
-        if (indexChanged) {
+      if (indexChanged) {
+        setState(() {
           _currentIndex = newIndex;
-          // Removed auto-pause for shadowing mode based on user feedback
-        }
+        });
 
         // Cultural Meme check
-        if (_culturalMemes.isNotEmpty && _currentIndex >= 0) {
+        if (_culturalMemes.isNotEmpty && newIndex >= 0) {
           final meme = _culturalMemes.firstWhere(
-            (m) => m['line_index'] == _currentIndex,
+            (m) => m['line_index'] == newIndex,
             orElse: () => <String, dynamic>{},
           );
           if (meme.isNotEmpty && meme != _activeMeme) {
@@ -476,17 +478,17 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
             _showCulturalMeme(meme);
           }
         }
-      });
+      }
       if (indexChanged && _scrollController.hasClients) {
         if (newIndex >= 0 && newIndex < _lineKeys.length) {
           final key = _lineKeys[newIndex];
           if (key.currentContext != null) {
             Scrollable.ensureVisible(
               key.currentContext!,
-              duration: const Duration(milliseconds: 400),
+              duration: const Duration(milliseconds: 250),
               curve: Curves.easeInOutCubic,
               alignment:
-                  0.3, // Keeps the active subtitle positioned beautifully at 30% down the list
+                  0.35, // Keeps the active subtitle positioned beautifully at 35% down the viewport
             );
           }
         }
@@ -565,10 +567,19 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
             final targetIndex = _recordingLineIndex ?? _currentIndex;
             if (targetIndex >= 0 && targetIndex < _transcript!.lines.length) {
               final line = _transcript!.lines[targetIndex];
+              final raw = line.pinyin?.trim();
+              final translation = line.translation?.trim().toLowerCase();
+              String effectivePinyin = '';
+              if (raw != null && raw.isNotEmpty && (translation == null || raw.toLowerCase() != translation)) {
+                effectivePinyin = raw;
+              } else if (RegExp(r'[\u4e00-\u9fff]').hasMatch(line.text)) {
+                effectivePinyin = PinyinHelper.getPinyinE(line.text,
+                    separator: ' ', format: PinyinFormat.WITH_TONE_MARK);
+              }
 
               final gemini = ref.read(geminiServiceProvider);
               final result = await gemini.gradeAudio(
-                  byteData, line.text, line.pinyin ?? "");
+                  byteData, line.text, effectivePinyin);
               final score = result['score'] ?? 0;
 
               setState(() {
@@ -622,14 +633,22 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
       DeviceOrientation.landscapeRight,
       DeviceOrientation.landscapeLeft,
     ]);
-    setState(() => _isFullscreen = true);
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+    if (!_isFullscreen && mounted) {
+      setState(() => _isFullscreen = true);
+    }
   }
 
   void _exitFullscreen() {
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.landscapeRight,
     ]);
-    setState(() => _isFullscreen = false);
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+    if (_isFullscreen && mounted) {
+      setState(() => _isFullscreen = false);
+    }
   }
 
   void _changeSpeed(double speed) {
@@ -655,19 +674,29 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
     );
   }
 
-  /// Scroll the transcript list to the line matching the given video position.
+  /// Scroll the transcript list to the line matching the given video position and apply highlight emphasis.
   void _scrollToCurrentPosition(Duration targetPosition) {
-    if (_transcript == null || !_scrollController.hasClients) return;
+    if (_transcript == null) return;
+    
+    // Find matching sentence index
     final newIndex = _transcript!.lines
         .indexWhere((l) => targetPosition >= l.start && targetPosition <= l.end);
-    if (newIndex >= 0 && newIndex < _lineKeys.length) {
+
+    setState(() {
+      _currentPosition = targetPosition;
+      if (newIndex >= 0) {
+        _currentIndex = newIndex;
+      }
+    });
+
+    if (newIndex >= 0 && newIndex < _lineKeys.length && _scrollController.hasClients) {
       final key = _lineKeys[newIndex];
       if (key.currentContext != null) {
         Scrollable.ensureVisible(
           key.currentContext!,
-          duration: const Duration(milliseconds: 300),
+          duration: const Duration(milliseconds: 250),
           curve: Curves.easeInOutCubic,
-          alignment: 0.3,
+          alignment: 0.35,
         );
       }
     }
@@ -729,39 +758,45 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
   }
 
   Widget _buildErrorState() {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Center(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 40),
+        padding: const EdgeInsets.symmetric(horizontal: 28),
         child: Column(
-          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              padding: const EdgeInsets.all(20),
+              padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: Colors.orange.withValues(alpha: 0.1),
+                color: Colors.amber.withValues(alpha: 0.12),
                 shape: BoxShape.circle,
               ),
-              child: const Icon(Icons.subtitles_off,
-                  color: Colors.orange, size: 48),
+              child: const Icon(Icons.subtitles_off_rounded,
+                  color: Color(0xFFFFB300), size: 44),
             ),
-            const SizedBox(height: 24),
+            const SizedBox(height: 20),
             Text(
-              _error!,
+              'No Captions Available',
               textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-                color: Colors.black87,
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: isDark ? Colors.white : const Color(0xFF1A1A1B),
               ),
             ),
             const SizedBox(height: 8),
-            const Text(
-              'The video player is still active above. Try YouTube'
-              's built-in CC button in the player.',
+            Text(
+              _error ??
+                  'This video does not have a digital Closed Captions (CC) track on YouTube. '
+                  'Many gameplay and vlog videos feature burned-in subtitles on the video pixels rather than selectable caption data.',
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 13, color: Colors.black54),
+              style: TextStyle(
+                fontSize: 13,
+                height: 1.45,
+                color: isDark ? Colors.white60 : Colors.black54,
+              ),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 20),
             TextButton.icon(
               onPressed: () {
                 final uri = Uri.tryParse(widget.video.url);
@@ -769,8 +804,14 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
                   launchUrl(uri, mode: LaunchMode.externalApplication);
                 }
               },
-              icon: const Icon(Icons.open_in_browser),
+              icon: const Icon(Icons.open_in_new_rounded, size: 16),
               label: const Text('Open in YouTube'),
+              style: TextButton.styleFrom(
+                foregroundColor: const Color(0xFF3252C7),
+                backgroundColor: const Color(0xFF3252C7).withValues(alpha: 0.08),
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+              ),
             ),
           ],
         ),
@@ -797,20 +838,36 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
       appBar: _isFullscreen
           ? null
           : AppBar(
-              title: const Row(
+              title: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                                    Text("Learn Chinese",
+                  Text(
+                    widget.video.title,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      color: isDark ? Colors.white : const Color(0xFF1C2541),
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  if (widget.video.channelTitle.isNotEmpty)
+                    Text(
+                      widget.video.channelTitle,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                       style: TextStyle(
-                          color: Color(0xFF1C2541),
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold)),
+                        color: isDark ? Colors.white60 : Colors.black54,
+                        fontSize: 11,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
                 ],
               ),
               centerTitle: true,
               backgroundColor: Colors.transparent,
               elevation: 0,
-              iconTheme: const IconThemeData(color: Color(0xFF1C2541)),
+              iconTheme: IconThemeData(color: isDark ? Colors.white : const Color(0xFF1C2541)),
               actions: [
                 PopupMenuButton<String>(
                   icon: const Icon(Icons.closed_caption, color: Colors.indigo),
@@ -856,261 +913,272 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
               ],
             ),
 
-      body: Column(
-        children: [
-          // ── Video Player with OrientationBuilder for auto-rotate ──
-          OrientationBuilder(
-            builder: (context, orientation) {
-              // Automatically sync the player fullscreen state with the device orientation
-              WidgetsBinding.instance.addPostFrameCallback((_) {
-                if (!mounted) return;
-                if (orientation == Orientation.landscape && !_isFullscreen) {
-                  setState(() => _isFullscreen = true);
-                } else if (orientation == Orientation.portrait &&
-                    _isFullscreen) {
-                  setState(() => _isFullscreen = false);
-                }
-              });
+      body: OrientationBuilder(
+        builder: (context, orientation) {
+          final isLandscape = orientation == Orientation.landscape;
 
-              return ClipRect(
+          // Automatically sync the player fullscreen state with the device orientation
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            if (!mounted) return;
+            if (isLandscape && !_isFullscreen) {
+              _enterFullscreen();
+            } else if (!isLandscape && _isFullscreen) {
+              _exitFullscreen();
+            }
+          });
+
+          // ── LANDSCAPE / FULLSCREEN MODE ──
+          // When in landscape, cancel the native YouTube player UI and let our custom FullscreenMediaOverlay
+          // take over 100% of the screen with touch isolation, custom top/bottom bars, karaoke subtitles, and speed controls.
+          if (_isFullscreen || isLandscape) {
+            final screenSize = MediaQuery.of(context).size;
+            final double landscapeRatio = (screenSize.height > 0 && screenSize.width > 0)
+                ? screenSize.width / screenSize.height
+                : (16 / 9);
+
+            return Container(
+              width: double.infinity,
+              height: double.infinity,
+              color: Colors.black,
+              child: YoutubePlayer(
+                controller: _playerController,
+                aspectRatio: landscapeRatio,
+                controlsBuilder: (context, _) {
+                  return FullscreenMediaOverlay(
+                    controller: _playerController,
+                    transcript: _transcript ??
+                        VideoTranscript(
+                            videoId: widget.video.id, lines: const []),
+                    currentIndex: _currentIndex,
+                    currentPosition: _currentPosition,
+                    onWordTapped: _onWordTapped,
+                    videoTitle: widget.video.title,
+                    onExitFullscreen: _exitFullscreen,
+                    playbackRate: _playbackRate,
+                    onSpeedChanged: _changeSpeed,
+                    isShadowingMode: _isShadowingMode,
+                    isRecording: _isRecording,
+                    shadowFeedback: _shadowFeedback,
+                    onToggleRecord: () =>
+                        _toggleShadowRecording(null),
+                    isAdPlaying: _isAdPlaying,
+                    showHanzi: _showHanzi,
+                    showPinyin: _showPinyin,
+                    showEnglish: _showEnglish,
+                    onToggleHanzi: (v) => setState(() => _showHanzi = v),
+                    onTogglePinyin: (v) => setState(() => _showPinyin = v),
+                    onToggleEnglish: (v) => setState(() => _showEnglish = v),
+                  );
+                },
+              ),
+            );
+          }
+
+          // ── PORTRAIT MODE ──
+          return Column(
+            children: [
+              ClipRect(
                 child: Transform.scale(
                   scale: 1.05,
                   child: YoutubePlayer(
                     controller: _playerController,
                     aspectRatio: 16 / 9,
-                    // CRITICAL: We MUST use controlsBuilder to render UI on top of the iframe.
-                    // Sibling Positioned widgets get swallowed by the Android WebView Z-index.
                     controlsBuilder: (context, _) {
-                      // Apply counter-scale so our controls don't get stretched/clipped
                       return Transform.scale(
                         scale: 1 / 1.05,
-                        child: Builder(
-                          builder: (context) {
-                            // If not fullscreen, just show the transparent Play/Pause layer + Fullscreen button
-                            if (!_isFullscreen) {
-                              return Stack(
-                                children: [
-                                  // BLOCK TOUCHES TO YOUTUBE NATIVE CONTROLS
-                                  Positioned.fill(
-                                    child: IgnorePointer(
-                                      ignoring: _isAdPlaying,
-                                      child: GestureDetector(
-                                        behavior: HitTestBehavior.opaque,
-                                        onTap: () {
-                                          if (_playerController
-                                                  .value.playerState ==
-                                              PlayerState.playing) {
-                                            _playerController.pauseVideo();
-                                          } else {
-                                            _playerController.playVideo();
-                                          }
-                                        },
-                                        onLongPress: () {
-                                          // Swallow long press so it doesn't bleed to the native YouTube player
-                                        },
-                                        child: const SizedBox.expand(),
-                                      ),
-                                    ),
+                        child: Stack(
+                          children: [
+                            // BLOCK TOUCHES TO YOUTUBE NATIVE CONTROLS
+                            Positioned.fill(
+                              child: IgnorePointer(
+                                ignoring: _isAdPlaying,
+                                child: GestureDetector(
+                                  behavior: HitTestBehavior.opaque,
+                                  onTap: () {
+                                    if (_playerController.value.playerState ==
+                                        PlayerState.playing) {
+                                      _playerController.pauseVideo();
+                                    } else {
+                                      _playerController.playVideo();
+                                    }
+                                  },
+                                  onLongPress: () {},
+                                  child: const SizedBox.expand(),
+                                ),
+                              ),
+                            ),
+                            // The Fullscreen Button
+                            Positioned(
+                              bottom: 8,
+                              right: 8,
+                              child: GestureDetector(
+                                onTap: () {
+                                  HapticsManager.light();
+                                  _enterFullscreen();
+                                },
+                                child: Container(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10, vertical: 6),
+                                  decoration: BoxDecoration(
+                                    color: Colors.black
+                                        .withValues(alpha: 0.6),
+                                    borderRadius: BorderRadius.circular(10),
                                   ),
-                                  // The Fullscreen Button
-                                  Positioned(
-                                    bottom: 8,
-                                    right: 8,
-                                    child: GestureDetector(
-                                      onTap: () {
-                                        HapticsManager.light();
-                                        _enterFullscreen();
-                                      },
-                                      child: Container(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 10, vertical: 6),
-                                        decoration: BoxDecoration(
-                                          color: Colors.black
-                                              .withValues(alpha: 0.6),
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                        ),
-                                        child: const Row(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            Icon(Icons.fullscreen,
-                                                color: Colors.white, size: 20),
-                                            SizedBox(width: 4),
-                                            Text('Full',
-                                                style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontSize: 11,
-                                                    fontWeight:
-                                                        FontWeight.w600)),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
+                                  child: const Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Icon(Icons.fullscreen,
+                                          color: Colors.white, size: 20),
+                                      SizedBox(width: 4),
+                                      Text('Full',
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 11,
+                                              fontWeight: FontWeight.w600)),
+                                    ],
                                   ),
-                                ],
-                              );
-                            }
-
-                            // If fullscreen, show our full custom overlay
-                            if (_transcript == null ||
-                                _currentIndex < 0 ||
-                                _currentIndex >= _transcript!.lines.length) {
-                              return const SizedBox.shrink();
-                            }
-
-                            return FullscreenMediaOverlay(
-                              controller: _playerController,
-                              transcript: _transcript!,
-                              currentIndex: _currentIndex,
-                              currentPosition: _currentPosition,
-                              onWordTapped: _onWordTapped,
-                              videoTitle: widget.video.title,
-                              onExitFullscreen: _exitFullscreen,
-                              playbackRate: _playbackRate,
-                              onSpeedChanged: _changeSpeed,
-                              isShadowingMode: _isShadowingMode,
-                              isRecording: _isRecording,
-                              shadowFeedback: _shadowFeedback,
-                              onToggleRecord: () =>
-                                  _toggleShadowRecording(null),
-                              isAdPlaying: _isAdPlaying,
-                              showHanzi: _showHanzi,
-                              showPinyin: _showPinyin,
-                              showEnglish: _showEnglish,
-                              onToggleHanzi: (v) => setState(() => _showHanzi = v),
-                              onTogglePinyin: (v) => setState(() => _showPinyin = v),
-                              onToggleEnglish: (v) => setState(() => _showEnglish = v),
-                            );
-                          },
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       );
                     },
                   ),
                 ),
-              );
-            },
-          ),
+              ),
 
-          // ── Scrollable content (hidden if fullscreen) ──
-          if (!_isFullscreen)
-            Expanded(
-              child: _isLoading
-                  ? _buildLoadingState()
-                  : _error != null
-                      ? _buildErrorState()
-                      : Column(
-                          children: [
-                            if (_shadowFeedback.isNotEmpty)
-                              Container(
-                                width: double.infinity,
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 8, horizontal: 16),
-                                color: _shadowFeedback.contains("Perfect")
-                                    ? Colors.green.withValues(alpha: 0.1)
-                                    : Colors.red.withValues(alpha: 0.1),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
+              // ── Scrollable content ──
+              Expanded(
+                child: _isLoading
+                    ? _buildLoadingState()
+                    : _error != null
+                        ? _buildErrorState()
+                        : Column(
+                            children: [
+                              if (_shadowFeedback.isNotEmpty)
+                                Container(
+                                  width: double.infinity,
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 8, horizontal: 16),
+                                  color: _shadowFeedback.contains("Perfect")
+                                      ? Colors.green.withValues(alpha: 0.1)
+                                      : Colors.red.withValues(alpha: 0.1),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                          _shadowFeedback.contains("Perfect")
+                                              ? Icons.check_circle
+                                              : Icons.mic,
+                                          color:
+                                              _shadowFeedback.contains("Perfect")
+                                                  ? Colors.green
+                                                  : Colors.red,
+                                          size: 20),
+                                      const SizedBox(width: 8),
+                                      Expanded(
+                                        child: Text(_shadowFeedback,
+                                            style: TextStyle(
+                                              color: _shadowFeedback
+                                                      .contains("Perfect")
+                                                  ? Colors.green
+                                                  : Colors.red,
+                                              fontWeight: FontWeight.bold,
+                                            )),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              if (_isSimplifyingAi)
+                                const Padding(
+                                  padding: EdgeInsets.all(16.0),
+                                  child: AiProgressBar(
+                                      label: 'Simplifying subtitles...'),
+                                ),
+                              Expanded(
+                                child: ListView(
+                                  controller: _scrollController,
+                                  padding: const EdgeInsets.fromLTRB(16, 16, 16, 32),
+                                  physics: const BouncingScrollPhysics(),
                                   children: [
-                                    Icon(
-                                        _shadowFeedback.contains("Perfect")
-                                            ? Icons.check_circle
-                                            : Icons.mic,
-                                        color:
-                                            _shadowFeedback.contains("Perfect")
-                                                ? Colors.green
-                                                : Colors.red,
-                                        size: 20),
-                                    const SizedBox(width: 8),
-                                    Expanded(
-                                      child: Text(_shadowFeedback,
-                                          style: TextStyle(
-                                            color: _shadowFeedback
-                                                    .contains("Perfect")
-                                                ? Colors.green
-                                                : Colors.red,
-                                            fontWeight: FontWeight.bold,
-                                          )),
-                                    ),
+                                    if (_briefing != null) ...[
+                                      PremiumAiPrepCard(
+                                          briefing: _briefing!,
+                                          onWordTapped: _onWordTapped),
+                                      const SizedBox(height: 32),
+                                    ],
+                                    if (_transcript != null)
+                                      ..._transcript!.lines
+                                          .asMap()
+                                          .entries
+                                          .map((entry) {
+                                        final index = entry.key;
+                                        final line = entry.value;
+                                        return PremiumTranscriptLine(
+                                          key: _lineKeys[index],
+                                          line: line,
+                                          isCurrent: _currentIndex == index,
+                                          highlightedCount: _currentIndex == index
+                                              ? _getHighlightedCharCount(
+                                                  line, _currentPosition)
+                                              : (index < _currentIndex
+                                                  ? line.text.length
+                                                  : 0),
+                                          onReplay: () => _replayLine(line.start),
+                                          onLineTapped: () {
+                                            _playerController.seekTo(
+                                                seconds: line.start.inSeconds
+                                                    .toDouble(),
+                                                allowSeekAhead: true);
+                                            _playerController.playVideo();
+                                          },
+                                          onWordTapped: _onWordTapped,
+                                          showPinyin: _showPinyin,
+                                          showEnglish: _showEnglish,
+                                          simplifiedText: _isHskSimplified
+                                              ? _simplifiedTranscript[index]
+                                              : null,
+                                          isShadowingMode: true,
+                                          isRecordingThisLine: false,
+                                          onShadowTapped: () {
+                                            _playerController.pauseVideo();
+                                            final raw = line.pinyin?.trim();
+                                            final translation = line.translation?.trim().toLowerCase();
+                                            String effectivePinyin = '';
+                                            if (raw != null && raw.isNotEmpty && (translation == null || raw.toLowerCase() != translation)) {
+                                              effectivePinyin = raw;
+                                            } else if (RegExp(r'[\u4e00-\u9fff]').hasMatch(line.text)) {
+                                              effectivePinyin = PinyinHelper.getPinyinE(line.text,
+                                                  separator: ' ', format: PinyinFormat.WITH_TONE_MARK);
+                                            }
+
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (_) => ShadowingStudioScreen(
+                                                  initialContextSentence: line.text,
+                                                  initialPinyin: effectivePinyin,
+                                                  initialTranslation: line.translation,
+                                                  isCompact: false,
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                        );
+                                      }),
                                   ],
                                 ),
                               ),
-                            if (_isSimplifyingAi)
-                              const Padding(
-                                padding: EdgeInsets.all(16.0),
-                                child: AiProgressBar(
-                                    label: 'Simplifying subtitles...'),
-                              ),
-                            Expanded(
-                              child: ListView(
-                                controller: _scrollController,
-                                padding: const EdgeInsets.fromLTRB(16, 16, 16, 32),
-                                physics: const BouncingScrollPhysics(),
-                                children: [
-                                  if (_briefing != null) ...[
-                                    PremiumAiPrepCard(
-                                        briefing: _briefing!,
-                                        onWordTapped: _onWordTapped),
-                                    const SizedBox(height: 32),
-                                  ],
-                                  if (_transcript != null)
-                                    ..._transcript!.lines
-                                        .asMap()
-                                        .entries
-                                        .map((entry) {
-                                      final index = entry.key;
-                                      final line = entry.value;
-                                      return PremiumTranscriptLine(
-                                        key: _lineKeys[index],
-                                        line: line,
-                                        isCurrent: _currentIndex == index,
-                                        highlightedCount: _currentIndex == index
-                                            ? _getHighlightedCharCount(
-                                                line, _currentPosition)
-                                            : (index < _currentIndex
-                                                ? line.text.length
-                                                : 0),
-                                        onReplay: () => _replayLine(line.start),
-                                        onLineTapped: () {
-                                          _playerController.seekTo(
-                                              seconds: line.start.inSeconds
-                                                  .toDouble(),
-                                              allowSeekAhead: true);
-                                          _playerController.playVideo();
-                                        },
-                                        onWordTapped: _onWordTapped,
-                                        showPinyin: _showPinyin,
-                                        showEnglish: _showEnglish,
-                                        simplifiedText: _isHskSimplified
-                                            ? _simplifiedTranscript[index]
-                                            : null,
-                                        isShadowingMode: true,
-                                        isRecordingThisLine: false,
-                                        onShadowTapped: () {
-                                          _playerController.pauseVideo();
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (_) => ShadowingStudioScreen(
-                                                initialContextSentence: line.text,
-                                                initialPinyin: line.pinyin,
-                                                initialTranslation: line.translation,
-                                                isCompact: false,
-                                              ),
-                                            ),
-                                          );
-                                        },
-                                      );
-                                    }),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-            ),
+                            ],
+                          ),
+              ),
 
-          // ── Portrait Video Controls (docked at the BOTTOM of the screen) ──
-          if (!_isFullscreen) _buildPortraitControls(),
-        ],
+              // ── Portrait Video Controls (docked at the BOTTOM of the screen) ──
+              _buildPortraitControls(),
+            ],
+          );
+        },
       ),
     );
   }
@@ -1161,16 +1229,38 @@ class _PortraitVideoControlsState extends State<_PortraitVideoControls> {
   double _duration = 1.0;
   bool _isDragging = false;
   double _dragValue = 0.0;
+  StreamSubscription? _videoStateSubscription;
 
   @override
   void initState() {
     super.initState();
+    _initDurationListener();
+  }
+
+  void _initDurationListener() {
     _fetchDuration();
+    _videoStateSubscription = widget.controller.videoStateStream.listen((state) async {
+      if (!mounted) return;
+      try {
+        final dur = await widget.controller.duration;
+        if (dur > 0 && dur != _duration && mounted) {
+          setState(() => _duration = dur);
+        }
+      } catch (_) {}
+    });
+  }
+
+  @override
+  void dispose() {
+    _videoStateSubscription?.cancel();
+    super.dispose();
   }
 
   Future<void> _fetchDuration() async {
-    final dur = await widget.controller.duration;
-    if (mounted) setState(() => _duration = dur);
+    try {
+      final dur = await widget.controller.duration;
+      if (mounted && dur > 0) setState(() => _duration = dur);
+    } catch (_) {}
   }
 
   String _fmt(Duration d) {

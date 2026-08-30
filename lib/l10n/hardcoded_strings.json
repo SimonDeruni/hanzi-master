@@ -1,0 +1,3023 @@
+﻿{
+    "files":  [
+                  {
+                      "path":  "core/presentation/widgets/ai_progress_bar.dart",
+                      "strings":  [
+                                      {
+                                          "line":  8,
+                                          "text":  "AI is thinking..."
+                                      }
+                                  ]
+                  },
+                  {
+                      "path":  "core/presentation/widgets/hanzi_text_field.dart",
+                      "strings":  [
+                                      {
+                                          "line":  27,
+                                          "text":  "Type Hanzi, Pinyin, or English..."
+                                      },
+                                      {
+                                          "line":  94,
+                                          "text":  "Clear"
+                                      }
+                                  ]
+                  },
+                  {
+                      "path":  "core/presentation/widgets/zen_search_bar.dart",
+                      "strings":  [
+                                      {
+                                          "line":  23,
+                                          "text":  "Search..."
+                                      },
+                                      {
+                                          "line":  147,
+                                          "text":  "Clear"
+                                      }
+                                  ]
+                  },
+                  {
+                      "path":  "core/widgets/translated_text.dart",
+                      "strings":  [
+                                      {
+                                          "line":  74,
+                                          "text":  "..."
+                                      }
+                                  ]
+                  },
+                  {
+                      "strings":  [
+                                      {
+                                          "line":  540,
+                                          "text":  "}"
+                                      },
+                                      {
+                                          "line":  540,
+                                          "text":  "}:${cacheKey ?? "
+                                      },
+                                      {
+                                          "line":  540,
+                                          "text":  "tone_v4:$textToSpeak:${pinyin ?? "
+                                      }
+                                  ],
+                      "path":  "core/services/audio_service.dart"
+                  },
+                  {
+                      "strings":  [
+                                      {
+                                          "line":  44,
+                                          "text":  "â€¢ "
+                                      }
+                                  ],
+                      "path":  "core/utils/definition_formatter.dart"
+                  },
+                  {
+                      "path":  "features/auth/presentation/screens/auth_screen.dart",
+                      "strings":  [
+                                      {
+                                          "line":  47,
+                                          "text":  "You must accept the Terms of Service and Privacy Policy to create an account."
+                                      },
+                                      {
+                                          "line":  65,
+                                          "text":  "Firebase Auth not enabled. Please enable the required Sign-In method in your Firebase Console."
+                                      },
+                                      {
+                                          "line":  107,
+                                          "text":  "Welcome Back"
+                                      },
+                                      {
+                                          "line":  107,
+                                          "text":  "Begin Your Journey"
+                                      },
+                                      {
+                                          "line":  129,
+                                          "text":  "Name"
+                                      },
+                                      {
+                                          "line":  137,
+                                          "text":  "Email"
+                                      },
+                                      {
+                                          "line":  145,
+                                          "text":  "Password"
+                                      },
+                                      {
+                                          "line":  206,
+                                          "text":  "Don\u0027t have an account? Sign up"
+                                      },
+                                      {
+                                          "line":  208,
+                                          "text":  "Already have an account? Sign in"
+                                      },
+                                      {
+                                          "line":  293,
+                                          "text":  "Sign In"
+                                      },
+                                      {
+                                          "line":  293,
+                                          "text":  "Create Account"
+                                      }
+                                  ]
+                  },
+                  {
+                      "path":  "features/chat/presentation/screens/ai_hub_screen.dart",
+                      "strings":  [
+                                      {
+                                          "line":  57,
+                                          "text":  "Roleplay"
+                                      },
+                                      {
+                                          "line":  67,
+                                          "text":  "Shadowing"
+                                      }
+                                  ]
+                  },
+                  {
+                      "path":  "features/course/presentation/screens/course_screen.dart",
+                      "strings":  [
+                                      {
+                                          "line":  141,
+                                          "text":  "Initializing Library..."
+                                      },
+                                      {
+                                          "line":  155,
+                                          "text":  "Unlock at least 4 characters to start a quiz!"
+                                      },
+                                      {
+                                          "line":  160,
+                                          "text":  "PRACTICE QUIZ"
+                                      }
+                                  ]
+                  },
+                  {
+                      "path":  "features/course/presentation/screens/course_selection_screen.dart",
+                      "strings":  [
+                                      {
+                                          "line":  30,
+                                          "text":  "CURRICULUM PATHS"
+                                      },
+                                      {
+                                          "line":  54,
+                                          "text":  "No decks found. Add some to your library!"
+                                      },
+                                      {
+                                          "line":  70,
+                                          "text":  "A personalized path based on your deck."
+                                      },
+                                      {
+                                          "line":  71,
+                                          "text":  " CARDS"
+                                      },
+                                      {
+                                          "line":  77,
+                                          "text":  "Add some cards to this deck first!"
+                                      },
+                                      {
+                                          "line":  102,
+                                          "text":  "The AI Scholar is drafting your path..."
+                                      },
+                                      {
+                                          "line":  119,
+                                          "text":  "Your path for \u0027${deck.localizedName(context)}\u0027 is ready!"
+                                      },
+                                      {
+                                          "line":  128,
+                                          "text":  "Error generating path"
+                                      },
+                                      {
+                                          "line":  139,
+                                          "text":  "Error: "
+                                      }
+                                  ]
+                  },
+                  {
+                      "path":  "features/course/presentation/screens/lesson_screen.dart",
+                      "strings":  [
+                                      {
+                                          "line":  57,
+                                          "text":  "WARM UP"
+                                      },
+                                      {
+                                          "line":  174,
+                                          "text":  "Lesson Complete! +10 Ink Points"
+                                      }
+                                  ]
+                  },
+                  {
+                      "path":  "features/course/presentation/screens/tome_manager_screen.dart",
+                      "strings":  [
+                                      {
+                                          "line":  26,
+                                          "text":  "Foundation"
+                                      },
+                                      {
+                                          "line":  27,
+                                          "text":  "Elementary"
+                                      },
+                                      {
+                                          "line":  28,
+                                          "text":  "Intermediate"
+                                      },
+                                      {
+                                          "line":  29,
+                                          "text":  "Upper Int."
+                                      },
+                                      {
+                                          "line":  30,
+                                          "text":  "Advanced"
+                                      },
+                                      {
+                                          "line":  31,
+                                          "text":  "Mastery"
+                                      },
+                                      {
+                                          "line":  42,
+                                          "text":  "154 cards"
+                                      },
+                                      {
+                                          "line":  42,
+                                          "text":  "HSK 1: Foundation"
+                                      },
+                                      {
+                                          "line":  43,
+                                          "text":  "162 cards"
+                                      },
+                                      {
+                                          "line":  43,
+                                          "text":  "HSK 2: Elementary"
+                                      },
+                                      {
+                                          "line":  44,
+                                          "text":  "299 cards"
+                                      },
+                                      {
+                                          "line":  44,
+                                          "text":  "HSK 3: Intermediate"
+                                      },
+                                      {
+                                          "line":  45,
+                                          "text":  "602 cards"
+                                      },
+                                      {
+                                          "line":  45,
+                                          "text":  "HSK 4: Upper Int."
+                                      },
+                                      {
+                                          "line":  46,
+                                          "text":  "1300 cards"
+                                      },
+                                      {
+                                          "line":  46,
+                                          "text":  "HSK 5: Advanced"
+                                      },
+                                      {
+                                          "line":  47,
+                                          "text":  "2500 cards"
+                                      },
+                                      {
+                                          "line":  47,
+                                          "text":  "HSK 6: Mastery"
+                                      },
+                                      {
+                                          "line":  65,
+                                          "text":  "title"
+                                      },
+                                      {
+                                          "line":  65,
+                                          "text":  "Installed"
+                                      },
+                                      {
+                                          "line":  74,
+                                          "text":  "Failed to download."
+                                      },
+                                      {
+                                          "line":  85,
+                                          "text":  "title"
+                                      },
+                                      {
+                                          "line":  85,
+                                          "text":  "Rescind"
+                                      },
+                                      {
+                                          "line":  91,
+                                          "text":  "Cancel"
+                                      },
+                                      {
+                                          "line":  94,
+                                          "text":  "Uninstall"
+                                      },
+                                      {
+                                          "line":  109,
+                                          "text":  "title"
+                                      },
+                                      {
+                                          "line":  109,
+                                          "text":  "Removed"
+                                      },
+                                      {
+                                          "line":  132,
+                                          "text":  "Library"
+                                      },
+                                      {
+                                          "line":  135,
+                                          "text":  "HSK vocabulary collections"
+                                      },
+                                      {
+                                          "line":  203,
+                                          "text":  "Couldn\u0027t load the library"
+                                      },
+                                      {
+                                          "line":  211,
+                                          "text":  "Retry"
+                                      },
+                                      {
+                                          "line":  291,
+                                          "text":  "Install"
+                                      },
+                                      {
+                                          "line":  291,
+                                          "text":  "Remove"
+                                      }
+                                  ]
+                  },
+                  {
+                      "path":  "features/course/presentation/widgets/radical_detail_sheet.dart",
+                      "strings":  [
+                                      {
+                                          "line":  74,
+                                          "text":  "Radical"
+                                      },
+                                      {
+                                          "line":  75,
+                                          "text":  "A structural component."
+                                      },
+                                      {
+                                          "line":  76,
+                                          "text":  "Master this to unlock its galaxy."
+                                      }
+                                  ]
+                  },
+                  {
+                      "path":  "features/echo_hall/presentation/screens/conversation_screen.dart",
+                      "strings":  [
+                                      {
+                                          "line":  77,
+                                          "text":  "Save this scenario"
+                                      },
+                                      {
+                                          "line":  77,
+                                          "text":  "Remove from saved scenarios"
+                                      },
+                                      {
+                                          "line":  82,
+                                          "text":  "Scenario saved! Find it in the Custom tab."
+                                      },
+                                      {
+                                          "line":  82,
+                                          "text":  "Scenario removed"
+                                      },
+                                      {
+                                          "line":  300,
+                                          "text":  "Listening..."
+                                      },
+                                      {
+                                          "line":  300,
+                                          "text":  "Type your message..."
+                                      },
+                                      {
+                                          "line":  300,
+                                          "text":  "Thinking..."
+                                      },
+                                      {
+                                          "line":  408,
+                                          "text":  "score"
+                                      },
+                                      {
+                                          "line":  591,
+                                          "text":  "Suggestion"
+                                      },
+                                      {
+                                          "line":  725,
+                                          "text":  "?"
+                                      },
+                                      {
+                                          "line":  767,
+                                          "text":  "QUESTS"
+                                      }
+                                  ]
+                  },
+                  {
+                      "path":  "features/echo_hall/presentation/screens/live_call_screen.dart",
+                      "strings":  [
+                                      {
+                                          "line":  91,
+                                          "text":  "Analyzing your pronunciation..."
+                                      },
+                                      {
+                                          "line":  96,
+                                          "text":  "Analyzing your pronunciation..."
+                                      },
+                                      {
+                                          "line":  97,
+                                          "text":  "Reviewing your tones..."
+                                      },
+                                      {
+                                          "line":  98,
+                                          "text":  "Preparing your Scholar\u0027s Verdict..."
+                                      },
+                                      {
+                                          "line":  1119,
+                                          "text":  "Pause"
+                                      },
+                                      {
+                                          "line":  1119,
+                                          "text":  "Resume"
+                                      },
+                                      {
+                                          "line":  1125,
+                                          "text":  "CC"
+                                      },
+                                      {
+                                          "line":  1125,
+                                          "text":  "ZH Only"
+                                      },
+                                      {
+                                          "line":  1125,
+                                          "text":  "Hidden"
+                                      },
+                                      {
+                                          "line":  1151,
+                                          "text":  "Speaker"
+                                      },
+                                      {
+                                          "line":  1203,
+                                          "text":  "words"
+                                      }
+                                  ]
+                  },
+                  {
+                      "path":  "features/echo_hall/presentation/screens/scenario_selection_screen.dart",
+                      "strings":  [
+                                      {
+                                          "line":  34,
+                                          "text":  "All"
+                                      },
+                                      {
+                                          "line":  41,
+                                          "text":  "All"
+                                      },
+                                      {
+                                          "line":  54,
+                                          "text":  "Custom"
+                                      },
+                                      {
+                                          "line":  175,
+                                          "text":  "Search scenarios..."
+                                      },
+                                      {
+                                          "line":  896,
+                                          "text":  "Delete Scenario"
+                                      },
+                                      {
+                                          "line":  897,
+                                          "text":  "Are you sure?"
+                                      },
+                                      {
+                                          "line":  902,
+                                          "text":  "Cancel"
+                                      },
+                                      {
+                                          "line":  906,
+                                          "text":  "Delete"
+                                      },
+                                      {
+                                          "line":  945,
+                                          "text":  "OBJECTIVES"
+                                      },
+                                      {
+                                          "line":  999,
+                                          "text":  "Voice Call"
+                                      },
+                                      {
+                                          "line":  1021,
+                                          "text":  "Text Chat"
+                                      },
+                                      {
+                                          "line":  1035,
+                                          "text":  "Save Scenario"
+                                      },
+                                      {
+                                          "line":  1035,
+                                          "text":  "Remove from Saved"
+                                      },
+                                      {
+                                          "line":  1136,
+                                          "text":  "Failed to generate scenario: $e"
+                                      }
+                                  ]
+                  },
+                  {
+                      "path":  "features/echo_hall/presentation/widgets/custom_scenario_dialog.dart",
+                      "strings":  [
+                                      {
+                                          "line":  28,
+                                          "text":  "Tea Tasting in Chengdu"
+                                      },
+                                      {
+                                          "line":  30,
+                                          "text":  "Master Zhao (赵师傅), a patient and knowledgeable tea sommelier who loves explaining Gongfu tea brewing."
+                                      },
+                                      {
+                                          "line":  34,
+                                          "text":  "Street Food Night Market in Xi\u0027an"
+                                      },
+                                      {
+                                          "line":  36,
+                                          "text":  "Auntie Ma (马阿姨), an energetic and loud stall owner who makes the crispiest Roujiamo and Liangpi in town."
+                                      },
+                                      {
+                                          "line":  40,
+                                          "text":  "Chongqing Spicy Hotpot Feast"
+                                      },
+                                      {
+                                          "line":  42,
+                                          "text":  "Manager Yu (余店长), a fiery hotpot restaurant manager who recommends signature tripe, duck blood, and mild broth options."
+                                      },
+                                      {
+                                          "line":  46,
+                                          "text":  "Morning Dim Sum Cart in Guangzhou"
+                                      },
+                                      {
+                                          "line":  48,
+                                          "text":  "Chef Chen (陈师傅), a cheerful Cantonese dim sum chef recommending fresh Har Gow shrimp dumplings and Shumai."
+                                      },
+                                      {
+                                          "line":  52,
+                                          "text":  "Ordering Hand-Drip Coffee in Shanghai"
+                                      },
+                                      {
+                                          "line":  54,
+                                          "text":  "Barista Kevin (小凯), a passionate young coffee roaster who loves discussing Yunnan coffee beans and flavor notes."
+                                      },
+                                      {
+                                          "line":  58,
+                                          "text":  "Handmade Dumpling Feast in Harbin"
+                                      },
+                                      {
+                                          "line":  60,
+                                          "text":  "Grandma Liu (刘奶奶), a doting northern grandmother who teaches you how to pinch dumpling pleats and make pork-scallion filling."
+                                      },
+                                      {
+                                          "line":  64,
+                                          "text":  "Midnight BBQ Skewers in Wuhan"
+                                      },
+                                      {
+                                          "line":  66,
+                                          "text":  "Master Gao (高师傅), a charismatic charcoal BBQ master bantering with customers about spice levels and secret cumin rubs."
+                                      },
+                                      {
+                                          "line":  70,
+                                          "text":  "Ordering Sugar-Coated Haws in Winter Beijing"
+                                      },
+                                      {
+                                          "line":  395,
+                                          "text":  "ðŸŽ² Loaded: ${preset.topic} (${preset.persona.split("
+                                      },
+                                      {
+                                          "line":  395,
+                                          "text":  ").first})"
+                                      },
+                                      {
+                                          "line":  464,
+                                          "text":  "Error creating scenario: $e"
+                                      },
+                                      {
+                                          "line":  617,
+                                          "text":  "e.g., Wedding Reception, Tech Interview..."
+                                      },
+                                      {
+                                          "line":  767,
+                                          "text":  "Create Scenario"
+                                      }
+                                  ]
+                  },
+                  {
+                      "path":  "features/echo_hall/presentation/widgets/live_call_summary_screen.dart",
+                      "strings":  [
+                                      {
+                                          "line":  48,
+                                          "text":  "CONVERSATION REVIEW"
+                                      },
+                                      {
+                                          "line":  67,
+                                          "text":  "Complete Review"
+                                      },
+                                      {
+                                          "line":  181,
+                                          "text":  "Linguistic Analysis"
+                                      }
+                                  ]
+                  },
+                  {
+                      "path":  "features/echo_hall/presentation/widgets/pronunciation_report_sheet.dart",
+                      "strings":  [
+                                      {
+                                          "line":  148,
+                                          "text":  "Play Reference Pronunciation"
+                                      },
+                                      {
+                                          "line":  310,
+                                          "text":  "No"
+                                      },
+                                      {
+                                          "line":  314,
+                                          "text":  "Yes, Re-Grade Me!"
+                                      }
+                                  ]
+                  },
+                  {
+                      "path":  "features/echo_hall/presentation/widgets/tone_comparison_sheet.dart",
+                      "strings":  [
+                                      {
+                                          "line":  435,
+                                          "text":  "🗣️ You Said"
+                                      },
+                                      {
+                                          "line":  453,
+                                          "text":  "Does not exist in Chinese"
+                                      },
+                                      {
+                                          "line":  467,
+                                          "text":  "This tone does not exist in standard Mandarin."
+                                      },
+                                      {
+                                          "line":  486,
+                                          "text":  "Play $pinyinWithTone"
+                                      },
+                                      {
+                                          "line":  486,
+                                          "text":  "Play "
+                                      }
+                                  ]
+                  },
+                  {
+                      "path":  "features/explore/presentation/screens/explore_screen.dart",
+                      "strings":  [
+                                      {
+                                          "line":  60,
+                                          "text":  "Books"
+                                      },
+                                      {
+                                          "line":  71,
+                                          "text":  "Web"
+                                      },
+                                      {
+                                          "line":  72,
+                                          "text":  "Web"
+                                      },
+                                      {
+                                          "line":  82,
+                                          "text":  "Shows"
+                                      },
+                                      {
+                                          "line":  93,
+                                          "text":  "Video"
+                                      }
+                                  ]
+                  },
+                  {
+                      "path":  "features/flashcards/presentation/screens/character_detail_screen.dart",
+                      "strings":  [
+                                      {
+                                          "line":  58,
+                                          "text":  "Words"
+                                      },
+                                      {
+                                          "line":  58,
+                                          "text":  "Context"
+                                      },
+                                      {
+                                          "line":  58,
+                                          "text":  "Notes"
+                                      },
+                                      {
+                                          "line":  58,
+                                          "text":  "Strokes"
+                                      },
+                                      {
+                                          "line":  58,
+                                          "text":  "Anatomy"
+                                      },
+                                      {
+                                          "line":  246,
+                                          "text":  "name"
+                                      },
+                                      {
+                                          "line":  247,
+                                          "text":  "meaning"
+                                      },
+                                      {
+                                          "line":  438,
+                                          "text":  "Practice Modes"
+                                      },
+                                      {
+                                          "line":  442,
+                                          "text":  "Shadowing Studio"
+                                      },
+                                      {
+                                          "line":  443,
+                                          "text":  "Practice pronouncing this word with AI grading"
+                                      },
+                                      {
+                                          "line":  461,
+                                          "text":  "Calligraphy Trace"
+                                      },
+                                      {
+                                          "line":  462,
+                                          "text":  "Practice writing the strokes by hand"
+                                      },
+                                      {
+                                          "line":  475,
+                                          "text":  "Select Practice Mode"
+                                      },
+                                      {
+                                          "line":  928,
+                                          "text":  "char"
+                                      },
+                                      {
+                                          "line":  945,
+                                          "text":  "radical"
+                                      },
+                                      {
+                                          "line":  952,
+                                          "text":  "name"
+                                      },
+                                      {
+                                          "line":  952,
+                                          "text":  "Radical: ${comp[\u0027info\u0027][\u0027name\u0027]}"
+                                      },
+                                      {
+                                          "line":  952,
+                                          "text":  "info"
+                                      },
+                                      {
+                                          "line":  972,
+                                          "text":  "info"
+                                      },
+                                      {
+                                          "line":  972,
+                                          "text":  "mnemonic"
+                                      },
+                                      {
+                                          "line":  995,
+                                          "text":  "Add your own mnemonics or notes here..."
+                                      },
+                                      {
+                                          "line":  1054,
+                                          "text":  "Error: $e"
+                                      },
+                                      {
+                                          "line":  1147,
+                                          "text":  "(${lookAlike.pinyin})"
+                                      }
+                                  ]
+                  },
+                  {
+                      "path":  "features/flashcards/presentation/screens/deck_card_picker_screen.dart",
+                      "strings":  [
+                                      {
+                                          "line":  39,
+                                          "text":  "Add to ${widget.deckName}"
+                                      },
+                                      {
+                                          "line":  39,
+                                          "text":  "Add to "
+                                      },
+                                      {
+                                          "line":  60,
+                                          "text":  "Search character, pinyin, or meaning..."
+                                      },
+                                      {
+                                          "line":  121,
+                                          "text":  "Error: $err"
+                                      }
+                                  ]
+                  },
+                  {
+                      "path":  "features/flashcards/presentation/screens/deck_detail_screen.dart",
+                      "strings":  [
+                                      {
+                                          "line":  176,
+                                          "text":  "Erase Deck?"
+                                      },
+                                      {
+                                          "line":  177,
+                                          "text":  "Are you sure you want to permanently erase \"${widget.deck.name}\"? This action cannot be undone and will delete all cards inside it."
+                                      },
+                                      {
+                                          "line":  181,
+                                          "text":  "Cancel"
+                                      },
+                                      {
+                                          "line":  185,
+                                          "text":  "Erase"
+                                      },
+                                      {
+                                          "line":  320,
+                                          "text":  "Practice in Roleplay"
+                                      },
+                                      {
+                                          "line":  340,
+                                          "text":  "Cards"
+                                      },
+                                      {
+                                          "line":  341,
+                                          "text":  "Statistics"
+                                      },
+                                      {
+                                          "line":  359,
+                                          "text":  "Search character, pinyin..."
+                                      },
+                                      {
+                                          "line":  425,
+                                          "text":  "Remove ${card.hanzi} from this deck?"
+                                      },
+                                      {
+                                          "line":  443,
+                                          "text":  "UNDO"
+                                      },
+                                      {
+                                          "line":  469,
+                                          "text":  "Error: $err"
+                                      },
+                                      {
+                                          "line":  565,
+                                          "text":  "To Be Reviewed"
+                                      },
+                                      {
+                                          "line":  569,
+                                          "text":  "Mastered"
+                                      },
+                                      {
+                                          "line":  574,
+                                          "text":  "Review in "
+                                      },
+                                      {
+                                          "line":  574,
+                                          "text":  " days"
+                                      },
+                                      {
+                                          "line":  574,
+                                          "text":  "Review Tomorrow"
+                                      }
+                                  ]
+                  },
+                  {
+                      "path":  "features/flashcards/presentation/screens/main_navigation_screen.dart",
+                      "strings":  [
+                                      {
+                                          "line":  29,
+                                          "text":  "AI Hub"
+                                      },
+                                      {
+                                          "line":  29,
+                                          "text":  "Library"
+                                      },
+                                      {
+                                          "line":  29,
+                                          "text":  "Dashboard"
+                                      },
+                                      {
+                                          "line":  29,
+                                          "text":  "Explore"
+                                      },
+                                      {
+                                          "line":  47,
+                                          "text":  "Dashboard"
+                                      },
+                                      {
+                                          "line":  105,
+                                          "text":  "Explore"
+                                      },
+                                      {
+                                          "line":  115,
+                                          "text":  "Library"
+                                      }
+                                  ]
+                  },
+                  {
+                      "path":  "features/flashcards/presentation/screens/review_screen.dart",
+                      "strings":  [
+                                      {
+                                          "line":  698,
+                                          "text":  "Swipe to Grade:"
+                                      },
+                                      {
+                                          "line":  707,
+                                          "text":  "⬅️ Again    ➡️ Good    ⬆️ Easy    ⬇️ Hard"
+                                      },
+                                      {
+                                          "line":  724,
+                                          "text":  "Good attempt"
+                                      },
+                                      {
+                                          "line":  724,
+                                          "text":  "Keep practicing"
+                                      },
+                                      {
+                                          "line":  724,
+                                          "text":  "Perfect!"
+                                      },
+                                      {
+                                          "line":  724,
+                                          "text":  "Great!"
+                                      }
+                                  ]
+                  },
+                  {
+                      "path":  "features/flashcards/presentation/screens/settings_screen.dart",
+                      "strings":  [
+                                      {
+                                          "line":  22,
+                                          "text":  "Settings"
+                                      },
+                                      {
+                                          "line":  34,
+                                          "text":  "Audio \u0026 Haptics"
+                                      },
+                                      {
+                                          "line":  42,
+                                          "text":  "Voice Speed"
+                                      },
+                                      {
+                                          "line":  43,
+                                          "text":  "x"
+                                      },
+                                      {
+                                          "line":  57,
+                                          "text":  "Haptic Feedback"
+                                      },
+                                      {
+                                          "line":  58,
+                                          "text":  "Vibrations for interactions"
+                                      },
+                                      {
+                                          "line":  70,
+                                          "text":  "Audiobook Voice"
+                                      },
+                                      {
+                                          "line":  79,
+                                          "text":  "Display \u0026 Content"
+                                      },
+                                      {
+                                          "line":  117,
+                                          "text":  "Notification Settings"
+                                      },
+                                      {
+                                          "line":  118,
+                                          "text":  "Manage Daily Drops and Review Reminders"
+                                      },
+                                      {
+                                          "line":  134,
+                                          "text":  "Reset All Data"
+                                      },
+                                      {
+                                          "line":  135,
+                                          "text":  "Deletes all progress permanently"
+                                      },
+                                      {
+                                          "line":  140,
+                                          "text":  "Are you sure?"
+                                      },
+                                      {
+                                          "line":  141,
+                                          "text":  "This cannot be undone."
+                                      },
+                                      {
+                                          "line":  144,
+                                          "text":  "Cancel"
+                                      },
+                                      {
+                                          "line":  148,
+                                          "text":  "DELETE EVERYTHING"
+                                      },
+                                      {
+                                          "line":  314,
+                                          "text":  "Choose Audiobook Voice"
+                                      },
+                                      {
+                                          "line":  456,
+                                          "text":  "Request Permissions"
+                                      },
+                                      {
+                                          "line":  469,
+                                          "text":  "Done"
+                                      }
+                                  ]
+                  },
+                  {
+                      "path":  "features/flashcards/presentation/screens/stats_screen.dart",
+                      "strings":  [
+                                      {
+                                          "line":  55,
+                                          "text":  "Library Mastery"
+                                      }
+                                  ]
+                  },
+                  {
+                      "path":  "features/flashcards/presentation/screens/story_mode_screen.dart",
+                      "strings":  [
+                                      {
+                                          "line":  92,
+                                          "text":  "Deck Story"
+                                      },
+                                      {
+                                          "line":  144,
+                                          "text":  "Generate New Story"
+                                      },
+                                      {
+                                          "line":  382,
+                                          "text":  "Failed to generate story:\\n$e"
+                                      },
+                                      {
+                                          "line":  410,
+                                          "text":  "Translate"
+                                      }
+                                  ]
+                  },
+                  {
+                      "path":  "features/flashcards/presentation/widgets/study_mode_selection_sheet.dart",
+                      "strings":  [
+                                      {
+                                          "line":  28,
+                                          "text":  "How would you like to study?"
+                                      }
+                                  ]
+                  },
+                  {
+                      "path":  "features/live_translate/presentation/screens/shadowing_studio_screen.dart",
+                      "strings":  [
+                                      {
+                                          "line":  54,
+                                          "text":  "HSK 1"
+                                      },
+                                      {
+                                          "line":  548,
+                                          "text":  "Skip"
+                                      },
+                                      {
+                                          "line":  570,
+                                          "text":  "Add Selected to Deck"
+                                      },
+                                      {
+                                          "line":  606,
+                                          "text":  "Select a Deck"
+                                      },
+                                      {
+                                          "line":  626,
+                                          "text":  "No decks found."
+                                      },
+                                      {
+                                          "line":  632,
+                                          "text":  "Export to this deck"
+                                      },
+                                      {
+                                          "line":  649,
+                                          "text":  "Create New Deck"
+                                      },
+                                      {
+                                          "line":  652,
+                                          "text":  "Make a custom collection"
+                                      },
+                                      {
+                                          "line":  679,
+                                          "text":  "New Deck Name"
+                                      },
+                                      {
+                                          "line":  685,
+                                          "text":  "E.g. Anime Vocab"
+                                      },
+                                      {
+                                          "line":  697,
+                                          "text":  "Cancel"
+                                      },
+                                      {
+                                          "line":  719,
+                                          "text":  "Create"
+                                      },
+                                      {
+                                          "line":  733,
+                                          "text":  "Saving ${wordsToAdd.length} words to ${deck.name}..."
+                                      },
+                                      {
+                                          "line":  785,
+                                          "text":  "Words saved and SRS scheduled!"
+                                      },
+                                      {
+                                          "line":  1029,
+                                          "text":  "Free Flow"
+                                      },
+                                      {
+                                          "line":  1036,
+                                          "text":  "Theme"
+                                      },
+                                      {
+                                          "line":  1043,
+                                          "text":  "Deck"
+                                      },
+                                      {
+                                          "line":  1050,
+                                          "text":  "Custom Word"
+                                      },
+                                      {
+                                          "line":  1062,
+                                          "text":  "Configuration"
+                                      },
+                                      {
+                                          "line":  1070,
+                                          "text":  "CHINESE CHARACTER"
+                                      },
+                                      {
+                                          "line":  1077,
+                                          "text":  "Search dictionary or type custom"
+                                      },
+                                      {
+                                          "line":  1153,
+                                          "text":  "HSK LEVEL"
+                                      },
+                                      {
+                                          "line":  1189,
+                                          "text":  "FLASHCARD DECK"
+                                      },
+                                      {
+                                          "line":  1193,
+                                          "text":  "No decks found."
+                                      },
+                                      {
+                                          "line":  1233,
+                                          "text":  "Error loading decks"
+                                      },
+                                      {
+                                          "line":  1360,
+                                          "text":  "Retry"
+                                      },
+                                      {
+                                          "line":  1374,
+                                          "text":  "Ready to start."
+                                      },
+                                      {
+                                          "line":  1659,
+                                          "text":  "Tone Graph"
+                                      },
+                                      {
+                                          "line":  1857,
+                                          "text":  "phoneme"
+                                      },
+                                      {
+                                          "line":  1898,
+                                          "text":  "Listen to this word"
+                                      },
+                                      {
+                                          "line":  1953,
+                                          "text":  "Compare 4 Tones"
+                                      },
+                                      {
+                                          "line":  1985,
+                                          "text":  "Study Character"
+                                      }
+                                  ]
+                  },
+                  {
+                      "path":  "features/live_translate/presentation/screens/travel_interpreter_screen.dart",
+                      "strings":  [
+                                      {
+                                          "line":  25,
+                                          "text":  "Ready"
+                                      },
+                                      {
+                                          "line":  34,
+                                          "text":  "English"
+                                      },
+                                      {
+                                          "line":  35,
+                                          "text":  "Mandarin"
+                                      },
+                                      {
+                                          "line":  80,
+                                          "text":  "Ready to interpret"
+                                      },
+                                      {
+                                          "line":  92,
+                                          "text":  "Listening..."
+                                      },
+                                      {
+                                          "line":  92,
+                                          "text":  "Partner listening..."
+                                      },
+                                      {
+                                          "line":  350,
+                                          "text":  "Type your message in $_sideBLanguage..."
+                                      },
+                                      {
+                                          "line":  383,
+                                          "text":  "Send"
+                                      },
+                                      {
+                                          "line":  518,
+                                          "text":  "Partner"
+                                      },
+                                      {
+                                          "line":  556,
+                                          "text":  "You"
+                                      },
+                                      {
+                                          "line":  689,
+                                          "text":  "Partner ($lang)"
+                                      },
+                                      {
+                                          "line":  723,
+                                          "text":  "Partner speakingâ€¦"
+                                      },
+                                      {
+                                          "line":  858,
+                                          "text":  "You ($lang)"
+                                      },
+                                      {
+                                          "line":  895,
+                                          "text":  "You are speaking"
+                                      },
+                                      {
+                                          "line":  949,
+                                          "text":  "You ("
+                                      },
+                                      {
+                                          "line":  949,
+                                          "text":  ")"
+                                      },
+                                      {
+                                          "line":  950,
+                                          "text":  "Partner ("
+                                      },
+                                      {
+                                          "line":  950,
+                                          "text":  ")"
+                                      },
+                                      {
+                                          "line":  1019,
+                                          "text":  "Type in $_sideALanguage..."
+                                      }
+                                  ]
+                  },
+                  {
+                      "path":  "features/media/presentation/screens/media_hub_screen.dart",
+                      "strings":  [
+                                      {
+                                          "line":  48,
+                                          "text":  "Quick Bookmarks"
+                                      },
+                                      {
+                                          "line":  67,
+                                          "text":  "BBC 中文"
+                                      },
+                                      {
+                                          "line":  74,
+                                          "text":  "Wikipedia"
+                                      },
+                                      {
+                                          "line":  175,
+                                          "text":  "No saved articles yet."
+                                      },
+                                      {
+                                          "line":  695,
+                                          "text":  "Failed to load daily content"
+                                      }
+                                  ]
+                  },
+                  {
+                      "path":  "features/media/presentation/screens/media_search_screen.dart",
+                      "strings":  [
+                                      {
+                                          "line":  22,
+                                          "text":  "Lifestyle \u0026 Vlog"
+                                      },
+                                      {
+                                          "line":  23,
+                                          "text":  "Gaming \u0026 Esports"
+                                      },
+                                      {
+                                          "line":  24,
+                                          "text":  "Food \u0026 Cooking"
+                                      },
+                                      {
+                                          "line":  25,
+                                          "text":  "Tech \u0026 Gadgets"
+                                      },
+                                      {
+                                          "line":  29,
+                                          "text":  "中国 日常 vlog"
+                                      },
+                                      {
+                                          "line":  30,
+                                          "text":  "游戏 实况 王者荣耀 原神"
+                                      },
+                                      {
+                                          "line":  31,
+                                          "text":  "中国 美食 菜谱"
+                                      },
+                                      {
+                                          "line":  32,
+                                          "text":  "中国 科技 测评"
+                                      },
+                                      {
+                                          "line":  242,
+                                          "text":  "Search topics (e.g., Cooking, History)"
+                                      },
+                                      {
+                                          "line":  267,
+                                          "text":  "Error: $_error"
+                                      },
+                                      {
+                                          "line":  400,
+                                          "text":  "Tap to Retry"
+                                      }
+                                  ]
+                  },
+                  {
+                      "path":  "features/media/presentation/screens/show_catalog_screen.dart",
+                      "strings":  [
+                                      {
+                                          "line":  51,
+                                          "text":  "Failed to load shows"
+                                      },
+                                      {
+                                          "line":  58,
+                                          "text":  "Retry"
+                                      },
+                                      {
+                                          "line":  76,
+                                          "text":  "No shows available"
+                                      },
+                                      {
+                                          "line":  105,
+                                          "text":  "Search by title or tag..."
+                                      },
+                                      {
+                                          "line":  372,
+                                          "text":  "TRAILER"
+                                      },
+                                      {
+                                          "line":  372,
+                                          "text":  "HIGHLIGHT"
+                                      },
+                                      {
+                                          "line":  418,
+                                          "text":  " episodes"
+                                      }
+                                  ]
+                  },
+                  {
+                      "path":  "features/media/presentation/screens/simplified_article_reader_screen.dart",
+                      "strings":  [
+                                      {
+                                          "line":  36,
+                                          "text":  "Serif"
+                                      },
+                                      {
+                                          "line":  36,
+                                          "text":  "Simplified Article"
+                                      },
+                                      {
+                                          "line":  46,
+                                          "text":  "Toggle Pinyin"
+                                      },
+                                      {
+                                          "line":  58,
+                                          "text":  "Toggle Translation"
+                                      },
+                                      {
+                                          "line":  88,
+                                          "text":  "This article contains Traditional Chinese characters."
+                                      }
+                                  ]
+                  },
+                  {
+                      "path":  "features/media/presentation/screens/smart_media_desk_screen.dart",
+                      "strings":  [
+                                      {
+                                          "line":  358,
+                                          "text":  "Select Target HSK Level"
+                                      },
+                                      {
+                                          "line":  370,
+                                          "text":  "HSK $level"
+                                      },
+                                      {
+                                          "line":  512,
+                                          "text":  "keyword"
+                                      },
+                                      {
+                                          "line":  512,
+                                          "text":  "Cultural Note: \\${meme[\u0027keyword\u0027]}"
+                                      },
+                                      {
+                                          "line":  514,
+                                          "text":  "explanation"
+                                      },
+                                      {
+                                          "line":  514,
+                                          "text":  "\\${meme[\u0027explanation\u0027]}"
+                                      },
+                                      {
+                                          "line":  739,
+                                          "text":  "Briefing"
+                                      },
+                                      {
+                                          "line":  741,
+                                          "text":  "Memes"
+                                      },
+                                      {
+                                          "line":  808,
+                                          "text":  "Open in YouTube"
+                                      },
+                                      {
+                                          "line":  880,
+                                          "text":  "Show Pinyin"
+                                      },
+                                      {
+                                          "line":  891,
+                                          "text":  "Show Translation"
+                                      },
+                                      {
+                                          "line":  903,
+                                          "text":  "HSK Simplify Subtitles"
+                                      },
+                                      {
+                                          "line":  1033,
+                                          "text":  "Full"
+                                      },
+                                      {
+                                          "line":  1097,
+                                          "text":  "Simplifying subtitles..."
+                                      }
+                                  ]
+                  },
+                  {
+                      "path":  "features/media/presentation/screens/story_library_screen.dart",
+                      "strings":  [
+                                      {
+                                          "line":  40,
+                                          "text":  "AI Stories"
+                                      },
+                                      {
+                                          "line":  40,
+                                          "text":  "Bookmarks"
+                                      },
+                                      {
+                                          "line":  40,
+                                          "text":  "Contemporary"
+                                      },
+                                      {
+                                          "line":  40,
+                                          "text":  "All"
+                                      },
+                                      {
+                                          "line":  40,
+                                          "text":  "Chinese Poetry"
+                                      },
+                                      {
+                                          "line":  78,
+                                          "text":  "Custom AI generated story."
+                                      },
+                                      {
+                                          "line":  82,
+                                          "text":  "AI Generated"
+                                      },
+                                      {
+                                          "line":  184,
+                                          "text":  "æ–‡åŒ–ä¹¦æˆ¿ Library"
+                                      },
+                                      {
+                                          "line":  225,
+                                          "text":  "ðŸ›ï¸"
+                                      },
+                                      {
+                                          "line":  279,
+                                          "text":  "Create Story"
+                                      },
+                                      {
+                                          "line":  302,
+                                          "text":  "Search stories, idioms, news..."
+                                      },
+                                      {
+                                          "line":  430,
+                                          "text":  "No stories found."
+                                      },
+                                      {
+                                          "line":  709,
+                                          "text":  "Native"
+                                      }
+                                  ]
+                  },
+                  {
+                      "path":  "features/media/presentation/screens/story_summary_screen.dart",
+                      "strings":  [
+                                      {
+                                          "line":  29,
+                                          "text":  "A classic Tang Dynasty poem"
+                                      },
+                                      {
+                                          "line":  30,
+                                          "text":  "A classic Tang Dynasty poem by"
+                                      },
+                                      {
+                                          "line":  31,
+                                          "text":  "经典唐诗"
+                                      },
+                                      {
+                                          "line":  425,
+                                          "text":  "Could not load vocabulary."
+                                      },
+                                      {
+                                          "line":  446,
+                                          "text":  "No key words found for this story."
+                                      }
+                                  ]
+                  },
+                  {
+                      "path":  "features/media/presentation/screens/web_browser_screen.dart",
+                      "strings":  [
+                                      {
+                                          "line":  36,
+                                          "text":  "https://www.bbc.com/zhongwen/simp"
+                                      },
+                                      {
+                                          "line":  1006,
+                                          "text":  "Analysis Failed: $e"
+                                      },
+                                      {
+                                          "line":  1006,
+                                          "text":  "Analysis Failed: "
+                                      },
+                                      {
+                                          "line":  1043,
+                                          "text":  "No new words found!"
+                                      },
+                                      {
+                                          "line":  1088,
+                                          "text":  "Extraction Failed: \\$e"
+                                      },
+                                      {
+                                          "line":  1118,
+                                          "text":  "Simplify Failed: $e"
+                                      },
+                                      {
+                                          "line":  1208,
+                                          "text":  "Translation Failed: $e"
+                                      },
+                                      {
+                                          "line":  1242,
+                                          "text":  "Translating text..."
+                                      },
+                                      {
+                                          "line":  1385,
+                                          "text":  "Extract \u0026 Simplify"
+                                      },
+                                      {
+                                          "line":  1550,
+                                          "text":  "Simplify Failed: $e"
+                                      },
+                                      {
+                                          "line":  1592,
+                                          "text":  "AI is thinking..."
+                                      },
+                                      {
+                                          "line":  1625,
+                                          "text":  "Back"
+                                      },
+                                      {
+                                          "line":  1643,
+                                          "text":  "Search or enter URL"
+                                      },
+                                      {
+                                          "line":  1669,
+                                          "text":  "Refresh"
+                                      },
+                                      {
+                                          "line":  1669,
+                                          "text":  "Clear"
+                                      },
+                                      {
+                                          "line":  1692,
+                                          "text":  "Back"
+                                      },
+                                      {
+                                          "line":  1696,
+                                          "text":  "Forward"
+                                      },
+                                      {
+                                          "line":  1711,
+                                          "text":  "Translate"
+                                      },
+                                      {
+                                          "line":  1780,
+                                          "text":  "Save"
+                                      },
+                                      {
+                                          "line":  1780,
+                                          "text":  "Saved"
+                                      },
+                                      {
+                                          "line":  1785,
+                                          "text":  "Focus"
+                                      },
+                                      {
+                                          "line":  1785,
+                                          "text":  "Exit Focus"
+                                      },
+                                      {
+                                          "line":  1809,
+                                          "text":  "Story bookmarked in Library!"
+                                      },
+                                      {
+                                          "line":  1828,
+                                          "text":  "Article saved to Media Hub!"
+                                      },
+                                      {
+                                          "line":  1968,
+                                          "text":  "Failed to create deck"
+                                      },
+                                      {
+                                          "line":  1989,
+                                          "text":  "No words selected"
+                                      },
+                                      {
+                                          "line":  2043,
+                                          "text":  "New Deck"
+                                      },
+                                      {
+                                          "line":  2046,
+                                          "text":  "Deck Name"
+                                      },
+                                      {
+                                          "line":  2052,
+                                          "text":  "Cancel"
+                                      },
+                                      {
+                                          "line":  2055,
+                                          "text":  "Create"
+                                      },
+                                      {
+                                          "line":  2075,
+                                          "text":  "Review Extracted Deck"
+                                      },
+                                      {
+                                          "line":  2140,
+                                          "text":  "Cancel"
+                                      },
+                                      {
+                                          "line":  2167,
+                                          "text":  "Create New Deck"
+                                      },
+                                      {
+                                          "line":  2192,
+                                          "text":  "Add to Deck"
+                                      }
+                                  ]
+                  },
+                  {
+                      "path":  "features/onboarding/presentation/screens/notification_permission_screen.dart",
+                      "strings":  [
+                                      {
+                                          "line":  79,
+                                          "text":  "Developer Backdoor Unlocked!"
+                                      },
+                                      {
+                                          "line":  228,
+                                          "text":  "Continue"
+                                      },
+                                      {
+                                          "line":  247,
+                                          "text":  "Maybe Later"
+                                      }
+                                  ]
+                  },
+                  {
+                      "path":  "features/onboarding/presentation/screens/tutorial_lesson_screen.dart",
+                      "strings":  [
+                                      {
+                                          "line":  79,
+                                          "text":  "Opening the Origin Scroll..."
+                                      },
+                                      {
+                                          "line":  152,
+                                          "text":  "I UNDERSTAND"
+                                      },
+                                      {
+                                          "line":  177,
+                                          "text":  "+"
+                                      },
+                                      {
+                                          "line":  182,
+                                          "text":  "="
+                                      },
+                                      {
+                                          "line":  200,
+                                          "text":  "CONTINUE"
+                                      },
+                                      {
+                                          "line":  235,
+                                          "text":  "THE SCROLL OF ORIGIN"
+                                      },
+                                      {
+                                          "line":  249,
+                                          "text":  "I AM READY"
+                                      },
+                                      {
+                                          "line":  294,
+                                          "text":  "YOU ARE A SCHOLAR"
+                                      },
+                                      {
+                                          "line":  301,
+                                          "text":  "The Galaxy Map awaits.\nMaster the Suns (Radicals) to unlock the Planets (Characters)."
+                                      },
+                                      {
+                                          "line":  314,
+                                          "text":  "ENTER THE SCROLL"
+                                      }
+                                  ]
+                  },
+                  {
+                      "path":  "features/premium/presentation/screens/custom_paywall_screen.dart",
+                      "strings":  [
+                                      {
+                                          "line":  194,
+                                          "text":  "Turn On"
+                                      },
+                                      {
+                                          "line":  213,
+                                          "text":  "No active subscription found."
+                                      },
+                                      {
+                                          "line":  382,
+                                          "text":  "Restore"
+                                      },
+                                      {
+                                          "line":  384,
+                                          "text":  "â€¢"
+                                      },
+                                      {
+                                          "line":  387,
+                                          "text":  "Terms"
+                                      },
+                                      {
+                                          "line":  389,
+                                          "text":  "â€¢"
+                                      },
+                                      {
+                                          "line":  392,
+                                          "text":  "Privacy"
+                                      },
+                                      {
+                                          "line":  484,
+                                          "text":  "Monthly"
+                                      },
+                                      {
+                                          "line":  484,
+                                          "text":  "Yearly"
+                                      },
+                                      {
+                                          "line":  532,
+                                          "text":  "Best Value"
+                                      },
+                                      {
+                                          "line":  558,
+                                          "text":  "Just \\$"
+                                      },
+                                      {
+                                          "line":  558,
+                                          "text":  "/mo"
+                                      }
+                                  ]
+                  },
+                  {
+                      "path":  "features/premium/presentation/screens/paywall_sheet.dart",
+                      "strings":  [
+                                      {
+                                          "line":  33,
+                                          "text":  "RevenueCat Error: $e"
+                                      },
+                                      {
+                                          "line":  33,
+                                          "text":  "RevenueCat Error: "
+                                      }
+                                  ]
+                  },
+                  {
+                      "path":  "features/premium/presentation/screens/universal_scanner_screen.dart",
+                      "strings":  [
+                                      {
+                                          "line":  145,
+                                          "text":  "Settings"
+                                      },
+                                      {
+                                          "line":  240,
+                                          "text":  "Error fetching translation for $label: $e"
+                                      },
+                                      {
+                                          "line":  531,
+                                          "text":  "AI Analysis Failed"
+                                      },
+                                      {
+                                          "line":  699,
+                                          "text":  "Deep Analysis"
+                                      },
+                                      {
+                                          "line":  778,
+                                          "text":  "AI Scene Analysis Failed"
+                                      },
+                                      {
+                                          "line":  810,
+                                          "text":  "Open Settings"
+                                      },
+                                      {
+                                          "line":  822,
+                                          "text":  "I\\"
+                                      },
+                                      {
+                                          "line":  892,
+                                          "text":  "Results"
+                                      },
+                                      {
+                                          "line":  895,
+                                          "text":  "Scan Another"
+                                      },
+                                      {
+                                          "line":  961,
+                                          "text":  "View as List"
+                                      },
+                                      {
+                                          "line":  1044,
+                                          "text":  "Point at Chinese text to translate"
+                                      },
+                                      {
+                                          "line":  1276,
+                                          "text":  "Extracted Text (Tap to lookup)"
+                                      },
+                                      {
+                                          "line":  1315,
+                                          "text":  "Full Translation"
+                                      },
+                                      {
+                                          "line":  1349,
+                                          "text":  "Save All"
+                                      },
+                                      {
+                                          "line":  1527,
+                                          "text":  "Smart Deck"
+                                      },
+                                      {
+                                          "line":  1673,
+                                          "text":  "Add to Deck (${_selectedWordIndices.length})"
+                                      },
+                                      {
+                                          "line":  1720,
+                                          "text":  "Created smart deck: \"$_smartDeckName\" with ${_matchedCharacters.length} words!"
+                                      }
+                                  ]
+                  },
+                  {
+                      "path":  "features/progression/presentation/screens/dashboard_screen.dart",
+                      "strings":  [
+                                      {
+                                          "line":  321,
+                                          "text":  "Done"
+                                      },
+                                      {
+                                          "line":  430,
+                                          "text":  "Begin"
+                                      },
+                                      {
+                                          "line":  555,
+                                          "text":  "NotoSerifSC"
+                                      },
+                                      {
+                                          "line":  575,
+                                          "text":  " cards"
+                                      },
+                                      {
+                                          "line":  583,
+                                          "text":  "Done"
+                                      }
+                                  ]
+                  },
+                  {
+                      "path":  "features/progression/presentation/widgets/today_insight_card.dart",
+                      "strings":  [
+                                      {
+                                          "line":  77,
+                                          "text":  "TODAY\u0027S WORD"
+                                      },
+                                      {
+                                          "line":  168,
+                                          "text":  "诚"
+                                      },
+                                      {
+                                          "line":  169,
+                                          "text":  "chéng"
+                                      },
+                                      {
+                                          "line":  170,
+                                          "text":  "sincere; honest"
+                                      }
+                                  ]
+                  },
+                  {
+                      "path":  "features/quiz/presentation/screens/quiz_screen.dart",
+                      "strings":  [
+                                      {
+                                          "line":  99,
+                                          "text":  "Question ${_currentIndex + 1}/${_questions.length}"
+                                      },
+                                      {
+                                          "line":  99,
+                                          "text":  "/"
+                                      },
+                                      {
+                                          "line":  99,
+                                          "text":  "Question "
+                                      },
+                                      {
+                                          "line":  127,
+                                          "text":  "Which character is:"
+                                      },
+                                      {
+                                          "line":  127,
+                                          "text":  "What does this mean?"
+                                      },
+                                      {
+                                          "line":  199,
+                                          "text":  "Score: $_score / ${_questions.length}"
+                                      },
+                                      {
+                                          "line":  199,
+                                          "text":  "Score: "
+                                      },
+                                      {
+                                          "line":  199,
+                                          "text":  " / "
+                                      }
+                                  ]
+                  },
+                  {
+                      "path":  "features/reading/presentation/screens/audiobook_player_screen.dart",
+                      "strings":  [
+                                      {
+                                          "line":  290,
+                                          "text":  "Audio could not start. Check your connection and device voice settings."
+                                      },
+                                      {
+                                          "line":  315,
+                                          "text":  "Voice:"
+                                      },
+                                      {
+                                          "line":  990,
+                                          "text":  "Hide English Translations"
+                                      },
+                                      {
+                                          "line":  990,
+                                          "text":  "Show English Translations"
+                                      },
+                                      {
+                                          "line":  1029,
+                                          "text":  "Sentence "
+                                      },
+                                      {
+                                          "line":  1029,
+                                          "text":  " / "
+                                      },
+                                      {
+                                          "line":  1389,
+                                          "text":  "Reading Mode"
+                                      }
+                                  ]
+                  },
+                  {
+                      "path":  "features/reading/presentation/screens/book_catalog_screen.dart",
+                      "strings":  [
+                                      {
+                                          "line":  47,
+                                          "text":  "All"
+                                      },
+                                      {
+                                          "line":  48,
+                                          "text":  "Chinese Epics"
+                                      },
+                                      {
+                                          "line":  49,
+                                          "text":  "Ancient Philosophy"
+                                      },
+                                      {
+                                          "line":  50,
+                                          "text":  "Supernatural \u0026 Folklore"
+                                      },
+                                      {
+                                          "line":  51,
+                                          "text":  "Modern Chinese"
+                                      },
+                                      {
+                                          "line":  52,
+                                          "text":  "French Classics"
+                                      },
+                                      {
+                                          "line":  53,
+                                          "text":  "German Classics"
+                                      },
+                                      {
+                                          "line":  54,
+                                          "text":  "Spanish \u0026 World"
+                                      },
+                                      {
+                                          "line":  55,
+                                          "text":  "English \u0026 World"
+                                      },
+                                      {
+                                          "line":  91,
+                                          "text":  "Reading Room"
+                                      },
+                                      {
+                                          "line":  475,
+                                          "text":  "Error loading novels: $e"
+                                      },
+                                      {
+                                          "line":  560,
+                                          "text":  "Error loading micro-reads: $e"
+                                      },
+                                      {
+                                          "line":  645,
+                                          "text":  "Error loading poetry: $e"
+                                      },
+                                      {
+                                          "line":  975,
+                                          "text":  "·"
+                                      },
+                                      {
+                                          "line":  1076,
+                                          "text":  "1-2 min"
+                                      }
+                                  ]
+                  },
+                  {
+                      "path":  "features/reading/presentation/screens/book_detail_screen.dart",
+                      "strings":  [
+                                      {
+                                          "line":  15,
+                                          "text":  "Wu Cheng\u0027en (c. 1500–1582) was a Ming Dynasty novelist from Huai\u0027an, Jiangsu. Drawing on decades of folklore, Buddhist allegory, and satirical wit, he wove the mythology of the Tang pilgrimage into Journey to the West — one of the most inventive and beloved works in world literature."
+                                      },
+                                      {
+                                          "line":  16,
+                                          "text":  "Luo Guanzhong (c. 1330–1400) was a Yuan-to-Ming transition era playwright and novelist, believed to have studied under Shi Nai\u0027an. His Romance of the Three Kingdoms synthesised historical chronicles, oral tradition, and dramatic storytelling into the definitive Chinese historical epic."
+                                      },
+                                      {
+                                          "line":  17,
+                                          "text":  "Shi Nai\u0027an (c. 1296–1372) was a Yuan Dynasty literatus who reportedly passed the imperial examination yet chose the life of a reclusive scholar. Water Margin, his masterwork of heroic outlaws and righteous rebellion, established the archetype of the Chinese martial epic."
+                                      },
+                                      {
+                                          "line":  18,
+                                          "text":  "Cao Xueqin (c. 1715–1763) was a Qing Dynasty novelist born into a once-wealthy Bannerman family whose fortunes collapsed under Emperor Yongzheng. Dream of the Red Chamber, written in his poverty-stricken final years, is widely regarded as the pinnacle of Chinese fiction — a vast, psychologically rich taphos of aristocratic decline."
+                                      },
+                                      {
+                                          "line":  19,
+                                          "text":  "Xu Zhonglin (fl. 16th–17th century) was a Ming Dynasty author credited with compiling Investiture of the Gods (封神演义), a monumental work of mythological fiction blending Shang-Zhou history with Daoist cosmology, celestial bureaucracy, and heroic warfare."
+                                      },
+                                      {
+                                          "line":  20,
+                                          "text":  "Pu Songling (1640–1715) was a Qing Dynasty writer who spent decades compiling Strange Tales from a Chinese Studio after repeatedly failing the imperial examinations. His supernatural stories of fox spirits, ghosts, and scholars remain the gold standard of Chinese gothic literature."
+                                      },
+                                      {
+                                          "line":  21,
+                                          "text":  "Wu Jingzi (1701–1754) was a Qing Dynasty novelist from Anhui who abandoned his inherited fortune and spent his life writing The Scholars — a biting satirical novel exposing the vanity, corruption, and absurdity of the imperial examination system and the scholar-gentry class."
+                                      },
+                                      {
+                                          "line":  22,
+                                          "text":  "Liu E (1857–1909) was a late-Qing polymath — engineer, doctor, and novelist — whose sole novel The Travels of Lao Can is a lyrical yet politically charged travelogue of a wandering healer navigating a China in the throes of dynastic collapse and foreign encroachment."
+                                      },
+                                      {
+                                          "line":  23,
+                                          "text":  "Li Ruzhen (c. 1763–1830) was a Qing Dynasty scholar with deep interests in phonology, chess, and cosmology. Flowers in the Mirror, his fantastical novel of a merchant journeying through impossible kingdoms, is remarkable for its feminist themes and encyclopaedic range of subjects."
+                                      },
+                                      {
+                                          "line":  24,
+                                          "text":  "Lu Xun (1881–1936), pen name of Zhou Shuren, is the father of modern Chinese literature. A physician who switched to writing to heal the Chinese spirit, his short story collections — Diary of a Madman and The True Story of Ah Q — used vernacular"
+                                      },
+                                      {
+                                          "line":  149,
+                                          "text":  "Book link copied to clipboard!"
+                                      },
+                                      {
+                                          "line":  367,
+                                          "text":  "æŸ¥çœ‹ä¸­æ–‡ç®€ä»‹"
+                                      },
+                                      {
+                                          "line":  436,
+                                          "text":  "æŸ¥çœ‹ä¸­æ–‡æ¦‚è¿°"
+                                      },
+                                      {
+                                          "line":  504,
+                                          "text":  "Table of Contents · 目录 ("
+                                      },
+                                      {
+                                          "line":  504,
+                                          "text":  " Chapters)"
+                                      },
+                                      {
+                                          "line":  605,
+                                          "text":  "Error loading chapters: $e"
+                                      }
+                                  ]
+                  },
+                  {
+                      "path":  "features/reading/presentation/screens/book_reader_screen.dart",
+                      "strings":  [
+                                      {
+                                          "line":  541,
+                                          "text":  "Choose Voice"
+                                      },
+                                      {
+                                          "line":  1029,
+                                          "text":  "Sentence "
+                                      },
+                                      {
+                                          "line":  1029,
+                                          "text":  " / "
+                                      },
+                                      {
+                                          "line":  1075,
+                                          "text":  "书签已移除 · Bookmark removed"
+                                      },
+                                      {
+                                          "line":  1094,
+                                          "text":  "已添加书签 · Bookmark added: 第${chapter.chapterIndex}回"
+                                      },
+                                      {
+                                          "line":  1094,
+                                          "text":  "已添加书签 · Bookmark added: 第"
+                                      },
+                                      {
+                                          "line":  1473,
+                                          "text":  "Audiobook Player"
+                                      },
+                                      {
+                                          "line":  1485,
+                                          "text":  "Bookmark Chapter"
+                                      },
+                                      {
+                                          "line":  1491,
+                                          "text":  "View Bookmarks"
+                                      },
+                                      {
+                                          "line":  1499,
+                                          "text":  "Table of Contents"
+                                      },
+                                      {
+                                          "line":  1514,
+                                          "text":  "Toggle Pinyin"
+                                      },
+                                      {
+                                          "line":  1548,
+                                          "text":  "Adjust Font Size"
+                                      },
+                                      {
+                                          "line":  1751,
+                                          "text":  "Listen in Audiobook Mode"
+                                      },
+                                      {
+                                          "line":  2003,
+                                          "text":  "Sleep Timer"
+                                      },
+                                      {
+                                          "line":  2039,
+                                          "text":  "Spotify-style Player"
+                                      },
+                                      {
+                                          "line":  2075,
+                                          "text":  "Previous"
+                                      },
+                                      {
+                                          "line":  2118,
+                                          "text":  "Next"
+                                      }
+                                  ]
+                  },
+                  {
+                      "path":  "features/reading/presentation/screens/reading_room_screen.dart",
+                      "strings":  [
+                                      {
+                                          "line":  35,
+                                          "text":  "Myths \u0026 Legends"
+                                      },
+                                      {
+                                          "line":  36,
+                                          "text":  "History \u0026 Culture"
+                                      },
+                                      {
+                                          "line":  37,
+                                          "text":  "Idioms (成语)"
+                                      },
+                                      {
+                                          "line":  45,
+                                          "text":  "The Monkey King"
+                                      },
+                                      {
+                                          "line":  46,
+                                          "text":  "Hua Mulan"
+                                      },
+                                      {
+                                          "line":  47,
+                                          "text":  "Confucius"
+                                      },
+                                      {
+                                          "line":  48,
+                                          "text":  "The Great Wall"
+                                      },
+                                      {
+                                          "line":  56,
+                                          "text":  "Sun Wukong (Journey to the West)"
+                                      },
+                                      {
+                                          "line":  57,
+                                          "text":  "Hua Mulan joining the army instead of her father"
+                                      },
+                                      {
+                                          "line":  58,
+                                          "text":  "The life and teachings of Confucius"
+                                      },
+                                      {
+                                          "line":  59,
+                                          "text":  "Building the Great Wall of China"
+                                      },
+                                      {
+                                          "line":  143,
+                                          "text":  "HSK $level"
+                                      },
+                                      {
+                                          "line":  340,
+                                          "text":  "Recent Bookmarks"
+                                      },
+                                      {
+                                          "line":  348,
+                                          "text":  "See all"
+                                      }
+                                  ]
+                  },
+                  {
+                      "path":  "features/reading/presentation/screens/story_reader_screen.dart",
+                      "strings":  [
+                                      {
+                                          "line":  48,
+                                          "text":  "Unrolling the scroll..."
+                                      },
+                                      {
+                                          "line":  49,
+                                          "text":  "Analyzing classical characters..."
+                                      },
+                                      {
+                                          "line":  50,
+                                          "text":  "Loading translations..."
+                                      },
+                                      {
+                                          "line":  51,
+                                          "text":  "Preparing reading interface..."
+                                      },
+                                      {
+                                          "line":  52,
+                                          "text":  "Finalizing details..."
+                                      },
+                                      {
+                                          "line":  56,
+                                          "text":  "Drafting story outline..."
+                                      },
+                                      {
+                                          "line":  57,
+                                          "text":  "Selecting HSK vocabulary..."
+                                      },
+                                      {
+                                          "line":  58,
+                                          "text":  "Refining grammar..."
+                                      },
+                                      {
+                                          "line":  59,
+                                          "text":  "Translating and adding Pinyin..."
+                                      },
+                                      {
+                                          "line":  60,
+                                          "text":  "Finalizing story details..."
+                                      },
+                                      {
+                                          "line":  492,
+                                          "text":  "HSK ${widget.hskLevel} vocabulary"
+                                      },
+                                      {
+                                          "line":  757,
+                                          "text":  "Summary"
+                                      },
+                                      {
+                                          "line":  773,
+                                          "text":  "All Pinyin"
+                                      },
+                                      {
+                                          "line":  774,
+                                          "text":  "Ghost Pinyin"
+                                      },
+                                      {
+                                          "line":  775,
+                                          "text":  "No Pinyin"
+                                      }
+                                  ]
+                  },
+                  {
+                      "path":  "features/reading/presentation/widgets/custom_story_creator_sheet.dart",
+                      "strings":  [
+                                      {
+                                          "line":  134,
+                                          "text":  "Dynamic Flow State"
+                                      },
+                                      {
+                                          "line":  146,
+                                          "text":  "Got it"
+                                      },
+                                      {
+                                          "line":  165,
+                                          "text":  "Dynamic (Flow State)"
+                                      },
+                                      {
+                                          "line":  182,
+                                          "text":  "HSK $level"
+                                      },
+                                      {
+                                          "line":  239,
+                                          "text":  "Scan Text"
+                                      }
+                                  ]
+                  },
+                  {
+                      "path":  "features/settings/presentation/screens/contact_screen.dart",
+                      "strings":  [
+                                      {
+                                          "line":  22,
+                                          "text":  "Please enter a message before sending."
+                                      },
+                                      {
+                                          "line":  46,
+                                          "text":  "Could not open email app."
+                                      },
+                                      {
+                                          "line":  65,
+                                          "text":  "Bug Report"
+                                      },
+                                      {
+                                          "line":  66,
+                                          "text":  "General Feedback"
+                                      },
+                                      {
+                                          "line":  66,
+                                          "text":  "Feature Request"
+                                      },
+                                      {
+                                          "line":  87,
+                                          "text":  "We\u0027d love to\nhear from you."
+                                      },
+                                      {
+                                          "line":  171,
+                                          "text":  "Write your message here..."
+                                      },
+                                      {
+                                          "line":  197,
+                                          "text":  "Send Message"
+                                      }
+                                  ]
+                  },
+                  {
+                      "path":  "features/settings/presentation/screens/qa_screen.dart",
+                      "strings":  [
+                                      {
+                                          "line":  22,
+                                          "text":  "Knowledge Base"
+                                      },
+                                      {
+                                          "line":  42,
+                                          "text":  "Privacy \u0026 Audio"
+                                      },
+                                      {
+                                          "line":  49,
+                                          "text":  "Do you keep or store my voice recordings?"
+                                      },
+                                      {
+                                          "line":  50,
+                                          "text":  "No. When you use Echo Hall, Scholar\u0027s Verdict, or Shadowing Studio, your audio is securely evaluated in real-time to generate a pronunciation score and then immediately discarded. We only store your numerical ratings to track your progress."
+                                      },
+                                      {
+                                          "line":  53,
+                                          "text":  "What happens to my chat history?"
+                                      },
+                                      {
+                                          "line":  54,
+                                          "text":  "Your Echo Hall conversations are stored locally on your device so you can review them anytime. We do not use your personal conversations to train our AI models."
+                                      },
+                                      {
+                                          "line":  60,
+                                          "text":  "Speaking \u0026 Pronunciation"
+                                      },
+                                      {
+                                          "line":  67,
+                                          "text":  "How is my pronunciation scored?"
+                                      },
+                                      {
+                                          "line":  68,
+                                          "text":  "The AI evaluates your speech across three dimensions:\n• Accuracy: Did you articulate the correct syllables?\n• Completeness: Did you skip or miss any words?\n• Fluency: Did you pause naturally and use the correct tones?\nIt compares your audio against native models to generate a score out of 100."
+                                      },
+                                      {
+                                          "line":  71,
+                                          "text":  "What if the AI mishears what I meant to say?"
+                                      },
+                                      {
+                                          "line":  72,
+                                          "text":  "If the AI detects a mismatch, it will ask \u0027Did you mean to say...?\u0027. You can tap the \u0027Yes, Re-Grade Me!\u0027 button to instantly re-evaluate your original audio against your true intention without having to speak again."
+                                      },
+                                      {
+                                          "line":  75,
+                                          "text":  "What is Shadowing Studio?"
+                                      },
+                                      {
+                                          "line":  76,
+                                          "text":  "Shadowing Studio is a dedicated space to practice mimicking native"
+                                      }
+                                  ]
+                  },
+                  {
+                      "strings":  [
+                                      {
+                                          "line":  148,
+                                          "text":  "STEP 1: THE ORIGIN"
+                                      },
+                                      {
+                                          "line":  150,
+                                          "text":  "Trace the Radical"
+                                      },
+                                      {
+                                          "line":  168,
+                                          "text":  "STEP 2: THE FORGE"
+                                      },
+                                      {
+                                          "line":  170,
+                                          "text":  "Choose the Essence"
+                                      },
+                                      {
+                                          "line":  191,
+                                          "text":  "Wrong essence! Try again."
+                                      },
+                                      {
+                                          "line":  291,
+                                          "text":  "STEP 3: THE HUNT"
+                                      },
+                                      {
+                                          "line":  293,
+                                          "text":  "Find characters with"
+                                      },
+                                      {
+                                          "line":  314,
+                                          "text":  "Not that one! Look closer."
+                                      }
+                                  ],
+                      "path":  "features/course/presentation/screens/radical_lesson_screen.dart"
+                  },
+                  {
+                      "strings":  [
+                                      {
+                                          "line":  56,
+                                          "text":  "UNIT INTRO"
+                                      },
+                                      {
+                                          "line":  372,
+                                          "text":  "Constellation Cluster"
+                                      },
+                                      {
+                                          "line":  377,
+                                          "text":  "OK"
+                                      },
+                                      {
+                                          "line":  532,
+                                          "text":  "} ${comp.hanzi}..."
+                                      },
+                                      {
+                                          "line":  865,
+                                          "text":  "}: ${widget.unit.title}"
+                                      },
+                                      {
+                                          "line":  869,
+                                          "text":  "KEY RADICALS"
+                                      },
+                                      {
+                                          "line":  875,
+                                          "text":  "No radical data available."
+                                      },
+                                      {
+                                          "line":  889,
+                                          "text":  "char"
+                                      },
+                                      {
+                                          "line":  895,
+                                          "text":  "name"
+                                      },
+                                      {
+                                          "line":  895,
+                                          "text":  "info"
+                                      },
+                                      {
+                                          "line":  896,
+                                          "text":  "meaning"
+                                      },
+                                      {
+                                          "line":  896,
+                                          "text":  "info"
+                                      }
+                                  ],
+                      "path":  "features/course/presentation/widgets/course_map_widgets.dart"
+                  },
+                  {
+                      "strings":  [
+                                      {
+                                          "line":  164,
+                                          "text":  "\"$_transcription\""
+                                      }
+                                  ],
+                      "path":  "features/course/presentation/widgets/lesson_steps/discovery_step.dart"
+                  },
+                  {
+                      "strings":  [
+                                      {
+                                          "line":  113,
+                                          "text":  "Generate"
+                                      },
+                                      {
+                                          "line":  230,
+                                          "text":  "æ°µ"
+                                      },
+                                      {
+                                          "line":  302,
+                                          "text":  "HSK Collections"
+                                      },
+                                      {
+                                          "line":  394,
+                                          "text":  "Retry"
+                                      },
+                                      {
+                                          "line":  411,
+                                          "text":  "No results found for \u0027$searchQuery\u0027"
+                                      },
+                                      {
+                                          "line":  465,
+                                          "text":  "Compare"
+                                      },
+                                      {
+                                          "line":  533,
+                                          "text":  "Retry"
+                                      },
+                                      {
+                                          "line":  743,
+                                          "text":  "Search Pinyin, Hanzi, or English..."
+                                      }
+                                  ],
+                      "path":  "features/flashcards/presentation/screens/dictionary_screen.dart"
+                  },
+                  {
+                      "strings":  [
+                                      {
+                                          "line":  84,
+                                          "text":  "New Card"
+                                      },
+                                      {
+                                          "line":  84,
+                                          "text":  "Edit Card"
+                                      },
+                                      {
+                                          "line":  95,
+                                          "text":  "Hanzi (Character)"
+                                      },
+                                      {
+                                          "line":  104,
+                                          "text":  "Pinyin"
+                                      },
+                                      {
+                                          "line":  112,
+                                          "text":  "Definition"
+                                      }
+                                  ],
+                      "path":  "features/flashcards/presentation/screens/flashcard_form_screen.dart"
+                  },
+                  {
+                      "strings":  [
+                                      {
+                                          "line":  42,
+                                          "text":  "Learning Stats"
+                                      },
+                                      {
+                                          "line":  43,
+                                          "text":  "View your learning history and streaks"
+                                      },
+                                      {
+                                          "line":  55,
+                                          "text":  "SinoSpark Premium"
+                                      },
+                                      {
+                                          "line":  71,
+                                          "text":  "Settings"
+                                      },
+                                      {
+                                          "line":  72,
+                                          "text":  "Preferences, Audio, and Display"
+                                      },
+                                      {
+                                          "line":  84,
+                                          "text":  "Help \u0026 Support"
+                                      },
+                                      {
+                                          "line":  85,
+                                          "text":  "Contact us and report issues"
+                                      },
+                                      {
+                                          "line":  97,
+                                          "text":  "Q\u0026A / FAQ"
+                                      },
+                                      {
+                                          "line":  98,
+                                          "text":  "Audio, privacy, and how things work"
+                                      }
+                                  ],
+                      "path":  "features/flashcards/presentation/screens/profile_screen.dart"
+                  },
+                  {
+                      "strings":  [
+                                      {
+                                          "line":  217,
+                                          "text":  "Search by pinyin or meaning..."
+                                      }
+                                  ],
+                      "path":  "features/flashcards/presentation/screens/radical_detail_screen.dart"
+                  },
+                  {
+                      "strings":  [
+                                      {
+                                          "line":  112,
+                                          "text":  "Search radicals (e.g. Water, æ°µ)"
+                                      }
+                                  ],
+                      "path":  "features/flashcards/presentation/screens/radical_library_screen.dart"
+                  },
+                  {
+                      "strings":  [
+                                      {
+                                          "line":  104,
+                                          "text":  "New Deck"
+                                      },
+                                      {
+                                          "line":  106,
+                                          "text":  "Add to Deck"
+                                      },
+                                      {
+                                          "line":  131,
+                                          "text":  "e.g., Ordering at a restaurant, Business vocab..."
+                                      },
+                                      {
+                                          "line":  189,
+                                          "text":  "e.g., Formal business language, slang for texting..."
+                                      },
+                                      {
+                                          "line":  261,
+                                          "text":  "Please select a deck to add cards to."
+                                      },
+                                      {
+                                          "line":  338,
+                                          "text":  "Added ${cards.length} cards to \"$_selectedDeckName\"."
+                                      },
+                                      {
+                                          "line":  344,
+                                          "text":  "Error: $e"
+                                      }
+                                  ],
+                      "path":  "features/flashcards/presentation/widgets/ai_deck_generator_sheet.dart"
+                  },
+                  {
+                      "strings":  [
+                                      {
+                                          "line":  410,
+                                          "text":  "Ask a follow-up question..."
+                                      }
+                                  ],
+                      "path":  "features/flashcards/presentation/widgets/ai_explainer_sheet.dart"
+                  },
+                  {
+                      "strings":  [
+                                      {
+                                          "line":  517,
+                                          "text":  "Ask about ${widget.hanzi}..."
+                                      }
+                                  ],
+                      "path":  "features/flashcards/presentation/widgets/character_chat_sheet.dart"
+                  },
+                  {
+                      "strings":  [
+                                      {
+                                          "line":  68,
+                                          "text":  "Detail"
+                                      }
+                                  ],
+                      "path":  "features/flashcards/presentation/widgets/cross_reference_text.dart"
+                  },
+                  {
+                      "strings":  [
+                                      {
+                                          "line":  151,
+                                          "text":  "Error: $err"
+                                      },
+                                      {
+                                          "line":  163,
+                                          "text":  "New Deck"
+                                      },
+                                      {
+                                          "line":  166,
+                                          "text":  "Deck Name"
+                                      },
+                                      {
+                                          "line":  170,
+                                          "text":  "Cancel"
+                                      },
+                                      {
+                                          "line":  171,
+                                          "text":  "Create"
+                                      }
+                                  ],
+                      "path":  "features/flashcards/presentation/widgets/deck_selection_sheet.dart"
+                  },
+                  {
+                      "strings":  [
+                                      {
+                                          "line":  100,
+                                          "text":  "Added \u0027$hanzi\u0027 to your Library"
+                                      },
+                                      {
+                                          "line":  150,
+                                          "text":  "Character / Word"
+                                      },
+                                      {
+                                          "line":  159,
+                                          "text":  "Pinyin"
+                                      },
+                                      {
+                                          "line":  168,
+                                          "text":  "Definition"
+                                      }
+                                  ],
+                      "path":  "features/flashcards/presentation/widgets/flashcard_edit_dialog.dart"
+                  },
+                  {
+                      "strings":  [
+                                      {
+                                          "line":  132,
+                                          "text":  "View My Drawing"
+                                      },
+                                      {
+                                          "line":  132,
+                                          "text":  "View Answer"
+                                      }
+                                  ],
+                      "path":  "features/flashcards/presentation/widgets/modes/recall_mode.dart"
+                  },
+                  {
+                      "strings":  [
+                                      {
+                                          "line":  204,
+                                          "text":  "Show Pinyin"
+                                      },
+                                      {
+                                          "line":  204,
+                                          "text":  "Hide Pinyin"
+                                      },
+                                      {
+                                          "line":  335,
+                                          "text":  "Analyzing pronunciation with Gemini AI..."
+                                      }
+                                  ],
+                      "path":  "features/flashcards/presentation/widgets/modes/speaking_mode.dart"
+                  },
+                  {
+                      "strings":  [
+                                      {
+                                          "line":  103,
+                                          "text":  "Default Deck"
+                                      },
+                                      {
+                                          "line":  130,
+                                          "text":  "Added $char to Review Queue"
+                                      },
+                                      {
+                                          "line":  287,
+                                          "text":  "Etymology: $char"
+                                      }
+                                  ],
+                      "path":  "features/flashcards/presentation/widgets/word_detail_dialog.dart"
+                  },
+                  {
+                      "strings":  [
+                                      {
+                                          "line":  498,
+                                          "text":  "Tap to Retry"
+                                      }
+                                  ],
+                      "path":  "features/media/presentation/screens/channel_videos_screen.dart"
+                  },
+                  {
+                      "strings":  [
+                                      {
+                                          "line":  159,
+                                          "text":  "Failed to load context: $err"
+                                      },
+                                      {
+                                          "line":  208,
+                                          "text":  "Unable to open this video. Please try again later."
+                                      },
+                                      {
+                                          "line":  335,
+                                          "text":  "â€¢"
+                                      }
+                                  ],
+                      "path":  "features/media/presentation/screens/cultural_context_screen.dart"
+                  },
+                  {
+                      "strings":  [
+                                      {
+                                          "line":  217,
+                                          "text":  "Failed to load episodes"
+                                      },
+                                      {
+                                          "line":  224,
+                                          "text":  "Retry"
+                                      },
+                                      {
+                                          "line":  237,
+                                          "text":  "No episodes found"
+                                      }
+                                  ],
+                      "path":  "features/media/presentation/screens/show_detail_screen.dart"
+                  },
+                  {
+                      "strings":  [
+                                      {
+                                          "line":  198,
+                                          "text":  "Retry"
+                                      }
+                                  ],
+                      "path":  "features/media/presentation/screens/story_cultural_insight_screen.dart"
+                  },
+                  {
+                      "strings":  [
+                                      {
+                                          "line":  89,
+                                          "text":  "Show Hanzi"
+                                      },
+                                      {
+                                          "line":  105,
+                                          "text":  "Show Pinyin"
+                                      },
+                                      {
+                                          "line":  121,
+                                          "text":  "Show English"
+                                      },
+                                      {
+                                          "line":  142,
+                                          "text":  "Subtitle Opacity"
+                                      }
+                                  ],
+                      "path":  "features/media/presentation/widgets/premium_video_top_bar.dart"
+                  },
+                  {
+                      "strings":  [
+                                      {
+                                          "line":  86,
+                                          "text":  "No premium packages available at the moment."
+                                      }
+                                  ],
+                      "path":  "features/monetization/presentation/screens/paywall_screen.dart"
+                  },
+                  {
+                      "path":  "main.dart",
+                      "strings":  [
+                                      {
+                                          "line":  161,
+                                          "text":  "SinoSpark"
+                                      },
+                                      {
+                                          "line":  174,
+                                          "text":  "es"
+                                      },
+                                      {
+                                          "line":  174,
+                                          "text":  "fr"
+                                      },
+                                      {
+                                          "line":  174,
+                                          "text":  "en"
+                                      },
+                                      {
+                                          "line":  174,
+                                          "text":  "zh"
+                                      },
+                                      {
+                                          "line":  175,
+                                          "text":  "ko"
+                                      },
+                                      {
+                                          "line":  175,
+                                          "text":  "ru"
+                                      },
+                                      {
+                                          "line":  175,
+                                          "text":  "de"
+                                      },
+                                      {
+                                          "line":  175,
+                                          "text":  "ja"
+                                      },
+                                      {
+                                          "line":  176,
+                                          "text":  "pt"
+                                      },
+                                      {
+                                          "line":  176,
+                                          "text":  "it"
+                                      },
+                                      {
+                                          "line":  176,
+                                          "text":  "ar"
+                                      },
+                                      {
+                                          "line":  176,
+                                          "text":  "hi"
+                                      },
+                                      {
+                                          "line":  177,
+                                          "text":  "id"
+                                      },
+                                      {
+                                          "line":  177,
+                                          "text":  "vi"
+                                      },
+                                      {
+                                          "line":  177,
+                                          "text":  "tr"
+                                      }
+                                  ]
+                  },
+                  {
+                      "strings":  [
+                                      {
+                                          "line":  295,
+                                          "text":  "Chat more"
+                                      },
+                                      {
+                                          "line":  438,
+                                          "text":  "Retry"
+                                      },
+                                      {
+                                          "line":  617,
+                                          "text":  "Ask a follow-up..."
+                                      }
+                                  ],
+                      "path":  "shared/widgets/nuance_compare_sheet.dart"
+                  },
+                  {
+                      "strings":  [
+                                      {
+                                          "line":  365,
+                                          "text":  "Shadow"
+                                      },
+                                      {
+                                          "line":  433,
+                                          "text":  "Trace"
+                                      },
+                                      {
+                                          "line":  447,
+                                          "text":  "Grammar"
+                                      },
+                                      {
+                                          "line":  626,
+                                          "text":  "HSK $hskLevel"
+                                      },
+                                      {
+                                          "line":  633,
+                                          "text":  "Traditional"
+                                      }
+                                  ],
+                      "path":  "shared/widgets/quick_look_sheet.dart"
+                  }
+              ]
+}

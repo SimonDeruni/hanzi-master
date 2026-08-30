@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 import '../../../../core/services/api_key_pool.dart';
 import '../../domain/models/youtube_video.dart';
 import 'shows_data.dart';
+import 'show_summaries.dart';
 import 'valid_show_ids.dart';
 
 /// Whether a show has softcoded (interactive) or hardcoded (burned-in) subtitles.
@@ -22,6 +23,8 @@ class Show {
   final List<YoutubeVideo> episodes;
   final List<String> tags;
   final SubtitleType subtitleType;
+  /// A short 4-sentence English summary of the show (may be null if not pre-generated).
+  final String? summary;
   const Show({
     required this.id,
     required this.title,
@@ -32,6 +35,7 @@ class Show {
     required this.episodes,
     this.tags = const [],
     this.subtitleType = SubtitleType.hard,
+    this.summary,
   });
 }
 
@@ -115,11 +119,53 @@ class ShowRepository {
   static final Map<String, _CachedShows> _cache = {};
   static const _cacheTtl = Duration(hours: 2);
 
+  /// Resolves guaranteed 100% valid hqdefault.jpg image URLs for show playlists.
+  static String resolveShowThumbnail(String rawThumb, List episodes) {
+    // 1. Extract video ID from URL if present
+    final uriMatch = RegExp(r'vi(?:_webp)?/([^/]+)/').firstMatch(rawThumb);
+    if (uriMatch != null) {
+      final vid = uriMatch.group(1)!;
+      return 'https://i.ytimg.com/vi/$vid/hqdefault.jpg';
+    }
+
+    // 2. Fall back to first episode's thumbnail or ID
+    if (episodes.isNotEmpty) {
+      final firstEp = episodes.first;
+      if (firstEp is Map) {
+        final epThumb = firstEp['thumbnailUrl'] as String? ?? '';
+        final epMatch = RegExp(r'vi(?:_webp)?/([^/]+)/').firstMatch(epThumb);
+        if (epMatch != null) {
+          final vid = epMatch.group(1)!;
+          return 'https://i.ytimg.com/vi/$vid/hqdefault.jpg';
+        }
+        final epId = firstEp['id'] as String? ?? '';
+        if (epId.isNotEmpty) {
+          return 'https://i.ytimg.com/vi/$epId/hqdefault.jpg';
+        }
+      }
+    }
+
+    // 3. String-based cleanup without double-replacement corruption
+    if (rawThumb.isNotEmpty && rawThumb.startsWith('http')) {
+      if (rawThumb.contains('maxresdefault.jpg')) {
+        return rawThumb.replaceAll('maxresdefault.jpg', 'hqdefault.jpg');
+      }
+      if (rawThumb.contains('sddefault.jpg')) {
+        return rawThumb.replaceAll('sddefault.jpg', 'hqdefault.jpg');
+      }
+      if (rawThumb.contains('/default.jpg')) {
+        return rawThumb.replaceAll('/default.jpg', '/hqdefault.jpg');
+      }
+    }
+
+    return rawThumb;
+  }
+
   /// Returns all shows from the hardcoded catalog (instant, no API calls).
   /// All shows have been pre-verified to have Chinese captions.
   /// Episodes are still fetched on-demand via [fetchEpisodes].
   Future<Map<ShowGenre, List<Show>>> fetchAllShows() async {
-    const cacheKey = "all_shows_v7";
+    const cacheKey = "all_shows_v8";
     final cached = _cache[cacheKey];
     if (cached != null &&
         DateTime.now().difference(cached.timestamp) < _cacheTtl) {
@@ -133,30 +179,9 @@ class ShowRepository {
       // Exclude any playlist that contains trailers, short teasers, or clips under 13 minutes
       if (!kValidLongShowIds.contains(playlistId)) continue;
 
-      String thumb = (entry["thumbnailUrl"] as String? ?? '').trim();
+      final rawThumb = (entry["thumbnailUrl"] as String? ?? '').trim();
       final episodes = entry["episodes"] as List? ?? [];
-      
-      // If thumb is empty or missing, fall back to first episode's thumb
-      if ((thumb.isEmpty || !thumb.startsWith('http')) && episodes.isNotEmpty) {
-        final firstEp = episodes.first as Map<String, dynamic>?;
-        thumb = (firstEp?['thumbnailUrl'] as String? ?? '').trim();
-      }
-
-      // Convert maxresdefault / default to hqdefault which is universally guaranteed to exist for all YouTube videos
-      if (thumb.contains('maxresdefault.jpg') || thumb.contains('sddefault.jpg') || (thumb.contains('default.jpg') && !thumb.contains('hqdefault.jpg'))) {
-        thumb = thumb.replaceAll('maxresdefault.jpg', 'hqdefault.jpg')
-                     .replaceAll('sddefault.jpg', 'hqdefault.jpg')
-                     .replaceAll('default.jpg', 'hqdefault.jpg');
-      }
-
-      // If still empty or no hqdefault, construct from first episode ID
-      if ((thumb.isEmpty || !thumb.startsWith('http')) && episodes.isNotEmpty) {
-        final firstEp = episodes.first as Map<String, dynamic>?;
-        final epId = firstEp?['id'] as String? ?? '';
-        if (epId.isNotEmpty) {
-          thumb = 'https://i.ytimg.com/vi/$epId/hqdefault.jpg';
-        }
-      }
+      final thumb = resolveShowThumbnail(rawThumb, episodes);
 
       final title = entry["title"] as String? ?? '';
       final channelTitle = entry["channelTitle"] as String? ?? '';
@@ -176,6 +201,7 @@ class ShowRepository {
         subtitleType: entry["subtitleType"] == "soft"
             ? SubtitleType.soft
             : SubtitleType.hard,
+        summary: showSummaries[title],
       ));
     }
 

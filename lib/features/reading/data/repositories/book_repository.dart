@@ -1,4 +1,4 @@
-﻿import 'dart:convert';
+import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -9,12 +9,15 @@ import 'package:hanzi_master/features/reading/domain/logic/reading_session.dart'
 
 class BookRepository {
   static const String _progressBoxName = 'grand_library_progress_v1';
-  static const String _bookCacheBoxName = 'grand_library_book_cache_v5'; // Bumped cache key to refresh
+  static const String _bookCacheBoxName =
+      'grand_library_book_cache_v5'; // Bumped cache key to refresh
   static const String _bookmarksBoxName = 'grand_library_bookmarks_v1';
   static const String _sessionBoxName = 'grand_library_session_v1';
-  static const String _readingHistoryBoxName = 'grand_library_reading_history_v1';
+  static const String _readingHistoryBoxName =
+      'grand_library_reading_history_v1';
 
   List<BookModel> _cachedCatalog = [];
+  List<Map<String, dynamic>> _poetryEntries = [];
 
   Future<void> init() async {
     if (!Hive.isBoxOpen(_progressBoxName)) {
@@ -33,21 +36,64 @@ class BookRepository {
       await Hive.openBox<dynamic>(_readingHistoryBoxName);
     }
     // Delete legacy cache boxes if still present
-    for (final oldBox in ['grand_library_book_cache_v1', 'grand_library_book_cache_v2', 'grand_library_book_cache_v3', 'grand_library_book_cache_v4']) {
+    for (final oldBox in [
+      'grand_library_book_cache_v1',
+      'grand_library_book_cache_v2',
+      'grand_library_book_cache_v3',
+      'grand_library_book_cache_v4'
+    ]) {
       try {
         if (await Hive.boxExists(oldBox)) {
           await Hive.deleteBoxFromDisk(oldBox);
         }
       } catch (_) {}
     }
+    await _loadPoetryEntries();
+    await _canonicalizeLegacyBookmarkBookIds();
     await loadCatalog();
+  }
+
+  Future<void> _loadPoetryEntries() async {
+    try {
+      final content = await rootBundle.loadString(chinesePoetryAsset);
+      final entries = jsonDecode(content) as List<dynamic>;
+      _poetryEntries = entries
+          .map((entry) => Map<String, dynamic>.from(entry as Map))
+          .toList();
+    } catch (_) {
+      _poetryEntries = [];
+    }
+  }
+
+  String _canonicalBookId(String bookId) =>
+      canonicalPoetryId(_poetryEntries, bookId) ?? bookId;
+
+  Future<void> _canonicalizeLegacyBookmarkBookIds() async {
+    if (!Hive.isBoxOpen(_bookmarksBoxName) || _poetryEntries.isEmpty) return;
+    final box = Hive.box<dynamic>(_bookmarksBoxName);
+    for (final key in box.keys.toList()) {
+      final value = box.get(key);
+      if (value is! Map) continue;
+      try {
+        final bookmark = Map<String, dynamic>.from(value);
+        final oldId = bookmark['bookId']?.toString() ?? '';
+        final canonicalId = _canonicalBookId(oldId);
+        if (oldId != canonicalId) {
+          bookmark['bookId'] = canonicalId;
+          await box.put(key, bookmark);
+        }
+      } catch (_) {}
+    }
   }
 
   Future<List<BookModel>> loadCatalog() async {
     try {
-      final jsonString = await rootBundle.loadString('assets/data/grand_library_catalog.json');
+      final jsonString =
+          await rootBundle.loadString('assets/data/grand_library_catalog.json');
       final List<dynamic> list = jsonDecode(jsonString);
-      _cachedCatalog = list.map((e) => BookModel.fromJson(e as Map<String, dynamic>)).toList();
+      _cachedCatalog = list
+          .map((e) => BookModel.fromJson(e as Map<String, dynamic>))
+          .toList();
     } catch (e) {
       _cachedCatalog = [];
     }
@@ -64,13 +110,15 @@ class BookRepository {
           final data = Map<String, dynamic>.from(item as Map);
           if (poetryEntryMatchesId(data, bookId)) {
             final rawText = (data['rawText'] as String? ?? '').trim();
-            final lines = rawText.split('\n').where((l) => l.trim().isNotEmpty).toList();
+            final lines =
+                rawText.split('\n').where((l) => l.trim().isNotEmpty).toList();
             final sentences = <BookSentence>[];
             for (final line in lines) {
               final cleanLine = line.trim();
               sentences.add(BookSentence(
                 chinese: cleanLine,
-                pinyin: PinyinHelper.getPinyinE(cleanLine, separator: ' ', format: PinyinFormat.WITH_TONE_MARK),
+                pinyin: PinyinHelper.getPinyinE(cleanLine,
+                    separator: ' ', format: PinyinFormat.WITH_TONE_MARK),
                 english: '',
               ));
             }
@@ -100,14 +148,18 @@ class BookRepository {
         final map = e as Map<String, dynamic>;
         var ch = BookChapter.fromJson(map);
         // Runtime sanity check: ensure titleEn does not have verbatim Chinese repetition
-        if (ch.titleEn.contains(RegExp(r'[\u4e00-\u9fa5]')) || ch.titleEn.startsWith('Chapter ${ch.chapterIndex}: 第')) {
-          final cleanZh = ch.title.replaceAll(RegExp(r'第[0-9一二三四五六七八九十百千]+[回卷章篇][:：]?\s*'), '').trim();
+        if (ch.titleEn.contains(RegExp(r'[\u4e00-\u9fa5]')) ||
+            ch.titleEn.startsWith('Chapter ${ch.chapterIndex}: 第')) {
+          final cleanZh = ch.title
+              .replaceAll(RegExp(r'第[0-9一二三四五六七八九十百千]+[回卷章篇][:：]?\s*'), '')
+              .trim();
           ch = BookChapter(
             id: ch.id,
             bookId: ch.bookId,
             chapterIndex: ch.chapterIndex,
             title: ch.title,
-            titleEn: 'Chapter ${ch.chapterIndex}: ${cleanZh.isEmpty ? "The Narrative" : cleanZh}',
+            titleEn:
+                'Chapter ${ch.chapterIndex}: ${cleanZh.isEmpty ? "The Narrative" : cleanZh}',
             sentences: ch.sentences,
           );
         }
@@ -126,7 +178,9 @@ class BookRepository {
       if (cachedJson != null) {
         try {
           final List<dynamic> list = jsonDecode(cachedJson);
-          final chapters = list.map((e) => BookChapter.fromJson(e as Map<String, dynamic>)).toList();
+          final chapters = list
+              .map((e) => BookChapter.fromJson(e as Map<String, dynamic>))
+              .toList();
           if (chapters.isNotEmpty) return chapters;
         } catch (_) {}
       }
@@ -155,7 +209,8 @@ class BookRepository {
     );
     final chapters = _generateDefaultChaptersForBook(book);
     if (Hive.isBoxOpen(_bookCacheBoxName)) {
-      await Hive.box<String>(_bookCacheBoxName).put(bookId, jsonEncode(chapters.map((c) => c.toJson()).toList()));
+      await Hive.box<String>(_bookCacheBoxName)
+          .put(bookId, jsonEncode(chapters.map((c) => c.toJson()).toList()));
     }
     return chapters;
   }
@@ -222,7 +277,9 @@ class BookRepository {
   Future<void> saveBookmark(BookmarkModel bookmark) async {
     if (!Hive.isBoxOpen(_bookmarksBoxName)) return;
     final box = Hive.box<dynamic>(_bookmarksBoxName);
-    await box.put(bookmark.id, bookmark.toJson());
+    final json = bookmark.toJson();
+    json['bookId'] = _canonicalBookId(bookmark.bookId);
+    await box.put(bookmark.id, json);
   }
 
   Future<void> removeBookmark(String bookmarkId) async {
@@ -235,10 +292,11 @@ class BookRepository {
     if (!Hive.isBoxOpen(_bookmarksBoxName)) return [];
     final box = Hive.box<dynamic>(_bookmarksBoxName);
     final bookmarks = <BookmarkModel>[];
+    final canonicalBookId = _canonicalBookId(bookId);
     for (final val in box.values) {
       if (val is Map) {
         final bm = BookmarkModel.fromJson(Map<String, dynamic>.from(val));
-        if (bm.bookId == bookId) {
+        if (_canonicalBookId(bm.bookId) == canonicalBookId) {
           bookmarks.add(bm);
         }
       }
@@ -257,13 +315,15 @@ class BookRepository {
   }) async {
     if (!Hive.isBoxOpen(_sessionBoxName)) return;
     final box = Hive.box<dynamic>(_sessionBoxName);
-    await box.put('last_session', ReadingSessionData(
-      bookId: bookId,
-      chapterIndex: chapterIndex,
-      sentenceIndex: sentenceIndex,
-      wasAudiobook: wasAudiobook,
-      lastActiveTimestamp: DateTime.now(),
-    ).toJson());
+    await box.put(
+        'last_session',
+        ReadingSessionData(
+          bookId: bookId,
+          chapterIndex: chapterIndex,
+          sentenceIndex: sentenceIndex,
+          wasAudiobook: wasAudiobook,
+          lastActiveTimestamp: DateTime.now(),
+        ).toJson());
   }
 
   ReadingSessionData? getLastReadingSession() {
@@ -279,7 +339,8 @@ class BookRepository {
   Future<void> recordReadingEvent() async {
     if (!Hive.isBoxOpen(_readingHistoryBoxName)) return;
     final box = Hive.box<dynamic>(_readingHistoryBoxName);
-    final todayKey = DateTime.now().toIso8601String().substring(0, 10); // YYYY-MM-DD
+    final todayKey =
+        DateTime.now().toIso8601String().substring(0, 10); // YYYY-MM-DD
     await box.put(todayKey, DateTime.now().toIso8601String());
   }
 
@@ -314,13 +375,18 @@ class BookRepository {
     for (final val in box.values) {
       if (val is Map) {
         try {
-          result.add(Map<String, dynamic>.from(val));
+          final bookmark = Map<String, dynamic>.from(val);
+          final bookId = bookmark['bookId']?.toString() ?? '';
+          bookmark['bookId'] = _canonicalBookId(bookId);
+          result.add(bookmark);
         } catch (_) {}
       }
     }
     result.sort((a, b) {
-      final aDate = DateTime.tryParse(a['createdAt'] as String? ?? '') ?? DateTime(2000);
-      final bDate = DateTime.tryParse(b['createdAt'] as String? ?? '') ?? DateTime(2000);
+      final aDate =
+          DateTime.tryParse(a['createdAt'] as String? ?? '') ?? DateTime(2000);
+      final bDate =
+          DateTime.tryParse(b['createdAt'] as String? ?? '') ?? DateTime(2000);
       return bDate.compareTo(aDate);
     });
     return result;
@@ -346,33 +412,48 @@ class BookRepository {
       final sentences = <BookSentence>[
         BookSentence(
           chinese: '在《${book.title}》这一章的叙事中，${book.author}以极其生动的笔墨展开了宏大的文学画卷。',
-          pinyin: PinyinHelper.getPinyinE('在《${book.title}》这一章的叙事中，${book.author}以极其生动的笔墨展开了宏大的文学画卷。', separator: ' ', format: PinyinFormat.WITH_TONE_MARK),
-          english: 'In this chapter of "${book.titleEn}", ${book.authorEn} paints an expansive literary canvas with vivid narrative depth.',
+          pinyin: PinyinHelper.getPinyinE(
+              '在《${book.title}》这一章的叙事中，${book.author}以极其生动的笔墨展开了宏大的文学画卷。',
+              separator: ' ',
+              format: PinyinFormat.WITH_TONE_MARK),
+          english:
+              'In this chapter of "${book.titleEn}", ${book.authorEn} paints an expansive literary canvas with vivid narrative depth.',
         ),
         BookSentence(
           chinese: book.description,
-          pinyin: PinyinHelper.getPinyinE(book.description, separator: ' ', format: PinyinFormat.WITH_TONE_MARK),
+          pinyin: PinyinHelper.getPinyinE(book.description,
+              separator: ' ', format: PinyinFormat.WITH_TONE_MARK),
           english: book.descriptionEn,
         ),
         BookSentence(
           chinese: '天地广阔，风云际会，人物在这个动荡而深邃的世界中追寻着自己的命运与信念。',
-          pinyin: PinyinHelper.getPinyinE('天地广阔，风云际会，人物在这个动荡而深邃的世界中追寻着自己的命运与信念。', separator: ' ', format: PinyinFormat.WITH_TONE_MARK),
-          english: 'Across the vast expanse of heaven and earth, characters pursue their destiny and convictions through profound trials.',
+          pinyin: PinyinHelper.getPinyinE(
+              '天地广阔，风云际会，人物在这个动荡而深邃的世界中追寻着自己的命运与信念。',
+              separator: ' ',
+              format: PinyinFormat.WITH_TONE_MARK),
+          english:
+              'Across the vast expanse of heaven and earth, characters pursue their destiny and convictions through profound trials.',
         ),
         BookSentence(
           chinese: '故事中的每一次对话与交锋，都蕴含着人性的光辉与时代的深切烙印。',
-          pinyin: PinyinHelper.getPinyinE('故事中的每一次对话与交锋，都蕴含着人性的光辉与时代的深切烙印。', separator: ' ', format: PinyinFormat.WITH_TONE_MARK),
-          english: 'Every dialogue and encounter within the tale carries the brilliance of the human spirit and the imprint of its era.',
+          pinyin: PinyinHelper.getPinyinE('故事中的每一次对话与交锋，都蕴含着人性的光辉与时代的深切烙印。',
+              separator: ' ', format: PinyinFormat.WITH_TONE_MARK),
+          english:
+              'Every dialogue and encounter within the tale carries the brilliance of the human spirit and the imprint of its era.',
         ),
         BookSentence(
           chinese: '顺着文字的流淌，读者得以跨越千百年的时光，与智者和英雄们同悲同喜。',
-          pinyin: PinyinHelper.getPinyinE('顺着文字的流淌，读者得以跨越千百年的时光，与智者和英雄们同悲同喜。', separator: ' ', format: PinyinFormat.WITH_TONE_MARK),
-          english: 'Following the flow of prose, readers traverse centuries of time to share in the triumphs and sorrows of legendary figures.',
+          pinyin: PinyinHelper.getPinyinE('顺着文字的流淌，读者得以跨越千百年的时光，与智者和英雄们同悲同喜。',
+              separator: ' ', format: PinyinFormat.WITH_TONE_MARK),
+          english:
+              'Following the flow of prose, readers traverse centuries of time to share in the triumphs and sorrows of legendary figures.',
         ),
         BookSentence(
           chinese: '随着情节的层层推进，故事逐渐揭示出生命最本质的智慧与深刻的启迪。',
-          pinyin: PinyinHelper.getPinyinE('随着情节的层层推进，故事逐渐揭示出生命最本质的智慧与深刻的启迪。', separator: ' ', format: PinyinFormat.WITH_TONE_MARK),
-          english: 'As the narrative unfolds, it illuminates the fundamental wisdom of life and lasting inspiration.',
+          pinyin: PinyinHelper.getPinyinE('随着情节的层层推进，故事逐渐揭示出生命最本质的智慧与深刻的启迪。',
+              separator: ' ', format: PinyinFormat.WITH_TONE_MARK),
+          english:
+              'As the narrative unfolds, it illuminates the fundamental wisdom of life and lasting inspiration.',
         ),
       ];
 

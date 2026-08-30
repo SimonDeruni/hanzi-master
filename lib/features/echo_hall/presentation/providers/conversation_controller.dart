@@ -9,6 +9,8 @@ import 'package:hanzi_master/core/models/pronunciation_grade.dart';
 import '../../../chat/domain/entities/chat_message.dart';
 import '../../../../core/utils/pinyin_utils.dart';
 
+import 'package:lpinyin/lpinyin.dart';
+
 final conversationControllerProvider = StateNotifierProvider.autoDispose<ConversationController, ConversationState>((ref) {
   return ConversationController(
     echoHallService: ref.watch(echoHallServiceProvider),
@@ -67,6 +69,10 @@ class ConversationController extends StateNotifier<ConversationState> {
     // Atomically wipe ALL previous state before loading the new scenario.
     // Using the hardcoded initialAiMessage guarantees the greeting always
     // matches the avatar — no LLM call means no possibility of persona bleed.
+    final initialPinyin = (scenario.initialPinyin != null && scenario.initialPinyin!.isNotEmpty)
+        ? PinyinUtils.convertNumericToMarks(scenario.initialPinyin!)
+        : PinyinHelper.getPinyinE(scenario.initialAiMessage, separator: ' ', format: PinyinFormat.WITH_TONE_MARK);
+
     state = ConversationState(
       currentScenario: scenario,
       messages: [
@@ -76,7 +82,7 @@ class ConversationController extends StateNotifier<ConversationState> {
           role: ChatRole.scholar,
           timestamp: DateTime.now(),
           english: scenario.initialEnglish,
-          pinyin: scenario.initialPinyin != null ? PinyinUtils.convertNumericToMarks(scenario.initialPinyin!) : null,
+          pinyin: initialPinyin,
         ),
       ],
       isProcessing: false,
@@ -302,7 +308,16 @@ class ConversationController extends StateNotifier<ConversationState> {
       }
 
       // Re-anchor persona on every turn to prevent drift
-      final hardenedPrompt = '${state.currentScenario!.systemPrompt}\n\nCRITICAL: You are "${state.currentScenario!.personaName}". Stay in this exact persona. Do not switch characters.';
+      final scenario = state.currentScenario!;
+      final hardenedPrompt = '''${scenario.systemPrompt}
+
+### MANDATORY PERSONA ENFORCEMENT ###
+- You are playing the role of: "${scenario.personaName}" in the scenario: "${scenario.title}".
+- Setting & Context: "${scenario.description}".
+- Target HSK Level: HSK ${scenario.targetHskLevel}.
+- RULE 1: NEVER break character or reveal that you are an AI, language model, or virtual assistant.
+- RULE 2: ALWAYS respond strictly from the perspective of "${scenario.personaName}" in natural, authentic conversational Chinese suitable for your persona and role.
+- RULE 3: Keep your responses interactive, natural, and concise (1-3 sentences). Continue the roleplay seamlessly.''';
       
       final replyJson = await _echoHallService.getConversationResponse(state.messages, hardenedPrompt);
       
@@ -317,10 +332,15 @@ class ConversationController extends StateNotifier<ConversationState> {
         }
       }
 
+      final chineseText = (replyJson['chinese'] as String? ?? '').trim();
+      final pinyinToUse = (rawPinyin != null && rawPinyin.isNotEmpty)
+          ? PinyinUtils.convertNumericToMarks(rawPinyin)
+          : PinyinHelper.getPinyinE(chineseText, separator: ' ', format: PinyinFormat.WITH_TONE_MARK);
+
       final aiMsg = GradedChatMessage(
         id: DateTime.now().millisecondsSinceEpoch.toString(),
-        content: replyJson['chinese'] ?? '',
-        pinyin: rawPinyin != null ? PinyinUtils.convertNumericToMarks(rawPinyin) : null,
+        content: chineseText,
+        pinyin: pinyinToUse,
         english: replyJson['english'],
         suggestion: formattedSuggestion,
         role: ChatRole.scholar,
@@ -355,12 +375,24 @@ class ConversationController extends StateNotifier<ConversationState> {
     if (index == -1) return;
 
     final msg = state.messages[index];
+    final pinyin = (msg.pinyin != null && msg.pinyin!.isNotEmpty)
+        ? msg.pinyin!
+        : PinyinHelper.getPinyinE(msg.content, separator: ' ', format: PinyinFormat.WITH_TONE_MARK);
+
     // Skip if already translated
-    if (msg.english != null && msg.english!.isNotEmpty) return;
+    if (msg.english != null && msg.english!.isNotEmpty) {
+      if (msg.pinyin == null || msg.pinyin!.isEmpty) {
+        final updatedMsg = msg.copyWith(pinyin: pinyin);
+        final newMessages = List<GradedChatMessage>.from(state.messages);
+        newMessages[index] = updatedMsg;
+        state = state.copyWith(messages: newMessages);
+      }
+      return;
+    }
 
     try {
       final translation = await _geminiService.translateTextToEnglish(msg.content);
-      final updatedMsg = msg.copyWith(english: translation);
+      final updatedMsg = msg.copyWith(english: translation, pinyin: pinyin);
       final newMessages = List<GradedChatMessage>.from(state.messages);
       newMessages[index] = updatedMsg;
       state = state.copyWith(messages: newMessages);

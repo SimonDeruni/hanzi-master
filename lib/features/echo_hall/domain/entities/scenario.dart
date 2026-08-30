@@ -38,6 +38,16 @@ class ConversationScenario {
     this.deckId,
   });
 
+  bool get hasAvatar =>
+      avatarAssetPath.isNotEmpty && avatarAssetPath != 'none' && !isCustom;
+
+  String get resolvedAvatarAssetPath {
+    if (hasAvatar) {
+      return avatarAssetPath;
+    }
+    return 'none';
+  }
+
   Map<String, dynamic> toJson() {
     return {
       'id': id,
@@ -69,7 +79,7 @@ class ConversationScenario {
       initialPinyin: json['initialPinyin'],
       systemPrompt: json['systemPrompt'],
       targetHskLevel: json['targetHskLevel'],
-      avatarAssetPath: json['avatarAssetPath'],
+      avatarAssetPath: json['avatarAssetPath'] ?? '',
       backgroundAudioPath: json['backgroundAudioPath'],
       backgroundAssetPath: json['backgroundAssetPath'],
       quests: List<String>.from(json['quests'] ?? []),

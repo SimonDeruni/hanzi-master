@@ -561,30 +561,30 @@ class _ChannelVideosScreenState extends ConsumerState<ChannelVideosScreen> {
               ],
             ),
             Padding(
-              padding: const EdgeInsets.all(12.0),
+              padding: const EdgeInsets.fromLTRB(14, 12, 14, 14),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    video.title,
+                    video.title.isNotEmpty ? video.title : 'Watch Video',
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 14,
-                      height: 1.3,
+                      fontWeight: FontWeight.w700,
+                      fontSize: 15,
+                      height: 1.35,
                       color: isDark ? Colors.white : const Color(0xFF1A1A1B),
                     ),
                   ),
                   const SizedBox(height: 6),
                   Text(
-                    video.channelTitle,
+                    video.channelTitle.isNotEmpty ? video.channelTitle : _currentChannelName,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
-                      color: isDark ? Colors.white60 : Colors.grey.shade600,
-                      fontSize: 12,
-                      fontWeight: FontWeight.w600,
+                      color: isDark ? Colors.white60 : Colors.grey.shade700,
+                      fontSize: 13,
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
                 ],
@@ -597,24 +597,24 @@ class _ChannelVideosScreenState extends ConsumerState<ChannelVideosScreen> {
   }
 
   Widget _buildDurationBadge(Duration? duration) {
-    if (duration == null || duration == Duration.zero || duration.inSeconds == 0) {
-      return const SizedBox.shrink();
-    }
-    final text = _formatDuration(duration);
+    final text = (duration != null && duration.inSeconds > 0)
+        ? _formatDuration(duration)
+        : '';
+    if (text.isEmpty) return const SizedBox.shrink();
     return Positioned(
       bottom: 8,
       right: 8,
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
         decoration: BoxDecoration(
-          color: Colors.black.withValues(alpha: 0.8),
+          color: Colors.black.withValues(alpha: 0.85),
           borderRadius: BorderRadius.circular(6),
         ),
         child: Text(
           text,
           style: const TextStyle(
             color: Colors.white,
-            fontSize: 12,
+            fontSize: 11,
             fontWeight: FontWeight.bold,
           ),
         ),

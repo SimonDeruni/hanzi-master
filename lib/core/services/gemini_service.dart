@@ -2439,10 +2439,6 @@ Return ONLY a valid JSON object matching this structure:
       List<TranscriptLine> lines) async {
     if (lines.isEmpty) return lines;
 
-    // Detect if the text is Pinyin-based (Latin chars with diacritics) so we can store it.
-    final isPinyinBased =
-        !lines.any((l) => RegExp(r'[\u4e00-\u9fff]').hasMatch(l.text));
-
     // Process in chunks of 20 to avoid LLM token limits and parse failures.
     const chunkSize = 20;
     final result = <TranscriptLine>[];
@@ -2460,8 +2456,10 @@ Return ONLY a valid JSON object matching this structure:
         final prompt = '''
 You are a Chinese learning assistant.
 I will give you ${chunk.length} video transcript lines.
+If these lines are in English or another foreign language, translate them into natural Chinese Hanzi characters for the "hanzi" field.
 If these lines are in Pinyin (Latin alphabet), convert them to standard Chinese Hanzi characters for the "hanzi" field.
 If they are already in Hanzi, keep them as-is.
+For each line, generate standard Mandarin Pinyin with tone marks for the "pinyin" field (e.g. "nǐ hǎo").
 Translate each line to "$targetLanguage" for the "translation" field.
 
 CRITICAL: Return EXACTLY ${chunk.length} objects in the array — one per input line. No skipping.
@@ -2471,7 +2469,7 @@ $chunkText
 
 Return ONLY a valid JSON array:
 [
-  { "hanzi": "Chinese Hanzi here", "translation": "Translation in $targetLanguage" }
+  { "hanzi": "Chinese Hanzi here", "pinyin": "pīnyīn with tone marks", "translation": "Translation in $targetLanguage" }
 ]''';
 
         final response = await makeOpenRouterCall(
@@ -2491,22 +2489,30 @@ Return ONLY a valid JSON array:
 
         for (int i = 0; i < chunk.length; i++) {
           String hanzi = chunk[i].text;
+          String? pinyin;
           String? translation;
 
           if (i < jsonArr.length) {
             final item = jsonArr[i];
             if (item is Map) {
               hanzi = item['hanzi']?.toString() ?? chunk[i].text;
+              pinyin = item['pinyin']?.toString();
               translation = item['translation']?.toString();
             }
           }
 
-          // Store original Pinyin in the pinyin field if we detected pinyin-based input
-          final pinyinValue = isPinyinBased ? chunk[i].text : chunk[i].pinyin;
+          // Ensure Pinyin is always valid tone-marked pinyin for Hanzi
+          if (pinyin == null ||
+              pinyin.trim().isEmpty ||
+              (translation != null && pinyin.trim().toLowerCase() == translation.trim().toLowerCase())) {
+            if (RegExp(r'[\u4e00-\u9fff]').hasMatch(hanzi)) {
+              pinyin = PinyinHelper.getPinyinE(hanzi, separator: ' ', format: PinyinFormat.WITH_TONE_MARK);
+            }
+          }
 
           result.add(TranscriptLine(
             text: hanzi,
-            pinyin: pinyinValue,
+            pinyin: pinyin,
             start: chunk[i].start,
             duration: chunk[i].duration,
             translation: translation,
@@ -2514,11 +2520,14 @@ Return ONLY a valid JSON array:
         }
       } catch (e) {
         debugPrint('Error translating chunk $start-${start + chunkSize}: $e');
-        // Fallback: keep originals for this chunk
+        // Fallback: keep originals for this chunk and generate pinyin locally if text has Hanzi
         for (final line in chunk) {
+          final pinyinFallback = line.pinyin ?? (RegExp(r'[\u4e00-\u9fff]').hasMatch(line.text)
+              ? PinyinHelper.getPinyinE(line.text, separator: ' ', format: PinyinFormat.WITH_TONE_MARK)
+              : null);
           result.add(TranscriptLine(
             text: line.text,
-            pinyin: isPinyinBased ? line.text : line.pinyin,
+            pinyin: pinyinFallback,
             start: line.start,
             duration: line.duration,
             translation: null,
@@ -2530,14 +2539,11 @@ Return ONLY a valid JSON array:
     return result;
   }
 
-  /// Translates a single chunk of transcript lines (Pinyin → Hanzi + localized translation).
+  /// Translates a single chunk of transcript lines (Pinyin/English → Hanzi + localized translation).
   /// Called incrementally by the screen to progressively update the UI.
   Future<List<TranscriptLine>> translateChunk(List<TranscriptLine> chunk,
       {String? language}) async {
     if (chunk.isEmpty) return chunk;
-
-    final isPinyinBased =
-        !chunk.any((l) => RegExp(r'[\u4e00-\u9fff]').hasMatch(l.text));
 
     final chunkText = chunk
         .asMap()
@@ -2548,8 +2554,10 @@ Return ONLY a valid JSON array:
     final prompt = '''
 You are a Chinese learning assistant.
 I will give you ${chunk.length} video transcript lines.
+If these lines are in English or another foreign language, translate them into natural Chinese Hanzi characters for the "hanzi" field.
 If these lines are in Pinyin (Latin alphabet with tone marks), convert them to standard Chinese Hanzi characters for the "hanzi" field.
 If they are already in Hanzi, keep them as-is.
+For each line, generate standard Mandarin Pinyin with tone marks for the "pinyin" field (e.g. "nǐ hǎo").
 Translate each line to "${language ?? targetLanguage}" for the "translation" field.
 
 CRITICAL: Return EXACTLY ${chunk.length} objects in the array — one per input line. No skipping.
@@ -2559,7 +2567,7 @@ $chunkText
 
 Return ONLY a valid JSON array:
 [
-  { "hanzi": "Chinese Hanzi here", "translation": "Translation in ${language ?? targetLanguage}" }
+  { "hanzi": "Chinese Hanzi here", "pinyin": "pīnyīn with tone marks", "translation": "Translation in ${language ?? targetLanguage}" }
 ]''';
 
     final response = await makeOpenRouterCall(
@@ -2580,19 +2588,30 @@ Return ONLY a valid JSON array:
 
     for (int i = 0; i < chunk.length; i++) {
       String hanzi = chunk[i].text;
+      String? pinyin;
       String? translation;
 
       if (i < jsonArr.length) {
         final item = jsonArr[i];
         if (item is Map) {
           hanzi = item['hanzi']?.toString() ?? chunk[i].text;
+          pinyin = item['pinyin']?.toString();
           translation = item['translation']?.toString();
+        }
+      }
+
+      // Ensure Pinyin is always valid tone-marked pinyin for Hanzi
+      if (pinyin == null ||
+          pinyin.trim().isEmpty ||
+          (translation != null && pinyin.trim().toLowerCase() == translation.trim().toLowerCase())) {
+        if (RegExp(r'[\u4e00-\u9fff]').hasMatch(hanzi)) {
+          pinyin = PinyinHelper.getPinyinE(hanzi, separator: ' ', format: PinyinFormat.WITH_TONE_MARK);
         }
       }
 
       result.add(TranscriptLine(
         text: hanzi,
-        pinyin: isPinyinBased ? chunk[i].text : chunk[i].pinyin,
+        pinyin: pinyin,
         start: chunk[i].start,
         duration: chunk[i].duration,
         translation: translation,

@@ -37,8 +37,10 @@ class _ShowCatalogScreenState extends ConsumerState<ShowCatalogScreen> {
     return Scaffold(
       backgroundColor: isDark ? const Color(0xFF0A0A0B) : const Color(0xFFFDFCF0),
       body: showsAsync.when(
-        loading: () => const Center(
-          child: CircularProgressIndicator(color: Colors.amber),
+        loading: () => Center(
+          child: CircularProgressIndicator(
+            color: isDark ? Colors.amber : const Color(0xFF8B6914),
+          ),
         ),
         error: (error, stack) => Center(
           child: Column(
@@ -46,11 +48,17 @@ class _ShowCatalogScreenState extends ConsumerState<ShowCatalogScreen> {
             children: [
               const Icon(Icons.error_outline, color: Colors.red, size: 40),
               const SizedBox(height: 12),
-              Text('Failed to load shows', style: TextStyle(color: Colors.grey[400])),
+              Text('Failed to load shows',
+                  style: TextStyle(
+                    color: isDark ? Colors.grey[400] : Colors.grey.shade700,
+                  )),
               const SizedBox(height: 8),
               TextButton(
                 onPressed: () => ref.invalidate(showsProvider),
-                child: const Text('Retry', style: TextStyle(color: Colors.amber)),
+                child: Text('Retry',
+                    style: TextStyle(
+                      color: isDark ? Colors.amber : const Color(0xFF8B6914),
+                    )),
               ),
             ],
           ),
@@ -61,9 +69,15 @@ class _ShowCatalogScreenState extends ConsumerState<ShowCatalogScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.tv_off, color: Colors.grey[600], size: 48),
+                  Icon(Icons.tv_off,
+                      color: isDark ? Colors.grey[600] : Colors.grey.shade500,
+                      size: 48),
                   const SizedBox(height: 12),
-                  Text('No shows available', style: TextStyle(color: Colors.grey[500], fontSize: 16)),
+                  Text('No shows available',
+                      style: TextStyle(
+                        color: isDark ? Colors.grey[500] : Colors.grey.shade600,
+                        fontSize: 16,
+                      )),
                 ],
               ),
             );
@@ -106,7 +120,9 @@ class _ShowCatalogScreenState extends ConsumerState<ShowCatalogScreen> {
                         ? Center(
                             child: Text(
                               'No shows found',
-                              style: TextStyle(color: Colors.grey[600]),
+                              style: TextStyle(
+                                color: isDark ? Colors.grey[600] : Colors.grey.shade600,
+                              ),
                             ),
                           )
                         : ListView.builder(
@@ -160,19 +176,21 @@ class _BookmarkedRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Padding(
-          padding: EdgeInsets.fromLTRB(16, 16, 16, 8),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
           child: Row(
             children: [
-              Icon(Icons.bookmark, color: Colors.amber, size: 18),
-              SizedBox(width: 6),
+              Icon(Icons.bookmark,
+                  color: isDark ? Colors.amber : const Color(0xFF8B6914), size: 18),
+              const SizedBox(width: 6),
               Text(
                 'Bookmarked',
                 style: TextStyle(
-                  color: Colors.amber,
+                  color: isDark ? Colors.amber : const Color(0xFF8B6914),
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
@@ -292,16 +310,19 @@ class _ShowCard extends ConsumerWidget {
                     width: isWide ? double.infinity : 150,
                     fit: BoxFit.cover,
                     errorBuilder: (context, error, stackTrace) {
-                      // If the original URL failed and contains maxresdefault, attempt hqdefault
-                      if (show.thumbnailUrl.contains('maxresdefault.jpg')) {
-                        final fallbackUrl = show.thumbnailUrl.replaceAll('maxresdefault.jpg', 'hqdefault.jpg');
-                        return Image.network(
-                          fallbackUrl,
-                          height: 105,
-                          width: isWide ? double.infinity : 150,
-                          fit: BoxFit.cover,
-                          errorBuilder: (_, __, ___) => _buildPlaceholder(isDark, isWide),
-                        );
+                      final uriMatch = RegExp(r'vi(?:_webp)?/([^/]+)/').firstMatch(show.thumbnailUrl);
+                      if (uriMatch != null) {
+                        final vid = uriMatch.group(1)!;
+                        final fallbackUrl = 'https://img.youtube.com/vi/$vid/hqdefault.jpg';
+                        if (fallbackUrl != show.thumbnailUrl) {
+                          return Image.network(
+                            fallbackUrl,
+                            height: 105,
+                            width: isWide ? double.infinity : 150,
+                            fit: BoxFit.cover,
+                            errorBuilder: (_, __, ___) => _buildPlaceholder(isDark, isWide),
+                          );
+                        }
                       }
                       return _buildPlaceholder(isDark, isWide);
                     },
@@ -365,10 +386,12 @@ class _ShowCard extends ConsumerWidget {
                       child: Container(
                         padding: const EdgeInsets.all(4),
                         decoration: BoxDecoration(
-                          color: Colors.black54,
+                          color: isDark ? Colors.black54 : Colors.black26,
                           borderRadius: BorderRadius.circular(6),
                         ),
-                        child: const Icon(Icons.bookmark_rounded, color: Colors.amber, size: 14),
+                        child: Icon(Icons.bookmark_rounded,
+                            color: isDark ? Colors.amber : const Color(0xFF8B6914),
+                            size: 14),
                       ),
                     ),
                 ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lpinyin/lpinyin.dart';
 import '../../domain/models/video_transcript.dart';
 
 class PremiumSubtitlesOverlay extends StatelessWidget {
@@ -32,6 +33,19 @@ class PremiumSubtitlesOverlay extends StatelessWidget {
     return (progress * line.text.length).floor();
   }
 
+  String? _getEffectivePinyin(TranscriptLine line) {
+    final raw = line.pinyin?.trim();
+    final translation = line.translation?.trim().toLowerCase();
+    if (raw != null && raw.isNotEmpty && (translation == null || raw.toLowerCase() != translation)) {
+      return raw;
+    }
+    if (RegExp(r'[\u4e00-\u9fff]').hasMatch(line.text)) {
+      return PinyinHelper.getPinyinE(line.text,
+          separator: ' ', format: PinyinFormat.WITH_TONE_MARK);
+    }
+    return null;
+  }
+
   @override
   Widget build(BuildContext context) {
     if (currentIndex < 0 || currentIndex >= transcript.lines.length) {
@@ -40,6 +54,7 @@ class PremiumSubtitlesOverlay extends StatelessWidget {
 
     final line = transcript.lines[currentIndex];
     final highlightedCount = _getHighlightedCharCount(line, currentPosition);
+    final effectivePinyin = _getEffectivePinyin(line);
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
@@ -84,10 +99,10 @@ class PremiumSubtitlesOverlay extends StatelessWidget {
             }).toList(),
           ),
           
-        if (showPinyin && line.pinyin != null) ...[
+        if (showPinyin && effectivePinyin != null && effectivePinyin.isNotEmpty) ...[
           const SizedBox(height: 4),
           Text(
-            line.pinyin!,
+            effectivePinyin,
             style: const TextStyle(
               fontSize: 22, 
               color: Colors.white70,

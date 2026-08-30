@@ -21,6 +21,7 @@ import 'package:hive/hive.dart';
 import 'package:hanzi_master/features/media/presentation/screens/simplified_article_reader_screen.dart';
 import 'dart:ui';
 import 'package:hanzi_master/core/presentation/widgets/ai_progress_bar.dart';
+import 'package:hanzi_master/core/utils/pinyin_utils.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 
@@ -683,7 +684,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
   }
 
   void _showAutoSimplifyLevelPicker(BuildContext context, bool isDark, Color bgColor, Color textColor) {
-    final amberColor = const Color(0xFFFFB300);
+    const amberColor = Color(0xFFFFB300);
     final amberLight = amberColor.withValues(alpha: 0.12);
     final amberBorder = amberColor.withValues(alpha: 0.30);
 
@@ -720,7 +721,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                           color: amberLight,
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        child: Icon(Icons.auto_fix_high, color: amberColor, size: 22),
+                        child: const Icon(Icons.auto_fix_high, color: amberColor, size: 22),
                       ),
                       const SizedBox(width: 12),
                       Column(
@@ -784,7 +785,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                             children: [
                               Text(
                                 'HSK $level',
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontSize: 17,
                                   fontWeight: FontWeight.bold,
                                   color: amberColor,
@@ -1491,10 +1492,10 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                                                       children: [
                                                         Text(
                                                           'HSK $level',
-                                                          style: TextStyle(
+                                                          style: const TextStyle(
                                                             fontSize: 17,
                                                             fontWeight: FontWeight.bold,
-                                                            color: const Color(0xFFFFB300),
+                                                            color: Color(0xFFFFB300),
                                                           ),
                                                         ),
                                                         const SizedBox(height: 2),
@@ -1741,12 +1742,12 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               if (_isProcessingAi)
-                                SizedBox(
+                                const SizedBox(
                                   width: 16,
                                   height: 16,
                                   child: CircularProgressIndicator(
                                     strokeWidth: 2,
-                                    color: const Color(0xFFFFB300),
+                                    color: Color(0xFFFFB300),
                                   ),
                                 )
                               else
@@ -2114,7 +2115,7 @@ class _ExtractedWordsReviewSheetState extends ConsumerState<ExtractedWordsReview
                     title: Text(word.hanzi,
                         style: const TextStyle(
                             fontSize: 22, fontWeight: FontWeight.bold)),
-                    subtitle: Text("${word.pinyin} - ${word.meaning}",
+                    subtitle: Text("${PinyinUtils.convertNumericToMarks(word.pinyin)} - ${word.meaning}",
                         style: const TextStyle(fontSize: 15)),
                     onChanged: (val) {
                       setState(() => _selected[index] = val ?? false);

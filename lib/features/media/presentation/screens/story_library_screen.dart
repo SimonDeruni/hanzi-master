@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:hanzi_master/features/media/data/story_fetcher_service.dart';
@@ -67,6 +70,13 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
     ]);
     final prefs = await SharedPreferences.getInstance();
     final bookmarks = prefs.getStringList('bookmarked_story_urls') ?? [];
+    List<Map<String, dynamic>> poetryEntries = [];
+    try {
+      final poetryJson = await rootBundle.loadString(chinesePoetryAsset);
+      poetryEntries = (jsonDecode(poetryJson) as List<dynamic>)
+          .map((entry) => Map<String, dynamic>.from(entry as Map))
+          .toList();
+    } catch (_) {}
 
     final localStories = results[0] as List<LibraryStory>;
     final firebaseStories = results[1] as List<LibraryStory>;
@@ -99,10 +109,6 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
         final uniqueTitles = <String>{};
         _allStories.retainWhere((s) => uniqueTitles.add(s.title));
 
-        final poetryEntries = localStories
-            .where((story) => isPoetryStoryId(story.link))
-            .map((story) => <String, dynamic>{'id': story.link})
-            .toList();
         _bookmarkedUrls = bookmarks
             .map((id) => canonicalPoetryId(poetryEntries, id) ?? id)
             .toSet()
@@ -127,7 +133,9 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
         hskLevel: story.hskLevel,
         totalChapters: 1,
         coverEmoji: '📜',
-        tags: story.keywords.isNotEmpty ? story.keywords : const ['Poetry', 'Classical', 'Verse'],
+        tags: story.keywords.isNotEmpty
+            ? story.keywords
+            : const ['Poetry', 'Classical', 'Verse'],
       );
       Navigator.push(
         context,

@@ -169,9 +169,11 @@ class LocalTranslationService {
           : cached;
     }
 
-    // 1. Try AI-powered translation via OpenRouter (Gemini 2.5 Flash) for nuanced, poetic & literary accuracy
-    final key = apiKeyPool?.nextKey ?? '';
-    if (key.isNotEmpty && key != 'MISSING_KEY') {
+    // 1. Try AI-powered translation via OpenRouter (Gemini 2.5 Flash) or Direct Gemini API for nuanced literary accuracy
+    final openRouterKey = apiKeyPool?.nextKey ?? '';
+    final googleKey = apiKeyPool?.googleKey ?? '';
+
+    if (openRouterKey.isNotEmpty && openRouterKey != 'MISSING_KEY') {
       try {
         final client = http.Client();
         try {
@@ -182,7 +184,7 @@ class LocalTranslationService {
               .post(
                 Uri.parse('https://openrouter.ai/api/v1/chat/completions'),
                 headers: {
-                  'Authorization': 'Bearer $key',
+                  'Authorization': 'Bearer $openRouterKey',
                   'Content-Type': 'application/json',
                   'HTTP-Referer': 'https://hanzimaster.app',
                   'X-Title': 'Hanzi Master',
@@ -220,17 +222,65 @@ class LocalTranslationService {
           client.close();
         }
       } catch (e) {
-        debugPrint('[LocalTranslationService] AI translation fallback: $e');
+        debugPrint('[LocalTranslationService] OpenRouter AI translation: $e');
+      }
+    }
+
+    if (googleKey.isNotEmpty && googleKey != 'MISSING_KEY') {
+      try {
+        final client = http.Client();
+        try {
+          final prompt =
+              'Translate this Chinese text to $targetLanguage directly with literary accuracy. Chinese: "$cleanedText". Return ONLY the direct translation without explanations.';
+          final response = await client
+              .post(
+                Uri.parse(
+                    'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=$googleKey'),
+                headers: {'Content-Type': 'application/json'},
+                body: jsonEncode({
+                  'contents': [
+                    {
+                      'parts': [
+                        {'text': prompt}
+                      ]
+                    }
+                  ]
+                }),
+              )
+              .timeout(const Duration(seconds: 6));
+
+          if (response.statusCode == 200) {
+            final dynamic json = jsonDecode(utf8.decode(response.bodyBytes));
+            String reply =
+                json['candidates']?[0]?['content']?['parts']?[0]?['text'] as String? ?? '';
+            reply = reply.trim();
+            if ((reply.startsWith('"') && reply.endsWith('"')) ||
+                (reply.startsWith('“') && reply.endsWith('”')) ||
+                (reply.startsWith("'") && reply.endsWith("'"))) {
+              reply = reply.substring(1, reply.length - 1).trim();
+            }
+            if (reply.isNotEmpty) {
+              final formatted =
+                  reply[0].toUpperCase() + reply.substring(1);
+              await box?.put(cacheKey, formatted);
+              return formatted;
+            }
+          }
+        } finally {
+          client.close();
+        }
+      } catch (e) {
+        debugPrint('[LocalTranslationService] Google Gemini AI translation: $e');
       }
     }
 
     // 2. On-Device ML Kit Fallback
     try {
       final tl = _getTranslateLanguage(targetLanguage);
-      await _ensureModelReady(tl);
+      await _ensureModelReady(tl).timeout(const Duration(milliseconds: 1500));
 
       if (_translator != null) {
-        String translated = await _translator!.translateText(cleanedText);
+        String translated = await _translator!.translateText(cleanedText).timeout(const Duration(milliseconds: 1500));
         if (translated.isNotEmpty && RegExp(r'[a-zA-Z]').hasMatch(translated)) {
           translated = translated[0].toUpperCase() + translated.substring(1);
           await box?.put(cacheKey, translated);

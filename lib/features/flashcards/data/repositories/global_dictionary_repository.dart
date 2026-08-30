@@ -4,6 +4,7 @@ import 'package:fpdart/fpdart.dart';
 import 'package:path/path.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'package:path_provider/path_provider.dart';
+import '../../../../core/utils/pinyin_utils.dart';
 import '../../domain/entities/flashcard.dart';
 
 class GlobalDictionaryRepository {
@@ -102,10 +103,11 @@ class GlobalDictionaryRepository {
       final results = await _db!.rawQuery(sqlQuery, args);
       
       final List<Flashcard> cards = results.map<Flashcard>((row) {
+        final rawPinyin = row['pinyin'] as String? ?? '';
         return Flashcard(
           id: 'global_${row['id']}',
           hanzi: row['simplified'] as String,
-          pinyin: row['pinyin'] as String,
+          pinyin: PinyinUtils.convertNumericToMarks(rawPinyin),
           definition: row['definition'] as String,
           hskLevel: 0,
           strokePaths: const [],
@@ -139,10 +141,11 @@ class GlobalDictionaryRepository {
       final results = await _db!.rawQuery(sqlQuery, args);
       
       final List<Flashcard> cards = results.map<Flashcard>((row) {
+        final rawPinyin = row['pinyin'] as String? ?? '';
         return Flashcard(
           id: 'global_${row['id']}',
           hanzi: row['simplified'] as String,
-          pinyin: row['pinyin'] as String,
+          pinyin: PinyinUtils.convertNumericToMarks(rawPinyin),
           definition: row['definition'] as String,
           hskLevel: 0,
           strokePaths: const [],
@@ -166,10 +169,11 @@ class GlobalDictionaryRepository {
       );
       if (results.isEmpty) return null;
       final row = results.first;
+      final rawPinyin = row['pinyin'] as String? ?? '';
       return Flashcard(
         id: 'global_${row['id']}',
         hanzi: row['simplified'] as String,
-        pinyin: row['pinyin'] as String,
+        pinyin: PinyinUtils.convertNumericToMarks(rawPinyin),
         definition: row['definition'] as String,
         hskLevel: 0,
         strokePaths: const [],

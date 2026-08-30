@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
 import 'package:flutter/services.dart';
@@ -53,6 +54,9 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
   String _selectedTheme = "HSK 1";
   String? _selectedDeckId;
   String _customWordInput = "";
+  final TextEditingController _customWordController = TextEditingController();
+  List<Flashcard> _dictionaryResults = [];
+  Timer? _searchDebounce;
 
   bool _isLoadingNextPhrase = false;
   int _sentenceCount = 0;
@@ -164,7 +168,26 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
     }
     _audioRecorder.dispose();
     _pulseController.dispose();
+    _searchDebounce?.cancel();
+    _customWordController.dispose();
     super.dispose();
+  }
+
+  void _onSearchChanged(String query) {
+    _searchDebounce?.cancel();
+    if (query.trim().isEmpty) {
+      setState(() => _dictionaryResults = []);
+      return;
+    }
+    _searchDebounce = Timer(const Duration(milliseconds: 250), () async {
+      final repo = ref.read(globalDictionaryRepositoryProvider);
+      final result = await repo.search(query);
+      if (mounted) {
+        setState(() {
+          _dictionaryResults = result.getOrElse((_) => []);
+        });
+      }
+    });
   }
 
   Future<void> _startSession() async {
@@ -1045,113 +1068,85 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                         _buildConfigCard(
                           isDark: isDark,
                           label: 'CHINESE CHARACTER',
-                          child: Builder(builder: (context) {
-                            final asyncCards =
-                                ref.watch(flashcardControllerProvider);
-                            final allCards = asyncCards.valueOrNull ?? [];
-                            final options =
-                                allCards.map((c) => c.hanzi).toSet().toList();
-
-                            return Autocomplete<String>(
-                              optionsBuilder:
-                                  (TextEditingValue textEditingValue) {
-                                if (textEditingValue.text.isEmpty) {
-                                  return options.take(10);
-                                }
-                                return options.where((String option) =>
-                                    option.contains(textEditingValue.text));
-                              },
-                              onSelected: (String selection) =>
-                                  setState(() => _customWordInput = selection),
-                              fieldViewBuilder: (context, textEditingController,
-                                  focusNode, onFieldSubmitted) {
-                                return HanziTextField(
-                                  controller: textEditingController,
-                                  focusNode: focusNode,
-                                  decoration: InputDecoration(
-                                    hintText: 'Search library or type custom',
-                                    filled: true,
-                                    fillColor: isDark
-                                        ? const Color(0xFF2C2C2E)
-                                        : const Color(0xFFF5F5F5),
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(12),
-                                      borderSide: BorderSide.none,
-                                    ),
-                                  ),
-                                  style: TextStyle(
-                                      color:
-                                          isDark ? Colors.white : Colors.black),
-                                  onChanged: (val) =>
-                                      setState(() => _customWordInput = val),
-                                );
-                              },
-                              optionsViewBuilder:
-                                  (context, onSelected, optionsView) {
-                              return Align(
-                                alignment: Alignment.topLeft,
-                                child: Material(
-                                  elevation: 4,
-                                  borderRadius: BorderRadius.circular(12),
-                                  color: Colors.transparent,
-                                  child: Container(
-                                    width:
-                                        MediaQuery.of(context).size.width - 64,
-                                    constraints:
-                                        const BoxConstraints(maxHeight: 250),
-                                    decoration: BoxDecoration(
-                                      color: isDark
-                                          ? Colors.grey[850]
-                                          : Colors.white,
-                                      borderRadius: BorderRadius.circular(12),
-                                      border: Border.all(
-                                          color: isDark
-                                              ? Colors.white12
-                                              : Colors.black12),
-                                    ),
-                                    child: ListView.builder(
-                                      padding: EdgeInsets.zero,
-                                      shrinkWrap: true,
-                                      itemCount: optionsView.length,
-                                      itemBuilder: (context, index) {
-                                        final option =
-                                            optionsView.elementAt(index);
-                                        final cardList = allCards
-                                            .where((c) => c.hanzi == option);
-                                        final card = cardList.isNotEmpty
-                                            ? cardList.first
-                                            : null;
-                                        return ListTile(
-                                          title: Text(option,
-                                              style: TextStyle(
-                                                  color: isDark
-                                                      ? Colors.white
-                                                      : Colors.black,
-                                                  fontSize: 18,
-                                                  fontWeight: FontWeight.bold)),
-                                          subtitle: card != null
-                                              ? Text(
-                                                  "${card.pinyin} - ${card.definition}",
-                                                  style: TextStyle(
-                                                      color: isDark
-                                                          ? Colors.white70
-                                                          : Colors.black54),
-                                                  maxLines: 1,
-                                                  overflow:
-                                                      TextOverflow.ellipsis)
-                                              : null,
-                                          onTap: () => onSelected(option),
-                                        );
-                                      },
-                                    ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              HanziTextField(
+                                controller: _customWordController,
+                                decoration: InputDecoration(
+                                  hintText: 'Search dictionary or type custom',
+                                  filled: true,
+                                  fillColor: isDark
+                                      ? const Color(0xFF2C2C2E)
+                                      : const Color(0xFFF5F5F5),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(12),
+                                    borderSide: BorderSide.none,
                                   ),
                                 ),
-                              );
-                            },
-                          );
-                        }),
-                      ),
-                    ],
+                                style: TextStyle(
+                                    color: isDark
+                                        ? Colors.white
+                                        : Colors.black),
+                                onChanged: (val) {
+                                  setState(() => _customWordInput = val);
+                                  _onSearchChanged(val);
+                                },
+                              ),
+                              if (_dictionaryResults.isNotEmpty)
+                                Container(
+                                  width: double.infinity,
+                                  constraints:
+                                      const BoxConstraints(maxHeight: 250),
+                                  margin: const EdgeInsets.only(top: 4),
+                                  decoration: BoxDecoration(
+                                    color: isDark
+                                        ? Colors.grey[850]
+                                        : Colors.white,
+                                    borderRadius: BorderRadius.circular(12),
+                                    border: Border.all(
+                                        color: isDark
+                                            ? Colors.white12
+                                            : Colors.black12),
+                                  ),
+                                  child: ListView.builder(
+                                    padding: EdgeInsets.zero,
+                                    shrinkWrap: true,
+                                    itemCount: _dictionaryResults.length,
+                                    itemBuilder: (context, index) {
+                                      final card = _dictionaryResults[index];
+                                      return ListTile(
+                                        title: Text(card.hanzi,
+                                            style: TextStyle(
+                                                color: isDark
+                                                    ? Colors.white
+                                                    : Colors.black,
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.bold)),
+                                        subtitle: Text(
+                                          "${PinyinUtils.convertNumericToMarks(card.pinyin)} - ${card.definition}",
+                                          style: TextStyle(
+                                              color: isDark
+                                                  ? Colors.white70
+                                                  : Colors.black54),
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                        onTap: () {
+                                          setState(() {
+                                            _customWordInput = card.hanzi;
+                                            _customWordController.text = card.hanzi;
+                                            _dictionaryResults = [];
+                                          });
+                                        },
+                                      );
+                                    },
+                                  ),
+                                ),
+                            ],
+                          ),
+                        ),
+                      ],
                     if (_selectedMode == ShadowingMode.theme) ...[
                       _buildConfigCard(
                         isDark: isDark,

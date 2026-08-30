@@ -1,0 +1,194 @@
+{
+  "12Min": "1-2분",
+  "aClassicTangDynastyPoem": "당나라 고전 시",
+  "aClassicTangDynastyPoemBy": "다음의 당나라 고전 시",
+  "aStructuralComponent": "구조적 구성 요소입니다.",
+  "addSelectedToDeck": "선택 항목을 덱에 추가",
+  "addTo": "추가",
+  "addedHanziToYourLibrary": "'{hanzi}'을(를) 라이브러리에 추가했습니다",
+  "@addedHanziToYourLibrary": {
+    "placeholders": {
+      "hanzi": {
+        "type": "String"
+      }
+    }
+  },
+  "adjustFontSize": "글꼴 크기 조정",
+  "againGoodEasyHard": "⬅️ 다시    ➡️ 좋음    ⬆️ 쉬움    ⬇️ 어려움",
+  "aiAnalysisFailed": "AI 분석 실패",
+  "aiIsThinking": "AI가 생각 중입니다...",
+  "aiSceneAnalysisFailed": "AI 장면 분석 실패",
+  "allLabel": "전체",
+  "allPinyin": "모든 병음",
+  "alreadyHaveAccountSignIn": "계정이 이미 있으신가요? 로그인",
+  "analysisFailed": "분석 실패:",
+  "analyzingClassicalCharacters": "고전 한자 분석 중...",
+  "anatomy": "해부학",
+  "ancientPhilosophy": "고대 철학",
+  "articleSavedToMediaHub": "기사가 Media Hub에 저장되었습니다!",
+  "askAFollowUp": "후속 질문하기...",
+  "audioPrivacyAndHowThingsWork": "오디오, 개인정보 보호 및 작동 방식",
+  "audiobookPlayer": "오디오북 플레이어",
+  "audiobookVoice": "오디오북 음성",
+  "auntieMaTown": "마 아줌마(马阿姨), 활기차고 목소리 큰 포장마차 주인으로 마을에서 가장 바삭한 루지아모와 량피를 만듭니다.",
+  "back": "뒤로",
+  "baristaKevinNotes": "바리스타 샤오카이(小凯), 열정적인 젊은 커피 로스터로 윈난 커피 원두와 향미 노트에 대해 이야기하기를 좋아합니다.",
+  "bbc": "BBC 中文",
+  "beginYourJourney": "여정 시작하기",
+  "bestValue": "최고 가치",
+  "bookLinkCopiedToClipboard": "책 링크가 클립보드에 복사되었습니다!",
+  "bookmarkChapter": "챕터 북마크",
+  "bookmarks": "북마크",
+  "books": "도서",
+  "briefing": "브리핑",
+  "bugReport": "버그 신고",
+  "caoXueqinDecline": "차오쉐친(약 1715–1763)은 청나라 소설가로, 한때 부유했으나 옹정제 시절 몰락한 팔기 가문 출신입니다. 가난했던 말년에 쓴 《홍루몽》은 귀족 사회의 몰락을 심리적으로 풍부하게 그린 중국 소설의 정점으로 널리 평가받습니다.",
+  "cardsTitle": "카드",
+  "cc": "자막",
+  "characterOrWord": "글자 / 단어",
+  "chatMore": "더 대화하기",
+  "chefChenShumai": "천 셰프(陈师傅), 명랑한 광둥식 딤섬 셰프가 신선한 하가우 새우 만두와 슈마이를 추천합니다.",
+  "chineseEpics": "중국 서사시",
+  "chinesePoetry": "중국 시",
+  "chng": "chéng",
+  "chongqingSpicyHotpotFeast": "충칭 매운 훠궈盛宴",
+  "chooseAudiobookVoice": "오디오북 음성 선택",
+  "chooseVoice": "음성 선택",
+  "compare": "비교",
+  "compare4Tones": "4성 비교",
+  "configuration": "설정",
+  "contemporary": "현대",
+  "context": "문맥",
+  "couldNotLoadLibrary": "라이브러리를 불러올 수 없습니다",
+  "couldNotLoadVocabulary": "어휘를 불러올 수 없습니다.",
+  "couldNotOpenEmailApp": "이메일 앱을 열 수 없습니다.",
+  "createAccount": "계정 만들기",
+  "createNewDeck": "새 덱 만들기",
+  "createScenario": "시나리오 만들기",
+  "createStory": "스토리 만들기",
+  "customLabel": "사용자 정의",
+  "customWord": "사용자 정의 단어",
+  "days": "일",
+  "deck": "덱",
+  "deckName": "덱 이름",
+  "deckStory": "덱 스토리",
+  "deepAnalysis": "심층 분석",
+  "defaultDeck": "기본 덱",
+  "deleteLabel": "삭제",
+  "deleteScenario": "시나리오 삭제",
+  "deletesAllProgressPermanently": "모든 진행 상황을 영구히 삭제합니다",
+  "developerBackdoorUnlocked": "개발자 백도어 잠금 해제!",
+  "doesNotExistInChinese": "중국어에 존재하지 않음",
+  "dontHaveAccountSignUp": "계정이 없으신가요? 가입하기",
+  "draftingStoryOutline": "스토리 개요 작성 중...",
+  "dynamicFlowState": "동적 플로우 상태",
+  "dynamicFlowStateParenthetical": "동적 (플로우 상태)",
+  "editCard": "카드 편집",
+  "egAnimeVocab": "예: 애니메이션 어휘",
+  "egFormalBusinessLanguageSlangForTexting": "예: 격식 있는 비즈니스 언어, 문자용 속어...",
+  "egOrderingAtARestaurantBusinessVocab": "예: 식당 주문, 비즈니스 어휘...",
+  "egWeddingReceptionTechInterview": "예: 결혼식 피로연, 기술 면접...",
+  "emailLabel": "이메일",
+  "english": "영어",
+  "englishAndWorld": "영어 및 세계",
+  "episodes": "에피소드",
+  "erase": "지우기",
+  "eraseDeckQuestion": "덱을 지우시겠습니까?",
+  "errorFetchingTranslationForLabelE": "{label}에 대한 번역을 가져오는 중 오류 발생: {e}",
+  "@errorFetchingTranslationForLabelE": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      },
+      "e": {
+        "type": "String"
+      }
+    }
+  },
+  "errorLoadingMicroreadsE": "마이크로 읽기 로딩 오류: {e}",
+  "@errorLoadingMicroreadsE": {
+    "placeholders": {
+      "e": {
+        "type": "String"
+      }
+    }
+  },
+  "errorLoadingNovelsE": "소설 로딩 오류: {e}",
+  "@errorLoadingNovelsE": {
+    "placeholders": {
+      "e": {
+        "type": "String"
+      }
+    }
+  },
+  "errorLoadingPoetryE": "시 로딩 오류: {e}",
+  "@errorLoadingPoetryE": {
+    "placeholders": {
+      "e": {
+        "type": "String"
+      }
+    }
+  },
+  "exitFocus": "집중 모드 종료",
+  "explore": "탐색",
+  "exportToThisDeck": "이 덱으로 내보내기",
+  "extractAndSimplify": "추출 및 간소화",
+  "failedToCreateDeck": "덱 생성 실패",
+  "failedToLoadDailyContent": "일일 콘텐츠 로딩 실패",
+  "failedToLoadEpisodes": "에피소드 로딩 실패",
+  "failedToLoadShows": "프로그램 로딩 실패",
+  "finalizingDetails": "세부 사항 마무리 중...",
+  "finalizingStoryDetails": "스토리 세부 사항 마무리 중...",
+  "firebaseAuthConsole": "Firebase 인증이 활성화되지 않았습니다. Firebase 콘솔에서 필요한 로그인 방법을 활성화하세요.",
+  "flashcardDeckTitle": "플래시카드 덱",
+  "focus": "집중",
+  "foodAndCooking": "음식 & 요리",
+  "forward": "앞으로",
+  "freeFlow": "자유 흐름",
+  "frenchClassics": "프랑스 고전",
+  "full": "전체",
+  "gamingAndEsports": "게임 & E스포츠",
+  "germanClassics": "독일 고전",
+  "ghostPinyin": "고스트 병음",
+  "goodAttempt": "좋은 시도입니다",
+  "gotItSimple": "알았어요",
+  "grammar": "문법",
+  "grandmaLiuFilling": "리우 할머니(刘奶奶), 다정한 북방 할머니로 만두 주름 잡는 법과 돼지고기-파 속을 가르쳐 줍니다.",
+  "great": "훌륭해요!",
+  "handmadeDumplingFeastInHarbin": "하얼빈 수제 만두盛宴",
+  "hanziCharacter": "Hanzi (글자)",
+  "hapticFeedback": "햅틱 피드백",
+  "helpAndSupport": "도움말 & 지원",
+  "hidden": "숨김",
+  "hideEnglishTranslations": "영어 번역 숨기기",
+  "hidePinyin": "병음 숨기기",
+  "highlight": "하이라이트",
+  "howWouldYouLikeToStudy": "어떻게 공부하시겠습니까?",
+  "hsk1": "HSK 1",
+  "hsk4UpperIntermediate": "HSK 4: 중상급",
+  "hsk5Advanced": "HSK 5: 고급",
+  "hsk6Mastery": "HSK 6: 숙달",
+  "hskCollections": "HSK 컬렉션",
+  "hskLevel": "HSK {level}",
+  "@hskLevel": {
+    "placeholders": {
+      "level": {
+        "type": "String"
+      }
+    }
+  },
+  "hskSimplifySubtitles": "HSK 자막 간소화",
+  "hskVocabularyCollections": "HSK 어휘 컬렉션",
+  "i": "I\\",
+  "ifTheAgain": "AI가 불일치를 감지하면 '혹시...라고 말하려고 하셨나요?'라고 물어볼 것입니다. '예, 다시 평가해 주세요!' 버튼을 탭하면 다시 말하지 않고 원래 음성을 실제 의도에 맞게 즉시 재평가할 수 있습니다.",
+  "install": "설치",
+  "just": "단 \\$",
+  "keyword": "키워드",
+  "knowledgeBase": "지식 베이스",
+  "liRuzhenSubjects": "리루전(약 1763–1830)은 청나라 학자로 음운학, 바둑, 우주론에 깊은 관심을 가졌습니다. 그의 환상 소설 《경화연》은 불가능한 왕국을 여행하는 상인의 이야기로, 페미니즘 주제와 백과사전적 지식 범위가 돋보입니다.",
+  "library": "문화서방 Library",
+  "lifestyleAndVlog": "라이프스타일 & 브이로그",
+  "listenInAudiobookMode": "오디오북 모드로 듣기",
+  "listenToThisWord": "이 단어 듣기",
+  "listening": "듣는 중..."
+}

@@ -1,5 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:http/http.dart' as http;
+import 'package:lpinyin/lpinyin.dart';
+import 'package:xml/xml.dart' as xml;
 import 'package:youtube_explode_dart/youtube_explode_dart.dart';
 import '../domain/models/youtube_video.dart';
 import '../domain/models/video_transcript.dart';
@@ -37,7 +40,7 @@ class YoutubeRepository {
       return cached.videos;
     }
 
-    final videos = <YoutubeVideo>[];
+    List<YoutubeVideo> videos = <YoutubeVideo>[];
 
     try {
       final yt = _createYoutubeExplode();
@@ -49,16 +52,13 @@ class YoutubeRepository {
           if (rawVideos.length >= 25) break;
         }
 
-        // Add all found YouTube search results to ensure the category feed is immediately populated
-        for (final rawVideo in rawVideos) {
-          videos.add(_videoToModel(rawVideo));
-          if (videos.length >= 15) break;
-        }
+        final candidates = rawVideos.map(_videoToModel).toList();
+        videos = await filterWithSubtitlesOnly(candidates, max: 15);
       } finally {
         yt.close();
       }
 
-      debugPrint('[YT Explode Search] Found ${videos.length} videos for "$query"');
+      debugPrint('[YT Explode Search] Found ${videos.length} videos with subtitles for "$query"');
     } catch (e) {
       debugPrint('[YT Explode Search] Error: $e');
     }
@@ -97,6 +97,56 @@ class YoutubeRepository {
 
 
 
+  /// Lightweight check: returns true if the video has any closed captions available (manual or auto-generated).
+  Future<bool> hasCaptions(String videoId) async {
+    try {
+      final cached = _captionCheckCache[videoId];
+      if (cached != null &&
+          DateTime.now().difference(cached.timestamp) < _captionCheckCacheTtl) {
+        return cached.value;
+      }
+
+      final yt = _createYoutubeExplode();
+      try {
+        final manifest = await yt.videos.closedCaptions.getManifest(videoId);
+        final hasCc = manifest.tracks.isNotEmpty;
+
+        _captionCheckCache[videoId] = _CachedBool(
+          value: hasCc,
+          timestamp: DateTime.now(),
+        );
+
+        debugPrint('[YT hasCaptions] $videoId → $hasCc (tracks: ${manifest.tracks.length})');
+        return hasCc;
+      } finally {
+        yt.close();
+      }
+    } catch (e) {
+      debugPrint('[YT hasCaptions] Error for $videoId: $e');
+      return false;
+    }
+  }
+
+  /// Filters candidates in parallel chunks, returning only videos that have closed caption subtitles.
+  Future<List<YoutubeVideo>> filterWithSubtitlesOnly(
+      List<YoutubeVideo> candidates,
+      {int max = 30}) async {
+    final verified = <YoutubeVideo>[];
+    const chunkSize = 6;
+    for (var i = 0; i < candidates.length; i += chunkSize) {
+      final chunk = candidates.skip(i).take(chunkSize).toList();
+      final checks = await Future.wait(chunk.map((v) async {
+        final hasCc = await hasCaptions(v.id);
+        return hasCc ? v : null;
+      }));
+      for (final v in checks) {
+        if (v != null) verified.add(v);
+      }
+      if (verified.length >= max) break;
+    }
+    return verified;
+  }
+
   /// Lightweight check: returns true if the video has Chinese captions.
   Future<bool> hasChineseCaptions(String videoId) async {
     try {
@@ -117,7 +167,7 @@ class YoutubeRepository {
           timestamp: DateTime.now(),
         );
 
-        debugPrint('[YT hasCaptions] $videoId → $hasChinese');
+        debugPrint('[YT hasChineseCaptions] $videoId → $hasChinese');
         return hasChinese;
       } finally {
         yt.close();
@@ -129,6 +179,10 @@ class YoutubeRepository {
   }
 
   /// Fetches the transcript (closed captions) for a YouTube video.
+  /// Tries manual Chinese tracks first, then auto-generated Chinese tracks,
+  /// then any available track. If youtube_explode_dart can't reach the
+  /// caption manifest, returns null — the caller should fall back to
+  /// YouTube's native (iframe) CC button which the user can toggle.
   Future<VideoTranscript?> getTranscript(String videoId) async {
     try {
       final cached = _transcriptCache[videoId];
@@ -141,32 +195,57 @@ class YoutubeRepository {
 
       final yt = _createYoutubeExplode();
       try {
-        final manifest = await yt.videos.closedCaptions.getManifest(videoId);
+        // getManifest() may throw TransientFailureException when YouTube
+        // rate-limits or blocks the request. Catch gracefully so the UI
+        // can fall back to the iframe CC button.
+        ClosedCaptionManifest manifest;
+        try {
+          manifest = await yt.videos.closedCaptions.getManifest(videoId);
+        } catch (manifestError) {
+          debugPrint('[YT Transcript] getManifest failed for $videoId: $manifestError');
+          return null; // Let the UI fall back to native CC button
+        }
 
-        // Look for Chinese tracks first (prefer manual over auto-generated)
+        if (manifest.tracks.isEmpty) {
+          debugPrint('[YT Transcript] No caption tracks in manifest for $videoId, trying timedtext ASR fallback...');
+          final timedTextFallback = await _fetchTimedTextDirect(videoId);
+          if (timedTextFallback != null && timedTextFallback.lines.isNotEmpty) {
+            _transcriptCache[videoId] = _CachedTranscript(
+              transcript: timedTextFallback,
+              timestamp: DateTime.now(),
+            );
+            return timedTextFallback;
+          }
+          return null;
+        }
+
+        // 1. Look for Chinese tracks: prefer manual, but accept auto-generated (all dialects/variants)
         ClosedCaptionTrackInfo? bestTrack;
         for (final track in manifest.tracks) {
           if (_isChineseLanguage(track.language.code)) {
             if (!track.isAutoGenerated) {
               bestTrack = track;
-              break;
+              break; // Manual Chinese track is the absolute best
             }
+            // First auto-generated Chinese track as fallback
             bestTrack ??= track;
           }
         }
 
-        // If no Chinese CC track exists, fall back to any available CC track (e.g. English / original)
-        if (bestTrack == null && manifest.tracks.isNotEmpty) {
-          bestTrack = manifest.tracks.firstWhere(
-            (t) => !t.isAutoGenerated,
-            orElse: () => manifest.tracks.first,
-          );
+        // 2. If no Chinese CC track exists, check any manual track first, then ANY auto-generated track
+        if (bestTrack == null) {
+          for (final track in manifest.tracks) {
+            if (!track.isAutoGenerated) {
+              bestTrack = track;
+              break;
+            }
+          }
+          // If all tracks are auto-generated, pick the first one
+          bestTrack ??= manifest.tracks.first;
+          debugPrint('[YT Transcript] No Chinese track, falling back to lang=${bestTrack.language.code} (autoGen=${bestTrack.isAutoGenerated})');
         }
 
-        if (bestTrack == null) {
-          debugPrint('[YT Transcript] No caption tracks available for $videoId');
-          return null;
-        }
+        debugPrint('[YT Transcript] Using track: lang=${bestTrack.language.code} autoGen=${bestTrack.isAutoGenerated}');
 
         final captionTrack = await yt.videos.closedCaptions.get(bestTrack);
         final lines = <TranscriptLine>[];
@@ -174,15 +253,28 @@ class YoutubeRepository {
         for (final caption in captionTrack.captions) {
           final text = caption.text.trim();
           if (text.isEmpty) continue;
+          final pinyin = RegExp(r'[\u4e00-\u9fff]').hasMatch(text)
+              ? PinyinHelper.getPinyinE(text,
+                  separator: ' ', format: PinyinFormat.WITH_TONE_MARK)
+              : null;
           lines.add(TranscriptLine(
             text: text,
+            pinyin: pinyin,
             start: caption.offset,
             duration: caption.duration,
           ));
         }
 
         if (lines.isEmpty) {
-          debugPrint('[YT Transcript] Empty captions for $videoId');
+          debugPrint('[YT Transcript] Empty captions in track for $videoId, trying timedtext fallback...');
+          final timedTextFallback = await _fetchTimedTextDirect(videoId);
+          if (timedTextFallback != null && timedTextFallback.lines.isNotEmpty) {
+            _transcriptCache[videoId] = _CachedTranscript(
+              transcript: timedTextFallback,
+              timestamp: DateTime.now(),
+            );
+            return timedTextFallback;
+          }
           return null;
         }
 
@@ -192,15 +284,74 @@ class YoutubeRepository {
           timestamp: DateTime.now(),
         );
 
-        debugPrint('[YT Transcript] Success: $videoId → ${lines.length} lines');
+        debugPrint('[YT Transcript] Success: $videoId → ${lines.length} lines (${bestTrack.isAutoGenerated ? "auto-generated" : "manual"})');
         return transcript;
       } finally {
         yt.close();
       }
     } catch (e) {
-      debugPrint('[YT Transcript] Error for $videoId: $e');
+      debugPrint('[YT Transcript] Error for $videoId: $e, trying timedtext fallback...');
+      final timedTextFallback = await _fetchTimedTextDirect(videoId);
+      if (timedTextFallback != null && timedTextFallback.lines.isNotEmpty) {
+        _transcriptCache[videoId] = _CachedTranscript(
+          transcript: timedTextFallback,
+          timestamp: DateTime.now(),
+        );
+        return timedTextFallback;
+      }
       return null;
     }
+  }
+
+  /// Direct YouTube TimedText ASR scraper fallback for videos where ClosedCaptionManifest is throttled or missing.
+  Future<VideoTranscript?> _fetchTimedTextDirect(String videoId) async {
+    final languagesToTry = ['zh-Hans', 'zh-Hant', 'zh', 'zh-CN', 'zh-TW', 'en'];
+    for (final lang in languagesToTry) {
+      try {
+        final url = Uri.parse(
+            'https://www.youtube.com/api/timedtext?v=$videoId&lang=$lang&fmt=srv3');
+        final response = await http.get(url, headers: {
+          'User-Agent':
+              'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+        }).timeout(const Duration(seconds: 4));
+
+        if (response.statusCode == 200 && response.body.contains('<p')) {
+          final document = xml.XmlDocument.parse(response.body);
+          final pElements = document.findAllElements('p');
+          final lines = <TranscriptLine>[];
+
+          for (final p in pElements) {
+            final tAttr = p.getAttribute('t');
+            final dAttr = p.getAttribute('d');
+            final text = p.innerText.replaceAll('&#39;', "'").replaceAll('&quot;', '"').trim();
+            if (text.isEmpty || tAttr == null) continue;
+
+            final startMs = int.tryParse(tAttr) ?? 0;
+            final durMs = int.tryParse(dAttr ?? '2000') ?? 2000;
+
+            final pinyin = RegExp(r'[\u4e00-\u9fff]').hasMatch(text)
+                ? PinyinHelper.getPinyinE(text,
+                    separator: ' ', format: PinyinFormat.WITH_TONE_MARK)
+                : null;
+
+            lines.add(TranscriptLine(
+              text: text,
+              pinyin: pinyin,
+              start: Duration(milliseconds: startMs),
+              duration: Duration(milliseconds: durMs),
+            ));
+          }
+
+          if (lines.isNotEmpty) {
+            debugPrint('[YT TimedText] Successfully fetched ${lines.length} lines via timedtext for lang=$lang');
+            return VideoTranscript(videoId: videoId, lines: lines);
+          }
+        }
+      } catch (e) {
+        debugPrint('[YT TimedText] Error fetching timedtext for lang=$lang: $e');
+      }
+    }
+    return null;
   }
 
   // ── Channel cache ──
@@ -320,15 +471,34 @@ class YoutubeRepository {
     final yt = _createYoutubeExplode();
 
     try {
+      // 1. First, resolve handle or channel name to obtain the definitive search query
+      final query = (channelName != null && channelName.isNotEmpty)
+          ? channelName
+          : channelId;
+
       try {
-        final uploads = await yt.channels.getUploadsFromPage(channelId);
-        var page = 1;
-        var current = uploads;
-        while (true) {
-          for (final video in current) {
+        // Search directly for the creator's videos to guarantee authentic video titles & durations
+        final searchResults = await yt.search.search(query);
+        for (final video in searchResults) {
+          final model = _videoToModel(video);
+          if (model.title.isNotEmpty) {
+            videos.add(model);
+          }
+          if (videos.length >= maxVideos) break;
+        }
+      } catch (searchError) {
+        debugPrint('[YT ChUploads] Search fallback failed: $searchError');
+      }
+
+      // 2. If search returned empty, attempt getUploadsFromPage
+      if (videos.isEmpty) {
+        try {
+          final uploads = await yt.channels.getUploadsFromPage(channelId);
+          for (final video in uploads) {
+            final title = video.title.isNotEmpty ? video.title : '';
             videos.add(YoutubeVideo(
               id: video.id.value,
-              title: video.title,
+              title: title,
               url: 'https://www.youtube.com/watch?v=${video.id.value}',
               duration: video.duration,
               mediumThumbnailUrl: video.thumbnails.mediumResUrl,
@@ -336,37 +506,25 @@ class YoutubeRepository {
                   ? video.thumbnails.maxResUrl
                   : video.thumbnails.mediumResUrl,
               uploadDate: video.publishDate,
-              channelTitle: video.author,
+              channelTitle: video.author.isNotEmpty ? video.author : (channelName ?? ''),
             ));
+            if (videos.length >= maxVideos) break;
           }
-
-          if (page >= maxPages || videos.length >= maxVideos) break;
-
-          final next = await current.nextPage();
-          if (next == null) break;
-          current = next;
-          page++;
-        }
-      } catch (e) {
-        debugPrint('[YT ChUploads] getUploadsFromPage failed for $channelId ($e), falling back to channel query');
-        // Fallback: search by channel ID or channel name
-        final searchQuery = channelName != null && channelName.isNotEmpty
-            ? channelName
-            : channelId;
-        final searchResults = await yt.search.search(searchQuery);
-        for (final video in searchResults) {
-          videos.add(_videoToModel(video));
-          if (videos.length >= maxVideos) break;
+        } catch (pageError) {
+          debugPrint('[YT ChUploads] getUploadsFromPage also failed: $pageError');
         }
       }
 
+      // Filter candidates so only videos with working closed captions (auto-generated or manual) are returned
+      final verifiedVideos = await filterWithSubtitlesOnly(videos, max: maxVideos);
+
       _channelUploadsCache[cacheKey] = _CachedResult(
-        videos: videos,
+        videos: verifiedVideos,
         timestamp: DateTime.now(),
       );
       debugPrint(
-          '[YT ChUploads] Loaded ${videos.length} videos for "$channelId"');
-      return videos;
+          '[YT ChUploads] Loaded ${verifiedVideos.length} videos with subtitles for "$channelId"');
+      return verifiedVideos;
     } catch (e) {
       debugPrint('[YT ChUploads] Error for "$channelId": $e');
       rethrow;

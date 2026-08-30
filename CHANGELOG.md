@@ -2,7 +2,74 @@
 
 All notable changes to this project will be documented in this file.
 
-## [1.0.0+261] - 2026-08-30
+## [1.0.0+285] - 2026-08-30
+- **HSK Collections (Tome Manager) "Zen & Ink" Visual Redesign (Build #285)**:
+  - **Authentic Calligraphic Cards**: Redesigned [`TomeManagerScreen`](file:///c:/Users/simon/Documents/hanzi_master/lib/features/course/presentation/screens/tome_manager_screen.dart) from plain white flat cards into warm Xuan paper and deep carbon ink calligraphic cards with soft shadows, rounded corners (`18px`), and tier-tinted borders.
+  - **Calligraphic Numeral Seals**: Added authentic Chinese numeral seal badges (`一`, `二`, `三`, `四`, `五`, `六`) with distinct tier gradients (Emerald Jade, Deep Teal, Amber Ochre, Vermilion Crimson, Deep Indigo, Imperial Violet).
+  - **Sample Characters Preview**: Added an in-line sample character pill strip to each card (e.g. `Sample: 你 • 好 • 我 • 是 • 爱 • 家`) for instant visual feedback of character difficulty.
+  - **Interactive Tier Filter Tabs**: Replaced static level tags with interactive filter chips (`All Tiers`, `HSK 1` through `HSK 6`) with tactile haptic feedback and installed indicators.
+  - **Summary Library Header Banner**: Added an active collections stats card displaying total installed tomes, available characters, and library status.
+  - `dart analyze lib/features/course/presentation/screens/tome_manager_screen.dart`: 0 issues found.
+
+## [1.0.0+284] - 2026-08-30
+- **Live Call Legibility, Ambient Theme & Header Formatting (Build #284)**:
+  - **Luminous Ambient Live Call Screen**: Replaced the pitch-black void with a rich luminous navy/slate radial ambient backdrop (`#24344D` to `#0B1120`) and softened the background blur scrim, creating a warm, elegant atmosphere where incoming dialogue and subtitles have high contrast and readability.
+  - **Enhanced Transcript Bubble Legibility**: Redesigned [`_LiveTranscriptBubble`](file:///c:/Users/simon/Documents/hanzi_master/lib/features/echo_hall/presentation/screens/live_call_screen.dart) with translucent frosted-glass cards, crisp high-contrast Chinese typography (`#F8FAFC`, `fontSize: 16.5`), light cyan-tinted Pinyin (`#E2E8F0`), and soft italicized English translations (`#CBD5E1`).
+  - **Conversation Header Formatting Fix**: Refined [`ConversationScreen`](file:///c:/Users/simon/Documents/hanzi_master/lib/features/echo_hall/presentation/screens/conversation_screen.dart) app bar with horizontal padding (`56px`) and single-line truncation, elevating the seal circle higher in the header to completely prevent overlap with multi-word scenario titles.
+  - **Zero 4th Wall Breaks**: Removed all 4th-wall-breaking prompts and fallback greetings (e.g. *"准备好练习了吗？"* / *"Ready to practice?"*). Replaced them with authentic, in-character opening lines and strict system prompt rules forbidding any mention of language learning, studying, lessons, or being an AI.
+  - `dart analyze lib/features/echo_hall/`: 0 issues found.
+
+## [1.0.0+283] - 2026-08-30
+- **HSK Collections Back Button & On-The-Spot AI Book Translations (Build #283)**:
+  - **Back Navigation**: Added `GlobalSliverAppBar(showBackButton: true)` to `TomeManagerScreen` (`HSK Collections`), allowing users to easily navigate back.
+  - **Clean Chapter Titles & Preface Sentences**: Reconstructed `dream_of_red_chamber.json` into 120 canonical chapters. Moved the opening author's preface into body sentences within Chapter 1 instead of storing it inside chapter titles.
+  - **On-the-Spot AI Translations**: Upgraded `LocalTranslationService` with direct Google Gemini REST API and OpenRouter AI translation engines, equipped with strict ML Kit timeouts to ensure sentence translations generate on the spot without hanging.
+  - `dart analyze`: 0 issues found.
+
+## [1.0.0+282] - 2026-08-30
+- **Library Screen Search Bar & Layout Simplification (Build #282)**:
+  - **SliverToBoxAdapter Refactor**: Replaced `SliverPersistentHeader` in [`DictionaryScreen`](file:///c:/Users/simon/Documents/hanzi_master/lib/features/flashcards/presentation/screens/dictionary_screen.dart) with a clean `SliverToBoxAdapter` containing `ZenSearchBar` and the quick camera scanner icon.
+  - Resolved persistent header delegate sizing and rebuild conflicts under `GlobalSliverAppBar`.
+  - `dart analyze`: 0 issues found.
+
+## [1.0.0+281] - 2026-08-30
+- **Subtitle Availability Verification Filter & Library Screen Fix (Build #281)**:
+  - **Auto-Filter Subtitle-less Videos**: Updated `YoutubeRepository` (`searchVideos` and `getChannelUploads`) with `hasCaptions` and `filterWithSubtitlesOnly`. Videos without closed caption subtitle tracks (manual or auto-generated) on YouTube are automatically filtered out so only videos with available transcripts are presented to the user.
+  - **Library Screen Blank Page Fix**: Resolved bug where the 4th tab (`The Scholar's Library`) rendered a blank screen. Replaced the colliding `NestedScrollView` structure with a unified, high-performance `CustomScrollView` and sliver builder.
+  - `dart analyze`: 0 issues found.
+
+## [1.0.0+280] - 2026-08-30
+- **Smart Media Desk Closed Captions (CC) vs. Burned-In Subtitles Diagnostic & UI Polish (Build #280)**:
+  - **Caption Architecture Verification**: Verified YouTube caption pipeline across `youtube_explode_dart`, Innertube, and direct `timedtext` endpoints. Confirmed auto-generated and manual Chinese CC tracks (`zh`, `zh-Hans`, `zh-Hant`, `cmn`, `yue`) extract and synchronize properly when closed captions exist on YouTube.
+  - **Burned-In Subtitle Handling**: Clarified that gaming/vlog videos with hardcoded subtitles drawn directly onto MP4 video pixels lack a digital text stream on YouTube's servers. Refined `_buildErrorState` with elegant styling and clear messaging explaining the difference between digital CC and hardcoded video graphics.
+  - `dart analyze`: 0 issues found.
+
+## [1.0.0+279] - 2026-08-30
+- **Global Dictionary & Studio Numeric Pinyin to Tone Accents Diacritics Conversion (Build #279)**:
+  - **Tone Diacritics Pipeline**: Updated `GlobalDictionaryRepository` (`search`, `getWordsContaining`, and `getExact`) to map all raw CC-CEDICT numeric pinyin strings from the SQLite database through `PinyinUtils.convertNumericToMarks` (e.g. converting `ha1 luo2` $\rightarrow$ `hā luó`, `wen4 hao3` $\rightarrow$ `wèn hǎo`).
+  - **Service & UI Hardening**: Integrated tone-marked conversion into `CharacterLookupService`, `ShadowingStudioScreen` custom word search dropdown list, and `WebBrowserScreen` vocabulary selection list.
+  - `dart analyze`: 0 issues found.
+
+## [1.0.0+278] - 2026-08-30
+- **Show Catalog Universal 100% Thumbnail Resolution & Corruption Fix (Build #278)**:
+  - **Root Cause Fix**: Discovered and resolved chained string replacement in `ShowRepository` (`replaceAll('maxresdefault.jpg', 'hqdefault.jpg').replaceAll('default.jpg', 'hqdefault.jpg')`) which was inadvertently matching the substring `default.jpg` in `hqdefault.jpg` and corrupting URLs into non-existent `.../hqhqdefault.jpg` (404), causing show cards across multiple categories to render empty grey placeholder boxes.
+  - **Robust Thumbnail Extractor**: Added `resolveShowThumbnail` with regex-based video ID parsing that converts all show and playlist thumbnails into valid `https://i.ytimg.com/vi/$vid/hqdefault.jpg` endpoints.
+  - **Resilient Fallback**: Upgraded `_ShowCard` in `ShowCatalogScreen` to automatically fallback to `img.youtube.com` before resorting to the generic placeholder.
+  - **100% Verified**: Tested all 138 shows in the catalog (138/138 return HTTP 200). `dart analyze`: 0 issues found.
+
+## [1.0.0+277] - 2026-08-30
+- **Full-Bleed Landscape Player Isolation & Complete Native YouTube UI Cancellation (Build #277)**:
+  - **Native YouTube UI Cancellation**: Fully suppressed native YouTube player controls, fullscreen button, video annotations, and related recommendations (`showControls: false`, `showFullscreenButton: false`, `showVideoAnnotations: false`, `strictRelatedVideos: true`, `playsInline: true`, `pointerEvents: PointerEvents.none`).
+  - **Full-Bleed Landscape Viewport**: Expanded the video player to fill 100% of the device screen in landscape without 16:9 box letterboxing, automatically activating `SystemUiMode.immersiveSticky`.
+  - **Custom FullscreenMediaOverlay Exclusivity**: Ensured all landscape interactions (play/pause, seek scrubber, $\pm 10\text{s}$, speed picker, Hanzi/Pinyin/English switches, and tap dictionary lookups) are exclusively handled by our custom overlay.
+  - `dart analyze`: 0 issues found.
+
+## [1.0.0+276] - 2026-08-30
+- **Video Transcript Tone-Marked Pinyin Pipeline & Translation Leak Fix (Build #276)**:
+  - **Pinyin Generation in Transcript Translation**: Updated `GeminiService.translateTranscriptLines` and `translateChunk` prompt and response parsing to explicitly request and populate tone-marked Pinyin. Removed flawed heuristic that populated the `pinyin` field with raw non-Chinese (English) source text.
+  - **Instant Offline Pinyin Ingestion**: Equipped `YoutubeRepository.getTranscript` and `_fetchTimedTextDirect` with `PinyinHelper.getPinyinE` so Chinese subtitles immediately receive accurate tone-marked Pinyin upon initial fetch.
+  - **Transcript & Overlay UI Defense**: Upgraded `PremiumTranscriptLine`, `PremiumSubtitlesOverlay`, and `SmartMediaDeskScreen` with automatic `_getEffectivePinyin` validation to filter out accidental duplicate translation text and fall back cleanly to `PinyinHelper`.
+  - `dart analyze`: 0 issues found.
 - **Azure Neural TTS Hardening, Show Catalog & YouTube Media Pipeline (Builds #245-#261)**:
   - **Azure Speech Synthesis**: Standardized SSML 1.0 generation with explicit `xml:lang="zh-CN"`, quote normalization, and 24kHz MP3 encoding (`audio-24khz-48kbitrate-mono-mp3`); moved audio session category setup into startup initialization to prevent playback interruptions.
   - **YouTube Media & Shows**: Standardized video thumbnails to universally available `hqdefault.jpg`, decoupled search feeds from drama shows, batched subtitle verification to avoid rate limiting, added `TransientFailureException` fallback for channel uploads, and enhanced `getTranscript` to fall back gracefully to any available caption track.

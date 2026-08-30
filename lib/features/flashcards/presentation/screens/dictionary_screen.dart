@@ -67,29 +67,71 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
     final isDark = theme.brightness == Brightness.dark;
     final l10n = AppLocalizations.of(context);
 
+    final asyncFlashcards = ref.watch(flashcardControllerProvider);
+    final asyncDecks = ref.watch(deckControllerProvider);
+    final masterResults = ref.watch(masterSearchProvider(_searchQuery)).valueOrNull ?? [];
+
     return Scaffold(
       body: CalligraphyBackground(
-        child: NestedScrollView(
-          headerSliverBuilder: (context, innerBoxIsScrolled) => [
+        child: CustomScrollView(
+          physics: const AlwaysScrollableScrollPhysics(
+            parent: BouncingScrollPhysics(),
+          ),
+          slivers: [
             GlobalSliverAppBar(
               title: l10n?.scholarsLibrary ?? "The Scholar's Library",
-              actions: const [
-                              ],
+              actions: const [],
+              showBackButton: false,
             ),
-            SliverPersistentHeader(
-              pinned: true,
-              delegate: _SearchBarDelegate(
-                isDark: isDark,
-                searchQuery: _searchQuery,
-                controller: _searchController,
-                focusNode: _searchFocusNode,
-                onChanged: (value) => setState(() => _searchQuery = value),
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 8.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: ZenSearchBar(
+                        controller: _searchController,
+                        focusNode: _searchFocusNode,
+                        hintText: l10n?.searchPinyinHanziEnglish ?? "Search Pinyin, Hanzi, or English...",
+                        onChanged: (value) => setState(() => _searchQuery = value),
+                      ),
+                    ),
+                    const SizedBox(width: 12),
+                    Container(
+                      decoration: BoxDecoration(
+                        color: theme.colorScheme.primary,
+                        shape: BoxShape.circle,
+                        boxShadow: [
+                          BoxShadow(
+                            color: theme.colorScheme.primary.withValues(alpha: 0.3),
+                            blurRadius: 8,
+                            offset: const Offset(0, 4),
+                          ),
+                        ],
+                      ),
+                      child: IconButton(
+                        icon: const Icon(Icons.camera_alt),
+                        color: theme.colorScheme.onPrimary,
+                        onPressed: () {
+                          Navigator.push(context, SwipeBackPageRoute(builder: (context) => const UniversalScannerScreen(intent: CameraIntent.dictionary)));
+                        },
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
+            ..._buildLibrarySlivers(
+              context: context,
+              ref: ref,
+              isDark: isDark,
+              l10n: l10n,
+              searchQuery: _searchQuery,
+              asyncFlashcards: asyncFlashcards,
+              asyncDecks: asyncDecks,
+              masterResults: masterResults,
+            ),
           ],
-          body: _DictionarySearchTab(
-            searchQuery: _searchQuery,
-          ),
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
@@ -99,6 +141,431 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
         label: Text(l10n?.generate ?? "Generate", style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
         onPressed: () => AiDeckGeneratorSheet.show(context),
       ),
+    );
+  }
+
+  List<Widget> _buildLibrarySlivers({
+    required BuildContext context,
+    required WidgetRef ref,
+    required bool isDark,
+    required AppLocalizations? l10n,
+    required String searchQuery,
+    required AsyncValue<List<Flashcard>> asyncFlashcards,
+    required AsyncValue<List<Deck>> asyncDecks,
+    required List<Flashcard> masterResults,
+  }) {
+    return asyncFlashcards.when(
+      data: (flashcards) {
+        final libraryMap = {for (var card in flashcards) card.hanzi: card};
+
+        // 1. Map master results, replacing with library versions if they exist to keep streak data
+        final List<Flashcard> unifiedResults = masterResults.map((masterCard) {
+          return libraryMap[masterCard.hanzi] ?? masterCard;
+        }).toList();
+
+        // 2. Find local-only cards that match the query but weren't in masterResults (e.g. custom user cards)
+        final unifiedHanziSet = unifiedResults.map((c) => c.hanzi).toSet();
+        final localOnlyMatches = flashcards.where((card) {
+          if (unifiedHanziSet.contains(card.hanzi)) return false;
+          final query = searchQuery.toLowerCase();
+          final cleanPinyin = PinyinUtils.removeToneMarks(card.pinyin).toLowerCase();
+          return card.hanzi.contains(query) ||
+              cleanPinyin.contains(query) ||
+              card.pinyin.toLowerCase().contains(query) ||
+              card.definition.toLowerCase().contains(query);
+        }).toList();
+
+        unifiedResults.addAll(localOnlyMatches);
+
+        if (searchQuery.isEmpty) {
+          return [
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 16, bottom: 8),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                      child: Text(
+                        l10n?.latestDiscoveries ?? "Latest Discoveries",
+                        style: Theme.of(context)
+                            .textTheme
+                            .titleLarge
+                            ?.copyWith(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    SizedBox(
+                      height: 140,
+                      child: flashcards.isEmpty
+                          ? Center(
+                              child: Text(l10n?.noCharactersInLexicon ??
+                                  "No characters in lexicon"))
+                          : ListView.separated(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 24),
+                              scrollDirection: Axis.horizontal,
+                              itemCount:
+                                  flashcards.length > 10 ? 10 : flashcards.length,
+                              separatorBuilder: (context, index) =>
+                                  const SizedBox(width: 16),
+                              itemBuilder: (context, index) {
+                                final card =
+                                    flashcards[flashcards.length - 1 - index];
+                                return _LexiconMiniCard(card: card);
+                              },
+                            ),
+                    ),
+                    const SizedBox(height: 32),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              SwipeBackPageRoute(
+                                  builder: (context) =>
+                                      const RadicalLibraryScreen()));
+                        },
+                        child: Container(
+                          width: double.infinity,
+                          padding: const EdgeInsets.all(20),
+                          decoration: BoxDecoration(
+                            gradient: const LinearGradient(
+                              colors: [Color(0xFF1A1A1B), Color(0xFF3A3A3C)],
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                            ),
+                            borderRadius: BorderRadius.circular(16),
+                            boxShadow: [
+                              BoxShadow(
+                                color: const Color(0xFF1A1A1B)
+                                    .withValues(alpha: 0.2),
+                                blurRadius: 12,
+                                offset: const Offset(0, 4),
+                              ),
+                            ],
+                          ),
+                          child: Row(
+                            children: [
+                              Container(
+                                padding: const EdgeInsets.all(12),
+                                decoration: BoxDecoration(
+                                  color: Colors.white.withValues(alpha: 0.2),
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                child: const Text('氵',
+                                    style: TextStyle(
+                                        fontSize: 28,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold)),
+                              ),
+                              const SizedBox(width: 16),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                        l10n?.radicalsIndex ?? "Radicals Index",
+                                        style: const TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold)),
+                                    const SizedBox(height: 4),
+                                    Text(
+                                        l10n?.masterBuildingBlocks ??
+                                            "Master the building blocks",
+                                        style: const TextStyle(
+                                            color: Colors.white70,
+                                            fontSize: 13)),
+                                  ],
+                                ),
+                              ),
+                              const Icon(Icons.arrow_forward_ios,
+                                  color: Colors.white70, size: 16),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 24),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                      child: BouncingButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              SwipeBackPageRoute(
+                                  builder: (context) =>
+                                      const hanzi_tome.TomeManagerScreen()));
+                        },
+                        child: Container(
+                          width: double.infinity,
+                          padding: const EdgeInsets.all(20),
+                          decoration: BoxDecoration(
+                            color: Theme.of(context)
+                                .colorScheme
+                                .primary
+                                .withValues(alpha: 0.1),
+                            borderRadius: BorderRadius.circular(16),
+                            border: Border.all(
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .primary
+                                    .withValues(alpha: 0.2)),
+                          ),
+                          child: Row(
+                            children: [
+                              Icon(Icons.download_for_offline_outlined,
+                                  color:
+                                      Theme.of(context).colorScheme.primary,
+                                  size: 28),
+                              const SizedBox(width: 16),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.start,
+                                  children: [
+                                    Text("HSK Collections",
+                                        style: TextStyle(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .primary,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold)),
+                                    const SizedBox(height: 4),
+                                    Text(
+                                        "Download official HSK collections",
+                                        style: TextStyle(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .primary
+                                                .withValues(alpha: 0.8),
+                                            fontSize: 13)),
+                                  ],
+                                ),
+                              ),
+                              Icon(Icons.arrow_forward_ios,
+                                  color:
+                                      Theme.of(context).colorScheme.primary,
+                                  size: 16),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 32),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                      child: Text(
+                        l10n?.yourBookshelf ?? "Your Bookshelf",
+                        style: Theme.of(context)
+                            .textTheme
+                            .titleLarge
+                            ?.copyWith(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                  ],
+                ),
+              ),
+            ),
+            asyncDecks.when(
+              data: (decks) => SliverPadding(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                sliver: SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                    (context, index) {
+                      final deck = decks[index];
+                      final deckCardsCount =
+                          flashcards.where((c) => c.deckId == deck.id).length;
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 16),
+                        child: StaggeredListItem(
+                          index: index,
+                          child: _BookshelfVerticalCard(
+                              deck: deck, cardCount: deckCardsCount),
+                        ),
+                      );
+                    },
+                    childCount: decks.length,
+                  ),
+                ),
+              ),
+              loading: () => const SliverToBoxAdapter(
+                  child: Center(
+                      child: Padding(
+                          padding: EdgeInsets.all(32),
+                          child: CircularProgressIndicator()))),
+              error: (e, s) => SliverToBoxAdapter(
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(32),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const Icon(Icons.library_books_outlined,
+                            size: 48, color: Colors.grey),
+                        const SizedBox(height: 16),
+                        const Text(
+                            "We ran into trouble loading the library. Please try again.",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(color: Colors.grey, fontSize: 14)),
+                        const SizedBox(height: 16),
+                        ElevatedButton.icon(
+                          onPressed: () {
+                            ref.invalidate(deckControllerProvider);
+                            ref.invalidate(flashcardControllerProvider);
+                          },
+                          icon: const Icon(Icons.refresh, size: 16),
+                          label: const Text("Retry"),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            const SliverPadding(padding: EdgeInsets.only(bottom: 100)),
+          ];
+        }
+
+        if (unifiedResults.isEmpty) {
+          return [
+            SliverFillRemaining(
+              hasScrollBody: false,
+              child: Center(
+                  child: Text("No results found for '$searchQuery'",
+                      style: const TextStyle(color: Colors.grey))),
+            ),
+          ];
+        }
+
+        // Group results by their primary definition (first English word/phrase)
+        final grouped = <String, List<dynamic>>{};
+        for (final card in unifiedResults) {
+          final def = DefinitionFormatter.cleanRaw(card.definition, ref);
+          final key = _extractDefinitionGroupKey(def);
+          grouped.putIfAbsent(key, () => []).add(card);
+        }
+
+        // Build grouped items
+        final items = <Widget>[];
+        for (final entry in grouped.entries) {
+          final cards = entry.value;
+          final groupLabel = entry.key;
+
+          if (cards.length >= 2) {
+            // Group header with "Compare" button
+            items.add(
+              Padding(
+                padding: const EdgeInsets.fromLTRB(16, 12, 16, 4),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        groupLabel,
+                        style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                              fontWeight: FontWeight.w600,
+                              color: Theme.of(context).colorScheme.primary,
+                            ),
+                      ),
+                    ),
+                    TextButton.icon(
+                      onPressed: () {
+                        HapticsManager.light();
+                        final words = cards
+                            .map<Map<String, String>>((c) => {
+                                  'hanzi': c.hanzi as String,
+                                  'pinyin': c.pinyin as String,
+                                  'definition': DefinitionFormatter.cleanRaw(
+                                      c.definition, ref),
+                                })
+                            .toList();
+                        NuanceCompareSheet.show(
+                          context,
+                          words: words,
+                          groupLabel: groupLabel,
+                        );
+                      },
+                      icon: const Icon(Icons.compare_arrows, size: 16),
+                      label: const Text('Compare'),
+                      style: TextButton.styleFrom(
+                        visualDensity: VisualDensity.compact,
+                        padding: const EdgeInsets.symmetric(horizontal: 8),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          }
+
+          // Card items
+          for (final card in cards) {
+            final isInLibrary = libraryMap.containsKey(card.hanzi);
+            items.add(
+              Padding(
+                padding: const EdgeInsets.fromLTRB(16, 4, 16, 8),
+                child: _DictionaryItem(card: card, isInLibrary: isInLibrary),
+              ),
+            );
+          }
+        }
+
+        return [
+          SliverPadding(
+            padding: const EdgeInsets.symmetric(vertical: 8),
+            sliver: SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (context, index) => StaggeredListItem(
+                  index: index,
+                  child: items[index],
+                ),
+                childCount: items.length,
+              ),
+            ),
+          ),
+          const SliverPadding(padding: EdgeInsets.only(bottom: 100)),
+        ];
+      },
+      loading: () => [
+        const SliverFillRemaining(
+          hasScrollBody: false,
+          child: Center(
+            child: CircularProgressIndicator(color: Colors.brown),
+          ),
+        ),
+      ],
+      error: (err, stack) => [
+        SliverFillRemaining(
+          hasScrollBody: false,
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.all(32),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Icon(Icons.error_outline, size: 48, color: Colors.grey),
+                  const SizedBox(height: 16),
+                  const Text(
+                      "Unable to load this section. Please try again.",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.grey, fontSize: 14)),
+                  const SizedBox(height: 16),
+                  ElevatedButton.icon(
+                    onPressed: () =>
+                        ref.invalidate(flashcardControllerProvider),
+                    icon: const Icon(Icons.refresh, size: 16),
+                    label: const Text("Retry"),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
@@ -272,372 +739,9 @@ class _BookshelfVerticalCard extends StatelessWidget {
   }
 }
 
-class _SearchBarDelegate extends SliverPersistentHeaderDelegate {
-  final bool isDark;
-  final String searchQuery;
-  final TextEditingController controller;
-  final ValueChanged<String> onChanged;
-  final FocusNode focusNode;
 
-  _SearchBarDelegate({
-    required this.isDark,
-    required this.searchQuery,
-    required this.controller,
-    required this.onChanged,
-    required this.focusNode,
-  });
 
-  @override
-  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
-    final theme = Theme.of(context);
-    final l10n = AppLocalizations.of(context);
 
-    return Container(
-      color: Colors.transparent,
-      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
-      child: Row(
-        children: [
-          Expanded(
-            child: ZenSearchBar(
-              controller: controller,
-              focusNode: focusNode,
-              hintText: l10n?.searchPinyinHanziEnglish ?? "Search Pinyin, Hanzi, or English...",
-              onChanged: onChanged,
-            ),
-          ),
-          const SizedBox(width: 12),
-          Container(
-            decoration: BoxDecoration(
-              color: theme.colorScheme.primary,
-              shape: BoxShape.circle,
-              boxShadow: [
-                BoxShadow(
-                  color: theme.colorScheme.primary.withValues(alpha: 0.3),
-                  blurRadius: 8,
-                  offset: const Offset(0, 4),
-                ),
-              ],
-            ),
-            child: IconButton(
-              icon: const Icon(Icons.camera_alt),
-              color: theme.colorScheme.onPrimary,
-              onPressed: () {
-                Navigator.push(context, SwipeBackPageRoute(builder: (context) => const UniversalScannerScreen(intent: CameraIntent.dictionary)));
-              },
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  @override
-  double get maxExtent => 80.0;
-
-  @override
-  double get minExtent => 80.0;
-
-  @override
-  bool shouldRebuild(covariant _SearchBarDelegate oldDelegate) {
-    return oldDelegate.isDark != isDark ||
-           oldDelegate.searchQuery != searchQuery ||
-           oldDelegate.onChanged != onChanged;
-  }
-}
-
-class _DictionarySearchTab extends ConsumerWidget {
-  final String searchQuery;
-  
-  const _DictionarySearchTab({
-    required this.searchQuery,
-  });
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final asyncFlashcards = ref.watch(flashcardControllerProvider);
-    final asyncDecks = ref.watch(deckControllerProvider);
-    final masterResults = ref.watch(masterSearchProvider(searchQuery)).valueOrNull ?? [];
-
-    return asyncFlashcards.when(
-      data: (flashcards) {
-        final libraryMap = { for (var card in flashcards) card.hanzi : card };
-        
-        // 1. Map master results, replacing with library versions if they exist to keep streak data
-        final List<Flashcard> unifiedResults = masterResults.map((masterCard) {
-          return libraryMap[masterCard.hanzi] ?? masterCard;
-        }).toList();
-
-        // 2. Find local-only cards that match the query but weren't in masterResults (e.g. custom user cards)
-        final unifiedHanziSet = unifiedResults.map((c) => c.hanzi).toSet();
-        final localOnlyMatches = flashcards.where((card) {
-          if (unifiedHanziSet.contains(card.hanzi)) return false;
-          final query = searchQuery.toLowerCase();
-          final cleanPinyin = PinyinUtils.removeToneMarks(card.pinyin).toLowerCase();
-          return card.hanzi.contains(query) ||
-                 cleanPinyin.contains(query) ||
-                 card.pinyin.toLowerCase().contains(query) ||
-                 card.definition.toLowerCase().contains(query);
-        }).toList();
-
-        unifiedResults.addAll(localOnlyMatches);
-
-        if (searchQuery.isEmpty) {
-          return CustomScrollView(
-            slivers: [
-              SliverToBoxAdapter(
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 16, bottom: 8),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                        child: Text(
-                          AppLocalizations.of(context)!.latestDiscoveries,
-                          style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      const SizedBox(height: 16),
-                      SizedBox(
-                        height: 140,
-                        child: flashcards.isEmpty 
-                          ? Center(child: Text(AppLocalizations.of(context)!.noCharactersInLexicon))
-                          : ListView.separated(
-                              padding: const EdgeInsets.symmetric(horizontal: 24),
-                              scrollDirection: Axis.horizontal,
-                              itemCount: flashcards.length > 10 ? 10 : flashcards.length,
-                              separatorBuilder: (context, index) => const SizedBox(width: 16),
-                              itemBuilder: (context, index) {
-                                // latest first -> flashcards are usually appended, so reversed
-                                final card = flashcards[flashcards.length - 1 - index];
-                                return _LexiconMiniCard(card: card);
-                              },
-                            ),
-                      ),
-                      const SizedBox(height: 32),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                        child: GestureDetector(
-                          onTap: () {
-                            Navigator.push(context, SwipeBackPageRoute(builder: (context) => const RadicalLibraryScreen()));
-                          },
-                          child: Container(
-                            width: double.infinity,
-                            padding: const EdgeInsets.all(20),
-                            decoration: BoxDecoration(
-                              gradient: const LinearGradient(
-                                colors: [Color(0xFF1A1A1B), Color(0xFF3A3A3C)],
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight,
-                              ),
-                              borderRadius: BorderRadius.circular(16),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: const Color(0xFF1A1A1B).withValues(alpha: 0.2),
-                                  blurRadius: 12,
-                                  offset: const Offset(0, 4),
-                                ),
-                              ],
-                            ),
-                            child: Row(
-                              children: [
-                                Container(
-                                  padding: const EdgeInsets.all(12),
-                                  decoration: BoxDecoration(
-                                    color: Colors.white.withValues(alpha: 0.2),
-                                    borderRadius: BorderRadius.circular(12),
-                                  ),
-                                  child: const Text('氵', style: TextStyle(fontSize: 28, color: Colors.white, fontWeight: FontWeight.bold)),
-                                ),
-                                const SizedBox(width: 16),
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text(AppLocalizations.of(context)!.radicalsIndex, style: const TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold)),
-                                      const SizedBox(height: 4),
-                                      Text(AppLocalizations.of(context)!.masterBuildingBlocks, style: const TextStyle(color: Colors.white70, fontSize: 13)),
-                                    ],
-                                  ),
-                                ),
-                                const Icon(Icons.arrow_forward_ios, color: Colors.white70, size: 16),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 24),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                        child: BouncingButton(
-                          onPressed: () {
-                            Navigator.push(context, SwipeBackPageRoute(builder: (context) => const hanzi_tome.TomeManagerScreen()));
-                          },
-                          child: Container(
-                            width: double.infinity,
-                            padding: const EdgeInsets.all(20),
-                            decoration: BoxDecoration(
-                              color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.1),
-                              borderRadius: BorderRadius.circular(16),
-                              border: Border.all(color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.2)),
-                            ),
-                            child: Row(
-                              children: [
-                                Icon(Icons.download_for_offline_outlined, color: Theme.of(context).colorScheme.primary, size: 28),
-                                const SizedBox(width: 16),
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text("HSK Collections", style: TextStyle(color: Theme.of(context).colorScheme.primary, fontSize: 18, fontWeight: FontWeight.bold)),
-                                      const SizedBox(height: 4),
-                                      Text("Download official HSK collections", style: TextStyle(color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.8), fontSize: 13)),
-                                    ],
-                                  ),
-                                ),
-                                Icon(Icons.arrow_forward_ios, color: Theme.of(context).colorScheme.primary, size: 16),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 32),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                        child: Text(
-                          AppLocalizations.of(context)!.yourBookshelf,
-                          style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      const SizedBox(height: 16),
-                    ],
-                  ),
-                ),
-              ),
-              asyncDecks.when(
-                data: (decks) => SliverPadding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24),
-                  sliver: SliverList(
-                    delegate: SliverChildBuilderDelegate(
-                      (context, index) {
-                        final deck = decks[index];
-                        final deckCardsCount = flashcards.where((c) => c.deckId == deck.id).length;
-                        return Padding(
-                          padding: const EdgeInsets.only(bottom: 16),
-                          child: StaggeredListItem(
-                            index: index,
-                            child: _BookshelfVerticalCard(deck: deck, cardCount: deckCardsCount),
-                          ),
-                        );
-                      },
-                      childCount: decks.length,
-                    ),
-                  ),
-                ),
-                loading: () => const SliverFillRemaining(child: Center(child: CircularProgressIndicator())),
-                error: (e, s) => SliverFillRemaining(child: Center(child: Padding(padding: const EdgeInsets.all(32), child: Column(mainAxisSize: MainAxisSize.min, children: [const Icon(Icons.library_books_outlined, size: 48, color: Colors.grey), const SizedBox(height: 16), const Text("We ran into trouble loading the library. Please try again.", textAlign: TextAlign.center, style: TextStyle(color: Colors.grey, fontSize: 14)), const SizedBox(height: 16), ElevatedButton.icon(onPressed: () { ref.invalidate(deckControllerProvider); ref.invalidate(flashcardControllerProvider); }, icon: const Icon(Icons.refresh, size: 16), label: const Text("Retry"))])))),
-              ),
-              const SliverPadding(padding: EdgeInsets.only(bottom: 100)),
-            ],
-          );
-        }
-
-        if (unifiedResults.isEmpty) {
-          return Center(child: Text("No results found for '$searchQuery'", style: const TextStyle(color: Colors.grey)));
-        }
-
-        // Group results by their primary definition (first English word/phrase)
-        final grouped = <String, List<dynamic>>{};
-        for (final card in unifiedResults) {
-          final def = DefinitionFormatter.cleanRaw(card.definition, ref);
-          final key = _extractDefinitionGroupKey(def);
-          grouped.putIfAbsent(key, () => []).add(card);
-        }
-
-        // Build grouped items
-        final items = <Widget>[];
-        for (final entry in grouped.entries) {
-          final cards = entry.value;
-          final groupLabel = entry.key;
-
-          if (cards.length >= 2) {
-            // Group header with "Compare" button
-            items.add(
-              Padding(
-                padding: const EdgeInsets.fromLTRB(16, 12, 16, 4),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Text(
-                        groupLabel,
-                        style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                          fontWeight: FontWeight.w600,
-                          color: Theme.of(context).colorScheme.primary,
-                        ),
-                      ),
-                    ),
-                    TextButton.icon(
-                      onPressed: () {
-                        HapticsManager.light();
-                        final words = cards.map<Map<String, String>>((c) => {
-                          'hanzi': c.hanzi as String,
-                          'pinyin': c.pinyin as String,
-                          'definition': DefinitionFormatter.cleanRaw(c.definition, ref),
-                        }).toList();
-                        NuanceCompareSheet.show(
-                          context,
-                          words: words,
-                          groupLabel: groupLabel,
-                        );
-                      },
-                      icon: const Icon(Icons.compare_arrows, size: 16),
-                      label: const Text('Compare'),
-                      style: TextButton.styleFrom(
-                        visualDensity: VisualDensity.compact,
-                        padding: const EdgeInsets.symmetric(horizontal: 8),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            );
-          }
-
-          // Card items
-          for (final card in cards) {
-            final isInLibrary = libraryMap.containsKey(card.hanzi);
-            items.add(
-              Padding(
-                padding: const EdgeInsets.fromLTRB(16, 4, 16, 8),
-                child: _DictionaryItem(card: card, isInLibrary: isInLibrary),
-              ),
-            );
-          }
-        }
-
-        return CustomScrollView(
-          slivers: [
-            SliverPadding(
-              padding: const EdgeInsets.symmetric(vertical: 8),
-              sliver: SliverList(
-                delegate: SliverChildBuilderDelegate(
-                  (context, index) => StaggeredListItem(
-                    index: index,
-                    child: items[index],
-                  ),
-                  childCount: items.length,
-                ),
-              ),
-            ),
-            const SliverPadding(padding: EdgeInsets.only(bottom: 100)),
-          ],
-        );
-      },
-      loading: () => const Center(child: CircularProgressIndicator()),
-      error: (err, stack) => Center(child: Padding(padding: const EdgeInsets.all(32), child: Column(mainAxisSize: MainAxisSize.min, children: [const Icon(Icons.error_outline, size: 48, color: Colors.grey), const SizedBox(height: 16), const Text("Unable to load this section. Please try again.", textAlign: TextAlign.center, style: TextStyle(color: Colors.grey, fontSize: 14)), const SizedBox(height: 16), ElevatedButton.icon(onPressed: () => ref.invalidate(flashcardControllerProvider), icon: const Icon(Icons.refresh, size: 16), label: const Text("Retry"))]))),
-    );
-  }
-}
 
 class _RadicalLibraryTab extends ConsumerStatefulWidget {
   final String searchQuery;

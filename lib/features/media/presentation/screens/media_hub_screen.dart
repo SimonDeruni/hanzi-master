@@ -725,28 +725,33 @@ class _DailyDiscoveryCarouselState
           child: Stack(
             fit: StackFit.expand,
             children: [
-              Image.network(
-                item.imageUrl,
-                fit: BoxFit.cover,
-                loadingBuilder: (context, child, loadingProgress) {
-                  if (loadingProgress == null) return child;
-                  return Container(
-                      color: theme.colorScheme.surfaceContainerHighest);
-                },
-                errorBuilder: (context, error, stackTrace) {
-                  return Container(
-                    color: theme.colorScheme.surfaceContainerHighest,
-                    child: Center(
-                      child: Icon(Icons.broken_image,
-                          color: theme.colorScheme.onSurfaceVariant
-                              .withValues(alpha: 0.5),
-                          size: 40),
-                    ),
-                  );
-                },
-              ),
+              if (item.imageUrl.isNotEmpty)
+                Image.network(
+                  item.imageUrl,
+                  fit: BoxFit.cover,
+                  loadingBuilder: (context, child, loadingProgress) {
+                    if (loadingProgress == null) return child;
+                    return _buildCardPlaceholder(item);
+                  },
+                  errorBuilder: (context, error, stackTrace) {
+                    return _buildCardPlaceholder(item);
+                  },
+                )
+              else
+                _buildCardPlaceholder(item),
               Positioned.fill(
-                child: Container(color: Colors.black.withValues(alpha: 0.5)),
+                child: Container(
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        Colors.black.withValues(alpha: 0.25),
+                        Colors.black.withValues(alpha: 0.75),
+                      ],
+                    ),
+                  ),
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.all(24.0),
@@ -847,28 +852,33 @@ class _DailyDiscoveryCarouselState
           child: Stack(
             fit: StackFit.expand,
             children: [
-              Image.network(
-                show.thumbnailUrl,
-                fit: BoxFit.cover,
-                loadingBuilder: (context, child, loadingProgress) {
-                  if (loadingProgress == null) return child;
-                  return Container(
-                      color: theme.colorScheme.surfaceContainerHighest);
-                },
-                errorBuilder: (context, error, stackTrace) {
-                  return Container(
-                    color: theme.colorScheme.surfaceContainerHighest,
-                    child: Center(
-                      child: Icon(Icons.broken_image,
-                          color: theme.colorScheme.onSurfaceVariant
-                              .withValues(alpha: 0.5),
-                          size: 40),
-                    ),
-                  );
-                },
-              ),
+              if (show.thumbnailUrl.isNotEmpty)
+                Image.network(
+                  show.thumbnailUrl,
+                  fit: BoxFit.cover,
+                  loadingBuilder: (context, child, loadingProgress) {
+                    if (loadingProgress == null) return child;
+                    return _buildShowPlaceholder(show);
+                  },
+                  errorBuilder: (context, error, stackTrace) {
+                    return _buildShowPlaceholder(show);
+                  },
+                )
+              else
+                _buildShowPlaceholder(show),
               Positioned.fill(
-                child: Container(color: Colors.black.withValues(alpha: 0.5)),
+                child: Container(
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        Colors.black.withValues(alpha: 0.25),
+                        Colors.black.withValues(alpha: 0.75),
+                      ],
+                    ),
+                  ),
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.all(24.0),
@@ -929,6 +939,101 @@ class _DailyDiscoveryCarouselState
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildCardPlaceholder(DailyMediaItem item) {
+    // Elegant warm dark slate gradient with soft icon backdrop matching Zen & Ink aesthetic
+    return Container(
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            Color(0xFF2E3440),
+            Color(0xFF1E222A),
+            Color(0xFF181A20),
+          ],
+        ),
+      ),
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          // Subtle decorative background icon
+          Opacity(
+            opacity: 0.12,
+            child: Icon(
+              item.tag.contains('VIDEO') ? Icons.ondemand_video_rounded : Icons.auto_stories_rounded,
+              size: 110,
+              color: Colors.white,
+            ),
+          ),
+          // Center watermark badge
+          Container(
+            padding: const EdgeInsets.all(14),
+            decoration: BoxDecoration(
+              color: Colors.white.withValues(alpha: 0.08),
+              shape: BoxShape.circle,
+              border: Border.all(
+                color: Colors.white.withValues(alpha: 0.12),
+                width: 1.5,
+              ),
+            ),
+            child: Icon(
+              item.tag.contains('VIDEO')
+                  ? Icons.play_arrow_rounded
+                  : Icons.article_rounded,
+              color: Colors.white.withValues(alpha: 0.8),
+              size: 32,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildShowPlaceholder(Show show) {
+    return Container(
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            Color(0xFF3B2F2F),
+            Color(0xFF221A1A),
+            Color(0xFF141010),
+          ],
+        ),
+      ),
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          Opacity(
+            opacity: 0.12,
+            child: const Icon(
+              Icons.movie_filter_rounded,
+              size: 110,
+              color: Colors.white,
+            ),
+          ),
+          Container(
+            padding: const EdgeInsets.all(14),
+            decoration: BoxDecoration(
+              color: Colors.white.withValues(alpha: 0.08),
+              shape: BoxShape.circle,
+              border: Border.all(
+                color: Colors.white.withValues(alpha: 0.12),
+                width: 1.5,
+              ),
+            ),
+            child: const Icon(
+              Icons.live_tv_rounded,
+              color: Colors.white,
+              size: 32,
+            ),
+          ),
+        ],
       ),
     );
   }

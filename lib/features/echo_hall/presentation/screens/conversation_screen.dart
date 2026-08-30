@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../domain/entities/scenario.dart';
@@ -13,6 +14,8 @@ import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
 import 'package:hanzi_master/core/services/audio_service.dart';
 import 'package:hanzi_master/shared/widgets/breathing_widget.dart';
 import 'package:hanzi_master/core/services/saved_scenarios_service.dart';
+import 'package:lpinyin/lpinyin.dart';
+import 'package:hanzi_master/core/widgets/translated_text.dart';
 
 class ConversationScreen extends ConsumerStatefulWidget {
   final ConversationScenario scenario;
@@ -121,8 +124,12 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
                             _buildBookmarkButton(theme),
                           ],
                           flexibleSpace: FlexibleSpaceBar(
+                            titlePadding: const EdgeInsets.symmetric(horizontal: 56, vertical: 12),
                             title: Text(
                               widget.scenario.title,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              textAlign: TextAlign.center,
                               style: TextStyle(
                                 color: theme.colorScheme.onSurface,
                                 fontSize: 16,
@@ -167,21 +174,17 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
   }
 
   Widget _buildHeaderBackground(ThemeData theme) {
-    if (widget.scenario.avatarAssetPath != 'none' && widget.scenario.avatarAssetPath.isNotEmpty) {
+    if (widget.scenario.hasAvatar) {
       return SafeArea(
         bottom: false,
         child: Stack(
           fit: StackFit.expand,
           children: [
             Image.asset(
-              widget.scenario.avatarAssetPath,
+              widget.scenario.resolvedAvatarAssetPath,
               fit: BoxFit.cover,
-              errorBuilder: (context, error, stackTrace) => Container(
-                color: theme.colorScheme.primary.withValues(alpha: 0.1),
-                child: Center(
-                  child: Icon(Icons.person, size: 100, color: theme.colorScheme.primary),
-                ),
-              ),
+              errorBuilder: (context, error, stackTrace) =>
+                  _buildPlaceholderHeader(theme),
             ),
             // Gradient scrim so the title text is perfectly readable
             Positioned(
@@ -207,56 +210,83 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
         ),
       );
     }
+    return _buildPlaceholderHeader(theme);
+  }
 
-    // Refined Monogram
-    final char = widget.scenario.personaName.isNotEmpty ? widget.scenario.personaName[0].toUpperCase() : '?';
+  Widget _buildPlaceholderHeader(ThemeData theme) {
+    final isDark = theme.brightness == Brightness.dark;
+    final char = widget.scenario.personaName.isNotEmpty
+        ? widget.scenario.personaName[0]
+        : (widget.scenario.title.isNotEmpty ? widget.scenario.title[0] : '悟');
     return SafeArea(
       bottom: false,
-      child: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              theme.colorScheme.primary.withValues(alpha: 0.1),
-              theme.colorScheme.surface,
-            ],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          ),
-        ),
-        child: Center(
-          child: Container(
-            width: 100,
-            height: 100,
+      child: Stack(
+        fit: StackFit.expand,
+        children: [
+          Container(
             decoration: BoxDecoration(
-              shape: BoxShape.circle,
               gradient: LinearGradient(
-                colors: [
-                  theme.colorScheme.primary,
-                  theme.colorScheme.secondary,
-                ],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: isDark
+                    ? [
+                        theme.colorScheme.primary.withValues(alpha: 0.25),
+                        const Color(0xFF1E1E24),
+                        theme.colorScheme.surface,
+                      ]
+                    : [
+                        theme.colorScheme.primary.withValues(alpha: 0.12),
+                        const Color(0xFFF3EFE6),
+                        theme.colorScheme.surface,
+                      ],
               ),
-              boxShadow: [
-                BoxShadow(
-                  color: theme.colorScheme.primary.withValues(alpha: 0.3),
-                  blurRadius: 20,
-                  offset: const Offset(0, 10),
-                )
-              ],
             ),
+          ),
+          Positioned.fill(
+            child: BackdropFilter(
+              filter: ui.ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+              child: const SizedBox(),
+            ),
+          ),
+          Positioned(
+            top: 24,
+            left: 0,
+            right: 0,
             child: Center(
-              child: Text(
-                char,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 48,
-                  fontWeight: FontWeight.bold,
+              child: Container(
+                width: 68,
+                height: 68,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: isDark
+                      ? const Color(0xFF2C2C34)
+                      : const Color(0xFFFAF7F0),
+                  border: Border.all(
+                    color: const Color(0xFFD4AF37).withValues(alpha: isDark ? 0.7 : 0.8),
+                    width: 2.0,
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: const Color(0xFFD4AF37).withValues(alpha: 0.25),
+                      blurRadius: 16,
+                      spreadRadius: 2,
+                    ),
+                  ],
+                ),
+                child: Center(
+                  child: Text(
+                    char,
+                    style: TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold,
+                      color: isDark ? const Color(0xFFFFD54F) : const Color(0xFF8C6B1C),
+                    ),
+                  ),
                 ),
               ),
             ),
           ),
-        ),
+        ],
       ),
     );
   }
@@ -514,15 +544,23 @@ Widget _buildScoreBadge(PronunciationGrade grade, ThemeData theme, bool isUser) 
                           ),
                           
                           if (isExpanded) ...[
-                            if (message.pinyin != null && message.pinyin!.isNotEmpty) ...[
-                              const SizedBox(height: 6),
-                              Text(
-                                message.pinyin!,
-                                style: theme.textTheme.bodyMedium?.copyWith(
-                                  color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
-                                ),
-                              ),
-                            ],
+                            Builder(
+                              builder: (context) {
+                                final pinyin = (message.pinyin != null && message.pinyin!.isNotEmpty)
+                                    ? message.pinyin!
+                                    : PinyinHelper.getPinyinE(message.content, separator: ' ', format: PinyinFormat.WITH_TONE_MARK);
+                                if (pinyin.isEmpty) return const SizedBox.shrink();
+                                return Padding(
+                                  padding: const EdgeInsets.only(top: 6),
+                                  child: Text(
+                                    pinyin,
+                                    style: theme.textTheme.bodyMedium?.copyWith(
+                                      color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
                             if (message.english != null && message.english!.isNotEmpty) ...[
                               const SizedBox(height: 6),
                               Text(
@@ -781,10 +819,15 @@ class _QuestsFloatingButtonState extends State<_QuestsFloatingButton> {
                       ),
                       const SizedBox(width: 6),
                       Expanded(
-                        child: Text(
-                          q,
-                          style: const TextStyle(color: Colors.white, fontSize: 12, height: 1.3),
-                        ),
+                        child: RegExp(r'[\u4e00-\u9fa5]').hasMatch(q)
+                            ? TranslatedText(
+                                q,
+                                style: const TextStyle(color: Colors.white, fontSize: 12, height: 1.3),
+                              )
+                            : Text(
+                                q,
+                                style: const TextStyle(color: Colors.white, fontSize: 12, height: 1.3),
+                              ),
                       ),
                     ],
                   ),

@@ -16,6 +16,8 @@ import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_mana
 import 'package:hanzi_master/core/services/saved_scenarios_service.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/core/presentation/widgets/zen_search_bar.dart';
+import 'package:lpinyin/lpinyin.dart';
+import 'package:hanzi_master/core/widgets/translated_text.dart';
 
 class ScenarioSelectionScreen extends ConsumerStatefulWidget {
   final Deck? deck;
@@ -30,29 +32,41 @@ class ScenarioSelectionScreen extends ConsumerStatefulWidget {
 
 class _ScenarioSelectionScreenState
     extends ConsumerState<ScenarioSelectionScreen> {
-  late List<ConversationScenario> _allScenarios;
   String _selectedCategory = 'All';
   String _searchQuery = '';
   final TextEditingController _searchController = TextEditingController();
   bool _autoLaunchHandled = false;
 
+  List<ConversationScenario> get _allScenarios {
+    final defaults = getDefaultScenarios(context);
+    final saved = ref.watch(savedScenariosProvider);
+    final list = <ConversationScenario>[...saved];
+    for (final d in defaults) {
+      if (!list.any((s) => s.id == d.id)) {
+        list.add(d);
+      }
+    }
+    return list;
+  }
+
   List<ConversationScenario> get _filteredScenarios {
     var scenarios = _allScenarios;
     if (_selectedCategory != 'All') {
-      if (_selectedCategory == 'HSK 1')
+      if (_selectedCategory == 'HSK 1') {
         scenarios = _allScenarios.where((s) => s.targetHskLevel == 1).toList();
-      else if (_selectedCategory == 'HSK 2')
+      } else if (_selectedCategory == 'HSK 2') {
         scenarios = _allScenarios.where((s) => s.targetHskLevel == 2).toList();
-      else if (_selectedCategory == 'HSK 3')
+      } else if (_selectedCategory == 'HSK 3') {
         scenarios = _allScenarios.where((s) => s.targetHskLevel == 3).toList();
-      else if (_selectedCategory == 'HSK 4')
+      } else if (_selectedCategory == 'HSK 4') {
         scenarios = _allScenarios.where((s) => s.targetHskLevel == 4).toList();
-      else if (_selectedCategory == 'HSK 5')
+      } else if (_selectedCategory == 'HSK 5') {
         scenarios = _allScenarios.where((s) => s.targetHskLevel == 5).toList();
-      else if (_selectedCategory == 'HSK 6')
+      } else if (_selectedCategory == 'HSK 6') {
         scenarios = _allScenarios.where((s) => s.targetHskLevel == 6).toList();
-      else if (_selectedCategory == 'Custom')
+      } else if (_selectedCategory == 'Custom') {
         scenarios = _allScenarios.where((s) => s.isCustom).toList();
+      }
     }
     if (_searchQuery.isNotEmpty) {
       final query = _searchQuery.toLowerCase();
@@ -67,15 +81,8 @@ class _ScenarioSelectionScreenState
   }
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    _allScenarios = [...getDefaultScenarios(context)];
-    _loadSavedScenarios();
     if (widget.deck != null && !_autoLaunchHandled) {
       _autoLaunchHandled = true;
       _loadAndHandleDeckScenario();
@@ -96,7 +103,12 @@ class _ScenarioSelectionScreenState
         );
     if (!mounted) return;
     if (existing != null) {
-      _startScenario(context, existing, false);
+      if (widget.showBackButton) {
+        Navigator.of(context).pushReplacement(SwipeBackRoute(
+            builder: (context) => ConversationScreen(scenario: existing)));
+      } else {
+        _startScenario(context, existing, false);
+      }
       return;
     }
     await _generateFromDeck(preselectedDeck: widget.deck);
@@ -111,10 +123,7 @@ class _ScenarioSelectionScreenState
       for (final entry in map.entries) {
         final scenario =
             ConversationScenario.fromJson(entry.value as Map<String, dynamic>);
-        final exists = _allScenarios.any((s) => s.id == scenario.id);
-        if (!exists) {
-          _allScenarios.add(scenario);
-        }
+        await ref.read(savedScenariosProvider.notifier).saveScenario(scenario);
       }
     } catch (_) {}
   }
@@ -128,16 +137,6 @@ class _ScenarioSelectionScreenState
         : <String, dynamic>{};
     map[scenario.deckId!] = scenario.toJson();
     await prefs.setString('deck_scenarios', jsonEncode(map));
-  }
-
-  void _loadSavedScenarios() {
-    final savedScenarios = ref.read(savedScenariosProvider);
-    for (final saved in savedScenarios) {
-      final exists = _allScenarios.any((s) => s.id == saved.id);
-      if (!exists) {
-        _allScenarios.add(saved);
-      }
-    }
   }
 
 
@@ -284,8 +283,7 @@ class _ScenarioSelectionScreenState
         onTap: () async {
           final newScenario = await CustomScenarioDialog.show(context);
           if (newScenario != null) {
-            await ref.read(savedScenariosProvider.notifier).toggle(newScenario);
-            setState(() => _allScenarios.insert(0, newScenario));
+            await ref.read(savedScenariosProvider.notifier).saveScenario(newScenario);
           }
         },
         borderRadius: BorderRadius.circular(16),
@@ -437,8 +435,6 @@ class _ScenarioSelectionScreenState
     final gradientColors =
         _getScenarioGradient(scenario.id, scenario.targetHskLevel);
     final sealText = _getScenarioSealText(scenario);
-    final hasAvatar = scenario.avatarAssetPath != 'none' &&
-        scenario.avatarAssetPath.isNotEmpty;
 
     return Padding(
       padding: const EdgeInsets.only(bottom: 12.0),
@@ -527,14 +523,14 @@ class _ScenarioSelectionScreenState
                             backgroundColor: isDark
                                 ? const Color(0xFF2C2C2E)
                                 : const Color(0xFFF0EAE1),
-                            backgroundImage: hasAvatar
-                                ? _getAvatarImage(scenario.avatarAssetPath)
+                            backgroundImage: scenario.hasAvatar
+                                ? _getAvatarImage(scenario.resolvedAvatarAssetPath)
                                 : null,
-                            child: !hasAvatar
+                            child: !scenario.hasAvatar
                                 ? Text(
                                     scenario.personaName.isNotEmpty
                                         ? scenario.personaName[0]
-                                        : 'AI',
+                                        : (scenario.title.isNotEmpty ? scenario.title[0] : '悟'),
                                     style: const TextStyle(
                                       fontSize: 24,
                                       fontWeight: FontWeight.bold,
@@ -831,25 +827,24 @@ class _ScenarioSelectionScreenState
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: Row(children: [
-                if (scenario.avatarAssetPath != 'none' &&
-                    scenario.avatarAssetPath.isNotEmpty)
-                  CircleAvatar(
-                      radius: 28,
-                      backgroundImage:
-                          _getAvatarImage(scenario.avatarAssetPath),
-                      backgroundColor: Colors.transparent)
-                else
-                  CircleAvatar(
-                      radius: 28,
-                      backgroundColor: Colors.indigo,
-                      child: Text(
-                          scenario.personaName.isNotEmpty
-                              ? scenario.personaName[0].toUpperCase()
-                              : '?',
-                          style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 22,
-                              fontWeight: FontWeight.bold))),
+                CircleAvatar(
+                    radius: 28,
+                    backgroundImage: scenario.hasAvatar
+                        ? _getAvatarImage(scenario.resolvedAvatarAssetPath)
+                        : null,
+                    backgroundColor: scenario.hasAvatar
+                        ? Colors.transparent
+                        : (isDark ? const Color(0xFF2C2C2E) : const Color(0xFFF0EAE1)),
+                    child: !scenario.hasAvatar
+                        ? Text(
+                            scenario.personaName.isNotEmpty
+                                ? scenario.personaName[0]
+                                : (scenario.title.isNotEmpty ? scenario.title[0] : '悟'),
+                            style: const TextStyle(
+                                color: Color(0xFFFFB300),
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold))
+                        : null),
                 const SizedBox(width: 16),
                 Expanded(
                     child: Column(
@@ -966,15 +961,29 @@ class _ScenarioSelectionScreenState
                                               : Colors.black38,
                                           shape: BoxShape.circle)),
                                   Expanded(
-                                      child: Text(q,
-                                          style: TextStyle(
-                                              color: isDark
-                                                  ? Colors.white
-                                                      .withValues(alpha: 0.7)
-                                                  : Colors.black
-                                                      .withValues(alpha: 0.6),
-                                              fontSize: 14,
-                                              height: 1.3))),
+                                      child: RegExp(r'[\u4e00-\u9fa5]').hasMatch(q)
+                                          ? TranslatedText(
+                                              q,
+                                              style: TextStyle(
+                                                  color: isDark
+                                                      ? Colors.white
+                                                          .withValues(alpha: 0.7)
+                                                      : Colors.black
+                                                          .withValues(alpha: 0.6),
+                                                  fontSize: 14,
+                                                  height: 1.3),
+                                            )
+                                          : Text(
+                                              q,
+                                              style: TextStyle(
+                                                  color: isDark
+                                                      ? Colors.white
+                                                          .withValues(alpha: 0.7)
+                                                      : Colors.black
+                                                          .withValues(alpha: 0.6),
+                                                  fontSize: 14,
+                                                  height: 1.3),
+                                            )),
                                 ]))),
                       ])),
             const SizedBox(height: 24),
@@ -1043,6 +1052,29 @@ class _ScenarioSelectionScreenState
 
   bool _isGenerating = false;
 
+  (String, String) _pickAvatarAndVoice(String persona, String title) {
+    final text = '$persona $title'.toLowerCase();
+    if (text.contains('waiter') || text.contains('restaurant') || text.contains('food') || text.contains('chef') || text.contains('tea') || text.contains('cafe') || text.contains('cook') || text.contains('dish')) {
+      return ('assets/mascot/waiter_avatar.png', 'Fenrir');
+    }
+    if (text.contains('taxi') || text.contains('driver') || text.contains('traffic') || text.contains('car') || text.contains('train') || text.contains('airport') || text.contains('station')) {
+      return ('assets/mascot/taxi_driver_avatar.png', 'Charon');
+    }
+    if (text.contains('market') || text.contains('shop') || text.contains('store') || text.contains('vendor') || text.contains('buy') || text.contains('cloth') || text.contains('seller') || text.contains('price')) {
+      return ('assets/mascot/market_vendor_avatar.png', 'Kore');
+    }
+    if (text.contains('doctor') || text.contains('clinic') || text.contains('hospital') || text.contains('nurse') || text.contains('health') || text.contains('medicine') || text.contains('fever')) {
+      return ('assets/mascot/doctor_avatar.png', 'Aoede');
+    }
+    if (text.contains('job') || text.contains('interview') || text.contains('manager') || text.contains('boss') || text.contains('office') || text.contains('company') || text.contains('work')) {
+      return ('assets/mascot/interviewer_avatar.png', 'Puck');
+    }
+    if (text.contains('guide') || text.contains('tour') || text.contains('museum') || text.contains('park') || text.contains('hike') || text.contains('travel') || text.contains('hotel')) {
+      return ('assets/mascot/guide_avatar.png', 'Aoede');
+    }
+    return ('assets/mascot/friend_avatar.png', 'Aoede');
+  }
+
   Future<void> _generateFromDeck({Deck? preselectedDeck}) async {
     final l10n = AppLocalizations.of(context)!;
 
@@ -1082,22 +1114,33 @@ class _ScenarioSelectionScreenState
 
       final wordsList = cards.take(20).map((c) => c.hanzi).join('\n');
 
+      final deck = selectedDeck;
+      final hskMatch = RegExp(r'hsk(\d)').firstMatch(deck.id);
+      final hskLevel = hskMatch != null ? int.parse(hskMatch.group(1)!) : 1;
+
       final prompt =
-          '''Create a conversational scenario in Chinese based on these vocabulary words:
+          '''You are a creative writer and immersive roleplay designer. Create a rich, 100% in-character Chinese conversational roleplay scenario based on these vocabulary words:
 $wordsList
 
-Generate a scenario with:
-1. scenario title (in English)
-2. scenario description (2-3 sentences in English describing the situation)
-3. persona name (Chinese name)
-4. 2-3 quest objectives (in Chinese, conversational goals)
+Requirements:
+1. Scenario Title: A specific, clear English title that directly matches what is happening in the scene (e.g. "Dinner with Dad", "Ordering at a Chengdu Teahouse", "Buying Tea at the Market", "Meeting an Old Classmate").
+2. Scenario Description: 2-3 sentences in English setting the exact fictional scene, who the persona is, and what situation you are in.
+3. Persona Name: A realistic Chinese character name and title (e.g. "Mei Ling (美玲)", "Master Zhao (赵师傅)", "Auntie Chen (陈阿姨)", "Dr. Wang (王医生)").
+4. In-Character Opening Line: An authentic in-character opening line in natural Chinese spoken directly to start the situation (e.g. "爸，今天晚饭你想吃点什么？" or "你好！欢迎光临，请问几位？").
+   CRITICAL 4TH-WALL RULE: NEVER break character or the 4th wall! NEVER say "Ready to practice?", "Let's practice Chinese", "Are you ready?", or mention studying, language learning, lessons, or practicing. The persona must talk directly as a real person in that scenario.
+5. Opening Line English Translation: English translation of that opening line.
+6. 3 Quest Objectives in ENGLISH: 3 concrete, conversational goals in ENGLISH for the user to achieve in character (e.g. ["Discuss what to have for dinner", "Suggest watching a movie afterwards", "Ask if they would like tea"]). ALL 3 MUST be in English.
+7. Detailed System Prompt: An immersive character prompt. MUST include: "You are {personaName}. Your ONLY role is {personaName}. Stay 100% in character as {personaName} in the situation: '{title}'. NEVER break character, never act like a chatbot or language teacher, never mention language learning or practicing Chinese. Respond naturally in spoken Mandarin suited for HSK $hskLevel. Keep responses concise (1-3 sentences) and conversational."
 
-Respond ONLY in valid JSON:
+Respond ONLY in valid JSON format with NO markdown formatting:
 {
   "title": "...",
   "description": "...",
   "personaName": "...",
-  "quests": ["...", "..."]
+  "initialAiMessage": "...",
+  "initialEnglish": "...",
+  "quests": ["...", "...", "..."],
+  "systemPrompt": "..."
 }''';
 
       final result = await ref.read(geminiServiceProvider).generateText(prompt);
@@ -1105,31 +1148,50 @@ Respond ONLY in valid JSON:
           result.replaceAll('```json', '').replaceAll('```', '').trim();
       final Map<String, dynamic> json = jsonDecode(cleaned);
 
-      final deck = selectedDeck;
-      // Derive HSK level from deck id (e.g. 'hsk3' → 3, 'default' → 1)
-      final hskMatch = RegExp(r'hsk(\d)').firstMatch(deck.id);
-      final hskLevel = hskMatch != null ? int.parse(hskMatch.group(1)!) : 1;
+      final (avatarPath, voice) = _pickAvatarAndVoice(
+        json['personaName'] as String? ?? '',
+        json['title'] as String? ?? '',
+      );
+
+      final initialChinese = (json['initialAiMessage'] as String? ?? '你好！很高兴见到你。').trim();
+      final initialEng = (json['initialEnglish'] as String? ?? 'Hello! Very nice to meet you.').trim();
+      final initialPin = PinyinHelper.getPinyinE(initialChinese, separator: ' ', format: PinyinFormat.WITH_TONE_MARK);
+
+      final sysPrompt = (json['systemPrompt'] as String? ?? '').isNotEmpty
+          ? json['systemPrompt'] as String
+          : 'You are ${json['personaName']}. Your ONLY role is ${json['personaName']}. Speak natural conversational Mandarin at HSK $hskLevel level. NEVER break character, never act like an AI or language teacher, and never mention practicing Chinese. Keep responses concise (1-2 sentences) and interactive.';
+
+      List<String> questsList = [];
+      if (json['quests'] is List) {
+        questsList = List<String>.from(json['quests']);
+      }
 
       final scenario = ConversationScenario(
         id: 'deck-${deck.id}',
-        title: json['title'] as String,
-        description: json['description'] as String,
-        initialAiMessage: '你好！准备好练习了吗？',
-        initialEnglish: 'Hello! Ready to practice?',
-        initialPinyin: 'Nǐ hǎo! Zhǔnbèi hǎo liànxí le ma?',
-        systemPrompt:
-            'You are ${json['personaName']}. Speak Chinese at HSK $hskLevel level.',
+        title: json['title'] as String? ?? 'Deck Practice',
+        description: json['description'] as String? ?? 'Practice vocabulary with an AI partner.',
+        initialAiMessage: initialChinese,
+        initialEnglish: initialEng,
+        initialPinyin: initialPin,
+        systemPrompt: sysPrompt,
         targetHskLevel: hskLevel,
         avatarAssetPath: 'none',
-        personaName: json['personaName'] as String,
-        quests: List<String>.from(json['quests']),
+        personaName: json['personaName'] as String? ?? 'Partner',
+        quests: questsList,
         deckId: deck.id,
         isCustom: true,
+        voiceName: voice,
       );
 
+      await ref.read(savedScenariosProvider.notifier).saveScenario(scenario);
       await _saveDeckScenario(scenario);
       if (!mounted) return;
-      _startScenario(context, scenario, false);
+      if (widget.deck != null && widget.showBackButton) {
+        Navigator.of(context).pushReplacement(SwipeBackRoute(
+            builder: (context) => ConversationScreen(scenario: scenario)));
+      } else {
+        _startScenario(context, scenario, false);
+      }
     } catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(

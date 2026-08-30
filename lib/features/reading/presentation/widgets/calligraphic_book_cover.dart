@@ -1,5 +1,6 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:hanzi_master/features/reading/domain/entities/book_model.dart';
+import 'package:hanzi_master/features/reading/domain/entities/poetry_story_id.dart';
 
 class CalligraphicBookCover extends StatelessWidget {
   final BookModel book;
@@ -44,7 +45,8 @@ class CalligraphicBookCover extends StatelessWidget {
 
   Widget _buildCalligraphicFallback(BuildContext context, bool isDark) {
     final gradientColors = _getGenreGradient(book.category, isDark);
-    final displayTitle = book.title.length > 6 ? '${book.title.substring(0, 5)}…' : book.title;
+    final displayTitle =
+        book.title.length > 6 ? '${book.title.substring(0, 5)}…' : book.title;
 
     return Container(
       decoration: BoxDecoration(
@@ -143,7 +145,8 @@ class CalligraphicBookCover extends StatelessWidget {
                   ),
                   const SizedBox(height: 6),
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 1),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 4, vertical: 1),
                     decoration: BoxDecoration(
                       color: const Color(0xFF9E2A2B),
                       borderRadius: BorderRadius.circular(3),
@@ -173,9 +176,7 @@ class CalligraphicBookCover extends StatelessWidget {
     final isPoetry = book.category.contains('Poetry') ||
         book.id.startsWith('poetry_') ||
         book.id.startsWith('tang_poetry_');
-    final imagePath = isPoetry
-        ? 'assets/images/poetry/${book.id}.jpg'
-        : 'assets/images/books/${book.id}.jpg';
+    final imagePath = bookCoverAssetPath(book.id, isPoetry: isPoetry);
 
     return Container(
       width: width,
@@ -205,7 +206,8 @@ class CalligraphicBookCover extends StatelessWidget {
                   return Image.asset(
                     'assets/images/books/${book.id}.jpg',
                     fit: BoxFit.cover,
-                    errorBuilder: (ctx, err, st) => _buildCalligraphicFallback(context, isDark),
+                    errorBuilder: (ctx, err, st) =>
+                        _buildCalligraphicFallback(context, isDark),
                   );
                 }
                 return _buildCalligraphicFallback(context, isDark);
@@ -259,7 +261,8 @@ class CalligraphicBookCover extends StatelessWidget {
                 bottom: 8,
                 right: 8,
                 child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                   decoration: BoxDecoration(
                     color: Colors.black.withValues(alpha: 0.75),
                     borderRadius: BorderRadius.circular(5),

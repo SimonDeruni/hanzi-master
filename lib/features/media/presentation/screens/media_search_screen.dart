@@ -27,7 +27,7 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
 
   final Map<String, String> _categoryQueries = {
     'Lifestyle & Vlog': '中国 日常 vlog',
-    'Gaming & Esports': '中国 游戏 实况',
+    'Gaming & Esports': '游戏 实况 王者荣耀 原神',
     'Food & Cooking': '中国 美食 菜谱',
     'Tech & Gadgets': '中国 科技 测评',
   };
@@ -169,7 +169,7 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
         setState(() {
           _searchResults = results;
           _searchStatus = results.isEmpty
-              ? 'No videos with Chinese subtitles found'
+              ? 'No videos found. Try a different search term.'
               : 'Found ${results.length} video${results.length == 1 ? '' : 's'}';
         });
       }

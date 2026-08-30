@@ -1,6 +1,16 @@
 ﻿const chinesePoetryAsset = 'assets/data/famous_chinese_poetry.json';
-const chinesePoetryEnglishAsset = 'assets/data/famous_chinese_poetry_en.json';
 const legacyTangPoetryAsset = 'assets/data/tang_poetry_en.json';
+
+String poetryCoverAssetPath(String poetryId) =>
+    'assets/images/poetry/$poetryId.jpg';
+
+String bookCoverAssetPath(String bookId, {required bool isPoetry}) {
+  if (isPoetry) return poetryCoverAssetPath(bookId);
+  if (bookId == 'black_cat_poe') {
+    return 'assets/images/books/the_black_cat.jpg';
+  }
+  return 'assets/images/books/$bookId.jpg';
+}
 
 bool isPoetryStoryId(String id) =>
     id.startsWith('poetry_') || id.startsWith('tang_poetry_');

@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../features/flashcards/data/repositories/global_dictionary_repository.dart';
+import '../utils/pinyin_utils.dart';
 
 /// A lightweight character info object returned by the lookup service.
 class CharacterInfo {
@@ -76,7 +77,7 @@ class CharacterLookupService {
     if (card == null) return null;
     return CharacterInfo(
       hanzi: card.hanzi,
-      pinyin: card.pinyin,
+      pinyin: PinyinUtils.convertNumericToMarks(card.pinyin),
       definition: card.definition,
       hskLevel: _hskLevelMap[hanzi] ?? 0,
     );

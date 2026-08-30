@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:uuid/uuid.dart';
@@ -7,6 +8,8 @@ import 'package:hanzi_master/features/echo_hall/domain/entities/scenario.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/shared/widgets/global_blurred_bottom_sheet.dart';
+import 'package:hanzi_master/core/services/gemini_service.dart';
+import 'package:lpinyin/lpinyin.dart';
 
 class _RandomPersonaPreset {
   final String topic;
@@ -438,20 +441,66 @@ class _CustomScenarioDialogState extends ConsumerState<CustomScenarioDialog> {
         }
       }
 
+      String initialAiMessage = "你好！欢迎来到这里，今天我们聊些什么呢？";
+      String? initialEnglish = "Hello! Welcome here, what shall we chat about today?";
+      String? initialPinyin = "Nǐ hǎo! Huānyíng lái dào zhèlǐ, jīntiān wǒmen liáo xiē shénme ne?";
+      List<String> quests = [
+        "Greet your conversation partner",
+        "Discuss $title",
+        "Ask a question in Chinese"
+      ];
+
+      try {
+        final gemini = ref.read(geminiServiceProvider);
+        final aiPrompt = '''You are a creative writer and immersive roleplay designer. Create a 100% in-character opening line and 3 English quest goals for a roleplay scenario:
+Topic: $title
+Context: $desc
+Persona: $prompt
+HSK Level: $targetHsk
+
+CRITICAL 4TH-WALL RULE: The opening greeting must be 100% in-character dialogue spoken directly inside the fictional situation (e.g. asking what to order, greeting as a friend, starting an interview). NEVER break the 4th wall! NEVER say "Ready to practice?", "Let's practice Chinese", or mention studying, language learning, lessons, or practicing.
+
+Respond ONLY in valid JSON format:
+{
+  "greeting": "in-character opening line in Chinese (1 natural sentence)",
+  "greetingEnglish": "English translation",
+  "greetingPinyin": "Pinyin with tone marks",
+  "quests": ["Goal 1 in English", "Goal 2 in English", "Goal 3 in English"]
+}''';
+        final response = await gemini.generateText(aiPrompt);
+        final clean = response.replaceAll('```json', '').replaceAll('```', '').trim();
+        final map = jsonDecode(clean);
+        if (map['greeting'] != null && (map['greeting'] as String).trim().isNotEmpty) {
+          initialAiMessage = (map['greeting'] as String).trim();
+          initialEnglish = map['greetingEnglish'] as String?;
+          initialPinyin = map['greetingPinyin'] as String?;
+        }
+        if (map['quests'] is List && (map['quests'] as List).isNotEmpty) {
+          quests = List<String>.from(map['quests']);
+        }
+      } catch (e) {
+        debugPrint("AI scenario enhancement fallback: $e");
+      }
+
+      if (initialPinyin == null || initialPinyin.isEmpty) {
+        initialPinyin = PinyinHelper.getPinyinE(initialAiMessage, separator: ' ', format: PinyinFormat.WITH_TONE_MARK);
+      }
+
       final scenario = ConversationScenario(
         id: scenarioId,
         title: title,
         description: desc.isNotEmpty ? desc : "Custom scenario: $title",
-        initialAiMessage: "你好！我们可以开始对话了。",
-        initialEnglish: null,
-        initialPinyin: null,
+        initialAiMessage: initialAiMessage,
+        initialEnglish: initialEnglish,
+        initialPinyin: initialPinyin,
         systemPrompt: prompt.isNotEmpty
-            ? prompt
-            : "You are an AI conversation partner in China. The user is practicing spoken Chinese in the following scenario: $title. ${desc.isNotEmpty ? 'Setting: $desc.' : ''} Reply in natural Mandarin suited for HSK $targetHsk.",
+            ? "You are $personaName. Your ONLY role is $personaName. The user is practicing spoken Chinese in the scenario: $title. ${desc.isNotEmpty ? 'Setting: $desc.' : ''} Reply in natural Mandarin suited for HSK $targetHsk. NEVER break character, never act like a generic AI."
+            : "You are $personaName. Your ONLY role is $personaName. The user is practicing spoken Chinese in the scenario: $title. Reply in natural Mandarin suited for HSK $targetHsk. NEVER break character.",
         targetHskLevel: targetHsk,
         avatarAssetPath: 'none',
         personaName: personaName,
         backgroundAudioPath: null,
+        quests: quests,
         isCustom: true,
       );
 

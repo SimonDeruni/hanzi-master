@@ -32,15 +32,16 @@ class ShowDetailScreen extends ConsumerWidget {
           SliverAppBar(
             expandedHeight: 260,
             pinned: true,
-            backgroundColor: const Color(0xFF0A0A0B),
+            backgroundColor: isDark ? const Color(0xFF0A0A0B) : const Color(0xFFFDFCF0),
             leading: IconButton(
               icon: Container(
                 padding: const EdgeInsets.all(6),
                 decoration: BoxDecoration(
-                  color: Colors.black54,
+                  color: isDark ? Colors.black54 : Colors.black26,
                   borderRadius: BorderRadius.circular(20),
                 ),
-                child: const Icon(Icons.arrow_back_ios_new, color: Colors.white, size: 18),
+                child: Icon(Icons.arrow_back_ios_new,
+                    color: isDark ? Colors.white : const Color(0xFF1A1A1B), size: 18),
               ),
               onPressed: () => Navigator.of(context).pop(),
             ),
@@ -50,12 +51,14 @@ class ShowDetailScreen extends ConsumerWidget {
                 icon: Container(
                   padding: const EdgeInsets.all(6),
                   decoration: BoxDecoration(
-                    color: Colors.black54,
+                    color: isDark ? Colors.black54 : Colors.black26,
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: Icon(
                     isBookmarked ? Icons.bookmark : Icons.bookmark_border,
-                    color: isBookmarked ? Colors.amber : Colors.white,
+                    color: isBookmarked
+                        ? Colors.amber
+                        : (isDark ? Colors.white : const Color(0xFF1A1A1B)),
                     size: 20,
                   ),
                 ),
@@ -72,8 +75,12 @@ class ShowDetailScreen extends ConsumerWidget {
                   CachedNetworkImage(
                     imageUrl: show.thumbnailUrl,
                     fit: BoxFit.cover,
-                    placeholder: (_, __) => Container(color: const Color(0xFF1A1A2E)),
-                    errorWidget: (_, __, ___) => Container(color: const Color(0xFF1A1A2E)),
+                    placeholder: (_, __) => Container(
+                      color: isDark ? const Color(0xFF1A1A2E) : const Color(0xFFE8E4D9),
+                    ),
+                    errorWidget: (_, __, ___) => Container(
+                      color: isDark ? const Color(0xFF1A1A2E) : const Color(0xFFE8E4D9),
+                    ),
                   ),
                   // Gradient overlay
                   Container(
@@ -83,8 +90,9 @@ class ShowDetailScreen extends ConsumerWidget {
                         end: Alignment.bottomCenter,
                         colors: [
                           Colors.transparent,
-                          const Color(0xFF0A0A0B).withValues(alpha: 0.7),
-                          const Color(0xFF0A0A0B),
+                          (isDark ? const Color(0xFF0A0A0B) : const Color(0xFFFDFCF0))
+                              .withValues(alpha: 0.7),
+                          isDark ? const Color(0xFF0A0A0B) : const Color(0xFFFDFCF0),
                         ],
                       ),
                     ),
@@ -99,8 +107,8 @@ class ShowDetailScreen extends ConsumerWidget {
                       children: [
                         Text(
                           show.title,
-                          style: const TextStyle(
-                            color: Colors.white,
+                          style: TextStyle(
+                            color: isDark ? Colors.white : const Color(0xFF1A1A1B),
                             fontSize: 26,
                             fontWeight: FontWeight.bold,
                           ),
@@ -111,28 +119,43 @@ class ShowDetailScreen extends ConsumerWidget {
                             Container(
                               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                               decoration: BoxDecoration(
-                                color: Colors.amber.withValues(alpha: 0.2),
+                                color: (isDark ? Colors.amber : const Color(0xFF8B6914))
+                                    .withValues(alpha: 0.2),
                                 borderRadius: BorderRadius.circular(4),
-                                border: Border.all(color: Colors.amber.withValues(alpha: 0.5)),
+                                border: Border.all(
+                                  color: (isDark ? Colors.amber : const Color(0xFF8B6914))
+                                      .withValues(alpha: 0.5),
+                                ),
                               ),
                               child: Text(
                                 show.genre,
-                                style: const TextStyle(color: Colors.amber, fontSize: 12),
+                                style: TextStyle(
+                                  color: isDark ? Colors.amber : const Color(0xFF8B6914),
+                                  fontSize: 12,
+                                ),
                               ),
                             ),
                             const SizedBox(width: 12),
-                            Icon(Icons.playlist_play, color: Colors.grey[400], size: 16),
+                            Icon(Icons.playlist_play,
+                                color: isDark ? Colors.grey[400] : Colors.grey.shade600,
+                                size: 16),
                             const SizedBox(width: 4),
                             Text(
                               '${show.episodeCount} episodes',
-                              style: TextStyle(color: Colors.grey[400], fontSize: 13),
+                              style: TextStyle(
+                                color: isDark ? Colors.grey[400] : Colors.grey.shade600,
+                                fontSize: 13,
+                              ),
                             ),
                           ],
                         ),
                         const SizedBox(height: 4),
                         Text(
                           show.channelTitle,
-                          style: TextStyle(color: Colors.grey[500], fontSize: 13),
+                          style: TextStyle(
+                            color: isDark ? Colors.grey[500] : Colors.grey.shade600,
+                            fontSize: 13,
+                          ),
                         ),
                       ],
                     ),
@@ -142,10 +165,47 @@ class ShowDetailScreen extends ConsumerWidget {
             ),
           ),
 
+          // Summary (pre-generated 4-sentence English blurb)
+          if (show.summary != null)
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 0),
+                child: Container(
+                  padding: const EdgeInsets.all(14),
+                  margin: const EdgeInsets.only(bottom: 8),
+                  decoration: BoxDecoration(
+                    color: isDark
+                        ? const Color(0xFF1A1A2E)
+                        : const Color(0xFFF7F4E4),
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(
+                      color: isDark
+                          ? Colors.white.withValues(alpha: 0.07)
+                          : const Color(0xFFD4CFB8).withValues(alpha: 0.5),
+                    ),
+                  ),
+                  child: Text(
+                    show.summary!,
+                    style: TextStyle(
+                      color: isDark
+                          ? Colors.grey[300]
+                          : const Color(0xFF4A4A3B),
+                      fontSize: 13,
+                      height: 1.55,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+
           // Episode list
           episodesAsync.when(
-            loading: () => const SliverFillRemaining(
-              child: Center(child: CircularProgressIndicator(color: Colors.amber)),
+            loading: () => SliverFillRemaining(
+              child: Center(
+                child: CircularProgressIndicator(
+                  color: isDark ? Colors.amber : const Color(0xFF8B6914),
+                ),
+              ),
             ),
             error: (error, stack) => SliverFillRemaining(
               child: Center(
@@ -154,11 +214,17 @@ class ShowDetailScreen extends ConsumerWidget {
                   children: [
                     const Icon(Icons.error_outline, color: Colors.red, size: 40),
                     const SizedBox(height: 12),
-                    Text('Failed to load episodes', style: TextStyle(color: Colors.grey[400])),
+                    Text('Failed to load episodes',
+                        style: TextStyle(
+                          color: isDark ? Colors.grey[400] : Colors.grey.shade700,
+                        )),
                     const SizedBox(height: 8),
                     TextButton(
                       onPressed: () => ref.invalidate(showEpisodesProvider(show.id)),
-                      child: const Text('Retry', style: TextStyle(color: Colors.amber)),
+                      child: Text('Retry',
+                          style: TextStyle(
+                            color: isDark ? Colors.amber : const Color(0xFF8B6914),
+                          )),
                     ),
                   ],
                 ),
@@ -168,7 +234,10 @@ class ShowDetailScreen extends ConsumerWidget {
               if (episodes.isEmpty) {
                 return SliverFillRemaining(
                   child: Center(
-                    child: Text('No episodes found', style: TextStyle(color: Colors.grey[500])),
+                    child: Text('No episodes found',
+                        style: TextStyle(
+                          color: isDark ? Colors.grey[500] : Colors.grey.shade600,
+                        )),
                   ),
                 );
               }
@@ -214,6 +283,7 @@ class _EpisodeTile extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     final duration = episode.duration ?? Duration.zero;
     final durationStr = '${duration.inMinutes}:${(duration.inSeconds % 60).toString().padLeft(2, '0')}';
     final watchedEpisodes = ref.watch(watchedEpisodesProvider);
@@ -232,7 +302,7 @@ class _EpisodeTile extends ConsumerWidget {
                 '$episodeNumber',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: Colors.grey[500],
+                  color: isDark ? Colors.grey[500] : Colors.grey.shade600,
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
                 ),
@@ -252,21 +322,24 @@ class _EpisodeTile extends ConsumerWidget {
                     placeholder: (_, __) => Container(
                       width: 120,
                       height: 68,
-                      color: const Color(0xFF2A2A3E),
+                      color: isDark ? const Color(0xFF2A2A3E) : const Color(0xFFE8E4D9),
                     ),
                     errorWidget: (_, __, ___) => Container(
                       width: 120,
                       height: 68,
-                      color: const Color(0xFF2A2A3E),
-                      child: const Icon(Icons.broken_image, color: Colors.grey, size: 24),
+                      color: isDark ? const Color(0xFF2A2A3E) : const Color(0xFFE8E4D9),
+                      child: Icon(Icons.broken_image,
+                          color: isDark ? Colors.grey : Colors.grey.shade500, size: 24),
                     ),
                   ),
                   if (isWatched)
                     Positioned.fill(
                       child: Container(
-                        color: Colors.black54,
-                        child: const Center(
-                          child: Icon(Icons.check_circle, color: Colors.amber, size: 28),
+                        color: isDark ? Colors.black54 : Colors.black26,
+                        child: Center(
+                          child: Icon(Icons.check_circle,
+                              color: isDark ? Colors.amber : const Color(0xFF8B6914),
+                              size: 28),
                         ),
                       ),
                     ),
@@ -284,7 +357,9 @@ class _EpisodeTile extends ConsumerWidget {
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
-                      color: isWatched ? Colors.grey[600] : Colors.white,
+                      color: isWatched
+                          ? (isDark ? Colors.grey[600] : Colors.grey.shade500)
+                          : (isDark ? Colors.white : const Color(0xFF1A1A1B)),
                       fontSize: 14,
                       fontWeight: FontWeight.w500,
                     ),
@@ -294,7 +369,7 @@ class _EpisodeTile extends ConsumerWidget {
                     Text(
                       durationStr,
                       style: TextStyle(
-                        color: Colors.grey[600],
+                        color: isDark ? Colors.grey[600] : Colors.grey.shade500,
                         fontSize: 12,
                       ),
                     ),
@@ -311,13 +386,16 @@ class _EpisodeTile extends ConsumerWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: Icon(
                   isWatched ? Icons.check_circle : Icons.check_circle_outline,
-                  color: isWatched ? Colors.amber : Colors.grey[600],
+                  color: isWatched
+                      ? (isDark ? Colors.amber : const Color(0xFF8B6914))
+                      : (isDark ? Colors.grey[600] : Colors.grey.shade500),
                   size: 28,
                 ),
               ),
             ),
             // Play icon
-            Icon(Icons.play_circle_outline, color: Colors.grey[600], size: 28),
+            Icon(Icons.play_circle_outline,
+                color: isDark ? Colors.grey[600] : Colors.grey.shade500, size: 28),
           ],
         ),
       ),

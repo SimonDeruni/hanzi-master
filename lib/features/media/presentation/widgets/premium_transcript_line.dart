@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
+import 'package:lpinyin/lpinyin.dart';
 import '../../domain/models/video_transcript.dart';
 
 class PremiumTranscriptLine extends StatefulWidget {
@@ -179,17 +180,33 @@ class _PremiumTranscriptLineState extends State<PremiumTranscriptLine> with Sing
                     ),
                     
                     // 2. Pinyin Line
-                    if (widget.showPinyin && widget.line.pinyin != null)
-                      Padding(
-                        padding: const EdgeInsets.only(top: 4),
-                        child: Text(
-                          widget.line.pinyin!,
-                          style: const TextStyle(
-                            fontSize: 14, 
-                            color: Color(0xFF757575),
-                          ),
-                        ),
-                      ),
+                    if (widget.showPinyin) ...[
+                      () {
+                        final raw = widget.line.pinyin?.trim();
+                        final translation = widget.line.translation?.trim().toLowerCase();
+                        String? effectivePinyin;
+                        if (raw != null && raw.isNotEmpty && (translation == null || raw.toLowerCase() != translation)) {
+                          effectivePinyin = raw;
+                        } else if (RegExp(r'[\u4e00-\u9fff]').hasMatch(widget.line.text)) {
+                          effectivePinyin = PinyinHelper.getPinyinE(widget.line.text,
+                              separator: ' ', format: PinyinFormat.WITH_TONE_MARK);
+                        }
+
+                        if (effectivePinyin != null && effectivePinyin.isNotEmpty) {
+                          return Padding(
+                            padding: const EdgeInsets.only(top: 4),
+                            child: Text(
+                              effectivePinyin,
+                              style: const TextStyle(
+                                fontSize: 14,
+                                color: Color(0xFF757575),
+                              ),
+                            ),
+                          );
+                        }
+                        return const SizedBox.shrink();
+                      }(),
+                    ],
                       
                     // 3. English/Local Translation Line + Shadowing Button
                     if (widget.showEnglish || widget.isShadowingMode)

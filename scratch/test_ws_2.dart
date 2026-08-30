@@ -2,7 +2,10 @@ import 'dart:io';
 import 'dart:convert';
 
 void main() async {
-  const apiKey = 'AQ.Ab8RN6IY_hG6QpIjnjAxCAo-dAbIMS-egNT9cH_vpJgpujXxKA';
+  final apiKey = Platform.environment['GEMINI_API_KEY'];
+  if (apiKey == null || apiKey.isEmpty) {
+    throw StateError('Set GEMINI_API_KEY in the environment.');
+  }
   final uri = Uri.parse(
       'wss://generativelanguage.googleapis.com/ws/google.ai.generativelanguage.v1alpha.GenerativeService.BidiGenerateContent?key=$apiKey');
 
@@ -41,7 +44,8 @@ void main() async {
         print("Received: $message");
       },
       onDone: () {
-        print("Connection closed. Code: ${ws.closeCode}, Reason: ${ws.closeReason}");
+        print(
+            "Connection closed. Code: ${ws.closeCode}, Reason: ${ws.closeReason}");
         exit(0);
       },
       onError: (err) {

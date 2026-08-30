@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/features/reading/data/repositories/book_repository.dart';
 import 'package:hanzi_master/features/reading/domain/entities/book_model.dart';
+import 'package:hanzi_master/features/reading/domain/logic/reading_session.dart';
 import 'package:hanzi_master/features/media/data/story_fetcher_service.dart';
 import 'package:hanzi_master/features/media/domain/models/library_story.dart';
 
@@ -14,7 +15,8 @@ final bookCatalogProvider = FutureProvider<List<BookModel>>((ref) async {
   return repo.loadCatalog();
 });
 
-final bookChaptersProvider = FutureProvider.family<List<BookChapter>, String>((ref, bookId) async {
+final bookChaptersProvider =
+    FutureProvider.family<List<BookChapter>, String>((ref, bookId) async {
   final repo = ref.read(bookRepositoryProvider);
   await repo.init();
   return repo.getBookChapters(bookId);
@@ -25,7 +27,8 @@ final bookProgressProvider = StateProvider.family<int, String>((ref, bookId) {
   return repo.getReadingProgress(bookId);
 });
 
-final bookDetailedProgressProvider = Provider.family<BookReadingProgress?, String>((ref, bookId) {
+final bookDetailedProgressProvider =
+    Provider.family<BookReadingProgress?, String>((ref, bookId) {
   final repo = ref.read(bookRepositoryProvider);
   return repo.getDetailedReadingProgress(bookId);
 });
@@ -40,7 +43,8 @@ class InProgressBookItem {
   });
 }
 
-final inProgressBooksProvider = FutureProvider<List<InProgressBookItem>>((ref) async {
+final inProgressBooksProvider =
+    FutureProvider<List<InProgressBookItem>>((ref) async {
   final repo = ref.read(bookRepositoryProvider);
   await repo.init();
   final catalog = await repo.loadCatalog();
@@ -58,26 +62,83 @@ final inProgressBooksProvider = FutureProvider<List<InProgressBookItem>>((ref) a
   return items;
 });
 
-final bookBookmarksProvider = StateProvider.family<List<BookmarkModel>, String>((ref, bookId) {
+final bookBookmarksProvider =
+    StateProvider.family<List<BookmarkModel>, String>((ref, bookId) {
   final repo = ref.read(bookRepositoryProvider);
   return repo.getBookmarks(bookId);
+});
+
+final lastSessionProvider = Provider<ReadingSessionData?>((ref) {
+  return ref.read(bookRepositoryProvider).getLastReadingSession();
+});
+
+class BookmarkShelfItem {
+  final BookModel book;
+  final BookmarkModel bookmark;
+
+  const BookmarkShelfItem({required this.book, required this.bookmark});
+}
+
+final allBookmarksProvider =
+    FutureProvider<List<BookmarkShelfItem>>((ref) async {
+  final repo = ref.read(bookRepositoryProvider);
+  await repo.init();
+  final books = await repo.loadCatalog();
+  final poetry = await ref.read(chinesePoetryProvider.future);
+  final allBooks = <String, BookModel>{for (final book in books) book.id: book};
+  for (final story in poetry) {
+    allBooks[story.link] = BookModel(
+      id: story.link,
+      title: story.title,
+      titleEn: story.titleEn ?? story.title,
+      author: story.sourceName,
+      authorEn: story.sourceName,
+      category: story.category,
+      description: story.summary,
+      descriptionEn: story.summaryEn ?? story.summary,
+      dynastyOrEra: '',
+      hskLevel: story.hskLevel,
+      totalChapters: 1,
+      coverEmoji: '诗',
+      tags: story.keywords,
+    );
+  }
+  return repo
+      .getAllBookmarksAcrossBooks()
+      .map(BookmarkModel.fromJson)
+      .where((bookmark) => allBooks.containsKey(bookmark.bookId))
+      .map((bookmark) => BookmarkShelfItem(
+            book: allBooks[bookmark.bookId]!,
+            bookmark: bookmark,
+          ))
+      .toList();
 });
 
 final microReadsProvider = FutureProvider<List<LibraryStory>>((ref) async {
   final fetcher = ref.read(storyFetcherServiceProvider);
   final all = await fetcher.fetchLocalStories();
-  return all.where((s) => s.category != 'Tang Poetry' && s.category != 'Classical Literature').toList();
+  return all
+      .where((s) =>
+          s.category != 'Tang Poetry' && s.category != 'Classical Literature')
+      .toList();
 });
 
 final tangPoetryProvider = FutureProvider<List<LibraryStory>>((ref) async {
   final fetcher = ref.read(storyFetcherServiceProvider);
   final all = await fetcher.fetchLocalStories();
-  return all.where((s) => s.category == 'Tang Poetry' || s.category == 'Classical Literature').toList();
+  return all
+      .where((s) =>
+          s.category == 'Tang Poetry' || s.category == 'Classical Literature')
+      .toList();
 });
-
 
 final chinesePoetryProvider = FutureProvider<List<LibraryStory>>((ref) async {
   final fetcher = ref.read(storyFetcherServiceProvider);
   final all = await fetcher.fetchLocalStories();
-  return all.where((s) => s.category == 'Chinese Poetry' || s.category == 'Tang Poetry' || s.category == 'Classical Literature').toList();
+  return all
+      .where((s) =>
+          s.category == 'Chinese Poetry' ||
+          s.category == 'Tang Poetry' ||
+          s.category == 'Classical Literature')
+      .toList();
 });

@@ -8,7 +8,6 @@ workflows:
       # API keys are stored as secret environment variables in the Codemagic dashboard.
       # Go to: App settings → Environment variables → add each key as a secret.
       vars:
-        GEMINI_API_KEY: AQ.Ab8RN6IY_hG6QpIjnjAxCAo-dAbIMS-egNT9cH_vpJgpujXxKA
         OPENROUTER_API_KEY: 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
         AZURE_SPEECH_KEY: AnZ5l470hrJMMOqPYYH085lWbpFHjRH8nZCkryg0TWFF8yaVzDdOJQQJ99CGACPV0roXJ3w3AAAYACOGk7C0
         AZURE_SPEECH_REGION: germanywestcentral

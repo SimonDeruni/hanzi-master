@@ -452,12 +452,26 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
     try {
       final gemini = ref.read(geminiServiceProvider);
 
-      // Build history for Gemini
+      final scenario = widget.scenario;
+      final hardenedSystemPrompt = '''${scenario.systemPrompt}
+
+### MANDATORY LIVE ROLEPLAY RULES ###
+- Role/Persona: "${scenario.personaName}"
+- Scenario Topic: "${scenario.title}"
+- Scenario Context: "${scenario.description}"
+- Target HSK: HSK ${scenario.targetHskLevel}
+- RULE 1: You are currently on a live spoken voice phone call with the user. You MUST STAY 100% in character as "${scenario.personaName}".
+- RULE 2: NEVER break character, never act as a generic AI assistant or chatbot.
+- RULE 3: Keep your responses conversational, natural, and concise (1-2 spoken sentences) so the audio call flows smoothly.
+
+CRITICAL FORMAT REQUIREMENT: You MUST format EVERY response with exactly 3 parts separated by "|||":
+Chinese Response|||Pinyin Response|||English Translation
+Example: 你好！很高兴见到你。|||nǐ hǎo! hěn gāo xìng jiàn dào nǐ.|||Hello! Very nice to meet you.''';
+
       final messages = [
         {
           'role': 'system',
-          'content':
-              '${widget.scenario.systemPrompt}\n\nKeep your responses concise and conversational (1 to 2 sentences). Use natural spoken Mandarin suitable for your role.\n\nScenario context: ${widget.scenario.description}\n\nCRITICAL FORMAT REQUIREMENT: You MUST format EVERY response with exactly 3 parts separated by "|||":\nChinese Response|||Pinyin Response|||English Translation\nExample: 你好！很高兴见到你。|||nǐ hǎo! hěn gāo xìng jiàn dào nǐ.|||Hello! Very nice to meet you.'
+          'content': hardenedSystemPrompt,
         }
       ];
 
@@ -833,32 +847,31 @@ Provide your short, professional linguistic analysis directly to the student:
     final theme = Theme.of(context);
 
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: const Color(0xFF0B1120),
       body: Stack(
         children: [
           Positioned.fill(
-            child: (widget.scenario.avatarAssetPath == 'none' ||
-                    widget.scenario.avatarAssetPath.isEmpty)
-                ? Container(color: Colors.black87)
-                : widget.scenario.avatarAssetPath.startsWith('/') ||
-                        widget.scenario.avatarAssetPath.contains(':\\')
+            child: widget.scenario.hasAvatar
+                ? (widget.scenario.resolvedAvatarAssetPath.startsWith('/') ||
+                        widget.scenario.resolvedAvatarAssetPath.contains(':\\')
                     ? Image.file(
-                        File(widget.scenario.avatarAssetPath),
+                        File(widget.scenario.resolvedAvatarAssetPath),
                         fit: BoxFit.cover,
                         errorBuilder: (context, error, stackTrace) =>
-                            Container(color: Colors.black87),
+                            _buildBlurredPlaceholderBackground(),
                       )
                     : Image.asset(
-                        widget.scenario.avatarAssetPath,
+                        widget.scenario.resolvedAvatarAssetPath,
                         fit: BoxFit.cover,
                         errorBuilder: (context, error, stackTrace) =>
-                            Container(color: Colors.black87),
-                      ),
+                            _buildBlurredPlaceholderBackground(),
+                      ))
+                : _buildBlurredPlaceholderBackground(),
           ),
           Positioned.fill(
             child: BackdropFilter(
-              filter: ui.ImageFilter.blur(sigmaX: 30, sigmaY: 30),
-              child: Container(color: Colors.black.withValues(alpha: 0.7)),
+              filter: ui.ImageFilter.blur(sigmaX: 25, sigmaY: 25),
+              child: Container(color: Colors.black.withValues(alpha: 0.2)),
             ),
           ),
           SafeArea(
@@ -905,24 +918,32 @@ Provide your short, professional linguistic analysis directly to the student:
                                       ),
                                     ],
                                   ),
-                                  child: const SizedBox.shrink(),
+                                  child: Center(
+                                    child: Icon(
+                                      Icons.psychology_rounded,
+                                      size: 56,
+                                      color: Colors.white.withValues(alpha: 0.9),
+                                    ),
+                                  ),
                                 );
                               },
                             ),
                             const SizedBox(height: 32),
                             AnimatedSwitcher(
-                              duration: const Duration(milliseconds: 400),
+                              duration: const Duration(milliseconds: 500),
                               child: Text(
                                 _analyzeStatusText,
                                 key: ValueKey(_analyzeStatusText),
-                                textAlign: TextAlign.center,
-                                style: theme.textTheme.titleMedium?.copyWith(
-                                  color: Colors.white.withValues(alpha: 0.85),
-                                  fontWeight: FontWeight.w500,
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w600,
+                                  letterSpacing: 0.3,
                                 ),
+                                textAlign: TextAlign.center,
                               ),
                             ),
-                            const SizedBox(height: 12),
+                            const SizedBox(height: 16),
                             SizedBox(
                               width: 120,
                               child: ClipRRect(
@@ -944,18 +965,27 @@ Provide your short, professional linguistic analysis directly to the student:
                       key: const ValueKey('call_ui'),
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(top: 20.0),
+                      padding: const EdgeInsets.only(top: 16.0),
                       child: Column(
                         children: [
                           Text(AppLocalizations.of(context)!.geminiLiveCall,
                               style: theme.textTheme.labelMedium?.copyWith(
                                   color: Colors.white54, letterSpacing: 2.0)),
-                          const SizedBox(height: 8),
-                          Text(widget.scenario.title,
-                              style: theme.textTheme.headlineMedium?.copyWith(
+                          const SizedBox(height: 6),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 28.0),
+                            child: Text(
+                              widget.scenario.title,
+                              textAlign: TextAlign.center,
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              style: theme.textTheme.titleLarge?.copyWith(
                                   color: Colors.white,
-                                  fontWeight: FontWeight.bold)),
-                          const SizedBox(height: 8),
+                                  fontWeight: FontWeight.bold,
+                                  height: 1.25),
+                            ),
+                          ),
+                          const SizedBox(height: 6),
                           Text(
                             _callStatus,
                             style: TextStyle(
@@ -1002,8 +1032,24 @@ Provide your short, professional linguistic analysis directly to the student:
 
                     // Transcript Overlay
                     Container(
-                      height: 300,
-                      margin: const EdgeInsets.symmetric(horizontal: 24),
+                      height: 290,
+                      margin: const EdgeInsets.symmetric(horizontal: 18),
+                      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFF1E293B).withValues(alpha: 0.4),
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(
+                          color: Colors.white.withValues(alpha: 0.12),
+                          width: 1.0,
+                        ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withValues(alpha: 0.25),
+                            blurRadius: 16,
+                            offset: const Offset(0, 4),
+                          ),
+                        ],
+                      ),
                       child: ShaderMask(
                         shaderCallback: (rect) {
                           return const LinearGradient(
@@ -1015,13 +1061,13 @@ Provide your short, professional linguistic analysis directly to the student:
                               Colors.black,
                               Colors.transparent
                             ],
-                            stops: [0.0, 0.1, 0.9, 1.0],
+                            stops: [0.0, 0.08, 0.92, 1.0],
                           ).createShader(rect);
                         },
                         blendMode: BlendMode.dstIn,
                         child: ListView.builder(
                           controller: _scrollController,
-                          padding: const EdgeInsets.symmetric(vertical: 20),
+                          padding: const EdgeInsets.symmetric(vertical: 8),
                           itemCount: _transcript.length,
                           itemBuilder: (context, index) {
                             final msg = _transcript[index];
@@ -1074,32 +1120,14 @@ Provide your short, professional linguistic analysis directly to the student:
                                 ],
                               ),
                               child: ClipOval(
-                                child: (widget.scenario.avatarAssetPath ==
-                                            'none' ||
-                                        widget.scenario.avatarAssetPath.isEmpty)
-                                    ? Container(
-                                        color: theme.colorScheme.primary,
-                                        child: Center(
-                                          child: Text(
-                                            widget.scenario.personaName.isNotEmpty
-                                                ? widget.scenario.personaName[0]
-                                                    .toUpperCase()
-                                                : '?',
-                                            style: const TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 60,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                        ),
-                                      )
-                                    : Image.asset(
-                                        widget.scenario.avatarAssetPath,
+                                child: widget.scenario.hasAvatar
+                                    ? Image.asset(
+                                        widget.scenario.resolvedAvatarAssetPath,
                                         fit: BoxFit.cover,
-                                        errorBuilder: (context, error,
-                                                stackTrace) =>
-                                            Container(
-                                                color: Colors.indigo.shade900),
-                                      ),
+                                        errorBuilder: (context, error, stackTrace) =>
+                                            _buildCenterPlaceholder(theme),
+                                      )
+                                    : _buildCenterPlaceholder(theme),
                               ),
                             ),
                           ),
@@ -1163,6 +1191,62 @@ Provide your short, professional linguistic analysis directly to the student:
       ),
     );
   }
+
+  Widget _buildBlurredPlaceholderBackground() {
+    return Container(
+      decoration: const BoxDecoration(
+        gradient: RadialGradient(
+          center: Alignment(0, -0.2),
+          radius: 1.35,
+          colors: [
+            Color(0xFF24344D), // Luminous slate blue
+            Color(0xFF162238), // Rich indigo slate
+            Color(0xFF0F172A), // Deep navy slate
+            Color(0xFF090D16), // Dark carbon
+          ],
+          stops: [0.0, 0.35, 0.7, 1.0],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildCenterPlaceholder(ThemeData theme) {
+    final char = widget.scenario.personaName.isNotEmpty
+        ? widget.scenario.personaName[0]
+        : (widget.scenario.title.isNotEmpty ? widget.scenario.title[0] : '悟');
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            Colors.white.withValues(alpha: 0.18),
+            Colors.white.withValues(alpha: 0.05),
+            Colors.black.withValues(alpha: 0.4),
+          ],
+        ),
+        border: Border.all(
+          color: Colors.white.withValues(alpha: 0.25),
+          width: 1.5,
+        ),
+        shape: BoxShape.circle,
+      ),
+      child: BackdropFilter(
+        filter: ui.ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+        child: Center(
+          child: Text(
+            char,
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 46,
+              fontWeight: FontWeight.bold,
+              letterSpacing: 2,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 }
 
 class _LiveTranscriptBubble extends StatelessWidget {
@@ -1194,132 +1278,165 @@ class _LiveTranscriptBubble extends StatelessWidget {
     final isUser = message.role == ChatRole.user;
 
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 6.0),
-      child: Column(
-        crossAxisAlignment:
-            isUser ? CrossAxisAlignment.end : CrossAxisAlignment.start,
-        children: [
-          if (isUser && message.grade != null) ...[
-            _buildGradedText(message.grade!['words'] ?? [], theme, context),
-            const SizedBox(height: 4),
-            Builder(builder: (context) {
-              final score = message.grade!['score'] ?? message.grade!['overallScore'] ?? 0;
-              final isGood = score >= 80;
-              final isMedium = score >= 65 && score < 80;
-              final badgeColor = isGood
-                  ? const Color(0xFF10B981)
-                  : (isMedium ? const Color(0xFFF59E0B) : const Color(0xFFEF4444));
-              final label = isGood
-                  ? "Tone Accurate • $score%"
-                  : (isMedium ? "Tone Needs Work • $score%" : "Pronunciation • $score%");
-              return Container(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                decoration: BoxDecoration(
-                  color: badgeColor.withValues(alpha: 0.15),
-                  borderRadius: BorderRadius.circular(8),
-                  border: Border.all(color: badgeColor.withValues(alpha: 0.3)),
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(
-                      isGood ? Icons.check_circle_outline : Icons.info_outline,
-                      size: 11,
-                      color: badgeColor,
+      padding: const EdgeInsets.symmetric(vertical: 4.0),
+      child: Align(
+        alignment: isUser ? Alignment.centerRight : Alignment.centerLeft,
+        child: Container(
+          constraints: BoxConstraints(
+            maxWidth: MediaQuery.of(context).size.width * 0.78,
+          ),
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+          decoration: BoxDecoration(
+            color: isUser
+                ? const Color(0xFF1D4ED8).withValues(alpha: 0.35)
+                : const Color(0xFF1E293B).withValues(alpha: 0.7),
+            borderRadius: BorderRadius.only(
+              topLeft: const Radius.circular(14),
+              topRight: const Radius.circular(14),
+              bottomLeft: Radius.circular(isUser ? 14 : 2),
+              bottomRight: Radius.circular(isUser ? 2 : 14),
+            ),
+            border: Border.all(
+              color: isUser
+                  ? const Color(0xFF60A5FA).withValues(alpha: 0.35)
+                  : Colors.white.withValues(alpha: 0.15),
+              width: 1,
+            ),
+          ),
+          child: Column(
+            crossAxisAlignment:
+                isUser ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              if (isUser && message.grade != null) ...[
+                _buildGradedText(message.grade!['words'] ?? [], theme, context),
+                const SizedBox(height: 4),
+                Builder(builder: (context) {
+                  final score = message.grade!['score'] ?? message.grade!['overallScore'] ?? 0;
+                  final isGood = score >= 80;
+                  final isMedium = score >= 65 && score < 80;
+                  final badgeColor = isGood
+                      ? const Color(0xFF10B981)
+                      : (isMedium ? const Color(0xFFF59E0B) : const Color(0xFFEF4444));
+                  final label = isGood
+                      ? "Tone Accurate • $score%"
+                      : (isMedium ? "Tone Needs Work • $score%" : "Pronunciation • $score%");
+                  return Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                    decoration: BoxDecoration(
+                      color: badgeColor.withValues(alpha: 0.2),
+                      borderRadius: BorderRadius.circular(6),
+                      border: Border.all(color: badgeColor.withValues(alpha: 0.4)),
                     ),
-                    const SizedBox(width: 4),
-                    Text(
-                      label,
-                      style: theme.textTheme.labelSmall?.copyWith(
-                        color: badgeColor,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 10,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(
+                          isGood ? Icons.check_circle_outline : Icons.info_outline,
+                          size: 11,
+                          color: badgeColor,
+                        ),
+                        const SizedBox(width: 4),
+                        Text(
+                          label,
+                          style: TextStyle(
+                            color: badgeColor,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 10,
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                }),
+              ] else if (isUser) ...[
+                TappableMarkdownHanziText(
+                  message.text,
+                  textAlign: TextAlign.right,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    height: 1.35,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                  decoration: BoxDecoration(
+                    color: Colors.white.withValues(alpha: 0.1),
+                    borderRadius: BorderRadius.circular(6),
+                  ),
+                  child: const Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      SizedBox(
+                        width: 8,
+                        height: 8,
+                        child: CircularProgressIndicator(
+                          strokeWidth: 1.5,
+                          color: Colors.white70,
+                        ),
                       ),
-                    ),
-                  ],
+                      SizedBox(width: 5),
+                      Text(
+                        "Azure Assessment...",
+                        style: TextStyle(
+                          color: Colors.white70,
+                          fontSize: 9.5,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              );
-            }),
-          ] else if (isUser) ...[
-            TappableMarkdownHanziText(
-              message.text,
-              textAlign: TextAlign.right,
-              style: theme.textTheme.bodyLarge?.copyWith(
-                color: Colors.white70,
-                fontWeight: FontWeight.normal,
-                height: 1.4,
-              ),
-            ),
-            const SizedBox(height: 4),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-              decoration: BoxDecoration(
-                color: Colors.white.withValues(alpha: 0.08),
-                borderRadius: BorderRadius.circular(8),
-                border: Border.all(color: Colors.white12),
-              ),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const SizedBox(
-                    width: 9,
-                    height: 9,
-                    child: CircularProgressIndicator(
-                      strokeWidth: 1.5,
-                      color: Colors.white54,
-                    ),
+              ] else ...[
+                TappableMarkdownHanziText(
+                  message.text,
+                  textAlign: TextAlign.left,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 16.5,
+                    fontWeight: FontWeight.bold,
+                    height: 1.35,
                   ),
-                  const SizedBox(width: 6),
-                  Text(
-                    "Azure Acoustic Assessment...",
-                    style: theme.textTheme.labelSmall?.copyWith(
-                      color: Colors.white54,
-                      fontSize: 10,
-                    ),
+                ),
+              ],
+              
+              // Pinyin Subtitles (shown when not hidden, if message has pinyin and not already rendered in graded text)
+              if ((subtitleMode == 0 || subtitleMode == 1) &&
+                  (message.grade == null || !isUser) &&
+                  message.pinyin != null &&
+                  message.pinyin!.isNotEmpty) ...[
+                const SizedBox(height: 3),
+                Text(
+                  message.pinyin!,
+                  style: const TextStyle(
+                    color: Color(0xFFE2E8F0),
+                    fontSize: 13.5,
+                    fontWeight: FontWeight.w500,
                   ),
-                ],
-              ),
-            ),
-          ] else ...[
-            TappableMarkdownHanziText(
-              message.text,
-              textAlign: TextAlign.left,
-              style: theme.textTheme.bodyLarge?.copyWith(
-                color: theme.colorScheme.primary.withValues(alpha: 0.9),
-                fontWeight: FontWeight.bold,
-                height: 1.4,
-              ),
-            ),
-          ],
-          
-          // Pinyin Subtitles (shown when not hidden, if message has pinyin and not already rendered in graded text)
-          if ((subtitleMode == 0 || subtitleMode == 1) &&
-              (message.grade == null || !isUser) &&
-              message.pinyin != null &&
-              message.pinyin!.isNotEmpty) ...[
-            const SizedBox(height: 4),
-            Text(
-              message.pinyin!,
-              style: theme.textTheme.bodyMedium?.copyWith(color: Colors.white70),
-              textAlign: isUser ? TextAlign.right : TextAlign.left,
-            ),
-          ],
+                  textAlign: isUser ? TextAlign.right : TextAlign.left,
+                ),
+              ],
 
-          // English Translation Subtitles (shown in CC mode: subtitleMode == 0)
-          if (subtitleMode == 0 &&
-              message.translation != null &&
-              message.translation!.isNotEmpty) ...[
-            const SizedBox(height: 2),
-            Text(
-              message.translation!,
-              style: theme.textTheme.bodySmall?.copyWith(
-                color: Colors.white38,
-                fontStyle: FontStyle.italic,
-              ),
-              textAlign: isUser ? TextAlign.right : TextAlign.left,
-            ),
-          ],
-        ],
+              // English Translation Subtitles (shown in CC mode: subtitleMode == 0)
+              if (subtitleMode == 0 &&
+                  message.translation != null &&
+                  message.translation!.isNotEmpty) ...[
+                const SizedBox(height: 2),
+                Text(
+                  message.translation!,
+                  style: const TextStyle(
+                    color: Color(0xFFCBD5E1),
+                    fontSize: 12.5,
+                    fontStyle: FontStyle.italic,
+                  ),
+                  textAlign: isUser ? TextAlign.right : TextAlign.left,
+                ),
+              ],
+            ],
+          ),
+        ),
       ),
     );
   }
