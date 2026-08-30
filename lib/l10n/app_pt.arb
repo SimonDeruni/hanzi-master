@@ -2025,7 +2025,6 @@
   "pleaseEnableCameraAccessInYourDevic": "Por favor, ative o acesso à câmera nas configurações do seu dispositivo para usar este recurso.",
   "alignChineseTextWithinFrame": "Alinhe o texto chinês dentro do quadro",
   "inLibrary": "Na Biblioteca",
-  "new": "Novo",
   "novice": "Novato",
   "apprentice": "Aprendiz",
   "artisan": "Artesão",
@@ -2121,5 +2120,6 @@
   "alsoSeenIn": "Também visto em",
   "quickLook": "Olhada Rápida",
   "notFound": "Não encontrado",
-  "errorLoadingFromAi": "Erro ao carregar da IA."
+  "errorLoadingFromAi": "Erro ao carregar da IA.",
+  "newLabel": "Novo"
 }

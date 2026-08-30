@@ -3352,4 +3352,3255 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get readingVocabulary1 => 'Leitura e Vocabulário';
+
+  @override
+  String get defaultfirebaseoptionsHaveNotBeenCo =>
+      'DefaultFirebaseOptions não foram configuradas para linux -';
+
+  @override
+  String get defaultfirebaseoptionsAreNotSupport =>
+      'DefaultFirebaseOptions não são suportadas para esta plataforma.';
+
+  @override
+  String get hanziMaster1 => 'Hanzi Master';
+
+  @override
+  String get strokesCannotBeEmpty => 'Os traços não podem estar vazios.';
+
+  @override
+  String get wrongStartPoint => 'Ponto de partida errado.';
+
+  @override
+  String get rightShapeButWrongPlace => 'Forma correta, mas no lugar errado!';
+
+  @override
+  String get goodFollowTheFlow => 'Bom!\') : \'Siga o fluxo.';
+
+  @override
+  String get aBitShaky => 'Um pouco trêmulo!';
+
+  @override
+  String get aBitHesitant => 'Um pouco hesitante...';
+
+  @override
+  String get shapeIsOff => 'A forma está errada.';
+
+  @override
+  String get arabic => 'Árabe';
+
+  @override
+  String get german => 'Alemão';
+
+  @override
+  String get spanish => 'Espanhol';
+
+  @override
+  String get french => 'Francês';
+
+  @override
+  String get hindi => 'Hindi';
+
+  @override
+  String get indonesian => 'Indonésio';
+
+  @override
+  String get italian => 'Italiano';
+
+  @override
+  String get japanese => 'Japonês';
+
+  @override
+  String get korean => 'Coreano';
+
+  @override
+  String get portuguese => 'Português';
+
+  @override
+  String get russian => 'Russo';
+
+  @override
+  String get vietnamese => 'Vietnamita';
+
+  @override
+  String get microphonePermissionDenied => 'Permissão do microfone negada';
+
+  @override
+  String get offset => 'Deslocamento';
+
+  @override
+  String get audioserviceHasBeenDisposed => 'AudioService foi descartado';
+
+  @override
+  String get fenrirZhcnyunxineural => 'Fenrir\': \'zh-CN-YunxiNeural';
+
+  @override
+  String get charonZhcnyunyangneural => 'Charon\': \'zh-CN-YunyangNeural';
+
+  @override
+  String get koreZhcnxiaoxiaoneural => 'Kore\': \'zh-CN-XiaoxiaoNeural';
+
+  @override
+  String get aoedeZhcnxiaoyineural => 'Aoede\': \'zh-CN-XiaoyiNeural';
+
+  @override
+  String get puckZhcnyunjianneural => 'Puck\': \'zh-CN-YunjianNeural';
+
+  @override
+  String get kore => 'Kore';
+
+  @override
+  String get xmicrosoftoutputformatAudio24khz48k =>
+      'X-Microsoft-OutputFormat\': \'audio-24khz-48kbitrate-mono-mp3';
+
+  @override
+  String get useragentHanzimasterapp => 'User-Agent\': \'HanziMasterApp';
+
+  @override
+  String get anchorWord => 'Palavra Âncora';
+
+  @override
+  String get creativeThematicTitle => 'Título Temático Criativo';
+
+  @override
+  String get briefPedagogicalOrSemanticRationale =>
+      'Breve justificativa pedagógica ou semântica';
+
+  @override
+  String get theSingleMostCentralCharacterFromTh =>
+      'O caractere mais central da lista';
+
+  @override
+  String get aBalancedSetOfCharactersFromYourLib =>
+      'Um conjunto equilibrado de caracteres da sua biblioteca.';
+
+  @override
+  String get yourNaturalConversationalReplyInChi =>
+      'Sua resposta conversacional natural em caracteres chineses.';
+
+  @override
+  String get theEnglishTranslationOfYourReply =>
+      'A tradução em inglês da sua resposta.';
+
+  @override
+  String get thePinyinWithToneMarksForYourReply =>
+      'O Pinyin com marcas de tom para sua resposta.';
+
+  @override
+  String get aSuggestedResponseTheUserCouldSayBa =>
+      'Uma resposta sugerida que o usuário poderia dizer de volta para você.';
+
+  @override
+  String get pinyinForTheSuggestion => 'Pinyin para a sugestão.';
+
+  @override
+  String get englishTranslationForTheSuggestion =>
+      'Tradução em inglês para a sugestão.';
+
+  @override
+  String get scholarsCritique => 'Crítica do Estudioso';
+
+  @override
+  String get theEchoHallRemainsSilentTryYourBrea =>
+      'O Salão do Eco permanece em silêncio. Tente sua respiração novamente.';
+
+  @override
+  String get xtitleHanziMaster => 'X-Title\': \'Hanzi Master';
+
+  @override
+  String get noneYet => 'Nenhum ainda.';
+
+  @override
+  String get exactSentence => 'Frase Exata:';
+
+  @override
+  String get englishTranslation => 'Tradução em inglês';
+
+  @override
+  String get previouslyGeneratedPhrases => 'Frases geradas anteriormente';
+
+  @override
+  String get iLikeDrinkingAppleJuice => 'Eu gosto de beber suco de maçã.';
+
+  @override
+  String get theEnglishMeaningHere => 'O significado em inglês aqui...';
+
+  @override
+  String get failedToFetchDefinition => 'Falha ao buscar definição.';
+
+  @override
+  String get failedToLoadExplanation => 'Falha ao carregar explicação.';
+
+  @override
+  String get failedToLoadComparison => 'Falha ao carregar comparação.';
+
+  @override
+  String get emptyResponseFromOpenrouter => 'Resposta vazia do OpenRouter';
+
+  @override
+  String get emptyResponseFromVisionModel => 'Resposta vazia do modelo Vision';
+
+  @override
+  String get standard => 'Padrão';
+
+  @override
+  String get theFullSentenceInChinese => 'A frase completa em chinês...';
+
+  @override
+  String get theWordOrCharacterInChinese => 'A palavra ou caractere em chinês';
+
+  @override
+  String get thePinyinForThisSpecificWord =>
+      'O pinyin para esta palavra específica';
+
+  @override
+  String get emptyResponseFromDeepseekApi => 'Resposta vazia da API DeepSeek';
+
+  @override
+  String get criticalPutTheEnglishTranslationInT =>
+      'CRÍTICO: Coloque a tradução em inglês no';
+
+  @override
+  String get englishTranslationOfTheEntireSenten =>
+      'Tradução em inglês da frase completa';
+
+  @override
+  String get hanziWord => 'Palavra Hanzi';
+
+  @override
+  String get theFullSimplifiedSentenceInChinese =>
+      'A frase simplificada completa em chinês...';
+
+  @override
+  String get lyingFlatACulturalMovement =>
+      'Deitar-se: Um movimento cultural...';
+
+  @override
+  String get theUserYouAreSpeakingToIsNamed =>
+      'O usuário com quem você está falando se chama';
+
+  @override
+  String get importantRuleDoNotAddressTheUserByA =>
+      'REGRA IMPORTANTE: Não se dirija ao usuário por nenhum nome. Nunca use nomes de espaços reservados como';
+
+  @override
+  String get youAreAConciseChineseCalligraphyAnd =>
+      'Você é um tutor conciso de Caligrafia e Etimologia Chinesa dentro de um aplicativo móvel de flashcards.';
+
+  @override
+  String get theStudentIsStudyingTheCharacter =>
+      'O aluno está estudando o caractere';
+
+  @override
+  String get neverWriteIntroductionsSignoffsOrFi =>
+      'Nunca escreva introduções, despedidas ou frases de preenchimento como';
+
+  @override
+  String get beDirectAndInformative => 'Seja direto e informativo.';
+
+  @override
+  String get criticalRuleYouMustRespondEntirelyI =>
+      'REGRA CRÍTICA: Você deve responder INTEIRAMENTE no idioma correspondente ao código ISO 639-1';
+
+  @override
+  String get youAreAConciseChineseGrammarTutorIn =>
+      'Você é um tutor conciso de Gramática Chinesa dentro de um aplicativo móvel.';
+
+  @override
+  String get theStudentIsConfusedAboutTheWord =>
+      'O aluno está confuso sobre a palavra';
+
+  @override
+  String get neverWriteIntroductionsSignoffsOrFi1 =>
+      'Nunca escreva introduções, despedidas ou frases de preenchimento.';
+
+  @override
+  String get azureSpeechApiKeysAreMissing =>
+      'As chaves da API de Fala do Azure estão faltando.';
+
+  @override
+  String get success => 'Sucesso';
+
+  @override
+  String get granularity => 'Granularidade';
+
+  @override
+  String get phoneme1 => 'Fonema';
+
+  @override
+  String get dimension => 'Dimensão';
+
+  @override
+  String get comprehensive => 'Abrangente';
+
+  @override
+  String get weCouldntHearYouClearlyPleaseTryAga =>
+      'Não conseguimos ouvi-lo claramente. Por favor, tente novamente.';
+
+  @override
+  String get noNbestResultFound => 'Nenhum resultado NBest encontrado.';
+
+  @override
+  String get words1 => 'Palavras';
+
+  @override
+  String get word => 'Palavra';
+
+  @override
+  String get phonemes => 'Fonemas';
+
+  @override
+  String get syllables => 'Sílabas';
+
+  @override
+  String get syllable => 'Sílaba';
+
+  @override
+  String get omission => 'Omissão';
+
+  @override
+  String get insertion => 'Inserção';
+
+  @override
+  String get youMissedThisWord => 'Você perdeu esta palavra.';
+
+  @override
+  String get extraWordAddedHere => 'Palavra extra adicionada aqui.';
+
+  @override
+  String get mispronunciation => 'Pronúncia incorreta';
+
+  @override
+  String get pronunciationWasInaccurate => 'A pronúncia estava imprecisa.';
+
+  @override
+  String get goodEffortKeepPracticing => 'Bom esforço! Continue praticando.';
+
+  @override
+  String get perfectPronunciationSoundsLikeANati =>
+      'Pronúncia perfeita! Parece um falante nativo.';
+
+  @override
+  String get greatJobAFewMinorToneInaccuracies =>
+      'Ótimo trabalho! Algumas pequenas imprecisões de tom.';
+
+  @override
+  String get notBadButYourTonesNeedSomeWork =>
+      'Não está mal, mas seus tons precisam de algum trabalho.';
+
+  @override
+  String get keepPracticingListenToTheNativeAudi =>
+      'Continue praticando! Ouça o áudio nativo e tente novamente.';
+
+  @override
+  String get lexical => 'Lexical';
+
+  @override
+  String get chineseHanziHere => 'Hanzi chinês aqui';
+
+  @override
+  String get aShortSummaryInEnglish => 'Um breve resumo em inglês';
+
+  @override
+  String get noCoherentChineseTextFoundInTheScan =>
+      'Nenhum texto chinês coerente encontrado na digitalização.';
+
+  @override
+  String get theFullEnglishTranslationOfTheScann =>
+      'A tradução completa em inglês do texto digitalizado... OU \'Nenhum texto chinês coerente encontrado.\'';
+
+  @override
+  String get aShort24WordTitleForThisScanEgResta =>
+      'Um título curto de 2-4 palavras para esta digitalização (ex: \'Menu de Restaurante\', \'Placa de Rua\')';
+
+  @override
+  String get china => 'China';
+
+  @override
+  String get noTranslationAvailable => 'Nenhuma tradução disponível.';
+
+  @override
+  String get scanResults => 'Resultados da Digitalização';
+
+  @override
+  String get whenWasItWrittenAndWhatWasHappening =>
+      'Quando foi escrito e o que estava acontecendo na China na época?';
+
+  @override
+  String get whyIsThisPieceFamousWhatPhilosophic =>
+      'Por que esta peça é famosa? Que temas filosóficos ou culturais ela explora?';
+
+  @override
+  String get aBriefBioOfTheAuthor => 'Uma breve biografia do autor.';
+
+  @override
+  String get informationUnavailable => 'Informação indisponível.';
+
+  @override
+  String get noSummaryAvailable => 'Nenhum resumo disponível.';
+
+  @override
+  String get hanziAiPro => 'Hanzi AI Pro';
+
+  @override
+  String get trialNormalIntro => 'TESTE\', \'NORMAL\', \'INTRO';
+
+  @override
+  String get dailyDrop => 'Gota Diária';
+
+  @override
+  String get dailyNotificationsForWordOfTheDayAn =>
+      'Notificações diárias para a Palavra do Dia e notícias';
+
+  @override
+  String get aNewWordAndStoryOfTheDayAreWaitingF =>
+      'Uma nova Palavra e História do Dia estão esperando por você!';
+
+  @override
+  String get spacedRepetition => 'Repetição Espaçada';
+
+  @override
+  String get remindersForFlashcardsDueForReview =>
+      'Lembretes para flashcards com revisão pendente';
+
+  @override
+  String get engagementReminders => 'Lembretes de Engajamento';
+
+  @override
+  String get trialReminders => 'Lembretes de Teste';
+
+  @override
+  String get notificationsForYourTrialStatus =>
+      'Notificações sobre o status do seu teste';
+
+  @override
+  String get comeReviewYourHanziAndTryALiveCallB =>
+      'Venha revisar seu Hanzi e experimente uma Chamada ao Vivo antes que seu acesso gratuito termine!';
+
+  @override
+  String get scholarsEye => 'Olho do Estudioso';
+
+  @override
+  String get clMeasureWord => 'CL:\', \'Classificador:';
+
+  @override
+  String get surnameShi => 'Sobrenome Shi';
+
+  @override
+  String get chineseFamilyNameShi => 'Sobrenome chinês (Shi)';
+
+  @override
+  String get neutralToneLight => 'Tom Neutro (Leve)';
+
+  @override
+  String get keepYourPitchHighAndSteadyLikeSingi =>
+      'Mantenha seu tom alto e estável, como cantar uma nota.';
+
+  @override
+  String get startInTheMiddleAndSlideYourPitchUp =>
+      'Comece no meio e deslize seu tom para cima, como perguntar \'O quê?\'';
+
+  @override
+  String get dipYourVoiceDownLowThenRiseGentlyBa =>
+      'Abaixe sua voz, depois suba suavemente.';
+
+  @override
+  String get dropYourPitchSharplyAndDecisivelyLi =>
+      'Abaixe seu tom de forma nítida e decisiva, como um firme \'Não!\'';
+
+  @override
+  String get pronounceSoftlyBrieflyAndWithoutEmp =>
+      'Pronuncie suavemente, brevemente e sem ênfase.';
+
+  @override
+  String get spotOnPitchWasHighFlatAndSteady =>
+      'Perfeito! O tom estava alto, plano e estável.';
+
+  @override
+  String get spotOnUpwardPitchRiseWasClear =>
+      'Perfeito! A elevação do tom para cima foi clara.';
+
+  @override
+  String get spotOnLowDippingCurveWasAccurate =>
+      'Perfeito! A curva de descida baixa estava precisa.';
+
+  @override
+  String get spotOnSharpFallingDropWasDecisive =>
+      'Perfeito! A queda acentuada foi decisiva.';
+
+  @override
+  String get spotOnToneWasPronouncedAccurately =>
+      'Perfeito! O tom foi pronunciado com precisão.';
+
+  @override
+  String get iAgreeToTheTermsOfServiceAndPrivacy =>
+      'Concordo com os Termos de Serviço e a Política de Privacidade.';
+
+  @override
+  String get sendMeOccasionalUpdatesTipsAndOffer =>
+      'Enviar-me atualizações ocasionais, dicas e ofertas.';
+
+  @override
+  String get signInToSyncYourProgress =>
+      'Iniciar sessão para sincronizar o seu progresso.';
+
+  @override
+  String get createAnAccountToSaveYourStats =>
+      'Criar uma conta para guardar as suas estatísticas.';
+
+  @override
+  String get smartSpiral => 'ESPIRAL INTELIGENTE';
+
+  @override
+  String get origin => 'Origem';
+
+  @override
+  String get elements => 'Elementos';
+
+  @override
+  String get humanity => 'Humanidade';
+
+  @override
+  String get village => 'Aldeia';
+
+  @override
+  String get journey => 'Jornada';
+
+  @override
+  String get city => 'Cidade';
+
+  @override
+  String get originTheSimplestShapesTheBeginning =>
+      'Origem\': \'As formas mais simples. O início de todas as coisas.';
+
+  @override
+  String get elementsSunMoonWaterAndFireTheNatur =>
+      'Elementos\': \'Sol, Lua, Água e Fogo. O mundo natural.';
+
+  @override
+  String get humanityTheBodyTheHeartAndTheFamily =>
+      'Humanidade\': \'O corpo, o coração e a família.';
+
+  @override
+  String get villageFieldsRoofsAndToolsTheFounda =>
+      'Aldeia\': \'Campos, telhados e ferramentas. Os alicerces da sociedade.';
+
+  @override
+  String get journeyMovementSpeechAndSustenance =>
+      'Jornada\': \'Movimento, fala e sustento.';
+
+  @override
+  String get cityCommerceClothingAndComplexArtif =>
+      'Cidade\': \'Comércio, vestuário e artefactos complexos.';
+
+  @override
+  String get equilibriumAlgorithm => 'Algoritmo de Equilíbrio';
+
+  @override
+  String get misc => 'Diversos';
+
+  @override
+  String get cityOrOriginAs => '\'Cidade\' ou \'Origem\' como';
+
+  @override
+  String get miscToOrigin => '\'Diversos\' para \'Origem';
+
+  @override
+  String get constellation => 'Constelação';
+
+  @override
+  String get whichOneIsWater => 'Qual é \'Água\'?';
+
+  @override
+  String get whatIsThePinyin => 'Qual é o pinyin?';
+
+  @override
+  String get nature => 'Natureza';
+
+  @override
+  String get whatEssenceDoes => 'Que essência tem';
+
+  @override
+  String get allTiers => 'Todos os Níveis';
+
+  @override
+  String get active => 'Ativo';
+
+  @override
+  String get theScrollOfOrigin1 => 'O PERGAMINHO DA ORIGEM';
+
+  @override
+  String get galaxyOf1 => 'GALÁXIA DE';
+
+  @override
+  String get also => 'Também';
+
+  @override
+  String get work => 'Trabalho';
+
+  @override
+  String get cloud => 'Nuvem';
+
+  @override
+  String get youArchaic => 'Tu (arcaico)';
+
+  @override
+  String get suddenly => 'De repente';
+
+  @override
+  String get owner => 'Proprietário';
+
+  @override
+  String get door => 'Porta';
+
+  @override
+  String get occupy => 'Ocupar';
+
+  @override
+  String get nail => 'Prego';
+
+  @override
+  String get and => 'E';
+
+  @override
+  String get buddhistNun => 'Monja Budista';
+
+  @override
+  String get anxious => 'Ansioso';
+
+  @override
+  String get sprout => 'Broto';
+
+  @override
+  String get exchange => 'Troca';
+
+  @override
+  String get sheep => 'Ovelha';
+
+  @override
+  String get strange => 'Estranho';
+
+  @override
+  String get opposite => 'Oposto';
+
+  @override
+  String get shorttailedBird => 'Pássaro de cauda curta';
+
+  @override
+  String get shoot => 'Rebento';
+
+  @override
+  String get small => 'Pequeno';
+
+  @override
+  String get gather => 'Reunir';
+
+  @override
+  String get order => 'Ordem';
+
+  @override
+  String get flat => 'Plano';
+
+  @override
+  String get thePersonWho => 'A pessoa que...';
+
+  @override
+  String get nobleman => 'Nobre';
+
+  @override
+  String get cause => 'Causa';
+
+  @override
+  String get pig => 'Porco';
+
+  @override
+  String get bright => 'Brilhante';
+
+  @override
+  String get slowly => 'Lentamente';
+
+  @override
+  String get give => 'Dar';
+
+  @override
+  String get arrow => 'Seta';
+
+  @override
+  String get dry => 'Seco';
+
+  @override
+  String get obstacle => 'Obstáculo';
+
+  @override
+  String get beg => 'Pedir';
+
+  @override
+  String get window => 'Janela';
+
+  @override
+  String get fear => 'Medo';
+
+  @override
+  String get drum => 'Tambor';
+
+  @override
+  String get why => 'Porquê';
+
+  @override
+  String get talent => 'Talento';
+
+  @override
+  String get follow => 'Seguir';
+
+  @override
+  String get desert => 'Deserto';
+
+  @override
+  String get component => 'Componente';
+
+  @override
+  String get divingInto1 => 'Mergulhando em';
+
+  @override
+  String get unitIntro1 => 'Introdução à Unidade';
+
+  @override
+  String get theBlueprint => 'O PROJETO';
+
+  @override
+  String get theOrigin => 'A ORIGEM';
+
+  @override
+  String get theGalaxy => 'A GALÁXIA';
+
+  @override
+  String get theScholarListens => 'O Estudioso escuta...';
+
+  @override
+  String get consultingTheScrolls => 'Consultando os pergaminhos...';
+
+  @override
+  String get traceWithTheGuide => 'Trace com o Guia';
+
+  @override
+  String get traceTheGhost => 'Trace o Fantasma';
+
+  @override
+  String get connectTheDots => 'Ligue os Pontos';
+
+  @override
+  String get drawFromMemory => 'Desenhe da Memória';
+
+  @override
+  String get assistant => 'Assistente';
+
+  @override
+  String get puck => 'Puck';
+
+  @override
+  String get helloWelcomeWhatWouldYouLikeToOrder =>
+      'Olá! Bem-vindo(a). O que gostaria de pedir?';
+
+  @override
+  String get ni3Hao3Huan1ying2Guang1lin2Qing3wen =>
+      'Ni3 hao3! Huan1ying2 guang1lin2. Qing3wen4 ni3 yao4 dian3 shen2me?';
+
+  @override
+  String get waiterLi => 'Garçom Li';
+
+  @override
+  String get askForTheMenu => 'Pedir o menu';
+
+  @override
+  String get orderOneDishAndOneDrink => 'Pedir um prato e uma bebida';
+
+  @override
+  String get askForTheBill => 'Pedir a conta';
+
+  @override
+  String get fenrir => 'Fenrir';
+
+  @override
+  String get ni3Qu4Na3rAJi1chang3MaTing3Yuan3De =>
+      'Ni3 qu4 na3r a? Ji1chang3 ma? Ting3 yuan3 de!';
+
+  @override
+  String get driverWang => 'Motorista Wang';
+
+  @override
+  String get tellTheDriverYouAreGoingToTheAirpor =>
+      'Diga ao motorista que você está indo para o aeroporto';
+
+  @override
+  String get askHowLongTheTripWillTake =>
+      'Perguntar quanto tempo a viagem levará';
+
+  @override
+  String get complainAboutTheTraffic => 'Reclamar do trânsito';
+
+  @override
+  String get charon => 'Caronte';
+
+  @override
+  String get thisClothingQualityIsEspeciallyGood =>
+      'A qualidade desta roupa é especialmente boa, apenas 200 kuai.';
+
+  @override
+  String get zhe4Jian4Yi1fuZhi4liang4Te4bie2Hao3 =>
+      'Zhe4 jian4 yi1fu zhi4liang4 te4bie2 hao3, zhi3yao4 liang3 bai3 kuai4.';
+
+  @override
+  String get auntieChen => 'Tia Chen';
+
+  @override
+  String get askHowMuchTheSilkShirtCosts =>
+      'Perguntar quanto custa a camisa de seda';
+
+  @override
+  String get sayItIsTooExpensive => 'Dizer que é muito caro';
+
+  @override
+  String get bargainThePriceDownTo100Rmb => 'Negociar o preço para 100 RMB';
+
+  @override
+  String get ni3Na3li3Bu4Shu1fuFa1shao1LeMa =>
+      'Ni3 na3li3 bu4 shu1fu? Fa1shao1 le ma?';
+
+  @override
+  String get drZhang => 'Dr. Zhang';
+
+  @override
+  String get explainYouHaveHadAHeadacheForTwoDay =>
+      'Explicar que você está com dor de cabeça há dois dias';
+
+  @override
+  String get sayYouHaveASlightFever => 'Dizer que você está com uma febre leve';
+
+  @override
+  String get askIfYouNeedToTakeMedicine =>
+      'Perguntar se você precisa tomar remédio';
+
+  @override
+  String get aoede => 'Aoede';
+
+  @override
+  String get heyLongTimeNoSeeHowHaveYouBeenLatel =>
+      'Olá! Quanto tempo, como você tem estado ultimamente?';
+
+  @override
+  String get ni3Hao3Hao3jiu3Bu4jian4Ni3Zui4jin4Z =>
+      'Ni3 hao3! Hao3jiu3 bu4jian4, ni3 zui4jin4 zen3me yang4?';
+
+  @override
+  String get pleaseIntroduceYourselfWhyDoYouWant =>
+      'Por favor, apresente-se. Por que você quer trabalhar em nossa empresa?';
+
+  @override
+  String get qing3Xian1Zi4wo3Jie4shao4Yi1xia4Ni3 =>
+      'Qing3 xian1 zi4wo3 jie4shao4 yi1xia4. Ni3 wei4shen2me xiang3 lai2 wo3men gong1si1 gong1zuo4?';
+
+  @override
+  String get managerLiu => 'Gerente Liu';
+
+  @override
+  String get introduceYourProfessionalBackground =>
+      'Apresente brevemente sua experiência profissional';
+
+  @override
+  String get explainWhyYouWantToWorkAtThisCompan =>
+      'Explique por que você quer trabalhar nesta empresa';
+
+  @override
+  String get askAPoliteQuestionAboutTheCompanyCu =>
+      'Faça uma pergunta educada sobre a cultura da empresa';
+
+  @override
+  String get microphoneAccessIsRequiredPleaseEna =>
+      'O acesso ao microfone é necessário. Por favor, ative-o nas Configurações do seu dispositivo.';
+
+  @override
+  String get couldNotStartMicrophonePleaseCheckY =>
+      'Não foi possível iniciar o microfone. Por favor, verifique suas configurações de áudio e tente novamente.';
+
+  @override
+  String get weDidntQuiteCatchThatPleaseHoldTheM =>
+      'Não conseguimos entender bem. Por favor, segure o microfone e tente novamente!';
+
+  @override
+  String get recordingWasTooShortHoldTheMicAndSp =>
+      'A gravação foi muito curta. Segure o microfone e fale claramente.';
+
+  @override
+  String get audioBufferWasEmptyPleaseCheckYourM =>
+      'O buffer de áudio estava vazio. Por favor, verifique seu microfone e tente novamente.';
+
+  @override
+  String get audioFileIsSilentPleaseSpeakIntoThe =>
+      'O arquivo de áudio está mudo. Por favor, fale no microfone.';
+
+  @override
+  String get weCouldntUnderstandYourPronunciatio =>
+      'Não conseguimos entender sua pronúncia. Por favor, fale claramente e tente novamente.';
+
+  @override
+  String get theServerIsTakingTooLongToRespondPl =>
+      'O servidor está demorando muito para responder. Por favor, tente novamente.';
+
+  @override
+  String get noInternetConnectionPleaseCheckYour =>
+      'Sem conexão com a internet. Por favor, verifique sua rede e tente novamente.';
+
+  @override
+  String get audioProcessingFailedPleaseTryAgain =>
+      'O processamento de áudio falhou. Por favor, tente novamente.';
+
+  @override
+  String get permission => 'Permissão';
+
+  @override
+  String get couldNotProcessYourRecordingPleaseT =>
+      'Não foi possível processar sua gravação. Por favor, tente novamente.';
+
+  @override
+  String get user => 'Usuário';
+
+  @override
+  String get scholar => 'Estudioso';
+
+  @override
+  String get ourAiTutorsAreCurrentlyOfflinePleas =>
+      'Nossos tutores de IA estão offline no momento, por favor, tente novamente mais tarde.';
+
+  @override
+  String get hideTranslation => 'Ocultar Tradução';
+
+  @override
+  String get azureAssessment => 'Avaliação Azure...';
+
+  @override
+  String get microphonePermissionRequired =>
+      'Permissão de microfone necessária';
+
+  @override
+  String get connectedSpeakNow => 'Conectado! Fale agora.';
+
+  @override
+  String get initializationErrorCheckPermissions =>
+      'Erro de inicialização. Verifique as permissões.';
+
+  @override
+  String get microphoneErrorTapToRetry =>
+      'Erro no microfone. Toque para tentar novamente.';
+
+  @override
+  String get theTutorReturnedAnEmptyResponse =>
+      'O tutor retornou uma resposta vazia';
+
+  @override
+  String get connectionInterruptedPleaseSpeakAga =>
+      'Conexão interrompida. Por favor, fale novamente.';
+
+  @override
+  String get callPausedReviewingTones => 'Chamada Pausada (Revisando Tons)';
+
+  @override
+  String get pausedTakeABreak => 'Pausado - Faça uma pausa';
+
+  @override
+  String get goodStartPracticing => 'Bom começo de prática';
+
+  @override
+  String get studentCoach => 'ALUNO\' : \'TREINADOR';
+
+  @override
+  String get keepYour1stToneHighAndSteadyOn =>
+      'Mantenha seu 1º tom alto e estável em';
+
+  @override
+  String get noScenariosFound => 'Nenhum cenário encontrado.';
+
+  @override
+  String get designYourOwnAiRoleplayExperience =>
+      'Crie sua própria experiência de roleplay com IA';
+
+  @override
+  String get generateFromDeck => 'Gerar do Baralho';
+
+  @override
+  String get practiceFlashcardVocabularyInALiveD =>
+      'Pratique vocabulário de flashcards em um diálogo ao vivo';
+
+  @override
+  String get tapToRoleplay => 'Toque para encenar';
+
+  @override
+  String get hsk2 => 'HSK 2';
+
+  @override
+  String get hsk3 => 'HSK 3';
+
+  @override
+  String get hsk4 => 'HSK 4';
+
+  @override
+  String get hsk5 => 'HSK 5';
+
+  @override
+  String get hsk6 => 'HSK 6';
+
+  @override
+  String get dinnerWithDad => 'Jantar com o Pai';
+
+  @override
+  String get orderingAtAChengduTeahouse =>
+      'Pedindo em uma Casa de Chá em Chengdu';
+
+  @override
+  String get buyingTeaAtTheMarket => 'Comprando Chá no Mercado';
+
+  @override
+  String get meetingAnOldClassmate => 'Encontrando um Antigo Colega de Classe';
+
+  @override
+  String get readyToPractice => 'Pronto para praticar?';
+
+  @override
+  String get letsPracticeChinese => 'Vamos praticar chinês';
+
+  @override
+  String get areYouReady => 'Você está pronto?';
+
+  @override
+  String get discussWhatToHaveForDinner => 'Discutir o que comer no jantar';
+
+  @override
+  String get suggestWatchingAMovieAfterwards =>
+      'Sugerir assistir a um filme depois';
+
+  @override
+  String get askIfTheyWouldLikeTea => 'Perguntar se eles gostariam de chá';
+
+  @override
+  String get helloVeryNiceToMeetYou => 'Olá! Muito prazer em conhecê-lo(a).';
+
+  @override
+  String get deckPractice => 'Prática de Baralho';
+
+  @override
+  String get practiceVocabularyWithAnAiPartner =>
+      'Pratique vocabulário com um parceiro de IA.';
+
+  @override
+  String get designCustomAiRoleplayConversation =>
+      'Crie roleplay e conversas personalizadas com IA';
+
+  @override
+  String get random => 'Aleatório';
+
+  @override
+  String get scenarioTopic => 'Tópico do Cenário';
+
+  @override
+  String get contextSettingOptional => 'Contexto e Cenário (Opcional)';
+
+  @override
+  String get aiCharacterPersonaOptional =>
+      'Personagem / Persona de IA (Opcional)';
+
+  @override
+  String get aQuietBambooCourtyardTeahouseInChen =>
+      'Uma tranquila casa de chá com pátio de bambu em Chengdu, com música suave de guzheng.';
+
+  @override
+  String get aBustlingSmokyNightMarketFilledWith =>
+      'Um movimentado e esfumaçado mercado noturno, repleto de espetos, pães cozidos no vapor e barracas de comida de rua.';
+
+  @override
+  String get aLivelyHotpotRestaurantInChongqingW =>
+      'Um animado restaurante de hotpot em Chongqing, com caldo carmesim fervente e aroma de pimenta.';
+
+  @override
+  String get aBustlingTraditionalCantoneseTeahou =>
+      'Uma movimentada casa de chá cantonesa tradicional em Guangzhou, cheia de cestas de bambu fumegantes.';
+
+  @override
+  String get aChicMinimalistCafeInTheFrenchConce =>
+      'Um café chique e minimalista na Concessão Francesa, em uma tarde chuvosa de domingo.';
+
+  @override
+  String get aWarmNorthernHomeKitchenDuringWinte =>
+      'Uma acolhedora cozinha doméstica do norte durante o inverno, com farinha na mesa e panelas de dumpling fumegantes.';
+
+  @override
+  String get anOpenairNightStreetFoodAlleyWithSi =>
+      'Um beco de comida de rua noturno ao ar livre com espetos de cordeiro chiando, berinjela assada e cerveja gelada.';
+
+  @override
+  String get aSnowyStreetCornerOutsideTheLamaTem =>
+      'Uma esquina nevada em frente ao Templo Lama, com espetos de espinheiro cristalizado vermelho brilhando no gelo.';
+
+  @override
+  String get craftBeerBreweryInQingdao => 'Cervejaria Artesanal em Qingdao';
+
+  @override
+  String get aLivelyCoastalTaproomWithWoodenBarr =>
+      'Um animado bar costeiro com barris de madeira, brisa do oceano e torneiras de cerveja de trigo fresca.';
+
+  @override
+  String get sichuanCookingMasterclass => 'Masterclass de Culinária Sichuan';
+
+  @override
+  String get aVibrantOpenKitchenWithWoksBlazingC =>
+      'Uma cozinha aberta vibrante com woks em chamas, óleo de pimenta fervendo e pimentas frescas.';
+
+  @override
+  String get highspeedRailSeatMixup =>
+      'Confusão de Assentos no Trem de Alta Velocidade';
+
+  @override
+  String get greatWallSunriseTrekInMutianyu =>
+      'Caminhada ao Nascer do Sol na Grande Muralha em Mutianyu';
+
+  @override
+  String get theAncientStoneRampartsOfTheGreatWa =>
+      'As antigas muralhas de pedra da Grande Muralha ao amanhecer, cercadas por montanhas verdes enevoadas.';
+
+  @override
+  String get bambooRaftDriftOnGuilinLiRiver =>
+      'Passeio de Jangada de Bambu no Rio Li em Guilin';
+
+  @override
+  String get glidingAlongEmeraldKarstWatersBetwe =>
+      'Deslizando pelas águas cársticas esmeralda entre dramáticos picos de calcário enevoados perto de Yangshuo.';
+
+  @override
+  String get silkRoadCamelTrekInDunhuang =>
+      'Caminhada de Camelo na Rota da Seda em Dunhuang';
+
+  @override
+  String get theRollingGoldenSandDunesOfMingshaM =>
+      'As dunas de areia douradas e ondulantes da Montanha Mingsha, ao lado do oásis do Lago Crescente.';
+
+  @override
+  String get bookingACourtyardHomestayInDali =>
+      'Reservando uma Hospedagem em Pátio em Dali';
+
+  @override
+  String get aSereneBaistyleBoutiqueCourtyardHot =>
+      'Um sereno hotel boutique em estilo Bai com pátio, com vista para o Lago Erhai em Yunnan.';
+
+  @override
+  String get potalaPalacePilgrimageInLhasa =>
+      'Peregrinação ao Palácio Potala em Lhasa';
+
+  @override
+  String get theMajesticSundrenchedStoneStepsOut =>
+      'Os majestosos degraus de pedra ensolarados do lado de fora do Palácio Potala, com rodas de oração giratórias.';
+
+  @override
+  String get aSubzeroWonderlandOfIlluminatedCrys =>
+      'Um país das maravilhas abaixo de zero, com palácios de gelo de cristal iluminados e imponentes esculturas de neve.';
+
+  @override
+  String get zhangjiajieAvatarMountainCableCar =>
+      'Teleférico da Montanha Avatar em Zhangjiajie';
+
+  @override
+  String get suspendedHighInAGlassCableCarSoarin =>
+      'Suspenso no alto em um teleférico de vidro, sobrevoando milhares de picos de pilares de arenito.';
+
+  @override
+  String get gobiDesertStargazingCampInGansu =>
+      'Acampamento de Observação de Estrelas no Deserto de Gobi em Gansu';
+
+  @override
+  String get aLuxuryYurtCampUnderACrystalclearMi =>
+      'Um acampamento de luxo em yurt sob um céu cristalino da Via Láctea no deserto fora de Jiayuguan.';
+
+  @override
+  String get yangtzeRiverThreeGorgesCruise =>
+      'Cruzeiro pelas Três Gargantas do Rio Yangtze';
+
+  @override
+  String get onTheSunDeckOfARiverCruiseShipPassi =>
+      'No convés de um navio de cruzeiro fluvial, passando pela dramática e imponente Garganta de Qutang.';
+
+  @override
+  String get buyingAntiquesInBeijingPanjiayuan =>
+      'Comprando Antiguidades em Panjiayuan, Pequim';
+
+  @override
+  String get aHistoricPotteryKilnFilledWithDelic =>
+      'Um forno de cerâmica histórico repleto de delicados vasos de porcelana não queimados e esmaltes azul cobalto.';
+
+  @override
+  String get suzhouSilkEmbroideryStudio =>
+      'Estúdio de Bordado de Seda de Suzhou';
+
+  @override
+  String get aPeacefulCanalsideGardenStudioInSuz =>
+      'Um tranquilo estúdio de jardim à beira do canal em Suzhou, com finos fios de seda e bastidores de bordado de madeira.';
+
+  @override
+  String get backstageAtATraditionalBeijingOpera =>
+      'Nos bastidores de um teatro tradicional de ópera de Pequim com figurinos coloridos, espelhos e adereços de cabeça.';
+
+  @override
+  String get traditionalChineseMedicineConsultat =>
+      'Consulta de Medicina Tradicional Chinesa';
+
+  @override
+  String get morningTaiChiInTempleOfHeavenPark =>
+      'Tai Chi Matinal no Parque do Templo do Céu';
+
+  @override
+  String get beneathAncientCypressTreesAtDawnWit =>
+      'Sob ciprestes antigos ao amanhecer com pássaros do parque e idosos praticando movimentos sincronizados.';
+
+  @override
+  String get rentingAHanfuForAPhotoShoot =>
+      'Alugar um Hanfu para uma Sessão de Fotos';
+
+  @override
+  String get aTraditionalCostumeBoutiqueNearTheW =>
+      'Uma boutique de trajes tradicionais perto do Lago Oeste com araras de vestes das dinastias Tang e Song.';
+
+  @override
+  String get guqinAncientZitherInstrumentWorksho =>
+      'Workshop de Guqin (Cítara Antiga)';
+
+  @override
+  String get aQuietPinewoodStudioInHangzhouFille =>
+      'Um estúdio tranquilo de madeira de pinho em Hangzhou, repleto de instrumentos de madeira de paulownia envelhecida e cordas de seda.';
+
+  @override
+  String get shaanxiShadowPuppetTheater => 'Teatro de Sombras de Shaanxi';
+
+  @override
+  String get behindAnIlluminatedWhiteSilkScreenW =>
+      'Atrás de uma tela de seda branca iluminada com delicadas figuras de sombra de couro translúcido.';
+
+  @override
+  String get chineseCalligraphyWorkshop => 'Workshop de Caligrafia Chinesa';
+
+  @override
+  String get aTranquilStudioScentedWithPineSootI =>
+      'Um estúdio tranquilo perfumado com tinta de fuligem de pinho, pergaminhos de papel de arroz e suaves aromas de chá.';
+
+  @override
+  String get adoptingACatAtAnAnimalShelter =>
+      'Adotar um Gato em um Abrigo de Animais';
+
+  @override
+  String get aCozyPetRescueCenterInHangzhouWithE =>
+      'Um aconchegante centro de resgate de animais em Hangzhou com gatinhos resgatados cheios de energia e chá para os visitantes.';
+
+  @override
+  String get scriptMurderMysteryJubenshaGame =>
+      'Jogo de Mistério de Assassinato com Roteiro (Jubensha)';
+
+  @override
+  String get aThemedDetectiveLoungeInShanghaiWit =>
+      'Um lounge temático de detetives em Xangai com jogadores fantasiados e luz de velas.';
+
+  @override
+  String get vintageVinylRecordShopInShanghai =>
+      'Loja de Discos de Vinil Vintage em Xangai';
+
+  @override
+  String get aHiddenVinylStoreInAnOldLaneHousePa =>
+      'Uma loja de vinil escondida numa antiga casa de viela, repleta de clássicos do Cantopop dos anos 80 e discos de jazz.';
+
+  @override
+  String get ktvKaraokePartyWithFriends => 'Festa de Karaokê KTV com Amigos';
+
+  @override
+  String get joiningACityBikeCyclingClub =>
+      'Juntar-se a um Clube de Ciclismo Urbano';
+
+  @override
+  String get aGatheringOfCyclistsByTheRiverfront =>
+      'Um encontro de ciclistas à beira-rio preparando-se para um passeio noturno ao redor do horizonte da cidade.';
+
+  @override
+  String get blindBoxToyTradingMeetup =>
+      'Encontro de Troca de Brinquedos Blind Box';
+
+  @override
+  String get aColorfulPopcultureToyStoreInChaoya =>
+      'Uma colorida loja de brinquedos de cultura pop em Chaoyang com prateleiras de exposição e caixas colecionáveis fechadas.';
+
+  @override
+  String get droneSkylineVideographyAtTheBund =>
+      'Videografia Aérea com Drone no Bund';
+
+  @override
+  String get theBundPromenadeAtDuskOverlookingTh =>
+      'O calçadão do Bund ao entardecer, com vista para os arranha-céus futuristas e iluminados de Pudong.';
+
+  @override
+  String get goldenRetrieverCafeInNanjing =>
+      'Café de Golden Retrievers em Nanquim';
+
+  @override
+  String get aSunnyCheerfulPetCafeWithDozensOfFr =>
+      'Um café pet ensolarado e alegre com dezenas de cães amigáveis e fofos a cumprimentar os visitantes.';
+
+  @override
+  String get boulderingClimbingGymInChengdu =>
+      'Ginásio de Escalada (Bouldering) em Chengdu';
+
+  @override
+  String get aModernIndoorClimbingGymWithVibrant =>
+      'Um moderno ginásio de escalada indoor com rotas de agarras coloridas vibrantes e música energética.';
+
+  @override
+  String get aMassiveConventionHallFilledWithCol =>
+      'Um enorme salão de convenções repleto de estandes de jogos coloridos, paredes para fotos e criadores fantasiados.';
+
+  @override
+  String get askingForDirectionsInABeijingHutong =>
+      'Pedir Direções em um Hutong de Pequim';
+
+  @override
+  String get aMazeOfHistoricGreybrickAlleysWithB =>
+      'Um labirinto de vielas históricas de tijolo cinza com bicicletas, pátios e romãzeiras.';
+
+  @override
+  String get buyingFreshFruitAtAWetMarket =>
+      'Comprar Frutas Frescas em um Mercado Húmido';
+
+  @override
+  String get aLivelyMorningNeighborhoodMarketWit =>
+      'Um animado mercado matinal de bairro com montes de líchias frescas, mangas e pitaias.';
+
+  @override
+  String get flowerMarketBouquetInKunming =>
+      'Buquê do Mercado de Flores em Kunming';
+
+  @override
+  String get theFamousDounanFlowerMarketSurround =>
+      'O famoso Mercado de Flores de Dounan, rodeado por milhares de rosas frescas, lírios e caules de eucalipto.';
+
+  @override
+  String get tailorAlterationsInAnOldLaneHouse =>
+      'Ajustes de Alfaiate em uma Antiga Casa de Viela';
+
+  @override
+  String get aTraditionalTailorShopFilledWithSew =>
+      'Uma tradicional alfaiataria repleta de máquinas de costura, tecidos e fitas métricas.';
+
+  @override
+  String get expressParcelLockerRetrieval =>
+      'Retirada de Encomenda em Armário Inteligente';
+
+  @override
+  String get downstairsAtAResidentialApartmentGa =>
+      'No andar de baixo, no portão de um apartamento residencial, ao lado de um sistema de armários inteligentes Hive box.';
+
+  @override
+  String get bicycleFlatTireRepairAtCampusGate =>
+      'Reparo de Pneu Furado de Bicicleta no Portão do Campus';
+
+  @override
+  String get aSmallOutdoorRoadsideToolkitStandUn =>
+      'Uma pequena banca de ferramentas ao ar livre, à beira da estrada, sob uma grande figueira-de-bengala frondosa.';
+
+  @override
+  String get techCompanyProductDemo =>
+      'Demonstração de Produto de Empresa de Tecnologia';
+
+  @override
+  String get aFuturisticTechConferenceBoothInShe =>
+      'Um estande futurista de conferência de tecnologia em Shenzhen, exibindo hardware de IA de ponta.';
+
+  @override
+  String get ecommerceLivestreamStudio =>
+      'Estúdio de Transmissão ao Vivo para E-commerce';
+
+  @override
+  String get aHighenergyBroadcastStudioWithRingL =>
+      'Um estúdio de transmissão de alta energia com ring lights, expositores de produtos e monitores de comentários ao vivo.';
+
+  @override
+  String get yiwuInternationalTradeMarket =>
+      'Mercado Internacional de Comércio de Yiwu';
+
+  @override
+  String get aVastMultistoryCommercialExhibition =>
+      'Um vasto centro comercial de exposições de vários andares, repleto de milhões de produtos e artesanatos por atacado.';
+
+  @override
+  String get universityCampusExchangeProgram =>
+      'Programa de Intercâmbio no Campus Universitário';
+
+  @override
+  String get aSunnyLawnOutsideTheUniversityLibra =>
+      'Um gramado ensolarado em frente à biblioteca da universidade com estudantes a estudar e a beber chá com leite.';
+
+  @override
+  String get pleaseEnterAScenarioTopic =>
+      'Por favor, insira um tópico de cenário.';
+
+  @override
+  String get nameTitle => 'Nome (Título)';
+
+  @override
+  String get aiCharacter => 'Personagem de IA';
+
+  @override
+  String get helloWelcomeHereWhatShallWeChatAbou =>
+      'Olá! Bem-vindo(a), sobre o que vamos conversar hoje?';
+
+  @override
+  String get greetYourConversationPartner =>
+      'Cumprimente seu parceiro de conversa';
+
+  @override
+  String get askAQuestionInChinese => 'Faça uma pergunta em chinês';
+
+  @override
+  String get pinyinWithToneMarks => 'Pinyin com marcas de tom';
+
+  @override
+  String get goal1InEnglish => 'Objetivo 1 em inglês';
+
+  @override
+  String get goal2InEnglish => 'Objetivo 2 em inglês';
+
+  @override
+  String get goal3InEnglish => 'Objetivo 3 em inglês';
+
+  @override
+  String get beginner => 'Iniciante';
+
+  @override
+  String get hsk12 => 'HSK 1-2';
+
+  @override
+  String get hsk34 => 'HSK 3-4';
+
+  @override
+  String get hsk56 => 'HSK 5-6';
+
+  @override
+  String get master => 'Mestre';
+
+  @override
+  String get azurePronunciationAssessment => 'AVALIAÇÃO DE PRONÚNCIA AZURE';
+
+  @override
+  String get tapToReview => 'Toque para rever';
+
+  @override
+  String get overallScore => 'Pontuação Geral';
+
+  @override
+  String get toneAccuracy => 'Precisão Tonal';
+
+  @override
+  String get fluency => 'Fluência';
+
+  @override
+  String get report => 'Reportar';
+
+  @override
+  String get goodPronunciationButCanBeBetter =>
+      'Boa pronúncia, mas pode melhorar!';
+
+  @override
+  String get didYouMeanToSay => 'Você quis dizer...?';
+
+  @override
+  String get greatKeepTrying => 'Ótimo!\' : \'Continue tentando!';
+
+  @override
+  String get completeness => 'Completude';
+
+  @override
+  String get targetTone => 'Tom Alvo';
+
+  @override
+  String get k4toneComparisonTapToListen =>
+      'Comparação de 4 Tons (Toque para Ouvir):';
+
+  @override
+  String get youSpokeMatch => 'Você Falou (Corresponde!)';
+
+  @override
+  String get youSpoke => 'Você Falou';
+
+  @override
+  String get yourPrimaryCollectionOfCharacters =>
+      'Sua coleção principal de caracteres.';
+
+  @override
+  String get deckNotFound => 'Baralho não encontrado';
+
+  @override
+  String get cannotDeleteTheDefaultDeck =>
+      'Não é possível excluir o baralho padrão';
+
+  @override
+  String get hsk4UpperIntermediate1 => 'HSK 4: Intermediário Superior';
+
+  @override
+  String get theFirst150CharactersToStartYourJou =>
+      'Os primeiros 150 caracteres para iniciar sua jornada.';
+
+  @override
+  String get buildYourVocabularyTo300EssentialWo =>
+      'Construa seu vocabulário com 300 palavras essenciais.';
+
+  @override
+  String get masterConversationalFluencyWith600W =>
+      'Domine a fluência conversacional com 600 palavras.';
+
+  @override
+  String get readTextsAndConverseFluentlyWith120 =>
+      'Leia textos e converse fluentemente com 1200 palavras.';
+
+  @override
+  String get readNewspapersAndWatchMoviesWith250 =>
+      'Leia jornais e assista a filmes com 2500 palavras.';
+
+  @override
+  String get databaseBoxNotOpen => 'Caixa de dados não aberta';
+
+  @override
+  String get hsk1DataFileIsEmpty => 'Arquivo de dados HSK1 está vazio';
+
+  @override
+  String get gold => 'Ouro';
+
+  @override
+  String get globalDictionaryNotInitialized =>
+      'Dicionário Global não inicializado';
+
+  @override
+  String get reading => 'Leitura';
+
+  @override
+  String get recall => 'Recordação';
+
+  @override
+  String get speaking => 'Fala';
+
+  @override
+  String get listening1 => 'Audição';
+
+  @override
+  String get practiceStrokeOrderWithVisualGuides =>
+      'Pratique a ordem dos traços com guias visuais.';
+
+  @override
+  String get seeTheCharacterRecallThePinyinAndMe =>
+      'Veja o caractere, recorde o Pinyin e o Significado.';
+
+  @override
+  String get seeTheMeaningDrawTheCharacterFromMe =>
+      'Veja o significado, desenhe o caractere da memória.';
+
+  @override
+  String get readOutLoudToTestYourPronunciationT =>
+      'Leia em voz alta para testar seus tons de pronúncia.';
+
+  @override
+  String get listenToTheAudioAndIdentifyTheChara =>
+      'Ouça o áudio e identifique o caractere.';
+
+  @override
+  String get contract => 'Contrato';
+
+  @override
+  String get whoeverImplementsMeMustBeAbleToDoTh =>
+      'Quem me implementar DEVE ser capaz de fazer estas coisas.';
+
+  @override
+  String get koreFenrirCharonAoedePuckOrLocal =>
+      'Kore\', \'Fenrir\', \'Charon\', \'Aoede\', \'Puck\' ou \'local';
+
+  @override
+  String get manageDecks => 'Gerenciar Baralhos';
+
+  @override
+  String get weRanIntoTroubleLoadingTheLibraryPl =>
+      'Tivemos problemas ao carregar a biblioteca. Por favor, tente novamente.';
+
+  @override
+  String get noCharactersInLexicon1 => 'Nenhum caractere no léxico';
+
+  @override
+  String get masterTheBuildingBlocks => 'Domine os blocos de construção';
+
+  @override
+  String get other => 'Outro';
+
+  @override
+  String get required => 'Obrigatório';
+
+  @override
+  String get library1 => 'Biblioteca';
+
+  @override
+  String get youAreAPremiumMember => 'Você é um membro Premium';
+
+  @override
+  String get createAccountToSyncProgress =>
+      'Criar Conta para Sincronizar Progresso';
+
+  @override
+  String get signOut => 'Sair';
+
+  @override
+  String get account => 'Conta';
+
+  @override
+  String get guestScholar => 'Estudioso Convidado';
+
+  @override
+  String get localAccount => 'Conta Local';
+
+  @override
+  String get unknownRadical => 'Radical Desconhecido';
+
+  @override
+  String get followTheGuideStroke => 'Siga o traço guia';
+
+  @override
+  String get strokeAnimationSpeed => 'Velocidade da Animação do Traço';
+
+  @override
+  String get notifications => 'Notificações';
+
+  @override
+  String get deutsch => 'Alemão';
+
+  @override
+  String get bahasaIndonesia => 'Indonésio';
+
+  @override
+  String get italiano => 'Italiano';
+
+  @override
+  String get today1d2d3d4d5d6d =>
+      'Hoje\', \'1d\', \'2d\', \'3d\', \'4d\', \'5d\', \'6d';
+
+  @override
+  String get targetDeck => 'Baralho Alvo';
+
+  @override
+  String get mixed => 'Misto';
+
+  @override
+  String get topicForContext => 'Tópico (para contexto)';
+
+  @override
+  String get nounsOnly => 'Apenas substantivos';
+
+  @override
+  String get verbsOnly => 'Apenas verbos';
+
+  @override
+  String get idiomsChengyu => 'Expressões Idiomáticas (Chengyu)';
+
+  @override
+  String get fullSentences => 'Frases Completas';
+
+  @override
+  String get beginnerHsk12 => 'Iniciante (HSK 1-2)';
+
+  @override
+  String get intermediateHsk34 => 'Intermediário (HSK 3-4)';
+
+  @override
+  String get advancedHsk56 => 'Avançado (HSK 5-6)';
+
+  @override
+  String get generatedByAi => 'Gerado por IA';
+
+  @override
+  String get canYouGiveMeTwoMoreExamplesUsingThi =>
+      'Você pode me dar mais dois exemplos usando esta palavra?';
+
+  @override
+  String get whatAreSomeSimilarWordsAndHowDoThey =>
+      'Quais são algumas palavras semelhantes e como elas diferem?';
+
+  @override
+  String get isThisWordUsedInSpokenOrWrittenChin =>
+      'Esta palavra é mais usada no chinês falado ou escrito?';
+
+  @override
+  String get areThereOtherWaysToTranslateThisWor =>
+      'Existem outras formas de traduzir esta palavra?';
+
+  @override
+  String get whatAreCommonWordsThatGoTogetherWit =>
+      'Quais são as palavras comuns que combinam com esta palavra?';
+
+  @override
+  String get whatAreCommonMistakesLearnersMakeWi =>
+      'Quais são os erros comuns que os alunos cometem com esta palavra?';
+
+  @override
+  String get emptyResponse => 'Resposta vazia';
+
+  @override
+  String get whatIsTheOracleBoneScriptOriginOfTh =>
+      'Qual é a origem em escrita oracular deste caractere?';
+
+  @override
+  String get howDidTheAncientFormOfThisCharacter =>
+      'Como a forma antiga deste caractere evoluiu ao longo do tempo?';
+
+  @override
+  String get giveMe3CommonWordsThatContainThisCh =>
+      'Dê-me 3 palavras comuns que contêm este caractere.';
+
+  @override
+  String get whatOtherCharactersShareTheSameRadi =>
+      'Que outros caracteres partilham o mesmo radical?';
+
+  @override
+  String get isThereAChineseProverbOrSayingFeatu =>
+      'Existe algum provérbio ou ditado chinês que inclua este caractere?';
+
+  @override
+  String get explainTheStrokeOrderRulesForThisCh =>
+      'Explique as regras de ordem dos traços para este caractere.';
+
+  @override
+  String get giveMeOneCalligraphyTipForWritingTh =>
+      'Dê-me uma dica de caligrafia para escrever este caractere lindamente.';
+
+  @override
+  String get isThereAnythingTrickyAboutUsingThis =>
+      'Há algo complicado no uso gramatical disto?';
+
+  @override
+  String get whatWordsAreCommonlyConfusedWithThi =>
+      'Que palavras são frequentemente confundidas com esta e porquê?';
+
+  @override
+  String get doesThisCharacterCarryCulturalSymbo =>
+      'Este caractere possui simbolismo cultural na China?';
+
+  @override
+  String get isThisCharacterCommonlySeenInChines =>
+      'Este caractere é comummente visto em filmes, músicas ou textos chineses?';
+
+  @override
+  String get whatDoesTheRadicalOfThisCharacterMe =>
+      'O que significa o radical deste caractere?';
+
+  @override
+  String get breakDownEveryComponentAndItsMeanin =>
+      'Analise cada componente e o seu significado.';
+
+  @override
+  String get giveMeATrickToRememberTheCorrectTon =>
+      'Dê-me um truque para lembrar o tom correto para este caractere.';
+
+  @override
+  String get areThereCommonHomophonesThatAreOfte =>
+      'Existem homófonos comuns que são frequentemente confundidos com este?';
+
+  @override
+  String get quotaExceeded => 'Quota excedida';
+
+  @override
+  String get mustProvideEitherCardOrCards =>
+      'Deve fornecer um cartão ou cartões';
+
+  @override
+  String get deckSettings => 'Definições do Baralho';
+
+  @override
+  String get saveSettings => 'Guardar Definições';
+
+  @override
+  String get sealRed => 'Selo Vermelho';
+
+  @override
+  String get sealScript => 'Escrita de Selo';
+
+  @override
+  String get startYourStreak => 'COMECE A SUA SEQUÊNCIA';
+
+  @override
+  String get traditionalCharacter => 'Caractere Tradicional';
+
+  @override
+  String get inQueue => 'Na Fila';
+
+  @override
+  String get tapToListenAgain => 'Toque para ouvir novamente';
+
+  @override
+  String get contextClue => 'Pista de Contexto';
+
+  @override
+  String get microphonePermissionRequired1 =>
+      'Permissão de microfone necessária.';
+
+  @override
+  String get recordingFailedNoFile => 'Gravação falhou (sem ficheiro).';
+
+  @override
+  String get holdToSpeakOptional => 'Segure para falar (Opcional)';
+
+  @override
+  String get microphonePermissionDeniedEnableItI =>
+      'Permissão de microfone negada. Ative-a nas Definições para usar o Shadowing Studio.';
+
+  @override
+  String get sessionSummary => 'Resumo da Sessão';
+
+  @override
+  String get hereAreTheCharactersYouStruggledWit =>
+      'Aqui estão os caracteres com os quais teve dificuldades:';
+
+  @override
+  String get applySessionGradesToSpacedRepetitio =>
+      'Aplicar classificações da sessão à Repetição Espaçada (Modo de Fala)';
+
+  @override
+  String get masterYourMandarinPronunciationnbyM =>
+      'Domine a sua pronúncia de Mandarim\\nmimicando a fala nativa.';
+
+  @override
+  String get aiIsGradingYourPronunciation =>
+      'A IA está a classificar a sua pronúncia...';
+
+  @override
+  String get holdMicToRecordReleaseToGrade =>
+      'Segure o microfone para gravar. Solte para classificar.';
+
+  @override
+  String get tapAnySyllableToAuditionAll4Tones =>
+      'Toque em qualquer sílaba para ouvir os 4 tons:';
+
+  @override
+  String get freeFlowConversationalPractice => 'Prática de conversação livre.';
+
+  @override
+  String get failedToGeneratePhrasePleaseTryAgai =>
+      'Falha ao gerar frase. Por favor, tente novamente.';
+
+  @override
+  String get recordingTooShortHoldTheMicButtonLo =>
+      'Gravação muito curta. Segure o botão do microfone por mais tempo.';
+
+  @override
+  String get recordingErrorPleaseTryAgain =>
+      'Erro de gravação. Por favor, tente novamente.';
+
+  @override
+  String get noRecordingCapturedPleaseTryAgain =>
+      'Nenhuma gravação capturada. Por favor, tente novamente.';
+
+  @override
+  String get recordedAudioIsEmptyPleaseTryAgainA =>
+      'O áudio gravado está vazio. Por favor, tente novamente e fale claramente.';
+
+  @override
+  String get azureSpeechApiKeysAreMissing1 =>
+      'As chaves da API de Fala do Azure estão em falta';
+
+  @override
+  String get azureError401 => 'Erro Azure 401';
+
+  @override
+  String get azureAuthenticationFailedCheckYourS =>
+      'Autenticação Azure falhou. Verifique a sua chave da API de Fala e região em .env';
+
+  @override
+  String get azureError429 => 'Erro Azure 429';
+
+  @override
+  String get azureQuotaExceededTryAgainLater =>
+      'Quota Azure excedida. Tente novamente mais tarde.';
+
+  @override
+  String get azureGradingTimedOutCheckYourIntern =>
+      'A classificação Azure expirou. Verifique a sua ligação à internet.';
+
+  @override
+  String get recognitionFailedNull => 'Reconhecimento falhou: nulo';
+
+  @override
+  String get couldNotHearYouClearlyPleaseTryAgai =>
+      'Não consegui ouvi-lo claramente. Por favor, tente novamente.';
+
+  @override
+  String get singlePhrasePractice => 'Prática de Frase Única';
+
+  @override
+  String get failedToGeneratePhrase => 'Falha ao gerar frase';
+
+  @override
+  String get omitted => 'Omitido';
+
+  @override
+  String get partial => 'Parcial';
+
+  @override
+  String get mispronounced => 'Mal pronunciado';
+
+  @override
+  String get startSession1 => 'Iniciar Sessão';
+
+  @override
+  String get chinese => 'Chinês';
+
+  @override
+  String get paused => 'Pausado';
+
+  @override
+  String get translationFailed => 'Tradução falhou';
+
+  @override
+  String get engagingMacroeconomicAndBusinessBre =>
+      'Análises macroeconómicas e de negócios envolventes explicadas através de narrativas cativantes.';
+
+  @override
+  String get exploresWorldEconomiesBankingHistor =>
+      'Explora economias mundiais, histórias bancárias e dinâmicas da indústria global.';
+
+  @override
+  String get clearArticulateMandarinPerfectForIn =>
+      'Mandarim claro e articulado, perfeito para alunos intermédios e avançados.';
+
+  @override
+  String get chefWang => 'Chef Wang';
+
+  @override
+  String get masterSichuanCulinaryTechniquesTaug =>
+      'Domine técnicas culinárias de Sichuan ensinadas diretamente por um chef profissional.';
+
+  @override
+  String get stepbystepAuthenticChineseRecipesWi =>
+      'Receitas chinesas autênticas passo a passo com controlo do wok e trabalho de faca.';
+
+  @override
+  String get conciseCulinaryVocabularyAndClearIn =>
+      'Vocabulário culinário conciso e instruções claras em Mandarim natural.';
+
+  @override
+  String get cinematographyCuttingedgeCameraTech =>
+      'Cinematografia, tecnologia de câmera de ponta e avaliações aprofundadas de mídia digital.';
+
+  @override
+  String get highproductionDocumentaryStyleExplo =>
+      'Estilo documentário de alta produção explorando a criação de vídeo e inovações em IA.';
+
+  @override
+  String get richTechnicalMandarinWithCrystalcle =>
+      'Mandarim técnico rico com pronúncia cristalina e legendas visuais.';
+
+  @override
+  String get indepthInvestigativeJournalismAndCu =>
+      'Jornalismo investigativo aprofundado e comentários sobre assuntos atuais.';
+
+  @override
+  String get criticalPerspectivesOnSocialPhenome =>
+      'Perspectivas críticas sobre fenômenos sociais, notícias mundiais e história.';
+
+  @override
+  String get formalInvestigativeDiscourseIdealFo =>
+      'Discurso investigativo formal, ideal para compreensão auditiva avançada.';
+
+  @override
+  String get bitesizedAnimatedScienceDocumentari =>
+      'Documentários de ciência animados e curtos, respondendo a perguntas do dia a dia.';
+
+  @override
+  String get exploresPhysicsBiologyAndEverydayCu =>
+      'Explora física, biologia e curiosidades cotidianas com infográficos divertidos.';
+
+  @override
+  String get standardBeijingMandarinWithWellpace =>
+      'Mandarim padrão de Pequim com narração bem ritmada e legendas claras.';
+
+  @override
+  String get heartwarmingStreetFoodAdventuresAnd =>
+      'Aventuras emocionantes de comida de rua e conversas genuínas pela China.';
+
+  @override
+  String get exploresRegionalHumanStoriesFamilyT =>
+      'Explora histórias humanas regionais, tradições familiares e iguarias locais.';
+
+  @override
+  String get naturalConversationalMandarinWithDa =>
+      'Mandarim conversacional natural com gírias diárias e calor emocional.';
+
+  @override
+  String get humorousAndHonestConsumerElectronic =>
+      'Avaliações humorísticas e honestas de eletrônicos de consumo baseadas em experiências reais.';
+
+  @override
+  String get testingSmartphonesSmartHomeGadgetsA =>
+      'Testando smartphones, gadgets de casa inteligente e equipamentos de estilo de vida tecnológico.';
+
+  @override
+  String get relaxedHumorousConversationalDialog =>
+      'Diálogo conversacional descontraído e bem-humorado com coloquialismos modernos.';
+
+  @override
+  String get seanKitchen => 'Sean Kitchen';
+
+  @override
+  String get deliciousHomecookedChineseDishesAnd =>
+      'Deliciosos pratos chineses caseiros e recriação de lanches de rua.';
+
+  @override
+  String get easytofollowKitchenTipsForCookingAu =>
+      'Dicas de cozinha fáceis de seguir para preparar comida asiática autêntica e reconfortante.';
+
+  @override
+  String get warmInvitingCommentaryWithPractical =>
+      'Comentários calorosos e convidativos com vocabulário prático de cozinha.';
+
+  @override
+  String get chineseChannel => 'Canal Chinês';
+
+  @override
+  String get structuredChineseLanguageLessonsAnd =>
+      'Aulas estruturadas de língua chinesa e tutoriais de descoberta cultural.';
+
+  @override
+  String get grammarPointsHskVocabularyBuildingA =>
+      'Pontos gramaticais, construção de vocabulário HSK e padrões de conversação.';
+
+  @override
+  String get clearEducationalPacingTailoredSpeci =>
+      'Ritmo educacional claro, adaptado especificamente para estudantes de chinês.';
+
+  @override
+  String get oneInABillion => 'Um em Um Bilhão';
+
+  @override
+  String get intimatePortraitsAndStoriesOfUnique =>
+      'Retratos íntimos e histórias de indivíduos únicos na China contemporânea.';
+
+  @override
+  String get exploresDiverseLifeChoicesYouthCult =>
+      'Explora diversas escolhas de vida, cultura jovem e mudanças sociais modernas.';
+
+  @override
+  String get deepNarrativeStorytellingWithRichVo =>
+      'Narrativa profunda com vocabulário rico e vozes autênticas.';
+
+  @override
+  String get vickySoup => 'Vicky Soup';
+
+  @override
+  String get aestheticLifestyleVlogsFashionStyli =>
+      'Vlogs de estilo de vida estético, estilo de moda e rotinas diárias.';
+
+  @override
+  String get travelDiariesAndCozyLifeMomentsDocu =>
+      'Diários de viagem e momentos aconchegantes da vida documentados com calor cinematográfico.';
+
+  @override
+  String get naturalCasualMandarinSpokenAtAComfo =>
+      'Mandarim casual natural falado em um ritmo confortável e expressivo.';
+
+  @override
+  String get tededMandarin => 'TED-Ed Mandarim';
+
+  @override
+  String get highqualityAnimatedEducationalLesso =>
+      'Aulas educacionais animadas de alta qualidade sobre ciência, filosofia e história.';
+
+  @override
+  String get thoughtprovokingRiddlesClassicLiter =>
+      'Enigmas instigantes, literatura clássica e mistérios da psicologia.';
+
+  @override
+  String get impeccableVoiceoverMandarinWithSync =>
+      'Mandarim impecável em voice-over com legendas bilíngues sincronizadas.';
+
+  @override
+  String get channel => 'Canal';
+
+  @override
+  String get curatedCulturalDocumentariesAndChin =>
+      'Documentários culturais selecionados e destaques do estilo de vida chinês.';
+
+  @override
+  String get exploringTraditionalArtsHeritageCra =>
+      'Explorando artes tradicionais, artesanato patrimonial e tendências modernas.';
+
+  @override
+  String get highQualityAudioWithSynchronizedChi =>
+      'Áudio de alta qualidade com legendas ocultas chinesas sincronizadas.';
+
+  @override
+  String get interestingStoriesAndCreativeVideoP =>
+      'Histórias interessantes e projetos de vídeo criativos na web chinesa.';
+
+  @override
+  String get engagingInterviewsStorytellingAndVi =>
+      'Entrevistas envolventes, narração de histórias e explorações visuais.';
+
+  @override
+  String get greatListeningMaterialWithStandardP =>
+      'Ótimo material de escuta com pronúncia padrão.';
+
+  @override
+  String get xVsY => 'X vs Y';
+
+  @override
+  String get untitled => 'Sem Título';
+
+  @override
+  String get contemporaryStories => 'Histórias Contemporâneas';
+
+  @override
+  String get history => 'História';
+
+  @override
+  String get advancedReading => 'Leitura Avançada';
+
+  @override
+  String get intermediateReading => 'Leitura Intermediária';
+
+  @override
+  String get beginnerReading => 'Leitura para Iniciantes';
+
+  @override
+  String get mandarinBean => 'Mandarin Bean';
+
+  @override
+  String get unknown => 'Desconhecido';
+
+  @override
+  String get localDb => 'BD Local';
+
+  @override
+  String get emperorTaizong => 'Imperador Taizong';
+
+  @override
+  String get emperorXuanzong => 'Imperador Xuanzong';
+
+  @override
+  String get liBai => 'Li Bai';
+
+  @override
+  String get gradedReader => 'Leitor Graduado';
+
+  @override
+  String get ucj10r97lkwgdtqbt6xzv8gLearnMandari =>
+      'UCJ10R97LkwGdTqBT6xz-v8g\': \'Aprenda Mandarim com TaiwanPlus';
+
+  @override
+  String get ucsxriuqkzzmaqklq0n9xfvwEverydayChi =>
+      'UCSXriUqkzZmAQklQ0N9XFVw\': \'Chinês do Dia a Dia';
+
+  @override
+  String get graceMandarinChinese => 'Grace Mandarin Chinese';
+
+  @override
+  String get ucolbhvvl5dcjlmzeqbuu1vwTingdailyLi =>
+      'UCOLBhVvL5dcJLMZeQBUu1Vw\': \'Ting - Vida Diária na China';
+
+  @override
+  String get xinxin => 'Xinxin';
+
+  @override
+  String get sweetFamilyDailyLife => 'Doce Vida Familiar Diária';
+
+  @override
+  String get chinsunDailyLife => 'Vida Diária de Chin-Sun';
+
+  @override
+  String get tasteChina => 'Sabor da China';
+
+  @override
+  String get dawenFoodQuest => 'DaWen Food Quest';
+
+  @override
+  String get chinaTravelWithCangbao => 'Viagem à China com Cangbao';
+
+  @override
+  String get alinFoodWalk => 'Alin Food Walk';
+
+  @override
+  String get videoOfTheDay => 'VÍDEO DO DIA';
+
+  @override
+  String get noValidVideoFound => 'Nenhum vídeo válido encontrado.';
+
+  @override
+  String get listeningPractice => 'PRÁTICA DE ESCUTA';
+
+  @override
+  String get socialSkills => 'HABILIDADES SOCIAIS';
+
+  @override
+  String get culturalContext => 'CONTEXTO CULTURAL';
+
+  @override
+  String get realLife => 'VIDA REAL';
+
+  @override
+  String get realWorld => 'MUNDO REAL';
+
+  @override
+  String get articleOfTheDay => 'ARTIGO DO DIA';
+
+  @override
+  String get failedToLoadOrParseRssFeed =>
+      'Falha ao carregar ou analisar o feed RSS.';
+
+  @override
+  String get drama => 'Drama';
+
+  @override
+  String get youkugetAppNow => 'YOUKU-Baixe o APP agora';
+
+  @override
+  String get romanceTrailer => 'Romance\', \'Trailer';
+
+  @override
+  String get romance => 'Romance';
+
+  @override
+  String get action => 'Ação';
+
+  @override
+  String get mystery => 'Mistério';
+
+  @override
+  String get historical => 'Histórico';
+
+  @override
+  String get historicalAction => 'Histórico\', \'Ação';
+
+  @override
+  String get historicalRomance => 'Histórico\', \'Romance';
+
+  @override
+  String get anYouth => 'Uma Juventude';
+
+  @override
+  String get historicalSliceOfLife => 'Histórico\', \'Cotidiano';
+
+  @override
+  String get historicalHighlight => 'Histórico\', \'Destaque';
+
+  @override
+  String get youkuEnglishgetAppNow => 'YOUKU Inglês-Baixe o APP agora';
+
+  @override
+  String get theDouble => 'O Duplo';
+
+  @override
+  String get updatesByOshin => 'Atualizações por Oshin';
+
+  @override
+  String get backFromTheBrink => 'De Volta do Abismo';
+
+  @override
+  String get fallingIntoYourSmile => 'Apaixonando-me Pelo Seu Sorriso';
+
+  @override
+  String get everyoneLovesMe => 'Todos Me Amam';
+
+  @override
+  String get tillTheEndOfTheMoon => 'Até o Fim da Lua';
+
+  @override
+  String get theBestDayOfMyLife => 'O Melhor Dia da Minha Vida';
+
+  @override
+  String get gikkiChineseDrama => 'Drama Chinês GIKKI';
+
+  @override
+  String get dashingYouth => 'Juventude Impetuosa';
+
+  @override
+  String get rebornChineseDramaEngSub =>
+      'Drama Chinês Renascido LEGENDADO EM INGLÊS';
+
+  @override
+  String get ijenwaBenita => 'Ijenwa Benita';
+
+  @override
+  String get whenIFlyTowardsYou => 'Quando Eu Voo em Sua Direção';
+
+  @override
+  String get mztvExclusiveChineseDrama => 'Drama Chinês Exclusivo MZTV';
+
+  @override
+  String get theStarryLove => 'O Amor Estrelado';
+
+  @override
+  String get comedy => 'Comédia';
+
+  @override
+  String get backFromTheBrink1 => 'De Volta do Abismo\':';
+
+  @override
+  String get dashingYouth1 => 'Juventude Impetuosa\':';
+
+  @override
+  String get beReborn => 'Renascido';
+
+  @override
+  String get beautyStrategy => 'Estratégia de Beleza';
+
+  @override
+  String get myDivineEmissary => 'Meu Emissário Divino';
+
+  @override
+  String get theHope => 'A Esperança';
+
+  @override
+  String get ep16In => 'EP16\': \'Em';
+
+  @override
+  String get everyoneLovesMe1 => 'Todos Me Amam\': \'';
+
+  @override
+  String get fallingIntoYourSmile1 => 'Apaixonando-me Pelo Seu Sorriso\':';
+
+  @override
+  String get hiddenLove => 'Amor Oculto\':';
+
+  @override
+  String get loveBetweenFairyAndDevil => 'Amor Entre Fada e Diabo\':';
+
+  @override
+  String get loveLikeTheGalaxy => 'Amor Como a Galáxia\':';
+
+  @override
+  String get membersPremiere => 'Estreia para Membros';
+
+  @override
+  String get moonlight => 'Luar';
+
+  @override
+  String get myJourneyToYou => 'Minha Jornada Até Você\':';
+
+  @override
+  String get mysteriousLotusCasebook => 'O Caderno Misterioso de Lótus\':';
+
+  @override
+  String get rebornChineseDramaEngSub1 =>
+      'Drama Chinês Renascido LEGENDADO EM INGLÊS\': \'';
+
+  @override
+  String get reborn => 'Renascido';
+
+  @override
+  String get theBestDayOfMyLife1 => 'O Melhor Dia da Minha Vida\': \'';
+
+  @override
+  String get theDouble1 => 'O Duplo\':';
+
+  @override
+  String get theLongBallad => 'A Longa Balada\':';
+
+  @override
+  String get theStarryLove1 => 'O Amor Estrelado\':';
+
+  @override
+  String get theUntamed => 'Os Indomáveis\':';
+
+  @override
+  String get tillTheEndOfTheMoon1 => 'Até o Fim da Lua\':';
+
+  @override
+  String get whenIFlyTowardsYou1 => 'Quando Eu Voo em Sua Direção\':';
+
+  @override
+  String get wordOfHonor => 'Palavra de Honra\':';
+
+  @override
+  String get blossom => 'Florescer';
+
+  @override
+  String get gemini => 'Gêmeos';
+
+  @override
+  String get generationToGeneration => 'De Geração em Geração';
+
+  @override
+  String get brocadeOdyssey => 'Odisseia de Brocado';
+
+  @override
+  String get circleOfLove => 'Círculo de Amor';
+
+  @override
+  String get dawnIsBreaking => 'O Amanhecer Está Chegando';
+
+  @override
+  String get firstRomance => 'Primeiro Romance';
+
+  @override
+  String get loveInTheClouds => 'Amor nas Nuvens';
+
+  @override
+  String get secondChanceRomance => 'Romance de Segunda Chance';
+
+  @override
+  String get mrBad => 'Sr. MAL';
+
+  @override
+  String get pursuitOfJade => 'A Busca pelo Jade';
+
+  @override
+  String get fatedHearts => 'Corações Destinados';
+
+  @override
+  String get roadHome => 'Caminho de Casa';
+
+  @override
+  String get myDearGuardian => 'Meu Querido Guardião';
+
+  @override
+  String get brightEyesInTheDark => 'Olhos Brilhantes na Escuridão';
+
+  @override
+  String get theIngeniousOne => 'O Engenhoso';
+
+  @override
+  String get herPhoenixMajesty => 'Sua Majestade Fênix';
+
+  @override
+  String get dreamsNeverEnd => 'Sonhos Nunca Acabam';
+
+  @override
+  String get theUltimateVowUnknownToYou =>
+      'O Voto Supremo, Desconhecido para Você';
+
+  @override
+  String get the300LoyalGhosts => 'Os 300 Fantasmas Leais';
+
+  @override
+  String get homelandGuardian => 'Guardião da Pátria';
+
+  @override
+  String get loveIsAlwaysOnline => 'O Amor Está Sempre Online';
+
+  @override
+  String get thePrincessDecree => 'O Decreto da Princesa';
+
+  @override
+  String get aVowInTheDark => 'Um Voto na Escuridão';
+
+  @override
+  String get aGirlLikeMe => 'Uma Garota Como Eu';
+
+  @override
+  String get iAmNobody => 'Eu Não Sou Ninguém';
+
+  @override
+  String get myMamaGo => 'Minha Mãe Vai!';
+
+  @override
+  String get myWesternRegionPrincess => 'Minha Princesa da Região Ocidental';
+
+  @override
+  String get aFlowerOnTheContinent => 'Uma Flor no Continente';
+
+  @override
+  String get thePrincess => 'A Princesa';
+
+  @override
+  String get sweetLoveVersion => 'Versão Amor Doce';
+
+  @override
+  String get hilariousFamily2 => 'Família Hilária 2';
+
+  @override
+  String get guYuanMountainHasASchool => 'A Montanha Gu Yuan Tem uma Escola';
+
+  @override
+  String get foreverYoung => 'Para Sempre Jovem';
+
+  @override
+  String get theHiddenHeirYeChen => 'O Herdeiro Oculto Ye Chen';
+
+  @override
+  String get extraordinary => 'Extraordinário';
+
+  @override
+  String get sideStoryOfFoxVolant => 'História Paralela da Raposa Voadora';
+
+  @override
+  String get loveOfTheDivineTree => 'Amor da Árvore Divina';
+
+  @override
+  String get rebirth => 'Renascimento';
+
+  @override
+  String get moonlitReunion => 'Reunião ao Luar';
+
+  @override
+  String get videoCountsCannotBeNegative =>
+      'A contagem de vídeos não pode ser negativa.';
+
+  @override
+  String get publicDomainClassic => 'Clássico de Domínio Público';
+
+  @override
+  String get idioms => 'Expressões Idiomáticas';
+
+  @override
+  String get news => 'Notícias';
+
+  @override
+  String get fairyTales => 'Contos de Fadas';
+
+  @override
+  String get hereIsAFascinatingCulturalExplanati =>
+      'Aqui está uma explicação cultural fascinante';
+
+  @override
+  String get videoFetchTimedOut => 'Falha ao carregar vídeo: tempo esgotado';
+
+  @override
+  String get aboutChannel => 'SOBRE O CANAL';
+
+  @override
+  String get noVideosFound => 'Nenhum vídeo encontrado';
+
+  @override
+  String get failedToLoadVideos => 'Falha ao carregar vídeos';
+
+  @override
+  String get highqualityCuratedMandarinContentWi =>
+      'Conteúdo mandarim curado de alta qualidade com vocabulário natural.';
+
+  @override
+  String get authenticSpokenChineseAcrossRealwor =>
+      'Chinês falado autêntico em temas e tópicos do mundo real.';
+
+  @override
+  String get engagingVideoMaterialWithInteractiv =>
+      'Material de vídeo envolvente com legendas sincronizadas interativas.';
+
+  @override
+  String get watchVideo => 'Assistir Vídeo';
+
+  @override
+  String get culturalInsight => 'Visão Cultural';
+
+  @override
+  String get aiIsAnalyzingCulturalContext =>
+      'A IA está analisando o contexto cultural...';
+
+  @override
+  String get diveIntoFullContent => 'Explorar Conteúdo Completo';
+
+  @override
+  String get savedArticles => 'Artigos Salvos';
+
+  @override
+  String get liveOverlay => 'SOBREPOSIÇÃO AO VIVO';
+
+  @override
+  String get webExplorer => 'EXPLORADOR WEB';
+
+  @override
+  String get browseAnyChineseWebsiteWithRealtime =>
+      'Navegue por qualquer site chinês com dicionário de toque em tempo real, anotações de pinyin e traduções instantâneas.';
+
+  @override
+  String get startExploring => 'COMEÇAR A EXPLORAR';
+
+  @override
+  String get chineseTvSeriesWithInteractiveSubti =>
+      'Séries de TV chinesas com legendas interativas';
+
+  @override
+  String get failedToLoadContent => 'Falha ao carregar conteúdo';
+
+  @override
+  String get searchingYoutube => 'Pesquisando no YouTube...';
+
+  @override
+  String get noVideosFoundTryADifferentSearchTer =>
+      'Nenhum vídeo encontrado. Tente um termo de busca diferente.';
+
+  @override
+  String get searching => 'Pesquisando';
+
+  @override
+  String get noShowsFound => 'Nenhuma série encontrada';
+
+  @override
+  String get bookmarked => 'Salvo';
+
+  @override
+  String get trailer1 => 'Trailer';
+
+  @override
+  String get highlight1 => 'Destaque';
+
+  @override
+  String get noCaptionsAvailable => 'Nenhuma Legenda Disponível';
+
+  @override
+  String get fetchingSubtitles => 'Buscando legendas...';
+
+  @override
+  String get generatingAiBriefing => 'Gerando resumo da IA...';
+
+  @override
+  String get noClosedCaptionsCcFoundForThisVideo =>
+      'Nenhuma Legenda Oculta (CC) encontrada para este vídeo.';
+
+  @override
+  String get videosWithHardcodedOrBurnedinSubtit =>
+      'Vídeos com legendas incorporadas ou gravadas não possuem faixas de texto digital disponíveis no YouTube.';
+
+  @override
+  String get translatingSubtitles => 'Traduzindo legendas...';
+
+  @override
+  String get processingYourPronunciation => 'Processando sua pronúncia...';
+
+  @override
+  String get couldntIdentifyLine => 'Não foi possível identificar a linha.';
+
+  @override
+  String get listeningSpeakNow => 'Ouvindo... fale agora.';
+
+  @override
+  String get thisVideoDoesNotHaveADigitalClosedC =>
+      'Este vídeo não possui uma faixa de legendas digitais (CC) no YouTube.';
+
+  @override
+  String get perfect1 => 'Perfeito';
+
+  @override
+  String get thisVideoHasBeenRemovedOrIsNoLonger =>
+      'Este vídeo foi removido ou não está mais disponível.';
+
+  @override
+  String get thisVideoCannotBePlayedInTheAppYouC =>
+      'Este vídeo não pode ser reproduzido na aplicação. Pode vê-lo no YouTube.';
+
+  @override
+  String get yourDeviceCannotPlayThisVideoPlease =>
+      'O seu dispositivo não consegue reproduzir este vídeo. Por favor, tente outro.';
+
+  @override
+  String get invalidVideoReferencePleaseTryAgain =>
+      'Referência de vídeo inválida. Por favor, tente novamente.';
+
+  @override
+  String get unableToLoadThisVideoPleaseTryAnoth =>
+      'Não foi possível carregar este vídeo. Por favor, tente outro.';
+
+  @override
+  String get startReading => 'Começar a Ler';
+
+  @override
+  String get analyzingCulturalContext => 'A analisar o contexto cultural...';
+
+  @override
+  String get failedToLoadCulturalInsight =>
+      'Falha ao carregar o conhecimento cultural.';
+
+  @override
+  String get historicalContext => 'Contexto Histórico';
+
+  @override
+  String get culturalSignificance => 'Significado Cultural';
+
+  @override
+  String get authorBackground => 'Biografia do Autor';
+
+  @override
+  String get k80CompleteClassicNovelsWorldEpics =>
+      'Mais de 80 romances clássicos completos e épicos mundiais';
+
+  @override
+  String get storyOfTheDay => 'HISTÓRIA DO DIA';
+
+  @override
+  String get tangDynasty => 'Dinastia Tang';
+
+  @override
+  String get poetryClassicalVerse => 'Poesia\', \'Clássico\', \'Verso';
+
+  @override
+  String get allHsk => 'Todos os HSK';
+
+  @override
+  String get allStories => 'Todas as Histórias\' :';
+
+  @override
+  String get keyWords => 'Palavras-chave';
+
+  @override
+  String get openOriginalWebsite => 'Abrir Website Original';
+
+  @override
+  String get aiReadingTools => 'Ferramentas de Leitura com IA';
+
+  @override
+  String get enhanceYourReadingWithAipoweredTool =>
+      'Melhore a sua leitura com ferramentas alimentadas por IA';
+
+  @override
+  String get chooseTheTargetDifficultyForSimplif =>
+      'Escolha a dificuldade alvo para simplificação';
+
+  @override
+  String get chooseDifficultyForSimplification =>
+      'Escolha a dificuldade para simplificação';
+
+  @override
+  String get extractAllUnknownWordsToANewFlashca =>
+      'Extraia todas as palavras desconhecidas para um novo baralho de flashcards';
+
+  @override
+  String get length => 'Comprimento';
+
+  @override
+  String get m1554846a550010707 => 'M15.54 8.46a5 5 0 0 1 0 7.07';
+
+  @override
+  String get m1907493a101000101414 => 'M19.07 4.93a10 10 0 0 1 0 14.14';
+
+  @override
+  String get webExtraction => 'Extração Web';
+
+  @override
+  String get aiTools => 'Ferramentas de IA';
+
+  @override
+  String get stop => 'Parar';
+
+  @override
+  String get keepPracticing1 => 'Continue a praticar';
+
+  @override
+  String get aiPrepRoom => 'Sala de Preparação com IA';
+
+  @override
+  String get lessonSummary => 'RESUMO DA LIÇÃO';
+
+  @override
+  String get unlockSinosparkPremium => 'Desbloquear SinoSpark Premium';
+
+  @override
+  String get monthYear => 'Mês\' : \'Ano';
+
+  @override
+  String get enableNotifications => 'Ativar Notificações';
+
+  @override
+  String get notificationsConfigured => 'Notificações Configuradas';
+
+  @override
+  String get neverMissAStroke2 => 'Nunca Perca um Traço';
+
+  @override
+  String get yourDailyDropAndStreakAlertsArePrim =>
+      'Os seus alertas diários de dose e sequência estão prontos.';
+
+  @override
+  String get stayConsistentWithDailyRitualDropsA =>
+      'Mantenha a consistência com as doses diárias do ritual e lembretes de teste atempados.';
+
+  @override
+  String get aNewWordAndStoryWaitingForYourDaily =>
+      'Uma nova Palavra e História à espera do seu ritual diário.';
+
+  @override
+  String get gentlePromptsBeforeCharactersFadeFr =>
+      'Lembretes suaves antes que os caracteres desapareçam da sua memória.';
+
+  @override
+  String get receiveAReminder2DaysBeforeYourFree =>
+      'Receba um lembrete 2 dias antes do seu período de teste gratuito terminar.';
+
+  @override
+  String get yourPathTonchineseFluency =>
+      'O Seu Caminho para a\\nFluência em Chinês';
+
+  @override
+  String get answer3QuickQuestionsSoOurAiCanCraf =>
+      'Responda a 3 perguntas rápidas para que a nossa IA possa criar\\num currículo que se adapte à sua vida.';
+
+  @override
+  String get whatIsYourLevelnwithChinese => 'Qual é o seu nível\\nde Chinês?';
+
+  @override
+  String get chooseThePathThatFitsYourDepth =>
+      'Escolha o caminho que se adapta à sua profundidade.';
+
+  @override
+  String get whatDrivesYourStudy => 'O que o motiva a estudar?';
+
+  @override
+  String get purposeFuelsTheBrush => 'O propósito alimenta o pincel';
+
+  @override
+  String get setYourDailyRitual => 'Defina o seu ritual diário.';
+
+  @override
+  String get youCanAdjustYourRitualAnyTime =>
+      'Pode ajustar o seu ritual a qualquer momento.';
+
+  @override
+  String get letsBegin => 'Vamos Começar';
+
+  @override
+  String get brandNew => 'Totalmente Novo';
+
+  @override
+  String get iveNeverStudiedChineseBefore => 'Nunca estudei Chinês antes.';
+
+  @override
+  String get iKnowBasicCharactersAndPhrases =>
+      'Conheço caracteres e frases básicas.';
+
+  @override
+  String get iCanHoldConversationsAndRead => 'Consigo ter conversas e ler.';
+
+  @override
+  String get iWantToRefineAndPerfectMySkills =>
+      'Quero refinar e aperfeiçoar as minhas habilidades.';
+
+  @override
+  String get confirmSelection => 'Confirmar Seleção';
+
+  @override
+  String get purposeFuelsTheBrushsMotion =>
+      'O propósito alimenta o movimento do pincel.';
+
+  @override
+  String get buildMyPath => 'Construir o Meu Caminho';
+
+  @override
+  String get hskCertification => 'Certificação HSK';
+
+  @override
+  String get culturalAppreciation => 'Apreciação Cultural';
+
+  @override
+  String get yourPlanIsReady => 'O Seu Plano Está Pronto';
+
+  @override
+  String get craftingYourCurriculum => 'A Criar o Seu Currículo';
+
+  @override
+  String get personalizedPathInitialized =>
+      'CAMINHO PERSONALIZADO INICIALIZADO';
+
+  @override
+  String get calibratingAiNeuralMasters =>
+      'A CALIBRAR MESTRES NEURAIS DE IA...';
+
+  @override
+  String get calibrationComplete => 'Calibração Concluída';
+
+  @override
+  String get synthesizingModules => 'A Sintetizar Módulos...';
+
+  @override
+  String get oneAndWater => '\'Um\' e \'Água';
+
+  @override
+  String get theHorizontalStroke => 'O TRAÇO HORIZONTAL';
+
+  @override
+  String get theRadical => 'O RADICAL';
+
+  @override
+  String get water => 'Água';
+
+  @override
+  String get river => 'Rio';
+
+  @override
+  String get day5Reminder => 'Lembrete do Dia 5';
+
+  @override
+  String get wePromisedToAlertYou2DaysBeforeYour =>
+      'Prometemos avisar 2 dias antes do fim do seu período de teste para que você';
+
+  @override
+  String get continueWithoutReminder => 'Continuar sem lembrete';
+
+  @override
+  String get masterChineseWithnsinospark => 'Domine o Chinês com\\nSinoSpark';
+
+  @override
+  String get start7dayFreeTrial => 'Iniciar Teste Gratuito de 7 Dias';
+
+  @override
+  String get precisionStrokes => 'Traços Precisos';
+
+  @override
+  String get aiPronunciation => 'Pronúncia com IA';
+
+  @override
+  String get today => 'Hoje';
+
+  @override
+  String get fullAccess => 'Acesso Total';
+
+  @override
+  String get day5 => 'Dia 5';
+
+  @override
+  String get reminder => 'Lembrete';
+
+  @override
+  String get day7 => 'Dia 7';
+
+  @override
+  String get trialBegins => 'Teste Começa';
+
+  @override
+  String get revenuecatIsMissingACurrentOffering =>
+      'O RevenueCat está sem uma Oferta Atual ou Pacotes. Por favor, configure seu Painel.';
+
+  @override
+  String get cameraPermissionRequiredForLiveScan =>
+      'Permissão da câmera necessária para leitura ao vivo.';
+
+  @override
+  String get cameraAccessRequired => 'Acesso à Câmera Necessário';
+
+  @override
+  String get pleaseEnableCameraAccessInYourDevic =>
+      'Por favor, ative o acesso à câmera nas configurações do seu dispositivo para usar este recurso.';
+
+  @override
+  String get alignChineseTextWithinFrame =>
+      'Alinhe o texto chinês dentro do quadro';
+
+  @override
+  String get inLibrary => 'Na Biblioteca';
+
+  @override
+  String get novice => 'Novato';
+
+  @override
+  String get apprentice => 'Aprendiz';
+
+  @override
+  String get artisan => 'Artesão';
+
+  @override
+  String get grandmaster => 'Grão-Mestre';
+
+  @override
+  String get poem => 'Poema';
+
+  @override
+  String get theNarrative => 'A Narrativa';
+
+  @override
+  String get classicMasterpiece => 'Obra-Prima Clássica';
+
+  @override
+  String get classicAuthor => 'Autor Clássico';
+
+  @override
+  String get classical => 'Clássico';
+
+  @override
+  String get classicLiterature => 'Clássico\', \'Literatura';
+
+  @override
+  String get inThisChapterOf => 'Neste capítulo de';
+
+  @override
+  String get asTheNarrativeUnfoldsItIlluminatesT =>
+      'À medida que a narrativa se desenrola, ela ilumina a sabedoria fundamental da vida e inspiração duradoura.';
+
+  @override
+  String get general => 'Geral';
+
+  @override
+  String get mythology => 'Mitologia';
+
+  @override
+  String get dailyLife => 'Vida Diária';
+
+  @override
+  String get tangPoetry => 'Poesia Tang';
+
+  @override
+  String get classicalLiterature => 'Literatura Clássica';
+
+  @override
+  String get justNow => 'Agora mesmo';
+
+  @override
+  String get theTerracottaArmyOfQinShiHuang =>
+      'O Exército de Terracota de Qin Shi Huang';
+
+  @override
+  String get lifeInsideTheForbiddenCity => 'A vida dentro da Cidade Proibida';
+
+  @override
+  String get buyingATicketAndTakingTheHighSpeedT =>
+      'Comprar um bilhete e pegar o trem de alta velocidade na China';
+
+  @override
+  String get goingToTheHospitalForAColdAndSeeing =>
+      'Ir ao hospital por um resfriado e consultar um médico';
+
+  @override
+  String get goingToALocalRestaurantToOrderJiaoz =>
+      'Ir a um restaurante local para pedir Jiaozi (dumplings)';
+
+  @override
+  String get theTraditionalGongfuTeaCeremony =>
+      'A tradicional cerimônia do chá Gongfu';
+
+  @override
+  String get theArtOfWritingChineseCharactersWit =>
+      'A arte de escrever caracteres chineses com um pincel';
+
+  @override
+  String get theLifeAndConservationOfGiantPandas =>
+      'A vida e conservação dos Pandas Gigantes';
+
+  @override
+  String get storyNotFoundInDatabase =>
+      'História não encontrada no banco de dados';
+
+  @override
+  String get storyTextIsEmpty => 'O texto da história está vazio';
+
+  @override
+  String get myCustomStories => 'Minhas Histórias Personalizadas';
+
+  @override
+  String get userProvidedText => 'Texto fornecido pelo usuário';
+
+  @override
+  String get local => 'Local';
+
+  @override
+  String get voiceEngineAllowance => 'Motor de Voz e Limite';
+
+  @override
+  String get studioHdVsUnlimitedStandardVoice =>
+      'Studio HD vs. Voz Padrão Ilimitada';
+
+  @override
+  String get standardVoiceIs100UnlimitedFree =>
+      'A Voz Padrão é 100% Ilimitada e Gratuita';
+
+  @override
+  String get read => 'Ler';
+
+  @override
+  String get koreKoreFemaleWarm => 'Kore\', \'Kore\', \'Feminino, caloroso';
+
+  @override
+  String get aoedeAoedeFemaleCheerful =>
+      'Aoede\', \'Aoede\', \'Feminino, alegre';
+
+  @override
+  String get fenrirFenrirMaleUpbeat =>
+      'Fenrir\', \'Fenrir\', \'Masculino, animado';
+
+  @override
+  String get charonCharonMaleNewsstyle =>
+      'Charon\', \'Charon\', \'Masculino, estilo noticioso';
+
+  @override
+  String get puckPuckMaleSporty => 'Puck\', \'Puck\', \'Masculino, esportivo';
+
+  @override
+  String get localOndevice => 'Local\', \'No dispositivo';
+
+  @override
+  String get localOndeviceTts => 'TTS local no dispositivo';
+
+  @override
+  String get off => 'Desligado';
+
+  @override
+  String get endOfCurrentChapter => 'Fim do Capítulo Atual';
+
+  @override
+  String get standardVoice => 'Voz Padrão';
+
+  @override
+  String get noNovelsFoundMatchingYourFilter =>
+      'Nenhum romance encontrado correspondendo ao seu filtro.';
+
+  @override
+  String get noMicroreadsFoundMatchingYourFilter =>
+      'Nenhuma microleitura encontrada correspondendo ao seu filtro.';
+
+  @override
+  String get noPoemsFoundMatchingYourFilter =>
+      'Nenhum poema encontrado correspondendo ao seu filtro.';
+
+  @override
+  String get audiobook => 'Audiolivro';
+
+  @override
+  String get audio => 'Áudio';
+
+  @override
+  String get continueReading => 'Continuar Lendo';
+
+  @override
+  String get search96FullNovelsAuthorsEpics =>
+      'Pesquisar 96 romances completos, autores, épicos...';
+
+  @override
+  String get searchClassicalPoemsAuthorsVerses =>
+      'Pesquisar poemas clássicos, autores, versos...';
+
+  @override
+  String get allLevelsVal => 'Todos os Níveis\', \'val';
+
+  @override
+  String get hsk1BeginnerVal => 'HSK 1 (Iniciante)\', \'val';
+
+  @override
+  String get hsk2ElementaryVal => 'HSK 2 (Elementar)\', \'val';
+
+  @override
+  String get hsk3IntermediateVal => 'HSK 3 (Intermediário)\', \'val';
+
+  @override
+  String get hsk4UpperIntVal => 'HSK 4 (Interm. Superior)\', \'val';
+
+  @override
+  String get listenToAudiobook => 'Ouvir Audiolivro';
+
+  @override
+  String get synopsis => 'Sinopse';
+
+  @override
+  String get peoplesArtist => 'Artista do Povo\'.';
+
+  @override
+  String get kafkaesqueForBureaucraticAbsurdityA =>
+      'Kafkaesco\' para absurdo burocrático, alienação e pavor existencial.';
+
+  @override
+  String get bigBrotherAndNewspeak => 'Big Brother\', e \'Novilíngua\'.';
+
+  @override
+  String get audiobookIncluded => 'Audiolivro Incluído';
+
+  @override
+  String get readPoem => 'Ler Poema';
+
+  @override
+  String get studioVoiceAllowance => 'Crédito de Voz de Estúdio';
+
+  @override
+  String get weeklyHighdefinitionAiRecitation =>
+      'Recitação Semanal de IA em Alta Definição';
+
+  @override
+  String get resetsEveryMondayAt0000 => 'Redefine toda segunda-feira às 00:00';
+
+  @override
+  String get whenYourWeekly4hourStudioAllowanceI =>
+      'Quando seu crédito semanal de 4 horas de Estúdio é usado, o aplicativo muda automaticamente para Voz no Dispositivo para audição ilimitada e gratuita, sem interrupções.';
+
+  @override
+  String get localDeviceVoice => 'Voz do dispositivo local\' :';
+
+  @override
+  String get classicalVerse => 'Classical Verse';
+
+  @override
+  String get ondeviceVoice4hWeeklyUsed =>
+      'Voz no Dispositivo (4h semanais usadas)';
+
+  @override
+  String get generateACustomAiStoryBasedOnYourIn =>
+      'Gerar uma história de IA personalizada com base nos seus interesses';
+
+  @override
+  String get insteadOfAFixedHskLevelTheFlowState =>
+      'Em vez de um nível HSK fixo, o Motor de Estado de Fluxo analisa sua Biblioteca de Flashcards.\\n\\n';
+
+  @override
+  String get we => 'Nós';
+
+  @override
+  String get howCanWeHelpYou => 'Como podemos ajudar?';
+
+  @override
+  String get everythingYouNeedToKnowAboutHanziMa =>
+      'Tudo o que você precisa saber sobre Hanzi Master, seus recursos e sua privacidade.';
+
+  @override
+  String get whoAreTheVoicesSpeakingInTheApp =>
+      'Quem são as vozes que falam no aplicativo?';
+
+  @override
+  String get howDoesTheWebExplorerWork => 'Como funciona o Explorador Web?';
+
+  @override
+  String get whatIsZenMode => 'O que é o Modo Zen?';
+
+  @override
+  String get howDoesTheFlashcardSpacedrepetition =>
+      'Como funciona a repetição espaçada dos Flashcards?';
+
+  @override
+  String get traceComplete => 'Traçado Concluído!';
+
+  @override
+  String get traceCharacter => 'Traçar Caractere';
+
+  @override
+  String get analyzingWordRelationships => 'Analisando relações de palavras...';
+
+  @override
+  String get identifyingUsageContexts => 'Identificando contextos de uso...';
+
+  @override
+  String get comparingFormalityLevels => 'Comparando níveis de formalidade...';
+
+  @override
+  String get findingCommonCollocations => 'Encontrando colocações comuns...';
+
+  @override
+  String get generatingComparison => 'Gerando comparação...';
+
+  @override
+  String get generationIsTakingLongerThanExpecte =>
+      'A geração está demorando mais do que o esperado. A IA pode estar sobrecarregada.';
+
+  @override
+  String get generationInterruptedShowingPartial =>
+      'Geração interrompida. Exibindo resultado parcial.';
+
+  @override
+  String get sorrySomethingWentWrong => 'Desculpe, algo deu errado.';
+
+  @override
+  String get usage => 'Uso:\', \'';
+
+  @override
+  String get alsoSeenIn => 'Também visto em';
+
+  @override
+  String get quickLook => 'Olhada Rápida';
+
+  @override
+  String get notFound => 'Não encontrado';
+
+  @override
+  String get errorLoadingFromAi => 'Erro ao carregar da IA.';
+
+  @override
+  String get newLabel => 'Novo';
 }

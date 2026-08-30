@@ -2061,7 +2061,6 @@
   "pleaseEnableCameraAccessInYourDevic": "この機能を使用するには、デバイス設定でカメラアクセスを有効にしてください。",
   "alignChineseTextWithinFrame": "フレーム内に中国語テキストを配置",
   "inLibrary": "ライブラリ内",
-  "new": "新規",
   "novice": "初心者",
   "apprentice": "見習い",
   "artisan": "熟練者",
@@ -2157,5 +2156,6 @@
   "alsoSeenIn": "以下でも見られます",
   "quickLook": "クイックルック",
   "notFound": "見つかりません",
-  "errorLoadingFromAi": "AIからの読み込みエラー。"
+  "errorLoadingFromAi": "AIからの読み込みエラー。",
+  "newLabel": "新規"
 }

@@ -1995,7 +1995,6 @@
   "pleaseEnableCameraAccessInYourDevic": "Vui lòng bật quyền truy cập camera trong cài đặt thiết bị của bạn để sử dụng tính năng này.",
   "alignChineseTextWithinFrame": "Căn chỉnh văn bản tiếng Trung trong khung",
   "inLibrary": "Trong Thư viện",
-  "new": "Mới",
   "novice": "Người mới bắt đầu",
   "apprentice": "Người học việc",
   "artisan": "Nghệ nhân",
@@ -2091,5 +2090,6 @@
   "alsoSeenIn": "Cũng xuất hiện trong",
   "quickLook": "Xem nhanh",
   "notFound": "Không tìm thấy",
-  "errorLoadingFromAi": "Lỗi khi tải từ AI."
+  "errorLoadingFromAi": "Lỗi khi tải từ AI.",
+  "newLabel": "Mới"
 }

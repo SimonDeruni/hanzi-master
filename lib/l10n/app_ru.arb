@@ -2010,7 +2010,6 @@
   "pleaseEnableCameraAccessInYourDevic": "Пожалуйста, включите доступ к камере в настройках вашего устройства, чтобы использовать эту функцию.",
   "alignChineseTextWithinFrame": "Выровняйте китайский текст в рамке",
   "inLibrary": "В библиотеке",
-  "new": "Новое",
   "novice": "Новичок",
   "apprentice": "Ученик",
   "artisan": "Мастер",
@@ -2106,5 +2105,6 @@
   "alsoSeenIn": "Также встречается в",
   "quickLook": "Быстрый просмотр",
   "notFound": "Не найдено",
-  "errorLoadingFromAi": "Ошибка загрузки от AI."
+  "errorLoadingFromAi": "Ошибка загрузки от AI.",
+  "newLabel": "Новое"
 }

@@ -319,7 +319,7 @@ class _ReadingRoomScreenState extends ConsumerState<ReadingRoomScreen> {
               final chapters = await ref
                   .read(bookRepositoryProvider)
                   .getBookChapters(item.book.id);
-              if (!context.mounted) return;
+              if (!mounted) return;
               Navigator.of(context).push(
                 PageRouteBuilder(
                   pageBuilder: (_, __, ___) => BookReaderScreen(
@@ -385,7 +385,7 @@ class _ReadingRoomScreenState extends ConsumerState<ReadingRoomScreen> {
                       final chapters = await ref
                           .read(bookRepositoryProvider)
                           .getBookChapters(entry.book.id);
-                      if (!context.mounted) return;
+                      if (!mounted) return;
                       Navigator.of(context).push(
                         PageRouteBuilder(
                           pageBuilder: (_, __, ___) => BookReaderScreen(

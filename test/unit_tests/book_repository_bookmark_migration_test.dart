@@ -14,7 +14,7 @@ void main() {
     temporaryDirectory =
         await Directory.systemTemp.createTemp('bookmark-test-');
     Hive.init(temporaryDirectory.path);
-    ServicesBinding.instance.defaultBinaryMessenger
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
         .setMockMessageHandler('flutter/assets', (message) async {
       final key = String.fromCharCodes(message!.buffer.asUint8List());
       final file = File(key);

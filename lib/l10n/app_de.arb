@@ -1945,7 +1945,6 @@
   "pleaseEnableCameraAccessInYourDevic": "Bitte aktivieren Sie den Kamerazugriff in Ihren Geräteeinstellungen, um diese Funktion zu nutzen.",
   "alignChineseTextWithinFrame": "Chinesischen Text im Rahmen ausrichten",
   "inLibrary": "In der Bibliothek",
-  "new": "Neu",
   "novice": "Anfänger",
   "apprentice": "Lehrling",
   "artisan": "Meister",
@@ -2041,5 +2040,6 @@
   "alsoSeenIn": "Auch gesehen in",
   "quickLook": "Schnellansicht",
   "notFound": "Nicht gefunden",
-  "errorLoadingFromAi": "Fehler beim Laden von der KI."
+  "errorLoadingFromAi": "Fehler beim Laden von der KI.",
+  "newLabel": "Neu"
 }

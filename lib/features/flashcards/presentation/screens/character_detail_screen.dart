@@ -222,10 +222,10 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
           if (radicalData.containsKey(comp)) {
             // Avoid adding duplicates of the same radical
             if (!foundComponents.any((element) =>
-                element[AppLocalizations.of(context)!.radical] == comp)) {
+                element['radical'] == comp)) {
               foundComponents.add({
-                AppLocalizations.of(context)!.char: char,
-                AppLocalizations.of(context)!.radical: comp,
+                'char': char,
+                'radical': comp,
                 'info': radicalData[comp],
                 'decomposition': hanziMeta[char]?['decomposition'] ?? '',
               });
@@ -1074,7 +1074,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
                     const Icon(Icons.architecture,
                         size: 18, color: Colors.indigo),
                     const SizedBox(width: 8),
-                    Text("${comp[AppLocalizations.of(context)!.char]} ANATOMY",
+                    Text("${comp['char']} ANATOMY",
                         style: const TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.bold,
@@ -1099,7 +1099,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
                         Border.all(color: Colors.red.withValues(alpha: 0.2)),
                   ),
                   child: Center(
-                      child: Text(comp[AppLocalizations.of(context)!.radical],
+                      child: Text(comp['radical']?.toString() ?? '',
                           style: const TextStyle(
                               fontSize: 32,
                               fontWeight: FontWeight.bold,
@@ -1111,16 +1111,12 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       TranslatedDefinition(
-                          definition: comp['info']
-                                  [AppLocalizations.of(context)!.nameLabel]
-                              .toString(),
+                          definition: comp['info']?['name']?.toString() ?? '',
                           originalStyle: const TextStyle(
                               fontSize: 16, fontWeight: FontWeight.bold)),
                       const SizedBox(height: 4),
                       TranslatedDefinition(
-                        definition: comp['info']
-                                [AppLocalizations.of(context)!.meaning]
-                            .toString(),
+                        definition: comp['info']?['meaning']?.toString() ?? '',
                         originalStyle: TextStyle(
                             fontSize: 13,
                             color: isDark ? Colors.white70 : Colors.black87),

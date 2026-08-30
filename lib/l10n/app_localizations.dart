@@ -6437,6 +6437,5772 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Reading & Vocabulary'**
   String get readingVocabulary1;
+
+  /// No description provided for @defaultfirebaseoptionsHaveNotBeenCo.
+  ///
+  /// In en, this message translates to:
+  /// **'DefaultFirebaseOptions have not been configured for linux -'**
+  String get defaultfirebaseoptionsHaveNotBeenCo;
+
+  /// No description provided for @defaultfirebaseoptionsAreNotSupport.
+  ///
+  /// In en, this message translates to:
+  /// **'DefaultFirebaseOptions are not supported for this platform.'**
+  String get defaultfirebaseoptionsAreNotSupport;
+
+  /// No description provided for @hanziMaster1.
+  ///
+  /// In en, this message translates to:
+  /// **'Hanzi Master'**
+  String get hanziMaster1;
+
+  /// No description provided for @strokesCannotBeEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Strokes cannot be empty.'**
+  String get strokesCannotBeEmpty;
+
+  /// No description provided for @wrongStartPoint.
+  ///
+  /// In en, this message translates to:
+  /// **'Wrong start point.'**
+  String get wrongStartPoint;
+
+  /// No description provided for @rightShapeButWrongPlace.
+  ///
+  /// In en, this message translates to:
+  /// **'Right shape, but wrong place!'**
+  String get rightShapeButWrongPlace;
+
+  /// No description provided for @goodFollowTheFlow.
+  ///
+  /// In en, this message translates to:
+  /// **'Good!\') : \'Follow the flow.'**
+  String get goodFollowTheFlow;
+
+  /// No description provided for @aBitShaky.
+  ///
+  /// In en, this message translates to:
+  /// **'A bit shaky!'**
+  String get aBitShaky;
+
+  /// No description provided for @aBitHesitant.
+  ///
+  /// In en, this message translates to:
+  /// **'A bit hesitant...'**
+  String get aBitHesitant;
+
+  /// No description provided for @shapeIsOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Shape is off.'**
+  String get shapeIsOff;
+
+  /// No description provided for @arabic.
+  ///
+  /// In en, this message translates to:
+  /// **'Arabic'**
+  String get arabic;
+
+  /// No description provided for @german.
+  ///
+  /// In en, this message translates to:
+  /// **'German'**
+  String get german;
+
+  /// No description provided for @spanish.
+  ///
+  /// In en, this message translates to:
+  /// **'Spanish'**
+  String get spanish;
+
+  /// No description provided for @french.
+  ///
+  /// In en, this message translates to:
+  /// **'French'**
+  String get french;
+
+  /// No description provided for @hindi.
+  ///
+  /// In en, this message translates to:
+  /// **'Hindi'**
+  String get hindi;
+
+  /// No description provided for @indonesian.
+  ///
+  /// In en, this message translates to:
+  /// **'Indonesian'**
+  String get indonesian;
+
+  /// No description provided for @italian.
+  ///
+  /// In en, this message translates to:
+  /// **'Italian'**
+  String get italian;
+
+  /// No description provided for @japanese.
+  ///
+  /// In en, this message translates to:
+  /// **'Japanese'**
+  String get japanese;
+
+  /// No description provided for @korean.
+  ///
+  /// In en, this message translates to:
+  /// **'Korean'**
+  String get korean;
+
+  /// No description provided for @portuguese.
+  ///
+  /// In en, this message translates to:
+  /// **'Portuguese'**
+  String get portuguese;
+
+  /// No description provided for @russian.
+  ///
+  /// In en, this message translates to:
+  /// **'Russian'**
+  String get russian;
+
+  /// No description provided for @vietnamese.
+  ///
+  /// In en, this message translates to:
+  /// **'Vietnamese'**
+  String get vietnamese;
+
+  /// No description provided for @microphonePermissionDenied.
+  ///
+  /// In en, this message translates to:
+  /// **'Microphone permission denied'**
+  String get microphonePermissionDenied;
+
+  /// No description provided for @offset.
+  ///
+  /// In en, this message translates to:
+  /// **'Offset'**
+  String get offset;
+
+  /// No description provided for @audioserviceHasBeenDisposed.
+  ///
+  /// In en, this message translates to:
+  /// **'AudioService has been disposed'**
+  String get audioserviceHasBeenDisposed;
+
+  /// No description provided for @fenrirZhcnyunxineural.
+  ///
+  /// In en, this message translates to:
+  /// **'Fenrir\': \'zh-CN-YunxiNeural'**
+  String get fenrirZhcnyunxineural;
+
+  /// No description provided for @charonZhcnyunyangneural.
+  ///
+  /// In en, this message translates to:
+  /// **'Charon\': \'zh-CN-YunyangNeural'**
+  String get charonZhcnyunyangneural;
+
+  /// No description provided for @koreZhcnxiaoxiaoneural.
+  ///
+  /// In en, this message translates to:
+  /// **'Kore\': \'zh-CN-XiaoxiaoNeural'**
+  String get koreZhcnxiaoxiaoneural;
+
+  /// No description provided for @aoedeZhcnxiaoyineural.
+  ///
+  /// In en, this message translates to:
+  /// **'Aoede\': \'zh-CN-XiaoyiNeural'**
+  String get aoedeZhcnxiaoyineural;
+
+  /// No description provided for @puckZhcnyunjianneural.
+  ///
+  /// In en, this message translates to:
+  /// **'Puck\': \'zh-CN-YunjianNeural'**
+  String get puckZhcnyunjianneural;
+
+  /// No description provided for @kore.
+  ///
+  /// In en, this message translates to:
+  /// **'Kore'**
+  String get kore;
+
+  /// No description provided for @xmicrosoftoutputformatAudio24khz48k.
+  ///
+  /// In en, this message translates to:
+  /// **'X-Microsoft-OutputFormat\': \'audio-24khz-48kbitrate-mono-mp3'**
+  String get xmicrosoftoutputformatAudio24khz48k;
+
+  /// No description provided for @useragentHanzimasterapp.
+  ///
+  /// In en, this message translates to:
+  /// **'User-Agent\': \'HanziMasterApp'**
+  String get useragentHanzimasterapp;
+
+  /// No description provided for @anchorWord.
+  ///
+  /// In en, this message translates to:
+  /// **'Anchor Word'**
+  String get anchorWord;
+
+  /// No description provided for @creativeThematicTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Creative Thematic Title'**
+  String get creativeThematicTitle;
+
+  /// No description provided for @briefPedagogicalOrSemanticRationale.
+  ///
+  /// In en, this message translates to:
+  /// **'Brief pedagogical or semantic rationale'**
+  String get briefPedagogicalOrSemanticRationale;
+
+  /// No description provided for @theSingleMostCentralCharacterFromTh.
+  ///
+  /// In en, this message translates to:
+  /// **'The single most central character from the list'**
+  String get theSingleMostCentralCharacterFromTh;
+
+  /// No description provided for @aBalancedSetOfCharactersFromYourLib.
+  ///
+  /// In en, this message translates to:
+  /// **'A balanced set of characters from your library.'**
+  String get aBalancedSetOfCharactersFromYourLib;
+
+  /// No description provided for @yourNaturalConversationalReplyInChi.
+  ///
+  /// In en, this message translates to:
+  /// **'Your natural conversational reply in Chinese characters.'**
+  String get yourNaturalConversationalReplyInChi;
+
+  /// No description provided for @theEnglishTranslationOfYourReply.
+  ///
+  /// In en, this message translates to:
+  /// **'The English translation of your reply.'**
+  String get theEnglishTranslationOfYourReply;
+
+  /// No description provided for @thePinyinWithToneMarksForYourReply.
+  ///
+  /// In en, this message translates to:
+  /// **'The Pinyin with tone marks for your reply.'**
+  String get thePinyinWithToneMarksForYourReply;
+
+  /// No description provided for @aSuggestedResponseTheUserCouldSayBa.
+  ///
+  /// In en, this message translates to:
+  /// **'A suggested response the user could say back to you.'**
+  String get aSuggestedResponseTheUserCouldSayBa;
+
+  /// No description provided for @pinyinForTheSuggestion.
+  ///
+  /// In en, this message translates to:
+  /// **'Pinyin for the suggestion.'**
+  String get pinyinForTheSuggestion;
+
+  /// No description provided for @englishTranslationForTheSuggestion.
+  ///
+  /// In en, this message translates to:
+  /// **'English translation for the suggestion.'**
+  String get englishTranslationForTheSuggestion;
+
+  /// No description provided for @scholarsCritique.
+  ///
+  /// In en, this message translates to:
+  /// **'Scholar\'s Critique'**
+  String get scholarsCritique;
+
+  /// No description provided for @theEchoHallRemainsSilentTryYourBrea.
+  ///
+  /// In en, this message translates to:
+  /// **'The Echo Hall remains silent. Try your breath again.'**
+  String get theEchoHallRemainsSilentTryYourBrea;
+
+  /// No description provided for @xtitleHanziMaster.
+  ///
+  /// In en, this message translates to:
+  /// **'X-Title\': \'Hanzi Master'**
+  String get xtitleHanziMaster;
+
+  /// No description provided for @noneYet.
+  ///
+  /// In en, this message translates to:
+  /// **'None yet.'**
+  String get noneYet;
+
+  /// No description provided for @exactSentence.
+  ///
+  /// In en, this message translates to:
+  /// **'Exact Sentence:'**
+  String get exactSentence;
+
+  /// No description provided for @englishTranslation.
+  ///
+  /// In en, this message translates to:
+  /// **'English translation'**
+  String get englishTranslation;
+
+  /// No description provided for @previouslyGeneratedPhrases.
+  ///
+  /// In en, this message translates to:
+  /// **'Previously generated phrases'**
+  String get previouslyGeneratedPhrases;
+
+  /// No description provided for @iLikeDrinkingAppleJuice.
+  ///
+  /// In en, this message translates to:
+  /// **'I like drinking apple juice.'**
+  String get iLikeDrinkingAppleJuice;
+
+  /// No description provided for @theEnglishMeaningHere.
+  ///
+  /// In en, this message translates to:
+  /// **'The English meaning here...'**
+  String get theEnglishMeaningHere;
+
+  /// No description provided for @failedToFetchDefinition.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to fetch definition.'**
+  String get failedToFetchDefinition;
+
+  /// No description provided for @failedToLoadExplanation.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load explanation.'**
+  String get failedToLoadExplanation;
+
+  /// No description provided for @failedToLoadComparison.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load comparison.'**
+  String get failedToLoadComparison;
+
+  /// No description provided for @emptyResponseFromOpenrouter.
+  ///
+  /// In en, this message translates to:
+  /// **'Empty response from OpenRouter'**
+  String get emptyResponseFromOpenrouter;
+
+  /// No description provided for @emptyResponseFromVisionModel.
+  ///
+  /// In en, this message translates to:
+  /// **'Empty response from Vision model'**
+  String get emptyResponseFromVisionModel;
+
+  /// No description provided for @standard.
+  ///
+  /// In en, this message translates to:
+  /// **'Standard'**
+  String get standard;
+
+  /// No description provided for @theFullSentenceInChinese.
+  ///
+  /// In en, this message translates to:
+  /// **'The full sentence in Chinese...'**
+  String get theFullSentenceInChinese;
+
+  /// No description provided for @theWordOrCharacterInChinese.
+  ///
+  /// In en, this message translates to:
+  /// **'The word or character in Chinese'**
+  String get theWordOrCharacterInChinese;
+
+  /// No description provided for @thePinyinForThisSpecificWord.
+  ///
+  /// In en, this message translates to:
+  /// **'The pinyin for this specific word'**
+  String get thePinyinForThisSpecificWord;
+
+  /// No description provided for @emptyResponseFromDeepseekApi.
+  ///
+  /// In en, this message translates to:
+  /// **'Empty response from DeepSeek API'**
+  String get emptyResponseFromDeepseekApi;
+
+  /// No description provided for @criticalPutTheEnglishTranslationInT.
+  ///
+  /// In en, this message translates to:
+  /// **'CRITICAL: Put the English translation in the'**
+  String get criticalPutTheEnglishTranslationInT;
+
+  /// No description provided for @englishTranslationOfTheEntireSenten.
+  ///
+  /// In en, this message translates to:
+  /// **'English translation of the entire sentence'**
+  String get englishTranslationOfTheEntireSenten;
+
+  /// No description provided for @hanziWord.
+  ///
+  /// In en, this message translates to:
+  /// **'Hanzi word'**
+  String get hanziWord;
+
+  /// No description provided for @theFullSimplifiedSentenceInChinese.
+  ///
+  /// In en, this message translates to:
+  /// **'The full simplified sentence in Chinese...'**
+  String get theFullSimplifiedSentenceInChinese;
+
+  /// No description provided for @lyingFlatACulturalMovement.
+  ///
+  /// In en, this message translates to:
+  /// **'Lying flat: A cultural movement...'**
+  String get lyingFlatACulturalMovement;
+
+  /// No description provided for @theUserYouAreSpeakingToIsNamed.
+  ///
+  /// In en, this message translates to:
+  /// **'The user you are speaking to is named'**
+  String get theUserYouAreSpeakingToIsNamed;
+
+  /// No description provided for @importantRuleDoNotAddressTheUserByA.
+  ///
+  /// In en, this message translates to:
+  /// **'IMPORTANT RULE: Do not address the user by any name. Never use placeholder names like'**
+  String get importantRuleDoNotAddressTheUserByA;
+
+  /// No description provided for @youAreAConciseChineseCalligraphyAnd.
+  ///
+  /// In en, this message translates to:
+  /// **'You are a concise Chinese Calligraphy and Etymology tutor inside a mobile flashcard app.'**
+  String get youAreAConciseChineseCalligraphyAnd;
+
+  /// No description provided for @theStudentIsStudyingTheCharacter.
+  ///
+  /// In en, this message translates to:
+  /// **'The student is studying the character'**
+  String get theStudentIsStudyingTheCharacter;
+
+  /// No description provided for @neverWriteIntroductionsSignoffsOrFi.
+  ///
+  /// In en, this message translates to:
+  /// **'Never write introductions, sign-offs, or filler phrases like'**
+  String get neverWriteIntroductionsSignoffsOrFi;
+
+  /// No description provided for @beDirectAndInformative.
+  ///
+  /// In en, this message translates to:
+  /// **'Be direct and informative.'**
+  String get beDirectAndInformative;
+
+  /// No description provided for @criticalRuleYouMustRespondEntirelyI.
+  ///
+  /// In en, this message translates to:
+  /// **'CRITICAL RULE: You must respond ENTIRELY in the language corresponding to ISO 639-1 code'**
+  String get criticalRuleYouMustRespondEntirelyI;
+
+  /// No description provided for @youAreAConciseChineseGrammarTutorIn.
+  ///
+  /// In en, this message translates to:
+  /// **'You are a concise Chinese Grammar tutor inside a mobile app.'**
+  String get youAreAConciseChineseGrammarTutorIn;
+
+  /// No description provided for @theStudentIsConfusedAboutTheWord.
+  ///
+  /// In en, this message translates to:
+  /// **'The student is confused about the word'**
+  String get theStudentIsConfusedAboutTheWord;
+
+  /// No description provided for @neverWriteIntroductionsSignoffsOrFi1.
+  ///
+  /// In en, this message translates to:
+  /// **'Never write introductions, sign-offs, or filler phrases.'**
+  String get neverWriteIntroductionsSignoffsOrFi1;
+
+  /// No description provided for @azureSpeechApiKeysAreMissing.
+  ///
+  /// In en, this message translates to:
+  /// **'Azure Speech API keys are missing.'**
+  String get azureSpeechApiKeysAreMissing;
+
+  /// No description provided for @success.
+  ///
+  /// In en, this message translates to:
+  /// **'Success'**
+  String get success;
+
+  /// No description provided for @granularity.
+  ///
+  /// In en, this message translates to:
+  /// **'Granularity'**
+  String get granularity;
+
+  /// No description provided for @phoneme1.
+  ///
+  /// In en, this message translates to:
+  /// **'Phoneme'**
+  String get phoneme1;
+
+  /// No description provided for @dimension.
+  ///
+  /// In en, this message translates to:
+  /// **'Dimension'**
+  String get dimension;
+
+  /// No description provided for @comprehensive.
+  ///
+  /// In en, this message translates to:
+  /// **'Comprehensive'**
+  String get comprehensive;
+
+  /// No description provided for @weCouldntHearYouClearlyPleaseTryAga.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t hear you clearly. Please try again.'**
+  String get weCouldntHearYouClearlyPleaseTryAga;
+
+  /// No description provided for @noNbestResultFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No NBest result found.'**
+  String get noNbestResultFound;
+
+  /// No description provided for @words1.
+  ///
+  /// In en, this message translates to:
+  /// **'Words'**
+  String get words1;
+
+  /// No description provided for @word.
+  ///
+  /// In en, this message translates to:
+  /// **'Word'**
+  String get word;
+
+  /// No description provided for @phonemes.
+  ///
+  /// In en, this message translates to:
+  /// **'Phonemes'**
+  String get phonemes;
+
+  /// No description provided for @syllables.
+  ///
+  /// In en, this message translates to:
+  /// **'Syllables'**
+  String get syllables;
+
+  /// No description provided for @syllable.
+  ///
+  /// In en, this message translates to:
+  /// **'Syllable'**
+  String get syllable;
+
+  /// No description provided for @omission.
+  ///
+  /// In en, this message translates to:
+  /// **'Omission'**
+  String get omission;
+
+  /// No description provided for @insertion.
+  ///
+  /// In en, this message translates to:
+  /// **'Insertion'**
+  String get insertion;
+
+  /// No description provided for @youMissedThisWord.
+  ///
+  /// In en, this message translates to:
+  /// **'You missed this word.'**
+  String get youMissedThisWord;
+
+  /// No description provided for @extraWordAddedHere.
+  ///
+  /// In en, this message translates to:
+  /// **'Extra word added here.'**
+  String get extraWordAddedHere;
+
+  /// No description provided for @mispronunciation.
+  ///
+  /// In en, this message translates to:
+  /// **'Mispronunciation'**
+  String get mispronunciation;
+
+  /// No description provided for @pronunciationWasInaccurate.
+  ///
+  /// In en, this message translates to:
+  /// **'Pronunciation was inaccurate.'**
+  String get pronunciationWasInaccurate;
+
+  /// No description provided for @goodEffortKeepPracticing.
+  ///
+  /// In en, this message translates to:
+  /// **'Good effort! Keep practicing.'**
+  String get goodEffortKeepPracticing;
+
+  /// No description provided for @perfectPronunciationSoundsLikeANati.
+  ///
+  /// In en, this message translates to:
+  /// **'Perfect pronunciation! Sounds like a native speaker.'**
+  String get perfectPronunciationSoundsLikeANati;
+
+  /// No description provided for @greatJobAFewMinorToneInaccuracies.
+  ///
+  /// In en, this message translates to:
+  /// **'Great job! A few minor tone inaccuracies.'**
+  String get greatJobAFewMinorToneInaccuracies;
+
+  /// No description provided for @notBadButYourTonesNeedSomeWork.
+  ///
+  /// In en, this message translates to:
+  /// **'Not bad, but your tones need some work.'**
+  String get notBadButYourTonesNeedSomeWork;
+
+  /// No description provided for @keepPracticingListenToTheNativeAudi.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep practicing! Listen to the native audio and try again.'**
+  String get keepPracticingListenToTheNativeAudi;
+
+  /// No description provided for @lexical.
+  ///
+  /// In en, this message translates to:
+  /// **'Lexical'**
+  String get lexical;
+
+  /// No description provided for @chineseHanziHere.
+  ///
+  /// In en, this message translates to:
+  /// **'Chinese Hanzi here'**
+  String get chineseHanziHere;
+
+  /// No description provided for @aShortSummaryInEnglish.
+  ///
+  /// In en, this message translates to:
+  /// **'A short summary in English'**
+  String get aShortSummaryInEnglish;
+
+  /// No description provided for @noCoherentChineseTextFoundInTheScan.
+  ///
+  /// In en, this message translates to:
+  /// **'No coherent Chinese text found in the scan.'**
+  String get noCoherentChineseTextFoundInTheScan;
+
+  /// No description provided for @theFullEnglishTranslationOfTheScann.
+  ///
+  /// In en, this message translates to:
+  /// **'The full English translation of the scanned text... OR \'No coherent Chinese text found.\''**
+  String get theFullEnglishTranslationOfTheScann;
+
+  /// No description provided for @aShort24WordTitleForThisScanEgResta.
+  ///
+  /// In en, this message translates to:
+  /// **'A short 2-4 word title for this scan (e.g. \'Restaurant Menu\', \'Street Sign\')'**
+  String get aShort24WordTitleForThisScanEgResta;
+
+  /// No description provided for @china.
+  ///
+  /// In en, this message translates to:
+  /// **'China'**
+  String get china;
+
+  /// No description provided for @noTranslationAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'No translation available.'**
+  String get noTranslationAvailable;
+
+  /// No description provided for @scanResults.
+  ///
+  /// In en, this message translates to:
+  /// **'Scan Results'**
+  String get scanResults;
+
+  /// No description provided for @whenWasItWrittenAndWhatWasHappening.
+  ///
+  /// In en, this message translates to:
+  /// **'When was it written and what was happening in China at the time?'**
+  String get whenWasItWrittenAndWhatWasHappening;
+
+  /// No description provided for @whyIsThisPieceFamousWhatPhilosophic.
+  ///
+  /// In en, this message translates to:
+  /// **'Why is this piece famous? What philosophical or cultural themes does it explore?'**
+  String get whyIsThisPieceFamousWhatPhilosophic;
+
+  /// No description provided for @aBriefBioOfTheAuthor.
+  ///
+  /// In en, this message translates to:
+  /// **'A brief bio of the author.'**
+  String get aBriefBioOfTheAuthor;
+
+  /// No description provided for @informationUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Information unavailable.'**
+  String get informationUnavailable;
+
+  /// No description provided for @noSummaryAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'No summary available.'**
+  String get noSummaryAvailable;
+
+  /// No description provided for @hanziAiPro.
+  ///
+  /// In en, this message translates to:
+  /// **'Hanzi AI Pro'**
+  String get hanziAiPro;
+
+  /// No description provided for @trialNormalIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'TRIAL\', \'NORMAL\', \'INTRO'**
+  String get trialNormalIntro;
+
+  /// No description provided for @dailyDrop.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily Drop'**
+  String get dailyDrop;
+
+  /// No description provided for @dailyNotificationsForWordOfTheDayAn.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily notifications for Word of the Day and news'**
+  String get dailyNotificationsForWordOfTheDayAn;
+
+  /// No description provided for @aNewWordAndStoryOfTheDayAreWaitingF.
+  ///
+  /// In en, this message translates to:
+  /// **'A new Word and Story of the Day are waiting for you!'**
+  String get aNewWordAndStoryOfTheDayAreWaitingF;
+
+  /// No description provided for @spacedRepetition.
+  ///
+  /// In en, this message translates to:
+  /// **'Spaced Repetition'**
+  String get spacedRepetition;
+
+  /// No description provided for @remindersForFlashcardsDueForReview.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminders for flashcards due for review'**
+  String get remindersForFlashcardsDueForReview;
+
+  /// No description provided for @engagementReminders.
+  ///
+  /// In en, this message translates to:
+  /// **'Engagement Reminders'**
+  String get engagementReminders;
+
+  /// No description provided for @trialReminders.
+  ///
+  /// In en, this message translates to:
+  /// **'Trial Reminders'**
+  String get trialReminders;
+
+  /// No description provided for @notificationsForYourTrialStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications for your trial status'**
+  String get notificationsForYourTrialStatus;
+
+  /// No description provided for @comeReviewYourHanziAndTryALiveCallB.
+  ///
+  /// In en, this message translates to:
+  /// **'Come review your Hanzi and try a Live Call before your free access ends!'**
+  String get comeReviewYourHanziAndTryALiveCallB;
+
+  /// No description provided for @scholarsEye.
+  ///
+  /// In en, this message translates to:
+  /// **'Scholar\'s Eye'**
+  String get scholarsEye;
+
+  /// No description provided for @clMeasureWord.
+  ///
+  /// In en, this message translates to:
+  /// **'CL:\', \'Measure word:'**
+  String get clMeasureWord;
+
+  /// No description provided for @surnameShi.
+  ///
+  /// In en, this message translates to:
+  /// **'Surname Shi'**
+  String get surnameShi;
+
+  /// No description provided for @chineseFamilyNameShi.
+  ///
+  /// In en, this message translates to:
+  /// **'Chinese family name (Shi)'**
+  String get chineseFamilyNameShi;
+
+  /// No description provided for @neutralToneLight.
+  ///
+  /// In en, this message translates to:
+  /// **'Neutral Tone (Light)'**
+  String get neutralToneLight;
+
+  /// No description provided for @keepYourPitchHighAndSteadyLikeSingi.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep your pitch high and steady like singing a note.'**
+  String get keepYourPitchHighAndSteadyLikeSingi;
+
+  /// No description provided for @startInTheMiddleAndSlideYourPitchUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Start in the middle and slide your pitch upward like asking \'What?\''**
+  String get startInTheMiddleAndSlideYourPitchUp;
+
+  /// No description provided for @dipYourVoiceDownLowThenRiseGentlyBa.
+  ///
+  /// In en, this message translates to:
+  /// **'Dip your voice down low, then rise gently back up.'**
+  String get dipYourVoiceDownLowThenRiseGentlyBa;
+
+  /// No description provided for @dropYourPitchSharplyAndDecisivelyLi.
+  ///
+  /// In en, this message translates to:
+  /// **'Drop your pitch sharply and decisively like a firm \'No!\''**
+  String get dropYourPitchSharplyAndDecisivelyLi;
+
+  /// No description provided for @pronounceSoftlyBrieflyAndWithoutEmp.
+  ///
+  /// In en, this message translates to:
+  /// **'Pronounce softly, briefly, and without emphasis.'**
+  String get pronounceSoftlyBrieflyAndWithoutEmp;
+
+  /// No description provided for @spotOnPitchWasHighFlatAndSteady.
+  ///
+  /// In en, this message translates to:
+  /// **'Spot on! Pitch was high, flat, and steady.'**
+  String get spotOnPitchWasHighFlatAndSteady;
+
+  /// No description provided for @spotOnUpwardPitchRiseWasClear.
+  ///
+  /// In en, this message translates to:
+  /// **'Spot on! Upward pitch rise was clear.'**
+  String get spotOnUpwardPitchRiseWasClear;
+
+  /// No description provided for @spotOnLowDippingCurveWasAccurate.
+  ///
+  /// In en, this message translates to:
+  /// **'Spot on! Low dipping curve was accurate.'**
+  String get spotOnLowDippingCurveWasAccurate;
+
+  /// No description provided for @spotOnSharpFallingDropWasDecisive.
+  ///
+  /// In en, this message translates to:
+  /// **'Spot on! Sharp falling drop was decisive.'**
+  String get spotOnSharpFallingDropWasDecisive;
+
+  /// No description provided for @spotOnToneWasPronouncedAccurately.
+  ///
+  /// In en, this message translates to:
+  /// **'Spot on! Tone was pronounced accurately.'**
+  String get spotOnToneWasPronouncedAccurately;
+
+  /// No description provided for @iAgreeToTheTermsOfServiceAndPrivacy.
+  ///
+  /// In en, this message translates to:
+  /// **'I agree to the Terms of Service and Privacy Policy.'**
+  String get iAgreeToTheTermsOfServiceAndPrivacy;
+
+  /// No description provided for @sendMeOccasionalUpdatesTipsAndOffer.
+  ///
+  /// In en, this message translates to:
+  /// **'Send me occasional updates, tips, and offers.'**
+  String get sendMeOccasionalUpdatesTipsAndOffer;
+
+  /// No description provided for @signInToSyncYourProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in to sync your progress.'**
+  String get signInToSyncYourProgress;
+
+  /// No description provided for @createAnAccountToSaveYourStats.
+  ///
+  /// In en, this message translates to:
+  /// **'Create an account to save your stats.'**
+  String get createAnAccountToSaveYourStats;
+
+  /// No description provided for @smartSpiral.
+  ///
+  /// In en, this message translates to:
+  /// **'SMART SPIRAL'**
+  String get smartSpiral;
+
+  /// No description provided for @origin.
+  ///
+  /// In en, this message translates to:
+  /// **'Origin'**
+  String get origin;
+
+  /// No description provided for @elements.
+  ///
+  /// In en, this message translates to:
+  /// **'Elements'**
+  String get elements;
+
+  /// No description provided for @humanity.
+  ///
+  /// In en, this message translates to:
+  /// **'Humanity'**
+  String get humanity;
+
+  /// No description provided for @village.
+  ///
+  /// In en, this message translates to:
+  /// **'Village'**
+  String get village;
+
+  /// No description provided for @journey.
+  ///
+  /// In en, this message translates to:
+  /// **'Journey'**
+  String get journey;
+
+  /// No description provided for @city.
+  ///
+  /// In en, this message translates to:
+  /// **'City'**
+  String get city;
+
+  /// No description provided for @originTheSimplestShapesTheBeginning.
+  ///
+  /// In en, this message translates to:
+  /// **'Origin\': \'The simplest shapes. The beginning of all things.'**
+  String get originTheSimplestShapesTheBeginning;
+
+  /// No description provided for @elementsSunMoonWaterAndFireTheNatur.
+  ///
+  /// In en, this message translates to:
+  /// **'Elements\': \'Sun, Moon, Water, and Fire. The natural world.'**
+  String get elementsSunMoonWaterAndFireTheNatur;
+
+  /// No description provided for @humanityTheBodyTheHeartAndTheFamily.
+  ///
+  /// In en, this message translates to:
+  /// **'Humanity\': \'The body, the heart, and the family.'**
+  String get humanityTheBodyTheHeartAndTheFamily;
+
+  /// No description provided for @villageFieldsRoofsAndToolsTheFounda.
+  ///
+  /// In en, this message translates to:
+  /// **'Village\': \'Fields, roofs, and tools. The foundations of society.'**
+  String get villageFieldsRoofsAndToolsTheFounda;
+
+  /// No description provided for @journeyMovementSpeechAndSustenance.
+  ///
+  /// In en, this message translates to:
+  /// **'Journey\': \'Movement, speech, and sustenance.'**
+  String get journeyMovementSpeechAndSustenance;
+
+  /// No description provided for @cityCommerceClothingAndComplexArtif.
+  ///
+  /// In en, this message translates to:
+  /// **'City\': \'Commerce, clothing, and complex artifacts.'**
+  String get cityCommerceClothingAndComplexArtif;
+
+  /// No description provided for @equilibriumAlgorithm.
+  ///
+  /// In en, this message translates to:
+  /// **'Equilibrium Algorithm'**
+  String get equilibriumAlgorithm;
+
+  /// No description provided for @misc.
+  ///
+  /// In en, this message translates to:
+  /// **'Misc'**
+  String get misc;
+
+  /// No description provided for @cityOrOriginAs.
+  ///
+  /// In en, this message translates to:
+  /// **'City\' or \'Origin\' as'**
+  String get cityOrOriginAs;
+
+  /// No description provided for @miscToOrigin.
+  ///
+  /// In en, this message translates to:
+  /// **'Misc\' to \'Origin'**
+  String get miscToOrigin;
+
+  /// No description provided for @constellation.
+  ///
+  /// In en, this message translates to:
+  /// **'Constellation'**
+  String get constellation;
+
+  /// No description provided for @whichOneIsWater.
+  ///
+  /// In en, this message translates to:
+  /// **'Which one is \'Water\'?'**
+  String get whichOneIsWater;
+
+  /// No description provided for @whatIsThePinyin.
+  ///
+  /// In en, this message translates to:
+  /// **'What is the pinyin?'**
+  String get whatIsThePinyin;
+
+  /// No description provided for @nature.
+  ///
+  /// In en, this message translates to:
+  /// **'Nature'**
+  String get nature;
+
+  /// No description provided for @whatEssenceDoes.
+  ///
+  /// In en, this message translates to:
+  /// **'What essence does'**
+  String get whatEssenceDoes;
+
+  /// No description provided for @allTiers.
+  ///
+  /// In en, this message translates to:
+  /// **'All Tiers'**
+  String get allTiers;
+
+  /// No description provided for @active.
+  ///
+  /// In en, this message translates to:
+  /// **'Active'**
+  String get active;
+
+  /// No description provided for @theScrollOfOrigin1.
+  ///
+  /// In en, this message translates to:
+  /// **'THE SCROLL OF ORIGIN'**
+  String get theScrollOfOrigin1;
+
+  /// No description provided for @galaxyOf1.
+  ///
+  /// In en, this message translates to:
+  /// **'GALAXY OF'**
+  String get galaxyOf1;
+
+  /// No description provided for @also.
+  ///
+  /// In en, this message translates to:
+  /// **'Also'**
+  String get also;
+
+  /// No description provided for @work.
+  ///
+  /// In en, this message translates to:
+  /// **'Work'**
+  String get work;
+
+  /// No description provided for @cloud.
+  ///
+  /// In en, this message translates to:
+  /// **'Cloud'**
+  String get cloud;
+
+  /// No description provided for @youArchaic.
+  ///
+  /// In en, this message translates to:
+  /// **'You (archaic)'**
+  String get youArchaic;
+
+  /// No description provided for @suddenly.
+  ///
+  /// In en, this message translates to:
+  /// **'Suddenly'**
+  String get suddenly;
+
+  /// No description provided for @owner.
+  ///
+  /// In en, this message translates to:
+  /// **'Owner'**
+  String get owner;
+
+  /// No description provided for @door.
+  ///
+  /// In en, this message translates to:
+  /// **'Door'**
+  String get door;
+
+  /// No description provided for @occupy.
+  ///
+  /// In en, this message translates to:
+  /// **'Occupy'**
+  String get occupy;
+
+  /// No description provided for @nail.
+  ///
+  /// In en, this message translates to:
+  /// **'Nail'**
+  String get nail;
+
+  /// No description provided for @and.
+  ///
+  /// In en, this message translates to:
+  /// **'And'**
+  String get and;
+
+  /// No description provided for @buddhistNun.
+  ///
+  /// In en, this message translates to:
+  /// **'Buddhist Nun'**
+  String get buddhistNun;
+
+  /// No description provided for @anxious.
+  ///
+  /// In en, this message translates to:
+  /// **'Anxious'**
+  String get anxious;
+
+  /// No description provided for @sprout.
+  ///
+  /// In en, this message translates to:
+  /// **'Sprout'**
+  String get sprout;
+
+  /// No description provided for @exchange.
+  ///
+  /// In en, this message translates to:
+  /// **'Exchange'**
+  String get exchange;
+
+  /// No description provided for @sheep.
+  ///
+  /// In en, this message translates to:
+  /// **'Sheep'**
+  String get sheep;
+
+  /// No description provided for @strange.
+  ///
+  /// In en, this message translates to:
+  /// **'Strange'**
+  String get strange;
+
+  /// No description provided for @opposite.
+  ///
+  /// In en, this message translates to:
+  /// **'Opposite'**
+  String get opposite;
+
+  /// No description provided for @shorttailedBird.
+  ///
+  /// In en, this message translates to:
+  /// **'Short-tailed bird'**
+  String get shorttailedBird;
+
+  /// No description provided for @shoot.
+  ///
+  /// In en, this message translates to:
+  /// **'Shoot'**
+  String get shoot;
+
+  /// No description provided for @small.
+  ///
+  /// In en, this message translates to:
+  /// **'Small'**
+  String get small;
+
+  /// No description provided for @gather.
+  ///
+  /// In en, this message translates to:
+  /// **'Gather'**
+  String get gather;
+
+  /// No description provided for @order.
+  ///
+  /// In en, this message translates to:
+  /// **'Order'**
+  String get order;
+
+  /// No description provided for @flat.
+  ///
+  /// In en, this message translates to:
+  /// **'Flat'**
+  String get flat;
+
+  /// No description provided for @thePersonWho.
+  ///
+  /// In en, this message translates to:
+  /// **'The person who...'**
+  String get thePersonWho;
+
+  /// No description provided for @nobleman.
+  ///
+  /// In en, this message translates to:
+  /// **'Nobleman'**
+  String get nobleman;
+
+  /// No description provided for @cause.
+  ///
+  /// In en, this message translates to:
+  /// **'Cause'**
+  String get cause;
+
+  /// No description provided for @pig.
+  ///
+  /// In en, this message translates to:
+  /// **'Pig'**
+  String get pig;
+
+  /// No description provided for @bright.
+  ///
+  /// In en, this message translates to:
+  /// **'Bright'**
+  String get bright;
+
+  /// No description provided for @slowly.
+  ///
+  /// In en, this message translates to:
+  /// **'Slowly'**
+  String get slowly;
+
+  /// No description provided for @give.
+  ///
+  /// In en, this message translates to:
+  /// **'Give'**
+  String get give;
+
+  /// No description provided for @arrow.
+  ///
+  /// In en, this message translates to:
+  /// **'Arrow'**
+  String get arrow;
+
+  /// No description provided for @dry.
+  ///
+  /// In en, this message translates to:
+  /// **'Dry'**
+  String get dry;
+
+  /// No description provided for @obstacle.
+  ///
+  /// In en, this message translates to:
+  /// **'Obstacle'**
+  String get obstacle;
+
+  /// No description provided for @beg.
+  ///
+  /// In en, this message translates to:
+  /// **'Beg'**
+  String get beg;
+
+  /// No description provided for @window.
+  ///
+  /// In en, this message translates to:
+  /// **'Window'**
+  String get window;
+
+  /// No description provided for @fear.
+  ///
+  /// In en, this message translates to:
+  /// **'Fear'**
+  String get fear;
+
+  /// No description provided for @drum.
+  ///
+  /// In en, this message translates to:
+  /// **'Drum'**
+  String get drum;
+
+  /// No description provided for @why.
+  ///
+  /// In en, this message translates to:
+  /// **'Why'**
+  String get why;
+
+  /// No description provided for @talent.
+  ///
+  /// In en, this message translates to:
+  /// **'Talent'**
+  String get talent;
+
+  /// No description provided for @follow.
+  ///
+  /// In en, this message translates to:
+  /// **'Follow'**
+  String get follow;
+
+  /// No description provided for @desert.
+  ///
+  /// In en, this message translates to:
+  /// **'Desert'**
+  String get desert;
+
+  /// No description provided for @component.
+  ///
+  /// In en, this message translates to:
+  /// **'Component'**
+  String get component;
+
+  /// No description provided for @divingInto1.
+  ///
+  /// In en, this message translates to:
+  /// **'Diving into'**
+  String get divingInto1;
+
+  /// No description provided for @unitIntro1.
+  ///
+  /// In en, this message translates to:
+  /// **'Unit Intro'**
+  String get unitIntro1;
+
+  /// No description provided for @theBlueprint.
+  ///
+  /// In en, this message translates to:
+  /// **'THE BLUEPRINT'**
+  String get theBlueprint;
+
+  /// No description provided for @theOrigin.
+  ///
+  /// In en, this message translates to:
+  /// **'THE ORIGIN'**
+  String get theOrigin;
+
+  /// No description provided for @theGalaxy.
+  ///
+  /// In en, this message translates to:
+  /// **'THE GALAXY'**
+  String get theGalaxy;
+
+  /// No description provided for @theScholarListens.
+  ///
+  /// In en, this message translates to:
+  /// **'The Scholar listens...'**
+  String get theScholarListens;
+
+  /// No description provided for @consultingTheScrolls.
+  ///
+  /// In en, this message translates to:
+  /// **'Consulting the scrolls...'**
+  String get consultingTheScrolls;
+
+  /// No description provided for @traceWithTheGuide.
+  ///
+  /// In en, this message translates to:
+  /// **'Trace with the Guide'**
+  String get traceWithTheGuide;
+
+  /// No description provided for @traceTheGhost.
+  ///
+  /// In en, this message translates to:
+  /// **'Trace the Ghost'**
+  String get traceTheGhost;
+
+  /// No description provided for @connectTheDots.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect the Dots'**
+  String get connectTheDots;
+
+  /// No description provided for @drawFromMemory.
+  ///
+  /// In en, this message translates to:
+  /// **'Draw from Memory'**
+  String get drawFromMemory;
+
+  /// No description provided for @assistant.
+  ///
+  /// In en, this message translates to:
+  /// **'Assistant'**
+  String get assistant;
+
+  /// No description provided for @puck.
+  ///
+  /// In en, this message translates to:
+  /// **'Puck'**
+  String get puck;
+
+  /// No description provided for @helloWelcomeWhatWouldYouLikeToOrder.
+  ///
+  /// In en, this message translates to:
+  /// **'Hello! Welcome. What would you like to order?'**
+  String get helloWelcomeWhatWouldYouLikeToOrder;
+
+  /// No description provided for @ni3Hao3Huan1ying2Guang1lin2Qing3wen.
+  ///
+  /// In en, this message translates to:
+  /// **'Ni3 hao3! Huan1ying2 guang1lin2. Qing3wen4 ni3 yao4 dian3 shen2me?'**
+  String get ni3Hao3Huan1ying2Guang1lin2Qing3wen;
+
+  /// No description provided for @waiterLi.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiter Li'**
+  String get waiterLi;
+
+  /// No description provided for @askForTheMenu.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask for the menu'**
+  String get askForTheMenu;
+
+  /// No description provided for @orderOneDishAndOneDrink.
+  ///
+  /// In en, this message translates to:
+  /// **'Order one dish and one drink'**
+  String get orderOneDishAndOneDrink;
+
+  /// No description provided for @askForTheBill.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask for the bill'**
+  String get askForTheBill;
+
+  /// No description provided for @fenrir.
+  ///
+  /// In en, this message translates to:
+  /// **'Fenrir'**
+  String get fenrir;
+
+  /// No description provided for @ni3Qu4Na3rAJi1chang3MaTing3Yuan3De.
+  ///
+  /// In en, this message translates to:
+  /// **'Ni3 qu4 na3r a? Ji1chang3 ma? Ting3 yuan3 de!'**
+  String get ni3Qu4Na3rAJi1chang3MaTing3Yuan3De;
+
+  /// No description provided for @driverWang.
+  ///
+  /// In en, this message translates to:
+  /// **'Driver Wang'**
+  String get driverWang;
+
+  /// No description provided for @tellTheDriverYouAreGoingToTheAirpor.
+  ///
+  /// In en, this message translates to:
+  /// **'Tell the driver you are going to the airport'**
+  String get tellTheDriverYouAreGoingToTheAirpor;
+
+  /// No description provided for @askHowLongTheTripWillTake.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask how long the trip will take'**
+  String get askHowLongTheTripWillTake;
+
+  /// No description provided for @complainAboutTheTraffic.
+  ///
+  /// In en, this message translates to:
+  /// **'Complain about the traffic'**
+  String get complainAboutTheTraffic;
+
+  /// No description provided for @charon.
+  ///
+  /// In en, this message translates to:
+  /// **'Charon'**
+  String get charon;
+
+  /// No description provided for @thisClothingQualityIsEspeciallyGood.
+  ///
+  /// In en, this message translates to:
+  /// **'This clothing quality is especially good, only 200 kuai.'**
+  String get thisClothingQualityIsEspeciallyGood;
+
+  /// No description provided for @zhe4Jian4Yi1fuZhi4liang4Te4bie2Hao3.
+  ///
+  /// In en, this message translates to:
+  /// **'Zhe4 jian4 yi1fu zhi4liang4 te4bie2 hao3, zhi3yao4 liang3 bai3 kuai4.'**
+  String get zhe4Jian4Yi1fuZhi4liang4Te4bie2Hao3;
+
+  /// No description provided for @auntieChen.
+  ///
+  /// In en, this message translates to:
+  /// **'Auntie Chen'**
+  String get auntieChen;
+
+  /// No description provided for @askHowMuchTheSilkShirtCosts.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask how much the silk shirt costs'**
+  String get askHowMuchTheSilkShirtCosts;
+
+  /// No description provided for @sayItIsTooExpensive.
+  ///
+  /// In en, this message translates to:
+  /// **'Say it is too expensive'**
+  String get sayItIsTooExpensive;
+
+  /// No description provided for @bargainThePriceDownTo100Rmb.
+  ///
+  /// In en, this message translates to:
+  /// **'Bargain the price down to 100 RMB'**
+  String get bargainThePriceDownTo100Rmb;
+
+  /// No description provided for @ni3Na3li3Bu4Shu1fuFa1shao1LeMa.
+  ///
+  /// In en, this message translates to:
+  /// **'Ni3 na3li3 bu4 shu1fu? Fa1shao1 le ma?'**
+  String get ni3Na3li3Bu4Shu1fuFa1shao1LeMa;
+
+  /// No description provided for @drZhang.
+  ///
+  /// In en, this message translates to:
+  /// **'Dr. Zhang'**
+  String get drZhang;
+
+  /// No description provided for @explainYouHaveHadAHeadacheForTwoDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Explain you have had a headache for two days'**
+  String get explainYouHaveHadAHeadacheForTwoDay;
+
+  /// No description provided for @sayYouHaveASlightFever.
+  ///
+  /// In en, this message translates to:
+  /// **'Say you have a slight fever'**
+  String get sayYouHaveASlightFever;
+
+  /// No description provided for @askIfYouNeedToTakeMedicine.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask if you need to take medicine'**
+  String get askIfYouNeedToTakeMedicine;
+
+  /// No description provided for @aoede.
+  ///
+  /// In en, this message translates to:
+  /// **'Aoede'**
+  String get aoede;
+
+  /// No description provided for @heyLongTimeNoSeeHowHaveYouBeenLatel.
+  ///
+  /// In en, this message translates to:
+  /// **'Hey! Long time no see, how have you been lately?'**
+  String get heyLongTimeNoSeeHowHaveYouBeenLatel;
+
+  /// No description provided for @ni3Hao3Hao3jiu3Bu4jian4Ni3Zui4jin4Z.
+  ///
+  /// In en, this message translates to:
+  /// **'Ni3 hao3! Hao3jiu3 bu4jian4, ni3 zui4jin4 zen3me yang4?'**
+  String get ni3Hao3Hao3jiu3Bu4jian4Ni3Zui4jin4Z;
+
+  /// No description provided for @pleaseIntroduceYourselfWhyDoYouWant.
+  ///
+  /// In en, this message translates to:
+  /// **'Please introduce yourself. Why do you want to work at our company?'**
+  String get pleaseIntroduceYourselfWhyDoYouWant;
+
+  /// No description provided for @qing3Xian1Zi4wo3Jie4shao4Yi1xia4Ni3.
+  ///
+  /// In en, this message translates to:
+  /// **'Qing3 xian1 zi4wo3 jie4shao4 yi1xia4. Ni3 wei4shen2me xiang3 lai2 wo3men gong1si1 gong1zuo4?'**
+  String get qing3Xian1Zi4wo3Jie4shao4Yi1xia4Ni3;
+
+  /// No description provided for @managerLiu.
+  ///
+  /// In en, this message translates to:
+  /// **'Manager Liu'**
+  String get managerLiu;
+
+  /// No description provided for @introduceYourProfessionalBackground.
+  ///
+  /// In en, this message translates to:
+  /// **'Introduce your professional background briefly'**
+  String get introduceYourProfessionalBackground;
+
+  /// No description provided for @explainWhyYouWantToWorkAtThisCompan.
+  ///
+  /// In en, this message translates to:
+  /// **'Explain why you want to work at this company'**
+  String get explainWhyYouWantToWorkAtThisCompan;
+
+  /// No description provided for @askAPoliteQuestionAboutTheCompanyCu.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask a polite question about the company culture'**
+  String get askAPoliteQuestionAboutTheCompanyCu;
+
+  /// No description provided for @microphoneAccessIsRequiredPleaseEna.
+  ///
+  /// In en, this message translates to:
+  /// **'Microphone access is required. Please enable it in your device Settings.'**
+  String get microphoneAccessIsRequiredPleaseEna;
+
+  /// No description provided for @couldNotStartMicrophonePleaseCheckY.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not start microphone. Please check your audio settings and try again.'**
+  String get couldNotStartMicrophonePleaseCheckY;
+
+  /// No description provided for @weDidntQuiteCatchThatPleaseHoldTheM.
+  ///
+  /// In en, this message translates to:
+  /// **'We didn\'t quite catch that. Please hold the mic and try again!'**
+  String get weDidntQuiteCatchThatPleaseHoldTheM;
+
+  /// No description provided for @recordingWasTooShortHoldTheMicAndSp.
+  ///
+  /// In en, this message translates to:
+  /// **'Recording was too short. Hold the mic and speak clearly.'**
+  String get recordingWasTooShortHoldTheMicAndSp;
+
+  /// No description provided for @audioBufferWasEmptyPleaseCheckYourM.
+  ///
+  /// In en, this message translates to:
+  /// **'Audio buffer was empty. Please check your microphone and try again.'**
+  String get audioBufferWasEmptyPleaseCheckYourM;
+
+  /// No description provided for @audioFileIsSilentPleaseSpeakIntoThe.
+  ///
+  /// In en, this message translates to:
+  /// **'Audio file is silent. Please speak into the microphone.'**
+  String get audioFileIsSilentPleaseSpeakIntoThe;
+
+  /// No description provided for @weCouldntUnderstandYourPronunciatio.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t understand your pronunciation. Please speak clearly and try again.'**
+  String get weCouldntUnderstandYourPronunciatio;
+
+  /// No description provided for @theServerIsTakingTooLongToRespondPl.
+  ///
+  /// In en, this message translates to:
+  /// **'The server is taking too long to respond. Please try again.'**
+  String get theServerIsTakingTooLongToRespondPl;
+
+  /// No description provided for @noInternetConnectionPleaseCheckYour.
+  ///
+  /// In en, this message translates to:
+  /// **'No internet connection. Please check your network and try again.'**
+  String get noInternetConnectionPleaseCheckYour;
+
+  /// No description provided for @audioProcessingFailedPleaseTryAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Audio processing failed. Please try again.'**
+  String get audioProcessingFailedPleaseTryAgain;
+
+  /// No description provided for @permission.
+  ///
+  /// In en, this message translates to:
+  /// **'Permission'**
+  String get permission;
+
+  /// No description provided for @couldNotProcessYourRecordingPleaseT.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not process your recording. Please try again.'**
+  String get couldNotProcessYourRecordingPleaseT;
+
+  /// No description provided for @user.
+  ///
+  /// In en, this message translates to:
+  /// **'User'**
+  String get user;
+
+  /// No description provided for @scholar.
+  ///
+  /// In en, this message translates to:
+  /// **'Scholar'**
+  String get scholar;
+
+  /// No description provided for @ourAiTutorsAreCurrentlyOfflinePleas.
+  ///
+  /// In en, this message translates to:
+  /// **'Our AI tutors are currently offline, please try again later.'**
+  String get ourAiTutorsAreCurrentlyOfflinePleas;
+
+  /// No description provided for @hideTranslation.
+  ///
+  /// In en, this message translates to:
+  /// **'Hide Translation'**
+  String get hideTranslation;
+
+  /// No description provided for @azureAssessment.
+  ///
+  /// In en, this message translates to:
+  /// **'Azure Assessment...'**
+  String get azureAssessment;
+
+  /// No description provided for @microphonePermissionRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Microphone permission required'**
+  String get microphonePermissionRequired;
+
+  /// No description provided for @connectedSpeakNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Connected! Speak now.'**
+  String get connectedSpeakNow;
+
+  /// No description provided for @initializationErrorCheckPermissions.
+  ///
+  /// In en, this message translates to:
+  /// **'Initialization error. Check permissions.'**
+  String get initializationErrorCheckPermissions;
+
+  /// No description provided for @microphoneErrorTapToRetry.
+  ///
+  /// In en, this message translates to:
+  /// **'Microphone error. Tap to retry.'**
+  String get microphoneErrorTapToRetry;
+
+  /// No description provided for @theTutorReturnedAnEmptyResponse.
+  ///
+  /// In en, this message translates to:
+  /// **'The tutor returned an empty response'**
+  String get theTutorReturnedAnEmptyResponse;
+
+  /// No description provided for @connectionInterruptedPleaseSpeakAga.
+  ///
+  /// In en, this message translates to:
+  /// **'Connection interrupted. Please speak again.'**
+  String get connectionInterruptedPleaseSpeakAga;
+
+  /// No description provided for @callPausedReviewingTones.
+  ///
+  /// In en, this message translates to:
+  /// **'Call Paused (Reviewing Tones)'**
+  String get callPausedReviewingTones;
+
+  /// No description provided for @pausedTakeABreak.
+  ///
+  /// In en, this message translates to:
+  /// **'Paused - Take a break'**
+  String get pausedTakeABreak;
+
+  /// No description provided for @goodStartPracticing.
+  ///
+  /// In en, this message translates to:
+  /// **'Good start practicing'**
+  String get goodStartPracticing;
+
+  /// No description provided for @studentCoach.
+  ///
+  /// In en, this message translates to:
+  /// **'STUDENT\' : \'COACH'**
+  String get studentCoach;
+
+  /// No description provided for @keepYour1stToneHighAndSteadyOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep your 1st tone high and steady on'**
+  String get keepYour1stToneHighAndSteadyOn;
+
+  /// No description provided for @noScenariosFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No scenarios found.'**
+  String get noScenariosFound;
+
+  /// No description provided for @designYourOwnAiRoleplayExperience.
+  ///
+  /// In en, this message translates to:
+  /// **'Design your own AI roleplay experience'**
+  String get designYourOwnAiRoleplayExperience;
+
+  /// No description provided for @generateFromDeck.
+  ///
+  /// In en, this message translates to:
+  /// **'Generate from Deck'**
+  String get generateFromDeck;
+
+  /// No description provided for @practiceFlashcardVocabularyInALiveD.
+  ///
+  /// In en, this message translates to:
+  /// **'Practice flashcard vocabulary in a live dialogue'**
+  String get practiceFlashcardVocabularyInALiveD;
+
+  /// No description provided for @tapToRoleplay.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to roleplay'**
+  String get tapToRoleplay;
+
+  /// No description provided for @hsk2.
+  ///
+  /// In en, this message translates to:
+  /// **'HSK 2'**
+  String get hsk2;
+
+  /// No description provided for @hsk3.
+  ///
+  /// In en, this message translates to:
+  /// **'HSK 3'**
+  String get hsk3;
+
+  /// No description provided for @hsk4.
+  ///
+  /// In en, this message translates to:
+  /// **'HSK 4'**
+  String get hsk4;
+
+  /// No description provided for @hsk5.
+  ///
+  /// In en, this message translates to:
+  /// **'HSK 5'**
+  String get hsk5;
+
+  /// No description provided for @hsk6.
+  ///
+  /// In en, this message translates to:
+  /// **'HSK 6'**
+  String get hsk6;
+
+  /// No description provided for @dinnerWithDad.
+  ///
+  /// In en, this message translates to:
+  /// **'Dinner with Dad'**
+  String get dinnerWithDad;
+
+  /// No description provided for @orderingAtAChengduTeahouse.
+  ///
+  /// In en, this message translates to:
+  /// **'Ordering at a Chengdu Teahouse'**
+  String get orderingAtAChengduTeahouse;
+
+  /// No description provided for @buyingTeaAtTheMarket.
+  ///
+  /// In en, this message translates to:
+  /// **'Buying Tea at the Market'**
+  String get buyingTeaAtTheMarket;
+
+  /// No description provided for @meetingAnOldClassmate.
+  ///
+  /// In en, this message translates to:
+  /// **'Meeting an Old Classmate'**
+  String get meetingAnOldClassmate;
+
+  /// No description provided for @readyToPractice.
+  ///
+  /// In en, this message translates to:
+  /// **'Ready to practice?'**
+  String get readyToPractice;
+
+  /// No description provided for @letsPracticeChinese.
+  ///
+  /// In en, this message translates to:
+  /// **'Let\'s practice Chinese'**
+  String get letsPracticeChinese;
+
+  /// No description provided for @areYouReady.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you ready?'**
+  String get areYouReady;
+
+  /// No description provided for @discussWhatToHaveForDinner.
+  ///
+  /// In en, this message translates to:
+  /// **'Discuss what to have for dinner'**
+  String get discussWhatToHaveForDinner;
+
+  /// No description provided for @suggestWatchingAMovieAfterwards.
+  ///
+  /// In en, this message translates to:
+  /// **'Suggest watching a movie afterwards'**
+  String get suggestWatchingAMovieAfterwards;
+
+  /// No description provided for @askIfTheyWouldLikeTea.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask if they would like tea'**
+  String get askIfTheyWouldLikeTea;
+
+  /// No description provided for @helloVeryNiceToMeetYou.
+  ///
+  /// In en, this message translates to:
+  /// **'Hello! Very nice to meet you.'**
+  String get helloVeryNiceToMeetYou;
+
+  /// No description provided for @deckPractice.
+  ///
+  /// In en, this message translates to:
+  /// **'Deck Practice'**
+  String get deckPractice;
+
+  /// No description provided for @practiceVocabularyWithAnAiPartner.
+  ///
+  /// In en, this message translates to:
+  /// **'Practice vocabulary with an AI partner.'**
+  String get practiceVocabularyWithAnAiPartner;
+
+  /// No description provided for @designCustomAiRoleplayConversation.
+  ///
+  /// In en, this message translates to:
+  /// **'Design custom AI roleplay & conversation'**
+  String get designCustomAiRoleplayConversation;
+
+  /// No description provided for @random.
+  ///
+  /// In en, this message translates to:
+  /// **'Random'**
+  String get random;
+
+  /// No description provided for @scenarioTopic.
+  ///
+  /// In en, this message translates to:
+  /// **'Scenario Topic'**
+  String get scenarioTopic;
+
+  /// No description provided for @contextSettingOptional.
+  ///
+  /// In en, this message translates to:
+  /// **'Context & Setting (Optional)'**
+  String get contextSettingOptional;
+
+  /// No description provided for @aiCharacterPersonaOptional.
+  ///
+  /// In en, this message translates to:
+  /// **'AI Character / Persona (Optional)'**
+  String get aiCharacterPersonaOptional;
+
+  /// No description provided for @aQuietBambooCourtyardTeahouseInChen.
+  ///
+  /// In en, this message translates to:
+  /// **'A quiet bamboo courtyard teahouse in Chengdu with gentle guzheng music playing.'**
+  String get aQuietBambooCourtyardTeahouseInChen;
+
+  /// No description provided for @aBustlingSmokyNightMarketFilledWith.
+  ///
+  /// In en, this message translates to:
+  /// **'A bustling, smoky night market filled with skewers, steamed buns, and street food stalls.'**
+  String get aBustlingSmokyNightMarketFilledWith;
+
+  /// No description provided for @aLivelyHotpotRestaurantInChongqingW.
+  ///
+  /// In en, this message translates to:
+  /// **'A lively hotpot restaurant in Chongqing with boiling crimson broth and fragrant chili aroma.'**
+  String get aLivelyHotpotRestaurantInChongqingW;
+
+  /// No description provided for @aBustlingTraditionalCantoneseTeahou.
+  ///
+  /// In en, this message translates to:
+  /// **'A bustling traditional Cantonese teahouse in Guangzhou filled with steaming bamboo baskets.'**
+  String get aBustlingTraditionalCantoneseTeahou;
+
+  /// No description provided for @aChicMinimalistCafeInTheFrenchConce.
+  ///
+  /// In en, this message translates to:
+  /// **'A chic minimalist cafe in the French Concession during a rainy Sunday afternoon.'**
+  String get aChicMinimalistCafeInTheFrenchConce;
+
+  /// No description provided for @aWarmNorthernHomeKitchenDuringWinte.
+  ///
+  /// In en, this message translates to:
+  /// **'A warm northern home kitchen during winter with flour on the table and steaming dumpling pots.'**
+  String get aWarmNorthernHomeKitchenDuringWinte;
+
+  /// No description provided for @anOpenairNightStreetFoodAlleyWithSi.
+  ///
+  /// In en, this message translates to:
+  /// **'An open-air night street food alley with sizzling lamb skewers, roasted eggplant, and cold beer.'**
+  String get anOpenairNightStreetFoodAlleyWithSi;
+
+  /// No description provided for @aSnowyStreetCornerOutsideTheLamaTem.
+  ///
+  /// In en, this message translates to:
+  /// **'A snowy street corner outside the Lama Temple with glowing red candied hawthorn skewers on ice.'**
+  String get aSnowyStreetCornerOutsideTheLamaTem;
+
+  /// No description provided for @craftBeerBreweryInQingdao.
+  ///
+  /// In en, this message translates to:
+  /// **'Craft Beer Brewery in Qingdao'**
+  String get craftBeerBreweryInQingdao;
+
+  /// No description provided for @aLivelyCoastalTaproomWithWoodenBarr.
+  ///
+  /// In en, this message translates to:
+  /// **'A lively coastal taproom with wooden barrels, ocean breeze, and fresh wheat beer taps.'**
+  String get aLivelyCoastalTaproomWithWoodenBarr;
+
+  /// No description provided for @sichuanCookingMasterclass.
+  ///
+  /// In en, this message translates to:
+  /// **'Sichuan Cooking Masterclass'**
+  String get sichuanCookingMasterclass;
+
+  /// No description provided for @aVibrantOpenKitchenWithWoksBlazingC.
+  ///
+  /// In en, this message translates to:
+  /// **'A vibrant open kitchen with woks blazing, chili oil simmering, and fresh peppercorns.'**
+  String get aVibrantOpenKitchenWithWoksBlazingC;
+
+  /// No description provided for @highspeedRailSeatMixup.
+  ///
+  /// In en, this message translates to:
+  /// **'High-Speed Rail Seat Mix-Up'**
+  String get highspeedRailSeatMixup;
+
+  /// No description provided for @greatWallSunriseTrekInMutianyu.
+  ///
+  /// In en, this message translates to:
+  /// **'Great Wall Sunrise Trek in Mutianyu'**
+  String get greatWallSunriseTrekInMutianyu;
+
+  /// No description provided for @theAncientStoneRampartsOfTheGreatWa.
+  ///
+  /// In en, this message translates to:
+  /// **'The ancient stone ramparts of the Great Wall at dawn, surrounded by misty green mountains.'**
+  String get theAncientStoneRampartsOfTheGreatWa;
+
+  /// No description provided for @bambooRaftDriftOnGuilinLiRiver.
+  ///
+  /// In en, this message translates to:
+  /// **'Bamboo Raft Drift on Guilin Li River'**
+  String get bambooRaftDriftOnGuilinLiRiver;
+
+  /// No description provided for @glidingAlongEmeraldKarstWatersBetwe.
+  ///
+  /// In en, this message translates to:
+  /// **'Gliding along emerald karst waters between dramatic misty limestone peaks near Yangshuo.'**
+  String get glidingAlongEmeraldKarstWatersBetwe;
+
+  /// No description provided for @silkRoadCamelTrekInDunhuang.
+  ///
+  /// In en, this message translates to:
+  /// **'Silk Road Camel Trek in Dunhuang'**
+  String get silkRoadCamelTrekInDunhuang;
+
+  /// No description provided for @theRollingGoldenSandDunesOfMingshaM.
+  ///
+  /// In en, this message translates to:
+  /// **'The rolling golden sand dunes of Mingsha Mountain next to the Crescent Lake oasis.'**
+  String get theRollingGoldenSandDunesOfMingshaM;
+
+  /// No description provided for @bookingACourtyardHomestayInDali.
+  ///
+  /// In en, this message translates to:
+  /// **'Booking a Courtyard Homestay in Dali'**
+  String get bookingACourtyardHomestayInDali;
+
+  /// No description provided for @aSereneBaistyleBoutiqueCourtyardHot.
+  ///
+  /// In en, this message translates to:
+  /// **'A serene Bai-style boutique courtyard hotel overlooking Erhai Lake in Yunnan.'**
+  String get aSereneBaistyleBoutiqueCourtyardHot;
+
+  /// No description provided for @potalaPalacePilgrimageInLhasa.
+  ///
+  /// In en, this message translates to:
+  /// **'Potala Palace Pilgrimage in Lhasa'**
+  String get potalaPalacePilgrimageInLhasa;
+
+  /// No description provided for @theMajesticSundrenchedStoneStepsOut.
+  ///
+  /// In en, this message translates to:
+  /// **'The majestic sun-drenched stone steps outside the Potala Palace with spinning prayer wheels.'**
+  String get theMajesticSundrenchedStoneStepsOut;
+
+  /// No description provided for @aSubzeroWonderlandOfIlluminatedCrys.
+  ///
+  /// In en, this message translates to:
+  /// **'A sub-zero wonderland of illuminated crystal ice palaces and towering snow sculptures.'**
+  String get aSubzeroWonderlandOfIlluminatedCrys;
+
+  /// No description provided for @zhangjiajieAvatarMountainCableCar.
+  ///
+  /// In en, this message translates to:
+  /// **'Zhangjiajie Avatar Mountain Cable Car'**
+  String get zhangjiajieAvatarMountainCableCar;
+
+  /// No description provided for @suspendedHighInAGlassCableCarSoarin.
+  ///
+  /// In en, this message translates to:
+  /// **'Suspended high in a glass cable car soaring above thousands of sandstone pillar peaks.'**
+  String get suspendedHighInAGlassCableCarSoarin;
+
+  /// No description provided for @gobiDesertStargazingCampInGansu.
+  ///
+  /// In en, this message translates to:
+  /// **'Gobi Desert Stargazing Camp in Gansu'**
+  String get gobiDesertStargazingCampInGansu;
+
+  /// No description provided for @aLuxuryYurtCampUnderACrystalclearMi.
+  ///
+  /// In en, this message translates to:
+  /// **'A luxury yurt camp under a crystal-clear Milky Way sky in the desert outside Jiayuguan.'**
+  String get aLuxuryYurtCampUnderACrystalclearMi;
+
+  /// No description provided for @yangtzeRiverThreeGorgesCruise.
+  ///
+  /// In en, this message translates to:
+  /// **'Yangtze River Three Gorges Cruise'**
+  String get yangtzeRiverThreeGorgesCruise;
+
+  /// No description provided for @onTheSunDeckOfARiverCruiseShipPassi.
+  ///
+  /// In en, this message translates to:
+  /// **'On the sun deck of a river cruise ship passing through the dramatic towering Qutang Gorge.'**
+  String get onTheSunDeckOfARiverCruiseShipPassi;
+
+  /// No description provided for @buyingAntiquesInBeijingPanjiayuan.
+  ///
+  /// In en, this message translates to:
+  /// **'Buying Antiques in Beijing Panjiayuan'**
+  String get buyingAntiquesInBeijingPanjiayuan;
+
+  /// No description provided for @aHistoricPotteryKilnFilledWithDelic.
+  ///
+  /// In en, this message translates to:
+  /// **'A historic pottery kiln filled with delicate unfired porcelain vases and cobalt blue glazes.'**
+  String get aHistoricPotteryKilnFilledWithDelic;
+
+  /// No description provided for @suzhouSilkEmbroideryStudio.
+  ///
+  /// In en, this message translates to:
+  /// **'Suzhou Silk Embroidery Studio'**
+  String get suzhouSilkEmbroideryStudio;
+
+  /// No description provided for @aPeacefulCanalsideGardenStudioInSuz.
+  ///
+  /// In en, this message translates to:
+  /// **'A peaceful canal-side garden studio in Suzhou with fine silk threads and wooden embroidery frames.'**
+  String get aPeacefulCanalsideGardenStudioInSuz;
+
+  /// No description provided for @backstageAtATraditionalBeijingOpera.
+  ///
+  /// In en, this message translates to:
+  /// **'Backstage at a traditional Beijing opera theater with colorful costumes, mirrors, and headpieces.'**
+  String get backstageAtATraditionalBeijingOpera;
+
+  /// No description provided for @traditionalChineseMedicineConsultat.
+  ///
+  /// In en, this message translates to:
+  /// **'Traditional Chinese Medicine Consultation'**
+  String get traditionalChineseMedicineConsultat;
+
+  /// No description provided for @morningTaiChiInTempleOfHeavenPark.
+  ///
+  /// In en, this message translates to:
+  /// **'Morning Tai Chi in Temple of Heaven Park'**
+  String get morningTaiChiInTempleOfHeavenPark;
+
+  /// No description provided for @beneathAncientCypressTreesAtDawnWit.
+  ///
+  /// In en, this message translates to:
+  /// **'Beneath ancient cypress trees at dawn with park birds and seniors practicing synchronized movements.'**
+  String get beneathAncientCypressTreesAtDawnWit;
+
+  /// No description provided for @rentingAHanfuForAPhotoShoot.
+  ///
+  /// In en, this message translates to:
+  /// **'Renting a Hanfu for a Photo Shoot'**
+  String get rentingAHanfuForAPhotoShoot;
+
+  /// No description provided for @aTraditionalCostumeBoutiqueNearTheW.
+  ///
+  /// In en, this message translates to:
+  /// **'A traditional costume boutique near the West Lake with racks of Tang and Song dynasty robes.'**
+  String get aTraditionalCostumeBoutiqueNearTheW;
+
+  /// No description provided for @guqinAncientZitherInstrumentWorksho.
+  ///
+  /// In en, this message translates to:
+  /// **'Guqin Ancient Zither Instrument Workshop'**
+  String get guqinAncientZitherInstrumentWorksho;
+
+  /// No description provided for @aQuietPinewoodStudioInHangzhouFille.
+  ///
+  /// In en, this message translates to:
+  /// **'A quiet pine-wood studio in Hangzhou filled with aged paulownia wood and silk-string instruments.'**
+  String get aQuietPinewoodStudioInHangzhouFille;
+
+  /// No description provided for @shaanxiShadowPuppetTheater.
+  ///
+  /// In en, this message translates to:
+  /// **'Shaanxi Shadow Puppet Theater'**
+  String get shaanxiShadowPuppetTheater;
+
+  /// No description provided for @behindAnIlluminatedWhiteSilkScreenW.
+  ///
+  /// In en, this message translates to:
+  /// **'Behind an illuminated white silk screen with delicate translucent leather shadow figures.'**
+  String get behindAnIlluminatedWhiteSilkScreenW;
+
+  /// No description provided for @chineseCalligraphyWorkshop.
+  ///
+  /// In en, this message translates to:
+  /// **'Chinese Calligraphy Workshop'**
+  String get chineseCalligraphyWorkshop;
+
+  /// No description provided for @aTranquilStudioScentedWithPineSootI.
+  ///
+  /// In en, this message translates to:
+  /// **'A tranquil studio scented with pine soot ink, rice paper scrolls, and soft tea aromas.'**
+  String get aTranquilStudioScentedWithPineSootI;
+
+  /// No description provided for @adoptingACatAtAnAnimalShelter.
+  ///
+  /// In en, this message translates to:
+  /// **'Adopting a Cat at an Animal Shelter'**
+  String get adoptingACatAtAnAnimalShelter;
+
+  /// No description provided for @aCozyPetRescueCenterInHangzhouWithE.
+  ///
+  /// In en, this message translates to:
+  /// **'A cozy pet rescue center in Hangzhou with energetic rescue kittens and tea for visitors.'**
+  String get aCozyPetRescueCenterInHangzhouWithE;
+
+  /// No description provided for @scriptMurderMysteryJubenshaGame.
+  ///
+  /// In en, this message translates to:
+  /// **'Script Murder Mystery (Jubensha) Game'**
+  String get scriptMurderMysteryJubenshaGame;
+
+  /// No description provided for @aThemedDetectiveLoungeInShanghaiWit.
+  ///
+  /// In en, this message translates to:
+  /// **'A themed detective lounge in Shanghai with costumed players and candlelight.'**
+  String get aThemedDetectiveLoungeInShanghaiWit;
+
+  /// No description provided for @vintageVinylRecordShopInShanghai.
+  ///
+  /// In en, this message translates to:
+  /// **'Vintage Vinyl Record Shop in Shanghai'**
+  String get vintageVinylRecordShopInShanghai;
+
+  /// No description provided for @aHiddenVinylStoreInAnOldLaneHousePa.
+  ///
+  /// In en, this message translates to:
+  /// **'A hidden vinyl store in an old lane house packed with classic 80s Cantopop and jazz records.'**
+  String get aHiddenVinylStoreInAnOldLaneHousePa;
+
+  /// No description provided for @ktvKaraokePartyWithFriends.
+  ///
+  /// In en, this message translates to:
+  /// **'KTV Karaoke Party with Friends'**
+  String get ktvKaraokePartyWithFriends;
+
+  /// No description provided for @joiningACityBikeCyclingClub.
+  ///
+  /// In en, this message translates to:
+  /// **'Joining a City Bike Cycling Club'**
+  String get joiningACityBikeCyclingClub;
+
+  /// No description provided for @aGatheringOfCyclistsByTheRiverfront.
+  ///
+  /// In en, this message translates to:
+  /// **'A gathering of cyclists by the riverfront preparing for an evening ride around the city skyline.'**
+  String get aGatheringOfCyclistsByTheRiverfront;
+
+  /// No description provided for @blindBoxToyTradingMeetup.
+  ///
+  /// In en, this message translates to:
+  /// **'Blind Box Toy Trading Meetup'**
+  String get blindBoxToyTradingMeetup;
+
+  /// No description provided for @aColorfulPopcultureToyStoreInChaoya.
+  ///
+  /// In en, this message translates to:
+  /// **'A colorful pop-culture toy store in Chaoyang with display shelves and unopened collectible boxes.'**
+  String get aColorfulPopcultureToyStoreInChaoya;
+
+  /// No description provided for @droneSkylineVideographyAtTheBund.
+  ///
+  /// In en, this message translates to:
+  /// **'Drone Skyline Videography at the Bund'**
+  String get droneSkylineVideographyAtTheBund;
+
+  /// No description provided for @theBundPromenadeAtDuskOverlookingTh.
+  ///
+  /// In en, this message translates to:
+  /// **'The Bund promenade at dusk overlooking the futuristic illuminated skyscrapers of Pudong.'**
+  String get theBundPromenadeAtDuskOverlookingTh;
+
+  /// No description provided for @goldenRetrieverCafeInNanjing.
+  ///
+  /// In en, this message translates to:
+  /// **'Golden Retriever Cafe in Nanjing'**
+  String get goldenRetrieverCafeInNanjing;
+
+  /// No description provided for @aSunnyCheerfulPetCafeWithDozensOfFr.
+  ///
+  /// In en, this message translates to:
+  /// **'A sunny, cheerful pet cafe with dozens of friendly, fluffy dogs greeting visitors.'**
+  String get aSunnyCheerfulPetCafeWithDozensOfFr;
+
+  /// No description provided for @boulderingClimbingGymInChengdu.
+  ///
+  /// In en, this message translates to:
+  /// **'Bouldering Climbing Gym in Chengdu'**
+  String get boulderingClimbingGymInChengdu;
+
+  /// No description provided for @aModernIndoorClimbingGymWithVibrant.
+  ///
+  /// In en, this message translates to:
+  /// **'A modern indoor climbing gym with vibrant colored hold routes and energetic music.'**
+  String get aModernIndoorClimbingGymWithVibrant;
+
+  /// No description provided for @aMassiveConventionHallFilledWithCol.
+  ///
+  /// In en, this message translates to:
+  /// **'A massive convention hall filled with colorful game booths, photo walls, and costumed creators.'**
+  String get aMassiveConventionHallFilledWithCol;
+
+  /// No description provided for @askingForDirectionsInABeijingHutong.
+  ///
+  /// In en, this message translates to:
+  /// **'Asking for Directions in a Beijing Hutong'**
+  String get askingForDirectionsInABeijingHutong;
+
+  /// No description provided for @aMazeOfHistoricGreybrickAlleysWithB.
+  ///
+  /// In en, this message translates to:
+  /// **'A maze of historic grey-brick alleys with bicycles, courtyards, and pomegranate trees.'**
+  String get aMazeOfHistoricGreybrickAlleysWithB;
+
+  /// No description provided for @buyingFreshFruitAtAWetMarket.
+  ///
+  /// In en, this message translates to:
+  /// **'Buying Fresh Fruit at a Wet Market'**
+  String get buyingFreshFruitAtAWetMarket;
+
+  /// No description provided for @aLivelyMorningNeighborhoodMarketWit.
+  ///
+  /// In en, this message translates to:
+  /// **'A lively morning neighborhood market with mounds of fresh lychees, mangoes, and dragonfruit.'**
+  String get aLivelyMorningNeighborhoodMarketWit;
+
+  /// No description provided for @flowerMarketBouquetInKunming.
+  ///
+  /// In en, this message translates to:
+  /// **'Flower Market Bouquet in Kunming'**
+  String get flowerMarketBouquetInKunming;
+
+  /// No description provided for @theFamousDounanFlowerMarketSurround.
+  ///
+  /// In en, this message translates to:
+  /// **'The famous Dounan Flower Market surrounded by thousands of fresh roses, lilies, and eucalyptus stems.'**
+  String get theFamousDounanFlowerMarketSurround;
+
+  /// No description provided for @tailorAlterationsInAnOldLaneHouse.
+  ///
+  /// In en, this message translates to:
+  /// **'Tailor Alterations in an Old Lane House'**
+  String get tailorAlterationsInAnOldLaneHouse;
+
+  /// No description provided for @aTraditionalTailorShopFilledWithSew.
+  ///
+  /// In en, this message translates to:
+  /// **'A traditional tailor shop filled with sewing machines, fabrics, and measuring tapes.'**
+  String get aTraditionalTailorShopFilledWithSew;
+
+  /// No description provided for @expressParcelLockerRetrieval.
+  ///
+  /// In en, this message translates to:
+  /// **'Express Parcel Locker Retrieval'**
+  String get expressParcelLockerRetrieval;
+
+  /// No description provided for @downstairsAtAResidentialApartmentGa.
+  ///
+  /// In en, this message translates to:
+  /// **'Downstairs at a residential apartment gate next to a smart Hive box locker system.'**
+  String get downstairsAtAResidentialApartmentGa;
+
+  /// No description provided for @bicycleFlatTireRepairAtCampusGate.
+  ///
+  /// In en, this message translates to:
+  /// **'Bicycle Flat Tire Repair at Campus Gate'**
+  String get bicycleFlatTireRepairAtCampusGate;
+
+  /// No description provided for @aSmallOutdoorRoadsideToolkitStandUn.
+  ///
+  /// In en, this message translates to:
+  /// **'A small outdoor roadside toolkit stand under a large leafy banyan tree.'**
+  String get aSmallOutdoorRoadsideToolkitStandUn;
+
+  /// No description provided for @techCompanyProductDemo.
+  ///
+  /// In en, this message translates to:
+  /// **'Tech Company Product Demo'**
+  String get techCompanyProductDemo;
+
+  /// No description provided for @aFuturisticTechConferenceBoothInShe.
+  ///
+  /// In en, this message translates to:
+  /// **'A futuristic tech conference booth in Shenzhen showcasing cutting-edge AI hardware.'**
+  String get aFuturisticTechConferenceBoothInShe;
+
+  /// No description provided for @ecommerceLivestreamStudio.
+  ///
+  /// In en, this message translates to:
+  /// **'E-commerce Live-Stream Studio'**
+  String get ecommerceLivestreamStudio;
+
+  /// No description provided for @aHighenergyBroadcastStudioWithRingL.
+  ///
+  /// In en, this message translates to:
+  /// **'A high-energy broadcast studio with ring lights, product display racks, and live comment monitors.'**
+  String get aHighenergyBroadcastStudioWithRingL;
+
+  /// No description provided for @yiwuInternationalTradeMarket.
+  ///
+  /// In en, this message translates to:
+  /// **'Yiwu International Trade Market'**
+  String get yiwuInternationalTradeMarket;
+
+  /// No description provided for @aVastMultistoryCommercialExhibition.
+  ///
+  /// In en, this message translates to:
+  /// **'A vast multi-story commercial exhibition mall filled with millions of wholesale goods and crafts.'**
+  String get aVastMultistoryCommercialExhibition;
+
+  /// No description provided for @universityCampusExchangeProgram.
+  ///
+  /// In en, this message translates to:
+  /// **'University Campus Exchange Program'**
+  String get universityCampusExchangeProgram;
+
+  /// No description provided for @aSunnyLawnOutsideTheUniversityLibra.
+  ///
+  /// In en, this message translates to:
+  /// **'A sunny lawn outside the university library with students studying and drinking milk tea.'**
+  String get aSunnyLawnOutsideTheUniversityLibra;
+
+  /// No description provided for @pleaseEnterAScenarioTopic.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a scenario topic.'**
+  String get pleaseEnterAScenarioTopic;
+
+  /// No description provided for @nameTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Name (Title)'**
+  String get nameTitle;
+
+  /// No description provided for @aiCharacter.
+  ///
+  /// In en, this message translates to:
+  /// **'AI Character'**
+  String get aiCharacter;
+
+  /// No description provided for @helloWelcomeHereWhatShallWeChatAbou.
+  ///
+  /// In en, this message translates to:
+  /// **'Hello! Welcome here, what shall we chat about today?'**
+  String get helloWelcomeHereWhatShallWeChatAbou;
+
+  /// No description provided for @greetYourConversationPartner.
+  ///
+  /// In en, this message translates to:
+  /// **'Greet your conversation partner'**
+  String get greetYourConversationPartner;
+
+  /// No description provided for @askAQuestionInChinese.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask a question in Chinese'**
+  String get askAQuestionInChinese;
+
+  /// No description provided for @pinyinWithToneMarks.
+  ///
+  /// In en, this message translates to:
+  /// **'Pinyin with tone marks'**
+  String get pinyinWithToneMarks;
+
+  /// No description provided for @goal1InEnglish.
+  ///
+  /// In en, this message translates to:
+  /// **'Goal 1 in English'**
+  String get goal1InEnglish;
+
+  /// No description provided for @goal2InEnglish.
+  ///
+  /// In en, this message translates to:
+  /// **'Goal 2 in English'**
+  String get goal2InEnglish;
+
+  /// No description provided for @goal3InEnglish.
+  ///
+  /// In en, this message translates to:
+  /// **'Goal 3 in English'**
+  String get goal3InEnglish;
+
+  /// No description provided for @beginner.
+  ///
+  /// In en, this message translates to:
+  /// **'Beginner'**
+  String get beginner;
+
+  /// No description provided for @hsk12.
+  ///
+  /// In en, this message translates to:
+  /// **'HSK 1-2'**
+  String get hsk12;
+
+  /// No description provided for @hsk34.
+  ///
+  /// In en, this message translates to:
+  /// **'HSK 3-4'**
+  String get hsk34;
+
+  /// No description provided for @hsk56.
+  ///
+  /// In en, this message translates to:
+  /// **'HSK 5-6'**
+  String get hsk56;
+
+  /// No description provided for @master.
+  ///
+  /// In en, this message translates to:
+  /// **'Master'**
+  String get master;
+
+  /// No description provided for @azurePronunciationAssessment.
+  ///
+  /// In en, this message translates to:
+  /// **'AZURE PRONUNCIATION ASSESSMENT'**
+  String get azurePronunciationAssessment;
+
+  /// No description provided for @tapToReview.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to review'**
+  String get tapToReview;
+
+  /// No description provided for @overallScore.
+  ///
+  /// In en, this message translates to:
+  /// **'Overall Score'**
+  String get overallScore;
+
+  /// No description provided for @toneAccuracy.
+  ///
+  /// In en, this message translates to:
+  /// **'Tone Accuracy'**
+  String get toneAccuracy;
+
+  /// No description provided for @fluency.
+  ///
+  /// In en, this message translates to:
+  /// **'Fluency'**
+  String get fluency;
+
+  /// No description provided for @report.
+  ///
+  /// In en, this message translates to:
+  /// **'Report'**
+  String get report;
+
+  /// No description provided for @goodPronunciationButCanBeBetter.
+  ///
+  /// In en, this message translates to:
+  /// **'Good pronunciation, but can be better!'**
+  String get goodPronunciationButCanBeBetter;
+
+  /// No description provided for @didYouMeanToSay.
+  ///
+  /// In en, this message translates to:
+  /// **'Did you mean to say...?'**
+  String get didYouMeanToSay;
+
+  /// No description provided for @greatKeepTrying.
+  ///
+  /// In en, this message translates to:
+  /// **'Great!\' : \'Keep trying!'**
+  String get greatKeepTrying;
+
+  /// No description provided for @completeness.
+  ///
+  /// In en, this message translates to:
+  /// **'Completeness'**
+  String get completeness;
+
+  /// No description provided for @targetTone.
+  ///
+  /// In en, this message translates to:
+  /// **'Target Tone'**
+  String get targetTone;
+
+  /// No description provided for @k4toneComparisonTapToListen.
+  ///
+  /// In en, this message translates to:
+  /// **'4-Tone Comparison (Tap to Listen):'**
+  String get k4toneComparisonTapToListen;
+
+  /// No description provided for @youSpokeMatch.
+  ///
+  /// In en, this message translates to:
+  /// **'You Spoke (Match!)'**
+  String get youSpokeMatch;
+
+  /// No description provided for @youSpoke.
+  ///
+  /// In en, this message translates to:
+  /// **'You Spoke'**
+  String get youSpoke;
+
+  /// No description provided for @yourPrimaryCollectionOfCharacters.
+  ///
+  /// In en, this message translates to:
+  /// **'Your primary collection of characters.'**
+  String get yourPrimaryCollectionOfCharacters;
+
+  /// No description provided for @deckNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'Deck not found'**
+  String get deckNotFound;
+
+  /// No description provided for @cannotDeleteTheDefaultDeck.
+  ///
+  /// In en, this message translates to:
+  /// **'Cannot delete the default deck'**
+  String get cannotDeleteTheDefaultDeck;
+
+  /// No description provided for @hsk4UpperIntermediate1.
+  ///
+  /// In en, this message translates to:
+  /// **'HSK 4: Upper Intermediate'**
+  String get hsk4UpperIntermediate1;
+
+  /// No description provided for @theFirst150CharactersToStartYourJou.
+  ///
+  /// In en, this message translates to:
+  /// **'The first 150 characters to start your journey.'**
+  String get theFirst150CharactersToStartYourJou;
+
+  /// No description provided for @buildYourVocabularyTo300EssentialWo.
+  ///
+  /// In en, this message translates to:
+  /// **'Build your vocabulary to 300 essential words.'**
+  String get buildYourVocabularyTo300EssentialWo;
+
+  /// No description provided for @masterConversationalFluencyWith600W.
+  ///
+  /// In en, this message translates to:
+  /// **'Master conversational fluency with 600 words.'**
+  String get masterConversationalFluencyWith600W;
+
+  /// No description provided for @readTextsAndConverseFluentlyWith120.
+  ///
+  /// In en, this message translates to:
+  /// **'Read texts and converse fluently with 1200 words.'**
+  String get readTextsAndConverseFluentlyWith120;
+
+  /// No description provided for @readNewspapersAndWatchMoviesWith250.
+  ///
+  /// In en, this message translates to:
+  /// **'Read newspapers and watch movies with 2500 words.'**
+  String get readNewspapersAndWatchMoviesWith250;
+
+  /// No description provided for @databaseBoxNotOpen.
+  ///
+  /// In en, this message translates to:
+  /// **'Database box not open'**
+  String get databaseBoxNotOpen;
+
+  /// No description provided for @hsk1DataFileIsEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'HSK1 data file is empty'**
+  String get hsk1DataFileIsEmpty;
+
+  /// No description provided for @gold.
+  ///
+  /// In en, this message translates to:
+  /// **'Gold'**
+  String get gold;
+
+  /// No description provided for @globalDictionaryNotInitialized.
+  ///
+  /// In en, this message translates to:
+  /// **'Global Dictionary not initialized'**
+  String get globalDictionaryNotInitialized;
+
+  /// No description provided for @reading.
+  ///
+  /// In en, this message translates to:
+  /// **'Reading'**
+  String get reading;
+
+  /// No description provided for @recall.
+  ///
+  /// In en, this message translates to:
+  /// **'Recall'**
+  String get recall;
+
+  /// No description provided for @speaking.
+  ///
+  /// In en, this message translates to:
+  /// **'Speaking'**
+  String get speaking;
+
+  /// No description provided for @listening1.
+  ///
+  /// In en, this message translates to:
+  /// **'Listening'**
+  String get listening1;
+
+  /// No description provided for @practiceStrokeOrderWithVisualGuides.
+  ///
+  /// In en, this message translates to:
+  /// **'Practice stroke order with visual guides.'**
+  String get practiceStrokeOrderWithVisualGuides;
+
+  /// No description provided for @seeTheCharacterRecallThePinyinAndMe.
+  ///
+  /// In en, this message translates to:
+  /// **'See the character, recall the Pinyin and Meaning.'**
+  String get seeTheCharacterRecallThePinyinAndMe;
+
+  /// No description provided for @seeTheMeaningDrawTheCharacterFromMe.
+  ///
+  /// In en, this message translates to:
+  /// **'See the meaning, draw the character from memory.'**
+  String get seeTheMeaningDrawTheCharacterFromMe;
+
+  /// No description provided for @readOutLoudToTestYourPronunciationT.
+  ///
+  /// In en, this message translates to:
+  /// **'Read out loud to test your pronunciation tones.'**
+  String get readOutLoudToTestYourPronunciationT;
+
+  /// No description provided for @listenToTheAudioAndIdentifyTheChara.
+  ///
+  /// In en, this message translates to:
+  /// **'Listen to the audio and identify the character.'**
+  String get listenToTheAudioAndIdentifyTheChara;
+
+  /// No description provided for @contract.
+  ///
+  /// In en, this message translates to:
+  /// **'Contract'**
+  String get contract;
+
+  /// No description provided for @whoeverImplementsMeMustBeAbleToDoTh.
+  ///
+  /// In en, this message translates to:
+  /// **'Whoever implements me MUST be able to do these things.'**
+  String get whoeverImplementsMeMustBeAbleToDoTh;
+
+  /// No description provided for @koreFenrirCharonAoedePuckOrLocal.
+  ///
+  /// In en, this message translates to:
+  /// **'Kore\', \'Fenrir\', \'Charon\', \'Aoede\', \'Puck\', or \'local'**
+  String get koreFenrirCharonAoedePuckOrLocal;
+
+  /// No description provided for @manageDecks.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage Decks'**
+  String get manageDecks;
+
+  /// No description provided for @weRanIntoTroubleLoadingTheLibraryPl.
+  ///
+  /// In en, this message translates to:
+  /// **'We ran into trouble loading the library. Please try again.'**
+  String get weRanIntoTroubleLoadingTheLibraryPl;
+
+  /// No description provided for @noCharactersInLexicon1.
+  ///
+  /// In en, this message translates to:
+  /// **'No characters in lexicon'**
+  String get noCharactersInLexicon1;
+
+  /// No description provided for @masterTheBuildingBlocks.
+  ///
+  /// In en, this message translates to:
+  /// **'Master the building blocks'**
+  String get masterTheBuildingBlocks;
+
+  /// No description provided for @other.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get other;
+
+  /// No description provided for @required.
+  ///
+  /// In en, this message translates to:
+  /// **'Required'**
+  String get required;
+
+  /// No description provided for @library1.
+  ///
+  /// In en, this message translates to:
+  /// **'Library'**
+  String get library1;
+
+  /// No description provided for @youAreAPremiumMember.
+  ///
+  /// In en, this message translates to:
+  /// **'You are a Premium member'**
+  String get youAreAPremiumMember;
+
+  /// No description provided for @createAccountToSyncProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'Create Account to Sync Progress'**
+  String get createAccountToSyncProgress;
+
+  /// No description provided for @signOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign Out'**
+  String get signOut;
+
+  /// No description provided for @account.
+  ///
+  /// In en, this message translates to:
+  /// **'Account'**
+  String get account;
+
+  /// No description provided for @guestScholar.
+  ///
+  /// In en, this message translates to:
+  /// **'Guest Scholar'**
+  String get guestScholar;
+
+  /// No description provided for @localAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Local Account'**
+  String get localAccount;
+
+  /// No description provided for @unknownRadical.
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown Radical'**
+  String get unknownRadical;
+
+  /// No description provided for @followTheGuideStroke.
+  ///
+  /// In en, this message translates to:
+  /// **'Follow the guide stroke'**
+  String get followTheGuideStroke;
+
+  /// No description provided for @strokeAnimationSpeed.
+  ///
+  /// In en, this message translates to:
+  /// **'Stroke Animation Speed'**
+  String get strokeAnimationSpeed;
+
+  /// No description provided for @notifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications'**
+  String get notifications;
+
+  /// No description provided for @deutsch.
+  ///
+  /// In en, this message translates to:
+  /// **'Deutsch'**
+  String get deutsch;
+
+  /// No description provided for @bahasaIndonesia.
+  ///
+  /// In en, this message translates to:
+  /// **'Bahasa Indonesia'**
+  String get bahasaIndonesia;
+
+  /// No description provided for @italiano.
+  ///
+  /// In en, this message translates to:
+  /// **'Italiano'**
+  String get italiano;
+
+  /// No description provided for @today1d2d3d4d5d6d.
+  ///
+  /// In en, this message translates to:
+  /// **'Today\', \'1d\', \'2d\', \'3d\', \'4d\', \'5d\', \'6d'**
+  String get today1d2d3d4d5d6d;
+
+  /// No description provided for @targetDeck.
+  ///
+  /// In en, this message translates to:
+  /// **'Target Deck'**
+  String get targetDeck;
+
+  /// No description provided for @mixed.
+  ///
+  /// In en, this message translates to:
+  /// **'Mixed'**
+  String get mixed;
+
+  /// No description provided for @topicForContext.
+  ///
+  /// In en, this message translates to:
+  /// **'Topic (for context)'**
+  String get topicForContext;
+
+  /// No description provided for @nounsOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'Nouns only'**
+  String get nounsOnly;
+
+  /// No description provided for @verbsOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'Verbs only'**
+  String get verbsOnly;
+
+  /// No description provided for @idiomsChengyu.
+  ///
+  /// In en, this message translates to:
+  /// **'Idioms (Chengyu)'**
+  String get idiomsChengyu;
+
+  /// No description provided for @fullSentences.
+  ///
+  /// In en, this message translates to:
+  /// **'Full Sentences'**
+  String get fullSentences;
+
+  /// No description provided for @beginnerHsk12.
+  ///
+  /// In en, this message translates to:
+  /// **'Beginner (HSK 1-2)'**
+  String get beginnerHsk12;
+
+  /// No description provided for @intermediateHsk34.
+  ///
+  /// In en, this message translates to:
+  /// **'Intermediate (HSK 3-4)'**
+  String get intermediateHsk34;
+
+  /// No description provided for @advancedHsk56.
+  ///
+  /// In en, this message translates to:
+  /// **'Advanced (HSK 5-6)'**
+  String get advancedHsk56;
+
+  /// No description provided for @generatedByAi.
+  ///
+  /// In en, this message translates to:
+  /// **'Generated by AI'**
+  String get generatedByAi;
+
+  /// No description provided for @canYouGiveMeTwoMoreExamplesUsingThi.
+  ///
+  /// In en, this message translates to:
+  /// **'Can you give me two more examples using this word?'**
+  String get canYouGiveMeTwoMoreExamplesUsingThi;
+
+  /// No description provided for @whatAreSomeSimilarWordsAndHowDoThey.
+  ///
+  /// In en, this message translates to:
+  /// **'What are some similar words and how do they differ?'**
+  String get whatAreSomeSimilarWordsAndHowDoThey;
+
+  /// No description provided for @isThisWordUsedInSpokenOrWrittenChin.
+  ///
+  /// In en, this message translates to:
+  /// **'Is this word used in spoken or written Chinese more?'**
+  String get isThisWordUsedInSpokenOrWrittenChin;
+
+  /// No description provided for @areThereOtherWaysToTranslateThisWor.
+  ///
+  /// In en, this message translates to:
+  /// **'Are there other ways to translate this word?'**
+  String get areThereOtherWaysToTranslateThisWor;
+
+  /// No description provided for @whatAreCommonWordsThatGoTogetherWit.
+  ///
+  /// In en, this message translates to:
+  /// **'What are common words that go together with this word?'**
+  String get whatAreCommonWordsThatGoTogetherWit;
+
+  /// No description provided for @whatAreCommonMistakesLearnersMakeWi.
+  ///
+  /// In en, this message translates to:
+  /// **'What are common mistakes learners make with this word?'**
+  String get whatAreCommonMistakesLearnersMakeWi;
+
+  /// No description provided for @emptyResponse.
+  ///
+  /// In en, this message translates to:
+  /// **'Empty response'**
+  String get emptyResponse;
+
+  /// No description provided for @whatIsTheOracleBoneScriptOriginOfTh.
+  ///
+  /// In en, this message translates to:
+  /// **'What is the oracle bone script origin of this character?'**
+  String get whatIsTheOracleBoneScriptOriginOfTh;
+
+  /// No description provided for @howDidTheAncientFormOfThisCharacter.
+  ///
+  /// In en, this message translates to:
+  /// **'How did the ancient form of this character evolve over time?'**
+  String get howDidTheAncientFormOfThisCharacter;
+
+  /// No description provided for @giveMe3CommonWordsThatContainThisCh.
+  ///
+  /// In en, this message translates to:
+  /// **'Give me 3 common words that contain this character.'**
+  String get giveMe3CommonWordsThatContainThisCh;
+
+  /// No description provided for @whatOtherCharactersShareTheSameRadi.
+  ///
+  /// In en, this message translates to:
+  /// **'What other characters share the same radical?'**
+  String get whatOtherCharactersShareTheSameRadi;
+
+  /// No description provided for @isThereAChineseProverbOrSayingFeatu.
+  ///
+  /// In en, this message translates to:
+  /// **'Is there a Chinese proverb or saying featuring this character?'**
+  String get isThereAChineseProverbOrSayingFeatu;
+
+  /// No description provided for @explainTheStrokeOrderRulesForThisCh.
+  ///
+  /// In en, this message translates to:
+  /// **'Explain the stroke order rules for this character.'**
+  String get explainTheStrokeOrderRulesForThisCh;
+
+  /// No description provided for @giveMeOneCalligraphyTipForWritingTh.
+  ///
+  /// In en, this message translates to:
+  /// **'Give me one calligraphy tip for writing this character beautifully.'**
+  String get giveMeOneCalligraphyTipForWritingTh;
+
+  /// No description provided for @isThereAnythingTrickyAboutUsingThis.
+  ///
+  /// In en, this message translates to:
+  /// **'Is there anything tricky about using this grammatically?'**
+  String get isThereAnythingTrickyAboutUsingThis;
+
+  /// No description provided for @whatWordsAreCommonlyConfusedWithThi.
+  ///
+  /// In en, this message translates to:
+  /// **'What words are commonly confused with this one and why?'**
+  String get whatWordsAreCommonlyConfusedWithThi;
+
+  /// No description provided for @doesThisCharacterCarryCulturalSymbo.
+  ///
+  /// In en, this message translates to:
+  /// **'Does this character carry cultural symbolism in China?'**
+  String get doesThisCharacterCarryCulturalSymbo;
+
+  /// No description provided for @isThisCharacterCommonlySeenInChines.
+  ///
+  /// In en, this message translates to:
+  /// **'Is this character commonly seen in Chinese movies, songs, or texts?'**
+  String get isThisCharacterCommonlySeenInChines;
+
+  /// No description provided for @whatDoesTheRadicalOfThisCharacterMe.
+  ///
+  /// In en, this message translates to:
+  /// **'What does the radical of this character mean?'**
+  String get whatDoesTheRadicalOfThisCharacterMe;
+
+  /// No description provided for @breakDownEveryComponentAndItsMeanin.
+  ///
+  /// In en, this message translates to:
+  /// **'Break down every component and its meaning.'**
+  String get breakDownEveryComponentAndItsMeanin;
+
+  /// No description provided for @giveMeATrickToRememberTheCorrectTon.
+  ///
+  /// In en, this message translates to:
+  /// **'Give me a trick to remember the correct tone for this character.'**
+  String get giveMeATrickToRememberTheCorrectTon;
+
+  /// No description provided for @areThereCommonHomophonesThatAreOfte.
+  ///
+  /// In en, this message translates to:
+  /// **'Are there common homophones that are often confused with this?'**
+  String get areThereCommonHomophonesThatAreOfte;
+
+  /// No description provided for @quotaExceeded.
+  ///
+  /// In en, this message translates to:
+  /// **'Quota exceeded'**
+  String get quotaExceeded;
+
+  /// No description provided for @mustProvideEitherCardOrCards.
+  ///
+  /// In en, this message translates to:
+  /// **'Must provide either card or cards'**
+  String get mustProvideEitherCardOrCards;
+
+  /// No description provided for @deckSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Deck Settings'**
+  String get deckSettings;
+
+  /// No description provided for @saveSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Save Settings'**
+  String get saveSettings;
+
+  /// No description provided for @sealRed.
+  ///
+  /// In en, this message translates to:
+  /// **'Seal Red'**
+  String get sealRed;
+
+  /// No description provided for @sealScript.
+  ///
+  /// In en, this message translates to:
+  /// **'Seal Script'**
+  String get sealScript;
+
+  /// No description provided for @startYourStreak.
+  ///
+  /// In en, this message translates to:
+  /// **'START YOUR STREAK'**
+  String get startYourStreak;
+
+  /// No description provided for @traditionalCharacter.
+  ///
+  /// In en, this message translates to:
+  /// **'Traditional Character'**
+  String get traditionalCharacter;
+
+  /// No description provided for @inQueue.
+  ///
+  /// In en, this message translates to:
+  /// **'In Queue'**
+  String get inQueue;
+
+  /// No description provided for @tapToListenAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to listen again'**
+  String get tapToListenAgain;
+
+  /// No description provided for @contextClue.
+  ///
+  /// In en, this message translates to:
+  /// **'Context Clue'**
+  String get contextClue;
+
+  /// No description provided for @microphonePermissionRequired1.
+  ///
+  /// In en, this message translates to:
+  /// **'Microphone permission required.'**
+  String get microphonePermissionRequired1;
+
+  /// No description provided for @recordingFailedNoFile.
+  ///
+  /// In en, this message translates to:
+  /// **'Recording failed (no file).'**
+  String get recordingFailedNoFile;
+
+  /// No description provided for @holdToSpeakOptional.
+  ///
+  /// In en, this message translates to:
+  /// **'Hold to speak (Optional)'**
+  String get holdToSpeakOptional;
+
+  /// No description provided for @microphonePermissionDeniedEnableItI.
+  ///
+  /// In en, this message translates to:
+  /// **'Microphone permission denied. Enable it in Settings to use Shadowing Studio.'**
+  String get microphonePermissionDeniedEnableItI;
+
+  /// No description provided for @sessionSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'Session Summary'**
+  String get sessionSummary;
+
+  /// No description provided for @hereAreTheCharactersYouStruggledWit.
+  ///
+  /// In en, this message translates to:
+  /// **'Here are the characters you struggled with:'**
+  String get hereAreTheCharactersYouStruggledWit;
+
+  /// No description provided for @applySessionGradesToSpacedRepetitio.
+  ///
+  /// In en, this message translates to:
+  /// **'Apply session grades to Spaced Repetition (Speaking Mode)'**
+  String get applySessionGradesToSpacedRepetitio;
+
+  /// No description provided for @masterYourMandarinPronunciationnbyM.
+  ///
+  /// In en, this message translates to:
+  /// **'Master your Mandarin pronunciation\\nby mimicking native speech.'**
+  String get masterYourMandarinPronunciationnbyM;
+
+  /// No description provided for @aiIsGradingYourPronunciation.
+  ///
+  /// In en, this message translates to:
+  /// **'AI is grading your pronunciation...'**
+  String get aiIsGradingYourPronunciation;
+
+  /// No description provided for @holdMicToRecordReleaseToGrade.
+  ///
+  /// In en, this message translates to:
+  /// **'Hold mic to record. Release to grade.'**
+  String get holdMicToRecordReleaseToGrade;
+
+  /// No description provided for @tapAnySyllableToAuditionAll4Tones.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap any syllable to audition all 4 tones:'**
+  String get tapAnySyllableToAuditionAll4Tones;
+
+  /// No description provided for @freeFlowConversationalPractice.
+  ///
+  /// In en, this message translates to:
+  /// **'Free flow conversational practice.'**
+  String get freeFlowConversationalPractice;
+
+  /// No description provided for @failedToGeneratePhrasePleaseTryAgai.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to generate phrase. Please try again.'**
+  String get failedToGeneratePhrasePleaseTryAgai;
+
+  /// No description provided for @recordingTooShortHoldTheMicButtonLo.
+  ///
+  /// In en, this message translates to:
+  /// **'Recording too short. Hold the mic button longer.'**
+  String get recordingTooShortHoldTheMicButtonLo;
+
+  /// No description provided for @recordingErrorPleaseTryAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Recording error. Please try again.'**
+  String get recordingErrorPleaseTryAgain;
+
+  /// No description provided for @noRecordingCapturedPleaseTryAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'No recording captured. Please try again.'**
+  String get noRecordingCapturedPleaseTryAgain;
+
+  /// No description provided for @recordedAudioIsEmptyPleaseTryAgainA.
+  ///
+  /// In en, this message translates to:
+  /// **'Recorded audio is empty. Please try again and speak clearly.'**
+  String get recordedAudioIsEmptyPleaseTryAgainA;
+
+  /// No description provided for @azureSpeechApiKeysAreMissing1.
+  ///
+  /// In en, this message translates to:
+  /// **'Azure Speech API keys are missing'**
+  String get azureSpeechApiKeysAreMissing1;
+
+  /// No description provided for @azureError401.
+  ///
+  /// In en, this message translates to:
+  /// **'Azure Error 401'**
+  String get azureError401;
+
+  /// No description provided for @azureAuthenticationFailedCheckYourS.
+  ///
+  /// In en, this message translates to:
+  /// **'Azure authentication failed. Check your Speech API key and region in .env'**
+  String get azureAuthenticationFailedCheckYourS;
+
+  /// No description provided for @azureError429.
+  ///
+  /// In en, this message translates to:
+  /// **'Azure Error 429'**
+  String get azureError429;
+
+  /// No description provided for @azureQuotaExceededTryAgainLater.
+  ///
+  /// In en, this message translates to:
+  /// **'Azure quota exceeded. Try again later.'**
+  String get azureQuotaExceededTryAgainLater;
+
+  /// No description provided for @azureGradingTimedOutCheckYourIntern.
+  ///
+  /// In en, this message translates to:
+  /// **'Azure grading timed out. Check your internet connection.'**
+  String get azureGradingTimedOutCheckYourIntern;
+
+  /// No description provided for @recognitionFailedNull.
+  ///
+  /// In en, this message translates to:
+  /// **'Recognition failed: null'**
+  String get recognitionFailedNull;
+
+  /// No description provided for @couldNotHearYouClearlyPleaseTryAgai.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not hear you clearly. Please try again.'**
+  String get couldNotHearYouClearlyPleaseTryAgai;
+
+  /// No description provided for @singlePhrasePractice.
+  ///
+  /// In en, this message translates to:
+  /// **'Single Phrase Practice'**
+  String get singlePhrasePractice;
+
+  /// No description provided for @failedToGeneratePhrase.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to generate phrase'**
+  String get failedToGeneratePhrase;
+
+  /// No description provided for @omitted.
+  ///
+  /// In en, this message translates to:
+  /// **'Omitted'**
+  String get omitted;
+
+  /// No description provided for @partial.
+  ///
+  /// In en, this message translates to:
+  /// **'Partial'**
+  String get partial;
+
+  /// No description provided for @mispronounced.
+  ///
+  /// In en, this message translates to:
+  /// **'Mispronounced'**
+  String get mispronounced;
+
+  /// No description provided for @startSession1.
+  ///
+  /// In en, this message translates to:
+  /// **'Start Session'**
+  String get startSession1;
+
+  /// No description provided for @chinese.
+  ///
+  /// In en, this message translates to:
+  /// **'Chinese'**
+  String get chinese;
+
+  /// No description provided for @paused.
+  ///
+  /// In en, this message translates to:
+  /// **'Paused'**
+  String get paused;
+
+  /// No description provided for @translationFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Translation failed'**
+  String get translationFailed;
+
+  /// No description provided for @engagingMacroeconomicAndBusinessBre.
+  ///
+  /// In en, this message translates to:
+  /// **'Engaging macroeconomic and business breakdowns explained through lively storytelling.'**
+  String get engagingMacroeconomicAndBusinessBre;
+
+  /// No description provided for @exploresWorldEconomiesBankingHistor.
+  ///
+  /// In en, this message translates to:
+  /// **'Explores world economies, banking histories, and global industry dynamics.'**
+  String get exploresWorldEconomiesBankingHistor;
+
+  /// No description provided for @clearArticulateMandarinPerfectForIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear, articulate Mandarin perfect for intermediate and advanced learners.'**
+  String get clearArticulateMandarinPerfectForIn;
+
+  /// No description provided for @chefWang.
+  ///
+  /// In en, this message translates to:
+  /// **'Chef Wang'**
+  String get chefWang;
+
+  /// No description provided for @masterSichuanCulinaryTechniquesTaug.
+  ///
+  /// In en, this message translates to:
+  /// **'Master Sichuan culinary techniques taught directly by a professional head chef.'**
+  String get masterSichuanCulinaryTechniquesTaug;
+
+  /// No description provided for @stepbystepAuthenticChineseRecipesWi.
+  ///
+  /// In en, this message translates to:
+  /// **'Step-by-step authentic Chinese recipes with wok control and knife work.'**
+  String get stepbystepAuthenticChineseRecipesWi;
+
+  /// No description provided for @conciseCulinaryVocabularyAndClearIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Concise culinary vocabulary and clear instruction in natural Mandarin.'**
+  String get conciseCulinaryVocabularyAndClearIn;
+
+  /// No description provided for @cinematographyCuttingedgeCameraTech.
+  ///
+  /// In en, this message translates to:
+  /// **'Cinematography, cutting-edge camera tech, and deep digital media evaluations.'**
+  String get cinematographyCuttingedgeCameraTech;
+
+  /// No description provided for @highproductionDocumentaryStyleExplo.
+  ///
+  /// In en, this message translates to:
+  /// **'High-production documentary style exploring video creation and AI innovations.'**
+  String get highproductionDocumentaryStyleExplo;
+
+  /// No description provided for @richTechnicalMandarinWithCrystalcle.
+  ///
+  /// In en, this message translates to:
+  /// **'Rich technical Mandarin with crystal-clear pronunciation and visual captions.'**
+  String get richTechnicalMandarinWithCrystalcle;
+
+  /// No description provided for @indepthInvestigativeJournalismAndCu.
+  ///
+  /// In en, this message translates to:
+  /// **'In-depth investigative journalism and current affairs commentary.'**
+  String get indepthInvestigativeJournalismAndCu;
+
+  /// No description provided for @criticalPerspectivesOnSocialPhenome.
+  ///
+  /// In en, this message translates to:
+  /// **'Critical perspectives on social phenomena, world news, and history.'**
+  String get criticalPerspectivesOnSocialPhenome;
+
+  /// No description provided for @formalInvestigativeDiscourseIdealFo.
+  ///
+  /// In en, this message translates to:
+  /// **'Formal investigative discourse ideal for advanced listening comprehension.'**
+  String get formalInvestigativeDiscourseIdealFo;
+
+  /// No description provided for @bitesizedAnimatedScienceDocumentari.
+  ///
+  /// In en, this message translates to:
+  /// **'Bite-sized animated science documentaries answering everyday questions.'**
+  String get bitesizedAnimatedScienceDocumentari;
+
+  /// No description provided for @exploresPhysicsBiologyAndEverydayCu.
+  ///
+  /// In en, this message translates to:
+  /// **'Explores physics, biology, and everyday curiosities with fun infographics.'**
+  String get exploresPhysicsBiologyAndEverydayCu;
+
+  /// No description provided for @standardBeijingMandarinWithWellpace.
+  ///
+  /// In en, this message translates to:
+  /// **'Standard Beijing Mandarin with well-paced narration and clear subtitles.'**
+  String get standardBeijingMandarinWithWellpace;
+
+  /// No description provided for @heartwarmingStreetFoodAdventuresAnd.
+  ///
+  /// In en, this message translates to:
+  /// **'Heartwarming street food adventures and genuine conversations across China.'**
+  String get heartwarmingStreetFoodAdventuresAnd;
+
+  /// No description provided for @exploresRegionalHumanStoriesFamilyT.
+  ///
+  /// In en, this message translates to:
+  /// **'Explores regional human stories, family traditions, and local delicacies.'**
+  String get exploresRegionalHumanStoriesFamilyT;
+
+  /// No description provided for @naturalConversationalMandarinWithDa.
+  ///
+  /// In en, this message translates to:
+  /// **'Natural conversational Mandarin with daily slang and emotional warmth.'**
+  String get naturalConversationalMandarinWithDa;
+
+  /// No description provided for @humorousAndHonestConsumerElectronic.
+  ///
+  /// In en, this message translates to:
+  /// **'Humorous and honest consumer electronics reviews from real-life experience.'**
+  String get humorousAndHonestConsumerElectronic;
+
+  /// No description provided for @testingSmartphonesSmartHomeGadgetsA.
+  ///
+  /// In en, this message translates to:
+  /// **'Testing smartphones, smart home gadgets, and tech lifestyle gear.'**
+  String get testingSmartphonesSmartHomeGadgetsA;
+
+  /// No description provided for @relaxedHumorousConversationalDialog.
+  ///
+  /// In en, this message translates to:
+  /// **'Relaxed, humorous conversational dialogue with modern colloquialisms.'**
+  String get relaxedHumorousConversationalDialog;
+
+  /// No description provided for @seanKitchen.
+  ///
+  /// In en, this message translates to:
+  /// **'Sean Kitchen'**
+  String get seanKitchen;
+
+  /// No description provided for @deliciousHomecookedChineseDishesAnd.
+  ///
+  /// In en, this message translates to:
+  /// **'Delicious home-cooked Chinese dishes and street snack recreation.'**
+  String get deliciousHomecookedChineseDishesAnd;
+
+  /// No description provided for @easytofollowKitchenTipsForCookingAu.
+  ///
+  /// In en, this message translates to:
+  /// **'Easy-to-follow kitchen tips for cooking authentic Asian comfort food.'**
+  String get easytofollowKitchenTipsForCookingAu;
+
+  /// No description provided for @warmInvitingCommentaryWithPractical.
+  ///
+  /// In en, this message translates to:
+  /// **'Warm, inviting commentary with practical kitchen vocabulary.'**
+  String get warmInvitingCommentaryWithPractical;
+
+  /// No description provided for @chineseChannel.
+  ///
+  /// In en, this message translates to:
+  /// **'Chinese Channel'**
+  String get chineseChannel;
+
+  /// No description provided for @structuredChineseLanguageLessonsAnd.
+  ///
+  /// In en, this message translates to:
+  /// **'Structured Chinese language lessons and cultural discovery tutorials.'**
+  String get structuredChineseLanguageLessonsAnd;
+
+  /// No description provided for @grammarPointsHskVocabularyBuildingA.
+  ///
+  /// In en, this message translates to:
+  /// **'Grammar points, HSK vocabulary building, and conversational patterns.'**
+  String get grammarPointsHskVocabularyBuildingA;
+
+  /// No description provided for @clearEducationalPacingTailoredSpeci.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear educational pacing tailored specifically for Chinese learners.'**
+  String get clearEducationalPacingTailoredSpeci;
+
+  /// No description provided for @oneInABillion.
+  ///
+  /// In en, this message translates to:
+  /// **'One in a Billion'**
+  String get oneInABillion;
+
+  /// No description provided for @intimatePortraitsAndStoriesOfUnique.
+  ///
+  /// In en, this message translates to:
+  /// **'Intimate portraits and stories of unique individuals in contemporary China.'**
+  String get intimatePortraitsAndStoriesOfUnique;
+
+  /// No description provided for @exploresDiverseLifeChoicesYouthCult.
+  ///
+  /// In en, this message translates to:
+  /// **'Explores diverse life choices, youth culture, and modern social shifts.'**
+  String get exploresDiverseLifeChoicesYouthCult;
+
+  /// No description provided for @deepNarrativeStorytellingWithRichVo.
+  ///
+  /// In en, this message translates to:
+  /// **'Deep narrative storytelling with rich vocabulary and authentic voices.'**
+  String get deepNarrativeStorytellingWithRichVo;
+
+  /// No description provided for @vickySoup.
+  ///
+  /// In en, this message translates to:
+  /// **'Vicky Soup'**
+  String get vickySoup;
+
+  /// No description provided for @aestheticLifestyleVlogsFashionStyli.
+  ///
+  /// In en, this message translates to:
+  /// **'Aesthetic lifestyle vlogs, fashion styling, and daily routines.'**
+  String get aestheticLifestyleVlogsFashionStyli;
+
+  /// No description provided for @travelDiariesAndCozyLifeMomentsDocu.
+  ///
+  /// In en, this message translates to:
+  /// **'Travel diaries and cozy life moments documented with cinematic warmth.'**
+  String get travelDiariesAndCozyLifeMomentsDocu;
+
+  /// No description provided for @naturalCasualMandarinSpokenAtAComfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Natural casual Mandarin spoken at a comfortable, expressive pace.'**
+  String get naturalCasualMandarinSpokenAtAComfo;
+
+  /// No description provided for @tededMandarin.
+  ///
+  /// In en, this message translates to:
+  /// **'TED-Ed Mandarin'**
+  String get tededMandarin;
+
+  /// No description provided for @highqualityAnimatedEducationalLesso.
+  ///
+  /// In en, this message translates to:
+  /// **'High-quality animated educational lessons on science, philosophy, and history.'**
+  String get highqualityAnimatedEducationalLesso;
+
+  /// No description provided for @thoughtprovokingRiddlesClassicLiter.
+  ///
+  /// In en, this message translates to:
+  /// **'Thought-provoking riddles, classic literature, and psychology mysteries.'**
+  String get thoughtprovokingRiddlesClassicLiter;
+
+  /// No description provided for @impeccableVoiceoverMandarinWithSync.
+  ///
+  /// In en, this message translates to:
+  /// **'Impeccable voice-over Mandarin with synchronized bilingual subtitles.'**
+  String get impeccableVoiceoverMandarinWithSync;
+
+  /// No description provided for @channel.
+  ///
+  /// In en, this message translates to:
+  /// **'Channel'**
+  String get channel;
+
+  /// No description provided for @curatedCulturalDocumentariesAndChin.
+  ///
+  /// In en, this message translates to:
+  /// **'Curated cultural documentaries and Chinese lifestyle highlights.'**
+  String get curatedCulturalDocumentariesAndChin;
+
+  /// No description provided for @exploringTraditionalArtsHeritageCra.
+  ///
+  /// In en, this message translates to:
+  /// **'Exploring traditional arts, heritage craftsmanship, and modern trends.'**
+  String get exploringTraditionalArtsHeritageCra;
+
+  /// No description provided for @highQualityAudioWithSynchronizedChi.
+  ///
+  /// In en, this message translates to:
+  /// **'High quality audio with synchronized Chinese closed captions.'**
+  String get highQualityAudioWithSynchronizedChi;
+
+  /// No description provided for @interestingStoriesAndCreativeVideoP.
+  ///
+  /// In en, this message translates to:
+  /// **'Interesting stories and creative video projects across the Chinese web.'**
+  String get interestingStoriesAndCreativeVideoP;
+
+  /// No description provided for @engagingInterviewsStorytellingAndVi.
+  ///
+  /// In en, this message translates to:
+  /// **'Engaging interviews, storytelling, and visual explorations.'**
+  String get engagingInterviewsStorytellingAndVi;
+
+  /// No description provided for @greatListeningMaterialWithStandardP.
+  ///
+  /// In en, this message translates to:
+  /// **'Great listening material with standard pronunciation.'**
+  String get greatListeningMaterialWithStandardP;
+
+  /// No description provided for @xVsY.
+  ///
+  /// In en, this message translates to:
+  /// **'X vs Y'**
+  String get xVsY;
+
+  /// No description provided for @untitled.
+  ///
+  /// In en, this message translates to:
+  /// **'Untitled'**
+  String get untitled;
+
+  /// No description provided for @contemporaryStories.
+  ///
+  /// In en, this message translates to:
+  /// **'Contemporary Stories'**
+  String get contemporaryStories;
+
+  /// No description provided for @history.
+  ///
+  /// In en, this message translates to:
+  /// **'History'**
+  String get history;
+
+  /// No description provided for @advancedReading.
+  ///
+  /// In en, this message translates to:
+  /// **'Advanced Reading'**
+  String get advancedReading;
+
+  /// No description provided for @intermediateReading.
+  ///
+  /// In en, this message translates to:
+  /// **'Intermediate Reading'**
+  String get intermediateReading;
+
+  /// No description provided for @beginnerReading.
+  ///
+  /// In en, this message translates to:
+  /// **'Beginner Reading'**
+  String get beginnerReading;
+
+  /// No description provided for @mandarinBean.
+  ///
+  /// In en, this message translates to:
+  /// **'Mandarin Bean'**
+  String get mandarinBean;
+
+  /// No description provided for @unknown.
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown'**
+  String get unknown;
+
+  /// No description provided for @localDb.
+  ///
+  /// In en, this message translates to:
+  /// **'Local DB'**
+  String get localDb;
+
+  /// No description provided for @emperorTaizong.
+  ///
+  /// In en, this message translates to:
+  /// **'Emperor Taizong'**
+  String get emperorTaizong;
+
+  /// No description provided for @emperorXuanzong.
+  ///
+  /// In en, this message translates to:
+  /// **'Emperor Xuanzong'**
+  String get emperorXuanzong;
+
+  /// No description provided for @liBai.
+  ///
+  /// In en, this message translates to:
+  /// **'Li Bai'**
+  String get liBai;
+
+  /// No description provided for @gradedReader.
+  ///
+  /// In en, this message translates to:
+  /// **'Graded Reader'**
+  String get gradedReader;
+
+  /// No description provided for @ucj10r97lkwgdtqbt6xzv8gLearnMandari.
+  ///
+  /// In en, this message translates to:
+  /// **'UCJ10R97LkwGdTqBT6xz-v8g\': \'Learn Mandarin with TaiwanPlus'**
+  String get ucj10r97lkwgdtqbt6xzv8gLearnMandari;
+
+  /// No description provided for @ucsxriuqkzzmaqklq0n9xfvwEverydayChi.
+  ///
+  /// In en, this message translates to:
+  /// **'UCSXriUqkzZmAQklQ0N9XFVw\': \'Everyday Chinese'**
+  String get ucsxriuqkzzmaqklq0n9xfvwEverydayChi;
+
+  /// No description provided for @graceMandarinChinese.
+  ///
+  /// In en, this message translates to:
+  /// **'Grace Mandarin Chinese'**
+  String get graceMandarinChinese;
+
+  /// No description provided for @ucolbhvvl5dcjlmzeqbuu1vwTingdailyLi.
+  ///
+  /// In en, this message translates to:
+  /// **'UCOLBhVvL5dcJLMZeQBUu1Vw\': \'Ting-Daily life in China'**
+  String get ucolbhvvl5dcjlmzeqbuu1vwTingdailyLi;
+
+  /// No description provided for @xinxin.
+  ///
+  /// In en, this message translates to:
+  /// **'Xinxin'**
+  String get xinxin;
+
+  /// No description provided for @sweetFamilyDailyLife.
+  ///
+  /// In en, this message translates to:
+  /// **'Sweet Family Daily Life'**
+  String get sweetFamilyDailyLife;
+
+  /// No description provided for @chinsunDailyLife.
+  ///
+  /// In en, this message translates to:
+  /// **'Chin-Sun Daily Life'**
+  String get chinsunDailyLife;
+
+  /// No description provided for @tasteChina.
+  ///
+  /// In en, this message translates to:
+  /// **'Taste China'**
+  String get tasteChina;
+
+  /// No description provided for @dawenFoodQuest.
+  ///
+  /// In en, this message translates to:
+  /// **'DaWen Food Quest'**
+  String get dawenFoodQuest;
+
+  /// No description provided for @chinaTravelWithCangbao.
+  ///
+  /// In en, this message translates to:
+  /// **'China Travel with Cangbao'**
+  String get chinaTravelWithCangbao;
+
+  /// No description provided for @alinFoodWalk.
+  ///
+  /// In en, this message translates to:
+  /// **'Alin Food Walk'**
+  String get alinFoodWalk;
+
+  /// No description provided for @videoOfTheDay.
+  ///
+  /// In en, this message translates to:
+  /// **'VIDEO OF THE DAY'**
+  String get videoOfTheDay;
+
+  /// No description provided for @noValidVideoFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No valid video found.'**
+  String get noValidVideoFound;
+
+  /// No description provided for @listeningPractice.
+  ///
+  /// In en, this message translates to:
+  /// **'LISTENING PRACTICE'**
+  String get listeningPractice;
+
+  /// No description provided for @socialSkills.
+  ///
+  /// In en, this message translates to:
+  /// **'SOCIAL SKILLS'**
+  String get socialSkills;
+
+  /// No description provided for @culturalContext.
+  ///
+  /// In en, this message translates to:
+  /// **'CULTURAL CONTEXT'**
+  String get culturalContext;
+
+  /// No description provided for @realLife.
+  ///
+  /// In en, this message translates to:
+  /// **'REAL LIFE'**
+  String get realLife;
+
+  /// No description provided for @realWorld.
+  ///
+  /// In en, this message translates to:
+  /// **'REAL WORLD'**
+  String get realWorld;
+
+  /// No description provided for @articleOfTheDay.
+  ///
+  /// In en, this message translates to:
+  /// **'ARTICLE OF THE DAY'**
+  String get articleOfTheDay;
+
+  /// No description provided for @failedToLoadOrParseRssFeed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load or parse RSS feed.'**
+  String get failedToLoadOrParseRssFeed;
+
+  /// No description provided for @drama.
+  ///
+  /// In en, this message translates to:
+  /// **'Drama'**
+  String get drama;
+
+  /// No description provided for @youkugetAppNow.
+  ///
+  /// In en, this message translates to:
+  /// **'YOUKU-Get APP now'**
+  String get youkugetAppNow;
+
+  /// No description provided for @romanceTrailer.
+  ///
+  /// In en, this message translates to:
+  /// **'Romance\', \'Trailer'**
+  String get romanceTrailer;
+
+  /// No description provided for @romance.
+  ///
+  /// In en, this message translates to:
+  /// **'Romance'**
+  String get romance;
+
+  /// No description provided for @action.
+  ///
+  /// In en, this message translates to:
+  /// **'Action'**
+  String get action;
+
+  /// No description provided for @mystery.
+  ///
+  /// In en, this message translates to:
+  /// **'Mystery'**
+  String get mystery;
+
+  /// No description provided for @historical.
+  ///
+  /// In en, this message translates to:
+  /// **'Historical'**
+  String get historical;
+
+  /// No description provided for @historicalAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Historical\', \'Action'**
+  String get historicalAction;
+
+  /// No description provided for @historicalRomance.
+  ///
+  /// In en, this message translates to:
+  /// **'Historical\', \'Romance'**
+  String get historicalRomance;
+
+  /// No description provided for @anYouth.
+  ///
+  /// In en, this message translates to:
+  /// **'An Youth'**
+  String get anYouth;
+
+  /// No description provided for @historicalSliceOfLife.
+  ///
+  /// In en, this message translates to:
+  /// **'Historical\', \'Slice of Life'**
+  String get historicalSliceOfLife;
+
+  /// No description provided for @historicalHighlight.
+  ///
+  /// In en, this message translates to:
+  /// **'Historical\', \'Highlight'**
+  String get historicalHighlight;
+
+  /// No description provided for @youkuEnglishgetAppNow.
+  ///
+  /// In en, this message translates to:
+  /// **'YOUKU English-Get APP now'**
+  String get youkuEnglishgetAppNow;
+
+  /// No description provided for @theDouble.
+  ///
+  /// In en, this message translates to:
+  /// **'The Double'**
+  String get theDouble;
+
+  /// No description provided for @updatesByOshin.
+  ///
+  /// In en, this message translates to:
+  /// **'Updates By Oshin'**
+  String get updatesByOshin;
+
+  /// No description provided for @backFromTheBrink.
+  ///
+  /// In en, this message translates to:
+  /// **'Back from the Brink'**
+  String get backFromTheBrink;
+
+  /// No description provided for @fallingIntoYourSmile.
+  ///
+  /// In en, this message translates to:
+  /// **'Falling Into Your Smile'**
+  String get fallingIntoYourSmile;
+
+  /// No description provided for @everyoneLovesMe.
+  ///
+  /// In en, this message translates to:
+  /// **'Everyone Loves Me'**
+  String get everyoneLovesMe;
+
+  /// No description provided for @tillTheEndOfTheMoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Till The End of The Moon'**
+  String get tillTheEndOfTheMoon;
+
+  /// No description provided for @theBestDayOfMyLife.
+  ///
+  /// In en, this message translates to:
+  /// **'The Best Day of My Life'**
+  String get theBestDayOfMyLife;
+
+  /// No description provided for @gikkiChineseDrama.
+  ///
+  /// In en, this message translates to:
+  /// **'GIKKI Chinese Drama'**
+  String get gikkiChineseDrama;
+
+  /// No description provided for @dashingYouth.
+  ///
+  /// In en, this message translates to:
+  /// **'Dashing Youth'**
+  String get dashingYouth;
+
+  /// No description provided for @rebornChineseDramaEngSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Reborn Chinese drama ENG SUB'**
+  String get rebornChineseDramaEngSub;
+
+  /// No description provided for @ijenwaBenita.
+  ///
+  /// In en, this message translates to:
+  /// **'Ijenwa Benita'**
+  String get ijenwaBenita;
+
+  /// No description provided for @whenIFlyTowardsYou.
+  ///
+  /// In en, this message translates to:
+  /// **'When I Fly Towards You'**
+  String get whenIFlyTowardsYou;
+
+  /// No description provided for @mztvExclusiveChineseDrama.
+  ///
+  /// In en, this message translates to:
+  /// **'MZTV Exclusive Chinese Drama'**
+  String get mztvExclusiveChineseDrama;
+
+  /// No description provided for @theStarryLove.
+  ///
+  /// In en, this message translates to:
+  /// **'The Starry Love'**
+  String get theStarryLove;
+
+  /// No description provided for @comedy.
+  ///
+  /// In en, this message translates to:
+  /// **'Comedy'**
+  String get comedy;
+
+  /// No description provided for @backFromTheBrink1.
+  ///
+  /// In en, this message translates to:
+  /// **'Back from the Brink\':'**
+  String get backFromTheBrink1;
+
+  /// No description provided for @dashingYouth1.
+  ///
+  /// In en, this message translates to:
+  /// **'Dashing Youth\':'**
+  String get dashingYouth1;
+
+  /// No description provided for @beReborn.
+  ///
+  /// In en, this message translates to:
+  /// **'Be Reborn'**
+  String get beReborn;
+
+  /// No description provided for @beautyStrategy.
+  ///
+  /// In en, this message translates to:
+  /// **'Beauty Strategy'**
+  String get beautyStrategy;
+
+  /// No description provided for @myDivineEmissary.
+  ///
+  /// In en, this message translates to:
+  /// **'My Divine Emissary'**
+  String get myDivineEmissary;
+
+  /// No description provided for @theHope.
+  ///
+  /// In en, this message translates to:
+  /// **'The Hope'**
+  String get theHope;
+
+  /// No description provided for @ep16In.
+  ///
+  /// In en, this message translates to:
+  /// **'EP16\': \'In'**
+  String get ep16In;
+
+  /// No description provided for @everyoneLovesMe1.
+  ///
+  /// In en, this message translates to:
+  /// **'Everyone Loves Me\': \''**
+  String get everyoneLovesMe1;
+
+  /// No description provided for @fallingIntoYourSmile1.
+  ///
+  /// In en, this message translates to:
+  /// **'Falling Into Your Smile\':'**
+  String get fallingIntoYourSmile1;
+
+  /// No description provided for @hiddenLove.
+  ///
+  /// In en, this message translates to:
+  /// **'Hidden Love\':'**
+  String get hiddenLove;
+
+  /// No description provided for @loveBetweenFairyAndDevil.
+  ///
+  /// In en, this message translates to:
+  /// **'Love Between Fairy and Devil\':'**
+  String get loveBetweenFairyAndDevil;
+
+  /// No description provided for @loveLikeTheGalaxy.
+  ///
+  /// In en, this message translates to:
+  /// **'Love Like The Galaxy\':'**
+  String get loveLikeTheGalaxy;
+
+  /// No description provided for @membersPremiere.
+  ///
+  /// In en, this message translates to:
+  /// **'Members Premiere'**
+  String get membersPremiere;
+
+  /// No description provided for @moonlight.
+  ///
+  /// In en, this message translates to:
+  /// **'Moonlight'**
+  String get moonlight;
+
+  /// No description provided for @myJourneyToYou.
+  ///
+  /// In en, this message translates to:
+  /// **'My Journey to You\':'**
+  String get myJourneyToYou;
+
+  /// No description provided for @mysteriousLotusCasebook.
+  ///
+  /// In en, this message translates to:
+  /// **'Mysterious Lotus Casebook\':'**
+  String get mysteriousLotusCasebook;
+
+  /// No description provided for @rebornChineseDramaEngSub1.
+  ///
+  /// In en, this message translates to:
+  /// **'Reborn Chinese drama ENG SUB\': \''**
+  String get rebornChineseDramaEngSub1;
+
+  /// No description provided for @reborn.
+  ///
+  /// In en, this message translates to:
+  /// **'Reborn'**
+  String get reborn;
+
+  /// No description provided for @theBestDayOfMyLife1.
+  ///
+  /// In en, this message translates to:
+  /// **'The Best Day of My Life\': \''**
+  String get theBestDayOfMyLife1;
+
+  /// No description provided for @theDouble1.
+  ///
+  /// In en, this message translates to:
+  /// **'The Double\':'**
+  String get theDouble1;
+
+  /// No description provided for @theLongBallad.
+  ///
+  /// In en, this message translates to:
+  /// **'The Long Ballad\':'**
+  String get theLongBallad;
+
+  /// No description provided for @theStarryLove1.
+  ///
+  /// In en, this message translates to:
+  /// **'The Starry Love\':'**
+  String get theStarryLove1;
+
+  /// No description provided for @theUntamed.
+  ///
+  /// In en, this message translates to:
+  /// **'The Untamed\':'**
+  String get theUntamed;
+
+  /// No description provided for @tillTheEndOfTheMoon1.
+  ///
+  /// In en, this message translates to:
+  /// **'Till The End of The Moon\':'**
+  String get tillTheEndOfTheMoon1;
+
+  /// No description provided for @whenIFlyTowardsYou1.
+  ///
+  /// In en, this message translates to:
+  /// **'When I Fly Towards You\':'**
+  String get whenIFlyTowardsYou1;
+
+  /// No description provided for @wordOfHonor.
+  ///
+  /// In en, this message translates to:
+  /// **'Word of Honor\':'**
+  String get wordOfHonor;
+
+  /// No description provided for @blossom.
+  ///
+  /// In en, this message translates to:
+  /// **'Blossom'**
+  String get blossom;
+
+  /// No description provided for @gemini.
+  ///
+  /// In en, this message translates to:
+  /// **'Gemini'**
+  String get gemini;
+
+  /// No description provided for @generationToGeneration.
+  ///
+  /// In en, this message translates to:
+  /// **'Generation to Generation'**
+  String get generationToGeneration;
+
+  /// No description provided for @brocadeOdyssey.
+  ///
+  /// In en, this message translates to:
+  /// **'Brocade Odyssey'**
+  String get brocadeOdyssey;
+
+  /// No description provided for @circleOfLove.
+  ///
+  /// In en, this message translates to:
+  /// **'Circle of Love'**
+  String get circleOfLove;
+
+  /// No description provided for @dawnIsBreaking.
+  ///
+  /// In en, this message translates to:
+  /// **'Dawn is Breaking'**
+  String get dawnIsBreaking;
+
+  /// No description provided for @firstRomance.
+  ///
+  /// In en, this message translates to:
+  /// **'First Romance'**
+  String get firstRomance;
+
+  /// No description provided for @loveInTheClouds.
+  ///
+  /// In en, this message translates to:
+  /// **'Love in The Clouds'**
+  String get loveInTheClouds;
+
+  /// No description provided for @secondChanceRomance.
+  ///
+  /// In en, this message translates to:
+  /// **'Second Chance Romance'**
+  String get secondChanceRomance;
+
+  /// No description provided for @mrBad.
+  ///
+  /// In en, this message translates to:
+  /// **'Mr. BAD'**
+  String get mrBad;
+
+  /// No description provided for @pursuitOfJade.
+  ///
+  /// In en, this message translates to:
+  /// **'Pursuit of Jade'**
+  String get pursuitOfJade;
+
+  /// No description provided for @fatedHearts.
+  ///
+  /// In en, this message translates to:
+  /// **'Fated Hearts'**
+  String get fatedHearts;
+
+  /// No description provided for @roadHome.
+  ///
+  /// In en, this message translates to:
+  /// **'Road Home'**
+  String get roadHome;
+
+  /// No description provided for @myDearGuardian.
+  ///
+  /// In en, this message translates to:
+  /// **'My Dear Guardian'**
+  String get myDearGuardian;
+
+  /// No description provided for @brightEyesInTheDark.
+  ///
+  /// In en, this message translates to:
+  /// **'Bright Eyes in the Dark'**
+  String get brightEyesInTheDark;
+
+  /// No description provided for @theIngeniousOne.
+  ///
+  /// In en, this message translates to:
+  /// **'The Ingenious One'**
+  String get theIngeniousOne;
+
+  /// No description provided for @herPhoenixMajesty.
+  ///
+  /// In en, this message translates to:
+  /// **'Her Phoenix Majesty'**
+  String get herPhoenixMajesty;
+
+  /// No description provided for @dreamsNeverEnd.
+  ///
+  /// In en, this message translates to:
+  /// **'Dreams Never End'**
+  String get dreamsNeverEnd;
+
+  /// No description provided for @theUltimateVowUnknownToYou.
+  ///
+  /// In en, this message translates to:
+  /// **'The Ultimate Vow, Unknown to You'**
+  String get theUltimateVowUnknownToYou;
+
+  /// No description provided for @the300LoyalGhosts.
+  ///
+  /// In en, this message translates to:
+  /// **'The 300 Loyal Ghosts'**
+  String get the300LoyalGhosts;
+
+  /// No description provided for @homelandGuardian.
+  ///
+  /// In en, this message translates to:
+  /// **'Homeland Guardian'**
+  String get homelandGuardian;
+
+  /// No description provided for @loveIsAlwaysOnline.
+  ///
+  /// In en, this message translates to:
+  /// **'Love is Always Online'**
+  String get loveIsAlwaysOnline;
+
+  /// No description provided for @thePrincessDecree.
+  ///
+  /// In en, this message translates to:
+  /// **'The Princess Decree'**
+  String get thePrincessDecree;
+
+  /// No description provided for @aVowInTheDark.
+  ///
+  /// In en, this message translates to:
+  /// **'A Vow in the Dark'**
+  String get aVowInTheDark;
+
+  /// No description provided for @aGirlLikeMe.
+  ///
+  /// In en, this message translates to:
+  /// **'A Girl Like Me'**
+  String get aGirlLikeMe;
+
+  /// No description provided for @iAmNobody.
+  ///
+  /// In en, this message translates to:
+  /// **'I Am Nobody'**
+  String get iAmNobody;
+
+  /// No description provided for @myMamaGo.
+  ///
+  /// In en, this message translates to:
+  /// **'My Mama Go!'**
+  String get myMamaGo;
+
+  /// No description provided for @myWesternRegionPrincess.
+  ///
+  /// In en, this message translates to:
+  /// **'My Western Region Princess'**
+  String get myWesternRegionPrincess;
+
+  /// No description provided for @aFlowerOnTheContinent.
+  ///
+  /// In en, this message translates to:
+  /// **'A Flower On The Continent'**
+  String get aFlowerOnTheContinent;
+
+  /// No description provided for @thePrincess.
+  ///
+  /// In en, this message translates to:
+  /// **'The Princess'**
+  String get thePrincess;
+
+  /// No description provided for @sweetLoveVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'Sweet Love Version'**
+  String get sweetLoveVersion;
+
+  /// No description provided for @hilariousFamily2.
+  ///
+  /// In en, this message translates to:
+  /// **'Hilarious Family 2'**
+  String get hilariousFamily2;
+
+  /// No description provided for @guYuanMountainHasASchool.
+  ///
+  /// In en, this message translates to:
+  /// **'Gu Yuan Mountain Has a School'**
+  String get guYuanMountainHasASchool;
+
+  /// No description provided for @foreverYoung.
+  ///
+  /// In en, this message translates to:
+  /// **'Forever Young'**
+  String get foreverYoung;
+
+  /// No description provided for @theHiddenHeirYeChen.
+  ///
+  /// In en, this message translates to:
+  /// **'The Hidden Heir Ye Chen'**
+  String get theHiddenHeirYeChen;
+
+  /// No description provided for @extraordinary.
+  ///
+  /// In en, this message translates to:
+  /// **'Extraordinary'**
+  String get extraordinary;
+
+  /// No description provided for @sideStoryOfFoxVolant.
+  ///
+  /// In en, this message translates to:
+  /// **'Side Story of Fox Volant'**
+  String get sideStoryOfFoxVolant;
+
+  /// No description provided for @loveOfTheDivineTree.
+  ///
+  /// In en, this message translates to:
+  /// **'Love of the Divine Tree'**
+  String get loveOfTheDivineTree;
+
+  /// No description provided for @rebirth.
+  ///
+  /// In en, this message translates to:
+  /// **'Rebirth'**
+  String get rebirth;
+
+  /// No description provided for @moonlitReunion.
+  ///
+  /// In en, this message translates to:
+  /// **'Moonlit Reunion'**
+  String get moonlitReunion;
+
+  /// No description provided for @videoCountsCannotBeNegative.
+  ///
+  /// In en, this message translates to:
+  /// **'Video counts cannot be negative.'**
+  String get videoCountsCannotBeNegative;
+
+  /// No description provided for @publicDomainClassic.
+  ///
+  /// In en, this message translates to:
+  /// **'Public Domain Classic'**
+  String get publicDomainClassic;
+
+  /// No description provided for @idioms.
+  ///
+  /// In en, this message translates to:
+  /// **'Idioms'**
+  String get idioms;
+
+  /// No description provided for @news.
+  ///
+  /// In en, this message translates to:
+  /// **'News'**
+  String get news;
+
+  /// No description provided for @fairyTales.
+  ///
+  /// In en, this message translates to:
+  /// **'Fairy Tales'**
+  String get fairyTales;
+
+  /// No description provided for @hereIsAFascinatingCulturalExplanati.
+  ///
+  /// In en, this message translates to:
+  /// **'Here is a fascinating cultural explanation'**
+  String get hereIsAFascinatingCulturalExplanati;
+
+  /// No description provided for @videoFetchTimedOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Video fetch timed out'**
+  String get videoFetchTimedOut;
+
+  /// No description provided for @aboutChannel.
+  ///
+  /// In en, this message translates to:
+  /// **'ABOUT CHANNEL'**
+  String get aboutChannel;
+
+  /// No description provided for @noVideosFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No videos found'**
+  String get noVideosFound;
+
+  /// No description provided for @failedToLoadVideos.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load videos'**
+  String get failedToLoadVideos;
+
+  /// No description provided for @highqualityCuratedMandarinContentWi.
+  ///
+  /// In en, this message translates to:
+  /// **'High-quality curated Mandarin content with natural vocabulary.'**
+  String get highqualityCuratedMandarinContentWi;
+
+  /// No description provided for @authenticSpokenChineseAcrossRealwor.
+  ///
+  /// In en, this message translates to:
+  /// **'Authentic spoken Chinese across real-world themes and topics.'**
+  String get authenticSpokenChineseAcrossRealwor;
+
+  /// No description provided for @engagingVideoMaterialWithInteractiv.
+  ///
+  /// In en, this message translates to:
+  /// **'Engaging video material with interactive synchronized subtitles.'**
+  String get engagingVideoMaterialWithInteractiv;
+
+  /// No description provided for @watchVideo.
+  ///
+  /// In en, this message translates to:
+  /// **'Watch Video'**
+  String get watchVideo;
+
+  /// No description provided for @culturalInsight.
+  ///
+  /// In en, this message translates to:
+  /// **'Cultural Insight'**
+  String get culturalInsight;
+
+  /// No description provided for @aiIsAnalyzingCulturalContext.
+  ///
+  /// In en, this message translates to:
+  /// **'AI is analyzing cultural context...'**
+  String get aiIsAnalyzingCulturalContext;
+
+  /// No description provided for @diveIntoFullContent.
+  ///
+  /// In en, this message translates to:
+  /// **'Dive into Full Content'**
+  String get diveIntoFullContent;
+
+  /// No description provided for @savedArticles.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved Articles'**
+  String get savedArticles;
+
+  /// No description provided for @liveOverlay.
+  ///
+  /// In en, this message translates to:
+  /// **'LIVE OVERLAY'**
+  String get liveOverlay;
+
+  /// No description provided for @webExplorer.
+  ///
+  /// In en, this message translates to:
+  /// **'WEB EXPLORER'**
+  String get webExplorer;
+
+  /// No description provided for @browseAnyChineseWebsiteWithRealtime.
+  ///
+  /// In en, this message translates to:
+  /// **'Browse any Chinese website with real-time tap dictionary, pinyin annotations & instant translations.'**
+  String get browseAnyChineseWebsiteWithRealtime;
+
+  /// No description provided for @startExploring.
+  ///
+  /// In en, this message translates to:
+  /// **'START EXPLORING'**
+  String get startExploring;
+
+  /// No description provided for @chineseTvSeriesWithInteractiveSubti.
+  ///
+  /// In en, this message translates to:
+  /// **'Chinese TV series with interactive subtitles'**
+  String get chineseTvSeriesWithInteractiveSubti;
+
+  /// No description provided for @failedToLoadContent.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load content'**
+  String get failedToLoadContent;
+
+  /// No description provided for @searchingYoutube.
+  ///
+  /// In en, this message translates to:
+  /// **'Searching YouTube...'**
+  String get searchingYoutube;
+
+  /// No description provided for @noVideosFoundTryADifferentSearchTer.
+  ///
+  /// In en, this message translates to:
+  /// **'No videos found. Try a different search term.'**
+  String get noVideosFoundTryADifferentSearchTer;
+
+  /// No description provided for @searching.
+  ///
+  /// In en, this message translates to:
+  /// **'Searching'**
+  String get searching;
+
+  /// No description provided for @noShowsFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No shows found'**
+  String get noShowsFound;
+
+  /// No description provided for @bookmarked.
+  ///
+  /// In en, this message translates to:
+  /// **'Bookmarked'**
+  String get bookmarked;
+
+  /// No description provided for @trailer1.
+  ///
+  /// In en, this message translates to:
+  /// **'Trailer'**
+  String get trailer1;
+
+  /// No description provided for @highlight1.
+  ///
+  /// In en, this message translates to:
+  /// **'Highlight'**
+  String get highlight1;
+
+  /// No description provided for @noCaptionsAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'No Captions Available'**
+  String get noCaptionsAvailable;
+
+  /// No description provided for @fetchingSubtitles.
+  ///
+  /// In en, this message translates to:
+  /// **'Fetching subtitles...'**
+  String get fetchingSubtitles;
+
+  /// No description provided for @generatingAiBriefing.
+  ///
+  /// In en, this message translates to:
+  /// **'Generating AI briefing...'**
+  String get generatingAiBriefing;
+
+  /// No description provided for @noClosedCaptionsCcFoundForThisVideo.
+  ///
+  /// In en, this message translates to:
+  /// **'No Closed Captions (CC) found for this video.'**
+  String get noClosedCaptionsCcFoundForThisVideo;
+
+  /// No description provided for @videosWithHardcodedOrBurnedinSubtit.
+  ///
+  /// In en, this message translates to:
+  /// **'Videos with hardcoded or burned-in subtitles do not have digital text tracks available on YouTube.'**
+  String get videosWithHardcodedOrBurnedinSubtit;
+
+  /// No description provided for @translatingSubtitles.
+  ///
+  /// In en, this message translates to:
+  /// **'Translating subtitles...'**
+  String get translatingSubtitles;
+
+  /// No description provided for @processingYourPronunciation.
+  ///
+  /// In en, this message translates to:
+  /// **'Processing your pronunciation...'**
+  String get processingYourPronunciation;
+
+  /// No description provided for @couldntIdentifyLine.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t identify line.'**
+  String get couldntIdentifyLine;
+
+  /// No description provided for @listeningSpeakNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Listening... speak now.'**
+  String get listeningSpeakNow;
+
+  /// No description provided for @thisVideoDoesNotHaveADigitalClosedC.
+  ///
+  /// In en, this message translates to:
+  /// **'This video does not have a digital Closed Captions (CC) track on YouTube.'**
+  String get thisVideoDoesNotHaveADigitalClosedC;
+
+  /// No description provided for @perfect1.
+  ///
+  /// In en, this message translates to:
+  /// **'Perfect'**
+  String get perfect1;
+
+  /// No description provided for @thisVideoHasBeenRemovedOrIsNoLonger.
+  ///
+  /// In en, this message translates to:
+  /// **'This video has been removed or is no longer available.'**
+  String get thisVideoHasBeenRemovedOrIsNoLonger;
+
+  /// No description provided for @thisVideoCannotBePlayedInTheAppYouC.
+  ///
+  /// In en, this message translates to:
+  /// **'This video cannot be played in the app. You can still watch it on YouTube.'**
+  String get thisVideoCannotBePlayedInTheAppYouC;
+
+  /// No description provided for @yourDeviceCannotPlayThisVideoPlease.
+  ///
+  /// In en, this message translates to:
+  /// **'Your device cannot play this video. Please try a different one.'**
+  String get yourDeviceCannotPlayThisVideoPlease;
+
+  /// No description provided for @invalidVideoReferencePleaseTryAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid video reference. Please try again.'**
+  String get invalidVideoReferencePleaseTryAgain;
+
+  /// No description provided for @unableToLoadThisVideoPleaseTryAnoth.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to load this video. Please try another one.'**
+  String get unableToLoadThisVideoPleaseTryAnoth;
+
+  /// No description provided for @startReading.
+  ///
+  /// In en, this message translates to:
+  /// **'Start Reading'**
+  String get startReading;
+
+  /// No description provided for @analyzingCulturalContext.
+  ///
+  /// In en, this message translates to:
+  /// **'Analyzing cultural context...'**
+  String get analyzingCulturalContext;
+
+  /// No description provided for @failedToLoadCulturalInsight.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load cultural insight.'**
+  String get failedToLoadCulturalInsight;
+
+  /// No description provided for @historicalContext.
+  ///
+  /// In en, this message translates to:
+  /// **'Historical Context'**
+  String get historicalContext;
+
+  /// No description provided for @culturalSignificance.
+  ///
+  /// In en, this message translates to:
+  /// **'Cultural Significance'**
+  String get culturalSignificance;
+
+  /// No description provided for @authorBackground.
+  ///
+  /// In en, this message translates to:
+  /// **'Author Background'**
+  String get authorBackground;
+
+  /// No description provided for @k80CompleteClassicNovelsWorldEpics.
+  ///
+  /// In en, this message translates to:
+  /// **'80+ Complete classic novels & world epics'**
+  String get k80CompleteClassicNovelsWorldEpics;
+
+  /// No description provided for @storyOfTheDay.
+  ///
+  /// In en, this message translates to:
+  /// **'STORY OF THE DAY'**
+  String get storyOfTheDay;
+
+  /// No description provided for @tangDynasty.
+  ///
+  /// In en, this message translates to:
+  /// **'Tang Dynasty'**
+  String get tangDynasty;
+
+  /// No description provided for @poetryClassicalVerse.
+  ///
+  /// In en, this message translates to:
+  /// **'Poetry\', \'Classical\', \'Verse'**
+  String get poetryClassicalVerse;
+
+  /// No description provided for @allHsk.
+  ///
+  /// In en, this message translates to:
+  /// **'All HSK'**
+  String get allHsk;
+
+  /// No description provided for @allStories.
+  ///
+  /// In en, this message translates to:
+  /// **'All Stories\' :'**
+  String get allStories;
+
+  /// No description provided for @keyWords.
+  ///
+  /// In en, this message translates to:
+  /// **'Key Words'**
+  String get keyWords;
+
+  /// No description provided for @openOriginalWebsite.
+  ///
+  /// In en, this message translates to:
+  /// **'Open Original Website'**
+  String get openOriginalWebsite;
+
+  /// No description provided for @aiReadingTools.
+  ///
+  /// In en, this message translates to:
+  /// **'AI Reading Tools'**
+  String get aiReadingTools;
+
+  /// No description provided for @enhanceYourReadingWithAipoweredTool.
+  ///
+  /// In en, this message translates to:
+  /// **'Enhance your reading with AI-powered tools'**
+  String get enhanceYourReadingWithAipoweredTool;
+
+  /// No description provided for @chooseTheTargetDifficultyForSimplif.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose the target difficulty for simplification'**
+  String get chooseTheTargetDifficultyForSimplif;
+
+  /// No description provided for @chooseDifficultyForSimplification.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose difficulty for simplification'**
+  String get chooseDifficultyForSimplification;
+
+  /// No description provided for @extractAllUnknownWordsToANewFlashca.
+  ///
+  /// In en, this message translates to:
+  /// **'Extract all unknown words to a new flashcard deck'**
+  String get extractAllUnknownWordsToANewFlashca;
+
+  /// No description provided for @length.
+  ///
+  /// In en, this message translates to:
+  /// **'Length'**
+  String get length;
+
+  /// No description provided for @m1554846a550010707.
+  ///
+  /// In en, this message translates to:
+  /// **'M15.54 8.46a5 5 0 0 1 0 7.07'**
+  String get m1554846a550010707;
+
+  /// No description provided for @m1907493a101000101414.
+  ///
+  /// In en, this message translates to:
+  /// **'M19.07 4.93a10 10 0 0 1 0 14.14'**
+  String get m1907493a101000101414;
+
+  /// No description provided for @webExtraction.
+  ///
+  /// In en, this message translates to:
+  /// **'Web Extraction'**
+  String get webExtraction;
+
+  /// No description provided for @aiTools.
+  ///
+  /// In en, this message translates to:
+  /// **'AI Tools'**
+  String get aiTools;
+
+  /// No description provided for @stop.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop'**
+  String get stop;
+
+  /// No description provided for @keepPracticing1.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep practicing'**
+  String get keepPracticing1;
+
+  /// No description provided for @aiPrepRoom.
+  ///
+  /// In en, this message translates to:
+  /// **'AI Prep Room'**
+  String get aiPrepRoom;
+
+  /// No description provided for @lessonSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'LESSON SUMMARY'**
+  String get lessonSummary;
+
+  /// No description provided for @unlockSinosparkPremium.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlock SinoSpark Premium'**
+  String get unlockSinosparkPremium;
+
+  /// No description provided for @monthYear.
+  ///
+  /// In en, this message translates to:
+  /// **'Month\' : \'Year'**
+  String get monthYear;
+
+  /// No description provided for @enableNotifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable Notifications'**
+  String get enableNotifications;
+
+  /// No description provided for @notificationsConfigured.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications Configured'**
+  String get notificationsConfigured;
+
+  /// No description provided for @neverMissAStroke2.
+  ///
+  /// In en, this message translates to:
+  /// **'Never Miss a Stroke'**
+  String get neverMissAStroke2;
+
+  /// No description provided for @yourDailyDropAndStreakAlertsArePrim.
+  ///
+  /// In en, this message translates to:
+  /// **'Your daily drop and streak alerts are primed.'**
+  String get yourDailyDropAndStreakAlertsArePrim;
+
+  /// No description provided for @stayConsistentWithDailyRitualDropsA.
+  ///
+  /// In en, this message translates to:
+  /// **'Stay consistent with daily ritual drops and timely trial reminders.'**
+  String get stayConsistentWithDailyRitualDropsA;
+
+  /// No description provided for @aNewWordAndStoryWaitingForYourDaily.
+  ///
+  /// In en, this message translates to:
+  /// **'A new Word and Story waiting for your daily ritual.'**
+  String get aNewWordAndStoryWaitingForYourDaily;
+
+  /// No description provided for @gentlePromptsBeforeCharactersFadeFr.
+  ///
+  /// In en, this message translates to:
+  /// **'Gentle prompts before characters fade from your memory.'**
+  String get gentlePromptsBeforeCharactersFadeFr;
+
+  /// No description provided for @receiveAReminder2DaysBeforeYourFree.
+  ///
+  /// In en, this message translates to:
+  /// **'Receive a reminder 2 days before your free trial ends.'**
+  String get receiveAReminder2DaysBeforeYourFree;
+
+  /// No description provided for @yourPathTonchineseFluency.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Path to\\nChinese Fluency'**
+  String get yourPathTonchineseFluency;
+
+  /// No description provided for @answer3QuickQuestionsSoOurAiCanCraf.
+  ///
+  /// In en, this message translates to:
+  /// **'Answer 3 quick questions so our AI can craft\\na curriculum that fits your life.'**
+  String get answer3QuickQuestionsSoOurAiCanCraf;
+
+  /// No description provided for @whatIsYourLevelnwithChinese.
+  ///
+  /// In en, this message translates to:
+  /// **'What is your level\\nwith Chinese?'**
+  String get whatIsYourLevelnwithChinese;
+
+  /// No description provided for @chooseThePathThatFitsYourDepth.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose the path that fits your depth.'**
+  String get chooseThePathThatFitsYourDepth;
+
+  /// No description provided for @whatDrivesYourStudy.
+  ///
+  /// In en, this message translates to:
+  /// **'What drives your study?'**
+  String get whatDrivesYourStudy;
+
+  /// No description provided for @purposeFuelsTheBrush.
+  ///
+  /// In en, this message translates to:
+  /// **'Purpose fuels the brush'**
+  String get purposeFuelsTheBrush;
+
+  /// No description provided for @setYourDailyRitual.
+  ///
+  /// In en, this message translates to:
+  /// **'Set your daily ritual.'**
+  String get setYourDailyRitual;
+
+  /// No description provided for @youCanAdjustYourRitualAnyTime.
+  ///
+  /// In en, this message translates to:
+  /// **'You can adjust your ritual any time.'**
+  String get youCanAdjustYourRitualAnyTime;
+
+  /// No description provided for @letsBegin.
+  ///
+  /// In en, this message translates to:
+  /// **'Let\'s Begin'**
+  String get letsBegin;
+
+  /// No description provided for @brandNew.
+  ///
+  /// In en, this message translates to:
+  /// **'Brand New'**
+  String get brandNew;
+
+  /// No description provided for @iveNeverStudiedChineseBefore.
+  ///
+  /// In en, this message translates to:
+  /// **'I\'ve never studied Chinese before.'**
+  String get iveNeverStudiedChineseBefore;
+
+  /// No description provided for @iKnowBasicCharactersAndPhrases.
+  ///
+  /// In en, this message translates to:
+  /// **'I know basic characters and phrases.'**
+  String get iKnowBasicCharactersAndPhrases;
+
+  /// No description provided for @iCanHoldConversationsAndRead.
+  ///
+  /// In en, this message translates to:
+  /// **'I can hold conversations and read.'**
+  String get iCanHoldConversationsAndRead;
+
+  /// No description provided for @iWantToRefineAndPerfectMySkills.
+  ///
+  /// In en, this message translates to:
+  /// **'I want to refine and perfect my skills.'**
+  String get iWantToRefineAndPerfectMySkills;
+
+  /// No description provided for @confirmSelection.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm Selection'**
+  String get confirmSelection;
+
+  /// No description provided for @purposeFuelsTheBrushsMotion.
+  ///
+  /// In en, this message translates to:
+  /// **'Purpose fuels the brush\'s motion.'**
+  String get purposeFuelsTheBrushsMotion;
+
+  /// No description provided for @buildMyPath.
+  ///
+  /// In en, this message translates to:
+  /// **'Build My Path'**
+  String get buildMyPath;
+
+  /// No description provided for @hskCertification.
+  ///
+  /// In en, this message translates to:
+  /// **'HSK Certification'**
+  String get hskCertification;
+
+  /// No description provided for @culturalAppreciation.
+  ///
+  /// In en, this message translates to:
+  /// **'Cultural Appreciation'**
+  String get culturalAppreciation;
+
+  /// No description provided for @yourPlanIsReady.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Plan is Ready'**
+  String get yourPlanIsReady;
+
+  /// No description provided for @craftingYourCurriculum.
+  ///
+  /// In en, this message translates to:
+  /// **'Crafting Your Curriculum'**
+  String get craftingYourCurriculum;
+
+  /// No description provided for @personalizedPathInitialized.
+  ///
+  /// In en, this message translates to:
+  /// **'PERSONALIZED PATH INITIALIZED'**
+  String get personalizedPathInitialized;
+
+  /// No description provided for @calibratingAiNeuralMasters.
+  ///
+  /// In en, this message translates to:
+  /// **'CALIBRATING AI NEURAL MASTERS...'**
+  String get calibratingAiNeuralMasters;
+
+  /// No description provided for @calibrationComplete.
+  ///
+  /// In en, this message translates to:
+  /// **'Calibration Complete'**
+  String get calibrationComplete;
+
+  /// No description provided for @synthesizingModules.
+  ///
+  /// In en, this message translates to:
+  /// **'Synthesizing Modules...'**
+  String get synthesizingModules;
+
+  /// No description provided for @oneAndWater.
+  ///
+  /// In en, this message translates to:
+  /// **'One\' and \'Water'**
+  String get oneAndWater;
+
+  /// No description provided for @theHorizontalStroke.
+  ///
+  /// In en, this message translates to:
+  /// **'THE HORIZONTAL STROKE'**
+  String get theHorizontalStroke;
+
+  /// No description provided for @theRadical.
+  ///
+  /// In en, this message translates to:
+  /// **'THE RADICAL'**
+  String get theRadical;
+
+  /// No description provided for @water.
+  ///
+  /// In en, this message translates to:
+  /// **'Water'**
+  String get water;
+
+  /// No description provided for @river.
+  ///
+  /// In en, this message translates to:
+  /// **'River'**
+  String get river;
+
+  /// No description provided for @day5Reminder.
+  ///
+  /// In en, this message translates to:
+  /// **'Day 5 Reminder'**
+  String get day5Reminder;
+
+  /// No description provided for @wePromisedToAlertYou2DaysBeforeYour.
+  ///
+  /// In en, this message translates to:
+  /// **'We promised to alert you 2 days before your trial ends so you'**
+  String get wePromisedToAlertYou2DaysBeforeYour;
+
+  /// No description provided for @continueWithoutReminder.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue without reminder'**
+  String get continueWithoutReminder;
+
+  /// No description provided for @masterChineseWithnsinospark.
+  ///
+  /// In en, this message translates to:
+  /// **'Master Chinese with\\nSinoSpark'**
+  String get masterChineseWithnsinospark;
+
+  /// No description provided for @start7dayFreeTrial.
+  ///
+  /// In en, this message translates to:
+  /// **'Start 7-Day Free Trial'**
+  String get start7dayFreeTrial;
+
+  /// No description provided for @precisionStrokes.
+  ///
+  /// In en, this message translates to:
+  /// **'Precision Strokes'**
+  String get precisionStrokes;
+
+  /// No description provided for @aiPronunciation.
+  ///
+  /// In en, this message translates to:
+  /// **'AI Pronunciation'**
+  String get aiPronunciation;
+
+  /// No description provided for @today.
+  ///
+  /// In en, this message translates to:
+  /// **'Today'**
+  String get today;
+
+  /// No description provided for @fullAccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Full Access'**
+  String get fullAccess;
+
+  /// No description provided for @day5.
+  ///
+  /// In en, this message translates to:
+  /// **'Day 5'**
+  String get day5;
+
+  /// No description provided for @reminder.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminder'**
+  String get reminder;
+
+  /// No description provided for @day7.
+  ///
+  /// In en, this message translates to:
+  /// **'Day 7'**
+  String get day7;
+
+  /// No description provided for @trialBegins.
+  ///
+  /// In en, this message translates to:
+  /// **'Trial Begins'**
+  String get trialBegins;
+
+  /// No description provided for @revenuecatIsMissingACurrentOffering.
+  ///
+  /// In en, this message translates to:
+  /// **'RevenueCat is missing a Current Offering or Packages. Please configure your Dashboard.'**
+  String get revenuecatIsMissingACurrentOffering;
+
+  /// No description provided for @cameraPermissionRequiredForLiveScan.
+  ///
+  /// In en, this message translates to:
+  /// **'Camera permission required for live scanning.'**
+  String get cameraPermissionRequiredForLiveScan;
+
+  /// No description provided for @cameraAccessRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Camera Access Required'**
+  String get cameraAccessRequired;
+
+  /// No description provided for @pleaseEnableCameraAccessInYourDevic.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enable camera access in your device settings to use this feature.'**
+  String get pleaseEnableCameraAccessInYourDevic;
+
+  /// No description provided for @alignChineseTextWithinFrame.
+  ///
+  /// In en, this message translates to:
+  /// **'Align Chinese text within frame'**
+  String get alignChineseTextWithinFrame;
+
+  /// No description provided for @inLibrary.
+  ///
+  /// In en, this message translates to:
+  /// **'In Library'**
+  String get inLibrary;
+
+  /// No description provided for @novice.
+  ///
+  /// In en, this message translates to:
+  /// **'Novice'**
+  String get novice;
+
+  /// No description provided for @apprentice.
+  ///
+  /// In en, this message translates to:
+  /// **'Apprentice'**
+  String get apprentice;
+
+  /// No description provided for @artisan.
+  ///
+  /// In en, this message translates to:
+  /// **'Artisan'**
+  String get artisan;
+
+  /// No description provided for @grandmaster.
+  ///
+  /// In en, this message translates to:
+  /// **'Grandmaster'**
+  String get grandmaster;
+
+  /// No description provided for @poem.
+  ///
+  /// In en, this message translates to:
+  /// **'Poem'**
+  String get poem;
+
+  /// No description provided for @theNarrative.
+  ///
+  /// In en, this message translates to:
+  /// **'The Narrative'**
+  String get theNarrative;
+
+  /// No description provided for @classicMasterpiece.
+  ///
+  /// In en, this message translates to:
+  /// **'Classic Masterpiece'**
+  String get classicMasterpiece;
+
+  /// No description provided for @classicAuthor.
+  ///
+  /// In en, this message translates to:
+  /// **'Classic Author'**
+  String get classicAuthor;
+
+  /// No description provided for @classical.
+  ///
+  /// In en, this message translates to:
+  /// **'Classical'**
+  String get classical;
+
+  /// No description provided for @classicLiterature.
+  ///
+  /// In en, this message translates to:
+  /// **'Classic\', \'Literature'**
+  String get classicLiterature;
+
+  /// No description provided for @inThisChapterOf.
+  ///
+  /// In en, this message translates to:
+  /// **'In this chapter of'**
+  String get inThisChapterOf;
+
+  /// No description provided for @asTheNarrativeUnfoldsItIlluminatesT.
+  ///
+  /// In en, this message translates to:
+  /// **'As the narrative unfolds, it illuminates the fundamental wisdom of life and lasting inspiration.'**
+  String get asTheNarrativeUnfoldsItIlluminatesT;
+
+  /// No description provided for @general.
+  ///
+  /// In en, this message translates to:
+  /// **'General'**
+  String get general;
+
+  /// No description provided for @mythology.
+  ///
+  /// In en, this message translates to:
+  /// **'Mythology'**
+  String get mythology;
+
+  /// No description provided for @dailyLife.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily Life'**
+  String get dailyLife;
+
+  /// No description provided for @tangPoetry.
+  ///
+  /// In en, this message translates to:
+  /// **'Tang Poetry'**
+  String get tangPoetry;
+
+  /// No description provided for @classicalLiterature.
+  ///
+  /// In en, this message translates to:
+  /// **'Classical Literature'**
+  String get classicalLiterature;
+
+  /// No description provided for @justNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Just now'**
+  String get justNow;
+
+  /// No description provided for @theTerracottaArmyOfQinShiHuang.
+  ///
+  /// In en, this message translates to:
+  /// **'The Terracotta Army of Qin Shi Huang'**
+  String get theTerracottaArmyOfQinShiHuang;
+
+  /// No description provided for @lifeInsideTheForbiddenCity.
+  ///
+  /// In en, this message translates to:
+  /// **'Life inside the Forbidden City'**
+  String get lifeInsideTheForbiddenCity;
+
+  /// No description provided for @buyingATicketAndTakingTheHighSpeedT.
+  ///
+  /// In en, this message translates to:
+  /// **'Buying a ticket and taking the high speed train in China'**
+  String get buyingATicketAndTakingTheHighSpeedT;
+
+  /// No description provided for @goingToTheHospitalForAColdAndSeeing.
+  ///
+  /// In en, this message translates to:
+  /// **'Going to the hospital for a cold and seeing a doctor'**
+  String get goingToTheHospitalForAColdAndSeeing;
+
+  /// No description provided for @goingToALocalRestaurantToOrderJiaoz.
+  ///
+  /// In en, this message translates to:
+  /// **'Going to a local restaurant to order Jiaozi (dumplings)'**
+  String get goingToALocalRestaurantToOrderJiaoz;
+
+  /// No description provided for @theTraditionalGongfuTeaCeremony.
+  ///
+  /// In en, this message translates to:
+  /// **'The traditional Gongfu tea ceremony'**
+  String get theTraditionalGongfuTeaCeremony;
+
+  /// No description provided for @theArtOfWritingChineseCharactersWit.
+  ///
+  /// In en, this message translates to:
+  /// **'The art of writing Chinese characters with a brush'**
+  String get theArtOfWritingChineseCharactersWit;
+
+  /// No description provided for @theLifeAndConservationOfGiantPandas.
+  ///
+  /// In en, this message translates to:
+  /// **'The life and conservation of Giant Pandas'**
+  String get theLifeAndConservationOfGiantPandas;
+
+  /// No description provided for @storyNotFoundInDatabase.
+  ///
+  /// In en, this message translates to:
+  /// **'Story not found in database'**
+  String get storyNotFoundInDatabase;
+
+  /// No description provided for @storyTextIsEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Story text is empty'**
+  String get storyTextIsEmpty;
+
+  /// No description provided for @myCustomStories.
+  ///
+  /// In en, this message translates to:
+  /// **'My Custom Stories'**
+  String get myCustomStories;
+
+  /// No description provided for @userProvidedText.
+  ///
+  /// In en, this message translates to:
+  /// **'User provided text'**
+  String get userProvidedText;
+
+  /// No description provided for @local.
+  ///
+  /// In en, this message translates to:
+  /// **'Local'**
+  String get local;
+
+  /// No description provided for @voiceEngineAllowance.
+  ///
+  /// In en, this message translates to:
+  /// **'Voice Engine & Allowance'**
+  String get voiceEngineAllowance;
+
+  /// No description provided for @studioHdVsUnlimitedStandardVoice.
+  ///
+  /// In en, this message translates to:
+  /// **'Studio HD vs. Unlimited Standard Voice'**
+  String get studioHdVsUnlimitedStandardVoice;
+
+  /// No description provided for @standardVoiceIs100UnlimitedFree.
+  ///
+  /// In en, this message translates to:
+  /// **'Standard Voice is 100% Unlimited & Free'**
+  String get standardVoiceIs100UnlimitedFree;
+
+  /// No description provided for @read.
+  ///
+  /// In en, this message translates to:
+  /// **'Read'**
+  String get read;
+
+  /// No description provided for @koreKoreFemaleWarm.
+  ///
+  /// In en, this message translates to:
+  /// **'Kore\', \'Kore\', \'Female, warm'**
+  String get koreKoreFemaleWarm;
+
+  /// No description provided for @aoedeAoedeFemaleCheerful.
+  ///
+  /// In en, this message translates to:
+  /// **'Aoede\', \'Aoede\', \'Female, cheerful'**
+  String get aoedeAoedeFemaleCheerful;
+
+  /// No description provided for @fenrirFenrirMaleUpbeat.
+  ///
+  /// In en, this message translates to:
+  /// **'Fenrir\', \'Fenrir\', \'Male, upbeat'**
+  String get fenrirFenrirMaleUpbeat;
+
+  /// No description provided for @charonCharonMaleNewsstyle.
+  ///
+  /// In en, this message translates to:
+  /// **'Charon\', \'Charon\', \'Male, news-style'**
+  String get charonCharonMaleNewsstyle;
+
+  /// No description provided for @puckPuckMaleSporty.
+  ///
+  /// In en, this message translates to:
+  /// **'Puck\', \'Puck\', \'Male, sporty'**
+  String get puckPuckMaleSporty;
+
+  /// No description provided for @localOndevice.
+  ///
+  /// In en, this message translates to:
+  /// **'Local\', \'On-device'**
+  String get localOndevice;
+
+  /// No description provided for @localOndeviceTts.
+  ///
+  /// In en, this message translates to:
+  /// **'Local on-device TTS'**
+  String get localOndeviceTts;
+
+  /// No description provided for @off.
+  ///
+  /// In en, this message translates to:
+  /// **'Off'**
+  String get off;
+
+  /// No description provided for @endOfCurrentChapter.
+  ///
+  /// In en, this message translates to:
+  /// **'End of Current Chapter'**
+  String get endOfCurrentChapter;
+
+  /// No description provided for @standardVoice.
+  ///
+  /// In en, this message translates to:
+  /// **'Standard Voice'**
+  String get standardVoice;
+
+  /// No description provided for @noNovelsFoundMatchingYourFilter.
+  ///
+  /// In en, this message translates to:
+  /// **'No novels found matching your filter.'**
+  String get noNovelsFoundMatchingYourFilter;
+
+  /// No description provided for @noMicroreadsFoundMatchingYourFilter.
+  ///
+  /// In en, this message translates to:
+  /// **'No micro-reads found matching your filter.'**
+  String get noMicroreadsFoundMatchingYourFilter;
+
+  /// No description provided for @noPoemsFoundMatchingYourFilter.
+  ///
+  /// In en, this message translates to:
+  /// **'No poems found matching your filter.'**
+  String get noPoemsFoundMatchingYourFilter;
+
+  /// No description provided for @audiobook.
+  ///
+  /// In en, this message translates to:
+  /// **'Audiobook'**
+  String get audiobook;
+
+  /// No description provided for @audio.
+  ///
+  /// In en, this message translates to:
+  /// **'Audio'**
+  String get audio;
+
+  /// No description provided for @continueReading.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue Reading'**
+  String get continueReading;
+
+  /// No description provided for @search96FullNovelsAuthorsEpics.
+  ///
+  /// In en, this message translates to:
+  /// **'Search 96 full novels, authors, epics...'**
+  String get search96FullNovelsAuthorsEpics;
+
+  /// No description provided for @searchClassicalPoemsAuthorsVerses.
+  ///
+  /// In en, this message translates to:
+  /// **'Search classical poems, authors, verses...'**
+  String get searchClassicalPoemsAuthorsVerses;
+
+  /// No description provided for @allLevelsVal.
+  ///
+  /// In en, this message translates to:
+  /// **'All Levels\', \'val'**
+  String get allLevelsVal;
+
+  /// No description provided for @hsk1BeginnerVal.
+  ///
+  /// In en, this message translates to:
+  /// **'HSK 1 (Beginner)\', \'val'**
+  String get hsk1BeginnerVal;
+
+  /// No description provided for @hsk2ElementaryVal.
+  ///
+  /// In en, this message translates to:
+  /// **'HSK 2 (Elementary)\', \'val'**
+  String get hsk2ElementaryVal;
+
+  /// No description provided for @hsk3IntermediateVal.
+  ///
+  /// In en, this message translates to:
+  /// **'HSK 3 (Intermediate)\', \'val'**
+  String get hsk3IntermediateVal;
+
+  /// No description provided for @hsk4UpperIntVal.
+  ///
+  /// In en, this message translates to:
+  /// **'HSK 4 (Upper Int)\', \'val'**
+  String get hsk4UpperIntVal;
+
+  /// No description provided for @listenToAudiobook.
+  ///
+  /// In en, this message translates to:
+  /// **'Listen to Audiobook'**
+  String get listenToAudiobook;
+
+  /// No description provided for @synopsis.
+  ///
+  /// In en, this message translates to:
+  /// **'Synopsis'**
+  String get synopsis;
+
+  /// No description provided for @peoplesArtist.
+  ///
+  /// In en, this message translates to:
+  /// **'People\'s Artist\'.'**
+  String get peoplesArtist;
+
+  /// No description provided for @kafkaesqueForBureaucraticAbsurdityA.
+  ///
+  /// In en, this message translates to:
+  /// **'Kafkaesque\' for bureaucratic absurdity, alienation, and existential dread.'**
+  String get kafkaesqueForBureaucraticAbsurdityA;
+
+  /// No description provided for @bigBrotherAndNewspeak.
+  ///
+  /// In en, this message translates to:
+  /// **'Big Brother\', and \'Newspeak\'.'**
+  String get bigBrotherAndNewspeak;
+
+  /// No description provided for @audiobookIncluded.
+  ///
+  /// In en, this message translates to:
+  /// **'Audiobook Included'**
+  String get audiobookIncluded;
+
+  /// No description provided for @readPoem.
+  ///
+  /// In en, this message translates to:
+  /// **'Read Poem'**
+  String get readPoem;
+
+  /// No description provided for @studioVoiceAllowance.
+  ///
+  /// In en, this message translates to:
+  /// **'Studio Voice Allowance'**
+  String get studioVoiceAllowance;
+
+  /// No description provided for @weeklyHighdefinitionAiRecitation.
+  ///
+  /// In en, this message translates to:
+  /// **'Weekly High-Definition AI Recitation'**
+  String get weeklyHighdefinitionAiRecitation;
+
+  /// No description provided for @resetsEveryMondayAt0000.
+  ///
+  /// In en, this message translates to:
+  /// **'Resets every Monday at 00:00'**
+  String get resetsEveryMondayAt0000;
+
+  /// No description provided for @whenYourWeekly4hourStudioAllowanceI.
+  ///
+  /// In en, this message translates to:
+  /// **'When your weekly 4-hour Studio allowance is used, the app automatically switches to On-Device Voice for unlimited, free listening without interruption.'**
+  String get whenYourWeekly4hourStudioAllowanceI;
+
+  /// No description provided for @localDeviceVoice.
+  ///
+  /// In en, this message translates to:
+  /// **'Local device voice\' :'**
+  String get localDeviceVoice;
+
+  /// No description provided for @classicalVerse.
+  ///
+  /// In en, this message translates to:
+  /// **'Classical Verse'**
+  String get classicalVerse;
+
+  /// No description provided for @ondeviceVoice4hWeeklyUsed.
+  ///
+  /// In en, this message translates to:
+  /// **'On-Device Voice (4h weekly used)'**
+  String get ondeviceVoice4hWeeklyUsed;
+
+  /// No description provided for @generateACustomAiStoryBasedOnYourIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Generate a custom AI story based on your interests'**
+  String get generateACustomAiStoryBasedOnYourIn;
+
+  /// No description provided for @insteadOfAFixedHskLevelTheFlowState.
+  ///
+  /// In en, this message translates to:
+  /// **'Instead of a fixed HSK level, the Flow State Engine analyzes your Flashcard Library.\\n\\n'**
+  String get insteadOfAFixedHskLevelTheFlowState;
+
+  /// No description provided for @we.
+  ///
+  /// In en, this message translates to:
+  /// **'We'**
+  String get we;
+
+  /// No description provided for @howCanWeHelpYou.
+  ///
+  /// In en, this message translates to:
+  /// **'How can we help you?'**
+  String get howCanWeHelpYou;
+
+  /// No description provided for @everythingYouNeedToKnowAboutHanziMa.
+  ///
+  /// In en, this message translates to:
+  /// **'Everything you need to know about Hanzi Master, its features, and your privacy.'**
+  String get everythingYouNeedToKnowAboutHanziMa;
+
+  /// No description provided for @whoAreTheVoicesSpeakingInTheApp.
+  ///
+  /// In en, this message translates to:
+  /// **'Who are the voices speaking in the app?'**
+  String get whoAreTheVoicesSpeakingInTheApp;
+
+  /// No description provided for @howDoesTheWebExplorerWork.
+  ///
+  /// In en, this message translates to:
+  /// **'How does the Web Explorer work?'**
+  String get howDoesTheWebExplorerWork;
+
+  /// No description provided for @whatIsZenMode.
+  ///
+  /// In en, this message translates to:
+  /// **'What is Zen Mode?'**
+  String get whatIsZenMode;
+
+  /// No description provided for @howDoesTheFlashcardSpacedrepetition.
+  ///
+  /// In en, this message translates to:
+  /// **'How does the Flashcard spaced-repetition work?'**
+  String get howDoesTheFlashcardSpacedrepetition;
+
+  /// No description provided for @traceComplete.
+  ///
+  /// In en, this message translates to:
+  /// **'Trace Complete!'**
+  String get traceComplete;
+
+  /// No description provided for @traceCharacter.
+  ///
+  /// In en, this message translates to:
+  /// **'Trace Character'**
+  String get traceCharacter;
+
+  /// No description provided for @analyzingWordRelationships.
+  ///
+  /// In en, this message translates to:
+  /// **'Analyzing word relationships...'**
+  String get analyzingWordRelationships;
+
+  /// No description provided for @identifyingUsageContexts.
+  ///
+  /// In en, this message translates to:
+  /// **'Identifying usage contexts...'**
+  String get identifyingUsageContexts;
+
+  /// No description provided for @comparingFormalityLevels.
+  ///
+  /// In en, this message translates to:
+  /// **'Comparing formality levels...'**
+  String get comparingFormalityLevels;
+
+  /// No description provided for @findingCommonCollocations.
+  ///
+  /// In en, this message translates to:
+  /// **'Finding common collocations...'**
+  String get findingCommonCollocations;
+
+  /// No description provided for @generatingComparison.
+  ///
+  /// In en, this message translates to:
+  /// **'Generating comparison...'**
+  String get generatingComparison;
+
+  /// No description provided for @generationIsTakingLongerThanExpecte.
+  ///
+  /// In en, this message translates to:
+  /// **'Generation is taking longer than expected. The AI may be overloaded.'**
+  String get generationIsTakingLongerThanExpecte;
+
+  /// No description provided for @generationInterruptedShowingPartial.
+  ///
+  /// In en, this message translates to:
+  /// **'Generation interrupted. Showing partial result.'**
+  String get generationInterruptedShowingPartial;
+
+  /// No description provided for @sorrySomethingWentWrong.
+  ///
+  /// In en, this message translates to:
+  /// **'Sorry, something went wrong.'**
+  String get sorrySomethingWentWrong;
+
+  /// No description provided for @usage.
+  ///
+  /// In en, this message translates to:
+  /// **'Usage:\', \''**
+  String get usage;
+
+  /// No description provided for @alsoSeenIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Also seen in'**
+  String get alsoSeenIn;
+
+  /// No description provided for @quickLook.
+  ///
+  /// In en, this message translates to:
+  /// **'Quick Look'**
+  String get quickLook;
+
+  /// No description provided for @notFound.
+  ///
+  /// In en, this message translates to:
+  /// **'Not found'**
+  String get notFound;
+
+  /// No description provided for @errorLoadingFromAi.
+  ///
+  /// In en, this message translates to:
+  /// **'Error loading from AI.'**
+  String get errorLoadingFromAi;
+
+  /// No description provided for @newLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'New'**
+  String get newLabel;
 }
 
 class _AppLocalizationsDelegate

@@ -2065,7 +2065,6 @@
   "pleaseEnableCameraAccessInYourDevic": "Please enable camera access in your device settings to use this feature.",
   "alignChineseTextWithinFrame": "Align Chinese text within frame",
   "inLibrary": "In Library",
-  "new": "New",
   "novice": "Novice",
   "apprentice": "Apprentice",
   "artisan": "Artisan",
@@ -2161,5 +2160,6 @@
   "alsoSeenIn": "Also seen in",
   "quickLook": "Quick Look",
   "notFound": "Not found",
-  "errorLoadingFromAi": "Error loading from AI."
+  "errorLoadingFromAi": "Error loading from AI.",
+  "newLabel": "New"
 }

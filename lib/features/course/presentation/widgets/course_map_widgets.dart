@@ -1013,7 +1013,7 @@ class _UnitIntroSheetState extends State<UnitIntroSheet> {
                 radicalDb.containsKey(radical)) {
               seenRadicals.add(radical);
               radicals.add({
-                AppLocalizations.of(context)!.char: radical,
+                'char': radical,
                 'info': radicalDb[radical],
               });
             }
@@ -1091,7 +1091,7 @@ class _UnitIntroSheetState extends State<UnitIntroSheet> {
                             ),
                             child: Row(
                               children: [
-                                Text(item[AppLocalizations.of(context)!.char],
+                                Text(item['char']?.toString() ?? '',
                                     style: const TextStyle(
                                         fontSize: 32,
                                         fontWeight: FontWeight.bold,
@@ -1103,17 +1103,14 @@ class _UnitIntroSheetState extends State<UnitIntroSheet> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       TranslatedDefinition(
-                                        definition: item['info'][
-                                                AppLocalizations.of(context)!
-                                                    .nameLabel]
-                                            .toString(),
+                                        definition: item['info']?['name']?.toString() ?? '',
                                         originalStyle: const TextStyle(
                                             fontSize: 16,
                                             fontWeight: FontWeight.bold),
                                       ),
                                       TranslatedDefinition(
                                         definition:
-                                            item['info']['meaning'].toString(),
+                                            item['info']?['meaning']?.toString() ?? '',
                                         originalStyle: const TextStyle(
                                             fontSize: 14,
                                             color: Colors.black87),

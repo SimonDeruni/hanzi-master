@@ -1990,7 +1990,6 @@
   "pleaseEnableCameraAccessInYourDevic": "Harap aktifkan akses kamera di pengaturan perangkat Anda untuk menggunakan fitur ini.",
   "alignChineseTextWithinFrame": "Sejajarkan teks Mandarin dalam bingkai",
   "inLibrary": "Di Perpustakaan",
-  "new": "Baru",
   "novice": "Pemula",
   "apprentice": "Magang",
   "artisan": "Artisan",
@@ -2086,5 +2085,6 @@
   "alsoSeenIn": "Juga terlihat di",
   "quickLook": "Lihat Cepat",
   "notFound": "Tidak ditemukan",
-  "errorLoadingFromAi": "Kesalahan memuat dari AI."
+  "errorLoadingFromAi": "Kesalahan memuat dari AI.",
+  "newLabel": "Baru"
 }

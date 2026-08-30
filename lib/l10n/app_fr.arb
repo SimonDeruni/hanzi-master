@@ -1996,7 +1996,6 @@
   "pleaseEnableCameraAccessInYourDevic": "Veuillez activer l'accès à la caméra dans les réglages de votre appareil pour utiliser cette fonctionnalité.",
   "alignChineseTextWithinFrame": "Alignez le texte chinois dans le cadre",
   "inLibrary": "Dans la bibliothèque",
-  "new": "Nouveau",
   "novice": "Novice",
   "apprentice": "Apprenti",
   "artisan": "Artisan",
@@ -2092,5 +2091,6 @@
   "alsoSeenIn": "Également vu dans",
   "quickLook": "Aperçu rapide",
   "notFound": "Non trouvé",
-  "errorLoadingFromAi": "Erreur de chargement depuis l'IA."
+  "errorLoadingFromAi": "Erreur de chargement depuis l'IA.",
+  "newLabel": "Nouveau"
 }

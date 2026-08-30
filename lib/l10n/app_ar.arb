@@ -2087,7 +2087,6 @@
   "pleaseEnableCameraAccessInYourDevic": "يرجى تمكين الوصول إلى الكاميرا في إعدادات جهازك لاستخدام هذه الميزة.",
   "alignChineseTextWithinFrame": "محاذاة النص الصيني داخل الإطار",
   "inLibrary": "في المكتبة",
-  "new": "جديد",
   "novice": "مبتدئ",
   "apprentice": "متدرب",
   "artisan": "حرفي",
@@ -2183,5 +2182,6 @@
   "alsoSeenIn": "شوهد أيضًا في",
   "quickLook": "نظرة سريعة",
   "notFound": "لم يتم العثور عليه",
-  "errorLoadingFromAi": "خطأ في التحميل من الذكاء الاصطناعي."
+  "errorLoadingFromAi": "خطأ في التحميل من الذكاء الاصطناعي.",
+  "newLabel": "جديد"
 }

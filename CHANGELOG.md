@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.0+294] - 2026-08-30
+- **Total Project Hygiene & Zero Flutter Analyzer Issues (Build #294)**:
+  - Renamed Dart reserved keyword `"new"` -> `"newLabel"` across all 13 `.arb` files and regenerated localization classes via `flutter gen-l10n`.
+  - Fixed async gaps, deprecated binary messenger test hooks, and localized map key anti-patterns in `CharacterDetailScreen`, `ReadingRoomScreen`, and `CourseMapWidgets`.
+  - Configured `analysis_options.yaml` with optimal analyzer exclusions.
+  - Verified `flutter analyze`: **No issues found! (0 errors, 0 warnings, 0 infos)**.
+
 ## [1.0.0+293] - 2026-08-30
 - **Full 12-Language Channel Descriptions & Exhaustive UI Localization Integration (Build #293)**:
   - Extracted and translated all 42 channel description points and fallback sentences across all 12 supported languages into `assets/data/l10n/channels_<lang>.json`.

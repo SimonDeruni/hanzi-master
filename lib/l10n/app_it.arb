@@ -2008,7 +2008,6 @@
   "pleaseEnableCameraAccessInYourDevic": "Si prega di abilitare l'accesso alla fotocamera nelle impostazioni del dispositivo per utilizzare questa funzione.",
   "alignChineseTextWithinFrame": "Allinea il testo cinese all'interno della cornice",
   "inLibrary": "In Libreria",
-  "new": "Nuovo",
   "novice": "Principiante",
   "apprentice": "Apprendista",
   "artisan": "Artigiano",
@@ -2104,5 +2103,6 @@
   "alsoSeenIn": "Visto anche in",
   "quickLook": "Anteprima",
   "notFound": "Non trovato",
-  "errorLoadingFromAi": "Errore durante il caricamento dall'AI."
+  "errorLoadingFromAi": "Errore durante il caricamento dall'AI.",
+  "newLabel": "Nuovo"
 }

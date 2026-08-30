@@ -1,3 +1,4 @@
+// ignore_for_file: avoid_print
 // =============================================================================
 // Show Duration Analyzer — standalone CLI script
 //
