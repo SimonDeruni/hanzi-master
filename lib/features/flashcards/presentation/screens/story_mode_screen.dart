@@ -424,7 +424,7 @@ class _StoryModeScreenState extends ConsumerState<StoryModeScreen> {
               children: [
                 const Icon(Icons.error_outline, size: 64, color: Colors.red),
                 const SizedBox(height: 16),
-                Text(AppLocalizations.of(context)!.failed_to_generate_story(e.toString()),
+                Text("Failed to generate story: $e",
                     textAlign: TextAlign.center),
                 const SizedBox(height: 24),
                 ElevatedButton(

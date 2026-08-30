@@ -196,7 +196,7 @@ class _SpeakingModeWidgetState extends ConsumerState<SpeakingModeWidget> {
 
     return Scaffold(
       appBar: StudySessionAppBar(
-        title: 'Speaking Mode',
+        title: AppLocalizations.of(context)?.speakingMode ?? 'Speaking Mode',
         dueCount: widget.dueCount,
         newCount: widget.newCount,
         learningCount: widget.learningCount,

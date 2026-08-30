@@ -754,7 +754,7 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
         },
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (e, _) => Center(
-            child: Text(AppLocalizations.of(context)!.error_loading_chapters(e.toString()))),
+            child: Text("Error: $e")),
       ),
     );
   }

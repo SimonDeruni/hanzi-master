@@ -169,9 +169,7 @@ class CulturalContextScreen extends ConsumerWidget {
                               ],
                             ),
                           ),
-                          error: (err, stack) => Text(
-                              AppLocalizations.of(context)!
-                                  .failed_to_load_context(err.toString())),
+                          error: (err, stack) => Text("Failed to load context: $err"),
                         ),
                       ],
                     ),

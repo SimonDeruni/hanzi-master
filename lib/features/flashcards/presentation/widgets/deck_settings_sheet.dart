@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/deck.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/deck_controller.dart';
 
@@ -84,7 +85,7 @@ class _DeckSettingsSheetState extends ConsumerState<DeckSettingsSheet> {
 
           // Daily New Cards Slider
           _buildSliderSetting(
-            title: "Daily New Cards",
+            title: AppLocalizations.of(context)?.dailyNewCards ?? "Daily New Cards",
             value: _newCardsLimit,
             min: 0,
             max: 100,
@@ -98,7 +99,7 @@ class _DeckSettingsSheetState extends ConsumerState<DeckSettingsSheet> {
 
           // Daily Reviews Slider
           _buildSliderSetting(
-            title: "Daily Review Limit",
+            title: AppLocalizations.of(context)?.dailyReviewLimit ?? "Daily Review Limit",
             value: _reviewLimit,
             min: 0,
             max: 500,

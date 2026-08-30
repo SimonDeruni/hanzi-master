@@ -215,7 +215,6 @@ class DeckSelectionSheet extends ConsumerWidget {
   void _addCardsToDeck(BuildContext context, WidgetRef ref, String deckId,
       String deckName) async {
     final controller = ref.read(flashcardControllerProvider.notifier);
-    final l10n = AppLocalizations.of(context)!;
     final messenger = ScaffoldMessenger.of(context);
     final navigator = Navigator.of(context);
 
@@ -277,7 +276,7 @@ class DeckSelectionSheet extends ConsumerWidget {
       await controller.addFlashcard(newCard);
       messenger.showSnackBar(
         SnackBar(
-          content: Text(l10n.addedToDeck(card!.hanzi, deckName)),
+          content: Text("Added ${card!.hanzi} to $deckName"),
           backgroundColor: Colors.green,
         ),
       );

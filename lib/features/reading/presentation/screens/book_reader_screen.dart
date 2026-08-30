@@ -1141,7 +1141,7 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
         final l10n = AppLocalizations.of(context);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text(l10n?.bookmarkAdded("第${chapter.chapterIndex}回") ?? "已添加书签 · Bookmark added: 第${chapter.chapterIndex}回"),
+            content: Text(l10n != null ? "${l10n.bookmarkAdded}: 第${chapter.chapterIndex}回" : "已添加书签 · Bookmark added: 第${chapter.chapterIndex}回"),
             duration: const Duration(seconds: 2),
           ),
         );

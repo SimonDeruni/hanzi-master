@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -519,7 +520,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
               children: [
                 _buildCalibrationStep(
                   icon: Icons.person_outline,
-                  title: "Mastery Level",
+                  title: AppLocalizations.of(context)?.masteryLevel ?? "Mastery Level",
                   value: masteryText,
                   isDone: _calibrationProgress >= 0.35,
                   isDark: isDark,
@@ -527,7 +528,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                 const SizedBox(height: 10),
                 _buildCalibrationStep(
                   icon: Icons.flag_outlined,
-                  title: "Target Objective",
+                  title: AppLocalizations.of(context)?.targetObjective ?? "Target Objective",
                   value: driveText,
                   isDone: _calibrationProgress >= 0.70,
                   isDark: isDark,
@@ -535,7 +536,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                 const SizedBox(height: 10),
                 _buildCalibrationStep(
                   icon: Icons.access_time,
-                  title: "Daily Practice",
+                  title: AppLocalizations.of(context)?.dailyPractice ?? "Daily Practice",
                   value: ritualText,
                   isDone: _calibrationProgress >= 0.99,
                   isDark: isDark,
@@ -543,7 +544,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                 const SizedBox(height: 10),
                 _buildCalibrationStep(
                   icon: Icons.auto_awesome,
-                  title: "AI Spaced Repetition",
+                  title: AppLocalizations.of(context)?.aiSpacedRepetition ?? "AI Spaced Repetition",
                   value: "Dynamic Decks & Stroke Analysis",
                   isDone: _calibrationComplete,
                   isDark: isDark,

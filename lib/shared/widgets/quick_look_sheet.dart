@@ -628,7 +628,7 @@ class _CharacterHero extends StatelessWidget {
                           children: [
                             if (hskLevel > 0)
                               _Badge(
-                                label: AppLocalizations.of(context)!.hsk(hskLevel),
+                                label: "HSK $hskLevel",
                                 color: Colors.indigo,
                                 isDark: isDark,
                               ),

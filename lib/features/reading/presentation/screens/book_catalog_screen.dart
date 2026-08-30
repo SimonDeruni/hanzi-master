@@ -150,7 +150,7 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                         // Full Novels
                         Expanded(
                           child: _buildSectionTab(
-                            title: 'Novels (96)',
+                            title: AppLocalizations.of(context)?.novels961 ?? 'Novels (96)',
                             section: ReadingRoomSection.novels,
                             isDark: isDark,
                             cardBg: cardBg,
@@ -160,7 +160,7 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                         // Micro-Reads
                         Expanded(
                           child: _buildSectionTab(
-                            title: 'Micro-Reads',
+                            title: AppLocalizations.of(context)?.microreads ?? 'Micro-Reads',
                             section: ReadingRoomSection.microReads,
                             isDark: isDark,
                             cardBg: cardBg,
@@ -170,7 +170,7 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                         // Poetry
                         Expanded(
                           child: _buildSectionTab(
-                            title: 'Poetry',
+                            title: AppLocalizations.of(context)?.poetry1 ?? 'Poetry',
                             section: ReadingRoomSection.poetry,
                             isDark: isDark,
                             cardBg: cardBg,
@@ -487,7 +487,7 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
       error: (e, _) => [
         SliverFillRemaining(
           child: Center(
-              child: Text(AppLocalizations.of(context)!.error_loading_novels(e.toString()))),
+              child: Text("Error: $e")),
         ),
       ],
     );
@@ -573,8 +573,7 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
       error: (e, _) => [
         SliverFillRemaining(
           child: Center(
-              child:
-                  Text(AppLocalizations.of(context)!.error_loading_microreads(e.toString()))),
+              child: Text("Error: $e")),
         ),
       ],
     );
@@ -660,7 +659,7 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
       error: (e, _) => [
         SliverFillRemaining(
           child: Center(
-              child: Text(AppLocalizations.of(context)!.error_loading_poetry(e.toString()))),
+              child: Text("Error: $e")),
         ),
       ],
     );

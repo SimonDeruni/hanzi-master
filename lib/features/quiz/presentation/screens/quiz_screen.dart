@@ -102,7 +102,7 @@ class _QuizScreenState extends State<QuizScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppLocalizations.of(context)?.question(_currentIndex + 1, _questions.length) ?? "Question ${_currentIndex + 1}/${_questions.length}"),
+        title: Text("Question ${_currentIndex + 1}/${_questions.length}"),
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(

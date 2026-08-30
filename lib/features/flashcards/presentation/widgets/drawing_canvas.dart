@@ -1,4 +1,3 @@
-import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'dart:math';
 import 'dart:async';
 import 'package:flutter/material.dart';
@@ -595,7 +594,7 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
               ),
 
               if (widget.showGrade)
-                Positioned(bottom: 10, left: 10, child: Text(AppLocalizations.of(context)!.gradeResult(_gradingResult?.toStringAsFixed(2) ?? "N/A"), style: TextStyle(color: _gradingResult == null ? (isDark ? Colors.white : Colors.black) : (_gradingResult! > 40 ? Colors.green : Colors.red), fontSize: 16, fontWeight: FontWeight.bold))),
+                Positioned(bottom: 10, left: 10, child: Text("Score: ${_gradingResult?.toStringAsFixed(2) ?? 'N/A'}", style: TextStyle(color: _gradingResult == null ? (isDark ? Colors.white : Colors.black) : (_gradingResult! > 40 ? Colors.green : Colors.red), fontSize: 16, fontWeight: FontWeight.bold))),
 
               if (widget.strokeByStrokeMode && !_currentStrokeComplete && !widget.readOnly)
                 Positioned(top: 10, right: 10, child: IconButton.filled(icon: Icon(_isHintAnimating ? Icons.lightbulb : Icons.lightbulb_outline), onPressed: _playHint, style: IconButton.styleFrom(backgroundColor: Colors.amber.withValues(alpha: 0.9), foregroundColor: Colors.white))),

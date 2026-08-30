@@ -120,7 +120,7 @@ class _RadicalLibraryScreenState extends State<RadicalLibraryScreen> {
                 padding: const EdgeInsets.fromLTRB(32, 16, 32, 8),
                 child: ZenSearchBar(
                   controller: _searchController,
-                  hintText: "Search radicals (e.g. Water, 氵)",
+                  hintText: AppLocalizations.of(context)?.searchRadicalsEgWater ?? "Search radicals (e.g. Water, 氵)",
                   onChanged: _filterRadicals,
                 ),
               ),

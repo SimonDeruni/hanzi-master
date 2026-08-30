@@ -148,7 +148,7 @@ class _NotificationPermissionScreenState
                 // Benefit Cards
                 _buildBenefitCard(
                   icon: Icons.auto_awesome,
-                  title: "Daily Discovery Drop",
+                  title: AppLocalizations.of(context)?.dailyDiscoveryDrop ?? "Daily Discovery Drop",
                   description:
                       "A new Word and Story waiting for your daily ritual.",
                   isDark: isDark,
@@ -158,7 +158,7 @@ class _NotificationPermissionScreenState
                 const SizedBox(height: 12),
                 _buildBenefitCard(
                   icon: Icons.alarm,
-                  title: "Smart Spaced Repetition",
+                  title: AppLocalizations.of(context)?.smartSpacedRepetition ?? "Smart Spaced Repetition",
                   description:
                       "Gentle prompts before characters fade from your memory.",
                   isDark: isDark,
@@ -168,7 +168,7 @@ class _NotificationPermissionScreenState
                 const SizedBox(height: 12),
                 _buildBenefitCard(
                   icon: Icons.shield_outlined,
-                  title: "Trial Protection Alert",
+                  title: AppLocalizations.of(context)?.trialProtectionAlert ?? "Trial Protection Alert",
                   description:
                       "Receive a reminder 2 days before your free trial ends.",
                   isDark: isDark,

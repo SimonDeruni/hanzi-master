@@ -111,8 +111,8 @@ class MediaHubScreen extends ConsumerWidget {
                     if (AppFeatures.youtubeMedia) ...[
                       _buildThematicCard(
                         context: context,
-                        title: "YOUTUBE DESK",
-                        subtitle: "Interactive transcripts & shadowing",
+                        title: AppLocalizations.of(context)?.youtubeDesk ?? "YOUTUBE DESK",
+                        subtitle: AppLocalizations.of(context)?.interactiveTranscriptsShadowing ?? "Interactive transcripts & shadowing",
                         icon: Icons.smart_display,
                         brandColor: const Color(0xFFFF0000),
                         onTap: () {

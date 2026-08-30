@@ -280,9 +280,9 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
             return CustomScrollView(
               physics: const BouncingScrollPhysics(),
               slivers: [
-                const GlobalSliverAppBar(
-                  title: "HSK Collections",
-                  subtitle: "Official standard vocabulary tiers",
+                GlobalSliverAppBar(
+                  title: AppLocalizations.of(context)?.hskCollections ?? "HSK Collections",
+                  subtitle: AppLocalizations.of(context)?.officialStandardVocabularyTiers ?? "Official standard vocabulary tiers",
                   showBackButton: true,
                 ),
 

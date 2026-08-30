@@ -203,7 +203,7 @@ class _CustomStoryCreatorSheetState
                   return Padding(
                     padding: const EdgeInsets.only(right: 8.0),
                     child: FilterChip(
-                      label: Text(AppLocalizations.of(context)?.hsk(level) ?? "HSK $level"),
+                      label: Text("HSK $level"),
                       selected: isSelected,
                       onSelected: (selected) {
                         if (selected) setState(() => _selectedHskLevel = level);

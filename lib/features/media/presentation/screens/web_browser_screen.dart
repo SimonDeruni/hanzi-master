@@ -652,7 +652,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                     iconColor: const Color(0xFF4A90D9),
                     iconBgColor:
                         const Color(0xFF4A90D9).withValues(alpha: 0.12),
-                    title: 'Extract to Deck',
+                    title: AppLocalizations.of(context)?.extractToDeck ?? 'Extract to Deck',
                     subtitle:
                         'Extract all unknown words to a new flashcard deck',
                     isDark: isDark,
@@ -672,7 +672,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                     iconColor: const Color(0xFFFFB300),
                     iconBgColor:
                         const Color(0xFFFFB300).withValues(alpha: 0.12),
-                    title: 'Auto-Simplify',
+                    title: AppLocalizations.of(context)?.autoSimplify ?? 'Auto-Simplify',
                     subtitle: 'Rewrite this article to match your HSK level',
                     isDark: isDark,
                     cardBg: cardBg,
@@ -1015,7 +1015,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text(AppLocalizations.of(context)!.analysis_failed(e.toString()))));
+            content: Text("Analysis failed: $e")));
       }
     } finally {
       if (mounted) {
@@ -1097,7 +1097,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text(AppLocalizations.of(context)!.extraction_failed(e.toString()))));
+            content: Text("Extraction failed: $e")));
       }
     } finally {
       if (mounted) {
@@ -1127,7 +1127,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text(AppLocalizations.of(context)!.simplify_failed(e.toString()))));
+            content: Text("Simplify failed: $e")));
       }
     } finally {
       if (mounted) {
@@ -1222,7 +1222,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
           _isTranslating = false;
         });
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text(AppLocalizations.of(context)!.translation_failed(e.toString()))));
+            content: Text("Translation failed: $e")));
       }
     }
   }
@@ -1629,9 +1629,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                                 if (mounted) {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
-                                          content: Text(
-                                              AppLocalizations.of(context)!
-                                                  .simplify_failed(e.toString()))));
+                                          content: Text("Simplify failed: $e")));
                                 }
                               } finally {
                                 if (mounted) {
@@ -2099,9 +2097,8 @@ class _ExtractedWordsReviewSheetState
       await _addWordsToDeck(newDeck.id, deckName.trim());
     } catch (error) {
       if (mounted) {
-        final l10n = AppLocalizations.of(context);
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(l10n?.failedToSaveExtractedWords(error.toString()) ?? "Failed to save extracted words: $error")),
+          SnackBar(content: Text("Failed to save extracted words: $error")),
         );
       }
     } finally {

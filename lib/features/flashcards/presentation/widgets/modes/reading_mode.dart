@@ -45,7 +45,7 @@ class _ReadingModeWidgetState extends ConsumerState<ReadingModeWidget> {
 
     return Scaffold(
       appBar: StudySessionAppBar(
-        title: 'Reading Mode',
+        title: AppLocalizations.of(context)?.readingMode ?? 'Reading Mode',
         dueCount: widget.dueCount,
         newCount: widget.newCount,
         learningCount: widget.learningCount,

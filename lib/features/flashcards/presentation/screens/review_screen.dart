@@ -423,11 +423,10 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
                       const Icon(Icons.info_outline,
                           color: Colors.white, size: 20),
                       const SizedBox(width: 8),
-                      Expanded(
+                      const Expanded(
                           child: Text(
-                              AppLocalizations.of(context)!.followGuideStroke(
-                                  _currentStrokeIndex + 1, totalStrokes),
-                              style: const TextStyle(
+                              "Follow the guide stroke",
+                              style: TextStyle(
                                   color: Colors.white, fontSize: 14))),
                       Text('${_currentStrokeIndex + 1}/$totalStrokes',
                           style: const TextStyle(

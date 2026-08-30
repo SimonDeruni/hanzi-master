@@ -347,11 +347,8 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
                                       Navigator.pop(context);
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(SnackBar(
-                                              content: Text(
-                                                  AppLocalizations.of(context)!
-                                                      .createdDeckCards(
-                                                          newDeck.name,
-                                                          cards.length))));
+                                               content: Text(
+                                                   "Created ${newDeck.name} with ${cards.length} cards")));
                                     }
                                   }
                                 }

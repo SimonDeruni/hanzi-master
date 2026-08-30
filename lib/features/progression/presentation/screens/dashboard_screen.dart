@@ -203,7 +203,7 @@ class DashboardScreen extends ConsumerWidget {
                       child: _buildActionRectangle(
                         context: context,
                         icon: Icons.document_scanner_rounded,
-                        title: "Scanner",
+                        title: AppLocalizations.of(context)?.scanner ?? "Scanner",
                         accentColor: const Color(0xFFFF7A00), // Vibrant Amber
                         onTap: () {
                           Navigator.push(
@@ -221,7 +221,7 @@ class DashboardScreen extends ConsumerWidget {
                       child: _buildActionRectangle(
                         context: context,
                         icon: Icons.translate_rounded,
-                        title: "Interpreter",
+                        title: AppLocalizations.of(context)?.interpreter ?? "Interpreter",
                         accentColor: const Color(0xFF3F51B5), // Deep Indigo
                         onTap: () {
                           Navigator.push(

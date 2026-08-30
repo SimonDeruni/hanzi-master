@@ -816,9 +816,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get sessionDetails => 'Chi tiết phiên';
 
   @override
-  String partner(Object lang) {
-    return 'Đối tác ($lang)';
-  }
+  String get partner => 'Đối tác ((lang))';
 
   @override
   String get youEnglish => 'Bạn (Tiếng Anh)';
@@ -1003,24 +1001,16 @@ class AppLocalizationsVi extends AppLocalizations {
   String get reviewAddToLibrary => 'Xem lại & Thêm vào Thư viện';
 
   @override
-  String hideStrokeGuideStreak(Object streak) {
-    return 'Ẩn hướng dẫn nét bút ở chuỗi: $streak';
-  }
+  String get hideStrokeGuideStreak => 'Ẩn hướng dẫn nét bút ở chuỗi: (streak)';
 
   @override
-  String inkPoints(Object points) {
-    return '$points điểm Mực';
-  }
+  String get inkPoints => '(points) điểm Mực';
 
   @override
-  String speechRateMultiplier(Object rate) {
-    return '${rate}x';
-  }
+  String get speechRateMultiplier => '(rate)x';
 
   @override
-  String animationSpeedMultiplier(Object rate) {
-    return '${rate}x';
-  }
+  String get animationSpeedMultiplier => '(rate)x';
 
   @override
   String get supportAndFeedback => 'Hỗ trợ & Phản hồi';
@@ -1041,9 +1031,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get drawThisCharacter => 'Vẽ ký tự này:';
 
   @override
-  String followGuideStroke(Object current, Object total) {
-    return 'Làm theo hướng dẫn màu xanh để vẽ nét $current của $total';
-  }
+  String get followGuideStroke =>
+      'Làm theo hướng dẫn màu xanh để vẽ nét (current) của (total)';
 
   @override
   String get skipCurrentStroke => 'Bỏ qua nét hiện tại';
@@ -1052,19 +1041,14 @@ class AppLocalizationsVi extends AppLocalizations {
   String get submitDrawing => 'Gửi bản vẽ';
 
   @override
-  String addedToDeck(Object deckName, Object hanzi) {
-    return 'Đã thêm $hanzi vào $deckName';
-  }
+  String get addedToDeck => 'Đã thêm (hanzi) vào (deckName)';
 
   @override
-  String removedFromDeck(Object hanzi) {
-    return 'Đã xóa $hanzi khỏi bộ';
-  }
+  String get removedFromDeck => 'Đã xóa (hanzi) khỏi bộ';
 
   @override
-  String skippedNoStrokeData(Object hanzi) {
-    return 'Đã bỏ qua \"$hanzi\" - Không có dữ liệu nét bút cho ký tự AI này.';
-  }
+  String get skippedNoStrokeData =>
+      'Đã bỏ qua \"(hanzi)\" - Không có dữ liệu nét bút cho ký tự AI này.';
 
   @override
   String get startingSession => 'Đang bắt đầu phiên...';
@@ -1097,22 +1081,16 @@ class AppLocalizationsVi extends AppLocalizations {
   String get culturalReadingRoom => 'Văn hóa Thư phòng (Cultural Reading Room)';
 
   @override
-  String storyTitleHsk(Object level, Object title) {
-    return '$title (HSK $level)';
-  }
+  String get storyTitleHsk => '(title) (HSK (level))';
 
   @override
   String get pleaseEnterTopic => 'Vui lòng nhập chủ đề';
 
   @override
-  String createdDeckCards(Object count, Object name) {
-    return 'Đã tạo $name với $count thẻ!';
-  }
+  String get createdDeckCards => 'Đã tạo (name) với (count) thẻ!';
 
   @override
-  String gradeResult(Object grade) {
-    return 'Điểm: $grade';
-  }
+  String get gradeResult => 'Điểm: (grade)';
 
   @override
   String get listeningMode => 'Chế độ Nghe';
@@ -1155,9 +1133,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get arLens => 'Ống kính AR';
 
   @override
-  String addedCharToLibrary(Object char) {
-    return 'Đã thêm $char vào Thư viện';
-  }
+  String get addedCharToLibrary => 'Đã thêm (char) vào Thư viện';
 
   @override
   String get scoreText => 'điểm';
@@ -1211,17 +1187,13 @@ class AppLocalizationsVi extends AppLocalizations {
   String get typeMessage => 'Nhập tin nhắn của bạn...';
 
   @override
-  String addedToLibrary(Object hanzi) {
-    return 'Đã thêm \'$hanzi\' vào Thư viện của bạn';
-  }
+  String get addedToLibrary => 'Đã thêm \'(hanzi)\' vào Thư viện của bạn';
 
   @override
   String get generateNewStory => 'Tạo câu chuyện mới';
 
   @override
-  String failedToGenerateStory(Object error) {
-    return 'Không thể tạo câu chuyện:\\n$error';
-  }
+  String get failedToGenerateStory => 'Không thể tạo câu chuyện:\\n(error)';
 
   @override
   String get detail => 'Chi tiết';
@@ -1414,7 +1386,7 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String foundNCharacters(int count) {
-    return 'Tìm thấy $count ký tự';
+    return 'Tìm thấy (count) ký tự';
   }
 
   @override
@@ -1519,7 +1491,7 @@ class AppLocalizationsVi extends AppLocalizations {
       'Barista Kevin (小凯), một người rang cà phê trẻ đầy đam mê, thích thảo luận về hạt cà phê Vân Nam và các ghi chú hương vị.';
 
   @override
-  String get bbc => 'BBC Tiếng Trung';
+  String get bbc => 'Trang web BBC Tiếng Trung';
 
   @override
   String get beginYourJourney => 'Bắt đầu Hành trình của Bạn';
@@ -1886,7 +1858,7 @@ class AppLocalizationsVi extends AppLocalizations {
       'Li Ruzhen (k. 1763–1830) là một học giả thời nhà Thanh với niềm đam mê sâu sắc về âm vị học, cờ vây và vũ trụ học. Hoa trong Gương, cuốn tiểu thuyết kỳ ảo về hành trình của một thương nhân qua các vương quốc không tưởng, nổi bật với chủ đề nữ quyền và phạm vi bách khoa về các chủ đề.';
 
   @override
-  String get library => '文化书房 Thư viện';
+  String get library => 'Thư viện Văn hóa';
 
   @override
   String get lifestyleAndVlog => 'Phong cách sống & Vlog';
@@ -2064,9 +2036,7 @@ class AppLocalizationsVi extends AppLocalizations {
       'Một lộ trình cá nhân hóa dựa trên bộ thẻ của bạn.';
 
   @override
-  String play(Object pinyin) {
-    return 'Phát $pinyin';
-  }
+  String get play => 'Phát (pinyin)';
 
   @override
   String get pleaseEnterMessageBeforeSending =>
@@ -2192,9 +2162,7 @@ class AppLocalizationsVi extends AppLocalizations {
       'Đã lưu kịch bản! Tìm nó trong tab Tùy chỉnh.';
 
   @override
-  String score(Object score, Object total) {
-    return 'Điểm: $score / $total';
-  }
+  String get score => 'Điểm: (score) / (total)';
 
   @override
   String get searchByPinyinOrMeaning => 'Tìm kiếm theo pinyin hoặc nghĩa...';
@@ -2479,9 +2447,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get yesReGradeMe => 'Có, Hãy Chấm lại!';
 
   @override
-  String you(Object lang) {
-    return 'Bạn ($lang)';
-  }
+  String get you => 'Bạn ((lang))';
 
   @override
   String get youAreSpeaking => 'Bạn đang nói';
@@ -2528,7 +2494,7 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String added_cards_to(int cardCount, String deckName) {
-    return 'Added $cardCount cards to \"$deckName\".';
+    return 'Added (cardCount) cards to \"(deckName)\".';
   }
 
   @override
@@ -2541,9 +2507,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get ai_stories => 'AI Stories';
 
   @override
-  String analysis_failed(Object error) {
-    return 'Analysis Failed: $error';
-  }
+  String get analysis_failed => 'Analysis Failed: (error)';
 
   @override
   String get analyzing_pronunciation_with_gemini_ai =>
@@ -2554,12 +2518,12 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String are_you_sure_you_want_to(String deckName) {
-    return 'Are you sure you want to permanently erase \"$deckName\"? This action cannot be undone and will delete all cards inside it.';
+    return 'Are you sure you want to permanently erase \"(deckName)\"? This action cannot be undone and will delete all cards inside it.';
   }
 
   @override
   String ask_about(String hanzi) {
-    return 'Ask about $hanzi...';
+    return 'Ask about (hanzi)...';
   }
 
   @override
@@ -2586,7 +2550,7 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String created_smart_deck_with_words(String deckName, int wordCount) {
-    return 'Created smart deck: \"$deckName\" with $wordCount words!';
+    return 'Created smart deck: \"(deckName)\" with (wordCount) words!';
   }
 
   @override
@@ -2603,37 +2567,26 @@ class AppLocalizationsVi extends AppLocalizations {
   String get elementary => 'Elementary';
 
   @override
-  String error_creating_scenario(Object error) {
-    return 'Error creating scenario: $error';
-  }
+  String get error_creating_scenario => 'Error creating scenario: (error)';
 
   @override
-  String error_fetching_translation_for(Object error) {
-    return 'Error fetching translation for : $error';
-  }
+  String get error_fetching_translation_for =>
+      'Error fetching translation for : (error)';
 
   @override
-  String error_loading_chapters(Object error) {
-    return 'Error loading chapters: $error';
-  }
+  String get error_loading_chapters => 'Error loading chapters: (error)';
 
   @override
   String get error_loading_decks => 'Error loading decks';
 
   @override
-  String error_loading_microreads(Object error) {
-    return 'Error loading micro-reads: $error';
-  }
+  String get error_loading_microreads => 'Error loading micro-reads: (error)';
 
   @override
-  String error_loading_novels(Object error) {
-    return 'Error loading novels: $error';
-  }
+  String get error_loading_novels => 'Error loading novels: (error)';
 
   @override
-  String error_loading_poetry(Object error) {
-    return 'Error loading poetry: $error';
-  }
+  String get error_loading_poetry => 'Error loading poetry: (error)';
 
   @override
   String get etymology => 'Etymology: ';
@@ -2645,27 +2598,20 @@ class AppLocalizationsVi extends AppLocalizations {
   String get extracted_text_tap_to_lookup => 'Extracted Text (Tap to lookup)';
 
   @override
-  String extraction_failed(Object error) {
-    return 'Extraction Failed: \\$error';
-  }
+  String get extraction_failed => 'Extraction Failed: \\(error)';
 
   @override
   String get failed_to_download => 'Failed to download.';
 
   @override
-  String failed_to_generate_scenario(Object error) {
-    return 'Failed to generate scenario: $error';
-  }
+  String get failed_to_generate_scenario =>
+      'Failed to generate scenario: (error)';
 
   @override
-  String failed_to_generate_story(Object error) {
-    return 'Failed to generate story:\\n$error';
-  }
+  String get failed_to_generate_story => 'Failed to generate story:\\n(error)';
 
   @override
-  String failed_to_load_context(Object error) {
-    return 'Failed to load context: ${error}rr';
-  }
+  String get failed_to_load_context => 'Failed to load context: (error)rr';
 
   @override
   String get feature_request => 'Feature Request';
@@ -2678,13 +2624,11 @@ class AppLocalizationsVi extends AppLocalizations {
       'How is my pronunciation scored?';
 
   @override
-  String hsk(Object level) {
-    return 'HSK $level';
-  }
+  String get hsk => 'HSK (level)';
 
   @override
   String hsk_vocabulary(int hskLevel) {
-    return 'HSK $hskLevel vocabulary';
+    return 'HSK (hskLevel) vocabulary';
   }
 
   @override
@@ -2747,19 +2691,15 @@ class AppLocalizationsVi extends AppLocalizations {
   String get previous => 'Previous';
 
   @override
-  String question(Object current, Object total) {
-    return 'Câu hỏi $current/$total';
-  }
+  String get question => 'Câu hỏi (current)/(total)';
 
   @override
   String remove_from_this_deck(String hanzi) {
-    return 'Remove $hanzi from this deck?';
+    return 'Remove (hanzi) from this deck?';
   }
 
   @override
-  String revenuecat_error(Object error) {
-    return 'RevenueCat Error: $error';
-  }
+  String get revenuecat_error => 'RevenueCat Error: (error)';
 
   @override
   String get review_tomorrow => 'Review Tomorrow';
@@ -2769,7 +2709,7 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String saving_words_to(int wordCount, String deckName) {
-    return 'Saving $wordCount words to $deckName...';
+    return 'Saving (wordCount) words to (deckName)...';
   }
 
   @override
@@ -2786,9 +2726,7 @@ class AppLocalizationsVi extends AppLocalizations {
       'Shadowing Studio is a dedicated space to practice mimicking native';
 
   @override
-  String simplify_failed(Object error) {
-    return 'Simplify Failed: $error';
-  }
+  String get simplify_failed => 'Simplify Failed: (error)';
 
   @override
   String get sinospark_premium => 'SinoSpark Premium';
@@ -2819,9 +2757,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get traditional => 'Traditional';
 
   @override
-  String translation_failed(Object error) {
-    return 'Translation Failed: $error';
-  }
+  String get translation_failed => 'Translation Failed: (error)';
 
   @override
   String get type_in => 'Type in ...';
@@ -2845,16 +2781,14 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String your_path_for_is_ready(String deckName) {
-    return 'Your path for \'$deckName\' is ready!';
+    return 'Your path for \'(deckName)\' is ready!';
   }
 
   @override
   String get you_said => '🗣️ You Said';
 
   @override
-  String vocabularyBatch(Object index) {
-    return 'Lô Từ vựng $index';
-  }
+  String get vocabularyBatch => 'Lô Từ vựng (index)';
 
   @override
   String get yourDailyDropIsHere => 'Giọt hàng ngày của bạn đã đến! ✨';
@@ -2877,14 +2811,10 @@ class AppLocalizationsVi extends AppLocalizations {
   String get failedToLoadCollections => 'Không thể tải bộ sưu tập.';
 
   @override
-  String unnamedKey(Object tag) {
-    return '#$tag';
-  }
+  String get unnamedKey => '#(tag)';
 
   @override
-  String error(Object error) {
-    return 'Lỗi: $error';
-  }
+  String get error => 'Lỗi: (error)';
 
   @override
   String get aiSmartContext => 'Ngữ cảnh thông minh AI';
@@ -2965,8 +2895,7 @@ class AppLocalizationsVi extends AppLocalizations {
       'Hoa lụa - Nghề thủ công truyền thống';
 
   @override
-  String get mandarinCorner =>
-      'Mandarin Corner: Học tiếng Trung - Đi khám bệnh';
+  String get mandarinCorner => 'Mandarin Corner: Học tiếng Trung đi khám bệnh';
 
   @override
   String get goingToTheDoctorReal => 'Đi khám bệnh - Cuộc hội thoại đời thực';
@@ -2983,7 +2912,7 @@ class AppLocalizationsVi extends AppLocalizations {
       'Tại sao GDP tăng trưởng 6% - Kinh tế Trung Quốc dễ hiểu';
 
   @override
-  String get bbcWorldNews => 'BBC Tiếng Trung (Tin tức Thế giới)';
+  String get bbcWorldNews => 'BBC Tiếng Trung (Tin tức thế giới)';
 
   @override
   String get currentEventsInSimplifiedChinese =>
@@ -3012,14 +2941,11 @@ class AppLocalizationsVi extends AppLocalizations {
       'Viết lại bài viết này để phù hợp với cấp độ HSK của bạn';
 
   @override
-  String failedToSaveExtractedWords(Object error) {
-    return 'Không thể lưu các từ đã trích xuất: $error';
-  }
+  String get failedToSaveExtractedWords =>
+      'Không thể lưu các từ đã trích xuất: (error)';
 
   @override
-  String addToDeck(Object count) {
-    return 'Thêm vào Bộ thẻ ($count)';
-  }
+  String get addToDeck => 'Thêm vào Bộ thẻ ((count))';
 
   @override
   String get dailyDiscoveryDrop => 'Khám phá hàng ngày';
@@ -3052,9 +2978,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get interpreter => 'Phiên dịch';
 
   @override
-  String cards(Object count) {
-    return '$count thẻ';
-  }
+  String get cards => '(count) thẻ';
 
   @override
   String get nWaMendsTheHeavens => 'Nữ Oa vá trời';
@@ -3105,10 +3029,323 @@ class AppLocalizationsVi extends AppLocalizations {
   String get bookmarkRemoved => '书签已移除 · Đã xóa dấu trang';
 
   @override
-  String bookmarkAdded(Object chapter) {
-    return '已添加书签 · Đã thêm dấu trang: Chương $chapter';
-  }
+  String get bookmarkAdded => '已添加书签 · Đã thêm dấu trang: Chương (chapter)';
 
   @override
   String get readingVocabulary => 'Đọc & Từ vựng';
+
+  @override
+  String get vocabularyBatchUnitindex1 => 'Lô Từ vựng \$(unitIndex + 1)';
+
+  @override
+  String get yourDailyDropIsHere1 => 'Bài học hàng ngày của bạn đã đến! ✨';
+
+  @override
+  String get timeToReview1 => 'Đến lúc ôn tập rồi! 📚';
+
+  @override
+  String get neverMissAStroke1 => 'Đừng bỏ lỡ nét chữ nào! 🖌️';
+
+  @override
+  String get yourTrialEndsTomorrow1 =>
+      'Bản dùng thử của bạn sẽ kết thúc vào ngày mai! ⏳';
+
+  @override
+  String get hskCollections1 => 'Bộ sưu tập HSK';
+
+  @override
+  String get officialStandardVocabularyTiers1 =>
+      'Các cấp độ từ vựng tiêu chuẩn chính thức';
+
+  @override
+  String get failedToLoadCollections1 => 'Không thể tải bộ sưu tập.';
+
+  @override
+  String get ui__transcription => '\"\$_transcription\"';
+
+  @override
+  String get playPinyinwithtone => 'Phát \$pinyinWithTone';
+
+  @override
+  String get errorE => 'Lỗi: \$e';
+
+  @override
+  String get lookalikepinyin => '(\$(lookAlike.pinyin))';
+
+  @override
+  String get aiSmartContext1 => 'Ngữ cảnh thông minh AI';
+
+  @override
+  String get aiSmartContextError1 => 'Lỗi Ngữ cảnh thông minh AI';
+
+  @override
+  String get errorErr => 'Lỗi: \$err';
+
+  @override
+  String get downloadOfficialHskCollections1 =>
+      'Tải xuống bộ sưu tập HSK chính thức';
+
+  @override
+  String get unableToLoadThisSectionPleaseTryAga =>
+      'Không thể tải phần này. Vui lòng thử lại.';
+
+  @override
+  String get searchRadicalsEgWater => 'Tìm kiếm bộ thủ (ví dụ: Water, 氵)';
+
+  @override
+  String get ui__currentstrokeindex1totalstrokes =>
+      '\$(_currentStrokeIndex + 1)/\$totalStrokes';
+
+  @override
+  String get translationLanguage1 => 'Ngôn ngữ dịch';
+
+  @override
+  String get appLanguage1 => 'Ngôn ngữ ứng dụng';
+
+  @override
+  String get dailyDrops1 => 'Bài học hàng ngày';
+
+  @override
+  String get wordOfTheDayNews1 => 'Từ của ngày & tin tức';
+
+  @override
+  String get reviewReminders1 => 'Nhắc nhở ôn tập';
+
+  @override
+  String get flashcardsDueForReview1 => 'Thẻ ghi nhớ đến hạn ôn tập';
+
+  @override
+  String get accuracyByMode1 => 'Độ chính xác theo chế độ';
+
+  @override
+  String get accuracytostringasfixed1 => '\$(accuracy.toStringAsFixed(1))%';
+
+  @override
+  String get upcomingReviewsNext7Days => 'Các bài ôn tập sắp tới (7 ngày tới)';
+
+  @override
+  String get explaining => 'Giải thích:';
+
+  @override
+  String get entryhanziEntrypinyin => '\$(entry.hanzi) [\$(entry.pinyin)]';
+
+  @override
+  String get dailyNewCards1 => 'Thẻ mới hàng ngày';
+
+  @override
+  String get dailyReviewLimit1 => 'Giới hạn ôn tập hàng ngày';
+
+  @override
+  String get listeningMode1 => 'Chế độ nghe';
+
+  @override
+  String get readingMode1 => 'Chế độ đọc';
+
+  @override
+  String get recallMode1 => 'Chế độ ghi nhớ';
+
+  @override
+  String get speakingMode1 => 'Chế độ nói';
+
+  @override
+  String get practiceMode1 => 'Chế độ luyện tập';
+
+  @override
+  String get acc => '\$acc%';
+
+  @override
+  String get partner1 => 'Đối tác';
+
+  @override
+  String get partnerSpeaking1 => 'Đối tác đang nói…';
+
+  @override
+  String get theLifeOfGarlicTraditionalChineseLi =>
+      'Cuộc đời của tỏi - Cuộc sống truyền thống Trung Quốc';
+
+  @override
+  String get graceMandarin50Phrases1 => 'Grace Mandarin: 50 Cụm từ';
+
+  @override
+  String get essentialChinesePhrasesForBeginners1 =>
+      'Các cụm từ tiếng Trung thiết yếu cho người mới bắt đầu';
+
+  @override
+  String get makingBambooFurniture1 => 'Làm đồ nội thất tre';
+
+  @override
+  String get muddyPuddlesBeginnerFriendly1 =>
+      'Vũng bùn - Thân thiện với người mới bắt đầu';
+
+  @override
+  String get mandarinCorner300Verbs1 => 'Mandarin Corner: 300 Động từ';
+
+  @override
+  String get mostCommonChineseVerbs1 => 'Các động từ tiếng Trung phổ biến nhất';
+
+  @override
+  String get graceMandarinOrderFood1 => 'Grace Mandarin: Gọi món ăn';
+
+  @override
+  String get howToOrderFoodInAChineseRestaurant =>
+      'Cách gọi món ăn trong nhà hàng Trung Quốc';
+
+  @override
+  String get silkFlowersTraditionalCraft1 =>
+      'Hoa lụa - Nghề thủ công truyền thống';
+
+  @override
+  String get goingToTheDoctorRealLifeConversatio =>
+      'Đi khám bệnh - Hội thoại đời thực';
+
+  @override
+  String get hideAndSeekBeginnerFriendly1 =>
+      'Trốn tìm - Thân thiện với người mới bắt đầu';
+
+  @override
+  String get lingdp6 => 'Tiểu Lâm nói: Tại sao GDP tăng trưởng 6%';
+
+  @override
+  String get why6GdpGrowthEasyChineseEconomics =>
+      'Tại sao GDP tăng trưởng 6% - Kinh tế Trung Quốc dễ hiểu';
+
+  @override
+  String get currentEventsInSimplifiedChinese1 =>
+      'Sự kiện hiện tại bằng tiếng Trung giản thể';
+
+  @override
+  String get baidu1 => 'Baidu';
+
+  @override
+  String get youtubeDesk1 => 'YOUTUBE DESK';
+
+  @override
+  String get interactiveTranscriptsShadowing1 =>
+      'Bản ghi tương tác & luyện nói theo';
+
+  @override
+  String get showsDramas1 => 'CHƯƠNG TRÌNH & PHIM TRUYỀN HÌNH';
+
+  @override
+  String get error_error => 'Lỗi: \$_error';
+
+  @override
+  String get extractToDeck1 => 'Trích xuất vào Bộ thẻ';
+
+  @override
+  String get autosimplify => 'Tự động đơn giản hóa';
+
+  @override
+  String get rewriteThisArticleToMatchYourHskLev =>
+      'Viết lại bài viết này để phù hợp với cấp độ HSK của bạn';
+
+  @override
+  String get addToDeck1 => 'Thêm vào Bộ thẻ';
+
+  @override
+  String get playbackratex => '\$(playbackRate)x';
+
+  @override
+  String get speedx => '\$(speed)x';
+
+  @override
+  String get dailyDiscoveryDrop1 => 'Khám phá hàng ngày';
+
+  @override
+  String get smartSpacedRepetition1 => 'Lặp lại ngắt quãng thông minh';
+
+  @override
+  String get trialProtectionAlert1 => 'Cảnh báo bảo vệ bản dùng thử';
+
+  @override
+  String get masteryLevel1 => 'Cấp độ thành thạo';
+
+  @override
+  String get targetObjective1 => 'Mục tiêu';
+
+  @override
+  String get dailyPractice1 => 'Luyện tập hàng ngày';
+
+  @override
+  String get aiSpacedRepetition1 => 'Lặp lại ngắt quãng AI';
+
+  @override
+  String get iveGrantedAccess => 'Tôi đã cấp quyền truy cập';
+
+  @override
+  String get addToDeck_selectedwordindiceslength =>
+      'Thêm vào Bộ thẻ (\$(_selectedWordIndices.length))';
+
+  @override
+  String get scanner1 => 'Máy quét';
+
+  @override
+  String get interpreter1 => 'Trình thông dịch';
+
+  @override
+  String get entryvalueCards => '\$(entry.value) thẻ';
+
+  @override
+  String get score_score_questionslength =>
+      'Điểm: \$_score / \$(_questions.length)';
+
+  @override
+  String get theMonkeyKing1 => 'Tôn Ngộ Không';
+
+  @override
+  String get huaMulan1 => 'Hoa Mộc Lan';
+
+  @override
+  String get nwaMendsTheHeavens => 'Nữ Oa vá trời';
+
+  @override
+  String get confucius => 'Khổng Tử';
+
+  @override
+  String get theGreatWall1 => 'Vạn Lý Trường Thành';
+
+  @override
+  String get terracottaArmy1 => 'Đội quân đất nung';
+
+  @override
+  String get forbiddenCity1 => 'Tử Cấm Thành';
+
+  @override
+  String get aBlessingInDisguise1 => 'Trong cái rủi có cái may';
+
+  @override
+  String get drawingASnake1 => 'Vẽ rắn thêm chân';
+
+  @override
+  String get takingTheBulletTrain1 => 'Đi tàu cao tốc';
+
+  @override
+  String get visitingTheDoctor1 => 'Đi khám bệnh';
+
+  @override
+  String get orderingDumplings1 => 'Gọi há cảo';
+
+  @override
+  String get theTeaCeremony1 => 'Nghi lễ trà đạo';
+
+  @override
+  String get chineseCalligraphy1 => 'Thư pháp Trung Quốc';
+
+  @override
+  String get theGiantPanda1 => 'Gấu trúc khổng lồ';
+
+  @override
+  String get simplifiedText1 => 'Văn bản giản thể';
+
+  @override
+  String get novels961 => 'Tiểu thuyết (96)';
+
+  @override
+  String get microreads => 'Bài đọc ngắn';
+
+  @override
+  String get poetry1 => 'Thơ ca';
+
+  @override
+  String get readingVocabulary1 => 'Đọc & Từ vựng';
 }

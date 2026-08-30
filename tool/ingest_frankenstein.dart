@@ -47,7 +47,7 @@ List<String> segmentSentences(String text) {
 Future<void> main() async {
   print('=== Ingesting Frankenstein & Jane Eyre ===');
 
-  final frankensteinUrl = 'https://raw.githubusercontent.com/VeejaLiu/ScienceFictionCollection/master/005%20-%20Mary%20Shelley(%E7%8E%9B%E4%B8%BD%C2%B7%E9%9B%AA%E8%8E%B1)/%5B1818%5D%E3%80%8A%E5%BC%97%E5%85%B0%E8%82%AF%E6%96%AF%E5%9D%A6%E3%80%8B(Frankenstein).txt';
+  const frankensteinUrl = 'https://raw.githubusercontent.com/VeejaLiu/ScienceFictionCollection/master/005%20-%20Mary%20Shelley(%E7%8E%9B%E4%B8%BD%C2%B7%E9%9B%AA%E8%8E%B1)/%5B1818%5D%E3%80%8A%E5%BC%97%E5%85%B0%E8%82%AF%E6%96%AF%E5%9D%A6%E3%80%8B(Frankenstein).txt';
   final content = await fetchUrl(frankensteinUrl);
 
   if (content != null && content.length > 500) {

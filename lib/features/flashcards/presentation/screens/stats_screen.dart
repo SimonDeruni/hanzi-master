@@ -91,7 +91,7 @@ class StatsScreen extends ConsumerWidget {
 
             // Accuracy By Mode
             _ChartCard(
-              title: "Accuracy by Mode",
+              title: AppLocalizations.of(context)?.accuracyByMode ?? "Accuracy by Mode",
               cardColor: cardColor,
               child: Column(
                 children: StudyMode.values.map((mode) {
@@ -126,7 +126,7 @@ class StatsScreen extends ConsumerWidget {
 
             // Upcoming Reviews Bar Chart
             _ChartCard(
-              title: "Upcoming Reviews (Next 7 Days)",
+              title: AppLocalizations.of(context)?.upcomingReviewsNext7Days ?? "Upcoming Reviews (Next 7 Days)",
               cardColor: cardColor,
               child: SizedBox(
                 height: 200,

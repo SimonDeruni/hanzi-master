@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.0+292] - 2026-08-30
+- **Exhaustive Multi-Screen UI Localization Wiring & 13-Language Verification (Build #292)**:
+  - Extracted 108 remaining hardcoded UI strings across tabs, action chips, dialogs, settings sliders, search hints, onboarding steps, and dashboard cards.
+  - Fully translated all 108 strings across all 13 supported languages (French, Spanish, German, Italian, Portuguese, Russian, Arabic, Hindi, Japanese, Korean, Vietnamese, Indonesian, Chinese) using Gemini 2.5 Flash batching.
+  - Sanitized ARB keys to ASCII camelCase and regenerated all `AppLocalizations` classes with `flutter gen-l10n`.
+  - Wired widgets in `BookCatalogScreen`, `MediaHubScreen`, `WebBrowserScreen`, `StatsScreen`, `DeckSettingsSheet`, `TomeManagerScreen`, `RadicalLibraryScreen`, `DashboardScreen`, `OnboardingScreen`, and all 4 flashcard study modes (`ListeningModeWidget`, `ReadingModeWidget`, `RecallModeWidget`, `SpeakingModeWidget`).
+  - Verified `dart analyze lib/`: 0 compilation errors.
+
 ## [1.0.0+291] - 2026-08-30
 - **Full 13-Language Dynamic Catalog & UI Screen Integration (Build #291)**:
   - Created [`LocalizedCatalogService`](file:///c:/Users/simon/Documents/hanzi_master/lib/core/services/localized_catalog_service.dart) for cached async loading of localized book synopses and show summaries based on the user's active language.

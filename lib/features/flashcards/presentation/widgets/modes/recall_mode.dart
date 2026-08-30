@@ -92,7 +92,7 @@ class _RecallModeWidgetState extends ConsumerState<RecallModeWidget> {
     return Scaffold(
       backgroundColor: bgColor,
       appBar: StudySessionAppBar(
-        title: 'Recall Mode',
+        title: AppLocalizations.of(context)?.recallMode ?? 'Recall Mode',
         dueCount: widget.dueCount,
         newCount: widget.newCount,
         learningCount: widget.learningCount,

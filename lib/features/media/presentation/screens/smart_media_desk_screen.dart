@@ -368,7 +368,7 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
                     child: Text('$level',
                         style: const TextStyle(color: Colors.orange)),
                   ),
-                  title: Text(AppLocalizations.of(context)?.hsk(level) ?? "HSK $level"),
+                  title: Text("HSK $level"),
                   onTap: () => Navigator.pop(context, level),
                 );
               }),

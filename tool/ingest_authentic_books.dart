@@ -210,7 +210,7 @@ Future<void> ingestBlankRainTxt(HttpClient client, String remoteFilename, String
       }
     } else {
       final allSentences = splitSentences(text);
-      final sentencesPerChapter = 80;
+      const sentencesPerChapter = 80;
       int chIdx = 1;
       for (int i = 0; i < allSentences.length; i += sentencesPerChapter) {
         final end = (i + sentencesPerChapter < allSentences.length) ? i + sentencesPerChapter : allSentences.length;

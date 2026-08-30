@@ -42,7 +42,7 @@ packages:
     source: hosted
     version: "2.0.3"
   archive:
-    dependency: transitive
+    dependency: "direct dev"
     description:
       name: archive
       sha256: "2fde1607386ab523f7a36bb3e7edb43bd58e6edaf2ffb29d8a6d578b297fdbbd"
@@ -338,7 +338,7 @@ packages:
     source: hosted
     version: "4.11.1"
   collection:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: collection
       sha256: "2f5709ae4d3d59dd8f7cd309b4e023046b57d8a6c82130785d2b0e5868084e76"
@@ -1907,7 +1907,7 @@ packages:
     source: hosted
     version: "1.0.1"
   web_socket_channel:
-    dependency: transitive
+    dependency: "direct dev"
     description:
       name: web_socket_channel
       sha256: d645757fb0f4773d602444000a8131ff5d48c9e47adfe9772652dd1a4f2d45c8

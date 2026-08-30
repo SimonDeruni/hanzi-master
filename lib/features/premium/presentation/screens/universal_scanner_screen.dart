@@ -244,7 +244,7 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
       newCache[label] = flashcard;
       if (mounted) setState(() => _translationCache = newCache);
     } catch (e) {
-      debugPrint(AppLocalizations.of(context)!.error_fetching_translation_for(label));
+      debugPrint("Error fetching translation for $label: $e");
       final newCache = Map<String, Flashcard>.from(_translationCache);
       newCache.remove(label);
       if (mounted) setState(() => _translationCache = newCache);

@@ -4,7 +4,6 @@ import 'package:purchases_ui_flutter/purchases_ui_flutter.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:hanzi_master/core/services/monetization_service.dart';
 import 'package:hanzi_master/core/providers/premium_controller.dart';
-import 'package:hanzi_master/l10n/app_localizations.dart';
 
 class PaywallSheet {
   /// Helper to show the RevenueCat paywall easily from anywhere
@@ -38,7 +37,7 @@ class PaywallSheet {
       debugPrint("Error presenting RevenueCat UI: $e");
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text(AppLocalizations.of(context)!.revenuecat_error(e.toString())),
+            content: Text("Error presenting payment: $e"),
             duration: const Duration(seconds: 5)));
       }
       return false;

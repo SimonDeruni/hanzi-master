@@ -98,7 +98,7 @@ class _ListeningModeWidgetState extends ConsumerState<ListeningModeWidget> {
 
     return Scaffold(
       appBar: StudySessionAppBar(
-        title: 'Listening Mode',
+        title: AppLocalizations.of(context)?.listeningMode ?? 'Listening Mode',
         dueCount: widget.dueCount,
         newCount: widget.newCount,
         learningCount: widget.learningCount,

@@ -44,9 +44,7 @@ class SettingsScreen extends ConsumerWidget {
                 iconColor: Colors.lightBlue,
                 title: l10n?.voiceSpeed ??
                     AppLocalizations.of(context)!.voiceSpeed,
-                subtitle: l10n?.speechRateMultiplier(
-                        settings.speechRate.toStringAsFixed(1)) ??
-                    "${settings.speechRate.toStringAsFixed(1)}x",
+                subtitle: "${settings.speechRate.toStringAsFixed(1)}x",
                 value: settings.speechRate,
                 min: 0.1,
                 max: 1.0,
@@ -130,9 +128,7 @@ class SettingsScreen extends ConsumerWidget {
                 icon: Icons.animation,
                 iconColor: Colors.pink,
                 title: l10n?.animationSpeed ?? "Stroke Animation Speed",
-                subtitle: l10n?.animationSpeedMultiplier(
-                        settings.animationSpeed.toStringAsFixed(1)) ??
-                    "${settings.animationSpeed.toStringAsFixed(1)}x",
+                subtitle: "${settings.animationSpeed.toStringAsFixed(1)}x",
                 value: settings.animationSpeed,
                 min: 0.5,
                 max: 2.0,

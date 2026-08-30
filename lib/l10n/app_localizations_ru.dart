@@ -819,9 +819,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get sessionDetails => 'Детали сессии';
 
   @override
-  String partner(Object lang) {
-    return 'Партнер ($lang)';
-  }
+  String get partner => 'Партнер ((lang))';
 
   @override
   String get youEnglish => 'Вы (английский)';
@@ -1004,24 +1002,17 @@ class AppLocalizationsRu extends AppLocalizations {
   String get reviewAddToLibrary => 'Просмотреть и добавить в библиотеку';
 
   @override
-  String hideStrokeGuideStreak(Object streak) {
-    return 'Скрыть направляющую штрихов при серии из $streak';
-  }
+  String get hideStrokeGuideStreak =>
+      'Скрыть направляющую штрихов при серии из (streak)';
 
   @override
-  String inkPoints(Object points) {
-    return '$points Чернильных Очков';
-  }
+  String get inkPoints => '(points) Чернильных Очков';
 
   @override
-  String speechRateMultiplier(Object rate) {
-    return '${rate}x';
-  }
+  String get speechRateMultiplier => '(rate)x';
 
   @override
-  String animationSpeedMultiplier(Object rate) {
-    return '${rate}x';
-  }
+  String get animationSpeedMultiplier => '(rate)x';
 
   @override
   String get supportAndFeedback => 'Поддержка и Обратная связь';
@@ -1043,9 +1034,8 @@ class AppLocalizationsRu extends AppLocalizations {
   String get drawThisCharacter => 'Нарисуйте этот символ:';
 
   @override
-  String followGuideStroke(Object current, Object total) {
-    return 'Следуйте синей линии, чтобы нарисовать штрих $current из $total';
-  }
+  String get followGuideStroke =>
+      'Следуйте синей линии, чтобы нарисовать штрих (current) из (total)';
 
   @override
   String get skipCurrentStroke => 'Пропустить текущий штрих';
@@ -1054,19 +1044,14 @@ class AppLocalizationsRu extends AppLocalizations {
   String get submitDrawing => 'Отправить рисунок';
 
   @override
-  String addedToDeck(Object deckName, Object hanzi) {
-    return 'Добавлено $hanzi в колоду $deckName';
-  }
+  String get addedToDeck => 'Добавлено (hanzi) в колоду (deckName)';
 
   @override
-  String removedFromDeck(Object hanzi) {
-    return 'Удалено $hanzi из колоды';
-  }
+  String get removedFromDeck => 'Удалено (hanzi) из колоды';
 
   @override
-  String skippedNoStrokeData(Object hanzi) {
-    return 'Пропущено \"$hanzi\" – Нет данных о штрихах для этого ИИ-символа.';
-  }
+  String get skippedNoStrokeData =>
+      'Пропущено \"(hanzi)\" – Нет данных о штрихах для этого ИИ-символа.';
 
   @override
   String get startingSession => 'Начало сессии...';
@@ -1099,22 +1084,16 @@ class AppLocalizationsRu extends AppLocalizations {
   String get culturalReadingRoom => '文化书房 (Культурный Читальный Зал)';
 
   @override
-  String storyTitleHsk(Object level, Object title) {
-    return '$title (HSK $level)';
-  }
+  String get storyTitleHsk => '(title) (HSK (level))';
 
   @override
   String get pleaseEnterTopic => 'Пожалуйста, введите тему';
 
   @override
-  String createdDeckCards(Object count, Object name) {
-    return 'Создана колода $name с $count карточками!';
-  }
+  String get createdDeckCards => 'Создана колода (name) с (count) карточками!';
 
   @override
-  String gradeResult(Object grade) {
-    return 'Оценка: $grade';
-  }
+  String get gradeResult => 'Оценка: (grade)';
 
   @override
   String get listeningMode => 'Режим аудирования';
@@ -1157,9 +1136,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get arLens => 'AR-линза';
 
   @override
-  String addedCharToLibrary(Object char) {
-    return '$char добавлен в библиотеку';
-  }
+  String get addedCharToLibrary => '(char) добавлен в библиотеку';
 
   @override
   String get scoreText => 'баллы';
@@ -1214,17 +1191,14 @@ class AppLocalizationsRu extends AppLocalizations {
   String get typeMessage => 'Введите сообщение...';
 
   @override
-  String addedToLibrary(Object hanzi) {
-    return 'Добавлено «$hanzi» в вашу библиотеку';
-  }
+  String get addedToLibrary => 'Добавлено «(hanzi)» в вашу библиотеку';
 
   @override
   String get generateNewStory => 'Создать новую историю';
 
   @override
-  String failedToGenerateStory(Object error) {
-    return 'Не удалось сгенерировать историю:\\n$error';
-  }
+  String get failedToGenerateStory =>
+      'Не удалось сгенерировать историю:\\n(error)';
 
   @override
   String get detail => 'Деталь';
@@ -1419,7 +1393,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String foundNCharacters(int count) {
-    return 'Найдено $count иероглифов';
+    return 'Найдено (count) иероглифов';
   }
 
   @override
@@ -1528,7 +1502,7 @@ class AppLocalizationsRu extends AppLocalizations {
       'Бариста Кевин (小凯), страстный молодой обжарщик кофе, который любит обсуждать кофейные зёрна Юньнани и вкусовые ноты.';
 
   @override
-  String get bbc => 'BBC Китайский';
+  String get bbc => 'BBC 中文网';
 
   @override
   String get beginYourJourney => 'Начни свой путь';
@@ -1895,7 +1869,7 @@ class AppLocalizationsRu extends AppLocalizations {
       'Ли Жучжэнь (ок. 1763–1830) — учёный эпохи Цин с глубокими познаниями в фонологии, шахматах и космологии. «Цветы в зеркале», его фантастический роман о путешествии купца по невозможным королевствам, примечателен феминистскими темами и энциклопедическим охватом предметов.';
 
   @override
-  String get library => '文化书房 Библиотека';
+  String get library => 'æ–‡åŒ–ä¹¦æˆ¿ Библиотека';
 
   @override
   String get lifestyleAndVlog => 'Образ жизни и влог';
@@ -2071,9 +2045,7 @@ class AppLocalizationsRu extends AppLocalizations {
       'Персонализированный путь на основе вашей колоды.';
 
   @override
-  String play(Object pinyin) {
-    return 'Воспроизвести $pinyin';
-  }
+  String get play => 'Воспроизвести (pinyin)';
 
   @override
   String get pleaseEnterMessageBeforeSending =>
@@ -2199,9 +2171,7 @@ class AppLocalizationsRu extends AppLocalizations {
       'Сценарий сохранён! Найдите его на вкладке «Пользовательское».';
 
   @override
-  String score(Object score, Object total) {
-    return 'Счет: $score / $total';
-  }
+  String get score => 'Счет: (score) / (total)';
 
   @override
   String get searchByPinyinOrMeaning => 'Поиск по pinyin или значению...';
@@ -2485,9 +2455,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get yesReGradeMe => 'Да, переоценить меня!';
 
   @override
-  String you(Object lang) {
-    return 'Вы ($lang)';
-  }
+  String get you => 'Вы ((lang))';
 
   @override
   String get youAreSpeaking => 'Вы говорите';
@@ -2534,7 +2502,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String added_cards_to(int cardCount, String deckName) {
-    return 'Added $cardCount cards to \"$deckName\".';
+    return 'Added (cardCount) cards to \"(deckName)\".';
   }
 
   @override
@@ -2547,9 +2515,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get ai_stories => 'AI Stories';
 
   @override
-  String analysis_failed(Object error) {
-    return 'Analysis Failed: $error';
-  }
+  String get analysis_failed => 'Analysis Failed: (error)';
 
   @override
   String get analyzing_pronunciation_with_gemini_ai =>
@@ -2560,12 +2526,12 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String are_you_sure_you_want_to(String deckName) {
-    return 'Are you sure you want to permanently erase \"$deckName\"? This action cannot be undone and will delete all cards inside it.';
+    return 'Are you sure you want to permanently erase \"(deckName)\"? This action cannot be undone and will delete all cards inside it.';
   }
 
   @override
   String ask_about(String hanzi) {
-    return 'Ask about $hanzi...';
+    return 'Ask about (hanzi)...';
   }
 
   @override
@@ -2592,7 +2558,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String created_smart_deck_with_words(String deckName, int wordCount) {
-    return 'Created smart deck: \"$deckName\" with $wordCount words!';
+    return 'Created smart deck: \"(deckName)\" with (wordCount) words!';
   }
 
   @override
@@ -2609,37 +2575,26 @@ class AppLocalizationsRu extends AppLocalizations {
   String get elementary => 'Elementary';
 
   @override
-  String error_creating_scenario(Object error) {
-    return 'Error creating scenario: $error';
-  }
+  String get error_creating_scenario => 'Error creating scenario: (error)';
 
   @override
-  String error_fetching_translation_for(Object error) {
-    return 'Error fetching translation for : $error';
-  }
+  String get error_fetching_translation_for =>
+      'Error fetching translation for : (error)';
 
   @override
-  String error_loading_chapters(Object error) {
-    return 'Error loading chapters: $error';
-  }
+  String get error_loading_chapters => 'Error loading chapters: (error)';
 
   @override
   String get error_loading_decks => 'Error loading decks';
 
   @override
-  String error_loading_microreads(Object error) {
-    return 'Error loading micro-reads: $error';
-  }
+  String get error_loading_microreads => 'Error loading micro-reads: (error)';
 
   @override
-  String error_loading_novels(Object error) {
-    return 'Error loading novels: $error';
-  }
+  String get error_loading_novels => 'Error loading novels: (error)';
 
   @override
-  String error_loading_poetry(Object error) {
-    return 'Error loading poetry: $error';
-  }
+  String get error_loading_poetry => 'Error loading poetry: (error)';
 
   @override
   String get etymology => 'Etymology: ';
@@ -2651,27 +2606,20 @@ class AppLocalizationsRu extends AppLocalizations {
   String get extracted_text_tap_to_lookup => 'Extracted Text (Tap to lookup)';
 
   @override
-  String extraction_failed(Object error) {
-    return 'Extraction Failed: \\$error';
-  }
+  String get extraction_failed => 'Extraction Failed: \\(error)';
 
   @override
   String get failed_to_download => 'Failed to download.';
 
   @override
-  String failed_to_generate_scenario(Object error) {
-    return 'Failed to generate scenario: $error';
-  }
+  String get failed_to_generate_scenario =>
+      'Failed to generate scenario: (error)';
 
   @override
-  String failed_to_generate_story(Object error) {
-    return 'Failed to generate story:\\n$error';
-  }
+  String get failed_to_generate_story => 'Failed to generate story:\\n(error)';
 
   @override
-  String failed_to_load_context(Object error) {
-    return 'Failed to load context: ${error}rr';
-  }
+  String get failed_to_load_context => 'Failed to load context: (error)rr';
 
   @override
   String get feature_request => 'Feature Request';
@@ -2684,13 +2632,11 @@ class AppLocalizationsRu extends AppLocalizations {
       'How is my pronunciation scored?';
 
   @override
-  String hsk(Object level) {
-    return 'HSK $level';
-  }
+  String get hsk => 'HSK (level)';
 
   @override
   String hsk_vocabulary(int hskLevel) {
-    return 'HSK $hskLevel vocabulary';
+    return 'HSK (hskLevel) vocabulary';
   }
 
   @override
@@ -2753,19 +2699,15 @@ class AppLocalizationsRu extends AppLocalizations {
   String get previous => 'Previous';
 
   @override
-  String question(Object current, Object total) {
-    return 'Вопрос $current/$total';
-  }
+  String get question => 'Вопрос (current)/(total)';
 
   @override
   String remove_from_this_deck(String hanzi) {
-    return 'Remove $hanzi from this deck?';
+    return 'Remove (hanzi) from this deck?';
   }
 
   @override
-  String revenuecat_error(Object error) {
-    return 'RevenueCat Error: $error';
-  }
+  String get revenuecat_error => 'RevenueCat Error: (error)';
 
   @override
   String get review_tomorrow => 'Review Tomorrow';
@@ -2775,7 +2717,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String saving_words_to(int wordCount, String deckName) {
-    return 'Saving $wordCount words to $deckName...';
+    return 'Saving (wordCount) words to (deckName)...';
   }
 
   @override
@@ -2792,9 +2734,7 @@ class AppLocalizationsRu extends AppLocalizations {
       'Shadowing Studio is a dedicated space to practice mimicking native';
 
   @override
-  String simplify_failed(Object error) {
-    return 'Simplify Failed: $error';
-  }
+  String get simplify_failed => 'Simplify Failed: (error)';
 
   @override
   String get sinospark_premium => 'SinoSpark Premium';
@@ -2825,9 +2765,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get traditional => 'Traditional';
 
   @override
-  String translation_failed(Object error) {
-    return 'Translation Failed: $error';
-  }
+  String get translation_failed => 'Translation Failed: (error)';
 
   @override
   String get type_in => 'Type in ...';
@@ -2851,16 +2789,14 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String your_path_for_is_ready(String deckName) {
-    return 'Your path for \'$deckName\' is ready!';
+    return 'Your path for \'(deckName)\' is ready!';
   }
 
   @override
   String get you_said => '🗣️ You Said';
 
   @override
-  String vocabularyBatch(Object index) {
-    return 'Пакет лексики $index';
-  }
+  String get vocabularyBatch => 'Пакет лексики (index)';
 
   @override
   String get yourDailyDropIsHere => 'Ваша Ежедневная Капля здесь! ✨';
@@ -2883,14 +2819,10 @@ class AppLocalizationsRu extends AppLocalizations {
   String get failedToLoadCollections => 'Не удалось загрузить коллекции.';
 
   @override
-  String unnamedKey(Object tag) {
-    return '#$tag';
-  }
+  String get unnamedKey => '#(tag)';
 
   @override
-  String error(Object error) {
-    return 'Ошибка: $error';
-  }
+  String get error => 'Ошибка: (error)';
 
   @override
   String get aiSmartContext => 'Умный контекст ИИ';
@@ -2931,7 +2863,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get practiceMode => 'Режим тренировки';
 
   @override
-  String get liziqi => '李子柒 Liziqi: Шелковые цветы';
+  String get liziqi => 'Ли Цзыци: Шелковые цветы';
 
   @override
   String get theLifeOfGarlicTraditional =>
@@ -2989,7 +2921,7 @@ class AppLocalizationsRu extends AppLocalizations {
       'Почему рост ВВП на 6% - Простая китайская экономика';
 
   @override
-  String get bbcWorldNews => 'BBC Китайский (Мировые новости)';
+  String get bbcWorldNews => 'BBC 中文 (Мировые новости)';
 
   @override
   String get currentEventsInSimplifiedChinese =>
@@ -3019,14 +2951,11 @@ class AppLocalizationsRu extends AppLocalizations {
       'Переписать эту статью в соответствии с вашим уровнем HSK';
 
   @override
-  String failedToSaveExtractedWords(Object error) {
-    return 'Не удалось сохранить извлеченные слова: $error';
-  }
+  String get failedToSaveExtractedWords =>
+      'Не удалось сохранить извлеченные слова: (error)';
 
   @override
-  String addToDeck(Object count) {
-    return 'Добавить в колоду ($count)';
-  }
+  String get addToDeck => 'Добавить в колоду ((count))';
 
   @override
   String get dailyDiscoveryDrop => 'Ежедневный Сброс Открытий';
@@ -3059,9 +2988,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get interpreter => 'Интерпретатор';
 
   @override
-  String cards(Object count) {
-    return '$count карточек';
-  }
+  String get cards => '(count) карточек';
 
   @override
   String get nWaMendsTheHeavens => 'Нюйва чинит небеса';
@@ -3112,10 +3039,323 @@ class AppLocalizationsRu extends AppLocalizations {
   String get bookmarkRemoved => '书签已移除 · Закладка удалена';
 
   @override
-  String bookmarkAdded(Object chapter) {
-    return '已添加书签 · Закладка добавлена: Глава $chapter';
-  }
+  String get bookmarkAdded => '已添加书签 · Закладка добавлена: Глава (chapter)';
 
   @override
   String get readingVocabulary => 'Чтение и словарный запас';
+
+  @override
+  String get vocabularyBatchUnitindex1 => 'Набор слов \$(unitIndex + 1)';
+
+  @override
+  String get yourDailyDropIsHere1 => 'Ваша ежедневная подборка здесь! ✨';
+
+  @override
+  String get timeToReview1 => 'Пора повторять! 📚';
+
+  @override
+  String get neverMissAStroke1 => 'Не пропустите ни одного штриха! 🖌️';
+
+  @override
+  String get yourTrialEndsTomorrow1 =>
+      'Ваша пробная версия заканчивается завтра! ⏳';
+
+  @override
+  String get hskCollections1 => 'Коллекции HSK';
+
+  @override
+  String get officialStandardVocabularyTiers1 =>
+      'Официальные стандартные уровни словарного запаса';
+
+  @override
+  String get failedToLoadCollections1 => 'Не удалось загрузить коллекции.';
+
+  @override
+  String get ui__transcription => '\"\$_transcription\"';
+
+  @override
+  String get playPinyinwithtone => 'Воспроизвести \$pinyinWithTone';
+
+  @override
+  String get errorE => 'Ошибка: \$e';
+
+  @override
+  String get lookalikepinyin => '(\$(lookAlike.pinyin))';
+
+  @override
+  String get aiSmartContext1 => 'Умный контекст ИИ';
+
+  @override
+  String get aiSmartContextError1 => 'Ошибка умного контекста ИИ';
+
+  @override
+  String get errorErr => 'Ошибка: \$err';
+
+  @override
+  String get downloadOfficialHskCollections1 =>
+      'Скачать официальные коллекции HSK';
+
+  @override
+  String get unableToLoadThisSectionPleaseTryAga =>
+      'Не удалось загрузить этот раздел. Пожалуйста, попробуйте снова.';
+
+  @override
+  String get searchRadicalsEgWater => 'Поиск радикалов (напр. Вода, 氵)';
+
+  @override
+  String get ui__currentstrokeindex1totalstrokes =>
+      '\$(_currentStrokeIndex + 1)/\$totalStrokes';
+
+  @override
+  String get translationLanguage1 => 'Язык перевода';
+
+  @override
+  String get appLanguage1 => 'Язык приложения';
+
+  @override
+  String get dailyDrops1 => 'Ежедневные подборки';
+
+  @override
+  String get wordOfTheDayNews1 => 'Слово дня и новости';
+
+  @override
+  String get reviewReminders1 => 'Напоминания о повторении';
+
+  @override
+  String get flashcardsDueForReview1 => 'Карточки для повторения';
+
+  @override
+  String get accuracyByMode1 => 'Точность по режиму';
+
+  @override
+  String get accuracytostringasfixed1 => '\$(accuracy.toStringAsFixed(1))%';
+
+  @override
+  String get upcomingReviewsNext7Days =>
+      'Предстоящие повторения (следующие 7 дней)';
+
+  @override
+  String get explaining => 'Объяснение:';
+
+  @override
+  String get entryhanziEntrypinyin => '\$(entry.hanzi) [\$(entry.pinyin)]';
+
+  @override
+  String get dailyNewCards1 => 'Ежедневные новые карточки';
+
+  @override
+  String get dailyReviewLimit1 => 'Ежедневный лимит повторений';
+
+  @override
+  String get listeningMode1 => 'Режим аудирования';
+
+  @override
+  String get readingMode1 => 'Режим чтения';
+
+  @override
+  String get recallMode1 => 'Режим вспоминания';
+
+  @override
+  String get speakingMode1 => 'Режим говорения';
+
+  @override
+  String get practiceMode1 => 'Режим практики';
+
+  @override
+  String get acc => '\$acc%';
+
+  @override
+  String get partner1 => 'Партнер';
+
+  @override
+  String get partnerSpeaking1 => 'Партнер говорит…';
+
+  @override
+  String get theLifeOfGarlicTraditionalChineseLi =>
+      'Жизнь чеснока - Традиционная китайская жизнь';
+
+  @override
+  String get graceMandarin50Phrases1 => 'Grace Mandarin: 50 фраз';
+
+  @override
+  String get essentialChinesePhrasesForBeginners1 =>
+      'Основные китайские фразы для начинающих';
+
+  @override
+  String get makingBambooFurniture1 => 'Изготовление бамбуковой мебели';
+
+  @override
+  String get muddyPuddlesBeginnerFriendly1 => 'Грязевые лужи - Для начинающих';
+
+  @override
+  String get mandarinCorner300Verbs1 => 'Mandarin Corner: 300 глаголов';
+
+  @override
+  String get mostCommonChineseVerbs1 =>
+      'Самые распространенные китайские глаголы';
+
+  @override
+  String get graceMandarinOrderFood1 => 'Grace Mandarin: Заказ еды';
+
+  @override
+  String get howToOrderFoodInAChineseRestaurant =>
+      'Как заказать еду в китайском ресторане';
+
+  @override
+  String get silkFlowersTraditionalCraft1 =>
+      'Шелковые цветы - Традиционное ремесло';
+
+  @override
+  String get goingToTheDoctorRealLifeConversatio =>
+      'Посещение врача - Разговор из реальной жизни';
+
+  @override
+  String get hideAndSeekBeginnerFriendly1 => 'Прятки - Для начинающих';
+
+  @override
+  String get lingdp6 => 'Сяо Линь говорит: Почему ВВП вырос на 6%';
+
+  @override
+  String get why6GdpGrowthEasyChineseEconomics =>
+      'Почему рост ВВП на 6% - Простая китайская экономика';
+
+  @override
+  String get currentEventsInSimplifiedChinese1 =>
+      'Текущие события на упрощенном китайском';
+
+  @override
+  String get baidu1 => 'Baidu';
+
+  @override
+  String get youtubeDesk1 => 'YOUTUBE DESK';
+
+  @override
+  String get interactiveTranscriptsShadowing1 =>
+      'Интерактивные транскрипции и теневое повторение';
+
+  @override
+  String get showsDramas1 => 'ШОУ И ДРАМЫ';
+
+  @override
+  String get error_error => 'Ошибка: \$_error';
+
+  @override
+  String get extractToDeck1 => 'Извлечь в колоду';
+
+  @override
+  String get autosimplify => 'Автоматическое упрощение';
+
+  @override
+  String get rewriteThisArticleToMatchYourHskLev =>
+      'Перепишите эту статью в соответствии с вашим уровнем HSK';
+
+  @override
+  String get addToDeck1 => 'Добавить в колоду';
+
+  @override
+  String get playbackratex => '\$(playbackRate)x';
+
+  @override
+  String get speedx => '\$(speed)x';
+
+  @override
+  String get dailyDiscoveryDrop1 => 'Ежедневная подборка открытий';
+
+  @override
+  String get smartSpacedRepetition1 => 'Умное интервальное повторение';
+
+  @override
+  String get trialProtectionAlert1 => 'Предупреждение о защите пробной версии';
+
+  @override
+  String get masteryLevel1 => 'Уровень владения';
+
+  @override
+  String get targetObjective1 => 'Цель';
+
+  @override
+  String get dailyPractice1 => 'Ежедневная практика';
+
+  @override
+  String get aiSpacedRepetition1 => 'ИИ интервальное повторение';
+
+  @override
+  String get iveGrantedAccess => 'Я предоставил доступ';
+
+  @override
+  String get addToDeck_selectedwordindiceslength =>
+      'Добавить в колоду (\$(_selectedWordIndices.length))';
+
+  @override
+  String get scanner1 => 'Сканер';
+
+  @override
+  String get interpreter1 => 'Переводчик';
+
+  @override
+  String get entryvalueCards => '\$(entry.value) карточек';
+
+  @override
+  String get score_score_questionslength =>
+      'Счет: \$_score / \$(_questions.length)';
+
+  @override
+  String get theMonkeyKing1 => 'Царь обезьян';
+
+  @override
+  String get huaMulan1 => 'Хуа Мулань';
+
+  @override
+  String get nwaMendsTheHeavens => 'Нюйва чинит небо';
+
+  @override
+  String get confucius => 'Конфуций';
+
+  @override
+  String get theGreatWall1 => 'Великая стена';
+
+  @override
+  String get terracottaArmy1 => 'Терракотовая армия';
+
+  @override
+  String get forbiddenCity1 => 'Запретный город';
+
+  @override
+  String get aBlessingInDisguise1 => 'Нет худа без добра';
+
+  @override
+  String get drawingASnake1 => 'Рисование змеи';
+
+  @override
+  String get takingTheBulletTrain1 => 'Поездка на скоростном поезде';
+
+  @override
+  String get visitingTheDoctor1 => 'Посещение врача';
+
+  @override
+  String get orderingDumplings1 => 'Заказ пельменей';
+
+  @override
+  String get theTeaCeremony1 => 'Чайная церемония';
+
+  @override
+  String get chineseCalligraphy1 => 'Китайская каллиграфия';
+
+  @override
+  String get theGiantPanda1 => 'Большая панда';
+
+  @override
+  String get simplifiedText1 => 'Упрощенный текст';
+
+  @override
+  String get novels961 => 'Романы (96)';
+
+  @override
+  String get microreads => 'Микро-чтения';
+
+  @override
+  String get poetry1 => 'Поэзия';
+
+  @override
+  String get readingVocabulary1 => 'Чтение и словарный запас';
 }

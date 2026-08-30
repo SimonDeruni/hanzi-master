@@ -47,7 +47,7 @@ List<String> segmentSentences(String text) {
 
 Future<void> main() async {
   print('=== Ingesting Aesop Fables ===');
-  final rawUrl = 'https://raw.githubusercontent.com/guangpingmo/AesopsFables/master/%E4%BC%8A%E7%B4%A2%E5%AF%93%E8%A8%80(Aesop\'s%20Fables).md';
+  const rawUrl = 'https://raw.githubusercontent.com/guangpingmo/AesopsFables/master/%E4%BC%8A%E7%B4%A2%E5%AF%93%E8%A8%80(Aesop\'s%20Fables).md';
   final content = await fetchUrl(rawUrl);
   if (content == null || content.isEmpty) return;
 

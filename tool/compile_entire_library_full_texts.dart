@@ -93,7 +93,7 @@ void main() async {
       // Generate rich, specific literary sentences based on author, title, era, and themes
       final List<List<String>> narrativePairs = [
         [
-          '在《$title》第$chIdx回的叙事中，${author}以精湛深邃的文笔展开了关于命运、信仰与人性的深刻探索。',
+          '在《$title》第$chIdx回的叙事中，$author以精湛深邃的文笔展开了关于命运、信仰与人性的深刻探索。',
           'In Chapter $chIdx of "$titleEn", $authorEn explores profound themes of destiny, devotion, and the human spirit with masterful literary grace.'
         ],
         [
