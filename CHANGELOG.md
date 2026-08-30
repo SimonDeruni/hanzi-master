@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.0+286] - 2026-08-30
+- **Startup `Null check operator used on a null value` Crash Fix (Build #286)**:
+  - **`MaterialApp` Root Title**: Converted `MaterialApp` in [`lib/main.dart`](file:///c:/Users/simon/Documents/hanzi_master/lib/main.dart) from `title: AppLocalizations.of(context)!.hanziMaster` to `onGenerateTitle: (context) => AppLocalizations.of(context)?.hanziMaster ?? 'Hanzi Master'`, eliminating the frame-0 null check crash above the localization scope.
+  - **`MainNavigationScreen` Tab Labels & Analytics**: Made initial navigation screen names, bottom navigation bar labels, and screen view logging null-safe with fallback text.
+  - `dart analyze lib/main.dart lib/features/flashcards/presentation/screens/main_navigation_screen.dart`: 0 issues found.
+
 ## [1.0.0+285] - 2026-08-30
 - **HSK Collections (Tome Manager) "Zen & Ink" Visual Redesign (Build #285)**:
   - **Authentic Calligraphic Cards**: Redesigned [`TomeManagerScreen`](file:///c:/Users/simon/Documents/hanzi_master/lib/features/course/presentation/screens/tome_manager_screen.dart) from plain white flat cards into warm Xuan paper and deep carbon ink calligraphic cards with soft shadows, rounded corners (`18px`), and tier-tinted borders.

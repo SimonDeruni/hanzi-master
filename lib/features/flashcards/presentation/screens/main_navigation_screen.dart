@@ -14,7 +14,8 @@ class MainNavigationScreen extends ConsumerStatefulWidget {
   const MainNavigationScreen({super.key});
 
   @override
-  ConsumerState<MainNavigationScreen> createState() => _MainNavigationScreenState();
+  ConsumerState<MainNavigationScreen> createState() =>
+      _MainNavigationScreenState();
 }
 
 class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
@@ -25,8 +26,14 @@ class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
     setState(() {
       _selectedIndex = index;
     });
-    
-    final screenNames = ['Dashboard', 'Explore', 'AI Hub', 'Library'];
+
+    final l10n = AppLocalizations.of(context);
+    final screenNames = [
+      l10n?.dashboardTitle ?? 'Dashboard',
+      l10n?.explore ?? 'Explore',
+      l10n?.aiHubTitle ?? 'AI Hub',
+      l10n?.library ?? 'Library',
+    ];
     if (index >= 0 && index < screenNames.length) {
       ref.read(analyticsServiceProvider).logScreenView(screenNames[index]);
     }
@@ -44,7 +51,11 @@ class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
     super.initState();
     // Log the initial screen
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(analyticsServiceProvider).logScreenView('Dashboard');
+      if (!mounted) return;
+      final l10n = AppLocalizations.of(context);
+      ref
+          .read(analyticsServiceProvider)
+          .logScreenView(l10n?.dashboardTitle ?? 'Dashboard');
     });
   }
 
@@ -85,8 +96,10 @@ class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
             HapticsManager.light();
             _onNavigate(index);
           },
-          backgroundColor: isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
-          selectedItemColor: isDark ? const Color(0xFFFF7A00) : const Color(0xFFFF7A00),
+          backgroundColor:
+              isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
+          selectedItemColor:
+              isDark ? const Color(0xFFFF7A00) : const Color(0xFFFF7A00),
           unselectedItemColor: isDark
               ? const Color(0xFFFDFCF0).withValues(alpha: 0.4)
               : const Color(0xFF1A1A1B).withValues(alpha: 0.5),
@@ -97,22 +110,22 @@ class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
             BottomNavigationBarItem(
               icon: const Icon(Icons.home_outlined),
               activeIcon: const Icon(Icons.home),
-              label: AppLocalizations.of(context)!.dashboardTitle,
+              label: AppLocalizations.of(context)?.dashboardTitle ?? 'Dashboard',
             ),
-            const BottomNavigationBarItem(
-              icon: Icon(Icons.explore_outlined),
-              activeIcon: Icon(Icons.explore),
-              label: "Explore",
+            BottomNavigationBarItem(
+              icon: const Icon(Icons.explore_outlined),
+              activeIcon: const Icon(Icons.explore),
+              label: AppLocalizations.of(context)?.explore ?? 'Explore',
             ),
             BottomNavigationBarItem(
               icon: const Icon(Icons.auto_awesome_outlined),
               activeIcon: const Icon(Icons.auto_awesome),
-              label: AppLocalizations.of(context)!.aiHubTitle,
+              label: AppLocalizations.of(context)?.aiHubTitle ?? 'AI Hub',
             ),
-            const BottomNavigationBarItem(
-              icon: Icon(Icons.menu_book_outlined),
-              activeIcon: Icon(Icons.menu_book),
-              label: "Library",
+            BottomNavigationBarItem(
+              icon: const Icon(Icons.menu_book_outlined),
+              activeIcon: const Icon(Icons.menu_book),
+              label: AppLocalizations.of(context)?.library ?? 'Library',
             ),
           ],
         ),
@@ -120,5 +133,3 @@ class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
     );
   }
 }
-
-    
